@@ -1,0 +1,46 @@
+This shit can be pretty complicated
+
+Here are some of the reference sources used for the dicussion: 
+
+MIT Lecture Notes: [link](www.math.iit.edu/~fass/478578_Chapter_3.pdf)
+
+Topics Involved: Runge Kutta, Butcher Tableaux, Heun's Method, Gauss Runge Kutta, Gauss Legendre method, Collocation Methods
+
+---
+
+Here is the derivation of the 2nd order Runge Kutta method by hand: 
+![[Runge Kutta 2nd Derivation 1.jpg]]
+![[Runge Kutta 2nd Derivation 2.jpg]]
+
+### 2nd Degree Runge Kutta 
+
+The second degree Rounge Kutta is just evaluating at 2 points and try to average the change in the spacial dimension out a bit
+> $$y_{n + 1} = y_n + \frac{h}{2} f(t, y_n) + \frac{h}{2} f(t + h, y_n + hf(t, y_n)) + \mathcal{O}(h^3)$$
+> RK(2)
+
+### 5th Degree Runge Kutta
+
+The 5tht degree Runge Kutta involves a lot of evaluations on the both the spetial dimension and the time dimension. 
+
+> $$y_{n + 1} = y_n + \frac{h}{6}(f_1 + 2f_2 + 2f_3 + f_4) + \mathcal{O}(h^5)$$
+> RK(4)
+
+Where each of the terms denotes an evaluations on some points, and here is the full picture: 
+
+$$f_1 = f(t_n, y_n)$$
+
+$$f_2 = f(t_n + \frac{h}{2}, y_n + \frac{h}{2}f_1)$$
+
+$$f_3 = f(t_n + \frac{h}{2}, y_n + \frac{h}{2}f_2)$$
+
+$$f_4 = f(t_n + h, y_n + hf_3)$$
+
+The gloable of both scheme is gonna be one degree higher, and here is a pretty cool table: 
+
+---
+
+### A General Approach
+
+Here, we make a template from the 2nd Runge Kutta and then use it to frame a family of second order time-stepping schemes. 
+
+[[Generalized 2nd Order Taylor Scheme]]

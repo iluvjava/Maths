@@ -1,0 +1,141 @@
+{
+  "main": {
+    "id": "f9babefcedb978f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "5e6693c5c41bc629",
+        "type": "leaf",
+        "active": true,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 581/Iterative Method.md",
+            "mode": "source"
+          }
+        },
+        "group": "c335b71f446fcfc7"
+      },
+      {
+        "id": "752d3f6d7aea6f00",
+        "type": "split",
+        "children": [
+          {
+            "id": "9763e6de63849446",
+            "type": "leaf",
+            "dimension": 81.71846435100548,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 581/Iterative Method.md",
+                "mode": "preview"
+              }
+            },
+            "group": "c335b71f446fcfc7"
+          },
+          {
+            "id": "18e6fd9f0fd1ce90",
+            "type": "leaf",
+            "dimension": 18.281535648994517,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "AMATH 581/Iterative Method.md",
+                "options": {
+                  "search": "",
+                  "localJumps": 5,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "showArrow": false,
+                  "textFadeMultiplier": -3,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 1.0000000000000022
+                }
+              }
+            }
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c737cf1f5bd863c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "828ced121c818075",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8de77e63a453840",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "c99e83e659877ffb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "norm"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 336.5121879577637
+  },
+  "right": {
+    "id": "e74ad2ddc9cb0415",
+    "type": "split",
+    "children": [
+      {
+        "id": "72f505a5a3aafbcf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "043129611bba2f57",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "AMATH 581/Iterative Method.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "lastOpenFiles": [
+    "AMATH 581/Iterative Method.md",
+    "AMATH 581/Advection Diffusion.md",
+    "AMATH 581/Generalized 2nd Order Taylor Scheme.md",
+    "AMATH 581/Fourier Transform.md",
+    "AMATH 581/Finite Difference.md",
+    "AMATH 581/Computer Bad at Maths.md",
+    "AMATH 584/Householder Triangularization.md",
+    "AMATH 584/Modified GS Process.md",
+    "AMATH 584/LU Decomposition.md",
+    "AMATH 584/LS Fitting Conditioning.md"
+  ]
+}
