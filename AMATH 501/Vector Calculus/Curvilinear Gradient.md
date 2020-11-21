@@ -1,6 +1,6 @@
 In this note, we explore taking the gradient for a function defined under another curvilinear coordinate system. 
 
-preq: [[Ortho Curvilinears Coord]]
+preq: [[Ortho Curvillinears Coord]]
 preq: [[The Gradient]]
 extra materials: [Link](https://www.jfoadi.me.uk/documents/lecture_mathphys2_05.pdf)
 

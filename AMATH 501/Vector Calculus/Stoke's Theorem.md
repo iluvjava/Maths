@@ -8,7 +8,7 @@ NOTE: The stoke's theorem decays to **Green's theorem** when it's a simple surfa
 #### Preconditions
 
 * The surface is Orientable, mewing that there are 2 side, and no Mobius Strip. 
-* Smooth surface abd smooth boundary.  
+* Smooth surface and smooth boundary.  (Piece-wise smooth is OK too)
 * Vector Field are continuous differentiable For the vector field, the derivative must be defined on every point, in addition, the derivatives must also be continuous functions too. 
 
 

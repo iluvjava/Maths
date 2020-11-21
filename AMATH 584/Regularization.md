@@ -1,5 +1,6 @@
 Content of Lecture 2
 
+
 ---
 
 $$

@@ -3,7 +3,7 @@ prereq: [[Runge Kutta]] This is important to understand what this is doing here.
 
 ---
 
-Let's present the following formula for our time stepping schceme: 
+Let's present the following formula for our time stepping scheme: 
 
 
 > $$
@@ -49,13 +49,15 @@ Now the cool thing is, we already fiture out the expansion for the function back
 
 And then we got the following formula that frame the variables $A, B, P, Q$, giving us: 
 
-> $A + B = 1$
-$BP = \frac{1}{2}$
-$BQ = \frac{1}{2}$
+> $$A + B = 1$$
+> 
+$$BP = \frac{1}{2}$$
+>
+$$BQ = \frac{1}{2}$$
 
 It's implied that $P = Q$
 
-And then we can choose different values for $A, B$ to get all different kinds of time-stepping scheme. But the key here will be that, all of the time-stepping scheme developed from this formula will have a local error on the maginitude of $\mathcal{O}(h^3)$. 
+And then we can choose different values for $A, B$ to get all different kinds of time-stepping scheme. But the key here will be that, all of the time-stepping scheme developed from this formula will have a local error on the magnitude of $\mathcal{O}(h^3)$. 
 
 #### Heun's Method
 

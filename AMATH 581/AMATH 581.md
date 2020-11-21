@@ -4,12 +4,13 @@
 2. Initial Value Problems: Forward Integration [[IVP]]
 	* Forward Euler, [[FE Stability]]
 	* Runge-Kutta, [[Runge Kutta]]
-	* Integrators usage, [[Adam B.M]]
+	* Integrator usage, [[Adam B.M]]
 3. Initial Value Problems: Implicit Integration and Stability 
- 	* Backward Euler
+ 	* Backward Euler 
  	* Integral Methods [[Adam B.M]] 
  	* Predictor-Corrector [[Adam B.M]]
- 	* Integrators usage
+ 	* Integrator usage ????
+ 	* Floating Point Precision [[Computer Bad at Maths]]
 4. BVP: Shooting Method
 	* Application of shooting for solving 2nd order BVP, ODEs [[Shooting Method]]
 	* Linear 2nd order BVP (relaxation, collocation) [[Direct Method]]
@@ -21,10 +22,13 @@
 	* Efficiency of the methods
 7. Finite Difference: PDE Solution and stability
 	* Von-Neumann Stability of Finite Difference Schemes
+		* [[PDEs Stability Analysis]]
+		* [[PDEs Stability Analysis 2]]
 	* Alternative Discretizations
 8. Spectral Methods
 	* The Fourier Transform for PDE Solution, Advanced Transforms for PDE Solution
-		* [[Fourier Transform]]
+		* [[Fourier Transform Fourier Series]]
+		* [[Spectral Method]]
 9. Finite Elements
 	* Theory, Solving PDE Problems with PDETool
 

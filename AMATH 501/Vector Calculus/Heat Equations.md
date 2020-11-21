@@ -57,10 +57,10 @@ M'(t) = \underset{B}{\iint}u(\nabla \cdot \nabla u) \; dxdy
 $$
 
 $$
-M'(t) = \underset{b}{\iint}u(\nabla \cdot \nabla u) + \nabla u\cdot \nabla u - \Vert u\Vert^2 \; dxdy
+M'(t) = \underset{b}{\iint}u(\nabla \cdot \nabla u) + \nabla u\cdot \nabla u - \Vert \nabla u\Vert^2 \; dxdy
 $$
 $$
-M'(t) = \underset{B}{\iint}\nabla \cdot (u\nabla u) \;dxdy - \underset{B}{\iint} \Vert u\Vert^2 dxdy
+M'(t) = \underset{B}{\iint}\nabla \cdot (u\nabla u) \;dxdy - \underset{B}{\iint} \Vert \nabla u\Vert^2 dxdy
 $$
 
 Using the divergence theorem, the first part is summing up all the divergence over the area, which is the same as the line integral along the boundary of the box, and then sum up all the dot product of the line integral and the vector field. However, on the boundary, it's asserted that $u(x, y, t) = 0$, therefore, the first integral will be zero. 
@@ -70,9 +70,9 @@ $$
  \underset{B}{\iint}\nabla \cdot (u\nabla u) \;dxdy = \underset{C}{\int} u\nabla u \;dxdy = 0
 $$
 
-And then the second term will be less than zero because $$\Vert u\Vert^2 > 0$$
+And then the second term will be less than zero because $$\Vert \nabla u\Vert^2 > 0$$
 
 $$
-M'(t) = - \underset{B}{\iint} \Vert u\Vert^2 dxdy < 0
+M'(t) = - \underset{B}{\iint} \Vert \nabla u\Vert^2 dxdy < 0
 $$
 

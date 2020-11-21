@@ -4,7 +4,7 @@ Topics on this includes: [[Unitary Matrix]]
 
 ---
 
-### Statement
+### Statement 1
 
 > If $A$ is a triangular matrix and it's unitary, then A is a diagonal matrix. 
 
@@ -60,10 +60,16 @@ $$|a_{n - 1, n - 1}| = 1$$
 
 Until the remaining upper submatrix is $2\times 2$ then it will go back the the base case, which is already proved above. 
 
+#### Another Proof
+
+So we are going to make another proof, where make use of the fact that: 
+> The inverse matrix of an Upper/Lower Triangular Matrix is still going to be Upper, or Lower triangular. 
+
+This is easy to reason with an row operation matrix that brigs the LT to identity matrix. 
 
 ---
 
-### Statement
+### Statement 2
 
 > If U is an unitary matrix, then all its eigen values will have a modulus of 1. 
 

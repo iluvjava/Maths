@@ -6,11 +6,12 @@
       {
         "id": "5e6693c5c41bc629",
         "type": "leaf",
+        "dimension": 46.03174603174603,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581/Iterative Method.md",
+            "file": "AMATH 501/Complex Integration (CG).md",
             "mode": "source"
           }
         },
@@ -19,15 +20,16 @@
       {
         "id": "752d3f6d7aea6f00",
         "type": "split",
+        "dimension": 53.96825396825397,
         "children": [
           {
             "id": "9763e6de63849446",
             "type": "leaf",
-            "dimension": 81.71846435100548,
+            "dimension": 81.70173833485819,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 581/Iterative Method.md",
+                "file": "AMATH 501/Complex Integration (CG).md",
                 "mode": "preview"
               }
             },
@@ -36,14 +38,14 @@
           {
             "id": "18e6fd9f0fd1ce90",
             "type": "leaf",
-            "dimension": 18.281535648994517,
+            "dimension": 18.298261665141812,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 581/Iterative Method.md",
+                "file": "AMATH 501/Complex Integration (CG).md",
                 "options": {
                   "search": "",
-                  "localJumps": 5,
+                  "localJumps": 1,
                   "localBacklinks": true,
                   "localForelinks": true,
                   "localInterlinks": false,
@@ -58,10 +60,11 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 1.0000000000000022
+                  "scale": 0.5792388806186226
                 }
               }
-            }
+            },
+            "group": "c335b71f446fcfc7"
           }
         ],
         "direction": "horizontal"
@@ -91,7 +94,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "norm"
+                "query": "Principal",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
               }
             }
           }
@@ -99,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 336.5121879577637
+    "width": 355.99999809265137
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -115,7 +123,12 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581/Iterative Method.md"
+                "file": "AMATH 501/Complex Integration (CG).md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
               }
             }
           }
@@ -127,15 +140,15 @@
     "collapsed": true
   },
   "lastOpenFiles": [
-    "AMATH 581/Iterative Method.md",
-    "AMATH 581/Advection Diffusion.md",
-    "AMATH 581/Generalized 2nd Order Taylor Scheme.md",
-    "AMATH 581/Fourier Transform.md",
-    "AMATH 581/Finite Difference.md",
-    "AMATH 581/Computer Bad at Maths.md",
-    "AMATH 584/Householder Triangularization.md",
-    "AMATH 584/Modified GS Process.md",
-    "AMATH 584/LU Decomposition.md",
-    "AMATH 584/LS Fitting Conditioning.md"
+    "AMATH 501/Complex Integration (CG).md",
+    "AMATH 501/Complex Functions.md",
+    "AMATH 501/Cauchy Riemann Conditions (Analyticity).md",
+    "AMATH 501/Cauchy Integral.md",
+    "AMATH 501/Complex Trigs.md",
+    "AMATH 501/Complex Number.md",
+    "AMATH 501/Complex Logarithm (The Key).md",
+    "AMATH 501/Power Series.md",
+    "AMATH 501/Power Series 2.md",
+    "AMATH 501/Power Series-Ranbow-Dash.md"
   ]
 }

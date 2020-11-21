@@ -11,7 +11,7 @@ However the conditions for the problem will be different:
 
 > $$\alpha_1 y(a) + \beta_1\frac{dy}{dt}(a) = \gamma_1$$ $$\alpha_2 y(b) + \beta_2\frac{dy}{dt}(b) = \gamma_2$$
 
-And we want a particular solution to the problem to satisfy a system of linear equations with unknown paramters, where it involves the value of the function at $a, b$ and the value of the derivative at those points too. 
+And we want a particular solution to the problem to satisfy a system of linear equations with unknown parameters where it involves the value of the function at $a, b$ and the value of the derivative at those points too. 
 
 These kind of problems are called the boundary value problems. 
 
@@ -51,7 +51,7 @@ $$
 1-x^{2} & |x|<1 \\
 0 & |x| \geq 1
 \end{array}\right.$$
-Which is just a piecewise functon. 
+Which is just a piece-wise function. 
 
 
 Consider the case where it's outside of the little range we will have: 
@@ -61,11 +61,11 @@ $$
 $$ 
 (1)
 
-So the bundary conditiosn asserts that the boundary value of the function decays to zero as the time progresses, $\psi \rightarrow 0$ as $x\rightarrow \pm \infty$
+So the boundary conditions asserts that the boundary value of the function decays to zero as the time progresses, $\psi \rightarrow 0$ as $x\rightarrow \pm \infty$
 
-Now when we consider the solution, we want the soltuion that has the parameters $\beta_n > 0$, where (1) can actually decays to zero. 
+Now when we consider the solution, we want the solution that has the parameters $\beta_n > 0$, where (1) can actually decays to zero. 
 
-So the solution of the problem will be superpositioned by: 
+So the solution of the problem will be super-positioned	 by: 
 
 $$\psi_n = c_1 e^{-\sqrt{\beta_n}x} + c_2 e^{\sqrt{\beta_n}x}$$
 
@@ -78,7 +78,7 @@ And this will give use the expression for $\psi\;'$
 $$\psi\;'(\infty) = -\sqrt{\beta_n}\psi_n(\infty)$$ $$\psi\;'(-\infty) = \sqrt{\beta_n}\psi_n(-\infty)$$
 (2)
 
-This is a expression that can be interpreted computationally. What we did is we transformed a boundary conditons that cannot be interpreted computationally into a conditions that is suitable for computational purposes. 
+This is a expression that can be interpreted computationally. What we did is we transformed a boundary conditions that cannot be interpreted computationally into a conditions that is suitable for computational purposes. 
 
 This is the boundary conditions such that, once put into the simulations, the function will decay to zero at both end of the function. 
 

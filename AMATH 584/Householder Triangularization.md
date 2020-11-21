@@ -163,16 +163,16 @@ def full_qr_factor(R):
 
 ### Key Implementation Details
 
-When implementing the algorithm in practice, there will be serval important things to take notice, they are: 
+When implementing the algorithm in practice, there will be several important things to take notice, they are: 
 * Squared Matrices
 * Reflecting Orthogonal Vectors 
-* Rank Defecient Matrices
+* Rank Deficient Matrices
 
 For squared matrices, we ignore the last column, because when there is only one column left and the first `n - 1` columns are triangular, then the whole matrix is automatically triangular. 
 
 When reflecting the vector, if the first element of the vector $z$ is zero, then we cannot use `sign(z)` to do hyper plane reflection, this will ruin everything, and hence, we just skip that part and use $||z||e_1$. 
 
-When the matrix is rank defecit, there will be columns full of zeros when triagularizing the matrix $A$, in that case, we just need to ignore that column completely and pretend it doesn't exist. If we made the choice of doing that, then the resulting upper triagular matrix $R$ will not be **Triagular anymore**. 
+When the matrix is rank deficit there will be columns full of zeros when triangularizing the matrix $A$, in that case, we just need to ignore that column completely and pretend it doesn't exist. If we made the choice of doing that, then the resulting upper triangular matrix $R$ will not be **Triangular anymore**. 
 
 
 Fact: This algorithm is supreme when it comes to numerical accuracy and numerical stability. 

@@ -1,6 +1,6 @@
 Here we are going to discuss something about the polar coordinates ans what happen when we try to do calculus on it. 
 
-The polar coordinate system is one of the [[Ortho Curvilinears Coord]], and hence it follows rules from there. 
+The polar coordinate system is one of the [[Ortho Curvillinears Coord]], and hence it follows rules from there. 
 
 ---
 

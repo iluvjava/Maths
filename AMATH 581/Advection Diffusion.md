@@ -53,16 +53,16 @@ $$
 
 And the same for the stream functions
 $$
-\phi(-L, y, t) = \phi(L, y, t)
+\psi(-L, y, t) = \psi(L, y, t)
 $$
 
 $$
-\phi(x, -L, t) = \phi(x, L, t)
+\psi(x, -L, t) = \psi(x, L, t)
 $$
 
-#### Numerical Approaches
+#### Numerical Approaches (Algorithm)
 
-get $\omega_0$, solve for $\phi$ using (eqn 2) (This is call Eliptic Solve); time stepping on (eqn 1) to get the next distribution for $\omega_1$, then repreat the process. 
+get $\omega_0$, solve for $\psi$ using (eqn 2) (This is call Eliptic Solve); time stepping on (eqn 1) to get the next distribution for $\omega_1$, then repreat the process. 
 
 For doing the elliptic solve, we need to incoperate the Laplacian Operator with Periodic Boundary value conditions into the matrix. 
 
@@ -119,10 +119,9 @@ $$
 \end{bmatrix}
 $$
 
-So each sub vector inside are sharing the same value of $x$ corrdinates. And the vector has a length of $N\times N$, because $\delta$ is the same descritization for both spatial directions. 
+So each sub vector inside are sharing the same value of $x$ coordinates. And the vector has a length of $N\times N$, because $\delta$ is the same discretization for both spatial directions. 
 
-This is a **flattened matrix**, we will refer to it as the **Flattend Grid**. 
-
+This is a **flattened matrix**, we will refer to it as the **Flattened Grid**. 
 
 #### Structured Matrix For Kernel Filter
 
@@ -162,17 +161,17 @@ $$
 \end{bmatrix}\delta^{-2}
 $$
 
-Then, for every elements $\psi_{m, n}$, it will be included in to the sum for 2 of its neighbours: $\psi_{m, n\pm 1}$, which means that, each row of the Operational Matrix will contains two ones and all the other values will be zeros. 
+Then, for every elements $\psi_{m, n}$, it will be included in to the sum for 2 of its neighbors: $\psi_{m, n\pm 1}$, which means that, each row of the Operational Matrix will contains two ones and all the other values will be zeros. 
 
-However, this part is getting hard because of the periodic boundary conditions, but ignoring the boundary conditiosn and only focuses in the interior points, we have the structure Operational Matrix: 
+However, this part is getting hard because of the periodic boundary conditions, but ignoring the boundary conditions and only focuses in the interior points, we have the structure Operational Matrix: 
 
- define: $P$ matrix to be a Band matrix with ones with position $\pm 1$, then the Operational Metrix for the vertical components of the Filter Kernel will be: 
+ define: $P$ matrix to be a Band matrix with ones with position $\pm 1$, then the Operational Matrix for the vertical components of the Filter Kernel will be: 
  
 $$
  A_Y = P\otimes I_N
 $$
 
-Now, if we include boundary conditions into the Matrix $P$, then the crossponding Kron Product will include the correct boundary conditiosn too. 
+Now, if we include boundary conditions into the Matrix $P$, then the corresponding Kron Product will include the correct boundary conditions too. 
 
 Now let's focus on the horizontal components of the Filter Kernel matrix: 
 
@@ -185,7 +184,7 @@ $$
 \end{bmatrix}\delta^{-2}
 $$
 
-This means that, for any $\psi_{m, n}$, it will be sum into it's neighbours: $\psi_{m\pm 1, n}$. Notice that, now it's corss the different inner blocks of the flattened vector, and in this case, because $\psi_{m, n}$ is in block $m$ while it's neighbours are in different blocks: $m\pm 1$. 
+This means that, for any $\psi_{m, n}$, it will be sum into it's neighbors: $\psi_{m\pm 1, n}$. Notice that, now it's cross the different inner blocks of the flattened vector, and in this case, because $\psi_{m, n}$ is in block $m$ while it's neighbors are in different blocks: $m\pm 1$. 
 
 Now let's suppose that the matrix $P$ is the same band, then the Operation matrix will be represented as: 
 
@@ -199,7 +198,7 @@ $$
 P\otimes I_N -4(I_N\otimes I_N) + A_x = I_N \otimes P
 $$
 
-So the moral of the story is, with block crossing, then it's $P\otimes I_N$, but when it's not there, then it's going to be: $I_N\otimes P$. So the $I_N$ matris is acting like a **Block seperator** for the flattened matrix vector $\vec{\psi}$. 
+So the moral of the story is, with block crossing, then it's $P\otimes I_N$, but when it's not there, then it's going to be: $I_N\otimes P$. So the $I_N$ matrix is acting like a **Block separator** for the flattened matrix vector $\vec{\psi}$. 
 
 And the resulting matrix will be in the size of: $N^2\times N^2$. 
 
@@ -219,7 +218,7 @@ $$
 
 #### Discrete Laplacian
 
-And hence, we will have the discretized Laplacian Operator ready for usage, and it can be conveniently written like: 
+Generally speaking, the Discrete Laplacian can be computed easily via a Kron product: 
 
 $$
 D_{\nabla^2} = 
@@ -260,7 +259,7 @@ $$
 And this will be our tensor, and then let's find the transformation matrix on x, with only the first row, second, and last row separately and then we add then all together to get the overall structural matrix for the transformation. 
 
 
-Let's $K_0$ be the kernel matrix for the 1d kernal with periodic conditions
+Let's $K_0$ be the kernel matrix for the 1d kernel with periodic conditions
 
 $$
 \begin{bmatrix}

@@ -1,6 +1,6 @@
 Exploit the Conservative vectof field for line integrals. 
 
-Prereq: [[Line Integral]], [[Ortho Curvilinears Coord]], [[The Gradient]], [[Curvilinear Gradient]]
+Prereq: [[Line Integral]], [[Ortho Curvillinears Coord]], [[The Gradient]], [[Curvilinear Gradient]]
 
 ---
 

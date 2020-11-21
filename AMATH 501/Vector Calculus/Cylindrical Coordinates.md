@@ -1,5 +1,5 @@
 Here we talk about the Cylindrical Coordinates so we have a quick reference to it when we are taking the integrals of things. 
-[[Ortho Curvilinears Coord]]: The Cylindrical Coordinates is one of the coordinate system that is Ortho Curvilinear. 
+[[Ortho Curvillinears Coord]]: The Cylindrical Coordinates is one of the coordinate system that is Ortho Curvilinear. 
 
 
 $$\newcommand{\uvec}[1]{\hat{\textbf{#1}}}$$

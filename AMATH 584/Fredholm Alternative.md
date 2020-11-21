@@ -49,5 +49,12 @@ So, let's frame this results here, this results is obtained by exploiting the pr
 
 --- 
 
-
 #### The Norm Equations
+
+$$
+Ax = b
+$$
+
+$$
+A^TAx = A^Tb
+$$

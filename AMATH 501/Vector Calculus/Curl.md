@@ -1,6 +1,6 @@
 The curl is a vector field over a vector field that measure sthe amount of swirls involved in a given vector field. 
 
-[[Ortho Curvilinears Coord]]
+[[Ortho Curvillinears Coord]]
 
 ---
 

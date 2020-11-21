@@ -5,8 +5,9 @@ Matrices: Shapes, Properties, basically matrices that has some kind of name or t
 	* Non Diagonal entries are all zeroes.
 * Normal Matrix
 	* A matrix is normal if it commute with its Conjugate Transpose which means that $$A^HA = AA^H$$
-	* If the matrix is normal, then the SVD decomposition of the matrix becomes a shcur decomposition. 
-	* see: [[Schur]]
+	* [[Normal Matrix]]
+
+
 * Similar Matrix
 	* $A$ and $B$ are squared matrices
 	* $A$ and $B$ are similar if there eixsts $M$ such that $B = M^{-1}AM$, relation is symmetrical. 

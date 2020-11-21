@@ -17,12 +17,12 @@
 	 * Divergence theorem 
 		 * [[Divergence Theorem]]
 	 * Curvilinear Space: 
-		 * [[Ortho Curvilinears Coord]]
+		 * [[Ortho Curvillinears Coord]]
  2. Complex Analysis
-	 * Complex Numbers
-	 * Functions of a complex variable
-	 * Analyticity
-	 * Integration
+	 * Complex Numbers [[Complex Number]]
+	 * Functions of a complex variable [[Complex Functions]]
+	 * Analyticity [[Analytic Functions (Exp, Poly)]] [[Cauchy Riemann Conditions (Analyticity)]] 
+	 * Integration 
 	 * Cauchy's theorem and the Cauchy integral formula
 	 * Taylor and Laurent series
 	 * Residues and contour integration 

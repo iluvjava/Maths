@@ -7,7 +7,7 @@ Prereq: [[IVP]]
 ### Canonical Form of Higher Order ODEs
 
 
-Consider a given system of equtions involving differential from zero up to n, expressed in the following form: 
+Consider a given system of equations involving differential from zero up to n, expressed in the following form: 
 
 > $$y^{(n)} = f\left(y^{(n - 1)}, y^{(n - 2)}... y'', y', y, t\right)$$ 
 

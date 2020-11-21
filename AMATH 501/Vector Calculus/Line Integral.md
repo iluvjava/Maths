@@ -1,5 +1,5 @@
 Here we are going to define and invesitate the line integral for different types of vector field, paths, with curvilinear coordinates. 
-[[Ortho Curvilinears Coord]]
+[[Ortho Curvillinears Coord]]
 
 ---
 

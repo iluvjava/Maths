@@ -1,6 +1,6 @@
 The direct method uses finite difference and the idea of a an operation matrix to reduce a linear system of 2nd order ODEs into an equation which involving matrix multiplication on the domain of the function, and it  can solve Boundary Value Problem. 
 
-Prereq: [[BVP]]
+Prereq: [[BVP]], [[Finite Difference]]
 
 ---
 
@@ -67,7 +67,7 @@ And this is giving us a function of the form $Ax  = b$, which is very easy to so
 
 #### More Involved Boundary Conditions
 
-In general, there might be Boundary Conditions that involve somve derivative of the function at that point, and let's see if we can incorperate that into the matrix. 
+In general, there might be Boundary Conditions that involve some derivative of the function at that point, and let's see if we can incorperate that into the matrix. 
 
 > $$\alpha_1 y(t_0) + \beta_1 y'(t_0) = \gamma_1$$ $$\alpha_2 y(t_N) + \beta_2 y'(t_N) = \gamma_2$$
 

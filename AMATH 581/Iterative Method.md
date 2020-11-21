@@ -3,7 +3,6 @@ Related: [[Direct Method]]
 
 ---
 
-
 ### Jacobi Iteration
 
 The Jacobi Iteration is used as a way to figure out the solution of a linear system. 
@@ -50,6 +49,9 @@ $$
  
  Both of these methods has a complexity of $\mathcal{O}(N^2)$, where $N$ is the dimension of the matrix. 
  
+ SDD: 
+ **Strictly Diagonal Dominant**: The element on the diagonal of the matrix is larger than the sum of absolute value of all the non diagonal element. 
+ 
  **Computational Concerns**: 
  Jacobi Method: Supports Parallization
  
@@ -57,7 +59,7 @@ Gauss-Seidel Method: Doesn't support because back substitution is going to be ne
 
 --- 
 
-### Brief Analysis On Convergence
+### Brief Analysis On Convergence (Jacobi)
 
 If the solution of the linear system is $x_*$, then it will equates the left and right side of the iterative scheme, meaning that: 
 
@@ -65,6 +67,28 @@ $$
 x_{k + 1} = D^{-1}(-Rx_k + b)
 $$
 
-And then this is like. 
+Stabilizes and changed into: 
+$$
+x_* = D^{-1}(-Rx_* + b)
+$$
 
+And then we subtract the second equations on the first one and then get an description of the error $\Vert x_k - x_*\Vert$ for the iterations, and it will be like: 
+
+$$
+x_{k + 1} - x_* = -D^{-1}R(x_k - x_*)
+$$
+
+And then recursively expand the expression we will have: 
+
+$$
+x_{k + 1} - x_* = (-D^{-1}R)^{k}(x_0 - x_*)
+$$
+
+Notice that the iterations will converge if the following condition is true for any norm: 
+
+$$
+\Vert-D^{-1}R\Vert < 1
+$$
+
+And if that happens, the the Jacobi iteration is going to converge. The same technique can be applied to other schemes to prove the convergence. 
 

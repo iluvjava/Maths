@@ -2,25 +2,25 @@ We need to talk about the algorithmic aspect of things like SVD, Eigen, and QR.
 
 prereq: [[Norm]]
 
-This is one of the metric used for measure the behavior of linear operator, which under the context of conditioning and stability for linear algebra, forms the basis for comutational algorithm for the condition number. 
+This is one of the metric used for measure the behavior of linear operator, which under the context of conditioning and stability for linear algebra, forms the basis for computational algorithm for the condition number. 
 
 
 ---
 
 #### Conceptually Speaking
-Conditionaing and stability are property of the funtions that maps things from an input space to the output space of the function. 
+Conditioning and stability are property of the functions that maps things from an input space to the output space of the function. 
 
 ##### Conditioning
- Pertubates the inputs and how does it change the output of the function. 
+ Perturbates the inputs and how does it change the output of the function. 
  * Well-Conditioned: 
    * Small changes in x is also going to cause small changes in the output of the function f. 
  * Ill-Conditioned: 
  	* Small changes in the x causes huge changes in the output of the function. 
 
-This idea is relavent to controling the error because if reflects how the round off errors could potentially got scaled up when smalle numerical errors are introduced. 
+This idea is relevant to controlling the error because if reflects how the round off errors could potentially got scaled up when smaller numerical errors are introduced. 
  
  ##### Stability
- Behaviours of the algorithm under pertubations. 
+ Behaviors of the algorithm under perturbations 
 
  
  ---
@@ -39,7 +39,7 @@ However, if the function output at the point $x$ is just huge, then this is real
  > {||\delta x||/||x||}
  > \right)$$
 
-So we measure the pertubations relative to the input vector, and measure the pertubations relative to the output vector from the function, and then we are interested iewn the ratio between the 2, if this scales too big, then we are in a bit of a trouble. 
+So we measure the perturbations relative to the input vector, and measure the perturbations relative to the output vector from the function, and then we are interested in the ratio between the 2, if this scales too big, then we are in a bit of a trouble. 
 
 Generalizing the concepts to any function, we will use the jacobian matrix. 
 
@@ -48,14 +48,14 @@ $$\delta f \approx \textbf{J}_f(x) $$
 And hence, we will know that the discussion of conditioning under the context of linear algebra will be helpfuel here. 
 
 **Note:**
-There are different types of norm which can be used here, and for genericticty, it's not specified here. 
+There are different types of norm which can be used here, but it's not specified here. 
 
  ---
 #### Conditioning Under the Context of Linalg
 
 Now, assume that the matrix $A\in \mathbb{C}^{m\times n}$
 
-Then, using the defition from above on the general mapping functions, it's going to be 
+Then, using the definition from above on the general mapping functions, it's going to be 
 
 $$
 \sup_{\delta x}
@@ -68,13 +68,13 @@ $$
 Then an upper bound can be identified with some properties of Matrix Vecor Norm, [[Norm]], which will results in the following expression here: 
 
 > $$\kappa = \sup_{||x|| = 1}\frac{||A||\;||x||}{||Ax||}$$
-Relative Conditoning Number of a matrix
+Relative Conditioning Number of a matrix
 
 Now the condition number will tells us the upper bound for Relative Condition of a matrix, and the upper bound will be tight. 
 
 #### Proof: 
 
-Here we will quickly work through the poof for the conditioning of a matrix in linear algbebra, and in this case, we might need to understand something about the [[Norm]] of a matrix, which is used here. 
+Here we will quickly work through the poof for the conditioning of a matrix in linear algebra and in this case, we might need to understand something about the [[Norm]] of a matrix, which is used here. 
 
 $$\underset{\delta x}{\sup}\left(
 \frac{
@@ -128,12 +128,12 @@ Under the case of the square matrices, the above definition will be useful for u
 
 Fact: $||A||_2 = \sigma_{max}$
 
-The matrix induced 2 norm (Spectral Norm) is equaled to the maximal Singularvalue of the matrix. 
+The matrix induced 2 norm (Spectral Norm) is equaled to the maximal Singular value of the matrix. 
 
 Fact: $||A||_F = \sum_{i} \sigma_i$
 The Frobenius Norm of the matrix $A$ equals to the sum of all the singular values. 
 
-Notice that, the nrom of the matrices can be computed using the SVD of the matrix, and then we will get the expression of $||A||_2, ||A||_F$ using the singular values of $||A||$. 
+Notice that, the norm of the matrices can be computed using the SVD of the matrix, and then we will get the expression of $||A||_2, ||A||_F$ using the singular values of $||A||$. 
 
 $$||A||_2 =||U||_2|\Sigma||_2||V^H||_2 = \sigma_{max}$$
 

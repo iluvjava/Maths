@@ -1,4 +1,5 @@
 A div of a vector field is the a scalar field where it measures the amount of divergence of particlels of each points, if there are particles moving along the arrows of the vector field. 
+[[Ortho Curvillinears Coord]]
 
 ---
 
@@ -33,3 +34,4 @@ Here, $\Phi$ is the scalar function and $F$ is the vector function.
 > \nabla \cdot (\Phi F) = \Phi (\nabla \cdot F) + (\nabla \Phi)\cdot F
 > $$
 
+#### Curvillinear Divergence

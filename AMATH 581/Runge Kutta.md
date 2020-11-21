@@ -1,6 +1,6 @@
 This shit can be pretty complicated
 
-Here are some of the reference sources used for the dicussion: 
+Here are some of the reference sources used for the discussion: 
 
 MIT Lecture Notes: [link](www.math.iit.edu/~fass/478578_Chapter_3.pdf)
 
@@ -20,7 +20,7 @@ The second degree Rounge Kutta is just evaluating at 2 points and try to average
 
 ### 5th Degree Runge Kutta
 
-The 5tht degree Runge Kutta involves a lot of evaluations on the both the spetial dimension and the time dimension. 
+The 5tht degree Runge Kutta involves a lot of evaluations on the both the spatial dimension and the time dimension. 
 
 > $$y_{n + 1} = y_n + \frac{h}{6}(f_1 + 2f_2 + 2f_3 + f_4) + \mathcal{O}(h^5)$$
 > RK(4)
@@ -35,7 +35,7 @@ $$f_3 = f(t_n + \frac{h}{2}, y_n + \frac{h}{2}f_2)$$
 
 $$f_4 = f(t_n + h, y_n + hf_3)$$
 
-The gloable of both scheme is gonna be one degree higher, and here is a pretty cool table: 
+The global of both scheme is gonna be one degree higher, and here is a pretty cool table: 
 
 ---
 

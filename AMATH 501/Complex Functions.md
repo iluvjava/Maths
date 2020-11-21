@@ -27,7 +27,7 @@ Where the function $u, v$ are mapping from the reals to the reals.
 
 ### Differential 
 
-The function can be treated as a real function, **only if** we know that the function is differentiable. We can't trust it when the function is not differentiable. This can be revealed even with very simple functions. 
+The function can be treated as a real function and apply the rules of derivative, **only if** we know that the function is differentiable. We can't trust it when the function is not differentiable. This can be revealed even with very simple functions. 
 
 All the old rules for derivatives on real functions are applicable here. 
 
@@ -39,12 +39,60 @@ For the basic part, a complex function is differentiable if the following is tru
 
 And notice that if we are treating this as a multi-variable functions, then it has to be true that: 
 
+$$
+\lim_{\Delta x \rightarrow 0} \frac{u(x + \Delta x, y) - u(\Delta x, y)}{\Delta x} + i\frac{v(u + \Delta x, y) - v(u, y)}{\Delta x}
+$$
+Which is: 
+$$
+\partial_x u + i\partial_xv
+$$
+And it exists. So this is saying that if I approach the point in the real direction then the function is going to be differentiable.
 
+$$
+\lim_{i\Delta y \rightarrow 0} \frac{u(x, y + \Delta y) - u(x, y)}{i\Delta y} - i\frac{v(x, y + \Delta y) - v(x, y)}{i\Delta y} 
+$$
+
+Also exists, and it's like: 
+
+$$
+-i\partial_yu + \partial_yv
+$$
+
+And they have to be equal, giving us: [[Cauchy Riemann Conditions (Analyticity)]]
+
+#### Geometrical Interpretation of Differential
+Let's write the limit in a different form and it will reveal something about the differential of a complex number: 
+
+> $$
+> \lim_{z\rightarrow a} \frac{f(z) - f(a)}{z - a}
+> $$
+
+And it's like: 
+$$
+\lim_{z\rightarrow a} \frac{(f(z) - f(a))(z - a)^*}{|z - a|^2}
+$$
+Taking the modulus on the limit we have: 
+$$
+\lim_{z\rightarrow a} \frac{|f(z) - f(a)|}{|z - a|} = |f'(a)|
+$$
+
+**The modulus** of $f'(z)$ has very similar meaning in as the real differential, basically if I go any direction around the point a, what kind of changes in magnitude I will get for the output of the function. 
+
+**The argument** of the number $f'(z)$ is actually the difference between $\text{Arg}(z - a)$ and and $\text{Arg}(f(z) - f(a))$. 
+
+**Note**
+There are some complications regarding how the argument of the changes and its differential for a complex multivalued function, see [[Complex Logarithm (The Key)]], [[Branch Cut]] for more. 
+
+
+---
 
 #### Analyticity
 Def: 
 
 > If $f(z)$ is differentiable at a point at $z_0$ and everywhere in an open neighborhood  of $z_0$, $f(z)$ is said to be analytic at $z = z_0$. 
+
+
+
 
 ---
 

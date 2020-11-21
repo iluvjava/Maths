@@ -1,9 +1,11 @@
 # Sigular Value Decomposition
+
 Notations: * is the complex conjugate transpose
 
 Relevant Resources: [link1](http://pfister.ee.duke.edu/courses/ecen601/notes_ch8.pdf)
 Mit Lecture Notes on SVD: [link2](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf), 
 * Singular eigen vector of $A$ and $A^TA$ 
+
 ---
 
 * Applied to matrix of all sizes, real and complex, $M = U\Sigma V$ sometimes it's written differently as $M = U\Sigma V^*$, but it's the same thing and it's one conjugate transpose away. 
@@ -14,6 +16,8 @@ Mit Lecture Notes on SVD: [link2](https://math.mit.edu/classes/18.095/2016IAP/le
 	* $V\in \mathbb{R}^{n \times n}$
 * A bit of a intuitions
 	* It's like eigen decomposition, but we have 2 ortho matrices that "adapts" vector from intput subspace and output subspace. 
+
+---
 
 ## Ideas Behind
 * Facts about Symmetric Matrices (Or Hermitian): 
@@ -45,7 +49,7 @@ Mit Lecture Notes on SVD: [link2](https://math.mit.edu/classes/18.095/2016IAP/le
 $$
 A = U\Sigma V^* = \sum_{i = 1}^{\min(m, n)}\sqrt{\sigma}u_iv_i^T
 $$
-Where $u_i$ and $v_i$ are just column vectors for matrix $U$ and $V$. Cool, we have outter product of vectors again.
+Where $u_i$ and $v_i$ are just column vectors for matrix $U$ and $V$. Cool, we have outer product of vectors again.
 
 ---
 ## How To do SVD
@@ -54,6 +58,7 @@ Where $u_i$ and $v_i$ are just column vectors for matrix $U$ and $V$. Cool, we h
 * Get $U$ matrix using $AV = U\Sigma$
 ### Full SVD
 * Just pad $\Sigma$ with zeroes so that the matrix $U$ can be a square matrix. 
+
 ---
 
 ## Simple Demo
@@ -127,7 +132,7 @@ It's not that easy we still need to take care of somethings when doing SVD.
 ---
 ### Connection to Schur's Decomposition
 
-When the matrix under SVD is normal, the decomposition changed into [[Schur]]'s Decomposition 
+When the matrix under SVD is normal, the decomposition changed into [[Schur Decomposition]]'s Decomposition 
 
 --- 
 

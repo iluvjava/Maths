@@ -39,6 +39,6 @@ Given any equations  of this form, with a lambda parameter, we can just use this
 
 ---
 
-
 #### Stability of Backwards Euler
 
+huh...

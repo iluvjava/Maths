@@ -1,6 +1,6 @@
 Here we are going to discuss about the volumn integrals. 
 
-prereq: [[Ortho Curvilinears Coord]]
+prereq: [[Ortho Curvillinears Coord]]
 
 ---
 

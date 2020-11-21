@@ -3,7 +3,7 @@ $$A\in R^{m\times n}$$
 
 $$\max(c^T x: Ax \leq b;\; x\in \mathbb{R^n_+})$$
 
-## Fundemental Theorem of Linear Programming 
+## Fundamental Theorem of Linear Programming 
 * No optimal  --> infeasible or unbounded
 * Feasible exists --> There is a basis of vector that achieve feasibility
 * There is optimal --> At least one optimal exists

@@ -5,7 +5,7 @@ prereq: [[BVP]]
 ---
 
 #### The Introduction 
-The initial conditions $y'(a) = A$ remains unknown, and then we need to find a interval for $A$ such that it got mapped to another internval for $y(b)$, and then we perform a binary search like method by tweaking the value of $A$ until it converges to the boundary condition on the other side with a given amount of tolerance. 
+The initial conditions $y'(a) = A$ remains unknown, and then we need to find a interval for $A$ such that it got mapped to another interval for $y(b)$, and then we perform a binary search like method by tweaking the value of $A$ until it converges to the boundary condition on the other side with a given amount of tolerance. 
 
 #### An example
 
@@ -55,7 +55,7 @@ figure; plot(y(:, 1));
 
 This is the first step of taking a good guess for the BVP problem. 
 
-Using Visulization, we inputs different values for `beta` to get close to the interval on the other side of the boundary. 
+Using Visualization we inputs different values for `beta` to get close to the interval on the other side of the boundary. 
 
 Spoiler: beta = 0.9. 
 
@@ -101,7 +101,7 @@ figure; plot(y(:, 1));
 
 It might not look like the binary search, but it actually is, if we start at the center of the interval for beta. 
 
-Notice that, 2 times the value of `beta_start` should include the desirable boundar value of the other side. 
+Notice that, 2 times the value of `beta_start` should include the desirable boundary value of the other side. 
 
 #### Observation 
 
@@ -113,13 +113,15 @@ And hence, notice that, this is telling us the range we are exploring is `dbeta`
 
 **Multiple Solutions**
 
-Notice that there will be serval solutions, on top of the for loop, we need to identify all the possible values of $\beta$ such that the solution with the $\beta$ is very close to an actual solution we want. 
+Notice that there will be several solutions, on top of the for loop, we need to identify all the possible values of $\beta$ such that the solution with the $\beta$ is very close to an actual solution we want. 
 
-Doing this is not hard, we just search for all of the values of $\beta$ linearly down the spactrum, if any of them are shoot close to the region on that other side of the boundary, then we got the solution, else, the maximal amount of iterations count will simply breaks out of the forloop and then the forloop will try for the next value of $\beta$ automatically. 
+Doing this is not hard, we just search for all of the values of $\beta$ linearly down the spectrum if any of them are shoot close to the region on that other side of the boundary, then we got the solution, else, the maximal amount of iterations count will simply breaks out of the forloop and then the forloop will try for the next value of $\beta$ automatically. 
 
+**Verification**
+* Check Convergence, if we are using bisection, then it's going to be linear, and Newton Rapson is quadratic degree. The rate of convergence must match the method of root finding. 
 
 **This is not hard**
-Notice that, if we define a function such that, the inputs is the parameters we want to tweak and the output is the eigen boundary conditiosn on the RHS, then we can phrase this problem as a root finding problem, using the `fzero` command. 
+Notice that, if we define a function such that, the inputs is the parameters we want to tweak and the output is the eigen boundary conditions on the RHS, then we can phrase this problem as a root finding problem, using the `fzero` command. 
 
 
 ---
@@ -135,12 +137,12 @@ This happens when we phrases the problem as a optimization problem of choosing:
 
 And then we tweak them so that: 
 1. The boundary at the other side satisfied some conditions. 
-2. Other features of solution satisify the solution we want in the end. 
+2. Other features of solution satisfy the solution we want in the end. 
 
 
 Here are some features of the shooting method: 
 1. It combines the root finding approach with an IVP solver. 
 2. It's not just restricted to the bisection search method (beta stepping), other root finding algorithm can be substituted into the routine for optimizing the roots.  
-3. The method converges with the expected order of accuracy will mean thta the rersulted approximation is close to the true solution we want. 
+3. The method converges with the expected order of accuracy will mean thta the resulted approximation is close to the true solution we want. 
 
 

@@ -265,20 +265,71 @@ Notice that, the $L_k'$ matrix is like the original $L_k$ matrix if there is no 
 This algorithm with partial pivoting is from Trefethen's Book. 
 
 ```Matlab
-[m, ~] = size(A)
-U = A; L = eye(m); P = eye(m);
-for k = 1: 
-	% Select i >= k to maximize |u_{i, k}|
-	U(k, k:m) <--> U(i, k:m)
-	L(k, 1: k -1) <--> L(i, 1: k - 1)
-	P(k, :) <--> P(i, :)
-	
-	% Actual Elimination
-	for j = k + 1: m
-		L(i, k) = U(j, k)/U(k, k)  % Reverse Operation Ready. 
-		U(j, k: m) = U(j, k: m) - L(j, k)*U(k, k: m)  % cancel it out. 
-	end
+function [L, U, P] = LuDecompose(A)
+    % This function performs a LU matrix decomposition with the pivoting.
+    % This is the  for midterm of AMATH 584. 
+    [m, n] = size(A); 
+    if m ~= n
+        error("Matrix must be squared. ")
+    end
+    U = A; L = eye(m); P = eye(m);
+
+    for K = 1: n - 1
+        [MaxEntry, I] = max(abs(U(K:end, K)));
+        if MaxEntry < 1e-16
+           error("Matrix Hardly Invertible");
+        end
+        I  = I + K - 1;
+        [U(K, K:m), U(I, K:m)] = swap(U(K, K:m), U(I, K:m));
+        if K >= 2
+            [L(K, 1: K - 1), L(I, 1: K - 1)] = ... 
+                swap(L(K, 1: K - 1), L(I, 1: K - 1));
+        end
+        
+        [P(K, :), P(I, :)] = swap(P(K, :), P(I, :));
+        
+        for J = K + 1: m
+           L(J, K) = U(J, K)/U(K, K); 
+           U(J, K:m) = U(J, K:m) - L(J, K)*U(K, K: m);
+        end
+    end
+    U = triu(U);
+    function [a, b] = swap(b, a)
+    end
 end
+```
+
+```python
+from numpy import identity, array, triu,set_printoptions, argmax
+from numpy.random import rand
+from math import isclose
+eye = identity
+arr = array
+
+def lu_decompose(A):
+    """
+        Function will performs a LU decomposition on the given matrix
+    :param A:
+        A invertible matrix.
+    :return:
+        P, L, U such that PA = LU
+    """
+    M, N = A.shape
+    if M != N:
+        raise Exception("Matrix must be squared. ")
+    U = A.copy().astype("float64"); L = eye(M); P = eye(M)
+    for K in range(N - 1):
+        I = argmax(abs(U[K:, K])) + K
+        assert not isclose(U[I, K], 0), "Hardly Invertible Matrix"
+        U[[K], K:], U[[I], K:] = U[[I], K:], U[[K], K:]
+        if K >= 1: L[[K], :K], L[[I], :K] = L[[I], :K], L[[K], :K]
+        P[[K], :], P[[I], :] = P[[I], :], P[[K], :]
+        # Cancellations
+        L[K + 1:, K] = U[K + 1:, K]/U[K, K]
+        for J in range(K + 1, M):
+            U[J, K:] = U[J, K:] - L[J, K]*U[K, K:]
+    return P, L, triu(U)
+
 ```
 
 This is a very well-optimized algorithm, the $P$ permutations matrices are never represented as an actual matrix multiplication! But the operations will be felt by these matrices because of the use of <--> on these matrices. 

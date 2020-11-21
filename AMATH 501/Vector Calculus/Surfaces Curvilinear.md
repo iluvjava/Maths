@@ -1,5 +1,5 @@
 Surface integral but with curvilinear coordinates. 
-prereq: [[Surfaces]], [[Ortho Curvilinears Coord]]
+prereq: [[Surfaces]], [[Ortho Curvillinears Coord]]
 $$
 \newcommand{\uvec}[1]{\hat{\textbf{#1}}}
 $$
