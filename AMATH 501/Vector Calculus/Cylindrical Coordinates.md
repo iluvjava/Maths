@@ -1,6 +1,5 @@
 Here we talk about the Cylindrical Coordinates so we have a quick reference to it when we are taking the integrals of things. 
-[[Ortho Curvillinears Coord]]: The Cylindrical Coordinates is one of the coordinate system that is Ortho Curvilinear. 
-
+[[Ortho Curvillinears Coord]]: The Cylindrical Coordinates is one of the coordinate system that is Orthogonal Curvilinear. 
 
 $$\newcommand{\uvec}[1]{\hat{\textbf{#1}}}$$
 
@@ -16,7 +15,7 @@ $$\newcommand{\uvec}[1]{\hat{\textbf{#1}}}$$
 > \end{bmatrix}
 > $$
 
-Then we will have the jacobian looking like this: 
+Then we will have the Jacobian looking like this: 
 
 $$
 \begin{bmatrix}

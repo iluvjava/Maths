@@ -14,10 +14,10 @@ Super basic high school maths
 
 The Big O notation is denoting the error term for the expansion, given by the Lagrange Remainder
 
-Larange Remainder
+Lagrange Remainder
 > $$\frac{f^{(n + 1)}(x_0)}{(n + 1)!}(x - x_0)^{n + 1}$$
 
-Notice, this will give an upper bound for the error involved in the taylor expansion by consider the quantity: 
+Notice, this will give an upper bound for the error involved in the Taylor expansion by consider the quantity: 
 
 $$M =\left| \sup_{x \in [\min(x_0, x), \max(x_0, x)]} f^{(n + 1)}(x) \right|$$
 
@@ -29,6 +29,9 @@ And this will give us
 
 ---
 
-### Convergence of Taylor Series
+### Complex Analysis And Taylor Series
+
+[[Laurent Series]] For more info, and it needs a lot more to deal with than in the real case. 
+
 
 

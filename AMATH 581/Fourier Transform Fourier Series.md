@@ -53,7 +53,7 @@ $$
 This is the trig Form Fourier series: 
 
 $$
-f(x) \approx b_0 + \sum_{n = 1}^Na_n\sin(\frac{n\pi x}{L}) + b_n\cos(\frac{n\pi x}{L})
+f(x) \approx b_0 + \sum_{n = 1}^Na_n\sin\left(\frac{n\pi x}{L}\right) + b_n\cos\left(\frac{n\pi x}{L}\right)
 $$
 
 And interestingly, the connection here is that: $F^{d}(k) = a_n, b_n$. This is a transformation where we want to express the function in terms of it's Fourier Coefficients, and it's like, they are all smoothed out by the integral taken at the beginning. 
@@ -140,10 +140,10 @@ And this is used for spectral method when there are non-linear terms involved in
 
 #### Pros and Cons DFT
 
-1. Operations is $\mathcal{O}(N \log(N))$
+1. Operations is $\mathcal{O}(N \log(N))$, for uniformly discretized spatial dimension. Other topology are not applicable for DFT. 
 2. It's only suitable for Periodic Conditions, if not the boundary will be look really ugly and there will be oscillations. (And in that case please consult prof Kutz book on Scientific Computing, where 2 pinned boundary conditions is discussed for the spectral methods)
-3. Discretization has to be $2^n$. 
-4. The order of accuracy of the method is exponential, so it's pretty insane. 
+3. Discretization has to be $2^n$.
+4. The order of accuracy of the method is exponential, so it's pretty insane.
 
 [[MATLAB]]: How we do FFT in Matlab. 
 

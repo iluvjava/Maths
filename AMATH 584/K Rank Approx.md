@@ -1,4 +1,4 @@
-The Krank Approximation theorem is also stated as the Eckart Young theorem. 
+The Krank Approximation theorem is also stated as the **Eckart Young** theorem. 
 prepreq: [[SVD]]
 
 The cool thing here is, cropping off the some of the singular values from an SVD decomposition of a matrix is not going to ruin the matrix by a lot, and most of the information is going to be preserved. 

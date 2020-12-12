@@ -24,8 +24,8 @@
 	 * Analyticity [[Analytic Functions (Exp, Poly)]] [[Cauchy Riemann Conditions (Analyticity)]] 
 	 * Integration 
 	 * Cauchy's theorem and the Cauchy integral formula
-	 * Taylor and Laurent series
-	 * Residues and contour integration 
+	 * [[Laurent Series]]
+	 * [[Calculus of Residual]]
 	 * Fourier transform
 
 ### Vector Field

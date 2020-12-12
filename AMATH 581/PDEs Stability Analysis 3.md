@@ -34,7 +34,7 @@ Order: $\mathcal{O}(\Delta x^2\Delta t)$
 
 * Wave Equation: Unconditionally Unstable 
 * Heat Equation: 
-	*  $$\frac{C\Delta t}{\Delta x} < \frac{1}{2}$$
+	*  $$\frac{C\Delta t}{\Delta x^2} < \frac{1}{2}$$
 
 #### Backward Euler
 
@@ -48,6 +48,7 @@ f\left(
 $$
 
 * Wave Equation: Unconditionally Stable
+* Heat Equation: Unconditionally Stable
 
 #### Leap Frog 
 

@@ -231,4 +231,4 @@ After this, we can use the DFT to compute the right hand side and then take the 
 
 When it's linear, it's super easy to apply the Fourier Transform (Or DFT) on the given equations. 
 
-
+For this, please see [[Spectral Method 2]] for more information. 

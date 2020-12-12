@@ -14,7 +14,7 @@ Here is the derivation of the 2nd order Runge Kutta method by hand:
 
 ### 2nd Degree Runge Kutta 
 
-The second degree Rounge Kutta is just evaluating at 2 points and try to average the change in the spacial dimension out a bit
+The second degree Runge Kutta is just evaluating at 2 points and try to average the change in the spacial dimension out a bit
 > $$y_{n + 1} = y_n + \frac{h}{2} f(t, y_n) + \frac{h}{2} f(t + h, y_n + hf(t, y_n)) + \mathcal{O}(h^3)$$
 > RK(2)
 

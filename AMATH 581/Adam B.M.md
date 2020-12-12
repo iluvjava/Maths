@@ -1,9 +1,9 @@
 Adams Bashforth,  Adam Moulton Method
-Multi-stepping schemes requires serveral pre-established points to make one future time step, this is a feature from the derivative using the integral method with the taylor approximation and finite difference. 
+Multi-stepping schemes requires several pre-established points to make one future time step, this is a feature from the derivative using the integral method with the Taylor approximation and finite difference. 
 
 
 Contents: 
-* Forward Integrations and Finite Difference Analysis 
+* Forward Integration and Finite Difference Analysis 
 * Multi-step method 
 * Predictors
 
@@ -16,7 +16,7 @@ IVP given as
 
 Where $y$ could be a vector 
 
-Conside solving the problem with intergrations like: 
+Consider solving the problem with intergrations like: 
 
 $$
 y'(s) = \frac{d}{dt}\int_{t_0}^s f(t, y(t))dt
@@ -36,11 +36,11 @@ $$
 
 And if this can be solved analytically, then we are good, however this is not always the case. 
 
-But the key here is to use approximation for the integral, with a polynomial and some finite differences, which will be useful later. Currently it looks not much different from the taylor series's method for analyzing things. 
+But the key here is to use approximation for the integral, with a polynomial and some finite differences, which will be useful later. Currently it looks not much different from the Taylor series's method for analyzing things. 
 
 * Approximating using the constant
 $$f(t, y(t)) \approx f(t_n, y_n)$$
-Instead of using the $y(t)$, let's just use the $y_n$ from the previous time step as our point of evalution. 
+Instead of using the $y(t)$, let's just use the $y_n$ from the previous time step as our point of evaluation. 
 $$y_{n+1} = y_n + \int_{t_n}^{t_{n+1}} f(t_n, y_n) dt$$
 $$y_{n+1} = y_n + f(t_n, y_n)(t_{n+1} - t_n)$$
 which is just the Euler's Method 
@@ -52,11 +52,11 @@ which is just the Euler's Method
 In this section we use the following notations: 
 $$f_n = f(t_n, y(t_n))$$ $$\Delta t = t_{n + 1} - t_{n}$$
 
-Consider the approximation of the $f(t_n, y(t_n))$ interms of the following polynomials: 
+Consider the approximation of the $f(t_n, y(t_n))$ in term of the following polynomials: 
 
 >$$ f_n + \frac{f_n - f_{n-1}}{\Delta t}(t - t_n)$$
 
-Then the time stepping schecme involves solving the following: 
+Then the time stepping scheme involves solving the following: 
 
 > $$y_{n + 1} = y_n + \int_{t_n}^{t_{n + 1}} 
 f_n + \frac{f_n - f_{n-1}}{\Delta t}(t - t_n) dt$$
@@ -67,7 +67,7 @@ Which in the end will give us:
 
 This is an explicit scheme named: "**Adams Bashforth**" 
 
-Now we develop the implicit time stepping schcme using this approximation: 
+Now we develop the implicit time stepping scheme using this approximation: 
 
 > $$f_n + \frac{f_n - f_{n+1}}{\Delta t}(t - t_n)$$
 
@@ -90,7 +90,7 @@ In this case, we have an implicit method and this method in particular is called
 
 #### Extra Notes
 
-Becaue the Adams Bashforth scheme requires 2 points as for starting it, we might just need to to use Euler for the first iteration and then use this scheme to start the iterations. 
+Because the Adams Bashforth scheme requires 2 points as for starting it, we might just need to to use Euler for the first iteration and then use this scheme to start the iterations. 
 
 ![[Adam B.M Derivation.jpg]]
 
@@ -110,7 +110,7 @@ $$y_{n + 1} = y_n + \frac{\Delta t}{2} (f(t_{n + 1}, y^p_{n + 1}) + f_n)$$
 
 And then this new $y_{n + 1}$ is gotten from the predicted: $y_{n + 1}^n$ from the explicit method. This is going to be a bit faster comparing just directly using the explicit method for the problem. 
 
-This Multi-Stepping schcme has an accuracy that varies a lot, and the `ode311` is one of the multi-stepping method that uses this principle, and when the ODEs gets challenging, it's going to make the $\Delta t$ smaller. 
+This Multi-Stepping scheme has an accuracy that varies a lot, and the `ode311` is one of the multi-stepping method that uses this principle, and when the ODEs gets challenging, it's going to make the $\Delta t$ smaller. 
 
 
 ---
@@ -124,7 +124,7 @@ This is the Backwards Euler:
 
 $$y_n = y_{n - 1} + \Delta tf(t_{n}, \tilde{y}_n)$$
 
-And then we can substitute the $\tilde{y}_n$ with a farward Euler: 
+And then we can substitute the $\tilde{y}_n$ with a forward Euler: 
 
 $$
 \tilde{y}_n = y_{n - 1} + \Delta tf(t_{n - 1}, y_{n - 1})

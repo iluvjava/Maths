@@ -31,6 +31,7 @@
 		* [[Spectral Method]]
 9. Finite Elements
 	* Theory, Solving PDE Problems with PDETool
+	* [[Finite Elements Method]]
 
 ---
 
@@ -40,4 +41,18 @@
 	* Being able to know the pros and cons of different scientific computing approaches for the problem 
 * Being able to synthesize the ideas learned from different modules of the class. 
 
-### Notes and Stuff
+### Summary: Scientific Methods 
+
+1. Accuracy
+	1. **Spectral method**: Spectral Accuracy for Smooth function satisfying the correct boundary conditions. 
+2. Boundary Conditions 
+	1. **Finite Difference Method**: Very general and robust to deal with different boundary conditions. 
+3. Implementations
+	1. **Finite Difference**: It's easy as long as the operator is easy to get, they are just special sparse matrices. 
+	2. **Spectral Method**: It's very short to implement it with the correct FFT libraries in certain programming languages. 
+4. Efficiency/Speed
+	1. **Spectral Method**: This is the king, very very efficient with the computational complexity, it wins the competitions compare to other methods. 
+
+### Special Domains
+
+* Finite Elements. 

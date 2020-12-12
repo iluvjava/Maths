@@ -56,7 +56,7 @@ We really need to understand what is going on here to get a better idea. The arc
 --- 
 ### Parameterization
 
-Sometimes, we want to travel along the curve steadily, and that is why we have the idea of arch length Paramaterization.
+Sometimes, we want to travel along the curve steadily, and that is why we have the idea of arch length Parameterization
 
 So this is going to be given by the formula, it's like: 
 

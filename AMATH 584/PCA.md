@@ -16,7 +16,7 @@ Here are more resources relavent to PCA:
 ### Intro
 The PCA is a data transformation techniques that look for a set of basis vectors for the given data point such that, the basis minimizes the spread of the data point. 
 
-Using the new sets of the basis, we eliminated as many colinearity as possible for the set of data points. 
+Using the new sets of the basis, we eliminated as many collinearity as possible for the set of data points. 
 
 ### Standing Assumptions 
 
@@ -88,7 +88,7 @@ This assumes Gaussian distribution of the data points in the space.
 
 If we change the covariance matrix to a metric matrix, then under the principle components analysis, we will be **Multi-Dimensional Scaling**. 
 
-If the matrix represents an imae like a media file of some sort, then the SVD decomposition of the Hermitian becomes a compressed version of that file. 
+If the matrix represents an image like a media file of some sort, then the SVD decomposition of the Hermitian becomes a compressed version of that file. 
 
 --- 
 

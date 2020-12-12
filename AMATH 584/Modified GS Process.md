@@ -5,6 +5,8 @@ It uses the idea of a orthogonal projector, coming from: [[Projector]]
 
 ---
 
+### Psuedo Codes
+
 Ok, I am going to write modified Gram-Schmidt here in pseudo codes. 
 
 ```suedo
@@ -26,7 +28,7 @@ The inner forloop is way more interesting, because it's actually using the idea 
 
 Suppose that we are given a really special type of matrix like where, all the first $i$ the columns of the matrix forms a ortho-normal basis and all the columns that comes after it are the vectors we want to Orthogonalize and Normalize, in addition, they are perpendicular to the first $i$ columns of the matrix A. 
 
-Let's take a look at some of the loop invariants. 
+Let's take a look at some of the loop invariants.
 
 > $$(A)_{:, 1:i}^H(A)_{:, 1:i} = I$$  (1)
 

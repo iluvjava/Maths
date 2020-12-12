@@ -1,6 +1,8 @@
 This file will give some overview on the algorithmic approach to the Eigen Decomposition. 
 prereq: [[Eigen Decompose]]
 
+Keywords: Rayleigh Quotient and Inverse Power Iterations. 
+
 ---
 
 ### Introduction
@@ -92,11 +94,11 @@ The most naive way of doing it is the **Power Iterations** which looks for the E
 
 The other one that we are going to introduced here is the Rayleigh Quotient Iteration method, which has a cubic convergence rate, very impressive. 
 
-* Initialize: Pick $\Vert v^{(0)}\Vert = 1$, estimate $\lambda^{0} = v^{(0)}Av^{(0)}$
+* Initialize: Pick $\Vert v^{(0)}\Vert = 1$, estimate $\lambda^{0} = v^{(0)H}Av^{(0)}$
 * Iterate with: 
 	* solve for $w$ using: $$(A - \lambda^{(k - 1)}I)w = v^{(k - 1)}$$
 	* $$v^{k} := \frac{v^{(k - 1)}}{\Vert v^{(k - 1)}\Vert}$$
-	* $$\lambda^{(k)} := v^{(k)T}A v^{(k)}$$
+	* $$\lambda^{(k)} := v^{(k)H}A v^{(k)}$$
 
 This is fast because when the value of $\lambda$ is close, the matrix $(A - \lambda I)$ is stretching along the direction of the Eigenvector aggressively. 
 
@@ -113,8 +115,49 @@ And notice that, for any nonzero Eigenvector $\lambda$ of matrix $A$, $A^{-1}$ h
 
 Assuming $(A - \mu I)$ is invertible, then the Eigenvector is the same from $A$, but the Eigenvalue will be $(\lambda - \mu)^{-1}$. So when $\mu$ is close to the true Eigenvalue, the matrix $(\lambda - \mu)^{-1}$ will have a really huge Eigenvalue, making the Iterations converges very fast. 
 
+#### Convergence 
+
+Note that, For this part of the proof, use the assumption that the Eigenvectors are orthogonal, and they are unique. 
+
+Decompose any vector in under an orthogonal subspace, the Eigenspace, which is giving us: 
+
+$$
+v = \sum_{i = 1}^{n} \lambda_iq_i
+$$
+And after $N$ th iteration,
+
+$$
+\lambda_j^N v = \sum_{i = 1}^n \lambda^N_i q_i
+$$
+Divide both side by $\lambda_j^N$
+$$
+v = \sum_{i = 1}^N
+\left(
+\frac{\lambda_i}{\lambda_j}
+\right)^Nq_i
+$$
+
+And, note that, $\lambda_{max}$ will be dominating it, together with the Eigenvector associated with that Eigenvalue. 
+
+### Extra: Subspace Iterations, Non Symmetric Matrices
+
+So the problem with power iterations and Rayleigh Quotients iterations is that, the convergence entirely depends on the initial guess or the dominant vector. But here is a take on this: 
+
+Once a vector is identified, add it to a matrix so that the matrix represent the subspace spanned by all the eigenvectors we have found. And during the iterations process, we project into the orthogonal subpace of the eigenspace for it iterations. This avoids the convergence into the previous eigenvectors. 
+
+Huh... I can smell the presence of the QR algorithm.
+
+In addition, this is very effective for Hermitian matrices because of the orthogonality properties of the eigenvectors of the hermitian Matrices. 
+
+
+### Subspace Iterations
+
+Assuming that we want to find the second dominant eigenvector for the matrix. 
+
+---
 **Comment**: 
 This is a classic algorithm, and it's used when we were given an Eigenvalue that is close, and then this algorithm is very much recommended. 
 
 It might be tempting to think that the some bad conditioning might affect the algorithm when the matrix is near singular, but I assure you that is not the case. 
 
+For non-hermitian matrices, the power iteration is atrocious to use when the matrix is real and the dominant Eigenvalues are complex. But for the Rayleigh Quotient, this is going to converge if the initial guess hit close enough to he true Eigenvalue.   
