@@ -24,7 +24,7 @@ The following section will illustrate how that, the gradient are viewed with cur
 
 The above formula is the increment induced by changes in each of the variables: $u_1, u_2, u_3$, this is possible because the coordinate system is by definition: Orthogonal 
 
-Notice that this quantity can be simplified with the usage of the Lame Coefficient, more spcifically: 
+Notice that this quantity can be simplified with the usage of the Lame Coefficient, more specifically: 
 
 ### $$ d\vec{r} = h_1 du_1 \uvec{e}_1 + h_2 du_2 \uvec{e}_2 + h_3 du_3 \uvec{e}_3$$
 
@@ -100,6 +100,13 @@ $$
 \end{bmatrix}
 \nabla f(u_1, u_2, u_3)
 $$
+
+It can also be expressed with respect to the Jacobi matrix of the function, denoted by $\mathbb{J}$ we have: 
+$$
+(\mathbb{J^T}\mathbb{J})\nabla f(x, y, z) = \nabla f(u_1, u_2, u_3)
+$$
+
+2 Expressions are exactly the same thing. 
 
 ---
 

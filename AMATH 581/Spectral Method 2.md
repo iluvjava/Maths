@@ -186,4 +186,58 @@ These are called the:
 And using different basis function will have good compatibility on different types of boundary conditions.  
  
 
+---
+### Pinned and No Flux Boundary Conditions
+In matlab, it's possible to use t he FFT algorithm for Discrete Sine and Cosine Transform on a input data vector. 
 
+This is also useful for other types of Boundary conditions, suppose that we were given the function to simulate over the interval: $[0, L]$, and we want to apply the Fourier Sine, Cosine transform. 
+
+For cosine transform, we mirror image around the y-axis and then apply the Fourier transform. The Fourier series is: 
+
+$$
+f(x) = \sum_{n = -\infty}^{\infty}
+c_n \exp
+	\left( 
+		\frac{n\pi x}{L}
+	\right) 
+$$
+Where the $c_n$ is just the Fourier Coefficients. 
+
+And take notice that because we mirror the function, then the function will be an even function, therefore, it only has projection on the the $\cos$ component, which means that it's: 
+
+$$
+f(x) = \sum_{n = -\infty}^{\infty}
+c_n \cos
+	\left( 
+		\frac{n\pi x}{L}
+	\right) 
+$$
+
+The $\cos$ it able to model any type of boundary conditions for the function $f(x)$, and the derivative will be given as: 
+
+$$
+f'(x) = \sum_{n = -\infty}^{\infty}
+-c_n 
+\left( 
+	\frac{n\pi}{L}
+\right)
+\sin
+	\left( 
+		\frac{n\pi x}{L}
+	\right) 
+$$
+
+And take not that, for any $n\in\mathbb{Z}$, we will have that $x = L, 0$ on the boundary conditions and then it will mean that we are summing up $\sin(0)$ or $\sin(n\pi)$, and this means that: 
+
+$$
+f'(L) = f'(0)= 0
+$$
+
+And this is the **Neuamnn Boundary Conditions**, or the no flux boundary conditions. 
+
+Similarly, if we interpolate the boundary using the $\sin$ function by reflecting the function from the $[0, L]$ to the $[-L, 0]$ domain, then: 
+
+$$
+f(L) = f(0)
+$$
+And this is the **Pinned Boundary Conditions**.

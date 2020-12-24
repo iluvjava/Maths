@@ -30,8 +30,7 @@ A piece-wise smooth curve means that: It's joined together by finitely many smoo
 
 The above theorem is applicable for both smooth and piece-wise smooth curve. 
 
-
-
+---
 ### Fundamental Theorem of Contour Integration (FTCI)
 
 > If the function is analytic, then $\int_{a}^{b} = F(b) - F(b)$
@@ -92,3 +91,11 @@ $$\int_{\theta = 0}^{\theta = 2\pi}\frac{1}{z}dz = i2\pi$$
 So this will be key for solving many other problems. 
 
 This formula is going to be augmented with the usage of Cauchy Integral. 
+
+
+---
+
+### Simple Example
+
+Let's take a look at some of the simple example that uses the idea of a line integral. 
+

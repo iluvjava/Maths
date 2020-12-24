@@ -4,7 +4,7 @@ prereq: [[Polar Coordinates]]
 
 ---
 
-Let's stop using the vector notation and detnoes the parametric function as: 
+Let's stop using the vector notation and denotes the parametric function as: 
 $$r(t) = \begin{bmatrix}
 x(t) \\\\ y(t)
 \end{bmatrix}
@@ -78,4 +78,4 @@ $$
 \frac{d\vec{r}/dt}{\left\Vert \frac{d\vec{r}}{dt} \right\Vert} = 1
 $$
 
-So what happens is, I am going to to find the expression for $s(t)$ and then I am going to solve for the variable $t$ so it's expressed in terms of the variable $s$, and then, I substitute that expression into my paramatric equations to get the arch length paramaterization of the function. 
+So what happens is, I am going to to find the expression for $s(t)$ and then I am going to solve for the variable $t$ so it's expressed in terms of the variable $s$, and then, I substitute that expression into my parametric equations to get the arch length Parameterization of the function. 

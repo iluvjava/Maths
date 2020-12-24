@@ -47,9 +47,9 @@ $$\frac{1}{\sqrt{5}} (8, 0 ,-4)$$
 So, the moral of the story is the gradient can find unite normal vector for implicitly defined surfaces, and in this case, given any function $0 = f(x, y, z)$, find the gradient of the function, say $\nabla f$, and then substitute the point we are interested in into the gradient function, and then normalize the vector that comes out of it, and then that will be the normal vector got the implicit surface at that particular point. 
 
 ----
-### Motivating Example 
+### Motivating Example
 
-Given a position vector in the polar coordinates; here the baiss vector for the polar coord is going to be simply denoted as $e_\theta$ and $e_r$. 
+Given a position vector in the polar coordinates; here the baiss vector for the polar coordinates is going to be simply denoted as $e_\theta$ and $e_r$. 
 
 Let's rethink these things in terms of gradient, we are going to redefine it with gradients. 
 
@@ -58,7 +58,7 @@ $$f(x, y) = \sqrt{x^2 + y^ 2}$$
 And this function in polar is: 
 $$f(r, \theta) = r$$
 
-And the level sets of this scalar function is simply just concentric circle, certered at the origin and evenly spaced. 
+And the level sets of this scalar function is simply just concentric circle, centered at the origin and evenly spaced. 
 
 Since the gradient is normal to the level set: Then the gradient of $f$ is just gonna be the gradient of r: $\nabla f = \nabla r$, this is simply just a geometric argument. 
 
@@ -67,9 +67,9 @@ And hence the basis vector is gonna be:
 $$\nabla f = e_r = \frac{\nabla r}{||\nabla r||}$$
 
 
-And if you take the gradient on $f$ in the cartesian coordinates, we are actually getting the same thing as above. 
+And if you take the gradient on $f$ in the Cartesian coordinates, we are actually getting the same thing as above. 
 
-Moreoever, the $$||\nabla r|| = \left\Vert\frac{dr}{ds}\right\Vert = 1$$ in this case .
+Moreover, the $$||\nabla r|| = \left\Vert\frac{dr}{ds}\right\Vert = 1$$ in this case .
 
 
 ### Motivating Example 
@@ -86,7 +86,7 @@ And then: $$||\nabla \theta|| = \frac{d\theta}{ds}$$
 
 ---
 
-### Polar Coordinates and Curvilinear Coordinate
+### Polar Coordinates and Curvillinear Coordinate
 
 It's pretty complicated but the important thing to remember is that, given a scalar function which are represented in 2d with the polar coordinate variable, we have the following operator for such a function to figure out the gradient vector under the polar coordinate too: 
 
@@ -96,6 +96,6 @@ The formula is derived via the Jacobian of the inverse transform from $(x,y)$ to
 
 Note: 
 
-The proof is not trivial, and for more info about taking the gradient of funciton in another curvilinear space, check out: [[Curvilinear Gradient]]
+The proof is not trivial, and for more info about taking the gradient of function in another curvilinear space, check out: [[Curvilinear Gradient]]
 
 

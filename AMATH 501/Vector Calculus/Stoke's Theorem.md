@@ -38,7 +38,7 @@ Where, D is the region enclosed by the piece-wise smooth simple curve $D$.
 
 #### Fluid Dynamics Interpretations
 
-So, this theorem is created at the dawn of Fluid Dynamics, hence some of the most relavent ideas related to it is fluid dynamics. 
+So, this theorem is created at the dawn of Fluid Dynamics, hence some of the most relevant ideas related to it is fluid dynamics. 
 
 def: $\vec{u}$: The fluid velocity field. 
 
@@ -56,7 +56,7 @@ What Stoke's Theorem said is:
 
 $$\Gamma = \underset{S} \iint \vec{\omega} \cdot d\vec{S}$$
 
-So, the aggregation of all the vorticity will be the total circulation of the fuild at the boundary. 
+So, the aggregation of all the vorticity will be the total circulation of the fluid at the boundary. 
 
 ---
 

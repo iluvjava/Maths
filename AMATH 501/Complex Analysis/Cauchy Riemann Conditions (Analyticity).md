@@ -10,7 +10,9 @@ When the function is analytic on the entire complex plane, we call it: Holomorph
 
 ###  Cauchy Riemann Conditions
 
-The Cauchy Riemann Conditions is a quick way of checking whether a complex function satisfies Analyticity at a point on the complex plane. 
+The Cauchy Riemann Conditions is a quick way of checking whether a complex function satisfies Analyticity at a point on the complex plane. But with the following assumptions: 
+
+* The partial derivative of the function $u(x,y), v(x, y)$ **have continuous derivatives**. Which are t he real and imaginary parts of the complex function. 
 
 Ok, so, the key here is to model the complex function in its real and imaginary parts, and that means the function can be phrased like this: 
 
@@ -37,7 +39,7 @@ $$
 \partial_x u= \partial_y v \hspace{2em} \partial_x v = - \partial_y u
 $$
 
-Notice that, this conditions is sufficient to prove a given function is differentiable if  **all partial derivative of the $f(x)$ are continuous at that point**, Remember we need a point $z_0$ to determine whether the Analiticity of the function. 
+* Notice that, this conditions is sufficient to prove a given function is differentiable if  **all partial derivative of the $f(x)$ are continuous at that point**, Remember we need a point $z_0$ to determine the analiticity of the function. 
 
 **Note**: 
 
@@ -82,18 +84,18 @@ Yes, so each time the $\partial_r$ appeared, we are going to attach a Lame Coeff
 For any function that is analytic (Cauchy Riemann is True), it's going to be a solution for the Laplacian (In the null space of the Laplacian Operator)
 
 $$
-u_x = u_y \implies u_{xx} = u_{xy}
+u_x = v_y \implies u_{xx} = v_{xy}
 $$
 $$
-u_y = - v_x \implies u_{yy} = -u_{yx}
+u_y = - v_x \implies u_{yy} = -v_{yx}
 $$
 
 then $$u_{xx} + v_{yy} = 0$$ by the fact the the partial derivative are symmetric, notice that this is also the trace of t he Jacobi. 
 
-These type of functions, in the null space of the Laplacian is called: **Harmonic Functions**
+These type of functions, in the null space of the Laplacian is called: **Harmonic Functions**.
 
 $\sin$ and $\cos$ are Harmonic Functions. 
 
-
+> If a function is analytic, then the function is going to be harmonic and it satisfied the Laplacian Operator. This is directly from the Cauchy Riemann Conditions. 
 
 

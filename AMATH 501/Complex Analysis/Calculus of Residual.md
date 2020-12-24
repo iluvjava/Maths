@@ -13,7 +13,7 @@ This is the Residual Formula:
 > \oint_C f(z)dz = 2\pi i \text{Res}_{z_0}(f)
 > $$
 
-Let's take a look: 
+**The residue of a function at its singularity is just the coefficients of the term: $a_{-1}$ for the Laurent Series**, and it's crucial for figuring out the contour integrals around some singularities. 
 
 #### Proof: 
 
@@ -45,12 +45,12 @@ The first integral contains only Analytic functions, and hence the sum is **zero
 The second integral is evaluated via **Cauchy Integrals**, which is giving us: 
 
 $$
-\oint_{C\epsilon} \frac{a_{-1}}{z}dz = 2\pi i a_{-n}
+\oint_{C\epsilon} \frac{a_{-1}}{z}dz = 2\pi i a_{-1}
 $$
 
 And then we have the whole Contour Integral around the singularity evaluates to: 
 $$
-\oint_{C\epsilon} f(z)dz = 2\pi ia_{-n}
+\oint_{C\epsilon} f(z)dz = 2\pi ia_{-1}
 $$
 
 Boom, magic, and we also know what the residual of a function is now. It's the only parts of the Laurent Series that produces something after a line Integral, and it's  also the most special function ever, the $1/z$ function. 

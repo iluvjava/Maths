@@ -179,18 +179,4 @@ $$
 (...) etc
 
 ---
-### THEOREY
 
-(Refer to Trefethen's Book: Spectral Method in Matlab : chapter 6)
-
-How is the Cheb Matrix derived? 
-
-Ok, so you interpolate the function with a polynomial, and it should be with this basis, like what we have for the Newton Interpolation: 
-
-??? Lagrange Basis
-
-Where $1\leq j\leq N - 1$ and $N$ is the number of discretization on the axis. 
-
-And then we take the derivative and see how the coefficients (The Values of Discrete points) propagates, and then we will take make it into a matrix. 
-
-**NOTE**: The Chebyshev Derivative can be done via FFT method. 

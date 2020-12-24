@@ -49,7 +49,7 @@ $$
 Now let's define the transformation of the Non-Linear operators $A^2$, which is going to be: 
 
 $$
-A^2 = (u^2 + v^2)^2
+A^2 = (u^2 + v^2)
 $$
 
 Now, assume that the inputs are $\widehat{u}, \widehat{v}$, then here is the procedures: 

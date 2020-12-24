@@ -31,13 +31,13 @@ $\hat{\textbf{e}}_r, \hat{\textbf{e}}_\theta, \hat{\textbf{e}}_z$.
 And they are like: 
 $$\uvec{e}_r = (\cos\theta, \sin\theta, 0)$$ $$\uvec{e}_\theta = (-\sin{\theta}, \cos\theta, 0)$$ $$\uvec{e}_z = (0, 0, 1)$$
 
-At the same time, the maginitude of the columns of the coordinates will be the Lame Coefficients: 
+At the same time, the magnitude of the columns of the coordinates will be the Lame Coefficients: 
 
 $$h_r = 1$$ $$h_\theta = r$$ $$h_z = 1$$
 
 
 ---
-#### Gradient 
+#### Gradient Operator
 
 The gradient operator, $\nabla$ is gonna be like: 
 

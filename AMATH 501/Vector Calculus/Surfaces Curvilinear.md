@@ -15,7 +15,7 @@ Where, $r(u, v)$ is some kind parametric surfaces in Curvilinear coordinates. No
 
 $$\partial_u r = h_1\uvec{e}_1$$ $$\partial_v r = h_2\uvec{e}_2$$
 
-Using the fact that the coordiniates is curvilinear, we know that: 
+Using the fact that the coordinates is curvilinear, we know that: 
 
 $$
 \partial_v r \times \partial_u r = h_1h_2\uvec{e}_3

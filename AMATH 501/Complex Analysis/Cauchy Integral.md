@@ -116,7 +116,7 @@ $$
 \frac{2\pi i}{n!} \frac{d^{n - 1}(1)}{dx^{n - 1}}
 $$
 
-It can also be viewed as a corollary, and this is big brain, and when $n\leq 2$ this thing is going to be zero. 
+It can also be viewed as a corollary, and this is big brain, and when $n\neq 1$ this thing is going to be zero. 
 
 #### Example 1
 

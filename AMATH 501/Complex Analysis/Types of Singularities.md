@@ -22,6 +22,15 @@ The type of singularities are identified by the largest power of on the Principa
 * It has infinitely many points. 
 	* It's an **Essential Singularity**
 
+#### Motivating Questions
+
+* Is it possible to centered the expansion of the Laurent Series at a singularity? 
+	* Yes, it's possible, but the series is not going to converge for values that are close to the singularities, More specifically, the Principal parts is going to blow up. 
+	* It's possible because, The derivation of the Laurent series doens't enforce the conditions that, the function needs to be analytical in the inner contour: $C2$, and hence, it's possible to have the rings containing singularities of the functions in there. 
+* What if center the Expansion at the Principal Parts? 
+	* It will tell us what type of singularities we are dealing with. 
+
+
 ---
 ### Limit, Removable Singularity
 

@@ -115,18 +115,3 @@ I skip this part, this is for the reader now.
 
 
 ---
-### Example 2
-Today's Integral 
-
-$$
-\int_{1}^{\infty} \frac{dx}{x\sqrt{x^2 - 1}}
-$$
-
-Firstly, we are going to choose a branch cut that is not interfering with the singularities of the function. 
-
-The function $\sqrt{x^2 - 1}$ discussed in the [[Branch Cut]] note. And in that part, we use the Principal Argument for both $\theta_1$ and $\theta_2$ and then get that the "Cliff" is $[-1, 1]$. But in this case, it's not applicable because $z = 0$ is one of the singularities and it's in the $[-1, 1]$ interval, ruining everything for us. 
- 
-So here we suggest another Branch Cut with $\theta \in [0, 2\pi]$ for $\text{arg}(z \pm 1)$, and these angles will give us the branch cut: $(-\infty, -1] \cup [1, \infty)$. 
-
-And then, we will need to figure out the contour for the integral, which is going to be a double keyholes in our case. 
-

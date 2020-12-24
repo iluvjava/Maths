@@ -1,4 +1,3 @@
-
 prereq: [[Calculus of Residual 3]], [[Branch Cut]]
 Branch cut, and keyhole contour. 
 

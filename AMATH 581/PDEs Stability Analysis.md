@@ -206,3 +206,5 @@ The FE for 1d Wave equation is unconditionally unstable.
 The BE for 1d wave equation is unconditionally stable. 
 
 Predictor Corrector methods can also be used to increase the stability properties of the scheme.
+
+

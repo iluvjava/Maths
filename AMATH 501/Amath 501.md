@@ -1,31 +1,35 @@
  ## Syllabus
  1. Vector Calculus
-	 * Vec Fields 
-	 * Vec Calc
+	 * Vector Fields 
+	 * Vector Calculus
 	 * Gradient, Div & Curl 
 		 * [[The Gradient]]
 		 * [[Curvilinear Gradient]]
 		 * [[Div]]
 		 * [[Curl]]
-	 * Line, surface & volumn integrals
+	 * Line, surface & volume integrals
 		 * [[Surfaces]]
 		 * [[Line Integral]]
 		 * [[Volume Integrals]]
 	 * Green's theorem (Just Stoke's but in 2d)
-	 * Stoke's throem 
+	 * Stoke's theorem
 		 * [[Stoke's Theorem]]
 	 * Divergence theorem 
 		 * [[Divergence Theorem]]
-	 * Curvilinear Space: 
+	 * Curvillinear Space: 
 		 * [[Ortho Curvillinears Coord]]
  2. Complex Analysis
 	 * Complex Numbers [[Complex Number]]
 	 * Functions of a complex variable [[Complex Functions]]
 	 * Analyticity [[Analytic Functions (Exp, Poly)]] [[Cauchy Riemann Conditions (Analyticity)]] 
 	 * Integration 
-	 * Cauchy's theorem and the Cauchy integral formula
+		 * [[Cauchy Integral]]
 	 * [[Laurent Series]]
 	 * [[Calculus of Residual]]
 	 * Fourier transform
 
-### Vector Field
+
+### A Break Down of The Materials
+
+* Calculus
+

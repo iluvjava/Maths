@@ -51,7 +51,7 @@ b =
 \begin{bmatrix}
 	\alpha \\ 
 	r(t_1) \Delta t^2 \\ 
-	t(t_0) \Delta t\\ 
+	t(t_2) \Delta t\\ 
 	\vdots\\
 	r(t_N)\Delta t^2\\
 	\beta
@@ -71,12 +71,12 @@ In general, there might be Boundary Conditions that involve some derivative of t
 
 > $$\alpha_1 y(t_0) + \beta_1 y'(t_0) = \gamma_1$$ $$\alpha_2 y(t_N) + \beta_2 y'(t_N) = \gamma_2$$
 
-Well, it's not hard, here we will susbtute the finite second order difference back into the boundary conditions, but this time, we take the Forward and Backwards difference, so we can evaluate things on the boundary of the curve.
+Well, it's not hard, here we will substitute the finite second order difference back into the boundary conditions, but this time, we take the Forward and Backwards difference, so we can evaluate things on the boundary of the curve.
 
 $$
 \alpha_1 y(t) 
 +
-\beta_1 \frac{y(t + 2\Delta t) - 4y(x + \Delta t) + 3y(t)}{2\Delta t}
+\beta_1 \frac{y(t + 2\Delta t) - 4y(t + \Delta t) + 3y(t)}{2\Delta t}
 =
 \gamma_1
 $$
@@ -86,7 +86,7 @@ And the backwards difference substitute is very similar:
 $$
 \alpha_1 y(t) 
 +
-\beta_1 \frac{- y(t + 2\Delta t) + 4y(x + \Delta t) - 3y(t)}{2\Delta t}
+\beta_1 \frac{- y(t + 2\Delta t) + 4y(t + \Delta t) - 3y(t)}{2\Delta t}
 =
 \gamma_1
 $$
@@ -105,3 +105,41 @@ When it's non linear, we need to model the BVPs problem as a single system of no
 where the spatial stepping is going to be determined by the Jacobian of the function: 
 
 $$\textbf{J}\Delta x_n = - F(x_n)$$
+
+---
+#### Higher Dimension
+
+
+Direct method can be applied to higher dimension, using the Kronecker Product and vectorization of the high dimensional domain, we will be able to put a high dimension problem into a matrix vector system. 
+
+Suppose that we were given a discrete partial differential operators $\partial_x$ fora 2 dimensional problem. And suppose that we pack the domain of the by discretizing along the columns (same x value) and then y value.
+
+More specifically, suppose that $\psi(x_i, y_j) = \psi_{i, j}$, and the grid is uniformly discretized, then the vectorized domain can be described as: 
+
+$$
+  \vec{\psi} = 
+	\begin{bmatrix}
+		\vec{\psi}_{1, 1:N}
+		\\
+		\vec{\psi}_{2, 1:N}
+		\\
+		\vdots
+		\\
+		\vec{\psi}_{N, 1:N}
+	\end{bmatrix}
+$$
+        
+Then our $\partial_x$ differential operator for 2d is simply: 
+
+$$
+
+	\frac{d}{dx} \otimes I
+$$
+        
+And conveniently, we will have the operator for $\partial_y$ as: 
+        
+$$
+	I \otimes \frac{d}{dx}
+$$
+        
+**Note**: This is very general and it encapsulate both the boundary conditions and it's applicable to infinite dimension. As long as the discretized differential operator for One dimension contains the correct boundary conditions, then the kron product will retain the boundary conditions into higher dimension. 

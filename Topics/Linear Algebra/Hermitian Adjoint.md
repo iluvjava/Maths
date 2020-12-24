@@ -92,4 +92,4 @@ Using the previous (P1), and the assumption that eigen values are distinct, then
 
 > A Hermitian adjoint is diagonalizable. 
 
-Maybe is related to the Cholesky or the LDL decomposition of Hermitian Matrices.
+Refers to: [[Schur Decomposition]], where it proves the spectral theorem. 

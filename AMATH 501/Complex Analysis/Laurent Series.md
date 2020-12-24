@@ -13,8 +13,14 @@ And that is the reason that we are introducing the Laurent Series, where **even 
 
 ---
 #### Laurent Series Centered Zero
+##### The Setup
+We need contours on the complex plane. WLOG, assuming a keyhole contour, and after taking the limit, the keyhole break into 2 parts, where C1, C2 are 2 concentric circle, with C1 wrapping around C1. 
 
-By Cauchy integral and placing key hole **around the the origin**, and wrap around a larger contour, breaking the point of the function into 2 path integral, with C1 wrapping around C2 and rotating in different direction. 
+Here, take note that the function is analytical around in between the concentric circle, but not necessarily analytic inside the smaller contour C1. And most interestingly, the singularity could be the center of the expansion of the series. 
+
+##### The Math
+
+Placing the quantity $z$ in between the contour. By Cauchy integral and the topology of the contour: 
 
 $$
 f(z) = \frac{1}{2\pi i} \oint_{C1}\frac{f(t)}{t - z}dt 
@@ -150,10 +156,12 @@ And the coefficient:
 
 $$
 a_n = \oint_{
-n < 0? C2:C1
+\gamma
 }
 \frac{f(t)}{(t - z_0)^{n}}dt
 $$
+
+Where $\gamma$ is a curve that lies in between the contour $C_1$, $C_2$. 
 
 Depending on the quantity of $|z - z_0|$ or $|t - z_0|$, one of the series is going to converge. 
 
@@ -167,3 +175,22 @@ A Laurent Series expended at the points of singularity will **reveal the nature 
 
 ---
 
+### Simple Examples
+
+1. What is the Laurent Series of $1/z$ centered at zero? 
+	* It's $1/z$, this thing itself is a Laurent series. 
+2. Laurent series of $1/(1 - z)$? 
+	* $$\sum_{n = 0}^\infty z^n$$ is the series for the function centered at zero. 
+3. Consider the function: 
+$$
+\frac{1}{1 + x^2}
+$$
+Then the Laurent Series centered at $z_0 = 0$ will be: 
+$$\sum_{n = 0}^\infty (-1)^n x^{2n}$$
+Converging when $|x| < 1$
+4. Find the Laurent Series of $1/z$ for all points on the complex plane. 
+$$
+\frac{1}{z - z_0 + z_0} = \frac{1/z_0}{\frac{z - z_0}{z_0} + 1} = \frac{1}{z_0} \sum_{n = 0}^\infty (-1)^n
+\left(\frac{z - z_0}{z_0}\right)^n
+$$
+And when $z_0 = 0$, the Laurent series expanded at the point of singularity is $1/z$. 

@@ -25,6 +25,7 @@ $$
 
 Where the function $u, v$ are mapping from the reals to the reals. 
 
+---
 ### Differential 
 
 The function can be treated as a real function and apply the rules of derivative, **only if** we know that the function is differentiable. We can't trust it when the function is not differentiable. This can be revealed even with very simple functions. 
@@ -86,9 +87,13 @@ There are some complications regarding how the argument of the changes and its d
 
 ---
 
-#### Analyticity
+### Analyticity
 Def: 
 
 > If $f(z)$ is differentiable at a point at $z_0$ and everywhere in an open neighborhood  of $z_0$, $f(z)$ is said to be analytic at $z = z_0$. 
+
+This also means that a Taylor Series expansions exists for the function and it converges for a radius that is as large as the circle is not hitting a singular point, or the boundary of analyticity of the function. 
+
+**Note**: Notice that, this is different from the real function's derivative definition, this is saying that if the **first derivative exists, then it has derivatives of all order.** 
 
 ---

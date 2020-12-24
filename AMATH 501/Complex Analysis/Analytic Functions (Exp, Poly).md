@@ -78,3 +78,6 @@ And this is a beautiful derivation of the exponential function for the complex n
 
 Observe that the function here is $2\pi$ periodic on the, complex direction, meaning that $e^{x + iy} = e^{x + i(2n\pi + y)}$. And this is very interesting, pointing out the fact that, the function is going to repeat itself every on the imaginary direction. 
 
+
+
+

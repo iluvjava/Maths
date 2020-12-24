@@ -1,6 +1,6 @@
 Let's use the residue theorem to evaluate some of the scary looking series. 
 
-prereq: [[Calculus of Residual 2]]
+prereq: [[Calculus of Residual (Res Shortcut)]]
 
 ---
 
@@ -75,11 +75,13 @@ $$
 \oint_{C}F(z) dz = 2\pi i\sum_{n=-N}^{N}f(n) + 2\pi i\sum_{\alpha \in S} \text{Res}(F, \alpha)
 $$
 
-Now let's make an additional assumption so that the outer contour integral will become zero as the size of the square approaches $\infty$. the assumption is: 
+Now let's make an **additional assumption so that the outer contour integral will become zero as the size of the square approaches $\infty$. the assumption is: **
 
 > $$\lim_{|z|\rightarrow  \infty}|zf(z)| = 0$$
 
 And then, we will be able to say that the contour integral will be zero as $N\rightarrow \infty$, this is the case by considering the exponential form of $\cot$ which is going to give us: 
+
+
 
 $$
 \cot(z) = i\frac{\exp(iz) + \exp(-iz)}{\exp(iz) - \exp(-iz)}
@@ -89,6 +91,10 @@ Take note that, as $|z|\rightarrow \infty$, this quotient is approaching 1, and 
 
 And then we have: 
 
+$$
+2\pi i\sum_{n=-N}^{N}f(n) + 2\pi i\sum_{\alpha \in S} \text{Res}(F, \alpha) = 0
+$$
+Which is giving us: 
 $$
 \sum_{n=-\infty}^{\infty}f(n) =- \sum_{\alpha \in S} \text{Res}(F, \alpha)
 $$

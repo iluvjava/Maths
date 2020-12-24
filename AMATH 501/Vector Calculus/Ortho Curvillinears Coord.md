@@ -51,7 +51,7 @@ $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
 
 $$\vec{r} = x(\vec{u})\uvec{i} + y(\vec{u})\uvec{j} + z(\vec{u})\uvec{k}$$
 
-Given the fact that the curvilinear coordinate is the ragent vector o the level curves, we know that: 
+Given the fact that the curvilinear coordinate axis is tangent to the vector of the level curves, we know that: 
 
 $$\uvec{e}_1 = \frac{\partial \vec{r}/\partial u_1}{||\partial \vec{r}/\partial u_1||}$$
 
@@ -71,7 +71,7 @@ Then the alternative coordinates will become:
 
 $$\uvec{e}_1 = \frac{\nabla u_1}{||\nabla u_1||}$$
 
-Simiarly for the other coordinates directions we have: 
+Similarly for the other coordinates directions we have: 
 
 $$\uvec{e}_2 = \frac{\nabla u_2}{||\nabla u_2||}$$
 
@@ -82,4 +82,41 @@ Then this is the steps to get all the coordinate vectors when we have $(x, y, z)
 This is also related to the **Lame Coefficient** by the following relations: 
 
 $$\uvec{e}_1 =  \frac{\nabla u_1}{||\nabla u_1||} = h_1\nabla u_1$$
+
+### Jacobi Matrix
+
+There is some relations we can say about curvilinear coordinates and the Jacobi Matrix of the coordinate transform. 
+
+Let the transformation function be: $(x, y, z)\mapsto (u, v, w)$. 
+
+Rewrite it in a better way: 
+
+$$
+\begin{bmatrix}
+	u(x, y, z) \\ 
+	v(x, y, z) \\ 
+	w(x, y, z) 
+\end{bmatrix}
+$$
+
+And then the Jacobi matrix is gonna be: 
+
+$$
+\mathbb{J} = 
+\begin{bmatrix}
+	u_x & u_y & u_z
+	\\
+	v_x & v_y & v_z
+	\\
+	w_x & w_y & w_z
+\end{bmatrix}
+$$
+
+And in the case when the Mapping happens to be orthogonal, the matrix $\mathbb{J}$ is going to be orthogonal. 
+
+There for a set of orthogonal basis can be identified, which is computed via: 
+
+$$
+\mathbb{J}\sqrt{(\mathbb{J}^T\mathbb{J})^{-1}}
+$$
 
