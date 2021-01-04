@@ -17,6 +17,5 @@ Linear Algebran and Numerical Analysis
 11. Randomized Linear Algebra
 12. Tensor Decomposition
 
-## Details
 
 

@@ -28,7 +28,7 @@ Let's remind ourselves what the heck it is first:
 
 $$
 F(k) = 
-\frac{1}{\sqrt{2\pi}}
+\frac{1}{2\pi}
 \int_{-\infty}^{\infty} e^{-ikx}f(x)dx
 $$
 

@@ -1,4 +1,4 @@
-Prereq: [[The QR Algorithm]], [[Eigen Decomposition Algo]]
+Prereq: [[Eigen Decomp (The Pure QR)]], [[Eigen Decomp Algo (Baisc and Intro)]]
 This time, we need to see how the QR algorithm that is shifted is related to the Inverse Power iterations. 
 
 ---
@@ -91,6 +91,5 @@ That matrix is in the first invariant. The accumulated product of $\widehat{Q^{(
 ![[Practical QR Algorithm.png]]
 
 **Question:**
-
 How do we find the eigenvectors from the $\widehat{Q}$ that are coming from the recursive subroutine. 
 

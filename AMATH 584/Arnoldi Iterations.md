@@ -2,7 +2,7 @@ The Arnoldi Iterations produces an orthogonal subspace for the Krylov Subspace, 
 
 prereq: [[Modified GS Process]]
 The iterations share the same algorithm structure as the modified GS process. 
-prereq: [[Eigen Decomposition Algo 2]], Take a look at the Hessenberg Similarity Transform. 
+prereq: [[Eigen Decomp (Hessenberg Transform)]], Take a look at the Hessenberg Similarity Transform. 
 
 ---
 

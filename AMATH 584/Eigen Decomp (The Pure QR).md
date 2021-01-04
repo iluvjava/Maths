@@ -1,6 +1,6 @@
 Not to be confused with the Householder Transformation, the QR algorithm is designed for computing the Eigenvalues and stuff. 
 
-[[Eigen Decomposition Algo]]
+[[Eigen Decomp Algo (Baisc and Intro)]]
 
 You need to read all the way up to that. We need to know the power iterations first. 
 
@@ -115,3 +115,7 @@ substituting into previous expression we have: $AA^{k-1} = \widehat{Q^{(k-1)}}A^
 Substituting it in we have: $\widehat{Q^{(k-1)}} R^{(k-1)}Q^{(k-1)}\widehat{R^{(k-1)}} = \widehat{Q^{(k)}}\widehat{R^{(k)}}$. 
 
 By induction, the **(1)** and **(2)** are asserted. $\blacksquare$
+
+### The Next Step
+
+To speed up the algorithm using the idea of inverse iterations, it's discussed here: [[Eigen Decomp Algo 3 (Shifted QR)]]. 

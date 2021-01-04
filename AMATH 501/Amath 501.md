@@ -26,10 +26,9 @@
 		 * [[Cauchy Integral]]
 	 * [[Laurent Series]]
 	 * [[Calculus of Residual]]
-	 * Fourier transform
+	 * Fourier transform [[Calculus of Residual 3.3]]
 
 
 ### A Break Down of The Materials
-
 * Calculus
 

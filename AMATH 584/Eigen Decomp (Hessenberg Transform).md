@@ -1,5 +1,5 @@
 In this file we are going to see some modern approach to the Eigen Decomposition algorithms, which should give us better perspective on things. 
-[[Eigen Decomposition Algo]]
+[[Eigen Decomp Algo (Baisc and Intro)]]
 [[Schur Decomposition]]
 
 ---
@@ -45,8 +45,6 @@ And this is how the j $th$ step looking like for the A matrix, and $H_j$ is part
 
 #### Algorithm Approach
 
-
-
 read: [[Householder Triangularization]]
 
 The same matrix $Q$ for the household transformation is recursively applied to the matrix to reduce it to Hessenberg Form. 
@@ -61,10 +59,10 @@ A similar approach is used for the SVD decomposition algorithm, but instead of o
 ---
 ### Iterative Diagonalization
 
+This process is usually very diverse, after the construction of the Hessenberg form, we iterate and get to the Triangular form, and that will give us the Schur Decomposition of the matrix. 
+
+Consider the case when the matrix is **Hermitian**, the Hessenberg reduction will give a Tridiagonal Form matrix, which will speed up the iterations process. And there are a lot of good properties associated with the Tridiagonal Matrix. 
 
 
 
-
-
-
-
+[[Eigen Decomp (The Pure QR)]]

@@ -4,70 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "5e6693c5c41bc629",
+        "id": "e24ca4733b6500a5",
         "type": "leaf",
-        "dimension": 46.03174603174603,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 501/Complex Integration (CG).md",
+            "file": "AMATH 515/AMATH 515.md",
             "mode": "source"
           }
         },
-        "group": "c335b71f446fcfc7"
+        "group": "c3ef5a8099d3097b"
       },
       {
-        "id": "752d3f6d7aea6f00",
-        "type": "split",
-        "dimension": 53.96825396825397,
-        "children": [
-          {
-            "id": "9763e6de63849446",
-            "type": "leaf",
-            "dimension": 81.70173833485819,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AMATH 501/Complex Integration (CG).md",
-                "mode": "preview"
-              }
-            },
-            "group": "c335b71f446fcfc7"
-          },
-          {
-            "id": "18e6fd9f0fd1ce90",
-            "type": "leaf",
-            "dimension": 18.298261665141812,
-            "state": {
-              "type": "localgraph",
-              "state": {
-                "file": "AMATH 501/Complex Integration (CG).md",
-                "options": {
-                  "search": "",
-                  "localJumps": 1,
-                  "localBacklinks": true,
-                  "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
-                  "showArrow": false,
-                  "textFadeMultiplier": -3,
-                  "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1,
-                  "centerStrength": 0.518713248970312,
-                  "repelStrength": 10,
-                  "linkStrength": 1,
-                  "linkDistance": 250,
-                  "scale": 0.5792388806186226
-                }
-              }
-            },
-            "group": "c335b71f446fcfc7"
+        "id": "80df0c870ba070b6",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 515/AMATH 515.md",
+            "mode": "preview"
           }
-        ],
-        "direction": "horizontal"
+        },
+        "group": "c3ef5a8099d3097b"
       }
     ],
     "direction": "vertical"
@@ -94,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Principal",
+                "query": "hermitian adjoint",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,7 +66,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 355.99999809265137
+    "width": 353
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -123,11 +82,11 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 501/Complex Integration (CG).md",
+                "file": "AMATH 515/AMATH 515.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "backlinkCollapsed": false,
+                "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
@@ -140,15 +99,15 @@
     "collapsed": true
   },
   "lastOpenFiles": [
-    "AMATH 501/Complex Integration (CG).md",
-    "AMATH 501/Complex Functions.md",
-    "AMATH 501/Cauchy Riemann Conditions (Analyticity).md",
-    "AMATH 501/Cauchy Integral.md",
-    "AMATH 501/Complex Trigs.md",
-    "AMATH 501/Complex Number.md",
-    "AMATH 501/Complex Logarithm (The Key).md",
-    "AMATH 501/Power Series.md",
-    "AMATH 501/Power Series 2.md",
-    "AMATH 501/Power Series-Ranbow-Dash.md"
+    "AMATH 515/AMATH 515.md",
+    "AMATH 502/AMATH 502.md",
+    "AMATH 502/State Variables.md",
+    "AMATH 502/Untitled.md",
+    "AMATH 582/Lecture 1 Chapther 13.1.md",
+    "AMATH 501/Amath 501.md",
+    "AMATH 581/Chebyshev via FFT.md",
+    "AMATH 582/Fourier Transform.md",
+    "AMATH 581/Fourier Transform Fourier Series.md",
+    "AMATH 581/Spectral Method.md"
   ]
 }

@@ -88,7 +88,7 @@ And the minimum values are the Eigenvalues, which also gives zero for the gradie
 
 ---
 
-### Eigen Decomposition Algorithm (Rayleigh Quotient Iteration)
+### Eigen Decomposition Algorithm (Rayleigh Quotient Iteration With Inverse Power)
 
 The most naive way of doing it is the **Power Iterations** which looks for the Eigenvectors with the largest Eigenvalues. 
 
@@ -115,6 +115,11 @@ And notice that, for any nonzero Eigenvector $\lambda$ of matrix $A$, $A^{-1}$ h
 
 Assuming $(A - \mu I)$ is invertible, then the Eigenvector is the same from $A$, but the Eigenvalue will be $(\lambda - \mu)^{-1}$. So when $\mu$ is close to the true Eigenvalue, the matrix $(\lambda - \mu)^{-1}$ will have a really huge Eigenvalue, making the Iterations converges very fast. 
 
+**Important Comments**: 
+Take note that the iterations process is very dependent upon the initial guess of the eigenvectors. Experiments showed that, (In one of my HW assignment), randomly generated vectors has a really small chance of hitting all the eigenvalues when the matrix is just non-symmetric. 
+
+And this idea of inverse iteration will be reviewed in the QR Iterations, in which it performs an inverse and forward QR iterations. 
+
 #### Convergence 
 
 Note that, For this part of the proof, use the assumption that the Eigenvectors are orthogonal, and they are unique. 
@@ -139,7 +144,7 @@ $$
 
 And, note that, $\lambda_{max}$ will be dominating it, together with the Eigenvector associated with that Eigenvalue. 
 
-### Extra: Subspace Iterations, Non Symmetric Matrices
+### Extra: Subspace Iterations, Non-Symmetric Matrices
 
 So the problem with power iterations and Rayleigh Quotients iterations is that, the convergence entirely depends on the initial guess or the dominant vector. But here is a take on this: 
 
@@ -161,3 +166,7 @@ This is a classic algorithm, and it's used when we were given an Eigenvalue that
 It might be tempting to think that the some bad conditioning might affect the algorithm when the matrix is near singular, but I assure you that is not the case. 
 
 For non-hermitian matrices, the power iteration is atrocious to use when the matrix is real and the dominant Eigenvalues are complex. But for the Rayleigh Quotient, this is going to converge if the initial guess hit close enough to he true Eigenvalue.   
+
+---
+### The Next Stage
+Iterating the whole subspace with all orthogonal vectors is the [[Eigen Decomp (The Pure QR)]]
