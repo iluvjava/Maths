@@ -233,5 +233,3 @@ When it's linear, it's super easy to apply the Fourier Transform (Or DFT) on the
 
 For this, please see [[Spectral Method 2]] for more information. 
 
-
-### 

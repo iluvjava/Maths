@@ -28,7 +28,7 @@
 8. Spectral Methods
 	* The Fourier Transform for PDE Solution, Advanced Transforms for PDE Solution
 		* [[Fourier Transform Fourier Series]]
-		* [[Spectral Method]]
+		* [[Spectral Method, Discrete Fourier]]
 9. Finite Elements
 	* Theory, Solving PDE Problems with PDETool
 	* [[Finite Elements Method]]

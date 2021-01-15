@@ -3,7 +3,7 @@ Optimization, especially non-linear optimization
 ---
 
 ### Prereq: 
-* Lin alg 
+* Linalg
 * Calculus (Vector Calc)
 * Helpful: Stats 
 * Helpful: Python 
@@ -79,3 +79,4 @@ The **Challenging** part is the modeling part and the solving part.
 	* Trimming & Clustering
 
 
+---

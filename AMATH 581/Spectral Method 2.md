@@ -1,4 +1,4 @@
-prereq: [[Spectral Method]]
+prereq: [[Spectral Method, Discrete Fourier]]
 Here we are going to deal with non-linear cases and more advance usage of spectral method approach to solving PDEs, or PDEs system. 
 
 

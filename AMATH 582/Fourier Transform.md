@@ -2,7 +2,6 @@ prereq: [[Fourier Transform Fourier Series]]
 
 
 ---
-
 ### Intro
 
 The Fourier transform is a more advanced Fourier series where we are going to focus on the infinite domain of a function. 
@@ -76,5 +75,10 @@ k = (2*pi/L)*(-N/2: N/2 - 1);  % The lower infinite and upper inifity on the fou
 k = fftshift(k);               % Must shift this or it's not working. 
 ```
 
+---
 
+### Applications 
+Stationary Time Series Analysis: 
+1. [[Lecture 2 Ch 13.2 (Filtering)]]
+2. [[Lecture 3 Ch 13.3 (Freq Denoise)]]
 

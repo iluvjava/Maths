@@ -4,29 +4,70 @@
     "type": "split",
     "children": [
       {
-        "id": "e24ca4733b6500a5",
+        "id": "80df0c870ba070b6",
         "type": "leaf",
+        "dimension": 47.241379310344826,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/AMATH 515.md",
+            "file": "AMATH 502/Multiple Bifurcations (Examples).md",
             "mode": "source"
           }
         },
-        "group": "c3ef5a8099d3097b"
+        "group": "e4fbfb1d7327c57a"
       },
       {
-        "id": "80df0c870ba070b6",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 515/AMATH 515.md",
-            "mode": "preview"
+        "id": "dc4b5f94e6f4c7f9",
+        "type": "split",
+        "dimension": 52.758620689655174,
+        "children": [
+          {
+            "id": "912fc4de668c5272",
+            "type": "leaf",
+            "dimension": 80.11928429423459,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
+                "mode": "preview"
+              }
+            },
+            "group": "e4fbfb1d7327c57a"
+          },
+          {
+            "id": "6d6c124d8939c3bd",
+            "type": "leaf",
+            "dimension": 19.880715705765407,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
+                "options": {
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "showArrow": true,
+                  "textFadeMultiplier": -2.4,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 1.0000000000000013
+                }
+              }
+            },
+            "group": "e4fbfb1d7327c57a"
           }
-        },
-        "group": "c3ef5a8099d3097b"
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -53,7 +94,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "hermitian adjoint",
+                "query": "spectral ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -66,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 353
+    "width": 364
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -82,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/AMATH 515.md",
+                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,15 +140,15 @@
     "collapsed": true
   },
   "lastOpenFiles": [
-    "AMATH 515/AMATH 515.md",
-    "AMATH 502/AMATH 502.md",
-    "AMATH 502/State Variables.md",
+    "AMATH 502/Multiple Bifurcations (Examples).md",
+    "AMATH 502/Bifurcation 1D Extra.md",
+    "AMATH 515/Jacobian and Hessian.md",
+    "AMATH 515/Background.md",
+    "AMATH 502/Bifurcation 1D (1).md",
+    "AMATH 502/Bifurcation 1D.md",
     "AMATH 502/Untitled.md",
-    "AMATH 582/Lecture 1 Chapther 13.1.md",
-    "AMATH 501/Amath 501.md",
-    "AMATH 581/Chebyshev via FFT.md",
-    "AMATH 582/Fourier Transform.md",
-    "AMATH 581/Fourier Transform Fourier Series.md",
-    "AMATH 581/Spectral Method.md"
+    "AMATH 515/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515/Excericises, Proofs (Char of Strong Convexity).md",
+    "AMATH 515/Measuring Rate of Convergence.md"
   ]
 }

@@ -57,7 +57,7 @@ And that is the likelihood of observing such a variance on the residual of the m
 And the best model is the model is the parameters such that it maximizes the probability of such a likelihood. The likelihood estimator will be:
 
 $$
-\mathcal{L(a_0, a_1)} =
+\mathcal{L}(a_0, a_1) =
 \left(
 \frac{1}{\sqrt{2\pi\sigma^2}}
 \right)^m
@@ -76,12 +76,13 @@ $$
 In which, because of the multiplier containing the variance is going to be a constant offset after taking the logarithm, the optimization problem will be equivalent to: 
 
 $$
-\min_{a_0, a_1} (y_i - a_0 - a_1x_i)^2
+\min_{a_0, a_1} \sum (y_i - a_0 - a_1x_i)^2
 $$
 
 Which is expected. 
 
-#### T-Distribution
+---
+#### T-Distribution: Robust Fit
 
 The key to get to the optimization problem is the assumption on the distribution of the variance on the data set, for this very reason, we can tweak the model, which might take into account for some of the outliers observed. 
 
