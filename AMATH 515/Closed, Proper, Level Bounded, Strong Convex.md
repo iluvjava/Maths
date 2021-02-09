@@ -98,7 +98,7 @@ f(y) \ge f(x) + \nabla F(x)^T (y - x) + \frac{\alpha}{2} ||y - x||^2
 $$
 The function not only lies above a linear approximation, but it also lies about some quadratic function with a constant $\alpha \le 0$. Notice that, it's equality (in some direction) when function is actually a quadratic. 
 
-**Excercises:**
+**Exercises:**
 1. 
 $$f(x) = \frac{1}{2}||x||^2$$
 Is Strongly Convex if $g(x)$ is convex. 
@@ -120,12 +120,12 @@ Note: Note to confused with Strictly Convexity, which is totally different.
 For a $C^1$ function $f$, the following are equivalent: 
 1. $f$ is Alpha Strong Convex 
 2. $(\nabla f(y) - \nabla f(x))^T(y - x)\ge \alpha ||y - x||^2$ 
-3. If f is twice continuous differentiable, then $\nabla^2 f \succcurlyeq \alpha I$ (More positive definite than alpha identity, meaning that the eigenvalues of the Hessian is larger than $\alpha$)
+3. If f is twice continuous differentiable, then $\nabla^2 f \succcurlyeq \alpha I$ (More positive definite than alpha identity, meaning that all eigenvalues of the Hessian is larger than $\alpha$)
 
 **Observation**
 Please observe that, this is very similar to 3 of the characteristics listed in [[Differential Characterization of Convexity]], where we discusses under the context of regular convexity. 
-* The second statement is just a tighter upper bound for the monoticity of the gradient. 
-* The third statement is an augmentation of the positive definiteness of the Hessian Matrix of the Hessian on regular convex case.
+* The second statement is just a tighter lower bound for the monoticity of the gradient. 
+* The third statement is an augmentation of the positive definiteness of the Hessian Matrix on regular convex case.
 
 **Exercises:**
 1. Show that every Alpha Strongly Convex function is level bounded. 

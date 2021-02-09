@@ -4,45 +4,52 @@
     "type": "split",
     "children": [
       {
-        "id": "80df0c870ba070b6",
-        "type": "leaf",
-        "dimension": 47.241379310344826,
-        "active": true,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 502/Multiple Bifurcations (Examples).md",
-            "mode": "source"
-          }
-        },
-        "group": "e4fbfb1d7327c57a"
-      },
-      {
         "id": "dc4b5f94e6f4c7f9",
         "type": "split",
-        "dimension": 52.758620689655174,
         "children": [
           {
-            "id": "912fc4de668c5272",
-            "type": "leaf",
-            "dimension": 80.11928429423459,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
-                "mode": "preview"
+            "id": "91616f27b5d395e3",
+            "type": "split",
+            "dimension": 79.92766726943943,
+            "children": [
+              {
+                "id": "2a8c6a7dad2fa282",
+                "type": "leaf",
+                "dimension": 50.03796507213364,
+                "active": true,
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "AMATH 582/Ch 16.2 ICA Thoery.md",
+                    "mode": "source"
+                  }
+                },
+                "group": "e4fbfb1d7327c57a"
+              },
+              {
+                "id": "7d505b979dda33fd",
+                "type": "leaf",
+                "dimension": 49.96203492786636,
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "AMATH 582/Ch 16.2 ICA Thoery.md",
+                    "mode": "preview"
+                  }
+                },
+                "group": "e4fbfb1d7327c57a"
               }
-            },
-            "group": "e4fbfb1d7327c57a"
+            ],
+            "direction": "vertical"
           },
           {
             "id": "6d6c124d8939c3bd",
             "type": "leaf",
-            "dimension": 19.880715705765407,
+            "dimension": 20.072332730560582,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
+                "file": "AMATH 582/Ch 16.2 ICA Thoery.md",
                 "options": {
                   "search": "",
                   "localJumps": 1,
@@ -60,7 +67,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 1.0000000000000013
+                  "scale": 0.5087618855792615
                 }
               }
             },
@@ -94,7 +101,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "spectral ",
+                "query": "divergence theorem",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,7 +114,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 364
+    "width": 344.5121879577637
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -123,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 502/Multiple Bifurcations (Examples).md",
+                "file": "AMATH 582/Ch 16.2 ICA Thoery.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,19 +143,18 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 233
   },
   "lastOpenFiles": [
+    "AMATH 582/Ch 16.2 ICA Thoery.md",
+    "AMATH 582/Ch 16.3 ICA.md",
+    "AMATH 582/Untitled.md",
+    "AMATH 582/Ch 16.1 independent Component Analysis.md",
+    "AMATH 515/Untitled.md",
+    "AMATH 515/Proximal Gradient Method.md",
+    "AMATH 515/Non smooth convex optimization.md",
+    "AMATH 515/Gradient Descent 1.md",
     "AMATH 502/Multiple Bifurcations (Examples).md",
-    "AMATH 502/Bifurcation 1D Extra.md",
-    "AMATH 515/Jacobian and Hessian.md",
-    "AMATH 515/Background.md",
-    "AMATH 502/Bifurcation 1D (1).md",
-    "AMATH 502/Bifurcation 1D.md",
-    "AMATH 502/Untitled.md",
-    "AMATH 515/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515/Excericises, Proofs (Char of Strong Convexity).md",
-    "AMATH 515/Measuring Rate of Convergence.md"
+    "AMATH 502/Bifurcation 1D.md"
   ]
 }

@@ -117,3 +117,8 @@ After the midterm:
 1. Define strange attractor. 
 2. List the processes involved in crating a strange attractor. 
 3. Find the invariant set of a map. 
+
+
+That was the plan, and here is what we actually did in class. 
+
+---

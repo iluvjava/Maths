@@ -12,7 +12,6 @@ $$
 
 Where x could be a vector of all the state variable. 
 
-
 ### Population Growth
 
 $$

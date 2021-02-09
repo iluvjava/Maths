@@ -154,17 +154,21 @@ It matches the normal form of bifurcation because it near the place where it hap
 ### Bifurcation Normal Form
 This is the idea where we introducing a way of classifying different type of bifurcations. 
 #### Saddle Node
-> $$x' = \pm r \mp x^2$$
+> $$x' = r + x^2 \quad x'= x+rx + 1$$
 The parabola goes up and up and them slide out x-axis as bifurcation happens.
+
 
 #### Transcritical Bifurcation 
 > $$x' = \pm rx \mp x^2$$
+2 Fixed points with opposite stability properties merged into one semi-stable and then slide through each other and exchanged their stability. 
 
 #### Pitchfork Bifurcation
 1. Supercritical 
 > $$x' = \pm xr \pm x^3$$
+This happens when 2 of the nodes are stable, and there is one unstable fixed points in between them. 
 3. Subcritical
 > $$x' = \pm rx \mp x^3$$
+This happens when 2 of the nodes are unstable and there is one stable nodes between those 2 stabled fixed points. 
 
 #### Extra Comments
 Take note that, All of these type of 1D bifurcation has the feature that: 
@@ -182,10 +186,19 @@ looks like a transcritical and a Saddle Node, however it's actually a saddle nod
 This is the case, because the number of roots of the expression $r + rx - x^2$ wrt to $x$ can underwent all 3 cases as the value of $r$ changes, and this can only triggers Saddle Node bifurcation, at different values for $r$. 
 
 But the general strategies here is the same: 
-1. Search for the critical bifurcation point. 
-2. Analyze the local behavior of the points. 
+1. Search for the critical bifurcation point by looking at the intersections of contours of $f(x)$
+2. Determine the stability 
+3. Keep track of the stability and position of the fixed points while changing the value of $r$
 
----
+#### Unusual Bifurcations
+
+Usually, we make the assumption that at the bifurcation points: $\partial_r f(x_c, r_c)$ is NOT to be zero, and when it's zero, we have very interesting things happening, and those bifurcations are not any of the types we discussed here. 
 
 
+### Extra Comments and Advance Stuff
 
+There is a precise definition for bifurcation: 
+
+[Link](http://www.scholarpedia.org/article/Bifurcation)
+
+But this is using too many other concepts and it's much more general than what we need for this class. 

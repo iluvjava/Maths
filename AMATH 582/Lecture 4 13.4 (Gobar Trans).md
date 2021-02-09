@@ -85,7 +85,7 @@ These 2 will compute how localized a signal is.
 
 * Linearity $G[af_1 + bf_2] = aG[f_1] + bG[f_2]$
 
-* Inverse 
+* Transform
 $$
 \widetilde{f_g}	(t, w) = \int_{-\infty}^{\infty}f(\tau)g(\tau - t)\exp(-i\omega t)d\tau
 $$
@@ -126,3 +126,15 @@ The component $m\omega$ shifts the frequencies we are trying to project for the,
 ### For Completeness
 - Zak Transform 
 - Weiner Wille Transform
+
+---
+### Extra Comments about Gobar Transform
+
+Under the context of Gabor Transform, the uncertainty principles are referred to as the Gobar Limit. 
+
+The variance between the Gobar filter in the time and domain and the Gobar filter in the frequencies domain is bounded in this way: 
+$$
+\sigma_t\sigma_f \ge \frac{1}{4\pi}
+$$
+
+Therefore, it's not possible to obtain high resolution in both the signal domain of the Gobar filter, and the Frequencies domain of Gobar filter. (It's referred to as the Temporal and Frequencies resolution)

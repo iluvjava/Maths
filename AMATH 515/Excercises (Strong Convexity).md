@@ -15,7 +15,7 @@ Trivial.
 ---
 #### Statement 2
 $$f(x) = g(x) + \frac{\alpha}{2}||x||^2$$
-Is Strongly Convex if $g(x)$ is convex. 
+Is Strongly Convex.
 
 **Proof**:
 By definition, we have: 
@@ -29,7 +29,7 @@ $$
 
 Which is: 
 $$
-g(x) + (\nabla g(x)^T + \alpha x)(y - x) + \frac{\alpha}{2}||y - x||^2
+g(x)+\frac{\alpha\Vert x\Vert}{2} + (\nabla g(x)^T + \alpha x)(y - x) + \frac{\alpha}{2}||y - x||^2
 $$
 $$
 \left[g(x) + \nabla g(x)^T(y - x)\right] + 
@@ -83,7 +83,7 @@ $$
 	\left[\frac{\alpha||y||^2}{2}
 	\right]
 	\\
-	f(y) &\ge f(x) + \nabla f(x)^T(y - x) + \left[\frac{\alpha||y||^2}{2}\right]
+	f(y) &\ge f(x) + \nabla f(x)^T(y - x) + \left[\frac{\alpha||y - x||^2}{2}\right]
 \end{align}
 $$
 The first expression is just convexity of the function $g(x)$, and the second line is obtained by substituting expression **(2)**. 

@@ -39,7 +39,7 @@ Notice that only full ranked matrices can be used for this type of norm, and oth
 ---
 ### Matrix Norm
 
-The matrix norm is induced by the vectors norm, it tells us how the matrices is able to manipualate the vectors. The norm is used to bound the transformation a bit with one real number, so we know just how badly the matrix transform the linear spaces. 
+The matrix norm is induced by the vectors norm, it tells us how the matrices is able to manipulate the vectors. The norm is used to bound the transformation a bit with one real number, so we know just how badly the matrix transform the linear spaces. 
 
 For definitions of the norm, write the matrix $A \in \mathbb{C}^{m\times n}$ like: 
 $$A = \begin{bmatrix}
@@ -98,18 +98,44 @@ where $$A\in \mathbb{C}^{m\times n}$$
 
 #### Matrix F-Norm
 
-The formula for matrix 2 norm is harder to get, but it's pretty dope: 
+The formula for matrix F norm is harder to get, but it's pretty dope: 
 
 > $$
 \|A\|_{\mathrm{F}}=\sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n}\left|a_{i j}\right|^{2}}=\sqrt{\operatorname{trace}\left(A^{H} A\right)}=\sqrt{\sum_{i=1}^{\min \{m, n\}} \sigma_{i}^{2}(A)}$$
 
 It's all of the following at the same time: 
-* The sum of modular of all entries in the matrix square rootted
+* The sum of modular of all entries in the matrix square rooted
 * Square root of the sum of the diagonal entry of $A^HA$. 
-* The sum of the first $\min(n, m)$ sigular values ($\sigma_i^2(A)$) of the matrix under the square root. 
-
-
+* The sum of the first $\min(n, m)$ singular values ($\sigma_i^2(A)$) of the matrix under the square root. 
 
 ### Matrix Induced 2-Norm (Spectral Norm)
 
-**Notes**: This is very different from the Frobenius Norm of matrices. 
+**Notes**: This is very different from the Frobenius Norm of matrices because this is a norm induced by vector 2-norm. 
+
+Here let's derive it. By the definition of vector induced matrix norm:
+
+$$
+\begin{align}\tag{1}
+    \Vert A\Vert_2^2 
+    &=
+    \sup_{x\in\mathbb{R}^n\setminus\mathbf\{0\}} \left(
+        \frac{\Vert Ax\Vert^2_2}{\Vert x\Vert^2_2}
+    \right)
+    \\
+    \Vert A\Vert_2^2 
+    &=
+    \sup_{x\in\mathbb{R}^n\setminus\mathbf\{0\}} \left(
+        \frac{x^TA^TAx}{\Vert x\Vert^2_2}
+    \right)
+    \\
+    \Vert A\Vert_2^2
+    &=
+    \sup_{\Vert x \Vert = 1} \left(
+        x^TA^TAx
+    \right)
+    \\
+    \Vert A\Vert_2^2 &= \max_{i}|\lambda_i| = \max_{i}(\sigma_i^2)
+\end{align}
+$$
+
+Where $\lambda_i$ are the eigenvalues of the matrix $A^TA$, the argument from line 3 to line 4 follows from the Eigen Decomposition of the Matrix $A^TA$, or equivalently, the maximal of the singular squared on matrix $A$. 

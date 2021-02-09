@@ -80,3 +80,27 @@ The **Challenging** part is the modeling part and the solving part.
 
 
 ---
+
+### Fundamentals
+* Calculus and Optimality
+	* [[Jacobian and Hessian]]
+	* [[Optimality Conditions (Jacobian Hessian)]]
+	* [[Derivatives on Steroids]]
+	* 
+
+* Functions: 
+	* [[Convexity]]: 
+		* Convex Set
+		* Convex Functions
+		* [[Differential Characterization of Convexity]]
+	* Good to optimize functions: 
+		* [[Closed, Proper, Level Bounded, Strong Convex]]
+		* [[Beta Smoothness]]
+* Algorithms and Analysis: 
+	* [[Gradient Descend 1]]
+	* [[Gradient Descend 2]]
+	* [[Gradient Descend 3]]
+    * [[Measuring Rate of Convergence]]
+* Problems
+	* [[MLE Robust Fit (Intro)]]
+	* [[Generalized Linear Model]]

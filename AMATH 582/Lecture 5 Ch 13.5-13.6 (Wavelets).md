@@ -7,6 +7,8 @@ Topics:
 
 The term wavelet comes from "Little Wave". The wavelet transform is an improvement over the Gobar Transform, where it solve the problem of decreasing balancing between Frequencies and Time resolution of the signal. 
 
+[[Gabor Transform]]
+
 ---
 ### Wavelets 
 Problem Statement: We have a signal over time: $s(t)$, we want to understand: 

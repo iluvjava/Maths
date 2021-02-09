@@ -25,7 +25,7 @@ $$
 \end{align}
 $$
 
-And as we observe, the critical point will set the first derivative to be zero, and it's the solution to the system too.
+And as we observe, the critical point will set the first derivative to be zero, and it's the solution to the system, and the derivative with respects to $r$
 $$
 \begin{align}
 	\nabla f(x_c, r_c) &= \begin{bmatrix}

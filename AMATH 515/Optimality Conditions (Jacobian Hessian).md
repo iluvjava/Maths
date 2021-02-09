@@ -118,12 +118,14 @@ $$
 \frac{1}{2} v^T \nabla^2 f(\bar{x}) v \geq 0
 $$
 
+#### Extra Comments
+
 The **Hessian** is **positive semi-definite**. And a **positive Semi-definite** Hessian Matrix is going to give us a Positive Concavity. 
 
 $\blacksquare$
 
 **The Converse of The Statement:**
-If the Hessian is Symmetric Positive Definite, and the gradient is zero, then there is a local minimum. 
+If the Hessian is Symmetric Positive Definite (Stronger than positive semi-definite), and the gradient is zero, then there is a local minimum. 
 
 **Why Positive Semi-definite means optima for the given points? **
 

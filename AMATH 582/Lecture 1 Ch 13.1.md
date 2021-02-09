@@ -1,6 +1,5 @@
 Time frequencies representations and Fourier Transform
 
-
 ---
 
 ### Intro

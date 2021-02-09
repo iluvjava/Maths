@@ -12,4 +12,4 @@ See [[Lecture 4 13.4 (Gobar Trans)]] for more information which covers the follo
 
 The transform has the following Draw backs: 
 1. When the filter is too narrow, we will lose a lot of localized frequencies information. 
-2. When the filter is too wide, we will lose a lot of information about localized frequencies, like, the specific time of where the frequency occurred in the Guassian Filter. 
+2. When the filter is too wide, we will lose a lot of information about localized frequencies, like, the specific time of where the frequency occurred in the Gaussian Filter. 

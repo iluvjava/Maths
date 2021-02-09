@@ -5,7 +5,7 @@ Strong convexity and its differential properties.
 ### Prereq: 
 [[Closed, Proper, Level Bounded, Strong Convex#Strong Convexity]]
 * Definition of Alpha Strong convexity
-* Properties of Alpha String Convexity
+* Properties of Alpha Strong Convexity
 
 ![[Closed, Proper, Level Bounded, Strong Convex#Theorem 2 23 Characterization of Strong Convexity]]
 
@@ -59,13 +59,13 @@ $$
 	& \nabla^2 f - \alpha I
 \end{align}
 $$
-And this matrix must have eigenvalues that are non-negative. That means that solution to the characteristic equation: 
+And this matrix must have eigenvalues that are non-negative(By 3rd characteristics of convexity). That means the solution to the characteristic equation: 
 $$
 (\nabla^2 f - \alpha I - \lambda I) = (\nabla^2 f - (\alpha + \lambda)I)
 $$
 Must only have non-negative eigenvalues, and that means: 
 $$
-\lambda_i \le \alpha \quad \forall i
+\lambda_i \ge \alpha \quad \forall i
 $$
 And this means that: 
 $$
@@ -82,29 +82,75 @@ $\blacksquare$
 ### Exercise Statement 1:
 #### Alpha And Level-Bounded
 
+**Proof strategies**: If $f$ is level bounded, then its domain under a certain level has to be smaller than the RHS of the strong convexity. If that function is level bounded, then so is $f$. 
+
 If a function $f$ is Alpha strongly convex, then it has minimizer and it will be level bounded.
 
-Let's do it slowly so we know what we are doing, by definition, Level bounded means that the set: 
+Placing a gamma level bound on function $f$, we have: 
 $$
-\text{lev}_\alpha(f) = \{x: f(x)\le \alpha\}
+\text{lev}_\gamma(f) = \{
+	y: f(y) \le \gamma
+\}
 $$
-And this set is a bounded set. The idea here is to realize that, the epigraph of the function will have to lie within the norm ball. 
+This set should be non-empty. If it can't be find, then the function is not proper. 
 
-From the definition of strong convexity: 
+Placing on a beta level bound on the function of RHS of the strong convexity definition, we have: 
 $$
-f(y) \ge \nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert y - x\Vert^2
+\begin{align}
+	g(y) &:= \nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert y - x\Vert^2
+	\\
+	\text{lev}_\beta(g) &= \{y: g(y) \le \beta\}
+\end{align}
+$$
+Take notice that, if $\gamma$ is $\beta$, choose any element $t$ from set $\text{lev}_\gamma{(f)}$, we know that $f(t) \le \gamma =\beta$, by strong convexity: 
+$$
+g(t) \le f(t) \le \beta \implies g(t) \le \beta
 $$
 
-Notice that the RHS is a quadratic function, and it can be said that: 
+Therefore: 
 $$
-f(y) \in
-\text{epi}
-\left(\nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert y - x\Vert^2\right)
+\text{lev}_\beta{(f)} \subseteq \text{lev}_\beta{(g)}
 $$
-And notice that, the epigraph of a quadratic is level bounded, and therefore, it has to be the case that, $f(x)$ is level bounded as well. 
+
+Hence, if the function $g$ is level bounded, then $f$ will has to be level bounded. 
+
+** $g(y)$ is Level bounded **
+
+This is true because: 
+
+$$
+\nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert y - x\Vert^2
+$$
+
+Is a increasing, strictly quadratic function hence is a level bounded function --> $f$ is level bounded as well. 
+
+$\blacksquare$ 
 
 #### Minimizer Exists
 
 This is True by theorem [[Closed, Proper, Level Bounded, Strong Convex#Theorem 1 9 Rockafellar Roger Wets Variational Analysis]]
 
-The function is closed, proper, then it has minimizer. 
+The function is closed, proper, and it's level bounded as proven above, therefore it has minimizer. 
+
+
+#### Minimizer is Unique
+
+**Proof Strategies**: Use the second properties of the strong convexity. Proof with contradiction to show that it's impossible for a strongly convex function to have 2 different minimizers. 
+
+Suppose the existence of 2 minimizers (Proved before), $x_1$, $x_2$, because they are minimizers: 
+$$
+\nabla f(x_1) = \nabla f(x_2) = 0
+$$
+
+However also notice that using the second properties of characterizations of strong convexity we have: 
+$$
+\begin{align}
+	\nabla f(y)^T(y - x_1) &\ge \alpha \Vert y - x_1\Vert^2 \\
+	\nabla f(y)^T(y - x_2) &\ge \alpha \Vert y - x_2 \Vert^2
+\end{align}
+\quad \forall y
+$$
+
+Notice that this is only true if $\nabla f(y) = \gamma(y - x)$ where $\gamma > 0$. Simply put, the gradient of the function at all points is the same as the vector that points from the minimizer to that point. 
+
+This creates a contradiction if $x_1 \neq x_2$, because that means the gradient at point $y$ is a vector that points to 2 directions, and this is impossible. $\blacksquare$

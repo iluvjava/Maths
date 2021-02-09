@@ -9,9 +9,7 @@ And then we do the HW to test our understanding and attend office hours if we ha
 
 ### Content
 
-Lecture 1: [Time Frequency](https://www.youtube.com/watch?v=3kj8a-U5rZI&feature=youtu.be&ab_channel=NathanKutz) Chapter 13.1, [[Lecture 1 Ch 13.1]]
-
-
+Start with: [[Lecture 1 Ch 13.1]]
 
 
 

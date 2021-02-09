@@ -40,7 +40,7 @@ $$
 Then the iterative scheme is gonna be like: 
 
 $$
-\vec{x}_{k + 1} = L^{-1}(-U + \vec{b})\vec{x}_{k}
+\vec{x}_{k + 1} = L^{-1}(-U\vec{x}_{k} + \vec{b})
 $$
  
  **NOTE:**
