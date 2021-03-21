@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
+                    "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
                     "mode": "source"
                   }
                 },
@@ -33,7 +33,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
+                    "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
                     "mode": "preview"
                   }
                 },
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
+                "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
+                "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,7 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
     "AMATH 501/Complex Analysis/Types of Singularities.md",
     "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
     "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
@@ -159,7 +160,6 @@
     "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
     "AMATH 501/Complex Analysis/Calculus of Residual.md",
     "AMATH 501/Vector Calculus/Arch Length.md",
-    "Intro.md",
-    "AMATH 515/Duality/Duality Preparation.md"
+    "Intro.md"
   ]
 }
