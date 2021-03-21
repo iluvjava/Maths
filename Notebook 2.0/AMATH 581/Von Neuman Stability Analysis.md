@@ -11,7 +11,7 @@ Here we are going to keep looking at the wave equation example:
 
 Where $u(x, t)$ should be a one dimension wave function. 
 
-### Von-Neumann Stability Analysis 
+### Von-Neumann Stability Analysis
 Assume that the solution is separable, and using separation of variables we have: 
 
 $$

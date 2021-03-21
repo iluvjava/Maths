@@ -22,8 +22,8 @@
 	* Efficiency of the methods
 7. Finite Difference: PDE Solution and stability
 	* Von-Neumann Stability of Finite Difference Schemes
-		* [[PDEs Stability Analysis]]
-		* [[PDEs Stability Analysis 2]]
+		* [[Von Neuman Stability Analysis]]
+		* [[Von Neuman Stability Analysis 2]]
 	* Alternative Discretizations
 8. Spectral Methods
 	* The Fourier Transform for PDE Solution, Advanced Transforms for PDE Solution

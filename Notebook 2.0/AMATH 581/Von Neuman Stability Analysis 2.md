@@ -1,4 +1,4 @@
-This is continuation of [[PDEs Stability Analysis]]
+This is continuation of [[Von Neuman Stability Analysis]]
 
 And we are going over some more intriguing examples, and we are going to see when stiffness happens for our partial differential equations. 
 

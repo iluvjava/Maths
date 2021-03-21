@@ -10,16 +10,17 @@
           {
             "id": "6dce81749ebdff0a",
             "type": "split",
-            "dimension": 77.76801405975395,
+            "dimension": 83.2,
             "children": [
               {
                 "id": "aad979c090293158",
                 "type": "leaf",
+                "dimension": 52.30582524271845,
                 "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "MATLAB.md",
+                    "file": "AMATH 515/Interior Points (Remastered).md",
                     "mode": "source"
                   }
                 },
@@ -28,11 +29,12 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
+                "dimension": 47.69417475728155,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "MATLAB.md",
-                    "mode": "source"
+                    "file": "AMATH 515/Interior Points (Remastered).md",
+                    "mode": "preview"
                   }
                 },
                 "group": "01cc3863d15063fa"
@@ -43,11 +45,11 @@
           {
             "id": "24f6750d48e7d2c8",
             "type": "leaf",
-            "dimension": 22.231985940246048,
+            "dimension": 16.8,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "MATLAB.md",
+                "file": "AMATH 515/Interior Points (Remastered).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -117,7 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 311.0121879577637
+    "width": 385
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -133,11 +135,11 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATLAB.md",
+                "file": "AMATH 515/Interior Points (Remastered).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "backlinkCollapsed": true,
+                "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
@@ -149,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
-    "MATLAB.md",
-    "ScratchPaper.md",
-    "HW2 Theorems.md",
-    "[Lipschitz Continuum.md",
-    "GPT Transformer.md",
-    "Untitled.md",
-    "AMATH 582/AMATH 582.md",
+    "AMATH 515/Interior Points (Remastered).md",
+    "AMATH 515/Interior Points.md",
     "AMATH 582/Decision Tree.md",
-    "AMATH 582/Untitled.md",
-    "AMATH 582/SVM.md"
+    "Pasted image 20210317204726.png",
+    "Pasted image 20210310135440.png",
+    "Orthogonal_Matching_Pursuit.gif",
+    "Math 409.md",
+    "Math 424.md",
+    "keyhole.png",
+    "Math 464/Lagrange Polynomial Interpolation.md"
   ]
 }

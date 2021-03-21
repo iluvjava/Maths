@@ -1,6 +1,6 @@
 This is a follow up for the previous modules for stability for different Schemes applied to partial differential equations. 
 
-prereq: [[PDEs Stability Analysis 2]]
+prereq: [[Von Neuman Stability Analysis 2]]
 
 ---
 

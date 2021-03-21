@@ -6,7 +6,6 @@ Just before everything, I want to draw the parallel between the the Beta smoothn
 The **Beta smoothness** is the quadratic global bound for the function, while t he **alpha strong convexity** is the global lower bound  for the function. both is quadratically bounding the objective function. 
 
 ---
-
 ### Definition 1: Lipschitz Continuity
 
 $f: \mathbb{R}^n \mapsto \mathbb{R}^m$, is $\beta$ Lipschitz Continuum if: 

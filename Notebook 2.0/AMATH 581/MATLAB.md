@@ -7,7 +7,7 @@ AMATH 581 Linked:
 [Numerical Computing with MATLAB](https://www.mathworks.com/moler/chapters.html)
 
 ---
-**For the folloing section, type keyword into google to learn more, here is a quick cheat sheet for reference**
+**For the Following section, type keyword into google to learn more, here is a quick cheat sheet for reference**
 
 Here is a list of help commands can in matlab: 
 * `help`, `lookfor`, `doc`

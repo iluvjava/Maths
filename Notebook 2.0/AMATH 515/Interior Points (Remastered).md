@@ -1,6 +1,10 @@
 The previous discussion on interior points have some inconsistency with the HW, and it's not easy to follow. For example I didn't explain what the log barrier function is for, hence we are following on the previous discussion citing other things, to construct a revised version for it. 
 [[Interior Points]], [[Duality (Example Transformation)]]
 
+Objective: 
+1. Phrase the 2-Norm Inequality Constrained Optimization Problem 
+2. Log Barrier and Fenchel Conjugate
+
 ---
 ### **Intro**
 

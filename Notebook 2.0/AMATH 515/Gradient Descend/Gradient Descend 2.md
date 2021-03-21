@@ -136,7 +136,7 @@ Using (6) and the inequality above:
 > \tag{7}
 > $$
 
-Using expression [intro (3)](#intro), we have: 
+Using expression [intro (3)](Gradient%20Descend%202.md#intro), we have: 
 
 $$
 \frac{1}{2\beta} \Vert \nabla f(x_k)\Vert^2 \le 
