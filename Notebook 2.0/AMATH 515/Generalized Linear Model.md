@@ -17,7 +17,7 @@ Big Picture: Choose the most appropriate distribution for the type of outcomes. 
 And then we try to nest the model into a distribution model, so when we make the prediction, we will have a weight vector for each set of observations on $a_i$, giving us: $a_i^Tx^*$, which will produce one scalar as $\hat{y}_i$
 
 ---
-#### Example: Poisson
+#### **Example: Poisson**
 
 Poisson distribution has $y_i\in \mathbb{Z}_+$.  
 
@@ -212,3 +212,4 @@ $$
 
 As we can see, the observe probability of something happened $p_i$ is the CFD function of the logistic distribution.
 
+---

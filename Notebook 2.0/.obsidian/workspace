@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
+                    "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
                     "mode": "source"
                   }
                 },
@@ -33,7 +33,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
+                    "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
                     "mode": "preview"
                   }
                 },
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 501/Complex Analysis/Types of Singularities.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
-    "AMATH 515/Interior Points (Remastered).md",
-    "AMATH 515/Interior Points.md",
-    "AMATH 582/Decision Tree.md",
-    "Pasted image 20210317204726.png",
-    "Pasted image 20210310135440.png",
-    "Orthogonal_Matching_Pursuit.gif",
-    "Math 409.md",
-    "Math 424.md",
-    "keyhole.png",
-    "Math 464/Lagrange Polynomial Interpolation.md"
+    "AMATH 501/Complex Analysis/Types of Singularities.md",
+    "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
+    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+    "AMATH 501/Complex Analysis/Complex Integration (CG).md",
+    "AMATH 501/Complex Analysis/Calculus of Residual (Res Shortcut).md",
+    "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
+    "AMATH 501/Complex Analysis/Calculus of Residual.md",
+    "AMATH 501/Vector Calculus/Arch Length.md",
+    "Intro.md",
+    "AMATH 515/Duality/Duality Preparation.md"
   ]
 }

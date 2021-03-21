@@ -1,13 +1,18 @@
 [[Closed Convex Set]]
 We will need to understand the basic idea behind the closed convex set to understand that is going on with the idea of duality. 
 
+Content: 
+1. Affine Minorants of a function
+2. Convex conjugate and some examples
+3. Double conjugacy and minmax lemma
+
 ---
-### Intro
+### **Intro**
 
 Ok, the ideas we introduced here will help us with the idea of weak duality. 
 
 ---
-### Exercise 4.26
+### **Exercise 4.26**
 
 Exercise is in the course reader. 
 
@@ -34,7 +39,7 @@ f(y) = \sup_x\{f(x) + \nabla f(x)^T(y - x)\}
 $$
 
 ---
-### Convex Conjugate
+### **Convex Conjugate**
 
 The convex conjugate of a convex function $f(x)$ is defined by: 
 
@@ -49,7 +54,7 @@ If I have a vector $z$, I am gonna change the orientation of the vector using $x
 If I fixed vector $z$, I am gonna define a half space $z^Tx$, taking the difference between this and $f(x)$, how much above $f(x)$ I can get by tweaking $x$? That value is $f^*(z)$. 
 
 ---
-### Epigraph of $f(x)$ and affine Minorants of $f^*(x)$. 
+### **Epigraph of $f(x)$ and affine Minorants of $f^*(x)$**. 
 
 Choose any point from the epigraph of the function $f$ for level $\alpha$: 
 
@@ -74,7 +79,7 @@ And when the point we choose on is on the function $f$, then we are trying to th
 
 ---
 
-### Example 1
+### **Example 1**
 
 Let $f(x) : = |x|$, then: 
 
@@ -96,7 +101,7 @@ Well, of course, if I choose any function line with a slope $z$, and if the slop
 Suppose I have all the affine minorants of the convex function. Then $f^*(z)$ denotes the vertical distance I move my $z^x$ hyperplane so that it matches (Exactly) one of the affine minorants of the function $f(x)$. If I can't find it, then $f(x)$ is gonna be $\infty$
 
 ---
-### Example 2
+### **Example 2**
 
 Let $f(x) = \frac{1}{2}\Vert x\Vert^2$
 
@@ -111,7 +116,7 @@ f^*(z) = \frac{1}{2}\Vert z\Vert^2
 $$
 
 ---
-### Example 3
+### **Example 3**
 
 This is going to be a bit tricky: 
 
@@ -138,7 +143,7 @@ $$
 
 ---
 
-### Double Conjugacy 
+### **Double Conjugacy and MinMax Lemma**
 
 What is the relationship between the conjugate function and the original function. 
 

@@ -2,11 +2,12 @@ Please read: [[Duality Preparation]] before reading about this.
 A list of contents we will be going over for this document is: 
 
 1. Definition of the Conjugacy --> Frenchel's Inequality
-2. Duality
+2. Fenchel's Inequality 
+3. Conjugacy of the Constraint Functions.
 
 ---
 
-### Intro
+### **Intro**
 
 Remember that the definition of a conjugate function is like: 
 
@@ -25,7 +26,7 @@ $$
 is strictly equals when the function $f(x)$ is a closed and convex function. 
 
 ---
-### Fenchel's Inequality
+### **Fenchel's Inequality, Fenchel's Identity**
 
 From the definition of conjugate function: 
 
@@ -129,7 +130,7 @@ Which we assume that $A^TA$ is invertible, or else this is not going to work out
 The variable $z$ for the conjugate function is the decision variables for th dual problem. 
 
 --- 
-### Conjugacy of the Constraint Functions
+### **Conjugacy of the Constraint Functions**
 
 Here, we use the trick of the including the constraints from the optimization problem into the objective function using the indicator function. 
 

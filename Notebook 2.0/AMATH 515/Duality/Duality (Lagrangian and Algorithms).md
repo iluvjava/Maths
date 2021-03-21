@@ -6,7 +6,7 @@ What is the Lagrangian?
 What implications do they have for algorithm designs? 
 
 ---
-### Definition: Lagarangian
+### **Definition: Lagarangian**
 
 Starts with our primal problem: 
 

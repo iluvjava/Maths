@@ -2,7 +2,7 @@ The previous discussion on interior points have some inconsistency with the HW, 
 [[Interior Points]], [[Duality (Example Transformation)]]
 
 Objective: 
-1. Phrase the 2-Norm Inequality Constrained Optimization Problem 
+1. Phrase the 2-Norm Inequality Constrained Optimization Problem
 2. Log Barrier and Fenchel Conjugate
 
 ---
@@ -15,6 +15,8 @@ $$
     \frac{1}{2}\Vert Ax - b\Vert^2 + \delta_+(d - Cx)
 \right\rbrace
 $$
+
+The problem is convex objective and convex constraints, hence the strong duality is applicable here. 
 
 Where, the indicator function seeks to assert the constraints from the linear inequalities. 
 
@@ -45,6 +47,12 @@ $$
     \sum_{i = 1}^{n}
         \mu \ln((d - Cx)_i)
 \right\rbrace
+$$
+
+---
+### **The Lagrangian**
+$$
+\mathcal{L}(x, v) =\frac{1}{2}\Vert Ax - b\Vert^2 - v^T(d - Cx) \quad v \ge 0, d - Cx \ge 0
 $$
 
 
