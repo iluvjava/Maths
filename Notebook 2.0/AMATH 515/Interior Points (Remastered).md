@@ -32,6 +32,8 @@ $$
 
 However, notice that the complementary slackness doesn't help with an algorithmic approach to the problem. 
 
+Take note that, when formulating the problem into it's optimality form and then applying the Newton's solver, there seems to be different approaches to it. 
+
 ---
 ### **The Log Barrier** 
 

@@ -21,9 +21,30 @@ $$
 \right\rbrace
 $$
 
-Take note that the function is concave down, and the primal variable is only defined as $x\ge 0$, it's not defined otherwise. 
+Take note that the function is concave down, and the primal variable is only defined as $x > 0$, it's not defined otherwise. 
 
 Here we can consider taking the derivative on the thing and figure out the extrema. 
+
+$$
+\partial_x[zx + \ln(x)] = z + \frac{1}{x} = 0 \implies x = \frac{-1}{z} > 0
+$$
+
+Positivity constrain on $x$ means that dual variable $z<0$ all the time. 
+
+Substituting it back to the original expression we have: 
+
+$$
+\sup_{x} \left\lbrace
+    zx + \ln(x)
+\right\rbrace = 
+-1 + \ln \left(
+    \frac{-1}{z}
+\right) =
+-1 + \ln(1) -\ln(-z) = -1 - \ln(-z)
+$$
+
+
+
 
 ---
 ### **Infinity Norm Indicator Function**

@@ -11,7 +11,7 @@ In lectures, we didn't mention the interpretation of 2 players games and the ide
 This is important because, Von Neuman himself uses the idea of a 2 player games to demonstrate the Lagrangian. And the lagrangian is what we all know from the very start of optimization problems. But when we face more complex constraints, we will have to start dealing with the non-smooth geometry and such to understand it better. 
 
 ---
-### **Calculus Example**
+### **Calculus Example: Lagrangian is Generalized Lagrange Multiplier** 
 
 Back in grade school, we see the example of minimizing the function: 
 
@@ -190,8 +190,10 @@ $$
 \end{cases} \tag{3}
 $$
 
-What we showed, is the idea of complementary slackness, and this is the same kind of idea that pops up for the duality theorem for the Linear Programming problem. Up until now, it doesn't lead to the algorithm yet, more clever tricks are needed for an implementable, newton based solving algorithm for it. It's called Interior Points Method, which is often used in practice. 
+What we showed, is the idea of **Complementary Slackness**, and this is the same kind of idea that pops up for the duality theorem for the Linear Programming problem. Up until now, it doesn't lead to the algorithm yet, more clever tricks are needed for an implementable, newton based solving algorithm for it. It's called Interior Points Method, which is often used in practice. 
 
+**Note**: 
+There are other ways of transforming, for example one can introduce slack variable, and then use the equality constraint as the function under Fenchel Transform. 
 
 ---
 ### **Linear Programming**
