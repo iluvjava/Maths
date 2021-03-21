@@ -1,0 +1,163 @@
+{
+  "main": {
+    "id": "f9babefcedb978f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "af4e3dee29a66792",
+        "type": "split",
+        "children": [
+          {
+            "id": "6dce81749ebdff0a",
+            "type": "split",
+            "dimension": 77.76801405975395,
+            "children": [
+              {
+                "id": "aad979c090293158",
+                "type": "leaf",
+                "active": true,
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "MATLAB.md",
+                    "mode": "source"
+                  }
+                },
+                "group": "01cc3863d15063fa"
+              },
+              {
+                "id": "9d52a05e1cb6917a",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "MATLAB.md",
+                    "mode": "source"
+                  }
+                },
+                "group": "01cc3863d15063fa"
+              }
+            ],
+            "direction": "vertical"
+          },
+          {
+            "id": "24f6750d48e7d2c8",
+            "type": "leaf",
+            "dimension": 22.231985940246048,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "MATLAB.md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.7132754626224431,
+                  "close": true
+                }
+              }
+            }
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c737cf1f5bd863c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "828ced121c818075",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8de77e63a453840",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "c99e83e659877ffb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "SVM",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 311.0121879577637
+  },
+  "right": {
+    "id": "e74ad2ddc9cb0415",
+    "type": "split",
+    "children": [
+      {
+        "id": "72f505a5a3aafbcf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "043129611bba2f57",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MATLAB.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 212
+  },
+  "lastOpenFiles": [
+    "MATLAB.md",
+    "ScratchPaper.md",
+    "HW2 Theorems.md",
+    "[Lipschitz Continuum.md",
+    "GPT Transformer.md",
+    "Untitled.md",
+    "AMATH 582/AMATH 582.md",
+    "AMATH 582/Decision Tree.md",
+    "AMATH 582/Untitled.md",
+    "AMATH 582/SVM.md"
+  ]
+}
