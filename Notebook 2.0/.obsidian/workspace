@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
+                    "file": "AMATH 515/Interior Points (Remastered).md",
                     "mode": "source"
                   }
                 },
@@ -33,7 +33,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
+                    "file": "AMATH 515/Interior Points (Remastered).md",
                     "mode": "preview"
                   }
                 },
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
+                "file": "AMATH 515/Interior Points (Remastered).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
+                "file": "AMATH 515/Interior Points (Remastered).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 515/Interior Points (Remastered).md",
+    "AMATH 515/Duality/Duality (Example Transformation).md",
     "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
     "AMATH 501/Complex Analysis/Types of Singularities.md",
     "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
@@ -158,8 +160,6 @@
     "AMATH 501/Complex Analysis/Complex Integration (CG).md",
     "AMATH 501/Complex Analysis/Calculus of Residual (Res Shortcut).md",
     "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
-    "AMATH 501/Complex Analysis/Calculus of Residual.md",
-    "AMATH 501/Vector Calculus/Arch Length.md",
-    "Intro.md"
+    "AMATH 501/Complex Analysis/Calculus of Residual.md"
   ]
 }

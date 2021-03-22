@@ -51,14 +51,26 @@ $$
 \right\rbrace
 $$
 
+
 ---
 ### **The Lagrangian**
 $$
-\mathcal{L}(x, v) =\frac{1}{2}\Vert Ax - b\Vert^2 - v^T(d - Cx) \quad v \ge 0, d - Cx \ge 0
+\mathcal{L}(x, v) =\frac{1}{2}\Vert Ax - b\Vert^2 - v^T(d - Cx) \quad v \ge 0, d - Cx \ge 0 \tag{1}
 $$
+
+Take note that this is the same as the results we gotten from [[Duality (Example Transformation)]], and the positivity constraint of the dual variable is taken from the indicator function into the Lagrangian. 
+
+**Derivative on the Lagrangian**
+
+$$
+\nabla_x\mathcal{L}(x, v) = 
+A^T(Ax - b) + C^Tv
+$$
+
+
 
 
 ---
 ### **Formulation for Newton's Method**
 
-By solving the optimality conditions, we get the optimal solution, getting both the primal and the dual, very convenient. 
+By solving on the optimality conditions, we get the optimal solution, getting both the primal and the dual, very convenient. 
