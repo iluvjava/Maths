@@ -15,13 +15,13 @@
               {
                 "id": "aad979c090293158",
                 "type": "leaf",
-                "dimension": 52.30582524271845,
+                "dimension": 47.980613893376415,
                 "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Softmax Regression.md",
-                    "mode": "source"
+                    "file": "AMATH 502/Universality, Lyapounov Exponent.md",
+                    "mode": "preview"
                   }
                 },
                 "group": "01cc3863d15063fa"
@@ -29,11 +29,11 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
-                "dimension": 47.69417475728155,
+                "dimension": 52.019386106623585,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Softmax Regression.md",
+                    "file": "AMATH 502/Universality, Lyapounov Exponent.md",
                     "mode": "source"
                   }
                 },
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Softmax Regression.md",
+                "file": "AMATH 502/Universality, Lyapounov Exponent.md",
                 "options": {
                   "search": "",
                   "localJumps": 1,
@@ -129,7 +129,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Softmax Regression.md",
+                "file": "AMATH 502/Universality, Lyapounov Exponent.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,6 +145,7 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 502/Universality, Lyapounov Exponent.md",
     "AMATH 515/Untitled.md",
     "softmax.md",
     "AMATH 515/Interior Points (Remastered).md",
@@ -153,7 +154,6 @@
     "AMATH 501/Complex Analysis/Types of Singularities.md",
     "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
     "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
-    "AMATH 501/Complex Analysis/Complex Integration (CG).md",
-    "AMATH 501/Complex Analysis/Calculus of Residual (Res Shortcut).md"
+    "AMATH 501/Complex Analysis/Complex Integration (CG).md"
   ]
 }

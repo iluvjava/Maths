@@ -143,4 +143,125 @@ The update of the primal and dual variable is given as expression (2), however, 
 2. How do we keep the points inside the feasible region? 
 3. How do we keep the dual variable positive? 
 
+Let's make the variable $x^+, v^+$ denotes the updated primal and dual variables. Then the constraints can be noted as: 
 
+$$
+x^+ = x + \alpha\Delta x \quad \wedge  \quad d - Cx^+\ge \mathbf{0}
+$$
+
+$$
+v^+ = v + \alpha\Delta v \quad \wedge \quad v^+ \ge \mathbf{0}
+$$
+
+Where $\alpha$ is the step we are going to take in the direction given by the newtons' method, the constrain that $\alpha > 0$ is implicit[^1]. 
+
+And, when updating the parameter $\mu$, it's more of an art than anything else, and hence, we will be using this update for $\mu$: 
+
+$$
+u^+ = \frac{1}{10} \frac{\langle z^+, s^+\rangle}{\text{len}(z^+)}
+$$
+
+**Keeping the Constraints**
+
+$$
+d - Cx^+ \ge \mathbf{0} 
+$$
+
+$$
+d - C(x + \alpha\Delta x) \ge  \mathbf{0} 
+$$
+
+We are search for the value of $\alpha$ such that, the value of $x, v$ advances as much as possible while keeping the constraints for the system. 
+
+Notice that: 
+
+$$
+d - Cx - \alpha C\Delta x \ge \mathbf{0}
+$$
+
+$$
+- \alpha C\Delta x\ge Cx - d \tag{3}
+$$
+
+**Intuitive Understanding**: 
+
+When we optimize, we make a step to a new point, that new point is still going to be in the feasible region defined by the inequality. 
+
+For each of the constraint, we approach the boundary closer for some of them, and we get away from some other boundaries, the amount of changes for each of the constraint is given by: $C\Delta x$. 
+
+**Approaching the Boundary**
+
+If we are getting closer to constrain index by $i$, then the quantity $(C\Delta x)_i$ will be positive, and negative other-wise, Because the constraints are given as $Cx \le d$. 
+
+Therefore, imagine the inequalities as a stack of them, we do the operations on each of them depending on the sign take for $(C\Delta x)_i$ (It should not be equal to zero because the derivative is becoming zero when we are closing in with one of the boundaries.), then it will become: 
+$$
+-\alpha \begin{cases}
+    \ge \left(
+        \frac{Cx - d}{C\Delta x} 
+    \right)_i
+    & \text{if}\quad (C\Delta x)_i > 0
+    \\
+    \le
+    \left(
+         \frac{Cx - d}{C\Delta x}
+    \right)_i
+     & \text{if}\quad (C\Delta x)_i < 0
+\end{cases} \tag{4}
+$$
+
+Hence, the quantities that define the upper bound for the value $\alpha$ is when $(C\Delta x)_i > 0$, which is the constraint that we are closing in. 
+
+Compactly, the best $\alpha$ can be written as: 
+
+$$
+\alpha \le \min\left\lbrace
+    \delta_+\left(
+        \frac{d - Cx}{C\Delta x}
+    \right)
+\right\rbrace \tag{5}
+$$
+
+And, this make sense because what is inside the min operator is the negativity indicator function. Keep in mind that $d - Cx$ will always be positive, then the sign of the fraction inside will be determined by the sign of $(C\Delta x)_i$. If it's positive, then it's in the first case in expression (4), imposing a upper bound for the $\alpha$, which is preserved by $\delta_+$. Otherwise, it's negative, then it's set to infinity by $\delta_-$, then $\alpha$ is not restricted by it. As desired. 
+
+**Keeping Dual Positive**: 
+
+When updating the dual variable, the positive constraint of it must apply, keeping the properties of the complementary slackness. The constraint is: 
+
+$$
+v + \alpha\Delta v \ge 0
+$$
+
+$$
+\alpha\Delta v \ge -v
+$$
+
+We continue the trick of viewing it as a stack of inequalities and divides it by the variable $\Delta v_i$, then: 
+
+$$
+\alpha \begin{cases}
+    \ge \frac{-v_i}{\Delta v_i} & \text{if}\quad \Delta v_i> 0
+    \\
+    \le \frac{-v_i}{\Delta v_i} & \text{if} \quad \Delta v_i < 0
+\end{cases}
+$$
+
+Then in this case the upper bound is determined by the second case. And it can be conveniently represented as: 
+
+$$
+\alpha \le \min\left\lbrace
+    \delta_+\left(
+        \Delta v_i
+    \right)
+\right\rbrace \tag{6}
+$$
+
+Choosing the minimal option between the results from expression (6) and (5), then we will have the best update value for the quantity $\alpha$, giving use the next value to take for $v^+, x^+$. 
+
+---
+### **Edge Cases**
+
+If at the beginning, the positive constraint for the slack variable is not satisfied, then the given solution is never feasible, therefore, a 2 phase simplex is needed to search for the feasible solution first. 
+
+
+
+[^1]: If $\alpha < 0$, we are getting away from the optimal, which is not what we want. 
