@@ -34,6 +34,8 @@ However, notice that the complementary slackness doesn't help with an algorithmi
 
 Take note that, when formulating the problem into it's optimality form and then applying the Newton's solver, there seems to be different approaches to it. 
 
+Note, in the general case, the 2-Norm objective can be replaced with any convex functions. 
+
 ---
 ### **The Log Barrier** 
 
@@ -51,6 +53,8 @@ $$
 \right\rbrace
 $$
 
+
+??? I have no idea how the log barrier plays a role for the formulations of the Interior Points algorithm. 
 
 ---
 ### **The Lagrangian**
@@ -215,7 +219,7 @@ Compactly, the best $\alpha$ can be written as:
 
 $$
 \alpha \le \min\left\lbrace
-    \delta_+\left(
+    \delta_+^E\left(
         \frac{d - Cx}{C\Delta x}
     \right)
 \right\rbrace \tag{5}
@@ -249,8 +253,8 @@ Then in this case the upper bound is determined by the second case. And it can b
 
 $$
 \alpha \le \min\left\lbrace
-    \delta_+\left(
-        \Delta v_i
+    \delta_+^E\left(
+        \frac{-v_i}{\Delta v_i}
     \right)
 \right\rbrace \tag{6}
 $$
@@ -262,6 +266,15 @@ Choosing the minimal option between the results from expression (6) and (5), the
 
 If at the beginning, the positive constraint for the slack variable is not satisfied, then the given solution is never feasible, therefore, a 2 phase simplex is needed to search for the feasible solution first. 
 
+---
+### **The Interior Points Algorithm**
+
+1. Compute Jacobian, Compute $F_\mu$, solve for $\Delta x, \Delta v$. 
+2. Get the value for $\alpha$. 
+3. Update $x^+, v^+$
+4. Update $\mu$
+
+Repeat the above process by defining $x, v$ for the next step as $x^+, v^+$ from the previous step. 
 
 
 [^1]: If $\alpha < 0$, we are getting away from the optimal, which is not what we want. 
