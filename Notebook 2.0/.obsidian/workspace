@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
+                    "file": "AMATH 515/Softmax Regression.md",
                     "mode": "source"
                   }
                 },
@@ -33,8 +33,8 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
-                    "mode": "preview"
+                    "file": "AMATH 515/Softmax Regression.md",
+                    "mode": "source"
                   }
                 },
                 "group": "01cc3863d15063fa"
@@ -49,9 +49,8 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 515/Softmax Regression.md",
                 "options": {
-                  "collapse-filter": true,
                   "search": "",
                   "localJumps": 1,
                   "localBacklinks": true,
@@ -60,20 +59,15 @@
                   "showTags": false,
                   "showAttachments": false,
                   "hideUnresolved": false,
-                  "collapse-color-groups": true,
-                  "colorGroups": [],
-                  "collapse-display": true,
                   "showArrow": false,
                   "textFadeMultiplier": 0,
                   "nodeSizeMultiplier": 1,
                   "lineSizeMultiplier": 1,
-                  "collapse-forces": true,
                   "centerStrength": 0.518713248970312,
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.7132754626224431,
-                  "close": true
+                  "scale": 0.7132754626224431
                 }
               }
             }
@@ -119,7 +113,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 385
+    "width": 290
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -135,7 +129,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 515/Softmax Regression.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +145,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 515/Untitled.md",
+    "softmax.md",
     "AMATH 515/Interior Points (Remastered).md",
     "AMATH 515/Duality/Duality (Example Transformation).md",
     "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
@@ -158,8 +154,6 @@
     "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
     "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
     "AMATH 501/Complex Analysis/Complex Integration (CG).md",
-    "AMATH 501/Complex Analysis/Calculus of Residual (Res Shortcut).md",
-    "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
-    "AMATH 501/Complex Analysis/Calculus of Residual.md"
+    "AMATH 501/Complex Analysis/Calculus of Residual (Res Shortcut).md"
   ]
 }

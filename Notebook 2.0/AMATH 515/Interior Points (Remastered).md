@@ -67,10 +67,80 @@ $$
 A^T(Ax - b) + C^Tv
 $$
 
+$$
+\nabla_v \mathcal{L}(x, v) = d - Cx
+$$
 
+Setting the system to zero we obtained the optimality conditions for the primal and dual problems (Applied Strong Duality). 
+
+However, if we treat this as a system of equation, and we want to solve this then we need the Jacobian of the system, which is needed for solving for the optimal solutions with newton's method. 
+
+However, in practice, the problem is formulated using the complementary slackness conditions, and it's relaxed by a multiplier $\mu$, phrased as a multi-variable function. 
+
+$$
+
+F_\mu(x, v)= 
+\begin{bmatrix}
+    A^T(Ax - b) + C^Tv 
+    \\
+    v^T(d - Cx) - \mu \mathbb{J}
+\end{bmatrix} = \mathbf{0}
+$$
+
+Take note that, the second block vector in the expression is NOT the derivative from the dual variable, it's the relaxed version of the complementary slackness. 
+
+The idea here is to update the value of $\mu$, together with the values for $x, v$, keeping the positivity constraint for both the primal and the dual variables. The update will be described by as the following:
+
+$$
+\begin{bmatrix}
+\Delta x \\ \Delta v
+\end{bmatrix} = 
+\text{Jocobian}^{-1}(x, v; F_\mu)F_\mu(x, v) \tag{2}
+$$
+
+Consider taking the derivative of $F_\mu$ wrt to $x$ which is a vector: 
+
+$$
+\nabla_x[F_\mu(x, v; \mu)] = 
+\begin{bmatrix}
+    A^TA \\ \text{diag}(v)C
+\end{bmatrix}
+$$
+
+$$
+\nabla_v[F_\mu(x, v; \mu)] = 
+\begin{bmatrix}
+    C^T \\ d - Cx 
+\end{bmatrix}
+$$
+
+Take note that the derivative for the component $v^T(d - Cx)$ is computed as: 
+
+$$
+\nabla_x(\text{diag}(v)Cx) = \text{diag}(v)\nabla_x[Cx] = \text{diag}(v) C
+$$
+
+And hence the Jacobian of the function $F_\mu(x, v)$, written in block form is given as: 
+
+$$
+\text{Jacobian}(x, v; F_\mu) = 
+\begin{bmatrix}
+A^TA & C^T \\ \text{diag}(v)C & d - Cx 
+\end{bmatrix}
+$$
+
+How do we make sure that this matrix is invertible? We simply don't make this assumption yet, and we will be using the Pseudo-inverse when actually using teh inverse in the algorithm. 
 
 
 ---
 ### **Formulation for Newton's Method**
 
 By solving on the optimality conditions, we get the optimal solution, getting both the primal and the dual, very convenient. 
+
+The update of the primal and dual variable is given as expression (2), however, there are 2 parts remains unclear: 
+
+1. How do we update the parameter $\mu$
+2. How do we keep the points inside the feasible region? 
+3. How do we keep the dual variable positive? 
+
+
