@@ -105,49 +105,140 @@ Substitute expression (2) into expression (1), then:
 
 $$
 Cv = 
+\frac{1}{n}
 \sum_{i = 1}^{n}
 \phi(x_i)\phi(x_i)^T
 \sum_{l = 1}^{n}
 \alpha_{i, l}\phi(x_l)
 $$
 
+$$
+\frac{1}{n}
+\sum_{i = 1}^{n}
+\phi(x_i)
+\sum_{l = 1}^{n}
+\alpha_{i, l}\phi(x_l)\phi(x_i)^T
+$$
 
+$$
+\frac{1}{n}
+\sum_{i = 1}^{n}
+\phi(x_i)
+\sum_{l = 1}^{n}
+\alpha_{i, l}K(x_l, x_i)
+$$
 
+Now, we choose any sample's non-linear representation, say: $\phi(x_k)$, then we have: 
 
+$$
+\frac{1}{n}
+\sum_{i = 1}^{n}
+\phi(x_k)
+\phi(x_i)
+\sum_{l = 1}^{n}
+\alpha_{i, l}K(x_l, x_i)
+= 
+\frac{1}{n}
+\sum_{i = 1}^{n}
+K(x_k, x_i)
+\sum_{l = 1}^{n}
+\alpha_{i, l}K(x_l, x_i)
+\tag{3}
+$$
 
+Now, let the matrix $\Kappa$ all the inner products $K(x_i, x_j)$ packed together, then we have: 
 
+$$
+\Kappa = \begin{bmatrix}
+    K(x_1, x_1) & K(x_2, x_1) & \cdots & K(x_1, x_n) 
+    \\
+    K(x_2, x_1) & K(x_2, x_2) & \cdots & K(x_2, x_n) 
+    \\
+    \vdots & & & 
+    \\
+    K(x_n, x_1) & K(x_n, x_2) & \cdots & K(x_n, x_n) 
+\end{bmatrix}
+=
+\Kappa^T
+$$
+
+The matrix is assumed to be symmetric. 
+
+Then, we can reconsider the expression above, with this matrix: 
+
+$$
+(\Kappa\alpha_j)_j = 
+\sum_{l = 1}^{n}
+\alpha_{j, l}K(x_l, x_j)
+$$
+
+The j th element of the vector $\Kappa\alpha$ is identified as above expression. 
+
+$$
+\frac{1}{n}(\Kappa^2\alpha_j)_k
+=
+\frac{1}{n}
+\sum_{i = 1}^{n}
+K(x_k, x_i)(\Kappa\alpha_j)_i
+$$
+
+Now, go back to expression (3), choose $k = 1, 2, 3\cdots n$, and then stack then vertically together, we will have the expression in terms of the Kernel Matrix, in the form as: 
+
+$$
+Cv = 
+\frac{1}{n}\Kappa^2\alpha_j
+\tag{4}
+$$
 
 ---
-### **Principal Components Projection**
-
-Given any vector $x$ in the linear subspace, get the kernel representation of the vector, given as $\phi(x)$. And we want to project onto one of the principal vector, given by $v$, then: 
+Take another branch from the expression for $Cv$, and then we know that: 
 
 $$
-v^T\phi(x) = \left(
-    \sum_{i = 1}^{n}\alpha_i\phi(x_i)
-\right)^T\phi(x)
+Cv = \lambda v = \lambda \sum_{i = 1}^{n}\alpha_i\phi(x_i)
 $$
 
-write:
+Then, we apply the same thing: Multiply $\phi(x_k)$ on the expression, giving us: 
 
 $$
-\Phi = \begin{bmatrix}
-    \phi(x_1) & \phi(x_2) & \cdots & \phi(x_n)
-\end{bmatrix}^T
-\quad 
-\alpha = 
-\begin{bmatrix}
-    \alpha_1 & \alpha_2 & \cdots & \alpha_n
-\end{bmatrix}^T
+\phi(x_k)Cv = \lambda \sum_{i = 1}^{n}
+\alpha_i\phi(x_k)^T\phi(x_i) = \lambda
+\sum_{i = 1}^{n}
+\alpha_iK(x_k, x_i) = \lambda (\Kappa\alpha)_k
 $$
 
-So then the quantity inside is going to be: 
+However, we are going to add a subscript for $\alpha$, and name it $\alpha_j$, so it's consistent with expression (4). Combining the expression above with expression (4) we have: 
 
 $$
-\sum_{i = 1}^{n}\alpha_i\phi(x_i) = \Phi^T\alpha
+\frac{1}{n}\Kappa^2\alpha_j = \lambda\Kappa\alpha_j
+\underset{(a)}{\implies} \Kappa \alpha_j = n\lambda_j\alpha_j
+\tag{5}
 $$
 
+(a): By removing matrix $\Kappa$ from both side of the equation, we lost all the eigenvectors with zero eigenvalues. 
 
+Normalization of the Eigenvectors (The principal components) implies that: 
+
+$$
+v^T_jv_j = 1\implies \alpha_j^T\Kappa\alpha_j
+$$
+
+We skipped some math, but you can verify it yourself. 
+
+And apply the normalization property with expression (5), we have: 
+
+$$
+\alpha_j\Kappa\alpha_j = n\lambda_j\alpha_j^T\alpha_j \quad \forall \;j
+$$
+
+**Principal Component Projection**: 
+
+For any new point, $x$, it's projection onto the principal component will be: 
+
+$$
+\phi(x)^Tv_j = 
+\sum_{i = 1}^{n}\alpha_{i, j}\phi(x)^T\phi(x_i) = 
+\sum_{i = 1}^{n}\alpha_{i, j}K(x, x_i)
+$$
 
 
 [^1]: $X^TX, XX^T$ has the same eigenvalues are showed in [[SVD Theorems]]. The fact that Hermitian Matrices are diagonalizable is proved in [[Hermitian Adjoint]]. 
