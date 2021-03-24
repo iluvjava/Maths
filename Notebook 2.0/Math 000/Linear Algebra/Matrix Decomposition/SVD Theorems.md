@@ -2,6 +2,7 @@ There are a lot of theorem relevant to the Singular Value decomposition and they
 
 prereq: [[SVD]], [[Hermitian Adjoint]]
 
+Here we introduce theorems that are needed to show the the SVD decomposition for a matrix indeed, does work the way we want it to be. 
 
 ---
 

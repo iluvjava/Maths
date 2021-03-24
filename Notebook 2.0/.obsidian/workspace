@@ -8,14 +8,13 @@
         "type": "split",
         "children": [
           {
-            "id": "6dce81749ebdff0a",
+            "id": "1343964c115356af",
             "type": "split",
-            "dimension": 82.42530755711776,
+            "dimension": 80.67632850241546,
             "children": [
               {
-                "id": "aad979c090293158",
+                "id": "9d52a05e1cb6917a",
                 "type": "leaf",
-                "dimension": 52.30582524271845,
                 "active": true,
                 "state": {
                   "type": "markdown",
@@ -24,20 +23,21 @@
                     "mode": "source"
                   }
                 },
-                "group": "01cc3863d15063fa"
+                "group": "16a74d3d3d18be4b"
               },
               {
-                "id": "9d52a05e1cb6917a",
+                "id": "53e24570bda9d1e6",
                 "type": "leaf",
-                "dimension": 47.69417475728155,
+                "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
                     "file": "AMATH 582/Kernel PCA.md",
                     "mode": "preview"
-                  }
+                  },
+                  "pinned": true
                 },
-                "group": "01cc3863d15063fa"
+                "group": "16a74d3d3d18be4b"
               }
             ],
             "direction": "vertical"
@@ -45,7 +45,7 @@
           {
             "id": "24f6750d48e7d2c8",
             "type": "leaf",
-            "dimension": 17.57469244288225,
+            "dimension": 19.32367149758454,
             "state": {
               "type": "localgraph",
               "state": {
@@ -152,14 +152,14 @@
   },
   "lastOpenFiles": [
     "AMATH 582/Kernel PCA.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
     "AMATH 584/SVD Related/PCA.md",
     "AMATH 584/SVD Related/Applied PCA and KR-Approx.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
+    "Math 000/Linear Algebra/Hermitian Adjoint.md",
+    "AMATH 584/Schur Decomposition.md",
     "AMATH 582/PCA (Principal Components Analysis).md",
     "AMATH 582/Untitled.md",
-    "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md",
-    "logistic bifurcation .md",
-    "AMATH 515/Interior Points (Remastered).md"
+    "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md"
   ]
 }
