@@ -146,10 +146,10 @@ K(x_k, x_i)
 \tag{3}
 $$
 
-Now, let the matrix $\Kappa$ all the inner products $K(x_i, x_j)$ packed together, then we have: 
+Now, let the matrix $\mathbf{K}$ all the inner products $K(x_i, x_j)$ packed together, then we have: 
 
 $$
-\Kappa = \begin{bmatrix}
+\mathbf{K} = \begin{bmatrix}
     K(x_1, x_1) & K(x_2, x_1) & \cdots & K(x_1, x_n) 
     \\
     K(x_2, x_1) & K(x_2, x_2) & \cdots & K(x_2, x_n) 
@@ -159,7 +159,7 @@ $$
     K(x_n, x_1) & K(x_n, x_2) & \cdots & K(x_n, x_n) 
 \end{bmatrix}
 =
-\Kappa^T
+\mathbf{K}^T
 $$
 
 The matrix is assumed to be symmetric. 
@@ -167,26 +167,26 @@ The matrix is assumed to be symmetric.
 Then, we can reconsider the expression above, with this matrix: 
 
 $$
-(\Kappa\alpha_j)_j = 
+(\mathbf{K}\alpha_j)_j = 
 \sum_{l = 1}^{n}
 \alpha_{j, l}K(x_l, x_j)
 $$
 
-The j th element of the vector $\Kappa\alpha$ is identified as above expression. 
+The j th element of the vector $\mathbf{K}\alpha$ is identified as above expression. 
 
 $$
-\frac{1}{n}(\Kappa^2\alpha_j)_k
+\frac{1}{n}(\mathbf{K}^2\alpha_j)_k
 =
 \frac{1}{n}
 \sum_{i = 1}^{n}
-K(x_k, x_i)(\Kappa\alpha_j)_i
+K(x_k, x_i)(\mathbf{K}\alpha_j)_i
 $$
 
 Now, go back to expression (3), choose $k = 1, 2, 3\cdots n$, and then stack then vertically together, we will have the expression in terms of the Kernel Matrix, in the form as: 
 
 $$
 Cv = 
-\frac{1}{n}\Kappa^2\alpha_j
+\frac{1}{n}\mathbf{K}^2\alpha_j
 \tag{4}
 $$
 
@@ -203,23 +203,23 @@ $$
 \phi(x_k)Cv = \lambda \sum_{i = 1}^{n}
 \alpha_i\phi(x_k)^T\phi(x_i) = \lambda
 \sum_{i = 1}^{n}
-\alpha_iK(x_k, x_i) = \lambda (\Kappa\alpha)_k
+\alpha_iK(x_k, x_i) = \lambda (\mathbf{K}\alpha)_k
 $$
 
 However, we are going to add a subscript for $\alpha$, and name it $\alpha_j$, so it's consistent with expression (4). Combining the expression above with expression (4) we have: 
 
 $$
-\frac{1}{n}\Kappa^2\alpha_j = \lambda\Kappa\alpha_j
-\underset{(a)}{\implies} \Kappa \alpha_j = n\lambda_j\alpha_j
+\frac{1}{n}\mathbf{K}^2\alpha_j = \lambda\mathbf{K}\alpha_j
+\underset{(a)}{\implies} \mathbf{K} \alpha_j = n\lambda_j\alpha_j
 \tag{5}
 $$
 
-(a): By removing matrix $\Kappa$ from both side of the equation, we lost all the eigenvectors with zero eigenvalues. 
+(a): By removing matrix $\mathbf{K}$ from both side of the equation, we lost all the eigenvectors with zero eigenvalues. 
 
 Normalization of the Eigenvectors (The principal components) implies that: 
 
 $$
-v^T_jv_j = 1\implies \alpha_j^T\Kappa\alpha_j
+v^T_jv_j = 1\implies \alpha_j^T\mathbf{K}\alpha_j
 $$
 
 We skipped some math, but you can verify it yourself. 
@@ -227,7 +227,7 @@ We skipped some math, but you can verify it yourself.
 And apply the normalization property with expression (5), we have: 
 
 $$
-\alpha_j\Kappa\alpha_j = n\lambda_j\alpha_j^T\alpha_j \quad \forall \;j
+\alpha_j\mathbf{K}\alpha_j = n\lambda_j\alpha_j^T\alpha_j \quad \forall \;j
 $$
 
 **Principal Component Projection**: 
@@ -239,6 +239,11 @@ $$
 \sum_{i = 1}^{n}\alpha_{i, j}\phi(x)^T\phi(x_i) = 
 \sum_{i = 1}^{n}\alpha_{i, j}K(x, x_i)
 $$
+
+---
+### **In practice**
+
+Don't do this with a very large amount of dataset, it will slow things down tremendously. 
 
 
 [^1]: $X^TX, XX^T$ has the same eigenvalues are showed in [[SVD Theorems]]. The fact that Hermitian Matrices are diagonalizable is proved in [[Hermitian Adjoint]]. 
