@@ -10,17 +10,18 @@
           {
             "id": "6dce81749ebdff0a",
             "type": "split",
-            "dimension": 83.2,
+            "dimension": 82.42530755711776,
             "children": [
               {
                 "id": "aad979c090293158",
                 "type": "leaf",
-                "dimension": 47.980613893376415,
+                "dimension": 52.30582524271845,
+                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
-                    "mode": "preview"
+                    "file": "AMATH 582/Kernel PCA.md",
+                    "mode": "source"
                   }
                 },
                 "group": "01cc3863d15063fa"
@@ -28,13 +29,12 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
-                "dimension": 52.019386106623585,
-                "active": true,
+                "dimension": 47.69417475728155,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Interior Points (Remastered).md",
-                    "mode": "source"
+                    "file": "AMATH 582/Kernel PCA.md",
+                    "mode": "preview"
                   }
                 },
                 "group": "01cc3863d15063fa"
@@ -45,12 +45,13 @@
           {
             "id": "24f6750d48e7d2c8",
             "type": "leaf",
-            "dimension": 16.8,
+            "dimension": 17.57469244288225,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 582/Kernel PCA.md",
                 "options": {
+                  "collapse-filter": true,
                   "search": "",
                   "localJumps": 1,
                   "localBacklinks": true,
@@ -59,15 +60,20 @@
                   "showTags": false,
                   "showAttachments": false,
                   "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
                   "showArrow": false,
                   "textFadeMultiplier": 0,
                   "nodeSizeMultiplier": 1,
                   "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
                   "centerStrength": 0.518713248970312,
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.7132754626224431
+                  "scale": 0.7132754626224432,
+                  "close": true
                 }
               }
             }
@@ -113,7 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 290
+    "width": 385
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -129,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Interior Points (Remastered).md",
+                "file": "AMATH 582/Kernel PCA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
-    "AMATH 515/Interior Points (Remastered).md",
-    "AMATH 502/Universality, Lyapounov Exponent.md",
-    "AMATH 515/Untitled.md",
-    "softmax.md",
-    "AMATH 515/Duality/Duality (Example Transformation).md",
-    "AMATH 515/Duality/Convex Conjugate (Examples Pack).md",
-    "AMATH 501/Complex Analysis/Types of Singularities.md",
-    "AMATH 501/Complex Analysis/Type of Singularities (Limit Shotcut).md",
-    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
-    "AMATH 501/Complex Analysis/Complex Integration (CG).md"
+    "AMATH 582/Kernel PCA.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
+    "AMATH 584/SVD Related/PCA.md",
+    "AMATH 584/SVD Related/Applied PCA and KR-Approx.md",
+    "AMATH 582/PCA (Principal Components Analysis).md",
+    "AMATH 582/Untitled.md",
+    "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md",
+    "logistic bifurcation .md",
+    "AMATH 515/Interior Points (Remastered).md"
   ]
 }

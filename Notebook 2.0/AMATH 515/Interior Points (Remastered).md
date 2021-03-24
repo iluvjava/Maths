@@ -5,6 +5,8 @@ Objective:
 1. Phrase the 2-Norm Inequality Constrained Optimization Problem
 2. Log Barrier and Fenchel Conjugate
 
+
+
 ---
 ### **Intro**
 

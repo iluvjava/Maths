@@ -1,7 +1,7 @@
 The second lecture
 
 ---
-### Classifications of ODEs
+### **Classifications of ODEs**
 
 - **Autonomous**: The right hand side of the equation doesn't explicitly depends on variable $t$, the temporal variable independent of the state variables. 
 - **Linear**: An ODE is linear if the RHS depends on x linearly. 
