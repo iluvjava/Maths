@@ -246,4 +246,6 @@ $$
 Don't do this with a very large amount of dataset, it will slow things down tremendously. 
 
 
-[^1]: $X^TX, XX^T$ has the same eigenvalues are showed in [[SVD Theorems]]. The fact that Hermitian Matrices are diagonalizable is proved in [[Hermitian Adjoint]]. 
+
+
+[^1]: $X^TX, XX^T$ has the same eigenvalues are showed in [[SVD Theorems]]. The fact that Hermitian Matrices are diagonalizable is proved in [[Hermitian Adjoint]](Referred as Spectral Theorem). 
