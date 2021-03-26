@@ -5,8 +5,6 @@ Objective:
 1. Phrase the 2-Norm Inequality Constrained Optimization Problem
 2. Log Barrier and Fenchel Conjugate
 
-
-
 ---
 ### **Intro**
 
@@ -225,7 +223,8 @@ $$
         \frac{d - Cx}{C\Delta x}
     \right)
 \right\rbrace \tag{5}
-$$
+$$ 
+[^2]
 
 And, this make sense because what is inside the min operator is the negativity indicator function. Keep in mind that $d - Cx$ will always be positive, then the sign of the fraction inside will be determined by the sign of $(C\Delta x)_i$. If it's positive, then it's in the first case in expression (4), imposing a upper bound for the $\alpha$, which is preserved by $\delta_+$. Otherwise, it's negative, then it's set to infinity by $\delta_-$, then $\alpha$ is not restricted by it. As desired. 
 
@@ -278,5 +277,5 @@ If at the beginning, the positive constraint for the slack variable is not satis
 
 Repeat the above process by defining $x, v$ for the next step as $x^+, v^+$ from the previous step. 
 
-
 [^1]: If $\alpha < 0$, we are getting away from the optimal, which is not what we want. 
+[^2]: The function $\delta_+: \mathbb{R} \mapsto\mathbb{R}$ is vectorized for the input. A univariate function is applied element-wise to all the entries of the vector. 

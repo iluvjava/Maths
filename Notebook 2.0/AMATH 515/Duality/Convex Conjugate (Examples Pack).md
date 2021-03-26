@@ -1,10 +1,12 @@
-Here, I will summarized some of the examples we had for convex conjugates of different functions. 
+Here, I will summarize some of the examples we had for convex conjugates of different functions. 
 [[Convex Conjugate Function]]
+
+Major References: The HW for AMATH 515. 
 
 ---
 ### **Intro**
 
-Here we will be packing a bunch of good examples with proofs, so it can serves as a good references for when looking for Fenchel Conjugates for functions. 
+Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. 
 
 Most of them will be coming straight from the HW problems for the class. 
 
@@ -88,8 +90,28 @@ The 2-norm indicator function is a multi-variable function in $\mathbb{R}^n$, an
 $$
 \delta_{\mathbb{B}_2} := \begin{cases}
     0 & \Vert x\Vert_2 \le 1
+    \\
+    \infty & \text{else}
 \end{cases}
 $$
+
+By definition we have: 
+
+$$
+\delta_{\mathbb{B}^2}^*(z) = \sup_{x}\left\lbrace
+    z^Tx - \delta_{\mathbb{B}^2}(x)
+\right\rbrace
+$$
+
+Which is just another implicit constraint, giving us: 
+
+$$
+\sup_{\Vert x\Vert_2 \le 1} \left\lbrace
+    z^Tx
+\right\rbrace = \Vert z\Vert
+$$
+
+Best vector to choose is $\hat{z}$, a unit vector that points to the same direction as the vector $z$. 
 
 
 ---
