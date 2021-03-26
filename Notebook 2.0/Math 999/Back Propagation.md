@@ -6,7 +6,6 @@ A background in gradient descend is preferred, see:
 [[Gradient Descend 3]]
 
 
-
 ---
 ### **Intro**
 
@@ -188,6 +187,11 @@ And, this is the last vector, and it has a lot of zeros in it, and it will be th
 
 **Observations**: 
 
+Sanity check, the index $j$ determine which of the output value of te $k$ th layer's Neuron we are using, and the index $i$ tells use which of the entry at the layers are affecting our derivative. 
+
+Is there a good way to write this compactly? 
+* I think it's possible, but we might need to look $2$ layers before the $k$ th layer to get the closed form. And we will need to be smart to write it compactly as a update matrix: $\Delta W_k$. 
+
 
 
 ---
@@ -255,3 +259,14 @@ $$
 $$
 
 Compare to taking the derivative on the weight matrices, taking derivative on the biases doesn't have anything changed for the recursive argument, the only thing that changed is the base case. 
+
+
+---
+### **Updating Weights and Biases**
+
+
+
+---
+### **Formulation of an Algorithm**
+
+The basic idea is, compute forward to get the values for each layer, and then starting from the back (the last layer), update the weights. 
