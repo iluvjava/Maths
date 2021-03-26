@@ -12,21 +12,105 @@ A background in gradient descend is preferred, see:
 Let's be familiar with the set up of a Neuro Network with one hidden layer. 
 
 $$
-E(x, \theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2)\Vert^2
+E(x, \theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2) - y\Vert^2
 $$
 
-And this is the error function of the neuro net. 
+And this is the error function of the neuro net. It's taking the error by looking at a single sample. 
 
-3 layers, 2 full connection exists between these layers, supported by the $W_1$ and the $W_2$ weight matrices. $\alpha_1, \alpha_2$ are the biases. 
+3 layers, 2 fully connected layers exist between the input and the output, supported by the $W_1$ and the $W_2$ weight matrices. $\alpha_1, \alpha_2$ are the biases. 
 
 $f_3, f_2$ are th activation function on the second and the third layer of the Neuron. 
 
 $\theta$ is just denoting all the parameters one can find in the Neuro Net.
 
+
+
 **Training**: 
 
 We feed the Neuro Net a small example from the populations, and then we minimize the errors on that smaller patch of the samples. Notice, that convergence is not promised, but we can assume that there exists a function that can approximate the whole populations. 
 
+---
+### **Preliminaries**
+
+Let's consider taking the derivative on a certain configuration of function that is similar to the Neuro-network architecture. 
+
+The function is the in the form of: 
+
+$$
+f(Wg(x) + b)
+$$
+
+Let's make $W$ to be a $m\times n$ matrix. It's like the weight matrix in Neuro-Network. 
+
+The function $f$ is a univariate function, it's broadcasted to the whole vector. 
+
+The function $g$ is a univariate function too, it's broadcasted to the whole vector $x$, 
+
+$$
+f(Wg(x) + b) = 
+\begin{bmatrix}
+    f([Wg(x) + b]_1)
+    \\
+    f([Wg(x) + b]_2)
+    \\
+    \vdots
+    \\
+    f([Wg(x) + b]_m)
+\end{bmatrix}
+\quad 
+g = \begin{bmatrix}
+    g(x_1) \\ g(x_2) \\ \vdots \\ g(x_n)
+\end{bmatrix}
+$$
+
+Then certainly, we can take derivative wrt to one of te variable in the input vector, say $x_i$ where $1 \le i \le k$. When we take derivative with that, we are taking it wrt to all the $m$ outputs from the function, hence, we have a gradient and it's $\in \mathbb{R}^m$. 
+
+Consider: 
+
+$$
+\partial_{x_i}\begin{bmatrix}
+    f([Wg(x) + b]_1)
+    \\
+    f([Wg(x) + b]_2)
+    \\
+    \vdots
+    \\
+    f([Wg(x) + b]_m)
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    f'(\partial_{x_i} [Wg(x) + b]_1)
+    \\
+    f'(\partial_{x_i} [Wg(x) + b]_2)
+    \\
+    \vdots 
+    \\
+    f'(\partial_{x_i} [Wg(x) + b]_m)
+\end{bmatrix}
+$$
+
+$$
+=
+\begin{bmatrix}
+    f'([W\partial_{x_i}[g(x)]]_1)
+    \\
+    f'([W\partial_{x_i}[g(x)]]_2)
+    \\
+    \vdots 
+    \\
+    f'([W\partial_{x_i}[g(x)]]_m)
+\end{bmatrix}
+=
+f'(W\partial_{x_i}g(x))
+$$
+
+However, notice that, because $g$ is broadcast to the vector $x$, only the $i$ th output of $g(x)$ is related to $x_i$, therefore $\partial_{x_i}g(x)$ has zeros on all entries that is not the $i$ th entry. 
+
+$$
+= f'(W_{[:, i]}g'(x_i))
+$$
+
+This is helpful when taking neuro-network. Inside a Neuro-network, the output from the previous layer are put under a weight and bias transform and then put into a new layer of the same activation function. 
 
 ---
 ### **Setting Things up**
@@ -36,7 +120,7 @@ Here we consider a very general neuro-net work that is connected by dense layers
 Samples: 
 
 $$
-X = \left\lbrace
+\mathbb{X} = \left\lbrace
     (x_i, y_i)
 \right\rbrace_{i = 1}^N
 $$
@@ -49,15 +133,16 @@ Here is the list of notations:
 2. $W_i$ the weight matrix between the $i$ th layers and the $i - 1$ th layer. 
 3. $f$: The activation function for all the hidden layer of the Neuro-network. This is a univariate scalar function, it's broadcast to a vector element-wise.
 4. $f_{out}$: the output layer of the NeuroNetwork. 
-5. $x$: the input vector of the Neuro-network. 
-6. $p^{(i)}$: The output of the ith layer's neurons, and **it haven't been put into the activation function** for the $i+1$ th layer yet. This is a vector. 
-7. $L$: the loss function, a multi-variable scalar function. This is a multi-variable scalar function.
-8. $l_k$: the number of neurons at the kth layer. 
-9. $\circ$: the Hadamard Product operator. 
+5. $x^{(0)}$: the input vector of the Neuro-network. 
+6. $x^{(k)}$: The output vector from the kth layer, coming out from the activation function of the layer of Neurons.  
+7. $p^{(i)}$: The output of the ith layer's neurons, and **it haven't been put into the activation function** for the $i+1$ th layer yet. This is a vector. 
+8. $L$: the loss function, a multi-variable scalar function. This is a multi-variable scalar function.
+9. $l_k$: the number of neurons at the kth layer. 
+10. $\circ$: the Hadamard Product operator. 
 
 Therefore, let's agree on the basics first: 
 
-The output for the $k$ th layer of Neurons are computed as: 
+The vector that got input into the $k+1$ th layer's activation functions is the following: 
 
 $$
 p^{(k + 1)} = 
@@ -69,20 +154,43 @@ And there will be $N$ layers in total for the Neuro-networks.
 The last layer, output layer is: 
 
 $$
-f_{out}\left(p^{(N)}\right) = f_{out}\left(
+x^{(N)} = f_{out}\left(p^{(N)}\right) = f_{out}\left(
     W_{N - 1}f\left(p^{(N - 1)}\right) + b^{(N - 1)}\right)
 $$
 
 And the input layer is: 
 
 $$
-p^{0} = x
+p^{(0)} = x^{(0)}
 $$
 
 The output from the fist hidden layer (not including the activation function in the first hidden layer) of the Neuro network is: 
 
 $$
 p^{(1)} = W_1 f\left(p^{(0)}\right) + b^{(0)}
+$$
+
+And then the output after the activation function applied to the first hidden layer is: 
+
+$$
+x^{(1)} = f\left(W_1 f\left(p^{(0)}\right) + b^{(0)}\right) = f\left(p^{(1)}\right)
+$$
+
+So, let's visualize this: 
+
+$$
+p^{(0)} \underset{W_1, b^{(1)}}{\longrightarrow} 
+p^{(1)} 
+\underset{f}{\longrightarrow} x^{(1)}
+\underset{W_2, b^{(2)}}{\longrightarrow}
+p^{(2)}
+\underset{f}{\longrightarrow}
+x^{(2)}
+\cdots
+\underset{w_{N - 1}, b_{N - 1}}{\longrightarrow}
+p^{(N)} 
+\underset{f_{out}}{\longrightarrow}
+x^{(N)}
 $$
 
 ---
@@ -111,7 +219,7 @@ $$
 \partial_{w_{i, j}^{(k)}}\left[p^{(N)}\right]
 $$
 
-We are not using the Jacobian because $f_{out}$ is a univariate function that got broadcast to the vector $p_N$. Hence we simply use the Hadamard Product, and that will give us the gradient wrt to $w_{i, j}^{(k)}$. 
+We are not using the Jacobian because $f_{out}$ is a univariate function that got broadcast to the vector $p^{(N)}$. Hence we simply use the Hadamard Product, and that will give us the gradient wrt to $w_{i, j}^{(k)}$. 
 
 This is also when things started to recur, consider: 
 
@@ -184,6 +292,16 @@ $$
 $$
 
 And, this is the last vector, and it has a lot of zeros in it, and it will be the base case that terminate the recursive derivative. 
+
+**The Case Before the Base Case**
+
+The case before that is just one layer before the base case, which is: 
+
+$$
+\partial_{w_{i, j}^{(k)}}\left[
+        p^{(k + 2)}
+    \right]
+$$
 
 **Observations**: 
 
@@ -267,3 +385,7 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 ### **Formulation of an Algorithm**
 
 The basic idea is, compute forward to get the values for each layer, and then starting from the back (the last layer), update the weights. 
+
+
+---
+### **A Simple Example**

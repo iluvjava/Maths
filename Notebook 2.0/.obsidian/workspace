@@ -15,7 +15,6 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
-                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
@@ -28,6 +27,7 @@
               {
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
+                "active": true,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
