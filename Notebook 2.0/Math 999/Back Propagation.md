@@ -90,9 +90,9 @@ $$
 
 The loss function is a scalar function, wrt all the weights and biases in the network.
 
-We are taking the derivative wrt to a particular on, say $w_{i, j}^{(k)}$, this is just an ordinary differential. 
+We are taking the derivative wrt to a particular one, say $w_{i, j}^{(k)}$, this is just an ordinary differential because the loss function is just a scalar output as well. 
 
-Consider that, I just want to know the derivative for one sample. The loss function will be like: 
+In addition, I just want to know the derivative for one sample, say $y$. The loss function will be like: 
 
 $$
 \partial_{w_{i, j}^{(k)}}L\left(f_{out}|y\right)
@@ -111,11 +111,13 @@ $$
 \partial_{w_{i, j}^{(k)}}\left[p^{(N)}\right]
 $$
 
-We are not using the Jacobian because $f_{out}$ is a univariate function that got broadcast to the vector $p_N$. 
+We are not using the Jacobian because $f_{out}$ is a univariate function that got broadcast to the vector $p_N$. Hence we simply use the Hadamard Product, and that will give us the gradient wrt to $w_{i, j}^{(k)}$. 
 
 This is also when things started to recur, consider: 
 
 $$
+\partial_{w_{i, j}^{(k)}}\left[p^{(N)}\right]
+=
 \partial_{w_{i,j}^{(k)}}\left[
         W_{N - 1}f(p^{\left(N - 1\right)}) + b^{(N - 1)}
     \right]
@@ -151,7 +153,6 @@ W_{N - 2}f'\left(p^{(N - 2)}\right)
 W_{N - 3}f'\left(p^{(N - 3)}\right)\cdots
 $$
 
-
 **The Base Case**
 
 The base case happens bet ween the $k$ and the $k + 1$ layer of the neuro-network. Which is: 
@@ -167,7 +168,6 @@ $$
 $$
 
 This is the base case because $w_{i, j}^{(k)}$ is one of the entries of the matrix $W_{k}$. The derivative will be a vector such that, all the entries that are not the $i$ th row will be zero. Giving us: 
-
 
 $$
 \left(
@@ -191,8 +191,6 @@ Sanity check, the index $j$ determine which of the output value of te $k$ th lay
 
 Is there a good way to write this compactly? 
 * I think it's possible, but we might need to look $2$ layers before the $k$ th layer to get the closed form. And we will need to be smart to write it compactly as a update matrix: $\Delta W_k$. 
-
-
 
 ---
 ### **Taking Derivative on the Bias Vector**
@@ -262,8 +260,7 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 
 
 ---
-### **Updating Weights and Biases**
-
+### **Recursion Fully Unrolled**
 
 
 ---
