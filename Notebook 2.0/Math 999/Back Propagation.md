@@ -316,11 +316,11 @@ Differential operator goes behind the linear operation matrix:
 
 $$
 =
-W_{k + 1}\partial_{w_{i, j}^{(k)}}x_{k+ 1}
+W_{k + 1}\partial_{w_{i, j}^{(k)}} x_{k+ 1}
 $$
 
 $$
-=W_{k + 1}\partial_{w_{i, j}^{(k)}x_{k + 1}}f\left(
+=W_{k + 1}\partial_{w_{i, j}^{(k)}}f\left(
     p^{(k + 1)}
 \right)
 $$
@@ -329,7 +329,7 @@ $$
     p^{(k + 1)}
 \right)
 \circ
-\partial_{w_{i, j}^{(k)}x_{k + 1}}\left[p^{(k+1)}\right]
+\partial_{w_{i, j}^{(k)}}\left[p^{(k+1)}\right]
 \tag{4.2}
 $$
 
@@ -425,10 +425,15 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 ### **Recursion Fully Unrolled**
 
 
+
+
+
 ---
 ### **Formulation of an Algorithm**
 
 The basic idea is, compute forward to get the values for each layer, and then starting from the back (the last layer), update the weights. 
+
+
 
 
 ---

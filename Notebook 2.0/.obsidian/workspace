@@ -15,10 +15,11 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
+                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Back Propagation.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
                     "mode": "source"
                   }
                 },
@@ -27,12 +28,11 @@
               {
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
-                "active": true,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Back Propagation.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 999/Back Propagation.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -119,7 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 257
+    "width": 284
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 999/Back Propagation.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "Math 000/Probability and Stats/Untitled.md",
+    "Math 000/Euler Maclaurin Formula.md",
     "Math 999/Back Propagation.md",
     "AMATH 515/Gradient Descend/Gradient Descend 2.md",
     "AMATH 582/Kernel PCA.md",
@@ -158,8 +160,6 @@
     "Math 999/Untitled.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
     "AMATH 584/SVD Related/PCA.md",
-    "AMATH 584/SVD Related/Applied PCA and KR-Approx.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
-    "Math 000/Linear Algebra/Hermitian Adjoint.md"
+    "AMATH 584/SVD Related/Applied PCA and KR-Approx.md"
   ]
 }
