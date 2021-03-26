@@ -7,7 +7,7 @@ A background in gradient descend is preferred, see:
 
 
 ---
-### **Intro**
+### **1. Intro**
 
 Let's be familiar with the set up of a Neuro Network with one hidden layer. 
 
@@ -30,7 +30,7 @@ $\theta$ is just denoting all the parameters one can find in the Neuro Net.
 We feed the Neuro Net a small example from the populations, and then we minimize the errors on that smaller patch of the samples. Notice, that convergence is not promised, but we can assume that there exists a function that can approximate the whole populations. 
 
 ---
-### **Preliminaries**
+### **2. Preliminaries**
 
 Let's consider taking the derivative on a certain configuration of function that is similar to the Neuro-network architecture. 
 
@@ -110,10 +110,12 @@ $$
 = f'(W_{[:, i]}g'(x_i))
 $$
 
+Inside is a scalar $g'(x_i)$ multiplied by the $i$ th column of the weight matrix $W$. 
+
 This is helpful when taking neuro-network. Inside a Neuro-network, the output from the previous layer are put under a weight and bias transform and then put into a new layer of the same activation function. 
 
 ---
-### **Setting Things up**
+### **3. Setting Things up**
 
 Here we consider a very general neuro-net work that is connected by dense layers of neurons. 
 
@@ -194,20 +196,20 @@ x^{(N)}
 $$
 
 ---
-### **Taking Derivative on Entries of Weight the Weight Matrix**
+### **4. Taking Derivative on Entries of Weight the Weight Matrix**
 
 The loss function is a scalar function, wrt all the weights and biases in the network.
 
-We are taking the derivative wrt to a particular one, say $w_{i, j}^{(k)}$, this is just an ordinary differential because the loss function is just a scalar output as well. 
+We are taking the derivative wrt to a particular weight, say $w_{i, j}^{(k)}$, this is just an ordinary differential because the loss function is just a scalar output as well. 
 
 In addition, I just want to know the derivative for one sample, say $y$. The loss function will be like: 
 
 $$
-\partial_{w_{i, j}^{(k)}}L\left(f_{out}|y\right)
+\partial_{w_{i, j}^{(k)}}L\left(x^{(N)}|y\right)
 $$
 
 $$
-=\nabla[L(f_{out}|y)]^T\partial_{w_{i, j}^{(k)}}
+=\nabla[L(x^{(N)}|y)]^T\partial_{w_{i, j}^{(k)}}
 f_{out}\left(p^{(N)}\right)
 $$
 
@@ -239,7 +241,7 @@ W_{N - 1}\partial_{w_{i, j}^{(k)}}f\left(p^{(N - 1)}\right)
 W_{N - 1}f'(p^{(N - 1)})\circ 
 \underbrace{
     \partial_{w_{i, j}^{(k)}}\left[p^{(N - 1)}\right]
-    }_{\text{recursion}}
+}_{\text{recursion}}
 $$
 
 Now, we can unroll the recursion and see how it looks like: 
@@ -289,6 +291,7 @@ $$
     \\
     0 & \text{else}
 \end{cases}
+\tag{4.1}
 $$
 
 And, this is the last vector, and it has a lot of zeros in it, and it will be the base case that terminate the recursive derivative. 
@@ -298,10 +301,51 @@ And, this is the last vector, and it has a lot of zeros in it, and it will be th
 The case before that is just one layer before the base case, which is: 
 
 $$
-\partial_{w_{i, j}^{(k)}}\left[
+\partial_{w_{i, j}^{(k)}}
+\left[
         p^{(k + 2)}
     \right]
+    =
+    \partial_{w_{i, j}^{(k)}}
+\left[
+        W_{k + 1} x_{k + 1} + b^{(k + 1)}
+    \right]
 $$
+
+Differential operator goes behind the linear operation matrix: 
+
+$$
+=
+W_{k + 1}\partial_{w_{i, j}^{(k)}}x_{k+ 1}
+$$
+
+$$
+=W_{k + 1}\partial_{w_{i, j}^{(k)}x_{k + 1}}f\left(
+    p^{(k + 1)}
+\right)
+$$
+$$
+=W_{k+1}f'\left(
+    p^{(k + 1)}
+\right)
+\circ
+\partial_{w_{i, j}^{(k)}x_{k + 1}}\left[p^{(k+1)}\right]
+\tag{4.2}
+$$
+
+And notice that by expression (4.1) we will be able to unroll the above recursion. The vector represented in (4.1) is very sparse, so that will make things easier. 
+
+When the vector in (4.1) multiplied with the matrix $w_{k + 1}$ for expression (4.2), it will extract out one of the column of the matrix. Therefore, expanding (4.2) we have the expression: 
+
+$$
+(W_{k+ 1})_{[:, i]}f' \left(
+    p^{(k + 1)}_i
+\right) f \left(
+    p_j^{(k)}
+\right)
+$$
+
+The recursion now has been fully unrolled. 
 
 **Observations**: 
 
@@ -311,7 +355,7 @@ Is there a good way to write this compactly?
 * I think it's possible, but we might need to look $2$ layers before the $k$ th layer to get the closed form. And we will need to be smart to write it compactly as a update matrix: $\Delta W_k$. 
 
 ---
-### **Taking Derivative on the Bias Vector**
+### **5. Taking Derivative on the Bias Vector**
 
 It's the same as the taking derivative on the Biases, but we will go through this again. 
 
