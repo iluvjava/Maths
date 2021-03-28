@@ -5,6 +5,7 @@ References: My imagination
 A background in gradient descend is preferred, see: 
 [[Gradient Descend 3]]
 
+The objective is to find the derivative of the weight matrix given a set of deep Neuro-Network. 
 
 ---
 ### **1. Intro**
@@ -22,7 +23,6 @@ And this is the error function of the neuro net. It's taking the error by lookin
 $f_3, f_2$ are th activation function on the second and the third layer of the Neuron. 
 
 $\theta$ is just denoting all the parameters one can find in the Neuro Net.
-
 
 
 **Training**: 
@@ -165,6 +165,8 @@ And the input layer is:
 $$
 p^{(0)} = x^{(0)}
 $$
+
+There are no activation function for the neurons in the input layers. 
 
 The output from the fist hidden layer (not including the activation function in the first hidden layer) of the Neuro network is: 
 
@@ -422,9 +424,59 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 
 
 ---
-### **Recursion Fully Unrolled**
+### **5. Recursion Fully Unrolled**
 
+**Unrolling the Weights Derivative**
 
+Consider the Derivative of a particular weight in the Network: $w_{i, j}^{(k)}$, the $i$ th row $j$ th column of the weight matrix in the k th layer after the input layer.  
+
+$$
+=
+\nabla[L(f_{out}|y)]^T
+f'_{out}\left(p^{(N)}\right)
+\circ 
+W_{N - 1}f'\left(p^{(N - 1)}\right)
+\circ 
+W_{N - 2}f'\left(p^{(N - 2)}\right)
+\circ
+W_{N - 3}f'\left(p^{(N - 3)}\right)\cdots
+$$
+
+$$
+\cdots 
+\circ
+(W_{k+ 1})_{[:, i]}f' 
+\left(
+    p^{(k + 1)}_i
+\right) f \left(
+    p_j^{(k)}
+\right)
+$$
+
+**Unrolling Bias Derivative**
+
+$$
+=
+\nabla[L(f_{out}|y)]^T
+f'_{out}\left(p^{(N)}\right)
+\circ 
+W_{N - 1}f'\left(p^{(N - 1)}\right)
+\circ 
+W_{N - 2}f'\left(p^{(N - 2)}\right)
+\circ
+W_{N - 3}f'\left(p^{(N - 3)}\right)\cdots
+$$
+
+$$
+\cdots 
+\circ
+(W_{k+ 1})_{[:, i]}f' 
+\left(
+    p^{(k + 1)}_i
+\right)
+$$
+
+**Observe**: The derivative on the bias vector is not relevant to the variable $j$. 
 
 
 
@@ -434,7 +486,7 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 The basic idea is, compute forward to get the values for each layer, and then starting from the back (the last layer), update the weights. 
 
 
-
-
 ---
 ### **A Simple Example**
+
+We are considering 2 hidden layers Neuro-Network. It's the minimal example needed to demonstrate all the cases for the recursion. 
