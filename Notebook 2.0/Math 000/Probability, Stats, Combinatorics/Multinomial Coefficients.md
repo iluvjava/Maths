@@ -52,3 +52,44 @@ And their coefficients represents the total number of permutations using $k_i$ o
 
 Prove that this formula is true and then we will be able to prove understand the formula for the permutation is true as well. 
 
+**Observe**: 
+ The number of terms in the sum can be produced by the [[Stars And Bars]] theorem. It's basically summing up all the different ways of $m$ positive integers that can sum up to $n$ exactly. 
+
+
+---
+### **Example: A Divide and Conquer Approach**
+
+Another way to get the same formula is to use the idea of a "Super Group" and the formula for combinatorics.  
+
+Let's say we have the string "aabbCCDD". 
+
+If I split it by letter type, then there are 2 types: Upper and Lower cased letters. 
+
+The number of such a splitting will be: 
+
+$$
+\frac{8}{4!4!}
+$$
+
+Now, 2 groups of $4$ remains, and each has 2 groups of 2 elements, because they are different letters, therefore, for each subgroup, the number of combination will be given by: 
+
+$$
+\frac{4!}{2!2!} \quad \frac{4!}{2!2!}
+$$
+
+Then, every possible permutations of the super group, we have: 
+
+$$
+\frac{4!4!}{2!2!2!2!}
+$$
+
+In total. However, re-arranging inside the sub-group doesn't change the super group, therefore, we can just multiply then together and get: 
+
+$$
+\frac{8}{4!4!}\times \frac{4!4!}{2!2!2!2!} 
+=
+\frac{8!}{2!2!2!2!}
+$$
+
+And, for this example, the above results is the same as obtained via the multinomial coefficient formula. 
+

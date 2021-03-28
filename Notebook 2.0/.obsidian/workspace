@@ -15,11 +15,10 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
-                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Generalized Linear Model.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
                     "mode": "source"
                   }
                 },
@@ -28,11 +27,12 @@
               {
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
+                "active": true,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 515/Generalized Linear Model.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515/Generalized Linear Model.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Generalized Linear Model.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,14 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
     "AMATH 515/Generalized Linear Model.md",
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
     "Math 000/Probability, Stats, Combinatorics/Methods of Moment.md",
     "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
     "Math 000/Probability and Stats/Untitled.md",
     "Math 000/Euler Maclaurin Formula.md",
+    "Math 999/Back Propagation.md",
     "AMATH 515/Gradient Descend/Gradient Descend 2.md",
-    "AMATH 582/Kernel PCA.md",
-    "AMATH 515/Gradient Descend/Gradient Descend 3.md"
+    "AMATH 582/Kernel PCA.md"
   ]
 }
