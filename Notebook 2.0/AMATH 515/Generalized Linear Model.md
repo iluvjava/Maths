@@ -4,6 +4,8 @@ The Generalized linear models are used as a way of dealing with distribution tha
 
 [Good Reference](http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf)
 
+In addition, one of the major idea exploited here is: MLE (Maximal Likelihood Estimator). See [[Maximum Likelihood Estimator]] for more. 
+
 ---
 
 ### Intro

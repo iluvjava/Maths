@@ -478,13 +478,10 @@ $$
 
 **Observe**: The derivative on the bias vector is not relevant to the variable $j$. 
 
-
-
 ---
 ### **Formulation of an Algorithm**
 
 The basic idea is, compute forward to get the values for each layer, and then starting from the back (the last layer), update the weights. 
-
 
 ---
 ### **A Simple Example**

@@ -55,4 +55,3 @@ $$
     n + k - 1 \\ k - 1
 \end{pmatrix}
 $$
-
