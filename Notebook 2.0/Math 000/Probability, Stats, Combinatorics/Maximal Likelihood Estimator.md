@@ -39,7 +39,7 @@ Given a sequence of idd samples, the best parameters: $\Theta$ will be given as:
 
 $$
 \Theta^* = 
-\underset{\Theta}{\text{argmin}} 
+\underset{\Theta}{\text{argmax}} 
 \prod_{i = 1}^{n} f\left(x_i|\Theta\right)
 $$
 
@@ -49,7 +49,7 @@ For actual computation, it's often transformed into:
 
 $$
 \Theta^* = 
-\underset{\Theta}{\text{argmin}} 
+\underset{\Theta}{\text{argmax}} 
 \sum_{i = 1}^{n} \ln \left(f\left(x_i|\Theta\right)\right)
 $$
 
@@ -58,14 +58,67 @@ If there is a closed form solution to the best estimator given the model then us
 If not, we need the power of optimization algorithm to figure out the best solution to the formulated MLE problem. 
 
 ---
-### **Burnoulli Distribution**
+### **Example: Burnoulli Distribution**
 
 The distribution is controlled via one parameter and the probability density function is given by: 
 
 $$
-f(x|\theta) = \theta^x(1 - \theta)^{1 - x} \quad x \in \{0, 1\}
+f(x|\theta) = \theta^x(1 - \theta)^{1 - x} \quad x \in \{0, 1\}, \theta \in [0, 1]
 $$
 
 Then for a series of observations: $\{x_1, x_2, \dots, x_3\}$, the likelihood of observing the sample given the parameter $\theta$ will be: 
 
+$$
+\underset{\theta}{\text{argmax}}
+\prod_{i = 1}^{n} \theta^{x_i}(1 - \theta)^{1 - x_i}
+$$
+
+$$
+\underset{\theta}{\text{argmax}}\sum_{i = 1}^{n}
+\left(
+    x_i \ln(\theta) + (1 - x_i)\ln(1 - \theta)
+\right)
+$$
+
+Take note that, if $x_i$ is all ones or zero then then it's easy to solve. 
+
+if $x_i$ are all zeros, then set $\theta = 0$ to maximize $\ln(1 - \theta)$, the only remaining term. 
+
+If $x_i$ are all ones, then set $\theta = 1$ to maximize $\ln(\theta)$. 
+
+Else, the $\theta^*$ is inside the interval. Taking the derivative wrt to $\theta$ and setting it to zero yields: 
+
+$$
+\partial_{\theta} \sum_{i = 1}^{n}
+\left(
+    x_i \ln(\theta) + (1 - x_i)\ln(1 - \theta)
+\right) = 0 
+$$
+
+$$
+= \sum_{i = 1}^{n}\left(
+    \frac{x_i}{\theta} - \frac{1 - x_i}{1 - \theta}
+\right) = 0
+$$
+
+$$
+\sum_{i = 1}^{n}\left(
+        x_i(1 - \theta) - \theta(1 - x_i)
+\right)
+ = 
+\sum_{i = 1}^{n}\left(
+        x_i - x_i\theta - \theta + x_i\theta
+\right)
+=
+\sum_{i = 1}^{n}\left(x_i - \theta\right) = 0 
+$$
+
+$$
+n\theta = \sum_{i  = 1}^{n}\left(x_i\right)
+$$
+
+The best value for $\theta$ is just the average of the sample. 
+
+---
+### Example Uniform Distribution 
 
