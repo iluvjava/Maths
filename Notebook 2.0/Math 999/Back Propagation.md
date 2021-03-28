@@ -479,7 +479,6 @@ $$
 **Observe**: The derivative on the bias vector is not relevant to the variable $j$. 
 
 
-
 ---
 ### **Formulation of an Algorithm**
 
