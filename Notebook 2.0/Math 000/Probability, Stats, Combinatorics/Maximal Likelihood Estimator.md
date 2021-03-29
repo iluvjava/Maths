@@ -57,6 +57,7 @@ If there is a closed form solution to the best estimator given the model then us
 
 If not, we need the power of optimization algorithm to figure out the best solution to the formulated MLE problem. 
 
+
 ---
 ### **Example: Burnoulli Distribution**
 
@@ -80,7 +81,7 @@ $$
 \right)
 $$
 
-Take note that, if $x_i$ is all ones or zero then then it's easy to solve. 
+Take note that, if $x_i$ is all ones or zero then it's easy to solve. 
 
 if $x_i$ are all zeros, then set $\theta = 0$ to maximize $\ln(1 - \theta)$, the only remaining term. 
 
@@ -119,6 +120,33 @@ $$
 
 The best value for $\theta$ is just the average of the sample. 
 
+$$
+\hat{\theta} = \frac{k}{n}
+$$
+
+Where $k$ is the number of observations of hats from the sequence. 
+
+And expected variance of it will be: 
+
+$$
+\hat{\theta} \approx \mathbb{E}[{\hat{\theta}}] \pm \sqrt{\text{var}[\hat{\theta}]}
+$$
+
+
+**Note**: 
+
+**MLE**: This is called "Unbiased" Estimator. This means that, if we run the experiment a lot of time, then we will get a lot of estimates for $\hat{\theta}$. And taking the average will give us the true value. 
+
+$$
+\text{Bias}(\hat{\theta}_\text{Mle}) = 0
+$$
+
+For this example, it's unbiased, but it's not always true. 
+
+Why are we not using Binomial for testing it? 
+
+Because we observed a sequence. 
+
 ---
-### Example Uniform Distribution 
+### **Example Uniform Distribution**
 

@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                    "file": "CSE 546/Markov Inequality.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                    "file": "CSE 546/Markov Inequality.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                "file": "CSE 546/Markov Inequality.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                "file": "CSE 546/Markov Inequality.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Markov Inequality.md",
+    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
+    "Math 000/Probability, Stats, Combinatorics/Beta Distribution.md",
+    "CSE 546/CSE 546.md",
+    "CSE 546/Untitled.md",
     "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
-    "Math 000/Probability, Stats, Combinatorics/Beta Distribution.md",
     "AMATH 515/Generalized Linear Model.md",
-    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
     "Math 000/Probability, Stats, Combinatorics/Maximum Likelihood Estimator.md",
-    "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
-    "Math 000/Probability, Stats, Combinatorics/Methods of Moment.md",
-    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
-    "Math 000/Probability and Stats/Untitled.md"
+    "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md"
   ]
 }
