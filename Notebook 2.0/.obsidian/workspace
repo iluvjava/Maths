@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Automatic Differential.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Automatic Differential.md",
+                    "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 999/Automatic Differential.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 999/Automatic Differential.md",
+                "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
-    "Math 999/Automatic Differential.md",
-    "Math 000/Probability, Stats, Combinatorics/Conditional Probability.md",
-    "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
-    "Math 000/Probability, Stats, Combinatorics/Beta Distribution.md",
-    "AMATH 515/Generalized Linear Model.md",
-    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
-    "Math 000/Probability, Stats, Combinatorics/Maximum Likelihood Estimator.md",
+    "CSE 546/Convolution of PDFs.md",
+    "CSE 546/Expectation of Random Variables.md",
+    "CSE 546/CSE 546.md",
+    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
     "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
-    "Math 000/Probability, Stats, Combinatorics/Methods of Moment.md"
+    "CSE 546/Markov Inequality.md",
+    "AMATH 583/Untitled.md",
+    "AMATH 503/ODE Review.md",
+    "AMATH 503/AMATH 503.md"
   ]
 }

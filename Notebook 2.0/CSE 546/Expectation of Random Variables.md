@@ -1,0 +1,54 @@
+Here, we learn how to deal with the expectation of random variables. 
+
+
+---
+
+### **Intro**
+
+The discrete and the continuous case is analogous to each other, here we will only talk about the discrete case. (Replace Sums with Integrals)
+
+Suppose that random variable $X$ has a PMF: $f_X(x)$, then the expected value will be defined as: 
+
+$$
+\mathbb{E}\left[X\right] = 
+ \sum_{x\in \Omega_X}^{}
+    xf_X(x)
+$$
+
+---
+### **Properties of the Operator**
+
+Nested Function:
+
+$$
+\mathbb{E}\left[g(X)\right]
+=
+\sum_{x\in\Omega_x}^{}
+    g(x)\mathbb{P}\left(g(X) = g(x)\right)
+=
+\sum_{x = \Omega_x}^{}
+    g(x)f_X(x)
+$$
+
+It's A Linear Operator: 
+
+$$
+\mathbb{E}\left[aX + b\right]
+=
+a \mathbb{E}\left[X\right] + b
+$$
+
+It's still Linear wrt multiple Random Variables: 
+
+$$
+\mathbb{E}\left[\sum_{i = 1}^{n}X_i\right]
+=
+\sum_{i = 1}^{n}\mathbb{E}\left[X_i\right]
+$$
+
+If the random variables $X, Y$ are independent, then: 
+
+$$
+\mathbb{E}\left[XY\right] = \mathbb{E}\left[X\right]\mathbb{E}\left[Y\right]
+$$
+
