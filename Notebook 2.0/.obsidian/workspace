@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                    "file": "Math 999/Automatic Differential.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                    "file": "Math 999/Automatic Differential.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                "file": "Math 999/Automatic Differential.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
+                "file": "Math 999/Automatic Differential.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,7 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "Math 999/Automatic Differential.md",
     "Math 000/Probability, Stats, Combinatorics/Automatic Differential.md",
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
     "Math 000/Probability, Stats, Combinatorics/Beta Distribution.md",
@@ -159,7 +160,6 @@
     "Math 000/Probability, Stats, Combinatorics/Maximum Likelihood Estimator.md",
     "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
     "Math 000/Probability, Stats, Combinatorics/Methods of Moment.md",
-    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
-    "Math 000/Probability and Stats/Untitled.md"
+    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md"
   ]
 }

@@ -2,6 +2,8 @@ Automatic Differential is an algorithmic approach to taking derivative of functi
 
 This made the process of taking derivative on the Neural Network easier. 
 
+For some similar concepts like this, check out: [[Back Propagation]]
+
 ---
 ### **Intro**
 
