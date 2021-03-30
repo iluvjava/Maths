@@ -23,7 +23,7 @@ $$
 p_{X, Y}(x, y)
 $$
 
-If, $X$ and $Y$ are having their own independent probability distribution, say: $p_x$, a univariate function and $p_y$ also univariate, then their joint distribution is: 
+If, $X$ and $Y$ are having their own **independent probability** distribution, say: $p_x$, a univariate function and $p_y$ also univariate, then their joint distribution is:
 
 $$
 p_{X, Y} =p_X(x)p_Y(y) 
@@ -78,3 +78,8 @@ $$
 For each condition that $y$ is observed for rv $y$, we sum up the expectation when for random variable $X$, then we have the total expectation for the variable $g(X)$. 
 
 Notice that this is just basic conditional probability, and it makes intuitive sense. 
+
+**Proof**: 
+
+
+
