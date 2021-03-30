@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
+                    "file": "CSE 546/Expectation of Random Variables.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
+                    "file": "CSE 546/Expectation of Random Variables.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
+                "file": "CSE 546/Expectation of Random Variables.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
+                "file": "CSE 546/Expectation of Random Variables.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,9 +151,9 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Expectation of Random Variables.md",
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
     "CSE 546/Convolution of PDFs.md",
-    "CSE 546/Expectation of Random Variables.md",
     "CSE 546/CSE 546.md",
     "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
     "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",

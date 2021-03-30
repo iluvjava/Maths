@@ -52,3 +52,13 @@ $$
 \mathbb{E}\left[XY\right] = \mathbb{E}\left[X\right]\mathbb{E}\left[Y\right]
 $$
 
+---
+### **Expectation and Variance**
+
+The variance of a random variable can be measure by some fancy magics with the Expectation value of the random variable: 
+
+$$
+\mathbb{E}\left[X^2\right] + \mathbb{E}\left[X\right]^2
+$$
+
+
