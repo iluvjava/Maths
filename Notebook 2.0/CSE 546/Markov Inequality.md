@@ -30,7 +30,7 @@ $$
     \frac{\mathbb{E}\left[X\right]}{t}
 $$
 
-Ane this inequality can be used to bound the MLE. 
+And this inequality can be used to bound the MLE. 
 
 This is saying that, using the expected value of a random variable, the probability of observing random variable above some threshold is bounded by the Expected value of the random variable. 
 
