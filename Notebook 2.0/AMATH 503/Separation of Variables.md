@@ -50,5 +50,44 @@ Let's summarize the procedure:
 
 1. Assume that $u$ is the product of 2 functions like: $X(x)T(x)$, for this PDE, it works well.
 2. Substitute the separation form into the equation. 
+3. After separation, set everything to an undetermined constant. Try different cases for the constant. 
 
 
+---
+### **Separation and Substitution**
+
+$$
+u_t = T'(t)X(x) \quad u_{xx} = X''(x)T(t)
+$$
+
+Then the PDE is going to be: 
+
+$$
+T'(t)X(x) = c^2X''(x)T(t)
+$$
+
+$$
+\frac{T'(t)}{c^2} = \frac{X''(x)}{X(x)}
+$$
+
+The LHS, and the RHS are solely expressed wrt to $T(t), X(t)$, and means, it has been separated. 
+
+Notice that, this is function equality, a function of time equals to a function of space for all possible value of $t, x$, and this means that they both equals to a constant, giving us: 
+
+$$
+\frac{T'(t)}{c^2} = \frac{X''(x)}{X(x)} = K
+$$
+
+When it's separated, this statement can be applied. Notice that $K$ can be positive, negative, or zero. Hint: try $K = -\lambda$ where $\lambda$ is real. We assume that $K < 0$, this is the one that works and gives us non-trivial solution to the system. 
+
+Solving it we should be able to get: 
+
+$$
+\begin{cases}
+    X''(x) + \lambda^2 X(x) = 0
+    \\
+    T'(t) + c^2\lambda^2T(t) = 0
+\end{cases}
+$$
+
+And we have 2 ODEs. $c^2$ is the thermal conductivity. However, we need to determine what $\lambda^2$ is to get the solutions for the system. 
