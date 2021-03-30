@@ -42,6 +42,14 @@ p_{X|Y}(a|b) = \mathbb{P}\left(X = a | Y = b\right)
 \frac{p_{Y|X}(b|a)p_X(a)}{p_Y(b)}
 $$
 
+Take note that, there is a slight difference in the subscript, and the equality is that: 
+
+$$
+p_{X, Y}(a, b) = p_{X|Y}(b|a)p_X(a)
+$$
+
+The joint distribution function of random variable $X, Y$, with inputs $a, b$ will be the same as $p_{X|Y}$, probability of $X = b$ given $Y=a$, the prior, multiplied by $p_X(a)$, the probability of observing $X$ becomes $a$. 
+
 ---
 ### **Conditional Expectation**
 
@@ -81,5 +89,37 @@ Notice that this is just basic conditional probability, and it makes intuitive s
 
 **Proof**: 
 
+We go from the right to the left: 
 
+$$
+\sum_{y \in \Omega_Y}^{}\mathbb{E}\left[g(X)| Y = y\right]p_Y(y)
+$$
 
+Using the definition of the conditional expectation for $g(X)$ given $Y$ is observed to be $y$, we have: 
+
+$$
+\sum_{y \in \Omega_Y}^{}
+\left(
+    \sum_{x\in \Omega_X}^{} 
+        g(x)p_{X|Y}(x|y)
+\right)
+p_Y(y)
+$$
+
+Multiply it in and swap the sums. Notice that $p_{Y}(y)$ is the prior to the conditional $P_{X|Y}(x|y)$, therefore their product is the joint distribution function $p_{X, Y}$
+
+$$
+\sum_{x\in \Omega_x}^{}
+\sum_{y\in \Omega_y}^{}
+g(x)p_{X|Y}(x|y)p_Y(y)
+$$
+
+$$
+\sum_{x\in \Omega_x}^{}
+\sum_{y\in \Omega_y}^{}
+g(x)p_{X, Y}(x, y) = \mathbb{E}\left[g(X)\right]
+$$
+
+And by definition, this is the expected value for the joint distribution, of the random variable $g(X)$
+
+$\blacksquare$
