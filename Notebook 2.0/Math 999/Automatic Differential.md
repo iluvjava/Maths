@@ -33,16 +33,11 @@ w_1 + w_2\quad w_1 := f_1(w_3) \quad w_2 := w_4w_5
 $$
 
 
-
-
-
-
 **Forward Pass**: 
 
 Starting with the biggest model and recur downwards until it reach each of the individual variables (They are called "Seeds").
 
 **Backwards Pass**: 
 
-Start with one of the individual variable (seed) and then build up the differential until we reach the top module. 
-
+Start with one of the individual variable (seed) and then build up the differential until we reach the top module.
 
