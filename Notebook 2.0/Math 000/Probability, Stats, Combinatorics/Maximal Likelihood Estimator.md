@@ -150,3 +150,10 @@ Because we observed a sequence.
 ---
 ### **Example Uniform Distribution**
 
+
+
+---
+### **Gaussians (Continuous Variables)**
+
+
+
