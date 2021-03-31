@@ -5,6 +5,8 @@ See more about it here: [[Heat Equations]], which is introduced in amath 501 bef
 
 And, the procedure of using Separation of variables involves the usage of Fourier Series, then we need: [[Fourier Transform Fourier Series]] to hep us out. 
 
+Reference Materials: Chapter 4 of the Course Notes. 
+
 ---
 ### **Intro**
 
@@ -211,7 +213,7 @@ $$
 To satisfy the initial conditions, we have initial conditions gonna be like: 
 
 $$
-F(x) = u(x,t) =
+F(x) = u(x,0) =
 \sum_{i = 1}^{\infty}
  T_n(0)\exp\left(
     \frac{-n^2t}{\tilde{t}}

@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 503/Separation of Variables.md",
+                    "file": "AMATH 503/Fourier Series (PDEs Flavor).md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 503/Separation of Variables.md",
+                    "file": "AMATH 503/Fourier Series (PDEs Flavor).md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 503/Separation of Variables.md",
+                "file": "AMATH 503/Fourier Series (PDEs Flavor).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -106,7 +106,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Maximum Like",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Separation of Variables.md",
+                "file": "AMATH 503/Fourier Series (PDEs Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 503/Untitled.md",
+    "AMATH 581/Fourier Transform Fourier Series.md",
     "AMATH 503/Separation of Variables.md",
     "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
     "CSE 546/Expectation of Random Variables.md",
@@ -158,8 +160,6 @@
     "Math 000/Probability, Stats, Combinatorics/Untitled.md",
     "CSE 546/Convolution of PDFs.md",
     "CSE 546/CSE 546.md",
-    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md",
-    "Math 000/Probability, Stats, Combinatorics/Multinomial Coefficients.md",
-    "CSE 546/Markov Inequality.md"
+    "Math 000/Probability, Stats, Combinatorics/Stars And Bars.md"
   ]
 }
