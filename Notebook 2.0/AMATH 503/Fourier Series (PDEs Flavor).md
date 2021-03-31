@@ -119,6 +119,7 @@ $$
 
 Then, the series will equal to $F(x)$ in the interval $[0, L]$. 
 
+---
 ### **An Example**
 
 Let's assume that $F(x)\equiv 100$, then what is the fourier series for that??? 
@@ -126,13 +127,74 @@ Let's assume that $F(x)\equiv 100$, then what is the fourier series for that???
 It's just an integral away and let' do this: 
 
 $$
-a_n = \frac{2}{L} 
+a_n = \frac{2B}{L} 
 \int_{0}^{L} B\sin\left(
     \frac{n\pi x}{L}
 \right) dx 
+=
+\frac{2B}{L}
+\left.
+\frac{-\cos
+    \left(
+        \frac{n \pi x}{L}
+    \right)
+}{\frac{n\pi}{L}}\right\vert_0^L
+=
+\frac{2B}{L}
+\left.
+\frac{\cos
+    \left(
+        \frac{n \pi x}{L}
+    \right)
+}{\frac{n\pi}{L}}\right\vert^0_L
 $$
 
 I replaced $100$ with $B$ to keep things generics. 
+
+So then, this is just: 
+
+$$
+\frac{2B}{L}
+\left[
+    \frac{L}{n\pi} - \cos(n\pi) \frac{L}{n\pi}
+    \right]
+=
+\frac{2B}{n\pi}
+\left[
+    1- \cos(n\pi)
+    \right]
+$$
+
+And, there are 2 cases, if $n is even$, then $1 - \cos(n\pi)$ is $0$, when it's odd, it's $2$, so then we have the expression that: 
+
+$$
+a_n = \frac{4B}{n\pi}\sin\left(
+    \frac{n\pi x}{L}
+\right) \quad \forall  \text{ odd }n
+$$
+
+And the series is going to look like: 
+
+$$
+\sum_{k = \text{odd integers}}^{\infty}
+\frac{4B}{\pi}
+\frac{\sin\left(
+    \frac{n\pi x}{L}
+\right)}{k}
+$$
+
+### **Extra Stuff**
+
+Notice that, the $\sin$ function are always odd, and we are approximating it on the interval $[0,L]$, and if we look at the series on the $[-L, L]$, we get an odd function, and then it will periodically repeat, just like how $\sin$ is suppose to behave. 
+
+
+The series is only equal to $F(x)$ on the $[0, L]$ interval. 
+
+**Over shoot**
+
+One the boundary, $x = 0, x = L$, there is the gibbs phenomena, it's over shooting on the edge just by a tiny bit, as $n\rightarrow \infty$, the width of the over shoot gets infinitely small. Note: It's a fixed amount of overshoot, it's not shooting to infinity or anything like that. 
+
+**Dirichilet Theorem**
 
 
 [^1]: blahhhh
