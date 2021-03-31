@@ -60,5 +60,3 @@ The variance of a random variable can be measure by some fancy magics with the E
 $$
 \mathbb{E}\left[X^2\right] + \mathbb{E}\left[X\right]^2
 $$
-
-

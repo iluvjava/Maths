@@ -227,3 +227,4 @@ And, solving this with Fourier Series, we will get the solution, but we are skip
 
 **Notice that**, the exponent of the $\exp$ is getting super negative as $n\rightarrow \infty$ (very fast decay as $t\rightarrow \infty$), this means that, as time moves on, the shape of the solution is dominated by features of low frequencies harmonics, making the heat distribution getting smoother and smoother. 
 
+---
