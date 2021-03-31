@@ -3,6 +3,8 @@ The heat equation is introduced here: [[ODEs, PDEs Intro]], and we are using the
 
 See more about it here: [[Heat Equations]], which is introduced in amath 501 before. 
 
+And, the procedure of using Separation of variables involves the usage of Fourier Series, then we need: [[Fourier Transform Fourier Series]] to hep us out. 
+
 ---
 ### **Intro**
 
@@ -12,8 +14,11 @@ Separation of Variable, it works in the case when the boundary conditions is zer
 
 If a solution is not separable, but we did it anyway, we might get infinitely many solutions such that the super position of such solution is going to give us the true solution, which is non-separable. 
 
+**Note**: 
+For the class, you don't have to show everything when solving ODEs, it's assumed that you know it so well that you can do it with eyes closed. Just stated he results and it will be fine. 
+
 ---
-### **Separation of Variables**
+### **Separation of Variables: Setting things up**
 
 Let's say that the solution is the product of 2 functions, then it will be like: 
 
@@ -90,4 +95,135 @@ $$
 \end{cases}
 $$
 
-And we have 2 ODEs. $c^2$ is the thermal conductivity. However, we need to determine what $\lambda^2$ is to get the solutions for the system. 
+And we have 2 ODEs. $c^2$ is the thermal conductivity. However, we need to determine what $\lambda^2$ is to get the solutions for the system. Solve the first one to get $\lambda^2$ and then we solve the second one with known $\lambda^2$. 
+
+**Solving the first ODEs**
+
+The boundary conditions said that: 
+
+$$
+X(0)T(t) = X(L)T(t) = 0 \quad \forall \;t
+$$
+
+Which means that: 
+
+$$
+X(0) = X(L) = 0
+$$
+
+Assuming **non-trivial solution** (The solution is not all zeros). 
+
+Solving the first ODE, we will have the solution: 
+
+$$
+X(x) = A\sin(\lambda x) + B\cos(\lambda x)
+$$
+
+**Applying Boundary Conditions**
+
+$$
+X(0) = 0 \implies A\sin(0) = B\cos(0) = 0 \implies B = 0
+$$
+
+Solving the other boundary condition, we have: 
+
+$$
+A\sin(\lambda L) = 0
+$$
+
+Assuming non-trivia solution, then $A\ne 0$, then we have: 
+
+$$
+\sin(\lambda L) = 0 \implies \lambda_n = \frac{n\pi}{L} \forall \; n\in \mathbb{N}
+$$
+
+And $\lambda_n$ are called the eigenvalues, and for each value of $\lambda_n$ there is a eigenfunction associated with it. The function will be like: 
+
+$$
+\sin \left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+Yeah, it's just a bunch of harmonics, and there are a lot of them, depending on the initial conditions, which determine the initial harmonics. 
+
+**Solving for The Time Function**
+
+$$
+T'(t) + c^2\lambda^2T(t) = 0
+$$
+
+For each $\lambda_i$, there is a solution for $T(t)$, and there will be a lot of them, hence we have: 
+
+$$
+T_n'(t) + c^2\lambda_n^2T_n(t) = 0
+$$
+
+And then we should get: 
+
+$$
+T_n(t) = T_n(0)\exp\left(-
+    \left(
+        \frac{cn\pi}{L}
+    \right)^2t
+\right)
+$$
+
+use the substitution that 
+
+$$
+\tilde{t} = \left(
+    \frac{L}{c\pi}
+\right)^2 \implies T_n(\tilde{t})
+=
+T_n(0)\exp \left(
+    \frac{-n^2t}{\tilde{t}}
+\right)
+$$
+
+**Combining the Time and Space Solutions**
+
+$$
+u_n(x,t) = T_n(0)\exp\left(
+    \frac{-n^2t}{\tilde{t}}
+\right)
+\sin \left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+And this is the solution for the given equation, however, this is just one of them, a more generation solution for the PDE will be summing up for all the possible $\lambda_n$, which is just: 
+
+$$
+u(x,t) =
+\sum_{i = 1}^{\infty}
+ T_n(0)\exp\left(
+    \frac{-n^2t}{\tilde{t}}
+\right)
+\sin \left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+
+**Taking in the Initial Conditions**
+
+To satisfy the initial conditions, we have initial conditions gonna be like: 
+
+$$
+F(x) = u(x,t) =
+\sum_{i = 1}^{\infty}
+ T_n(0)\exp\left(
+    \frac{-n^2t}{\tilde{t}}
+\right)
+\sin \left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+And take notice that, if we decompose the initial conditions into a Fourier Sine Series, then we will have this. 
+ 
+And, solving this with Fourier Series, we will get the solution, but we are skipping it here. 
+
+**Notice that**, the exponent of the $\exp$ is getting super negative as $n\rightarrow \infty$ (very fast decay as $t\rightarrow \infty$), this means that, as time moves on, the shape of the solution is dominated by features of low frequencies harmonics, making the heat distribution getting smoother and smoother. 
+
