@@ -60,3 +60,17 @@ The variance of a random variable can be measure by some fancy magics with the E
 $$
 \mathbb{E}\left[X^2\right] + \mathbb{E}\left[X\right]^2
 $$
+
+And hence, it's not hard to see that: 
+
+$$
+\text{Var}\left[X\right] = \mathbb{E}\left[(X - \mathbb{E}\left[X\right])^2\right]
+=
+\mathbb{E}\left[X^2\right] + \mathbb{E}\left[X\right]^2
+$$
+
+And hence it's not hard to see the property that: 
+
+$$
+\text{Var}\left[aX + b\right] = a^2 \text{Var}\left[X\right]
+$$
