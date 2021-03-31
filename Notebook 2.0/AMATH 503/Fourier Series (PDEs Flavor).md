@@ -185,18 +185,49 @@ $$
 
 ### **Extra Stuff**
 
-Notice that, the $\sin$ function are always odd, and we are approximating it on the interval $[0,L]$, and if we look at the series on the $[-L, L]$, we get an odd function, and then it will periodically repeat, just like how $\sin$ is suppose to behave. 
+Notice that, the $\sin$ function are always odd, and we are approximating it on the interval $[0,L]$, and if we look at the series on the $[-L, L]$, we get an odd function, and then it will periodically repeat, just like how $\sin$ is supposed to behave. 
 
 
 The series is only equal to $F(x)$ on the $[0, L]$ interval. 
 
 **Over shoot**
 
-One the boundary, $x = 0, x = L$, there is the gibbs phenomena, it's over shooting on the edge just by a tiny bit, as $n\rightarrow \infty$, the width of the over shoot gets infinitely small. Note: It's a fixed amount of overshoot, it's not shooting to infinity or anything like that. 
+One the boundary, $x = 0, x = L$, there is the **Gibbs Phenomena**[^4], it's over shooting on the edge just by a tiny bit whenever the function is not continuous when we augment it periodically, as $n\rightarrow \infty$, the width of the over shoot gets infinitely small. Note: It's a fixed amount of overshoot, it's not shooting to infinity or anything like that. 
 
-**Dirichilet Theorem**
+**Dirichlet Theorem**
+
+At the point of discontinuity, the Fourier Series is going to take the average between the points of discontinuity. Yes, it is not continuous regardless of the series being the sum of continuous functions. This occurs together with the Gibbs Phenomena. 
+
+**Smmoth F(x)**
+
+If the function is smooth, it's going to have spectral convergence, if it's oscillating a lot, then we will need a lot of terms.
+
+The best way is to pick the $x$ value, and then determine how many terms are needed for the accuracy, and then we can compute that, for each $x$. 
 
 
-[^1]: blahhhh
+---
+### **The Fun Problem**
+
+> Is it possible to represent the $\cos$ function with $\sin$ Fourier Series? Oh yeah we can, on a small interval. 
+
+Here, we are setting $L = \pi$, because we are dealing with $\cos$, and then, we will say that: 
+
+$$
+a_n = \frac{2}{\pi}
+\int_{0}^{\pi}
+    \cos(x)
+    \sin(nx)
+dx
+$$
+
+But, when we have the graph, something interesting is happening, using the Dirichlet theorem, and the fact that the function is odd, we have the positive part of $\cos$ on the interval $[0, \pi]$ reflected by the origin on the interval $[-\pi, 0]$. 
+
+We cannot represent $\cos$ by $\sin$ on the $2\pi$ period. 
+
+
+
+
+[^1]: (...)
 [^2]: We assume convergence to get the $a_n$, and then we show that with the $a_n$, this thing does uniformly converges. 
 [^3]: Trig identity: $\sin a\sin b = \frac{1}{2}(\cos(a - b) - \cos(a + b))$ is involved for showing that. Detailed in the lecture notes. 
+[^4]: Gibbs Phenomena: [link](https://www.wikiwand.com/en/Gibbs_phenomenon)
