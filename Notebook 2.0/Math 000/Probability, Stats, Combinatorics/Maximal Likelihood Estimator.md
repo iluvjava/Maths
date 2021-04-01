@@ -237,19 +237,27 @@ $$
 \right) = 0
 $$
 
-And we factor out $\frac{1}{\sigma^3}$ and apply the optimality conditions to derivative, allowing us to solve for the optimal parameter for the Gaussian Distribution. 
+And we factor out $\frac{1}{\sigma^3}$ and apply the optimality conditions to derivative, allowing us to solve for the optimal parameter for the Gaussian Distribution.
 
 And, after some fancy math, solving it gives: 
 
 $$
-\widehat{\sigma}^2 = \frac{1}{n}\sum_{i = 1}^{n}\left(x_i - \widehat{\mu}\right)^2 
+\widehat{\sigma^2} = \frac{1}{n}\sum_{i = 1}^{n}\left(x_i - \widehat{\mu}\right)^2 
 $$
 
 Yes, here we also substitute the $\widehat{\mu}$, because these 2 parameters started interacting with each other. 
 
+**The variance a Biased Parameter**[^1]
 
+This can be shown by consider the fact that: 
 
+$$
+\frac{n - 1}{n}\sigma^2 = \mathbb{E}\left[\widehat{\sigma^2}\right] \ne \sigma^2
+$$
 
+To figure this out, just take the expected value for the optimal variance squared. 
+
+As we collect more and more data, this is Asymptotically Unbiased. To get the unbiased estimator, divide it $\sum_{i= 1}^n (x_i - \mu)^2$ by $\frac{1}{n - 1}$. Which will be an unbiased estimator 
 
 
 ---
@@ -260,3 +268,6 @@ Yes, here we also substitute the $\widehat{\mu}$, because these 2 parameters sta
 4. Deal with the log of the likelihood
 5. Optimize it, with derivative, or some fancy algorithms to get the best parameters for the given observation and the models. 
 6. Do that a lot of time and get some estimate for the best parameters. 
+
+
+[^1]: The proof here is skipped, please add resources. 
