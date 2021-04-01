@@ -23,7 +23,7 @@ That.
 ---
 ### **Markove Inequality**
 
-For any $t\ge 0$ and non-negative random variable $X$, we have: 
+For any $t\ge 0$ and **non-negative** random variable $X$, we have: 
 
 $$
 \mathbb{P}\left(X \ge t\right) \le 
