@@ -151,9 +151,112 @@ Because we observed a sequence.
 ### **Example Uniform Distribution**
 
 
+---
+### **Gaussian (Continuous Variables)**
+
+This is the Gaussian Models: 
+
+$$
+P(x; \mu, \sigma) =
+\frac{1}{\sqrt{2\pi \sigma^2}}
+    \exp\left(
+        -\frac{(x - \mu)^2}{2\sigma^2}
+    \right)
+$$
+
+There are 2 parameters that we are going to tweak to get the best estimation for the parameters, usually, a random variable with such a distribution is gonna be like: 
+
+$$
+X \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+The distribution is cool, after affine transformation, the distribution is still going to be Gaussian, which is what makes it special. We are skipping the math for this part. (And central limit theorem and shit like that)
+
+Let's assume that Observations are made to the idd rvs, $x_i$ (denote it using $D$), for $1 \le i \le n$, and the likelihood measure is like: 
+
+$$
+P(D; \mu, \sigma) = 
+\prod_{i = 1}^{n} 
+\frac{1}{\sqrt{2\pi \sigma^2}}
+    \exp\left(
+        -\frac{(x_i - \mu)^2}{2\sigma^2}
+    \right)
+$$
+
+Taking the log on that, we have something really cool: 
+
+$$
+\log P(D; \mu, \sigma) = 
+-n\log (\sigma \sqrt{2\pi}) - 
+\sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+$$
+
+Let's denote the parameters like $\theta = (\mu, \sigma^2)$. And then we are taking the gradient of the MLE to find the maximum point for the likelihood function. 
+
+Taking the derivative wrt to the mean, we have: 
+
+$$
+\frac{d}{d\mu}
+\left[
+        -n\log (\sigma \sqrt{2\pi}) - 
+        \sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+    \right]
+=
+\frac{1}{\sigma^2} \sum_{i = 1}^{n}\left(x_i - \mu\right)
+$$
+
+Let's assume that the variance is not zero!
+
+And if we want to zero this out to fine the optimal value for $\mu$, this is like: 
+
+$$
+\sum_{i = 1}^{n}\left(x_i - \mu\right) = 0 \implies n\mu = \sum_{i = 1}^{n}\left(x_i\right)
+$$
+
+The best parameter $\widehat{\mu}$ is the sample mean of the observed data. 
+
+Now, taking the derive wrt to the Standard Deviation, we have: 
+
+$$
+\frac{d}{d\sigma}
+\left[
+        -n\log (\sigma \sqrt{2\pi}) - 
+        \sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+    \right]
+    =
+    \frac{-n}{\sigma} - (-2)\sum_{i = 1}^{n}
+        \frac{(x_i - \mu)}{2\sigma^3}
+$$
+
+And after some re-arranging on the expression, we have:
+
+$$
+\frac{1}{\sigma^3}
+\left(
+    -n\sigma^2 + \sum_{i = 1}^{n}\left(x_i - \mu\right)^2
+\right) = 0
+$$
+
+And we factor out $\frac{1}{\sigma^3}$ and apply the optimality conditions to derivative, allowing us to solve for the optimal parameter for the Gaussian Distribution. 
+
+And, after some fancy math, solving it gives: 
+
+$$
+\widehat{\sigma}^2 = \frac{1}{n}\sum_{i = 1}^{n}\left(x_i - \widehat{\mu}\right)^2 
+$$
+
+Yes, here we also substitute the $\widehat{\mu}$, because these 2 parameters started interacting with each other. 
+
+
+
+
+
 
 ---
-### **Gaussians (Continuous Variables)**
-
-
-
+### **Summary**
+1. A list of observation, a lot of them. 
+2. Propose a model that can generate such a model, with under-determined parameters of for the model. 
+3. Phrase the likelihood, assuming idd for the sequence of observation
+4. Deal with the log of the likelihood
+5. Optimize it, with derivative, or some fancy algorithms to get the best parameters for the given observation and the models. 
+6. Do that a lot of time and get some estimate for the best parameters. 
