@@ -21,7 +21,7 @@ $$
 That. 
 
 ---
-### **Markove Inequality**
+### **Markov Inequality**
 
 For any $t\ge 0$ and **non-negative** random variable $X$, we have: 
 

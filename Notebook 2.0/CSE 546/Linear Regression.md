@@ -4,19 +4,11 @@ Here we are going to learn about linear regression.
 ---
 ### **Intro**
 
-The model is linear function, and the label we are predicting is a continuous value. 
+The model is linear function, and the label we are predicting is a continuous value.
+
+Here we consider the case that, $(x, y_i)$ is the training data and labels. For each sample, we observe multiple features and pack them into a vector. 
 
 Linear function, the labels is a vector of $x_i$, and the parameter for the linear function, the coefficient is denoted by: $w$ vector, and the labels we want to predict is denoted by: $y$ vector. 
-
-Then the function is gonna look like: 
-
-$$
-y = wx + \epsilon
-$$
-
-The vector that minimizes the lost is the least square solution to the system. 
-
-Now, we make a more general assumption by assuming multiple features for observations, denoted by a row data matrix $X$, and the labels are just one label, a real number. 
 
 The optimization problem we are trying to solve here is: 
 
@@ -29,7 +21,7 @@ $$
 \right\rbrace
 $$
 
-In addition, we are assuming that the system is over determined, meaning that there are more samples than the number of features in the dataset. 
+In addition, we are assuming that the system is over determined(The same thing as getting a full rank matrix), meaning that there are more samples than the number of features in the dataset. 
 
 And, the generative model we are looking at is: 
 
@@ -46,6 +38,51 @@ $$
 \widehat{w} = (X^TX)^{-1}X^Ty
 $$
 
-And, we are assuming a full-rank tall matrix. 
+And, we are assuming a full-rank tall matrix. Let $X\in \mathbb{n\times d}$, where $n$ is the number of samples and $d$ is the number of features. 
+
+To make the matrix **full-rank**, it has to be the case that $d \le n$, so that the matrix is at least skinny. Not hard to observe that this is a row data matrix. 
 
 This is just applied math 101, we can use both the project idea, or the gradient of the function to solve for the expression for the optimal parameter. 
+
+Well, For the educated among us, in practice, we rarely have a full rank feature matrix, and all the columns are linear independent. Hence usually regularizer are used. 
+
+---
+### **Linear Regression With Offset**
+
+This is the optimization problem with the offset vector $b$: 
+
+$$
+\widehat{w}, \widehat{b} = 
+\underset{w, b}{\text{argmin}} \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+$$
+
+Optimizing under the square 2-norm of course. 
+
+Notice that, without the offset is implying the fact that, the mean of all the sample is exactly zero. And that solution simple
+
+So them, let's offset all the samples by a $\mu$ vector, and transform the feature space into a new one like: 
+
+$$
+\mu =\frac{1}{n}X^T\mathbf{1} \quad \widetilde{X} = X - \mathbf{1}u^T 
+$$
+
+Take note that $X^T\mathbf{1}=\mu$ implies that, for each feature associated with the sample space, the mean for each of the feature is $\mu_i$, where $1 \le i \le d$. 
+
+And then the matrix $\mathbf{1}u^T$ is the outter product between these 2 vectors. And hence, after removal of the feature mean, we have $\widetilde{X}$ remains here. 
+
+And then, after this, we can just get **the optimal** $\hat{w}$ by the formula: $(\tilde{X}^T\tilde{X})^{-1}\tilde{X}^Ty$, giving us the optimal value for the regression coefficients. 
+
+Then, we can try to add back a vector $b$, so that the zero mean feature space matrix maps back to the original matrix, which can be given by: 
+
+$$
+\hat{b} = \frac{1}{n} \sum_{i = 1}^{n}\left(
+        y_i\right) - \mu^T\hat{w}
+$$
+
+---
+### **MLE, Gaussian and Least Square**
+
+There is a connection between the least square fit and the MLE for the Gaussian distribution, and that is also the reason why it makes least square a good model in under some certain cases.
+
+The connection is: Minimizing the square error for the Linear Regression Model is the same as optimizing for the best likelihood using the Gaussian Model, for a given set of observations. 
+

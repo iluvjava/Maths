@@ -26,3 +26,8 @@ $$
 
 Where $k$ is given as a constant. This is the heat equation, or the diffusion equation. 
 
+---
+### **Week 1**
+
+1. PDEs: Separations of Variables for Heat equation: [[Separation of Variables]]
+2. 
