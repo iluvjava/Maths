@@ -49,3 +49,5 @@ $$
 And, we are assuming a full-rank tall matrix. 
 
 This is just applied math 101, we can use both the project idea, or the gradient of the function to solve for the expression for the optimal parameter. 
+
+s
