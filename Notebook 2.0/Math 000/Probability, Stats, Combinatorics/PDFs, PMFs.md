@@ -35,3 +35,4 @@ $$
 The PMF must all be positive (Because probability) and their sum is always 1 (Because Probability). 
 
 The same thing can be said for PDFs, just replace the sum with the integral and we get the same thing. 
+
