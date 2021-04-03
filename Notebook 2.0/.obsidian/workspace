@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/jth Ordered Statistics.md",
+                    "file": "CSE 546/Hoeffding's Inequality.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/jth Ordered Statistics.md",
+                    "file": "CSE 546/Hoeffding's Inequality.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "CSE 546/jth Ordered Statistics.md",
+                "file": "CSE 546/Hoeffding's Inequality.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -115,7 +115,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -135,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/jth Ordered Statistics.md",
+                "file": "CSE 546/Hoeffding's Inequality.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +152,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Hoeffding's Inequality.md",
+    "CSE 546/Expectation of Random Variables.md",
     "CSE 546/jth Ordered Statistics.md",
     "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
     "CSE 546/Linear Regression.md",
@@ -158,8 +161,6 @@
     "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
     "AMATH 503/Fourier Series (PDEs Flavor).md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 583/CPP Namespaces.md",
-    "AMATH 515/Generalized Linear Model.md"
+    "AMATH 503/AMATH 503.md"
   ]
 }
