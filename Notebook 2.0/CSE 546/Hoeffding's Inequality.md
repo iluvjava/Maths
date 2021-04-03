@@ -2,7 +2,7 @@ The Hoffding's inequality relate the empirical mean and of a bunch of observatio
 
 This distribution is actually related to the Markov Inequality. [[Markov Inequality]]
 
-And  this (link)[https://www.wikiwand.com/en/Hoeffding%27s_inequality] is the wiki for this distribution. 
+And  this [link]([https://www.wikiwand.com/en/Hoeffding%27s_inequality) is the wiki for this distribution. 
 
 ---
 ### **Intro**

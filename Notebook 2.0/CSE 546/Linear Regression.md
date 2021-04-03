@@ -55,9 +55,21 @@ $$
 \underset{w, b}{\text{argmin}} \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
 $$
 
-Optimizing under the square 2-norm of course. 
+Optimizing under the square 2-norm of course. Where $b$ is a constant scalar and $\mathbf{1}$ is a vector of ones in it. 
 
-Notice that, without the offset is implying the fact that, the mean of all the sample is exactly zero. And that solution simple
+**The Centered Offset Approach**
+
+Notice that, without the offset is implying the fact that, the mean of all the sample is exactly zero. And that solution is simple. 
+
+let's consider rearranging things by a bit: 
+
+$$
+y - (Xw + \mathbf{1}b) = y - (X - \mathbf{1}\mu^T)w - \mathbf{1}\mu^T w - \mathbf{1}b
+$$
+
+This is like a standardization, where we make the matrix that is multiplying the vector $w$ into a standardized matrix. 
+
+Notice that, I inserted a rank-one matrix, which is the average of all the values of the features, represented as $\mathbf{1}\mu^T$. 
 
 So them, let's offset all the samples by a $\mu$ vector, and transform the feature space into a new one like: 
 
@@ -77,6 +89,51 @@ $$
 \hat{b} = \frac{1}{n} \sum_{i = 1}^{n}\left(
         y_i\right) - \mu^T\hat{w}
 $$
+
+
+**The Gradient Approach**
+
+$$
+\nabla_w \left[
+        \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+    \right]
+$$
+
+
+
+$$
+\nabla_b \left[
+        \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+    \right]
+$$
+
+
+**The Augmented Matrix Approach**
+
+Augment matrix $X$ to be: 
+
+$$
+\tilde{X} = \begin{bmatrix}
+    X & \mathbf{1 }
+\end{bmatrix}
+$$
+
+And then the new optimizing vector will be defined as: 
+
+$$
+\widetilde{w} = \begin{bmatrix}
+    w \\ b
+\end{bmatrix}
+$$
+
+Notice that, this will keep everything the same in such at way that: 
+
+$$
+Xw + \mathbf{1}b = \tilde{X}\tilde{w}
+$$
+
+
+
 
 ---
 ### **MLE, Gaussian and Least Square**
