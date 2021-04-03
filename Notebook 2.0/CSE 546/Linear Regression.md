@@ -64,10 +64,10 @@ Notice that, without the offset is implying the fact that, the mean of all the s
 let's consider rearranging things by a bit: 
 
 $$
-y - (Xw + \mathbf{1}b) = y - (X - \mathbf{1}\mu^T)w - \mathbf{1}\mu^T w - \mathbf{1}b
+y - (Xw + \mathbf{1}b) = y - (X - \mathbf{1}\mu^T)w - (\mathbf{1}\mu^T)w - \mathbf{1}b
 $$
 
-This is like a standardization, where we make the matrix that is multiplying the vector $w$ into a standardized matrix. 
+This is like a standardization, where we make the matrix that is multiplying the vector $w$ into a standardized matrix. So we optimize for $w$ first, and then we solve for the best $b$ vector. 
 
 Notice that, I inserted a rank-one matrix, which is the average of all the values of the features, represented as $\mathbf{1}\mu^T$. 
 
@@ -88,6 +88,8 @@ Then, we can try to add back a vector $b$, so that the zero mean feature space m
 $$
 \hat{b} = \frac{1}{n} \sum_{i = 1}^{n}\left(
         y_i\right) - \mu^T\hat{w}
+        = 
+        \frac{\mathbf{1}^Ty}{n} - \mu^T\hat{w}
 $$
 
 
@@ -132,8 +134,7 @@ $$
 Xw + \mathbf{1}b = \tilde{X}\tilde{w}
 $$
 
-
-
+Boom, and then we solve the problem wrt to $\hat{w}$, and the solution for that vector will contain the constant we need: $b$.  
 
 ---
 ### **MLE, Gaussian and Least Square**
@@ -191,5 +192,4 @@ $$
     \right\Vert_2^2
 $$
 
-Boom, this is exactly the same as the linear regression we talked above. 
-
+Boom, this is exactly the same as the linear regression we talked above.
