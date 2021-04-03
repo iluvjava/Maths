@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+                    "file": "CSE 546/Linear Regression.md",
                     "mode": "source"
                   }
                 },
@@ -32,7 +32,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+                    "file": "CSE 546/Linear Regression.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +49,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+                "file": "CSE 546/Linear Regression.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -119,7 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 284
+    "width": 328.0121879577637
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -135,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+                "file": "CSE 546/Linear Regression.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,15 +151,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Linear Regression.md",
+    "AMATH 584/Regression and Model Selection.md",
+    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
     "AMATH 503/Fourier Series (PDEs Flavor).md",
     "AMATH 503/AMATH 503.md",
     "AMATH 583/CPP Namespaces.md",
     "AMATH 515/Generalized Linear Model.md",
     "AMATH 503/Untitled.md",
-    "AMATH 581/Fourier Transform Fourier Series.md",
-    "AMATH 503/Separation of Variables.md",
-    "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
-    "CSE 546/Expectation of Random Variables.md"
+    "AMATH 581/Fourier Transform Fourier Series.md"
   ]
 }

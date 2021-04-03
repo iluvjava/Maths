@@ -1,4 +1,4 @@
- Here we are going to use Fourier Series, with application in solving PDEs. 
+Here we are going to use Fourier Series, with application in solving PDEs. 
 Here are some other Fourier related stuff: 
 
 [[Fourier Transform]], [[Fourier Transform Fourier Series]]

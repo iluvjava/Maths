@@ -1,6 +1,5 @@
 Here we are going to learn about linear regression. 
 
-
 ---
 ### **Intro**
 
@@ -32,7 +31,7 @@ $$
 With th residual vector $\epsilon$. 
 
 
-### **The Optimal Solution to Least Square Regression**
+### **The Optimal Solution to the Least Square Regression**
 
 $$
 \widehat{w} = (X^TX)^{-1}X^Ty
@@ -85,4 +84,55 @@ $$
 There is a connection between the least square fit and the MLE for the Gaussian distribution, and that is also the reason why it makes least square a good model in under some certain cases.
 
 The connection is: Minimizing the square error for the Linear Regression Model is the same as optimizing for the best likelihood using the Gaussian Model, for a given set of observations. 
+
+The model we are using is: 
+
+$$
+\epsilon = y - Xw - b
+$$
+
+Where, $y$ is the label vector, and $w$ is parameters of the model, and $b$ is the offset vector. 
+
+Let's pick up from the Maximal likelihood estimator [[Maximal Likelihood Estimator#Gaussian Continuous Variables]], and the log likelihood for the Gaussian Model over a sequence of observation is like: 
+
+$$
+\log P(D; \mu, \sigma) = 
+-n\log (\sigma \sqrt{2\pi}) - 
+\sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+$$
+
+Perfect, last time, the parameters we can tweak was $\mu, \sigma$, but this time the parameters we can tweak is: $w_i$, therefore we have the expression of maximizing the observed likelihood by tweaking $w$: 
+
+$$
+\underset{w}{\text{argmax}}
+\left\lbrace
+    -n\log (\sigma \sqrt{2\pi}) - 
+\sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+\right\rbrace
+$$
+
+And notice that, some of the terms are just constants and multiplier, therefore this can be simplify into: 
+
+$$
+\underset{w}{\text{argmax}}
+\left\lbrace
+    \sum_{i = 1}^{n}(x_i - \mu)^2
+\right\rbrace
+$$
+
+However, take note that, the variance is just $\epsilon$ as defined above, hence this is giving us the expression: 
+
+$$
+\underset{w}{\text{argmax}}
+\left\lbrace
+    \sum_{i = 1}^{n}(y_i - x_i^Tw)^2
+\right\rbrace
+\quad
+\underset{w}{\text{argmax}}
+    \left\Vert
+         y - Xw - b
+    \right\Vert_2^2
+$$
+
+Boom, this is exactly the same as the linear regression we talked above. 
 
