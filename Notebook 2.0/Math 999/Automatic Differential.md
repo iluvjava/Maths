@@ -29,14 +29,72 @@ $$
 From top to bottom, we will have: 
 
 $$
-w_1 + w_2\quad w_1 := f_1(w_3) \quad w_2 := w_4w_5
+f(x) := w_1 + w_2
 $$
+
+$$
+w_1 := f_1(w_3)
+$$
+
+$$
+w_2 := w_4w_5 
+$$
+
+$$
+w_3 := f_2(x)x 
+$$
+
+$$
+w_4 := f_3(x)
+$$
+
+$$
+w_5 := f_4(w_6)
+$$
+
+$$
+w_6 := f_5(x)
+$$
+
+And, this is a DAG graph, which is what a lot of computer science is exploiting. 
 
 
 **Forward Pass**: 
 
 Starting with the biggest model and recur downwards until it reach each of the individual variables (They are called "Seeds").
 
+So taking the derivative will be like: 
+
+$$f'(x) = w_1' + w_2'$$
+
+$$ w_1' = f_1'(w_3)w_3'$$
+
+$$
+w_3' = f_2(x) + xf_2'(x)
+$$
+
+$$
+w_2' = w_4'w_5 + w_4w_5'
+$$
+
+$$
+w_4' = f_3'(x)
+$$
+
+$$
+w_5' = f_4(w_6)w_6'
+$$
+
+$$
+w_6' = f_5(x)
+$$
+
+
+Question: Is this always a DAG? 
+
+Yes, because all derivative should ends somewhere with base case if we are taking the derivative correctly. And when we are taking the derivative, we are traveling in the computational graph from the outputs of the function to the inputs. 
+
+---
 **Backwards Pass**: 
 
 Start with one of the individual variable (seed) and then build up the differential until we reach the top module.
