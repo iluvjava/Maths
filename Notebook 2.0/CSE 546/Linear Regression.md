@@ -193,3 +193,50 @@ $$
 $$
 
 Boom, this is exactly the same as the linear regression we talked above.
+
+---
+### **Gaussian Noise**
+
+We are going to show that the expected value of the best parameter is indeed the,ground truth for the gaussian distribution.
+
+Consider some perturbations on the parameters: 
+
+$$
+\hat{w} = (X^TX)^{-1}X^T(Xw + \epsilon)
+$$
+
+Where we decided to add some noise. The assumption we made is that: 
+
+$$
+y_i =  x_i^Tw + \epsilon_i
+$$
+
+And, each row vector represent all the features of a given sample, in this case, it's the vector $x_i^T$. 
+
+Then, the predicted labels, with the ground truth value $w$ will be given as: 
+
+$$
+y = Xw + \epsilon
+$$
+
+and that is how we get the expression for $\hat{w}$. 
+
+In this case, let's show that $\hat{w}$ is an unbiased estimator: 
+
+$$
+\mathbb{E}\left[\hat{w}\right] - w
+=
+\mathbb{E}\left[
+        (X^TX)^{-1}X^TX^TXw + (X^TX)^{-1}X^T\epsilon
+    \right]
+$$
+
+And then we have: 
+
+$$
+\mathbb{E}\left[
+        w + (X^TX)^{-1}X^T\epsilon
+    \right]
+$$
+
+And the expected value for the Gaussian random vector is zero, therefore this quantity will equal to the ground truth: $w$. 
