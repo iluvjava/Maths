@@ -1,5 +1,11 @@
 Here we are going to learn about linear regression. 
 
+1. Define the problem 
+2. Get the closed form solution 
+3. Get the offset version of the problem and its solution 
+4. Show that the estimation for the parameters is unbiased. 
+5. Find the variance of the estimator of the best parameters. 
+
 ---
 ### **Intro**
 
@@ -97,17 +103,27 @@ $$
 
 $$
 \nabla_w \left[
+        \frac{1}{2}\Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+    \right]
+    =
+    -X^T (
+        y - (Xw + \mathbf{1}b)
+    ) = 0
+$$
+
+$$
+\partial_b \left[ \frac{1}{2}
         \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
     \right]
+    =
+    \mathbf{1}^T(y - (Xw + \mathbf{1}b))
+    = 
+    0
 $$
 
+I just added a $\frac{1}{2}$ so the derivative will come out without an extra 2 in  the front. 
 
-
-$$
-\nabla_b \left[
-        \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
-    \right]
-$$
+Gradient is for vector, and partial derivative is for the constant offset.
 
 
 **The Augmented Matrix Approach**
