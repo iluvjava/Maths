@@ -30,7 +30,7 @@ $$
 
 With th residual vector $\epsilon$. 
 
-
+---
 ### **The Optimal Solution to the Least Square Regression**
 
 $$
@@ -216,7 +216,7 @@ And, each row vector represent all the features of a given sample, in this case,
 Then, the predicted labels, with the ground truth value $w$ will be given as: 
 
 $$
-y = Xw + \epsilon
+y = Xw + \epsilon \tag{5546}
 $$
 
 and that is how we get the expression for $\hat{w}$. 
@@ -240,3 +240,108 @@ $$
 $$
 
 And the expected value for the Gaussian random vector is zero, therefore this quantity will equal to the ground truth: $w$. 
+
+**Covariance Matrix for the estimator**
+
+In this part, we are interested in the co-variance matrix of the random variable $\hat{w}$, which is given as: 
+
+$$
+\text{Var}\left[\hat{w}\right] = \mathbb{E}\left[
+        (\hat{w}
+            - \mathbb{E}\left[\hat{w}\right]
+        )(\hat{w}
+            - \mathbb{E}\left[\hat{w}\right]
+        )^T
+    \right]
+$$
+
+Which will give us the covariance matrix, and we make the same assumption as expression (5546), we will get that the expected value of the co-variance of the estimator will be like: 
+
+$$
+\hat{w} - \mathbb{E}\left[\hat{w}\right]
+= (X^TX)^{-1}X^T\epsilon
+$$
+
+So then: 
+$$
+(\hat{w} - \mathbb{E}\left[\hat{w}\right])(\hat{w} - \mathbb{E}\left[\hat{w}\right])^T
+=
+(X^TX)^{-1}X^T\epsilon
+\epsilon^TX(X^TX)^{-T}
+$$
+
+Notice that, the matrix $X^TX$ is a symmetric matrix, and hence, it's transpose is going to be the same, and the inverse transpose is still going to be the inverse. 
+
+THerefore we have: 
+
+$$
+(X^TX)^{-1}X^T\epsilon
+\epsilon^TX(X^TX)^{-T} 
+=
+(X^TX)^{-1}X^T\epsilon
+\epsilon^TX(X^TX)^{-1}
+$$
+
+And take note that, when we take the expected value of that, the expected value goes all the way inside to the term $\epsilon\epsilon^T$, and hence it's going to be: 
+
+$$
+\text{Var}\left[\hat{w}\hat{w}^T\right] = 
+(X^TX)^{-1}X^T
+\mathbb{E}\left[
+        \epsilon\epsilon^T
+    \right]
+X(X^TX)^{-1}
+$$
+
+Take note that, the epsilon vector is a vector of idd rvs where each $\epsilon_i$is drawn from the normal distribution, zero mean, and some kind of variance. 
+
+And it can be said that the variance of such a vector will be: 
+
+$$
+\mathbb{E}\left[\epsilon 
+    \epsilon^T
+\right]
+=
+\Sigma^2 = 
+\text{diag} \left(
+    \begin{bmatrix}
+        \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\\sigma_n^2
+    \end{bmatrix}
+\right)
+$$
+
+And this is the variance matrix.
+
+And hence, notice that, this matrix can be pull up to the front and giving us: 
+
+$$
+\text{Var}\left[\hat{w}\hat{w}^T\right] =
+(X^TX)^{-1}X^T \Sigma^2
+X(X^TX)^{-1}
+$$
+
+Notice that there is a matrix and matrix inverse product above, hence giving us: 
+
+$$
+\text{Var}\left[
+    \hat{w}\hat{w}^T
+    \right]
+=
+\Sigma^2
+(X^TX)^{-1} 
+$$
+
+Here we make the assumption that the distribution of the noise is homogenous, so that all the $\sigma_i^2$ equals to each other, therefore we can say that: 
+
+$$
+\text{Var}\left[\hat{w}\hat{w}^T\right]
+= 
+\sigma^2(X^TX)^{-1}
+$$
+
+$$
+\epsilon \sim \mathcal{N}(w, (X^TX)^{-1})
+$$
+
+
+Boom, we have both the variance and the expected value for the random variable $\hat{w}$. 
