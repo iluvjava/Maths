@@ -15,11 +15,12 @@
               {
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
+                "dimension": 48.82629107981221,
                 "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Hoeffding's Inequality.md",
+                    "file": "AMATH 582/Kernel PCA.md",
                     "mode": "source"
                   }
                 },
@@ -28,11 +29,12 @@
               {
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
+                "dimension": 51.173708920187785,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Hoeffding's Inequality.md",
+                    "file": "AMATH 582/Kernel PCA.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -49,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "CSE 546/Hoeffding's Inequality.md",
+                "file": "AMATH 582/Kernel PCA.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -115,8 +117,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -136,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Hoeffding's Inequality.md",
+                "file": "AMATH 582/Kernel PCA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -152,15 +153,15 @@
     "width": 212
   },
   "lastOpenFiles": [
-    "CSE 546/Hoeffding's Inequality.md",
-    "CSE 546/Expectation of Random Variables.md",
-    "CSE 546/jth Ordered Statistics.md",
-    "Math 000/Probability, Stats, Combinatorics/PDFs, PMFs.md",
-    "CSE 546/Linear Regression.md",
-    "AMATH 584/Regression and Model Selection.md",
-    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
-    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
-    "AMATH 503/Fourier Series (PDEs Flavor).md",
-    "AMATH 503/AMATH 503.md"
+    "AMATH 582/Kernel PCA.md",
+    "AMATH 582/Gabor Transform.md",
+    "AMATH 582/Fourier Transform.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
+    "AMATH 582/Proper Orthogonal Decomposition Intro.md",
+    "AMATH 582/Proper Orthogonal Decomposition.md",
+    "AMATH 581/Computer Bad at Maths.md",
+    "AMATH 502/Method of Multiple-Time Scale 2.md",
+    "AMATH 515/AMATH 515.md",
+    "CSE 546/Hoeffding's Inequality.md"
   ]
 }

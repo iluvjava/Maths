@@ -123,3 +123,4 @@ $$
 And by definition, this is the expected value for the joint distribution, of the random variable $g(X)$
 
 $\blacksquare$
+

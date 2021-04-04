@@ -1,10 +1,11 @@
-# Sigular Value Decomposition
+# Singular Value Decomposition
 
 Notations: * is the complex conjugate transpose
 
 Relevant Resources: [link1](http://pfister.ee.duke.edu/courses/ecen601/notes_ch8.pdf)
 Mit Lecture Notes on SVD: [link2](https://math.mit.edu/classes/18.095/2016IAP/lec2/SVD_Notes.pdf), 
 * Singular eigen vector of $A$ and $A^TA$ 
+
 
 ---
 

@@ -99,3 +99,10 @@ Yes, because all derivative should ends somewhere with base case if we are takin
 
 Start with one of the individual variable (seed) and then build up the differential until we reach the top module.
 
+---
+
+### **Why is this cool**
+
+Because it's implemented in deep learning tool box, and it can also take derivate wrt to functions involving conditional.   
+
+[Here](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html), the functionality is implemented in pytorch as `torch.autograd`
