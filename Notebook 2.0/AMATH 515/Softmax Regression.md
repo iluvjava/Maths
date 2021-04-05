@@ -8,22 +8,22 @@ The softmax regression is a on layer Neural Networks with a softmax activation f
 
 This is a model where the inputs are features, and the output is a categorical vector. Basically: $y\in\mathbb{Z}^{q}_+$
 
-The prediction vector made my the model is a vector of probability, meaning that: 
+The prediction vector made my the model is a vector of probability, meaning that:
 
 $$
 \sum_{i = 1}^{d}\hat{y}_i = 1
 $$
 
-Where, the sum of probability equals to one. 
+Where, the sum of probability equals to one.
 
-The label vector that used for testing is a standard basis vector, where the correct label is marked with $1$ on it. 
+The label vector that used for testing is a standard basis vector, where the correct label is marked with $1$ on it.
 
 ---
 ### **Setting Things up**
 
-Let $X$ be a example features set with dimensionality $d$, number of inputs, and sample size $n$, number of samples. Hence: $X\in\mathbb{R}^{n\times d}$, and the weights of the model is matrix: $W\in \mathbb{R}^{d\times q}$, and a bias vector, which is written as: $b\in \mathbb{R}^{1\times q}$. Where $q$ is the number of labels the model is going to produce. 
+Let $X$ be a example features set with dimensionality $d$, number of inputs, and sample size $n$, number of samples. Hence: $X\in\mathbb{R}^{n\times d}$, and the weights of the model is matrix: $W\in \mathbb{R}^{d\times q}$, and a bias vector, which is written as: $b\in \mathbb{R}^{1\times q}$. Where $q$ is the number of labels the model is going to produce.
 
-And, the set of labels with probability produced will be denoted as: 
+And, the set of labels with probability produced will be denoted as:
 
 $$
 \hat{Y} = \text{softmax}(XW + b)
@@ -31,13 +31,12 @@ $$
 $$ 
 [^1]
 
-And the $Y$ matrix is $n \times d$. 
+And the $Y$ matrix is $n \times d$.
 
-We are also define the output function to be: 
+We are also define the output function to be:
 $$
 O = WX + b
 $$
-
 
 ### **Loss Function**
 
@@ -130,4 +129,3 @@ Note: This is actually a common occurrence for generalized linear model. [^3]
 [^1]: The vector $b$ is broadcasted into a matrix when summing up with $XW$. 
 [^2]: Take it as true, can't find good resources on the internet for it.
 [^3]: stated [here](https://d2l.ai/chapter_linear-networks/softmax-regression.html)
-

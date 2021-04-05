@@ -20,7 +20,7 @@ If a solution is not separable, but we did it anyway, we might get infinitely ma
 For the class, you don't have to show everything when solving ODEs, it's assumed that you know it so well that you can do it with eyes closed. Just stated he results and it will be fine. 
 
 ---
-### **Separation of Variables: Setting things up**
+### **Separation of Variables: Setting things up (Dirichlet Boundary Conditions)**
 
 Let's say that the solution is the product of 2 functions, then it will be like: 
 
@@ -95,6 +95,7 @@ $$
     \\
     T'(t) + c^2\lambda^2T(t) = 0
 \end{cases}
+\tag{1}
 $$
 
 And we have 2 ODEs. $c^2$ is the thermal conductivity. However, we need to determine what $\lambda^2$ is to get the solutions for the system. Solve the first one to get $\lambda^2$ and then we solve the second one with known $\lambda^2$. 
@@ -125,6 +126,7 @@ $$
 
 $$
 X(0) = 0 \implies A\sin(0) = B\cos(0) = 0 \implies B = 0
+\tag{2}
 $$
 
 Solving the other boundary condition, we have: 
@@ -139,7 +141,7 @@ $$
 \sin(\lambda L) = 0 \implies \lambda_n = \frac{n\pi}{L} \forall \; n\in \mathbb{N}
 $$
 
-And $\lambda_n$ are called the eigenvalues, and for each value of $\lambda_n$ there is a eigenfunction associated with it. The function will be like: 
+And $\lambda_n$ are called the eigenvalues, and for each value of $\lambda_n$ there is a Basis Function associated with it. The function will be like: 
 
 $$
 \sin \left(
@@ -229,4 +231,63 @@ And, solving this with Fourier Series, we will get the solution, but we are skip
 
 **Notice that**, the exponent of the $\exp$ is getting super negative as $n\rightarrow \infty$ (very fast decay as $t\rightarrow \infty$), this means that, as time moves on, the shape of the solution is dominated by features of low frequencies harmonics, making the heat distribution getting smoother and smoother. 
 
+
 ---
+### **Setting Things up (Neumann Boundary Conditions)**
+
+Here, we are assuming the **Neumann Boundary** conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. 
+
+Boundary Conditions: 
+
+$$
+u_x(x = 0, L, t) = 0 \quad \forall t > 0
+$$
+
+And the initial conditions stays the same. When the derivative of the function is zero, it's saying that there is no diffusion of heat going on.
+
+Let's just grab the results from expression (2), and then we can mix them with the above boundary conditions, so that is taking the derivative: 
+
+$$
+A\lambda\cos(\lambda x) - B\lambda\sin(\lambda x) = X'(x)
+$$
+
+So then we have: 
+
+$$
+X'(x=0, L)T(t) = 0
+$$
+
+So then $A = 0$, and then: 
+
+$$
+-B\lambda\sin(\lambda x) = 0 \implies \sin(\lambda x) = 0 \implies \lambda = \frac{n\pi}{L}\quad \forall n\in \{0, 1, 2, \cdots\}
+$$
+
+**However, there is another case where** $B\lambda = 0$...? 
+
+If $\lambda != 0$, and the $B = 0$, then $A = 0$, hence we have the trivial solution of $X(x) = 0$. When $\lambda =0$, $X(x) = B$, we have a constant function for the spatial solution, which is not a trivial solution, therefore, the case where $\lambda = 0$ is included.  
+
+We had the same set of eigenvalues, but where is the eigen functions for the system? 
+
+It's there because: 
+
+$$
+X(x) = B\cos(\lambda x)
+$$
+
+And then, we have the Basisfunction To be $\cos$ in this case. And we are normalizing it as just $\cos$.
+
+By principal of super position, the solution is going to take the form: 
+
+$$
+u(x, t) = 
+\sum_{n = 0}^{\infty}
+T_n(0)\exp
+\left(
+    - \frac{-n^2t}{\tilde{t}}
+\right)
+\cos\left(
+        \frac{n\pi x}{L}
+    \right)
+$$
+
