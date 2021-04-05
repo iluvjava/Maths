@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+                    "file": "AMATH 515/Softmax Regression.md",
                     "mode": "source"
                   }
                 },
@@ -34,7 +34,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+                    "file": "AMATH 515/Softmax Regression.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -51,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+                "file": "AMATH 515/Softmax Regression.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+                "file": "AMATH 515/Softmax Regression.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,6 +153,7 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 515/Softmax Regression.md",
     "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
     "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
     "AMATH 582/Kernel PCA.md",
@@ -161,7 +162,6 @@
     "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
     "AMATH 582/Proper Orthogonal Decomposition Intro.md",
     "AMATH 582/Proper Orthogonal Decomposition.md",
-    "AMATH 581/Computer Bad at Maths.md",
-    "AMATH 502/Method of Multiple-Time Scale 2.md"
+    "AMATH 581/Computer Bad at Maths.md"
   ]
 }

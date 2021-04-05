@@ -106,3 +106,5 @@ Start with one of the individual variable (seed) and then build up the different
 Because it's implemented in deep learning tool box, and it can also take derivate wrt to functions involving conditional.   
 
 [Here](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html), the functionality is implemented in pytorch as `torch.autograd`
+
+And for Tensor Flow API, see [here](https://www.tensorflow.org/guide/advanced_autodiff). 
