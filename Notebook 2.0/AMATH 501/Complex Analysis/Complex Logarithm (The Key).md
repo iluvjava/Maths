@@ -6,8 +6,6 @@ prereq: [[Complex Number]] We need to know about the principal argument of a com
 More resources: [Branch Cut](https://mathworld.wolfram.com/BranchCut.html)
 
 ---
-
-
 ### Introduction 
 
 So the log function, the old version is going to return a set of arguments for a given complex function, and it's going to be a bit hard to handle as a function. (So the graph will be related to the Riemann Spiral and stuff like that. )

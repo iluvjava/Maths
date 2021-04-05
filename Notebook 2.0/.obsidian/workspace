@@ -10,7 +10,7 @@
           {
             "id": "1343964c115356af",
             "type": "split",
-            "dimension": 80.67632850241546,
+            "dimension": 81.85451638689048,
             "children": [
               {
                 "id": "9d52a05e1cb6917a",
@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 582/Kernel PCA.md",
+                    "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
                     "mode": "source"
                   }
                 },
@@ -34,7 +34,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 582/Kernel PCA.md",
+                    "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -47,11 +47,11 @@
           {
             "id": "24f6750d48e7d2c8",
             "type": "leaf",
-            "dimension": 19.32367149758454,
+            "dimension": 18.145483613109512,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 582/Kernel PCA.md",
+                "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -74,7 +74,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.7132754626224432,
+                  "scale": 0.9570253616183665,
                   "close": true
                 }
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 582/Kernel PCA.md",
+                "file": "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,6 +153,8 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
+    "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
     "AMATH 582/Kernel PCA.md",
     "AMATH 582/Gabor Transform.md",
     "AMATH 582/Fourier Transform.md",
@@ -160,8 +162,6 @@
     "AMATH 582/Proper Orthogonal Decomposition Intro.md",
     "AMATH 582/Proper Orthogonal Decomposition.md",
     "AMATH 581/Computer Bad at Maths.md",
-    "AMATH 502/Method of Multiple-Time Scale 2.md",
-    "AMATH 515/AMATH 515.md",
-    "CSE 546/Hoeffding's Inequality.md"
+    "AMATH 502/Method of Multiple-Time Scale 2.md"
   ]
 }
