@@ -108,3 +108,5 @@ Because it's implemented in deep learning tool box, and it can also take derivat
 [Here](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html), the functionality is implemented in pytorch as `torch.autograd`
 
 And for Tensor Flow API, see [here](https://www.tensorflow.org/guide/advanced_autodiff). 
+
+And for tutorial from tensor flow, check [here](https://www.tensorflow.org/guide/autodiff) for more. 

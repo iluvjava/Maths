@@ -1,5 +1,6 @@
 Ramblings from the prof regarding C++
-
+1. Functions 
+2. Compilations of multiple files. 
 
 ---
 
@@ -117,9 +118,9 @@ auto sqrt583(double y){
 }
 ```
 
-To compile the program where "main.cpp" can be correctly executed, we need the command: `c++ main.cpp sqrtamath583.cpp`, where function declaration comes before the function definition. 
+To compile the program where "main.cpp" can be correctly executed, we need the command: `c++ main.cpp sqrtamath583.cpp`, where function declaration comes before the function definition. (Dependency chart in topological order)
 
-Then, the program compiles both parts of the program together. 
+Then, the program compiles both parts of the program together. **Compiler is linking the files**. We just need to feed them into the compiler in the right way. 
 
 ---
 ### **Multi-stage Compilation**
