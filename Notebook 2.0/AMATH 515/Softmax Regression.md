@@ -127,7 +127,6 @@ Which is the difference from the output of the generative model and the actual l
 Note: This is actually a common occurrence for generalized linear model. [^3]
 
 
-
 [^1]: The vector $b$ is broadcasted into a matrix when summing up with $XW$. 
 [^2]: Take it as true, can't find good resources on the internet for it.
 [^3]: stated [here](https://d2l.ai/chapter_linear-networks/softmax-regression.html)
