@@ -1,1 +1,1 @@
-Cholesky decomposition is the LU decomposition of Hermitian Matrices. 
+Cholesky decomposition is the LU decomposition of Hermitian Matrices that are symmetric definite. 

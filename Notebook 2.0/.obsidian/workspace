@@ -6,14 +6,53 @@
       {
         "id": "9b1308947716083a",
         "type": "leaf",
+        "dimension": 66.73320026613439,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Schur Decomposition.md",
-            "mode": "preview"
+            "file": "CSE 546/CSE 546.md",
+            "mode": "source"
           }
-        }
+        },
+        "group": "cbd7e509d9598eaf"
+      },
+      {
+        "id": "d2481e5185ba27a0",
+        "type": "leaf",
+        "dimension": 33.266799733865604,
+        "state": {
+          "type": "localgraph",
+          "state": {
+            "file": "CSE 546/CSE 546.md",
+            "options": {
+              "collapse-filter": true,
+              "search": "",
+              "localJumps": 1,
+              "localBacklinks": true,
+              "localForelinks": true,
+              "localInterlinks": false,
+              "showTags": false,
+              "showAttachments": false,
+              "hideUnresolved": false,
+              "collapse-color-groups": true,
+              "colorGroups": [],
+              "collapse-display": true,
+              "showArrow": false,
+              "textFadeMultiplier": 0,
+              "nodeSizeMultiplier": 1,
+              "lineSizeMultiplier": 1,
+              "collapse-forces": true,
+              "centerStrength": 0.518713248970312,
+              "repelStrength": 10,
+              "linkStrength": 1,
+              "linkDistance": 250,
+              "scale": 1,
+              "close": false
+            }
+          }
+        },
+        "group": "cbd7e509d9598eaf"
       }
     ],
     "direction": "vertical"
@@ -69,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Schur Decomposition.md",
+                "file": "CSE 546/CSE 546.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,15 +124,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/CSE 546.md",
+    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
+    "AMATH 584/LU Decomposition.md",
     "AMATH 584/Schur Decomposition.md",
-    "AMATH 584/Stability and Conditioning.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/Eigen Decompose.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
     "Math 000/Linear Algebra/Matrix Decomposition/QR.md",
     "Math 000/Linear Algebra/Matrix Decomposition/LU.md",
-    "CSE 546/Chebyshev's Inequality.md",
-    "AMATH 584/Regularization.md",
-    "AMATH 582/Compressive Sensing.md",
-    "Math 000/Probability, Stats, Combinatorics/Methods of Moment.md"
+    "AMATH 583/AMATH 583.md",
+    "AMATH 584/Stability and Conditioning.md"
   ]
 }
