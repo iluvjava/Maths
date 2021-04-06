@@ -30,6 +30,3 @@ $ sudo apt-get install python python-dev python-matplotlib
 $ sudo apt-get install python3 python3-dev python3-matplotlib
 ```
 
-
-
-

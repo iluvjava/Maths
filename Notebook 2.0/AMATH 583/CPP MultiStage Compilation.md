@@ -42,7 +42,7 @@ main.exe: main.o amath583.o
 main.o: main.cpp amath583.hpp
     c++ -c main.cpp -o main.o
 amath583.o: amath583.cpp
-    c++ -c amath 583.cpp -o amath583.o
+    c++ -c amath583.cpp -o amath583.o
 ```
 
 Basically, we are telling the make command that, here is the list of dependency between the object files and the root files we need to compile the source codes, and the line indented are the command to compile the files with dependency. 

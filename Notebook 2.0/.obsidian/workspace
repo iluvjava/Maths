@@ -16,10 +16,11 @@
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
                 "dimension": 48.82629107981221,
+                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Performance Metric.md",
+                    "file": "CSE 546/Bias Variance Tradeoff.md",
                     "mode": "source"
                   }
                 },
@@ -29,12 +30,11 @@
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
                 "dimension": 51.173708920187785,
-                "active": true,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Performance Metric.md",
+                    "file": "CSE 546/Bias Variance Tradeoff.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -51,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "CSE 546/Performance Metric.md",
+                "file": "CSE 546/Bias Variance Tradeoff.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Performance Metric.md",
+                "file": "CSE 546/Bias Variance Tradeoff.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,15 +153,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Bias Variance Tradeoff.md",
     "CSE 546/Performance Metric.md",
-    "CSE 546/Generalized Linear Regression.md",
-    "AMATH 515/Generalized Linear Model.md",
-    "CSE 546/CSE 546.md",
-    "CSE 546/Untitled.md",
+    "CSE 546/Hoeffding's Inequality.md",
     "AMATH 583/CPP MultiStage Compilation.md",
     "AMATH 583/CPP Basics 1.md",
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
     "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Separation of Variables.md"
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 515/Softmax Regression.md",
+    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md"
   ]
 }

@@ -7,6 +7,23 @@ For this class we are making our own vector class that adhere to the vector fiel
 ---
 ### **Intro**
 
+The axioms set of the vector fields is like: 
+
+* Additive Operations: 
+  * x + y = y + x, Commutative. 
+  * (x + y) + z = x + (y + z), Associative
+  * 0 + x = x + 0 = x, Exists Identity Member: 0
+  * (-x) + x = x + (-x) = 0, Additive Inverse and the Identity member. 
+* Multiplicative Operations: 
+  * 0x = 0, Addictive identity multiply by any member gives itself. 
+  * 1x = x, There exists a multiplicative identity member. 
+  * (cd)x = c(dx), Multiplication is associative. 
+* Distributive Axioms: 
+  * c(x + y) = cx + cy 
+  * (c+ d)x = cx + dx
+
+**Note**: Operations between scalar and vectors is not defined above yet. 
+
 The basis for storing our mathematical Vector will be an array under the hood.
 
 The CPP has N-Tuple Types, but we don't have enough operations for it. 
@@ -91,9 +108,34 @@ class Vector {
 Boom! Ok, this is what we need for the situation.  
 
 ---
+### **The Vector Class We have So far**
+
+
+```cpp
+
+public: 
+    Vector(size_t M): num_rows_(M), storate(num_rows_){}; // Constructor
+    double& operator()(size_t i){return storage[i];}
+    const double& operator(size_t i){return storage[i];}
+    size_t num_rows() const {return num2_rows_;} 
+
+private: 
+    size_t num_rows_;
+    std::vector<double> storage_;
+
+```
+
+Things to note: 
+
+1. For the member function `num_rows`, there is a `const`, which is indicating to the compiler (signing up a contract during compile time), this function will not modify the state of the object. 
+
+2. For the member function `opertor()(size_t i)`, it's returning a reference to the field member `storage[i]`, which is a value of a type `vector<double>`. And hence, (it's very likely that, `operator[]` of the member `vecotor<double>` is also returning a reference of temmplate type `<double>`) it can be put as a `rvalue` for an expression. 
+
+
+---
 ### **The infectious Constness**
 
-This thing, it will be propergating through your code when you compile it. 
+This thing, it will be propagating through your code when you compile it. 
 
 
 
