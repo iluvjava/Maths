@@ -16,7 +16,6 @@
                 "id": "9d52a05e1cb6917a",
                 "type": "leaf",
                 "dimension": 48.82629107981221,
-                "active": true,
                 "state": {
                   "type": "markdown",
                   "state": {
@@ -30,6 +29,7 @@
                 "id": "53e24570bda9d1e6",
                 "type": "leaf",
                 "dimension": 51.173708920187785,
+                "active": true,
                 "pinned": true,
                 "state": {
                   "type": "markdown",
