@@ -7,4 +7,6 @@ Here, we are combining both the Fourier Sines and Fourier Cosine series.
 
 ### **Intro**
 
+The Fourier Series is Periodic. 
 
+Heat conduction in a metal rod. 

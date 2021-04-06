@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Vapnik–Chervonenkis dimension.md",
+                    "file": "Math 999/Universal Approximation Thoerem of Neural Nets.md",
                     "mode": "source"
                   }
                 },
@@ -34,7 +34,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "Math 999/Vapnik–Chervonenkis dimension.md",
+                    "file": "Math 999/Universal Approximation Thoerem of Neural Nets.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -51,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 999/Vapnik–Chervonenkis dimension.md",
+                "file": "Math 999/Universal Approximation Thoerem of Neural Nets.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 999/Vapnik–Chervonenkis dimension.md",
+                "file": "Math 999/Universal Approximation Thoerem of Neural Nets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
