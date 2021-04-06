@@ -18,7 +18,6 @@ $$
 \mathbb{P}\left(Y|X = x\right)
 $$
 
-
 ### **Performance Metric of Statistical Learning**
 
 We want to look for function $\eta$ such that it **minimizes** the quantity of: 
@@ -37,4 +36,4 @@ We are taking the expectation of all population of $X, Y$, this formulation is v
 
 And, we make different hypothesis on the function $\eta$, and then that is what we did in part: 
 
-**Note**: Notice that, this one is carried out without the usage of a generative model and the type of noises that are involved. 
+**Note**: Notice that, this one is carried out without the usage of a generative model and the type of noises that are involved.
