@@ -19,7 +19,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 583/CPP MultiStage Compilation.md",
+                    "file": "CSE 546/Performance Metric.md",
                     "mode": "source"
                   }
                 },
@@ -34,7 +34,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 583/CPP MultiStage Compilation.md",
+                    "file": "CSE 546/Performance Metric.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -51,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 583/CPP MultiStage Compilation.md",
+                "file": "CSE 546/Performance Metric.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPP MultiStage Compilation.md",
+                "file": "CSE 546/Performance Metric.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,15 +153,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "CSE 546/Performance Metric.md",
+    "CSE 546/Generalized Linear Regression.md",
+    "AMATH 515/Generalized Linear Model.md",
+    "CSE 546/CSE 546.md",
+    "CSE 546/Untitled.md",
     "AMATH 583/CPP MultiStage Compilation.md",
     "AMATH 583/CPP Basics 1.md",
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
     "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 515/Softmax Regression.md",
-    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md",
-    "AMATH 501/Complex Analysis/Calculus of Residual 3.4.md",
-    "AMATH 582/Kernel PCA.md",
-    "AMATH 582/Gabor Transform.md"
+    "AMATH 503/Separation of Variables.md"
   ]
 }
