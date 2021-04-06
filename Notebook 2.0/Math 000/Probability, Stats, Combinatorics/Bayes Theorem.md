@@ -1,5 +1,8 @@
 Bayes Theorem
 
+Here are some reference in use: 
+
+[Explain Bayes like I am Five](https://towardsdatascience.com/all-about-naive-bayes-8e13cef044cf)
 
 ---
 
@@ -44,4 +47,14 @@ $$
 $$
 
 People who actually have that disease and they actually got tested positive on that disease divides the totally number of people who have that rare disease. 
+
+---
+### **Naive Bayes**
+
+However, it might be better to also consider the more general context. 
+
+Say that, we are interested in the causality. 
+
+
+
 

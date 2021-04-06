@@ -18,6 +18,7 @@ $$
 \mathbb{P}\left(Y|X = x\right)
 $$
 
+---
 ### **Performance Metric of Statistical Learning**
 
 We want to look for function $\eta$ such that it **minimizes** the quantity of: 
