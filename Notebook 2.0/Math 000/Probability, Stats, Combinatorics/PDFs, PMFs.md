@@ -41,7 +41,7 @@ The same thing can be said for PDFs, just replace the sum with the integral and 
 ---
 ### **CDF**
 
-CDF, Cumulative frequency function models the probability, let $F(x)$ be the cumulative frequency function for random variable $X$, and let $f(x)$ be the PDF for the random variable $X$, then it's definition is: 
+CDF, Cumulative frequency function models the probability, let $F(x)$ be th e cumulative frequency function for random variable $X$, and let $f(x)$ be the PDF for the random variable $X$, then it's definition is: 
 
 $$
 F(a) = \mathbb{P}\left(X \le a\right) = \int_{-\infty}^{a} f(x)dx
