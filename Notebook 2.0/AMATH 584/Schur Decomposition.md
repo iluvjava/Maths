@@ -4,10 +4,11 @@
 prereq: [[SVD]] When the matrix happens to be normal, then the Shur decomposition is the the same as the SVD decomposition for the normal matrix (possibly with different signs), not only that, it will also be the Eigen Decomposition of the matrix too, which is really cool. 
 prereq: [[Matrices]] read about normal matrix. 
 
+
 ---
 
 ### Intro 
-The Schur decomposition is applicable to **all square matrices** with when the matrix is defected. 
+The Schur decomposition is applicable to **all square matrices** even if when the matrix is defected. 
 
 > $$A = QTQ^H$$ 
 

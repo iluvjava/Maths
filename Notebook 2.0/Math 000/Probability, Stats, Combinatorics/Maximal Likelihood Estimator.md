@@ -2,6 +2,8 @@ MLE is a statistical tool. It looks for a model the maximizes the likelihood for
 
 References: Random Googling and the CSE 312 Textbook. 
 
+For this topic, you might also be interested in another way of estimating the parameters involved in a model, it's the [[Methods of Moment]]. 
+
 ---
 ### **Intro**
 

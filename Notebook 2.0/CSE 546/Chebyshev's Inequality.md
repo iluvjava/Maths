@@ -1,8 +1,11 @@
 It's an inequality that related the extreme value of some observation and the the variance of the distribution. 
 
+This is derived using: [[Markov Inequality]]
+
+The Chebyshev's Inequality is going to be compatible with random variables that can be negative. 
 
 ---
-**### Intro**
+### **Intro**
 
 $X$ is a random variable with finite mean and variance $\mu,\sigma$, then for any real number $k>0$, we have: 
 

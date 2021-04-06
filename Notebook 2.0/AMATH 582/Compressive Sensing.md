@@ -2,6 +2,8 @@ Reference Lecture Video: [link](https://www.youtube.com/watch?v=rt5mMEmZHfs&feat
 
 Looking for sparse representation, and it's application in signal processing. 
 
+[[Regularization]]
+
 ---
 ### Intro
 
