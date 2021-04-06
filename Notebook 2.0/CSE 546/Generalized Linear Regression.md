@@ -98,3 +98,6 @@ And it transform the features from $\mathbb{R}^d$ into $\mathbb{R}^p$.
 
 And it will be like: $w \in\mathbb{R}^p$. 
 
+**Ok, where we seem this before?**
+
+Well, it's in here: [[Generalized Linear Model]], where, we talked  about the logistic regression, and also [[Softmax Regression]]. 
