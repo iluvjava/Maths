@@ -20,7 +20,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Bias Variance Tradeoff.md",
+                    "file": "Math 999/Vapnik–Chervonenkis dimension.md",
                     "mode": "source"
                   }
                 },
@@ -34,7 +34,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "CSE 546/Bias Variance Tradeoff.md",
+                    "file": "Math 999/Vapnik–Chervonenkis dimension.md",
                     "mode": "preview"
                   },
                   "pinned": true
@@ -51,7 +51,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "CSE 546/Bias Variance Tradeoff.md",
+                "file": "Math 999/Vapnik–Chervonenkis dimension.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -137,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Bias Variance Tradeoff.md",
+                "file": "Math 999/Vapnik–Chervonenkis dimension.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,15 +153,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "Math 999/Untitled.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
+    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+    "AMATH 503/Fourier Cosine Series.md",
     "CSE 546/Bias Variance Tradeoff.md",
     "CSE 546/Performance Metric.md",
     "CSE 546/Hoeffding's Inequality.md",
     "AMATH 583/CPP MultiStage Compilation.md",
     "AMATH 583/CPP Basics 1.md",
-    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
-    "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 515/Softmax Regression.md",
-    "AMATH 501/Complex Analysis/Complex Logarithm (The Key).md"
+    "AMATH 503/Separation of Variables.md"
   ]
 }
