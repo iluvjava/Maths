@@ -233,7 +233,7 @@ And, solving this with Fourier Series, we will get the solution, but we are skip
 
 
 ---
-### **Setting Things up (Neumann Boundary Conditions)**
+### **Neumann Boundary Conditions**
 
 Here, we are assuming the **Neumann Boundary** conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. 
 
@@ -291,3 +291,33 @@ T_n(0)\exp
     \right)
 $$
 
+
+---
+### **Periodic Boundary Conditions**
+
+
+let's pick up from the ODEs system from expression one, right after the assumption of the separation of variables. 
+
+he **Boundary Condition** is: 
+
+$$
+u(L, t) = u(-L, t) \quad \forall t > 0 \tag{4}
+$$
+
+And because heat is going to flow through the point, the derivative will also has to be equal to each other: 
+
+$$
+u_x(L, t) = u_x(-L, t) \qquad \forall t > 0 \tag{5}
+$$
+
+let's connect it back to the system of ODEs, together with the combined boundary conditions, we will have: 
+
+$$
+\begin{cases}
+    X''(x) - kX(x) = 0    \\
+    X(L) = X(-L)  \\
+    X'(L) = X'(-L)
+\end{cases}\tag{6}
+$$
+
+The periodic Boundary conditions now has been included with a system equations: 

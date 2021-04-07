@@ -6,53 +6,27 @@
       {
         "id": "9b1308947716083a",
         "type": "leaf",
-        "dimension": 66.73320026613439,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/CSE 546.md",
+            "file": "AMATH 503/Separation of Variables.md",
             "mode": "source"
           }
         },
-        "group": "cbd7e509d9598eaf"
+        "group": "b0c7783998e83990"
       },
       {
-        "id": "d2481e5185ba27a0",
+        "id": "4e31a3bc0b12d2e2",
         "type": "leaf",
-        "dimension": 33.266799733865604,
         "state": {
-          "type": "localgraph",
+          "type": "markdown",
           "state": {
-            "file": "CSE 546/CSE 546.md",
-            "options": {
-              "collapse-filter": true,
-              "search": "",
-              "localJumps": 1,
-              "localBacklinks": true,
-              "localForelinks": true,
-              "localInterlinks": false,
-              "showTags": false,
-              "showAttachments": false,
-              "hideUnresolved": false,
-              "collapse-color-groups": true,
-              "colorGroups": [],
-              "collapse-display": true,
-              "showArrow": false,
-              "textFadeMultiplier": 0,
-              "nodeSizeMultiplier": 1,
-              "lineSizeMultiplier": 1,
-              "collapse-forces": true,
-              "centerStrength": 0.518713248970312,
-              "repelStrength": 10,
-              "linkStrength": 1,
-              "linkDistance": 250,
-              "scale": 1,
-              "close": false
-            }
+            "file": "AMATH 503/Separation of Variables.md",
+            "mode": "preview"
           }
         },
-        "group": "cbd7e509d9598eaf"
+        "group": "b0c7783998e83990"
       }
     ],
     "direction": "vertical"
@@ -108,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/CSE 546.md",
+                "file": "AMATH 503/Separation of Variables.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,15 +98,15 @@
     "width": 212
   },
   "lastOpenFiles": [
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
+    "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
     "CSE 546/CSE 546.md",
     "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
     "AMATH 584/LU Decomposition.md",
     "AMATH 584/Schur Decomposition.md",
     "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/QR.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/LU.md",
-    "AMATH 583/AMATH 583.md",
-    "AMATH 584/Stability and Conditioning.md"
+    "Math 000/Linear Algebra/Matrix Decomposition/QR.md"
   ]
 }
