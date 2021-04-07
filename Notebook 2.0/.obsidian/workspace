@@ -6,11 +6,10 @@
       {
         "id": "9b1308947716083a",
         "type": "leaf",
-        "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Separation of Variables.md",
+            "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
             "mode": "source"
           }
         },
@@ -22,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Separation of Variables.md",
+            "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
             "mode": "preview"
           }
         },
@@ -82,12 +81,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Separation of Variables.md",
+                "file": "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           }
@@ -97,16 +98,17 @@
     "direction": "horizontal",
     "width": 212
   },
+  "active": "9b1308947716083a",
   "lastOpenFiles": [
-    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+    "AMATH 503/Dirichlet Theorem.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/AMATH 503.md",
+    "AMATH 503/Fourier Cosine Series.md",
+    "AMATH 503/Untitled.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
     "CSE 546/CSE 546.md",
-    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md",
-    "AMATH 584/LU Decomposition.md",
-    "AMATH 584/Schur Decomposition.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/SVD.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/QR.md"
+    "Math 000/Probability, Stats, Combinatorics/Maximal Likelihood Estimator.md"
   ]
 }

@@ -191,7 +191,7 @@ And under the case where we have Cylindrical Geometry, we have Bassel functions.
 
 ### **At the Boundary**
 
-In the discussion of the Cosine Fourier series, we know that the representation of a $\sin$ series is going to take the average at the boundary. This is the Dirichlet Theorem. 
+In the discussion of the Cosine Fourier series, we know that the representation of a $\sin$ series is going to take the average at the boundary. This is the [[Dirichlet Theorem]]. 
 
 However, when representing a constant of $y = 100$, the cosine series will be OK, both inside and outside of the interval. 
 

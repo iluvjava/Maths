@@ -194,7 +194,7 @@ The series is only equal to $F(x)$ on the $[0, L]$ interval.
 
 One the boundary, $x = 0, x = L$, there is the **Gibbs Phenomena**[^4], it's over shooting on the edge just by a tiny bit whenever the function is not continuous when we augment it periodically, as $n\rightarrow \infty$, the width of the over shoot gets infinitely small. Note: It's a fixed amount of overshoot, it's not shooting to infinity or anything like that. 
 
-**Dirichlet Theorem**
+**[[Dirichlet Theorem]]**
 
 At the point of discontinuity, the Fourier Series is going to take the average between the points of discontinuity. Yes, it is not continuous regardless of the series being the sum of continuous functions. This occurs together with the Gibbs Phenomena. 
 
@@ -220,7 +220,7 @@ a_n = \frac{2}{\pi}
 dx
 $$
 
-But, when we have the graph, something interesting is happening, using the Dirichlet theorem, and the fact that the function is odd, we have the positive part of $\cos$ on the interval $[0, \pi]$ reflected by the origin on the interval $[-\pi, 0]$. 
+But, when we have the graph, something interesting is happening, using the [[Dirichlet Theorem]], and the fact that the function is odd, we have the positive part of $\cos$ on the interval $[0, \pi]$ reflected by the origin on the interval $[-\pi, 0]$. 
 
 We cannot represent $\cos$ by $\sin$ on the $2\pi$ period. 
 
