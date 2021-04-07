@@ -54,3 +54,47 @@ u(x, 0) = F(x) \tag{4}
 $$
 
 
+Now, the problem is, how exactly are we going to represent the initial conditions ($F(x)$) of the PDEs, we are looking for a representation like this: 
+
+$$
+F(x) = 
+\sum_{i = 0}^{\infty}
+a_n\sin\left(
+    \frac{n\pi x}{L}
+\right)
++ 
+b_n\cos\left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+Over the interval of: $(-L, L)$. 
+
+And then we are solving for the coefficients. 
+
+**Facts**: 
+
+If the function $F(x)$ is odd, then it will be represented purely by the $\sin$ functions. 
+
+If The function $F(x)$ is even, then it will be represented purely by the $\cos$ functions. 
+
+---
+### **Any function is the sum of a even and odd function**
+
+For any given function $F(x)$, the function $F(x) + F(-x)$ is even. 
+
+The function $F(x) - F(-x)$ is odd. 
+
+Consider the expression that: 
+
+$$
+F(x) = 
+    \underbrace{
+    \frac{1}{2}(F(x) + F(-x))}_{\text{Even}}
+     +
+    \underbrace{
+    \frac{1}{2}(F(x) - F(-x))}_{\text{Odd}}
+$$
+
+Boom, the function has been represented as the sum of even and odd function. 
+

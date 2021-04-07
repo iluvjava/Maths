@@ -320,4 +320,98 @@ $$
 \end{cases}\tag{6}
 $$
 
-The periodic Boundary conditions now has been included with a system equations: 
+The periodic Boundary conditions now has been included with a system equations.  
+
+As usual connection of the Eigenvalues $\lambda$ and the constant $k$ is: 
+
+$$
+k = -\lambda^2
+$$
+
+We are interested in search for the non-trivial solutions for this boundary conditions, and related it to the Fourier Series. 
+
+The solution we can draw from the first expression of (1) is: 
+
+$$
+X(x) = A\sin(\lambda x) + B\cos(\lambda x) \quad X'(x) = A\lambda \cos(\lambda x) + A\lambda \sin(\lambda x) \tag{7}
+$$
+
+**The temperature at the point equals**. 
+
+Using the boundary conditions: $u(-L, t) = u(L, t)\forall t> 0$, we have: 
+
+$$
+(A\sin(\lambda L) + B\cos(\lambda L))T(t) = 
+T(t)(-A\sin(\lambda L) + B\cos(\lambda L)) \quad \forall t> 0
+\tag{9}
+$$
+
+The negative sign get ignored by $\cos$ because it's an even function. 
+
+Assume that $T(t)\ne 0\;\forall t >0$, then we can divide by that and then get: 
+
+$$
+-2A\sin(\lambda L) = 0\underset{A\ne 0}{\implies} \lambda_n = \frac{n\pi}{L} \;\forall n\in \mathbb{Z}_{\ge0}
+\tag{10}
+$$
+
+Take note that $n = 0$ is ignored because it's a trivial solution to the system, where $X(x) = 0$. 
+
+For each solution to this system, we have a solution of $X_n(x)$. 
+
+**Heat passes through at the point $x = \pm L$**
+
+Using $u_x(-L, t)  = u_x(L, t)$, so then we have: 
+
+$$
+\lambda T(t) (A\cos(\lambda L) - B\sin(\lambda L)) = 
+\lambda T(t) (A\cos(\lambda L) + B\sin(\lambda L)) \quad \forall t > 0
+\tag{11}
+$$
+
+We get a similar result compare to expression (10), which is: 
+
+$$
+-2B\sin(\lambda L) = 0\underset{B\ne 0}{\implies} \lambda_n = \frac{n\pi}{L} \;\forall n\in \mathbb{Z}_{\ge0}
+\tag{12}
+$$
+
+
+**Note**, the case where $\lambda = 0$ won't need the assumption that $A, B\ne 0$ to satisfy the boundary conditions. This is kinda weird. 
+
+So then, we will have a lot of basis function, each associated with a positive integer $n$, and the solution will be a super position of all of them: 
+
+$$
+X_n(x) = A_n\sin\left(
+    \frac{n\pi x}{L}
+\right) + B_n\cos \left(
+    \frac{n\pi x}{L}
+\right)
+\tag{13}
+$$
+
+Notice that, we are not taking the normalized version of this as the basis function, because this time, the basis functions consists of 2 function, so we are keeping the constant coefficients for both of them. 
+
+Now we skip some steps that has already be covered in the separations of variable parts and solving for $T(t)$, then the solution is going to take the form: 
+
+$$
+\sum_{i = 0}^{\infty}
+\left(
+    A_n\sin\left(
+        \frac{n\pi x}{L}
+    \right) + 
+    B_n \cos \left(
+        \frac{n\pi x}{L}
+    \right)
+\right)\exp \left(
+    \frac{-n^2 t}{\widetilde{t}}
+\right)
+$$
+
+
+Where is the constant term: $T_n(0)$? 
+
+It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series (PDE Flavor)]]. 
+
+
+
