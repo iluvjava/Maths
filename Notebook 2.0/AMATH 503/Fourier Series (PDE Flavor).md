@@ -98,3 +98,25 @@ $$
 
 Boom, the function has been represented as the sum of even and odd function. 
 
+**Therefore**
+
+The function $\frac{1}{2}(F(x) + F(-x))$ can be represented by $\cos$ series, over the interval $[0, L]$. 
+
+The function $\frac{1}{2}(F(x) - F(-x))$ can be represented by $\sin$ series, Over the interval $[0, L]$. 
+
+Then, when we combines them together, we will have the function $F(x)$ represented using both $\cos$ and $\sin$. 
+
+Denotes that: 
+
+$$
+F_o(x):=\frac{1}{2}(F(x) - F(-x)) \quad F_e(x):= \frac{1}{2}(F(x) + F(-x))
+$$
+
+---
+### **Handling the Odd Parts**
+
+The function $F_o(x)$ is going to be represented by the Fourier Sine Series. 
+
+
+
+
