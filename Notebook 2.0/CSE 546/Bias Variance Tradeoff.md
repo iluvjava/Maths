@@ -9,6 +9,7 @@ We will use some knowledge from [[Expectation of Random Variables]] to manipulat
 
 And the proof is here: [Wiki Link](https://www.wikiwand.com/en/Bias%E2%80%93variance_tradeoff)
 
+
 ---
 ### **Intro**
 
@@ -163,3 +164,12 @@ And take note that, the learning errors consist of 2 pars too:
 4. This is the **Variance**. This is he variance of the models we produce. Some of the learning errors created could just be the variance of the model. To overcome this. This is the term that govern the realm of over-fittings. 
 
 THIS, is the variance and the bias that we are going to be focus on for training machine learning models. 
+
+---
+### **Model Complexity**
+
+
+> The variance increases with the complexity of the model and the biases will increase as the models get too simple. 
+
+
+![[bias-variance-tradeoff.png]]

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Poisson MLE.md",
+            "file": "CSE 546/Bias Variance Tradeoff.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Poisson MLE.md",
+            "file": "CSE 546/Bias Variance Tradeoff.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Poisson MLE.md",
+                "file": "CSE 546/Bias Variance Tradeoff.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,8 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "CSE 546/Bias Variance Tradeoff.md",
+    "Pasted image 20210407213213.png",
     "CSE 546/Poisson MLE.md",
     "AMATH 515/Generalized Linear Model.md",
     "AMATH 515/GLM with GD.md",
@@ -107,8 +109,6 @@
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
     "AMATH 503/Dirichlet Theorem.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Fourier Cosine Series.md"
+    "AMATH 503/Separation of Variables.md"
   ]
 }
