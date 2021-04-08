@@ -39,3 +39,50 @@ And, we make different hypothesis on the function $\eta$, and then that is what 
 
 **Note**: Notice that, this one is carried out without the usage of a generative model and the type of noises that are involved.
 
+**Note**: We are doing the square loss, it's am implicit assumption that the noise from the generative model has Gaussian distribution.
+
+---
+### **Best Model**
+
+Under the least square loss, the best estimating function should be: 
+
+$$
+\eta(x) = \mathbb{E}_{Y|X}\left[ 
+        Y | X = x
+    \right]
+$$
+
+The average value of $Y$ given the observation $x$ is the thing the minimizes the variance on the predicted value. 
+
+**Proof**
+
+Consider taking the derivative wrt to the function $\eta(x)$ on the variance of the prediction: 
+
+$$
+\partial_{\eta(x)}
+\mathbb{E}_{Y|X}\left[
+        (Y - \eta (x))^2|X = x
+    \right] = 0 
+$$
+
+using the properties of the Expectation of random variables, we have: 
+
+$$
+\mathbb{E}_{Y|X}\left[2(Y - \eta(x))| X = x\right] = 0
+$$
+
+$$
+0  = -2 \mathbb{E}_{Y|X}\left[
+        Y|X = x
+    \right] + 2\eta(x)
+$$
+
+$$
+\implies \eta(x) = \mathbb{E}_{Y|X}\left[
+        Y|X = x
+    \right]
+$$
+
+This is the optimal predictor using the square loss assumption. 
+
+

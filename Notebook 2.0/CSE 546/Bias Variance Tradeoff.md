@@ -7,6 +7,8 @@ And, this is a very fundamental concept in statistical learning, here is a good 
 
 We will use some knowledge from [[Expectation of Random Variables]] to manipulate the math a bit. 
 
+And the proof is here: [Wiki Link](https://www.wikiwand.com/en/Bias%E2%80%93variance_tradeoff)
+
 ---
 ### **Intro**
 
