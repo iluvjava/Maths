@@ -46,6 +46,43 @@ $$
 \text{Err}(x) = \mathbb{E}\left[(Y - \hat{f}(x))^2\right]
 $$
 
+---
+### **Proof**
+
+We are going to use some algebra tricks for this one and it's like: 
+
+$$
+\mathbb{E}\left[
+        (Y + f(x) - f(x) - \hat{f}(x))^2
+    \right]
+$$
+
+Which we then use the quadratic equation to get the expression that: 
+
+$$
+\mathbb{E}\left[
+        (Y - f(x))^2 + 2(Y - f(x))(f(x) - \hat{f}(x)) + (f(x) - \hat{f}(x))^2
+    \right]
+$$
+
+We assume that the random variable $\hat{f}(x)$ is independent of the noise $\epsilon$, then we can say that the cross term looks like: 
+
+$$
+\mathbb{E}\left[
+        2(Y - f(x))(f(x) - \hat{f}(x))
+    \right]
+=
+2
+\mathbb{E}\left[ 
+    \underbrace{
+        (Y - f(x))}_{\epsilon }
+    \right]
+\mathbb{E}\left[
+        (f(x) - \hat{f}(x))
+    \right] = 0
+$$
+
+This part is by the independence. and the fact that the expected value of $\epsilon$ is zero, we know that the expected value of the cross term in fact zero. 
 
 
 
