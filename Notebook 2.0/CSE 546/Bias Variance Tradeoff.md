@@ -96,10 +96,10 @@ Hence, the bias and variance trade off theorem can be ultimately written like:
 $$
 \text{Err}(x) = 
 \underbrace{
-\mathbb{E}\left[(Y - f(x))^2\right]}_{(1)}
+\mathbb{E}\left[(Y - f(x))^2\right]}_{(1): \text{Irreducible Error}}
  + 
 \underbrace{
-\mathbb{E}\left[(f(x) - \hat{f}(x))^2\right]}_{(2)}
+\mathbb{E}\left[(f(x) - \hat{f}(x))^2\right]}_{\text{(2): Learning Error}}
 $$
 
 1. **Irreducible error**, and this is independent of the random variable $\hat{f}(x)$, which is the model we trained using some given samples. 
@@ -148,14 +148,14 @@ $$
         \left(
         f(x) - \mathbb{E}\left[\hat{f}(x)\right]
         \right)^2
-    \right]}_{(3)}
+    \right]}_{(3):\text{Bias}^2}
 + 
 \underbrace{
 \mathbb{E}\left[
         \left(
             \mathbb{E}\left[\hat{f}(x)\right] - \hat{f}(x)
         \right)^2
-    \right]}_{(4)}
+    \right]}_{(4):\text{Variance}}
 $$
 
 And take note that, the learning errors consist of 2 pars too: 
@@ -165,9 +165,24 @@ And take note that, the learning errors consist of 2 pars too:
 
 THIS, is the variance and the bias that we are going to be focus on for training machine learning models. 
 
+**Note**: 
+The biased square is more commonly written as (After some simple math using the properties of expected values): 
+
+$$
+\text{Bias}^2 = 
+\left(
+    f(x) - \mathbb{E}\left[\hat{f}(x)\right]
+\right)^2
+$$
+
+**Question**: 
+
+Why the proof feels so weird? 
+
+Because we are making something out of nothing, the induction of the terms: $f(x), \mathbb{E}\left[\hat{f}(x)\right]$ is just a matter of intuitive understanding of the matter instead of something that is based on theorem and axioms.
+
 ---
 ### **Model Complexity**
-
 
 > The variance increases with the complexity of the model and the biases will increase as the models get too simple. 
 
