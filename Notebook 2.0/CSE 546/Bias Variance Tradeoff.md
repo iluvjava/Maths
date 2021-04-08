@@ -9,7 +9,6 @@ We will use some knowledge from [[Expectation of Random Variables]] to manipulat
 
 And the proof is here: [Wiki Link](https://www.wikiwand.com/en/Bias%E2%80%93variance_tradeoff)
 
-
 ---
 ### **Intro**
 
@@ -186,5 +185,6 @@ Because we are making something out of nothing, the induction of the terms: $f(x
 
 > The variance increases with the complexity of the model and the biases will increase as the models get too simple. 
 
-
 ![[bias-variance-tradeoff.png]]
+
+
