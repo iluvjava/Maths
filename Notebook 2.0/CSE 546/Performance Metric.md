@@ -85,6 +85,11 @@ $$
 
 This is the optimal predictor using the square loss assumption. 
 
+However, in reality, we can only make the data from the samples, some kind of concrete observations from the data, and hence the thing that we are actually looking for is: 
 
-
-
+$$
+\underset{f\in\mathcal{F}}{\text{argmin}}
+\left\lbrace
+    \sum_{i = 1}^{N}\left(y_i - f(x_i)\right)^2
+\right\rbrace
+$$
