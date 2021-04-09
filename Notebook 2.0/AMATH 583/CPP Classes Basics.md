@@ -112,16 +112,19 @@ Boom! Ok, this is what we need for the situation.
 
 
 ```cpp
+class Vector {
 
-public: 
-    Vector(size_t M): num_rows_(M), storate(num_rows_){}; // Constructor
-    double& operator()(size_t i){return storage[i];}
-    const double& operator(size_t i){return storage[i];}
-    size_t num_rows() const {return num2_rows_;} 
+    public: 
+        Vector(size_t M): num_rows_(M), storate(num_rows_){}; // Constructor
+        double& operator()(size_t i){return storage[i];}
+        const double& operator[](size_t i){return storage[i];}
+        size_t num_rows() const {return num2_rows_;} 
 
-private: 
-    size_t num_rows_;
-    std::vector<double> storage_;
+    private: 
+        size_t num_rows_;
+        std::vector<double> storage_;
+
+}
 
 ```
 
@@ -137,5 +140,5 @@ Things to note:
 
 This thing, it will be propagating through your code when you compile it. 
 
-
+This will be continued in the next part. 
 
