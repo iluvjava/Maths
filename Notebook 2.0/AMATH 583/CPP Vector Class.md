@@ -1,5 +1,6 @@
 [[CPP Basics 1]], [[CPP Classes Basics 2]]
 
+Let's go through an example class we made to demonstrate some of the ideas about `c++` and writing code in `c++`. 
 
 ---
 ### **Intro**
@@ -16,6 +17,7 @@ class Vector {
 
     // operator() that support assignment and const access of data. 
           double& operator()(size_t i)       { return storage_[i]; }
+    // For the add operator. 
     const double& operator()(size_t i) const { return storage_[i]; }
 
     size_t num_rows() const { return num_rows_; }
@@ -56,8 +58,48 @@ What if we only have the implementation of the operator `()` such that it can on
 
 **Answer**: 
 A value can only be a `rvalue`, hence it cannot be a `lvalue`, which means that 
+
 ```cpp
 Vector x(1);
 x(0) = 3;
 ```
-is invalid because `()` operator returned is used as a `lvalue`. 
+
+is invalid because `()` operator returned is used as a `lvalue`, the `()` operator cannot be an assignment operator. 
+
+On the other hand, if the `()` returns a reference, then it can be a `lvalue` and `rvalue`. When it's used as a `rvalue`, depending the declaration, it will be dereferenced. [^1]
+
+
+---
+### **Customizing the Operator Plus**
+
+Let's consider the following implementation of the plus operator defined near the scope of the client code: 
+
+```cpp
+Vector operator+(const Vector& x, const Vector& y) {
+  Vector z(x.num_rows());
+  for (size_t i = 0; i < z.num_rows(); ++i) {
+    z(i) = x(i) + y(i);
+  }
+  return z;
+}
+```
+
+Function takes in Const Ref of both vectors and return a new vector, a copy of it. 
+
+However, this action will require that: 
+
+> The operator `()` for the class cannot modify the instance, `x, y`. This is the case because `x,y` are const references. 
+
+To overcome this, it's required that the operator `()` implements with the following headers: 
+
+```cpp
+const double& opertor()(size_t) const {}
+```
+
+**Take note** that this function can take objects that is const ref, and it will return the double value that is indexed via this `()` operator. 
+
+**Take Note** This function that has `const` before the definition body is able to get overload with the none `const` version. 
+
+
+
+[^1]: not sure how correct this is please investigate in the future. 

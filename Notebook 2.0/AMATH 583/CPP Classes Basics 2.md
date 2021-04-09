@@ -92,6 +92,6 @@ Like, whatever you pass to it, has to be at some point, trace back to a root con
 2. It's used for the input argument. This is use a contract that the method is not going to modify the input argument in anyways. 
 3. It's used for the function boy. When this is applied before the `{...}` body of the function, this is a contract, the `this` member function is not going to modify the current instance of the class. 
 
-
+To see some of the examples refer to [[CPP Vector Class]], which discusses some of the design choices that involving const ref. And how we handled it in different scenarios. 
 
 

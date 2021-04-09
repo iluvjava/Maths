@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Vector Class.md",
+            "file": "AMATH 583/CPP Classes Basics 2.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Vector Class.md",
+            "file": "AMATH 583/CPP Classes Basics 2.md",
             "mode": "preview"
           }
         },
@@ -82,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPP Vector Class.md",
+                "file": "AMATH 583/CPP Classes Basics 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,6 +101,7 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 583/CPP Classes Basics 2.md",
     "AMATH 583/CPP Vector Class.md",
     "CSE 546/Bias Variance Tradeoff.md",
     "Pasted image 20210407213213.png",
@@ -109,7 +110,6 @@
     "AMATH 515/GLM with GD.md",
     "AMATH 515/MLE Robust Fit (Intro).md",
     "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
-    "AMATH 503/Dirichlet Theorem.md",
-    "AMATH 503/Fourier Series (PDE Flavor).md"
+    "AMATH 503/Dirichlet Theorem.md"
   ]
 }
