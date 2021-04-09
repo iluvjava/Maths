@@ -88,7 +88,7 @@ Like, whatever you pass to it, has to be at some point, trace back to a root con
 
 **Question**: Where is const ref used? 
 
-1. It's used for the return parameters. 
+1. It's used for the return parameters. Whatever function that call this function that returns the `cost ref`, it must also accept `const ref` as an input argument, if `lvalue` is what is waiting for this return value, them it ahs to be a `const ref` as well. 
 2. It's used for the input argument. This is use a contract that the method is not going to modify the input argument in anyways. 
 3. It's used for the function boy. When this is applied before the `{...}` body of the function, this is a contract, the `this` member function is not going to modify the current instance of the class. 
 
