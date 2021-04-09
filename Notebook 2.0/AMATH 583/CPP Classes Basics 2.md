@@ -77,3 +77,15 @@ If there is existing constructor, that part of the contract is cancelled.
 `Vector x;` will not be valid anymore. 
 
 
+---
+### **Const Ref**
+
+Const Ref is like its own type. 
+
+Like, whatever you pass to it, has to be at some point, trace back to a root const ref. Like, a declaration of const ref. 
+
+`lvalue` is never going to be a Const Ref, const ref for `rvalue` is ok. 
+
+
+
+

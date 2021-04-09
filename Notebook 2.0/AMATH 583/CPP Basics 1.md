@@ -132,6 +132,31 @@ The program that make it works is called: `makefile`.
 
 
 
+### Some Keywords: 
+
+`Lvalue`:
+
+> Value that can appear on the lefthand side of the assignment opeartor `=`. 
+> Examples of `Lvalue`: 
+> 1. a variable with initialization
+
+
+`Rvalue`: 
+
+> Value that can appear on the right hand side of the assignment operator. 
+> Examples: 
+> 1. A literal 
+> 2. A const ref literal 
+> 3. A composite expression that returns value
+
+Question: Can `Lvalue` be `Rvalue`? 
+
+Yes.
+
+Question: Can `Rvalue` be `Lvalue`? 
+
+No. 
+
 
 
 
