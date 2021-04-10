@@ -191,3 +191,4 @@ Because we are making something out of nothing, the induction of the terms: $f(x
 ---
 ### **Example Analysis: Linear Regression**
 
+We are skipping this, but it's in the lecture notes [here](https://courses.cs.washington.edu/courses/cse446/21sp/schedule/lecture_6_live.pdf). 
