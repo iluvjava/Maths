@@ -188,3 +188,6 @@ Because we are making something out of nothing, the induction of the terms: $f(x
 ![[bias-variance-tradeoff.png]]
 
 
+---
+### **Example Analysis: Linear Regression**
+
