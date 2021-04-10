@@ -236,3 +236,54 @@ And that is just the average value of the function over the interval $[-L, L]$.
 
 Therefore, we have all the coefficients for the Fourier Series, expressed using function $F(x)$. Amazing. 
 
+---
+### **Series Calculus**: 
+
+**Integration**: 
+
+Can we integrate the Fourier Series Terms by Terms to get the integral of the function? 
+
+Yes.
+
+**Differentiation**: 
+
+Can we differentiate terms by terms? 
+
+No always, it depends, consider Fourier Sine Series: 
+
+$$
+x = 2
+\sum_{n = 1}^{\infty}
+\frac{L}{n\pi}(-1)^{n + 1}\sin\left(
+    \frac{n\pi x }{L}
+\right)
+\quad x \in [0, L) \tag{1}
+$$
+
+This is the saw wave. Observe that, the coefficients of the series is having a harmonic series like convergence. 
+
+The saw wave is not continuous. Consider at the behavior of the curve at the point of discontinuity, and remember the **Gibbs Phenomena**. 
+
+When $a_n \rightarrow \mathcal(\frac{1}{n})$, when the convergence of the Fourier series is behaving like harmonic series, it's always the case that this series has a discontinuity. This is noted by the professor. 
+
+When we take the derivative on the above series, we have: 
+
+$$
+1 \underset{?}{=} 
+2 \sum_{n = 1}^{\infty}
+(-1)^{n + 1}\cos\left(
+    \frac{n\pi x}{L}
+\right)
+$$
+
+This thing, has a coefficient that never decreases. 
+
+This thing, doesn't equal to one. Depending on how it's arranged, we can make any kind of number. This series is undetermined. 
+
+Note that, the fourier cosine series for $1$ is just 1. 
+
+They are not equal to each other, be careful when we take the derivative on the fourier series. 
+
+Notice that, when the coefficient is not decreasing fast enough, we might have problem with the derivative of the series. 
+
+When the convergence rate is like: $\mathcal{O}(\frac{1}{n^2})$, yes, we will be able to take derivative on that. **BUT**, 2 derivatives might give us a problem. 

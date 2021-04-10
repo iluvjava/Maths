@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Vector Class.md",
+            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Vector Class.md",
+            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPP Vector Class.md",
+                "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,15 +100,15 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 503/Untitled.md",
+    "AMATH 503/Dirichlet Theorem.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
     "AMATH 583/CPP Vector Class.md",
     "AMATH 583/Untitled.md",
     "CSE 546/Bias Variance Tradeoff.md",
     "Pasted image 20210407213213.png",
     "CSE 546/Poisson MLE.md",
     "AMATH 515/Generalized Linear Model.md",
-    "AMATH 515/GLM with GD.md",
-    "AMATH 515/MLE Robust Fit (Intro).md",
-    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
-    "AMATH 503/Dirichlet Theorem.md"
+    "AMATH 515/GLM with GD.md"
   ]
 }

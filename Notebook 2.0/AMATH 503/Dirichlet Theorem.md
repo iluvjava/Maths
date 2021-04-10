@@ -14,3 +14,6 @@ Here is the theorem statement:
 **Piece-wise Continuity**
 
 > A function is piece-wise continuous if, there exists finitely many non-degenerate intervals where the function is continuos. 
+
+
+--- 
