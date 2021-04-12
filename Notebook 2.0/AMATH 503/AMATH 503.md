@@ -32,8 +32,10 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 2. Fourier Series: Handling the initial conditions of the PDEs. 
 
 ### **Week 2**
-1. Cosine Fourier Series
-
-
+1. Cosine Fourier Series [[Fourier Cosine Series]]
+2. Sine Fourier Series [[Fourier Sine Series (PDEs Flavor)]]
+3. Complex Fourier Series [[Complex Fourier Series (PDF Flavor)]] 
+### **Week 3**
+1. Fourier Transform: Chapter 7 -> Chapter 7.4
 
 

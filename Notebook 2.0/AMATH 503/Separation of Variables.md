@@ -413,5 +413,8 @@ Where is the constant term: $T_n(0)$?
 
 It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series (PDE Flavor)]]. 
 
+---
+### **Only Heat Equation**? 
 
+This is not true, heat equation is one of the example, and wave equation can also be solved using S.F.V. 
 

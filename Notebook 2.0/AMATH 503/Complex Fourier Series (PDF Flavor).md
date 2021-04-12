@@ -115,4 +115,4 @@ $$
 
 Note: The sign of the basis function is opposite when we use it in the Fourier Series and figuring out the Fourier Coefficients. 
 
-The series is a good representation of the function over $[-L, L)$, **Dirichlet Theorem** applies and periodicity also happen to it. **This is not going to work for an open interval**. But to do it, we can take the limit as $L\rightarrow \infty$, and then we are getting into the territory of **Fourier Transform**. Very Very interesting and complicated stuff. 
+The series is a good representation of the function over $[-L, L)$, **Dirichlet Theorem** applies and periodicity also happen to it. **This is not going to work for an open interval**. But to do it, we can take the limit as $L\rightarrow \infty$, and then we are getting into the territory of **Fourier Transform**. Very Very interesting and complicated stuff.
