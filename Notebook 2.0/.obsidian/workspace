@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "CSE 546/Sensitivity and Overfitting.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "CSE 546/Sensitivity and Overfitting.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+                "file": "CSE 546/Sensitivity and Overfitting.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,15 +100,15 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
-    "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
-    "AMATH 503/Physical Origins of PDEs.md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 583/CPP Matrix Class.md",
+    "CSE 546/Untitled.md",
     "AMATH 583/Untitled.md",
     "AMATH 583/CPP Classes Basics 2.md",
     "AMATH 583/CPP Vector Class.md",
-    "CSE 546/Bias Variance Tradeoff.md"
+    "CSE 546/Bias Variance Tradeoff.md",
+    "Pasted image 20210407213213.png",
+    "CSE 546/Poisson MLE.md",
+    "AMATH 515/Generalized Linear Model.md",
+    "AMATH 515/GLM with GD.md",
+    "AMATH 515/MLE Robust Fit (Intro).md"
   ]
 }
