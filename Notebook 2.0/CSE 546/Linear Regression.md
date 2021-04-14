@@ -359,5 +359,4 @@ $$
 \epsilon \sim \mathcal{N}(w, (X^TX)^{-1})
 $$
 
-
 Boom, we have both the variance and the expected value for the random variable $\hat{w}$. 

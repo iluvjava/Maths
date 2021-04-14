@@ -61,7 +61,8 @@ Let's summarize the procedure:
 
 
 ---
-### **Separation and Substitution**
+### **Dirichlet Boundary Conditions**
+#### **Separation and Substitution**
 
 $$
 u_t = T'(t)X(x) \quad u_{xx} = X''(x)T(t)
