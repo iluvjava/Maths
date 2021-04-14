@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Separation of Variables.md",
+            "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Separation of Variables.md",
+            "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Separation of Variables.md",
+                "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,15 +100,15 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+    "Fourier Integral Contour.svg",
+    "AMATH 503/Untitled.md",
     "AMATH 503/Separation of Variables.md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
     "AMATH 582/Fourier Transform.md",
     "CSE 546/Untitled.md",
     "AMATH 583/Untitled.md",
     "AMATH 583/CPP Classes Basics 2.md",
-    "AMATH 583/CPP Vector Class.md",
-    "CSE 546/Bias Variance Tradeoff.md",
-    "Pasted image 20210407213213.png",
-    "CSE 546/Poisson MLE.md"
+    "AMATH 583/CPP Vector Class.md"
   ]
 }
