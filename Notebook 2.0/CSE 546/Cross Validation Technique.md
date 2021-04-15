@@ -15,7 +15,7 @@ Then for every data point, we are going to to leave that error and compute the e
 Here is the routine for computing the estimated error for the given model using LOO: 
 
 $$
-\text{Error}_{Loo}
+\text{Error}_{\text{Loo}}
 - 
 \frac{1}{n}
 \sum_{j = 1}^{n}
@@ -62,4 +62,6 @@ $$
 
 What is the test set? 
 
-The test set is not in the k-fold scheme, it's the set of samples that are left out at the beginning of the routine.  
+The test set is not in the k-fold scheme, it's the set of samples that are left out at the beginning of the routine. 
+
+
