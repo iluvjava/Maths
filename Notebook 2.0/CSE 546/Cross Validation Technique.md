@@ -58,5 +58,8 @@ $$
     (y_j - f_{\mathcal{D}\setminus\mathcal{D}_i}(x_j))^2
 $$
 
+**Questons**: 
 
+What is the test set? 
 
+The test set is not in the k-fold scheme, it's the set of samples that are left out at the beginning of the routine.  
