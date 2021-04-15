@@ -207,6 +207,7 @@ $$
 Notice that, we are back to the same looking function, it's the same format but with different parameters for it. Let's take out the constent and merge the exponent, this will be giving us:
 
 $$
+A = 
 \frac{\sqrt{\pi}}{2\pi}
 \int_{-\infty}^{\infty} 
     \exp\left(
@@ -217,4 +218,4 @@ $$
 dw
 $$
 
-
+Now, consider the susbtitution $t = \frac{w}{2}$, then this integral transformed into: 
