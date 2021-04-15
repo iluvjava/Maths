@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+            "file": "CSE 546/Cross Validation Technique.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+            "file": "CSE 546/Cross Validation Technique.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+                "file": "CSE 546/Cross Validation Technique.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,8 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "CSE 546/Cross Validation Technique.md",
+    "ScratchPaper.md",
     "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
     "Fourier Integral Contour.svg",
     "AMATH 503/Untitled.md",
@@ -107,8 +109,6 @@
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
     "AMATH 582/Fourier Transform.md",
     "CSE 546/Untitled.md",
-    "AMATH 583/Untitled.md",
-    "AMATH 583/CPP Classes Basics 2.md",
-    "AMATH 583/CPP Vector Class.md"
+    "AMATH 583/Untitled.md"
   ]
 }
