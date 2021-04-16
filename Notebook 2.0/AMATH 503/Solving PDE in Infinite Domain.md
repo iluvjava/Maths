@@ -1,4 +1,5 @@
 [[Fourier Transform (PDE Flavor Examples)]]
+One of the very important application of Fourier Transfrom is its application to Solving PDEs in the infinite domain. 
 
 
 ---
@@ -197,8 +198,30 @@ $$
 
 Take note that we can use the Euler Formula to help us to write the trig function in a different form for this problem, at the same time, notice that $F(w)$. 
 
+So this is like: 
 
+$$
+\cos(cwt) = \frac{1}{2}\left(
+    \exp(icwt) + \exp(-icwt)
+\right)
+$$
 
+Mulitplying it into the expression we have: 
+
+$$
+u(x, t) = \frac{1}{4\pi}\int_{-\infty}^{\infty} 
+    F(w)\exp(\underbrace{iwx + icwt}_{iw(x + ct)})
+dw 
++ \frac{1}{4\pi}\int_{-\infty}^{\infty} 
+    F(w)\exp(\underbrace{iwx - icwt}_{iw(x - ct)})
+dw
+$$
+
+And notice that, this is the inverse fourier Transform which can be expressed like: 
+
+$$
+\frac{1}{2}(f(x + ct) + f(x - ct))
+$$
 
 
 
