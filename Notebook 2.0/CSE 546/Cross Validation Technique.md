@@ -58,7 +58,7 @@ $$
     (y_j - f_{\mathcal{D}\setminus\mathcal{D}_i}(x_j))^2
 $$
 
-**Questons**: 
+**Questions**: 
 
 What is the test set? 
 
