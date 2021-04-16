@@ -41,9 +41,10 @@ Yes, but we need to consider the Complex Fourier Series, for $[-L, L]$ and then 
 
 Let's make things simplier by using $\omega_n$
 
-$$
-\omega_n = \frac{n\pi}{L} \quad \Delta\omega = \frac{\pi}{L}
-$$
+> $$
+> \omega_n = \frac{n\pi}{L} \quad \Delta\omega = \frac{\pi}{L}
+> $$
+
 
 ---
 ### **Derivation**
@@ -155,21 +156,21 @@ When the interval $L$ gets larger and larger, the change in frequencies, $\pi/L$
 ---
 ### **Fourier Transform**
 
-Then, it's not hard to see that the fourier Transform of a given function, is a function that represent the continuous frequencies coefficients that makes up the fourier series of the function, as the interval of the fourier approaches infinity. 
+Then, it's not hard to see that the Fourier Transform of a given function, is a function that represent the continuous frequencies coefficients that makes up the Fourier series of the function, as the interval of the Fourier approaches infinity. 
 
 Here is the Fourier Transform Extracted from the above: 
 
 $$
 F(\omega) = \mathcal{F}[f(x)] = 
 \int_{-\infty}^{\infty} 
-    f(x)\exp(i\pi \omega x)
+    f(x)\exp(i\omega x)
 dx
 $$
 
 Then, the inverse Fourier Transform is defined to be: 
 
 $$
-f(x) = \mathcal{F}[F(\omega)] = \frac{1}{2\pi}
+f(x) = \mathcal{F}^{-1}[F(\omega)] = \frac{1}{2\pi}
 \int_{-\infty}^{\infty} 
     F(\omega) \exp(-i\omega x)
 d\omega
@@ -177,15 +178,15 @@ $$
 
 However, this is only possible when: 
 
-> The function $f(x)$ is absolutely integratable. This means that integral of $|f(x)|$ over all reals has to be bounded by some number. 
+> The function $f(x)$ is absolutely integrable. This means that integral of $|f(x)|$ over all reals has to be bounded by some number. 
 
-And, for a function to be absolute integratble, we will have the constraint that: 
+And, for a function to be absolute integrable, we will have the constraint that: 
 
 > $$
 > f(x) < \frac{M}{|x|^{1 + \delta}} \quad \delta > 0
 > $$
 
-And function that blows up in the real realm is not going to have a fourier Transform because the integral is just not converging. 
+And function that blows up in the real realm is not going to have a Fourier Transform because the integral is just not converging. 
 
 However, there is a very hard proof that show that function of THIS can also be Fourier Transformed: 
 

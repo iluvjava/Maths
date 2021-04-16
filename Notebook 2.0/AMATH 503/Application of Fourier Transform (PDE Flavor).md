@@ -12,6 +12,27 @@ We need $f(x)$ to be absolutely Integrable.
 
 Yes, it's the squared infinite integrable function. 
 
+We are picking up the Fourier Transfrom and the inverse Fourier Transfrom from the previous discussion: 
+
+Here is the Fourier Transform Extracted from the above: 
+
+$$
+F(\omega) = \mathcal{F}[f(x)] = 
+\int_{-\infty}^{\infty} 
+    f(x)\exp(i\omega x)
+dx
+$$
+
+Then, the inverse Fourier Transform is defined to be: 
+
+$$
+f(x) = \mathcal{F}^{-1}[F(\omega)] = \frac{1}{2\pi}
+\int_{-\infty}^{\infty} 
+    F(\omega) \exp(-i\omega x)
+d\omega
+$$
+
+
 ---
 ### **When it Fails**
 
@@ -219,3 +240,5 @@ dw
 $$
 
 Now, consider the susbtitution $t = \frac{w}{2}$, then this integral transformed into: 
+
+
