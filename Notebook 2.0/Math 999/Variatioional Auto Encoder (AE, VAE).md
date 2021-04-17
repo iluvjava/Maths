@@ -1,5 +1,10 @@
 Here, we will be taking a basic look at Variational Encoder. 
+
 Resource: [link](https://arxiv.org/pdf/1606.05908.pdf)
+
+video resource that talks about generative models in general: 
+
+[video](https://www.youtube.com/watch?v=5WoItGTWV54)
 
 ---
 ### **Intro**
@@ -99,6 +104,10 @@ For continuous distribution, we just change the sun into a integral and that is.
 This is the amount of information lost if $Q$ is used to approximate $P$. 
 
 [Wiki Link](https://www.wikiwand.com/en/Kullback%E2%80%93Leibler_divergence)
+
+
+---
+### Objective Function
 
 
 
