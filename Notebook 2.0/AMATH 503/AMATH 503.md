@@ -35,7 +35,10 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 1. Cosine Fourier Series [[Fourier Cosine Series]]
 2. Sine Fourier Series [[Fourier Sine Series (PDEs Flavor)]]
 3. Complex Fourier Series [[Complex Fourier Series (PDF Flavor)]] 
+
 ### **Week 3**
-1. Fourier Transform: Chapter 7 -> Chapter 7.4
+1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform (PDE Flavor Examples)]]
+2. Application of Fourier Transform on some functions. [[Application of Fourier Transform (PDE Flavor)]]
+3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[Solving PDE in Infinite Domain]]
 
 
