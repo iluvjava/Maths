@@ -38,7 +38,7 @@ This is in the general cases where, the initial conditions contains both the ini
 
 **Note**:
 
-$f(x)$ must be: **Absolutely Integrable**. 
+$f(x)$ must be: **Absolutely Integrable**.  
 
 ---
 ### **Fourier Transform**
@@ -229,6 +229,14 @@ u(x, t) = \frac{1}{2}(f(x + ct) + f(x - ct))
 $$
 
 And that, is the solution to the PDE. 
+
+**Questions**: Why we didn't use the Boundary Conditions? 
+
+Because the initial condition helped us to satisfies that part, the function is absolutely integrable, so whatever Fourier Transformations that are involved for this PDEs, it's going to keep that part. And for a function that is absolutely integrable, it will have to have limit that approaches zero as it goes to infinity.
+
+---
+### **An Alternative**: D Alambert's method
+
 
 
 
