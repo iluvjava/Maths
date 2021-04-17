@@ -28,9 +28,9 @@ Notice that, the PDE problem is linear, hence we can separate the problem into 2
 
 $$
 \begin{cases}
-    u_1(x, 0) = f(x) & u_t(x, 0) = 0
+    u_1(x, 0) = f(x) & \partial_t[u_1](x, 0) = 0
     \\
-    u_2(x, 0) = 0 & u_t(x, 0) = g(x)
+    u_2(x, 0) = 0 & \partial_t[u_2](x, 0) = g(x)
 \end{cases}
 $$
 
@@ -38,7 +38,7 @@ This is in the general cases where, the initial conditions contains both the ini
 
 **Note**:
 
-$f(x)$ must be: **Absolutely Integrable**
+$f(x)$ must be: **Absolutely Integrable**. 
 
 ---
 ### **Fourier Transform**
@@ -52,6 +52,11 @@ It's made for just the above PDE equation, not applicable to anything else.
 
 **Back onto topic**: Fourier Transform
 
+Here is the list of procedures we use to get the solution for the PDE: 
+1. Take the equation to the Fouier Domain so it's an ODE in term of $t$ and $w$. 
+2. Use the $u_t(x, 0) = 0$ get the solution format, in the Fourier Domain. 
+3. Use the $u(x, 0) = f(x)$ to get the undermined coefficients for the system, in the fourier domain. 
+4. Do the Inverse Fourier Transform to get the solution in the original spatial domain. 
 Question: 
 
 What is the Fourier Transfrom for the $u(x,t)$ function? Notice that we have a function of 2 variables here instead of one, but the FT we did is univariate function. 
@@ -220,8 +225,10 @@ $$
 And notice that, this is the inverse fourier Transform which can be expressed like: 
 
 $$
-\frac{1}{2}(f(x + ct) + f(x - ct))
+u(x, t) = \frac{1}{2}(f(x + ct) + f(x - ct))
 $$
+
+And that, is the solution to the PDE. 
 
 
 

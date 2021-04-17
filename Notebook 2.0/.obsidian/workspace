@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "Math 999/Variatioional Auto Encoder (AE, VAE).md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "Math 999/Variatioional Auto Encoder (AE, VAE).md",
             "mode": "preview"
           }
         },
@@ -65,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 328.0121879577637
+    "width": 311
   },
   "right": {
     "id": "e74ad2ddc9cb0415",
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+                "file": "Math 999/Variatioional Auto Encoder (AE, VAE).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,7 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "Math 999/Untitled.md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
     "AMATH 503/Untitled.md",
     "CSE 546/Cross Validation Technique.md",
@@ -108,7 +109,6 @@
     "Fourier Integral Contour.svg",
     "AMATH 503/Separation of Variables.md",
     "AMATH 582/Fourier Transform.md",
-    "CSE 546/Untitled.md",
-    "AMATH 583/Untitled.md"
+    "CSE 546/Untitled.md"
   ]
 }
