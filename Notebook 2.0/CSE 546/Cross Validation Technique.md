@@ -16,7 +16,7 @@ Here is the routine for computing the estimated error for the given model using 
 
 $$
 \text{Error}_{\text{Loo}}
-- 
+=
 \frac{1}{n}
 \sum_{j = 1}^{n}
     (y_i - f_{\mathcal{D}\setminus j}(x_j))^2
