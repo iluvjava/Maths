@@ -40,3 +40,6 @@ Flags:
 
 This enables the pickiness of the clang compiler. There should be no warning when the flag is `-wall`
 
+### **Common Ones**
+
+`-o`: Specifies the name of the output file for the targeted compilation. 

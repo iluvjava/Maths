@@ -25,6 +25,7 @@ dependency1:
 dependency2: 
           echo "Compiling dependcy2, and this is the macros $(LANG)"
 
+
 ```
 
 **Note**: 2 tabs, 2 spaces right after the line of the rule declarations. 
@@ -59,8 +60,31 @@ Clean all the results for thd compilation, the next compilation will be a recomp
 
 keep compiling if there is some kind of error from the compilation. 
 
+Make a target in the `MakeFile`
+
+`make targetname`$?
 
 
 
+---
 ### **Rules for Compiling CPP Files**
+
+There are several ways to do it, but here we will be using the compiler to link files together, instead of the macros. 
+
+Here is an example: 
+```
+main.exe: main.o amath583.o
+          c++ main.o amath583.o -o main.exe
+
+main.o: main.cpp amath583.hpp  # Note2
+          c++ -c main.cpp -o main.o
+
+amath583.o: amath583.cpp
+          c++ -c amath583.cpp -o amath583.o
+````
+`.exe` <-- Object files <-- `.cpp`, `.hpp`
+
+**Note**: `.hpp` files are not explicitly specified when compiling, it doesn't appear in the command for compilation, but the dependency is specified whenever a `.cpp` is using entities declared in the `.hpp` file, follows after the target. OR, you can just incude the `.hpp` file in the `.cpp` file. 
+
+**Note2**: .hpp is not use in the command, but it's needed for the .cpp file that uses declared eneities in the corresponding .hpp file. 
 
