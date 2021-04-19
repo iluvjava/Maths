@@ -20,7 +20,7 @@ $$
     \ge t
 \right)
 \le 
-\exp\left(
+2\exp\left(
     -\frac{2n^2t^2}{
         \sum_{i = 1}^{n}(b_i - a_i)
     }
