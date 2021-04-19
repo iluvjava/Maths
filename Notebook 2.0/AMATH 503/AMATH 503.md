@@ -41,4 +41,6 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 2. Application of Fourier Transform on some functions. [[Application of Fourier Transform (PDE Flavor)]]
 3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[Solving PDE in Infinite Domain]]
 
+### **Week 4**
+1. Fourier Transform and the Drunken Sailor Problem.
 

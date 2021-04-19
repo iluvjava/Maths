@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Main Function.md",
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Main Function.md",
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPP Main Function.md",
+                "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,8 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 503/Untitled.md",
+    "AMATH 503/AMATH 503.md",
     "AMATH 583/CPP Main Function.md",
     "AMATH 583/CPP MultiStage Compilation.md",
     "Assets/multiple-bifurcation-stability-eg1.png",
@@ -107,8 +109,6 @@
     "AMATH 583/CPP Compiler Useful Flags.md",
     "AMATH 583/CPP Compiler Optimization.md",
     "AMATH 503/Complex Fourier Series (PDF Flavor).md",
-    "CSE 546/Chebyshev's Inequality.md",
-    "CSE 546/Markov Inequality.md",
-    "CSE 546/Performance Metric.md"
+    "CSE 546/Chebyshev's Inequality.md"
   ]
 }
