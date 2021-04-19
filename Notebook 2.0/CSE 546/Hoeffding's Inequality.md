@@ -12,8 +12,11 @@ Let $X_i$ for $1\le i \le n$ be $n$ independent random variable (whether they ar
 Then, the variance of the empirical mean and the true expected value of the random variable will bounded like: 
 
 $$
-\mathbb{P}\left(\bar{X} - 
-    \mathbb{E}\left[\bar{X}\right]
+\mathbb{P}\left(
+    \left|
+        \bar{X} - 
+        \mathbb{E}\left[\bar{X}\right]
+    \right|
     \ge t
 \right)
 \le 
@@ -25,3 +28,4 @@ $$
 $$
 
 This is useful for estimating the true error of the model, say, obtrained from a cross valications, and this will give a confident interval for the estimated error for the model. 
+

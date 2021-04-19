@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
+            "file": "AMATH 583/More Linux Make.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
+            "file": "AMATH 583/More Linux Make.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
+                "file": "AMATH 583/More Linux Make.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,17 +98,17 @@
     "direction": "horizontal",
     "width": 212
   },
-  "active": "4e31a3bc0b12d2e2",
+  "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 583/More Linux Make.md",
+    "AMATH 583/CPP Compiler Useful Flags.md",
+    "AMATH 583/CPP Compiler Optimization.md",
     "AMATH 503/Complex Fourier Series (PDF Flavor).md",
     "CSE 546/Chebyshev's Inequality.md",
     "CSE 546/Markov Inequality.md",
     "CSE 546/Performance Metric.md",
     "AMATH 502/The Cantor Set.md",
     "AMATH 503/AMATH 503.md",
-    "Math 999/Variatioional Auto Encoder (AE, VAE).md",
-    "Math 999/Untitled.md",
-    "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
-    "AMATH 503/Untitled.md"
+    "Math 999/Variatioional Auto Encoder (AE, VAE).md"
   ]
 }
