@@ -139,10 +139,9 @@ $$
 \sigma(z):= \frac{1}{1 + \exp(-z)}
 $$
 
-Then the model we are going to use will be $f(x) = \sigma(w^Tx)$. 
+Then the model we are going to use will be $f(x) = \sigma(w^Tx)$. Or with biases from the linear model, it will be like: $f(x) = \sigma(w^Tx + \beta)$
 
 Interestingly: $1 - \sigma(z) = \sigma(-z)$
-
 
 **Questions**: 
 
