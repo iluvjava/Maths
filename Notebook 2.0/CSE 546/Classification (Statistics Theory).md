@@ -53,7 +53,7 @@ $$
 1 - \mathbb{P}\left(Y = f(x)|X = x\right)
 $$
 
-The probability of one the model making a wrong prediction conditioned on an obseration of the random variable $X$. 
+The probability of one the model making a wrong prediction conditioned on an observations of the random variable $X$. 
 
 
 ---
@@ -89,7 +89,8 @@ $$
 
 If, among all of the $n$ samplse, $m$ of them are $\tilde{x}$ and $k$ of them associated with $Y = 1$, then we can se that the most likely esimator of the above expression will be: $\frac{k}{m}$
 
-This is an unbiased estimator. 
+This is an unbiased estimator.
+
 
 ---
 ### **Counting Bayes Binary Classifier**
@@ -149,6 +150,7 @@ Can we replace the linear function with other models?
 
 Yes, we can do that for other function. The sigmoid function is just adapting to a new interval. [^1]: 
 
+
 ---
 ### **Multi-Class Softmax**
 
@@ -163,6 +165,4 @@ $$
 
 
 [^1]: There is more to it, but we are just gong to say this in here.
-
-
 

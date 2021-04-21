@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+            "file": "CSE 546/Classification (Statistics Theory).md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+            "file": "CSE 546/Classification (Statistics Theory).md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+                "file": "CSE 546/Classification (Statistics Theory).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,8 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "CSE 546/Classfications.md",
+    "AMATH 502/Classification of ODEs.md",
     "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
     "AMATH 503/Solving PDE in Infinite Domain.md",
     "AMATH 503/Untitled.md",
@@ -107,8 +109,6 @@
     "AMATH 583/CPP Main Function.md",
     "AMATH 583/CPP MultiStage Compilation.md",
     "Assets/multiple-bifurcation-stability-eg1.png",
-    "AMATH 583/More Linux Make.md",
-    "AMATH 583/CPP Compiler Useful Flags.md",
-    "AMATH 583/CPP Compiler Optimization.md"
+    "AMATH 583/More Linux Make.md"
   ]
 }
