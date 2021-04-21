@@ -137,7 +137,7 @@ $$
 $$
 
 
-We can convert the conditinal oddds into probability which will be: 
+We can convert the conditional odds into probability which will be: 
 
 $$
 \mathbb{P}\left(H|D\right)
@@ -145,7 +145,6 @@ $$
 \frac{\mathbb{O}(H|D)}{1 + \mathbb{O}(H|D)}
 =
 \frac{\exp(w^Tx + b)}{1 + \exp(w^Tx + b)}
-\tag{2}
 \underset{\text{non-trivial math}}{=}
 \frac{1}{1 + \exp(w^Tx + b)}
 $$

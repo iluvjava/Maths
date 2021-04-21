@@ -46,9 +46,9 @@ Where we keep the generality by assuming the initial condition distribution func
 
 And the boundary condition is:
 
-$$
-u(0, t) = u(L, t) = 0
-$$
+>$$
+>u(0, t) = u(L, t) = 0
+>$$
 
 For the separation variable to work, the boundary will have to be zero. 
 **What if we are using fahrenheit**? The method of separation of variable won't work for this boundary conditions. If, the boundary condition is fixed with the same value, then we can make a substitution, say $v = u - 32$, so the boundary condition is fixed at zero. 
@@ -240,9 +240,9 @@ Here, we are assuming the **Neumann Boundary** conditions for the system. And it
 
 Boundary Conditions: 
 
-$$
-u_x(x = 0, L, t) = 0 \quad \forall t > 0
-$$
+>$$
+>u_x(x = L, t)=u_x(x=0, t) = 0 \quad \forall t > 0
+>$$
 
 And the initial conditions stays the same. When the derivative of the function is zero, it's saying that there is no diffusion of heat going on.
 
@@ -255,7 +255,7 @@ $$
 So then we have: 
 
 $$
-X'(x=0, L)T(t) = 0
+X'(0)T(t) = 0
 $$
 
 So then $A = 0$, and then: 

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Sigmoid And Odds.md",
+            "file": "AMATH 503/Fourier Cosine Series.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Sigmoid And Odds.md",
+            "file": "AMATH 503/Fourier Cosine Series.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Sigmoid And Odds.md",
+                "file": "AMATH 503/Fourier Cosine Series.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,15 +100,15 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+    "AMATH 503/Fourier Cosine Series.md",
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
     "CSE 546/Sigmoid And Odds.md",
     "CSE 546/Classification (Statistics Theory).md",
     "AMATH 502/Classification of ODEs.md",
     "CSE 546/Untitled.md",
     "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
     "AMATH 503/Solving PDE in Infinite Domain.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 583/CPP Main Function.md",
-    "AMATH 583/CPP MultiStage Compilation.md"
+    "AMATH 503/Untitled.md"
   ]
 }
