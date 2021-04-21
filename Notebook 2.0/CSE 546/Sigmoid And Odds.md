@@ -18,7 +18,7 @@ Here we will start with the basics and derive from the ground up to get to the m
 
 Let's start with Bayes and then build up to Sigmoid.
 
-Now, suppose that we want to investigate how the event $D$ implies $H$. For example, let's say that $D$ is a set of symptoms (Asumme this to me a vector in $\mathbb{R}^n$) for cancer, and $H$ is actually having a cancer. 
+Now, suppose that we want to investigate how the event $D$ implies $H$. For example, let's say that $D$ is a set of symptoms (Asumme this to be a vector in $\mathbb{R}^n$) for cancer, and $H$ is actually having a cancer. 
 
 This is a very serious matter, so we are going to use math. 
 
@@ -29,7 +29,7 @@ $$
 }{\mathbb{P}\left(D\right)}
 $$
 
-This is the portion of people who have cancer and have the specific set of symptoms $D$ over all the people who have cancer. This Produces the probability of given the set of symptoms the probability of have cancer. 
+This is the portion of people who have cancer and have the specific set of symptoms $D$ over all the people who have cancer. This Produces the probability of given the set of symptoms the person ends up having the cancer.  
 
 **Ok, the problem is**: It's very unlikely that this very specific set of symptoms occurred in our data set, because the symptoms covers a wide variety and span a very huge space. 
 
@@ -102,7 +102,7 @@ $$
 + 
 \log\left(\mathbb{O}(H)\right)
 =
-\beta_1 x + \beta_0
+w^Tx + b
 \tag{1}
 $$
 
@@ -129,11 +129,11 @@ The odds with hypothesis:
 $$
 \log(\mathbb{O}(H|D))
 =
-\beta_1 x + \beta_0
+w^Tx + b
 $$
 
 $$
-\mathbb{O}(H|D) = \exp(\beta_1 x + \beta_0)
+\mathbb{O}(H|D) = w^Tx + b
 $$
 
 
@@ -144,10 +144,10 @@ $$
 =
 \frac{\mathbb{O}(H|D)}{1 + \mathbb{O}(H|D)}
 =
-\frac{\exp(\beta_1x + \beta_0)}{1 + \exp(\beta_1x + \beta_0)}
+\frac{\exp(w^Tx + b)}{1 + \exp(w^Tx + b)}
 \tag{2}
 \underset{\text{non-trivial math}}{=}
-\frac{1}{1 + \exp(-\beta_1x -\beta_0)}
+\frac{1}{1 + \exp(w^Tx + b)}
 $$
 
 This is the linear model together with the sigmoid function derived. 
