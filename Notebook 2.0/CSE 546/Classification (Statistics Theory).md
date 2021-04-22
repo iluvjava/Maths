@@ -164,5 +164,5 @@ $$
 $$
 
 
-[^1]: There is more to it, but we are just gong to say this in here, and check [[Sigmoid And Odds]] for more about this. 
+[^1]: There is more to it, but we are just going to say this in here, and check [[Sigmoid And Odds]] for more about this. 
 
