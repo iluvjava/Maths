@@ -1,5 +1,5 @@
 [[Fourier Transform (PDE Flavor Examples)]]
-
+Let's take a look at some of the examples of using the Fourier Transform.
 
 ---
 ### **Intro**
