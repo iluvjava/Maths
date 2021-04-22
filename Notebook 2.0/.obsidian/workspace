@@ -9,7 +9,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+=======
+            "file": "AMATH 503/Fourier Cosine Series.md",
+>>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
             "mode": "source"
           }
         },
@@ -21,7 +25,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+=======
+            "file": "AMATH 503/Fourier Cosine Series.md",
+>>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
             "mode": "preview"
           }
         },
@@ -81,7 +89,11 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+=======
+                "file": "AMATH 503/Fourier Cosine Series.md",
+>>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +112,7 @@
   },
   "active": "9b1308947716083a",
   "lastOpenFiles": [
+<<<<<<< HEAD
     "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
     "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
@@ -110,5 +123,17 @@
     "AMATH 503/Solving PDE in Infinite Domain.md",
     "AMATH 503/Untitled.md",
     "AMATH 503/AMATH 503.md"
+=======
+    "AMATH 503/Fourier Cosine Series.md",
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
+    "CSE 546/Sigmoid And Odds.md",
+    "CSE 546/Classification (Statistics Theory).md",
+    "AMATH 502/Classification of ODEs.md",
+    "CSE 546/Untitled.md",
+    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+    "AMATH 503/Solving PDE in Infinite Domain.md",
+    "AMATH 503/Untitled.md"
+>>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
   ]
 }
