@@ -179,6 +179,7 @@ ds
 \right\rbrace = \exp \left(
 t
 \right)
+\tag{9}
 $$
 
 This true because the integral on the left semi-circle is getting to zero, as $s\rightarrow -\infty$. 
@@ -197,4 +198,5 @@ f(t) = \begin{cases}
     \\
     \exp(t) & t > 0
 \end{cases}
+\tag{10} 
 $$
