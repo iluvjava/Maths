@@ -2,11 +2,14 @@
 
 Previously we had the theory for Laplace Transform, now we will be interested in practicing it with some good examples. 
 
+And then we move to inverse Laplace Transform
+
 ---
 ### **Intro**
 
 Examples for Laplace Transform. 
 
+And Inverse Laplace Transform. 
 
 ---
 ### **A very General Example**
