@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Generalized.md",
+            "file": "AMATH 503/Laplace Transform.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Generalized.md",
+            "file": "AMATH 503/Laplace Transform.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Laplace Transform Generalized.md",
+                "file": "AMATH 503/Laplace Transform.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,10 +101,10 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Laplace Transform.md",
     "AMATH 503/Laplace Transform Generalized.md",
     "AMATH 503/Complex Fourier Series (PDF Flavor).md",
     "AMATH 503/Untitled.md",
-    "AMATH 503/Laplace Transform.md",
     "AMATH 515/Generalized Linear Model.md",
     "CSE 546/Untitled.md"
   ]

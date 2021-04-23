@@ -56,14 +56,14 @@ To summarize: The Fourier Trransform on the positive side of the function $f$ al
 ---
 ### **Why**?
 
-If the function is blowing up on the negative side, we can apply the Laplace Transfrom. 
+If the function is blowing up on the negative side, we can apply the Laplace Transform. 
 
 ---
 ### **Inverse Laplace Transform**
 
-The idea is to use the Inverse Foutier Transform. 
+The idea is to use the Inverse Fourier Transform. 
 
-Given that the function $f$ is **one-sided**. Then the inverse Foutier Transform is given by: 
+Given that the function $f$ is **one-sided**. Then the inverse Fourier Transform is given by: 
 
 $$
 f(t) = 
@@ -108,7 +108,7 @@ $$
 F(w) = \mathcal{F}[f](w) \underset{w = is}{\implies} F(is) = \mathcal{L}[f](s)
 $$
 
-And this is doable because the funciton is $f$ is onsided function. And therefore, we can have the inside of the expression (5) to be related to the Lapalce Transform and it wil be like: 
+And this is doable because the function is $f$ is ons-sided function. And therefore, we can have the inside of the expression (5) to be related to the Laplace Transform and it will be like: 
 
 $$
 f(t) = 
