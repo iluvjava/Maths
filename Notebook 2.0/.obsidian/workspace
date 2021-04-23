@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Examples.md",
+            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
             "mode": "source"
           }
         },
@@ -21,8 +21,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Examples.md",
-            "mode": "source"
+            "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
+            "mode": "preview"
           }
         },
         "group": "439767a7361f85c5"
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Laplace Transform Examples.md",
+                "file": "AMATH 503/Complex Fourier Series (PDF Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,8 +99,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ea78bd363ea2ea8f",
+  "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
+    "AMATH 503/Complex Fourier Series (PDF Flavor).md",
     "AMATH 503/Untitled.md",
     "AMATH 503/Laplace Transform.md",
     "AMATH 515/Generalized Linear Model.md",

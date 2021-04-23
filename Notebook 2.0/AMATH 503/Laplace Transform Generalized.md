@@ -1,15 +1,16 @@
 [[Laplace Transform]]
 
-Previously we had the theory for Laplace Transform, now we will be interested in practicing it with some good examples. 
+Previously we had the theory for Laplace Transform, now we will be interested in using this for other function that might not be integrable
 
 ---
 ### **Intro**
 
-Examples for Laplace Transform. 
+Examples for Laplace Transform.
 
+But this case, we depress the function with exponential decay before transforming it, which might, make an original function that is not integrable into something that can be integrated on the infinite domain. 
 
 ---
-### **A very General Example**
+### **A very Fancy Example**
 
 Here we are going to consider something cool, something a bit more general, and then we are going to take the Inverse Laplace transform on that: 
 
@@ -41,11 +42,11 @@ In addition, define: $\tilde{f}(s) = \mathcal{L}[f](s)$ for notational convenien
 
 What about the Inverse? 
 
-**Inverse Laplace Transform**
+**Inverse Lapace Transform**
 
 $$
 \mathcal{L}^{-1}[\widetilde{g}](s) =  
-\frac{1}{2\pi i}\int_{-i\infty}^{i\infty} 
+\frac{1}{2\pi i}\int_{-i\infty}^{iinfty} 
     \widetilde{f}(s + \alpha)\exp \left(
     st
     \right)
@@ -117,31 +118,6 @@ And this, is what we call the **General Form for the Inverse Laplace Transfrom**
 This will work even if $f(t)$ is not integrable. We start with depressing the function $f(s)$, which might not be integrable, and then taking the Laplace Transform on the function. 
 
 And in this case, we **shifted the laplace Transfrom** of $f(t)$ along the vertical line on real $\alpha$.
-
-
----
-### **A Concrete Example**
-
-So here, we will consider a concrete function. 
-
-Take this as a fact: 
-
-$$
-\mathcal{L}[\exp(t)](s) = \frac{1}{s - 1}
-\tag{7}
-$$
-
-The to figure out the inverse Laplace Transform of such function, we need to solve: 
-
-$$
-f(t) = \frac{1}{2\pi i}\int_{-i\infty + \alpha}^{i\infty + \alpha} 
-\frac{\exp(st)}{s - 1}
-ds
-\tag{8}
-$$
-
-This is a contour integral along the line $x = \alpha$ and $y$ is free. I goes along the vertical direction and the the real part of it is $\alpha$. 
-
 
 
 
