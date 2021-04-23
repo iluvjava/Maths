@@ -20,7 +20,7 @@ g(t) = f(t)\exp \left(
 \tag{1}
 $$
 
-So that in this case, the postive half of the function will always be ingetrable. 
+So that in this case, the positive half of the function will always be integrable. 
 
 **The Laplace Transform**: 
 
@@ -35,7 +35,7 @@ dt =
 \tag{2}
 $$
 
-Multplying the exponential is just a including a linear transform on the parameter before feeding it to the Laplace Transform. 
+Multiplying the exponential is just a including a linear transform on the parameter before feeding it to the Laplace Transform. 
 
 In addition, define: $\tilde{f}(s) = \mathcal{L}[f](s)$ for notational convenience. 
 
@@ -112,11 +112,11 @@ ds
 \tag{6}
 $$
 
-And this, is what we call the **General Form for the Inverse Laplace Transfrom**
+And this, is what we call the **General Form for the Inverse Laplace Transform**
 
 This will work even if $f(t)$ is not integrable. We start with depressing the function $f(s)$, which might not be integrable, and then taking the Laplace Transform on the function. 
 
-And in this case, we **shifted the laplace Transfrom** of $f(t)$ along the vertical line on real $\alpha$.
+And in this case, we **shifted the Laplace Transform** of $f(t)$ along the vertical line on real $\alpha$.
 
 
 ---
@@ -180,11 +180,11 @@ $$
 
 This true because the integral on the left semi-circle is getting to zero, as $s\rightarrow -\infty$. 
 
-Note that the integral is evaluated via residual theorem and the limit of the $s - 1$ mutliply on the function is a quick way of evaluating it. 
+Note that the integral is evaluated via residual theorem and the limit of the $s - 1$ multiply on the function is a quick way of evaluating it. 
 
 **For the second case**: 
 
-There are no singulraity on the Right hand size. By residual theorem, the contour integral is zero. 
+There are no singularity on the Right hand size. By residual theorem, the contour integral is zero. 
 
 The inverse Laplace gives zero for all $t < 0$. Therefore, the Inverse Laplace Transform is given by: 
 
