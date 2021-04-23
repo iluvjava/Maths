@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform.md",
+            "file": "AMATH 503/Laplace Transform Examples.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform.md",
+            "file": "AMATH 503/Laplace Transform Examples.md",
             "mode": "source"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Laplace Transform.md",
+                "file": "AMATH 503/Laplace Transform Examples.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,6 +102,7 @@
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
     "AMATH 503/Untitled.md",
+    "AMATH 503/Laplace Transform.md",
     "AMATH 515/Generalized Linear Model.md",
     "CSE 546/Untitled.md"
   ]

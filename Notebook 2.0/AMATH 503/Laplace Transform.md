@@ -124,9 +124,5 @@ $$
 We have recovered the original function and hence, we integral above will perform an inverse Laplace transform. 
 
 
----
-### **Example Laplace and Laplace Inverse**
-
-
 
 
