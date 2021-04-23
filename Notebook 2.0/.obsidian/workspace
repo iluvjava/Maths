@@ -9,7 +9,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 515/Generalized Linear Model.md",
+=======
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+>>>>>>> 9bb7bd17b2bbd44d3a8183cd01a4aa7452f4ecd9
             "mode": "source"
           }
         },
@@ -21,7 +25,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 515/Generalized Linear Model.md",
+=======
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+>>>>>>> 9bb7bd17b2bbd44d3a8183cd01a4aa7452f4ecd9
             "mode": "preview"
           }
         },
@@ -81,7 +89,11 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "AMATH 515/Generalized Linear Model.md",
+=======
+                "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+>>>>>>> 9bb7bd17b2bbd44d3a8183cd01a4aa7452f4ecd9
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,9 +111,24 @@
     "width": 300,
     "collapsed": true
   },
+<<<<<<< HEAD
   "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
     "AMATH 515/Generalized Linear Model.md",
     "CSE 546/Untitled.md"
+=======
+  "active": "4e31a3bc0b12d2e2",
+  "lastOpenFiles": [
+    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+    "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+    "AMATH 582/Fourier Transform.md",
+    "CSE 546/Classification (Statistics Theory).md",
+    "CSE 546/Classfications.md",
+    "AMATH 502/Classification of ODEs.md",
+    "AMATH 503/Solving PDE in Infinite Domain.md",
+    "AMATH 503/Untitled.md",
+    "AMATH 503/AMATH 503.md"
+>>>>>>> 9bb7bd17b2bbd44d3a8183cd01a4aa7452f4ecd9
   ]
 }
