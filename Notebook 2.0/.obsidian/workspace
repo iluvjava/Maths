@@ -1,53 +1,45 @@
 {
   "main": {
-    "id": "f9babefcedb978f6",
+    "id": "3303b52da90bfc3d",
     "type": "split",
     "children": [
       {
-        "id": "9b1308947716083a",
+        "id": "ea78bd363ea2ea8f",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-=======
-            "file": "AMATH 503/Fourier Cosine Series.md",
->>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
+            "file": "AMATH 515/Generalized Linear Model.md",
             "mode": "source"
           }
         },
-        "group": "b0c7783998e83990"
+        "group": "439767a7361f85c5"
       },
       {
-        "id": "4e31a3bc0b12d2e2",
+        "id": "2bc0f78e795d71bf",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-=======
-            "file": "AMATH 503/Fourier Cosine Series.md",
->>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
+            "file": "AMATH 515/Generalized Linear Model.md",
             "mode": "preview"
           }
         },
-        "group": "b0c7783998e83990"
+        "group": "439767a7361f85c5"
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "c737cf1f5bd863c7",
+    "id": "7024279de95f4c5a",
     "type": "split",
     "children": [
       {
-        "id": "828ced121c818075",
+        "id": "4864518405f92058",
         "type": "tabs",
         "children": [
           {
-            "id": "f8de77e63a453840",
+            "id": "cb13401a474d4a00",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -55,12 +47,12 @@
             }
           },
           {
-            "id": "c99e83e659877ffb",
+            "id": "add69d6a5226c3e1",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "Spectral Theorem",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -73,34 +65,30 @@
       }
     ],
     "direction": "horizontal",
-    "width": 392.0121879577637
+    "width": 300
   },
   "right": {
-    "id": "e74ad2ddc9cb0415",
+    "id": "9431ed95b32da0d9",
     "type": "split",
     "children": [
       {
-        "id": "72f505a5a3aafbcf",
+        "id": "c9238b8b0af647ff",
         "type": "tabs",
         "children": [
           {
-            "id": "043129611bba2f57",
+            "id": "27dd3d8f58a141b8",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-=======
-                "file": "AMATH 503/Fourier Cosine Series.md",
->>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
+                "file": "AMATH 515/Generalized Linear Model.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               }
             }
           }
@@ -108,32 +96,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 212
+    "width": 300,
+    "collapsed": true
   },
-  "active": "9b1308947716083a",
+  "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
-<<<<<<< HEAD
-    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
-    "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
-    "AMATH 582/Fourier Transform.md",
-    "CSE 546/Classification (Statistics Theory).md",
-    "CSE 546/Classfications.md",
-    "AMATH 502/Classification of ODEs.md",
-    "AMATH 503/Solving PDE in Infinite Domain.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/AMATH 503.md"
-=======
-    "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 503/Fourier Series (PDE Flavor).md",
-    "CSE 546/Sigmoid And Odds.md",
-    "CSE 546/Classification (Statistics Theory).md",
-    "AMATH 502/Classification of ODEs.md",
-    "CSE 546/Untitled.md",
-    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-    "AMATH 503/Solving PDE in Infinite Domain.md",
-    "AMATH 503/Untitled.md"
->>>>>>> 50f7d75694a91797d956402240c2cab9e4f9e301
+    "AMATH 515/Generalized Linear Model.md",
+    "CSE 546/Untitled.md"
   ]
 }
