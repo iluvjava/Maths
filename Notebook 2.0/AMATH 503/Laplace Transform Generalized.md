@@ -1,4 +1,4 @@
-[[Laplace Transform]]
+[[Laplace Transform]], [[Calculus of Residual (Res Shortcut)]]
 
 Previously we had the theory for Laplace Transform, now we will be interested in practicing it with some good examples. 
 
@@ -127,7 +127,7 @@ So here, we will consider a concrete function.
 Take this as a fact: 
 
 $$
-\mathcal{L}[\exp(t)](s) = \frac{1}{s - 1}
+\mathcal{L}[\exp(t)](s) = \frac{1}{s - 1}\quad \text{Where: }s > 1
 \tag{7}
 $$
 
@@ -142,9 +142,56 @@ $$
 
 This is a contour integral along the line $x = \alpha$ and $y$ is free. I goes along the vertical direction and the the real part of it is $\alpha$. 
 
+**Question:** What is the value of $\alpha$ here? 
 
+In order for us to get the Laplace Transform of the function $\exp(t)$, we will need to multiply it by $\exp(-\alpha t)$ to depress it on the positive side of the interval. And that means $\alpha > 1$ so that $1 - \alpha < 0$, so it's not blowing up. 
 
+That means the similarity of $s = 1$ will always falls on the left side of the vertical line $\Re(z) = \alpha$. 
 
+**Setting up the Contour Integral**
 
+Listen up kid, we need to do contour integral for this problem. 
 
+The semi-circle involving the vertical $\alpha$ line will be the choice. Depending on the value of $t$, we choose either the left semi-circle, or the right semi-circle. 
 
+1. $t > 0$ Left Semi-circle, contains the singularity. 
+2. $t < 0$ Right Semi-circle, doesn't contain the singularity. 
+
+**For the first case**, let $L$ denote the left semi-circle contour, the result of the laplace transform will be given by the integral: 
+
+$$
+\frac{1}{2\pi i}\int_{L}^{} 
+\frac{
+\exp \left(
+st
+\right)
+}{s - 1}
+ds
+=
+\frac{2\pi i}{2\pi i}
+\text{Res}\left\lbrace
+    \frac{\exp \left(
+    st
+    \right)}{s - 1}
+\right\rbrace = \exp \left(
+t
+\right)
+$$
+
+This true because the integral on the left semi-circle is getting to zero, as $s\rightarrow -\infty$. 
+
+Note that the integral is evaluated via residual theorem and the limit of the $s - 1$ mutliply on the function is a quick way of evaluating it. 
+
+**For the second case**: 
+
+There are no singulraity on the Right hand size. By residual theorem, the contour integral is zero. 
+
+The inverse Laplace gives zero for all $t < 0$. Therefore, the Inverse Laplace Transform is given by: 
+
+$$
+f(t) = \begin{cases}
+    0 & t \le 0
+    \\
+    \exp(t) & t > 0
+\end{cases}
+$$
