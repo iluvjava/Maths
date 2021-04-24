@@ -22,7 +22,7 @@ We are going to consider the Laplace Transform in time.
 So the laplace transform will be in $t$ instead of in $x$, this is **GOOD** because the solution funciton $u$ is one sided in time!
 
 ---
-### **Laplace**
+### **Laplace Transform on the Drunken Sailor**
 
 given $u(x,t)$ as a on sided function in $t$. 
 
@@ -122,11 +122,21 @@ B
 \tag{8}
 $$
 
-If the original function decays to zero as $|x|$ goes to infinity, then the same thing is happening for $\tilde{u}$ too. This means that: 
+If the original function decays to zero as $x\rightarrow \infty$ goes to infinity, then the same thing is happening for $\tilde{u}$ too. This means that: 
 
 **Note**: $s$ is complex[^1]. Because of the **Branch Cut**, we are going to use one of them, let's say that we are choosing $\Re(\sqrt{s}) > 0$, then the exponent with $B$ is blowing up as $x\rightarrow \infty$. 
 
+Then that means: 
 
+$$
+\tilde{u}(x, s) = A \exp \left(
+-\sqrt{s}x
+\right)
+\tag{9}
+$$
+
+Now, we are going to consider the other case where $x\rightarrow -\infty$, and the corresponding ODE solution has the same format compare to the previous
+case, giving us: 
 
 
 [^1]: [[Laplace Transform Generalized]], we show that inverse Laplace has $s$ going around in the complex plane. 
