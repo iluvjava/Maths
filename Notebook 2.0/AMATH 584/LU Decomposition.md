@@ -353,3 +353,8 @@ $$
 The matrix $(L_1)$ is going to feel the aggregate all the affects from the permutations matrix $P_3P_2P_1$ and the row operation matrices $L_2^{-1}L_3^{-1}$
 
 And that is what the algorithm is doing. 
+
+---
+### **Extra**
+
+When matrix is Symmetric, positive semi-definite, one can use Cholesky decomposition. [[Cholesky]]

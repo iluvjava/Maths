@@ -4,7 +4,7 @@ Non-smooth: The functions don't have to be differentiable.
 
 However, we are also assuming that the function is the sum of a beta smooth function and a non-smooth function. This is a lot of assumptions and it actually enclose a lot of classes of problems. 
 
-[[Convexity]]
+[[AMATH 515/Basic Convexity/Convexity]]
 
 This file includes the following concepts: 
 

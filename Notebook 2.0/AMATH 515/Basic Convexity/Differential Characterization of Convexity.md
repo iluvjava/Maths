@@ -1,6 +1,6 @@
 Let's see how we can use characteristic of the differential of a function can help us understand the convexity of the function 
 
-prereq [[Convexity]]
+prereq [[AMATH 515/Basic Convexity/Convexity]]
 
 ---
 ### Preparation

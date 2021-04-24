@@ -5,6 +5,8 @@ Major Reference Materials:
 2. Medium article [link](https://towardsdatascience.com/entropy-how-decision-trees-make-decisions-2946b9c18c8)
 3. Elements of Statistical Learning
 
+[[Basic Machine Learning]]
+
 ---
 #### **Intro**
 

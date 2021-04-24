@@ -18,7 +18,7 @@ Which means that, we want to just look at the equations, and gain some insights 
 2. Explain the different in approach between an ODEs class and a dynamical system class (solution method vs qualitative)
 
 Links: 
-[[1D Autonomous]]
+[[1D Autonomous]], [[State Variables]]
 
 #### Chapter 2: 1D Flows 
 1. Find the fixed points of a 1D (continuous time autonomous dynamical system)

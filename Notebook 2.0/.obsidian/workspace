@@ -6,10 +6,11 @@
       {
         "id": "ea78bd363ea2ea8f",
         "type": "leaf",
+        "dimension": 50.8610086100861,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Solving PDE with Laplace.md",
+            "file": "AMATH 584/LU Decomposition.md",
             "mode": "source"
           }
         },
@@ -18,10 +19,11 @@
       {
         "id": "2bc0f78e795d71bf",
         "type": "leaf",
+        "dimension": 49.1389913899139,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Solving PDE with Laplace.md",
+            "file": "AMATH 584/LU Decomposition.md",
             "mode": "preview"
           }
         },
@@ -65,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 358.0121879577637
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -81,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Solving PDE with Laplace.md",
+                "file": "AMATH 584/LU Decomposition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "AMATH 503/Solving PDE with Laplace.md",
-    "AMATH 503/Laplace Transform Generalized.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 583/More Linux Make.md",
-    "AMATH 583/Optimizing for Sparse Matrix Product.md",
-    "AMATH 583/Untitled.md",
-    "AMATH 503/Complex Fourier Series (PDF Flavor).md",
-    "AMATH 503/Laplace Transform.md",
-    "AMATH 515/Generalized Linear Model.md"
+    "AMATH 584/LU Decomposition.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
+    "Math 999/Lipschitz Continuum.md",
+    "AMATH 582/Dynamic Mode Decomposition.md",
+    "AMATH 582/Decision Tree.md",
+    "AMATH 582/Basic Machine Learning.md",
+    "AMATH 503/Physical Origins of PDEs.md",
+    "AMATH 502/AMATH 502.md",
+    "AMATH 502/State Variables.md",
+    "AMATH 501/Complex Analysis/Calculus of Residual.md"
   ]
 }
