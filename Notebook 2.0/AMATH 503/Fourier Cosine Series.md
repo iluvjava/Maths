@@ -195,7 +195,7 @@ In the discussion of the Cosine Fourier series, we know that the representation 
 
 However, when representing a constant of $y = 100$, the cosine series will be OK, both inside and outside of the interval. 
 
-**So the Reasoning is gonna ble like this**: 
+**So the Reasoning is gonna be like this**: 
 
 * By the symmetric property of the basis function, the cosine function is exactly the same as $y = 100$, and it's the same on the interval $[-L, L]$. 
 * Hence, the series takes value 100 on the interval $[-L, L]$. 

@@ -9,11 +9,11 @@ Here is the theorem statement:
 
 > If the function $F(x)$ is **bounded** and **piece-wise continuous** in the interval $[-L, L]$, then the Fourier Series of the function will equal to the function at the point where it's continuous, and it take the average of point where the function has a jump discontinuity. 
 
-> At the point of continuity, the seres converges to the function uniformly (Citation needed). 
+> At the point of continuity, the series converges to the function uniformly (Citation needed). 
 
 **Piece-wise Continuity**
 
-> A function is piece-wise continuous if, there exists finitely many non-degenerate intervals where the function is continuos. 
+> A function is piece-wise continuous if, there exists finitely many non-degenerate intervals where the function is continuous. 
 
 
 --- 
