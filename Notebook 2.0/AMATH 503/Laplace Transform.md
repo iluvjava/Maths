@@ -1,6 +1,8 @@
 [[Fourier Transform]]
 It's just Fourier, but it's along the imaginary axis. 
 
+We assume that basic understanding of solving ODEs using Laplace transform. 
+
 ---
 
 ### **Intro**

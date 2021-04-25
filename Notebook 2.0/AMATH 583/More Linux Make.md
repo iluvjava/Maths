@@ -88,3 +88,44 @@ amath583.o: amath583.cpp
 
 **Note2**: .hpp is not use in the command, but it's needed for the .cpp file that uses declared eneities in the corresponding .hpp file. 
 
+---
+### **Make File Macros**
+
+Macros is a variable. So that, we can change it once in the place where it's declared, then it will be changed everywhere else where it's used. 
+
+```
+CXX           = c++
+CXXFLAGS = -Wall -g -std=c++11
+
+main.exe: main.o amath583.o
+          $(CXX) $(CXXFLAGS)main.o amath583.o -o main.exe
+
+main.o: main.cpp amath583.hpp  # Note2
+          $(CXX) $(CXXFLAGS)-c main.cpp -o main.o
+
+amath583.o: amath583.cpp
+          $(CXX) $(CXXFLAGS)-c amath583.cpp -o amath583.o
+```
+
+Above is an example of declaring macros and using macros for compilations commands. 
+
+---
+### **Advanced Rules And Patterning**
+
+There are more advance way of making `makefile` that reduce the repeatition for declaring the same set of patterns of rules for making files that has the same type of dependency. 
+
+`$<`: Represents the file that is the dependency. 
+
+`&@`: Represents the file that is the target. 
+
+This is a generic patterns that compiles `.o` files using `.hpp`, `.cpp` files, this is the format: 
+
+```
+%.o : %.cpp
+        $(CXX) -c $(CXXFLAGS) $< -o $@
+```
+
+Compile `.o` file  o, which a generic given set of command, and the required dependency, which is the `.cpp` file. 
+
+Decalre this once, then this will be applied for all the dependencies and rules involving $.o$ as target and `.cpp` as dependencies. 
+

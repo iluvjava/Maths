@@ -124,7 +124,7 @@ $$
 
 If the original function decays to zero as $x\rightarrow \infty$ goes to infinity, then the same thing is happening for $\tilde{u}$ too. This means that: 
 
-**Note**: $s$ is complex[^1]. Because of the **Branch Cut**, we are going to use one of them, let's say that we are choosing $\Re(\sqrt{s}) > 0$, then the exponent with $B$ is blowing up as $x\rightarrow \infty$. 
+**Note**: $s$ is complex[^1]. Because of the **Branch Cut**, we are going to use one of them, let's say that **we are choosing** $\Re(\sqrt{s}) > 0$, then the exponent with $B$ is blowing up as $x\rightarrow \infty$. 
 
 Then that means: 
 
@@ -137,6 +137,41 @@ $$
 
 Now, we are going to consider the other case where $x\rightarrow -\infty$, and the corresponding ODE solution has the same format compare to the previous
 case, giving us: 
+
+$$
+\widetilde{u}(x, s) =  
+C \exp \left(
+-\sqrt{s}x
+\right)
++ 
+D 
+\exp \left(
+    \sqrt{s}x
+\right)
+\tag{10}
+$$
+
+And because $x\rightarrow - \infty$, $C =0$ so it's not blowing up. 
+
+**Take this fact for granted**
+
+The solution $\tilde{u}$ is continuous, and combining what we have shown from (9 d), (10), the solution will look like: 
+
+$$
+\widetilde{u}(x, s) = A \exp \left(
+- \sqrt{s}|x|
+\right)
+$$
+
+**Question**: How do we determine $A$???
+
+**Answer**: We are going to use the Dirac Delta function, which is the initial conditions too. 
+
+
+
+---
+### **Inverse Laplace and Contour Madness**
+
 
 
 [^1]: [[Laplace Transform Generalized]], we show that inverse Laplace has $s$ going around in the complex plane. 
