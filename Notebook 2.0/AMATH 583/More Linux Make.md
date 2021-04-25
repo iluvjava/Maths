@@ -7,9 +7,7 @@ Linux Make Tutorial Website: [link](https://makefiletutorial.com/), link should 
 ### **Basic Syntax**
 
 ```
-
 CXX       := c++
-
 OPTS      := -g -O0
 LANG      := -std=c++11 
 PICKY     := -Wall
@@ -44,7 +42,7 @@ In general, use `man make` to invoke the help information for the command in the
 
 Here are some examples: 
 
-`make -f <filename|file directory>`: 
+`make -f <filename|file directory>` 
 
 Make file using a specific make file. 
 
@@ -63,8 +61,6 @@ keep compiling if there is some kind of error from the compilation.
 Make a target in the `MakeFile`
 
 `make targetname`$?
-
-
 
 ---
 ### **Rules for Compiling CPP Files**
@@ -94,8 +90,8 @@ amath583.o: amath583.cpp
 Macros is a variable. So that, we can change it once in the place where it's declared, then it will be changed everywhere else where it's used. 
 
 ```
-CXX           = c++
-CXXFLAGS = -Wall -g -std=c++11
+CXX          := c++
+CXXFLAGS     := -Wall -g -std=c++11
 
 main.exe: main.o amath583.o
           $(CXX) $(CXXFLAGS)main.o amath583.o -o main.exe
@@ -128,4 +124,21 @@ This is a generic patterns that compiles `.o` files using `.hpp`, `.cpp` files, 
 Compile `.o` file  o, which a generic given set of command, and the required dependency, which is the `.cpp` file. 
 
 Decalre this once, then this will be applied for all the dependencies and rules involving $.o$ as target and `.cpp` as dependencies. 
+
+Therefore, using this feature, we will be able to simplify the compilation makefile into: 
+
+```makefile
+CXX             := c++
+CXXFLAGS        := -Wall -g -std=c++11
+
+%.o : %.cpp
+main.exe: main.o amath583.o
+main.o: main.cpp amath583.hpp  # Note2
+amath583.o: amath583.cpp
+```
+
+Here is some nice resources about `makefile` pattern-rules too. 
+
+[Makefile Rules-Patterns](https://swcarpentry.github.io/make-novice/05-patterns/index.html)
+
 
