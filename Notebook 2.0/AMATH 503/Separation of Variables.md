@@ -417,9 +417,35 @@ It's distributed into the coefficients $A_n, B_n$, and we will see those coming 
 ---
 ### **Mixed Boundary Conditions (Heat Equation)**
 
+The rod is insolated on one size and the temperature is fixed on the other side. 
 
 ---
-### **Unbalanced Dirichlet Boundary Conditions (Heat Equation)**
+### **Nonhomogenous Dirichlet Boundary Conditions (Heat Equation)**
+
+The boundary condition is: 
+
+$$
+u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t
+$$
+
+In this case, we must transform the problem into a homogenous Dirichilet by identifying the steady state solution to be: 
+
+$$
+u_s(x, t) = \frac{(t_2 - t_1)}{L}x + t_1
+$$
+
+A straight line connecting between these 2. 
+
+Now, the solution to the PDE can be written as an overposition of the steady states solution and some other harmonics upon that, hence: 
+
+$$
+u(x, t) = u_s(x, t) + u_h(x, t)
+$$
+
+And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary condtion. 
+
+Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
+
 
 ---
 ### **Only Heat Equation**? 
