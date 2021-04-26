@@ -161,12 +161,78 @@ $$
 \widetilde{u}(x, s) = A \exp \left(
 - \sqrt{s}|x|
 \right)
+\tag{11}
 $$
 
 **Question**: How do we determine $A$???
 
 **Answer**: We are going to use the Dirac Delta function, which is the initial conditions too. 
 
+$$
+\partial_x[\tilde{u}] - s\tilde{u} = -\delta(x)
+\tag{12}
+$$
+
+Is the ODE when $x = 0$, 
+
+$$
+\int_{-\epsilon}^{\epsilon} 
+\partial_x[\tilde{u}]
+dx
+ - 
+\underbrace{\int_{-\epsilon}^{\epsilon}s\tilde{u}}_{\rightarrow 0 \;\tilde{u}\text{ is continuous}}
+dx = 
+\underbrace{\int_{-\epsilon}^{\epsilon}
+ -\delta(x)
+dx}_{=1}
+\tag{13}
+$$
+
+We consider the case that $\epsilon \rightarrow 0$ to get an idea on the above equation. 
+
+Then that just implies that: 
+
+$$
+\tilde{u}|_{-\infty}^{\infty} = -1
+\tag{14}
+$$
+
+$$
+\implies
+-A \sqrt{s} \exp \left(
+-\sqrt{s}\epsilon
+\right)
+-A
+\sqrt{s} \exp \left(
+\sqrt{s}\epsilon
+\right) = -1
+$$
+
+$$
+\underset{\epsilon\rightarrow 0}{\implies}
+-2A \sqrt{s} =  -1
+\tag{15}
+$$
+
+$$
+\implies A = \frac{1}{2 \sqrt{s}}
+\tag{16}
+$$
+
+So then the solution to $\tilde{u}$ is going to look like: 
+
+$$
+\widetilde{u}(s, t) = \frac{1}{2 \sqrt{s}}\exp \left(
+-\sqrt{s} |x|
+\right)
+$$
+
+**A list of Assumptions that we made to get to this point**
+
+1. Expression (4): informal method, the convergence of the expression $u\exp(-st)$ as $t\rightarrow \infty$.
+2. We know hat $s\in\mathbb{C}$, but then we chose $\Re(s) > 0$. 
+3. $\tilde{u}$ is not blowing up as $|x|\rightarrow \infty$[^2]. 
+4. The solution $\tilde{u}$ is continuous, so that the ODEs involving the initial conditions are solvable. 
 
 
 ---
@@ -174,4 +240,6 @@ $$
 
 
 
-[^1]: [[Laplace Transform Generalized]], we show that inverse Laplace has $s$ going around in the complex plane. 
+
+[^1]: [[Laplace Transform Generalized]], we show that inverse Laplace has $s$ going around in the complex plane, along a vertical one where $\Re(s) = \alpha$ and $\Im(s)$ is like blowing up to $\pm \infty$. 
+[^2]: This is because boundary condition asserts $u\rightarrow 0$ as $|x|\rightarrow \infty$ the Laplace transform of that, which is $\int_{0}^\infty u(x, t)\exp(-st)dt$ is also going to be converging on the domain of $x$. 

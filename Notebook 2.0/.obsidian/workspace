@@ -6,11 +6,11 @@
       {
         "id": "ea78bd363ea2ea8f",
         "type": "leaf",
-        "dimension": 50.8610086100861,
+        "dimension": 48.07121661721068,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPU Intrinsics Extension.md",
+            "file": "AMATH 503/Laplace Transform Generalized.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "2bc0f78e795d71bf",
         "type": "leaf",
-        "dimension": 49.1389913899139,
+        "dimension": 51.92878338278932,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPU Intrinsics Extension.md",
+            "file": "AMATH 503/Laplace Transform Generalized.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPU Intrinsics Extension.md",
+                "file": "AMATH 503/Laplace Transform Generalized.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Laplace Transform Generalized.md",
+    "AMATH 503/Solving PDE with Laplace.md",
     "AMATH 583/CPU Intrinsics Extension.md",
     "AMATH 503/Fourier Cosine Series.md",
     "AMATH 503/Dirichlet Theorem.md",
@@ -110,8 +112,6 @@
     "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
     "Math 999/Lipschitz Continuum.md",
     "AMATH 582/Dynamic Mode Decomposition.md",
-    "AMATH 582/Decision Tree.md",
-    "AMATH 582/Basic Machine Learning.md",
-    "AMATH 503/Physical Origins of PDEs.md"
+    "AMATH 582/Decision Tree.md"
   ]
 }
