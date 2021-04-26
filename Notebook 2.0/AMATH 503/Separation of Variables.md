@@ -20,7 +20,7 @@ If a solution is not separable, but we did it anyway, we might get infinitely ma
 For the class, you don't have to show everything when solving ODEs, it's assumed that you know it so well that you can do it with eyes closed. Just stated he results and it will be fine. 
 
 ---
-### **Separation of Variables: Setting things up (Dirichlet Boundary Conditions)**
+### **Separation of Variables: Setting things up (Dirichlet Boundary Conditions, Heat Equation)**
 
 Let's say that the solution is the product of 2 functions, then it will be like: 
 
@@ -61,7 +61,7 @@ Let's summarize the procedure:
 
 
 ---
-### **Dirichlet Boundary Conditions**
+### **Dirichlet Boundary Conditions (Heat Equation)**
 #### **Separation and Substitution**
 
 $$
@@ -234,7 +234,7 @@ And, solving this with Fourier Series, we will get the solution, but we are skip
 
 
 ---
-### **Neumann Boundary Conditions**
+### **Neumann Boundary Conditions (Heat Equation)**
 
 Here, we are assuming the **Neumann Boundary** conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. 
 
@@ -294,7 +294,7 @@ $$
 
 
 ---
-### **Periodic Boundary Conditions**
+### **Periodic Boundary Conditions (Heat Equation)**
 
 
 let's pick up from the ODEs system from expression one, right after the assumption of the separation of variables. 
@@ -413,6 +413,13 @@ $$
 Where is the constant term: $T_n(0)$? 
 
 It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series (PDE Flavor)]]. 
+
+---
+### **Mixed Boundary Conditions (Heat Equation)**
+
+
+---
+### **Unbalanced Dirichlet Boundary Conditions (Heat Equation)**
 
 ---
 ### **Only Heat Equation**? 
