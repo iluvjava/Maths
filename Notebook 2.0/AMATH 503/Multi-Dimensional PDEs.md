@@ -147,6 +147,39 @@ $$
 
 For the boundary condition, lets focus on one of the case when $X = 0, A$, and then by symmetry, we can just get all the others as well. 
 
+$$
+\psi(0, x, y, t) = 0 = \psi(A, x, y, t)
+$$
+
+Then it can be translated to: 
+
+$$
+X(0)YXT = 0 = X(A)YXT  \implies X(0) = 0 = X(A)
+$$
+
+Assume that the solution is non-trivial
+
+So then this is like: 
+
+$$
+X'' + a^2x = 0 \quad X(0) = X(A) = 0
+\tag{11}
+$$
+
+From expression (10), so then in the end we have: 
+
+$$
+Y'' + b^2Y = 0 \quad Y(0) = Y(A) = 0
+\tag{12}
+$$
+
+
+$$
+Z'' + c^2Z = 0 \quad Z(0) = Z(A) = 0
+\tag{12}
+$$
+
+
 
 
 
