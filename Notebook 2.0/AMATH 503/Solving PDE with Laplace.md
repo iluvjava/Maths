@@ -234,9 +234,10 @@ $$
 3. $\tilde{u}$ is not blowing up as $|x|\rightarrow \infty$[^2]. 
 4. The solution $\tilde{u}$ is continuous, so that the ODEs involving the initial conditions are solvable. 
 
-
 ---
 ### **Inverse Laplace and Contour Madness**
+ 
+In the end we will need to take the inverse Laplace Transform on $\tilde{u}$ to get the answer for the PDE in the original space. 
 
 
 

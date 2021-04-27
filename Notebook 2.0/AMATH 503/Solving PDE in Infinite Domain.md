@@ -5,6 +5,8 @@ One of the very important application of Fourier Transfrom is its application to
 ---
 ### **Intro**
 
+We are going to solve the wave equation on the **infinite domain** using the **metod of Fourier Transform**. 
+
 Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. 
 
 Suppose that that we are modeling the guitar string with: 

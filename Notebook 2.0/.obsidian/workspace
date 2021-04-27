@@ -6,11 +6,11 @@
       {
         "id": "ea78bd363ea2ea8f",
         "type": "leaf",
-        "dimension": 48.07121661721068,
+        "dimension": 48.07121661721069,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
+            "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "2bc0f78e795d71bf",
         "type": "leaf",
-        "dimension": 51.92878338278932,
+        "dimension": 51.92878338278931,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
+            "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/AMATH 503.md",
+                "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,17 +101,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ea78bd363ea2ea8f",
+  "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
+    "AMATH 515/Basic Convexity/Beta Smoothness.md",
+    "AMATH 515/Gradient Descend/Gradient Descend 1.md",
+    "AMATH 515/Gradient Descend/Gradient Descend 2.md",
     "AMATH 503/AMATH 503.md",
     "AMATH 503/Separation of Variables.md",
     "AMATH 503/Physical Origins of PDEs.md",
     "AMATH 503/ODEs, PDEs Intro.md",
     "AMATH 503/Laplace Transform Generalized.md",
     "AMATH 503/Solving PDE with Laplace.md",
-    "AMATH 583/CPU Intrinsics Extension.md",
-    "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Dirichlet Theorem.md",
-    "AMATH 584/LU Decomposition.md"
+    "AMATH 583/CPU Intrinsics Extension.md"
   ]
 }

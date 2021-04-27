@@ -417,7 +417,7 @@ It's distributed into the coefficients $A_n, B_n$, and we will see those coming 
 ---
 ### **Mixed Boundary Conditions (Heat Equation)**
 
-The rod is isolated on one size and the temperature is fixed on the other side. 
+The rod is isolated on one size and the temperature is fixed on the other side.
 
 ---
 ### **Nonhomogenous Dirichlet Boundary Conditions (Heat Equation)**
@@ -457,7 +457,9 @@ $$
 ---
 ### **Heat Equation Infinite Domain** 
 
-No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work. 
+No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work.
+
+
 
 
 
@@ -465,4 +467,33 @@ No, Separation of variable cannot do this, you will bee Fourier Transform and La
 ### **Only Heat Equation**? 
 
 This is not true, heat equation is one of the example, and wave equation can also be solved using S.F.V. 
+
+---
+### **Quick Overview on Wave Equation**
+
+Wave equation is in the form 
+
+$$
+\partial_t^2u = \alpha^2\lambda_n^2T = 0
+$$
+
+For Diricilet boundary conditions: 
+
+$$
+T_n(t) = A_n\sin(\alpha\lambda_nt) + B_n\cos(\alpha\lambda_nt)
+$$
+
+For Neumann: 
+
+$$
+T_n(t) = A_n\sin(\alpha\lambda_nt) + B_ncos(\alpha\lambda_nt)
+\quad T_0(t) = A_0 t + B_0
+$$
+
+Where, the case whtn the constant equals to zero cannot not be dropped out. 
+
+To find the constant $A_n, B_n$ for $T$, we would need the initial condtions for the problem. 
+
+
+
 

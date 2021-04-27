@@ -49,4 +49,16 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 
 ---
 ### **Topics Covered in Midterm**
+1. Separation of variables related
+   1. Seperations of variable for Heat, or wave equation, with various initial and boundary conditions. 
+   2. Given a PDEs, what are the resulting ODEs from the process of separation of variable. 
+   3. Skipping the steps getting the ODEs is cool. 
+2. Fourier Series
+   1. Fourier Sine Series
+   2. Fourier Cossine Series
+   3. Complex Fourier Series
+3. Fourier Transform & Laplace Transform 
+   1. Apply the Fourier Transform method solving a given PDE problem. 
+
+
 
