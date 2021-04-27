@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
+            "file": "AMATH 503/Multi-Dimensional PDEs.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
+            "file": "AMATH 503/Multi-Dimensional PDEs.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Basic Convexity/Beta Smoothness.md",
+                "file": "AMATH 503/Multi-Dimensional PDEs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,8 +101,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "2bc0f78e795d71bf",
+  "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Multi-Dimensional PDEs.md",
+    "AMATH 503/Untitled.md",
     "AMATH 515/Basic Convexity/Beta Smoothness.md",
     "AMATH 515/Gradient Descend/Gradient Descend 1.md",
     "AMATH 515/Gradient Descend/Gradient Descend 2.md",
@@ -110,8 +112,6 @@
     "AMATH 503/Separation of Variables.md",
     "AMATH 503/Physical Origins of PDEs.md",
     "AMATH 503/ODEs, PDEs Intro.md",
-    "AMATH 503/Laplace Transform Generalized.md",
-    "AMATH 503/Solving PDE with Laplace.md",
-    "AMATH 583/CPU Intrinsics Extension.md"
+    "AMATH 503/Laplace Transform Generalized.md"
   ]
 }

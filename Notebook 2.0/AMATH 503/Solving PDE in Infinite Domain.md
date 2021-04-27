@@ -241,5 +241,4 @@ Because the initial condition helped us to satisfies that part, the function is 
 
 
 
-
 [^1]: Just adds up all the above equations (1), (3), (4), and then using the fact that the fourier transform is linear, then we can have the expression (5).
