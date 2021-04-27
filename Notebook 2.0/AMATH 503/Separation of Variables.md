@@ -446,6 +446,14 @@ And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary co
 
 Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
 
+For the harmonic problem, the boundary condition is Dirichilet. 
+
+---
+### **Heat Equation Infinite Domain** 
+
+
+
+
 
 ---
 ### **Only Heat Equation**? 
