@@ -417,7 +417,7 @@ It's distributed into the coefficients $A_n, B_n$, and we will see those coming 
 ---
 ### **Mixed Boundary Conditions (Heat Equation)**
 
-The rod is insolated on one size and the temperature is fixed on the other side. 
+The rod is isolated on one size and the temperature is fixed on the other side. 
 
 ---
 ### **Nonhomogenous Dirichlet Boundary Conditions (Heat Equation)**
@@ -446,12 +446,18 @@ And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary co
 
 Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
 
-For the harmonic problem, the boundary condition is Dirichilet. 
+For the harmonic problem, the boundary condition is Dirichilet: 
+
+$$
+u_h(0, t) = u_h(L, t) = 0
+$$
+
+
 
 ---
 ### **Heat Equation Infinite Domain** 
 
-
+No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work. 
 
 
 

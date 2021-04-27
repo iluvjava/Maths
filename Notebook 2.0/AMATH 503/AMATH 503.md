@@ -47,3 +47,6 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 3. Generalizing Laplace Transform and Inverse Laplace Transform: [[Laplace Transform Generalized]]
 4. Solving PDE with the Laplace Transform: [[Solving PDE with Laplace]]
 
+---
+### **Topics Covered in Midterm**
+

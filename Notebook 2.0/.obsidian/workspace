@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Generalized.md",
+            "file": "AMATH 503/AMATH 503.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Laplace Transform Generalized.md",
+            "file": "AMATH 503/AMATH 503.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Laplace Transform Generalized.md",
+                "file": "AMATH 503/AMATH 503.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/AMATH 503.md",
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Physical Origins of PDEs.md",
+    "AMATH 503/ODEs, PDEs Intro.md",
     "AMATH 503/Laplace Transform Generalized.md",
     "AMATH 503/Solving PDE with Laplace.md",
     "AMATH 583/CPU Intrinsics Extension.md",
     "AMATH 503/Fourier Cosine Series.md",
     "AMATH 503/Dirichlet Theorem.md",
-    "AMATH 584/LU Decomposition.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/Cholesky.md",
-    "Math 999/Lipschitz Continuum.md",
-    "AMATH 582/Dynamic Mode Decomposition.md",
-    "AMATH 582/Decision Tree.md"
+    "AMATH 584/LU Decomposition.md"
   ]
 }
