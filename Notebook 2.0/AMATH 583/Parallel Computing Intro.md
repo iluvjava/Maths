@@ -102,6 +102,49 @@ Everything that comes after the `fork()` will be executed in the parent process,
 
 It will return zero if the current process successfully created the child process. 
 
+Let's take a look at what we call a `Fork Bomb`: 
+
+```cpp
+int main() {
+    int pids[20]; 
+    for (int i = 0; i < 20; ++i)
+    {
+        pids[i] = fork();
+    }
+    return 0;
+}
+```
+
+And, this will spawn 2 on the first process, each child process then go ahead and spawn 2 again. 
+
+The total number of spawned process is like: 
+
+$$
+\sum_{n = 0}^{20}
+    2^{n}
+$$
+
+To spawn 20 processes properly, we should ues this: 
+
+```cpp
+int main(){
+    pid_t pids[20]; 
+    for (int i = 0; i < 20; ++i)
+    { 
+        pids[i] = fork();
+        if (pids[i] == 0) 
+        {break;}
+    }
+}
+```
+
+This is saying that, if the current process we looking at, already spanwed its parent, then we are quiting the forloop all together. 
+
+---
+### **MultiTasking**
+
+
+
 
 
 
