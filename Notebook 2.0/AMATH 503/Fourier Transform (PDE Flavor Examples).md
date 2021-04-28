@@ -122,7 +122,7 @@ $$
 \lim_{L\rightarrow \infty}\int_{-L}^{L}f(y)\exp(i\omega_n y)dy
 $$
 
-As the Length $L$ approaches $\infty$, the quantity $\Delta\omega$ gets smaller, and the variable $\omega_n$ change from a discrete variable to a continuous variable, at the same time bounds of the integral are approaching infinity giving us:  
+As the Length $L$ approaches $\infty$, the quantity $\Delta\omega$ gets smaller, and the variable $\omega_n$ change from a discrete variable to a continuous variable, at the same time bounds of the integral are approaching infinity giving us:[^1]  
 
 $$
 F(\omega) 
@@ -200,3 +200,5 @@ $$
 **Theorem Statement**: 
 
 If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|^2$) is integrable.) Then, the fourier transform is tell defined and is in L2, In addition, if F(x) is continuously differentiable, at a point $x$, then the inverse Fourier Transform equals its value $f(x)$. 
+
+[^1]: Notice that the exponent is positive for the kernel used for Fourier Transform, this is not consistent with what we usually have on other sources but it really doesn't matter just swap the sign for $\omega$ and it will work. 
