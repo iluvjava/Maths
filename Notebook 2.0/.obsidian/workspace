@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "AMATH 583/Parallel Computing Intro.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+            "file": "AMATH 583/Parallel Computing Intro.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+                "file": "AMATH 583/Parallel Computing Intro.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Parallel Computing Intro.md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
     "AMATH 582/Fourier Transform.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
@@ -111,7 +112,6 @@
     "AMATH 515/Basic Convexity/Beta Smoothness.md",
     "AMATH 515/Gradient Descend/Gradient Descend 1.md",
     "AMATH 515/Gradient Descend/Gradient Descend 2.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Separation of Variables.md"
+    "AMATH 503/AMATH 503.md"
   ]
 }
