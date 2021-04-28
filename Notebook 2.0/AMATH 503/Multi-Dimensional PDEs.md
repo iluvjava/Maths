@@ -21,7 +21,7 @@ $$
 
 And the function $\psi(x, y, z, t)$ is a function of space and time. 
 
-The modular squared $|\psi|^2$ is the probability of finding an electron at a specific poisition. 
+The modular squared $|\psi|^2$ is the probability of finding an electron at a specific position. 
 
 $\psi$ is a complex function.
 
@@ -38,7 +38,9 @@ $$
 The particle is not present on the boundary of the box. 
 
 ---
-**Separation of Variables**
+### **Separation of Variables**
+
+**Spatial Solve**
 
 Let 
 
@@ -125,7 +127,7 @@ $$
 And then in the end: 
 
 $$
-\frac{Z''}{Z} = -(\lambda - a^2 - b^2) = -c^2
+\frac{Z''}{Z} = -(\lambda - a^2 - b^2) = -c^2 \tag{9.1}
 $$
 
 Now, we have system of ODEs, with all the constant defined in terms of each other. 
@@ -176,8 +178,152 @@ $$
 
 $$
 Z'' + c^2Z = 0 \quad Z(0) = Z(A) = 0
-\tag{12}
+\tag{13}
 $$
+
+Then from the ODEs, all $X, Y, Z$ is going to be composed with $\sin$, and it's going to be like: 
+
+$$
+a_n \frac{n\pi}{A}  \implies X_n =\sin\left(
+    \frac{n\pi x}{A}
+\right) \quad n\in \mathbb{N}
+$$
+
+So then for the other 2 we have: 
+
+$$
+b_m = \frac{m\pi}{A} \implies
+Y_m = \sin\left(
+    \frac{m\pi y}{A}
+\right) \quad n \in \mathbb{N}
+$$
+
+And then: 
+
+$$
+c_l = \frac{l\pi}{A} \implies \sin\left(
+    \frac{l\pi z}{A}
+\right)\quad n \in \mathbb{N}
+$$
+
+then, there are 3 integers governing different types of $X, Y, Z$, then the solution for $u$ will depend on all 3 of the parameters $m, n, l$, therefore it will be like: 
+
+$$
+u_{m, n, l} = X_nY_nZ_n = \sin\left(
+    \frac{n\pi x}{A}
+\right)
+\sin\left(
+    \frac{ m\pi y}{A}
+\right)
+\sin\left(
+    \frac{l\pi z}{A}
+\right)
+\tag{14}
+$$
+
+from (5), (8), (9), (9.1), can express $\lambda_n$ to be: 
+
+$$
+\lambda_{n,m,l} = a_n^2 + b_m^2 + c_l^2 = 
+\frac{\pi^2(n^2 + m^2 + l^2)}{A^2}
+\tag{15}
+$$
+
+Then, we will be able to get expression the solution. 
+
+
+**Temporal Solve**
+
+The time solution is also going to depend on $m, n, l$, and we need to susbtitute the expression for $\lambda$ back to get it. 
+
+$$
+\frac{i\hbar T'}{T} = E = \frac{\hbar^2\lambda^2}{2\mu}
+$$
+
+$$
+T'(t) = \frac{\hbar^2\lambda^2}{2\mu}
+\frac{1}{i\hbar}T(t)
+=
+\frac{-i\hbar \lambda^2}{2\mu}T(t)
+$$
+
+$$
+T'_{m, n, l} = \frac{-i\hbar \lambda^2_{m, n, l}}{2\mu}T(t)
+\tag{16}
+$$
+
+Then, the solution of it will be like: 
+
+$$
+T_{n, m, l}(t) = 
+T_{n, m, l}(0)
+\exp \left(
+\frac{-i\hbar \lambda_{n, m, l}^2}{
+    2\mu
+}t
+\right)
+$$
+
+
+And, this function is going to oscillate. Because of the imaginary units in the exponent of the exp. 
+
+The frequency is given by: 
+
+$$
+\frac{-i\hbar \lambda_{n, m, l}^2}{
+    2\mu}
+    = 
+\frac{\hbar}{2\mu} 
+\frac{\pi^2}{A^2}(n^2 + m^2 + l^2)
+\tag{17}
+$$
+
+
+And notice that, the frequencies are quantize, because of the fact that $n, n, l$ are integers in this case. 
+
+
+---
+### **Quantum Mechanics**
+
+Let's talk abut the energy of an electron, it's computed by: 
+
+$$
+\hbar \omega = \hbar \left(
+    \frac{\hbar \lambda^2_{m, n, l}}{2\mu}
+\right) = E_{m, n, l}
+$$
+
+Interesting, that is the constant we had on the right handside of the PDE. 
+
+In the problem above, the electron is not going to escape, but in the reality, the electron will be able to escape. 
+
+This model is only accurate for the first few values of $m, n, l$. 
+
+The lowest energy level of the electron is when $m, n, l = 1, 1,1$. 
+
+Which is something like: 
+
+$$
+E_{1, 1,1} = \frac{3\hbar^2 \pi^2}{2\mu}
+$$
+
+Assuming that $A = 1$. 
+
+This is a constant that is not zero. 
+
+This is called the **ground state**. 
+
+And the ther state where higher harmonics are involved, that is thelelevated states, and it's like $E_{1, 1, 2}, E_{1, 2 , 1}, E_{2, 1,1}$. And these excited state is like: 
+
+$$
+\frac{6\hbar \pi^2}{2\mu}
+$$
+
+Fascinating. 
+
+
+
+
 
 
 
