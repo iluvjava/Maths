@@ -185,7 +185,7 @@ dx
 \tag{12}
 $$
 
-Now, the next thing is to solve this integral, and remember from the Guassian Integral, which we have tried here: [[Application of Fourier Transform (PDE Flavor)]]
+Now, the next thing is to solve this integral, and remember from the Gaussian Integral, which we have tried here: [[Application of Fourier Transform (PDE Flavor)]]
 
 The integral of the solution turns out to be: 
 
@@ -193,7 +193,7 @@ $$
 u(x,t) = 
 \frac{1}{\sqrt{4\pi \alpha^2 t}}\exp \left(
 -\left(
-    \frac{x}{\sqrt{4\pi\alpha^2 t}}
+    \frac{x}{\sqrt{4\alpha^2 t}}
 \right)^2
 \right)
 \tag{13}
@@ -274,7 +274,7 @@ $$
 
 Which is just simple integration by parts with some **Assumptions** about the boundary conditions of the solution types. 
 
-Now, applying the Fourier Transfrom on the PDE for both direction, we have: 
+Now, applying the Fourier Transform on the PDE for both direction, we have: 
 
 $$
 \partial_t[\hat{u}](w_1, w_2, t) = -\alpha^2(w_1^2 + w_2^2)\hat{u}(w_1, w_2, t)
@@ -339,10 +339,10 @@ So then combining the results, we have:
 
 $$
 u(x, y, t) = 
-\frac{1}{\sqrt{4\pi \alpha^2t}}\exp \left(
+\frac{1}{4\pi \alpha^2t}\exp \left(
     \frac{-x^2 - y^2}{4\alpha^2 t}
 \right)
 \tag{23}
 $$
 
-And this is the solution for the Drunken Sailor for the 2D scenario.  
+And this is the solution for the Drunken Sailor for the 2D scenario.
