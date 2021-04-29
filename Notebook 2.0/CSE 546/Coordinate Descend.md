@@ -72,12 +72,20 @@ w_1^+ = \underset{w_1}{\text{argmin}}\left\lbrace
 \right\rbrace
 $$
 
-And boom, nice and easy, we have all the expression in $\vert Xw - y\vert + \lambda |w|$ that contains $w_1$, our objective parameter. 
+And boom, nice and easy, we have all the expression in $\Vert Xw - y\Vert + \lambda |w|$ that contains $w_1$, our objective parameter. 
 
 Let's name the objective function above to be $f(w_1)$. 
 
 
+---
+### **When Does This Coordinate Descend Works**
 
+Yes, there are cases when it's not working. 
 
+It happens when it's not smooth, and it's not differentialble. 
+
+Just google that, there is a possibility that, at the point of non-smoooth ness, there is a way to get stucked. **It happens when the subspace of all the sub-differential(Wher there is at least one coordiante is non smooth) happens to be related to several spatial coordinate** (more than 1 coordiantes direction is non-smooth). 
+
+And, in the cacse of lasso, we are safe, because subspace of sub-differential (where there are at least one coordinate that is non-smooth), is only related to one, $x_i$. 
 
 
