@@ -330,7 +330,7 @@ u(x, y, t) =
     \frac{-x^2}{4\alpha^2 t}
 \right)
 \frac{1}{\sqrt{4\pi \alpha^2t}}\exp \left(
-    \frac{-y^2}{4\alpha^2 t}
+    \frac{-y^2}{4\alpha^2 t} 
 \right)
 \tag{22}
 $$
