@@ -28,6 +28,8 @@ There is a closed form solution when it's lasso, or, regression.
 ---
 ### **Linear Regression Coordinate Descend**
 
+**Note**: Index start with one. 
+
 We are looking for: 
 
 $$
@@ -42,13 +44,33 @@ Extracting out everything that is relevant to variable $w_1$ we have:
 
 $$
 w_1^+ = \underset{w_1}{\text{argmin}}\left\lbrace
-    \left\Vert
-         X[:, 1]w_1 - (y - X[:, 2:d]w_1)
+    \frac{1}{2}\left\Vert
+         X[:, 1]w_1 - (y - X[:, 2:]w[2:])
     \right\Vert_2^2
 \right\rbrace
 $$
 
+A factor of $\frac{1}{2}$ is added to cancell out with the derivative from the exponent. And it's not hard to see that taking the derivative and set it to zero will yield: 
 
+$$
+X[:, 1]w_1 - (y - X[:, 2:]w[2:]) = 0
+$$
+
+Then, we will be able to solve for $w_1$: 
+
+$$
+X[:, 1]w_1 = (y - X[:, 2:]w[2:]) 
+$$
+
+$$
+X[:, 1]^T X[:, 1]w_1 = X[:, 1]^T(y - X[:, 2:]w[2:]) 
+$$
+
+$$
+w_1^+ = (X[:, 1]^T X[:, 1])^{-1}X[:, 1]^T(y - X[:, 2:]w[2:]) 
+$$
+
+And it's the same for other coordinate, just do this and then we will have the optimal solution. 
 
 
 ---
@@ -67,7 +89,7 @@ The sub gradient of the function is like:
 $$
 w_1^+ = \underset{w_1}{\text{argmin}}\left\lbrace
     \left\Vert
-         X[:, 1]w_1 - (y - X[:, 2:d]w_1)
+         X[:, 1]w_1 - (y - X[:, 2:]w[2:])
     \right\Vert_2^2 + \lambda|w_1|
 \right\rbrace
 $$
@@ -75,6 +97,8 @@ $$
 And boom, nice and easy, we have all the expression in $\Vert Xw - y\Vert + \lambda |w|$ that contains $w_1$, our objective parameter. 
 
 Let's name the objective function above to be $f(w_1)$. 
+
+To take the derivative of that, we will need to use sub-differential. 
 
 
 ---
