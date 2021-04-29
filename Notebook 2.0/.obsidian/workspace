@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallel Computing Intro.md",
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallel Computing Intro.md",
+            "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/Parallel Computing Intro.md",
+                "file": "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "AMATH 583/Parallel Computing Intro.md",
+    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+    "AMATH 503/The Gaussian Integral.md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+    "AMATH 503/Untitled.md",
+    "AMATH 503/Solving PDE in Infinite Domain.md",
+    "AMATH 583/Parallel Computing Intro.md",
     "AMATH 582/Fourier Transform.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/Multi-Dimensional PDEs.md",
-    "AMATH 515/Basic Convexity/Beta Smoothness.md",
-    "AMATH 515/Gradient Descend/Gradient Descend 1.md",
-    "AMATH 515/Gradient Descend/Gradient Descend 2.md",
-    "AMATH 503/AMATH 503.md"
+    "AMATH 503/Multi-Dimensional PDEs.md"
   ]
 }

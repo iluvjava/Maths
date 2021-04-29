@@ -1,6 +1,6 @@
 Here, we will apply the Fourier Transform on solving a PDE problem, and this problem is derived in chapter 2 of the textbook. 
-
 [[Solving PDE in Infinite Domain]]
+This is another example of solving PDEs with infinite boundary conditions. 
 
 ---
 
@@ -252,7 +252,7 @@ $$
 \tag{15}
 $$
 
-We can take out the time derivative operator that is nested inside the Fourier Transfrom Operator. 
+We can take out the time derivative operator that is nested inside the Fourier Transform Operator. 
 
 Similarly we have: 
 
@@ -305,7 +305,7 @@ $$
 \right)
 $$
 
-Now we are ready for the Inverse Fourier Transfrom, and it's like: 
+Now we are ready for the Inverse Fourier Transform, and it's like: 
 
 $$
 \mathcal{F}^{-1}_{xy}[\hat{u}] = \mathcal{F}^{-1}_x \left[
@@ -329,7 +329,6 @@ u(x, y, t) =
 \frac{1}{\sqrt{4\pi \alpha^2t}}\exp \left(
     \frac{-x^2}{4\alpha^2 t}
 \right)
-+ 
 \frac{1}{\sqrt{4\pi \alpha^2t}}\exp \left(
     \frac{-y^2}{4\alpha^2 t}
 \right)
