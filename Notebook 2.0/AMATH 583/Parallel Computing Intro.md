@@ -138,16 +138,9 @@ int main(){
 }
 ```
 
-This is saying that, if the current process we looking at, already spanwed its parent, then we are quiting the forloop all together. 
+This is saying that, if the current process we looking at, already spawned its parent, then we are quitting the for loop all together. 
 
 ---
-### **MultiTasking**
-
-
-
-
-
-
 
 
 

@@ -202,3 +202,5 @@ $$
 If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|^2$) is integrable.) Then, the fourier transform is tell defined and is in L2, In addition, if F(x) is continuously differentiable, at a point $x$, then the inverse Fourier Transform equals its value $f(x)$. 
 
 [^1]: Notice that the exponent is positive for the kernel used for Fourier Transform, this is not consistent with what we usually have on other sources but it really doesn't matter just swap the sign for $\omega$ and it will work. 
+
+
