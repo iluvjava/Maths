@@ -53,7 +53,7 @@ x_{k + 1} = \underset{y}{\text{argmin}}\left(
 \right) \tag{2}
 $$
 
-Which is relavent from the proximal operator.
+Which is relevant from the proximal operator.
 
 $$
 x_{k + 1} = \underset{1/\beta, h}{\text{prox}}
@@ -65,6 +65,7 @@ $$
 
 This works as well as the gradient descend for the $g(x)$ function. 
 
+---
 #### Optimality conditions to Termination Conditions
 
 For the proximity operator, we can allow a solution to it if the following condition is true: 
