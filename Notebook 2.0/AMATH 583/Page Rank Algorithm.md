@@ -93,6 +93,20 @@ $$
 
 Where, the addition operators are broadcasted for the matrix. 
 
+Let's call this the: **Teleportation Bias**
+
+And the steady states solution of this new biases will model the computations better. 
+
+---
+### **Interpreting the Results**
+
+After getting the resulting vector, we will be sorting the vector, and that will give us the ranks of the pages. 
+
+---
+### **Parallization**
+
+Partition the vector while multiplying it with the matrix. 
+
 
 
 
