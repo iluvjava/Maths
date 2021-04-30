@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 501/Vector Calculus/Curvilinear Gradient.md",
+            "file": "AMATH 515/Basic Convexity/Convexity.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 501/Vector Calculus/Curvilinear Gradient.md",
+            "file": "AMATH 515/Basic Convexity/Convexity.md",
             "mode": "preview"
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "epigraph",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -63,7 +63,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -83,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 501/Vector Calculus/Curvilinear Gradient.md",
+                "file": "AMATH 515/Basic Convexity/Convexity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +104,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 515/Basic Convexity/Convexity.md",
     "AMATH 501/Vector Calculus/Curvilinear Gradient.md",
     "AMATH 501/Vector Calculus/Curv Ortho Gradient E.g.md",
     "AMATH 501/Vector Calculus/The Gradient.md",
@@ -111,7 +113,6 @@
     "AMATH 515/Proximal Gradient Descend/Proximal Gradient Method.md",
     "AMATH 515/Proximal Gradient Descend/Proximal Gradient 2.md",
     "CSE 546/Untitled.md",
-    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
-    "AMATH 503/Application of Fourier Transform (PDE Flavor).md"
+    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md"
   ]
 }
