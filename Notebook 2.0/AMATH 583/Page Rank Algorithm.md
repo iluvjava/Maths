@@ -54,3 +54,45 @@ Yep!
 To get the answer, we will do repeated matrix vector product instead of taking the power of the $p$ matrix, in addition, because the matrix $P$ is very sparse, this just make thing very simple. 
 
 This is essentially a graph algorithm but using the idea of sparse matrix vector multiplications. 
+
+---
+### **Strongly Connected Components and Absorbing States**
+
+Local strongly connected component of the graph will be absorbing. 
+
+The steady states solution will include all such absorbing states, and hence, if we model it with probability, it will represent the probabalistic teleportation of the surfers between different strongly connected components of the graph. 
+
+---
+### **Teleportation Matrix**
+
+This is the matrix: 
+
+$$
+Q = \frac{\alpha}{N_p} \text{ones}(m, m) + (1 - \alpha)P
+$$
+
+A weighted sum between the dense matrix of all ones and the markov transition matrix. 
+
+Why we have this new matrix involved: 
+
+The markov process only models the path of the surfers if they start with the one node, and it's highly likely that they will get trapped in an absorbing states of the markov chain.
+
+And hence, we want to **add some random probability that, the user might just... close the tab and goes to a new random website**, and hence that is what the the matrix of ones are modeling. 
+
+Now the user can teleport. 
+
+Wait! We have a dense matrix this is bad. 
+
+Ok, there is a way to expoit this matrix. Mulitplying the one matrix is just the putting the one norm of the vector into each elements of the vector, and then scale down by the number of possible states of the markov chain. 
+
+Boom, so this is like: 
+
+$$
+Qx = (1 - \alpha)Px + \frac{\lambda}{N_p}
+$$
+
+Where, the addition operators are broadcasted for the matrix. 
+
+
+
+
