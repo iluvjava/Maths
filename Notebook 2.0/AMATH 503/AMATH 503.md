@@ -60,7 +60,7 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
    3. Skipping the steps getting the ODEs is cool. 
 2. Fourier Series
    1. Fourier Sine Series
-   2. Fourier Cossine Series
+   2. Fourier Cosine Series
    3. Complex Fourier Series
 3. Fourier Transform & Laplace Transform 
    1. Apply the Fourier Transform method solving a given PDE problem. 
