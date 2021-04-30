@@ -163,5 +163,61 @@ $$
 X_n(x) = \sin(\lambda_n x) \quad \lambda_n = \frac{n\pi }{L} \quad n \in \mathbb{N}
 $$
 
+#### **One end Fixed Boundary Condition**
 
+This is explored in HW 2, where one end of the string is fixed while the other end is free to go. And the boundary condition is like: 
+
+$$
+u(0,t) = \partial_x[u](L, t) = 0
+$$
+
+
+The basis function in the spatial domain is: 
+
+$$
+X_n(x) = \sin(\lambda_n x)
+$$
+
+**However**: The lambda is different, and please consult HW2 Questions 4 to know why, lambda is: 
+
+$$
+\lambda_n = \frac{n\pi}{L} + \frac{\pi}{2L} = \frac{(2n + 1)\pi}{2L}\quad \lambda_n = \mathbb{Z}_{\ge 0}
+$$
+
+
+And this will assert that $\cos(\lambda_n L) = 0$. 
+
+And for the time domain, the basis function must be compared with the intial conditions. 
+
+$$
+\frac{T''}{T} = -\lambda_n^2\implies T = A_n \sin(\lambda_n t) + B_n\cos(\lambda_n t)
+$$
+
+Let's assume that the initial conditions is in the most general form: 
+
+$$
+u(x, 0) = f(x) \quad \partial_t[u](x, 0) = g(x)
+$$
+
+Then it can be said that: 
+
+$$
+\sum_{n = 0}^{\infty}
+    T_n(0)\sin(\lambda_n t) = f(x)
+\quad 
+\sum_{n = 0}^{\infty}
+    T_n'(0)\sin(\lambda_n t) = g(x)
+$$
+
+Where 
+
+$$
+T_n(0) = B_n \quad T'(0) = A_n\lambda_n
+$$
+
+And hence, $B_n$ is the **ODD Fouier Sine Coefficients** of $f(x)$ and $A_n\lambda_n$ over an larger interval of $[0, 2L]$. 
+
+If the initial conditions cannot be represented with only odd indices for the Fourier Sine Series, we have a problem. 
+
+Yes, this is weird. But if $f(x) = 1$ and $g(x) = 0$ we are saved becaues that means $A_n = 0$ and $B_n$ is defined because $1$ only needs the odd harmonics of sine. 
 
