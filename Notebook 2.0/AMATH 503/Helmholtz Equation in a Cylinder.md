@@ -236,7 +236,66 @@ Recall: **Singularity of ODEs**
 
 $y'' + P(x)y' + Q(x)y = 0$, $a$ is a singularity of the ODE if $P(x)$ or $Q(x)$ diverges as $x\rightarrow a$. 
 
+**Spoiler Alert**: Zero is the singular point of the Bessel's ODE. And the **Frobenius Method** and the method said that: 
 
+$$
+y(x) = x^s \sum_{n = 0}^{\infty}    a_nx^n = \sum_{n = 0}^{\infty} a_nx^{n + s}
+\tag{12}
+$$
+
+And with this modifications of the Power series, we will be able to solve the ODE with the power series. Our goal is to see what the value for $s$ is. 
+
+Susbtituting it into the Bessel's Equation:  
+
+$$
+y(x) = \sum_{n = 0}^{\infty}a_nx^{n + s}
+\tag{13}
+$$
+
+Where Bessel's standard form is like: 
+
+$$
+\underbrace{x\partial_x[x\partial_x[y]]}_{x^2y'' + xy'} + (x^2 - p^2)y = 0
+\tag{14}
+$$
+
+The underbrace on (14) contains trivial amount of math. 
+
+It will be like: 
+
+$$
+y'' = \sum_{n = 0 }^{\infty}
+    (n + x)(n + s - 1)a_n^{n + s - 2}
+    = \sum_{n = 2}^{\infty}
+        (n + x - 2)(n + s - 3)a_nx^{n + s}
+$$
+
+$$
+y' = \sum_{n = 0}^{\infty}a_n(n + s)x^{n + s - 1}=
+\sum_{n = 1}^{\infty}
+    a_n(n + s - 1)x^{n + s}
+$$
+
+So now we have the index shifted. 
+
+Plugging it into the original equation with the shifted indices, we will have: 
+(After non-trivial amount of maths)
+
+$$
+\sum_{n = 0}^{\infty}
+    [(n + s)^2 - p^2a_n]x^{n + s} + 
+\sum_{n = 2}^{\infty}
+    a_{n - 2}x^{n + s} = 0
+\tag{15}
+$$
+
+Notice that in the case of $n = 0$, we will get: 
+
+$$
+a_0[s^2 - p^2]  = 0
+$$
+
+And this will imply that $s^2 = p^2$ implies that $s = \pm p$
 
 
 
