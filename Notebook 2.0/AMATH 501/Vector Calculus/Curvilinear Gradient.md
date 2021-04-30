@@ -13,8 +13,8 @@ $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
 > $$\nabla  = e_r \frac{\partial}{\partial r} + e_\theta \frac{1}{r}\frac{\partial}{\partial \theta}$$
 
 This is Gradient operator for 2d polar coordinate. 
-
-The following section will illustrate how that, the gradient are viewed with curvilinear variables under the lense of the Cartesian coordinate. 
+ 
+The following section will illustrate how that, the gradient are viewed with curvllinear variables under the lens of the Cartesian coordinate. 
 
 ---
 
@@ -31,31 +31,31 @@ Notice that this quantity can be simplified with the usage of the Lame Coefficie
 Which is the same thing but this time we represent it as the sum of the 3 of the basis vector of this ortho linear coordinate system.
 
 
-### The Gradient in Curvilinear Space
+### The Gradient in Curvllinear Space
 
 The gradient of a function in the ortho linear space is simply expressed as: 
 
 > $$df = \nabla f \cdot d\vec{r}$$ (1.1)
 
-Consider $f$ to be a multivariable scalar function that  is defined in the coordinate system using $(u_1, u_2, u_3)$. 
+Consider $f$ to be a multi-variable scalar function that  is defined in the coordinate system using $(u_1, u_2, u_3)$. 
 
 Observe that this relation is implicit, this is saying that, if we dot the incrementation vector $d\vec{r}$ with the gradient of the function then we will have the total amount of change of the function, $df$
 
-The next step is going to view this formula through the lense of cartesian coordinate using the the property of the curvilinear coordinate system. 
+The next step is going to view this formula through the lens of Cartesian coordinate using the the property of the curvllinear coordinate system. 
 
 Then the change of the function f induced by changes of variables on $(u_1, u_2, u_3)$ will be: 
 
 > $$df = \frac{\partial f}{\partial u_1} du_1 + \frac{\partial f}{\partial u_2}du_2 + \frac{\partial f}{\partial u_3}du_3$$ (2)
 
-And this can be interpreted as a product of the jacobian matrix with the delta vector, and keep in mind that the function $f$ is actually a vector function under this context, hence $df$ is the derivative vector too. 
+And this can be interpreted as a product of the Jacobian matrix with the delta vector, and keep in mind that the function $f$ is actually a vector function under this context, hence $df$ is the derivative vector too. 
 
 Notice that, we can express each of the component $du_1, du_2, du_3$ using the basis for the orthogonal vector (from part **(1)**), and it's achieved with the following: 
 
 $$\uvec{e}_1\cdot d\vec{r} = h_1du_1$$
 
-The project of the changes insudced by $(u_1, u_2, u_3)$ in the direction of $\uvec{e}_1$ is simply the quantity $du_1$ scaled by the Lame Coefficient. 
+The project of the changes induced by $(u_1, u_2, u_3)$ in the direction of $\uvec{e}_1$ is simply the quantity $du_1$ scaled by the Lame Coefficient. 
 
-Simularly, for the other quantity such as $du_2$, $du_2$ we can get the following: 
+Similarly, for the other quantity such as $du_2$, $du_2$ we can get the following: 
 
 $$\uvec{e}_2\cdot d\vec{r} = h_2du_2$$
 
