@@ -47,6 +47,11 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 3. Generalizing Laplace Transform and Inverse Laplace Transform: [[Laplace Transform Generalized]]
 4. Solving PDE with the Laplace Transform: [[Solving PDE with Laplace]]
 
+### **Week 5**
+1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Multi-Dimensional PDEs 2]]
+2. 3D wave equations in a box, [[Multi-Dimensional PDEs]]
+3. 3D wave equations in a cylinder, [[Helmholtz Equation in a Cylinder]]
+
 ---
 ### **Topics Covered in Midterm**
 1. Separation of variables related
@@ -60,5 +65,7 @@ Where $k$ is given as a constant. This is the heat equation, or the diffusion eq
 3. Fourier Transform & Laplace Transform 
    1. Apply the Fourier Transform method solving a given PDE problem. 
 
+To go over some of the classic 1D PDEs problem with common boundary conditions, view [[Common PDEs B.C Catelogs]] for more some very good info. 
 
+---
 

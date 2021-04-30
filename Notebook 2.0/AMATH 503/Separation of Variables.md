@@ -307,9 +307,9 @@ he **Boundary Condition** is:
 
 And because heat is going to flow through the point, the derivative will also has to be equal to each other: 
 
-$$
-u_x(L, t) = u_x(-L, t) \qquad \forall t > 0 \tag{5}
-$$
+> $$
+> u_x(L, t) = u_x(-L, t) \qquad \forall t > 0 \tag{5}
+> $$
 
 let's connect it back to the system of ODEs, together with the combined boundary conditions, we will have: 
 
