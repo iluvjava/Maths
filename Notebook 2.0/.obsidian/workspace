@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
+            "file": "AMATH 583/Page Rank Algorithm.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
+            "file": "AMATH 583/Page Rank Algorithm.md",
             "mode": "preview"
           }
         },
@@ -67,8 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 358.0121879577637,
-    "collapsed": true
+    "width": 358.0121879577637
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -84,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/AMATH 503.md",
+                "file": "AMATH 583/Page Rank Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Untitled.md",
     "AMATH 503/AMATH 503.md",
     "AMATH 503/Common PDEs B.C Catelogs.md",
     "AMATH 503/Separation of Variables.md",
@@ -112,7 +112,6 @@
     "AMATH 503/Multi-Dimensional PDEs 2.md",
     "AMATH 503/Multi-Dimensional PDEs.md",
     "AMATH 515/Basic Convexity/Convexity.md",
-    "AMATH 501/Vector Calculus/Curvilinear Gradient.md",
-    "AMATH 501/Vector Calculus/Curv Ortho Gradient E.g.md"
+    "AMATH 501/Vector Calculus/Curvilinear Gradient.md"
   ]
 }
