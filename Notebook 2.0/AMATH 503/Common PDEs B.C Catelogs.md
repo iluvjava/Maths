@@ -31,6 +31,8 @@ $$
 
 $c$ is relavent to conductivity. 
 
+All boundary conditions are on $[0, L]$, if we have problem with other boundary conditions, we either see if it's possible to augment the solution for the below boundarys to that one, or we need to translate it to that interval. 
+
 #### **Dirichlet Boundary Condition**
 
 Let's also call it: **Homogenous Type I** Boundary condition. 
@@ -145,6 +147,21 @@ $$
 \partial_t^2[u] = c^2\partial_x^2[u]
 $$
 
+#### **Dirichlet Boundary Condition**
+
+Simulates both ends of the string being fixed, and the string has a initial configurations to start with. 
+
+The initial conditions contain both the velocity and position, which means that both $u(x, 0), \partial_t[u](x, 0)$ needs to be defined for as a function of $x$ on the interval $[0, L]$. 
+
+$$
+u(0, t) = u(L, t) = 0
+$$
+
+The basis function for the spatial domain is: 
+
+$$
+X_n(x) = \sin(\lambda_n x) \quad \lambda_n = \frac{n\pi }{L} \quad n \in \mathbb{N}
+$$
 
 
 
