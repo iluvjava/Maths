@@ -110,5 +110,136 @@ $$
 Then, it's not hard to see that, this is just the classical Dirichilet Boundary conditions, for the basis function $Z(z)$, and then, it can be said that: 
 
 $$
+b_l = \frac{l\pi}{L} \quad Z_l(z) = \sin\left(
+    \frac{l\pi z}{L}
+\right)
+\tag{7}
+$$
+
+And this is the configuration for $Z(z)$. 
+
+Sub (5) --> (4) we will get: 
 
 $$
+A = - (\lambda^2 - b_l^2)
+$$
+
+$$
+\frac{
+    \frac{1}{r}\partial_r[r\partial_r[R]]
+}{
+    R
+} + 
+\frac{1}{R^2}\frac{\Theta''}{\Theta} 
+= 
+- (\lambda^2 - b_l^2)
+$$
+
+$$
+\frac{\Theta''}{\Theta} = \underbrace{- (\lambda^2 - b^2)r^2 - 
+\frac{r\partial_r[r\partial_r[R]]}{R}}_{-m^2}
+\tag{8}
+$$
+
+$$
+\implies \Theta'' + m^2\Theta = 0 
+\tag{9}
+$$
+
+And now, we will be able to solve for another function with SOV. 
+
+**Question**: 
+
+Now, do we have any boundary conditions for this? 
+
+No. 
+
+Hence we want to make sure that, the function is **periodic** for this function. So the thing we want is: $\Theta(\theta)$ function **must be a $2\pi$ periodic function**. Remember the Heat conduction in circulr rods (Periodic Boundary Conditions)? 
+
+The periodic bounary conditions imply that: 
+
+$$
+\Theta(-\pi) = \Theta(\pi) \wedge \Theta'(-\pi) = \Theta'(\pi)
+$$
+
+
+The most general solution for ODEs in (9) is in the form of: $\exp(-im\theta), \exp(im\theta)$. 
+
+using the Periodic bounary conditions, we have: 
+
+$$
+\Theta(-\pi) = \Theta(\pi) = \exp(im\pi) = \exp(-im\pi) \implies m = 0, \pm 1, \pm 2, \cdots
+\tag{10}
+$$
+
+Notice that, if we start with the other solution: $\exp(-im\pi)$, we will still get the same results, so just one of them will be sufficient. 
+
+Hence, the basis functions will be like: 
+
+$$
+\Theta (\theta) = \exp(im\theta) \quad m\in \mathbb{Z}
+$$
+
+Now, we will start solving for $R(r)$. 
+
+Substituting (8), (5) into (4) we will have: 
+
+$$
+r \partial_r(r\partial_r R) + [(\lambda^2 - b_l) - m^2]R = 0
+$$
+
+
+And we didn't see these type of ODEs before. These type of Variantions of these type of ODEs are called: **Bessel's Equation**. 
+
+The **Bessel's Equation** is not involving $\sin$, $\cos$, the **standard form** of the Bessle's equation is like:[^1]  
+
+$$
+x \partial_x[x\partial_x[y]] + (x^2 - p^2)y = 0 
+\tag{11}
+$$
+
+And he form of the ODE we have is: 
+
+$$
+r\partial_r[r\partial_r[R]] + [(\lambda^2 - b_l^2)r^2 - m^2]R = 0
+$$
+
+Just compare it yourself I want state too much about it anymore. 
+
+And let's just assume thatwe have the solutions for the equation now, and more details about the Bessel's function is not covering here.[^2]:
+
+---
+### **The Hidden Boundary Conditions**
+
+**There are 2 solutions, one of them is blowing up, and the other one is not blowing up.**
+
+We are going to assert another additional boundary conditions to restrain us to only solutions that are not blowing up. We want the solutiosn to be bounded. 
+
+We want: 
+
+$$
+R(0) \ne \pm \infty
+$$
+
+The Radial component at ceter axis of the Cylinder is bounded!
+
+---
+### **Solving the ODEs**
+
+Ok, we are actually going to solve in this file, because it's relevant to what we are doing. 
+
+Power Series: This power series is centered at $x = 0$, and we are going to use this as the tool for solving the ODEs. 
+
+In addition, we are making the assumption that: **The ODE does't have any singularity at $x = 0$**
+
+Recall: **Singularity of ODEs**
+
+$y'' + P(x)y' + Q(x)y = 0$, $a$ is a singularity of the ODE if $P(x)$ or $Q(x)$ diverges as $x\rightarrow a$. 
+
+
+
+
+
+
+[^1]: It's in the chapter 10 of the textbook of the class. 
+[^2]: [wiki link](https://www.wikiwand.com/en/Bessel_function)
