@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Page Rank Algorithm.md",
+            "file": "AMATH 515/Gradient Descend/Gradient Descend 2.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Page Rank Algorithm.md",
+            "file": "AMATH 515/Gradient Descend/Gradient Descend 2.md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 358.0121879577637
+    "width": 294.0121879577637,
+    "collapsed": true
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/Page Rank Algorithm.md",
+                "file": "AMATH 515/Gradient Descend/Gradient Descend 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +104,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 515/Gradient Descend/Gradient Descend 2.md",
+    "AMATH 583/Page Rank Algorithm.md",
     "AMATH 583/Untitled.md",
     "AMATH 503/AMATH 503.md",
     "AMATH 503/Common PDEs B.C Catelogs.md",
@@ -110,8 +113,6 @@
     "AMATH 503/Untitled.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
-    "AMATH 503/Multi-Dimensional PDEs.md",
-    "AMATH 515/Basic Convexity/Convexity.md",
-    "AMATH 501/Vector Calculus/Curvilinear Gradient.md"
+    "AMATH 503/Multi-Dimensional PDEs.md"
   ]
 }
