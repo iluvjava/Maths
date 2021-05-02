@@ -118,7 +118,7 @@ And hence the expression in the end is:
 
 $$
 \sum_{n = 0}^{\infty}
-    ((n + s^2) - p^2)a_nx^{n + s} 
+    ((n + s)^2 - p^2)a_nx^{n + s} 
 +     
 \sum_{n = 2}^{\infty}
     a_{n - 2}x^{n + s} 
@@ -130,10 +130,70 @@ And now, we are able to proceed with solving the system, and let's see what we g
 
 We are especially interested in the solution for the $s$, and that is what we need to do things. 
 
-Let's consider the case that $n = 0$, then we haev: $[s^2 - p^2]a_0 = 0$, assuming that $a_0 \ne 0$, which it will not (**more on that later**), then we haev $s = \pm p$, and in this case we obtained 2 solutions for $s$. 
+Let's consider the case that $n = 0$, then we haev: $[s^2 - p^2]a_0 = 0$, **assuming** that $a_0 \ne 0$, which it will not (**more on that later**), then we haev $s = \pm p$, and in this case we obtained 2 solutions for $s$. 
 
-And we are going to assume that $p> 0$ (**more on this later**), this is also a reasonable assumption, because the solution with $p < 0$ is blowing up. 
+And we are going to **assume** that $p> 0$ (**more on this later**), this is also a reasonable assumption, because the solution with $p < 0$ is blowing up. 
+
+---
+### **Solving For the Recurrence on the Power Series**
+
+Here, we are going to look for $a_n$ for the power series. 
+
+We can consider this for each integral value of $n$. 
+
+We already dealt with the case that $n = 0$, which helped us getting the expression for $s$, now we are going to try all the natural number. 
+
+#### **Consider**:  
+
+$$n = 1$$
+
+$$
+((1 + s)^2 - p^2)a_1 = 0
+$$
+
+And $s^2 = p^2$ then: 
+
+$$
+((1 + p)^2 - p^2)a_1 = 0 \implies (1 + 2p)a_1 = 0
+$$
+
+By the assumption that $p > 0$, we can see that: $a_1 = 0$. 
+
+#### **Consider**: 
+
+$$
+n = 2, 3, 4, 5\cdots
+$$
+
+
+For this, we can get the recurrence relation that: 
+
+$$
+((n + s)^2 - p)a_n + a_{n - 2} = 0
+$$
+
+And using the recurrence, that will be: 
+
+$$
+a_n = \frac{-a_{n - 2}}{(n + p)^2 - p} = \frac{-a_{n - 2}}{
+    n(2p + n)
+}
+$$
+
+With the assumption that $a_0\ne 0$, and we know that $a_1 = 0$, and hence, it's not hard to see that the recurrence will set all $a_{2n + 1}$ to be zero. if $a_1$ is zero, then so is $a_{3}, a_{5},\cdots$. 
+
+---
+### **Unrolling Recursion**
+
+Unroll the recursion base on $n = 0$, with $a_0$, we have that: 
 
 
 
+
+---
+### **Why $a_0 \ne 0$**
+
+
+---
+### **The Assumption on Positibe p**
 
