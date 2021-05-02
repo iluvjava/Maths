@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 270
+    "width": 349.0121879577637
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -103,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Untitled.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
     "AMATH 503/Complex Fourier Series (PDF Flavor).md",
@@ -111,7 +112,6 @@
     "AMATH 515/Gradient Descend/Gradient Descend 2.md",
     "AMATH 583/Page Rank Algorithm.md",
     "AMATH 583/Untitled.md",
-    "AMATH 503/Separation of Variables.md",
-    "AMATH 503/Helmholtz Equation in a Cylinder.md"
+    "AMATH 503/Separation of Variables.md"
   ]
 }
