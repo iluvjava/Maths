@@ -5,6 +5,9 @@ Here, we will be summarizing the following:
 for: 
 Heat Equation, Wave Equation. 
 
+And, one of the most important concept we put into practice for the first part of the quarter seems to be: 
+[[Separation of Variables]]
+
 ---
 ### **Intro**
 
@@ -29,13 +32,13 @@ $$
 \partial_t[u]= c^2\partial_x^2[u]
 $$
 
-$c$ is relavent to conductivity. 
+$c$ is relevant to conductivity. 
 
-All boundary conditions are on $[0, L]$, if we have problem with other boundary conditions, we either see if it's possible to augment the solution for the below boundarys to that one, or we need to translate it to that interval. 
+All boundary conditions are on $[0, L]$, if we have problem with other boundary conditions, we either see if it's possible to augment the solution for the below boundaries to that one, or we need to translate it to that interval. 
 
 #### **Dirichlet Boundary Condition**
 
-Let's also call it: **Homogenous Type I** Boundary condition. 
+Let's also call it: **Homogeneous Type I** Boundary condition. 
 
 Simulates when both ends of the rod is at the same temperature and it's fixed. 
 
@@ -62,7 +65,7 @@ $$
 \partial_x[u](0, t) = \partial_x[u](L, t) = 0
 $$
 
-And in this case, the basis function for spectial domain is: 
+And in this case, the basis function for spatial domain is: 
 
 $$
 X_n(x) = \cos\left(
@@ -74,12 +77,14 @@ And the coefficients is given by the Coefficients of the Fourier Series Cosine o
 
 #### **Periodic Boundary Condition**
 
-Simulates heat condution in a ring, so that both ends of the rod connect to itself. Meaning that the temperate equals and the flow of the heat also has to be equaled. 
+Simulates heat conduction in a ring, so that both ends of the rod connect to itself. Meaning that the temperate equals and the flow of the heat also has to be equaled. 
 
-This is also the best type of boundary conditions to work with. 
+The ring is model by an closed en symmetric interval: $[-L, L]$ and the point represented by $\pm L$ is the same point. 
+
+Therefore the boundary conditions will be: 
 
 $$
-u(0, t) = u(L, t) \wedge \partial_x[u](0, t) = \partial_[u](L, t) 
+u(-L, t) = u(L, t) \wedge \partial_x[u](L, t) = \partial_[u](-L, t) 
 $$
 
 And the basis functions will be like: 
@@ -103,7 +108,7 @@ $$
 And the coefficient is given by: 
 
 $$
-c_n = \frac{1}{L}\int_{0}^{L} 
+c_n = \frac{1}{2L}\int_{-L}^{L} 
 f(x) \exp \left(
     i\lambda_n x
 \right)
@@ -114,7 +119,7 @@ The function $f(x)$ is the initial condition.
 
 See: [[Complex Fourier Series (PDF Flavor)]]. 
 
-### **Non-Homogenous Dirichlet**
+### **Non-Homogeneous Dirichlet**
 
 Simulates the ends are set to constant temperate but they are not the same temperate. 
 
@@ -128,7 +133,7 @@ $$
 u_s(x, t) = \frac{T_2 - T_1}{L}x + T_1
 $$
 
-And this is the homogenous solution of the system, it will set $\partial_t$ into zero. 
+And this is the homogeneous solution of the system, it will set $\partial_t$ into zero. 
 
 And it's not hard to see that the solution is a decomposition of 2 functions: 
 
@@ -136,7 +141,7 @@ $$
 u(x, t) = u_n(x, t) + u_s(x, t)
 $$
 
-And notice that $u(x, t) - u_n(x, t)$ is Dirichlet boundary conditions, therefore, we can solve it with Dirichlet boundary conditions and add back the Homogenous solution to get the full solution of the Equation. 
+And notice that $u(x, t) - u_n(x, t)$ is Dirichlet boundary conditions, therefore, we can solve it with Dirichlet boundary conditions and add back the homogeneous solution to get the full solution of the Equation. 
 
 ---
 ### **Wave Equation**
@@ -187,7 +192,7 @@ $$
 
 And this will assert that $\cos(\lambda_n L) = 0$. 
 
-And for the time domain, the basis function must be compared with the intial conditions. 
+And for the time domain, the basis function must be compared with the initial conditions. 
 
 $$
 \frac{T''}{T} = -\lambda_n^2\implies T = A_n \sin(\lambda_n t) + B_n\cos(\lambda_n t)
@@ -215,9 +220,9 @@ $$
 T_n(0) = B_n \quad T'(0) = A_n\lambda_n
 $$
 
-And hence, $B_n$ is the **ODD Fouier Sine Coefficients** of $f(x)$ and $A_n\lambda_n$ over an larger interval of $[0, 2L]$. 
+And hence, $B_n$ is the **ODD Fourier Sine Coefficients** of $f(x)$ and $A_n\lambda_n$ over an larger interval of $[0, 2L]$. 
 
 If the initial conditions cannot be represented with only odd indices for the Fourier Sine Series, we have a problem. 
 
-Yes, this is weird. But if $f(x) = 1$ and $g(x) = 0$ we are saved becaues that means $A_n = 0$ and $B_n$ is defined because $1$ only needs the odd harmonics of sine. 
+Yes, this is weird. But if $f(x) = 1$ and $g(x) = 0$ we are saved because that means $A_n = 0$ and $B_n$ is defined because $1$ only needs the odd harmonics of sine. 
 

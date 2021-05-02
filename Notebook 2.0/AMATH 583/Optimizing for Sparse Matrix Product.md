@@ -110,4 +110,7 @@ The array stores the number of non zeros entry for each row of the matrix.
 
 **This is called CSR: Compressed Sparse Row Format**.
 
+And in fact, it's used in scipy for speeding up the matrix vector multiplications. 
+
+See [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html) for more. 
 

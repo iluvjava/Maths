@@ -12,6 +12,8 @@ Heat conduction in a metal ring.
 
 This is an interesting problem, be a metal has both ends connected to itself, it loops back, giving us a new boundary conditions that is neither Fourier Sine series, nor Fourier Cosine Series. 
 
+
+
 ---
 ### **Representing the Rod in an Interval**
 
@@ -24,6 +26,11 @@ Positive direction goes clockwise and negative number goes counter clockwise on 
 Then, an interval of $(-L, L)$ can represent every points on the ring. 
 
 Assume that the ring is insulated, there is no heat escaping it. 
+
+**Here is the Gist of it**
+
+Split any function into an even and odd parts. The odd parts is handle by the $\sin$ series and the even part is handled by the $\cos$ series. 
+
 
 
 ---

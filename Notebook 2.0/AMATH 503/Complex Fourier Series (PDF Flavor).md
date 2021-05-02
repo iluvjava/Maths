@@ -24,7 +24,7 @@ f(x)\exp\left(
 dx
 $$
 
-How is this coefficient related to the previous fourier Coefficients? 
+How is this coefficient related to the previous Fourier Coefficients? 
 
 If I don't know anything about it, can we start from scratch to get this series? 
 
@@ -116,3 +116,32 @@ $$
 Note: The sign of the basis function is opposite when we use it in the Fourier Series and figuring out the Fourier Coefficients. 
 
 The series is a good representation of the function over $[-L, L)$, **Dirichlet Theorem** applies and periodicity also happen to it. **This is not going to work for an open interval**. But to do it, we can take the limit as $L\rightarrow \infty$, and then we are getting into the territory of **Fourier Transform**. Very Very interesting and complicated stuff.
+
+**Note**: 
+If we are modeling different intervals, especially non symmetrically placed on zero, say $[-L, L]$ we will need to use a different basis function, and we can consider the choice: $\exp(\frac{-i2\pi nx}{L})$. 
+
+For a basis function, just make sure that the inner L2 produt are zero for all $n \ne m$. 
+
+In addition, we can use different signs for them too. If we use $\frac{\pm in\pi x}{L}$ for the series, then we will have to use $\frac{\mp in\pi x}{L}$ for the fourier kernel for coefficients: $c_n$. 
+
+---
+### **Another Interpretation**
+
+Another interpretation is to use the Trigs Fourier Series, and then use the Euler Formulas to start with the Trigs Fourier Series to the Complex Fourier Series. 
+
+Euler's Formula: 
+
+$$
+\sin(x) = \frac{\exp(ix) - \exp(-ix)}{2i} 
+\quad 
+\cos(x) = \frac{\exp(ix) + \exp(-ix)}{2}
+$$
+
+
+
+
+
+
+
+
+
