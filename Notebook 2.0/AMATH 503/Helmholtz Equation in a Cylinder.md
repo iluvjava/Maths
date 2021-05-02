@@ -195,16 +195,16 @@ And we didn't see these type of ODEs before. These type of Variantions of these 
 
 The **Bessel's Equation** is not involving $\sin$, $\cos$, the **standard form** of the Bessle's equation is like:[^1]  
 
-$$
-x \partial_x[x\partial_x[y]] + (x^2 - p^2)y = 0 
-\tag{11}
-$$
+> $$
+> x \partial_x[x\partial_x[y]] + (x^2 - p^2)y = 0 
+> \tag{11}
+> $$
 
 And he form of the ODE we have is: 
 
-$$
-r\partial_r[r\partial_r[R]] + [(\lambda^2 - b_l^2)r^2 - m^2]R = 0
-$$
+> $$
+> r\partial_r[r\partial_r[R]] + [(\lambda^2 - b_l^2)r^2 - m^2]R = 0
+> $$
 
 Just compare it yourself I want state too much about it anymore. 
 
@@ -226,7 +226,7 @@ $$
 The Radial component at ceter axis of the Cylinder is bounded!
 
 ---
-### **Solving the ODEs**
+### **Solving the ODEs of Bessel's Equation**
 
 Ok, we are actually going to solve in this file, because it's relevant to what we are doing. 
 
@@ -245,6 +245,9 @@ y(x) = x^s \sum_{n = 0}^{\infty}    a_nx^n = \sum_{n = 0}^{\infty} a_nx^{n + s}
 \tag{12}
 $$
 
+**Note**: We can't use power series because the point $x = 0$ is a singularity of the ODEs. That is why we are using the Frobenius Method. Which, we multiply the series by a $x^s$, to smooth out the singularity. (Simular to figuring out the order of singularity of complex functions.)
+
+
 And with this modifications of the Power series, we will be able to solve the ODE with the power series. Our goal is to see what the value for $s$ is. 
 
 Susbtituting it into the Bessel's Equation:  
@@ -261,7 +264,7 @@ $$
 \tag{14}
 $$
 
-The underbrace on (14) contains trivial amount of math. 
+The underbrace on (14) contains trivial amount of math (Product rule). 
 
 It will be like: 
 
@@ -282,6 +285,8 @@ So now we have the index shifted.
 
 Plugging it into the original equation with the shifted indices, we will have: 
 (After non-trivial amount of maths)
+
+
 
 $$
 \sum_{n = 0}^{\infty}
