@@ -86,7 +86,7 @@ If the function $F(x)$ is odd, then it will be represented purely by the $\sin$ 
 If The function $F(x)$ is even, then it will be represented purely by the $\cos$ functions. 
 
 ---
-### **Any function is the sum of a even and odd function**
+### **Any function is the sum of an even and odd function**
 
 For any given function $F(x)$, the function $F(x) + F(-x)$ is even. 
 
