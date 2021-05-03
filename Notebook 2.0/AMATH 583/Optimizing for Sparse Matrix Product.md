@@ -48,11 +48,11 @@ We can't get a value at a particular index at a constant amount of time.
 Oops. That means, we can't index the matrix frequently. 
 
 ---
-### **Sparse Matrix Multiplications**
+### **COO Sparse Matrix Multiplication**
 
-With the sparse matrix storage. 
+The COO Matrix: It's based on triples `(a, i, j)` where `a` is the value of the element in the matrix A, and it should have coordinate `(i,j)` in the matrix $A$.  
 
-Consider the following implementions of the coordinate matrix and the matrix vector multiplications for the coordinate matrix. 
+Consider the following implementation of the coordinate matrix and the matrix vector multiplications for the coordinate matrix. 
 
 ```cpp
 #include <iostream>
@@ -82,12 +82,13 @@ class COOMatrix{
         }
 }
 ```
+
 **Summarize**: 
 
 For each non zero element in the row of the matrix, multiply it with the corresponding elements in the input matrix $x$ and then accumulate it to the corresponding elements in output vector y. 
 
 ---
-### **Compressive the Storage**
+### **Compress the Row: CSR**
 
 Note, we don't have to store all the elements in order in the above case, **the order doesn't matter** for the above way of storage. if we want to set a new non-zero element in the matrix, we can just append it to the array. 
 

@@ -304,6 +304,10 @@ $$
 
 And this will imply that $s^2 = p^2$ implies that $s = \pm p$
 
+There is another file the talks about the Bessel's Equation in more detail: [[Bessel's Equation]]. All the details go into that file so it's not too cluttered here. 
+
+
+
 
 
 

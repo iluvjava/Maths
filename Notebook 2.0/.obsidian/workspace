@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Bessel's Equation.md",
+            "file": "AMATH 583/Optimizing for Sparse Matrix Product.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Bessel's Equation.md",
+            "file": "AMATH 583/Optimizing for Sparse Matrix Product.md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 349.0121879577637
+    "width": 353
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Bessel's Equation.md",
+                "file": "AMATH 583/Optimizing for Sparse Matrix Product.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,8 +103,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "AMATH 503/Bessel's Equation.md",
-    "AMATH 503/Untitled.md",
+    "AMATH 583/Optimizing for Sparse Matrix Product.md",
+    "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
     "AMATH 503/Complex Fourier Series (PDF Flavor).md",
     "AMATH 503/AMATH 503.md",
