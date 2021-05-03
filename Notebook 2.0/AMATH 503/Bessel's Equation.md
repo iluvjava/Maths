@@ -264,13 +264,21 @@ What we did:
 2. Move the $2^{2n}$ to the numerator and merge into $x/2$. 
 3. Move the multiplier $x^p$ into the sum. 
 
-Up to this point, we had a good looking solution to the Bessel's Function. 
+Up to this point, we had a good looking solution to the **Bessel's Function of the first kind**. 
 
 This is the fist type bessel's function. 
 
 This is the solution that won't blow up to infinite on us. 
 
 This is actually the solution to the Bessel's equation as well. 
+
+If we are looking at small value of $x$, the Bessel's First kind behaves like the first term of the sum, because all the other terms are going to zero. 
+
+When the value $x\rightarrow \pm \infty$, they actually behaves like a $\cos$ function. 
+
+**Fun Fact**
+
+In our case of the Helmholtz equation, $p = 1$, and in that case, the Gamma will be come $(n + m)!$. 
 
 
 ---
