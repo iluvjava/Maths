@@ -187,11 +187,98 @@ With the assumption that $a_0\ne 0$, and we know that $a_1 = 0$, and hence, it's
 
 Unroll the recursion base on $n = 0$, with $a_0$, we have that: 
 
+$$
+a_2 = \frac{-a_0}{
+    2(2p + 2)
+}
+= 
+\frac{-a_0}{2^2(p + 1)}
+$$
 
+And so then: 
+
+$$
+A_4 = \frac{-a_2}{4(2p + 4)} = \frac{-a_2}{2^3(p + 2)} = \frac{a_0}{2^4\times 2(p+ 2)(p + 1)}
+$$
+
+Boom, there is a pattern emerging, so I will take the guess that: 
+
+$$
+a_6 = \frac{a_4}{
+    6(2p + 6)
+}
+=
+\frac{a_0}{
+    2^6\times 3!(p+ 1)(p+2)(p + 3)
+}
+$$
+
+Interesting, so then there is a general pattern is obvious, and the solution will be like: 
+
+$$
+y = x^pa_0 \sum_{m = 0}^{\infty}
+    \frac{(-1)^mx^{2m}}{
+        2^{2m}m!(p + 1)(p + 2)\cdots (p + m)
+    }
+$$
+
+Take note that, the sing swap depens on $m$, all the other parameters are even, hence it's $2m$. 
+
+**Take note**: $p$ is not necessarily an integer here. 
+
+---
+### **Gamma Function**
+
+$$
+\Gamma(z + 1) = z\Gamma(z)
+$$
+
+Let: 
+
+$$a_0 = \frac{1}{2^p\Gamma(p + 1)}$$
+
+Then: 
+
+$$
+y = x^p \frac{1}{2^p\Gamma(p + 1)} \sum_{n = 0}^{\infty}
+    \frac{(-1)^nx^{2n}}{
+        2^{2n}n!(p + 1)(p + 2)\cdots (p + n)
+    }
+$$
+ 
+Then it can be said that: 
+
+$$
+y_1(x) = \sum_{n = 0}^{\infty}
+    \frac{(-1)^n\left(
+        \frac{x}{2}
+    \right)^{2n + p}}{
+        n!\Gamma(n + p + 1)
+    } = J_p(x)
+\tag{5}
+$$
+
+What we did: 
+
+1. Use the recurrence and this specific value of $a_0$ and the Gamma function to simplify the denominator. 
+2. Move the $2^{2n}$ to the numerator and merge into $x/2$. 
+3. Move the multiplier $x^p$ into the sum. 
+
+Up to this point, we had a good looking solution to the Bessel's Function. 
+
+This is the fist type bessel's function. 
+
+This is the solution that won't blow up to infinite on us. 
+
+This is actually the solution to the Bessel's equation as well. 
 
 
 ---
 ### **Why $a_0 \ne 0$**
+
+If that is zero, then we have the trivial solution: $y \equiv 0$ for the ODE.
+
+
 
 
 ---
