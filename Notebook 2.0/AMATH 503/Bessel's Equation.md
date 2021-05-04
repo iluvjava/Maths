@@ -6,6 +6,7 @@ The objective is to look for the series representation of the solutions for the 
 
 And because Bessel's equation is a topic on itself, it's in its file and [here](https://www.wikiwand.com/en/Bessel_function) is the Wiki!
 
+**Note**: This is also discussed in details in the chapter 10 of the textbook. 
 
 ---
 ### **Intro**

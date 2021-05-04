@@ -60,3 +60,5 @@ There are infinitely many decision boundaries can be drawn to separate clusters,
 **Intuitive Understanding**
 
 We believe that, there are some perturbation region around all the samples, such that some perturbations around that sample is not going to affect the label of that sample. And in that case, the line with the best separations between the clusters will maximizes **robustness** of the decision of the labels. 
+
+

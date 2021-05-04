@@ -490,10 +490,13 @@ T_n(t) = A_n\sin(\alpha\lambda_nt) + B_ncos(\alpha\lambda_nt)
 \quad T_0(t) = A_0 t + B_0
 $$
 
-Where, the case whtn the constant equals to zero cannot not be dropped out. 
+Where, the case within the constant equals to zero cannot not be dropped out. 
 
-To find the constant $A_n, B_n$ for $T$, we would need the initial condtions for the problem. 
+To find the constant $A_n, B_n$ for $T$, we would need the initial conditions for the problem. 
 
+---
+### **Wave Equation Example: 1D fixed Ends**
 
+Here we consider a general case
 
 

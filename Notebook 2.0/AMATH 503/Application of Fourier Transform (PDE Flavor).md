@@ -1,4 +1,4 @@
-[[Fourier Transform (PDE Flavor Examples)]]
+[[Fourier Transform (PDE Flavor)]]
 Let's take a look at some of the examples of using the Fourier Transform.
 
 ---
@@ -245,4 +245,12 @@ $$
 
 Now, consider the substitution $t = \frac{w}{2}$, then this integral transformed into: 
 
+---
+### **Solving PDEs in Infinite Domain**
 
+Another important application of the Fourier Transform is to use it as a method of solving PDEs in the infinite domains, with some basic assumptions about the solution of the function. 
+
+Here, we will list some example of such, but it's also very complicated, therefore it's convered in other files. 
+
+1. [[1D Wave in Infinite Domain]]
+2. [[The Drunken Sailor Problem (PDE Problem)]]

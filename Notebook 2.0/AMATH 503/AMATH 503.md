@@ -12,9 +12,9 @@ This class as prereq: [[Amath 501]]
 3. Complex Fourier Series [[Complex Fourier Series (PDF Flavor)]] 
 
 ### **Week 3**
-1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform (PDE Flavor Examples)]]
+1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform (PDE Flavor)]]
 2. Application of Fourier Transform on some functions. [[Application of Fourier Transform (PDE Flavor)]]
-3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[Solving PDE in Infinite Domain]]
+3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[1D Wave in Infinite Domain]]
 
 ### **Week 4**
 1. Fourier Transform and the Drunken Sailor Problem. [[The Drunken Sailor Problem (PDE Problem)]]

@@ -23,6 +23,12 @@ A majority of them comes from lectures and HW, some of them might bot be covered
 
 Because this is for midterm, we will only include that 1D PDEs. 
 
+**The General Strategies**
+
+1. Separate the space and time function. 
+2. Find the basis function for the spatial domain. 
+3. Solve for the constant $\lambda$ that is associated with the solutions. 
+
 ---
 ### **The Heat Equation**
 
@@ -119,7 +125,7 @@ The function $f(x)$ is the initial condition.
 
 See: [[Complex Fourier Series (PDF Flavor)]]. 
 
-### **Non-Homogeneous Dirichlet**
+### **Non-Homogeneous Dirichlet (Different Constant on Boundary)** 
 
 Simulates the ends are set to constant temperate but they are not the same temperate. 
 

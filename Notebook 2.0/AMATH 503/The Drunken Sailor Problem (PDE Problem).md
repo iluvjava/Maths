@@ -1,5 +1,5 @@
 Here, we will apply the Fourier Transform on solving a PDE problem, and this problem is derived in chapter 2 of the textbook. 
-[[Solving PDE in Infinite Domain]]
+[[1D Wave in Infinite Domain]]
 This is another example of solving PDEs with infinite boundary conditions. 
 
 ---
@@ -63,7 +63,7 @@ So that is the tiny integral on that little interval... So we need to take the l
 
 **Important Notes**
 
-> We will be avoiding the technique we introduced last time because it has a lot of mathematical subtleties to it, and we skipped those in the example, here we will be focusing on another way, a better way of solving PDEs on the fininite domain. **This new technique exposes some of the underlying assumptions for [[Solving PDE in Infinite Domain]]
+> We will be avoiding the technique we introduced last time because it has a lot of mathematical subtleties to it, and we skipped those in the example, here we will be focusing on another way, a better way of solving PDEs on the fininite domain. **This new technique exposes some of the underlying assumptions for [[1D Wave in Infinite Domain]]
 
 Let's define solution under the fourier space like: 
 

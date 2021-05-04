@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/SVM and Kernels.md",
+            "file": "AMATH 503/Fourier Transform (PDE Flavor).md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/SVM and Kernels.md",
+            "file": "AMATH 503/Fourier Transform (PDE Flavor).md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 283.5121879577637
+    "width": 326.0121879577637
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/SVM and Kernels.md",
+                "file": "AMATH 503/Fourier Transform (PDE Flavor).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
+    "AMATH 503/Laplace Transform.md",
+    "AMATH 582/Fourier Transform.md",
+    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
+    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md",
+    "AMATH 503/Solving PDE in Infinite Domain.md",
+    "AMATH 503/Separation of Variables.md",
+    "AMATH 503/Common PDEs B.C Catalogs.md",
     "CSE 546/SVM and Kernels.md",
-    "AMATH 582/SVM.md",
-    "CSE 546/Untitled.md",
-    "CSE 546/SGD.md",
-    "AMATH 503/Bessel's Equation.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/Fourier Series (PDE Flavor).md",
-    "AMATH 503/Complex Fourier Series (PDF Flavor).md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Common PDEs B.C Catelogs.md"
+    "AMATH 582/SVM.md"
   ]
 }

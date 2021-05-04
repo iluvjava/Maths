@@ -1,5 +1,8 @@
 [[Complex Fourier Series (PDF Flavor)]]
-Here, we will be illustrating the usage of Fourier Transform with the wave equation. 
+Here, we will  derive a very important tools for: 
+1. Solving PDEs on finite domain. 
+2. Making a basis for the Laplace Transform
+3. Representing function in the Frequency domain. 
 
 ---
 ### **Intro**
@@ -203,4 +206,31 @@ If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|
 
 [^1]: Notice that the exponent is positive for the kernel used for Fourier Transform, this is not consistent with what we usually have on other sources but it really doesn't matter just swap the sign for $\omega$ and it will work. 
 
+---
+### **Why is it Different from other Fourier Transform?**
 
+There are multiple ways to do the Fourier Transform, and there could be different multiplier on the Fourier Transform, but I will summarize it in a much simpler way where I believe, it encapsulates all of the potential ways of doing Fourier Transform. 
+
+Let $u(x)$ be a funtion with spetial domain, denoted by the parameter name $x$. 
+
+$$
+\mathcal{F}[u](w) = A\int_{-\infty}^{\infty} 
+    f(x)\exp \left(
+        \pm iwx
+    \right)
+dx
+$$
+
+Then: 
+
+$$
+\mathcal{F}[u](w) = B\int_{-\infty}^{\infty} 
+    f(x)\exp \left(
+        \mp iwx
+    \right)
+dx
+$$
+
+Where $AB = \frac{1}{2\pi}$
+
+Like that. 
