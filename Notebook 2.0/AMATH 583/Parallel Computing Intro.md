@@ -141,6 +141,46 @@ int main(){
 This is saying that, if the current process we looking at, already spawned its parent, then we are quitting the for loop all together. 
 
 ---
+### **Context Switching Problem**
 
+This is called the **race conditions**. 
+
+This will produce incorrect results, if, context switching between different threads can give different results. 
+
+Classically, you can't sum up a number using multiple threads, while that integer is shared among different threads. 
+
+**Critical Section Problem Solution**: 
+
+* Mutual Exclusion: Instruction cannot interset. No process can execute the critical section at the same time. 
+* Progress: The selection of the process to enter the critical section cannot postpone indefinitely.
+* Bounded Waiting: A bound must exists on the number of time that other process are allowed to enter the critical section. 
+
+
+**Locking While loop (Failed)**
+
+```cpp
+while (lock);  // infinite spin. 
+// Race conditions here! 
+lock = true; 
+dothings();
+lock = false; 
+```
+
+Whenever a process require access to the critical section, it checks the lock, while it's locked, it waits, when it's true, we will do things and release the lock. 
+
+Ok, what if there is a race condition on the `lock` variable. 
+
+Thread 1 got access, thread 2 got access 2.
+
+Context switch between these 2 thread, right before setting the lock to true. 
+
+Boom, now we have 2 thread setting the lock to TRUE.
+
+Hence, do something will be executed in 2 threads at the same time.
+
+The essence is: 
+
+**We are checking some predicate, and then take some action on the shared variable.** But to achieve mutla exclusion, we have to have both steps as an inseparable procedu
+e. 
 
 
