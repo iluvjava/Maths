@@ -534,7 +534,7 @@ $$
     \right)T_n(\alpha t)
 $$
 
-With susbtitution $\frac{x}{L} = y$ and $\alpha t = \tau$, the above expression will be expressed like: 
+With substitution $\frac{x}{L} = y$ and $\alpha t = \tau$, the above expression will be expressed like: 
 
 $$
 \partial_t^2[\tilde{u}] = \alpha^2 \sum_{n = 1}^{\infty}X_n(y)T_n''(\tau) 
@@ -557,6 +557,6 @@ $$
 \end{cases}
 $$
 
-Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it. 
+Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it.  
 
 
