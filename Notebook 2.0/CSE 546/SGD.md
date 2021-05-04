@@ -57,7 +57,7 @@ $$
 \le \frac{R}{2T\eta} + 
 \frac{\eta G}{2}
 \le 
-\sqrt{\frac{RG}{T}}
+w\sqrt{\frac{RG}{T}}
 $$
 
 Where, $T$ is the number of ierations that we already went over the for each sample in the training set. 
@@ -70,7 +70,7 @@ Because it's stochastic, we can't really look at the last update, we need to ana
 In practice, people will use the last one, or the average of some iterations of parameters for the end of the iterations. 
 
 ---
-### **Proof of Stochastic Gradient Descend Convergence**
+### **Proof of Bounded Convergence**
 
 Skipped because midterm I am busy, do this later whenever I have time. 
 

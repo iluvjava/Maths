@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallelization Speed Up Metric.md",
+            "file": "AMATH 503/Midterm Examples.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallelization Speed Up Metric.md",
+            "file": "AMATH 503/Midterm Examples.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/Parallelization Speed Up Metric.md",
+                "file": "AMATH 503/Midterm Examples.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Midterm Examples.md",
     "AMATH 583/Parallelization Speed Up Metric.md",
     "AMATH 583/Parallel Computing Intro.md",
     "AMATH 503/Common PDEs B.C Catalogs.md",
@@ -111,7 +112,6 @@
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
     "AMATH 503/Laplace Transform.md",
     "AMATH 582/Fourier Transform.md",
-    "AMATH 503/Application of Fourier Transform (PDE Flavor).md",
-    "AMATH 503/The Drunken Sailor Problem (PDE Problem).md"
+    "AMATH 503/Application of Fourier Transform (PDE Flavor).md"
   ]
 }
