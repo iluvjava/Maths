@@ -452,12 +452,11 @@ $$
 u_h(0, t) = u_h(L, t) = 0
 $$
 
-
-
 ---
 ### **Heat Equation Infinite Domain** 
 
 No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work.
+
 
 ---
 ### **Only Heat Equation**? 
