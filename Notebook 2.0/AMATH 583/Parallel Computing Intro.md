@@ -151,7 +151,7 @@ Classically, you can't sum up a number using multiple threads, while that intege
 
 **Critical Section Problem Solution**: 
 
-* Mutual Exclusion: Instruction cannot interset. No process can execute the critical section at the same time. 
+* Mutual Exclusion: Instruction cannot intersect. No process can execute the critical section at the same time. 
 * Progress: The selection of the process to enter the critical section cannot postpone indefinitely.
 * Bounded Waiting: A bound must exists on the number of time that other process are allowed to enter the critical section. 
 
@@ -180,7 +180,5 @@ Hence, do something will be executed in 2 threads at the same time.
 
 The essence is: 
 
-**We are checking some predicate, and then take some action on the shared variable.** But to achieve mutla exclusion, we have to have both steps as an inseparable procedu
-e. 
-
+**We are checking some predicate, and then take some action on the shared variable.** But to achieve mutual exclusion, we have to have both steps as an inseparable procedure. 
 
