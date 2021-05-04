@@ -557,7 +557,6 @@ $$
 \end{cases}
 $$
 
-
 Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it. 
 
 
