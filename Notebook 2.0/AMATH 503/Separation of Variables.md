@@ -1,4 +1,4 @@
-Let's learn the method of separation of variable and apply to the heat equation. 
+cateLet's learn the method of separation of variable and apply to the heat equation. 
 The heat equation is introduced here: [[ODEs, PDEs Intro]], and we are using the same set up in this file as well. 
 
 See more about it here: [[Heat Equations]], which is introduced in amath 501 before. 
@@ -595,22 +595,27 @@ u(x, 0) = \sum_{n = 1}^{\infty}
 $$
 
 $$
-\partial_t[u](x, 0) = \sum_{n = 1}^{\infty} X_n(x)T_n'(t) = g(x) 
-\implies \lambda_n C_nX_n(x) = g(x)
+\partial_t[u](x, 0) = \sum_{n = 1}^{\infty} X_n(x)T_n'(0) = g(x) 
+\implies \sum_{n = 1}^{\infty}\lambda_n C_nX_n(x) = g(x)
 $$
 
 Here, we an use Fourier Series to solve the problem. More specifically: 
 
 $$
-D_n = 2 \int_{0}^{L} f(x)\sin(\lambda_n x) dx \quad \lambda_n = n\pi
+D_n = 2 \int_{0}^{1} f(x)\sin(\lambda_n x) dx \quad \lambda_n = n\pi
 $$
 
-And 
+And
 
 $$
-\lambda_nC_n = 2 \int_{0}^{L} 
+\lambda_nC_n = 2 \int_{0}^{1} 
     g(x)\sin(\lambda_n x)
 dx \quad \lambda_n = n\pi 
 $$
 
 Then then, we have the general solution to the original equation. 
+
+---
+### **Wave Equation 1D One end Unattatched**
+
+

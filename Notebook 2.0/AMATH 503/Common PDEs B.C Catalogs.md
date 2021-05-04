@@ -174,6 +174,9 @@ $$
 X_n(x) = \sin(\lambda_n x) \quad \lambda_n = \frac{n\pi }{L} \quad n \in \mathbb{N}
 $$
 
+The full solution this boundary conditions for the dimensionless form is discussed in: [[Separation of Variables#Wave Equation Example 1D fixed Ends]].
+
+
 #### **One end Fixed Boundary Condition**
 
 This is explored in HW 2, where one end of the string is fixed while the other end is free to go. And the boundary condition is like: 
