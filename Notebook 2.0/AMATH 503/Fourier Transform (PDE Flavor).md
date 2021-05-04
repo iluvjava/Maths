@@ -224,7 +224,7 @@ $$
 Then: 
 
 $$
-\mathcal{F}[u](w) = B\int_{-\infty}^{\infty} 
+\mathcal{F}^{-1}[u](w) = B\int_{-\infty}^{\infty} 
     f(x)\exp \left(
         \mp iwx
     \right)
@@ -233,4 +233,4 @@ $$
 
 Where $AB = \frac{1}{2\pi}$
 
-Like that. 
+Like that. The freuencies in the kernels should have opposite signs, and then the constant must has a product that equals to $\frac{1}{2\pi}$. And when this is true, we can make sure that it perserves the properties of the Fourier Transform, and the inverse Fourier Transform on the Fourier Transform is going to be the identity transform. 

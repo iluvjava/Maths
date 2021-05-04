@@ -288,8 +288,6 @@ In our case of the Helmholtz equation, $p = 1$, and in that case, the Gamma will
 If that is zero, then we have the trivial solution: $y \equiv 0$ for the ODE.
 
 
-
-
 ---
 ### **The Assumption on Positibe p**
 

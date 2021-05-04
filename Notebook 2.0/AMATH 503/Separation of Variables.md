@@ -459,10 +459,6 @@ $$
 
 No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work.
 
-
-
-
-
 ---
 ### **Only Heat Equation**? 
 
@@ -497,6 +493,71 @@ To find the constant $A_n, B_n$ for $T$, we would need the initial conditions fo
 ---
 ### **Wave Equation Example: 1D fixed Ends**
 
-Here we consider a general case
+Here we consider a general case where both end of the rod is fixed and we have a distribution for the initial velocity and displacement for all the particles on the string. 
+
+$$
+\begin{cases}
+    \partial_t^2[u] = \partial_x^2[u] & 0 < x < 1 \wedge t > 0
+    \\
+    u(0, t) = u(1, t) = 0 & t > 0
+    \\
+    u(x, 0) = f(x)\quad \partial_t[u](x, 0) = g(x) & 0 < x < 1
+\end{cases}
+$$
+
+Notice that, this is the dimensionless version of the PDEs. And we have the choice to substitue some constant to scale the spatial and time domain parameter $x, t$. 
+
+Suppose that $u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t)$ is a solution to the PDEs system. then, consider $\tilde{u}(x,t) = \sum_{n = 1}^{\infty}X_n(\frac{x}{L})T_n(\alpha t)$. 
+
+Then: 
+
+$$
+\partial_t^2[\tilde{u}]  = \partial_t^2\left[ \sum_{n = 1}^{\infty}X_n\left(
+    \frac{x}{L}
+\right)T_n(\alpha t)\right] 
+= 
+\alpha^2 \sum_{n = 1}^{\infty}
+    X_n(x)T_n''(\alpha t)
+$$
+
+At the same time the spatial derivative will be like: 
+
+$$
+\partial_x^2[\tilde{u}] = \partial_x^2 \left[
+    \sum_{n = 1}^{\infty}X_n\left(
+        \frac{x}{L}
+    \right)T_n(\alpha t)
+\right] 
+= 
+\frac{1}{L^2}\sum_{n = 1}^{\infty}X_n''\left(
+        \frac{x}{L}
+    \right)T_n(\alpha t)
+$$
+
+With susbtitution $\frac{x}{L} = y$ and $\alpha t = \tau$, the above expression will be expressed like: 
+
+$$
+\partial_t^2[\tilde{u}] = \alpha^2 \sum_{n = 1}^{\infty}X_n(y)T_n''(\tau) 
+\quad 
+\partial_x^2[\tilde{u}] = \frac{1}{L^2}\sum_{n = 1}^{\infty}
+    X_n''(y)T_n(t)
+$$
+
+As $y$ goes from $0\rightarrow 1$, $x$ goes from $0\rightarrow L$. And as $\tau = t\alpha$. 
+
+And this will mean that $\tilde{u}$ is the solution to the following IBVP: 
+
+$$
+\begin{cases}
+    \frac{\partial_t^2[\tilde{u}]}{\alpha^2} = L^2 \partial_x[\tilde{u}] & 0 < x < L \quad t > 0
+    \\
+    \tilde{u}(0, t) = \tilde{u}(L, t) = 0 & t > 0
+    \\
+    \tilde{u}(x, 0) = f(x)\quad \partial_t[\tilde{u}]= g(x) & t > 0, \quad 0 < x < L
+\end{cases}
+$$
+
+
+Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it. 
 
 
