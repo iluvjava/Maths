@@ -306,11 +306,18 @@ And this will imply that $s^2 = p^2$ implies that $s = \pm p$
 
 There is another file the talks about the Bessel's Equation in more detail: [[Bessel's Equation]]. All the details go into that file so it's not too cluttered here. Because it's kinda complicated. 
 
+Ans the solution for the standard form bessel's equation turns out to be: 
 
+$$
+y_1(x) = \sum_{n = 0}^{\infty}
+    \frac{(-1)^n\left(
+        \frac{x}{2}
+    \right)^{2n + p}}{
+        n!\Gamma(n + p + 1)
+    } = J_p(x)
+$$
 
-
-
-
+Which is called **Bessel's Function of the First Kind**.
 
 
 [^1]: It's in the chapter 10 of the textbook of the class. 
