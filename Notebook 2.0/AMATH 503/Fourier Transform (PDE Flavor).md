@@ -238,4 +238,21 @@ $$
 
 Where $AB = \frac{1}{2\pi}$
 
-Like that. The freuencies in the kernels should have opposite signs, and then the constant must has a product that equals to $\frac{1}{2\pi}$. And when this is true, we can make sure that it perserves the properties of the Fourier Transform, and the inverse Fourier Transform on the Fourier Transform is going to be the identity transform. 
+Like that. The freuencies in the kernels should have opposite signs, and then the constant must has a product that equals to $\frac{1}{2\pi}$. And when this is true, we can make sure that it perserves the properties of the Fourier Transform, and the inverse Fourier Transform on the Fourier Transform is going to be the identity transform.
+
+But in practice, we will usually use this type of fourier transform: 
+
+$$
+\mathcal{F}[u](w) = \int_{-\infty}^{\infty} 
+    f(x)\exp(-iw x)
+dx = \hat{u}
+\quad 
+\mathcal{F}^{-1}[\hat{u}](x) = \int_{-\infty}^{\infty} 
+    f(x)\exp(iw x)
+dw
+$$
+
+---
+### **Basic Properties**
+
+There are some basic properties of Fourier Transform that can help with solving some of the PDEs problems in the class. 

@@ -124,6 +124,24 @@ For a basis function, just make sure that the inner L2 produt are zero for all $
 
 In addition, we can use different signs for them too. If we use $\frac{\pm in\pi x}{L}$ for the series, then we will have to use $\frac{\mp in\pi x}{L}$ for the fourier kernel for coefficients: $c_n$. 
 
+Usually the convention for the complex Fourier Series is: 
+
+> $$
+> f(x) = \sum_{-\infty}^{\infty}
+>     c_n \exp \left(
+>         \frac{in\pi x}{L}
+>     \right)
+>     \quad 
+>     c_n = \frac{1}{2L} \int_{-L}^{L} 
+>         f(y)\exp \left(
+>             \frac{-in\pi x}{L}
+>         \right)
+>     dy
+> $$
+
+And please use this one, the one we had is just for the derivation of the complex Fourier series. 
+
+
 ---
 ### **Another Interpretation**
 
