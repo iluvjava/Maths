@@ -74,6 +74,198 @@ In practice, people will use the last one, or the average of some iterations of 
 
 Skipped because midterm I am busy, do this later whenever I have time. 
 
+$$
+\mathbb{E}\left[
+    \Vert w_{t + 1}- w_*\Vert_2^2
+    \right]
+= 
+\mathbb{E}\left[
+        \Vert 
+            w_t - \eta \nabla l_{I_t}(w_t) - w_*
+        \Vert_2^2
+    \right]
+\tag{1}
+$$
+
+$$
+= 
+\mathbb{E}\left[
+        \Vert w_t - w_*\Vert_2^2
+    \right] -
+    2\eta 
+    \mathbb{E}\left[
+            \nabla l_{I_t}(w_t)^T(w_t - w_*)
+        \right]
++ 
+\eta^2 \mathbb{E}\left[
+        \Vert\nabla_{I_t}(w_t) \Vert_2^2
+    \right]
+\tag{2}
+$$
+
+The third term is bounded by the constant $G$, which is in the hypothesis of the theorem. 
+
+Let's take a closer look at the second term, which will be giving us: 
+
+The expected value of loss on one of the sample is the expected value on all the sample, therefore: 
+
+$$
+\mathbb{E}\left[\nabla l_{I_t}(w_t)(w_t - w_*)\right] = 
+\mathbb{E}\left[\nabla l(w)^T(w_t - w_*)\right]
+\tag{3}
+$$
+
+Now, we can apply the Jensen's Inequality, so we **assume** that the loss function is convex for the SGD, then: 
+
+$$
+\sim=
+\mathbb{E}\left[\nabla l(w)^T(w_t - w_*)\right]
+\ge 
+\mathbb{E}\left[l(w_t) - l(w_*)\right]
+\tag{4}
+$$
+
+Using expression (4), and substituting it back to expression (2), we will have: 
+
+
+$$
+\mathbb{E}\left[
+        \Vert w_t - w_*\Vert_2^2
+    \right] -
+    2\eta 
+    \underbrace{\mathbb{E}\left[
+            \nabla l_{I_t}(w_t)^T(w_t - w_*)
+        \right]}_{\ge\mathbb{E}\left[l(w_t) - l(w_*)\right]}
++ 
+\eta^2 \mathbb{E}\left[
+        \Vert\nabla_{I_t}(w_t) \Vert_2^2
+    \right]
+\tag{5}
+$$
+
+Substracting a smaller quantity made it bigger. 
+
+$$
+\underset{(1)}{\sim} \le
+\mathbb{E}\left[
+        \Vert w_t - w_*\Vert_2^2
+    \right] 
+-
+    2\eta \mathbb{E}\left[l(w_t) - l(w_*)\right]
++ 
+\eta^2 \mathbb{E}\left[
+        \Vert\nabla_{I_t}(w_t) \Vert_2^2
+    \right]
+\tag{6}
+$$
+
+Expression (1) is less than the above quantity. Therefore, we have: 
+
+$$
+2\eta \mathbb{E}\left[l(w_t) - l(w_*)\right] 
+\le
+\mathbb{E}\left[
+        \Vert w_t - w_*\Vert_2^2
+    \right] 
++ 
+\eta^2 \mathbb{E}\left[
+        \Vert\nabla_{I_t}(w_t) \Vert_2^2
+    \right]
+- 
+\mathbb{E}\left[\Vert w_{t + 1} - w_*\Vert_2^2\right]
+$$
+
+
+$$
+\mathbb{E}\left[l(w_t) - l(w_*)\right] 
+\le \frac{1}{2\eta}
+\left(
+    \mathbb{E}\left[
+            \Vert w_t - w_*\Vert_2^2
+        \right] 
+    + 
+    \eta^2 \underbrace{\mathbb{E}\left[
+            \Vert\nabla_{I_t}(w_t) \Vert_2^2
+        \right]}_{\le G}
+    - 
+    \mathbb{E}\left[\Vert w_{t + 1} - w_*\Vert_2^2\right]
+\right)
+$$
+
+And now this is getting better, the next step is to take the average on the loss of all the parameters gotten during the SGD. 
+
+So the quantty we are interested in is: 
+
+$$
+\sum_{t = 1}^{T}
+        l(w_t) - l(w_*)
+\le
+\frac{1}{2\eta} 
+\left(
+        \Vert w_1  - w_*\Vert_2^2
+        -
+        \Vert w_2  - w_*\Vert_2^2
+        + 
+        \Vert w_2  - w_*\Vert_2^2
+        - 
+        \Vert w_3  - w_*\Vert_2^2
+        \cdots 
+        - 
+        \Vert w_{T + 1} - w_*\Vert_2^2
+\right) + \cdots
+$$
+
+We are perposefully ignoring the expetation operator, becase you know the drill. 
+
+You see, some of the terms on the rhs of the inequality has a circular cencellation patterns, therefore we can confidently say that: 
+
+$$
+\sum_{t = 1}^{T} \mathbb{E}\left[
+        l(w_t) - l(w_*)
+    \right]
+\le
+\frac{1}{2\eta}
+\left(
+    \underbrace{\mathbb{E}\left[
+            \Vert w_1 - w_*\Vert_2^2
+        \right] 
+    -
+    \mathbb{E}\left[\Vert w_{t + 1} - w_*\Vert_2^2\right]}_{< R}
+    + 
+    T\eta^2 G
+\right)
+$$
+
+Ok, why $\le R$? 
+
+Here we make the assumption that $\Vert w_1 - w_*\Vert_2^2 \le R$, then it can be said that: 
+
+$$
+\Vert w_1 - w_*\Vert_2^2 - \Vert w_{t+1} - w_*\Vert_2^2 \le \Vert w_1 - w_*\Vert_2^2 \le R
+$$
+
+Therefore, the same can be applied to the expectation value of these things, and in the end, we will be having: 
+
+$$
+\sum_{t = 1}^{T} \mathbb{E}\left[
+        l(w_t) - l(w_*)
+    \right]
+\le
+\frac{1}{2\eta}
+\left(
+    R
+    + 
+    T\eta^2 G
+\right) \le \frac{R}{2\eta} + \frac{T\eta G}{2}
+$$
+
+And, there is an optimal value of $\eta$ we can find by taking the derivative, and then, we can find the minimum value that can bound the gradient descent. 
+
+However, there is one missing piece here, the theorem stated the boundness of the average of all the parameters, but here, the average cannot be seen. 
+
+More importantly, we cannot just take out the expected operator in this case, because $w_{t+ 1}$ very much depends on what the value for $w_t$ is. 
+
+And that is when we use the convexity assumption of the loss function and the **Jensen's Inequality** to get there. 
 
 ---
 ### **Jensen's Inequaltiy**
@@ -94,6 +286,8 @@ $$
 \frac{1}{T}\sum_{t = 1}^{T}
     \mathbb{E}\left[l(w_t) - l(w_*)\right]
 $$
+
+Which appeared in the previous analysis on the boundeness of the Stochastic Gradient Descend Algorithm. 
 
 The intuition bethind the Jensen's inequality is simple, take a look at the convex defintion of a function: 
 

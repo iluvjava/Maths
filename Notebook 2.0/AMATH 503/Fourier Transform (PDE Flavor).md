@@ -18,7 +18,7 @@ F(x) = \sum_{n = -\infty}^{\infty}
     \right)
     \quad 
 c_n = \frac{1}{2L}\int_{-L}^{L} 
-    F(y)\exp\left(
+    f(y)\exp\left(
         \frac{i n \pi y}{L}
     \right)
 dy \quad \forall x\in[-L, L]
@@ -28,7 +28,9 @@ And recall the Dirichlet Theorem: [[Dirichlet Theorem]]
 
 Simply speaking, the Dirichlet theorem: converge at points of piecewise continuity and takes the average for the jump discontinuities. 
 
-**Note** The Dirichlet theorem is still valid for complex fourier series as well. 
+**Note**: The Dirichlet theorem is still valid for complex fourier series as well. 
+
+**Note**: $y$ is used for the variable in the Fourier Domain, because we will use $\omega$ for other stuff. 
 
 If the function is periodic based on $[-L, L]$, then, the series is going to converge to it globally. 
 
@@ -48,6 +50,7 @@ Let's make things simplier by using $\omega_n$
 > \omega_n = \frac{n\pi}{L} \quad \Delta\omega = \frac{\pi}{L}
 > $$
 
+This is our discritized frequency variable, and we will show that, in the case of fourier transform, this frequency variable become continuous. Which is very interesting. 
 
 ---
 ### **Derivation**
@@ -73,26 +76,28 @@ $$
 And notice that, for the coefficients for the fouer series, we have: 
 
 $$
-F(\omega_n) = 2Lc_n
+F(\omega_n) = 2Lc_n =
 \int_{-L}^{L} 
-    F(y)\exp\left(
+    f(y)\exp\left(
         i\omega_n y
     \right)
 dy
 $$
 
+**Note** $F(x)$ has been redefined as the convolution between the original function and the Fourier Kernel for some given frequency $w_n$: 
+
 Then, we have an expression for $f(x)$ in terms of function of $F(\omega_n)$, and then we have: 
 
 $$
 f(x) = \sum_{n = -\infty}^{\infty}
-    \frac{F(\omega_n)}{2L}a\exp(-i\omega_n x)
+    \frac{F(\omega_n)}{2L}\exp(-i\omega_n x)
 $$
 
 Recall the fact that $\Delta\omega$ is $\frac{\pi}{L}$. 
 
 $$
 f(x) = \sum_{n = -\infty}^{\infty}
-    \frac{2}{\pi}\frac{F(\omega_n)\pi}{L}a\exp(-i\omega_n x)
+    \frac{2}{\pi}\frac{F(\omega_n)\pi}{L}\exp(-i\omega_n x)
     =
     \frac{2}{\pi}
     \sum_{n = -\infty}^{\infty}
