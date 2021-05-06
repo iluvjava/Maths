@@ -8,6 +8,12 @@ And because Bessel's equation is a topic on itself, it's in its file and [here](
 
 **Note**: This is also discussed in details in the chapter 10 of the textbook. 
 
+Summary: 
+1. We need to solve the standard form of the Bessels equation. 
+2. We are going to use Frobenius method 
+3. There are multiple solution, we are going to make some assumption and solve for one of the solution. 
+4. We solve it to get a recurrence relations for the series, and then we unroll the recursion. 
+
 ---
 ### **Intro**
 
@@ -287,6 +293,7 @@ In our case of the Helmholtz equation, $p = 1$, and in that case, the Gamma will
 
 If that is zero, then we have the trivial solution: $y \equiv 0$ for the ODE.
 
+During the first few steps of the Frobenius Method, we get the value of $s$, and we see that it's $s = \pm p$, but we only solved for $p > 0$, and now, we are going to take a look at the case where $p < 0$. 
 
 ---
 ### **The Assumption on Positibe p**

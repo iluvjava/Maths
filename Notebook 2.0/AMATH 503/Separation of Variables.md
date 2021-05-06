@@ -615,6 +615,6 @@ $$
 Then then, we have the general solution to the original equation. 
 
 ---
-### **Wave Equation 1D One end Unattatched**
+### **Wave Equation 1D One end Un-attached**
 
 
