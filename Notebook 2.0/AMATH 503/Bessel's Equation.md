@@ -6,14 +6,14 @@ The objective is to look for the series representation of the solutions for the 
 
 And because Bessel's equation is a topic on itself, it's in its file and [here](https://www.wikiwand.com/en/Bessel_function) is the Wiki!
 
-**Note**: This is also discussed in details in the chapter 10 of the textbook. 
+**Note**: This is also discussed in details in the chapter 11 of the textbook. 
 
 Summary: 
 1. We need to solve the standard form of the Bessels equation. 
 2. We are going to use Frobenius method 
 3. There are multiple solution, we are going to make some assumption and solve for one of the solution. 
 4. We solve it to get a recurrence relations for the series, and then we unroll the recursion. 
-
+5. And then we discuss in detail on what the assumption mean and what the bessel's function of the second kind is. 
 ---
 ### **Intro**
 
@@ -279,22 +279,165 @@ This is the solution that won't blow up to infinite on us.
 
 This is actually the solution to the Bessel's equation as well. 
 
+**Asymptoptic Behaviors**
+
 If we are looking at small value of $x$, the Bessel's First kind behaves like the first term of the sum, because all the other terms are going to zero. 
 
 When the value $x\rightarrow \pm \infty$, they actually behaves like a $\cos$ function. 
 
 **Fun Fact**
 
-In our case of the Helmholtz equation, $p = 1$, and in that case, the Gamma will be come $(n + m)!$. 
-
+In our case of the Helmholtz equation, $p = 1$, and in that case, the Gamma will be come $(n + m)!$.
 
 ---
 ### **Why $a_0 \ne 0$**
 
 If that is zero, then we have the trivial solution: $y \equiv 0$ for the ODE.
 
+---
+### **The Assumption on Positive P**
+
 During the first few steps of the Frobenius Method, we get the value of $s$, and we see that it's $s = \pm p$, but we only solved for $p > 0$, and now, we are going to take a look at the case where $p < 0$. 
 
----
-### **The Assumption on Positibe p**
+Now we still assume that $p > 0$, but we let $s = -p$ to be one of the solution for the Frobenius Method. 
 
+However, if we are going to solve, the whole process will have to be went through again, however, notice that the only difference is that $p = -p$. Therefore, we can take the shortcut of looking for $y_2(x)$ explicitly, replacing by $p$ with $-p$, then, we have this expression: 
+
+$$
+y_w(x) = J_{-p}(x)= \sum_{n = 0}^{\infty}
+    \frac{(-1)^n\left(
+            \frac{x}{2}
+            \right)^{(2n - p)}}{
+            n!\Gamma (n - p + 1)
+        } 
+$$
+
+
+Let's assume that, we are including both the solutions for the General solution for solving [[Helmholtz Equation in a Cylinder]]. 
+
+Recall, in ODE, general solutions only work if the individual solutions are **Linear Independent**.[^1]
+
+Is $J_{p}(x)$ and $J_{-p}(x)$ Linear independent? 
+
+**Spoiler Alert**: There  are some values of $p$ such that, the first kind and second kind of the Bessel's equation is: Linearly Dependent. 
+
+In addition: $J_{p}(x)$ is bounded at $x = 0$, but for $J_{-p}(x)$, it will blows up as $x \rightarrow 0$. 
+
+If we want the solution to be bounded at $x = 0$, thjen we will have to leave the $J_{-P}(x)$ for the PDEs. 
+
+---
+### **Frobenius Method and Linear Independence of the General solution of the Bessel's Equation.** 
+
+Whem multiple solution persents for $s$, say $s_1, s_2$, and $s_1 - s_2 = 2p$ and it's an integer, then, $J_p(x)$ and $J_{-p}(x)$ are not linear independent. 
+
+To by pass this, meaning getting a linear independent solution wrt to $s = p$: 
+
+To get another solution for that $-p$ such that it's linear independent, we need to let: 
+
+$$
+y_2(x) = \ln(x)y_1(x) + x^{-p}\sum_{n = 0}^{\infty}
+    a_nx^n
+$$
+
+**Proposition**
+
+whem $p = m$ where $m$ is an integer, then $J_{p}(x)$ and $J_{-p}(x)$, are linear dependent, i.e: $J_{-p}(x) = CJ_{p}(x)$. 
+
+**Proof**:
+
+Identities taken for granted. 
+
+1. $\partial_x[x^{p}J_{p}(x)] = x^pJ_{p - 1}(x)$
+2. $\partial_{x}[x^{-p}J_{p}(x)] = -x^{-p}J_{p + 1}(x)$
+3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p}(x)$
+
+Where Identity 3 is gotten from the previous 2 identities. 
+
+We want to show that for $p = m$ where $m$ is an integer, 
+
+$$
+J_{-m}(x) = (-1)^m J_m(x)
+$$
+
+Which shows that the function $J_{m}(x)$ and $J_{-m}(x)$ are **not linear independent functions**. 
+
+$$
+J_{-m}(x) = \sum_{n = 0}^{\infty}
+    \frac{(-1)^n\left(
+        \frac{x}{2}
+    \right)^{2n - m}
+    }{
+        n!\Gamma(n - m + 1)
+    }
+$$
+
+1. If $n > m$, then $\Gamma(n - m + 1) = (n - m)!$
+2. if $n < m$, then $\Gamma(n - m+ 1) = \infty$, which means that $\frac{1}{\Gamma(n - m + 1)} = 0$
+
+Therefore: 
+
+$$
+J_{-m}(x) = \sum_{n = m}^{\infty}
+    \frac{(-1)^n s
+        \left(
+            \frac{x}{2}
+        \right)^{2n - m}
+    }{n!\Gamma (n - m + 1)}
+= 
+\sum_{n = m}^{\infty}
+    \frac{(-1)^n 
+        \left(
+            \frac{x}{2}
+        \right)^{2n - m}
+    }{n!(n -m)!}
+$$
+
+Now, we are going to re-index this thing, which is letting $k = n - m$, then: 
+
+$$
+J_{-m} = \sum_{k = 0}^{\infty}
+    \frac{(-1)^{k + m}
+    \left(
+        \frac{x}{2}
+    \right)^{2k + m}
+    }
+    {(k + m)!k!}
+    =
+    \sum_{n = 0}^{\infty}
+    \frac{(-1)^{n + m}
+    \left(
+        \frac{x}{2}
+    \right)^{2n + m}
+    }
+    {(n + m)!n!}
+$$
+
+Interesting.
+
+$$
+\implies J_{-m} = (-1)^{m}\underbrace{\sum_{n = 0}^{\infty}
+    \frac{(-1)^{n}
+    \left(
+        \frac{x}{2}
+    \right)^{2n + m}
+    }
+    {(n + m)!n!}}_{J_{m}(x)}
+$$
+
+---
+### **General Solution Regardless of that $P$ is**
+
+Regardless of what $P$ is the general solution for the Bessel's eqiation is like: 
+
+$$
+y(x) = AJ_{p}(x) + 
+B\left(
+    \frac{J_{p}(x)\cos(p\pi) - J_{-p}(x)}{\sin(p\pi)}
+\right)
+$$
+
+And under the case when $p$ turns out to be an integer, we will need to take the limit of the second part of the solution. 
+
+
+
+[^1]: Under graduate linear analysis intensifies. 

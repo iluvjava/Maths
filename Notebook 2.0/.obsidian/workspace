@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Midterm Examples.md",
+            "file": "AMATH 503/Bessel's Equation.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Midterm Examples.md",
+            "file": "AMATH 503/Bessel's Equation.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Midterm Examples.md",
+                "file": "AMATH 503/Bessel's Equation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 503/Bessel's Equation.md",
+    "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Midterm Examples.md",
     "AMATH 583/Parallelization Speed Up Metric.md",
     "AMATH 583/Parallel Computing Intro.md",
@@ -110,8 +112,6 @@
     "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md",
     "AMATH 503/Separation of Variables.md",
     "AMATH 503/Fourier Transform (PDE Flavor Examples).md",
-    "AMATH 503/Laplace Transform.md",
-    "AMATH 582/Fourier Transform.md",
-    "AMATH 503/Application of Fourier Transform (PDE Flavor).md"
+    "AMATH 503/Laplace Transform.md"
   ]
 }
