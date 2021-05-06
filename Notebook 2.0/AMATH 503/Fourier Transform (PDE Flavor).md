@@ -255,4 +255,6 @@ $$
 ---
 ### **Basic Properties**
 
-There are some basic properties of Fourier Transform that can help with solving some of the PDEs problems in the class. 
+There are some basic properties of Fourier Transform that can help with solving some of the PDEs problems in the class.
+
+
