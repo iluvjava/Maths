@@ -4,6 +4,8 @@ And it's used to look for the solution of the Bessel's equation, [[Bessel's Equa
 
 But in the discussion of the Bessel's equation, there is a lack of clarification and formal treatment of the method, and this is what this file is about. We are going to give a more detailed view of the Frobenius method under a much general context for solving Second Order ODEs. 
 
+Here is the reference material [here](https://www.youtube.com/watch?v=uLORiAWe63A)
+
 ---
 ### **Intro**
 
@@ -33,6 +35,50 @@ And when this happens, we will need to take caution when:
 When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constatns are linear independent. And that will form the full solution for the ODEs. 
 
 But when this scenario for $s$ happened, we can not because the solution we had or $y(x)$ will be linear dependent.
+
+
+#### **When $s_1 = s_2 = s$**: 
+
+Then, fix one of the roots and find the solution of that by unrolling the recursion and solving for the coefficients on the original 2nd ODE, giving us: 
+
+
+$$
+y_1(x) = (x - x_0)^r
+\sum_{n = 0}^{\infty}a_n(x - x_0)^n
+$$
+
+
+And then after that, we are make another solution format which is based **THIS** solution with $s_1$: 
+
+We are making the assumption that the solution for the other function takes the form of: 
+
+$$
+y_2(x) = y_1\ln(x) + (x - x_0)^s \sum_{n = 0}^{\infty}
+    A_n(x - x_0)^n
+$$
+
+Where, we will be solving for another set of coefficients equation of this format, and this time, solving for $A_n$ and time it will be linear independent to the previous solution $y_1(x)$. 
+
+#### **When $s_1, s_2$ are Distinct but it's Differend by an Integer**
+
+Let's assume that $s_1 > s_2$. 
+
+$y_1(x)$ is going to be the same. I will write the down anyway: 
+
+$$
+y_1(x) = (x - x_0)^{s_1}\sum_{n = 0}^{\infty}
+    a_n(x - x_0)^n
+$$
+
+And the solution for $y_2(x)$ will be: 
+
+$$
+y_2(x) = k y_1 \ln(x) 
++ (x - x_0)^{s_2} \sum_{n = 0}^{\infty}
+    A_n(x - x_0)^n
+$$
+
+Where, take notice that, it has an extra cofficient with $y_1(x)$ where we are going to solve for, and the power on $x$ is $s_2$ in the multiplier for the series. 
 
 
 
