@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Kernel Machine.md",
+            "file": "AMATH 503/Bessel's Equation.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Kernel Machine.md",
+            "file": "AMATH 503/Bessel's Equation.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Kernel Machine.md",
+                "file": "AMATH 503/Bessel's Equation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "CSE 546/Untitled.md",
+    "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Frobenius Method.md",
     "AMATH 503/Untitled.md",
-    "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Midterm Examples.md",
     "AMATH 583/Parallelization Speed Up Metric.md",
     "AMATH 583/Parallel Computing Intro.md",
     "AMATH 503/Common PDEs B.C Catalogs.md",
-    "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md"
+    "AMATH 502/Periodic Orbit and Bifurcation (Logistic Map).md",
+    "AMATH 503/Separation of Variables.md"
   ]
 }

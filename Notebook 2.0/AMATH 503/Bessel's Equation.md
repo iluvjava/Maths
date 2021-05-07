@@ -1,4 +1,4 @@
-This is use for solving the cylindrical wave equation, which is [[Helmholtz Equation in a Cylinder]]
+This is use for solving the cylindrical wave equation, which is [[Helmholtz Equation in a Cylinder]], And because we introduce the method of [[Frobenius Method]] along the way as we go, here I listed some relevent discussion for Frobe method too. 
 
 And we encounter the problem of solving for the basis functions along the $r$ direction. 
 
@@ -150,7 +150,7 @@ We can consider this for each integral value of $n$.
 
 We already dealt with the case that $n = 0$, which helped us getting the expression for $s$, now we are going to try all the natural number. 
 
-#### **Consider**:  
+#### **Consider $n = 1$**:  
 
 $$n = 1$$
 
@@ -164,9 +164,9 @@ $$
 ((1 + p)^2 - p^2)a_1 = 0 \implies (1 + 2p)a_1 = 0
 $$
 
-By the assumption that $p > 0$, we can see that: $a_1 = 0$. 
+By the assumption that $p > 0$, we can see that: $a_1 = 0$. This is the only way that, we can keep the right hand side to be zero. 
 
-#### **Consider**: 
+#### **Consider $n > 1$ and the Recursion of the Coefficients**: 
 
 $$
 n = 2, 3, 4, 5\cdots
@@ -323,12 +323,14 @@ Is $J_{p}(x)$ and $J_{-p}(x)$ Linear independent?
 
 In addition: $J_{p}(x)$ is bounded at $x = 0$, but for $J_{-p}(x)$, it will blows up as $x \rightarrow 0$. 
 
-If we want the solution to be bounded at $x = 0$, thjen we will have to leave the $J_{-P}(x)$ for the PDEs. 
+If we want the solution to be bounded at $x = 0$, then we will have to leave the $J_{-P}(x)$ for the PDEs. 
 
 ---
 ### **Frobenius Method and Linear Independence of the General solution of the Bessel's Equation.** 
 
-Whem multiple solution persents for $s$, say $s_1, s_2$, and $s_1 - s_2 = 2p$ and it's an integer, then, $J_p(x)$ and $J_{-p}(x)$ are not linear independent. 
+For a more general context of what is discussed here, see [[Frobenius Method]]. 
+
+When multiple solution presented for $s$, say $s_1, s_2$, and $s_1 - s_2 = 2p$ and it's an integer, then, $J_p(x)$ and $J_{-p}(x)$ are not linear independent. 
 
 To by pass this, meaning getting a linear independent solution wrt to $s = p$: 
 

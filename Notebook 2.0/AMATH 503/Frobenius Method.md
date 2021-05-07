@@ -6,6 +6,10 @@ But in the discussion of the Bessel's equation, there is a lack of clarification
 
 Here is the reference material [here](https://www.youtube.com/watch?v=uLORiAWe63A)
 
+And here is another reference resource that I didn't include them into my notes yet: 
+
+[Frobenius Method from Calc Tech](http://www.its.caltech.edu/~esp/acm95b/frobenius.pdf)
+
 ---
 ### **Intro**
 
@@ -32,7 +36,7 @@ And when this happens, we will need to take caution when:
 1. $s$ has 2 integer solutions. 
 2. $s$ is the repeated root of a solution. 
 
-When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constatns are linear independent. And that will form the full solution for the ODEs. 
+When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constants are linear independent. And that will form the full solution for the ODEs. 
 
 But when this scenario for $s$ happened, we can not because the solution we had or $y(x)$ will be linear dependent.
 
