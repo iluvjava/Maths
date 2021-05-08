@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Kernel Machine.md",
+            "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Kernel Machine.md",
+            "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Kernel Machine.md",
+                "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Untitled.md",
     "CSE 546/Kernel Machine.md",
     "AMATH 582/Kernel PCA.md",
     "Math 000/Linear Algebra/Matrix Decomposition/SVD Theorems.md",
@@ -111,7 +112,6 @@
     "AMATH 503/Untitled.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Midterm Examples.md",
-    "AMATH 583/Parallelization Speed Up Metric.md",
-    "AMATH 583/Parallel Computing Intro.md"
+    "AMATH 583/Parallelization Speed Up Metric.md"
   ]
 }
