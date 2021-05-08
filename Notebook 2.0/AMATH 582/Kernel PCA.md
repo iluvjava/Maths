@@ -6,7 +6,6 @@ Reference: [Link](http://www.cs.haifa.ac.il/~rita/uml_course/lectures/KPCA.pdf),
 
 In practice, people can use [Kernel PCA](https://scikit-learn.org/stable/auto_examples/decomposition/plot_kernel_pca.html#sphx-glr-auto-examples-decomposition-plot-kernel-pca-py) from the sklearn library. 
 
-
 ---
 ### **Intro**
 When the features are not necessarily separable under the linear subspace, we will use the kernel tricks to get a better separations in a new dimension. 

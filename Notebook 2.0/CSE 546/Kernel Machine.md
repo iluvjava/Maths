@@ -124,6 +124,33 @@ $$
 \arg\min_\alpha \Vert Y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^2\Kappa \alpha
 $$
 
+---
+### **Some Canonical Kernels**
 
+D-Degree polynomial kernel: 
+
+$$
+K(u, v) = (u^Tv)^d
+$$
+
+Polynomial degree up to d will be: 
+
+$$
+K(u, v) = (u^Tv + 1)^d
+$$
+
+Guassian Kernel (RBF Kernel): 
+
+$$
+K(u, v) = \exp \left(
+\frac{-\Vert u - v\Vert^2}{2\sigma^2}
+\right)
+$$
+
+Sigmoid Kernel: 
+
+$$
+K(u, v) = \tanh(\gamma u^Tv + r)
+$$
 
 
