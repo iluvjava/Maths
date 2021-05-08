@@ -62,7 +62,8 @@ Therefore it's not good to computing that, but if we only need to compute the in
 **And this is one of the motivation behind Kernel Machine**
 
 **Well Defined Kernels**: 
-(...) Still loading. 
+
+Positive semite-definiteness of the inner product matrix makes the Kernel Matrix valide. 
 
 ---
 ### **The Kernel Trick on Linear Regression**
@@ -129,6 +130,10 @@ Then we can say that:
 $$
 \arg\min_\alpha \Vert Y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^2\Kappa \alpha
 $$
+
+And notice that we are now optimizing on the kernen parameter vector $\alpha$ and the original model parameter $w$ is not in the picture anymore. 
+
+
 
 ---
 ### **Some Canonical Kernels**
