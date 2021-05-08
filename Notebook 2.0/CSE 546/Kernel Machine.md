@@ -1,3 +1,8 @@
+$$
+\newcommand{\Kappa}{\text{K}} % This is the fix intended for obsidian notebook. 
+$$
+
+
 Here we will be highlighting some of the inner structure of kenel machines and the idea behind it. 
 
 Here are some other things in the vault that uses the idea of kernel. 
@@ -71,7 +76,7 @@ $$
 
 This is the optimal parameter, let's assume that it's a linear combination of all the samples in the data set and that will mean: 
 $$
-\exist \alpha \in \mathbb{R}^n: \quad \hat{w} = \sum_{i = 1}^{n}
+\exists \alpha \in \mathbb{R}^n: \quad \hat{w} = \sum_{i = 1}^{n}
     \alpha_ix_i
 $$
 
@@ -102,7 +107,8 @@ $$
         + 
         \lambda + \sum_{i = 1}^{n}\sum_{j = 1}^{n}
             \alpha_i\alpha_j K(x_i, x_j)
-\right\rbrace
+\right\rbrace 
+
 $$
 
 Then, we are going to make a bank of all the dot product using the kernel machine, let this be a new matrix: $\Kappa$, then we can apply the following simplification: 
