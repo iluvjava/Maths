@@ -49,7 +49,7 @@ Usually happens when the threads try to check for a predicate on some shared mem
 
 ```cpp
 double pi = 0.0;
-std::mutex; 
+std::mutex pi_mutex; 
 
 void pi_helper (int begin, int end, double h)
 {
@@ -96,7 +96,7 @@ Notice that, the int has 32 bit. That is about $2^{32}$.
 
 ```cpp
 double pi = 0.0;
-std::mutex; 
+std::mutex pi_mutex; // This is an object on its own, system level implementation.
 
 void pi_helper (int begin, int end, double h)
 {
@@ -115,4 +115,23 @@ void pi_helper (int begin, int end, double h)
 Boom, now the computations can be carried out at the same time, and then we don't have to add all the running total to the same thing anymore. It's summing up to the internal variable for the thread. 
 
 
+```cpp
+double pi = 0.0;
+std::mutex pi_mutex; // This is an object on its own, system level implementation.
+
+void pi_helper (int begin, int end, double h)
+{
+    double Sum = 0
+    for (int 1 = being; i < end; ++i)
+    {
+        Sum += (h*4.0)/(1.0 + (i*i*h*h));
+    }
+    {
+        std::lock_guard<std::mutex> pi_guard(pi_mutex);
+        pi +=pi_i;
+
+    }
+}
+
+```
 
