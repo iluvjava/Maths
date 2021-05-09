@@ -6,11 +6,11 @@
       {
         "id": "ea78bd363ea2ea8f",
         "type": "leaf",
-        "dimension": 48.07121661721069,
+        "dimension": 50.029568302779424,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md",
+            "file": "Roofline Model.md",
             "mode": "source"
           }
         },
@@ -19,12 +19,12 @@
       {
         "id": "2bc0f78e795d71bf",
         "type": "leaf",
-        "dimension": 51.92878338278931,
+        "dimension": 49.97043169722058,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md",
-            "mode": "preview"
+            "file": "Roofline Model.md",
+            "mode": "source"
           }
         },
         "group": "439767a7361f85c5"
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "epigraph",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md",
+                "file": "Roofline Model.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,6 +104,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "Roofline Model.md",
+    "roofline .md",
     "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md",
     "AMATH 515/Proximal Gradient Descend/Proximal Gradient Method.md",
     "CSE 546/Kernel Machine.md",
@@ -111,8 +113,6 @@
     "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Frobenius Method.md",
     "AMATH 503/Untitled.md",
-    "AMATH 503/Helmholtz Equation in a Cylinder.md",
-    "AMATH 503/Midterm Examples.md",
-    "AMATH 583/Parallelization Speed Up Metric.md"
+    "AMATH 503/Helmholtz Equation in a Cylinder.md"
   ]
 }
