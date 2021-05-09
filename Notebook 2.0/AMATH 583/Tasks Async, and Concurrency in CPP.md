@@ -127,11 +127,67 @@ void pi_helper (int begin, int end, double h)
         Sum += (h*4.0)/(1.0 + (i*i*h*h));
     }
     {
-        std::lock_guard<std::mutex> pi_guard(pi_mutex);
+        // Destructor call when this item goes out of scope. 
+        std::lock_guard<std::mutex> pi_guard(pi_mutex); 
         pi +=pi_i;
 
     }
 }
 
 ```
+
+---
+### **Using Async**
+
+Async is another, application level approach to parallelism. Here is the code for that: 
+
+```cpp
+int main(int argc, char* argv[])
+{
+    unsigned long intervals = 1024*1024; 
+    unsigned long num_blocks = 1; 
+    double h = 1.0/(double)intervals; 
+    unsigned long blocksize = intervals/num_blocks;
+    std::vector<std::future<double>> partial_sums;
+    for (unsigned long k = 0; k < num_blocks; ++k)
+    {
+        partial_sums.push_back
+        (
+            std::async
+             (
+                std::launch::async,  // Eager eval, this is parallelism
+                partial_pi,         // function that runs the task
+                k*blocksize,        // parameters for `partial_pi` function, pass in std::ref(?) if a reference is intended as the function parameter. 
+                (k + 1)*blocksize, 
+                h
+            )
+        );
+    } 
+    for (unsigned long k = 0; k < num_blocks; ++k)
+    {
+        pi += h*partial_sums[k].get();
+    }
+    std::cout << "pi is approximately: " << std:: endl;
+    return 0; 
+}
+```
+
+The async, like java script, returns a promise to the future returned value by the task. It takes in a launch parameter, like deferred, or eager `std::launch::async`, or `stud::launch::deferred`, etc. 
+
+Then, the results are taken out from the promise object. 
+
+
+**What about Atomic Types**? 
+
+This is limited to certain data types, not all data types, therefore, it's better to use it whenever it's suitable, and, avoid direct assignment operator, because they don't support atomic operations, unfortunately. 
+
+
+---
+### **What is the Mutex**
+
+A thread owns a mutex. 
+
+To own a multex safely following the RAII protocol, a `std::lock_guard` will have to be used for it. 
+
+The compiler will manage the ownership of the multex automatically when it's used with the `std::lock_gard` block. 
 
