@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Roofline Model.md",
+            "file": "AMATH 583/CPP Function Objects and Lambda.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Roofline Model.md",
+            "file": "AMATH 583/CPP Function Objects and Lambda.md",
             "mode": "source"
           }
         },
@@ -67,8 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357,
-    "collapsed": true
+    "width": 357
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -84,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Roofline Model.md",
+                "file": "AMATH 583/CPP Function Objects and Lambda.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "CPP Function Objects.md",
     "Roofline Model.md",
     "roofline .md",
     "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md",
@@ -112,7 +112,6 @@
     "AMATH 582/Kernel PCA.md",
     "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Frobenius Method.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/Helmholtz Equation in a Cylinder.md"
+    "AMATH 503/Untitled.md"
   ]
 }
