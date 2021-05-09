@@ -128,12 +128,34 @@ $$
 Then we can say that: 
 
 $$
-\arg\min_\alpha \Vert Y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^2\Kappa \alpha
+\arg\min_\alpha \Vert y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^2\Kappa \alpha
 $$
 
 And notice that we are now optimizing on the kernen parameter vector $\alpha$ and the original model parameter $w$ is not in the picture anymore. 
 
+**Why Regularization**
 
+Gnerally speaking, in the case where $\phi(x)$ the dimension augmentation function, has a dimension that is $>n$, having a dimension that is larger than the number of sample, Then: 
+
+$$
+v^T Kv 
+$$
+
+will be a positive definite matrix! 
+
+Now, let's consider the solution to the unregularized problem: 
+
+$$
+\arg\min_{\alpha} \Vert y - K\alpha\Vert_2^2
+$$
+
+Then it's not hard to see that in this case, the solution for $\alpha$ will simply be: 
+
+$$
+\alpha = K^{-1} y
+$$
+
+And that is a perfect fit, that is why, when we are regularizing it when there are not many features present for each sample. 
 
 ---
 ### **Some Canonical Kernels**
