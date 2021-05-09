@@ -12,7 +12,7 @@ This file includes the following concepts:
 2. Definition of the sub-gradient that can be mixed represented as convexity.
 3. Definition of sub-differential, which is just the set of all possible sub-gradient. 
 4. Merge the above concepts with the optimality conditions of the convex functions. 
-5. The idea of using objective functions to represent constrained optimization problems
+5. The idea of using objective functions and augmented reals realm to represent constrained optimization problems
 6. The Projection operator
 7. The proximity operator. 
 8. Key takeaway for these definitions in regards to problem we studied.
@@ -23,7 +23,7 @@ Here is a list of very interesting ideas:
 3. When we have a convex indicator function, the gradient search process can be reduced into a geometrical process. Somewhat like non-linear convex optimization? 
 
 ---
-### Intro
+### **Intro**
 Target: 
 
 $$
@@ -32,7 +32,7 @@ $$
 
 $g(x)$: **beta smooth**
 
-$h(x)$: **non-smooth convex function** (Simple Functions).
+$h(x)$: **non-smooth convex function** (Simple Functions for now).
 
 Example: Constraints piece-wise functions
 
@@ -57,13 +57,13 @@ $$
 
 So in the case of a constraints optimization, like linear programming, we can just take the constraints and use the indicator function to merge it into the objective function, reducing the problem to a non-smooth optimization problem. 
 
-Example: Non-smooth regularization
+Example: **Non-smooth regularization**
 
-Often we add the regularization term: $\lambda||x||^2$, which decreases the variance of the solution, and it adds biases to zero solutions. THis is the famous **Ridge Regularization**, and there is also the **Lasso Regularization**, which uses the $||x||_1$ norm. 
+Often we add the regularization term: $\lambda||x||^2$, which decreases the variance of the solution, and it adds biases to zero solutions. This is the famous **Ridge Regularization**, and there is also the **Lasso Regularization**, which uses the $||x||_1$ norm. 
 
-This type of the regularization (**Lasso**) makes the coords of the solution to be zero, thus identifying the "Important" predictors. 
+This type of the regularization (**Lasso**) makes the coordinate of the solution to be zero, thus identifying the "Important" predictors.
 
-Lasso Example is non-smooth optimization problem.
+Lasso Regularizer is a non-smooth optimization problem.
 
 Group Penalty: 
 
@@ -97,7 +97,7 @@ So In general, the non-smooth optimizations is involving the following elements:
 
 
 ---
-### Subgradient and Sub-differential
+### **Subgradient and Sub-differential**
 
 From characterization of the convex function we have: 
 $$
@@ -110,7 +110,7 @@ Building on this, we are going to build the idea of sub gradient. When the funct
 
 **Definition**: 
 
-$v$ is a subgradient to f at x if: 
+$v$ is a subgradient to $f$ at $x$ if: 
 
 $$
 f(y) \ge f(x) + v^T(y - x) \quad \forall y
@@ -131,7 +131,7 @@ $$
 $$
 
 ---
-#### Optimality Conditions for Convex Function
+#### **Optimality Conditions for Convex Function**
 
 $0\in \partial f(x)$ and $f(x)$ is convex --> $x$ is a global min. This is the case because: 
 
@@ -155,7 +155,7 @@ $$
 
 In some cases, we have no idea that we have reached the global optimal, because they can give you any gradient from the sub-differential, and then we will jump off from the optimal. This is very hard to get the entire set of sub-differential from a high dimensional function. 
 
-**Strategy**: We want $\gamma_k$, **the step size to goes to zero, but not too fast**! So this means that, we goes into the global minimal, but we want the gradient to be less and less, so we don't bounce out of the optimal. (Not converging)
+**Strategy**: We want $\gamma_k$, **the step size to goes to zero, but not too fast**! So this means that, we goes into the global minimal, but we want the gradient to be less and less, so we don't bounce out of the optimal. (Not converging). Harmonic series does the trick. 
 
 And here is the conditions we are expecting for the step-size for the non-smooth optimization: 
 
@@ -195,13 +195,13 @@ Using the assumption that the objective function is the sum of a non-smooth func
 $$
 0 \in \partial f(x) \iff 0 \in \nabla g(x) + \partial h(x) \implies -\nabla g(x) \in \partial h(x)
 $$
-
+	
 This is the Optimality conditions.
 
 Notice that, we are assuming something that is true here: $\partial f(x)$ of any function is a "square" in $\mathbb{R}^n$, this allows we to **shift the set wrt to a vector**. 
 
 ---
-### Definition: Projection
+### **Definition: Projection**
 
 Give a set $C$ and a vector $z$, we call the **closest point** in $C$ to $z$ the Projection of $z$ onto $C$. 
 
@@ -222,7 +222,7 @@ Where we include the convex set indicator function into the objective, this is t
 These type of optimization problem can be solved easily with geometric principals. Recall: "**Hyper Plane Separations from linear programming?**"
 
 ---
-### Definition: Proximity 
+### **Definition: Proximity**
 
 Given any convex function $h(x)$ and $h>0$, define
 
@@ -240,7 +240,7 @@ Take $h(x)$ to be $\delta_C(x)$, the definition decays into the definition of se
 **Upshot**: As for projection, we can compute $\text{prox}_{th}$ in closed form for many function $h(x)$. Under the case when $h(x)$ is simple, we can compute it as proximity fairly easily. 
 
 ---
-### Key Takeway
+### **Key Takeway**
 
 $g(x)$: Beta smooth. 
 
@@ -251,6 +251,8 @@ $f(x) = g(x) + h(x)$
 $$
 g(y) + h(y) \le g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}\Vert y - x\Vert^2 + h(y) \le m_x(y)
 $$
+
+We are going to break this down, and see what part of the these objective function we can best optimize and how it looks like, and in the end. 
 
 The RHS can be simplified (completing the square): 
 
@@ -270,6 +272,8 @@ g(x) +
         \nabla g(x)
     \Vert^2 
 $$
+
+**BOOM**: This a nest sub-problem we solve for each step of optimization on the larger problem! because, it seems to mimizes over the local area around $x$, with the non-smooth assumption as well. However, $h(x)$ can't be too fancy. Or else this is going to be a very hard problem.
 
 Notice that, we can optimize the part that is in the brackets, giving us: 
 
@@ -313,7 +317,7 @@ $$
 
 This is very interpretable. 
 
-#### Optimality Conditions When not an Indicator Function
+#### **Optimality Conditions When not an Indicator Function**
 
 Here, we are interested in the the optimality conditions for the proximal operator: 
 $$
@@ -338,7 +342,7 @@ $$
 And it's not that nice if we don't have some kind of concrete examples. 
 
 ---
-### Exercise Proximal Projection: 
+### **Exercise Proximal Projection**: 
 
 Given: $l\le x \le u$
 $$
@@ -393,3 +397,40 @@ $$
 
 **Note**: The min, max operators here apply to the vector in an element wise fashion.
 
+---
+### **Simple L1 Norm and Regression**
+
+$$
+\arg\min_x \left\lbrace
+    \frac{1}{2} \Vert x - c \Vert^2 + \lambda\Vert x\Vert_1
+\right\rbrace
+$$
+
+This is just a general quadratic. We want to optimize this, to get some idea on how sub-gradient works on in this case. 
+
+Consider the sub gradient of this: 
+
+$$
+0 \in (x - c) + \partial[\Vert x\Vert_1]
+$$
+
+Let's assume that $x = 0$, so that $\partial [\Vert x\Vert_1] = 0$
+
+$$
+0 \in [-c - \lambda, -c + \lambda]
+$$
+
+$0$ is the optimal, whenever $[-c -\lambda, -c + \lambda]$ includes lambda, not hard to see it's the case when $c < \lambda$. 
+
+Let's assume that $x\ne 0$, so that $\partial[\Vert x\Vert_1] = \text{sign}(x)$ then: 
+
+$$
+0 \in (x - c) + \text{sign(x)} \implies x \in \text{sign(x)} - c
+$$
+
+
+**What is the deal here**? 
+
+This is written way after the course ended. It's made to highlight the fact that, the nested, inner optimization problem we solved, call the proixmal problem, directly solves the 2-norm with any other non-smooth function. It's like, we are solving this, easier version of the optimization problem locally, with the proximal gradient in order to get closer to the real optimization peoblem. 
+
+It's like, Ok, we are going for that best point which optimize the Smooth part of the function, but then, we have to deflect ourself for the non-smooth part. Then Boom, Proximal Operator was born. 
