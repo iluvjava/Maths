@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Function Objects and Lambda.md",
+            "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
             "mode": "source"
           }
         },
@@ -23,8 +23,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/CPP Function Objects and Lambda.md",
-            "mode": "source"
+            "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
+            "mode": "preview"
           }
         },
         "group": "439767a7361f85c5"
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "multex",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -63,11 +63,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 357
+    "width": 357,
+    "collapsed": true
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/CPP Function Objects and Lambda.md",
+                "file": "AMATH 583/Tasks Async, and Concurrency in CPP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +105,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Tasks Async, and Concurrency in CPP.md",
+    "AMATH 583/CPP Function Objects and Lambda.md",
     "CPP Function Objects.md",
     "Roofline Model.md",
     "roofline .md",
@@ -110,8 +114,6 @@
     "AMATH 515/Proximal Gradient Descend/Proximal Gradient Method.md",
     "CSE 546/Kernel Machine.md",
     "AMATH 582/Kernel PCA.md",
-    "AMATH 503/Bessel's Equation.md",
-    "AMATH 503/Frobenius Method.md",
-    "AMATH 503/Untitled.md"
+    "AMATH 503/Bessel's Equation.md"
   ]
 }

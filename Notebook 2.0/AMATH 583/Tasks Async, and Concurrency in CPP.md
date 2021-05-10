@@ -187,7 +187,7 @@ This is limited to certain data types, not all data types, therefore, it's bette
 
 A thread owns a mutex. 
 
-To own a multex safely following the RAII protocol, a `std::lock_guard` will have to be used for it. 
+To own a mutex safely following the RAII protocol, a `std::lock_guard` will have to be used for it. 
 
-The compiler will manage the ownership of the multex automatically when it's used with the `std::lock_gard` block. 
+The compiler will manage the ownership of the mutex automatically when it's used with the `std::lock_gard` block. 
 
