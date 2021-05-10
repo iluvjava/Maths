@@ -38,7 +38,28 @@ x^2 y'' + x y' + (x^2 - p^2)y = 0
 \tag{1}
 $$
 
-Under the context of the Helmholtz equation in the cylinder, transforming the SOV equation for the $R(r)$ will produce the above bassel's equation, not necessarily the standard form: 
+Under the context of the Helmholtz equation in the cylinder, transforming the SOV equation for the $R(r)$ will produce the above bassel's equation, not necessarily the standard form. 
+
+The solution for the ODE consists of 2 parts, depending on what value of $p$ is, they will take different forms. But regardless of what the value of $p$ is, there will be 2 solutions, linearly independent solution to the ODE. 
+
+When $p$ is not integer, the solution is: 
+
+$$
+y(x) = AJ_{p}(x) + BJ_{-p}(x) \quad J_{p}(x) = 
+\sum_{n = 0}^{\infty}
+    \frac{(-1)^n\left(
+        \frac{x}{2}
+    \right)^{2n + p}}{
+        n!\Gamma(n + p + 1)
+    }
+$$
+
+Which is equation (5) later in the file. 
+
+And then this is the soltuion, but when $p$ is integer, the solution will be a bit more complicated. 
+
+
+
 
 ---
 ### **The Frobenius Method**
@@ -433,13 +454,30 @@ Regardless of what $P$ is the general solution for the Bessel's eqiation is like
 
 $$
 y(x) = AJ_{p}(x) + 
-B\left(
+\underbrace{B\left(
     \frac{J_{p}(x)\cos(p\pi) - J_{-p}(x)}{\sin(p\pi)}
-\right)
+\right)}_{y_p(x)}
+\tag{6}
 $$
 
 And under the case when $p$ turns out to be an integer, we will need to take the limit of the second part of the solution. 
 
+---
+### **Bessel's Soluton Behavior**
 
+For small value of x, here are the list of behavior for the solution of the first kind, and solution of the second kind: 
+
+For large value of $x$ the solution will look like this: 
+
+Here are some graph for it. The **first kind** is: 
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bessel_Functions_%281st_Kind%2C_n%3D0%2C1%2C2%29.svg/640px-Bessel_Functions_%281st_Kind%2C_n%3D0%2C1%2C2%29.svg.png?1620680341436)
+
+And the **second kind** is like: 
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg/600px-Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg.png)
+
+These images are linked from wikipedia. 
+
+There are lot of zeros, where $J_m(x)$ crosses the x-axis, these are sometimes very important. Check out 146 page of chapter 11 for some of the zeros.
+ 
 
 [^1]: Under graduate linear analysis intensifies. 

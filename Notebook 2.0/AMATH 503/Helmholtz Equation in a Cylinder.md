@@ -284,7 +284,7 @@ $$
 So now we have the index shifted. 
 
 Plugging it into the original equation with the shifted indices, we will have: 
-(After non-trivial amount of maths)
+(After non-trivial amount of math)
 
 
 

@@ -1,4 +1,4 @@
-[[Parallel Computing Intro]]
+[[Parallel Computing Intro]] 
 So we need to understand the basics of the parallel programming first before learning about the other details of things. 
 
 ---
@@ -13,7 +13,7 @@ And yes.
 And on multiple cores, the threads can run at the same time. 
 
 ---
-### **Parallelization Strageties**
+### **Parallelization Strategies**
 
 Split by tasks.
 

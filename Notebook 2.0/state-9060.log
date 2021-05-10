@@ -1,4 +1,4 @@
-[ERROR May  7 23:45:23.651447600, defaults.go:149] Could not load configuration: Failed to load configuration.
+[ERROR May 10 13:43:17.419810900, defaults.go:149] Could not load configuration: Failed to load configuration.
 
 Stacktrace: D:/a/cli/cli/internal/logging/logging.go:github.com/ActiveState/cli/internal/logging.Error:258
 D:/a/cli/cli/internal/logging/defaults.go:github.com/ActiveState/cli/internal/logging.init.0:149
@@ -8,5 +8,5 @@ C:/hostedtoolcache/windows/go/1.15.11/x64/src/runtime/proc.go:runtime.doInit:564
 C:/hostedtoolcache/windows/go/1.15.11/x64/src/runtime/proc.go:runtime.main:191
 C:/hostedtoolcache/windows/go/1.15.11/x64/src/runtime/asm_amd64.s:runtime.goexit:1374
 
-[DEBUG May  7 23:45:23.653448300, defaults.go:178] Args: [C:\Users\victo\AppData\Roaming\ActiveState\bin\state.exe show --output editor]
-[DEBUG May  7 23:45:23.654448900, locale.go:34] Init
+[DEBUG May 10 13:43:17.420811200, defaults.go:178] Args: [C:\Users\victo\AppData\Roaming\ActiveState\bin\state.exe show --output editor]
+[DEBUG May 10 13:43:17.421812000, locale.go:34] Init
