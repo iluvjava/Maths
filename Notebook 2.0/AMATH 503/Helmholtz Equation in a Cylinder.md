@@ -15,8 +15,9 @@ The Helmholtz equation IS the wave equation.
 And, the given PDE is in this form: 
 
 $$
-\nabla^2\cdot u = -\lambda^2 u
+\nabla^2\cdot u = -\lambda^2 \partial_t^2[u]
 $$
+
 
 Here is the parameters for the cylinder: 
 
@@ -40,7 +41,14 @@ $$
 u = 0  \quad r = a
 $$
 
-There is no vibration on the wall of the cylindar. 
+There is no vibration on the wall of the cylinder. 
+
+Here is a summary on the procedures to take when solving this equation: 
+1. Seperate it into spatial domain and time domain, let the function takes the form: $\phi(x, y, z)T(t)$
+2. Then for the sptial domain, using the separation of variables to get the solution for each of the function that governs each dimension in the Cylindrical coordinate, by assuming that $\phi(x, y, z) = Z(z)\Theta(\theta)R(r)$. 
+3. Solve the ODE, starting with the part involving only $Z(z)$ using the boundary conditions that there is no vibrations on the cap of the cylinder, then $\Theta(\theta)$. And the function $\Theta(\theta)$ has a $2\pi$ period to it. Then finally, solve the $R(r)$ which is the bessel's equation, extract the bessel's of the first kind as the solution for functiom $R(r)$ because of the boundary conditions that $R(0) \ne \inf$. When solving the bessel's equation, see: [[Bessel's Equation]] for a more formal treatment of the matter. 
+4. Then, we get the solutions for all the basis functions, in which wee will also have accumulated all the constants we need, wrt to 2 indeics: $m, n, l$. 
+5. Then, we add the time domain into the picture and solve the ODE involving the time and get the full solution of the system. 
 
 ---
 ### **Cylindrical Coordinate**
@@ -67,6 +75,8 @@ $$
 u(r, \theta, z) = R(r)\Theta(\theta)Z(z)
 \tag{2}
 $$
+
+**Note**: $T(t)$ is missing and we will come back to that later, and justify what is going on with it. 
 
 Yeah, somehing like that, and putting it into the PDE will yield this: 
 
@@ -413,7 +423,7 @@ R(r) = J_m(x) = J_m \left(
     r \sqrt{
         \lambda_{m, n, l}^2 - b_l^2
     }
-\right)
+\right) 
 = J_m \left(
     r \sqrt{\lambda_{m, n, l}^2 - \left(
         \frac{l \pi}{L}
@@ -435,17 +445,69 @@ $$
 And this will imply that the final solution possesses this kind of format: 
 
 $$
-u_{n, m, l}(r, \theta, z) = 
+u_{m, n, l}(r, \theta, z) = 
 J_m \left(
     \frac{r z_{m, n}}{a}
 \right)\exp(im\theta)\sin\left(
     \frac{l\pi z}{L}
 \right)
+\tag{16}
 $$
 
+Up to this point, we have all the boundary conditions for the **Helmholtz Equation in a cylindar Satisfied**. 
 
 
+---
+### **The Time Dimension**
 
+We need time domain so we can have initial conditions and then solve to see how things evolve. 
+
+We only have the spatial domain solved, what about the time domain? Let's denote $\phi_{n, m, l}(x, y, z) = u_{n, m, l}(x, y, z)$. 
+
+The story is similar to what we did in one dimension and it will be like: 
+
+$$
+\nabla^2 \cdot [\phi_{n, m, l}(x, y, z)T(t)] = c^2 \partial_t^2[\phi_{n, m , l}T(t)]
+$$
+
+$$
+T(t) \nabla^2\cdot[\phi_{n, m, l}(x, y, z)] = c^2 \phi_{m,n,l}T''(t)
+$$
+
+And previously we figured out that 
+
+$$
+\frac{\nabla^2 \cdot u_{n, m, l}(x, y, z)}
+{u_{n, m, l}(x, y, z)} = -\lambda^2
+$$
+
+Then we get an ODE for $T(t)$ which is: 
+
+$$
+-\lambda^2 T(t) = c^2T''(t) \implies T'' + c^2\lambda^2 T = 0
+$$
+
+Solving the ODE, it's not hard to see that it yields: 
+
+$$
+T(t) = C\sin(c\lambda t) + D\cos(c \lambda t)
+$$
+
+**The frequency of the sound save in the cylindar** is: $c\lambda$
+
+Now, let $\omega = c \lambda$, where $c$ is given and $\lambda$ depends on $m, n, l$, meaning that $\omega$ also depends on $m, n, l$. 
+
+Then it means that: 
+
+$$
+\omega_{n, m, l} = c \sqrt{\frac{z_{m, n}^2}{a^2}
++ \left(
+    \frac{l\pi}{L}
+\right)^2
+}
+$$
+
+And recall that $n, l \in \mathbb{N}$, $m\in \mathbb{Z}$. 
 
 
 [^1]: It's in the chapter 10 of the textbook of the class. 

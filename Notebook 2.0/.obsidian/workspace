@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Bessel's Equation.md",
+            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Bessel's Equation.md",
+            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
             "mode": "preview"
           }
         },
@@ -68,7 +68,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357
+    "width": 357,
+    "collapsed": true
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -84,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Bessel's Equation.md",
+                "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,8 +105,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "AMATH 503/Bessel's Equation.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
+    "AMATH 503/Bessel's Equation.md",
     "AMATH 583/Tasks Async, and Concurrency in CPP.md",
     "AMATH 583/CPP Function Objects and Lambda.md",
     "CPP Function Objects.md",
