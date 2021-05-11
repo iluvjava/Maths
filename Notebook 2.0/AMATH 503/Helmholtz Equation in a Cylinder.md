@@ -317,7 +317,48 @@ y_1(x) = \sum_{n = 0}^{\infty}
     } = J_p(x)
 $$
 
-Which is called **Bessel's Function of the First Kind**.
+Which is called **Bessel's Function of the First Kind**. And it will be used for solving the Helmholtz equation in a cylinder. 
+
+---
+### **Eigenfunctions**
+
+Now, armed with the knowledge about the bessle's equation, we are ready reveal the full glory of all the basis function for each of funciton, and they will look like: 
+
+* For $Z(z)$: 
+$$
+Z_l(x) = \sin(b_l z) \quad b_l = \frac{l\pi}{L} \quad l = 1, 2, \cdots
+$$
+
+* For $\Theta(\theta)$: 
+$$
+\Theta_m(\theta) \exp(im\theta) \quad m\in \mathbb{Z}
+$$
+
+Now, for the big reveal of the hardest one: $R(r)$, we are going to do simplify it to the standard form first. The form we had now is: 
+
+$$
+r\partial_r[r\partial_r[R]]+ ((\lambda^2 - b_l^2)r^2 - m^2)R = 0
+$$
+
+And the standard form we are trying to match is: 
+
+$$
+x\partial_x[x\partial[y]] + (x^2 - m^2)y = 0
+$$
+
+So then we need: 
+
+$$
+x = (\lambda - b_l)r
+$$
+
+With this susbtitution above, we will be able to transform the boundary conditions, and it will be like: 
+
+$$
+
+$$
+
+
 
 
 [^1]: It's in the chapter 10 of the textbook of the class. 
