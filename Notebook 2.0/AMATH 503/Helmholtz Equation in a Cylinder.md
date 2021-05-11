@@ -224,7 +224,7 @@ And let's just assume that we have the solutions for the equation now, and more 
 
 **There are 2 solutions, one of them is blowing up, and the other one is not blowing up.**
 
-We are going to assert another additional boundary conditions to restrain us to only solutions that are not blowing up. We want the solutiosn to be bounded. 
+We are going to assert another additional boundary conditions to restrain us to only solutions that are not blowing up. We want the solution to be bounded. 
 
 We want: 
 
@@ -232,7 +232,7 @@ $$
 R(0) \ne \pm \infty
 $$
 
-The Radial component at ceter axis of the Cylinder is bounded!
+The Radial component at center axis of the Cylinder is bounded!
 
 ---
 ### **Solving the ODEs of Bessel's Equation**
@@ -254,12 +254,12 @@ y(x) = x^s \sum_{n = 0}^{\infty}    a_nx^n = \sum_{n = 0}^{\infty} a_nx^{n + s}
 \tag{12}
 $$
 
-**Note**: We can't use power series because the point $x = 0$ is a singularity of the ODEs. That is why we are using the Frobenius Method. Which, we multiply the series by a $x^s$, to smooth out the singularity. (Simular to figuring out the order of singularity of complex functions.)
+**Note**: We can't use power series because the point $x = 0$ is a singularity of the ODEs. That is why we are using the Frobenius Method. Which, we multiply the series by a $x^s$, to smooth out the singularity. (Similar to figuring out the order of singularity of complex functions.)
 
 
 And with this modifications of the Power series, we will be able to solve the ODE with the power series. Our goal is to see what the value for $s$ is. 
 
-Susbtituting it into the Bessel's Equation:  
+Substituting it into the Bessel's Equation:  
 
 $$
 y(x) = \sum_{n = 0}^{\infty}a_nx^{n + s}
