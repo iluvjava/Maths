@@ -73,9 +73,3 @@ This type of tasks are strongly parallelizable, however, in this case, the effic
 
 
 
-
-
-
-
-
-
