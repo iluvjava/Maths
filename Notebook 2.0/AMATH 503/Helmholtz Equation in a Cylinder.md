@@ -44,16 +44,16 @@ $$
 There is no vibration on the wall of the cylinder. 
 
 Here is a summary on the procedures to take when solving this equation: 
-1. Seperate it into spatial domain and time domain, let the function takes the form: $\phi(x, y, z)T(t)$
-2. Then for the sptial domain, using the separation of variables to get the solution for each of the function that governs each dimension in the Cylindrical coordinate, by assuming that $\phi(x, y, z) = Z(z)\Theta(\theta)R(r)$. 
-3. Solve the ODE, starting with the part involving only $Z(z)$ using the boundary conditions that there is no vibrations on the cap of the cylinder, then $\Theta(\theta)$. And the function $\Theta(\theta)$ has a $2\pi$ period to it. Then finally, solve the $R(r)$ which is the bessel's equation, extract the bessel's of the first kind as the solution for functiom $R(r)$ because of the boundary conditions that $R(0) \ne \inf$. When solving the bessel's equation, see: [[Bessel's Equation]] for a more formal treatment of the matter. 
-4. Then, we get the solutions for all the basis functions, in which wee will also have accumulated all the constants we need, wrt to 2 indeics: $m, n, l$. 
+1. Separate it into spatial domain and time domain, let the function takes the form: $\phi(x, y, z)T(t)$
+2. Then for the spatial domain, using the separation of variables to get the solution for each of the function that governs each dimension in the Cylindrical coordinate, by assuming that $\phi(x, y, z) = Z(z)\Theta(\theta)R(r)$. 
+3. Solve the ODE, starting with the part involving only $Z(z)$ using the boundary conditions that there is no vibrations on the cap of the cylinder, then $\Theta(\theta)$. And the function $\Theta(\theta)$ has a $2\pi$ period to it. Then finally, solve the $R(r)$ which is the bessel's equation, extract the bessel's of the first kind as the solution for functions $R(r)$ because of the boundary conditions that $R(0) \ne \inf$. When solving the bessel's equation, see: [[Bessel's Equation]] for a more formal treatment of the matter. 
+4. Then, we get the solutions for all the basis functions, in which wee will also have accumulated all the constants we need, wrt to 2 indices: $m, n, l$. 
 5. Then, we add the time domain into the picture and solve the ODE involving the time and get the full solution of the system. 
 
 ---
 ### **Cylindrical Coordinate**
 
-The Laplacian Opeartor in the cylindrical Coordinate is given by: 
+The Laplacian operator in the cylindrical Coordinate is given by: 
 
 $$
 \nabla^2\cdot \bullet = 
@@ -69,7 +69,7 @@ And we never learned it, the proof or the derivation here is skipped.
 ---
 ### **Separation of Variables**
 
-We are going to pull the same trick again, and this time, in the cylindrical coordiant, but the assumption is still the same, and it's like; 
+We are going to pull the same trick again, and this time, in the cylindrical coordinate, but the assumption is still the same, and it's like; 
 
 $$
 u(r, \theta, z) = R(r)\Theta(\theta)Z(z)
@@ -78,7 +78,7 @@ $$
 
 **Note**: $T(t)$ is missing and we will come back to that later, and justify what is going on with it. 
 
-Yeah, somehing like that, and putting it into the PDE will yield this: 
+Yeah, something like that, and putting it into the PDE will yield this: 
 
 $$
 \frac{1}{r}\partial_r[r\partial_r[R]]\Theta Z + 
@@ -166,9 +166,9 @@ Now, do we have any boundary conditions for $\Theta$?
 
 No. 
 
-Hence we want to make sure that, the function is **periodic**. So the thing we want is: $\Theta(\theta)$ function **must be a $2\pi$ periodic function**. Remember the Heat conduction in circulr rods (Periodic Boundary Conditions)? 
+Hence we want to make sure that, the function is **periodic**. So the thing we want is: $\Theta(\theta)$ function **must be a $2\pi$ periodic function**. Remember the Heat conduction in circular rods (Periodic Boundary Conditions)? 
 
-The periodic bounary property implies that:
+The periodic boundary property implies that:
 
 $$
 \Theta(-\pi) = \Theta(\pi) \wedge \Theta'(-\pi) = \Theta'(\pi)
@@ -176,7 +176,7 @@ $$
 
 The most general solution for ODEs in (9) is in the form of: $\exp(-im\theta), \exp(im\theta)$. 
 
-using the Periodic bounary conditions, we have: 
+using the Periodic boundary conditions, we have: 
 
 $$
 \Theta(-\pi) = \Theta(\pi) = \exp(im\pi) = \exp(-im\pi) \implies m = 0, \pm 1, \pm 2, \cdots
@@ -200,7 +200,7 @@ r \partial_r[r\partial_r [R]] + ((\lambda^2 - b_l^2)r^2 - m^2)^2R = 0
 $$
 
 
-And we didn't see these type of ODEs before. These type of Variantions of these type of ODEs are called: **Bessel's Equation**. 
+And we didn't see these type of ODEs before. These type of variations of these type of ODEs are called: **Bessel's Equation**. 
 
 The **Bessel's Equation** is not involving $\sin$, $\cos$, the **standard form** of the Bessle's equation is like:[^1]  
 
@@ -217,7 +217,7 @@ And he form of the ODE we have is:
 
 Just compare it yourself I want state too much about it anymore. 
 
-And let's just assume thatwe have the solutions for the equation now, and more details about the Bessel's function is not covering here.[^2]:
+And let's just assume that we have the solutions for the equation now, and more details about the Bessel's function is not covering here.[^2]:
 
 ---
 ### **The Hidden Boundary Conditions**
@@ -406,7 +406,7 @@ $$
 \right)^2}
 $$
 
-Where we made the substitution of $b_l = \frac{l\pi}{L}$. And ther are 3 parameters that determines the value of $\lambda$, and it's not hard to see that: 
+Where we made the substitution of $b_l = \frac{l\pi}{L}$. And there are 3 parameters that determines the value of $\lambda$, and it's not hard to see that: 
 
 $$
 \lambda_{m, n, l} = \sqrt{
@@ -454,7 +454,7 @@ J_m \left(
 \tag{16}
 $$
 
-Up to this point, we have all the boundary conditions for the **Helmholtz Equation in a cylindar Satisfied**. 
+Up to this point, we have all the boundary conditions for the **Helmholtz Equation in a cylinder Satisfied**. 
 
 
 ---
@@ -493,7 +493,7 @@ $$
 T(t) = C\sin(c\lambda t) + D\cos(c \lambda t)
 $$
 
-**The frequency of the sound save in the cylindar** is: $c\lambda$
+**The frequency of the sound save in the cylinder** is: $c\lambda$
 
 Now, let $\omega = c \lambda$, where $c$ is given and $\lambda$ depends on $m, n, l$, meaning that $\omega$ also depends on $m, n, l$. 
 
@@ -507,7 +507,8 @@ $$
 }
 $$
 
-And recall that $n, l \in \mathbb{N}$, $m\in \mathbb{Z}$. 
+And recall that $n, l \in \mathbb{N}$, $m\in \mathbb{Z}$.
+
 
 
 [^1]: It's in the chapter 10 of the textbook of the class. 
