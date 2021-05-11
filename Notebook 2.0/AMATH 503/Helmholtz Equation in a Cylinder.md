@@ -152,18 +152,17 @@ And now, we will be able to solve for another function with SOV.
 
 **Question**: 
 
-Now, do we have any boundary conditions for this? 
+Now, do we have any boundary conditions for $\Theta$? 
 
 No. 
 
-Hence we want to make sure that, the function is **periodic** for this function. So the thing we want is: $\Theta(\theta)$ function **must be a $2\pi$ periodic function**. Remember the Heat conduction in circulr rods (Periodic Boundary Conditions)? 
+Hence we want to make sure that, the function is **periodic**. So the thing we want is: $\Theta(\theta)$ function **must be a $2\pi$ periodic function**. Remember the Heat conduction in circulr rods (Periodic Boundary Conditions)? 
 
-The periodic bounary conditions imply that: 
+The periodic bounary property implies that:
 
 $$
 \Theta(-\pi) = \Theta(\pi) \wedge \Theta'(-\pi) = \Theta'(\pi)
 $$
-
 
 The most general solution for ODEs in (9) is in the form of: $\exp(-im\theta), \exp(im\theta)$. 
 
@@ -187,7 +186,7 @@ Now, we will start solving for $R(r)$.
 Substituting (8), (5) into (4) we will have: 
 
 $$
-r \partial_r(r\partial_r R) + [(\lambda^2 - b_l) - m^2]R = 0
+r \partial_r[r\partial_r [R]] + ((\lambda^2 - b_l^2)r^2 - m^2)^2R = 0
 $$
 
 
@@ -337,7 +336,8 @@ $$
 Now, for the big reveal of the hardest one: $R(r)$, we are going to do simplify it to the standard form first. The form we had now is: 
 
 $$
-r\partial_r[r\partial_r[R]]+ ((\lambda^2 - b_l^2)r^2 - m^2)R = 0
+r\partial_r[r\partial_r[R]] +
+((\underbrace{\lambda^2 - b_l^2)r^2 }_{x^2}- m^2)R = 0
 $$
 
 And the standard form we are trying to match is: 
@@ -349,14 +349,101 @@ $$
 So then we need: 
 
 $$
-x = (\lambda - b_l)r
+x = (\lambda^2 - b_l^2)r
 $$
 
 With this susbtitution above, we will be able to transform the boundary conditions, and it will be like: 
 
 $$
+R(0) \ne \infty
+$$
+
+And on the edge of the cap of the cylindar, the boundary conditions will be: 
 
 $$
+y\left(
+    a \sqrt{\lambda^2 - b_l^2}
+\right) = 0
+$$
+Boom, now the general solution will be like: 
+
+$$
+y(x) = AJ_{m}(x)
+$$
+
+And we only need the Bessel's firt kind, the bessel's second kind is not bounded at $r = 0$, or $x = 0$. 
+
+Applying the boundary condition, that will imply: 
+
+$$
+R(a) = 0 \implies J_m\left(
+    a \sqrt{\lambda^2 - b_l^2}
+\right) = 0
+$$
+
+This is true because we want the function to have zero value at the circumference on the top and bottom cap of the cylinder. 
+
+Ok, what does this means... It means that the quantity: $a\sqrt{\lambda^2 - b_2^2}$ are representing the zeros of $J_m(x)$. 
+
+Now, let's denote $z_{m, n}$ to be the $n$ th roots of $J_m(x)$, then it can be said that: 
+
+$$
+\lambda^2 - b_l^2 = \frac{z_{m, n}}{a^2}\implies
+\lambda =
+\sqrt{\frac{z_{m,n}^2}{a^2} + 
+\left(
+    \frac{l\pi}{L}    
+\right)^2}
+$$
+
+Where we made the substitution of $b_l = \frac{l\pi}{L}$. And ther are 3 parameters that determines the value of $\lambda$, and it's not hard to see that: 
+
+$$
+\lambda_{m, n, l} = \sqrt{
+    \frac{z_{m, n}^2}{a^2} + \left(
+        \frac{l\pi}{L}
+    \right)^2
+}
+$$
+
+Notice that, it makes sense to have 3 indices to control the basis function for $R(r)$, because this is the RHS expression: (4). Let's see how this helps with looking for the basis function: 
+
+$$
+R(r) = J_m(x) = J_m \left(
+    r \sqrt{
+        \lambda_{m, n, l}^2 - b_l^2
+    }
+\right)
+= J_m \left(
+    r \sqrt{\lambda_{m, n, l}^2 - \left(
+        \frac{l \pi}{L}
+        \right)^2
+    }
+\right)
+\implies 
+J_m 
+\left(
+    r\sqrt{
+        \frac{z_{m, n}^2}{
+            a^2
+        }}
+\right) = J_m\left(
+    \frac{rz_{m, n}}{a}
+\right)
+$$
+
+And this will imply that the final solution possesses this kind of format: 
+
+$$
+u_{n, m, l}(r, \theta, z) = 
+J_m \left(
+    \frac{r z_{m, n}}{a}
+\right)\exp(im\theta)\sin\left(
+    \frac{l\pi z}{L}
+\right)
+$$
+
+
 
 
 

@@ -463,7 +463,7 @@ $$
 And under the case when $p$ turns out to be an integer, we will need to take the limit of the second part of the solution. 
 
 ---
-### **Bessel's Soluton Behavior**
+### **Bessel's Solution Behavior**
 
 For small value of x, here are the list of behavior for the solution of the first kind, and solution of the second kind: 
 
@@ -478,6 +478,10 @@ And the **second kind** is like:
 These images are linked from wikipedia. 
 
 There are lot of zeros, where $J_m(x)$ crosses the x-axis, these are sometimes very important. Check out 146 page of chapter 11 for some of the zeros.
- 
+
+The zeros of the [[Helmholtz Equation in a Cylinder]]. Where we used the notation that $z_{m,n}$ denotes $n$ th zeros of $J_m(x)$. 
+
+
+
 
 [^1]: Under graduate linear analysis intensifies. 
