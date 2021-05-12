@@ -3,6 +3,8 @@ This is still using: [[Separation of Variables]] method for solving a major part
 
 And to read this we at least need to recognize the Bessel's equation when it popped up, which can be read more on [[Bessel's Equation]]. 
 
+And in this file, we will also be introduced to the **Lengendre Equation**, which is similar to the Bessel's equation, it's pretty complicated. 
+
 ---
 ### **Intro**
 
@@ -283,7 +285,7 @@ $$
     r^2R''+ 2rR' + [\lambda^2 r^2 - n(n + 1)]R(r) = 0 \quad R(0)\ne \infty \wedge R(a) = 0
 $$
 
-This is called the **spherical Bessel's Equation**. It is a bessel's equation, it's just not in the std form yet. 
+This is called the **Spherical Bessel's Equation**. It is a bessel's equation, it's just not in the std form yet. 
 
 Now, with the substitution that: 
 
@@ -291,7 +293,7 @@ $$
 x = \lambda r \quad R(r) = x^{\frac{-1}{2}}y(x)
 $$
 
-Skipping some non-trivial math: 
+**Skipping some non-trivial math**: 
 
 $$
 x^2y'' + xy' + (x^2 - p^2)y = 0
