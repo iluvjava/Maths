@@ -18,7 +18,7 @@ We will assume that reader has basic understanding in:
  
 Let $a_{i}^{(n)}$ denotes the output of Neural Network at layer $n$. 
 
-Let $a_{0}^{(n)}$ denotes the bias nural node, so that it always has a value of 1 outputing from it. 
+Let $a_{0}^{(n)}$ denotes the bias neural node, so that it always has a value of 1 outputting from it. 
 
 Let $f$ be the activation function for each layer of the Neural Network, let's assume that it's the same on all the hidden layer. For example, the ReLu activation function. 
 
@@ -26,17 +26,17 @@ Let the activation function of the input layer to be the identity matrix.
 
 let the output layer activation function denoted by: $f_o$. 
 
-Let $x$ be the intput of the Neural Nework, which is a vector, and let $x^{(k)}_{i}$ be the ith intput on the kth layer of the Neural Network. 
+Let $x$ be the input of the Neural Network, which is a vector, and let $x^{(k)}_{i}$ be the ith input on the kth layer of the Neural Network. 
 
 Let $\hat{y}$ be the final output of th Neural Network. 
 
-Let $L$ be the loss function at the final layer, so given the label and the prediction, it willbe denoted by: $L(\hat{y}, y)$. 
+Let $L$ be the loss function at the final layer, so given the label and the prediction, it will be denoted by: $L(\hat{y}, y)$. 
 
-Let $\theta^{(n)}_{i, j}$ be the weight between $a^{n - 1}_{j}$ and the $i$ th intput into the $n$ th layer of the neural net. 
+Let $\theta^{(n)}_{i, j}$ be the weight between $a^{n - 1}_{j}$ and the $i$ th input into the $n$ th layer of the neural net. 
 
 Let $\Theta^{(n)}$ be the weight matrix between the $n - 1$ and the $n$ th layer of the Neural Network. 
 
-**That is the introduction, let's now take these variabels for a spin**: 
+**That is the introduction, let's now take these Variables for a spin**: 
 
 For example, the output of the first hidden layer will be like: 
 
@@ -55,6 +55,4 @@ $$
 Boom, fascinating isn't it. 
 
 Let's take a look from the output layer and see how it feels like: 
-
-
 

@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 999/Back Propagation 2.md",
+            "file": "Helmholtz Equation in a Sphere.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 999/Back Propagation 2.md",
+            "file": "Helmholtz Equation in a Sphere.md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 357
+    "width": 312
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 999/Back Propagation 2.md",
+                "file": "Helmholtz Equation in a Sphere.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +103,8 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "Helmholtz Equation in a Sphere.md",
+    "Math 999/Back Propagation 2.md",
     "Math 999/Untitled.md",
     "Math 999/Back Propagation.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
@@ -110,8 +112,6 @@
     "AMATH 583/Tasks Async, and Concurrency in CPP.md",
     "AMATH 583/CPP Function Objects and Lambda.md",
     "CPP Function Objects.md",
-    "Roofline Model.md",
-    "roofline .md",
-    "AMATH 515/Proximal Gradient Descend/Non smooth convex optimization.md"
+    "Roofline Model.md"
   ]
 }
