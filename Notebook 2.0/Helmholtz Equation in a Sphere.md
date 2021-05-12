@@ -1,6 +1,8 @@
 Now, we are going to solve a wave equation inside of the Sphere. 
 This is still using: [[Separation of Variables]] method for solving a major part of the equation. 
 
+And to read this we at least need to recognize the Bessel's equation when it popped up, which can be read more on [[Bessel's Equation]]. 
+
 ---
 ### **Intro**
 
@@ -259,6 +261,75 @@ $$
 
 Then in this case, we don't want the series to be blowing up, especially at the point where $x = \pm 1$. 
 
+We want this series to be convergent at the point wher $x = \pm 1$, which means that we will be interested in the **radius of convergence** for the series. 
+
+Ok, using basic complex analysis, it's the Radius of convergence at the point of expansion is the distance from that point to the closest singularity. 
+
+And it turns out that, The radius of convergence is... Less than one. Because we already said that the singulraity is at $\pm 1$... 
+
+So then in this case, it would imply that the solution of the series, might blow up at the point $x = \pm 1$, unless... **The series somehow terminates** (so it's not an infinite sum). 
+
+**And Spoiler Alert**, we are goign to show that, the series is not going to blow up for certain values of $\eta$, especially: $\eta_n = n(n + 1)$ for $n\in \mathbb{Z}_{\ge 0}$, and in that case, tthese $\eta$ will be our eigenvalues, and the correspondign eigenfunctions are denoted as: $y(x) = P_{n}^m(x)$. This is going to be proved LATER. 
+
+Ok, let's assume that we know: 
+
+$$
+\eta_n = n(n + 1) \quad n = 0, 1, 2, 3, \cdots
+$$
+
+Now with $\eta$ we will be able to go back to (1) and get some info out for expression $R(r)$, so after that, the ODE for $R(r)$ will be like: 
+
+$$
+    r^2R''+ 2rR' + [\lambda^2 r^2 - n(n + 1)]R(r) = 0 \quad R(0)\ne \infty \wedge R(a) = 0
+$$
+
+This is called the **spherical Bessel's Equation**. It is a bessel's equation, it's just not in the std form yet. 
+
+Now, with the substitution that: 
+
+$$
+x = \lambda r \quad R(r) = x^{\frac{-1}{2}}y(x)
+$$
+
+Skipping some non-trivial math: 
+
+$$
+x^2y'' + xy' + (x^2 - p^2)y = 0
+$$
+
+This is the Bessel's function in its standard form (After some simplification)
+
+Where $p = n + \frac{1}{2}$ wher $n = 0, 1, 2, 3\cdots$
+
+And, we are going to use the solution of the first kind, because we want the boundary condition $R(0)\ne \infty$ to be true, and that means: 
+
+$$
+R(r) = x^{\frac{-1}{2}}y(x)  = Ax^{-\frac{1}{2}}J_p(x)
+$$
+
+If we spcify: $A = \sqrt{\frac{\pi}{2}}$, then, $R(r) = \sqrt{\frac{\pi}{2x}}J_p(x)$ which will be: 
+ 
+$$
+R(r) = \sqrt{\frac{\pi}{2\pi}}J_{n + \frac{1}{2}}(x) = j_n(x)
+$$
+
+Where we introduce the $j_n(x)$ as the Spherical Bessels function. 
+
+Looking at the boundary conditions: $R(a) = 0$: 
+
+$$
+R(a) = 0 \implies j_n(\lambda a) = 0 \implies J_{n + \frac{1}{2}}(\lambda a) = 0
+$$
+
+$$
+\implies \lambda a= z_{n + \frac{1}{2}, k}
+$$
+
+$$
+\lambda = \frac{z_{n + \frac{1}{2},k}}{a}
+$$
+
+And recall that $z_{m, n}$ is used to denote the roots of the bessel's funtions. Boom, we had an expression for the constant for the eigen function for $R(r)$. 
 
 
 
