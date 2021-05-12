@@ -62,7 +62,7 @@ $$
 \frac{\frac{1}{r^2\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{r^2\sin^2\theta}\partial_\psi^2[Y]}{Y} = -\lambda^2
 $$
 
-Multiply by $r^2$ and then separate the variale: 
+Multiply by $r^2$ and then separate the variable: 
 
 $$
 \frac{\partial_r[r^2\partial_r[R]]}

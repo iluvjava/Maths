@@ -191,3 +191,46 @@ To own a mutex safely following the RAII protocol, a `std::lock_guard` will have
 
 The compiler will manage the ownership of the mutex automatically when it's used with the `std::lock_gard` block. 
 
+
+---
+### **COMMON MISTAKES**
+
+Suppose that we were given a function that takes in the vector and a partition to compute on, and we want to use parallelism on the vector. 
+
+There is some problem with the **COPY CONSTRUCTOR** when we use the async and pass it as parameters. 
+
+Suppose this is the function that do the partition vector norm: 
+
+
+```cpp 
+double norm_worker(const Vector& x, int start, int end);
+double norm(const Vector& x, int p = 2, int nthreads = 1)
+{
+    double Results = 0;
+    std::vector<std::future<double>> Promises(nthreads); 
+    size_t PartitionSize = x.num_rows()/nthreads;
+    for (size_t WorkerID = 0; WorkerID < nthreads; ++WorkerID)
+    {
+        size_t start = WorkerID*PartitionSize;
+        size_t end = (WorkerID + 1)*PartitionSize;
+        end = WorkerID == nthreads - 1? x.num_rows() - 1: end;
+        Promises[WorkerID] = std::async
+        (
+            std::launch::async, 
+            norm_worker, 
+            std::cref(x), // REMEMBER TO DO THIS!
+            start, 
+            end
+        );
+    }
+    for (size_t WorkerID = 0; WorkerID < nthreads; ++WorkerID)
+    {
+        Results += Promises[WorkerID].get();
+    }
+}
+```
+
+Remember when passing in parameters into some of the meta function like `async` we will have to pass in an reference, to notify the higher order function (what I call meta function) to pass that parameter that I gave to the sub-function as a reference, and don't, freaking... copy that parameter I gave you please. 
+
+Yeah that is the story. 
+
