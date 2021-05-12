@@ -46,7 +46,8 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-Then this whole loop will be executed by different threads, and all the results will be add together to $Integral$, in this case, it should produce $n\pi$ where $n$ is the number of threads (Depends on setting of OpenMP), but in reality, a race conditions is created on the summation, hence, all results turns into Jibberish. BUT, they will all be multiple of $\pi$. 
+Then this whole loop will be **partitioned and executed by different threads**, and all the results will be added together to $Integral$, in this case, it should produce $\pi$, but in reality, **a race conditions is created on the summation**, hence, all results turns into Jibberish. BUT, they will all be multiple of $\pi/n$, because each thread **will work on a partition of the for loop**. 
+
 
 Let's take a look at another way of parallizing the individual operations, where each operations inside of the forloop is parallelized: 
 
@@ -59,9 +60,9 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-By adding a `for`, we have divided each the whole thing into each individual operations inside of the forloop. 
+By adding a `for`, we have divided each the whole thing into **each individual operations inside of the forloop**. 
 
-And in this case, we will get pretty arbitrary results where it depends on the size of $\Delta x$, case we are now summing up each individual $\Delta x$, and there is still an Race Condition on the accumulator. 
+And in this case, we will get pretty arbitrary results where it **depends on the size of $\Delta x$**, case we are now summing up each individual $\Delta x$, and **there is still an Race Condition on the accumulator**. 
 
 To avoid this, we need to specifically tells the OpenMP to reduce onto that accumulator, in this way: 
 
