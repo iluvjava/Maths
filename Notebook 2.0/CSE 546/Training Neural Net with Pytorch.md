@@ -63,9 +63,9 @@ print('PyTorch\'s f\'(x):', x.grad)
 
 ```
 
-Here is an sequantial example that take the derivative wrt to a variable for a scalar function. 
+Here is an sequential example that take the derivative wrt to a variable for a scalar function. 
 
-Notice, any function that directy operate on the `torch.tensor` type will be compatible with using the auto diff.
+Notice, any function that directly operate on the `torch.tensor` type will be compatible with using the auto diff.
 
 **Linear Regression Using Auto Grad**
 
@@ -108,7 +108,7 @@ print('estimated w\t', w.view(2).detach().numpy())
 ```
 
 Don't forget:
-* Detatch and then clear the gradient for the parameter after you used it
+* Detach and then clear the gradient for the parameter after you used it
 
 **The Linear Module**
 
@@ -135,7 +135,7 @@ f(X) = XW + b \quad X\in \mathbb{R}^{n\times d}, W\in \mathbb{R}^{d \times h} , 
 $$
 
 
-Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vector is being broadcast.  
+Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vector is being broadcast.
 
 
 

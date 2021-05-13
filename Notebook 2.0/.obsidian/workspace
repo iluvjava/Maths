@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Training Neural Net with Pytorch.md",
+            "file": "AMATH 583/Page Rank Algorithm.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Training Neural Net with Pytorch.md",
+            "file": "AMATH 583/Page Rank Algorithm.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Training Neural Net with Pytorch.md",
+                "file": "AMATH 583/Page Rank Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Page Rank Algorithm.md",
+    "AMATH 583/Optimizing for Sparse Matrix Product.md",
     "CSE 546/Training Neural Net with Pytorch.md",
     "CSE 546/Training Neural Net.md",
-    "AMATH 583/Optimizing for Sparse Matrix Product.md",
     "AMATH 583/OpenMP.md",
     "AMATH 583/OpenMp.md",
     "Pasted image 20210512124351.png",
     "Pasted image 20210317204726.png",
     "Orthogonal_Matching_Pursuit.gif",
-    "Pasted image 20210310135440.png",
-    "AMATH 502/AMATH 502.md"
+    "Pasted image 20210310135440.png"
   ]
 }

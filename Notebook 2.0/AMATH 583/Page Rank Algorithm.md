@@ -83,7 +83,7 @@ Now the user can teleport.
 
 Wait! We have a dense matrix this is bad. 
 
-Ok, there is a way to expoit this matrix. Mulitplying the one matrix is just the putting the one norm of the vector into each elements of the vector, and then scale down by the number of possible states of the markov chain. 
+Ok, there is a way to exploit this matrix. Mulitplying the one matrix is just the putting the one norm of the vector into each elements of the vector, and then scale down by the number of possible states of the markov chain. 
 
 Boom, so this is like: 
 
@@ -91,7 +91,7 @@ $$
 Qx = (1 - \alpha)Px + \frac{\lambda}{N_p}
 $$
 
-Where, the addition operators are broadcasted for the matrix. 
+Where, the addition operators are broadcast for the matrix. 
 
 Let's call this the: **Teleportation Bias**
 
