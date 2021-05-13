@@ -73,17 +73,28 @@ $$
 x \longrightarrow z^{(1)}, f(z^{(1)})  \longrightarrow z^{(2)}, f(z^{(2)}) \longrightarrow z^{(3)}, f(z^{(3)}) \cdots \longrightarrow z^{(L)}, f_{\text{out}}(z^{(L)})
 $$
 
+And here is another way I would draw this, where the arrow is viewed as a transformation operator and subset is denoting the agent that does that transformation: 
+
+$$
+x \underset{\Theta^{(1)}}{\longrightarrow} z^{(1)} \underset{f}{\longrightarrow} a^{(1)}\underset{\Theta^{(2)}}{\longrightarrow }z^{(2)}\underset{f}{\longrightarrow} a^{(2)}\cdots 
+a^{(L - 1)}\underset{\Theta^{(L)}}{\longrightarrow} z^{(L)} \underset{f}{\longrightarrow} a^{(L)} \longrightarrow \hat{y}
+
+$$
+
 Where, the pre-activation intput and the output for each layer is just computed by: 
 
 $$
-z^{(k)} = \Theta^{(k)}a^{(k)} \quad a^{(k)} = f(z^{(k)})
+z^{(k + 1)} = \Theta^{(k)}a^{(k)} \quad a^{(k)} = f(z^{(k)})
 $$
 
-Let's zoom in on one particular layer and see what it is consisted of: 
+Nice and easy, and, we not really caring about the size of the weight matrix $\Theta$. 
 
-$$
 
-$$
+---
+### **Back Prop Algorithm**
+
+
+
 
 
 
