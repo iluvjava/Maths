@@ -24,7 +24,7 @@
           "type": "markdown",
           "state": {
             "file": "CSE 546/Training Neural Net with Pytorch.md",
-            "mode": "source"
+            "mode": "preview"
           }
         },
         "group": "439767a7361f85c5"
@@ -103,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "CSE 546/Training Neural Net with Pytorch.md",
     "CSE 546/Training Neural Net.md",
     "AMATH 583/Optimizing for Sparse Matrix Product.md",
     "AMATH 583/OpenMP.md",
@@ -111,7 +112,6 @@
     "Pasted image 20210317204726.png",
     "Orthogonal_Matching_Pursuit.gif",
     "Pasted image 20210310135440.png",
-    "AMATH 502/AMATH 502.md",
-    "AMATH 583/Untitled.md"
+    "AMATH 502/AMATH 502.md"
   ]
 }

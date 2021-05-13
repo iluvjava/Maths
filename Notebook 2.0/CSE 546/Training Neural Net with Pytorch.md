@@ -135,7 +135,7 @@ f(X) = XW + b \quad X\in \mathbb{R}^{n\times d}, W\in \mathbb{R}^{d \times h} , 
 $$
 
 
-Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vectir is being broadcasted.  
+Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vector is being broadcast.  
 
 
 
