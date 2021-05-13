@@ -5,7 +5,7 @@ It uses the idea of a orthogonal projector, coming from: [[Projector]]
 
 ---
 
-### Psuedo Codes
+### Pseudo Codes
 
 Ok, I am going to write modified Gram-Schmidt here in pseudo codes. 
 

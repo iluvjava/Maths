@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Page Rank Algorithm.md",
+            "file": "AMATH 584/Modified GS Process.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Page Rank Algorithm.md",
+            "file": "AMATH 584/Modified GS Process.md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 345
+    "width": 369
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/Page Rank Algorithm.md",
+                "file": "AMATH 584/Modified GS Process.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 584/Modified GS Process.md",
+    "AMATH 584/LU Theorems.md",
+    "AMATH 584/LU Decomposition.md",
+    "AMATH 584/Eigen Decomp (The Pure QR).md",
+    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
     "AMATH 583/Page Rank Algorithm.md",
     "AMATH 583/Optimizing for Sparse Matrix Product.md",
     "CSE 546/Training Neural Net with Pytorch.md",
     "CSE 546/Training Neural Net.md",
-    "AMATH 583/OpenMP.md",
-    "AMATH 583/OpenMp.md",
-    "Pasted image 20210512124351.png",
-    "Pasted image 20210317204726.png",
-    "Orthogonal_Matching_Pursuit.gif",
-    "Pasted image 20210310135440.png"
+    "AMATH 583/OpenMP.md"
   ]
 }
