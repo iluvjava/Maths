@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Training Neural Net.md",
+            "file": "CSE 546/Training Neural Net with Pytorch.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546/Training Neural Net.md",
+            "file": "CSE 546/Training Neural Net with Pytorch.md",
             "mode": "source"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546/Training Neural Net.md",
+                "file": "CSE 546/Training Neural Net with Pytorch.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
