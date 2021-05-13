@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/OpenMp.md",
+            "file": "AMATH 583/Parallel Std CPP.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/OpenMp.md",
+            "file": "AMATH 583/Parallel Std CPP.md",
             "mode": "preview"
           }
         },
@@ -67,8 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 312,
-    "collapsed": true
+    "width": 312
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -84,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/OpenMp.md",
+                "file": "AMATH 583/Parallel Std CPP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,6 +103,7 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
+    "AMATH 583/Untitled.md",
     "AMATH 583/OpenMp.md",
     "AMATH 583/CPP Lambda.md",
     "Helmholtz Equation in a Sphere.md",
@@ -112,7 +112,6 @@
     "Math 999/Untitled.md",
     "Math 999/Back Propagation.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
-    "AMATH 583/Tasks Async, and Concurrency in CPP.md",
-    "AMATH 583/CPP Function Objects and Lambda.md"
+    "AMATH 583/Tasks Async, and Concurrency in CPP.md"
   ]
 }

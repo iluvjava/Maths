@@ -66,7 +66,6 @@ And in this case, we will get pretty arbitrary results where it **depends on the
 
 To avoid this, we need to specifically tells the OpenMP to reduce onto that accumulator, in this way: 
 
-
 ```cpp
 double Integral = 0;
 #pragma omp parallel reduction(+:Integral)
@@ -76,7 +75,7 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-And in this case, we have avoided the race conditions on the variable. And whichever way the task is parallelized is up to OpenMP now. 
+And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable syncrhonously. 
 
 
 
