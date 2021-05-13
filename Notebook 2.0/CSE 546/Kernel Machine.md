@@ -128,7 +128,7 @@ $$
 Then we can say that: 
 
 $$
-\arg\min_\alpha \Vert y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^2\Kappa \alpha
+\arg\min_\alpha \Vert y - \Kappa \alpha\Vert_2^2 + \lambda \alpha^T\Kappa \alpha
 $$
 
 And notice that we are now optimizing on the kernen parameter vector $\alpha$ and the original model parameter $w$ is not in the picture anymore. 
@@ -143,19 +143,49 @@ $$
 
 will be a positive definite matrix! 
 
-Now, let's consider the solution to the unregularized problem: 
+And, armed with the fact that the kernel matrix $K$ is symmetric definite, we an jus solve the above problem by considering the gradient. 
+
+**Fact**: $\nabla_x[x^TAx] = (A^T + A)x$
+
+Let's consider the gradient, multiplied by $\frac{1}{2}$, which really won't change the point when the gradient is zero. 
 
 $$
-\arg\min_{\alpha} \Vert y - K\alpha\Vert_2^2
+\frac{1}{2}\nabla_x[\Vert K\alpha - y\Vert_2^2 + \lambda \alpha^T K \alpha] = 0
 $$
 
-Then it's not hard to see that in this case, the solution for $\alpha$ will simply be: 
-
 $$
-\alpha = K^{-1} y
+\implies K^T(K\alpha - y) + \lambda K\alpha = 0
 $$
 
-And that is a perfect fit, that is why, when we are regularizing it when there are not many features present for each sample. 
+$$
+ K(K\alpha - y) + \lambda K\alpha = 0
+$$
+ 
+$$
+KK\alpha - Ky + \lambda K\alpha = 0
+$$
+
+$$
+KK\alpha + \lambda K\alpha = Ky
+$$
+
+$$
+K \alpha + \lambda \alpha = y
+$$
+
+$$
+\alpha = (K + \lambda I)^{-1}y
+$$
+
+And, skipping some simple math, the best prediction made will be like: 
+
+$$
+\hat{y} = X_{\text{test}}X^T_{\text{train}}\underbrace{(K + \lambda I)^{-1} y}_{\alpha}
+$$
+
+Where, $K, y$ are produced using the training set of course. 
+
+When implementing, careful about the offset.
 
 ---
 ### **Some Canonical Kernels**

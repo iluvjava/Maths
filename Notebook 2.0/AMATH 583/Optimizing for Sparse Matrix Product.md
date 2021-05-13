@@ -33,7 +33,7 @@ The key: **We want to avoid ther zeros, without looking at the zeros**.
 
 We are just going to store the non-zero elements in the matrix. 
 
-For each non zero elements in the matrix, we store its value and x, y, boundled in a list of tuples, packed together into an array of `3 by n` array, where $n$ is the number of non zero elements. 
+For each non zero elements in the matrix, we store its value and x, y, bounded in a list of tuples, packed together into an array of `3 by n` array, where $n$ is the number of non zero elements. 
 
 And to work better, we store all 3 pieces of information in 3 array. 
 

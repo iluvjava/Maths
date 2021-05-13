@@ -46,7 +46,7 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-Then this whole loop will be **partitioned and executed by different threads**, and all the results will be added together to $Integral$, in this case, it should produce $\pi$, but in reality, **a race conditions is created on the summation**, hence, all results turns into Jibberish. BUT, they will all be multiple of $\pi/n$, because each thread **will work on a partition of the for loop**. 
+Then this whole loop will be **partitioned and executed by different threads**, and all the results will be added together to $Integral$, in this case, it should produce $\pi$, but in reality, **a race conditions is created on the summation**, hence, all results turns into gibberish. BUT, they will all be multiple of $\pi/n$, because each thread **will work on a partition of the for loop**. 
 
 
 Let's take a look at another way of parallizing the individual operations, where each operations inside of the forloop is parallelized: 
@@ -75,7 +75,7 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable syncrhonously. 
+And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable synchronously. 
 
 
 
