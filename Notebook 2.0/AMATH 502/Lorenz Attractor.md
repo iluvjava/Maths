@@ -67,7 +67,7 @@ Under this condition: $\lambda_+ > 0, \lambda_z, \lambda_- < 0$
 
 The manifold of $\lambda_z, \lambda_-$ spans a plane but the third direction, it's not stable. 
 
-![[Pasted image 20210310135440.png]]
+![[Global-bifurcation.png]]
 
 And, there are 2 sub-critical limit cycles around 2 of the fixed points as $r$ goes slightly above $1$. 
 

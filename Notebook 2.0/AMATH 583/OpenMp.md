@@ -16,7 +16,7 @@ And, this OPEN model is very limited, it wont just figure out the best computati
 
 It uses a Fork and Join approach for parallelism. So it's there, and it works, somewhat efficiently. 
 
-![[Pasted image 20210512124351.png]]
+![[OpenMP-execution-model.png]]
 
 
 ---

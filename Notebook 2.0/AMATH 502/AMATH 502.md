@@ -106,7 +106,7 @@ Links:
 [[Limit Cycles]],[[Pertubations Theory (Intro)]], [[Method of Multiple Time Scale]], [[Method of Averaging]]
 
 #### Chapter 8: 2D Bifurcations 
-1. Identify the **saddle-node**, **transcritical**, and **pitchfork** bifurcations are **zero-eigenvalue bifurcations**. 
+1. Identify the **saddle-node**, **Transcritical**, and **pitchfork** bifurcations are **zero-eigenvalue bifurcations**. 
 	* [[2D Bifurcation (Zero Eigenvalues)]]
 	* In 2D, the type of bifurcation that happens have 2 types. If it happens along one of the manifold along 2, 3 fixed points, then its eigenvalues are set to be zero at the moment of bifurcation. 
 1. Describe the eigenvalue behavior of a **Hopf Bifurcation**.
@@ -116,8 +116,8 @@ Links:
 	* Stability of a center changed when eigenvalue cross the imaginary axis.
 	* A limit cycle is created/destroyed (could be both at different value for the parameter), which can be hard to determined sometimes.
 	* Note: The creation of limit cycles itself could be Global bifurcation, instead of Hopf bifurcation.
-1. Classify Bifurcation points of 2D dynamical systems as saddle-node, **transcritical, supercritical pitchfork, subcritical pitchfork, supercritical Hopf, or subcritical Hoopf.**
-	* Pitchfork Bifurcation type and transcritical bifurcation types are consistent with the 1D counter parts. But in the case of a Hopf bifurcation, a 
+1. Classify Bifurcation points of 2D dynamical systems as saddle-node, **Transcritical, supercritical pitchfork, Subcritical pitchfork, supercritical Hopf, or Subcritical Hopf.**
+	* Pitchfork Bifurcation type and Transcritical bifurcation types are consistent with the 1D counter parts. But in the case of a Hopf bifurcation, a 
 	* Supercritical bifurcation --> attractive limit cycle.
 	* Subcritical Bifurcation --> unstable limit cycle.
 2. Find the bifurcation point(s) for the types listed above for a given 2D dynamical system

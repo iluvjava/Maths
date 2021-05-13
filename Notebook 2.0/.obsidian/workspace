@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallel Std CPP.md",
+            "file": "AMATH 583/OpenMP.md",
             "mode": "source"
           }
         },
@@ -23,8 +23,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 583/Parallel Std CPP.md",
-            "mode": "preview"
+            "file": "AMATH 583/OpenMP.md",
+            "mode": "source"
           }
         },
         "group": "439767a7361f85c5"
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "multex",
+                "query": "Hopf",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 312
+    "width": 345
   },
   "right": {
     "id": "9431ed95b32da0d9",
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 583/Parallel Std CPP.md",
+                "file": "AMATH 583/OpenMP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "ea78bd363ea2ea8f",
   "lastOpenFiles": [
-    "AMATH 583/Untitled.md",
     "AMATH 583/OpenMp.md",
+    "Pasted image 20210512124351.png",
+    "Pasted image 20210317204726.png",
+    "Orthogonal_Matching_Pursuit.gif",
+    "Pasted image 20210310135440.png",
+    "AMATH 502/AMATH 502.md",
+    "AMATH 583/Untitled.md",
     "AMATH 583/CPP Lambda.md",
     "Helmholtz Equation in a Sphere.md",
-    "AMATH 503/Bessel's Equation.md",
-    "Math 999/Back Propagation 2.md",
-    "Math 999/Untitled.md",
-    "Math 999/Back Propagation.md",
-    "AMATH 503/Helmholtz Equation in a Cylinder.md",
-    "AMATH 583/Tasks Async, and Concurrency in CPP.md"
+    "AMATH 503/Bessel's Equation.md"
   ]
 }

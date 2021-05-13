@@ -37,7 +37,7 @@ $$
 
 A plot of the above function: 
 
-![[Pasted image 20210317204726.png]]
+![[entropy-function.png]]
 
 And notice that, the more evenly labels are mixed together, the higher the entropy, meaning that it's going to be more disordered. 
 
