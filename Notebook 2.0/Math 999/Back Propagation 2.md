@@ -99,3 +99,5 @@ Nice and easy, and, we not really caring about the size of the weight matrix $\T
 
 
 
+
+
