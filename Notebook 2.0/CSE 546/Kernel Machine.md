@@ -185,6 +185,19 @@ $$
 
 Where, $K, y$ are produced using the training set of course. 
 
+**Important Note**: 
+It's misleading to write the inner product between the test set and the training set as: $X_\text{test}X_{\text{train}}^T$. 
+
+Here, it's implying that the cross product between the samples in the training set are directly taking the dot product with the samples in the test set, which is not true, because the algorithm has been kernelized, here, the dot product between the samples are going to involve the $\phi$ function! 
+
+Let's denote $K_{*} = X_\text{test}X_{\text{train}}^T$ and the inner product matrix is given as: 
+
+$$
+K[i, j] =\langle \phi(X_\text{test}[i, :]),\phi(X_\text{train}[:, j])\rangle
+$$
+
+
+
 When implementing, careful about the offset.
 
 ---
