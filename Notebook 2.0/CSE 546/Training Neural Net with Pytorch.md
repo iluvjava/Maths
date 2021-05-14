@@ -42,7 +42,6 @@ is executed, so we have the correct namespace.
 `tensor.nn`: A namespace full of stuff for neural network, it's huge. see [here](https://pytorch.org/docs/stable/nn.html) for the official doc. 
 
 
-
 ---
 ### **Auto Grad**
 
@@ -134,11 +133,7 @@ $$
 f(X) = XW + b \quad X\in \mathbb{R}^{n\times d}, W\in \mathbb{R}^{d \times h} , b\in \mathbb{R}^h
 $$
 
-
 Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vector is being broadcast.
-
-
-
 
 ---
 ### **Training Neural Net Example**

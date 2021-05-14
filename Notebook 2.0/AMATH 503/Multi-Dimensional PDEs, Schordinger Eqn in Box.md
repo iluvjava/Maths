@@ -71,7 +71,7 @@ $$
 \tag{4}
 $$
 
-This is called: **Helmholtz Equatio**
+This is called: **Helmholtz Equation**, this is a sub problem that is pretty common for solving PDEs in high dimension. 
 
 $$
 \nabla^2 u = \lambda^2 u \tag{5}

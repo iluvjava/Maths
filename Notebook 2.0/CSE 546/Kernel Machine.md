@@ -197,7 +197,6 @@ K[i, j] =\langle \phi(X_\text{test}[i, :]),\phi(X_\text{train}[:, j])\rangle
 $$
 
 
-
 When implementing, careful about the offset.
 
 ---

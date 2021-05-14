@@ -23,8 +23,8 @@ This class as prereq: [[Amath 501]]
 4. Solving PDE with the Laplace Transform: [[Solving PDE with Laplace]]
 
 ### **Week 5**
-1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Multi-Dimensional PDEs 2]]
-2. 3D wave equations in a box, [[Multi-Dimensional PDEs]]
+1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Multi-Dimensional PDEs 2, Helmholtz In Rect]]
+2. 3D wave equations in a box, [[Multi-Dimensional PDEs, Schordinger Eqn in Box]]
 3. 3D wave equations in a cylinder, [[Helmholtz Equation in a Cylinder]]
 
 ---
@@ -43,4 +43,17 @@ This class as prereq: [[Amath 501]]
 To go over some of the classic 1D PDEs problem with common boundary conditions, view [[Common PDEs B.C Catalogs]] for more some very good info. 
 
 ---
+After the midterm, we will start to solve PDEs in multiple dimension. 
 
+### **Week 6**
+
+* Regular Cartesian Basis: 
+	* [[Multi-Dimensional PDEs, Schordinger Eqn in Box]]
+	* [[Multi-Dimensional PDEs 2, Helmholtz In Rect]]
+* Other kind of Basis: 
+	* [[Helmholtz Equation in a Cylinder]]
+	* [[Helmholtz Equation in a Sphere]]
+
+And to do things in the other coordinate systems, we need tools like: 
+* [[Bessel's Equation]]
+* [[Frobenius Method]]

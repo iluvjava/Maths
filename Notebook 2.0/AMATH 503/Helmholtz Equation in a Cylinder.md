@@ -1,16 +1,16 @@
 It's 11.4 in the textbook of the course. 
 This time, we are solving this in a cylinder. 
 
-[[Separation of Variables]], [[Multi-Dimensional PDEs]]
+[[Separation of Variables]], [[Multi-Dimensional PDEs, Schordinger Eqn in Box]]
 
 We are going to use Separation of variable to solve a special case of the 3D wave equation. This time it's in a cylinder. And we will introduce the bessel's basis function for the solutions too, which is need to model the wave in a circle (periodic boundary conditions). 
 
 ---
 ### **Intro**
 
-We are going to solve the PDEs in the cylindrical coordinates 
+We are going to solve the PDEs in the cylindrical coordinates. 
 
-The Helmholtz equation IS the wave equation. 
+The Helmholtz equation is the SPATIAL part of the wave equation. 	
 
 And, the given PDE is in this form: 
 

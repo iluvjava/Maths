@@ -4,30 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "ea78bd363ea2ea8f",
+        "id": "2bc0f78e795d71bf",
         "type": "leaf",
-        "dimension": 50.029568302779424,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Modified GS Process.md",
+            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
             "mode": "source"
           }
         },
-        "group": "439767a7361f85c5"
+        "group": "139d792c81da3257"
       },
       {
-        "id": "2bc0f78e795d71bf",
+        "id": "709049e9718d1fb9",
         "type": "leaf",
-        "dimension": 49.97043169722058,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Modified GS Process.md",
+            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
             "mode": "preview"
           }
         },
-        "group": "439767a7361f85c5"
+        "group": "139d792c81da3257"
       }
     ],
     "direction": "vertical"
@@ -83,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Modified GS Process.md",
+                "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,17 +99,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ea78bd363ea2ea8f",
+  "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
+    "AMATH 503/Helmholtz Equation in a Cylinder.md",
+    "AMATH 503/AMATH 503.md",
+    "AMATH 503/Multi-Dimensional PDEs 2.md",
+    "AMATH 503/Multi-Dimensional PDEs.md",
+    "AMATH 503/Fourier Series (PDE Flavor).md",
+    "AMATH 503/Fourier Cosine Series.md",
+    "AMATH 503/Dirichlet Theorem.md",
+    "AMATH 503/Diffusion of a Tracer.md",
     "AMATH 584/Modified GS Process.md",
-    "AMATH 584/LU Theorems.md",
-    "AMATH 584/LU Decomposition.md",
-    "AMATH 584/Eigen Decomp (The Pure QR).md",
-    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
-    "AMATH 583/Page Rank Algorithm.md",
-    "AMATH 583/Optimizing for Sparse Matrix Product.md",
-    "CSE 546/Training Neural Net with Pytorch.md",
-    "CSE 546/Training Neural Net.md",
-    "AMATH 583/OpenMP.md"
+    "AMATH 584/LU Theorems.md"
   ]
 }
