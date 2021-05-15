@@ -288,4 +288,3 @@ For any "reasonable" functions, it can be expressed as a linear combinations of 
 
 [^1]: Mathematician usually wants the eigen functions normalized. And in our case, the eigenfunctions is $p_n(x)$, and we want to adjust the function such that $p(1) = 1$. 
 [^2]: Consider the original problem of the Helmholtz Equation in the sphere, we are only interested in solution that is not blowing up, so, we make choice on the parameter $x_0, x_1$ to make sure that we have the right solutions that we are interested in. 
-
