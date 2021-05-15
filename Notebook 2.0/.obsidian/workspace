@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
+            "file": "AMATH 503/Legendre Equation.md",
             "mode": "source"
           }
         },
@@ -21,8 +21,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/AMATH 503.md",
-            "mode": "preview"
+            "file": "AMATH 503/Legendre Equation.md",
+            "mode": "source"
           }
         },
         "group": "139d792c81da3257"
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/AMATH 503.md",
+                "file": "AMATH 503/Legendre Equation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,6 +101,7 @@
   },
   "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
+    "AMATH 503/Untitled.md",
     "AMATH 503/AMATH 503.md",
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
@@ -109,7 +110,6 @@
     "AMATH 503/Fourier Cosine Series.md",
     "AMATH 503/Dirichlet Theorem.md",
     "AMATH 503/Diffusion of a Tracer.md",
-    "AMATH 584/Modified GS Process.md",
-    "AMATH 584/LU Theorems.md"
+    "AMATH 584/Modified GS Process.md"
   ]
 }
