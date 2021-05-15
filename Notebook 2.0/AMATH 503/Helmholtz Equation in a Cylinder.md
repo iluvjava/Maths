@@ -510,6 +510,5 @@ $$
 And recall that $n, l \in \mathbb{N}$, $m\in \mathbb{Z}$.
 
 
-
 [^1]: It's in the chapter 10 of the textbook of the class. 
 [^2]: [wiki link](https://www.wikiwand.com/en/Bessel_function)

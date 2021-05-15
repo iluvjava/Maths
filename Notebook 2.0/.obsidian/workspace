@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+            "file": "AMATH 503/AMATH 503.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+            "file": "AMATH 503/AMATH 503.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+                "file": "AMATH 503/AMATH 503.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,8 +101,8 @@
   },
   "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
-    "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/AMATH 503.md",
+    "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
     "AMATH 503/Multi-Dimensional PDEs.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
