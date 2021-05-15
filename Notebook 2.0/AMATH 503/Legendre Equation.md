@@ -280,7 +280,10 @@ And this is a plot for the first few, normalized Legendre Polynomials.
 
 **Legendre Polynomials are ORTHOGONAL.** and this is an amazing quality to have when we are using it as the basis functions fo something. 
 
+---
+### **Peroperty**
 
+For any "reasonable" functions, it can be expressed as a linear combinations of the Legendre Polynomials. And the Proof of Orthogonality in chapter 10 of the textbook. 
 
 
 [^1]: Mathematician usually wants the eigen functions normalized. And in our case, the eigenfunctions is $p_n(x)$, and we want to adjust the function such that $p(1) = 1$. 
