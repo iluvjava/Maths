@@ -111,7 +111,7 @@ $$
 And notice that this is a second order recurrence relation the depends on $\eta$. 
 
 $$
-a_{n + 2} = \frac{m(m + 1) - \eta}{(m + 2)(m + 1)}a_n
+a_{n + 2} = \frac{n(n + 1) - \eta}{(n + 2)(n + 1)}a_n
 \tag{7}
 $$
 
@@ -182,8 +182,10 @@ So, how are we going to find these special values?
 We are going to pick $\eta$ such that at some point: 
 
 $$
-n(n + 1) - \eta = 0
+n(n + 1) - \eta = 0 \tag{8}
 $$
+
+**Note**: Her, the $n$ is just  the index and it has nothing to do with the index in the summation term. 
 
 So this means that: $\eta_n = n(n + 1)$. 
 
@@ -197,17 +199,90 @@ If $\eta$ is produced in this way, then we know that the solution series is goin
 ---
 ### **The Special $\eta$**
 
+**Consider the case where $\eta_0$**, then it means that $\eta = 0$, so then the whole numerator of expression (7) is going to be zero, so that will mean: $a_2 = 0$, so them $a_4 = 0$, so tham $a_{2n}$ are going to be zero. So the only none zero term here is $a_0$. And: 
 
+$$
+a_3 = \frac{2}{3\times 2}a_1
+$$
 
+And take notice that, this is just setting all the odd terms in relation to the first odd term: $a_1$. 
 
+So in this case, The solution will look like: 
 
+$$
+y(x) = a_0 + \sum_{n = 0}^{\infty} a_{2n + 1}x^{2n + 1} = p_0(x)
+$$
 
+Now, we are going to normalize the soltuion, by making $y(1) = 1$, which implies that $a_0 = 1$. 
 
+**Consider the case $\eta_1 = 2$**. Using the recurrence relations, and let's focus on the odd terms, by choosing arbitrary $a_1$, then: 
+
+$$
+a_3 = \frac{1\times 2 - 2}{3\times 2} a_1 = 0 \implies a_n = 0 \quad \forall n = 1, 2, 3\cdots
+$$
+
+And, the even parts are still going to be here, and the only parts that left is the $a_1$. Let's see...
+
+$$
+y(x) = \sum_{n = 0}^{\infty} a_{2}x^{2n} + a_1x
+$$
+
+Ok, we don't want the infinite sum, beacuse it's not gong to be convergence. Remember that we have the free choice on $a_0$, let $a_0 = 0$[^2], then: 
+
+$$
+y(x) = a_1 x = p_1(x) 
+$$
+
+Normalizing it with $p(1) = 1$, we have $a_1 = 1$, so them $p_1(x) = x$. 
+
+Consider the case that $\eta_2  = 2\times 3  =6$, then: 
+
+$$
+a_2 = \frac{0-6}{2\times 1}a_0 = -3a_0
+$$
+
+$$
+a_4 = \frac{2\times 3 - 6}{4\times 5} a_2 = 0\implies a_{n} = 0\quad \forall n = 2, 4, 8, \cdots
+$$
+
+So then, we have the solution in this form: 
+
+$$
+y  = a_0 + a_2x^2 + \sum_{n = 0}^{\infty}a_{2n + 1}x^{2n + 1}
+$$
+
+and, let $a_1 = 0$, we get rid of all the odd terms of the series. In that case, we can say that: $y(x) = a_0 - 3a_0x^2$, and normalizing it with $y(1) = 1$ we have the expression: 
+
+$$
+y(x) = -\frac{1}{2} + \frac{3}{2}x^2 = p_2(x)
+$$
+
+Ok, that were a lot, but we are going to spoil the next term: 
+
+$$
+p_3(x) = \frac{-3}{2}x + \frac{5}{2}x^3
+$$
+
+And the general pattern in this case is: 
+
+$$
+\sum_{k = 0}^{\lceil n/2\rceil}
+\frac{(-1)^k(2n - 2k)!}{2^nk!(n - k)!(n - 2k)!}
+$$
+
+And this is called the **Legendre Polynomials** 
+
+And this is a plot for the first few, normalized Legendre Polynomials. 
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Legendrepolynomials6.svg/640px-Legendrepolynomials6.svg.png?1621115296867)
+
+**Fun Fact**: 
+
+**Legendre Polynomials are ORTHOGONAL.** and this is an amazing quality to have when we are using it as the basis functions fo something. 
 
 
 
 
 [^1]: Mathematician usually wants the eigen functions normalized. And in our case, the eigenfunctions is $p_n(x)$, and we want to adjust the function such that $p(1) = 1$. 
-
-
+[^2]: Consider the original problem of the Helmholtz Equation in the sphere, we are only interested in solution that is not blowing up, so, we make choice on the parameter $x_0, x_1$ to make sure that we have the right solutions that we are interested in. 
 
