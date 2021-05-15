@@ -135,6 +135,11 @@ $$
 
 Where, the $X$ is the Row Data Matrix, and the $W$ is the weight matrix, and the $b$ is a bias vector, it's height is the number of features for the data matrix. The $b$ vector is being broadcast.
 
+
+**Summary of Auto Diff and Gradient Descend**
+
+
+
 ---
 ### **Training Neural Net Example**
 
