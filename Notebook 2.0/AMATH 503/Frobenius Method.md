@@ -63,7 +63,7 @@ $$
 
 Where, we will be solving for another set of coefficients equation of this format, and this time, solving for $A_n$ and time it will be linear independent to the previous solution $y_1(x)$. 
 
-#### **When $s_1, s_2$ are Distinct but it's Differend by an Integer**
+#### **When $s_1, s_2$ are Distinct but it's Differed by an Integer**
 
 Let's assume that $s_1 > s_2$. 
 
@@ -82,7 +82,7 @@ y_2(x) = k y_1 \ln(x)
     A_n(x - x_0)^n
 $$
 
-Where, take notice that, it has an extra cofficient with $y_1(x)$ where we are going to solve for, and the power on $x$ is $s_2$ in the multiplier for the series. 
+Where, take notice that, it has an extra coefficient with $y_1(x)$ where we are going to solve for, and the power on $x$ is $s_2$ in the multiplier for the series. 
 
 
 

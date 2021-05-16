@@ -9,7 +9,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+=======
+            "file": "AMATH 503/Frobenius Method.md",
+>>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
             "mode": "source"
           }
         },
@@ -21,7 +25,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+=======
+            "file": "AMATH 503/Frobenius Method.md",
+>>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
             "mode": "preview"
           }
         },
@@ -81,7 +89,11 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
+=======
+                "file": "AMATH 503/Frobenius Method.md",
+>>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +113,29 @@
   },
   "active": "2bc0f78e795d71bf",
   "lastOpenFiles": [
+<<<<<<< HEAD
+=======
+    "AMATH 503/Frobenius Method.md",
+    "Untitled.md",
+    "Math 999/Back Propagation 2.md",
+    "Math 999/Fundamental Theorem of Statistical Learning.md",
+    "Math 999/GPT Transformer.md",
+    "AMATH 503/Untitled.md",
+    "AMATH 503/AMATH 503.md",
+>>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
     "AMATH 503/Helmholtz Equation in a Cylinder.md",
     "AMATH 503/Bessel's Equation.md",
     "CSE 546/Training Neural Net with Pytorch.md",
     "AMATH 503/AMATH 503.md",
     "AMATH 503/Multi-Dimensional PDEs 2.md",
+<<<<<<< HEAD
     "AMATH 503/Multi-Dimensional PDEs.md",
     "AMATH 503/Fourier Series (PDE Flavor).md",
     "AMATH 503/Fourier Cosine Series.md",
     "AMATH 503/Dirichlet Theorem.md",
     "AMATH 503/Diffusion of a Tracer.md"
+=======
+    "AMATH 503/Multi-Dimensional PDEs.md"
+>>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
   ]
 }
