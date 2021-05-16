@@ -235,7 +235,7 @@ $$
 
 Normalizing it with $p(1) = 1$, we have $a_1 = 1$, so them $p_1(x) = x$. 
 
-Consider the case that $\eta_2  = 2\times 3  =6$, then: 
+**Consider the case that $\eta_2  = 2\times 3  =6$, then:** 
 
 $$
 a_2 = \frac{0-6}{2\times 1}a_0 = -3a_0

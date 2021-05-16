@@ -1,4 +1,4 @@
-This is use for solving the cylindrical wave equation, which is [[Helmholtz Equation in a Cylinder]], And because we introduce the method of [[Frobenius Method]] along the way as we go, here I listed some relevent discussion for Frobe method too. 
+This is use for solving the cylindrical wave equation, which is [[Helmholtz Equation in a Cylinder]], And because we introduce the method of [[Frobenius Method]] along the way as we go, here I listed some relevant discussion for frobenius method too. 
 
 And we encounter the problem of solving for the basis functions along the $r$ direction. 
 
@@ -9,7 +9,7 @@ And because Bessel's equation is a topic on itself, it's in its file and [here](
 **Note**: This is also discussed in details in the chapter 11 of the textbook. 
 
 Summary: 
-1. We need to solve the standard form of the Bessels equation. 
+1. We need to solve the standard form of the Bessel's equation. 
 2. We are going to use Frobenius method 
 3. There are multiple solution, we are going to make some assumption and solve for one of the solution. 
 4. We solve it to get a recurrence relations for the series, and then we unroll the recursion. 
@@ -56,9 +56,15 @@ $$
 
 Which is equation (5) later in the file. 
 
-And then this is the soltuion, but when $p$ is integer, the solution will be a bit more complicated. 
+And then this is the solution, parameterized by the constant $p$, but when $p$ is integer, the solution will be a bit more complicated, and I will listed for ease of reference: 
 
-
+$$
+y(x) = AJ_{p}(x) + 
+\underbrace{B\left(
+    \frac{J_{p}(x)\cos(p\pi) - J_{-p}(x)}{\sin(p\pi)}
+\right)}_{y_p(x)}
+\tag{6}
+$$
 
 
 ---
@@ -450,7 +456,7 @@ $$
 ---
 ### **General Solution Regardless of that $P$ is**
 
-Regardless of what $P$ is the general solution for the Bessel's eqiation is like: 
+Regardless of what $P$ is the general solution for the Bessel's equation is like: 
 
 $$
 y(x) = AJ_{p}(x) + 
@@ -466,6 +472,8 @@ And under the case when $p$ turns out to be an integer, we will need to take the
 ### **Bessel's Solution Behavior**
 
 For small value of x, here are the list of behavior for the solution of the first kind, and solution of the second kind: 
+
+
 
 For large value of $x$ the solution will look like this: 
 
