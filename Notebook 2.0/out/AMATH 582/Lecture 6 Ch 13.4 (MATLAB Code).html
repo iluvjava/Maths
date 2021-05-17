@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Homemade Spectrumgram.
+prereq: [[Lecture 4 13.4 (Gobar Trans)]]</p>
+<hr>
+<h3 id="intro">Intro</h3>
+<p>We can implement the Gobar transform pretty easily in MATLAB.</p>
+<hr>
+<h3 id="practical-implementations">Practical Implementations</h3>
+<p>The implementations in MATLAB is not hard. Let's take a look:</p>
+<pre><code class="language-matlab"><div>clear all; close all; clc
+
+<span class="hljs-comment">%% SIGNAL CONSTRUCTION</span>
+
+L = <span class="hljs-number">10</span>; n = <span class="hljs-number">2048</span>;
+t2 = <span class="hljs-built_in">linspace</span>(<span class="hljs-number">0</span> ,L ,n + <span class="hljs-number">1</span>); t = t2(<span class="hljs-number">1</span>:n);  <span class="hljs-comment">% Half domain</span>
+k = (<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/L)*[<span class="hljs-number">0</span>:n/<span class="hljs-number">2</span> - <span class="hljs-number">1</span> -n/<span class="hljs-number">2</span>: <span class="hljs-number">-1</span>]; 
+ks = fftshift(k);
+
+<span class="hljs-comment">% This is the signal. </span>
+S  =    (<span class="hljs-number">3</span>*<span class="hljs-built_in">sin</span>(<span class="hljs-number">2</span>*t) + ...
+        <span class="hljs-number">0.5</span>*<span class="hljs-built_in">tanh</span>(<span class="hljs-number">0.5</span>*(t - <span class="hljs-number">3</span>)) + ... 
+        <span class="hljs-number">0.2</span>*<span class="hljs-built_in">exp</span>(-(t - <span class="hljs-number">4</span>).^<span class="hljs-number">2</span>) + ... 
+        <span class="hljs-number">1.5</span>*<span class="hljs-built_in">sin</span>(<span class="hljs-number">5</span>*t) + ...
+        <span class="hljs-number">4</span>*<span class="hljs-built_in">cos</span>(<span class="hljs-number">3</span>*(t - <span class="hljs-number">6</span>).^<span class="hljs-number">2</span>))/<span class="hljs-number">10</span> + ...
+        (t/<span class="hljs-number">20</span>).^<span class="hljs-number">3</span>;
+
+St = fft(S);
+
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)
+subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">% Time domain</span>
+<span class="hljs-built_in">plot</span>(t, S, <span class="hljs-string">&#x27;k&#x27;</span>) 
+set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>]), xlabel(<span class="hljs-string">&#x27;Time (t)&#x27;</span>), ylabel(<span class="hljs-string">&#x27;S(t)&#x27;</span>)
+
+subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">% Fourier domain </span>
+<span class="hljs-built_in">plot</span>(ks, <span class="hljs-built_in">abs</span>(fftshift(St))/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(St)), <span class="hljs-string">&#x27;k&#x27;</span>); axis([<span class="hljs-number">-50</span> <span class="hljs-number">50</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>])
+set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>])
+xlabel(<span class="hljs-string">&#x27;frequency (\omega)&#x27;</span>), ylabel(<span class="hljs-string">&#x27;FFT(S)&#x27;</span>)
+
+<span class="hljs-comment">%%  GABOR WINDOW, DIFFERENT SIZES</span>
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>) 
+width  = [<span class="hljs-number">10</span> <span class="hljs-number">1</span> <span class="hljs-number">0.2</span>];
+<span class="hljs-keyword">for</span> JJ = <span class="hljs-number">1</span>:<span class="hljs-number">3</span>
+    g  = <span class="hljs-built_in">exp</span>(-width(JJ)*(t - <span class="hljs-number">4</span>).^<span class="hljs-number">2</span>);  <span class="hljs-comment">% Gaussian window</span>
+    subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, JJ)
+    <span class="hljs-built_in">plot</span>(t, S, <span class="hljs-string">&#x27;k&#x27;</span>), <span class="hljs-built_in">hold</span> on 
+    <span class="hljs-built_in">plot</span>(t, g, <span class="hljs-string">&#x27;k&#x27;</span>,<span class="hljs-string">&#x27;Linewidth&#x27;</span>, [<span class="hljs-number">2</span>]) 
+    set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>]) 
+    ylabel(<span class="hljs-string">&#x27;S(t), g(t)&#x27;</span>)
+<span class="hljs-keyword">end</span>
+xlabel(<span class="hljs-string">&#x27;time (t)&#x27;</span>)
+
+<span class="hljs-comment">%%  GABOR TRANSFORM</span>
+
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">3</span>) 
+g   = <span class="hljs-built_in">exp</span>(<span class="hljs-number">-2</span>*(t - <span class="hljs-number">4</span>).^<span class="hljs-number">2</span>);  <span class="hljs-comment">% Filter centered at t = 4</span>
+Sg  = g.*S;
+Sgt = fft(Sg);
+
+subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-built_in">plot</span>(t, S, <span class="hljs-string">&#x27;k&#x27;</span>), <span class="hljs-built_in">hold</span> on 
+<span class="hljs-built_in">plot</span>(t, g, <span class="hljs-string">&#x27;k&#x27;</span>, <span class="hljs-string">&#x27;Linewidth&#x27;</span>, [<span class="hljs-number">2</span>]) 
+set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>])
+ylabel(<span class="hljs-string">&#x27;S(t), g(t)&#x27;</span>), xlabel(<span class="hljs-string">&#x27;time (t)&#x27;</span>)
+
+subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), <span class="hljs-built_in">plot</span>(t, Sg, <span class="hljs-string">&#x27;k&#x27;</span>) 
+set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>]) 
+ylabel(<span class="hljs-string">&#x27;S(t)g(t)&#x27;</span>), xlabel(<span class="hljs-string">&#x27;time (t)&#x27;</span>)
+
+subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>), <span class="hljs-built_in">plot</span>(ks, <span class="hljs-built_in">abs</span>(fftshift(Sgt))/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(Sgt)), <span class="hljs-string">&#x27;k&#x27;</span>) 
+axis([<span class="hljs-number">-50</span> <span class="hljs-number">50</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>])
+set(gca, <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>])
+ylabel(<span class="hljs-string">&#x27;FFT(Sg)&#x27;</span>), xlabel(<span class="hljs-string">&#x27;frequency (\omega)&#x27;</span>)
+
+<span class="hljs-comment">%% SLIDING GABOR WINDOW</span>
+
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">4</span>)
+Sgt_spec =[]; 
+tslide = <span class="hljs-number">0</span>: <span class="hljs-number">0.05</span>: <span class="hljs-number">10</span>  <span class="hljs-comment">% Over sampling is better. </span>
+<span class="hljs-keyword">for</span> JJ = <span class="hljs-number">1</span>: <span class="hljs-built_in">length</span>(tslide)
+    g        = <span class="hljs-built_in">exp</span>(<span class="hljs-number">-2</span>*(t - tslide(JJ)).^<span class="hljs-number">2</span>); <span class="hljs-comment">% Gabor Filter Offset</span>
+    Sg       = g.*S; 
+    Sgt      = fft(Sg); 
+    Sgt_spec = [Sgt_spec; <span class="hljs-built_in">abs</span>(fftshift(Sgt))]; 
+    subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-built_in">plot</span>(t, S, <span class="hljs-string">&#x27;k&#x27;</span>, t, g,<span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-comment">% </span>
+    subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), <span class="hljs-built_in">plot</span>(t, Sg, <span class="hljs-string">&#x27;k&#x27;</span>)
+    subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>), <span class="hljs-built_in">plot</span>(ks, <span class="hljs-built_in">abs</span>(fftshift(Sgt))/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(Sgt))) 
+    axis([<span class="hljs-number">-50</span> <span class="hljs-number">50</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>])
+    drawnow
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">5</span>)
+pcolor(tslide, ks, Sgt_spec.&#x27;), 
+shading interp 
+set(gca, <span class="hljs-string">&#x27;Ylim&#x27;</span>, [<span class="hljs-number">-50</span> <span class="hljs-number">50</span>], <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>]) 
+colormap(hot)
+
+<span class="hljs-comment">%% MATLAB SPECTROGRAM</span>
+Sp = spectrogram(S);
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">6</span>)
+pcolor(<span class="hljs-built_in">abs</span>(Sp))
+shading interp
+set(gca,<span class="hljs-string">&#x27;Ylim&#x27;</span>, [<span class="hljs-number">0</span> <span class="hljs-number">20</span>], <span class="hljs-string">&#x27;Fontsize&#x27;</span>, [<span class="hljs-number">14</span>]) 
+colormap(hot)
+</div></code></pre>
+<p>![[gobar-transform-spectrogram.png]]
+Figure 5</p>
+
+    </body>
+    </html>

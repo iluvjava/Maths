@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Speed Optimization&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP MultiStage Compilation]]
+Here, we will be talking about compiler Optimization. This is a flag that people can use to improve the performance of the code. The clang compiler is able to use architectural advantage to speed up the execution of the code.</p>
+<p>Here, we need to summarize some of the good flags we learned from class, about the clang compiler, and cross reference them to learn the most out of it.</p>
+<hr>
+<h3 id="speed-optimization"><strong>Speed Optimization</strong></h3>
+<p>There are 3 flags for this:</p>
+<pre><code class="language-bash"><div>c++ target.cpp -g O1
+c++ target.cpp -g O2
+c++ target.cpp -g O3
+c++ target.cpp -g Ofast
+</div></code></pre>
+<p>Here is a <a href="https://amath583.github.io/sp21/_static/pdf/L8.pdf">Link</a> to the lecture on opitmizing matrix multiplications, using different methods.</p>
+<hr>
+<h3 id="debug-macro-and-assertion"><strong>Debug Macro and Assertion</strong></h3>
+<p><code>-DNDBUG</code>: Compiler flags to use the assert keywords inside of the source code. The corresponding macros for doing it is:</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstddef&gt;</span></span>
+
+assert(<span class="hljs-literal">false</span>)  <span class="hljs-comment">// make assertion one some kind conditions like this. </span>
+</div></code></pre>
+<hr>
+<h3 id="code-compilation-pickness"><strong>Code Compilation Pickness</strong></h3>
+<p>Flags:</p>
+<ul>
+<li><code>-Wall</code></li>
+<li><code>-Wextra</code></li>
+<li><code>-pedantic</code></li>
+</ul>
+<p>This enables the pickiness of the clang compiler. There should be no warning when the flag is <code>-wall</code></p>
+<h3 id="common-ones"><strong>Common Ones</strong></h3>
+<p><code>-o</code>: Specifies the name of the output file for the targeted compilation.</p>
+
+    </body>
+    </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Syllabus</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="syllabus">Syllabus</h2>
+<ol>
+<li>MATLAB Programming</li>
+<li>Initial Value Problems: Forward Integration [[IVP]]
+<ul>
+<li>Forward Euler, [[FE Stability]]</li>
+<li>Runge-Kutta, [[Runge Kutta]]</li>
+<li>Integrator usage, [[Adam B.M]]</li>
+</ul>
+</li>
+<li>Initial Value Problems: Implicit Integration and Stability
+<ul>
+<li>Backward Euler</li>
+<li>Integral Methods [[Adam B.M]]</li>
+<li>Predictor-Corrector [[Adam B.M]]</li>
+<li>Integrator usage ????</li>
+<li>Floating Point Precision [[Computer Bad at Maths]]</li>
+</ul>
+</li>
+<li>BVP: Shooting Method
+<ul>
+<li>Application of shooting for solving 2nd order BVP, ODEs [[Shooting Method]]</li>
+<li>Linear 2nd order BVP (relaxation, collocation) [[Direct Method]]</li>
+</ul>
+</li>
+<li>Finite Difference Operators for PDE
+<ul>
+<li>Finite Difference Schemes [[Advection Diffusion]]</li>
+</ul>
+</li>
+<li>Finite Difference: Solving Linear Problems
+<ul>
+<li>Method for solving system of Linear equations
+<ul>
+<li>[[Iterative Method]]</li>
+</ul>
+</li>
+<li>Efficiency of the methods</li>
+</ul>
+</li>
+<li>Finite Difference: PDE Solution and stability
+<ul>
+<li>Von-Neumann Stability of Finite Difference Schemes
+<ul>
+<li>[[Von Neuman Stability Analysis]]</li>
+<li>[[Von Neuman Stability Analysis 2]]</li>
+</ul>
+</li>
+<li>Alternative Discretizations</li>
+</ul>
+</li>
+<li>Spectral Methods
+<ul>
+<li>The Fourier Transform for PDE Solution, Advanced Transforms for PDE Solution
+<ul>
+<li>[[Fourier Transform Fourier Series]]</li>
+<li>[[Spectral Method, Discrete Fourier]]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Finite Elements
+<ul>
+<li>Theory, Solving PDE Problems with PDETool</li>
+<li>[[Finite Elements Method]]</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Modular Understanding with the topics involved in the course syllabus</li>
+<li>Being able to identify the type of problem and then connect it with theories.
+<ul>
+<li>Being able to know the pros and cons of different scientific computing approaches for the problem</li>
+</ul>
+</li>
+<li>Being able to synthesize the ideas learned from different modules of the class.</li>
+</ul>
+<h3 id="summary-scientific-methods">Summary: Scientific Methods</h3>
+<ol>
+<li>Accuracy
+<ol>
+<li><strong>Spectral method</strong>: Spectral Accuracy for Smooth function satisfying the correct boundary conditions.</li>
+</ol>
+</li>
+<li>Boundary Conditions
+<ol>
+<li><strong>Finite Difference Method</strong>: Very general and robust to deal with different boundary conditions.</li>
+</ol>
+</li>
+<li>Implementations
+<ol>
+<li><strong>Finite Difference</strong>: It's easy as long as the operator is easy to get, they are just special sparse matrices.</li>
+<li><strong>Spectral Method</strong>: It's very short to implement it with the correct FFT libraries in certain programming languages.</li>
+</ol>
+</li>
+<li>Efficiency/Speed
+<ol>
+<li><strong>Spectral Method</strong>: This is the king, very very efficient with the computational complexity, it wins the competitions compare to other methods.</li>
+</ol>
+</li>
+</ol>
+<h3 id="special-domains">Special Domains</h3>
+<ul>
+<li>Finite Elements.</li>
+</ul>
+
+    </body>
+    </html>

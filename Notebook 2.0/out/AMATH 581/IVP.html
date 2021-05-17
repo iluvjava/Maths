@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>IVP</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Solving the Generalized Initial Value Problem</p>
+<hr>
+<h3 id="ivp">IVP</h3>
+<p>The initial value problem looks like this:</p>
+<p>Consider a differential equations that look like this</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>Y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\frac{dY}{dt} =F(t, Y(t))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>Where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>:</mo><mi mathvariant="double-struck">R</mi><mo>↦</mo><msup><mi mathvariant="double-struck">R</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">Y:\mathbb{R} \mapsto \mathbb{R}^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69989em;vertical-align:-0.011em;"></span><span class="mord"><span class="mord mathbb">R</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>, it doesn't have to be real, it can be complex too.</p>
+<p>The initial condition is given as</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Y</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">Y(0) = Y_0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<hr>
+<h3 id="practical-concerns">Practical Concerns</h3>
+<ul>
+<li>Local and global errors from the analytical expression of the iteration scheme.
+<ul>
+<li>The global error is always one power larger.</li>
+<li>These 2 errors are directly relevant to the step size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\Delta t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault">t</span></span></span></span></li>
+</ul>
+</li>
+<li>Truncation errors and the round off errors from the computers.
+<ul>
+<li>Truncation errors happens when the relevant size of both addees numbers are 10e+16 away from each other, this order the addition or the subtraction completely useless.</li>
+<li>The round off error is always gonna be there, and it's 10e16, this will propagate through multiplications and division.</li>
+<li>These errors manifests itself when the size of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\Delta t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault">t</span></span></span></span> is too small.</li>
+</ul>
+</li>
+<li>Given the iteration scheme and the particular problem we are solving, we are interested in the long term affect of the perturbations in the initial conditions of the problem
+<ul>
+<li>This really depends on the problem and the given iteration scheme.</li>
+<li>This can be by pass by the usage of implicit iteration schemes</li>
+<li>This will be there if, the problem is unstable and the size time of simulation is huge, in that way, regardless of global error, the error will build up on the perturbation of the initial condition.</li>
+</ul>
+</li>
+</ul>
+<h4 id="errors">Errors</h4>
+<p><strong>Local:</strong></p>
+<p>Error from each step of the Taylor approximations.</p>
+<p><strong>Global:</strong>
+Accumulation of local errors, one order larger than the local errors for method that doesn't involve a predictor.</p>
+<p><strong>Round off:</strong></p>
+<p>Unrelated to the scheme, depends on the problem and the scheme, and it's due to the Round off error on binary on the computer.</p>
+<hr>
+<h3 id="schemes-classification">Schemes Classification</h3>
+<p>Explicit:</p>
+<p>The future time step is depends on the previous scheme.
+e.g: FE, RK, AB</p>
+<p>Implicit:
+e.g: BE, AM.</p>
+<p>We have to solve the equations involving the future steps and the previous step for the future step.</p>
+<p>Explicit + Implicit:
+AB + DM with Predictor</p>
+<hr>
+<h3 id="analytical-approaches">Analytical Approaches</h3>
+<ul>
+<li>Taylor Series: [[Runge Kutta]] [[Generalized 2nd Order Taylor Scheme]]</li>
+<li>Integration: [[Adam B.M]]</li>
+</ul>
+<hr>
+
+    </body>
+    </html>

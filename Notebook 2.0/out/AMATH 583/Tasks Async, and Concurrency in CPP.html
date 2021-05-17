@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[Parallel Computing Intro]]
+So we need to understand the basics of the parallel programming first before learning about the other details of things.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>Threads were first introduce to handle the clients requests in a server.</p>
+<p>And one of the questions is, can we have multiple threads for just one core?</p>
+<p>And yes.</p>
+<p>And on multiple cores, the threads can run at the same time.</p>
+<hr>
+<h3 id="parallelization-strategies"><strong>Parallelization Strategies</strong></h3>
+<p>Split by tasks.</p>
+<p>Split by data.</p>
+<p>Suppose we want to compute:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mi>d</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\pi = \int_{0}^{1} 
+    \frac{4}{1 + x^2}
+dx
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4759580000000003em;vertical-align:-0.9119499999999999em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5640080000000003em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span><span style="top:-3.8129000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span></p>
+<p>And we just split the integral, into several different interval. They are independent from each other. Like: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo separator="true">,</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1/4], [1/4, 1/2], [1/2, 3/4], [3/4, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">4</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mord">/</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">/</span><span class="mord">4</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">[</span><span class="mord">3</span><span class="mord">/</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>.</p>
+<p>Then each of them will be their own computations, with different parameters.</p>
+<hr>
+<h3 id="threads"><strong>Threads</strong></h3>
+<p>Threads run tasks.</p>
+<p>And they can share the same memory, they have their own stacks, but they can access all virtual memory address space, given the pointer.</p>
+<p>And one of the <strong>major problem we want to prevent</strong> is:</p>
+<p>2 of the same threads entering the critical sections and creates race conditions for the shared memory.</p>
+<p>Usually happens when the threads try to check for a predicate on some shared memory and then perform the tasks on that piece of memory.</p>
+<p><strong>Introducing</strong>: <strong>C++ Mutex</strong></p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> pi = <span class="hljs-number">0.0</span>;
+<span class="hljs-built_in">std</span>::mutex pi_mutex; 
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pi_helper</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> begin, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">double</span> h)</span>
+</span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> <span class="hljs-number">1</span> = being; i &lt; end; ++i)
+    {
+        pi_mutex.lock();
+        pi += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + (i*i*h*h));
+        pi_mutex.unlock();
+    }
+}
+
+</div></code></pre>
+<p>The <code>pi_mutex</code> will be locking critical section there.</p>
+<p>This is done at a system and OS level.</p>
+<p>However this code is <strong>REALLY</strong> slow...</p>
+<p>It's slow because we are always waiting for the resources to be shared, locked, released... which is very very slow. Mutex Synchronization is very very slow.</p>
+<p>We need to lock it and unlock it outside of the forloop then.</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> pi = <span class="hljs-number">0.0</span>;
+<span class="hljs-built_in">std</span>::mutex; 
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pi_helper</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> begin, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">double</span> h)</span>
+</span>{
+    pi_mutex.lock();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> <span class="hljs-number">1</span> = being; i &lt; end; ++i)
+    {
+        pi += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + (i*i*h*h));
+    }
+    pi_mutex.unlock();
+}
+
+</div></code></pre>
+<p>the output turns out to be <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>. Instead of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>, when we divides the intervals in to a billions pieces.</p>
+<p>Notice that, the int has 32 bit. That is about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup></mrow><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> pi = <span class="hljs-number">0.0</span>;
+<span class="hljs-built_in">std</span>::mutex pi_mutex; <span class="hljs-comment">// This is an object on its own, system level implementation.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pi_helper</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> begin, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">double</span> h)</span>
+</span>{
+    <span class="hljs-keyword">double</span> Sum = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> <span class="hljs-number">1</span> = being; i &lt; end; ++i)
+    {
+        Sum += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + (i*i*h*h));
+    }
+    pi_mutex.lock();
+    pi += Sum;
+    pi_mutex.unlock();
+}
+
+</div></code></pre>
+<p>Boom, now the computations can be carried out at the same time, and then we don't have to add all the running total to the same thing anymore. It's summing up to the internal variable for the thread.</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> pi = <span class="hljs-number">0.0</span>;
+<span class="hljs-built_in">std</span>::mutex pi_mutex; <span class="hljs-comment">// This is an object on its own, system level implementation.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pi_helper</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> begin, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">double</span> h)</span>
+</span>{
+    <span class="hljs-keyword">double</span> Sum = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> <span class="hljs-number">1</span> = being; i &lt; end; ++i)
+    {
+        Sum += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + (i*i*h*h));
+    }
+    {
+        <span class="hljs-comment">// Destructor call when this item goes out of scope. </span>
+        <span class="hljs-function"><span class="hljs-built_in">std</span>::lock_guard&lt;<span class="hljs-built_in">std</span>::mutex&gt; <span class="hljs-title">pi_guard</span><span class="hljs-params">(pi_mutex)</span></span>; 
+        pi +=pi_i;
+
+    }
+}
+
+</div></code></pre>
+<hr>
+<h3 id="using-async"><strong>Using Async</strong></h3>
+<p>Async is another, application level approach to parallelism. Here is the code for that:</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span>
+</span>{
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> intervals = <span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>; 
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> num_blocks = <span class="hljs-number">1</span>; 
+    <span class="hljs-keyword">double</span> h = <span class="hljs-number">1.0</span>/(<span class="hljs-keyword">double</span>)intervals; 
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> blocksize = intervals/num_blocks;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">future</span>&lt;<span class="hljs-keyword">double</span>&gt;&gt; partial_sums;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> k = <span class="hljs-number">0</span>; k &lt; num_blocks; ++k)
+    {
+        partial_sums.push_back
+        (
+            <span class="hljs-built_in">std</span>::async
+             (
+                <span class="hljs-built_in">std</span>::launch::async,  <span class="hljs-comment">// Eager eval, this is parallelism</span>
+                partial_pi,         <span class="hljs-comment">// function that runs the task</span>
+                k*blocksize,        <span class="hljs-comment">// parameters for `partial_pi` function, pass in std::ref(?) if a reference is intended as the function parameter. </span>
+                (k + <span class="hljs-number">1</span>)*blocksize, 
+                h
+            )
+        );
+    } 
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> k = <span class="hljs-number">0</span>; k &lt; num_blocks; ++k)
+    {
+        pi += h*partial_sums[k].get();
+    }
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;pi is approximately: &quot;</span> &lt;&lt; <span class="hljs-built_in">std</span>:: <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
+}
+</div></code></pre>
+<p>The async, like java script, returns a promise to the future returned value by the task. It takes in a launch parameter, like deferred, or eager <code>std::launch::async</code>, or <code>stud::launch::deferred</code>, etc.</p>
+<p>Then, the results are taken out from the promise object.</p>
+<p><strong>What about Atomic Types</strong>?</p>
+<p>This is limited to certain data types, not all data types, therefore, it's better to use it whenever it's suitable, and, avoid direct assignment operator, because they don't support atomic operations, unfortunately.</p>
+<hr>
+<h3 id="what-is-the-mutex"><strong>What is the Mutex</strong></h3>
+<p>A thread owns a mutex.</p>
+<p>To own a mutex safely following the RAII protocol, a <code>std::lock_guard</code> will have to be used for it.</p>
+<p>The compiler will manage the ownership of the mutex automatically when it's used with the <code>std::lock_gard</code> block.</p>
+<hr>
+<h3 id="common-mistakes"><strong>COMMON MISTAKES</strong></h3>
+<p>Suppose that we were given a function that takes in the vector and a partition to compute on, and we want to use parallelism on the vector.</p>
+<p>There is some problem with the <strong>COPY CONSTRUCTOR</strong> when we use the async and pass it as parameters.</p>
+<p>Suppose this is the function that do the partition vector norm:</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">norm_worker</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Vector&amp; x, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">norm</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Vector&amp; x, <span class="hljs-keyword">int</span> p = <span class="hljs-number">2</span>, <span class="hljs-keyword">int</span> nthreads = <span class="hljs-number">1</span>)</span>
+</span>{
+    <span class="hljs-keyword">double</span> Results = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">future</span>&lt;<span class="hljs-keyword">double</span>&gt;&gt; <span class="hljs-title">Promises</span><span class="hljs-params">(nthreads)</span></span>; 
+    <span class="hljs-keyword">size_t</span> PartitionSize = x.num_rows()/nthreads;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> WorkerID = <span class="hljs-number">0</span>; WorkerID &lt; nthreads; ++WorkerID)
+    {
+        <span class="hljs-keyword">size_t</span> start = WorkerID*PartitionSize;
+        <span class="hljs-keyword">size_t</span> end = (WorkerID + <span class="hljs-number">1</span>)*PartitionSize;
+        end = WorkerID == nthreads - <span class="hljs-number">1</span>? x.num_rows() - <span class="hljs-number">1</span>: end;
+        Promises[WorkerID] = <span class="hljs-built_in">std</span>::async
+        (
+            <span class="hljs-built_in">std</span>::launch::async, 
+            norm_worker, 
+            <span class="hljs-built_in">std</span>::cref(x), <span class="hljs-comment">// REMEMBER TO DO THIS!</span>
+            start, 
+            end
+        );
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> WorkerID = <span class="hljs-number">0</span>; WorkerID &lt; nthreads; ++WorkerID)
+    {
+        Results += Promises[WorkerID].get();
+    }
+}
+</div></code></pre>
+<p>Remember when passing in parameters into some of the meta function like <code>async</code> we will have to pass in an reference, to notify the higher order function (what I call meta function) to pass that parameter that I gave to the sub-function as a reference, and don't, freaking... copy that parameter I gave you please.</p>
+<p>Yeah that is the story.</p>
+
+    </body>
+    </html>

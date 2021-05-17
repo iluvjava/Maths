@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Basic Syntax&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP MultiStage Compilation]]
+Here, we will keep doing that part, but we will dig a little more deeper into the usage of linux make.</p>
+<p>Linux Make Tutorial Website: <a href="https://makefiletutorial.com/">link</a>, link should work.</p>
+<hr>
+<h3 id="basic-syntax"><strong>Basic Syntax</strong></h3>
+<pre><code><code><div>CXX       := c++
+OPTS      := -g -O0
+LANG      := -std=c++11 
+PICKY     := -Wall
+
+CXXFLAGS  := $(LANG) $(OPTS) $(PICKY)
+
+target: dependency1, dependency2
+          echo &quot;Example Commands for compiling target using dependncy 1, 2&quot;
+
+dependency1: 
+          echo &quot;Compiling dependncy1&quot;
+
+dependency2: 
+          echo &quot;Compiling dependcy2, and this is the macros $(LANG)&quot;
+
+
+</div></code></code></pre>
+<p><strong>Note</strong>: 2 tabs, 2 spaces right after the line of the rule declarations.</p>
+<p><strong>Note</strong>: A make file is under the default name of: <code>MakeFile</code>, when invoking <code>make</code> command it will look for that file under the current root directory.</p>
+<p><strong>Note</strong>: Default Target:</p>
+<p>The Default targte is the targe on the top, or the targets that come after the <code>all</code> keyword.</p>
+<p><strong>Mack Macros</strong>: First is the declartions of the flags and macros, doing this allows us to change the flags for things all at once instead of changing the repeatedly for each of the commands under the rules set.</p>
+<h3 id="make-commands"><strong>Make Commands</strong></h3>
+<p>In general, use <code>man make</code> to invoke the help information for the command in the linux command windows.</p>
+<p>Here are some examples:</p>
+<p><code>make -f &lt;filename|file directory&gt;</code></p>
+<p>Make file using a specific make file.</p>
+<p><code>make -n</code></p>
+<p>Try to print all the command that is going to be executed if the <code>make</code> command is invoked on the default makefile.</p>
+<p><code>make clean</code></p>
+<p>Clean all the results for thd compilation, the next compilation will be a recompilation.</p>
+<p><code>make -k</code></p>
+<p>keep compiling if there is some kind of error from the compilation.</p>
+<p>Make a target in the <code>MakeFile</code></p>
+<p><code>make targetname</code>$?</p>
+<hr>
+<h3 id="rules-for-compiling-cpp-files"><strong>Rules for Compiling CPP Files</strong></h3>
+<p>There are several ways to do it, but here we will be using the compiler to link files together, instead of the macros.</p>
+<p>Here is an example:</p>
+<pre><code><code><div>main.exe: main.o amath583.o
+          c++ main.o amath583.o -o main.exe
+
+main.o: main.cpp amath583.hpp  # Note2
+          c++ -c main.cpp -o main.o
+
+amath583.o: amath583.cpp
+          c++ -c amath583.cpp -o amath583.o
+</div></code></code></pre>
+<p><code>.exe</code> &lt;-- Object files &lt;-- <code>.cpp</code>, <code>.hpp</code></p>
+<p><strong>Note</strong>: <code>.hpp</code> files are not explicitly specified when compiling, it doesn't appear in the command for compilation, but the dependency is specified whenever a <code>.cpp</code> is using entities declared in the <code>.hpp</code> file, follows after the target. OR, you can just incude the <code>.hpp</code> file in the <code>.cpp</code> file.</p>
+<p><strong>Note2</strong>: .hpp is not use in the command, but it's needed for the .cpp file that uses declared eneities in the corresponding .hpp file.</p>
+<hr>
+<h3 id="make-file-macros"><strong>Make File Macros</strong></h3>
+<p>Macros is a variable. So that, we can change it once in the place where it's declared, then it will be changed everywhere else where it's used.</p>
+<pre><code><code><div>CXX          := c++
+CXXFLAGS     := -Wall -g -std=c++11
+
+main.exe: main.o amath583.o
+          $(CXX) $(CXXFLAGS)main.o amath583.o -o main.exe
+
+main.o: main.cpp amath583.hpp  # Note2
+          $(CXX) $(CXXFLAGS)-c main.cpp -o main.o
+
+amath583.o: amath583.cpp
+          $(CXX) $(CXXFLAGS)-c amath583.cpp -o amath583.o
+</div></code></code></pre>
+<p>Above is an example of declaring macros and using macros for compilations commands.</p>
+<hr>
+<h3 id="advanced-rules-and-patterning"><strong>Advanced Rules And Patterning</strong></h3>
+<p>There are more advance way of making <code>makefile</code> that reduce the repeatition for declaring the same set of patterns of rules for making files that has the same type of dependency.</p>
+<p><code>$&lt;</code>: Represents the file that is the dependency.</p>
+<p><code>&amp;@</code>: Represents the file that is the target.</p>
+<p>This is a generic patterns that compiles <code>.o</code> files using <code>.hpp</code>, <code>.cpp</code> files, this is the format:</p>
+<pre><code><code><div>%.o : %.cpp
+        $(CXX) -c $(CXXFLAGS) $&lt; -o $@
+</div></code></code></pre>
+<p>Compile <code>.o</code> file  o, which a generic given set of command, and the required dependency, which is the <code>.cpp</code> file.</p>
+<p>Decalre this once, then this will be applied for all the dependencies and rules involving <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi><mi>o</mi></mrow><annotation encoding="application/x-tex">.o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">.</span><span class="mord mathdefault">o</span></span></span></span> as target and <code>.cpp</code> as dependencies.</p>
+<p>Therefore, using this feature, we will be able to simplify the compilation makefile into:</p>
+<pre><code class="language-makefile"><div>CXX             := c++
+CXXFLAGS        := -Wall -g -std=c++11
+
+%.o : %.cpp
+<span class="hljs-section">main.exe: main.o amath583.o</span>
+<span class="hljs-section">main.o: main.cpp amath583.hpp  # Note2</span>
+<span class="hljs-section">amath583.o: amath583.cpp</span>
+</div></code></pre>
+<p>Here is some nice resources about <code>makefile</code> pattern-rules too.</p>
+<p><a href="https://swcarpentry.github.io/make-novice/05-patterns/index.html">Makefile Rules-Patterns</a></p>
+
+    </body>
+    </html>

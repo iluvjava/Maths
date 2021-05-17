@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP Basics 1]]
+Here we will talk about some more details about the main function in the cpp programming language.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>The main function in the <code>.cpp</code> source file can accept and return arguments. And it's linked with its usage on the linux command line.</p>
+<p>The shell programming follows the following paradigms when doing executions:</p>
+<p><strong>REPL</strong>: Read, Execute, Print, Loop</p>
+<hr>
+<h3 id="returned-arguments-inside-main"><strong>Returned Arguments inside Main</strong></h3>
+<p>The return argument can be accessed by involking the executable like:</p>
+<p><code>./hello.exe</code></p>
+<p>And then to see the returned value, use:</p>
+<p><code>$?</code></p>
+<p>This will print the returned value, and if the returned value is <code>-1</code> then the actual value will be <code>127</code>, hence, the return type is view as a byte.</p>
+<p>In general, the symbol <code>$?</code> can be used to get the output of any command when exeucting commands in the shell.</p>
+<h3 id="taking-in-arguments-in-main"><strong>Taking In Arguments in Main</strong></h3>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+# This  file read the parameters passed in the shell <span class="hljs-keyword">and</span> repeat each blocks of <span class="hljs-built_in">string</span> on <span class="hljs-keyword">for</span> each line on the shell. 
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i &lt; argc; ++i) {
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;argv[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;]: &quot;</span> &lt;&lt; argv[i] &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>And this is how to take argument.</p>
+<p><code>argc</code>: This is the number of argument passed in via the shell.</p>
+<p><code>char* argv[]</code> is a pointer to the first character in the string that is followed by the command.</p>
+<p><strong>Note</strong>: Char pointer can be used interchangably with the <code>std::string</code> pointer.</p>
+<h3 id="parsing-inputs-from-the-command-line"><strong>Parsing Inputs from the Command Line</strong></h3>
+<p>One of the useful tools in the library is the <code>getopt</code>function in the <code>std</code>, or, you can use <a href="https://github.com/docopt/docopt.cpp">this one</a>. For parsing command line input and interfacing with the command line.</p>
+
+    </body>
+    </html>

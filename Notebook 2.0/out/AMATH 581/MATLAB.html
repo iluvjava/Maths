@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MATLAB Quick Reference</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="matlab-quick-reference">MATLAB Quick Reference</h2>
+<hr>
+<p>AMATH 581 Linked:
+<a href="https://www.mathworks.com/moler/exm.html">Experiements with MATLAB</a>
+<a href="https://www.mathworks.com/moler/chapters.html">Numerical Computing with MATLAB</a></p>
+<hr>
+<p><strong>For the Following section, type keyword into google to learn more, here is a quick cheat sheet for reference</strong></p>
+<p>Here is a list of help commands can in matlab:</p>
+<ul>
+<li><code>help</code>, <code>lookfor</code>, <code>doc</code></li>
+</ul>
+<hr>
+<h2 id="io-workspace">IO, Workspace</h2>
+<ul>
+<li>clear stuff: <code>clc; clear all; close all</code></li>
+<li>save: <code>save</code>, <code>saveas</code></li>
+<li><a href="https://www.mathworks.com/help/matlab/matlab_env/save-load-and-delete-workspace-variables.html#mw_093429e0-f588-4d9b-8eae-00bddea902a4">save stuff</a></li>
+<li>change command window view: <code>format</code></li>
+</ul>
+<hr>
+<h2 id="ploting">Ploting</h2>
+<ul>
+<li>Styles:
+<ul>
+<li><code>axis</code></li>
+<li><code>box</code></li>
+<li><code>yticks</code>, <code>xticks</code></li>
+<li><code>ylim</code>, <code>xlim</code></li>
+</ul>
+</li>
+<li>Labeling:
+<ul>
+<li><code>ylabel</code></li>
+<li><code>xlabel</code></li>
+<li><code>legend</code></li>
+<li><code>title</code></li>
+</ul>
+</li>
+<li>Meta:
+<ul>
+<li><code>figure</code></li>
+<li><code>clf</code></li>
+<li><code>hold</code>: overlay plots</li>
+</ul>
+</li>
+<li>Plotting:
+<ul>
+<li><code>plot</code></li>
+<li><code>plot3</code></li>
+<li><code>surf</code>
+<ul>
+<li><code>meshgrid</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="data-types">Data Types</h2>
+<ul>
+<li><code>num2str</code>, ['a', num2str(num)]</li>
+<li><code>+</code> for direct string concat</li>
+<li><code>(,,)</code>: Indexer for matrix, multiple inputs supported,
+<ul>
+<li><code>(, :)</code>: select the whole row in a matrix</li>
+</ul>
+</li>
+<li><code>?:?:?</code>: from, increment, the same as <code>linspace</code></li>
+<li><code>{}</code> indexer for cells</li>
+</ul>
+<hr>
+<h2 id="operators">Operators</h2>
+<ul>
+<li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code></li>
+<li><code>.</code> precedes with the above operators to degenerate then to an elementwise operator</li>
+<li><code>\</code> matrix solve</li>
+<li><code>'</code> complex conjugate transpose</li>
+<li><code>~</code> negation, different from other programming languages.</li>
+<li><code>|</code>, <code>&amp;</code> OR, AND logical operator</li>
+</ul>
+<hr>
+<h2 id="func">Func</h2>
+<ul>
+<li>
+<p>Below is in-script/seperated fxn declarations</p>
+<pre><code><code><div>funciton output = FxnName(arg1, arg2)
+	output = % codes that gets outputs
+end
+</div></code></code></pre>
+</li>
+<li>
+<p>Default param: SUPPORTED</p>
+</li>
+<li>
+<p>Multiple outputs:</p>
+<ul>
+<li>Change <code>output</code> to <code>[output1, output2]</code> in above example</li>
+</ul>
+</li>
+<li>
+<p>Multiple inputs:</p>
+<ul>
+<li><code>nargin</code></li>
+<li><code>nargout</code>: auto detect output on the output client side</li>
+<li><code>varargin</code>: any length of inputs, input is type: cell</li>
+<li><code>varargout</code>: cell type for output arbitrary length of outputs</li>
+</ul>
+</li>
+<li>
+<p>inline func: <code>f = @(x) x.^2</code></p>
+</li>
+<li>
+<p><code>@</code> function handle, tell the program that this is a function passed as a variable to another function.</p>
+</li>
+</ul>
+<hr>
+<h2 id="routinescontrol-flow">Routines/Control Flow</h2>
+<ul>
+<li>For</li>
+</ul>
+<pre><code><code><div>for v = 1.0:-0.2:0.0
+   disp(v)
+end
+
+for k = [1, 2, 3, 5, 6]
+	disp(k)
+end
+</div></code></code></pre>
+<ul>
+<li>While</li>
+</ul>
+<pre><code><code><div>limit = 0.8;
+s = 0;
+
+while 1
+    tmp = rand;
+    if tmp &gt; limit
+        break
+    end
+    s = s + tmp;
+end
+</div></code></code></pre>
+<hr>
+<h2 id="basic-maths">Basic Maths</h2>
+<ul>
+<li><code>sum</code>, <code>sqrt</code>, <code>abs</code>, <code>norm</code>, <code>diff</code>, <code>sin</code>, <code>cos</code>, <code>exp</code>, <code>log</code></li>
+</ul>
+<hr>
+<h2 id="matrix-generation">Matrix Generation</h2>
+<ul>
+<li><code>zeros</code></li>
+<li><code>ones</code></li>
+<li><code>rand</code></li>
+</ul>
+<h2 id="odes">ODEs</h2>
+<ul>
+<li><code>ode23</code>: Heun's/ RK2 iteration scheme.</li>
+<li><code>ode45</code>: Runge Kutta scheme.</li>
+<li><code>ode113</code>: Multi-Step method, predictor corrector order, from first order to 11th order in terms of accuracy.</li>
+<li><code>ode15s</code>: It's for stiff problems.</li>
+</ul>
+<blockquote>
+<p>Adaptive time steps, when something challenging is happening i n time stepping, it will shorten its time step to get a better predictions for the function.
+Options of ODE and synatx:</p>
+</blockquote>
+<pre><code class="language-matlab"><div>[t, y] = ode45(@rhs, tspan, yinit, options)  <span class="hljs-comment">% rhs(t, y)</span>
+</div></code></pre>
+<ul>
+<li><code>t = [t_0, t_1... ]</code> The time steps while solving the equations.</li>
+<li><code>y = [y_1, y_2]</code>, stored as collumn vector for the matrix.</li>
+<li>Options:
+<ul>
+<li><code>tspan = [t_0, t_end]</code>, Matlab will try satisfy the order of accuracy for this time interval, and it will up all values in here.</li>
+<li><code>tspan= [t_0:dt:t_end]</code>, Or, you can specify the output for particular points, and matlab will tells you after the adaptive time stepping scheme.</li>
+<li><code>yinit</code>: The initial value of the initial conditions, and this will be y value as:
+<ul>
+<li><code>y = [;;;;;.... ]</code></li>
+<li>If the dimension agrees, then this will be set to the initial condition for the problem to start with the time stepping.</li>
+</ul>
+</li>
+<li><code>@(t, y) rhs(t, y, alpha)</code>
+<ul>
+<li>Package the parameters as an inline function.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </body>
+    </html>

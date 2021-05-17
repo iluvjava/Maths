@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP Basics 1]], [[CPP Classes Basics 2]]</p>
+<p>Let's go through an example class we made to demonstrate some of the ideas about <code>c++</code> and writing code in <code>c++</code>.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>This the vector header class we defined:</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// Constructor, no default constructor. </span>
+    Vector(<span class="hljs-keyword">size_t</span> M) : num_rows_(M), storage_(num_rows_) {}
+
+    <span class="hljs-comment">// operator() that support assignment and const access of data. </span>
+          <span class="hljs-function"><span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span>       </span>{ <span class="hljs-keyword">return</span> storage_[i]; }
+    <span class="hljs-comment">// For the add operator. </span>
+    <span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> storage_[i]; }
+
+    <span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">num_rows</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> num_rows_; }
+
+    <span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">size_t</span> num_rows_;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+};
+</div></code></pre>
+<p>Here aer some of it's features:</p>
+<ol>
+<li>Private, public encapsulation for abstraction.</li>
+<li>Const keywords.</li>
+<li>Usage of operator functions.</li>
+</ol>
+<p><strong>The Primodial of the Constructor</strong></p>
+<ol>
+<li>Instantiate field <code>num_rows_</code> with input parameters <code>M</code> using the constructor provided by <code>size_t</code>.</li>
+<li>Instantiate <code>std::veector&lt;double&gt;</code>, which has the size of <code>num_rows_</code>.</li>
+</ol>
+<hr>
+<h3 id="client-code-and-interactions"><strong>Client Code and Interactions</strong></h3>
+<p>Let's take a look at some of the client code that we can use to interact with the class we defined above.</p>
+<pre><code class="language-cpp"><div><span class="hljs-function">Vector <span class="hljs-title">x</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;
+<span class="hljs-keyword">double</span> y = x(<span class="hljs-number">3</span>);
+x(<span class="hljs-number">4</span>) = <span class="hljs-number">2.0</span>;
+</div></code></pre>
+<p>We are able to access element in the vector using offset index, and then assign values to the element as well, both are accomplished by different overload options of the <code>operator()</code>, the function call operator of the instance.</p>
+<p>method without Const Ref is able to be set as an <code>Lvalue</code>, and method that uses the Const Ref both in body and return type, is able to be <code>rvalue</code> of an expression.</p>
+<p><strong>Question</strong>:</p>
+<p>What if we only have the implementation of the operator <code>()</code> such that it can only returns the <strong>value</strong> to the double that is in the class field?</p>
+<p><strong>Answer</strong>:
+A value can only be a <code>rvalue</code>, hence it cannot be a <code>lvalue</code>, which means that</p>
+<pre><code class="language-cpp"><div><span class="hljs-function">Vector <span class="hljs-title">x</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;
+x(<span class="hljs-number">0</span>) = <span class="hljs-number">3</span>;
+</div></code></pre>
+<p>is invalid because <code>()</code> operator returned is used as a <code>lvalue</code>, the <code>()</code> operator cannot be an assignment operator.</p>
+<p>On the other hand, if the <code>()</code> returns a reference, then it can be a <code>lvalue</code> and <code>rvalue</code>. When it's used as a <code>rvalue</code>, depending the declaration, it will be dereferenced. <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<hr>
+<h3 id="customizing-the-operator-plus"><strong>Customizing the Operator Plus</strong></h3>
+<p>Let's consider the following implementation of the plus operator defined near the scope of the client code:</p>
+<pre><code class="language-cpp"><div>Vector <span class="hljs-keyword">operator</span>+(<span class="hljs-keyword">const</span> Vector&amp; x, <span class="hljs-keyword">const</span> Vector&amp; y) {
+  <span class="hljs-function">Vector <span class="hljs-title">z</span><span class="hljs-params">(x.num_rows())</span></span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i &lt; z.num_rows(); ++i) {
+    z(i) = x(i) + y(i);
+  }
+  <span class="hljs-keyword">return</span> z;
+}
+</div></code></pre>
+<p>Function takes in Const Ref of both vectors and return a new vector, a copy of it.</p>
+<p>However, this action will require that:</p>
+<blockquote>
+<p>The operator <code>()</code> for the class cannot modify the instance, <code>x, y</code>. This is the case because <code>x,y</code> are const references.</p>
+</blockquote>
+<p>To overcome this, it's required that the operator <code>()</code> implements with the following headers:</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span>&amp; <span class="hljs-title">opertor</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span>)</span> <span class="hljs-keyword">const</span> </span>{}
+</div></code></pre>
+<p><strong>Take note</strong> that this function can take objects that is const ref, and it will return the double value that is indexed via this <code>()</code> operator.</p>
+<p><strong>Take Note</strong> This function that has <code>const</code> before the definition body is able to get overload with the none <code>const</code> version.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>not sure how correct this is please investigate in the future. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </body>
+    </html>

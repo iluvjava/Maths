@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Let's talk about namespaces in c++</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>The namespace where a variable is in always prepends the variable.</p>
+<p>Let's take a look</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;isotream&gt; // compiles this first</span></span>
+
+<span class="hljs-keyword">namespace</span> amath583{
+    <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>;
+}
+
+<span class="hljs-keyword">using</span> amath583::pi; <span class="hljs-comment">// bring in the variable in namespace, new ref: pi</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;The registered value of pi is:&quot;</span>;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; pi &lt;&lt; <span class="hljs-built_in">std</span>::end;
+}
+</div></code></pre>
+<p>Let's take a loop at another example where we were able to access the variable in a particular namespace.</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">namespace</span> amath483 {
+    <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14159</span>;
+};
+
+<span class="hljs-keyword">namespace</span> amath583 {
+    <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>;
+}
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> amath583;  <span class="hljs-comment">// pi ref to pi in amath 583, to access amath 483 it&#x27;s amath483::pi instead. </span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;The registered value of pi is:&quot;</span>;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; pi &lt;&lt; <span class="hljs-built_in">std</span>::end;
+}
+</div></code></pre>
+<p>What happen if have ambiguity when using the namespaces? (Spoiler: Compilation Error)</p>
+<pre><code class="language-cpp"><div>
+<span class="hljs-keyword">namespace</span> amath483 {<span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.1415</span>;}
+
+<span class="hljs-keyword">namespace</span> amath583 {<span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>;}
+
+<span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.1415926</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> amath483; 
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> amath <span class="hljs-number">583</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;The value of pi is: &quot;</span>; 
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; pi &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
+}
+</div></code></pre>
+<p>ERROR from the compiler because it's ambiguous, there overlapping variable.</p>
+<p>Now, finally, to refer to the global namespace, just use: <code>::</code> access the variable under the global namespace.</p>
+
+    </body>
+    </html>

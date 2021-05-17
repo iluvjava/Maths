@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>This is a theoretical upper bounds for the GFlops/s on a given CPU.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>There are 2 limiting factors for the performance of a CPU. And it depends on the algorithm intensity.</p>
+<p>Algorithm Numerical Intensity is measure as &quot;Flops/Bytes&quot;.</p>
+<p>It's the ratio between computations and the amount of data needed to carry out the computations.</p>
+<p>2 Limiting Factor:</p>
+<ol>
+<li>The limit of GFlops/s on the CPU. Depends on instructions per cycles, and the instruction set on the data.</li>
+<li>The storage medium of the data, is it in L1, L2, L3, or Memory, or Hardrive?</li>
+</ol>
+<p>The formula is given by:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Performance</mtext><mo>=</mo><mi>min</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mtext>CPU Peak</mtext><mo separator="true">,</mo><mrow><mtext>Bandwidth </mtext><mstyle mathcolor="#cc0000"><mtext>\times</mtext></mstyle><mtext>Numerical Intensity</mtext></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{Performance} = \min \left(
+    \text{CPU Peak}, 
+    \text{Bandwidth \times Numerical Intensity}
+\right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Performance</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord text"><span class="mord">CPU Peak</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">Bandwidth </span><span class="mord text" style="color:#cc0000;"><span class="mord" style="color:#cc0000;">\times</span></span><span class="mord">Numerical Intensity</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
+<p>So, increasing the numerical intensity will speed up the algorithm because of the memory bandwidth will increase as compiler optimization becomes available and all the data are stored in the CPU cache.</p>
+<p>The other way out of it is to just, decrease the numerical intensity by increasing the memory locality of the algorithm, at a low level.</p>
+<p><strong>Usually, the numerical intensity of the algorithm cannot be changed easily.</strong></p>
+<p><strong>The dark Magic</strong>:</p>
+<ul>
+<li>
+<p>Better memory locality at an algorithmic level.</p>
+</li>
+<li>
+<p>Use Compiler optimization.</p>
+</li>
+<li>
+<p>Use SIMDs from C++ intrinsic if compiler is too stupid to optimize the speed for it.</p>
+</li>
+<li>
+<p>Bruh please don't buffer things in the memory when dealing with numerical intense part of the algorithm.</p>
+</li>
+</ul>
+
+    </body>
+    </html>

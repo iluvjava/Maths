@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Ramblings from the prof regarding C++</p>
+<ol>
+<li>Functions</li>
+<li>Compilations of multiple files.</li>
+</ol>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>He rambles a lot, I will record it.</p>
+<h3 id="ramblings"><strong>Ramblings</strong></h3>
+<p>Please make the namespace for variables explicit, that is better.</p>
+<p>Code is for human, not for the computer, please always express the intents in your code when programming.</p>
+<h4 id="organizing-your-programs"><strong>Organizing your Programs</strong></h4>
+<p>Boeing got plane crashes when the code is not well organized.</p>
+<ul>
+<li>
+<p>Thinks about group of things as one thing, keep things modular (Abstraction!).</p>
+<ul>
+<li>If we do engineering things to software, we should be able to manage software and solve the software crisis.</li>
+<li>That is the idea of creating software components.</li>
+</ul>
+</li>
+<li>
+<p>Here are 2 types of major abstractions:</p>
+<ul>
+<li>Procedures</li>
+<li>Data Types</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="procedural-abstraction"><strong>Procedural Abstraction</strong></h3>
+<p>Let's take the example of a function that looks for the square root of a number using the newton's iterations, and it will look like this:</p>
+<ul>
+<li><code>auto</code>: This will associated type information automatically at the compiler level. We can use this.</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">sqrt583</span><span class="hljs-params">(<span class="hljs-keyword">double</span> y)</span></span>{
+    <span class="hljs-keyword">double</span> x = <span class="hljs-number">1.0</span>; 
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; ++i)
+    {
+        <span class="hljs-keyword">double</span> dx = - (x*x - y)/(<span class="hljs-number">2.0</span>*x); 
+        x -= dx;  
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(x) &lt; <span class="hljs-number">1.e-9</span>) <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span> x; 
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-built_in">std</span>::out &lt;&lt; sqrt582(<span class="hljs-number">2</span>) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; 
+    <span class="hljs-built_in">std</span>::out &lt;&lt; sqrt582(<span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>; 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p><strong>Note</strong>: The type  <code>int</code>, <code>long</code> are different depending which computer it's in. However, the type  <code>size_t</code> is the maximal counter in the given computer system, it can count to as big as possible, and the limit depends on the system we are working on.</p>
+<p><strong>Note</strong>: The curly braces will define the code block and the scope of the variables.</p>
+<hr>
+<h3 id="references-in-c-function-parameters"><strong>References in C++ Function Parameters</strong></h3>
+<p>consider function header <code>f(double&amp; x)</code>. Telling compiler that under function scope <code>x</code> will be a reference to a value (<strong>Alias of another variable</strong>). When taking the reference of something, that new reference IS literally that thing that it's referring to.</p>
+<p>Note: This efficient in a sense that it's not copying the values referred by the variable when passing it into a function.</p>
+<p><strong>Question</strong>: What if I invoke with <code>f(2.0)</code> &lt;-- Like, this is not a variable, this is a literal.</p>
+<p><strong>Answer</strong>: It doesn't make sense to change a literal define at the compile time, this is not viable. A compiler error will be given: &quot;Expect lvalue&quot;.</p>
+<p><strong>Question</strong>: Can we pass literal as a reference to the function? If so, how?</p>
+<p><strong>Answer</strong>: Use <code>const double&amp; x</code> in the header of the function. Now this is amazing, because it means that expression that is <code>rvalue</code> is possible to be passed in, for example, the expression <code>a + b</code> is possible to pass in for a function with the header: <code>f(const double&amp; x)</code>.</p>
+<p><strong>Wisdom:</strong> Pass by values if the input is small, else pass by reference.</p>
+<p><strong>lvalue</strong>: Some that can be on the left hand side of an assignment operator.
+<strong>rvalue</strong>: something that appears on the RHS of a assignment operator. (Compound expression, or a literal, a constant)</p>
+<hr>
+<h3 id="compile-and-function-usage"><strong>Compile and Function Usage</strong></h3>
+<p>We want to use the function (say <code>sqrtamath583</code>), and we want to use it somewhere else in some other programs, how do we do that?</p>
+<p>To call any function under the program, it has to be declared/define before that place where it's call.</p>
+<p>Consider the following codes:</p>
+<p>File: &quot;main.cpp&quot;</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">sqrtamath583</span><span class="hljs-params">(<span class="hljs-keyword">double</span>)</span></span>; <span class="hljs-comment">// Function declaration </span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt; sqrtamath(<span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-built_in">std</span>:<span class="hljs-built_in">endl</span>; 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>File: &quot;sqrtamath583.cpp&quot;</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">sqrt583</span><span class="hljs-params">(<span class="hljs-keyword">double</span> y)</span></span>{
+    <span class="hljs-keyword">double</span> x = <span class="hljs-number">1.0</span>; 
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; ++i)
+    {
+        <span class="hljs-keyword">double</span> dx = - (x*x - y)/(<span class="hljs-number">2.0</span>*x); 
+        x -= dx;  
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(x) &lt; <span class="hljs-number">1.e-9</span>) <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span> x; 
+}
+</div></code></pre>
+<p>To compile the program where &quot;main.cpp&quot; can be correctly executed, we need the command: <code>c++ main.cpp sqrtamath583.cpp</code>, where function declaration comes before the function definition. (Dependency chart in topological order)</p>
+<p>Then, the program compiles both parts of the program together. <strong>Compiler is linking the files</strong>. We just need to feed them into the compiler in the right way.</p>
+<hr>
+<h3 id="multi-stage-compilation"><strong>Multi-stage Compilation</strong></h3>
+<p>We are going to compile them separately, saves sometimes. Compile things to object files first, and then we put them together with the main function later, so we don't have to recompile the same things all the time when experimenting with things.</p>
+<p>Connect the files into a DAG, and then use dependencies rules to compile.</p>
+<p>The program that make it works is called: <code>makefile</code>.</p>
+<h3 id="some-keywords">Some Keywords:</h3>
+<p><code>Lvalue</code>:</p>
+<blockquote>
+<p>Value that can appear on the lefthand side of the assignment opeartor <code>=</code>.
+Examples of <code>Lvalue</code>:</p>
+<ol>
+<li>a variable with initialization</li>
+</ol>
+</blockquote>
+<p><code>Rvalue</code>:</p>
+<blockquote>
+<p>Value that can appear on the right hand side of the assignment operator.
+Examples:</p>
+<ol>
+<li>A literal</li>
+<li>A const ref literal</li>
+<li>A composite expression that returns value</li>
+</ol>
+</blockquote>
+<p>Question: Can <code>Lvalue</code> be <code>Rvalue</code>?</p>
+<p>Yes.</p>
+<p>Question: Can <code>Rvalue</code> be <code>Lvalue</code>?</p>
+<p>No.</p>
+
+    </body>
+    </html>

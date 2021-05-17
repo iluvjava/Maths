@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>What happens with higher dimensional data and how we can use some of the math ideas to handle these problems.
+Biomedical Images cares a lot of about these stuff.
+<a href="https://www.youtube.com/watch?v=m79oWRIDopo&amp;feature=youtu.be&amp;ab_channel=NathanKutz">Lecture Reference</a></p>
+<hr>
+<h3 id="intro">Intro</h3>
+<p>Let's take a look at some of the examples of the data that we are going to deal with:</p>
+<ol>
+<li>Ultrasound</li>
+<li>Infrared/thermal</li>
+<li>Thermography</li>
+<li>MRI</li>
+<li>Radar</li>
+<li>Computer Graphics.</li>
+</ol>
+<p>Let's take a look at some of the things we want to do with the images.</p>
+<h4 id="image-contrast-enhancement">Image Contrast Enhancement</h4>
+<ol>
+<li>Detecting Edge</li>
+<li>Built-in with a lot of photos software</li>
+<li>Image Denoising</li>
+<li>Deblurring</li>
+</ol>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>0</mn></msub><mo>=</mo><mi>u</mi><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">u_0 = u + n
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span></span></p>
+<p>Where the first part is the perfect image: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span>, and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> is some kind of <strong>Gaussian Noise</strong>.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>0</mn></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>c</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u_0 = (1 - s(x))u(x) + s(x)c(x)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></span></p>
+<p><strong>Salt Pepper Noise</strong>. When <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> is present, then the color is going to be a black, or white pixels. (Sparse occuring white and black pixels)</p>
+<p><strong>Deblurring</strong>: Causes by camera shake, out of focus.</p>
+<ol>
+<li>Just apply the average filter across each image of the pixels.</li>
+</ol>
+<p><strong>Segmentation, Edge Detection</strong>
+Having an outline that is clear. All we need is the edge information.</p>
+<hr>
+<h3 id="five-key-mathematical-methods">Five Key Mathematical Methods</h3>
+<ol>
+<li>
+<p>Morphological Approach</p>
+<ul>
+<li>2D objects are sets or domains of the 2D plane.</li>
+<li>Edge detection, sets and domain as the minimal representations of the problem.</li>
+</ul>
+</li>
+<li>
+<p>Fourier Analysis</p>
+<ul>
+<li>Frequency Content (Clustering and high energy content), throwing out the unimportant parts and get the sparse Fourier Representations of the image.</li>
+<li>Jpeg compression (8 x 8 DCT quantization, and zigzag huffman coding)</li>
+</ul>
+</li>
+<li>
+<p>Wavelets</p>
+<ul>
+<li>Wavelet, square wave creates board frequencies contents.** The edges in the images are like step function**, which they are going to create a board frequencies contents after the FFT.</li>
+<li>Signal projections onto a <strong>Wavelet Basis</strong></li>
+<li>With <strong>Wavelet Basis</strong>, we will be able to use much much less frequencies coefficients to represents the image.</li>
+</ul>
+</li>
+<li>
+<p>Denoising --&gt; Diffusion</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>t</mi></msub><mo>=</mo><msub><mi>u</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">u_t = u_{xx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, treat the image like a heat distributions.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="matlab-demo-code">MATLAB Demo Code</h3>
+<p>Reading images as tensors, and then transforming it to gray scale and then put it through FFT.</p>
+<pre><code class="language-matlab"><div>A = imread(<span class="hljs-string">&#x27;photo&#x27;</span>, <span class="hljs-string">&#x27;tiff&#x27;</span>)   	<span class="hljs-comment">% Read image as a 3 depth tensor, uint8 types</span>
+image(A)        			  	<span class="hljs-comment">% Plot the image</span>
+<span class="hljs-built_in">size</span>(A)  					  	<span class="hljs-comment">% 600, 800</span>
+noise = <span class="hljs-built_in">randn</span>(<span class="hljs-number">600</span>, <span class="hljs-number">800</span>, <span class="hljs-number">3</span>); 
+An    = double(A) + noise;		<span class="hljs-comment">% With noise</span>
+A2    = uint8(An);
+subplot(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>), image(A2)       <span class="hljs-comment">% Plotting noisy image</span>
+Abw = rgb2gray(A)               <span class="hljs-comment">% to gray scale with a very specific weighted average </span>
+subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>), imageshow(Abw)
+<span class="hljs-built_in">size</span>(Ab2)                       <span class="hljs-comment">% 600 x 800 </span>
+
+<span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>); 
+B = double(Ab2);
+Bt = <span class="hljs-built_in">abs</span>(fftshift(fft2(B)))
+subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>); pcolor(B) shading interp; colormap(hot); 
+subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, ,<span class="hljs-number">2</span>), pcolor(<span class="hljs-built_in">log</span>(Bt)), shading interp, colormap(hot);
+</div></code></pre>
+<hr>
+<h3 id="extra-comments">Extra Comments</h3>
+<p>When dealing with images, keep track of the RGB, keep track of the type, is it uint8, double in range of (0, 255), or is it double normalized from the color space.</p>
+<ul>
+<li><code>imgshow</code>: double in range <code>0., 255</code>.</li>
+<li><code>pcolor</code>: bottom left cornered to be <code>(0. 0)</code> for normalized double representation of the image. Should be used with <code>shading interp</code> command.</li>
+</ul>
+
+    </body>
+    </html>

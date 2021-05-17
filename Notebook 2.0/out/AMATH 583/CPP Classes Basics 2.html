@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP Classes Basics]]
+Here we will continue looking at CPP and classes, and we are more interested in using the Matrix class as an example for this.</p>
+<p>And introducing some mathematical abstraction into the C++ code.</p>
+<p>Today's Content:</p>
+<ol>
+<li>Classes, Vectors, const, overloading.</li>
+<li>Tour of Computer architecture.</li>
+<li>Class Matrix.</li>
+<li>Matrix Matrix product.</li>
+</ol>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>Last time, we were at this interface for the vector class, in a header file.</p>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+
+    <span class="hljs-keyword">public</span>: 
+        Vector(<span class="hljs-keyword">size_t</span> M): num_rows_(M), storate(num_rows_){}; <span class="hljs-comment">// Constructor</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span></span>{<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span>&amp; <span class="hljs-keyword">operator</span>[](<span class="hljs-keyword">size_t</span> i){<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">num_rows</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{<span class="hljs-keyword">return</span> num2_rows_;} 
+
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span>              num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+
+}
+</div></code></pre>
+<p>This time we will be interested in:</p>
+<ol>
+<li>Bring a vector into being &quot;constructors&quot;.</li>
+<li>Function for getting vector data.</li>
+<li>Function for setting vector data.</li>
+</ol>
+<hr>
+<h3 id="the-idea-of-a-constructor"><strong>The idea of a Constructor</strong></h3>
+<p>The compiler don't know what a vector is, we have to start making it.</p>
+<p>Constructor, allocate know amount of space.</p>
+<p>Constructor is a contract.</p>
+<p><code>vector x;</code> evoke the <strong>default constructor</strong>, it has no argument.</p>
+<p>Constructor can take in argument.</p>
+<p>Variable should <strong>always</strong> be initialized.</p>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">public</span>:
+        Vector(<span class="hljs-keyword">size_t</span> M): num_rows_(M), storage(num_rows_){};
+        <span class="hljs-comment">// Observe how the constructor calls the constructor of the private field. </span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span></span>{<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span>&amp; <span class="hljs-keyword">operator</span>[](<span class="hljs-keyword">size_t</span> i){<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">num_rows</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{<span class="hljs-keyword">return</span> num2_rows_;} 
+
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span>              num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+}
+</div></code></pre>
+<p>The 2 initializer that comes before the function body of the constructor is called the <strong>Primordial</strong>.</p>
+<p><strong>Question: Where is the default constructor</strong>?</p>
+<p>It exists if there is no declared constructor of the type, then C++ defined it, and it will evoke the default constructor for the types in the field recursively.</p>
+<p>If there is existing constructor, that part of the contract is cancelled.</p>
+<p><code>Vector x;</code> will not be valid anymore.</p>
+<hr>
+<h3 id="const-ref"><strong>Const Ref</strong></h3>
+<p>Const Ref is like its own type.</p>
+<p>Like, whatever you pass to it, has to be at some point, trace back to a root const ref. Like, a declaration of const ref.</p>
+<p><code>lvalue</code> is never going to be a Const Ref, const ref for <code>rvalue</code> is ok.</p>
+<p><strong>Question</strong>: Where is const ref used?</p>
+<ol>
+<li>It's used for the return parameters. Whatever function that call this function that returns the <code>cost ref</code>, it must also accept <code>const ref</code> as an input argument, if <code>lvalue</code> is what is waiting for this return value, them it ahs to be a <code>const ref</code> as well.</li>
+<li>It's used for the input argument. This is use a contract that the method is not going to modify the input argument in anyways.</li>
+<li>It's used for the function boy. When this is applied before the <code>{...}</code> body of the function, this is a contract, the <code>this</code> member function is not going to modify the current instance of the class.</li>
+</ol>
+<p>To see some of the examples refer to [[CPP Vector Class]], which discusses some of the design choices that involving const ref. And how we handled it in different scenarios.</p>
+
+    </body>
+    </html>

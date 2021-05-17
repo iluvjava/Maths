@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[CPP Basics 1]]: Just for the basic of CPP to understand it.</p>
+<p>[[Tasks Async, and Concurrency in CPP]], here we introduce the idea of passing a function handle into the constructor for an async instance.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>We are going to learn about some functional features in c++!!!</p>
+<p>Object that has a <code>operator()()</code>, implemented is consider to be a function object.</p>
+<hr>
+<h3 id="function-objects"><strong>Function Objects</strong></h3>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> bank_balance = <span class="hljs-number">300</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">transaction</span> {</span>
+<span class="hljs-keyword">public</span>:
+  transaction(<span class="hljs-keyword">int</span> _sign, <span class="hljs-keyword">int</span>&amp; _balance) :
+    sign(_sign), balance(_balance) {}
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>{
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::lock_guard&lt;<span class="hljs-built_in">std</span>::mutex&gt; <span class="hljs-title">tr_lock</span><span class="hljs-params">(tr_mutex)</span></span>;
+    balance += sign*amount;
+  }
+  <span class="hljs-comment">// Overload operator() to be &quot;noisy&quot;</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; msg, <span class="hljs-keyword">int</span> amount)</span> </span>{
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::lock_guard&lt;<span class="hljs-built_in">std</span>::mutex&gt; <span class="hljs-title">tr_lock</span><span class="hljs-params">(tr_mutex)</span></span>;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; msg &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; sign*amount;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot; -- Balance: &quot;</span> &lt;&lt; balance &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    balance += sign*amount;
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">int</span> sign;
+  <span class="hljs-keyword">int</span> &amp;balance;
+  <span class="hljs-keyword">static</span> <span class="hljs-built_in">std</span>::mutex tr_mutex;     <span class="hljs-comment">// Note static!</span>
+};
+<span class="hljs-built_in">std</span>::mutex transaction::tr_mutex; <span class="hljs-comment">// construct static member</span>
+</div></code></pre>
+<p>An object <code>transection</code> has been created and it implemebted the <code>()</code> operator.</p>
+<p>The function lock the thread and performs a ctritical task in the body section of the function.</p>
+<p>And the function is also overloaded.</p>
+<p>To use the function object, the following code is used for it:</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-function">transaction <span class="hljs-title">withdraw</span><span class="hljs-params">(<span class="hljs-number">-1</span>, balance)</span></span>;
+
+  withdraw(<span class="hljs-number">100</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>Boom, this is what we refer to as the <code>callable</code>, this is an object that can also be passed into the thread or the async class as parameter, and here is the usage of it under multi-threading context:</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> bank_balance = <span class="hljs-number">300</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-function">transaction <span class="hljs-title">deposit</span> <span class="hljs-params">( <span class="hljs-number">1</span>, balance)</span></span>;  <span class="hljs-comment">// define an object named deposit</span>
+  <span class="hljs-function">transaction <span class="hljs-title">withdraw</span><span class="hljs-params">(<span class="hljs-number">-1</span>, balance)</span></span>;  <span class="hljs-comment">// define an object named withdraw</span>
+
+  <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Starting balance is &quot;</span> &lt;&lt; bank_balance &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+  <span class="hljs-function">thread <span class="hljs-title">bonnie</span><span class="hljs-params">(withdraw, <span class="hljs-string">&quot;Bonnie&quot;</span>, <span class="hljs-number">100</span>)</span></span>; <span class="hljs-comment">// Pass in the callable object </span>
+  <span class="hljs-function">thread <span class="hljs-title">clyde</span><span class="hljs-params">(deposit, <span class="hljs-string">&quot;Clyde&quot;</span>, <span class="hljs-number">100</span>)</span></span>;  <span class="hljs-comment">// Pass in the callable object </span>
+
+  bonnie.join();
+  clyde.join();
+
+  <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Final bank balance is &quot;</span> &lt;&lt; bank_balance &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h3 id="lambda"><strong>Lambda</strong></h3>
+<p>Let's take a look at a basic lamabda function and the format:</p>
+<pre><code class="language-cpp"><div>[ captures ] ( params ) trailing-<span class="hljs-keyword">return</span>-type { body }
+</div></code></pre>
+<p>Boom, nice easy, and the capture types is capturing a variable that you wish to use that is outside of the scope of the lambda function. And the parameter are the real parameter we want to pass in.</p>
+<p>In this case, the passed parameter is not shared between different lambdas, but the captured parameters will be shared between different lambdas expression.</p>
+<p>And, if we were to use the lambda expression for an async implementations of the matrix vector product, then the code will look like this:</p>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">matvec</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Matrix&amp; A, <span class="hljs-keyword">const</span> Vector&amp; x, Vector&amp; y)</span> </span>{
+  <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">future</span> &lt;<span class="hljs-keyword">double</span>&gt; &gt; <span class="hljs-title">futs</span><span class="hljs-params">(A.numRows())</span></span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; A.numRows(); ++i) 
+  {
+    futs[i] = <span class="hljs-built_in">std</span>::async(
+    [&amp;A, &amp;x, i]() -&gt; <span class="hljs-keyword">double</span>  <span class="hljs-comment">// capture ref of A, x and value of i. </span>
+    {
+      <span class="hljs-keyword">double</span> sum = <span class="hljs-number">0.0</span>;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> j = <span class="hljs-number">0</span>; j &lt; A.numCols(); ++j) 
+      {
+        sum += A(i, j) * x(j);
+      }
+      <span class="hljs-keyword">return</span> sum;
+    });
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; A.numRows(); ++i) 
+  {
+    y(i) += futs[i].get();
+  }
+}
+</div></code></pre>
+
+    </body>
+    </html>

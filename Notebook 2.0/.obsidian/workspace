@@ -9,21 +9,45 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 503/Legendre Polynomials.md",
+            "file": "AMATH 503/Legendre Equation.md",
             "mode": "source"
           }
         },
         "group": "278d7aeadef02909"
       },
       {
-        "id": "e31d52974bd12613",
+        "id": "7b166e87612c490f",
         "type": "leaf",
         "pinned": true,
         "state": {
-          "type": "markdown",
+          "type": "localgraph",
           "state": {
-            "file": "AMATH 503/Legendre Polynomials.md",
-            "mode": "preview"
+            "file": "AMATH 503/Legendre Equation.md",
+            "options": {
+              "collapse-filter": true,
+              "search": "",
+              "localJumps": 1,
+              "localBacklinks": true,
+              "localForelinks": true,
+              "localInterlinks": false,
+              "showTags": false,
+              "showAttachments": false,
+              "hideUnresolved": false,
+              "collapse-color-groups": true,
+              "colorGroups": [],
+              "collapse-display": true,
+              "showArrow": false,
+              "textFadeMultiplier": 0,
+              "nodeSizeMultiplier": 1,
+              "lineSizeMultiplier": 1,
+              "collapse-forces": true,
+              "centerStrength": 0.518713248970312,
+              "repelStrength": 10,
+              "linkStrength": 1,
+              "linkDistance": 250,
+              "scale": 1,
+              "close": false
+            }
           },
           "pinned": true
         },
@@ -67,7 +91,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 372
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -83,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 503/Legendre Polynomials.md",
+                "file": "AMATH 503/Legendre Equation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,6 +127,11 @@
   },
   "active": "6dcc85917de52a39",
   "lastOpenFiles": [
+    "AMATH 503/Legendre Equation.md",
+    "AMATH 503/Fourier Transform (PDE Flavor).md",
+    "AMATH 515/Gradient Descend/Gradient Descend 3.md",
+    "AMATH 503/Frobenius Method.md",
+    "AMATH 503/Legendre Polynomials.md",
     "AMATH 503/Legndre Polynomials.md",
     "Helmholtz Equation in a Sphere.md",
     "AMATH 503/Untitled.md"

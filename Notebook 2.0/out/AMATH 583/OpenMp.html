@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>This is a tool that added parallelism features for codes in the pre-processing unit of a programming language.
+[[Tasks Async, and Concurrency in CPP]]</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>Some of the parallelization feature at a programming level is added to the compiler, and it can be achieved via meta-programming, and in this case, we will be using the Open_MP and c++ pre-processing to achieve it.</p>
+<p>Here is a an high level overview of the Open_MP APIs:</p>
+<ul>
+<li>Compiler Directives: no code change</li>
+<li>Runtime Library Routines: Some code change</li>
+<li>Environmental Variables: no code change</li>
+</ul>
+<p>And, this OPEN model is very limited, it wont just figure out the best computations if you give is a DAG computation graphs.</p>
+<p>It uses a Fork and Join approach for parallelism. So it's there, and it works, somewhat efficiently.</p>
+<p>![[OpenMP-execution-model.png]]</p>
+<p>For quick reference on the OpenMP APIs, refers to <a href="https://openmp.org/wp-content/uploads/OpenMP-4.5-1115-CPP-web.pdf">here</a></p>
+<p>The manual contains most of the thing one will need for use OPENMP.</p>
+<hr>
+<h3 id="example-usage"><strong>Example Usage</strong></h3>
+<p>So here, we will be showing some of the example of using some of the pre-processing features from the Open-MP:</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> Integral = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> = <span class="hljs-number">0</span>; <span class="hljs-keyword">size_t</span> &lt; intervals; ++i)
+{
+    Integral += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + i*i*h*h);
+}
+</div></code></pre>
+<p>And this a simple for loop that compute the value of pi. or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>.</p>
+<p>To parallelise this whole for-loop onto different thread, we can do:</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> Integral = <span class="hljs-number">0</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> omp parallel</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> = <span class="hljs-number">0</span>; <span class="hljs-keyword">size_t</span> &lt; intervals; ++i)
+{
+    Integral += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + i*i*h*h);
+}
+</div></code></pre>
+<p>Then this whole loop will be <strong>partitioned and executed by different threads</strong>, and all the results will be added together to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>g</mi><mi>r</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Integral</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span>, in this case, it should produce <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>, but in reality, <strong>a race conditions is created on the summation</strong>, hence, all results turns into gibberish. BUT, they will all be multiple of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mi mathvariant="normal">/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\pi/n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord">/</span><span class="mord mathdefault">n</span></span></span></span>, because each thread <strong>will work on a partition of the for loop</strong>.</p>
+<p>Let's take a look at another way of parallizing the individual operations, where each operations inside of the forloop is parallelized:</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> Integral = <span class="hljs-number">0</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> omp parallel for</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> = <span class="hljs-number">0</span>; <span class="hljs-keyword">size_t</span> &lt; intervals; ++i)
+{
+    Integral += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + i*i*h*h);
+}
+</div></code></pre>
+<p>By adding a <code>for</code>, we have divided each the whole thing into <strong>each individual operations inside of the forloop</strong>.</p>
+<p>And in this case, we will get pretty arbitrary results where it <strong>depends on the size of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\Delta x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault">x</span></span></span></span></strong>, case we are now summing up each individual <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\Delta x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault">x</span></span></span></span>, and <strong>there is still an Race Condition on the accumulator</strong>.</p>
+<p>To avoid this, we need to specifically tells the OpenMP to reduce onto that accumulator, in this way:</p>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">double</span> Integral = <span class="hljs-number">0</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> omp parallel reduction(+:Integral)</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> = <span class="hljs-number">0</span>; <span class="hljs-keyword">size_t</span> &lt; intervals; ++i)
+{
+    Integral += (h*<span class="hljs-number">4.0</span>)/(<span class="hljs-number">1.0</span> + i*i*h*h);
+}
+</div></code></pre>
+<p>And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable synchronously.</p>
+<p><strong>Note</strong>: For the reduction technique, the operator is important. <code>(+:)</code> stands for adding to that variable, and <code>-:</code> will stands for subtracting fron the variable.</p>
+
+    </body>
+    </html>

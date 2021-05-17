@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>List of Algorithms and Techniques &lpar;Matlab&rpar;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Here, we will go over some of the basic machine learning stuff introduced in this class.</p>
+<p>This will be focusing on MATLAB implementations some of the ML related methods.</p>
+<p>Here will also contain a lot of links to other places, so we can get more background for each of the machine learning method, intuitions, and implementations in different languages.</p>
+<hr>
+<h3 id="list-of-algorithms-and-techniques-matlab">List of Algorithms and Techniques (Matlab)</h3>
+<ol>
+<li>PCA Principal Components projections using SVD
+<ol>
+<li>In MATLAB: <code>pca</code>, <code>svd</code></li>
+</ol>
+</li>
+<li>K-Means algorithm for minimizing Average Euclidean distance between clusters of points.
+<ol>
+<li>In MATLAB: <code>kmeans</code></li>
+</ol>
+</li>
+<li>KNN Search, searching for the labels of the K-Nearest Neighbors.
+<ol>
+<li>In MATLAB: <code>knnsearch</code></li>
+</ol>
+</li>
+<li>Gaussian Mixture Models (GMM):
+<ol>
+<li>Using Guassian Models to fit different clusters, maximizing the Likelihood of observing each data points as being in the right clusters.</li>
+<li>In MATLAB: <code>fitgmdist</code>, <code>cluster</code></li>
+</ol>
+</li>
+<li>Naive Bayes:
+<ol>
+<li>Using the idea of Naive Bayes for binary classification.</li>
+<li>MATLAB Command: <code>fitNaiveBayes(xtrain, ylabel)</code> gets you a model.</li>
+<li><code>.predict(xtest)</code> on the handle returned by <code>fitNaiveBayes()</code></li>
+</ol>
+</li>
+<li>Linear Discriminant Analysis (LDA)
+<ol>
+<li>We projecting the data into a sub-space such that it maximizes the variance in between, then the orthogonal separator will be the decision boundary.</li>
+<li>We can also project data into different subspace such as a parabola, such that the variance between clusters are maximized.</li>
+<li>MATLAB Command: <code>fitdiscr</code></li>
+</ol>
+</li>
+<li>Support Vector Machine (SVM)
+<ol>
+<li>It tries to find the best line that gives the maximal separations between the data data points with different labels. This is only applicable for <strong>separable data points</strong>.</li>
+<li>The only data points that matters are the data points near the decision boundary.</li>
+<li>MATLAB command: <code>fitcsvm</code>. Returns a handle which can be queried.</li>
+<li><code>svmclassify(svmhandle, xtest)</code>, runs the classification with a SVM models with a test set.</li>
+</ol>
+</li>
+<li>Decision Tree
+<ol>
+<li>For each attributes of the data, we ask the problem (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>&gt;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x_i &gt; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> Y/N), and we want want to maximizes the separations between the data.</li>
+<li>MATLAB: see <a href="https://www.mathworks.com/help/stats/classification-trees.html">Classification Tree</a> by mathworks.</li>
+<li>You can query dense points spanning the whole space with the tree models to how the partitions look like for the trained model.</li>
+<li><strong>Extremely Successful</strong> for High Dimensional Data.</li>
+</ol>
+</li>
+</ol>
+<h4 id="good-plotting-commands">Good Plotting Commands</h4>
+<p><code>gscatter</code>: Plotting categorical data in Euclidean space with group labels.
+<code>treedisp</code>: For showing the decision tree.</p>
+<h4 id="extra-methods">Extra Methods</h4>
+<ol>
+<li>Page Ranks Machine Learning Method, this is based on graph and linear algebra.</li>
+<li>ADA Boosting Algorithm.
+<ol>
+<li>Boosting the weight of the decision tree, giving non-linear separations spaces, instead of linear.</li>
+</ol>
+</li>
+<li>A Priori
+<ol>
+<li>This exploits different frequencies for the data points. The idea behind it is called: &quot;Associated Rule Mining&quot;, and it's good for answer questions such as: &quot;What might the users also like?&quot;</li>
+<li>See more about this here: <a href="https://towardsdatascience.com/underrated-machine-learning-algorithms-apriori-1b1d7a8b7bc">Medium Link</a></li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="pca-and-svd">PCA and SVD</h3>
+<p>Ideas behind it is discussed in [[PCA (Principal Components Analysis)]]. It can be used for dimension reduction, and unsupervised clustering.</p>
+<hr>
+<h3 id="k-means">K-Means</h3>
+<hr>
+<h3 id="knn">KNN</h3>
+<hr>
+<h3 id="lda">LDA</h3>
+<p><strong>Idea</strong>: Project the labeled data onto a linear sub-space, maximizing the separations of the center of the cluster. The mean.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mo>+</mo></msup><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mo><mi>max</mi><mo>⁡</mo></mo><mi>w</mi></munder><mrow><mo fence="true">{</mo><mfrac><mrow><msup><mi>w</mi><mi>T</mi></msup><msub><mi>S</mi><mi>B</mi></msub><mi>w</mi></mrow><mrow><msup><mi>w</mi><mi>T</mi></msup><msub><mi>S</mi><mi>w</mi></msub><mi>w</mi></mrow></mfrac><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">w^+ = \arg\max_w 
+\left\lbrace
+\frac{w^TS_B w}{w^TS_ww}
+\right\rbrace
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.821331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.821331em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.468361em;vertical-align:-0.95003em;"></span><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.43056em;"><span style="top:-2.4em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">{</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5183309999999999em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.767331em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">}</span></span></span></span></span></span></span></p>
+<p>Where the matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">S_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> helps with measuring the variance in between the clusters onto the projected hyper plane</p>
+<p>And the matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">S_w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> helps with the variance within the clusters with labels.</p>
+<p><strong>What is method good for</strong>?</p>
+<p>This method is good for supervised dimensionality reduction on data-set.</p>
+<p>More in [[LDA (Linear Discriminant Analysis)]]</p>
+<hr>
+<h3 id="gmm">GMM</h3>
+<hr>
+<h3 id="naive-bayes">Naive Bayes</h3>
+<hr>
+<h3 id="svm">SVM</h3>
+<p>Supervised Machine Learning.</p>
+<p>This is a quadratic programming problem. For a subset of data points such that it's separable, it will look for the hyper plane that gives the best separations between data with 2 kind of labels.</p>
+<p>**What is best separations? **</p>
+<p>The first closest points from both clusters are as big as possible, measured by the vertical distance from the hyper plane.</p>
+<p><strong>What if the data points are not really separable?</strong></p>
+<p>Then points that crosses the boundary will be adding to the penalization term.</p>
+<hr>
+<h3 id="decision-tree"><strong>Decision Tree</strong></h3>
+<p>The decision picks one features from the features set, and then set one value to partition the samples according to some kind of objective measure on: how well data are separated, how much new information we have gained via splitting it in this way.</p>
+
+    </body>
+    </html>

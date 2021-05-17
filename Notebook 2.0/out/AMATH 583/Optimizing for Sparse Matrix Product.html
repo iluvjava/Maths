@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Algorithms and method for sparse Matrix Produce computations.
+[[Dense Matrix Multiplications Optimizations]]</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>We are going to work smarter instead of harder like we did for the dense matrix multiplications.</p>
+<p>In the world of Numerical Computations, Strassen's Algorithm is the start of it.</p>
+<p>I will skip it here, because I already know a great deal of it and implemented it in Julia. It's as simple as just a different way of doing Matrix multiplications using a divide and conquer approach.</p>
+<p>Why Sparsity is considered:</p>
+<p>When solving the PDEs, the discretized Operator is going to be useful here. Because they are sparse matrices.</p>
+<p>And solving it, it's better to use FFT, or use <strong>iterative method that treat the matrix as a black box</strong>.</p>
+<p>Then, as long as there is some way to do fast multiplications with sparse matrix, then there is a way to improve the computations.</p>
+<hr>
+<h3 id="matrix-matrix-product"><strong>Matrix Matrix Product</strong></h3>
+<p>Just checking whether there are zeros on the entries of the matrix is not fast, because it checks everything, and that is not fast.</p>
+<p>The key: <strong>We want to avoid ther zeros, without looking at the zeros</strong>.</p>
+<p><strong>Hint</strong>: We need to store the matrix in a different way.</p>
+<hr>
+<h3 id="sparse-matrix-storage-coordinate-storage"><strong>Sparse Matrix Storage: Coordinate Storage</strong>:</h3>
+<p>We are just going to store the non-zero elements in the matrix.</p>
+<p>For each non zero elements in the matrix, we store its value and x, y, bounded in a list of tuples, packed together into an array of <code>3 by n</code> array, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> is the number of non zero elements.</p>
+<p>And to work better, we store all 3 pieces of information in 3 array.</p>
+<p>Suppose that <code>row_indices, col_indices, values</code> are c++ array that store these information for each of the non zero elements in the matrix.</p>
+<p>Then, <code>row_indices[i], col_indices[i], values[i]</code> gives the coordinates and values for the <code>i</code> th non zero indices.</p>
+<p><strong>Problem</strong>:</p>
+<p>We can't get a value at a particular index at a constant amount of time.</p>
+<p>Oops. That means, we can't index the matrix frequently.</p>
+<hr>
+<h3 id="coo-sparse-matrix-multiplication"><strong>COO Sparse Matrix Multiplication</strong></h3>
+<p>The COO Matrix: It's based on triples <code>(a, i, j)</code> where <code>a</code> is the value of the element in the matrix A, and it should have coordinate <code>(i,j)</code> in the matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>.</p>
+<p>Consider the following implementation of the coordinate matrix and the matrix vector multiplications for the coordinate matrix.</p>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">COOMatrix</span>{</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-keyword">int</span> num_rows, num_cols;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">size_t</span>&gt; row_indices_, col_indices_; 
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+    <span class="hljs-keyword">public</span>: 
+        
+        COOMatrix(<span class="hljs-keyword">size_t</span> M, <span class="hljs-keyword">size_t</span> N): num_rows_(M), num_cols_(N){}
+        <span class="hljs-comment">// Multiply matrix by a vector and out put the vector. </span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">matvec</span><span class="hljs-params">(cost Vector&amp; x, Vector&amp; y)</span>
+        </span>{
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> k = <span class="hljs-number">0</span>; k &lt; storage_.size(); ++k)
+            {
+                y(row_indices_[k]) += storage_[k]*x(col_indices[k])
+            }
+
+        }
+        <span class="hljs-comment">// add a new non zero element for the matrix</span>
+        <span class="hljs-keyword">void</span> insert(<span class="hljs-keyword">size_t</span> i, <span class="hljs-keyword">size_t</span> j, <span class="hljs-keyword">double</span> val)
+        {
+            row_indices_.push_back(i); 
+            col_indices_.push_back(j); 
+            storage_.push_back(val); 
+        }
+}
+</div></code></pre>
+<p><strong>Summarize</strong>:</p>
+<p>For each non zero element in the row of the matrix, multiply it with the corresponding elements in the input matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> and then accumulate it to the corresponding elements in output vector y.</p>
+<hr>
+<h3 id="compress-the-row-csr"><strong>Compress the Row: CSR</strong></h3>
+<p>Note, we don't have to store all the elements in order in the above case, <strong>the order doesn't matter</strong> for the above way of storage. if we want to set a new non-zero element in the matrix, we can just append it to the array.</p>
+<p><strong>Now, suppose I sort the elements in the arrays of the matrix</strong>.</p>
+<p>That means the row indices might look like this:</p>
+<pre><code><code><div>[1, 1, 1, 2, 2, 2, 3, 3, 4, 4]
+</div></code></code></pre>
+<p>Meaning that there are 32 elements on the first row of the matrix, 3 on the second row, 2 on the 3rd and the 4th.</p>
+<p>It can then be compressed, instead of storing the row indices, we are storing the number of elements on the row, so the indices of this array tells us the row number.</p>
+<pre><code><code><div>[3, 3, 2, 2]
+</div></code></code></pre>
+<p>The array stores the number of non zeros entry for each row of the matrix.</p>
+<p><strong>This is called CSR: Compressed Sparse Row Format</strong>.</p>
+<p>And in fact, it's used in scipy for speeding up the matrix vector multiplications.</p>
+<p>See <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html">here</a> for more.</p>
+
+    </body>
+    </html>

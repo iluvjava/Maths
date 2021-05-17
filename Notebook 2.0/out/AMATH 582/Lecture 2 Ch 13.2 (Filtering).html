@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Signal filtering with Fourier Transform</p>
+<hr>
+<h3 id="intro">Intro</h3>
+<p>Send out radio wave with frequencies <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, and then it hit the object and come back.</p>
+<p>The radar receives all the frequencies in the radio wave.</p>
+<p>Our objective is to identify the object.</p>
+<pre><code class="language-matlab"><div>clear all; close all; 
+L  = <span class="hljs-number">30</span>;    <span class="hljs-comment">% The total mount of signal. </span>
+n  = <span class="hljs-number">512</span>;   <span class="hljs-comment">% These are the Fourier nodes </span>
+t2 = <span class="hljs-built_in">linspace</span>(-L, L, n + <span class="hljs-number">1</span>); t = t2(<span class="hljs-number">1</span>:n); 
+k  = (<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/(<span class="hljs-number">2</span>*L))*[<span class="hljs-number">0</span>:(n/<span class="hljs-number">2</span> - <span class="hljs-number">1</span>) -n/<span class="hljs-number">2</span>:<span class="hljs-number">-1</span>];
+u  = <span class="hljs-built_in">sech</span>(t);
+ut = fft(u);   <span class="hljs-comment">% Fourier Domain</span>
+utn = ut + noise*(<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>, n) + <span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>, n));  <span class="hljs-comment">% domain</span>
+
+<span class="hljs-built_in">plot</span>(fftshit(k), fftshift(<span class="hljs-built_in">abs</span>(ut))/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(ut)))  <span class="hljs-comment">% The strengh of the freqiencies</span>
+
+</div></code></pre>
+<p>So far, we just plotted the frequencies domain against the <strong>normalized</strong>, <strong>absolute value</strong> of the frequencies on the given signal: <code>u</code>.</p>
+<p><strong>Why is it normalized?</strong>
+Because we are only interested in the magnitude of the wavelength, instead of the entire coefficient, which contains imaginary unit and phase information.</p>
+<p>However, the presence of the noise gives us difficulty for identifying the frequencies that has a significant level of strength.</p>
+<p><strong>Why is Hyperbolic Secant?</strong>
+This is the case because the function is own Fourier Transform and it belongs to a class of functions call: Hermite function.</p>
+<h3 id="time-series">Time Series</h3>
+<p>If we take the observation of the signal across a time frame, and making the assumption that the noise are not going to be correlated to the time series.</p>
+<p>However, for the non-noisy part of the signal, it's not going to be correlated to the time parameter.</p>
+<h3 id="filtering">Filtering</h3>
+<p>Notice that we know the frequencies of the signal we are sending out, and what we did is we filter out the signal at the frequencies using a Gaussian Filers.</p>
+<pre><code class="language-matlab"><div>filter = <span class="hljs-built_in">exp</span>(<span class="hljs-number">-0.2</span>*k.^<span class="hljs-number">2</span>)  # note that the k is the same from above.
+</div></code></pre>
+<p>It's like opening out a window at the frequencies domain, and extract out the frequencies.</p>
+<pre><code class="language-matlab"><div>utnf = utn.*filter  <span class="hljs-comment">% that is how you filter out the signal. </span>
+</div></code></pre>
+<p>After filtering out the frequencies, we inverse fft the filter signal. Then we <strong>compare</strong> it to the expected form of the signal that should be reflected.</p>
+<p><strong>What if we filter around another signal that is different from the signal we sent out?</strong></p>
+<p>We do the same thing, and then we will find that, there will not be a bump after the inverse FFT.</p>
+<p><strong>Why?</strong>
+Because white noise are out of phase, and when they recombined after inverse transform, a bit deal of them will get phase cancellation, reducing the signal strength.</p>
+<p><strong>Is it possible to miss detect?</strong>
+Yes, but over the time frame, it will still get cancel out, this is the case because white noise won't persist for too long.</p>
+<h4 id="changing-the-filter-width">Changing the Filter Width</h4>
+<p>As we <strong>decreases</strong> the frequencies window of the frequency, the sensitivity because cutting out the frequencies reduces the ability to reconstruct the original signal we are interested in.</p>
+<p>As we increases it, we will bring the noise level much closer to the threshold.</p>
+
+    </body>
+    </html>

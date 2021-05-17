@@ -1,5 +1,4 @@
-[[Legendre Equation]]
-
+[Legendre Equation](Legendre%20Equation.md)
 Let's investigate the polynomials that we discovered by solving the Legendre Equation. 
 
 
@@ -207,9 +206,9 @@ This is a complicated way of showing the Orthogonality of the polynomials.
 ---
 ### **Associated Legendre Equation**
 
-The original equation is from the Latitude parts of the Helmholtz quation in the sphere. 
+The original equation is from the Latitude parts of the Helmholtz equation in the sphere. 
 
-And that is the original funciton that we generate the problem: 
+And that is the original function that we generate the problem: 
 
 $$
 \frac{1}{\sin\theta} \partial_\theta[\sin\theta \partial_\theta[\Theta]] + 
@@ -233,7 +232,7 @@ See [[Helmholtz Equation in a Sphere]] for more info.
 
 Where, we want the solutions to be bounded on the $\pm 1$. 
 
-**There is a relation between The Eigenfunctions we found for the Sphere problem, AND the general solution of the Lengendre Eqn solutions.** Recall that $m\in \mathbb{Z}$. 
+**There is a relation between The Eigenfunctions we found for the Sphere problem, AND the general solution of the Legendre Eqn solutions.** Recall that $m\in \mathbb{Z}$. 
 
 And, after solving the equation, the solutions we found that satisfies the boundary is: 
 
@@ -241,13 +240,13 @@ $$
 \eta_k = k(k + 1) \quad \forall k\in \mathbb{Z}_{\ge 0}
 $$
 
-And in thiat case, we have: 
+And in that case, we have: 
 
 $$
 y(x) = P_k^m(x)
 $$
 
-As the general solution of the Legendre equaiton. 
+As the general solution of the Legendre equation. 
 
 And, the relation is specified by this: 
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Reference Lecture Video: <a href="https://www.youtube.com/watch?v=rt5mMEmZHfs&amp;feature=youtu.be&amp;ab_channel=NathanKutz">link</a></p>
+<p>Looking for sparse representation, and it's application in signal processing.</p>
+<p>[[Regularization]]</p>
+<hr>
+<h3 id="intro">Intro</h3>
+<p>We are interested in reconstructing the signal with some sub-sampling, or deblur, or, denoise the signal.</p>
+<p>The key is to look for a sparse representation of the image/signals under some basis.</p>
+<p>Suppose we sub-sample a signal, and then we are trying to reconstruct the signal using as few frequencies as possible.</p>
+<p><strong>Step 1</strong>:</p>
+<p>The function is a representation of some known basis, and it's compressible under that basis.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mi mathvariant="normal">Ψ</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">f = \Psi c
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Ψ</span><span class="mord mathdefault">c</span></span></span></span></span></p>
+<p>Where the basis matrix is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ψ</mi></mrow><annotation encoding="application/x-tex">\Psi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Ψ</span></span></span></span> and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> vector are the coefficients, they are going to represent the loading of the basis vector.</p>
+<p>The <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span> vector is sparse, mostly zero, representing the fact that our function is compressible under the basis <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ψ</mi></mrow><annotation encoding="application/x-tex">\Psi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Ψ</span></span></span></span>.</p>
+<p><strong>Step 2</strong>:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mi mathvariant="normal">Φ</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">b = \Phi f
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">Φ</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span></span></p>
+<p>Let <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> be the sub-sampling vector, by which we mean that, it's a down-sample of the given signal <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>, and the matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Φ</span></span></span></span>, is a matrix that is mostly zeros, with few ones as its entry. This matrix down-sample the signal f.</p>
+<p><strong>Step 3</strong></p>
+<p>The down sample vector can be represented as:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mi mathvariant="normal">Φ</mi><mi>f</mi><mo>=</mo><mi mathvariant="normal">Φ</mi><mi mathvariant="normal">Ψ</mi><mi>c</mi><mo>=</mo><mi>A</mi><mi>c</mi><mspace width="1em"/><mtext>where: </mtext><mi>A</mi><mo>=</mo><mi mathvariant="normal">Φ</mi><mi mathvariant="normal">Ψ</mi></mrow><annotation encoding="application/x-tex">b = \Phi f = \Phi \Psi c = Ac \quad \text{where: } A = \Phi\Psi
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">Φ</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Φ</span><span class="mord">Ψ</span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">where: </span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Φ</span><span class="mord">Ψ</span></span></span></span></span></p>
+<p>This is an basic Linear algebra problem.</p>
+<p>So the question we are answering is:</p>
+<ul>
+<li>How do I represent the signal using as little basis vector as possible such that if I down sample the signal, I will get what I observed to be (The <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> vector)?</li>
+</ul>
+<p><strong>Shannnon Nyquist</strong>:</p>
+<p>We have to sample, at least 2 times more points, for a given frequency signal in order to get it shows up after FFT.</p>
+<p>We have to sample at least 2 times faster than the signal.</p>
+<p><strong>Wiki Image Demo</strong>:</p>
+<p><img src="file:///c:\Users\victo\source\repos\MATH\Maths\Notebook 2.0\AMATH 582\Orthogonal_Matching_Pursuit.gif" alt=""></p>
+<hr>
+<h3 id="matlab-demo">MATLAB Demo</h3>
+<p>Scenario</p>
+<blockquote>
+<p>We were given a sup-sampled signal, random points were queried in the signal, we want to use the idea of compressive sensing to reconstruct the signal. We assume that signal consist just few Fourier Component.</p>
+</blockquote>
+
+    </body>
+    </html>

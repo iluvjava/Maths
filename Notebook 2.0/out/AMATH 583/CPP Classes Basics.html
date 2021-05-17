@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>For this class we are making our own vector class that adhere to the vector field's axioms</p>
+<ol>
+<li>Everything Basics about classes (Not including Polymorphism)</li>
+<li>The abstractions and the stuff like that</li>
+<li>The operators and passing in references.</li>
+</ol>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>The axioms set of the vector fields is like:</p>
+<ul>
+<li>Additive Operations:
+<ul>
+<li>x + y = y + x, Commutative.</li>
+<li>(x + y) + z = x + (y + z), Associative</li>
+<li>0 + x = x + 0 = x, Exists Identity Member: 0</li>
+<li>(-x) + x = x + (-x) = 0, Additive Inverse and the Identity member.</li>
+</ul>
+</li>
+<li>Multiplicative Operations:
+<ul>
+<li>0x = 0, Addictive identity multiply by any member gives itself.</li>
+<li>1x = x, There exists a multiplicative identity member.</li>
+<li>(cd)x = c(dx), Multiplication is associative.</li>
+</ul>
+</li>
+<li>Distributive Axioms:
+<ul>
+<li>c(x + y) = cx + cy</li>
+<li>(c+ d)x = cx + dx</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note</strong>: Operations between scalar and vectors is not defined above yet.</p>
+<p>The basis for storing our mathematical Vector will be an array under the hood.</p>
+<p>The CPP has N-Tuple Types, but we don't have enough operations for it.</p>
+<p>In CPP, we are going to build a type that does the vector operations.</p>
+<ol>
+<li>Abstraction</li>
+<li>Hiding implementations</li>
+<li>Opening up interfaces</li>
+<li>Polymorphism that allows to seperate containers and types.</li>
+</ol>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">size_t</span> M; 
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage;
+}
+</div></code></pre>
+<p>Associated the vector class with our class.</p>
+<p>In actual implementation, we are going hiding some of the fields from users.</p>
+<p>The special members:</p>
+<ol>
+<li><strong>Operators functions</strong>, we will be overriding the operators for the given types.</li>
+</ol>
+<p>Do notice about how the object acts on each other, in the case of the <code>operator+</code> function, these expressions are equivalent.</p>
+<p><code>x + y</code> is the same as <code>x.operator+(y)</code>, where, the operands on the rhs is invoked on the member function of the left operand using the right operands as the input of the function.</p>
+<p>Let's see an implementation of the vector classes:</p>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">public</span>: 
+        Vector <span class="hljs-keyword">operator</span>+(<span class="hljs-keyword">const</span> Vector&amp; y);
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span> num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+}
+</div></code></pre>
+<p>Do note the convention here, private field is having the <code>_</code> at the end.</p>
+<p>Let's take a look at the indexing function, or the function operator, that is the <code>operator()</code>, which is the function name.</p>
+<p>We can use this to emulate the matlab behavior.</p>
+<p>So then we will be doing this:</p>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">public</span>: 
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span></span>;
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span> num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+}
+</div></code></pre>
+<p>Boom, we can now do this: <code>x = y(1)</code> to access the element in the vector.</p>
+<p>But, notice that, this is illegal: <code>y(1) = 3</code>, because, the <code>operator()</code> is only possible for rvalue in c++.</p>
+<p>Huh.... ok, what if we are returning the reference of the object instead of the copy of the value????</p>
+<p>Then, the expression can be a <code>lvalue</code>!</p>
+<p>Let's take a look at the implementation:</p>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-function"><span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span></span>;
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span> num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+}
+</div></code></pre>
+<p>Boom! Ok, this is what we need for the situation.</p>
+<hr>
+<h3 id="the-vector-class-we-have-so-far"><strong>The Vector Class We have So far</strong></h3>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span> {</span>
+
+    <span class="hljs-keyword">public</span>: 
+        Vector(<span class="hljs-keyword">size_t</span> M): num_rows_(M), storate(num_rows_){}; <span class="hljs-comment">// Constructor</span>
+        <span class="hljs-function"><span class="hljs-keyword">double</span>&amp; <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> i)</span></span>{<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span>&amp; <span class="hljs-keyword">operator</span>[](<span class="hljs-keyword">size_t</span> i){<span class="hljs-keyword">return</span> storage[i];}
+        <span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">num_rows</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{<span class="hljs-keyword">return</span> num2_rows_;} 
+
+    <span class="hljs-keyword">private</span>: 
+        <span class="hljs-keyword">size_t</span> num_rows_;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; storage_;
+
+}
+
+</div></code></pre>
+<p>Things to note:</p>
+<ol>
+<li>
+<p>For the member function <code>num_rows</code>, there is a <code>const</code>, which is indicating to the compiler (signing up a contract during compile time), this function will not modify the state of the object.</p>
+</li>
+<li>
+<p>For the member function <code>opertor()(size_t i)</code>, it's returning a reference to the field member <code>storage[i]</code>, which is a value of a type <code>vector&lt;double&gt;</code>. And hence, (it's very likely that, <code>operator[]</code> of the member <code>vecotor&lt;double&gt;</code> is also returning a reference of temmplate type <code>&lt;double&gt;</code>) it can be put as a <code>rvalue</code> for an expression.</p>
+</li>
+</ol>
+<hr>
+<h3 id="the-infectious-constness"><strong>The infectious Constness</strong></h3>
+<p>This thing, it will be propagating through your code when you compile it.</p>
+<p>This will be continued in the next part.</p>
+
+    </body>
+    </html>

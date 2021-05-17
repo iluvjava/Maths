@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Introduction</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>The Complex Logarithm is a bit trick, but we will introduce some way to make it to the complex plane while keeping it as an analytical function in the complex plane (With some trade off of course)</p>
+<p>prereq: [[Analytic Functions (Exp, Poly)]] Complex Exponential
+prereq: [[Complex Number]] We need to know about the principal argument of a complex number to work with the new definition of the Logarithm.
+More resources: <a href="https://mathworld.wolfram.com/BranchCut.html">Branch Cut</a></p>
+<hr>
+<h3 id="introduction">Introduction</h3>
+<p>So the log function, the old version is going to return a set of arguments for a given complex function, and it's going to be a bit hard to handle as a function. (So the graph will be related to the Riemann Spiral and stuff like that. )</p>
+<p>Let's stuff to the polar form and start investigating the function a big.</p>
+<p>Suppose that given any <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span>, we want the function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\ln(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">ln</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span> to return all the solutions to this equation, we want to solve for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span> for a given <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span>, also let's also assume that the logarithm function is inverse function of the exponential.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">\exp(w) = z
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span></span></p>
+<p>And then in the end it will be like:</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 23: … = \exp(u + iv)$̲$ and then, let…" style="color:#cc0000">\exp(w) = \exp(u + iv)$$ and then, let&#x27;s see
+
+</span></p>
+<p>\exp(u + iv) = e^u + e^{iv} = |z| \exp(i\arg(z))</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>h</mi><mi>e</mi><mi>n</mi><mi>w</mi><mi>e</mi><mi>w</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>h</mi><mi>a</mi><mi>v</mi><mi>e</mi><mo>:</mo></mrow><annotation encoding="application/x-tex">
+Then we will have: 
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">h</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">h</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span></span></span></span></span></p>
+<p>\ln(2) = \ln(u + iv) = \ln(|z|) + i\arg(z)</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;$&#x27; in math mode at position 14: 
+Notice that $̲\arg(z)$ is a f…" style="color:#cc0000">
+Notice that $\arg(z)$ is a function the returns a set, and in this case it will be a lot of other angles that happen to give the number $z$ the same angle. 
+
+It&#x27;s all good until we want to take the derivative on this thing and we want it to still be analytical on the domain. But this function is bad because: 
+* It has multiple returns values; $i(\theta + 2n\pi)$ where $n\in \mathbb{C}$
+* It&#x27;s derivative is not continuous even if we are making the $\arg(z)$ into a principle argument $\text{Arg}(z)$
+
+---
+
+### Principal Cuts 
+
+Here we are going to introduce the idea of principal cut to the function, and then define a new function: 
+
+</span></p>
+<p>\text{Log}(z)</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;#&#x27; at position 207: …math easier. 
+
+#̲### Redefine 
+
+…" style="color:#cc0000">Which is going to be the natural logarithm in the complex plane, and it&#x27;s going to analytical, and it&#x27;s going to have a single output. These useful properties will make out previous calculus math easier. 
+
+#### Redefine 
+
+Principle arguments. 
+
+Let&#x27;s redefine the thing using the idea of principle argument so it will have on return value instead of a lot of them. 
+
+&gt; </span></p>
+<blockquote>
+<p>\text{Log}(z) = \ln(|z|) + i\text{Arg}(z)</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow></mrow><annotation encoding="application/x-tex"></annotation></semantics></math></span><span class="katex-html" aria-hidden="true"></span></span></span></p>
+</blockquote>
+<p>However, observe the fact that: when <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span> of a complex number is approaching <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> in the negative direction (less than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>), we have <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>im</mtext><mo stretchy="false">(</mo><mtext>Log</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{im}(\text{Log}(z))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">im</span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Log</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>  approaching the value <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>, however if we choose another direction, then the function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Log</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Log}(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Log</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span> is approaching the value <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>π</mi></mrow><annotation encoding="application/x-tex">-\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>.</p>
+<p>And this is not good, because under the principle value definition of the function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Log</mtext></mrow><annotation encoding="application/x-tex">\text{Log}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Log</span></span></span></span></span> the function is not going to be differentiable <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∀</mi><mi>z</mi><mo>∈</mo><msub><mi mathvariant="double-struck">R</mi><mrow><mo>&lt;</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\forall z \in \mathbb{R}_{&lt;0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.86626em;vertical-align:-0.17737em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span></span></span></span></p>
+<hr>
+<p><strong>The Cut</strong></p>
+<p>You know what, this is annoying cause we really want analytical functions in the complex plane, and guess what, if I cut out all the negative numbers from the complex plane, this thing is actually going to be just like real natural log, which also doesn't support negative numbers.</p>
+<p>So let's do that:</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Log</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ln</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="normal">∣</mi><mi>z</mi><mi mathvariant="normal">∣</mi><mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><mtext>Arg</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Log}(z) =  \ln(|z|)  + i\text{Arg}(z)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Log</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">ln</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord text"><span class="mord">Arg</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span></p>
+</blockquote>
+<p>And what a twist, the function will have the domain :</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">C</mi><mo>∖</mo><msub><mi mathvariant="double-struck">R</mi><mrow><mo>≤</mo><mn>0</mn></mrow></msub><mo>↦</mo><mi mathvariant="double-struck">C</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}\setminus \mathbb{R}_{\leq 0} \mapsto \mathbb{C}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbb">C</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.934069em;vertical-align:-0.24517899999999998em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">≤</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24517899999999998em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbb">C</span></span></span></span></span></span></p>
+<p>Cool right. Such a simple and brutal solution.</p>
+<p><strong>Comment</strong>
+However I want to point out that, only the negative line is going to preserve some of the properties of the real logarithm function. And yes, there could be many other lines for cutting it, but this one is unique.</p>
+<p>Note that zero is included in the branch cut.</p>
+
+    </body>
+    </html>

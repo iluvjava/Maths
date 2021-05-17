@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Normal Form</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>prepreq: [[Bifurcation 1D]]
+More on the Normal form of the system.</p>
+<hr>
+<h3 id="normal-form">Normal Form</h3>
+<p>![[Bifurcation 1D#Bifurcation Normal Form]]</p>
+<p>Take notice that, when we are speaking of the local behavior of some function, we think of [[Jacobian and Hessian]], which will encapsulate some of the features of the function in that local region.</p>
+<p>Let's restrict ourselves to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x, r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>, and hence we have:</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: No such environment: align at position 7: \begin{̲a̲l̲i̲g̲n̲}̲
+	\nabla f(x_c,…" style="color:#cc0000">\begin{align}
+	\nabla f(x_c, r_c) &amp;= \begin{bmatrix}
+		\partial_x f(x_c, r_c) \\ 
+		\partial_r f(x_c, r_c)
+	\end{bmatrix}
+	\\
+	\nabla^2 f(x_c, r_c) &amp;= 
+	\begin{bmatrix}
+		\partial_{xx}f(x_c, r_c) &amp; \partial_{rx}f(x_c, r_c)
+		\\
+		\partial_{xr}f(x_c, r_c) &amp; \partial_{rr}f(x_c, r_c)
+	\end{bmatrix}
+\end{align}
+</span></p>
+<p>And as we observe, the critical point will set the first derivative to be zero, and it's the solution to the system, and the derivative with respects to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: No such environment: align at position 7: \begin{̲a̲l̲i̲g̲n̲}̲
+	\nabla f(x_c,…" style="color:#cc0000">\begin{align}
+	\nabla f(x_c, r_c) &amp;= \begin{bmatrix}
+		0\\ 
+		\partial_r f(x_c, r_c)
+	\end{bmatrix}
+	\\
+	\nabla^2 f(x_c, r_c) &amp;= 
+	\begin{bmatrix}
+		\partial_{xx}f(x_c, r_c) &amp; \partial_{rx}f(x_c, r_c)
+		\\
+		\partial_{xr}f(x_c, r_c) &amp; \partial_{rr}f(x_c, r_c)
+	\end{bmatrix}
+\end{align}
+</span></p>
+<p>And therefore, we can simplify the local behavior of the function a bit, and get:</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: No such environment: align at position 7: \begin{̲a̲l̲i̲g̲n̲}̲
+	f(x, r) &amp;\app…" style="color:#cc0000">\begin{align}
+	f(x, r) &amp;\approx f(x_c, r_c) + 
+	\nabla f(x_c, r_c)^T\begin{bmatrix}
+	(x - x_c) \\ (r - r_c)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	(x - x_c) \\ (r - r_c)
+	\end{bmatrix}^T
+	\nabla^2 f(x_c, r_c) 
+	\begin{bmatrix}
+	(x - x_c) \\ (r - r_c)
+	\end{bmatrix} 
+\end{align}
+</span></p>
+<p>And that is not very helpful, it's just that I love to do differential this way.</p>
+<p>Yeah, there doen't seem to be an obvious link with the normal form and the matrices that describes the differential.</p>
+
+    </body>
+    </html>

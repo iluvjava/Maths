@@ -3,7 +3,6 @@ Here, we will  derive a very important tools for:
 1. Solving PDEs on finite domain. 
 2. Making a basis for the Laplace Transform
 3. Representing function in the Frequency domain. 
-
 ---
 ### **Intro**
 

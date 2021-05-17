@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Time series 3.
+prereq: [[Lecture 2 Ch 13.2 (Filtering)]]</p>
+<hr>
+<h3 id="intro">Intro</h3>
+<p>So here we are considering a lot of signals receives over a time frame. And we are still using the assumption that we have a target that is not moving in front of us.</p>
+<p>The expectation value for the white noise is zero after making a lot of observations. And this is going to be exploited.</p>
+<p>So... if we add all the signal over a time range for each time frame, we would expect the noisy part of the signal gets canceled out.</p>
+<hr>
+<h3 id="matlab-code">MATLAB CODE</h3>
+<p>Let's define some of the basic things:</p>
+<ul>
+<li>Domain Length</li>
+<li>Frequencies Resolution</li>
+<li>Time Domain Vector</li>
+<li>Frequency Domain Vector, shifted</li>
+<li>Noise Level</li>
+</ul>
+<pre><code class="language-matlab"><div>L = <span class="hljs-number">30</span>;
+n = <span class="hljs-number">512</span>; 
+t2 = <span class="hljs-built_in">linspace</span>(-L, L, n + <span class="hljs-number">1</span>); t = t2(<span class="hljs-number">1</span>: n);
+k = (<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/(<span class="hljs-number">2</span>*L))*[<span class="hljs-number">0</span>:n/<span class="hljs-number">2</span> <span class="hljs-number">-1</span> -n/<span class="hljs-number">2</span>:<span class="hljs-number">-1</span>]; ks = fftshift(k);
+noise = <span class="hljs-number">10</span>;
+</div></code></pre>
+<ul>
+<li>Define the signal. Which is a Hermite function.</li>
+</ul>
+<pre><code class="language-matlab"><div>u = <span class="hljs-built_in">sech</span>(t); 
+ut = fft(u);
+realize = <span class="hljs-number">1</span>;
+</div></code></pre>
+<p>Let's assume that we keep processing this kind of impulse signal for a fixed time length, over several time. This is called: <strong>Realization</strong>.</p>
+<pre><code class="language-matlab"><div>uave = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>, n);
+
+<span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span> = <span class="hljs-number">1</span>: realize
+	utn = ut + noise*(<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>, n) + <span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>, n));
+	un = ifft(utn); 
+	uave = uave + utn; 
+	subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), <span class="hljs-built_in">plot</span>(t, un); 
+	subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), <span class="hljs-built_in">plot</span>(ks, fftshift(<span class="hljs-built_in">abs</span>(un)));
+	subplot(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>), <span class="hljs-built_in">plot</span>(ks, fftshift(<span class="hljs-built_in">abs</span>(uave)), ... 
+		ks, fftshift(<span class="hljs-built_in">abs</span>(ut)/<span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(ut)));
+	pause(<span class="hljs-number">1</span>); 
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<p>If we keep adding the frequencies together, then, we should have the white noise part to go to zero.</p>
+<p>And after a lot of trials, we will have the noise canceled.</p>
+<p><strong>NOTE</strong>:
+It doesn't matter if we are summing up in the signal domain or the frequency domain, but summing them up in the end will cancel out the noise regardless.</p>
+<hr>
+<h3 id="moving-target">Moving Target</h3>
+<p>*What happen in the time domain, the thing is moving around? *</p>
+<blockquote>
+<p>When the thing is moving around, the signal will get shifted in the signal domain, left and right.</p>
+</blockquote>
+<p><em>What about the Frequency domain? Is it also moving?</em></p>
+<blockquote>
+<p>Take notice that, because we are sending out the same signal frequencies for each impulses, we know that the in the frequencies domain, the signal should look the same.</p>
+</blockquote>
+<p><em>How should we detect it?</em></p>
+<blockquote>
+<p>If we average on the signal space, then there will be blurred because the impulses in the signal over the time series are at different place.</p>
+<p>However, because the impulse is consistent on the frequencies domain, summing them up will cancel out the noisy part in the frequencies domain.</p>
+</blockquote>
+<blockquote>
+<p>We cannot detect if with FT, because we only have the spectral information and we have no idea when we have detected that particular frequencies (reflected from our objects) in the signal.</p>
+</blockquote>
+<hr>
+<h3 id="limitation-of-fourier">Limitation of Fourier</h3>
+<p>The Fourier Transform limitations arises with the resolution in the frequency domain.</p>
+<p>When we have a very good resolution in the time domain, there will be more noise to pick up in the frequency domain.</p>
+
+    </body>
+    </html>
