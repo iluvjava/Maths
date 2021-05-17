@@ -18,12 +18,14 @@ It uses a Fork and Join approach for parallelism. So it's there, and it works, s
 
 ![[OpenMP-execution-model.png]]
 
+For quick reference on the OpenMP APIs, refers to [here](https://openmp.org/wp-content/uploads/OpenMP-4.5-1115-CPP-web.pdf)
+
+The manual contains most of the thing one will need for use OPENMP. 
 
 ---
 ### **Example Usage**
 
 So here, we will be showing some of the example of using some of the pre-processing features from the Open-MP: 
-
 
 ```cpp
 double Integral = 0;
@@ -47,7 +49,6 @@ for (size_t = 0; size_t < intervals; ++i)
 ```
 
 Then this whole loop will be **partitioned and executed by different threads**, and all the results will be added together to $Integral$, in this case, it should produce $\pi$, but in reality, **a race conditions is created on the summation**, hence, all results turns into gibberish. BUT, they will all be multiple of $\pi/n$, because each thread **will work on a partition of the for loop**. 
-
 
 Let's take a look at another way of parallizing the individual operations, where each operations inside of the forloop is parallelized: 
 
@@ -75,7 +76,10 @@ for (size_t = 0; size_t < intervals; ++i)
 }
 ```
 
-And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable synchronously. 
+And in this case, we are telling the OpenMP to partition the for loop, and then accumulate to the variable synchronously.
+
+**Note**: For the reduction technique, the operator is important. `(+:)` stands for adding to that variable, and `-:` will stands for subtracting fron the variable.
+
 
 
 
