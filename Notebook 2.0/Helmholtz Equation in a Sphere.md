@@ -3,7 +3,7 @@ This is still using: [[Separation of Variables]] method for solving a major part
 
 And to read this we at least need to recognize the Bessel's equation when it popped up, which can be read more on [[Bessel's Equation]]. 
 
-And in this file, we will also be introduced to the **Lengendre Equation**, which is similar to the Bessel's equation, it's pretty complicated. 
+And in this file, we will also be introduced to the **Legendre Equation**, which is similar to the Bessel's equation, it's pretty complicated. 
 
 ---
 ### **Intro**

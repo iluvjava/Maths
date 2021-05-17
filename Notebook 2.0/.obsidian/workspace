@@ -1,53 +1,47 @@
 {
   "main": {
-    "id": "3303b52da90bfc3d",
+    "id": "c7a13c1f99af8e5c",
     "type": "split",
     "children": [
       {
-        "id": "2bc0f78e795d71bf",
+        "id": "6dcc85917de52a39",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
-=======
-            "file": "AMATH 503/Frobenius Method.md",
->>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
+            "file": "AMATH 503/Legendre Polynomials.md",
             "mode": "source"
           }
         },
-        "group": "139d792c81da3257"
+        "group": "278d7aeadef02909"
       },
       {
-        "id": "709049e9718d1fb9",
+        "id": "e31d52974bd12613",
         "type": "leaf",
+        "pinned": true,
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
-=======
-            "file": "AMATH 503/Frobenius Method.md",
->>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
+            "file": "AMATH 503/Legendre Polynomials.md",
             "mode": "preview"
-          }
+          },
+          "pinned": true
         },
-        "group": "139d792c81da3257"
+        "group": "278d7aeadef02909"
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "7024279de95f4c5a",
+    "id": "e244645ff947f0b8",
     "type": "split",
     "children": [
       {
-        "id": "4864518405f92058",
+        "id": "6aedcab89c29c5f3",
         "type": "tabs",
         "children": [
           {
-            "id": "cb13401a474d4a00",
+            "id": "33c93727ff10f098",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -55,12 +49,12 @@
             }
           },
           {
-            "id": "add69d6a5226c3e1",
+            "id": "0d75fe0ceb84639f",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "Hopf",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -73,27 +67,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 369
+    "width": 300
   },
   "right": {
-    "id": "9431ed95b32da0d9",
+    "id": "65a8c93abd79c53c",
     "type": "split",
     "children": [
       {
-        "id": "c9238b8b0af647ff",
+        "id": "a9c279334c6564c4",
         "type": "tabs",
         "children": [
           {
-            "id": "27dd3d8f58a141b8",
+            "id": "f4d0287b911a02ca",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "AMATH 503/Helmholtz Equation in a Cylinder.md",
-=======
-                "file": "AMATH 503/Frobenius Method.md",
->>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
+                "file": "AMATH 503/Legendre Polynomials.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,31 +101,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "2bc0f78e795d71bf",
+  "active": "6dcc85917de52a39",
   "lastOpenFiles": [
-<<<<<<< HEAD
-=======
-    "AMATH 503/Frobenius Method.md",
-    "Untitled.md",
-    "Math 999/Back Propagation 2.md",
-    "Math 999/Fundamental Theorem of Statistical Learning.md",
-    "Math 999/GPT Transformer.md",
-    "AMATH 503/Untitled.md",
-    "AMATH 503/AMATH 503.md",
->>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
-    "AMATH 503/Helmholtz Equation in a Cylinder.md",
-    "AMATH 503/Bessel's Equation.md",
-    "CSE 546/Training Neural Net with Pytorch.md",
-    "AMATH 503/AMATH 503.md",
-    "AMATH 503/Multi-Dimensional PDEs 2.md",
-<<<<<<< HEAD
-    "AMATH 503/Multi-Dimensional PDEs.md",
-    "AMATH 503/Fourier Series (PDE Flavor).md",
-    "AMATH 503/Fourier Cosine Series.md",
-    "AMATH 503/Dirichlet Theorem.md",
-    "AMATH 503/Diffusion of a Tracer.md"
-=======
-    "AMATH 503/Multi-Dimensional PDEs.md"
->>>>>>> c5d46123f227944f6c172c923d9bd88264eaa04a
+    "AMATH 503/Legndre Polynomials.md",
+    "Helmholtz Equation in a Sphere.md",
+    "AMATH 503/Untitled.md"
   ]
 }
