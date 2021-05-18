@@ -25,3 +25,4 @@ y_{k + 1} = x_{k + 1} + \frac{t_k - 1}{t_{k + 1}}(x_{k + 1} - x_k)
 $$
 
 Take notice that this is exactly the same when compare to the gradient descent without the proximal operator. 
+
