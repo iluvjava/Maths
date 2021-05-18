@@ -225,7 +225,7 @@ $$
 \right)
 $$
 
-Mulitplying it into the expression we have: 
+Multiplying it into the expression we have: 
 
 $$
 u(x, t) = \frac{1}{4\pi}\int_{-\infty}^{\infty} 

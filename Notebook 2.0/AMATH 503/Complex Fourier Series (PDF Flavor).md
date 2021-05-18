@@ -1,5 +1,5 @@
 [[Fourier Series (PDE Flavor)]]
-Here, we will introduce the idea of Complex Fourier Series. An easier way to compute the fourier Series, and it's more compact too, but it's the same as using the trig basis function. The only thing we need to tweak is the definition of Function Inner Product. Because the functions are complex, we will have to take the complex conjugate when taking the inner product between them. 
+Here, we will introduce the idea of Complex Fourier Series. An easier way to compute the Fourier Series, and it's more compact too, but it's the same as using the trig basis function. The only thing we need to tweak is the definition of Function Inner Product. Because the functions are complex, we will have to take the complex conjugate when taking the inner product between them. 
 
 ---
 ### **Intro**
@@ -120,9 +120,9 @@ The series is a good representation of the function over $[-L, L)$, **Dirichlet 
 **Note**: 
 If we are modeling different intervals, especially non symmetrically placed on zero, say $[-L, L]$ we will need to use a different basis function, and we can consider the choice: $\exp(\frac{-i2\pi nx}{L})$. 
 
-For a basis function, just make sure that the inner L2 produt are zero for all $n \ne m$. 
+For a basis function, just make sure that the inner L2 product are zero for all $n \ne m$. 
 
-In addition, we can use different signs for them too. If we use $\frac{\pm in\pi x}{L}$ for the series, then we will have to use $\frac{\mp in\pi x}{L}$ for the fourier kernel for coefficients: $c_n$. 
+In addition, we can use different signs for them too. If we use $\frac{\pm in\pi x}{L}$ for the series, then we will have to use $\frac{\mp in\pi x}{L}$ for the Fourier kernel for coefficients: $c_n$. 
 
 Usually the convention for the complex Fourier Series is: 
 

@@ -1,7 +1,6 @@
 [Legendre Equation](Legendre%20Equation.md)
 Let's investigate the polynomials that we discovered by solving the Legendre Equation. 
 
-
 ---
 ### **Intro**
 
@@ -232,7 +231,7 @@ See [[Helmholtz Equation in a Sphere]] for more info.
 
 Where, we want the solutions to be bounded on the $\pm 1$. 
 
-**There is a relation between The Eigenfunctions we found for the Sphere problem, AND the general solution of the Legendre Eqn solutions.** Recall that $m\in \mathbb{Z}$. 
+**There is a relation between The Eigen-functions we found for the Sphere problem, AND the general solution of the Legendre Eqn solutions.** Recall that $m\in \mathbb{Z}$. 
 
 And, after solving the equation, the solutions we found that satisfies the boundary is: 
 
@@ -246,7 +245,7 @@ $$
 y(x) = P_k^m(x)
 $$
 
-As the general solution of the Legendre equation. 
+As the general solution of the Legendre equation. Where the solution is parameterized by 2 parameters $k, m$, where $m$ could be any number but $k$ is an integer which determines the value of $\eta_k$ for the standard form of he equation. 
 
 And, the relation is specified by this: 
 

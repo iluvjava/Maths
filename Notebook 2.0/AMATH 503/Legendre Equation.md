@@ -117,7 +117,7 @@ $$
 Ok, so we had a series that is going to converge, for $|x|\le 1$, using some basic complex analysis and singularity. 
 
 
-### **Examing the Coefficients**
+### **Examine the Coefficients**
 
 Referring back to (7), it's not hard to observe that odd and even orders are entangled together. 
 
@@ -137,7 +137,7 @@ Which I am just splitting it by the odd and even terms in this case.
 
 **Boundary Conditions? Restrain the solution a bit?**
 
-Consider the fact that, the Legendred equation is satisfying that: 
+Consider the fact that, the Legendre equation is satisfying that: 
 
 $$
 \begin{cases}

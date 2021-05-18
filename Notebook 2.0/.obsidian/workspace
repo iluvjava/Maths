@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Fancy Derivative/Jacobian and Hessian.md",
+            "file": "AMATH 503/Legendre Polynomials.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515/Fancy Derivative/Jacobian and Hessian.md",
+            "file": "AMATH 503/Legendre Polynomials.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515/Fancy Derivative/Jacobian and Hessian.md",
+                "file": "AMATH 503/Legendre Polynomials.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +101,15 @@
   },
   "active": "6dcc85917de52a39",
   "lastOpenFiles": [
+    "AMATH 503/Legendre Polynomials.md",
+    "AMATH 503/Legendre Equation.md",
+    "AMATH 503/1D Wave in Infinite Domain.md",
+    "AMATH 503/Complex Fourier Series (PDF Flavor).md",
+    "AMATH 503/Fourier Cosine Series.md",
+    "AMATH 503/Diffusion of a Tracer.md",
+    "AMATH 515/Fancy Derivative/Optimality Conditions (Jacobian Hessian).md",
     "AMATH 515/Fancy Derivative/Jacobian and Hessian.md",
     "AMATH 515/Proximal Gradient Descend/Proximal Gradient FISTA.md",
-    "AMATH 515/Fancy Derivative/Derivatives on Steroids.md",
-    "AMATH 515/Chambolle Pock.md",
-    "AMATH 503/Legendre Equation.md",
-    "AMATH 515/Interior Points.md",
-    "AMATH 515/GLM with GD.md",
-    "AMATH 501/Amath 501.md",
-    "AMATH 502/Gradient System.md",
-    "AMATH 503/Fourier Transform (PDE Flavor).md"
+    "AMATH 515/Fancy Derivative/Derivatives on Steroids.md"
   ]
 }
