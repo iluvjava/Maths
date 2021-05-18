@@ -1,6 +1,6 @@
 Here, we are going to solve some ODE which is relevant with solving the helmholtz equation in 3d under the spherical coordinate. 
 
-[[Helmholtz Equation in a Sphere]]
+ [[Helmholtz Equation in a Sphere]]
 
 ---
 ### **Intro**
@@ -18,7 +18,6 @@ $$
 This is also called the associated Legendre equation in spherical coordinates, but with the case where $m = 0$. This means that there is no affect by the longitude direction, meaning that $\Phi(\phi)$ is a constant. 
 
 To solve, we are going to use the Power Series expansion centered at a point. Let's call that point $b$. 
-
 
 ---
 ### **Power Series**
@@ -41,7 +40,7 @@ y(x) = \sum_{n = 0}^{\infty} a_n x^n
 \tag{4}
 $$
 
-And taking the derivatiev we have: 
+And taking the derivative we have: 
 
 $$
 y'(x) = \sum_{n =0}^{\infty}a_nnx^{n - 1} \quad y''(x) = \sum_{n = 0}^{\infty}
@@ -94,7 +93,7 @@ $$
 \tag{6}
 $$
 
-Put everyting on one side we have: 
+Put everything on one side we have: 
 
 $$
 \sum_{n = 0}^{\infty} 

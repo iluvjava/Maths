@@ -12,46 +12,18 @@
             "file": "AMATH 503/Legendre Equation.md",
             "mode": "source"
           }
-        },
-        "group": "278d7aeadef02909"
+        }
       },
       {
-        "id": "7b166e87612c490f",
+        "id": "b101d6c373612b7a",
         "type": "leaf",
-        "pinned": true,
         "state": {
-          "type": "localgraph",
+          "type": "markdown",
           "state": {
             "file": "AMATH 503/Legendre Equation.md",
-            "options": {
-              "collapse-filter": true,
-              "search": "",
-              "localJumps": 1,
-              "localBacklinks": true,
-              "localForelinks": true,
-              "localInterlinks": false,
-              "showTags": false,
-              "showAttachments": false,
-              "hideUnresolved": false,
-              "collapse-color-groups": true,
-              "colorGroups": [],
-              "collapse-display": true,
-              "showArrow": false,
-              "textFadeMultiplier": 0,
-              "nodeSizeMultiplier": 1,
-              "lineSizeMultiplier": 1,
-              "collapse-forces": true,
-              "centerStrength": 0.518713248970312,
-              "repelStrength": 10,
-              "linkStrength": 1,
-              "linkDistance": 250,
-              "scale": 1,
-              "close": false
-            }
-          },
-          "pinned": true
-        },
-        "group": "278d7aeadef02909"
+            "mode": "preview"
+          }
+        }
       }
     ],
     "direction": "vertical"
@@ -128,12 +100,14 @@
   "active": "6dcc85917de52a39",
   "lastOpenFiles": [
     "AMATH 503/Legendre Equation.md",
+    "AMATH 515/Interior Points.md",
+    "AMATH 515/GLM with GD.md",
+    "AMATH 501/Amath 501.md",
+    "AMATH 502/Gradient System.md",
     "AMATH 503/Fourier Transform (PDE Flavor).md",
     "AMATH 515/Gradient Descend/Gradient Descend 3.md",
     "AMATH 503/Frobenius Method.md",
     "AMATH 503/Legendre Polynomials.md",
-    "AMATH 503/Legndre Polynomials.md",
-    "Helmholtz Equation in a Sphere.md",
-    "AMATH 503/Untitled.md"
+    "AMATH 503/Legndre Polynomials.md"
   ]
 }
