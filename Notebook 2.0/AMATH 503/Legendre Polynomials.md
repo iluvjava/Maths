@@ -71,7 +71,7 @@ I = \frac{1}{2^nn!}\int_{-1}^{1}
 dx
 $$
 
-And then, we use the integration by parts on the integral. We will be doing this integraltion by parts for $n$ times. Quiet complicated.  
+And then, we use the integration by parts on the integral. We will be doing this integration by parts for $n$ times. Quiet complicated.  
 
 We can start of with some: 
 
@@ -104,7 +104,7 @@ I = - \left[
     dx
 $$
 
-And, similar thing happends, we have zero on the first term. 
+And, similar thing happens, we have zero on the first term. 
 
 And then we have: 
 
@@ -140,7 +140,7 @@ $$
 Ok, so we are taking $n$ derivative on a polynomial of degree $m$, with $m < n$, so that is just zero. 
 
 
-Let's consider the otehr acse that $m > n$, and in this case, all we need to do is switch the $P_m(x)$ and the $P_n(x)$ and go through what we already had, and in that case, we will get the same result. 
+Let's consider the other case that $m > n$, and in this case, all we need to do is switch the $P_m(x)$ and the $P_n(x)$ and go through what we already had, and in that case, we will get the same result. 
 
 Now, consider the case that $m = n$, then we et $f(x) = P_n(x)$, then the integral is like: 
 
@@ -164,7 +164,7 @@ $$
 P^{(n)}_n(x)  = \frac{1}{2^nn!} \underbrace{\partial_{x}^{2n} [(x^2 - 1)^n]}_{(2n)!}
 $$
 
-And notice that $(x^2 - 1)^{n}$ is a polynomial with degree $2n$, in fact, the leading power is exactly $x^2n$, taking $2n$ derivative on that will result in a muliplier of $(2n)!$
+And notice that $(x^2 - 1)^{n}$ is a polynomial with degree $2n$, in fact, the leading power is exactly $x^2n$, taking $2n$ derivative on that will result in a multiplier of $(2n)!$
 
 And what we are going to end up is going to be like: 
 
@@ -174,7 +174,7 @@ I = \frac{(-1)^n}{(2^nn!)^2}(2n)!\int_{-1}^{1}
 dx
 $$
 
-Don't forget there is a square on the term $(2^nn!)$, one from the $I$, the other oen is from the $P^{(n)}_n(x)$. 
+Don't forget there is a square on the term $(2^nn!)$, one from the $I$, the other one is from the $P^{(n)}_n(x)$. 
 
 $$
 I = \frac{(2n)!}{(2^nn!)^2}\int_{-1}^{1} 

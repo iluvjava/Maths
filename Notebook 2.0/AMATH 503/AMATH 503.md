@@ -57,3 +57,7 @@ After the midterm, we will start to solve PDEs in multiple dimension.
 And to do things in the other coordinate systems, we need tools like: 
 * [[Bessel's Equation]]
 * [[Frobenius Method]]
+
+### **Week 7**
+
+* Helmholtz Equation in the sphere: [[Helmholtz Equation in a Sphere]], and the basis function along the $\Theta$ direction give birth to the Associated Legendre Equation, and with a substitution, we get the [[Legendre Equation]]. 

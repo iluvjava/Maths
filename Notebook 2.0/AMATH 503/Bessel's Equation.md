@@ -378,7 +378,7 @@ Identities taken for granted.
 
 1. $\partial_x[x^{p}J_{p}(x)] = x^pJ_{p - 1}(x)$
 2. $\partial_{x}[x^{-p}J_{p}(x)] = -x^{-p}J_{p + 1}(x)$
-3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p}(x)$
+3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p + 1}(x)$
 
 Where Identity 3 is gotten from the previous 2 identities. 
 
@@ -489,6 +489,16 @@ There are lot of zeros, where $J_m(x)$ crosses the x-axis, these are sometimes v
 
 The zeros of the [[Helmholtz Equation in a Cylinder]]. Where we used the notation that $z_{m,n}$ denotes $n$ th zeros of $J_m(x)$. 
 
+
+---
+### **Bessel's Identity**
+
+This part is given as a proof for the identity we used: 
+
+
+1. $\partial_x[x^{p}J_{p}(x)] = x^pJ_{p - 1}(x)$
+2. $\partial_{x}[x^{-p}J_{p}(x)] = -x^{-p}J_{p + 1}(x)$
+3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p + 1}(x)$
 
 
 

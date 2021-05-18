@@ -334,4 +334,3 @@ $$
 And recall that $z_{m, n}$ is used to denote the roots of the bessel's funtions. Boom, we had an expression for the constant for the eigen function for $R(r)$. 
 
 
-
