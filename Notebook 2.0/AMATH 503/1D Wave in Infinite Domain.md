@@ -1,11 +1,11 @@
 [[Fourier Transform (PDE Flavor)]]
-One of the very important application of Fourier Transfrom is its application to Solving PDEs in the infinite domain. 
+One of the very important application of Fourier Transform is its application to Solving PDEs in the infinite domain. 
 
 
 ---
 ### **Intro**
 
-We are going to solve the **wave equation** on the **infinite domain** using the **metod of Fourier Transform**. 
+We are going to solve the **wave equation** on the **infinite domain** using the **method of Fourier Transform**. 
 
 Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. 
 
@@ -47,7 +47,7 @@ $f(x)$ must be: **Absolutely Integrable**.
 
 **DO NOTE USE: Separation of Variables** for these type of PDE on an infinite domain. 
 
-Engenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial condiions. 
+Engenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial conditions. 
 
 **Introducing**: d' Alembert's method: 
 It's made for just the above PDE equation, not applicable to anything else. 
@@ -55,16 +55,16 @@ It's made for just the above PDE equation, not applicable to anything else.
 **Back onto topic**: Fourier Transform
 
 Here is the list of procedures we use to get the solution for the PDE: 
-1. Take the equation to the Fouier Domain so it's an ODE in term of $t$ and $w$. 
+1. Take the equation to the Fourier Domain so it's an ODE in term of $t$ and $w$. 
 2. Use the $u_t(x, 0) = 0$ get the solution format, in the Fourier Domain. 
 3. Use the $u(x, 0) = f(x)$ to get the undetermined coefficients for the system, in the fourier domain. 
 4. Do the Inverse Fourier Transform to get the solution in the original spatial domain. 
 
 **Questions**: 
 
-What is the Fourier Transfrom for the $u(x,t)$ function? Notice that we have a function of 2 variables here instead of one, but the FT we did is univariate function. 
+What is the Fourier Transform for the $u(x,t)$ function? Notice that we have a function of 2 variables here instead of one, but the FT we did is univariate function. 
 
-Transform along the spatial dimension, on variable $x$ to frequency domain with variale $w$. 
+Transform along the spatial dimension, on variable $x$ to frequency domain with variable $w$. 
 
 $$
 \mathcal{F}[u(x, t)](w, t) = \int_{-\infty}^{\infty} 
@@ -129,7 +129,7 @@ $$
 \partial_{xx}[u](x, t) = w^2\hat{u}(w, t) \tag{4}
 $$
 
-The key here is that, under the Fourier domain, the time derivative is still just a derivative wrt to time, but the spatial deerivative, we have a constant multiplier instead of derivative. 
+The key here is that, under the Fourier domain, the time derivative is still just a derivative wrt to time, but the spatial derivative, we have a constant multiplier instead of derivative. 
 
 Hence in the frequency domain we obtain the expression that:[^1]
 
@@ -188,7 +188,7 @@ $$
 \mathcal{F}^{-1}[\hat{u}](x, t = 0) = f(x)
 $$
 
-So then we can take the fourier transform on both side and we have: 
+So then we can take the Fourier transform on both side and we have: 
 
 $$
 \hat{u}(w, 0) = \underbrace{\mathcal{F}[f](w)}_{F(w)}
@@ -205,7 +205,7 @@ $$
 B_w = \mathcal{F}[f](w)
 $$
 
-Now, we have the soluiton the Fourier Domain, but, we want the solution in the original space, which is just one inverse Fourier Away: 
+Now, we have the solution the Fourier Domain, but, we want the solution in the original space, which is just one inverse Fourier Away: 
 
 $$
 u(x, t) = \mathcal{F}[\hat{u}](x,t) = 
@@ -236,7 +236,7 @@ dw
 dw
 $$
 
-And notice that, this is the inverse fourier Transform which can be expressed like (After some non-trivial math): 
+And notice that, this is the inverse Fourier Transform which can be expressed like (After some non-trivial math): 
 
 $$
 u(x, t) = \frac{1}{2}(f(x + ct) + f(x - ct))
