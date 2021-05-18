@@ -207,7 +207,7 @@ This is a complicated way of showing the Orthogonality of the polynomials.
 
 The original equation is from the Latitude parts of the Helmholtz equation in the sphere. 
 
-And that is the original function that we generate the problem: 
+And that is the original spherical harmonics that we generate the problem: 
 
 $$
 \frac{1}{\sin\theta} \partial_\theta[\sin\theta \partial_\theta[\Theta]] + 
@@ -247,7 +247,7 @@ $$
 
 As the general solution of the Legendre equation. Where the solution is parameterized by 2 parameters $k, m$, where $m$ could be any number but $k$ is an integer which determines the value of $\eta_k$ for the standard form of he equation. 
 
-And, the relation is specified by this: 
+And, the relation is specified by this[^1]: 
 
 $$
 P^{m}_n(x) = 
@@ -283,5 +283,54 @@ $$
 P_3^1(x) = \cdots = \frac{3}{8}(\sin\theta + 5\sin(5\theta))
 $$
 
+And...
 
 
+$$
+P_1^2(x) =\cdots =\frac{3}{8}(\sin\theta + \sin3\theta)
+$$
+
+$$
+P_2^2(x) =\cdots =\frac{3}{2}(1 - \cos(2\theta))
+$$
+
+$$
+P^2_3(x) =\cdots =\frac{15}{4}(\cos\theta - \cos (3\theta))
+$$
+
+And the orthogonality property for $P_n^m(x)$ is: 
+
+$$
+\int_{-1}^{1} 
+    P_i^{m}(x)P_j^{m}(x)
+dx
+=
+\begin{cases}
+    0 & i \ne j
+    \\
+    \frac{2}{2j + 1}\frac{(j + m)!}{(j - m)!} & i= j
+\end{cases}
+$$
+
+The bottom index is different, because we are parameterizing on the same Lengendre Polynomials, so the value $m$ is fixed. 
+
+---
+### **One More Thing**
+
+Recall that we were looking at the Helmholtz equation in a sphere and the PDE is: 
+
+$$
+\nabla^2\cdot u = -\lambda^2u\quad u(r, \theta, \phi) = R(r)Y(\theta, \phi)
+$$
+
+The radial part satisfies, $R$ satisfies spherical bessel's equation, with order $n + \frac{1}{2}$, and for the $Y(\theta, \phi)$, it's $\Theta(\Theta)\Phi(\phi)$. 
+
+And, we just found out that: 
+
+$$
+\Theta(\theta) = P_n^m(x) = P_n^m(\cos\theta)
+$$
+
+
+
+[^1]: The proof is skipped because it's rather complicated. 
