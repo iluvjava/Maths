@@ -34,15 +34,14 @@ And in this case, we can see that, if this is approaching infinite, then it's hi
 The Ratio of the positive labels near a certain radius, will approach a limit as we sample more and more sample from the same distribution. 
 
 $$
-\int_C
+\int_{\Vert x\Vert_p < R}
 \frac{\mathbb{P}\left(Y = +1|X = x\right)}{
     \mathbb{P}\left(Y = -1|X = x\right)
 }
 dx
 $$
 
-Yeah, something like that, but that is just my guess tho. 
-
+Yeah, something like that, but that is just my guess tho, where we are taking the ratio on the positive ratio of occurence over the negative, over a closed region. 
 
 ---
 ### **Bias Variance Trade Off**
