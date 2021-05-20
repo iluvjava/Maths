@@ -38,5 +38,8 @@ Then let that boostrap estimator to be $\hat{f}^{(b)}(x)$, and this will be the 
   * The reliability is dependent on the convergence rate of the Empirical CDF to the ground truth CDF, and most cases, this is unknown. 
 
 
+### **Deep Learning Variance Estimate**
+
+[Drop Out as a Bayesian Approximation](https://arxiv.org/abs/1506.02142)
 
 
