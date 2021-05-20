@@ -256,7 +256,7 @@ y = x^pa_0 \sum_{m = 0}^{\infty}
     }
 $$
 
-Take note that, the sing swap depens on $m$, all the other parameters are even, hence it's $2m$. 
+Take note that, the sing swap depends on $m$, all the other parameters are even, hence it's $2m$. 
 
 **Take note**: $p$ is not necessarily an integer here. 
 
@@ -283,7 +283,7 @@ $$
 Then it can be said that: 
 
 $$
-y_1(x) = \sum_{n = 0}^{\infty}
+y_1(x) = \sum_{n = 0}^{\infty}n
     \frac{(-1)^n\left(
         \frac{x}{2}
     \right)^{2n + p}}{
@@ -370,7 +370,7 @@ $$
 
 **Proposition**
 
-whem $p = m$ where $m$ is an integer, then $J_{p}(x)$ and $J_{-p}(x)$, are linear dependent, i.e: $J_{-p}(x) = CJ_{p}(x)$. 
+when $p = m$ where $m$ is an integer, then $J_{p}(x)$ and $J_{-p}(x)$, are linear dependent, i.e: $J_{-p}(x) = CJ_{p}(x)$. 
 
 **Proof**:
 
