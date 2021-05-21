@@ -45,9 +45,9 @@ $p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$.
 
 WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
 
-**Note**: By chaging the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. 
+**Note**: By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. 
 
-The boundary conditions aer of the form: 
+The boundary conditions are of the form: 
 
 $$
 c_1y(a) + c_2 y'(a) = 0 
@@ -71,7 +71,7 @@ There are way more Singular than the Regular. Let's consider a subset of the sin
  
 * Domain might be infinite. 
 
-When a system is singular, there is a very good chance that we had singularies for the functions inside of the domain, see the Legender System in the example part for more about how to modify the boundary of the solution. 
+When a system is singular, there is a very good chance that we had singularities for the functions inside of the domain, see the Legendre System in the example part for more about how to modify the boundary of the solution. 
 
 
 ---
@@ -87,7 +87,7 @@ $$
 
 In this case, refer back and find out that, $p(x) = 1$, $q(x) = 1$, $r(x) = 1$. 
 
-In this case, we are on a finite domain, $p(x)$, $r(x)$, both continous and bigger than zero, then we are dealing with a **Regular SL system**. 
+In this case, we are on a finite domain, $p(x)$, $r(x)$, both continuous and bigger than zero, then we are dealing with a **Regular SL system**. 
 
 We had done this before when solving the 1D equations PDEs waves and heat system. 
 
@@ -131,7 +131,7 @@ $$
 x^2 y'' + xy' + (\lambda x^2 - \tilde p^2)y = 0  \quad x \in [0, b]
 $$
 
-This doesnt look right at the first glance, but we can divide both side by $x$ and get: 
+This doesn't look right at the first glance, but we can divide both side by $x$ and get: 
 
 $$
 x y'' + y' + \left(
@@ -206,7 +206,7 @@ $$
 
 Where $\phi_j(x)$ is the solution to the eigenvalue $\lambda_j$ and $\phi_k(x)$ is the solution with the eigen value $\lambda_k$. 
 
-To prove it, we will need to consider the following procudures: 
+To prove it, we will need to consider the following procedures: 
 
 Let's first, substitute both solutions into the system so that would be: 
 
@@ -218,7 +218,7 @@ $$
 [p(x)\phi_k']' + (\lambda_k - q(x))\phi_k = 0
 $$
 
-Multtiply the first one by $\phi_k$ and then multiply the second one by $\phi_j$ and then we take the difference between the first one of the second one, that will be giving us the expression that: 
+Multiply the first one by $\phi_k$ and then multiply the second one by $\phi_j$ and then we take the difference between the first one of the second one, that will be giving us the expression that: 
 
 $$
 \phi_j (p(x)\phi_k')' - \phi_k(p(x)\phi_j')' = [\lambda_j - \lambda_k]r(x)\phi_j\phi_k
@@ -243,7 +243,7 @@ $$
 
 **If it's a regular SL system**
 
-When it's Homogenous Dirichilet, we have: 
+When it's Homogeneous Dirichlet, we have: 
 
 $$
 \phi_j(a) = \phi_k(a) = 0 \quad \phi_j(b) = \phi_k(b) = 0
@@ -251,9 +251,9 @@ $$
 
 As the boundary condition of the system. 
 
-Susbtituting it back to expression (2), the RHS of the system will evaluate to zero. 
+Substituting it back to expression (2), the RHS of the system will evaluate to zero. 
 
-If it's Homogenous Naumman, with: 
+If it's Homogeneous Neuman, with: 
 
 $$
 \phi_j'(a) = \phi_k'(a) = 0 \quad \phi_j'(b) = \phi_k'(b) = 0
