@@ -380,7 +380,7 @@ Identities taken for granted.
 2. $\partial_{x}[x^{-p}J_{p}(x)] = -x^{-p}J_{p + 1}(x)$
 3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p + 1}(x)$
 
-Where Identity 3 is gotten from the previous 2 identities. 
+Where Identity 3 is gotten from the previous 2 identities. This is assigned as one of the questions on HW4 of the class. 
 
 We want to show that for $p = m$ where $m$ is an integer, 
 
