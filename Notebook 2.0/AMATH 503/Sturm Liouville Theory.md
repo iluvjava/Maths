@@ -280,7 +280,15 @@ $$
 
 ---
 
-### **More Theorems but Without the Proofs**
+### **More Theorems but Without the Proofs and Just Stated Here**
 
+* Orthogonality. 
+* Uniqueness. For each eigenvalue, there exists uniquely one eigen function for that value. 
+* All eigenvalues are real. 
+* All eigenvalues are positive. 
 
+And is exactly the same as the Hermitian Matrix, see: [[Hermitian Adjoint]]
 
+This is just one of the hermitian operator, but this time it's for functions on a bounded interval (or infinite interval) I guess. 
+
+Now, I am giving handle to another file: [[Sturm Liouville Theory P2]]

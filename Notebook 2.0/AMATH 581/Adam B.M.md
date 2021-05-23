@@ -65,7 +65,7 @@ Which in the end will give us:
 
 > $$y_{n+1} = y_n + \frac{\Delta t}{2}(3f_n - f_{n - 1})$$
 
-This is an explicit scheme named: "**Adams Bashforth**" 
+This is an **explicit scheme** named: "**Adams Bashforth**" 
 
 Now we develop the implicit time stepping scheme using this approximation: 
 
