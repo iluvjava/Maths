@@ -38,7 +38,7 @@ And the $\nabla^2$ is the 2d Laplacian operator.
 
 $$\omega_0(x,y,t=0) = \omega(x, y)$$
 
-This is the only initial conditions becase we can figure out the vorticity functions using (eqn 2). 
+This is the only initial conditions because we can figure out the vorticity functions using (eqn 2). 
 
 #### Periodic Boundary Conditions
 
@@ -62,9 +62,9 @@ $$
 
 #### Numerical Approaches (Algorithm)
 
-get $\omega_0$, solve for $\psi$ using (eqn 2) (This is call Eliptic Solve); time stepping on (eqn 1) to get the next distribution for $\omega_1$, then repreat the process. 
+get $\omega_0$, solve for $\psi$ using (eqn 2) (This is call e Elliptic Solve); time stepping on (eqn 1) to get the next distribution for $\omega_1$, then repeat the process. 
 
-For doing the elliptic solve, we need to incoperate the Laplacian Operator with Periodic Boundary value conditions into the matrix. 
+For doing the elliptic solve, we need to in-cooperate the Laplacian Operator with Periodic Boundary value conditions into the matrix. 
 
 #### Numerical Elliptic Solve
 
@@ -72,7 +72,7 @@ To set up the grid points for the Elliptic Matrix, we partition the xy plane: $B
 
 
 **Important Grid Discretization**
-We also note that, the entire space is partitioned in to a grid (A Matrix) of $N\times M$, where, the origin is at the bottom right corner of $B$. The first index goes in the $x$ direction while the second index goes in the $y$ direction.  For the purpose off generarity, we use $M, N$ to denotes the height and width of the matrix, but they can be the same. 
+We also note that, the entire space is partitioned in to a grid (A Matrix) of $N\times M$, where, the origin is at the bottom right corner of $B$. The first index goes in the $x$ direction while the second index goes in the $y$ direction.  For the purpose off generality, we use $M, N$ to denotes the height and width of the matrix, but they can be the same. 
 
 Remember the kernel for second order, second derivative central difference is has the kernel filter: 
 
@@ -83,7 +83,7 @@ $$
 \end{bmatrix}\delta^{-2}
 $$
 
-However, the kernal filter for the Laplacian $\nabla^2$ will use both the $\partial_{xx}$ and $\partial_{yy}$, and that means the kernel we want is actually: 
+However, the kernel filter for the Laplacian $\nabla^2$ will use both the $\partial_{xx}$ and $\partial_{yy}$, and that means the kernel we want is actually: 
 
 $$
 \nabla^2 = 
@@ -94,7 +94,7 @@ $$
 \end{bmatrix}\delta^{-2}
 $$
 
-Then, to our interests, we need a matrix $A$ to represents the kernel filter of the Laplacian, and if we get that, then we can obtain the streen functions from the vorticity by solving the following linear system: 
+Then, to our interests, we need a matrix $A$ to represents the kernel filter of the Laplacian, and if we get that, then we can obtain the stream functions from the vorticity by solving the following linear system: 
 
 $$
 A\psi = \delta^2\omega
