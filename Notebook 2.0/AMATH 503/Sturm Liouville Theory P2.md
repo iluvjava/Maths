@@ -31,7 +31,7 @@ $$
 \lambda_1 < \lambda_2 <\lambda_3 < \cdots 
 $$
 
-and 
+and
 
 $$
 \lim_{i\rightarrow \infty} \lambda_i = \infty

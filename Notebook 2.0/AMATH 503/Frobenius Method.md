@@ -85,4 +85,16 @@ $$
 Where, take notice that, it has an extra coefficient with $y_1(x)$ where we are going to solve for, and the power on $x$ is $s_2$ in the multiplier for the series. 
 
 
+#### **When $s_1 \ne s_2$ and Not Differed by an Integer**
+
+This is the easier case, where the solution will take the form of: 
+
+$$
+y(x) = x^{s_1}\sum_{n = 0}^{\infty}
+    a_{2n}x^{(2n)} + 
+    x^{s_2}\sum_{n = 1}^{\infty}
+    a_{2n - 1}x^{(2n - 1)}
+$$
+
+Remember, when unrolling the recursion for $a_n$, we will also need to consider the value of $s_1, s_2$, because that will sometimes also determine the solution for $a_{2n}, a_{2n + 1}$. 
 
