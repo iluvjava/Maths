@@ -42,7 +42,7 @@ Take notice that, the first component is less than $g(y)$ by the convexity of $g
 And the second component can be simplified: 
 
 $$
-\begin{align}
+\begin{aligned}
 	&
 	\frac{\alpha||x||^2}{2}
 	+\alpha x^T(y - x) + \frac{\alpha}{2}||y - x||^2
@@ -61,7 +61,7 @@ $$
 	\right)
 	\\&
 	\frac{\alpha}{2}||y||^2
-\end{align}
+\end{aligned}
 $$
 
 And therefore, the expression **(1)** eventually got into: 
@@ -77,14 +77,14 @@ This is expression **(2)**
 
 And by the convexity of $g(x)$, we have: 
 $$
-\begin{align} 
+\begin{aligned} 
 	g(y)+\frac{\alpha||y||^2}{2} &\ge
 	\left[g(x) + \nabla g(x)^T(y - x)\right] + 
 	\left[\frac{\alpha||y||^2}{2}
 	\right]
 	\\
 	f(y) &\ge f(x) + \nabla f(x)^T(y - x) + \left[\frac{\alpha||y - x||^2}{2}\right]
-\end{align}
+\end{aligned}
 $$
 The first expression is just convexity of the function $g(x)$, and the second line is obtained by substituting expression **(2)**. 
 $\blacksquare$
@@ -97,7 +97,7 @@ The proof that goes --> is easy be the definition of Alpha Strongly Convex.
 From the definition that the function $f(x) - \frac{\alpha}{2}||x||^2$ is convex, we can start and say: 
 
 $$
-\begin{align}
+\begin{aligned}
 	f(y) - \frac{\alpha}{2}||y||^2 
 	&\underset{(1)}{\ge}
 	f(x) - \frac{\alpha}{2}||x||^2
@@ -115,7 +115,7 @@ $$
 	\\
 	&\underset{(5)}{\ge}
 	f(x) +\nabla f(x)^T(y - x) + \frac{\alpha}{2}||y - x||^2
-\end{align}
+\end{aligned}
 $$
 $\blacksquare$
 Explanations: 
