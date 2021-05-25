@@ -57,11 +57,11 @@ $$
 d_1y(b) +  d_2y'(b) = 0
 $$
 
-**Note** At least one of $d_1$, $d_2$, or $c_1$, $c_2$ are non-zero.
+**Note**: At least one of $d_1$, $d_2$, or $c_1$, $c_2$ are non-zero.
 
 **Singular**
 
-Infinite domain, or, at least one of the conditions for the regular SL is not satisfied. 
+If the system in on an infinite domain, or, at least one of the conditions for the regular SL is not satisfied. 
 
 There are way more Singular than the Regular. Let's consider a subset of the singular system: 
 
@@ -279,7 +279,6 @@ $$
 
 
 ---
-
 ### **More Theorems but Without the Proofs and Just Stated Here**
 
 * Orthogonality. 

@@ -29,6 +29,9 @@ Note:
 
 **This is not CONVEX optimizaiton**, meaning that, there will be some assignment of the samples that is a local minima, instead of a global minima. Having a Convex Objective Function doesn't mean that it's a **CONVEX Optimization**. 
 
+This is the case because when the algorithm terminates, it could be a local minima, instead of a global one. 
+
+
 **Cool fact:**
 
 > The partition boundaries for the K-mean algorithm is always going to be a line, this is the case becaues we are using L2-norm. And there is no way we can define 2 centriods, and then the set of points taht have equal distance between these 2 centroids are not a line!

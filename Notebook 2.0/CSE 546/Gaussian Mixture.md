@@ -19,3 +19,6 @@ P(x; \mu, \Sigma) -
 $$
 
 This is a Gaussian Distribution with a linear transform matrix $\Sigma$, and a center $\mu$.
+
+
+
