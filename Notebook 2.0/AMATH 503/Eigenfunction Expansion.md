@@ -329,5 +329,3 @@ This is the end of the Eigen Function Expansion Method.
 This can be made more complicated by considering different Elliptic PDEs, and the involvement of $r(x)$ frm the Sturm Liouville System, then we might need to figure out $f(x, t)/r(x)$'s Eigen Function Representation, instead of directly figuring out $f(x, t)$. 
 
 
-
-
