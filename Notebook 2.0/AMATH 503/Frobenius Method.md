@@ -36,7 +36,7 @@ And when this happens, we will need to take caution when:
 1. $s$ has 2 integer solutions. 
 2. $s$ is the repeated root of a solution. 
 
-When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constants are linear independent. And that will form the full solution for the ODEs. 
+**When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constants are linear independent. And that will form the full solution for the ODEs.**
 
 But when this scenario for $s$ happened, we can not because the solution we had or $y(x)$ will be linear dependent.
 

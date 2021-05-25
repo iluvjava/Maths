@@ -26,7 +26,7 @@ Computational Model: PRAM Sum
 
 This is how the computational graph looks like: 
 
-![[Pasted image 20210524004345.png]]
+![[Pram-Sum.png]]
 
 Each time, we reduces the size of the array by a half, and the sum of the `[i]` th element is the sum from the element `[2*i]` and `[2*i + 1]`. 
 
@@ -36,3 +36,4 @@ One way achieving this is:
 __global__ 
 
 ```
+

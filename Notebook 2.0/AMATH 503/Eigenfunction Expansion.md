@@ -208,5 +208,126 @@ And this is the solution.
 ---
 ### **A More General Example**
 
-(...)
+Let's consider a bounded Heat Nonhomogeneous PDE for a more general setup: 
+
+$$
+\begin{cases}
+    \partial_t[u] - \alpha^2 \partial_x^2[u] = f(x, t) & x\in [0, L], t> 0
+    \\
+    \alpha_1 \partial_x[u](0, t) + \beta_1 u(L, t) = 0 & 
+    \\
+    \alpha_2 \partial_x[u](L, t) + \beta_2u(L, t) = 0 & 
+    \\
+    u(x, 0) = \phi(x) & x\in[0, L]
+\end{cases}
+$$
+
+This is a much general non-homogenous equation with Robin Boundary conditions. 
+
+The solution, both the Homogeneous and the non-Homoegenoeous solution can be represented by the Eigen Basis function, and this would imply that: 
+
+$$
+u(x, t) = \sum_{n = 1}^{\infty}T_n(t)X_n(x)
+\tag{4}
+$$
+
+And the Non-Homggeneous part is coming from the $T_n(t)$. Let's take a look at how this works. 
+
+Firstly, The Eigen system for the Spatial function is like: 
+
+$$
+X''(x) +\lambda^2 X(x) = 0
+$$
+
+Take notice that, this is a Sturm Loiuville system, where, $p(x) = 1$, and $q(x) = 1$ and $r(x) = 0$. 
+
+Therefore, in this case, the Eigen functions $X_n(x)$ will be orthogonal and complete, for the given interval $[0, L]$. 
+
+**Note** **This part, we will actually need to incorperate the Robin Boundary Conditions to get the Eigenfunctions for ourselves, which might not be easy from time to time.**
+
+Let's denote the eigenfunctions $X_n(x)$, and then let's try out expression (4) with the PDE: 
+
+$$
+\partial_t[u] = \sum_{n = 1}^{\infty}
+    T'(t)X_n(x)
+$$
+
+$$
+\partial_x^2[u] = \sum_{n = 1}^{\infty}
+    T(t)X_n''(x) = 
+\sum_{n = 1}^{\infty}
+    -\lambda^2T(t)X_n(x)
+$$
+
+Then: 
+
+$$
+\partial_t[u] - \alpha^2\partial_x^2[u] = f(x, t)
+$$
+
+$$
+(T_n'(t) + \alpha^2 \lambda^2T_n(t))X_n(x) = f(x, t)
+\tag{5}
+$$
+
+Ok, since the Eigenfunctions are complete and orthogonal, we can also just say: 
+
+$$
+f(x,t ) = \sum_{n = 1}^{\infty}
+    f_n(t)X_n(x)
+$$
+
+**Take note that, to find $f_n(t)$, we will need to take the inner product with $\hat{X}_m(x)$, the normalized basis function.**
+
+Boom, then expression (5) will become: 
+
+$$
+\forall n: (T_n'(t) + \alpha^2\lambda^2T_n(t) - f_n(t))X_n(x) = 0
+$$
+
+$$
+\implies \forall n : T_n'(t) + \alpha^2\lambda^2T_n(t) - f_n(t)= 0
+\tag{6}
+$$
+
+Therefore, We have a system of Non-Homogeneous ODEs. Sometimes, it depends on what $f_n(t)$ is. 
+
+Let's suppose that we went ahead an solve it, and in this case we have the solution: 
+
+$$
+T_n(t) = T_n^{[1]}(0)\exp(-\alpha^2\lambda^2t) + T_n^{[2]}(t)
+\tag{7}
+$$
+
+Where $T_n^{[1]}(0)$ is a underdetermined Coefficient and $T_n^{[2]}(t)$ is the non-homogeneous solution to this ODE. 
+
+**Note**: Here, we will be solving a ODEs, for all the cases of $n$, and in order to do this, we would need to solve for $f_n(t)$ before hand so we can get the particular solution of the system. 
+
+Now, take notice that, using the **Initial conditions**: 
+
+$$
+u(x, 0) = \phi(x) = \sum_{n = 1}^{\infty}
+    T_n(0)X_n(x)
+$$
+
+Boom, we can now Get $T_*(0)$, by considering $t = 0$ for expression (7): 
+
+$$
+T_n(0) = T_n^{[1]}(0)\exp(-\alpha^2 \lambda^2 t) + T_n^{[2]}(0)
+$$
+
+$$
+\implies T_n^{[1]}(0) = \exp(\alpha^2\lambda^2 t)(T_n(0) - T_n^{[2]}(0))
+$$
+
+Up to this point, everything has been determined.
+
+This is the end of the Eigen Function Expansion Method. 
+
+**Note:**
+
+This can be made more complicated by considering different Elliptic PDEs, and the involvement of $r(x)$ frm the Sturm Liouville System, then we might need to figure out $f(x, t)/r(x)$'s Eigen Function Representation, instead of directly figuring out $f(x, t)$. 
+
+
+
 
