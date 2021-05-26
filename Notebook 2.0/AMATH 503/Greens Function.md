@@ -38,11 +38,11 @@ Instead of solving the Poisson equation directly, we are going to solve the Gree
 **This is the Greens Function Problem:**
 
 $$
-\nabla^2 \cdot G = \delta_3(\xi - x)
-$$
-
-$$
-\delta_3(\xi - x) = \delta(\xi - x)\delta(\eta - y)\delta(\mu - z)
+\begin{aligned}
+\nabla^2 \cdot G &= \delta_3(\xi - x)
+\\
+\delta_3(\xi - x) &= \delta(\xi - x)\delta(\eta - y)\delta(\mu - z)
+\end{aligned}
 $$
 
 $\delta_3$ is just the 3D delta function. 
@@ -70,15 +70,13 @@ This is adding the point mass, weighted by the gravitational potential distribut
 Let's check: 
 
 $$
-\nabla^2\cdot u(x) = \nabla^2 \iiint_V G(x, \xi)f(\xi)d\xi d\eta d\mu
-$$
-
-$$
-\nabla^2\cdot u(x) = \iiint_V \nabla^2 \cdot G(x, \xi)f(\xi)d\xi d\eta d\mu
-$$
-
-$$
-\nabla^2\cdot u(x) = \iiint_V \delta_3(\xi - x)f(\xi)d\xi d\eta d\mu
+\begin{aligned}
+\nabla^2\cdot u(x) &= \nabla^2 \iiint_V G(x, \xi)f(\xi)d\xi d\eta d\mu
+\\
+\nabla^2\cdot u(x) &= \iiint_V \nabla^2 \cdot G(x, \xi)f(\xi)d\xi d\eta d\mu
+\\
+\nabla^2\cdot u(x) &= \iiint_V \delta_3(\xi - x)f(\xi)d\xi d\eta d\mu    
+\end{aligned}
 $$
 
 By the property of the Dirac Delta function: 

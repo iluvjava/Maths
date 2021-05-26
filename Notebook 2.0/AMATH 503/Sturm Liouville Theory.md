@@ -13,7 +13,9 @@ The coolest part is that, we also have an orthogonality theorem that comes with 
 General Form: 
 
 $$
-\partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y = 0
+\begin{aligned}
+\partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y = 0    
+\end{aligned}
 \tag{1}
 $$
 
@@ -25,14 +27,17 @@ For each value of $\lambda$, we will have a function on the interval as the solu
 
 I am thinking if orthogonality property of the ODE has something to do with the fact that this is giving us a Hermitian operator, but it turns out to be  not that obvious. This is made my suspicions because of the fact that all the Eigenvalues are reals, and all the eigen functions are orthogonal, under weighted inner product of $r(x)$. 
 
-$$
-p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y = 0
-$$
+So let's expand out and see.. 
 
 $$
-p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y = \lambda r(x)y
+\begin{aligned}
+p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
+\\
+p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
+\end{aligned}
 $$
 
+And there is nothing that I can see and say that: "Ah, this is a hermitian matrix". This is getting interessting. 
 
 ---
 ### **Singular and Regular SL**
@@ -194,7 +199,7 @@ And in this case, $p(x) = (1 - x^2)^{\frac{1}{2}}$, $r(x) = (1 - x^2)^{-\frac{1}
 
 
 ---
-### **Orthogonality Theorems**
+### **Orthogonality Theorems (Only a Sketch of Proof)**
 
 The eigenfuncitons corresponding to distinct eigen values are orthogonal, over the defined interval. 
 
@@ -209,6 +214,8 @@ Where $\phi_j(x)$ is the solution to the eigenvalue $\lambda_j$ and $\phi_k(x)$ 
 To prove it, we will need to consider the following procedures: 
 
 Let's first, substitute both solutions into the system so that would be: 
+
+
 
 $$
 [p(x)\phi_j']' + (\lambda_k - q(x))\phi_j = 0

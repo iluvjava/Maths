@@ -22,21 +22,18 @@ We need some way of getting around the Bessel's Equation to get solution for the
 The Standard Form of the Bessel's Equation is: 
 
 $$
-x \partial_x[x\partial_x[y]] + (x^2 - p^2)y = 0 
-$$
-
-$$
-x(x\partial_x^2[y] + \partial_x[y]) + (x^2 - p^2)y = 0 
-$$
-
-$$
-x^2\partial_x^2[y] + x\partial_x[y] + (x^2 - p^2)y = 0
-$$
-
-$$
-x^2 y'' + x y' + (x^2 - p^2)y = 0
+\begin{aligned}
+x \partial_x[x\partial_x[y]] + (x^2 - p^2)y &= 0 
+\\
+x(x\partial_x^2[y] + \partial_x[y]) + (x^2 - p^2)y &= 0 
+\\
+x^2\partial_x^2[y] + x\partial_x[y] + (x^2 - p^2)y &= 0
+\\
+x^2 y'' + x y' + (x^2 - p^2)y &= 0    
+\end{aligned}
 \tag{1}
 $$
+
 
 Under the context of the Helmholtz equation in the cylinder, transforming the SOV equation for the $R(r)$ will produce the above bassel's equation, not necessarily the standard form. 
 
@@ -45,13 +42,17 @@ The solution for the ODE consists of 2 parts, depending on what value of $p$ is,
 When $p$ is not integer, the solution is: 
 
 $$
-y(x) = AJ_{p}(x) + BJ_{-p}(x) \quad J_{p}(x) = 
+\begin{aligned}
+y(x) &= AJ_{p}(x) + BJ_{-p}(x)
+\\
+ J_{p}(x) &= 
 \sum_{n = 0}^{\infty}
     \frac{(-1)^n\left(
         \frac{x}{2}
     \right)^{2n + p}}{
         n!\Gamma(n + p + 1)
-    }
+    }    
+\end{aligned}
 $$
 
 Which is equation (5) later in the file. 
@@ -178,8 +179,6 @@ We can consider this for each integral value of $n$.
 We already dealt with the case that $n = 0$, which helped us getting the expression for $s$, now we are going to try all the natural number. 
 
 #### **Consider $n = 1$**:  
-
-$$n = 1$$
 
 $$
 ((1 + s)^2 - p^2)a_1 = 0
@@ -471,14 +470,10 @@ And under the case when $p$ turns out to be an integer, we will need to take the
 ---
 ### **Bessel's Solution Behavior**
 
-For small value of x, here are the list of behavior for the solution of the first kind, and solution of the second kind: 
-
-
-
-For large value of $x$ the solution will look like this: 
-
 Here are some graph for it. The **first kind** is: 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bessel_Functions_%281st_Kind%2C_n%3D0%2C1%2C2%29.svg/640px-Bessel_Functions_%281st_Kind%2C_n%3D0%2C1%2C2%29.svg.png?1620680341436)
+
+It looks like a Cosine function as $x$ appraoches positive infinity.
 
 And the **second kind** is like: 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg/600px-Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg.png)
@@ -488,6 +483,14 @@ These images are linked from wikipedia.
 There are lot of zeros, where $J_m(x)$ crosses the x-axis, these are sometimes very important. Check out 146 page of chapter 11 for some of the zeros.
 
 The zeros of the [[Helmholtz Equation in a Cylinder]]. Where we used the notation that $z_{m,n}$ denotes $n$ th zeros of $J_m(x)$. 
+
+And here is a table for a modset number of zeros for the first 3 bessels's function of the first kind. 
+
+| n   | 1 | 2 | 3 | 4 | 
+| --- | --- | --- | --- | --- | 
+|$z_{0, n}$ |2.40483 |5.52008 |8.65373 | 11.7915| 
+|$z_{1, n}$|3.83171 |7.01559 |10.1735 | 13.3237|
+|$z_{2, n}$ |5.13562 |8.41724 |11.6198 | 14.796|
 
 
 ---
