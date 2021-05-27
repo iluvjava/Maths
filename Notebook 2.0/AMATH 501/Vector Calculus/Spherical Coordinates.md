@@ -16,7 +16,11 @@ The spherical coordinate is like:
 > $$
 
 Here are the ranges for the variables: 
-$$r \geq 0$$ $$ 0 \leq \theta \leq \pi$$ $$0 \leq \phi \leq 2\pi $$
+$$r \geq 0$$
+
+$$ 0 \leq \theta \leq \pi$$ 
+
+$$0 \leq \phi \leq 2\pi $$
 
 Notice that, if we set the $\phi$ into a constant, then this is looking similar to a cylindrical coordinates. 
 
@@ -32,7 +36,11 @@ $$
 
 And this is the Lame Coefficients for the coordinates: 
 
-$$h_r = 1$$ $$h_\theta = r$$ $$h_\phi = r\sin{\theta}$$
+$$h_r = 1$$ 
+
+$$h_\theta = r$$ 
+
+$$h_\phi = r\sin{\theta}$$
 
 This is the basis for the spherical coordinates: 
 

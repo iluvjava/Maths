@@ -476,6 +476,7 @@ Here are some graph for it. The **first kind** is:
 It looks like a Cosine function as $x$ appraoches positive infinity.
 
 And the **second kind** is like: 
+
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg/600px-Bessel_Functions_%282nd_Kind%2C_n%3D0%2C1%2C2%29.svg.png)
 
 These images are linked from wikipedia. 
@@ -486,11 +487,11 @@ The zeros of the [[Helmholtz Equation in a Cylinder]]. Where we used the notatio
 
 And here is a table for a modset number of zeros for the first 3 bessels's function of the first kind. 
 
-| n   | 1 | 2 | 3 | 4 | 
-| --- | --- | --- | --- | --- | 
+| n         | 1      | 2      | 3      | 4      | 
+| ---       | ---    | ---    | ---    | ---    | 
 |$z_{0, n}$ |2.40483 |5.52008 |8.65373 | 11.7915| 
-|$z_{1, n}$|3.83171 |7.01559 |10.1735 | 13.3237|
-|$z_{2, n}$ |5.13562 |8.41724 |11.6198 | 14.796|
+|$z_{1, n}$ |3.83171 |7.01559 |10.1735 | 13.3237|
+|$z_{2, n}$ |5.13562 |8.41724 |11.6198 | 14.796 |
 
 
 ---

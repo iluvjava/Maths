@@ -213,9 +213,7 @@ Where $\phi_j(x)$ is the solution to the eigenvalue $\lambda_j$ and $\phi_k(x)$ 
 
 To prove it, we will need to consider the following procedures: 
 
-Let's first, substitute both solutions into the system so that would be: 
-
-
+Let's first, substitute both solutions into the system (System means expression (1)) so that would be: 
 
 $$
 [p(x)\phi_j']' + (\lambda_k - q(x))\phi_j = 0
@@ -231,22 +229,27 @@ $$
 \phi_j (p(x)\phi_k')' - \phi_k(p(x)\phi_j')' = [\lambda_j - \lambda_k]r(x)\phi_j\phi_k
 $$
 
-The LHS simplifies to: 
+Skipping some mental math:
 
 $$
-\partial_x[\phi_j (p(x)\phi_k') - \phi_k(p(x)\phi_j')] = (\lambda_j - \lambda_k)r\phi_j\phi_k
+\int_{a}^{b} 
+\phi_j(p(x)\phi_k)' - \phi_k(p(x)\phi_j)'
+dx = (\lambda_j - \lambda_k)
+\int_{a}^{b} 
+r(x)\phi_j\phi_k
+dx
 $$
 
-And we can take the integral, which gives the following: 
+After some product rule 
 
-$$
-(\lambda_j - \lambda_k)\int_{a}^{b} 
-    r(x)\phi_j(x)\phi_k(x)
-dx 
-= 
-\left[\phi_j(p(x)\phi_k')' - \phi_k(p(x)\phi_j')'\right|_a^{b} 
-\tag{2}
-$$
+> $$
+> (\lambda_j - \lambda_k)\int_{a}^{b} 
+>     r(x)\phi_j(x)\phi_k(x)
+> dx 
+> = 
+> \left[\phi_jp(x)\phi_k' - \phi_kp(x)\phi_j'\right|_a^{b} 
+> \tag{2}
+> $$
 
 **If it's a regular SL system**
 
@@ -278,12 +281,11 @@ Let the solution be bounded at $a$, let the solution be zero at $b$, and things 
 
 **Note**, I skipped a lot of math for this section. 
 
-Therefore, the inner produce between eigenfunctions for distinct eigenvalues are orthogonal under the weighted inner product involving $r(x)$. 
+Therefore, the inner product between eigenfunctions for distinct eigenvalues are orthogonal under the weighted inner product involving $r(x)$. 
 
 $$
 \int_{a}^{b}r(x)\phi_k(x)\phi_j(x) dx = 0
 $$
-
 
 ---
 ### **More Theorems but Without the Proofs and Just Stated Here**

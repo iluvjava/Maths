@@ -353,7 +353,7 @@ $$
 And the standard form we are trying to match is: 
 
 $$
-x\partial_x[x\partial[y]] + (x^2 - m^2)y = 0
+x\partial_x[x\partial_x[y]] + (x^2 - m^2)y = 0
 $$
 
 So then we need: 
@@ -398,7 +398,7 @@ Ok, what does this means... It means that the quantity: $a\sqrt{\lambda^2 - b_2^
 Now, let's denote $z_{m, n}$ to be the $n$ th roots of $J_m(x)$, then it can be said that: 
 
 $$
-\lambda^2 - b_l^2 = \frac{z_{m, n}}{a^2}\implies
+\lambda^2 - b_l^2 = \frac{z_{m, n}^2}{a^2}\implies
 \lambda =
 \sqrt{\frac{z_{m,n}^2}{a^2} + 
 \left(
