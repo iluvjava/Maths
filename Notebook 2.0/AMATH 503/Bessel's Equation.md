@@ -504,6 +504,87 @@ This part is given as a proof for the identity we used:
 2. $\partial_{x}[x^{-p}J_{p}(x)] = -x^{-p}J_{p + 1}(x)$
 3. $2\partial_{x}[J_p(x)] = J_{p - 1}(x) - J_{p + 1}(x)$
 
+$$
+ \begin{aligned}
+    J_p(x) = \sum_{n = 0}^{\infty}
+        \frac
+        {
+            (-1)^n \left(
+                \frac{x}{2}
+            \right)^{2n + p}
+        }
+        {
+            n!(n + p)!
+        }
+\end{aligned}
+$$
+
+and we want to show: 
+
+$$
+\begin{aligned}
+        -x^{p}\partial_x[x^{-p}J_p(x)] = J_{p + 1}(x)
+\end{aligned}
+$$
+
+Which is just the second expression multiplied by $x^p$. 
+
+$$
+\begin{aligned}
+    \partial_x[x^{-p}J_p(x)] &= \partial_x
+    \sum_{n = 0}^{\infty}
+    \frac
+    {(-1)^n x^{2n}}{2^{2n + p}n!(n + p)!}
+    \\
+    & =\sum_{n = 0}^{\infty}
+    \frac
+    {(-1)^n(2n) x^{2n - 1}}
+    {2^{2n + p}n!(n + p)!}
+    \\
+    & = 
+    \sum_{n = 1}^{\infty}
+    \frac
+    {(-1)^n(2n) x^{2n - 1}}
+    {2^{2n + p}n!(n + p)!}
+    \\
+    &= 
+    \sum_{n = 1}^{\infty}
+    \frac
+    {(-1)^nx^{2n - 1}}
+    {2^{2n + p - 1}(n - 1)!(n + p)!}
+    \\
+     -x^{p}\partial_x[x^{p}J_p(x)] &= -x^{-p}
+    \sum_{n = 1}^{\infty}
+    \frac
+    {(-1)^nx^{2n - 1}}{2^{2n + p - 1}(n - 1)!(n + p)!}
+    \\
+    &=
+    \sum_{n = 1}^{\infty}
+    \frac
+    {(-1)^{n + 1}x^{2n - 1 + p}}{2^{2n + p - 1}(n - 1)!(n + p)!}
+    \\
+    &= \sum_{n = 0}^{\infty}
+    \frac
+    {(-1)^{(n + 1) + 1}x^{2(n + 1) - 1 + p}}{2^{2(n + 1) + p - 1}((n + 1) - 1)!((n + 1) + p)!}
+    \\
+    &= \sum_{n = 0}^{\infty}
+    \frac
+    {(-1)^{n}x^{2n + p + 1}}{2^{2n + p + 1}(n)!(n + 1 + p)!}
+    \\
+    &= 
+    J_{p + 1}(x)
+\end{aligned}
+$$
+
+And this is the second expression proven, and the first one follows in a similar manner. 
+
+The third one is directly derived using the first and the second. 
+
+
+---
+### **The Bessel's Non-Standard Form**
+
+How do we adapt different type of ODEs into the Bessel's equation and use this solution for the standard form? 
 
 
 [^1]: Under graduate linear analysis intensifies. 

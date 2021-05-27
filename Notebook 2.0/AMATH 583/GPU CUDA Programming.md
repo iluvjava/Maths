@@ -1,7 +1,7 @@
 [[GPU]]
 We need some basics from introduction of GPU computing. 
 
-Relavent Resources: 
+Relevant Resources: 
 
 * Lecture notes on CUDA, Thrust and GPU architecture: [here](https://amath583.github.io/sp21/_static/pdf/L15.pdf)
 
@@ -11,7 +11,7 @@ Relavent Resources:
 
 * Cuda Execution model, thread and memory hierachy from invidia: [here](https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/) for more info. 
 
-* A repo full of non-trivial CUDA programming examples[here](https://github.com/zchee/cuda-sample).
+* A repo full of non-trivial CUDA programming examples [here](https://github.com/zchee/cuda-sample).
 
 
 ---
@@ -39,6 +39,91 @@ A collection of blocks, where each blocks are indexed by 3D indices.
 ---
 ### **Vector Summation Kenel**
 
+Here we consider computing the L2 norm of a vector. 
+
+**Approach 1: Grid Blocks Sum**
+
+Here is the step: 
+1. Thread in each block sum across different grids
+2. Thread 0 in each block sum across the block for all blocks 
+3. Get the result and sum across the results with GPU. 
+
+```cpp
+__global__
+void dot0(int n, float* a, float* x, float* y) {
+
+  extern __shared__ float sdata[]; 
+  // share sdata cross all threads in this block, same size as the block size. 
+  int tid    = threadIdx.x; 
+  // offset by number of blocks that comes before current thread 
+  int index  = blockIdx.x * blockDim.x + threadIdx.x; 
+  // offset by all the threads in different bocks (a grid)
+  int stride = blockDim.x * gridDim.x; 
+
+
+  sdata[tid] = 0.0;
+  // for this thread in this block across all grid
+  // sum it up. 
+  for (int i = index; i < n; i += stride)
+    sdata[tid] += x[i] * y[i];
+  // synch all threads in this block. 
+  __syncthreads();
+
+  // if this thread is the first block in this thread 
+  if (tid == 0) {
+    // prepare answer using block id 
+    a[blockIdx.x] = 0.0; 
+    // sum across the sdata, which contain the sum from each thread 
+    // in the block acrosses different grids. 
+    for (int i = 0; i < blockDim.x; ++i) {
+      a[blockIdx.x] += sdata[i];
+    }
+  }
+}
+```
+
+Summary: 
+
+1. Share Memory across block
+2. All threads in each blocks sums across the grid
+3. Sync 
+4. Assign head thread for each block (the first one)
+5. Sum across each block to produce an array that has the same number of elements as the number of blocks used. 
+
+**PARAM Reduction:**
+
+```cpp
+__global__
+void dot0(int n, float* a, float* x, float* y) {
+  extern __shared__ float sdata[];
+
+  int tid    = threadIdx.x;
+  int index  = blockIdx.x * blockDim.x + threadIdx.x;
+  int stride = blockDim.x * gridDim.x;
+
+  sdata[tid] = 0.0;
+  for (int i = index; i < n; i += stride)
+    sdata[tid] += x[i] * y[i];
+
+  __syncthreads();
+
+  for (size_t s = 1; s < blockDim.x; s *= 2) {
+    if (tid % (2*s) == 0) {
+      sdata[tid] += sdata[tid + s];
+    }
+    __syncthreads();
+  }
+
+  if (tid == 0) {
+    a[blockIdx.x] = sdata[0];
+  }
+}
+```
+
+
+
 ---
 ### **Matrix Multiplication Kenel**
+
+    
 

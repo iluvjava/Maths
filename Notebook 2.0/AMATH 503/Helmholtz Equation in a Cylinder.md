@@ -362,7 +362,7 @@ $$
 x = (\lambda^2 - b_l^2)r
 $$
 
-With this susbtitution above, we will be able to transform the boundary conditions, and it will be like: 
+With this susbtitution above, we will be able to transform the boundary conditions, and it will be like [^3]: 
 
 $$
 R(0) \ne \infty
@@ -512,3 +512,4 @@ And recall that $n, l \in \mathbb{N}$, $m\in \mathbb{Z}$.
 
 [^1]: It's in the chapter 10 of the textbook of the class. 
 [^2]: [wiki link](https://www.wikiwand.com/en/Bessel_function)
+[^3]: Non trivial amount of math has been skipped with this substitution. 
