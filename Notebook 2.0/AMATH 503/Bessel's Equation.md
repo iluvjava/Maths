@@ -14,6 +14,9 @@ Summary:
 3. There are multiple solution, we are going to make some assumption and solve for one of the solution. 
 4. We solve it to get a recurrence relations for the series, and then we unroll the recursion. 
 5. And then we discuss in detail on what the assumption mean and what the bessel's function of the second kind is. 
+6. We need know how it looks like 
+7. We need to use the standard form and connect it with the radial function of Helmholtz Equation in a Cylinder. Which is one of it's many applications. 
+
 ---
 ### **Intro**
 
