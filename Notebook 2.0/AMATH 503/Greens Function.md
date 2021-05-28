@@ -47,6 +47,8 @@ $$
 
 $\delta_3$ is just the 3D delta function. 
 
+> Instead of focusing on a gravitational density function $u(x)$, The green's Function problem is simplifying it by just having one point mass in space, represented by the delta function. In spherical coordinate, this problem won't have 3 variables involved. 
+
 So then: $\xi = [\xi, \eta, \mu]^T$ and $x = [x, y, z]^T$. These are the vectors. 
 
 The Boundary condition is: 
@@ -85,11 +87,176 @@ $$
 \implies = f(x)
 $$
 
+Boom! Using the Green's function to reconstruct the Gravitational density function seems to work because it still solves the PDEs if we substitute it into the equation. 
+
 This is not rigorous enough for the mathematician, but it works for the physicists. 
 
 Since $G\rightarrow 0$ as $\Vert x\Vert \rightarrow 0$ 
 
-(...)
+
+---
+### **Green's Function**
+
+Notation Confusion Warning: 
+
+$\xi$ is used to denote a scalar, but it's also used to denote the position of the point mass which $G$ is trying to model. 
+
+$$
+\begin{aligned}
+    & \nabla^2\cdot G = \delta(x-\xi)    
+    \\
+    & G\rightarrow 0 \text{ as }\Vert x\Vert\rightarrow \infty
+\end{aligned}
+$$
+
+Let's consider $r = x-\xi$, so that variable $r$ is a function between the point $x$, and the point $\xi$. The former is the point in the gravitational field and the later is the point mass. 
+
+From now on, $G(r), G(x, \xi)$ will be used and they are equivalanet. 
+
+The, the gravitational density function is given as: 
+
+$$
+u(x) = \iiint_\Omega G(x, \xi)F(\xi)d\xi d\eta d\mu
+$$
+
+**Now, we are going to solve for G**
+
+Rewriting the PDE in term of $r$: 
+
+$$
+\begin{aligned}
+    & \nabla^2\cdot G = \delta(r)    
+    \\
+    & G\rightarrow 0 \text{ as }\Vert r\Vert\rightarrow \infty
+\end{aligned}
+$$
+
+Using the Spherical Coordinate, the Laplacian will be like: 
+
+$$
+\nabla^2\cdot G = \frac{1}{r^2}\partial_r[r^2\partial_r[G]]
+$$
+
+**Why is the Laplacian only relevant to $r$?**
+
+> The function $G(x)$, is representing the gravitational potential of a point mass, and therefore, it's radially symmetric and changing $\phi, \theta$ won't change the value of the function. Hence we are just going to have the radius part. 
+
+And then we have: 
+
+$$
+\frac{1}{r^2}\partial_r[r^2\partial_r[G]] = \delta(r) \tag{1}
+$$
+
+Most of the time, the $\delta$ function is going to be zero, and for most of the values of $r$, or $r\ne 0$, the PDE is homogeneous. And only when $r = 0$, we get an non-homogeneous PDE. 
+
+
+$$
+\begin{aligned}
+    \partial_r[r^2\partial_r[G]] &= 0     
+    \\
+    r^2\partial_r[G] &= A
+    \\
+    \partial_r[G] &= \frac{A}{r^2}
+    \\
+    G &= \frac{-A}{r} + B
+\end{aligned}
+\tag{2}
+$$
+
+The first constant come from the fact that there is a zero on the RHS of the homoegenous equation. 
+
+And th second constant is just taking the anti-derivative on the LHS of the equation. 
+
+**We can determine $B$ here and right now:** 
+
+if $\Vert x\Vert\rightarrow \infty \implies r\rightarrow \infty$ so them $g\rightarrow 0$ as $\Vert x\Vert\rightarrow \infty$, so then $G\rightarrow 0$ as $r\rightarrow 0$. 
+
+Therefore, to make sure that the boundary conditions are statisfied, we have to force this: 
+
+$$
+B = 0
+$$
+
+
+Now, we want to determine $A$ such that: 
+
+$$
+\nabla^2\cdot G = \nabla^2\cdot \left(
+    \frac{-A}{r}
+\right) = \delta(r)
+$$
+
+Integrate the DE that $G$ solves over a small solid ball of radius $\epsilon$. And it's the same $\epsilon$ from real analysis. 
+
+The epsilon ball is: 
+
+$$
+B_\epsilon = \{\Vert r\Vert\le \epsilon\}
+$$
+
+Consider this: 
+
+$$
+\begin{aligned}
+    \iiint_{B_\epsilon}\nabla^2\cdot G dV &= \underbrace{\iiint_{B_\epsilon}\delta(r)dV}_{=1}
+    \\
+    1 &= \iiint_{B_\epsilon}\nabla^2\cdot G dV=\iiint_{B_\epsilon}\nabla\cdot \nabla G dV
+    \\
+    \underset{\text{Div Theorem}}{\implies} &= \iint_{\text{Boundary}(B_\epsilon)}
+    \nabla G\cdot \hat{n} dS
+\end{aligned}
+\tag{3}
+$$
+
+$\hat{n}$: The norm vector on the Epsilon Ball, which is just $\frac{r}{\Vert r\Vert}$. 
+
+$\text{Boundary}(B_\epsilon)$ is just going to be the surface of the Epsilong Ball. 
+
+In spherical Coordinate gradient is like: 
+
+$$
+\begin{aligned}
+    \nabla G &= \partial_r[G]\cdot \hat{n}    
+    \\
+    \nabla G\cdot \hat{n} &= \partial_r[G] = \frac{A}{r^2}
+\end{aligned}
+$$
+
+Going back to expression (3), we have: 
+
+$$
+\begin{aligned}
+    1 &= \iint_{\text{Boundary}(B_\epsilon)}\frac{A}{r^2}dS
+    =
+    \frac{A}{\epsilon^2}4\pi \epsilon^2
+    \\
+    \implies A &= \frac{1}{4\pi}
+\end{aligned}
+\tag{4}
+$$
+
+So then going back to (2), we would have determine the function $G$ to be: 
+
+$$
+G = -\frac{1}{4\pi r} = \frac{-1}{4\pi \Vert x - \xi\Vert} = 
+\frac{-1}{4\pi}\left(
+        (x - \xi)^2 + (y - \eta)^2 + (z - \mu)^2 
+    \right)^{-1/2}
+$$
+
+Now, by the principal of super position of point mass. 
+
+$$
+\begin{aligned}
+    u(x) &= \iiint_\Omega G(x, \xi)F(s)d\xi d\eta d\mu
+    \\
+    &= -\frac{1}{4\pi}\iiint_\Omega F(\xi)\frac{1}{\left\Vert
+        x - \xi
+    \right\Vert} d\xi \eta d\mu
+\end{aligned}
+$$
+
+
 
 
 
