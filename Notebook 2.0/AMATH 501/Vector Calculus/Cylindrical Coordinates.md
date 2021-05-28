@@ -29,7 +29,9 @@ Which is giving us the basis vector, if we normalized each of the column to get
 $\hat{\textbf{e}}_r, \hat{\textbf{e}}_\theta, \hat{\textbf{e}}_z$. 
 
 And they are like: 
-$$\uvec{e}_r = (\cos\theta, \sin\theta, 0)$$ $$\uvec{e}_\theta = (-\sin{\theta}, \cos\theta, 0)$$ 
+$$\uvec{e}_r = (\cos\theta, \sin\theta, 0)$$ 
+
+$$\uvec{e}_\theta = (-\sin{\theta}, \cos\theta, 0)$$ 
 
 $$\uvec{e}_z = (0, 0, 1)$$
 
@@ -40,7 +42,6 @@ $$h_r = 1$$
 $$h_\theta = r$$
 
 $$h_z = 1$$
-
 
 ---
 #### Gradient Operator
@@ -54,3 +55,4 @@ Substituting the values in we should have the nablua operator like:
 > $$\nabla = \frac{\partial}{\partial r}\uvec{e}_r + \frac{1}{r}\frac{\partial}{\partial \theta}\uvec{e}_\theta + \frac{\partial}{\partial z}\uvec{e}_z$$
 
 ---
+

@@ -17,6 +17,8 @@ Relevant Resources:
 ---
 ### **Intro**
 
+Here, assuming that we know what GPU is and the high level process of launching a kernel. We will start writing the CUDA kernel. 
+
 **Kernel**: it refers to the same computations completed by threads in GPU. This is usually a function compiled for the CUDA device. 
 
 **Block**: It's a way of collecting threads. A block of threads are indexed by 3D indicies, and the shape of the block is declared for the kernel in advance of launching the kernel. 
@@ -29,9 +31,38 @@ Relevant Resources:
 
 And check this [wiki](https://www.wikiwand.com/en/Thread_block_(CUDA_programming)) for more info about what a thread block is in CUDA programming. 
 
+* A block is a 3D structure, hence, it has 3 dimension which can be accessed by the variable `blockDim.x, blockDim.y, BlockDim.z`
+* And the shape of the grid can be gotten by: `gridDim.x, gridDim.y, gridDim.z`. 
+
+
+
 **Grid**
 
 A collection of blocks, where each blocks are indexed by 3D indices. 
+
+* Under the context of the CUDA Kernel launch, the position of a particular block in the grid can be gotten by: `blockid.x, blockid.y, blockid.z`. 
+
+---
+### **CUDA Kernel** 
+
+```cpp
+dim3 block_dim(128,1,1);
+dim3 grid_dim(10,1,1);
+kernel<<<grid_dim,block_dim>>>(...);
+```
+
+This is a CUDA Kernel. 
+
+For each kernel, there is one grid inside of the kernel. 
+
+One grid is a 3D block. In this caes, it's a $128 \times 1 \times 1$ grid. 
+
+And each element in the grid is a block, and the block has a dimension of $10 \times 1\times 1$. 
+
+And each element in the block is a thread. 
+
+Under the context of the kernel, to access information about the threads, the following variables are useful. 
+
 
 ---
 ### **Vector Addition Kernel**
@@ -55,8 +86,10 @@ void dot0(int n, float* a, float* x, float* y) {
   extern __shared__ float sdata[]; 
   // share sdata cross all threads in this block, same size as the block size. 
   int tid    = threadIdx.x; 
+
   // offset by number of blocks that comes before current thread 
   int index  = blockIdx.x * blockDim.x + threadIdx.x; 
+  
   // offset by all the threads in different bocks (a grid)
   int stride = blockDim.x * gridDim.x; 
 
@@ -89,6 +122,11 @@ Summary:
 3. Sync 
 4. Assign head thread for each block (the first one)
 5. Sum across each block to produce an array that has the same number of elements as the number of blocks used. 
+
+**Some Key Things Here**
+
+
+
 
 **PARAM Reduction:**
 
@@ -306,6 +344,14 @@ In this version, we are still going to keep the half reduction scheme from the p
 This is done by letting one block to chug in twice the width of data from the global storage from the local storage right before the start of the log reduction. 
 
 The read speed from the global memory is slow, therefore, merging half of the sum together with transferring the local storage will speed things up tremendously. 
+
+**The L2-Norm CUDA Kernel**
+
+```cpp
+
+
+
+```
 
 
 ---

@@ -61,3 +61,10 @@ And to do things in the other coordinate systems, we need tools like:
 ### **Week 7**
 
 * Helmholtz Equation in the sphere: [[Helmholtz Equation in a Sphere]], and the basis function along the $\Theta$ direction give birth to the Associated Legendre Equation, and with a substitution, we get the [[Legendre Equation]]. 
+
+
+### **Week 8**
+
+* [[Sturm Liouville Theory]], The theorem that makes all the Eigen Functions for PDEs we learned before. 
+* [[Eigenfunction Expansion]] method is introduced for Bounded None Homogeneous PDEs/ODEs
+

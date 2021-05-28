@@ -86,6 +86,8 @@ $$
 \text{GlobalThreadID} = \text{BloackID} \times \text{BlockDim} + \text{ThreadID}
 $$
 
+Note: This is assuming simple 1D block and grid. 
+
 ---
 ### **Hetergeneous Computing**
 
