@@ -15,7 +15,7 @@ $$
     \\
     u = 0 &\text{ at } t = 0
     \\
-    u\rightarrow 0 \text{ as } \Vert \Vert \rightarrow \infty
+    u\rightarrow 0 \text{ as } \Vert x \Vert \rightarrow \infty
 \end{cases}
 $$
  
@@ -81,6 +81,7 @@ $$
     \\
     G \rightarrow 0 &\text{ as } \Vert x\Vert \rightarrow \infty
 \end{cases}
+\tag{1}
 $$
 
 This is the equation that we are considering. 
@@ -91,6 +92,92 @@ When $t\ne \tau$, $\delta(t - \tau) = 0$, then we have a homogenous equation lik
 
 $$
 \partial_t[G] - D\nabla^2G = 0
+\tag{2}
+$$
+
+Let's assume that $t < \tau$. 
+
+Consider $\partial_tG - D\nabla^2G = 0$, in this case, the solution is just $G = 0$, because the boundary assert that there is no heat at the beginning. And becacuse there is no heat source (Non-homogeneous part), them $G$ stays at $0$. 
+
+Let's assume that $t < \tau$, take note that in this case, we would **need a new initial condition** for $t = \tau$. 
+
+Now the differential equation we would be looking at will be like: 
+
+$$
+\partial_t[G] - D\nabla^2 G = 0 \quad G = ? \text{ at } t= \tau
+$$
+
+Under the case where $G = 0$ for at $t = \tau$, then $G = 0$ throughout. This cannot happend at all, beacuse there is a delta function on the right hand side. There has to be a jump for the function $G$ at $t = \tau$. 
+
+Let's integrate the non-Homogeneous differential equation satisfied by $G$, but within a small neighbourhood around $t = \tau$. (Similar to the Epsilon Ball for the Gravitation Density problem)
+
+let's denote $(\tau_-, \tau_+)$, which is a delta neighbourhood of $\tau$. 
+
+$$
+\begin{aligned}
+    \int_{\tau_-}^{\tau_+} 
+        \partial_t[G]
+    dt - \int_{\tau_-}^{\tau_+} 
+        \nabla^2\cdot G
+    dt &= \int_{\tau_-}^{\tau_+} 
+        \delta(x - \xi)\delta(t - \tau)
+    dt
+    \\
+    \left.
+        G
+    \right|_{\tau_-}^{\tau_+} - 
+    D\nabla^2\cdot \int_{\tau_-}^{\tau_+}
+        G
+    dt &= \delta(x - \xi)
+    \\
+    G(\tau_+) -
+    D\nabla^2\cdot \int_{\tau_-}^{\tau_+} 
+        G
+    dt &= \delta(x - \xi)
+\end{aligned}
+\tag{3}
+$$
+
+We can move the Laplacian out of the integral because it's a spatial operator and has nothing to do with time. 
+
+There is a nasty integral for expression (3).
+
+Can $G$ be a delta function in time dimension? 
+
+$\partial_t[G]$ will not be a delta function, and it will have more singularities [^2], but on the RHS there is the delta function. This can't be possible. Therefore $G$ is not a delta function on the time dimension. 
+
+Then $G$ is not a delta function in time. then the integral $\int_{\tau_-}^{\tau_+}Gdt$ is the area over the delta neighbourhood of the function $G$. 
+
+**Ok, take this for granted: $G$'s integral over the Delta Region is going to be zero.**
+
+Then $G(\tau_+) = \delta(x - \xi)$, and taking the limit will yield: $G(\tau) = \delta(x - \xi)$. And the the boundary condition still applies here. 
+
+Now, with this information: 
+
+$$
+\begin{cases}
+    \partial_t[G] - D\nabla^2 G = 0
+    \\
+    G = \delta(x - \xi) & t = \tau
+    \\
+    G \rightarrow 0  & \text{as} \Vert x\Vert\rightarrow \infty
+\end{cases}
+$$
+
+And this is called the: Heat Kernel. This is the same as the Drunken Sailor Problem. 
+
+And in the case of the Drunken sailor problem, we have $x - \xi$, and t: $t - \tau$. 
+
+What is happening is that, the problem is just the drunken sailor problem, basically everything before $\tau$, the system is just a regular zero, A and then for everything after $\tau$ the system becomes a drunk sailor problem after the introduction of some instantaneous heat via the non-homogeneous right hand side of the equation. 
+
+see: [[The Drunken Sailor Problem (PDE Problem)]] for more. 
+
+And in this case, have the solution: 
+
+$$
+G(t, x, \tau, \xi) = \frac{1}{(4\pi D(t - \tau))^{3/2}} \exp \left(
+    -\frac{\Vert x - \xi\Vert^2}{4D(t - \tau)}
+\right)
 $$
 
 
@@ -99,4 +186,6 @@ $$
 
 
 
+
 [^1]: The Dirac Delta function is a vector function in 3D. 
+[^2]: Prof said this and I have no idea what it means. 

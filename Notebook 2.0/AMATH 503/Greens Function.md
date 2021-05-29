@@ -3,6 +3,8 @@ In addition of using the Eigenfunction Expansion method, we have another alterna
 
 But this time, it's used for Solving None-Homogeneous equation in the infinite domain. 
 
+This method is described in chapter 8 of the lecture, and it's a pretty recent method to be honest. 
+
 Let's take a look. 
 
 ---
@@ -15,6 +17,62 @@ It's used for solving Non-Homogeneous PDEs under the Infinite Domain.
 **Warning**: 
 
 We will be dealing with the Dirac Delta Function 
+
+Let $\mathbb{L}$ be Sturm Loiuville Operator, which means that: 
+
+$$
+\mathbb{L}[u](x) = \partial_x[p(x)\partial_x[u]] + q(x)
+$$
+
+Consider the folling Non-homogeneous PDE: 
+
+$$
+L[u](x) = f(x) \quad x\in[a, b]
+$$
+
+Let's consider another probem: 
+
+$$
+\mathbb{L}[G](x) = \delta(x - \xi)
+$$
+
+
+And let's assume that the solution for $G$ is better than the original problem, then the solution to the original problem can be recovered by:[^1] 
+
+$$
+\begin{aligned}
+    u(x) &= \int_{a}^{b} 
+        f(\xi)G(x, \xi) 
+    d\xi  
+    \\
+    \implies \mathbb{L}(u)[x] &= 
+    \mathbb{L}
+    \left[
+        \int_{a}^{b}
+            f(\xi)G(x, \xi)
+        d\xi
+    \right](x)
+    \\
+    &= 
+    \int_{a}^{b} 
+        f(\xi)\mathbb{L}[G(x, \xi)](x)
+    d\xi
+    \\
+    &= 
+    \int_{a}^{b} 
+        f(\xi)\delta(x - \xi)
+    d\xi
+    \\
+    &= f(x)
+\end{aligned}
+$$
+
+**Interpretation**? 
+
+We assume that the solution for the whole non-homoegenous is a super position of many infinitely many tiny solution, as in the case of the equation for $G$. 
+
+And solving the system wrt to $G$ and delta function, and then make a super position of all of them using the RHS of the Non-homogeneous solution will provide us with the full solution to the original problem. 
+
 
 ---
 ### **Example: Gravitational Potential Due to a Distribution of Mass in the Galaxy**
@@ -258,5 +316,5 @@ $$
 
 
 
-
+[^1]: The green's function is symmetrical, $G(x, \xi) = G(\xi, x)$, and this is called Maxwell Reciprocity. It's complicated and it's skipped. 
 
