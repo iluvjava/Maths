@@ -268,7 +268,7 @@ $$
 
 $\hat{n}$: The norm vector on the Epsilon Ball, which is just $\frac{r}{\Vert r\Vert}$. 
 
-$\text{Boundary}(B_\epsilon)$ is just going to be the surface of the Epsilong Ball. 
+$\text{Boundary}(B_\epsilon)$ is just going to be the surface of the Epsilon Ball. 
 
 In spherical Coordinate gradient is like: 
 
