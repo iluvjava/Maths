@@ -15,7 +15,7 @@ $$
 \begin{cases}
     u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R}
     \\
-    \lim_{t\rightarrow \infty}u(x, t) = 0 & 
+    \lim_{x\rightarrow \pm \infty }u = 0
     \\
     u(x, 0) = f(x) & u_t(x, 0) = \underbrace{0}_{g(x)}
 \end{cases}
@@ -40,7 +40,7 @@ This is in the general cases where, the initial conditions contains both the ini
 
 **Note**:
 
-$f(x)$ must be: **Absolutely Integrable**.  
+$f(x)$ must be: **Absolutely Integrable**. So that means that integral over the whole domain of the solution must be some finite number. And the boundary at infinite is still going to reach zero because the function we are integrating is absolutely integrable, and shifting it left and right by finite amount of $t$ is not going to break Fourier Transform. 
 
 ---
 ### **Fourier Transform**
@@ -126,7 +126,8 @@ Taking the differential is the same as applying a scalar multiplication of $-iw$
 A very similar things can be said about the double differential which is just
 
 $$
-\partial_{xx}[u](x, t) = w^2\hat{u}(w, t) \tag{4}
+\mathcal{F}[\partial_{xx}[u]](w, t) = w^2\hat{u}(w, t) 
+\tag{4}
 $$
 
 The key here is that, under the Fourier domain, the time derivative is still just a derivative wrt to time, but the spatial derivative, we have a constant multiplier instead of derivative. 
@@ -250,6 +251,107 @@ Because the initial condition helped us to satisfies that part, the function is 
 
 ---
 ### **An Alternative**: D Alambert's method
+
+Let's consider a more general formulaitons of the wave equation under the infinite domain, and it's: 
+ 
+$$
+\begin{cases}
+    u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R}
+    \\
+    u(x, 0) = u_0(x) & u_t(x, 0) = v_0(x)
+\end{cases}
+\tag{6}
+$$
+
+General solution is: 
+
+$$
+u(x, t) = \underbrace{f(x + ct)}_{\text{Backward traveling wave}} + \underbrace{g(x - ct)}_{\text{Forward Traveling wave}}
+$$
+
+Let's determine what is $f, g$ in the general solution. 
+
+Consider the differential operator in a more flexible way: 
+$$
+\begin{aligned}
+    (\partial_t^2 - c^2\partial_x^2)[u] &= 0
+    \\
+    (\partial_t - c\partial_x)(\partial_t + c\partial_x)[u]
+    &= 0
+\end{aligned}
+$$
+
+Consider a change of variable: 
+
+$$
+\xi = x - ct \quad \eta = x + ct
+$$
+
+Consider experssing $\partial_t, \partial_x$ using the new variable giving us: 
+
+$$
+\begin{aligned}
+    \partial_t &= \frac{\partial\xi}{\partial t}\frac{\partial}{\partial\xi}
+    + 
+    \frac{\partial \eta}{\partial t}\frac{\partial }{\partial\eta}
+    \\
+    & =-c \frac{\partial}{\partial \xi} + c \frac{\partial}{\partial \eta}
+    \\
+    &= (\partial_\eta - \partial_\xi)
+\end{aligned}
+$$
+
+This is just using multi-variable chain rule. Similarly for $\partial_x$. And remember that differential operator are reduced using $\xi = x - ct, \eta = x + ct$. 
+
+$$
+\begin{aligned}
+    \partial_x &= \frac{\partial \xi}{\partial x}\frac{\partial}{\partial \xi} + \frac{\partial \eta}{\partial x}\frac{\partial }{\partial \eta}
+    \\
+    &= \partial_\xi + \partial_\eta
+\end{aligned}
+$$
+
+Using these we can make simplification and get: 
+
+$$
+\begin{aligned}
+    (\partial_t - c\partial_x)(\partial_t + c\partial_x)[u]  &= 0
+    \\
+    -4c^2\partial_{\xi\eta}[u] &= 0
+    \\
+    \implies \partial_\eta u &= h_1(\eta)
+    \\
+    \implies \int \partial_\eta [u] d\eta 
+    &= \underbrace{\int_{}^{}h_1(\eta) d\eta}_{q(\eta)} + p(\xi)
+    \\
+    u(\xi, \eta) = q(\eta) + p(\xi)
+\end{aligned}
+$$
+
+And here we are just taking the integral wrt to $\xi, \eta$, in that order. And then the constant is a function wrt to $\eta$ for the first integral and $\xi$ for the second. Because, $p(\eta)$ independently wrt to $\xi$. 
+
+Now, incooperating the initial conditions we have: 
+
+$$
+\begin{cases}
+    u(x, 0) = f(x) = q(x) + p(x) &
+    \\
+    \partial_t[u](x, 0) = 0 = c(q'(x) - p'(x))& 
+\end{cases}
+$$
+
+Try solving it. Starting it with taking the derivative on the first expression and then solving it like linear system of equation wrt to $p'(x)$ and $q'(x)$. 
+
+$$
+q(x) = \frac{1}{2}f(x) + B \quad p(x) = \frac{1}{2}f(x) - B
+$$
+
+And then the final expression will be: 
+
+$$
+u(x, t) = P(x + ct) + q(x - ct) = \frac{1}{2}(f(x + ct) + f(x - ct))
+$$
+
 
 
 
