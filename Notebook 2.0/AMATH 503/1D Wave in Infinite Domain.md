@@ -258,7 +258,7 @@ $$
 \begin{cases}
     u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R}
     \\
-    u(x, 0) = u_0(x) & u_t(x, 0) = v_0(x)
+    u(x, 0) = f(x) & u_t(x, 0) = 0
 \end{cases}
 \tag{6}
 $$
@@ -267,6 +267,7 @@ General solution is:
 
 $$
 u(x, t) = \underbrace{f(x + ct)}_{\text{Backward traveling wave}} + \underbrace{g(x - ct)}_{\text{Forward Traveling wave}}
+\tag{7}
 $$
 
 Let's determine what is $f, g$ in the general solution. 
@@ -279,12 +280,14 @@ $$
     (\partial_t - c\partial_x)(\partial_t + c\partial_x)[u]
     &= 0
 \end{aligned}
+\tag{8}
 $$
 
 Consider a change of variable: 
 
 $$
 \xi = x - ct \quad \eta = x + ct
+\tag{9}
 $$
 
 Consider expressing $\partial_t, \partial_x$ using the new variable giving us: 
@@ -299,6 +302,7 @@ $$
     \\
     &= (\partial_\eta - \partial_\xi)
 \end{aligned}
+\tag{10}
 $$
 
 This is just using multi-variable chain rule. Similarly for $\partial_x$. And remember that differential operator are reduced using $\xi = x - ct, \eta = x + ct$. 
@@ -309,6 +313,7 @@ $$
     \\
     &= \partial_\xi + \partial_\eta
 \end{aligned}
+\tag{11}
 $$
 
 Using these we can make simplification and get: 
@@ -326,6 +331,7 @@ $$
     \\
     u(\xi, \eta) = q(\eta) + p(\xi)
 \end{aligned}
+\tag{12}
 $$
 
 And here we are just taking the integral wrt to $\xi, \eta$, in that order. And then the constant is a function wrt to $\eta$ for the first integral and $\xi$ for the second. Because, $p(\eta)$ independently wrt to $\xi$. 
@@ -338,19 +344,92 @@ $$
     \\
     \partial_t[u](x, 0) = 0 = c(q'(x) - p'(x))& 
 \end{cases}
+\tag{13}
 $$
 
 Try solving it. Starting it with taking the derivative on the first expression and then solving it like linear system of equation wrt to $p'(x)$ and $q'(x)$. 
 
 $$
 q(x) = \frac{1}{2}f(x) + B \quad p(x) = \frac{1}{2}f(x) - B
+\tag{14}
 $$
 
 And then the final expression will be: 
 
 $$
 u(x, t) = P(x + ct) + q(x - ct) = \frac{1}{2}(f(x + ct) + f(x - ct))
+\tag{15}
 $$
+
+What if $g(x)$ doesn't equal to zero? 
+
+Then we will need to revist expression 13, which will be: 
+
+$$
+\begin{aligned}
+    &\begin{cases}
+        u(x, 0) = f(x) = q(x) + p(x) &
+        \\
+        \partial_t[u](x, 0) = g(x) = c(q'(x) - p'(x))& 
+    \end{cases}
+    \\
+    &\begin{cases}
+        q'(x) + p'(x) &= f'(x) \quad (\text{Exp1})
+        \\
+        cq'(x) - cp'(x) &= g(x) \quad (\text{Exp2})
+    \end{cases}
+    \\
+    &\frac{-\text{Exp2}}{c} + \text{Exp1}
+    \\
+    \implies 
+    & 2p'(x) = f'(x) - \frac{1}{c}g(x)
+    \\
+    \implies & 
+    p'(x) = \frac{1}{2}\left(
+        f'(x) - \frac{1}{c}g(x)
+    \right)
+    \\
+    \implies &
+    p(x) = \frac{f(x)}{2} - \frac{1}{2c}\int_{0}^{x} 
+        g(\tilde{x})
+    d\tilde{x} + A
+\end{aligned}
+$$
+
+At the same time: 
+
+$$
+\begin{aligned}
+    q(x) &= f(x) - p(x)
+    \\
+    \implies 
+    q(x) &= \frac{1}{2}f(x) + \frac{1}{2c}\int_{0}^{x} 
+        g(\tilde{x})
+    d\tilde{x} - A
+\end{aligned}
+$$
+
+Then in the final stage we combine these 2 together and get: 
+
+$$
+\begin{aligned}
+    u(x, t) &= p(x - ct) + q(x  + ct)     
+    \\
+    &= 
+    \frac{f(x - ct) + f(x + ct)}{2}
+    +
+    \frac{1}{2c} \int_{x + ct}^{x - ct} g(\tilde{x})d\tilde{x}
+\end{aligned}
+$$
+
+and this is the solution to the generla case were we have the initial conditions for both $u(x, 0)=f(x),  \partial_t[u](x, 0)= g(x)$. 
+ 
+
+
+
+
+
+
 
 
 [^1]: Just adds up all the above equations (1), (3), (4), and then using the fact that the fourier transform is linear, then we can have the expression (5). Don't forget the negative sign of $(iw)^2$ there. 

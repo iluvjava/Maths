@@ -1,9 +1,10 @@
 Lecture 15: 
 Applying Green's Function Method to 1D non-homogeneous wave equation under the infinite domain. 
 
-
 --- 
 ### **Intro**
+
+We will be solving some Wave's equation using green's functions. 
 
 
 Non Homogeneous 1D wave equation on $\mathbb{R}$, the PDE is: 
@@ -18,13 +19,26 @@ $$
 \end{cases}
 $$
 
-Notice that, we have Homogeneous initial conditions, but in the future, we will be looking at boundary conditions that is a function, instead of a constant. 
+Notice that, we have Homogeneous initial conditions, but in the future, we will be looking at boundary conditions that is a function, instead of a constant.
+
+Consider the following 3D wave equation: 
+
+$$
+\begin{cases}
+    (\partial_t^2 - c^2 \nabla^2)[u] = Q(x, t) & x \in \mathbb{R}^3, t > 0
+    \\
+    u \rightarrow 0 & \text{as } \Vert x\Vert \rightarrow \infty
+    \\
+    u = 0, \partial_t[u] = 0 & \text{at } t = 0
+\end{cases}
+$$
+
 
 To start, let's define the Green's Function. 
 
 
 ---
-### **Green's Function**
+### **Green's Function on 1D Wave Equation**
 $$
 \begin{cases}
     (\partial_t^2 + c^2\partial_x^2)[G](x) = \delta(x - \xi)\delta(t - \tau)& x\in \mathbb{R}, t > 0
@@ -245,10 +259,285 @@ $$
 
 $$
 
-We have solved for G. 
+We have solved for G.  Basically this is a function that has an output value of $\frac{1}{2c}$ in the interval $c(t - \tau)$. 
 
 ---
 ### **Reconstruction of $u$**
+
+$$
+\begin{aligned}
+    u(x,t) &= \int_{0}^{\infty}
+    \int_{-\infty}^{\infty} 
+        GQ(\xi, \tau)
+    d\xi 
+    d\tau 
+    \\
+    &= \frac{1}{2c} \int_{0}^{t} 
+        \int_{x + c(t - \tau)}^{x - c(t - \tau)} 
+            Q(\xi, \tau)
+        d\xi
+    d\tau
+\end{aligned}
+$$
+
+
+---
+### **3D Wave Equation**
+
+**Variable List**
+
+
+We will be concise this time because we already had some experiences from 1D. 
+
+This is the formulation of the 3D wave equation: 
+
+$$
+\begin{cases}
+    (\partial_t^2 - c^2 \nabla^2)[u] = Q(x, t) & x \in \mathbb{R}^3, t > 0
+    \\
+    u \rightarrow 0 & \text{as } \Vert x\Vert \rightarrow \infty
+    \\
+    u = 0, \partial_t[u] = 0 & \text{at } t = 0
+\end{cases}
+$$
+
+
+And solution expressed using the Green's function is like: 
+ 
+$$
+u(x, t) = \int_{0}^{\infty} 
+    \iiint_{\Omega}
+        G(x, t, \xi, \tau)Q(\xi, \tau)
+    d\xi d\eta d\mu
+d\tau
+$$
+
+What is $G$? The green's function? Similar to what we did, we need this delta system for the $G$ function. 
+
+$$
+\begin{cases}
+    (\partial_t^2 - c^2\nabla^2)[G] = \delta(x - \xi)\delta(t - \tau)& x, \xi \in \mathbb{R}^3, t > 0 
+    \\
+    G \rightarrow 0 & \text{as } \Vert x\Vert\rightarrow \infty
+    \\
+    G = 0, \partial_t[G] = 0 & \text{at } t = 0
+\end{cases}
+$$
+
+We decomposed the function $Q(x, t)$ into space of delta function $\delta(\xi, \tau)$ paramaterized by $\xi, \tau$. 
+
+Let's consider the case when $t < \tau$: 
+
+$$
+\begin{cases}
+    (\partial_t^2 - c^2 \nabla^2)[G] = 0 & 
+    \\
+    G = 0, \partial_t[G] = 0 &
+\end{cases}
+$$
+
+And the solution is $G\equiv 0$. 
+
+Let's consider the case when $t > \tau$, then we can say that: 
+
+$$
+\begin{cases}
+    (\partial_t^2 - c^2\nabla^2)[G] = 0
+    \\
+    G = 0, \partial_t[G] = \delta(x - \xi)
+\end{cases}
+$$
+
+And this is the same argument as the One dimensional case. Now all we needto do is solving this PDE problem. With the boundary conditions that: $||x||\rightarrow \infty$. 
+
+Now, we are going to use Sphereical Coordinate, and $G$ will be a radial symmetric function. So it's like a wave travalling outwards in space in this case, with a given voice signal $Q(x, t)$. When we use a radial symmetric function to model it, we pretty much reduce the problem into simple 1D problem. 
+
+The PDE will look like this: 
+
+$$
+\begin{cases}
+    (\partial_t^2[\bullet] - c^2 \frac{1}{r^2}\partial_r[r^2\partial_r[\bullet]])[G] = 0
+    & 
+    t > \tau
+    \\ 
+    G = 0, \partial_t[G] = \delta(r)
+\end{cases}
+$$
+
+What is happening here is that, we did the $\nabla^2$ under the sphererical coordinates, and then we just ignore all the other variables: $\theta, \phi$, because the solution function $G$ we want, has to be only a function wrt to $r$, forcing it to be Radially Symmetric. 
+
+**Let $G = \frac{V}{r}$, where $V$ is another function wrt to r then**: 
+
+$$
+\begin{aligned}
+    \partial_r[G] &= \frac{1}{r}\partial_r[V] - \frac{1}{r^2} V
+    \\
+    \partial_r[r^2\partial_r[G]] &= r\partial_r^2[V]
+    \\
+    \partial_t^2[G] = \partial_r^2[V] &= \frac{1}{r}\partial_t^2[V]
+\end{aligned}
+$$
+
+Combining all of these to express the original PDE for $t> \tau$. 
+
+$$
+\begin{aligned}
+    \frac{1}{r}\partial_t^2[V] - \frac{c^2}{r}\partial_r[V] &= 0
+    \\
+    \partial_t^2[V] - c^2 \partial_r^2[V] &= 0
+\end{aligned}
+$$
+
+And this is just the 1D equation. 
+
+No, according to D'Alambert, we have the solution in this form: 
+
+$$
+V(r, t) = R(r - c(t - \tau)) + L(r + c(t - \tau))
+$$
+
+Now, introducing the **initial conditions** for the Green's function, which is that $G = 0$, this will mean that:
+
+$$
+R(r) + L(r) = 0 \implies L(r) = -R(r)
+$$
+
+Giving us: 
+
+$$
+V(r, t) = R(r - c(t - \tau)) - R(r + c(t - \tau))
+$$
+
+And the other initial conditions is $\partial_t [G]= \delta(r)$, then we have: 
+
+$$
+\begin{aligned}
+    \partial_t[G] = \frac{1}{r}\partial_t[V]
+    \\
+    -\frac{2c}{r}R'(r) = \delta(r)
+\end{aligned}
+$$
+
+We basaically substitute $G = V/r$, and then we take the time derivative on $R$ and then we set $t = \tau$, cause that is the starting moment of the PDE. Don't forget that, thre is $C$ part coming when doing $R'$, because of $r - c(t - \tau)$ inside. 
+
+And is is the soluiton expressed wrt to $R'$, next, we will ne taking the integral on $R(r)$ and figure out what it is.  Because of the $\delta(r)$, it will make $R'(r)$ equals to zero whenever $r \ne 0$, so hat means $R = B$ when $r > 0$. 
+
+**We are going to set $B = 0$. Reasons come later.** 
+
+**Trick**: Move a small distance away from $r = 0$, let that small distance be $\epsilon$, then we integrate the DE $-\frac{2c}{r}R'(r) = \delta(r)$ over a ball of radius $\epsilon$ centered at the origin. That ball is going to be $B_\epsilon$
+
+$$
+\begin{aligned}
+    -\frac{2c}{r}R'(r) &= \delta(r)
+    \\
+    -2c \iiint_{B_\epsilon} \frac{R'(r)}{r}dV
+    &= 
+    \iiint_{B_\epsilon} \delta(r)dV
+    \\
+    -2c \iiint_{B_\epsilon} \frac{R'(r)}{r}dV &= 1 
+    \\
+    -2c \int_{0}^{\epsilon}
+            \int_{0}^{2\pi}
+                \int_{0}^{\pi} 
+                    \frac{1}{r}R'(r)r^2\sin(\theta)
+        d\theta d\phi dr
+        &= 1
+    \\
+    -8\pi c \int_{0}^{\epsilon} 
+        rR'(r)
+    dr &= 1
+    \\
+    -8\pi c \left[
+            rR(r)|_0^{\epsilon} - \int_{0}^{\epsilon} R(r)dr
+        \right]
+        &= 1
+    \\
+    -8\pi c \left[
+            \underbrace{R(\epsilon)}_{B = 0} - \int_{0}^{\epsilon} R(r)dr
+        \right]
+        &= 1
+    \\
+    8\pi c \int_{0}^{\epsilon} R(r)dr &= 1
+\end{aligned}
+$$
+
+Since $B = 0$, and $R(r) = 0$ whenever $r\neq 0$, but that integral will have to be $1$, so it's behaving like a delta function, in that sense we have: $R(r) = A\delta(r)$, but what is $A$ in this case? We know that: 
+
+$$
+A\int_{-\epsilon}^{\epsilon}\delta(r) dr = A \implies \int_{0}^{\epsilon} 
+    A\delta(r)
+dr = \frac{A}{2}
+$$
+
+Then we have: 
+
+$$
+\begin{aligned}
+    \int_{0}^{\epsilon} 
+        R(r)
+    dr &= \frac{1}{8\pi c}
+    \\
+    \int_{0}^{\epsilon} 
+        A\delta(r)
+    dr &= \frac{1}{8\pi c}
+    \\
+    \frac{A}{2} &= \frac{1}{8\pi c}
+    \\
+    \implies A &= \frac{1}{4\pi c}
+    \\
+    \implies R(r) &= \frac{1}{4\pi c}\delta(r)
+\end{aligned}
+$$
+
+And, this is the $R(r)$ function, the traveling waves of the D'Alambert's method. 
+
+**Note**:
+
+**We set the $B = 0$ at the beginning, and at the end we had this delta function. Everything sorted out with this assumption. Let's just keep that and sweep it under the rug.** 
+
+Consider $V$; 
+
+$$
+\begin{aligned}
+    V &= R(r - c(t - \tau)) - R(r + c(t - \tau))
+    \\
+    &= 
+    \frac{1}{4\pi c}(\delta(r - c(t -\tau)) - \delta(r + c(t - \tau)))
+    \\
+    \implies R = \frac{V}{r} &= \frac{1}{4\pi cr}(\delta(r - c(t -\tau)) - \delta(r + c(t - \tau)))
+\end{aligned}
+$$
+
+Remember that $t \ge \tau$, so then $\delta(r + c(t - \tau)) = 0$, because the thing inside of it is always going to be larger than 0, then we have: 
+
+$$
+G = \frac{1}{4\pi c r}\delta(r - c(t - \tau))
+$$
+
+Remember that $r = x - \xi$ from the parameteriazation for the $G$ function on the Non-Homogenous $Q$ function. 
+
+Let's reconstruct the original solution $u$: 
+
+$$
+\begin{aligned}
+    u(x, t) &= \int_{0}^{\infty} 
+        \iiint_{\Omega}
+            G(x, t, \xi, \tau) Q(\xi, \tau)
+        d\xi d\eta d\mu 
+    d\tau
+    \\
+    &= 
+    \frac{1}{4\pi c}
+    \int_{0}^{\infty} 
+        \iiint_{\Omega}
+            \frac{\delta(t - c(t - \tau))}{r}Q(\xi, \tau)
+        d\xi d\eta d\mu 
+    d\tau
+\end{aligned}
+$$
+
+**Physical Interpretation**? 
+
 
 
 
@@ -256,4 +545,4 @@ We have solved for G.
 
 [^1]: Prof and the text book gives this explanation, but the behaviors are just too pathological, so we have to assume continuous function after that point $\tau$. But how the heck people can have multiple singularities at one point??? 
 [^2]: That D'Alambert's method didn't talk about the case when $\partial_t[u]=g(x)$, in that example we had $g(x) = 0$, therefore some modificaitons will be need to suit in this case. 
-[^3]: Yes, we made the arbitrary choice of integrating it over the domain $(\tau_-, \tau_+)$
+[^3]: Yes, we made the arbitrary choice of integrating it over the domain $(\tau_-, \tau_+)$ 
