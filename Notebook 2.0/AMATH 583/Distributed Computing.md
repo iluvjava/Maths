@@ -54,10 +54,14 @@ Steps:
 
 MPI: Message Passing Interface
 
-```cpp
+This is how we are actually do distributed computing. 
 
+---
+### **Compute and Communicate**
 
-```
+This is a computing Idiom. 
+
+Bulk communications between and then compute. 
 
 
 

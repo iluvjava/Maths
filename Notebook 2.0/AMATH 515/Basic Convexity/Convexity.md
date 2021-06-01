@@ -154,7 +154,7 @@ First: $f$ is concave if and only if $-f$ is convex.
 	* let $w_i$ to be positive for $1\le i \le n$, then the linear combinations of positive weight over the set of convex functions: $f_i$ are still convex. $\sum_{i = 1}^{n} w_if_i$ is still a convex function. 
 	* This property can be extended to infinite sum, integral, and expected value as well (with the assumption that it exists)
 
-2. Element wise maximum: let $\{f_i\}_{i\in I}$ be a collection of convex functions, then, $g(x):= \sup_{i \ in I}\{f_i{(x)}\}$ is still going to be a convex function. 
+2. Element wise maximum: let $\{f_i\}_{i\in I}$ be a collection of convex functions, then, $g(x):= \sup_{i \in I}\{f_i{(x)}\}$ is still going to be a convex function. 
 	* **Danskin's Theorem**: if $f(x,y)$ is convex in $x$ then $g(x) = \sup_{y\in C}f(x, y)$ is convex in $x$, even if $C$ is not a convex set. 
 
 

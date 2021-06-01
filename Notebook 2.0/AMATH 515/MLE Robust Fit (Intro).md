@@ -3,9 +3,9 @@ Why is the regression model focusing on the vertical distance between the model 
 Gaussian & Cauchy Distribution for MLE on regression model
 
 ---
-### Simple Regression MLE 
+### **Simple Regression MLE** 
 
-Let's proposed a model for a 1D regression model : 
+Let's proposed a generative model for a 1D regression:
 
 > $$y_i = a_0 + a_1x + \epsilon_i$$
 
@@ -70,7 +70,7 @@ $$
 And the corresponding Minimization problem will be: 
 
 $$
--\min_{a_0, a_1}( -\ln(L(a_0, a_1)))
+-\min_{a_0, a_1}( -\ln(L(a_0, sa_1)))
 $$
 
 In which, because of the multiplier containing the variance is going to be a constant offset after taking the logarithm, the optimization problem will be equivalent to: 
@@ -82,7 +82,7 @@ $$
 Which is expected. 
 
 ---
-#### T-Distribution: Robust Fit
+#### **T-Distribution: Robust Fit**
 
 The key to get to the optimization problem is the assumption on the distribution of the variance on the data set, for this very reason, we can tweak the model, which might take into account for some of the outliers observed. 
 
