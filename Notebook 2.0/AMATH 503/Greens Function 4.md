@@ -32,6 +32,6 @@ Which one is easier to solve? $v$ or $w$?
 
 $v$ is easier becaue it's homogenous, and we can just use D'Alambert method in this case. And then for $w$, we are going to use the Green's function to solve it, decompse the $Q$ function into a collection $\delta$ over a region, and then we can reconstruct the non-homogeneous solution of the system. 
 
-And from the last part, we have discovered that: 
+And from the last part, we have already discussed how to solve that. And that is how the non-homogenous PDE with non-homogeous boundary conditions are solved. 
 
 
