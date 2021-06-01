@@ -57,7 +57,7 @@ It's made for just the above PDE equation, not applicable to anything else.
 Here is the list of procedures we use to get the solution for the PDE: 
 1. Take the equation to the Fourier Domain so it's an ODE in term of $t$ and $w$. 
 2. Use the $u_t(x, 0) = 0$ get the solution format, in the Fourier Domain. 
-3. Use the $u(x, 0) = f(x)$ to get the undetermined coefficients for the system, in the fourier domain. 
+3. Use the $u(x, 0) = f(x)$ to get the undetermined coefficients for the system, in the Fourier domain. 
 4. Do the Inverse Fourier Transform to get the solution in the original spatial domain. 
 
 **Questions**: 
@@ -252,7 +252,7 @@ Because the initial condition helped us to satisfies that part, the function is 
 ---
 ### **An Alternative**: D Alambert's method
 
-Let's consider a more general formulaitons of the wave equation under the infinite domain, and it's: 
+Let's consider a more general formulations of the wave equation under the infinite domain, and it's: 
  
 $$
 \begin{cases}
@@ -287,7 +287,7 @@ $$
 \xi = x - ct \quad \eta = x + ct
 $$
 
-Consider experssing $\partial_t, \partial_x$ using the new variable giving us: 
+Consider expressing $\partial_t, \partial_x$ using the new variable giving us: 
 
 $$
 \begin{aligned}
@@ -351,8 +351,6 @@ And then the final expression will be:
 $$
 u(x, t) = P(x + ct) + q(x - ct) = \frac{1}{2}(f(x + ct) + f(x - ct))
 $$
-
-
 
 
 [^1]: Just adds up all the above equations (1), (3), (4), and then using the fact that the fourier transform is linear, then we can have the expression (5). Don't forget the negative sign of $(iw)^2$ there. 
