@@ -36,7 +36,7 @@ $$
 \tag{1}
 $$
 
-The deal function is representing the signal source at a point in time and space $\tau, \xi$. A scaler and a vector. $\tau > 0$ in this case. 
+The delta function is representing the signal source at a point in time and space. $\tau, \xi$ are a scaler and a vector. $\tau > 0$. 
 
 The reconstruction of the original solution using the Green's Function $u$ is given as: 
 
