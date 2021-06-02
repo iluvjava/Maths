@@ -170,6 +170,8 @@ This version works.
 
 In the case of `COMM_WORLD.Send`, returned meaning that **the buffer is safe to reuse**. For small message, this might block, or not. **We don't know**. 
 
+"Safe to re-reuse": This means that the data has been buffered into some place, or it's during transit and we can modify that without worrying about potential problems. 
+
 In the case of `COMM_WORLD.Recv`, Blocked until the message is receive. We must get the data before advancing from this function call. 
 
 
@@ -189,6 +191,50 @@ We need the MPI to compile and invoke the system, we can't just compile and run 
 ---
 ### **MPI Deadlock**
 
-(...)
+Process 1 has  o `send, receive` and Process 2 has `send, receive`
+
+They send and receive from each other. 
+
+MPI has ambiguity. 
+
+When `MPI::COMM_WORLD.send` blocks when we can use the buffer. However, it's possible that the send will halt until the message is received by the receiver. 
+
+Here is how it goes:
+
+Process 1 sends and halt until thread 2 recieve, process 2 sends and halt until Process 1 receive, so both of them are waiting for each other to receive while and halt on the send method. This is a ceadlock. 
+
+For large message, MPI will synchronize sync, and it's buffering when the data are exchanged between each of the process. 
+
+**Question:** 
+
+Why no buffering when we had small messages? 
+
+**Answer:**
+
+It saves system resources 
+
+**Question:**
+
+Ok, why not just send and receive on process 1 and then receive and send on process 2? This can prevent deadlock
+
+**Answer:**
+
+This is good and doable, but to some extend, it it's not following the paradigm of SPMD. In a sense that we need to more ways to distinguish the order of sending and receiving for each of the process, and that means more complex code and serilization between the message exchange. Impacting the speed of the algorithms. 
+
+---
+### **Exchanging Message in a Smart Way**
+
+There are non-blocking send and receive in MPI: 
+
+```cpp
+Request Comm::Isend(cost void* buf, int count, const Datatype& datatype, int dest, int tag) const
+
+Request Comm::Irecv(void* buf, int count, const Datatype& datatype, int source, int tag) const
+```
+
+The request is then returned, the entity is similar to what we had for promise in javascript, and to wait for the request, we use wait_all, see [wait all](https://www.open-mpi.org/doc/v4.0/man3/MPI_Waitall.3.php) in open MPI documentation. 
+
+Give it an array of request. 
+
 
 
