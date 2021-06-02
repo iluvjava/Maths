@@ -268,7 +268,7 @@ $$
 \begin{aligned}
     u(x,t) &= \int_{0}^{\infty}
     \int_{-\infty}^{\infty} 
-        GQ(\xi, \tau)
+        G(x, t, \xi, \tau)Q(\xi, \tau)
     d\xi 
     d\tau 
     \\
@@ -279,6 +279,9 @@ $$
     d\tau
 \end{aligned}
 $$
+
+Interesting how the super position of many delta function is just the integral over the function $Q(x, t)$ on the whole infinite domain. 
+
 
 
 ---

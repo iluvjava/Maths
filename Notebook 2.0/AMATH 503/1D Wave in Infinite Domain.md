@@ -300,7 +300,7 @@ $$
     \\
     & =-c \frac{\partial}{\partial \xi} + c \frac{\partial}{\partial \eta}
     \\
-    &= (\partial_\eta - \partial_\xi)
+    &= c(\partial_\eta - \partial_\xi)
 \end{aligned}
 \tag{10}
 $$
@@ -357,7 +357,7 @@ $$
 And then the final expression will be: 
 
 $$
-u(x, t) = P(x + ct) + q(x - ct) = \frac{1}{2}(f(x + ct) + f(x - ct))
+u(x, t) = p(x + ct) + q(x - ct) = \frac{1}{2}(f(x + ct) + f(x - ct))
 \tag{15}
 $$
 
