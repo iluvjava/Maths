@@ -1,8 +1,5 @@
 Here we will continue from [[Greens Function 3]], with the wave equation as the example, but this case, we make the boundary conditions non-homogeneous too. 
 
-
-
-
 ---
 ### **Intro**
 
