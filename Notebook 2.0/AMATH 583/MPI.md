@@ -236,5 +236,12 @@ The request is then returned, the entity is similar to what we had for promise i
 
 Give it an array of request. 
 
+**Scatter**
 
+```cpp
+int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+    void *recvbuf, int recvcount, MPI_Datatype recvtype, int root,
+    MPI_Comm comm)
+```
 
+Process `root ` scatters its data to all other processes. `sendbuf` provided by `root`, `recvbuf` provided by none `root`. `sendbuf` is conserved, because of `const`. 
