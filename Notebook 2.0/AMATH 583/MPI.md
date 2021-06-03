@@ -20,7 +20,7 @@ Let's repeat this:
 
 MPI ID distinguishes the process, data are distributed via MPI, and one of the programs, that one that distributed the data and collect and combine the data must identify itself and do the job accordingly. 
 
-MPI is using a network interface to pass messages between different process. We cant put data directly into the memory of another process.  
+MPI is using a network interface to pass messages between different process. We cant put data directly into the memory of another process.
 
 ---
 ### **MPI Example**
