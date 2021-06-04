@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
 > When called, the last parameter of the function notifies it which node the results should be reducing to, in this case it's process 0. See [here](https://www.open-mpi.org/doc/v4.0/man3/MPI_Reduce.3.php) for more details about the parameters for the function. 
 
-`MPI::COMM_WORLD.AllReduce`: Reduce a variable and then sync to all processes. 
+`MPI::COMM_WORLD.Allreduce`: Reduce a variable and then sync to all processes. 
 
 > If, somehow the reduced results need to be used for computations, we will definitely use this for computations. 
 
@@ -245,3 +245,20 @@ int MPI_Scatter(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
 ```
 
 Process `root ` scatters its data to all other processes. `sendbuf` provided by `root`, `recvbuf` provided by none `root`. `sendbuf` is conserved, because of `const`. 
+
+
+**Simultaneous Send and Receive**
+
+```cpp
+int MPI_Sendrecv(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+    int dest, int sendtag, void *recvbuf, int recvcount,
+    MPI_Datatype recvtype, int source, int recvtag,
+    MPI_Comm comm, MPI_Status *status)
+```
+
+
+
+---
+### **MISC: All About MPI**
+
+MPI Constants: see [here](https://www.mpi-forum.org/docs/mpi-2.2/mpi22-report/node375.htm) on the forum. It's for MPI 2.2

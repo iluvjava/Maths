@@ -29,11 +29,11 @@ $$
 This is the ratio between the optimal speed up of the algorithm by cores, and the actual speed up of the algorithm. 
 
 ---
-### **Dmdahl's Law**
+### **Amdahl's Law**
 
-This is a law the measure the thoretical speed up of the algorithm by parallelization, given information about the problem at hand. 
+This is a law the measure the theoretical speed up of the algorithm by parallelization, given information about the problem at hand. 
 
-We divide the tasks into 2 pieces, the part that can be parallelized, and the part that cannnot be parallelized.
+We divide the tasks into 2 pieces, the part that can be parallelized, and the part that cant be parallelized.
 
 $$
 T(n , 1) = \alpha T(n, 1) + (1 -  \alpha)T(n, 1) \quad 0< \alpha < 1
@@ -59,7 +59,7 @@ There is a limit for the potential speed up by the parallelization, if the porti
 ---
 ### **Gustafson's Law**
 
-Here, we assume that the amount of task that is non-parallelizable stays as a constant to the intput size of problem, and this means that, as we increase the problem size, the number $\alpha$ will get smaller and smaller. 
+Here, we assume that the amount of task that is non-parallelizable stays as a constant to the input size of problem, and this means that, as we increase the problem size, the number $\alpha$ will get smaller and smaller. 
 
 Basically, we modify the previous part of the equation into: 
 
