@@ -35,7 +35,7 @@ $$
 =\sum_{i}^{} \Vert x_i\Vert_2^2 - 2 \Vert x_i\Vert_2^2  - x_i^TUU^Tx_i
 $$
 
-And notice that, we can swtich the objetive, and change this into a maximization prolem: 
+And notice that, we can swtich the objetive, and change this into a maximization prolem, which maximizes the only negative term that involves $U$. 
 
 $$
 \max_{U^TU = I} \Vert U^TX\Vert_F = \max_{U^TU = I}\sum_{i}^{} \Vert u_i^TX\Vert_2^2

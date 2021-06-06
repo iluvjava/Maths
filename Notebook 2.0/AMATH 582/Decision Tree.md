@@ -106,6 +106,11 @@ And no extrapolation is involved.
 1. Due to the weakness and the nature of the model, it's recommended to perform PCA and LDA Dimensionality Reduction for the Tree Model. 
 2. Balance your data set for training, Consider adjusting the weights to adjust the bias as well. 
 
+
+**Model is Good for**: 
+
+* The model is very good for categorical attributes. 
+
 ---
 ### **Decision Tree Algorithms** 
 
