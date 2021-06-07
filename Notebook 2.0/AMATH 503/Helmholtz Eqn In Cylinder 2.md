@@ -163,6 +163,113 @@ $$
 Therefore, we have: 
 
 $$
-\Theta'' = -m\Theta
+\begin{aligned}
+    \Theta'' &= -m\Theta    
+    \\
+    \implies
+    \Theta &= A\exp(im\theta) + B\exp(-im\theta)
+\end{aligned}
+\tag{6}
 $$
 
+Take note that, because the function has to be $2\pi$ periodic, it means that the value for $m$ must be integers, so: $m \in \mathbb{Z}$. 
+
+The value for $m$ is all we need, the coefficients might be determined not by the boundary conditions, but the initial conditions[^1]. 
+
+Finally, we can consider the function $R(r)$, using expression (5) we have: s
+
+$$
+\begin{aligned}
+    r^2(b_l^2 - \lambda^2) - \frac{r\partial_r[r\partial_r[R]]}{R} 
+    &= -m^2
+    \\
+    Rr^2(b_l^2 - \lambda^2) - r\partial_r[r\partial_r[R]] &= -Rm^2
+    \\
+    r\partial_r[r\partial_r[R]] - Rr^2(b_l^2 - \lambda^2) -Rm^2 &= 0
+    \\
+    r\partial_r[r\partial_r[R]] - (r^2(b_l^2 - \lambda^2) + m^2)R &= 0
+    \\
+    r\partial_r[r\partial_r[R]] + (r^2(\lambda^2 - b_l^2) - m^2)R &= 0
+\end{aligned}
+\tag{7}
+$$
+
+And this, this is the Cylindrical Bessel's equation, and it's solution is tied to Bessel's equation. 
+
+---
+### **Bessel's Equation**
+
+The equation we are trying to solve is: 
+
+$$
+\begin{aligned}
+    r\partial_r[r\partial_r[R]] + (r^2(\lambda^2 - b_l^2) - m^2)R &= 0
+\end{aligned}
+\tag{7}
+$$
+
+But, this one is hard and that is why we will be solving another equation, and then use the solution for the other equation to solve this one. 
+
+The other equation we are solving instead is called the Bessel's Standard Form: 
+
+$$
+x\partial[x\partial_x[y]] + (x^2 - m^2)y = 0
+\tag{9}
+$$
+
+where, $y$ is a function of $x$. For more about actually solving this equation above using Frobenius method and all those cool shit, check out [[Bessel's Equation]] for a more detailed discussion. 
+
+I assume you read the part "Bessel's Non-standard form" for the file Bessel's Equation, if that is the case, then we know that the solution to expression (7) is in fact: $J_m(\sqrt{\lambda^2 - b_l^2}r)$
+
+Please recall that $z_{m, n}$ is the $n$ th roots for the Bessel's equation $J_m(x)$, for the Bessel's First kind. 
+
+Boundary conditions asserts: 
+
+$$
+\begin{aligned}
+    J_m\left(
+        \sqrt{\lambda^2 - b_l^2}a
+    \right) = 0 \wedge J_m(0) &\neq \infty    
+    \\
+    \implies 
+    a\sqrt{\lambda^2 - b_l^2} &= z_{m, n}
+    \\
+    \lambda^2 &= \frac{z_{m, n}^2}{a^2} + b_l^2
+    \\
+    \lambda_{l, m, n} &= \sqrt{\frac{z_{m, n}^2}{a^2}+ b_l^2}
+\end{aligned}
+\tag{10}
+$$
+
+We assme that the eigenvalues for the original PDE to be positive, from the separation of variables. This also makes sense [^2]
+
+---
+### **Solution** 
+
+Therefore, the solution of the Helmholtz equation is: 
+
+$$
+\phi(\theta, r, z) = \sum_{m\in \mathbb{Z}, n, l \in \mathbb{N}}^{}
+    R_{m, n}(r)\Theta_m(\theta)Z_l(z)
+$$
+
+Where the Eigenfunction is like: 
+
+$$
+u_{m, n, l}(\theta, r, z) = J_m(z_{m, n}/a)\Theta_m(\theta)\sin\left(
+    \frac{zl\pi}{L}
+\right)
+$$
+
+**Note**
+The frequency of oscillation for waves in the cylinder is given as: 
+
+$$
+\omega_{l,m, n} = c\lambda_{l,m, n} = c\sqrt{\frac{z_{m, n}}{a^2} + \frac{l^2\pi^2}{L^2}}
+$$
+
+And the unit is Radius Per Minites, to get frequence in Hz, please divides $\omega_{l,m, n}$ by $2\pi$. The Radius. 
+
+
+[^1]: This is my speculation, in truth, I have no idea since it's not covered in the class notes nor lecture, please investigate when this footnote is read in the future. 
+[^2]: Bessel's equation is a special kind of Sturm Loiuville System. 

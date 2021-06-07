@@ -598,14 +598,58 @@ How do we adapt different type of ODEs into the Bessel's equation and use this s
 When solving the Bessel's equation, we arrived at an differential equation of the following form:
 
 $$
-r\partial_r[r\partial_r[R]] +
-((\underbrace{\lambda^2 - b_l^2)r^2 }_{x^2}- m^2)R = 0
+r\partial_r[r\partial_r[R]] + (\lambda^2r^2- m^2)R = 0
 $$
 
-Where variable $\lambda, b_l$ are from separation of variables. 
+And we are interested in using the Bessel's solution for the standard form to solve this equation. 
 
+Our task is to essentially varify that, $J_m(\lambda x)$ solves this system, whem $R = J_m(\lambda x)$ and $r = x$. This is true because: 
 
+Let's write everything in terms of function $y(x)$ for consistency. This is the Bessel's non-standard form: 
 
+$$
+\begin{aligned}
+    x\partial_x[x\partial_x[y]] + (\lambda^2x^2 - m^2)y &= 0
+    \\
+    x(xy'' + y') + (\lambda^2 x^2 - m^2)y &= 0
+    \\
+    x^2 y'' + xy' + (\lambda^2 x^2 - m^2)y &= 0
+\end{aligned}
+$$
+
+Let's consider: 
+$$
+\begin{aligned}
+    \frac{d}{dx}[J_m(\lambda x)] &= \lambda J_m'(\lambda x)    
+    \\
+    \frac{d^2}{dx^2}[J_m(\lambda x)] &= \lambda J_m''(\lambda x)
+\end{aligned}
+$$
+
+Consider: 
+
+$$
+\begin{aligned}
+    & x^2 \frac{d^2}{dx^2} [J_m(\lambda x)] + x\frac{d}{dx}[J_m(\lambda x)] + ((\lambda x)^2 - m^2)J_m(\lambda x)
+    \\
+    =& x^2\lambda^2 J_m''(\lambda x) + x\lambda J_m'(\lambda x) + ((\lambda x)^2 - m^2)J_m(\lambda x)
+    \\
+    =& (x\lambda)^2J_m''(\lambda x) + x\lambda J_m'(\lambda x) + 
+    ((\lambda x)^2 - m^2)J_m(\lambda x)
+    \\
+    \underset{t = x \lambda}{\implies}
+    =& (t)^2J_m''(t) + t J_m'(t) + (t^2 - m^2)J_m(t)
+    \\
+    \underset{(1)}{\implies}
+    =& 0
+\end{aligned}
+$$
+
+(1): This is simply the Bessel's Standard Form, and we know that $J_m(x)$ solves it. 
+
+**Conclusion:** 
+
+Given a Bessel's Function that is not in standard form, namely: $x\partial_x[x\partial_x[y]] + (\lambda^2x^2 - m^2)y = 0$, the solution is $J_m(\lambda x)$ where, $J_m(x)$ is solution for the Bessel's Standard Form. 
 
 
 
