@@ -117,7 +117,7 @@ $$
 Ok, so we had a series that is going to converge, for $|x|\le 1$, using some basic complex analysis and singularity. 
 
 
-### **Examine the Coefficients**
+### **Examin the Coefficients**
 
 Referring back to (7), it's not hard to observe that odd and even orders are entangled together. 
 

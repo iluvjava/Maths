@@ -5,7 +5,7 @@ Make sure you already understand [[Decision Tree]] from a mathematical perspecti
 
 The random tree model itself is a Low Bias, High Variance Model. 
 
-Therefore, Emsemble method makes sense and it's possible for it to improve the this particular model. This is also called Bagging. 
+Therefore, Ensemble method makes sense and it's possible for it to improve the this particular model. This is also called Bagging. 
 
 Random Forest
 
@@ -17,7 +17,7 @@ Random Forest
 
     (b) Grow a random tree $T_b$ from the bootstrap data (Use whatever cool algorithm there is to do this). 
 
-2. Output emsemble trees $\{T_b\}_{i = 1}^{B}$. 
+2. Output ensemble trees $\{T_b\}_{i = 1}^{B}$. 
 
 
 To make the prediction, we use the following algorithm: 
@@ -43,10 +43,10 @@ For regression model, the optimal size leaf node is $p/3$, and for classificatio
 
 1. The size of the leaf node. 
 2. The decision criterion for branching on a certain attribute. 
-3. The size of the foreset.
+3. The size of the forest.
 
 
-**Foreset Comes with Confidence Interval**
+**Forest Comes with Confidence Interval**
 
 We can use the tree to get a non-parametric confidence level for the prediction when using the random forest model. We just need to get the bag of trees. 
 
@@ -62,7 +62,7 @@ Let's talk about the ideas of additive models.
 
 2. Let $\phi_i: \mathbb{R}^d \rightarrow \mathbb{R}, 1 \le i < p$. Where $\phi_i$ is a function belongs to different classes of function, like, regression, tree, logistic, or Neural Net, let's say there are $p$ of them in total. 
 3. Now, we are going to learn some weights using the rule that: $
-\hat{w} = \arg\min_w \sum_{i = 1}^{n}L(y_i, \sum_{t = 1}^{p} w_t \phi_t(x_i))$, We are looking for a set of weights among all these learners, such that the prediciton made by all of them is minimizing the Loss of something. This problem in particular, is hard to solve (NP-Hard). 
+\hat{w} = \arg\min_w \sum_{i = 1}^{n}L(y_i, \sum_{t = 1}^{p} w_t \phi_t(x_i))$, We are looking for a set of weights among all these learners, such that the prediction made by all of them is minimizing the Loss of something. This problem in particular, is hard to solve (NP-Hard). 
 
 **This is the algorithm greedy algorithm for doing the model weighting:**
 
@@ -95,6 +95,6 @@ It's a very general idea, and consider the **XGBoost** package when doing this i
 
 **What if we compare the Bagging idea and Boosting Idea?**
 
-Boosting is learning linear depedent classifier, changing one of the weak learning is going to make drastic difference on the output, the bagging on the other hand, is using bootstrap, in theory all the weak learners from bagging should be independent learners, and changing one of them from the same training set is not going to change the output by much.
+Boosting is learning linear dependent classifier, changing one of the weak learning is going to make drastic difference on the output, the bagging on the other hand, is using bootstrap, in theory all the weak learners from bagging should be independent learners, and changing one of them from the same training set is not going to change the output by much.
 
 
