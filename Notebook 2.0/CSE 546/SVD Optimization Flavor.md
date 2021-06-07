@@ -92,9 +92,8 @@ And for some users, when they watch across different generes, it's likely that t
 
 **We only have some subset of the entires of matrix $X$, what should be do?**
 
-Ah... 
 
-This is where we get creative, where we try to construct the $U$ matrix such that, we minimizes the errors on the known samples from the matrix $X$. 
+This is where we get creative, where we try to construct the $U$ matrix such that, we minimizes the errors on the known samples from the matrix $X$. Unknow entries are masked out and exluded from the Loss Metric. 
 
 As we sample more and moer data, depending on the thredshold of the low-rank structure of the data, at some level of samples, we will reconstruct the whole matrix (The full matrix, not the sparse, like, it contains all the rating that the user haven't rated yet). [^1]
 

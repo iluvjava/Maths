@@ -29,7 +29,7 @@ $$
 \tag{3}
 $$
 
-And notice that the singularities are $\pm x$. So, don't center the series at those points. 
+And notice that the singularities are $\pm 1$. That means a power series expansion at $x = 0$ is sufficient and there i no need for Frobenius Method. However, we will need to take care of convergence of the series with more care, since the power centered at $x = 0$ might not converge at $x = \pm 1$. 
 
 We can still do that on the singularity, but that means we are going to use the [[Frobenius Method]], which could be a pain to deal with because of the extra multiplier at the front. 
 
@@ -117,7 +117,7 @@ $$
 Ok, so we had a series that is going to converge, for $|x|\le 1$, using some basic complex analysis and singularity. 
 
 
-### **Examin the Coefficients**
+### **Exam the Coefficients**
 
 Referring back to (7), it's not hard to observe that odd and even orders are entangled together. 
 
@@ -280,10 +280,11 @@ And this is a plot for the first few, normalized Legendre Polynomials.
 **Legendre Polynomials are ORTHOGONAL.** and this is an amazing quality to have when we are using it as the basis functions fo something. 
 
 ---
-### **Peroperty**
+### **Properties**
 
-For any "reasonable" functions, it can be expressed as a linear combinations of the Legendre Polynomials. And the Proof of Orthogonality in chapter 10 of the textbook. 
+For any "reasonable" functions, it can be expressed as a linear combinations of the Legendre Polynomials. And the Proof of Orthogonality in chapter 10 of the textbook. [^3]
 
 
 [^1]: Mathematician usually wants the eigen functions normalized. And in our case, the eigenfunctions is $p_n(x)$, and we want to adjust the function such that $p(1) = 1$. 
 [^2]: Consider the original problem of the Helmholtz Equation in the sphere, we are only interested in solution that is not blowing up, so, we make choice on the parameter $x_0, x_1$ to make sure that we have the right solutions that we are interested in. 
+[^3]: [[Sturm Liouville Theory]]

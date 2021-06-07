@@ -268,7 +268,7 @@ $$
 \omega_{l,m, n} = c\lambda_{l,m, n} = c\sqrt{\frac{z_{m, n}}{a^2} + \frac{l^2\pi^2}{L^2}}
 $$
 
-And the unit is Radius Per Minites, to get frequence in Hz, please divides $\omega_{l,m, n}$ by $2\pi$. The Radius. 
+And the unit is Radius Per minutes to get frequencies in Hz, please divides $\omega_{l,m, n}$ by $2\pi$. The Radius. 
 
 
 [^1]: This is my speculation, in truth, I have no idea since it's not covered in the class notes nor lecture, please investigate when this footnote is read in the future. 
