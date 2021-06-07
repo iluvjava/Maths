@@ -331,7 +331,7 @@ Which is called **Bessel's Function of the First Kind**. And it will be used for
 ---
 ### **Eigenfunctions**
 
-Now, armed with the knowledge about the bessle's equation, we are ready reveal the full glory of all the basis function for each of funciton, and they will look like: 
+Now, armed with the knowledge about the bessle's equation, we are ready reveal the full glory of all the basis function for each of function, and they will look like: 
 
 * For $Z(z)$: 
 $$

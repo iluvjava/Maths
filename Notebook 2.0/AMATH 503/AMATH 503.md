@@ -68,3 +68,10 @@ And to do things in the other coordinate systems, we need tools like:
 * [[Sturm Liouville Theory]], The theorem that makes all the Eigen Functions for PDEs we learned before. 
 * [[Eigenfunction Expansion]] method is introduced for Bounded None Homogeneous PDEs/ODEs
 
+### **Week 9, 10**
+
+* [[Greens Function]]
+* [[Greens Function 2]]
+* [[Greens Function 3 (3D Wave)]]
+* [[Greens Function 4 (Nonhonogeneous Wave)]]
+* [[

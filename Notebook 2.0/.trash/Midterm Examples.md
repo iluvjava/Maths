@@ -1,4 +1,4 @@
-This file is made for some of the examples that might appear durng midterm, it's always really good to write them done here.
+his file is made for some of the examples that might appear durng midterm, it's always really good to write them done here.
 [[Common PDEs B.C Catalogs]]
 
 ---

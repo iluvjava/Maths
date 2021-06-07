@@ -74,6 +74,8 @@ $$
 ---
 ### **The Frobenius Method**
 
+The usage of Frobenius method it's a topic on its own, see [[Frobenius Method]] for more. 
+
 Generally speaking, let's assume that the solution of the system can be written as a power series, and then we substitute the power series into the ODE, and then we solve for the recurrence of the coefficients of the power series, and in that case, we have the solution! 
 
 However,  the Bessel's equation has a singularity, recall that the ODE: 
@@ -234,7 +236,7 @@ $$
 And so then: 
 
 $$
-A_4 = \frac{-a_2}{4(2p + 4)} = \frac{-a_2}{2^3(p + 2)} = \frac{a_0}{2^4\times 2(p+ 2)(p + 1)}
+a_4 = \frac{-a_2}{4(2p + 4)} = \frac{-a_2}{2^3(p + 2)} = \frac{a_0}{2^4\times 2(p+ 2)(p + 1)}
 $$
 
 Boom, there is a pattern emerging, so I will take the guess that: 
@@ -328,6 +330,8 @@ If that is zero, then we have the trivial solution: $y \equiv 0$ for the ODE.
 
 During the first few steps of the Frobenius Method, we get the value of $s$, and we see that it's $s = \pm p$, but we only solved for $p > 0$, and now, we are going to take a look at the case where $p < 0$. 
 
+> This is tied to Frobenius method, when there are 2 roots for exponent of the offset exponent, we would would need to solve a different ODE to get the full solution, with 2 linear independent series. 
+
 Now we still assume that $p > 0$, but we let $s = -p$ to be one of the solution for the Frobenius Method. 
 
 However, if we are going to solve, the whole process will have to be went through again, however, notice that the only difference is that $p = -p$. Therefore, we can take the shortcut of looking for $y_2(x)$ explicitly, replacing by $p$ with $-p$, then, we have this expression: 
@@ -369,6 +373,8 @@ $$
 y_2(x) = \ln(x)y_1(x) + x^{-p}\sum_{n = 0}^{\infty}
     a_nx^n
 $$
+
+In this context, $y_2(x)$ is the new solution we want to solve for, and $y_1(x)$ is Bessel's First kind. 
 
 **Proposition**
 
@@ -588,6 +594,19 @@ The third one is directly derived using the first and the second.
 ### **The Bessel's Non-Standard Form**
 
 How do we adapt different type of ODEs into the Bessel's equation and use this solution for the standard form? 
+
+When solving the Bessel's equation, we arrived at an differential equation of the following form:
+
+$$
+r\partial_r[r\partial_r[R]] +
+((\underbrace{\lambda^2 - b_l^2)r^2 }_{x^2}- m^2)R = 0
+$$
+
+Where variable $\lambda, b_l$ are from separation of variables. 
+
+
+
+
 
 
 [^1]: Under graduate linear analysis intensifies. 

@@ -544,8 +544,6 @@ $$
 
 
 
-
-
 [^1]: Prof and the text book gives this explanation, but the behaviors are just too pathological, so we have to assume continuous function after that point $\tau$. But how the heck people can have multiple singularities at one point??? 
 [^2]: That D'Alambert's method didn't talk about the case when $\partial_t[u]=g(x)$, in that example we had $g(x) = 0$, therefore some modificaitons will be need to suit in this case. 
 [^3]: Yes, we made the arbitrary choice of integrating it over the domain $(\tau_-, \tau_+)$ 
