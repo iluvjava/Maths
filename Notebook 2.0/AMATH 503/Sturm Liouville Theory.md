@@ -23,7 +23,7 @@ Where $\lambda$ is a parameters to be determined.
 
 For each value of $\lambda$, we will have a function on the interval as the solution to the problem. That function will be called the Eigenfunction, consider this: 
 
-**Note** Lambda, the eigenvalue is complex. $\lambda \in \mathbb{C}$
+**Note** Lambda, the eigenvalue is complex. $\lambda \in \mathbb{C}$ when the function involved are complex. 
 
 I am thinking if orthogonality property of the ODE has something to do with the fact that this is giving us a Hermitian operator, but it turns out to be  not that obvious. This is made my suspicions because of the fact that all the Eigenvalues are reals, and all the eigen functions are orthogonal, under weighted inner product of $r(x)$. 
 
@@ -34,6 +34,8 @@ $$
 p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
 \\
 p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
+\\
+p'y' + py'' - qy -\lambda ry& = 0
 \end{aligned}
 $$
 
@@ -42,11 +44,15 @@ And there is nothing that I can see and say that: "Ah, this is a hermitian matri
 ---
 ### **Singular and Regular SL**
 
-**Regular**
+**Regular Summary**
+* $p, p', q, r$ are continuous in interval $[a, b]$, and doesn't have zero, in the domain. 
+* Robine boundary conditions that are legit. 
+
+**Explaination**
 
 The domain of the problem is a closed finite interval: $[a, b]$
 
-$p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. 
+$p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. If it crosses zero in side the domain, we have the sour problem of singuarities in the ODE. 
 
 WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
 
@@ -68,19 +74,38 @@ $$
 
 If the system in on an infinite domain, or, at least one of the conditions for the regular SL is not satisfied. 
 
-There are way more Singular than the Regular. Let's consider a subset of the singular system: 
+There are way more Singular than the Regular. But let's consider a subset of the singular system: 
 
 * $p(x), p'(x), q(x), r(x)$ are continuous on $(a, b)$. 
 
 * $p(x)> 0$, $r(x)> 0$, in $(a, b)$. but $p(x), q(x) = 0$ on the boundaries. 
  
 * Domain might be infinite. 
+* Boundary conditions are modified so that it's still solvable. 
 
-When a system is singular, there is a very good chance that we had singularities for the functions inside of the domain, see the Legendre System in the example part for more about how to modify the boundary of the solution. 
+When a system is singular, there is a very good chance that we had singularities for the functions inside of the domain (in this case, it's the boundary), see the Legendre System in the example part for more about how to modify the boundary of the solution. 
 
+However, take notice we really need to take care of the boundary conditions so the solutions are still valid in a sense. This is one of the features for this subset of Singular SL. 
+
+**Boundary Modifications**
+
+If, $p(x) = 0$ at either $a, b$, then: 
+
+* $p(a) = 0$, let $y(a)$ be bounded, and then let $y(b) = 0$. 
+* $p(b) = 0$, let $y(b)$ be bounded, and then let $y(a) = 0$. 
+* $p(a) = p(b) - 0$, then let $y(a), y(b)$ both be bounded. 
+
+**This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable.** 
 
 ---
-### **Examples**
+### **Examples of SL System**
+
+**List of SL System**:
+1. Fourier System: Regular
+2. Legendre System: Singular
+3. Bessel's Equation: Singular
+4. Spherical Bessel's Equation: Singular
+5. Chebyshev Equation: Singular
 
 Let's take a look at some of the examples, and determine whether they are singular, or regular. 
 

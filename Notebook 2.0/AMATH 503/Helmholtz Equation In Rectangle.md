@@ -1,4 +1,4 @@
-[[Multi-Dimensional PDEs, Schordinger Eqn in Box]] 
+[[Schordinger Eqn in Box]] 
 Here, we are sticking with the same thing, but we are going to look into some concrete examples for it. 
 
 

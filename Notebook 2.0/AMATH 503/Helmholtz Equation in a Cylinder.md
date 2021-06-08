@@ -1,9 +1,11 @@
 It's 11.4 in the textbook of the course. 
 This time, we are solving this in a cylinder. 
 
-[[Separation of Variables]], [[Multi-Dimensional PDEs, Schordinger Eqn in Box]]
+[[Separation of Variables]], [[Schordinger Eqn in Box]]
 
 We are going to use Separation of variable to solve a special case of the 3D wave equation. This time it's in a cylinder. And we will introduce the bessel's basis function for the solutions too, which is need to model the wave in a circle (periodic boundary conditions). 
+
+**Note**: There is a more comprehensive new version for the same topic: [[Helmholtz Eqn In Cylinder 2]], view this, which handles it better. 
 
 ---
 ### **Intro**

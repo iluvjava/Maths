@@ -199,8 +199,6 @@ If $\eta$ is produced in this way, then we know that the solution series is goin
 
 
 
-
-
 ---
 ### **The Special $\eta$**
 
