@@ -56,6 +56,8 @@ We can use the tree to get a non-parametric confidence level for the prediction 
 
 Let's talk about the ideas of additive models. 
 
+Boosting is one of the way of merging a lot of weak learners (Classifier models, not emsemble methods) so that they combine and forms a strong learner. 
+
 **This is the over all idea of Additive Model:**
 
 1. Given training set $(x_i, y_i)$, $1 \le i \le n$, let feature $x \in \mathbb{R}^d$, and let label be $y_i \in \{1, -1\}$. 
@@ -91,7 +93,10 @@ Under the regression loss case, each new added model, $b(x_i; \gamma)$ during th
 
 **Practicality**
 
-It's a very general idea, and consider the **XGBoost** package when doing this in real life. s
+It's a very general idea, and consider the **XGBoost** package when doing this in real life.
+
+Bagging is faster because a learners can be trained in parallel, boosting on the other hand, needs the results from the previous learners. 
+
 
 **What if we compare the Bagging idea and Boosting Idea?**
 
