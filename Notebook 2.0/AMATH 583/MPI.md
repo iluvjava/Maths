@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
         pi += 4.0 / (1.0 + (i * h * i * h));
     }
 
-    // MPI storage reduct on a variable. 
+    // MPI storage reduce on a variable. 
     MPI::COMM_WORLD.Reduce(&mypi, &pi, 1, MPI::DOUBLE, MPI::SUM, 0);
     
     if (0 == myrank) 
