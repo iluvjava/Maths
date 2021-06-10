@@ -26,7 +26,7 @@ P_n(x) = \int_{- 1}^{1} P_n(x) P_m(x)dx =
 \begin{cases}
     0 & m \ne n
     \\
-    \frac{2}{n + 1} & m = n
+    \frac{2}{2n + 1} & m = n
 \end{cases}
 $$
 
@@ -47,7 +47,7 @@ Here, we will be only proving the orthogonality property with a rather, complica
 
 ---
 
-### Justifying Orthogonality
+### **Justifying Orthogonality**
 
 **The rodrigues Formula**:
 

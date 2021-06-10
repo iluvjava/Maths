@@ -5,7 +5,7 @@ One of the very important application of Fourier Transform is its application to
 ---
 ### **Intro**
 
-We are going to solve the **wave equation** on the **infinite domain** using the **method of Fourier Transform**. 
+We are going to solve the **wave equation** on the **infinite domain** using the **method of Fourier Transform** and **D'Alambert's Method**. 
 
 Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. 
 
@@ -258,7 +258,7 @@ $$
 \begin{cases}
     u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R}
     \\
-    u(x, 0) = f(x) & u_t(x, 0) = 0
+    u(x, 0) = f(x) & u_t(x, 0) = \underbrace{0}_{g(x)}
 \end{cases}
 \tag{6}
 $$
@@ -329,7 +329,7 @@ $$
     \implies \int \partial_\eta [u] d\eta 
     &= \underbrace{\int_{}^{}h_1(\eta) d\eta}_{q(\eta)} + p(\xi)
     \\
-    u(\xi, \eta) = q(\eta) + p(\xi)
+    u(x, t) = q(\eta) + p(\xi)
 \end{aligned}
 \tag{12}
 $$

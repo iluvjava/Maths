@@ -1,7 +1,5 @@
 Make sure you already understand [[Decision Tree]] from a mathematical perspective. 
 
-Here is some more notes about [boosting algrithm](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30) in general. 
-
 ---
 ### **Intro**
 
@@ -58,7 +56,7 @@ We can use the tree to get a non-parametric confidence level for the prediction 
 
 Let's talk about the ideas of additive models. 
 
-Boosting is one of the way of merging a lot of weak learners (Classifier models, not emsemble methods) so that they combine and forms a strong learner. 
+Boosting is one of the way of merging a lot of weak learners (Classifier models, not ensemble methods) so that they combine and forms a strong learner. For regression models, we would need some extra things to make it works. 
 
 **This is the over all idea of Additive Model:**
 

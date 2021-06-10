@@ -95,11 +95,11 @@ $$
 \tag{2}
 $$
 
-Let's assume that $t < \tau$. 
+**Let's assume that $t < \tau$**. 
 
 Consider $\partial_tG - D\nabla^2G = 0$, in this case, the solution is just $G = 0$, because the boundary assert that there is no heat at the beginning. And becacuse there is no heat source (Non-homogeneous part), them $G$ stays at $0$. 
 
-Let's assume that $t < \tau$, take note that in this case, we would **need a new initial condition** for $t = \tau$. 
+Let's assume that $t > \tau$, take note that in this case, we would **need a new initial condition** for $t = \tau$. 
 
 Now the differential equation we would be looking at will be like: 
 
@@ -107,7 +107,11 @@ $$
 \partial_t[G] - D\nabla^2 G = 0 \quad G = ? \text{ at } t= \tau
 $$
 
-Under the case where $G = 0$ for at $t = \tau$, then $G = 0$ throughout. This cannot happend at all, beacuse there is a delta function on the right hand side. There has to be a jump for the function $G$ at $t = \tau$. 
+**Under the case where $G = 0$ for at $t = \tau$, then $G = 0$ throughout. This cannot happend at all, beacuse there is a delta function on the right hand side. There has to be a jump for the function $G$ at $t = \tau$.** In which it then get translated into the initial conditions for the PDE the model what happened after, when $t > \tau$. 
+
+What do do? 
+
+We integral over the tiny region where the delta function is involved. 
 
 Let's integrate the non-Homogeneous differential equation satisfied by $G$, but within a small neighbourhood around $t = \tau$. (Similar to the Epsilon Ball for the Gravitation Density problem)
 
@@ -142,7 +146,7 @@ We can move the Laplacian out of the integral because it's a spatial operator an
 
 There is a nasty integral for expression (3).
 
-Can $G$ be a delta function in time dimension? 
+Can $G$ be a delta function in the time dimension? 
 
 $\partial_t[G]$ will not be a delta function, and it will have more singularities [^2], but on the RHS there is the delta function. This can't be possible. Therefore $G$ is not a delta function on the time dimension. 
 
@@ -181,9 +185,33 @@ G(t, x, \tau, \xi) = \frac{1}{(4\pi D(t - \tau))^{3/2}} \exp \left(
 $$
 
 
+---
+### **Extra Comments**
 
+I think there needs to be extra argument for results derived for expression (3). 
 
+This is the original equation we are trying to solve
 
+$$
+\partial_t[G] - D\nabla^2[G] = \delta(x - \xi)\delta(t - \tau) \quad x\in \mathbb{R}^3
+$$
+
+Here, we make the assumption that, $G$ is bahaving like a Generalized Function. And here is a list of generalized functions in mathematics: 
+
+1. Ramp Function 
+2. Heaviside Function 
+3. Delta function 
+4. Derivative on delta
+5. Second derivative on delta ... 
+
+The Idea here is that, we have a function that has discontinuity for some derivative, and the derivative vanishes. 
+
+This is a good assumption, becase PDE involves derivative, and if the RHS of the PDE has delta function, which is a certain type of generalized function, then it's safe to assume that the Green's Function $G$ has similar behavior. 
+
+Consider: 
+
+1. Function $G$ is a ramp like function wrt to $t$, then this will imply that $\partial_t[G]$ has a discontinuity like the Heaviside function. But the RHS is a delta function. Hence it's not a delta function. 
+2. Function $G$ is a Heaviside function wrt to $t$, then it will imply that 
 
 
 

@@ -46,38 +46,65 @@ And we are going to take this for granted, and this crucial for solving in alter
 ---
 ### **Separation of Variable**
 
+Consider the first step of separation by variables: 
+
 Let: 
 
 $$
 u(r, \theta, \psi) = R(r)Y(\theta, \psi)
 $$
 
-Where, the function $y(\theta, \psi)$ is called the Sphereical Harmonics function. 
-
-Subsitute into the ODE and then divide by $RY$, then we have: 
+Then: 
 
 $$
-\frac{\frac{1}{r^2}\partial_r[r^2\partial_r[R]]}
-{R} + 
-\frac{\frac{1}{r^2\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{r^2\sin^2\theta}\partial_\psi^2[Y]}{Y} = -\lambda^2
-$$
+\begin{aligned}
+    u(r, \theta, \psi) &= R(r)Y(\theta, \psi)
+    \\
+    \underset{(1)}{\implies}
+    \frac{\nabla\cdot [R(r)Y(\theta, \psi)] }
+    {R(r)Y(\theta, \psi)}
+    &= 
+    \frac{\frac{1}{r^2}\partial_r[r^2\partial_r[R]]}
+    {R} + 
+    \frac{\frac{1}{r^2\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]]
+     + 
+    \frac{1}{r^2\sin^2\theta}\partial_\psi^2[Y]}{Y}    
+    \\
+    \underset{(2)}{\implies}
+    -\lambda^2 
+    &=
+    \frac{\frac{1}{r^2}\partial_r[r^2\partial_r[R]]}
+    {R} + 
+    \frac{\frac{1}{r^2\sin\theta}\partial_\theta[\sin\theta \partial_\theta [Y]] + \frac{1}{r^2\sin^2\theta}\partial_\psi^2[Y]}{Y}
+    \\
+    \underset{(3)}{\implies}
+    -\lambda^2r^2 
+    &= 
+    \frac{\partial_r[r^2\partial_r[R]]}
+    {R} + 
+    \frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y}
+\end{aligned}
 
-Multiply by $r^2$ and then separate the variable: 
-
-$$
-\frac{\partial_r[r^2\partial_r[R]]}
-{R} + 
-\frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y} = -\lambda^2r^2
-$$
-
-$$
-\frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y} 
-= -\lambda^2r^2 - \frac{\partial_r[r^2\partial_r[R]]}
-{R} = -\eta
 \tag{1}
 $$
+$$
+\underset{(4)}{\implies}
+    \begin{cases}
+        \frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y} = -\eta &
+        \\
+        \frac{\partial_r[r^2\partial_r[R]]}
+        {R} = -\eta &
+        \\
+        \eta = \lambda r^2
+    \end{cases}
+$$
 
-Where $\eta$ is a constant for the SOV, and, the sign of $\eta$ is **not assumed**. 
+**Explaination:** 
+1. Expanding the Spherical Laplacian Operator. 
+2. Substitute the expanded expression back to the original PDE, and put $-\lambda^2$ on the left hande side of the expression. 
+3. Multipy $r$ on both side of the expression. 
+4. Functions of $r, y$ are on the RHS and they equals to a constant, using the old trick from separations of variable, we get both equation equals to the same constant respectively. The sign for $\eta$ is not assumed. 
+
 
 **Let's focus on the part involving $R$, firstly, divide by $r$, this will be:**
 
@@ -103,13 +130,14 @@ $$
 
 So that mean: 
 
-$$
-R'' + \frac{2}{r}R' - 
-\left(
-    \frac{\eta}{r^2} - \lambda^2
-\right) R = 0
-\tag{1.1}
-$$
+> $$
+> R'' + \frac{2}{r}R' - 
+> \left(
+>     \frac{\eta}{r^2} - \lambda^2
+> \right) R = 0
+> \tag{1.1}
+> $$
+> Sphereical Bessel's equation. 
 
 **Expression 1.1 is called the Sphereical Bessel's Equation** 
 
@@ -240,13 +268,14 @@ $$
 
 And for the expression (1.3) we are going to use the above **Change of Variable**, giving us a new Differential Equation: 
 
-$$
-\partial_x[(1 - x^2)\partial_x[y]]
- + 
-\left[\eta - \frac{m^2}{1 - x^2}
-\right]y = 0
-\tag{1.4}
-$$
+> $$
+> \partial_x[(1 - x^2)\partial_x[y]]
+>  + 
+> \left[\eta - \frac{m^2}{1 - x^2}
+> \right]y = 0
+> \tag{1.4}
+> $$
+> Associated Legendre Equation
 
 And we want: $y(\pm 1) \ne \infty$, and this is called the **Associated Legendre Equation**, a 2nd order ODE and the coefficients are not all constant. 
 

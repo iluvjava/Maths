@@ -306,6 +306,8 @@ $$
 \end{aligned}
 $$
 
+These Legendre Polynomials are normalized, meaning that $P_n(1) = 1$. 
+
 And, one of the easier way, easier than the recusive series introduced above, is to use the Rodigue's Formula: 
 
 $$

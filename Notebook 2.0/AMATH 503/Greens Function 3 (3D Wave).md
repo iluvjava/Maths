@@ -243,7 +243,7 @@ Ok... But our problem has $x := x - \xi$ and $t := t - \tau$, it's shifted by $\
 $$
 \begin{aligned}
     G &= \frac{1}{2c} \int_{x - \xi + c(t - \tau)}^{x - \xi + c(t - \tau)} 
-    \delta(\tilde{x})
+    \delta(\tilde{x} - \xi)
     d\tilde{x}
     \\
     &= 

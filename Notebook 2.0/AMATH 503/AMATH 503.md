@@ -73,6 +73,6 @@ And to do things in the other coordinate systems, we need tools like:
 ### **Week 9, 10**
 
 * [[Greens Function]]
-* [[Greens Function 2]]
+* [[Greens Function (Heat Eqn)]]
 * [[Greens Function 3 (3D Wave)]]
 * [[Greens Function 4 (Nonhonogeneous Wave)]]
