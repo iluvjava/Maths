@@ -1,6 +1,6 @@
 Make sure you already understand [[Decision Tree]] from a mathematical perspective. 
 
-Here is some more notes about [boosting algrithm](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30) in general. 
+Here is some more notes about [boosting algorithm](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30) in general. 
 
 ---
 ### **Intro**

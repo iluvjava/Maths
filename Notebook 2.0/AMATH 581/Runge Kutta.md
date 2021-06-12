@@ -2,7 +2,7 @@ This shit can be pretty complicated
 
 Here are some of the reference sources used for the discussion: 
 
-MIT Lecture Notes: [link](www.math.iit.edu/~fass/478578_Chapter_3.pdf)
+MIT Lecture Notes: [link](http://www.math.iit.edu/~fass/478578_Chapter_3.pdf)
 
 Topics Involved: Runge Kutta, Butcher Tableaux, Heun's Method, Gauss Runge Kutta, Gauss Legendre method, Collocation Methods
 

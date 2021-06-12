@@ -52,7 +52,7 @@ We can use the tree to get a non-parametric confidence level for the prediction 
 
 
 ---
-### **Boosting and Additive Model**
+### **Additive Model**
 
 Let's talk about the ideas of additive models. 
 

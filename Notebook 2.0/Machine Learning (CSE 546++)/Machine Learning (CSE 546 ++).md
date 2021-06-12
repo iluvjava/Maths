@@ -23,6 +23,8 @@ Machine Learning is a clusterfuck, a chimera, nonetheless, it's our best attempt
 Concepts
 1. Maximal Likelihood Estimator [[Maximal Likelihood Estimator]]
 2. Markov's Inequality [[Markov Inequality]]
+3. [[Expectation of Random Variables]]
+4. [[IDD RVs]]
 
 Example 
 1. Linear Regression (With Offset) and Gaussian MLE [[Linear Regression]]
@@ -47,9 +49,16 @@ Non-Linearity
 2. [[Back Propagation]], [[Back Propagation 2]]
 3. Neural Networks
 4. Neural Networks Architecture
-5. 
 
+---
+Unsupervised Learning 
+1. [[SVD Optimization Flavor]]
+2. [[K-Nearest Neighbours]]
+3. [[K Mean Clustering]]
+4. [[Auto Encoder]] 
+5. [[Feature Extraction and Data]]
 
-
-
-
+---
+Misc
+1. [[Machine Learning (CSE 546++)/Convexity]]
+2. [[BootStrap]]
