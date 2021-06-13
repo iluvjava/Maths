@@ -124,3 +124,66 @@ And by definition, this is the expected value for the joint distribution, of the
 
 $\blacksquare$
 
+---
+### **Examples** 
+
+> $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{Unif}(0, 1)$ until The first $T$ times $Y$ is less than $X$. Find the expected value of $T$. 
+
+**Analysis:** 
+
+1. Given $X = x$, $T$ has distribution $(1 - X)^{T}$, a Geometric Distribution. 
+2. That above Geometric distribution has expectation of $\frac{1}{X}$, where $X$ is an random variable. 
+3. Notice that, $T$'s expected value is conditionally tied with $X$, therefore we are going to us the Laws of Total Expectation, which is going to be:  
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[T\right] &=
+    \int_{0}^{1} \mathbb{E}\left[T|X = x\right]f_X(x)dx
+    \\
+    &= \int_{0}^{1} 
+        \frac{1}{x}1
+    dx
+    \\
+    &= \infty
+\end{aligned}
+$$
+
+The expected value is infinity. 
+
+
+> let $p$ be the probability of an even being successful, let $X$ be the numbr of trials on such an even up to and include the first success. Use LTE to find the expected value of the random variable. 
+
+**Analysis**: 
+
+Let's denote $H$ to be the success of such an even and let $T$ to be failed. Think of it as head and tail of a coin flip. 
+
+Then the expectation of $\mathbb{E}[X]$ is going to be: 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[X\right] &= 
+    \mathbb{E}\left[X|H\right]\mathbb{P}\left(H\right) + 
+    \mathbb{E}\left[X|T\right]\mathbb{P}\left(T\right)
+    \\
+    &= \mathbb{E}\left[X|H\right]p + \mathbb{E}\left[X|T\right](1 - p)
+    \\
+    \underset{(1)}{\implies}
+    &= 
+    p + \mathbb{E}\left[X|T\right](1 - p)
+    \\
+    \underset{(2)}{\implies}
+    &= p + (1 + \mathbb{E}\left[X\right])(1 - p)
+\end{aligned}
+$$
+
+**Explaination**:
+
+(1): $\mathbb{E}[X|H]$, given that we got head, the sequence of trials terminate, giving us a sequence of one, therefore this term is one. 
+
+(2): $\mathbb{E}[X|T]$, given that we got tail, then we need to make another trial, we recurssively represents the new expected to be: $1 +\mathbb{E}[X]$. 
+
+Therefore, we have gotten ourself a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. 
+
+The "Recursive Expression" is true, if we consider the empirical appraoch to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. 
+
+

@@ -3,6 +3,16 @@ Make sure you already understand [[Decision Tree]] from a mathematical perspecti
 ---
 ### **Intro**
 
+This file is about Ensemble Method. 
+
+1. Bagging: A committe method that is trained together. 
+2. Additive: Each model works on the residual of the classification, or regression problem. 
+3. Boosting: Models are added together, trained sequentially, each model focuses on the weakness of the previous one. 
+
+
+---
+### **Bagging**
+
 The random tree model itself is a Low Bias, High Variance Model. 
 
 Therefore, Ensemble method makes sense and it's possible for it to improve the this particular model. This is also called Bagging. 
@@ -52,7 +62,7 @@ We can use the tree to get a non-parametric confidence level for the prediction 
 
 
 ---
-### **Additive Model**
+### **Iterative Stagewise Additive Model**
 
 Let's talk about the ideas of additive models. 
 

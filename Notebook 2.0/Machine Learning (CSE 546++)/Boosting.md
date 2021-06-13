@@ -1,11 +1,11 @@
-[[Decision Tree, Forest, Bagging and Boosting]]
+[[Decision Forest and Committee]]
 
 [NCSU Lectures on Boosting](https://www4.stat.ncsu.edu/~lu/ST7901/lecture%20notes/2019Lect23-Boosting.pdf)
 
 [Towards data Science on Boosting](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30)
 
 ---
-### Intro
+### **Intro**
 
 Boosting is a generic algorithm other than a specific model. 
 
@@ -53,19 +53,21 @@ SAMME: [Paper Link](https://web.stanford.edu/~hastie/Papers/samme.pdf), it's imp
    4. $W: = W - \bar{W}$
 3. $\hat{y}_j = \max_k\{\sum_{i = 1}^{n}\alpha_i \mathbf{1}\{C_i(x_j) = k\} \}$
 
-Observations: 
+**Observations**: 
 1. To make $\alpha_i$ non-negative, the model has to score slightly higher than $\frac{1}{k}$. 
-2. The weak learning can't make $E = 1$, that will break the algorithm. See step 2.2 of the algorithm.  
+2. The weak learning can't make $E = 1$, that will break the algorithm. See step 2.2 of the algorithm.
+3. This is what the fraction means:   
+    $$
+    \begin{aligned}
+        \frac{1 - E}{E} &= 
+        \frac{\sum_{j = 1}^{n}w_j \mathbf{1}\{
+            C(x_j)=y_j\}}
+            {\sum_{j = 1}^{n}w_j\mathbf{1}\{
+                C(x_j)\ne y_j\}}
+    \end{aligned}
+    $$
 
-$$
-\begin{aligned}
-    \frac{1 - E}{E} &= 
-    \frac{\sum_{j = 1}^{n}w_j \mathbf{1}\{
-        C(x_j)=y_j\}}
-        {\sum_{j = 1}^{n}w_j\mathbf{1}\{
-            C(x_j)\ne y_j\}}
-\end{aligned}
-$$
+
 
 The ratio between correct label and the incorrect label. 
 

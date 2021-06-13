@@ -20,6 +20,18 @@ $$
 }{\mathbb{P}\left(B\right)}
 $$
 
+Symmetric Form: 
+
+$$
+\mathbb{P}\left(A|B\right)\mathbb{P}\left(B\right)
+=
+\mathbb{P}\left(B|A\right)\mathbb{P}\left(A\right)
+$$
+
+Which is just $\mathbb{P}\left(A\wedge B\right)$
+
+**Interpretations** 
+
 Let's say A means: 
 1. Someone has a rare disease. 
 
