@@ -184,6 +184,28 @@ $$
 
 Therefore, we have gotten ourself a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. 
 
-The "Recursive Expression" is true, if we consider the empirical appraoch to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. 
+The "Recursive Expression" is true, if we consider the empirical appraoch to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. Cute huh? 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[X\right] &= p + (1 + \mathbb{E}\left[X\right])(1 - p)
+    \\
+    \mu
+    &= 
+    p + (1 + \mu)(1 - p)
+    \\
+    \mu
+    &= 
+    p + 1+ \mu  -p - \mu p
+    \\
+    0 &= p + 1 - p - \mu p
+    \\
+    0 &= 1 - \mu p
+    \\
+    \mu &= \frac{1}{p}
+\end{aligned}
+$$
+
+The results is equivalent from using calculus and the Geometric Probability distribution function. 
 
 
