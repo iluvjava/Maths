@@ -1,5 +1,5 @@
 [[Coordinate Descend]]
-We continue the sage for gradient descend, and here, we will be looking at another popular gradient descend algorithm used for machine learning. 
+We continue the saga for gradient descend, and here, we will be looking at another popular gradient descend algorithm used for machine learning. 
 
 ---
 ### **Intro**

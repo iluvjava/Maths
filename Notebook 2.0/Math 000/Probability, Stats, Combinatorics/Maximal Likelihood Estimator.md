@@ -140,7 +140,7 @@ $$
 **MLE**: This is called "Unbiased" Estimator. This means that, if we run the experiment a lot of time, then we will get a lot of estimates for $\hat{\theta}$. And taking the average will give us the true value. 
 
 $$
-\text{Bias}(\hat{\theta}_\text{Mle}) = 0
+\text{Bias}(\hat{\theta}_\text{mle}) = 0
 $$
 
 For this example, it's unbiased, but it's not always true. 

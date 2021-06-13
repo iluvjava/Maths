@@ -91,7 +91,7 @@ $$
 $$
 
 
-### **Convariance**
+### **Covariance**
 
 $$
 \text{Cov}(X, Y) = \mathbb{E}\left[(X - 
