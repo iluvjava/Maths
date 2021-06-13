@@ -15,7 +15,7 @@ Let's define some keywords.
 
 **Likelihood**: 
 
-> Given a model $\theta$, and idd observation $x$, The likelihood is the probability of observing the samples given the model. 
+> Given a model parameter $\theta$, and idd observation $x$, The likelihood is the probability of observing the samples given the model with parameter $\theta$
 
 **Important Questions**: 
 

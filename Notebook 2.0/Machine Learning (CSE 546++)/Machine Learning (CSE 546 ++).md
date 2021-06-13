@@ -25,6 +25,10 @@ Concepts
 2. Markov's Inequality [[Markov Inequality]]
 3. [[Expectation of Random Variables]]
 4. [[IDD RVs]]
+5. [[Conditional Probability]]
+6. [[Bayes Theorem]]
+7. [[Expectation of Random Variables]]
+8. [[Expectation, Variance of Random Variables]]
 
 Example 
 1. Linear Regression (With Offset) and Gaussian MLE [[Linear Regression]]

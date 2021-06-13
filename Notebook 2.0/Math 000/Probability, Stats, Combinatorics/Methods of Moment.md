@@ -1,5 +1,6 @@
 Similar to the idea of MLE (Maximal Likelihood) estimator, the method of MOM seeks to look for the best model parameters that explain that distributions. 
 
+[[Maximal Likelihood Estimator]]
 
 Reference Materials: 
 

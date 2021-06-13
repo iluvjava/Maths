@@ -2,6 +2,10 @@ Let's get ourselves familiar with conditional probability
 
 This also mix well with the [[Bayes Theorem]], where we talked about conditional probability. 
 
+The basics are [[Expectation of Random Variables]]
+
+
+
 ---
 ### **Intro**
 
@@ -209,3 +213,49 @@ $$
 The results is equivalent from using calculus and the Geometric Probability distribution function. 
 
 
+> Given random variable $X_i$ draws from the same distribution, and random variable $N$ that has a finite expected value, independent wrt $X_i$, find the expected value of $\sum_{i=1}^{N}X_i$. 
+
+**Analysis**
+
+The sum of all the $X_i$ is dependent on $N$, but no each $X_i$. 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[\sum_{i = 1}^{N}
+        X_i
+    \right]
+    &\underset{(1)}{=} 
+    \sum_{n\in \Omega}^{}
+        \mathbb{E}\left[\left.
+            \sum_{i = 1}^{n}
+            X_i \right|N = n
+        \right]\mathbb{P}\left(N = n\right)
+    \\
+    \underset{(2)}{\implies}
+    &= 
+    \sum_{n \in \Omega}^{}
+    \left(
+        \sum_{i = 1}^{n}
+        \mathbb{E}\left[X_i\right]\mathbb{P}\left(N = n\right)
+    \right)
+    \\\underset{(3)}{\implies}
+    &= 
+    \sum_{n\in \Omega}^{}
+        n\mathbb{E}\left[X_i\right]\mathbb{P}\left(N = n\right)
+    \\
+    &= 
+    \mathbb{E}\left[X_i\right] \sum_{n\in \Omega}^{}
+        n\mathbb{P}\left(N = n\right)
+    \\
+    &= 
+    \mathbb{E}\left[X_i\right] \mathbb{E}\left[N\right]
+\end{aligned}
+$$
+
+**Explaination:**
+
+(1): By the law of total expectation. 
+
+(2): By the linearity of the expected operator. 
+
+(3): The random variable $X_i$ all has the same expected value. 
