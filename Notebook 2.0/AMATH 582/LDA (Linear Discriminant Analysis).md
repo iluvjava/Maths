@@ -6,7 +6,7 @@ Reference Materials Link:
 ---
 ### Intro
 
-Here, we will be interested in thinking about projecting label data onto a line in $\mathbb{R}^n$, and then formate late the problem as a Eigenvalue Decomposition problem Computationally. 
+Here, we will be interested in thinking about projecting label data onto a line in $\mathbb{R}^n$, and then formulate late the problem as a Eigenvalue Decomposition problem Computationally. 
 
 Scenario:
 
