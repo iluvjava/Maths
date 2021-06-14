@@ -1,5 +1,7 @@
 What is this class
 
+Here is the link to the class I took [here](https://courses.cs.washington.edu/courses/cse446/21sp/)
+
 ---
 ### **Intro**
 

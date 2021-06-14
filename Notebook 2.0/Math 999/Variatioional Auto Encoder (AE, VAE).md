@@ -1,10 +1,14 @@
 Here, we will be taking a basic look at Variational Encoder. 
 
+We must know about [[Auto Encoder]] before learning about variational auto encoder. 
+
 Resource: [link](https://arxiv.org/pdf/1606.05908.pdf)
 
 video resource that talks about generative models in general: 
 
 [video](https://www.youtube.com/watch?v=5WoItGTWV54)
+
+Here is a link from towards [towards datascience](https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73) that talks about variational auto-encoder. 
 
 ---
 ### **Intro**
@@ -13,7 +17,7 @@ This is a model that tries to capture patterns (Colliniearity, abstract patterns
 
 It will then try to make artificial samples that looks like it's from the data set.
 
-Given a random variable $z$, a data set ddenoted by $X$, we want to maximaize the probability of each random variable $X$ being in the training set. 
+Given a random variable $z$, a data set denoted by $X$, we want to maximaize the probability of each random variable $X$ being in the training set. 
 
 Basically we put noise into the model and then we get back samples from the data set. For each sample in the data set, there should exist at least on random noise, or a class of them that produces the given sample. 
 
@@ -25,7 +29,7 @@ $$
 
 The probability of producing something in the sample by giving is some kind of noise.  
 
-Why is this a machematical sound thing to do? 
+Why is this a mathematical sound thing to do? 
 
 Ok, say want to produce a Guassian Distribution using uniform distribution, then it's not hard to just integrate use the inverse of the CDF of Guassian to get the mapping for such a function. However, in this case, **we are training** that mapping. 
 
@@ -43,7 +47,7 @@ How do we train such a network and how to maximizes the probability that somethi
 
 For background, we need to know about Auto encoder first. 
 
-Auto encoder is a Neuro network that takes in features in the higher dimension and then maps it to a layer that is on a much smaller dimension, and then it tries to reconstruct the original sample by expanding the features hiding in the latent space. 
+Auto encoder is a Neural network that takes in features in the higher dimension and then maps it to a layer that is on a much smaller dimension, and then it tries to reconstruct the original sample by expanding the features hiding in the latent space. 
 
 This allows us to essentially construct higher dimensional features using lower dimensional featurese. No labels are used to train this. 
 
