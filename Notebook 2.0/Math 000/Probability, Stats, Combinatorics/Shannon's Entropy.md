@@ -17,15 +17,7 @@ H(X) = \sum_{i = 1}^{n}
     \right)
 $$
 
-By analogy the continuous case will be: 
-
-$$
-H(X) = \int_{-\infty}^{\infty} 
-    f(x)\log\left(
-        \frac{1}{f(x)}
-    \right)
-dx
-$$
+> There is no continuous anology for the entropy. 
 
 **FAQ:**
 
@@ -77,117 +69,6 @@ Each event can be measured by the common factor, in this case it's $\frac{1}{4}$
 
 If $1$ is true, then by knowing $\frac{1}{4}$, we obtained that $\frac{3}{4}$ didn't happen, a total of 1. The ratio between everything we know and the outcome that happened is $(\frac{1}{4} + \frac{3}{4})\div \frac{1}{4}$, which is $4$. 
 
-**Claim**: 
-
-> The entropy measures how flat the distribution is. Consider sorting all the outcomes of the discrete variable by its frequencies, and then then use that as the ordering for all the oucome. 
-
-To test the claim, let's consider this probability density function: 
-
-$$
-f(x) := (p + 1)x^p \quad \forall x\in [0,1], p > 0
-$$
-
-This is a probability function that gets pointier and pointier as the value for $p$ gets larger. 
-
-In this regard, a measure of entropy on this distribution yields: 
-
-$$
-\begin{aligned}
-    \int_{0}^{1} 
-        f(x)\ln\left(
-            \frac{1}{f(x)}
-        \right)
-    dx
-    &= 
-    \int_{0}^{1} 
-    -(p + 1)x^p \ln ((p + 1)x^p)
-    dx
-    \\
-    &= - (p + 1)
-    \int_{0}^{1} 
-        x^p(\ln(p + 1) + p\ln(x))
-    dx
-    \\
-    &= 
-    -\ln(p + 1)(p + 1)\left[
-            \frac{x^{p + 1}}{p + 1}
-        \right|_{0}^1
-    - 
-    (p + 1)p\int_{0}^{1} 
-        x^p \ln(x)
-    dx
-    \\
-    &= 
-    -\ln(p + 1) - (p + 1)p
-    \int_{0}^{1} 
-        \ln(x)
-    d\left(
-        \frac{x^{p + 1}}{p + 1}
-    \right)
-    \\
-    &= 
-    \ln \left(
-        \frac{1}{p + 1}
-    \right) - 
-    (p + 1)p \left(
-        \left[
-            \frac{\ln(x)x^{p + 1}}{p + 1}    
-        \right|_{0}^1
-        -
-        \int_{0}^{1} 
-            \frac{x^{p + 1}}{p + 1}
-        d\ln (x)
-    \right)
-    \\
-    \underset{\text{Skipping maths}}{\implies}
-    &= 
-    \ln\left(
-        \frac{1}{p + 1}
-    \right) + \frac{p}{1 + p}
-\end{aligned}
-$$
-
-Observe the fact that, the minima is obtained when $p = 0$, and the entropy is just going to negative infinity as $p \rightarrow \infty$
-
-Basically, the more equal each outcome it is, the bigger the entropy, the existence of outcome with very small posibility will bump up the entropy, tremendously. 
-
-In fact a general pattern can be stated if we have PDF $f(x)$ and CDF $F(x)$ and this will be given as: 
-
-$$
-\begin{aligned}
-    \int_{\Omega}^{} 
-        f(x)\ln\left(
-            \frac{1}{f(x)}
-        \right)
-    dx
-    &= 
-    - \int_{\Omega}^{} 
-        f(x)\ln(f(x))
-    dx
-    \\
-    &= 
-    - \int_{\Omega}^{} 
-        \ln(f(x))
-    d(F(x))
-    \\
-    &= 
-    - \left[ 
-        \ln(f(x))F(x)    
-    \right|_\Omega
-    + 
-    \int_{\Omega}^{} 
-        f(x)
-    d(\ln(f(x)))
-    \\
-    &= 
-    - \left[ 
-        \ln(f(x))F(x)    
-    \right|_\Omega
-    + 
-    \underbrace{\int_{\Omega}^{} 
-    \frac{f(x)}{f(x)}f'(x)}_{F(x)}
-\end{aligned}
-$$
 
 **Claim:** 
 
@@ -204,6 +85,10 @@ Suppose that 3 messages need to be send, with a distribution of $\frac{1}{2}, \f
 Take note that, if I put them into the $\log_2\left(\frac{1}{f(x)}\right)$ then we actually had the right thing. 
 
 On this case, the measure of $\log(f(x)^{-1})$ gives us the deth of we need to go on the huffman tree before we getting to the code for that particular given message. 
+
+---
+### **Properties of the Shannon's Entropy**
+
 
 
 ---
