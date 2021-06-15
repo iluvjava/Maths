@@ -1,6 +1,8 @@
 We need this for machine learning. 
 [[Expectation of Random Variables]]
 
+Here is the wiki [here](https://www.wikiwand.com/en/Entropy_(information_theory))
+
 ---
 ### **Intro**
 
@@ -141,13 +143,51 @@ $$
     &= 
     \ln\left(
         \frac{1}{p + 1}
-    \right) + 1
+    \right) + \frac{p}{1 + p}
 \end{aligned}
 $$
 
 Observe the fact that, the minima is obtained when $p = 0$, and the entropy is just going to negative infinity as $p \rightarrow \infty$
 
 Basically, the more equal each outcome it is, the bigger the entropy, the existence of outcome with very small posibility will bump up the entropy, tremendously. 
+
+In fact a general pattern can be stated if we have PDF $f(x)$ and CDF $F(x)$ and this will be given as: 
+
+$$
+\begin{aligned}
+    \int_{\Omega}^{} 
+        f(x)\ln\left(
+            \frac{1}{f(x)}
+        \right)
+    dx
+    &= 
+    - \int_{\Omega}^{} 
+        f(x)\ln(f(x))
+    dx
+    \\
+    &= 
+    - \int_{\Omega}^{} 
+        \ln(f(x))
+    d(F(x))
+    \\
+    &= 
+    - \left[ 
+        \ln(f(x))F(x)    
+    \right|_\Omega
+    + 
+    \int_{\Omega}^{} 
+        f(x)
+    d(\ln(f(x)))
+    \\
+    &= 
+    - \left[ 
+        \ln(f(x))F(x)    
+    \right|_\Omega
+    + 
+    \underbrace{\int_{\Omega}^{} 
+    \frac{f(x)}{f(x)}f'(x)}_{F(x)}
+\end{aligned}
+$$
 
 **Claim:** 
 
@@ -178,4 +218,5 @@ $$
 $$
 
 And this is how information gain is relavent to shannon's entropy. 
+
 
