@@ -7,7 +7,7 @@ Reference Recourse: [Logistic Regression And Bayes](https://www.countbayesie.com
 
 ### **Intro**
 
-In the derivation of a Bayes Classifier, we were able to derive model, but we dind't explain why the Sigmoid function were chosen.  
+In the derivation of a Bayes Classifier, we were able to derive model, but we didn't explain why the Sigmoid function were chosen.  
 
 And why a linear model is chosen too.
 

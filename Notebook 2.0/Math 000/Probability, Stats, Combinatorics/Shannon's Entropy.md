@@ -35,6 +35,13 @@ The measures the expected value of "surprises".
 
 Shannon's idea is that, for a set of $N$ elements, one would need another set of symbols of $\log_2(N)$ to represents all the element, without loss, without compression. 
 
+> What is information? 
+
+Information is: 
+
+$$
+I(x) = -\log_2(f(x))
+$$
 
 
 **Observations**
