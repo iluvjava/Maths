@@ -17,7 +17,7 @@ Given a probability distribution space $\chi$ and 2 probability distribution den
 The KL divergence from $Q$ to $P$ is: 
 
 $$
-D_{KL}(P||Q) = \sum_{x\in \chi}^{}P(x) \ln \left(
+D_{KL}(P||Q) = \sum_{x\in \chi}^{}P(x) \log_2 \left(
     \frac{P(x)}{Q(x)}
 \right)
 $$
@@ -26,7 +26,7 @@ And in the continuous case we have the expression:
 
 $$
 D_{KL}(P||Q) = \int_{-\infty}^{\infty} 
-p(x)\ln \left(
+p(x)\log_2 \left(
     \frac{p(x)}{q(x)}
 \right)
 dx
@@ -42,33 +42,33 @@ Consider this:
 
 $$
 \begin{aligned}
-    D_{KL}(P||Q) &= \sum_{x \in \chi}^{}P(x)\ln \left(
+    D_{KL}(P||Q) &= \sum_{x \in \chi}^{}P(x)\log_2 \left(
         \frac{P(x)}{Q(x)}
     \right) 
     \\
     &= 
     \sum_{x\in \chi}^{}
-    P(x)(\ln(P(x)) - \ln(Q(x))
+    P(x)(\log_2(P(x)) - \log_2(Q(x))
     \\
     &= 
     \sum_{x \in \chi}^{}
         P(x)
         \left(
-            \ln\left(
+            \log_2\left(
                 \frac{1}{Q(x)}
             \right)
-            - \ln \left(
+            - \log_2 \left(
                 \frac{1}{P(x)}
             \right)
         \right)
     \\
     &= 
     \mathbb{E}\left[
-            \ln\left(
+            \log_2\left(
                 \frac{1}{Q(x)}
             \right)
             -
-            \ln \left(
+            \log_2 \left(
                 \frac{1}{P(x)}
             \right)
         \right]

@@ -53,9 +53,6 @@ An the natural log of $\frac{1}{p(x)}$ is the element of "surprise".
 If all outcomes are equally likely to happen, the entropy is maximizes. 
 
 
-
-
-
 ---
 ### **Legit Interpretations**
 
@@ -63,7 +60,7 @@ What is "Surprise"?
 
 **Claim**: 
 
-> Information is the reciprical of the probability. 
+> Information is the reciprical of the probability. Equivalently, the amount of reduced uncertainly is the inverse of the probability.  
 
 Consider outcomes with 2 cases: $1, 0$, with probability of $\frac{1}{4}, \frac{3}{4}$. 
 
@@ -144,6 +141,22 @@ $$
 Observe the fact that, the minima is obtained when $p = 0$, and the entropy is just going to negative infinity as $p \rightarrow \infty$
 
 Basically, the more equal each outcome it is, the bigger the entropy, the existence of outcome with very small posibility will bump up the entropy, tremendously. 
+
+**Claim:** 
+
+> The entropy is a measure on the the best average length of the message needed to encode all the possible outcomes given a distribution. 
+
+Remember from huffman encoding that, we can encode all the symbols from a set using its frequencies appeared in a distribution. In a greedy way where the symbols that appear more often get a shorter message to encode it, and for a message that appears less, we give a longer length. 
+
+"the length of the message" is $\log_2$. 
+
+"for each of the outcome is": $-\log(f(x))$.  
+
+Suppose that 3 messages need to be send, with a distribution of $\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{8}$. Then the message will be: $0, 10, 110, 111$ for each of these outcome. 
+
+Take note that, if I put them into the $\log_2\left(\frac{1}{f(x)}\right)$ then we actually had the right thing. 
+
+On this case, the measure of $\log(f(x)^{-1})$ gives us the deth of we need to go on the huffman tree before we getting to the code for that particular given message. 
 
 
 ---
