@@ -35,6 +35,24 @@ $$
 
 Just multiply them together and we will have it. 
 
+**Basics** 
+
+$$
+\begin{aligned}
+    \mathbb{P}\left(X=x \wedge Y = y\right)
+    &= 
+    \mathbb{P}\left(X = x|Y = y\right)\mathbb{P}\left(Y = y\right)
+    \\
+    \mathbb{P}\left(X = x| Y = y\right) &= 
+    \frac{\mathbb{P}\left(X = x \wedge Y = y\right)}
+    {
+        \mathbb{P}\left(Y = y\right)
+    }
+\end{aligned}
+$$
+
+Take these formula to understand the distribution and other kind of stuff. 
+
 ---
 ### **Conditional Distribution**
 
