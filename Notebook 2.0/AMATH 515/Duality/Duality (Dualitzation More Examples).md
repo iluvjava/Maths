@@ -1,5 +1,5 @@
 This file is about more duality, so we need to know about 
-[[Duality]], and then we need to know more.
+[[Duality (Dualization)]], and then we need to know more.
 [[Proximal Gradient Method]]
 
 In addition, ideas used in 

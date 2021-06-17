@@ -1,4 +1,4 @@
-Prereqs: [[Duality]], [[Duality 2]]. 
+Prereqs: [[Duality (Dualization)]], [[Duality (Dualitzation More Examples)]]. 
 Here we are going to apply some of the ideas duality. 
 
 ---
@@ -80,12 +80,16 @@ And, remember from our calculus class, we will be setting the Lagrangian to zero
 Taking the gradient of the Lagrangian will give use a system of equations to solve for the optimality conditions. 
 
 $$
-\nabla f(x, y) - z\nabla g(x, y) = 0
+\begin{aligned}
+\nabla_{x, y}\mathcal{L}(x,y, z) &= \nabla f(x, y) - z\nabla g(x, y) &= 0    
+\\
+\nabla_{z}\mathcal{L}(x, y, z) &= g(x, y) = 0
+\end{aligned}
 $$
 
 And this, is also the optimality conditions, and in the case of sub-differential, or the in the form of equation.
 
-It's not mysterious at all, it's just an improved version of the Lagrangian Multiplier. 
+It's not mysterious at all, duality it's just an improved version of the Lagrangian Multiplier. 
 
 ---
 ### **Polyhedra Constraint, 2-Norm Objective**

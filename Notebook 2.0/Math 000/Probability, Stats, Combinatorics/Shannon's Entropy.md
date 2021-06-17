@@ -35,6 +35,12 @@ $$
         p(x_i, y_j) \log\left(
             \frac{p(x_i, y_j)}{p(y_j)}
         \right)
+    \\
+    H(X, Y) &= 
+    \sum_{i,j}^{}
+        p(x_i, y_j)\log\left(
+            \frac{1}{p(x_i, y_j)}
+        \right)
 \end{aligned}
 $$
 
@@ -57,7 +63,6 @@ Information is:
 $$
 I(x) = -\log_2(f(x))
 $$
-
 
 **Observations**
 
@@ -101,7 +106,6 @@ On this case, the measure of $\log(f(x)^{-1})$ gives us the deth of we need to g
 
 ---
 ### **Properties of the Shannon's Entropy**
-
 
 
 

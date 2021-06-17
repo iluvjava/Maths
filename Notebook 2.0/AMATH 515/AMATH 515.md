@@ -119,6 +119,6 @@ End of Quarter Theory:
 
 * Duality: Arise from perturbation theory 
 * [[Duality Preparation]], [[Duality Prepraration 2]]
-* [[Duality]], [[Duality 2]], [[Duality (Example Transformation)]]
+* [[Duality (Dualization)]], [[Duality (Dualitzation More Examples)]], [[Duality (Example Transformation)]]
 * The Interior Points Method: 
 	*  [[Interior Points]]

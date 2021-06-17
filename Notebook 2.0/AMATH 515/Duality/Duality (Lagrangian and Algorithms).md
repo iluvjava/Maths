@@ -1,5 +1,5 @@
-[[Duality 2]], 
-[[Duality]]
+[[Duality (Dualitzation More Examples)]], 
+[[Duality (Dualization)]]
 
 What is the relationship between the primal and dual variables? 
 What is the Lagrangian? 

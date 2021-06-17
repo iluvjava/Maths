@@ -1,4 +1,4 @@
-[[Duality 2]]
+[[Duality (Dualitzation More Examples)]]
 We are going to discuss what strong duality is and stuff that is related to it. 
 
 ---

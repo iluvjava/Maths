@@ -198,19 +198,19 @@ $$
 \end{aligned}
 $$
 
-**Explaination**:
+**Explanation**:
 
 (1): $\mathbb{E}[X|H]$, given that we got head, the sequence of trials terminate, giving us a sequence of one, therefore this term is one. 
 
-(2): $\mathbb{E}[X|T]$, given that we got tail, then we need to make another trial, we recurssively represents the new expected to be: $1 +\mathbb{E}[X]$. 
+(2): $\mathbb{E}[X|T]$, given that we got tail, then we need to make another trial, we recursively represents the new expected to be: $1 +\mathbb{E}[X]$. 
 
-Therefore, we have gotten ourself a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. 
+Therefore, we have gotten ourselves a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. 
 
-The "Recursive Expression" is true, if we consider the empirical appraoch to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. Cute huh? 
+The "Recursive Expression" is true, if we consider the empirical approach to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. Cute huh? 
 
 $$
 \begin{aligned}
-    \mathbb{E}\left[X\right] &= p + (1 + \mathbb{E}\left[X\right])(1 - p)
+ 	\mathbb{E}\left[X\right] &= p + (1 + \mathbb{E}\left[X\right])(1 - p)
     \\
     \mu
     &= 
@@ -270,7 +270,7 @@ $$
 \end{aligned}
 $$
 
-**Explaination:**
+**Explanation:**
 
 (1): By the law of total expectation. 
 
