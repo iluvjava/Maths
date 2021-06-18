@@ -2,7 +2,7 @@ Optimization, especially non-linear optimization
 
 ---
 
-### Prereq: 
+### **Prereq:** 
 * Linalg
 * Calculus (Vector Calc)
 * Helpful: Stats 
@@ -10,7 +10,7 @@ Optimization, especially non-linear optimization
 * Helpful: Exposure to Optimization
 
 ---
-### General Intro to the Course. 
+### **General Intro to the Course.** 
 
 Optimization has 3 legs. 
 1. Based on the model and the data. 
@@ -44,7 +44,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* Stability?
 
 ---
-### Course Overview
+### **Course Overview**
 #### Problem Types
 * Smooth (have derivative)
 * Non-smooth (Piecewiese Linear like L1 Norm)
@@ -81,7 +81,7 @@ The **Challenging** part is the modeling part and the solving part.
 
 ---
 
-### Fundamentals
+### **Fundamentals**
 * Calculus and Optimality
 	* [[Jacobian and Hessian]]
 	* [[Optimality Conditions (Jacobian Hessian)]]
@@ -109,6 +109,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Newton Method]]
 	Here is an overview: 
 	* [[Unconstrained Optimization (Big Overview)]]
+	* [[Steepest Descend for Matrix Vector]]
 
 * Problems
 	* [[MLE Robust Fit (Intro)]]
