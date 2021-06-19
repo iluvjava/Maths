@@ -6,9 +6,9 @@ Basic understanding about [[Hermitian Adjoint]] is needed for exploiting the str
 
 Our objective is to solve: 
 
-$$
-Ax = b
-$$
+> $$
+> Ax = b
+> $$
 
 Where we **assume that the matrix $A$ is Symmetric Positive Definite** and sparse, and we treat it as a black box transformation applied to vectors.
 
@@ -28,6 +28,7 @@ f(x)    & =\frac{1}{2}x^TAx - b^T x + c
 \implies 
     Ax & = b 
 \end{aligned}
+\tag{1}
 $$
 
 (1): Using that assumption that matrix $A$ is orthogonal. 
@@ -70,6 +71,7 @@ $$
     \underset{(2)}{\implies}
     r^{(k)T}r^{(k + 1)} &= 0
 \end{aligned}
+\tag{2}
 $$
 
 (1): Basic Calculus 
@@ -94,6 +96,7 @@ $$
     \\
     \alpha = \frac{||r^{(k)}||_2^2}{r^{(k)T}Ar^{(k)}}
 \end{aligned}
+\tag{3}
 $$
 
 Alpha is the step size for the steepest descend method. We have expressed the direction of $\alpha$ in terms of quantities from the previous step. 
@@ -121,10 +124,121 @@ For more details of analysis, consult [Conjugate without pain](https://sites.mat
 
 But a summary will be given here regardless. 
 
+**Claim:**
+
+> Although the steepest descend method takes the best step at each iteration, it's not incorperating the previous iterations to figure out the best descend direction.
+
+
 Consider expressing the error terms using the orthogonal eigenvectors for the symmetric positive definite matrix. 
+
+**Quantities**:
+
+1. $v_i$ are the eigen vectors for the Symmetric matrix $A$, and they are all normalized, meaning that $\Vert v_i\Vert_2 = 1$
+2. $\xi_i$ are the list of scalars needed to reconstruct the error vector using the orthogonal eigenvectors. 
+
+$$
+\begin{aligned}
+    e^{(k)} &= \sum_{i = 1}^{n} \xi_i v_i
+    \\
+    \implies 
+    r^{(k)} &= -Ae^{(k)} 
+    \\
+    r^{(k)} &= -\sum_{i = 1}^{n} \xi_i\lambda_i v_i
+    \\
+    \implies 
+    \Vert r^{(k)}\Vert_2^2 &= \sum_{i= 1}^{n}\xi^2\lambda_i^2
+    \\
+    \implies 
+    \Vert e^{(k)}\Vert_2^2 &= \sum_{i = 1}^{n}\xi_i^2   
+\end{aligned}
+\tag{4}
+$$
+
+Let's introduce the Engergy norm for a symmetric matrix: 
+$$
+\Vert x\Vert_A^2 = x^TAx
+$$
+
+Then we have the expression: 
+
+$$
+\begin{aligned}
+    \Vert e^{(k)}\Vert_A^2 &= \sum_{i = 1}^{n} \xi_i^2\lambda_i
+    \\
+    \Vert r^{(k)}\Vert_A^2 &= 
+    \left(
+        -\sum_{i = 1}^{n} \xi_i\lambda_i
+    \right)\left(
+        \sum_{i = 1}^{n}
+            \xi_i\lambda_i^2
+    \right)
+    \\
+    &= 
+    \sum_{i = 1}^{n}\xi_i^2 \lambda_i^3
+\end{aligned}
+\tag{5}
+$$
+
+To find $\Vert e^{(k + 1)}\Vert_A^2$, recall $\alpha = \frac{||r^{(k)}||_2^2}{r^{(k)T}Ar^{(k)}}=\Vert r^{(k)}\Vert_2^2/\Vert r^{(k)}\Vert_A^2$, which means that: 
+
+$$
+\begin{aligned}
+    \Vert e^{(k + 1)}\Vert_A^2 &= 
+    (x^{(k + 1)} - x_+)^TA(x^{(k + 1)} - x_+)
+    \\
+    \Vert e^{(k + 1)}\Vert_A^2 &= 
+    (x^{(k)} + \alpha r^{(k)} - x_+)^TA(x^{(k)} + \alpha r^{(k)} - x_+)
+    \\
+    &= (e^{(k)} + \alpha r^{(k)})^TA(e^{(k)} + \alpha r^{(k)})
+    \\
+    &= 
+    \Vert e^{(k)}\Vert_A^2 + \alpha^2 \Vert r^{(k)}\Vert_A^2 + 2\alpha r^{(k)}Ae^{(k)}
+    \\
+    \underset{(1)}{\implies}
+    &= 
+    \Vert e^{(k)}\Vert_A^2 + \alpha^2 \Vert r^{(k)}\Vert_A^2 -2\alpha r^{(k)T}r^{(k)}
+    \\
+    &=\Vert e^{(k)}\Vert_A^2
+    + 
+    \left(
+        \frac{\Vert r^{(k)}\Vert_2^2}
+        {\Vert r^{(k)}\Vert_A^2}
+    \right)^2 \Vert r^{(k)}\Vert_A^2
+    -
+    2 \left(
+        \frac{\Vert r^{(k)}\Vert_2^2}
+        {\Vert r^{(k)}\Vert_A^2}
+    \right)\Vert r^{(k)}\Vert_2^2
+    \\
+    &= 
+    \Vert e^{(k)}\Vert_A^2 
+    -
+    \frac{
+        \Vert r^{(k)}\Vert_2^4
+    }{
+        \Vert r^{(k)}\Vert_A^2
+    }
+    \\
+    &= \Vert e^{(k)}\Vert_A^2 \left(
+        1 - 
+        \frac{\Vert r^{(k)}\Vert_2^4}
+        {
+            \Vert r^{(k)}\Vert_A^2
+            \Vert e^{(k)}\Vert_A^2
+        }
+    \right)
+\end{aligned}
+\tag{6}
+$$
+
+(1): By 3. from defined quantities in the intro section. 
+
+That last expression in (6) is not easy to analyze let me tell you that! 
+
+---
+### **Why This?**
 
 **Claim:**
 
-> Although the steepest descend method takes the best step at each iteration, it's not incoorperating the previous iterations to figure out the best descend direction.
-
+> This is a prelude to conjugate gradient method. 
 
