@@ -1,9 +1,11 @@
-We need the prelude: [[Steepest Descend for Matrix Vector]]
+We need the prelude: [[Steepest Descend for Matrix Vector]]. 
 
+The reference resource is [here](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf)
+ 
 ---
 ### **Intro**
 
-Must read the Steepest Descned for Matrix Vector first before reading this many of the quantities are defined there and we continued using it. 
+Must read the Steepest Descend for Matrix Vector first before reading this many of the quantities are defined there and we continued using it. 
 
 It's been show previously that just taking the best step at each iterations
 
@@ -25,12 +27,24 @@ d^{(k + 1)} \perp \left\langle
 \tag{2}
 $$
 
+**Definition:**
+
+Vector $u, v$ are conjgute for the matrix $A$ means that: 
+
+$$
+u^TAv = 0
+$$
+
 ---
 ### **N Steps Convergence**
 
-**Claim:** 
+**Claim 1:** 
 
 > Choosing a $A$ orthogonal directions for the steepest gradient descend will force the algorithm to converge in at most $n$ steps. 
+
+**Claim 2:**
+
+> Vectors that point to conjugate direction are orthogonal under the eigen space of the matrix $A$. 
 
 Consider expression $e^{(0)} = x^{(0)} - x^{+}$, the first error on the input space for the matrix $A$, and then we project it onto the vector (Because $d^{(k)}$ are a special kind of orthogonal, more on this later). 
 
@@ -163,6 +177,7 @@ $$
     e^{(k)}&= 
     \sum_{j = k}^{n - 1} \delta_j d^{(j)}
 \end{aligned}
+\tag{6}
 $$
 
 * (1): Recall **Note(1)**
@@ -170,14 +185,71 @@ $$
 Therefore, after $n$ iterations, the error vector will goes to zero, which means that $x^{(k)} = x^+$
 
 
+**Claim 1** Has been proven. 
+
 ---
 ### **Conjugation**
 
-So, if we can have an algorithm that generate a sequence of vectors that are conjguate to each other, then we have a set of direction we can go to speed up the steepest descend algorithm. 
+So, if we can have an algorithm that generate a sequence of vectors that are conjugate to each other, then we have a set of direction we can go to speed up the steepest descend algorithm. 
 
 But, how? 
 
-claim: 
+**claim 3:**
 
-> Gram Schmidt conjguate process is going to be slow if we are using it. And it has connection with guassian elimination too.
+> Gram Schmidt conjugate process is going to be slow if we are using it. And it has connection with Gaussian Elimination too.
+
+#### **Gram Schimidt Conjugation**
+
+Given a set of orthogonal vectors $\{u\}_{i = 1}^n$ that spans the whole $\mathbb{R}^{n}$ (Standard Basis vectors are an ok choice here), where, the matrix $A$ is $n\times n$.
+
+To construct a set of vectors that are $A$ orthogonal, we would need to subract from the vector $u_i$ with components span by the vectors $d^{(k)}$. Mathematically: 
+
+$$
+\begin{aligned}
+    d^{(k)} &= u^{(k)} + \sum_{i = 1}^{k - 1}
+        \beta_{k, i} d^{(i)}
+\end{aligned}
+\tag{7}
+$$
+
+Now, let's consider any $k > m$, which means that: 
+
+$$
+\begin{aligned}
+    d^{(m)T}Ad^{(k)} &= d^{(m)T}Au^{(k)} + d^{(m)T}A 
+        \sum_{i = 1}^{k - 1}\beta_{k, i}d^{(i)}
+    \\
+    0 &= d^{(m)T}Au^{(k)} + \beta_{k, m}d^{(m)T}Ad^{(m)}
+    \\
+    \beta_{k, m} &= 
+    - \frac
+    {
+        d^{(m)T}Au^{(k)}
+    }
+    {
+        \Vert d^{(m)}\Vert_A^2
+    }
+\end{aligned}
+\tag{8}
+$$
+
+Therefore, we have a way of computing (7), because the coefficients are deteremined in (8), giving us the expression that: 
+
+$$
+\begin{aligned}
+    d^{(k)} &= u^{(k)} - \sum_{i = 1}^{k - 1}
+    \frac{
+        d^{(i)T}Au^{(k)}
+    }{
+        \Vert d^{(i)}\Vert_A^2
+    }
+    d^{(i)}
+\end{aligned}\tag{9}
+$$
+
+**Fact:** 
+
+> If the set of vector $u_i$ where chosen to be the standard basis vector, $e_i$, then this conjugate direction steepest descend method is kown as Guassian Eliminations. 
+
+It's stated as a fact because I don't want to prove it in this document yet.
 
