@@ -28,7 +28,7 @@ $$
 ---
 ### **N Steps Convergence**
 
-Claim: 
+**Claim:** 
 
 > Choosing a $A$ orthogonal directions for the steepest gradient descend will force the algorithm to converge in at most $n$ steps. 
 
@@ -41,7 +41,7 @@ $$
 \tag{2.1}
 $$
 
-Consider: 
+**Consider:** 
 
 $$
 \begin{aligned}
@@ -169,4 +169,15 @@ $$
 
 Therefore, after $n$ iterations, the error vector will goes to zero, which means that $x^{(k)} = x^+$
 
+
+---
+### **Conjugation**
+
+So, if we can have an algorithm that generate a sequence of vectors that are conjguate to each other, then we have a set of direction we can go to speed up the steepest descend algorithm. 
+
+But, how? 
+
+claim: 
+
+> Gram Schmidt conjguate process is going to be slow if we are using it. And it has connection with guassian elimination too.
 
