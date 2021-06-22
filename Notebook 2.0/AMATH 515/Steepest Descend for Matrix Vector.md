@@ -10,7 +10,7 @@ Our objective is to solve:
 > Ax = b
 > $$
 
-Where we **assume that the matrix $A$ is Symmetric Positive Definite** and sparse, and we treat it as a black box transformation applied to vectors.
+Where we **assume that the matrix $A$ is Symmetric Positive Definite**[^1] and sparse, and we treat it as a black box transformation applied to vectors.
 
 Consider the function: 
 
@@ -220,12 +220,12 @@ $$
     }
     \\
     &= \Vert e^{(k)}\Vert_A^2 \left(
-        1 - 
+        \underbrace{1 - 
         \frac{\Vert r^{(k)}\Vert_2^4}
         {
             \Vert r^{(k)}\Vert_A^2
             \Vert e^{(k)}\Vert_A^2
-        }
+        }}_{\omega^2}
     \right)
 \end{aligned}
 \tag{6}
@@ -235,6 +235,105 @@ $$
 
 That last expression in (6) is not easy to analyze let me tell you that! 
 
+Therefore, for simplicity, let's just project the residual vector onto 2 eigenvectors of the matrix $A$.
+
+$$
+\begin{aligned}
+    e^{(0)} & = \sum_{i = 1}^{2}\xi_i v_i = \xi_1 v_1 + \xi_2 v_2    
+    \\
+    r^{(0)} &= -(\xi_1 \lambda_1 v_1 + \xi_2 \lambda_2 v_2) 
+    \\
+    \implies 
+    \Vert r^{(0)} \Vert_2^4 &= (\xi_1^2 \lambda_1^2 + \xi_2^2 \lambda_2^2)^2
+    \\
+    \implies 
+    \Vert r^{(0)}\Vert_A^2 &=
+    \xi_1^2 \lambda_1 ^3 + \xi_2^2 \lambda_2^3
+    \\
+    \implies
+    \Vert e^{(0)}\Vert_A^2
+    &=  
+    \xi_1^2 \lambda_1 + \xi_2^2 \lambda_2 
+\end{aligned}
+\tag{7}
+$$
+
+Now we are ready to take a look at the value for $\omega^2$, which is going to give us an upper bound for the rate of convergence. 
+
+Recall the fact that the condition number measured under 2-norm is the ratio between the max and the min eigenvalue of the matrix. 
+
+$$
+\begin{aligned}
+    \omega^2 &=1 - \frac
+    {
+        (\xi_1^2 \lambda_1^2 + \xi_2^2 \lambda_2^2)^2
+    }
+    {
+        (\xi_1^2\lambda_1 + \xi_2^2 \lambda_2)
+        (\xi_1^2\lambda_1^3 + \xi_2^2\lambda_2^3)
+    }
+    \\
+    &= 
+    1 - 
+    \frac{
+        (\xi_1^4\lambda_2^4)^{-1}
+    }
+    {
+        (\xi_1^4\lambda_2^4)^{-1}
+    }
+    \frac
+    {
+        (\xi_1^2 \lambda_1^2 + \xi_2^2 \lambda_2^2)^2
+    }
+    {
+        (\xi_1^2\lambda_1 + \xi_2^2 \lambda_2)
+        (\xi_1^2\lambda_1^3 + \xi_2^2\lambda_2^3)
+    }
+    \\
+    &= 
+    1 -
+    \frac{
+        (\lambda_1^2 \lambda_2^{-2} + \xi_2^2\xi_1^{-2})^2
+    }{
+        (\lambda_1\lambda_2^{-1} + \xi_2^2\xi_1^{-2})
+        (\lambda_1^3\lambda_2^{-3} + \xi_2^2\xi_1^{-2})
+    }
+\end{aligned}\tag{8}
+$$
+
+And now, let's introduce the variable $\mu$ as the ratio of the projection onto the dominate eigenvectors, in which case we have: $\kappa = \lambda_1\lambda_2^{-1}$ and $\mu = \xi_2\xi_1^{-1}$. 
+
+And then the above expression (8) can be rewritten as: 
+
+$$
+\omega^2 = 1 - \frac{(\kappa^2 + \mu^2 )^2}
+{
+    (\kappa + \mu^2)(\kappa^3 + \mu^2)
+}
+$$
+
+Observe that, as long as these 2 quantities, $\mu, \kappa$ are not equal to each other, the faction will result in a value that is less than one, and larger than zero. 
+
+To minimize the quantity $\omega^2$, consider $\mu^2 = \kappa^2$, Then after some simplification we have: 
+
+$$
+\begin{aligned}
+    \omega^2 &= 1 - \frac{4\kappa}{
+        \kappa^5 + 2\kappa^4+ \kappa^3
+    }
+    \\
+    \omega^2 &\le\frac{\kappa - 1}{\kappa+1}
+\end{aligned}
+$$
+
+
+And, observe the fact that as $\kappa \rightarrow \infty$, the quantity of $\omega^2$ is approaching 1, implying a very slow convergence rate for the iterations.
+
+**Moral of the Story**
+
+Steepest descend can be very slow for matrix with large condition number, this is especially true if the initial condition is making $\mu^2 = \xi^2$. 
+
+
 ---
 ### **Why This?**
 
@@ -242,3 +341,4 @@ That last expression in (6) is not easy to analyze let me tell you that!
 
 > This is a prelude to conjugate gradient method. 
 
+[^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 
