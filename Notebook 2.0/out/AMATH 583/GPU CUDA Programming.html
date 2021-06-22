@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[GPU]]
+We need some basics from introduction of GPU computing.</p>
+<p>Relevant Resources:</p>
+<ul>
+<li>
+<p>Lecture notes on CUDA, Thrust and GPU architecture: <a href="https://amath583.github.io/sp21/_static/pdf/L15.pdf">here</a></p>
+</li>
+<li>
+<p>Vector summation, reduction using cuda: <a href="https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf">here</a></p>
+</li>
+<li>
+<p>Basic vector addition using thrad blocks and stencils operations on 1D array with CUDA:  <a href="https://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf">here</a></p>
+</li>
+<li>
+<p>Cuda Execution model, thread and memory hierachy from invidia: <a href="https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/">here</a> for more info.</p>
+</li>
+<li>
+<p>A repo full of non-trivial CUDA programming examples <a href="https://github.com/zchee/cuda-sample">here</a>.</p>
+</li>
+</ul>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>Here, assuming that we know what GPU is and the high level process of launching a kernel. We will start writing the CUDA kernel.</p>
+<p><strong>Kernel</strong>: it refers to the same computations completed by threads in GPU. This is usually a function compiled for the CUDA device.</p>
+<p><strong>Block</strong>: It's a way of collecting threads. A block of threads are indexed by 3D indicies, and the shape of the block is declared for the kernel in advance of launching the kernel.</p>
+<ul>
+<li>ThreadID for each thread in the block is accessed via <code>threadIdx.x</code>, <code>threadIdy.y</code> and <code>threadIdz.z</code>.</li>
+<li>Each of the thread shares memory with threads within the same block.</li>
+<li>Each block of threads are executed by SM(Stream multi-processor). It's the granularized execution unit, I will quote what invidia said in <a href="http://developer.download.nvidia.com/compute/cuda/3_1/toolkit/docs/NVIDIA_CUDA_C_ProgrammingGuide_3.1.pdf">invidia Cuda Programming Guide</a>:</li>
+</ul>
+<blockquote>
+<p>The CUDA architecture is built around a scalable array of multithreaded Streaming Multiprocessors (SMs). When a CUDA program on the host CPU invokes a kernel grid, the blocks of the grid are enumerated and distributed to multiprocessors with available execution capacity. The threads of a thread block execute concurrently on one multiprocessor, and multiple thread blocks can execute concurrently on one multiprocessor. As thread blocks terminate, new blocks are launched on the vacated multiprocessors.</p>
+</blockquote>
+<p>And check this <a href="https://www.wikiwand.com/en/Thread_block_(CUDA_programming)">wiki</a> for more info about what a thread block is in CUDA programming.</p>
+<ul>
+<li>A block is a 3D structure, hence, it has 3 dimension which can be accessed by the variable <code>blockDim.x, blockDim.y, BlockDim.z</code></li>
+<li>And the shape of the grid can be gotten by: <code>gridDim.x, gridDim.y, gridDim.z</code>.</li>
+</ul>
+<p><strong>Grid</strong></p>
+<p>A collection of blocks, where each blocks are indexed by 3D indices.</p>
+<ul>
+<li>Under the context of the CUDA Kernel launch, the position of a particular block in the grid can be gotten by: <code>blockid.x, blockid.y, blockid.z</code>.</li>
+</ul>
+<hr>
+<h3 id="cuda-kernel"><strong>CUDA Kernel</strong></h3>
+<pre><code class="language-cpp"><div><span class="hljs-function">dim3 <span class="hljs-title">block_dim</span><span class="hljs-params">(<span class="hljs-number">128</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)</span></span>;
+<span class="hljs-function">dim3 <span class="hljs-title">grid_dim</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)</span></span>;
+kernel&lt;&lt;&lt;grid_dim,block_dim&gt;&gt;&gt;(...);
+</div></code></pre>
+<p>This is a CUDA Kernel.</p>
+<p>For each kernel, there is one grid inside of the kernel.</p>
+<p>One grid is a 3D block. In this caes, it's a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>128</mn><mo>×</mo><mn>1</mn><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">128 \times 1 \times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> grid.</p>
+<p>And each element in the grid is a block, and the block has a dimension of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mo>×</mo><mn>1</mn><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10 \times 1\times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</p>
+<p>And each element in the block is a thread.</p>
+<p>Under the context of the kernel, to access information about the threads, the following variables are useful.</p>
+<hr>
+<h3 id="vector-addition-kernel"><strong>Vector Addition Kernel</strong></h3>
+<hr>
+<h3 id="vector-summation-kernel"><strong>Vector Summation Kernel</strong></h3>
+<p>Here we consider computing the L2 norm of a vector.</p>
+<p><strong>Approach 1: Grid Blocks Sum</strong></p>
+<p>Here is the step:</p>
+<ol>
+<li>Thread in each block sum across different grids</li>
+<li>Thread 0 in each block sum across the block for all blocks</li>
+<li>Get the result and sum across the results with GPU.</li>
+</ol>
+<pre><code class="language-cpp"><div><span class="hljs-function">__global__
+<span class="hljs-keyword">void</span> <span class="hljs-title">dot0</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">float</span>* a, <span class="hljs-keyword">float</span>* x, <span class="hljs-keyword">float</span>* y)</span> </span>{
+
+  <span class="hljs-keyword">extern</span> __shared__ <span class="hljs-keyword">float</span> sdata[]; 
+  <span class="hljs-comment">// share sdata cross all threads in this block, same size as the block size. </span>
+  <span class="hljs-keyword">int</span> tid    = threadIdx.x; 
+
+  <span class="hljs-comment">// offset by number of blocks that comes before current thread </span>
+  <span class="hljs-keyword">int</span> index  = blockIdx.x * blockDim.x + threadIdx.x; 
+  
+  <span class="hljs-comment">// offset by all the threads in different bocks (a grid)</span>
+  <span class="hljs-keyword">int</span> stride = blockDim.x * gridDim.x; 
+
+
+  sdata[tid] = <span class="hljs-number">0.0</span>;
+  <span class="hljs-comment">// for this thread in this block across all grid</span>
+  <span class="hljs-comment">// sum it up. </span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = index; i &lt; n; i += stride)
+    sdata[tid] += x[i] * y[i];
+  <span class="hljs-comment">// synch all threads in this block. </span>
+  __syncthreads();
+
+  <span class="hljs-comment">// if this thread is the first block in this thread </span>
+  <span class="hljs-keyword">if</span> (tid == <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// prepare answer using block id </span>
+    a[blockIdx.x] = <span class="hljs-number">0.0</span>; 
+    <span class="hljs-comment">// sum across the sdata, which contain the sum from each thread </span>
+    <span class="hljs-comment">// in the block acrosses different grids. </span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; blockDim.x; ++i) {
+      a[blockIdx.x] += sdata[i];
+    }
+  }
+}
+</div></code></pre>
+<p>Summary:</p>
+<ol>
+<li>Share Memory across block</li>
+<li>All threads in each blocks sums across the grid</li>
+<li>Sync</li>
+<li>Assign head thread for each block (the first one)</li>
+<li>Sum across each block to produce an array that has the same number of elements as the number of blocks used.</li>
+</ol>
+<p><strong>Some Key Things Here</strong></p>
+<p><strong>PARAM Reduction:</strong></p>
+<p>Steps:</p>
+<ol>
+<li>Stride across different grids</li>
+<li>Sum across all blocks with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\log(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+<li>Transfer results from each block to the vector: <code>a</code></li>
+</ol>
+<pre><code class="language-cpp"><div><span class="hljs-function">__global__
+<span class="hljs-keyword">void</span> <span class="hljs-title">dot0</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">float</span>* a, <span class="hljs-keyword">float</span>* x, <span class="hljs-keyword">float</span>* y)</span> </span>{
+  <span class="hljs-keyword">extern</span> __shared__ <span class="hljs-keyword">float</span> sdata[];
+
+  <span class="hljs-keyword">int</span> tid    = threadIdx.x;
+  <span class="hljs-keyword">int</span> index  = blockIdx.x * blockDim.x + threadIdx.x;
+  <span class="hljs-keyword">int</span> stride = blockDim.x * gridDim.x;
+
+  <span class="hljs-comment">// Sum across different grids, for each threads in each block </span>
+  sdata[tid] = <span class="hljs-number">0.0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = index; i &lt; n; i += stride)
+    sdata[tid] += x[i] * y[i];
+
+  <span class="hljs-comment">// Sync</span>
+  __syncthreads();
+  
+  <span class="hljs-comment">// REduction on the same block</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> s = <span class="hljs-number">1</span>; s &lt; blockDim.x; s *= <span class="hljs-number">2</span>) {
+    <span class="hljs-keyword">if</span> (tid % (<span class="hljs-number">2</span>*s) == <span class="hljs-number">0</span>) {
+      sdata[tid] += sdata[tid + s];
+    }
+    __syncthreads();
+  }
+
+  <span class="hljs-keyword">if</span> (tid == <span class="hljs-number">0</span>) {
+    a[blockIdx.x] = sdata[<span class="hljs-number">0</span>];
+  }
+}
+</div></code></pre>
+<p>Note: Whenever threads of the same block is working on the same thing, we will need to sync them.</p>
+<p>Let's take a look at the reduction block:</p>
+<ul>
+<li><code>s</code>: This partition the block in to chunks of 2, 4, 8...</li>
+<li><code>tid%(2*s) == 0</code>:
+<ul>
+<li>(0, 2, 4...) + 1</li>
+<li>(0, 4, 8...) + 2</li>
+<li>(0, 8, 16 ...) + 4</li>
+</ul>
+</li>
+</ul>
+<p>Given a block size of 1024, the reduction can be completed in 10 steps, instead of 1024 compare to the previous case.</p>
+<p>Let's summarize the procedure:</p>
+<ul>
+<li>Prepare a local block storage array <code>sdata</code>.</li>
+<li>Reduction across different grid into <code>sdata</code>.</li>
+<li>Sync threads.</li>
+<li>Reduction within the same block.</li>
+<li>Sync threads.</li>
+<li>Transfer <code>sdata</code> into <code>a</code>.</li>
+</ul>
+<p><strong>Problems</strong>:</p>
+<ul>
+<li>The modulo is slow</li>
+<li>The if statement is branching divergence.</li>
+</ul>
+<p>For the following, I will be using simply vector sum instead of L2-Norm computation.</p>
+<p>And because this is from the lecture notes, it doesn't have grid reduction anymore.</p>
+<pre><code class="language-cpp"><div><span class="hljs-function">__global__ <span class="hljs-keyword">void</span> <span class="hljs-title">reduce0</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *g_idata, <span class="hljs-keyword">int</span> *g_odata)</span> 
+</span>{
+    <span class="hljs-comment">// Migrate data </span>
+    <span class="hljs-keyword">extern</span> __shared__ <span class="hljs-keyword">int</span> sdata[];
+    <span class="hljs-keyword">size_t</span> tid = threadIdx.x;
+    <span class="hljs-keyword">size_t</span> i = blockIdx.x*blockDim.x + threadIdx.x;
+    <span class="hljs-comment">// Add code here if we want to do 2 norm</span>
+    sdata[tid] = g_idata[i]; 
+    __syncthreads();
+
+    <span class="hljs-comment">// Reduction across the block</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> s = <span class="hljs-number">1</span>; s &lt; blockDim.x; s *= <span class="hljs-number">2</span>) 
+    {
+        <span class="hljs-keyword">size_t</span> index = <span class="hljs-number">2</span> * s * tid;
+        <span class="hljs-keyword">if</span> (index &lt; blockDim.x) 
+        {
+            <span class="hljs-comment">// in block striding, memory bank confict</span>
+            sdata[index] += sdata[index + s]; 
+        }
+        __syncthreads();
+    }
+
+    <span class="hljs-keyword">if</span> (tid == <span class="hljs-number">0</span>)
+        g_odata[blockIdx.x] = sdata[<span class="hljs-number">0</span>];
+}
+</div></code></pre>
+<p>Let's keep track of the variables:</p>
+<ul>
+<li><code>s: </code> 1, 2, 4, 8...
+<ul>
+<li><code>index: </code> <code>2*tid</code></li>
+<li><code>4*tid</code></li>
+<li><code>8*tid</code></li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<p>So the reduction will be like:</p>
+<pre><code class="language-cpp"><div>sdata[<span class="hljs-number">2</span>*tid] += sdata[<span class="hljs-number">2</span>*tid + <span class="hljs-number">1</span>]
+sdata[<span class="hljs-number">4</span>*tid] += sdata[<span class="hljs-number">4</span>*tid + <span class="hljs-number">2</span>]
+sdata[<span class="hljs-number">8</span>*tid] += sdata[<span class="hljs-number">8</span>*tid + <span class="hljs-number">4</span>]
+... 
+</div></code></pre>
+<p>Like that.</p>
+<p>It does the same thing differently, it dialates the <code>tid</code> instead checking it using modulo.</p>
+<p>Which is pretty smart.</p>
+<p>Question:</p>
+<p>What is a memory bank conflict???</p>
+<p>Answer</p>
+<p>See Stackoverflow here: <a href="https://stackoverflow.com/questions/3841877/what-is-a-bank-conflict-doing-cuda-opencl-programming">here</a></p>
+<p>The memory for a warp is divided into chunks. Striding across the bank results in serialized access.</p>
+<pre><code class="language-cpp"><div><span class="hljs-function">__global__ <span class="hljs-keyword">void</span> <span class="hljs-title">reduce0</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *g_idata, <span class="hljs-keyword">int</span> *g_odata)</span> 
+</span>{
+    <span class="hljs-keyword">extern</span> __shared__ <span class="hljs-keyword">int</span> sdata[];
+
+    <span class="hljs-keyword">size_t</span> tid = threadIdx.x;
+    <span class="hljs-keyword">size_t</span> i   = blockIdx.x*blockDim.x + threadIdx.x;
+    <span class="hljs-comment">// Add stuff here if we want to make L2 norm for the algorithm </span>
+    
+    sdata[tid] = g_idata[i];
+    __syncthreads();
+
+    <span class="hljs-comment">// Reduction loop here. </span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> s = blockDim.x/<span class="hljs-number">2</span>; s &gt; <span class="hljs-number">0</span>; s&gt;&gt;=<span class="hljs-number">1</span>) 
+    {
+        <span class="hljs-comment">// When this runs, half the threads are idle.</span>
+        <span class="hljs-keyword">if</span> (tid &lt; s) 
+        {
+            sdata[tid] += sdata[tid + s];
+        }
+        __syncthreads();
+    }
+
+    <span class="hljs-keyword">if</span> (tid == <span class="hljs-number">0</span>)
+    g_odata[blockIdx.x] = sdata[<span class="hljs-number">0</span>];
+}
+</div></code></pre>
+<p>Here, <code>s</code> starts with a half of the block size and then it's shrinked in half each time. Let's see how things changes in this case:</p>
+<p>Let's denote <code>blockdDim.x</code> as <code>bd</code> for simplicity.</p>
+<ul>
+<li><code>s</code>: <code>bd/2</code>, <code>bd/4</code>, <code>bd/8</code>...
+<ul>
+<li>all <code>tid &lt; bd/2</code></li>
+<li>all <code>tid &lt; bd/4</code></li>
+<li>(...)</li>
+</ul>
+</li>
+</ul>
+<p>And the reduction part is like:</p>
+<pre><code class="language-cpp"><div>sdata[tid] += sdata[tid + bd/<span class="hljs-number">2</span>];
+sdata[tid] += sdata[tid + bd/<span class="hljs-number">4</span>]; 
+...
+
+</div></code></pre>
+<p>So each time, the left half of the array sum up all the right half of the array while the array is shrinking by a half.</p>
+<p>Problem:</p>
+<p>On the first run, only half of the threads in this block are actively trying to sum up the right half. So it's half the speed compare to before.</p>
+<p><strong>The Final Version: First add During Global Load</strong></p>
+<pre><code class="language-cpp"><div><span class="hljs-function">__global__ <span class="hljs-keyword">void</span> <span class="hljs-title">reduce0</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *g_idata, <span class="hljs-keyword">int</span> *g_odata)</span> 
+</span>{
+    <span class="hljs-keyword">extern</span> __shared__ <span class="hljs-keyword">int</span> sdata[];
+    <span class="hljs-keyword">size_t</span> tid = threadIdx.x;
+    <span class="hljs-keyword">size_t</span> i   = blockIdx.x*(blockDim.x*<span class="hljs-number">2</span>) + threadIdx.x;
+    <span class="hljs-comment">// Sum the adjacent block.</span>
+    sdata[tid] = g_idata[i] + g_idata[i + blockDim.x];
+    __syncthreads();
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> s = blockDim.x/<span class="hljs-number">2</span>; s &gt; <span class="hljs-number">0</span>; s&gt;&gt;=<span class="hljs-number">1</span>) 
+    {
+        <span class="hljs-keyword">if</span> (tid &lt; s) 
+        {
+            sdata[tid] += sdata[tid + s];
+        }
+        __syncthreads();
+    }
+
+    <span class="hljs-keyword">if</span> (tid == <span class="hljs-number">0</span>)
+        g_odata[blockIdx.x] = sdata[<span class="hljs-number">0</span>];
+}
+</div></code></pre>
+<p>In this version, we are still going to keep the half reduction scheme from the previous on in the forloop, but this time we will be speed up the data transfer from the global memory to the local.</p>
+<p>This is done by letting one block to chug in twice the width of data from the global storage from the local storage right before the start of the log reduction.</p>
+<p>The read speed from the global memory is slow, therefore, merging half of the sum together with transferring the local storage will speed things up tremendously.</p>
+<p><strong>The L2-Norm CUDA Kernel</strong></p>
+<pre><code class="language-cpp"><div>
+
+
+</div></code></pre>
+<hr>
+<h3 id="matrix-multiplication-kenel"><strong>Matrix Multiplication Kenel</strong></h3>
+
+    </body>
+    </html>

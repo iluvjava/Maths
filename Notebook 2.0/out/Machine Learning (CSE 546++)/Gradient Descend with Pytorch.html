@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Before training Neuro net, make sure to have some basic understanding on the back prop algorithm involved with the training:
+[[Back Propagation]], [[Back Propagation 2]]</p>
+<p>This file is going to be a practical guide on training the Neural network using pytorch in python.</p>
+<p>Here are some useful links that can help with learning Pytorch
+<a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">Pytorch in 60 mins</a></p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>There are a lot of machine learning libraries, but here we will be focusing on pytorch.</p>
+<p>Notice that, all of these machine learning libraries are not that different from each other, in a sense that, the all have the following APIs:</p>
+<ul>
+<li>Auto Diff</li>
+<li>GPU supports</li>
+</ul>
+<p>And that is all people need for training Neural Net.</p>
+<p>It's just a buffed up mathematical computational libraries.</p>
+<hr>
+<h3 id="common-useful-functions"><strong>Common Useful Functions</strong></h3>
+<p>Suppose:</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+</div></code></pre>
+<p>is executed, so we have the correct namespace.</p>
+<p><code>torch.tensor</code>: Make a torch tensor
+<code>np.array</code>: make numpy tensor
+<code>torch.from_numpy</code>: transfer array from numpy array, mutable.
+<code>tensor.view</code>: member function, reshape the shape of the tensor.
+<code>tensor.nn.Module</code>: A namespace contains some of the classes relevant to components of the Neural Network. See <a href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module">here</a> for the official doc.
+<code>tensor.nn</code>: A namespace full of stuff for neural network, it's huge. see <a href="https://pytorch.org/docs/stable/nn.html">here</a> for the official doc.</p>
+<hr>
+<h3 id="auto-grad"><strong>Auto Grad</strong></h3>
+<pre><code class="language-python"><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">x</span>):</span>
+    <span class="hljs-keyword">return</span> (x<span class="hljs-number">-2</span>)**<span class="hljs-number">2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fp</span>(<span class="hljs-params">x</span>):</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*(x<span class="hljs-number">-2</span>)
+
+x = torch.tensor([<span class="hljs-number">1.0</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+y = f(x)
+y.backward()
+
+print(<span class="hljs-string">&#x27;Analytical f\&#x27;(x):&#x27;</span>, fp(x))
+print(<span class="hljs-string">&#x27;PyTorch\&#x27;s f\&#x27;(x):&#x27;</span>, x.grad)
+
+</div></code></pre>
+<p>Here is an sequential example that take the derivative wrt to a variable for a scalar function.</p>
+<p>Notice, any function that directly operate on the <code>torch.tensor</code> type will be compatible with using the auto diff.</p>
+<p><strong>Linear Regression Using Auto Grad</strong></p>
+<pre><code class="language-python"><div>
+<span class="hljs-comment"># define a linear model with no bias</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">model</span>(<span class="hljs-params">X, w</span>):</span>
+    <span class="hljs-keyword">return</span> X @ w
+
+<span class="hljs-comment"># the residual sum of squares loss function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rss</span>(<span class="hljs-params">y, y_hat</span>):</span>
+    <span class="hljs-keyword">return</span> torch.norm(y - y_hat)**<span class="hljs-number">2</span> / n
+
+<span class="hljs-comment"># Define hyperparameters</span>
+step_size = <span class="hljs-number">0.1</span>
+
+<span class="hljs-comment"># And starting w</span>
+w = torch.tensor([[<span class="hljs-number">1.</span>], [<span class="hljs-number">0</span>]], requires_grad=<span class="hljs-literal">True</span>)
+
+print(<span class="hljs-string">&#x27;iter,\tloss,\tw&#x27;</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">20</span>):
+    y_hat = model(X, w)
+    loss = rss(y, y_hat)
+    
+    loss.backward() <span class="hljs-comment"># compute the gradient of the loss</span>
+    
+    w.data = w.data - step_size * w.grad <span class="hljs-comment"># do a gradient descent step</span>
+    
+    print(<span class="hljs-string">&#x27;{},\t{:.2f},\t{}&#x27;</span>.format(i, loss.item(), w.view(<span class="hljs-number">2</span>).detach().numpy()))
+    
+    <span class="hljs-comment"># We need to zero the grad variable since the backward()</span>
+    <span class="hljs-comment"># call accumulates the gradients in .grad instead of overwriting.</span>
+    <span class="hljs-comment"># The detach_() is for efficiency. You do not need to worry too much about it.</span>
+    w.grad.detach()
+    w.grad.zero_()
+
+print(<span class="hljs-string">&#x27;\ntrue w\t\t&#x27;</span>, true_w.view(<span class="hljs-number">2</span>).numpy())
+print(<span class="hljs-string">&#x27;estimated w\t&#x27;</span>, w.view(<span class="hljs-number">2</span>).detach().numpy())
+
+</div></code></pre>
+<p>Don't forget:</p>
+<ul>
+<li>Detach and then clear the gradient for the parameter after you used it</li>
+</ul>
+<p><strong>The Linear Module</strong></p>
+<pre><code class="language-python"><div>d_in = <span class="hljs-number">3</span>
+d_out = <span class="hljs-number">4</span>
+linear_module = nn.Linear(d_in, d_out)
+
+example_tensor = torch.tensor([[<span class="hljs-number">1.</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]])
+<span class="hljs-comment"># applys a linear transformation to the data</span>
+transformed = linear_module(example_tensor)
+print(<span class="hljs-string">&#x27;example_tensor&#x27;</span>, example_tensor.shape)
+print(<span class="hljs-string">&#x27;transformed&#x27;</span>, transformed.shape)
+print()
+print(<span class="hljs-string">&#x27;We can see that the weights exist in the background\n&#x27;</span>)
+print(<span class="hljs-string">&#x27;W:&#x27;</span>, linear_module.weight)
+print(<span class="hljs-string">&#x27;b:&#x27;</span>, linear_module.bias)
+</div></code></pre>
+<p><code>torch.nn.Linear</code> is just a linear module, and it's basically:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>X</mi><mi>W</mi><mo>+</mo><mi>b</mi><mspace width="1em"/><mi>X</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>n</mi><mo>×</mo><mi>d</mi></mrow></msup><mo separator="true">,</mo><mi>W</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>d</mi><mo>×</mo><mi>h</mi></mrow></msup><mo separator="true">,</mo><mi>b</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>h</mi></msup></mrow><annotation encoding="application/x-tex">f(X) = XW + b \quad X\in \mathbb{R}^{n\times d}, W\in \mathbb{R}^{d \times h} , b\in \mathbb{R}^h
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">×</span><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.093548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mbin mtight">×</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8991079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>Where, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> is the Row Data Matrix, and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span> is the weight matrix, and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> is a bias vector, it's height is the number of features for the data matrix. The <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> vector is being broadcast.</p>
+<p><strong>Summary of Auto Diff and Gradient Descend</strong></p>
+<hr>
+<h3 id="training-neural-net-example"><strong>Training Neural Net Example</strong></h3>
+<hr>
+<h3 id="misc"><strong>Misc</strong></h3>
+
+    </body>
+    </html>

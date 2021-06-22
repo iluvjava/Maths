@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Overview&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>Using GPU for computations.</p>
+<hr>
+<h3 id="overview"><strong>Overview</strong></h3>
+<p>This is how we use GPU:</p>
+<ol>
+<li>We need to compile the code for GPU.</li>
+<li>Send the program across PCIE Bus.</li>
+<li>Send the data to the GPU.</li>
+<li>And the compute in the GPU.</li>
+<li>Get the results back from the GPU.</li>
+</ol>
+<p>The tool we are using is: CUDA.</p>
+<hr>
+<h3 id="simd-branches"><strong>SIMD Branches</strong></h3>
+<p>GPU has multiple cores that works on the data with the same instruction.</p>
+<p>Consider the case of taking the absolute value of number.</p>
+<pre><code class="language-cpp"><div>f(x &lt; <span class="hljs-number">0</span>){
+	x = -x;
+}
+</div></code></pre>
+<p>Then in this case a vector will be flushed to with an instruction.</p>
+<p>And each of the core will receive their own element.</p>
+<p>The cores that receives negative number will work on it by flipping the sign, the other cores the receive positive number will just skip the instruction.</p>
+<p>Let's consider another case of branching.</p>
+<pre><code class="language-cpp"><div>f(x &lt; <span class="hljs-number">0</span>) 
+{
+	x = -x;
+}<span class="hljs-keyword">else</span>  
+{
+	x = <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<p>There will be 2 passes on the vector, the first pass will test <code>x &lt; 0</code> and then the core that got <code>x_i &lt; 0</code>, it will make changes to it, the cores that didn't, will just pass <code>x_i</code> unchanged.</p>
+<p>This is then repeated with the <code>else</code> clause for the whole vector.</p>
+<p>The more Branches there are, the slower the SIMD operations on GPU will be.</p>
+<hr>
+<h3 id="warp"><strong>Warp</strong></h3>
+<p>It's a way of dividing the threads into groups</p>
+<p>All threads in the same warp must execute the same instruction.</p>
+<hr>
+<h3 id="grids-and-blocks"><strong>Grids and Blocks</strong></h3>
+<p>Thread is distributed by CUDA runtime.</p>
+<p><strong>Block:</strong></p>
+<p>A user predefined group of 1 to 512 threads.</p>
+<p><strong>Grid</strong></p>
+<p>Groups of one or more blocks.</p>
+<p><strong>A group will be created for each CUDA kernel function call.</strong></p>
+<hr>
+<h3 id="threads-ids-in-grid"><strong>Threads IDs In Grid</strong></h3>
+<p>In CUDA, there are magic variables that is globally available for each thread to evoke.</p>
+<p>Thread IDs are unique to a block. To get the unique global ID for a given thread inside a blocks of grid, it's:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>GlobalThreadID</mtext><mo>=</mo><mtext>BloackID</mtext><mo>×</mo><mtext>BlockDim</mtext><mo>+</mo><mtext>ThreadID</mtext></mrow><annotation encoding="application/x-tex">\text{GlobalThreadID} = \text{BloackID} \times \text{BlockDim} + \text{ThreadID}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">GlobalThreadID</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">BloackID</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">BlockDim</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">ThreadID</span></span></span></span></span></span></p>
+<p>Note: This is assuming simple 1D block and grid.</p>
+<hr>
+<h3 id="hetergeneous-computing"><strong>Hetergeneous Computing</strong></h3>
+<p>Writing code on the GPU, and CPU.</p>
+<p>Transfer data between the GPU and the CPU.</p>
+<p>The code also get transferred from the CPU to the GPU.</p>
+<p>The Host: The CPU.</p>
+<p>The Device/Accelerator: The GPU.</p>
+<hr>
+
+    </body>
+    </html>

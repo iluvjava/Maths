@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>A bunch of computers working together to do computation.</p>
+<p>We are going to ues different processes for parallelism. Unlike threads, they are not going to share the same memory space.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>This is about distributed memory computation.</p>
+<p>The problem is, we can't just keep all the data for each of the computing node, all of them, the same.</p>
+<p>Computing Node: The CPU</p>
+<p>Now, we would need to share the memory across different nodes in this case.</p>
+<hr>
+<h3 id="spmd"><strong>SPMD</strong></h3>
+<p>Single Program Multiple Data.</p>
+<p>There is a single program, the program data is the same.</p>
+<p>Each node has the same program that is executing.</p>
+<p>But for each node the data is not the same.</p>
+<hr>
+<h3 id="tony-hoare"><strong>Tony Hoare</strong></h3>
+<p>Tony Hoare: The person behind the quick sort algorithm.</p>
+<p>An Axiomatic Basis for Computer Programming</p>
+<p>Communicating Sequential Process: CSP</p>
+<p>Characterize the computation as having separate processes, and they have disjoint data that they have to access, and the data is communicated.</p>
+<hr>
+<h3 id="separate-process"><strong>Separate Process</strong></h3>
+<p>In the case of parallel processing, we make use of threads for parallel computing.</p>
+<p>Now, we will be using different processes, multiple instances of <code>main()</code> will be invoked for each instance of the program.</p>
+<p>And ultimately these processes are going to communicate.</p>
+<p>Steps:</p>
+<ol>
+<li>Copy the values to each of the proccess.</li>
+<li>Everyone does the job</li>
+<li>If current process is having ID 0, then it collects the results from every other processes and then submit it.</li>
+</ol>
+<hr>
+<h3 id="mpi"><strong>MPI</strong></h3>
+<p>MPI: Message Passing Interface</p>
+<p>This is how we are actually do distributed computing.</p>
+<hr>
+<h3 id="compute-and-communicate"><strong>Compute and Communicate</strong></h3>
+<p>This is a computing Idiom.</p>
+<p>Bulk communications between and then compute.</p>
+
+    </body>
+    </html>
