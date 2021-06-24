@@ -36,7 +36,7 @@ u^TAv = 0
 $$
 
 ---
-### **N Steps Convergence**
+### **N Steps Convergence of Conjugate Direction**
 
 **Claim 1:** 
 
@@ -194,19 +194,19 @@ So, if we can have an algorithm that generate a sequence of vectors that are con
 
 But, how? 
 
-**claim 3:**
+**Claim 3:**
 
-> Gram Schmidt conjugate process is going to be slow if we are using it. And it has connection with Gaussian Elimination too.
+> Gram Schmidt conjugate process is going to be slow if we are using it. And it has connection with Gaussian Elimination too. The process itself is a way of generating a set of conjugate vectors, similar to the Gram Schimidt process used for QR decomposition of matrices. 
 
 #### **Gram Schimidt Conjugation**
 
-Given a set of orthogonal vectors $\{u\}_{i = 1}^n$ that spans the whole $\mathbb{R}^{n}$ (Standard Basis vectors are an ok choice here), where, the matrix $A$ is $n\times n$.
+Given a set of orthogonal vectors $\{u_i\}_{i = 1}^n$ that spans the whole $\mathbb{R}^{n}$ (Standard Basis vectors are an ok choice here), where, the matrix $A$ is $n\times n$.
 
 To construct a set of vectors that are $A$ orthogonal, we would need to subract from the vector $u_i$ with components span by the vectors $d^{(k)}$. Mathematically: 
 
 $$
 \begin{aligned}
-    d^{(k)} &= u^{(k)} + \sum_{i = 1}^{k - 1}
+    d^{(k)} &= u_{k} + \sum_{i = 1}^{k - 1}
         \beta_{k, i} d^{(i)}
 \end{aligned}
 \tag{7}
@@ -216,15 +216,15 @@ Now, let's consider any $k > m$, which means that:
 
 $$
 \begin{aligned}
-    d^{(m)T}Ad^{(k)} &= d^{(m)T}Au^{(k)} + d^{(m)T}A 
+    d^{(m)T}Ad^{(k)} &= d^{(m)T}Au_{k} + d^{(m)T}A 
         \sum_{i = 1}^{k - 1}\beta_{k, i}d^{(i)}
     \\
-    0 &= d^{(m)T}Au^{(k)} + \beta_{k, m}d^{(m)T}Ad^{(m)}
+    0 &= d^{(m)T}Au_{k} + \beta_{k, m}d^{(m)T}Ad^{(m)}
     \\
     \beta_{k, m} &= 
     - \frac
     {
-        d^{(m)T}Au^{(k)}
+        d^{(m)T}Au_{k}
     }
     {
         \Vert d^{(m)}\Vert_A^2
@@ -233,13 +233,13 @@ $$
 \tag{8}
 $$
 
-Therefore, we have a way of computing (7), because the coefficients are deteremined in (8), giving us the expression that: 
+Therefore, we have a way of computing (7), because the coefficients are determined in (8), giving us the expression that: 
 
 $$
 \begin{aligned}
-    d^{(k)} &= u^{(k)} - \sum_{i = 1}^{k - 1}
+    d^{(k)} &= u_{k} - \sum_{i = 1}^{k - 1}
     \frac{
-        d^{(i)T}Au^{(k)}
+        d^{(i)T}Au_{k}
     }{
         \Vert d^{(i)}\Vert_A^2
     }
@@ -247,9 +247,55 @@ $$
 \end{aligned}\tag{9}
 $$
 
+Claim 3 has been clarified. 
+
 **Fact:** 
 
-> If the set of vector $u_i$ where chosen to be the standard basis vector, $e_i$, then this conjugate direction steepest descend method is kown as Guassian Eliminations. 
+> If the set of vector $u_i$ where chosen to be the standard basis vector, $e_i$, then this conjugate direction steepest descend method is known as Gaussian Eliminations. 
 
-It's stated as a fact because I don't want to prove it in this document yet.
+It's stated as a fact because I don't want to prove it in this document yet, and it's also stated without a proof in the reference literature. 
+
+**Why?**
+
+> Walking in the conjugate direction is walking in a space stretched by eigenvectors of $A$, in an orthogonal manner. Recall that matrix $A$ is Sym Definite, which means that it's transformation it's described by stretching with an orghonal basis. 
+
+
+---
+### **Conjugation and Residual Direction**
+
+We are interested in the residual direction $\{r^{(i)}\}_{i = 0}^{n - 1}$ when we use the conjugate directions for gradient descend. 
+
+**Claim 3**
+
+> The residual direction at the $j$ of the iteration is orthogonal to all previous conjugate direction, mathematically: 
+> $$r^{(j)T}d^{(i)} = 0 \quad \forall i < j$$
+
+Let's continue with (6.1), and then we have: 
+
+$$
+\begin{aligned}
+    e^{(k)} &= \sum_{j = k}^{n - 1} \delta_j d^{(j)}
+    \\
+    e^{(j)} &= \sum_{k = j}^{n - 1} \delta_kd^{(k)}
+    \\
+    Ae^{(j)} &= \sum_{k = j}^{n - 1}
+        \delta_k Ad^{(k)}
+    \\
+    -d^{(i)T}Ae^{(j)} &= \underbrace{-d^{(i)T}\sum_{k = j}^{n - 1}\delta_k Ad^{(k)}}_{= 0}
+    \\
+    d^{(i)}r^{(j)} &= 0 \quad \forall\; i < j
+\end{aligned}
+$$
+
+At the last step, the RHS equals to zero because, all the conjugate direction, $d^{(k)}$ inside the sum is going from $j$ to $n - 1$, but the vector outside of the sum, $d^{(i)}$ has $i < j$, therefore, it's by property of conjugation, all $d^{(k)}$ inside the sum is orthogonal to $d^{(i)}$. 
+
+**Claim 3** has been proved. $\blacksquare$
+
+**Claim 4**
+
+> The residual direction at iteration $j$ is also orthongonal to all previous $u_i$, $i < j$, when conjugate direction is chosen. 
+
+---
+### **Conjugate Gradient Descend**
+
 

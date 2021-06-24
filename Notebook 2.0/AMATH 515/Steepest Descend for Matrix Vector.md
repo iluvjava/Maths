@@ -53,6 +53,11 @@ Residual is also the gradient at that particular step.
 
 > If the matrix is not symmetric, then the gradient is not the residual at each teration. 
 
+> The problem we are solving has nothing to do with minimizing the 2 norm of $Ax - b$. It's only for the symmetric matrix $A$. It's minimzing the energy norm, if $A$ is symmetric positive definite. 
+> $$ \arg \min_x \Vert x\Vert_A + x^Tb$$
+
+> If the matrix is not positive definite, then it has null space, potentially ill-conditioned or not invertible. 
+
 ---
 ### **Steepest Descend Method Proof** 
 
@@ -340,5 +345,10 @@ Steepest descend can be very slow for matrix with large condition number, this i
 **Claim:**
 
 > This is a prelude to conjugate gradient method. 
+
+---
+### **Augmentation**
+
+Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = Ab$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank. 
 
 [^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 

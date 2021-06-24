@@ -35,7 +35,7 @@ $$
 
 Just multiply them together and we will have it. 
 
-**Basics** 
+**Fundamental Laws of Joint Probability** 
 
 $$
 \begin{aligned}

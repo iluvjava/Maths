@@ -42,4 +42,4 @@ Then let that boostrap estimator to be $\hat{f}^{(b)}(x)$, and this will be the 
 
 [Drop Out as a Bayesian Approximation](https://arxiv.org/abs/1506.02142)
 
-
+* But dropout itself is also a way of doing regularization, and in that sensem we have a paper for discussing it too. See [Improving Neural Network by preventng co-adaptation of features detectors](https://arxiv.org/abs/1207.0580) for more. 
