@@ -110,13 +110,17 @@ Above is an example of declaring macros and using macros for compilations comman
 
 There are more advance way of making `makefile` that reduce the repeatition for declaring the same set of patterns of rules for making files that has the same type of dependency. 
 
-`$<`: Represents the file that is the dependency. 
+**Symbols**
 
-`&@`: Represents the file that is the target. 
+* `$<`: Represents the file that is the dependency. 
+
+* `&@`: Represents the file that is the target. 
+
+* `%`: Represents a wild card on the name of the file. 
 
 This is a generic patterns that compiles `.o` files using `.hpp`, `.cpp` files, this is the format: 
 
-```
+```makefile
 %.o : %.cpp
         $(CXX) -c $(CXXFLAGS) $< -o $@
 ```
