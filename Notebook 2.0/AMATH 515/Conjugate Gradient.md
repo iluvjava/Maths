@@ -142,15 +142,15 @@ $$
     \\
     [b - Ax^{(k + 1)}]^Td^{(k)} &= 0
     \\
-    [b - A(x^{(k)} + \alpha d^{(k)})]^Td^{(k)} &= 0
+    [b - A(x^{(k)} + \alpha_k  d^{(k)})]^Td^{(k)} &= 0
     \\
-    [b - Ax^{(k)} - \alpha A d^{(k)}]^Td^{(k)} &= 0
+    [b - Ax^{(k)} - \alpha_k A d^{(k)}]^Td^{(k)} &= 0
     \\
-    [r^{(k)} - \alpha Ad^{(k)}]^Td^{(k)} &= 0 
+    [r^{(k)} - \alpha_k Ad^{(k)}]^Td^{(k)} &= 0 
     \\
-    \alpha &= \frac{r^{(k)T}d^{(k)}}{d^{(k)T}Ad^{(k)}}
+    \alpha_k &= \frac{r^{(k)T}d^{(k)}}{d^{(k)T}Ad^{(k)}}
     \\
-    \alpha &= \frac{r^{(k)T}d^{(k)}}
+    \alpha_k &= \frac{r^{(k)T}d^{(k)}}
     {
         \Vert d^{(k)}\Vert_A^2
     }
@@ -284,7 +284,7 @@ $$
     -d^{(i)T}Ae^{(j)} &= \underbrace{-d^{(i)T}\sum_{k = j}^{n - 1}\delta_k Ad^{(k)}}_{= 0}
     \\
     d^{(i)}r^{(j)} &= 0 \quad \forall\; i < j
-\end{aligned}
+\end{aligned}\tag{10}
 $$
 
 At the last step, the RHS equals to zero because, all the conjugate direction, $d^{(k)}$ inside the sum is going from $j$ to $n - 1$, but the vector outside of the sum, $d^{(i)}$ has $i < j$, therefore, it's by property of conjugation, all $d^{(k)}$ inside the sum is orthogonal to $d^{(i)}$. 
@@ -295,7 +295,121 @@ At the last step, the RHS equals to zero because, all the conjugate direction, $
 
 > The residual direction at iteration $j$ is also orthongonal to all previous $u_i$, $i < j$, when conjugate direction is chosen. 
 
+Start with expression (7) we have: 
+
+$$
+\begin{aligned}
+    d^{(i)} &= u_i + \sum_{k = 0}^{i - 1} \beta_{i, k}d^{(k)}
+    \\
+    r^{(j)T}d^{(i)} &= r^{(j)T}u_i + r^{(j)T}\sum_{k = 0}^{i - 1}\beta_{i, k}d^{(k)}
+    \\
+    \underset{\text{claim 3}}{\implies} 0 &= r^{(j)T}u_i
+\end{aligned}\tag{11}
+$$
+
+$\underset{\text{claim 3}}{\implies}$ we cancel out the summation because $r^{(j)}\perp d^{(k)}$ when $k$ goes from $0$ to $i - 1$, all values of $k$ inside the sum is less than $i$. 
+
+Claim 4 $\blacksquare$
+
+**Claim 4 Corollary**: 
+
+> Choose $u_i = r^{(j)}$, then $r^{(i)T}r^{(j)} = 0$ whenever $i \ne j$. [^1]
+
 ---
 ### **Conjugate Gradient Descend**
 
+The direction of $\{u_i\}_i^{n}$ is the residual direction. 
 
+**Claim 5**
+
+> Using the residual vector during the iterations will simplify the Gram Schidt Conjugation process significantly. basically let $u_i = r^{(i)}$. 
+
+Recall from expression (8), we have $\beta_{k, m} = -d^{(m)^T}Au_k/\Vert d^{(m)}\Vert_A^2$, the beta coefficient for the next step is $k + 1$, which means that we have: 
+
+$$
+\begin{aligned}
+    \beta_{m + 1, m} &= -d^{(m)^T}Au_{m + 1}/\Vert d^{(m)}\Vert_A^2    
+    \\
+    \text{let: }\quad u_{m + 1} &= r^{(m + 1)} 
+    \\
+    -\beta_{m + 1, m} &= r^{(m + 1)T} Ad^{(m)} /\Vert d^{(m)}\Vert_A^2
+\end{aligned}
+\tag{12}
+$$
+
+We need to find $r^{(m + 1)T} Ad^{(m)}$. 
+
+Starting with expression (6), we have: 
+
+$$
+\begin{aligned}
+    e^{(k)} &= e^{(0)} + \sum_{j = 0}^{k - 1}
+        \alpha_jd^{(j)}
+    \\
+    e^{(k + 1)} &= e^{(0)}  + \sum_{j = 0}^{k}\alpha_j d^{(j)}
+    \\
+    e^{(k + 1)} - e^{(k)} &= \alpha_k d^{(k)}
+\end{aligned}\tag{13}
+$$
+
+Then, consider the expression for the residual vector at $i + 1$ iteration.
+
+$$
+\begin{aligned}
+    r^{(j + 1)} &= -Ae^{(j + 1)}
+    \\
+    &= -A(e^{(j)} + \alpha_{j} d^{(j)})
+    \\
+    &= r^{(j)} - \alpha_{j} Ad^{(j)}
+    \\
+    r^{(i)T}r^{(j + 1)} &=  r^{(i)T}r^{(j)} - \alpha_{j} r^{(i)T}Ad^{(j)}
+    \\
+    \alpha_{j}r^{(i)T}Ad^{(j)} &= r^{(i)T}r^{(j)} - r^{(i)}r^{(j + 1)}
+\end{aligned}
+\tag{14}
+$$
+
+Now, there are several cases of values for $\alpha_i$, and it depends on the value of $i, j$. 
+
+* Consider $i < j$, From the **corollary of claim 4**, when $i<j$, the right handside is always zero, which implies that $\beta_{i, j} = 0$. 
+
+* From expression (11), the conjugation expression doesn' allow for the case that $i = j$.
+
+* Consider $i = j + 1$, then 
+
+$$
+\begin{aligned}
+   \alpha_{j}r^{(j + 1)T}Ad^{(j)} &= r^{(j + 1)T}r^{(j)} - r^{(j + 1)}r^{(j + 1)}
+   \\
+   r^{(j + 1)T}Ad^{(j)} &= \frac{-\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j}
+   \\
+   \frac{r^{(j + 1)T}Ad^{(j)}}{\Vert d^{(j)}\Vert_A^2}
+   &= 
+   \frac{-\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j \Vert d^{(j)}\Vert_A^2}
+   \\
+   -\beta_{j + 1, j} &= \frac{-\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j \Vert d^{(j)}\Vert_A^2}
+   \\
+   \beta_{j + 1, j} &= \frac{\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j \Vert d^{(j)}\Vert_A^2}
+\end{aligned}
+$$
+
+Now, we will have the ability to simplify expression (9), and the conjugate direction at the $j$ th iteration will be easier to compute because it doesn't require all the previous conjugate direction to compute the new conjugate direction anymore. 
+
+$$
+d^{(i + 1)} = r^{(i + 1)} + \beta_{i + 1, i} d^{(i)}
+$$
+
+Claim 5 $\blacksquare$
+
+---
+### **The Conjugate Gradient Algorithm**
+
+The algorithm for the conjugate gradient is: 
+
+
+
+
+
+
+
+[^1]: I feel like this can be directly derived from the definition of $e^{(k)}$.    
