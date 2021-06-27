@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&midast;&midast;Intro&midast;&midast;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 12px;
+                line-height: 1;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <p>[[More Linux Make]], [[CPP MultiStage Compilation]]</p>
+<p>Making a project with many files in cpp.</p>
+<hr>
+<h3 id="intro"><strong>Intro</strong></h3>
+<p>When we have a project with multiple files, we will need to cooperate a lot of make files for each sub directory.</p>
+<p><strong>Before we start:</strong></p>
+<blockquote>
+<p>There are other ways of compiling other than linux makefile command, shell script is one way of doing it, or just use IDE or stuff like that.</p>
+</blockquote>
+<p><strong>Reference Tutorial Used</strong></p>
+<p>Linux Make <a href="https://makefiletutorial.com/">Linux Make File Tutorial</a></p>
+<p>Go and read that I won't repeat too much.</p>
+<p>Assuming you already know about basics variables in makefile.</p>
+<p>Assuming you are using C++, you can use whatever compiler you want, then <a href="https://code.visualstudio.com/docs/cpp/introvideos-cpp">here</a> is the tutorial to do C++ dev in vs code.</p>
+<hr>
+<h3 id="quick-references"><strong>Quick References</strong></h3>
+<ul>
+<li><code>*</code>: wildcard for file names</li>
+<li><code>%</code>: wildcard for declaring make rule patterns</li>
+<li><code>$@</code>: make rule target</li>
+<li><code>$?</code>: new prereqs</li>
+<li><code>$^</code>: all prereqs</li>
+<li><code>$(???)</code>: Get the value for whatever is inside of <code>$(???)</code>.
+<ul>
+<li><code>$(Var)</code>: Get the value of a defined variable.</li>
+<li><code>$(wildcard *.c)</code>: Get a list of all file with that ends with <code>*.c</code>, it will not blow up when none of the files matches the pattern.</li>
+</ul>
+</li>
+<li><code>$(filter %.o,$(obj_files))</code>: passes 2 arguments to the filter function, the first is the pattern and the second is a list of stuff to filter from.</li>
+</ul>
+<hr>
+<h3 id="automatic-variables"><strong>Automatic Variables</strong></h3>
+<p>Wildcards for files</p>
+<pre><code class="language-makefile"><div>thing_wrong := *.o <span class="hljs-comment"># Don&#x27;t do this! &#x27;*&#x27; will not get expanded</span>
+thing_right := <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> *.o)</span>
+<span class="hljs-section">all: one two three four</span>
+<span class="hljs-comment"># Fails, because $(thing_wrong) is the string &quot;*.o&quot;</span>
+<span class="hljs-section">one: <span class="hljs-variable">$(thing_wrong)</span></span>
+<span class="hljs-comment"># Stays as *.o if there are no files that match this pattern :(</span>
+<span class="hljs-section">two: *.o </span>
+<span class="hljs-comment"># Works as you would expect! In this case, it does nothing.</span>
+<span class="hljs-section">three: <span class="hljs-variable">$(thing_right)</span></span>
+<span class="hljs-comment"># Same as rule three</span>
+<span class="hljs-section">four: $(wildcard *.o)</span>
+</div></code></pre>
+<p>Dependecies</p>
+<pre><code class="language-makefile"><div><span class="hljs-section">hey: one two</span>
+    <span class="hljs-comment"># Outputs &quot;hey&quot;, since this is the first target</span>
+          echo <span class="hljs-variable">$@</span>
+    <span class="hljs-comment"># Outputs all prerequisites newer than the target</span>
+          echo <span class="hljs-variable">$?</span>
+    <span class="hljs-comment"># Outputs all prerequisites</span>
+          echo <span class="hljs-variable">$^</span>
+    touch hey
+<span class="hljs-section">one:</span>
+          touch one
+<span class="hljs-section">two:</span>
+          touch two
+<span class="hljs-section">clean:</span>
+          rm -f hey one two
+</div></code></pre>
+<hr>
+<h3 id="patterns-rules"><strong>Patterns Rules</strong></h3>
+<p>Make file allows <code>%</code> to represent a pattern of targets and rules, and then, we can use <code>$@</code>, <code>$^</code> to represents target and prereq.</p>
+<pre><code class="language-makefile"><div><span class="hljs-comment"># usage of static patterns and wildcards</span>
+<span class="hljs-section">target%: prereq%</span>
+		  echo <span class="hljs-string">&quot;target is &#x27;<span class="hljs-variable">$@</span>&#x27; requires &#x27;<span class="hljs-variable">$^</span>&#x27;&quot;</span>
+
+<span class="hljs-section">target1: prereq1</span>
+<span class="hljs-section">prereq1: base1</span>
+<span class="hljs-section">base1:</span>
+		  echo base1 called
+</div></code></pre>
+<hr>
+<h3 id="makefile-implicit-rules"><strong>Makefile Implicit Rules</strong></h3>
+<p>There are rules built into the make file system on linux.</p>
+<p>As such, the important variables used by implicit rules are:</p>
+<ul>
+<li>CXX: Program for compiling C++ programs; default G++</li>
+<li>CC: Program for compiling C programs; default cc</li>
+<li>CFLAGS: Extra flags to give to the C compiler</li>
+<li>CXXFLAGS: Extra flags to give to the C++ compiler</li>
+<li>CPPFLAGS: Extra flags to give to the C preprosessor</li>
+<li>LDFLAGS: Extra flags to give to compilers when they are supposed to invoke the linker</li>
+</ul>
+<p>And the makefile automatically manage these variable flags:</p>
+<p>Perhaps the most confusing part of make is the magic rules and variables that are made. Here's a list of implicit rules:</p>
+<ul>
+<li>Compiling a C program: <code>n.o</code> is made automatically from <code>n.c</code> with a command of the form <code>$(CC) -c $(CPPFLAGS) $(CFLAGS)</code></li>
+<li>Compiling a C++ program: <code>n.o</code> is made automatically from <code>n.cc</code> or <code>n.cpp</code> with a command of the form <code>$(CXX) -c $(CPPFLAGS) $(CXXFLAGS)</code></li>
+<li>Linking a single object file: n is made automatically from n.o by running the command <code>$(CC) $(LDFLAGS) n.o $(LOADLIBES) $(LDLIBS)</code></li>
+</ul>
+
+    </body>
+    </html>

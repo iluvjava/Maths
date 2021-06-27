@@ -7,11 +7,14 @@ The reference resource is [here](https://sites.math.washington.edu/~morrow/498_1
 
 Must read the Steepest Descend for Matrix Vector first before reading this many of the quantities are defined there and we continued using it. 
 
-It's been show previously that just taking the best step at each iterations
+It's been show previously that just taking the best step at each iterations doesn't make the algorithm converges with a maximal number of steps.
 
-We continue the sage from steepest gradient descend. And the method we introduced here is just an improvement of the steepest gradient descend for solving symmetric matrices. 
+We continue the saga from steepest gradient descend. And the method we introduced here is just an improvement of the steepest gradient descend for solving symmetric matrices. 
 
 In Steepest descend we shown that it's slow when $\mu = \kappa$, to mitigate we think of the idea of $A$ orthogonal direction $d$, and by $A$ orthogonal we mean that: $d^TAd =0$. 
+
+**Major Inspiration**: 
+> If the steepest direction is one of the eigen-vector, then the algorithm will converge at exactly one iteration. So... What if we always walk in directions that are orthogonal in term of projection onto the eigen vectors? 
 
 **Consider:** 
 
@@ -315,6 +318,10 @@ Claim 4 $\blacksquare$
 
 > Choose $u_i = r^{(j)}$, then $r^{(i)T}r^{(j)} = 0$ whenever $i \ne j$. [^1]
 
+**Claim 4 Corollary 2**
+ 
+> Choose $i = j$, we have $r^{(i)T}d^{(i)} = r^{(i)T}u_i$
+
 ---
 ### **Conjugate Gradient Descend**
 
@@ -390,13 +397,13 @@ $$
    -\beta_{j + 1, j} &= \frac{-\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j \Vert d^{(j)}\Vert_A^2}
    \\
    \beta_{j + 1, j} &= \frac{\Vert r^{(j + 1)}\Vert_2^2}{\alpha_j \Vert d^{(j)}\Vert_A^2}
-\end{aligned}
+\end{aligned}\tag{15}
 $$
 
 Now, we will have the ability to simplify expression (9), and the conjugate direction at the $j$ th iteration will be easier to compute because it doesn't require all the previous conjugate direction to compute the new conjugate direction anymore. 
 
 $$
-d^{(i + 1)} = r^{(i + 1)} + \beta_{i + 1, i} d^{(i)}
+d^{(i + 1)} = r^{(i + 1)} + \beta_{i + 1, i} d^{(i)}\tag{16}
 $$
 
 Claim 5 $\blacksquare$
@@ -406,10 +413,33 @@ Claim 5 $\blacksquare$
 
 The algorithm for the conjugate gradient is: 
 
+$$
+\begin{aligned}
+    d^{(0)} &= b - Ax^{(0)} 
+    \\
+    \alpha_{i} &= \frac{r^{(i)T}d^{(i)}}
+    {\Vert d^{(i)}\Vert_A^2}
+    \\
+    x^{(i + 1)} &= x^{(i)} + \alpha_i d^{(i)}
+    \\
+    r^{(i + 1)} &= r^{(i)} - \alpha_iAd^{(i)}
+    \\
+    \beta_{i + 1} &= \frac{\Vert r^{(j + 1)}\Vert_2^2}{r^{(i)T}d^{(i)}}
+\end{aligned}
+$$
+
+Note: Corollary 2 of Claim 4 can help further simplifies the expression for $\alpha_i$, and hence, $\beta_{i + 1}$ too. [^2]
+
+**Practical Concerns**
+
+The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)} = b - Ax^{(i + 1)}$ to adjust for numerical precision. 
 
 
+---
+### **Preconditioning**
 
 
 
 
 [^1]: I feel like this can be directly derived from the definition of $e^{(k)}$.    
+[^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$. 

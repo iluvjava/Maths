@@ -1,4 +1,4 @@
-## Shur's Decomposition
+### **Shur's Decomposition**
 [Course Notes](http://pfister.ee.duke.edu/courses/ecen601/notes_ch8.pdf)
 
 prereq: [[SVD]] When the matrix happens to be normal, then the Shur decomposition is the the same as the SVD decomposition for the normal matrix (possibly with different signs), not only that, it will also be the Eigen Decomposition of the matrix too, which is really cool. 
@@ -7,7 +7,7 @@ prereq: [[Matrices]] read about normal matrix.
 
 ---
 
-### Intro 
+### **Intro** 
 The Schur decomposition is applicable to **all square matrices** even if when the matrix is defected. 
 
 > $$A = QTQ^H$$ 
@@ -16,23 +16,24 @@ Where the matrix A is expressed using the unitary matrix $Q$ and a Upper Triangu
 
 This is the **KEY** to Eigenvalue problems. 
 
-#### Proof 
+---
+### **Proof**
 
-The proof is inductive. 
+We are using an inductive proof. 
 
-#### Inductively: 
+**Inductively**: 
 
-Let the matrix $A$ be an $m\times m$ complex matrix. 
+* $A \in \mathbb{C}^{m\times m}$ complex matrix. 
 
-Let the matrix $U$ be a unitary matrix but with the first $n$ element be the orthogonal eigenspace with egenvalue of $\lambda$. 
+* Let the matrix $U$ be a unitary matrix but with the first $n$ column vectors to be the orthogonal eigenspace with egenvalue of $\lambda$. 
 
-Augment the matrix $U$ such that from column $n$ to $m$, all of them are orthogonal and unitary. 
+* Augment the matrix $U$ such that from column $n$ to $m$, all of them are orthogonal and unitary. 
 
-Consider the following way of write the matrix A: 
+Consider the following way of writing the matrix A: 
 
 $$U^H A U$$
 
-It's not hard to see that the it can be decomposed into: 
+It's not hard to see that it can be decomposed into: 
 
 $$
 U^H A U = \begin{bmatrix} 
@@ -155,14 +156,14 @@ $$
 
 Notice that the matrix is upper triangular. 
 
-#### Demonstrating the Base Case
+#### **Demonstrating the Base Case**
 
 For base case we are going to consider when the matrix is $2 \times 2$, it's not hard to prove it, and the V matrix is literally just a scalar, and that will automatically make the decomposed $2 \times 2$ a upper triangular matrix. 
 
 ---
-### Corollary: Spectral Theorem
+### **Corollary: Spectral Theorem**
 
-When the matrix $A$ is Hermitian, the the matrix $T$ in the middle will become a diagonal matrix, hence **Hermitian are Diagonalizable** . This is the case because let's say that: 
+When the matrix $A$ is Hermitian, the the matrix $T$ in the middle will become a diagonal matrix, hence **Hermitians are Diagonalizable** . This is the case because let's say that: 
 
 $$A = Q^H TQ$$
 
@@ -176,3 +177,9 @@ Which is saying that $T^H = T$.
 Schur's decomposition assures that the $T$ is upper-triangular, therefore, it has to be the case that $T$ is diagonal. 
 
 Therefore, for all Hermitian matrix are diagonalizable because they are similar to a diagonal matrix. 
+
+
+---
+### **Normal Matrices**
+
+When a matrix is normal,

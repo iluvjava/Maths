@@ -100,12 +100,22 @@ amath583.o: amath583.cpp
 <hr>
 <h3 id="advanced-rules-and-patterning"><strong>Advanced Rules And Patterning</strong></h3>
 <p>There are more advance way of making <code>makefile</code> that reduce the repeatition for declaring the same set of patterns of rules for making files that has the same type of dependency.</p>
+<p><strong>Symbols</strong></p>
+<ul>
+<li>
 <p><code>$&lt;</code>: Represents the file that is the dependency.</p>
+</li>
+<li>
 <p><code>&amp;@</code>: Represents the file that is the target.</p>
+</li>
+<li>
+<p><code>%</code>: Represents a wild card on the name of the file.</p>
+</li>
+</ul>
 <p>This is a generic patterns that compiles <code>.o</code> files using <code>.hpp</code>, <code>.cpp</code> files, this is the format:</p>
-<pre><code><code><div>%.o : %.cpp
-        $(CXX) -c $(CXXFLAGS) $&lt; -o $@
-</div></code></code></pre>
+<pre><code class="language-makefile"><div>%.o : %.cpp
+        <span class="hljs-variable">$(CXX)</span> -c <span class="hljs-variable">$(CXXFLAGS)</span> <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span>
+</div></code></pre>
 <p>Compile <code>.o</code> file  o, which a generic given set of command, and the required dependency, which is the <code>.cpp</code> file.</p>
 <p>Decalre this once, then this will be applied for all the dependencies and rules involving <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi><mi>o</mi></mrow><annotation encoding="application/x-tex">.o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">.</span><span class="mord mathdefault">o</span></span></span></span> as target and <code>.cpp</code> as dependencies.</p>
 <p>Therefore, using this feature, we will be able to simplify the compilation makefile into:</p>
