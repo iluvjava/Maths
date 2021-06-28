@@ -1,6 +1,6 @@
 In this file we are going to see some modern approach to the Eigen Decomposition algorithms, which should give us better perspective on things. 
 [[Eigen Decomp Algo (Baisc and Intro)]]
-[[Schur Decomposition]]
+[[Schur Decomposition]] 
 
 ---
 

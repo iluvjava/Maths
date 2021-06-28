@@ -425,6 +425,8 @@ $$
     r^{(i + 1)} &= r^{(i)} - \alpha_iAd^{(i)}
     \\
     \beta_{i + 1} &= \frac{\Vert r^{(j + 1)}\Vert_2^2}{r^{(i)T}d^{(i)}}
+    \\
+    d^{(i + 1)} &= r^{(i + 1)} + \beta_{i + 1}d^{(i)}
 \end{aligned}
 $$
 
@@ -441,5 +443,5 @@ The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)}
 
 
 
-[^1]: I feel like this can be directly derived from the definition of $e^{(k)}$.    
-[^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$. 
+[^1]: None
+[^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$, in the case of CG the residual is the assisting subspace, the $u_i$ vectors. 

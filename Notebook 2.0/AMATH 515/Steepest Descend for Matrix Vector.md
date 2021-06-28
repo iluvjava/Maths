@@ -16,7 +16,7 @@ Consider the function:
 
 $$
 \begin{aligned}
-f(x)    & =\frac{1}{2}x^TAx - b^T x + c
+f(x) &=\frac{1}{2}x^TAx - b^T x + c
 \\
 \nabla_x[f(x)] &= \frac{1}{2}(A^T + A)x - b
 \\
@@ -349,6 +349,6 @@ Steepest descend can be very slow for matrix with large condition number, this i
 ---
 ### **Augmentation**
 
-Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = Ab$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank. 
+Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank. 
 
 [^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 

@@ -4,30 +4,81 @@
     "type": "split",
     "children": [
       {
-        "id": "6dcc85917de52a39",
+        "id": "40a86f131b096499",
         "type": "leaf",
-        "dimension": 47.87442773054284,
+        "dimension": 47.94094794094794,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581/Advection Diffusion.md",
-            "mode": "source"
-          }
-        },
-        "group": "8080be3d704c8ba4"
-      },
-      {
-        "id": "b101d6c373612b7a",
-        "type": "leaf",
-        "dimension": 52.125572269457166,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 581/Advection Diffusion.md",
+            "file": "AMATH 584/Schur Decomposition.md",
             "mode": "preview"
           }
         },
-        "group": "8080be3d704c8ba4"
+        "group": "91dd3065cbeb8225"
+      },
+      {
+        "id": "59722687a266067d",
+        "type": "split",
+        "dimension": 52.05905205905206,
+        "children": [
+          {
+            "id": "d7f41a64c5079163",
+            "type": "leaf",
+            "dimension": 61.424017003188105,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "AMATH 584/Schur Decomposition.md",
+                "options": {
+                  "collapse-filter": false,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": false,
+                  "colorGroups": [],
+                  "collapse-display": false,
+                  "showArrow": true,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 0.8988605097691695,
+                  "close": true
+                }
+              }
+            },
+            "group": "91dd3065cbeb8225"
+          },
+          {
+            "id": "f77f86d72211b7c8",
+            "type": "leaf",
+            "dimension": 38.5759829968119,
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "AMATH 584/Schur Decomposition.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              }
+            },
+            "group": "91dd3065cbeb8225"
+          }
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -54,7 +105,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Conditional Expectation",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -62,12 +113,20 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "76766b15e5f33919",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 331
+    "width": 405.5036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -83,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581/Advection Diffusion.md",
+                "file": "AMATH 584/Schur Decomposition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -91,6 +150,29 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7617bd12f81a15ba",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "AMATH 584/Schur Decomposition.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9ed17eaa97a986b9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
               }
             }
           }
@@ -101,17 +183,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "6dcc85917de52a39",
+  "active": "40a86f131b096499",
   "lastOpenFiles": [
-    "AMATH 581/Advection Diffusion.md",
-    "AMATH 515/Generalized Linear Model.md",
-    "CSE 546/Logistic Regression.md",
-    "AMATH 515/Softmax Regression.md",
-    "AMATH 503/Eigenfunction Expansion.md",
-    "AMATH 503/Sturm Liouville Theory.md",
-    "AMATH 503/Untitled.md",
-    "CSE 546/K-Nearest Neighbours.md",
-    "AMATH 503/Bessel's Equation.md",
-    "AMATH 503/Legendre Equation.md"
+    "AMATH 584/Schur Decomposition.md",
+    "AMATH 584/Stability and Conditioning.md",
+    "AMATH 584/Schur's Decomposition.md",
+    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
+    "Math 000/Linear Algebra/Normal Matrix.md",
+    "Schur Decomposition.md",
+    "ScratchPaper.md",
+    "AMATH 584/LU Decomposition.md",
+    "Math 000/Linear Algebra/Hermitian Adjoint.md",
+    "AMATH 584/HS Reflector.md"
   ]
 }
