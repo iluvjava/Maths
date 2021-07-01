@@ -45,7 +45,7 @@ $$
         \lambda_1 u_1 & Au_2 & Au_3 & \cdots & Au_n 
     \end{bmatrix}
     \\
-    \forall \; 1 \le i \le n &= 
+    \forall \; 1 \le i \le n &: 
     Au_i \in \mathcal{D}
     \\
     \implies 
@@ -144,6 +144,10 @@ The last line proved that the inductive hypothesis for $n$ is true, based on $n 
 **Base Case**
 
 Based case of a $2 \times 2$ matrix is trivial to prove/show. 
+
+**Observer**
+
+The diagonal of the $T$ matrix is the eigenvalues of the original square matrix. 
 
 ---
 ### **The Spectral Theorem**
