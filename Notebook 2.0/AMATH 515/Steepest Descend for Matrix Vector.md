@@ -58,6 +58,8 @@ Residual is also the gradient at that particular step.
 
 > If the matrix is not positive definite, then it has null space, potentially ill-conditioned or not invertible. 
 
+> If the matrix is not definite at all, then the object function $f(x)$ won't have a global minimal anymore. 
+
 ---
 ### **Steepest Descend Method Proof** 
 
@@ -125,7 +127,7 @@ $$
 ---
 ### **Convergence Analysis**
 
-For more details of analysis, consult [Conjugate without pain](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf) for more details. 
+For more details of analysis, consult [Conjugate without pain](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf) for more details.
 
 But a summary will be given here regardless. 
 
@@ -336,7 +338,7 @@ And, observe the fact that as $\kappa \rightarrow \infty$, the quantity of $\ome
 
 **Moral of the Story**
 
-Steepest descend can be very slow for matrix with large condition number, this is especially true if the initial condition is making $\mu^2 = \xi^2$. 
+Steepest descend can be very slow for matrix with large condition number, this is especially true if the initial condition is making $\mu^2 = \xi^2$.
 
 
 ---
@@ -344,11 +346,11 @@ Steepest descend can be very slow for matrix with large condition number, this i
 
 **Claim:**
 
-> This is a prelude to conjugate gradient method. 
+> This is a prelude to conjugate gradient method.
 
 ---
 ### **Augmentation**
 
-Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank. 
+Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank.
 
 [^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 

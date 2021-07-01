@@ -6,7 +6,6 @@
 All the eigenvalues of a square matrix lies within the union of a series of Gerschgorin Disks. 
 
 
-
 let $A \in \mathbb{R}^{n\times n}$ the Gerschgorin Disk: 
 
 > $$R_i(A) = \sum_{j = 1, j \neq i }^n |a_{i, j}| \quad i = 1, \cdots n$$

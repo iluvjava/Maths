@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Schur Decomposition.md",
+            "file": "AMATH 581/Advection Diffusion.md",
             "mode": "preview"
           }
         },
@@ -24,11 +24,11 @@
           {
             "id": "d7f41a64c5079163",
             "type": "leaf",
-            "dimension": 61.424017003188105,
+            "dimension": 61.4240170031881,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584/Schur Decomposition.md",
+                "file": "AMATH 581/Advection Diffusion.md",
                 "options": {
                   "collapse-filter": false,
                   "search": "",
@@ -51,7 +51,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.8988605097691695,
+                  "scale": 0.8988605097691709,
                   "close": true
                 }
               }
@@ -65,7 +65,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Schur Decomposition.md",
+                "file": "AMATH 581/Advection Diffusion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +105,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Conditional Expectation",
+                "query": "discrete Image Kernel",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -122,11 +122,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 405.5036334991455
+    "width": 325.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -142,7 +143,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Schur Decomposition.md",
+                "file": "AMATH 581/Advection Diffusion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +160,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584/Schur Decomposition.md",
+                "file": "AMATH 581/Advection Diffusion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -185,15 +186,15 @@
   },
   "active": "40a86f131b096499",
   "lastOpenFiles": [
-    "AMATH 584/Schur Decomposition.md",
-    "AMATH 584/Stability and Conditioning.md",
-    "AMATH 584/Schur's Decomposition.md",
-    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
-    "Math 000/Linear Algebra/Normal Matrix.md",
-    "Schur Decomposition.md",
-    "ScratchPaper.md",
-    "AMATH 584/LU Decomposition.md",
-    "Math 000/Linear Algebra/Hermitian Adjoint.md",
-    "AMATH 584/HS Reflector.md"
+    "AMATH 581/Advection Diffusion.md",
+    "AMATH 581/Computer Bad at Maths.md",
+    "AMATH 581/Chebyshev via FFT.md",
+    "AMATH 581/Cheb Differential Matrix.md",
+    "AMATH 581/Canonical Form.md",
+    "AMATH 581/BVP Elliptic PDEs.md",
+    "AMATH 581/BVP.md",
+    "AMATH 581/AMATH 581.md",
+    "AMATH 581/Adam B.M Derivation.jpg",
+    "AMATH 581/Adam B.M.md"
   ]
 }
