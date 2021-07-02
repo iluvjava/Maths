@@ -2,7 +2,7 @@
 We are going to discuss what strong duality is and stuff that is related to it. 
 
 ---
-### Intro
+### **Intro**
 
 Let's start with a primal and dual pair, the proof is skipped here;
 
@@ -51,7 +51,7 @@ The primal $p(y)$ is perturbing the parameters in the primal problem, and the $q
 
 **Claim**: 
 
-The double conjugate of the perturbation function on the primal, with $y = 0$, is the optimal objective with $x = 0$ for the dual. 
+> The double conjugate of the perturbation function on the primal, with $y = 0$, is the optimal objective with $x = 0$ for the dual. 
 
 $$
 p^{**}(0) = \sup_y \left\lbrace
@@ -60,7 +60,7 @@ p^{**}(0) = \sup_y \left\lbrace
 $$
 
 ---
-### Theorem 4.46
+### **Theorem 4.46**
 
 The strong duality basically said that the Primal Objective equals to the dual objective, and the sub differential at the objective value is the the solutions for the primal and the dual. 
 

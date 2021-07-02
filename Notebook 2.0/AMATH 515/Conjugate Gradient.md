@@ -443,5 +443,18 @@ The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)}
 
 
 
+---
+### **Augmentation**
+
+> If the matrix is not SPD (Symmetric Positive Definite). 
+
+Instead, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank.
+
+
+> Given a matrix that is symmetric but it's not positive definite.
+
+Then in that case, we want to solve $AAx = Ab$ instead, and in this case $A^2$ will be SPD, given that $A$ is symmetric. 
+
+
 [^1]: None
 [^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$, in the case of CG the residual is the assisting subspace, the $u_i$ vectors. 

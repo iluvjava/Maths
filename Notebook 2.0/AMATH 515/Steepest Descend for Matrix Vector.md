@@ -60,6 +60,8 @@ Residual is also the gradient at that particular step.
 
 > If the matrix is not definite at all, then the object function $f(x)$ won't have a global minimal anymore. 
 
+> If the matrix is negative definite, then just minimize $-A$ instead.
+
 ---
 ### **Steepest Descend Method Proof** 
 
@@ -349,8 +351,7 @@ Steepest descend can be very slow for matrix with large condition number, this i
 > This is a prelude to conjugate gradient method.
 
 ---
-### **Augmentation**
 
-Given matrix $A$ that is not Symmetric Definite, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ instead, where, $A^TA$ will be symmetric and it will be positive definite when it's full rank.
+
 
 [^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 
