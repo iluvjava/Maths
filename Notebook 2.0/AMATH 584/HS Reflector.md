@@ -3,12 +3,11 @@ This is a brief demonstration on how the Householder Reflector is going to work 
 [[Projector]]
 
 ---
+### **Introduction**
 
-### Introduction
+Given a vector $x$ in $\mathbb{C}^n$, and we want to transform the vector onto another vector say $s$ using the hyperplane separating between $s$, $v$ while at the same time producing the matrix for such a transformation. 
 
-Given a vector $x$ in $\mathbb{C}^n$, and we want to transform the vector onto another vector say $s$ using the hyperplane seperating betweeen $s$, $v$ while at the same time producing the matrix for such a transformation. 
-
-In general, we are looking for the matrix which performs a reflection transformation on vectors in $\mathbb{C}^n$ where, and the plane of reflection is the hyperplane seperating the vector $x$ and $y$ where these 2 vectors are not collinear and the vector $y$ is also **unitary** (complex modulus is 1)
+In general, we are looking for the matrix which performs a reflection transformation on vectors in $\mathbb{C}^n$ where, and the plane of reflection is the hyperplane separating the vector $x$ and $y$ where these 2 vectors are not co-linear and the vector $y$ is also **unitary** (complex modulus is 1)
 
 Let vector $v = y - x$. Then, the hyperplane that is separating these 2 vector $x$, $y$ will be orthogonal to $v$.
 
@@ -27,6 +26,19 @@ $$
 $$
 
 And this is the orthogonal project. 
+
+
+Illustration: 
+
+![](HS_Reflector.jpg)
+
+---
+### **Properties and Facts**
+
+* $P^2 = P$
+* $P^H = P$
+* $P = P^{-1}$
+
 
 ---
 Ok, we claimed that the matrix will act as a reflector, then let's see all the vectors on the Hyperplane separating the $x$ and $y$ will be the eigen vector with eigen values of 1. 

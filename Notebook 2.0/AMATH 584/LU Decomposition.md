@@ -6,7 +6,7 @@ Most of this is coming from the Trefethen's book, numerical Linear Algebra.
 
 ---
 
-### Introduction 
+### **Introduction** 
 
 The idea behind the $LU$ decomposition is to encode the process of Gaussian Eliminations into 2 matrix, the $L$ as an lower triangular matrix and the $U$ as an upper triangular matrix. 
 
@@ -26,7 +26,7 @@ and then The matrix $A = LU$.
 
 
 ---
-### LU Without Pivoting 
+### **LU Without Pivoting** 
 
 The illustrative process of triangularizing the $A$ matrix is much similar to the Householder Triangularization, but instead of producing a Unitary Matrix, we produce a sequence of a special type of Lowe Triangular matrix for the Transformation, and it's looking like this: 
 
@@ -109,8 +109,7 @@ $$
 And Conveniently, the Inverse of the matrix $L_3L_2L_1$ is pretty trivial to get, it's just taking the negative sign on all the non-diagonal elements of the matrix: 
 
 --- 
-
-### A General Formulation
+### **A General Formulation**
 
 For this part, we are still going to be assuming that the matrix $A\in \mathbb{C}^{m\times m}$. And we are looking at one of the row operation matrix, $L_k$
 
@@ -181,7 +180,7 @@ Also the sum of all the Lower Triangular Matrices are looking the same as the fi
 
 --- 
 
-### Algorithm 20.1 LU without Pivoting 
+### **Algorithm 20.1 LU without Pivoting** 
 
 Pseudo Codes: 
 
@@ -197,8 +196,7 @@ end
 
 
 ---
-
-### LU Decomposition Partial Pivoting
+### **LU Decomposition Partial Pivoting**
 
 When eliminating the columns to get the matrix $U$ we might consider choosing the row where on the $k$ th column we can have the element such that it's the largest.
 
@@ -260,7 +258,7 @@ Notice that, the $L_k'$ matrix is like the original $L_k$ matrix if there is no 
 
 ---
 
-### Algorithm 21.1 
+### **Algorithm 21.1** 
 
 This algorithm with partial pivoting is from Trefethen's Book. 
 

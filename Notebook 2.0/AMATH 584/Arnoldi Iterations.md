@@ -4,9 +4,9 @@ prereq: [[Modified GS Process]]
 The iterations share the same algorithm structure as the modified GS process. 
 prereq: [[Eigen Decomp (Hessenberg Transform)]], Take a look at the Hessenberg Similarity Transform. 
 
----
 
-### Similarity Transform
+---
+### **Similarity Transform**
 
 Let the matrix A be similar to an Hessenberg matrix, with orthogonal transform. 
 

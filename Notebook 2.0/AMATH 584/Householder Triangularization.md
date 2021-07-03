@@ -6,7 +6,7 @@ prereq: [[HS Reflector]]; Provides some background on why the reflection is a le
 
 ---
 
-#### Intro
+#### **Intro**
 The Gram Shimtz Process has a different view to it. 
 
 When the algorithm is computing the matrices, it choose to Orthogonalize the matrix $A$ while producing a triangular matrix. 
@@ -20,12 +20,11 @@ The House Holder Triangularization take the approach of **Triangularizing a matr
 Here is some assumption to our set up of the matrix, the matrix is full rank and it's skinny meaning that $A \in \mathbb{C}^{m\times n}$ where $m\leq n$
 
 ---
-
-#### Householder Triangularization 
+### **Householder Triangularization** 
 
 >$$ Q_nQ_{n - 1}\cdots Q_2Q_1A= R$$
 
-And the objective now it's too look for the matrices $Q_k$ such that it's always a unitary transformation (reflection in this case), while at the same time, transforming the matrix $A$ into a upper triangularization matrix. 
+And the objective now it's too look for the matrices $Q_k$ such that it's always a unitary transformation (reflection in this case), while at the same time, transforming the matrix $A$ into a upper triangularization matrix.
 
 Now, the thing here is that each multiplication of the $R$ matrix will take one of the column to fit the triangular form of the matrix.
 
@@ -36,7 +35,7 @@ Notice that such a matrix will has special struture to it. The $Q$ matrix is the
 $$
 Q_k = 
 \begin{bmatrix}
-	\underset{k\times k}{I} &  0 \\[0.5em] 
+	\underset{k\times k}{I} &  0 \\[0.5em]
 	0 & \underset{m - k \times m - k}{F} 
 \end{bmatrix}
 $$
@@ -67,7 +66,8 @@ And this is how the matrix $F$ as an unitary transformation, operates on vectors
 By defining the $v = ||v||e_1 - x$, then we will have the formation the matrix $F$, which is going to be: 
 $$P_x = F$$
 
-#### Numerical Stability
+---
+### **Numerical Stability**
 
 So far we cannot immediately see the reasons why this method is having better numerical stability. But the key here is about the vector $v$. 
 
@@ -82,8 +82,7 @@ And this will prevent the vector x from being too close to the vector $e_1$, so 
 So when the vector lies close with $e_1$, then the hyperplane $H^-$ will be chosen and vice versa. 
 
 ---
-
-#### Pusedo Codes
+#### **Pusedo Codes**
 
 precondition: The matrix is a full rank matrix. 
 
@@ -160,8 +159,8 @@ def full_qr_factor(R):
     return Q.T, triu(R)
 ```
 
-
-### Key Implementation Details
+---
+### **Key Implementation Details**
 
 When implementing the algorithm in practice, there will be several important things to take notice, they are: 
 * Squared Matrices
