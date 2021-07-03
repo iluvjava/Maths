@@ -182,4 +182,4 @@ Therefore, for all Hermitian matrix are diagonalizable because they are similar 
 ---
 ### **Normal Matrices**
 
-When a matrix is normal,
+When a matrix is normal, they commute and $A^TA = AA^T$. 
