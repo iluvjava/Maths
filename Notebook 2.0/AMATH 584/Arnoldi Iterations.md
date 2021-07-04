@@ -6,6 +6,11 @@ prereq: [[Eigen Decomp (Hessenberg Transform)]], Take a look at the Hessenberg S
 
 
 ---
+### **Intro**
+
+Arnoldi Iteration is the Modified Gram Schidtz applied to the Krylov Subspace of a matrix. 
+
+---
 ### **Similarity Transform**
 
 Let the matrix A be similar to an Hessenberg matrix, with orthogonal transform. 
@@ -77,7 +82,8 @@ $$
 A[q_1| q_2| q_3 \cdots q_k] = [q_1| q_2| q_3 \cdots q_{k + 1}]H_{1: k + 1, 1: k}
 $$
 
-#### Observations
+**Observations**
+
 The architecture of the algorithm is very similar to the Modified GS algorithm. But instead of starting the iteration with a vector inside of the matrix $A$, we instead take a random one $b$ and place that as the first vector. 
 
 During the iterations of the algorithm, the matrix $A$ is treated as a black box, and this is very interesting, and as far as we know, it can be infinitely huge, and we are just interacting with the matrix via subpart of it, and this is the general philosophy of iterative methods for linear algebra. 

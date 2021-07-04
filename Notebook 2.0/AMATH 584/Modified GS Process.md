@@ -5,7 +5,7 @@ It uses the idea of a orthogonal projector, coming from: [[Projector]]
 
 ---
 
-### Pseudo Codes
+### **Pseudo Codes**
 
 Ok, I am going to write modified Gram-Schmidt here in pseudo codes. 
 
@@ -24,15 +24,17 @@ The outer loop is going through each column, and the inner loop removes the comp
 The inner forloop is way more interesting, because it's actually using the idea of a **Orthogonal Projector**, let's take a closer look. 
 
 ---
-### Key To Understanding
+### **Key To Understanding**
 
 Suppose that we are given a really special type of matrix like where, all the first $i$ the columns of the matrix forms a ortho-normal basis and all the columns that comes after it are the vectors we want to Orthogonalize and Normalize, in addition, they are perpendicular to the first $i$ columns of the matrix A. 
 
 Let's take a look at some of the loop invariants.
 
-> $$(A)_{:, 1:i}^H(A)_{:, 1:i} = I$$  (1)
-
-> $$\text{range}\{(A)_{:, 1:i}\}\perp \text{range}\{(A)_{:, i + 1:\text{end}}\}$$(2)
+> $$(A)_{:, 1:i}^H(A)_{:, 1:i} = I$$
+> (1)
+> 
+> $$\text{range}\{(A)_{:, 1:i}\}\perp \text{range}\{(A)_{:, i + 1:\text{end}}\}$$ 
+> (2)
 
 Take the $i + 1$th column of the matrix, now I want it to be perpendicular to all the vectors that comes before it, and this is what the algorithm is recursively asserting in the inner forloop. 
 

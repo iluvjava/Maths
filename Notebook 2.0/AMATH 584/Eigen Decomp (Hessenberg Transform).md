@@ -140,8 +140,10 @@ After every 2 iterations, the matrix kept its Hessenberg form. This is what the 
 
 **Claim 2**: 
 > If we put $A_{3:, 1}$ into zeros, and then recursively does this to the $A_{2:, 2:}$ sub matrices, then the resulting matrix is going to be Hessenberg form. 
+> 
+> Make $A$ into PHF, and then do this recusively for sub matrix $A_{2:, 2:}$, then the resulting matrix is Hessenberg Form. 
 
-**Claim 2 is stated as trivial**. 
+**Claim 2 is stated without proof**. 
 
 Let's define HS reflector paramaterized by vector $X$ in the following way:
 
@@ -176,9 +178,64 @@ Recursively, the Hessenberg's form is kept throughout the algorithm it's achievi
 
 **Claim 3**: 
 
-> $\hat{P}_1A\hat{P}_1^{-1}$ is in PHF. 
+> $\widehat{P}_1A\widehat{P}_1^{-1}$ is in PHF. 
 
+Denote $P(A_{2:, 1})$ as simply $P_1$
 
+$$ 
+\begin{aligned}
+	\hat{P}_1A\hat{P}_1^{-1} &= H^{(1)} \hat{P}_1^{-1}
+	\\
+	\underset{(1)}{\implies}
+	\hat{P}_1A\hat{P}_1 &= H^{(1)}\hat{P}_1
+	\\
+	&= 
+	\begin{bmatrix}
+		* & \begin{matrix}
+			\cdots & * 
+		\end{matrix}
+		\\
+		\begin{matrix}
+			* \\ \mathbf{0}
+		\end{matrix}
+		& \begin{matrix}
+			\widetilde{H}^{(1)}
+		\end{matrix}
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & \mathbf{0}^T
+		\\
+		\mathbf{0} & P_1
+	\end{bmatrix}
+	\\
+	&= 
+	\begin{bmatrix}
+		* & \begin{matrix}
+			\cdots & * 
+		\end{matrix}
+		\\
+		\begin{matrix}
+			* \\ \mathbf{0}
+		\end{matrix}
+		& \begin{matrix}
+			\widetilde{H}^{(1)}P_1
+		\end{matrix}
+	\end{bmatrix}
+\end{aligned} 
+$$
+
+(1): The inverse of the HS reflector is itself. 
+
+**Claim 3** is proved, the matrix $\hat{P}_1A\hat{P}_1^{-1}$ is going to be Partial Hessenberg form. 
+
+Inductively, apply the same transformation on the submatrix $A_{2: , 2:}$ and make it PHF, then **claim 1** is proven by **claim 2** and what we just said. 
+
+---
+### **Using Modified Gram Schmidt** 
+
+An alternative is to use Gram Schmdit on the Krylov Subsapce of the matrix, this can also produce the Hessenberg transform of the matrix but its less stable. 
+
+But it has applications in eigenvalue decomposition. 
 
 
 ---
@@ -193,7 +250,8 @@ The same matrix $Q$ for the household transformation is recursively applied to t
 From: Trefethen's Book page 198
 
 **Comment**
-A similar approach is used for the SVD decomposition algorithm, but instead of operating on one bases, that algorithms is operating on 2 basis, and it's reducing the matrix with diagonal form with only one upper sub diagonal, and then it starts iteratively reducing that matrix to a diagonal matrix to form the $\Sigma^2$ in the SVD decomposition. 
+
+> A similar approach is used for the SVD decomposition algorithm, but instead of operating on one bases, that algorithms is operating on 2 basis, and it's reducing the matrix with diagonal form with only one upper sub diagonal, and then it starts iteratively reducing that matrix to a diagonal matrix to form the $\Sigma^2$ in the SVD decomposition. 
 
 ---
 ### **Iterative Diagonalization**
