@@ -63,7 +63,7 @@ $$
         \right)
     \\
     &= 
-    \mathbb{E}\left[
+    \mathbb{E}_{x\in \chi}\left[
             \log_2\left(
                 \frac{1}{Q(x)}
             \right)

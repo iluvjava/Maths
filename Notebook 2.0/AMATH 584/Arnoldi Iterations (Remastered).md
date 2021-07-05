@@ -7,6 +7,10 @@ Apply Gram Schidmtz decomposition to the Krylov Subspace of a matrix will is wha
 
 It's another way of looking for the Hessenberg Transform of a squared matrix. It's am implicit way of doing so because we don't need to know what vectors are in the matrix. 
 
+What are the reasons to prefer the modified Gram Shimdtz based method over the Household reflector method? 
+
+ * It treats the matrix as a blackbox, when the matrix is sparse, this is the go to. 
+
 ---
 ### **Algorithm**
 
@@ -26,7 +30,7 @@ $$
         \\
         0 & 0& \cdots & h_{3, n}
         \\
-        & \vdots &  & \vdots 
+        \vdots & \vdots & \ddots & \vdots 
         \\
         0 & 0 & \cdots & h_{n, n}
     \end{bmatrix}
@@ -72,7 +76,7 @@ All variables only appears once in the statement of the algorithm, making it eas
 ---
 ### **Hessenberg Form**
 
-* Let $Q_n$, $H_n$ be produced from the above algorithm. 
+* Let $Q_n$, $H_n$ be produced from the above algorithm. $n - 1$, so that $Q_n, H_n$ are both $n\times n$ complex matrices. 
 
 Then consider the following quantity: 
 
@@ -164,5 +168,9 @@ $$
 $$
 
 
+---
+### **Extra**
+
+Reference: [here](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf), more lecture notes Krylov Subspace and Arnoldi Iterations and the iterative method call GMRes.
 
 

@@ -57,6 +57,11 @@ $$
 
 This is anlogous to conditional expectation. 
 
+
+
+
+
+
 ---
 ### **Properties**
 
