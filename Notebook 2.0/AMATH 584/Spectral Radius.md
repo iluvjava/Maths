@@ -58,7 +58,7 @@ Then, $d$ can be chosen such that, $d{i - j}$ is as small as possible, making th
 
 $$
 \begin{aligned}
-    \forall \epsilon &\exist d: \Vert DTD^{-1}\Vert_1 \le \rho(A) + \epsilon
+    \forall \epsilon &\exist D: \Vert DTD^{-1}\Vert_1 \le \rho(A) + \epsilon
     \\
     \implies
     \Vert B\Vert_1 &:= \Vert DQ^HBQD^{-1}\Vert_1 

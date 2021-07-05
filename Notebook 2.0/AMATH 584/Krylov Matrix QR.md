@@ -1,4 +1,5 @@
 prereq: [[Arnoldi Iterations]]
+[Reference Materials](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
 
 ---
@@ -39,11 +40,11 @@ Representing $b$ using eigenvectors of $A$, and this $K_n$ will tell use a lot a
 
 **Claim 1**
 
-> The matrix $\tilde{H}_{n}$ from the Arnoldi iterations either by Modified GS, or the Householder Triangularization, will have the same eigen vector as the matrix $A$. 
+> The matrix $\tilde{H}_{n}$ from the Arnoldi iterations either by Modified GS, or the Householder Triangularization, will have the same eigenvector as the matrix $A$. 
 
 **Claim 2**
 
-> Using QR on Krylov Subspace can also directly give us the Hessenber form of matrix $A$, which then makes the $Q_n$ matrix from Anoldi Iterations the same as the $Q_n$ matrix from applying QR factorization on $A$. [^1]
+> Using QR on Krylov Subspace can also directly give us the Hessenberg form of matrix $A$, which then makes the $Q_n$ matrix from Anoldi Iterations the same as the $Q_n$ matrix from applying QR factorization on $A$. [^1]
 
 **Consider:**
 
@@ -64,7 +65,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-Now, we make the assumption that $K_n$ is invertible, so that means the matrix is full rank by my instinct. Then the following can be said: 
+Now, we make the assumption that $K_n$ is invertable, so that means the matrix is full rank by my instinct. Then the following can be said: 
 
 $$
 \begin{aligned}
@@ -86,6 +87,7 @@ C_n = \begin{bmatrix}
 \tag{3}
 $$
 
+This is $C_n$ famous and it's called the **Companion Matrix**
 
 **Claim 4 Without Proof**
 
@@ -93,6 +95,7 @@ $$
 > $$
 > 	|C_n - \lambda I| = z^n + \sum_{i = 1}^{n} c_iz^{i - 1}
 > $$
+> Where $c_i$ is from the vector $c$. 
 
 
 continue from part (2) we have: 
@@ -105,7 +108,7 @@ $$
 \end{aligned}\tag{4}
 $$
 
-Since $A$ is similar to $C_n$ they share the same eigen values, therefore, we can find the eigen values for marix $C_n$, then we find the eigenvalues for $A$. We are on our way to **claim 1**. 
+Since $A$ is similar to $C_n$ they share the same eigenvalues, therefore, we can find the eigenvalues for matrix $C_n$, then we find the eigenvalues for $A$. We are on our way to **claim 1**. 
 
 Consider applying QR factorization on $K_n$, then we have the following argument: 
 
