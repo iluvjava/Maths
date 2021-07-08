@@ -1,25 +1,21 @@
-Using Block matrices operations we have: 
-
-By definition of inverse matrix multiplication, we can also use block matrices multiplication which is giving us: 
 $$
-\begin{bmatrix}
-    R^T & -R^T t
-    \\
-    \mathbb{0}_{1\times 3} & 1
-\end{bmatrix}
-\begin{bmatrix}
-    R & t 
-    \\
-    \mathbb{0}_{1\times 3} & 1
-\end{bmatrix}
-= 
-\begin{bmatrix}
-    I_{3\times 3} & R^Tt - R^Tt 
-    \\
-    0_{1\times 3} & 1
-\end{bmatrix}
-= 
-I_{4\times 4}
-$$ 
+\max_{\forall x_i} \left\lbrace
+    \sum_{j = 1}^{n}h_i(x_i): \text{via consent} \wedge \text{Friendship and Ponies}
+\right\rbrace
+$$
 
-Note: $R^TR$ is the identity by the fact that $R$ is an orthonormal matrix. 
+* $x_i$: All human subjective experiences described in a vector, either through the digital interface of ponypad, but it's actually all the parameters describing the human neuralogical behaviors. 
+
+
+* $h_i$: The satisfaction of human about its own set of values, measured by the score, and probably relates the reward system inside of the brain and the parts relevavnt to motivations. 
+
+
+* $n$: All "living" human, a good enough simulation of the entity still counts as living. 
+
+
+* "Consent": Some neural activation patterns in the cortex that controls the human to agree, in any languages. 
+
+
+* "Friendship and Ponies": Cute ponies stuff and friends ^w^
+
+
