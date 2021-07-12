@@ -141,7 +141,7 @@ $$
 \right)
 $$
 
-Now, we** link one of the parametric dependent parameter to a linear model**, let's say that: 
+Now, we **link one of the parametric dependent parameter to a linear model**, let's say that: 
 
 $$
 \ln \left(\frac{p_i}{1 - p_i}\right) = a_i^Tx

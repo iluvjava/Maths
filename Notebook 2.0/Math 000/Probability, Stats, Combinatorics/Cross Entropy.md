@@ -44,3 +44,4 @@ $$
 
 With the assumption that, $y_n\sim P$ and $x_n\sim Q$. The more similar the 2 distribution, the less the expression is.  
 
+The term $\frac{1}{N}$ is optional. 

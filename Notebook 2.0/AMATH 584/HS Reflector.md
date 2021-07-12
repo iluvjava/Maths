@@ -30,7 +30,7 @@ And this is the orthogonal project.
 
 Illustration: 
 
-![](HS_Reflector.jpg)
+![](HS_Reflector%201.jpeg)
 
 ---
 ### **Properties and Facts**

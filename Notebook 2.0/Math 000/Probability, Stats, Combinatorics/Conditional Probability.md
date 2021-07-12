@@ -51,6 +51,8 @@ $$
 \end{aligned}
 $$
 
+It's the same for continuous variable, just replace the probability operator with the PDF function for the random variable. 
+
 Take these formula to understand the distribution and other kind of stuff. 
 
 ---

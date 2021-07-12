@@ -1,6 +1,6 @@
 This is some of the major ideas used to produce the loss function for the variational auto-encoder.
 
-Something is similar to what we have here is the [[Shannon's Entropy]]
+Something is similar to what we have here is the [[Shannon's Entropy]], [[Cross Entropy]]
 
 Reference resources: 
 
@@ -42,16 +42,16 @@ Consider this:
 
 $$
 \begin{aligned}
-    D_{KL}(P||Q) &= \sum_{x \in \chi}^{}P(x)\log_2 \left(
+    D_{KL}(P||Q) &= \sum_{x \in P}^{}P(x)\log_2 \left(
         \frac{P(x)}{Q(x)}
     \right) 
     \\
     &= 
-    \sum_{x\in \chi}^{}
+    \sum_{x\in P}^{}
     P(x)(\log_2(P(x)) - \log_2(Q(x))
     \\
     &= 
-    \sum_{x \in \chi}^{}
+    \sum_{x \in P}^{}
         P(x)
         \left(
             \log_2\left(
@@ -63,7 +63,7 @@ $$
         \right)
     \\
     &= 
-    \mathbb{E}_{x\in \chi}\left[
+    \mathbb{E}_{x\in P}\left[
             \log_2\left(
                 \frac{1}{Q(x)}
             \right)
@@ -72,10 +72,13 @@ $$
                 \frac{1}{P(x)}
             \right)
         \right]
+    \\
+    &= 
+    H(P, Q) - H(P)
 \end{aligned}
 $$
 
-Interesting. Not quiet entropy but it  sure looks funny. 
+Interesting. It's cross entropy. 
 
 
 
