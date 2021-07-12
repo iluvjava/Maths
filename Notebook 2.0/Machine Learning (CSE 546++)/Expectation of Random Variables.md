@@ -1,5 +1,5 @@
 Here, we learn how to deal with the expectation of random variables. 
-
+[[PDFs, PMFs]]
 
 ---
 

@@ -23,9 +23,11 @@ $$
 And assume that $X$ is continuous with PDF $f_X(x)$ then: 
 
 $$
-\mathbb{P}\left(l < X < u\right) = 
-\int_{x = l}^{x = u} f_X(x) dx
+    \mathbb{P}\left(l < X < u\right) = 
+    \int_{x = l}^{x = u} f_X(x) dx    
 $$
+
+However, it would implies that $\mathbb{P}(X = a) = 0$, **don't mess up the probability with probability density function please**. 
 
 However, here are the restrictions for PDFs, PMFs: 
 

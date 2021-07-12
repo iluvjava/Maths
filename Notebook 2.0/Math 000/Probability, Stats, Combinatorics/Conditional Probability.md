@@ -2,7 +2,7 @@ Let's get ourselves familiar with conditional probability
 
 This also mix well with the [[Bayes Theorem]], where we talked about conditional probability. 
 
-The basics are [[Expectation of Random Variables]]
+The basics are [[Expectation of Random Variables]], [[PDFs, PMFs]]
 
 
 

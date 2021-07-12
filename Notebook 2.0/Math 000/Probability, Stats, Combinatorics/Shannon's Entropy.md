@@ -8,6 +8,10 @@ Here is the wiki [here](https://www.wikiwand.com/en/Entropy_(information_theory)
 
 The Shannon's Entropy is a measure on the amount of bits needed to represents the information from a given probability distribution of a random variable. 
 
+Remember this: 
+
+> A rare events convey more information than a common event. 
+
 Given a discrete random variable $X$, taking $n$ possible outcomes with nonzero possibility, the entropy is measured by: 
 
 $$

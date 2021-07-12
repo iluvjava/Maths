@@ -199,13 +199,13 @@ But, how?
 
 **Claim 3:**
 
-> Gram Schmidt conjugate process is going to be slow if we are using it. And it has connection with Gaussian Elimination too. The process itself is a way of generating a set of conjugate vectors, similar to the Gram Schimidt process used for QR decomposition of matrices. 
+> Gram Schmidt conjugate process is going to be slow if we are using it. And it has connection with Gaussian Elimination too. The process itself is a way of generating a set of conjugate vectors, similar to the Gram Schimidt process used for QR decomposition of matrices, but instead of ending up with orthogonal vectors, we start with orthogonal vectors and ends up with conjugate vectors. 
 
 #### **Gram Schimidt Conjugation**
 
 Given a set of orthogonal vectors $\{u_i\}_{i = 1}^n$ that spans the whole $\mathbb{R}^{n}$ (Standard Basis vectors are an ok choice here), where, the matrix $A$ is $n\times n$.
 
-To construct a set of vectors that are $A$ orthogonal, we would need to subract from the vector $u_i$ with components span by the vectors $d^{(k)}$. Mathematically: 
+To construct a set of vectors that are $A$ orthogonal, we would need to subract from the vector $u_i$ with components span by the vectors $d^{(i < k)}$. Mathematically: 
 
 $$
 \begin{aligned}
@@ -359,7 +359,7 @@ $$
 \end{aligned}\tag{13}
 $$
 
-Then, consider the expression for the residual vector at $i + 1$ iteration.
+Then, consider the expression for the residual vector at $j + 1$ iteration.
 
 $$
 \begin{aligned}
@@ -380,7 +380,7 @@ Now, there are several cases of values for $\alpha_i$, and it depends on the val
 
 * Consider $i < j$, From the **corollary of claim 4**, when $i<j$, the right handside is always zero, which implies that $\beta_{i, j} = 0$. 
 
-* From expression (11), the conjugation expression doesn' allow for the case that $i = j$.
+* When $i = j$, we have $\Vert r^{(i)}\Vert_2^2$, but we don't need this for the conjugation.
 
 * Consider $i = j + 1$, then 
 

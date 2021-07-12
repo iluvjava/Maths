@@ -1,6 +1,6 @@
 This concept has already been introduced in the AMATH class. 
 
-In [[Basic Machine Learning]]. 
+In [[Basic Machine Learning]]. [[Normal Distribution]]
 
 And this is a similar idea compare to 
 
