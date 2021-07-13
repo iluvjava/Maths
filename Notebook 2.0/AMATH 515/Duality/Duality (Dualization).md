@@ -3,7 +3,7 @@ Prereq: [[Duality Preparation]], [[Duality Prepraration 2]]
 Here, we will use some of the ideas we prepared to demonstrate how duality works, with some examples and stuff. 
 
 ---
-### Intro
+### **Intro**
 Previous we were exposed to the idea of conjugate functions. And we learn the important facts that: 
 
 1. The dual variable is the variable of the conjugate function. 
@@ -26,7 +26,7 @@ For Duality, we will be interested about the following perspectives (Views, thin
 4. Characterizing the optimality of the solutions. 
 
 ---
-### Equality Constraints, Any Objective
+### **Equality Constraints, Any Objective**
 
 Consider objective function $g(x)$ and equality constraints: $Cx = d$, where $C$ is a matrix. We are going to look for the dual of the problem. 
 
@@ -131,7 +131,7 @@ $$
 And in this case the dual and the primal will be equation due to the fact that the function is closed and convex. 
 
 ---
-### Inequality Constraints 
+### **Inequality Constraints** 
 
 Consider the primal problem phrased by: 
 
@@ -233,7 +233,7 @@ At this stage, is not hard to see that (4) is applicable for duality in linear p
 The conjugate of a linear objective function is the indicator function. If $f(x) = C^Tx$, then the conjugate is $\delta_0(z - c)$. When $z = c$, this is good, when it's not, this is not good. 
 
 ---
-### Complex Example
+### **Complex Example**
 
 A general example will be: 
 
@@ -280,7 +280,7 @@ $$
 And that is the dual, maximal system. 
 
 ---
-### Example: Lasso
+### **Example: Lasso**
 
 $$
 \min_x \left\lbrace

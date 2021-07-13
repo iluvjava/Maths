@@ -7,6 +7,8 @@ This file seeks to explain and explore further about the idea of convex conjugat
 
 [[Duality Preparation#Convex Conjugate]]
 
+
+---
 ### **Fenchel Conjugate**
 
 It's also called the Fenchel Legendre Transform.
@@ -103,5 +105,12 @@ Double Conjugate making it Smaller.
 $$
 f^{**}(x) \le f(x)
 $$
+
+
+
+---
+### **Fenchel's Identity**
+
+
 
 

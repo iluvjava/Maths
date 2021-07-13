@@ -1,4 +1,6 @@
-Here, I will summarize some of the examples we had for convex conjugates of different functions. 
+Here, I will summarize some of the examples we had for convex conjugates of different functions.
+They will be from HW, some of the notes for the courses, the goal is to make it more organized, and everything in place so we have references for the future. 
+
 [[Convex Conjugate Function]]
 
 Major References: The HW for AMATH 515. 
@@ -11,6 +13,15 @@ Here we will be packing a bunch of good examples with proofs, so it can serve as
 Most of them will be coming straight from the HW problems for the class. 
 
 Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function (Failing the strong duality), hence here we only consider the case where all the functions are convex. 
+
+**Definition of Fenchel Conjugate Transform** 
+
+> Given scalar function $f(x)$, preferably convex, the fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
+> $$
+> f^{\star} (z) = \sup_x \left\lbrace
+>     z^Tx + f(x)
+> \right\rbrace
+> $$
 
 ---
 ### **The Natural Log: $-\ln(x)$**
@@ -44,8 +55,6 @@ $$
 \right) =
 -1 + \ln(1) -\ln(-z) = -1 - \ln(-z)
 $$
-
-
 
 
 ---
@@ -113,9 +122,32 @@ $$
 
 Best vector to choose is $\hat{z}$, a unit vector that points to the same direction as the vector $z$. 
 
+---
+### **The Equality Indicator Function: $\delta_0$**
+
+$$
+\delta_0(x) = \begin{cases}
+    \infty & x \neq \mathbf{0}
+    \\
+    0 & x = 0
+\end{cases}
+$$
+
+Conjugation: 
+
+$$
+\begin{aligned}
+    \delta_0^*(z) &= \sup_x\{z^Tx - \delta_0(x)\} 
+    \\
+    &= 0
+\end{aligned}
+$$
+
+To minimize, adhere to $x = 0$, so that $-\delta(x)$ is zero, else, the whole expression goes to $-\infty$  
+
 
 ---
-### **Summation of Functions**
+### **Summation of a Vectorized Functions**
 
 
 Objective: look for convex conjugate of the function: 
@@ -167,3 +199,5 @@ $$
 
 ---
 ### **Conjugate of $f(\lambda x)$**
+
+

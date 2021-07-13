@@ -11,7 +11,7 @@ From calculus we wish to solve $f(x)$ subjected to $g(x) = 0$ where $x\in \mathb
 
 > Lagrange Multiplier can be gotten by the process of dualization. 
 
-If such a claim is true, then duality is an extension of the Lagrange Multiplier. 
+See [[Duality (Example Transformation)]] for a demonstration in 2D, but here we derive it more generally. 
 
 
 
