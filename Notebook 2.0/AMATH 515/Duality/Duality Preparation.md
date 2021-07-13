@@ -9,7 +9,16 @@ Content:
 ---
 ### **Intro**
 
-Ok, the ideas we introduced here will help us with the idea of weak duality. 
+Duality: 
+* Weak duality: Also there. 
+* Strong Duality: Only for convex function convex constraints. 
+
+At the heart of duality there are 2 things: 
+
+1. Expressing the constraints as delta function in the objective function using augmented real realm. 
+2. Lagrangian
+3. Fenchel Transform
+
 
 ---
 ### **Exercise 4.26**

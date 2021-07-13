@@ -1,15 +1,17 @@
 [[Duality Preparation]]
 
 ---
-### Intro
+### **Intro**
 
 This file seeks to explain and explore further about the idea of convex conjugate. The concept first appears here: 
 
 [[Duality Preparation#Convex Conjugate]]
 
-### Fenchel Conjugate
+### **Fenchel Conjugate**
 
-#### **Definition**
+It's also called the Fenchel Legendre Transform.
+
+**Definition**
 
 Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
 

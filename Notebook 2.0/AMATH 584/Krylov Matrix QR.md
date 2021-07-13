@@ -1,4 +1,5 @@
 prereq: [[Arnoldi Iterations]]
+
 [Reference Materials](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
 
@@ -91,7 +92,7 @@ This is $C_n$ famous and it's called the **Companion Matrix**
 
 **Claim 4 Without Proof**
 
-> The Characteristic polynomial of the matrix $C_n$, the $|(C_n - \lambda I)| = 0$ is : 
+> The Characteristic polynomial of the companion matrix $C_n$, is $|(C_n - \lambda I)| = 0$ which is : 
 > $$
 > 	|C_n - \lambda I| = z^n + \sum_{i = 1}^{n} c_iz^{i - 1}
 > $$
