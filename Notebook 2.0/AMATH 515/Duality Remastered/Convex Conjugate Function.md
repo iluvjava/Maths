@@ -1,5 +1,5 @@
 Definition, conjugacy, interpretations and useful properties. 
-Might need this [[Convex Conjugate (Examples Pack)]] for some of the advanced interpretations of the concept. 
+Might need this [[Convex Conjugate Examples]] for some of the advanced interpretations of the concept. 
 
 ---
 ### **Intro**

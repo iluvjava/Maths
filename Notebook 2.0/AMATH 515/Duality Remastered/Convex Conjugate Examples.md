@@ -58,7 +58,7 @@ $$
 
 
 ---
-### **Infinity Norm Indicator Function**
+### **Infinity Norm Indicator Function** $\delta_{\mathbb{B}_\infty}(x)$
 
 This is the infinity Norm function: 
 
@@ -231,7 +231,7 @@ $$
 \end{aligned}
 $$
 
-* Consider $\exist z_i: z_i > 0$, then choose $x_i > 0$, then consider $\lim_{x_i\rightarrow \infty} z^Tx = \infty$
+* Consider $\exists z_i: z_i > 0$, then choose $x_i > 0$, then consider $\lim_{x_i\rightarrow \infty} z^Tx = \infty$
 * Else, $\forall z_i, z_i \le 0$, which means that $x = \mathbf{0}$ maximizes $z^Tx$. 
 
 Therefore: 
@@ -314,3 +314,54 @@ $$
 $$
 
 Proof is trivial, skipped. 
+
+---
+### **The 2-Norm Matrix Vector $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
+
+The dualization procedures can be found using the Fenchel's Identity. In this case the sub-gradient will be replaced by gradient. 
+
+Assume that that matrix $A$ is full rank, so that $A^TA$ can be reversed. 
+
+$$
+\begin{aligned}
+    f(x) &= \frac{1}{2} \Vert Ax - b\Vert^2     
+    \\
+    \implies
+    \nabla [f(x)] &= A^T(Ax - b)
+    \\
+    \underset{[1]}{\implies}
+    z &= \nabla [f](x) = A^T(Ax - b)
+    \\
+    \implies
+    x &= (A^TA)^{-1} (z + A^Tb)
+\end{aligned}
+$$
+
+\[1\]: We latch on the dual variable to the gradient of the function on the primal variable. 
+
+Using the **Fenchel Identity**, we have: 
+
+$$
+x = (A^TA)^{-1} (z + A^Tb) = \nabla f^*(z)
+$$
+
+Then take the integral on the gradient defined here, we will have: 
+
+$$
+f^*(z) = \frac{1}{2}(z + A^Tb)^T(A^TA)^{-1}(z + A^Tb)
+$$
+
+Which we assume that $A^TA$ is invertible, or else this is not going to work out, and we will be **missing a constant that holds some information**. 
+
+**Note**: 
+The variable $z$ for the conjugate function is the decision variables for th dual problem. 
+
+
+---
+### **The 1-Norm $\Vert x\Vert_1$**
+
+$$
+(\Vert x\Vert_1)^{\star}(z) = \delta_{\mathbb{B}_\infty}(z)
+$$
+
+This is a dual pair and it's been show before. 

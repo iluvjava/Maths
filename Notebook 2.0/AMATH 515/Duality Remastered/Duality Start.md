@@ -25,5 +25,5 @@ We are in the realm of $\bar{\mathbb{R}}$ and $\sup, \max$, $\min, \inf$ are use
 ### **Links**
 
 * Basics of Convex Conjugate [[Convex Conjugate Function]]
-* Examples of Convex Conjugate [[Convex Conjugate (Examples Pack)]]
+* Examples of Convex Conjugate [[Convex Conjugate Examples]]
 * The process of looking for dual of a given problem is highlighted [[Dualization Techniques]]

@@ -1,7 +1,7 @@
 To do this, we would need 
 [[Convex Conjugate Function]]. 
 And [[MinMax MaxMin Lemma]].
-But we also need [[Convex Conjugate (Examples Pack)]]
+But we also need [[Convex Conjugate Examples]]
 
 ---
 ### **Intro**
@@ -12,7 +12,7 @@ Under strong duality, solving one of the problem, primal or dual, will solve bot
 
 However, there is no general way of doing so, and some of the are not unique, let's consider examples that popped up in calculus class. 
 
-**Motivating Example** 
+**The Lagrangian is the Larange Multiplier**
 
 Back in grade school, we see the example of minimizing the function: 
 
@@ -61,6 +61,8 @@ $$
 
 \[1\]: Which is from the definition of the Fenchel Conjugation. And conveniently we know that $\delta_0(z)$ is just zero. 
 
+**Let's Introduce the Lagrangian**
+
 Expression inside $\min\sup$ is the lagrangian we learned. 
 
 $$
@@ -86,12 +88,116 @@ And this, is also the optimality conditions, and in the case of sub-differential
 > It's not mysterious at all, duality it's just an improved version of the Lagrangian Multiplier. 
 > The dual is from the convex conjugate of the constraint function. 
 
+**Let's Keep find the Dual problem**
+
+$$
+\begin{aligned}
+    \min_{x, y}\max_z \left\lbrace
+        f(x, y) + zg(x, y)
+        \right\rbrace
+    \ge 
+    \max_{x}\min_{x, y}
+    \left\lbrace
+        f(x, y) + zg(x, y)
+    \right\rbrace
+\end{aligned}
+$$
+
+---
+### **Dualization On Equality Constraints for any Objective**
+
+Consider objective function $g(x)$ as a mapping from $\mathbb{R}^n$ to $\mathbb{R}$ and equality constraints: $Cx = d$, where $C$ is a matrix. We are going to look for the dual of the problem. 
+
+
+$$
+\min_x \left\lbrace
+    g(x) + \delta_0(Cx - d)
+\right\rbrace \tag{1}
+$$
+
+Conjugation on constraint indictor:
+
+$$
+\begin{aligned}
+    \delta_0 (Cx - d) &= \sup_z \left\lbrace
+        z^T(Cx - d) - \delta_0^*(z)
+    \right\rbrace
+    \\
+    \delta_0 (Cx - d) &= \sup_z \left\lbrace
+        z^T(Cx - d)
+    \right\rbrace    
+\end{aligned}
+$$
+
+Use the dual for expression (1), make $\sup$ into $\max$
+
+$$
+\begin{aligned}
+    \min_x \left\lbrace
+        \max_z \left\lbrace
+        g(x) + z^T(Cx - d)
+        \right\rbrace
+    \right\rbrace 
+    &\underset{[1]}{\ge} \max_z \left\lbrace
+        -z^Td + \min_x \left\lbrace
+            g(x) + z^TCx
+        \right\rbrace
+    \right\rbrace      
+    \\
+    &= \max_z \left\lbrace
+        -z^Td - \max_x \left\lbrace
+            -g(x) -z^TCx
+        \right\rbrace
+    \right\rbrace  
+    \\
+    &= 
+    \max_z \left\lbrace
+        -z^Td - g^*(-Cx)
+    \right\rbrace   
+\end{aligned}
+$$
+
+\[1\]: By the minmax, maxmin lemma. 
+
+> This is the dual problem: 
+> $$
+> \sup_z \left\lbrace
+> -zd - g^*(-C^Tz)
+> \right\rbrace \tag{3}
+> $$
+> This is the Lagrangian: 
+> $$
+> \mathcal{L}(x, z) = g(x) + z^T(Cx - d)
+> $$
+
+
+
+**Least Square Example**: 
+
+Let's consider the case: 
+
+$$
+\begin{aligned}
+    g(x) &= \frac{1}{2} \Vert Ax - b\Vert^2 \quad s.t \quad Cx = d
+    \\
+    g^*(z) &= \frac{1}{2} (z + A^Tb)^T(A^TA)^{-1} (z + A^Tb)
+    \\
+    &= 
+    \max_z \left\lbrace
+        -z^Td - \frac{1}{2} (A^Tb - C^Tz)^T(A^TA)^{-1}(A^Tb - C^Tz)
+    \right\rbrace
+\end{aligned}
+$$
+
+And in this case the dual and the primal will be equation due to the fact that the function is closed and convex. 
+
+
 **Summarization**
 
 1. Express the constraints as a Delta function. 
 2. Consider conjugating on the constraint function. 
 3. Move the min max together. 
 4. What is inside is the Lagrangian for the problem. 
+5. Exchange the MinMax into MaxMin, and then try to find the conjugate of the objective. 
 
 This process is very general and can be used in a lot of different cases. 
-
