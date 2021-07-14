@@ -129,7 +129,7 @@ $$
 \delta_0(x) = \begin{cases}
     \infty & x \neq \mathbf{0}
     \\
-    0 & x = 0
+    0 & x = \mathbf{0}
 \end{cases}
 $$
 
@@ -139,7 +139,7 @@ $$
 \begin{aligned}
     \delta_0^*(z) &= \sup_x\{z^Tx - \delta_0(x)\} 
     \\
-    &= 0
+    &\equiv 0
 \end{aligned}
 $$
 
@@ -365,3 +365,10 @@ $$
 $$
 
 This is a dual pair and it's been show before. 
+
+
+---
+### **Conjugation of Linear Functions $c^Tx$**
+
+
+

@@ -96,7 +96,7 @@ $$
         f(x, y) + zg(x, y)
         \right\rbrace
     \ge 
-    \max_{x}\min_{x, y}
+    \max_{z}\min_{x, y}
     \left\lbrace
         f(x, y) + zg(x, y)
     \right\rbrace
