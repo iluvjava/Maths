@@ -114,7 +114,8 @@ Which is saying that the discrete change in the gradient between 2 points is poi
 $\blacksquare$
 
 **Proof (3) --> (1) [Super Big Brain]**: 
-> $$(\nabla f(y)^T - \nabla f(x)^T)(y - x) \geq 0$$ implies that fact that the function is convex. 
+> $$(\nabla f(y)^T - \nabla f(x)^T)(y - x) \geq 0$$ 
+> implies that fact that the function is convex. 
 
 **Strategy**: 
 Show that **(3)**--> $f(y) = \sup_x\{ f(x) + \nabla f(x)^T(y - x)\}$
@@ -138,7 +139,9 @@ t \ge s \implies \varphi'(t) \le \varphi'(s)
 $$
 
 Using chain rule: 
-$$\varphi'(t) = t\nabla f(x_t)^T(y - x)$$ $$\varphi'(s) = t\nabla f(x_s)^T(y - x)$$
+$$\varphi'(t) = t\nabla f(x_t)^T(y - x)$$ 
+
+$$\varphi'(s) = t\nabla f(x_s)^T(y - x)$$
 
 **Exercise**: show that: 
 $$

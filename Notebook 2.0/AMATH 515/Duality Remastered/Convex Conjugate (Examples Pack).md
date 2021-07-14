@@ -198,6 +198,119 @@ $$
 $$
 
 ---
+### **The Positivity Indicator** $\delta_+(x)$
+
+Let $\delta_+(x)$ be a mapping from $\mathbb{R}^n$ to $\mathbb{R}$, and let $\le, \ge$ be vectorized opertor on all elements of a vector. 
+
+The function basically forces all of its input to be in $\mathbb{R}_+$, else the function will just be undefined. 
+
+$$
+\delta_+(x) = \begin{cases}
+    0 & x \le \mathbf{0}
+    \\
+    \infty & \text{else}
+\end{cases}
+$$
+
+Then the convex conjugate is: $\delta_-(z)$, where it's just the negative conjugate function. 
+
+
+$$
+\begin{aligned}
+    \left(
+        \delta_+(x)
+    \right)^\star(z)
+    &= 
+    \sup_x \left\lbrace
+        z^Tx - \delta_+(x)
+    \right\rbrace
+    \\
+    &= \sup_{x \ge \mathbf{0}} \left\lbrace
+        z^Tx
+    \right\rbrace
+\end{aligned}
+$$
+
+* Consider $\exist z_i: z_i > 0$, then choose $x_i > 0$, then consider $\lim_{x_i\rightarrow \infty} z^Tx = \infty$
+* Else, $\forall z_i, z_i \le 0$, which means that $x = \mathbf{0}$ maximizes $z^Tx$. 
+
+Therefore: 
+
+$$
+\begin{aligned}
+    \left(
+        \delta_+(x)
+    \right)^\star(z)
+    &= 
+    \begin{cases}
+        0 & z \le 0
+        \\
+        \infty & \text{else}
+    \end{cases}
+    \\
+    &= \delta_-(x)
+\end{aligned}
+$$
+
+
+---
 ### **Conjugate of $f(\lambda x)$**
 
+Assume that $f^\star(x)$ is known already, we want to express $(f(\lambda x)^\star)$ using $f^\star(x)$
 
+$$
+\begin{aligned}
+    \left(
+        f(\lambda x)
+    \right)^\star
+    &= 
+    f^\star \left(
+        \frac{z}{\lambda}
+    \right)
+\end{aligned}
+$$
+
+**Justification:**
+
+$$
+\begin{aligned}
+    \left(
+        f(\lambda x)
+    \right)^\star
+    &= 
+    \sup_x\left\lbrace
+        z^Tx - f(\lambda x)
+    \right\rbrace
+    \\
+    &= 
+    \sup_y \left\lbrace
+        z^T\left(
+            \frac{y}{\lambda}
+        \right) - f(y)
+    \right\rbrace
+    \\
+    &= 
+    \sup_y \left\lbrace
+        \left(
+            \frac{z^T}{\lambda}
+        \right)y  - f(y)
+    \right\rbrace
+    &= 
+    f^\star\left(
+        \frac{z}{\lambda}
+    \right)
+\end{aligned}
+
+$$
+
+---
+### **The Identity Function For Convex Conjugate $\frac{1}{2}\Vert x\Vert_2^2$**
+
+$$
+\left(
+    \frac{1}{2}\Vert x\Vert_2^2
+\right)^\star = 
+    \frac{1}{2}\Vert x\Vert_2^2
+$$
+
+Proof is trivial, skipped. 

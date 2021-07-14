@@ -1,5 +1,5 @@
-
 Definition, conjugacy, interpretations and useful properties. 
+Might need this [[Convex Conjugate (Examples Pack)]] for some of the advanced interpretations of the concept. 
 
 ---
 ### **Intro**
@@ -14,13 +14,12 @@ It's also called the Fenchel Legendre Transform.
 
 **Definition**
 
-Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
-
-$$
-f^*(y) = \sup_{x \in E} \left\lbrace
-    y^Tx - f(x)
-\right\rbrace
-$$
+> Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
+> $$
+> f^*(y) = \sup_{x \in E} \left\lbrace
+>     y^Tx - f(x)
+> \right\rbrace
+> $$
 
 #### **Conjugate Epigraph contains all Affine Minorants of the Original Function**
 
@@ -33,18 +32,18 @@ $$
 By definition: 
 
 $$
-z \ge f(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \quad \forall  x
+r \ge z \ge f^*(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \quad \forall  x
 $$
 
 If I have any inputs for the conjugate function： $y$, then: $f(x)\ge y^Tx - f^*(y)$, which, tells me the offset to compare with the conjugate function. 
 
-**Note**: This is applicable even when the function is not convex. 
+**Note**: This is applicable even when the function is not convex, and equality will be satisfied. 
 
-#### **Conjugate is the Support function of Epi f**
 
-Define: Support Function. 
 
-Support function is defined on a convex set. 
+**Claim:**
+
+> The support function over the epigraph of function $f$ is the conjugate function $f^*$, but in a high dimension. 
 
 Define the convex indicator here: 
 $$
@@ -55,17 +54,14 @@ $$
 \end{cases}
 $$
 
-Then the support function of the set is: 
+**Define the Support function**
 
-$$
-S_q(v) = \delta^*_Q(v) = \max_{x\in Q} \{v^Tx\}
-$$
+> $$
+> S_Q(v) = \delta^*_Q(v) = \max_{x\in Q} \{v^Tx\}
+> $$
+> **Support function**: The conjugate of an indicator function over a convex set $Q$. 
 
-Note, the support function of a convex set is the convex conjugate of the indicator function. 
 
-**Support function**: I have a vector, I want to find another vector that is in the convex set such that it aligns the best with the given vector, and the vector is provided by the support function. 
-
-> The conjugate of a function is the support function of the epigraph of the function. 
 
 $$
 f^*(y) = \sup_{x}\left\lbrace
@@ -94,14 +90,24 @@ f^*(y) = \sup_{x}\left\lbrace
     \right)
 $$
 
-In the epigraph of function $f$, how do I choose a vector in the epigraph such that it maximizes the dot product with the vector that points straight down? 
+**Moral of the Story**: 
+
+If I take the Fenchel Transformn on both side of the above equation, then I get back the original function $f$.
+
 
 ---
 ### **Geometric Interpretations**
 
 ![[fenchel_transform_interpretations.png.png]]
 
-The dual variable is the slope of the tangent line and the value of the function is the negative of the y intersect (or whatever intersect on the higher dimension). 
+> The dual variable is the slope of the tangent line and the value of the function is the negative of the y intersect (or whatever intersect on the higher dimension). 
+
+**Observe** 
+
+Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$, then $f^*(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
+
+
+
 
 ---
 ### **Fenchel's Conjugate Properties**
@@ -144,9 +150,8 @@ $$
 
 \[1\]:  Using Minmax, Maxmin Lemma, introduced in [[MinMax MaxMin Lemma]]
 
-**Note**: Equality is true when the function is convex, because a convex set can be reconstructed by all the half spaces (The Affine Minorants). 
-
-
+**Note**: 
+> Equality is true when the function is convex, because a convex set can be reconstructed by all the half spaces (The Affine Minorants). 
 
 
 
@@ -155,36 +160,40 @@ $$
 
 > Fenchel's Identity is useful because it links the dual and primal variable, and can be exploited for dualization of problems. 
 
-Assume: **f is closed and convex**, by definition of convex conjugate: 
 
+**Claim 1**
+> The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 
+> $$
+> z \in \partial f(x) \tag{1}
+> $$
+> $$
+> f^*(z) = \sup_x \{z^Tx - f(x)\} \iff z \in \partial f(x) \quad \text{f is closed and convex}
+> $$
+
+**Proof**: 
+
+Assume: **f is closed and convex**, by definition of convex conjugate: 
 
 $$
 \begin{aligned}
     f^*(z) &= \sup_x \{z^Tx - f(x)\} \ge z^Ty - f(y) \quad \forall y
     \\ \underset{[1]}{\implies}
-    z^Tx - f(x) &\ge  z^Ty - f(y) \quad \forall y
+    z^Tx^+ - f(x^+) &\ge  z^Ty - f(y) \quad \forall y
     \\ \underset{[2]}{\implies}
-    f(y) &\ge  z^T(y - x) + f(x) \quad \forall y
+    f(y) &\ge  z^T(y - x) + f(x^+) \quad \forall y
     \\ \underset{[3]}{\implies}
-    z &\in \partial f(x)
+    z &\in \partial f(x^+)
 \end{aligned}
 
 $$
 
-\[1\]: $x$ is fixed by the sup. 
+\[1\]: $x^+$ is fixed by the sup, it solves the supreme operator.  
 
 \[2\]: to 3: Just algebra.
 
 \[3\]: By the definition of Sub gradient, the Cauchy Sub-gradient inequality. 
 
-**Claim 1**
-> $$
-> z \in \partial f(x) \tag{1}
-> $$
-> The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 
-> $$
-> f^*(z) = \sup_x \{z^Tx - f(x)\} \iff z \in \partial f(x) \quad \text{f is closed and convex}
-> $$
+
 
 Suppose $x^{+} = \arg\sup_x\{z^Tx - f(x)\}$, then 
 
@@ -203,6 +212,6 @@ Notice that, this time, $z, x$ swapped, and we have $f^*(x)$ instead of $f(x)$. 
 
 **Claim 2**
 > $$
-> z\in \partial f(x) \iff x \in \partial f^*(z) \tag{2}
+> z\in \partial f(x^+) \iff x^+ \in \partial f^*(z) \tag{2}
 > $$
 > Given dual, primal variable $x, z$, they are in the subgradient of each of their objective function, $f, f^*$. 
