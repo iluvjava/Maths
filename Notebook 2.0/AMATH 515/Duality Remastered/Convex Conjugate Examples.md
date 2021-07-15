@@ -198,6 +198,15 @@ $$
 $$
 
 ---
+### **Sum of Different Functiosn $\sum_{i = 1}^n g_i (x)$**
+
+Consider The sum of a convex function, denoted by $g_i(x)$, where $g_i$ is a convex function mapping from $\mathbb{R}^n$ to $\mathbb{R}$, so that sum of these function is still convex. 
+
+
+I can't solve this. 
+
+
+---
 ### **The Positivity Indicator** $\delta_+(x)$
 
 Let $\delta_+(x)$ be a mapping from $\mathbb{R}^n$ to $\mathbb{R}$, and let $\le, \ge$ be vectorized opertor on all elements of a vector. 
@@ -370,5 +379,9 @@ This is a dual pair and it's been show before.
 ---
 ### **Conjugation of Linear Functions $c^Tx$**
 
+$$
+(c^Tx + d)^\star(z) = \delta_0(z - c) + d
+$$
 
+A geometric argument is that, the only way to support the linear vector using a affine minorants is a line that has the same slope as that objective function. 
 

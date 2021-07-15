@@ -103,6 +103,18 @@ $$
 \end{aligned}
 $$
 
+The dual problem is a maximization problem with the objective inside an minimization operator.
+
+$$
+\max_x\left\lbrace
+    \min_{x, y}\left\lbrace
+    f(x, y) + zg(x, y)
+    \right\rbrace
+\right\rbrace
+$$
+
+
+
 ---
 ### **Dualization On Equality Constraints for any Objective**
 
@@ -180,7 +192,7 @@ $$
 \begin{aligned}
     g(x) &= \frac{1}{2} \Vert Ax - b\Vert^2 \quad s.t \quad Cx = d
     \\
-    g^*(z) &= \frac{1}{2} (z + A^Tb)^T(A^TA)^{-1} (z + A^Tb)
+    g^*(z) &\underset{[1]}{=} \frac{1}{2} (z + A^Tb)^T(A^TA)^{-1} (z + A^Tb)
     \\
     &= 
     \max_z \left\lbrace
@@ -188,6 +200,8 @@ $$
     \right\rbrace
 \end{aligned}
 $$
+
+\[1\]: This can be found in the convex conjugate examples sets. 
 
 And in this case the dual and the primal will be equation due to the fact that the function is closed and convex. 
 

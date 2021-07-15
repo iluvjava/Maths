@@ -1,10 +1,16 @@
 prereq: [[Arnoldi Iterations]]
 
-[Reference Materials](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
+[IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
+[Tyler Chen's PDF](https://chen.pw/research/cg/cg.pdf)
 
 ---
 ### **Intro**
+
+Major Objective: 
+
+> There is a connection between the QR decomposition on Krylov Subspace and the Arnoldi iterations that puts the matrix into upper Hessenberg form. 
+
 The Krylov subspace is spanning the same space as the $Q$ matrix of the Hessenberg Similarity Transform. 
 
 The Arnoldi Iterations assert this fact, and it can be consider the that Krylov Matrix written as the following: 
@@ -45,7 +51,7 @@ Representing $b$ using eigenvectors of $A$, and this $K_n$ will tell use a lot a
 
 **Claim 2**
 
-> Using QR on Krylov Subspace can also directly give us the Hessenberg form of matrix $A$, which then makes the $Q_n$ matrix from Anoldi Iterations the same as the $Q_n$ matrix from applying QR factorization on $A$. [^1]
+> Using QR on Krylov Subspace can also directly give us the Hessenberg form of matrix $A$, which then makes the $Q_n$ matrix from Anoldi Iterations the same as the $Q_n$ matrix from applying QR factorization on Krylov Subspace of $A$. [^1]
 
 **Consider:**
 
@@ -126,7 +132,7 @@ $$
 $$
 
 **Observe**
-$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. 
+$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. [^2]
 
 
 Therefore, $\tilde{H}_n$ has the same eigenvalues as $C_n$, therefore, $\tilde{H}_n$ has the same eigenvectors as $A$. 
@@ -136,5 +142,13 @@ Therefore, the $\tilde{H}_n$, Hessenberg matrix for $A$ has the same eigenvalue 
 In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same unitary transformation that gives the Hessenberg, **Claim 2** is proven $\blacksquare$. 
 
 
+---
+### **Another Proof for Claim 2**
+
+
+
+
+
 
 [^1]: My instinct is that, we can choose the $b$ matrix in arnoldi iterations to produces the same $\tilde{H}_n$ as the one created by HS reflector.  
+[^2]: Eliminating the upper triangular part of the matrix $R$ calls for a upper triangular matrix $U$, whose diagonal are ones. Combining with another diagonal matrix, it will reduce the matrix $R$ into identity. Multiplying diagonal with an upper diagonal is still upper diagonal. Therefore, $R^{-1}, R$ are all upper diagonal matrices. But $C_nR^{-1}$ will shift down the diagonal, hence multiplying $C_nR^{-1}$ with $R$ is still upper hessenberg form. 
