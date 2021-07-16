@@ -85,7 +85,7 @@ Taking the gradient of the Lagrangian will give use a system of equations to sol
 
 $$
 \begin{aligned}
-    \nabla_{x, y}\mathcal{L}(x,y, z) &= \nabla_{x, y} f(x, y) - z\nabla_{x, y} g(x, y) = 0    
+    \nabla_{x, y}\mathcal{L}(x,y, z) &= \nabla f(x, y) - z\nabla g(x, y) = 0    
     \\
     \nabla_{z}\mathcal{L}(x, y, z) &= g(x, y) = 0
 \end{aligned}

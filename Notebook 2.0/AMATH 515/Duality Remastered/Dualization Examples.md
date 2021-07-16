@@ -1,12 +1,10 @@
-[[Dualization Techniques]]
+[[Lagrangian and Dualization Techniques]]
 [[Convex Conjugate Examples]]
 
 ---
 ### **Intro**
 
-Dualization transforms convex optimization, with constraints. 
-
-
+Examples for dualization transforms convex optimization, with constraints, and other stuff. 
 
 ---
 ### **Any Objective with Linear Equality and Inequality Constraints**
@@ -235,3 +233,61 @@ From Here, Complimentary Slackness Arises, let's say the slack variable is $s = 
 $$
 s_iz_i = 0 \quad \forall i
 $$
+
+
+---
+### **Constrained L1 Optimization: $\mathbb{B}_1$ Projection**
+
+projection onto the 1-norm ball. 
+
+$$
+\min_x \frac{1}{2}\Vert x - z\Vert^2 \text{ s.t } \Vert x\Vert_1 \le \lambda
+$$
+
+Dualize the constraint, so there dual variable for the constraint with many variable will be 1. 
+
+The constraint is a indicator function: 
+
+$$
+\begin{aligned}
+    \delta_{>0} \left(
+        \lambda - \Vert x\Vert_1
+    \right) &= \sup_\tau \left\lbrace
+        (\lambda - \Vert x\Vert_1)\tau - \delta_{<0}(\tau)
+    \right\rbrace
+    \\
+    & =\sup_{\tau\le 0} \left\lbrace
+    \tau \left(
+    \lambda - \Vert x\Vert_1
+    \right)
+    \right\rbrace 
+\end{aligned}\tag{1}
+$$
+
+Implies that: 
+
+$$
+\begin{aligned}
+    \min_x 
+    \left\lbrace
+        \frac{1}{2}\Vert x - z\Vert^2 \text{ s.t } \Vert x\Vert_1 \le \lambda
+    \right\rbrace
+    &=
+    \min_x \sup_{\tau < 0}
+    \left\lbrace
+        \frac{1}{2} \Vert x - z\Vert^2 + \tau \Vert x\Vert_1 - \tau \lambda
+    \right\rbrace
+    \\
+    &=
+    \sup_{\tau < 0} \min_x \left\lbrace
+    \underbrace{\frac{1}{2} \Vert x - z\Vert^2 + \tau \Vert x\Vert_1}_{\text{Soft Thresholding}}
+        - \tau \lambda
+    \right\rbrace
+\end{aligned}
+$$
+
+Use Subgradient, or proximal method minimize the value $x$ for the dual optimization objective. And it will turns out to be beautiful (This is done in the HW for the course). 
+
+**In relations to Huber Loss** 
+
+> After soon math, we can show that the Huber loss function is the objective value coming out from the inside of the proximal operator. See more about Huber here: [Huber Loss](https://www.wikiwand.com/en/Huber_loss), which has a closed form solution. This means that, we have transformed the constrained projection function into a one variable optimization problem. 

@@ -21,9 +21,14 @@ This page glues everything about duality together, making it easier to search fo
 
 We are in the realm of $\bar{\mathbb{R}}$ and $\sup, \max$, $\min, \inf$ are used interchangably, which might anony some people. 
 
+### **Notations**
+
+* Sub gradient operator $\bar{\partial}, \partial$, depending on the context. 
+
 ---
 ### **Links**
 
 * Basics of Convex Conjugate [[Convex Conjugate Function]]
 * Examples of Convex Conjugate [[Convex Conjugate Examples]]
-* The process of looking for dual of a given problem is highlighted [[Dualization Techniques]]
+* The process of looking for dual of a given problem is highlighted [[Lagrangian and Dualization Techniques]]
+
