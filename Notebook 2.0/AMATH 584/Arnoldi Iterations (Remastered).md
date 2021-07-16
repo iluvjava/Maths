@@ -1,4 +1,5 @@
 [[Eigen Decomp (Hessenberg Transform)]]
+[[Modified GS Process]]
 
 ---
 ### **Intro**
@@ -42,7 +43,7 @@ $$
 
 Let the following algorithm be paramaterized by $n$. 
 
-> defing $q_1$ to be any unitary vector in $\mathbb{C}^n$
+> defining $q_1$ to be any unitary vector in $\mathbb{C}^n$
 > 
 > for $k = 2$ to $n - 1$: 
 > >$$

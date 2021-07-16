@@ -190,7 +190,7 @@ $$
 \begin{cases}
     \partial_x \mathcal{L}(x, z; s) = 0 &\implies A^T(A \bar{x} - b) + C^T\bar{z}  = 0 
     \\
-    \partial_z\mathcal{L}(x, z; s) = 0 &\implies s_i, z_i \ge 0 \wedge s_iz_i 0\quad \forall i
+    \partial_z\mathcal{L}(x, z; s) = 0 &\implies s_i, z_i \ge 0 \wedge s_iz_i = 0\quad \forall i
 \end{cases} \tag{3}
 $$
 

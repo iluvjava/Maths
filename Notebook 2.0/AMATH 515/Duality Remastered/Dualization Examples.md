@@ -98,7 +98,7 @@ Without given more information about $\tilde{A}$ and $g(x)$, we can't simplify t
 The Lagrangian however, remains relavent and can be solved **if** $g(x)$ is convex. 
 
 ---
-### **Linear Programming: Dual Interpreations and Lagrangian**
+### **Asym Linear Programming: Dual Interpreations and Lagrangian**
 
 Linear programming is considering the objective $\min_x\{g(x) - z^T\tilde{A}x\}$ with $g(x) = c^Tx$, then it can be said that: 
 
@@ -167,20 +167,14 @@ $$
   * In that case when $b_i$ is positive, $z_i$ is zero, if $b_0 \le 0$, then $z_i$ goes to negative infinity. Dual is unbounded. 
   * Else, to maximize $z_ib_i$ with that term specifically, we have the freedom to set it to zero. 
 
-* Else if there is such $i$ makes $(\tilde{b} - \tilde{A}x)_i > 0$, then we will need to set $z$ such that: 
-$$
-\forall i: \tilde{b}_i > (\tilde{A}x)_i: \quad  
-z^T\tilde{A} = c^T \; \wedge \; z^T(\tilde{b} - \tilde{A}x)=0
-\; \wedge \; z\in \mathbb{R}^m_-
-$$
+* Else if there is such $i$ makes $(\tilde{b} - \tilde{A}x)_i > 0$, but because $z_i \le 0$, to keep the sum of $z^T(\tilde{b} - \tilde{A}x) = 0$, it must be zero because.  
 
-* Which is a system to solve. 
 
 **Basically**
 
-> If there is a slack variable, then dual variable will make use of it and trying to get rid of it as much as possible. 
+> If there is a slack variable, then dual variable will make use of it and trying to get rid of it as much as possible, setting $z_i$ to be zero. 
 > 
-> The objective $c$, equals to the negative cone of the slack constraints(rows of $\tilde{A}$). 
+> The objective $c$, equals to the negative cone of the tight constraints(rows of $\tilde{A}$). 
 
 
 **What does the Lagragian say for the optimality in this case**? 
@@ -219,9 +213,9 @@ $$
     \bar{\partial}_z [\delta_-(z)] 
     &= 
     \begin{cases}
-        0 & z_i > 0
+        (-\infty, 0] & z_i \ge 0
         \\
-        (-\infty, 0] & z_i \le 0
+        0 & z_i < 0
     \end{cases}
 \end{aligned}
 \tag{2}
@@ -229,9 +223,15 @@ $$
 
 **Interpretations from the Saddle point of the Lagrangian**: 
 
-It seems complicated. 
+* If $z_i$ is not zero, then the constraints corresponding to it must be tight. 
 
 
+**Note**: 
 
+This looks unfarmilar because I mess up the primal objective, it's usually a profits maximization problem when covered in LP math classes. 
 
+From Here, Complimentary Slackness Arises, let's say the slack variable is $s = \tilde{b} - \tilde{A}x$, then we have $s_i \ge 0$ in all cases, then the subgradient conditions can be reworked into: 
 
+$$
+s_iz_i = 0 \quad \forall i
+$$

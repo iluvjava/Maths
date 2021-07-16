@@ -1,4 +1,4 @@
-prereq: [[Arnoldi Iterations]]
+prereq: [[Arnoldi Iterations (Remastered)]]
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
