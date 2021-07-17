@@ -241,7 +241,10 @@ $$
 projection onto the 1-norm ball. 
 
 $$
-\min_x \frac{1}{2}\Vert x - z\Vert^2 \text{ s.t } \Vert x\Vert_1 \le \lambda
+\min_x 
+\left\lbrace
+\frac{1}{2}\Vert x - z\Vert^2 \text{ s.t } \Vert x\Vert_1 \le \lambda    
+\right\rbrace
 $$
 
 Dualize the constraint, so there dual variable for the constraint with many variable will be 1. 
@@ -272,7 +275,7 @@ $$
     \left\lbrace
         \frac{1}{2}\Vert x - z\Vert^2 \text{ s.t } \Vert x\Vert_1 \le \lambda
     \right\rbrace
-    &=
+    &\underset{(1)}{=}
     \min_x \sup_{\tau < 0}
     \left\lbrace
         \frac{1}{2} \Vert x - z\Vert^2 + \tau \Vert x\Vert_1 - \tau \lambda
@@ -291,3 +294,87 @@ Use Subgradient, or proximal method minimize the value $x$ for the dual optimiza
 **In relations to Huber Loss** 
 
 > After soon math, we can show that the Huber loss function is the objective value coming out from the inside of the proximal operator. See more about Huber here: [Huber Loss](https://www.wikiwand.com/en/Huber_loss), which has a closed form solution. This means that, we have transformed the constrained projection function into a one variable optimization problem. 
+
+
+---
+### **A Template Example**
+
+Here is a good tamplate for Dualization on primal or duals that fit the form: 
+
+**Template**
+
+> $$
+> \min_x \left\lbrace
+> g(x) + h(Ax - b) + c^Tx
+> \right\rbrace
+> \ge 
+> \sup_z\left\lbrace
+> -z^Tb - h^*(z) - g^*(-A^Tz - c)
+> \right\rbrace
+> $$
+
+Conjugate on $h(x)$, and then reverse conjugate on $g(x)$. 
+
+$$
+h(Ax - b) = \sup_z \left\lbrace
+z^T(Ax - b) - h^*(z)
+\right\rbrace
+$$
+
+Then we can have: 
+
+$$
+\begin{aligned}
+    \min_x \left\lbrace
+            \sup_z \left\lbrace
+                g(x) + c^Tx + z^T(Ax - b)
+            \right\rbrace
+        \right\rbrace
+    &\ge \sup_z\left\lbrace
+    -z^Tb - h^*(z) + \min_x \left\lbrace
+    g(x) + x^T(A^Tz + c)
+    \right\rbrace
+    \right\rbrace
+    \\
+    &= 
+    \sup_z\left\lbrace
+    -z^Tb - h^*(z) - g^*(-A^Tz - c)
+    \right\rbrace
+\end{aligned}
+$$
+
+And that is the dual, maximal objective. 
+
+
+---
+### **L1 Regularized Regression**
+
+$$
+\min_x \left\lbrace
+\lambda \Vert x\Vert_1 + \frac{1}{2}\Vert Ax - b\Vert^2
+\right\rbrace
+$$
+
+then: 
+$$
+g(x) = \lambda \Vert x\Vert_1 \implies g^*(z) = \delta_{\lambda \mathbb{B}_\infty}(z)
+$$
+
+$$
+h(z) = \frac{1}{2}\Vert x\Vert h^2
+\implies h^*(z) = \frac{1}{2} \Vert x\Vert^2
+$$
+
+We can then use what we had for the previous problem, giving us the template for this one, and we have: 
+
+$$
+\sup_{\Vert A^Tz\Vert_\infty \le \lambda} \left\lbrace
+-z^Tb - \frac{1}{2}\Vert z\Vert^2
+\right\rbrace
+$$
+
+That indicator function, will force a constraint into the sup operator, hence, going under the sup operator. 
+
+Takeaway: 
+
+> Infinity norm constraints can be expressed as a one norm regularization problem. 
