@@ -2,9 +2,6 @@ prereq: [[Calculus of Residual 3.3]]
 Let's continue what we already had from the previous parts, but this time we use a more complicated contour involving a more creative branch cut for the integral. 
 
 ---
-
-
----
 ### Example 2
 Today's Integral 
 
