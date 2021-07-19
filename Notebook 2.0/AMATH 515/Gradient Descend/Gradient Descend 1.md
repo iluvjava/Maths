@@ -10,20 +10,21 @@ Content List:
 4. Rate of convergence for strong convex $\beta$ smooth.
 
 ---
-### Introduction: 
+### **Introduction:** 
 The major idea here is to use the $\beta$ Smoothness property of the function to approximate an global upper bound of the function given some points of approximation on the function. 
 
 Firstly let's define the notation: 
 
-$$
-m_x(y):=
-f(y) + \left\langle
-\nabla f(x), y
-\right\rangle(y - x) + 
-\frac{\beta}{2}\Vert y - x\Vert^2
-$$
+> $$
+> m_x(y):=
+> f(y) + \left\langle
+> \nabla f(x), y
+> \right\rangle(y - x) + 
+> \frac{\beta}{2}\Vert y - x\Vert^2
+> $$
+> Solve this mini minimization problem by changing $y$ resulting in monotonic decrease of the objective function. 
 
-Which is the RHS of the $\beta$ smoothness inequality from [[Beta Smoothness#Theorem 1]]. Now, our task is to look for the unique minimizer for this quadratic term, we could do it with completing the square, or we can just take the gradient wrt $y$ and then solve for $y$ when gradient is zero. 
+Which is the RHS of the $\beta$ smoothness inequality from **[[Beta Smoothness]], Theorem 1**. Now, our task is to look for the unique minimizer for this quadratic term, we could do it with completing the square, or we can just take the gradient wrt $y$ and then solve for $y$ when gradient is zero. 
 
 Facts: 
 * Function value at $x$ matches with $m_x(y)$
@@ -33,13 +34,13 @@ Facts:
 Taking the gradient we have: 
 
 $$
-\begin{align}
+\begin{aligned}
     \nabla[m_x(y)] &= \mathbf{0} + \nabla f(x) + \beta(y - x)
     \\
-    \mathbf{0} &= \nabla f(x) + \beta y - \beta x\
+    \mathbf{0} &= \nabla f(x) + \beta y - \beta x
     \\ 
     y &= x - \frac{1}{\beta} \nabla f(x)
-\end{align}
+\end{aligned}
 $$
 
 And that means that for each step of gradient descent, we have the iterative scheme for $\beta$ smooth function: 
@@ -71,7 +72,7 @@ $$
 And notice that in the contex of the gradient descent, $x$ is $x_{k}$ and $y^*$ will be $x_{k + 1}$. 
 
 ---
-### Convergence with Beta Smootheness
+### Convergence with Beta Smoothness
 
 Here, we are going to show how the iteration is going to  converge under the $\beta$ smoothness assumption for the function. 
 
@@ -103,7 +104,7 @@ $$
 
 The sum of all the squared 2 norm of the gradient step we divided by the $\beta$ smoothness scale, we will have the change in the objective value for the algorithm as an lower bound. (A pretty pessimistic estimate)
 
-Let's make the assumption that the $x_{k + 1}$ is giving us $inf(f)$, noted as $f^*$, then we can have: 
+Let's make the assumption that the $x_{k + 1}$ is giving us $\inf(f)$, noted as $f^*$, then we can have: 
 
 $$
 \min_{j} \Vert\nabla f(x_j) \Vert^2 
@@ -131,7 +132,7 @@ And then we have the following theorem for the descent algorithm.
 > The gradient descent for a $\beta$ smoothness function has the convergence rate of $$\mathcal{O}\left(
 > \frac{1}{\sqrt{k}}
 > \right)$$
-> This is sub linear, and it's the most pessimistic upper bound. 
+> This is sub linear, and it's the most pessimistic upper bound on the convergence of the gradient (Not the objective function!)
 
 ---
 
@@ -195,7 +196,3 @@ f(x_k) - f^*
     \right)^k
 \right\rbrace
 $$
-
----
-### Line Search
-

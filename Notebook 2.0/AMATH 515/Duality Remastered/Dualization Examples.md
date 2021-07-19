@@ -378,3 +378,112 @@ That indicator function, will force a constraint into the sup operator, hence, g
 Takeaway: 
 
 > Infinity norm constraints can be expressed as a one norm regularization problem. 
+
+
+---
+### **Polyhedral Constraint, 2-Norm Objective**
+
+**Objective**: Using strong duality to find the optimality conditions for the 2-norm polyhedra minimization problem.
+
+Here we consider the primal optimization problem to be: 
+
+$$
+\min_x \left\lbrace
+    \frac{1}{2}\left\Vert
+         Ax - b
+    \right\Vert^2 + \delta_+(d - Cx)
+\right\rbrace
+$$
+
+Where the delta indicator function helps us to assert the constraints onto the objective function. Let's consider the Fenchel's Transform on this thing:
+
+$$
+\delta_+(d - Cx) = \max_z \left\lbrace
+    (d - Cx)^Tz - \delta_+^*(z)
+\right\rbrace = \max_{z\ge 0} \left\lbrace
+    (d - Cx)^Tz
+\right\rbrace
+$$
+
+Beautiful, then the Lagrangian will be define as: 
+
+$$
+\mathcal{L}(x, y) := 
+\frac{1}{2}
+\left\Vert
+    Ax - b 
+\right\Vert^2
++ (d - Cx)^Tz - \delta^*_+(z)\tag{1}
+$$
+
+And notice that: $\delta_+^*(z) \implies \delta_-(z)$, so them: 
+
+$$
+ - \delta_+^*(z) = -\delta_-(z) = + \delta_+(z)
+$$
+
+Following up from (1), the Lagrangian, we will have the expression with the positivity constraints on the dual decision variables: 
+
+$$
+\mathcal{L}(x, z) = \left\Vert
+    Ax - b 
+\right\Vert^2
++ (d - Cx)^Tz + \delta_+(z)\tag{2}
+$$
+
+Let's phrase the optimality conditions out for the system, and see what we can get out of it. 
+
+$$
+\begin{cases}
+    \partial_x \mathcal{L}(x, z; s) = 0 \implies A^T(A \bar{x} - b) + C^T\bar{z} & = 0 
+    \\
+    \partial_z\mathcal{L}(x, z; s) = 0 \implies Cx - d \in \partial \delta_+(z)
+\end{cases} \tag{3}
+$$
+
+And take note that, with the constraint that $z \ge 0$, the sub differential of positivity indicator function is: 
+
+$$
+[\delta_+(z)]_i := 
+\begin{cases}
+    0 & z_i \ge 0 \\
+    (-\infty, 0] & z_i = 0
+\end{cases}
+$$
+
+Therefore, the second conditions for expression (3), the sub differential to be: 
+
+$$
+\forall i = \begin{cases}
+    (Cx - d)_i = 0 & z_i \ge 0
+    \\
+    (Cx - d)_i \ge 0 & z_i = 0
+\end{cases}
+$$
+
+And notice that, the slack variable, representing how close we are to the boundary of the polyhedra for a particular constraint is expressed as: $s = d - Cx$, and this gives u: 
+
+$$
+\forall i = \begin{cases}
+    s_i = 0 & z_i \ge 0
+    \\
+    s_i \ge 0 & z_i = 0
+\end{cases}
+$$
+
+And notice that this conditions here can compactly express as: $s_iz_i = 0 \wedge s_i, z_i \ge 0$
+
+Now we can complete the saddle point for the Lagrangian and set it to be: 
+
+$$
+\begin{cases}
+    \partial_x \mathcal{L}(x, z; s) = 0 &\implies A^T(A \bar{x} - b) + C^T\bar{z}  = 0 
+    \\
+    \partial_z\mathcal{L}(x, z; s) = 0 &\implies s_i, z_i \ge 0 \wedge s_iz_i = 0\quad \forall i
+\end{cases} \tag{3}
+$$
+
+What we showed, is the idea of **Complementary Slackness**, and this is the same kind of idea that pops up for the duality theorem for the Linear Programming problem. Up until now, it doesn't lead to the algorithm yet, more clever tricks are needed for an implementable, newton based solving algorithm for it. It's called Interior Points Method, which is often used in practice. 
+
+**Note**: 
+There are other ways of transforming, for example one can introduce slack variable, and then use the equality constraint as the function under Fenchel Transform. 
