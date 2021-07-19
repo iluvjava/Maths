@@ -133,7 +133,9 @@ w^Tx + b
 $$
 
 $$
-\mathbb{O}(H|D) = w^Tx + b
+\mathbb{O}(H|D) = \exp \left(
+w^Tx + b
+\right) 
 $$
 
 

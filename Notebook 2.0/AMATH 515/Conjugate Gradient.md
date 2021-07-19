@@ -455,6 +455,12 @@ Instead, we want to solve the equation $Ax = b$, then, consider $A^TAx = A^Tb$ i
 
 Then in that case, we want to solve $AAx = Ab$ instead, and in this case $A^2$ will be SPD, given that $A$ is symmetric. 
 
+### **Misc** 
+
+* Conjugate gradient is a special form of accelerated gradient. The residual vector is secretly a gradient, and the conjugation is secretly a momentumn term. 
+* Bi-conjugate gradient stabalized is a mix of Conjugate Gradient and General Residual Method.  
+* It can solve no-linear system, in a locally convex region, a trusted region of the objective function. 
+
 
 [^1]: None
 [^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$, in the case of CG the residual is the assisting subspace, the $u_i$ vectors. 

@@ -57,7 +57,7 @@ $$
 And then we substitute this into the $m_x(y^*)$, and it's going to be like: 
 
 $$
-\begin{align}\tag{1}
+\begin{aligned}
 m_x(y^*) &= f(x) + \nabla f(x)^T \left(
 x - \frac{1}{\beta} \nabla f(x) - x 
 \right) + \frac{\beta}{2}\Vert \frac{-1}{\beta}\nabla f(x)\Vert^2
@@ -65,7 +65,7 @@ x - \frac{1}{\beta} \nabla f(x) - x
 m_x(y^*) &= f(x) + \frac{-1}{\beta}\Vert \nabla f(x)\Vert^2 + \frac{1}{2\beta}\Vert \nabla f(x)\Vert^2
 \\
 m_x(y^*) &= f(x) -\frac{1}{2\beta}\Vert \nabla f(x)\Vert^2
-\end{align}
+\end{aligned}\tag{1}
 $$
 
 And notice that in the contex of the gradient descent, $x$ is $x_{k}$ and $y^*$ will be $x_{k + 1}$. 
@@ -78,7 +78,7 @@ Here, we are going to show how the iteration is going to  converge under the $\b
 Continuing with the statement $(1)$, we have: 
 
 $$
-\begin{align}\tag{2}
+\begin{aligned}
     \frac{1}{2\beta}\Vert \nabla f(x_k)\Vert^2
     &\le f(x_k) - f(x_{k + 1})
     \\
@@ -90,7 +90,7 @@ $$
     \frac{1}{2\beta}\Vert \nabla f(x_0)\Vert^2
     &\le f(x_0) - f(x_{1})
     \\
-\end{align}
+\end{aligned}\tag{2}
 $$
 
 Summing up all the terms we have a lot of things canceled out on the RHS of these inequalities, giving us: 

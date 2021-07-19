@@ -20,7 +20,7 @@ What can we say about the direction $\nabla^2 f(x_k)\nabla f(x_k)$? Is it a good
 
 **Def**: A direction $d$ is called a descent direction for $f$ at x if $d^T \nabla f(x) < \epsilon < 0$. 
 
-Ex: When $\nabla^2 f(x)$ is positive definite, the tne newton' direction is a descent direction. 
+Ex: When $\nabla^2 f(x)$ is positive definite, the the newton's direction is a descent direction. 
 
 Because: 
 

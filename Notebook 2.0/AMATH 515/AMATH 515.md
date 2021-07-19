@@ -9,6 +9,10 @@ Optimization, especially non-linear optimization
 * Helpful: Python 
 * Helpful: Exposure to Optimization
 
+**What is the thing I learned from this class?** 
+
+> To solve a bigger optimization problem efficiently, we have to solve a lot of little optimizations problems and make a lot of assumption. 
+
 ---
 ### **General Intro to the Course.** 
 

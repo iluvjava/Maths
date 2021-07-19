@@ -10,7 +10,7 @@ Learning Goal:
 2. State the theorems and understand when the primal and the dual are going to equal to each other. 
 
 ---
-### Intro
+### **Intro**
 
 Last time, we viewed some examples of the dual problems. Using the idea of conjugate, and closed and convex function, we can get the dual problem. 
 
@@ -33,7 +33,7 @@ To prepare, we will list the duel primal of a generalized form here:
 Note that, this is equality here. We just tweaked it. 
 
 ---
-### Example: Fun with Projection
+### **Example: Fun with Projection**
 
 projection onto the 1-norm ball. 
 
@@ -87,7 +87,7 @@ And then, we can use the proximal method to find the closed form solution of the
 After soon math, we can show that the Huber loss function is the objective value coming out from the inside of the proximal operator. See more about Huber here: [Huber Loss](https://www.wikiwand.com/en/Huber_loss), which has a closed form solution. This means that, we have transformed the constrained projection function into a one variable optimization problem. 
 
 ---
-### Perturbation, Sensitivity Analysis
+### **Perturbation, Sensitivity Analysis**
 
 > $$
 > \min_x \left\lbrace

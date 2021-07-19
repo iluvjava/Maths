@@ -4,7 +4,7 @@ Here we are going to talk about details of the analysis of the gradient descend 
 
 
 ---
-### Intro
+### **Intro**
 From previous part where we discussed gradient descend we have: 
 > $$
 > m_k(y):=
@@ -33,7 +33,7 @@ $$
 Because of beta smoothness, the actual function value is less than the minimal of the global quadratic bound. This is by the definite of Beta Smoothness.
 
 ---
-### Gradient Descend: Beta Smoothness and Convex
+### **Gradient Descend: Beta Smoothness and Convex**
 
 Assume the objective function $f$ is Beta Smooth and Convex. Using the fact that it's beta smooth, we know that: 
 
@@ -162,7 +162,7 @@ And hence we have:
 > $$
 
 ---
-Gradient Descend: Beta Smooth and Strong Convex
+**Gradient Descend: Beta Smooth and Strong Convex**
 
 Here we still assume that the function is beta smooth so we can have continuous descend, and we also place the additional assumption that the function is Alpha Strong Convex, and the result can be stated as: 
 

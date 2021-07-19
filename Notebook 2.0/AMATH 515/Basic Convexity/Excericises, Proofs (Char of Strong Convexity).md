@@ -19,15 +19,15 @@ If a given function is alpha strongly convex, then we can say that:
 
 The definition of the Strong convexity has symmetry to exploit. 
 $$
-\begin{align}
+\begin{aligned}
 	f(y) &\ge f(x) + \nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert  y -x\Vert^2
 	\\
 	f(x) &\ge f(y) + \nabla f(y)^T(x - y) + \frac{\alpha}{2}\Vert  x - y\Vert^2
-\end{align}
+\end{aligned}
 $$
 Summing up the expression above we have: 
 $$
-\begin{align}
+\begin{aligned}
 	f(x) + f(y) &\ge f(x)+ f(y) 
 	+ (-\nabla f(y) + \nabla f(x))^T(y - x) + \alpha \Vert y - x \Vert^2
 	\\
@@ -35,7 +35,7 @@ $$
 	\Vert y - x\Vert^2
 	\\
 	(\nabla f(y) - \nabla f(x))^T(y - x) &\ge \alpha ||y - x||^2
-\end{align}
+\end{aligned}
 $$
 $\blacksquare$
 
@@ -52,12 +52,12 @@ If $f - \frac{\alpha}{2}||x||^2$ were to be convex, then its hessian will have t
 
 The Hessian is computed by: 
 $$
-\begin{align}
+\begin{aligned}
 	& \nabla^2
 	\left(f - \frac{\alpha}{2}||x||^2
 	\right)\\
 	& \nabla^2 f - \alpha I
-\end{align}
+\end{aligned}
 $$
 And this matrix must have eigenvalues that are non-negative(By 3rd characteristics of convexity). That means the solution to the characteristic equation: 
 $$
@@ -96,11 +96,11 @@ This set should be non-empty. If it can't be find, then the function is not prop
 
 Placing on a beta level bound on the function of RHS of the strong convexity definition, we have: 
 $$
-\begin{align}
+\begin{aligned}
 	g(y) &:= \nabla f(x)^T(y - x) + \frac{\alpha}{2}\Vert y - x\Vert^2
 	\\
 	\text{lev}_\beta(g) &= \{y: g(y) \le \beta\}
-\end{align}
+\end{aligned}
 $$
 Take notice that, if $\gamma$ is $\beta$, choose any element $t$ from set $\text{lev}_\gamma{(f)}$, we know that $f(t) \le \gamma =\beta$, by strong convexity: 
 $$
@@ -144,10 +144,10 @@ $$
 
 However also notice that using the second properties of characterizations of strong convexity we have: 
 $$
-\begin{align}
+\begin{aligned}
 	\nabla f(y)^T(y - x_1) &\ge \alpha \Vert y - x_1\Vert^2 \\
 	\nabla f(y)^T(y - x_2) &\ge \alpha \Vert y - x_2 \Vert^2
-\end{align}
+\end{aligned}
 \quad \forall y
 $$
 

@@ -4,7 +4,7 @@ This is just continuing on the discussion on [[Shannon's Entropy]], [[Conditiona
 ---
 ### **Intro**
 
-Conditional Entropy is analogous to conditional expectation for random variable. 
+Conditional Entropy is analogous to conditional expectation for random variable. Assuming Discrete Random Varaible $X, Y$, then using Laws of Total Expectation: 
 
 $$
 \begin{aligned}
@@ -41,21 +41,30 @@ $$
             X = x \wedge Y = y
         \right)
     \log\left(
-        \frac{\mathbb{P}\left(X = x \wedge Y = y\right)}
+        \frac
         {
             \mathbb{P}\left(X = x\right)
-        }
+        }{\mathbb{P}\left(X = x \wedge Y = y\right)}
     \right)
     \\
     &= 
     \sum_{x, y}^{}
-        p(x, y)\log\left(
+        -p(x, y)\log\left(
             \frac{p(x, y)}{p(x)}
         \right)
 \end{aligned}
 $$
 
-This is anlogous to conditional expectation. 
+This is anlogous to conditional expectation, and use the substitution: 
+
+$$
+\mathbb{P}\left(X|Y\right) = 
+\frac{\mathbb{P}\left(X , Y\right)}{
+    \mathbb{P}\left(Y\right)
+}
+$$
+
+
 
 
 
@@ -71,4 +80,5 @@ H(Y|X) = H(X, Y) - H(X)
 $$
 
 The proof is kinda obvious using the definition listed above. 
+
 

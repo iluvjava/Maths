@@ -146,6 +146,9 @@ b\in A\bar{x} +\lambda \partial \Vert \cdot\Vert_1|_{\bar{x}}
 b \in \partial(\delta_{\lambda \Vert \cdot\Vert_\infty})|_{A^T\bar{z}} - \bar{z}
 $$
 
+
+
+
 ---
 ### **Example: Constrained Least Square**
 
@@ -200,6 +203,7 @@ $$
 $$
 
 This is how the primal and the dual variables **are brought together**. 
+
 
 
 
