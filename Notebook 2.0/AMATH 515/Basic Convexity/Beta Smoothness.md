@@ -43,6 +43,9 @@ Under convex assumption, a hyper dimension parabolic can be placed upon local re
 > f(y) \le f(x) + \left\langle \nabla f(x), y - x \right\rangle + \frac{\beta}{2}\Vert y - x\Vert^2
 > $$
 
+**Warning**: 
+> Don't forget the $1/2$ as a multiplier for $\beta$
+
 ---
 ### **Theorem 2: Hessian and Beta Smooth**
 

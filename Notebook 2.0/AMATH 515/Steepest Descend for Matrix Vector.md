@@ -350,8 +350,6 @@ Steepest descend can be very slow for matrix with large condition number, this i
 
 > This is a prelude to conjugate gradient method.
 
----
-
 
 
 [^1]: The fact that the matrix $A$ is definite remains unused through out the analysis in this file... 

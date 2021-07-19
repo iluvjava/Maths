@@ -58,21 +58,22 @@ $$
 
 ---
 ### **The Lagrangian**
+
 $$
 \mathcal{L}(x, v) =\frac{1}{2}\Vert Ax - b\Vert^2 - v^T(d - Cx) \quad v \ge 0, d - Cx \ge 0 \tag{1}
 $$
 
-Take note that this is the same as the results we gotten from [[Duality (Example Transformation)]], and the positivity constraint of the dual variable is taken from the indicator function into the Lagrangian. 
+Take note that this is the same as the results we gotten from [[Duality (Example Transformation)]], and the positive constraint of the dual variable is taken from the indicator function into the Lagrangian. 
 
 **Derivative on the Lagrangian**
 
 $$
-\nabla_x\mathcal{L}(x, v) = 
-A^T(Ax - b) + C^Tv
-$$
-
-$$
-\nabla_v \mathcal{L}(x, v) = d - Cx
+\begin{aligned}
+    \nabla_x\mathcal{L}(x, v) &= 
+    A^T(Ax - b) + C^Tv
+    \\
+    \nabla_v \mathcal{L}(x, v) &= d - Cx    
+\end{aligned}
 $$
 
 Setting the system to zero we obtained the optimality conditions for the primal and dual problems (Applied Strong Duality). 
@@ -87,8 +88,9 @@ F_\mu(x, v)=
 \begin{bmatrix}
     A^T(Ax - b) + C^Tv 
     \\
-    v^T(d - Cx) - \mu \mathbb{J}
+    v^T\circ (d - Cx) - \mu \mathbb{J}
 \end{bmatrix} = \mathbf{0}
+\quad v \ge 0, d - Cx \ge 0 
 $$
 
 Take note that, the second block vector in the expression is NOT the derivative from the dual variable, it's the relaxed version of the complementary slackness. 
@@ -97,7 +99,7 @@ The idea here is to update the value of $\mu$, together with the values for $x, 
 
 $$
 \begin{bmatrix}
-\Delta x \\ \Delta v
+    \Delta x \\ \Delta v
 \end{bmatrix} = 
 \text{Jocobian}^{-1}(x, v; F_\mu)F_\mu(x, v) \tag{2}
 $$
@@ -107,14 +109,15 @@ Consider taking the derivative of $F_\mu$ wrt to $x$ which is a vector:
 $$
 \nabla_x[F_\mu(x, v; \mu)] = 
 \begin{bmatrix}
-    A^TA \\ \text{diag}(v)C
+    A^TA \\ -\text{diag}(v)C
 \end{bmatrix}
 $$
 
 $$
 \nabla_v[F_\mu(x, v; \mu)] = 
 \begin{bmatrix}
-    C^T \\ d - Cx 
+    C^T \\ 
+    \text{diag}(d - Cx )
 \end{bmatrix}
 $$
 
@@ -129,7 +132,8 @@ And hence the Jacobian of the function $F_\mu(x, v)$, written in block form is g
 $$
 \text{Jacobian}(x, v; F_\mu) = 
 \begin{bmatrix}
-A^TA & C^T \\ \text{diag}(v)C & d - Cx 
+    A^TA & C^T \\
+    -\text{diag}(v)C & \text{diag}(d - Cx )
 \end{bmatrix}
 $$
 
@@ -141,7 +145,7 @@ How do we make sure that this matrix is invertible? We simply don't make this as
 
 By solving on the optimality conditions, we get the optimal solution, getting both the primal and the dual, very convenient. 
 
-The update of the primal and dual variable is given as expression (2), however, there are 2 parts remains unclear: 
+The update of the primal and dual variable is given as expression (2), however, there are 3 parts remains unclear: 
 
 1. How do we update the parameter $\mu$
 2. How do we keep the points inside the feasible region? 
@@ -150,11 +154,11 @@ The update of the primal and dual variable is given as expression (2), however, 
 Let's make the variable $x^+, v^+$ denotes the updated primal and dual variables. Then the constraints can be noted as: 
 
 $$
-x^+ = x + \alpha\Delta x \quad \wedge  \quad d - Cx^+\ge \mathbf{0}
-$$
-
-$$
-v^+ = v + \alpha\Delta v \quad \wedge \quad v^+ \ge \mathbf{0}
+\begin{aligned}
+    x^+ &= x + \alpha\Delta x \quad \wedge  \quad d - Cx^+\ge \mathbf{0}
+    \\
+    v^+ &= v + \alpha\Delta v \quad \wedge \quad v^+ \ge \mathbf{0}
+\end{aligned}
 $$
 
 Where $\alpha$ is the step we are going to take in the direction given by the newtons' method, the constrain that $\alpha > 0$ is implicit[^1]. 
@@ -168,11 +172,11 @@ $$
 **Keeping the Constraints**
 
 $$
-d - Cx^+ \ge \mathbf{0} 
-$$
-
-$$
-d - C(x + \alpha\Delta x) \ge  \mathbf{0} 
+\begin{aligned}
+    d - Cx^+ &\ge \mathbf{0} 
+    \\
+    d - C(x + \alpha\Delta x) &\ge  \mathbf{0} 
+\end{aligned}
 $$
 
 We are search for the value of $\alpha$ such that, the value of $x, v$ advances as much as possible while keeping the constraints for the system. 
@@ -180,11 +184,11 @@ We are search for the value of $\alpha$ such that, the value of $x, v$ advances 
 Notice that: 
 
 $$
-d - Cx - \alpha C\Delta x \ge \mathbf{0}
-$$
-
-$$
-- \alpha C\Delta x\ge Cx - d \tag{3}
+\begin{aligned}
+d - Cx - \alpha C\Delta x &\ge \mathbf{0}
+    \\ 
+- \alpha C\Delta x&\ge Cx - d \tag{3}
+\end{aligned}
 $$
 
 **Intuitive Understanding**: 
