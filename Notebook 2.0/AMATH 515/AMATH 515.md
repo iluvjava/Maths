@@ -112,7 +112,6 @@ The **Challenging** part is the modeling part and the solving part.
     Newton's Iterations are the inspirations for Accelerated Gradient Descend. 
 	* [[Newton Method]]
 	Here is an overview: 
-	* [[Unconstrained Optimization (Big Overview)]]
 	* [[Steepest Descend for Matrix Vector]]
 
 * Problems

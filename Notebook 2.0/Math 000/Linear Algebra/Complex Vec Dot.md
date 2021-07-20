@@ -2,7 +2,7 @@ In this section, we introduce define the complex of a dot product of 2 vectors f
 
 ---
 
-#### Conjugate Transpose (Adjoint)
+#### **Conjugate Transpose (Adjoint)**
 Before the discussion we might need to refresh a bit on the idea of complex conjugate. For this section we denote the complex conjugate of a complex number as $z^*$. 
 
 The Adjoint, or Conjugate Transpose for matrices are defined as $\bar{A}^T$.
@@ -10,11 +10,11 @@ The Adjoint, or Conjugate Transpose for matrices are defined as $\bar{A}^T$.
 Let the $\bullet^H$ be the complex conjugate of applied to an unknown subject: $
 \bullet$
 
-* Complex Conjugate is not the same as tranpose, consider: $x,y \in \mathbb{C}^n$, and then we consider the quantity of $x^H y$ and $y^H x$, and **they are not the same**, they are conjugate of each other. 
-* To deal with this problem, we have to take closer inspection and know what we are doing. But the moral of the story is, the conjugate transpose operations is an extension of the conjugate for complex number, instead of an extension of the tranpose on complex matrices and vectors. 
+* Complex Conjugate is not the same as transpose, consider: $x,y \in \mathbb{C}^n$, and then we consider the quantity of $x^H y$ and $y^H x$, and **they are not the same**, they are conjugate of each other. 
+* To deal with this problem, we have to take closer inspection and know what we are doing. But the moral of the story is, the conjugate transpose operations is an extension of the conjugate for complex number, instead of an extension of the transpose on complex matrices and vectors. 
 
 
-#### Complex Conjugate of Vec Dot
+#### **Complex Conjugate of Vec Dot**
 
 * Let $\bullet^H$  be the conjugate of a complex number when the operand is a scalar, and let it be a Conjugate transpose when the operands are matrices or vectors. 
 $$(x^Hy)^* =(x^Hy)^H= y^Hx$$
@@ -22,7 +22,7 @@ This is key to grasp some of the properties of the complex conjugate and how it 
 $$(\bar{x}^Ty)^* = (x^T\bar{y}) = \bar{y}^Tx = y^Hx$$ **(2)**
 or consisely writeen as: 
 $$(x^Hy)^*= y^Hx$$
-Notice that, the Conjugate transpose doesn't behave exactly the same like a trasponse, but they it comibines with the transpose opeartor together, it will start behaving like a Conjugate operator but for the matrices andc vectors. 
+Notice that, the Conjugate transpose doesn't behave exactly the same like a transpose, but they it combines with the transpose operator together, it will start behaving like a Conjugate operator but for the matrices and vectors. 
 The most important thing is: "**IT DOESN'T COMMUTE**" 
 
 
@@ -30,15 +30,15 @@ The most important thing is: "**IT DOESN'T COMMUTE**"
 
 ---
 
-### Redefining the Dot Product for $\mathbb{C}^n$
+### **Redefining the Dot Product for $\mathbb{C}^n$**
 
-The dot product for $a, b\in \mathbb{C}^n$ as the conjugate tranpose multiplications of the vectors. The definition is: 
+The dot product for $a, b\in \mathbb{C}^n$ as the conjugate transpose multiplications of the vectors. The definition is: 
 > This is the new Inner Product for $\mathbb{C}^n$
 > $$x^Hy = \sum_{i = 1}^m \bar{x_i}y_i$$
 
 Which is completely different from the real vectors dot product because of the conjugate part. 
 
-Modularity of complex number $||x||^2 = x^Hx$, and hence the following defintion will be defined via complex number as well. 
+Modularity of complex number $||x||^2 = x^Hx$, and hence the following definition will be defined via complex number as well. 
 
 $$\cos{\alpha} = \frac{x^Hy}{||x||_2||y||_2}$$
 
@@ -51,12 +51,12 @@ Yeah, if the conjugate part of the vector product is not present, then he modula
 
 
 
-#### Bilinearity 
+#### **Bilinearity**
 * $(x_1 + x_2)^Hy = x_1^Hy + x_2^Hy$
 * $x^H(y_1 + y_2) = x^Hy_1 + x^Hy_2$
 * $(\alpha x)^H(\beta y) = \bar{\alpha}\beta x^Hy$; Note on the complex scalar, there is a bar on alpha. 
 
-#### Orthogonality
+#### **Orthogonality**
 
 Same thing, if 2 vectors are orthogonal, then for $x, y \in \mathbb{C}^n$, then $x\perp y \implies x^Hy = 0$
 

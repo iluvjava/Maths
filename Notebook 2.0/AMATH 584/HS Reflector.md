@@ -17,7 +17,7 @@ $$x - x\left(\frac{vv^H}{v^Hv}\right)$$
 
 However, if we go 2 times the distance on the direction of $v$, then the vector $v$ is going to meet the vector $y$. This is by basic triangle geometry, which is given by the expression: 
 
-$$x - x2\left(\frac{vv^H}{v^Hv}\right)$$
+$$x - 2x\left(\frac{vv^H}{v^Hv}\right)$$
 
 Which is essentially another project onto the vector $y$, which is also a reflector the hyperplane separating the vector $x$ and $y$, which is: 
 
