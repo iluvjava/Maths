@@ -127,3 +127,12 @@ End of Quarter Theory:
 * [[Duality (Dualization)]], [[Duality (Dualitzation More Examples)]], [[Duality (Example Transformation)]]
 * The Interior Points Method: 
 	*  [[Interior Points]]
+
+
+
+--- 
+**Frontiers**: 
+
+* Smitedefinite programming 
+* None Smooth Optimizations
+* Large Scale Unconstrained Optimizations

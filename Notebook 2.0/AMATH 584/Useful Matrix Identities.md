@@ -123,7 +123,11 @@ Feel free to swap the $A,B$ which will leads back to the expression (3), but one
 **Inverse of a Sum**
 
 > $$
-> (A + B)^{-1} = A - A^{-1}(AB^{-1} + I)^{-1}
+>   (B + A)^{-1} = B^{-1} - B^{-1}A(B + A)^{-1}
+> $$
+> And symmetrically we also have: 
+> $$
+> (A + B)^{-1} = A^{-1} - A^{-1}B(A + B)^{-1}
 > $$
 
 For this one we are going to use expression (3) and the identity that for any matrix $A,B$ such that $AB$ is invertible, we have: 
@@ -132,7 +136,41 @@ $$
 AB = B^{-1}A^{-1}
 $$
 
-Which will be giving us: 
+Observe the following fact: 
+
+$$
+\begin{aligned}
+    B^{-1}(I + AB^{-1})^{-1} = ((I + AB^{-1})B)^{-1} = (B + A)^{-1}
+\end{aligned}
+$$
+
+From expression (3), we can figure out $(I + AB^{-1})$, which is going to be the following: 
+
+$$
+\begin{aligned}
+    (I + AB^{-1})^{-1} &\underset{(3)}{=} I - A(I + B^{-1}A)^{-1}B^{-1}    
+    \\
+    B^{-1}(I + AB^{-1}) &= 
+    B^{-1} - B^{-1}A(I + B^{-1}A)^{-1}B^{-1}
+    \\
+    &= B^{-1} - B^{-1}A[B(I + B^{-1}A)]^{-1}
+    \\
+    (B + A)^{-1}&= B^{-1} - B^{-1}A(B + A)^{-1}
+\end{aligned}
+$$
+
+**Note**: Try apply this formula recursively, then we obtained matrix series. 
+
+**Note**: This can be used to derive the famous Woodburry's Formula. 
+
+
+$\blacksquare$
+
+**Corollary: Hua's Identity**
+
+> $$
+> (A + B)^{-1} = A^{-1} - (A + AB^{-1}A)^{-1}
+> $$
 
 
 
