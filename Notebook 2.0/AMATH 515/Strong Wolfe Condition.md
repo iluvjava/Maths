@@ -1,5 +1,6 @@
 [[Line Search Gradient Descend]]
 
+
 ---
 ### **Intro**
 
@@ -48,3 +49,9 @@ $$
 * Along the search direction, the gradient of the objective function is at least, decreasing, and increasing by a bit is allowed if $c_2 < 1$. 
 * The absolute value ignore the direction information. 
 
+---
+### **Algorithm**
+
+
+---
+### **Good Properties**
