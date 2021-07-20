@@ -13,6 +13,8 @@ This is a build up on the duality, and how to use the Lagrangian to get the opti
 ---
 ### **Intro**
 
+**DEPRECATED WARNING: A lot of stuff in this page might not be correct.**
+
 Previously we have seemed the slack relaxation and the interior points method. And converting non-linear equations into root finding, and then we use newton's method the continuation to get the optimal solution. 
 
 Now, we are going to investigate the idea of interior points. 

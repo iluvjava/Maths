@@ -41,5 +41,5 @@ Illustration:
 
 
 ---
-Ok, we claimed that the matrix will act as a reflector, then let's see all the vectors on the Hyperplane separating the $x$ and $y$ will be the eigen vector with eigen values of 1. 
+Ok, we claimed that the matrix will act as a reflector, then let's see all the vectors on the Hyperplane separating the $x$ and $y$ will be the eigenvector with eigenvalues of 1. 
 
