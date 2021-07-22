@@ -36,6 +36,12 @@ Take note that, when formulating the problem into it's optimality form and then 
 
 Note, in the general case, the 2-Norm objective can be replaced with any convex functions. 
 
+**What is not involved:** 
+
+* Feasibility Search 
+* Other type of constraints 
+
+
 ---
 ### **The Log Barrier** 
 
@@ -276,10 +282,12 @@ If at the beginning, the positive constraint for the slack variable is not satis
 
 1. Compute Jacobian, Compute $F_\mu$, solve for $\Delta x, \Delta v$. 
 2. Get the value for $\alpha$. 
-3. Update $x^+, v^+$
-4. Update $\mu$
+3. Update $x^+, v^+$ keep the consratints.
+4. Update $\mu$. 
 
 Repeat the above process by defining $x, v$ for the next step as $x^+, v^+$ from the previous step. 
+
+
 
 [^1]: If $\alpha < 0$, we are getting away from the optimal, which is not what we want. 
 [^2]: The function $\delta_+: \mathbb{R} \mapsto\mathbb{R}$ is vectorized for the input. A univariate function is applied element-wise to all the entries of the vector. 

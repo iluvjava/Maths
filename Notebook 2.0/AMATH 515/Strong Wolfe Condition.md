@@ -4,9 +4,12 @@
 ---
 ### **Intro**
 
-Given a descned direciton, we search for the best step size into the directon. In the relevant file above, we had steepest descend and the armijo line search. 
+> Given a descned direciton, we search for the best step size into the directon that assures a balance between sufficient objective decrease and suffcient stepsize. 
+> 
 
-Here we introduce the: **Strong Wolfe Condition**
+In the relevant file above, we had steepest descend and the armijo line search. 
+
+Here we introduce the: **Strong Wolfe Condition**. 
 
 List of parameters: 
 
@@ -49,9 +52,79 @@ $$
 * Along the search direction, the gradient of the objective function is at least, decreasing, and increasing by a bit is allowed if $c_2 < 1$. 
 * The absolute value ignore the direction information. 
 
+
 ---
-### **Algorithm**
+### **There exists a Stepsize that Satisfies the Wolfe Conditions**
+
+I will call upon you imagination to imagine this proof as a 1d optimization problem. 
+
+Let $f$ be $\mathbb{R}^n \mapsto \mathbb{R}^n$, consider a search direction that decreases the objective, meaning $\nabla[f^T](x_{\langle k\rangle})p_{\langle k\rangle} < 0$. Assuming $f$ is analytic and has a minima. 
+
+Define: 
+
+$$
+\begin{aligned}
+    \phi(\alpha) &= f(x_{\langle k\rangle}) + \alpha\nabla [f^T](x_{\langle k\rangle}) 
+    \\
+    l(\alpha) &= f(x_{\langle k\rangle}) + \alpha c_1 \nabla [f^T](x_{\langle k\rangle}) 
+\end{aligned}
+$$
+
+Where $c_1\in (0, 1)$
+
+Then, there exists $\delta$ such that the objective function is in between the 2 rays, by the assumption that it's continuous and the function has a minima. 
+
+$$
+\exists \;\delta : \phi(\delta) < f(x_{\langle k\rangle} + \delta p_{\langle k\rangle}) < l(\delta)
+$$
+
+Because $f$ bounded below but $l$ decreases indefinitely, choose smallest $\alpha'$ such that: 
+
+$$
+\begin{aligned}
+    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) &= f(x_{\langle k\rangle}) + c_1\alpha' \nabla [f^{T}](x_{\langle k\rangle})
+    \\
+    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) - f(x_{\langle k\rangle}) &= c_1\alpha'\nabla[f^T](x_{\langle k\rangle})
+\end{aligned}
+\tag{1}
+$$
+
+By mean value theorem and the smooth assumption, there exists $\alpha'' \in (0, \alpha')$ such that: 
+
+$$
+f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) - f(x_{\langle k\rangle}) = 
+\alpha' \nabla [f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
+\tag{2}
+$$
+
+Combining (1) and (2) we have: 
+
+$$
+\begin{aligned}
+    \alpha' \nabla[f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
+    &= 
+    c_1 \alpha' \nabla[f^T](x_{\langle k\rangle}) 
+    \\
+    \underset{[1]}{\implies}
+    \nabla[f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
+    &= 
+    c_1 \nabla[f^T](x_{\langle k\rangle}) > c_2 \nabla[f^T](x_{\langle k\rangle})
+\end{aligned}
+$$
+
+\[1\]: This uses the fact that $c_2 > c_1$, therefor it will induce a larger amount of objective decrease compare to $c_1$ on the descend direction. 
+
+Once the equality holds, it's not hard to choose a $\delta \in (0, \alpha'')$ to be the stepsize that satisfies the strong Wolfe conditions, with the smooth assumptions on the objective function $f$. 
+
+
+---
+### **Line Search Algorithm**
+
+Armijo line search introduced in: [[Line Search Gradient Descend]] it's a simple implementations that eliminates over stepping and ensures sufficient objective decrease by terminating the forloop once sufficient decrease is satisfied. 
 
 
 ---
 ### **Good Properties**
+
+It always decrease the objective. 
+
