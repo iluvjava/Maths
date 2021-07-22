@@ -1,5 +1,10 @@
 The previous discussion on interior points have some inconsistency with the HW, and it's not easy to follow. For example I didn't explain what the log barrier function is for, hence we are following on the previous discussion citing other things, to construct a revised version for it. 
-[[Interior Points]], [[Duality (Example Transformation)]]
+
+Previous Version: [[Interior Points]],
+
+References
+1. [[Dualization Examples]], About how we get the Lagrangian
+2. [[Exploiting the Lagrangian (KTT)]], Some more information and background about the optimality conditions we are exploiting for Interior Points algorithm. 
 
 Objective: 
 1. Phrase the 2-Norm Inequality Constrained Optimization Problem
@@ -20,7 +25,7 @@ The problem is convex objective and convex constraints, hence the strong duality
 
 Where, the indicator function seeks to assert the constraints from the linear inequalities. 
 
-Firstly, let's pick up from the strong duality: [[Duality (Example Transformation)]], we conclude the saddle node of the Lagrangian representing the optimality conditions which should give us: 
+Firstly, let's pick up from the strong duality: [[Dualization Examples]], we conclude the saddle node of the Lagrangian representing the optimality conditions which should give us: 
 
 $$
 \begin{cases}
@@ -193,8 +198,8 @@ $$
 \begin{aligned}
 d - Cx - \alpha C\Delta x &\ge \mathbf{0}
     \\ 
-- \alpha C\Delta x&\ge Cx - d \tag{3}
-\end{aligned}
+- \alpha C\Delta x&\ge Cx - d 
+\end{aligned}\tag{3}
 $$
 
 **Intuitive Understanding**: 

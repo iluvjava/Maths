@@ -23,7 +23,7 @@ $$
 \end{aligned}
 $$
 
-**Note**: Dualization is possible with Linear constraint, with non linear constraints, we are in a bit of trouble, but the Lagragian is still possible to obtain. 
+**Note**: Dualization is possible with Linear constraint, with non linear constraints, we are in a bit of trouble, but the Lagrangian is still possible to obtain. 
 
 We are interested in the Lagrangian and the Dualization of this objective optimization. 
 
