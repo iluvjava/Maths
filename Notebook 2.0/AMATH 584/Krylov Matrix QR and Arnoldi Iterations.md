@@ -1,4 +1,4 @@
-prereq: [[Arnoldi Iterations (Remastered)]]
+prereq: [[Arnoldi Iterations (HR Reflector)]]
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
@@ -144,6 +144,10 @@ In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same 
 
 ---
 ### **Another Proof for Claim 2**
+
+Different from the previous proof, this claim consider the recurrence of the orthogonal vectors **without assuming that the Krylov Subspace of the matrix exists**. 
+
+This proof is collected from Tyler Chen, a student who is in the same department as mine, [link](https://chen.pw/research/cg/arnoldi_lanczos.html) to his explanation. 
 
 
 

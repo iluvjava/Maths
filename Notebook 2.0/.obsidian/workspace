@@ -4,33 +4,46 @@
     "type": "split",
     "children": [
       {
-        "id": "40a86f131b096499",
+        "id": "f0e30eed4f3808cc",
         "type": "leaf",
-        "dimension": 47.94094794094794,
+        "dimension": 47.09915611814346,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581/Von Neuman Stability Analysis 2.md",
-            "mode": "preview"
+            "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+            "mode": "source"
           }
         },
-        "group": "91dd3065cbeb8225"
+        "group": "a68a7fb70ab7a25b"
       },
       {
-        "id": "59722687a266067d",
+        "id": "1ef1e80f308db93e",
         "type": "split",
-        "dimension": 52.05905205905206,
+        "dimension": 52.90084388185654,
         "children": [
           {
-            "id": "d7f41a64c5079163",
+            "id": "ce788fc59bcff1e2",
             "type": "leaf",
-            "dimension": 61.4240170031881,
+            "dimension": 78.93719806763285,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+                "mode": "preview"
+              }
+            },
+            "group": "a68a7fb70ab7a25b"
+          },
+          {
+            "id": "c719a9df429fee2b",
+            "type": "leaf",
+            "dimension": 21.06280193236715,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 581/Von Neuman Stability Analysis 2.md",
+                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
                 "options": {
-                  "collapse-filter": false,
+                  "collapse-filter": true,
                   "search": "",
                   "localJumps": 1,
                   "localBacklinks": true,
@@ -39,43 +52,24 @@
                   "showTags": false,
                   "showAttachments": false,
                   "hideUnresolved": false,
-                  "collapse-color-groups": false,
+                  "collapse-color-groups": true,
                   "colorGroups": [],
                   "collapse-display": false,
                   "showArrow": true,
-                  "textFadeMultiplier": 0,
+                  "textFadeMultiplier": -1.9,
                   "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1,
-                  "collapse-forces": true,
+                  "lineSizeMultiplier": 1.65349893162393,
+                  "collapse-forces": false,
                   "centerStrength": 0.518713248970312,
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 0.9392232910621778,
+                  "scale": 1.0000000000000002,
                   "close": true
                 }
               }
             },
-            "group": "91dd3065cbeb8225"
-          },
-          {
-            "id": "f77f86d72211b7c8",
-            "type": "leaf",
-            "dimension": 38.5759829968119,
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "AMATH 581/Von Neuman Stability Analysis 2.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
-              }
-            },
-            "group": "91dd3065cbeb8225"
+            "group": "a68a7fb70ab7a25b"
           }
         ],
         "direction": "horizontal"
@@ -126,7 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 325.0036334991455
+    "width": 441
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -142,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581/Von Neuman Stability Analysis 2.md",
+                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 581/Von Neuman Stability Analysis 2.md",
+                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -183,17 +177,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d7f41a64c5079163",
+  "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
-    "AMATH 581/Von Neuman Stability Analysis 2.md",
-    "AMATH 581/Von Neuman Stability Analysis.md",
-    "AMATH 515/Unconstrained Optimization (Big Overview).md",
-    "AMATH 515/Strong Duality.md",
-    "AMATH 515/Steepest Descend for Matrix Vector.md",
-    "AMATH 515/Softmax Regression.md",
-    "AMATH 515/Preconditioned CG.md",
-    "AMATH 515/MLE Robust Fit (Intro).md",
+    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+    "AMATH 584/Arnoldi Iterations (Remastered).md",
+    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
+    "AMATH 584/Krylov Matrix QR.md",
+    "AMATH 584/Lancosz Algoritm.md",
+    "AMATH 584/LU Decomposition.md",
+    "AMATH 515/Duality Remastered/Exploiting the Lagrangian (KTT).md",
+    "AMATH 515/Duality/Duality (Example Transformation).md",
     "AMATH 515/Interior Points (Remastered).md",
-    "AMATH 515/Interior Points.md"
+    "AMATH 515/Duality Remastered/Dualization Examples.md"
   ]
 }

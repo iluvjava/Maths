@@ -36,14 +36,14 @@ $$
         0 & 0 & \cdots & h_{n, n}
     \end{bmatrix}
 \end{aligned}
-
 $$
+Note: Yes, $H_n$ is a diagonal matrix here. 
 
 **Arnoldi Iterations**
 
 Let the following algorithm be paramaterized by $n$. 
 
-> defining $q_1$ to be any unitary vector in $\mathbb{C}^n$
+> defining $q_1$ to be **any unitary vector** in $\mathbb{C}^n$
 > 
 > for $k = 2$ to $n - 1$: 
 > >$$
@@ -87,7 +87,7 @@ $$
 
 **Claim 1:** 
 
-> $AQ_n =Q_{n + 1}H_{n + 1}[:, 2:]$
+> $AQ_n =Q_{n + 1}H_{n + 1}[:, 2:]$, Basically it produces the Hessenberg form. 
 
 **Proof**
 
@@ -167,6 +167,11 @@ $$
     Q_n^HAQ_n &= H_{n + 1}[:-1, 2: ]
 \end{aligned}
 $$
+
+
+---
+### Partial Arnoldi Iterations
+
 
 
 ---

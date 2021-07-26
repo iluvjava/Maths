@@ -1,4 +1,4 @@
-[[Krylov Matrix QR]]
+[[Krylov Matrix QR and Arnoldi Iterations]]
 
 
 ---
