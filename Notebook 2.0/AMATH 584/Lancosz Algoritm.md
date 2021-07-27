@@ -1,4 +1,4 @@
-[[Arnoldi Iterations (HR Reflector)]],
+[[Hessenberg Transform with HR Reflector]],
 [[Eigen Decomp (Hessenberg Transform)]]
 
 ---
@@ -42,7 +42,7 @@ $$
 \begin{aligned}
     AQ &= QH
     \\
-    (AQ)_{:, 1< k < n} &= 
+    (AQ)_{:, 1< k < n} &= \beta_{k - 1}q_{k - 1} + \alpha_{k}q_k + \beta_{k}q_{k + 1}
 \end{aligned}
 $$
 

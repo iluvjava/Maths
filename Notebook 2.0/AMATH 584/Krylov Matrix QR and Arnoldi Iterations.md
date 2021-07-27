@@ -1,4 +1,4 @@
-prereq: [[Arnoldi Iterations (HR Reflector)]]
+prereq: [[Hessenberg Transform with HR Reflector]]
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
@@ -149,7 +149,68 @@ Different from the previous proof, this claim consider the recurrence of the ort
 
 This proof is collected from Tyler Chen, a student who is in the same department as mine, [link](https://chen.pw/research/cg/arnoldi_lanczos.html) to his explanation. 
 
+Start by assuming inductively that at the $k$ iterations of the Arnoldi iterations, the following facts hold: 
 
+* $\langle q_1, q_2, \cdots, q_k\rangle = \langle b, Ab, \cdots A^{k - 1}b\rangle$, the subspace span by the vectors from the orthogonalization is the same as the Krylov Subspace. They have the alternative notations of $\langle Q_k\rangle$ and $\langle K_{k}\rangle$. 
+
+By the assumption that $q_k$ is a vector in the subspace spanned by columns of $K_{k}$, we have the expression that:  
+
+$$
+\begin{aligned}
+	q_k &= c_0 + c_1 Ab + c_2 A^2 b + \cdots + c_{k - 1}A^{k - 1}b
+	\\
+	Aq_k &= c_0Ab + c_1 Ab^2 + c_2 A^3 b + \cdots + c_{k - 1}A^{k}b
+	\\
+	Aq_k &= \underbrace{\sum_{i = 0}^{k - 2}\left(c_{i} A^{i + 1}b\right)}_{\in \langle K_{k - 1}\rangle}
+	+ c_{k - 1}A^{k}b
+\end{aligned}\tag{6}
+$$
+
+The arnodi iterations will orthogonalize the vector $Aq_k$ against the subpsace $\langle Q_{k - 1}\rangle$, or $\langle K_{k - 1}\rangle$. Consider: 
+
+$$
+\begin{aligned}
+	q_{k + 1} &= \underset{\langle Q_k\rangle^\perp}{\text{proj}}
+	(Aq_k) = \underset{\langle K_{k -1}\rangle^\perp}{\text{proj}}(Aq_k)
+	\\
+	&= \underset{\langle K_{k -1}\rangle^\perp}
+	{\text{proj}}
+	\left(
+		\underbrace{\sum_{i = 0}^{k - 2}\left(c_{i} A^{i + 1}b\right)}_{\in \langle K_{k - 1}\rangle}
+		+ c_{k - 1}A^{k}b
+	\right)
+	\\
+	&= 
+	\underset{\langle K_{k -1}\rangle^\perp}{\text{proj}}
+	\left(
+		c_kA^kb
+	\right)
+\end{aligned}\tag{7}
+$$
+
+**Notation** 
+
+Here, the $\text{Proj}$ operator projects the vector into the subspace noted by the subscript and then describe the vector under the standard basis.
+
+The above statement says that equivalence between orthogonalizing $Aq_k$ onto the previous QR Subspace ($Q_k$) and orthogonalizing $A^kb$ onto the previous Krylov Subspace $K_{k - 1}$. 
+
+**Claim 2** $\blacksquare$ 
+
+
+---
+### **The Recurrences Between the $q$ Vectors**
+
+This gives us a much general formulations of the matrix using the Hessenberg's forms and the vector orthogonalized usin the Krylov Subspace. 
+
+This is the recurrence relations: 
+
+$$
+\begin{aligned}
+	AQ_k &= Q_kH_k + h_{k + 1}q_{k + 1}\mathbf{e}_k^T = Q\tilde{H}_k 
+\end{aligned}
+$$
+
+This can also be interpreted directly from the algorithm, and remember $Q_k$ is literally the QR decomposition on the Krylov Subspace of the matrix $A$. 
 
 
 

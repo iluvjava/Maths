@@ -4,13 +4,15 @@
 ---
 ### **Intro**
 
-Apply Gram Schidmtz decomposition to the Krylov Subspace of a matrix will is what the Arnoldi Iteration is doing. 
+The Hessenberg form for matrix decomposition is important for numerical interpretations of matrices. 
 
-It's another way of looking for the Hessenberg Transform of a squared matrix. It's am implicit way of doing so because we don't need to know what vectors are in the matrix. 
+Using Householder Triangularization, we will be able to make matrix $A$ into the project of 2 matrices $A = Q_n\tilde{H}_nQ_n^T$, where $Q_n$ is a unitary matrix. And $\tilde{H}$ is a matrix in Hessenberg Form. 
 
-What are the reasons to prefer the modified Gram Shimdtz based method over the Household reflector method? 
+**Theoretical Importance**
 
- * It treats the matrix as a blackbox, when the matrix is sparse, this is the go to. 
+* The matrix $\tilde{H}$, has the same eigenvalues as the matrix $A$
+* The matrix $Q$, is the same $Q$ matrix gotten by orthogonalizing the Krylov Subspace matrix $K_n$. 
+
 
 ---
 ### **Algorithm**
@@ -170,7 +172,11 @@ $$
 
 
 ---
-### Partial Arnoldi Iterations
+### **Partial Arnoldi Iterations**
+
+Take note that, approximation of the matrix $A$, can be expressed via non-squared matrices $Q_k$, where $k < n$. 
+
+This will be made clear during the Krylov Subspace interpretations of the Arnoldi Iterations. 
 
 
 
