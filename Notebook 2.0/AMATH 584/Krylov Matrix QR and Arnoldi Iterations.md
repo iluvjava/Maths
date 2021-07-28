@@ -1,4 +1,4 @@
-prereq: [[Hessenberg Transform with HR Reflector]]
+prereq: [[Hessenberg Transform with HR Reflector]], [[Eigen Decomp (Hessenberg Transform)]]
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 

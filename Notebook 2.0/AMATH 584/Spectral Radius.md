@@ -37,7 +37,7 @@ $$
 
 
 > $$
-> \forall\; \epsilon > 0 \;\exist \;\Vert \bullet\Vert: \rho(A)\le  
+> \forall\; \epsilon > 0 \;s \;\Vert \bullet\Vert: \rho(A)\le  
 >  \Vert A\Vert \le \rho(A) + \epsilon
 > $$
 > We can define a norm, an induced norm that is as close to the spectral radius as possible. 
@@ -58,7 +58,7 @@ Then, $d$ can be chosen such that, $d{i - j}$ is as small as possible, making th
 
 $$
 \begin{aligned}
-    \forall \epsilon &\exist D: \Vert DTD^{-1}\Vert_1 \le \rho(A) + \epsilon
+    \forall \epsilon &\exists D: \Vert DTD^{-1}\Vert_1 \le \rho(A) + \epsilon
     \\
     \implies
     \Vert B\Vert_1 &:= \Vert DQ^HBQD^{-1}\Vert_1 

@@ -2,19 +2,26 @@ Some of the proofs need properties of [[Complex Vec Dot]]
 
 ---
 
-#### Lin Alg: Only the Real
+#### **Lin Alg: Only the Real**
 
 * Let's say that: $A \in \mathbb{R}^{m\times n}$, then we will know that: 
 $$y^TAx = xA^Ty$$
 replace the transpose with $*$ so it's compatible with complex matrix. 
 * Consider the expression: $A^Ty = 0$, we can say that: 
-	* $y$ is a zero eigen vector of $A^T$, or $y\in null(A^T)$. 
-	* $y\in null(A^T) \implies xA^Ty = 0$ by def. 
-	* Choose $x\notin null(A)$ making $Ax\in range(A)$
+	* $y$ is a zero eigen vector of $A^T$, or $y\in \text{null}(A^T)$. 
+	* $y\in \text{null}(A^T) \implies xA^Ty = 0$ by def. 
+	* Choose $x\notin \text{null}(A)$ making $Ax\in \text{range}(A)$
 	* then $y\perp Ax$ because $y^TAx = 0$
-	* which is $$null(A^T) \perp range(A)$$ and amazingly it's also true that $$null(A) \perp range(A^T)$$ **(1)**
+	* which is 
+	$$\text{null}(A^T) \perp \text{range}(A)$$
 
-* And you know what this means for solving $Ax = b$??? It means that $b\perp null(A^*)$ implies that the system is solvable because $b\in range(A)$ by (1). 
+	and amazingly it's also true that
+
+	$$\text{null}(A) \perp \text{range}(A^T)$$ 
+
+	**(1)**
+
+* And you know what this means for solving $Ax = b$??? It means that $b\perp \text{null}(A^*)$ implies that the system is solvable because $b\in range(A)$ by (1). 
 * Then the space is not spanned by the $A^T$, the adjoin operator is
 *  the null space of the original operator called: $A$
 * The complex equivalent for the Fredholm Alternative is simply changing transpose to Conjugate Transpose. 
@@ -22,7 +29,7 @@ replace the transpose with $*$ so it's compatible with complex matrix.
 
 ---
 
-#### Another proof but more concise.
+#### **Another proof but more concise**.
 
 Given any $A\in \mathbb{C}^{n\times n}$, let's start with the statement: 
 
@@ -48,8 +55,7 @@ So, let's frame this results here, this results is obtained by exploiting the pr
 > $$
 
 --- 
-
-#### The Norm Equations
+#### **The Norm Equations**
 
 $$
 Ax = b

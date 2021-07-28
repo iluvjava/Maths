@@ -4,8 +4,9 @@ This part of the book looks at some of the stuff behind the idea of an LU decomp
 
 Most of this is coming from the Trefethen's book, numerical Linear Algebra. 
 
----
+[[LU Theorems]]
 
+---
 ### **Introduction** 
 
 The idea behind the $LU$ decomposition is to encode the process of Gaussian Eliminations into 2 matrix, the $L$ as an lower triangular matrix and the $U$ as an upper triangular matrix. 

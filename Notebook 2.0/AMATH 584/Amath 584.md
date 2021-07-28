@@ -1,21 +1,38 @@
-Linear Algebran and Numerical Analysis
+Linear Algebra and Numerical Analysis
+
+
 
 ---
-
-## Topics
-1. Matrix Decompose
-2. [[SVD]]
-3. [[QR]]
-	1. [[Modified GS Process]]
-	2. [[Householder Triangularization]]
-4. [[LU Decomposition]]
-5. [[Stability and Conditioning]] 
-	1. [[LS Fitting Conditioning]]
-8. Solving Ax = b
-9. Eigenvalue Decomposition
-10. Iterative Methods
-11. Randomized Linear Algebra
-12. Tensor Decomposition
+### **Exact Numerics and Algorithms**
+2. [[SVD]]: The basics, no algorithms
+3. [[QR]]: The basics and Algorithms
+4. [[LU Decomposition]]: The basics and algorithms
 
 
+
+---
+### **Eigendecomposition**
+* [[Eigen Decompose]]: Basics
+* [[Eigen Decomp Algo (Baisc and Intro)]]: Basics of Algorithmic approach of the matters. 
+	* [[Eigen Decomp (The Pure QR)]]
+	* [[Eigen Decomp Algo 3 (Shifted QR)]]
+	* [[Eigen Decomp (Hessenberg Transform)]]
+	* [[Eigen Decomp Algo 4 (Divided Conquer)]]
+* And it's due to the research in Eigendecomposition, we now have efficient algorithms for SVD. 
+
+
+---
+### **Advanced Topics**
+* [[Schur Decomposition]]: Basics for the theory of Eigenvalue Decomposition. 
+* [[Krylov Subspace]]: Basics and why it's relevant to iterative methods for matrix inverse. 
+* [[Eigen Decomp (Hessenberg Transform)]]: Similar to Schur Decomposition, but it's conceived for numerical algorithms. 
+	* [[Hessenberg Transform with HR Reflector]]
+
+---
+### **Miscs**
+
+[[Useful Matrix Identities]]: Rings and their recursive properties under inverse and additions. 
+[[Spectral Radius]]
+[[Stability and Conditioning]]
+[[Woodburry's Formula]]
 

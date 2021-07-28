@@ -8,7 +8,7 @@ QR Decomposition
 * $R$ is an upper triangular matrix 
 
 ### Notations
-* $<a_1, a_2...>$ denotes the subspace spanned by a set of matrices. 
+* $\langle a_1, a_2...\rangle$ denotes the subspace spanned by a set of matrices. 
 
 ### Factorization
 * Consider the columns of the matrix $A$, it's certain that: 
