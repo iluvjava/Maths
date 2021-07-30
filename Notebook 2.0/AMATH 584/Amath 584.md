@@ -16,7 +16,7 @@ Linear Algebra and Numerical Analysis
 * [[Eigen Decomp Algo (Baisc and Intro)]]: Basics of Algorithmic approach of the matters. 
 	* [[Eigen Decomp (The Pure QR)]]
 	* [[Eigen Decomp Algo 3 (Shifted QR)]]
-	* [[Eigen Decomp (Hessenberg Transform)]]
+	* [[Hessenberg Transform intro (HS Reflector)]]
 	* [[Eigen Decomp Algo 4 (Divided Conquer)]]
 * And it's due to the research in Eigendecomposition, we now have efficient algorithms for SVD. 
 
@@ -25,8 +25,8 @@ Linear Algebra and Numerical Analysis
 ### **Advanced Topics**
 * [[Schur Decomposition]]: Basics for the theory of Eigenvalue Decomposition. 
 * [[Krylov Subspace]]: Basics and why it's relevant to iterative methods for matrix inverse. 
-* [[Eigen Decomp (Hessenberg Transform)]]: Similar to Schur Decomposition, but it's conceived for numerical algorithms. 
-	* [[Hessenberg Transform with HR Reflector]]
+* [[Hessenberg Transform intro (HS Reflector)]]: Similar to Schur Decomposition, but it's conceived for numerical algorithms. 
+	* [[Hessenberg Transform with Arnoldi Iterations]]
 
 ---
 ### **Miscs**
@@ -35,4 +35,3 @@ Linear Algebra and Numerical Analysis
 [[Spectral Radius]]
 [[Stability and Conditioning]]
 [[Woodburry's Formula]]
-

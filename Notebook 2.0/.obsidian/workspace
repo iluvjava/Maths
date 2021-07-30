@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+            "file": "AMATH 584/Lancosz and Conjugate Gradient.md",
             "mode": "source"
           }
         },
@@ -24,11 +24,11 @@
           {
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
-            "dimension": 78.93719806763285,
+            "dimension": 68.40579710144927,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+                "file": "AMATH 584/Lancosz and Conjugate Gradient.md",
                 "mode": "preview"
               }
             },
@@ -37,11 +37,11 @@
           {
             "id": "c719a9df429fee2b",
             "type": "leaf",
-            "dimension": 21.06280193236715,
+            "dimension": 31.594202898550726,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+                "file": "AMATH 584/Lancosz and Conjugate Gradient.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -120,7 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 441
+    "width": 369
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+                "file": "AMATH 584/Lancosz and Conjugate Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+                "file": "AMATH 584/Lancosz and Conjugate Gradient.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,15 +179,15 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
-    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
-    "AMATH 584/Arnoldi Iterations (Remastered).md",
-    "AMATH 584/Eigen Decomp (Hessenberg Transform).md",
-    "AMATH 584/Krylov Matrix QR.md",
+    "AMATH 584/Lancozs and Conjugate Gradient.md",
     "AMATH 584/Lancosz Algoritm.md",
-    "AMATH 584/LU Decomposition.md",
-    "AMATH 515/Duality Remastered/Exploiting the Lagrangian (KTT).md",
-    "AMATH 515/Duality/Duality (Example Transformation).md",
-    "AMATH 515/Interior Points (Remastered).md",
-    "AMATH 515/Duality Remastered/Dualization Examples.md"
+    "AMATH 515/Conjugate Gradient.md",
+    "AMATH 584/Hessenberg Transformation (Grand Unification).md",
+    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
+    "AMATH 584/Untitled.md",
+    "AMATH 584/Modified GS Process.md",
+    "AMATH 584/Hessenberg Transform intro (HS Reflector).md",
+    "AMATH 584/Hessenberg Transform with Arnoldi Iterations.md",
+    "AMATH 584/Hessenberg Transform via Arnoldi Iteration.md"
   ]
 }

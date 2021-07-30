@@ -1,4 +1,4 @@
-[[Eigen Decomp (Hessenberg Transform)]]
+[[Hessenberg Transform intro (HS Reflector)]]
 [[Modified GS Process]]
 
 ---
@@ -41,27 +41,32 @@ $$
 $$
 Note: Yes, $H_n$ is a diagonal matrix here. 
 
-**Arnoldi Iterations**
+**Hessenberg Transformation via Arnoldi Iterations**
+
 
 Let the following algorithm be paramaterized by $n$. 
 
-> defining $q_1$ to be **any unitary vector** in $\mathbb{C}^n$
-> 
-> for $k = 2$ to $n - 1$: 
-> >$$
-> >\begin{aligned}
-> >   (1.) \quad  & v^{(k)} = AQ_{n}[:, k]
-> >    \\
-> >   (2.) \quad  & H_n[1:k, k + 1] = Q_n[:, :k]^Hv
-> >    \\
-> >   (3.) \quad  & u^{(k)} = v^{(k)} - Q_n[:, :k]^HH_n[1:k, k + 1]
-> >    \\
-> >   (4.) \quad  & Q_n[:, k + 1] = \frac{u^{(k)}}{\Vert u^{(k)}\Vert_2}
-> >    \\
-> >   (5.) \quad & H_n[k, k + 1] = \Vert u^{(k)}\Vert_2
-> >\end{aligned}
-> >$$
-
+> $$
+> \begin{aligned}
+>     &\text{Choose Any: } q_1 \in \mathbb{C}^n \text{ s.t } \Vert q_1\Vert = 1
+>     \\
+>     & \text{for } k = 1 \text{ to } n - 1
+>     \\
+>     &\hspace{1em}
+>     \begin{aligned}
+>         (1.)\quad  & v^{(k)} = AQ_{n}[:, k]
+>             \\
+>         (2.)\quad  & H_n[1:k, k + 1] = Q_n[:, :k]^Hv
+>             \\
+>         (3.)\quad  & u^{(k)} = v^{(k)} - Q_n[:, :k]^HH_n[1:k, k + 1]
+>             \\
+>         (4.)\quad  & Q_n[:, k + 1] = \frac{u^{(k)}}{\Vert u^{(k)}\Vert_2}
+>             \\
+>         (5.)\quad & H_n[k, k + 1] = \Vert u^{(k)}\Vert_2
+> \end{aligned}
+> \end{aligned}
+> $$
+ 
 All variables only appears once in the statement of the algorithm, making it easier to refer to because it will have unique value throughout the runtime of the algorithm. 
 
 **Concise Explaination** 
@@ -87,7 +92,7 @@ $$
 AQ_n
 $$
 
-**Claim 1:** 
+**Claim 1: The Recurrence** 
 
 > $AQ_n =Q_{n + 1}H_{n + 1}[:, 2:]$, Basically it produces the Hessenberg form. 
 
@@ -154,7 +159,7 @@ The claim has been proven.
 
 **Note**: For type setting reasons, I type the vector and their operations vertially inside the long parenthesis inside the matrix. 
 
-**Observe:** 
+**Observe: The Final Hessenberg Form** 
 
 > Applying the matrix $A$ to the list of $n$ orthogonal vectors ithe same as chopping out the last row of the matrix $H_{n +  1}[:, 2:]$. Like that. Exactly. 
 
@@ -178,6 +183,37 @@ Take note that, approximation of the matrix $A$, can be expressed via non-square
 
 This will be made clear during the Krylov Subspace interpretations of the Arnoldi Iterations. 
 
+---
+### **Another Algorithm of the Same Thing for Viewing Pleasures**
+
+**Arnoldi Iterations**
+
+> Initialize any unitary vector $q_1 \in \mathbb{C}^n$
+> $$
+> \begin{aligned}
+>     &\text{for } k = 2, 3, \cdots ,n
+>     \\
+>     &\hspace{2em}
+>     \begin{aligned}
+>         & \tilde{q}_k = Aq_{k - 1}
+>         \\
+>         &\text{for } l = 1 \text{ to } k - 1
+>         \\
+>         &\hspace{2em}
+>         \begin{aligned}
+>             & h_{l, k - 1} = \langle \tilde{q}_k, q_l \rangle
+>             \\
+>             & \tilde{q}_k =\tilde{q}_k - h_{l, k - 1} q_l
+>         \end{aligned}
+>         \\
+>         & h_{l, k - 1} = \Vert \tilde{q}_k\Vert_2
+>         \\
+>         & q_k = \tilde{q}_k / \Vert q\Vert
+>     \end{aligned}
+> \end{aligned}
+> $$
+
+For each latest new vector $q_k$, get a new vector $Aq_k$ and then orthogonalize it on all existing orthogonal vectors
 
 
 ---

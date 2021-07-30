@@ -1,4 +1,4 @@
-prereq: [[Hessenberg Transform with HR Reflector]], [[Eigen Decomp (Hessenberg Transform)]]
+prereq: [[Hessenberg Transform with Arnoldi Iterations]], [[Hessenberg Transform intro (HS Reflector)]]
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
@@ -200,7 +200,7 @@ The above statement says that equivalence between orthogonalizing $Aq_k$ onto th
 ---
 ### **The Recurrences Between the $q$ Vectors**
 
-This gives us a much general formulations of the matrix using the Hessenberg's forms and the vector orthogonalized usin the Krylov Subspace. 
+This gives us a much general formulations of the matrix using the Hessenberg's forms and the vector orthogonalized using the Krylov Subspace. 
 
 This is the recurrence relations: 
 
@@ -214,6 +214,5 @@ This can also be interpreted directly from the algorithm, and remember $Q_k$ is 
 
 
 
-
-[^1]: My instinct is that, we can choose the $b$ matrix in arnoldi iterations to produces the same $\tilde{H}_n$ as the one created by HS reflector.  
-[^2]: Eliminating the upper triangular part of the matrix $R$ calls for a upper triangular matrix $U$, whose diagonal are ones. Combining with another diagonal matrix, it will reduce the matrix $R$ into identity. Multiplying diagonal with an upper diagonal is still upper diagonal. Therefore, $R^{-1}, R$ are all upper diagonal matrices. But $C_nR^{-1}$ will shift down the diagonal, hence multiplying $C_nR^{-1}$ with $R$ is still upper hessenberg form. 
+[^1]: My instinct is that, we can choose the $b$ matrix in Arnoldi iterations to produces the same $\tilde{H}_n$ as the one created by HS reflector.  
+[^2]: Eliminating the upper triangular part of the matrix $R$ calls for a upper triangular matrix $U$, whose diagonal are ones. Combining with another diagonal matrix, it will reduce the matrix $R$ into identity. Multiplying diagonal with an upper diagonal is still upper diagonal. Therefore, $R^{-1}, R$ are all upper diagonal matrices. But $C_nR^{-1}$ will shift down the diagonal, hence multiplying $C_nR^{-1}$ with $R$ is still upper Hessenberg form. 
