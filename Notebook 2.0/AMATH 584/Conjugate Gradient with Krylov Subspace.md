@@ -1,4 +1,4 @@
-[[Conjugate Gradient]], [[Lancosz Algoritm]]
+[[Conjugate Gradient]]
 
 ---
 ### **Intro**
@@ -111,13 +111,11 @@ However, because $a_j$ where $1 \le j \le k$ corresponds to components that span
 > The error vector at the $k$ th step is the orthogonal to the Krylov Subspace $\mathcal{K}_k$, because the minimization process removes the components represented by $d_i$ for $\mathcal{K}_{k}$
 
 
-
-
 ---
 ### **The Magics, The Residual Vector**
 
 **Claim 3**
-> Then, A-orthogonalizing the vector $r^{(k)}$ will allow us to get the next search directions.  
+> Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions.  
 
 **Justification**: 
 
@@ -131,17 +129,46 @@ $$
 \begin{aligned}
     \langle e^{(k)}, A^jb\rangle_A &= 0 \quad \forall 1 \le j \le k - 1
     \\
-    
 \end{aligned}
-
 $$
 
+Consider:
 
+$$
+\begin{aligned}
+    & \langle r^{(k)}, A^jb \rangle_A
+    \\
+    &\langle Ae^{(k)}, A^jb \rangle_A
+    \\
+    \underset{[1]}{\implies} &  
+    \langle e^{(k)}, A^{j + 1}b \rangle_A
+    \\
+    \implies &
+    1 \le j \le k - 2
+    \\
+    \underset{[2]}{\implies} &
+    r^{(k)} \perp_A \langle \mathcal{K}_{k - 1} \rangle
+    \\
+    \implies & 
+    r^{(k)} \perp_A \langle d_1, d_2, \cdots d_{k - 2} \rangle
+\end{aligned}
+$$
 
+Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}$ to determine the next A-Orthogonal (or the next conjugate vector) search direction. 
 
+**Simple Explanations** 
+
+\[1\]: using the fact that $A$ is PSD. 
+
+\[2\]: Using the fact that for all $1 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
 
 ---
-### **In Relations with Lancosz Algorithm**
+### **Unusual Connections**
+
+If we are dealing with Krylov Subspace, and we know that Krylov Subspace are relevant to Arnoldi Iterations, and Lancosz Iterations in the Symmetric Case. 
+
+Therefore, there exists an Arnoldi Iterations interpretations of the conjugate gradient algorithm. 
+
 
 
 
