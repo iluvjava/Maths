@@ -20,7 +20,7 @@ $$
 * $\alpha$ is the step size that we want to determine, easily. 
 * $0 < c_1 < c_2 < 1$ are 2 of the small constant that determines the behaviors of the line search algorithm. 
 * $x^{(k)}$, the point are currently at. 
-* $p$, the search direction. 
+* $p$, the search direction, we **assume** that this is a search direction vector that brings decreases to the objective function. 
 * $\nabla[f]$ The gradient operator. 
 
 ### **Wolfe Conditions**
@@ -35,7 +35,7 @@ $$
 
 * The first conditions prevent it from over steping, stepping pass the local minima of a convex region (If there is any local minima and it's a convex region)
 
-* The second condition will assert some kind of convexity constraint, it make sure that, on the direciton of the search direction, the gradient is decreasing ($c_2$ should be close to 1, somewhere around $0.9$). 
+* The second condition will assert some kind of convexity constraint. It also makes sure that the step size is not too small. For sufficnetly small stepsaize, say $\alpha = 0$, it decreases the objective too much compare to the relaxed second ray, $c_2p^T\nabla[f](x^{(k)})$[^2]
 
 The second condition is sometimes wrote as: 
 
@@ -51,6 +51,11 @@ $$
 
 * Along the search direction, the gradient of the objective function is at least, decreasing, and increasing by a bit is allowed if $c_2 < 1$. 
 * The absolute value ignore the direction information. 
+
+**Intuitive Understanding People should have**
+
+> The stepsize will have to stay below the first ray and the gradient at the new point must be less steep compare to the second ray. (The gradient is at least, decreasing). 
+
 
 
 ---
@@ -82,9 +87,9 @@ Because $f$ bounded below but $l$ decreases indefinitely, choose smallest $\alph
 
 $$
 \begin{aligned}
-    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) &= f(x_{\langle k\rangle}) + c_1\alpha' \nabla [f^{T}](x_{\langle k\rangle})
+    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) &= f(x_{\langle k\rangle}) + c_1\alpha' \nabla [f^{T}](x_{\langle k\rangle})p_{\langle k\rangle}
     \\
-    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) - f(x_{\langle k\rangle}) &= c_1\alpha'\nabla[f^T](x_{\langle k\rangle})
+    f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) - f(x_{\langle k\rangle}) &= c_1\alpha'\nabla[f^T](x_{\langle k\rangle})p_{\langle k\rangle}
 \end{aligned}
 \tag{1}
 $$
@@ -93,7 +98,7 @@ By mean value theorem and the smooth assumption, there exists $\alpha'' \in (0, 
 
 $$
 f(x_{\langle k\rangle} + \alpha' p_{\langle k\rangle}) - f(x_{\langle k\rangle}) = 
-\alpha' \nabla [f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
+\alpha' \nabla [f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle})p_{\langle k\rangle} 
 \tag{2}
 $$
 
@@ -103,12 +108,12 @@ $$
 \begin{aligned}
     \alpha' \nabla[f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
     &= 
-    c_1 \alpha' \nabla[f^T](x_{\langle k\rangle}) 
+    c_1 \alpha' \nabla[f^T](x_{\langle k\rangle})p_{\langle k\rangle}
     \\
     \underset{[1]}{\implies}
     \nabla[f^T](x_{\langle k\rangle} + \alpha'' p_{\langle k\rangle}) 
     &= 
-    c_1 \nabla[f^T](x_{\langle k\rangle}) > c_2 \nabla[f^T](x_{\langle k\rangle})
+    c_1 \nabla[f^T](x_{\langle k\rangle})p_{\langle k\rangle} > c_2 \nabla[f^T](x_{\langle k\rangle})p_{\langle k\rangle}
 \end{aligned}
 $$
 
@@ -128,3 +133,4 @@ Armijo line search introduced in: [[Line Search Gradient Descend]] it's a simple
 
 It always decrease the objective. 
 
+[^2]: The ray is $c_1 p^T\nabla[f](x^{(k)})$, which is a hyper plane above the second ray $c_2 p^T\nabla[f](x^{(k)})$ because $c_1 < c_2$ and we assume that $p$ is a search direction that induces objective decrease for the function. 

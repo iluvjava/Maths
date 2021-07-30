@@ -23,7 +23,7 @@ $$
 
 > A matrix satisfies it's own characteristic quation 
 > $$p(A) = \mathbf{0}$$ 
-> The polynomial outputs a matrix. 
+> The polynomial outputs a matrix. This is called the Cayley-Hamilton Theorem. 
 
 **Full proof is not given, but this is true for diagonalizable matrices.** 
 

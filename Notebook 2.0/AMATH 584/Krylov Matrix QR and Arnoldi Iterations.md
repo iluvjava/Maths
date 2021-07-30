@@ -1,4 +1,5 @@
-prereq: [[Hessenberg Transform with Arnoldi Iterations]], [[Hessenberg Transform intro (HS Reflector)]]
+prereq: [[Hessenberg Transform with Arnoldi Iterations]], [[Hessenberg Transform intro (HS Reflector)]], 
+and know something about [[Krylov Subspace]] and its properties. 
 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)
 
@@ -11,7 +12,7 @@ Major Objective:
 
 > There is a connection between the QR decomposition on Krylov Subspace and the Arnoldi iterations that puts the matrix into upper Hessenberg form. 
 
-The Krylov subspace is spanning the same space as the $Q$ matrix of the Hessenberg Similarity Transform. 
+The Krylov subspace is spanning the same space as the $Q$ matrix of the Hessenberg Similarity Transform, during the construction process of the $Q$ matrix by the Arnoldi Iterations. 
 
 The Arnoldi Iterations assert this fact, and it can be consider the that Krylov Matrix written as the following: 
 
@@ -32,6 +33,8 @@ K_n = Q_nR_n
 $$
 
 The Krylov matrix is given by the product of the $Q$ matrix from the Arnoldi Iterations and the $R$ Matrix can be computed after we produced the $Q$ matrix from the Arnoldi Iterations. 
+
+When Matters call for Krylov Subspace, we can use Arnoldi Iterations. 
 
 **Warning**: 
 
@@ -149,11 +152,11 @@ Different from the previous proof, this claim consider the recurrence of the ort
 
 This proof is collected from Tyler Chen, a student who is in the same department as mine, [link](https://chen.pw/research/cg/arnoldi_lanczos.html) to his explanation. 
 
-Start by assuming inductively that at the $k$ iterations of the Arnoldi iterations, the following facts hold: 
+Start by assuming strongly inductively that at the $k$ iterations of the Arnoldi iterations, the following facts hold: 
 
-* $\langle q_1, q_2, \cdots, q_k\rangle = \langle b, Ab, \cdots A^{k - 1}b\rangle$, the subspace span by the vectors from the orthogonalization is the same as the Krylov Subspace. They have the alternative notations of $\langle Q_k\rangle$ and $\langle K_{k}\rangle$. 
+* $\langle q_1, q_2, \cdots, q_k\rangle = \langle b, Ab, \cdots A^{k - 1}b\rangle$, the subspace span by the vectors from the orthogonalization is the same as the Krylov Subspace. They have the alternative notations of $\langle Q_k\rangle$ and $\langle K_{k}\rangle$, for all $k \le n$, where $n$ is can be disputed depending on the rank of matrix $A$. 
 
-By the assumption that $q_k$ is a vector in the subspace spanned by columns of $K_{k}$, we have the expression that:  
+By the assumption that $q_k$ from the Arnoldi Iteration is a vector in the subspace spanned by columns (By hypothesis of the inductive statement) of $K_{k}$, we have the expression that:  
 
 $$
 \begin{aligned}
@@ -193,6 +196,10 @@ $$
 Here, the $\text{Proj}$ operator projects the vector into the subspace noted by the subscript and then describe the vector under the standard basis.
 
 The above statement says that equivalence between orthogonalizing $Aq_k$ onto the previous QR Subspace ($Q_k$) and orthogonalizing $A^kb$ onto the previous Krylov Subspace $K_{k - 1}$. 
+
+The constant, $c_k$ will get lost after the normalization, producing $q_{k + 1}$ that is the same from the Arnoldi Iterations. 
+
+Inductively, we have shown the the $q_{k + 1}$ produced by orthogonalizing against the $q_j$ from arnoldi iterations is the same as orthogonalizing against the vectors from the Krylov Subspace. 
 
 **Claim 2** $\blacksquare$ 
 
