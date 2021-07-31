@@ -32,29 +32,28 @@ Looking for the solution of a system involving sparse matrix is very similar to 
 ---
 ### **Conjugate Directions, or the A-Orthogonal Directions**
 
-Let $\langle d_1, d_2, \cdots, d_k\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$. Now, conjugate directions are interesting in the regard that, if $D = [d_1 d_2...d_k]$, then $D^TAD$ is the identity. 
+Let $\langle d_1, d_2, \cdots, d_k\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$.
 
-Notice that, inductively, we wish for the relations between the conjugate set and the Krylov Subspace to be: 
+**The Hypotehsis** 
 
-$$
-\begin{aligned}
-    \langle  d_1\rangle  &= \langle  b\rangle
-    \\
-    \langle d_1, d_2\rangle &= \langle b, Ab\rangle
-    \\
-    \langle d_1, d_2, \cdots d_k\rangle &= \langle b, Ab, \cdots A^{k - 1}b \rangle
-\end{aligned}
-$$
-
-**FACT 1:**
-
-> $x^{(k)}\in \langle \mathcal{K}_k\rangle$ but $r^{(k)}\notin \langle \mathcal{K}_{k} \rangle$
-
-**Justification**
-Assume $b\notin \mathcal{K}_k$, $x^{(k)} \in \mathcal{K}_k$[^1], say $x^{(k)} = b + \sum_{j = 1}^{k-1} A^jb$, then $b - Ax^{(k)} \notin \mathcal{K}_k$ which is just $r^{(k)}\notin \mathcal{K}_k$. 
+> $$
+> \begin{aligned}
+>     \langle  d_1\rangle  &= \langle  b\rangle
+>     \\
+>     \langle d_1, d_2\rangle &= \langle b, Ab\rangle
+>     \\
+>     \langle d_1, d_2, \cdots d_k\rangle &= \langle b, Ab, \cdots A^{k - 1}b \rangle
+> \end{aligned}
+> $$
+> Inductively, let's also assume that: 
+> $$
+> x^{(k)} \in \langle \mathcal{K}_k \rangle
+> $$
+> And there exists a set of $n$ A-Orthogonal vector $d_i$ that spans $\mathcal{K}_n$ eventually. Recall that, this is possible through the process of **Gram Schimdtz Conjugation** from the previous section. It can be used to make A-Orthogonal vectors using the Evolving Krylov Subspace. Therefore, this assumption is legit. 
 
 
-By the face that $x^{(k)} \in \mathcal{K}_k$, we know that $x^{(k)}\in \langle d_1, d_2, \cdots d_k\rangle$, giving us: 
+
+By the assumption that $x^{(k)} \in \mathcal{K}_k$, we know that $x^{(k)}\in \langle d_1, d_2, \cdots d_k\rangle$, giving us: 
 
 $$
 \begin{aligned}
@@ -66,7 +65,7 @@ $$
 \end{aligned}
 $$
 
-Note: $x^{(0)}, x^+$ need to be expressed using all the conjugate, if we assume that the system is, solvable, it's solvable only if $b\in \langle\mathcal{K}_k\rangle$
+Note: $x^{(0)}, x^+$ need to be expressed using all the conjugate, if we assume that the system is, solvable, it's solvable only if $b\in \langle\mathcal{K}_j\rangle$, $1 \le j \le n$. 
 
 Which them means the statement we consider in **claim 1** would be 
 
@@ -83,7 +82,8 @@ $$
         \sum_{j = k + 1}^{n} a_j^+d_j
     \right\Vert_A^2
     \\
-    \underset{[1]}{\implies} x^{(k+ 1)} &= \sum_{j = 1}^{k}a_j^+d_j
+    \underset{[1]}{\implies} x^{(k+ 1)} &= \sum_{j = 1}^{k}a_j^+d_j \in 
+    \langle  \mathcal{K}_{k + 1}\rangle
 \end{aligned}
 $$
 
@@ -95,16 +95,52 @@ $$
 
 We are implicitly using the PSD property of the matrix $A$ here. 
 
-\[2\]: By the fact that $x\in \mathcal{K}_k$, the subscript for the denoted minimizer. 
+\[2\]: By the fact that $x\in \mathcal{K}_k$, the subscript for the denoted minimizer. However, because $a_j$ where $1 \le j \le k$ corresponds to components that spans $\mathcal{K}_k$, the minimization problem is just directly setting the conjugate vector to zero. 
 
-However, because $a_j$ where $1 \le j \le k$ corresponds to components that spans $\mathcal{K}_k$, the minimization problem is just directly setting the conjugate vector to zero. 
+**Observe:**
+
+The inductive assumtpion $x\in \langle \mathcal{K}_k \rangle$ holds true. 
+
+
 
 > Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
 
-**Claim 1 Corrolary 1**
+**Claim 1 Corolary 1**
 
 > $e^{(k + 1)} \perp_A \langle \mathcal{K}_{k}\rangle$
 > The error vector at the $k$ th step is the orthogonal to the Krylov Subspace $\mathcal{K}_k$, because the minimization process removes the components represented by $d_i$ for $\mathcal{K}_{k}$
+
+**Claim 1 Corolary 2**
+> $r^{(k)}\notin \langle \mathcal{K}_k \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k + 1} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$
+
+**Proof**
+
+
+$$
+\begin{aligned}
+    x^{(k)} &=  \sum_{j = 1}^{k - 1} a_j^+ d_j \in \langle \mathcal{K}_k \rangle
+    \\
+    b = Ax^+  \implies  b &= \sum_{j = 1}^{n} a^+_jAd_j
+    \\
+    \implies
+    b - Ax^{(k)} &= \sum_{j = k}^{n}a_j^+Ad_j
+    \\
+    \implies 
+    \forall 1 \le i \le k - 1 & \quad 
+    \left\langle  
+        \sum_{j = k}^{n}    
+        a_j^+Ad_j, d_i
+    \right\rangle = 0
+    \\
+    \implies
+    r^{(k)} & \notin \langle d_1, d_2, \cdots d_{k - 1} \rangle
+    \\
+    \implies 
+    r^{(k)} & \notin \langle \mathcal{K}_k \rangle
+\end{aligned}
+$$
+
+
 
 
 ---
@@ -120,7 +156,6 @@ $r^{(k)} \notin \langle \mathcal{K}_k\rangle$ but $r^{(k)} \in \langle \mathcal{
 By the corolary of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k - 1}$, but then this also means 
 
 Then: 
-
 $$
 \begin{aligned}
     \langle e^{(k)}, A^jb\rangle_A &= 0 \quad \forall 1 \le j \le k - 1
@@ -152,7 +187,7 @@ $$
 
 Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}$ to determine the next A-Orthogonal (or the next conjugate vector) search direction. 
 
-**Simple Explanations** 
+**Explanations** 
 
 \[1\]: using the fact that $A$ is PSD. 
 
@@ -163,71 +198,58 @@ Claim 2 is proven $\blacksquare$
 ---
 ### **Stepsize and A-Orthogonalization**
 
-**Stepping Along the Direction**
+#### **A Step size in the Right Direction: Base Case**
+To start the algorithm, we need an initial guess, say $x^{(0)}$, and then we will take the residual of this vector to be the first search direciton, $d_1 = r^{(0)}$. Which also defines the Krylov Subspace as $\langle \mathcal{K}_1 \rangle = \langle r^{(0)} \rangle$
 
-From the Recursive formulation of the proof for **Claim 1**, we can say that the reduction of the Relations between $x^{(k)}$ and $x^{(k + 1)}$ can be summarized as: 
+
+Therefore, we are looking for the base case for **claim 1**, and we are looking for: 
+
+$$
+x^{(1)} = x^{(0)} + \alpha_1r^{(0)} \quad \alpha_1 = ?
+$$
+
+Notice that, **claim 1** is going to assert the statement that $e^{(1)}\perp_A \langle r^{(0)} \rangle$, then we can solve for $\alpha_1$ by considering: 
 
 $$
 \begin{aligned}
-    x^{(k + 1)} &= x^{(k)}  + \alpha_k d_k
+    x^{(1)} - x^+ &= x^{(0)} - x^+ + \alpha_1 r^{(0)}
     \\
-    e^{(k + 1)} &= e^{(k)} + \alpha_k d_k
-\end{aligned}
-$$
-
-Each step we only need to remove the nest components, $d_k$ to prepare for the next guess. Because all previous $d_j$ where $1 \le j \le k - 1$ are handled by previous iterations. 
-
-$e^{(k + 1)}$ is A-Orghogonal to $\mathcal{K}_{k}$, then: 
-
-$$
-\begin{aligned}
-    \langle  d_k, e^{(k + 1)}\rangle_A &= 0
+    e^{(1)} &= e^{(0)} + \alpha_1 r^{(0)} 
     \\
-    0 &= \langle d_k, e^{(k)} \rangle_A + \alpha_k \langle d_k, d_k \rangle_A
-    \\
-    \alpha_k &= - \frac{\langle d_k, e^{(k)} \rangle_A}
-    {
-        \langle d_k, d_k \rangle_A
-    }
-    \\
-    \alpha_k &= - \frac{\langle d_k, Ae^{(k)}\rangle}
-    {
-        \Vert d\Vert_A^2
-    }
-    \\
-    \alpha_k &= - \frac{d_k^Tr^{(k)}}{\Vert A\Vert_A^2}
-\end{aligned}
-$$
-
-When the the algorithm starts, we can set the first search direction to be $r^{(0)}$, which is just $b - Ax^{(0)}$, and $x^{(0)}$ is a random guess, which then use $d_1 = r^{(0)}$ to get $\alpha_1$. 
-
-**Updating the Direction**
-
-Now we obtained $x^{(k + 1)}$, and we have $d_k$, we want to use $r^{(k + 1)}$ to fingure out $d_{k + 1}$ that is A-Orthogonal to $d_k$, then by **claim 2**, the new $d_{k + 1}$ is A-Orthogonal to all previous $d_j$ where $1 \le j \le k$
-
-Then if we are considering 
-
-$$
-d_{k + 1} = r^{(k)} - \beta_k d_{k}
-$$
-
-
-
-looking for $\beta_k$, we are considering: 
-
-$$
-\begin{aligned}
-    d^T_{k}Ad_{k} &= 0
+    e^{(1)}Ar^{(0)} & = 0
     \\
     \implies 
-    d^T_k Ar^{(k)} - \beta_k d_k^T Ad_{k-1} &= 0
+    0 &= e^{(0)T}Ar^{(0)} + \alpha_1 r^{(0)T}Ar^{(0)}
     \\
-    \beta_k = \frac{d^T_{k-1}Ar^{k}}{d_k^TAd_k}
+    \alpha_1 &= -\frac{e^{(0)T}Ar^{(0)}}{r^{(0)T}Ar^{(0)}}
+    \\
+    \alpha_1 &= -\frac{r^{(0)T}Ae^{(0)}}{\Vert r^{(0)}\Vert_A^2} = 
+    -\frac{\Vert r^{(0)}\Vert_2^2}{\Vert r^{(0)}\Vert_A^2} 
 \end{aligned}
 $$
 
-Inductively, I am saying $d_0 = \mathbf{0}$, then $d_1 = r^{(1)} - \beta_kd_0 = r^{(1)}$. 
+#### **Choosing the Next Direction**
 
+We had $x^{(1)}$ using $d_1$, we are ready to find $x^{(2)}$, which will need $d_2$. 
+
+From **claim 2**, we will be able to choose the second search direction for the algorithm, which will be: 
+
+$$
+d_2 = r^{(1)} - \beta_1 d_1 \quad \beta_1 = ? 
+$$
+
+the next search direction is perpendicular to the previous one therefore: 
+
+$$
+\begin{aligned}
+    d_1^TAd_2 &= 0
+    \\
+    d_1^TAr^{(1)} - \beta_1(r^{(0)})^TAr^{(0)} &= 0
+    \\
+    \underset{d_1 = r^{(0)}}{\implies} 
+    \beta_1 &= \frac{\langle r^{(1)}, r^{(0)} \rangle_A}{\langle r^{(0)}, r^{(0)}\rangle_A}
+\end{aligned}
+$$
 
 
 ---
