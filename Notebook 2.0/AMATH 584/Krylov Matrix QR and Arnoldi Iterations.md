@@ -217,7 +217,7 @@ $$
 \end{aligned}
 $$
 
-This can also be interpreted directly from the algorithm, and remember $Q_k$ is literally the QR decomposition on the Krylov Subspace of the matrix $A$. 
+This can also be interpreted directly from the algorithm, and remember $Q_k$ is literally the QR decomposition on the Krylov Subspace of the matrix $A$.
 
 
 

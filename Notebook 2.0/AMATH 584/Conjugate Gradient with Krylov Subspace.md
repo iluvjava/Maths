@@ -22,10 +22,6 @@ Make you you know the Lancosz algorithm and its relations with Krylov Subspace.
 
 We make the implicit assumption that matrix $A$ is PSD, purely because it defines a norm for the vector space. 
 
-**Claim 2**
-
-> The conjugate gradient is Lancosz iterations in disguise
-
 **The Major Idea**
 
 We need a set of vectors such that they are orthogonal under the A-Inner product space. 
@@ -34,7 +30,7 @@ Looking for the solution of a system involving sparse matrix is very similar to 
 
 
 ---
-### **Stepsize in the Conjugate Directions**
+### **Conjugate Directions, or the A-Orthogonal Directions**
 
 Let $\langle d_1, d_2, \cdots, d_k\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$. Now, conjugate directions are interesting in the regard that, if $D = [d_1 d_2...d_k]$, then $D^TAD$ is the identity. 
 
@@ -42,7 +38,7 @@ Notice that, inductively, we wish for the relations between the conjugate set an
 
 $$
 \begin{aligned}
-    d_1 &= b
+    \langle  d_1\rangle  &= \langle  b\rangle
     \\
     \langle d_1, d_2\rangle &= \langle b, Ab\rangle
     \\
@@ -114,7 +110,7 @@ However, because $a_j$ where $1 \le j \le k$ corresponds to components that span
 ---
 ### **The Magics, The Residual Vector**
 
-**Claim 3**
+**Claim 2**
 > Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions.  
 
 **Justification**: 
@@ -161,6 +157,78 @@ Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}
 \[1\]: using the fact that $A$ is PSD. 
 
 \[2\]: Using the fact that for all $1 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
+
+Claim 2 is proven $\blacksquare$ 
+
+---
+### **Stepsize and A-Orthogonalization**
+
+**Stepping Along the Direction**
+
+From the Recursive formulation of the proof for **Claim 1**, we can say that the reduction of the Relations between $x^{(k)}$ and $x^{(k + 1)}$ can be summarized as: 
+
+$$
+\begin{aligned}
+    x^{(k + 1)} &= x^{(k)}  + \alpha_k d_k
+    \\
+    e^{(k + 1)} &= e^{(k)} + \alpha_k d_k
+\end{aligned}
+$$
+
+Each step we only need to remove the nest components, $d_k$ to prepare for the next guess. Because all previous $d_j$ where $1 \le j \le k - 1$ are handled by previous iterations. 
+
+$e^{(k + 1)}$ is A-Orghogonal to $\mathcal{K}_{k}$, then: 
+
+$$
+\begin{aligned}
+    \langle  d_k, e^{(k + 1)}\rangle_A &= 0
+    \\
+    0 &= \langle d_k, e^{(k)} \rangle_A + \alpha_k \langle d_k, d_k \rangle_A
+    \\
+    \alpha_k &= - \frac{\langle d_k, e^{(k)} \rangle_A}
+    {
+        \langle d_k, d_k \rangle_A
+    }
+    \\
+    \alpha_k &= - \frac{\langle d_k, Ae^{(k)}\rangle}
+    {
+        \Vert d\Vert_A^2
+    }
+    \\
+    \alpha_k &= - \frac{d_k^Tr^{(k)}}{\Vert A\Vert_A^2}
+\end{aligned}
+$$
+
+When the the algorithm starts, we can set the first search direction to be $r^{(0)}$, which is just $b - Ax^{(0)}$, and $x^{(0)}$ is a random guess, which then use $d_1 = r^{(0)}$ to get $\alpha_1$. 
+
+**Updating the Direction**
+
+Now we obtained $x^{(k + 1)}$, and we have $d_k$, we want to use $r^{(k + 1)}$ to fingure out $d_{k + 1}$ that is A-Orthogonal to $d_k$, then by **claim 2**, the new $d_{k + 1}$ is A-Orthogonal to all previous $d_j$ where $1 \le j \le k$
+
+Then if we are considering 
+
+$$
+d_{k + 1} = r^{(k)} - \beta_k d_{k}
+$$
+
+
+
+looking for $\beta_k$, we are considering: 
+
+$$
+\begin{aligned}
+    d^T_{k}Ad_{k} &= 0
+    \\
+    \implies 
+    d^T_k Ar^{(k)} - \beta_k d_k^T Ad_{k-1} &= 0
+    \\
+    \beta_k = \frac{d^T_{k-1}Ar^{k}}{d_k^TAd_k}
+\end{aligned}
+$$
+
+Inductively, I am saying $d_0 = \mathbf{0}$, then $d_1 = r^{(1)} - \beta_kd_0 = r^{(1)}$. 
+
+
 
 ---
 ### **Unusual Connections**
