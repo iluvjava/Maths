@@ -246,10 +246,25 @@ $$
     \\
     d_1^TAr^{(1)} - \beta_1(r^{(0)})^TAr^{(0)} &= 0
     \\
-    \underset{d_1 = r^{(0)}}{\implies} 
-    \beta_1 &= \frac{\langle r^{(1)}, r^{(0)} \rangle_A}{\langle r^{(0)}, r^{(0)}\rangle_A}
+    \implies
+    \beta_1 &= \frac{\langle r^{(1)}, d_1 \rangle_A}{\langle r^{(0)}, r^{(0)} \rangle_A}
 \end{aligned}
 $$
+
+Now, check this out: 
+
+$$
+\begin{aligned}
+    d_1 &= \frac{e^{(1)} - e^{(0)}}{\alpha_1}
+    \\
+    \alpha_1 d_1^TAd_2 &= (e^{(1)} - e^{(2)})^TAr^{(1)}
+\end{aligned}
+$$
+
+
+**Inductively: Stepping and Choosing Search Direction** 
+
+
 
 
 ---
@@ -258,8 +273,6 @@ $$
 If we are dealing with Krylov Subspace, and we know that Krylov Subspace are relevant to Arnoldi Iterations, and Lancosz Iterations in the Symmetric Case. 
 
 Therefore, there exists an Arnoldi Iterations interpretations of the conjugate gradient algorithm. 
-
-
 
 
 

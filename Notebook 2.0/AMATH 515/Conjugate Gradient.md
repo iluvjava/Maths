@@ -461,7 +461,7 @@ Then in that case, we want to solve $AAx = Ab$ instead, and in this case $A^2$ w
 * Bi-conjugate gradient stabalized is a mix of Conjugate Gradient and General Residual Method.  
 * It can solve no-linear system, in a locally convex region, a trusted region of the objective function. 
 * Conjugate Gradient has a connection to the 3 terms recurrences of suggested by the Lancozs Algorithm
-
+ 
 
 [^1]: None
 [^2]: Basically $d^{(i)}$ got swapped into $r^{(i)}$, in the case of CG the residual is the assisting subspace, the $u_i$ vectors. 
