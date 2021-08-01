@@ -5,6 +5,18 @@ Krylov Subspace is used in a lot of places:
 ---
 ### **Intro**
 
+This is the Krylov Subspace initialized by $b$: 
+
+$$
+\mathcal{K}_k = \langle b, Ab, A^2b, \cdots A^{k - 1}b \rangle
+$$
+
+**Claim 0:**
+> $$
+> \langle \mathcal{K}_1 \rangle \subseteq  \langle \mathcal{K}_2 \rangle \subseteq \langle \mathcal{K}_3 \rangle \cdots 
+> $$
+
+It's trivial to justify claim 0. 
 
 **Claim 1:**
 
