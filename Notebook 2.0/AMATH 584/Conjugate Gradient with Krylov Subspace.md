@@ -1,4 +1,4 @@
-[[Conjugate Gradient]]
+[[Conjugate Gradient]], [[Krylov Subspace]]
 
 ---
 ### **Intro**
@@ -19,6 +19,7 @@ Make you you know the Lancosz algorithm and its relations with Krylov Subspace.
 >         \Vert x - x^+\Vert_A^2
 > \end{aligned} \quad  \text{where: } Ax^+ = b
 > $$
+> If we do this then we have the conjugate gradient algorithm. 
 
 We make the implicit assumption that matrix $A$ is PSD, purely because it defines a norm for the vector space. 
 
@@ -101,7 +102,7 @@ We are implicitly using the PSD property of the matrix $A$ here.
 
 The inductive assumtpion $x\in \langle \mathcal{K}_k \rangle$ holds true. 
 
-
+We found an expression for $x^{(k)}$ from it, which is going to be the guesses produced by the conjugate gradient algorithm. 
 
 > Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
 
@@ -140,7 +141,21 @@ $$
 \end{aligned}
 $$
 
+**Claim 1 Corollary 3**
 
+> $\langle r^{(k)}, r^{(j)}\rangle = 0$ for all $1 \le j \le k - 1$
+
+Note the property of Krylov Subspace is: 
+
+$$
+\langle  \mathcal{K}_1\rangle \subseteq \langle  \mathcal{K}_2\rangle \subseteq \langle  \mathcal{K}_3\rangle \cdots \subseteq \langle  \mathcal{K}_n\rangle
+$$
+
+Here we assume that the subsets are strict, again, because the matrix is SPD. 
+
+Since $r^{(k)} \notin \langle \mathcal{K}_k \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k + 1} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle\setminus \langle \mathcal{K}_{k} \rangle$ 
+
+So then basically, $r^{(j)}\in \langle \mathcal{K}_k \rangle$ for all $1 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $1 \le j \le k - 1$ by that property of the Krylov Subspace. 
 
 
 ---
@@ -273,6 +288,8 @@ $$
 If we are dealing with Krylov Subspace, and we know that Krylov Subspace are relevant to Arnoldi Iterations, and Lancosz Iterations in the Symmetric Case. 
 
 Therefore, there exists an Arnoldi Iterations interpretations of the conjugate gradient algorithm. 
+
+It's linked to **Claim 1 Corolarry 3**. 
 
 
 
