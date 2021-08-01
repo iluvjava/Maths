@@ -198,71 +198,34 @@ Claim 2 is proven $\blacksquare$
 ---
 ### **Stepsize and A-Orthogonalization**
 
-#### **A Step size in the Right Direction: Base Case**
-To start the algorithm, we need an initial guess, say $x^{(0)}$, and then we will take the residual of this vector to be the first search direciton, $d_1 = r^{(0)}$. Which also defines the Krylov Subspace as $\langle \mathcal{K}_1 \rangle = \langle r^{(0)} \rangle$
-
-
-Therefore, we are looking for the base case for **claim 1**, and we are looking for: 
-
-$$
-x^{(1)} = x^{(0)} + \alpha_1r^{(0)} \quad \alpha_1 = ?
-$$
-
-Notice that, **claim 1** is going to assert the statement that $e^{(1)}\perp_A \langle r^{(0)} \rangle$, then we can solve for $\alpha_1$ by considering: 
+So inductively, we an figure out the stepsize by considering: 
 
 $$
 \begin{aligned}
-    x^{(1)} - x^+ &= x^{(0)} - x^+ + \alpha_1 r^{(0)}
+    e^{(k + 1)} &= e^{(k)} + \alpha_k d_k
     \\
-    e^{(1)} &= e^{(0)} + \alpha_1 r^{(0)} 
+    \underset{[1]}{\implies}
+    d_k^TAe^{(k + 1)} &= 
+    \langle d_k, e^{(k)} \rangle_A + \alpha_k \langle d_k, d_k \rangle_A = 0
     \\
-    e^{(1)}Ar^{(0)} & = 0
+    \underset{[2]}{\implies} \alpha_k &= 
+    - \frac{\langle d_k, e^{(k)} \rangle_A}
+    {\langle d_k, d_k \rangle_A}
     \\
-    \implies 
-    0 &= e^{(0)T}Ar^{(0)} + \alpha_1 r^{(0)T}Ar^{(0)}
-    \\
-    \alpha_1 &= -\frac{e^{(0)T}Ar^{(0)}}{r^{(0)T}Ar^{(0)}}
-    \\
-    \alpha_1 &= -\frac{r^{(0)T}Ae^{(0)}}{\Vert r^{(0)}\Vert_A^2} = 
-    -\frac{\Vert r^{(0)}\Vert_2^2}{\Vert r^{(0)}\Vert_A^2} 
+    \alpha_k &= - \frac{\langle d_k, r^{(k)} \rangle}
+    {\langle d_k, d_k \rangle_A}
 \end{aligned}
 $$
 
-#### **Choosing the Next Direction**
+\[1\]: By **cororallary 1 of clam 1**, $e^{(k + 1)}$ is A-orthogonal to $d_k$, and we only need direction in $d_k$ to because all the other directions will just set the product with $d_k$ to zero. 
 
-We had $x^{(1)}$ using $d_1$, we are ready to find $x^{(2)}$, which will need $d_2$. 
+\[2\]: Solve for $\alpha_k$. 
 
-From **claim 2**, we will be able to choose the second search direction for the algorithm, which will be: 
+Here, becareful about vector $d_k$ that makes the Energy Norm of A negative, or too close to zero, cause that saying that the matrix is not PSD, or, huge numerical errors exists in this context. 
 
-$$
-d_2 = r^{(1)} - \beta_1 d_1 \quad \beta_1 = ? 
-$$
+---
+### **Determing the Search Directions**
 
-the next search direction is perpendicular to the previous one therefore: 
-
-$$
-\begin{aligned}
-    d_1^TAd_2 &= 0
-    \\
-    d_1^TAr^{(1)} - \beta_1(r^{(0)})^TAr^{(0)} &= 0
-    \\
-    \implies
-    \beta_1 &= \frac{\langle r^{(1)}, d_1 \rangle_A}{\langle r^{(0)}, r^{(0)} \rangle_A}
-\end{aligned}
-$$
-
-Now, check this out: 
-
-$$
-\begin{aligned}
-    d_1 &= \frac{e^{(1)} - e^{(0)}}{\alpha_1}
-    \\
-    \alpha_1 d_1^TAd_2 &= (e^{(1)} - e^{(2)})^TAr^{(1)}
-\end{aligned}
-$$
-
-
-**Inductively: Stepping and Choosing Search Direction** 
 
 
 
