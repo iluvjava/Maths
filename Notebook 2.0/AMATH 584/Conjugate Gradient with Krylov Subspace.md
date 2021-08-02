@@ -1,5 +1,8 @@
 [[Conjugate Gradient]], [[Krylov Subspace]]
 
+This is the link to the reference resources I used: [here](https://chen.pw/research/cg/cg.pdf)
+
+
 ---
 ### **Intro**
 
@@ -7,7 +10,19 @@ There are a lot of ways to derive the conjugate Gradient algorithm.
 
 In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjugation, here we will minimize the energy norm of the residual vector over the Krylov Subspace. 
 
-Make you you know the Lancosz algorithm and its relations with Krylov Subspace. 
+
+**Notations and Quantities** 
+
+* $\langle \bullet \rangle$ means that span of a set of vectors that are in the angle bracket. 
+* $\langle u,v \rangle$ is the inner product of 2 vectors
+* $\langle u, v \rangle_A$ is the inner product of 2 vectors under the A SPD matrix, basically: $u^TAv$
+* $Ax^+ = b$ the equation and it's soltuion is $x^+$, regarded as the optimal value $x^+$. 
+* $e^{(k)} = x^{(k)} - x^+$ The error vector, when the solution $x^{(k)}$ is converging. 
+* $r^{(k)} = b - Ax^{(k)}$, the residual vector, how far we are from the correct solution on the output space of matrix $A$. 
+* $Ae^{(k)} = - r^{(k)}$, The relation between the input space error vector and the output space residual vector. 
+* $\Vert x\Vert_A$ is the Energy norm of a vector $\Vert x\Vert_A^2 = x^TAx$, where $A$ is assumed to be SPD. 
+
+
 
 **Claim: 1** 
 
@@ -15,7 +30,7 @@ Make you you know the Lancosz algorithm and its relations with Krylov Subspace.
 > 
 > $$
 > \begin{aligned}
->     x^{(k + 1)} &= \arg\min_{x\in \langle K_{k}\rangle} 
+>     x^{(k + 1)} &= \arg\min_{x\in \langle K_{k + 1}\rangle} 
 >         \Vert x - x^+\Vert_A^2
 > \end{aligned} \quad  \text{where: } Ax^+ = b
 > $$
@@ -33,17 +48,17 @@ Looking for the solution of a system involving sparse matrix is very similar to 
 ---
 ### **Conjugate Directions, or the A-Orthogonal Directions**
 
-Let $\langle d_1, d_2, \cdots, d_k\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$.
+Let $\langle d_0, d_1, \cdots, d_{k - 1}\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$.
 
 **The Hypotehsis** 
 
 > $$
 > \begin{aligned}
->     \langle  d_1\rangle  &= \langle  b\rangle
+>     \langle  d_0\rangle  &= \langle  b\rangle = \langle \mathcal{K}_0 \rangle
 >     \\
->     \langle d_1, d_2\rangle &= \langle b, Ab\rangle
+>     \langle d_0, d_1\rangle &= \langle b, Ab\rangle = \langle \mathcal{K}_1 \rangle
 >     \\
->     \langle d_1, d_2, \cdots d_k\rangle &= \langle b, Ab, \cdots A^{k - 1}b \rangle
+>     \langle d_0, d_1, \cdots d_{k - 1}\rangle &= \langle b, Ab, \cdots A^{k - 1}b \rangle = \langle \mathcal{K}_{k - 1} \rangle
 > \end{aligned}
 > $$
 > Inductively, let's also assume that: 
@@ -54,96 +69,100 @@ Let $\langle d_1, d_2, \cdots, d_k\rangle$ be a set of $A$ orthogonal directions
 
 
 
-By the assumption that $x^{(k)} \in \mathcal{K}_k$, we know that $x^{(k)}\in \langle d_1, d_2, \cdots d_k\rangle$, giving us: 
+By the assumption that $x^{(k)} \in \mathcal{K}_k$, we know that $x^{(k)}\in \langle d_0, d_1, \cdots d_{k - 1}\rangle$, giving us: 
 
 $$
 \begin{aligned}
-    x^{(0)} &= \sum_{j = 1}^{n} a^{(0)}_j d_j
+    x^{(0)} &= \sum_{j = 0}^{n-1} a^{(0)}_j d_j
     \\
-    x^{(k)} &= \sum_{j = 1}^{k} a^{(k)}_j d_j
+    x^{(k)} &= \sum_{j = 0}^{k - 1} a^{(k)}_j d_j
     \\
-    x^{+} &= \sum_{j = 1}^{n} a_j^+d_j
-\end{aligned}
+    x^{+} &= \sum_{j = 0}^{n - 1} a_j^+d_j
+\end{aligned}\tag{1}
 $$
 
 Note: $x^{(0)}, x^+$ need to be expressed using all the conjugate, if we assume that the system is, solvable, it's solvable only if $b\in \langle\mathcal{K}_j\rangle$, $1 \le j \le n$. 
+
+To verify claim 1, we need to minimize the energy norm of $x$ under the subspace $\langle \mathcal{K}_{k + 1} \rangle$. 
 
 Which them means the statement we consider in **claim 1** would be 
 
 $$
 \begin{aligned}
-    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_k} \Vert x - x^+\Vert_A^2
+    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} \Vert x - x^+\Vert_A^2
     \\
-    \underset{[2]}{\implies}\text{let: } x &= \sum_{j = 1}^{k} a_j d_j 
+    \underset{[2]}{\implies}\text{let: } x &= \sum_{j = 0}^{k-1} a_j d_j 
     \\
-    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_k} 
+    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} 
     \left\Vert
-        \underbrace{\sum_{j = 1}^{k} (a_j - a_j^+)d_j}_{\in \mathcal{K}_k}
+        \underbrace{\sum_{j = 0}^{k} (a_j - a_j^+)d_j}_{\in \mathcal{K}_{k + 1}}
         + 
-        \sum_{j = k + 1}^{n} a_j^+d_j
+        \sum_{j = k}^{n - 1} a_j^+ d_j
     \right\Vert_A^2
     \\
-    \underset{[1]}{\implies} x^{(k+ 1)} &= \sum_{j = 1}^{k}a_j^+d_j \in 
+    \underset{[1]}{\implies} x^{(k+ 1)} &= \sum_{j = 0}^{k}a_j^+d_j \in 
     \langle  \mathcal{K}_{k + 1}\rangle
-\end{aligned}
+\end{aligned}\tag{2}
 $$
 
 \[1\]: Take notice that, because $d_j$ vector A-Ortho, therefore, it's directly: 
 
 $$
-    \sum_{j = 1 }^{k}(a_j - a_j^+)^2 - \sum_{j = k + 1}^{n}(a_j^+)^2
+    \sum_{j = 0}^{k}(a_j - a_j^+)^2 - \sum_{j = k + 1}^{n - 1}(a_j^+)^2
 $$
 
 We are implicitly using the PSD property of the matrix $A$ here. 
 
-\[2\]: By the fact that $x\in \mathcal{K}_k$, the subscript for the denoted minimizer. However, because $a_j$ where $1 \le j \le k$ corresponds to components that spans $\mathcal{K}_k$, the minimization problem is just directly setting the conjugate vector to zero. 
+\[2\]: By the fact that $x\in \mathcal{K}_{k + 1}$, the subscript for the denoted minimizer. However, because $a_j$ where $1 \le j \le k$ corresponds to components that spans $\mathcal{K}_{k + 1}$, the minimization problem is just directly setting the conjugate vector to zero. 
 
 **Observe:**
 
 The inductive assumtpion $x\in \langle \mathcal{K}_k \rangle$ holds true. 
 
-We found an expression for $x^{(k)}$ from it, which is going to be the guesses produced by the conjugate gradient algorithm. 
+We found an expression for $x^{(k + 1)}$ from it, which is going to be the next guess produced by the conjugate gradient algorithm. 
 
 > Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
 
 **Claim 1 Corolary 1**
 
-> $e^{(k + 1)} \perp_A \langle \mathcal{K}_{k}\rangle$
+> $e^{(k)} \perp_A \langle \mathcal{K}_{k}\rangle$
 > The error vector at the $k$ th step is the orthogonal to the Krylov Subspace $\mathcal{K}_k$, because the minimization process removes the components represented by $d_i$ for $\mathcal{K}_{k}$
 
 **Claim 1 Corolary 2**
-> $r^{(k)}\notin \langle \mathcal{K}_k \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k + 1} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$
+> $r^{(k)}\notin \langle \mathcal{K}_{k - 1} \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k} \rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$
 
 **Proof**
 
-
 $$
 \begin{aligned}
-    x^{(k)} &=  \sum_{j = 1}^{k - 1} a_j^+ d_j \in \langle \mathcal{K}_k \rangle
+    x^{(k)} &=  \sum_{j = 0}^{k - 1} a_j^{+} d_j \in 
+    \langle \mathcal{K}_k \rangle
     \\
-    b = Ax^+  \implies  b &= \sum_{j = 1}^{n} a^+_jAd_j
+    b = Ax^+  \implies  b &= \sum_{j = 0}^{n - 1} a^+_jAd_j
     \\
     \implies
-    b - Ax^{(k)} &= \sum_{j = k}^{n}a_j^+Ad_j
+    b - Ax^{(k)} &= - \sum_{j = k}^{n - 1}a_j^{+}Ad_j
     \\
     \implies 
-    \forall 1 \le i \le k - 1 & \quad 
+    \forall 0 \le i \le k - 1 & \quad 
     \left\langle  
-        \sum_{j = k}^{n}    
-        a_j^+Ad_j, d_i
+        \sum_{j = k}^{n}
+        a_j^+Ad_j,
+        d_i
     \right\rangle = 0
     \\
     \implies
-    r^{(k)} & \notin \langle d_1, d_2, \cdots d_{k - 1} \rangle
+    r^{(k)} & \notin \langle d_0, d_1, \cdots d_{k - 1} \rangle
     \\
     \implies 
-    r^{(k)} & \notin \langle \mathcal{K}_k \rangle
+    r^{(k)} & \notin \langle \mathcal{K}_{k - 1} \rangle
 \end{aligned}
+\tag{3}
 $$
 
 **Claim 1 Corollary 3**
 
-> $\langle r^{(k)}, r^{(j)}\rangle = 0$ for all $1 \le j \le k - 1$
+> $\langle r^{(k)}, r^{(j)}\rangle = 0$ for all $0 \le j \le k - 1$
 
 Note the property of Krylov Subspace is: 
 
@@ -153,9 +172,9 @@ $$
 
 Here we assume that the subsets are strict, again, because the matrix is SPD. 
 
-Since $r^{(k)} \notin \langle \mathcal{K}_k \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k + 1} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle\setminus \langle \mathcal{K}_{k} \rangle$ 
+Since $r^{(k)} \notin \langle \mathcal{K}_{k - 1} \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k} \rangle\setminus \langle \mathcal{K}_{k - 1} \rangle$ 
 
-So then basically, $r^{(j)}\in \langle \mathcal{K}_k \rangle$ for all $1 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $1 \le j \le k - 1$ by that property of the Krylov Subspace. 
+So then basically, $r^{(j)}\in \langle \mathcal{K}_{k - 2} \rangle$ for all $0 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $0 \le j \le k - 1$ by that property of the Krylov Subspace. 
 
 
 ---
@@ -166,14 +185,14 @@ So then basically, $r^{(j)}\in \langle \mathcal{K}_k \rangle$ for all $1 \le j \
 
 **Justification**: 
 
-$r^{(k)} \notin \langle \mathcal{K}_k\rangle$ but $r^{(k)} \in \langle \mathcal{K}_{k + 1}\rangle$, similar to the behaviors of $q$ vector in Arnoldi Iterations.
+$r^{(k)} \notin \langle \mathcal{K}_{k - 1}\rangle$ but $r^{(k)} \in \langle \mathcal{K}_{k}\rangle$, similar to the behaviors of $q$ vector in Arnoldi Iterations.
 
-By the corolary of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k - 1}$, but then this also means 
+By the corolary of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k}$, but then this also means 
 
 Then: 
 $$
 \begin{aligned}
-    \langle e^{(k)}, A^jb\rangle_A &= 0 \quad \forall 1 \le j \le k - 1
+    \langle e^{(k)}, A^jb\rangle_A &= 0 \quad \forall\; 0 \le j \le k - 1
     \\
 \end{aligned}
 $$
@@ -182,22 +201,22 @@ Consider:
 
 $$
 \begin{aligned}
-    & \langle r^{(k)}, A^jb \rangle_A
+    & \langle r^{(k)}, A^jb \rangle_A = 0
     \\
-    &\langle Ae^{(k)}, A^jb \rangle_A
+    &\langle Ae^{(k)}, A^jb \rangle_A = 0
     \\
     \underset{[1]}{\implies} &  
-    \langle e^{(k)}, A^{j + 1}b \rangle_A
+    \langle e^{(k)}, A^{j + 1}b \rangle_A = 0
     \\
     \implies &
-    1 \le j \le k - 2
+    0 \le j \le k - 2
     \\
     \underset{[2]}{\implies} &
     r^{(k)} \perp_A \langle \mathcal{K}_{k - 1} \rangle
     \\
     \implies & 
-    r^{(k)} \perp_A \langle d_1, d_2, \cdots d_{k - 2} \rangle
-\end{aligned}
+    r^{(k)} \perp_A \langle d_0, d_1, \cdots, d_{k - 1} \rangle
+\end{aligned}\tag{4}
 $$
 
 Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}$ to determine the next A-Orthogonal (or the next conjugate vector) search direction. 
@@ -206,12 +225,15 @@ Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}
 
 \[1\]: using the fact that $A$ is PSD. 
 
-\[2\]: Using the fact that for all $1 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
+\[2\]: Using the fact that for all $0 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
 
 Claim 2 is proven $\blacksquare$ 
 
 ---
-### **Stepsize**
+### **Stepsize and A-Orthogonal Direction**
+
+**Note:**  To avoid confuction, I will use $d_0$ as the initial stepsizes for improving $x^{(0)}$ for getting the next step of the iterations, $x^{(1)}$. But **remember**, the $d_0$ here is actually the $d_1$ for the theory part of the algorithm. 
+
 
 So inductively, we an figure out the stepsize by considering: 
 
@@ -224,12 +246,15 @@ $$
     \langle d_k, e^{(k)} \rangle_A + \alpha_k \langle d_k, d_k \rangle_A = 0
     \\
     \underset{[2]}{\implies} \alpha_k &= 
-    - \frac{\langle d_k, e^{(k)} \rangle_A}
+    -\frac{\langle d_k, e^{(k)} \rangle_A}
     {\langle d_k, d_k \rangle_A}
     \\
-    \alpha_k &= - \frac{\langle d_k, r^{(k)} \rangle}
+    \alpha_k &= - \frac{\langle d_k, -r^{(k)} \rangle}
     {\langle d_k, d_k \rangle_A}
-\end{aligned}
+    \\
+    \alpha_k &= \frac{\langle d_k, r^{(k)} \rangle}
+    {\langle d_k, d_k \rangle_A}
+\end{aligned}\tag{5}
 $$
 
 \[1\]: By **cororallary 1 of clam 1**, $e^{(k + 1)}$ is A-orthogonal to $d_k$, and we only need direction in $d_k$ to because all the other directions will just set the product with $d_k$ to zero. 
@@ -241,39 +266,109 @@ Here, becareful about vector $d_k$ that makes the Energy Norm of A negative, or 
 
 **A-Orthogonal Direction**
 
-From the conclusion of claim 2, we only need to remove components of $r^{(k)}$ on the last direction $d_{k}$ to get the new direction $d_{k + 1}$ for figuring out $x^{(k + 1)}$
+From the conclusion of claim 2, we only need to remove components of $r^{(k)}$ (Which can be figured out based on $x^{(k + 1)}$) on the last direction $d_{k}$ to get the new direction $d_{k + 1}$ for figuring out $x^{(k + 1)}$
 
 $$
 \begin{aligned}
-    d_{k + 1} &= r^{(k)} - \beta_{k}d_{k} 
+    d_{k + 1} &= r^{(k + 1)} + \beta_{k}d_{k} 
     \\\underset{[1]}{\implies}
     d_{k}^TAd_{k + 1} &= 0
     \\
     \underset{[2]}{\implies}
-    0 &= d_k^TAr^{(k)} - \beta_k d^T_{k}Ad_k
+    0 &= d_k^TAr^{(k + 1)} + \beta_k d^T_{k}Ad_k
     \\
-    \beta_k &= \frac{d_k^TAr^{(k)}}{d_k^TAd_k}
+    \beta_k &= -\frac{d_k^TAr^{(k + 1)}}{d_k^TAd_k}
     \\
-    \beta_k &= \frac{\langle d_k, r^{(k)} \rangle_A}
-    {
-        \langle  d_k, d_k\rangle_A
-    }
-\end{aligned}
+    \beta_k &= -\frac{\langle d_k, r^{(k + 1)} \rangle_A}
+    {\langle  d_k, d_k\rangle_A}
+\end{aligned}\tag{6}
 $$
+
+**Explanation**
+
+\[1\]: We only need to remove project onto the last direction to make the next orthogonal vector. Let's asserts the fact that the A-Inner product with the previous direction is zero. 
+
+\[2\]: Set the RHS to zero and solve for $\beta_k$. 
 
 **Observe:** 
 
 This still a very different results compare to the deriation of the CG without using the idea of Krylov Subspace. 
 
-**Initialization: The basecase:**
+**Alternate Form for $\beta_k, \alpha_k$**
 
-**claim 4**
+$$
+\begin{aligned}
+    \beta_k &= - \frac{\langle d_k, r^{(k + 1)}\rangle_A}
+    {
+        \Vert d_k\Vert_A^2
+    }
+    \\\underset{[1]}{\implies}
+    \beta_k &= - \frac{\langle e^{(k + 1)} - e^{(k)}, r^{(k + 1)} \rangle_A}
+    {\alpha_k \Vert d_k\Vert_A^2}
+    \\\underset{[2]}{\implies}
+    \beta_k &= -
+    \frac{\langle -r^{(k + 1)} + r^{(k)}, r^{(k + 1)}\rangle}
+    {
+        \alpha_k \Vert d_k\Vert_A^2
+    }
+    \\
+    \beta_k &=
+    \frac{\Vert r^{(k + 1)}\Vert_2^2}
+    {
+        \alpha_k \Vert d_k\Vert_A^2
+    }
+    \\
+    \beta_k &= \frac{\Vert r^{(k + 1)}\Vert_2^2}
+    {
+        \langle d_k, r^{(k)} \rangle
+    }
+\end{aligned}\tag{7}
+$$
 
-> $d_1$ can be verything really. But choosing $d_1 = r^{(0)}$, we will be getting very close to Lancosz Iterations, and it will give us the same formulation of conjugate gradient as last time. 
+\[1\]: Break $\alpha_kd_k = e^{(k + 1)} - e^{(k)}$ using expression (5). 
+
+\[2\]: Merge in the $A$ from the subscript to the inside of the inner product. 
 
 
+$\langle d_k, r^{(k)} \rangle$ can be simplified with assumption $d_0 = r^{(0)}$, but we will need to unroll the recurrence and use the Third Corollary from claim 2. 
 
 
+**Simplifying $\langle d_k, r^{(k)} \rangle$** 
+
+
+### **The Conjugate Gradient Algorithm**
+
+Consider the following recurrent based on expression (6), with the extra assumption that $d_0 = r^{(0)}$, which essentially makes $d_{k + 1}$ a linear combinations of residual. 
+
+$$
+\begin{aligned}
+    d_{k + 1} &= r^{(k + 1)} + \beta_k d_k 
+    \\
+    &= r^{(k + 1)} + \beta_k(r^{(k)} + \beta_{k -1}d_{k - 1})
+    \\
+    &= r^{(k + 1)} + \beta_k (r^{(k)} + \beta_{k - 1}(r^{(k - 1)} + \beta_{k - 2}d_{k - 2}))
+    \\
+    &= r^{(k + 1)} + \sum_{i = 1}^{k}
+        \prod_{j = i}^{k} b_j r^{(i)}
+\end{aligned}\tag{8}
+$$
+
+Therefore, using Corollary 3 from claim 1, it's not hard to see that $d_k^Tr^{(k)} = (r^{(k)})^T r^{(k)} = \Vert r^{(k)}\Vert_2^2$. 
+
+Then, we can simplify the stepsize $\alpha_k$ and conjugate coefficient $\beta_k$ into the following: 
+
+
+$$
+\alpha_k = \frac{\langle r^{(k)}, r^{(k)} \rangle}
+                {\langle d_k, d_k \rangle_A}
+\quad 
+\beta_k = \frac{\Vert r^{(k + 1)}\Vert_2^2}
+{
+    \langle r^{(k)}, r^{(k)} \rangle
+}\tag{9}
+$$
+
+Finally, the algorithm is: 
 
 ---
 ### **Unusual Connections**
