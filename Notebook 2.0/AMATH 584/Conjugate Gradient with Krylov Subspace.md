@@ -239,13 +239,37 @@ $$
 Here, becareful about vector $d_k$ that makes the Energy Norm of A negative, or too close to zero, cause that saying that the matrix is not PSD, or, huge numerical errors exists in this context. 
 
 
-**Orthogonal Direction**
+**A-Orthogonal Direction**
 
+From the conclusion of claim 2, we only need to remove components of $r^{(k)}$ on the last direction $d_{k}$ to get the new direction $d_{k + 1}$ for figuring out $x^{(k + 1)}$
 
+$$
+\begin{aligned}
+    d_{k + 1} &= r^{(k)} - \beta_{k}d_{k} 
+    \\\underset{[1]}{\implies}
+    d_{k}^TAd_{k + 1} &= 0
+    \\
+    \underset{[2]}{\implies}
+    0 &= d_k^TAr^{(k)} - \beta_k d^T_{k}Ad_k
+    \\
+    \beta_k &= \frac{d_k^TAr^{(k)}}{d_k^TAd_k}
+    \\
+    \beta_k &= \frac{\langle d_k, r^{(k)} \rangle_A}
+    {
+        \langle  d_k, d_k\rangle_A
+    }
+\end{aligned}
+$$
 
+**Observe:** 
 
----
-### **Determing the Search Directions**
+This still a very different results compare to the deriation of the CG without using the idea of Krylov Subspace. 
+
+**Initialization: The basecase:**
+
+**claim 4**
+
+> $d_1$ can be verything really. But choosing $d_1 = r^{(0)}$, we will be getting very close to Lancosz Iterations, and it will give us the same formulation of conjugate gradient as last time. 
 
 
 
