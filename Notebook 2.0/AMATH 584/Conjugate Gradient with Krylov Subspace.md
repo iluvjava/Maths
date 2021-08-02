@@ -349,7 +349,7 @@ $$
     &= r^{(k + 1)} + \beta_k (r^{(k)} + \beta_{k - 1}(r^{(k - 1)} + \beta_{k - 2}d_{k - 2}))
     \\
     &= r^{(k + 1)} + \sum_{i = 1}^{k}
-        \prod_{j = i}^{k} b_j r^{(i)}
+        \left(\prod_{j = i}^{k} b_j\right) r^{(i)}
 \end{aligned}\tag{8}
 $$
 
@@ -368,7 +368,46 @@ $$
 }\tag{9}
 $$
 
-Finally, the algorithm is: 
+Finally, we will be able to use phrase the algorithm and prove that that claim is corret. 
+
+---
+### **The Conjugate Gradient Algorithm**
+
+> Choose any $x^{(0)}$ as the initial guess for the conjugate gradient iterations. 
+> 
+> $$
+> \begin{aligned}
+>     & d_0 = r^{(0)}
+>     \\
+>     & \text{for } k = 0, 1, \cdots , n - 1
+>     \\ 
+>     &\hspace{2em}
+>     \begin{aligned}
+>         & r^{(k)} = b - Ax^{(k)}
+>         \\
+>         & \alpha_k = \frac{\Vert r^{(k)}\Vert_2^2}
+>         {
+>             \Vert d_k\Vert_A^2
+>         }
+>         \\
+>         & x^{(k + 1)} = x^{(k)} + \alpha_k d_k
+>         \\
+>         & \beta_k = \frac{\Vert r^{(k + 1)}\Vert_2^2}
+>         {\Vert r^{(k)}\Vert_2^2}
+>         \\
+>         & d_{k + 1} = d_{k} + \beta_k d_k
+>     \end{aligned}
+> \end{aligned}
+> $$
+
+**Claim 1 has been proven**  $\blacksquare$
+
+**Potential Failure**
+
+This algorithm fails when the matrix is Symmetric Semi-Definite, but no positive definite. 
+
+
+
 
 ---
 ### **Unusual Connections**
