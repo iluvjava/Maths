@@ -42,7 +42,11 @@ $$
 \begin{aligned}
     AQ &= QH
     \\
-    (AQ)_{:, 1< k < n} &= \beta_{k - 1}q_{k - 1} + \alpha_{k}q_k + \beta_{k}q_{k + 1}
+    [AQ]_{:, 1< k < n} &= \beta_{k - 1}q_{k - 1} + \alpha_{k}q_k + \beta_{k}q_{k + 1}
+    \\
+    [AQ]_{:, 1} &= \alpha_1 q_1 + \beta_1 q_2
+    \\
+    [AQ]_{:, n} &= \beta_{n - 1}q_{n - 1} + \alpha_n q_n
 \end{aligned}
 $$
 

@@ -2,7 +2,6 @@
 
 This is the link to the reference resources I used: [here](https://chen.pw/research/cg/cg.pdf)
 
-
 ---
 ### **Intro**
 
@@ -335,7 +334,7 @@ $\langle d_k, r^{(k)} \rangle$ can be simplified with assumption $d_0 = r^{(0)}$
 
 **Simplifying $\langle d_k, r^{(k)} \rangle$** 
 
-
+---
 ### **The Conjugate Gradient Algorithm**
 
 Consider the following recurrent based on expression (6), with the extra assumption that $d_0 = r^{(0)}$, which essentially makes $d_{k + 1}$ a linear combinations of residual. 
@@ -406,7 +405,7 @@ Finally, we will be able to use phrase the algorithm and prove that that claim i
 
 This algorithm fails when the matrix is Symmetric Semi-Definite, but no positive definite. 
 
-
+Depending on the Conditioning of the matrix $A$, a small residual doesn't imply a small error.
 
 
 ---
