@@ -344,6 +344,13 @@ Steepest descend can be very slow for matrix with large condition number, this i
 
 
 ---
+### **Proof of Convergence**
+
+The convergence proof of the algorithm can be seem in book Iterative Method for Linear system, theorem 2.2.1. 
+
+
+
+---
 ### **Why This?**
 
 **Claim:**
