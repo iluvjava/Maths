@@ -211,7 +211,7 @@ Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}
 Claim 2 is proven $\blacksquare$ 
 
 ---
-### **Stepsize and A-Orthogonalization**
+### **Stepsize**
 
 So inductively, we an figure out the stepsize by considering: 
 
@@ -237,6 +237,12 @@ $$
 \[2\]: Solve for $\alpha_k$. 
 
 Here, becareful about vector $d_k$ that makes the Energy Norm of A negative, or too close to zero, cause that saying that the matrix is not PSD, or, huge numerical errors exists in this context. 
+
+
+**Orthogonal Direction**
+
+
+
 
 ---
 ### **Determing the Search Directions**
