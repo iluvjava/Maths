@@ -22,7 +22,7 @@ $$
 \end{aligned}
 $$
 
-The Hessenberg zeros below the sub-diagonal, if $H^H = H$, then $H$ is a Tria-diagonal Matrix and it's Symmetric: 
+The Hessenberg zeros below the sub-diagonal, if $H^H = H$, then $H$ is a Tri-diagonal Matrix and it's Symmetric: 
 
 $$
 H = \begin{bmatrix}
@@ -79,7 +79,7 @@ Compare to Arnoldi algorithm, the complexity is smaller and it's much similar si
 
 **Hidden Conjugate Vectors**
 
-Uroll the Algorithm, skipping some steps, we have the following relations between the new vector, $\tilde{q}_{k + 1}$, which is the new unormalized vector from the Lancosz Algorithm, and previous 2 normalized eigenvector $q_{k}, q_{k - 1}$, giving us: 
+Uroll the Algorithm, skipping some steps, we have the following relations between the new vector, $\tilde{q}_{k + 1}$, which is the new un-normalized vector from the Lancosz Algorithm, and previous 2 normalized eigenvector $q_{k}, q_{k - 1}$, giving us: 
 
 $$
 \begin{aligned}

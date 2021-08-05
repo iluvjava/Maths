@@ -67,6 +67,9 @@ Under the context of the kernel, to access information about the threads, the fo
 ---
 ### **Vector Addition Kernel**
 
+
+
+
 ---
 ### **Vector Summation Kernel**
 

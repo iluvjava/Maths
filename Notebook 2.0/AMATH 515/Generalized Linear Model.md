@@ -10,15 +10,17 @@ In addition, it's better to understand the usual linear model, [[Linear Regressi
 
 ---
 
-### Intro
+### **Intro**
 
 Give  "Features" vectors $a_i \in \mathbb{R}$ with outcomes $y_i$. 
 
 However, notice that outcomes can be in many different domain: $\mathbb{R}, \mathbb{R}_{\le 0}, \mathbb{Z}_+, \mathbb{F_2}$
 
-Big Picture: Choose the most appropriate distribution for the type of outcomes. Then we link parameters of that distributions to the $a_i\in\mathbb{R}^n$.
+**The Big Picture**: 
 
-And then we try to nest the model into a distribution model, so when we make the prediction, we will have a weight vector for each set of observations on $a_i$, giving us: $a_i^Tx^*$, which will produce one scalar as $\hat{y}_i$
+> Choose the most appropriate distribution for the type of outcomes. Then we link parameters of that distributions to the $a_i\in\mathbb{R}^n$.
+> 
+> And then we try to nest the model into a distribution model, so when we make the prediction, we will have a weight vector for each set of observations on $a_i$, giving us: $a_i^Tx^*$, which will produce one scalar as $\hat{y}_i$
 
 ---
 #### **Example: Poisson**
