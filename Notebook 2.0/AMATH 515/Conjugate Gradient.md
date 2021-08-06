@@ -286,7 +286,7 @@ $$
     \\
     -d^{(i)T}Ae^{(j)} &= \underbrace{-d^{(i)T}\sum_{k = j}^{n - 1}\delta_k Ad^{(k)}}_{= 0}
     \\
-    d^{(i)}r^{(j)} &= 0 \quad \forall\; i < j
+    d^{(i)T}r^{(j)} &= 0 \quad \forall\; i < j
 \end{aligned}\tag{10}
 $$
 

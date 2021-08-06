@@ -289,7 +289,7 @@ $$
     r^{(k)} \perp_A \langle \mathcal{K}_{k - 1} \rangle
     \\
     \implies & 
-    r^{(k)} \perp_A \langle d_0, d_1, \cdots, d_{k - 1} \rangle
+    r^{(k)} \perp_A \langle d_0, d_1, \cdots, d_{k - 2} \rangle
 \end{aligned}\tag{4}
 $$
 
