@@ -120,7 +120,7 @@ We are implicitly using the PSD property of the matrix $A$ here.
 
 **Observe:**
 
-The inductive assumtpion $x\in \langle \mathcal{K}_k \rangle$ holds true. 
+The inductive assumtpion $x^{(k)}\in \langle \mathcal{K}_k \rangle$ holds true. 
 
 We found an expression for $x^{(k + 1)}$ from it, which is going to be the next guess produced by the conjugate gradient algorithm. 
 
@@ -130,7 +130,9 @@ $$
 x^{(k + 1)} - x^{(k)} = a_k^+d_k
 $$
 
+**Note**
 
+At this point, **claim 1**  has been partially proven, however, the generation of the conjugate vectors still remains to be a mystery. 
 
 > Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
 
@@ -157,61 +159,19 @@ $$
     \\\iff
     e^{(k)} &\perp_A
     \langle \mathcal{K}_k \rangle
-\end{aligned}\tag{2.1}
+\end{aligned}\tag{3}
 $$
 
 However, as long as $e^{(k)}$ is not zero, it will be the case that $e^{(k)}\in \langle \mathcal{K}_n \rangle\setminus\langle \mathcal{K}_{k}\rangle$
 
-**Claim 1 Corolary 2**
-> $r^{(k)}\notin \langle \mathcal{K}_{k} \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k + 1}\rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k + 1} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$, because $\langle \mathcal{K}_k\rangle\subseteq \langle \mathcal{K}_{k + 1}\rangle$
+$\blacksquare$
+
+**Claim 1 Corollary 2**[^1]
+> $\forall\; k \;: r^{(k)} \perp \langle \mathcal{K}_{k} \rangle$, which it then conveniently implies $r^{(k)}\perp \langle d_0, d_1, \cdots d_{k - 1}\rangle$
 
 **Proof**
 
-Consider Results from expression (2): 
-
-$$
-\begin{aligned}
-    x^{(k)} &=  \sum_{j = 0}^{k - 1} a_j^{+} d_j \in 
-    \langle \mathcal{K}_k \rangle
-    \\
-    b = Ax^+  \implies  b &= \sum_{j = 0}^{n - 1} a^+_jAd_j
-    \\
-    \implies
-    b - Ax^{(k)} &= - \sum_{j = k}^{n - 1}a_j^{+}Ad_j
-    \\
-    \implies 
-    \forall 0 \le i \le k - 1 & \quad 
-    \left\langle  
-        \sum_{j = k}^{n}
-        a_j^+Ad_j,
-        d_i
-    \right\rangle = 0
-    \\
-    \implies
-    r^{(k)} & \notin \langle d_0, d_1, \cdots d_{k - 1} \rangle
-    \\
-    \implies 
-    r^{(k)} & \notin \langle \mathcal{K}_{k} \rangle
-\end{aligned}
-\tag{3}
-$$
-In addition, notice that by setting $0\le i \le k$, we have: 
-
-$$
-\begin{aligned}
-    \left\langle  
-        \sum_{j = k}^{n}
-        a_j^+Ad_j,
-        d_i
-    \right\rangle &= \Vert d_k\Vert_A^2 \neq 0
-    \\\implies 
-    r^{(k)} &\in \langle \mathcal{K}_{k + 1} \rangle
-\end{aligned}
-$$
-
-**Proof 2**
-
-Let's consider another that proof that is based on claim 1 corollary 1. 
+Let's consider another that proof that is based on claim 1 corollary 1, choose any $k$, then we have: 
 
 $$
 \begin{aligned}
@@ -230,38 +190,26 @@ $$
     \\
     \iff 
     r^{(k)} &\perp \langle \mathcal{K}_{k} \rangle
-\end{aligned}
+\end{aligned}\tag{4}
 $$
 
+\[1\]: Take note that$\langle u, v \rangle_A = u^TAv = u^TA^Tv$
 
-**Claim 1 Corollary 3**
+$\blacksquare$
 
-> $\langle r^{(k)}, r^{(j)}\rangle = 0$ for all $0 \le j \le k - 1$
+Please compare Corollary 2 to claim 3 in [[Conjugate Gradient]]
 
-Note the property of Krylov Subspace is: 
-
-$$
-\langle  \mathcal{K}_1\rangle \subseteq \langle  \mathcal{K}_2\rangle \subseteq \langle  \mathcal{K}_3\rangle \cdots \subseteq \langle  \mathcal{K}_n\rangle
-$$
-
-Here we assume that the subsets are strict, again, because the matrix is SPD. 
-
-Since $r^{(k)} \notin \langle \mathcal{K}_{k} \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k + 1} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle\setminus \langle \mathcal{K}_{k} \rangle$ 
-
-So then basically, $r^{(j)}\in \langle \mathcal{K}_{k} \rangle$ for all $0 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $0 \le j \le k - 1$ by that property of the Krylov Subspace. 
-
-One way to think about it is that, the residual vector gotten using the conjugate gradient is the orthogonal directions in which, the Krylov Subspace has evolved (or stretched) after that iterations. 
 
 
 ---
 ### **The Magics, The Residual Vector**
 
 **Claim 2**
-> Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions. 
+> Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions $d_k$, and it will be A-Orthogonal to all previous search directions. 
 
 **Justification**: 
 
-By the corolary 2 of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k}$, but then this also means 
+By the corollary 1 of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k}$, but then this also means 
 
 Then: 
 $$
@@ -282,24 +230,27 @@ $$
     \underset{[1]}{\iff} &  
     \langle e^{(k)}, A^{j + 1}b \rangle_A = 0
     \\
-    \iff &
-    0 \le j \le k - 2
+    \underset{[2]}{\iff} &
+    -1 \le j \le k - 2
     \\
-    \underset{[2]}{\implies} &
+    \underset{[3]}{\implies} &
     r^{(k)} \perp_A \langle \mathcal{K}_{k - 1} \rangle
     \\
     \implies & 
     r^{(k)} \perp_A \langle d_0, d_1, \cdots, d_{k - 2} \rangle
-\end{aligned}\tag{4}
+\end{aligned}\tag{5}
 $$
 
 Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}$ to determine the next A-Orthogonal (or the next conjugate vector) search direction. 
 
+
 **Explanations** 
 
-\[1\]: using the fact that $A$ is PSD. 
+\[1\]: Moving the $A$ from left to right inside the angle bracket, using the fact that $A$ is PSD. 
 
-\[2\]: Using the fact that for all $0 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
+\[2\]: Using Claim 1 corollary 1 and the previous line, we can determine the range for $j$. 
+
+\[3\]: Using the fact that for all $0 \le j \le k - 2$ makes $\langle e^{(k)}, A^{j + 1}b\rangle_A$ true, hence it's also true for $\langle r^{(k)}, A^jb\rangle_A$
 
 Claim 2 is proven $\blacksquare$ 
 
@@ -355,7 +306,7 @@ $$
     \\
     \beta_k &= -\frac{\langle d_k, r^{(k + 1)} \rangle_A}
     {\langle  d_k, d_k\rangle_A}
-\end{aligned}\tag{6}
+\end{aligned}\tag{7}
 $$
 
 **Explanation**
@@ -368,7 +319,57 @@ $$
 
 This still a very different results compare to the deriation of the CG without using the idea of Krylov Subspace. 
 
+At this point, **claim 1** has been partially shown, however, the initial vector $v$ that kick start the Krylov Subspace still remains to be a mystery, and the form of $\beta, \alpha$ totally doesn't look like what we had in the previous discussion of conjugate gradient. But we are close now. 
+
+---
+### **The Magic Again, Residual Vectors are Orthogonal**
+
+**Claim 3**
+
+> $r^{(k)}\perp \langle d_0, r^{(1)}, r^{(2)}, \cdots, r^{(k-1)}\rangle \; \forall \; n\ge k\ge 1$, Which implies that if $d_0 = r^{(0)}$, then the set of residual vector generated by the algorithm is all orthogonal to each other. 
+
+**Proof**[^2] 
+
+The proof will make use of **Corollary 2 from Claim 1**, and the conjugation constant $b_k$ derived in (7), consider this: 
+
+$$
+\begin{aligned}
+    r^{(k)T}d_j &= r^{(k)T}(r^{(j)} + \beta_{j - 1}d_{j - 1}) \; \forall 1 \le j \le k - 1
+    \\\underset{[1]}{\implies}
+    0 &= r^{(k)T}(r^{(j)} + \beta_{j - 1}d_{j - 1}) \; \forall 1 \le j \le k - 1
+    \\
+    0 &= \langle  r^{(k)}, r^{(j)}\rangle + 
+    \beta_{j - 1}\langle r^{(k)},  d_{j - 1}\rangle \; \forall 1 \le j \le k - 1
+    \\\underset{[2]}{\implies} 
+    0 &= \langle  r^{(k)}, r^{(j)}\rangle \;\forall \; 1 \le j \le k - 1
+\end{aligned}\tag{8}
+$$
+
+\[1\]: The left hand side reduce to zero, this is true by **Corollary 2 of Claim 1**
+
+\[2\]: the second term on the right hand side reduce to zero, also due to **Corollary 2 of Claim 1**
+
+Claim 3 Proven $\blacksquare$
+
+**Claim 3 Corollary 1**
+
+> $r^{(k)T}d_k = \Vert r^{(k)} \Vert_2^2$ for all $k$. 
+
+We are still going to use the **Corollary 2 of Claim 1**, consider: 
+
+$$
+\begin{aligned}
+    r^{(k)T} d_k &= r^{(k)T}r^{(k)} + \underbrace{\beta_{k - 1}r^{(k)T}d_{k - 1}}_{ = 0}
+    \\
+    \langle r^{(k)}, d_k \rangle &= \Vert r^{(k)}\Vert_2^2
+\end{aligned}\tag{9}
+$$
+
+Corollary 1 of Claim 3 $\blacksquare$
+
 **Alternate Form for $\beta_k, \alpha_k$**
+
+Consider simplifying the results for stepsizes and conjugate weight: 
 
 $$
 \begin{aligned}
@@ -376,61 +377,36 @@ $$
     {
         \Vert d_k\Vert_A^2
     }
-    \\\underset{[1]}{\implies}
+    \\\underset{(5)}{\implies}
     \beta_k &= - \frac{\langle e^{(k + 1)} - e^{(k)}, r^{(k + 1)} \rangle_A}
     {\alpha_k \Vert d_k\Vert_A^2}
-    \\\underset{[2]}{\implies}
+    \\\underset{[1]}{\implies}
     \beta_k &= -
     \frac{\langle -r^{(k + 1)} + r^{(k)}, r^{(k + 1)}\rangle}
     {
         \alpha_k \Vert d_k\Vert_A^2
     }
-    \\
+    \\\underset{[2]}{\implies}
     \beta_k &=
     \frac{\Vert r^{(k + 1)}\Vert_2^2}
     {
         \alpha_k \Vert d_k\Vert_A^2
     }
-    \\
+    \\\underset{[3]}{\implies}
     \beta_k &= \frac{\Vert r^{(k + 1)}\Vert_2^2}
     {
         \langle d_k, r^{(k)} \rangle
     }
-\end{aligned}\tag{7}
+\end{aligned}\tag{10}
 $$
 
-\[1\]: Break $\alpha_kd_k = e^{(k + 1)} - e^{(k)}$ using expression (5). 
+\[1\]: We moved the subscript into the inner product. $\langle u, v\rangle_A = \langle u, Av\rangle$. 
 
-\[2\]: Merge in the $A$ from the subscript to the inside of the inner product. 
+\[2\]: Using **Claim 3** to simplify the RHS, also canceling out the negative sign. 
 
+\[3\]: using the results from (5), substitute it into $\alpha_k$ and then simplify it. 
 
-$\langle d_k, r^{(k)} \rangle$ can be simplified with assumption $d_0 = r^{(0)}$, but we will need to unroll the recurrence and use the Third Corollary from claim 2. 
-
-
-**Simplifying $\langle d_k, r^{(k)} \rangle$** 
-
----
-### **Initializing the Residual $r^{(0)}$**
-
-Consider the following recurrent based on expression (6), with the extra assumption that $d_0 = r^{(0)}$, which essentially makes $d_{k + 1}$ a linear combinations of residual. 
-
-$$
-\begin{aligned}
-    d_{k + 1} &= r^{(k + 1)} + \beta_k d_k 
-    \\
-    &= r^{(k + 1)} + \beta_k(r^{(k)} + \beta_{k -1}d_{k - 1})
-    \\
-    &= r^{(k + 1)} + \beta_k (r^{(k)} + \beta_{k - 1}(r^{(k - 1)} + \beta_{k - 2}d_{k - 2}))
-    \\
-    &= r^{(k + 1)} + \sum_{i = 1}^{k}
-        \left(\prod_{j = i}^{k} \beta_j\right) r^{(i)}
-\end{aligned}\tag{8}
-$$
-
-Therefore, using Corollary 3 from claim 1, it's not hard to see that $d_k^Tr^{(k)} = (r^{(k)})^T r^{(k)} = \Vert r^{(k)}\Vert_2^2$. 
-
-Then, we can simplify the stepsize $\alpha_k$ and conjugate coefficient $\beta_k$ into the following: 
-
+Using **Corollary Claim 3** we can further simplify results from (10), giving us: 
 
 $$
 \alpha_k = \frac{\langle r^{(k)}, r^{(k)} \rangle}
@@ -439,10 +415,8 @@ $$
 \beta_k = \frac{\Vert r^{(k + 1)}\Vert_2^2}
 {
     \langle r^{(k)}, r^{(k)} \rangle
-}\tag{9}
+}\tag{11}
 $$
-
-Finally, we will be able to use phrase the algorithm and prove that that claim is corret. 
 
 ---
 ### **The Conjugate Gradient Algorithm**
@@ -471,7 +445,7 @@ Finally, we will be able to use phrase the algorithm and prove that that claim i
 >         \\
 >         & d_{k + 1} = d_{k} + \beta_k d_k
 >     \end{aligned}
-> \end{aligned}
+> \end{aligned}\tag{12}
 > $$
 
 **Claim 1 has been proven**  $\blacksquare$
@@ -482,6 +456,8 @@ This algorithm fails when the matrix is Symmetric Semi-Definite, but no positive
 
 Depending on the Conditioning of the matrix $A$, a small residual doesn't imply a small error.
 
+---
+### **Why is The Residual Vector So Magical**?
 
 ---
 ### **Unusual Connections**
@@ -490,8 +466,8 @@ If we are dealing with Krylov Subspace, and we know that Krylov Subspace are rel
 
 Therefore, there exists an Arnoldi Iterations interpretations of the conjugate gradient algorithm. 
 
-It's linked to **Claim 1 Corolarry 3**. 
+It's linked to **Claim 3**. 
 
 
-
-[^1]: $x^{(k)}\in \langle \mathcal{K}_k\rangle$ because $x^{(k)}$ is constructed by a linear combinations of the first $d_k$ conjugate vectors, and the subspace spanned by those conjugate vectors are the same as $\langle \mathcal{K}_k\rangle$. 
+[^1]: This is the same as claim 3 in [[Conjugate Gradient]]. 
+[^2]: This is somewhat similar to the proof in [[Conjugate Gradient]]. 
