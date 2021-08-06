@@ -423,7 +423,7 @@ $$
     &= r^{(k + 1)} + \beta_k (r^{(k)} + \beta_{k - 1}(r^{(k - 1)} + \beta_{k - 2}d_{k - 2}))
     \\
     &= r^{(k + 1)} + \sum_{i = 1}^{k}
-        \left(\prod_{j = i}^{k} b_j\right) r^{(i)}
+        \left(\prod_{j = i}^{k} \beta_j\right) r^{(i)}
 \end{aligned}\tag{8}
 $$
 
