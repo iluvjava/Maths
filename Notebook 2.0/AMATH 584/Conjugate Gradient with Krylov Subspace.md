@@ -65,7 +65,7 @@ Let $\langle d_0, d_1, \cdots, d_{k - 1}\rangle$ be a set of $A$ orthogonal dire
 > $$
 > x^{(k)} \in \langle \mathcal{K}_k \rangle
 > $$
-> And there exists a set of $n$ A-Orthogonal vector $d_i$ that spans $\mathcal{K}_n$ eventually. Recall that, this is possible through the process of **Gram Schimdtz Conjugation** from the previous section. It can be used to make A-Orthogonal vectors using the Evolving Krylov Subspace. Therefore, this assumption is legit. The hypothesis also assumes that $d_0$ is on the same line as $b$. 
+> And there exists a set of $n$ A-Orthogonal vector $d_i$ that spans $\mathcal{K}_n$ eventually. Recall that, this is possible through the process of **Gram Schimdtz Conjugation** from the previous section. It can be used to make A-Orthogonal vectors using the Evolving Krylov Subspace. Therefore, this assumption is legit. The hypothesis also assumes that $d_0$ is on the same line as $v$. 
 
 By the assumption that $x^{(k)} \in \langle \mathcal{K}_k\rangle$, we know that $x^{(k)}\in \langle d_0, d_1, \cdots d_{k - 1}\rangle$, giving us: 
 
