@@ -87,11 +87,11 @@ Which them means the statement we consider in **claim 1** would be
 
 $$
 \begin{aligned}
-    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} \Vert x - x^+\Vert_A^2
+    x^{(k+ 1)} &= \arg\min_{x\in \langle  \mathcal{K}_{k + 1}\rangle} \Vert x - x^+\Vert_A^2
     \\
     \underset{[2]}{\implies}\text{let: } x &= \sum_{j = 0}^{k} a_j d_j 
     \\
-    x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} 
+    x^{(k+ 1)} &= \arg\min_{x\in \langle  \mathcal{K}_{k + 1}\rangle} 
     \left\Vert
         \underbrace{\sum_{j = 0}^{k} (a_j - a_j^+)d_j}_{\in \mathcal{K}_{k + 1}}
         + 
@@ -147,14 +147,14 @@ $$
 \begin{aligned}
     e^{(k)} &= - \sum_{j = k}^{n - 1}
         a_j^+ d_j
-    \\\implies
+    \\\iff
     \langle e^{(k)}, d_j \rangle_A &= 0\quad \forall 
     \; 0 \le j \le k - 1
     \\ \iff
     e^{k} &\perp_A \langle 
         d_0, d_1, \cdots d_{k - 1}
     \rangle
-    \\\implies
+    \\\iff
     e^{(k)} &\perp_A
     \langle \mathcal{K}_k \rangle
 \end{aligned}\tag{2.1}
@@ -206,6 +206,30 @@ $$
     \right\rangle &= \Vert d_k\Vert_A^2 \neq 0
     \\\implies 
     r^{(k)} &\in \langle \mathcal{K}_{k + 1} \rangle
+\end{aligned}
+$$
+
+**Proof 2**
+
+Let's consider another that proof that is based on claim 1 corollary 1. 
+
+$$
+\begin{aligned}
+    e^{(k)} & \perp_A \langle \mathcal{K}_k \rangle 
+    \\
+    \iff 
+    \langle e^{(k)}, A^jb \rangle_A &= 0
+    \quad \forall \; 0 \le j \le k - 1 
+    \\
+    \underset{[1]}{\iff}
+    \langle Ae^{(k)}, A^jb \rangle &= 0
+    \quad \forall \; 0 \le j \le k - 1 
+    \\\iff
+    \langle r^{(k)}, A^{j}b \rangle &= 0
+    \quad \forall \; 0 \le j \le k - 1 
+    \\
+    \iff 
+    r^{(k)} &\perp \langle \mathcal{K}_{k} \rangle
 \end{aligned}
 $$
 
@@ -280,7 +304,7 @@ Therefore, we only need to orthogonalize the vector $r^{(k)}$ against $d_{k - 1}
 Claim 2 is proven $\blacksquare$ 
 
 ---
-### **Stepsize and A-Orthogonal Direction**
+### **Stepsize and A-Orthogonal Direction (A step into the right direction)**
 
 **Note:**  To avoid confuction, I will use $d_0$ as the initial stepsizes for improving $x^{(0)}$ for getting the next step of the iterations, $x^{(1)}$. But **remember**, the $d_0$ here is actually the $d_1$ for the theory part of the algorithm. 
 
