@@ -346,7 +346,15 @@ Steepest descend can be very slow for matrix with large condition number, this i
 ---
 ### **Proof of Convergence**
 
-The convergence proof of the algorithm can be seem in book Iterative Method for Linear system, theorem 2.2.1. 
+The convergence proof of the algorithm can be seem in book Iterative Method for Linear system, theorem 2.2.1, the analysis is from Greene Baum, requires some understanding from: [[Steepest Descend for Matrix Vector]]. 
+
+This analysis of the algorithm reveals anohter interpretations that is more linear algebra than optimization, in which it's phrased as a projection onto the previous residual, instead of minimizing the objective function using gradient descend. 
+
+**Theorem 2.2.1**
+
+> Minimizes the residual over the 2 norm at each step using the steepest descend strategy will produce decreasing residual if zero is not in the field of values for that Hermitian Matrix.
+
+
 
 
 

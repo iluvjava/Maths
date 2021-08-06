@@ -57,7 +57,7 @@ $$
 
 Consider $\Lambda$ to be the Jordan Decomposition matrix for the matrix. 
 
-**Note**: $c_0 = (-1)|A|$, this quantity tells us whether the matrix is going to be invertible or not. 
+**Note**: $c_0 = (-1)^n|A|$, this quantity tells us whether the matrix is going to be invertible or not. 
 
 
 ---
@@ -71,10 +71,14 @@ $$
     -c_0I_n &=  
     c_1A + c_2A^2 \cdots c_nA^n
     \\
-    I_n &= \frac{c_1}{c_0}A + \frac{c_2}{c_0}A^2 \cdots \frac{c_n}{c_0}A^n
-    \\
-    A^{- 1} &= \frac{c_1}{c_0}I_n + \frac{c_2}{c_0}A \cdots \frac{c_n}{c_0}A^{n - 1}
+    -I_n &= \frac{c_1}{c_0}A + \frac{c_2}{c_0}A^2 \cdots \frac{c_n}{c_0}A^n
+    \\\implies
+    -A^{- 1} &= \frac{c_1}{c_0}I_n + \frac{c_2}{c_0}A \cdots \frac{c_n}{c_0}A^{n - 1}
+    \\\implies
+    -b &= \frac{c_1}{c_0}Ab + \frac{c_2}{c_0}A^2b \cdots \frac{c_n}{c_0}A^nb
 \end{aligned}
 $$
 
 The inverse of $A$ can be expressed using another matrix polynomials, using the coefficients from the characteristic polynomials. 
+
+Any vector, can be spanned by the Krylov Subspace, if we know that $A$ is invertible.  

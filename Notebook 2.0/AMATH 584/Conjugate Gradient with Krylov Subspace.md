@@ -20,6 +20,7 @@ In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjug
 * $r^{(k)} = b - Ax^{(k)}$, the residual vector, how far we are from the correct solution on the output space of matrix $A$. 
 * $Ae^{(k)} = - r^{(k)}$, The relation between the input space error vector and the output space residual vector. 
 * $\Vert x\Vert_A$ is the Energy norm of a vector $\Vert x\Vert_A^2 = x^TAx$, where $A$ is assumed to be SPD. 
+* $u\perp_A v$, vector $u, v$ are A-orthogonal to each other, it's equivalent to $\langle u, v \rangle_A$
 
 
 
@@ -47,28 +48,26 @@ Looking for the solution of a system involving sparse matrix is very similar to 
 ---
 ### **Conjugate Directions, or the A-Orthogonal Directions**
 
-Let $\langle d_0, d_1, \cdots, d_{k - 1}\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $b$.
+Let $\langle d_0, d_1, \cdots, d_{k - 1}\rangle$ be a set of $A$ orthogonal directions that equals the krylov subspace $\mathcal{K}_k$, the Krylov Subspace is initialized via vector $v$.
 
 **The Hypotehsis** 
 
 > $$
 > \begin{aligned}
->     \langle  d_0\rangle  &= \langle  b\rangle = \langle \mathcal{K}_0 \rangle
+>     \langle  d_0\rangle  &= \langle  v\rangle = \langle \mathcal{K}_1 \rangle
 >     \\
->     \langle d_0, d_1\rangle &= \langle b, Ab\rangle = \langle \mathcal{K}_1 \rangle
+>     \langle d_0, d_1\rangle &= \langle v, Av\rangle = \langle \mathcal{K}_2 \rangle
 >     \\
->     \langle d_0, d_1, \cdots d_{k - 1}\rangle &= \langle b, Ab, \cdots A^{k - 1}b \rangle = \langle \mathcal{K}_{k - 1} \rangle
+>     \langle d_0, d_1, \cdots d_{k - 1}\rangle &= \langle v, Av, \cdots A^{k - 1}v \rangle = \langle \mathcal{K}_{k} \rangle
 > \end{aligned}
 > $$
 > Inductively, let's also assume that: 
 > $$
 > x^{(k)} \in \langle \mathcal{K}_k \rangle
 > $$
-> And there exists a set of $n$ A-Orthogonal vector $d_i$ that spans $\mathcal{K}_n$ eventually. Recall that, this is possible through the process of **Gram Schimdtz Conjugation** from the previous section. It can be used to make A-Orthogonal vectors using the Evolving Krylov Subspace. Therefore, this assumption is legit. 
+> And there exists a set of $n$ A-Orthogonal vector $d_i$ that spans $\mathcal{K}_n$ eventually. Recall that, this is possible through the process of **Gram Schimdtz Conjugation** from the previous section. It can be used to make A-Orthogonal vectors using the Evolving Krylov Subspace. Therefore, this assumption is legit. The hypothesis also assumes that $d_0$ is on the same line as $b$. 
 
-
-
-By the assumption that $x^{(k)} \in \mathcal{K}_k$, we know that $x^{(k)}\in \langle d_0, d_1, \cdots d_{k - 1}\rangle$, giving us: 
+By the assumption that $x^{(k)} \in \langle \mathcal{K}_k\rangle$, we know that $x^{(k)}\in \langle d_0, d_1, \cdots d_{k - 1}\rangle$, giving us: 
 
 $$
 \begin{aligned}
@@ -90,7 +89,7 @@ $$
 \begin{aligned}
     x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} \Vert x - x^+\Vert_A^2
     \\
-    \underset{[2]}{\implies}\text{let: } x &= \sum_{j = 0}^{k-1} a_j d_j 
+    \underset{[2]}{\implies}\text{let: } x &= \sum_{j = 0}^{k} a_j d_j 
     \\
     x^{(k+ 1)} &= \arg\min_{x\in \mathcal{K}_{k + 1}} 
     \left\Vert
@@ -101,10 +100,15 @@ $$
     \\
     \underset{[1]}{\implies} x^{(k+ 1)} &= \sum_{j = 0}^{k}a_j^+d_j \in 
     \langle  \mathcal{K}_{k + 1}\rangle
+    \\
+    \implies
+    \underbrace{x^{(k + 1)} - x^{+}}_{e^{(k + 1)}} 
+    &= 
+    - \sum_{j = k + 1}^{n - 1}a_j^+ d_j
 \end{aligned}\tag{2}
 $$
 
-\[1\]: Take notice that, because $d_j$ vector A-Ortho, therefore, it's directly: 
+\[1\]: Take notice that, because $d_j$ vector is A-Ortho, therefore, it's directly: 
 
 $$
     \sum_{j = 0}^{k}(a_j - a_j^+)^2 - \sum_{j = k + 1}^{n - 1}(a_j^+)^2
@@ -112,13 +116,21 @@ $$
 
 We are implicitly using the PSD property of the matrix $A$ here. 
 
-\[2\]: By the fact that $x\in \mathcal{K}_{k + 1}$, the subscript for the denoted minimizer. However, because $a_j$ where $1 \le j \le k$ corresponds to components that spans $\mathcal{K}_{k + 1}$, the minimization problem is just directly setting the conjugate vector to zero. 
+\[2\]: By the fact that $x\in \mathcal{K}_{k + 1}$, the subscript for the denoted minimizer. However, because $a_j$ where $0 \le j \le k$ corresponds to components that spans $\mathcal{K}_{k + 1}$, the minimization problem is just directly setting the conjugate vector to zero. 
 
 **Observe:**
 
 The inductive assumtpion $x\in \langle \mathcal{K}_k \rangle$ holds true. 
 
 We found an expression for $x^{(k + 1)}$ from it, which is going to be the next guess produced by the conjugate gradient algorithm. 
+
+At each iterations, the vector compnents for $x^{k}$ will get projected onto a A-Orthogonal Direction $d_{k}$. One by One, we get closer and closer to $x^{+}$, measured under the energy norm. And Mathematically, I am saying that: 
+
+$$
+x^{(k + 1)} - x^{(k)} = a_k^+d_k
+$$
+
+
 
 > Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
 
@@ -127,10 +139,35 @@ We found an expression for $x^{(k + 1)}$ from it, which is going to be the next 
 > $e^{(k)} \perp_A \langle \mathcal{K}_{k}\rangle$
 > The error vector at the $k$ th step is the orthogonal to the Krylov Subspace $\mathcal{K}_k$, because the minimization process removes the components represented by $d_i$ for $\mathcal{K}_{k}$
 
+**Proofs**
+
+Reconsider the results from expression (2).
+
+$$
+\begin{aligned}
+    e^{(k)} &= - \sum_{j = k}^{n - 1}
+        a_j^+ d_j
+    \\\implies
+    \langle e^{(k)}, d_j \rangle_A &= 0\quad \forall 
+    \; 0 \le j \le k - 1
+    \\ \iff
+    e^{k} &\perp_A \langle 
+        d_0, d_1, \cdots d_{k - 1}
+    \rangle
+    \\\implies
+    e^{(k)} &\perp_A
+    \langle \mathcal{K}_k \rangle
+\end{aligned}\tag{2.1}
+$$
+
+However, as long as $e^{(k)}$ is not zero, it will be the case that $e^{(k)}\in \langle \mathcal{K}_n \rangle\setminus\langle \mathcal{K}_{k}\rangle$
+
 **Claim 1 Corolary 2**
-> $r^{(k)}\notin \langle \mathcal{K}_{k - 1} \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k} \rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$
+> $r^{(k)}\notin \langle \mathcal{K}_{k} \rangle$, but $r^{(k)}\in \langle \mathcal{K}_{k + 1}\rangle$, which them means that $r^{(k + 1)}\notin \langle \mathcal{K}_{k + 1} \rangle$ then $\langle r^{(k + 1)}, r^{(k)}  \rangle = 0$, because $\langle \mathcal{K}_k\rangle\subseteq \langle \mathcal{K}_{k + 1}\rangle$
 
 **Proof**
+
+Consider Results from expression (2): 
 
 $$
 \begin{aligned}
@@ -154,10 +191,24 @@ $$
     r^{(k)} & \notin \langle d_0, d_1, \cdots d_{k - 1} \rangle
     \\
     \implies 
-    r^{(k)} & \notin \langle \mathcal{K}_{k - 1} \rangle
+    r^{(k)} & \notin \langle \mathcal{K}_{k} \rangle
 \end{aligned}
 \tag{3}
 $$
+In addition, notice that by setting $0\le i \le k$, we have: 
+
+$$
+\begin{aligned}
+    \left\langle  
+        \sum_{j = k}^{n}
+        a_j^+Ad_j,
+        d_i
+    \right\rangle &= \Vert d_k\Vert_A^2 \neq 0
+    \\\implies 
+    r^{(k)} &\in \langle \mathcal{K}_{k + 1} \rangle
+\end{aligned}
+$$
+
 
 **Claim 1 Corollary 3**
 
@@ -171,22 +222,22 @@ $$
 
 Here we assume that the subsets are strict, again, because the matrix is SPD. 
 
-Since $r^{(k)} \notin \langle \mathcal{K}_{k - 1} \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k} \rangle\setminus \langle \mathcal{K}_{k - 1} \rangle$ 
+Since $r^{(k)} \notin \langle \mathcal{K}_{k} \rangle$ and $r^{(k)} \in \langle \mathcal{K}_{k + 1} \rangle$ then $r^{(k)}\in \langle \mathcal{K}_{k + 1} \rangle\setminus \langle \mathcal{K}_{k} \rangle$ 
 
-So then basically, $r^{(j)}\in \langle \mathcal{K}_{k - 2} \rangle$ for all $0 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $0 \le j \le k - 1$ by that property of the Krylov Subspace. 
+So then basically, $r^{(j)}\in \langle \mathcal{K}_{k} \rangle$ for all $0 \le j \le k- 1$, but then this means $\langle r^{(j)}, r^{(k)}\rangle = 0$ for all $0 \le j \le k - 1$ by that property of the Krylov Subspace. 
+
+One way to think about it is that, the residual vector gotten using the conjugate gradient is the orthogonal directions in which, the Krylov Subspace has evolved (or stretched) after that iterations. 
 
 
 ---
 ### **The Magics, The Residual Vector**
 
 **Claim 2**
-> Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions.  
+> Then, A-orthogonalizing the vector $r^{(k)}$ against the last search direction will allow us to get the next search directions. 
 
 **Justification**: 
 
-$r^{(k)} \notin \langle \mathcal{K}_{k - 1}\rangle$ but $r^{(k)} \in \langle \mathcal{K}_{k}\rangle$, similar to the behaviors of $q$ vector in Arnoldi Iterations.
-
-By the corolary of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k}$, but then this also means 
+By the corolary 2 of claim 1, we have $e^{(k)} \perp_A \mathcal{K}_{k}$, but then this also means 
 
 Then: 
 $$
@@ -204,10 +255,10 @@ $$
     \\
     &\langle Ae^{(k)}, A^jb \rangle_A = 0
     \\
-    \underset{[1]}{\implies} &  
+    \underset{[1]}{\iff} &  
     \langle e^{(k)}, A^{j + 1}b \rangle_A = 0
     \\
-    \implies &
+    \iff &
     0 \le j \le k - 2
     \\
     \underset{[2]}{\implies} &
@@ -335,7 +386,7 @@ $\langle d_k, r^{(k)} \rangle$ can be simplified with assumption $d_0 = r^{(0)}$
 **Simplifying $\langle d_k, r^{(k)} \rangle$** 
 
 ---
-### **The Conjugate Gradient Algorithm**
+### **Initializing the Residual $r^{(0)}$**
 
 Consider the following recurrent based on expression (6), with the extra assumption that $d_0 = r^{(0)}$, which essentially makes $d_{k + 1}$ a linear combinations of residual. 
 
