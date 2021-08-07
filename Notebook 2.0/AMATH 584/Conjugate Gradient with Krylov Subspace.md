@@ -279,7 +279,7 @@ $$
     \\
     \alpha_k &= \frac{\langle d_k, r^{(k)} \rangle}
     {\langle d_k, d_k \rangle_A}
-\end{aligned}\tag{5}
+\end{aligned}\tag{6}
 $$
 
 \[1\]: By **cororallary 1 of clam 1**, $e^{(k + 1)}$ is A-orthogonal to $d_k$, and we only need direction in $d_k$ to because all the other directions will just set the product with $d_k$ to zero. 
@@ -330,7 +330,7 @@ At this point, **claim 1** has been partially shown, however, the initial vector
 
 **Proof**[^2] 
 
-The proof will make use of **Corollary 2 from Claim 1**, and the conjugation constant $b_k$ derived in (7), consider this: 
+The proof will make use of **Corollary 2 from Claim 1**, and the conjugation constant $\beta_k$ derived in (7), consider this: 
 
 $$
 \begin{aligned}
@@ -347,7 +347,9 @@ $$
 
 \[1\]: The left hand side reduce to zero, this is true by **Corollary 2 of Claim 1**
 
-\[2\]: the second term on the right hand side reduce to zero, also due to **Corollary 2 of Claim 1**
+\[2\]: the second term on the right hand side reduce to zero, also due to 
+
+**Corollary 2 of Claim 1**
 
 Claim 3 Proven $\blacksquare$
 
@@ -377,7 +379,7 @@ $$
     {
         \Vert d_k\Vert_A^2
     }
-    \\\underset{(5)}{\implies}
+    \\\underset{(6)}{\implies}
     \beta_k &= - \frac{\langle e^{(k + 1)} - e^{(k)}, r^{(k + 1)} \rangle_A}
     {\alpha_k \Vert d_k\Vert_A^2}
     \\\underset{[1]}{\implies}
@@ -404,7 +406,7 @@ $$
 
 \[2\]: Using **Claim 3** to simplify the RHS, also canceling out the negative sign. 
 
-\[3\]: using the results from (5), substitute it into $\alpha_k$ and then simplify it. 
+\[3\]: using the results from (6), substitute it into $\alpha_k$ and then simplify it. 
 
 Using **Corollary Claim 3** we can further simplify results from (10), giving us: 
 
@@ -452,12 +454,28 @@ $$
 
 **Potential Failure**
 
-This algorithm fails when the matrix is Symmetric Semi-Definite, but no positive definite. 
+This algorithm fails when the matrix is Symmetric Semi-Definite, but no positive definite.  
 
 Depending on the Conditioning of the matrix $A$, a small residual doesn't imply a small error.
 
 ---
-### **Why is The Residual Vector So Magical**?
+### **Why is The Residual Vector So Magical**
+
+Well, it's stemming from this considerations of the residual vector. The energy norm of the error vector is related to the residual vector, and the fact that the residual vector is the gradient on an objective function that has a minimal corresponding to the solution of the linear system (Which has already been discussed). 
+
+I might be repeating myself, let's just assume that we are designing a series of stepsizes for getting to the current guess $x^{(k)}$, and these steps are $\alpha_jd_j$. Now let's consider the energy norm: 
+
+$$
+\begin{aligned}
+    \Vert e^{(k)}\Vert_A &= \langle e^{(k)}, -r^{(k)} \rangle
+    \\
+    &= \langle x^{(k)} - x^+, -r^{(k)} \rangle
+    \\
+    x^{(k)} - x^+ &= \sum_{i = 1}^{k}\alpha_i d_i
+\end{aligned}
+$$
+
+Sin't it would be really good, if, $r^{(k)}$ orthogonal to all the step directions? 
 
 ---
 ### **Unusual Connections**
