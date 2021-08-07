@@ -3,6 +3,7 @@ Make sure to understand the derivation of the conjguate gradient algorithm under
 
 Make sure to understand the Lancosz algorithm as the Arnoldi Iterations for symmetric matrices. 
 
+The referece is from Tyler Chen, 4.1: [here](https://chen.pw/research/cg/cg.pdf)
 
 ---
 ### **Intro**
@@ -10,7 +11,7 @@ Make sure to understand the Lancosz algorithm as the Arnoldi Iterations for symm
 The key here is the third Corollary from the material [[Conjugate Gradient with Krylov Subspace]], stated here: 
 
 > $$
-> \langle r^{(k)}, r^{(j)} \rangle = 0 \quad \forall\; 0 \le j \le k - 2
+> \langle r^{(k)}, r^{(j)} \rangle = 0 \quad \forall\; 0 \le j \le k - 1
 > $$
 
 The relations is derived using the properties of the Krylov Subspace, and it's the key connection to Lancos Algorithm because Lancosz algorithm will generate a sequence of $q_i$ such that they are all orthogonal to each other. 
@@ -26,7 +27,8 @@ At the same time, recall the recurrence relations of the Orthogonal Vectors for 
 >     [AQ]_{:, n} &= \beta_{n - 1}q_{n - 1} + \alpha_n q_n
 > \end{aligned}
 > $$
-> 
+
+
 
 
 

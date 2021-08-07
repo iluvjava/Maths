@@ -200,7 +200,6 @@ $\blacksquare$
 Please compare Corollary 2 to claim 3 in [[Conjugate Gradient]]
 
 
-
 ---
 ### **The Magics, The Residual Vector**
 
@@ -467,10 +466,11 @@ I might be repeating myself, let's just assume that we are designing a series of
 
 $$
 \begin{aligned}
-    \Vert e^{(k)}\Vert_A &= \langle e^{(k)}, -r^{(k)} \rangle
+    \Vert e^{(k)}\Vert_A^2 &= \langle e^{(k)}, -r^{(k)} \rangle
     \\
     &= \langle x^{(k)} - x^+, -r^{(k)} \rangle
     \\
+    \text{Where: }
     x^{(k)} - x^+ &= \sum_{i = 1}^{k}\alpha_i d_i
 \end{aligned}
 $$
