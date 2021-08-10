@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 000/Euler Maclaurin Formula.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
             "mode": "source"
           }
         },
@@ -24,11 +24,11 @@
           {
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
-            "dimension": 74.39613526570048,
+            "dimension": 61.73913043478261,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Math 000/Euler Maclaurin Formula.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
                 "mode": "preview"
               }
             },
@@ -37,11 +37,11 @@
           {
             "id": "c719a9df429fee2b",
             "type": "leaf",
-            "dimension": 25.603864734299524,
+            "dimension": 38.26086956521739,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 000/Euler Maclaurin Formula.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -64,7 +64,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 1.0000000000000002,
+                  "scale": 0.6698265631915424,
                   "close": true
                 }
               }
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Euler Maclaurin Formula.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Math 000/Euler Maclaurin Formula.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,15 +179,15 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
+    "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+    "AMATH 515 (Optimization Fundamentals)/The Simplex Algorithm.md",
+    "Math 000/Optimization/Simplex Method.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Exploiting the Lagrangian (KTT).md",
+    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
     "Math 000/Euler Maclaurin Formula.md",
     "Math 999/Variatioional Auto Encoder (AE, VAE).md",
     "Math 999/Vapnik–Chervonenkis dimension.md",
     "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
-    "AMATH 515/Conjugate Gradient.md",
-    "AMATH 515/Steepest Descend for Matrix Vector.md",
-    "AMATH 584/Fields of Values.md",
-    "AMATH 584/Lancosz Algoritm.md",
-    "AMATH 584/Conjugate Gradient and Lancosz Algorithm.md",
-    "AMATH 584/Amath 584.md"
+    "AMATH 515/Conjugate Gradient.md"
   ]
 }

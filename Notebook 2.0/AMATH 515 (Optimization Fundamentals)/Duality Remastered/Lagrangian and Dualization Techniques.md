@@ -236,4 +236,8 @@ And in this case the dual and the primal will be equation due to the fact that t
 This process is very general and can be used in a lot of different cases. 
 
 
+---
+### **The Ultimate Lagrangian Example**
+
+Here we consider list of convex equality and inequality constraints paired up with a minimization on a convex objective function. 
 
