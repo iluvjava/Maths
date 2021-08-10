@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+            "file": "Math 000/Euler Maclaurin Formula.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+                "file": "Math 000/Euler Maclaurin Formula.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+                "file": "Math 000/Euler Maclaurin Formula.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+                "file": "Math 000/Euler Maclaurin Formula.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+                "file": "Math 000/Euler Maclaurin Formula.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,15 +179,15 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
+    "Math 000/Euler Maclaurin Formula.md",
+    "Math 999/Variatioional Auto Encoder (AE, VAE).md",
+    "Math 999/Vapnik–Chervonenkis dimension.md",
     "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 515/Conjugate Gradient.md",
     "AMATH 515/Steepest Descend for Matrix Vector.md",
     "AMATH 584/Fields of Values.md",
     "AMATH 584/Lancosz Algoritm.md",
     "AMATH 584/Conjugate Gradient and Lancosz Algorithm.md",
-    "AMATH 584/Amath 584.md",
-    "AMATH 584/Untitled.md",
-    "AMATH 584/Krylov Subspace.md",
-    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md"
+    "AMATH 584/Amath 584.md"
   ]
 }

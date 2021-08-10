@@ -115,13 +115,23 @@ $$
 The dual problem is a maximization problem with the objective inside an minimization operator.
 
 $$
-\max_x\left\lbrace
+\max_z\left\lbrace
     \min_{x, y}\left\lbrace
     f(x, y) + zg(x, y)
     \right\rbrace
 \right\rbrace
 $$
 
+
+**Interpretations of the MinMax Gameplay**
+
+This interpretation comes from [here](https://www.youtube.com/watch?v=uh1Dk68cfWs)
+
+> The dual is maximizing the constraint multiplier, this is giving a pentalty to the maximization player, the primal. 
+> 
+> When these 2 players balanced out, it then means that any improvement will lead to either, increase in the objective of primal, or decrease in the objective of the dual.
+>  
+> Which only happens when there is no more intersection between the objective of these 2 players. 
 
 
 ---

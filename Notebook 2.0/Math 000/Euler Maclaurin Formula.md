@@ -1,14 +1,16 @@
 We are going to discuss the Euler Maclaurin Formula, with reference materials from here: 
 
 [Reference](http://people.csail.mit.edu/kuat/courses/euler-maclaurin.pdf)
-Contains stuff about Bernoulli Number. 
-And several example sums.
+Contains stuff about Bernoulli Number. And several example sums.
+
 [Reference](https://www.maa.org/sites/default/files/mathmag61-65-spivey15625.pdf)
 Contains stuff about the formula.
 
+[More Reference](https://www.math.ucdavis.edu/~tracy/courses/math205A/EulerMaclaurinSummation.pdf)
+
 ---
 
-### Intro 
+### **Intro**
 
 The Euler Maclaurin Formula is discovered by Bernoulli when he was investigating the power sum problem of the natural number. 
 
@@ -45,5 +47,9 @@ $$
 Before we prove this, we will need to understand the Bernoulli Polynomials with some properties of the Bernoulli Polynomials, which is used for the proof of the formula we stated above. 
 
 ---
-### Bernoulli Polynomials, Numbers
+### **Bernoulli Polynomials, Numbers**
+
+
+
+
 

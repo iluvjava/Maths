@@ -26,7 +26,7 @@ In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjug
 
 **Claim: 1** 
 
-> The conjugate graidient algorithm minimizes the energy norm of the error vector at each iterations of the algorithm, which is to say: 
+> The conjugate gradient algorithm minimizes the energy norm of the error vector at each iterations of the algorithm, which is to say: 
 > 
 > $$
 > \begin{aligned}
