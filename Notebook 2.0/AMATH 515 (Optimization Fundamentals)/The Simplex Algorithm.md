@@ -113,4 +113,5 @@ Following the previous case, we need the fundamental formulation of the programm
 4. $\mathcal{B}$, where $|\mathcal{B}| = m$, indeices for the primal variable. 
 5. $[x_i]_{i \in\mathcal{B}}$, the solutions that are choosen to be in $\mathcal{B}$
 6. $[x_i]_{i\in\mathcal{N}}$, the primal decision variable 
-7. $[s_i]_{i\in \mathcal{B}}$, $[s_i]_{i\in \mathcal{N}}$ and the same for $c$, where each of them are splitted and mapped to the basic feasible set of indices. 
+7. $[s_i]_{i\in \mathcal{B}}$, $[s_i]_{i\in \mathcal{N}}$ and the same for $c$ ($[c_i]_{i\in \mathcal{B}}$ and $[c_i]_{i \in \mathbb{N}}$), where each of them are splitted and mapped to the basic feasible set of indices. 
+

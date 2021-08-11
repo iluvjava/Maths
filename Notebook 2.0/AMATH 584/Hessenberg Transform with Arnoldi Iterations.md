@@ -210,10 +210,53 @@ This will be made clear during the Krylov Subspace interpretations of the Arnold
 >         \\
 >         & q_k = \tilde{q}_k / \Vert q\Vert
 >     \end{aligned}
+>      \\
+>      & H[:, n] = Q^H AQ
 > \end{aligned}
 > $$
 
 For each latest new vector $q_k$, get a new vector $Aq_k$ and then orthogonalize it on all existing orthogonal vectors
+
+---
+### **Julia Code** 
+
+This is a Julia Implementation of the above formulatiosn of the Arnoldi Iterations: 
+
+```julia
+using LinearAlgebra
+
+function ArnoldiIterate(A)
+"""
+    prototype first. 
+#Arguments
+- `A`: A complex matrix
+
+Returns Q, H, where Q is the unitary matrix and H is in 
+upper Hessenberg Form. 
+"""
+    @assert ndims(A) == 2 "A needs to be a 2d matrix"
+    m, n = size(A)
+    @assert m == n "A needs to be a square matrix"
+    q1 = rand(n, 1)  + rand(n, 1)*im
+    q1 = q1./norm(q1)
+    H = similar(A, ComplexF64)
+    Q = similar(A, ComplexF64)
+    Q[:, 1] = q1
+    for k in 2:n + 1
+        q = A*Q[:, k - 1]
+        for l in 1:k - 1
+            H[l, k - 1] = Q[:, l]'*q
+            q -= H[l, k - 1].* Q[:, l]
+        end
+        if k <= n
+            H[k, k - 1] = norm(q)
+            Q[:, k] = q./norm(q)
+        end
+    end
+    return Q, H
+end
+
+```
 
 
 ---
