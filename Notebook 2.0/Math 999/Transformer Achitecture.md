@@ -66,22 +66,22 @@ The $q, k$ vectors are then stacked together to form a matrix.
 $$
 \begin{aligned}
     Q = \begin{bmatrix}
-        q^{(1)} \\ q^{(2)} \\ \vdots \\ q^{(d_s)}
+        (q^{(1)})^T \\ (q^{(2)})^T \\ \vdots \\ q^({(d_s)})^T
     \end{bmatrix}
-    & \hspace{2em}
+    & \hspace{1em}
     K = \begin{bmatrix}
-        k^{(1)} \\ k^{(2)} \\ \vdots \\ k^{(d_s)}
+        (k^{(1)})^T \\ (k^{(2)})^T \\ \vdots \\ k^({(d_s)})^T
     \end{bmatrix}
-    & \hspace{2em}
+    & \hspace{1em}
     V = \begin{bmatrix}
-        v^{(1)} \\ v^{(2)} \\ \vdots \\ v^{(d_s)}
+        (v^{(1)})^T \\ (v^{(2)})^T \\ \vdots \\ v^({(d_s)})^T
     \end{bmatrix}
     \\
-    Q \in \mathbb{R}^{d_s\times d_w}
-    & \hspace{2em}
-    K \in \mathbb{R}^{d_s\times d_w}
-    & \hspace{2em}
-    V \in \mathbb{R}^{d_s\times d_w}
+    Q \in \mathbb{R}^{d_s\times d_s}
+    & \hspace{1em}
+    K \in \mathbb{R}^{d_s\times d_s}
+    & \hspace{1em}
+    V \in \mathbb{R}^{d_s\times d_s}
 \end{aligned}
 $$
 
@@ -91,10 +91,18 @@ This quantity is a vector.
 
 It represents the association of each word in relations to other words in that sequence. 
 
-This is the operations 
+This is the operations: 
+
+$$
+\text{softmax} \left(
+    \frac{q^{(i)}K^T}{\sqrt{d_s}}
+\right)v^{(i)}
+$$
+
+This outputs a vector representing the attention of a given word. It's telling us the closeness of the given word to words in the rest of the sentence. 
 
 
-
+**Vectorizing for All Words in the Sequence**
 
 The $Q, K$ matrices are associated with each, one, single, attention module. They are containers for the set of trainable parameters for each or the word, a way of vectorizing everything. 
 
@@ -104,12 +112,12 @@ $$
 Z = 
 \begin{aligned}
     \text{softmax}\left(
-        \frac{QK^T}{\sqrt{d_s}}
+        \frac{QK^T}{\sqrt{d_s}}, \text{dims} = 2
     \right) V
 \end{aligned}
 $$
 
-**Softmax**: The function is boardcasted on each row of the input matrix, and for each row it outputs a vector with the same length. Therefore the intput dimension equals the output dimension after the softmax function. (**This is assumed by me after observing the illustrated materials**)s
+**Softmax**: The function is boardcasted on each row of the input matrix, and for each row it outputs a vector with the same length. Therefore the intput dimension equals the output dimension after the softmax function. (**This is assumed by me after observing the illustrated materials**)
 
 The division is made with the intented to magnify the effects of derivative when the sequence is very long. 
 
@@ -120,8 +128,15 @@ The output dimension of a single attention module is a matrix that is $d_s\times
 
 This part is cross referenced using both materials listed on the header, and [Illustrated Attention](https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a)
 
+Remaining Question: 
+
+> How do we interpret the attention module? 
+
+
 ---
 ### **Multi-Head attention**
+
+
 
 
 ---
