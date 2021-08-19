@@ -13,7 +13,7 @@ In the case of non-smooth function, regularization and simple constrained optimi
 
 
 ---
-### **Lasso Regularization**
+### **L1 Regularization**
 
 The proximal solution for the nonsmooth part is the same as this problem: 
 $$
@@ -114,4 +114,9 @@ Where $\bullet$ saying that, the function has been vectorized on each element of
 
 up to this point, we have solved the proximal operator for all of the L1 Norm Regularized regression problem. 
 
+
+---
+### **Box Constrained Optimizations**
+
+The proximal operator for a box constrained optimization problem requires solving: 
 
