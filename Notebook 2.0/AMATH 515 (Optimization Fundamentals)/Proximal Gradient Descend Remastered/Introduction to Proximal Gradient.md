@@ -1,0 +1,168 @@
+[[Gradient Descend 1]]
+
+
+---
+### **Intro**
+
+Welcome. Proximal gradient descend is a unconstrained optimization method, it aims to solve: 
+
+> $$\min_x \{f(x) + h(x)\}$$
+
+where $f(x), h(x)$ are convex but $h(x)$ is non-smooth. 
+
+**Intuitively**
+
+if $f(x)$ is complicated, it's hard to solve, however, if we have the convexity information for function $f(x)$ at a fixed point, then we might solve the following problem efficiently: 
+
+$$
+\underset{h, t}{\text{prox}}(
+    z
+) = 
+\arg\min_x \left\lbrace
+    \frac{1}{2t}
+    \left\Vert
+        x - z
+    \right\Vert^2
+    + 
+    h(x)
+\right\rbrace
+$$
+
+This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. 
+
+---
+### **Claim 1**
+
+> The proximal operator is equivalent to: 
+> $$
+> \arg\min_x \left\lbrace
+>     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
+>     \Vert y - x\Vert + h(x)
+> \right\rbrace
+> $$
+
+**Observe that**
+
+By convexity of $f, g$ we have: 
+
+$$
+f(x) + h(x) \le 
+g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
++ h(y) = m_x(y) \tag{1}
+$$
+
+find the solution to minimize this is what **claim 1** is about. 
+
+**Proof**
+
+$$
+\begin{aligned}
+    & g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
+    \\
+    =&
+    g(x) + \nabla g(x)^T x - \nabla g(x)^T x + 
+    \frac{\beta}{2}\Vert x\Vert^2 + \frac{\beta}{2} \Vert x\Vert^2
+    -\beta y^T x + h(x)
+    \\
+    =& 
+    \left(
+        g(x) - \nabla g(x)^Tx + \frac{\beta }{2} \Vert x\Vert^2
+    \right) + 
+    \underbrace{\left(
+        \nabla g(x) - \beta x
+    \right)^T y + \frac{\beta}{2} \Vert y\Vert + h(y)}_{\text{Optimize This!}}
+\end{aligned}\tag{2}
+$$
+
+Which means that: 
+
+$$
+\begin{aligned}
+    & \arg\min_x \left\lbrace
+    g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
+    \right\rbrace
+    \\
+    =&
+    \arg\min_x \left\lbrace
+        \underbrace{\left(
+            \nabla g(x) - \beta x
+        \right)^T y + \frac{\beta}{2} \Vert y\Vert^2}_{\text{the smooth part}} + h(y)
+    \right\rbrace 
+\end{aligned}\tag{3}
+$$
+
+Let's complete the square here: 
+
+$$
+\begin{aligned}
+    \underbrace{\left(\nabla g(x) - \beta x\right)^T}_{b} y + \underbrace{\frac{\beta}{2}}_{a} \Vert y\Vert =&
+    b^Ty + a \Vert y\Vert^2
+    \\
+    =&
+    a \left(
+        \frac{b^T}{a}y + \Vert y\Vert^2
+    \right)
+    \\
+    =& 
+    a \left(
+        \frac{b^T}{a}y + \Vert y\Vert^2 + 
+        \left\Vert\frac{b^T}{2a}\right\Vert^2
+        - 
+        \left\Vert
+             \frac{b^T}{2a}
+        \right\Vert^2
+    \right)
+    \\
+    =& 
+    a \left(
+        \underbrace{\left\Vert
+              y + \frac{b}{2a}
+        \right\Vert^2}_{\text{Optimize This part}}
+        -
+        a \left\Vert
+             \frac{b^T}{2a}
+        \right\Vert^2
+    \right)
+    \\
+    \left\Vert
+        \frac{b}{2a} + y
+    \right\Vert^2
+    =& 
+    \left\Vert
+         \frac{\nabla g(x) - \beta x}{\beta} + y
+    \right\Vert^2 
+    \\
+    =& 
+    \left\Vert
+        y - \left(x - \frac{\nabla g(x)}{\beta}\right)
+    \right\Vert^2
+\end{aligned}
+$$
+
+Let's make the link back to the start, which means that: 
+
+$$
+\begin{aligned}
+    =& 
+    \arg\min_x\left\lbrace
+        \left(
+            \nabla g(x) - \beta x
+        \right)^T y + \frac{\beta}{2} \Vert y\Vert
+        + h(x)
+    \right\rbrace 
+    \\
+    =& 
+    \arg\min_x\left\lbrace
+        \frac{\beta}{2}\left\Vert
+        y - \left(x - \frac{\nabla g(x)}{\beta}\right)
+    \right\Vert^2 + h(x)
+    \right\rbrace
+    \\
+    =& 
+    \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}
+\end{aligned}
+$$
+
+Therefore, minimizing the proximal operator using the convexity information at a point of the function will minimizes the parabolic approximation of that region, together with the nonconvex function. 
+
+$\blacksquare$

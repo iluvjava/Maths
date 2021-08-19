@@ -155,3 +155,4 @@ The algorithm is kinda complicated hence it will be stated in another file.
 ---
 ### **Presolving**
 
+This is a complicated topic and someone wrote their master thesis about it [here](http://etd.fcla.edu/UF/UFE1000157/sadhana_v.pdf). 

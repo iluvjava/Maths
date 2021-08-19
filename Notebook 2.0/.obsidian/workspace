@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
             "mode": "source"
           }
         },
@@ -24,11 +24,11 @@
           {
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
-            "dimension": 61.73913043478261,
+            "dimension": 66.6003976143141,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
                 "mode": "preview"
               }
             },
@@ -37,11 +37,11 @@
           {
             "id": "c719a9df429fee2b",
             "type": "leaf",
-            "dimension": 38.26086956521739,
+            "dimension": 33.39960238568588,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -120,7 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 369
+    "width": 400
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,17 +177,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "f0e30eed4f3808cc",
+  "active": "ce788fc59bcff1e2",
   "lastOpenFiles": [
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+    "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Line Search Gradient Descend.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Newton Method.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Measuring Rate of Convergence.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 2.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 1.md",
     "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
     "AMATH 515 (Optimization Fundamentals)/The Simplex Algorithm.md",
-    "Math 000/Optimization/Simplex Method.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Exploiting the Lagrangian (KTT).md",
-    "AMATH 584/Krylov Matrix QR and Arnoldi Iterations.md",
-    "Math 000/Euler Maclaurin Formula.md",
-    "Math 999/Variatioional Auto Encoder (AE, VAE).md",
-    "Math 999/Vapnik–Chervonenkis dimension.md",
-    "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
-    "AMATH 515/Conjugate Gradient.md"
+    "Math 000/Optimization/Simplex Method.md"
   ]
 }
