@@ -1,4 +1,4 @@
-[[Gradient Descend 1]]
+prereq: [[Gradient Descend 1]], [[Subgradient]]
 
 
 ---
@@ -136,7 +136,7 @@ $$
     \left\Vert
         y - \left(x - \frac{\nabla g(x)}{\beta}\right)
     \right\Vert^2
-\end{aligned}
+\end{aligned}\tag{4}
 $$
 
 Let's make the link back to the start, which means that: 
@@ -160,9 +160,63 @@ $$
     \\
     =& 
     \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}
-\end{aligned}
+\end{aligned}\tag{5}
 $$
 
 Therefore, minimizing the proximal operator using the convexity information at a point of the function will minimizes the parabolic approximation of that region, together with the nonconvex function. 
 
 $\blacksquare$
+
+Therefore, we have a way to solve the mini minimization problem $m_x(y)$ at a point $x$ of a smooth convex function $f(x)$. 
+
+
+---
+### **Claim 2**
+
+> If proximal operator "locked" itself during the iterations of proximal gradient descend, then optimality condition is satisfied. 
+
+**Proof**
+
+$$
+\begin{aligned}
+    x^+ &= \underset{u}{\text{argmin}} \left(
+        g(x) + \nabla g(x)^T(u - x) + \frac{1}{2t}\Vert u - x\Vert^2 + h(u)
+    \right)
+    \\
+    0 &\in \nabla g(x) + \frac{1}{t}(x^+ - x) + \partial h(x^+)
+    \\
+    G_t(x) - \nabla g(x) &\in \partial h(x^+)
+    \\
+    G_t(x) &\in \partial h(x^+) + \nabla g(x)
+\end{aligned}
+
+$$
+
+Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. 
+
+Take notice that, IF $x^+ = x$, meaning that the proximal operator becomes the identity, then the optimal solution is satisified because zero belongs to the subgradient of $g(x) + h(x)$. 
+
+---
+### **Formulation of Proximal Gradient Descend**
+
+Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
+
+$$
+\begin{aligned}
+    & \text{Initialize: }x^{(0)}
+    \\
+    & \text{for } k = \text{ from } 1 \text{ to } \infty
+    \\
+    &\hspace{2em}
+    \begin{aligned}
+        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
+        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
+        \\  
+        & \text{break if } x^{(k)} = x^{(k + 1)}
+    \end{aligned}
+\end{aligned}
+$$
+
+**Note** for accelerated gradient, it's exactly the same. 
+
+

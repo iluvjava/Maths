@@ -10,7 +10,7 @@ We will be using:
 
 
 ---
-### Proof
+### **Proof**
 
 ![[Proximal Gradient Method#Theorem 3 12]]
 
