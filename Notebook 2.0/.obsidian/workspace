@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,6 +179,7 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md",
     "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
     "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
     "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Line Search Gradient Descend.md",
@@ -187,7 +188,6 @@
     "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 2.md",
     "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 1.md",
     "AMATH 515 (Optimization Fundamentals)/Linear Programming.md",
-    "AMATH 515 (Optimization Fundamentals)/The Simplex Algorithm.md",
-    "Math 000/Optimization/Simplex Method.md"
+    "AMATH 515 (Optimization Fundamentals)/The Simplex Algorithm.md"
   ]
 }

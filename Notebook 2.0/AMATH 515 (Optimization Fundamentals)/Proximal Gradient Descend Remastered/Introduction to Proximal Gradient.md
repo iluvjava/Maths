@@ -201,22 +201,26 @@ Take notice that, IF $x^+ = x$, meaning that the proximal operator becomes the i
 
 Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
 
-$$
-\begin{aligned}
-    & \text{Initialize: }x^{(0)}
-    \\
-    & \text{for } k = \text{ from } 1 \text{ to } \infty
-    \\
-    &\hspace{2em}
-    \begin{aligned}
-        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
-        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
-        \\  
-        & \text{break if } x^{(k)} = x^{(k + 1)}
-    \end{aligned}
-\end{aligned}
-$$
+>$$
+>\begin{aligned}
+>    & \text{Initialize: }x^{(0)}
+>    \\
+>    & \text{for } k = \text{ from } 1 \text{ to } \infty
+>    \\
+>    &\hspace{2em}
+>    \begin{aligned}
+>        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
+>        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
+>        \\  
+>        & \text{break if } x^{(k)} = x^{(k + 1)}
+>    \end{aligned}
+>\end{aligned}
+>$$
 
 **Note** for accelerated gradient, it's exactly the same. 
+
+---
+### **FISTA, Accelerated Proximal Gradient**
+
 
 
