@@ -6,7 +6,9 @@ And this we will be continue working on the gradient descent method with additio
 Which can be a one norm, or it can be an indicator function representing the constraints of the problem. 
 
 ---
-### Intro, Recap
+### **Intro, Recap**
+
+> Solving the minimum of a quadratic model at point $x_k$ with concavity $\beta$ adding a non-smooth function $h$ is the same as looking for the solution of the proximal operator on the point $x_k - \nabla g(x_k)/\beta$
 
 We pick up from the optimality conditions of the Sub-gradient of a non-smooth function.
 
@@ -48,7 +50,9 @@ And the minimization of the problem, for the non-smooth function can be summariz
 $$
 x_{k + 1} = \underset{y}{\text{argmin}}\left(
     \frac{1}{2/\beta} \left\Vert 
-        y - (x_k - \frac{1}{\beta}\nabla g(x_k))
+        y - \left(
+                x_k - \frac{1}{\beta}\nabla g(x_k)
+            \right)
     \right\Vert^2 + h(y)
 \right) \tag{2}
 $$
@@ -66,7 +70,7 @@ $$
 This works as well as the gradient descend for the $g(x)$ function. 
 
 ---
-#### Optimality conditions to Termination Conditions
+#### **Optimality conditions to Termination Conditions**
 
 For the proximity operator, we can allow a solution to it if the following condition is true: 
 
@@ -108,7 +112,7 @@ $x_k = x_{k + 1}$ and they are the global minimum of the function.
 
 ---
 
-### Def 
+### **Def** 
 
 **Moreau Envelope** of the function $h$. 
 
@@ -121,7 +125,7 @@ $$
 And this is the minimal objective value that is coming out from the proximal operator. 
 
 ---
-### Indicator Function
+### **Indicator Function**
 
 When $h(x)$ is the indictor function, the following thing can be said: 
 
@@ -129,7 +133,8 @@ The proximity operator decays to the set projection operator.
 
 The Moreau Envelop will give the distance between the point projected onto the set of the indicator function, and the $z$ vector that is outside of the set.
 
-#### Example 2: 2 Normball
+---
+### **Example 2: 2 Normball**
 
 Suppose that $C = \mathbb{B}_2$, this is the 2-norm ball set. Then the projection is just like: 
 
@@ -143,7 +148,8 @@ $$
 \end{cases}
 $$
 
-#### Example 2: Infinity Norm
+---
+### **Example 2: Infinity Norm**
 
 Let's project any point to the infinity norm, and this is going to be phrased as: 
 
@@ -167,7 +173,8 @@ $$
 \end{cases}
 $$
 
-#### Example 3: Infinity Norm Linear Projection Problem: 
+---
+### **Example 3: Infinity Norm Linear Projection Problem:**
 
 Consider: 
 $$
@@ -301,7 +308,7 @@ Optimizing this as the constraint of the objective is a bit hard. There is 2 way
 2. Use the duality idea from linear programming, and the 1 norm ball can be put into a linear programming problem.
 
 ---
-### The General Case
+### **The General Case**
 
 So here, we are just messing with the Proximal Operator for one step of Gradient Descent, and generically, we are solving the optimization problem with the local global upper parabola with the non-smooth convex function: 
 
@@ -328,7 +335,7 @@ Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size fu
 
 ---
 
-### Theorem 3.12
+### **Theorem 3.12**
 
 * $g(x)$ is alpha convex and beta smooth. 
 * $h(x)$ is convex. 
