@@ -2,9 +2,7 @@ prereq: [[Regularization]]
 The idea of regularization is put into a more general context for in the discussion here. 
 
 ---
-
-
-## Regression and Model Selection
+### **Regression and Model Selection**
 
 $$Ax = b$$
 
@@ -21,10 +19,13 @@ $$\text{argmin}_x\{g(x): ||Ax - b||_2 \leq \epsilon\}$$
 And in this example, we try to get the best solution with the constraint subject to a certain function. 
 
 * **Non-Linear Cases**: 
-$$\text{argmin}_x \{f(A, x, b) + \lambda g(x)\}$$ where the function here is a non-linear function involving $A, x$ and $b$, and we try to regularize the results. $$\text{argmin}_x \{ g(x):f(A, x, b)\leq \epsilon\}$$ where we want to keep a good solution with the constraints while subjected to an objective function. 
+
+$$\text{argmin}_x \{f(A, x, b) + \lambda g(x)\}$$ 
+
+where the function here is a non-linear function involving $A, x$ and $b$, and we try to regularize the results. $$\text{argmin}_x \{ g(x):f(A, x, b)\leq \epsilon\}$$ where we want to keep a good solution with the constraints while subjected to an objective function. 
 
 ---
-### Over-fitting
+### **Over-fitting**
 
 Over-fitting is the just a model where it's doing pretty well on the training set but not the real world data set. 
 

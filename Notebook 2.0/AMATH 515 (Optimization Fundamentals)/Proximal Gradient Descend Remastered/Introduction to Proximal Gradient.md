@@ -228,17 +228,17 @@ This accelerated gradient algorithm is referenced from:
 
 The iteration will be started with: $x_0 = y_0$, $t_0 = 1$, the update sequence is: 
 
-$$
-\begin{aligned}
-    & x_{k + 1} = \underset{1/\beta, h}{\text{prox}}\left(
-        y_k - \frac{1}{\beta}\nabla f(y_k)
-    \right)
-    \\
-    & t_{k + 1} = \frac{1 + \sqrt{1 + 4t_k^2}}{2}
-    \\
-    & y_{k + 1} = x_{k + 1} + \frac{t_k - 1}{t_{k + 1}}(x_{k + 1} - x_k)
-\end{aligned}
-$$
+>$$
+>\begin{aligned}
+>    & x_{k + 1} = \underset{1/\beta, h}{\text{prox}}\left(
+>        y_k - \frac{1}{\beta}\nabla f(y_k)
+>    \right)
+>    \\
+>    & t_{k + 1} = \frac{1 + \sqrt{1 + 4t_k^2}}{2}
+>    \\
+>    & y_{k + 1} = x_{k + 1} + \frac{t_k - 1}{t_{k + 1}}(x_{k + 1} - x_k)
+>\end{aligned}
+>$$
 
 Take notice that this is exactly the same when compare to the gradient descent without the proximal operator. 
 

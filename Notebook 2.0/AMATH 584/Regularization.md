@@ -15,7 +15,7 @@ $$
 These type of problems are called "ill-posed problems" and we are interested in regularizing them. 
 
 ---
-### Regularization 
+### **Regularization** 
 Optimization + Solving the equations
 
 Here is the optimization way of determine the unique solution for an underdetermined system. 
@@ -35,7 +35,7 @@ There is more about regularization, see [[Regression and Model Selection]] for m
 
 
 ---
-### Fredholm Alternative
+### **Fredholm Alternative**
 
 * This is deep and it's connected to multiple realms of mathematics, but here we will explain what it's doing for Linear Algebra
 * Let's first, get to the idea of what people called: "Hermitian Adjoint"

@@ -50,7 +50,7 @@ Assuming that $x_i \neq 0$, then:
 
 $$
 \begin{aligned}
-    \partial\left[
+    \bar{\partial}\left[
         \frac{1}{2t}(x_i - y_i)^2 + \lambda |x_i|
     \right] &= 0
     \\
@@ -98,7 +98,7 @@ $$
 f(y) = \begin{cases}
     y - \lambda t  & y \ge \lambda t
     \\
-    y + \lambda t & y \ge -\lambda t
+    y + \lambda t & y \le -\lambda t
     \\
     0 & y \in [-t \lambda, t\lambda]
 \end{cases}
@@ -117,6 +117,8 @@ up to this point, we have solved the proximal operator for all of the L1 Norm Re
 
 ---
 ### **Box Constrained Optimizations**
+
+Proximal gradient can also handle convex constrained optimization, where the constraints are expressed as an indicator function over a convex set. And the proximal operator is projecting points to that convex set. 
 
 The proximal operator for a box constrained optimization problem requires solving: 
 

@@ -7,10 +7,10 @@ This is one of the metric used for measure the behavior of linear operator, whic
 
 ---
 
-#### Conceptually Speaking
+### **Conceptually Speaking**
 Conditioning and stability are property of the functions that maps things from an input space to the output space of the function. 
 
-##### Conditioning
+#### **Conditioning**
  Perturbates the inputs and how does it change the output of the function. 
  * Well-Conditioned: 
    * Small changes in x is also going to cause small changes in the output of the function f. 
@@ -18,8 +18,7 @@ Conditioning and stability are property of the functions that maps things from a
  	* Small changes in the x causes huge changes in the output of the function. 
 
 This idea is relevant to controlling the error because if reflects how the round off errors could potentially got scaled up when smaller numerical errors are introduced. 
- 
- ##### Stability
+#### **Stability**
  Behaviors of the algorithm under perturbations 
 
  
@@ -72,7 +71,7 @@ Relative Conditioning Number of a matrix
 
 Now the condition number will tells us the upper bound for Relative Condition of a matrix, and the upper bound will be tight. 
 
-#### Proof: 
+#### **Proof:** 
 
 Here we will quickly work through the poof for the conditioning of a matrix in linear algebra and in this case, we might need to understand something about the [[Norm]] of a matrix, which is used here. 
 
@@ -144,13 +143,6 @@ $$\kappa_2(A) = ||A||_2||A^{-1}||_2 = \frac{\sigma_{max}}{\sigma_{min}}$$
 
 Which is the expression of the Condition number, and it can be easily computed using the SVD decomposition of the matrix $A$. 
 
-
 #### For Non-squared Matrices
 
 When the matrices is not squared, we are going to assume that the matrix is full rank so that the Penrose Pseudo Inverse of the matrix exists. 
-
-
-
-
-
-

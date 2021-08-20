@@ -1,1 +1,37 @@
-{"collapse-filter":true,"search":"","showTags":false,"showAttachments":false,"hideUnresolved":false,"showOrphans":true,"collapse-color-groups":false,"colorGroups":[{"query":"entropy","color":{"a":1,"rgb":14725458}},{"query":"Green","color":{"a":1,"rgb":13524182}}],"collapse-display":true,"showArrow":true,"textFadeMultiplier":-3,"nodeSizeMultiplier":1.75168539325843,"lineSizeMultiplier":1.02136752136752,"collapse-forces":true,"centerStrength":0.337078651685393,"repelStrength":11.4606741573034,"linkStrength":0.898876404494382,"linkDistance":114,"scale":0.1632100660897588,"close":true}
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "entropy",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "Green",
+      "color": {
+        "a": 1,
+        "rgb": 13524182
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": true,
+  "textFadeMultiplier": -3,
+  "nodeSizeMultiplier": 1.75168539325843,
+  "lineSizeMultiplier": 1.02136752136752,
+  "collapse-forces": true,
+  "centerStrength": 0.337078651685393,
+  "repelStrength": 11.4606741573034,
+  "linkStrength": 0.898876404494382,
+  "linkDistance": 114,
+  "scale": 0.4497540556565609,
+  "close": true
+}

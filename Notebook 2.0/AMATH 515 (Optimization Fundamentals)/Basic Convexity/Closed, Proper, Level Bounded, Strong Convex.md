@@ -1,5 +1,5 @@
 Prereq: 
-[[AMATH 515/Basic Convexity/Convexity]], [[Differential Characterization of Convexity]]
+[[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]], [[Differential Characterization of Convexity]]
 
 We are introducing some idea that can get rid some of the pathological problem for a minimization problem. 
 
