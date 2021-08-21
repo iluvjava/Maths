@@ -119,7 +119,7 @@ $$
 $$
 $\blacksquare$
 Explanations: 
-1. By the defintion that the function $f(x) - \frac{\alpha}{2}||x||^2$ is a convex function. 
+1. By the definition that the function $f(x) - \frac{\alpha}{2}||x||^2$ is a convex function. 
 2. Distribute: $\nabla\left[ f(x) - \frac{\alpha}{2}||x||^2\right]$ --> $\nabla f(x) + \alpha x$, with transpose and simplify the dot product into modulus expression. 
 3. Merge $||x||^2$
 4. Move $||y||^2$ from left to right. 

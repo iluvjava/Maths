@@ -4,9 +4,7 @@ prereq: [[Norm]]
 
 This is one of the metric used for measure the behavior of linear operator, which under the context of conditioning and stability for linear algebra, forms the basis for computational algorithm for the condition number. 
 
-
 ---
-
 ### **Conceptually Speaking**
 Conditioning and stability are property of the functions that maps things from an input space to the output space of the function. 
 

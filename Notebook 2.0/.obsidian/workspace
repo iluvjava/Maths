@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
             "mode": "source"
           }
         },
@@ -24,11 +24,11 @@
           {
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
-            "dimension": 66.6003976143141,
+            "dimension": 79.32405566600397,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
                 "mode": "preview"
               }
             },
@@ -37,11 +37,11 @@
           {
             "id": "c719a9df429fee2b",
             "type": "leaf",
-            "dimension": 33.39960238568588,
+            "dimension": 20.675944333996025,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,6 +179,8 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
     "CSE 546 (Machine Learning Fundamentals)/Convexity.md",
@@ -186,8 +188,6 @@
     "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
     "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
     "AMATH 515 (Optimization Fundamentals)/AMATH 515.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Non smooth convex optimization.md",
-    "Machine Learning (CSE 546++)/Convexity.md"
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md"
   ]
 }
