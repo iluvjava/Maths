@@ -18,7 +18,7 @@ $$
 \underset{h, t}{\text{prox}}(
     z
 ) = 
-\arg\min_x \left\lbrace
+\arg\min_x \left\lbrace 
     \frac{1}{2t}
     \left\Vert
         x - z
@@ -33,17 +33,17 @@ This is called the proximal operator, parameterized by a convexity information r
 ---
 ### **Claim 1**
 
-> The proximal operator is equivalent to: 
+> 
 > $$
-> \arg\min_x \left\lbrace
+> \arg\min_y \left\lbrace
 >     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
->     \Vert y - x\Vert + h(x)
+>     \Vert y - x\Vert + h(y)
 > \right\rbrace
 > $$
 
 **Observe that**
 
-By convexity of $f, g$ we have: 
+By $\beta$ convexity of $g$ and convexity of $h$ we have: 
 
 $$
 f(x) + h(x) \le 
@@ -62,7 +62,7 @@ $$
     =&
     g(x) + \nabla g(x)^T x - \nabla g(x)^T x + 
     \frac{\beta}{2}\Vert x\Vert^2 + \frac{\beta}{2} \Vert x\Vert^2
-    -\beta y^T x + h(x)
+    -\beta y^T x + h(y)
     \\
     =& 
     \left(
@@ -78,12 +78,12 @@ Which means that:
 
 $$
 \begin{aligned}
-    & \arg\min_x \left\lbrace
+    & \arg\min_y \left\lbrace
     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
     \right\rbrace
     \\
     =&
-    \arg\min_x \left\lbrace
+    \arg\min_y \left\lbrace
         \underbrace{\left(
             \nabla g(x) - \beta x
         \right)^T y + \frac{\beta}{2} \Vert y\Vert^2}_{\text{the smooth part}} + h(y)
@@ -144,7 +144,7 @@ Let's make the link back to the start, which means that:
 $$
 \begin{aligned}
     =& 
-    \arg\min_x\left\lbrace
+    \arg\min_y\left\lbrace
         \left(
             \nabla g(x) - \beta x
         \right)^T y + \frac{\beta}{2} \Vert y\Vert
@@ -152,7 +152,7 @@ $$
     \right\rbrace 
     \\
     =& 
-    \arg\min_x\left\lbrace
+    \arg\min_y\left\lbrace
         \frac{\beta}{2}\left\Vert
         y - \left(x - \frac{\nabla g(x)}{\beta}\right)
     \right\Vert^2 + h(x)
@@ -228,7 +228,7 @@ This accelerated gradient algorithm is referenced from:
 
 The iteration will be started with: $x_0 = y_0$, $t_0 = 1$, the update sequence is: 
 
->$$
+>$$ 
 >\begin{aligned}
 >    & x_{k + 1} = \underset{1/\beta, h}{\text{prox}}\left(
 >        y_k - \frac{1}{\beta}\nabla f(y_k)

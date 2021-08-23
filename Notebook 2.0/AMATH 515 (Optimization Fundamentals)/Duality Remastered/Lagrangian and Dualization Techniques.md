@@ -8,7 +8,7 @@ But we also need [[Convex Conjugate Examples]]
 
 Dualization process can put the primal optimization problem, preferably convex, into another optimization problem such that, weak, or strong duality theorem can be applied. 
 
-Under strong duality, solving one of the problem, primal or dual, will solve both problem at the same time. If a link between the dual and the primal variables is found. 
+Under strong duality, solving one of the problem, primal or dual, will solve both problem at the same time. If a link between the dual and the primal variables is found. Sometimes this is useful, sometimes this is not. 
 
 However, there is no general way of doing so, and some of the are not unique, let's consider examples that popped up in calculus class. 
 
@@ -240,4 +240,13 @@ This process is very general and can be used in a lot of different cases.
 ### **The Ultimate Lagrangian Example**
 
 Here we consider list of convex equality and inequality constraints paired up with a minimization on a convex objective function. 
+
+TODO: Write this! 
+
+---
+### **L1 Regularized Regression**
+
+TODO: Write this! 
+
+We are interested in the Lagrangian of this problem. 
 

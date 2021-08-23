@@ -129,6 +129,20 @@ Armijo line search introduced in: [[Line Search Gradient Descend]] it's a simple
 
 
 ---
+### **Sophisticated Line Search Algorithm**
+
+Another approach will be more involved, it seeks to keep both wolfe conditions without too much evaluations of the gradient/value on the function. But it's actually not too hard. Let's take a look. 
+
+What it tries to do is: 
+
+> It tries to prob for a step size as long as possible, and then decide on an window before it starts searching. 
+
+
+
+
+
+
+---
 ### **Good Properties**
 
 It always decrease the objective. 

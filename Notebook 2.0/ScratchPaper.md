@@ -19,3 +19,34 @@ $$
 * "Friendship and Ponies": Cute ponies stuff and friends ^w^
 
 
+---
+$$
+\arg\min_x \left\lbrace
+    \Vert Aw - b\Vert_2^2 + \lambda \Vert w\Vert_1
+\right\rbrace
+$$
+
+$$
+\lambda_{\max} = 
+\max_{k=1,...,d} \left\lbrace
+    2 \left|
+        \sum_{i = 1}^{n} A_{i, k}
+        \left(
+            b_i - \left(
+                \frac{1}{n} \sum_{j=1}^{i} b_i
+            \right)
+        \right)
+    \right|
+\right\rbrace
+$$
+
+$$
+\arg\min_x \left\lbrace
+    \lambda \mathbf{1}^T\eta + \Vert Ax - b\Vert : 
+    -\eta \le x \le \eta
+\right\rbrace
+$$
+
+$$
+g(x) + h(x) \le g(x) +  (y - x)^T\nabla g(x) + \frac{\beta}{2}\Vert y - x\Vert_2^2 + h(x)
+$$
