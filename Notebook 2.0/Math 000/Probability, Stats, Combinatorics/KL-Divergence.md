@@ -80,6 +80,9 @@ $$
 
 Interesting. It's cross entropy. 
 
+### **A Generalized Bregman Divergence**
+
+> KL divergence is a case of Bregman Divergence where the generating function is the negative cross entropy function. 
 
 
 

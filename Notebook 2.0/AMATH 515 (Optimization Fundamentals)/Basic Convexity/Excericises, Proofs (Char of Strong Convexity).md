@@ -115,7 +115,7 @@ $$
 
 Hence, if the function $g$ is level bounded, then $f$ will has to be level bounded. 
 
-** $g(y)$ is Level bounded **
+**$g(y)$ is Level bounded**
 
 This is true because: 
 
