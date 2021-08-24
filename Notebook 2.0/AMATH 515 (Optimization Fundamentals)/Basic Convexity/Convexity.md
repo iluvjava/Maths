@@ -4,7 +4,7 @@ For Optimality, Convexity means a problem that is easier to solve because of the
 3. Some illustrative examples.
 
 ---
-### Convex Set
+### **Convex Set**
 A set is said to be convex if any convex combinations of 2 arbitrary elements from the set are inside of the set as well. 
 
 For this class, we are exclusively talking about $\mathbb{R}^n$. 
@@ -31,7 +31,7 @@ Bruh, the proof is trivial and it's skipped here.
 
 
 ---
-### Convex Function 
+### **Convex Function** 
 Here, we are going to see how we can start killing classes of function with the definition of Convexity for Functions and Sets.
 
 Similarly, a function can be called convex too if: 
@@ -79,7 +79,7 @@ And notice that, **there are 2 parts involved here**, the domain of the function
 The if the function is in $\mathbb{R}^{n}$ then we can say that the epigraph of the function is going to be in $\mathbb{R}^{n + 1}$.
 
 ---
-#### Examples of Convex Functions
+### **Examples of Convex Functions**
 **Example 0**: Norms are convex function 
 A norm satisfies that (Which is coming from the axioms, [[Norm]]):
 1. $||x + y||\leq \Vert x\Vert + \Vert y \Vert$
@@ -139,11 +139,11 @@ And notice that, they are the same. Please take note of the exploitation of the 
 For affine linear function, the equality is strictly satisfied here. 
 
 ---
-### Extra Comments
+### **Extra Comments**
 Things about the convex functions and their proofs has been investigated in the HW1 section. 
 
 ---
-### Operations that Preserves Convexity
+### **Operations that Preserves Convexity**
 Convexity functions, or convexity of sets will be preserved under some certain set of operations, and in that case, it can be exploited for proof, and constructing more and more convex functions. 
 
 Here is a list of convex rules from Wiki: [wiki](https://www.wikiwand.com/en/Convex_function)

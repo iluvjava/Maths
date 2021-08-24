@@ -2,7 +2,7 @@ In this part we are going to do more works on the concepts of
 Strong convexity and its differential properties. 
 
 ---
-### Prereq: 
+### **Prereq**:
 [[Closed, Proper, Level Bounded, Strong Convex#Strong Convexity]]
 * Definition of Alpha Strong convexity
 * Properties of Alpha Strong Convexity
@@ -10,10 +10,11 @@ Strong convexity and its differential properties.
 ![[Closed, Proper, Level Bounded, Strong Convex#Theorem 2 23 Characterization of Strong Convexity]]
 
 
-### Proof Strategies
+---
+### **Proof Strategies**
 Cyclic Proof for a list of equivalence. 
 
-### Statement 1 <--> Statement 2
+### **Statement 1 $\iff$ Statement 2**
 If a given function is alpha strongly convex, then we can say that: 
 > $$(\nabla f(y) - \nabla f(x))^T(y - x)\ge \alpha ||y - x||^2$$ 
 
@@ -40,7 +41,7 @@ $$
 $\blacksquare$
 
 ---
-### Statement 2 <--> Statement 3
+### **Statement 2 $\iff$ Statement 3**
 
 Let $f$ be a Strongly Convex function and twice differentiable (Redundancy?), then by exercise in the previous parts for Strong Convexity, we know that, it's Alpha strongly convex if and only if $f - \frac{\alpha}{2}||x||^2$  is a convex function, and we want to prove that:
 
@@ -79,7 +80,7 @@ Statement 1 <--> Statement 2 <--> Statement 3 is verified, hence all 3 statement
 $\blacksquare$
 
 ---
-### Exercise Statement 1:
+### **Exercise Statement 1**:
 #### Alpha And Level-Bounded
 
 **Proof strategies**: If $f$ is level bounded, then its domain under a certain level has to be smaller than the RHS of the strong convexity. If that function is level bounded, then so is $f$. 

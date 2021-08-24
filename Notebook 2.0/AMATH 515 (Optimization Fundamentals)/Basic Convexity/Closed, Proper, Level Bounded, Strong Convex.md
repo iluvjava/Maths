@@ -8,7 +8,7 @@ There is very little we can assume about  the function when doing minimization o
 And we set up a new frameworks for analyzing the algorithms and stuff like that.
 
 ---
-### Intro
+### **Intro**
 **Definition 1**
 Let 
 $$\bar{\mathbb{R}} = \mathbb{R}\cup \{\infty, -\infty\}$$
@@ -35,7 +35,7 @@ $f(x) = \exp(x)$ then $\text{dom}(f) = \mathbb{R}$ and $\inf(f) = 0$ and $\text{
 And therefore , $\text{argmin}$ is a set of minimizer. 
 
 ---
-### Proper Function for Minimization
+### **Proper Function for Minimization**
 This definition is introduced so we can get rid of some pathological function, making life easier for us. 
 
 **Def**
@@ -46,7 +46,7 @@ This means that, the function is going to be bounded on the direction we are min
 And all the function we work with in a minimization problem is **Proper Function**. 
 
 ---
-### Level Set (And Closed Function)
+### **Level Set (And Closed Function)**
 **Def Level Set**: 
 $$
 \text{lev}_\alpha(f) = \{
@@ -66,7 +66,7 @@ $f$ is a **closed function** if Epigraph (all Level of f) are a closed set.
 Notice that, for any function $f(x)$, the function $\delta_{(0,1)} + f(x)$ is not closed because, if we approach the boundary at the domain, then we are getting out of the function and the limit is infinite, and that is **NOT** in the epigraph of the function, it's not fitting the definition of the epigraph of a function. 
 
 ---
-### Level Bounded 
+### **Level Bounded** 
 A function $f:\mathbb{R}^n\mapsto \mathbb{\bar{R}}$, is level bounded if all $\text{lev}_\alpha(f)$  are bounded and possibly empty. 
 
 This is saying that,** regardless of the kind of threshold we choose, the domain that map to the level bound is going to be a closed set, and it's not going to be infinity. ** For example $||x||$
@@ -76,27 +76,28 @@ However, the function $e^x$ is not, because, if we choose any level that is posi
 $e^x$ is **Closed**, but it's not **level bounded**. 
 
 ---
-### Theorem 1.9 (Rockafellar Roger Wets, Variational Analysis)
+### **Theorem 1.9 (Rockafellar Roger Wets, Variational Analysis)**
 
 Suppose a function $f:\mathbb{R}^n \mapsto \mathbb{\bar{R}}$ is **closed**, **proper**, and **level bounded**, then $\inf(f)$ is finite, and the set of** minimizers is non-empty**, and **compacted**. 
 
-#### Upshot: 
+#### **Upshot**: 
 The more assumption we make, the nicer the behavior for the functions we get. 
 
 **For example**:
 consider Closed, Proper, Level bounded Functions, then they have a minimizer, and if we add $C^1$ as a necessary condition and it's convex, then a function that gives zero gradient will give us a global minimizer that is unique. 
 
 ---
-### Strong Convexity
+### **Strong Convexity**
 
-A convex function that is bounded below by quadratic. 
+A convex function that is bounded below by quadratic, anchored at some fixed point. 
 
-**Def Alpha Strongly Convex** : 
-A multivariable scalar function that is $C^1$ smooth, is call **Alpha Strongly Convex** if: 
-$$
-f(y) \ge f(x) + \nabla F(x)^T (y - x) + \frac{\alpha}{2} ||y - x||^2
-$$
-The function not only lies above a linear approximation, but it also lies about some quadratic function with a constant $\alpha \le 0$. Notice that, it's equality (in some direction) when function is actually a quadratic. 
+**Definition**: 
+
+> A multivariable scalar function that is $C^1$ smooth, is call **Alpha Strongly Convex** if: 
+> $$
+> f(y) \ge f(x) + \nabla F(x)^T (y - x) + \frac{\alpha}{2} ||y - x||^2
+> $$
+> The function not only lies above a linear approximation, but it also lies about some quadratic function with a constant $\alpha \le 0$. Notice that, it's equality (in some direction) when function is actually a quadratic. 
 
 **Exercises:**
 1. 
@@ -116,11 +117,12 @@ Note: Discussed in: [[Excercises (Strong Convexity)]]
 Note: Note to confused with Strictly Convexity, which is totally different. 
 
 ---
-### Theorem 2.23 (Characterization of Strong Convexity)
-For a $C^1$ function $f$, the following are equivalent: 
-1. $f$ is Alpha Strong Convex 
-2. $(\nabla f(y) - \nabla f(x))^T(y - x)\ge \alpha ||y - x||^2$ 
-3. If f is twice continuous differentiable, then $\nabla^2 f \succcurlyeq \alpha I$ (More positive definite than alpha identity, meaning that all eigenvalues of the Hessian is larger than $\alpha$)
+### **Theorem 2.23 (Characterization of Strong Convexity)**
+
+> For a $C^1$ function $f$, the following are equivalent: 
+> 1. $f$ is Alpha Strong Convex 
+> 2. $(\nabla f(y) - \nabla f(x))^T(y - x)\ge \alpha ||y - x||^2$ 
+> 3. If f is twice continuous differentiable, then $\nabla^2 f \succcurlyeq \alpha I$ (More positive definite than alpha identity, meaning that all eigenvalues of the Hessian is larger than $\alpha$)
 
 **Observation**
 Please observe that, this is very similar to 3 of the characteristics listed in [[Differential Characterization of Convexity]], where we discusses under the context of regular convexity. 

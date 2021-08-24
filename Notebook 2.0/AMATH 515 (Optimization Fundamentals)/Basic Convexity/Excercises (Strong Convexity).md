@@ -1,15 +1,14 @@
 File contains exercises for [[Closed, Proper, Level Bounded, Strong Convex]]
 
 ---
-
-### Alpha Strongly Convex
+### **Alpha Strongly Convex**
 We are going to solve the following exercises. 
 
 ![[Closed, Proper, Level Bounded, Strong Convex#Strong Convexity]]
 
 In this part, we will prove something about alpha strongly convex. 
 
-#### Statement 1
+#### **Statement 1**
 Trivial. 
 
 ---

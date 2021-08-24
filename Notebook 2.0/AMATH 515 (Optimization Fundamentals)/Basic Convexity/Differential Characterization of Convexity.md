@@ -3,7 +3,7 @@ Let's see how we can use characteristic of the differential of a function can he
 prereq: [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]]
 
 ---
-### Preparation
+### **Preparation**
 Linking 2 points parametrically in a convex set: 
 Assuming that $x, y \in \mathbb{R}^n$ with $x \ne y$
 $$
@@ -27,8 +27,10 @@ $$
 As $\lambda: 0 \rightarrow 1$ , we travels from $x$ to $y$. 
 
 ---
-### Differential Characterization of Convexity
-#### Intro, Background, Statements, Comments
+### **Differential Characterization of Convexity**
+
+**Intro, Background, Statements, Comments**
+
 If the function is convex, then there will be some signs that shows regarding the derivative of the function. And these characteristics are **important for determining whether a given function is convex or not.** 
 
 The following list is a list of statements are equivalent if: $f: T\mapsto R$ is a $C1$ smooth function. 
@@ -55,7 +57,8 @@ This should be the route we take.
 Now, let's take (3) --> (2) --> (1), just like the hero's journey.
 And after the Journey, we have the additional part where **(1)<-->(2)** relation. 
 
-#### Proofs
+---
+### **Proofs**
 **Proof of (2) using (1)**
 
 Assume that the function is convex, and then we use the property of the convex function for the coming proofs: 
@@ -190,7 +193,7 @@ $$
 Due to monoticity, if we set $x = y$, then the left hand side equals to the right hand side, therefore, it's a strict equality that makes the **supremum** idea works here, and if that is the case, since the function is larger than another affine linear function (**which is convex**, proven the preq part of the note), therefore, $f(y)$ is going to be another convex function as well. $\blacksquare$
 
 ---
-### Corollary 2.19
+### **Corollary 2.19**
 
 For a given function that is $C^1$ smooth and convex, the following are equivalent: 
 1. $x$ is a global minimizer for f. 
@@ -218,7 +221,7 @@ And even better, the indicator function $\sigma_{(-1, 1)}(x)$, and then he inter
 This is the in the course folder. 
 
 ---
-### The missing Part: Exercise
+### **The missing Part: Exercise** 
 
 Trying to show that: 
 
