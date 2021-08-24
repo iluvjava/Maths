@@ -44,7 +44,7 @@ Where $f:U \mapsto (-\infty, +\infty)$ and $\lambda \in [0, 1]$
 
 Simply put: The function is convex if every secant line on the graph lies above the graph. Boom, nice and simple, just as its name suggested. 
 
-### Epigraph (Sets --> Function)
+### **Epigraph: From Sets to Functions**
 The Epigraph of a function is a collection of points that **lies above the function**, and hence the definition can be written as: 
 $$
 \text{epi}(f) := \left\lbrace

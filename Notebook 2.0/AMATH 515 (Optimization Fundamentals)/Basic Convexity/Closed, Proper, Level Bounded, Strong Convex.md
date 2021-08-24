@@ -9,37 +9,41 @@ And we set up a new frameworks for analyzing the algorithms and stuff like that.
 
 ---
 ### **Intro**
-**Definition 1**
-Let 
-$$\bar{\mathbb{R}} = \mathbb{R}\cup \{\infty, -\infty\}$$
+**Definition 1: Augmented Real**
 
-**Definition 2**
-For Function $f:\mathbb{R}^n\mapsto\bar{\mathbb{R}}$ we call $\text{dom}(f) = \{x: \mathbb{R}^n: f(x) < \infty\}$, which is called the **Effective Domain**. 
+> Let 
+> $$\bar{\mathbb{R}} = \mathbb{R}\cup \{\infty, -\infty\}$$
 
-For example $\delta_{[0, 1]}(x)$ (The convex indicator function over a domain) has an Effective Domain of $[0, 1]$
+**Definition 2: Dom**
 
-Then: 
-$$\inf(f) = \inf_{x\in\mathbb{R}^n}(f(x))= \inf_{x \in\text{dom}(f)} (f(x))$$
+> For Function $f:\mathbb{R}^n\mapsto\bar{\mathbb{R}}$ we call $\text{dom}(f) = \{x: \mathbb{R}^n: f(x) < \infty\}$, which is called the **Effective Domain**. 
+> 
+> For example $\delta_{[0, 1]}(x)$ (The convex indicator function over a domain) has an Effective Domain of $[0, 1]$
+> 
+> Then: 
+> $$\inf(f) = \inf_{x\in\mathbb{R}^n}(f(x))= \inf_{x \in\text{dom}(f)} (f(x))$$
 
-**Definition 3**
+**Definition 3: Argmin**
 
-$$
-\text{argmin}(f) = \{x: f(x) = \inf(f)\}
-$$
+> $$
+> \text{argmin}(f) = \{x: f(x) = \inf(f)\}
+> $$
+>
+> This is the $x$ value that actually achieve the inf of the function. 
 
-This is the $x$ value that actually achieve the inf of the function. 
-
-#### Example 
+**Example**
 $f(x) = \exp(x)$ then $\text{dom}(f) = \mathbb{R}$ and $\inf(f) = 0$ and $\text{argmin}(f) = \emptyset$. 
 
 And therefore , $\text{argmin}$ is a set of minimizer. 
 
 ---
 ### **Proper Function for Minimization**
+
 This definition is introduced so we can get rid of some pathological function, making life easier for us. 
 
-**Def**
-$f$ is a **proper function** if $f(x) < \infty$ for at least one $x$ and $f(x)$ never equals $-\infty$ for any x. 
+**Proper Function**
+
+> $f$ is a **proper function** if $f(x) < \infty$ for at least one $x$ and $f(x)$ never equals $-\infty$ for any x. 
 
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. 
 
@@ -47,40 +51,47 @@ And all the function we work with in a minimization problem is **Proper Function
 
 ---
 ### **Level Set (And Closed Function)**
-**Def Level Set**: 
-$$
-\text{lev}_\alpha(f) = \{
-x: f(x)\le \alpha
-\}
-$$
-If I draw a line on the range of the function, say $\alpha$, then the level graph of the function is going be the subset of the **epigraph** of the function that gives a value less than the threshold. 
+
+**Level Set Definition**: 
+
+> $$
+> \text{lev}_\alpha(f) = \{
+> x: f(x)\le \alpha
+> \}
+> $$
+> If I draw a line on the range of the function, say $\alpha$, then the level graph of the function is going be the subset of the **epigraph** of the function that gives a value less than the threshold. 
 
 We are requiring **Epigraph** of f to be closed(in a classic analysis sense). 
 
 Notice that, the set could be an empty set. 
 
-**Def: Function Is Closed**
+**Definition Closed Function**
 
-$f$ is a **closed function** if Epigraph (all Level of f) are a closed set. 
+> $f$ is a **closed function** if Epigraph (all Level of f) are a closed set. 
 
-Notice that, for any function $f(x)$, the function $\delta_{(0,1)} + f(x)$ is not closed because, if we approach the boundary at the domain, then we are getting out of the function and the limit is infinite, and that is **NOT** in the epigraph of the function, it's not fitting the definition of the epigraph of a function. 
+Notice that, for any function $f(x)$, the function $\delta_{(0,1)} + f(x)$ is not closed because, if we approach the boundary at the effective domain, then we are getting out of the function and the limit is infinite, and that is **NOT** in the epigraph of the function, it's not fitting the definition of the epigraph of a function. 
 
 ---
 ### **Level Bounded** 
-A function $f:\mathbb{R}^n\mapsto \mathbb{\bar{R}}$, is level bounded if all $\text{lev}_\alpha(f)$  are bounded and possibly empty. 
 
-This is saying that,** regardless of the kind of threshold we choose, the domain that map to the level bound is going to be a closed set, and it's not going to be infinity. ** For example $||x||$
+**Definition**:
+
+> A function $f:\mathbb{R}^n\mapsto \mathbb{\bar{R}}$, is level bounded if all $\text{lev}_\alpha(f)$  are bounded and possibly empty. 
+
+**Explanation**
+
+This is saying that, regardless of the kind of threshold we choose, the domain that map to the level bound is going to be a closed set, and it's not going to be infinity. For example $||x||$
 
 However, the function $e^x$ is not, because, if we choose any level that is positive, then on the left, we can go to negative infinity and the value of the function will still be bounded by the level bound, and in that case, this is not a level bound function. 
 
-$e^x$ is **Closed**, but it's not **level bounded**. 
+$e^x$ is not **level bounded**. 
 
 ---
 ### **Theorem 1.9 (Rockafellar Roger Wets, Variational Analysis)**
 
-Suppose a function $f:\mathbb{R}^n \mapsto \mathbb{\bar{R}}$ is **closed**, **proper**, and **level bounded**, then $\inf(f)$ is finite, and the set of** minimizers is non-empty**, and **compacted**. 
+> Suppose a function $f:\mathbb{R}^n \mapsto \mathbb{\bar{R}}$ is **closed**, **proper**, and **level bounded**, then $\inf(f)$ is finite, and the set of **minimizers is non-empty**, and **compacted**. 
 
-#### **Upshot**: 
+**Upshot**: 
 The more assumption we make, the nicer the behavior for the functions we get. 
 
 **For example**:

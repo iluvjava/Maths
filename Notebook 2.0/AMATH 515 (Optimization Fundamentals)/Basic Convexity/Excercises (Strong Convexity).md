@@ -12,7 +12,7 @@ In this part, we will prove something about alpha strongly convex.
 Trivial. 
 
 ---
-#### Statement 2
+#### **Statement 2**
 $$f(x) = g(x) + \frac{\alpha}{2}||x||^2$$
 Is Strongly Convex.
 
