@@ -5,7 +5,7 @@ Major Reference: `<Numerical Optimization>`
 ---
 ### **Intro**
 
-> Given a descned direciton, we search for the best step size into the directon that assures a balance between sufficient objective decrease and suffcient stepsize. 
+> Given a descend direction, we search for the best step size into the direction that assures a balance between sufficient objective decrease and sufficient stepsizes. 
 > 
 
 In the relevant file above, we had steepest descend and the armijo line search. 
@@ -34,9 +34,9 @@ $$
 > \end{aligned}
 > $$
 
-* The first conditions prevent it from over steping, stepping pass the local minima of a convex region (If there is any local minima and it's a convex region)
+* The first conditions prevent it from over stepping, stepping pass the local minima of a convex region (If there is any local minima and it's a convex region)
 
-* The second condition will assert some kind of convexity constraint. It also makes sure that the step size is not too small. For sufficnetly small stepsaize, say $\alpha = 0$, it decreases the objective too much compare to the relaxed second ray, $c_2p^T\nabla[f](x^{(k)})$[^2]
+* The second condition will assert some kind of convexity constraint. It also makes sure that the step size is not too small. For sufficiently small stepsize, say $\alpha = 0$, it decreases the objective too much compare to the relaxed second ray, $c_2p^T\nabla[f](x^{(k)})$[^2]
 
 The second condition is sometimes wrote as: 
 
@@ -195,9 +195,9 @@ We want to step as much as possible, without breaking the strong wolfe condition
 **Explanations** 
 
 `[1]`: If the current step size, $\alpha_i$ breaks the first wolfe condition by not creating enough decrease on the relaxed tagent line, OR, It's the first step and we over stepped leading to objective increase, then: 
-  * Shrinks the search step by zooming in beetween the previous step size and the current step size.
+  * Shrinks the search step by zooming in between the previous step size and the current step size.
 
-`[2]`: The first wolfe conditions is satisfied, and the magnitude of the gradient along the step size satisfied the second wolfe conditions, dreasing in magnitude. 
+`[2]`: The first wolfe conditions is satisfied, and the magnitude of the gradient along the step size satisfied the second wolfe conditions, decreasing in magnitude. 
   * Strong Wolfe conditions satisfied, terminates. 
 
 `[3]`: Second and first wolfe conditions are not satisfied, and the gradient along the step size is increasing, we need to shrink the step size. 
@@ -242,15 +242,15 @@ We want to step as much as possible, without breaking the strong wolfe condition
 > \end{aligned}
 > $$
 
-**Explaination:**
+**Explanation:**
 
-After probing for a accepted shortest length by **algorithm 2** is invoked to shorten the stepsize given by **algorithm 1**. **Algorithm 2** runs a subroutine to search for minimum then check for wolfe conditions. If we over stepped, then we shrinks, if we overstep so much it increases the objective, then we swap the search direction. 
+After probing for a accepted shortest length by **algorithm 2** is invoked to shorten the step size given by **algorithm 1**. **Algorithm 2** runs a subroutine to search for minimum then check for Wolfe conditions. If we over stepped, then we shrinks, if we overstep so much it increases the objective, then we swap the search direction. 
 
 `[1]`: Wolfe first conditions is not satisfied, or the objective is increasing, then we shorten the search range. 
 
-`[2]`: The first wolfe and second wolfe conditions are not satisfied and along the direction going from $\alpha_l \rightarrow \alpha_h$, we made the objective increases. Then: 
+`[2]`: The first Wolfe and second Wolfe conditions are not satisfied and along the direction going from $\alpha_l \rightarrow \alpha_h$, we made the objective increases. Then: 
   * Swaps the search direction and shrink the interval to be $(\alpha_l, \alpha_j)$
-  * This is done by a trick to change the upper and lowerbound. 
+  * This is done by a trick to change the upper and lower bound. 
 
 **Note**, it doesn't matter whether $\alpha_h$ is less than $\alpha_l$. 
 
