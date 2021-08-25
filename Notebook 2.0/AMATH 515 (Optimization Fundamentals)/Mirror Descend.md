@@ -42,7 +42,7 @@ Anchoring it at the point $z$ the distance between the actual value of the funct
 
 **Warn**: 
 
-Gregman Divernce is not symmetric. 
+Gregman Divergence is not symmetric. 
 
 
 ---
@@ -87,6 +87,8 @@ We can use the prior knowledge and assumptions about the function and choose the
 **KL Divergence**
 
 > Using Negative entropy as the generating function, and bregman divergence, we can make up the KL divergence. 
+
+More about [[KL-Divergence]]
 
 **Observe**
 Negative entropy is convex and has a local minimum, and it's smooth. 

@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -136,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,15 +179,15 @@
   },
   "active": "f0e30eed4f3808cc",
   "lastOpenFiles": [
-    "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
+    "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
     "AMATH 515 (Optimization Fundamentals)/Mirror Descend.md",
+    "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
     "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 2.md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
     "CSE 546 (Machine Learning Fundamentals)/Convexity.md",
-    "AMATH 515/Basic Convexity/Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md"
+    "AMATH 515/Basic Convexity/Convexity.md"
   ]
 }

@@ -124,15 +124,13 @@ Once the equality holds, it's not hard to choose a $\delta \in (0, \alpha'')$ to
 
 
 ---
-### **Line Search Algorithm**
+### **Basic Line Search Algorithm**
 
 Armijo line search introduced in: [[Line Search Gradient Descend]] it's a simple implementations that eliminates over stepping and ensures sufficient objective decrease by terminating the forloop once sufficient decrease is satisfied. 
 
 
 ---
 ### **Sophisticated Line Search Algorithm**
-
-TODO: Finish up the Linear Search Algorithm
 
 Another approach will be more involved, it seeks to keep both wolfe conditions without too much evaluations of the gradient/value on the function. But it's actually not too hard. Let's take a look. 
 
@@ -147,6 +145,10 @@ $$
 $$
 
 The function achored at the previous guess of the solution and prob into the direction of $p^{(k)}$ with distance $t$. 
+
+**Preconditions**
+
+$\phi(0) \ge 0$, $\phi(t)$ is bouned blow. 
 
 **Algorithm 1: Forward Probing**
 
@@ -167,24 +169,22 @@ $\alpha_0 = 0$, choose $\alpha_{\max} \ge 0$ and $\alpha_1 \in (0, \alpha_{\max}
 >         \\
 >         &\hspace{1.1em} \alpha_* \leftarrow \text{zoom}(\alpha_{i - 1}, \alpha_i)
 >         \\
->         &\hspace{1.1em} \text{break};
+>         &\hspace{1.1em} \text{return } \alpha_*
 >         \\
 >         & \text{if } |\phi'(\alpha_i)| \le - c_2 \phi'(0) \quad\#[2] 
 >         \\
->         & \hspace{1.1em} \alpha_* \leftarrow \alpha_i
->         \\
->         & \hspace{1.1em} \text{break}
+>         & \hspace{1.1em} \text{return }\alpha_* \leftarrow \alpha_i
 >         \\
 >         & \text{if } \phi'(\alpha_i) \ge 0 \quad \#[3]
 >         \\
 >         & \hspace{1.1em} \alpha_* \leftarrow \text{zoom}(\alpha_i, \alpha_{i - 1})
 >         \\
->         & \hspace{1.1em} \text{break}
+>         & \hspace{1.1em} \text{return }\alpha_*
 >         \\
 >         & \alpha_{i + 1} \in (\alpha_i, \alpha_{\max}) \quad \#[4]
+>         \\
+>         & i \leftarrow i + 1
 >     \end{aligned}
->     \\
->     & 
 > \end{aligned}
 > $$
 
@@ -213,8 +213,46 @@ We want to step as much as possible, without breaking the strong wolfe condition
 
 **Initialization**: choose any bounded scalar optimization subroutine to choose $\alpha_i\in (\alpha_l, \alpha_h)$. It could be parabolic search, cubic search, tri-section search of golden section search. 
 
+> $$
+> \begin{aligned}
+>     & \text{while True:}
+>     \\
+>     & \alpha_j \leftarrow \text{Subroutine}(\alpha_l, \alpha_h)
+>     \\&\hspace{1.1em}
+>     \begin{aligned}
+>         & \text{if }\phi(\alpha_j) \ge \phi(0) + c_1 \alpha_j \phi'(0) \text{ OR } \phi(\alpha_j) \ge \phi(\alpha_l)\quad \#[1]
+>         \\
+>         &\hspace{1.1em} \alpha_h \leftarrow \alpha_j
+>         \\
+>         & \text{else}
+>         \\ 
+>         &\hspace{1.1em} 
+>         \begin{aligned}
+>             & \text{if } |\phi'(\alpha_j)| \le - c_2 \phi'(0)
+>             \\
+>             & \hspace{1.1em}\text{return } \alpha_j
+>             \\
+>             & \text{if } \phi'(\alpha_j) (\alpha_h - \alpha_l) \ge 0 \quad \#[2]
+>             \\
+>             &\hspace{1.1em} \alpha_h \leftarrow \alpha_l
+>             \\
+>             & \alpha_l \leftarrow \alpha_j
+>         \end{aligned}
+>     \end{aligned}
+> \end{aligned}
+> $$
 
+**Explaination:**
 
+After probing for a accepted shortest length by **algorithm 2** is invoked to shorten the stepsize given by **algorithm 1**. **Algorithm 2** runs a subroutine to search for minimum then check for wolfe conditions. If we over stepped, then we shrinks, if we overstep so much it increases the objective, then we swap the search direction. 
+
+`[1]`: Wolfe first conditions is not satisfied, or the objective is increasing, then we shorten the search range. 
+
+`[2]`: The first wolfe and second wolfe conditions are not satisfied and along the direction going from $\alpha_l \rightarrow \alpha_h$, we made the objective increases. Then: 
+  * Swaps the search direction and shrink the interval to be $(\alpha_l, \alpha_j)$
+  * This is done by a trick to change the upper and lowerbound. 
+
+**Note**, it doesn't matter whether $\alpha_h$ is less than $\alpha_l$. 
 
 ---
 ### **Good Properties**
