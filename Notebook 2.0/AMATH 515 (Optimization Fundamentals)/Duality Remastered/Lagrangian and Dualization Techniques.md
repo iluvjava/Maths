@@ -241,12 +241,12 @@ This process is very general and can be used in a lot of different cases.
 
 Here we consider list of convex equality and inequality constraints paired up with a minimization on a convex objective function. 
 
-TODO: Write this! 
+#TODO: Write this! 
 
 ---
 ### **L1 Regularized Regression**
 
-TODO: Write this! 
+#TODO: Write this! 
 
 We are interested in the Lagrangian of this problem. 
 

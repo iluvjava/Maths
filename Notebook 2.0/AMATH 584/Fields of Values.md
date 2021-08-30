@@ -15,7 +15,3 @@ $$
 
 This is a set of scalars. The thing inside is called the Rayleigh Quotient. 
 
-
-
-
-

@@ -355,13 +355,10 @@ This analysis of the algorithm reveals anohter interpretations that is more line
 > Minimizes the residual over the 2 norm at each step using the steepest descend strategy will produce decreasing residual if zero is not in the field of values for that Hermitian Matrix.
 
 
-
-
-
 ---
 ### **Why This?**
 
-**Claim:**
+**Claim:**  
 
 > This is a prelude to conjugate gradient method.
 
