@@ -93,3 +93,9 @@ $$
 
 Observe that $Aq_k$ will be conjugate vectors with $q_j$ where $j < k - 1$. 
 
+---
+### **Extra Spicy**
+
+> There is a block tridiagonalization algorithm, much similar to the QR Decomposition. 
+
+See [here](http://www.cas.mcmaster.ca/~qiao/publications/spie05.pdf) for more. 
