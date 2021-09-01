@@ -4,35 +4,40 @@
     "type": "split",
     "children": [
       {
-        "id": "f0e30eed4f3808cc",
-        "type": "leaf",
-        "dimension": 49.93150684931506,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
-            "mode": "source"
-          }
-        },
-        "group": "a68a7fb70ab7a25b"
-      },
-      {
         "id": "1ef1e80f308db93e",
         "type": "split",
-        "dimension": 50.06849315068494,
         "children": [
           {
-            "id": "ce788fc59bcff1e2",
-            "type": "leaf",
+            "id": "91a7ee9dcf03591c",
+            "type": "split",
             "dimension": 79.32405566600397,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
-                "mode": "preview"
+            "children": [
+              {
+                "id": "ce788fc59bcff1e2",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "AMATH 584/Conjugate Gradient 2.md",
+                    "mode": "source"
+                  }
+                },
+                "group": "a68a7fb70ab7a25b"
+              },
+              {
+                "id": "a6e1d95490fe9f02",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "AMATH 584/Conjugate Gradient 2.md",
+                    "mode": "preview"
+                  }
+                },
+                "group": "a68a7fb70ab7a25b"
               }
-            },
-            "group": "a68a7fb70ab7a25b"
+            ],
+            "direction": "vertical"
           },
           {
             "id": "c719a9df429fee2b",
@@ -41,7 +46,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
+                "file": "AMATH 584/Conjugate Gradient 2.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -120,7 +125,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400
+    "width": 357
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -136,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
+                "file": "AMATH 584/Conjugate Gradient 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,7 +158,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
+                "file": "AMATH 584/Conjugate Gradient 2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,17 +182,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "f0e30eed4f3808cc",
+  "active": "ce788fc59bcff1e2",
   "lastOpenFiles": [
-    "AMATH 515 (Optimization Fundamentals)/Strong Wolfe Condition.md",
-    "AMATH 515 (Optimization Fundamentals)/Mirror Descend.md",
-    "Math 000/Probability, Stats, Combinatorics/KL-Divergence.md",
-    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 2.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
-    "CSE 546 (Machine Learning Fundamentals)/Convexity.md",
-    "AMATH 515/Basic Convexity/Convexity.md"
+    "AMATH 584/Conjugate Gradient 2.md",
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
+    "AMATH 584/Untitled.md",
+    "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+    "AMATH 584/Ortho Min.md",
+    "AMATH 581/Iterative Method.md",
+    "AMATH 515 (Optimization Fundamentals)/Steepest Descend for Matrix Vector.md",
+    "AMATH 584/LU Decomposition Remastered.md",
+    "IT/Linux.md",
+    "AMATH 584/CG Lancosz.md"
   ]
 }

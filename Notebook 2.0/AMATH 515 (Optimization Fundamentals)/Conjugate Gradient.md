@@ -2,6 +2,8 @@ We need the prelude: [[Steepest Descend for Matrix Vector]].
 
 The reference resource is [here](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf)
  
+ 
+ 
 ---
 ### **Intro**
 
@@ -457,7 +459,7 @@ Then in that case, we want to solve $AAx = Ab$ instead, and in this case $A^2$ w
 
 ### **Misc** 
 
-* Conjugate gradient is a special form of accelerated gradient. The residual vector is secretly a gradient, and the conjugation is secretly a momentumn term. 
+* Conjugate gradient is a special form of accelerated gradient. The residual vector is secretly a gradient, and the conjugation is secretly a momentum term. 
 * Bi-conjugate gradient stabalized is a mix of Conjugate Gradient and General Residual Method.  
 * It can solve no-linear system, in a locally convex region, a trusted region of the objective function. 
 * Conjugate Gradient has a connection to the 3 terms recurrences of suggested by the Lancozs Algorithm

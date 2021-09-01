@@ -8,6 +8,8 @@ We based discussions here on Green Baum's work.
 ---
 ### **Intro**
 
+> The term OrthoMin is created by prof Greene Baum for the discussion for a class of iterative method. It seems to be an important sub-routine and it's the stem for generalizing the idea into other type of algorithms. 
+
 We will be introducing another view on the steepest descend method for linear system. 
 
 Recall the brain dead method for minimizing the residual for a given matrix that is diagonally dominant, this is like: 
@@ -161,9 +163,9 @@ $$
 
 The multiplier for $r^{(k)}$ is less than one (if zero is not in the field of value of $A$), causing the iterations for $r^{(k + 1)}$ to be monotonically decreasing during the iterations. 
 
-> This formuations is also the the same as using steepest gradient descent to optimize the objective $x^TAx - b^Tx$. 
+> This formulations is also the the same as using steepest gradient descent to optimize the objective $x^TAx - b^Tx$. 
 
-Refer to the header on relavent materials and compare the results yourself. 
+Refer to the header on relevant materials and compare the results yourself. 
 
 ---
 ### **The Convergence**

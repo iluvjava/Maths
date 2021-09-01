@@ -1,4 +1,4 @@
-[[Conjugate Gradient]], [[Krylov Subspace]]
+ [[Conjugate Gradient]], [[Krylov Subspace]]
 
 This is the link to the reference resources I used: [here](https://chen.pw/research/cg/cg.pdf)
 
@@ -15,7 +15,7 @@ In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjug
 * $\langle \bullet \rangle$ means that span of a set of vectors that are in the angle bracket. 
 * $\langle u,v \rangle$ is the inner product of 2 vectors
 * $\langle u, v \rangle_A$ is the inner product of 2 vectors under the A SPD matrix, basically: $u^TAv$
-* $Ax^+ = b$ the equation and it's soltuion is $x^+$, regarded as the optimal value $x^+$. 
+* $Ax^+ = b$ the equation and it's solution is $x^+$, regarded as the optimal value $x^+$. 
 * $e^{(k)} = x^{(k)} - x^+$ The error vector, when the solution $x^{(k)}$ is converging. 
 * $r^{(k)} = b - Ax^{(k)}$, the residual vector, how far we are from the correct solution on the output space of matrix $A$. 
 * $Ae^{(k)} = - r^{(k)}$, The relation between the input space error vector and the output space residual vector. 
@@ -480,7 +480,7 @@ Sin't it would be really good, if, $r^{(k)}$ orthogonal to all the step directio
 ---
 ### **Unusual Connections**
 
-If we are dealing with Krylov Subspace, and we know that Krylov Subspace are relevant to Arnoldi Iterations, and Lancosz Iterations in the Symmetric Case. 
+If we are dealing with Krylov Subspace, and we know that Krylov Subspace are relevant to Arnoldi Iterations, and Lanczos Iterations in the Symmetric Case. 
 
 Therefore, there exists an Arnoldi Iterations interpretations of the conjugate gradient algorithm. 
 
