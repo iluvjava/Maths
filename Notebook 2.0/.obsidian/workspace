@@ -18,7 +18,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 584/Conjugate Gradient 2.md",
+                    "file": "AMATH 584/Ortho Min 2.md",
                     "mode": "source"
                   }
                 },
@@ -30,7 +30,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "AMATH 584/Conjugate Gradient 2.md",
+                    "file": "AMATH 584/Ortho Min 2.md",
                     "mode": "preview"
                   }
                 },
@@ -46,7 +46,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient 2.md",
+                "file": "AMATH 584/Ortho Min 2.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -141,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient 2.md",
+                "file": "AMATH 584/Ortho Min 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,7 +158,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584/Conjugate Gradient 2.md",
+                "file": "AMATH 584/Ortho Min 2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -184,15 +184,15 @@
   },
   "active": "ce788fc59bcff1e2",
   "lastOpenFiles": [
+    "AMATH 584/Ortho Min 2.md",
+    "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 584/Conjugate Gradient 2.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
     "AMATH 584/Untitled.md",
-    "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 584/Ortho Min.md",
     "AMATH 581/Iterative Method.md",
     "AMATH 515 (Optimization Fundamentals)/Steepest Descend for Matrix Vector.md",
     "AMATH 584/LU Decomposition Remastered.md",
-    "IT/Linux.md",
-    "AMATH 584/CG Lancosz.md"
+    "IT/Linux.md"
   ]
 }

@@ -9,3 +9,4 @@ The connection between steepest gradient and conjugate gradient is this algorith
 It's recommended to see the first formulations of the conjugate gradient to get some basic ideas for the connections between this algorithm and other algorithms. 
 
 As its name suggest, the Ortho Min 2 algorithm will be orthogonalizing the residual at each step by 2 directions instead of one direction. 
+

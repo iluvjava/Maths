@@ -2,6 +2,8 @@
 
 We are going to delve way deep into the Conjugate Gradient Algorithms. 
 
+Tyler Chen's Work [here](https://chen.pw/research/cg/cg.pdf)
+
 ---
 ### **Intro**
 
@@ -84,18 +86,44 @@ During the running of the algoritm and under the assumptions with rational arith
 
 **Property 1**
 
-$$
-\langle e^{(k)}, Ap^{(j)} \rangle = 0 \quad \forall \; 1 \le j \le k - 1
-$$
+> $$
+> \langle e^{(k)}, Ap^{(j)} \rangle = 0 \quad \forall \; 1 \le j \le k - 1
+> $$
 
 Error vectors on the domain of operator $A$ is reduced on the direction of $p^{j}$
 
+**Property 2**
 
+> $$
+> \langle  p^{(k)}, A p^{(j)}\rangle  = 0 \quad \forall 1 \le j\le k - 1
+> $$
 
+The directions generated are always A-orthogonal to all previous search direction. 
+
+**Property 3**
+
+> $$
+> \langle r_k, r_j\rangle = 0 \quad \forall 1 \le j \le k - 1
+> $$
+
+The residual vectors are always orthogonal to each other. 
+
+The proof here is skipped, I also proof all these properties in [[Conjugate Gradient with Krylov Subspace]], but the actual proof that uses minimal amount of information is done by Prof Greene Baum, please refer to her works and see how she did it. I might add then later. 
 
 ---
 ### **In Relations to Lanczos Algorithm**
 
+**Claim 1**  
+
+> The residual vectors generated during the iterations are the same as the $q^{(j)}$ vectors generated for the Lanczos algorithm. 
+
+**Proof**:  
+
+
+
 
 ---
 ### **In Relations to GMRes**
+
+
+---
