@@ -10,3 +10,4 @@ It's recommended to see the first formulations of the conjugate gradient to get 
 
 As its name suggest, the Ortho Min 2 algorithm will be orthogonalizing the residual at each step by 2 directions instead of one direction. 
 
+# TODO: Fill this up. 

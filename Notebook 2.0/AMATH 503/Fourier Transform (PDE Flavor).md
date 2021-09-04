@@ -3,10 +3,12 @@ Here, we will  derive a very important tools for:
 1. Solving PDEs on finite domain. 
 2. Making a basis for the Laplace Transform
 3. Representing function in the Frequency domain. 
----
+
+
+--- 
 ### **Intro**
 
-We are not going to use the table to read for the Fourier Transform, and we are going to derive it from the ground up and know what exactly going on with the table for the fourier transform. 
+We are not going to use the table to read for the Fourier Transform, and we are going to derive it from the ground up and know what exactly going on with the table for the Fourier transform. 
 
 Recall the complex Fourier Series from last time: 
 
@@ -27,7 +29,7 @@ And recall the Dirichlet Theorem: [[Dirichlet Theorem]]
 
 Simply speaking, the Dirichlet theorem: converge at points of piecewise continuity and takes the average for the jump discontinuities. 
 
-**Note**: The Dirichlet theorem is still valid for complex fourier series as well. 
+**Note**: The Dirichlet theorem is still valid for complex Fourier series as well. 
 
 **Note**: $y$ is used for the variable in the Fourier Domain, because we will use $\omega$ for other stuff. 
 
@@ -49,12 +51,12 @@ Let's make things simplier by using $\omega_n$
 > \omega_n = \frac{n\pi}{L} \quad \Delta\omega = \frac{\pi}{L}
 > $$
 
-This is our discritized frequency variable, and we will show that, in the case of fourier transform, this frequency variable become continuous. Which is very interesting. 
+This is our discretized frequency variable, and we will show that, in the case of Fourier transform, this frequency variable become continuous. Which is very interesting. 
 
 ---
 ### **Derivation**
 
-This is the frequencies coefficients for ous basis functions. And then it's not hard to see that we have: 
+This is the frequencies coefficients for our basis functions. And then it's not hard to see that we have: 
 
 
 
@@ -72,7 +74,7 @@ dy \quad \forall x\in[-L, L]
 $$
 
 
-And notice that, for the coefficients for the fouer series, we have: 
+And notice that, for the coefficients for the Fourier series, we have: 
 
 $$
 F(\omega_n) = 2Lc_n =
@@ -206,7 +208,7 @@ $$
 
 **Theorem Statement**: 
 
-If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|^2$) is integrable.) Then, the fourier transform is tell defined and is in L2, In addition, if F(x) is continuously differentiable, at a point $x$, then the inverse Fourier Transform equals its value $f(x)$. 
+If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|^2$) is integrable.) Then, the Fourier transform is tell defined and is in L2, In addition, if F(x) is continuously differentiable, at a point $x$, then the inverse Fourier Transform equals its value $f(x)$. 
 
 [^1]: Notice that the exponent is positive for the kernel used for Fourier Transform, this is not consistent with what we usually have on other sources but it really doesn't matter just swap the sign for $\omega$ and it will work. 
 
@@ -215,7 +217,7 @@ If $f(x)$ is L2, i.e the function is square integrable, (the integral of $|f(x)|
 
 There are multiple ways to do the Fourier Transform, and there could be different multiplier on the Fourier Transform, but I will summarize it in a much simpler way where I believe, it encapsulates all of the potential ways of doing Fourier Transform. 
 
-Let $u(x)$ be a funtion with spetial domain, denoted by the parameter name $x$. 
+Let $u(x)$ be a function with spatial domain, denoted by the parameter name $x$. 
 
 $$
 \mathcal{F}[u](w) = A\int_{-\infty}^{\infty} 
@@ -237,9 +239,9 @@ $$
 
 Where $AB = \frac{1}{2\pi}$
 
-Like that. The freuencies in the kernels should have opposite signs, and then the constant must has a product that equals to $\frac{1}{2\pi}$. And when this is true, we can make sure that it perserves the properties of the Fourier Transform, and the inverse Fourier Transform on the Fourier Transform is going to be the identity transform.
+Like that. The frequencies in the kernels should have opposite signs, and then the constant must has a product that equals to $\frac{1}{2\pi}$. And when this is true, we can make sure that it preserves the properties of the Fourier Transform, and the inverse Fourier Transform on the Fourier Transform is going to be the identity transform.
 
-But in practice, we will usually use this type of fourier transform: 
+But in practice, we will usually use this type of Fourier transform: 
 
 $$
 \mathcal{F}[u](w) = \int_{-\infty}^{\infty} 

@@ -198,7 +198,7 @@ One the boundary, $x = 0, x = L$, there is the **Gibbs Phenomena**[^4], it's ove
 
 At the point of discontinuity, the Fourier Series is going to take the average between the points of discontinuity. Yes, it is not continuous regardless of the series being the sum of continuous functions. This occurs together with the Gibbs Phenomena. 
 
-**Smmoth F(x)**
+**Smooth F(x)**
 
 If the function is smooth, it's going to have spectral convergence, if it's oscillating a lot, then we will need a lot of terms.
 
