@@ -45,7 +45,7 @@ Answer:
 
 Yes, but we need to consider the Complex Fourier Series, for $[-L, L]$ and then we take the limit $L\rightarrow \infty$ and watch what happens. 
 
-Let's make things simplier by using $\omega_n$
+Let's make things simpler by using $\omega_n$
 
 > $$
 > \omega_n = \frac{n\pi}{L} \quad \Delta\omega = \frac{\pi}{L}

@@ -8,7 +8,7 @@ We based discussions here on Green Baum's work.
 ---
 ### **Intro**
 
-> The term OrthoMin is created by prof Greene Baum for the discussion for a class of iterative method. It seems to be an important sub-routine and it's the stem for generalizing the idea into other type of algorithms. 
+> The term OrthoMin is created by prof Greene Baum for the discussion for a class of iterative method. It seems to be an important idea and it's the stem for generalizing the idea into other type of algorithms. 
 
 We will be introducing another view on the steepest descend method for linear system. 
 

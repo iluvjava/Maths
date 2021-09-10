@@ -4,80 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "1ef1e80f308db93e",
+        "id": "91a7ee9dcf03591c",
         "type": "split",
         "children": [
           {
-            "id": "91a7ee9dcf03591c",
-            "type": "split",
-            "dimension": 79.32405566600397,
-            "children": [
-              {
-                "id": "ce788fc59bcff1e2",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "AMATH 584/Ortho Min 2.md",
-                    "mode": "source"
-                  }
-                },
-                "group": "a68a7fb70ab7a25b"
-              },
-              {
-                "id": "a6e1d95490fe9f02",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "AMATH 584/Ortho Min 2.md",
-                    "mode": "preview"
-                  }
-                },
-                "group": "a68a7fb70ab7a25b"
+            "id": "ce788fc59bcff1e2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
+                "mode": "source"
               }
-            ],
-            "direction": "vertical"
+            },
+            "group": "a68a7fb70ab7a25b"
           },
           {
-            "id": "c719a9df429fee2b",
+            "id": "a6e1d95490fe9f02",
             "type": "leaf",
-            "dimension": 20.675944333996025,
             "state": {
-              "type": "localgraph",
+              "type": "markdown",
               "state": {
-                "file": "AMATH 584/Ortho Min 2.md",
-                "options": {
-                  "collapse-filter": true,
-                  "search": "",
-                  "localJumps": 1,
-                  "localBacklinks": true,
-                  "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
-                  "collapse-color-groups": true,
-                  "colorGroups": [],
-                  "collapse-display": false,
-                  "showArrow": true,
-                  "textFadeMultiplier": -1.9,
-                  "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1.65349893162393,
-                  "collapse-forces": false,
-                  "centerStrength": 0.518713248970312,
-                  "repelStrength": 10,
-                  "linkStrength": 1,
-                  "linkDistance": 250,
-                  "scale": 0.5657062909427979,
-                  "close": true
-                }
+                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
+                "mode": "preview"
               }
             },
             "group": "a68a7fb70ab7a25b"
           }
         ],
-        "direction": "horizontal"
+        "direction": "vertical"
       }
     ],
     "direction": "vertical"
@@ -104,7 +59,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "discrete Image Kernel",
+                "query": "Cayl",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -121,7 +76,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -141,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584/Ortho Min 2.md",
+                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584/Ortho Min 2.md",
+                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,17 +138,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "ce788fc59bcff1e2",
+  "active": "a6e1d95490fe9f02",
   "lastOpenFiles": [
-    "AMATH 584/Ortho Min 2.md",
-    "AMATH 584/Conjugate Gradient with Krylov Subspace.md",
+    "Math 000/Linear Algebra/Generalized Eigenspaces.md",
+    "AMATH 584/Krylov Subspace.md",
+    "Math 000/Linear Algebra/Matrix Decomposition/Invariant Subspace.md",
+    "AMATH 584/Jordan Normal Form.md",
+    "Finite Elements method 2.md",
+    "AMATH 584/Hessenberg Transform intro (HS Reflector).md",
     "AMATH 584/Conjugate Gradient 2.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
-    "AMATH 584/Untitled.md",
-    "AMATH 584/Ortho Min.md",
-    "AMATH 581/Iterative Method.md",
-    "AMATH 515 (Optimization Fundamentals)/Steepest Descend for Matrix Vector.md",
-    "AMATH 584/LU Decomposition Remastered.md",
-    "IT/Linux.md"
+    "AMATH 503/Fourier Transform (PDE Flavor).md",
+    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
+    "AMATH 584/Ortho Min 2.md"
   ]
 }

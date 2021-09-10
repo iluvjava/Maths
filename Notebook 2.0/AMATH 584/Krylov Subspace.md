@@ -33,7 +33,7 @@ $$
 
 **Claim 1.1**
 
-> A matrix satisfies it's own characteristic quation 
+> A matrix satisfies it's own characteristic equation 
 > $$p(A) = \mathbf{0}$$ 
 > The polynomial outputs a matrix. This is called the Cayley-Hamilton Theorem. 
 
