@@ -49,7 +49,7 @@ $$
 ---
 ### **Lemma 2**
 
-> Eigevalues are the local minimal to the following optimization problems: 
+> Eigevalues are the local minimals to the following optimization problems: 
 > 
 > $$
 > \max_{x} \left\lbrace
