@@ -11,8 +11,11 @@
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 584 (Numerical Linear Algbra)/Spectral Theorem.md",
+                "mode": "source"
+              }
             },
             "group": "a68a7fb70ab7a25b"
           },
@@ -20,8 +23,11 @@
             "id": "a6e1d95490fe9f02",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 584 (Numerical Linear Algbra)/Spectral Theorem.md",
+                "mode": "source"
+              }
             },
             "group": "a68a7fb70ab7a25b"
           }
@@ -90,6 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "AMATH 584 (Numerical Linear Algbra)/Spectral Theorem.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "AMATH 584 (Numerical Linear Algbra)/Spectral Theorem.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,6 +139,8 @@
   },
   "active": "ce788fc59bcff1e2",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Spectral Theorem.md",
+    "AMATH 584 (Numerical Linear Algbra)/Spectral Radius.md",
     "AMATH 584/Spectral Theorem.md",
     "Math 999/Automatic Differential.md",
     "HS_Reflector 1.jpeg",
@@ -138,8 +148,6 @@
     "transformer architecture.png",
     "Math 999/Variatioional Auto Encoder (AE, VAE).md",
     "Math 999/Vapnik–Chervonenkis dimension.md",
-    "Math 999/Universal Approximation Thoerem of Neural Nets.md",
-    "Math 999/Transformer Achitecture.md",
-    "Math 999/Fundamental Theorem of Statistical Learning.md"
+    "Math 999/Universal Approximation Thoerem of Neural Nets.md"
   ]
 }

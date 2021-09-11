@@ -1,4 +1,4 @@
-[[Schur Decomposition]]
+[[Subspace Direct Sum]]
 
 We make use of the Schur Decomposition to proof spectral theorem before. 
 
@@ -141,11 +141,24 @@ The proof of the theorem follows an inductive patterns. The previous lemmas will
 **The basecase:** 
 
 * Choose any eigen vector $x_{[1]}$, and it's orthogonal subspace $\mathcal{V}^{(2)}$.
-* Use **Lemma 2**, we find $x_{[2]}\in \mathcal{V}^{(2)}$, and $x_{[2]}$ is an eigen vector, and hence it's invariant to $A$, therefore, $x_{[1]}\perp x_{[2]}$. 
+* Use **Lemma 2**, we find $x_{[2]}\in \mathcal{V}^{(2)}$, and $x_{[2]}$ is an eigen vector, and hence it's invariant to $A$, therefore, $x_{[1]}\perp x_{[2]}$ by **Lemma 1**. 
 
 **Inductively, we have this results**
 
+$$
+\mathcal{V}^{(k)}\perp \bigoplus_{i = 1}^{k - 1} \mathcal{V}^{(i)} \wedge \,\mathcal{V}^{(i)} \neq \{0\}\;\forall\; 1 \le i \le k-1
+$$
 
+Use **Lemma 2** we find $x_{[k]}$ such that $Ax_{[k]} = \lambda_k x_{[k]}$. Because $x_{[k]}$ is invariant to $A$ by definition of eigen vector, $\text{span}(x_{[k]})$ will be orthogonal to subspace $\bigoplus_{i = 1}^{k - 1} \mathcal{V}^{(i)}$. New susbpace by considering: 
 
+$$
+\mathcal{V}^{(k + 1)} \perp \left(
+    \bigoplus_{i = 1}^{k  - 1} \mathcal{V}^{i}
+\right) \cup \{x_{[k]}\}
+$$
 
+And $x_{[k]} \neq \mathbf{0}$. 
 
+We do this until $\mathcal{V}^{(n)}$, because each time we introduce an orthgonal vector into the subspace, and therefore $\mathcal{V}^{(n)} = \mathbb{C}^n$ will span the whole subspace. 
+
+Spectral theorem is proven. $\blacksquare$
