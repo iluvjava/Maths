@@ -13,11 +13,11 @@ Here is a link from towards [towards datascience](https://towardsdatascience.com
 ---
 ### **Intro**
 
-This is a model that tries to capture patterns (Colliniearity, abstract patterns) from the data set. 
+This is a model that tries to capture patterns (Colinearity, abstract patterns) from the data set. 
 
 It will then try to make artificial samples that looks like it's from the data set.
 
-Given a random variable $z$, a data set denoted by $X$, we want to maximaize the probability of each random variable $X$ being in the training set. 
+Given a random variable $z$, a data set denoted by $X$, we want to maximizes the probability of each random variable $X$ being in the training set. 
 
 Basically we put noise into the model and then we get back samples from the data set. For each sample in the data set, there should exist at least on random noise, or a class of them that produces the given sample. 
 
@@ -31,7 +31,7 @@ The probability of producing something in the sample by giving is some kind of n
 
 Why is this a mathematical sound thing to do? 
 
-Ok, say want to produce a Guassian Distribution using uniform distribution, then it's not hard to just integrate use the inverse of the CDF of Guassian to get the mapping for such a function. However, in this case, **we are training** that mapping. 
+Ok, say want to produce a Gaussian Distribution using uniform distribution, then it's not hard to just integrate use the inverse of the CDF of Gaussian to get the mapping for such a function. However, in this case, **we are training** that mapping. 
 
 Let $X\sim \mathcal{N}(0, 1)$ we want to train a mapping $G(x)$ such that $G(X)$ best approximate the PDF of any given function $f(x)$. Nice and easy. 
 
@@ -39,7 +39,7 @@ The variable that is drawn from the noise is called the "**Latent Variable**".
 
 **Questions**
 
-How to define the latent variable? What is the best latent varible? 
+How to define the latent variable? What is the best latent variable? 
 
 How do we train such a network and how to maximizes the probability that something is in the sample?
 
@@ -49,7 +49,7 @@ For background, we need to know about Auto encoder first.
 
 Auto encoder is a Neural network that takes in features in the higher dimension and then maps it to a layer that is on a much smaller dimension, and then it tries to reconstruct the original sample by expanding the features hiding in the latent space. 
 
-This allows us to essentially construct higher dimensional features using lower dimensional featurese. No labels are used to train this. 
+This allows us to essentially construct higher dimensional features using lower dimensional features. No labels are used to train this. 
 
 
 ---
@@ -67,7 +67,7 @@ Very small. Especially when it's an image, there are simply too many pixels.
 
 Let's sample a distribution of variable $Z$ such that it's most likely to produce the random variable $X$. 
 
-Let's define $Q(z|X)$ be the probability of given some observed random variable from $X$, the probability such that $z$ can produce that data using the VAE(variational Auto Encoder). 
+Let's define $Q(z|X)$ be the probability of given some observed random variable from $X$, the probability such that $z$ can produce that data using the VAE(Variational Auto Encoder). 
 
 The relationship between these 2 expressions: 
 
