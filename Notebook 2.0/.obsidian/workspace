@@ -11,11 +11,8 @@
             "id": "ce788fc59bcff1e2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
-                "mode": "source"
-              }
+              "type": "empty",
+              "state": {}
             },
             "group": "a68a7fb70ab7a25b"
           },
@@ -23,11 +20,8 @@
             "id": "a6e1d95490fe9f02",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
-                "mode": "preview"
-              }
+              "type": "empty",
+              "state": {}
             },
             "group": "a68a7fb70ab7a25b"
           }
@@ -59,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Cayl",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,12 +70,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 357
+    "width": 393
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -97,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +106,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Math 000/Linear Algebra/Generalized Eigenspaces.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,17 +129,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "a6e1d95490fe9f02",
+  "active": "ce788fc59bcff1e2",
   "lastOpenFiles": [
-    "Math 000/Linear Algebra/Generalized Eigenspaces.md",
-    "AMATH 584/Krylov Subspace.md",
-    "Math 000/Linear Algebra/Matrix Decomposition/Invariant Subspace.md",
-    "AMATH 584/Jordan Normal Form.md",
-    "Finite Elements method 2.md",
-    "AMATH 584/Hessenberg Transform intro (HS Reflector).md",
-    "AMATH 584/Conjugate Gradient 2.md",
-    "AMATH 503/Fourier Transform (PDE Flavor).md",
-    "AMATH 503/Fourier Sine Series (PDEs Flavor).md",
-    "AMATH 584/Ortho Min 2.md"
+    "AMATH 584/Spectral Theorem.md",
+    "Math 999/Automatic Differential.md",
+    "HS_Reflector 1.jpeg",
+    "fenchel_transform_interpretations.png.png",
+    "transformer architecture.png",
+    "Math 999/Variatioional Auto Encoder (AE, VAE).md",
+    "Math 999/Vapnik–Chervonenkis dimension.md",
+    "Math 999/Universal Approximation Thoerem of Neural Nets.md",
+    "Math 999/Transformer Achitecture.md",
+    "Math 999/Fundamental Theorem of Statistical Learning.md"
   ]
 }
