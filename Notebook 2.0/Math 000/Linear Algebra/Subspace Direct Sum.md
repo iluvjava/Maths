@@ -53,12 +53,14 @@ $$
 
 **A Trick to Remember**: 
 
-$$
-U\oplus V = \text{span}(U)\dot\cup\text{span}(V)
-$$
+> $$
+> U\oplus V = \text{span}(U)\dot\cup\text{span}(V)
+> $$
 
 It's like a disjoint union of 2 sets, and the sets will have to be disjoint. 
 
 ---
+
+### **Relative Independence**
 
 
