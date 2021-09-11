@@ -229,7 +229,7 @@ Jordanblocks are standard form of nilpotent matrices.
 Let's fix the values of $\lambda$, so lemma 1 will be: 
 
 $$
-\exist\; k:\mathcal{N}_1 \subseteq \mathcal{N}_2 \cdots \mathcal{N}_{k - 1}\subseteq \mathcal{N}_{k} = \mathcal{N}_{k + 1}\cdots
+\exists \; k:\mathcal{N}_1 \subseteq \mathcal{N}_2 \cdots \mathcal{N}_{k - 1}\subseteq \mathcal{N}_{k} = \mathcal{N}_{k + 1}\cdots
 $$
 
 The null space of $(A - \lambda I)^n$ stops expanding after a while and they equals. this is from **Lemma 1**. 
@@ -304,7 +304,7 @@ $$
 \begin{aligned}
     & \underbrace{\sum_{i}^{} c_i e_i}_{\in \mathcal{N}_k} + \underbrace{\sum_i d_i Be_i}_{\in \mathcal{N}_{k-1}} \in \mathcal{N}_{k - 2} \subset \mathcal{N}_{k - 1}
     \\\implies & 
-    c_i = 0 \; \forall i \quad \text{ becase }  \{e_i\}_{i = 1}^s \vdash \mathcal{N}_{k - 1}
+    c_i = 0 \; \forall i \quad \text{ because }  \{e_i\}_{i = 1}^s \vdash \mathcal{N}_{k - 1}
 \end{aligned}
 $$
 
@@ -312,7 +312,7 @@ Setting $c_i$ to zeros and then we consider:
 
 $$
 \begin{aligned}
-    & \sum_{i}^{} d_i Be_i \in \text{span}(\mathcal{N}_{k - 2})
+    & \sum_{i}^{} d_i Be_i \in \mathcal{N}_{k - 2}
     \\\implies & 
     B^{k - 2}\sum_{i}^{} d_i Be_i = \mathbf{0}
     \\\implies & 
