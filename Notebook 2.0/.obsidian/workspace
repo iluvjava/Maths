@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
-            "mode": "preview"
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
+            "mode": "source"
           }
         }
       }
@@ -60,7 +60,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 475
+    "width": 397
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -76,7 +76,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +93,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,6 +119,8 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Untitled.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Inverse Conjugate Transpose Similarity.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
     "AMATH 584 (Numerical Linear Algbra)/Inverse Conjugate Transpose Similarity.md",
     "Math 000/Probability, Stats, Combinatorics/Bayes Theorem.md",
@@ -126,8 +128,6 @@
     "CSE 546 (Machine Learning Fundamentals)/K-Nearest Neighbours.md",
     "CSE 546 (Machine Learning Fundamentals)/K Mean Clustering.md",
     "CSE 546 (Machine Learning Fundamentals)/jth Ordered Statistics.md",
-    "CSE 546 (Machine Learning Fundamentals)/IDD RVs.md",
-    "CSE 546 (Machine Learning Fundamentals)/Hoeffding's Inequality.md",
-    "CSE 546 (Machine Learning Fundamentals)/Generalized Linear Regression.md"
+    "CSE 546 (Machine Learning Fundamentals)/IDD RVs.md"
   ]
 }

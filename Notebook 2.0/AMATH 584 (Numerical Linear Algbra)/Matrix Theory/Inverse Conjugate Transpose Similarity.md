@@ -176,4 +176,3 @@ $$
 And that concludes the proof both ways. 
 
 $\blacksquare$
-
