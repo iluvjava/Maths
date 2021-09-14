@@ -6,7 +6,7 @@ SVD is need to understand some of the analysis of the condition of the least squ
 
 ---
 
-#### Setting Up The Problem 
+#### **Setting Up The Problem**
 
 Here, we first need to set up some of the quantities we are going to use for the LS square fitting, and hopefull some of them will draw some meaning for the analysis which comes in the later parts of the discussion. 
 
@@ -36,7 +36,7 @@ And this is hinting that, some times, a solution of $x$,  might have the change 
 > $$1 < \eta \leq \kappa(A)$$
 
 ---
-#### LS Problem
+#### **LS Problem**
 
 The Linear Least Square problem: 
 
@@ -50,7 +50,7 @@ And notice that: $A^HAx = A^Hb$, which is easier to remember, and $range(A)\perp
 
 ---
 
-#### Theorem 18.1 (Trefethen)
+### **Theorem 18.1 (Trefethen)**
 
 This theorem is going to be cited directly from Trefethen's book on Numerical LInear Algebra: 
 
@@ -77,7 +77,7 @@ This is the conditioning for inducing on the quantity $A$ and measuring it on $y
 
 --- 
 
-#### Simple Demo
+#### **Simple Demo**
 
 I am just going to demonstrate the conditioning for the easier ones in the Trefethen's book, and then the rest I will skip because it's a big topic and it's complicated. 
 
