@@ -171,13 +171,13 @@ Notice that, setting the system to be zero, we have: $x = y$, and this is the li
 This always means a substitution will make the system into a 1D system, and it means that: 
 
 $$
-x' = \mu x + 2x - \frac{x^3}{6} = x((\mu + 2) - \frac{x^2}{6})
+x' = \mu x + 2x - \frac{x^3}{6} = x\left((\mu + 2) - \frac{x^2}{6}\right)
 $$
 
 And it's not hard to see the $x_*$ for the 2 other fixed points are $\pm \sqrt{6(\mu + 2)}$, and since $x = y$. we have the fixed point: 
 
 $$
-p = (\pm\sqrt{6(\mu + 2)}, \pm\sqrt{6(\mu + 2)})
+p = \left(\pm\sqrt{6(\mu + 2)}, \pm\sqrt{6(\mu + 2)}\right)
 $$
 
 **What happen to the other 2 fixed point as the parameter changes**?

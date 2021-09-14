@@ -5,24 +5,26 @@ Prereq: [[Complex Vec Dot]]
 
 ---
 
-### Definition
+### **Definition**
 By definition, a Unitary Matrix is a Matrix such that
 > $$Q^HQ = I$$
 
 It i's **NOT** implied that, the matrix is a square matrix. 
 
 
-#### Theorem
+#### **Theorems**
 
-* This is the theory theorem 2.1 stated in *Numerical Linear Algebra*
+> The vectors in an orthogonal set S has to to be linear independent. theorem 2.1 stated in *Numerical Linear Algebra*
 
-> The vectors in an orthogonal set S has to to be linear independent.
+> Stated as **Lemma 2.1.8** in *Matrix Analysis*, All Unitary Matrices form a compact space and they experience Sequential Compactness meaning that, given any infinite sequence of Unitary Matrices like: 
+$$
+\forall\; U: U^HU = I\; \forall\; U_1U_2\cdots U_n\cdots \exists \; U_{n1}U_{n_2}... : 
+\lim_{k\rightarrow \infty} U_{n_k} = U
+$$
+
 
 ---
-
-Now it leads to the dicussion of orthogonal set and vectors. 
-
-#### Orthonormal Set 
+### **Orthonormal Set** 
 
 A set of vectors from $\mathbb{C}^n$ is said to be orthogonal if, all of the elements from the set are perpendicular with each other. 
 
@@ -32,7 +34,8 @@ Orthogonality of the set asserts that $q_i^Hq_j = 0 \quad \forall\; 1 \leq i \ne
 
 Normality of the set asserts that $||q_i||_2= 1 \quad \forall 1\ \leq i \leq m$
 
-#### Project onto $Q$
+---
+### **Project onto** $Q$
 Choose any $v\in \mathbb{C}^n$, then the projection of $r$ onto the subspace is gonna be: 
 
 $$v - \sum_{i = 1}^m (q_i^Hv)q_i \perp \sum_{i = 1}^m(q_i^Hv)q_i$$
@@ -53,10 +56,12 @@ Another interpretation of the projection of the vector involves some outter poru
 
 > $$\text{proj}_Q(v) = \sum_{i = 1}^m (q_iq_i^H)v$$
 
-#### Import Notes
+**Observe**
+
 It's $q^Hv$ not the other way around, a projection onto another vector has to place that vector being projected to under the Hermitian Transpose operator
 
-#### Derivation
+---
+### **Derivation**
 
 I think this is tivial when we just view everything as a Matrix, including scalar, but scalar and vectors are still matrices. 
 
@@ -72,11 +77,10 @@ Notice how this is already making sense we if just use the associate tivitity of
 
 $$q_i(q_i^Hv) = (q_iq_i^H)v$$
 
-And this representatiaon is exactly the same thing but with different interpretations. To get the different interprations, we only need to view everything as a matrix and then apply the conjugate transpose of the matrix as usual. 
+And this representation is exactly the same thing but with different interpretations. To get the different interpretation, we only need to view everything as a matrix and then apply the conjugate transpose of the matrix as usual. 
 
 ---
-
-### Notes and Additional Properties
+### **Notes and Additional Properties**
 This matrix is pretty important to the idea of [[SVD]] and [[QR]]. 
 
 And some of it's properties are explored in [[HW1 Mistakes]]. 
