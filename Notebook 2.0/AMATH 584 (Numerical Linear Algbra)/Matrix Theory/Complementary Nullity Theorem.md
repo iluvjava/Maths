@@ -9,7 +9,7 @@ We wish to investigate the ranks of submatrices by assuming a matrix is invertib
 **Theorem Statement**
 
 > $$
-> (\text{dim} \rightarrow \text{null})(A[\alpha, \beta]) =(\text{dim} \rightarrow \text{null})(A^{-1}[\alpha^C,  \beta^C])\tag{1}
+> (\text{dim} \leftarrow \text{null})(A[\alpha, \beta]) =(\text{dim} \leftarrow \text{null})(A^{-1}[\alpha^C,  \beta^C])\tag{1}
 > $$
 
 **Explanation:** 
