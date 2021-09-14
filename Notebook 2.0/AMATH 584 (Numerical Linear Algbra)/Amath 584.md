@@ -3,20 +3,20 @@ Linear Algebra and Numerical Analysis
 
 
 ---
-### **Exact Numerics and Algorithms**
+### **Exact Numeric and Algorithms**
 2. [[SVD]]: The basics, no algorithms
 3. [[QR]]: The basics and Algorithms
 4. [[LU Decomposition]]: The basics and algorithms
 
 ---
-### **Eigendecomposition**
+### **Eigen Decomposition**
 * [[Eigen Decompose]]: Basics
 * [[Eigen Decomp Algo (Baisc and Intro)]]: Basics of Algorithmic approach of the matters. 
 	* [[Eigen Decomp (The Pure QR)]]
 	* [[Eigen Decomp Algo 3 (Shifted QR)]]
 	* [[Hessenberg Transform intro (HS Reflector)]]
 	* [[Eigen Decomp Algo 4 (Divided Conquer)]]
-* And it's due to the research in Eigendecomposition, we now have efficient algorithms for SVD. 
+* And it's due to the research in Eigen Decomposition, we now have efficient algorithms for SVD. 
 
 
 ---

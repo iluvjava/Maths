@@ -2,11 +2,11 @@
 
 prereq: [[SVD]] This is an application of the idea of singular value decomposition, take a read before understanding this. 
 
-The principal components analysis looks at a covariant matrix and find out alterative basis that minimizes the non-diagonal values of the covariance matrix, reducing the linearity on the predictors in a multi-variable Gaussian model.
+The principal components analysis looks at a covariant matrix and find out alternative basis that minimizes the non-diagonal values of the covariance matrix, reducing the linearity on the predictors in a multi-variable Gaussian model.
 
-Thsis a **Data Transformation Technique**
+This a **Data Transformation Technique**
 
-Here are more resources relavent to PCA: 
+Here are more resources relevant to PCA: 
 
 [Link](https://www.youtube.com/watch?v=8BTv-KZ2Bh8&ab_channel=AMATH301): PCA for Face Recognition
 [Link](https://www.youtube.com/watch?v=TJdH6rPA-TI&ab_channel=Computerphile): PCA Computerphile
@@ -28,7 +28,7 @@ $$X = \begin{bmatrix}
 \quad & v_n^T & \quad
 \end{bmatrix}$$
 
-Cool, Now, there is a quick and dirty way of computing the covariance matrix out of this thing. We have the choice to either normalize, or to not normalized that data, but normalization is definnitely preferable for large amount of data set with spreads that are in hugely different magnitudes. 
+Cool, Now, there is a quick and dirty way of computing the covariance matrix out of this thing. We have the choice to either normalize, or to not normalized that data, but normalization is definitely preferable for large amount of data set with spreads that are in hugely different magnitudes. 
 
 The Covariance Matrix can be quickly computed as: 
 
@@ -44,11 +44,11 @@ Cool, now, this Cov matrix is a symmetric matrix, and this will mean that the ma
 * The eigen space of the matrix will be orthogonal, giving us unitary matrix for the eigen decomposition of the matrix. 
 
 
-Suppsose an Eigen decomposition is applied to the matrix $XX^T$ and say that 
+Suppose an Eigen decomposition is applied to the matrix $XX^T$ and say that 
 
 $$XX^T = Q\Lambda Q^T$$
 
-And then we are insterested in describing the data in the new alternative basis, say that the new transformed data is: 
+And then we are interested in describing the data in the new alternative basis, say that the new transformed data is: 
 
 $$
 Y = S^TX

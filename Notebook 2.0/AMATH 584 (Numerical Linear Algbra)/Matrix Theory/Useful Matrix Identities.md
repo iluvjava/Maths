@@ -109,7 +109,7 @@ $$
 $\blacksquare$
 
 
-Take note that, when the inverse is not involved, then, we have the direct pushthrough formula which is: 
+Take note that, when the inverse is not involved, then, we have the direct push through formula which is: 
 
 > $$
 > B(I + AB) = (I + BA)B

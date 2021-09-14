@@ -73,7 +73,7 @@ This is easy to reason with an row operation matrix that brigs the LT to identit
 
 > If U is an unitary matrix, then all its eigen values will have a modulus of 1. 
 
-For this proof, we have to use the norm property of the unitary, matrix, mor specifically: $||Ux|| = ||x||$. 
+For this proof, we have to use the norm property of the unitary, matrix, more specifically: $||Ux|| = ||x||$. 
 
 Suppose that the matrix $U$ has the eigen values $\lambda$ and its corresponding eigen values: $v$, then it will mean that $||Ux|| = ||\lambda x|| = |\lambda|||x|| = ||x||$, and this will imply the fact that 
 

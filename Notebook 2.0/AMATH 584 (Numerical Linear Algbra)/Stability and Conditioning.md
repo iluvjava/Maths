@@ -9,7 +9,7 @@ This is one of the metric used for measure the behavior of linear operator, whic
 Conditioning and stability are property of the functions that maps things from an input space to the output space of the function. 
 
 #### **Conditioning**
- Perturbates the inputs and how does it change the output of the function. 
+ Perturbs the inputs and how does it change the output of the function. 
  * Well-Conditioned: 
    * Small changes in x is also going to cause small changes in the output of the function f. 
  * Ill-Conditioned: 
@@ -42,7 +42,7 @@ Generalizing the concepts to any function, we will use the jacobian matrix.
 
 $$\delta f \approx \textbf{J}_f(x) $$
 
-And hence, we will know that the discussion of conditioning under the context of linear algebra will be helpfuel here. 
+And hence, we will know that the discussion of conditioning under the context of linear algebra will be helpful here. 
 
 **Note:**
 There are different types of norm which can be used here, but it's not specified here. 

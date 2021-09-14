@@ -1,22 +1,37 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphans": true,
+  "showOrphans": false,
   "collapse-color-groups": false,
-  "colorGroups": [],
+  "colorGroups": [
+    {
+      "query": "matrix",
+      "color": {
+        "a": 1,
+        "rgb": 14048348
+      }
+    },
+    {
+      "query": "PDE",
+      "color": {
+        "a": 1,
+        "rgb": 14069084
+      }
+    }
+  ],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": -2,
-  "nodeSizeMultiplier": 1.35641025641026,
+  "textFadeMultiplier": -0.6,
+  "nodeSizeMultiplier": 1.36629213483146,
   "lineSizeMultiplier": 1.02136752136752,
   "collapse-forces": false,
-  "centerStrength": 0.337078651685393,
-  "repelStrength": 7.35042735042735,
-  "linkStrength": 0.324786324786325,
-  "linkDistance": 207,
-  "scale": 0.13652575112359422,
-  "close": false
+  "centerStrength": 0.282352941176471,
+  "repelStrength": 7.41176470588235,
+  "linkStrength": 1,
+  "linkDistance": 376,
+  "scale": 0.6272462157748153,
+  "close": true
 }

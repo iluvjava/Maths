@@ -17,10 +17,19 @@ It i's **NOT** implied that, the matrix is a square matrix.
 > The vectors in an orthogonal set S has to to be linear independent. theorem 2.1 stated in *Numerical Linear Algebra*
 
 > Stated as **Lemma 2.1.8** in *Matrix Analysis*, All Unitary Matrices form a compact space and they experience Sequential Compactness meaning that, given any infinite sequence of Unitary Matrices like: 
-$$
-\forall\; U: U^HU = I\; \forall\; U_1U_2\cdots U_n\cdots \exists \; U_{n1}U_{n_2}... : 
-\lim_{k\rightarrow \infty} U_{n_k} = U
-$$
+> $$
+> \exists\; U: U^HU = I\; \forall\; U_1U_2\cdots U_n\cdots \exists \; U_{n1}U_{n_2}... : 
+> \lim_{k\rightarrow \infty} U_{n_k} = U
+> $$
+> For every sequence of unitary matrices in the Unitary Matrix space, there is a subsequence of it, which will converge to a unitary matrix. 
+
+
+---
+### **Famous Examples**
+
+Householder Reflector: [[HS Reflector]]
+Plane Rotation Matrix: 
+ 
 
 
 ---
@@ -63,7 +72,7 @@ It's $q^Hv$ not the other way around, a projection onto another vector has to pl
 ---
 ### **Derivation**
 
-I think this is tivial when we just view everything as a Matrix, including scalar, but scalar and vectors are still matrices. 
+I think this is trivial when we just view everything as a Matrix, including scalar, but scalar and vectors are still matrices. 
 
 Take a look at the expression of 
 
