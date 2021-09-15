@@ -28,7 +28,7 @@ Projector is a type of matrix
 
 ---
 
-#### Ortho Projector Example 
+#### **Ortho Projector Example**
 Assume that the matrix $!$ is given as a unitary matrix, $Q \in \mathbb{C}^{m\times n}$
 
 Ok, now if I want to represent any vector $x\in \mathbb{C}^{m}$ in the space, when we will do this: 
@@ -50,7 +50,7 @@ I - QQ^H
 $$
 
 ---
-### Penrose Psuedo Inverse
+### **Penrose Psuedo Inverse**
 
 Penrose Psuedo Inverse is one projector matrix. Here is the definition of Penrose Peusdo Inverse matrix: 
 

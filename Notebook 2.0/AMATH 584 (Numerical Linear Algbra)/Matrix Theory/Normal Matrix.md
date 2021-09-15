@@ -24,8 +24,8 @@ This is followed from the theorems from SVD, [[SVD Theorems]]
  
 Hermitian Matrix has real eigenvalues and diagonalizable, and they can be written as $Q\Lambda Q^H$, and the diagonals of $\Lambda$ are all positive reals. 
 
-Normal Matrix can be written as $Q\Lambda Q^H$, where the diagonal of $\Lambda$ can have any kind of numbers it wants. 
+Normal Matrix can be written as $Q\Lambda Q^H$, where the diagonal of $\Lambda$ can have any kind of numbers it wants (for example, complex numbers). 
 
-> Hermitians are a special kind of Normal. 
+> Hermitian are a special kind of Normal. 
 
 

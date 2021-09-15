@@ -1,3 +1,7 @@
+This is fundamental about vector spaces and linear operators. 
+
+
+----
 ### **Intro**
 
 There are 2 types of summation when it comes to subspaces in linear algebra. 
@@ -46,7 +50,6 @@ $$
 \forall\; U, V \in \mathcal{V}: U \cap V = \text{span}\{\mathbf{0}\}
 $$
 
-
 $$
 \text{dim}(U\oplus V) = \text{dim}(U) + \text{dim}(V)
 $$
@@ -54,17 +57,32 @@ $$
 **A Trick to Remember**: 
 
 > $$
-> U\oplus V = \text{span}(U)\dot\cup\text{span}(V)
+> U\oplus V = \text{span}(U)\;\dot\cup\;\text{span}(V)
 > $$
 
 It's like a disjoint union of 2 sets, and the sets will have to be disjoint. 
 
 ---
-
 ### **Relative Independence**
 
----
-### **Sub-Matrices**
 
+---
+### **Block Diagonal Matrices and Direct Sum**
+
+> $$
+> A = A_{1,1}\oplus A_{2, 2}\oplus \cdots \oplus A_{n-1, n-1}\oplus A_{n, n} = \bigoplus_{i = 1}^nA_{i, i} = 
+> \begin{bmatrix}
+>     A_{1, 1}& & 
+>     \\
+>     & A_{2, 2,}& 
+>     \\
+>     \\
+>     & & \ddots&
+>     \\
+>     & & & A_{n, n}
+> \end{bmatrix}
+> $$
+
+And this is direc sums applied to sequences of matrices.
 
 
