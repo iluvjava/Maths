@@ -9,10 +9,23 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
             "mode": "source"
           }
-        }
+        },
+        "group": "29618195c926f27e"
+      },
+      {
+        "id": "2be0bfe80447b2d8",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
+            "mode": "preview"
+          }
+        },
+        "group": "29618195c926f27e"
       }
     ],
     "direction": "vertical"
@@ -39,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "SVM",
+                "query": "jordan normal form",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -60,7 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 397
+    "width": 471
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -76,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,15 +132,15 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Untitled.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrices.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Jordan Normal Form.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Subspace Direct Sum.md",
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Jordan's Lemma.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Inverse Conjugate Transpose Similarity.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
-    "AMATH 584 (Numerical Linear Algbra)/Inverse Conjugate Transpose Similarity.md",
-    "Math 000/Probability, Stats, Combinatorics/Bayes Theorem.md",
-    "CSE 546 (Machine Learning Fundamentals)/Kernel Machine.md",
-    "CSE 546 (Machine Learning Fundamentals)/K-Nearest Neighbours.md",
-    "CSE 546 (Machine Learning Fundamentals)/K Mean Clustering.md",
-    "CSE 546 (Machine Learning Fundamentals)/jth Ordered Statistics.md",
-    "CSE 546 (Machine Learning Fundamentals)/IDD RVs.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullith Theorem.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Untitled.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Block Unitary Matrix.md"
   ]
 }

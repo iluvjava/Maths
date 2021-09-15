@@ -1,19 +1,12 @@
 {
   "collapse-filter": false,
-  "search": "",
+  "search": "jordan",
   "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": false,
   "collapse-color-groups": false,
   "colorGroups": [
-    {
-      "query": "matrix",
-      "color": {
-        "a": 1,
-        "rgb": 14048348
-      }
-    },
     {
       "query": "PDE",
       "color": {
@@ -32,6 +25,6 @@
   "repelStrength": 7.41176470588235,
   "linkStrength": 1,
   "linkDistance": 376,
-  "scale": 0.6272462157748153,
-  "close": true
+  "scale": 0.44739933473495797,
+  "close": false
 }

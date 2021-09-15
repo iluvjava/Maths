@@ -5,7 +5,7 @@ Wiki: [link](https://www.wikiwand.com/en/Matrix_norm)
 
 ---
 
-### Vector Norm
+### **Vector Norm**
 
 There are 3 axioms for the norm operator, suppose that, all the vector that support the operator $||\bullet||:\mathbb{C}^n\mapsto\mathbb{R}^n_+$ then it must satisfied the following: 
 
@@ -26,18 +26,18 @@ $$||x||_\infty := \max_{1 \leq i \leq n}(x_i)$$
 $$||x||_i = \max_{1\leq i\leq n}|x_1|$$
 $$\|x\|_{0}=\lim _{p \rightarrow 0} \sum_{k=1}^{n}\left|x_{k}\right|^{p}$$
 
-#### Useful Inequalities 
+### **Useful Inequalities **
 
 $$\sum_{i = 1}^n x_i \leq ||x||_1$$
 
 
 
-#### Matrix Induced Vector Norm
+### **Matrix Induced Vector Norm**
 $$||x||_A:= ||x^TAx||$$
-Notice that only full ranked matrices can be used for this type of norm, and other things cannot be used because it will break the axiomos listed above. 
+Notice that only full ranked matrices can be used for this type of norm, and other things cannot be used because it will break the axioms listed above. 
 
 ---
-### Matrix Norm
+### **Matrix Norm**
 
 The matrix norm is induced by the vectors norm, it tells us how the matrices is able to manipulate the vectors. The norm is used to bound the transformation a bit with one real number, so we know just how badly the matrix transform the linear spaces. 
 
@@ -50,7 +50,7 @@ a_1 & a_2 & \cdots & a_n
 \end{bmatrix}
 $$
 
-Let's also define 2 different vector norm for the domain and range of the matrix, as $||\bullet||_n$ and $||\bullet||_m$, the indcued matrix norm, denoted as $||A||_{m, n}$ is the smllest number $C\in \mathbb{R}$ such that: 
+Let's also define 2 different vector norm for the domain and range of the matrix, as $||\bullet||_n$ and $||\bullet||_m$, the induced matrix norm, denoted as $||A||_{m, n}$ is the smallest number $C\in \mathbb{R}$ such that: 
 
 $$||Ax||_m \leq C||x||_n \quad \forall x\in \mathbb{C^n}$$
 
@@ -60,14 +60,14 @@ And hence the definition of the matrix norm can be simply written as:
 >  = \sup_{x\in \mathbb{C}^n \wedge ||x||_n = 1} ||Ax||_m
 > $$
 
-The correct way to visualize this is via looking at the $L_n$ Lasbgue space and how the matrix shapes the spaces, and the number we are looking at is the longest line that cut through the space. (The idea of "long" depends on the vector norm used on the output sapce) 
+The correct way to visualize this is via looking at the $L_n$ Lasbegue space and how the matrix shapes the spaces, and the number we are looking at is the longest line that cut through the space. (The idea of "long" depends on the vector norm used on the output space) 
 
 --- 
-### The Matrix 1-Norm
+### **The Matrix 1-Norm**
 Starts with
 $$||Ax||_1 = \left\Vert\sum_{i = 1} x_i a_i\right\Vert_1$$
 
-Let's find the maximal value amoung all the $x_i$, say it's $x_max$
+Let's find the maximal value among all the $x_i$, say it's $x_max$
 
 $$\left\Vert\sum_{i = 1} x_i a_i\right\Vert_1 \leq \sum_{i = 1}^n |x_i|a_i$$
 
@@ -96,9 +96,9 @@ A similiar process as the above one can be used to prove the the **infinity norm
 
 where $$A\in \mathbb{C}^{m\times n}$$
 
-#### Matrix F-Norm
+### **Matrix F-Norm**
 
-The formula for matrix F norm is harder to get, but it's pretty dope: 
+The Forbenius Norm. 
 
 > $$
 \|A\|_{\mathrm{F}}=\sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n}\left|a_{i j}\right|^{2}}=\sqrt{\operatorname{trace}\left(A^{H} A\right)}=\sqrt{\sum_{i=1}^{\min \{m, n\}} \sigma_{i}^{2}(A)}$$
@@ -108,7 +108,8 @@ It's all of the following at the same time:
 * Square root of the sum of the diagonal entry of $A^HA$. 
 * The sum of the first $\min(n, m)$ singular values ($\sigma_i^2(A)$) of the matrix under the square root. 
 
-### Matrix Induced 2-Norm (Spectral Norm)
+
+### **Matrix Induced 2-Norm (Spectral Norm)**
 
 **Notes**: This is very different from the Frobenius Norm of matrices because this is a norm induced by vector 2-norm. 
 

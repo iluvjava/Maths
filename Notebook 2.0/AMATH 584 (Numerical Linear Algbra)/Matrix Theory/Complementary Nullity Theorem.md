@@ -1,4 +1,4 @@
-This is mentioned as 0.7.5 in book \<Matrix Nalysis\>
+This is mentioned as 0.7.5 in book \<Matrix Analysis\>
 
 
 ---
@@ -16,7 +16,7 @@ We wish to investigate the ranks of submatrices by assuming a matrix is invertib
 
 Let's assume that matrix $A$ is invertible. 
 
-$\alpha, \beta$ is a set of indices that index the rows and the columns of the matrix $A$, in this caes $A[\alpha, \beta]$ is the submatrix where rows are index by set from $\alpha$ and columns are index by indices in set $\beta$. $\alpha^C, \beta^C$ are the complementary sets. 
+$\alpha, \beta$ is a set of indices that index the rows and the columns of the matrix $A$, in this case $A[\alpha, \beta]$ is the submatrix where rows are index by set from $\alpha$ and columns are index by indices in set $\beta$. $\alpha^C, \beta^C$ are the complementary sets. 
 
 Alternative equivalent statement is: 
 
