@@ -3,7 +3,7 @@ Related: [[Direct Method]]
 
 ---
 
-### Jacobi Iteration
+### **Jacobi Iteration**
 
 The Jacobi Iteration is used as a way to figure out the solution of a linear system. 
 
@@ -25,7 +25,7 @@ The key here is to realized that, iteratively, the norm of the matrix $D_{-1}R$ 
 
 ---
 
-### Gauss-Seidel Method
+### **Gauss-Seidel Method**
 
 It's an modification of the Jacobi Method where sequencial substitution is used to speed up, because whenever $(\vec{x}_{k + 1})_1$ has been computed, then we will have this new element closer to the solution, and we can use it for the sub-sequence computation like: $(\vec{x}_{k + 1})_3, (\vec{x}_{k + 1})_3 \cdots$
 
@@ -59,7 +59,7 @@ Gauss-Seidel Method: Doesn't support because back substitution is going to be ne
 
 --- 
 
-### Brief Analysis On Convergence (Jacobi)
+### **Brief Analysis On Convergence (Jacobi)**
 
 If the solution of the linear system is $x_*$, then it will equates the left and right side of the iterative scheme, meaning that: 
 

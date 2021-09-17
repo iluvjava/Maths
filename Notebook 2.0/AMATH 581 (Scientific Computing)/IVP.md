@@ -2,7 +2,7 @@ Solving the Generalized Initial Value Problem
 
 ---
 
-### IVP
+### **IVP**
 
 The initial value problem looks like this: 
 
@@ -20,7 +20,7 @@ $$
 
 ---
 
-### Practical Concerns
+### **Practical Concerns**
 
 * Local and global errors from the analytical expression of the iteration scheme. 
 	* The global error is always one power larger. 
@@ -34,7 +34,7 @@ $$
 	* This can be by pass by the usage of implicit iteration schemes 
 	* This will be there if, the problem is unstable and the size time of simulation is huge, in that way, regardless of global error, the error will build up on the perturbation of the initial condition. 
 
-#### Errors
+#### **Errors**
 **Local:**
 
 Error from each step of the Taylor approximations. 
@@ -48,7 +48,7 @@ Unrelated to the scheme, depends on the problem and the scheme, and it's due to 
 
 ---
 
-### Schemes Classification 
+### **Schemes Classification** 
 Explicit: 
 
 The future time step is depends on the previous scheme. 
@@ -64,7 +64,7 @@ AB + DM with Predictor
 
 ---
 
-### Analytical Approaches
+### **Analytical Approaches**
 
 * Taylor Series: [[Runge Kutta]] [[Generalized 2nd Order Taylor Scheme]]
 * Integration: [[Adam B.M]]

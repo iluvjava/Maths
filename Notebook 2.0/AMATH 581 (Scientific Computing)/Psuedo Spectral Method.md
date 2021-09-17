@@ -3,8 +3,7 @@ prereq: [[Spectral Method 3]]
 Split Step, for stiff system. 
 
 ---
-
-### Stiff System
+### **Stiff System**
 
 $$
 u_t - Lu = n(u)

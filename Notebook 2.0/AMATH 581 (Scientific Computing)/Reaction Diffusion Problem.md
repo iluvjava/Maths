@@ -26,9 +26,9 @@ $$
 
 This is a non-linear system of partial differential equations, so it's really fancy however the temporal evolution of the system is explicit. 
 
-### FFT and Periodic Conditions
+### **FFT and Periodic Conditions**
 
-#### Descritization: 
+#### **Descritization**: 
 
 $$
 x, y = [-10, 10] \quad n = 64
@@ -44,7 +44,7 @@ $$
 \nabla^2(\bullet) := (K_x\circ K_x + K_y\circ K_y)\circ  (\bullet)
 $$
 
-#### Fourier Domain Operations
+#### **Fourier Domain Operations**
 
 Now let's define the transformation of the Non-Linear operators $A^2$, which is going to be: 
 
@@ -58,7 +58,7 @@ Input: ($\widehat{u}, \widehat{v}$) --> IFFT($\widehat{u}, \widehat{v}$) --> $A^
 
 All the non-linear operations are going to be element-wise operations so it's good. 
 
-#### Vectorization 
+### **Vectorization**
 
 Notice that, when evolving the PDEs as a ODEs system, the vectors are vectorized. Which means that, the grids points of $u$ and $v$ are packed in one big vector. And hence, it's useful that we need a vectorization transform to take the $u, v$ from the vector shape to matrix shaped. 
 

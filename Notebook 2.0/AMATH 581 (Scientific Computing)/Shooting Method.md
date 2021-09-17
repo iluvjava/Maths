@@ -4,10 +4,10 @@ prereq: [[BVP]]
 
 ---
 
-#### The Introduction 
+#### **The Introduction** 
 The initial conditions $y'(a) = A$ remains unknown, and then we need to find a interval for $A$ such that it got mapped to another interval for $y(b)$, and then we perform a binary search like method by tweaking the value of $A$ until it converges to the boundary condition on the other side with a given amount of tolerance. 
 
-#### An example
+#### **An example**
 
 > $$\frac{d^2\phi_n}{dx^2} + (100 - \beta_n)\psi_n = 0$$
 
@@ -65,7 +65,7 @@ And hence we know that we have to work with the beta parameter as our tweaking p
 
 ---
 
-#### Control Flow for Implementing the Shooting Method 
+### **Control Flow for Implementing the Shooting Method**
 
 filename: runbvp: 
 ```octave

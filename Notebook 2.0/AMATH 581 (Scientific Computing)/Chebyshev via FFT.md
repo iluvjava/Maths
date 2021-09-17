@@ -2,7 +2,6 @@ prereq: [[Fourier Transform Fourier Series]], [[Cheb Differential Matrix]]
 
 ---
 
-
 This is the Chebyshev Nodes. 
 $$
 x_j:= \cos\left(\frac{j\pi}{N}\right) \quad x\in[-1, 1]

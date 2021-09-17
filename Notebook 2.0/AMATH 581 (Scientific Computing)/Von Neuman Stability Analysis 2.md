@@ -3,7 +3,7 @@ This is continuation of [[Von Neuman Stability Analysis]]
 And we are going over some more intriguing examples, and we are going to see when stiffness happens for our partial differential equations. 
 
 ---
-### Heat Equation + Leapfrog
+### **Heat Equation + Leapfrog**
 
 > $$
 > u_t = Cu_{xx}
@@ -37,12 +37,12 @@ $$
 
 And then notice that right term in the sum will always contribute to the value of $g$ while at the same time, there is a $1$ already there for $g^2$, therefore The Leapfrog Scheme for the Heat Equation is going to be: "**Unconditionally Unstable**"
 
-#### Comment: 
+#### **Comment**: 
 We see that the Leapfrog for the wave equation works, but for the heat equation, this is not working anymore. 
 
 ---
 
-### Heat Equation + FE (Forward Euler)
+### **Heat Equation + FE (Forward Euler)**
 
 Let's see the time-stepping scheme for the Forward Euler, and it's going to be like: 
 

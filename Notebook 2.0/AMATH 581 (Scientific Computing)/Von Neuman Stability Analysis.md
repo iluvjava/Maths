@@ -5,13 +5,15 @@ We are going to analyze the stability of different scheme for the 1D wave equati
 
 ---
 
+### **Intro**
+
 Here we are going to keep looking at the wave equation example: 
 
 > $$u_t = cu_x$$
 
 Where $u(x, t)$ should be a one dimension wave function. 
 
-### Von-Neumann Stability Analysis
+### **Von-Neumann Stability Analysis**
 Assume that the solution is separable, and using separation of variables we have: 
 
 $$
@@ -27,7 +29,7 @@ $$
 
 This is like the classic solution to elliptic PDEs, and under this case, all the Fourier Coefficients will cancel out after plugging them into the scheme, simultaneously, all the trigs with the same frequencies can be collected together, giving us a really nice form for stability analysis. 
 
-#### Stability Criterion 
+#### **Stability Criterion**
 
 $|g| < 1$ --> Stable
 $|g| \leq 1$ --> Unstable 
@@ -36,7 +38,7 @@ So, we are basically investigating how the wave changes if we were to use some k
 
 ---
 
-### FE Scheme on Wave Equation
+### **FE Scheme on Wave Equation**
 
 So the key here is to analyze the stability is to substitute the Fourier Series into the scheme and see how the multiplier grows. If it explodes, then the scheme is going to be unstable. 
 
@@ -122,8 +124,7 @@ $$
 And notice that $$|g|^2 > 1$$ will be true regardless of what we choose for $\lambda$, there fore this **scheme is always going to be unstable**. 
 
 ---
-
-### Backwards Euler on Wave Equation
+### **Backwards Euler on Wave Equation**
 
 This is what the backward Euler Scheme looks like for the wave equation with Temporal Discretization: 
 
@@ -168,7 +169,7 @@ $$
 |g|^2 = \frac{1}{1+ \lambda^2\sin^2(\Delta \xi)} \leq 1 \quad\forall\; k, \lambda
 $$
 
-### Leap Frog on Wave Equation (More Common)
+### **Leap Frog on Wave Equation (More Common)**
 Skipping the math part, here is the scheme for leapfrog method on the wave equation: 
 
 > $$
@@ -200,7 +201,8 @@ $$
 And this is the criteria for $\Delta t$, we have to change the $\Delta t$ whenever we are given a space discretization 
 
 
-### Comment, Summary
+---
+### **Comment, Summary**
 
 The FE for 1d Wave equation is unconditionally unstable.
 The BE for 1d wave equation is unconditionally stable. 

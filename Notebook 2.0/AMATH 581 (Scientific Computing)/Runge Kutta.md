@@ -12,13 +12,13 @@ Here is the derivation of the 2nd order Runge Kutta method by hand:
 ![[Runge Kutta 2nd Derivation 1.jpg]]
 ![[Runge Kutta 2nd Derivation 2.jpg]]
 
-### 2nd Degree Runge Kutta 
+### **2nd Degree Runge Kutta** 
 
 The second degree Runge Kutta is just evaluating at 2 points and try to average the change in the spacial dimension out a bit
 > $$y_{n + 1} = y_n + \frac{h}{2} f(t, y_n) + \frac{h}{2} f(t + h, y_n + hf(t, y_n)) + \mathcal{O}(h^3)$$
 > RK(2)
 
-### 5th Degree Runge Kutta
+### **5th Degree Runge Kutta**
 
 The 5tht degree Runge Kutta involves a lot of evaluations on the both the spatial dimension and the time dimension. 
 
@@ -39,7 +39,7 @@ The global of both scheme is gonna be one degree higher, and here is a pretty co
 
 ---
 
-### A General Approach
+### **A General Approach**
 
 Here, we make a template from the 2nd Runge Kutta and then use it to frame a family of second order time-stepping schemes. 
 

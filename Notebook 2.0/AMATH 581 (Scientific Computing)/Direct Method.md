@@ -69,7 +69,8 @@ And this is giving us a function of the form $Ax  = b$, which is very easy to so
 
 In general, there might be Boundary Conditions that involve some derivative of the function at that point, and let's see if we can incorperate that into the matrix. 
 
-> $$\alpha_1 y(t_0) + \beta_1 y'(t_0) = \gamma_1$$ $$\alpha_2 y(t_N) + \beta_2 y'(t_N) = \gamma_2$$
+> $$\alpha_1 y(t_0) + \beta_1 y'(t_0) = \gamma_1$$ 
+> $$\alpha_2 y(t_N) + \beta_2 y'(t_N) = \gamma_2$$
 
 Well, it's not hard, here we will substitute the finite second order difference back into the boundary conditions, but this time, we take the Forward and Backwards difference, so we can evaluate things on the boundary of the curve.
 

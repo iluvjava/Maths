@@ -4,7 +4,7 @@ We need the derivative information for the Lagrange Polynomial interpolated at s
 
 ---
 
-### Cheb Diff Matrix
+### **Cheb Diff Matrix**
 The entries of the cheb matrix is literally given from the derivative of the interpolative polynomials, by which I mean that: 
 
 $$

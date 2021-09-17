@@ -4,7 +4,7 @@ Prereq: [[Advection Diffusion]] This is a great example of a system of PDEs, and
 Prereq: [[IVP]] This is used for the temporal evolution of the system of discretized system. 
 
 ---
-### Intro
+### **Intro**
 
 Elliptic PDEs are like elliptic curves in Precalc, and let's take a look at 2d case, let's assume that the function we are looking at takes the form: $u(x_1, x_2, t)$
 
@@ -25,8 +25,7 @@ In addition the constant won't matter if the solution we want is concerned with 
 It's not time dependent. 
 
 --- 
-
-### Boundary Conditions
+### **Boundary Conditions**
 For the following discussion, we will be only focusing on boundary conditions in the region of a rectangle on the grid. 
 > $$\Omega = [a, b]\times [b,c]$$
 

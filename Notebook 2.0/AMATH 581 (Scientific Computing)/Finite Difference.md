@@ -2,8 +2,7 @@ The story behind finite difference is a bit complicated, so here is just a quick
 [[Taylor Series]]
 
 ---
-
-### Order 2: 
+### **Order 2**
 **Forward, Backward**: 
 
 $\mathcal{O}(\Delta t^2)$ forward and backwards difference schemes for $f'(t)$ and $f''(t)$. 
@@ -36,9 +35,12 @@ f^{\prime \prime \prime}(t)&=&[f(t+2 \Delta t)-4 f(t+\Delta t)+6 f(t)-4 f(t-\Del
 $$
 
 ---
-### Newton's Interpolations and Finite Difference
+### **Newton's Interpolations and Finite Difference**
 
-### Taylor Series Approach
+
+
+---
+### **Taylor Series Approach**
 
 $$
 y(t + \Delta t); \quad y(t); \quad y(t - \Delta t)

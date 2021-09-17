@@ -5,7 +5,7 @@ background: [link](http://www.ee.ic.ac.uk/hp/staff/dmb/courses/E1Fourier/00300_C
 This is the basics for understanding the spectral method. 
 
 ---
-### Notations:
+### **Notations**:
 
 $$
 \widehat{F(x)}: \text{Fourier Transform}
@@ -22,7 +22,7 @@ $$
 **Note:**
 There are other ways of writing the same thing, the other major way of writing it it's like: 
 
-### Fourier Transform
+### **Fourier Transform**
 
 Let's remind ourselves what the heck it is first: 
 
@@ -47,7 +47,7 @@ $$
 e^{ikx} = \cos(kx) + i\sin(kx)
 $$
 
-#### Fourier Series: 
+#### **Fourier Series:** 
 
 
 This is the trig Form Fourier series: 
@@ -85,8 +85,7 @@ And there is where the Matlab `fftshift` command comes in, it will swap the left
 Also, please observe that, if we take the $L$ to infinity, then this formula is looking very similar to the Fourier Transform.
 
 ---
-
-#### Properties of the Fourier Transform 
+#### **Properties of the Fourier Transform**
 
 **Derivative is a Linear transform in the Fourier Domain**. 
 $$
@@ -118,7 +117,7 @@ And then, we are literally one step away from getting the solution, applying an 
 
 This derivative property **only applies if the function is absolutely integrable on the whole $\mathbb{R}$ domain**, meaning that the absolute value of the function is finite over the whole real realm.  
 
-##### Convolution Theorem
+##### **Convolution Theorem**
 
 > $$
 > \mathcal{F}(fg|k) = \mathcal{F}(f|k) * \mathcal{F}(g|k)
@@ -138,7 +137,7 @@ And this is used for spectral method when there are non-linear terms involved in
 
 ---
 
-#### Pros and Cons DFT
+#### **Pros and Cons DFT**
 
 1. Operations is $\mathcal{O}(N \log(N))$, for uniformly discretized spatial dimension. Other topology are not applicable for DFT. 
 2. It's only suitable for Periodic Conditions, if not the boundary will be look really ugly and there will be oscillations. (And in that case please consult prof Kutz book on Scientific Computing, where 2 pinned boundary conditions is discussed for the spectral methods)
@@ -165,6 +164,6 @@ $$
 $$
 
 
-### Comment: 
+### **Comment:** 
 
 I don't know what to do if the domain of it is infinite. 

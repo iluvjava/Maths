@@ -6,13 +6,14 @@ Wiki: [Link](https://www.wikiwand.com/en/Finite_element_method)
 
 ---
 
-### Intro
+### **Intro**
 
 The domain of simulations is very general. Thinking about finite difference, if we are talking about that, then we have to excludes some points that are not in the domain in order to fit the domain of simulations, and that is not easy to do. 
 
 So Finite different method cannot handle the problem in general. 
 
-### Motivating Example
+---
+### **Motivating Example**
 
 **Put nodes on the perimeter of the domain**. 
 
@@ -32,7 +33,7 @@ $$
 
 Then the $L$ is going to be the perimeter of the domain, as more points are introduced, we will have more and more points and the approximation will get better.
 
- #### Finite Elements: PDEs 
+#### **Finite Elements: PDEs**
  
 1. Discretized the domain into nodes. 
 2.  Interpolate the elements. 
@@ -40,7 +41,7 @@ Then the $L$ is going to be the perimeter of the domain, as more points are intr
 4. Formulate PDEs as a linear system: $Ax = b$
 5. The solution for the system is the solution to the PDEs. 
 
-### Interpolation: 1D 
+### **Interpolation: 1D**
 
 Lines. Use lines to interpolate the points in the domain. 
 * Linear: Simplex 
@@ -50,7 +51,7 @@ In 1D it's very similar to Lagrange Polynomial
 
 ---
 
-### Interpolations: 2D
+### **Interpolations: 2D**
 
 Consider the **Simplex Triangularization** of the domain, we have: 
 
@@ -71,7 +72,7 @@ When we unite several of these triangles in the domain, we will get the **Multip
 * Why are we using Complex? "It's for higher order derivative"
 
 ---
-#### 2D interpolation
+#### **2D interpolation**
 
 Choose 3 nodes and we have: 
 
@@ -126,7 +127,7 @@ Where $S$ is the area of the triangle that got projected down the xy plane.
 
 Note: Everything outside of the domain are defined as zero. 
 
-#### Weak Formulation of Poisson Equations
+#### **Weak Formulation of Poisson Equations**
 
 Let's take the example of the Poisson Equation: 
 > $$
@@ -207,7 +208,8 @@ b_m = \int_{\Gamma}h(x, y)\phi_m(x, y) dx dy +
 \iint_{\Omega} f(x, y)\phi_m(x, y) dxdy
 $$
 
-### Implementations
+---
+### **Implementations**
 
 * Discretized the domain. 
 * Interpolate nodes into elements. 

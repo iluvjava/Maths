@@ -9,16 +9,17 @@ Second order, with a predefined time frame for the system.
 
 However the conditions for the problem will be different: 
 
-> $$\alpha_1 y(a) + \beta_1\frac{dy}{dt}(a) = \gamma_1$$ $$\alpha_2 y(b) + \beta_2\frac{dy}{dt}(b) = \gamma_2$$
+> $$\alpha_1 y(a) + \beta_1\frac{dy}{dt}(a) = \gamma_1$$ 
+> $$\alpha_2 y(b) + \beta_2\frac{dy}{dt}(b) = \gamma_2$$
 
 And we want a particular solution to the problem to satisfy a system of linear equations with unknown parameters where it involves the value of the function at $a, b$ and the value of the derivative at those points too. 
 
 These kind of problems are called the boundary value problems. 
 
-#### Notes: 
+### **Notes:**
 There could be many solutions to the problem, looking for one particular solutions doesn't mean that the solution is gonna be unique to the Boundary Values. 
 
-#### How 
+### **How** 
 Consider the conditions for both of the IVPs and the BVPs problems, here is the initial conditions for this particular problem if we were solving the IVPs: 
 
 $$y\;(a) = \alpha \quad y\;'(a) = \beta$$
@@ -29,12 +30,12 @@ $$y(a) = \alpha \quad y(b) = \beta$$
 
 So here, with the initial value at $t = a$ we will be able to phrase the problem as an optimization problem where we adjust the value of the derivative at the point of $t = a$ and then we try to minimize the errors at the other end of the simulation $t = b$. Some of the method we can use are "Newton's Raphson" or the "Bisection Method" but this is not very idea, and the Newton's method is going to use the derivative information. 
 
-##### Shooting Method
+### **Shooting Method**
 
 This is the approach we are going to implement for some of the BVPs 
 
 ---
-#### Eigen Value Problems (Example)
+### **Eigenvalue Problems (Example)**
 
 A boundary value problem is said to be eigen value problem when it can be represented by a linear differential operator with the right hand side of the equation set to zero. 
 
@@ -75,7 +76,8 @@ Now for the other case where $x\rightarrow-\infty$, we will have the term with $
 
 And this will give use the expression for $\psi\;'$
 
-$$\psi\;'(\infty) = -\sqrt{\beta_n}\psi_n(\infty)$$ $$\psi\;'(-\infty) = \sqrt{\beta_n}\psi_n(-\infty)$$
+$$\psi\;'(\infty) = -\sqrt{\beta_n}\psi_n(\infty)$$ 
+$$\psi\;'(-\infty) = \sqrt{\beta_n}\psi_n(-\infty)$$
 (2)
 
 This is a expression that can be interpreted computationally. What we did is we transformed a boundary conditions that cannot be interpreted computationally into a conditions that is suitable for computational purposes. 
@@ -85,7 +87,7 @@ This is the boundary conditions such that, once put into the simulations, the fu
 For this particular case, we just need to replace the boundary to be a really large number to get the boundary conditions for this problem 
 
 
-#### Example Continued
+#### **Example Continued**
 
 > $$\frac{d^2\phi_n}{dx^2} + (100 - \beta_n)\psi_n = 0$$
 

@@ -4,7 +4,7 @@ Prereq: [[IVP]]
 
 ---
 
-### Canonical Form of Higher Order ODEs
+### **Canonical Form of Higher Order ODEs**
 
 
 Consider a given system of equations involving differential from zero up to n, expressed in the following form: 

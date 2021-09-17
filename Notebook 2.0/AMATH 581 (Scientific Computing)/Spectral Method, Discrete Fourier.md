@@ -3,7 +3,7 @@ The spectral method is using the FFT to solve PDEs with periodic boundary condit
 
 ---
 
-### DFT (Discrete Fourier Transform)
+### **DFT (Discrete Fourier Transform)**
 
 [[MATLAB]]: How we do FFT in Matlab. 
 
@@ -27,7 +27,7 @@ $$
 **Comment:**
 Notice that, the constant in front of the $DFT$ transform is going to be a bit **fickle**, there are different ways to do it, but the key is that, FFT and then inverse FFT will take it back to the original, which is all we need. 
 
-#### Matrix Representation
+### **Matrix Representation**
 
 And DFT can be represented as a matrix multiplications too, and this is how this is gonna look like: 
 
@@ -61,7 +61,7 @@ W_8 =
 \end{array}\right]
 $$
 
-### Derivative With FFT
+### **Derivative With FFT**
 Using the properties of the Fourier Transform, we can perform a transformation in the Frequencies domain to take the derivative of the given function. 
 
 This is how we use the DFT to find the derivative of some kind of periodic data: 
@@ -121,7 +121,7 @@ And before applying this vector to the Fourier Domain, we need to shift  (`fftsh
 It's tempting to do the integration via dividing by the multiplier $ik$, but please take note that we will have a **divide by zero** problem when doing that. 
 
 ---
-### 2D DFT
+### **2D DFT**
 
 Assuming Periodic transform conditions, consider an $M\times N$ grid of data points, the 2d DFT can phrased by the following formula: 
 

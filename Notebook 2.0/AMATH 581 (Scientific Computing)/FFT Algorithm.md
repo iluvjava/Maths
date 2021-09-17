@@ -3,10 +3,10 @@ repreq: [[Fourier Transform Fourier Series]]
 
 ---
 
-### Intro
+### **Intro**
 The FFT uses divide and conquer and it exploits the fractal properties of the DFT matrix, the roots of unity is the key for the exploitation here. 
 
-
+#TODO: Remember to fill this out, it's been empty like forever. 
 
 
 

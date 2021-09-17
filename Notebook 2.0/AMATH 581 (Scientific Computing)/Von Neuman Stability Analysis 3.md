@@ -4,7 +4,7 @@ prereq: [[Von Neuman Stability Analysis 2]]
 
 ---
 
-### Time Stepping Method
+### **Time Stepping Method**
 
 Assuming a general format for the PDEs in the following form: 
 
@@ -17,7 +17,7 @@ So it's second order, non time depend, but doesn't have to be linear, then we de
 $$
 \lambda = \frac{\Delta t}{\Delta x}
 $$
-#### Forward Euler
+#### **Forward Euler**
 
 $$
 u_n^{(m + 1)} = u_n^{(m)} + 
@@ -36,7 +36,7 @@ Order: $\mathcal{O}(\Delta x^2\Delta t)$
 * Heat Equation: 
 	*  $$\frac{C\Delta t}{\Delta x^2} < \frac{1}{2}$$
 
-#### Backward Euler
+#### **Backward Euler**
 
 $$
 u_n^{(m + 1)} = u_n^{(m)} + 

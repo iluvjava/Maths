@@ -2,7 +2,7 @@ Prereq: [[Finite Difference]], [[BVP]]
 
 --- 
 
-### Finite Difference Method
+### **Finite Difference Method**
 
 Used for solving one of the elliptic problem concerning the stream function where: 
 
@@ -17,7 +17,7 @@ is going to have a null space, and that is the constant term, assuming periodic 
 
 ---
 
-### Finite Difference Method with Time Stepping
+### **Finite Difference Method with Time Stepping**
 
 Here we are going to use the heat equation as the example for the demonstrating the finite difference method. The 1d heat equation is listed as: 
 
@@ -38,7 +38,7 @@ This method tends to get really slow as we decrease the value of $\Delta x$.
 
 --- 
 
-### Finite Difference in Space and Time
+### **Finite Difference in Space and Time**
 
 Here we are going to see how to make use the finite difference on both the space and time for the PDE evolution. 
 
@@ -57,7 +57,7 @@ $$
 
 This is representing the $i$ th point in the x axis grid point and the $j$ th time frame at the moment we are interested in. 
 
-#### Central Diff
+#### **Central Diff**
 Apply second order finite difference on both time and space and we have: 
 
 $$
@@ -81,7 +81,7 @@ And this will be the time stepping the scheme using finite difference, and the p
 
 **Courant-FriedrichsLevy (CFL)**  refers to the term that plays a big role to the  stability and condition of the given scheme and problem, in this case the CFL is $$\lambda = \frac{\Delta t}{\Delta x}$$ 
 
-#### Taylor Expansion 
+#### **Taylor Expansion **
 
 Taylor Series on the time dimension: 
 $$
