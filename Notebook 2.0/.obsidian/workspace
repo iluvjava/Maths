@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 999/The Laplacian Matrix.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 999/The Laplacian Matrix.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
             "mode": "preview"
           }
         },
@@ -73,7 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 404
+    "width": 310.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 999/The Laplacian Matrix.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Math 999/The Laplacian Matrix.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,15 +133,15 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
+    "AMATH 584 (Numerical Linear Algbra)/Quasi Schur Form.md",
+    "AMATH 584 (Numerical Linear Algbra)/Untitled.md",
     "Math 999/The Laplacian Matrix.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrices.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Jordan Normal Form.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Subspace Direct Sum.md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Jordan's Lemma.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Inverse Conjugate Transpose Similarity.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullith Theorem.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Untitled.md"
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Jordan's Lemma.md"
   ]
 }

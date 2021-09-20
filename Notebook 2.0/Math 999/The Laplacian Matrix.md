@@ -84,7 +84,7 @@ $$
 \end{aligned}
 $$
 
-This aims to normalize the diagonal elements to 1 first, and for all the non-dialgonal elements, it normalize by the square root of the degree of connecting vertices. 
+This aims to normalize the diagonal elements to 1 first, and for all the non-diagonal elements, it normalize by the square root of the degree of connecting vertices. 
 
 **Random Walks** 
 
@@ -99,5 +99,5 @@ $$
 \end{cases}
 $$
 
-$I - \widetilde{L}$ is the transition matrix for random walks on the undirected grapgh. Hence, it's name for this type of normalization. 
+$I - \widetilde{L}$ is the transition matrix for random walks on the undirected graph. Hence, it's name for this type of normalization. 
 
