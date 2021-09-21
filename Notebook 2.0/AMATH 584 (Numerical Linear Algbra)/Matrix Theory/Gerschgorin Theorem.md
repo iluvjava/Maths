@@ -19,7 +19,7 @@ let $A \in \mathbb{R}^{n\times n}$ the Gerschgorin Disk:
 >     |x - a_{i, i}| \le R_i(A)
 > \right\rbrace
 > $$
-
+> All the eigenvaluesof matrix $A$ are in the union of disks in the above set. 
 
 ---
 **Proof**
@@ -88,7 +88,7 @@ $A, A^H$ has the same eigenvalues, and therefore:
 
 If, the diagonal is larger than the absolute sum of all the non-diagonal elements, then the disck doesn't involve the origin for all the eigen value, which means that the matrix will be invertible. 
 
-> If $a_{i, i} > \sum_{k = 1, k \neq i}^{n}|a_{i, k}|$ for all $i$ then the matrix is invertible. 
+> If $a_{i, i} > \sum_{k = 1, k \neq i}^{n}|a_{i, k}|$ for all $i$ then the matrix is invertible. This is the cause because zero is not not in the Gerschgorin's disk. 
 
 **Discussion**:
 

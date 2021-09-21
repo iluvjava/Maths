@@ -62,7 +62,9 @@ $$
 \end{aligned}
 $$
 
-We can do this to all the diagonal elements of the matrix $R^HR$, because othe previous row will be set to zero while figuring out the equation for the diagonal, it will set the right handsdie of the next equation only equals to the $i$ th diagonal. Therefore, inductively we know that $RR^H, R^HR$ are diagonal matrices. 
+\[1\]: $R_{1,2} = 0$ because of the results from the line before this line. 
+
+We can do this to all the diagonal elements of the matrix $R^HR$, because other previous row will be set to zero while figuring out the equation for the diagonal, it will set the right handside of the next equation only equals to the $i$ th diagonal. Therefore, inductively we know that $RR^H, R^HR$ are diagonal matrices. 
 
 
 ---
