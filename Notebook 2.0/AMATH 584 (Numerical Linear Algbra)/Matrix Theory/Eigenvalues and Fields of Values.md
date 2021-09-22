@@ -1,7 +1,7 @@
 [[Fields of Values]]
 
 ---
-### **Intro**
+### **Eignevalues of Normal Matrices**
 
 Here we are going to prove this statement: 
 
@@ -32,7 +32,7 @@ $$
 \end{aligned}
 $$
 
-Take note that, $\Lambda$  is a diagonal matrix consits of all the Eigenvalues for the matrix $A$. 
+Take note that, $\Lambda$  is a diagonal matrix consists of all the Eigenvalues for the matrix $A$. 
 
 Which is basically: 
 
@@ -40,15 +40,6 @@ $$
 \sum_{j = 1}^{n}\lambda_i|z_i|^2 \text{ Where: } \Vert z\Vert_2^2 = 1
 $$
 
-Notice that, this is the convex combinations of all the Eigenvalues of $A$, and becaus the equality, it's the convexhull of all the eigenvalues of the matrix $A$. 
+Notice that, this is the convex combinations of all the Eigenvalues of $A$, and because the equality, it's the convex hull of all the eigenvalues of the matrix $A$. 
 
 
----
-### **Corollary**
-
-> $$
-> \Re(\mathcal{F}(A)) = \mathcal{F}(\mathbb{H}(A))
-> $$ 
-> where $\mathbb{H}(A) = \frac{1}{2}(A + A^H)$
-
-The proof is kinda obvious, just remember that $y^H A y$ and $y^HA^Hy$ are conjugate of each other, using the properties of: [[Complex Vec Dot]]. Nice and easy. 

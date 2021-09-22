@@ -111,7 +111,7 @@ $$
         \mathbf{0}
     \end{bmatrix}
     \\
-    \underset{A^{-1}, A\exist}{\implies} 
+    \underset{A^{-1}, A\exists}{\implies} 
     B_{1,2}y &\neq \mathbf{0} \quad \forall \; y
 \end{aligned}
 $$

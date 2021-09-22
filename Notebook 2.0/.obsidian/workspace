@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
             "mode": "preview"
           }
         },
@@ -73,7 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 310.0036334991455
+    "width": 320.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,15 +133,15 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Untitled.md",
-    "AMATH 584 (Numerical Linear Algbra)/Normal Matrix Diag Similarity.md",
-    "AMATH 584 (Numerical Linear Algbra)/Quasi Schur Form.md",
-    "AMATH 584 (Numerical Linear Algbra)/Untitled.md",
-    "Math 999/The Laplacian Matrix.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullity Theorem.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrices.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Jordan Normal Form.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Subspace Direct Sum.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Eigenvalues and Fields of Values.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complex Vec Dot.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complementary Nullity Theorem.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md"
   ]
 }

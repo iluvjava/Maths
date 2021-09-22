@@ -26,6 +26,16 @@ Another similar concept of a matrix is the numerical range of the matrix, which 
 > $$
 
 ---
-### **Corollary**
+### **Corollary 1**
 
-The eigenvalues of the matrix $A$ is in $\mathcal{F}(A)$. This too obvious to prove. 
+> The eigenvalues of the matrix $A$ is in $\mathcal{F}(A)$. This too obvious to prove. 
+
+---
+### **Corollary 2**
+
+> $$
+> \Re(\mathcal{F}(A)) = \mathcal{F}(\mathbb{H}(A))
+> $$ 
+> where $\mathbb{H}(A) = \frac{1}{2}(A + A^H)$
+
+The proof is kinda obvious, just remember that $y^H A y$ and $y^HA^Hy$ are conjugate of each other, using the properties of: [[Complex Vec Dot]]. Nice and easy. 

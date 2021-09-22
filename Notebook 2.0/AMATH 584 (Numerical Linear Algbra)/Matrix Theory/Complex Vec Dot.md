@@ -1,7 +1,6 @@
 In this section, we introduce define the complex of a dot product of 2 vectors from the field: $\mathbb{C}^n$
 
 ---
-
 #### **Conjugate Transpose (Adjoint)**
 Before the discussion we might need to refresh a bit on the idea of complex conjugate. For this section we denote the complex conjugate of a complex number as $z^*$. 
 
