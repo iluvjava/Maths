@@ -27,3 +27,5 @@ Another similar concept of a matrix is the numerical range of the matrix, which 
 
 ---
 ### **Corollary**
+
+The eigenvalues of the matrix $A$ is in $\mathcal{F}(A)$. This too obvious to prove. 
