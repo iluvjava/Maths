@@ -200,3 +200,4 @@ When, $0\not\in \mathcal{F}(A)$, the right hand size is less than one, giving us
 
 
 > Equation (2.11) in Greenbaum's iterative method is not understood, the value of $\alpha$ and eigen eigenvalues when assuming matrix $A$ is symmetric positive definite. 
+ mn

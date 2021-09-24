@@ -53,7 +53,7 @@ $$
  **Strictly Diagonal Dominant**: The element on the diagonal of the matrix is larger than the sum of absolute value of all the non diagonal element. 
  
  **Computational Concerns**: 
- Jacobi Method: Supports Parallization
+ Jacobi Method: Supports Parallelization
  
 Gauss-Seidel Method: Doesn't support because back substitution is going to be need for the algorithm. 
 
