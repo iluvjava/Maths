@@ -204,6 +204,7 @@ Inductively, we have shown the the $q_{k + 1}$ produced by orthogonalizing again
 **Claim 2** $\blacksquare$ 
 
 
+
 ---
 ### **The Recurrences Between the $q$ Vectors**
 
