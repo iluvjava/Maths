@@ -23,6 +23,6 @@ Take the for granted, then we only need to sample from the boundary, and then cr
 
 * Then, for all $\theta \in [0, 2\pi)$, we can measure the maximal eigenvalues of $\mathbb{H}(\exp(i\theta)A)$ and find the left boundary for the rotated field of values. 
 
-* Because it's convex and compact, the vertical boundary line is enough to give tell us the shape for the field of values for the matrix $A$. 
+* Because it's convex and compact, the vertical boundary line is enough to give tell us the shape for the field f values for the matrix $A$. 
 
 

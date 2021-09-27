@@ -84,3 +84,10 @@ And if we assume that $(W^TAV)$ is invertible, then we obtain the step to take t
 
 
 Analysis of subspace projections methods should involve discussion of this particular frame works. 
+
+
+---
+### **Consequences**
+
+
+
