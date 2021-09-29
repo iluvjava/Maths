@@ -24,3 +24,4 @@ Fields of values but generalized to set of matrices instead of just one matrix.
 > $$
 
 
+Such a definition can be use to characterize the convergence for GMRes related method in a easier way. 

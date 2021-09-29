@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
             "mode": "preview"
           }
         },
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,6 +133,8 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Basics.md",
+    "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
     "AMATH 581 (Scientific Computing)/Iterative Method.md",
@@ -140,8 +142,6 @@
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullity Theorem.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Eigenvalues and Fields of Values.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complex Vec Dot.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md"
   ]
 }
