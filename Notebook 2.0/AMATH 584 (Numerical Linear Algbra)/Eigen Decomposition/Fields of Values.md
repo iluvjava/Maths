@@ -1,5 +1,7 @@
 [[Matrices]], [[Spectral Radius]]
 
+Important references for more stuff: [numerical range in a nutshell](http://www.math.wsu.edu/faculty/tsat/files/short.pdf)
+
 ---
 ### **Intro**
 
