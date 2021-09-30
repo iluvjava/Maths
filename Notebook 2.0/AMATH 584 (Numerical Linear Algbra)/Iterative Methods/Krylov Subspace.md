@@ -82,3 +82,12 @@ $$
 The inverse of $A$ can be expressed using another matrix polynomials, using the coefficients from the characteristic polynomials. 
 
 Any vector, can be spanned by the Krylov Subspace, if we know that $A$ is invertible.  
+
+This is known as the: **Cayleys Hamilton's Theorem**.
+
+
+---
+### **Properties of the Krylov Subspace**
+
+Some of these properties are discussed by Yousaf Saad, in his sparse linear system book. 
+

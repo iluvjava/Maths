@@ -222,13 +222,5 @@ Note: Here we assume that, none of the cofficients $a_k$ are zero, which means t
 
 
 ---
-### **More Hermitian Consequences**
-
-There are more consequences when we apply Hermitian Matrix to the algorithm. 
-
-
-
-
-
 
 

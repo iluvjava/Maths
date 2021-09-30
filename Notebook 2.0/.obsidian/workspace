@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
+            "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
+            "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
             "mode": "preview"
           }
         },
@@ -73,7 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 398.0036334991455
+    "width": 365.5036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
+                "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Basics.md",
+                "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,8 +131,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "8b3ccc733e01711a",
+  "active": "2be0bfe80447b2d8",
   "lastOpenFiles": [
+    "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+    "AMATH 561 (Probability Theory)/Probability Spaces.md",
     "AMATH 516 (Numerical Optimizations)/Basics.md",
     "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
@@ -140,8 +142,6 @@
     "AMATH 581 (Scientific Computing)/Iterative Method.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullity Theorem.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md"
   ]
 }
