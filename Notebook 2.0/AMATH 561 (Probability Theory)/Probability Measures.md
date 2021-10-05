@@ -25,7 +25,7 @@ $$
 $$
 
 ---
-### **Properties of Probability Measures**
+### **Properties of Measures**
 
 $$
 \begin{aligned}
