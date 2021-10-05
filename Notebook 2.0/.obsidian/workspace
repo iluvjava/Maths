@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+            "file": "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+            "file": "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
             "mode": "preview"
           }
         },
@@ -89,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+                "file": "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+                "file": "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,17 +131,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "2be0bfe80447b2d8",
+  "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
     "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
+    "AMATH 561 (Probability Theory)/Probability Measures.md",
+    "AMATH 561 (Probability Theory)/Untitled.md",
     "AMATH 561 (Probability Theory)/Probability Spaces.md",
     "AMATH 516 (Numerical Optimizations)/Basics.md",
     "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
-    "AMATH 581 (Scientific Computing)/Iterative Method.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Spectral Radius.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Rank Nullity Theorem.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md"
+    "AMATH 581 (Scientific Computing)/Iterative Method.md"
   ]
 }

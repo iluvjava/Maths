@@ -1,6 +1,5 @@
 This file aims to summarize the keys for the taxonomy of iterative method proposed by Yousef Saad in his book \<Iterative Methods for Sparse Linear System\>
 
-
 ---
 ### **Intro**
 
@@ -71,7 +70,7 @@ And if we assume that $(W^TAV)$ is invertible, then we obtain the step to take t
 >          \begin{aligned}
 >             &\text{Seletct: } \mathcal{K, L}
 >             \\
->             &\text{Choose: } V, W \text{For} \mathcal{K}, \mathcal{L}
+>             &\text{Choose: } V, W \text{ for} \mathcal{K}, \mathcal{L}
 >             \\
 >             & r = b - Ax
 >             \\
@@ -89,5 +88,5 @@ Analysis of subspace projections methods should involve discussion of this parti
 ---
 ### **Consequences**
 
-
+The GMRes method, the Conjugate Gradient method, and many other methods all fits ounder this category. In which, a subspace is maintained during the iterations, and then it try to get the best results using the maintained subspace for the iteration. 
 
