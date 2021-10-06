@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "epigraph",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -133,15 +133,15 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Topological Basics for Optimizations.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md",
     "AMATH 516 (Numerical Optimizations)/Untitled.md",
     "AMATH 516 (Numerical Optimizations)/Basics.md",
     "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
     "AMATH 561 (Probability Theory)/Infinite Probability Spaces.md",
     "AMATH 561 (Probability Theory)/Probability Measures.md",
     "AMATH 561 (Probability Theory)/Untitled.md",
-    "AMATH 561 (Probability Theory)/Probability Spaces.md",
-    "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Fields of Values.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md"
+    "AMATH 561 (Probability Theory)/Probability Spaces.md"
   ]
 }
