@@ -6,7 +6,7 @@ An example we are going to try for Infinite Probability spaces, and probability 
 
 Here, we will try to go from discrete probability spaces of finite many coin tosses, to an infinite probability spaces and demonstrate the construction of $\sigma$-alg and probability measure on the infinite probability spaces. 
 
-Let all the possible outcomes be $\Omega$, then an element $\omega \in \Omega$ is an infinitely long chain of coin tosses, denoted as $\omega = \omega_1\omega_2...$ where each $\omega_i$ is gonna take $\{H, T\}$ discrete outcome. This set of outcome will be **uncountable**. (Image the sequence to be a slicable python array for ease of notations. )
+Let all the possible outcomes be $\Omega$, then an element $\omega \in \Omega$ is an infinitely long chain of coin tosses, denoted as $\omega = \omega_1\omega_2...$ where each $\omega_i$ is gonna take $\{H, T\}$ discrete outcome. This set of outcome will be **uncountable**. (Image the sequence to be a sliced python array for ease of notations. )
 
 Let's start defining the set of Events: 
 
@@ -80,14 +80,16 @@ $$
 The probability assignment of such an event will be: 
 
 $$
-A_{\underbrace{\text{ H \dots H}}_{n + 1}}\subset A_{\underbrace{\text{ H \dots H}}_{n}} = \bigcap_{n\in\mathbb{N}} A_{\underbrace{H\cdot H}_{n}}
+A_{\underbrace{\text{H $\dots$ H}}_{n + 1}}
+\subset
+A_{\underbrace{\text{H $\dots$ H}}_{n}} = 
+\bigcap_{n\in\mathbb{N}} A_{\underbrace{H\dots H}_{n}}
 $$
 
 Using continuity from below property of the measure, we have: 
 
 $$
-\lim_{n\rightarrow \infty}\mathbb{P}\left(A_{\underbrace{H\cdots H}_{n}}\right) = p^n = 0
+\lim_{n\rightarrow \infty}\mathbb{P}\left(A_{\underbrace{H\dots H}_{n}}\right) = p^n = 0
 $$
 
 This event has zero probability. 
-

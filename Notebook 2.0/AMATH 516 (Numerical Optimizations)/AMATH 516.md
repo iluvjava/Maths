@@ -6,5 +6,5 @@ This class is about:
 * First order Methods, smooth and non-smooth. 
 * Variational Analysis. 
 
-[[Basics]] 
+[[Linear Algebra Basics for Optimization]] 
 
