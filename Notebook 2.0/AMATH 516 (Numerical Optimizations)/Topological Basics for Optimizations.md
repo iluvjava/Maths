@@ -32,7 +32,7 @@ In which, the operator imposes the $\sup, \inf$ onto the tail of a sequence. Sup
 > $$
 > The limit of the upper bound of the tail as the function goes up. Basically, how big can it bounce if I just snap it in the middle and look at its tail. 
 
-And extending the argument to a Euclidean space, we have for example, a function that is a mappting from $\mathbf{E}$ to the set $\bar{\mathbb{R}}$, then we can say: 
+And extending the argument to a Euclidean space, we have for example, a function that is a mapping from $\mathbf{E}$ to the set $\bar{\mathbb{R}}$, then we can say: 
 
 **Liminf of a function on Euclidean space**
 
@@ -80,6 +80,10 @@ And then we will be able to define a closed and an opened:
 
 To prove it, we will need to use the epsilon balls, and arbitrary sequences on the set under discussion. 
 
+If a set is closed, then every limit point is in the set. If a set of open, then that is false. 
+
+If a set if compact, then it means it's closed and bounded. 
+
 ---
 ### **Set Operations**
 
@@ -125,7 +129,7 @@ The definition prevents discrete Jump at the point say $a$, and the function has
 
 **Theorem: Closed Epigraph**
 
-The epigraph of a function is closed iff the function is lower-semicontinuous. 
+The epigraph of a function is closed iff the function is lower-semi-continuous. 
 
 **Coercive Function**
 
@@ -133,5 +137,5 @@ Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence 
 
 **Existence of a Minimizer**
 
-> If a function is closed and Coercive, then it must have minimizers. 
+> If a function is closed and Coercive, then it must have minimizers		. 
 

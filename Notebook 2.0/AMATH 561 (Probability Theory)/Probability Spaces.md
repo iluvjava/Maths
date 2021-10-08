@@ -26,7 +26,15 @@ The family of sets must satisfies the following:
 * $A_i \in \mathcal{F} \implies \bigcup_i A_i \in \mathcal{F}$. Where, the sequence of sets will have to be countable. Using this fact and the second, one can deduce that any countable sequence of outcomes will have to be closed under union too. 
 
 ---
+### **Probability**
+
+The function mapping from $\mathcal{F}$ to $[0, 1]$ will be a function that satisfies: 
+
+$$
+\mathbb{P}\left(\Omega\right) = 1
+\quad
+\mathbb{P}\left(\dot{\bigcup}A_i\right)  = \sum_{i}^{}p(A_i) \quad \{A_i\} \text{ countable}
+$$
 
 
-
-
+Yeah, these 2 properties. 

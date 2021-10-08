@@ -38,8 +38,14 @@ Some of the examples for intuitive understanding:
 As we can see, matrices and vector are examples of Euclidean space and they have inner products fdefined over there. In the most general sense: 
 
 $$
-\left\langle,  \right\rangle: \mathbf{E}\times \mathbf{E} \mapsto \mathbb{R}
+\left\langle ::\mathbf{E},::\mathbf{E}  \right\rangle: \mathbf{E}\times \mathbf{E} \mapsto \mathbb{R}
 $$
+
+And the inner produce adhere to the following properties: 
+
+* Symmetrical
+* Bilinear
+* Positive Definiteness
 
 ---
 ### **Linear Map**

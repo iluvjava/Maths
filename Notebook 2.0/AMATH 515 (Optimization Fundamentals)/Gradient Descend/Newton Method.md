@@ -2,6 +2,7 @@ We are going to look at how Newton's method can be used in optimization and how 
 
 
 ---
+### **Newton's Iterations**
 Newton's iteration in higher dimension is like: 
 
 > $$
@@ -39,7 +40,7 @@ Notice that, the inverse of an Positive Definite matrix is still an Positive Def
 The Direction that the newton's Iterations is indeed going going into the descend direction. 
 
 ---
-### Theorem: Descend Direction 
+### **Theorem: Descend Direction**
 
 If $d$ is a descent direction then there is a $\gamma > 0$ so that: 
 $$
@@ -61,10 +62,15 @@ Questions and Observations:
 2. Where do we use the Hessian? Did you use it anywhere? 
 
 ---
-### Inspiration for Algorithm
+### **Inspiration for Algorithm**
 
 $$
 x_{k + 1} = x_{k} - \gamma_k H^{-1}_k \nabla f(x_k)
 $$
 
 Where $H$ is positive definite. 
+
+
+### **Modified Newton's with Line Search**
+
+#TODO: Fill this if there is time. 
