@@ -1,5 +1,6 @@
 [[Infinite Probability Spaces]]
-An example we are going to try for Infinite Probability spaces, and probability measure. 
+An example we are going to try for Infinite Probability spaces, and probability measure. And the moral of the story is that, Borel Measure are needed for uncountably many events. 
+
 
 ---
 ### **Intro**
