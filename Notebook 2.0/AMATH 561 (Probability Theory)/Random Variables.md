@@ -70,3 +70,12 @@ P(\{X\le y_1\})\le P(\{X\le y_2\}) \le P(\{X \le y_3\}) \cdots
 $$
 
 Therefore, the CDF is strictly non-decreasing. 
+
+
+---
+### **Discrete Random Variable (Distribution, Probability Measure)**
+
+A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countale set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to an countable set is somehow, $1$. 
+
+
+
