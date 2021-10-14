@@ -78,4 +78,17 @@ Therefore, the CDF is strictly non-decreasing.
 A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countale set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to an countable set is somehow, $1$. 
 
 
+---
+### **Reconstruction of Random Variable from CDF**
 
+Given any CDF, then a random variable function mapping from $\Omega$ to $\mathbb{R}$ will be: 
+
+$$
+X(\omega) = \sup\{y : F_X(y) < \omega\} = \sup\{
+        F^{-1}_X\left((-\infty, y]\right)
+    \}
+$$
+
+Given any $\omega$ outcome, the rando mvariable map to the upper bound on the preimage of $F_X$ for input $y$. 
+
+Thinking in terms of pre-images of functions will help us a lot with some of the analysis part. 
