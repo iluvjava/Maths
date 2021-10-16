@@ -10,7 +10,7 @@ Random variable is a function that maps from the $\Omega$ to $\mathbb{R}$. Assum
 > \forall B\in \text{Borel}(\mathbb{R}): X^{-1}(B) \in \mathcal{F}
 > $$
 
-If the for all elements in the borel set on reals, the preimage o fthe R.V is in the event spaces, then this mapping is called a random variable. And the preimage is defined as: 
+If the for all elements in the Borel set on reals, the pre-image of the R.V is in the event spaces, then this mapping is called a random variable. And the pre-image is defined as: 
 
 > $$
 > X^{-1}(B) = \{\omega \in \Omega: X(w) \in B\}
@@ -29,13 +29,13 @@ $$
 \end{cases}
 $$
 
-It indicates whever a given outcome is in the event $A$ or not. And it outputs binary value $1, 0$ to distinguish it. 
+It indicates whenever a given outcome is in the event $A$ or not. And it outputs binary value $1, 0$ to distinguish it. 
 
 
 ---
-### **Culmulative Distribution Function**
+### **Cumulative Distribution Function**
 
-For any R.D, a distribution function can be defined for the random variable. The Culmulative Distribution function for random variable $X$ is defined as: 
+For any R.D, a distribution function can be defined for the random variable. The Cumulative Distribution function for random variable $X$ is defined as: 
 
 > $$
 > F_{X}(y) := P(X \le y) = P(X^{-1}((-\infty, y]))
@@ -55,7 +55,7 @@ $$
 \lim_{x\nearrow y}F(y) = P(X < y)
 $$
 
-The left limt of the point is the probability of observing $X < y$, where equality is gone. 
+The left limit of the point is the probability of observing $X < y$, where equality is gone. 
 
 Property 1. of CDF is directly derived using the fact that Pre-Images: 
 
@@ -63,7 +63,7 @@ $$
 y_1 < y_2< \cdots y_n \implies \{X\le y_1\}\subseteq \{X\le y_2\} \subseteq\{X\le y_3\}\cdots
 $$
 
-And using the property of probability measure, the measure on all those pre images have: 
+And using the property of probability measure, the measure on all those pre-images have: 
 
 $$
 P(\{X\le y_1\})\le P(\{X\le y_2\}) \le P(\{X \le y_3\}) \cdots
@@ -75,7 +75,8 @@ Therefore, the CDF is strictly non-decreasing.
 ---
 ### **Discrete Random Variable (Distribution, Probability Measure)**
 
-A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countale set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to an countable set is somehow, $1$. 
+A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countable set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to an countable set is somehow, $1$. 
+
 
 
 ---
@@ -89,6 +90,8 @@ X(\omega) = \sup\{y : F_X(y) < \omega\} = \sup\{
     \}
 $$
 
-Given any $\omega$ outcome, the rando mvariable map to the upper bound on the preimage of $F_X$ for input $y$. 
+Given any $\omega$ outcome, the random variable map to the upper bound on the pre-image of $F_X$ for input $y$. 
 
 Thinking in terms of pre-images of functions will help us a lot with some of the analysis part. 
+
+

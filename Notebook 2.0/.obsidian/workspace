@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Random Variables.md",
+            "file": "Math 000/Calc/Taylor Series.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Random Variables.md",
+            "file": "Math 000/Calc/Taylor Series.md",
             "mode": "preview"
           }
         },
@@ -73,7 +73,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 365.0036334991455
+    "width": 351.0036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +90,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Random Variables.md",
+                "file": "Math 000/Calc/Taylor Series.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +107,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Random Variables.md",
+                "file": "Math 000/Calc/Taylor Series.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,6 +134,7 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "Math 000/Calc/Taylor Series.md",
     "AMATH 561 (Probability Theory)/Random Variables.md",
     "AMATH 561 (Probability Theory)/Probability Spaces.md",
     "AMATH 561 (Probability Theory)/Probability Measures.md",
@@ -141,7 +143,6 @@
     "AMATH 561 (Probability Theory)/Untitled.md",
     "AMATH 516 (Numerical Optimizations)/Topological Basics for Optimizations.md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md",
-    "AMATH 516 (Numerical Optimizations)/Untitled.md"
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md"
   ]
 }

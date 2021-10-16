@@ -82,7 +82,7 @@ Consider generating on a subset of $[0, 1]$, using the set $\mathcal{A} := \{(a,
 
 By the Caratheodory's Extension theorem, there is only one way to assigne probability to set that are in the set $\sigma(\mathcal{A})$ but are not in $\mathcal{A}$. 
 
-Such a generated sigma-algebra on all non degenerate intervals of the set is Borel Sigma Algebra, and it's denoted as $\mathbb{B}([0, 1])$. 
+Such a generated sigma-algebra on all non degenerate intervals of the set is Borel Sigma Algebra, and it's denoted as $\mathcal{B}([0, 1])$. 
 
 > This is the way to make a probability assignment on the Unit interval, it's using Borel Sigma Measure. 
 
