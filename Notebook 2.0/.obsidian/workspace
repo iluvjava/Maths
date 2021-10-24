@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
+            "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
+            "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "epigraph",
+                "query": "Jensen's inequalt",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,11 +69,13 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 351.0036334991455
+    "width": 351.0036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
+                "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
+                "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,6 +135,7 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "CSE 546 (Machine Learning Fundamentals)/SGD.md",
     "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
     "Math 000/Calc/Taylor Series.md",
     "AMATH 561 (Probability Theory)/Random Variables.md",
@@ -141,7 +144,6 @@
     "AMATH 561 (Probability Theory)/AMATH 561.md",
     "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
     "AMATH 561 (Probability Theory)/Untitled.md",
-    "AMATH 516 (Numerical Optimizations)/Topological Basics for Optimizations.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md"
+    "AMATH 516 (Numerical Optimizations)/Topological Basics for Optimizations.md"
   ]
 }

@@ -268,7 +268,7 @@ More importantly, we cannot just take out the expected operator in this case, be
 And that is when we use the convexity assumption of the loss function and the **Jensen's Inequality** to get there. 
 
 ---
-### **Jensen's Inequaltiy**
+### **Jensen's Inequality**
 
 It's statistics mixed with convex analysis. 
 
@@ -276,7 +276,7 @@ for any random $Z\in\mathbb{R}^d$, and convex function $\phi: \mathbb{R}^d \maps
 
 The function value is always less than the line/hyperplane that interpolate points on the domain. 
 
-This inequality is used to help to proove this inequality: 
+This inequality is used to help to prove this inequality: 
 
 $$
 \mathbb{E}\left[
@@ -289,7 +289,7 @@ $$
 
 Which appeared in the previous analysis on the boundeness of the Stochastic Gradient Descend Algorithm. 
 
-The intuition bethind the Jensen's inequality is simple, take a look at the convex defintion of a function: 
+The intuition behind the Jensen's inequality is simple, take a look at the convex definition of a function: 
 
 $$
 f(tX_1 + (1 -t)X_2)\le f(X_1) + (1 - t)f(X_2)
