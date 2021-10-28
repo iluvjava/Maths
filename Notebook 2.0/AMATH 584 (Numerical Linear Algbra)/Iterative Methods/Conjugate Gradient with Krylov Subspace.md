@@ -14,7 +14,7 @@ In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjug
 
 * $\langle \bullet \rangle$ means that span of a set of vectors that are in the angle bracket. 
 * $\langle u,v \rangle$ is the inner product of 2 vectors
-* $\langle u, v \rangle_A$ is the inner product of 2 vectors under the A SPD matrix, basically: $u^TAv$
+* $\langle u, v \rangle_A$ is the inner product of 2 vectors under the A SPD matrix, basically: $u^TAv$p
 * $Ax^+ = b$ the equation and it's solution is $x^+$, regarded as the optimal value $x^+$. 
 * $e^{(k)} = x^{(k)} - x^+$ The error vector, when the solution $x^{(k)}$ is converging. 
 * $r^{(k)} = b - Ax^{(k)}$, the residual vector, how far we are from the correct solution on the output space of matrix $A$. 

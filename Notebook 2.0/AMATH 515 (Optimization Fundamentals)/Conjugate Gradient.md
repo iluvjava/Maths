@@ -138,7 +138,7 @@ $$
 
 * (1): Recall that $r^{(k)} = b - Ax^{(k)}$ and $\nabla_x[f(x)] = Ax - b$ from Steepest Descend Matrix Vector. 
 
-Therefore, we can figure out the $\alpha$ for the conjugate direction, similar to what we did for the steepest descend in the previous case. 
+Therefore, we can figure out the stepsize $\alpha$ for the conjugate direction, similar to what we did for the steepest descend in the previous case. 
 
 $$
 \begin{aligned}
@@ -436,7 +436,7 @@ Note: Corollary 2 of Claim 4 can help further simplifies the expression for $\al
 
 **Practical Concerns**
 
-The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)} = b - Ax^{(i + 1)}$ to adjust for numerical precision. 
+The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)} = b - Ax^{(i + 1)}$ to adjust for numerical precision.     
 
 
 ---
