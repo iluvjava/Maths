@@ -28,6 +28,12 @@ At the same time, recall the recurrence relations of the Orthogonal Vectors for 
 > \end{aligned}
 > $$
 
+---
+### **The Residual Vectors are the Orthogonal Vectros From Lanczos**
+
+**Claim 1**
+
+> The orthognal vectors generated from the conjugate gradient algorithm is the vector rescaled from the Lancozs Orthogonal Vectors.
 
 
 

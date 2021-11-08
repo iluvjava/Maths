@@ -131,7 +131,7 @@ Recall that the Lanczos algorithm assert the following relationships between the
 
 $$
 \begin{aligned}
-    Aq_j &= \beta_{j - 1}q_{j - q} + \alpha_{j}q_j + \beta_jq_{j + 1}
+    Aq_j &= \beta_{j - 1}q_{j - 1} + \alpha_{j}q_j + \beta_{j+1}q_{j + 1}
 \end{aligned}\tag{5}
 $$
 

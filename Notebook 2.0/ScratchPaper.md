@@ -50,3 +50,31 @@ $$
 $$
 g(x) + h(x) \le g(x) +  (y - x)^T\nabla g(x) + \frac{\beta}{2}\Vert y - x\Vert_2^2 + h(x)
 $$
+
+
+---
+
+$$
+\begin{aligned}
+& \mathbb{E}\left[\mathbb{I}_A\left(\frac{j}{j + i + c}\right)| 
+    \mathcal{F}_n
+\right] + 
+\mathbb{E}\left[\mathbb{I}_B\left(\frac{j + c}{j + i + c}\right)| 
+    \mathcal{F}_n
+\right]
+\\
+=& 
+\left(\frac{j}{j + i + c}\right)
+\mathbb{E}\left[\mathbb{I}_A|\mathcal{F}_n\right] + 
+\left(
+    \frac{j + c}{j + i + c}
+\right) \mathbb{E}\left[\mathbb{I}_B|\mathcal{F}_n\right]
+\\
+=&
+\left(\frac{j}{j + i + c}\right)
+\mathbb{P}\left(A\right) + 
+\left(
+    \frac{j + c}{j + i + c}
+\right) \mathbb{P}\left(B\right)
+\end{aligned}
+$$
