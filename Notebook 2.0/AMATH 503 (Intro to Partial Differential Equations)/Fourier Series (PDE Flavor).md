@@ -65,7 +65,7 @@ Now, the problem is, how exactly are we going to represent the initial condition
 
 $$
 F(x) = 
-\sum_{i = 0}^{\infty}
+\sum_{n = 0}^{\infty}
 a_n\sin\left(
     \frac{n\pi x}{L}
 \right)
