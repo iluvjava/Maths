@@ -78,3 +78,11 @@ $$
 \right) \mathbb{P}\left(B\right)
 \end{aligned}
 $$
+
+
+$$
+a_n = \frac{2}{L} \sum_{j = 0}^{1/\Delta x}
+F_j\sin\left(
+    j\Delta x \pi
+    \right)
+$$

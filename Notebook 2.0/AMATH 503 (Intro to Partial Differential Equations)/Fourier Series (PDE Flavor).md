@@ -191,10 +191,10 @@ F_e(x) \cos\left(
 dx\quad\forall n\in \mathbb{N}
 $$
 
-And take not that both function is even, and hence we can switch the bounds of the interval to make it on $[-L, L]$ giving us: 
+And take note that both function is even, and hence we can switch the bounds of the interval to make it on $[-L, L]$ giving us: 
 
 $$
-b_n = \frac{1}{L}\int_{0}^{L}
+b_n = \frac{1}{L}\int_{-L}^{L}
 F_e(x)\cos\left(
     \frac{n\pi x}{L}
 \right)
