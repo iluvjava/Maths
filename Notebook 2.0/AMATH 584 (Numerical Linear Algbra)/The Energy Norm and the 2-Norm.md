@@ -5,8 +5,9 @@ Problem statement:
 
 > Let $A$ be a Positive Symmetric Positive Definite Matrix, then it can be said that: 
 > $$
-\frac{\Vert A x\Vert}{\Vert Ay \Vert} \le \kappa(A)\frac{\Vert x\Vert_A}{\Vert y \Vert_A}
-$$
+> \frac{\Vert A x\Vert}{\Vert Ay \Vert} \le \kappa(A)\frac{\Vert 
+> x\Vert_A}{\Vert y \Vert_A}
+> $$
 
 **Proof**:
 
@@ -27,7 +28,9 @@ $$
 $$
 Consider another vector then it also can be said that: 
 
-$$\sqrt{\lambda_1} \le \frac{\Vert Ay\Vert}{\Vert A^{1/2}y \Vert} \le \sqrt{\lambda_n}$$
+$$
+\sqrt{\lambda_1} \le \frac{\Vert Ay\Vert}{\Vert A^{1/2}y \Vert} \le \sqrt{\lambda_n}
+$$
 
 So then: 
 
@@ -56,5 +59,6 @@ $$
     \kappa(A) \frac{\Vert x\Vert_A}{\Vert y\Vert_A}
 \end{aligned}
 $$
+
 $\blacksquare$
 
