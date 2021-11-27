@@ -86,3 +86,18 @@ F_j\sin\left(
     j\Delta x \pi
     \right)
 $$
+
+$$
+\begin{aligned}
+    y &= (1 + \delta)x - \delta \bar{x}
+    \\
+    \frac{1}{1 + \delta} y &= x - \frac{\delta}{1 + \delta} \bar{x}
+    \\
+    x &= \frac{1}{1 + \delta y} + \frac{\delta}{1 + \delta} \bar{x}
+    \\
+    x &= \frac{1}{1 + \delta}y + \left(
+        1 - \frac{1 + \delta}{\delta}
+    \right)\bar{x}
+\end{aligned}
+$$
+

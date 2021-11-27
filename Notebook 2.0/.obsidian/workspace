@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
             "mode": "preview"
           }
         },
@@ -65,17 +65,15 @@
             "id": "76766b15e5f33919",
             "type": "leaf",
             "state": {
-              "type": "starred",
+              "type": "empty",
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 351.0036334991455,
-    "collapsed": true
+    "width": 351.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -91,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,23 +104,16 @@
             "id": "7617bd12f81a15ba",
             "type": "leaf",
             "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "CSE 546 (Machine Learning Fundamentals)/SGD.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
+              "type": "empty",
+              "state": {}
             }
           },
           {
             "id": "9ed17eaa97a986b9",
             "type": "leaf",
             "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ],
@@ -135,6 +126,7 @@
   },
   "active": "8b3ccc733e01711a",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
     "CSE 546 (Machine Learning Fundamentals)/SGD.md",
     "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
     "Math 000/Calc/Taylor Series.md",
@@ -143,7 +135,6 @@
     "AMATH 561 (Probability Theory)/Probability Measures.md",
     "AMATH 561 (Probability Theory)/AMATH 561.md",
     "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
-    "AMATH 561 (Probability Theory)/Untitled.md",
-    "AMATH 516 (Numerical Optimizations)/Topological Basics for Optimizations.md"
+    "AMATH 561 (Probability Theory)/Untitled.md"
   ]
 }
