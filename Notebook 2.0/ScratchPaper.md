@@ -102,3 +102,10 @@ $$
 $$
 
 Ok. 
+
+$$
+\begin{aligned}
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}
+\end{aligned}
+$$
+

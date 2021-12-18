@@ -129,11 +129,14 @@ The definition prevents discrete Jump at the point say $a$, and the function has
 
 **Theorem: Closed Epigraph**
 
-The epigraph of a function is closed iff the function is lower-semi-continuous. 
+> The epigraph of a function is closed iff the function is lower-semi-continuous. 
+
+**Proof**: Not Yet Given
 
 **Coercive Function**
 
-Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
+Definition: 
+> Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
 
 **Existence of a Minimizer**
 
