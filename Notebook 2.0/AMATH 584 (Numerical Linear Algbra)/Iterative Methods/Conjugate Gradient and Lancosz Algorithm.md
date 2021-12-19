@@ -35,11 +35,3 @@ At the same time, recall the recurrence relations of the Orthogonal Vectors for 
 
 > The orthognal vectors generated from the conjugate gradient algorithm is the vector rescaled from the Lancozs Orthogonal Vectors.
 
-
-
-
-
-
-
-
-
