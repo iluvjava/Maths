@@ -23,6 +23,7 @@ $$
 W_k^TV_k = I 
 $$
 
+
 **Algorithm:**
 
 $$
@@ -124,6 +125,8 @@ $$
 \langle v_i, w_j\rangle = 1 \; \forall i = j \le k
 $$
 
+Claim by claim, we will show that the strong inductive hypothesis holds. 
+
 **Claim 1**
 
 > The algorithm assert $\langle v_{k + 1}, w_{k + 1}\rangle$. 
@@ -162,4 +165,20 @@ $$
     \\ 
     \langle v_{k + 1}, w_{k + 1}\rangle &= 1
 \end{aligned}
+$$
+
+**Claim 2**
+
+> $$\langle v_{k + 1},w_k \rangle = 0 \quad \langle v_k, w_{k + 1}\rangle = 0$$
+
+**Claim 3**
+
+> $$
+\langle \tilde{v}_{k + 1}, w_{k -1}\rangle = 0 \quad \langle \tilde{w}_{k + 1}, v_{k - 1}\rangle = 0
+$$
+
+**Claim 4**
+
+> $$
+    \langle \tilde{v}_{k + 1}, w_j\rangle = 0 \quad \forall j < k - 1
 $$
