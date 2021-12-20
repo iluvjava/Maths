@@ -41,8 +41,7 @@ $$
         \\
         & \text{set: } \alpha_j = \langle Av_j, w_j \rangle
         \\
-        & \widetilde{v}_{j + 1} = 
-        Av_j - \alpha_j v_j - \beta_{j - 1} v_{j - 1}
+        & \widetilde{v}_{j + 1} = Av_j - \alpha_j v_j - \beta_{j - 1} v_{j - 1}
         \\
         & \widetilde{w}_{j + 1} = A^H w_j - \bar{\alpha}_jw_j - \gamma_{j - 1}w_{j - 1}
         \\
@@ -70,13 +69,13 @@ $$
     T_k &= \begin{bmatrix}
         \alpha_1 & \beta_1 & & 
         \\
-        \gamma_1 &  &\ddots &
+        \gamma_1 &  & &
         \\
-        & &  &  
+        &\ddots & \ddots &  
         \\
-        &\ddots &   &\beta_k
+        &  &   &\beta_k
         \\ 
-        & & \beta_{k - 1} & \alpha_k
+        & & \_{k - 1} & \alpha_k
     \end{bmatrix}
 \end{aligned}
 $$
@@ -113,3 +112,54 @@ V^HW_k = I_k \quad W_k^HV_k = I_k
 $$
 
 The matrix whose columns are spanning the krylov Subsapce are perpendicular to each other. 
+
+
+---
+### **The Algorithm Asserts the Recurrences**
+
+let the Inductive Hypothesis be: 
+
+$$
+\left\langle v_i, w_j \right\rangle = 0 \; \forall i \neq j \le k \quad 
+\langle v_i, w_j\rangle = 1 \; \forall i = j \le k
+$$
+
+**Claim 1**
+
+> The algorithm assert $\langle v_{k + 1}, w_{k + 1}\rangle$. 
+
+**Proof**
+
+The algorithm firstly, asserts the following quantities and we can infer that: 
+
+$$
+\begin{aligned}
+    \gamma_k &= \left\Vert
+        \tilde{v}_{k + 1} 
+    \right\Vert \quad \beta_k = \langle v_{k + 1}, \tilde{w}_{k + 1} \rangle
+    \\
+    v_{k + 1} &= \frac{\tilde{v}_{k + 1}}{\gamma_k} \quad w_{k + 1} = \frac{\tilde{w}_{k + 1}}{\bar{\beta}_j}
+    \\
+    \implies
+    \langle v_{k + 1}, w_{k + 1}\rangle &= 
+    \left\langle 
+        \frac{\tilde{v}_{k + 1}}{\Vert \tilde{v}_{k + 1}\Vert}, 
+        \frac{\tilde{w}_{k + 1}}{\langle \overline{v_{k + 1}, \tilde{w}_{k + 1}}\rangle}
+    \right\rangle
+    \\
+    &= 
+    \left\langle 
+        \frac{\tilde{v}_{k + 1}}{\Vert \tilde{v}_{k + 1}\Vert}, 
+        \frac{\tilde{w}_{k + 1}}{\langle \tilde{w}_{k + 1}, v_{k + 1}\rangle}
+    \right\rangle
+    \\
+    &= 
+    (\Vert \tilde{v}_{k + 1}\Vert \langle \tilde{w}_{k + 1}, v_{k + 1}\rangle)^{-1} \langle \tilde{v}_{k + 1}, \tilde{w}_{k + 1}\rangle
+    \\
+    &= 
+    (\langle \tilde{w}_{k + 1}, \tilde{v}_{k + 1}\rangle)^{-1} 
+    \langle \tilde{v}_{k + 1}, \tilde{w}_{k+ 1}\rangle
+    \\ 
+    \langle v_{k + 1}, w_{k + 1}\rangle &= 1
+\end{aligned}
+$$

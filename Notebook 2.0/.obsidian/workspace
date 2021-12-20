@@ -1,31 +1,31 @@
 {
   "main": {
-    "id": "c7a13c1f99af8e5c",
+    "id": "eec45cfbe8670ecf",
     "type": "split",
     "children": [
       {
-        "id": "8b3ccc733e01711a",
+        "id": "9d7dc9c843a7255f",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
             "mode": "source"
           }
         },
-        "group": "29618195c926f27e"
+        "group": "2a62096126604452"
       },
       {
-        "id": "2be0bfe80447b2d8",
+        "id": "e741468e024c4284",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
             "mode": "preview"
           }
         },
-        "group": "29618195c926f27e"
+        "group": "2a62096126604452"
       }
     ],
     "direction": "vertical"
@@ -60,20 +60,13 @@
                 "sortOrder": "alphabetical"
               }
             }
-          },
-          {
-            "id": "76766b15e5f33919",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 351.0036334991455
+    "width": 403.0121879577637,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -89,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+                "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,42 +92,25 @@
                 "unlinkedCollapsed": true
               }
             }
-          },
-          {
-            "id": "7617bd12f81a15ba",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "9ed17eaa97a986b9",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
     "width": 300,
     "collapsed": true
   },
-  "active": "8b3ccc733e01711a",
+  "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
-    "CSE 546 (Machine Learning Fundamentals)/SGD.md",
-    "AMATH 561 (Probability Theory)/Lebesgue Integral and Expected Value.md",
-    "Math 000/Calc/Taylor Series.md",
-    "AMATH 561 (Probability Theory)/Random Variables.md",
-    "AMATH 561 (Probability Theory)/Probability Spaces.md",
-    "AMATH 561 (Probability Theory)/Probability Measures.md",
-    "AMATH 561 (Probability Theory)/AMATH 561.md",
-    "AMATH 561 (Probability Theory)/Infinite Coin Tosses.md",
-    "AMATH 561 (Probability Theory)/Untitled.md"
+    "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
+    "AMATH 516 (Numerical Optimizations)/Untitled.md",
+    "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
+    "AMATH 584 (Numerical Linear Algbra)/Amath 584.md",
+    "AMATH 584 (Numerical Linear Algbra)/Schur Decomposition/Schur Decomposition.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fields of Values.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and LDL.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md"
   ]
 }
