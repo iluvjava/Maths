@@ -171,14 +171,22 @@ $$
 
 > $$\langle v_{k + 1},w_k \rangle = 0 \quad \langle v_k, w_{k + 1}\rangle = 0$$
 
+
+
+
 **Claim 3**
 
 > $$
-\langle \tilde{v}_{k + 1}, w_{k -1}\rangle = 0 \quad \langle \tilde{w}_{k + 1}, v_{k - 1}\rangle = 0
-$$
+> \langle \tilde{v}_{k + 1}, w_{k -1}\rangle = 0 \quad \langle \tilde{w}_{k + 1}, v_{k - 1}\rangle = 0
+> $$
+
+
+
 
 **Claim 4**
 
 > $$
-    \langle \tilde{v}_{k + 1}, w_j\rangle = 0 \quad \forall j < k - 1
-$$
+>     \langle \tilde{v}_{k + 1}, w_j\rangle = 0 \quad \forall j < k - 1
+> $$
+
+
