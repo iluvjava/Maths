@@ -330,13 +330,108 @@ $$
 
 Read please observe that this is exactly the same expression as what we did for theorem 3.1.1, except for the fact that the condition number is paramaterzied by the first $n - 1$ eigenvalues of the matrix. The tighter bound would be given as: 
 
-$$
-\frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
-2\left(
-    \frac{\sqrt{\kappa_{n - 1}} - 1}{\sqrt{\kappa_{n - 1}} + 1}
-\right)^{k - 1}
-$$
+> $$
+> \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
+> 2\left(
+>     \frac{\sqrt{\kappa_{n - 1}} - 1}{\sqrt{\kappa_{n - 1}} + 1}
+> \right)^{k - 1}
+> $$
 
 Under the extreme case, the convergence is reached in 2 step of the CG iteration. 
 
-`
+---
+### **Small Eigenvalues Convergence Bound**
+
+We consider the the eigenvalues of the matrix to be like: 
+
+$$
+    0 < \lambda_1 <<  \lambda_2 \le \lambda_3 \le \cdots \le \lambda_n
+$$
+
+We wish the bounding polynomial gives the following property: 
+
+$$
+p_k(0) = 1 \quad p_k(\lambda_1) = 0
+$$
+
+Define the remapped Cheb as: 
+
+$$
+\underset{[\lambda_2, \lambda_n]}{\hat{T}_{k - 1}}(x)
+= 
+\frac{T_{k - 1}(\varphi(x))}{T_{k - 1}(\varphi(0))}
+\quad \text{where: }\varphi(x) = \frac{2x - \lambda_2 - \lambda_n}{\lambda_n - \lambda_2}
+$$
+
+let's consider another weighting function: 
+
+$$
+w(z) =  \frac{\lambda_1 - z}{\lambda_1} 
+$$
+
+Apply this weight function to the modified cheb: 
+
+$$
+p_k(z) = w(z) \frac{T_{k - 1}(\varphi(z))}{T_{k - 1}(\varphi(0))}
+$$
+
+Reader please also observe the fact that: 
+
+$$
+\max_{x\in[\lambda_2, \lambda_n]} |w(x)| = 
+\frac{\lambda_n - \lambda_1}{\lambda_1}
+$$
+
+In this case, the maximal value of the weight function $w$ is achieved via $x = \lambda_1$, and the absolute value will swap the sign of the function. Therefore, we have: 
+
+$$
+\begin{aligned}
+    |p_k(z)| &= 
+    \left|
+        w(z) \frac{T_{k - 1}(\varphi(z))}{T_{k - 1}(\varphi(0))}\right|
+    \\
+    &\le 
+    \left|\frac{w(z)}{T_{k - 1}(\varphi(0))}\right|
+    \\
+    & \le
+    \left| 
+        \left(
+            \frac{\lambda_n - \lambda_1}{\lambda_1}
+        \right)
+        T_{k - 1}(\varphi(0))
+    \right|
+    \\
+    \implies 
+    & \le   
+    \left(
+        \frac{\lambda_n - \lambda_1}{\lambda_1}
+    \right)
+    2\left(
+        \frac{\sqrt{\kappa_0} + 1}{\sqrt{\kappa_0} - 1}
+    \right)^{k - 1}
+\end{aligned}
+$$
+
+Where $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
+
+> $$
+> \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
+> 2\left(
+>     \frac{\lambda_n - \lambda_1}{\lambda_1}
+> \right)
+> \left(
+>     \frac{\sqrt{\kappa_0} + 1}{\sqrt{\kappa_0} - 1}
+> \right)^{k - 1}
+> $$
+
+
+
+Take notice that this is a much much worse bound compare to the other case, where the outlier eigenvalues being the largest eigenvalues. This will also have an huge impact on the floating point precision of the algorithm. 
+
+
+
+
+
+
+
+
