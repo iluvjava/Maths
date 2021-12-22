@@ -16,6 +16,7 @@ The final objective we wish to prove is that the convergence bound for the CG me
 >     \right)^k
 > $$
 
+This is also listed as **Theorem 3.1.1** in professor's Greenbaums work: \<Iterative Method for linear System\>. 
 
 ---
 ### **The Chebyshev Polynomial**
@@ -246,3 +247,96 @@ $$
 Because, the second quantity in the Denominator is always larger than zero and gets smaller as the value of $k$ incrases, setting it to zero and take the riciprical of the fraction, and setting it to a positive quantity only, then we have it. 
 
 
+---
+### **Big Eigen Outlier Convergence Bound**
+
+We can place a better bound on the convergence rate when the largest eigenvalues are noticably larger than all the other eigenvalues which are clustere around the origin. 
+
+Eigenvalues of the matrix $A$ are like: 
+
+$$
+p_k(z) = 
+\frac
+{
+    T_{k-1}\left(
+        \frac{2z - \lambda_{n-1} - \lambda_1}{\lambda_{n-1} -\lambda_n}
+    \right)
+}{
+    T_{k-1}\left(
+        \frac{
+            -\lambda_{n-1} - \lambda_1
+        }
+        {
+            \lambda_{n-1} - \lambda_1
+        }
+    \right)
+}\frac{\lambda_n - z}{\lambda_n}
+$$
+
+Where the line extra linear polynomial $(\lambda_n - z)/\lambda_n$ will interpolote the point $p_1(x) = 1, p_1(\lambda_n)=0$.
+
+Now we wish to observe these following fact about this polynomial: 
+
+$$
+\begin{aligned}
+    &\frac{\lambda_n - z}{\lambda_n} \in [0, 1]
+    \quad \forall z \in [\lambda_1, \lambda_n]
+    \\
+    & \frac{\lambda_n - z}{\lambda_n} <<1 \quad  \forall z \in 
+    [\lambda_1, \lambda_{n-1}]
+\end{aligned}
+$$
+
+And in that sense, we will be able to make an upper bound for this: 
+
+$$
+p_k(x) \le 
+\left|
+    \hat{T}_{[\lambda_1, \lambda_{n-1}]}
+    (\varphi(x))
+\right|
+\le 
+\frac{1}{
+\left|
+    T_{k-1}\left(
+        \frac{-\lambda_{n-1} - \lambda_1}{
+            \lambda_{n-1} - \lambda_1
+        }
+    \right)
+\right|
+}
+$$
+
+Where $\hat{T}$ denotes the perturbed Cheb on the interval of $[\lambda_1, \lambda_{n-1}]$.
+
+Now, we make use the theorem 3.1.1 which we just proved above to bound the quantity on the denominator, giving us: 
+
+$$
+\begin{aligned}
+    & \left|
+        T_{k-1}\left(
+            \frac{
+                -\lambda_{n-1} - \lambda_1
+            }
+            {\lambda_{n-1}- \lambda_1}
+        \right)
+    \right|
+    \\ 
+    = & 
+    \frac{1}{2}(y^{k - 1} + y^{-(k - 1)})
+    \quad \text{ where: } y = \frac{\sqrt{\kappa_{n - 1}} + 1}{\sqrt{\kappa_{n - 1}} - 1}, \kappa_{n - 1} = \frac{\lambda_{n - 1}}{\lambda_1}
+\end{aligned}
+$$
+
+Read please observe that this is exactly the same expression as what we did for theorem 3.1.1, except for the fact that the condition number is paramaterzied by the first $n - 1$ eigenvalues of the matrix. The tighter bound would be given as: 
+
+$$
+\frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
+2\left(
+    \frac{\sqrt{\kappa_{n - 1}} - 1}{\sqrt{\kappa_{n - 1}} + 1}
+\right)^{k - 1}
+$$
+
+Under the extreme case, the convergence is reached in 2 step of the CG iteration. 
+
+`
