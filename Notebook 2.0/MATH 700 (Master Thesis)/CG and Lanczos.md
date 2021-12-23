@@ -26,7 +26,7 @@ The lanczos algorthm does:
 
 $$
 \begin{aligned}
-    Aq^{(k)} &= \alpha_k q^{(k)} + \beta_{k - 1}q_{k - 1} +  \beta_{k + 1}q^{(k + 1)}
+    Aq^{(k)} &= \alpha_k q^{(k)} + \beta_{k - 1}q^{(k - 1)} +  \beta_{k + 1}q^{(k + 1)}
     \\
     Aq^{(0)} & = \alpha_1 q^{(0)} + \beta_1 q^{(1)}
     \\
@@ -107,40 +107,95 @@ Here, we wish to match $r^{(j - 1)}$ with $q^{(j - 1)}$, $r^{(j)}$ with $q^{(j)}
 Therefore, let's define: 
 
 $$
-\tilde{q}^{(j)} =  \text{sign}(r^{(j)}q^{(j)})q^{(j)}
-\implies 
-r^{(j)} = \Vert r^{(j)}\Vert \tilde{q}^{(j)}
+\Vert r^{(j)}\Vert q^{(j)} \simeq r^{(j)}
 $$
 
-Here, the sign function is applied elemenwise to the product of the vector. If they have the same sign, then $q^{(j)}$ remains unchanged, if they don't, it will reverse the sign to match then.
+Where, $\simeq$ meaning that it's equal up to a sign difference. Where the sign is determined comes later.
 
 Therefore: 
 
 $$
 \begin{aligned}
-    \Vert r^{(j - 1)}\Vert A \tilde{q}^{(j - 1)} &= 
+    \Vert r^{(j - 1)}\Vert A q^{(j - 1)} &= 
     \left(
         \frac{1}{a_{j -1}} + 
         \frac{b_{j - 2}}{a_{j - 2}}
-    \right)\Vert r^{(j - 1)}\Vert \tilde{q}^{(j - 1)} + 
-    \frac{\Vert r^{(j)}\Vert}{a_{j - 1}}\tilde{q}^{(j)}
+    \right)\Vert r^{(j - 1)}\Vert q^{(j - 1)} + 
+    \frac{\Vert r^{(j)}\Vert}{a_{j - 1}}q^{(j)}
     -
-    \frac{b_{j - 2}\Vert r^{(j - 2)}\Vert}{a_{j - 2}}\tilde{q}^{(j - 2)}
+    \frac{b_{j - 2}\Vert r^{(j - 2)}\Vert}{a_{j - 2}}q^{(j - 2)}
     \\
-    A\tilde{q}^{(j - 1)} &= 
+    Aq^{(j - 1)} &= 
     \left(
         \frac{1}{a_{j - 1}} + \frac{b_{j - 2}}{a_{j - 2}}
-    \right)\tilde{q}^{(j - 1)}
+    \right)q^{(j - 1)}
     + 
-    \frac{\Vert r^{(j)}\Vert}{\Vert r^{(j -1)}\Vert a_{j -1}} \tilde{q}^{(j)} 
+    \frac{\Vert r^{(j)}\Vert}{\Vert r^{(j -1)}\Vert a_{j -1}} q^{(j)} 
     - 
-    \frac{b_{j - 2}\Vert r^{j - 2}\Vert}{a_{j - 2}\Vert r^{(j - 1)}\Vert}\tilde{q}^{(j - 2)}
+    \frac{b_{j - 2}\Vert r^{(j - 2)}\Vert}{a_{j - 2}\Vert r^{(j - 1)}\Vert}q^{(j - 2)}
 \end{aligned}\tag{4}
 $$
 
 **Reader Please Observe**: 
 
-The recurrence from lanczos gives the same form (paramaterized by $j$) on the coefficients for residual $q^{(k + 1)}, q^{(k - 1)}$, but here, they are obviously not in the same form.
+The recurrence from lanczos gives the same form (paramaterized by $j$) on the coefficients for residual $q^{(k + 1)}, q^{(k - 1)}$, but here, they are obviously not in the same form. We want the coefficients for $q^{(j - 2)}, q^{(j)}$ to have the same form, so that it's form matching with what we had for the Lanczos Algorithm. 
 
 **To Remedy This**
+
+$$
+\begin{aligned}
+    b_{j - 2} &= \frac{\Vert r^{(j - 1)}\Vert^2}{\Vert r^{(j - 2)}\Vert_2} \quad \text{From Original CG Algorithm}
+    \\
+    \implies 
+    \frac{b_{j - 2}\Vert r^{(j - 2)\Vert}}{a_{j - 2}\Vert r^{(j - 1)}\Vert} &= 
+    \frac{
+        \frac{\Vert r^{(j - 1)}\Vert^2}{\Vert r^{(j - 2)}\Vert}
+    }{
+        a_{j - 2}\Vert r^{(j - 1)}\Vert
+    }
+    =
+    \frac{
+        \frac{\Vert r^{(j - 1)}\Vert}{\Vert r^{(j - 2)}\Vert}
+    }{
+        a_{j - 2}
+    }
+    \\
+    &= \frac{\Vert r^{(j - 2)}\Vert}{a_{j - 2}\Vert r^{(j - 2)}\Vert}
+\end{aligned}\tag{5}
+$$
+
+Observe that we matches the form for the coefficients between $q^{(j - 2)}, q^{(j)}$. Therefore, the coefficients of The lanczos and the Conjugate Gradient posses the following relationship: 
+
+$$
+\begin{aligned}
+    \alpha_{j -1} &= \left|
+        \frac{1}{\alpha_{j - 1}} + 
+        \frac{b_{j - 2}}{a_{j - 2}}
+    \right|
+    \\
+    |\beta_j| &= \frac{\Vert r^{(j)}\Vert}{
+        \Vert r^{(j - 1)}\Vert |a_{j - 1}|
+    }
+    \\
+    \implies \Vert r^{(j)}\Vert &= 
+    |a_{j - 1}\beta_{j}|\Vert r^{(j - 1)}\Vert
+\end{aligned}\tag{6}
+$$
+
+Next, we wish to matches the residual vectors from CG to the orthogonal vectors from Lanczos: 
+
+$$
+\begin{aligned}
+    \frac{r^{(j - 1)}}{\Vert r^{(j - 1)}\Vert} &= 
+    \text{sign}\left(
+        \frac{1}{a_{j - 1}} + \frac{b_{j - 2}}{a_{j - 2}}
+    \right)q^{(j - 1)}
+\end{aligned}
+$$
+
+
+---
+### **Story After This**
+
+I used the last expression in $(6)$ to keep track of the residual of an variant of CG which uses the LDLT decomposition of the Tridiagonal matrix and the Lanczos Algorithm. 
 
