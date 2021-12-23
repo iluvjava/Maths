@@ -201,3 +201,5 @@ The sign of $q$ will absorb the sign of it's coefficient so that its coefficient
 
 I used the last expression in $(6)$ to keep track of the residual of an variant of CG which uses the LDLT decomposition of the Tridiagonal matrix and the Lanczos Algorithm. 
 
+
+
