@@ -260,6 +260,16 @@ end
 
 
 ---
+### **Its Close Cousin: The Iterative Lanczos Algorithm**
+
+The iterative lanczos algorithm performs exactly the same type of procedures but applied to Hermitian Matrices, and when that happens, we obtained a Tridiagonalization of the Hermitian Matrix.
+
+For more info, see a dedicated discussion about [[Lanczos Algoritm]]
+
+
+
+
+---
 ### **Extra**
 
 Reference: [here](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf), more lecture notes Krylov Subspace and Arnoldi Iterations and the iterative method call GMRes.

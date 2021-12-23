@@ -94,7 +94,75 @@ $$
 Observe that $Aq_k$ will be conjugate vectors with $q_j$ where $j < k - 1$. 
 
 ---
-### **Extra Spicy**
+### **Iterative Lanczos Algorithm**
+
+Iterative Lanczos also computes a tridiagonalization to the matrix $A$, but it's performed on sparse matrices and take the advantage of the better complexity of computing matrix vector multiplications on sparse matrices, in that sense.
+
+**Algorithm Statement**
+
+$$
+\begin{aligned}
+    & \text{Given arbitrary: } q_1 \text{ s.t: } \Vert q_1\Vert = 1
+    \\
+    & \text{set: }\beta_0 = 0
+    \\
+    & \text{For } j = 1, 2, \cdots 
+    \\
+    &\hspace{1.1em}\begin{aligned}
+        & \tilde{q}_{j + 1} := Aq_j - \beta_{j - 1}q_{j - 1}
+        \\
+        & \alpha_j := \langle \tilde{q}_{j + 1}, q_j\rangle
+        \\
+        & \tilde{q}_{j + 1} \leftarrow \tilde{q}_{j + 1} - \alpha_j q_j
+        \\
+        & \beta_j = \Vert \tilde{q}_{j + 1}\Vert
+        \\
+        & q_{j + 1} := \tilde{q}_{j + 1}/\beta_j
+    \end{aligned}
+\end{aligned}
+$$
+
+The algorithm generates the following matrices at the kth iteration of the for loop: 
+
+$$
+\begin{aligned}
+    Q_k &= \begin{bmatrix}
+        q_1 & q_2 & \cdots & q_k
+    \end{bmatrix}
+    \\
+    T_k &= 
+    \begin{bmatrix}
+        \alpha_1 & \beta_1 & & 
+        \\[0.8em]
+        \beta_1 & \ddots & \ddots & 
+        \\[0.8em]
+        &\ddots &\ddots & \beta_{k - 1}
+        \\[0.8em]
+        & & \beta_{k - 1} & \alpha_k
+    \end{bmatrix}
+\end{aligned}
+$$
+
+And the following recurrences between these vectors are asserted by the algorithm:
+
+$$
+AQ_k = Q_kT_k + \beta_k q_{k + 1}\xi_k^R = Q_{k + 1}T_{k + 1, k}
+$$
+
+Where 
+$$
+T_{k, k + 1} = 
+    \begin{bmatrix}
+        T_k
+        \\
+        \beta_k \xi_k^T
+    \end{bmatrix}
+$$
+
+
+
+---
+### **Extra Spicy Stuff**
 
 > There is a block tridiagonalization algorithm, much similar to the QR Decomposition. 
 

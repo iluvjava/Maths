@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
             "mode": "preview"
           }
         },
@@ -65,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 403.0121879577637,
-    "collapsed": true
+    "width": 403.0121879577637
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -82,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,15 +101,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Hessenberg Transform with Arnoldi Iterations.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
+    "MATH 700 (Master Thesis)/CG and Lanczos.md",
     "MATH 700 (Master Thesis)/Bi-Conjugate Gradient.md",
     "AMATH 516 (Numerical Optimizations)/Untitled.md",
     "AMATH 516 (Numerical Optimizations)/AMATH 516.md",
     "AMATH 584 (Numerical Linear Algbra)/Amath 584.md",
     "AMATH 584 (Numerical Linear Algbra)/Schur Decomposition/Schur Decomposition.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fields of Values.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and LDL.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fields of Values.md"
   ]
 }

@@ -39,7 +39,7 @@ p'y' + py'' - qy -\lambda ry& = 0
 \end{aligned}
 $$
 
-And there is nothing that I can see and say that: "Ah, this is a hermitian matrix". This is getting interessting. 
+And there is nothing that I can see and say that: "Ah, this is a hermitian matrix". This is getting interesting. 
 
 ---
 ### **Singular and Regular SL**

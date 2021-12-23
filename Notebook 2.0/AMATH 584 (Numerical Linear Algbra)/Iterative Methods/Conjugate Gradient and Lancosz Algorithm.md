@@ -1,4 +1,4 @@
-[[Conjugate Gradient with Krylov Subspace]], [[Lancosz Algoritm]]
+[[Conjugate Gradient with Krylov Subspace]], [[Lanczos Algoritm]]
 Make sure to understand the derivation of the conjguate gradient algorithm under the Krylov Subspace method. 
 
 Make sure to understand the Lancosz algorithm as the Arnoldi Iterations for symmetric matrices. 
