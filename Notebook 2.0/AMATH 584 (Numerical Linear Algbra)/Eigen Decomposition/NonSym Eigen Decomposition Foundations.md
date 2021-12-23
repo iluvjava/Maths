@@ -245,7 +245,7 @@ $$
 \end{aligned}
 $$
 
-We consider the matrix $\widetilde{U}$, with QR decomposition, then the matrix $Q$, a 2 by n matrix will represent the invariant subspace $\{u_R, u_I\}$,then, we can choose matrix $U$ consisting of $Q$ and its perpendicular subspace $\widetilde{Q}$.
+We consider the matrix $\widetilde{U}$, with QR decomposition, then the matrix $Q$ (Which it will be complex.), a 2 by n matrix will represent the invariant subspace $\{u_R, u_I\}$,then, we can choose matrix $U$ consisting of $Q$ and its perpendicular subspace $\widetilde{Q}$.
 
 Now, we may consider:
 
@@ -280,3 +280,35 @@ Then, the matrix $B$ is a 2 by 2 matrix whose eigenvalues are a subset of the ei
 Applied the prove and the Schur Decomposition recursively to the sub matrix $\widetilde{Q}^TA\widetilde{Q}$ to complete the proof. The Base case is 1 by 1 matrix and it's trivial to prove.
 
 Done. $\blacksquare$
+
+---
+### **Getting A Simple Eigenvector From the Real Schur Form**
+
+Suppose that $T = Q^HAQ$ is the Schur's form of the matrix $A$, Consider that $Tx = \lambda x$, we have $AQx = QTx = \lambda Qx$, so then $Qx$ is an eigenvector of matrix $A$.
+
+Suppose that $\lambda = t_{ii}$ which is a simple eigenvalue, then consider $(T - \lambda I)x = 0$, we have: 
+
+$$
+0 = \begin{bmatrix}
+    T_{1,1} - \lambda I & T_{1, 2} & T_{1, 3}
+    \\
+    0 & 0 & T_{2, 3}
+    \\
+    \mathbf{0} & \mathbf{0} & T_{3, 3} - \lambda I
+\end{bmatrix}
+\begin{bmatrix}
+    x_1 \\ x_2 \\ x_3
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    (T_{1, 1} - \lambda I)x_1 + T_{1, 2}x_2 + T_{1, 3}x_3
+    \\
+    T_{2, 3}x_3
+    \\
+    (T_{3, 3} - \lambda I)x_3
+\end{bmatrix}
+$$
+
+Where, $T_{1, 1}$ is $(i - 1) \times (i - 1)$ and $T_{2, 2}$  is $\lambda$, and $T_{3, 3}$ is $(n - i)\times (n - i)$. Using the fact that the eigenvalue $\lambda$ has elgebraic multiplicity of 1, because it's simple, we know $T_{1, 1} - \lambda I$ and $T_{3, 3} - \lambda I$ are non-singular.
+
+Therefore, $x_3 = 0$ and $(T_{1, 1} -\lambda I)x_1 = T_{1, 2}x_2$, Then we choose arbitrary value for $x_2$ to get the value of $x_1$, then we all $x_1, x_2, x_3$ figured out for our eigenvector of the matrix. 
