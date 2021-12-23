@@ -424,14 +424,4 @@ Where $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bo
 > \right)^{k - 1}
 > $$
 
-
-
 Take notice that this is a much much worse bound compare to the other case, where the outlier eigenvalues being the largest eigenvalues. This will also have an huge impact on the floating point precision of the algorithm. 
-
-
-
-
-
-
-
-

@@ -106,6 +106,8 @@ $$
 \end{aligned}
 $$
 
+The first $\implies$ comes from substituion of $v$ in term of $w$. The second implies comes from the fact that $(A - \lambda I)^kv$ is not expanding for larger value of $k$.
+
 $\blacksquare$
 
 

@@ -78,7 +78,7 @@ Let's consider an inductive hypothesis upon this formulation, let the bottom rig
 
 For induction, let $A_n$ denote an $A \in \mathbb{R}^{n\times n}$, denoting any square matrix and let $U_n$ denotes unitary matrix, designed the same way as the $U$ matrix from the previous part. 
 
-Let the Inductive Hypothesis be: $A_n = U_n^T T_n U_{n}$. 
+Let the Inductive Hypothesis be: $A_n = U_{n - 1}^T T_{n - 1} U_{n - 1}$. 
 
 The parameterized statement is: 
 
@@ -145,9 +145,11 @@ The last line proved that the inductive hypothesis for $n$ is true, based on $n 
 
 Based case of a $2 \times 2$ matrix is trivial to prove/show. 
 
-**Observer**
+**Reader Please Observe**
 
 The diagonal of the $T$ matrix is the eigenvalues of the original square matrix. 
+
+The decomposition is non-unique, it's unitque up to permutatons of the eigenvalues on the diagonal of the matrix $T$. 
 
 ---
 ### **The Spectral Theorem**
