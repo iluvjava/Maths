@@ -190,9 +190,11 @@ $$
     \text{sign}\left(
         \frac{1}{a_{j - 1}} + \frac{b_{j - 2}}{a_{j - 2}}
     \right)q^{(j - 1)}
-\end{aligned}
+\end{aligned}`
 $$
 
+
+The sign of $q$ will absorb the sign of it's coefficient so that its coefficients are positive.
 
 ---
 ### **Story After This**
