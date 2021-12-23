@@ -11,6 +11,32 @@ References:
 
 Here we introduce extremely useful concepts and lemma that will assist with the understanding of Nonsymmetric algorithms.
 
+### **Lemma: Block Triangular Matrices**
+
+Consider a matrix $A$ that is squared real matrix consisting of block of square matrices in the following form:
+
+$$
+\begin{aligned}
+    A = \begin{bmatrix}
+        B_{1, 1} & B_{1, 2} & \cdots 
+        \\
+        & B_{2, 2}& \cdots 
+        \\
+        & & \vdots 
+        \\ 
+        & & B_{m, m}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+Then:
+
+$$
+\text{det}(A) = \prod_{i = 1}^m \text{det}(B_{i, i})
+$$
+
+Therefore, the eigenvalues of the matrix $A$ is the union of all the eigenvalues of block diagonals of the matrix $A$.
+
 ---
 ### **Invariant Subspace: Proposition 4.3**
 
@@ -135,9 +161,122 @@ Observe that, the block triangular matrix contains all the eigenvalues of the bl
 
 Notice that, $X$ can be some kind of generalized Eigenspaces, or the kyrlov subspace with grade $m$. In the case of Jordan form, the matrix $B$ is the jordan block, and the matrix $X$ is the eigen matrix. 
 
+---
+### **Schur Decomposition** 
+
+Here we are going to sate the results, for the proof for it, consult: [[Schur Decomposition]] for more information.
+
+For any Matrix $A$, There eixsts a Unitary Matrix $V$ such that:
+
+$$
+V^TAV = T 
+$$
+
+Where $T$ is upper triangular.
+
+**Reader please observe**:
+
+We assume that the matrix $A$ is real,and in that sense, the matrix might have complex eigenvalues, which implies that the size of $T$ is larger than $A$. When $A$ is real and we are only decomposing with real eigenvalues, then it's called a "Quasi-Upper Triangular form".
 
 
+---
+### **Real Schurform and Quasi-Upper Triangular Form**
 
+We are considering real matrix that has pairs of conjugate Eigenvaues. 
 
+> $$V^TAV = T$$
 
+Where $V$ is unitary.
 
+**Def: Quasi-Upper Triangular Form**
+
+A matrix $V$ is said to be Quasi-Upper Triangular if the matrix has blocks of 2 by 2 matrices on the diagonals, and they contain pairs of conjugate eigenvalues for the matrix. 
+
+**Let's Define the Following Quantities**
+
+$$
+\begin{aligned}
+    A &:: \text{Square Real Matrix}
+    \\
+    \lambda &:: \text{Complex Eigenvalues}
+    \\
+    u &:: \text{Eigen vector of $\lambda$}
+\end{aligned}
+$$
+ 
+**Proof**:
+
+The proof is inductive, if the first eigenvalue we choose for the matrix $A$ is not complex, then this goes back to the Schur's form. If not consider: 
+
+$$
+(Au)^H = u^HA^T = Au^* = \lambda^*u^*
+$$
+
+Therefore, if the eigenvector is an eigenvalue of matrix $A$ with eigenvalue $\lambda$, then it's conjugate is an eigenvector of the matrix $A$ with $\lambda^*$.
+
+Then, we can consider the linear combinations of these 2 eigen vectors $u, u^*$: 
+
+$$
+    u_R = \frac{1}{2}(u + u^*) \quad 
+    u_i = \frac{1}{2i}(u - u^*)
+$$
+
+Where both $u_I, u_R$ are real eigenvectors conveniently. Which means that:
+
+$$
+\text{span}(u_R, u_I) = \text{span}(u, u^*)
+$$
+
+Where, the span can use complex weights for vectors from the set. Notice that because both $u$ and its conjugate are the eigenvector for the matrix, this subspace is invariant to the matrix $A$. In that case, consider: 
+
+$$
+\begin{aligned}
+    \widetilde{U} &= \begin{bmatrix}
+        u_R & u_I
+    \end{bmatrix}
+    \\
+    &= QR
+    \\
+    \text{span}\{Q\} &= \text{span}\{u_R, u_I\}
+    \\
+    \text{choose: } U &= \begin{bmatrix}
+        Q, \widetilde{Q}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+We consider the matrix $\widetilde{U}$, with QR decomposition, then the matrix $Q$, a 2 by n matrix will represent the invariant subspace $\{u_R, u_I\}$,then, we can choose matrix $U$ consisting of $Q$ and its perpendicular subspace $\widetilde{Q}$.
+
+Now, we may consider:
+
+$$
+\begin{aligned}
+    U^TAU &= \begin{bmatrix}
+        Q^T \\ \widetilde{Q}^T
+    \end{bmatrix}
+    A
+    \begin{bmatrix}
+        Q & \widetilde{Q}
+    \end{bmatrix}
+    \\
+    &= \begin{bmatrix}
+        Q^TAQ & Q^TA\widetilde{Q}
+        \\
+        \widetilde{Q}^TAQ & \widetilde{Q}A\widetilde {Q}
+    \end{bmatrix}
+    \\ 
+    \text{using: } AQ &= QB 
+    \\
+    U^TQU &= \begin{bmatrix}
+        B & Q^TQ \widetilde{Q}
+        \\
+        \mathbf{0} & \widetilde{Q}^TA\widetilde{Q}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+Then, the matrix $B$ is a 2 by 2 matrix whose eigenvalues are a subset of the eigenvalues of the matrix $A$, the equation $AQ = QB$ is using **Proposition 4.3** because $Q$ is invariant.
+
+Applied the prove and the Schur Decomposition recursively to the sub matrix $\widetilde{Q}^TA\widetilde{Q}$ to complete the proof. The Base case is 1 by 1 matrix and it's trivial to prove.
+
+Done. $\blacksquare$
