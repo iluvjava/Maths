@@ -2,7 +2,7 @@
 [[Conjugate Gradient 2]]
 
 ---
-### **Lanczos in Relations to CG**
+### **From CG to Lanczos**
 
 Here is a list of variables: 
 
@@ -207,6 +207,9 @@ $$
     } = 
     \frac{\sqrt{b_j}}{a_{j - 1}}
 $$
+
+
+
 
 ---
 ### **Story After This**

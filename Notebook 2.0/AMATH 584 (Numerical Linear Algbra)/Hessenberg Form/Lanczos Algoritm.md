@@ -159,6 +159,21 @@ T_{k, k + 1} =
     \end{bmatrix}
 $$
 
+Where $\xi_i$ denotes the ith canonical basis vector. 
+
+**Take note**
+
+Because of the initial guess of $q_1$ is arbitrary, I think the decomposition is not unique, however, the Tridiagonalization from the householder Implementations will give deterministic, unique factorizations. 
+
+In fact, if $q_1$ is the eigenvector, then there is no factorizations at all. There is more to the Iterative Lanczos than the Other way of Lanczos algortihm. 
+
+What is going on here? 
+
+---
+### **Proof of Correctness**
+
+Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
+
 
 
 ---

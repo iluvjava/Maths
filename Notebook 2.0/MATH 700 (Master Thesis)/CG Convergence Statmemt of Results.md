@@ -113,5 +113,5 @@ $$
 \end{aligned}
 $$
 
-
+This is using backwards analysis, by perturbating the Lanczos Factorizations of the matrix to see what perturbed problem can have exact arithmematic that equals to the floating point arithematic. 
 
