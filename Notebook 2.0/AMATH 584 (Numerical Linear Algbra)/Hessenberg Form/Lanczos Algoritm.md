@@ -96,7 +96,7 @@ Observe that $Aq_k$ will be conjugate vectors with $q_j$ where $j < k - 1$.
 ---
 ### **Iterative Lanczos Algorithm**
 
-Iterative Lanczos also computes a tridiagonalization to the matrix $A$, but it's performed on sparse matrices and take the advantage of the better complexity of computing matrix vector multiplications on sparse matrices, in that sense.
+Iterative Lanczos also computes a tridiagonalization to the matrix Hermitian matrix $A$, but it's performed on sparse matrices and take the advantage of the better complexity of computing matrix vector multiplications on sparse matrices.
 
 **Algorithm Statement**
 
@@ -146,7 +146,7 @@ $$
 And the following recurrences between these vectors are asserted by the algorithm:
 
 $$
-AQ_k = Q_kT_k + \beta_k q_{k + 1}\xi_k^R = Q_{k + 1}T_{k + 1, k}
+AQ_k = Q_kT_k + \beta_k q_{k + 1}\xi_k^T = Q_{k + 1}T_{k + 1, k}
 $$
 
 Where 
@@ -174,7 +174,7 @@ What is going on here?
 
 Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
 
-
+#TODO: Fill this up one day. 
 
 ---
 ### **Extra Spicy Stuff**

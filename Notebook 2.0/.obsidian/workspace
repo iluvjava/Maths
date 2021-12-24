@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+            "file": "MATH 700 (Master Thesis)/From CG to Lanczos.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+            "file": "MATH 700 (Master Thesis)/From CG to Lanczos.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+                "file": "MATH 700 (Master Thesis)/From CG to Lanczos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,8 +103,8 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
     "MATH 700 (Master Thesis)/From CG to Lanczos.md",
+    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
     "MATH 700 (Master Thesis)/CG Via LDL on T.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient and Krylov.md",
     "MATH 700 (Master Thesis)/CG Convergence Statmemt of Results.md",

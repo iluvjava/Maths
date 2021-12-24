@@ -138,7 +138,7 @@ $$
 
 **Reader Please Observe**: 
 
-The recurrence from lanczos gives the same form (paramaterized by $j$) on the coefficients for residual $q^{(k + 1)}, q^{(k - 1)}$, but here, they are obviously not in the same form. We want the coefficients for $q^{(j - 2)}, q^{(j)}$ to have the same form, so that it's form matching with what we had for the Lanczos Algorithm. 
+The recurrence from lanczos gives the same form (paramaterized by $j$) on the coefficients for residual $r^{(k + 1)}, r^{(k - 1)}$, but here, they are obviously not in the same form. We want the coefficients for $q^{(j - 2)}, q^{(j)}$ to have the same form, so that it's form matching with what we had for the Lanczos Algorithm. 
 
 **To Remedy This**
 
@@ -207,8 +207,6 @@ $$
     } = 
     \frac{\sqrt{b_j}}{a_{j - 1}}
 $$
-
-
 
 
 ---
