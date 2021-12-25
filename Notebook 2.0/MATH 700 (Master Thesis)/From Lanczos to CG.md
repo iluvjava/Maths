@@ -93,6 +93,11 @@ $$
 
 **Reader Please Observe**: 
 
+**Claim:**
+> The residuals are orthogonal
+
+**Argument:**
+
 The quantity $\xi_k^TT_k^{-1}\beta\xi_1$ is a scalar and it's equal to $\beta (T_k^{-1})_{k, 1}$, beta multiplied by the last element of the first column of the matrix $T_k^{-1}$. 
 
 Therefore, we know that, the vector $r_{k + 1}$ is a scalar multiple of the vector $q_{k+ 1}$, and because the vectors $q_k$ are generated from the Lanczos algorithm and they have to be orthogonal, therefore, we know that the residuals vector from the CG algorithms are going to be orthogonal as well. 
@@ -103,11 +108,16 @@ Up to this point, the claims I made are proven.
 ---
 ### **Where are the Conjugate Directions**? 
 
-It won't be called conjugate Gradient if there are no conjugate directions from the algorithm. I want to make the claim that the conjugate directions are columns of the following matrix: 
+It won't be called conjugate Gradient if there are no conjugate directions from the algorithm. I want to make the claim that the conjugate directions are columns of the following matrix. 
+
+Claim: 
 
 > $$
 > P_k = Q_k U_k^{-1}
 > $$
+> The columns of tha matrix are vectors in conjugate directions
+
+**Proof**: 
 
 Where, we consider a decomposition of the Symmetric Tridiagonal Matrix: $T_k = L_k U_k$, where $L_k$ is unit diagonal with on sub-diagonal, and the matrix $U$ is upper-bi-diagonal, with all the upper diagonal being $\beta_j$, the same as the upper diagonal of the matrix $T_k$.
 

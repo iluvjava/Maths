@@ -116,6 +116,67 @@ $$
 \end{aligned}
 $$
 
+We can finely put the matrix $F_k$ into the norm at the second line without changing the value of the norm because we assumed $F_k$ to be an unitary transform. 
+
 And that is the theory. 
 
 
+---
+### **Plane Rotation Triangularizations**
+
+The plane rotation matrix eliminates a vector with 2 elements. Consider the following expression: 
+
+For each column of the matrix $\widetilde{H}_k$, we wish to reduce the last element into a zero via an unitary transform, the base case is with a vector of 2 elements, and the matrix is given by: 
+
+$$
+\begin{bmatrix}
+    c & s 
+    \\
+    -s^* & c
+\end{bmatrix}
+\begin{bmatrix}
+    d \\ h
+\end{bmatrix}
+$$
+
+Where if $d \neq 0$ then $c = |d|/\sqrt{|d|^2 + |h|^2}$, and $s = (ch/d)^*$, else $c = 0$ and $s = 1$. 
+
+It's not hard to convince that the second element of the matrix vector multiplications results in: 
+
+$$
+-s^*d + ch = -(ch/d)d - ch
+$$
+
+And finally, oberve that the determinant of the matrix is one, which is a quick verification: 
+
+$$
+c^2 + |s|^2 = \frac{|d|^2}{|d|^2 + |h|^2} + c \frac{|h|^2}{|d|^2} = 1
+$$
+
+To perform the rotation to eliminate the sub-diagonal of the matrix $\widetilde{H}_k$, we consider the $n\times n$ rotations matrices adapted to eliminating the sub-diagonal of Hessenberg of size $n \times n$: 
+
+$$
+\Omega_{k}^{[n]} = \begin{bmatrix}
+    I_{k -1}& &  
+    \\
+    & \begin{matrix}
+        c & s \\ -s^* & c
+    \end{matrix} &  
+    \\
+    & & I_{n - k - 1}  
+\end{bmatrix}
+$$
+
+When $\Omega_{k}^{[k + 1]}$ is applied to the matrix $\widetilde{H}_k$, it reduces the $k^{th}$ column's last element to zero. Therefore, the matrix $F_k$ would be given as: 
+
+$$
+F_k = \Omega^{[k + 1]}_k\Omega^{[k + 1]}_{k - 1}\cdots 
+\Omega^{[k + 1]}_2\Omega^{[k + 1]}_1
+$$
+
+Then we may assert that $F_k \widetilde{H}_k = R_k$, where $R_k$ is a diagonal matrix. 
+
+We have identify the unitary transformation matrix that can reduce the tall upper Hessenberg to triangular. 
+
+---
+### **Algorithm and Implementations**

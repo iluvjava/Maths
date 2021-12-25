@@ -170,12 +170,51 @@ In fact, if $q_1$ is the eigenvector, then there is no factorizations at all. Th
 What is going on here? 
 
 ---
+### **Iterative Lanczos, Factorizations Variance**
+
+I modified the Lanczos Algorithm by a tiny bit to fit the needs for factorizing matrices. 
+
+Algorithm Statement: 
+
+$$
+\begin{aligned}
+    & \text{Given arbitrary: }q_1 \text{ s.t: } \Vert q_1\Vert = 1
+    \\
+    & \alpha_1 := \langle q_1, Aq_1\rangle
+    \\
+    & \beta_0 := 0
+    \\
+    & \text{Memorize}: Aq_1
+    \\
+    & \text{For }j = 1\cdots
+    \\
+    &\hspace{1.1em}
+    \begin{aligned}
+        & \tilde{q}_{j + 1} := Aq_j - \beta_j q_j
+        \\
+        & \tilde{q}_{j + 1} \leftarrow \tilde{q}_{j + 1} - \alpha_jq_j
+        \\
+        & \beta_j = \Vert \tilde{q}_{j + 1}\Vert
+        \\
+        & q_{j + 1}:= \tilde{q}_{j + 1}/\beta_j
+        \\
+        & \alpha_{j + 1} := \left\langle q_{j + 1}, Aq_{j + 1} \right\rangle
+        \\
+        & \text{Memorize: }Aq_{j + 1}
+    \end{aligned}
+\end{aligned}
+$$
+
+**Advantage of this variant**
+
+It produces a square matrix $T_k$ after each for loop iterations, rather than a nont square one where we have a left over $\beta_k\xi_k^T$ row at the bottom. The word "Memorize" tells the algorithm to remember the results for future references, becaues here the most expensive computations is considered to be matrix vector multiplications: $Ax$. 
+
+---
 ### **Proof of Correctness**
 
 Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
 
 #TODO: Fill this up one day. 
-
 
 
 ---
