@@ -1,30 +1,22 @@
 {
-  "collapse-filter": false,
-  "search": "jordan",
+  "collapse-filter": true,
+  "search": "",
   "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": false,
   "collapse-color-groups": false,
-  "colorGroups": [
-    {
-      "query": "PDE",
-      "color": {
-        "a": 1,
-        "rgb": 14069084
-      }
-    }
-  ],
+  "colorGroups": [],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": -0.6,
-  "nodeSizeMultiplier": 1.36629213483146,
-  "lineSizeMultiplier": 1.02136752136752,
+  "textFadeMultiplier": -1.3,
+  "nodeSizeMultiplier": 0.968880760790051,
+  "lineSizeMultiplier": 1.145237746891,
   "collapse-forces": false,
-  "centerStrength": 0.282352941176471,
-  "repelStrength": 7.41176470588235,
+  "centerStrength": 0.296561814191661,
+  "repelStrength": 9.60643745427944,
   "linkStrength": 1,
-  "linkDistance": 376,
-  "scale": 0.44739933473495797,
-  "close": false
+  "linkDistance": 91,
+  "scale": 0.17605342505627147,
+  "close": true
 }

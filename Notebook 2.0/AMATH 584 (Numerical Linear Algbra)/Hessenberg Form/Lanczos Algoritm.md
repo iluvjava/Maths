@@ -111,7 +111,7 @@ $$
     &\hspace{1.1em}\begin{aligned}
         & \tilde{q}_{j + 1} := Aq_j - \beta_{j - 1}q_{j - 1}
         \\
-        & \alpha_j := \langle \tilde{q}_{j + 1}, q_j\rangle
+        & \alpha_j := \langle q_j,\tilde{q}_{j + 1}\rangle
         \\
         & \tilde{q}_{j + 1} \leftarrow \tilde{q}_{j + 1} - \alpha_j q_j
         \\
@@ -175,6 +175,8 @@ What is going on here?
 Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
 
 #TODO: Fill this up one day. 
+
+
 
 ---
 ### **Extra Spicy Stuff**
