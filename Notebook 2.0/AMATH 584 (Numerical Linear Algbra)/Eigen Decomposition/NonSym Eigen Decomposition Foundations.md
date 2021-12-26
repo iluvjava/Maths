@@ -18,13 +18,13 @@ Consider a matrix $A$ that is squared real matrix consisting of block of square 
 $$
 \begin{aligned}
     A = \begin{bmatrix}
-        B_{1, 1} & B_{1, 2} & \cdots 
+        B_{1, 1} & B_{1, 2} & \cdots & 
         \\
-        & B_{2, 2}& \cdots 
+        & B_{2, 2}& \cdots & 
         \\
-        & & \vdots 
+        & & \ddots &
         \\ 
-        & & B_{m, m}
+        & & & B_{m, m}
     \end{bmatrix}
 \end{aligned}
 $$
@@ -180,7 +180,7 @@ We assume that the matrix $A$ is real,and in that sense, the matrix might have c
 
 
 ---
-### **Real Schurform and Quasi-Upper Triangular Form**
+### **Real Schur form and Quasi-Upper Triangular Form**
 
 We are considering real matrix that has pairs of conjugate Eigenvaues. 
 

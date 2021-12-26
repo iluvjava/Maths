@@ -239,7 +239,8 @@ $$
         \\& \hspace{1.1em} \text{Solve: } (\widetilde{H}_{k})_{:k, :k} = \beta \xi
         \\& \hspace{1.1em} \text{Compute: } x_k = x_0 + Q_k y_k
     \end{aligned}
+    \\ &\text{EndFor}
 \end{aligned}
 $$
 
-
+That the GMRes algorithm. To make it more practical, consider restarting the algorithm with previous residuals when the memory got full, if the matrix is huge, you will ran out of memory very quickly. 

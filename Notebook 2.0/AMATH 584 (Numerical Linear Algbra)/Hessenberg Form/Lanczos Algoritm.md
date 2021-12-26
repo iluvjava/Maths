@@ -207,14 +207,71 @@ $$
 
 **Advantage of this variant**
 
-It produces a square matrix $T_k$ after each for loop iterations, rather than a nont square one where we have a left over $\beta_k\xi_k^T$ row at the bottom. The word "Memorize" tells the algorithm to remember the results for future references, becaues here the most expensive computations is considered to be matrix vector multiplications: $Ax$. 
+It produces a square matrix $T_k$ after each for loop iterations, rather than a non-square one where we have a left over $\beta_k\xi_k^T$ row at the bottom. The word "Memorize" tells the algorithm to remember the results for future references, becaues here the most expensive computations is considered to be matrix vector multiplications: $Ax$. 
+
+**Correctness**
+
+To convince, assume that orthogonal of the $q_j$ vectors and then susbtitute the expression for $\tilde{q}_{j}$ to the dot product for $\alpha_j$ and simplifies. 
 
 ---
 ### **Proof of Correctness**
 
 Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
 
-#TODO: Fill this up one day. 
+**Proof**: 
+
+Let's fix the quantity: $j$
+
+It's obvious from that definition of $\alpha_j$ one can deduce that $\langle q_{j +1}, q_j \rangle = 0$. 
+
+Inductively suppose that $\langle q_k, q_i\rangle = 0\; \forall k \neq j, k, i \le j$. We wish to prove $\langle q_{j + 1}, q_{j - 1}\rangle = 0$ and $\langle q_{j + 1}, q_i\rangle = 0 \; \forall i \le j - 1$, completing the inductive hypothesis for the case of $j + 1$. 
+
+Consider: 
+
+$$
+\begin{aligned}
+    & \langle 
+       \underbrace{ Aq_j - \alpha_j q_j - \beta_{j - 1}q_{j - 1}}_{\beta q_{j + 1}}, q_{j - 1}
+    \rangle
+    \\
+    &= \langle Aq_j, q_{j - 1}\rangle - \beta_{j - 1}
+    \\
+    &= \langle q_j, Aq_{j - 1}\rangle - \beta_{j - 1}
+    \\
+    &= \langle q_j, \beta_jq_j + \alpha_{j - 1}q_{j - 1} + \beta_{j - 1}q_{j - 2}\rangle - \beta_{j - 1}
+    \\
+    &= 0
+    \\
+    \implies \langle q_{j + 1}, q_{j - 1}\rangle &= 0
+\end{aligned}
+$$
+
+It's zero using inductive hypothesis. 
+
+Now consider the case $i < j - 1$, we have: 
+
+$$
+\begin{aligned}
+    \langle \beta_{j + 1}q_{j + 1}, q_i\rangle &= \langle 
+        Aq_j - \alpha_j q_j - \beta_{j - 1} q_{j - 1}, q_i
+    \rangle
+    \\
+    &= \langle q_j, Aq_i\rangle
+    \\
+    &= \langle 
+        q_j, \beta_{i + 1}q_{i + 1} + \alpha_i q_i + \beta_{i - 1}q_{i - 1}
+    \rangle
+    \\
+    &= 0
+    \\
+    \implies \langle q_{j + 1}, q_i\rangle &= 0 \quad \forall i < j -1
+\end{aligned}
+$$
+
+It's zero using inductive hypothesis. 
+
+Combining the 3 we essentially have the statement that $\langle q_{j _ 1}, q_i\rangle = 0 \; \forall i \le j$, Completing the inductive proof. The base case is trivially true by how $\alpha_1$ is computed and how $q_{2}$ is computed. 
+
 
 
 ---
