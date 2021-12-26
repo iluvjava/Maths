@@ -76,7 +76,7 @@ $$
         \\
         &  &   &\beta_k
         \\ 
-        & & \_{k - 1} & \alpha_k
+        & & \gamma_{k - 1} & \alpha_k
     \end{bmatrix}
 \end{aligned}
 $$
@@ -125,11 +125,13 @@ $$
 \langle v_i, w_j\rangle = 1 \; \forall i = j \le k
 $$
 
+To prove, we want to show that $\langle v_i, w_{k + 1}\rangle = 0\; \forall i \le k$, and $\langle v_{k + 1}, w_{i}\rangle\;\forall i \le k$ and $\langle v_{k + 1}, w_{k + 1}\rangle$
+
 Claim by claim, we will show that the strong inductive hypothesis holds. 
 
 **Claim 1**
 
-> The algorithm assert $\langle v_{k + 1}, w_{k + 1}\rangle$. 
+> The algorithm assert $\langle v_{k + 1}, w_{k + 1}\rangle = 1$. 
 
 **Proof**
 
@@ -171,8 +173,39 @@ $$
 
 > $$\langle v_{k + 1},w_k \rangle = 0 \quad \langle v_k, w_{k + 1}\rangle = 0$$
 
+**Proof**
 
+$$
+\begin{aligned}
+    \langle \tilde{v}_{k + 1}, w_k\rangle &= 
+    \langle Av_k - \alpha_k v_k - \beta_{k - 1}v_{k - 1}, w_k\rangle
+    \\
+    &= \langle Av_k, w_k\rangle - \alpha_k \langle v_k, w_k\rangle - 
+    \beta_{k - 1}\langle v_{k - 1}, w_k\rangle
+    \\
+    &= \underbrace{\langle Av_k, w_k\rangle}_{\alpha_k} - \alpha_k
+    \\
+    &= 0
+\end{aligned}
+$$
 
+The inner product $\langle Av_k, w_k\rangle - \alpha_k = 0$ purely by how the quantity $\alpha_j$ is defined in the algorithm. Next, because $\tilde{v}_{k +1}$ is just $v_{k + 1}\gamma_{k}$, $\langle \tilde{v}_{k + 1}, w_k\rangle\implies \langle v_{k + 1}, w_k\rangle = 0$. 
+
+By a similar token, we have: 
+
+$$
+\begin{aligned}
+    \langle \tilde{w}_{k + 1}, v_k\rangle &= \langle A^Hw_k, v_k\rangle - \bar{\alpha}_k 
+    \\
+    &= \langle w_k, Av_k\rangle - \bar{\alpha}_k
+    \\
+    &= \overline{\langle Av_k, w_k \rangle} - \alpha_k
+    \\
+    &= 0
+\end{aligned}
+$$
+
+We make use of the property of Complex Inner product. 
 
 **Claim 3**
 
@@ -180,7 +213,55 @@ $$
 > \langle \tilde{v}_{k + 1}, w_{k -1}\rangle = 0 \quad \langle \tilde{w}_{k + 1}, v_{k - 1}\rangle = 0
 > $$
 
+**Proof**
 
+Firstly, we wish to show the first statement is true, and consider the expression: 
+
+$$
+\langle \tilde{v}_k, w_{k - 1}\rangle = \langle Av_k, w_{k - 1}\rangle - \beta_{k - 1} = 0
+$$
+
+The first equal sign is justified by: 
+
+$$
+\begin{aligned}
+    \langle \tilde{v}_{k + 1}, w_{k - 1}\rangle &= \langle 
+        Av_k - \alpha_kv_k - \beta_{k - 1}v_{k - 1}, w_{k - 1}
+    \rangle
+    \\
+    &= \langle Av_k, w_{k -1}\rangle - \beta_{k- 1}\langle v_{k - 1}, w_{k - 1}\rangle
+    \\
+    &= \langle Av_k, w_{k -1}\rangle - \beta_{k- 1}
+\end{aligned}
+$$
+
+The second equality is justified by: 
+
+$$
+\begin{aligned}
+    \langle Av_k, w_{k - 1}\rangle &= \langle v_k, A^Hw_{k -1}\rangle
+    \\
+    &= \langle v_k, \tilde{w}_k + \bar{\alpha}_kw_{k - 1} + \gamma_{k - 1}w_{k - 2}\rangle
+    \\
+    &= \langle v_k, \tilde{w}_k\rangle + \bar{\alpha}_k \langle v_k, w_{k - 1}\rangle + \gamma_{k - 1}\langle v_k, w_{k - 2}\rangle
+    \\
+    &= \langle v_k, \tilde{w}_k\rangle
+    \\
+    &= \langle v_k, \bar{\beta}_{k-1}w_k\rangle
+    \\
+    &= \overline{\langle \bar{\beta}_{k -1}w_k, v_k\rangle}
+    \\
+    &= \beta_{k -1}\langle w_k, v_k\rangle = \beta_{k - 1}
+    \\\implies 
+    \langle Av_k, w_{k - 1}\rang - \beta_{k - 1} &= 0
+\end{aligned}
+$$
+
+The first 3 equality follows direction from algebra and the algorithm, 5th equality comes from the end of each forloop then $w_{j + 1}$ is established, and the last 2 equalities uses properties of the complex dot product. Notice that $\langle u, av\rangle \neq a\langle u, v\rangle$ when things are complex, we must swap the inner produce to move the scalar to the first parameter and then uses the linearity, which means that we are taking the conjugate of the scalar $a$ when swapping the parameters in the inner product. 
+
+By the same argument that $\tilde{v}_k$ is a scalar multiple away from $v_{k + 1}$, we conclude that also: $\langle v_{k + 1}, w_{k - 1}\rangle = 0$. 
+
+Secondly, we wish th show that $\langle \tilde{w}_{k +1}, v_{k - 1}\rangle = 0$, the proof is similar to what we have above. 
 
 
 **Claim 4**
