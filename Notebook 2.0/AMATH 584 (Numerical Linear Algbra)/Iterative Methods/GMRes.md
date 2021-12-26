@@ -180,3 +180,66 @@ We have identify the unitary transformation matrix that can reduce the tall uppe
 
 ---
 ### **Algorithm and Implementations**
+
+The triangular solve during the minimization process is performed at the last stage of the iterations, during the Arnoldi iterations, the algorithm only keep track of the Residual 2Norm for progress of the convergence. 
+
+The accumulative plane rotation of $\Omega_i^{[k + 1]}$ are done via applying the Unitary matrix $F_k$ to each new column of the $H$ matrix generated from the Arnoldi Iterations, and to the vector $\beta \xi_1$ as well. 
+
+**Algorithm**:
+
+$$
+\begin{aligned}
+    & \text{Given: }x_0, \text{ Compute: }r_0 = b - Ax_0
+    \\
+    & \text{Initialize Subroutine Arnoldi with: } q_1 = r_0/\Vert r_0\Vert
+    \\
+    & \text{Initialize: }\xi = \xi_1 \in \mathbb{R}^{2\times 1}
+    \\
+    & \text{For: }i = 1, \cdots , k + 1: 
+    \\
+    & \hspace{1.1em} 
+    \begin{aligned}
+        & \text{Compute: }q_{k + 1}, h_{i, k} = (\tilde{H}_{k})_{i, k} \text{ Using Arnoldi Subroutine}
+        \\
+        & \text{For } i = 1, \cdots, k - 1
+        \\
+        &\hspace{1.1em} 
+        \begin{aligned}
+            &\begin{bmatrix}
+                (\tilde{H}_k)_{i, k} \\ (\widetilde{H}_k)_{i + 1, k}
+            \end{bmatrix}\leftarrow 
+            \begin{bmatrix}
+                c_i & s_i 
+                \\
+                -s_i^{*} & c_i
+            \end{bmatrix}
+            \begin{bmatrix}
+                (\widetilde{H}_k)_{i, k}
+                \\
+                (\widetilde{H}_k)_{i + 1, k}
+            \end{bmatrix}
+        \end{aligned}
+        \\
+        &\text{Endfor}
+        \\&
+        \begin{bmatrix}
+            (\xi)_k \\ (\xi)_{k + 1}
+        \end{bmatrix}\leftarrow 
+        \begin{bmatrix}
+            c_k & s_k \\ -s_k^{*} & c_k
+        \end{bmatrix}\begin{bmatrix}
+            (\xi)_k \\ 0
+        \end{bmatrix}
+        \\&
+        (\widetilde{H}_k)_{k, k} \leftarrow c_k \widetilde{H}_{k, k} + 
+        s_k (\widetilde{H}_k)_{k + 1, k}
+        \\& 
+        \widetilde{H}_{k + 1, k} \leftarrow 0
+        \\& \text{If } \beta|(\xi)_{k + 1}| \text{ small enough then: }
+        \\& \hspace{1.1em} \text{Solve: } (\widetilde{H}_{k})_{:k, :k} = \beta \xi
+        \\& \hspace{1.1em} \text{Compute: } x_k = x_0 + Q_k y_k
+    \end{aligned}
+\end{aligned}
+$$
+
+

@@ -5,32 +5,29 @@ This is a brief demonstration on how the Householder Reflector is going to work 
 ---
 ### **Introduction**
 
-Given a vector $x$ in $\mathbb{C}^n$, and we want to transform the vector onto another vector say $s$ using the hyperplane separating between $s$, $v$ while at the same time producing the matrix for such a transformation. 
-
-In general, we are looking for the matrix which performs a reflection transformation on vectors in $\mathbb{C}^n$ where, and the plane of reflection is the hyperplane separating the vector $x$ and $y$ where these 2 vectors are not co-linear and the vector $y$ is also **unitary** (complex modulus is 1)
+HS reflector stands for Householder Reflectors, it's a unitary complex rank one matrix that transform the vector $x$ into $y$ by reflecting the vector $x$ using the separating hyperplane between them. There are infinitely such hyperplanes for the 2 vectors in the complex case, and in the real case, there are 2. 
 
 Let vector $v = y - x$. Then, the hyperplane that is separating these 2 vector $x$, $y$ will be orthogonal to $v$.
 
-Firstly, perform a projection of $v$ onto the orthogonal subspace hyperplane, which is the vector $v$; which is given by: 
+Firstly, orthogonally project $x$ onto the vector $v$, $v$ is the subspace orthogonal to the separating hyper plane between $x, y$. 
 
 $$x - x\left(\frac{vv^H}{v^Hv}\right)$$
 
-However, if we go 2 times the distance on the direction of $v$, then the vector $v$ is going to meet the vector $y$. This is by basic triangle geometry, which is given by the expression: 
+If we go 2 times the distance on the direction of $v$, then the vector $v$ is going to meet the vector $y$. This is by basic triangle geometry, which is given by the expression: 
 
 $$x - 2x\left(\frac{vv^H}{v^Hv}\right)$$
 
-Which is essentially another project onto the vector $y$, which is also a reflector the hyperplane separating the vector $x$ and $y$, which is: 
+Which is essentially another project onto the vector $y$, which is also a reflector the hyperplane separating the vector $x$ and $y$, given as: 
 
 $$
 \left (I - 2\frac{vv^H}{v^Hv} \right)
 $$
 
-And this is the orthogonal project. 
-
-
 Illustration: 
 
 ![](HS_Reflector%201.jpeg)
+
+Vector on the hyper plane gets reflected to zero, and vector orthognal to thehyper plan stays unchanged after the transformation, therefore this is a rank one unitary transformation. 
 
 ---
 ### **Properties and Facts**
@@ -41,5 +38,9 @@ Illustration:
 
 
 ---
-Ok, we claimed that the matrix will act as a reflector, then let's see all the vectors on the Hyperplane separating the $x$ and $y$ will be the eigenvector with eigenvalues of 1. 
+### **Comments**
+
+Used a lot for QR, Hessenberg Form transform. 
+
+
 

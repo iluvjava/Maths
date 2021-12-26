@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,6 +101,8 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Woodburry's Formula.md",
     "MATH 700 (Master Thesis)/Bi-Lanczos.md",
     "AMATH 584 (Numerical Linear Algbra)/Iterative Methods/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 584 (Numerical Linear Algbra)/Iterative Methods/Conjugate Gradient 2.md",
@@ -108,8 +110,6 @@
     "MATH 700 (Master Thesis)/From CG to Lanczos.md",
     "MATH 700 (Master Thesis)/From Lanczos to CG.md",
     "MATH 700 (Master Thesis)/CG Via LDL on T.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Krylov.md",
-    "MATH 700 (Master Thesis)/CG Convergence Statmemt of Results.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md"
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Krylov.md"
   ]
 }
