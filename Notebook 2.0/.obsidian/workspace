@@ -7,11 +7,8 @@
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         },
         "group": "bfdb944427c8ebf9"
       },
@@ -19,11 +16,8 @@
         "id": "e741468e024c4284",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
-            "mode": "preview"
-          }
+          "type": "empty",
+          "state": {}
         },
         "group": "bfdb944427c8ebf9"
       }
@@ -81,7 +75,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +94,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Lanczos Ritz Convergence.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "AMATH 584 (Numerical Linear Algbra)/Ritz Vectors.md",
+    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
     "MATH 700 (Master Thesis)/CG and Lanczos.md",
     "MATH 700 (Master Thesis)/CG Convergence Statmemt of Results.md",
     "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
-    "AMATH 584 (Numerical Linear Algbra)/Iterative Methods/Conjugate Gradient 2.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/NonSym Eigen Decomposition Foundations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp (The Pure QR).md",
-    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
-    "MATH 700 (Master Thesis)/MINRes.md"
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md"
   ]
 }

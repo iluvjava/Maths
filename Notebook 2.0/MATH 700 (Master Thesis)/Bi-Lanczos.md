@@ -169,6 +169,8 @@ $$
 \end{aligned}
 $$
 
+Prove. $\blacksquare$
+
 **Claim 2**
 
 > $$\langle v_{k + 1},w_k \rangle = 0 \quad \langle v_k, w_{k + 1}\rangle = 0$$
@@ -205,7 +207,7 @@ $$
 \end{aligned}
 $$
 
-We make use of the property of Complex Inner product. 
+We make use of the property of Complex Inner product. $\blacksquare$
 
 **Claim 3**
 
@@ -218,7 +220,7 @@ We make use of the property of Complex Inner product.
 Firstly, we wish to show the first statement is true, and consider the expression: 
 
 $$
-\langle \tilde{v}_k, w_{k - 1}\rangle = \langle Av_k, w_{k - 1}\rangle - \beta_{k - 1} = 0
+\langle \tilde{v}_{k + 1}, w_{k - 1}\rangle = \langle Av_{k + 1}, w_{k - 1}\rangle - \beta_{k - 1} = 0
 $$
 
 The first equal sign is justified by: 
@@ -263,6 +265,43 @@ By the same argument that $\tilde{v}_k$ is a scalar multiple away from $v_{k + 1
 
 Secondly, we wish th show that $\langle \tilde{w}_{k +1}, v_{k - 1}\rangle = 0$, the proof is similar to what we have above. 
 
+$$
+\begin{aligned}
+    \langle \tilde{w}_{k +1}, v_{k - 1}\rangle &= \langle A^Hw_k, v_{k - 1}\rangle - \gamma_{k - 1} = 0 
+\end{aligned}
+$$
+
+First equality is justified by: 
+
+$$
+\begin{aligned}
+    \tilde{w}_{k + 1}&= A^Hw_k - \bar{\alpha}_kw_k - \beta_{k - 1}w_{k - 1}
+    \\
+    \implies 
+    \langle \tilde{w}_{k + 1}, v_{k - 1}\rangle &= 
+    \langle 
+        A^Hw_k - \bar{\alpha}_k w_k- \beta_{k - 1}w_{k - 1},
+        v_{k - 1}
+    \rangle
+    \\
+    &= \langle A^Hw_k, v_{k - 1}\rangle - \gamma_{k - 1}
+\end{aligned}
+$$
+
+And then consider: 
+
+$$
+\begin{aligned}
+    \langle A^Hw_k, v_{k - 1}\rangle &= \langle w_k Av_{k - 1}\rangle
+    &= 
+    \langle w_k, \tilde{v}_k + \alpha_{k - 1}v_{k - 1}+ \beta_{k -1}v_{k - 1}\rangle
+    \\
+    &= \langle w_k, \tilde{v}_k\rangle
+\end{aligned}
+$$
+
+From the algorithm, we know $\tilde{v}_k = v_k \gamma_{k - 1}$ which makes $\langle w_k, \tilde{v}_k\rangle = \gamma_{k -1}\langle w_k, v_k\rangle - \gamma_{k -1} = \gamma_{k - 1}$, where we used the inductive hypothesis. Observe that if that is true, then $\langle A^Hw_k, v_{k - 1}\rangle - \gamma_{k - 1} = 0$, and the claim is proven. $\blacksquare$
+
 
 **Claim 4**
 
@@ -270,4 +309,43 @@ Secondly, we wish th show that $\langle \tilde{w}_{k +1}, v_{k - 1}\rangle = 0$,
 >     \langle \tilde{v}_{k + 1}, w_j\rangle = 0 \quad \forall j < k - 1
 > $$
 
+**Proof**
 
+$$
+\begin{aligned}
+    \langle \tilde{v}_{k + 1}, w_j\rangle &= 
+    \langle Av_k, w_j\rangle
+    \\
+    &= \langle v_k, A^Hw_j\rangle
+    \\
+    &= \langle v_k, \tilde{w}_{j + 1}\rangle = 0
+\end{aligned}
+$$
+
+To justify the first line of inequality, consider: 
+
+$$
+\begin{aligned}
+    \langle \tilde{v}_{k + 1}, w_j\rangle &= 
+    \langle Av_k + \alpha_k v_k - \beta_{k - 1}v_{k - 1}, w_j\rangle
+    \\
+    &= \langle Av_k, w_j\rangle + \alpha_k \langle v_k, w_j\rangle - \beta_{k - 1}\langle v_{k - 1}, w_j\rangle
+    \\
+    &= \langle Av_k, w_j\rangle
+\end{aligned}
+$$
+
+Where, we make use the indcutive hyptoehsis and the fact that $j \le k - 1$. $\blacksquare$
+
+Therefore, the algorithm asserts the orthogonality where $W^HV_k = I_k$. Provided the the algorithm doesn't break down. 
+
+
+---
+### **Serious Breakdown**
+The algorithm breaks down when during the iterations $j$, we have: 
+
+$$
+v_j, w_j \neq 0 \wedge \langle v_j, w_j\rangle = 0
+$$
+
+When this happens, $\beta_j = 0$, whic later, it's used as the Denominator, and then we will have a divides by zero problem. 

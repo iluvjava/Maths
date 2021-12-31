@@ -109,3 +109,22 @@ $$
 \end{aligned}
 $$
 
+$$
+\begin{aligned}
+    \sum_{n = 0}^{\infty}x^n &= \frac{1}{1 - x} \quad \forall x \in (0, 1)
+    \\
+    \partial_x \sum_{n = 0}^{\infty}x^n &= \frac{1}{(1 - x)^2} \quad \forall x \in (0, 1)
+    \\
+    \implies \sum_{n = 1}^{\infty} n x^{n} &= \frac{1}{(1 - x)^2} \quad \forall x \in(0, 1)
+    \\
+    \int_{0}^{x} 
+        \sum_{n = 0}^{\infty} \xi^n
+    d\xi &= 
+    \ln(x + 1)
+    \\
+    \implies
+    \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{n + 1} &= -\ln(1 - x) \quad \forall x\in (0, 1)
+\end{aligned}
+$$
+
+
