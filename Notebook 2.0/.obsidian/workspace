@@ -7,8 +7,11 @@
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+            "mode": "source"
+          }
         },
         "group": "bfdb944427c8ebf9"
       },
@@ -16,8 +19,11 @@
         "id": "e741468e024c4284",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+            "mode": "preview"
+          }
         },
         "group": "bfdb944427c8ebf9"
       }
@@ -75,6 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -92,17 +99,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "9d7dc9c843a7255f",
+  "active": "e741468e024c4284",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Lanczos Ritz Convergence.md",
+    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient 2.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
+    "AMATH 584 (Numerical Linear Algbra)/Iterative Methods/Conjugate Gradient and Lancosz Algorithm.md",
+    "MATH 700 (Master Thesis)/CG Via LDL on T.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Lanczos.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
-    "AMATH 584 (Numerical Linear Algbra)/Ritz Vectors.md",
     "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
-    "MATH 700 (Master Thesis)/CG and Lanczos.md",
-    "MATH 700 (Master Thesis)/CG Convergence Statmemt of Results.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md"
+    "AMATH 584 (Numerical Linear Algbra)/SVD/Applied PCA and KR-Approx.md",
+    "MATH 700 (Master Thesis)/Lanczos Ritz Convergence.md"
   ]
 }

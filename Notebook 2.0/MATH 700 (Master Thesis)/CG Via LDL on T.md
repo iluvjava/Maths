@@ -1,6 +1,6 @@
 [[Conjugate Gradient 2]]
 [[Conjugate Gradient with Krylov Subspace]]
-[[Conjugate Gradient and Lancosz Algorithm]]
+[[Conjugate Gradient and Lanczos]]
 
 
 ---

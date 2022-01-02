@@ -133,7 +133,7 @@ Therefore, expression (5) can be partitioned into strictly lower and upper trian
 
 $\xi q^TQ$, adding back the subscript we have: $\xi_k q_{k + 1}^TQ_k$, observe that $\xi_k q_{k + 1}^T$ is a matrix whose last row is $q_{k + 1}^T$. And because of the way that $q_{k + 1}$ is orthogonalized, the last 2 elements of the last row of $\xi_k q_{k + 1}Q_k$ is zero. <u>Hence it's strictly lower triangular</u>.
 
-**Reader Please Snap out and consider (4)**
+**Reader Please Snap out and consider**
 
 
 $$
@@ -190,3 +190,11 @@ $$
 
 Which completes the proof for the claim. 
 
+---
+### **Significant of the Theorem**
+
+It's later, experimented in the papers for the selective orthogonalizations of the Lanczos Algorithm that we see the projection onto the Ritz Vector marks the lost of orthogonality of Lanczos Vectors. 
+
+The Lanczos algorithm forgets that it explored into the direction of well-converged ritz vectors, regenerating $q$ into the same directions, causing $q$ to lose orthogonality. A paper titled \<The Lanczos Algorithm With Selective Orthogonalization\> compat the issues with selective re-orthogonalization and various other tricks to keep track of both, the lost of orthogonality of lanczos vectors, and the converged ritz vectors. 
+
+This is also significant because it uses converged ritz vector to improve stability of the Lanczos. 
