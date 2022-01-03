@@ -190,7 +190,7 @@ $$
     \\
     &\hspace{1.1em}
     \begin{aligned}
-        & \tilde{q}_{j + 1} := Aq_j - \beta_j q_j
+        & \tilde{q}_{j + 1} := Aq_j - \beta_{j - 1} q_{j - 1}
         \\
         & \tilde{q}_{j + 1} \leftarrow \tilde{q}_{j + 1} - \alpha_jq_j
         \\

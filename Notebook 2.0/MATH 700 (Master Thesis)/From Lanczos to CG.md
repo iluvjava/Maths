@@ -12,6 +12,12 @@ $$
 
 Assume that the Lanczos algorithm had the fix choice for its initialization vector, in this case: $r_0$. This is needed to fit the Krylov Minimization Framework of the Conjugate Gradient Algorithm.
 
+Our ultimaet goal here is to: 
+
+1. Use the energy norm minimizaton frameworks of the conjugate gradient over the krylove subspace to establish an interpretation of the algorithm based on the Quantites from the Lanczos Algorithm. 
+2. Use the Lanczos Algorithm to find the conjugate vectors from the Conjugate Gradient Algorithm. 
+3. Use the LU decomposition of the SymTridiagonal matrix to figure out the recurrences of the step size into the conjugate direction. 
+
 ---
 ### **Solving the System from the Tridiagonal Matrix**
 
@@ -110,7 +116,7 @@ Up to this point, the claims I made are proven.
 
 It won't be called conjugate Gradient if there are no conjugate directions from the algorithm. I want to make the claim that the conjugate directions are columns of the following matrix. 
 
-Claim: 
+**Claim:** 
 
 > $$
 > P_k = Q_k U_k^{-1}
@@ -152,3 +158,252 @@ $$
 $$
 
 $U_k$ is upper triangular, therefore, it's inverse it's also upper triangular, therefore, $U_k^{-T}$ is lower triangular, and because $L_k$ is also lower triangular, their product is a lower triangular matrix, and therefore, the resulting matrix above is lower triangular, however, given that $P_k^TAP_k$ is symmetric, therefore, $U_k^{-T}L_k$ will have to be symmetric as well, and a matrix that is lower triangular and symmetric has to be diagonal. Therefore, the columns of $P_k$ are conjugate vectors. 
+
+
+---
+### **The Building up of Recurrences**
+
+The Conjugate Gradient uses conjugate vector, which relates back to the $LU$ decomposition of the Tridiagonal Matrix from the Iterative Lanczos Algorithm. Here, we assume that the matrix $A$ is symmetric positive definite, and The lanczos Algorithm commits to the following Decomposition of matrix: 
+
+$$
+\begin{aligned}
+    Q^T_kAQ_k &= T_k
+\end{aligned}
+$$
+
+Where the matrix $T_k$ is symmetric Tridiagonal and positive definite as well. All the quantities inside $T_k$ should be real positive numbers, even if the matrix $A$ is complex, this is from the fact that $A$ is SPD, and the properties of Iterative Lanczos Algorithm. 
+
+From the conjugate Gradient Objective we obtains: 
+
+$$
+\begin{cases}
+    y_k = T^{-1}_k \beta\xi_1
+    \\
+    x_k = x_0 + Q_k y_k
+    \\
+    r_k = -\beta_{k + 1}\xi_k y_k q_{k +1}
+\end{cases}\tag{6}
+$$
+And we define the conjugate vectors and the lanczos vector matrix using the conventions: 
+
+$$
+P_k = \begin{bmatrix}
+    p_1 & p_2& \cdots & p_k
+\end{bmatrix} \quad
+Q_k = \begin{bmatrix}
+    q_1 & q_2 & \cdots & q_k
+\end{bmatrix}
+$$
+
+
+
+The Decomposition of the Symmetric Tridiaognal Factorizations asserts the following structures: 
+
+$$
+T_k = L_k U_k
+\begin{bmatrix}
+    1 & & & \\
+    l_1 & 1 & & \\
+    & \ddots& \ddots & 
+    \\
+    & & l_{k - 1} & 1
+\end{bmatrix}\begin{bmatrix}
+    u_1& \beta_1 & & \\
+    & u_2 &\beta_2 & \\
+    & &\ddots & \beta_{k - 1}\\
+    & & & u_k
+\end{bmatrix}
+$$
+
+At this time, take it for granted that the super diagonal of $U_k$ are indeed the same as the super diagonal of the SymTridiagonal matrix $T_k$. 
+
+And from expression (4), we have: 
+
+$$
+\begin{aligned}
+    x_k &= x_0 + P_k L_k^{-1}\beta \xi_1 \\ 
+    x_{k} - x_{k - 1} &= 
+    P_k L_k^{-1} \beta \xi_1 - P_{k - 1}L^{-1}_{k - 1}\beta \xi_1
+    \\
+    &= P_k \beta(L^{-1}_k)_{:, 1} - P_{k - 1}\beta(L^{-1}_{k - 1})_{:, 1}
+    \\
+    &= \beta(L^{-1}_k)_{k, 1}P_k
+    \\
+    \implies x_k &= x_{k - 1} + \beta(L^{-1}_k)_{k, 1}p_k
+\end{aligned}
+$$
+
+Next, we wish to derive the recurrence between $p_{k + 1}$ and $p_k$. Which is: 
+
+$$
+\begin{aligned}
+    P_k &= Q_k U^{-1}_k
+    \\
+    P_kU_k &= Q_k
+    \\\implies
+    \beta_{k - 1}p_{k - 1} + u_k p_k &= q_k 
+    \\
+    u_k p_k = q_k - \beta_{k - 1}p_{k - 1}
+    \\
+    p_k &= u^{-1}_k(q_k - \beta_{k - 1}p_{k - 1})
+\end{aligned}\tag{7}
+$$
+
+Next, we wish to seek for the recurrences of the parameters $u_k, l_k$. Let's consider the recurrence: 
+
+$$
+\begin{aligned}
+    T_k &= L_kU_k
+    \\
+    T_{k + 1} &= \begin{bmatrix}
+        T_k & \beta_k \xi_k \\
+        \beta_k \xi^T_k & \alpha_{k + 1}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        L_k & \mathbf{0} \\ l_k \xi_k^{-1} & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        U_k & \eta_k \xi_k \\
+        \mathbf{0} & u_{k + 1}
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        L_kU_k & \eta_k L_k \xi_k 
+        \\
+        l_k \xi_k^TU_k & \eta_k l_k \xi_k^T \xi_k + u_{k + 1}\alpha_k
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        T_k & \eta_k (L_k)_{:, k} \\ 
+        l_k(U_k)_{k, :} & \eta_k l_k + u_{k + 1}
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        T_k & \eta_k \\
+        l_k u_k & \eta_k l_k + u_{k + 1}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+**Reader please observe that** 
+
+$\eta_k = \beta_k$, as expected, and $l_k = \beta_k/u_k$, $u_{k + 1} = \alpha_{k +1} - \beta_{k}l_k$, and hence, to sum up the recurrence relation we have: 
+
+$$
+\begin{cases}
+    u_{k + 1} &= \alpha_{k + 1} - \beta_k^2/u_k
+    \\
+    l_k &= \beta_k/u_k
+\end{cases}\tag{8}
+$$
+
+And to figure out the recurrence relations of $(L^{-1}_k)_{:, 1}$, consider: 
+
+$$
+\begin{aligned}
+    L^{-1}_k L_k &= I 
+    \\
+    \begin{bmatrix}
+        L^{-1}_k & \mathbb{0} \\
+        s_k^T & d_{k + 1}
+    \end{bmatrix}
+    \begin{bmatrix}
+        L_k & \mathbf{0} \\
+        l_k \xi_k^T & 1
+    \end{bmatrix} &= I
+    \\
+    \begin{bmatrix}
+        I & \mathbf{0} \\ 
+        s^TL_k + d_{k + 1}l_k \xi_k^T &d_{k + 1}
+    \end{bmatrix} &= I
+\end{aligned}\tag{9}
+$$
+
+**Reader please observe that**
+
+$d_{k + 1} = 1$, and it has to be that the the lower diagonal sub vector in the results has to be zero. For the bi-lower unit diagonal matrix $L_k$, we cannot predict the structure, most of the time it's likely to be dense and unit lower  triangular. We are interested in look for the first element of the vector $s_k^T$, the equality will assert: 
+
+$$
+\begin{aligned}
+    S^TL_k + d_{k + 1}l_k \xi_k^T &= \mathbf{0}
+    \\
+    L_k^{T}s_k + d_{k + 1}l_k \xi_k &= \mathbf{0}
+    \\
+    s_k + L^{-T} d_{k + 1}l_k \xi_k &= \mathbf{0}
+    \\
+    (s_k)_1 + d_{k + 1}l_k (L^{-1}_k)\xi_k &= 0
+    \\
+    (s_k)_1 + d_{k + 1}l_k(L^{-1}_k)_{k , 1} &= 0
+    \\\implies
+    (s_k)_1 &= - l_k(L^{-1}_k)_{k, 1} 
+    \\
+    (s_k)_1 &= (L^{-1}_{k + 1})_{k + 1, 1}
+    \\
+    \implies
+    (L^{-1}_{k + 1})_{k + 1, 1} &=
+    -l_k(L^{-1}_k)_{k, 1}
+\end{aligned}
+$$
+
+Therefore the recurrence for the step size into the direction of the conjugate vector requires us to use the newest element $l_k$ from $L_{k + 1}$ and the previous step size in the direction of the conjugate vector $p_k$. 
+
+---
+### **The LU Conjugate Direction Algorithm**
+
+We are intersted in figuring the base cause for the recursions that we highlighted above. 
+
+At the start of the algorithm, the following quantities are established: 
+
+$$
+\begin{aligned}
+    q^T_1Aq_1 &= \alpha_1 \quad p_1 = q_1
+    \\
+    T_1 &= \alpha_1 \implies u_1 = \alpha_1
+    \\
+    L_1 &= 1, U_1 = \alpha_1
+    \\
+    \beta_0 = 0, l_1 &= 0
+\end{aligned}
+$$
+
+And, let's summarize the recurrence relations for the quantities we discussed: 
+
+$$
+\begin{aligned}
+    & \begin{cases}
+        x_{k} &= x_{k -1} + \beta(L^{-1}_k)_{k, 1} p_k
+        \\
+        (L^{-1})_{k, 1} &= -l_{k - 1}(L^{-1}_{k - 1})_{k - 1, 1}
+        \\
+        p_{k} &= u^{-1}_k(q_k - \beta_{k - 1}p_{k - 1})
+    \end{cases}
+    \\
+    & \begin{cases}
+        u_{k + 1} &= \alpha_{k + 1} - \beta^2_k/u_k
+        \\
+        l_k &= \beta_k/u_k
+    \end{cases}
+\end{aligned}
+$$
+
+And the base case of the algorithm is: 
+
+$$
+\begin{aligned}
+    x_1 &= x_0 + \beta p_1 
+    \\
+    \text{where: } p_1 &= q_1 / \alpha_1
+\end{aligned}
+$$
+
+Which is the quantities we need for the base case of the algorithm. However, the we getting a recurrence relations for the residual vectors for the conjugate gradient is somewhat more interesting and it's still under investigation. 
+
+A more natural thing to do with this formulations of the algorithm is to use $\Vert x_k - x_{k - 1}\Vert \le \epsilon$ as a stopping condition(Estimatin the Gradient of the objective, which is actually the residual.) instead of explicitly computing the residual which is an extra computation overhead. 
+
+---
+### **The Conjugate Gradient Algorithm**
+
+We are interesting in deriving the conjugate gradient algorithm from the relations and quantities we obtained above. 

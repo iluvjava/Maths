@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]], [[Ritz Vectors]]
+[[Lanczos Algoritm]], [[AMATH 584 (Numerical Linear Algbra)/Ritz Vectors]]
 
 
 ----
@@ -198,3 +198,4 @@ It's later, experimented in the papers for the selective orthogonalizations of t
 The Lanczos algorithm forgets that it explored into the direction of well-converged ritz vectors, regenerating $q$ into the same directions, causing $q$ to lose orthogonality. A paper titled \<The Lanczos Algorithm With Selective Orthogonalization\> compat the issues with selective re-orthogonalization and various other tricks to keep track of both, the lost of orthogonality of lanczos vectors, and the converged ritz vectors. 
 
 This is also significant because it uses converged ritz vector to improve stability of the Lanczos. 
+

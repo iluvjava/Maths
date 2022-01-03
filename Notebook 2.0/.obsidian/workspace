@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+            "file": "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
             "mode": "source"
           }
         },
@@ -21,8 +21,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
-            "mode": "preview"
+            "file": "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
+            "mode": "source"
           }
         },
         "group": "bfdb944427c8ebf9"
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+                "file": "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,17 +99,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e741468e024c4284",
+  "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient 2.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "AMATH 584 (Numerical Linear Algbra)/Iterative Methods/Conjugate Gradient and Lancosz Algorithm.md",
-    "MATH 700 (Master Thesis)/CG Via LDL on T.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Lanczos.md",
+    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
-    "AMATH 584 (Numerical Linear Algbra)/SVD/Applied PCA and KR-Approx.md",
-    "MATH 700 (Master Thesis)/Lanczos Ritz Convergence.md"
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
+    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
+    "MATH 700 (Master Thesis)/From CG to Lanczos.md",
+    "MATH 700 (Master Thesis)/Exact CG Convergence.md",
+    "MATH 700 (Master Thesis)/CG Via LDL on T.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient 2.md"
   ]
 }
