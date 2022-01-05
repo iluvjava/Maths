@@ -7,7 +7,7 @@ Prereq: Basic Linear Algebra.
 
 The ritz vectors/values are the approximations of the eigenvectors of a matrix. Consider the Hessenberg Decomposition of a matrix $A$. The system of the Hessenberg matrix of a Hessenberg Decomposition of a Matrix $A$ are an approximation of eigensystem for the matrix $A$. 
 
-In a much similar way, the eigensystem of the Tridiagonal matrix $T$ (Where T is Generated from the Lanzos Algorithm) is an approximation for the eigensystem of the original Hermitian Matrix $A$. 
+In a much similar way, the eigensystem of the Tridiagonal matrix $T$ (Where T is Generated from the Lanzos Algorithm) is an approximation for the eigensystem of the original Hermitian Matrix $A$.
 
 ---
 ### **How Close are the Ritz Vectors?**
@@ -27,3 +27,9 @@ $$
 $$
 
 And the quantity $\beta_kq_{k + 1}(v)_k$ tells use how close the vector $v$ is to one of the eigenvectors to the matrix $A$ with eigenvalue of $\theta$. 
+
+
+---
+### **A Recurrence of Error Bounds**
+
+On the paper \<The Lanczos Algorithm with Selective Re-Orthogonalizations\>, it's been highlithed a way of keeping the error bounds for referenceing when to orthognalize the Lanczos Vectors against the Ritz Vectors. It's under section 7 of the paper: Monitoring the Return of Banished Ritz Vectors. 

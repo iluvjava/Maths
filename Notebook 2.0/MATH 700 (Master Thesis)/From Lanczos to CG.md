@@ -30,7 +30,7 @@ We see to verify these claims:
 >     x_k = x_0 + Q_k y_k
 >     \\
 >     r_k = -\beta_{k + 1}\xi_k y_k q_{k +1}
-> \end{cases}
+> \end{cases}\tag{0}
 > $$
 
 The quantities $\alpha, \beta$ are the diaognal and the sub or super diagonal of the matrix $T_k$ from the Iterative Lanczos Algorithm, and $r_k$ is the residual from the Conjugate Gradient Algorithm, and $Q_k$ is the orthogonal subsapce generated from the Lanczos Algorithm. 
@@ -402,6 +402,10 @@ $$
 Which is the quantities we need for the base case of the algorithm. However, the we getting a recurrence relations for the residual vectors for the conjugate gradient is somewhat more interesting and it's still under investigation. 
 
 A more natural thing to do with this formulations of the algorithm is to use $\Vert x_k - x_{k - 1}\Vert \le \epsilon$ as a stopping condition(Estimatin the Gradient of the objective, which is actually the residual.) instead of explicitly computing the residual which is an extra computation overhead. 
+
+**Extra Comments**: 
+
+The residuals vectors are orthognals, and they are rescaled version of the Lanczos vectors, refers it back to expression (0) at the start of the section. 
 
 ---
 ### **The Conjugate Gradient Algorithm**

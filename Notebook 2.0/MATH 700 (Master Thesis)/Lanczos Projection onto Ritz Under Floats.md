@@ -1,4 +1,5 @@
-[[Lanczos Algoritm]], [[AMATH 584 (Numerical Linear Algbra)/Ritz Vectors]]
+[[Lanczos Algoritm]]
+[[Ritz Vectors from Lanczos]]
 
 
 ----
