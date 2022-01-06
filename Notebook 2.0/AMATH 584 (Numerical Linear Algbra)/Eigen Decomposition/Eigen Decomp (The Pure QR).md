@@ -22,7 +22,7 @@ A_k = Q_kR_k
 $$
 
 $$
-A_{k + 1} = R_kQ_k = Q^TQR_kQ = Q^TA_kQ \quad\blacksquare
+A_{k + 1} = R_kQ_k = Q_k^TQ_kR_kQ = Q^T_kA_kQ \quad\blacksquare
 $$
 
 

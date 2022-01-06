@@ -102,7 +102,7 @@ The other one that we are going to introduced here is the Rayleigh Quotient Iter
 
 This is fast because when the value of $\lambda$ is close, the matrix $(A - \lambda I)$ is stretching along the direction of the Eigenvector aggressively. 
 
-#### Key to Understanding 
+#### **Key to Understanding** 
 $\forall \mu \in \mathbb{R}$ that is not an Eigenvalue of $(A - \mu I)^{-1}$ are the same as the eigenvectors of $A$. 
 
 Let $x$ be $Ax = \lambda x$, then: 
@@ -120,7 +120,7 @@ Take note that the iterations process is very dependent upon the initial guess o
 
 And this idea of inverse iteration will be reviewed in the QR Iterations, in which it performs an inverse and forward QR iterations. 
 
-#### Convergence 
+#### **Convergence** 
 
 Note that, For this part of the proof, use the assumption that the Eigenvectors are orthogonal, and they are unique. 
 
@@ -155,7 +155,8 @@ Huh... I can smell the presence of the QR algorithm.
 In addition, this is very effective for Hermitian matrices because of the orthogonality properties of the eigenvectors of the hermitian Matrices. 
 
 
-### Subspace Iterations
+---
+### **Subspace Iterations**
 
 Assuming that we want to find the second dominant eigenvector for the matrix. 
 

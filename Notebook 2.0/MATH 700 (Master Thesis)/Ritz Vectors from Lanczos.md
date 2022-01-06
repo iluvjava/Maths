@@ -33,3 +33,4 @@ And the quantity $\beta_kq_{k + 1}(v)_k$ tells use how close the vector $v$ is t
 ### **A Recurrence of Error Bounds**
 
 On the paper \<The Lanczos Algorithm with Selective Re-Orthogonalizations\>, it's been highlithed a way of keeping the error bounds for referenceing when to orthognalize the Lanczos Vectors against the Ritz Vectors. It's under section 7 of the paper: Monitoring the Return of Banished Ritz Vectors. 
+

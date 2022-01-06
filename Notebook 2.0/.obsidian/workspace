@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Exact CG Convergence.md",
+            "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Exact CG Convergence.md",
+            "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Exact CG Convergence.md",
+                "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +101,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Exact CG Convergence.md",
-    "MATH 700 (Master Thesis)/Bi-Lanczos.md",
-    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
+    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
+    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Ritz Vectors.md",
-    "MATH 700 (Master Thesis)/From Lanczos to CG.md",
-    "MATH 700 (Master Thesis)/From CG to Lanczos.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
-    "MATH 700 (Master Thesis)/CG Via LDL on T.md"
+    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
+    "MATH 700 (Master Thesis)/Ortho Min 2.md",
+    "MATH 700 (Master Thesis)/Ortho Min.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Hessenberg Transform with Arnoldi Iterations.md"
   ]
 }

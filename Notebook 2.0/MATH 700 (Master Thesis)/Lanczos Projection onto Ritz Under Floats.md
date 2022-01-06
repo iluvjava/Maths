@@ -200,3 +200,7 @@ The Lanczos algorithm forgets that it explored into the direction of well-conver
 
 This is also significant because it uses converged ritz vector to improve stability of the Lanczos. 
 
+---
+### **Comments**
+
+[[Cauchy Interlace Theorem]], stated that the eigenvalues of $T_{k}$  are striclty in between $T_{k + 1}$, which implies that, the eigenvalues found for the $T_{k}$ matrix will be changing monotocially, they will have to start somewhere in the middle of the spectrum, and then gradually move to the exterior of the spectrums. 

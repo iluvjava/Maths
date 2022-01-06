@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-The Hessenberg form for matrix decomposition is important for numerical interpretations of matrices. 
+The Hessenberg form for matrix decomposition is important for numerical interpretations of matrices. The arnoldi iterations is just another variations of looking for the Hessenberg form. 
 
 Using Householder Triangularization, we will be able to make matrix $A$ into the project of 2 matrices $A = Q_n\tilde{H}_nQ_n^T$, where $Q_n$ is a unitary matrix. And $\tilde{H}$ is a matrix in Hessenberg Form. 
 
