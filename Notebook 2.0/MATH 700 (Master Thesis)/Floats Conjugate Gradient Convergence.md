@@ -1,6 +1,6 @@
 [[Exact Conjugate Gradient Convergence]]
 [[From Lanczos to Conjugate Gradient]]
-
+[[Conjugate Gradient Convergence Statmemt of Results]]
 
 ---
 ### **Intro**
@@ -19,7 +19,7 @@ $$
 \end{aligned}
 $$
 
-$F_k$ is the floating error that makes the equal true, and $\tilde{Q}$ are perturbed slightly resulting in loss of orthogonality, hence we cannot assume $\tilde{Q}_k$ to be orthogonal in any kind of ways 
+$F_k$ is the floating error that makes the equal true, and $\tilde{Q}$ are perturbed slightly resulting in loss of orthogonality, hence we cannot assume $\tilde{Q}_k$ to be orthogonal in any kind of ways . $T_k$, without the ~ is also perturbed. All 2 quantities $Q_k, T_k$ are pretty much perturbed with errors in it. 
 
 And we assume that $k$ is much less than the dimension of $A$, in a sense, the tridiagonal matrix is perturbed as well, as an intro, we are going to show that he Residual Error vector from this formulations with floating ponts error is: 
 
@@ -42,4 +42,40 @@ $$
 
 Which, as we see, **doesn't involve any $\tilde{Q}_k$ in the expression** for the floating point rel residual error under 2 norm. The $T_k$ for the floating point version of CG is still the same one we are solving by the CG algorithm, therefore, $T_ky_k^C = \beta \xi_1$, which allows the above conclusion to be true. 
 
+Hence the error is expressed as: 
+
+$$
+\begin{aligned}
+    \Vert r_k^C\Vert/\Vert r_0\Vert &\le \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k\xi_1| + \Vert F_k\Vert \Vert y_k^C\Vert/\beta
+    \\
+    \Vert r_k^C\Vert/\Vert r_0\Vert &\ge 
+    \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k\xi_1| - \Vert F_k\Vert \Vert y_k^C\Vert/\beta
+\end{aligned}
+
+$$
+
+---
+### **Paige's Theorem**
+
+Paige state the relations of the Floating Point Tridiagonal Matrix in relations to the eigenvalues/eigenvectors of the original matrix $A$. (Listed as [110] in professor Greenbaum's Book, stated as theorem 4.1.1 in the textbook.)
+
+The eigenvalues for the $T_k$ we got from lanczos under floating points has it's ritz vectors and ritz values bounded in this way: 
+
+$$
+\begin{aligned}
+    \lambda_1 - j^{5/2}\epsilon_2\Vert A\Vert 
+    \le 
+    \theta^{(j)}_i \le \lambda_n  + j^{5/2}\epsilon_2\Vert A\Vert
+    \quad \epsilon_2 = \sqrt{2}\max\{6\epsilon_0, \epsilon_1\}
+\end{aligned}
+$$
+
+Which basically stated that the $i^{th}$ eigenvalue of $T_j$ is bounded within the spectrum of $A$, with some extra margine that is paramaterzied by $\Vert A\Vert$. 
+
+---
+### **Backwards Analysis**
+
+We are interested in looking for an original, Unpreturbed problems of CG such that it produces the perturbed Tridiagonal matrix $T_k$.
+
+To Drive the intuition further into the matter, recall that. 
 

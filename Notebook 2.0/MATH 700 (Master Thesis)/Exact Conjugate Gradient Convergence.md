@@ -1,4 +1,4 @@
-[[CG Convergence Statmemt of Results]]
+[[Conjugate Gradient Convergence Statmemt of Results]]
 
 
 ---
