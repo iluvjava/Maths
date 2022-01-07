@@ -1,6 +1,6 @@
 [[Lanczos Algoritm]]
 [[Steepest Descend for Matrix Vector]]
-[[Conjugate Gradient 2]]
+[[Conjugate Gradient Anne's Version]]
 
 
 ----

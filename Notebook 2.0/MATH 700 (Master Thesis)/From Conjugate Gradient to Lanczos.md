@@ -1,5 +1,5 @@
 [[Lanczos Algoritm]]
-[[Conjugate Gradient 2]]
+[[Conjugate Gradient Anne's Version]]
 
 ---
 ### **From CG to Lanczos**

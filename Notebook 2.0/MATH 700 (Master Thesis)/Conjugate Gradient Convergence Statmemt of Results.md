@@ -1,4 +1,4 @@
-[[Conjugate Gradient 2]]
+[[Conjugate Gradient Anne's Version]]
 
 ---
 ### **Intro**

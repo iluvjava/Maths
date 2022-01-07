@@ -200,7 +200,7 @@ $$
 The Decomposition of the Symmetric Tridiaognal Factorizations asserts the following structures: 
 
 $$
-T_k = L_k U_k
+T_k = L_k U_k =
 \begin{bmatrix}
     1 & & & \\
     l_1 & 1 & & \\
@@ -299,6 +299,8 @@ $$
     l_k &= \beta_k/u_k
 \end{cases}\tag{8}
 $$
+
+The base case is $u_1 = \alpha_1$. 
 
 And to figure out the recurrence relations of $(L^{-1}_k)_{:, 1}$, consider: 
 
@@ -411,3 +413,16 @@ The residuals vectors are orthognals, and they are rescaled version of the Lancz
 ### **The Conjugate Gradient Algorithm**
 
 We are interesting in deriving the conjugate gradient algorithm from the relations and quantities we obtained above. 
+
+
+
+
+---
+### **Extra Comments**
+
+When Lanczos Is applied to various type of SPD Matrice, there are some features that the users should observe from the algorithm. 
+
+$T_k$ is a real positive matrix, and it's also symmetric(Hermitian Too). 
+
+$T_k$ only has non zero positive eigenvalues (As a result of being positive and SPD), and **it has all unique eigenvalues**. This is true even if the matrix $A$ as repeating eigenvalues. The initial random vector, $q_1\in \text{span}(\{u_1, u_2\cdots u_m\})$ where $u_i, \lambda_i$  are the eigen system for the matrix $A$ and $u_i$ are all **unique**, then, the dimension of the Krylov Subspace is not going to exceed $\text{span}(\{u_1, u_2, \cdots u_m\})$, because it's invariant under $A$, and it has only $m$ dimensions. Therefore, if we assume that $T_n$ has 2 repeated ritz vectors and values, then it's also the the repeating eigen values and vectors for $A$, which means Lanczos terminates earlier than $n$, therefore, a contradiction is shown, therefore, $T_n$ in the end has to have all unique eigenvalues and vectors. 
+

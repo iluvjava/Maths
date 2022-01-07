@@ -11,11 +11,11 @@ Linear Algebra and Numerical Analysis
 ---
 ### **Eigen Decomposition**
 * [[Eigen Decompose]]: Basics
-* [[Eigen Decomp Algo (Baisc and Intro)]]: Basics of Algorithmic approach of the matters. 
+* [[Inverse Power Iteration]]: Basics of Algorithmic approach of the matters. 
 	* [[Eigen Decomp (The Pure QR)]]
 	* [[Eigen Decomp Algo 3 (Shifted QR)]]
 	* [[Hessenberg Transform intro (HS Reflector)]]
-	* [[Eigen Decomp Algo 4 (Divided Conquer)]]
+	* [[Secular Equation and Cuppen's Method]]
 * And it's due to the research in Eigen Decomposition, we now have efficient algorithms for SVD. 
 
 

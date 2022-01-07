@@ -46,13 +46,35 @@ Hence the error is expressed as:
 
 $$
 \begin{aligned}
-    \Vert r_k^C\Vert/\Vert r_0\Vert &\le \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k\xi_1| + \Vert F_k\Vert \Vert y_k^C\Vert/\beta
+    \Vert r_k^C\Vert/\Vert r_0\Vert &\le \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k^{-1}\xi_1| + \Vert F_k\Vert \Vert y_k^C\Vert/\beta
     \\
     \Vert r_k^C\Vert/\Vert r_0\Vert &\ge 
-    \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k\xi_1| - \Vert F_k\Vert \Vert y_k^C\Vert/\beta
+    \Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k^{-1}\xi_1| - \Vert F_k\Vert \Vert y_k^C\Vert/\beta
 \end{aligned}
+$$
+
+Now, let me invoke another theorem, stated in [[The Energy Norm and the 2-Norm]], which can provides us with an upper bound of the relative error for the algorithm. 
+
+> $$
+> \frac{\Vert A x\Vert}{\Vert Ay \Vert} \le \kappa(A)\frac{\Vert 
+> x\Vert_A}{\Vert y \Vert_A}
+> $$
+
+Applying it in our case, we have: 
 
 $$
+\begin{aligned}
+    \frac{\Vert e_{k}\Vert_A}{\Vert e_k\Vert_A} \le 
+    \kappa(A) \frac{\Vert Ae_k\Vert}{\Vert Ae_0\Vert} &= 
+    \kappa(A)\frac{\Vert r_k^C\Vert}{\Vert r_0\Vert}
+    \\
+    \implies 
+    \frac{\Vert e_{k}\Vert_A}{\Vert e_0\Vert_A}
+    &\le
+    \kappa(A)\left(\Vert q_{k + 1}\Vert |\beta_k\xi^T_kT_k^{-1}\xi_1| + \Vert F_k\Vert \Vert y_k^C\Vert/\beta\right)
+\end{aligned}
+$$
+Which, is infact, not easy to estimate at all due to the fact that, $\kappa(A)$ is involved and $A$ is a assumed to be an extremely large and sparse matrix, sometimes this is not directly attainable if $A$ is a blackbox. The convergence of the relative optimality gap: ($\frac{\Vert r_k^c\Vert}{\Vert r_0\Vert}$), however, is not directly related to $\Vert A\Vert$, but indirectly via $T_k$. 
 
 ---
 ### **Paige's Theorem**
@@ -72,10 +94,11 @@ $$
 
 Which basically stated that the $i^{th}$ eigenvalue of $T_j$ is bounded within the spectrum of $A$, with some extra margine that is paramaterzied by $\Vert A\Vert$. 
 
+
 ---
 ### **Backwards Analysis**
 
-We are interested in looking for an original, Unpreturbed problems of CG such that it produces the perturbed Tridiagonal matrix $T_k$.
+We are interested in looking for an original, Unpreturbed problems of CG such that it produces the perturbed Tridiagonal matrix $T_k$, and hence, completing the process of backwards analysis. 
 
-To Drive the intuition further into the matter, recall that. 
+To Drive the intuition further into the matter, recall that: 
 

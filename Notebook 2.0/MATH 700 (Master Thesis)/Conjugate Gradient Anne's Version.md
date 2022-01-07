@@ -9,7 +9,7 @@ Tyler Chen's Work [here](https://chen.pw/research/cg/cg.pdf)
 
 Here, we are interested in the formulation made by professor Green Baum in her book. Which is simpler. 
 
-Anne Green Baum: 
+Anne Greenbaum: 
 
 > I can do it with the minimal amount of basics assumptions. To prove everything needed for the conjugate gradient algorithm, please consider the following formulations of the algorithms: 
 

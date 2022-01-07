@@ -1,6 +1,6 @@
 Not to be confused with the Householder Transformation, the QR algorithm is designed for computing the Eigenvalues and stuff. 
 
-[[Eigen Decomp Algo (Baisc and Intro)]]
+[[Inverse Power Iteration]]
 
 You need to read all the way up to that. We need to know the power iterations first. 
 

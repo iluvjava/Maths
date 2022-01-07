@@ -339,7 +339,6 @@ Where, we make use the indcutive hyptoehsis and the fact that $j \le k - 1$. $\b
 
 Therefore, the algorithm asserts the orthogonality where $W^HV_k = I_k$. Provided the the algorithm doesn't break down. 
 
-
 ---
 ### **Serious Breakdown**
 The algorithm breaks down when during the iterations $j$, we have: 
