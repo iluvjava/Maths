@@ -244,3 +244,39 @@ $$
 $$
 
 That the GMRes algorithm. To make it more practical, consider restarting the algorithm with previous residuals when the memory got full, if the matrix is huge, you will ran out of memory very quickly. 
+
+---
+### **The Matrix Polynomial of the GMRes**
+
+$x_k$ is in the affine subspace $x_0 + \mathcal{K}_k(A, r_0)$, which can be written as: $x_k = x_0 + \mathcal{K}_k(A, r_0)w$, where $w$ is a weight vector that add weights to the columns of krylov subspace matrix. In that way, we have the objective of minimizing $\Vert r_k\Vert$ written as:  
+
+$$
+\begin{aligned}
+    &\hspace{1.1em}\min_{w} \left\Vert
+        b - Ax_k
+    \right\Vert_2^2
+    \\
+    &= \min_{w}\left\Vert
+         b - A(x_0 + \mathcal{K}_k(A, r_0))w
+    \right\Vert_2^2
+    \\
+    &= 
+    \min_{w}\left\Vert
+        r_0 + \mathcal{K}_k(A, Ar_0)w
+    \right\Vert_2^2
+    \\
+    &= 
+    \min_{p(k): p(0) = 1}
+    \left\Vert
+        p_k(A) r_0
+    \right\Vert_2^2 
+    \\
+    & \le 
+    \min_{p(k): p(0) = 1}
+    \Vert p_k(A)\Vert_2^2 \Vert r_0\Vert^2_2
+\end{aligned}
+$$
+
+Here we take note tha, $\exists\; w: \mathcal{K}_k(A, x)w = p_{k -1}(A)x$, which is an alternative way of representing the krylov subspace. 
+
+

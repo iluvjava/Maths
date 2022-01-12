@@ -175,3 +175,4 @@ For non-hermitian matrices, the power iteration is atrocious to use when the mat
 ---
 ### **The Next Stage**
 Iterating the whole subspace with all orthogonal vectors is the [[Eigen Decomp (The Pure QR)]]
+

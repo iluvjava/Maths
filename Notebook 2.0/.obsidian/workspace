@@ -102,14 +102,14 @@
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp Algo 3 (Shifted QR).md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp (The Pure QR).md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Secular Equation and Cuppen's Method.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/NonSym Eigen Decomposition Foundations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrix Decomposition/Eigen Decompose.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
-    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
-    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md"
+    "MATH 700 (Master Thesis)/GMRes.md",
+    "MATH 700 (Master Thesis)/GMRes Error Bound.md",
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Cauchy Integral.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+    "AMATH 581 (Scientific Computing)/Direct Method.md",
+    "AMATH 581 (Scientific Computing)/Finite Difference.md",
+    "AMATH 581 (Scientific Computing)/Spectral Method 2.md",
+    "AMATH 581 (Scientific Computing)/Finite Elements Method 2.md",
+    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp Algo 3 (Shifted QR).md"
   ]
 }
