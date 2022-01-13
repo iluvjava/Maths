@@ -77,6 +77,12 @@ $$
 \Vert \vec{e}\Vert_{L2} = \sqrt{h}\Vert \vec{e} \Vert_2
 $$
 
+**Claim 1**
+
+> The global error for the L2 norm is $\mathcal{O}(h^2)$ and the error for the infinity norm is also $\mathcal{O}(h^2)$. 
+
+**Let's find the Global Error under the L2 norm**
+
 Due to finite difference, we say: $A\hat{u} = \vec{f} + \vec{\tau}$, where $\vec{\tau}$ denotes the Truncation error from the finite differences. Then: 
 
 $$
@@ -116,3 +122,10 @@ $$
 $$
 
 The error is in the order of $\mathcal{O}(h^2)$. Taking the integral on both side we have $e(x)$, however, $h$ remains the same and kept the order of accuracy. 
+
+**Note**
+
+The L2 norm is consistent of the L2 norm for function, notice that the integral of $e(x)$ will converge to zero with $\mathcal{O}(h^2)$, which doesnt mean that $\Vert \vec{e}\Vert_2$ is going to converge to zero at the same rate. 
+
+The proof for the Infinity norm is more involved and it will be covered in another file. 
+

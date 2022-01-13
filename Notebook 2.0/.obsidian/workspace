@@ -65,7 +65,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400.5121879577637
+    "width": 400.5121879577637,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -102,6 +103,7 @@
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
     "MATH 700 (Master Thesis)/GMRes.md",
     "MATH 700 (Master Thesis)/GMRes Error Bound.md",
@@ -109,7 +111,6 @@
     "AMATH 581 (Scientific Computing)/Direct Method.md",
     "AMATH 581 (Scientific Computing)/Finite Difference.md",
     "AMATH 581 (Scientific Computing)/Spectral Method 2.md",
-    "AMATH 581 (Scientific Computing)/Finite Elements Method 2.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp Algo 3 (Shifted QR).md"
+    "AMATH 581 (Scientific Computing)/Finite Elements Method 2.md"
   ]
 }
