@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
             "mode": "preview"
           }
         },
@@ -81,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,11 +101,11 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
     "MATH 700 (Master Thesis)/GMRes.md",
     "MATH 700 (Master Thesis)/GMRes Error Bound.md",
     "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Cauchy Integral.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
     "AMATH 581 (Scientific Computing)/Direct Method.md",
     "AMATH 581 (Scientific Computing)/Finite Difference.md",
     "AMATH 581 (Scientific Computing)/Spectral Method 2.md",
