@@ -81,10 +81,8 @@ Don't know.
 
 ![[symmetric-eigen-divide-and-conquer.png]]
 
-This picture visualizes divides by conquer process. In each part of the algorithm, we assume that we have the eigenvalue decomposition for the matrices 
 
-
-Here we **assume that the eigenvalues for the matrices:** $\widehat{T}_1$ and $\widehat{T}_2$ are known recursively, and our objective is to figure out the Eigenvalues for matrix $T$. 
+We **assume that the eigenvalues for the matrices:** $\widehat{T}_1$ and $\widehat{T}_2$ are known recursively, and our objective is to figure out the Eigenvalues for matrix $T$. 
 
 Firstly, the $T_1$ and $T_2$ Matrices: 
 
@@ -100,9 +98,7 @@ Secondly, the $\widehat{T}_1$ and the $\widehat{T}_1$ matrices.
 Then, we have split the matrix $T$ into the sum of 2 matrices, 
 
 
-**Now let's look at the recursive with the assumption that we have  the Eigen-Decomposition for the sub-matrices involved here. **
-
-Let's inductively assumes that: 
+**Inductively assumes that:**
 
 $$
 \widehat{T}_1 = Q_1 D_1Q_1^T \quad \widehat{T}_2 = Q_2 D_2Q_2^T
@@ -190,8 +186,8 @@ T =
 \end{bmatrix}
 \left(
 \begin{bmatrix}
-	\widehat{T}_1  & \\ 
-	& \widehat{T}_2
+	D_1  & \\ 
+	& D_2
 \end{bmatrix}
 + \beta zz^T
 \right)

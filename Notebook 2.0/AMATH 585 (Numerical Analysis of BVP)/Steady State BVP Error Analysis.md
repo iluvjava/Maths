@@ -42,11 +42,11 @@ $$
     A_h \vec{u} &= \vec{f}
     \\
     A &= \frac{1}{h^2}\begin{bmatrix}
-        -2 & 1 & & \\
-        1& -2 & 1 & \\
-        & & \ddots & \\
-        & & & 1 \\
-        & & 1 & -2
+        -2 & 1 & &&  \\
+        1& -2 & 1 && \\
+        & & \ddots && \\
+        & & &&  1 \\
+        & &&  1 & -2
     \end{bmatrix}
     \\
     \vec{f} &= 
@@ -64,9 +64,8 @@ $$
 \end{aligned}
 $$
 
-
 ---
-### **What is the Error**
+### **What is the Global, Local Error?**
 
 What is the error, if we solve the discretized system as an approximation to the original problem ($A_h\vec{u} = \vec{f}$), for the steady state solution? 
 
@@ -128,4 +127,13 @@ The error is in the order of $\mathcal{O}(h^2)$. Taking the integral on both sid
 The L2 norm is consistent of the L2 norm for function, notice that the integral of $e(x)$ will converge to zero with $\mathcal{O}(h^2)$, which doesnt mean that $\Vert \vec{e}\Vert_2$ is going to converge to zero at the same rate. 
 
 The proof for the Infinity norm is more involved and it will be covered in another file. 
+
+---
+### **How Stable Is This?**
+
+A problem is stable when: 
+
+> $A_hu_h = f_h$ is the problem and $\Vert A_h^{-1}\Vert \le C$ for $h$ getting smaller and smaller and C is not paramaterized by h in anyway. 
+
+In this case, it just so happens that the matrix $A$ has a spectrum that is bounded as $h\rightarrow 0$ and its inverse is still going to be bounded, which in the end bounding the norm of the operator. Because the matrix is TST, which is discusssed in: [[The TST Matrix]]. 
 

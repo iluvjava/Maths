@@ -6,6 +6,7 @@
       {
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
+        "dimension": 50.61058344640434,
         "state": {
           "type": "markdown",
           "state": {
@@ -18,6 +19,7 @@
       {
         "id": "e741468e024c4284",
         "type": "leaf",
+        "dimension": 49.38941655359566,
         "state": {
           "type": "markdown",
           "state": {
@@ -65,8 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400.5121879577637,
-    "collapsed": true
+    "width": 400.5121879577637
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -104,13 +105,13 @@
   "lastOpenFiles": [
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md",
+    "MATH 700 (Master Thesis)/GMRes Error Bound.md",
+    "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
+    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Secular Equation and Cuppen's Method.md",
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
     "MATH 700 (Master Thesis)/GMRes.md",
-    "MATH 700 (Master Thesis)/GMRes Error Bound.md",
     "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Cauchy Integral.md",
-    "AMATH 581 (Scientific Computing)/Direct Method.md",
-    "AMATH 581 (Scientific Computing)/Finite Difference.md",
-    "AMATH 581 (Scientific Computing)/Spectral Method 2.md",
-    "AMATH 581 (Scientific Computing)/Finite Elements Method 2.md"
+    "AMATH 581 (Scientific Computing)/Direct Method.md"
   ]
 }
