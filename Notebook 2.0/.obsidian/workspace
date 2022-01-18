@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -127,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,6 +147,7 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
@@ -155,7 +156,6 @@
     "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
     "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Useful Matrix Identities.md"
   ]
 }
