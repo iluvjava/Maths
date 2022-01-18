@@ -1,8 +1,7 @@
 [[Lanczos Algoritm]]
 
 
-
---- 
+---
 ### **Intro**
 
 The Lanczos algorithm for symmetric matrices are generating orthogonal polynomials under the a sapce weighted by finitely many eigevalues of the matrix.

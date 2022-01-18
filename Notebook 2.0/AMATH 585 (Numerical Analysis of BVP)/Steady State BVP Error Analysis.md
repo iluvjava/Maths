@@ -1,6 +1,5 @@
 [[Direct Method]], [[Finite Difference]]
 
-
 ---
 ### **Intro**
 
@@ -136,4 +135,7 @@ A problem is stable when:
 > $A_hu_h = f_h$ is the problem and $\Vert A_h^{-1}\Vert \le C$ for $h$ getting smaller and smaller and C is not paramaterized by h in anyway. 
 
 In this case, it just so happens that the matrix $A$ has a spectrum that is bounded as $h\rightarrow 0$ and its inverse is still going to be bounded, which in the end bounding the norm of the operator. Because the matrix is TST, which is discusssed in: [[The TST Matrix]]. 
+
+
+
 

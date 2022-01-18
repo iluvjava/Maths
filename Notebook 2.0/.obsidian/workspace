@@ -6,7 +6,7 @@
       {
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
-        "dimension": 50.61058344640434,
+        "dimension": 50.50878815911193,
         "state": {
           "type": "markdown",
           "state": {
@@ -17,17 +17,61 @@
         "group": "bfdb944427c8ebf9"
       },
       {
-        "id": "e741468e024c4284",
-        "type": "leaf",
-        "dimension": 49.38941655359566,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
-            "mode": "preview"
+        "id": "af45dfaa70536c44",
+        "type": "split",
+        "dimension": 49.49121184088806,
+        "children": [
+          {
+            "id": "e741468e024c4284",
+            "type": "leaf",
+            "dimension": 76.92307692307692,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+                "mode": "preview"
+              }
+            },
+            "group": "bfdb944427c8ebf9"
+          },
+          {
+            "id": "447afe05f604e290",
+            "type": "leaf",
+            "dimension": 23.076923076923073,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": false,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 1.2697771104976714,
+                  "close": false
+                }
+              }
+            }
           }
-        },
-        "group": "bfdb944427c8ebf9"
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -67,7 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 400.5121879577637
+    "width": 403.0121879577637
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -104,14 +148,14 @@
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
-    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md",
-    "MATH 700 (Master Thesis)/GMRes Error Bound.md",
-    "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
+    "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Secular Equation and Cuppen's Method.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Cauchy Integral.md",
-    "AMATH 581 (Scientific Computing)/Direct Method.md"
+    "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
+    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Useful Matrix Identities.md"
   ]
 }

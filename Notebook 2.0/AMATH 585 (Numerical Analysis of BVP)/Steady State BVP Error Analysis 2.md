@@ -24,4 +24,15 @@ $$
 
 Therefore it's definitely converging, but the bound here can be made better to $\mathcal{O}(h^2)$. 
 
+---
+### **The Inf Norm Bound is Actually $\mathcal{O}(h^2)$**
+
+We wish to prove the claim that: 
+
+$$
+\Vert e\Vert_{\infty} \le \Vert A\Vert_{\infty}\Vert \tau\Vert_{\infty} = \mathcal{O}(h^2)
+$$
+
+In the first part of the steady state error analysis, $\tau$ has $\mathcal{O}(h^2)$ bounded norm, in that sense, the infinity error would be bounded as well. 
+
 

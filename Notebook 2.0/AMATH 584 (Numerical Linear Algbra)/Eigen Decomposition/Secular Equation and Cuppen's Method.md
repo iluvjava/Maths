@@ -2,7 +2,7 @@ This algorithm is not following from what we had before, and hence we are going 
 
 ---
 
-### Rank one Diagonal Problem (Secular Equation)
+### **Rank one Diagonal Problem (Secular Equation)**
 
 Here we consider a special problem which will be relevant to an divide and conquer algorithm for the Irreducible Symmetric Eigenvalue problem. 
 
@@ -18,52 +18,50 @@ $$
 
 And the assumption that the problem irreducible lies in the fact that the vector $w$ has all non-zero entries. 
 
-**Statement: **
+**Statement:**
 
 > The Eigenvalues for the matrix $D + ww^T$ are the roots of the rational function: 
 > $$
 > f(\lambda) = 1 + \sum_{j = 1}^m\frac{w_j^2}{d_j - \lambda}
 > $$
-> NOTE: This is called a "Secular Equation"
+> And vice versa. The equation is called the Secular Equation. Assuming that all diagonals of the matrix $D$ are distinct real numbers and $w$ is not the zero vector. 
 
-First, we need to show that, the Eigenvalue for the matrix $D + ww^T$ is indeed the roots of the above expression. 
+First, we need to show that, the Eigenvalue for the matrix $D + ww^T$ is indeed the roots of the above expression, and then we prove the converse. 
 
 **Proof**: 
 
 Let $q$ be the Eigenvalue of the matrix $D + ww^T$, then $(D + ww^T)q = \lambda q$ where $\lambda \neq 0$ and $q \neq \mathbb{0}$. 
 
-$$
-(D+ ww^T)q =\lambda q
-$$
-$$
-Dq + ww^Tq = \lambda q
-$$
-$$
-(D - \lambda)q + ww^Tq = \mathbb{0}
-$$
-
-$$
-q + (D - \lambda)^{-1}ww^Tq = \mathbb{0}
+$$ 
+\begin{aligned}
+	(D+ ww^T)q &= \lambda q
+	\\
+	Dq + ww^Tq &= \lambda q
+	\\
+	(D - \lambda)q + ww^Tq &= \mathbf{0}
+	\\
+	q + (D - \lambda)^{-1}ww^Tq &= \mathbf{0}
+\end{aligned}
 $$
 Now the right hand side is zero vector, but we would like to have a zero scalar on the right hand side so it fits with the expression we have framed above. 
 
-So we can have: 
+$$
+\begin{aligned}
+	w^Tq + w^T(D - \lambda)^{-1}ww^Tq &= 0
+	\\
+	\text{Where: } w^T(D - \lambda)^{-1}w &= \sum_{j = 1}^{m}\frac{w^2}{d_j - \lambda}
+	\\
+	w^Tq + \left( \sum_{j = 1}^{m}\frac{w^2}{d_j - \lambda}\right) w^Tq &= 0
+	\\
+	\left(
+		1 + \sum_{j = 1}^{m}\frac{w^2}{d_j - \lambda}
+	\right)w^Tq &= \mathbf{0}
+	\\
+	f(\lambda)w^Tq = \mathbf{0}
+\end{aligned}
+$$
 
-$$
-w^Tq + w^T(D - \lambda)^{-1}ww^Tq = 0
-$$
-Take note that 
-$$
-w^T(D - \lambda)^{-1}w = \sum_{j = 1}^{m}\frac{w^2}{d_j - \lambda}
-$$
-
-And this means that: 
-
-$$
-w^Tq + \left( \sum_{j = 1}^{m}\frac{w^2}{d_j - \lambda}\right) w^Tq = 0
-$$
-
-Therefore, the Eigenvalues for the matrix $D + ww^T$ are the roots of the expression. $\blacksquare$
+Therefore, if $q$ is the eigenvalues of the matrix $D + w^Tw$, assuming that $w^Tq$ is non zero, it's also the roots of the secular equations. The converse is true and we skip the proof for that. 
 
 **Question**: How do we solve the Secular Equation and find the Eigenvalues for the Diagonal matrix with rank one modifications? 
 
@@ -74,13 +72,12 @@ Using the assumptions that the diagonals of the matrix $D$ is unique, and they a
 We get the Eigenvalues but what about the Eigenvectors? 
 
 **Answer**: 
-Don't know. 
+Don't know. May be inverse iterations. 
 
 ---
-### A Divide by Conquer Approach to Symmetric Eigenvalues Problems
+### **A Divide by Conquer Approach to Symmetric Eigenvalues Problems**
 
 ![[symmetric-eigen-divide-and-conquer.png]]
-
 
 We **assume that the eigenvalues for the matrices:** $\widehat{T}_1$ and $\widehat{T}_2$ are known recursively, and our objective is to figure out the Eigenvalues for matrix $T$. 
 
@@ -138,12 +135,14 @@ $$
 So then we will know that the matrix  $B$ is in fact: 
 
 $$
+\beta
 \begin{bmatrix}
 0 \\ \vdots \\ 1 \\ 1 \\ \vdots \\ 0
 \end{bmatrix}
 \begin{bmatrix}
 0 \\ \vdots \\ 1 \\ 1 \\ \vdots \\ 0
 \end{bmatrix}^T = 
+\beta
 \begin{bmatrix}
 	0 \cdots & 0 & 0 & \cdots  0
 	\\
@@ -200,7 +199,7 @@ $$
 And hence, we have the Eigen decomposition for the matrix $T$ as well, the matrix in the center is diagonal, and the matrix around it are orthogonal, performing a similarity transform on the diagonal matrix. 
 
 --- 
-### The Missing Details, Important Assumptions
+### **The Missing Details, Important Assumptions**
 
 This algorithm came up by Cuppen, back in 1981, and it has a lot of subtleties that are missing in the above discussion. 
 
