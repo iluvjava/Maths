@@ -72,6 +72,13 @@ $$
         \\
         \bar{x}(x - 1) & x \in[\bar{x}, 1]
     \end{cases}
+    \\
+    G(x, \bar{x}) &= 
+    \begin{cases}
+        (\bar{x} - 1)x & \bar{x} \in [x, 1]
+        \\
+        \bar{x}(x - 1) & \bar{x} \in [0, x]
+    \end{cases} \quad \text{For Integral Representation}
 \end{aligned}\tag{1.3}
 $$
 
@@ -151,17 +158,30 @@ $$
         h(x_j - 1)x_i & i = 1, 2, \cdots j
         \\
         h(x_i - 1)x_j & i = j, j + 1, \cdots m
+        \\
+        0 & i = 0, i = m + 1
     \end{cases} \quad \text{Interior}
 \end{aligned}\tag{2.2}
 $$
 
-**Take note that** the delta functions on the RHS are weighted by $h$, we are approximating $f(x)$ discretely using $\sum_{j=0}^{m + 1}hf(x)\delta(x- x_j)$, intuitively, we want the mass at each point to be proportional to the width of the grid: $h$. This is needed so that the total volumn of the solution approximated $f(x)$ is approaching a limit instead of blowing up to infinity. 
+**Take note that:** 
+
+The delta functions on the RHS are weighted by $h$, we are approximating $f(x)$ discretely using $\sum_{j=0}^{m + 1}hf(x)\delta(x- x_j)$, intuitively, we want the mass at each point to be proportional to the width of the grid: $h$. This is needed so that the total volumn of the solution approximated $f(x)$ is approaching a limit instead of blowing up to infinity. 
+
+**Take note that:** 
+
+The greens function the models the solution for the interior grid points have value 0 on the boundary, corresponding to the first and last row of the matrix $B$. This is needed to prevent conflicts with the boundary greens function $G_0(x), G_1(x)$. 
+
+**Observe that:**
+
+The conditions of $i = 1, 2\cdots j$ and $i = j, j + 1, \cdots m$ can be interpreted as $i \le j$ and $i \ge j$. Which make it more intuitive to understand. 
+
 
 **Important Question**
 
 > Is there a function such that this approximated system will solve it exactly? 
 
-**Answer**(Take this for Granted)
+**Answer** (Take this for Granted)
 
 The function exists and it's: 
 

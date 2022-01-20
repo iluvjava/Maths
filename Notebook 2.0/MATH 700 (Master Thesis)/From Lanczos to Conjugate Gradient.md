@@ -60,7 +60,7 @@ $$
     \\
     r_{k + 1} &= r_0 - AQ_k y_k
     \\
-    Q^H_kr_{k + 1} &= Q_K^H r_0 - Q_k^HAQ_k y_k
+    Q^H_kr_{k + 1} &= Q_k^H r_0 - Q_k^HAQ_k y_k
     \\
     \underset{[1]}{\implies}
     0 &= \beta\xi_1 - T_k y_k
@@ -426,3 +426,4 @@ $T_k$ is a real positive matrix, and it's also symmetric(Hermitian Too).
 
 $T_k$ only has non zero positive eigenvalues (As a result of being positive and SPD), and **it has all unique eigenvalues**. This is true even if the matrix $A$ as repeating eigenvalues. The initial random vector, $q_1\in \text{span}(\{u_1, u_2\cdots u_m\})$ where $u_i, \lambda_i$  are the eigen system for the matrix $A$ and $u_i$ are all **unique**, then, the dimension of the Krylov Subspace is not going to exceed $\text{span}(\{u_1, u_2, \cdots u_m\})$, because it's invariant under $A$, and it has only $m$ dimensions. Therefore, if we assume that $T_n$ has 2 repeated ritz vectors and values, then it's also the the repeating eigen values and vectors for $A$, which means Lanczos terminates earlier than $n$, therefore, a contradiction is shown, therefore, $T_n$ in the end has to have all unique eigenvalues and vectors. 
 
+The residual and solution computed by this algorithm is very different from the conjugate gradient algorithm due to errors in floating points. However, the solution produced by $x_0 + Q_ky_k$ will still converge, but $Q_k$ are not orthogonal, and huge errors are presented for $Q_k^TAQ_k = T_k$. 

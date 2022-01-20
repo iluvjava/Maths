@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+            "file": "Ideas Bin/A New LANSO Algorithm.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+                "file": "Ideas Bin/A New LANSO Algorithm.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+                "file": "Ideas Bin/A New LANSO Algorithm.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,7 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 403.0121879577637
+    "width": 277
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -127,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+                "file": "Ideas Bin/A New LANSO Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,17 +145,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "9d7dc9c843a7255f",
+  "active": "e741468e024c4284",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Ortho Polynomials.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Secular Equation and Cuppen's Method.md",
+    "Ideas Bin/A New LANSO Algorithm.md",
+    "Ideas Bin/LANSO Algorithm.md",
     "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
     "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Useful Matrix Identities.md"
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Woodburry's Formula.md",
+    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Secular Equation and Cuppen's Method.md",
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md"
   ]
 }

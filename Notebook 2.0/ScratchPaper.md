@@ -131,3 +131,13 @@ $$
 $$
 \mathcal{O}(k\log(k))
 $$
+
+$$
+AB = \begin{bmatrix}
+\sqrt{10} & \sqrt{10} & \sqrt{10}\\
+\sqrt{10} & 5\sqrt{2} & 2\sqrt{5}\\
+\sqrt{10} & 2\sqrt{5} & 5\sqrt{2}
+\end{bmatrix}
+$$
+
+

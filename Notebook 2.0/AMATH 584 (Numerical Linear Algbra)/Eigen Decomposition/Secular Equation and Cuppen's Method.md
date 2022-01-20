@@ -75,7 +75,7 @@ We get the Eigenvalues but what about the Eigenvectors?
 Don't know. May be inverse iterations. 
 
 ---
-### **A Divide by Conquer Approach to Symmetric Eigenvalues Problems**
+### **A Divide by Conquer Approach to Symmetric Eigenvalues Problems (Incomplete)**
 
 ![[symmetric-eigen-divide-and-conquer.png]]
 
