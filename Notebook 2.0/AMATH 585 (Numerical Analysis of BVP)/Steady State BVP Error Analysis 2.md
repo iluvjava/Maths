@@ -103,7 +103,7 @@ Then the steady state solution solved by the Greens Function is Given as:
 
 $$
 \begin{aligned}
-    u(x) &= \alpha G_0(x) + \beta g_1(x) + \int_{0}^{1} 
+    u(x) &= \alpha G_0(x) + \beta G_1(x) + \int_{0}^{1} 
         f(\bar{x})G(x; \bar{x})
     d\bar{x}
     \\
