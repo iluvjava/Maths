@@ -58,6 +58,8 @@ These type of operator experience what is called **Idempotent**, using my own wo
 
 * An Ortho Normal matrix (All eigenvalues are one, and eigenvectors are orthogonal). 
 * [[HS Reflector]] (The Householder Reflector), it's also an Hermitian Matrix. 
+* Penrose Sudo-Inverse: $A(A^TA)^{-1}A^T - AA^\dagger$
+
 
 
 ---
@@ -168,9 +170,21 @@ Let $P$ be an oblique projector, if $L$ is the orthogonal complement to $S:=\tex
 > $$
 > The range of the operator is in subspace $M$, and $I - P$ is projecting to subspace $L$. 
 
+**Geometric Interpretation**
+
+Orthogonal projector is shining the light orthogonal to the subspace $\text{ran}(P)$, while an oblique projector is shining the light with an angle onto the projector subspace $\text{ran}(P)$. 
+
 
 ---
 ### **Biorthogonal Subspaces**
 
+It's 2 basis, $V, W$ such that $VW^H = I$. 
 
+**Blique Projector Defined using Bi-Orthogonal Subspaces**
 
+> A pair of bi-orthogonal subspace defines an oblique projector, in the way that, $M = \text{Ran}(P) = \text{span}(V), L = \text{null}(P) = \text{span}(W)$. Then the projector $P$: 
+> $$P = VW^H$$
+
+**Example**
+
+The left and right eigenspaces of a matrix will form a Bi-orthogonal subspaces. 
