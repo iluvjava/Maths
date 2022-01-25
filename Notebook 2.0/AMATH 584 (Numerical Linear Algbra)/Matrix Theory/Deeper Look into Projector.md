@@ -1,5 +1,7 @@
 [[Projector]]
 
+Another attempt at covering the concepts of an projector is covered in [[Deeper Look into Projector]]. It's more detailed and have more proofs than what is provided here. 
+
 ---
 ### **Intro**
 
@@ -151,6 +153,8 @@ Using the fact that null and ran uniquely defines a projector, here we know that
 **Example**
 
 Given any matrix $V$ whose columns are orthonormal vectors, we can produce a orthogonal projector as $P = VV^H$. This is not unique, because any matrices who spanning the same subspace can use different set of ortho normal vectors in its columns. 
+
+**Notice**: $V^HV$ gives a truncated identity matrix, but $P^HP=PP^H=P^2=P$ when $P = V^HV$. $P$ like, totally not a identity matrix, because $VV^H\neq V^HV$. 
 
 ---
 ### **Oblique Projector**

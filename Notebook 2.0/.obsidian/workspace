@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -64,7 +64,7 @@
                   "repelStrength": 10,
                   "linkStrength": 1,
                   "linkDistance": 250,
-                  "scale": 1.2697771104976714,
+                  "scale": 0.9527877955555266,
                   "close": false
                 }
               }
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,8 +148,8 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
     "AMATH 584 (Numerical Linear Algbra)/LU Decomposition/LU Decomposition Remastered.md",
     "AMATH 584 (Numerical Linear Algbra)/LU Decomposition/LU Decomposition.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
