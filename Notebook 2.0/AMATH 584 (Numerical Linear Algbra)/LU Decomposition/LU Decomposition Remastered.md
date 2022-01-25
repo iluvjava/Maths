@@ -34,7 +34,7 @@ $$
 
 Where the matrix $A$ is the matrix we wish to LU decompose and $A^{(1)}$ is $A[2:, 2:]$. 
 
-In this case, it's not hard to see that: 
+In this case, it's not hard to solve for $l$: 
 
 $$
 a_{1, 1}l = -v\implies l = -v/a_{1,1}
@@ -111,10 +111,12 @@ $$
 $$
 
 
-Here, the matrix $P_2$ and matrix $L_1$ can swap is because of **claim 2**.  
+Here, the matrix $P_2$ and matrix $L_1$ can swap is because of **claim 1**.  $P_2$ is acting on the identity part of the matrix $L_1$, therefore they can swap position. 
 
 
 > The computations is now made simple I believe. 
+
+The above argument can be easily made into an inductive argument and the base case is trivial, we skipped the proof here. 
 
 ---
 ### **Julia Implementations**

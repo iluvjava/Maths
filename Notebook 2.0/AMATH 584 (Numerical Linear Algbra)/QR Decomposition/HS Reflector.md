@@ -42,5 +42,7 @@ Vector on the hyper plane doesn't get reflected, and vector orthognal to thehype
 
 Used a lot for QR, Hessenberg Form transform. 
 
+The matrix is Hermitian and it's a projector, and it's therefore, known as an Orthogonal Projector. 
+
 [^1]: Unitary $x, y$, if not $(y - x)$ will not be the normal of the hyperplane separating the vector $x, y$. 
 
