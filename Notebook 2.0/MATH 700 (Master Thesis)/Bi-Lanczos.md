@@ -255,7 +255,7 @@ $$
     \\
     &= \beta_{k -1}\langle w_k, v_k\rangle = \beta_{k - 1}
     \\\implies 
-    \langle Av_k, w_{k - 1}\rang - \beta_{k - 1} &= 0
+    \langle Av_k, w_{k - 1}\rangle - \beta_{k - 1} &= 0
 \end{aligned}
 $$
 
@@ -348,3 +348,8 @@ v_j, w_j \neq 0 \wedge \langle v_j, w_j\rangle = 0
 $$
 
 When this happens, $\beta_j = 0$, whic later, it's used as the Denominator, and then we will have a divides by zero problem. 
+
+
+---
+### **Applications of the Algorithm**
+

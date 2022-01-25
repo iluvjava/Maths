@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+            "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+                "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+                "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+                "file": "MATH 700 (Master Thesis)/Bi-Lanczos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,6 +148,7 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Bi-Lanczos.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
     "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
     "AMATH 584 (Numerical Linear Algbra)/LU Decomposition/LU Decomposition Remastered.md",
@@ -156,7 +157,6 @@
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
     "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomp (The Pure QR).md",
     "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Calculus of Residual (Res Shortcut).md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Calculus of Residual.md"
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Calculus of Residual (Res Shortcut).md"
   ]
 }
