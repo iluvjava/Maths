@@ -353,3 +353,14 @@ When this happens, $\beta_j = 0$, whic later, it's used as the Denominator, and 
 ---
 ### **Applications of the Algorithm**
 
+
+
+---
+### **Extra Comments**
+
+What is the deal with the Hermitian Adjoing and Conjugate? 
+
+* I think it's possible to do it assuming that the matrix is complex, but without the conjugate. During the proof, the conjugate arised because we assumed complex matrices and vector, and whenver switching the inner product, we have to get the conjugate of the inner product. 
+
+Are columns of $V_k, W_k$ unitary? 
+* They can be but they don't have to be I think. 

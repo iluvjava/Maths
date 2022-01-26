@@ -178,6 +178,7 @@ Let $P$ be an oblique projector, if $L$ is the orthogonal complement to $S:=\tex
 
 Orthogonal projector is shining the light orthogonal to the subspace $\text{ran}(P)$, while an oblique projector is shining the light with an angle onto the projector subspace $\text{ran}(P)$. 
 
+![[oblique_projector.jpeg]]
 
 ---
 ### **Biorthogonal Subspaces**
