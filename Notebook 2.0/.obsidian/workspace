@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,7 +111,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 446
+    "width": 446,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -127,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,6 +148,7 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
     "MATH 700 (Master Thesis)/The QMR Algorithm.md",
     "AMATH 584 (Numerical Linear Algbra)/AMATH 584.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
@@ -155,7 +157,6 @@
     "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
     "MATH 700 (Master Thesis)/GMRes.md",
     "MATH 700 (Master Thesis)/Bi-Lanczos.md",
-    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md",
-    "AMATH 584 (Numerical Linear Algbra)/LU Decomposition/LU Decomposition Remastered.md"
+    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/HS Reflector.md"
   ]
 }

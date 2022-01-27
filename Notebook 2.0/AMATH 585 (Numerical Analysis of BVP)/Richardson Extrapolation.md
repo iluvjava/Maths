@@ -48,6 +48,87 @@ Observe that, the new approximation involving a linear combinatons of $A(h/t), A
 
 We can use richardson extrapolation and talor series to approximate the second derivative to a certain degree of accuracy. 
 
+Consider finite difference approximation to the second derivative: 
 
+$$
+\begin{aligned}
+    \underbrace{h^{-2}\left(
+        u(x + h) + u(x - h) - 2u(x)
+    \right)}_{:= \varphi_1(h)} &= 
+    u''(x) + \frac{2h^2}{4!} u^{(5)}(x) + h^{-2}R_1(h)
+\end{aligned}
+$$
 
+The interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
 
+$$
+\begin{aligned}
+    \varphi_1(h) &= u''(x) + \frac{2h^2}{4!}u^{(5)}(x) + h^{-2}R_1(h)
+    \\
+    \varphi_1(h/2) &= u''(x) + \frac{2(h/2)^2}{4!}u^{(5)}(x) + \left(
+        \frac{h}{2}
+    \right)^{-2}R_1
+    \left(
+        \frac{h}{2}
+    \right)
+    \\
+    &= 
+    u''(x) + \frac{h^2}{2(4!)}u^{(5)}(x) + \left(
+        \frac{h}{2}
+    \right)^{-2}R_1\left(
+        \frac{h}{2}
+    \right)
+\end{aligned}
+$$
+
+Now we proceed to fine a linear combinations of 2 of the interpolants based on $h$, $h/2$ to reduce the $h^2$ term, decreasing the error. 
+
+$$
+\begin{aligned}
+    4\varphi_1(h/2) - \varphi_1(h) &= 
+    3u''(x) + 4 (h/2)^{-2}R_1(h/2) - h^{-2}R_1(h)
+    \\
+    \underbrace{\frac{4\varphi_1(h/2) - \varphi_1(h)}{3}}_{:= \varphi_2(h)} &= 
+    u''(x) + \underbrace{\frac{4}{3}(h/2)^{-2}R_1(h/2) - \frac{1}{3h^2}R_1(h)}_{:=R_2(h)}
+    \\
+    \varphi_2(h) &= u''(x) + R_2(h)
+\end{aligned}
+$$
+
+Oops, we would need another term for $h$ to cancel out, therefore, we would need to take the definition of $R_1(h)$, $R_2(h)$, expand it out, to find the exactly term involving $h$ to some kind of power for cancelling things out. 
+
+$$
+\begin{aligned}
+    R_1(h) &= \frac{2h^6}{6!} + \mathcal{O}(h^8)
+    \\
+    \implies 
+    \frac{4}{3}\left(
+        \frac{h}{2}
+    \right)^{-2}R_1(h/2) &=
+    \frac{4}{3}\left(
+        \frac{h}{2}
+    \right)^{-2}\left(
+        \frac{2(h/2)^6}{6!} + \mathcal{O}(h^8)
+    \right)
+    \\
+    &= \frac{4}{3} \left(
+        \frac{2(h/2)^4}{6!} + 
+        \mathcal{O}(h^6)
+    \right)
+    \\
+    &= \frac{8(h/2)^4}{3(6!)} + \mathcal{O}(h^6) 
+\end{aligned}
+$$
+
+Similarly: 
+
+$$
+\begin{aligned}
+    \frac{1}{3h^2}R_1(h) &= \frac{1}{3h^2}
+    \left(
+        \frac{2h^6}{6!} + \mathcal{O}(h^8)
+    \right)
+    \\
+    &= \frac{2h^4}{3(6!)} + \mathcal{O}(h^6)
+\end{aligned}
+$$
