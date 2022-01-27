@@ -59,6 +59,19 @@ $$
 \end{aligned}
 $$
 
+The remainder is $R_1(h)$ is like: 
+
+$$
+\begin{aligned}
+    R_1(h) &= \sum_{j = 6}^{\infty}(1 + (-1)^n)\frac{h^n}{n!}u^{(j)}(x) = \mathcal{O}(h^6)
+    \\
+    R_1(h) &= \sum_{j = 3}^{\infty}
+    2\frac{h^{2n}}{(2n)!}u^{(j)}(x)
+\end{aligned}
+$$
+
+Because the term with odd power cancelled out.
+
 The interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
 
 $$
