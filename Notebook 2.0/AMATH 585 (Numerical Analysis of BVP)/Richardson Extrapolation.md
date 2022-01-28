@@ -145,3 +145,7 @@ $$
     &= \frac{2h^4}{3(6!)} + \mathcal{O}(h^6)
 \end{aligned}
 $$
+
+**Note**
+
+The results from Richardson Extrapolation should be consistent with what we get for finite difference using other methods, such as undetermined coefficients. 

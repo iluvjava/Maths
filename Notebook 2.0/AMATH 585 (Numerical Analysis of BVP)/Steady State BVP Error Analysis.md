@@ -92,7 +92,7 @@ $$
     \\
     A_h\vec{e} &= \hat{f} - (\vec{f} - \vec{\tau})
     \\
-    A\vec{e} &= -\vec{\tau}
+    A_h\vec{e} &= -\vec{\tau}
 \end{aligned}
 $$
 

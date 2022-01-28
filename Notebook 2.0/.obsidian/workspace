@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,8 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 446,
-    "collapsed": true
+    "width": 383
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -128,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,15 +147,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
     "AMATH 581 (Scientific Computing)/Finite Difference.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
     "MATH 700 (Master Thesis)/The QMR Algorithm.md",
     "AMATH 584 (Numerical Linear Algbra)/AMATH 584.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
-    "MATH 700 (Master Thesis)/Bi Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Householder GMRes.md",
-    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md"
   ]
 }
