@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+            "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -98,7 +98,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "power iteration",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -111,7 +111,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 383
+    "width": 426,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -127,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,15 +148,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/AMATH 502.md",
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Bifurcation 1D Extra.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Boundary layers, Interior Layer.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Non-Linear System.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
-    "AMATH 581 (Scientific Computing)/Finite Difference.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Gerschgorin Theorem.md",
-    "MATH 700 (Master Thesis)/The QMR Algorithm.md",
-    "AMATH 584 (Numerical Linear Algbra)/AMATH 584.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md"
+    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md"
   ]
 }
