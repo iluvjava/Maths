@@ -6,11 +6,11 @@
       {
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
-        "dimension": 50.50878815911193,
+        "dimension": 46.41975308641975,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
+            "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
             "mode": "source"
           }
         },
@@ -19,7 +19,7 @@
       {
         "id": "af45dfaa70536c44",
         "type": "split",
-        "dimension": 49.49121184088806,
+        "dimension": 53.58024691358024,
         "children": [
           {
             "id": "e741468e024c4284",
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
+                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,6 +148,8 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Pertubations Theory (Intro).md",
     "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
     "AMATH 502 (Intro to Dynamical Systems and Chaos)/AMATH 502.md",
     "AMATH 502 (Intro to Dynamical Systems and Chaos)/Bifurcation 1D Extra.md",
@@ -155,8 +157,6 @@
     "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Non-Linear System.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md"
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md"
   ]
 }

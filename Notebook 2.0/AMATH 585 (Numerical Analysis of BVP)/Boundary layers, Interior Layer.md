@@ -17,7 +17,7 @@ $$
     u(0, t) = \alpha(t)
     \\
     u_t + au_x  = \kappa u_{xx} + \psi
-\end{cases}
+\end{cases}\tag{0}
 $$
 
 $a$ is the flow speed, $\kappa$ is the heat conductivity on the rod and. Here, we assume that the heat source is at $x = 0$. When the system is not time dependent, meaning $\alpha(t)\equiv \alpha$, then steady state solution exists for the problem. 
@@ -65,14 +65,83 @@ When $\epsilon > 0$, this is 2nd order ODE and it has 2 boundaries conditions to
 In fact, the analytical solution for the system is here, stated as (2.90) in the textbook(Finite Difference Method for Ordinary and Partial Differential Equations). 
 
 $$
-    u(x)=\alpha+x+(\beta-\alpha-1)\left(\frac{e^{x / \epsilon}-1}{e^{1 / \epsilon}-1}\right)
+    u(x)=\alpha+x+(\beta-\alpha-1)\left(\frac{e^{x / \epsilon}-1}{e^{1 / \epsilon}-1}\right) \tag{3}
 $$
 
 
 ---
 ### **Interior Layers: Damped Harmonic Oscilator**
 
+The problem is phrased as: 
+
+$$
+\begin{cases}
+    \epsilon u'' + u(u' - 1) = 0 & x \in [a, b]
+    \\
+    u(a) = \alpha, u(b) = \beta
+\end{cases}\tag{4}
+$$
+
+A singular perturbations occured as $\epsilon$ goes from $0$ to $\neq 0$. Consider $\epsilon = 0$, we have the ode: 
+
+$$
+u(u' - 1) = 0 \tag{5}
+$$
+
+Either one of the boundary conditions $u(a) = \alpha$ or $u(b) = \beta$ would suffice the problem. The solution to (5) would be $u(x) \equiv 0, u(x) = x +C$, where $C$ is a non-paramaterized constant. Depending on which of the boundary condition is imposed for (5), the solution to the system is: 
+
+$$
+\begin{cases}
+    u(x) = x + \alpha - \alpha & u(a) = \alpha 
+    \\
+    u(x) = x - \beta + b & u(b) = \beta
+\end{cases}\tag{6}
+$$
+
+Under the case when $\epsilon$ is small, the both boundary conditions need to be satisfied, and in that case there will have to be a jump from linear the smooth linears in expression (6). 
+
+**Philosophy Time**
+
+We dont't know what is the solution, nor we are going to know where the interior layer is at eaxactly without solving it. Let's instead consider another form of the function $u$, and then substitute it into (6) and test out some of the characteristics this function must possess. 
+
+Assume the form: 
+
+$$
+\begin{aligned}
+    u(x) &= W((x - \bar{x})/\epsilon^k) 
+    \\
+    u'(x) &=\epsilon^k W'((x - \bar{x})/\epsilon^k)
+    \\
+    u''(x) &= \epsilon^{2k}W''((x - \bar{x})/\epsilon^k)
+\end{aligned}\tag{7}
+$$
+
+Substitute it back to the original differential equation, we have: 
+
+$$
+\begin{aligned}
+    \epsilon \epsilon^k W(\xi) + W(\xi)(\epsilon^{k - 1}W'(\xi) - \epsilon^{2k - 1}) 
+    &= 0
+    \\
+    W''(\xi) + W(\xi) (\epsilon^{k - 1}W'(\xi)- \epsilon^{2k - 1}) 
+    &= 0
+    \\
+    \text{Where: }\xi = \frac{(x - \bar{x})}{\epsilon^k}
+\end{aligned}\tag{8}
+$$
+
+For any $x \neq \bar{x}$, when $\epsilon \rightarrow 0$, $\xi \rightarrow \pm \infty$, Therefore, $W(\xi)$ will have to satisfies boundary conditions whenever $\xi \rightarrow \infty$. Here is the expected characteristics for function $W$: 
+
+$$
+\begin{aligned}
+    & \lim_{\xi \rightarrow -\infty} W(\xi) = \bar{x} + \alpha - a
+    \\
+    &  \lim_{\xi \rightarrow \infty} W(\xi) = \bar{x} + \beta - b
+\end{aligned}\tag{9}
+$$
+
+Which uses the fact that: $\bar{x} = x - \xi\epsilon^k$
 
 
-
+### TODO: I can't understand the textbook, we need to figure it out. 
 

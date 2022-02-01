@@ -141,3 +141,14 @@ AB = \begin{bmatrix}
 $$
 
 
+$$
+\begin{cases}
+    W(\xi) \rightarrow \bar{x} + \alpha - a  
+    &
+    \xi \rightarrow - \infty
+    \\
+    W(\xi) \rightarrow \bar{x} + \beta - b  
+    &
+    \xi \rightarrow \infty
+\end{cases}
+$$
