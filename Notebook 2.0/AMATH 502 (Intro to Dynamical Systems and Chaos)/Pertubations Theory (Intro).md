@@ -16,7 +16,7 @@ y(t, \epsilon) = \sum_{j = 0}^{\infty}\left(
     \right)
 $$
 
-And this is saying that, the solutions of the perturbed system will be a function that is related to the previous solution for the unperturbed system (with $\epsilon = 0$)
+And this is saying that, the solutions of the perturbed system  will be a function that is related to the previous solution for the unperturbed system (with $\epsilon = 0$)
 
 Notice that, here, we make the assumption that the unperturbed system is easier to solve. Or else we will not get easier solution when we perturbed the system at all. 
 

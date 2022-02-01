@@ -140,8 +140,41 @@ $$
 \end{aligned}\tag{9}
 $$
 
-Which uses the fact that: $\bar{x} = x - \xi\epsilon^k$
+**Warning:** 
+
+I skipped the argument for (9), because I don't understand both professor's Greenbaum's Explanations and the textbook's explanation. But on a high level, we transform the ODE problem from one that is in term of $u(x)$ to another one that is in $W(\xi)$, which assists us to look for parameters $k$. 
+
+<u><i>Skipping a lot of math</i></u>
+
+Now that we have decided that $k = 1$, and we have the problem and the solution pair given as: 
+
+$$
+\begin{cases}
+    W''(\xi) + W(\xi)(W'(\xi) - \epsilon) = 0 & 
+    \\
+    W(\xi) = w_0 \tanh\left(
+        \frac{w_0\xi}{2}
+    \right) & 
+\end{cases}
+$$
+
+With system (8) with the boundary conditions given in (9), $w_0$ satisfies: 
+
+$$
+\begin{cases}
+w_0 = \frac{1}{2}(a - b + \beta - \alpha)
+\\
+\bar{x} = \frac{1}{2}(a + b - \alpha - \beta)    
+\end{cases}
+$$
+
+Observe that boundary layer centered at $\frac{1}{2}(a +b - \alpha - \beta)$. Combining the inner and outter solution, $W$ is the solution within the boundary layer, combining it with the solution outside we have: 
+
+$$
+\tilde{u}(x) = x - \bar{x}  + w_0 \tanh\left(
+    \frac{w_0(x - \bar{x})}{2\epsilon}
+\right)
+$$
 
 
-### TODO: I can't understand the textbook, we need to figure it out. 
 

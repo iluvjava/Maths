@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+            "file": "AMATH 581 (Scientific Computing)/Direct Method.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+                "file": "AMATH 581 (Scientific Computing)/Direct Method.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+                "file": "AMATH 581 (Scientific Computing)/Direct Method.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,7 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 426,
+    "width": 387.0036334991455,
     "collapsed": true
   },
   "right": {
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+                "file": "AMATH 581 (Scientific Computing)/Direct Method.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,15 +148,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md",
+    "AMATH 581 (Scientific Computing)/Direct Method.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Existence and Uniqueness in Finite Diff.md",
+    "AMATH 581 (Scientific Computing)/Finite Difference.md",
+    "AMATH 503 (Intro to Partial Differential Equations)/Greens Function (Heat Eqn).md",
+    "AMATH 585 (Numerical Analysis of BVP)/Greens Function BVP Practices.md",
+    "Math 000/Calc/Taylor Series.md",
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Power Series.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Error Analysis, Green's Function and Trapz.md",
     "AMATH 502 (Intro to Dynamical Systems and Chaos)/Pertubations Theory (Intro).md",
-    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Flows on The Circle.md",
-    "AMATH 502 (Intro to Dynamical Systems and Chaos)/AMATH 502.md",
-    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Bifurcation 1D Extra.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Boundary layers, Interior Layer.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Non-Linear System.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error Analysis 2.md"
+    "AMATH 502 (Intro to Dynamical Systems and Chaos)/Method of Multiple Time Scale.md"
   ]
 }

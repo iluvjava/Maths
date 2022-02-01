@@ -62,7 +62,12 @@ $$
 \end{aligned}\tag{1.2}
 $$
 
-And $G(x; \bar{x})$ is given as: 
+And the other 2 conditions to satisfy is: 
+
+* Continuity on the domain $[0, 1]$
+* Second derivative is zero on the interval $[0, \bar{x}), (\bar{x}, 1]$. 
+
+We skipp the math and $G(x; \bar{x})$ is given as: 
 
 $$
 \begin{aligned}
@@ -73,7 +78,7 @@ $$
         \bar{x}(x - 1) & x \in[\bar{x}, 1]
     \end{cases}
     \\
-    G(x, \bar{x}) &= 
+    G(x; \bar{x}) &= 
     \begin{cases}
         (\bar{x} - 1)x & \bar{x} \in [x, 1]
         \\
@@ -86,7 +91,7 @@ Which satisfies the property given in expression (1.1)
 
 By linearity, the right hand side could very well be $c\delta(x - \bar{x})$, and the corresponding solution to the Green's Function will be multiplied by $c$ as well. 
 
-To take into the Dirichlet boundary conditions, we would need to consider 2 other Green's Function $G_0(x), G_1(x)$: 
+To take into the whole Dirichlet boundary conditions, we would need to consider 2 other Green's Function $G_0(x), G_1(x)$ (They are basically delta function on the boundary): 
 
 $$
 \begin{aligned}
@@ -149,20 +154,20 @@ Let $B$ be the inverse of Matrix $A$. We wish to prove the the matrix is having 
 
 $\mathcal{A}B = I$, this would imply $\mathcal{A}(B)_{:, j} = e_j$, the $j$th column of the matrix $B$ is an approximation to the system $u''(x) = h\delta(x - x_j)$ for the 1D discretizations. **At this point, take it for granted that**: 
 
-$$
-\begin{aligned}
-    & B_{i, 0}  = G_0(x_j) = 1 - x_i \quad \text{Boundary}\\
-    & B_{i, m + 1} = G_1(x_i) = x_i \\
-    B_{i,j} = hG(x_i; x_j) = 
-    & \begin{cases} 
-        h(x_j - 1)x_i & i = 1, 2, \cdots j
-        \\
-        h(x_i - 1)x_j & i = j, j + 1, \cdots m
-        \\
-        0 & i = 0, i = m + 1
-    \end{cases} \quad \text{Interior}
-\end{aligned}\tag{2.2}
-$$
+> $$
+> \begin{aligned}
+>     & B_{i, 0}  = G_0(x_j) = 1 - x_i \quad \text{Boundary}\\
+>     & B_{i, m + 1} = G_1(x_i) = x_i \\
+>     B_{i,j} = hG(x_i; x_j) = 
+>     & \begin{cases} 
+>         h(x_j - 1)x_i & i = 1, 2, \cdots j
+>         \\
+>         h(x_i - 1)x_j & i = j, j + 1, \cdots m
+>         \\
+>         0 & i = 0, i = m + 1
+>     \end{cases} \quad \text{Interior}
+> \end{aligned}\tag{2.2}
+> $$
 
 **Take note that:** 
 
@@ -201,11 +206,8 @@ Exactly.
 
 The system $v(x)$ is a linear interpolation of the true underlying solution: $u''=f(x)$. 
 
-Finally, 
-
-
 ---
-### **$\Vert B\Vert_{\infty}$ is Uniformly as $h\rightarrow 0$**
+### **$\Vert B\Vert_{\infty}$ is $\mathcal{O}(h^2)$ as $h\rightarrow 0$**
 
 Recall that $\Vert\cdot \Vert_\infty$ applied to a matrix is the max abs row sum, and in this case, $B$'s Max abs row sum is bounded because $h = 1/(m + 1)$, $x_j = 1/(m + 1)$. 
 

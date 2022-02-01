@@ -3,11 +3,7 @@ Make sure to read [[Greens Function]] in advance to reading this file
 ---
 ### **Intro**
 
-Last time we had the problem of the Gravitational Density and potential PDE as an example where Green's Function is used. 
-
-Here we will be modeling another PDEs, that is non-homogeneous over an unbounded domain. 
-
-Here we consider the **Non-Homogeneous Green's Function:**
+Last time we had the problem of the Gravitational Density and potential PDE as an example where Green's Function is used. Here we will be modeling another PDEs, that is non-homogeneous over an unbounded domain. Here we consider the **Non-Homogeneous Green's Function:**
 
 $$
 \begin{cases}
@@ -33,7 +29,7 @@ $$
 \end{cases}
 $$
 
-Notice that, there are 2 $\delta$ function, which is indicating that there is a point heat source at a particular point $\xi$ and a particular time moment $t = \tau$. So the Greens function $G$ actually takes 3 inputs $x, t, \xi, \tau$, where $x, \xi$ are 3D vectors in space. 
+Notice that, there are 2 $\delta$ function, which is indicating that there is a point heat source at a particular point $\xi$ and a particular time moment $t = \tau$, this is true because the non-homogenous condition of the PDE, and it requires 2 delta function to model it sufficiently.  The Greens function $G$ actually takes 3 inputs $x, t, \xi, \tau$, where $x, \xi$ are 3D vectors in space. 
 
 To reconstruct the original Heat equation using the Greens function, we would need to consider: 
 
@@ -97,25 +93,17 @@ $$
 
 **Let's assume that $t < \tau$**. 
 
-Consider $\partial_tG - D\nabla^2G = 0$, in this case, the solution is just $G = 0$, because the boundary assert that there is no heat at the beginning. And becacuse there is no heat source (Non-homogeneous part), them $G$ stays at $0$. 
-
-Let's assume that $t > \tau$, take note that in this case, we would **need a new initial condition** for $t = \tau$. 
-
-Now the differential equation we would be looking at will be like: 
+Consider $\partial_tG - D\nabla^2G = 0$, in this case, the solution is just $G = 0$, because the boundary assert that there is no heat at the beginning. And becacuse there is no heat source (Non-homogeneous part), them $G$ stays at $0$. Let's assume that $t > \tau$, take note that in this case, we would **need a new initial condition** for $t = \tau$. Now the differential equation we would be looking at will be like: 
 
 $$
 \partial_t[G] - D\nabla^2 G = 0 \quad G = ? \text{ at } t= \tau
 $$
 
-**Under the case where $G = 0$ for at $t = \tau$, then $G = 0$ throughout. This cannot happend at all, beacuse there is a delta function on the right hand side. There has to be a jump for the function $G$ at $t = \tau$.** In which it then get translated into the initial conditions for the PDE the model what happened after, when $t > \tau$. 
+**Under the case where $G = 0$ at $t = \tau$, then $G = 0$ throughout. This cannot happend at all, beacuse there is a delta function on the right hand side. There has to be a jump for the function $G$ at $t = \tau$.** In which it then get translated into the initial conditions for the PDE the model what happened after, when $t > \tau$. 
 
 What do do? 
 
-We integral over the tiny region where the delta function is involved. 
-
-Let's integrate the non-Homogeneous differential equation satisfied by $G$, but within a small neighbourhood around $t = \tau$. (Similar to the Epsilon Ball for the Gravitation Density problem)
-
-let's denote $(\tau_-, \tau_+)$, which is a delta neighbourhood of $\tau$. 
+We integral over the tiny region where the delta function is involved. Let's integrate the non-Homogeneous differential equation satisfied by $G$, but within a small neighbourhood around $t = \tau$. (Similar to the Epsilon Ball for the Gravitation Density problem). let's denote $(\tau_-, \tau_+)$, which is a delta neighbourhood of $\tau$. 
 
 $$
 \begin{aligned}
@@ -154,9 +142,7 @@ Then $G$ is not a delta function in time. then the integral $\int_{\tau_-}^{\tau
 
 **Ok, take this for granted: $G$'s integral over the Delta Region is going to be zero.**
 
-Then $G(\tau_+) = \delta(x - \xi)$, and taking the limit will yield: $G(\tau) = \delta(x - \xi)$. And the the boundary condition still applies here. 
-
-Now, with this information: 
+Then $G(\tau_+) = \delta(x - \xi)$, and taking the limit will yield: $G(\tau) = \delta(x - \xi)$. And the the boundary condition still applies here. Now, with this information, we are ready to solve Greens Function in the spatial domain. 
 
 $$
 \begin{cases}
@@ -168,15 +154,11 @@ $$
 \end{cases}
 $$
 
-And this is called the: Heat Kernel. This is the same as the Drunken Sailor Problem. 
-
-And in the case of the Drunken sailor problem, we have $x - \xi$, and t: $t - \tau$. 
+And this is called the: Heat Kernel. This is the same as the Drunken Sailor Problem. And in the case of the Drunken sailor problem, we have $x - \xi$, and t: $t - \tau$. 
 
 What is happening is that, the problem is just the drunken sailor problem, basically everything before $\tau$, the system is just a regular zero, A and then for everything after $\tau$ the system becomes a drunk sailor problem after the introduction of some instantaneous heat via the non-homogeneous right hand side of the equation. 
 
-see: [[The Drunken Sailor Problem (PDE Problem)]] for more. 
-
-And in this case, have the solution: 
+see: [[The Drunken Sailor Problem (PDE Problem)]] for more. And in this case, have the solution: 
 
 $$
 G(t, x, \tau, \xi) = \frac{1}{(4\pi D(t - \tau))^{3/2}} \exp \left(

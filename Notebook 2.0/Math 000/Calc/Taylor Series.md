@@ -85,15 +85,67 @@ It's saying that the coefficients of the $k^\text{th}$ remainder is going to zer
 
 **Taylor's Remainder Form:** 
 
-> Suppose $f:[a, b] \mapsto \mathbb{R}$ and $f^{(n + 1)}$ is differentiable in $(a, b)$ and $f^{(k)}$ is continuous for $k \le n$, given $x\neq x_0 \in [a,b]$, $c \in [x_0, x]$ we have: 
+> Suppose $f:[a, b] \mapsto \mathbb{R}$ and $f^{(n + 1)}$ is differentiable in $(a, b)$ and $f^{(k)}$ is continuous and differentiable for $k \le n$, given $x\neq x_0 \in [a,b]$, $c \in [x_0, x]$ we have: 
 > 
 > $$
 > f(x) = 
 >     \left(
 >         \sum_{k = 0}^{n}
->         \frac{f^{(k)}(x_0)(x - x0)^k}{k!}
+>         \frac{f^{(k)}(x_0)(x - x_0)^k}{k!}
 >     \right) + \frac{f^{n + 1}(c)}{(n + 1)!}(x - x_0)^{n + 1}
 > $$
+
+**Proof**
+
+Consider $P_n(x|x_0)$ paramaterizing $\sum_{k = 0}^{n}(f^{(k)}(x_0)(x - x_0))/k!$, then: 
+
+$$
+\begin{aligned}
+    \partial_x[P_n(x|x_0)]_{x = x_0} &= f(x_0)
+    \\
+    \partial_x^2[P_n(x|x_0)]_{x = x_0} &= f''(x_0)
+    \\
+    & \vdots
+    \\
+    \partial_x^n[P_n(x|x_0)]_{x = x_0} &= f^{(n)}(x_0)
+\end{aligned}
+$$
+
+Define $g(s):= f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}$. Fixing the value of $x$, let's assume that: 
+
+$$
+\exists M_{x, x_0}: 0 = f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}
+$$
+
+Take note that $M_{x, x_0}$ exists, but it's just not in the form that we like it, and it can be solved by brute forcing on the equation. Finally observe that: 
+
+$$
+\begin{aligned}
+    g(x_0) = 0 = g(x) &\implies \exists x_1 \in [x_0, x]: g'(x_1) = 0
+    \\
+    g'(x_1) = 0 =g'(x_0) \implies& \exists x_2\in[x_0, x_1]: g''(x_2) = 0
+    \\
+    \vdots &
+    \\
+    \exists x_{n + 1} : g^{n + 1}(x_{n + 1}) &= 0
+\end{aligned}
+$$
+
+Letting $c = x_{n + 1}$, then $g^{(n + 1)}(c) = f^{(n + 1)}(c) - (n + 1)! M_{x, x_0}$ which means that $M_{x, x_0} = f^{(n + 1)}(c) (n + 1)!$
+
+Take note that, as long as the function is differentiable, this is applicable, however, taylor's theorem would still apply for function that is not differentialble but continuous at some pont in the interval $[x_0, x]$, but that would mean that function is not infinitely differentiable. In that case, mean value theorem would not be applicable. However, a continuous function will be integrable. 
+
+**Integral Form of the Remainder**
+
+Let $f^{(k)}$ be [<u>absolutely continuous</u>](https://en.wikipedia.org/wiki/Absolute_continuity) on the closed interval between $a, x$, then the remainder for the tylor's theorem will be: 
+
+> $$R_k(x|a) = \int_{a}^{x} \frac{f^{(k + 1)}(t)}{k!}(x - t)^kdt$$
+
+Due to absolute continuity of f(k) on the closed interval between a and x, its derivative f(k+1) exists as an L1-function, and the result can be proven by a formal calculation using fundamental theorem of calculus and integration by parts.
+
+
+
+
 
 
 
