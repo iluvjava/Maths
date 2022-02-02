@@ -93,7 +93,25 @@ In this special example, we have seem that the discrete solution for $u_i$ is th
 
 **What Does it Tell**: 
 
-Taking a look at the material listed in: [[Greens Function (Heat Eqn)]], then it's apparently that expression (4) is exactly the solution to the heat equation in (3). And, the inverse of the matrix is using the Green's Function (Which is the fact we toaken for granted in [[Steady State BVP Error Analysis 2]]) and weighting it by the non-homogeous $f(x)$ on the discrete set of points. In above **lemma 1** we have shown that the approximated vector is a trapz rule in disguise. And it's not hard to show that the trapz rule is giving us an error of $\mathcal{O}(h^2)$, therefore the approximated solution we obtained has an error that is $\mathcal{O}(h^2)$. 
+Taking a look at the material listed in: [[Greens Function (Heat Eqn)]], then it's apparently that expression (4) is exactly the solution to the heat equation in (3). And, the inverse of the matrix is using the Green's Function (Which is the fact we toaken for granted in [[Steady State BVP Error Analysis 2]]) and weighting it by the non-homogeous $f(x)$ on the discrete set of points. In above **lemma 1** we have shown that the approximated vector is a trapz rule in disguise. And it's not hard to show that the trapz rule is giving us an error of $\mathcal{O}(h^2)$ (This is part of the HW2 for this class), therefore the approximated solution we obtained has an error that is $\mathcal{O}(h^2)$. 
+
+To show that it's related to the inverse of the discretized Laplacian Matrix, we stack the discreate approximation at grid point $x_i$ into the form: 
+
+$$
+\begin{aligned}
+    \vec{u} &= 
+    \sum_{j = 1}^{m}
+        hf(\vec{x})G(\vec{x}|x_j)
+    \\
+    \vec{u} &= 
+        \underbrace{\begin{bmatrix}
+            hG(\vec{x}|x_1) & hG(\vec{x}|x_2) & \cdots 
+            & hG(\vec{x}|x_m)
+        \end{bmatrix}}_{A^{-1}} f(\vec{x})
+\end{aligned}
+$$
+
+Greens Function has the property that, putting it through $A$ will gives us the standard basis vector. 
 
 ---
 ### **The General Case**
@@ -114,6 +132,6 @@ Taking a look at the material listed in: [[Greens Function (Heat Eqn)]], then it
 > v(0) = \alpha, v(1) = \beta \tag{2}
 > $$
 
-
+It's listed in the book and I didn't investigate it and I don't know how to prove it yet. 
 
 
