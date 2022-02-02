@@ -149,3 +149,5 @@ $$
 **Note**
 
 The results from Richardson Extrapolation should be consistent with what we get for finite difference using other methods, such as undetermined coefficients. 
+
+It's better to prepare more terms before using Richardson so we don't have to expand out and remainder to check for the term missing for cancelling when ordering for higher order extrapolation. 

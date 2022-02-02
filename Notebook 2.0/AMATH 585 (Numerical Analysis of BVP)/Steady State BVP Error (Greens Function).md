@@ -1,4 +1,4 @@
-[[Steady State BVP Error Analysis]]
+[[Steady State BVP Error (LTE)]]
 [[The TST Matrix]]
 [[Greens Function]]
 

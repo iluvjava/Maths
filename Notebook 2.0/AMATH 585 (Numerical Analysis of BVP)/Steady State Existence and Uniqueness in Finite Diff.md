@@ -23,3 +23,6 @@ Neuman conditions specifies the rate of heat flow at the boundary, zero means in
 
 ---
 ### **Both Ends Insoluated**
+
+
+
