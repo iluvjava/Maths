@@ -16,13 +16,42 @@ $$
     u''(x) = f(x)
     \\
     u'(0) = \sigma_0, u'(1) = \sigma_1
-\end{cases}
+\end{cases}\tag{1}
 $$
 
 Neuman conditions specifies the rate of heat flow at the boundary, zero means insulated, positive means heat is floating in, negative means floating out. 
 
 ---
 ### **Both Ends Insoluated**
+
+The finite difference scheme proposed for (1) can be expressed as: 
+
+$$
+\begin{aligned}
+    \frac{1}{h^2}
+    \begin{bmatrix}
+        -h & h & & & & \\
+        1 & -2 & 1 & & & \\[0.7em]
+        & \ddots & \ddots & \ddots  & & \\[0.7em]
+        & & & 1& -2& 1 \\
+        & & & & h& - h
+    \end{bmatrix}\begin{bmatrix}
+        u_0 \\ u_1 \\ \vdots \\ u_{m} \\ u_{m + 1}
+    \end{bmatrix} = 
+	\begin{bmatrix}
+        \sigma_0 + f(x_0)\\ f(x_1) \\ \vdots \\ f(x_m) \\ -\sigma_1 + 
+        \frac{h}{2}f(x_{m + 1})
+    \end{bmatrix}
+\end{aligned} 
+$$
+
+Where the boundary conditions are using first derivative second order central 
+
+**Handling of Neuman Boundary Conditions** 
+
+Consider the second order central first order finite diference. 
+
+
 
 
 

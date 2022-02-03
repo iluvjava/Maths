@@ -109,6 +109,25 @@ Recurrence of the charastic polynomial for $T_k$.
 
 Where $p^{-1}(x) = 0$, and $p^{(0)} = 1$, $p^{(m)} (x)=\det(T_m - xI)$. And we can also carry out the derivative recursively too I believe, both of them can build up at the same time so the Newton's Method can be used. 
 
+Writting out the Base case explicity we have: 
+
+$$
+\begin{aligned}
+    p^{(1)}(x) &= \alpha_1 - x
+    \\
+    p^{(0)}(x) &= 1
+    \\
+    p^{(2)}(x) &= 
+    (\alpha_2 -x)p^{(1)}(x) - \beta_2^2p^{(0)}(x)
+\end{aligned}
+$$
+
+And each recursion will be based on 2 of the previous values. This means that the routine implementation is similar to the Fibonacci Number. 
+
+**Derivative of the Shifted Characteristic Polynomial**
+
+
+
 ---
 ### **Sub Routine G**
 
@@ -117,6 +136,8 @@ Solve the system $(T_k - \lambda I)^{-1} = \mathbf{0}$ directly? And then use th
 **Note**: 
 
 Lapack have routine the returns eigenvector for the matrix given the corresponding eigenvalue, not sure how efficient it is. I would assume if it's designed for Tridiagonal matrix specifically, then it should be very efficient. 
+
+
 
 ---
 ### **Extra Comments**
