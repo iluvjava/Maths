@@ -94,4 +94,10 @@ If, the diagonal is larger than the absolute sum of all the non-diagonal element
 
 A Hermitian Matrix that is diagonally Dominance will be invertible, meaning that it will be positive definite. 
 
+---
+### **Other Useful Facts**
+
+* Each disk contains exactly one eigenvalue of the matrix. If 2 subset of size $a, b$ of disks are disjoint, then the union of each group contains exactly $a, b$ eigenvalues. 
+* If a disk $D$ overlaps with other disks, then it may not contain any eigenvalues. 
+* When $A$ is real, $A^T$ has the same eigenvalues, hence the Gorschogrin's Disk for $A$ is the same for $A^T$. The Gorschogorin's Disk for $A, A^T$ would contain the same set of eigenvalues. 
 
