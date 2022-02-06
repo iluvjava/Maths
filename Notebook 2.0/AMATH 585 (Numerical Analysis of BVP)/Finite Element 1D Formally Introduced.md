@@ -85,15 +85,42 @@ $$
         u'(x)\phi'(x)
     dx + \int_{0}^{1} r(x)u(x)\phi(x) dx 
     = \langle f, \phi\rangle
-\end{aligned}
+\end{aligned}\tag{5}
 $$
 
 **The Basis and the Basis Function**
 
-The choice of Basis set $\mathcal{S}, \mathcal{M}$ depends, but for the sake of discussion, we will be using the set of all linear piecewise function on a defined discretized grid point, let's suppose that there are $x_0, x_1, \cdots, x_n$ points discretizing $[0, 1]$, including the boundary. Consider the following basis function: 
+The choice of Basis set $\mathcal{S}, \mathcal{M}$ depends, but for the sake of discussion, we will be using the set of all linear piecewise function on a defined discretized grid point for both $\mathcal{M}, \mathcal{S}$, let's suppose that there are $x_0, x_1, \cdots, x_n$ points discretizing $[0, 1]$, including the boundary. Consider the following basis function: 
 
 $$
-
+\varphi_i(x) = 
+\begin{cases}
+    \frac{x - x_{i - 1}}{x_i - x_{i - 1}} & x\in [x_{i - 1}, x_i]
+    \\
+    \frac{x_{i + 1} - x}{x_{i + 1} - x_{i}} & x\in [x_{i}, x_{i + 1}]
+    \\
+    0 & \text{else}
+\end{cases}\tag{6}
 $$
 
+The function $\varphi_i$ is defined to be non-zero on the sub interval $[x_{i - 1}, x_i]\cup [x_i, x_{i + 1}]$, piecewise linear going up and then down with a slope of 1, like a hat. To span the whole set $\mathcal{S}$, we have $\{\varphi_j\}_{j = 1}^{n - 1} = \mathcal{S} = \mathcal{M}$. That is our basis which the F.E is going to fullfill its objective. Since $\mathcal{M}$ is assumed to be the same we also have $\{\phi_i\}_{i = 1}^{n - 1} = \mathcal{M}$. 
+
+**Fullfilling the F.E Objective**
+
+Let the solution $\hat{u}$ approximated by F.E be $\in \mathcal{S}$, so that: 
+
+$$
+\exists \;c\in \mathbb{R}^{n - 1}: \hat{u}(x) = \sum_{j = 1}^{n - 1}c_j\varphi_j(x)
+$$
+
+With this assumption, we let the solution with $c$ to satisfies the weak form of the problem, giving us: 
+
+$$
+\begin{aligned}
+    \forall \phi\in \mathcal{M}: 
+    \langle \mathcal{L}[\hat{u}] - f, \phi\rangle  
+    = 
+    \langle \mathcal{L}[\hat{u}] - f, \phi\rangle  
+\end{aligned}
+$$
 
