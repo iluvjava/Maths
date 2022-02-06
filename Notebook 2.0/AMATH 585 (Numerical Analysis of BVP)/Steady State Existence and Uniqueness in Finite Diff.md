@@ -226,7 +226,7 @@ Substituting it back we have $x_1 = x_2 = 1/h$. **Claim 2** is proven at this po
 Take note that the span of $\text{ran}(A^T)$ can be written as the span of $g = [1 \; h\; h\; \cdots h\; h\; 1]^T$. $\tilde{f} \perp \text{null}(A^T) \iff \tilde{f}^Tg = 0$, which implies: 
 
 $$
-\sigma_0  - \sigma_1 + \frac{hf(x_0)}{2} + \sum_{i = 1}^{m} hf(x_i) + \frac{h}{2}f(x_{m + 1}) = \int_{0}^{1} f(x)dx + \sigma_0 - \sigma_1 + \mathcal{O}(h^2)
+\sigma_0  - \sigma_1 + \frac{hf(x_0)}{2} + \sum_{i = 1}^{m} hf(x_i) + \frac{h}{2}f(x_{m + 1}) = \int_{0}^{1} f(x)dx + \sigma_0 - \sigma_1 + \mathcal{O}(h^2) = 0
 $$
 
 Observe that the disrete unique condition is just the trapz rule applied to **Claim 1**. They are the same when $h\rightarrow 0$. 

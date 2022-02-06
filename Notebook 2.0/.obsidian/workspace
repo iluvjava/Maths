@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+            "file": "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+                "file": "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+                "file": "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,7 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 506.0036334991455,
+    "width": 425.0036334991455,
     "collapsed": true
   },
   "right": {
@@ -128,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+                "file": "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,15 +148,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
+    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices: Sturm Sequence.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Formally Introduced.md",
+    "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
     "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function).md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function Trapz).md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
-    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Error Analysis, Green's Function and Trapz.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
-    "Math 000/Calc/Taylor Series.md",
-    "AMATH 581 (Scientific Computing)/Direct Method.md"
+    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md"
   ]
 }
