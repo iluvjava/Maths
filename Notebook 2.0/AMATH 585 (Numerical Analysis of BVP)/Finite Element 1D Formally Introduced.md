@@ -49,13 +49,13 @@ Here, we make the assumption of discretization, whre a finite interval has been 
 The final objective it to convert the whole problem in the form of a matrix vector equation in the form of $Ac = \tilde{f}$ (we use $\tilde{f}$ to denote the RHS with considerations to the boundary conditions of the problem), where the elements in matrix $A$ is defined to be: 
 
 $$
-A_{i, j} = \int_{0}^{1} \varphi_j'(x) \phi_i(x)dx + \int_{0}^{1} r(x)\varphi_j(x)\phi_i(x)dx \tag{4}
+A_{i, j} = \int_{0}^{1} \varphi_j'(x) \phi_i'(x)dx + \int_{0}^{1} r(x)\varphi_j(x)\phi_i(x)dx \tag{4}
 $$
 
 And the elements of the matrix $A$ are usually estimated when the basis function or $r(x)$ is very hard to handle. If not, we can just take the integral by hands and figure out the elements in the matrix. 
 
 ---
-### **Proof and a more Detailed Looked**
+### **Proof of the Weak Form**
 
 Consider $\langle \mathcal{L}[u], \phi\rangle$ with $\phi \in \mathcal{M}$, this is known as the weak form: 
 
@@ -88,7 +88,7 @@ $$
 \end{aligned}\tag{5}
 $$
 
-**The Basis and the Basis Function**
+**The Basis and the Basis Functions**
 
 The choice of Basis set $\mathcal{S}, \mathcal{M}$ depends, but for the sake of discussion, we will be using the set of all linear piecewise function on a defined discretized grid point for both $\mathcal{M}, \mathcal{S}$, let's suppose that there are $x_0, x_1, \cdots, x_n$ points discretizing $[0, 1]$, including the boundary. Consider the following basis function: 
 
@@ -100,10 +100,24 @@ $$
     \frac{x_{i + 1} - x}{x_{i + 1} - x_{i}} & x\in [x_{i}, x_{i + 1}]
     \\
     0 & \text{else}
-\end{cases}\tag{6}
+\end{cases}\tag{6.1}
 $$
 
 The function $\varphi_i$ is defined to be non-zero on the sub interval $[x_{i - 1}, x_i]\cup [x_i, x_{i + 1}]$, piecewise linear going up and then down with a slope of 1, like a hat. To span the whole set $\mathcal{S}$, we have $\{\varphi_j\}_{j = 1}^{n - 1} = \mathcal{S} = \mathcal{M}$. That is our basis which the F.E is going to fullfill its objective. Since $\mathcal{M}$ is assumed to be the same we also have $\{\phi_i\}_{i = 1}^{n - 1} = \mathcal{M}$. 
+
+For completeness, and the choice of $\mathcal{L}$ containing the second derivetive, we also consider the derivative of all the basis function, which is required for the weakform (5): 
+
+$$
+\varphi_i'(x) = \begin{cases}
+    \frac{1}{x_{i} - x_{i - 1}} & x \in [x_{i - 1}, x_i]
+    \\
+    \frac{1}{x_{i + 1} - x_{i}} & x \in [x_{i}, x_{i + 1}]
+    \\
+    0 & \text{else}
+\end{cases}\tag{6.2}
+$$
+
+**Note**: What we refer to when $\mathcal{S} = \mathcal{M}$ is called the Galerkin's Finite Element Method. 
 
 **Fullfilling the F.E Objective**
 
@@ -111,6 +125,7 @@ Let the solution $\hat{u}$ approximated by F.E be $\in \mathcal{S}$, so that:
 
 $$
 \exists \;c\in \mathbb{R}^{n - 1}: \hat{u}(x) = \sum_{j = 1}^{n - 1}c_j\varphi_j(x)
+\tag{7}
 $$
 
 With this assumption, we let the solution with $c$ to satisfies the weak form of the problem, giving us: 
@@ -120,7 +135,85 @@ $$
     \forall \phi\in \mathcal{M}: 
     \langle \mathcal{L}[\hat{u}] - f, \phi\rangle  
     = 
-    \langle \mathcal{L}[\hat{u}] - f, \phi\rangle  
+    0
+\end{aligned}\tag{8}
+$$
+
+The above expression is very similar to (3), Using the weakform derived from (5), we have: 
+
+$$
+\begin{aligned}
+    \underbrace{\left.-\phi(x)\hat{u}'(x)\right|_0^1}_{=b}
+    + 
+    \int_{0}^{1} 
+        \sum_{j = 1}^{n - 1}c_j\varphi_j'(x)\phi'(x)
+    dx + 
+    \int_{0}^{1} r(x)\phi(x)\sum_{j = 1}^{n - 1}c_j\varphi_j(x)dx 
+    &= 
+    \langle f, \phi_i\rangle_{[x_0,\cdots,x_n]}
+    \\
+    b + 
+    \sum_{j = 1}^{n - 1}\left(
+        \int_{0}^{1} 
+            c_j\varphi_j'(x)\phi'(x)
+        dx    
+    \right)
+    + 
+    \sum_{j = 1}^{n - 1}
+    \int_{0}^{1} 
+        c_jr(x)\phi(x)\varphi_j(x)
+    dx &= 
+    \langle f, \phi_i\rangle_{[x_0,\cdots,x_n]}
+    \\
+    \underset{[1]}{\implies}
+    \sum_{j = 1}^{n - 1}\left(
+         \int_{0}^{1} 
+            c_j\varphi_j'(x)\phi'(x)
+        dx 
+        +    
+        \int_{0}^{1} 
+        c_jr(x)\phi(x)\varphi_j(x)
+        dx
+    \right) &= 
+    \langle f, \phi_i\rangle_{[x_0,\cdots,x_n]}
+\end{aligned}\tag{9}
+$$
+
+\[1\]: Take note that $b=0$, because by definition of $\varphi_i\in \mathcal{S}$, the function takes zero value at the point $x = 1, x = 0$. 
+
+If we choose $\phi_i(x)\in \mathcal{M}$ for expression (9), then it's possible to write it as a matrix vector system inthe form of $Ac = f$ where element of $A$ are the same as (4). 
+
+---
+### **Bonus Part**
+
+Adjoint Operator and Symmetric Matrices. They arise when the Linear Operator $\mathcal{L}$ is adjoin. For example, if we let $r(x) > 0 \;\forall \; x\in[0, 1]$, and then consider $\partial_x[r(x)\partial_x[u(x)]]$ as the linear operator $\mathcal{L}$, then, under the space $\mathcal{S}$ of all function on the unit interval satisfying $\mathbb{R}\mapsto\mathbb{R}$, and boundary conditions $u(0) = u(1) = 0$, then the operator $\mathcal{L}$ is **Adjoin**. 
+
+Which is not hard verify and **simply using a integration by parts** will show that the operator $\mathcal{L}$ satisfies: 
+
+$$
+\forall\; v, u\in \mathcal{S}: \langle \mathcal{L}u, v\rangle = \langle \mathcal{L}v, u\rangle
+$$
+
+Then, the finite difference on this operator is going to be symmetric as well, which is implied by the week form , in expression (3). 
+
+Choose any function $\varphi_j \in \mathcal{S}$ from the trial space, and $\phi_i\in\mathcal{M}$ from the test space, then the weak form asserts: 
+
+$$
+\begin{aligned}
+    \langle \mathcal{L}[\varphi_j], \phi_i\rangle &= \langle f, \phi_i\rangle
+    \\
+    \implies 
+    \langle \varphi_j, \mathcal{L}[\phi_i]\rangle &= 
+    \langle f, \phi_i\rangle
 \end{aligned}
 $$
+
+Which implies that the matrix $A_{i, j} = A_{j, i}$, priving that the discretized operator $A$ is going to be symmetrid of $L$ is adjoint. I would keep the discussion to real functions, I am not sure what's gonna happen for complex function. 
+
+
+---
+### **Error Analysis of Finite Element**
+
+
+
 
