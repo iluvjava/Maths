@@ -214,7 +214,7 @@ This is the recurrence relations:
 
 $$
 \begin{aligned}
-	AQ_k &= Q_kH_k + h_{k + 1}q_{k + 1}\mathbf{e}_k^T = Q\tilde{H}_k 
+	AQ_k &= Q_kH_k + h_{k + 1, k}q_{k + 1}\mathbf{e}_k^T = Q\tilde{H}_k 
 \end{aligned}
 $$
 

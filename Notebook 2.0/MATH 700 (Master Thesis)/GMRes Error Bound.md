@@ -9,11 +9,11 @@ We try to place some loose bound on the theoretical convergance rate of the GMRe
 
 The polynomial using matrix $A$, for any matrix $A$ can be: 
 
-$$
-p(A) = \frac{1}{2\pi i} \oint_{\Gamma}^{} 
-    p(z)(A - zI)^{-1}
-dz
-$$
+> $$
+> p(A) = \frac{1}{2\pi i} \oint_{\Gamma}^{} 
+>     p(z)(A - zI)^{-1}
+> dz
+> $$
 
 Where, $\Gamma$ is a closed countour or an union of closed countour on the complex plane such that all the eigenvalues of $A$ are inside of $\Gamma$. 
 

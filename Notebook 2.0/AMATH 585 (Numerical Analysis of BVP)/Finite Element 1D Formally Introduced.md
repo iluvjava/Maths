@@ -111,7 +111,7 @@ $$
 \varphi_i'(x) = \begin{cases}
     \frac{1}{x_{i} - x_{i - 1}} & x \in [x_{i - 1}, x_i]
     \\
-    \frac{1}{x_{i + 1} - x_{i}} & x \in [x_{i}, x_{i + 1}]
+    \frac{-1}{x_{i + 1} - x_{i}} & x \in [x_{i}, x_{i + 1}]
     \\
     0 & \text{else}
 \end{cases}\tag{6.2}

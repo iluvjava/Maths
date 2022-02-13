@@ -113,3 +113,7 @@ Here, observe that, we are manipulating $x_k$ based on the subspace $v_k$, but w
 
 The Bi-Conjugate Gradient algorithm is implcitly solving another system involving $A^H$, and the residual is $\hat{r}_0$, which is used to assist the generation of the subspace $W_k$. The implicity system has $\hat{x}_k$ comming from subspace $\hat{x}_0 + W_k\hat{y}$, and $\hat{r}_k = \hat{r}_0 - A^HW_ky$, which would implies the relations that $\hat{r}_0 = b - A^H\hat{x}_0$. 
 
+
+---
+### **Matrix Factorizations and Blique Conjugate Vectors**
+

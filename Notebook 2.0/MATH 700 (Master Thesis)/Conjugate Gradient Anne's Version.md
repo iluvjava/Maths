@@ -118,6 +118,11 @@ The residual vectors are always orthogonal to each other.
 
 The proof here is skipped, I also proof all these properties in [[Conjugate Gradient with Krylov Subspace]], but the actual proof that uses minimal amount of information is done by Prof Greene Baum, please refer to her works and see how she did it. I might add then later. 
 
+---
+### **A Subtle Remark**
+
+
+
 
 ---
 ### **In Relations to GMRes**
