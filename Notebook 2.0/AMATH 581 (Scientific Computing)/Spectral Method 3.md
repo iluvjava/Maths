@@ -2,9 +2,7 @@ Prereq: [[Spectral Method 2]]
 Continues the talk about different type of basis for the Spectral method. 
 
 ---
-
-
-### Alternative Basis
+### **Alternative Basis**
 
 * DCT, DST
 * Bessel Functions: For Circulate Domain. 
@@ -15,7 +13,7 @@ Continues the talk about different type of basis for the Spectral method.
 
 But in this file, we are interested in: "Checbyshev Polynomial", and this is another method that can be computed within $\mathcal{O}(N\log{N})$, and this is going to relate to the FFT method. 
 
-### Chebyshev Polynomial
+### **Chebyshev Polynomial**
 
 Chebyshev is the solution to the following equations: 
 $$
@@ -99,7 +97,7 @@ $$
 
 Where $n$ is going to be uniformly discretized on the interval $[0, \pi]$, and this is like: $n_k = k\pi/N$
 
-#### The Heat Equations
+#### **The Heat Equations**
 
 Consider the equation: 
 $$
@@ -108,7 +106,7 @@ $$
 
 And consider the boundary conditions: $$u = 0$$ the Dirichlet Boundary conditions. 
 
-#### Spectral Diff Matrix 
+#### **Spectral Diff Matrix **
 
 So, we can repackage the DFT matrix together with the linear scaling factor and the IFFT operations into a giant matrix product. And the good things here is that everything is going to be in the solution space, however this is not good because we are losing the FFT algorithm for fast computations, and we are back to the original problem and it will be really slow to compute it because the matrix is pretty dense. 
 
@@ -156,7 +154,7 @@ Prof: "That is why we are using semi-spectral method and not fully spectral, oth
 This is **Semi-Spectral** because we still need to evaluate the thing using the cheb operator. 
 
 
-### Domain Scaling
+### **Domain Scaling**
 
 The Chebeshev operator is always defined under the domain $[-1, 1]$, let's assuming that we have the problem in $[-L/2, L/2]$. 
 

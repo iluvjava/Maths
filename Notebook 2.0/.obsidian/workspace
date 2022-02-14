@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
+            "file": "ScratchPaper.md",
             "mode": "source"
           }
         },
@@ -28,7 +28,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
+                "file": "ScratchPaper.md",
                 "mode": "preview"
               }
             },
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
+                "file": "ScratchPaper.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -111,8 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 399.0036334991455,
-    "collapsed": true
+    "width": 399.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -128,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
+                "file": "ScratchPaper.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -146,17 +145,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e741468e024c4284",
+  "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "ScratchPaper.md",
+    "ResearchPapers.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
     "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
     "CSE 546 (Machine Learning Fundamentals)/Hoeffding's Inequality.md",
     "CSE 546 (Machine Learning Fundamentals)/Markov Inequality.md",
     "CSE 546 (Machine Learning Fundamentals)/Chebyshev's Inequality.md",
     "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md",
     "MATH 700 (Master Thesis)/GMRes Error Bound.md",
-    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Example Pack.md",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recrusive Det.md",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices: Sturm Sequence.md"
+    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md"
   ]
 }

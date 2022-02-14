@@ -1,4 +1,6 @@
-[[Krylov Subspace]], [[Krylov Matrix QR and Arnoldi Iterations]], [[Hessenberg Transform with Arnoldi Iterations]]
+[[Krylov Subspace]]
+[[Krylov Matrix QR and Arnoldi Iterations]]
+[[Hessenberg Transform with Arnoldi Iterations]]
 
 ---
 ### **Intro**
@@ -61,8 +63,9 @@ $$
     \min_{y} \left\Vert 
        \underbrace{ \Vert r_0\Vert q_1}_{=\beta q_1}
         - 
+        Q_{k + 1}
         \begin{bmatrix}
-            Q_k H_k \\ h_{k + 1, k}\xi_k^T
+            H_k \\ h_{k + 1, k}\xi_k^T
         \end{bmatrix}
     \right\Vert^2
     \\
@@ -88,6 +91,9 @@ $$
 Where, the matrix $\widetilde{H}_k$ is $\mathbb{C}^{k + 1, k}$, the matrix should be full rank and the last row should have $h_{k + 1, k}\neq 0$, if not, the algorithm should terminates before $k$. 
 
 To minimizes the quantity, we need to seek for a solution for $y$, therefore $k + 1$ equations, but there are only $k$ variables an over determined system, and there are usually no solution, which means that, the residual will not be zero as long as $h_{k + 1, k}\neq 0$. 
+
+NEXT, we can also go the extra mile and solve for the vector $y$, obtaining a closed form from it. 
+
 
 ---
 ### **QR Factorizations on Hessenberg**
@@ -245,6 +251,8 @@ $$
 
 That the GMRes algorithm. To make it more practical, consider restarting the algorithm with previous residuals when the memory got full, if the matrix is huge, you will ran out of memory very quickly. 
 
+
+
 ---
 ### **The Matrix Polynomial of the GMRes**
 
@@ -278,5 +286,10 @@ $$
 $$
 
 Here we take note tha, $\exists\; w: \mathcal{K}_k(A, x)w = p_{k -1}(A)x$, which is an alternative way of representing the krylov subspace. 
+
+
+---
+### **GMRes for Hermitian Matrices**: MinRes
+
 
 

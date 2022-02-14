@@ -152,3 +152,14 @@ $$
     \xi \rightarrow \infty
 \end{cases}
 $$
+
+Testing mermaid in Obsidian. 
+```mermaid
+graph TD;
+A-->B;
+A-->C;
+B-->D;
+C-->D;
+```
+
+

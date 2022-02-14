@@ -211,9 +211,64 @@ $$
 Which implies that the matrix $A_{i, j} = A_{j, i}$, priving that the discretized operator $A$ is going to be symmetrid of $L$ is adjoint. I would keep the discussion to real functions, I am not sure what's gonna happen for complex function. 
 
 
+**Claim:** 
+
+> The operator $\partial_x[p(x)\partial[\cdot]]$ is a adjoint operator on the interval $[a, b]$, with the boundary condition of $u(a) = 0 = u(b)$. 
+
+**Justifications**: 
+
+$$
+\begin{aligned}
+    \langle \partial_x[p(x)\partial_x[u]], v\rangle &= 
+    \int_{a}^{b} 
+        v(x) \partial_x[p(x)\partial_x[u(x)]]
+    dx
+    \\
+    &= \int_{a}^{b} 
+        v(x)
+    d(p(x)u'(x))
+    \\
+    &= 
+    \left.p(x)u'(x)v(x)\right|_a^b
+    - \int_{a}^{b} p(x)u'(x)v'(x)dx
+    \\
+    &= 
+    \int_{a}^{b} p(x)u'(x)v'(x)dx
+    \\
+    \langle \partial_x[p(x)\partial_x[v]], u\rangle
+    &= 
+    \int_{a}^{b} 
+        u(x)\partial_x[p(x)\partial_x[v(x)]]
+    dx
+    \\
+    &= \int_{a}^{b} 
+        u(x)
+    d(p(x)v'(x))
+    \\
+    &= \left. u(x)p(x)v'(x)\right|_a^b
+    - \int_{a}^{b} 
+        p(x)v'(x)u'(x)
+    dx
+    \\
+    &= 
+    - \int_{a}^{b} 
+        p(x)v'(x)u'(x)
+    dx
+    \\
+    \implies 
+    \langle \partial_x[p(x)\partial_x[u]], v\rangle &= 
+    \langle \partial_x[p(x)\partial_x[v]], u\rangle
+\end{aligned}
+$$
+
+
 ---
 ### **Error Analysis of Finite Element**
 
+Suppose that an opeartor $\mathcal{L}$ is self adjoin (I didn't say it being linear). Then the norm it defines will be a measure of error. A Finite Element method that minizes the energy norm of the error is referred to as the **Ritz Finite Element Method**
 
+**Claim: Ritz Glalerkin Equivalence for Adjoint Operator**
+
+> When the opeartor is adjoint, the Ritz Finite Element Method and the Galkerkin's Finite Element method is the same. 
 
 
