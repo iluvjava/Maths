@@ -145,7 +145,7 @@ Due to absolute continuity of f(k) on the closed interval between a and x, its d
 
 
 
+---
+### **Multi-Variable**
 
-
-
-
+It's kinda complicated, but ways of analysis will change. 

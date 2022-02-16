@@ -18,12 +18,15 @@ Link to: [Hilbert Spaces](https://en.wikipedia.org/wiki/Hilbert_space).
 
 Prereq of reading this part is to understand the adjoin of vectors's dot product, see more: [[Complex Inner Product]]
 
+**Example**
+
+> When the hilbert space is $\mathbb{R}^n$, and the opearor is a real matrix, then the adjoint of matrix $A$ is $A^T$. 
+
+> When we are looking at Hilbert space $\mathbb{C}^n$, and the matrix is complex, then the adjoint is the Conjugate Transpose of the matrix, usually denoted using $A^H$. (Order of applying the conjugate or the transpose doesn't matter.) 
+
 **Self Adjoint Operator**
 
-The adjoint of the operator is the operator itself. $A = A^*$. 
-
-
-###TODO: AAAAA FOUNDATION NEEDS TO BE GOOF. 
+The adjoint of the operator is the operator itself. $A = A^*$. When matrix is real, it would be symmetric, when matrix is complex, it would be Hermitian. 
 
 ---
 ### **Properties of Adjoin for Matrices**
@@ -35,23 +38,24 @@ $$(AB)^H = B^HA^H$$
     $$A^{-H} = (A^H)^{-1} = (A^{-1})^H$$
 
 ---
-#### **Hermitian Matrix**
+### **Hermitian Matrix**
+
 * The hermitian matrix is forms a self-adjoin Hermitian operator for the complex+ vector space. 
 * A Hermitian matrix has to be a square matrix, and the Conjugate Transpose of the matrix is simply itself, or it's like: $$A^H = A$$
 * It is implied that the matrix is a square matrix. 
 
-#### Properties
+**Properties**: 
 * Eigen values are real
 * Eigen vectors are orthogonal to each other
 * It's Diagonalizable
 
-#### Cool Properties
+**Theorem**
+> Hermitian Product implies communtability
+> $$(AB)^H = AB \iff AB = BA$$
 
-$$(AB)^H = AB \iff AB = BA$$
+Matrix Commutability is exactly the same as whether the matrix as a product is Hermitian matrix. Now this is obvious and it's demonstrating the property of what we showed in complex vector dot product.  
 
-Matrix Commutability is exactly the same as whether the matrix as a product is Hermitian matrix. 
-
-Now this is obvious and it's demonstrating the property of what we showed in complex vector dot product.  
+**Proof**
 
 Consider 2 vector from the $\mathbb{C}^n$: 
 $$
@@ -65,6 +69,8 @@ $$
 
  and the only way this can be true is when 2 vectors are actually from $\mathbb{R}$, so that conjugate of the vector is the vector itself. 
  
+ 
+# TODO: Proof not good, fix this later. 
  
  --- 
 ### **Properties with Proofs**
