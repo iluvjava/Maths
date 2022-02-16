@@ -6,72 +6,28 @@
       {
         "id": "9d7dc9c843a7255f",
         "type": "leaf",
-        "dimension": 46.41975308641975,
+        "dimension": 51.57232704402516,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "ScratchPaper.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
             "mode": "source"
           }
         },
         "group": "bfdb944427c8ebf9"
       },
       {
-        "id": "af45dfaa70536c44",
-        "type": "split",
-        "dimension": 53.58024691358024,
-        "children": [
-          {
-            "id": "e741468e024c4284",
-            "type": "leaf",
-            "dimension": 76.92307692307692,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ScratchPaper.md",
-                "mode": "preview"
-              }
-            },
-            "group": "bfdb944427c8ebf9"
-          },
-          {
-            "id": "447afe05f604e290",
-            "type": "leaf",
-            "dimension": 23.076923076923073,
-            "state": {
-              "type": "localgraph",
-              "state": {
-                "file": "ScratchPaper.md",
-                "options": {
-                  "collapse-filter": true,
-                  "search": "",
-                  "localJumps": 1,
-                  "localBacklinks": true,
-                  "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
-                  "collapse-color-groups": true,
-                  "colorGroups": [],
-                  "collapse-display": true,
-                  "showArrow": false,
-                  "textFadeMultiplier": 0,
-                  "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1,
-                  "collapse-forces": false,
-                  "centerStrength": 0.518713248970312,
-                  "repelStrength": 10,
-                  "linkStrength": 1,
-                  "linkDistance": 250,
-                  "scale": 0.9527877955555266,
-                  "close": false
-                }
-              }
-            }
+        "id": "e741468e024c4284",
+        "type": "leaf",
+        "dimension": 48.42767295597484,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+            "mode": "preview"
           }
-        ],
-        "direction": "horizontal"
+        },
+        "group": "bfdb944427c8ebf9"
       }
     ],
     "direction": "vertical"
@@ -111,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 399.0036334991455
+    "width": 361.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -127,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ScratchPaper.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,15 +103,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
-    "ScratchPaper.md",
-    "ResearchPapers.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "AMATH 581 (Scientific Computing)/Finite Elements Method.md",
-    "CSE 546 (Machine Learning Fundamentals)/Hoeffding's Inequality.md",
-    "CSE 546 (Machine Learning Fundamentals)/Markov Inequality.md",
-    "CSE 546 (Machine Learning Fundamentals)/Chebyshev's Inequality.md",
-    "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md",
-    "MATH 700 (Master Thesis)/GMRes Error Bound.md",
-    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+    "MATH 700 (Master Thesis)/Neuman Series.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrices.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Positive Definiteness.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Linear Mapping.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md"
   ]
 }

@@ -1,7 +1,6 @@
 [[Eigen Decompose]]
 This is a weird theorem. Currently not sure what the proof is, and where it's applied. 
 
-
 ---
 ### **Intro**
 
@@ -25,4 +24,4 @@ The eigenvalues of matrix $H$ are interlaced between the eigenvalues of the matr
 ---
 ### **Comments**
 
-It can keep track (kinda) of the eigenvalues of a matrix that is dynamically resizing. 
+It can keep track (kinda) of the eigenvalues of a matrix that is dynamically resizing. But it would need an easy way of accessing the eigenvalues. Check [[Symmetric Tridiagonal Matrices Recrusive Det]] for more. 

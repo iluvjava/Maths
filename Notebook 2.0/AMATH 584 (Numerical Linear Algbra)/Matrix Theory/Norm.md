@@ -1,4 +1,4 @@
-# Norm
+### Norm
 Matrix and vectors norm
 
 Wiki: [link](https://www.wikiwand.com/en/Matrix_norm)
@@ -7,15 +7,16 @@ Wiki: [link](https://www.wikiwand.com/en/Matrix_norm)
 
 ### **Vector Norm**
 
-There are 3 axioms for the norm operator, suppose that, all the vector that support the operator $||\bullet||:\mathbb{C}^n\mapsto\mathbb{R}^n_+$ then it must satisfied the following: 
+There are 3 axioms for the norm operator, suppose that, all the vector that support the operator $||\bullet||:\mathbb{C}^n\mapsto\mathbb{R}_+$ then it must satisfied the following: 
 
 * $\forall x \in \mathbb{C}^n, \; \alpha \in \mathbb{R} \quad ||\alpha x|| = |\alpha| ||x||$
 * $\forall x \in \mathbb{C}^n \quad ||x|| \geq 0$
 * $\forall x \in \mathbb{C}^n \quad ||x|| = 0 \iff x = \mathbb{0}$
 * $\forall x, y \in \mathbb{C}^n:\; ||x|| + ||y||  \geq ||x + y||$
 
+**Examples of Norm on Vectorspace**: 
 
-This is the Generalized $p$ norm
+Generalized $p$ norm
 
 $$\forall x \in \mathbb{R}^n \; ||x||_p := 
 \sqrt[n]{\sum_{i = 1}^n |x_i|^p} $$
@@ -26,15 +27,19 @@ $$||x||_\infty := \max_{1 \leq i \leq n}(x_i)$$
 $$||x||_i = \max_{1\leq i\leq n}|x_1|$$
 $$\|x\|_{0}=\lim _{p \rightarrow 0} \sum_{k=1}^{n}\left|x_{k}\right|^{p}$$
 
+---
 ### **Useful Inequalities **
 
 $$\sum_{i = 1}^n x_i \leq ||x||_1$$
 
 
 
-### **Matrix Induced Vector Norm**
+### **Matrix Induced Vector Norm** (Energy Norm)
 $$||x||_A:= ||x^TAx||$$
-Notice that only full ranked matrices can be used for this type of norm, and other things cannot be used because it will break the axioms listed above. 
+
+Only positive definite opeartor can be used to induced such a norm. 
+
+See [[Positive Definiteness]]
 
 ---
 ### **Matrix Norm**
@@ -96,6 +101,7 @@ A similiar process as the above one can be used to prove the the **infinity norm
 
 where $$A\in \mathbb{C}^{m\times n}$$
 
+---
 ### **Matrix F-Norm**
 
 The Forbenius Norm. 
@@ -109,6 +115,7 @@ It's all of the following at the same time:
 * The sum of the first $\min(n, m)$ singular values ($\sigma_i^2(A)$) of the matrix under the square root. 
 
 
+---
 ### **Matrix Induced 2-Norm (Spectral Norm)**
 
 **Notes**: This is very different from the Frobenius Norm of matrices because this is a norm induced by vector 2-norm. 

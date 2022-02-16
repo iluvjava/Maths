@@ -5,18 +5,40 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": false,
-  "colorGroups": [],
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "matrix",
+      "color": {
+        "a": 1,
+        "rgb": 14048348
+      }
+    },
+    {
+      "query": "pde",
+      "color": {
+        "a": 1,
+        "rgb": 14069084
+      }
+    },
+    {
+      "query": "Fourier",
+      "color": {
+        "a": 1,
+        "rgb": 11392604
+      }
+    }
+  ],
   "collapse-display": false,
   "showArrow": true,
-  "textFadeMultiplier": -1.3,
-  "nodeSizeMultiplier": 0.968880760790051,
-  "lineSizeMultiplier": 1.145237746891,
+  "textFadeMultiplier": -2.3,
+  "nodeSizeMultiplier": 1.1127485380117,
+  "lineSizeMultiplier": 1.47543859649123,
   "collapse-forces": false,
-  "centerStrength": 0.296561814191661,
+  "centerStrength": 0.432664995822891,
   "repelStrength": 9.60643745427944,
   "linkStrength": 1,
   "linkDistance": 91,
-  "scale": 0.17605342505627147,
+  "scale": 0.973365643626247,
   "close": true
 }
