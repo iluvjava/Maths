@@ -1,4 +1,4 @@
-Some of the proofs need properties of [[Complex Vec Dot]]
+Some of the proofs need properties of [[Complex Inner Product]]
 
 ---
 

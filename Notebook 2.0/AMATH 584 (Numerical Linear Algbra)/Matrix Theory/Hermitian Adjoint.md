@@ -1,26 +1,41 @@
-### Hermitian Adjoin Operator
-** def(1)**
-Let $A: H_1\mapsto H_2$ where $H_1, H_2$ are hilbert space, then the operator $A^* : H_2 \mapsto H_1$ is consider to be the adjoint operator of $A$, and it's given by the property of: 
-$$
-\left\langle A h_{1}, h_{2}\right\rangle_{H_{2}}=\left\langle h_{1}, A^{*} h_{2}\right\rangle_{H_{1}}
-$$
+### **Hermitian Adjoin**
 
+**Definition of Hermitian Adjoin**
+
+> Let $A: H_1\mapsto H_2$ where $H_1, H_2$ are hilbert space, then the operator $A^* : H_2 \mapsto H_1$ is consider to be the adjoint operator of $A$, and it's given by the property of: 
+> 
+> $$
+> \left\langle A h_{1}, h_{2}\right\rangle_{H_{2}}=\left\langle h_{1} , A^{*} h_{2}\right\rangle_{H_{1}}
+> $$
+
+**Explanation**:
 
 This is saying that, if the matrix is a Hermitian matrix, then the above statement will be true. And after some math, it's easy to show that it has to be the case that, the operator is the Conjugate Transpose Operator. 
 
-I don't know to much but here is the [wiki](https://www.wikiwand.com/en/Hermitian_adjoint), the $<,>$ is the dot product defined on the Hilbert space. 
+Link to: [wiki](https://www.wikiwand.com/en/Hermitian_adjoint) for Hermitian Adjoint. 
+
+Link to: [Hilbert Spaces](https://en.wikipedia.org/wiki/Hilbert_space). 
+
+Prereq of reading this part is to understand the adjoin of vectors's dot product, see more: [[Complex Inner Product]]
+
+**Self Adjoint Operator**
+
+The adjoint of the operator is the operator itself. $A = A^*$. 
+
+
+###TODO: AAAAA FOUNDATION NEEDS TO BE GOOF. 
 
 ---
-Prereq of reading this part is to understand the adjoin of vectors's dot product, see more: [[Complex Vec Dot]]
+### **Properties of Adjoin for Matrices**
+* It's not hard to get from **(2)** to the following about matrices. Assume that $A\in \mathbb{C}^{m\times n}, B\in \mathbb{C}^{n\times k}$, then the following will be true: 
 
-#### Properties of Adjoin for Matrices
-* It's not hard to get from **(2)** to the following about matrices. Assume that $A\in \mathbb{C}^{m\times n}, B\in \mathbb{C}^{n\times k}$, then the following will be true: $$(AB)^H = B^HA^H$$
+$$(AB)^H = B^HA^H$$
 
-* Some of the other propertyes of adjoint involves $$A^{-H} = (A^H)^{-1} = (A^{-1})^H$$
+* Some of the other propertyes of adjoint involves 
+    $$A^{-H} = (A^H)^{-1} = (A^{-1})^H$$
 
 ---
-
-#### Hermitian Matrix (Adjoin
+#### **Hermitian Matrix**
 * The hermitian matrix is forms a self-adjoin Hermitian operator for the complex+ vector space. 
 * A Hermitian matrix has to be a square matrix, and the Conjugate Transpose of the matrix is simply itself, or it's like: $$A^H = A$$
 * It is implied that the matrix is a square matrix. 
@@ -52,7 +67,7 @@ $$
  
  
  --- 
- #### Properties but Proved
+### **Properties with Proofs**
  
  > Eigen Values of a Hermitian Adjoin is real. (P1)
 

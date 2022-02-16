@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
             "mode": "preview"
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "skew symmetric",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +103,15 @@
   },
   "active": "9d7dc9c843a7255f",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complex Inner Product.md",
+    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Complex Differential.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Skew Symmetric.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
     "MATH 700 (Master Thesis)/Neuman Series.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrices.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Norm.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Positive Definiteness.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Linear Mapping.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Normal Matrix.md"
   ]
 }

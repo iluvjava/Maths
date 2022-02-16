@@ -1,7 +1,7 @@
 let's Talk about Unitary Matrix, Orthogonal vectors and matrices. 
 
 
-Prereq: [[Complex Vec Dot]]
+Prereq: [[Complex Inner Product]]
 
 ---
 

@@ -28,12 +28,14 @@ $$
 **Properties**: 
 
 * Symmetrical
-* Bilinear, linear to one of the parameters while the other one is fixed. (For the complex field, this is not true, the frist paramter is linear, and swapping the order of the parameter introduces complex conjugation. )
+* Bilinear (For the complex field, this is not true, the frist paramter is linear, and swapping the order of the parameter introduces complex conjugation.)
 * Positive Definiteness
 
 $\mathbf{E}:$ denotesthe Euclidean space, it's a finite dimenstional vector space with inner product defined over it, they are basically $\mathbb{R}^n$. 
 
 
+---
+### **Complex Case**
 
-
+See [[Complex Inner Product]] for more info. 
 
