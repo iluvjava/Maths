@@ -57,22 +57,30 @@ Matrix Commutability is exactly the same as whether the matrix as a product is H
 
 **Proof**
 
-Consider 2 vector from the $\mathbb{C}^n$: 
+For convenience, we denote Hermitian adjoint as $A^H$ as $A^{T*}$. 
+
 $$
-(x^Hy)^H = x^Hy
+\begin{aligned}
+(AB)^H &= (AB)
+\\
+\implies 
+(AB)^{H*}_{i, j} &= (AB)_{j,i}
+\\
+(AB)^{H}_{i, j} &= (AB)^*_{j,i}
+\\
+(AB)^{T*} &= (AB)^*_{j, i}
+\\
+(B^TA^T)_{i, j}^* &= (AB)^*_{j, i}
+\\
+(BA)_{j, i}^* &= (AB)_{j, i}^*
+\\
+(BA)_{j, i} &= (AB)_{j, i}
+\end{aligned}
 $$
 
-Then it's saying that it must be the case that: 
-$$
-x^Hy = y^Hx
-$$
+The process is reversible, hence the relation is iff for the original theorem statement. 
 
- and the only way this can be true is when 2 vectors are actually from $\mathbb{R}$, so that conjugate of the vector is the vector itself. 
- 
- 
-# TODO: Proof not good, fix this later. 
- 
- --- 
+--- 
 ### **Properties with Proofs**
  
  > Eigen Values of a Hermitian Adjoin is real. (P1)

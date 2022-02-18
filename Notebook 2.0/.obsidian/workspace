@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "e741468e024c4284",
+        "id": "4a3008b123bd270c",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/5 Point Laplacian.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
             "mode": "source"
           }
         }
@@ -52,7 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 361.0036334991455
+    "width": 373.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/5 Point Laplacian.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e741468e024c4284",
+  "active": "4a3008b123bd270c",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/5 Point Laplacian.md",
+    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+    "9 Points Laplacian for Elliptic Functions.md",
+    "Untitled 1.md",
+    "MATH 700 (Master Thesis)/Minmal Polynomial.md",
+    "MATH 700 (Master Thesis)/Krylov Subspace.md",
+    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
+    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
     "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian for Elliptic Functions.md",
     "Untitled.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complex Inner Product.md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Complex Analysis/Complex Differential.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Skew Symmetric.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
-    "MATH 700 (Master Thesis)/Neuman Series.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md"
   ]
 }
