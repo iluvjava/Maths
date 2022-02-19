@@ -109,7 +109,7 @@ suppose that the domain $[0, 1]\times[0, 1]$ is splitted into a grid of size $m 
 
 $$
 \begin{aligned}
-    \mathcal{I}(i, j) = jm + i \quad \forall (i, j) \in [1, \cdots, m]\times[1, \cdots m]
+    \mathcal{I}(i, j) = (j - 1)m + i \quad \forall (i, j) \in [1, \cdots, m]\times[1, \cdots m]
 \end{aligned}
 $$
 
@@ -164,6 +164,91 @@ The boundary conditions are immediately next to $u_{i, j}$ where $j = 1 \vee j =
 > To make life easier, we consider the boundary conditions via the first and last row of the grid points, and some row in the middle of the gridpoints. 
 
 **Boundary Conditiosn Formulations**
+
+The first row make use of the boundary conditions: 
+
+$$
+\begin{aligned}
+    \vec{f}_{\mathcal{I}(i, 1)} &= 
+    \frac{1}{h^2}
+    \text{sum}
+    \left(
+        \begin{bmatrix}
+            & u_{i, 2}& 
+            \\
+            u_{i - 1, 1} & -4u_{i, 1}& u_{i + 1, 1}
+            \\
+            & u_{i, 0}& 
+        \end{bmatrix}
+    \right) \quad \forall 1 \le i \le m
+    \\
+    \vec{b}^{[1]} &= 
+    - \frac{1}{h^2}\begin{bmatrix}
+        u_{1, 0} \\ u_{2, 0} \\ \vdots \\ u_{m, 0}
+    \end{bmatrix}
+    - \frac{u_{0, 1}\mathbf{e}_1^{(m)}}{h^2} 
+    - \frac{u_{m + 1, 1} \mathbf{e}_{m}^{(m)}}{h^2}
+    + f^{[1]}
+\end{aligned}
+$$
+
+For all the rows in the middle, we have the the expression: 
+
+$$
+\begin{aligned}
+    \vec{f}_{\mathcal{I}(i, j)} &= 
+    \frac{1}{h^2}
+    \text{sum}
+    \left(
+        \begin{bmatrix}
+            & u_{i, j + 1}& 
+            \\
+            u_{i - 1, j} & -4u_{i, j}& u_{i + 1, j}
+            \\
+            & u_{i, j - 1}& 
+        \end{bmatrix}
+    \right) \quad \forall 1 \le i \le m , \; 2 \le j \le m - 1
+    \\
+    \vec{b}^{[j]} &= 
+    - \frac{u_{0, j}\mathbf{e}_{1}^{(m)}}{h^2}
+    -
+    \frac{u_{m+ 1,j}\mathbf{e}_m^{(m)}}{h^2}
+    + f^{[j]}
+\end{aligned}
+$$
+
+And the boundary conditions for the last row is similar to the first row: 
+
+$$
+\begin{aligned}
+    \vec{f}_{\mathcal{I}(i, m)} &= 
+    \frac{1}{h^2}\text{sum}
+    \left(
+        \begin{bmatrix}
+            & u_{i, m + 1}&  \\
+            u_{i- 1, j}& -4u_{i, m}&  u_{i + 1, j} \\
+            & u_{i, m - 1}&  
+        \end{bmatrix}
+    \right)
+    \quad \forall\; 1 \le i \le m
+    \\
+    b^{[m]} &= 
+    -\frac{1}{h^2}\begin{bmatrix}
+        u_{1, m + 1} \\ u_{2, m _ 1} \\ \vdots \\ u_{m, m + 1}
+    \end{bmatrix} 
+    - \frac{u_{0, m}}{h^2}\mathbf{e}^{(m)}_1 
+    - \frac{u_{m + 1, m}}{h^2}\mathbf{e}^{(m)}_m
+    + \vec{f}^{[m]}
+\end{aligned}
+$$
+
+Which consiss of all the boundary conditions we need for the problem. 
+
+---
+### **The Error Term**
+
+
+
 
 
 

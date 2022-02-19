@@ -7,5 +7,5 @@
 
 Examples of it: 
 
-[[9 Points Laplacian for Elliptic Functions]], 
+[[9 Points Laplacian and Deferred Corrections]], 
 [[5 Points Laplacian]]

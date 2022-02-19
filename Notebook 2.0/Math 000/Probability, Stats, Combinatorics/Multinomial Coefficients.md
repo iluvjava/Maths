@@ -6,10 +6,10 @@ This is what we call Anagram of a given string.
 ### **Intro**
 Suppose that we were given a string, "godoggy". 
 
-We want to know how many strings are there such that they are consisted of the same letters as in this string. 
+> We want to know how many strings are there such that they are consisted of the same letters as in this string. 
 
 ---
-### **Multinomial**
+### **Counting Anagram**
 
 Using a multi-set to represent the string it will be: 
 
@@ -17,21 +17,18 @@ $$
 S = \{g: 3, 0: 2, d:1, y: 1\}
 $$
 
-In total, there are $7!$ many permutations of a given sequences of 7 symbols. 
-
-Spoiler: The totally number of anagram is: 
+In total, there are $7!$ many permutations of a given sequences of 7 symbols. The total number of anagram is given by: 
 
 $$
 \frac{7!}{3!2!}
 $$
 
-This is however, not entirely Intuitive as to how this is always true, but it's not hard to generalized: 
+In general, suppose that there exists an multi-set of symbols $\{s_1:n_1, s_1:n_2, \cdots, s_k:n_k\}$, and we are interested in the total number of unique anagram that can be created by using all the symbols from the multi-set, then it's given as: 
 
-$$
-\frac{n!}{n_1!n_2!\cdots n_k!}
-$$
+> $$
+> \frac{n!}{n_1!n_2!\cdots n_k!}\quad n = \sum_{i = 1}^{k}n_i
+> $$
 
-Is the number of permutations of a given multi set with $n$ elements, and $k$ of then without repetition. And each unique symbol has frequency of $n_1, n_2\cdots n_k$. 
 
 
 ---
@@ -46,15 +43,21 @@ k_{1}, k_{2}, \ldots, k_{m}
 \end{array}\right) \prod_{t=1}^{m} x_{t}^{k_{t}}
 $$
 
-For each term of the polynomial, it will contain multiplications of variables using $x_1, x_2\cdots x_m$, and the sum of their power will be less than $n$. 
-
-And their coefficients represents the total number of permutations using $k_i$ of the symbols $x_i$. This is just straight up from the algebra. 
+For each term of the polynomial, it will contain multiplications of variables using $x_1, x_2\cdots x_m$, and the sum of their power will be less than $n$. And their coefficients represents the total number of permutations using $k_i$ of the symbols $x_i$. This is just straight up from the algebra. 
 
 Prove that this formula is true and then we will be able to prove understand the formula for the permutation is true as well. 
 
 **Observe**: 
- The number of terms in the sum can be produced by the [[Stars And Bars]] theorem. It's basically summing up all the different ways of $m$ positive integers that can sum up to $n$ exactly. 
 
+The number of terms in the sum can be produced by the [[Stars And Bars]] theorem. It's basically summing up all the different ways of $m$ positive integers that can sum up to $n$ exactly. 
+
+**Example**: 
+
+$$
+(x + y + z)^3 = x^3+3 x^2 y+3 x^2 z+3 x y^2+6 x y z+3 x z^2+y^3+3 y^2 z+3 y z^2+z^3
+$$
+
+Take note that the cofficient of $xyz$ is $6$, because exponent of $x, y, z$ is the multi-set $\{k_1:1, k_2:1, k_3:1\}$, which is simply the number of available permutations on the cardinality: $3!$. Similarly, the coefficients of $xy^2$ is the multiset: $\{k_1:1, k_2:2\}$ which has anagram $3!/2! = 3$.
 
 ---
 ### **Example: A Divide and Conquer Approach**
@@ -92,4 +95,9 @@ $$
 $$
 
 And, for this example, the above results is the same as obtained via the multinomial coefficient formula. 
+
+---
+### **A Proof of Some Sort**
+
+
 

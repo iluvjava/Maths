@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "4a3008b123bd270c",
+        "id": "0898166f0e479819",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+            "file": "MATH ??? (Unexplored)/Durand Kerner Method.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+                "file": "MATH ??? (Unexplored)/Durand Kerner Method.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "4a3008b123bd270c",
+  "active": "0898166f0e479819",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
-    "9 Points Laplacian for Elliptic Functions.md",
-    "Untitled 1.md",
-    "MATH 700 (Master Thesis)/Minmal Polynomial.md",
-    "MATH 700 (Master Thesis)/Krylov Subspace.md",
-    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
-    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian for Elliptic Functions.md",
+    "MATH ??? (Unexplored)/Durand Kerner Method.md",
     "Untitled.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md"
+    "MATH ??? (Unexplored)/Kaczmarz Method.md",
+    "transformer architecture.png",
+    "ScratchPaper.md",
+    "ResearchPapers.md",
+    "reload.md",
+    "Math 424.md",
+    "Math 409.md",
+    "HS_Reflector 1.jpeg"
   ]
 }
