@@ -9,10 +9,23 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+            "file": "Math 000/Calc/Taylor Series.md",
             "mode": "source"
           }
-        }
+        },
+        "group": "f13f32a9c31fc319"
+      },
+      {
+        "id": "944c7c31f06961cc",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Math 000/Calc/Taylor Series.md",
+            "mode": "preview"
+          }
+        },
+        "group": "f13f32a9c31fc319"
       }
     ],
     "direction": "vertical"
@@ -52,7 +65,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 442.0036334991455
+    "width": 442.0036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -68,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+                "file": "Math 000/Calc/Taylor Series.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,10 +102,10 @@
   },
   "active": "0898166f0e479819",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
-    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
     "Math 000/Calc/Taylor Series.md",
     "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
     "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
     "MATH ??? (Unexplored)/Kaczmarz Method.md",
     "MATH ??? (Unexplored)/Durand Kerner Method.md",
