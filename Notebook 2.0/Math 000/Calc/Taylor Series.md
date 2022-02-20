@@ -1,4 +1,4 @@
-Super basic high school maths
+Hi, this is some Super basic high school maths. 
 
 ---
 
@@ -146,6 +146,59 @@ Due to absolute continuity of f(k) on the closed interval between a and x, its d
 
 
 ---
-### **Multi-Variable**
+### **Multi-Variable: The first 2 Terms**
 
-It's kinda complicated, but ways of analysis will change. We 
+Consider the function $f: \mathbb{R}\mapsto\mathbb{R}^n$, then its first few terms in Taylor Series can be expressed as: 
+
+$$
+f(x + h) = 
+f(x) + \langle\nabla [f(x)]_{x = x}, h\rangle + 
+\langle h, \mathcal{H}[f(x)]_{x = x}h\rangle + \mathcal{O}(\Vert h\Vert^3)
+$$
+
+Sometimes $\mathcal{H}[f(x)]$, the Hessian of the function $f(x)$ evaluated at some point is written as $\nabla^2[f(x)]$, which can be mistaked by the Laplacian. 
+
+Now assume that $f(x): \mathbb{R}^n \mapsto \mathbb{R}^m$, then the first 2 terms of the Taylor Series expansion will be given as: 
+
+$$
+f(x + h) = f(x) + \mathcal{J}[f(x)]_{x = x}^Th + \mathcal{O}(\Vert h\Vert^2)
+$$
+
+---
+### **Infinite Multi-Varible Taylor Series**
+
+If a given function $f(x,y)$ is infinitely differentiable, then it can be approximated with the following infinite polynomial with undetermined coefficients: 
+
+$$
+P(x, y) = \sum_{n = 0}^{\infty}
+\sum_{k_1, k_2 \in S_n}
+C(f,n, k_1, k_2)x^{k_1}y^{k_2} \quad \text{Where: } S:= \{k_1, k_2 \in \mathbb{Z}_{\ge 0}: k_1 + k_2 = n\}
+$$
+
+Where $C$ is some kind of function that produces the coefficients given the power for each variable (which also uniquely identifies a multi-nomial term for a fixed total power) the sum of power $n$, and the function $f$ that we wish to take the derivative of. To determine $C(f, n, k_1, k_2)$, we make the asserts of equality: 
+
+$$
+\partial_{y}^{d_1} \partial_x^{d_2} f(x, y) = 
+\partial_{y}^{d_1} \partial_x^{d_2} p(x, y) \quad \forall (d_1, d_2) \in \; \mathbb{Z}_{\ge 0}^2
+$$
+
+The reader should realize that this is very easy to generalize into the multi-variable case, with $f(x): \mathbb{R} \mapsto \mathbb{R}^m$. 
+
+
+$$
+P(\vec{x}) =
+\sum_{n = 0}^{\infty}
+\sum_{\{k_i\}_{i=1}^{m} \subseteq S_n}
+C(f, n, k_1, k_2, \cdots, k_m)
+\prod_{i = 1}^{m} x_i^{k_i} 
+\\
+\quad \text{where}: S_n = 
+\left\lbrace
+    \{k_i\}_{i = 1}^m\subseteq \mathbb{Z}_{\ge 0}^m: \sum_{j = 1}^{m}k_m = n
+\right\rbrace
+$$
+
+Take note that there are too many way we can take the derivative. For all finite many derivative on each of the variable where the total power of derivative is fixed, we can permute like a multi-set and again to get even more different deriatives. 
+
+Assuming symmetry of differential, Meaning that the order of takinf the differential doesn't matter, then one can use [[Multinomial Coefficients]] to find out the number repeating combinations of partial deriatives. 
+

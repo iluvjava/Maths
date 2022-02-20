@@ -247,8 +247,28 @@ Which consiss of all the boundary conditions we need for the problem.
 ---
 ### **The Error Term**
 
+The error term can be derived using Multi-Variable Taylor Series. See: [[Taylor Series]] for more info. Here we will just stated the results skipping the ugly math for another day. 
 
+Denote Laplcian Operator of equally spaced grid point: 
 
+$$
+\nabla^2_{(5)}[u(x, y)]_{(x, y) = (x_i, y_j)} = \text{sum}\left(
+    \frac{1}{h^2}\begin{bmatrix}
+        & u_{i, j + 1}& \\
+        u_{i - 1, h}& -4u_{i, j}& u_{i + 1, j} \\
+        & u_{i, j - 1}&
+    \end{bmatrix}
+\right)
+$$
 
+Then, the error is given as: 
+
+$$
+\nabla_{(5)}^2[u(x, y)]_{(x, y)} + \frac{1}{12}h^2(
+    \partial_x^4[u(x, y)]_{(x, y)}
+    + 
+    \partial_y^4[u(x, y)]_{(x, y)}
+    )  = \nabla^2[u(x, y)]_{(x, y)}
+$$
 
 
