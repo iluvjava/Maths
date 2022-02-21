@@ -187,20 +187,20 @@ The reader should realize that this is very easy to generalize into the multi-va
 > $$
 > S_n = 
 >     \left\lbrace
->         \{k_i\}_{i = 1}^m
->         \left|
->         \sum_{j = 1}^{m}k_i = n \;\wedge \; 
->         \forall\; 1 \le i \le m \;: k_i \in \mathbb{Z}_{\ge 0}
->         \right.
+>         \vec{k} \in \mathbb{Z}_{\ge 0}^m
+>         :
+>         \sum_{j = 1}^{m}k_i = n
 > \right\rbrace
 > $$
+
+Where, $S_n$ will be a vector containing all the terms of the multi-nomial such that the sum of the power equals to a specific integer: $n$, which is paramaterized by the summation. 
 
 Then the polynomial with undetermined coefficients can be written as: 
 
 $$
 P(\vec{x}) =
 \sum_{n = 0}^{\infty}
-\sum_{\{k_i\}_{i=1}^{m} \subseteq S_n}^{\forall}
+\sum_{\vec{k}\in S_n}^{\forall}
 C(f, n, k_1, k_2, \cdots, k_m)
 \prod_{i = 1}^{m} x_i^{k_i} 
 $$
@@ -211,13 +211,13 @@ $$
 \begin{aligned}
     P(\vec{x}) &=
     \sum_{n = 0}^{\infty}
-    \sum_{\{k_i\}_{i=1}^{m} \subseteq S_n}^{\forall}
+    \sum_{\vec{k}\in S_n}^{\forall}
         C(f, n, k_1, k_2, \cdots, k_m)
     \prod_{i = 1}^{m} x_i^{k_i} 
     \\
     &= 
     \sum_{n = 0}^{\infty}
-    \sum_{\{k_i\}_{i=1}^{m} \subseteq S_n}^{\forall}
+    \sum_{\vec{k}\in S_n}^{\forall}
     \frac{
         (\partial_{x_1}^{k_1}\partial_{x_2}^{k_2}\cdots \partial_{x_m}^{k_m})[f(\vec{x})]_{\vec{x} = \mathbf{0}}
         }{
@@ -240,7 +240,7 @@ $$
 \begin{aligned}
     T[f(\vec{x})|\vec{x}_0] &= 
     \sum_{n = 1}^{\infty}
-    \sum_{\{k_i\}_{i=1}^{m} \subseteq S_n}^{\forall}
+    \sum_{\vec{k}\in S_n}^{\forall}
     \frac{
             f^{(k_1, k_2, \cdots, k_m)}(\vec{x}_0)
         }{
@@ -251,4 +251,7 @@ $$
 $$
 
 And that completes the Taylor Series in differential function that have countably many parameters. 
+
+**Example: Recovering the Hessian Term from above Expression**
+
 

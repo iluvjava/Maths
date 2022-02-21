@@ -6,7 +6,7 @@ prereq: [[Volume Integrals]], [[Surfaces]], [[Div]]
 
 #### **Preconditions**
 
-Given a vector field in any dimension, and the **field is smooth**, meaning that **it's continuous and the derivative of it is also continuous** over the region of volume then the divergence theorem can be applied: 
+Given a vector field $\vec{F}$ in any dimension, and the **field is smooth**, meaning that **it's continuous and the derivative of it is also continuous** over the region of volume (that is simple as basic geometric shapes) then the divergence theorem can be applied: 
 
 > $$
 > \underset{V}{\iiint} \nabla\cdot \vec{F} dV = \underset{\text{Boundary}(V)}{\iint} \vec{F}\cdot\; d\vec{S}
@@ -21,8 +21,5 @@ They both have a surface integral.
 They are different because: 
 Stoke's theorem can only be used for 3d, any 2d where it's actually viewing things on subspace in 3d. 
 
-
----
-### **Casual Example**
 
 
