@@ -115,6 +115,8 @@ Suppose that we wish to partition the region $\Omega = [0, 1]\times [0, 1]$. Int
 
 Next, we would need to classify the type of indices for sanity: 
 
+**Indices Classifications**: 
+
 > $$
 > \begin{aligned}
 >     \overline{G} &:= \{0, 1, \cdots, n_x + 1\}\times \{0, 1, \cdots, n_y + 1\}
@@ -210,6 +212,6 @@ $$
 \end{aligned}
 $$
 
-And that is going to be the system thta we are solving. It's a $(n_x + 2)(n_y + 2)$ system where $4 + 2(n_x + n_y)$ of the coefficients are easily determined by the Dirichlet Boundary Conditions. 
+And that is going to be the system thta we are solving. It's a $(n_x + 2)(n_y + 2)$ system where $4 + 2(n_x + n_y)$ of the coefficients are easily determined by the Dirichlet Boundary Conditions. To evaluate the inner product, one would at least need to use the Green's Theorem listed above, and factor out the basis function so that Guassian Quadrature method can be used. 
 
-
+More specifically, the nodes that are interacting with the boundary nodes will have to be calculated differently compare to nodes that are in the strict interior of the grid point. For sanity, let's define nodes that are in the strict interior (nodes that are not interacting with boundary crossing nodes). 

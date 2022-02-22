@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+            "file": "How to Gaslight the Readers.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+            "file": "How to Gaslight the Readers.md",
             "mode": "preview"
           }
         },
@@ -82,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+                "file": "How to Gaslight the Readers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,15 +102,15 @@
   },
   "active": "0898166f0e479819",
   "lastOpenFiles": [
+    "How to Gaslight the Readers.md",
+    "Math 000/Calc/Taylor Series.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md",
+    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
     "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
     "AMATH 501 (Complex Analysis, Vector Calculus)/Vector Calculus/Divergence Theorem.md",
     "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
     "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
-    "Math 000/Calc/Taylor Series.md",
-    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
-    "MATH ??? (Unexplored)/Kaczmarz Method.md",
-    "MATH ??? (Unexplored)/Durand Kerner Method.md",
-    "Untitled.md"
+    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md"
   ]
 }
