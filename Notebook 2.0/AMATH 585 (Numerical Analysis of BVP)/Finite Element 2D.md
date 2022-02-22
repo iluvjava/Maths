@@ -186,6 +186,10 @@ $$
         \varphi_{\lfloor i,j \rceil}\right\rangle 
         &= \langle f, \varphi_{\lfloor i,j \rceil}
     \rangle
+    \\
+    \sum_{(k, l)\in\mathcal{N}(i, j)}^{\forall}c_{\lfloor k, l\rceil}
+    \langle \mathcal{L}[\varphi_{\lfloor k,l \rceil}], \varphi_{\lfloor i, j \rceil}\rangle
+    &= \langle f, \varphi_{\lfloor i, j \rceil}\rangle
 \end{aligned}
 $$
 
@@ -215,3 +219,4 @@ $$
 And that is going to be the system thta we are solving. It's a $(n_x + 2)(n_y + 2)$ system where $4 + 2(n_x + n_y)$ of the coefficients are easily determined by the Dirichlet Boundary Conditions. To evaluate the inner product, one would at least need to use the Green's Theorem listed above, and factor out the basis function so that Guassian Quadrature method can be used. 
 
 More specifically, the nodes that are interacting with the boundary nodes will have to be calculated differently compare to nodes that are in the strict interior of the grid point. For sanity, let's define nodes that are in the strict interior (nodes that are not interacting with boundary crossing nodes). 
+

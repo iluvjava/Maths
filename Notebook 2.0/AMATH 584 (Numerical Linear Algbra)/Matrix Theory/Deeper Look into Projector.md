@@ -11,11 +11,15 @@ A matrix $P$ is a projector if:
 
 > $$P^2 = P$$
 
+This ths is an Idempotent operator. 
+
 **Consequence 1**: 
 > $(I - P)$ is also a projector. 
 > $$
 > (I - P)^2 = I - P
 > $$
+
+
 
 **Proof**: Trivial
 
@@ -58,7 +62,7 @@ These type of operator experience what is called **Idempotent**, using my own wo
 
 **Examples of Projectors**: 
 
-* An Ortho Normal matrix (All eigenvalues are one, and eigenvectors are orthogonal). 
+* An Orthonormal matrix (All eigenvalues are one, and eigenvectors are orthogonal). 
 * [[HS Reflector]] (The Householder Reflector), it's also an Hermitian Matrix. 
 * Penrose Sudo-Inverse: $A(A^TA)^{-1}A^T - AA^\dagger$
 
@@ -110,6 +114,8 @@ Together they form the conclusion that:
 > \end{aligned}\tag{1}
 > $$ 
 
+This statement (1) is applicable for all types of projectors. 
+
 **Proposition**: 
 
 > A projector is Orthogonal iff it's Hermitian. 
@@ -118,7 +124,7 @@ Together they form the conclusion that:
 
 $\impliedby$ Assuming the matrix is **Hermitian and it's a projector**, then we wish to prove that it's an orthogonal projector. 
 
-Because $P$ is Hermitian, from the consequence of being an Orthogonal Projector: 
+Consider (1): 
 
 $$
 \begin{aligned}
@@ -174,11 +180,17 @@ Let $P$ be an oblique projector, if $L$ is the orthogonal complement to $S:=\tex
 > $$
 > The range of the operator is in subspace $M$, and $I - P$ is projecting to subspace $L$. 
 
+Observe that, under the spacial case where $M = L$ the projector $P$ is an Orthogonal Projector we discussed in the previous case. 
+
 **Geometric Interpretation**
 
-Orthogonal projector is shining the light orthogonal to the subspace $\text{ran}(P)$, while an oblique projector is shining the light with an angle onto the projector subspace $\text{ran}(P)$. 
+OR the visualization from Wiki: 
 
-![[oblique_projector.jpeg]]
+![[Oblique_projection.svg]]
+
+This is a projector along the direction of k onto the subspace of m, denoted performed by operator T. Try justifying the second consequence of Idempotent operator using this visualization. 
+
+The oblique projector creates a light sources in the form of the subspace $L$ and it shoots parrell light ray orthogonal to $L$, crossing vectors and projecting their shadow onto subspace $M$. 
 
 ---
 ### **Biorthogonal Subspaces**
@@ -192,4 +204,4 @@ It's 2 basis, $V, W$ such that $VW^H = I$.
 
 **Example**
 
-The left and right eigenspaces of a matrix will form a Bi-orthogonal subspaces. 
+[[Bi-Lanczos]] Algortihm is an algorithm that produces the Bi-orthogonal Subspaces of some matrix operator. 

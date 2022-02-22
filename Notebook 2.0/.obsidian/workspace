@@ -4,28 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "0898166f0e479819",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "How to Gaslight the Readers.md",
-            "mode": "source"
-          }
-        },
-        "group": "f13f32a9c31fc319"
-      },
-      {
         "id": "944c7c31f06961cc",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "How to Gaslight the Readers.md",
+            "file": "Projector Minimizations.md",
+            "mode": "source"
+          }
+        },
+        "group": "b0a2643976dc4647"
+      },
+      {
+        "id": "dd41c3a628337e18",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Projector Minimizations.md",
             "mode": "preview"
           }
         },
-        "group": "f13f32a9c31fc319"
+        "group": "b0a2643976dc4647"
       }
     ],
     "direction": "vertical"
@@ -65,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 442.0036334991455,
+    "width": 369.0036334991455,
     "collapsed": true
   },
   "right": {
@@ -82,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "How to Gaslight the Readers.md",
+                "file": "Projector Minimizations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,17 +100,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "0898166f0e479819",
+  "active": "944c7c31f06961cc",
   "lastOpenFiles": [
+    "Projector Minimizations.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+    "Asserts.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
     "How to Gaslight the Readers.md",
-    "Math 000/Calc/Taylor Series.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md",
     "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
-    "AMATH 501 (Complex Analysis, Vector Calculus)/Vector Calculus/Divergence Theorem.md",
-    "AMATH 585 (Numerical Analysis of BVP)/2D Finite Diff With Error Analysis.md",
-    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
-    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md"
+    "MATH ??? (Unexplored)/Kaczmarz Method.md",
+    "MATH ??? (Unexplored)/Kantorovich Inequality.md",
+    "Math 000/Calc/Taylor Series.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md"
   ]
 }
