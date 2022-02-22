@@ -47,7 +47,7 @@ $$
 
 Let's use $\mathcal{S}$ to denotes the set of basis functions, then for all non-boundary basis function, one can index it using $\mathcal{I}(i, j)\in \{1, 2, \cdots, n_x\}\times \{1, 2, \cdots, n_y\}$. Hence, in total, we have $n_xn_y$ number of basis function that describe the interior. 
 
-For the boundary, the above function will have to be modified to fewer cases to fit the boundary, because there are not points outside of the boundary to support it. If the region for the case is outside of the function, we will have to remove it from the definition of the function. 
+For adapting the boundary, the above function will have to be modified to fewer cases to fit the boundary, because there are not points outside of the boundary to support it. If the region for the case is outside of the function, we will have to remove it from the definition of the function. 
 
 ---
 ### **Weak Conditions Reformulated in 2D**
@@ -104,84 +104,89 @@ $$
 
 Where, $\pm_1$ correlates with $\pm_1$, they choose the same sign no matter where they appear in the expression, and $\pm_2$ correlates with $\pm_2$, this notation encapsulated 4 cases of the function all at the same time. 
 
-### **Boundary Functions**
+---
+### **The Linear System**
 
-Here we make the assumption that $\Omega =[0, 1]^2$, so that we don't need to redefine the basis function on the boundary. The above tent basis function is still defined on the boundary, just with 2 or 3 of the cases chopped off, depending on whether the functions is on the edge or the corner of the grid point. 
+Suppose that we wish to partition the region $\Omega = [0, 1]\times [0, 1]$. Into a grid with size $n_x\times n_y$. We consdier the following notations regarding the transformation between coordinate indexing and linear indexing: 
 
-Firstly, we make the augmented set of basis functions: 
+> $$
+> \lfloor i, j\rceil = i + (j - 1)n_y
+> $$
 
-$$
-\overline{\mathcal{S}} = 
-\left\lbrace
-    (i, j) \in \{0, 1, \cdots, n_x, n + 1\}\times \{0, 1, \cdots, n_y, n + 1\}
-\right\rbrace
-$$
+Next, we would need to classify the type of indices for sanity: 
 
-Define the Indices mapping function as: 
+> $$
+> \begin{aligned}
+>     \overline{G} &:= \{0, 1, \cdots, n_x + 1\}\times \{0, 1, \cdots, n_y + 1\}
+>     \\
+>     G &:= \{1, \cdots, n_x\}\times \{1, \cdots, n_y\}
+>     \\
+>     \mathbb{\overline{B}}&:= \overline{G}\setminus G
+>     \\
+>     \mathcal{N}(i, j) &= \{(k, l)\in \overline{G}: |i - k| + |l - j| \le 2\}
+> \end{aligned}
+> $$
 
-$$
-\lfloor i, j\rceil = i + j(n_y + 1)
-$$
-
-Then, we may represent any piecewise continuous function $\tilde{u}$ as: 
-
-$$
-\begin{aligned}
-    \tilde{u}(x, y) &= 
-    \sum_{(i,j)\in \overline{\mathcal{S}}}
-    c_{\lfloor i, j\rceil}
-    \varphi_{\lfloor i, j\rceil}(x, y)
-\end{aligned}
-$$
-
-Using the weak formulations of the Finite Element Method, one follow the same logic as Finite Element in 1D and obtain a system equations of the form $Ax = b$, where $A$ the linear operator has element defined as: 
+This is for ease with notations. Next, we let th solution $\tilde{u}$ to be a function spanned by the basis function, including at the boundary. Then: 
 
 $$
 \begin{aligned}
-    A_{\lfloor i, j\rceil, \lfloor k, l\rceil}
-    &= 
-    - c_{\lfloor k, l\rceil}
-    \iint_{\Omega}(
-        \nabla \varphi_{\lfloor i, j\rceil}
-    )\cdot \nabla \varphi_{\lfloor k, l\rceil}dxdy
-    \quad 
-    \forall\; (i, j), (k, l)\in \{1, \cdots, n_x\}\times \{1, \cdots, n_y\}
+    \tilde{u}(x,y) = 
+    \sum_{(i, j)\in \overline{G}}^{}
+    c_{\lfloor i,j \rceil}\varphi_{\lfloor i,j \rceil}(x, y)
 \end{aligned}
 $$
 
-Take note that whenever $|i - k| + |j - l| \le 2$, the basis function will have parts of non-zero overlapping with each other, making that element in matrix $A$ non-zero. However, take notice that we only have $n_xn_y$ basis constraints if we only consider the interactions of all interior nodes. We need to in addition also consider the boundary points by listing more equations: 
+There are $(n_x + 2)(n_y + 2)$ number of variables to determine in total. However, due to boundary conditions, we can fill in the values for basis function that are crossing the boundary, there are $4 + 2(n_x + n_y)$ many of them, and they can be determined by: 
 
 $$
 \begin{aligned}
-    g(0, y) &= 
-    \sum_{j = 1}^{n_y}c_{\lfloor
-        0, j
-    \rceil}\varphi_{\lfloor
-        0, j
-    \rceil}(0, y)
-    \\
-    g(1, y) &= 
-    \sum_{j = 1}^{n_y}c_{\lfloor
-        n_x + 1, j
-    \rceil}\varphi_{\lfloor
-        n_x + 1, j
-    \rceil}(1, y)
-    \\
-    g(x, 0) &= 
-    \sum_{i = 1}^{n_x}
-        c_{\lfloor i, 0\rceil}\varphi_{\lfloor 
-            i, 0
-        \rceil}(x, 0)
-    \\
-    g(x, 1) &= 
-    \sum_{i = 1}^{n_x}
-        c_{\lfloor i, n_y + 1\rceil}\varphi_{\lfloor 
-            i, n_y + 1
-        \rceil}(x, 1)
+    c_{\lfloor i, j\rceil} = g(x_i, y_j) \quad \forall \; (i, j) \in \overline{\mathbb{B}}
 \end{aligned}
 $$
 
-And around the 4 coorners, we would simply have the coefficients of the basis functions equals to the function $g$, more specifically: $g(x, y) = c_{\lfloor i,j \rceil}$ for all $(i, j)\in \{(0, 0), (0, 1), (1, 0), (1,1)\}$. Next, we need to assert the constraints at the discrete points on the grid, which will help with constructing the system of equations. For simplicity, here we will list the conditions asserted by considering the left side boundary, not repeating the points at the corners, then: 
+Suppose that the linear system $A \vec{c} = \vec{b}$ models the Finite Element in 2D, then it would be a $(n_x + 2)\times(n_y + 2)$ system. But firstly we can assert the variables that are modeling the basis function on the boundary, getting: 
 
+$$
+\begin{aligned}
+    A_{\lfloor i, j\rceil, \lfloor i, j\rceil} &= 
+    1
+    \\
+    \vec{b}_{\lfloor i,j \rceil} &= g(x_i, y_j)  
+    \quad \forall \; (i, j) \in \overline{\mathbb{B}}
+\end{aligned}
+$$
+
+Next, we must consider the weakform of the formula, which wll modeling all nodes that are not crossing the boundary. Recall the the weak form: 
+
+$$
+\begin{aligned}
+    \langle \mathcal{L}\tilde{u}, \varphi_{\lfloor i,j \rceil}\rangle &= \langle f, \varphi_{\lfloor i,j \rceil}\rangle \quad \forall \; (i, j) \in G
+    \\
+    \left\langle 
+    \mathcal{L}\left[
+        \sum_{(k, l)\in G}^{}
+        c_{\lfloor k, l\rceil}\varphi_{
+            \lfloor k, l\rceil
+        }
+        \right], 
+        \varphi_{\lfloor i,j \rceil}\right\rangle 
+        &= \langle f, \varphi_{\lfloor i,j \rceil}
+    \rangle
+    \\
+    \left\langle 
+    \mathcal{L}\left[
+        \sum_{(k, l)\in \mathcal{N}(i, j)}^{}
+        c_{\lfloor k, l\rceil}\varphi_{
+            \lfloor k, l\rceil
+        }
+        \right], 
+        \varphi_{\lfloor i,j \rceil}\right\rangle 
+        &= \langle f, \varphi_{\lfloor i,j \rceil}
+    \rangle
+\end{aligned}
+$$
+
+Which creates only 9 variables for each row of our matrix, because each of the basis function that are not crossing the boundary will be interacting with 8 of its neighbours including itself, implying that the matrix can be written in the form of: 
 
 
