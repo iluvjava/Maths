@@ -189,4 +189,27 @@ $$
 
 Which creates only 9 variables for each row of our matrix, because each of the basis function that are not crossing the boundary will be interacting with 8 of its neighbours including itself, implying that the matrix can be written in the form of: 
 
+$$
+\begin{aligned}
+    A_{\lfloor i,j \rceil, \lfloor k, l \rceil}
+    &= 
+    \begin{cases}
+        \langle \mathcal{L}[\varphi_{\lfloor k, l \rceil}], \varphi_{\lfloor i,j \rceil}\rangle & (k, l) \in \mathcal{N}(i, j)
+        \\
+        1 & (k, l), (i, j) \in \overline{\mathbb{B}}
+        \\
+        0 & \text{else}
+    \end{cases}
+    \\
+    \vec{b}_{\lfloor i,j \rceil} &= 
+    \begin{cases}
+        g(x_i, y_j) & (i, j)\in \overline{\mathbb{B}}
+        \\
+        \langle f,\varphi_{\lfloor i,j \rceil} \rangle & \text{else}
+    \end{cases}
+\end{aligned}
+$$
+
+And that is going to be the system thta we are solving. It's a $(n_x + 2)(n_y + 2)$ system where $4 + 2(n_x + n_y)$ of the coefficients are easily determined by the Dirichlet Boundary Conditions. 
+
 
