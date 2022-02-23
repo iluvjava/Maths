@@ -10,6 +10,10 @@ Our objective is to minimizes the error of norm along some subspace under some s
 
 Here, we use $P_{M}$ to denote an orthogonal projector that is projecting onto the define subapce $M$. 
 
+For the sake of making things more concrete, consider this:
+
+> Given any subspace $M$, we can create a basis of vectors packing into the some matrix, say $A$, then $P_M$ can simply be: $A(AA^T)^{-1}A$. Boom! 
+
 **Projector Always Minimizes**
 
 > $$
@@ -17,7 +21,7 @@ Here, we use $P_{M}$ to denote an orthogonal projector that is projecting onto t
 > $$
 
 **Proof:**
-We simply denotes $P_M$ as $P$.
+We simply denotes $P_M$ as $P$, and assume that it's a matrix instead of some generic transformation.
 
 $$
 \begin{aligned}
@@ -29,10 +33,34 @@ $$
 \end{aligned}
 $$
 
-And this is true by the property of an Orthogonal Projector. 
+And this is true by the property of an Orthogonal Projector. Notice that, the northogonal projector decompose the vector into 2 orthogonal component, one in the subspace, the other in the orthogonal complement of the subspace. 
 
 **Fundamental norm Minimizations using Projector**
+> The Orthogonal Projector onto a subspace, say $P_M$ onto the subspace $M$ can be used to minimize distance $x -y$ where &x& from the subspace $M$ against another vecotr $y$. 
+> $$
+> \min_{x\in M} \Vert y - x\Vert_2^2 = \Vert y - P_M(y)\Vert_2^2
+> $$
+> Consequently, we have: $y - P_My\perp M$.
 
+**Proof**
 
+$$
+\begin{aligned}
+    \Vert y - x\Vert_2^2 &= 
+    \Vert y - P_My + P_My - x\Vert_2^2
+\end{aligned}
+$$
 
+Observe that, $y - P_My\perp M$ and $P_My - x \in M$ because $x \in M$. In addition using the fact that the projector is orthogonal, we have: 
 
+$$
+\begin{aligned}
+    \Vert y - x\Vert_2^2 &= 
+    \Vert y - P_My\Vert_2^2 + \Vert P_My - x\Vert_2^2
+    \\
+    \implies 
+    \Vert y - P_My\Vert_2^2 \le \Vert y - x\Vert_2^2
+\end{aligned}
+$$
+
+That concludes the proof. 

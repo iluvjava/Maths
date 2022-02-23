@@ -110,8 +110,18 @@ Where, $\pm_1$ correlates with $\pm_1$, they choose the same sign no matter wher
 Suppose that we wish to partition the region $\Omega = [0, 1]\times [0, 1]$. Into a grid with size $n_x\times n_y$. We consdier the following notations regarding the transformation between coordinate indexing and linear indexing: 
 
 > $$
-> \lfloor i, j\rceil = i + (j - 1)n_y
+> \lfloor i, j\rceil = i + 1 + j(n_y + 2)
 > $$
+
+This is for ease with notations. Next, we let th solution $\tilde{u}$ to be a function spanned by the basis function, including at the boundary. Then: 
+
+$$
+\begin{aligned}
+    \tilde{u}(x,y) = 
+    \sum_{(i, j)\in \overline{G}}^{}
+    c_{\lfloor i,j \rceil}\varphi_{\lfloor i,j \rceil}(x, y)
+\end{aligned}
+$$
 
 Next, we would need to classify the type of indices for sanity: 
 
@@ -129,15 +139,7 @@ Next, we would need to classify the type of indices for sanity:
 > \end{aligned}
 > $$
 
-This is for ease with notations. Next, we let th solution $\tilde{u}$ to be a function spanned by the basis function, including at the boundary. Then: 
 
-$$
-\begin{aligned}
-    \tilde{u}(x,y) = 
-    \sum_{(i, j)\in \overline{G}}^{}
-    c_{\lfloor i,j \rceil}\varphi_{\lfloor i,j \rceil}(x, y)
-\end{aligned}
-$$
 
 There are $(n_x + 2)(n_y + 2)$ number of variables to determine in total. However, due to boundary conditions, we can fill in the values for basis function that are crossing the boundary, there are $4 + 2(n_x + n_y)$ many of them, and they can be determined by: 
 
@@ -178,7 +180,7 @@ $$
     \\
     \left\langle 
     \mathcal{L}\left[
-        \sum_{(k, l)\in \mathcal{N}(i, j)}^{}
+        \sum_{(k, l)\in G}^{}
         c_{\lfloor k, l\rceil}\varphi_{
             \lfloor k, l\rceil
         }
@@ -220,3 +222,7 @@ And that is going to be the system thta we are solving. It's a $(n_x + 2)(n_y + 
 
 More specifically, the nodes that are interacting with the boundary nodes will have to be calculated differently compare to nodes that are in the strict interior of the grid point. For sanity, let's define nodes that are in the strict interior (nodes that are not interacting with boundary crossing nodes). 
 
+---
+### **Working out the Inner Product**
+
+That is a lot of work, maybe for a future time. 
