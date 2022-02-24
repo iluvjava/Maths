@@ -1,5 +1,7 @@
 Here we talk about the process of orthogonalizing a given linear independent subspace. 
 
+GS refers to: Gram Schmidt
+
 This is the practical aspect of the: [[QR]]
 It uses the idea of a orthogonal projector, coming from: [[Projector]]
 

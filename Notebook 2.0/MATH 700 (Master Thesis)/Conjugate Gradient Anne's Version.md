@@ -124,9 +124,6 @@ The proof here is skipped, I also proof all these properties in [[Conjugate Grad
 
 
 
----
-### **In Relations to GMRes**
-
 
 
 

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Projector Minimizations.md",
+            "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Projector Minimizations.md",
+            "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "skew symmetric",
+                "query": "backward euler",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -61,7 +61,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -82,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Projector Minimizations.md",
+                "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,15 +103,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
+    "AMATH 581 (Scientific Computing)/Adam B.M.md",
+    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/Modified GS Process.md",
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
     "Projector Minimizations.md",
     "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
     "How to Gaslight the Readers.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
     "Asserts.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
-    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md",
-    "MATH ??? (Unexplored)/Kaczmarz Method.md",
-    "MATH ??? (Unexplored)/Kantorovich Inequality.md",
-    "Math 000/Calc/Taylor Series.md"
+    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md"
   ]
 }

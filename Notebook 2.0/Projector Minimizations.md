@@ -59,8 +59,37 @@ $$
     \Vert y - P_My\Vert_2^2 + \Vert P_My - x\Vert_2^2
     \\
     \implies 
-    \Vert y - P_My\Vert_2^2 \le \Vert y - x\Vert_2^2
+    \Vert y - P_My\Vert_2^2 \le& \Vert y - x\Vert_2^2
 \end{aligned}
 $$
 
 That concludes the proof. 
+
+
+---
+### **Applications**
+
+
+Shortest distance from a point to an affine space. This is a basic Example we had in muti-varible calculus class. 
+
+$$
+\begin{aligned}
+    \min_{x \in x_0 + \text{span}(M)} \Vert y - x\Vert_2^2
+    &= 
+    \min_{x \in \text{span}(M)} \Vert y - (x + x_0)\Vert_2^2
+    \\
+    &= 
+    \min_{x \in \text{span}(M)} \Vert (y - x_0) - x\Vert_2^2
+    \\
+    &= \Vert (y - x_0) - P_M(y - x_0) \Vert_2^2
+    \\
+    &= \Vert y - P_My - x_0 + P_Mx_0\Vert_2^2
+    \\
+    &= \Vert 
+        (I - P_M)y - (I - P_M) x_0
+    \Vert_2^2
+\end{aligned}
+$$
+
+And that actually makes sense it's some pretty simple math. 
+
