@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
+            "file": "How to Gaslight the Readers.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
+            "file": "How to Gaslight the Readers.md",
             "mode": "preview"
           }
         },
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581 (Scientific Computing)/Adam B.M.md",
+                "file": "How to Gaslight the Readers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,14 +101,14 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "944c7c31f06961cc",
+  "active": "dd41c3a628337e18",
   "lastOpenFiles": [
+    "How to Gaslight the Readers.md",
     "AMATH 581 (Scientific Computing)/Adam B.M.md",
     "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/Modified GS Process.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
     "Projector Minimizations.md",
     "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
-    "How to Gaslight the Readers.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
     "Asserts.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
