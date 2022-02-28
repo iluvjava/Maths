@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "How to Gaslight the Readers.md",
+            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "How to Gaslight the Readers.md",
+            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "backward euler",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "How to Gaslight the Readers.md",
+                "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,17 +101,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "dd41c3a628337e18",
+  "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "How to Gaslight the Readers.md",
-    "AMATH 581 (Scientific Computing)/Adam B.M.md",
-    "AMATH 584 (Numerical Linear Algbra)/QR Decomposition/Modified GS Process.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient.md",
-    "Projector Minimizations.md",
-    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
-    "Asserts.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
-    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md"
+    "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md",
+    "AMATH 582 (Data Science)/Fourier Transform.md",
+    "MATH 700 (Master Thesis)/Bi Conjugate Gradient.md",
+    "AMATH 581 (Scientific Computing)/Spectral Method, Discrete Fourier.md",
+    "AMATH 581 (Scientific Computing)/Chebyshev Series via FFT.md",
+    "AMATH 581 (Scientific Computing)/Fourier Transform Fourier Series.md",
+    "AMATH 581 (Scientific Computing)/Cheb Differential Matrix.md",
+    "Math 464/Lagrange Polynomial Interpolation.md",
+    "AMATH 581 (Scientific Computing)/Spectral Method 2.md"
   ]
 }

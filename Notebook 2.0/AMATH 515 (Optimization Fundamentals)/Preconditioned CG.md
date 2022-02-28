@@ -1,4 +1,4 @@
-Must know a lot about [[Conjugate Gradient]] before reading this. 
+Must know a lot about [[Conjugate Gradient for Dummy]] before reading this. 
 
 ---
 ### **Intro**

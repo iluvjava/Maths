@@ -35,7 +35,7 @@ Take this for granted. This polynomial also appeared under the following context
 
 [[Sturm Liouville Theory]]
 
-[[Chebyshev via FFT]]
+[[Chebyshev Series via FFT]]
 
 ---
 ### **Adjusting the Cheb Polynomial**

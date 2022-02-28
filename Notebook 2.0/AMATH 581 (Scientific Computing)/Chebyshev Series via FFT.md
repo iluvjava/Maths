@@ -1,6 +1,9 @@
-prereq: [[Fourier Transform Fourier Series]], [[Cheb Differential Matrix]]
+1prereq: 
+[[Fourier Transform Fourier Series]]
+[[Cheb Differential Matrix]]
 
 ---
+### **Intro**
 
 This is the Chebyshev Nodes. 
 $$
@@ -27,7 +30,7 @@ $$
 F(\theta) = f(\cos(\theta))
 $$
 
-Where these are the outputs of $F(\theta)$ for $\theta \in [-\pi, \pi]$. **And the function will be $2\pi$ periodic.**, and it's going to interpolated on the points around the Unit Circle. 
+Where these are the outputs of $F(\theta)$ for $\theta \in [-\pi, \pi]$. **And the function will be $2\pi$ periodic.** And it's going to interpolated on the points around the Unit Circle. 
 
 Let $P(\theta)$ interpolates $F(\theta)$, let's also assume that $p(x)$ interpolates $f(x)$. 
 

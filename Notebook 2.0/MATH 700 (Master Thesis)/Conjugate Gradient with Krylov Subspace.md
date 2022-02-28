@@ -1,4 +1,4 @@
- [[Conjugate Gradient]], [[Krylov Subspace]]
+ [[Conjugate Gradient for Dummy]], [[Krylov Subspace]]
 
 This is the link to the reference resources I used: [here](https://chen.pw/research/cg/cg.pdf)
 
@@ -7,7 +7,7 @@ This is the link to the reference resources I used: [here](https://chen.pw/resea
 
 There are a lot of ways to derive the conjugate Gradient algorithm. 
 
-In [[Conjugate Gradient]] we derived the algorithm using the Gram Schmidt conjugation, here we will minimize the energy norm of the residual vector over the Krylov Subspace. 
+In [[Conjugate Gradient for Dummy]] we derived the algorithm using the Gram Schmidt conjugation, here we will minimize the energy norm of the residual vector over the Krylov Subspace. 
 
 
 **Notations and Quantities** 
@@ -134,7 +134,7 @@ $$
 
 At this point, **claim 1**  has been partially proven, however, the generation of the conjugate vectors still remains to be a mystery. 
 
-> Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient]]
+> Please compare the above formulation of Krylov Subspace to **Claim 1** in [[Conjugate Gradient for Dummy]]
 
 **Claim 1 Corolary 1**
 
@@ -197,7 +197,7 @@ $$
 
 $\blacksquare$
 
-Please compare Corollary 2 to claim 3 in [[Conjugate Gradient]]
+Please compare Corollary 2 to claim 3 in [[Conjugate Gradient for Dummy]]
 
 
 ---
@@ -487,5 +487,5 @@ Therefore, there exists an Arnoldi Iterations interpretations of the conjugate g
 It's linked to **Claim 3**. 
 
 
-[^1]: This is the same as claim 3 in [[Conjugate Gradient]]. 
-[^2]: This is somewhat similar to the proof in [[Conjugate Gradient]]. 
+[^1]: This is the same as claim 3 in [[Conjugate Gradient for Dummy]]. 
+[^2]: This is somewhat similar to the proof in [[Conjugate Gradient for Dummy]]. 

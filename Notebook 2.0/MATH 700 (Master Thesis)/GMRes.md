@@ -1,6 +1,7 @@
 [[Krylov Subspace]]
 [[Krylov Matrix QR and Arnoldi Iterations]]
 [[Hessenberg Transform with Arnoldi Iterations]]
+[[Taxonomy of Subspace Projection Method]]
 
 ---
 ### **Intro**
@@ -90,7 +91,7 @@ $$
 
 Where, the matrix $\widetilde{H}_k$ is $\mathbb{C}^{k + 1, k}$, the matrix should be full rank and the last row should have $h_{k + 1, k}\neq 0$, if not, the algorithm should terminates before $k$. 
 
-To minimizes the quantity, we need to seek for a solution for $y$, therefore $k + 1$ equations, but there are only $k$ variables an over determined system, and there are usually no solution, which means that, the residual will not be zero as long as $h_{k + 1, k}\neq 0$. 
+To minimizes the quantity, we need to seek for a solution for $y$, therefore $k + 1$ equations, but there are only $k$ variables an over determined system, and there are usually no solution, which means that, the residual will not be zero as long as $h_{k + 1, k}\neq 0$. The optimal $y$ is in $y = H_k^{-1}\beta\xi_1$
 
 NEXT, we can also go the extra mile and solve for the vector $y$, obtaining a closed form from it. 
 

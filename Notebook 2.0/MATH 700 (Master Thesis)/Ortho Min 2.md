@@ -1,4 +1,4 @@
-[[Ortho Min]], [[Conjugate Gradient]]
+[[Ortho Min]], [[Conjugate Gradient for Dummy]]
 
 This algorithm is just a special cause of the Conjugate Gradient. 
 

@@ -1,4 +1,4 @@
-This is a comparison between [[Conjugate Gradient]] and the method of momentum. 
+This is a comparison between [[Conjugate Gradient for Dummy]] and the method of momentum. 
 
 ---
 ### **Intro**

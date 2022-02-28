@@ -1,4 +1,4 @@
-[[Conjugate Gradient]], [[Conjugate Gradient with Krylov Subspace]], [[Lanczos Algoritm]]
+[[Conjugate Gradient for Dummy]], [[Conjugate Gradient with Krylov Subspace]], [[Lanczos Algoritm]]
 
 We are going to delve way deep into the Conjugate Gradient Algorithms. 
 
