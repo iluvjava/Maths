@@ -1,4 +1,4 @@
-[[Steepest Descend for Matrix Vector]], [[Iterative Method]]
+[[Steepest Descend for Matrix Vector]], [[Jacobi Gauss Sediel Iterations]]
 
 Ortho Min stands for: Orthogonal minimizations. 
 

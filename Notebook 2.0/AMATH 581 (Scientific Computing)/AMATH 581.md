@@ -18,7 +18,7 @@
 	* Finite Difference Schemes [[Advection Diffusion]]
 6. Finite Difference: Solving Linear Problems
 	* Method for solving system of Linear equations 
-		* [[Iterative Method]]
+		* [[Jacobi Gauss Sediel Iterations]]
 	* Efficiency of the methods
 7. Finite Difference: PDE Solution and stability
 	* Von-Neumann Stability of Finite Difference Schemes

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
             "mode": "preview"
           }
         },
@@ -61,12 +61,11 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 369.0036334991455,
+    "width": 434.0036334991455,
     "collapsed": true
   },
   "right": {
@@ -83,7 +82,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
+                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,15 +102,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md",
-    "AMATH 582 (Data Science)/Fourier Transform.md",
-    "MATH 700 (Master Thesis)/Bi Conjugate Gradient.md",
-    "AMATH 581 (Scientific Computing)/Spectral Method, Discrete Fourier.md",
-    "AMATH 581 (Scientific Computing)/Chebyshev Series via FFT.md",
-    "AMATH 581 (Scientific Computing)/Fourier Transform Fourier Series.md",
-    "AMATH 581 (Scientific Computing)/Cheb Differential Matrix.md",
-    "Math 464/Lagrange Polynomial Interpolation.md",
-    "AMATH 581 (Scientific Computing)/Spectral Method 2.md"
+    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+    "AMATH 581 (Scientific Computing)/Jacobi Gauss Sediel Iterations.md",
+    "MATH ??? (Unexplored)/Incomplete Cholesky.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function Trapz).md",
+    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Greens Function BVP Practices.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Example Pack.md"
   ]
 }

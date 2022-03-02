@@ -53,6 +53,31 @@ Which gives better covergence rate than when all eigenvalues are equally spread 
 
 The bound is tight and there eixsts a choice of the initial guess and matrix such that the relative errer hit the equality case for some iterations value $k$.
 
+Another Assumption that we can place on the distribution of eigenvalues, or the spectrum of the values is when, we have most of the eigenvalues that are huge cluster away from the origin, while that is one eigenvalue that is very close to the origin: 
+
+$$
+\lambda_1 << \lambda_2 < \lambda_3 < \cdots < \lambda_n
+$$
+
+Then, a better bound can be placed on the Relative Error of the Error energy norm: 
+
+$$
+\frac{\Vert e^{(k)} \Vert_A^2}{\Vert e^{(0)} \Vert_A^2}
+\le
+|P_k(z)| \le 
+\left|
+\left(
+    \frac{\lambda_n - \lambda_1}{\lambda_1}
+\right)2\left(
+    \frac{\sqrt{\kappa_0} + 1}{\sqrt{\kappa_0} - 1}
+\right)^{k - 1}
+\right|
+$$
+
+Where, $\kappa_0 = \frac{\lambda_n}{\lambda_2}$
+
+Take notice that the convergence rate is worse due to the fraction is approaching infinity as $\lambda_1$ gets closer and closer, but there is still hope that the quanityt $\kappa_0$ is very close to one. 
+
 ---
 ### **Floating Points Arithmetic**
 
