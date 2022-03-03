@@ -60,6 +60,8 @@ This is directly the Gauss Sediel Method. However, no choice of parameter on $w$
 ---
 ### **Convergence Rate Statement**
 
+**Convergence Claim**
 
+> The spectrum of the iterative matrix is in the scale of $1 - \mathcal{O}(h)$ for the optimal sor relaxation factor, given as $w_{opt} = 1/\sqrt{1 - \rho(G_J)}$ where $G_J$ is the Jacobi Iteration Matrix. 
 
 

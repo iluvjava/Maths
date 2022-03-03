@@ -96,10 +96,13 @@ $$
 |*|*|*|
 \\
 |*|*|*|*|
+\\
+|*|*|*|*|*|
 $$
 
-
 This algorithm seems to keep track of the eigenvalues and converged ritz vectors at a minmal computational cost. Another driver routine of this routine will be informed of the changes of the eigenvalues of $T_k$, so the driver routine can make use of this information in real time and decide when to orthogonalize lanczos vector against the ritz vectors. 
+
+Let's revise the algorithm a bit, so that it's simpler for impelementation.
 
 
 ---
