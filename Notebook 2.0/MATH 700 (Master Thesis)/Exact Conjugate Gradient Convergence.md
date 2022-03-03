@@ -35,7 +35,7 @@ Take this for granted. This polynomial also appeared under the following context
 
 [[Sturm Liouville Theory]]
 
-[[Chebyshev Series via FFT]]
+[[Chebyshev Series Derivative via FFT]]
 
 ---
 ### **Adjusting the Cheb Polynomial**
@@ -239,7 +239,7 @@ $$
     \right)^{-1}
     \\
     & \le 2 \left(
-        \frac{\sqrt{\kappa} + 1}{\sqrt{\kappa} - 1}
+        \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
     \right)^k
 \end{aligned}
 $$
@@ -250,7 +250,15 @@ Because, the second quantity in the Denominator is always larger than zero and g
 ---
 ### **Big Eigen Outlier Convergence Bound**
 
-We can place a better bound on the convergence rate when the largest eigenvalues are noticably larger than all the other eigenvalues which are clustere around the origin. 
+We can place a better bound on the convergence rate when the largest eigenvalues are noticably larger than all the other eigenvalues which are clustere around the origin. For notational convenience, consider a degree $k$ Chebyshev Polynomial adapted to any close interval $[a, b]$ such that it minimizes inf norm over that interval. by that token, we get: 
+
+$$
+\hat{T}_{[a, b]}^{(k)}(x) := 
+        T_k\left(
+            \frac{2x - b - a}{b - a}
+        \right)
+$$
+
 
 Eigenvalues of the matrix $A$ are like: 
 
@@ -258,54 +266,54 @@ $$
 p_k(z) = 
 \frac
 {
-    T_{k-1}\left(
-        \frac{2z - \lambda_{n-1} - \lambda_1}{\lambda_{n-1} -\lambda_n}
+    \hat{T}_{[\lambda_1, \lambda_{n - 1}]}^{(k - 1)}
+    \left(
+        z
     \right)
 }{
-    T_{k-1}\left(
-        \frac{
-            -\lambda_{n-1} - \lambda_1
-        }
-        {
-            \lambda_{n-1} - \lambda_1
-        }
+    T^{(k - 1)}_{[\lambda_1, \lambda_{n - 1}]}
+    \left(
+        0
     \right)
 }\frac{\lambda_n - z}{\lambda_n}
 $$
 
 Where the line extra linear polynomial $(\lambda_n - z)/\lambda_n$ will interpolote the point $p_1(x) = 1, p_1(\lambda_n)=0$.
 
+
+
 Now we wish to observe these following fact about this polynomial: 
 
 $$
 \begin{aligned}
-    &\frac{\lambda_n - z}{\lambda_n} \in [0, 1]
+    &
+    \frac{\lambda_n - z}{\lambda_n} \in [0, 1]
     \quad \forall z \in [\lambda_1, \lambda_n]
     \\
-    & \frac{\lambda_n - z}{\lambda_n} <<1 \quad  \forall z \in 
+    &
+    \frac{\lambda_n - z}{\lambda_n} <1
+    \quad  \forall z \in 
     [\lambda_1, \lambda_{n-1}]
+    \\
+    & 
+    |p_k(x)| \le
+    \left|
+        \frac{
+            \hat{T}_{[\lambda_1, \lambda_{n-1}]}^{(k - 1)}(x)
+        }{
+            \hat{T}_{[\lambda_1, \lambda_{n - 1}]}^{(k - 1)}(0)
+        }
+        \frac{\lambda_n - z}{\lambda_n}
+    \right|
+    \le 
+    \frac{1}{
+    \left|
+        \hat{T}_{[\lambda_1, \lambda_{n - 1}]}^{(k - 1)}(0)
+    \right|}
 \end{aligned}
 $$
 
-And in that sense, we will be able to make an upper bound for this: 
 
-$$
-p_k(x) \le 
-\left|
-    \hat{T}_{[\lambda_1, \lambda_{n-1}]}
-    (\varphi(x))
-\right|
-\le 
-\frac{1}{
-\left|
-    T_{k-1}\left(
-        \frac{-\lambda_{n-1} - \lambda_1}{
-            \lambda_{n-1} - \lambda_1
-        }
-    \right)
-\right|
-}
-$$
 
 Where $\hat{T}$ denotes the perturbed Cheb on the interval of $[\lambda_1, \lambda_{n-1}]$.
 
@@ -354,32 +362,31 @@ $$
 p_k(0) = 1 \quad p_k(\lambda_1) = 0
 $$
 
-Define the remapped Cheb as: 
+For notational Convenience, Define the remapped Cheb as: 
 
 $$
-\underset{[\lambda_2, \lambda_n]}{\hat{T}_{k - 1}}(x)
+\hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(x)
 = 
-\frac{T_{k - 1}(\varphi(x))}{T_{k - 1}(\varphi(0))}
+T_{k - 1}(\varphi(x))
 \quad \text{where: }\varphi(x) = \frac{2x - \lambda_2 - \lambda_n}{\lambda_n - \lambda_2}
 $$
 
-let's consider another weighting function: 
+let's consider another weighting function, and use it to add to our optimal minimizing polynomial: 
 
 $$
-w(z) =  \frac{\lambda_1 - z}{\lambda_1} 
-$$
-
-Apply this weight function to the modified cheb: 
-
-$$
-p_k(z) = w(z) \frac{T_{k - 1}(\varphi(z))}{T_{k - 1}(\varphi(0))}
-$$
-
-Reader please also observe the fact that: 
-
-$$
-\max_{x\in[\lambda_2, \lambda_n]} |w(x)| = 
-\frac{\lambda_n - \lambda_1}{\lambda_1}
+\begin{aligned}
+    w(z) &=  \frac{\lambda_1 - z}{\lambda_1} 
+    \\
+    p_k(z) &= w(z)\left(
+        \frac{\hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(z)}
+        {
+            \hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(z)
+        }
+    \right)
+    \\
+    \max_{x\in[\lambda_2, \lambda_n]} |w(x)| &=
+    \frac{\lambda_n - \lambda_1}{\lambda_1}
+\end{aligned}
 $$
 
 In this case, the maximal value of the weight function $w$ is achieved via $x = \lambda_1$, and the absolute value will swap the sign of the function. Therefore, we have: 
@@ -388,17 +395,24 @@ $$
 \begin{aligned}
     |p_k(z)| &= 
     \left|
-        w(z) \frac{T_{k - 1}(\varphi(z))}{T_{k - 1}(\varphi(0))}\right|
+        w(z) 
+        \frac{\hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(z)}
+        {
+            \hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(0)
+        }
+    \right|
     \\
     &\le 
-    \left|\frac{w(z)}{T_{k - 1}(\varphi(0))}\right|
+    \left|
+        \frac{w(z)}{\hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(0)}
+    \right|
     \\
     & \le
     \left| 
         \left(
             \frac{\lambda_n - \lambda_1}{\lambda_1}
         \right)
-        T_{k - 1}(\varphi(0))
+        \hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(0)
     \right|
     \\
     \implies 
@@ -412,7 +426,7 @@ $$
 \end{aligned}
 $$
 
-Where $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
+We applied the Chebyshev Bound theorem proved in the previous part. And $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
 
 > $$
 > \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
@@ -420,7 +434,7 @@ Where $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bo
 >     \frac{\lambda_n - \lambda_1}{\lambda_1}
 > \right)
 > \left(
->     \frac{\sqrt{\kappa_0} + 1}{\sqrt{\kappa_0} - 1}
+>     \frac{\sqrt{\kappa_0} - 1}{\sqrt{\kappa_0} + 1}
 > \right)^{k - 1}
 > $$
 

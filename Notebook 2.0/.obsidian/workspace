@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
             "mode": "preview"
           }
         },
@@ -65,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 434.0036334991455,
-    "collapsed": true
+    "width": 403.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -82,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+                "file": "MATH 700 (Master Thesis)/Master Thesis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,17 +99,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "944c7c31f06961cc",
+  "active": "dd41c3a628337e18",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
-    "AMATH 581 (Scientific Computing)/Jacobi Gauss Sediel Iterations.md",
-    "MATH ??? (Unexplored)/Incomplete Cholesky.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function Trapz).md",
-    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Greens Function BVP Practices.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Example Pack.md"
+    "MATH 700 (Master Thesis)/Master Thesis.md",
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+    "AMATH 515 (Optimization Fundamentals)/Conjugate and Momentum.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Krylov.md",
+    "MATH 700 (Master Thesis)/Taxonomy of Subspace Projection Method.md",
+    "MATH 700 (Master Thesis)/Ortho Min 2.md",
+    "MATH 700 (Master Thesis)/Ortho Min.md",
+    "MATH 700 (Master Thesis)/MINRes.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md"
   ]
 }

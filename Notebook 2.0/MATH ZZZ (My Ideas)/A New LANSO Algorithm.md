@@ -46,7 +46,7 @@ $$
     & \text{else: }
     \\
     & \hspace{1.1em}
-    \theta_1^{k + 1} := \mathcal{R}(T_k, -\infty, \theta_1^{(k)})
+    \theta_1^{(k + 1)} := \mathcal{R}(T_k, -\infty, \theta_1^{(k)})
     \\
     & \text{if } \theta_{k}^{(k)} \text{converged already}:
     \\
@@ -56,7 +56,7 @@ $$
     & \text{else: }
     \\
     & \hspace{1.1em}
-    \theta_{k + 1}^{k + 1} := \mathcal{R}(T_k, \theta_k^{(k)}, \infty)
+    \theta_{k + 1}^{(k + 1)} := \mathcal{R}(T_k, \theta_k^{(k)}, \infty)
     \\
     & \text{For } i = 2 \cdots k - 1: 
     \\ 
@@ -90,7 +90,17 @@ $$
 \end{aligned}
 $$
 
+Here is an visualization of how the ritz vectors are suppose to move: 
+
+$$
+|*|*|*|
+\\
+|*|*|*|*|
+$$
+
+
 This algorithm seems to keep track of the eigenvalues and converged ritz vectors at a minmal computational cost. Another driver routine of this routine will be informed of the changes of the eigenvalues of $T_k$, so the driver routine can make use of this information in real time and decide when to orthogonalize lanczos vector against the ritz vectors. 
+
 
 ---
 ### **Subroutine R**

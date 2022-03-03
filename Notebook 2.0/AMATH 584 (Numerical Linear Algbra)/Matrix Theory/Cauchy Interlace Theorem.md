@@ -21,6 +21,8 @@ Then, let $\mu_1 \le \mu_2 \le \cdots \le \mu_m$ be the list of eigenvalues for 
 The eigenvalues of matrix $H$ are interlaced between the eigenvalues of the matrix $A$. 
 
 
+Proof is skipped. 
+
 ---
 ### **Comments**
 

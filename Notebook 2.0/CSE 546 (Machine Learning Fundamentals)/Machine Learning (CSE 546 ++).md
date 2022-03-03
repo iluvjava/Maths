@@ -48,7 +48,7 @@ Example
 Classification
 1. Classification methods: [[Logistic Regression]], [[SVM]], [[SVM and Kernels]]
 2. [[Sigmoid And Odds]]
-3. Algorithm: [[SGD]]
+3. Algorithm: [[Stochastic Gradient Descend]]
 
 Non-Linearity
 1. [[Kernel Machine]]
