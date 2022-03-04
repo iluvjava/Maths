@@ -134,7 +134,7 @@ $$
 \end{aligned}
 $$
 
-This is the same as the Galerkin Formulation with $V = k, W = AK$. Like that, and this gives the Minimal Residual Objective to work with. 
+This is the same as the Galerkin Formulation with $V = K, W = AK$. Like that, and this gives the Minimal Residual Objective to work with. 
 
 ---
 ### **Consequences**

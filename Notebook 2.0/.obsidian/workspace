@@ -6,11 +6,11 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 50,
+        "dimension": 48.888888888888886,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+            "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 50,
+        "dimension": 51.11111111111111,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+            "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
             "mode": "preview"
           }
         },
@@ -67,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 403.0036334991455,
+    "width": 456,
     "collapsed": true
   },
   "right": {
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+                "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+    "MATH 700 (Master Thesis)/Ortho Min J.md",
+    "MATH 700 (Master Thesis)/Taxonomy of Subspace Projection Method.md",
+    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
+    "MATH 700 (Master Thesis)/The Faber Manteuffel Theorem.md",
     "MATH 700 (Master Thesis)/Master Thesis.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Numerical Fields of Values.md",
-    "Projector Minimizations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "MATH 700 (Master Thesis)/Krylov Subspace.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate and Momentum.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Krylov.md"
+    "MATH 700 (Master Thesis)/Ortho Min 2.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md"
   ]
 }

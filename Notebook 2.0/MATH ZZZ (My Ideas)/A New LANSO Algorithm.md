@@ -102,7 +102,33 @@ $$
 
 This algorithm seems to keep track of the eigenvalues and converged ritz vectors at a minmal computational cost. Another driver routine of this routine will be informed of the changes of the eigenvalues of $T_k$, so the driver routine can make use of this information in real time and decide when to orthogonalize lanczos vector against the ritz vectors. 
 
-Let's revise the algorithm a bit, so that it's simpler for impelementation.
+**Revised and Simplified**: 
+
+Let's revise the algorithm a bit, so that it's simpler for impelementations. 
+
+$$
+\begin{aligned}
+    & v := [-\infty, \theta_1^{(k)}, \cdots, \theta_k^{(k)}, \infty]
+    \\
+    & \text{for } i \in [0:k + 1]
+    \\
+    & \hspace{1.1em}\begin{aligned}
+        & \text{if } i \le \lceil k/2\rceil: 
+        \\&\hspace{1.1em}
+            \theta_i^{(k + 1)} = v_i \text{ if convergend else }\mathcal{R}(T_{k + 1}, v_{i - 1}, v_{i})
+        \\&\hspace{1.1em}
+            \text{Mark } \theta_i^{(k + 1)} \text{ converged if } \theta_i^{(k + 1)}\approx v_i
+        \\& 
+        \text{else}: 
+        \\& \hspace{1.1em}
+            \theta_{i + 1}^{(k + 1)} = v_{i + 1} \text{ if converged else: }\mathcal{R}(T_{k + 1}, v_{i}, v_{i + 1})
+        \\ &\hspace{1.1em}
+            \text{Mark }\theta_{i + 1}^{(k + 1)} \text{ converged if } \theta_{i + 1}^{k + 1} \approx v_i
+    \end{aligned}
+    \\& 
+    \theta_{\lceil k/2\rceil + 1}^{(k + 1)} := \mathcal{R}(T_k, \theta_{\lceil k/2\rceil}^{(k)}, \theta_{\lceil k/2\rceil + 1}^{(k)})
+\end{aligned}
+$$
 
 
 ---
