@@ -197,7 +197,37 @@ $$
 \end{aligned}
 $$
 
-The basecase has been proven. Inductively, we have the statement that
+The basecase has been proven. Inductively, we have the statement that: 
 
+$$
+\begin{aligned}
+    p_k &= r_k - P_kD^{-1}_k(AP_k)^TAr_k
+    \\
+    Ap_k &= Ar_k - AP_kD^{-1}_k(AP_k)^TAr_k
+    \\
+    P_k^TA^TAp_k &= 
+    P_k^TA^TAr_k - \underbrace{P_k^TA^TAP_k}_{=D_k} D^{-1}_kP^T_kA^TAr_k
+    \\
+    P_k^TA^TAp_k &= P_k^TA^TAr_k - P_k^TA^TAr_k = \mathbf{0}
+\end{aligned}
+$$
+
+**Claim 3** is proven at this point. Next, we inductively consider $p_{k - 1}\in \mathcal{K}_k(A|r_0), \text{span}(P_k) = \mathcal{K}_k(A|r_0)$. From the formula for $p_k$, we know that $p_k \in r_k + \text{span}(P_k)$, next we have: 
+
+$$
+\begin{aligned}
+    r_k &= r_0 - (AP_k)D^{-1}_k(AP_k)^Tr_0
+    \\
+    r_k &\in r_0 + \text{span}(AP_k)
+    \\
+    r_0 + \text{span}(AP_k) &\subseteq \mathcal{K}_{k + 1}(A|r_0)
+    \\
+    \implies r_k &\in \mathcal{K}_{k + 1}(A|r_0)
+    \\
+    \implies p_k &\in r_k + \text{span}(P_k)
+\end{aligned}
+$$
+
+**Claim 4** has been proven by this point. 
 
 
