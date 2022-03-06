@@ -1,4 +1,4 @@
-[[Conjugate Gradient and Krylov]]
+[[Conjugate Gradient for Advanced Readers]]
 [[Lanczos Algoritm]]
 
 ---

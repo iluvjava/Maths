@@ -6,11 +6,11 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 48.888888888888886,
+        "dimension": 44.87440597420231,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 51.11111111111111,
+        "dimension": 55.125594025797696,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
             "mode": "preview"
           }
         },
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Ortho Min J.md",
+                "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
+    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
     "MATH 700 (Master Thesis)/Ortho Min J.md",
-    "MATH 700 (Master Thesis)/Taxonomy of Subspace Projection Method.md",
-    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
-    "MATH 700 (Master Thesis)/The Faber Manteuffel Theorem.md",
     "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Ortho Min 2.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md"
+    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md"
   ]
 }

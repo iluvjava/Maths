@@ -230,4 +230,31 @@ $$
 
 **Claim 4** has been proven by this point. 
 
+---
+### **Potential Link to Arnoldi Method**
+
+There is a special equivalence between the orthomin method with full orthogonalization and the GMRes algorithm. More specifically, the Arnoldi method is the glue that connect these together. See [[GMRes]] for more on this. For inspiration, consider: 
+
+$$
+\begin{aligned}
+    p_k &= r_k - P_kD^{-1}_k(AP_k)^TAr_k
+    \\
+    Ap_k &= Ar_k - AP_kD^{-1}_k(AP_k)^TAr_k
+    \\
+    Ap_k &= Ar_k - AP_kD^{-1/2}(D^{-1/2}_kAP_k)^TAr_k
+\end{aligned}
+$$
+
+And, please observe that $D_k^{-1/2}AP_k$ is an orthogonal projector, beacause $AP_k$ would be $A$ orthogonal. And this is an Arnoldi Method in disguise. More specifically, we can write the [[Hessenberg Transform with Arnoldi Iterations]] in matrix form: 
+
+$$
+h_{k+ 1, k}q_k = Aq_k - Q_kQ_k^{T}Aq_k
+$$
+
+
+
+---
+### How Orthomin Reduces to Other Problems
+
+
 

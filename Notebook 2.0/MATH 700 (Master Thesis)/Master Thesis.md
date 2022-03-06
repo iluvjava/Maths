@@ -14,11 +14,12 @@ Here is a an aggregations on what I studied for my master thesis.
 
 **Iterative Methods**
 1. [[Steepest Descend for Matrix Vector]]
-2. [[Conjugate Gradient for Dummy]], [[Conjugate Gradient and Krylov]], [[Conjugate Gradient Anne's Version]]
+2. [[Conjugate Gradient for Dummy]], [[Conjugate Gradient for Advanced Readers]], [[Conjugate Gradient Anne's Version]]
 3. [[GMRes]]
 4. [[MINRes]]
 5. [[Ortho Min]]
 6. [[Ortho Min 2]]
+7. [[Ortho Min J]]
 
 **The Engine Behind Subspace Methods: Eigen Decompositions**
 1. [[Iterative Lanczos and Ortho Polynomials]]

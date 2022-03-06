@@ -11,6 +11,20 @@ Make sure to read [[Generalized Eigenspaces]] before so we get the idea about ei
 
 Given any matrices, the Jordan normal form reduces matrix such that all of them are similar to matrices to a Jordan Normal Matrix. 
 
-# TODO: Jordan normal form 
+**Definition: Jordan Block**
+
+A jordan block is a diagonal matrix of eigenvalues together with a nullpotent operator. Let the nullpotent operator be $N_k = \text{diag}(\vec{1}, + 1)\in \mathbb{R}^{k \times k}$. It's called nullpotent because $N^{k} = \mathbf{0}$. Then a jordan block is defined to be: 
+
+$$
+J_k = \lambda I + N_k
+$$
+
+
+---
+### **The Jordan Normal Form**
+
+For any matrix $A \in \mathbb{R}^{n\times n}$, it can be decompose into $XJX^{-1}$ where $J = \text{diag}(\{J_i\}_{i = 1}^{n_k})$ where $n_1 + n_2 \cdots + n_{k} = n$. Each eigenvactor, corresponds to a Jordan Block, and each Jordan block is either representing an invariant subpsace, or an nilpotent space for an eigenvalue that has a algbraic multiplicity larger than one. 
+
+
 
 

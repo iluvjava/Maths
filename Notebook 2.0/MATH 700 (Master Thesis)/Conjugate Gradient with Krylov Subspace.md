@@ -2,6 +2,8 @@
 
 This is the link to the reference resources I used: [here](https://chen.pw/research/cg/cg.pdf)
 
+**Note**: I do not recommend this proof here, it's way more convoluted, and it's not the best proof of the algorithm because it's not that direct. The previous version that is for Dummy is a better approach overall. 
+
 ---
 ### **Intro**
 

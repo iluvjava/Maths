@@ -5,8 +5,8 @@
 
 Here we state the results of the rate of convergence for the Conjugate Gradient algorithm for: 
 
-* Exact Numerics
-* Floating Numerics
+* Exact Numerics: [[Exact Conjugate Gradient Convergence]]
+* Floating Numerics: [[Floats Conjugate Gradient Convergence]]
 
 
 Results are referenced with professor Greenbaum's work on this topic. 

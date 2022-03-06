@@ -1,7 +1,10 @@
 [[Krylov Subspace]]
 
+
 ----
 ### **Intro**
+
+This exerp is going to be similar to [[Conjugate Gradient with Krylov Subspace]], but this time we make more concise statements about what we are trying to prove using the procedures for the conjugate gradient. 
 
 We are going to use the objective of the conjugate gradient algorithm to see how it make use of the krylove subspace.
 
