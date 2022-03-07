@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
             "mode": "preview"
           }
         },
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
+                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,8 +104,8 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
     "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
     "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",

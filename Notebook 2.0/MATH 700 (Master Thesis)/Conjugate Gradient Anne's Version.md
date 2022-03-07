@@ -126,18 +126,23 @@ $$
     \text{For } i = 0,1, \cdots
     \\&\hspace{1.1em}
     \begin{aligned}
-        & a_{i} = \frac{r^{(i)T}p^{(i)}}
-        {\Vert p^{(i)}\Vert_A^2} = \frac{\Vert r^{(i)}\Vert^2}{\Vert p^{(i)}\Vert^2_A}
+        & a_{i} = \frac{\Vert r^{(i)}\Vert^2}{\Vert p^{(i)}\Vert^2_A}
         \\
         & x^{(i + 1)} = x^{(i)} + a_i p^{(i)}
         \\
         & r^{(i + 1)} = r^{(i)} - a_iAp^{(i)}
         \\
-        & b_{i + 1} = \frac{\Vert r^{(j + 1)}\Vert_2^2}{r^{(i)T}p^{(i)}}= \frac{\Vert r^{(j + 1)}\Vert_2^2}{\Vert r^{(i)}\Vert_2^2}
+        & b_{i} = \frac{\Vert r^{(j + 1)}\Vert_2^2}{\Vert r^{(i)}\Vert_2^2}
         \\
-        & d^{(i + 1)} = r^{(i + 1)} + b_{i + 1}p^{(i)}
+        & r^{(i + 1)} = r^{(i + 1)} + b_{i}p^{(i)}
     \end{aligned}
 \end{aligned}\tag{5}
+$$
+
+Note, another equivalent of the above formulation for the coefficients are given as: 
+
+$$
+a_i = \frac{r^{(i)T}p^{(i)}}{\Vert p^{(i)}\Vert_A^2} \quad b_i=\frac{\Vert r^{(j + 1)}\Vert_2^2}{r^{(i)T}p^{(i)}}
 $$
 
 **Assumption**: 
@@ -286,6 +291,8 @@ $$
     \rangle
     \\
     &= 0 \impliedby \mathcal{H}_1(k)
+    \\
+    \implies& \mathcal{H}_2(k)
 \end{aligned}
 $$
 
@@ -294,6 +301,8 @@ Proved.
 **Comments**
 
 This proof is made for this particular formulations of the conjugate gradient algorithms. It's elementary and complicated. But it doesn't reveal any kind of insights into the problem, or the algorithm. 
+
+This proof turns out to be way more convoluted than I originally imagined. Big Oof for me. 
 
 
 ---

@@ -254,7 +254,9 @@ $$
 
 
 ---
-### How Orthomin Reduces to Other Problems
+### **How Orthomin Reduces to Other Problems**
+
+
 
 
 
