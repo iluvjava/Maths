@@ -6,11 +6,11 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 44.87440597420231,
+        "dimension": 48.37177747625509,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 55.125594025797696,
+        "dimension": 51.62822252374492,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
             "mode": "preview"
           }
         },
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
+    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
     "AMATH 581 (Scientific Computing)/Jacobi Gauss Sediel Iterations.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
     "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Ortho Min J.md",
-    "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/GMRes.md"
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md"
   ]
 }

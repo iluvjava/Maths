@@ -92,3 +92,5 @@ $$
 
 And if that happens, the the Jacobi iteration is going to converge. The same technique can be applied to other schemes to prove the convergence. 
 
+Finally, a stronger statement for thd convergence can be derived using the idea of spectral radius of a function. 
+
