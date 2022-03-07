@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
             "mode": "preview"
           }
         },
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,6 +104,8 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
+    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
+    "AMATH 581 (Scientific Computing)/Jacobi Gauss Sediel Iterations.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
@@ -111,8 +113,6 @@
     "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
     "MATH 700 (Master Thesis)/Ortho Min J.md",
     "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md"
+    "MATH 700 (Master Thesis)/GMRes.md"
   ]
 }

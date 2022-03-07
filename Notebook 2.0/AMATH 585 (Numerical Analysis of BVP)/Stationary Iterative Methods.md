@@ -60,7 +60,12 @@ This is directly the Gauss Sediel Method. However, no choice of parameter on $w$
 ---
 ### **Convergence Rate Statement**
 
-**Convergence Claim**
+Before one can make any claim, we need to put the iterations proceudure into the form of $x_{k + 1} = Gx_{k} + c$. Then, we can make the claim that, if the [[Spectral Radius]] of the matrix $G$ is less than unity, then the iterative scheme will inevitability converge for all initial guess. In fact the converse is also true. The statement that we wish to prove would be: 
+
+**Convergence and Spectral Radius**
+> If the iterations matrix $G$ for the stationary scheme has a spectral radius that is less than unity iff and only if the stationary scheme converges for all initial guesses. 
+
+**Optimal Relaxation Factor for SOR Method**
 
 > The spectrum of the iterative matrix is in the scale of $1 - \mathcal{O}(h)$ for the optimal sor relaxation factor, given as $w_{opt} = 1/\sqrt{1 - \rho(G_J)}$ where $G_J$ is the Jacobi Iteration Matrix. 
 
