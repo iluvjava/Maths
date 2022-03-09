@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+            "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+            "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
             "mode": "preview"
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "companion matrix",
+                "query": "oblique projector",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -63,7 +63,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -84,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+                "file": "MATH 700 (Master Thesis)/The QMR Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +105,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
-    "AMATH 515 (Optimization Fundamentals)/Preconditioned Conjugate Gradient.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/The Companion Matrix.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
-    "MATH 700 (Master Thesis)/GMRes Error Bound via Cauchy Integral on Resolvant.md",
-    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md",
-    "MATH ??? (Unexplored)/Block Krylov Subspace Method.md",
-    "MATH ??? (Unexplored)/The Faber Manteuffel Theorem.md"
+    "MATH 700 (Master Thesis)/The QMR Algorithm.md",
+    "MATH 700 (Master Thesis)/Bi Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/Bi-Lanczos.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+    "MATH ??? (Unexplored)/LOBPCG.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Formally Introduced.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 1D Example Pack.md",
+    "AMATH 581 (Scientific Computing)/Finite Elements Method 2.md",
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md"
   ]
 }

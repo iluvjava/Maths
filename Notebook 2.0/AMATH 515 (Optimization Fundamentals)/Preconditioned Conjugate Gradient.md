@@ -99,3 +99,5 @@ This system is another SPD system, suitable for Conjugate Gradient.
 ### **Factorization Free PCG**
 
 The factor of the preconditioned matrix $M$ is needed, which could be a problem for the actual implementations for the algorithm. As we saw above, we didn't make use of the explicit matrix factorization in the PCG algorithm. 
+
+To find a factorization free PCG algorithm, we consider the CG algorithm applied to the equation $E^{-1}AE^{-1}(E^Tx) = E^{-1}b$. 
