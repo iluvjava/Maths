@@ -1,3 +1,1 @@
-
-
-No link yet, the name of the file is the hint. 
+Wiki [here](https://en.wikipedia.org/wiki/Kantorovich_inequality)

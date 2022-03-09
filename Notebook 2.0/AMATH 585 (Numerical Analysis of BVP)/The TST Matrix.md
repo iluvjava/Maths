@@ -122,5 +122,6 @@ $$
 
 Which proves that the eigenvectors are indeed the eigenvectors and its corresponding eigenvalues are given by the above formulas. 
 
-
+---
+### **Poisson Discretized Operator**
 

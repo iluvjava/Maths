@@ -1,4 +1,4 @@
-[[GMRes Error Bound]]
+[[GMRes Error Bound via Cauchy Integral on Resolvant]]
 [[Calculus of Residual]]
 [[Calculus of Residual (Res Shortcut)]]
 

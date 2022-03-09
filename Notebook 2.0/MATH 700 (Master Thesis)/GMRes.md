@@ -294,3 +294,16 @@ Here we take note tha, $\exists\; w: \mathcal{K}_k(A, x)w = p_{k -1}(A)x$, which
 
 
 
+---
+### **When GMRes Converges Slowly**
+
+There exists instances of matrices and initial residual where the GMRes method only converges at the last iterations of the Arnoldi Method. This particular instance also has the great implication that, the GMRes convergence doesn't depend on the EigenSystem of the matrix in general. Tighter bound on the GMRes convergence requires considering other properties of the matrix.
+
+The key here is [[The Companion Matrix]]. 
+
+
+
+
+
+
+

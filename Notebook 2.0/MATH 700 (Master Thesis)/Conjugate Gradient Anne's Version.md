@@ -313,3 +313,10 @@ This proof turns out to be way more convoluted than I originally imagined. Big O
 
 ---
 ### **Conjugate Gradient and Approximation Theory**
+
+
+---
+### **Preconditioned Conjugate Gradient**
+
+There are a lot of details to this new algorithm, so it's in a separate file [[Preconditioned Conjugate Gradient]]. See that file for more details about the algorithm. 
+

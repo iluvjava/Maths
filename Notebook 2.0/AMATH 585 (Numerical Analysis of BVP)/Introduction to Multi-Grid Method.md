@@ -20,7 +20,7 @@ The algorithm is recursive, and it's applicable to staionary iterative methods s
             \\
             0.5 \mathbf{e}_1^T + 0.5\mathbf{e}_2^T
             \\
-            \mathbf{e_2}
+            \mathbf{e_2}^T
             \\
             0.5 \mathbf{e}_2^T + 0.5\mathbf{e}_3^T
             \\
@@ -28,7 +28,7 @@ The algorithm is recursive, and it's applicable to staionary iterative methods s
             \\
             0.5 \mathbf{e}_{2n - 1}^T + 0.5\mathbf{e}_{2n}^T
             \\
-            e_{2n}^T
+            \mathbf{e}_{2n}^T
         \end{bmatrix}
     $$
 
@@ -51,7 +51,7 @@ $$
         \\&
         e^{[h]} := I_{[h]}^{[2h]} e^{[2h]}
         \\&
-        x^{[h]} := x^{[h]} - e^{[h]}
+        x^{[h]} := x^{[h]} + e^{[h]}
         \\& 
         \text{return }x^{[h]}
     \end{aligned}    
@@ -78,5 +78,84 @@ The Jacobi Method doesn't achive speedy convergence of TST matrix for the Poisso
 **Major Claim**:
 
 > The Jacobi Iterationl has the ability to smooth out the high frequencies oscillations of the error at the beginning of the algorithm. 
+
+Let's consider the classic Poisson problem on 1D, given as: 
+
+$$
+    \begin{cases}
+        - u'' = f
+        \\
+        u(0) = u(1) = 0
+    \end{cases}
+$$
+
+Using the properties from the prereq, we have the eigensystem of the Discretization matrix listed as: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        \lambda_k = \frac{2}{h^2}
+        \left(
+            1 - \cos\left(
+                \frac{k\pi}{n}
+            \right)
+        \right) & 1 \le k \le n - 1 
+        \\
+        v^{(k)}_j = \sin\left(
+            \frac{jk\pi}{n} 
+        \right)& j = 1, \cdots, n-1
+    \end{cases}
+\end{aligned}
+$$
+
+Observe the simplifications for the quantity $\lambda_k$ as: 
+
+$$
+\frac{2}{h^2}
+        \left(
+            1 - \cos\left(
+                \frac{k\pi}{n}
+            \right)
+        \right) = 
+        \frac{4}{h^2}\sin^2 \left(
+            \frac{k \pi}{2n}
+        \right)
+$$
+
+Take notice that, the value $\lambda_k$ grows as $k$ goes from $1$ to $n$, and hitting a peak at the value $k = n$. Next, the eigenvector has the hightest oscillations for the value $k = n - 1$, which the eigen vector goes up and down for each value of $j$, almost at all the grid points. We call $1 \le k \le n/2$ to be the low frequencies, and $n/2 < k \le n - 1$ to be the high frequencies component. 
+
+Consider the Modified Jacobi method which contains iteration matrix defined as: 
+
+$$
+M = w^{-1}\left(
+    \frac{2}{h^2}
+\right)I \quad G = (I - M^{-1}A)
+$$
+
+The convergence of the algorithm depends on the spectrum of the iterative matrix $G$. The eigenvalues of the matrix is going to be: $u_k = 1 - 2w\sin^2((k\pi)/(2n))$. Our goal here is to choose the value of $w\in [0, 1]$ such that all high frequencies components are as far away from one as possible. 
+
+$u_k$ are discrete points from the function $1 - 2w\sin(\pi x/2)$. Which is the first quater of a sine curve, going from 1 to zero, tweaking the value of $w$ between $[0, 1]$ flattens and squeeze the curve upwards to $y =1$. 
+
+> The optimal choice is actually $w = 2/3$, It's chosen so that for all values $k = n/2$, $k = n - 1$, and the values of $k$ between them, are all less than one as much as possible. 
+
+
+**Weighted Jacobi Iterative Formula**: 
+
+> $$
+> \mathbf{x}^{(k+1)}=\omega D^{-1} \mathbf{b}+\left(I-\omega D^{-1} A\right) \mathbf{x}^{(k)}
+> $$
+
+Where $\omega \in [0, 1]$. 
+
+---
+### **Limitations**
+
+The method of multi-grid fails whenever the damping routine, such as the Jacobi and Gauss Sediel appears to 
+
+---
+### **Impelementations Tricks**
+
+---
+### **Multi-Grid Method as a Preconitioner**
 
 

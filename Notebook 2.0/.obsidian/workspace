@@ -6,11 +6,11 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 48.37177747625509,
+        "dimension": 50.64406779661017,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 51.62822252374492,
+        "dimension": 49.35593220338983,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
             "mode": "preview"
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "companion matrix",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
+                "file": "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "AMATH 585 (Numerical Analysis of BVP)/Block TST Matrix with TST Blocks.md",
-    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
-    "AMATH 581 (Scientific Computing)/Jacobi Gauss Sediel Iterations.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Stationary Iterative Methods.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
+    "AMATH 515 (Optimization Fundamentals)/Preconditioned Conjugate Gradient.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/The Companion Matrix.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
+    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+    "MATH 700 (Master Thesis)/GMRes Error Bound via Cauchy Integral on Resolvant.md",
+    "MATH ??? (Unexplored)/The Fundamental Theorem of Finite Albelian Group.md",
+    "MATH ??? (Unexplored)/Block Krylov Subspace Method.md",
+    "MATH ??? (Unexplored)/The Faber Manteuffel Theorem.md"
   ]
 }
