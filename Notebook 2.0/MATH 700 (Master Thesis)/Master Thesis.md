@@ -66,3 +66,10 @@ Just CG, Just Lanczos, this topic goes deep, dragging in everything I learn alon
 3. Analyze the convergence under floating points. Demonstrate it with code. 
 4. Use Lanczos to demonstrate the reasons for delayed convergence. Show the spectrum of the intermediate tridiagonal matrix and state how it affects the convergence. Show how loss of orthogonality occured for lanczos orthogonalization. Demonsrate it with code and math. 
 5. State some of the way of addressing the issues, such as the preconditiners, or using the converged rizt vectors. Demonsrate it with code (Still in Progress)
+
+
+### **Example Master Thesis**
+
+![[Example_Master_Thesis.pdf]]
+
+The above thesis is an example of what a master thesis looks like. 

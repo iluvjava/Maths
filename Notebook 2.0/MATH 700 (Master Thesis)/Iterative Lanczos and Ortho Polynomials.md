@@ -1,12 +1,10 @@
 [[Lanczos Algoritm]]
-
+[[Krylov Subspace]]
 
 ---
 ### **Intro**
 
-The Lanczos algorithm for symmetric matrices are generating orthogonal polynomials under the a sapce weighted by finitely many eigevalues of the matrix.
-
-To introduce, I make heavy references to Yousaf Saad's book in iterative methods, on section 6.2.2, Lanczos & Orthogonalizations. 
+The Lanczos algorithm for symmetric matrices are generating orthogonal polynomials under the a sapce weighted by finitely many eigevalues of the matrix. To introduce, I make heavy references to Yousaf Saad's book in iterative methods, on section 6.2.2, Lanczos & Orthogonalizations. 
 
 Suppose a tridiagonalizations for the Symmetric Matrix $A$:
 
@@ -49,6 +47,10 @@ $$
 $$
 
 Where, under the discrete weight sum using the vector $f_1$, the polynomial are orthogonal. 
+
+**TLDR**: 
+
+> The Iterative Lanczos Algorithm gives orthogonal polynomials under the weighted space $U^Hv_1$ and measured at discrete points $\lambda_i$, the eigenvalue of the matrix $A$. However, the polynomial is hidden as the polynomials of the minimization polynomials inside the span of Krylov Subspace. 
 
 **Extra Comments**: 
 

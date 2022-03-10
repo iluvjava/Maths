@@ -26,4 +26,4 @@ Proof is skipped.
 ---
 ### **Comments**
 
-It can keep track (kinda) of the eigenvalues of a matrix that is dynamically resizing. But it would need an easy way of accessing the eigenvalues. Check [[Symmetric Tridiagonal Matrices Recrusive Det]] for more. 
+It can keep track (kinda) of the eigenvalues of a matrix that is dynamically resizing. But it would need an easy way of accessing the eigenvalues. Check [[Symmetric Tridiagonal Matrices Recursive Det]] for more. 

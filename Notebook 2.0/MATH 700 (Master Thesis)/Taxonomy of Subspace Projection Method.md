@@ -141,3 +141,6 @@ This is the same as the Galerkin Formulation with $V = K, W = AK$. Like that, an
 
 The GMRes method, the Conjugate Gradient method, and many other methods all fits ounder this category. In which, a subspace is maintained during the iterations, and then it try to get the best results using the maintained subspace for the iteration. 
 
+---
+### **Prototyping the Common Algorithm**
+

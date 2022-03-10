@@ -122,7 +122,7 @@ $$
 Therefore, the maximal solution is the eigen vectors with the largest eigenvalues in the Invariant subspace $\mathcal{V}$. 
 
 ---
-### **Spectral Theorem and the construction of Eigen Space**
+### **Spectral Theorem and the construction of Eigenspace**
 
 The spectral theorem is claimed for Any adjoint operator for its given vector spaces. But here, we are restricted to complex matrices because of how limited my skills in math are. 
 
