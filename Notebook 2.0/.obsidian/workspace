@@ -6,7 +6,7 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 51.130776794493606,
+        "dimension": 48.43962008141113,
         "state": {
           "type": "markdown",
           "state": {
@@ -19,7 +19,7 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 48.86922320550639,
+        "dimension": 51.56037991858887,
         "state": {
           "type": "markdown",
           "state": {
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Courant Fischer",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -105,14 +105,14 @@
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
     "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
-    "AMATH 584 (Numerical Linear Algbra)/Projector Minimizations.md",
-    "References/Divide And Conquer For Symmetric Tridiagonal Eigenproblem.pdf",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrix Decomposition/Invariant Subspace.md",
-    "MATH ??? (Unexplored)/Courant Fischer and Rayleigh Quotients.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomposition Foundations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Inverse Power Iteration.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Generalized Eigenspaces.md"
+    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
+    "MATH 700 (Master Thesis)/Ortho Min J.md",
+    "MATH 700 (Master Thesis)/Gram Schimidt Conjugation.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Exploiting the Lagrangian (KKT).md",
+    "MATH ??? (Unexplored)/KKT.md",
+    "Math 000 (Math Essential)/Calc/Lagrange Multiplier.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality/Generalized Lagrangian.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Lagrangian and Algorithms).md"
   ]
 }

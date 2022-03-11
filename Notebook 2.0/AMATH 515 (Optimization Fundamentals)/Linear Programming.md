@@ -2,7 +2,7 @@ Basics of Linear Programming.
 
 This is stated similarly to the book: Numerical Optimization
 
-[[Exploiting the Lagrangian (KTT)]], [[Lagrangian and Dualization Techniques]]
+[[Exploiting the Lagrangian (KKT)]], [[Lagrangian and Dualization Techniques]]
 
 ---
 ### **Intro**
@@ -15,7 +15,7 @@ One General Format for the linear programming problem is:
 
 We assume that $A$'s row rank is full rank, this is neccessary for bounding a unique solutions for the system. And let's say that $A \in \mathbb{R}^{m\times n}$. 
 
-The argument is that any linear programming problem can be put into this form because: 
+The argument is that any linear programming problem can be put into this form because of the following reduction techniques for different type of constraints: 
 
 > $$
 > \begin{aligned}

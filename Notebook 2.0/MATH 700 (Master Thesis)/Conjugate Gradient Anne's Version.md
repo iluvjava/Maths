@@ -134,7 +134,7 @@ $$
         \\
         & b_{i} = \frac{\Vert r^{(j + 1)}\Vert_2^2}{\Vert r^{(i)}\Vert_2^2}
         \\
-        & r^{(i + 1)} = r^{(i + 1)} + b_{i}p^{(i)}
+        & p^{(i + 1)} = r^{(i + 1)} + b_{i}p^{(i)}
     \end{aligned}
 \end{aligned}\tag{5}
 $$

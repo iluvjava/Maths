@@ -4,7 +4,7 @@ Previous Version: [[Interior Points]],
 
 References
 1. [[Dualization Examples]], About how we get the Lagrangian
-2. [[Exploiting the Lagrangian (KTT)]], Some more information and background about the optimality conditions we are exploiting for Interior Points algorithm. 
+2. [[Exploiting the Lagrangian (KKT)]], Some more information and background about the optimality conditions we are exploiting for Interior Points algorithm. 
 
 Objective: 
 1. Phrase the 2-Norm Inequality Constrained Optimization Problem

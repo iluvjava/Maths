@@ -57,19 +57,30 @@ Derive the Methods using norm minimization and Galerkin framework and state the 
 3. Compare the Norm of Galerkin Based Method and Norm Minimizing Method. 
 4. State the new Research Results in Faber Manteuffel Theorem and it's Consequences. 
 
-### **Master Thesis Plan 3: Full On CG and Lanczos**
+---
+### >> **Master Thesis Plan 3: Full On CG and Lanczos**
 
 Just CG, Just Lanczos, this topic goes deep, dragging in everything I learn along the way with it and demonstrate it with code. 
 
-1. State CG, derive it. 
+1. State CG, conceive it, don't prove it. 
+	1. Conceive it only from first principal, in a way that leads to the Lanczos Algorithm and short term recurrence naturally. 
+	2. Put it under the context of iterative method and states it's importance for conceiving the algorithms in certain ways. 
 2. State its relations to Lanczos. 
-3. Analyze the convergence under floating points. Demonstrate it with code. 
-4. Use Lanczos to demonstrate the reasons for delayed convergence. Show the spectrum of the intermediate tridiagonal matrix and state how it affects the convergence. Show how loss of orthogonality occured for lanczos orthogonalization. Demonsrate it with code and math. 
-5. State some of the way of addressing the issues, such as the preconditiners, or using the converged rizt vectors. Demonsrate it with code (Still in Progress)
+3. Analyze the convergence rate of the algoritm with exact arithematic (With Numerical Experiment, using Full orthogonalizations). 
+	1. Uniform Eigenvalues
+	2. With repeated Eigenvalues
+	3. Clustered Eigenvalues
+4. Analyze the convergence under floating points. Demonstrate it with code. 
+	1. Convergence Anaysis and Paige Theorem
+	2. Numerical Experiments to demonstrate the lost of orthogonality
+5. Use Lanczos to demonstrate the reasons for delayed convergence. Show the spectrum of the intermediate tridiagonal matrix and state how it affects the convergence. Show how loss of orthogonality occured for lanczos orthogonalization. Demonsrate it with code and math. 
+6. State some of the way of addressing the issues, such as the preconditiners, or using the converged rizt vectors. Demonsrate it with code (Still in Progress)
+7. Non-Linear CG: Just a brief overview. 
 
 
+---
 ### **Example Master Thesis**
 
 ![[Example_Master_Thesis.pdf]]
 
-The above thesis is an example of what a master thesis looks like. 
+The above thesis is an example of what a master thesis looks like. It's a reference for the standards that we should be hitting. 

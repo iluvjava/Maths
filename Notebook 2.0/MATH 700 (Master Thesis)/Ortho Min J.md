@@ -129,7 +129,7 @@ Next, we are looking for an alternative formulation of the changes in $x_k$ that
 
 $$
 \begin{aligned}
-    r_0 &= r_k + AP_k
+    r_0 &= r_k + AP_kD^{-1}_k(AP_k)^Tr_0
     \\
     p_k^TA^Tr_0 &= p_k^TA^Tr_k + \underbrace{p_k^TA^TAP_k}_{= \mathbf{0}} D^{-1}_k (AP_k)^Tr_0
     \\
@@ -149,7 +149,7 @@ The recurrence for the update has been proven at this point.
 We are interested in generating the subspace of $P_k$ matrix that is $A^TA$ orthogonal. The formula we proposed is the following: 
 
 $$
-p_k = r_k - P_kd^{-1}_k(AP_k)^TAr_k
+p_k = r_k - P_kD^{-1}_k(AP_k)^TAr_k
 $$
 
 Take note that, this request a matrix multiplications, of projecting $Ar_k$ onto the subspace $AP_k$, an then use that to manipuate $P_k$ to generate the new vector $p_k$. 
