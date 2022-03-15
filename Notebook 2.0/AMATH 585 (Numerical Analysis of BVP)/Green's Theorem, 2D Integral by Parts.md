@@ -64,6 +64,8 @@ $$
 
 Expression (1) now has been justified. Another interpretation of expression (1) is viewing the Laplacian inner product term using the definition of Hilber Space Inner product directly, obtaining: 
 
+**Cannonical Form**
+
 > $$
 > \begin{aligned}
 >     & \hspace{0.5em}

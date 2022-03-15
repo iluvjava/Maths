@@ -11,7 +11,7 @@ $$
 \frac{1}{6h^2}\text{sum}
 \left(
     \begin{bmatrix}
-        u_{i-1, j - 1}& 4u_{i, j + 1}& u_{i + 1, j + 1}\\
+        u_{i-1, j +1}& 4u_{i, j + 1}& u_{i + 1, j + 1}\\
         4u_{i - 1, j}& -20 u_{i, j}& 4u_{i + 1, j} \\
         u_{i - 1, j -1}& 4u_{i, j - 1} & u_{i + 1, j - 1}
     \end{bmatrix}
@@ -29,7 +29,7 @@ $$
 \nabla_{(9)}^2[u(x, y)]_{(x_i, y_j)}
 = 
 \nabla^2[u(x, y)]_{(x_i, y_j)} + 
-\frac{1}{12h^2}
+\frac{h^2}{12}
 \underbrace{(\partial_x^4[u(x, y)]_{(x_i, y_j)} + \partial_y^4[u(x, y)]_{(x_i, y_j)} + 2\partial_x^2\partial_y^2[u(x, y)]_{(x_i, y_j)})}_{\nabla^2f(x_i, y_j)} + \mathcal{O}(h^4)
 $$
 

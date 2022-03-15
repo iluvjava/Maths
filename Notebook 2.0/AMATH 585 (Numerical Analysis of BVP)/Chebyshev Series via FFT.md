@@ -1,4 +1,5 @@
 [[FFT Algorithm]]
+[[Discrete Fourier Transform with Details]]
 
 
 ---
@@ -18,7 +19,7 @@ $$
 \end{aligned}
 $$
 
-**Major Claim**
+**DCT via DFT**
 
 > To evaluate the function at the chebyshev node, we consider the vector: 
 > $$
@@ -33,12 +34,11 @@ $$
 > \right)a_j \quad \forall\; 0 \le k \le n
 > $$
 
+**Proof**
 
-**Proof:**
+Should be covered in else 
 
-The key here is to realize that similarity between the Chebyshev series at the chebyshev node and the Discrete Cosine Transform. 
 
-#TODO: Finish this. 
 
 
 

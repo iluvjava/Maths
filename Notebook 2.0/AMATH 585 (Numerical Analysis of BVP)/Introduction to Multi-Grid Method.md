@@ -47,7 +47,7 @@ $$
         \\&
         r^{[2h]} := 0.5(I_{[2h]}^{[h]})^Tr^{[2h]}
         \\&
-        e^{[2h]} := \mathcal{F}(A^{[2h]}, -r^{[2h]})
+        e^{[2h]} := \mathcal{F}(A^{[2h]}, r^{[2h]})
         \\&
         e^{[h]} := I_{[h]}^{[2h]} e^{[2h]}
         \\&
@@ -146,6 +146,11 @@ $u_k$ are discrete points from the function $1 - 2w\sin(\pi x/2)$. Which is the 
 > $$
 
 Where $\omega \in [0, 1]$. 
+
+**Anne's Formulations**
+
+
+
 
 ---
 ### **Limitations**

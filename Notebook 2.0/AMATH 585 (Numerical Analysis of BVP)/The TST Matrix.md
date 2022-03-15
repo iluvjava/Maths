@@ -125,3 +125,7 @@ Which proves that the eigenvectors are indeed the eigenvectors and its correspon
 ---
 ### **Poisson Discretized Operator**
 
+---
+### **Eigensystem**
+
+To embed vectors onto the eigen space of the Laplacian operator, one can use the Discreate Sine Transform which make use of the DFT, and FFT algorithm for speed. 

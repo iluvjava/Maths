@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
             "mode": "preview"
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Chebyshev",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Master Thesis.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
-    "MATH 700 (Master Thesis)/Ortho Min J.md",
-    "MATH 700 (Master Thesis)/Gram Schimidt Conjugation.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Exploiting the Lagrangian (KKT).md",
-    "MATH ??? (Unexplored)/KKT.md",
-    "Math 000 (Math Essential)/Calc/Lagrange Multiplier.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality/Generalized Lagrangian.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Lagrangian and Algorithms).md"
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
+    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Boundary layers, Interior Layer.md",
+    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md"
   ]
 }

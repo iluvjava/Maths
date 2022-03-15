@@ -57,6 +57,73 @@ $$
 
 This is directly the Gauss Sediel Method. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to backsolve than than using the inverse.  
 
+**Note:** Different conventions of naming these quantities exists sometimes $w$ above is actually the $w^{-1}$ in some literature. 
+
+---
+### **Intuitive Understanding of the Matter**
+
+To gain a better understanding, we haev to simplifies the system into another form. 
+
+$$
+\begin{aligned}
+    (D + wL)x_{n + 1} &= wb - (wU + (w - 1)D)x_k
+    \\
+    (w^{-1}D + L)x_{n + 1} &= b - (U + (1 - w^{-1})D)x_k
+    \\
+    &= b - Ux_k - (1 - w^{-1})Dx_k
+    \\
+    &= b - Ux_k - Dx_k + w^{-1}Dx_k
+    \\
+    &= b - Ux_k - Dx_k + w^{-1}Dx_k - Lx_k + Lx_k
+    \\
+    &= b - (U + D + L)x_k + (w^{-1}D + L)x_k
+    \\
+    &= b - Ax_k + (w^{-1}D + L)x_k
+\end{aligned}
+$$
+
+If we define $M = (w^{-1}D + L)$, then hope is that the matrix $M\approx A$ and $M^{-1}$ is very easy to compute, so that we have the following expression: 
+
+$$
+\begin{aligned}
+    Mx_{n + 1} &= b - Ax_k + Mx_k
+    \\
+    x_{n + 1} &= M^{-1}r_k + x_k
+\end{aligned}
+$$
+
+Ideally speaking, $M^{-1}r_k$ approximate the quantity $A^{-1}b - x_k$, or the error of the current guess $x_k$. If by the choice of $M$ it achieved it, (Which it will for SOR), then the iterations formula converges. In fact, when it converges, we have: 
+
+$$
+\begin{aligned}
+    x_{n + 1} &= M^{-1}r_k + x_k
+    \\
+    A^{-1}b - x_{n + 1} &= A^{-1}b - M^{-1}r_k - x_k
+    \\
+    e_{k + 1} &= e_k - M^{-1}(b - Ax_k) \text{ where : } e_k = A^{-1}b - x_k
+    \\
+    e_{k + 1} &= e_k - M^{-1}A(A^{-1}b - x_k)
+    \\
+    e_{k + 1} &= e_k - M^{-1}Ae_k
+    \\
+    e_{k + 1} &= (I - M^{-1}A)e_k
+    \\
+    e_{k + 1} &= (I - M^{-1}A)^{k + 1}e_0
+\end{aligned}
+$$
+
+The spectral radius of the matrix $I - M^{-1}A$ will determine the convergence of the error. 
+
+**Staionary Iterative Convergence Theorem**
+
+> For any choice of $M$, the iterative scheme $x_{k + 1} = M^{-1}r_k + x_k$ convergence for all initial guess if and only if $\Vert (I - M^{-1}A)^k\Vert$ convergences to zero. 
+
+The theorem is an IFF type of statement, which one direction is easy, but the other direction is not. If the norm converges, then the erro does, but the other way around is not so obvious. 
+
+**Field of values**
+
+If the field of value of the matrix $I - M^{-1}A$ is strictly less than one, then it STILL converges, but might not be monotonically under certain norm measure. 
+
 ---
 ### **Convergence Rate Statement**
 

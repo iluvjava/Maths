@@ -5,9 +5,7 @@ Another coverage of the topic is discussed by the scientific computing class.
 ---
 ### **Intro**
 
-We will cover in details here, about the Finite Element Method, in 1D, for the steady state heat equation. 
-
-Firstly, we need to introduce the Frameworks For F.E, and at the same time, some of the keywords that we will be using. 
+We will cover in details here, about the Finite Element Method, in 1D, for the steady state heat equation. Firstly, we need to introduce the Frameworks For F.E, and at the same time, some of the keywords that we will be using. 
 
 **Problem Type**
 
@@ -53,6 +51,10 @@ A_{i, j} = \int_{0}^{1} \varphi_j'(x) \phi_i'(x)dx + \int_{0}^{1} r(x)\varphi_j(
 $$
 
 And the elements of the matrix $A$ are usually estimated when the basis function or $r(x)$ is very hard to handle. If not, we can just take the integral by hands and figure out the elements in the matrix. 
+
+**Extra Comments**
+These Knowledge is not enough for analysis of the methods, it's still just a brief introduction of the Framworks for the methods. 
+
 
 ---
 ### **Proof of the Weak Form**
@@ -270,5 +272,20 @@ Suppose that an opeartor $\mathcal{L}$ is self adjoin (I didn't say it being lin
 **Claim: Ritz Glalerkin Equivalence for Adjoint Operator**
 
 > When the opeartor is adjoint, the Ritz Finite Element Method and the Galkerkin's Finite Element method is the same. 
+
+
+**Proof**: Skipped
+
+
+---
+### **Finite Element Error Theorem**
+
+Let $u_I$ be the (k - 1) degree piecewise polynomial interpolant of u. ($u_I$ matches exactly to the real solution $u$ at the point of interpolations). Then: 
+
+> $$
+>   \Vert u - u_I\Vert_{L_2} \le Ch^k \Vert u^{(k)}\Vert_{L_2}
+> $$
+
+Where, $h$ is the maximal interval in the 2d grid. where, $u^{(k)}$ is the approximated solution from the Finite Element methods. This tells us that the error from the finite element is on the same order as the accuracy of the interpolant. 
 
 

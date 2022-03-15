@@ -34,11 +34,23 @@ We are using subscript instead of super script. One can write it in matrix form,
 
 $$
 \begin{aligned}
-    p_k &= u_{k} - P_{k - 1}D_{k - 1}^{-1}P_{k - 1}^TAU_{k - 1}
+    p_k &= u_{k} - P_{k - 1}D_{k - 1}^{-1}P_{k - 1}^TAu_{k}
 \end{aligned}
 $$
 
 Use a new vector $u_k$ for getting the next A orthogonal vector. Next, we check whether $p_k$ is orthgonal too all previous directions $P_{k - 1}$. 
+
+$$
+\begin{aligned}
+    P^T_{k - 1}Ap_k &= R^T_{k - 1}Au_k - 
+    P_{k - 1}^TAP_{k - 1}D^{-1}_{k - 1} P^T_{k - 1}Au_k
+    \\
+    &= P^T_{k - 1}Au_k - D_{k - 1}D^{-1}_{k - 1}P_{k - 1}^TAu_k
+    \\
+    &= P^T_{k - 1}Au_k -P_{k - 1}^TAu_k = \mathbf{0}
+\end{aligned}
+$$
+
 
 
 

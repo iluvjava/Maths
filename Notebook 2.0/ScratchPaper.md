@@ -166,4 +166,10 @@ $$
 \overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\overline{\mathbb{B}}}}}}}}}}}}}}}}}}}}}}}}}
 $$
 
+$$
+\reflectbox{2}
+$$
+
+
+
 

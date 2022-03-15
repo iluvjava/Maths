@@ -74,7 +74,7 @@ $$
     \int_{\text{bd}(\Omega)} (\nabla \hat{u})\hat{v} d\hat{\mathbf{n}}
     \\
     &= 
-    \int_{\text{bd}(\Omega)} (\nabla u)\hat{v} d\hat{\mathbf{n}} - 
+    \int_{\text{bd}(\Omega)} (\nabla \hat{u})\hat{v} d\hat{\mathbf{n}} - 
     \iint_{\Omega} (\nabla \hat{u})\cdot (\nabla \hat{v})dxdy
 \end{aligned}
 $$
