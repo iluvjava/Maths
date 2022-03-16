@@ -106,7 +106,7 @@ Assume exact arithmetic, then the quantity $y_k$ is computed as $T_k^{-1} \Vert 
 
 Via LDU decomposition of the $T_k$ matrix during the runtime of the Bi-Lanczos Algorithm, one can construct Bi-Conjugate vector for the system, ultimately deriving the implementations of the BiCG algorithm listed above. 
 
-Here, observe that, we are manipulating $x_k$ based on the subspace $v_k$, but we are minimizing it on another subspace $W_k$ after putting it through the linear operator $A$. Under this sense, we are doing an oblique projection. See [[Deeper Look into Projector]] and [[Taxonomy of Subspace Projection Method]]. 
+Here, observe that, we are manipulating $x_k$ based on the subspace $v_k$, but we are minimizing it on another subspace $W_k$ after putting it through the linear operator $A$. Under this sense, we are doing an oblique projection. See [[Deeper Look into Projector]] and [[Taxonomy and Frameworks of Subspace Projection Method]]. 
 
 ---
 ### **Implict Dual System**

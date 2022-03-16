@@ -10,7 +10,7 @@ Here is a an aggregations on what I studied for my master thesis.
 5. [[Stationary Iterative Methods]]
 
 **How Are Iterative Methods Made**: 
-1. [[Taxonomy of Subspace Projection Method]]
+1. [[Taxonomy and Frameworks of Subspace Projection Method]]
 
 **Iterative Methods**
 1. [[Steepest Descend for Matrix Vector]]

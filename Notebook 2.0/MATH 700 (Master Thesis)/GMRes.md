@@ -1,7 +1,7 @@
 [[Krylov Subspace]]
 [[Krylov Matrix QR and Arnoldi Iterations]]
 [[Hessenberg Transform with Arnoldi Iterations]]
-[[Taxonomy of Subspace Projection Method]]
+[[Taxonomy and Frameworks of Subspace Projection Method]]
 
 ---
 ### **Intro**

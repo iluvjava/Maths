@@ -6,11 +6,11 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 48.43962008141113,
+        "dimension": 49.72862957937585,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
+            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "dd41c3a628337e18",
         "type": "leaf",
-        "dimension": 51.56037991858887,
+        "dimension": 50.27137042062415,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
+            "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
             "mode": "preview"
           }
         },
@@ -84,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
+                "file": "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,15 +104,15 @@
   },
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
+    "AMATH 581 (Scientific Computing)/FFT Algorithm.md",
+    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
+    "MATH 700 (Master Thesis)/Master Thesis.md",
+    "MATH 700 (Master Thesis)/GMRes.md",
+    "Math 464/Chebyshev Polynomial.md",
     "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (LTE).md",
     "AMATH 585 (Numerical Analysis of BVP)/Finite Element 2D.md",
     "AMATH 585 (Numerical Analysis of BVP)/Richardson Extrapolation.md",
     "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Boundary layers, Interior Layer.md",
-    "AMATH 585 (Numerical Analysis of BVP)/The TST Matrix.md"
+    "AMATH 585 (Numerical Analysis of BVP)/Finite Difference with Errors Term.md"
   ]
 }

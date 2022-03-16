@@ -17,7 +17,7 @@ It's written in the form of trig but it's a class of orthogonal polynomial under
 > \langle T_i, T_j\rangle = \int_{-1}^{1} f(x)g(x)\frac{dx}{\sqrt{1 - x^2}} = 0
 > $$
 
-**Chebyshev Node**
+**Chebyshev Nodes**
 
 > $$
 > \cos(\theta_k) \quad \theta_k = \frac{k\pi}{n}
@@ -44,3 +44,9 @@ It's written in the form of trig but it's a class of orthogonal polynomial under
 > This is a type of  Sturm Liuville System. See [[Sturm Liouville Theory]] for more about these type of systems. 
 
 
+**Recurrence:**
+
+> $$
+> T_{j + 1}(z)  = 2zT_j(z) - T_{j - 1}(z) \quad \forall j = 1, 2, \cdots
+> $$
+> The orthogonality only needs to be asserted using the previous 2 orthogonal polynonials. 

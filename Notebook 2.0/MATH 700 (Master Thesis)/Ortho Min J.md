@@ -1,4 +1,4 @@
-[[Taxonomy of Subspace Projection Method]]
+[[Taxonomy and Frameworks of Subspace Projection Method]]
 [[Ortho Min]]
 [[Ortho Min 2]]
 [[Hessenberg Transform with Arnoldi Iterations]]
@@ -251,12 +251,10 @@ $$
 h_{k+ 1, k}q_k = Aq_k - Q_kQ_k^{T}Aq_k
 $$
 
-
-
 ---
 ### **How Orthomin Reduces to Other Problems**
 
-
+Orthon Min is mathematically equivalent to GMRes in terms of the properties they asserts to the residual vectors. 
 
 
 

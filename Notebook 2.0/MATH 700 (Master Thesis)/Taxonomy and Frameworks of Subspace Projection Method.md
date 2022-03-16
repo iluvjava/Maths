@@ -144,3 +144,8 @@ The GMRes method, the Conjugate Gradient method, and many other methods all fits
 ---
 ### **Prototyping the Common Algorithm**
 
+
+
+
+
+
