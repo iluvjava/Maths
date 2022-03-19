@@ -92,7 +92,7 @@ $$
     \sum_{j = 0}^{N/4 - 1}
         \exp\left(
             i\frac{2\pi k (2j + 1)}{N/2}
-        \right)f_{4j + 1}
+        \right)f_{4j + 2}
     \\
     &= 
     \sum_{j = 0}^{N/4 - 1}
@@ -106,7 +106,7 @@ $$
     \sum_{j = 0}^{N/4 - 1}
         \exp\left(
             i\frac{2\pi kj}{N/4}
-        \right)f_{4j + 1}
+        \right)f_{4j + 2}
     \\
     &= F^{[ee]}_k + w^{2k}F^{[eo]}_k
 \end{aligned}
@@ -122,9 +122,133 @@ $$
 \begin{aligned}
     F_k^{[ee]} &= 
     \sum_{j = 0}^{N/4 - 1}
-        
+    \exp\left(
+        i\frac{2\pi kj}{N/4}
+    \right)f_{4j}
+    \\
+    F_k^{[eo]} &= 
+    \sum_{j = 0}^{N/4 - 1}
+        \exp\left(
+            i\frac{2\pi kj}{N/4}
+        \right)f_{4j + 2}
+    \\
+    F_k^{[oe]} &= 
+    \sum_{j = 0}^{N/4 - 1}
+        \exp\left(
+            i\frac{2\pi kj}{N/4}
+        \right)f_{4j + 1}
+    \\
+    F_k^{[oo]} &= 
+    \sum_{j = 0}^{N/4 - 1}
+        \exp\left(
+            i\frac{2\pi kj}{N/4}
+        \right)f_{4j + 3}
 \end{aligned}
 $$
+
+Here, please observe that, indices with the same modular on $4$ are grouped together. Assuming that $N = 2^kn, k\in \mathbb{N}$, it's not hard to imagine a grouping of the elements into group of $n$. When $n$ is 1, we can go down to a single element in the array by this divide and conquer scheme. Let's say that $N = 8$, then we have: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        f_0
+        \\
+        f_1
+        \\
+        f_2
+        \\
+        f_3
+        \\
+        f_4
+        \\
+        f_5
+        \\
+        f_6
+        \\
+        f_7
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        F_k^{[eee]}
+        \\[0.2em]
+        F_k^{[oee]}
+        \\[0.2em]
+        F_k^{[eoe]}
+        \\[0.2em]
+        F_k^{[ooe]}
+        \\[0.2em]
+        F_k^{[eeo]}
+        \\[0.2em]
+        F_k^{[oeo]}
+        \\[0.2em]
+        F_k^{[eoo]}
+        \\[0.2em]
+        F_k^{[ooo]}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        f_{000}
+        \\
+        f_{001}
+        \\
+        f_{010}
+        \\
+        f_{011}
+        \\
+        f_{100}
+        \\
+        f_{101}
+        \\
+        f_{110}
+        \\
+        f_{111} 
+    \end{bmatrix}
+\end{aligned}
+$$
+
+Now, if I reverse the order of sequence of $e, o$, and then set $e$ to 0 and $o$ to one, then we have the index of the element represented by a binary number. Once the indices and the odd and even splits are mapped together, then we can find the following partitions of the elements: 
+
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        f_{000}
+        \\
+        f_{001}
+        \\
+        f_{010}
+        \\
+        f_{011}
+        \\
+        f_{100}
+        \\
+        f_{101}
+        \\
+        f_{110}
+        \\
+        f_{111}
+    \end{bmatrix}
+    \overline\bowtie
+    \begin{bmatrix}
+        f_{000}
+        \\
+        f_{100}
+        \\
+        f_{010}
+        \\
+        f_{110}
+        \\
+        f_{001}
+        \\
+        f_{101}
+        \\
+        f_{011}
+        \\
+        f_{111}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+The new ordering that allows for memory optimization is to reorder the binary number in reverse order and then order them. Then in that way, each recursion of the FFT will be applied upon adjacent blocks. 
 
 
 ---

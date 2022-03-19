@@ -33,9 +33,7 @@ $$
 K_n = Q_nR_n
 $$
 
-The Krylov matrix is given by the product of the $Q$ matrix from the Arnoldi Iterations and the $R$ Matrix can be computed after we produced the $Q$ matrix from the Arnoldi Iterations. 
-
-When Matters call for Krylov Subspace, we can use Arnoldi Iterations. 
+The Krylov matrix is given by the product of the $Q$ matrix from the Arnoldi Iterations and the $R$ Matrix can be computed after we produced the $Q$ matrix from the Arnoldi Iterations. When Matters call for Krylov Subspace, we can use Arnoldi Iterations. 
 
 **Warning**: 
 
@@ -51,7 +49,7 @@ Representing $b$ using eigenvectors of $A$, and this $K_n$ will tell use a lot a
 
 **Claim 1**
 
-> The matrix $\tilde{H}_{n}$ from the Arnoldi iterations either by Modified GS, or the Householder Triangularization, will have the same eigenvector as the matrix $A$. 
+> The matrix $\tilde{H}_{n}$ from the Arnoldi iterations either by Modified GS, or the Householder Triangularization, will have the same eigenvector as the matrix $A$, if we assume that the krylov subspace is invariant under the operator $A$. 
 
 **Claim 2**
 
@@ -136,22 +134,13 @@ $$
 $$
 
 **Observe**
-$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. [^2]
-
-
-Therefore, $\tilde{H}_n$ has the same eigenvalues as $C_n$, therefore, $\tilde{H}_n$ has the same eigenvectors as $A$. 
-
-Therefore, the $\tilde{H}_n$, Hessenberg matrix for $A$ has the same eigenvalue as the matrix $A$. **Claim 1** is proven. $\blacksquare$. 
-
-In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same unitary transformation that gives the Hessenberg, **Claim 2** is proven $\blacksquare$. 
+$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. [^2]Therefore, $\tilde{H}_n$ has the same eigenvalues as $C_n$, therefore, $\tilde{H}_n$ has the same eigenvectors as $A$. Therefore, the $\tilde{H}_n$, Hessenberg matrix for $A$ has the same eigenvalue as the matrix $A$. **Claim 1** is proven. $\blacksquare$. In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same unitary transformation that gives the Hessenberg, **Claim 2** is proven $\blacksquare$. 
 
 
 ---
-### **Another Proof for Claim 2**
+### **Another Proof for Claim 2: Using Matrix Polynonials**
 
-Different from the previous proof, this claim consider the recurrence of the orthogonal vectors **without assuming that the Krylov Subspace of the matrix exists**. 
-
-This proof is collected from Tyler Chen, a student who is in the same department as mine, [link](https://chen.pw/research/cg/arnoldi_lanczos.html) to his explanation. 
+Different from the previous proof, this claim consider the recurrence of the orthogonal vectors **using the idea of a matrix polynomial**. This proof is collected from Tyler Chen, a student who is in the same department as mine, [link](https://chen.pw/research/cg/arnoldi_lanczos.html) to his explanation. 
 
 Start by assuming strongly inductively that at the $k$ iterations of the Arnoldi iterations, the following facts hold: 
 

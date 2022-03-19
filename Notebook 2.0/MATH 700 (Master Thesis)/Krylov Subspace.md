@@ -79,11 +79,12 @@ $$
 \end{aligned}
 $$
 
-The inverse of $A$ can be expressed using another matrix polynomials, using the coefficients from the characteristic polynomials. 
+The inverse of $A$ can be expressed using another matrix polynomials, using the coefficients from the characteristic polynomials. Any vector, can be spanned by the Krylov Subspace, if we know that $A$ is invertible.  This is known as the: **Cayleys Hamilton's Theorem**.
 
-Any vector, can be spanned by the Krylov Subspace, if we know that $A$ is invertible.  
+---
+### **Reighly Quotient and Invariant Subspace**
 
-This is known as the: **Cayleys Hamilton's Theorem**.
+
 
 
 ---

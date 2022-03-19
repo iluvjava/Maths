@@ -41,7 +41,8 @@ $$(AB)^H = B^HA^H$$
 ### **Hermitian Matrix**
 
 * The hermitian matrix is forms a self-adjoin Hermitian operator for the complex+ vector space. 
-* A Hermitian matrix has to be a square matrix, and the Conjugate Transpose of the matrix is simply itself, or it's like: $$A^H = A$$
+* A Hermitian matrix has to be a square matrix, and the Conjugate Transpose of the matrix is simply itself, or it's like: 
+$$A^H = A$$
 * It is implied that the matrix is a square matrix. 
 
 **Properties**: 

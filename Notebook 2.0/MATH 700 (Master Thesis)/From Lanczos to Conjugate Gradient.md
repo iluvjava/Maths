@@ -159,6 +159,7 @@ $$
 
 $U_k$ is upper triangular, therefore, it's inverse it's also upper triangular, therefore, $U_k^{-T}$ is lower triangular, and because $L_k$ is also lower triangular, their product is a lower triangular matrix, and therefore, the resulting matrix above is lower triangular, however, given that $P_k^TAP_k$ is symmetric, therefore, $U_k^{-T}L_k$ will have to be symmetric as well, and a matrix that is lower triangular and symmetric has to be diagonal. Therefore, the columns of $P_k$ are conjugate vectors. 
 
+**However**, we also have the choice to decompose the $T_k$ using LDL decomposition. Using that method, we would have made the additional assumption that $T_k$ is symmetric positive definite, however, in the above formulation, no such assumption has been made, and it has the pontential of pointing to other algorithms for definite symmetric system. There are a lot of questions to ask, let's skip that in this exerp. 
 
 ---
 ### **The Building up of Recurrences**
@@ -351,6 +352,9 @@ $$
 $$
 
 Therefore the recurrence for the step size into the direction of the conjugate vector requires us to use the newest element $l_k$ from $L_{k + 1}$ and the previous step size in the direction of the conjugate vector $p_k$. 
+
+
+
 
 ---
 ### **The LU Conjugate Direction Algorithm**

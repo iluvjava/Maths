@@ -117,7 +117,7 @@ And if we assume that $(W^TAV)$ is invertible, then we obtain the step to take t
 >             \\
 >             & x = x + Vy
 >         \end{aligned}
-> \end{aligned}
+> \end{aligned}\tag{6}
 > $$
 
 
@@ -140,6 +140,40 @@ This is the same as the Galerkin Formulation with $V = K, W = AK$. Like that, an
 ### **Consequences**
 
 The GMRes method, the Conjugate Gradient method, and many other methods all fits ounder this category. In which, a subspace is maintained during the iterations, and then it try to get the best results using the maintained subspace for the iteration. 
+
+For the conjugate gradient algorithm, the minimization objective is to minimize the A-norm of the error. More specifically we have: 
+
+$$
+\begin{aligned}
+    \hspace{0.5em}
+    \min_{w\in \mathbb{R}^k} 
+    \Vert 
+        A^{-1}b - (x_0 + P_kw)
+    \Vert_A^2 & 
+    \\
+    \nabla_w [\Vert A^{-1}b - (x_0 + P_kw)\Vert_A^2] &= \mathbf{0}\iff\text{Minimum Attained}
+    \\
+    \nabla_w[\Vert e_0 - P_kw\Vert_A^2] &= \mathbf{0}
+    \\
+    P_k^T(A(e_0 - P_kw)) &= \mathbf{0}
+    \\
+    P^T_kAe_0 - P^T_kAP_kw &= \mathbf{0}
+    \\
+    P^Tr_0 = P^T_kAP_kw
+\end{aligned} 
+$$
+
+This is the conditions derived using the objective of minimizing the error norm by choosing the solution $x$ from the affine space of $x_0 + \text{span}(P_k)$, where we assume that $P_k$ is a matrix whose columns are some basis vectors. 
+
+Plase obseve that the above equation is also the same as the following Galerkin's Condition's Matrix From: 
+
+$$
+\text{choose }:  x\in x_0 + \text{span}(P_k) \text{ s.t: }  
+b - Ax \perp \text{span}(P_k)
+$$
+
+For any miniizations method, there is a Galerkin Frameworks that seems to describe it. 
+
 
 ---
 ### **Prototyping the Common Algorithm**

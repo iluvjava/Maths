@@ -4,9 +4,7 @@
 ---
 ### **Intro**
 
-Arnoldi Iterations, but this time for Hermitian Matrices. 
-
-This has an intimate link to the Conjugate Gradient Algorithm. 
+Arnoldi Iterations, but this time for Hermitian Matrices. This has an intimate link to the Conjugate Gradient Algorithm, and it also has theoretical importance to the analysis of some classes of iterative algorithms. 
 
 Let $A$ be a Hermitian Matrix and Consider it in Hessenberg Form:
 
@@ -216,15 +214,11 @@ To convince, assume that orthogonal of the $q_j$ vectors and then susbtitute the
 ---
 ### **Proof of Correctness**
 
-Using induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
+Early in the introduction part, we gave a quick justifications using the form of matrices that the short recurrecnes indeed gives a tridiagonal symmetric matrix. Here we are going to use induction, we are proving that the algorithm indeed asserts the rothogonality of the vectors in $Q$, and the resulting matrices is tridiagonal. 
 
 **Proof**: 
 
-Let's fix the quantity: $j$
-
-It's obvious from that definition of $\alpha_j$ one can deduce that $\langle q_{j +1}, q_j \rangle = 0$. 
-
-Inductively suppose that $\langle q_k, q_i\rangle = 0\; \forall k \neq j, k, i \le j$. We wish to prove $\langle q_{j + 1}, q_{j - 1}\rangle = 0$ and $\langle q_{j + 1}, q_i\rangle = 0 \; \forall i \le j - 1$, completing the inductive hypothesis for the case of $j + 1$. 
+Let's fix the quantity: $j$. It's obvious from that definition of $\alpha_j$ one can deduce that $\langle q_{j +1}, q_j \rangle = 0$. Inductively suppose that $\langle q_k, q_i\rangle = 0\; \forall k \neq j, k, i \le j$. We wish to prove $\langle q_{j + 1}, q_{j - 1}\rangle = 0$ and $\langle q_{j + 1}, q_i\rangle = 0 \; \forall i \le j - 1$, completing the inductive hypothesis for the case of $j + 1$. 
 
 Consider: 
 

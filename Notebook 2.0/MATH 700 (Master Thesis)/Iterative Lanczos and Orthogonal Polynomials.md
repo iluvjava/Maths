@@ -21,12 +21,10 @@ $$
 The Lanczos Algorithm generates a vector $v_i$, which is basically: 
 
 $$
-\exists q_i \in \mathcal{P}_i: v_i = q_{i - 1}(A) v_i
+\exists\; q_i \in \mathcal{P}_i: v_i = q_{i - 1}(A) v_1
 $$
 
-This is true from how the Krylov Subspace works and how the Lanczos Iterations works. Refers back to Arnoldi Iterations to get how it's related to the Krylov Subspace. 
-
-Suppose 2 vector $v_i, v_j$ proposed and each corresponds to polynomial $\phi, \varphi$ in the Krylov subspace, then: 
+Take this for tranted. Refers back to Arnoldi Iterations to get how it's related to the Krylov Subspace. Suppose 2 vector $v_i, v_j$ proposed and each corresponds to polynomial $\phi, \varphi$ in the Krylov subspace, then: 
 
 $$
 \begin{aligned}
@@ -57,3 +55,14 @@ Where, under the discrete weight sum using the vector $f_1$, the polynomial are 
 The polynomials generated to describes the $i^{th}$ orthogonal vectors from the Lanczos algorithm is also the characteristic polynomial for the Tridiagonal Matrix.
 
 Justifications won't be given here, but the mechanism behind is related to the Companion Matrix, and relavent to [[Krylov Matrix QR and Arnoldi Iterations]], the proof is very analogous to what had been done there. 
+
+
+---
+### **Polynomial Orthgonalizations**
+
+
+
+
+
+#TODO: Fill this in. 
+

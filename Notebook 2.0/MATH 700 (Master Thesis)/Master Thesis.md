@@ -22,7 +22,7 @@ Here is a an aggregations on what I studied for my master thesis.
 7. [[Ortho Min J]]
 
 **The Engine Behind Subspace Methods: Eigen Decompositions**
-1. [[Iterative Lanczos and Ortho Polynomials]]
+1. [[Iterative Lanczos and Orthogonal Polynomials]]
 2. [[Hessenberg Transform with Arnoldi Iterations]]
 3. [[Bi-Lanczos]]
 
