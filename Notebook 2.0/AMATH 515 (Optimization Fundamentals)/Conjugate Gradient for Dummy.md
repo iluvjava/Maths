@@ -442,7 +442,7 @@ The residual will need to be recomputed every $N$ steps or so using $r^{(i + 1)}
 ---
 ### **Preconditioning**
 
-
+See [[Preconditioned Conjugate Gradient]] for more info. 
 
 
 ---
