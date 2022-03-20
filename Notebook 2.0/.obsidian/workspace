@@ -6,28 +6,13 @@
       {
         "id": "944c7c31f06961cc",
         "type": "leaf",
-        "dimension": 49.72862957937585,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
-            "mode": "source"
-          }
-        },
-        "group": "b0a2643976dc4647"
-      },
-      {
-        "id": "dd41c3a628337e18",
-        "type": "leaf",
-        "dimension": 50.27137042062415,
         "state": {
           "type": "markdown",
           "state": {
             "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
             "mode": "preview"
           }
-        },
-        "group": "b0a2643976dc4647"
+        }
       }
     ],
     "direction": "vertical"
@@ -105,14 +90,14 @@
   "active": "944c7c31f06961cc",
   "lastOpenFiles": [
     "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
+    "MATH 700 (Master Thesis)/Ortho Min J.md",
+    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
     "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
     "AMATH 515 (Optimization Fundamentals)/Preconditioned Conjugate Gradient.md",
     "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
     "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
     "MATH ??? (Unexplored)/Complete Metric Space.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "MATH 700 (Master Thesis)/Lanczos and Matrix Polynomials.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md"
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md"
   ]
 }
