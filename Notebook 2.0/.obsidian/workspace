@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "944c7c31f06961cc",
+        "id": "b624d0e4d850bdd5",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
+            "file": "Untitled-1.md",
             "mode": "preview"
           }
         }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Chebyshev",
+                "query": "Lipschitz",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -47,13 +47,23 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "944c7c31f06961cc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MATH ??? (Unexplored)/LOBPCG.md",
+                "mode": "source"
+              }
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 393.5036334991455,
-    "collapsed": true
+    "width": 471
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -69,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
+                "file": "Untitled-1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -87,17 +97,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "944c7c31f06961cc",
+  "active": "b624d0e4d850bdd5",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblieque Projectors.md",
-    "MATH 700 (Master Thesis)/Ortho Min J.md",
-    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
-    "AMATH 515 (Optimization Fundamentals)/Conjugate Gradient for Dummy.md",
-    "AMATH 515 (Optimization Fundamentals)/Preconditioned Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Hermitian Adjoint.md",
-    "MATH ??? (Unexplored)/Complete Metric Space.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md"
+    "Untitled-1.md",
+    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function).md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function Trapz).md",
+    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Greens Function BVP Practices.md",
+    "AMATH 581 (Scientific Computing)/Spectral Method, Discrete Fourier.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md"
   ]
 }

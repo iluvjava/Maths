@@ -1,3 +1,7 @@
+[[Master Thesis]]
+This is one of the plans I decided to deploy for the master thesis. 
+
+---
 ### **A More Concrete Plan**
 
 **Part I: Setting Up The Stage**

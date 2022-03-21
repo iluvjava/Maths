@@ -164,7 +164,7 @@ $$
 And each recursion will be based on 2 of the previous values. This means that the routine implementation is similar to the Fibonacci Number. 
 
 **Derivative of the Shifted Characteristic Polynomial**
-
+[[Symmetric Tridiagonal Matrices Recursive Det]]
 
 
 ---

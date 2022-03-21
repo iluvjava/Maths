@@ -155,7 +155,9 @@ Where $\omega \in [0, 1]$.
 ---
 ### **Limitations**
 
-The method of multi-grid fails whenever the damping routine, such as the Jacobi and Gauss Sediel appears to 
+The method of multi-grid fails whenever the damping routine fails. A dampping of the high frequencies eigenvectors are only possible if the eigenvectors of the operations inherit exploitable structure. In the case of the Laplacian Opeartor, the eigenvectors corresponds to higher eigenvalues are waves with different frequencies, which makes the damping possible because reduction of the error projection with high eigenvalues allows the sparse grid to be affective. However, if the eigenvectors is not grantee to have hiarchical structure then the multi-grid method might fail. 
+
+
 
 ---
 ### **Impelementations Tricks**

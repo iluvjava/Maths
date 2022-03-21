@@ -1,4 +1,5 @@
 Projector is a type of matrix
+For more detailed look into this mathematical entity, visit: [[Deeper Look into Projector]]
 
 ---
 

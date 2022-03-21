@@ -77,7 +77,7 @@ Just CG, Just Lanczos, this topic goes deep, dragging in everything I learn alon
 6. State some of the way of addressing the issues, such as the preconditiners, or using the converged rizt vectors. Demonsrate it with code (Still in Progress)
 7. Non-Linear CG: Just a brief overview. 
 
-See: [[Master Thesis Plan 3]] for a more detailed plan. 
+See: [[Master Thesis Outline]] for a more detailed plan. 
 
 
 ---
