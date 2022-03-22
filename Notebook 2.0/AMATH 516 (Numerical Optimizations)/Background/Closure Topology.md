@@ -9,3 +9,7 @@ The closure for a set is the set of all points such that, the epsilon ball of th
 > \forall x \in \mathbf{E}: \forall x \in \text{cl}(Q) \iff 
 > \forall \epsilon > 0: (\mathbb{B}_\epsilon \cap Q) \neq \emptyset
 > $$
+
+**Random Comments**
+
+A closed set is not neccessarily complete. For the set $\mathbb{Q}$, is still true that the epsilon ball intersect is non-zero. Even worse, the cantour set is a closed set. See more in [[The Cantor Set]]. 

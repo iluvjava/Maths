@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "indicator function",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,15 +112,15 @@
   },
   "active": "b624d0e4d850bdd5",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Tagent Cone.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Tagent Cones.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Generating Cone of a Set.md",
     "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Euclidean Space.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Epi Graph.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dom.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md"
+    "AMATH 516 (Numerical Optimizations)/Affine Hull.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Relative Interior And Relative Boundary.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections.md"
   ]
 }

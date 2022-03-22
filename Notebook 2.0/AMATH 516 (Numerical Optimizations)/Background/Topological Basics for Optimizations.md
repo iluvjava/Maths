@@ -59,10 +59,12 @@ General Topology
 [[Closure Topology]]
 [[Convex Sets]]
 [[Interior Topology]]
+[[Affine Hull]]
+[[Relative Interior And Relative Boundary]]
 
-
-Sets related
+Sets and Geometry related
 [[Convex Sets]]
 [[Euclidean Space]]
 [[Lower Semi-Continuous]]
 [[Generating Cone of a Set]]
+[[Convex Hull]]
