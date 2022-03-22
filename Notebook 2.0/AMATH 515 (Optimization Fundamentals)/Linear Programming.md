@@ -1,5 +1,4 @@
 Basics of Linear Programming. 
-
 This is stated similarly to the book: Numerical Optimization
 
 [[Exploiting the Lagrangian (KKT)]], [[Lagrangian and Dualization Techniques]]
@@ -10,12 +9,10 @@ This is stated similarly to the book: Numerical Optimization
 One General Format for the linear programming problem is: 
 
 > $$
-> \min \{c^Tx : Ax = b, x \ge 0\}\tag{1}
+> \min_x \{c^Tx : Ax = b, x \ge \mathbf{0}\}\tag{1}
 > $$
 
-We assume that $A$'s row rank is full rank, this is neccessary for bounding a unique solutions for the system. And let's say that $A \in \mathbb{R}^{m\times n}$. 
-
-The argument is that any linear programming problem can be put into this form because of the following reduction techniques for different type of constraints: 
+We assume that $A$'s row does not repeat, this is neccessary for bounding a unique solutions for the system. And let's say that $A \in \mathbb{R}^{m\times n}$. The argument is that any linear programming problem can be put into this form because of the following reduction techniques for different type of constraints: 
 
 > $$
 > \begin{aligned}
@@ -26,10 +23,37 @@ The argument is that any linear programming problem can be put into this form be
 >     x \in \mathbb{R}^n &\iff x = x^+ + x^- : x^+ \ge 0 \wedge x^- \le 0
 > \end{aligned}\tag{2}
 > $$
+> The idea is to pad the inequality with positive slack variables. 
 
-The idea is to pad the inequality with positive slack variables. 
+**Different Forms:** 
 
-Finally, The **Lagrange for the formulations** for (1) results in the following: 
+> $$
+> \begin{aligned}
+>   \min_x\left\lbrace
+>       c^Tx: Ax \le b, x\ge \mathbf{0}
+>    \right\rbrace
+> \end{aligned}
+> $$
+
+Here, we will take use this as an reduction example to reduce the system of equation the general form. 
+
+$$
+\begin{aligned}
+   Ax &\le b
+   \\
+   Ax + y &= b \quad y \ge \mathbf{0}
+   \\
+   \implies \min_{x,y}& \left\lbrace
+      c^Tx: Ax + y = b, x, y \ge \mathbf{0}
+   \right\rbrace
+\end{aligned}
+$$
+
+
+
+
+---
+### **Lagrangian**
 
 > $$
 > \mathcal{L}(x, \lambda, s) = c^Tx - \lambda(Ax - b) - s^Tx

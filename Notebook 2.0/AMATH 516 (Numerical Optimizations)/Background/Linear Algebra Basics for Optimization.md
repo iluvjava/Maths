@@ -16,10 +16,6 @@ List of important things:
 
 The idea of Inner products, linear maps a special kind of linear maps: **Linear Operator** arises from these. 
 
----
-
----
-
 
 ---
 ### **Monotone Operator**

@@ -9,10 +9,23 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Untitled-1.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+            "mode": "source"
+          }
+        },
+        "group": "791fd8fc496d357f"
+      },
+      {
+        "id": "c9edada92d124d57",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
             "mode": "preview"
           }
-        }
+        },
+        "group": "791fd8fc496d357f"
       }
     ],
     "direction": "vertical"
@@ -39,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Lipschitz",
+                "query": "indicator function",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -63,7 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 471
+    "width": 362.5036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -79,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled-1.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,15 +112,15 @@
   },
   "active": "b624d0e4d850bdd5",
   "lastOpenFiles": [
-    "Untitled-1.md",
-    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function).md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State BVP Error (Greens Function Trapz).md",
-    "AMATH 585 (Numerical Analysis of BVP)/Non Linear Steady State BVP Error.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Introduction to Multi-Grid Method.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Green's Theorem, 2D Integral by Parts.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Greens Function BVP Practices.md",
-    "AMATH 581 (Scientific Computing)/Spectral Method, Discrete Fourier.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Euclidean Space.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Epi Graph.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dom.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md"
   ]
 }
