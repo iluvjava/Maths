@@ -4,11 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "c9edada92d124d57",
+        "id": "f9419a627b1e2b78",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -56,13 +59,11 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 458.0036334991455,
-    "collapsed": true
+    "width": 458.0036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -78,6 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,17 +97,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "c9edada92d124d57",
+  "active": "f9419a627b1e2b78",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient Anne's Version.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient for Advanced Readers.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "MATH 700 (Master Thesis)/Gram Schimidt Conjugation.md",
-    "MATH 700 (Master Thesis)/GMRes Error Bound via Cauchy Integral on Resolvant.md",
-    "MATH 700 (Master Thesis)/GMRes.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md"
+    "How to Gaslight the Readers.md",
+    "HS_Reflector 1.jpeg",
+    "Quantifications of Mathematical Ability.md",
+    "Math 409.md",
+    "Math 424.md",
+    "ScratchPaper.md",
+    "Untitled-1.md",
+    "MATH 700 (Master Thesis)/Master Thesis.md",
+    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md"
   ]
 }

@@ -440,6 +440,9 @@ That is the algorithm, stated with all the iteration number listed as a super sc
 
 The conjugate Gradient Algorithm is actually a residual assisted conjugate gradient, a special case of the algorithm we derived at the start of the excerp. The full algorithm can be seem by the short recurrence for the residual and the conjugation vector. This part is trivial. Next, we want to show the relations to the Krylov Subspace, which only occurs for the Residual Assisted Conjugate Gradient algorithm. 
 
+---
+### **Floating Points Considerations**
 
+Take note that this formulations of the algorithm points to another day of improve the handling of the floating point. To keep the conjugacy of the vector $p_k$, one can consider using the formula $p_k = (I - \overline{P}_kA)r_k$ instead of using the short recurrences, improving the conjugacy of the vector $p_k$. 
 
 
