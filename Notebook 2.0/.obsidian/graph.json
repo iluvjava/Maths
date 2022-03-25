@@ -8,17 +8,10 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "convexity",
+      "query": "conjugate Gradient",
       "color": {
         "a": 1,
         "rgb": 14048348
-      }
-    },
-    {
-      "query": "",
-      "color": {
-        "a": 1,
-        "rgb": 14069084
       }
     }
   ],
@@ -26,12 +19,12 @@
   "showArrow": true,
   "textFadeMultiplier": -2.3,
   "nodeSizeMultiplier": 1.1127485380117,
-  "lineSizeMultiplier": 1.47543859649123,
+  "lineSizeMultiplier": 1.3334401538215,
   "collapse-forces": false,
   "centerStrength": 0.432664995822891,
   "repelStrength": 9.60643745427944,
   "linkStrength": 1,
   "linkDistance": 91,
-  "scale": 0.8592311748705938,
-  "close": true
+  "scale": 1.5825080745110727,
+  "close": false
 }
