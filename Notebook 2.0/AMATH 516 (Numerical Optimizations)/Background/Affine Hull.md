@@ -1,5 +1,5 @@
 [[Interior Topology]]
-[[Convex Hull]]
+[[Convex Hull, Convex Span]]
 
 ---
 ### **Intro**

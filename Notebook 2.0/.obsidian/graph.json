@@ -8,10 +8,17 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "\"Conjugate Gradient\"",
+      "query": "convexity",
       "color": {
         "a": 1,
         "rgb": 14048348
+      }
+    },
+    {
+      "query": "",
+      "color": {
+        "a": 1,
+        "rgb": 14069084
       }
     }
   ],
@@ -25,6 +32,6 @@
   "repelStrength": 9.60643745427944,
   "linkStrength": 1,
   "linkDistance": 91,
-  "scale": 0.4458522128225857,
+  "scale": 0.8592311748705938,
   "close": true
 }

@@ -67,4 +67,4 @@ Sets and Geometry related
 [[Euclidean Space]]
 [[Lower Semi-Continuous]]
 [[Generating Cone of a Set]]
-[[Convex Hull]]
+[[Convex Hull, Convex Span]]

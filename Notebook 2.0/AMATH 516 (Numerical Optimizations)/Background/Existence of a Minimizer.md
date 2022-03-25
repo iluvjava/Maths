@@ -22,5 +22,5 @@ Definition:
 ### **Theorem**
 **Existence of a Minimizer**
 
-> If a function is closed and Coercive, then it must have minimizers		. 
+> If a function is closed and Coercive, then it must have minimizers		
 

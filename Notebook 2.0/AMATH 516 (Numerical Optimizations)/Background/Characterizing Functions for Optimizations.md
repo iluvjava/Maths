@@ -36,6 +36,7 @@ This means that, the function is going to be bounded on the direction we are min
 For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
 
 > A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
+
 > A function $f$ is a C1 function when it has a continuous derivative. 
 
 ---

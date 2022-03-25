@@ -23,11 +23,7 @@ $$
 (These are going to be **useful short cuts** for convex analysis)
 
 **Properties**: 
-The intersection of 2 convex set is going to be another convex set. 
-
-$C_1, C_2$ are convex --> $C_1 \cap C_2$ is convex. 
-
-Bruh, the proof is trivial and it's skipped here. 
+The intersection of 2 convex set is going to be another convex set. $C_1, C_2$ are convex --> $C_1 \cap C_2$ is convex. Bruh, the proof is trivial and it's skipped here. 
 
 
 ---

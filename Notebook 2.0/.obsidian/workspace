@@ -4,28 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b624d0e4d850bdd5",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
-            "mode": "source"
-          }
-        },
-        "group": "791fd8fc496d357f"
-      },
-      {
         "id": "c9edada92d124d57",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
             "mode": "preview"
           }
-        },
-        "group": "791fd8fc496d357f"
+        }
       }
     ],
     "direction": "vertical"
@@ -92,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,17 +97,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "b624d0e4d850bdd5",
+  "active": "c9edada92d124d57",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Tagent Cone.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Tagent Cones.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Generating Cone of a Set.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
     "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Affine Hull.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Addition.md",
     "AMATH 516 (Numerical Optimizations)/Background/Relative Interior And Relative Boundary.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Generating Cone of a Set.md",
+    "generating code.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Interior Topology.md"
   ]
 }

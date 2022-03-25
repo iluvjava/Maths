@@ -46,3 +46,53 @@ Preimage and Image of Linear Mapping preserves convexity
 > For any 2 convex sets, $Q\subseteq\mathbb{R}^n, L\in\mathbb{R}^m$, suppose that mapping $A:\mathbb{R}^n\mapsto\mathbb{R}^m$ is a [[Linear Mapping]], then the image $AQ$ and pre-image $A^{-1}L$ is still a convex set. 
 
 
+---
+### **Line Seg**
+
+$$
+[x, y] := \{\lambda x + (1 - \lambda)y: 0 \le \lambda \le y\}
+$$
+
+And the definition for $(x, y), [x, y)$ follows through naturally with a different definition on whether to include the boundary points or not. Next, we list some examples of convex sets that are foundamental to the discussion, 
+
+---
+### **Affine Subspace, Half Spaces**
+
+> The set $Q = \{x: \langle a, x\rangle\le b\}$ is convex. 
+
+$$
+\begin{aligned}
+    & \overline{x}, x\in Q
+    \\
+    \iff& \langle a, \overline{x}\rangle  \le b \;\wedge\;
+    \langle a, x\rangle\le b
+    \\
+    \iff &\langle \lambda x + (1 - \lambda)\bar{x}\rangle \le 
+    \lambda b + (1 - \lambda)b = b
+    \\
+    \implies & [x, \overline{x}] \subseteq Q
+\end{aligned}
+$$
+
+Therefore, the affine subspace is convex. 
+
+---
+### **Cone**
+
+> A set $K$ which is a [[Cone]] is also convex. 
+
+$$
+\begin{aligned}
+    & x \in K \iff \forall \lambda \ge 0 : \lambda x\in K 
+    \\
+    & \overline{x}\in K \iff \forall \lambda \ge 0 : \lambda \overline{x}\in K 
+    \\
+    \iff & 
+    \lambda x + \overline{\lambda}\overline{x} \in K \;\forall \lambda, \overline{\lambda} \ge 0 
+    \\
+    \implies & 
+    [x, \overline{x}] \subseteq K
+\end{aligned}
+$$
+
+Done. 

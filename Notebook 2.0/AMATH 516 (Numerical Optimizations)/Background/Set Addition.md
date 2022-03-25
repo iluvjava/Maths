@@ -15,7 +15,7 @@ $$
     & \lambda A := \left\lbrace
         \lambda a: a \in A
     \right\rbrace
-\\
+	\\
     & 
     A + B = \left\lbrace
         a + b: a\in A, b \in B 

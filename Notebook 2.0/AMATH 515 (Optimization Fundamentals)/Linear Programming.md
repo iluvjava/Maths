@@ -29,7 +29,7 @@ We assume that $A$'s row does not repeat, this is neccessary for bounding a uniq
 
 > $$
 > \begin{aligned}
->   \min_x\left\lbrace
+>   \max_x\left\lbrace
 >       c^Tx: Ax \le b, x\ge \mathbf{0}
 >    \right\rbrace
 > \end{aligned}
@@ -43,20 +43,20 @@ $$
    \\
    Ax + y &= b \quad y \ge \mathbf{0}
    \\
-   \implies \min_{x,y}& \left\lbrace
+   \implies \max_{x,y}& \left\lbrace
       c^Tx: Ax + y = b, x, y \ge \mathbf{0}
    \right\rbrace
 \end{aligned}
 $$
 
-
+Swapping the objective from max to min will reduce it to the general form. 
 
 
 ---
 ### **Lagrangian**
 
 > $$
-> \mathcal{L}(x, \lambda, s) = c^Tx - \lambda(Ax - b) - s^Tx
+> \mathcal{L}(x, \lambda, s) = c^Tx - \lambda^T(Ax - b) - s^Tx
 > \tag{1.1}
 > $$
 
@@ -129,9 +129,26 @@ Andthe **KTT** conditions based on expression (4), using the lagrangian (6), mod
 
 And we can make the substitution for (1.2.2), with $s = c - A^T\lambda$, the slack variable that transformed (1.2) to (1.3), and it can simplifies (1.2.2) into the same conditions as stated in (1.1.1)
 
+---
+### **Transforming the Lagrangian**
 
+We can write the Lagrangian in different form so that it's either in the perspective of the Dual, or the primal. 
 
+$$
+\begin{aligned}
+   \bar{\mathcal{L}}(\lambda, x) &= -b^T \lambda -x^T(c - A^T\lambda)
+   \\
+   &= -\lambda^Tb - c^Tx + \lambda^TAx
+   \\
+   &= \lambda^T(Ax - b) - c^Tx
+\end{aligned}
+$$
 
+The Lagragian can be converted in such a way that it feels symmetric, by which I mean, the parameters of Dual and Primal can be swapped and the Lagragian will remains exactly the same. To illustrate the point, consider Primal, Dual Linear Programming Problem: 
+
+$$
+
+$$
 
 ---
 ### **Theorems: Fundamental Theorems of Linear Programming**
