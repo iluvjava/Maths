@@ -26,7 +26,7 @@ $$
 (These are going to be **useful short cuts** for convex analysis)
 
 ---
-**Properties**:
+**Convexity Preservations Operations**:
 
 The intersection of Convex Sets is a convex set. 
 
@@ -47,7 +47,7 @@ Preimage and Image of Linear Mapping preserves convexity
 
 
 ---
-### **Line Seg**
+### **Example: Line Seg**
 
 $$
 [x, y] := \{\lambda x + (1 - \lambda)y: 0 \le \lambda \le y\}
@@ -56,7 +56,7 @@ $$
 And the definition for $(x, y), [x, y)$ follows through naturally with a different definition on whether to include the boundary points or not. Next, we list some examples of convex sets that are foundamental to the discussion, 
 
 ---
-### **Affine Subspace, Half Spaces**
+### **Example: Affine Subspace, Half Spaces**
 
 > The set $Q = \{x: \langle a, x\rangle\le b\}$ is convex. 
 
@@ -77,7 +77,7 @@ $$
 Therefore, the affine subspace is convex. 
 
 ---
-### **Cone**
+### **Example: Cone**
 
 > A set $K$ which is a [[Cone]] is also convex. 
 
@@ -96,3 +96,11 @@ $$
 $$
 
 Done. 
+
+
+---
+### **Theorem: HyperPlane Separations**
+> For any point lying outside of the set $Q$, which is a non-empty convex set, there exists a hyperplan separating the point and the set $Q$. 
+
+Proof: Skipped
+

@@ -10,3 +10,6 @@ A function $f: \mathbf{E}\mapsto \mathbb{\bar{R}}$, then the function is lower s
 > $$
 
 The definition prevents discrete Jump at the point say $a$, and the function has $f(a) = 1$ but $f(x) = 1 \;\forall\; x < a$. 
+
+
+

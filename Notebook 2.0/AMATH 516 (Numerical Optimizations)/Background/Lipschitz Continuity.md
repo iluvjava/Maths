@@ -11,6 +11,8 @@ Lipschitz Continuity is a type of continuity for function. Let's consider the Eu
 
 Sometimes,the function has Lipschitz Continuity over a closed domain, in that case the function is referred to as Locally Lipschitz. 
 
+Take notes that, all lipschitz continuous functions are also Uniformally Continous. This is direct from the definition above. Proof Skipped. 
+
 
 ---
 ### **Beta-Smoothness**

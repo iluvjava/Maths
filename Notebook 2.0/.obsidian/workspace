@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
             "mode": "preview"
           }
         }
@@ -79,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,15 +99,15 @@
   },
   "active": "f9419a627b1e2b78",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "How to Gaslight the Readers.md",
-    "HS_Reflector 1.jpeg",
-    "Quantifications of Mathematical Ability.md",
-    "Math 409.md",
-    "Math 424.md",
-    "ScratchPaper.md",
-    "Untitled-1.md",
-    "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Obtuse Angle Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Dualitzation More Examples).md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Convex Conjugate Function.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Duality Interpretations.md"
   ]
 }
