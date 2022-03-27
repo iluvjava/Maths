@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+            "file": "Math 000 (Math Essential)/Axiomatic Entities/Inner Product Axiomatically Defined.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+            "file": "Math 000 (Math Essential)/Axiomatic Entities/Inner Product Axiomatically Defined.md",
             "mode": "preview"
           }
         },
@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 293
+    "width": 368,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+                "file": "Math 000 (Math Essential)/Axiomatic Entities/Inner Product Axiomatically Defined.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,15 +113,15 @@
   },
   "active": "1ab8ec5278e36e0d",
   "lastOpenFiles": [
-    "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Inner Product Axiomatically Defined.md",
     "Math 000 (Math Essential)/Axiomatic Entities/Vector Space.md",
-    "Math 000 (Math Essential)/Axiomatic Entities/Banach Space.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Finite Euclidean Inner Product.md",
     "Math 000 (Math Essential)/Axiomatic Entities/Innert Product Space.md",
-    "Math 000 (Math Essential)/Axiomatic Entities/Hilbert Space.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Euclidean Space.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
     "Math 000 (Math Essential)/Axiomatic Entities/Complete Metric Space.md",
-    "Math 000 (Math Essential)/Programming Lang CheckList.md",
-    "Math 000 (Math Essential)/Probability, Stats, Combinatorics/Stars And Bars.md"
+    "Math 000 (Math Essential)/Axiomatic Entities/Hilbert Space.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Complex Inner Product.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Banach Space.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Euclidean Space.md"
   ]
 }

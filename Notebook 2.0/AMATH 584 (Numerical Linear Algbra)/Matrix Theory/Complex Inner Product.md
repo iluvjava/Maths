@@ -1,4 +1,4 @@
-[[Inner Product]]: Inner product defined under euclidean space. 
+[[Finite Euclidean Inner Product]]: Inner product defined under euclidean space. 
 
 
 In this section, we introduce define the complex of a dot product of 2 vectors from the field: $\mathbb{C}^n$

@@ -1,4 +1,4 @@
-[[Inner Product]]
+[[Finite Euclidean Inner Product]]
 
 ---
 ### **Def**: 
