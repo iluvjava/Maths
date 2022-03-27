@@ -6,7 +6,7 @@
 --- 
 ### **Intro**
 
-
+This theorem is beginning to get useful algorithmically. 
 
 ---
 ### **Statement of Theorem**
@@ -47,10 +47,45 @@ $$
 \end{aligned}
 $$
 
-The first imply is Cauchy Swarchtz, the second is direct. Let's prove the first statement by considering the fact that the set $Q$ is convex: 
+The first imply is Cauchy Swarchtz, the second is direct. Let's prove the first statement by considering the fact that the set $Q$ is convex. W will make use of the **Obtuse Angle Property of Convex Sets**: 
 
 $$
 \begin{aligned}
-
+    \forall x_1, x_2 \in Q:&   \\
+    \left\langle 
+        \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
+        x_1 - \underset{Q}{\text{proj}}(x_1) 
+    \right\rangle &\le 0 
+    \\
+    \left\langle 
+    \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2), 
+    x_2 - \underset{Q}{\text{proj}}(x_1) 
+    \right\rangle &\le 0
 \end{aligned}
 $$
+
+For any 2 points, $x_1, x_2$ in the set $Q$, relative to each other they make a projection obtuse angle. Continuing we have: 
+
+$$
+\begin{aligned}
+    \forall x_1, x_2 \in Q:&   \\
+        \left\langle 
+            \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
+            x_1 - \underset{Q}{\text{proj}}(x_1) 
+        \right\rangle &\le 0 
+        \\
+        \left\langle 
+        \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
+        \underset{Q}{\text{proj}}(x_1)  - x_2
+        \right\rangle &\le 0
+        \\
+        \underset{\text{add them}}{\implies} \left\langle 
+            \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
+            x_1 - x_2 + \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1)
+        \right\rangle &\le 0
+        \\
+        \Vert \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1)\Vert_2^2 - \left\langle \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), x_2 - x_1 \right\rangle &\le 0
+\end{aligned}
+$$
+
+And this loop back to the claim that is stated at the start of the proof. Theorem is proved. 

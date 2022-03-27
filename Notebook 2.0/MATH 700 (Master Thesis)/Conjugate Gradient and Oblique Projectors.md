@@ -6,7 +6,7 @@
 
 Inspired by the process of looking for orthomin J algorithm, I am interested in disovering some of the properties of the conjugate gradient algorithm from only first principles, in hope to spark more generality for the arguments and reveal potential connections between subspace methods in general.
 
-The conjugate gradient algorithm is usually stated without much explanations as to how it is arrived. Sometimes short justifications where given such as in Greenbaum's work where the algorithm is derived by orthogonalizing residual against the previous residual and conjugate direction, while assuming $p_0 = r_0$. However this is not informative for the underlying reasons of "WHY?", it's stated in a way as if the writer already know there is a short recurrence for the conjugate vectors, instead of naturally leading to that idea (Which of course, a completely separate idea from just the Conjugate Gradient.) Some other time it's stated in such a complicated way that doesn't quiet introduce some big ideas correlated to the algorithm itself, such as: [Conjugate Gradient Without Agonizing Pain](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf) where it explains all the magic, but somewhat uninspiring.
+The conjugate gradient algorithm is usually stated without much explanations as to how it is arrived. Sometimes short justifications wxhere given such as in Greenbaum's work where the algorithm is derived by orthogonalizing residual against the previous residual and conjugate direction, while assuming $p_0 = r_0$. However this is not informative for the underlying reasons of "WHY?", it's stated in a way as if the writer already know there is a short recurrence for the conjugate vectors, instead of naturally leading to that idea (Which of course, a completely separate idea from just the Conjugate Gradient.) Some other time it's stated in such a complicated way that doesn't quiet introduce some big ideas correlated to the algorithm itself, such as: [Conjugate Gradient Without Agonizing Pain](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf) where it explains all the magic, but somewhat uninspiring.
 
 The goal of this exerpt is to discover it in a similar manner to the Ortho Min J by only first principle without any preconception of what conjugate gradient is, except for the fact that, it minimizes something. During the exploration, we use Content from [[Taxonomy and Frameworks of Subspace Projection Method]], and [[Projector]]. 
 
@@ -345,7 +345,7 @@ $$
 \end{aligned}
 $$
 
-Consider the inner product: 
+Consider the inner product with results from (4.1): 
 
 $$
 \begin{aligned}
@@ -440,9 +440,14 @@ That is the algorithm, stated with all the iteration number listed as a super sc
 
 The conjugate Gradient Algorithm is actually a residual assisted conjugate gradient, a special case of the algorithm we derived at the start of the excerp. The full algorithm can be seem by the short recurrence for the residual and the conjugation vector. This part is trivial. Next, we want to show the relations to the Krylov Subspace, which only occurs for the Residual Assisted Conjugate Gradient algorithm. 
 
----
-### **Floating Points Considerations**
 
-Take note that this formulations of the algorithm points to another day of improve the handling of the floating point. To keep the conjugacy of the vector $p_k$, one can consider using the formula $p_k = (I - \overline{P}_kA)r_k$ instead of using the short recurrences, improving the conjugacy of the vector $p_k$. 
+
+---
+### **In Relations To Lanczos**
+
+See [[From Lanczos to Conjugate Gradient]] for more information. 
+
+
+
 
 

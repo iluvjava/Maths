@@ -29,7 +29,7 @@ We see to verify these claims:
 >     \\
 >     x_k = x_0 + Q_k y_k
 >     \\
->     r_k = -\beta_{k + 1}\xi_k y_k q_{k +1}
+>     r_k = -\beta_{k}\xi_k^T y_k q_{k +1}
 > \end{cases}\tag{0}
 > $$
 
@@ -182,7 +182,7 @@ $$
     \\
     x_k = x_0 + Q_k y_k
     \\
-    r_k = -\beta_{k + 1}\xi_k y_k q_{k +1}
+    r_k = -\beta_{k}\xi_k^T y_k q_{k +1}
 \end{cases}\tag{6}
 $$
 And we define the conjugate vectors and the lanczos vector matrix using the conventions: 
@@ -244,7 +244,7 @@ $$
     \\\implies
     \beta_{k - 1}p_{k - 1} + u_k p_k &= q_k 
     \\
-    u_k p_k = q_k - \beta_{k - 1}p_{k - 1}
+    u_k p_k &= q_k - \beta_{k - 1}p_{k - 1}
     \\
     p_k &= u^{-1}_k(q_k - \beta_{k - 1}p_{k - 1})
 \end{aligned}\tag{7}
@@ -331,7 +331,7 @@ $d_{k + 1} = 1$, and it has to be that the the lower diagonal sub vector in the 
 
 $$
 \begin{aligned}
-    S^TL_k + d_{k + 1}l_k \xi_k^T &= \mathbf{0}
+    s^TL_k + d_{k + 1}l_k \xi_k^T &= \mathbf{0}
     \\
     L_k^{T}s_k + d_{k + 1}l_k \xi_k &= \mathbf{0}
     \\

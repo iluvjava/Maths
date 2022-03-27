@@ -4,15 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "f9419a627b1e2b78",
+        "id": "1ab8ec5278e36e0d",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+            "file": "MATH ??? (Unexplored)/Vector Space.md",
+            "mode": "source"
+          }
+        },
+        "group": "670bcbae0d17bf6b"
+      },
+      {
+        "id": "80faceacfd318416",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "MATH ??? (Unexplored)/Vector Space.md",
             "mode": "preview"
           }
-        }
+        },
+        "group": "670bcbae0d17bf6b"
       }
     ],
     "direction": "vertical"
@@ -63,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 458.0036334991455
+    "width": 458.0036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -79,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+                "file": "MATH ??? (Unexplored)/Vector Space.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "f9419a627b1e2b78",
+  "active": "1ab8ec5278e36e0d",
   "lastOpenFiles": [
+    "MATH ??? (Unexplored)/Vector Space.md",
+    "MATH ??? (Unexplored)/Banach Space.md",
+    "MATH ??? (Unexplored)/Hilbert Space.md",
+    "Math 000 (Math Essential)/Untitled.md",
+    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Obtuse Angle Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Dualitzation More Examples).md",
-    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Convex Conjugate Function.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Duality Interpretations.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md"
   ]
 }
