@@ -8,3 +8,9 @@
 
 **Banach But not Hilbert**
 > It's implied from the definition, that, there exists instances of Banach Space that is not Hilbert Space. Such a space would have norm that is not defined via inner product. 
+
+
+**Lacks of Inner Product**
+> The definition doesn't said anything about inner using inner product in the space to define the norm. The norm can be independent of the inner product. 
+
+

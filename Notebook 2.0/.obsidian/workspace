@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Vector Space.md",
+            "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Vector Space.md",
+            "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
             "mode": "preview"
           }
         },
@@ -76,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 458.0036334991455,
-    "collapsed": true
+    "width": 293
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -93,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH ??? (Unexplored)/Vector Space.md",
+                "file": "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +112,15 @@
   },
   "active": "1ab8ec5278e36e0d",
   "lastOpenFiles": [
-    "MATH ??? (Unexplored)/Vector Space.md",
-    "MATH ??? (Unexplored)/Banach Space.md",
-    "MATH ??? (Unexplored)/Hilbert Space.md",
-    "Math 000 (Math Essential)/Untitled.md",
-    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md"
+    "Math 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Vector Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Banach Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Innert Product Space.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Hilbert Space.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Euclidean Space.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Inner Product.md",
+    "Math 000 (Math Essential)/Axiomatic Entities/Complete Metric Space.md",
+    "Math 000 (Math Essential)/Programming Lang CheckList.md",
+    "Math 000 (Math Essential)/Probability, Stats, Combinatorics/Stars And Bars.md"
   ]
 }
