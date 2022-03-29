@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-$\beta_k, \alpha_k$ are the coefficients inside of the Lanczos Tridiaognal Matrix. $Q_k^T T_k Q_k$ will approximates the matrix $A$. Consider the Lanczos Recurrence: 
+$\beta_k, \alpha_k$ are the coefficients inside of the Lanczos Tridiaognal Matrix. $Q_k^T T_k Q_k$ will approximates the matrix $A$. Consider the Exact Lanczos Recurrence: 
 
 $$
 \begin{aligned}
@@ -145,7 +145,7 @@ $$
     v^T(CT - TC)v &= v^TCTv - v^TTCv
     \\
     &= 
-    v^TC\theta v - \theta v^Tcv
+    v^TC\theta v - \theta v^TCv
     \\
     &= 0
     \\

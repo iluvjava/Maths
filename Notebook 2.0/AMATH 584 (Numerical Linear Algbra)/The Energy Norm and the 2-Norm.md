@@ -1,4 +1,5 @@
-[[Norm]], [[Hermitian Adjoint]]
+[[Norm]], 
+[[Hermitian Adjoint]]
 
 ---
 Problem statement: 
@@ -62,3 +63,6 @@ $$
 
 $\blacksquare$
 
+
+
+**Note**: This holds true even if the matrix $A$ is not symmetric positive definite. 

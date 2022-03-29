@@ -8,13 +8,17 @@ Here we state the results of the rate of convergence for the Conjugate Gradient 
 * Exact Numerics: [[Exact Conjugate Gradient Convergence]]
 * Floating Numerics: [[Floats Conjugate Gradient Convergence]]
 
-
 Results are referenced with professor Greenbaum's work on this topic. 
 
 ---
 ### **Exact Arithmatic**
 
-The relative error measured via the energy norm of the PSD matrix would be: 
+Assuming exact arithematic, then the algorithm terminates whenver the Krylov Subspace stop expanding. Equaling to the grade of a krylov subapce. For any initial guess $x_0$, the algorithm: 
+
+> Conjugate Gradient terminates at most $n$ iterations where $n$ is the number of rows and columns of the matrix A. 
+
+
+Next, we assume that the matrix $A$ is exceeding huge, and we wish to bound the relative error measured via the energy norm of the PSD matrix, then it would be: 
 
 > $$
 > \frac{\Vert  e^{(k)}\Vert_A}{
