@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+            "file": "MATH 700 (Master Thesis)/Krylov Subspace.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+            "file": "MATH 700 (Master Thesis)/Krylov Subspace.md",
             "mode": "preview"
           }
         },
@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 368
+    "width": 368,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis.md",
+                "file": "MATH 700 (Master Thesis)/Krylov Subspace.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,15 +113,15 @@
   },
   "active": "1ab8ec5278e36e0d",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Master Thesis.md",
     "MATH 700 (Master Thesis)/Krylov Subspace.md",
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+    "MATH 700 (Master Thesis)/Master Thesis.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Hessenberg Transform with Arnoldi Iterations.md",
     "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
     "MATH 000 (Math Essential)/Axiomatic Entities/Equivalence Relations.md",
-    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH ??? (Unexplored)/Durand Kerner Method.md",
-    "MATH ??? (Unexplored)/Courant Fischer and Rayleigh Quotients.md",
-    "MATH ??? (Unexplored)/Column Generation Robust Optimization.md"
+    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md"
   ]
 }
