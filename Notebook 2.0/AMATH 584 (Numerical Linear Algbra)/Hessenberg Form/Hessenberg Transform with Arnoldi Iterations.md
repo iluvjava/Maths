@@ -211,7 +211,7 @@ This will be made clear during the Krylov Subspace interpretations of the Arnold
 >         & q_k = \tilde{q}_k / \Vert q\Vert
 >     \end{aligned}
 >      \\
->      & H[:, n] = Q^H AQ
+>      & H[:, n] = Q^HAQ
 > \end{aligned}
 > $$
 
@@ -255,18 +255,72 @@ upper Hessenberg Form.
     end
     return Q, H
 end
-
 ```
-
 
 ---
 ### **Its Close Cousin: The Iterative Lanczos Algorithm**
 
-The iterative lanczos algorithm performs exactly the same type of procedures but applied to Hermitian Matrices, and when that happens, we obtained a Tridiagonalization of the Hermitian Matrix.
+The iterative lanczos algorithm performs exactly the same type of procedures but applied to Hermitian Matrices, and when that happens, we obtained a Tridiagonalization of the Hermitian Matrix.For more info, see a dedicated discussion about [[Lanczos Algoritm]]
 
-For more info, see a dedicated discussion about [[Lanczos Algoritm]]
+---
+### **A Projector Based Approach to Hessenberg Form**
 
+To analyze the recurrences using projector, we establish the $H_k$ matrix generated at each step of the iterations to be a $(k + 1)\times k$ matrix in the form of Upper hessenberg, written as: 
 
+$$
+\begin{aligned}
+    H_k = 
+    \begin{bmatrix}
+        h_{1, 1} & h_{1, 2} & \cdots & h_{1, k} 
+        \\
+        h_{1, 2} & h_{2, 2} & \cdots & h_{2, k}
+        \\
+        \\
+        & \ddots & &\vdots
+        \\
+        & & h_{k, k - 1}& h_{k, k}
+        \\
+        & & & h_{k + 1, k}
+    \end{bmatrix}
+\end{aligned}
+$$
+
+The algorithm can be inductively phrased as the process of projecting $Aq_k$ onto the orthogonal projector $Q_k$ to attain the newest column of $H_k$, and setting the last bottom right corner of the matrix $H_k$ to be $Aq_k$ after the orthgonalization process. Mathematically it can be described as: 
+
+$$
+\begin{aligned}
+    (H_k)_{k + 1, k}q_k &= (I - Q_kQ_k^H)Aq_{k - 1}
+    \\
+    (H_1)_{2, 1}q_2 &= (I - q_1q_1^H)Aq_1 \quad \text{Base case}
+    \\
+    (H_k)_{1:k, k} &= Q_k^HAq_k
+\end{aligned}
+$$
+
+The first line is saying that the bottom right corner of the $(k + 1)\times k$ element of the matrix $H_k$ scales $q_k$ would equal to the orthogonal projection of $Aq_{k-1}$ onto the orthogonal subspace spanned by the range of $Q_k$. 
+
+$$
+\begin{aligned}
+    \\
+    \implies
+    (H_k)_{k + 1, k}q_k &= Aq_{k - 1} - Q_k \underbrace{Q_k^HAq_{k - 1}}_{(H_k)_{1:k, k}}
+    \\
+    (H_k)_{k + 1, k}q_k &= Aq_{k - 1} - Q_k (H_k)_{1:k, k}
+    \\
+    Aq_{k - 1} &= (H_k)_{k + 1, k}q_k + Q_k (H_k)_{1:k, k}
+    \\
+    Aq_{k - 2} &= (H_k)_{k, k - 1}q_{k - 1} + Q_{k - 1} (H_k)_{1:k - 1, k - 1}
+    \\
+    \vdots & 
+    \\
+    Aq_{1} &= h_{1, 2}q_1 + h_{2, 2}q_2
+    \\
+    \implies 
+    AQ_{k - 1} &= Q_kH_k
+\end{aligned}
+$$
+
+And this completes the recurrences for the Arnoldi Iterations, in other literatures, the recurrence might be rephrased using the $H_k$ that is the $k\times k$ submatrix on the top left of the above matrix $H_k$.
 
 
 ---

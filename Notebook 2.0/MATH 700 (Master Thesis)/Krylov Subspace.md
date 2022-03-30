@@ -45,11 +45,10 @@ $$
 \end{aligned}
 $$
 
-Consider $\Lambda$ to be the Jordan Decomposition matrix for the matrix, when it's diagonalizable, $p(\lambda_i) = 0$, and from above expression, putting $\Lambda$ into the characteristic polynomial will set it equals to zero. **Note**: $c_0 = (-1)^n|A|$, this quantity tells us whether the matrix is going to be invertible or not. 
+Consider $\Lambda$ to be the Jordan Decomposition matrix for the matrix, when it's diagonalizable, $p(\lambda_i) = 0$, and from above expression, putting $\Lambda$ into the characteristic polynomial will set it equals to zero. **Note**: $c_0 = (-1)^n|A|$; the constant term for the characteristic polynomial, this quantity tells us whether the matrix is going to be invertible or not. 
 
 
----
-### **Computationally Relevant to Inverse of the Matrix**
+**Consequence of Cayley Hamilton**
 
 $$
 \begin{aligned}
@@ -108,10 +107,10 @@ The most important porperty of the subspace is the idea of grade denoted as $\te
 
 
 **Statement (3)**: 
-> $$\mathcal K_k(A|v) \text{Lin Dep} \implies \mathcal K_{k + 1}(A|v) = \mathcal K_k(A|v)$$
+> $$\mathcal K_k(A|v) \text{ Lin Dep} \implies \mathcal K_{k + 1}(A|v) = \mathcal K_k(A|v)$$
 > if the $k$ krylov subspace is linear dependent, then it stops expanding and the successive krylov subspace spans the same space. 
 
-**Theorem**: The Grade of the Subspace
+**Theorem**: Existence of The Grade of the Subspace
 > Let $k$ be the minumum number when the krylov subspace stops expanding, then all successive krylov subspace spand the same space. $\mathcal K_k(A|v) = \mathcal K_{k + j}(A|v) \;\forall j \ge 0$. The number $k$ is regarded as the grade of krylov subspace wrt to v denoted using $\text{grade}(A|v)$. 
 
 **Proof of Statement (1)**
@@ -120,7 +119,7 @@ For notational simplicity, $\mathcal K_k$ now denotes $\mathcal K_k(A|v)$. Let's
 
 $$
 \begin{aligned}
-    \forall \mathcal K_k \subseteq \mathcal K_{k + 1}\implies \text{dim}(\mathcal K_{k})\le \text{dim}(\mathcal K_{k + 1})
+    \forall\; k: \mathcal K_k \subseteq \mathcal K_{k + 1}\implies \text{dim}(\mathcal K_{k})\le \text{dim}(\mathcal K_{k + 1})
     \\
     \mathcal K_{k + 1}\setminus \mathcal K_k = \text{span}(A^{k}v) 
     \\

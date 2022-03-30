@@ -150,9 +150,46 @@ The claim is proved. Here are **some extra comments**:
 The bound is tight, more specifically, the bound is tight if the initial error happens to be in the subspace of some eigenvalues. This is true because $A$ is positive definite. 
 
 ---
-### **Krylov Subspace Bound**
+### **Krylov Subspace and Terminating Conditions**
 
-Please take note that, under exact arithematic, an exact upper bound for the number of iterations required to solve the system can be obtained by finding the maximal grade for the krylov subspace expansion of: $\mathcal K_k(A|r_0)$. Properties of the Krylov Subspace is covered in [[Krylov Subspace]]. 
+Please take note that, under exact arithematic, an exact upper bound for the number of iterations required to solve the system can be obtained by finding the min grade for the krylov subspace expansion of: $\mathcal K_k(A|r_0)$ and the dimension of the subspace: $\min(\text{grade}(A|r_0), n)$. Properties of the Krylov Subspace is covered in [[Krylov Subspace]]. Next, we make reference to [[Conjugate Gradient and Oblique Projectors]] for the use of the Galerkin's Conditions based on the Krylov Subspace, listed below: 
+
+$$
+\begin{aligned}
+	\text{choose: } x_k\in x_0 + \mathcal K_{k}(A|r_0) \text{ s.t: } r_k = b - Ax_k\perp \mathcal K_{k}(A|r_0)
+\end{aligned}
+$$
+
+**The Maximum Number of Iterations Before Terminations**: 
+
+> The $\text{grade}(A|r_0)$ determines the number maximum number of iterations required before the terminations of the conjugate gradient. More precisely, if we know $r_0$, then the number of iterations is upper bounded by $\text{grade}(A|r_0)$, if we don't know $r_0$, then the maximum number of iteration is determined by the number of distinct eigenvalues of the matrix $A$. 
+
+Take notice that if $\mathcal K_{k + 1} = \mathcal K_k$, and the algorithm asserts that $r_{k + 1}\in \mathcal K_{k + 1}(A|r_0) = \mathcal K_{k}(A|r_0)$ and at the same time $r_{k + 1}\perp r_j \;\forall\; 0\le j \le k$, which is impossible because we have $k +1$ orthgonal vector in the subspace $\mathcal K_k(A|r_0)$ which has only a dimension of $k$. 
+
+What eventually makes the conjugate gradient terminates is the considerations of $\langle p_{k},Ap_{k}\rangle = 0$, because $p_{k}\in \mathcal K_{k + 1} = \mathcal K_k$ by the non-expanding krylov subspace, but $p_k\perp \text{ran}(P_k)\in \mathcal K_k$ by the conjugate gradient algorithm, which would mean that $p_k = \mathbf 0$, therefore the algorithm will inevitably terminates due to an error of dividing by zero if such a case is not handled under exact arithemtic. And when that happens, there are 2 possibilities: 
+* $k + 1 = \text{grade}(A|r_0)$ is reached. 
+*  or the case that $k = n + 1$
+
+The grade Krylov Subspace of $A$ wrt to $v$ will determine the maximum number of iterations before the termination of the algorithm given $v$.  from the discussion of Krylov Subspace, we consider the polynomial form of the Krylov Subspace $\mathcal K_k(A|r_0)$: 
+
+$$
+\begin{aligned}
+    p_k(A|w)r_0 &= X\left(
+        \sum_{j = 0}^{k - 1}w_j\Lambda^j
+    \right)X^{-1}r_0
+    \\
+    \exists\; w_k \neq \mathbf 0
+    : 
+    p_k(A|w_k)r_0 &= \mathbf 0 \iff \mathcal K_k(A|r_0) \text{ Lin Dep}
+\end{aligned}
+$$
+
+And once the Krylov Subspace becomes linearly dependence, it would mean that the conjugate gradient algorithm terminates, and that would mean the polynomial $p_k(x|w)$ is able to interpolate, at least all eigenvalues of the matrix $A$, if we place no assumption about the initial error vector $r_0$. Therefore, the maximum number of Iterations undergoes by the conjugate gradient algorithm equals to the number of distinct eigenvalues of matrix $A$. 
+
+However, it's important to take note that, $X^{-1}r_0$ will also control the number of iterations required before the algorithm terminates. Imagine the extreme case when $r_0$ is a scalar mulitple of one of the eigenvector of $A$, let that eigenvector be $\lambda_j$ then $X^{-1}r_0$ would be the standard basis vector: $\mathbf e_j$, and in that case, if $p_k(\lambda_j|w_k) = 0$ , then $p_k(\lambda_j|w_k) = \mathbf 0$, which is the condition of terminations of the algorithm.
+
+**When A is non-Inertaible**
+
 
 
 

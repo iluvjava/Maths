@@ -1,5 +1,6 @@
 [[Ortho Min J]]
 [[Conjugate Gradient for Dummy]]
+[[Krylov Subspace]]
 
 ---
 ### **Intro**
@@ -439,6 +440,59 @@ That is the algorithm, stated with all the iteration number listed as a super sc
 ### **Conjugate Gradient and Krylov Subspace**
 
 The conjugate Gradient Algorithm is actually a residual assisted conjugate gradient, a special case of the algorithm we derived at the start of the excerp. The full algorithm can be seem by the short recurrence for the residual and the conjugation vector. This part is trivial. Next, we want to show the relations to the Krylov Subspace, which only occurs for the Residual Assisted Conjugate Gradient algorithm. 
+
+**Claim:** 
+
+> $$
+> \begin{aligned}
+>     p_k \in \mathcal K_{k + 1}(A|r_0)
+>     \\
+>     r_k \in \mathcal K_{k + 1}(A|r_0)
+> \end{aligned}
+> $$
+
+The base case is tivial and it's directly true from the definition of Residual Assisted Conjugate Gradient: $r_0 \in \mathcal K_1(A|r_0), p_0 = r_0 \in \mathcal K_1(A|r_0)$. Next, we inductively assume that $r_k \in \mathcal K_{k + 1}(A|r_0), p_k \in \mathcal K_{k + 1}(A|r_0)$, then we consider: 
+
+$$
+\begin{aligned}
+    r_{k + 1} &= r_k - a_kAp_k
+    \\
+    &\in r_k + A\mathcal K_{k + 1}(A|r_0)
+    \\
+    &\in r_k + \mathcal K_{k + 2}(A|r_0)
+    \\
+    r_k 
+    &\in 
+    \mathcal K_{k + 1}(A|r_0) \subseteq \mathcal K_{k + 2}(A|r_0)
+    \\
+    \implies r_{k + 1}
+    &\in 
+    \mathcal K_{k + 2}(A|r_0)
+\end{aligned}
+$$
+
+At the same time the update of $p_k$ would asserts the property that: 
+
+$$
+\begin{aligned}
+    p_{k + 1} &= r_{k + 1} + b_kp_k
+    \\
+    &\in 
+    r_{k + 1} + \mathcal K_{k + 1}(A|r_0)
+    \\
+    &\in \mathcal K_{k + 2}(A|r_0)
+\end{aligned}
+$$
+
+This is true because $r_{k + 1}$ is already a member of the expanded subspace $\mathcal K_{k + 2}(A|r_0)$. And from this formulation of the algorithm, we can update the Galerkin's Conditions to be: 
+
+> $$
+> \begin{aligned}
+>     \text{choose: } x_k\in x_0 + \mathcal K_{k}(A|r_0) \text{ s.t: } r_k \perp \mathcal K_{k}(A|r_0)
+> \end{aligned}
+> $$
+
+Take note that, $\text{ran}(P_k) = \mathcal K_k(A|r_0)$ because the index starts with zero. The above formulations gives theoretical importance for the Conjugate Gradient Algorithm. 
 
 
 
