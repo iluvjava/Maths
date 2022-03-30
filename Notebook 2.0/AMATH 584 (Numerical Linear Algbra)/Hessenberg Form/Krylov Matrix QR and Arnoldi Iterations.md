@@ -134,7 +134,7 @@ $$
 $$
 
 **Observe**
-$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. [^2]Therefore, $\tilde{H}_n$ has the same eigenvalues as $C_n$, therefore, $\tilde{H}_n$ has the same eigenvectors as $A$. Therefore, the $\tilde{H}_n$, Hessenberg matrix for $A$ has the same eigenvalue as the matrix $A$. **Claim 1** is proven. $\blacksquare$. In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same unitary transformation that gives the Hessenberg, **Claim 2** is proven $\blacksquare$. 
+$C_nR^{-1}$ is Hessenberg form, multiplying on $R$ keeps the Hessenberg form. By definition, this is a hessenberg transform on matrix $A$. [^2]Therefore, $\tilde{H}_n$ has the same eigenvalues as $C_n$, therefore, $\tilde{H}_n$ has the same eigenvectors as $A$. Therefore, the $\tilde{H}_n$, Hessenberg matrix for $A$ has the same eigenvalue as the matrix $A$. **Claim 1** is proven $\blacksquare$. In part (5), the $Q_n$ is from the QR factorization on $K_n$, And it's the same unitary transformation that gives the Hessenberg, **Claim 2** is proven $\blacksquare$. 
 
 
 ---

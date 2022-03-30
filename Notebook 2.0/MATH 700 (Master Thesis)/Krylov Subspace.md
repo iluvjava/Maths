@@ -93,6 +93,7 @@ $$
 
 The most important porperty of the subspace is the idea of grade denoted as $\text{grade}(A|v)$, indicating when the Krylov Subspace of $A$ wrt to $v$ stops expanding after a certain size. To show this idea, we consider the following 3 statements about Krylov Subspace which we will proceed to prove. 
 
+
 **Statement (1)**: 
 > $$\exists 1 \le k \le m + 1: \mathcal K_k(A|v) = \mathcal K_{k + 1}(A|v)$$
 > There exists an natural number between $1$ and $m+ 1$ such that, the successive krylov subspace span the same space asthe previous one. 

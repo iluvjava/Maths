@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+                "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +113,15 @@
   },
   "active": "80faceacfd318416",
   "lastOpenFiles": [
+    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Hessenberg Transform with Arnoldi Iterations.md",
     "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
     "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Krylov Subspace.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
-    "MATH 700 (Master Thesis)/FOM Arnoldi Based Methods.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "MATH 000 (Math Essential)/Axiomatic Entities/Banach Space.md"
+    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md"
   ]
 }
