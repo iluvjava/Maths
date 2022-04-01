@@ -18,7 +18,7 @@ The goal of this exerpt is to discover it in a similar manner to the Ortho Min J
 
 **The Objective of the Algorithm**
 
-Introduce the algorithm as an attempt to minimize the energy norm of the error for a linear equation $Ax = b$, here we make the assumptions: 
+We introduce the algorithm as an attempt to minimize the energy norm of the error for a linear equation $Ax = b$, here we make the assumptions: 
 * the matrix $A$ is symmetric semi-positive definite.  
 * Further assume another matrix $P_k = [p_0 \;p_1\;\cdots p_{k-1}]$ as a matrix whose columns is a basis.
 
@@ -215,7 +215,7 @@ $$
 \end{aligned}\tag{3.2}
 $$
 
-The recurrence is established because of the derived relations for the dot product $\langle p_{k - 1}, r_0\rangle = \langle p_{k - 1}, r_{k - 1}\rangle$, and the further consequence is the ability to express the error using only the conjugate gradient vectors. Take note that (2.3) is still true for the Unassited Conjugate Gradient Method. 
+The recurrence is established because of the derived relations for the dot product $\langle p_{k - 1}, r_0\rangle = \langle p_{k - 1}, r_{k - 1}\rangle$, and the further consequence is the ability to express the error using only the conjugate gradient vectors. Take note that (2.3) is still true for the Assisted Conjugate Gradient Method. 
 
 
 ---
@@ -493,6 +493,10 @@ This is true because $r_{k + 1}$ is already a member of the expanded subspace $\
 > $$
 
 Take note that, $\text{ran}(P_k) = \mathcal K_k(A|r_0)$ because the index starts with zero. The above formulations gives theoretical importance for the Conjugate Gradient Algorithm. 
+
+---
+### **Full/partial Orthogonalizations**
+To achieve better acurracy, we mantually enforce the conditions of orthogonality between residual vectors and A-Orthogonality between Conjugate Vectors. 
 
 
 

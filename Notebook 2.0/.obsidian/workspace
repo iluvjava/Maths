@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
+                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "80faceacfd318416",
+  "active": "29c240c49d6433e3",
   "lastOpenFiles": [
-    "MATH ZZZ (My Ideas)/A New LANSO Algorithm.md",
-    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Hessenberg Transform with Arnoldi Iterations.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
     "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Krylov Subspace.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md"
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Cauchy Interlace Theorem.md",
+    "MATH 700 (Master Thesis)/Minimal Polynomial.md",
+    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
+    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+    "AMATH 584 (Numerical Linear Algbra)/Projector Minimizations.md"
   ]
 }

@@ -87,7 +87,7 @@ It's not hard to see that the recurrence can also be applied to any shifting of 
 
 $$
 \begin{aligned}
-    p^{(k)}(x) &= - \beta_{k - 1}^2 p^{(k - 2)}(x) + \alpha_kp^{(k)}(x)
+    p^{(k)}(x) &= - \beta_{k - 1}^2 p^{(k - 2)}(x) + \alpha_kp^{(k-1)}(x)
 \end{aligned}
 $$
 

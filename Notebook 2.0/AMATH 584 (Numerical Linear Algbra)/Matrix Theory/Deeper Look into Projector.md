@@ -89,17 +89,15 @@ $$
 \begin{aligned}
     \langle P^Hx, y\rangle &= \langle x, Py\rangle 
     \\
-    \forall  x \in& \text{null}(P^H), y\in \mathbb{C}^n
+    \forall  x &\in \text{null}(P^H), y\in \mathbb{C}^n
     \\
-    \implies P^Hx &= 0
-    \\
-    \implies \langle x, Py\rangle &= 0
+    \implies \langle P^Hx ,y\rangle &= 0 = \langle x, Py\rangle
     \\
     \implies \text{null}(P^H) \perp& \text{ran}(P)
     \\
     \forall y \in& \text{null}(P), x \in \mathbb{C}^n: 
     \\
-    \forall x: \langle x, Py\rangle &= 0 = \langle P^Hx, y\rangle
+    \langle x, Py\rangle &= 0 = \langle P^Hx, y\rangle
     \\
     \implies \text{ran}(P^H) \perp& \text{null}(P)
 \end{aligned}
@@ -136,9 +134,7 @@ $$
 
 Substituting $P^H = P$, we have $\text{null}(P) = \text{ran}(P)^{\perp}$, Which is the definition of Orthogonal Projector. Therefore, $P$ is an orthogonal projector by the definition of the projector. 
 
-$\implies$ Next, we assume that $P$ is an Orthogonal Projector, then we wish to show that it's also a Hermitian. 
-
-Observe that $P^H$ is also a projector because $(P^H)^2 = (P^2)^H$. Then, using the definition of orthogonal projector: 
+$\implies$ Next, we assume that $P$ is an Orthogonal Projector, then we wish to show that it's also Hermitian. Observe that $P^H$ is also a projector because $(P^H)^2 = (P^2)^H$. Then, using the definition of orthogonal projector: 
 
 $$
 \begin{aligned}

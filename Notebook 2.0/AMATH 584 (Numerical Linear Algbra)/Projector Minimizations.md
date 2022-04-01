@@ -12,7 +12,7 @@ Here, we use $P_{M}$ to denote an orthogonal projector that is projecting onto t
 
 For the sake of making things more concrete, consider this:
 
-> Given any subspace $M$, we can create a basis of vectors packing into the some matrix, say $A$, then $P_M$ can simply be: $A(AA^T)^{-1}A$. Boom! 
+> Given any subspace $M$, we can create a basis of vectors packing into the some matrix, say $A$, then $P_M$ can simply be: $A(AA^T)^{-1}A^T$. Boom! 
 
 **Projector Always Minimizes**
 
@@ -43,18 +43,11 @@ And this is true by the property of an Orthogonal Projector. Notice that, the no
 > Consequently, we have: $y - P_My\perp M$.
 
 **Proof**
-
 $$
 \begin{aligned}
     \Vert y - x\Vert_2^2 &= 
     \Vert y - P_My + P_My - x\Vert_2^2
-\end{aligned}
-$$
-
-Observe that, $y - P_My\perp M$ and $P_My - x \in M$ because $x \in M$. In addition using the fact that the projector is orthogonal, we have: 
-
-$$
-\begin{aligned}
+	\\
     \Vert y - x\Vert_2^2 &= 
     \Vert y - P_My\Vert_2^2 + \Vert P_My - x\Vert_2^2
     \\
@@ -63,7 +56,7 @@ $$
 \end{aligned}
 $$
 
-That concludes the proof. 
+That concludes the proof. Observe that, $y - P_My\perp M$ and $P_My - x \in M$ because $P_My, x \in M$, which allows us to split the norm of $y - x$ into 2 components. In addition using the fact that the projector is orthogonal. That concludes the proof.
 
 
 ---

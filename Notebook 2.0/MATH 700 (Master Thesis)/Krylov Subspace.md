@@ -2,7 +2,7 @@ Krylov Subspace is used in a lot of places:
 * Eigenvectors related stuff
 * Solutions for the system. 
 
-[[Minmal Polynomial]]
+[[Minimal Polynomial]]
 
 ---
 ### **Intro**
@@ -95,7 +95,7 @@ The most important porperty of the subspace is the idea of grade denoted as $\te
 
 
 **Statement (1)**: 
-> $$\exists 1 \le k \le m + 1: \mathcal K_k(A|v) = \mathcal K_{k + 1}(A|v)$$
+> $$\exists 1 \le k \le m: \mathcal K_k(A|v) = \mathcal K_{k + 1}(A|v)$$
 > There exists an natural number between $1$ and $m+ 1$ such that, the successive krylov subspace span the same space asthe previous one. 
 
 

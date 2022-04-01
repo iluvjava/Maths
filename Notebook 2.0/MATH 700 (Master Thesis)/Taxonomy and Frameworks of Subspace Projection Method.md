@@ -36,7 +36,7 @@ $$
 
 Other times, iterative method will choose to build up a subspace for each step with a subspace generator, and build up the solution on this expanding subspace, but with the additional objective of minimizing the residual under certain norm. 
 
-> Assuming that the vector $x\in x_0 + \mathcal{K}$, and we want to minimize the residual under a $B$ norm. Let it be the case that the columns of matrix $K$ span subspace $\mathcal{K}$. 
+> Assuming that the vector $x\in x_0 + \mathcal{K}$, and we want to minimize the residual under a norm induced by positive definite operator $B$. Let it be the case that the columns of matrix $K$ span subspace $\mathcal{K}$ with $\dim(\mathcal K) = k$. 
 
 $$
 \begin{aligned}
@@ -55,7 +55,7 @@ $$
 We take the derivative of it and set the derivative to zero, this translate the problem to a projection problem under the $A$ norm. 
 $$
 \begin{aligned}
-    \nabla \left[
+    \nabla_w \left[
         \Vert r_0 - AKx\Vert_B^2
     \right] &= \mathbf{0}
     \\
@@ -76,9 +76,9 @@ Different choices of $B, K$ can lead to many different expresions. Some of them 
 Consider that: 
 $$
 \begin{aligned}
-    V \in \mathbb{C}^{n\times m} \text{ Basis for: }\mathcal{K}
-    \\
-    W \in \mathbb{C}^{n\times m} \text{Basis for: } \mathcal{L}
+\text{Let } V \in \mathbb{C}^{n\times m} \text{ be a aasis for: }\mathcal{K}
+\\
+\text{Let } W \in \mathbb{C}^{n\times m} \text{ be a basis for: } \mathcal{L}
 \end{aligned}\tag{4}
 $$
 
@@ -107,7 +107,7 @@ And if we assume that $(W^TAV)$ is invertible, then we obtain the step to take t
 >     & \text{While not converging}: 
 >     \\&\hspace{1.1em}
 >          \begin{aligned}
->             &\text{Seletct: } \mathcal{K, L}
+>             &\text{Increase Span for: } \mathcal{K, L}
 >             \\
 >             &\text{Choose: } V, W \text{ for} \mathcal{K}, \mathcal{L}
 >             \\
