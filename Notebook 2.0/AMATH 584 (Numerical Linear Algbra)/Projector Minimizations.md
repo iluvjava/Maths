@@ -38,25 +38,25 @@ And this is true by the property of an Orthogonal Projector. Notice that, the no
 **Fundamental norm Minimizations using Projector**
 > The Orthogonal Projector onto a subspace, say $P_M$ onto the subspace $M$ can be used to minimize distance $x -y$ where &x& from the subspace $M$ against another vecotr $y$. 
 > $$
-> \min_{x\in M} \Vert y - x\Vert_2^2 = \Vert y - P_M(y)\Vert_2^2
+> \min_{x\in M} \Vert y - x\Vert_2^2 = \Vert y - P(y)\Vert_2^2
 > $$
-> Consequently, we have: $y - P_My\perp M$.
+> Consequently, we have: $y - Py\perp M$.
 
 **Proof**
 $$
 \begin{aligned}
     \Vert y - x\Vert_2^2 &= 
-    \Vert y - P_My + P_My - x\Vert_2^2
+    \Vert y - Py + Py - x\Vert_2^2
 	\\
     \Vert y - x\Vert_2^2 &= 
-    \Vert y - P_My\Vert_2^2 + \Vert P_My - x\Vert_2^2
+    \Vert y - Py\Vert_2^2 + \Vert Py - x\Vert_2^2
     \\
     \implies 
-    \Vert y - P_My\Vert_2^2 \le& \Vert y - x\Vert_2^2
+    \Vert y - Py\Vert_2^2 \le& \Vert y - x\Vert_2^2
 \end{aligned}
 $$
 
-That concludes the proof. Observe that, $y - P_My\perp M$ and $P_My - x \in M$ because $P_My, x \in M$, which allows us to split the norm of $y - x$ into 2 components. In addition using the fact that the projector is orthogonal. That concludes the proof.
+That concludes the proof. Observe that, $y - Py\perp M$ and $Py - x \in M$ because $Py, x \in M$, which allows us to split the norm of $y - x$ into 2 components. In addition using the fact that the projector is orthogonal. That concludes the proof.
 
 
 ---

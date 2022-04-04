@@ -34,7 +34,7 @@ Go through the details about the relations between the Lanczos Algorithm, Arnold
 	* [[Krylov Matrix QR and Arnoldi Iterations]]: Stating that the $Q_k$ from the iterative anoldi method is the same as performing $Q_k$ on the matrix whose columns are the Krylov Subspace vector. <span style="color:orange">Clearer, organized proof would be neat</span>
 	* [[Lanczos Algoritm]]: Simply Transpose and get the Lanczos Algorithm, and Lanczos consquently inhert all properties of Arnoldi Method
 2. Use it to connect to ideas developed from the previous parts and show its relations to the conjugate gradient algorithm. Match as many parameters as possible to show how they are related. 
-	* [[From Conjugate Gradient to Lanczos]]; The proof has something that is off. <span style="color:red">REFINE THE PROOF PLEASE!</span>
+	* [[From Conjugate Gradient to Lanczos Remastered]];The proof is now comleted and filled with detailed explainations. <span style="color:green">DONE!</span>
 	* [[From Lanczos to Conjugate Gradient]]:<span style="color:green">Theory is done</span>; <span style="color:orange">~~Code it too Maybe?~~</span>
 3. ~~Connect it to the Krylov Subspace analyze it using Krylov Subspace.~~
 	* ~~[[Iterative Lanczos and Orthogonal Polynomials]]; Incomplete not sure how to incoperate it for the thesis yet. <span style="color:orange">Maybe adopt this for floating point analysis as well?</span>~~
