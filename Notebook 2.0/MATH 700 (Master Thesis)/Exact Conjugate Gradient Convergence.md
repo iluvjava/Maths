@@ -13,7 +13,7 @@ The final objective we wish to prove is that the convergence bound for the CG me
 > \frac{\Vert e^{(k)}\Vert_A^2}{\Vert e^{(0)}\Vert_A^2}
 > \le 2 \left(
 >         \frac{\sqrt{\kappa} + 1}{\sqrt{\kappa} - 1}
->     \right)^k
+>  \right)^k
 > $$
 
 This is also listed as **Theorem 3.1.1** in professor's Greenbaums work: \<Iterative Method for linear System\>. 
@@ -137,11 +137,11 @@ $$
     \quad \text{still tight}
     \\
     &= \min_{p_{k + 1}: p_{k + 1}(0) = 1}
-    \max_{x\in [\lambda_{\min}, \lambda_{\max}]}|p_{k + 1}(x)|^2 \Vert e\Vert_A^2
+    \max_{x\in [\lambda_{\min}, \lambda_{\max}]}| p_{k + 1}(x)|^2 \Vert e\Vert_A^2
     \\
     \implies
     \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} &\le 
-    \min_{p_{k + 1}: p_{k + 1}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_k(x)|
+    \min_{p_{k + 1}: p_{k + 1}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_{k + 1}(x)|
 \end{aligned}
 $$
 
@@ -170,17 +170,17 @@ What eventually makes the conjugate gradient terminates is the considerations of
 * $k + 1 = \text{grade}(A|r_0)$ is reached. 
 *  or the case that $k = n + 1$
 
-The grade Krylov Subspace of $A$ wrt to $v$ will determine the maximum number of iterations before the termination of the algorithm given $v$.  from the discussion of Krylov Subspace, we consider the polynomial form of the Krylov Subspace $\mathcal K_k(A|r_0)$: 
+The grade Krylov Subspace of $A$ wrt to $v$ will determine the maximum number of iterations before the termination of the algorithm given $v$.  from the discussion of Krylov Subspace, we consider the polynomial form of the Krylov Subspace $\mathcal K_k(A|r_0)$ and the eigen decomposition $X\Lambda X^{-1}$: 
 
 $$
 \begin{aligned}
-    p_k(A|w)r_0 &= X\left(
-        \sum_{j = 0}^{k - 1}w_j\Lambda^j
-    \right)X^{-1}r_0
+    & \mathcal K_{k} \text{ linear dependent}
     \\
-    \exists\; w_k \neq \mathbf 0
-    : 
-    p_k(A|w_k)r_0 &= \mathbf 0 \iff \mathcal K_k(A|r_0) \text{ Lin Dep}
+	& 
+    \iff \exists w \neq \mathbf 0: p_k(A|w) = \mathbf{0} \implies \forall r_0: 
+    p_k(A|w)r_0 = Q\left(
+        \sum_{j = 0}^{k - 1}w_j\Lambda^j
+    \right)Q^{T}r_0
 \end{aligned}
 $$
 
@@ -189,6 +189,33 @@ And once the Krylov Subspace becomes linearly dependence, it would mean that the
 However, it's important to take note that, $X^{-1}r_0$ will also control the number of iterations required before the algorithm terminates. Imagine the extreme case when $r_0$ is a scalar mulitple of one of the eigenvector of $A$, let that eigenvector be $\lambda_j$ then $X^{-1}r_0$ would be the standard basis vector: $\mathbf e_j$, and in that case, if $p_k(\lambda_j|w_k) = 0$ , then $p_k(\lambda_j|w_k) = \mathbf 0$, which is the condition of terminations of the algorithm.
 
 **When A is non-Inertaible**
+
+
+
+
+----
+### **Krylov Subspace Grade Terminating Conditions** (REDO)
+
+> The $\text{grade}(A|r_0)$ determines an upper bound for number of steps CG undergoes. 
+
+We consider the Krylov Subspace accumulated during the CG algorithm. The grade of the Krylov subspace $\mathcal K_k(A|r_0)$ determines when the CG algorithm is going to terminate. Suppose that $\text{grade}(A|r_0)$ is $k + 1$, then $\mathcal K_{k}(A|r_0) = \mathcal K_{k = 1}(A|v)$, and $\mathcal K_k$ would be linear independent while $\mathcal K_{k+1}$ would be dependent. The Conjugate Gradient asserts $r_{k - 1}\in \mathcal K_k(A|r_0)$ and $r_k \in \mathcal K_{k + 1}(A|r_0) = \mathcal K_k(A|r_0)$. But at the same time the CG algorithm asserts that $r_j \perp r_j \;\forall\; 0 \le j \le k - 1$. Observe that inductively CG asserts $r_j \in \mathcal K_{j + 1}(A|r_0)$ and all of them are mutually orthogonal, and there are k of them in total. Using the nesting property of Krylov Susbapce we know that $r_k\perp \mathcal K_k(A|r_0)$. However, $r_k\in \mathcal K_k(A|r_0)$ because the subspace becomes invariant after, therefore it has to be the case that $r_k = \mathbf 0$. When this heppens, it will results in $b_{k - 1}$ being zero by CG, which gives $p_k = \mathbf 0$. Which will terminaetes the algorithm at step $k + 1$ due to a division of zero for $a_k$. 
+
+> The number of unique none-zero eigenvalues for the matrix $A$ is an upper bound for $\text{grade}(A|r_0)$. 
+
+Recall from the Krylov Susbspace discussion, when the grade is reached, there exists non trivial polynomial expression where: 
+
+$$
+\begin{aligned}
+    \mathbf 0 &= r_0 + \sum_{j = 1}^{k - 1}w_0^{-1}w_jA^jr_0
+    \\
+    \mathbf 0 &= Q\left(
+        I + \sum_{j = 1}^{k - 1}w^{-1}_0w_j\Lambda^jr_0
+    \right)Q^Tr_0 
+\end{aligned}
+$$
+
+We use the Eigen Factorization for the S.P.D matrix $A$. One of the immediate consequence of the above equation would imply that, if there exists a monoic polynomial interpolating all the eigenvalues of matrix $A$, then the grade of the Krylov Subspace is reached. As a consequence of that, the for any initial vector, then CG must terminate as the same number of unique eigenvalues of matrix $A$. 
+
 
 
 

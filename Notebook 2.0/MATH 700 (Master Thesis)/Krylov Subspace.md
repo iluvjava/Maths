@@ -91,7 +91,7 @@ $$
 p_k(A|w)v = \sum_{j = 0}^{k - 1}w_jA^jv
 $$
 
-The most important porperty of the subspace is the idea of grade denoted as $\text{grade}(A|v)$, indicating when the Krylov Subspace of $A$ wrt to $v$ stops expanding after a certain size. To show this idea, we consider the following 3 statements about Krylov Subspace which we will proceed to prove. 
+The most important porperty of the subspace is the idea of grade denoted as $\text{grade}(A|v)$, indicating when the Krylov Subspace of $A$ wrt to $v$ *becomes invariant* when the grade of the subspace is reached and it kept its invariance for all subsequent subspaces. To show this idea, we consider the following 3 statements about Krylov Subspace which we will proceed to prove. 
 
 
 **Statement (1)**: 
@@ -101,14 +101,15 @@ The most important porperty of the subspace is the idea of grade denoted as $\te
 
 **Statement (2)**: 
 > $$
->     \exists \min k \text{ s.t: }\mathcal K_k(A|v) = \mathcal K_{k + 1}(A|v) \implies 
+>     \exists ! k \text{ s.t: }\mathcal K_k(A|v) = \mathcal K_{k + 1}(A|v) \implies 
 >     \mathcal K_k(A|v) \text{ is Lin Ind} \wedge \mathcal K_{k + 1}(A|v) \text{ is Lin Dep}. 
 > $$
-> There eixsts a minimum such $k$ where the immediate next krylov subspace is linear dependent. 
+> There eixsts uniquely such $k$ where the immediate next krylov subspace is linear dependent.  
 
 
 **Statement (3)**: 
-> $$\mathcal K_k(A|v) \text{ Lin Dep} \implies \mathcal K_{k + 1}(A|v) = \mathcal K_k(A|v)$$
+> $$
+> \mathcal K_k(A|v) \text{ Lin Dep} \implies \mathcal K_{k + 1}(A|v) = \mathcal K_k(A|v)$$
 > if the $k$ krylov subspace is linear dependent, then it stops expanding and the successive krylov subspace spans the same space. 
 
 **Theorem**: Existence of The Grade of the Subspace
@@ -132,29 +133,32 @@ Therefore, the dimension of the successive krylov subspace forms a sequence of p
 
 **Proof of Statement (3)**
 
+The direction $\mathcal K_k(A|v) \subseteq \mathcal K_k(A|v)$ is trivial. Assuming that $\mathcal K_{k + 1}(A|v)$ is linear dependence, we wish to prove that $\mathcal K_{k + 1}(A|v)\subseteq \mathcal K(A|v)$. 
+
 Consider: 
 
 $$
 \begin{aligned}
-    & \mathcal K_k \text{Lin Dep}
+    & \mathcal K_{k + 1}(A|v) \text{ is Lin dependent} 
     \\
-    \implies & \exists w_k \neq \mathbf 0 : p_k(A|w^+_k)v = \mathbf 0
+    & \implies \exists w^{(k)}: A^kv  = p_k(A|w^{(k)})v
     \\
-    \implies & Ap_k(A|w_k^+)v = \mathbf 0
+    & x \in \mathcal K_{k + 1}(A|v)\iff \exists w^{(k + 1)}: p_{k + 1}(A|w^{(k + 1)}) v = x
     \\
-    & p_{k + 1}(A| [0 \; (w_k^+)^T]) = \mathbf 0
+    & x = w^{(k + 1)} A^kv + \sum_{j = 0}^{k - 1}w^{(k + 1)}_jA^jv
     \\
-    & \mathcal K_{k + 1} \text{ is Lin Dep}
+    & x = w^{(k + 1)}_k p_k(A|w^{(k)})v + \sum_{j = 0}^{k - 1}w^{(k + 1)}_jA^jv
+    \\
+    & x \in \mathcal K_k(A|v)
 \end{aligned}
 $$
 
-The recurrence of multplying by $A$ allows the krylov subspace to grow and the new bigger subspace will contain the previous one. Therefore inheriting the linear dependence, we use the idea of matrix polynomial for the proof. 
+For notations, we used $w^{(k)}, w^{(k + 1)}$ to represents the vector containing all coefficients for the polynomial and their $i$ element is denoted as $w^{(k)}_i$. From the last line, we proved that for all $x$ in $\mathcal K_{k + 1}(A|v)$, it's must also be in $\mathcal K(A|v)$. The frist line is using the fact that $\mathcal K_{k + 1}(A|v)$ is linear dependent, giving us an polynomial for the term $A^kv$. The next line is saying that for any element in $\mathcal K_{k + 1}(A|v)$ there exists a matrix polynomial representing $x$. Doingsome algebra, we reduced the polynomial of max degree $k$ into degree $k - 1$, proving that $x$ must also be in $\mathcal K_k(A|v)$.
+
 
 **Proof of Statement (2):**
 
-Assuming that statement (1) and (3) is true. Statement (1) implies the existence of the smallest such $k$. For contradiction, we only have one case to assume, that is $\mathcal K_k$ and $\mathcal K_{k + 1}$ are linear dependence. Then $\mathcal K_k$ is either Linear Dependence, or Independence. 
-
-If $\mathcal K_{k - 1}$ is linear dependence, then by (3) $\mathcal K_{k - 1} = \mathcal K_k$, hence $k$ is not the minimum. Else assume $\mathcal K_{k - 1}$ is linear independence, however $\mathcal K_k$ is linear dependence, and $\mathcal K_k \setminus \mathcal K_{k - 1} = \text{span}(A^{k - 1}v)$; therefore, $A^{k -1}v$ is in the span of $\mathcal K_{k -1}$, hence $\mathcal K_{k -1} = \mathcal K_k$, contradicing again that $k$ is the minimum such $k$. 
+Statement (2) is saying that $k$ is unique, and it makes $\mathcal K_k(A|v)$ is linear independent and the next $\mathcal K_{k + 1}(A|v)$ is linear dependent. Statement (1) asserts the existence of $k$, and statement (3) stated that $\mathcal K{k + j}(A|v)$ are linearly dependent for all $j\ge 0$. Statement (2) is a direct results of statement (1), (2). 
 
 ---
 ### **Consequences of these Properties**
@@ -207,3 +211,27 @@ Please also observe that, since krylov subspace is equivalent to matrix polynomi
 **The Grade**
 
 Observe that, the number of distinct eigenvalues of matrix $A$ and the number of zeros in $X^{-1}v$ elements determines the grade of a Krylov Subspace Generated by $A$ given $v$. Useful for framing the terminations conditions for Krylov Subspace Methods. 
+
+
+---
+### **The Grade and Minimal Polynomial and the Non-zero Constants**
+
+
+> Let $k$ be the grade of Krylov Subspace $A$ initialized with $v$, then exists $p_{k}(A|w)v = x$ for all $x$ in the subspace  with $w\neq \mathbf 0$, and it must be the case that $w_0\neq 0$.
+
+For contradiction suppose otherwise that such a polynomial exists then: 
+
+$$
+\begin{aligned}
+    \exists w &\neq \mathbf 0 : p_{k}(A|w)v = \mathbf 0 
+    \\
+    \implies& w_0v + \sum_{j = 1}^{k - 1} w_jA^jv = \mathbf 0
+    \\
+    \mathbf 0 &=\sum_{j = 1}^{k - 1} w_jA^jv
+    \\
+    \mathbf 0 &= A\sum_{j = 0}^{k - 2} w_{j + 1}A^jv
+    \\
+    \implies \sum_{j = 0}^{k - 2} w_{j + 1}A^jv &= \mathbf 0 
+\end{aligned}
+$$
+From the second line to the third, I susbstitute $w_0 = 0$ for contradiction. On the last line, it suggested that $k$ is not the smallest, and $k - 1$ might be the grade, contradicting the assumption that $k$ is the grade of the Krylov Subspace. Therefore, $w_0 \neq 0 $. 

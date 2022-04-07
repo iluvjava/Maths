@@ -39,5 +39,5 @@ There are 2 mathematical entities that experience the behaviors of matroid. Sets
 ---
 ### **Equal Cardinarlity of the Basis Sets**
 
-
+Take notice that the second conditions of the Matroid can be written as:$\forall A\neq B \in \mathcal B: A \leftrightarrow \mathcal B$. For every every basis that is not equaled to each other, there is a way of exchanging the elements between then. The exchange lemma stated that $a \in A\setminus B$ implies that $\exists b\in B \setminus A$, such that $B \cup \{a\} = \mathcal B$. Which means that we can always find a basis that allows an exchange of elements from $B$ to the set $A$. During this process, the cardinality of the basis is kept, therefore, all basis must have the same cardinality. 
 
