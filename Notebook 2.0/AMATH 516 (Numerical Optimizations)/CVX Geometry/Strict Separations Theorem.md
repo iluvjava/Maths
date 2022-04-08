@@ -62,4 +62,122 @@ Taking the theorem to its logical extreme, we can let $y$ approaching the convex
 
 
 
+---
+### **Another Proof: Direct Minimal Distance**
+
+We made another proof for the same problem. However this proof of the strict separation theorem doesn't require the use of the Obtuse Angle Lemma. It's something that can be found in \<A Coure in Combinatorial Optimizations\> by Alexander Schrijver. The approach is more direct and it uses proof by contradiction. 
+
+We define the set $\mathcal C \neq \emptyset$ to be convex and $z\neq \mathcal C$. We consider the following quatities: 
+
+$$
+\begin{aligned}
+    y\in \arg\min_{t\in \mathcal C} \Vert x - t\Vert_2^2
+    \\
+    c:= z - y
+    \\
+    b:= \frac{1}{2}(\Vert z\Vert^2 - \Vert y\Vert^2)
+\end{aligned}
+$$
+
+To make the speration works, we need to satisfies the conditions that: 
+
+$$
+\langle c, z\rangle \ge b \wedge \langle c ,x\rangle \le b \;\forall x \in \mathcal C
+$$
+
+We can verify the first statement directly by considering: 
+
+$$
+\begin{aligned}
+    & \underbrace{\Vert z\Vert^2 - \langle z, y\rangle}_{\langle c, z\rangle} - \underbrace{\frac{1}{2}(\Vert z\Vert^2 - \Vert y\Vert^2)}_{b}
+    \\
+    &= \frac{1}{2}\Vert z\Vert^2 + \frac{1}{2}\Vert y\Vert^2 - \langle z, y\rangle
+    \\
+    &= \frac{1}{2}\Vert z - y\Vert^2 \ge 0
+    \\
+    & =\langle c, z\rangle\ge b
+\end{aligned}
+$$
+
+Which is true. For contradiction we assume that the second part of the conclusion is not true, then we derive a contradiction on the definition of the parameter $y$, all meanwhile invoking the convexity property of the set. We assume that $\exists \;y \neq x \in \mathcal C$ where $\langle c, x\rangle > b$, firstly we try to obtain the following fact: 
+
+$$
+\begin{aligned}
+    & \langle c, y\rangle + \frac{1}{2}\Vert c\Vert^2
+    \\
+    &= \langle z - y, y\rangle + \frac{1}{2}\Vert c\Vert^2
+    \\
+    &= \langle z, y\rangle - \Vert y\Vert^2 + \frac{1}{2}\Vert c\Vert^2
+    \\
+    &= \langle z, y\rangle - \Vert y\Vert^2 + \frac{1}{2}\Vert z - y\Vert^2
+    \\
+    &= \langle z, y\rangle - \Vert y\Vert^2 + \frac{1}{2}(\Vert z\Vert^2 + \Vert y\Vert^2 - 2\langle z, y\rangle) 
+    \\
+    &= \frac{1}{2}(\Vert z\Vert^2 - \Vert y\Vert^2) = b
+    \\
+    \implies & 
+    \langle c, y\rangle < b
+\end{aligned}
+$$
+
+Since $\langle c, x\rangle> b$, using the above result we have $\langle c, x - y\rangle > 0$ which is conveient for defining: 
+
+$$
+\begin{aligned}
+    & 0 < \lambda <  \min
+    \left(
+        \frac{\langle c, x - y\rangle}{\Vert x - y\Vert^2}, 
+        1
+    \right)< 1
+    \\
+    w& := \lambda x + (1 - \lambda)y \in \mathcal C \quad \text{ Convexity} 
+\end{aligned}
+$$
+
+Such $\lambda$ exists and the minimum operator will never produces a negative number. Consider the contradiction: 
+
+$$
+\begin{aligned}
+    \Vert w - z\Vert^2 &= \Vert \lambda x + (1 - \lambda)y - z\Vert^2
+    \\
+    &= \Vert \lambda(x - y) - c\Vert^2
+    \\
+    &= \Vert \lambda(x - y) - c\Vert^2
+    \\
+    &= \lambda^2\Vert x - y\Vert^2 + \Vert c\Vert^2 - 2\lambda\langle c, x- y \rangle
+\end{aligned}
+$$
+
+And here we ponder the expression a bit more: 
+
+$$
+\begin{aligned}
+    \lambda < \min\left(
+        1, \frac{2\langle c, x - y\rangle}{\Vert x - y\Vert^2}
+    \right)
+    \\
+    \lambda \Vert x - y\Vert^2 < \min\left(
+        \Vert x - y\Vert^2, 2\langle c, x - y\rangle
+    \right)
+    \\
+    \lambda \Vert x - y\Vert^2 - 2\langle c, x - y\rangle
+    &< \min\left(
+        \Vert x - y\Vert^2- 2\langle c, x - y\rangle
+        , 0
+    \right) < 0
+    \\
+    \implies &
+   \lambda^2 \Vert x - y\Vert^2 - 2\lambda\langle c, x - y\rangle < 0 
+\end{aligned}
+$$
+
+Which substituting back certainly implies that: 
+
+$$
+\begin{aligned}
+    \Vert w - z\Vert^2 < \Vert c\Vert^2 = \Vert z - y\Vert^2
+\end{aligned}
+$$
+
+This contradict with the definition where, $y$ is the closest point to $z$ in the set $\mathcal C$. The proof is done. 
 

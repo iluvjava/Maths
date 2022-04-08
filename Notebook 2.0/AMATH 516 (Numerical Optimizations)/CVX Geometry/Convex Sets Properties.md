@@ -110,3 +110,8 @@ $$
 $$
 
 Take the difference between the 2 inner products and then get the norm less than zero, which implies that $z = z'$. 
+
+
+
+
+

@@ -13,7 +13,7 @@ The final objective we wish to prove is that the convergence bound for the CG me
 > \frac{\Vert e^{(k)}\Vert_A^2}{\Vert e^{(0)}\Vert_A^2}
 > \le 2 \left(
 >         \frac{\sqrt{\kappa} + 1}{\sqrt{\kappa} - 1}
->  \right)^k
+> \right)^k
 > $$
 
 This is also listed as **Theorem 3.1.1** in professor's Greenbaums work: \<Iterative Method for linear System\>. 
@@ -191,14 +191,14 @@ However, it's important to take note that, $X^{-1}r_0$ will also control the num
 **When A is non-Inertaible**
 
 
-
-
 ----
-### **Krylov Subspace Grade Terminating Conditions** (REDO)
+### **Krylov Subspace Grade Terminating Conditions** (REMASTERED)
 
 > The $\text{grade}(A|r_0)$ determines an upper bound for number of steps CG undergoes. 
 
-We consider the Krylov Subspace accumulated during the CG algorithm. The grade of the Krylov subspace $\mathcal K_k(A|r_0)$ determines when the CG algorithm is going to terminate. Suppose that $\text{grade}(A|r_0)$ is $k + 1$, then $\mathcal K_{k}(A|r_0) = \mathcal K_{k = 1}(A|v)$, and $\mathcal K_k$ would be linear independent while $\mathcal K_{k+1}$ would be dependent. The Conjugate Gradient asserts $r_{k - 1}\in \mathcal K_k(A|r_0)$ and $r_k \in \mathcal K_{k + 1}(A|r_0) = \mathcal K_k(A|r_0)$. But at the same time the CG algorithm asserts that $r_j \perp r_j \;\forall\; 0 \le j \le k - 1$. Observe that inductively CG asserts $r_j \in \mathcal K_{j + 1}(A|r_0)$ and all of them are mutually orthogonal, and there are k of them in total. Using the nesting property of Krylov Susbapce we know that $r_k\perp \mathcal K_k(A|r_0)$. However, $r_k\in \mathcal K_k(A|r_0)$ because the subspace becomes invariant after, therefore it has to be the case that $r_k = \mathbf 0$. When this heppens, it will results in $b_{k - 1}$ being zero by CG, which gives $p_k = \mathbf 0$. Which will terminaetes the algorithm at step $k + 1$ due to a division of zero for $a_k$. 
+For a justification, we consider the Krylov Subspace accumulated during the CG algorithm. The grade of the Krylov subspace $\mathcal K_k(A|r_0)$ determines when the CG algorithm is going to terminate. Suppose that $\text{grade}(A|r_0)$ is $k + 1$, then $\mathcal K_{k}(A|r_0) = \mathcal K_{k = 1}(A|v)$, and $\mathcal K_k$ would be linear independent while $\mathcal K_{k+1}$ would be dependent. The Conjugate Gradient asserts $r_{k - 1}\in \mathcal K_k(A|r_0)$ and $r_k \in \mathcal K_{k + 1}(A|r_0) = \mathcal K_k(A|r_0)$. But at the same time the CG algorithm asserts that $r_j \perp r_j \;\forall\; 0 \le j \le k - 1$. Observe that inductively CG asserts $r_j \in \mathcal K_{j + 1}(A|r_0)$ and all of them are mutually orthogonal, and there are k of them in total. Using the nesting property of Krylov Susbapce we know that $r_k\perp \mathcal K_k(A|r_0)$, therefore they must span the whole space. However, $r_k\in \mathcal K_k(A|r_0)$ because the subspace becomes invariant after $k - 1$, therefore it has to be the case that $r_k = \mathbf 0$. When it heppens, it will result in $b_{k - 1}$ being zero because of CG, which will give $p_k = \mathbf 0$. Which will terminaete the algorithm at step $k + 1$ due to a division of zero inside the expression for $a_k$. 
+        
+Next, we wish to say more about the maximum grade of a Krylov Subspace. Recall from the Krylov Susbspace discussion, when the grade is reached, there exists non trivial polynomial expression where:  
 
 > The number of unique none-zero eigenvalues for the matrix $A$ is an upper bound for $\text{grade}(A|r_0)$. 
 
@@ -214,10 +214,7 @@ $$
 \end{aligned}
 $$
 
-We use the Eigen Factorization for the S.P.D matrix $A$. One of the immediate consequence of the above equation would imply that, if there exists a monoic polynomial interpolating all the eigenvalues of matrix $A$, then the grade of the Krylov Subspace is reached. As a consequence of that, the for any initial vector, then CG must terminate as the same number of unique eigenvalues of matrix $A$. 
-
-
-
+We use the Eigen Factorization for the S.P.D matrix $A$. One of the immediate consequence of the above equation would imply that, if there exists a monoic polynomial interpolating all the eigenvalues of matrix $A$, then the grade of the Krylov Subspace is reached. As a consequence of that, the for any initial vector, then CG must terminate as the same number of unique eigenvalues of matrix $A$. Finally, take notice that the projections of $r_0$ only covers a portion of the eigenspace then the CG algorithm will terminates earlier. This is true because $\mathcal K_k(A|r_0) = Q\mathcal K_k(\Lambda| r_0)Q^Tr_0$, and please observe that the maximum dimension equals to the number of non-zero elements in $Q^Tr_0$, which further shorten the number of number of iterations required. 
 
 
 ---
@@ -385,7 +382,6 @@ p_k(z) =
 $$
 
 Where the line extra linear polynomial $(\lambda_n - z)/\lambda_n$ will interpolote the point $p_1(x) = 1, p_1(\lambda_n)=0$.
-
 
 
 Now we wish to observe these following fact about this polynomial: 
