@@ -10,13 +10,25 @@ During analysis, sometimes if a set is occupying a subspace in the finite dimens
 
 > The affine hull of a set $Q$ is the inersection of all affine sets that contain the set $Q$. The intersection of all affine space containing the set $Q$ automatically implies that it's also the smallest affine set containing the set $Q$ . 
 
+Firstly, let's define the idea of Affine span for a set of vectors: 
+
+$$
+\begin{aligned}
+    \text{affs}(X) := 
+    \left\lbrace
+        X\lambda: \langle \mathbf 1, \lambda\rangle = 1
+    \right\rbrace
+\end{aligned}
+$$
+
+---
 **Mathematical Definition**
 
 > $$
 > \text{affhull}(Q) = 
 > \left\lbrace
 >     \theta_1x_1 + \theta_2x_2 + \cdots, \theta_nx_n: 
->     \sum_{i = 1}^{n}\theta_i = 1
+>     \sum_{i = 1}^{n}\theta_i = 1, x_i \in Q \; \forall i \in [n], n \in \mathbb N
 > \right\rbrace
 > $$
 

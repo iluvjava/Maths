@@ -1,5 +1,6 @@
 [[Conjugate Gradient for Advanced Readers]]
 [[Lanczos Algoritm]]
+[[Conjugate Gradient and Oblique Projectors]]
 
 ---
 ### **Intro**
@@ -7,12 +8,12 @@
 The Lanczos algorithm creates a tridiagonal factorizations of the matrix $A$, suppose that $T_k = Q^H_kAQ_k$, then, take the following statement for granted: 
 
 $$
-\text{spancol}(Q_k) = \mathcal{K}_k(r_0)
+\text{ran}(Q_k) = \mathcal{K}_k(A|r_0)
 $$
 
 Assume that the Lanczos algorithm had the fix choice for its initialization vector, in this case: $r_0$. This is needed to fit the Krylov Minimization Framework of the Conjugate Gradient Algorithm.
 
-Our ultimaet goal here is to: 
+Our ultimate goal here is to: 
 
 1. Use the energy norm minimizaton frameworks of the conjugate gradient over the krylove subspace to establish an interpretation of the algorithm based on the Quantites from the Lanczos Algorithm. 
 2. Use the Lanczos Algorithm to find the conjugate vectors from the Conjugate Gradient Algorithm. 

@@ -44,16 +44,10 @@ And the rate of convergence is:
 > \frac{\Vert e^{(k)}\Vert_A}{\Vert e^{(0)}\Vert_A} \le 
 > 2 \left(
 >     \frac{\sqrt{\kappa_{n - 1}} - 1}{\sqrt{\kappa_{n - 1} + 1}}
-> \right)^{k - 1}
+> \right)^{k - 1} \quad \kappa_{n - 1} =  \frac{\lambda_{n - 1}}{\lambda_1}
 > $$
 
-Where $\kappa_{n - 1}$ is: 
-
-$$
-\kappa_{n - 1} =  \frac{\lambda_{n - 1}}{\lambda_1}
-$$
-
-Which gives better covergence rate than when all eigenvalues are equally spread out. This is true because the condition number is significally smaller when the largest eigenvalues that lies outside of all the others are removed. An extreme case would be all previous $n - 1$ eigenvalues are equal to the same except for $\lambda_n$.
+It gives better covergence rate than when all eigenvalues are equally spread out. This is true because the condition number is significally smaller when the largest eigenvalues that lies outside of all the others are removed. An extreme case would be all previous $n - 1$ eigenvalues are equal to the same except for $\lambda_n$.
 
 The bound is tight and there eixsts a choice of the initial guess and matrix such that the relative errer hit the equality case for some iterations value $k$.
 
@@ -66,7 +60,7 @@ $$
 Then, a better bound can be placed on the Relative Error of the Error energy norm: 
 
 $$
-\frac{\Vert e^{(k)} \Vert_A^2}{\Vert e^{(0)} \Vert_A^2}
+\frac{\Vert e^{(k)} \Vert_A}{\Vert e^{(0)} \Vert_A}
 \le
 |P_k(z)| \le 
 \left|

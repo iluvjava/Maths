@@ -25,7 +25,7 @@ $$
 \end{aligned}
 $$
 
-We aim to match the form of the first recurrence of Lanczos algorithm, between $q_1$ and $q_2$. We can do this because it's proven for the conjugate gradient that, the residual vectors $r_k$ are orthogonal to each other; but they are not yet unitary. To do that we need to do some substitutions. We consider susbtituting $r_0 = \Vert r_0\Vert q_1, r_1 = -\Vert r_1\Vert q_2$; then we consider: 
+We aim to match the form of the first recurrence of Lanczos algorithm, between $q_1$ and $q_2$. We can do this because it's proven for the conjugate gradient that, the residual vectors $r_k$ are orthogonal to each other; but they are not yet unitary. To do that we need to do some substitutions.  Consider susbtituting $r_0 = \Vert r_0\Vert q_1, r_1 = -\Vert r_1\Vert q_2$, then: 
 
 $$
 \begin{aligned}
@@ -116,7 +116,7 @@ $$
 \end{aligned}
 $$
 
-Reader please observe that, this is somewhat similar to the recurrence relations between the Lanczos vectors, however it's failing to match the sign, at the same time, it's not quiet matching for the recurrence of $\beta_k$ from the lanczos algorithm. To match it, we need the coeffcients of $r_{j - 1}$ and $r_{j + 1}$ to be in the same form, paramaterized by the same iterations parameter: $j$. To do that, consider the doing this:  
+Reader please observe that, this is somewhat similar to the recurrence relations between the Lanczos vectors, however it's failing to match the sign, at the same time, it's not quiet matching the form of the recurrence of $\beta_k$ from the lanczos algorithm. To match it, we need the coeffcients of $r_{j - 1}$ and $r_{j + 1}$ to be in the same form, paramaterized by the same iterations parameter: $j$. To do that, consider the doing this:
 
 $$
 \begin{aligned}
@@ -173,12 +173,12 @@ $$
 \end{aligned}
 $$
 
-Take notes that the form is now matched, but the expression for $\alpha_{j + 1}$ has an extra $b_{j - 1}/a_{j - 1}$, to resolve that, we take the audacity to make $b_0  0$ so that it's consistent with the base case. 
+Take notes that the form is now matched, but the expression for $\alpha_{j + 1}$ has an extra $b_{j - 1}/a_{j - 1}$, to resolve that, we take the audacity to make $b_0$ so that it's consistent with the base case. 
 
 ---
 ### **Matching The Residuals and Lanczos Vectors**
 
-Next, we seek to match the residual generated from the CG with the Lanczos Iterations. Here, I want to point out the fact that, there are potentially 2 susbstitution possible for the above derivation and it would still preserve the correctness of the proof. By which I mean the followin substitution would have also made it work: 
+We can't take the triumph yet; we need to take a more careful look into the sign between $q_j$ the Lanczos Vector and its equivalcne residual: $r_{j - 1}$ in CG. Here, I want to point out the fact that, there are potentially 2 susbstitution possible for the above derivation for the inductive case and regardless of which one we use, it would still preserve the correctness for the proof. By which I mean the following substitutions would have both made it work:
 
 $$
 \begin{aligned}
@@ -192,7 +192,7 @@ $$
 \end{aligned}
 $$
 
-Both substitution works the same because multiplying the equation by negative one would give the same equality, and we can always mulitply by and other negative sign to get it back. The key here is that, the sign going from $q_{j}$ to the next $q_{j - 1}$ will have to alternate. To find out precisely which one it is, we consider the base case for the Lanczos Vectors and Residuals: 
+Under the context, the operations $\pm, \mp$ are correlated, choose a sign for one, the other must be of opposite sign. In this case both substitutions work the same because multiplying the equation by negative one would give the same equality, and we can always mulitply by and other negative sign to get it back. The key here is that, the sign going from $q_{j}$ to the next $q_{j - 1}$ will have to alternate. To find out precisely which one it is, we consider the base case for the Lanczos Vectors and Residuals:
 
 $$
 \begin{aligned}

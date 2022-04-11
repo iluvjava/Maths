@@ -19,12 +19,22 @@ A convex linear combinations of a set of vectors is defined as:
 
 $$
 \begin{aligned}
-    S = \{x_i\in\mathbb{R}^n: i = 1, \cdots, k\}
+    S &= \{x_i\in\mathbb{R}^n: i = 1, \cdots, k\}
     \\
-    \text{cvxspan}(S):= 
+    \text{cvxspan}(S)&:= 
     \left\lbrace
         x: x = \sum_{i = 1}^{k}\lambda_i x_i, \lambda\in\Delta_k
     \right\rbrace
+    \\
+    &=
+    \left\lbrace
+        X\lambda : \lambda\in \Delta_k
+    \right\rbrace \quad X = \begin{bmatrix}
+        \\
+        x_1 & x_2 & \cdots& x_k
+        \\ 
+		\\
+    \end{bmatrix}
 \end{aligned}
 $$
 

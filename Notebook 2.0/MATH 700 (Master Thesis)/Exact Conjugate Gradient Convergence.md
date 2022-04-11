@@ -10,7 +10,7 @@ We wish to prove the convergence rate listed in the prereq of this file, which i
 The final objective we wish to prove is that the convergence bound for the CG method is given as: 
 
 > $$
-> \frac{\Vert e^{(k)}\Vert_A^2}{\Vert e^{(0)}\Vert_A^2}
+> \frac{\Vert e^{(k)}\Vert_A}{\Vert e^{(0)}\Vert_A}
 > \le 2 \left(
 >         \frac{\sqrt{\kappa} + 1}{\sqrt{\kappa} - 1}
 > \right)^k
@@ -42,9 +42,34 @@ $$
 T_k(x) = \min_{p(x)\in \mathcal{P}_{k + 1}}\max_{x\in [-1, 1]}|p(x)|
 $$
 
-It's the polynomial that crosses the real line $k$ times with minimal amount of wiggles.
+After the adaptation of the Chebyshev Type T we have: 
 
-Take this for granted. This polynomial also appeared under the following context for my notebook: 
+$$
+\begin{aligned}
+    T_k(x) &= \min_{
+        \substack{
+            p(x)\in \mathcal{P}_{k + 1}
+            \\
+            \text{s.t: } p(0)  = 1
+            }
+        }\max_{x\in [-1, 1]}|p(x)|
+    \\
+    p_k(x) &:= \frac{T_k(\varphi(x))}{T_k(\varphi(0))}
+    \quad \text{where: } \varphi(x) := \frac{2x - \lambda_1 - \lambda_n}{\lambda_n - \lambda_1}
+    \\
+    p_k(x) &= \min_{
+        \substack{
+            p(x)\in \mathcal{P}_{k + 1}
+            \\
+            \text{s.t: } p(0)  = 1
+        }
+    }\max_{x\in [\lambda_1, \lambda_n]}|p(x)|
+\end{aligned}
+$$
+
+Which will be useful later. 
+
+It's the polynomial that crosses the real line $k$ times with minimal amount of wiggles.Take this for granted. This polynomial also appeared under the following context for my notebook: 
 
 [[Spectral Method 2]]
 
@@ -224,13 +249,13 @@ We wish to show the claim that, we can adjust the Chebyshev Polynomial in the fo
 
 > $$
 > p_k(x) = \frac{T_k(\varphi(x))}{T_k(\varphi(0))}
-> \quad \varphi(x) = \frac{2x - \lambda_1 - \lambda_n}{\lambda_n - \lambda_1}
+> \quad \varphi(x) = \frac{2x - \lambda_n - \lambda_1}{\lambda_n - \lambda_1}
 > $$
 
 Where $T_k$ is the $k^{th}$ degree Chebyshev polynomial of the first kind, and we use $\lambda_1, \lambda_n$ to denote the quantity $\lambda_{\min}, \lambda_{max}$ for short. It's easy to verify that $p_k(0) = 1$. Next, observe the fact that $\varphi$ remaps the interval from $[\lambda_1, \lambda_n]$ (Assume that the eigenvalues of matrix $A$ is index in a way that $\lambda_1\le \cdots\le \lambda_n$) to the interval $[-1, 1]$, so that polynomial is adapted to the convex hull of the eigenvalues of matrix $A$. Next, also observe that: 
 
 $$
-\left|
+\forall x \in [\lambda_1, \lambda_n]: \left|
 \frac{T_k(\varphi(x))}{T_k(\varphi(0))}
 \right|
 \le 
@@ -249,46 +274,45 @@ Firstly, observe that $\varphi(0) \not\in [\lambda_1, \lambda_n]$, because all E
 
 $$
 \begin{aligned}
-    T_k(x) &= \cosh(k\text{ arccosh}(z)) \quad \forall |z| \ge 1
+    T_k(x) &= \cosh(k\text{ arccosh}(z)) \quad \forall z \ge 1
     \\
     \implies
-    T_k(\cosh(\zeta)) &= \cosh(k\zeta) \quad z = \cosh(\zeta)
+    T_k(\cosh(\zeta)) &= \cosh(k\zeta) \quad z := \cosh(\zeta)
 \end{aligned}
 $$
 
-To need to match the form of the expression $T_k(\varphi(0))$ with the expression of the form $T_k(\cosh(\zeta))$. Observe that: 
-
-$$
-\varphi(0) = \cosh(\zeta) = \cosh(\ln(y)) \quad \ln(y) = \zeta
-$$
-
-Recall that $\cosh(x) = (\exp(-x) + \exp(x))/2$, so in this case: 
-
-$$
-\varphi(0) = (y + y^{-1})/2
-$$
-
-From the definition of $\varphi$ we can also obtain: 
-
-$$
-\varphi(x) = \frac{-\lambda_1 - \lambda_n}{\lambda_n - \lambda_1}
-$$
-
-Simplifying: 
+We need to match the form of the expression $T_k(\varphi(0))$ with the expression of the form $T_k(\cosh(\zeta))$ given the freedom of varying $\zeta$. Observe that: 
 
 $$
 \begin{aligned}
-    &\frac{-\lambda_n/\lambda_1 - 1}{\lambda_n/\lambda_1 - 1}
+    \varphi(0) &= \cosh(\zeta) = \cosh(\ln(y)) \quad \ln(y) := \zeta
+    \\
+    \text{recall: } \cosh(x) &= (\exp(-x) + \exp(x))/2
+    \\
+    \implies 
+    \cosh(\ln(y)) &= (y + y^{-1})/2
+    \\
+    \varphi(0) &= (y + y^{-1})/2
+\end{aligned}
+$$
+
+Recall the definition of $\varphi(x)$ and then simplifies; 
+
+$$
+\begin{aligned}
+    \varphi(0) &= \frac{-\lambda_n - \lambda_1}{\lambda_n - \lambda_1}
+    \\
+    &= \frac{-\lambda_n/\lambda_1 - 1}{\lambda_n/\lambda_1 - 1}
     \\ 
-    =& - 
+    &= - 
     \frac{\lambda_n/\lambda_1 + 1}{\lambda_n/\lambda_1 - 1} 
     \\
-    \implies \varphi(0) =& 
+    \implies \varphi(0) &=
     -\frac{\kappa + 1}{\kappa - 1}
 \end{aligned}
 $$
 
-Therefore we seek for the solution of the equation: 
+Therefore we seek for the solution of the equation for a form match: 
 
 $$
 -\frac{\kappa + 1}{\kappa - 1} = 
@@ -307,15 +331,13 @@ Therefore, we can figure out the value of $T_k(\varphi(0))$ as the following:
 
 $$
 \begin{aligned}
-    & \frac{1}{2}(y + y^{-1})
-    \\
-    &= \cosh(\ln(y)) 
-    \\
-    &= \varphi(0)
+    \varphi(0)&= \frac{1}{2}(y + y^{-1})
     \\
     \implies 
     T_k(\varphi(0)) &= 
     T_k(\cosh(\ln(y)))
+    \\
+    &= \cosh(k\ln(y))
     \\
     &= (y^k + y^{-k})/2
 \end{aligned}
@@ -327,9 +349,7 @@ Then, substituting the value of $y$, and invert the quantity we have:
 
 $$
 \begin{aligned}
-    & \frac{1}{T_k(\varphi(0))}
-    \\
-    &= 2(y^k + y^{-k})^{-1}
+    \frac{1}{T_k(\varphi(0))} &= 2(y^k + y^{-k})^{-1}
     \\
     &= 
     2\left(
@@ -337,8 +357,17 @@ $$
             \frac{\sqrt{\kappa}\pm 1}{\sqrt{\kappa}\mp 1}
         \right)^{k} + 
         \left(
-            \frac{\sqrt{\kappa}\pm 1}{\sqrt{\kappa}\mp 1}
+            \frac{\sqrt{\kappa}\mp 1}{\sqrt{\kappa}\pm 1}
         \right)^{-k}
+    \right)^{-1}
+    \\
+    &= 2\left(
+        \underbrace{\left(
+            \frac{\sqrt{\kappa}+ 1}{\sqrt{\kappa}- 1}
+        \right)^{k}}_{> 1} + 
+        \underbrace{\left(
+            \frac{\sqrt{\kappa}- 1}{\sqrt{\kappa}+ 1}
+        \right)^{-k}}_{ < 1}
     \right)^{-1}
     \\
     & \le 2 \left(
@@ -357,16 +386,16 @@ We can place a better bound on the convergence rate when the largest eigenvalues
 
 $$
 \hat{T}_{[a, b]}^{(k)}(x) := 
-        T_k\left(
-            \frac{2x - b - a}{b - a}
-        \right)
+T_k\left(
+    \frac{2x - b - a}{b - a}
+\right)
 $$
 
 
 Eigenvalues of the matrix $A$ are like: 
 
 $$
-p_k(z) = 
+p_k(z) := 
 \frac
 {
     \hat{T}_{[\lambda_1, \lambda_{n - 1}]}^{(k - 1)}
@@ -381,15 +410,11 @@ p_k(z) =
 }\frac{\lambda_n - z}{\lambda_n}
 $$
 
-Where the line extra linear polynomial $(\lambda_n - z)/\lambda_n$ will interpolote the point $p_1(x) = 1, p_1(\lambda_n)=0$.
-
-
-Now we wish to observe these following fact about this polynomial: 
+Where the line extra linear polynomial $(\lambda_n - z)/\lambda_n$ will interpolote the point $p_1(x) = 1, p_1(\lambda_n)=0$. Observe these following fact about this polynomial: 
 
 $$
 \begin{aligned}
-    &
-    \frac{\lambda_n - z}{\lambda_n} \in [0, 1]
+    &\frac{\lambda_n - z}{\lambda_n} \in [0, 1]
     \quad \forall z \in [\lambda_1, \lambda_n]
     \\
     &
@@ -423,7 +448,11 @@ Now, we make use the theorem 3.1.1 which we just proved above to bound the quant
 
 $$
 \begin{aligned}
-    & \left|
+    T^{(k - 1)}_{[\lambda_1, \lambda_{n - 1}]}
+    \left(
+        0
+    \right)
+	&= \left|
         T_{k-1}\left(
             \frac{
                 -\lambda_{n-1} - \lambda_1
@@ -432,7 +461,7 @@ $$
         \right)
     \right|
     \\ 
-    = & 
+    &=
     \frac{1}{2}(y^{k - 1} + y^{-(k - 1)})
     \quad \text{ where: } y = \frac{\sqrt{\kappa_{n - 1}} + 1}{\sqrt{\kappa_{n - 1}} - 1}, \kappa_{n - 1} = \frac{\lambda_{n - 1}}{\lambda_1}
 \end{aligned}
@@ -441,7 +470,7 @@ $$
 Read please observe that this is exactly the same expression as what we did for theorem 3.1.1, except for the fact that the condition number is paramaterzied by the first $n - 1$ eigenvalues of the matrix. The tighter bound would be given as: 
 
 > $$
-> \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
+> \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} \le 
 > 2\left(
 >     \frac{\sqrt{\kappa_{n - 1}} - 1}{\sqrt{\kappa_{n - 1}} + 1}
 > \right)^{k - 1}
@@ -531,7 +560,7 @@ $$
 We applied the Chebyshev Bound theorem proved in the previous part. And $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
 
 > $$
-> \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2} \le 
+> \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} \le 
 > 2\left(
 >     \frac{\lambda_n - \lambda_1}{\lambda_1}
 > \right)
