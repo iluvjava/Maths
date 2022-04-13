@@ -54,7 +54,7 @@ Which completes this part of the proof, because the last statement states that f
 
 **Please Observe:**
 
-We didn't make use of the properties that $Q$ is convex, therefore this direction holds for non-convex set $Q$.Next, we prove that if $x \in \text{proj}_Q(y)$ then the obtuse angle part of the statement is true. Please consider: 
+We didn't make use of the properties that $Q$ is convex, therefore this direction holds for non-convex set $Q$ (Some sets that has a point at the point $z$, and then flatten out, they don't have to be convex). Next, we prove that if $x \in \text{proj}_Q(y)$ then the obtuse angle part of the statement is true. Please consider: 
 
 $$
 \begin{aligned}
@@ -96,14 +96,15 @@ The proof for this is stragiht forward if we make use of the previous proof. Con
 
 $$
 \begin{aligned}
-    z, z' &\in \underset{Q}{\text{proj}}(y)
+    & z, z' \in \underset{Q}{\text{proj}}(y)
     \\
-    \implies 
-    \langle y - z, z - z'\rangle \le 0 \;\wedge\;& 
-    \langle y - z', z - z'\rangle \le 0
+    \implies
+	&
+    \langle y - z, z - z'\rangle \le 0 \;\wedge\;
+    \langle y - z',z - z'\rangle \le 0
     \\
-    \implies 
-    \langle z - z', z - z'\rangle = \Vert z - z'\Vert_2^2 &\le 0
+    \implies &
+    \langle z - z', z - z'\rangle = \Vert z - z'\Vert_2^2 \le 0
 \end{aligned}
 $$
 
