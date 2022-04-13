@@ -176,3 +176,14 @@ $$
 $$
 a ∈ A, B ⊆ A
 $$
+
+
+I think the textbook mean: 
+
+$$
+\begin{aligned}
+    \lambda_1 + \cdots + \lambda_m = 1
+\end{aligned}
+$$
+
+Cause that is how affine linear span is define, and certainly affine linear dependence and independence should have a definition that is based on affine linear span first. 

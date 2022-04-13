@@ -13,18 +13,16 @@ We list/prove some of the useful properties of convex sets, in Finite Euclidean 
 > For any closed, convex, non-empty set $Q$ in the finite Eulidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an abstuse angle with all the other points in the set $Q$. Mathematically: 
 > $$
 > \begin{aligned}
->     \forall y \exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
+>     \forall y \;\exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
 >     \\
->     \text{AND: }
+>     \implies
 >     \langle y - z, x - z\rangle &\le 0 \quad \forall x \in Q
 > \end{aligned}
 > $$
 
 **Proof**:
 
-The proof involves 2 directions, firstly we wish to show the conclusion by assuming $z \in \text{proj}_Q(y)$, and then we do the reverse by assuming the abtuse angle part is true, proving the $z\in \text{proj}(y)$. 
-
-For the $\impliedby$ direction, consider: 
+The proof involves 2 directions, For the $\impliedby$ direction, consider for any $x\in Q$:
 
 $$
 \begin{aligned}
@@ -32,10 +30,10 @@ $$
     \\
     \langle y - z, x - z\rangle
     &= 
-    \langle y - z, x - y + y - z\rangle
+    \langle y - z, x - y + y - z\rangle \le 0
     \\
     &= \langle y - z, y - z\rangle + 
-    \langle y - z, x - y\rangle
+    \langle y - z, x - y\rangle \le 0
     \\
     &= \Vert y - z\Vert_2^2 + 
     \langle x - y, y - z\rangle \le 0 
@@ -52,11 +50,11 @@ $$
 \end{aligned}
 $$
 
-Which completes the proofe, because the last statement states that for all $x \in Q$, it's clearn that the distance from $y$ to $z$ is smaller than any other $x$ to $z$. 
+Which completes this part of the proof, because the last statement states that for all $x \in Q$, it's clear that the distance from $y$ to $z$ is smaller than any other $x$ to $z$. Weather this set $Q$ is convex or not it's still up to debate, but at we least do know that the point $z$ is an minimizer. 
 
 **Please Observe:**
 
-We didn't make use of the properties that $Q$ is convex, there fore this direction holds for non-convex set $Q$.Next, we prove that if $x \in \text{proj}_Q(y)$ then the obtuse angle part of the statement is true. Please consider: 
+We didn't make use of the properties that $Q$ is convex, therefore this direction holds for non-convex set $Q$.Next, we prove that if $x \in \text{proj}_Q(y)$ then the obtuse angle part of the statement is true. Please consider: 
 
 $$
 \begin{aligned}

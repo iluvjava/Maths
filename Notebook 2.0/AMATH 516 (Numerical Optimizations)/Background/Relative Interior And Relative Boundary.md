@@ -1,6 +1,6 @@
 [[Interior Topology]]
 [[Closure Topology]]
-[[Affine Hull]]
+[[Affine Hull, Affine Span]]
 
 ---
 ### **Intro**

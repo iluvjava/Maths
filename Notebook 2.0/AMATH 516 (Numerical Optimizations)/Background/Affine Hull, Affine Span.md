@@ -31,6 +31,7 @@ $$
 >     \sum_{i = 1}^{n}\theta_i = 1, x_i \in Q \; \forall i \in [n], n \in \mathbb N
 > \right\rbrace
 > $$
+> The affine hull is the affine span lf all possible sets of points in the set $Q$, equivalent to the intersections of all points containing the set $Q$. 
 
 Take note that, the weights $\theta$ now has a summation and doesn't have non-negative constraints, making it quiet different from the usual definition of convex hull of a set. 
 

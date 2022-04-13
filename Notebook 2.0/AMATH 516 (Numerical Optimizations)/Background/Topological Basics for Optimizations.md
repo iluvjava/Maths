@@ -59,7 +59,7 @@ General Topology
 [[Closure Topology]]
 [[Convex Sets]]
 [[Interior Topology]]
-[[Affine Hull]]
+[[Affine Hull, Affine Span]]
 [[Relative Interior And Relative Boundary]]
 
 Sets and Geometry related

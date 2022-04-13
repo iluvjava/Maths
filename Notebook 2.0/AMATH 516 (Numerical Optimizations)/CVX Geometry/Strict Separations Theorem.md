@@ -181,3 +181,5 @@ $$
 
 This contradict with the definition where, $y$ is the closest point to $z$ in the set $\mathcal C$. The proof is done. 
 
+
+![](strict_seperations_convexity_direct_proof.jpeg)
