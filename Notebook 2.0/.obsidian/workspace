@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,6 +113,7 @@
   },
   "active": "80faceacfd318416",
   "lastOpenFiles": [
+    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
     "convex set property.md",
     "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
@@ -121,7 +122,6 @@
     "CSE 546 (Machine Learning Fundamentals)/Machine Learning (CSE 546 ++).md",
     "Machine Learning (Machine Learning Fundamentals)/Convexity.md",
     "Machine Learning (CSE 546++)/Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md"
   ]
 }
