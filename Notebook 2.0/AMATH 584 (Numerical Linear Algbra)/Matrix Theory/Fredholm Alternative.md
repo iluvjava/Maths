@@ -1,7 +1,15 @@
 Some of the proofs need properties of [[Complex Inner Product]]
 
 ---
+### **Theorem Statement**
 
+> $$
+> (\exists x: Ax = b) \iff \neg (\exists\; y^Tb\neq \mathbf 0 : A^Ty = \mathbf 0)
+> $$
+
+Observe that: $A^Ty = \mathbf 0$ implies that $y\perp \text{ran}(A)$, and if that isthe case, they $b\perp y$ will have to be true so that $y\in \text{ran}(A)$, asserting the existence of the a solution for $Ax = b$ and vice varsa. Take this as a proof for the theorem. 
+
+---
 #### **Lin Alg: Only the Real**
 
 * Let's say that: $A \in \mathbb{R}^{m\times n}$, then we will know that: 
@@ -53,14 +61,3 @@ So, let's frame this results here, this results is obtained by exploiting the pr
 > $$
 > \text{null}(A^H) \perp \text{range}(A) \hspace{2em} \text{null}(A) \perp \text{range}(A^H)
 > $$
-
---- 
-#### **The Norm Equations**
-
-$$
-Ax = b
-$$
-
-$$
-A^TAx = A^Tb
-$$

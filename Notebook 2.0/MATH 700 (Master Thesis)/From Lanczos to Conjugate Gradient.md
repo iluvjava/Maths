@@ -34,7 +34,7 @@ We see to verify these claims:
 > \end{cases}\tag{0}
 > $$
 
-The quantities $\alpha, \beta$ are the diaognal and the sub or super diagonal of the matrix $T_k$ from the Iterative Lanczos Algorithm, and $r_k$ is the residual from the Conjugate Gradient Algorithm, and $Q_k$ is the orthogonal subsapce generated from the Lanczos Algorithm. 
+The quantities $\alpha, \beta$ are the diaognal and the sub or super diagonal of the matrix $T_k$ from the Iterative Lanczos Algorithm, and $r_k$ is the residual from the Conjugate Gradient Algorithm, and $Q_k$ is the orthogonal matrix generated from the Lanczos Algorithm. 
 
 **Notations**
 
@@ -70,7 +70,7 @@ $$
 \end{aligned}\tag{2}
 $$
 
-[1]: Is asserted by the CG algorithm, derived via krylov subspace and minimization on the energy norm of the error, it asserts that $r_{k + 1} \perp \mathcal{K}_k(r_0)$.
+\[1\]: Is asserted by the CG algorithm, derived via krylov subspace and minimization on the energy norm of the error, it asserts that $r_{k + 1} \perp \mathcal{K}_k(r_0)$.
 
 Now, we are interested in the residual of the CG, and how it's related to the Lanczos Algorithm. Consider: 
 
@@ -96,7 +96,7 @@ $$
 \end{aligned}\tag{3}
 $$
 
-[1]: Recall that the Iterative Lanczos starts with $q_1 = r_0$, and therefore, $r_0 = \beta q_1$
+\[1\]: Recall that the Iterative Lanczos starts with $q_1 = r_0$, and therefore, $r_0 = \beta q_1$
 
 **Reader Please Observe**: 
 
@@ -140,9 +140,7 @@ $$
 \end{aligned}\tag{4}
 $$
 
-As we ca see, the solution vector $x_k$ consists of conjugate vectors, and it's a linear combinations of conjugate vectors. 
-
-Next, we are going to prove that they are conjugate, they are conjugate because: 
+As we ca see, the solution vector $x_k$ consists of conjugate vectors, and it's a linear combinations of conjugate vectors. Next, we are going to prove that they are conjugate, they are conjugate because: 
 
 $$
 \begin{aligned}
@@ -158,7 +156,7 @@ $$
 \end{aligned}\tag{5}
 $$
 
-$U_k$ is upper triangular, therefore, it's inverse it's also upper triangular, therefore, $U_k^{-T}$ is lower triangular, and because $L_k$ is also lower triangular, their product is a lower triangular matrix, and therefore, the resulting matrix above is lower triangular, however, given that $P_k^TAP_k$ is symmetric, therefore, $U_k^{-T}L_k$ will have to be symmetric as well, and a matrix that is lower triangular and symmetric has to be diagonal. Therefore, the columns of $P_k$ are conjugate vectors. 
+Reader please observe that $U_k$ is upper triangular, therefore, it's inverse it's also upper triangular, therefore, $U_k^{-T}$ is lower triangular, and because $L_k$ is also lower triangular, their product is a lower triangular matrix, and therefore, the resulting matrix above is lower triangular, however, given that $P_k^TAP_k$ is symmetric, therefore, $U_k^{-T}L_k$ will have to be symmetric as well, and a matrix that is lower triangular and symmetric has to be diagonal. Therefore, the columns of $P_k$ are conjugate vectors. 
 
 **However**, we also have the choice to decompose the $T_k$ using LDL decomposition. Using that method, we would have made the additional assumption that $T_k$ is symmetric positive definite, however, in the above formulation, no such assumption has been made, and it has the pontential of pointing to other algorithms for definite symmetric system. There are a lot of questions to ask, let's skip that in this exerp. 
 

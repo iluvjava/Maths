@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+            "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+            "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+                "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +113,15 @@
   },
   "active": "80faceacfd318416",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
     "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
     "convex set property.md",
     "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md",
-    "CSE 546 (Machine Learning Fundamentals)/Convexity.md",
-    "CSE 546 (Machine Learning Fundamentals)/Machine Learning (CSE 546 ++).md",
-    "Machine Learning (Machine Learning Fundamentals)/Convexity.md",
-    "Machine Learning (CSE 546++)/Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md"
   ]
 }

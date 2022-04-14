@@ -1,5 +1,8 @@
 [[Polytopes]]
 [[Cone]]
+[[Strict Separations Theorem]]
+
+In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma)
 
 ---
 ### **Intro**
@@ -32,11 +35,11 @@ $$
 \begin{aligned}
     & b \neq \text{cone}(A)
     \\
-    \implies H &:= \{y: c^Ty = c_0\} \text{ that separates}
+    \implies \exists\; H &:= \{y: c^Ty = c_0\} \text{ that separates}
 \end{aligned}
 $$
 
-The hyperplane doesn't have to be affine and we can let it crosses the origin, meaning that $c_0 = 0$ is possible and then we let $b$ in strict negative half and $y$ in non-negative half. 
+The hyperplane doesn't have to be affine and we can let it crosses the origin, we can do this because we have a $\text{cone}(A)$ meaning that $c_0 = 0$ is possible and then we let $b$ in strict negative half and $y$ in non-negative half. 
 
 $$
 \begin{aligned}
@@ -51,3 +54,37 @@ Take note that, $y$ being in the cone on columns of $A$ means that $c^Ta_i \ge 0
 
 ---
 ### **Variants**
+
+
+**Variant 1**: 
+> $$
+> \exists x: Ax \le b \iff 
+> \neg( \exists \; y \ge \mathbf 0 : y^TA = \mathbf 0 , y^Tb > 0 )
+> $$
+
+Observe the equivalence between the statements. 
+
+$$
+\begin{aligned}
+    & \exists\; x: Ax \le b \iff
+    (P:= \{x: Ax \le b\} \neq \emptyset)
+    \\
+    & \exists\; y \ge \mathbf 0 : y^TA = \mathbf 0 
+    \iff
+    \mathbf 0 \in \text{cone}(A^T)
+\end{aligned}
+$$
+
+
+**Variant 2**
+> $$
+> \begin{aligned}
+>     \exists x\ge \mathbf 0: Ax \le 0 \iff \neg 
+>     (
+>         \exists y \ge \mathbf 0 :
+>         y^TA\ge \mathbf 0, b^Ty < 0
+>     )
+> \end{aligned}
+> $$
+
+
