@@ -103,3 +103,4 @@ We are interested in looking for an original, Unpreturbed problems of CG such th
 To Drive the intuition further into the matter, recall that: 
 
 ### TODO: Finish this!
+
