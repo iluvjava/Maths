@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "preview"
           }
         },
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 395,
-    "collapsed": true
+    "width": 395
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +114,15 @@
   },
   "active": "80faceacfd318416",
   "lastOpenFiles": [
+    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md",
+    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+    "MATH 514 (Combinatorics Optimizations)/Polytopes.md",
+    "MATH 514 (Combinatorics Optimizations)/Matroid.md",
+    "MATH 514 (Combinatorics Optimizations)/Linear Programming.md",
     "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
-    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
-    "AMATH 516 (Numerical Optimizations)/Background/Dual Cone.md",
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md"
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
   ]
 }

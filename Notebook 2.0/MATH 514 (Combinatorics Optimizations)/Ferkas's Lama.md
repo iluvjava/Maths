@@ -62,7 +62,40 @@ Take note that, $y$ being in the cone on columns of $A$ means that $c^Ta_i \ge 0
 > \neg( \exists \; y \ge \mathbf 0 : y^TA = \mathbf 0 , y^Tb < 0 )
 > $$
 
-We transform the constraints $Ax \le b$ into the same form as the original, and then we match back the parameters for the other statement. 
+We transform the constraints $Ax \le b$ into the same form as the original, and then we match back the parameters for the other statement. Firstly we wish to transforom the polyhedra of the form $Ax \le b$ to the form $Ax' = b', x'\ge \mathbf 0$. To do that, consider the following: 
+
+$$
+\begin{aligned}
+    & \forall x: Ax \le b \implies \exists! s\ge \mathbf 0: Ax + s = b
+    \\
+    & \forall x\in \mathbb R^n \;\exists\; x^+, x^- \ge \mathbf 0: 
+    x = x^+ - x^- \quad 
+    \\
+    &\hspace{1.1em} \implies 
+        A(x^+ - x^-) + s = b
+    \\
+    & A' := \begin{bmatrix}
+        A & -A & I
+    \end{bmatrix}\begin{bmatrix}
+        x^+ \\ x^- \\ s
+    \end{bmatrix}
+    \\
+    & x' := \begin{bmatrix}
+        x^+ \\ x^- \\ s
+    \end{bmatrix}
+    \\
+    &\hspace{1.1em} \implies 
+    A'x' = b , x' \ge \mathbf 0
+\end{aligned}
+$$
+
+The mapping between $x$ and $x'$ might not be a one to one relations, there are more $x'$ than $x$. Given any $x = x^+ + x^-$, we also have $x = (x^+ - \delta) + (x^- + \delta)$, as long as $|\delta| \le \min(x^+, x^-)$. A vertex $x$ in the original polyhedra might not be able to maps back to a unique vertex in the new polyhedra. After such a transformation, we apply the Ferka's Lemma to the new polyhedra $A'x' = b, x' \ge \mathbf 0$, giving us the conditions: 
+
+$$
+\begin{aligned}
+    \neg (\exists y \ge \mathbf 0 : y^TA' \ge \mathbf 0 \wedge b^Ty < 0)
+\end{aligned}
+$$
 
 
 **Variant 2**

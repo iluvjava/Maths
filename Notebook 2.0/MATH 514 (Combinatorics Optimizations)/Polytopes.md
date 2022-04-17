@@ -13,14 +13,15 @@ $$
 \end{aligned}
 $$
 
-Where, $\le$ is an elementwise inequality. A closed polyhedra is referred to as a *polytope*. 
-
-
+Where, $\le$ is an elementwise inequality. A closed polyhedra is referred to as a *polytopes*. 
 
 --- 
 ### **Vertices**
 
-> Let $P$ be a polytope, then a point $z\in P$ is called a vertex when: there dosen't exist any $x, y\in P\setminus\{z\}, \lambda \in (0, 1): z = \lambda x + (1 - \lambda)y$. Graphically, a vertex is something on the convex set where it's impossible to wiggle it alone a line such that it stills remains inside of the convex set. 
+**Definition**:
+
+> Let $P$ be a polytope, then a point $z\in P$ is called a vertex when: there dosen't exist any $x, y\in P\setminus\{z\}, \lambda \in (0, 1): z = \lambda x + (1 - \lambda)y$. Graphically, a vertex is something on the convex set where it's impossible to wiggle it along a line such that it stills remains inside of the convex set. 
+
 
 ---
 ### **Vertex Submatrix Rank Theorem**
@@ -66,20 +67,27 @@ $$
 \begin{aligned}
     & z = \lambda x + (1 - \lambda)y = x + (1 - \lambda)(y - x)
     \\
-    \implies & z - x = (1 - \lambda)(y - x)
+    & \hspace{1.1em}
+    \implies  z - x = (1 - \lambda)(y - x)
     \\
-    & a_i^T(x - y) > 0 \implies a_i^T(x - z) = (1 - \lambda)a_i^T(x - y) > 0
+    &
+    a_i^T(x - y) > 0 \implies a_i^T(x - z) = (1 - \lambda)a_i^T(x - y) > 0
     \\
-    \implies & a_i^Tx = a_i^Tz + a_i^T(x - z) = b_i + a_i^T(x - z) > b_i
+    & \hspace{1.1em}
+    \implies  a_i^Tx = a_i^Tz + a_i^T(x - z) = b_i + a_i^T(x - z) > b_i
     \\
-    \implies &  a_i^Tx \ge 0 \implies x \notin P
+    & \hspace{2.2em}
+    \implies   a_i^Tx \ge 0 \implies x \notin P
     \\
-    & a_i^T(x - y) < 0 \implies a_i^T(y - z) = \lambda a_i^T(y - x) > 0
+    &
+    a_i^T(x - y) < 0 \implies a_i^T(y - z) = \lambda a_i^T(y - x) > 0
     \\
-    \implies & 
+    &\hspace{1.1em}
+    \implies
     a_i^T y = a_i^Tz + a_i^T(y - z) = b_i + a_i^T(y - z) > b_i
     \\
-    \implies & a_i^Ty > b_i \implies y \notin P
+    & \hspace{2.2em}
+    \implies  a_i^Ty > b_i \implies y \notin P
 \end{aligned}
 $$
 

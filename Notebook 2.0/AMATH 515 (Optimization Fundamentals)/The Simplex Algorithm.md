@@ -1,4 +1,4 @@
-It's an iterative algorithm that designed for solving Linear Programming problems, discussed in: [[Linear Programming]]
+It's an iterative algorithm that designed for solving Linear Programming problems, discussed in: [[AMATH 515 (Optimization Fundamentals)/Linear Programming]]
 
 
 ---
