@@ -1,6 +1,7 @@
 [[Conjugate Gradient for Advanced Readers]]
 [[Lanczos Algoritm]]
 [[Conjugate Gradient and Oblique Projectors]]
+[[Cauchy Interlace Theorem]]
 
 ---
 ### **Intro**
@@ -195,9 +196,7 @@ Q_k = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-
-
-The Decomposition of the Symmetric Tridiaognal Factorizations asserts the following structures: 
+Using the invertibility of the matrix $A$ and Cauchy Interlace Theorem, $T_k$ is invertible, we consider the LU decomposition of the symmetric tridiagonal matrix:
 
 $$
 T_k = L_k U_k =
@@ -215,9 +214,7 @@ T_k = L_k U_k =
 \end{bmatrix}
 $$
 
-At this time, take it for granted that the super diagonal of $U_k$ are indeed the same as the super diagonal of the SymTridiagonal matrix $T_k$. 
-
-And from expression (4), we have: 
+Reader should agree with some considerations that the upper diagonal of $U_k$ are indeed the same as the upper diagonal of the SymTridiagonal matrix $T_k$. And from expression (4), we have:
 
 $$
 \begin{aligned}
@@ -233,7 +230,7 @@ $$
 \end{aligned}
 $$
 
-Next, we wish to derive the recurrence between $p_{k + 1}$ and $p_k$. Which is: 
+On the third line, we factor out the last column for the matrix $P_k$. Next, we wish to derive the recurrence between $p_{k + 1}$ and $p_k$. Which is: 
 
 $$
 \begin{aligned}
@@ -249,7 +246,7 @@ $$
 \end{aligned}\tag{7}
 $$
 
-Next, we wish to seek for the recurrences of the parameters $u_k, l_k$. Let's consider the recurrence: 
+We made use of the fact that the matrix $U_k$ is unit upper bidiagonal. Next, we seek for the recurrences of the parameters $u_k, l_k$. Let's consider the recurrence:
 
 $$
 \begin{aligned}
@@ -260,7 +257,7 @@ $$
         \beta_k \xi^T_k & \alpha_{k + 1}
     \end{bmatrix} = 
     \begin{bmatrix}
-        L_k & \mathbf{0} \\ l_k \xi_k^{-1} & 1
+        L_k & \mathbf{0} \\ l_k \xi_k^{T} & 1
     \end{bmatrix}
     \begin{bmatrix}
         U_k & \eta_k \xi_k \\
@@ -300,16 +297,14 @@ $$
 \end{cases}\tag{8}
 $$
 
-The base case is $u_1 = \alpha_1$. 
-
-And to figure out the recurrence relations of $(L^{-1}_k)_{:, 1}$, consider: 
+The base case is $u_1 = \alpha_1$. The recurrence of the parameter $u_k$ is immediately useful for figuring out the recurrence for $x_k$, And to figure out the recurrence relations of $(L^{-1}_k)_{k, 1}$, we consider the following fact:
 
 $$
 \begin{aligned}
     L^{-1}_k L_k &= I 
     \\
     \begin{bmatrix}
-        L^{-1}_k & \mathbb{0} \\
+        L^{-1}_k & \mathbf{0} \\
         s_k^T & d_{k + 1}
     \end{bmatrix}
     \begin{bmatrix}
@@ -326,7 +321,7 @@ $$
 
 **Reader please observe that**
 
-$d_{k + 1} = 1$, and it has to be that the the lower diagonal sub vector in the results has to be zero. For the bi-lower unit diagonal matrix $L_k$, we cannot predict the structure, most of the time it's likely to be dense and unit lower  triangular. We are interested in look for the first element of the vector $s_k^T$, the equality will assert: 
+It equals to the identity matrix therefore $d_{k + 1} = 1$, and it has to be that the the lower diagonal sub vector in the results has to be zero. For the bi-lower unit diagonal matrix $L_k$, we cannot predict the structure, most of the time it's likely to be dense and unit lower triangular. We are interested in look for the first element of the vector $s_k^T$, the equality will assert:
 
 $$
 \begin{aligned}
@@ -358,19 +353,17 @@ Therefore the recurrence for the step size into the direction of the conjugate v
 ---
 ### **The LU Conjugate Direction Algorithm**
 
-We are intersted in figuring the base cause for the recursions that we highlighted above. 
-
-At the start of the algorithm, the following quantities are established: 
+We are intersted in figuring the base cause for the recursions that we highlighted above. At the start of the algorithm, the following quantities are established: 
 
 $$
 \begin{aligned}
     q^T_1Aq_1 &= \alpha_1 \quad p_1 = q_1
     \\
-    T_1 &= \alpha_1 \implies u_1 = \alpha_1
+    T_1 &= \alpha_1 \quad  u_1 = \alpha_1
     \\
-    L_1 &= 1, U_1 = \alpha_1
+    L_1 &= 1 \quad U_1 = \alpha_1
     \\
-    \beta_0 = 0, l_1 &= 0
+    \beta_0 &= 0 \quad l_1 = 0
 \end{aligned}
 $$
 
@@ -423,10 +416,11 @@ We are interesting in deriving the conjugate gradient algorithm from the relatio
 ---
 ### **Extra Comments**
 
-When Lanczos Is applied to various type of SPD Matrice, there are some features that the users should observe from the algorithm. 
-
-$T_k$ is a real positive matrix, and it's also symmetric(Hermitian Too). 
-
-$T_k$ only has non zero positive eigenvalues (As a result of being positive and SPD), and **it has all unique eigenvalues**. This is true even if the matrix $A$ as repeating eigenvalues. The initial random vector, $q_1\in \text{span}(\{u_1, u_2\cdots u_m\})$ where $u_i, \lambda_i$  are the eigen system for the matrix $A$ and $u_i$ are all **unique**, then, the dimension of the Krylov Subspace is not going to exceed $\text{span}(\{u_1, u_2, \cdots u_m\})$, because it's invariant under $A$, and it has only $m$ dimensions. Therefore, if we assume that $T_n$ has 2 repeated ritz vectors and values, then it's also the the repeating eigen values and vectors for $A$, which means Lanczos terminates earlier than $n$, therefore, a contradiction is shown, therefore, $T_n$ in the end has to have all unique eigenvalues and vectors. 
+When Lanczos Is applied to various type of SPD Matrice, there are some features that the users should observe from the algorithm. $T_k$ is a real positive matrix, and it's also symmetric(Hermitian Too). $T_k$ only has non zero positive eigenvalues (As a result of being positive and SPD), and **it has all unique eigenvalues**. This is true even if the matrix $A$ as repeating eigenvalues. The initial random vector, $q_1\in \text{span}(\{u_1, u_2\cdots u_m\})$ where $u_i, \lambda_i$  are the eigen system for the matrix $A$ and $u_i$ are all **unique**, then, the dimension of the Krylov Subspace is not going to exceed $\text{span}(\{u_1, u_2, \cdots u_m\})$, because it's invariant under $A$, and it has only $m$ dimensions. Therefore, if we assume that $T_n$ has 2 repeated ritz vectors and values, then it's also the the repeating eigen values and vectors for $A$, which means Lanczos terminates earlier than $n$, therefore, a contradiction is shown, therefore, $T_n$ in the end has to have all unique eigenvalues and vectors. 
 
 The residual and solution computed by this algorithm is very different from the conjugate gradient algorithm due to errors in floating points. However, the solution produced by $x_0 + Q_ky_k$ will still converge, but $Q_k$ are not orthogonal, and huge errors are presented for $Q_k^TAQ_k = T_k$. 
+
+
+**Important Observations**:
+
+In the above proof, I am not sure where we used the fact that matrix $A$ is a P.S.D matrix. Please refers to sources to make sure we know what is happening here. It seems like if the above algorithm is the same as the FOM algorithm but with symmetric matrices, then it would imply that Conjugate Gradient is applicable for Hermitian Indefinite system, which from previous derivation, is absolutely not true. 

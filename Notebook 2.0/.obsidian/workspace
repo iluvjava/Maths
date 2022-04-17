@@ -6,10 +6,11 @@
       {
         "id": "80faceacfd318416",
         "type": "leaf",
+        "dimension": 46.111111111111114,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
             "mode": "source"
           }
         },
@@ -18,10 +19,11 @@
       {
         "id": "29c240c49d6433e3",
         "type": "leaf",
+        "dimension": 53.888888888888886,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
             "mode": "preview"
           }
         },
@@ -93,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+                "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +115,15 @@
   },
   "active": "80faceacfd318416",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
+    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
     "AMATH 516 (Numerical Optimizations)/Background/Dual Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
-    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "convex set property.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Preserving Operations.md"
+    "MATH 700 (Master Thesis)/From Lanczos to Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md"
   ]
 }

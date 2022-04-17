@@ -59,21 +59,10 @@ Take note that, $y$ being in the cone on columns of $A$ means that $c^Ta_i \ge 0
 **Variant 1**: 
 > $$
 > \exists x: Ax \le b \iff 
-> \neg( \exists \; y \ge \mathbf 0 : y^TA = \mathbf 0 , y^Tb > 0 )
+> \neg( \exists \; y \ge \mathbf 0 : y^TA = \mathbf 0 , y^Tb < 0 )
 > $$
 
-Observe the equivalence between the statements. 
-
-$$
-\begin{aligned}
-    & \exists\; x: Ax \le b \iff
-    (P:= \{x: Ax \le b\} \neq \emptyset)
-    \\
-    & \exists\; y \ge \mathbf 0 : y^TA = \mathbf 0 
-    \iff
-    \mathbf 0 \in \text{cone}(A^T)
-\end{aligned}
-$$
+We transform the constraints $Ax \le b$ into the same form as the original, and then we match back the parameters for the other statement. 
 
 
 **Variant 2**
@@ -86,5 +75,6 @@ $$
 >     )
 > \end{aligned}
 > $$
+
 
 

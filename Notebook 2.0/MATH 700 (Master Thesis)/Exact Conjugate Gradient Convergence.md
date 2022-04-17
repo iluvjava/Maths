@@ -502,25 +502,25 @@ T_{k - 1}(\varphi(x))
 \quad \text{where: }\varphi(x) = \frac{2x - \lambda_2 - \lambda_n}{\lambda_n - \lambda_2}
 $$
 
-let's consider another weighting function, and use it to add to our optimal minimizing polynomial: 
+let's consider another liear weight function $w(x)$ where it take value $1$ at $x = 0$, $0$ at $x = \lambda_1$, and use it to add to our optimal minimizing polynomial: 
 
 $$
 \begin{aligned}
-    w(z) &=  \frac{\lambda_1 - z}{\lambda_1} 
+    w(z) &:=  \frac{\lambda_1 - z}{\lambda_1} 
     \\
-    p_k(z) &= w(z)\left(
+    p_k(z) &:= w(z)\left(
         \frac{\hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(z)}
         {
             \hat{T}_{[\lambda_2, \lambda_n]}^{(k - 1)}(z)
         }
     \right)
-    \\
+    \\\implies
     \max_{x\in[\lambda_2, \lambda_n]} |w(x)| &=
     \frac{\lambda_n - \lambda_1}{\lambda_1}
 \end{aligned}
 $$
 
-In this case, the maximal value of the weight function $w$ is achieved via $x = \lambda_1$, and the absolute value will swap the sign of the function. Therefore, we have: 
+In this case, the maximal value of the weight function $w$ is achieved via $x = \lambda_1$, and the absolute value swapped the sign of the function. Therefore, we have: 
 
 $$
 \begin{aligned}
@@ -557,7 +557,7 @@ $$
 \end{aligned}
 $$
 
-We applied the Chebyshev Bound theorem proved in the previous part. And $\kappa_0 = (\lambda_n - \lambda_1)/\lambda_1$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
+We applied the Chebyshev Bound theorem proved in the previous part. And $\kappa_0 = \lambda_n/\lambda_2$, and that is the maximal bound for the absolute value of the polynomial. Let's state the results here: 
 
 > $$
 > \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} \le 

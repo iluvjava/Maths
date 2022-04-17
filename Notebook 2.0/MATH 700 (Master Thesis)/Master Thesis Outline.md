@@ -24,38 +24,36 @@ This part set up the stage for Iterative methods and its analysis in general. It
 	* [[GMRes]] <- Optional
 	* [[Ortho Min J]] <- Optional <span style="color:green">Done</span>
 
-**Part II:CG and Lanczos*
+**Part II:CG and Lanczos**
 
 Go through the details about the relations between the Lanczos Algorithm, Arnoldi Algorithm, and the Conjugate Gradient Algorithms. By details we include the proof for the algorithm, the convergence analysis of the algorithm, code and numerical evidence. 
 
+**Convergence of Conjugate Gradient**
+1. Use Matrix Polynoials and Chebyshev and the grade of the krylov subspace to bound its convergence and the maximum number of iterations before the terminations of the algorithm, assume exact arithmetic. 
+	* [[Exact Conjugate Gradient Convergence]]: <span style="color:green">Done</span>.
+2. State the exact number of iterations needed and connect it to the grade of the Krylov Subspace. 
+	1. Repeated Eigenvalues and the grade ; discussion in the previous item's bullet point. Done
+	2. Eigenvalues Clustered Differently on the real line. discussion in the previous item's bullet point. Done
+3. Numerically Show it using my Julia code (With and without Full Orthogonalizations). <span style="color:green">DONE</span>
+	* Show the exact convergence. 
+
 **State the Lanczos Algorithms**
 1. State it it as an Arnoldi Method and then simply show it for the symmetric case. 
-	* [[Hessenberg Transform with Arnoldi Iterations]]
-	* [[Krylov Matrix QR and Arnoldi Iterations]]: Stating that the $Q_k$ from the iterative anoldi method is the same as performing $Q_k$ on the matrix whose columns are the Krylov Subspace vector. <span style="color:orange">Clearer, organized proof would be neat</span>
+	* ~~[[Hessenberg Transform with Arnoldi Iterations]]~~
+	* ~~[[Krylov Matrix QR and Arnoldi Iterations]]: Stating that the $Q_k$ from the iterative anoldi method is the same as performing $Q_k$ on the matrix whose columns are the Krylov Subspace vector. <span style="color:orange">Clearer, organized proof would be neat</span>~~
 	* [[Lanczos Algoritm]]: Simply Transpose and get the Lanczos Algorithm, and Lanczos consquently inhert all properties of Arnoldi Method
 2. Use it to connect to ideas developed from the previous parts and show its relations to the conjugate gradient algorithm. Match as many parameters as possible to show how they are related. 
 	* [[From Conjugate Gradient to Lanczos Remastered]];The proof is now comleted and filled with detailed explainations. <span style="color:green">DONE!</span>
-	* [[From Lanczos to Conjugate Gradient]]:<span style="color:green">Theory is done</span>; <span style="color:orange">~~Code it too Maybe?~~</span>
+	* [[From Lanczos to Conjugate Gradient]]:<span style="color:green">Theory is DONE!</span>; <span style="color:orange">~~Code it too Maybe?~~</span>
 3. ~~Connect it to the Krylov Subspace analyze it using Krylov Subspace.~~
 	* ~~[[Iterative Lanczos and Orthogonal Polynomials]]; Incomplete not sure how to incoperate it for the thesis yet. <span style="color:orange">Maybe adopt this for floating point analysis as well?</span>~~
-4. State its lost of orthogonality behaviors under floating points with Numiercal Experiments.
-	* <span style= "color:orange;"></span>
 
-**Convergence of Conjugate Gradient**
-1. Use Matrix Polynoials and Chebyshev and the grade of the krylov subspace to bound its convergence and the maximum number of iterations before the terminations of the algorithm, assume exact arithmetic. 
-	* [[Exact Conjugate Gradient Convergence]]: <span style="color:green">Done</span>. <span style="color:orange">
-2. State some special cases where the bound can be improved
-	1. Repeated Eigenvalues; discussion in the previous item's bullet point. 
-	2. Eigenvalues Clustered Differently on the real line. discussion in the previous item's bullet point. 
-3. Numerically Show it using my Julia code (With and without Full Orthogonalizations). <span style="color:green;">DONE</span>
-	* Show the exact convergence. 
 
 **Part III: Floating Point Convergence**
 
 We set up and show the analysis for CG under floating point arithemtic. And when we also show how Lanczos loses orthogonality is related for another bound the residual. We demonstrate it with code and numerical evidence. 
-
 1. State the Paige Theorem and use that to bound the convergence of CG over floating point arithemtic. Predict how the spectrum smeared out because of the floating point error. 
-	* [[Floats Conjugate Gradient Convergence]] <span style="color:orange">Please add more details for Greenbaum's proof. </span>; 
+	* [[Floats Conjugate Gradient Convergence]] <span style="color:orange">Please add more details for Greenbaum's proof. </span>;
 2. Demonsrate it with code and plots. 
 	* <span style="color:green">Done</span>
 3. Show exactly how they lose orthogonality. Consider the ritz vectors and the projection of Lanczos Vector onto the ritz vectors. Proof it with help from the references. Cite sources. 
@@ -64,4 +62,13 @@ We set up and show the analysis for CG under floating point arithemtic. And when
 	* <span style="color:orange">$Q^TQ$ error is done, ghost eigenvalues are done, missing: Ritz Vector Projections</span>
 5. State some of the attempts at improving the iterative lanczos process without losing too much speed and precisions under floating point. 
 	1. Ritz Vectors orthogonalization Via Lanczos. 
-	* <span style="color:pink">!!! Don't work on this until a good draft is out.</span>
+
+
+### **Misc**
+
+[[The Energy Norm and the 2-Norm]] <- this theorem is needed for bounding the residual error for the conjugate gradient algorithm. 
+	
+---
+### **Bibiography**
+	
+	
