@@ -70,5 +70,17 @@ We set up and show the analysis for CG under floating point arithemtic. And when
 	
 ---
 ### **Bibiography**
+
+Textbooks: 
+* Iterative Methods for sparse linear systems
+
+Papers, course notes: 
+
+* FOM Method: [[Krylov Subspace Method for Solving Large Unsymmetric System of Equations.pdf]], Y. Saad 
+
+* SYMMQL Method: [[Solution of Sparse Indefinite System of Equations.pdf]]
+
+* CG: [[Methods of Conjugate Gradient for Solving Linear Systems (1952).pdf]]
 	
+* CG Without the Agonizing Pain: [[Painless Conjugate Gradient.pdf]]
 	
