@@ -2,6 +2,7 @@
 [[Conjugate Gradient for Dummy]]
 [[Krylov Subspace]]
 
+
 ---
 ### **Intro**
 
@@ -9,7 +10,7 @@ Inspired by the process of looking for orthomin J algorithm, I am interested in 
 
 The conjugate gradient algorithm is usually stated without much explanations as to how it is arrived. Sometimes short justifications wxhere given such as in Greenbaum's work where the algorithm is derived by orthogonalizing residual against the previous residual and conjugate direction, while assuming $p_0 = r_0$. However this is not informative for the underlying reasons of "WHY?", it's stated in a way as if the writer already know there is a short recurrence for the conjugate vectors, instead of naturally leading to that idea (Which of course, a completely separate idea from just the Conjugate Gradient.) Some other time it's stated in such a complicated way that doesn't quiet introduce some big ideas correlated to the algorithm itself, such as: [Conjugate Gradient Without Agonizing Pain](https://sites.math.washington.edu/~morrow/498_13/conjgrad.pdf) where it explains all the magic, but somewhat uninspiring.
 
-The goal of this exerpt is to discover it in a similar manner to the Ortho Min J by only first principle without any preconception of what conjugate gradient is, except for the fact that, it minimizes something. During the exploration, we use Content from [[Taxonomy and Frameworks of Subspace Projection Method]], and [[Projector]]. 
+The goal of this exerpt is to discover it in a similar manner to the Ortho Min J by only first principle without any preconception of what conjugate gradient is, except for the fact that, it minimizes something. During the exploration, we use Content from [[Taxonomy and Frameworks of Subspace Projection Method]], and [[Projector]]. For more stuff about conjugate gradient read: [[Methods of Conjugate Gradient for Solving Linear Systems (1952).pdf]], which they listed all and more of the properties about CG in their literature. 
 
 **Notations**
 
@@ -298,9 +299,10 @@ $$
 \begin{aligned}
     p_j &= (I - \overline{P}_jA)r_j \quad \forall\; 0\le j \le k - 1
     \\
+	\implies
     r_j &= p_j + \overline{P}_jAr_j
     \\
-    r_k &= (I - A\overline{P}_k)P_0
+    r_k &= (I - A\overline{P}_k)r_0
     \\
     r_k\perp \text{ran}(P_k) & \implies 
     \langle r_k, r_j\rangle =\langle r_k, p_j + \overline{P}_jAr_j\rangle = 0

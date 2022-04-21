@@ -4,30 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "80faceacfd318416",
+        "id": "cae39ab171ae9d14",
         "type": "leaf",
-        "dimension": 46.111111111111114,
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-            "mode": "source"
-          }
-        },
-        "group": "ddca5cccd1b2c5c0"
-      },
-      {
-        "id": "29c240c49d6433e3",
-        "type": "leaf",
-        "dimension": 53.888888888888886,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-            "mode": "preview"
-          }
-        },
-        "group": "ddca5cccd1b2c5c0"
+          "type": "empty",
+          "state": {}
+        }
       }
     ],
     "direction": "vertical"
@@ -78,8 +60,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 395,
-    "collapsed": true
+    "width": 377
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +76,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,17 +93,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "29c240c49d6433e3",
+  "active": "cae39ab171ae9d14",
   "lastOpenFiles": [
+    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
+    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
-    "References/Divide And Conquer For Symmetric Tridiagonal Eigenproblem.pdf",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
-    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md",
-    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
-    "MATH 514 (Combinatorics Optimizations)/Polytopes.md",
-    "MATH 514 (Combinatorics Optimizations)/Matroid.md",
-    "MATH 514 (Combinatorics Optimizations)/Linear Programming.md"
+    "References/Divide And Conquer For Symmetric Tridiagonal Eigenproblem.pdf"
   ]
 }
