@@ -63,3 +63,4 @@ A spanning Tree of a subgraph is a tree (one connected component) of a graph G t
 
 **Note**: A spanning subgraph is not neccessarily connected, nor it has to be a tree. 
 
+

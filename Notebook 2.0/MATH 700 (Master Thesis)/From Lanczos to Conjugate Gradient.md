@@ -314,7 +314,7 @@ $$
     \\
     \begin{bmatrix}
         I & \mathbf{0} \\ 
-        s^TL_k + d_{k + 1}l_k \xi_k^T &d_{k + 1}
+        s_k^TL_k + d_{k + 1}l_k \xi_k^T &d_{k + 1}
     \end{bmatrix} &= I
 \end{aligned}\tag{9}
 $$
@@ -331,11 +331,11 @@ $$
     \\
     s_k + L^{-T} d_{k + 1}l_k \xi_k &= \mathbf{0}
     \\
-    (s_k)_1 + d_{k + 1}l_k (L^{-1}_k)\xi_k &= 0
+    (s_k)_1 + d_{k + 1}l_k ((L^{-1}_k)\xi_k)_1 &= 0
     \\
     (s_k)_1 + d_{k + 1}l_k(L^{-1}_k)_{k , 1} &= 0
     \\\implies
-    (s_k)_1 &= - l_k(L^{-1}_k)_{k, 1} 
+    (s_k)_1 &= - l_k(L^{-1}_k)_{k, 1}
     \\
     (s_k)_1 &= (L^{-1}_{k + 1})_{k + 1, 1}
     \\

@@ -4,12 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "cae39ab171ae9d14",
+        "id": "39be618eb23fc389",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
-        }
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "mode": "source"
+          }
+        },
+        "group": "14d1fc541b9d7958"
+      },
+      {
+        "id": "b10ce4630d5ef736",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "mode": "preview"
+          }
+        },
+        "group": "14d1fc541b9d7958"
       }
     ],
     "direction": "vertical"
@@ -60,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 377
+    "width": 505,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -76,6 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "cae39ab171ae9d14",
+  "active": "b10ce4630d5ef736",
   "lastOpenFiles": [
-    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
-    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Fredholm Alternative.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
+    "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
     "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
+    "MATH 514 (Combinatorics Optimizations)/Edge Cover.md",
+    "MATH 514 (Combinatorics Optimizations)/Matching.md",
+    "MATH 514 (Combinatorics Optimizations)/Vertex Cover.md",
+    "MATH 514 (Combinatorics Optimizations)/Stable Set of a Graph.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
-    "References/Divide And Conquer For Symmetric Tridiagonal Eigenproblem.pdf"
+    "MATH 700 (Master Thesis)/Master Thesis.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md"
   ]
 }

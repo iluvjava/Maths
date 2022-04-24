@@ -84,3 +84,5 @@ Papers, course notes:
 	
 * CG Without the Agonizing Pain: [[Painless Conjugate Gradient.pdf]]
 	
+* Bi-Conjugate Gradient for Non-symmetric system [link](https://archive.org/details/isbn_3540111999/page/73/mode/2up)
+
