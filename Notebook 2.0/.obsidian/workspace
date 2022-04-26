@@ -4,28 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "39be618eb23fc389",
+        "id": "47d19601a8c5b046",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
             "mode": "source"
           }
         },
-        "group": "14d1fc541b9d7958"
+        "group": "1e923b6706c6dd59"
       },
       {
-        "id": "b10ce4630d5ef736",
+        "id": "665e6659ab77e92f",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+            "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
             "mode": "preview"
           }
         },
-        "group": "14d1fc541b9d7958"
+        "group": "1e923b6706c6dd59"
       }
     ],
     "direction": "vertical"
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
+                "file": "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "b10ce4630d5ef736",
+  "active": "47d19601a8c5b046",
   "lastOpenFiles": [
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
+    "MATH 700 (Master Thesis)/Krylov Subspace.md",
+    "MATH 700 (Master Thesis)/Krylov Subspace Remastered.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient Convergence Statmemt of Results.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
     "AMATH 584 (Numerical Linear Algbra)/The Energy Norm and the 2-Norm.md",
     "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
-    "MATH 514 (Combinatorics Optimizations)/Edge Cover.md",
-    "MATH 514 (Combinatorics Optimizations)/Matching.md",
-    "MATH 514 (Combinatorics Optimizations)/Vertex Cover.md",
-    "MATH 514 (Combinatorics Optimizations)/Stable Set of a Graph.md",
-    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md"
+    "MATH 514 (Combinatorics Optimizations)/Edge Cover.md"
   ]
 }

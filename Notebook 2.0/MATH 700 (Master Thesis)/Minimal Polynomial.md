@@ -30,3 +30,4 @@ $$
 \end{aligned}
 $$
 And we get another polynomial satisfying that conditions that has a degree of $k - 1$, contradicting the condition that $k$ is the minimal such parameter. 
+

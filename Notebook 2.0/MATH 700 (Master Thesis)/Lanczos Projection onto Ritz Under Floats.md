@@ -62,7 +62,7 @@ The projection of the new Lanczos Vector onto the ith ritz vector is inversely p
 
 **Proof**
 
-For the sake of simplicity, we ignoer all the subscript goes goes under $Q, T, q,\xi$ and $F$. With subscripts these quantities are $Q_k, q_{k + 1}, T_k, \xi_k, F_k$. 
+For the sake of simplicity, we ignore all the subscript goes goes under $Q, T, q,\xi$ and $F$. With subscripts these quantities are $Q_k, q_{k + 1}, T_k, \xi_k, F_k$. 
 
 $$
 \begin{aligned}
@@ -100,7 +100,7 @@ $$
 
 Now, we need to figure out an expresson for the quantity $\xi q^TQ$. **Here, we make the approximation that** $\langle q_i, q_j\rangle = 0$ when $|i - j| \le 2$, in theory, it should be $\mathcal{O}(\epsilon)$, but we assume that the Lanczos orthgonalize exact for the vector $q_{j + 1}$ against the vector $q_j, q_{j - 1}$. **This assumption is made throughout the derivations for the expression**. 
 
-Therefore, we can say that $Q^TQ = I + C^T + C$ where the matrix $C$ is lower triangular with diagonal and sub-diagonals being all zeros, representing the floating points error when the Lanczos Vectors are losing orthogonality. The assumption made above makes the $C$ here to be strictly lower triangular, which means that $C^T + C$ is a matrix with zeros on the tridiagonal parts and all other entires are the floating point errors from Lanczos. 
+Therefore, we can say that $Q^TQ = I + C^T + C$ where the matrix $C$ is lower triangular with diagonal and sub-diagonals being all zeros, representing the floating points error when the Lanczos Vectors are losing orthogonality. Which means that $C^T + C$ is a matrix with zeros on the tridiagonal parts and all other entires are the floating point errors from Lanczos. 
 
 Simplifying expression (3): 
 

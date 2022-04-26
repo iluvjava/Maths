@@ -5,7 +5,7 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": false,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
       "query": "conjugate Gradient",
@@ -25,6 +25,6 @@
   "repelStrength": 9.60643745427944,
   "linkStrength": 1,
   "linkDistance": 91,
-  "scale": 1.5825080745110727,
-  "close": false
+  "scale": 0.4585736931878743,
+  "close": true
 }

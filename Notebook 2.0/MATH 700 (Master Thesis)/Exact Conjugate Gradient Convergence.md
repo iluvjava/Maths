@@ -5,9 +5,7 @@
 
 ### **Intro**
 
-We wish to prove the convergence rate listed in the prereq of this file, which is the convergence rate of the Conjugate Gradient under the Exact Arithmetic Assumptions. 
-
-The final objective we wish to prove is that the convergence bound for the CG method is given as: 
+We wish to prove the convergence rate listed in the prereq of this file, which is the convergence rate of the Conjugate Gradient under the Exact Arithmetic Assumptions. The final objective we wish to prove is that the convergence bound for the CG method is given as: 
 
 > $$
 > \frac{\Vert e^{(k)}\Vert_A}{\Vert e^{(0)}\Vert_A}
@@ -16,7 +14,7 @@ The final objective we wish to prove is that the convergence bound for the CG me
 > \right)^k
 > $$
 
-This is also listed as **Theorem 3.1.1** in professor's Greenbaums work: \<Iterative Method for linear System\>. 
+This is also listed as **Theorem 3.1.1** in professor's Greenbaums work: \<Iterative Method for linear System\>, and this is an analysis from Paige C.C. 
 
 **Notations**
 
@@ -24,14 +22,13 @@ We introduce the notations:
 
 $$
 \begin{aligned}
-    p_{k}(A|w)v &= \sum_{j = 0}^{k - 1}w_jA^jv
+    p_{k}(A|w)v &= \sum_{j = 0}^{k}w_jA^jv
     \\
-    p_{k}(x|w) &= \sum_{j = 0}^{k - 1}w_jx^j
+    p_{k}(x|w) &= \sum_{j = 0}^{k}w_jx^j
 \end{aligned}
 $$
 
-So that, we can sufficiently represent polynomial for matrix and scalr with a certain set of weights as its coefficients. 
-
+For denoting polynomials with degree $k$. And we denotes $\mathcal P_k$ for the set of all possible polynomial with term $x^{k}$ as the maximum possible degree. 
 
 ---
 ### **The Chebyshev Polynomial**
@@ -39,27 +36,28 @@ So that, we can sufficiently represent polynomial for matrix and scalr with a ce
 This polynomial has the following definition: 
 
 $$
-T_k(x) = \min_{p(x)\in \mathcal{P}_{k + 1}}\max_{x\in [-1, 1]}|p(x)|
+T_k(x) = \arg\min_{p(x)\in \mathcal{P}_{k}}\max_{x\in [-1, 1]}|p(x)|
 $$
 
 After the adaptation of the Chebyshev Type T we have: 
 
 $$
 \begin{aligned}
-    T_k(x) &= \min_{
+    T_k(x) &= \arg\min_{
         \substack{
-            p(x)\in \mathcal{P}_{k + 1}
-            \\
-            \text{s.t: } p(0)  = 1
+            p\in \mathcal{P}_{k}
             }
         }\max_{x\in [-1, 1]}|p(x)|
     \\
-    p_k(x) &:= \frac{T_k(\varphi(x))}{T_k(\varphi(0))}
-    \quad \text{where: } \varphi(x) := \frac{2x - \lambda_1 - \lambda_n}{\lambda_n - \lambda_1}
+    p_k(x) &:= 
+    \frac{T_k(\varphi(x))}{T_k(\varphi(0))}
+    \quad 
+    \text{where: } 
+    \varphi(x) := \frac{2x - \lambda_1 - \lambda_n}{\lambda_n - \lambda_1}
     \\
-    p_k(x) &= \min_{
+    \implies p_k(x) &= \arg \min_{
         \substack{
-            p(x)\in \mathcal{P}_{k + 1}
+            p\in \mathcal{P}_{k}
             \\
             \text{s.t: } p(0)  = 1
         }
@@ -67,9 +65,7 @@ $$
 \end{aligned}
 $$
 
-Which will be useful later. 
-
-It's the polynomial that crosses the real line $k$ times with minimal amount of wiggles.Take this for granted. This polynomial also appeared under the following context for my notebook: 
+Which will be useful later. It's the polynomial that crosses the real line $k$ times with minimal amount of wiggles.Take this for granted. This polynomial also appeared under the following context for my notebook: 
 
 [[Spectral Method 2]]
 
@@ -84,16 +80,14 @@ Firstly, we are going to make the claim that:
 
 > $$
 > \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} \le 
-> \min_{p_{k + 1}: p_{k + 1}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_k(x)|
+> \min_{p_{k}: p_{k}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_k(x)|
 > $$
 
 And the polynomial formulations of the relative error: 
 
 > $$
 > \begin{aligned}
->     x_k &\in x_0 + \text{span}\{A^jr_0\}_{j = 0}^{k - 1}
->     \\
->     x_k &= \mathcal{K}(r_0)w + x_0
+>     x_k &\in \mathcal{K}(A|r_0)w + x_0
 >     \\
 >     \frac{\Vert e_k\Vert_A^2}{\Vert e_0\Vert_A^2}
 >     &= 
@@ -105,11 +99,9 @@ And the polynomial formulations of the relative error:
 > $$
 
 
-
 **Proof**
 
-Please take notice that, any krylov subspace that is written in the form of $\mathcal K(A| r_0)w$ can be wrrite in the form of a matrix polynomial multiplied by a vector: $p_k(A|w)r_0$. Then, let's consider the objective of the CG and simplifies it accordingly we have: 
-
+We write Krylov subspace as max polynomial with some coefficients denoted as a vector $w$, and we consider the error energy norm minimization property of the conjugate gradient algorithm, which happens at each step of the conjugate gradient algorithm. 
 
 $$
 \begin{aligned}
@@ -120,36 +112,36 @@ $$
     \Vert_A^2
     \\
     x_k \in x_0 + \mathcal K_k(A|r_0) 
-    & \iff
-    e_k = e_0 + p_k(A|w)r_0
+    & \implies
+    e_k = e_0 + p_{k - 1}(A|w)r_0
     \\
     \implies  &=
     \min_{w\in \mathbb R^k}
     \Vert 
-        e_0 + p_k(A|w)r_0
+        e_0 + p_{k - 1}(A|w)r_0
     \Vert_A^2
     \\
     &= \min_{w\in \mathbb R^k}
     \Vert 
-        e_0 + Ap_k(A|w)e_0
+        e_0 + Ap_{k - 1}(A|w)e_0
     \Vert_A^2
     \\
     &= \min_{w\in \mathbb R^k}
     \Vert 
-        A^{1/2}(I + Ap_k(A|w))e_0
+        A^{1/2}(I + Ap_{k - 1}(A|w))e_0
     \Vert_2^2
     \\
     &\le
     \min_{w\in \mathbb R^k}
     \Vert 
-        I + Ap_k(A|w)
-    \Vert_2^2\Vert e_0\Vert_A^2 \quad \text{tight}
+        I + Ap_{k - 1}(A|w)
+    \Vert_2^2\Vert e_0\Vert_A^2 \quad 
     \\
     & = 
     \min_{w\in \mathbb R^k}
     \left(
         \max_{i = 1, \dots, n}
-        |1 + \lambda_ip_k(\lambda_i|w)|^2
+        |1 + \lambda_i p_{k - 1}(\lambda_i|w)|^2
     \right)\Vert e_0\Vert_A^2
     \quad
     \\
@@ -157,22 +149,22 @@ $$
     \min_{w\in \mathbb R^k}
     \left(
         \max_{x\in [\lambda_{\min}, \lambda_{\max}]}
-        |1 + \lambda_ip_k(\lambda_i|w)|^2
+        |1 + \lambda_i p_{k - 1}(\lambda_i|w)|^2
     \right)\Vert e_0\Vert_A^2
-    \quad \text{still tight}
+    \quad 
     \\
-    &= \min_{p_{k + 1}: p_{k + 1}(0) = 1}
-    \max_{x\in [\lambda_{\min}, \lambda_{\max}]}| p_{k + 1}(x)|^2 \Vert e\Vert_A^2
+    &= 
+    \min_{p_{k}: p_{k}(0) = 1}
+    \max_{x\in [\lambda_{\min}, \lambda_{\max}]}
+    | p_{k}(x)|^2 \Vert e\Vert_A^2
     \\
     \implies
     \frac{\Vert e_k\Vert_A}{\Vert e_0\Vert_A} &\le 
-    \min_{p_{k + 1}: p_{k + 1}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_{k + 1}(x)|
+    \min_{p_{k}: p_{k}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}]} |p_{k}(x)|
 \end{aligned}
 $$
 
-The claim is proved. Here are **some extra comments**: 
 
-The bound is tight, more specifically, the bound is tight if the initial error happens to be in the subspace of some eigenvalues. This is true because $A$ is positive definite. 
 
 ---
 ### **Krylov Subspace and Terminating Conditions**
