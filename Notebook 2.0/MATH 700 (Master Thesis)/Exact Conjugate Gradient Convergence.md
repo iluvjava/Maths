@@ -74,7 +74,7 @@ Which will be useful later. It's the polynomial that crosses the real line $k$ t
 [[Chebyshev Series Derivative via FFT]]
 
 ---
-### **Adjusting the Cheb Polynomial**
+### **Matrix Polynomial Bound**
 
 Firstly, we are going to make the claim that: 
 
@@ -95,6 +95,8 @@ And the polynomial formulations of the relative error:
 >     \Vert
 >         (1 + Ap_k(A|w))A^{1/2}e_0
 >     \Vert_2^2
+>     \le
+>     \min_{p_{k}: p_{k}(0) = 1}\max_{x\in [\lambda_{\text{min}}, \lambda_{\text{max}}>     ]} |p_k(x)|
 > \end{aligned}
 > $$
 
@@ -165,73 +167,16 @@ $$
 $$
 
 
-
 ---
-### **Krylov Subspace and Terminating Conditions**
+### **Krylov Subspace Grade Terminating Conditions**
 
-Please take note that, under exact arithematic, an exact upper bound for the number of iterations required to solve the system can be obtained by finding the min grade for the krylov subspace expansion of: $\mathcal K_k(A|r_0)$ and the dimension of the subspace: $\min(\text{grade}(A|r_0), n)$. Properties of the Krylov Subspace is covered in [[Krylov Subspace]]. Next, we make reference to [[Conjugate Gradient and Oblique Projectors]] for the use of the Galerkin's Conditions based on the Krylov Subspace, listed below: 
+> The grade determines the termination conditions of CG. 
 
-$$
-\begin{aligned}
-	\text{choose: } x_k\in x_0 + \mathcal K_{k}(A|r_0) \text{ s.t: } r_k = b - Ax_k\perp \mathcal K_{k}(A|r_0)
-\end{aligned}
-$$
+It's immediate because $r_k \perp \mathcal K_{k}(A|r_0)$, when the grade is reached, it will have to terminates due to the cg setting $p_k$ to be the zero vector. 
 
-**The Maximum Number of Iterations Before Terminations**: 
+> The grade of some vector is determined by it's eigen decomposition and the number of unique eigenvalues of those eigenvectors. 
 
-> The $\text{grade}(A|r_0)$ determines the number maximum number of iterations required before the terminations of the conjugate gradient. More precisely, if we know $r_0$, then the number of iterations is upper bounded by $\text{grade}(A|r_0)$, if we don't know $r_0$, then the maximum number of iteration is determined by the number of distinct eigenvalues of the matrix $A$. 
-
-Take notice that if $\mathcal K_{k + 1} = \mathcal K_k$, and the algorithm asserts that $r_{k + 1}\in \mathcal K_{k + 1}(A|r_0) = \mathcal K_{k}(A|r_0)$ and at the same time $r_{k + 1}\perp r_j \;\forall\; 0\le j \le k$, which is impossible because we have $k +1$ orthgonal vector in the subspace $\mathcal K_k(A|r_0)$ which has only a dimension of $k$. 
-
-What eventually makes the conjugate gradient terminates is the considerations of $\langle p_{k},Ap_{k}\rangle = 0$, because $p_{k}\in \mathcal K_{k + 1} = \mathcal K_k$ by the non-expanding krylov subspace, but $p_k\perp \text{ran}(P_k)\in \mathcal K_k$ by the conjugate gradient algorithm, which would mean that $p_k = \mathbf 0$, therefore the algorithm will inevitably terminates due to an error of dividing by zero if such a case is not handled under exact arithemtic. And when that happens, there are 2 possibilities: 
-* $k + 1 = \text{grade}(A|r_0)$ is reached. 
-*  or the case that $k = n + 1$
-
-The grade Krylov Subspace of $A$ wrt to $v$ will determine the maximum number of iterations before the termination of the algorithm given $v$.  from the discussion of Krylov Subspace, we consider the polynomial form of the Krylov Subspace $\mathcal K_k(A|r_0)$ and the eigen decomposition $X\Lambda X^{-1}$: 
-
-$$
-\begin{aligned}
-    & \mathcal K_{k} \text{ linear dependent}
-    \\
-	& 
-    \iff \exists w \neq \mathbf 0: p_k(A|w) = \mathbf{0} \implies \forall r_0: 
-    p_k(A|w)r_0 = Q\left(
-        \sum_{j = 0}^{k - 1}w_j\Lambda^j
-    \right)Q^{T}r_0
-\end{aligned}
-$$
-
-And once the Krylov Subspace becomes linearly dependence, it would mean that the conjugate gradient algorithm terminates, and that would mean the polynomial $p_k(x|w)$ is able to interpolate, at least all eigenvalues of the matrix $A$, if we place no assumption about the initial error vector $r_0$. Therefore, the maximum number of Iterations undergoes by the conjugate gradient algorithm equals to the number of distinct eigenvalues of matrix $A$. 
-
-However, it's important to take note that, $X^{-1}r_0$ will also control the number of iterations required before the algorithm terminates. Imagine the extreme case when $r_0$ is a scalar mulitple of one of the eigenvector of $A$, let that eigenvector be $\lambda_j$ then $X^{-1}r_0$ would be the standard basis vector: $\mathbf e_j$, and in that case, if $p_k(\lambda_j|w_k) = 0$ , then $p_k(\lambda_j|w_k) = \mathbf 0$, which is the condition of terminations of the algorithm.
-
-**When A is non-Inertaible**
-
-
-----
-### **Krylov Subspace Grade Terminating Conditions** (REMASTERED)
-
-> The $\text{grade}(A|r_0)$ determines an upper bound for number of steps CG undergoes. 
-
-For a justification, we consider the Krylov Subspace accumulated during the CG algorithm. The grade of the Krylov subspace $\mathcal K_k(A|r_0)$ determines when the CG algorithm is going to terminate. Suppose that $\text{grade}(A|r_0)$ is $k + 1$, then $\mathcal K_{k}(A|r_0) = \mathcal K_{k = 1}(A|v)$, and $\mathcal K_k$ would be linear independent while $\mathcal K_{k+1}$ would be dependent. The Conjugate Gradient asserts $r_{k - 1}\in \mathcal K_k(A|r_0)$ and $r_k \in \mathcal K_{k + 1}(A|r_0) = \mathcal K_k(A|r_0)$. But at the same time the CG algorithm asserts that $r_j \perp r_j \;\forall\; 0 \le j \le k - 1$. Observe that inductively CG asserts $r_j \in \mathcal K_{j + 1}(A|r_0)$ and all of them are mutually orthogonal, and there are k of them in total. Using the nesting property of Krylov Susbapce we know that $r_k\perp \mathcal K_k(A|r_0)$, therefore they must span the whole space. However, $r_k\in \mathcal K_k(A|r_0)$ because the subspace becomes invariant after $k - 1$, therefore it has to be the case that $r_k = \mathbf 0$. When it heppens, it will result in $b_{k - 1}$ being zero because of CG, which will give $p_k = \mathbf 0$. Which will terminaete the algorithm at step $k + 1$ due to a division of zero inside the expression for $a_k$. 
-        
-Next, we wish to say more about the maximum grade of a Krylov Subspace. Recall from the Krylov Susbspace discussion, when the grade is reached, there exists non trivial polynomial expression where:  
-
-> The number of unique none-zero eigenvalues for the matrix $A$ is an upper bound for $\text{grade}(A|r_0)$. 
-
-Recall from the Krylov Susbspace discussion, when the grade is reached, there exists non trivial polynomial expression where: 
-
-$$
-\begin{aligned}
-    \mathbf 0 &= r_0 + \sum_{j = 1}^{k - 1}w_0^{-1}w_jA^jr_0
-    \\
-    \mathbf 0 &= Q\left(
-        I + \sum_{j = 1}^{k - 1}w^{-1}_0w_j\Lambda^jr_0
-    \right)Q^Tr_0 
-\end{aligned}
-$$
-
-We use the Eigen Factorization for the S.P.D matrix $A$. One of the immediate consequence of the above equation would imply that, if there exists a monoic polynomial interpolating all the eigenvalues of matrix $A$, then the grade of the Krylov Subspace is reached. As a consequence of that, the for any initial vector, then CG must terminate as the same number of unique eigenvalues of matrix $A$. Finally, take notice that the projections of $r_0$ only covers a portion of the eigenspace then the CG algorithm will terminates earlier. This is true because $\mathcal K_k(A|r_0) = Q\mathcal K_k(\Lambda| r_0)Q^Tr_0$, and please observe that the maximum dimension equals to the number of non-zero elements in $Q^Tr_0$, which further shorten the number of number of iterations required. 
+This is discussed in Krylov Subspace. 
 
 
 ---

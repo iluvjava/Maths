@@ -87,8 +87,8 @@ It's not hard to see that the recurrence can also be applied to any shifting of 
 
 $$
 \begin{aligned}
-    p^{(k)}(x) &= - \beta_{k - 1}^2 p^{(k - 2)}(x) + \alpha_kp^{(k-1)}(x)
+    p^{(k)}(x) &= - \beta_{k - 1}^2 p^{(k - 2)}(x) + (\alpha_k - x)p^{(k-1)}(x)
 \end{aligned}
 $$
 
-Which is the recursive relations that we can leverage for computing the determinant. 
+Shifting on $T_k$ with $-xI$ changes $\alpha_k$ into $\alpha_k - x$.  $p^{(-1)}(x)= 0, p^{(0)}(x) = 1$

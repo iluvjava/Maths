@@ -15,7 +15,7 @@ Observe that, for every element in the subspace, it's a matrix polynomial, we wr
 
 ### **The Grade of a Krylov Subspace**
 
-> The grade of the krylov subspace is the the smallest $\mathcal K_{k}(A|v)$ such that the vectors in the span is linear dependent. 
+> The grade of the krylov subspace is the the smallest $\mathcal K_{k}(A|v)$ such that the vectors in the span is linear dependent, denoted as $\text{grade}(A|v)$
 
 **Proof**
 
@@ -29,7 +29,7 @@ $$
         b & AB & \cdots & A^{k - 1}b
     \end{bmatrix}
     \\
-    & K_k \text{ Lin Dep} \implies b = AK_{k - 1}w
+    & K_k \text{ Lin Dep} \implies A^{k-1}b = AK_{k - 1}w
     \\
     & \implies 
     AK_k = K_k
@@ -43,6 +43,25 @@ $$
 $$
 
 $A^2K_k$ will span the same sapce as the range of the matrix $K_k$. 
+
+---
+### **Grade is Determined by Eigenvalues and the Initial Vector**
+
+Suppose diagonalizable matrix $A = V\Lambda V^{-1}$ has krylov subspace grade reached, then the subspace is linear dependent therefore: 
+
+$$
+\begin{aligned}
+& \mathbf 0 = \sum_{j = 0}^{k}
+w_jA^{j}u
+\\
+& \mathbf 0 = V\sum_{j = 0}^{k} w_j\Lambda^jV^{-1}u
+\\
+& \forall i \quad 0 = \sum_{j = 0}^{k} w_j\lambda_i^{j}(V^{-1}u)_i
+\end{aligned}
+$$
+
+When non trivial solution exists for some $w_j \neq 0$, it will be the case that whenever $(V^{-1}u)_i$ is not zero, then the a polynomial will have to interpolate $\lambda_i$. Therefore, minimum $k$ is the number of unique $\lambda_i$ such that $(V^{-1}v)_i\neq 0$
+
 
 ---
 ### **Nonzero Constant when Grade is reached**
@@ -64,4 +83,10 @@ $$
     \implies \sum_{j = 0}^{k - 2} w_{j + 1}A^jv &= \mathbf 0 
 \end{aligned}
 $$
+
 From the second line to the third, I susbstitute $w_0 = 0$ for contradiction. On the last line, it suggested that $k$ is not the smallest, and $k - 1$ might be the grade, contradicting the assumption that $k$ is the grade of the Krylov Subspace. Therefore, $w_0 \neq 0 $. 
+
+The above property finds the minimal polynomial of a matrix wrt to initial vector $v$. 
+
+
+---

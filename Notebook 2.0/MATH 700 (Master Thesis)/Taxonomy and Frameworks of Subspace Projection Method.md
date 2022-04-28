@@ -21,7 +21,7 @@ $$
     & \tilde{x} \in x^{(0)} + \mathcal{K}
     \\
     \implies & 
-    \tilde{x} = x^{0} + \delta x \quad \delta x \in \mathcal{K}
+    \tilde{x} = x^{(0)} + \delta x \quad \delta x \in \mathcal{K}
     \\
     \text{Algorithm Asserts: }& 
     b - A\tilde{x} \perp \mathcal{L} \implies b - A(x^{(0)} + \delta x) \perp \mathcal{L}
@@ -71,7 +71,7 @@ Different choices of $B, K$ can lead to many different expresions. Some of them 
 
 
 ---
-### **Galerkin Condition Matrix Representation**
+### **Orthogonality Condition Matrix Representation**
 
 Consider that: 
 $$
@@ -102,29 +102,30 @@ And if we assume that $(W^TAV)$ is invertible, then we obtain the step to take t
 
 **Prototype Algorithm**
 
-> $$
-> \begin{aligned}
->     & \text{While not converging}: 
->     \\&\hspace{1.1em}
->          \begin{aligned}
->             &\text{Increase Span for: } \mathcal{K, L}
->             \\
->             &\text{Choose: } V, W \text{ for} \mathcal{K}, \mathcal{L}
->             \\
->             & r = b - Ax
->             \\
->             & y = (W^TAV)^{-1}W^Tr
->             \\
->             & x = x + Vy
->         \end{aligned}
-> \end{aligned}\tag{6}
-> $$
-
+$$
+\begin{aligned}
+    & \text{While not converging}: 
+    \\&\hspace{1.1em}
+            \begin{aligned}
+            &\text{Increase Span for: } \mathcal{K, L}
+            \\
+            &\text{Choose: } V, W \text{ for } \mathcal{K}, \mathcal{L}
+            \\
+            & y:= (W^TAV)^{-1}W^Tr^{(0)}
+            \\
+            & x:= x+ Vy
+            \\
+            & r:= r^{(0)} - AVy
+        \end{aligned}
+\end{aligned}\tag{6}
+$$
 
 Analysis of subspace projections methods should involve discussion of this particular frame works. 
 
+
+
 ---
-### **Similarity Between Galerkin and Norm Differential**
+### **Similarity Between Orthogonality Method and Norm Differential**
 
 For some of the cases, these 2 method are the same. Consider the minimization problem where $x$ is from some affine subspace $x_0 + \mathcal{L}$ and we wish to minize $\Vert b - Ax\Vert_2^2$. And we assume that $A$ is at least full rank, so that there is a unique minimizer. Then we have ($B = I$): 
 
