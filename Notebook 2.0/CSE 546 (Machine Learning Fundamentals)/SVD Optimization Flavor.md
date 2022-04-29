@@ -3,23 +3,19 @@ SVD has been discussed before.
 [[SVD Theorems]], [[K Rank Approx]]
 
 Where, we discussed some of the properties of the Hermitian Matrix, and then we also discussed some of the interpretation of it, however, the optimization interpretation of the SVD is cut short, and we are only left with the Ekart Young's Theorem. And the computational part, it's also cut short. 
- 
-Here, we will see how another way of viewing the singular value decomposition. We assume reader has some in depth understanding of the topic SVD. 
 
 ---
-### **Intro**
+### **Minimizations and Equivalent Symmetric Eigen Problem**
 
-The optimization problem we are solving is not convex, and it's also a constrained optimization problem, it can be phrased as: 
+The following 2 problems are actually equivalent: 
 
 $$
 \min_{U^T U = I} \Vert X - UU^TX\Vert_F^2 
+\quad 
+\max_{\Vert u\Vert = 1} u^TX X^T u
 $$
 
-Where, $U$ is usually a skinny matrix that is orthogonal, spanning the column space of the matrix $X$. For interpretation we assume that the matrix $X$ is a column data matrix. And one of the important assumptions is that **all samples have zero mean**. 
-
-Minimizes the projection onto the orthogonal matrix under the Frobenius Norm. 
-
-Ok, interestingly: 
+Where, $U$ is usually a skinny matrix that is orthogonal. For better interpretation we assume that the matrix $X$ is a column data matrix. And one of the important assumptions is that **all samples have zero mean**. Minimizes the projection onto the orthogonal matrix under the Frobenius Norm. Ok, interestingly: 
 
 $$
 \begin{aligned}
@@ -42,11 +38,7 @@ $$
 \max_{U^TU = I} \Vert U^TX\Vert_F = \max_{U^TU = I}\sum_{i}^{} \Vert u_i^TX\Vert_2^2
 $$
 
-**The Interpratation is**: get all the data point, projected it onto all the orthogonal subspace we had, and we want to maximize the variance alone the orthogonal subspace $U$. 
-
-Note: $U^TU$ is the covariance matrix of the alternate subspace. 
-
-Now: 
+**The Interpratation is**: get all the data point, projected it onto all the orthogonal subspace we had, and we want to maximize the variance alone the orthogonal subspace $U$. Note: $U^TU$ is the covariance matrix of the alternate subspace. Now: 
 
 $$
 \max_{U^TU = I}\sum_{i}^{} \Vert u_i^TX\Vert_2^2 = \max_{U^TU = I} \sum_{i}^{}
@@ -59,25 +51,19 @@ $$
 \max_{\Vert u\Vert = 1} u^TX X^T u
 $$
 
-And... this is looking like Fisher's LDA. The expression is only maximized when $u$ is an eigen vector of the matrix $XX^T$ (Dot product of the same vector!). And this is cool because it just so happen that $XX^T$ is Hermitian, and therefore, it has real Orthogonal Eigen Basis. 
+And... this is looking like Fisher's LDA. The expression is only maximized when $u$ is an eigen vector of the matrix $XX^T$ (Dot product of the same vector!). And this is cool because it just so happen that $XX^T$ is Hermitian, and therefore, it has real Orthogonal Eigen Basis, omitting the orthogonality constraints still retain the same optimization. And this is how an optimizaiton point of view lead to the SVD. And the list of $u_i$ that maximizes the expression are the eigen values of the matrix $XX^T$.
 
-And this is how an optimizaiton point of view lead to the SVD. 
+**Symmetry**: 
 
-And the list of $u_i$ that maximizes the expression are the eigen values of the matrix $XX^T$.
+Change the $X$ to $X^T$ to get a different proof, and as a result, attaining $V$ matrix for the SVD decomposition by solving the symmetric eigen problem for $XX^T$. 
+
+
 
 
 ---
 ### **Matrix Completion for Recommendation System**
 
-Let a matrix's column be the rating of a particular user on all the movies. 
-
-Let row be a particular movie.
-
-$X[:, i]$ gives all the rating of a user of all movies and $X[i, :]$ gives all the rating of a particular movie. 
-
-Obviously, a row is going to be full of `NaNs` because a user can't just rate all the movies in the database. 
-
-This matrix is very sparse, most of them are `NaNs`, and we only have a few data points for each movie. 
+Let a matrix's column be the rating of a particular user on all the movies. Let row be a particular movie.$X[:, i]$ gives all the rating of a user of all movies and $X[i, :]$ gives all the rating of a particular movie. Obviously, a row is going to be full of `NaNs` because a user can't just rate all the movies in the database. This matrix is very sparse, most of them are `NaNs`, and we only have a few data points for each movie. 
 
 Goal: Can we fill in the missing entries so that we can know what a movie a particular use might like, even they haven't rated the movie yet. 
 
@@ -87,7 +73,7 @@ Let this data matrix be $d\times n$, so that are $n$ users and there are $d$ mov
 
 **If we decompose the column space into orthogonal matrix $U$, what could be the columns of $U$ represents?**
 
-Well, it represents particular subset of movies that always got rated together, and never rated with other groups. People who like MLP movie probably don't like something say, horror movie (Maybe...? ), then these 2 type of watching habits are going to be represented by different columns of $U$. 
+Well, it represents particular subset of movies that always got rated together, and never rated with other groups. People who like MLP movie probably don't like something say, horror movie (Maybe...? ), then these 2 types of watching habits are going to be represented by different columns of $U$. 
 
 And for some users, when they watch across different genres, it's likely that they are a composition of different types of $u_i$, different components. 
 

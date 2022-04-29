@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Arnoldi and Monic.md",
+            "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Arnoldi and Monic.md",
+            "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
             "mode": "preview"
           }
         },
@@ -92,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Arnoldi and Monic.md",
+                "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,8 +110,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "47d19601a8c5b046",
+  "active": "665e6659ab77e92f",
   "lastOpenFiles": [
+    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrix Decomposition/SVD.md",
     "MATH 700 (Master Thesis)/Arnoldi and Monic.md",
     "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
     "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
@@ -119,8 +121,6 @@
     "MATH 700 (Master Thesis)/Krylov Subspace Condensed.md",
     "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomposition Foundations.md",
-    "MATH 700 (Master Thesis)/Krylov Subspace.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Deeper Look into Projector.md"
+    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomposition Foundations.md"
   ]
 }
