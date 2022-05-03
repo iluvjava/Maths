@@ -38,7 +38,7 @@ $$
 \max_{U^TU = I} \Vert U^TX\Vert_F = \max_{U^TU = I}\sum_{i}^{} \Vert u_i^TX\Vert_2^2
 $$
 
-**The Interpratation is**: get all the data point, projected it onto all the orthogonal subspace we had, and we want to maximize the variance alone the orthogonal subspace $U$. Note: $U^TU$ is the covariance matrix of the alternate subspace. Now: 
+**The Interpratation is**: get all the data point, projected it onto all the orthogonal subspace we had, and we want to maximize the variance along the orthogonal subspace $U$. Note: $U^TU$ is the covariance matrix of the alternate subspace. Now: 
 
 $$
 \max_{U^TU = I}\sum_{i}^{} \Vert u_i^TX\Vert_2^2 = \max_{U^TU = I} \sum_{i}^{}
@@ -56,7 +56,6 @@ And... this is looking like Fisher's LDA. The expression is only maximized when 
 **Symmetry**: 
 
 Change the $X$ to $X^T$ to get a different proof, and as a result, attaining $V$ matrix for the SVD decomposition by solving the symmetric eigen problem for $XX^T$. 
-
 
 
 

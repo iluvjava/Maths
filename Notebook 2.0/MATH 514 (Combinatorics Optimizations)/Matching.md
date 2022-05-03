@@ -1,5 +1,7 @@
 ### **Intro**
 
+Definition
+
 > A matching of a graph is a set of edges such that all edges in the set is incident to uniquely 2 edges on the original graph. 
 
 

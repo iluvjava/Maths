@@ -157,7 +157,7 @@ $$
 This provide us with an actual way of looking for the vectors that are A-Orthogonal! 
 
 ---
-### **Assisted Conjugate Gradient**
+### **Conjugate Direction Method**
 
 So far, we have this particular scheme of solving the optimization problem, coupled with the way to computing the solution $x_k$ at each step, and the residual at each step, while also getting the residual vector at each step too. 
 
@@ -177,7 +177,7 @@ $$
 
 With the assitance of a set of basis vector that span the whole space, this algorithm is possible to achieve the objective. Take note that we can accumulate the solution for $x_k$ accumulatively, instead of computing the whole projector process, we have the choice to update it recursively as the newest $p_k$ vector is introduced at that step. Let's Call this formulation of the algorithm: *Assisted Conjugate Gradient*. 
 
-**Assited CG Properties**
+**CDM Properties**
 
 Let's consider some of the immediate properties of this algorithm we developed.
 
@@ -439,7 +439,7 @@ That is the algorithm, stated with all the iteration number listed as a super sc
 
 
 ---
-### **Conjugate Gradient and Krylov Subspace**
+### Conjugate Gradient and Krylov Subspace
 
 The conjugate Gradient Algorithm is actually a residual assisted conjugate gradient, a special case of the algorithm we derived at the start of the excerp. The full algorithm can be seem by the short recurrence for the residual and the conjugation vector. This part is trivial. Next, we want to show the relations to the Krylov Subspace, which only occurs for the Residual Assisted Conjugate Gradient algorithm. 
 

@@ -55,7 +55,7 @@ $$
     & z = \frac{x}{2} + \frac{y}{2} 
 \end{aligned}
 $$
-And at the last line we derived the contradiction that $z$ must not be a vertex in $P$. For $\impliedby$, we prove by contradiction and suppose that $v$ is **not a vertex**, then the rank of $A_{\mathcal I, :}$ is not going to be equal to $n$. Choose any $x, y\in P\setminus \{v\}$ then $i\in [m]\implies a_i^Tx \le b_i\wedge a_i^Ty \le b_i$ by def. In addition using convexity we may say: $\exists z = \lambda x + (1 - \lambda)y$. 
+And at the last line we derived the contradiction that $z$ must not be a vertex in $P$. For $\impliedby$, we prove by contrapositive and suppose that $v$ is **not a vertex**, then the rank of $A_{\mathcal I, :}$ is not going to be equal to $n$. Choose any $x, y\in P\setminus \{v\}$ then $i\in [m]\implies a_i^Tx \le b_i\wedge a_i^Ty \le b_i$ by def. In addition using convexity we may say: $\exists z = \lambda x + (1 - \lambda)y$. 
 
 **Lemma 1:** 
 

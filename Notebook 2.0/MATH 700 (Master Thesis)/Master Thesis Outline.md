@@ -73,6 +73,7 @@ We set up and show the analysis for CG under floating point arithemtic. And when
 
 Textbooks: 
 * Iterative Methods for sparse linear systems
+* Demmel's book on numerical linear algebra. 
 
 Papers, course notes: 
 
@@ -85,4 +86,3 @@ Papers, course notes:
 * CG Without the Agonizing Pain: [[Painless Conjugate Gradient.pdf]]
 	
 * Bi-Conjugate Gradient for Non-symmetric system [link](https://archive.org/details/isbn_3540111999/page/73/mode/2up)
-

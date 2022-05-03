@@ -29,10 +29,10 @@ $$
     & \langle b - Ax^{(0)} - A\delta x , w\rangle = 0 \quad \forall w \in \mathcal{L}
    \\
     & \langle r_{0} - A\delta x,w \rangle=0\quad \forall w \in \mathcal{L}
-\end{aligned}\tag{1}
+\end{aligned}\tag{1.1}
 $$
 
-**Subspace Norm Minimization Framework**
+**Subspace Residual Norm Minimization Framework**
 
 Other times, iterative method will choose to build up a subspace for each step with a subspace generator, and build up the solution on this expanding subspace, but with the additional objective of minimizing the residual under certain norm. 
 
@@ -49,26 +49,59 @@ $$
     \Vert 
         r_0 - AKw
     \Vert_B^2
-\end{aligned}\tag{2}
+\end{aligned}\tag{1.2}
 $$
 
 We take the derivative of it and set the derivative to zero, this translate the problem to a projection problem under the $A$ norm. 
 $$
 \begin{aligned}
     \nabla_w \left[
-        \Vert r_0 - AKx\Vert_B^2
+        \Vert r_0 - AKw\Vert_B^2
     \right] &= \mathbf{0}
     \\
-    (AK)^TB(r_0 - AKx) &= \mathbf{0}
+    (AK)^TB(r_0 - AKw) &= \mathbf{0}
     \\
-    (AK)^TBr_0 - (AK)^TBAKx &= \mathbf{0}
+    (AK)^TBr_0 - (AK)^TBAKw &= \mathbf{0}
     \\
-    (AK)^TBr_0 &= (AK)^TBAKx
-\end{aligned}\tag{3}
+    (AK)^TBr_0 &= (AK)^TBAKw
+\end{aligned}\tag{1.3}
 $$
 
 Different choices of $B, K$ can lead to many different expresions. Some of them are easy to solve and build up the solution with an expanding subspace. 
 
+
+**Subspace Error Norm Minimization Framework**
+
+Some method choose to minimize on some type of norm that is rather, interesting. Assuming that $A$ is symmetric positive definite, let the matrix $K$ be a matrix whose columns are a basis for subspace $\mathcal K$; consider the following formulations of the above residual norm minimization: 
+
+$$
+\begin{aligned}
+    & \min_{x\in x_0 + \mathcal K}\Vert b - Ax\Vert_{A^{-1}BA^{-1}}^2
+    \\
+    &= 
+    \min_{x\in x_0 + \mathcal K}\Vert A^{-1}b - x\Vert_B^{2}
+    \\
+    &= 
+    \min_{w\in \mathbb R^k} \Vert 
+        A^{-1}b - x_0 - Kw
+    \Vert_B^2
+    \\
+    &= 
+    \min_{w\in \mathbb R^k} \Vert 
+        A^{-1}b - x_0 - Kw
+    \Vert_B^2
+    \\
+    &= \min_{w\in \mathbb R} \Vert e_0 - Kw\Vert_B^2
+    \\
+    \implies \nabla_w[ \Vert e_0 - Kw\Vert_B^2]& = \mathbf 0
+    \\
+    \nabla_w[e - Kw]^TB(e_0 - Kw) &= \mathbf 0
+    \\
+    K^TBe_0 &= K^TBKw
+\end{aligned}
+$$
+
+By choosing $B = A$, one would attain a minimization conditions on the energy norm of $A$. This is possible by the assumption that $A$ is SPD. In addition, if we consider $B = E^{-1}AE^{-T}$, where $M = E^{-1}E^{-T}$ a SPD matrix who approximate $A^{-1}$, then we attained the optimality conditions for Pre-conditioned CG. See [[Preconditioned Conjugate Gradient]] for more info. Derivation is skipped. 
 
 ---
 ### **Orthogonality Condition Matrix Representation**
@@ -127,7 +160,7 @@ Analysis of subspace projections methods should involve discussion of this parti
 ---
 ### **Similarity Between Orthogonality Method and Norm Differential**
 
-For some of the cases, these 2 method are the same. Consider the minimization problem where $x$ is from some affine subspace $x_0 + \mathcal{L}$ and we wish to minize $\Vert b - Ax\Vert_2^2$. And we assume that $A$ is at least full rank, so that there is a unique minimizer. Then we have ($B = I$): 
+For some cases, these 2 method are the same. Consider the minimization problem where $x$ is from some affine subspace $x_0 + \mathcal{L}$ and, we wish to minimize $\Vert b - Ax\Vert_2^2$. And we assume that $A$ is at least full rank, so that there is a unique minimizer. Then we have ($B = I$): 
 
 $$
 \begin{aligned}
@@ -140,7 +173,7 @@ This is the same as the Galerkin Formulation with $V = K, W = AK$. Like that, an
 ---
 ### **Consequences**
 
-The GMRes method, the Conjugate Gradient method, and many other methods all fits ounder this category. In which, a subspace is maintained during the iterations, and then it try to get the best results using the maintained subspace for the iteration. 
+The GMRes method, the Conjugate Gradient method, and many other methods all fit into this category. In which, a subspace is maintained during the iterations, and then it tries to get the best results using the maintained subspace for the iteration. 
 
 **Conjugate Gradient**
 
@@ -166,16 +199,14 @@ $$
 \end{aligned} 
 $$
 
-This is the conditions derived using the objective of minimizing the error norm by choosing the solution $x$ from the affine space of $x_0 + \text{span}(P_k)$, where we assume that $P_k$ is a matrix whose columns are some basis vectors. 
-
-Plase obseve that the above equation is also the same as the following Galerkin's Condition's Matrix From: 
+This is the conditions derived using the objective of minimizing the error norm by choosing the solution $x$ from the affine space of $x_0 + \text{span}(P_k)$, where we assume that $P_k$ is a matrix whose columns are some A-Orthogonal basis vectors. Plase observe that the above equation is also the same as the following Galerkin's Condition's Matrix From: 
 
 $$
 \text{choose }:  x\in x_0 + \text{span}(P_k) \text{ s.t: }  
 b - Ax \perp \text{span}(P_k)
 $$
 
-For any miniizations method, there is a Galerkin Frameworks that seems to describe it. 
+For any minimization method, there is such a Framework that seems to describe it.  
 
 
 ---

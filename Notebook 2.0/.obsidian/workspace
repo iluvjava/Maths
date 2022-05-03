@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
+            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
+            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
             "mode": "preview"
           }
         },
@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 505
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
+                "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "665e6659ab77e92f",
+  "active": "47d19601a8c5b046",
   "lastOpenFiles": [
-    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Matrix Decomposition/SVD.md",
-    "MATH 700 (Master Thesis)/Arnoldi and Monic.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Krylov Matrix QR and Arnoldi Iterations.md",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
-    "MATH 700 (Master Thesis)/Exact Conjugate Gradient Convergence.md",
-    "MATH 700 (Master Thesis)/Krylov Subspace Condensed.md",
-    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md",
+    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+    "References/Painless Conjugate Gradient.pdf",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Master Thesis.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "AMATH 584 (Numerical Linear Algbra)/Eigen Decomposition/Eigen Decomposition Foundations.md"
+    "Assets/Oblique_projection.svg",
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
+    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md"
   ]
 }
