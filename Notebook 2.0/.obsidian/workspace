@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+            "file": "MATH 700 (Master Thesis)/Lanczos and Minimal Polynomial.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+            "file": "MATH 700 (Master Thesis)/Lanczos and Minimal Polynomial.md",
             "mode": "preview"
           }
         },
@@ -76,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -93,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
+                "file": "MATH 700 (Master Thesis)/Lanczos and Minimal Polynomial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +112,15 @@
   },
   "active": "47d19601a8c5b046",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Lanczos and Minimal Polynomial.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
+    "MATH 700 (Master Thesis)/Arnoldi minimal Monic Polynomial.md",
+    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
     "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "References/Painless Conjugate Gradient.pdf",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
     "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md",
-    "Assets/Oblique_projection.svg",
-    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
-    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/Taxonomy and Frameworks of Subspace Projection Method.md"
+    "MATH 700 (Master Thesis)/Conjugate Gradient and Oblique Projectors.md"
   ]
 }
