@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-From the first line to the second line, we use the fact that $A$ is symmetric so that it admits $A = U\Lambda ^H$ as an eigen decomposition for it. From the third line to the 4th line is because $U$ is unitary. From the last line, we know that $\overline{P}_k(A)q_1$ is minimizing the weighted sum at all $\lambda_i$ where the weight is given by $(U^Hq_1)_i$. 
+From the first line to the second line, we use the fact that $A$ is symmetric so that it admits $A = U\Lambda ^H$ as an eigen decomposition for it. From the third line to the 4th line is because $U$ is unitary. From the last line, we know that $\overline{p}_k(A)q_1$ is minimizing the weighted sum at all $\lambda_i$ where the weight is given by $(U^Hq_1)_i$. 
 
 ---
 ### **Consequences**
