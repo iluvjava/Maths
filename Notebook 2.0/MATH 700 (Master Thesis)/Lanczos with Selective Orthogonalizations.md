@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 [[Lanczos Projection onto Ritz Under Floats]]
 
 ---

@@ -1,5 +1,5 @@
 [[Arnoldi minimal Monic Polynomial]]
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 
 ---
 ### **Theorem Statement**

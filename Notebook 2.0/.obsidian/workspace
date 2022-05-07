@@ -4,28 +4,30 @@
     "type": "split",
     "children": [
       {
-        "id": "47d19601a8c5b046",
+        "id": "a181ae6503024aa1",
         "type": "leaf",
+        "dimension": 45.25101763907734,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
             "mode": "source"
           }
         },
-        "group": "1e923b6706c6dd59"
+        "group": "cdec8cc3d19f7555"
       },
       {
-        "id": "665e6659ab77e92f",
+        "id": "54c7b6aef6e3c191",
         "type": "leaf",
+        "dimension": 54.74898236092266,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
             "mode": "preview"
           }
         },
-        "group": "1e923b6706c6dd59"
+        "group": "cdec8cc3d19f7555"
       }
     ],
     "direction": "vertical"
@@ -76,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
+                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "47d19601a8c5b046",
+  "active": "a181ae6503024aa1",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/From Conjugate Gradient to Lanczos.md",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "MATH 700 (Master Thesis)/Lanczos and Minimal Polynomial.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Algoritm.md",
-    "MATH 700 (Master Thesis)/Arnoldi minimal Monic Polynomial.md",
-    "MATH 700 (Master Thesis)/Floats Conjugate Gradient Convergence.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "References/Painless Conjugate Gradient.pdf",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md"
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
+    "MATH 999/Irreducible Symmetric Tridiagonal Matrix.md",
+    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Iteration.md",
+    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
+    "MATH 700 (Master Thesis)/References/Krylov Subspace Method for Solving Large Unsymmetric System of Equations.pdf",
+    "MATH 700 (Master Thesis)/References/Solution of Sparse Indefinite System of Equations.pdf",
+    "MATH 700 (Master Thesis)/References/On Solving Indefinite Symmetric Linear Systems by Means of the Lanczos Methods.pdf",
+    "MATH 700 (Master Thesis)/References/A SHIFTED BLOCK LANCZOS ALGORITHM FOR SOLVING SPARSE SYMMETRIC GENERALIZED EIGENPROBLEMS.pdf"
   ]
 }

@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 [[Conjugate Gradient Anne's Version]]
 
 ---

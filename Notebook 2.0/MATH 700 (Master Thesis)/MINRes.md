@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 [[Steepest Descend for Matrix Vector]]
 [[Conjugate Gradient Anne's Version]]
 

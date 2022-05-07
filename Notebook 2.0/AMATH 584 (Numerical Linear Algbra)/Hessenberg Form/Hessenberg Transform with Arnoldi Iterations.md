@@ -262,7 +262,7 @@ end
 ---
 ### **Its Close Cousin: The Iterative Lanczos Algorithm**
 
-The iterative lanczos algorithm performs exactly the same type of procedures but applied to Hermitian Matrices, and when that happens, we obtained a Tridiagonalization of the Hermitian Matrix.For more info, see a dedicated discussion about [[Lanczos Algoritm]]
+The iterative lanczos algorithm performs exactly the same type of procedures but applied to Hermitian Matrices, and when that happens, we obtained a Tridiagonalization of the Hermitian Matrix.For more info, see a dedicated discussion about [[Lanczos Iteration]]
 
 ---
 ### **A Projector Based Approach to Hessenberg Form**

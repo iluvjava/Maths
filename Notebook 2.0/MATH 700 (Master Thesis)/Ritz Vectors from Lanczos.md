@@ -1,6 +1,6 @@
 Prereq: Basic Linear Algebra. 
 
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 
 ---
 ### **Intro**

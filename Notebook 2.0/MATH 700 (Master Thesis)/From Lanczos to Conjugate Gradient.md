@@ -1,5 +1,5 @@
 [[Conjugate Gradient for Advanced Readers]]
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 [[Conjugate Gradient and Oblique Projectors]]
 [[Cauchy Interlace Theorem]]
 

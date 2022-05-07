@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]], [[Krylov Subspace]]
+[[Lanczos Iteration]], [[Krylov Subspace]]
 
 Here we made heavy reference to the Iterative Method for Linear System by Anne Greenbaum.
 

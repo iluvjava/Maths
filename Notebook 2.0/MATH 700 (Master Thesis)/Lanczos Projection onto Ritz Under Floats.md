@@ -1,4 +1,4 @@
-[[Lanczos Algoritm]]
+[[Lanczos Iteration]]
 [[Ritz Vectors from Lanczos]]
 
 
