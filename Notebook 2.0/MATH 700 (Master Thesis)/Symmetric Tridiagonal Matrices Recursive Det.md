@@ -28,7 +28,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-Now, we use the Laplace Expansion to figure out the determinant, for the sake of recursion, we are expanding the Laplace Expansion from the last row of $T_k$
+Now, we use the Laplace Expansion to figure out the determinant we are expanding the Laplace Expansion on the last row of $T_k$
 
 $$
 \begin{aligned}
@@ -57,7 +57,7 @@ $$
 \end{aligned}\tag{2}
 $$
 
-Substituting the last equation back to the first equation of the first term. 
+Substituting the last equation back to the first equation of the first term in (2): 
 
 $$
 \begin{aligned}

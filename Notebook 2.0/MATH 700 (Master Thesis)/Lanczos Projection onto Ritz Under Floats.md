@@ -31,13 +31,13 @@ $\beta_k, \alpha_k$ are the coefficients inside of the Lanczos Tridiaognal Matri
 
 $$
 \begin{aligned}
-    AQ_k &= Q_kT_k + \beta_kq_{k + 1}\xi_k^Tv_i
+    AQ_k &= Q_kT_k + \beta_kq_{k + 1}\xi_k^Tv_i^{(k)}
     \\
-    AQ_k v_i &= Q_k\theta_iv_i + \beta_k q_{k + 1}(v_i)_k
+    AQ_k v_i^{(k)} &= Q_k\theta_iv_i^{(k)} + \beta_k q_{k + 1}(v_i^{(k)})_k
     \\
-    \text{Let: } Q_k v_i &= y_{k,i}
+    \text{Let: } Q_k v_i^{(k)} &= y_i^{(k)}
     \\
-    Ay_{k, i} &= \theta_i y_{k, i} + \beta_k q_{k + 1}(v_i)_k
+    Ay_{k, i} &= \theta_i y_{i}^{(k)} + \beta_k q_{k + 1}(v_i^{(k)})_k
 \end{aligned}
 $$
 
@@ -49,7 +49,7 @@ When, $q_{k + 1}$, representing the case when the krylov subspace is now invaria
 
 > $$
 > \begin{aligned}
->     y_{k, i}^T q_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}
+>     (y_i^{(k)})^T q_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}
 >     {
 >         \beta_k |(v_i)_k|
 >     }
@@ -62,7 +62,7 @@ The projection of the new Lanczos Vector onto the ith ritz vector is inversely p
 
 **Proof**
 
-For the sake of simplicity, we ignore all the subscript goes goes under $Q, T, q,\xi$ and $F$. With subscripts these quantities are $Q_k, q_{k + 1}, T_k, \xi_k, F_k$. 
+For the sake of simplicity, we ignore all the subscript goes under $Q, T, q,\xi$ and $F$. With subscripts these quantities are $Q_k, q_{k + 1}, T_k, \xi_k, F_k, v_i^{(k)}, y_i^{(k)}$. 
 
 $$
 \begin{aligned}
@@ -88,7 +88,7 @@ $$
 \mathbf{0} = (Q^TQT - T^TQ^TQ) + \beta(Q^Tq\xi^T - \xi q^TQ) + (Q^TF - F^TQ)\tag{3}
 $$
 
-Consdier the ritz vector and ritz value pairs: $v, \theta$, such that $Tv = \theta v$, and we consider multiplying $v^T, v$ on the left and right of $\beta(\xi q^T Q)$: 
+Consider the ritzvector and ritzvalue pairs: $v, \theta$, such that $Tv = \theta v$, and we consider multiplying $v^T, v$ on the left and right of $\beta(\xi q^T Q)$: 
 
 $$
 \begin{aligned}

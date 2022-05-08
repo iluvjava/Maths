@@ -12,9 +12,7 @@ In a much similar way, the eigensystem of the Tridiagonal matrix $T$ (Where T is
 ---
 ### **How Close are the Ritz Vectors?**
 
-Consider the t-ridiagonal decomposition of a Hermitian Matrix $Q_k^kAQ_k = T_k$, where $Q_k$ is $k \times n$ and $T_k$ is $k\times k$ where $k \le n$. Then Consider the Eigen vector/value: $T$: $\theta v = Tv$. Then, $\theta, v$ are the ritz value and the ritz vector of the matrix $A$. 
-
-Consider: 
+Consider the t-ridiagonal decomposition of a Hermitian Matrix $Q_k^kAQ_k = T_k$, where $Q_k$ is $k \times n$ and $T_k$ is $k\times k$ where $k \le n$. Then Consider the Eigen vector/value: $T$: $\theta v = Tv$. Then, $\theta, v$ are the ritz value and the ritz vector of the matrix $A$. Consider: 
 
 $$
 \begin{aligned}

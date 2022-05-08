@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
             "mode": "preview"
           }
         },
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+                "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +115,15 @@
   },
   "active": "a181ae6503024aa1",
   "lastOpenFiles": [
-    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Lanczos Orthogonal and Characteristic Polynomial.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "MATH 999/Irreducible Symmetric Tridiagonal Matrix.md",
-    "AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Lanczos Iteration.md",
-    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
-    "MATH 700 (Master Thesis)/References/Krylov Subspace Method for Solving Large Unsymmetric System of Equations.pdf",
-    "MATH 700 (Master Thesis)/References/Solution of Sparse Indefinite System of Equations.pdf",
-    "MATH 700 (Master Thesis)/References/On Solving Indefinite Symmetric Linear Systems by Means of the Lanczos Methods.pdf",
-    "MATH 700 (Master Thesis)/References/A SHIFTED BLOCK LANCZOS ALGORITHM FOR SOLVING SPARSE SYMMETRIC GENERALIZED EIGENPROBLEMS.pdf"
+    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
+    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md",
+    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
+    "MATH 700 (Master Thesis)/MINRes.md",
+    "MATH 700 (Master Thesis)/Minimal Polynomial.md"
   ]
 }

@@ -102,6 +102,8 @@ Papers, course notes:
 > Showed by Greenbaum back in 1989 how the polynomial generated from the Lanczos iterations is still orthogonal under floating point, but it's in a different weighted measure in which we refers to as "the tiny intervals". 
 
 
+
+
 [[Krylov Subspace Method for Solving Large Unsymmetric System of Equations.pdf]]
 
 > For solving linear system symmetric matrices when the matrix can be indefinite without using the norm equations. By Y. Saad 
@@ -149,6 +151,22 @@ Papers, course notes:
 
 [[PREDICTING THE BEHAVIOR OF FINITE PRECISION LANCZOS AND CONJUGATE GRADIENT COMPUTATIONS A. Greenbaum Z.Strakos.pdf]]
 > Greenbaum's and Strakos tiny interval numerical experiments 
+
+```bibtex
+@article{doi:10.1137/0613011,
+	author = {Greenbaum, A. and Strakos, Z.},
+	title = {Predicting the Behavior of Finite Precision Lanczos and Conjugate Gradient Computations},
+	journal = {SIAM Journal on Matrix Analysis and Applications},
+	volume = {13},
+	number = {1},
+	pages = {121-137},
+	year = {1992},
+	doi = {10.1137/0613011},
+	URL = {https://doi.org/10.1137/0613011},
+	eprint = {https://doi.org/10.1137/0613011},
+	abstract = { It is demonstrated that finite precision Lanczos and conjugate gradient computations for solving a symmetric positive definite linear system \$Ax = b\$ or computing the eigenvalues of A behave very similarly to the exact algorithms applied to any of a certain class of larger matrices. This class consists of matrices \$\hat{A} \$ which have many eigenvalues spread throughout tiny intervals about the eigenvalues of A. The width of these intervals is a modest multiple of the machine precision times the norm of A. This analogy appears to hold, provided only that the algorithms are not run for huge numbers of steps. Numerical examples are given to show that many of the phenomena observed in finite precision computations with A can also be observed in the exact algorithms applied to such a matrix \$\hat{A} \$. }
+}
+```
 
 [[Reliable Numberical Computations Chapter 1.pdf]]
 > Part of a text book \<Reliable Numerical Computations\> where it talks about the phenomena of misconvergence of ritz values during Lanczos Iterations
