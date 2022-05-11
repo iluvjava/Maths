@@ -20,16 +20,34 @@ Suppose that the recursion for the cahracterstic polynomial for $T_k$ is true, a
 
 $$
 \begin{aligned}
-    \psi_j(x) &= \left(\prod_{i = 1}^{j-1} \beta_i\right)^{-1}
+    & 
+    \psi_j(x) = \left(\prod_{i = 1}^{j-1} \beta_i\right)^{-1}
     (-1)^{j - 1}p_{j - 1}(x)
     \quad \forall\; 1 \le j \le k
     \\
-    \beta_j \psi_{j + 1} &= 
-    (x - \alpha_j)\psi_j - \beta_{j - 1}\psi_{j -1}
+    & 
+    \begin{cases}
+        \beta_j \psi_{j + 1} = 
+        (x - \alpha_j)\psi_j - \beta_{j - 1}\psi_{j -1}    
+        & \forall j \ge 2
+        \\
+        \psi_1 = 1
+        \\
+        \psi_0 = 0
+    \end{cases}
     \\
-    p_k(x) &= (\alpha_k - x)p_{k - 1}(x) - \beta_{k - 1}^2p_{k - 1}(x)
+    &
+    \begin{cases}
+        p_j(x) = (\alpha_j - x)p_{j - 1}(x) - \beta_{j - 1}^2p_{j - 1}(x)    
+        &
+        \forall j \ge 1
+        \\
+        p_0(x) = 1 
+        \\
+        p_{-1}(x) = 0
+    \end{cases}
 \end{aligned}
 $$
 
-Assume the recursion for th characterstic polynomial and the orthogonal polynomials are true, we inductively prove that it holds up for $j = k + 1$. 
+Firstly, the base case matches by definition. Assume the recursion for j th characterstic polynomial and the orthogonal polynomials are true, we inductively prove the relations between them holds up for $j = k + 1$. 
 

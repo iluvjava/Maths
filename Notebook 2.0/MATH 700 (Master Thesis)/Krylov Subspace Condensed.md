@@ -15,7 +15,9 @@ Observe that, for every element in the subspace, it's a matrix polynomial, we wr
 
 ### **The Grade of a Krylov Subspace**
 
-> The grade of the krylov subspace is the the smallest $\mathcal K_{k}(A|v)$ such that the vectors in the span is linear dependent, denoted as $\text{grade}(A|v)$
+> The grade of the krylov subspace is the the smallest $k - 1$ such that $\mathcal K_{k}(A|v)$ has linear dependent vectors, denoted as $\text{grade}(A|v)$. It's the degree of the minimal polynomial of $p(A)b$ such that $p(A)b = \mathbf 0$ and the polynomial doesn't have all zeros coefficients. 
+>
+> When the grade is reached, the subspace is linearly dependent and  becomes invariant under $A$. Meaning that for all $x \in \mathcal K_k(A|v)$, $Ax\in \mathcal K_k(A|v)$. 
 
 **Proof**
 
@@ -29,12 +31,12 @@ $$
         b & AB & \cdots & A^{k - 1}b
     \end{bmatrix}
     \\
-    & K_k \text{ Lin Dep} \implies A^{k-1}b = AK_{k - 1}w
+    & K_k \text{ Lin Dep} \implies \exists c \in \mathbb R^{k - 1}: A^{k-1}b = K_{k - 1}c
     \\
     & \implies 
     AK_k = K_k
         \underbrace{\begin{bmatrix}
-            e_2 & \cdots & e_k & c_k
+            e_2 & \cdots & e_k & c
         \end{bmatrix}}_{:= C_k}
     \\
     & \implies 
@@ -51,12 +53,14 @@ Suppose diagonalizable matrix $A = V\Lambda V^{-1}$ has krylov subspace grade re
 
 $$
 \begin{aligned}
-& \mathbf 0 = \sum_{j = 0}^{k}
-w_jA^{j}u
-\\
-& \mathbf 0 = V\sum_{j = 0}^{k} w_j\Lambda^jV^{-1}u
-\\
-& \forall i \quad 0 = \sum_{j = 0}^{k} w_j\lambda_i^{j}(V^{-1}u)_i
+    \exists w\neq \mathbf 0 : \mathbf 0 &= \sum_{j = 0}^{k}
+    w_jA^{j}u
+    \\
+    \mathbf 0 &= V\sum_{j = 0}^{k} w_j\Lambda^jV^{-1}u
+    \\
+    \forall i \quad 0 = \left(
+        \sum_{j = 0}^{k} w_j\lambda_i^{j}
+    \right)(V^{-1}u)_i
 \end{aligned}
 $$
 

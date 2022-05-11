@@ -6,12 +6,11 @@
       {
         "id": "a181ae6503024aa1",
         "type": "leaf",
-        "dimension": 45.25101763907734,
+        "dimension": 49.185888738127545,
         "state": {
-          "type": "markdown",
+          "type": "pdf",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-            "mode": "source"
+            "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
           }
         },
         "group": "cdec8cc3d19f7555"
@@ -19,12 +18,11 @@
       {
         "id": "54c7b6aef6e3c191",
         "type": "leaf",
-        "dimension": 54.74898236092266,
+        "dimension": 50.814111261872455,
         "state": {
-          "type": "markdown",
+          "type": "pdf",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-            "mode": "preview"
+            "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
           }
         },
         "group": "cdec8cc3d19f7555"
@@ -95,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+                "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +113,15 @@
   },
   "active": "a181ae6503024aa1",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
+    "MATH 700 (Master Thesis)/Krylov Subspace Condensed.md",
+    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
     "MATH 700 (Master Thesis)/Lanczos Orthogonal and Characteristic Polynomial.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
     "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
-    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md",
-    "MATH 700 (Master Thesis)/Preconditioned Conjugate Gradient.md",
-    "MATH 700 (Master Thesis)/MINRes.md",
-    "MATH 700 (Master Thesis)/Minimal Polynomial.md"
+    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md"
   ]
 }
