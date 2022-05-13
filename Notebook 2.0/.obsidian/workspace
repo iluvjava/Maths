@@ -8,9 +8,10 @@
         "type": "leaf",
         "dimension": 49.185888738127545,
         "state": {
-          "type": "pdf",
+          "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "mode": "source"
           }
         },
         "group": "cdec8cc3d19f7555"
@@ -20,9 +21,10 @@
         "type": "leaf",
         "dimension": 50.814111261872455,
         "state": {
-          "type": "pdf",
+          "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
+            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "mode": "preview"
           }
         },
         "group": "cdec8cc3d19f7555"
@@ -93,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
+                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,8 +113,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "a181ae6503024aa1",
+  "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Krylov Subspace Condensed.md",
     "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
@@ -120,7 +123,6 @@
     "MATH 700 (Master Thesis)/Lanczos Orthogonal and Characteristic Polynomial.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
     "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
-    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
     "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md"
   ]

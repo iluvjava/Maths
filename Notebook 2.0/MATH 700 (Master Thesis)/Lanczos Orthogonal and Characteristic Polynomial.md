@@ -49,5 +49,64 @@ $$
 \end{aligned}
 $$
 
-Firstly, the base case matches by definition. Assume the recursion for j th characterstic polynomial and the orthogonal polynomials are true, we inductively prove the relations between them holds up for $j = k + 1$. 
+Firstly, the base case matches by definition. Assume the recursion for j th characterstic polynomial and the orthogonal polynomials are true, we inductively prove the relations between them holds up for $j = k + 1$. Let's consider: 
+
+$$
+\begin{aligned}
+    \beta_j\psi_{j + 1} &=
+    x \psi_j - \alpha_j \psi + \beta_{j - 1}\psi_{j - 1}
+    \\
+    &= (x - \alpha_j)\psi_j + \beta_{j - 1}\psi_{j - 1}
+    \\
+    &= (x - \alpha_j)\left(
+        \prod_{i = 1}^{j - 1}\beta_i
+    \right)^{-1}(-1)^{j + 1}p_{j - 1}
+    + 
+    \beta_{j - 1}\left(
+        \prod_{i = 1}^{j - 2}\beta_i
+    \right)^{-1}(-1)^{j}p_{j - 2}
+    \\
+    &= 
+    \left(
+        \prod_{i = 1}^{j - 2}\beta_i
+    \right)^{-1}
+    \left(
+        (x - \alpha_j)\beta_{j - 1}^{-1}(-1)^{j + 1}p_{j + 1}
+        + 
+        \beta_{j - 1}(-1)^jp_{j -2}
+    \right)
+    \\
+    &= 
+    \left(
+        \prod_{i = 1}^{j - 2}\beta_i
+    \right)^{-1}
+    (-1)^{j}
+    \left(
+        (\alpha_j - x)\beta_{j - 1}^{-1}p_{j + 1}
+        + 
+        \beta_{j - 1}p_{j -2}
+    \right)
+    \\
+    &=
+    \left(
+        \prod_{i = 1}^{j - 2}\beta_i
+    \right)^{-1}
+    (-1)^{j}\beta_{j - 1}^{-1}
+    \underbrace{\left(
+        (\alpha_j - x)p_{j + 1}
+        + 
+        \beta_{j - 1}^2p_{j -2}
+    \right)}_{=p_j(x)}
+    \\
+    &= 
+    \left(
+        \prod_{i = 1}^{j - 1}\beta_i
+    \right)^{-1}(-1)^{j + 2}p_j(x)
+    \\
+    \implies  \beta_j\psi_{j + 1} &= \left(
+        \prod_{i = 1}^{j - 1}\beta_i
+    \right)^{-1}(-1)^{j + 2}p_j(x)
+\end{aligned}
+$$
+The recursion holds up. 
 
