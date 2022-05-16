@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-$\beta_k, \alpha_k$ are the coefficients inside of the Lanczos Tridiaognal Matrix. $Q_k^T T_k Q_k$ will approximates the matrix $A$. Consider the Exact Lanczos Recurrence: 
+$\beta_k, \alpha_k$ are the coefficients inside of the Lanczos Tridiaognal Matrix. $Q_k^T T_k Q_k$ will approximate the matrix $A$. Consider the Exact Lanczos Recurrence: 
 
 $$
 \begin{aligned}
@@ -37,7 +37,7 @@ $$
     \\
     \text{Let: } Q_k v_i^{(k)} &= y_i^{(k)}
     \\
-    Ay_{k, i} &= \theta_i y_{i}^{(k)} + \beta_k q_{k + 1}(v_i^{(k)})_k
+    Ay_i^{(k)} &= \theta_i y_{i}^{(k)} + \beta_k q_{k + 1}(v_i^{(k)})_k
 \end{aligned}
 $$
 
@@ -62,45 +62,31 @@ The projection of the new Lanczos Vector onto the ith ritz vector is inversely p
 
 **Proof**
 
-For the sake of simplicity, we ignore all the subscript goes under $Q, T, q,\xi$ and $F$. With subscripts these quantities are $Q_k, q_{k + 1}, T_k, \xi_k, F_k, v_i^{(k)}, y_i^{(k)}$. 
+For simplicity, we ignore all the subscript goes under $Q_k, q_{k + 1}, T_k, F_k, v_i^{(k)}, y_i^{(k)}$. Starting with the Lanczos recurrences under floating point arithemetic: 
 
 $$
 \begin{aligned}
-    AQ &= AT + \beta q\xi^T + F
+    AQ &= AT + \beta q\xi_k^T + F
     \\
-    Q^TAQ &= Q^TQT + Q^T\beta q\xi^T + Q^TF
+    Q^TAQ &= Q^TQT + Q^T\beta q\xi_k^T + Q^TF
+    \\
+    Q^TAQ &= (Q^TQT + Q^T\beta q\xi_k^T + Q^TF)^T
+    \\
+    &= T^TQ^TQ  + \beta\xi_k q^T Q + F^TQ
 \end{aligned} \tag{1}
 $$
 
-Observe that $Q^TAQ$ is symmetric, therefore: 
+
+The third line is obtained by the fact that $Q^TAQ$ is symmetric. Takes the difference between the second and the third line in (1), we have: 
 
 $$
-\begin{aligned}
-    Q^TAQ &= (Q^TQT + Q^T\beta q\xi^T + Q^TF)^T
-    \\
-    &= T^TQ^TQ  + \beta\xi q^T Q + F^TQ
-\end{aligned}\tag{2}
+\mathbf{0} = (Q^TQT - T^TQ^TQ) + \beta(Q^Tq\xi_k^T - \xi_k q^TQ) + (Q^TF - F^TQ)\tag{3}
 $$
 
-Takes the difference between (1), (2), we have: 
 
-$$
-\mathbf{0} = (Q^TQT - T^TQ^TQ) + \beta(Q^Tq\xi^T - \xi q^TQ) + (Q^TF - F^TQ)\tag{3}
-$$
+Here, we make the approximation that $\langle q_i, q_j\rangle = 0$ when $|i - j| \le 2$ throughout the rest of the derivation, in theory, it should be $\mathcal{O}(\epsilon)$, but we ignore error of orthgonalizing the vector $q_{j + 1}$ against the vector $q_j, q_{j - 1}$ because it's small enough and doesn't change the final result.  
 
-Consider the ritzvector and ritzvalue pairs: $v, \theta$, such that $Tv = \theta v$, and we consider multiplying $v^T, v$ on the left and right of $\beta(\xi q^T Q)$: 
-
-$$
-\begin{aligned}
-    v^T\beta(\xi q^T Q)v &= \beta(v)_k q^T (Qv)
-    \\
-    &= \beta(v)_kq^Ty
-\end{aligned}\tag{4}
-$$
-
-Now, we need to figure out an expresson for the quantity $\xi q^TQ$. **Here, we make the approximation that** $\langle q_i, q_j\rangle = 0$ when $|i - j| \le 2$, in theory, it should be $\mathcal{O}(\epsilon)$, but we assume that the Lanczos orthgonalize exact for the vector $q_{j + 1}$ against the vector $q_j, q_{j - 1}$. **This assumption is made throughout the derivations for the expression**. 
-
-Therefore, we can say that $Q^TQ = I + C^T + C$ where the matrix $C$ is lower triangular with diagonal and sub-diagonals being all zeros, representing the floating points error when the Lanczos Vectors are losing orthogonality. Which means that $C^T + C$ is a matrix with zeros on the tridiagonal parts and all other entires are the floating point errors from Lanczos. 
+As a result we obtained the factorization $Q^TQ = I + C^T + C$ where the matrix $C$ is lower triangular with diagonal and sub-diagonals being all zeros, representing the Lanczos vectors losing orthogonality. Which means that $C^T + C$ is a matrix with zeros on the tridiagonal parts and all other entries are the floating point errors from Lanczos. 
 
 Simplifying expression (3): 
 
@@ -116,29 +102,27 @@ $$
 
 **Reader Please Observe**
 
-$CT$ is strictly lower triangular, $TC$ is strictly lower triangular as well. This is true because an Tridiagonal matrix only encodes interations between adjacent rows/columns, and $C$ has zeros on it's tridiagonals, therefore, $TC, CT$ gives a matrix that is strictly lower diagonal. 
-
-Therefore, expression (5) can be partitioned into strictly lower and upper triangular matrices. 
+$CT$ is strictly lower triangular, $TC$ is strictly lower triangular as well. This is true because a tridiagonal matrix only encodes interations between adjacent rows/columns, and $C$ has zeros on it's tridiagonal parts. ~~therefore, $TC, CT$ gives a matrix that is strictly lower diagonal. Therefore, expression (5) can be partitioned into strictly lower and upper triangular matrices.~~
 
 **Reader Please Consider**
 
-$\xi q^TQ$, adding back the subscript we have: $\xi_k q_{k + 1}^TQ_k$, observe that $\xi_k q_{k + 1}^T$ is a matrix whose last row is $q_{k + 1}^T$. And because of the way that $q_{k + 1}$ is orthogonalized, the last 2 elements of the last row of $\xi_k q_{k + 1}Q_k$ is zero. <u>Hence it's strictly lower triangular</u>.
+Consider $\xi q^TQ$ after adding back the subscript we have: $\xi_k q_{k + 1}^TQ_k$, observe that $\xi_k q_{k + 1}^T$ is a matrix whose last row is $q_{k + 1}^T$. And because of the way that $q_{k + 1}$ is orthogonalized, the last 2 elements of the last row of $\xi_k q_{k + 1}Q_k$ is zero, which is strictly lower triangular. <u>Hence it's contributing to the strictly lower triangular parts of the equation</u>.
 
-**Reader Please Snap out and consider**
+**Reader Please Snap out and re-consider**
 
 
 $$
 \begin{aligned}
-    \mathbf{0} &= (Q^TQT - T^TQ^TQ) + \beta(Q^Tq\xi^T - \xi q^TQ) + (Q^TF - F^TQ)
+    \mathbf{0} &= (Q^TQT - T^TQ^TQ) + \beta(Q^Tq\xi_k^T - \xi_k q^TQ) + (Q^TF - F^TQ)
     \\
     \mathbf{0}&= 
-    -\underbrace{(CT - TC)}_{\text{strict tril}} + \underbrace{(C^TT - TC^T)}_{\text{strict tril}} + \beta(\underbrace{Q^Tq\xi^T}_{\text{strict triu}} - \underbrace{\xi q^TQ}_{\text{strict tril}}) - (Q^TF - F^TQ)
+    -\underbrace{(CT - TC)}_{\text{strict tril}} + \underbrace{(C^TT - TC^T)}_{\text{strict triu}} + \beta(\underbrace{Q^Tq\xi_k^T}_{\text{strict triu}} - \underbrace{\xi_k q^TQ}_{\text{strict tril}}) - (Q^TF - F^TQ)
     \\\implies
-    \mathbf{0} &= (CT - TC) - \beta \xi q^TQ + \underbrace{\text{triu}(Q^TF - F^TQ)}_{:= L}
+    \mathbf{0} &= (CT - TC) - \beta \xi_k q^TQ + \underbrace{\text{tril}(Q^TF - F^TQ)}_{=:L}
 \end{aligned}\tag{6}
 $$
 
-Now consider multiplying by $v^T(\bullet)v$ for each terms in the expression and we have: 
+From the first to second line, we made substitution from (5). From the second line to the third line, we take $\text{triu}$ on both side of the equation. Now consider multiplying by $v^T(\bullet)v$ for each terms in the expression and we have: 
 
 $$
 \begin{aligned}
@@ -150,9 +134,11 @@ $$
     &= 0
     \\
     \implies 
-    v^T\beta\xi q^TQv &= v^TLv
+    v^T\beta\xi_k q^TQv &= v^TLv
     \\
     (\beta(v)_k)(q^TQv) &= v^T Lv
+    \\
+    \beta(v)_kq^Ty &= v^TLv
 \end{aligned}\tag{7}
 $$
 
@@ -162,7 +148,7 @@ $$
 \begin{aligned}
     |v^TLv| \le \Vert L\Vert &= \mathcal{O}(\Vert Q^TF - F^TQ\Vert)
     \\
-    \mathcal{O}(\Vert F\Vert) = \mathcal{O}(\epsilon \Vert A\Vert)
+    \mathcal{O}(\Vert F\Vert) &= \mathcal{O}(\epsilon \Vert A\Vert)
 \end{aligned}\tag{8}
 $$
 
@@ -173,9 +159,9 @@ $$
 \begin{aligned}
     \beta (v)_k &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}{\beta(v)_k}
     \\
-    (Q_kv_i)^Tq_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}{\beta(v_i)k}
+    (Q_kv_i^{(k)})^Tq_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}{\beta(v_i)k}
     \\
-    y_{k, i}^Tq_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}{\beta(v_i)k}
+    (y_i^{(k)})^Tq_{k + 1} &= \frac{\mathcal{O}(\epsilon \Vert A\Vert)}{\beta(v_i)k}
 \end{aligned}\tag{9}
 $$
 

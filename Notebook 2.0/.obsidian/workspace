@@ -6,7 +6,7 @@
       {
         "id": "a181ae6503024aa1",
         "type": "leaf",
-        "dimension": 49.185888738127545,
+        "dimension": 50.44127630685675,
         "state": {
           "type": "markdown",
           "state": {
@@ -19,7 +19,7 @@
       {
         "id": "54c7b6aef6e3c191",
         "type": "leaf",
-        "dimension": 50.814111261872455,
+        "dimension": 49.55872369314325,
         "state": {
           "type": "markdown",
           "state": {
@@ -116,14 +116,14 @@
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf",
-    "MATH 700 (Master Thesis)/Krylov Subspace Condensed.md",
-    "MATH 700 (Master Thesis)/Conjugate Gradient with Krylov Subspace.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/References/A SHIFTED BLOCK LANCZOS ALGORITHM FOR SOLVING SPARSE SYMMETRIC GENERALIZED EIGENPROBLEMS.pdf",
+    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
+    "MATH 700 (Master Thesis)/References/Accuracy and Effectiveness of the Lanczos Algorithm for the  Symmetric Eigenproblem.pdf",
     "MATH 700 (Master Thesis)/Lanczos Orthogonal and Characteristic Polynomial.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "MATH 700 (Master Thesis)/Symmetric Tridiagonal Matrices Recursive Det.md",
-    "MATH 700 (Master Thesis)/Ritz Vectors from Lanczos.md",
-    "MATH 700 (Master Thesis)/Resolvant and Countour Integrals.md"
+    "MATH ??? (Unexplored)/Block Krylov Subspace Method.md",
+    "MATH ??? (Unexplored)/Column Generation Robust Optimization.md",
+    "MATH ??? (Unexplored)/Levenberg–Marquardt algorithm.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
   ]
 }

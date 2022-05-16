@@ -187,3 +187,35 @@ $$
 $$
 
 Cause that is how affine linear span is define, and certainly affine linear dependence and independence should have a definition that is based on affine linear span first. 
+
+$$
+\pm, \mp, \overline{\pm}, \overline{\pm}^-, \overline{\pm}^+, \overline{\mp}_{-}^{+}, \cdots
+$$
+
+$$
+\underline{\overline{\overline{\overline{\overline{\pm^+_{-}}^+_{-}}^+_{-}}^+_{-}}_{-}}
+$$
+
+$$
+a\pm b \mp c = \begin{cases}
+    a + b - c
+    \\
+    a - b + c
+\end{cases}\quad \text{correlated}
+$$
+
+$$
+a\pm b \mp c = \begin{cases}
+    a + b - c
+    \\
+    a - b - c
+    \\
+    a - b + c
+    \\
+    a + b + c
+\end{cases}\quad \text{uncorrelated}
+$$
+
+$$
+\underline{\overline{\underline{\overline{\underline{\overline{\pm^{\pm}_{\mp}}}^{\pm}_{\mp}}}_{\mp}^{\pm}}}_{\mp}^{\pm}
+$$

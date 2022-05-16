@@ -97,6 +97,35 @@ Papers, course notes:
 
 > State of the art implementations of Lanczos for Symmetric eigenvalue problems in common mathematical software. 
 
+```bibtex
+
+@article{article:shifted_block_lanczos,
+author = {Grimes, Roger G. and Lewis, John G. and Simon, Horst D.},
+title = {A Shifted Block Lanczos Algorithm for Solving Sparse Symmetric Generalized Eigenproblems},
+journal = {SIAM Journal on Matrix Analysis and Applications},
+volume = {15},
+number = {1},
+pages = {228-272},
+year = {1994},
+doi = {10.1137/S0895479888151111},
+
+URL = { 
+        https://doi.org/10.1137/S0895479888151111
+    
+},
+eprint = { 
+        https://doi.org/10.1137/S0895479888151111
+    
+}
+,
+    abstract = { An “industrial strength” algorithm for solving sparse symmetric generalized eigenproblems is described. The algorithm has its foundations in known techniques in solving sparse symmetric eigenproblems, notably the spectral transformation of Ericsson and Ruhe and the block Lanczos algorithm. However, the combination of these two techniques is not trivial; there are many pitfalls awaiting the unwary implementor. The focus of this paper is on identifying those pitfalls and avoiding them, leading to a “bomb-proof” algorithm that can live as a black box eigensolver inside a large applications code. The code that results comprises a robust shift selection strategy and a block Lanczos algorithm that is a novel combination of new techniques and extensions of old techniques. }
+}
+
+
+
+
+```
+
 [[BEHAVIORS OF SLIGHTLY PERTURBED LANCZOS AND CONJUGATE GRADIENT.pdf]]
 
 > Showed by Greenbaum back in 1989 how the polynomial generated from the Lanczos iterations is still orthogonal under floating point, but it's in a different weighted measure in which we refers to as "the tiny intervals". 
@@ -225,3 +254,24 @@ Papers, course notes:
 }
 ```
 
+[[The Lanczos Algorithm with Selective Orthogonalizations.pdf]]
+> A very affective way of computing Lanczos iterations without the computational expense of full re-orthogonalizations. It seeks to assert the orthogonality of the Lanczos vectors, eliminating ghost eigenvalues. 
+
+```bibtex
+@article{article:lanso,
+ ISSN = {00255718, 10886842},
+ URL = {http://www.jstor.org/stable/2006037},
+ abstract = {The simple Lanczos process is very effective for finding a few extreme eigenvalues of a large symmetric matrix along with the associated eigenvectors. Unfortunately, the process computers redundant copies of the outermost eigenvectors and has to be used with some skill. In this paper it is shown how a modification called selective orthogonalization stifles the formation of duplicate eigenvectors without increasing the cost of a Lanczos step significantly. The degree of linear independence among the Lanczos vectors is controlled without the costly process of reorthogonalization.},
+ author = {B. N. Parlett and D. S. Scott},
+ journal = {Mathematics of Computation},
+ number = {145},
+ pages = {217--238},
+ publisher = {American Mathematical Society},
+ title = {The Lanczos Algorithm with Selective Orthogonalization},
+ urldate = {2022-05-16},
+ volume = {33},
+ year = {1979}
+}
+
+
+```
