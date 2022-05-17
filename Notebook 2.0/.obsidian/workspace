@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+            "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
             "mode": "preview"
           }
         },
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+                "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,8 +112,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "54c7b6aef6e3c191",
+  "active": "a181ae6503024aa1",
   "lastOpenFiles": [
+    "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
     "MATH 700 (Master Thesis)/References/A SHIFTED BLOCK LANCZOS ALGORITHM FOR SOLVING SPARSE SYMMETRIC GENERALIZED EIGENPROBLEMS.pdf",
     "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
@@ -123,7 +123,6 @@
     "MATH ??? (Unexplored)/Block Krylov Subspace Method.md",
     "MATH ??? (Unexplored)/Column Generation Robust Optimization.md",
     "MATH ??? (Unexplored)/Levenberg–Marquardt algorithm.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "MATH 700 (Master Thesis)/Example_Master_Thesis.pdf"
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md"
   ]
 }
