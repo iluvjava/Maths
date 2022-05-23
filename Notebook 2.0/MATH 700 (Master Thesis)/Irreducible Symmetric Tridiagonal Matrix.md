@@ -1,4 +1,6 @@
+[[Spectral Theorem]]
 
+---
 ### **Intro**
 > An irreducible real symmetric tridiagonal matrix is a symmetric tridiagonal matrix that doesn't have any zeros in its upper and lower subdiagonals. 
 
@@ -16,7 +18,7 @@ The term irreducible refers to the fact that if the matrix is representing a gra
 ### **Proof**
 
 1. Characteristic polynomial of $T_k$ has all simple roots without repetitions.
-2. The matrix is diagonalizable because it's symmetric. 
+2. The matrix is diagonalizable because it's symmetric. (spectral theorem)
 
 (1.) AND (2.) IMPLIES
 

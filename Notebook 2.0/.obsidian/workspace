@@ -4,30 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "a181ae6503024aa1",
+        "id": "54c7b6aef6e3c191",
         "type": "leaf",
-        "dimension": 50.44127630685675,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "source"
           }
         },
-        "group": "cdec8cc3d19f7555"
+        "group": "9c09a30d809dc7ab"
       },
       {
-        "id": "54c7b6aef6e3c191",
+        "id": "72a561359e6564c0",
         "type": "leaf",
-        "dimension": 49.55872369314325,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
             "mode": "preview"
           }
         },
-        "group": "cdec8cc3d19f7555"
+        "group": "9c09a30d809dc7ab"
       }
     ],
     "direction": "vertical"
@@ -78,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -94,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,17 +111,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "a181ae6503024aa1",
+  "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "MATH ??? (Unexplored)/Tensor Border Rank and Fast Matrix Multiplications.md",
+    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "MATH 514 (Combinatorics Optimizations)/Edge Cover.md",
+    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
+    "MATH 700 (Master Thesis)/Irreducible Symmetric Tridiagonal Matrix.md",
+    "MATH 700 (Master Thesis)/References/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/References/A SHIFTED BLOCK LANCZOS ALGORITHM FOR SOLVING SPARSE SYMMETRIC GENERALIZED EIGENPROBLEMS.pdf",
+    "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md",
+    "MATH 700 (Master Thesis)/Master Thesis.md",
     "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
-    "MATH 700 (Master Thesis)/References/Accuracy and Effectiveness of the Lanczos Algorithm for the  Symmetric Eigenproblem.pdf",
-    "MATH 700 (Master Thesis)/Lanczos Orthogonal and Characteristic Polynomial.md",
-    "MATH ??? (Unexplored)/Block Krylov Subspace Method.md",
-    "MATH ??? (Unexplored)/Column Generation Robust Optimization.md",
-    "MATH ??? (Unexplored)/Levenberg–Marquardt algorithm.md",
     "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md"
   ]
 }
