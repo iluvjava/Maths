@@ -109,6 +109,8 @@ $$
 > \end{aligned}
 > $$
 
+We can use variant 1 to prove it. 
+
 
 ---
 ### **Extension**
@@ -197,4 +199,6 @@ The last $<0$ on the last line is because of conclusion from (1). The last expre
 
 $\implies$ tells a story that, for a polytope that is bounded on the direction of $c$, then it's possible to find a combinations of the constraints normals pointing towards the same direction as $c^T$ ($y^TA = c^T$) such that $y^Tb\le c_0$. 
 
-This is linked to the duality of Linear programming because the left part of the iff statement is the bounded primal and the right part of the iff is the dual reaching at least as much as what primal is; in this case $c_0$. 
+**Remarks**: 
+
+This theorem is linked to the duality of linear programming because the left part of the iff statement is the bounded primal and the right part of the iff is the dual reaching at least as much as what primal is; in this case $c_0$. 

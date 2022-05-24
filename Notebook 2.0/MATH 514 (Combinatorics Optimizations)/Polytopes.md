@@ -13,7 +13,7 @@ $$
 \end{aligned}
 $$
 
-Where, $\le$ is an elementwise inequality. A closed polyhedra is referred to as a *polytopes*. 
+Where, $\le$ is an elementwise inequality. A closed polyhedra is referred to as a *polytopes*, and the close refers to having a finite space, and the fact that $P$ is a closed set is direct from the definition. 
 
 --- 
 ### **Vertices**

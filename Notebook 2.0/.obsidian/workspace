@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+            "file": "MATH ??? (Unexplored)/Schur Complement.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+            "file": "MATH ??? (Unexplored)/Schur Complement.md",
             "mode": "preview"
           }
         },
@@ -76,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -93,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+                "file": "MATH ??? (Unexplored)/Schur Complement.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +112,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
+    "MATH ??? (Unexplored)/Schur Complement.md",
     "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
+    "MATH 514 (Combinatorics Optimizations)/Polytopes.md",
     "MATH 514 (Combinatorics Optimizations)/Edge Cover.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
     "MATH 700 (Master Thesis)/Irreducible Symmetric Tridiagonal Matrix.md",
     "MATH 700 (Master Thesis)/References/Example_Master_Thesis.pdf",
     "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md",
-    "MATH 700 (Master Thesis)/Master Thesis.md",
-    "MATH 700 (Master Thesis)/Lanczos with Selective Orthogonalizations.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md"
+    "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md"
   ]
 }
