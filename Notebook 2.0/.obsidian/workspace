@@ -6,10 +6,11 @@
       {
         "id": "54c7b6aef6e3c191",
         "type": "leaf",
+        "dimension": 49.96610169491525,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Schur Complement.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
             "mode": "source"
           }
         },
@@ -18,10 +19,11 @@
       {
         "id": "72a561359e6564c0",
         "type": "leaf",
+        "dimension": 50.03389830508475,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/Schur Complement.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
             "mode": "preview"
           }
         },
@@ -76,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH ??? (Unexplored)/Schur Complement.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,15 +115,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "MATH ??? (Unexplored)/Schur Complement.md",
-    "MATH 514 (Combinatorics Optimizations)/Ferkas's Lama.md",
+    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
     "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
-    "MATH 514 (Combinatorics Optimizations)/Polytopes.md",
-    "MATH 514 (Combinatorics Optimizations)/Edge Cover.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "MATH 700 (Master Thesis)/Irreducible Symmetric Tridiagonal Matrix.md",
-    "MATH 700 (Master Thesis)/References/Example_Master_Thesis.pdf",
-    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "MATH 700 (Master Thesis)/Matrix Functions via Jordan Form.md"
+    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+    "MATH ??? (Unexplored)/KKT in Linear Programming.md",
+    "MATH ??? (Unexplored)/The KKT Conditions.md",
+    "MATH ??? (Unexplored)/Tensor Product of Vector Spaces.md",
+    "MATH ??? (Unexplored)/LOBPCG.md",
+    "MATH 514 (Combinatorics Optimizations)/Vertex Cover.md",
+    "MATH 514 (Combinatorics Optimizations)/Stable Set of a Graph.md",
+    "MATH 514 (Combinatorics Optimizations)/Polytopes.md"
   ]
 }

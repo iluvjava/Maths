@@ -4,10 +4,12 @@
 
 In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma)
 
+Proofs are Taken from: Alexander Schrijver pg 31, 32 , A Course in Combinatorics Optimizations, they are summerized and organized/reinterpreted by Professor Vincent of AMATH 514 at University of Washington, 2022, Spring. 
+
 ---
 ### **Intro**
 
-Ferkas lemma is about the geometry of polytopes and cones. 
+Farkas lemma is about the geometry of polytopes and cones. 
 
 > $$
 > \exists\; x \ge \mathbf 0: Ax = b \iff 
@@ -76,15 +78,13 @@ $$
     \\
     & A' := \begin{bmatrix}
         A & -A & I
-    \end{bmatrix}\begin{bmatrix}
-        x^+ \\ x^- \\ s
     \end{bmatrix}
     \\
     & x' := \begin{bmatrix}
         x^+ \\ x^- \\ s
     \end{bmatrix}
     \\
-    &\hspace{1.1em} \implies 
+    &\hspace{1.1em} \implies
     A'x' = b , x' \ge \mathbf 0
 \end{aligned}
 $$
@@ -97,6 +97,7 @@ $$
 \end{aligned}
 $$
 
+Observe that $y^TA' = [y^TA \; -y^TA \; y^T] \ge \mathbf 0$, which is saying that $y^TA = \mathbf 0$; the end. 
 
 **Variant 2**
 > $$

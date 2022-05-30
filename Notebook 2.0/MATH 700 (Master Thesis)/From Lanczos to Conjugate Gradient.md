@@ -273,14 +273,8 @@ $$
     \\
     &= 
     \begin{bmatrix}
-        T_k & \eta_k (L_k)_{:, k} \\ 
-        l_k(U_k)_{k, :} & \eta_k l_k + u_{k + 1}
-    \end{bmatrix}
-    \\
-    &= 
-    \begin{bmatrix}
-        T_k & \eta_k \\
-        l_k u_k & \eta_k l_k + u_{k + 1}
+        T_k & \eta_k\xi_k \\
+        l_k u_k\xi_k^T & \eta_k l_k + u_{k + 1}
     \end{bmatrix}
 \end{aligned}
 $$

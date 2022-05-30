@@ -44,9 +44,9 @@ $$
 \end{aligned}
 $$
 
-**Warning**: The intuition for Lagrange Multiplier doesn't diretly translate to the case for the Lagrangian of KKT conditions. This is true because of the inequality. 
+**Warning**: The intuition for Lagrange Multiplier doesn't diretly translate to the case for the Lagrangian of KKT conditions because of the inequality. 
 
-$\nabla$ is the gradient when it applied to $f$, and the Jacobi matrix when applied to $G, H$. Next, An optimal solution for both the Primal and the Dual Problems gives the following set of conditions on the Lagrangian. Let the optimal solutions be denoted using super script $^+$.  
+$\nabla$ is the gradient when it applied to $f$, and the Jacobi matrix when applied to $G, H$. Next, an optimal solution for both the Primal and the Dual Problems gives the following set of conditions on the Lagrangian. Let the optimal solutions be denoted using super script $^+$.  
 
 **The Conditions**
 
