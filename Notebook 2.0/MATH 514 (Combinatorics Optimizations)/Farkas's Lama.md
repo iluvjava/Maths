@@ -116,9 +116,9 @@ We can use variant 1 to prove it.
 ---
 ### **Extension**
 
-Corollary 2.5(b) From \<A Course in Combinatorial Optimization\>
+**Corollary 2.5(b)** From \<A Course in Combinatorial Optimization\>
 
-> Let $P:= \{x|Ax \le b\}$ be non empty then we have 
+> Let $P:= \{x|Ax \le b\}$ be non empty then we have: 
 > $$
 > (\forall x \in P: c^Tx \le c_0 ) \iff (y \ge \mathbf 0: y^TA = c^T, y^Tb \le  c_0)
 > $$
