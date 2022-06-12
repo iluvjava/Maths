@@ -18,9 +18,11 @@ The second degree Runge Kutta is just evaluating at 2 points and try to average 
 > $$y_{n + 1} = y_n + \frac{h}{2} f(t, y_n) + \frac{h}{2} f(t + h, y_n + hf(t, y_n)) + \mathcal{O}(h^3)$$
 > RK(2)
 
+It has other names: Heun's Method, improved euler method. It's also the leap frog method, where the term $y_n + hf(t, y_n)$ can be viewed as a forward prediction for the trapzoid rule (Predictor corrector method).
+
 ### **5th Degree Runge Kutta**
 
-The 5tht degree Runge Kutta involves a lot of evaluations on the both the spatial dimension and the time dimension. 
+The 5th degree Runge Kutta involves a lot of evaluations on the both the spatial dimension and the time dimension. 
 
 > $$y_{n + 1} = y_n + \frac{h}{6}(f_1 + 2f_2 + 2f_3 + f_4) + \mathcal{O}(h^5)$$
 > RK(4)

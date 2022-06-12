@@ -1,7 +1,7 @@
 Adams Bashforth,  Adam Moulton Method
 Multi-stepping schemes requires several pre-established points to make one future time step, this is a feature from the derivative using the integral method with the Taylor approximation and finite difference. 
 
-
+[[Finite Difference]]
 Contents: 
 * Forward Integration and Finite Difference Analysis 
 * Multi-step method 
@@ -9,7 +9,7 @@ Contents:
 
 ---
 
-### Integration 
+### **Integration** 
 
 IVP given as 
 > $$y' = f(t, y)$$
@@ -40,17 +40,18 @@ But the key here is to use approximation for the integral, with a polynomial and
 
 * Approximating using the constant
 $$f(t, y(t)) \approx f(t_n, y_n)$$
-Instead of using the $y(t)$, let's just use the $y_n$ from the previous time step as our point of evaluation. 
+Instead of using the $y(t)$, let's just use the $y_n$ from the previous time step as our point of evaluation (Left hand Rule) gives the foward Euler method.  
 $$y_{n+1} = y_n + \int_{t_n}^{t_{n+1}} f(t_n, y_n) dt$$
 $$y_{n+1} = y_n + f(t_n, y_n)(t_{n+1} - t_n)$$
-which is just the Euler's Method 
+
 
 ---
-
-### Adam's Method
+### **Adam's Method**
 
 In this section we use the following notations: 
-$$f_n = f(t_n, y(t_n))$$ $$\Delta t = t_{n + 1} - t_{n}$$
+$$f_n = f(t_n, y(t_n))$$ 
+
+$$\Delta t = t_{n + 1} - t_{n}$$
 
 Consider the approximation of the $f(t_n, y(t_n))$ in term of the following polynomials: 
 
@@ -88,7 +89,7 @@ In this case, we have an implicit method and this method in particular is called
 
 > Problem: It seems like Heun's Method looks the same I am not sure which is which and why this is the case. 
 
-#### Extra Notes
+#### **Extra Notes**
 
 Because the Adams Bashforth scheme requires 2 points as for starting it, we might just need to to use Euler for the first iteration and then use this scheme to start the iterations. 
 
@@ -96,7 +97,7 @@ Because the Adams Bashforth scheme requires 2 points as for starting it, we migh
 
 ---
 
-### Multi_Stepping and Predictors 
+### **Multi_Stepping and Predictors** 
 
 We can combine both of the implicit and the explicit time steppingg scheme together to get best of the both worlds.
 
@@ -114,7 +115,7 @@ This Multi-Stepping scheme has an accuracy that varies a lot, and the `ode311` i
 
 
 ---
-### Predictor Corrector
+### **Predictor Corrector**
 
 Any explicit scheme combined with an explicit scheme's predictor is a valid predictor corrector method. 
 

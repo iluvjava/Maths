@@ -8,8 +8,8 @@ The story behind finite difference is a bit complicated, so here is just a quick
 $\mathcal{O}(\Delta t^2)$ forward and backwards difference schemes for $f'(t)$ and $f''(t)$. 
 
 $$
-f'(t) = \frac{\pm 3f(t) \mp  4f(t\mp \Delta t) \pm f(t \mp 2\Delta t)}
-{2\Delta t}  + \mathcal{O}(h^2)
+f'(t) = \frac{3f(t) -  4f(t\pm \Delta t) + f(t \pm 2\Delta t)}
+{\pm 2\Delta t}  + \mathcal{O}(h^2)
 $$
 
 $$
@@ -17,12 +17,10 @@ f''(t) = \frac{2f(t) - 5f(t \pm \Delta t) + 4f(t \pm 2\Delta t) - f(t \pm 3\Delt
 {\Delta t^2} + \mathcal{O}(h^2)
 $$
 
-
-
-
-Notice the some of the symmetry here allows us to exploit the super position operator $\pm$ and $\mp$. 
-
 Or, you can use the Sympy (python module) to look for finite difference in a quick and dirty way.
+
+**Proof**: 
+Use taylor series. 
 
 **Central**: 
 $$
@@ -39,16 +37,5 @@ $$
 
 ---
 ### **Newton's Interpolations and Finite Difference**
+See [here](https://www.youtube.com/watch?v=scQ51q_1nhw) for more. Finite difference it's a special case of Newton's Interpolation. 
 
-
-
----
-### **Taylor Series Approach**
-
-$$
-y(t + \Delta t); \quad y(t); \quad y(t - \Delta t)
-$$
-
-Use Taylor series on these terms to get the expansion, canceling out terms to get the correct order of degree for the scheme. 
-
-If you were given the scheme, then use the Taylor Series to verify it. 
