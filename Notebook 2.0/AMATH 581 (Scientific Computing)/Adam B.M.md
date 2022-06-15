@@ -99,9 +99,7 @@ Because the Adams Bashforth scheme requires 2 points as for starting it, we migh
 
 ### **Multi_Stepping and Predictors** 
 
-We can combine both of the implicit and the explicit time steppingg scheme together to get best of the both worlds.
-
-Assume that we have previous 2 points, $y_{n - 1}$ and $y _{n}$, then we can use the explicit method to get the future time step as: 
+We can combine both of the implicit and the explicit time steppingg scheme together to get best of the both worlds. Assume that we have previous 2 points, $y_{n - 1}$ and $y _{n}$, then we can use the explicit method to get the future time step as: 
 
 $$y^p_{n + 1} = y_n + \frac{\Delta t}{2}(3f_n - f_{n - 1})$$
 
@@ -117,9 +115,7 @@ This Multi-Stepping scheme has an accuracy that varies a lot, and the `ode311` i
 ---
 ### **Predictor Corrector**
 
-Any explicit scheme combined with an explicit scheme's predictor is a valid predictor corrector method. 
-
-And hence we also have the option to combine the forward and the backward Euler together to get a predictor corrector method. 
+Any explicit scheme combined with an explicit scheme's predictor is a valid predictor corrector method. And hence we also have the option to combine the forward and the backward Euler together to get a predictor corrector method. 
 
 This is the Backwards Euler: 
 
