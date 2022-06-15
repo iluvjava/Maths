@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/KKT in Linear Programming.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH ??? (Unexplored)/KKT in Linear Programming.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
             "mode": "preview"
           }
         },
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH ??? (Unexplored)/KKT in Linear Programming.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,6 +115,8 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
+    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
     "MATH ??? (Unexplored)/KKT in Linear Programming.md",
     "AMATH 581 (Scientific Computing)/Runge Kutta.md",
     "AMATH 581 (Scientific Computing)/Generalized 2nd Order Taylor Scheme.md",
@@ -122,8 +124,6 @@
     "AMATH 581 (Scientific Computing)/Finite Difference.md",
     "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
     "MATH 700 (Master Thesis)/Lanczos Characteristic Polynomial is Orthogonal.md",
-    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md",
-    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
-    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md"
+    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md"
   ]
 }

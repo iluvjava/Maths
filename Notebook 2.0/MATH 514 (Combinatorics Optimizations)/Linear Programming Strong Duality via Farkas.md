@@ -67,10 +67,28 @@ $$
     \\
     \implies & 
         \exists y^* \ge \mathbf 0: 
-            y^TA = c^T, (y^*)^Tb\le \delta
+            (y^*)^TA = c^T, (y^*)^Tb\le \delta
+\end{aligned}
+$$
+The second line is using corollary 2.5(b), listed in the introduction at the top of the file. The $y^*$ is special in the sense that it's the dual optimal: 
+
+$$
+\begin{aligned}
+    & \min_{y\ge \mathbf 0}
+    \left\lbrace
+        y^Tb| y^TA = b
+    \right\rbrace = (y^*)^T b \le \delta := \max_x \left\lbrace
+        c^Tx| Ax \le b
+    \right\rbrace
+    \\
+    & \min_{y\ge \mathbf 0}
+    \left\lbrace
+        y^Tb|y^TA = b
+    \right\rbrace \le \max_x\left\lbrace
+        c^Tx |Ax \le b
+    \right\rbrace
 \end{aligned}
 $$
 
-
-
+Combining with the weak duality, the strong duality of LP is shown. The form of the strong duality can be proved by remodeling the problems using standard LP programming tricks. 
 

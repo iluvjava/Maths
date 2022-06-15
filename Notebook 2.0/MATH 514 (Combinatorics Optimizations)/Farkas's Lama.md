@@ -120,19 +120,19 @@ We can use variant 1 to prove it.
 
 > Let $P:= \{x|Ax \le b\}$ be non empty then we have: 
 > $$
-> (\forall x \in P: c^Tx \le c_0 ) \iff (y \ge \mathbf 0: y^TA = c^T, y^Tb \le  c_0)
+> (\forall x \in P: c^Tx \le c_0 ) \iff (\exists y \ge \mathbf 0: y^TA = c^T, y^Tb \le  c_0)
 > $$
 
 **Things to Observe**
 
-It's fitting the form of Variant (1) of Ferkas Lemma, but it's having an extra parameter $c_0$ for the separating hypre plane defined by $b$, the plane separates points in the polytope and the vector $b$. 
+It's fitting the form of Variant (1) of Ferkas Lemma, but it's having an extra parameter $c_0$ for the separating hyper plane defined by $b$, the plane separates points in the polytope and the vector $b$. 
 
 **Proof**
 
 The $\impliedby$ direction is $y^TA = c^T \implies y^TAx = c^Tx$, but $Ax \le b$  and $y\ge \mathbf 0$ therefore $y^TAx \le y^Tb \le c_0$, so then $c^Tx \le y^Tb \le c_0$. 
 
 
-To prove $\implies$ we use proof by contraposition, assume that $\nexists [y^T \; y_0]^T\ge \mathbf 0$ such that: 
+To prove $\implies$ we use proof by contraposition, assume that $\nexists [y^T \; y_0]^T\ge \mathbf 0$ ($y_0$ here padded the inequality) such that: 
 
 $$
 \begin{aligned}
@@ -151,7 +151,7 @@ $$
 \end{aligned}
 $$
 
-The above expression fits the left condition of the original form of the Ferkas lemma, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By ferkas lamma $\exists [z^T \; z_0]^T$ such that: 
+The above expression fits the left hand condition of the **original form of the Ferkas lemma**, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By ferkas lamma $\exists [z^T \; z_0]^T$ such that: 
 
 $$
 \begin{aligned}
