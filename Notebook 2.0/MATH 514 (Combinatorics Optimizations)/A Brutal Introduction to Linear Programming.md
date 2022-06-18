@@ -14,7 +14,7 @@ Linear programming in brief is just optimizing on a polytopes/polyhedra along a 
 
 **A Fundamental Result**: 
 
-> If the polyhedra is bounded along direction $c$, then the maximum of the LP objective value is attained at some point that is inside of the polyhedra. Cite as Lemma 2.1 from \<A Course in Combinatorics Optimizations\>
+> If the polyhedra is bounded along direction $c$, then the maximum of the LP objective value of $\langle x, c\rangle$ is attained at some point that is inside of the polyhedra. Cite as Lemma 2.1 from \<A Course in Combinatorics Optimizations\>
 
 **Proof**: 
 
@@ -55,4 +55,6 @@ Then $\lambda \delta = \sup\{\lambda c^Tx: Ax \le b\} = \sup \{y^TAx: Ax \le b\}
 ---
 ### **Strong Duality**
 
-A statement of results from strong duality can are listed, and proofs can be found using various different methods and techniques. 
+A statement of results from strong duality can are listed, and proofs can be found using various different methods and techniques.
+
+

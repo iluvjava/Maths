@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
             "mode": "preview"
           }
         },
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +115,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
-    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
+    "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
     "MATH ??? (Unexplored)/KKT in Linear Programming.md",
-    "AMATH 581 (Scientific Computing)/Runge Kutta.md",
-    "AMATH 581 (Scientific Computing)/Generalized 2nd Order Taylor Scheme.md",
-    "AMATH 581 (Scientific Computing)/Adam B.M.md",
-    "AMATH 581 (Scientific Computing)/Finite Difference.md",
-    "MATH 700 (Master Thesis)/Iterative Lanczos and Orthogonal Polynomials.md",
-    "MATH 700 (Master Thesis)/Lanczos Characteristic Polynomial is Orthogonal.md",
-    "CSE 546 (Machine Learning Fundamentals)/SVD Optimization Flavor.md"
+    "MATH ??? (Unexplored)/The KKT Conditions.md",
+    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality/Generalized Lagrangian.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Example Transformation).md",
+    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md",
+    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
+    "AMATH 581 (Scientific Computing)/Runge Kutta.md"
   ]
 }

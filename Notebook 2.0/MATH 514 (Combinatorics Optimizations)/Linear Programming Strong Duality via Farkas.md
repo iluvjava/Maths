@@ -14,16 +14,16 @@ We introduce linear programming strong duality using the theory of hyperplane se
 
 $$
 \begin{aligned}
-    \max_{x\in \mathbb R_+^n}\{\langle c, x\rangle| Ax \le b\} &= \min_{y\in \mathbb R_+^m}\{\langle b, y\rangle| y^TA\ge c\}
+    \max_{x\in \mathbb R_+^n}\{\langle c, x\rangle| Ax \le b\} &= \min_{y\in \mathbb R_+^m}\{\langle b, y\rangle| y^TA\ge c^T\}
     \\
     \max_{x\in \mathbb R^n}\{\langle c,x\rangle|Ax \le b\}
     &=
     \min_{y\in \mathbb R^m_+} 
-    \{\langle b, y\rangle| A^Ty = c\}
+    \{\langle b, y\rangle| A^Ty = c^T\}
     \\
     \max_{x\in \mathbb R_+^n}\{\langle c, x\rangle| Ax = b\}
     &= \min_{y\in \mathbb R^m}\{
-            \langle b, y\rangle| A^Ty \ge c
+            \langle b, y\rangle| A^Ty \ge c^T
         \}
 \end{aligned}
 $$

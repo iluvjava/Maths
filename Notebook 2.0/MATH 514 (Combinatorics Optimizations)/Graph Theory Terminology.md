@@ -20,7 +20,7 @@ A walk with distinct vertices.
 
 
 ### **Cycle**
-A wak with $v_0 = v_m$. Take note that it can have repeatin vertices while going from $v_0$ to $v_m$. 
+A wak with $v_0 = v_m$. Take note that it can have repeating vertices while going from $v_0$ to $v_m$. 
 
 ### **Circuit**
 
