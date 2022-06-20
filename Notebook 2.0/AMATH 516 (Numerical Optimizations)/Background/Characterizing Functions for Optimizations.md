@@ -2,21 +2,21 @@
 
 Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. 
 
-A Function on the Augmented real. 
+**The Augmented Real Functions**
 
-$$
-\begin{aligned}
-    f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}
-\end{aligned}
-$$
-
-The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+> $$
+> \begin{aligned}
+>     f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}
+> \end{aligned}
+> $$
+> 
+> The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics related to the Analysis and characterizations of Functions: 
 
 [[Epi Graph]]
 [[Lower Semi-Continuous]]
-
+[[Convex Sets]]
 
 ---
 ### **Proper Function**
@@ -30,15 +30,21 @@ This definition is introduced so we can get rid of some pathological function, m
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
 
 ---
-### **Continuity**
-
+### **Continuity and Smoothness**
 
 For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
+
+**Lower Semi-Continuity**
+> The definition of lower semi-continuity should be listed as a link in the top. 
+
+**Continuous Functions**
 > A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
+**C^0 smooth**
 > A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
 
-> A function $f$ is a C1 function when it has a continuous derivative. 
+**C^1 Smooth**
+> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like. 
 
 ---
 ### **Closed Function**
@@ -63,6 +69,10 @@ Which is the domain where the function $f$ has a value that is bounded by $\alph
 **Proof**
 
 Skipped for now. For a proof, see: \<First Order Method in Optimization\> by SIAM, page 16 Theorem 2.6. 
+
+**Remarks**
+
+A closed function is not enough for the function to be continuous, but a continuous function on a compact region is enough for it to be a closed function. 
 
 ---
 ### **Coersive Function**
@@ -109,7 +119,15 @@ $$
 
 The function is only defined inside of the set $Q$, out of the set it's not giving infinity. This function has the usage of denoting constraints for optimization problems. 
 
+---
+### **Convexity**
+
+**Definition**
+
+> A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
+
 
 ---
 ### **Discussions**
 
+A big part of optimization is characterizing functions and understand how they these properties can be expoited for algorithm, and how they propagate through different types of operations. 

@@ -23,6 +23,8 @@ $$
 $$
 
 
+**Remark**
+
 Reader please observe that, $\inf$ is implicityly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Becareful**.
 
 ---
@@ -35,7 +37,7 @@ Proof of the first part: # TODO: Prove this.
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
-Proof: See [[Convex Sets Properties]]
+Proof: See [[Convexity Sets Properties]]
 
 ---
 ### **Convex Projections**
@@ -51,7 +53,7 @@ Proof: See [[Convex Sets Properties]]
 > $$
 
 **Proof**: 
-This is a property of convex set, not projection in general, it's listed in [[Convex Sets Properties]]
+This is a property of convex set, not projection in general, it's listed in [[Convexity Sets Properties]]
 
 
 

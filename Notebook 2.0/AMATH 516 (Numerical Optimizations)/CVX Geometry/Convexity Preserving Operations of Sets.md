@@ -154,3 +154,17 @@ $$
 $$
 
 By the convexity of $L$, the set $\lambda U + (1 - \lambda)V$ is a subset of $Q$, therefore, the pre-image of the convex combinations of $x, y$ is still a preimage of $A$, and convex comb of $u, v$ is still in the range of $Q$. Therefore the set of pre-images of $A$ is convex if $L$ is convex. 
+
+
+---
+### **Remarks**
+
+Using the convexity theories for sets, we apply it to the epi-graph of the function so that it translates to the convexity of the functions. These results will be listed here: 
+
+Let $\{f_i\}_{i}^m$ be a listed of augmented real functions mapping between euclidean spaces $\mathbb E, \mathbb V$, with $\mathcal A$ be a linear mapping between $\mathbb M\mapsto \mathbb E$, then: 
+
+---
+# TODO: COMPLETE THIS. 
+
+
+

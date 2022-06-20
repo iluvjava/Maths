@@ -1,4 +1,4 @@
-[[Convex Sets Properties]]
+[[Convexity Sets Properties]]
 
 ---
 ### **Intro**

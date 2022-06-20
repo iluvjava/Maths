@@ -74,11 +74,13 @@ Observe that, the function can approach $-\infty$ as much as it wants, but the l
 
 If the set $C$ is open, then, the limit of the sequences might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point can'be attained. Creating problem for the minimum of the function over the region. 
 
+Finally, **why do we use the Weistrass Theorem (Sequencial Compact Theorem)**? This is true because there could be infinitely many points on set $C\subseteq \text{dom}(f)$ such that it attains the minimum, or a desired value, however, it doesn't mean that they converge to a certain point. If we remove the assumption that $C$ is compact, then it's possible that some sequence $\{x\}_{n\in \mathbb N}$ such that the sequence diverges, but $f(x_n)$ converges to some minimum. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to be rigourous. 
+
 
 ---
 ### **Existence of Minimizer Theorem**
 
-> let $f$ be a proper, closed, and coersive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimum in $S$. 
+> let $f$ be a proper, closed, and coersive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 
 **Proof**
 
@@ -86,7 +88,7 @@ Choose any $x\in \text{dom}(f)\cap S$, from the coersiveness of the function $f$
 
 $$
 \begin{aligned}
-    f(x) > f(x_0) \; \forall x: \Vert x\Vert\ge M
+    f(x) > f(x_0) \quad \forall x: \Vert x\Vert\ge M
 \end{aligned}
 $$
 
@@ -94,5 +96,6 @@ For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le
 
 **Remarks**
 
+Compare to the Weistrass's theorem, we consider the the difference between this theorem and the above. The Existence of minimizer exists for all $S\subseteq \mathbb E$, which is the difference. Under these sets of assumptions, we are remained with a class of functons that looks like a bowl on the large scale because it's coersive, and if we shine lights from the bottom of the function, it will perfectly describe the epigraph of the function (closeness), and the function is bounded below. 
 
 

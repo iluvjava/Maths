@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
             "mode": "preview"
           }
         },
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +114,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
     "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
-    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
-    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md",
-    "AMATH 585 (Numerical Analysis of BVP)/Discrete Cosine Transform Type I.md",
-    "MATH 000 (Math Essential)/Calc/Taylor Series.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convexity Under Partial Minimizations.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md"
   ]
 }
