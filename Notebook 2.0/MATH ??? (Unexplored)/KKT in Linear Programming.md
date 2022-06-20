@@ -1,5 +1,6 @@
 [[The KKT Conditions]]
 [[A Brutal Introduction to Linear Programming]]
+[[Linear Programming Strong Duality via Farkas]]
 
 ---
 ### **Intro**
@@ -77,7 +78,7 @@ $$
 \end{aligned}\tag{5}
 $$
 
-It's a maximization due to the positive sign on the Lagrangian. 
+It's a maximization due to the positive sign on the Lagrangian. The constraint is $A^Ty = c$ is an equality because $x\in \mathbb R^n$. 
 
 ---
 ### **Strong Duality**

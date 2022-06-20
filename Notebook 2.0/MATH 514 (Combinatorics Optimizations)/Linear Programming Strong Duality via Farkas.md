@@ -92,3 +92,7 @@ $$
 
 Combining with the weak duality, the strong duality of LP is shown. The form of the strong duality can be proved by remodeling the problems using standard LP programming tricks. 
 
+---
+### **Remark**
+
+For a view of duality in Linear programming using the KKT conditions and the Lagrangian , check out [[KKT in Linear Programming]]. 

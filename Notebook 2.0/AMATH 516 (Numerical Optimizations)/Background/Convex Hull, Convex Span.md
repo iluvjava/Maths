@@ -155,8 +155,6 @@ $$
 If $T$ is convex, and by definition $T = \bigcup_{i\in\mathbb{N}}S_i$ and each $S_i\subseteq Q$, in addition, $S_i$ is convex, therefore uniont of all of them are in the convex hull of the set $Q$. The proof is still valid even if $Q$ is finite number of points. 
 
 
----
-### **Caratheodory Theorem**
 
 
 

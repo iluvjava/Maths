@@ -10,7 +10,7 @@ $$
 \end{aligned}
 $$
 
-The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$
+The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics related to the Analysis and characterizations of Functions: 
 
@@ -34,10 +34,44 @@ This means that, the function is going to be bounded on the direction we are min
 
 
 For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
+> A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
 > A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
 
 > A function $f$ is a C1 function when it has a continuous derivative. 
+
+---
+### **Closed Function**
+a function $f$ is a closed function of its [[Epi Graph]] is a closed set. 
+
+**Closeness Equivalence of Functions**
+
+The following statements about function $f$ is equivalent: 
+
+* The function $f$ is closed. 
+* The function $f$ is lower semi-continuous 
+* The function $f$ has closed level set for all $\alpha$, where the definition of level set is given as: 
+
+**Level Set**
+
+$$
+\text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}
+$$
+
+Which is the domain where the function $f$ has a value that is bounded by $\alpha$.
+
+**Proof**
+
+Skipped for now. For a proof, see: \<First Order Method in Optimization\> by SIAM, page 16 Theorem 2.6. 
+
+---
+### **Coersive Function**
+
+Recall Definition: 
+> Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
+
+
+
 
 ---
 ### **Special Functions for Analysis**
@@ -74,3 +108,8 @@ $$
 $$
 
 The function is only defined inside of the set $Q$, out of the set it's not giving infinity. This function has the usage of denoting constraints for optimization problems. 
+
+
+---
+### **Discussions**
+

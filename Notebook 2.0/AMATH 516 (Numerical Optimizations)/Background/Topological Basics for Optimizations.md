@@ -26,7 +26,7 @@ In which, the operator imposes the $\sup, \inf$ onto the tail of a sequence. Sup
 **Limsup of a sequence**
 
 > $$
-> \limsup_{a\rightarrow a} a_i = \lim_{i\rightarrow \infty} > \left\lbrace
+> \limsup_{a\rightarrow a} a_i = \lim_{i\rightarrow \infty}  \left\lbrace
 >     \sup_{j\ge i} \left\lbrace
 >         a_i
 >     \right\rbrace
@@ -40,7 +40,7 @@ And extending the argument to a Euclidean space, we have for example, a function
 
 > $$
 > \liminf_{y\rightarrow x} f(y) = \lim_{r\rightarrow 0} \left\lbrace
->     \inf_{y\in \mathbb{B}_r(x)-\{x\}} f(y)
+>     \inf_{y\in \mathbb{B}_r(x)\setminus\{x\}} f(y)
 > \right\rbrace
 > $$
 > The liminf as $y\rightarrow x$ on a function is the limit of the lower bound of function value mapping an epsilon ball centered at $x$ (excluding $x$). 

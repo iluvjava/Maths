@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
             "mode": "preview"
           }
         },
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +115,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "MATH 514 (Combinatorics Optimizations)/A Brutal Introduction to Linear Programming.md",
-    "MATH ??? (Unexplored)/KKT in Linear Programming.md",
-    "MATH ??? (Unexplored)/The KKT Conditions.md",
-    "MATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality/Generalized Lagrangian.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality/Duality (Example Transformation).md",
-    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
-    "MATH 514 (Combinatorics Optimizations)/Graph Theory Terminology.md",
-    "MATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
-    "AMATH 581 (Scientific Computing)/Runge Kutta.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
+    "AMATH 585 (Numerical Analysis of BVP)/9 Points Laplacian and Deferred Corrections.md",
+    "AMATH 585 (Numerical Analysis of BVP)/5 Points Laplacian.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Steady State Existence and Uniqueness in Finite Diff.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Discrete Fourier Transform with Details.md",
+    "AMATH 585 (Numerical Analysis of BVP)/Discrete Cosine Transform Type I.md",
+    "MATH 000 (Math Essential)/Calc/Taylor Series.md"
   ]
 }
