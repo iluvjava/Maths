@@ -1,6 +1,6 @@
 ### **Intro**
 
-Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. 
+Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. 
 
 **The Augmented Real Functions**
 
@@ -12,7 +12,7 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 > 
 > The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
-Here is a list of topics related to the Analysis and characterizations of Functions: 
+Here is a list of topics that are helpful for understanding the basics: 
 
 [[Epi Graph]]
 [[Lower Semi-Continuous]]
@@ -40,10 +40,10 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 **Continuous Functions**
 > A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
-**C^0 smooth**
+**C0 smooth**
 > A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
 
-**C^1 Smooth**
+**C1 Smooth**
 > A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like. 
 
 ---
@@ -126,6 +126,18 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
+---
+### **Positive Homogeneity**
+
+**Definition** 
+> A function is positive Homogenous when: $f(\alpha y) = \alpha f(y)\;\forall y$, where $\alpha \ge 0$. 
+
+
+---
+### **Sub-additive**
+
+**Definition**
+> A function $f$ is sub-additive when $f(x + y)\le f(x) + f(y)$. 
 
 ---
 ### **Discussions**

@@ -157,14 +157,10 @@ By the convexity of $L$, the set $\lambda U + (1 - \lambda)V$ is a subset of $Q$
 
 
 ---
-### **Remarks**
+### **Remarks:Convexity of Functions**
 
-Using the convexity theories for sets, we apply it to the epi-graph of the function so that it translates to the convexity of the functions. These results will be listed here: 
+[[Convexity Preserving Operations of Functions]]
 
-Let $\{f_i\}_{i}^m$ be a listed of augmented real functions mapping between euclidean spaces $\mathbb E, \mathbb V$, with $\mathcal A$ be a linear mapping between $\mathbb M\mapsto \mathbb E$, then: 
-
----
-# TODO: COMPLETE THIS. 
 
 
 

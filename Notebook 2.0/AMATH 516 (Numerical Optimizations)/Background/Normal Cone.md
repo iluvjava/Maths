@@ -28,9 +28,9 @@ $$
 \frac{\langle v, x - \bar{x}\rangle}{\Vert x - \bar{x}\Vert_2}
 $$
 
+
+---
 **Intuitively**:
 
-Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. 
-
-It's immediate that, if the point $\bar{x}$ is in the boundary, then the normal cone is not going to be $\text{affhull}(Q)$, if it's in the relative interior of the set, then the normal cone is going to be the whole space of $\text{affhull}(Q)$. 
+Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. It's immediate that, if the point $\bar{x}$ is in the boundary, then the normal cone is not going to be $\text{affhull}(Q)$, if it's in the relative interior of the set, then the normal cone is going to be the whole space of $\text{affhull}(Q)$. 
 

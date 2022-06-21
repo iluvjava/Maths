@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "preview"
           }
         },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,15 +114,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Tagent Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Space.md",
     "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convexity Under Partial Minimizations.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md"
   ]
 }

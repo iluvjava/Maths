@@ -183,3 +183,9 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 
 
 ![](strict_seperations_convexity_direct_proof.jpeg)
+
+
+---
+### **Strict Separations Between 2 Convex Sets**
+
+
