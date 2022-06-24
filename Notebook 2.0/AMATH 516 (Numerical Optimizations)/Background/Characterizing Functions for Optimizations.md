@@ -109,7 +109,7 @@ A gauge function scales the set $Q$ as little as possible so that the set contai
 **Def: Indicator Functions**
 
 $$
-\delta_Q = 
+\delta_Q := 
 \begin{cases}
     0 & x \in Q
     \\
@@ -125,6 +125,20 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 **Definition**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
+
+**Remark: Secant Inequality**
+
+A direct consequence is the convexity inequality. Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is proper if and only if: 
+
+$$
+\begin{aligned}
+    \forall x,y \in \text{dom}(f), \lambda \in [0, 1] : 
+    f(\lambda x + (1 - \lambda)y) \le 
+    \lambda f(x) + (1 - \lambda)f(y)
+\end{aligned}
+$$
+
+And one can combine results and form a general statement using convex combinations of points. 
 
 ---
 ### **Positive Homogeneity**

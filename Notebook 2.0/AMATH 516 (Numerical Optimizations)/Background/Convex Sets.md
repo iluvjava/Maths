@@ -102,5 +102,7 @@ Done.
 ### **Theorem: HyperPlane Separations**
 > For any point lying outside of the set $Q$, which is a non-empty convex set, there exists a hyperplan separating the point and the set $Q$. 
 
-Proof: Skipped
+See proofs in [[Strict Separations Theorem]].	
+
+
 

@@ -111,5 +111,29 @@ Complimentary slackness implies stationary points. But the converse should also 
 
 
 ---
+### **The Lagrangian Dual Problem**
+
+Given a minimization primal objective, the Lagrangian Dual is another function defined as: 
+
+$$
+\begin{aligned}
+    g(\mu, \lambda):\mathbb R^k_+\times \mathbb R^m \mapsto \mathbb R
+    &:= \inf_x \{\mathcal L(x, \mu,\lambda)\}
+    \\
+    &= 
+    \inf_{x}
+    \{
+    f(x) 
+    +
+    \langle \mu, G(x)\rangle
+    + 
+    \langle \lambda, H(x)\rangle
+    \}
+\end{aligned}
+$$
+
+Which just the direct perspective of a the second player in the pareto efficiency game. 
+
+---
 **References**: 
 An afternoon when I was feeling inspired. 

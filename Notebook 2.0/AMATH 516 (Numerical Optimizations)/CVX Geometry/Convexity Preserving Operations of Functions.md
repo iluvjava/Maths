@@ -14,6 +14,9 @@ Let $\{f_i\}_{i}^m, f$ be a listed of augmented real functions mapping between e
 For more complicated ones, see what is below. 
 
 ---
+### **Affine Transformation of Input Parameters**
+
+---
 ### **Convexity Under Partial Minimizations**
 
 > Let $f$ be $\mathbb E_1 \times \mathbb E_2 \rightarrow (-\infty, \infty]$ and *convex*, so that the function is a proper augmented real function, and it has the property that is: 
@@ -31,4 +34,6 @@ For more complicated ones, see what is below.
 > Then $g(x)$ is a convex function. 
 
 
+# TODO: Proofs
 
+### **Infinum Convolutions**

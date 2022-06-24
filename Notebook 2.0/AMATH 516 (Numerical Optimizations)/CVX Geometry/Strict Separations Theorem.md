@@ -12,6 +12,9 @@
 > $$ 
 > The point $a$ lies in the lowe half space and the point $y$ lines in the upper half space of the separation line with perpendicular vector $a$.(WLOG assuming a is positive).
 
+**Remark:**
+The theorem has its combinatorics optimization's counter parts regarding matrix inequality, see [[Farkas's Lama]] for more. 
+
 ---
 ### **Proof**
 
@@ -186,6 +189,24 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 
 
 ---
-### **Strict Separations Between 2 Convex Sets**
+### **Corollary: Strict Separations Between 2 Convex Sets**
+
+> The theorem regarding seprations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D \neq \emptyset$. 
+
+**Proofs Sketch**
+1. Invoke sequential compactness theorem to show that $C- D$ is a compact set. 
+2. Convert the convex set projection between $C, D$ into a separation problem. 
+3. Find the plane of separations
+4. Used their respective projection points to convstruct the separation hyperplane for $C, D$ by converting the problem back. 
 
 
+**Proofs**
+
+We make use of the convex sets properties. Because convexity of sets are preserved under sets addition, $C - D$ is a convex set. 
+
+In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ with $x_i\rightarrow x$ as $i \rightarrow \infty$, there exists $x_i = c_i + d_i$ where $c_i, d_i \in C, D$ by set addition. Because $C, D$ are both compact,by sequencial compactness theorem $c_i, d_i$ has convergence subsequence $\{c_{i_k}\}_{k\ge 1}, \{d_{i_k}\}_{k \ge 1}$ such that their limit is $x$. Therefore there exists sequence $\{x_{i_k}\}_{k\ge 1}$ such that it converges to $x$ in $C- D$. Therefore the set $C - D$ is again, compact. 
+
+
+
+
+**Remarks**
