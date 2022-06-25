@@ -16,6 +16,8 @@ For more complicated ones, see what is below.
 ---
 ### **Affine Transformation of Input Parameters**
 
+# TODO: Add Proofs
+
 ---
 ### **Convexity Under Partial Minimizations**
 
@@ -34,6 +36,6 @@ For more complicated ones, see what is below.
 > Then $g(x)$ is a convex function. 
 
 
-# TODO: Proofs
+# TODO: ADD Proofs
 
 ### **Infinum Convolutions**

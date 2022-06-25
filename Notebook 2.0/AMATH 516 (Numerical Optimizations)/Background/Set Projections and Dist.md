@@ -32,12 +32,14 @@ Reader please observe that, $\inf$ is implicityly taking the closure of the set 
 
 > If the set $Q$ in a finite Euclidean subspace is closed, the projections of any vector $y$ in the Euclidean space is non-empty. 
 
-Proof of the first part: # TODO: Prove this. 
+**Proof**
+
+
 
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
-Proof: See [[Convexity Sets Properties]]
+**Proof:** See [[Convexity Sets Properties]]
 
 ---
 ### **Convex Projections**

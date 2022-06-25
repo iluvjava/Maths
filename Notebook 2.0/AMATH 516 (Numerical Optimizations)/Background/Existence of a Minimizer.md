@@ -10,7 +10,10 @@ The existence of a minimizer depends on the continuity and the compactness of th
 
 > The epigraph of a function is closed iff the function is lower-semi-continuous. 
 
-**Proof**: Not yte given. 
+**Proof**: Not yet given. 
+
+# TODO: Add Proofs
+
 
 **Coercive Function**
 

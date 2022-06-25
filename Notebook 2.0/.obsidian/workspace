@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
             "mode": "preview"
           }
         },
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -94,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,15 +115,15 @@
   },
   "active": "54c7b6aef6e3c191",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
-    "MATH ??? (Unexplored)/KKT Conditions with Details.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convexity Under Partial Minimizations.md",
-    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Introducing The KKT Conditions.md",
-    "MATH ??? (Unexplored)/KKT Dual is Always Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Support Function.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
+    "MATH ??? (Unexplored)/KKT Conditions with Details.md"
   ]
 }
