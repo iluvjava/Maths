@@ -126,7 +126,7 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
-**Remark: Secant Inequality**
+**Secant Inequality**
 
 A direct consequence is the convexity inequality. Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is proper if and only if: 
 
@@ -138,7 +138,10 @@ $$
 \end{aligned}
 $$
 
-And one can combine results and form a general statement using convex combinations of points. 
+**Remarks:**
+
+And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [[Convex Functions Characteristics]], [[Convexity Preserving Operations of Functions]]. 
+
 
 ---
 ### **Positive Homogeneity**

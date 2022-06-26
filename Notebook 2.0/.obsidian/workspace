@@ -4,30 +4,28 @@
     "type": "split",
     "children": [
       {
-        "id": "54c7b6aef6e3c191",
+        "id": "72a561359e6564c0",
         "type": "leaf",
-        "dimension": 49.96610169491525,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
             "mode": "source"
           }
         },
-        "group": "9c09a30d809dc7ab"
+        "group": "77640d5f7497085a"
       },
       {
-        "id": "72a561359e6564c0",
+        "id": "1367bbf49162617d",
         "type": "leaf",
-        "dimension": 50.03389830508475,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
             "mode": "preview"
           }
         },
-        "group": "9c09a30d809dc7ab"
+        "group": "77640d5f7497085a"
       }
     ],
     "direction": "vertical"
@@ -78,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,17 +110,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "54c7b6aef6e3c191",
+  "active": "72a561359e6564c0",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Functions.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Sets Properties.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Support Function.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
-    "MATH ??? (Unexplored)/KKT Conditions with Details.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Support Function.md"
   ]
 }

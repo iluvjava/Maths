@@ -25,6 +25,7 @@ Recall Definition:
 > For a proper, closed function $f$ over a compact set $C$ where $\text{dom}(f)\cap C\neq \emptyset$, then the function is bounded from below, and it will attain a minimum over the set $C$. 
 
 (a) Function $f$ is bounded below. 
+(b) $f$ obtains its minimum over the set $C$. 
 
 **Proof (a)**
 
