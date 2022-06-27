@@ -26,7 +26,7 @@ $$
 (These are going to be **useful short cuts** for convex analysis)
 
 ---
-**Convexity Preservations Operations**:
+### **Convexity Preservations Operations**:
 
 The intersection of Convex Sets is a convex set. 
 
@@ -44,6 +44,8 @@ Adding sets still convex
 Preimage and Image of Linear Mapping preserves convexity
 
 > For any 2 convex sets, $Q\subseteq\mathbb{R}^n, L\in\mathbb{R}^m$, suppose that mapping $A:\mathbb{R}^n\mapsto\mathbb{R}^m$ is a [[Linear Mapping]], then the image $AQ$ and pre-image $A^{-1}L$ is still a convex set. 
+
+For more discussion, see [[Convexity Preserving Operations of Sets]]
 
 
 ---

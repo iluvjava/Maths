@@ -1,4 +1,4 @@
-[[Characterizing Functions for Optimizations]]
+[[Closure Topologyx]]
 
 ---
 ### **Intro**
@@ -14,7 +14,15 @@ The following operations applied on a closed function will result in a new funct
 
 Skippppped for later. 
 
+
+
+
 **Remarks**
-It's similar to the convexity preserving operations. 
+
+The preservations of closedness on sets doesn't translate directly to the closedness for pigraph of functions. 
+
+It's somewhat similar to the convexity preserving operations for functions as well.
+
+
 
 

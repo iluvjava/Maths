@@ -39,7 +39,7 @@ Reader please observe that, $\inf$ is implicityly taking the closure of the set 
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
-**Proof:** See [[Convexity Sets Properties]]
+**Proof:** See [[Convex Sets Properties]]
 
 ---
 ### **Convex Projections**
@@ -55,7 +55,7 @@ Reader please observe that, $\inf$ is implicityly taking the closure of the set 
 > $$
 
 **Proof**: 
-This is a property of convex set, not projection in general, it's listed in [[Convexity Sets Properties]]
+This is a property of convex set, not projection in general, it's listed in [[Convex Sets Properties]]
 
 
 

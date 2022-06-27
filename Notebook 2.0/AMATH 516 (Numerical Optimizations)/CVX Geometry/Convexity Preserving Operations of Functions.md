@@ -10,8 +10,9 @@ Let $\{f_i\}_{i}^m, f$ be a listed of augmented real functions mapping between e
 * $f(\mathcal Ax + b)$ is a convex function. (By linear mapping of convex sets)
 * $\sum_{i = 1}^{m}\alpha_if_i(x)$ with $\alpha_i \; \ge 0 \forall i$ then the sum is convex as well. (By sets addition, where the sets are the epigraph of $f$)
 * $\max_i\{f_i(x)\}$ is convex too. (By intersection of convex epigraph of $f_i$)
+* Let $h_1, h_2$ be a convex proper augmented real function and a convex real-valued function, we have their infimal convolution $h_1\square h_2$ to be convex as well. 
 
-For more complicated ones, see what is below. 
+For the proofs for more interesting ones, see what is below. 
 
 ---
 ### **Affine Transformation of Input Parameters**
@@ -20,8 +21,23 @@ For more complicated ones, see what is below.
 
 **Proof**
 
-# TODO: Add Proofs
+Composition of the form $f(\mathcal A x + b)$ is the equivalent of applying: 
 
+$$
+\begin{bmatrix}
+    f(\mathcal Ax + b)
+    \\
+    x
+\end{bmatrix}
+= 
+\begin{bmatrix}
+    f(x)
+    \\
+    \mathcal A^{-1}(x) - b
+\end{bmatrix}
+$$
+
+On the epigraph of $f(x)$, where $.^{-1}$ should be interpreted as the pre-image of the linear mapping. Because $f$ is convex, $\text{epi}(f)$ is also convex, and applying a linear transformation to a convex set preserves its convexity. 
 
 
 
@@ -116,8 +132,7 @@ In addition, the fact that $g(x)\neq \infty$ is there to prevent nonsense like $
 
 Finally, there exists a epigraphical interpretations of Partial Minimizations by which, we skip it for discussion. 
 
-**Source**: \<First Oder Optimization Methods\> by SiAM. 
-
+**Source**: \<First Oder Optimization Methods\> by SIAM, theorem 2.18
 
 
 
@@ -145,10 +160,26 @@ Finally, there exists a epigraphical interpretations of Partial Minimizations by
 Both $h_1, h_2$ are convex, therefore their sum is also convex. Since $h_1$ is proper, and $h_1(x - u)<\infty$, we have: $h_1\square h_1(x) < \infty\;\forall x \in \mathbb E$. Using the partial minimization theorem, $h_1\square h_2$ is still convex. 
 
 
-
 **Remarks**
 
-When $h_1, h_2$ is convex, the addition between the epigraphs of $h_1, h_2$ will still be a convex function and it's equivalent to the infimal convolutions. It is implied that for a weaker assumption where, $h_1, h_2$  are both augmented real functions, the theorem might not fall through, in addition, the converse is unclear. 
+When $h_1, h_2$ is convex, the addition between the epigraphs of $h_1, h_2$ will still be a convex function and it's equivalent to the infimal convolutions. It is implied that for a weaker assumption where, $h_1, h_2$  are both augmented real functions, the theorem might not fall through due to the $h_1\square h_2\neq \infty$ in addition, the converse is unclear. 
+
+**Example: Distance Function to Any Set is CONVEX**
+
+A distance function to any set, not neccessarily closed can be expressed as an infimal convolution: 
+
+$$
+\begin{aligned}
+    \text{dist}_C(x) &= \inf_{y\in C} \{\Vert x - y\Vert\}
+    \\
+    &= \inf_{y\in C} \{\Vert x - y\Vert + \delta_C(y)\}
+    \\
+    &= \delta_C\square \Vert \cdot \Vert
+\end{aligned}
+$$
+
+$\delta_C$ is convex and it's an augmented real function and $\Vert \cdot \Vert$ is convex and a real-valued function. Applying infimal convolution preserving property, the distance function is convex. 
+
 
 **Source**
-Proof taken from \<First Order Optimizations\> by SIAM. 
+Proof taken from \<First Order Optimizations\> by SIAM, theorem 2.19

@@ -1,5 +1,5 @@
 [[Lipschitz Continuity]]
-[[Convexity Sets Properties]]
+[[Convex Sets Properties]]
 [[Set Projections and Dist]]
 
 
