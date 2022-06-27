@@ -18,10 +18,14 @@ There are too many, this single file is just going to be a link to various other
 
 **Source**:
 
+
+
 ---
 ### **Continuity of Closed Convex Univariate Functions**
 
+
 **Remarks**: 
+
 
 **Source**: 
 

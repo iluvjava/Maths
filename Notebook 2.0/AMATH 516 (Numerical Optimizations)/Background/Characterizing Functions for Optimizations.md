@@ -160,3 +160,11 @@ And one can combine results and form a general statement using convex combinatio
 ### **Discussions**
 
 A big part of optimization is characterizing functions and understand how they these properties can be expoited for algorithm, and how they propagate through different types of operations. 
+
+Some of the important properties that we need to keep track of about functions are basically: 
+1. Closedness
+2. Convexity
+3. Continuity
+4. Smoothness
+
+However, for special type of functions, we might need to focus on more interesting properties and such. 

@@ -12,7 +12,8 @@ The existence of a minimizer depends on the continuity and the compactness of th
 
 **Proof**: Not yet given. 
 
-# TODO: Add Proofs
+# TODO: Add Proofs, or redirect to proofs. 
+
 
 
 **Coercive Function**
