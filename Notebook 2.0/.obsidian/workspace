@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
             "mode": "preview"
           }
         },
@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -92,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,15 +113,15 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Interior Topology.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuous.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
     "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
     "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations of Epigraph.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convexity Under Partial Minimizations.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md"
   ]
 }

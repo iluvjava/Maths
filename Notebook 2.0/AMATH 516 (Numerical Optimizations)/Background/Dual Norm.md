@@ -43,8 +43,10 @@ The dual of the p-norm $\Vert y\Vert_p^\star$, is $\Vert y\Vert_{q}$ such that $
 An exercise for the reader, which is likely to be myself. 
 
 ---
-### **Induced Energy Norm**
+### **Dual of The Induced Energy Norm**
 
 
+# TODO: Fill THIS IN 
 
+Source: \<First Order method in Optimizations\> By SIAM Example 1.6
 

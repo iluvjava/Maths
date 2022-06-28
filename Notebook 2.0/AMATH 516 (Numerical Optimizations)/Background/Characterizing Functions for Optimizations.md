@@ -58,7 +58,7 @@ The following statements about function $f$ is equivalent:
 * The function $f$ is lower semi-continuous 
 * The function $f$ has closed level set for all $\alpha$, where the definition of level set is given as: 
 
-**Level Set**
+**Definition: Level Set**
 
 $$
 \text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}

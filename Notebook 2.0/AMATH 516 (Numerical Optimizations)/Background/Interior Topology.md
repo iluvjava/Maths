@@ -1,5 +1,6 @@
 [[Topological Basics for Optimizations]]
 
+
 ---
 **Interior**
 
@@ -10,11 +11,9 @@ The interior of a set $B$ is the set of all the point such that for each point, 
 > \exists \delta: \mathbb{B}_\delta \subset Q
 > $$
 
-Nice and easy. 
+Nice and easy, and then we will be able to define a closed and an opened set: 
 
-And then we will be able to define a closed and an opened: 
-
-* A set is open iff $Q = \text{int}(Q)$ 
+* A set is open iff $Q = \text{int}(Q)$. 
 * A set is closed iff $Q = \text{cl}(Q)$
 
 To prove it, we will need to use the epsilon balls, and arbitrary sequences on the set under discussion. If a set is closed, then every limit point is in the set. If a set of open, then that is false. If a set if compact, then it means it's closed and bounded. 

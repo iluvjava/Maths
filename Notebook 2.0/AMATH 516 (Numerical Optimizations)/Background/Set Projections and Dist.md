@@ -106,6 +106,8 @@ $$
 The absolute value of the distance is then bounded by the differences between these points. This is true simply because that the distance between the 2 is always positive. 
 
 
+**Remarks**: 
 
+In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations of Functions]] as an example to illustrate the infimal convolution theorem. 
 
 

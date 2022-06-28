@@ -3,12 +3,37 @@ In fact, we need a bit of topology to get identify the type of functions that ca
 
 Please note that, some of the discussion will feel familiar to discussion spotted here: [[Closed, Proper, Level Bounded, Strong Convex]], which also concerns the topological properties of sets related to the family of convex functions. 
 
+
+
 ---
 ### **Intro**
 
 The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers, which is most applicable to most of the optimizations theories. 
 
 Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the rampy function. 
+
+**What is Closed Set?** 
+* $Q$ is closed
+* $\text{cl}(Q) = Q$: The closure of the set equals to the set itself. 
+* $Q$ contains all of it's limit points. 
+* $Q^C$ is an opened set. 
+
+**Definition: Opened Set**
+
+> The set $Q$ is opened if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$.
+
+**Theorem:**
+
+> $Q$ is opened iff $Q^C$ is closed
+
+A complement on the set $Q$ is a negation of the statement that defines the set $Q$. Consider the negation from the definition of the open set: 
+
+$$
+\exists x\in Q\forall \epsilon: \mathbb B_\epsilon(x) \not\subseteq Q
+$$
+
+Since $\mathbb B_\epsilon(x)$ contains $x$ which is $\in Q$, we have the negation of subset denoted as $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$
+
 
 ---
 ### **Notations**
@@ -56,15 +81,15 @@ $$
 ### **A List of Topics**
 
 General Topology
-[[Closure Topology]]
-[[Convex Sets]]
-[[Interior Topology]]
-[[Affine Hull, Affine Span]]
-[[Relative Interior And Relative Boundary]]
+* [[Closure Topology]]
+* [[Convex Sets]]
+* [[Interior Topology]]
+* [[Affine Hull, Affine Span]]
+* [[Relative Interior And Relative Boundary]]
 
 Sets and Geometry related
-[[Convex Sets]]
-[[Euclidean Space]]
-[[Lower Semi-Continuous]]
-[[Generating Cone of a Set]]
-[[Convex Hull, Convex Span]]
+* [[Convex Sets]]
+* [[Euclidean Space]]
+* [[Lower Semi-Continuous]]
+* [[Generating Cone of a Set]]
+* [[Convex Hull, Convex Span]]
