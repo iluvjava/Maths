@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "preview"
           }
         },
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "72a561359e6564c0",
+  "active": "1367bbf49162617d",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
     "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
     "MATH 514 (Combinatorics Optimizations)/Matroid.md",
     "MATH 000 (Math Essential)/Calc/Taylor Series.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
     "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuous.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md"
   ]
 }
