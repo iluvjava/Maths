@@ -11,7 +11,7 @@ There are too many, this single file is just going to be a link to various other
 
 > A convex function $f$ is closed if an only if it's lower semi-continous. 
 
-
+#TODO: FILL THIS IN
 
 **Remarks**: 
 
@@ -23,6 +23,7 @@ There are too many, this single file is just going to be a link to various other
 ---
 ### **Continuity of Closed Convex Univariate Functions**
 
+#TODO: FILL THIS IN
 
 **Remarks**: 
 

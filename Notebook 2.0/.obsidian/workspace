@@ -6,10 +6,11 @@
       {
         "id": "72a561359e6564c0",
         "type": "leaf",
+        "dimension": 51.22116689280869,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
             "mode": "source"
           }
         },
@@ -18,10 +19,11 @@
       {
         "id": "1367bbf49162617d",
         "type": "leaf",
+        "dimension": 48.77883310719132,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+            "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
             "mode": "preview"
           }
         },
@@ -93,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+                "file": "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +115,15 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
+    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
+    "MATH 514 (Combinatorics Optimizations)/Matroid.md",
+    "MATH 000 (Math Essential)/Calc/Taylor Series.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
     "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Interior Topology.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuous.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations of Epigraph.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuous.md"
   ]
 }

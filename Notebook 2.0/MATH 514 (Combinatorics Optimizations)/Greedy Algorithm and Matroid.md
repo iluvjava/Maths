@@ -25,7 +25,7 @@ In this case, we continuing choosing an element from the set $X$ that is not par
 ---
 ### **Theorem Statement**
 
-> Let $|A| = |B|$ for all $A,B \in \mathcal B$ and $\mathcal B\neq \emptyset$ and $(X, \mathcal B)$ is a matroid iff for all $w:X\mapsto \mathbb R$, the greedy algorithm finds a set $S\in \mathbb B$ of minimum weight. hh
+> Let $|A| = |B|$ for all $A,B \in \mathcal B$ and $\mathcal B\neq \emptyset$ and $(X, \mathcal B)$ is a matroid iff for all $w:X\mapsto \mathbb R$, the greedy algorithm finds a set $S\in \mathbb B$ of minimum weight. 
 
 There are 2 directions to prove. To prove the $\impliedby$ we consider the use of a prove by contradiction. We assume that something is not a matroid, and then we show that there is a special weight function that breaks the greedy algorithm when it's not a matroid. When $(X, \mathcal B)$ isn't a matroid it means that: 
 

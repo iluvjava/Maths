@@ -1,5 +1,6 @@
 [[Topological Basics for Optimizations]]
 [[Lipschitz Continuity]]
+[[Characterizing Functions for Optimizations]]
 
 ---
 ### **Intro**
@@ -32,14 +33,25 @@ Reader please observe that, $\inf$ is implicityly taking the closure of the set 
 
 > If the set $Q$ in a finite Euclidean subspace is closed, the projections of any vector $y$ in the Euclidean space is non-empty. 
 
-**Proof**
+**Proof** 
+
+Firstly, recall [[Existence of a Minimizer]]. Given $x$, the function $\min_{y\in C}\Vert x- y \Vert$ is coersive. The epigraph of the function will be closed because closedness is preserved under addition ([[Closedness Preserving Operations of Epigraph]]), and in this case the minimization problem can be phrased as the sum of 2 closed functions: 
+
+$$
+\min_{y\in C}\Vert x - y\Vert = \min_{y}\left\lbrace
+    \delta_C(y) + \Vert x - y\Vert
+\right\rbrace
+$$
+
+Where, the activation function is closed, and the distance function is also closed. Since the function is closed and coersive, it has minimizers. 
 
 
-
+**Theorem: Unique Projection of Convex Sets**
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
 **Proof:** See [[Convex Sets Properties]]
+
 
 ---
 ### **Convex Projections**
