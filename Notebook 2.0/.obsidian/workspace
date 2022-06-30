@@ -6,11 +6,11 @@
       {
         "id": "72a561359e6564c0",
         "type": "leaf",
-        "dimension": 51.22116689280869,
+        "dimension": 42.11026615969582,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
             "mode": "source"
           }
         },
@@ -19,11 +19,11 @@
       {
         "id": "1367bbf49162617d",
         "type": "leaf",
-        "dimension": 48.77883310719132,
+        "dimension": 57.88973384030418,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
             "mode": "preview"
           }
         },
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422
+    "width": 422,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -94,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,15 +115,15 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Non-Empty Sub-Differentials Implies Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
-    "MATH 514 (Combinatorics Optimizations)/Greedy Algorithm and Matroid.md",
-    "MATH 514 (Combinatorics Optimizations)/Matroid.md",
-    "MATH 000 (Math Essential)/Calc/Taylor Series.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
-    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md"
+    "MATH --- (Unexplored)/KKT Conditions with Details.md",
+    "Subgradient and Subdifferential.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Existence of a Minimizer.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuity is Closedness of Epigraph.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed Convex Set.md"
   ]
 }

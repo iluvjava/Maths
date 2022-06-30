@@ -25,6 +25,16 @@ The definition in this case is not consistent with the definition of gradient of
 
 Geometrically, it's looking for a point that is on the boundary of $\text{epi}(f)$ and then separate the graph using a line defined via $g$. And if such a line is perpendicular, then there is no subgradient for the function for that point. And for all seriousness, it can happen convex function at the exterior of their domain. 
 
+For convenience of notation, one has the choice of writing the definition of subgradient directly with: 
+
+$$
+\begin{aligned}
+    f(y) \ge f(x) + \langle \partial[f]_x,y - x\rangle
+\end{aligned}
+$$
+
+And that is enough to understand what people are saying. 
+
 **Definition: Generalized Gradient**
 
 > Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then: 
@@ -45,3 +55,13 @@ The supporting tagent line is now only a limiting behaviors for the given functi
 
 
 
+---
+### **Optimality on Sub-Gradient for Convex Functions**
+
+On almost trivial results from the above definition is that if $x^+$ is a minimizer for the convex function $f(x)$, then $\mathbf 0 \in \partial [f]_{x^+}$ because: 
+
+$$
+f(y) \ge f(x^+) \quad \forall y\in \mathbb E
+$$
+
+And it can be viewed that $g = \mathbf 0$, directly interpreted from the definition of the subgradient. 

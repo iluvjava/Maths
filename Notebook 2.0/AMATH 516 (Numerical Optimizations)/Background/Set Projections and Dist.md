@@ -66,8 +66,8 @@ Where, the activation function is closed, and the distance function is also clos
 > \end{aligned}
 > $$
 
-**Proof**: 
-This is a property of convex set, not projection in general, it's listed in [[Convex Sets Properties]]
+**Remarks**: 
+This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Properties]]. In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that vists: [[Convex Projection is L1 Lipschitz]]
 
 
 
