@@ -1,6 +1,6 @@
-[[Normal Cone]]
-[[Polar Cone]]
-[[Characterizing Functions for Optimizations]]
+* [[Normal Cone]]
+* [[Characterizing Functions for Optimizations]]
+* [[Convex Sets]]
 
 ---
 
@@ -18,6 +18,44 @@ Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials
 > $$
 > 
 > Define the set of all Sub-gradient at $x$ to be: $\partial[f]_{x}$And when $x\not\in \text{dom}(f)$ we defined $\partial [f]_x = \emptyset$. 
+
+**Proof**
+
+The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. 
+
+$\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[f](x) = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
+
+$$
+\begin{aligned}
+    & \forall (y, \beta) \not\in \text{epi}(f)\; 
+    \exists (x, f(x)) \in \text{bd}\circ \text{epi}(f), g\in \partial [f](y):
+    \\
+    &
+    \langle (y, \beta), (g, -1)\rangle \le \delta \le \langle (g, -1), (x, f(x))\rangle
+    \\
+    & 
+    \langle y, g\rangle - \beta \le \langle g, x\rangle - f(x)
+    \\
+    & 
+    \langle g, y - x\rangle - \beta \le -f(x)
+    \\
+    & 
+    f(x) \ge \beta + \langle g, x - y\rangle
+    \\
+    &
+    (y, \beta)\not \in \text{epi}(f) \implies \beta \le f(y)
+    \\
+    \implies & 
+    f(x) \ge f(y) + \langle g, x - y\rangle
+\end{aligned}
+$$
+
+Which demonstrates the geometric interpretations for the subgradient of a convex function. 
+
+
+
+
+
 
 **Remarks**
 
@@ -51,8 +89,24 @@ Where the little $o$ notation is a limit in disguise, in this case it has the pr
 
 **Remarks:**
 
-The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. 
+The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
+$$
+\partial [f](x)\subseteq\bar{\partial}[f](x) 
+$$
+
+Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
+
+Regardless of the fact that it's called the generalized gradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
+
+
+### **Notations**
+
+A good notations should be clear about several things when taking the derivative of a function: 
+* What variables are we raking the derivtive with? 
+* What varlues are we putting into the derivative functions? 
+
+For example: $\partial [f(Ax + b, u)](u = x^+), \partial [f(Ax + b, u)]_{u = x^+}$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
 
 ---
@@ -65,3 +119,26 @@ f(y) \ge f(x^+) \quad \forall y\in \mathbb E
 $$
 
 And it can be viewed that $g = \mathbf 0$, directly interpreted from the definition of the subgradient. 
+
+---
+### **Normal Cone and Generalized Subgradient**
+
+**Theorem Statement:**
+
+> Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
+> $$
+>   v \in \partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+> $$
+
+**Remarks**: 
+
+
+
+
+#TODO:FILL THIS IN! 
+
+
+
+
+
+

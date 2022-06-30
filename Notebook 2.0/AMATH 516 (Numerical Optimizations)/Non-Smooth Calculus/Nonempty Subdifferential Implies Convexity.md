@@ -11,7 +11,8 @@
 
 
 **Remarks**
-Take note that, convexity doesn't imply that sub-gradient exists through the whole domain of the function. The converse part of the statement is exremely interesting and it will discussed in details in many convex analysis textbooks. 
+Take note that, convexity doesn't imply that subgradient exists through the whole domain of the function. The converse part of the statement is exremely interesting and it will discussed in details in many convex analysis textbooks. 
+
 
 
 ---

@@ -1,51 +1,39 @@
-Definition, conjugacy, interpretations and useful properties. 
-Might need this [[Convex Conjugate Examples]] for some of the advanced interpretations of the concept. 
+* [[Characterizing Functions for Optimizations]]
+* [[Support Function]]
 
 ---
 ### **Intro**
 
-This file seeks to explain and explore further about the idea of convex conjugate. The concept first appears here: 
 
-
----
-### **Fenchel Conjugate**
-
-It's also called the Fenchel Legendre Transform.
+Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Transform. The below information is from the internet and the AMATH 515 class I took. 
 
 **Definition**
 
 > Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
 > $$
-> f^*(y) = \sup_{x \in E} \left\lbrace
+> f^\star(y) = \sup_{x \in E} \left\lbrace
 >     y^Tx - f(x)
 > \right\rbrace
 > $$
 
-#### **Conjugate Epigraph contains all Affine Minorants of the Original Function**
+---
+### **Conjugate Epigraph contains all Affine Minorants of the Original Function**
 
-Let: 
+Let: $(y, z) \in {\text{epi}}(f)$ and we assume $f$ is proper, and by definition: 
 
-$$
-(y, z) \in \underset{r}{\text{epi}}(f)
-$$
+$$ r \ge z \ge f^\star(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \;\forall x $$
 
-By definition: 
+The relations between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality*. 
 
-$$
-r \ge z \ge f^*(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \quad \forall  x
-$$
+**Remarks**
 
-If I have any inputs for the conjugate function： $y$, then: $f(x)\ge y^Tx - f^*(y)$, which, tells me the offset to compare with the conjugate function. 
-
-**Note**: This is applicable even when the function is not convex, and equality will be satisfied. 
+The conjugate function $f^\star(x)$'s epigraph provides the offser of the affine functions that is below the functon $f$, given the slope of the affine function. 
 
 
+**Example: The Support Function on the Indicator of the Epigraph of $f$**
 
-**Claim:**
+> The support function over the epigraph of function $f$ is the conjugate function $f^*$, but in a high dimension. To quantify the epigraph, Define the convex indicator over the epigraph: 
 
-> The support function over the epigraph of function $f$ is the conjugate function $f^*$, but in a high dimension. 
-
-Define the convex indicator here: 
 $$
 \delta_Q(x) := \begin{cases}
     0 & x \in Q
@@ -54,45 +42,47 @@ $$
 \end{cases}
 $$
 
-**Define the Support function**
-
-> $$
-> S_Q(v) = \delta^*_Q(v) = \max_{x\in Q} \{v^Tx\}
-> $$
-> **Support function**: The conjugate of an indicator function over a convex set $Q$. 
-
-
+Recall the definition from the support functions and consider: 
 
 $$
-f^*(y) = \sup_{x}\left\lbrace
-    \begin{bmatrix}
-        -1 \\ y
-    \end{bmatrix}^T
-    \begin{bmatrix}
-        f(x) \\ x
-    \end{bmatrix}
-\right\rbrace
-    = 
-    \sup_{(x, r)\in \text{epi}(f)} \left\lbrace
-        \begin{bmatrix}
-            -1 \\ y
-        \end{bmatrix}^T
-        \begin{bmatrix}
-            f(x) \\ r
-        \end{bmatrix}
+\begin{aligned}
+    f^\star(x) &= \sup_y\{\langle y, x\rangle - f(y)\}
+    \\
+    &= \sup_{y} \left\lbrace
+        \left\langle 
+            \begin{bmatrix}
+                y\\ f(y)
+            \end{bmatrix}
+            , 
+            \begin{bmatrix}
+                x \\ -1
+            \end{bmatrix}
+        \right\rangle
     \right\rbrace
-    =
-    \delta^*_{\text{epi}(f)}
-    \left(
+    \\
+    &= 
+    \sup_{z\in \text{epi}(f)}
+    \left\lbrace
+        \left\langle 
+            z, 
+            \begin{bmatrix}
+                x 
+                \\
+                -1
+            \end{bmatrix}
+        \right\rangle
+    \right\rbrace
+    \\
+    &= 
+    \delta^\star_{\text{epi}(f)}\left(
         \begin{bmatrix}
-        -1 \\ y
-    \end{bmatrix}
+            x \\ - 1
+        \end{bmatrix}
     \right)
+\end{aligned}
 $$
 
-**Moral of the Story**: 
-
-If I take the Fenchel Transformn on both side of the above equation, then I get back the original function $f$.
+From the first line the the second line, we make the intuitive assumption that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
 
 
 ---
@@ -158,10 +148,7 @@ $$
 ---
 ### **Fenchel's Identity**
 
-> Fenchel's Identity is useful because it links the dual and primal variable, and can be exploited for dualization of problems. 
-
-
-**Claim 1**
+**Theorem Statement**
 > The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 
 > $$
 > z \in \partial f(x) \tag{1}
@@ -215,3 +202,9 @@ Notice that, this time, $z, x$ swapped, and we have $f^*(x)$ instead of $f(x)$. 
 > z\in \partial f(x^+) \iff x^+ \in \partial f^*(z) \tag{2}
 > $$
 > Given dual, primal variable $x, z$, they are in the subgradient of each of their objective function, $f, f^*$. 
+
+
+---
+### **Examples**
+
+For more examples regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. 

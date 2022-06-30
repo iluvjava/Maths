@@ -1,5 +1,5 @@
-[[Cone]]
-[[Polar Cone]]
+* [[Cone]]
+* [[Polar Cone]]
 
 
 ---
@@ -35,7 +35,7 @@ However, if $x \not\in Q$, for consistency we define $N_Q(x) = \emptyset$.
 
 **Remarks**
 
-Finally, reader please observe that when with $x\in \text{relint}(Q)$ (The relative interior), we would have $N_Q(x) = \{0\}$ which is a singleton. 
+Finally, reader please observe that when with $x\in \text{relint}(Q)$ (The relative interior), we would have $N_Q(x) = \{\mathbf 0\}$ which is a singleton. 
 
 
 ---
