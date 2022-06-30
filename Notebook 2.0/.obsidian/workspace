@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
             "mode": "source"
           }
         },
@@ -23,7 +23,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
             "mode": "preview"
           }
         },
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 422,
-    "collapsed": true
+    "width": 422
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,8 +112,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1367bbf49162617d",
+  "active": "72a561359e6564c0",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential for The Interior of a Proper Convex Function.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Non-Empty Sub-Differentials Implies Convexity.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/The Support Functions.md",
@@ -122,8 +123,6 @@
     "MATH 514 (Combinatorics Optimizations)/Matroid.md",
     "MATH 000 (Math Essential)/Calc/Taylor Series.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential.md",
-    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md"
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Subgradient.md"
   ]
 }
