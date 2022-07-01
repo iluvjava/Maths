@@ -17,7 +17,7 @@ Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Tra
 > $$
 
 ---
-### **Conjugate Epigraph contains all Affine Minorants of the Original Function**
+### **Conjugate Epigraph Contains all Affine Minorants of the Original Function**
 
 Let: $(y, z) \in {\text{epi}}(f)$ and we assume $f$ is proper, and by definition: 
 
@@ -83,7 +83,6 @@ $$
 $$
 
 From the first line the the second line, we make the intuitive assumption that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
-
 
 ---
 ### **Geometric Interpretations**

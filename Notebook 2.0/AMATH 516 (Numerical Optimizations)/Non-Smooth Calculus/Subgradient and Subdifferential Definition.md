@@ -54,9 +54,6 @@ Which demonstrates the geometric interpretations for the subgradient of a convex
 
 
 
-
-
-
 **Remarks**
 
 The definition in this case is not consistent with the definition of gradient of smooth function when $f$ nonconvex. To mitigate this, below is another definition of subgradient and **subdifferential** that generalize the idea to nonconvex, non-smooth functions. 
@@ -127,15 +124,159 @@ And it can be viewed that $g = \mathbf 0$, directly interpreted from the definit
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
->   v \in \partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
-> $$
+>   v \in \overline\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+>$$
+
+**Proof**
+
+To show the $\implies$, we consider any $v \in \overline\partial [f](x)$, from the definition of the generalized gradient, we have: 
+
+$$
+\begin{aligned}
+    & f(y) \ge f(x) + \langle v, y - x\rangle + o(\Vert y - x\Vert)
+    \\
+    & f(y) - f(x) \ge \langle v, y - x\rangle + o(\Vert y - x\Vert)
+    \\
+    & \forall \alpha \ge f(y):
+    \\
+    & \alpha - f(x) \ge \langle  v, y - x\rangle + o(\Vert  y - x\Vert)
+    \\
+    \implies &
+    \left\langle 
+        \begin{bmatrix}
+            v \\ - 1
+        \end{bmatrix}
+        ,
+        \begin{bmatrix}
+            y - x \\ \alpha - f(x)
+        \end{bmatrix}
+    \right\rangle
+    \le 
+    o(\Vert y - x\Vert)
+    \\
+    \implies &
+    \begin{bmatrix}
+        v\\-1
+    \end{bmatrix}\in 
+    T_{\text{epi}(f)}(x, f(x))
+\end{aligned}\tag{1}
+$$
+
+AN element chose from the generalized gradient set will satisfies the tengent cone defintion. To prove the $\impliedby$ direction ,we consider any element in the form of $(v, - 1)$ that is taken from $N_{\text{epi}(f)}(x, f(x))$, and then we prove that it can serve as a subgradient. The problematic part is showing that, the small o part of the argument can be transferred. From the definition of the normal cone we have: 
+
+$$
+\begin{aligned}
+    r \ge f(x) + \langle v, y - x\rangle + o(\Vert (y, r) - (x, f(x))\Vert)
+    \quad \forall r \ge f(y)
+\end{aligned}\tag{2}
+$$
+
+We wish to show that $o(\Vert (y, r) - (x, f(x))\Vert)$ is indeed bounded as $(y, r)\rightarrow (x, f(x))$ inside of the set $\text{epi}(f)$. To argue that, we wish to first prove that the quantity $\frac{f(y) - f(x)}{\Vert y - x\Vert}$ is bounded and uniformally bounded. Starting with the defintion of boundedness: 
+
+$$
+\begin{aligned}
+    \left|
+        \frac{o(\Vert (y, r) - (x, f(x))\Vert)}{\Vert (y, r) - (x, f(x))\Vert} 
+    \right|
+    &\le \epsilon
+    \\
+    \implies 
+    \left|
+        \frac{o(\Vert (y, r) - (x, f(x))\Vert)}
+        {\Vert y - x\Vert + |r - f(x)|}
+    \right|
+    & \le 
+    \epsilon
+    \\
+    \text{ let }\epsilon &= 1/2
+    \\
+    o(\Vert (y, r) - (x, f(x))\Vert) & \ge 
+    -\frac{1}{2}(
+        \Vert y - x\Vert + |r - f(x)|
+    )
+\end{aligned}\tag{3}
+$$
+
+Continuing with results obtained from (3) with results from (2) we have: 
+
+$$
+\begin{aligned}
+    & 2r \ge f(x) - 2\langle v, y -x\rangle - \Vert y - x\Vert - f(x) + r
+    \\
+    & 
+    r \ge 2f(x) + 2\langle v, y - x\rangle - \Vert y - x\Vert - f(x)
+    \\
+    & 
+    r\ge f(x) + 2\langle v, y -x\rangle - \Vert y - x\Vert
+\end{aligned}\tag{4}
+$$
+
+Considerin the Cauchy Swartz: $\langle v, y - x\rangle \le \Vert v\Vert \Vert y - x\Vert$, giving us the results $2\langle v, y - x\rangle\le 2 \Vert v\Vert \Vert y-x\Vert$, giving us: 
+
+$$
+\begin{aligned}
+    &
+    r\ge f(x) + 2\langle v, y -x\rangle - \Vert y - x\Vert
+    \\
+    & 
+    r \ge f(x) - (1 + 2 \Vert v\Vert)\Vert x - y\Vert
+    \\
+    \implies & 
+    \lim  \frac{r - f(x)}{\Vert x - y\Vert} > -\infty
+\end{aligned}\tag{5}
+$$
+
+Since it's true for all $r$, replacing $r$ into $f(y)$ we obtain the quotient: $\frac{f(y) - f(x)}{\Vert x - y\Vert}> -\infty$. The quotient is also bounded above, let's consider the role of little o by considering any sequence $(y_i, r_i)\rightarrow (x, f(x))$ as $i \rightarrow \infty$ approaching the tagent point in the epigraph of the function, let's also make the substitution: $\zeta_i =(y_i, r_i) - (x, f(x))$, then from (2): 
+
+$$
+\begin{aligned}
+    & r_i \ge f(x) + \langle v, y_i - x\rangle  + o(\Vert \zeta_i\Vert)
+    \\
+    & r_i - o(\Vert \zeta_i\Vert) \ge f(x) + \langle v, y_i - x\rangle
+    \\
+    \implies & f(y_i) \le f(x) + \langle  v, y_i - x\rangle
+\end{aligned}\tag{6}
+$$
+
+Therefore the quotient of is also bounded above. This is true for all $(x, f(x))\in \text{epi}(f)$ where, it exists a vector of the form $(v, -1)$ in the normal cone at the point. Because the sequence is bounded below and above, and it's uniformally bounded by the existence of a finite $(v, -1)$ from the normal cone. Therefore we may conclude: 
+
+$$
+\begin{aligned}
+    & \Vert \zeta_i\Vert^2 = \Vert y_i - x\Vert^2 + |f(y_i) - f(x)|^2
+    \\
+    & \frac{\Vert \zeta_i \Vert^2}{\Vert y_i - x\Vert^2 }
+    =
+    1 + \frac{|f(y_i) - f(x)|^2}{\Vert y_i - x\Vert^2}
+    \\
+    \implies & 
+    \frac{o(\Vert \zeta_i\Vert)}{\Vert y_i - x\Vert} = 
+    \frac{o(\Vert \zeta_i\Vert)}{\Vert \zeta_i\Vert}\frac{\Vert \zeta_i\Vert}{\Vert y_i - x\Vert}
+    \\
+    &= \frac{o(\Vert \zeta_i\Vert)}{\Vert y_i - x\Vert}\sqrt{
+        1 + \frac{|f(y_i) - f(x)|^2}{\Vert y_i - x\Vert^2}
+    }
+    \\
+    \implies & 
+    \lim_{i \rightarrow \infty}
+    \frac{o(\Vert \zeta_i\Vert)}{\Vert y_i - x\Vert}\sqrt{
+        1 + \frac{|f(y_i) - f(x)|^2}{\Vert y_i - x\Vert^2}
+    } = 0
+\end{aligned}\tag{7}
+$$
+
+Then, one can easily rewrite the conditions in (2) into the same form as a generalized subgradient. $\blacksquare$
+
+
+
+**Source**
+Theorem 3.35 in Dimitry's notes, AMATH 516 materials. 
 
 **Remarks**: 
 
+The theorem hilighted the geometric interpretations of subgradient and the generalized subgradient. 
 
 
 
-#TODO:FILL THIS IN! 
 
 
 
