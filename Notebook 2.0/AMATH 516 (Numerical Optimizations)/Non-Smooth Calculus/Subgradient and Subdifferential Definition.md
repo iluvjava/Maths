@@ -21,9 +21,7 @@ Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials
 
 **Proof**
 
-The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. 
-
-$\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[f](x) = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
+The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[f](x) = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
 
 $$
 \begin{aligned}
@@ -97,6 +95,7 @@ Is true for the above definition. Whenever it's not mentioned whether $f$ is con
 Regardless of the fact that it's called the generalized gradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
 
 
+---
 ### **Notations**
 
 A good notations should be clear about several things when taking the derivative of a function: 
@@ -273,7 +272,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials.
 
 **Remarks**: 
 
-The theorem hilighted the geometric interpretations of subgradient and the generalized subgradient. 
+The theorem hilighted the geometric interpretations of subgradient and the generalized subgradient. Take note that, for functions that are more patheological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ garantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. 
 
 
 

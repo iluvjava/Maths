@@ -19,15 +19,17 @@ Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Tra
 ---
 ### **Conjugate Epigraph Contains all Affine Minorants of the Original Function**
 
-Let: $(y, z) \in {\text{epi}}(f)$ and we assume $f$ is proper, and by definition: 
+$\forall (y, z) \in {\text{epi}}(f^\star)$ and we assume $f$ is proper, and by definition: 
 
-$$ r \ge z \ge f^\star(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \;\forall x $$
+$$ 
+	z \ge f^\star(y) \ge y^Tx - f(x) \implies f(x) \ge y^Tx - z \;\forall x 
+$$
 
-The relations between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality*. 
+Please observe that the vector from $\text{epi}(f)$ is a supporting affine minor of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *fenchel inequality*. 
 
 **Remarks**
 
-The conjugate function $f^\star(x)$'s epigraph provides the offser of the affine functions that is below the functon $f$, given the slope of the affine function. 
+The conjugate function $f^\star(x)$'s epigraph provides the least offset of the affine functions that is below the functon $f$, given the slope of the affine function. 
 
 
 **Example: The Support Function on the Indicator of the Epigraph of $f$**
@@ -99,9 +101,9 @@ Given $z$ the dual varible, representing the slope of the line I want to "touch"
 
 
 ---
-### **Fenchel's Conjugate Properties**
+### **Bi-Conjugation**
 
-Double Conjugate making it Smaller.
+**Theorem Statement**
 
 > $$
 > f^{**}(x) \le f(x)

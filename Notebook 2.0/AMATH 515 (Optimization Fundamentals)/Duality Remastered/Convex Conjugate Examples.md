@@ -1,7 +1,7 @@
 Here, I will summarize some of the examples we had for convex conjugates of different functions.
 They will be from HW, some of the notes for the courses, the goal is to make it more organized, and everything in place so we have references for the future. 
 
-[[Convex Conjugate Function]]
+[[Convex Conjugation]]
 
 Major References: The HW for AMATH 515. 
 

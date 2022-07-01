@@ -1,5 +1,5 @@
 To do this, we would need 
-[[Convex Conjugate Function]]. 
+[[Convex Conjugation]]. 
 And [[MinMax MaxMin Lemma]].
 But we also need [[Convex Conjugate Examples]]
 

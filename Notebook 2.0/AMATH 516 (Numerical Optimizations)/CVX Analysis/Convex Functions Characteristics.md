@@ -20,20 +20,20 @@ The direciton where, if a function is lower semi-continuous and it's convex, the
 ---
 ### **Continuity of Closed Convex Functions**
 
-> Let $f: \mathbb E \mapsto \mathbb{\bar R}$ be convex. Let $x_0 \in \text{int}(\text{dom}(f))$, then there exists $\epsilon > 0$, and $L > 0$ such that $\mathbb B_{x_0}(\epsilon)\subseteq C$. 
+> Let $f: \mathbb E \mapsto \mathbb{\bar R}$ be convex. Let $x_0 \in \text{int}(\text{dom}(f))$, then there exists $\epsilon > 0$, and $L > 0$ such that $\mathbb B_{x_0}$ such that: 
+> 
+> $$
+> |f(x) - f(x_0)| \le L \Vert x - x_0\Vert
+> $$
+> 
+> Where the function is locally lipschitz. 
 
-
-**Source**: Theorem 2.21 from \<First Order Method in Optimizations\>
-
-
-**Proof:**
-
-#TODO: Proof is one of the main results from Dimitry's notes, chapter 3
+**Source**: Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitry's notes, chapter 3 for his AMATH 516. 
 
 
 **Remarks**: 
 
-
+The definition of Lipchitz is in [[Lipschitz Continuity]], and the proof and detailed discussion will be in here: [[Convex Function is Locally Lipschitz]]
 
 ---
 ### **Continuity of Convex Unitvariate Functions**
