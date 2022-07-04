@@ -272,7 +272,9 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials.
 
 **Remarks**: 
 
-The theorem hilighted the geometric interpretations of subgradient and the generalized subgradient. Take note that, for functions that are more patheological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ garantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. 
+The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient. Take note that, for functions that are more patheological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ garantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. 
+
+More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with sugradient, from simple to hardcore, see [[Computations of Subdifferentials]] for more. 
 
 
 

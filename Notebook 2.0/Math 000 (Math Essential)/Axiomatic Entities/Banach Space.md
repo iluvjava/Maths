@@ -3,7 +3,7 @@
 ---
 ### **Banach Space**
 
-[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete vector space. It's an set of elements that can form a Complete vector space with a norm calculations.  **Note**: The "complete" in this contex is referring to closure under Cauchy Sequence, not interpreated as "complete with".
+[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete vector space. It's an set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this contex is referring to closure under Cauchy Sequence, not interpreated as "complete with".
 
 
 **Banach But not Hilbert**
@@ -12,5 +12,11 @@
 
 **Lacks of Inner Product**
 > The definition doesn't said anything about inner using inner product in the space to define the norm. The norm can be independent of the inner product. 
+
+
+
+
+
+
 
 

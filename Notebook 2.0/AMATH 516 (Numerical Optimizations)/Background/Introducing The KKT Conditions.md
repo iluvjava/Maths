@@ -26,7 +26,7 @@ $$
         \\
         G(x) \le \mathbf{0} & G(x): \mathbb{R}^n \mapsto \mathbb{R}^k
         \\
-        H(x) = \mathbf{0} & H(x): \mathbb{R}^n : \mapsto \mathbb{R}^m
+        H(x) = \mathbf{0} & H(x): \mathbb{R}^n \mapsto \mathbb{R}^m
     \end{cases}
 \end{aligned}\tag{1}
 $$
@@ -85,7 +85,7 @@ $$
  
 **First Condition Interpretations**
 
-> The first condition asserts the saddle point of Lagragian is reached, meaning that the minimization objective of first player $f(x)$ balanced out with the constraint panalizer, the adversarial player: $\nabla[G](x)\mu, \nabla[H](x)\lambda$. When the saddle point is satisfies, it means that there is no way to minimize $f(x)$ without violating the constraints. 
+> The first condition asserts the saddle point of Lagragian is reached, meaning that the minimization objective of first player $f(x)$ balanced out with the constraint penalize, the adversarial player: $\nabla[G](x)\mu, \nabla[H](x)\lambda$. When the saddle point is satisfies, it means that there is no way to minimize $f(x)$ without violating the constraints. 
 
 **Second and Third Conditions**
 
@@ -93,7 +93,7 @@ $$
 
 **Fourth Conditions**
 
-> The dual can only maximizes it's objective by panelizing constraint violation of $G(x)\ge \mathbf 0$, it can't penelize by maximizing when $G(x) \le 0$, therefore, it has to choose $\mu \ge \mathbf 0$, it's also the constraint for the dual problem. 
+> The dual can only maximizes it's objective by penalize constraint violation of $G(x)\ge \mathbf 0$, it can't penelize by maximizing when $G(x) \le 0$, therefore, it has to choose $\mu \ge \mathbf 0$, it's also the constraint for the dual problem. 
 
 **Complementary Conditions**
 

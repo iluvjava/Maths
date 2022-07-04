@@ -1,9 +1,9 @@
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]
+* [[Subgradient and Subdifferential Definition]]
 
 ---
 ### **Intro**
-
 
 Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Transform. The below information is from the internet and the AMATH 515 class I took. 
 
@@ -149,14 +149,17 @@ $$
 ---
 ### **Fenchel's Identity**
 
-**Theorem Statement**
+Fenchel's Identity relates the subgradient to the conjugate function. 
+
+**Claim 1**
 > The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 
 > $$
 > z \in \partial f(x) \tag{1}
 > $$
 > $$
-> f^*(z) = \sup_x \{z^Tx - f(x)\} \iff z \in \partial f(x) \quad \text{f is closed and convex}
+> \iff f(z) + f^{*}(x^+) = z^Tx^+
 > $$
+> For $z \in \arg\sup_x\{z^T - f(x)\}$, and $f$ be a closed and convex function. 
 
 **Proof**: 
 
@@ -164,24 +167,21 @@ Assume: **f is closed and convex**, by definition of convex conjugate:
 
 $$
 \begin{aligned}
-    f^*(z) &= \sup_x \{z^Tx - f(x)\} \ge z^Ty - f(y) \quad \forall y
+    & f^*(z) = \sup_x \{z^Tx - f(x)\} \ge z^Ty - f(y) \quad \forall y
     \\ \underset{[1]}{\implies}
-    z^Tx^+ - f(x^+) &\ge  z^Ty - f(y) \quad \forall y
+    & z^Tx^+ - f(x^+) \ge  z^Ty - f(y) \quad \forall y, x^+\in \arg\sup_x\{z^Tx - f(x)\}
     \\ \underset{[2]}{\implies}
-    f(y) &\ge  z^T(y - x) + f(x^+) \quad \forall y
+    & f(y) \ge  z^T(y - x) + f(x^+) \quad
     \\ \underset{[3]}{\implies}
-    z &\in \partial f(x^+)
+	& z \in \partial f(x^+)
 \end{aligned}
-
 $$
 
-\[1\]: $x^+$ is fixed by the sup, it solves the supreme operator.  
+\[1\]: $x^+$ is fixed by the sup, it solves the supreme operator.
 
 \[2\]: to 3: Just algebra.
 
-\[3\]: By the definition of Sub gradient, the Cauchy Sub-gradient inequality. 
-
-
+\[3\]: By the definition of subgradient, the Cauchy subgradient inequality.
 
 Suppose $x^{+} = \arg\sup_x\{z^Tx - f(x)\}$, then 
 
@@ -195,8 +195,11 @@ $$
 \end{aligned}
 $$
 
+**Remarks**
 
-Notice that, this time, $z, x$ swapped, and we have $f^*(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{**}(x)$, then we will have:
+We do consider the case where $x^+$ has some of its components to be infinity. In that case, the claim $z\in \partial f(x^+)$ would still hold. 
+
+Notice that, this time, $z, x$ swapped, and we have $f^*(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{**}(x)$, then we will a new claim:
 
 **Claim 2**
 > $$
@@ -204,8 +207,23 @@ Notice that, this time, $z, x$ swapped, and we have $f^*(x)$ instead of $f(x)$. 
 > $$
 > Given dual, primal variable $x, z$, they are in the subgradient of each of their objective function, $f, f^*$. 
 
+**Proof**
+See the remarks before the claim. 
+
+**Remarks**
+
+One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$. (**MORE DETAILS NEEDED**). 
 
 ---
 ### **Examples**
 
 For more examples regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. 
+
+
+---
+### **Convex Conjugate Quick Maths References**
+
+In this section we list some important quick rules for computing the convex onjugation of functions. 
+
+
+#TODO: FILL THIS IN! 

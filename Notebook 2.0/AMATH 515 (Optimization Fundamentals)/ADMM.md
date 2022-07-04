@@ -1,31 +1,19 @@
 Major Reference Sources: 
-[Stanford University](https://stanford.edu/~boyd/admm.html)
+* [Stanford University](https://stanford.edu/~boyd/admm.html) ALL IN ONe Resources for ADMM 
+* Paper [link](https://stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf)
+
+Prerequisites: 
+* [[Characterizing Functions for Optimizations]]
 
 ---
 ### **Intro**
+Alternating direction method of multiplier (ADMM). We state the assumptions of the algorithms and then summarized the algorithms. Including: 
 
-Alternating direction method of multiplier (ADMM). 
+1. The formulations of the Augmented Lagrangian
+2. The assumptions made 
+3. The optimality conditions 
+4. Some brief justifications for some of the claims
 
-This algorithm breaks the optimization problem apart into many smaller pieces and then solve then individually, combining to get the larger solution for the optimization problem. 
-
-It's like Raleigh Quotient: 
-
-$$
-\begin{aligned}
-    \mathcal{F}(A) &=\left\lbrace
-        \frac{y^HAy}{y^Hy}: y\in \mathbb{C}^n, y \neq \mathbf{0}
-    \right\rbrace
-\end{aligned}
-$$
-
-The set is CONVEX. 
-
-
-The Maximal Fields of defines that idea of a Numerical Radius of a matrix as: 
-
-$$
-\nu(A) = \max\{|z|: z \in \mathbb{C}\}
-$$
 
 
 ---

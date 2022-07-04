@@ -15,18 +15,12 @@ N_Q(\bar{x}) := \left\lbrace
 \right\rbrace
 $$
 
-Where, the little $o$ notations denotes the limit that: 
-
-$$
-\lim_{x\rightarrow \bar{x}} \frac{o(\Vert x - \bar{x}\Vert_2)}{\Vert x - \bar{x}\Vert_2} = 0
-$$
-
-Another Equivalent Definition of the set is given as: 
+Where, the little $o$ notations denotes the limit that: $\lim_{x\rightarrow \bar{x}} \frac{o(\Vert x - \bar{x}\Vert_2)}{\Vert x - \bar{x}\Vert_2} = 0$. Another Equivalent Definition of the set is given as: 
 
 $$
 \left\lbrace
     v\in \mathbb E: 
-    \underset{x\rightarrow \bar{x}\in Q}{\lim\sup} 
+    \underset{x\rightarrow \bar{x}\in Q}{\lim}
     \frac{\langle v, x - \bar{x}\rangle}{\Vert x - \bar{x}\Vert_2} \le 0 \;\forall x \in Q: x \rightarrow \bar x
 \right\rbrace
 $$

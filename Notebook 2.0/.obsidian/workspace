@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Fenchel Rock",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +113,15 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
-    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Convex Conjugate Examples.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentiability of Proper Convex Functions.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Nonempty Subdifferential Implies Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferential Examples.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md"
+    "AMATH 516 (Numerical Optimizations)/Convex Conjugate Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Fenchel Rockafellar Duality.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/MinMax MaxMin Lemma.md",
+    "AMATH 515 (Optimization Fundamentals)/Duality Remastered/Lagrangian and Dualization Techniques.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 515 (Optimization Fundamentals)/ADMM.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Introducing The KKT Conditions.md",
+    "MATH --- (Unexplored)/KKT Conditions with Details.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Banach Space.md"
   ]
 }

@@ -73,7 +73,7 @@ This is a property of convex set, not projection in general, the proof is listed
 
 
 ----
-### **L1 Lipschitz**
+### **The Distance Function to $Q$ is L1 Lipschitz**
 
 > For any set $Q$, the function $\text{dist}_Q(y)$ is L1-Lipschitz. More specirically: 
 > $$
@@ -121,5 +121,16 @@ The absolute value of the distance is then bounded by the differences between th
 **Remarks**: 
 
 In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations of Functions]] as an example to illustrate the infimal convolution theorem. 
+
+
+---
+### **Projections Equivalences**
+
+There exists several equivalent ways of describing the conditions of a point being projected onto a set $Q$, and a point $\bar{x} \in \text{proj}_Q(\bar x + \lambda v)$. 
+
+1. $v \in N_Q(\bar{x})$
+2. $\bar x \in \arg\max_{x\in Q}\langle v, x\rangle$
+3. $\text{proj}_Q(\bar{x} + \lambda x) = \bar x \; \forall\lambda \ge 0$
+4. $\exists \lambda \ge 0 : \text{proj}_Q(\bar x + \lambda v) = \bar x$
 
 
