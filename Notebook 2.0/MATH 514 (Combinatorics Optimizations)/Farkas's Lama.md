@@ -108,7 +108,7 @@ Observe that $y^TA' = [y^TA \; -y^TA \; y^T] \ge \mathbf 0$, which is saying tha
 
 **Proofs**: 
 
-$\impliedby$ is simple. Choose any $y^TA = c^T \implies y^TAx = c^Tx < 0$ be cause $Ax \le \mathbf 0 \wedge y \ge \mathbf 0$. For the other direction $\implies$, we make a direct proof. 
+$\impliedby$ is simple. Choose any $y^TA = c^T \implies y^TAx = c^Tx < 0$ be cause $Ax \le \mathbf 0 \wedge y \ge \mathbf 0$. For the other direction $\implies$, we make a direct proof and it's not trivial. 
 
 **Claim 1**: 
 
@@ -126,47 +126,38 @@ Then $\exists x: Ax \le \mathbf 0 \wedge \langle c, x \rangle < 0$. Consider:
 $$
 \begin{aligned}
     A &= \begin{bmatrix}
-        a_1 \\ a_2 \\ \vdots \\ a_n
+        & a_1^T & \\ & a_2^T& \\  & \vdots & \\ & a_n^T& 
     \end{bmatrix} \quad Ax \le \mathbf 0
     \\
-    \text{consider: }
-    &
-    \begin{cases}
-        y_1 \langle a_1, x\rangle - \frac{\langle c, x\rangle}{m} = 0
-        \\
-        y_2 \langle a_2, x\rangle - \frac{\langle c, x\rangle}{m} = 0
-        \\
-        \vdots
-        \\
-        y_m \langle a_m, x\rangle - \frac{\langle c, x\rangle}{m} = 0
-    \end{cases}
+    \tau &= \{i \in [m]: \langle a_i, x\rangle < 0\}, 
     \\
-    \implies& 
-    y = 
-    \begin{bmatrix}
-        \frac{m\langle a_1, x\rangle}{\langle c, x\rangle}
-        \\
-        \frac{m\langle a_2, x\rangle}{\langle c, x\rangle}
-        \\
-        \vdots
-        \\
-        \frac{m\langle a_m, x\rangle}{\langle c, x\rangle}
-    \end{bmatrix}\ge \mathbf 0 \text{ Assume: }\langle c, x\rangle < 0
-    \\
-    \implies  
-    y^TAx + c^Tx &= \mathbf 0
-    \\
-    \implies
-    y^TA & = c^T
+    \implies &
+    \forall j\in \tau, \exists y_j = \frac{\frac{1}{|\tau|}\langle c, x\rangle}{\langle a_j, x\rangle} \ge 0
 \end{aligned}
 $$
 
-Which completes the proof. Since it's not always the case that $\langle c, x\rangle$ we can always choose some $x$ such that $Ax\le \mathbf 0 \wedge \langle c, x\rangle < 0$, and proving the statement. 
+By such a choice of $y_j$ where $j\in \tau$, we consider a new choice for $y$ that is defined for all $i\in [m]$: 
+
+$$
+\begin{aligned}
+    y_i &:= \begin{cases}
+        0 & i \not\in \tau
+        \\
+        \frac{\langle c, x\rangle}{|\tau|\langle a_j, x\rangle} & \text{else}
+    \end{cases}
+    \\
+    \underset{[1]}{\implies} & 
+    y^TAx - c^Tx = 0\implies y^TA = c^T
+\end{aligned}
+$$
+
+\[1\]: comes from summing up all $y_j\langle a_j, x\rangle - \langle c, x\rangle = 0 \;\forall j \in \tau$ and then solves for $y_j$. This completes the proof. Since it's not always the case that $\langle c, x\rangle$ we can always choose some $x$ such that $Ax\le \mathbf 0 \wedge \langle c, x\rangle < 0$, and proving the statement. 
 
 **Remarks:**
+
 The variant of the theorem helps with figuring out the polar of polyhedral cones. 
 
-To clarify, if $\langle c, x\rangle\le 0$ forall $x$ such that $Ax \le \mathbf 0$, then it has to be the case that $y$ is in the cone spanned by rows of $A$. Which is saying: 
+To clarify, if $\langle c, x\rangle\le 0$ forall $x$ such that $Ax \le \mathbf 0$, then it has to be the case that $y$ is in the cone spanned by rows of $A$. Which is equivalently saying: 
 
 $$
 \{x: Ax \le \mathbf 0\}^\circ = \{A^Ty: y\ge \mathbf 0\}
@@ -266,3 +257,5 @@ $\implies$ tells a story that, for a polytope that is bounded on the direction o
 **Remarks**: 
 
 This theorem is linked to the duality of linear programming because the left part of the iff statement is the bounded primal and the right part of the iff is the dual reaching at least as much as what primal is; in this case $c_0$. 
+
+For one more extension that appared in AMATH 514, check out: [[Stiemke Theorem]]!!!

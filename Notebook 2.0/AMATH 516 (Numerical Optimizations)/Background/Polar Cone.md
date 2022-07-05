@@ -25,25 +25,29 @@ $$
 
 > For any cone $K$ we have: $K^{\circ\circ} = \text{cl}(K)$. 
 
+**Remarks**:
+
+
+
 ---
 ### **Example 1: Polar Polyhedral Cone**
 
-> The set $\{x: Ax \le \mathbf 0\}$ is $\{A^T y: y\ge \mathbf 0\}^\circ$. We assume that $A \in \mathbb R^{m\times n}$. 
+> The set $A := \{x: Ax \le \mathbf 0\}$ is $B:=\{A^T y: y\ge \mathbf 0\}$. We assume that $A \in \mathbb R^{m\times n}$. 
 
 **Proof**: 
 
 Please recall the [[Farkas's Lama#Variants]], the polar cone variants. We state it here for convenicne: 
 
-#TODO: FILL THIS IN!!!
+$$
+(Ax \le \mathbf 0 \implies \langle c, x\rangle \le 0) \iff (\exists y\ge \mathbf 0: A^Ty = c)
+$$
 
+We decompose the statement from left to right and in reverse to discuss how it's relevant to the definition of polar cones. 
 
+* $x \in A\implies \forall c \in B: \langle c, x\rangle \le 0 \implies B \subseteq A^\circ$ 
+* $\forall x \in A, \langle c, x\rangle \le 0\;  \forall c \in B \implies A^\circ \subseteq B$
 
-
----
-### **Example 2: Polar Cone of Polyhedra**
-
-We want to find the polar cone of: $K := \{x| Ax \le \mathbf 0\}$, from the definition we want to find the set of all vector, say $y$ such that $\langle y, x\rangle \le 0\; \forall x \in K$. Consider: 
-
+Therefore $A^\circ = B$ and using bipolar $B^\circ = A$. 
 
 
 ---

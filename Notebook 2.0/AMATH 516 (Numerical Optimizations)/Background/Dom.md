@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-The dom denotes the domain for a function, mapping from $\mathbb{E}$, a finite Euclidean space to $\mathbb{R}$. The definition is given as: 
+The dom denotes the domain for a function, mapping from $\mathbb{E}$, a finite Euclidean space to $\mathbb{\bar R}$. The definition is given as: 
 
 $$
 \begin{aligned}

@@ -87,7 +87,7 @@ General Topology
 * [[Affine Hull, Affine Span]]
 * [[Relative Interior And Relative Boundary]]
 
-Sets and Geometry related
+Sets and Convex Geometry related
 * [[Convex Sets]]
 * [[Euclidean Space]]
 * [[Lower Semi-Continuous]]

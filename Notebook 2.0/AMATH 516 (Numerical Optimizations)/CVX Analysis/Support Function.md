@@ -79,7 +79,7 @@ Therefore it's convex.
 
 The first inequality is easy because $C\subseteq\text{cl(C)}$ by def, and hence the $\sup$ of them yields $\delta_C^\star(x) \le \delta_{\text{cl}(C)}^\star(x)$, the other inequality $\delta^\star_{C}(x) \ge \delta_{\text{cl}(C)}^\star(x)$ by the property of $\sup$. 
 
-For the proof of the second equality, recall the [[Caratheodory Theorem]] for convex set. Let $x$ be arbitrary. Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem: 
+For the proof of the second equality, recall the [[Caratheodory Theorem]] for convex set. Let $x$ be arbitrary. Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem (Note, the supports can be less than $k - 1$): 
 
 $$
 \begin{aligned}

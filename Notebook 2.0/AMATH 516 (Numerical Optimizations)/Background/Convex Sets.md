@@ -6,24 +6,30 @@
 
 This entity is by far some the most important entities we will have for convex optimization, both in applications and analysis. The same topic has also been covered in [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]], which is not organized well. 
 
-**Definition of a Convex Set**
 
 ### **Convex Set**
 
-A set is said to be convex if any convex combinations of 2 arbitrary elements from the set are inside of the set as well. For this class, we are exclusively talking about $\mathbb{R}^n$.A set $C$ is said to be convex if:
+**Definition**
 
-$$
-\forall\; x, y \in C: \lambda x + (1-\lambda)y \in C \text{ where } \lambda \in (0, 1)
-$$
+> A set is said to be convex if any convex combinations of 2 arbitrary elements from the set are inside of the set as well. For this class, we are exclusively talking about $\mathbb{R}^n$.A set $C$ is said to be convex if:
+> 
+> $$
+> \forall\; x, y \in C: \lambda x + (1-\lambda)y \in C \text{ where } \lambda \in (0, 1)
+> $$
 
  
 **Examples**:
-1. Planes,
-2. Lines,
-3. Half-spaces(System of Linear Inequalities) are convex.
+1. Hyperplanes, [[Cone]]
+3. Half-spaces(System of Linear Inequalities: [[Polytopes]], polyhedra) are convex.
 4. Normal Balls ($||x||_p \forall p \geq 1$)
+5. The [[Convex Hull, Convex Span]] of any kind of sets. 
   
-(These are going to be **useful short cuts** for convex analysis)
+(These are going to be useful for developing **useful shortcuts** for convex analysis)
+
+**Remarks**
+
+The study of convex sets is important for convex optimiations and other things. We study it's properties, characterizations, and how the convexities are propergated and manifested in real world applications. 
+
 
 ---
 ### **Convexity Preservations Operations**:
@@ -49,10 +55,10 @@ For more discussion, see [[Convexity Preserving Operations of Sets]]
 
 
 ---
-### **Example: Line Seg**
+### **Notations: Line Seg**
 
 $$
-[x, y] := \{\lambda x + (1 - \lambda)y: 0 \le \lambda \le y\}
+[x, y]_Q := \{\lambda x + (1 - \lambda)y: 0 \le \lambda \le y\}\quad x, y \in Q
 $$
 
 And the definition for $(x, y), [x, y)$ follows through naturally with a different definition on whether to include the boundary points or not. Next, we list some examples of convex sets that are foundamental to the discussion, 
@@ -107,4 +113,10 @@ Done.
 See proofs in [[Strict Separations Theorem]].	
 
 
+---
+### **Theorem: Supporting Halfspaces**
 
+> For any convex set, it can be seen as the union of all affine subspace that contains the convex set. 
+
+
+For such a characterizations of the convex sets, consider: [[Supporing Convex Sets using Halfspaces]]. 
