@@ -1,3 +1,5 @@
+Pre-requisite: 
+
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]
 * [[Subgradient and Subdifferential Definition]]
@@ -16,6 +18,11 @@ Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Tra
 > \right\rbrace
 > $$
 
+**Remarks**: 
+
+Conjugate function might not be convex. But when $f(x)$ is closed and convex, the conjugate function is also closed and convex (**CITATION NEEDED**).
+
+
 ---
 ### **Conjugate Epigraph Contains all Affine Minorants of the Original Function**
 
@@ -32,7 +39,7 @@ Please observe that the vector from $\text{epi}(f)$ is a supporting affine minor
 The conjugate function $f^\star(x)$'s epigraph provides the least offset of the affine functions that is below the functon $f$, given the slope of the affine function. 
 
 
-**Example: The Support Function on the Indicator of the Epigraph of $f$**
+**Theorem: Conjugate is the Support Function of the Epigraph of $f$**
 
 > The support function over the epigraph of function $f$ is the conjugate function $f^*$, but in a high dimension. To quantify the epigraph, Define the convex indicator over the epigraph: 
 
@@ -73,7 +80,7 @@ $$
                 -1
             \end{bmatrix}
         \right\rangle
-    \right\rbrace
+    \right\rbrace 
     \\
     &= 
     \delta^\star_{\text{epi}(f)}\left(
@@ -85,6 +92,11 @@ $$
 $$
 
 From the first line the the second line, we make the intuitive assumption that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
+
+**Corrollary**
+
+Using the fact that the support function of any set is closed and convex (which is proved in:[[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
+
 
 ---
 ### **Geometric Interpretations**
@@ -103,7 +115,7 @@ Given $z$ the dual varible, representing the slope of the line I want to "touch"
 ---
 ### **Bi-Conjugation**
 
-**Theorem Statement**
+**Theorem: Biconjugate Function is Always Smaller**
 
 > $$
 > f^{**}(x) \le f(x)
@@ -141,10 +153,16 @@ $$
 
 \[1\]:  Using Minmax, Maxmin Lemma, introduced in [[MinMax MaxMin Lemma]]
 
-**Note**: 
-> Equality is true when the function is convex, because a convex set can be reconstructed by all the half spaces (The Affine Minorants). 
+**Corrollary**
 
+> $$
+> \text{epi}(f^{\star\star}(x)) = \text{cl}\circ \text{cvxh}(\text{epi}(f))
+> $$
+> The epigrah of the biconjugate function is the closure of the convex hull of the epigraph of the original function. 
 
+**Proof**
+
+#TODO: biconjugate convex hull closure of epigraph PROOF MISSING HERE. 
 
 ---
 ### **Fenchel's Identity**
@@ -212,7 +230,7 @@ See the remarks before the claim.
 
 **Remarks**
 
-One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$. (**MORE DETAILS NEEDED**). 
+One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$ (**MORE DETAILS NEEDED**). 
 
 ---
 ### **Examples**
@@ -226,4 +244,4 @@ For more examples regarding the convex conjugate of functions, see [[Convex Conj
 In this section we list some important quick rules for computing the convex onjugation of functions. 
 
 
-#TODO: FILL THIS IN! 
+#TODO: FILL IN THE TABLE HERE! 

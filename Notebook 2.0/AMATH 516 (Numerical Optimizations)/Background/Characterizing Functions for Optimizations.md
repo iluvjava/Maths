@@ -92,6 +92,9 @@ $$
 
 The support function of a set $Q$, is the conjugate of the indicator function. It drives a vector pointing in the direction of $v$ in the set until it reaches the boundary of the set, creating a support line around the point of contact. 
 
+**Remarks**
+
+See [[Support Function]] for more detailed informations.
 
 **Def: Gauge Functions**
 
