@@ -16,7 +16,7 @@ Farkas lemma is about the geometry of polytopes and cones.
 > \neg (\exists\; y: y^TA\ge \mathbf 0 , y^Tb < 0)
 > $$
 
-Take note that, if $Ax = b$ with $x \ge \mathbf 0$, then $b$ is in the cone of all the columns of the matrix $A$ (some columns might be forced to be multiplied by zero from $x$). In that case, it's impossible to have $y^TA\ge \mathbf 0$ ($y$ lying on one side of all columns of $A$) such that a hyperplane defined by $y$ separates vector $b$ and columns of $A$. 
+Take note that, if $Ax = b$ with $x \ge \mathbf 0$, then $b$ is in the cone of all the columns of the matrix $A$ (some columns might be forced to be multiplied by zero from $x$). In that case, it's impossible to have $y^TA\ge \mathbf 0$ ($y$ is pointing along the same directons of all columns of $A$) such that a hyperplane defined by $y$ (which defined via the rows of $a$) separates vector $b$ and columns of $A$. 
 
 **Proof**
 
@@ -99,19 +99,82 @@ $$
 
 Observe that $y^TA' = [y^TA \; -y^TA \; y^T] \ge \mathbf 0$, which is saying that $y^TA = \mathbf 0$; the end. 
 
-**Variant 2**
+**Polar Cone Variant**: 
+
+> Consider some $A\in \mathbb R^{m\times n}$, $x\in \mathbb R^n$, and some $c\in \mathbb R^n$, we have: 
 > $$
-> \begin{aligned}
->     \exists x\ge \mathbf 0: Ax \le 0 \iff \neg 
->     (
->         \exists y \ge \mathbf 0 :
->         y^TA\ge \mathbf 0, b^Ty < 0
->     )
-> \end{aligned}
+>     (Ax\le \mathbf 0 \implies c^Tx \le 0) \iff (\exists y\ge \mathbf 0: A^Ty = c)
 > $$
 
-We can use variant 1 to prove it. 
+**Proofs**: 
 
+$\impliedby$ is simple. Choose any $y^TA = c^T \implies y^TAx = c^Tx < 0$ be cause $Ax \le \mathbf 0 \wedge y \ge \mathbf 0$. For the other direction $\implies$, we make a direct proof. 
+
+**Claim 1**: 
+
+> It's impossible to have $\forall x: Ax \le \mathbf 0 \wedge \langle c, x\rangle = 0$, and in the case which $\exists x: \langle c, x\rangle = 0 \wedge Ax \le \mathbf 0$, then $Ax = \mathbf 0$ too. 
+> 
+> **Proof of Claim 1**: 
+> 
+> If $\forall x: Ax \le \mathbf 0$, then $c \perp a_i$ for some $i$ such that $\langle a_i, x\rangle < 0$. If this is not true for some $i^+\in [m]: \langle a_{i^+}, x\rangle = 0$, then reconsider $x + a_{i^+}$ which might gives $\langle c, a_{i^+}\rangle < 0$.
+> 
+> Else it's the case that $c\perp c_i \quad \forall i \in [m]$, then we choose $x = c$ to have $Ax = \mathbf 0$, but $\langle c, x\rangle$. In both cases, we should end up with a strictly negative $\langle c, x\rangle$. 
+> 
+
+Then $\exists x: Ax \le \mathbf 0 \wedge \langle c, x \rangle < 0$. Consider: 
+
+$$
+\begin{aligned}
+    A &= \begin{bmatrix}
+        a_1 \\ a_2 \\ \vdots \\ a_n
+    \end{bmatrix} \quad Ax \le \mathbf 0
+    \\
+    \text{consider: }
+    &
+    \begin{cases}
+        y_1 \langle a_1, x\rangle - \frac{\langle c, x\rangle}{m} = 0
+        \\
+        y_2 \langle a_2, x\rangle - \frac{\langle c, x\rangle}{m} = 0
+        \\
+        \vdots
+        \\
+        y_m \langle a_m, x\rangle - \frac{\langle c, x\rangle}{m} = 0
+    \end{cases}
+    \\
+    \implies& 
+    y = 
+    \begin{bmatrix}
+        \frac{m\langle a_1, x\rangle}{\langle c, x\rangle}
+        \\
+        \frac{m\langle a_2, x\rangle}{\langle c, x\rangle}
+        \\
+        \vdots
+        \\
+        \frac{m\langle a_m, x\rangle}{\langle c, x\rangle}
+    \end{bmatrix}\ge \mathbf 0 \text{ Assume: }\langle c, x\rangle < 0
+    \\
+    \implies  
+    y^TAx + c^Tx &= \mathbf 0
+    \\
+    \implies
+    y^TA & = c^T
+\end{aligned}
+$$
+
+Which completes the proof. Since it's not always the case that $\langle c, x\rangle$ we can always choose some $x$ such that $Ax\le \mathbf 0 \wedge \langle c, x\rangle < 0$, and proving the statement. 
+
+**Remarks:**
+The variant of the theorem helps with figuring out the polar of polyhedral cones. 
+
+To clarify, if $\langle c, x\rangle\le 0$ forall $x$ such that $Ax \le \mathbf 0$, then it has to be the case that $y$ is in the cone spanned by rows of $A$. Which is saying: 
+
+$$
+\{x: Ax \le \mathbf 0\}^\circ = \{A^Ty: y\ge \mathbf 0\}
+$$
+
+And it helps use looking for the equivalent cones and polar cones in the case of a polyhedral cone. 
+
+**Note**: I don't know how this is related to the Farkast lemma, but it's stated as a variant of Farkas in \<First Order Method in Optimizations\> by SIAM, Lemma 2.28. 
 
 ---
 ### **Extension**

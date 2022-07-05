@@ -1,5 +1,9 @@
-[[Characterizing Functions for Optimizations]]
-
+* [[Characterizing Functions for Optimizations]]
+* [[Convex Hull, Convex Span]]
+* [[Set Addition]]
+* [[Caratheodory Theorem]]
+* [[Cone]]
+* [[Polar Cone]]
 
 ---
 ### **Intro**
@@ -20,13 +24,14 @@
 
 When the set $C$ is not closed, the $\sup$ operator is closing it automatically. The function is convex because its the sum of 2 proper convex functions wrt $y$, $\langle y, x\rangle$ which is convex and real-valued, and $\delta_C$ the indicator function which is augmented real and proper, using [[Convexity Preserving Operations of Functions]], this is just taking the maximum of convex functions pointwise, therefore the resulting function is convex. 
 
-When dealing with the function for analysis purposes, keep in mind these good properties. 
+When dealing with the support function for analysis purposes, keep in mind these good properties: 
 * It's convex 
 * $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
 * $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
 * Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
   * Its epigraph is a cone, literally. 
 * It's sub-additive: $\delta_C^\star(x_1 + x_2) \le \delta_C^\star(x_1) + \delta_C^\star(x_2)$
+* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[Convex Conjugation]] for more. 
 
 We will prove some of the properties that are not trivial to prove. 
 
@@ -95,7 +100,7 @@ $$
 \end{aligned}
 $$
 
-Using the previous results we obtain the equivalence between all these 2 functions. 
+The diretion whre $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ is obvious.Using the previous results we obtain the equivalence between all these 3 functions. 
 
 **Remarks**
 
@@ -103,7 +108,20 @@ The magic here is the function inside of the sup can be superpositioned, and we 
 
 
 ---
-### **Examples:Supporting the Unit Simplex**
+### **Example 1: Support Function of Finite Sets**
+
+> Given a nonempty convex set of vector in $C\subset \mathbb E$: $\{b_i\}_{i = 1}^n$, the support function of the set is: $\delta_C^\star(y) = \max_{i\in [n]}\{\langle y, b_i\rangle\}$. 
+
+proof: Too easy skipped
+
+---
+### **Example 2: Support Function for a Cone**
+> Given a non-empty cone: $K$, the support function of the cone is: $\delta^\star_K(x) \equiv \delta_{K^\circ}(x)$. It's the activation function on the polar of the cone. 
+
+Proof: Too easy skipped
+
+---
+### **Example 3:Supporting the Unit Simplex**
 
 **Def: Simplex**
 > $$
@@ -113,7 +131,7 @@ The magic here is the function inside of the sup can be superpositioned, and we 
 > $$
 > It's the convex hull of all the standard basis vectors. 
 
+**Proof**: 
 
+Because the set is finite, we can apply example 1 to obtain: $\max_{i\in [n]}\{y_i\}$, which is just $\Vert y\Vert_\infty = \delta_{\Delta_n}(y)$. 
 
-
-#TODO: ADD GOOD EXAMPLES FOR THIS ONE. 
