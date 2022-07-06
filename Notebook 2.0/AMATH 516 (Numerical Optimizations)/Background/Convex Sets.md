@@ -19,10 +19,11 @@ This entity is by far some the most important entities we will have for convex o
 
  
 **Examples**:
-1. Hyperplanes: $\mathcal H_{\pm}(a, b):=\{x: \pm\langle x, a\rangle \ge b\}$, A [[Cone]]. 
-3. Half-spaces(System of Linear Inequalities: [[Polytopes]], polyhedra) are convex.
+1. Hyperplanes: $\mathcal H_{\pm}(a, b):=\{x: \pm\langle x, a\rangle \ge b\}$, A [[Cone]] a special case of a convex set. 
+3. Half-spaces(System of Linear Inequalities: [[Polytopes]], polyhedra) are convex and can be used to characterize all convex sets. 
 4. Normal Balls ($||x||_p \forall p \geq 1$)
-5. The [[Convex Hull, Convex Span]] of any kind of sets. 
+5. The [[Convex Hull, Convex Span]] of any kind of sets, and it can also be used to characterize all convex sets. 
+6. Positive definite matrices! (Which is alsoa cone)
   
 (These are going to be useful for developing **useful shortcuts** for convex analysis)
 

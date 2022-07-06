@@ -23,12 +23,21 @@ $$
 ---
 ### **The Bipolar Theorem**
 
-> For any cone $K$ we have: $K^{\circ\circ} = \text{cl}(K)$. 
+> For any closed cone $K$ we have: $K^{\circ\circ} = \text{cl}(K)$. 
 
 **Proofs**: 
 
+Consider the set $F_K$, consisted of all the normals of halfspaces containing the cone $K$ on its positive side: 
 
-**Remarks**:
+$$
+\begin{aligned}
+    F_K &= \{a: \langle a, x\rangle \ge 0, \forall x \in K\}
+    \\
+    -F_K &= \{a: \langle a, x\rangle \le 0, \forall x \in K\} = K^\circ
+\end{aligned}
+$$
+
+However at the same time because $\text{cl}\circ \text{cvxh}(k)$ is a convex set, it can be characterized by the intersection of all the halfspaces that contains it in one side hence: 
 
 
 
@@ -55,6 +64,28 @@ Therefore $A^\circ = B$ and using bipolar $B^\circ = A$.
 
 ---
 ### **Extension: Homogenizations**
+
+**Definition:**
+
+> Consider a set $Q\subseteq \mathbb E$ and it contains the origin. Let the cone be generated on the set $Q\times \{1\}\subseteq \mathbb E\times \mathbb R$, which is given by: 
+> 
+> $$
+>   K := \{(\lambda x, \lambda): x\in Q, \lambda \ge 0\}
+> $$
+
+**Remarks**
+
+Since the set $Q$ contains the origin, the polar cone $Q^\circ\subseteq \mathbb E\times \mathbb R_-$. 
+
+
+
+---
+### **Polarity Calculus**
+
+We establish a list of rules for computing polar cone, so it's easier and faster to compute when we are dealing with computations and applications. 
+
+
+
 
 
 

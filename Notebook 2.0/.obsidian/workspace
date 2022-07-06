@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +113,15 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dual Cone.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
-    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
-    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Fenchel's Identity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
+    "AMATH 516 (Numerical Optimizations)/Convex Conjugate Examples.md",
+    "MATH --- (Unexplored)/Kantorovich Inequality.md",
+    "MATH --- (Unexplored)/Kaczmarz Method.md",
+    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md"
   ]
 }

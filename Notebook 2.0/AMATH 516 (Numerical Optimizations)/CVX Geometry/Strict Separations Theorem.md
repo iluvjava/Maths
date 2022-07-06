@@ -55,6 +55,10 @@ $$
 
 The proof is completed. 
 
+**Remark**: 
+
+The projection of any point on a convex set is unique is one the properties of convex sets in euclidean space. 
+
 
 ---
 ### **Supporting Halfspaces**
@@ -210,5 +214,7 @@ In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ 
 
 
 **Remarks**
+
+The proof with minimal amount of knowledge about the convex set projection is complicated but still achievable. 
 
 The assumptions that $C, D$ are both bounded sets are important, there exists 2 unbouned sets such that their $C-D$ difference might not have a proper minimizer that is bounded. 

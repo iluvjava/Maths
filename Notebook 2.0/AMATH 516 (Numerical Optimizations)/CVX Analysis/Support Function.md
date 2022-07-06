@@ -121,6 +121,18 @@ proof: Too easy skipped
 Proof: Too easy skipped
 
 ---
+### **Example 3: Supporting Polyhedral Cone**
+
+> Suppose a polyhedral cone $K = \{x: Ax \le \mathbf 0\}$, then it's polar is $\{A^Ty: y\ge \mathbf 0\}$, which means that the support function of $K$ is the indicator function of the polar cone: 
+
+$$
+\begin{aligned}
+    \delta_K^{\star}(x) = \delta_{\{A^Ty: y\ge \mathbf 0\}}(x)
+\end{aligned}
+$$
+
+
+---
 ### **Example 3:Supporting the Unit Simplex**
 
 **Def: Simplex**

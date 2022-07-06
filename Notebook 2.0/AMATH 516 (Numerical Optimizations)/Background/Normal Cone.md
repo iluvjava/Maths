@@ -29,7 +29,7 @@ However, if $x \not\in Q$, for consistency we define $N_Q(x) = \emptyset$.
 
 **Remarks**
 
-Finally, reader please observe that when with $x\in \text{relint}(Q)$ (The relative interior), we would have $N_Q(x) = \{\mathbf 0\}$ which is a singleton. 
+Finally, reader please observe that when with $x\in \text{int}(Q)$ (The relative interior), we would have $N_Q(x) = \{\mathbf 0\}$ which is a singleton, and when $Q$ is just our traditional linear subspaces: $L$, then the normal cone is $L^\perp$. 
 
 
 ---
