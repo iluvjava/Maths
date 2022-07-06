@@ -19,7 +19,7 @@ This entity is by far some the most important entities we will have for convex o
 
  
 **Examples**:
-1. Hyperplanes, [[Cone]]
+1. Hyperplanes: $\mathcal H_{\pm}(a, b):=\{x: \pm\langle x, a\rangle \ge b\}$, A [[Cone]]. 
 3. Half-spaces(System of Linear Inequalities: [[Polytopes]], polyhedra) are convex.
 4. Normal Balls ($||x||_p \forall p \geq 1$)
 5. The [[Convex Hull, Convex Span]] of any kind of sets. 

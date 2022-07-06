@@ -76,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 406.5036334991455
+    "width": 406.5036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -113,14 +114,14 @@
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Cone.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
+    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
+    "AMATH 584 (Numerical Linear Algbra)/Matrix Theory/Projector.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Tagent Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md"
   ]
 }

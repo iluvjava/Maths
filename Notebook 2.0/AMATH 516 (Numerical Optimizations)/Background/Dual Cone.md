@@ -11,3 +11,6 @@ $$
 C^\star = - C^\circ
 $$
 
+**Alternative Interpretations**
+
+The dual cone is the intersection of all the normals of the halfspaces that is able to support the set $C$. 

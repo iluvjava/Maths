@@ -28,6 +28,8 @@ $$
 
 Reader please observe that, $\inf$ is implicityly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Becareful**.
 
+In some literature, $\Pi_Q(x)$ is used to denote the projection of a vector $x$ onto a set $Q$. 
+
 ---
 ### **Projection Existence**
 

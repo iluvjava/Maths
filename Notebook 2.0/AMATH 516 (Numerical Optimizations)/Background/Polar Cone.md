@@ -25,6 +25,9 @@ $$
 
 > For any cone $K$ we have: $K^{\circ\circ} = \text{cl}(K)$. 
 
+**Proofs**: 
+
+
 **Remarks**:
 
 
