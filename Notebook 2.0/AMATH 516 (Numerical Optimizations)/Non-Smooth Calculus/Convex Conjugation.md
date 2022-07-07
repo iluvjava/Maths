@@ -219,7 +219,7 @@ We do consider the case where $x^+$ has some of its components to be infinity. I
 
 Notice that, this time, $z, x$ swapped, and we have $f^\star(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{\star\star}(x)$, then we will a new claim:
 
-**Corrollary:**
+**Corrollary:**f
 > $$
 > z\in \partial f(x^+) \iff x^+ \in \partial f^\star(z) \tag{2}
 > $$
