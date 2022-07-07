@@ -1,5 +1,4 @@
 Pre-requisite: 
-
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]
 * [[Subgradient and Subdifferential Definition]]
@@ -34,9 +33,42 @@ The conjugate function is always convex, see the next section for more info. We 
 
 Please observe that the vector from $\text{epi}(f)$ is a supporting affine minor of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *fenchel inequality*. 
 
+**Justification**
+
+Directly from the definition of the conjugate function we state: 
+
+$$
+\begin{aligned}
+    & \forall (y, \alpha) \in \text{epi}(f^\star)
+    \\
+    & \alpha \ge f^\star(y) \ge \langle y, x\rangle - f(x) \quad \forall x,y
+    \\
+    \implies & 
+    f(x) \ge \langle y, x\rangle - \alpha
+\end{aligned}
+$$
+
 **Remarks**
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the functon $f$, given the slope of the affine function. 
+
+In fact, one can go on and make the claim the the epigraph of the original function is contains within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality, we can easily obtain that: 
+
+$$
+\begin{aligned}
+    & \forall (x, \beta)\in \text{epi}(f), (y, \alpha)\in \text{epi}(f^\star)
+    \\
+    & 
+    \beta \ge f(x)\ge \langle y, x\rangle - \alpha
+    \\
+    \implies & 
+    \text{epi(f)} \subseteq
+    \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}
+\end{aligned}
+$$
+
+And it's not hard to see that the epigraph is described by intersection of all possible halfspaces, giving us a convex set in the end. However, the hard part to justify here is $\text{cl}\circ\text{cvxh}\circ \text{epi}(f)$ equals to the intersection of all the affine minorants defined by the epigraph of the convex conjugate functions. 
+
 
 
 **Theorem: Conjugate is the Support Function of the Epigraph of $f$**
@@ -91,9 +123,9 @@ $$
 \end{aligned}
 $$
 
-From the first line the the second line, we make the intuitive assumption that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
+From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
 
-**Corrollary: Convex Conjugate is Convex**
+**corollary: Convex Conjugate is Convex**
 
 Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
 
@@ -107,8 +139,7 @@ Using the fact that the support function of any set is closed and convex (which 
 
 **Observe** 
 
-Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
-
+Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$ at its lowest point, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
 
 
 
@@ -153,16 +184,16 @@ $$
 
 \[1\]:  Using Minmax, Maxmin Lemma, introduced in [[MinMax MaxMin Lemma]]
 
-**Corrollary**
+**Corollary**
 
 > $$
-> \text{epi}(f^{\star\star}(x)) = \text{cl}\circ \text{cvxh}(\text{epi}(f))
+> \text{epi}(f^{\star\star}) = \text{cl}\circ \text{cvxh}\circ\text{epi}(f)
 > $$
 > The epigrah of the biconjugate function is the closure of the convex hull of the epigraph of the original function. 
 
 **Proof**
 
-#TODO: biconjugate convex hull closure of epigraph PROOF MISSING HERE. 
+#TODO: Biconjugate convex hull closure of epigraph PROOF MISSING HERE.
 
 ---
 ### **Fenchel's Identity**
@@ -219,7 +250,7 @@ We do consider the case where $x^+$ has some of its components to be infinity. I
 
 Notice that, this time, $z, x$ swapped, and we have $f^\star(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{\star\star}(x)$, then we will a new claim:
 
-**Corrollary:**f
+**corollary: Fenchel's Identity**
 > $$
 > z\in \partial f(x^+) \iff x^+ \in \partial f^\star(z) \tag{2}
 > $$
@@ -231,12 +262,6 @@ See the remarks before the claim.
 **Remarks**
 
 One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$ (**MORE DETAILS NEEDED**). 
-
----
-### **Examples**
-
-For more examples regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. 
-
 
 ---
 ### **Convex Conjugate Quick Maths References**
@@ -262,16 +287,19 @@ And these are some of the quick rules for computations:
 
 $$
 \begin{array}{|c|c|}
-\hline \text { Function } h(x) & \text { Fenchel conjugate } h^{\star}(y) \\
-\hline \hline \lambda f(x) & \lambda f^{\star}\left(\frac{y}{\lambda}\right) \\
-\hline f(x+b) & f^{\star}(y)-\langle b, y\rangle \\
-\hline \inf _{z} g(x, z) & g^{\star}(y, 0) \\
-\hline f \square g & f^{\star}+g^{\star} \\
-\hline \inf _{y}\{f(y): \mathcal{A} y=x\} & f^{\star}(\mathcal{A} y) \\
-\hline
+	\hline \text { Function } h(x) & \text { Fenchel conjugate } h^{\star}(y) \\
+	\hline \hline \lambda f(x) & \lambda f^{\star}\left(\frac{y}{\lambda}\right) \\
+	\hline f(x+b) & f^{\star}(y)-\langle b, y\rangle \\
+	\hline \inf _{z} g(x, z) & g^{\star}(y, 0) \\
+	\hline f \square g & f^{\star}+g^{\star} \\
+	\hline \inf _{y}\{f(y): \mathcal{A} y=x\} & f^{\star}(\mathcal{A} y) \\
+	\hline
 \end{array}
 $$
 
 
-For more complex, hardcore nonsmooth calculus rules, consult: [[Computations of Subdifferentials]] for more. 
 
+---
+### **Examples**
+
+For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. 
