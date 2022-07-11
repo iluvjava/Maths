@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
             "mode": "preview"
           }
         },
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,6 +113,7 @@
   },
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
     "AMATH 516 (Numerical Optimizations)/Convex Conjugate Examples.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Biconjugate Theorem.md",
@@ -121,7 +122,6 @@
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
-    "MATH --- (Unexplored)/Kantorovich Inequality.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md"
   ]
 }

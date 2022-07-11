@@ -16,4 +16,26 @@ Convex conjugate represents the epigraph of a function via affine minorants, or 
 ---
 ### **Proof**
 
+Using the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
 
+$$
+\begin{aligned}
+    \text{epi(f)} \subseteq
+    \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}
+\end{aligned}
+$$
+
+To show $\supseteq$, we consider choosing an element from the RHS and show a contradiction by claiming it to be $\not\in \text{epi}(f)$. For constradiction, there exists $(y, \beta) \in \text{epi}(f), (x, \alpha) \in \text{epi}(f)$ such that we have: 
+
+$$
+\begin{aligned}
+    & \alpha < \langle y, x\rangle - \beta
+    \\
+    & \alpha \ge f^\star(y), \beta \ge f(x)
+    \\
+    \implies & 
+    f^\star(y) \le \langle y, x\rangle -\beta < \langle y, x\rangle + f(x)
+\end{aligned}
+$$
+
+Which is a contradiction to the definition of conjugate function because conjugate function $f^\star(y) = \sup_{x}\{\langle y, x\rangle - f(y)\}$. $\blacksquare$.

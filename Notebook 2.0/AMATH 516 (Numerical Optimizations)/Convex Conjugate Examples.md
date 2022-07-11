@@ -30,7 +30,7 @@ This function is going to be treated as a single variable function, simply a $\m
 
 $$
 \sup_{x} \left\lbrace
-    zx + \ln(x)
+    z^Tx + \ln(x)
 \right\rbrace
 $$
 

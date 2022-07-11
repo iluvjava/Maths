@@ -46,6 +46,10 @@ Which is different from a convex combinations.
 
 As a **consequence** of the definition, A convex hull of the set $Q$ is also the smallest convex set that contain the set $Q$. 
 
+**Remarks**
+
+When the set $Q$ is countable many points, its convex hull is simply the convex spans of all the vectors in the set. 
+
 ---
 ### **Closed Under Convex Combinations**
 
@@ -157,6 +161,10 @@ If $T$ is convex, and by definition $T = \bigcup_{i\in\mathbb{N}}S_i$ and each $
 **Remarks**
 The proof is not easy neither intuitive. 
 
+---
+### **Half Spaces Containment**
+
+> Every convex set can also be created using simple intersection of halfspaces in the Euclidean space. See [[Supporing Convex Sets using Halfspaces]] for more information. Such a method is more relavent and popular for analysis in general. 
 
 
 
