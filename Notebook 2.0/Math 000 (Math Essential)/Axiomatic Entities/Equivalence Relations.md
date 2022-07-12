@@ -1,3 +1,6 @@
+[[Relations]]
+
+---
 ### **Intro**
 
 It's a relation that generalizes the idea of equality. For a set $A$, where the equivalence relation is generated on, it has the properties that: 

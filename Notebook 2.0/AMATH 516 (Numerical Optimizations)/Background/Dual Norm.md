@@ -8,7 +8,7 @@ $$
 \right\rbrace
 $$
 
-Which is just simply, the objective value of a linear program on the convex set $\Vert x\Vert$ defined by the norm ball in the euclidean space. Note, it's also the support function of a specific unit norm ball. 
+Which is just simply, the objective value of a linear program on the convex set $\Vert x\Vert$ defined by the norm ball in the euclidean space. Note, it's also the support function of a specific unit norm ball. See [[Support Function]] for more info. 
 
 
 ---

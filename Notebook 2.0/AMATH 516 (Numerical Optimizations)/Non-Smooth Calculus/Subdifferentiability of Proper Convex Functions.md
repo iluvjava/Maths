@@ -6,10 +6,13 @@
 
 **Theorem Statement**: 
 
-let $f: \mathbb E\mapsto \mathbb{\bar R}$ to be a proper convex function, let $x\in \text{ri}\circ \text{dom}(f)$, then $\partial[f](x)$ is nonempty and it's bounded. 
+> let $f: \mathbb E\mapsto \mathbb{\bar R}$ to be a proper convex function, let $x\in \text{ri}\circ \text{dom}(f)$, then $\partial[f](x)$ is nonempty and it's bounded. 
+
+
 
 ---
 ### **Proof**
+
 
 
 ---

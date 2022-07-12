@@ -225,7 +225,7 @@ $$
 \end{aligned}\tag{5}
 $$
 
-Since it's true for all $r$, replacing $r$ into $f(y)$ we obtain the quotient: $\frac{f(y) - f(x)}{\Vert x - y\Vert}> -\infty$. The quotient is also bounded above, let's consider the role of little o by considering any sequence $(y_i, r_i)\rightarrow (x, f(x))$ as $i \rightarrow \infty$ approaching the tagent point in the epigraph of the function, let's also make the substitution: $\zeta_i =(y_i, r_i) - (x, f(x))$, then from (2): 
+Since it's true for all $r$, replacing $r$ into $f(y)$ we obtain the quotient: $\frac{f(y) - f(x)}{\Vert x - y\Vert}> -\infty$. The quotient is also bounded above. Let's consider the role of little o by considering any sequence $(y_i, r_i)\rightarrow (x, f(x))$ as $i \rightarrow \infty$ approaching the tagent point (boundary point)  in the epigraph of the function, let's also make the substitution: $\zeta_i =(y_i, r_i) - (x, f(x))$, then from (2): 
 
 $$
 \begin{aligned}
@@ -237,7 +237,7 @@ $$
 \end{aligned}\tag{6}
 $$
 
-Therefore the quotient of is also bounded above. This is true for all $(x, f(x))\in \text{epi}(f)$ where, it exists a vector of the form $(v, -1)$ in the normal cone at the point. Because the sequence is bounded below and above, and it's uniformally bounded by the existence of a finite $(v, -1)$ from the normal cone. Therefore we may conclude: 
+Therefore the quotient of is also bounded above (We skip some math here and we assume that $v$ is also bounded). This is true for all $(x, f(x))\in \text{epi}(f)$ where, it exists a vector of the form $(v, -1)$ in the normal cone at the point. Because the sequence is bounded below and above, and it's uniformally bounded by the existence of a finite $(v, -1)$ from the normal cone. Therefore we may conclude: 
 
 $$
 \begin{aligned}
@@ -276,8 +276,25 @@ The theorem highlighted the geometric interpretations of subgradient and the gen
 
 More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with sugradient, from simple to hardcore, see [[Computations of Subdifferentials]] for more. 
 
+**Comments**
+
+The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, and yet somehow it manage to give (4) which is very useful for the proof of boundless of the subderivatives of the function at that point. 
 
 
+---
+### **Corollary: Genrealized Subgradient to Subgradient Inequality for Convex Functions**
+
+> If $f$ is convex, then the general subgradient definiton degraded to the ordinary subgradient definiton. 
+> $$
+>   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \bar\partial [f](x)
+> $$
+
+**Proof**
+
+
+
+
+**Source**: Exercise 3.36 in Dimistry's Textbook, back in Fall 2021 UW, for AMATH 516. 
 
 
 
