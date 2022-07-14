@@ -114,14 +114,14 @@
   "active": "72a561359e6564c0",
   "lastOpenFiles": [
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Bounded Subgradient Lemma.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
     "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
     "AMATH 516 (Numerical Optimizations)/Background/Compact and Bounded Sets.md",
     "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Multi-Functions.md",
-    "MATH 000 (Math Essential)/Axiomatic Entities/Equivalence Relations.md"
+    "AMATH 516 (Numerical Optimizations)/Multi-Functions.md"
   ]
 }
