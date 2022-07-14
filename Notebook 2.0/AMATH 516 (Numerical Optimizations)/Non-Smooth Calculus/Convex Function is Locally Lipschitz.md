@@ -88,7 +88,7 @@ We choose 3 points in the interior of the domain that a on the same line, and th
 
 **Proof**
 
-Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, we then paramaterize one point $x_t$ to be on the line segment: $x_t = x_1 + t(x_2 - x_1)\;\forall t \in [0, 1]$. Consider 2 supporting hyperplane at these 2 points and any $t\in (0, 1)$: 
+Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, we then paramaterize one point $x_t$ to be on the line segment: $x_t = x_1 + t(x_2 - x_1)\;\forall t \in [0, 1]$. Consider 2 supporting hyperplane at these 2 points and any $t\in (0, 1), g_1\in \partial [f](x_1), g_2 \in \partial[f](x_2)$: 
 
 $$
 \begin{aligned}
@@ -102,7 +102,7 @@ $$
 \end{aligned}
 $$
 
-The upper bound for $f(x_1), f(x_2)$ are attained via rearranging the secant line inequality at the point $x_1, x_2$, next we consider the lower bound for the quantities: 
+The upper bound for $f(x_1), f(x_2)$ are attained via rearranging the secant line inequality at the point $x_1, x_2$, next we consider the lower bound for the quantities with any $g_t\in \partial [f](x_t)$: 
 
 $$
 \begin{aligned}
@@ -187,11 +187,11 @@ Which is the definition of Lipschitz Continuity for the function along the line 
 
 **Remarks**
 
-The generality of the lemma is kept by treating the points and the gradient of functions at points using euclidean inner product. 
+The generality of the lemma is kept by treating the points and the gradient of functions at any 2 points using euclidean inner product. 
 
-Note, the upper bounded depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can chooes the subgradient and $t$ to minimize the bound. 
+Note, the upper boundedness depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can choose the subgradient and $t$ to minimize the bound. 
 
-I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
+I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always be between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
 
 **Comments**
 
