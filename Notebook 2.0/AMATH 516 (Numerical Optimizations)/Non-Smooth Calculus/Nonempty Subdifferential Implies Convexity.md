@@ -11,8 +11,9 @@
 
 
 **Remarks**
-Take note that, convexity doesn't imply that subgradient exists through the whole domain of the function. The converse part of the statement is exremely interesting and it will discussed in details in many convex analysis textbooks. 
+Take note that, convexity doesn't imply that subgradient exists through the whole domain of the function. The converse part of the statement is extremely interesting and it will discussed in details in many convex analysis textbooks. 
 
+Take note, this is not about the generalized subgradient for functions as the second definition, this is about the subgradient that is a convex closure of epigraph. 
 
 
 ---

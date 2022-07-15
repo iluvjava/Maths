@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-To show $\supseteq$, we consider choosing an element from the RHS and show a contradiction by claiming it to be $\not\in \text{epi}(f)$. For constradiction, there exists $(y, \beta) \in \text{epi}(f), (x, \alpha) \in \text{epi}(f)$ such that we have: 
+To show $\supseteq$, we consider choosing an element from the RHS and show a contradiction by claiming it to be $\not\in \text{epi}(f)$. For contradiction, there exists $(y, \beta) \in \text{epi}(f), (x, \alpha) \in \text{epi}(f)$ such that we have: 
 
 $$
 \begin{aligned}
@@ -41,3 +41,8 @@ $$
 $$
 
 Which is a contradiction to the definition of conjugate function because conjugate function $f^\star(y) = \sup_{x}\{\langle y, x\rangle - f(y)\}$. $\blacksquare$.
+
+
+**Remarks**
+
+Leverage the geometric interpretations that the epigraph of the convex conjugate encodes information about the normals and the offsets of all the supporting halfspaces for the epigraph of the original functions. 

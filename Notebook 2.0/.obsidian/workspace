@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
             "mode": "preview",
             "source": true
           }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,15 +118,15 @@
   },
   "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
-    "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
-    "???.md",
-    "Infinite Probability Spaces.md",
-    "AMATH 582/SVM.md",
-    "AMATH 561 (Probability Theory)/Probability Basics/Infinite Coin Tosses.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Fenchel's Identity.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugation.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md",
+    "MATH --- (Unexplored)/Kaczmarz Method.md",
+    "MATH --- (Unexplored)/The Faber Manteuffel Theorem.md",
+    "MATH --- (Unexplored)/Schur Complement.md",
+    "MATH --- (Unexplored)/Vapnik–Chervonenkis dimension.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Nonempty Subdifferential Implies Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dom.md",
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Biconjugate Theorem.md"
   ]
 }

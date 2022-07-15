@@ -14,7 +14,7 @@ Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials
 * Epigraphical Normal cone and generalized subgradient. 
 
 
-**Defintion: Subgradient**
+**Defintion: Convex Subgradient**
 
 > Let $f$  be convex proper function mapping from $\mathbb E$ to $\mathbb {\bar R}$, a vector $g$ is referred to as sub-differential to the point $x\in \text{dom}(f)$ when: 
 > 
@@ -72,7 +72,7 @@ $$
 
 And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions]]. 
 
-**Definition: Generalized Gradient**
+**Definition: Generalized Gradient (Regular Subgradient)**
 
 > Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then: 
 > 
@@ -82,7 +82,7 @@ And that is enough to understand what people are saying. Finally, please observe
 > \end{aligned}
 > $$
 > 
-> And if $x\not\in \text{dom}(f)$, then there is no gradient, and we define the set of generalized **subdifferential** to be the set of all sub-gradient, noted as: $\bar\partial[f]_x$. 
+> And if $x\not\in \text{dom}(f)$, then there is no gradient, and we define the set of generalized **subdifferential** to be the set of all sub-gradient, noted as: $\hat\partial[f]_x$. 
 
 Where the little $o$ notation is a limit in disguise, in this case it has the property: $\lim_{x \rightarrow \infty}\frac{o(\Vert y - x\Vert)}{\Vert y - x\Vert} = 0$. 
 
@@ -91,13 +91,16 @@ Where the little $o$ notation is a limit in disguise, in this case it has the pr
 The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
 $$
-\partial [f](x)\subseteq\bar{\partial}[f](x) 
+\partial [f](x)\subseteq\hat{\partial}[f](x) 
 $$
 
 Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
 
 Regardless of the fact that it's called the generalized gradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
 
+
+**Source**: 
+The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition comes from \<Variational Analysis\> by Rockafellar, it's consistent with Dimitry's AMATH 516 FALL 2021. 
 
 ---
 ### **Notations**
@@ -106,7 +109,7 @@ A good notations should be clear about several things when taking the derivative
 * What variables are we raking the derivtive with? 
 * What varlues are we putting into the derivative functions? 
 
-For example: $\partial [f(Ax + b, u)](u = x^+), \partial [f(Ax + b, u)]_{u = x^+}$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
+For example: $\partial [f(Ax + b, u)](u = x^+), \partial [f(Ax + b, u)]_{u = x^+}, \partial [f(Ax + b, u)|u](x^+)$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
 
 ---
@@ -127,12 +130,12 @@ And it can be viewed that $g = \mathbf 0$, directly interpreted from the definit
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
->   v \in \overline\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+>   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
 >$$
 
 **Proof**
 
-To show the $\implies$, we consider any $v \in \overline\partial [f](x)$, from the definition of the generalized gradient, we have: 
+To show the $\implies$, we consider any $v \in \hat\partial [f](x)$, from the definition of the generalized gradient, we have: 
 
 $$
 \begin{aligned}
@@ -292,7 +295,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 > If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
->   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \bar\partial [f](x)
+>   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \hat\partial [f](x)
 > $$
 
 **Proof Preparations**

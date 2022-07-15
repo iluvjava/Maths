@@ -37,7 +37,6 @@ $$
 The conjugate function is always convex, see the next section for more info. We prove it by presenting the convex conjugate of any function as a support function on the epigraph of the function over $\mathbb E\times \mathbb R$. 
 
 
-
 ---
 ### **Conjugate Epigraph Contains all Affine Minorants of the Original Function**
 
