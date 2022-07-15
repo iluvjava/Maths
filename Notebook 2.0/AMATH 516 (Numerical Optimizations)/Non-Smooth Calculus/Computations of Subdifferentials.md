@@ -21,9 +21,14 @@ We introduce a simple theorem and then we are going fully hardcore about it usin
 >   \partial [f + g](x)  = \nabla [f](x) + \partial [g](x)
 > $$
 
-
 **Source**
 
 Unassigned exercise from AMATH 516. 
+
+Before we go further, we need to make the point that subdifferential on augmented real function is not simple businesses, and we would like to meet one of the pathological instances to show it. The instance comes from Dimitry's Notes for AMATH 516 FALL 2021. 
+
+
+---
+### **Example 1: The L1 Norm**
 
 

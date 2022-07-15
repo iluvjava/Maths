@@ -5,74 +5,9 @@
 ---
 ### **Intro**
 
-In this file we provide proof the theorem listed in: [[Convex Functions Characteristics#Continuity of Closed Convex Functions]]. To prove it, we need to introduce a lemma first. 
+In this file we provide proof the theorem listed in: [[Convex Functions Characteristics#Continuity of Closed Convex Functions]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
 
-
-
----
-### **Lemma: Boundedness of Subgradient In the Interier of the Domain**
-
-> Let $f$ be $\mathbb R^n$ to $\mathbb{\bar{R}}$, then for all $x\in \text{int}\circ \text{dom}(f)$ implies that $g \in \partial [f](x)$ is bounded for all any $g$. 
-> 
-> Or briefly as: $\text{dom}(\partial [f]) \subseteq \text{int}\circ\text{dom}(f)$. 
-
-**Proof**
-
-Choose any $x\in \text{int}\circ \text{dom}(f)$ then choose any $x + v \in \mathbb{B}_\epsilon(x)$ where $v$ is small enough. $\text{epi}(f)\subseteq \mathbb E\times \mathbb R$, and its construction prevents any separating hyperplane vector $[g, \alpha]$ with $\alpha > 0$. Suppose that hyperplane located at $(x, f(x)) \in \text{bd}\circ\text{epi}(f), (x + v, f(x + v))\in \text{epi}(f)$ then it's possible to attain separating hyperplane that separates these 2 points: 
-
-$$
-\begin{aligned}
-    & \exists \begin{bmatrix}
-            g, \alpha
-    \end{bmatrix}: 
-    \left\langle 
-        \begin{bmatrix}
-            g \\ \alpha
-        \end{bmatrix}, 
-        \begin{bmatrix}
-            x, f(x)
-        \end{bmatrix}
-    \right\rangle \ge 
-    \left\langle 
-        \begin{bmatrix}
-            x+v \\ f(x + v)
-        \end{bmatrix}
-        ,
-        \begin{bmatrix}
-            g \\\alpha
-        \end{bmatrix}
-    \right\rangle
-    \\
-    \implies & 
-    \langle g, x\rangle + \alpha f(x) \ge 
-    \langle x + v, g\rangle + f(x + v) \alpha
-    \\
-    & \alpha f(x) \ge \langle v, g\rangle + f(x + v)\alpha
-    \\
-    \text{let: } & y = x + v
-    \\
-    & \alpha f(x) + \langle x - y, g\rangle \ge f(y) \alpha
-\end{aligned}
-$$
-Using the fact that $f(x)$ is convex, we obtain that $\alpha = -1$, and that gives us the sugradient inequality, meaning that $g\in \partial [f](x)$. We say that $\Vert g\Vert_1$  is bounded by considering the choice of $x = \pm \epsilon \mathbf e_1$, a scaled basis vecto, then: 
-
-$$
-\begin{aligned}
-   & f(x \pm\epsilon \mathbf e_i) - f(x) \ge \pm g_i
-   \\
-   \implies & |g_i| \le \max(f(x - \epsilon \mathbf e_i) - f(x), f(x + \epsilon \mathbf e_i) - f(x))
-\end{aligned}
-$$
-
-Which is bounded because $x, x \pm \epsilon \mathbf e_i$ are in the epsilon ball which can be placed inside the interior of the domain of the function. Therefore $g$ is bounded. 
-
-**Remarks**
-
-The proof can be modified for some points $x\in \text{relint}\circ \text{dom}(f)$ by changing the basis for $v$, then subgradient is at least bounded inside of some basis in the relative interior of the domain. The boundedness argument can also be applied by choosing some $v$ maxiizing $\langle v, g\rangle$ for any choice of $g$ obtaining a bound under the dual norm. 
-
-**Source**
-
-I made it myself I am not sure how good the proof actually is. 
+Recall that, not all convex function is Locally Lipschitz Continuous, but if the sugradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 
 
 
@@ -86,7 +21,7 @@ I made it myself I am not sure how good the proof actually is.
 We choose 3 points in the interior of the domain that a on the same line, and then we use the boundedness of the subgradient at those points, and subgradient inequality to bound the change of the function value wrt to the width of the line segment. 
 
 
-**Proof**
+**Proof 1**
 
 Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, we then paramaterize one point $x_t$ to be on the line segment: $x_t = x_1 + t(x_2 - x_1)\;\forall t \in [0, 1]$. Consider 2 supporting hyperplane at these 2 points and any $t\in (0, 1), g_1\in \partial [f](x_1), g_2 \in \partial[f](x_2)$: 
 
@@ -197,6 +132,45 @@ I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ m
 
 I made the proof myself I don't know how legit it is. 
 
+**Proof 2**
+
+Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, then consider the subgradient $v_1\in \partial [f](x_1), v_2 \in \partial[f](x_2)$, we have: 
+
+$$
+\begin{aligned}
+   & f(x_1) - f(x_2) \ge \langle v_2, x_1 - x_2\rangle 
+   \\
+   &f(x_2) - f(x_1) \ge \langle v_1. x_2 - x_2\rangle
+   \\
+   \implies & 
+   \langle v_2, x_1 - x_2\rangle \le f(x_1) - f(x_2) \le \langle v_1, x_1 - x_2\rangle
+\end{aligned}
+\\
+\begin{aligned}
+   \implies 
+   \frac{|f(x_1) - f(x_2)|}{\Vert x_1 - x_2\Vert} &\le 
+   \frac{\max(|\langle v_2, x_1 - x_2\rangle|, |\langle v_1, x_1 - x_2\rangle|)}{\Vert x_1 - x_2\Vert}
+   \\
+   & \le \max(\Vert v_1\Vert, \Vert v_2\Vert)
+\end{aligned}
+$$
+
+Which gives a lipschitz constant of: 
+
+$$
+\begin{aligned}
+   L = \inf_{v_1\in \partial[f](x_1), v_2 \in \partial[f](x_2)}\max(\Vert v_1\Vert, \Vert v_2\Vert)
+\end{aligned}
+$$
+
+**Remarks**
+
+The second proof provides a bound that is tighter compare to the bound of the first one. Take note that, by choosing the $t\in [0, 1]$, I conjecture that the bound in the first proof will be the same as the bound in the second proof. 
+
+**Comments**
+
+This proof is better. 
+
 ---
 ### **Locally Lipschitz In Higher Dimenions**
 
@@ -205,7 +179,7 @@ Consider $f: \mathbb R^n\mapsto \mathbb{\bar{R}}$ that is convex proper, then th
 $$
 \begin{aligned}
    \frac{|f(x_1) - f(x_2)|}{\Vert x_2 - x_1 \Vert}
-   \le \sup_{x_1, x_2\in C}L(x_1, x_2)
+   \le \sup_{\substack{x\in Q\\g\in \partial [f](x)}}\Vert g\Vert
 \end{aligned}
 $$
 

@@ -13,6 +13,8 @@ Convex conjugate represents the epigraph of a function via affine minorants, or 
 > $$
 
 
+
+
 ---
 ### **Proof**
 

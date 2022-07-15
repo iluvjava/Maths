@@ -147,3 +147,10 @@ $$
 
 Because the set is finite, we can apply example 1 to obtain: $\max_{i\in [n]}\{y_i\}$, which is just $\Vert y\Vert_\infty = \delta_{\Delta_n}(y)$. 
 
+
+---
+### **Example 4: Supporting the Affine Space**
+
+
+
+

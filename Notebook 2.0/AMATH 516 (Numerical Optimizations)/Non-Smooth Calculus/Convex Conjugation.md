@@ -185,7 +185,7 @@ $$
 
 \[1\]:  Using Minmax, Maxmin Lemma, introduced in [[MinMax MaxMin Lemma]]
 
-**Corollary**
+**Corollary: The Biconjugate Theorem**
 
 > $$
 > \text{epi}(f^{\star\star}) = \text{cl}\circ \text{cvxh}\circ\text{epi}(f)
@@ -303,4 +303,4 @@ $$
 ---
 ### **Examples**
 
-For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. 
+For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we sommerizes some of the important results from there in a nice table format. 
