@@ -4,30 +4,30 @@
     "type": "split",
     "children": [
       {
-        "id": "72a561359e6564c0",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
-            "mode": "source",
-            "source": true
-          }
-        },
-        "group": "40318d929ad5751d"
-      },
-      {
         "id": "08a95f14879ccfc1",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+            "file": "Untitled-1.md",
+            "mode": "source",
+            "source": true
+          }
+        },
+        "group": "32cf6de30e6df2ba"
+      },
+      {
+        "id": "24f38ced94c9d3b3",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Untitled-1.md",
             "mode": "preview",
             "source": true
           }
         },
-        "group": "40318d929ad5751d"
+        "group": "32cf6de30e6df2ba"
       }
     ],
     "direction": "vertical"
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 343.5036334991455,
-    "collapsed": true
+    "width": 411.5036334991455
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -96,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
+                "file": "Untitled-1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "72a561359e6564c0",
+  "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Convex Conjugate Examples.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Conjugation.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Computations of Subdifferentials.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Bounded Subgradient Lemma.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentiability of Proper Convex Functions.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Biconjugate Theorem.md",
+    "ScratchPaper.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugation.md",
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugate Examples.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md"
+    "AMATH 516 (Numerical Optimizations)/Dualiy/MinMax MaxMin Lemma.md",
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Biconjugate Theorem.md"
   ]
 }

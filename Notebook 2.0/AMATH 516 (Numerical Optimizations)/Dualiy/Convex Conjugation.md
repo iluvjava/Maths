@@ -21,6 +21,17 @@ Convex conjugate is fenchel conjugate, It's also called the Fenchel Legendre Tra
 > \right\rbrace
 > $$
 
+**Notations**
+
+For clear notations, we will present conjugating a function wrt to a specific parameter for an expression, and show what intputs are given. For example, taking the conjugation of $f(Ax + b, y)$ wrt to $x$ and evaluating the conjugate at $z$ is denoted as: 
+
+$$
+\begin{aligned}
+	(f(Ax + b, y)|x)^\star(z)
+\end{aligned}
+$$
+
+
 **Remarks**: 
 
 The conjugate function is always convex, see the next section for more info. We prove it by presenting the convex conjugate of any function as a support function on the epigraph of the function over $\mathbb E\times \mathbb R$. 
@@ -126,9 +137,13 @@ $$
 
 From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
 
-**corollary: Convex Conjugate is Convex**
+**Corollary: Convex Conjugate is Convex**
 
 Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
+
+**Remarks**
+
+Using this property, we can make shortcut to finding the conjugates of some functions that has a nice epigraphical interpretation, one of the great example would be the pointwise maximum function, or the infimal convolutions. 
 
 
 ---
@@ -251,7 +266,7 @@ We do consider the case where $x^+$ has some of its components to be infinity. I
 
 Notice that, this time, $z, x$ swapped, and we have $f^\star(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{\star\star}(x)$, then we will a new claim:
 
-**corollary: Fenchel's Identity**
+**Corollary: Fenchel's Identity**
 > $$
 > z\in \partial f(x^+) \iff x^+ \in \partial f^\star(z) \tag{2}
 > $$
@@ -262,7 +277,9 @@ See the remarks before the claim.
 
 **Remarks**
 
-One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$ (**MORE DETAILS NEEDED**). 
+One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$. 
+
+This corollary is **extremely important** because it opens up a new way of looking for both, subgradient and conjugate functions under various context. Giving us new interpretations for both entities, and helps with computational rules and proving those rules. 
 
 ---
 ### **Convex Conjugate Quick Maths References**
@@ -284,7 +301,7 @@ $$
 \end{array}
 $$
 
-And these are some of the quick rules for computations: 
+And these are some of the quick rules for computations:
 
 $$
 \begin{array}{|c|c|}
@@ -295,12 +312,15 @@ $$
 	\hline f \square g & f^{\star}+g^{\star} \\
 	\hline \inf _{y}\{f(y): \mathcal{A} y=x\} & f^{\star}(\mathcal{A} y) \\
 	\hline
+	\sum_{i = 1}^n g(x_i) & 
+	\sum_{i = 1}^n g^\star(x_i)
+	\\
+	\hline
 \end{array}
 $$
 
-
-
----
-### **Examples**
+And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
 For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we sommerizes some of the important results from there in a nice table format. 
+
+#TODO: FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 

@@ -1,5 +1,5 @@
 [[Subgradient and Subdifferential Definition]]
-[[Computations of Subdifferentials]]
+[[Subdifferentials Subgradient Computations]]
 
 
 ---
@@ -11,4 +11,14 @@ Every example here is going to be hardcore and aims at applying some of the stuf
 #TODO: FILL THIS IN WHEN GOT THE TIME. 
 
 
+---
+### **Example 1: The L1 Norm**
 
+
+
+---
+### **Example 2: The Indicator Function**
+
+
+---
+### **Example 3: Piecewise Linear**

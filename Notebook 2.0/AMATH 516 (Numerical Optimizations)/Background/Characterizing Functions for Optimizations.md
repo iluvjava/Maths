@@ -144,6 +144,20 @@ And one can combine results and form a general statement using convex combinatio
 
 
 ---
+### **Strict Convexity**
+
+> A function $f$ is strictly convex then it satisfies the secant line inequality: 
+
+$$
+\begin{aligned}
+    \forall x, y\in \text{dom}(f),\lambda \in [0, 1]: 
+    f(\lambda x + (1 - \lambda)y) < 
+    \lambda f(x) + (1 - \lambda)f(y)
+\end{aligned}
+$$
+
+
+---
 ### **Positive Homogeneity**
 
 **Definition** 
@@ -155,6 +169,8 @@ And one can combine results and form a general statement using convex combinatio
 
 **Definition**
 > A function $f$ is sub-additive when $f(x + y)\le f(x) + f(y)$. 
+
+
 
 ---
 ### **Discussions**

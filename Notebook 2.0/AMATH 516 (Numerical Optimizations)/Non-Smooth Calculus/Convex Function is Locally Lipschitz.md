@@ -145,7 +145,8 @@ $$
    \implies & 
    \langle v_2, x_1 - x_2\rangle \le f(x_1) - f(x_2) \le \langle v_1, x_1 - x_2\rangle
 \end{aligned}
-\\
+$$
+$$
 \begin{aligned}
    \implies 
    \frac{|f(x_1) - f(x_2)|}{\Vert x_1 - x_2\Vert} &\le 
@@ -183,5 +184,5 @@ $$
 \end{aligned}
 $$
 
-Convex function is locally Lipschitz. 
+Convex function is locally Lipschitz inside of a compact subset of the interior of its domain. 
 

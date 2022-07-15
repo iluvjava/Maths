@@ -6,7 +6,12 @@
 
 ### **Intro**
 
-Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. 
+Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
+* Definition of Subgradient for convex function
+* Definition of Generalized Subgradient
+* Notations 
+* Optimality of convex proper function and zero subgradient
+* Epigraphical Normal cone and generalized subgradient. 
 
 
 **Defintion: Subgradient**
@@ -51,7 +56,6 @@ $$
 Which demonstrates the geometric interpretations for the subgradient of a convex function. 
 
 
-
 **Remarks**
 
 The definition in this case is not consistent with the definition of gradient of smooth function when $f$ nonconvex. To mitigate this, below is another definition of subgradient and **subdifferential** that generalize the idea to nonconvex, non-smooth functions. 
@@ -66,7 +70,7 @@ $$
 \end{aligned}
 $$
 
-And that is enough to understand what people are saying. 
+And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions]]. 
 
 **Definition: Generalized Gradient**
 
@@ -272,9 +276,11 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials.
 
 **Remarks**: 
 
-The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient. Take note that, for functions that are more patheological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ garantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. 
+The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of convex function. 
 
-More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with sugradient, from simple to hardcore, see [[Computations of Subdifferentials]] for more. 
+Take note that, for functions that are more pathological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ guarantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. One of such example where subgradient doesn't exist even inside of the domain of the function would be the non convex function $-|x|$ at the point $x = 0$.
+
+More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with subgradient, from simple to hardcore, see [[Subdifferentials Subgradient Computations]] for more. 
 
 **Comments**
 
@@ -284,19 +290,25 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 ---
 ### **Corollary: Genrealized Subgradient to Subgradient Inequality for Convex Functions**
 
-> If $f$ is convex, then the general subgradient definiton degraded to the ordinary subgradient definiton. 
+> If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
 >   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \bar\partial [f](x)
 > $$
 
+**Proof Preparations**
+
+
+
 **Proof**
 
+#TODO: FILL THE PROOF IF WE HAVE TIME. 
 
 
+**Remarks**
+
+**Comments**
 
 **Source**: Exercise 3.36 in Dimistry's Textbook, back in Fall 2021 UW, for AMATH 516. 
-
-
 
 
 

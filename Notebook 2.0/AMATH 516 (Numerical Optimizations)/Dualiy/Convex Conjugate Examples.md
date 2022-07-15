@@ -34,17 +34,13 @@ $$
 \right\rbrace
 $$
 
-Take note that the function is concave down, and the primal variable is only defined as $x > 0$, it's not defined otherwise. 
-
-Here we can consider taking the derivative on the thing and figure out the extrema. 
+Take note that the function is concave down, and the primal variable is only defined as $x > 0$, it's not defined otherwise. Here we can consider taking the derivative on the thing and figure out the extrema. 
 
 $$
 \partial_x[zx + \ln(x)] = z + \frac{1}{x} = 0 \implies x = \frac{-1}{z} > 0
 $$
 
-Positivity constrain on $x$ means that dual variable $z<0$ all the time. 
-
-Substituting it back to the original expression we have: 
+Positivity constrain on $x$ means that dual variable $z<0$ all the time. Substituting it back to the original expression we have: 
 
 $$
 \sup_{x} \left\lbrace
@@ -70,9 +66,7 @@ $$
 \end{cases}
 $$
 
-Note that this is a multi-variable scalar function, let's assume that function happens in $\mathbb{R}^n$
-
-Using the definition of the Convex Conjugate, we consider evaluating the expression: 
+Note that this is a multi-variable scalar function, let's assume that function happens in $\mathbb{R}^n$. Using the definition of the Convex Conjugate, we consider evaluating the expression: 
 
 $$
 \sup_{x}\left\lbrace
@@ -147,7 +141,7 @@ To minimize, adhere to $x = 0$, so that $-\delta(x)$ is zero, else, the whole ex
 
 
 ---
-### **Summation of a Vectorized Functions**
+### **Parallel Summations**
 
 
 Objective: look for convex conjugate of the function: 
@@ -196,15 +190,6 @@ $$
 \sum_{i = 1}^{n}
     g^*(z_i)
 $$
-
----
-### **Sum of Different Functiosn $\sum_{i = 1}^n g_i (x)$**
-
-Consider The sum of a convex function, denoted by $g_i(x)$, where $g_i$ is a convex function mapping from $\mathbb{R}^n$ to $\mathbb{R}$, so that sum of these function is still convex. 
-
-
-I can't solve this. 
-
 
 ---
 ### **The Positivity Indicator** $\delta_+(x)$
@@ -327,9 +312,7 @@ Proof is trivial, skipped.
 ---
 ### **The 2-Norm Matrix Vector $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
-The dualization procedures can be found using the Fenchel's Identity. In this case the sub-gradient will be replaced by gradient. 
-
-Assume that that matrix $A$ is full rank, so that $A^TA$ can be reversed. 
+The dualization procedures can be found using the Fenchel's Identity. In this case the sub-gradient will be replaced by gradient. Assume that that matrix $A$ is **full rank**, so that $A^TA$ can be reversed. 
 
 $$
 \begin{aligned}
@@ -362,9 +345,8 @@ $$
 
 Which we assume that $A^TA$ is invertible, or else this is not going to work out, and we will be **missing a constant that holds some information**. 
 
-**Note**: 
+**Remarks**: 
 The variable $z$ for the conjugate function is the decision variables for th dual problem. 
-
 
 ---
 ### **The 1-Norm $\Vert x\Vert_1$**
@@ -373,7 +355,7 @@ $$
 (\Vert x\Vert_1)^{\star}(z) = \delta_{\mathbb{B}_\infty}(z)
 $$
 
-This is a dual pair and it's been show before. 
+This is a dual pair and it's been show before. We invoke the biconjugate theorem here. 
 
 
 ---
