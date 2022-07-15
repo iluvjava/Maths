@@ -1,4 +1,4 @@
-[[Convex Conjugate]]
+[[Convex Conjugation]]
 [[Subgradient and Subdifferential Definition]]
 
 

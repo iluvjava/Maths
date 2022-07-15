@@ -27,7 +27,7 @@ For clear notations, we will present conjugating a function wrt to a specific pa
 
 $$
 \begin{aligned}
-	(f(Ax + b, y)|x)^\star(z)
+	{[f(Ax + b, y)|x]}^\star(z)
 \end{aligned}
 $$
 

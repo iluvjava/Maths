@@ -1,5 +1,5 @@
 $$
 \begin{aligned}
-	[x]^{**}
+	{[x]}^{**}
 \end{aligned}
 $$

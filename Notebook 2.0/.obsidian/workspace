@@ -6,10 +6,11 @@
       {
         "id": "08a95f14879ccfc1",
         "type": "leaf",
+        "dimension": 49.32157394843962,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Untitled-1.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
             "mode": "source",
             "source": true
           }
@@ -19,10 +20,11 @@
       {
         "id": "24f38ced94c9d3b3",
         "type": "leaf",
+        "dimension": 50.67842605156038,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Untitled-1.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
             "mode": "preview",
             "source": true
           }
@@ -79,7 +81,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 411.5036334991455
+    "width": 411.5036334991455,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled-1.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +118,15 @@
   },
   "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "ScratchPaper.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Convex Hull, Convex Span.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closedness Preserving Operations on Sets.md",
+    "MATH 700 (Master Thesis)/Lanczos Functions Error Bounds and Estimations.md",
+    "???.md",
+    "Infinite Probability Spaces.md",
+    "AMATH 582/SVM.md",
+    "AMATH 561 (Probability Theory)/Probability Basics/Infinite Coin Tosses.md",
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Fenchel's Identity.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugation.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugate Examples.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/MinMax MaxMin Lemma.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Biconjugate Theorem.md"
+    "AMATH 516 (Numerical Optimizations)/Dualiy/Convex Conjugation.md"
   ]
 }
