@@ -272,8 +272,6 @@ $$
 
 Then, one can easily rewrite the conditions in (2) into the same form as a generalized subgradient. $\blacksquare$
 
-
-
 **Source**
 Theorem 3.35 in Dimitry's notes, AMATH 516 materials. 
 
@@ -291,7 +289,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 
 ---
-### **Corollary: Genrealized Subgradient to Subgradient Inequality for Convex Functions**
+### **Corollary: Generalized Subgradient to Subgradient Inequality for Convex Functions**
 
 > If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
@@ -299,7 +297,6 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 > $$
 
 **Proof Preparations**
-
 
 
 **Proof**

@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
             "mode": "preview",
             "source": true
           }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,15 +118,15 @@
   },
   "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md",
-    "MATH --- (Unexplored)/Kaczmarz Method.md",
-    "MATH --- (Unexplored)/The Faber Manteuffel Theorem.md",
-    "MATH --- (Unexplored)/Schur Complement.md",
-    "MATH --- (Unexplored)/Vapnik–Chervonenkis dimension.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Nonempty Subdifferential Implies Convexity.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dom.md",
-    "AMATH 516 (Numerical Optimizations)/Dualiy/Biconjugate Theorem.md"
+    "AMATH 503 (Intro to Partial Differential Equations)/Helmholtz Eqn In Cylinder 2.md",
+    "AMATH 503 (Intro to Partial Differential Equations)/Fourier Transform (PDE Flavor).md",
+    "Untitled-1.md",
+    "AMATH 503 (Intro to Partial Differential Equations)/Diffusion of a Tracer.md",
+    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md"
   ]
 }
