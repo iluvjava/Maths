@@ -8,7 +8,7 @@ Non-linear boundary value problems is not similar to the linear case in terms of
 Here we will only look at an example of solving a non-linear system of BVP problems. 
 
 ---
-### **The Non-Linear Pendulumn Systems**
+### **The Non-Linear Pendulum Systems**
 
 $$
 \begin{cases}
@@ -47,7 +47,7 @@ And, the Jacobian we have can be represented like:
 
 $$
 \begin{aligned}
-    \mathcal{J}_{i, j}[G(\theta)]_{\theta=\theta^{(k)}} &= 
+    \mathcal{J}_{i, j}[G](\theta^{(k)}) &= 
     \begin{cases}
         \frac{1}{h^2} &  j = i - 1 \vee j = i + 1
         \\
@@ -58,13 +58,14 @@ $$
 \end{aligned}
 $$
 
-Which is a tridiagonal symmetric matrix paramaterized by the previous guess of the iterations $\theta^{(k)}$, and information of the initial conditions are not present in the matrix. 
+Which is a tridiagonal symmetric matrix parameterized by the previous guess of the iterations $\theta^{(k)}$, and information of the initial conditions are not present in the matrix. 
 
 **The Physical Scenario of the Non-Linear System**
 
-The non-linear system contains all possible trajector of $\theta$ over the temporal domain. An the boundary conditions asserts that at time $t = 0$, we start with some angle $\alpha$ and then ended with another angle $\beta$ at the end when $t = T$
+The non-linear system contains all possible trajectory of $\theta$ over the temporal domain. An the boundary conditions asserts that at time $t = 0$, we start with some angle $\alpha$ and then ended with another angle $\beta$ at the end when $t = T$
 
-And, it's not hard to see that, it has the potential to rotated full circles and come back, any $2\pi$ periodic rotations trajectories will statisfies the conditions. 
+And, it's not hard to see that, it has the potential to rotated full circles and come back, any $2\pi$ periodic rotations trajectories will satisfies the conditions. 
+
 
 ---
 ### **The Non-linear Oscillator**

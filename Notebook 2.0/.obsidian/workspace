@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
             "mode": "preview",
             "source": true
           }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,17 +116,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "08a95f14879ccfc1",
+  "active": "24f38ced94c9d3b3",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
-    "AMATH 503 (Intro to Partial Differential Equations)/Helmholtz Eqn In Cylinder 2.md",
-    "AMATH 503 (Intro to Partial Differential Equations)/Fourier Transform (PDE Flavor).md",
-    "Untitled-1.md",
-    "AMATH 503 (Intro to Partial Differential Equations)/Diffusion of a Tracer.md",
-    "MATH 700 (Master Thesis)/Master Thesis Outline.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives.md"
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
+    "CSE 546 (Machine Learning Fundamentals)/Sensitivity and Overfitting.md",
+    "CSE 546 (Machine Learning Fundamentals)/Stochastic Gradient Descend.md",
+    "CSE 546 (Machine Learning Fundamentals)/Poisson MLE.md",
+    "CSE 546 (Machine Learning Fundamentals)/Performance Metric.md",
+    "CSE 546 (Machine Learning Fundamentals)/Normal Distribution.md",
+    "CSE 546 (Machine Learning Fundamentals)/Markov Inequality.md",
+    "CSE 546 (Machine Learning Fundamentals)/Logistic Regression.md",
+    "CSE 546 (Machine Learning Fundamentals)/K Mean Clustering.md",
+    "CSE 546 (Machine Learning Fundamentals)/Generalized Linear Regression.md"
   ]
 }

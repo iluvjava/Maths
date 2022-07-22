@@ -16,7 +16,7 @@ This lemma serves for [[Convex Function is Locally Lipschitz]]. The lemma stated
 ---
 ### **Lemma: Boundedness of Subgradient In the Interier of the Domain**
 
-> Let $f$ be $\mathbb R^n$ to $\mathbb{\bar{R}}$, then for all $x\in \text{int}\circ \text{dom}(f)$ we have $g \in \partial [f](x)$ is bounded for all any $g$. Or briefly as: $\text{dom}(\partial [f]) \subseteq \text{int}\circ\text{dom}(f)$. 
+> Let $f$ be $\mathbb R^n$ to $\mathbb{\bar{R}}$ be convex and proper, then for all $x\in \text{int}\circ \text{dom}(f)$ we have $g \in \partial [f](x)$ is bounded for all any $g$. Or briefly as: $\text{dom}(\partial [f]) \subseteq \text{int}\circ\text{dom}(f)$. 
 
 **Proof**
 
@@ -70,7 +70,7 @@ Which is bounded because $x, x \pm \epsilon \mathbf e_i$ are in the epsilon ball
 
 **Remarks**
 
-The proof can be modified for some points $x\in \text{relint}\circ \text{dom}(f)$ by changing the basis for $v$, then subgradient is at least bounded inside of some basis in the relative interior of the domain. The boundedness argument can also be applied by choosing some $v$ maxiizing $\langle v, g\rangle$ for any choice of $g$ obtaining a bound under the dual norm. 
+The proof can be modified for some points $x\in \text{relint}\circ \text{dom}(f)$ by changing the basis for $v$, then subgradient is at least bounded inside of some basis in the relative interior of the domain. The boundedness argument can also be applied by choosing some $v$ maximizing $\langle v, g\rangle$ for any choice of $g$ obtaining a bound under the dual norm. 
 
 **Source**
 
@@ -78,7 +78,7 @@ I made it myself I am not sure how good the proof actually is.
 
 
 ---
-### **Lemma: Unboundedness of Subgradient in The **
+### **Lemma: Unboundedness of Subgradient in The Relative Interior of The Domain**
 
 
 
