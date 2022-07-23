@@ -20,8 +20,7 @@ Recall that, not all convex function is Locally Lipschitz Continuous, but if the
 
 We choose 3 points in the interior of the domain that a on the same line, and then we use the boundedness of the subgradient at those points, and subgradient inequality to bound the change of the function value wrt to the width of the line segment. 
 
-
-**Proof 1**
+**Proof 1:**
 
 Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, we then paramaterize one point $x_t$ to be on the line segment: $x_t = x_1 + t(x_2 - x_1)\;\forall t \in [0, 1]$. Consider 2 supporting hyperplane at these 2 points and any $t\in (0, 1), g_1\in \partial [f](x_1), g_2 \in \partial[f](x_2)$: 
 
@@ -122,17 +121,18 @@ Which is the definition of Lipschitz Continuity for the function along the line 
 
 **Remarks**
 
-The generality of the lemma is kept by treating the points and the gradient of functions at any 2 points using euclidean inner product. 
+* The generality of the lemma is kept by treating the points and the gradient of functions at any 2 points using euclidean inner product. 
 
-Note, the upper boundedness depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can choose the subgradient and $t$ to minimize the bound. 
+* Note, the upper boundedness depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can choose the subgradient and $t$ to minimize the bound. 
 
-I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always be between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
+* I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always be between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
+	* In reply to this, it's indeed true and it's part of the monotone properties of convex subdifferential operator, see [[Monotonicity of Subgradient on a Line]] for more information. 
 
 **Comments**
 
 I made the proof myself I don't know how legit it is. 
 
-**Proof 2**
+**Proof 2**:
 
 Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, then consider the subgradient $v_1\in \partial [f](x_1), v_2 \in \partial[f](x_2)$, we have: 
 

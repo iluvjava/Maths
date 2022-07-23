@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
             "mode": "preview",
             "source": true
           }
@@ -56,7 +56,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Fenchel Rock",
+                "query": "positive definite hessian",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,15 +118,15 @@
   },
   "active": "24f38ced94c9d3b3",
   "lastOpenFiles": [
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Convexity.md",
-    "CSE 546 (Machine Learning Fundamentals)/Sensitivity and Overfitting.md",
-    "CSE 546 (Machine Learning Fundamentals)/Stochastic Gradient Descend.md",
-    "CSE 546 (Machine Learning Fundamentals)/Poisson MLE.md",
-    "CSE 546 (Machine Learning Fundamentals)/Performance Metric.md",
-    "CSE 546 (Machine Learning Fundamentals)/Normal Distribution.md",
-    "CSE 546 (Machine Learning Fundamentals)/Markov Inequality.md",
-    "CSE 546 (Machine Learning Fundamentals)/Logistic Regression.md",
-    "CSE 546 (Machine Learning Fundamentals)/K Mean Clustering.md",
-    "CSE 546 (Machine Learning Fundamentals)/Generalized Linear Regression.md"
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
+    "MATH --- (Unexplored)/LOBPCG.md",
+    "subgradient property.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
+    "CSE 546 (Machine Learning Fundamentals)/Sensitivity and Overfitting.md"
   ]
 }

@@ -12,6 +12,8 @@ We explored some of the properties with the multi-value functions that is the su
 	* If the subdifferential is nonempty throughout the domain of the function, then the function is convex. 
 * [[Subgradient and Level Sets]]
 	* The subgradient is in the tangent cone at the level set of the function value at that point. 
+* [[Monotonicity of Subgradient on a Line]]
+	* The subgradient operator is a monotone operator, which is just a reinterpretation of the positive definiteness of the Hessian in the smooth case. 
 
 Other Properties that I gather but doesn't have the time to prove them yet: 
 

@@ -95,7 +95,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]] 
 		* Convex Set
 		* Convex Functions
-		* [[Differential Characterization of Convexity]]
+		* [[Differential Characterization of Smooth Convexity]]
 	* Good to optimize functions: 
 		* [[Closed, Proper, Level Bounded, Strong Convex]]
 		* [[Beta Smoothness]]
