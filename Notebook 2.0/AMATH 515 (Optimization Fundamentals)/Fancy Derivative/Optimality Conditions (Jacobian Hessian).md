@@ -3,9 +3,7 @@ What kind of conditions are necessary for an input of an function.
 
 
 ---
-#### Jacobian And Hessian, Optimality Conditions
-
-The Jacobian and Hessian matrices are just the differential for higher order of functions. 
+### **Optimality Conditions Characterized by Jacobian and Hessians**
 
 **Definition 2**
 A function $f:\mathbb{R}^n\mapsto\mathbb{R}$ is differentiable at a point x if there exists a gradient vector for the function at the point of derivative. The gradient is just: $\nabla f(x)$, which is a column vector by default.

@@ -29,7 +29,7 @@ The subgradient monotonicity is a natural extension to what we have in the smoot
     * $\langle  \partial [f](x_1) - \partial [f](x_2), -\epsilon \mathbf e_i\rangle\ge 0$, Then it's consider: $-\epsilon (\partial[f](x_i) - \partial[f](x_2)) \ge 0$, which basically implies the monotone property: $(\partial [f](x_1))_i \le (\partial [f](x_2))_i$. Basically suggesting the upper bounding property of the ith component of the subgradient operator. 
 
 * **Mis**
-  * The converse of the statement is actually true. If the gradient is monotone, then the function has to be convex. 
+  * I think the converse of the statement is actually true. If the gradient is monotone, then the function has to be convex. 
 
 **Proofs**: 
 

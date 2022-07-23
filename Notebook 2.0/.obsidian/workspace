@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Fancy Derivative/Jacobian and Hessian.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Fancy Derivative/Jacobian and Hessian.md",
             "mode": "preview",
             "source": true
           }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Fancy Derivative/Jacobian and Hessian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,17 +116,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "24f38ced94c9d3b3",
+  "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
-    "MATH --- (Unexplored)/LOBPCG.md",
-    "subgradient property.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
     "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
-    "CSE 546 (Machine Learning Fundamentals)/Sensitivity and Overfitting.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Bounded Subgradient Lemma.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
+    "MATH --- (Unexplored)/LOBPCG.md"
   ]
 }

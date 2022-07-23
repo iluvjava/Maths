@@ -13,22 +13,27 @@ prereq: [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]]
 > 3. (**Monotonicity**) $\langle \nabla f(y) - \nabla f(x), y - x\rangle \geq 0$ for all $x, y\in U$.
 
 With the **additional assumption that the function is $C2$ smooth**, then we can say that: $\nabla^2 f(x)$ is a **Positive Semi-Definite Matrix**. 
+
 **Remarks:**
 * Intuitive Understanding:
 	1. If a function is convex, then the line connecting 2 points will always lies above the function, this characteristics implies the **(2.)** condition in the above list. 
 	2. The gradient is always an under estimation of the change of the function over a line in the domain. 
 	3. The change in gradient and the change in the function, if represented via 2 vectors, they will point to approximately the same direction. It's also saying that, the first derivative, (The gradient) is increasing. 
 	4. If the function has a continuous second derivative, then the Hessian of the function is Positive Semi-Definite. 
+* (1) and (2) are absolutely not the same thing. 
+	* A function is convex, if, its value at any convex combinations of points is less than the convex combinations of the function values at those points, which, was never characterized by the gradient of a function at those points, and hence, proving it should not be viewed as a trivial task. 
 
 **Observe:**
+
 If the function is linear, then all above relations are going to be equals, so the inequalities are strict when the function is linear.
 
 **Proof Strategies**:
+
 To proof a list of states are equivalent, we will have to do **a cyclic proof** for them. (1) --> (2) --> (3)--> (1). This should be the route we take. Now, let's take (3) --> (2) --> (1), just like the hero's journey. And after the Journey, we have the additional part where **(1)<-->(2)** relation. 
 
 ---
 ### **Proofs**
-**Proof of (2) using (1)**
+**Proof (1) -> (2)**
 
 Assume that the function is convex, By secant line inequality, for any $t\in (0, 1)$, convexity implies that: 
 $$
@@ -85,80 +90,47 @@ $$
 Which is saying that the discrete change in the gradient between 2 points is point approximately to the same direction as the vector connecting these 2 points. This is refer to as the **monotonicity** of the gradient of the function, the change in the gradient is mono. 
 $\blacksquare$
 
-**Proof (3) --> (1) [Super Big Brain]**: 
+**Proof (3) --> (1)**: 
 > $$(\nabla f(y)^T - \nabla f(x)^T)(y - x) \geq 0$$ 
 > implies that fact that the function is convex. 
 
-**Strategy**: 
-Show that **(3)**--> $f(y) = \sup_x\{ f(x) + \nabla f(x)^T(y - x)\}$
-This is say that: The convex function just the supremum of the affine linear approximation of the function. 
-
-* $f(x) + \nabla f(x)^T(y - x)$ is affine. 
-
-If we lock $x$, then it's an affine function of $y$. 
-
-**Big brain realization**: The Sup function is going to be convex because affine linear function itself is a convex function. 
-
 **Proof**:
 
-Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. Show that $\phi'$ is non-decreasing using **(3)**, then we use some tricks to finish this up. Non decreasing meaning that:
-
-$$
-t \ge s \implies \varphi'(t) \le \varphi'(s) 
-$$
-
-Using chain rule: 
+Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. It represent the function value of $f$ along the line $[x_1, x_2]$, where $t\in [0, 1]$ specify the where we are on the line segment. Take notice that taking the derivative on the function gives us the following: 
 
 $$
 \begin{aligned}
-	& \varphi'(t) = t\nabla f(x_t)^T(y - x)	
+	& \varphi'(t) = t\langle \nabla f(x_t), y - x\rangle
 	\\
-	& \varphi'(s) = t\nabla f(x_s)^T(y - x)	
+	& \varphi'(s) = s\langle \nabla f(x_s), y - x\rangle
+	\\
+	[1]\implies &
+	\varphi'(s) - \varphi'(t) = (s - t)\langle \nabla f(x_s) - \nabla f(x_t), y - x \rangle \ge 0 
+	\\
+	\implies & 
+	(t\le s \implies \varphi'(t) \le \varphi'(s))
 \end{aligned}
 $$
 
-**Exercise**: show that: 
-
-$$
-	y - x = \frac{x_t - x_s}{t - s}
-$$
-
-Use the result, then we have: 
-
-$$
-\varphi'(t) - \varphi'(s) = \frac{1}{t - s}
-[\nabla f(x_t) - \nabla f(x_s)]^T (x_t - x_s)
-$$
-
-Notice that, the mess on the RHS excluding the fraction, is going to be positive, because that part is just **(3)**. Using the assumption that, $t \ge s$, the whole RHS of the expression is going to be positive. Apply the fundamental theorem of calculus:
+\[1\] We make use of monotonic property of the gradient in statement hypothesis. Please observe that by definition $(t - s)(y - x) = x_t - x_s$. Therefore, the derivative of a convex function monotonically increases in any line segment in its domain. Let's consider the fundamental theorem of calculus on the line segment, applied to the function $\varphi (t)$: 
 
 $$
 \varphi(1) = \varphi(0) + \int_0^1 \varphi'(\tau)d\tau \ge \varphi(0) + (1)\varphi'(0)
 $$
 
-By the fact that $\varphi'$ is a non decreasing function. 
-
-**Plugging in**: 
-
-$\varphi(1) = f(y)$,
-
-$\varphi (0) = f(x)$
-
-$\varphi'(0) = \nabla f(x)^T (y - x)$
-
+We use the monotonicity to justify the $\ge$, resulting a lower bound for the integral. Next we consider substituting in the following parameters for the equation: $\varphi(1) = f(y)$, $\varphi (0) = f(x)$, $\varphi'(0) = \nabla f(x)^T (y - x)$, 
 Therefore: 
+
 $$
 f(y) \ge f(x) + \nabla f(x)^T(y - x)
 $$
 
-This statement is true for all $x$. **This**, is statement **(2)**. 
-
-Therefore: 
+This statement is true for all $x$, equivalent to statement **(2)**. Taking the supreme of all $x$ we obtain:
 $$
 f(y) \ge \sup_x\{ f(x) + \nabla f(x)^T(y - x)\}
 $$
 
-Due to monoticity, if we set $x = y$, then the left hand side equals to the right hand side, therefore, it's a strict equality that makes the **supremum** idea works here, and if that is the case, since the function is larger than another affine linear function (**which is convex**, proven the preq part of the note), therefore, $f(y)$ is going to be another convex function as well. $\blacksquare$
+Due to monoticity of the gradient, we obtain the monotone increasing property of function over a line segment.
 
 ---
 ### **Corollary 2.19**
@@ -179,36 +151,6 @@ $$
 f(y) \ge f(y) \quad \forall y
 $$
 
-So if the function is convex, and there exists a local minima, then it's going to be a global minima. 
+So if the function is convex, and there exists a local minima, then it's going to be a global minima. Notice that, it's possible to have infinity as a minima in the case of the funtion: $e^x$, or $-x$. 
 
-Notice that, it's possible to have infinitely many minima ($e^x$), or it's just decreasing and there is never any minimizer ($-x$) for the function over the whole domain. 
-
-And even better, the indicator function $\sigma_{(-1, 1)}(x)$, and then he interval is open, and then we can say that $g(x) + x + \sigma_{(-1, 1)}$. This function is going to be convex but it doesn't really have a minimizer because we cannot read that point (The point is at $x >> 1$).  We can get infinitely close to $x = -1$, but we can never reach there because the set is open and convex. 
-
-**READ PG 5 - 11 FOR VARIATIONAL ANALYSIS**
-This is the in the course folder. 
-
----
-### **The missing Part: Exercise** 
-
-Trying to show that: 
-
-$$
-y - x = \frac{x_t - x_s}{t - s}
-$$
-With the assumption that, $t > s$, and that the parametric line is going from x to y, so it's like: 
-$$
-x(t) := x + t(y- x)
-$$
-
-Then we know that: 
-1. $x_t = x + t(x - y)$
-2. $x_s = x+ s(x - y)$
-
-And then: $x_t - x_s = (t - s)(x - y)$, 
-therefore: 
-$$
-\frac{x_t - x_s}{t - s} = y - x
-$$
-
-Which is what we want. $\blacksquare$
+And even better, the indicator function $\sigma_{(-1, 1)}(x)$, and then he interval is open, and then we can say that $g(x) + x + \sigma_{(-1, 1)}$. This function is going to be convex but it doesn't really have a minimizer because we cannot read that point (The point is at $x >> 1$).  We can get infinitely close to $x = -1$, but we can never reach there because the set is open and convex. **READ PG 5 - 11 FOR VARIATIONAL ANALYSIS**, This is the in the course folder. 
