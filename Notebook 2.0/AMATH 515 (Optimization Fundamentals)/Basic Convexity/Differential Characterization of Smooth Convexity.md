@@ -70,7 +70,7 @@ $$
 		\\
 		f(x) \geq f(y) + \nabla f(y)^T(x - y)	
 	\end{cases}
-	\\
+	\\\text{Sum up both}\implies
 	& f(x) + f(y) \geq f(x) + f(y) + (\nabla f(y)^T - \nabla f(x)^T)x + (\nabla f(x)^T - \nabla f(y)^T)y	
 	\\
 	& 0 \geq  \nabla (f(y)^T - \nabla f(x)^T)x + (\nabla f(x)^T - \nabla f(y)^T)y
@@ -82,10 +82,7 @@ $$
 \end{aligned}
 $$
 
-
-
-
-Which is saying that the discrete change in the gradient between 2 points is point approximately to the same direction as the vector connecting these 2 points. This is refer to as the **monotoniticity** of the gradient of the function, the change in the gradient is mono. 
+Which is saying that the discrete change in the gradient between 2 points is point approximately to the same direction as the vector connecting these 2 points. This is refer to as the **monotonicity** of the gradient of the function, the change in the gradient is mono. 
 $\blacksquare$
 
 **Proof (3) --> (1) [Super Big Brain]**: 
@@ -102,25 +99,28 @@ If we lock $x$, then it's an affine function of $y$.
 
 **Big brain realization**: The Sup function is going to be convex because affine linear function itself is a convex function. 
 
-**Proof (WTF Moment)**:
+**Proof**:
 
-Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. 
+Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. Show that $\phi'$ is non-decreasing using **(3)**, then we use some tricks to finish this up. Non decreasing meaning that:
 
-Explanation: $\varphi(t)$ is the put of the function as we travels on the line that connects x, y, from x to y. 
-
-Goal: Show that $\phi'$ is non-decreasing using **(3)**, then we use some tricks to finish this up. No decreasing meaning that 
 $$
 t \ge s \implies \varphi'(t) \le \varphi'(s) 
 $$
 
 Using chain rule: 
-$$\varphi'(t) = t\nabla f(x_t)^T(y - x)$$ 
 
-$$\varphi'(s) = t\nabla f(x_s)^T(y - x)$$
+$$
+\begin{aligned}
+	& \varphi'(t) = t\nabla f(x_t)^T(y - x)	
+	\\
+	& \varphi'(s) = t\nabla f(x_s)^T(y - x)	
+\end{aligned}
+$$
 
 **Exercise**: show that: 
+
 $$
-y - x = \frac{x_t - x_s}{t - s}
+	y - x = \frac{x_t - x_s}{t - s}
 $$
 
 Use the result, then we have: 
@@ -130,11 +130,7 @@ $$
 [\nabla f(x_t) - \nabla f(x_s)]^T (x_t - x_s)
 $$
 
-Notice that, the mess on the RHS excluding the fraction, is going to be positive, because that part is just **(3)**. 
-
-Using the assumption that, $t \ge s$, the whole RHS of the expression is going to be positive. 
-
-Apply the fundamental theorem of calculus: 
+Notice that, the mess on the RHS excluding the fraction, is going to be positive, because that part is just **(3)**. Using the assumption that, $t \ge s$, the whole RHS of the expression is going to be positive. Apply the fundamental theorem of calculus:
 
 $$
 \varphi(1) = \varphi(0) + \int_0^1 \varphi'(\tau)d\tau \ge \varphi(0) + (1)\varphi'(0)

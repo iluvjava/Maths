@@ -25,7 +25,11 @@ The subgradient monotonicity is a natural extension to what we have in the smoot
   3. When things are smooth, this property is related to non0negativeness of the Hessian for the function. For this, see the top of the files for differential characterizations of convexity for smooth function. 
 
 * **Interesting Consequences**: 
+  1. Consider $x_1, x_2:= x_1 + \epsilon \mathbf e_i$, then the claim becomes: 
+    * $\langle  \partial [f](x_1) - \partial [f](x_2), -\epsilon \mathbf e_i\rangle\ge 0$, Then it's consider: $-\epsilon (\partial[f](x_i) - \partial[f](x_2)) \ge 0$, which basically implies the monotone property: $(\partial [f](x_1))_i \le (\partial [f](x_2))_i$. Basically suggesting the upper bounding property of the ith component of the subgradient operator. 
 
+* **Mis**
+  * The converse of the statement is actually true. If the gradient is monotone, then the function has to be convex. 
 
 **Proofs**: 
 
@@ -81,4 +85,4 @@ $$
 
 **Source**:
 
-It's obvious and I did it myself. For references, just take a look at the monotonicity at a coursenotes [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for more information. 
+It's obvious and I did it myself. For references, just take a look at the monotonicity at a coursenotes [UCLA Notes](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for more information. 
