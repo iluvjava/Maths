@@ -85,6 +85,9 @@ Since the set $Q$ contains the origin, the polar cone $Q^\circ\subseteq \mathbb 
 We establish a list of rules for computing polar cone, so it's easier and faster to compute when we are dealing with computations and applications. 
 
 
+#TODO: ISN'T FILLED OUT YET
+
+
 **Source**: Dimitry's AMATH 516 2021 FALL. 
 
 

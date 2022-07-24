@@ -1,5 +1,5 @@
 * [[Subgradient and Subdifferential Definition]]
-* [[Epi Graph]]
+* [[Epigraph]]
 * [[Strict Separations Theorem]]
 * [[Characterizing Functions for Optimizations]]
 

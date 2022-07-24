@@ -17,6 +17,6 @@ Let $Q\subseteq \mathbb{E}$ be a set in the Euclidean space, then the relative i
 
 And hence, the relative boundary of the set is defined as $\text{rb}(Q):= \text{cl}(Q)\setminus \text{ri}(Q)$. 
 
-**Simple Conseqencies**
+**Simple Consequences**
 
 One simple observation that could be made is $\text{int}(Q)\subseteq \text{ri}(Q)$ for any set. 

@@ -51,6 +51,9 @@ In this part we review some of the calculus that is useful. It's too basic to ha
 > \end{aligned}
 > $$
 
+
+**Remarks**:
+
 The Hessian, $\nabla^T\nabla f(x)$ is continuous, then the original function $f(x)$ will be $C^2$ smooth, and if that is true, then the Hessian will be a matrix of type [[Hermitian Adjoint]]. In some literature, the Hessian operator might be denoted as $\nabla^2$, please don't confuse it with $\nabla\cdot\nabla$ which is the **Laplacian Operator**. 
 
 The gradient of gradient is the Hessian, it can be seemed as the outer product of 2 gradient operator combined together. Abusing the notations we define the following operator 

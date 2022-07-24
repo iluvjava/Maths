@@ -92,7 +92,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Derivatives on Steroids]]
 
 * Functions: 
-	* [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]] 
+	* [[Introduction to Convexity]] 
 		* Convex Set
 		* Convex Functions
 		* [[Differential Characterization of Smooth Convexity]]

@@ -14,7 +14,7 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 
 Here is a list of topics that are helpful for understanding the basics: 
 
-* [[Epi Graph]]
+* [[Epigraph]]
 * [[Lower Semi-Continuous]]
 * [[Convex Sets]]
 
@@ -48,7 +48,7 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 
 ---
 ### **Closed Function**
-> a function $f$ is a closed if and only if the [[Epi Graph]] is a closed set. 
+> a function $f$ is a closed if and only if the [[Epigraph]] is a closed set. 
 
 **Closeness Equivalence of Functions**
 

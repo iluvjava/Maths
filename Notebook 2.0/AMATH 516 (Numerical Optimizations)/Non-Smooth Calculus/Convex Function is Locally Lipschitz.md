@@ -7,14 +7,13 @@
 
 In this file we provide proof the theorem listed in: [[Convex Functions Characteristics#Continuity of Closed Convex Functions]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
 
-Recall that, not all convex function is Locally Lipschitz Continuous, but if the sugradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
-
+Recall that, not all convex function is Lipschitz Continuous on the closure of it's domain, but if the subgradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 
 
 ---
 ### **Lemma:Lipschitz on one Line Segment**
 
-> Given a function $f: \mathbb R \mapsto \bar {\mathbb R}$ that is proper and proper, then the function is lipschitz continuuous for every $[x_1, x_2] \subset \text{int}\circ\text{dom}(f)$. 
+> Given a function $f: \mathbb R \mapsto \bar {\mathbb R}$ that is proper and proper, then the function is lipschitz continuous for every $[x_1, x_2] \subset \text{int}\circ\text{dom}(f)$. 
 
 **Proof Summary**
 

@@ -3,7 +3,6 @@
 * [[Convex Sets]]
 
 ---
-
 ### **Intro**
 
 Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
@@ -58,7 +57,7 @@ Which demonstrates the geometric interpretations for the subgradient of a convex
 
 **Remarks**
 
-The definition in this case is not consistent with the definition of gradient of smooth function when $f$ nonconvex. To mitigate this, below is another definition of subgradient and **subdifferential** that generalize the idea to nonconvex, non-smooth functions. 
+The definition in this case is not consistent with the definition of gradient of smooth function when $f$ nonconvex. To mitigate this, below is the regular subgradient and **subdifferential** that generalize the idea to nonconvex, non-smooth functions. 
 
 Geometrically, it's looking for a point that is on the boundary of $\text{epi}(f)$ and then separate the graph using a line defined via $g$. And if such a line is perpendicular, then there is no subgradient for the function for that point. And for all seriousness, it can happen convex function at the exterior of their domain. 
 
@@ -96,7 +95,7 @@ $$
 
 Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
 
-Regardless of the fact that it's called the generalized gradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
+Regardless of the fact that it's called the regular subgradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
 
 
 **Source**: 
@@ -106,8 +105,8 @@ The definition for convex subgradient comes from: \<First Order Methods in Optim
 ### **Notations**
 
 A good notations should be clear about several things when taking the derivative of a function: 
-* What variables are we raking the derivtive with? 
-* What varlues are we putting into the derivative functions? 
+* What variables are we raking the derivative with? 
+* What values are we putting into the derivative functions? 
 
 For example: $\partial [f(Ax + b, u)](u = x^+), \partial [f(Ax + b, u)]_{u = x^+}, \partial [f(Ax + b, u)|u](x^+)$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
@@ -272,16 +271,18 @@ $$
 
 Then, one can easily rewrite the conditions in (2) into the same form as a generalized subgradient. $\blacksquare$
 
-**Source**
-Theorem 3.35 in Dimitry's notes, AMATH 516 materials. 
+**Source:**
+Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as stated there but filled up with more details.
 
 **Remarks**: 
 
-The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of convex function. 
+* The regular subgradient is convex, because it's a part of a cone. 
 
-Take note that, for functions that are more pathological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ guarantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. One of such example where subgradient doesn't exist even inside of the domain of the function would be the non convex function $-|x|$ at the point $x = 0$.
+* The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of convex function. 
 
-More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with subgradient, from simple to hardcore, see [[Subdifferentials Subgradient Computations]] for more. 
+* Take note that, for functions that are more pathological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ guarantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. One of such example where subgradient doesn't exist even inside of the domain of the function would be the non convex function $-|x|$ at the point $x = 0$.
+
+* More importantly, when doing subgradient algebra, just bear in mind that we are dealing with a cone, which is essentially one of the simple convex sets. For how to do computations with subgradient, from simple to hardcore, see [[Subdifferentials Subgradient Computations]] for more. 
 
 **Comments**
 
@@ -298,7 +299,6 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Proof Preparations**
 
-
 **Proof**
 
 #TODO: FILL THE PROOF IF WE HAVE TIME. 
@@ -308,8 +308,6 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Comments**
 
-**Source**: Exercise 3.36 in Dimistry's Textbook, back in Fall 2021 UW, for AMATH 516. 
-
-
+**Source**: Exercise 3.36 in Dimitry's Textbook, back in Fall 2021 UW, for AMATH 516. 
 
 

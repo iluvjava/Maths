@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-This entity is by far some the most important entities we will have for convex optimization, both in applications and analysis. The same topic has also been covered in [[AMATH 515 (Optimization Fundamentals)/Basic Convexity/Convexity]], which is not organized well. 
+This entity is by far some the most important entities we will have for convex optimization, both in applications and analysis. The same topic has also been covered in [[Introduction to Convexity]], which is not organized well. 
 
 
 ### **Convex Set**
