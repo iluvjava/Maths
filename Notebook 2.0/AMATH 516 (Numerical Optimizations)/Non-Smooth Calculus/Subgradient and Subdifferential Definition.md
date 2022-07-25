@@ -299,6 +299,8 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Proof Preparations**
 
+We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}}([\bar x \; f(\bar x)]^T)$, then 
+
 **Proof**
 
 #TODO: FILL THE PROOF IF WE HAVE TIME. 

@@ -156,6 +156,43 @@ $$
 \end{aligned}
 $$
 
+**Remarks**: 
+
+For example, the function $\exp(x)$ is a strictly convex function. 
+
+---
+### **Strong Convexity**
+
+> Let $f$ be a augmented real function, then the function $f$ is strongly convex if there exists a $\alpha\ge 0$ such that: 
+> 
+> $$
+> f(y) \ge f(x) + \langle \partial[f](x), y - x\rangle + \frac{\alpha}{2}\Vert y - x\Vert^2
+> $$
+
+**Remarks**: 
+
+* Any strongly convex function is going to be coersive function. 
+* The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coersive. We cannot long lower "hug" the function using any type of quadratic function. 
+
+---
+### **Beta-Smoothness**
+
+> If $f$ is $\beta$ smooth, then there exists positive $\beta$ such that: 
+> 
+> $$
+> |f(x + h) - f(x) + \nabla f(x)^Th| \le \beta \frac{\Vert h\Vert^2}{2}
+> $$
+
+**Theorem: Lipschitz Gradient means Beta Smooth**
+> The same beta the provides a bound between the linear approximation and the function it self is the Lipschitz constant for the function over the domain. 
+> $$
+> \Vert\nabla f(y) - \nabla f(x) \Vert \le \beta \Vert x - y\Vert
+> $$
+
+**Remarks**: 
+Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 
+
+
 
 ---
 ### **Positive Homogeneity**
@@ -163,14 +200,11 @@ $$
 **Definition** 
 > A function is positive Homogenous when: $f(\alpha y) = \alpha f(y)\;\forall y$, where $\alpha \ge 0$. 
 
-
 ---
 ### **Sub-additive**
 
 **Definition**
 > A function $f$ is sub-additive when $f(x + y)\le f(x) + f(y)$. 
-
-
 
 ---
 ### **Discussions**

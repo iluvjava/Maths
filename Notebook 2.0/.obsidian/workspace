@@ -56,7 +56,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "positive definite hessian",
+                "query": "smooth gradient",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -77,11 +77,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 379.0121879577637
+    "width": 379.0121879577637,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -115,17 +117,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "24f38ced94c9d3b3",
+  "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugation.md",
-    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
-    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel's Identity.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Linear Algebra Basics for Optimization.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Relative Interior And Relative Boundary.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
+    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 1.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
+    "AMATH 515 (Optimization Fundamentals)/AMATH 515.md",
+    "MATH ZZZ (My Ideas)/Line Search Assuming Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Tangent Cone.md",
     "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuity is Closedness of Epigraph.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuous.md"
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Beta Smoothness.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
+    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md"
   ]
 }
