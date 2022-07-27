@@ -15,7 +15,6 @@ Every example here is going to be hardcore and aims at applying some of the stuf
 ### **Example 1: The L1 Norm**
 
 
-
 ---
 ### **Example 2: The Indicator Function**
 

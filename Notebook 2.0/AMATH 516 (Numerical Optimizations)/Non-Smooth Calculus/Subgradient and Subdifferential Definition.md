@@ -276,9 +276,9 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* The regular subgradient is convex, because it's a part of a cone. 
+* ~~The regular subgradient is convex, because it's a part of a cone~~. **I think it's true but we need better arguments here** 
 
-* The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of convex function. 
+* The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 
 * Take note that, for functions that are more pathological than usual, it's possible that there doesn't exists any vector of the form $(v, -1)$ in the normal cone of $\text{epi}(f)$ at the point $(x, f(x))$ and in that case, the generalized subgradient is $\emptyset$. Finally, a vector that fits the format of $(v, -1)$ guarantees it to be strictly facing downwards in $\mathbb E \times \mathbb R$. One of such example where subgradient doesn't exist even inside of the domain of the function would be the non convex function $-|x|$ at the point $x = 0$.
 
@@ -299,7 +299,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Proof Preparations**
 
-We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}}([\bar x \; f(\bar x)]^T)$, then 
+We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obstuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tagent cone. Therefore, there is no little $o$ term. 
 
 **Proof**
 

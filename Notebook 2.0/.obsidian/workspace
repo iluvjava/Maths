@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
             "mode": "source",
             "source": true
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
             "mode": "preview",
             "source": true
           }
@@ -56,7 +56,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "smooth gradient",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -77,12 +77,11 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 379.0121879577637,
+    "width": 396.5121879577637,
     "collapsed": true
   },
   "right": {
@@ -99,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -117,17 +116,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "08a95f14879ccfc1",
+  "active": "24f38ced94c9d3b3",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
     "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 1.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
     "AMATH 515 (Optimization Fundamentals)/AMATH 515.md",
     "MATH ZZZ (My Ideas)/Line Search Assuming Convexity.md",
     "AMATH 516 (Numerical Optimizations)/Background/Tangent Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Beta Smoothness.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
-    "AMATH 516 (Numerical Optimizations)/Background/Characterizing Functions for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md"
   ]
 }

@@ -50,18 +50,25 @@ We skip the proof for this remark item.
 ---
 ### **Lack of Closedness**
 
-One prime example is the indicator function of a closed unit disk in $\mathbb R^2$. Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. Therefore, we consider a different definition of subderivative, where, the ray itself is also converging to $u$ in addition to taking the inf of the sequence of limit points.
+One prime example is the indicator function of a closed unit disk in $\mathbb R^2$. Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. Therefore, we consider a different definition of subderivative, where, the ray itself is also converging to $u$ in addition to taking the infimum on the sequence of limit points.
 
-**Why closedness is a concern here for the subderivative of non-lipschitz function in Dimitry's writing? **
+**Why closedness is a concern here for the subderivative of Non-Lipschitz function in Dimitry's writing?**
 
 He didn't say and I don't know. 
 
 ---
 ### **Theorem: Subderivative is Supporting the Subgradient Set**
 
+> Let $f$ be any augmented real valued convex proper function, then for any $x\in \text{int}\circ \text{dom}(f)$, Then the direction derivative along the direction $u$ is the support function on the subgradient set $\partial[f](x)$: 
+> 
+> $$
+> \begin{aligned}
+>    f'(x|u) = \sup_{y\in \partial [f](x)}\langle y, u \rangle = \delta^\star_{\partial [f](x)}(u)
+> \end{aligned}
+> $$
 
+**Proofs**:
 
-**Proofs**: 
 
 **Remarks**:
 
