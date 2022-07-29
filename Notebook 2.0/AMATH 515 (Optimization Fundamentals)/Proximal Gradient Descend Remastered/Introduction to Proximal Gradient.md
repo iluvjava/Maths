@@ -1,4 +1,4 @@
-prereq: [[Gradient Descend 1]], [[Subgradient]]
+prereq: [[Gradient Descend 1]], [[Subgradient and Subdifferential Definition]]
 
 
 ---

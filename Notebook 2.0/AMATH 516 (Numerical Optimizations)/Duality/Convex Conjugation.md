@@ -248,8 +248,12 @@ $$
 \end{array}
 $$
 
+**Remarks**: 
+
+Entry 3: $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
+
 And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
-For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we sommerizes some of the important results from there in a nice table format. 
+For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
 
 #TODO: FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 

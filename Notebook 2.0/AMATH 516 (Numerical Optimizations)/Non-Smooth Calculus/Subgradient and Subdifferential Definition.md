@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-Previous coverage of the same thing but for beginner: [[Subgradient]]. Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
+Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
 * Definition of Subgradient for convex function
 * Definition of Generalized Subgradient
 * Notations 
@@ -299,7 +299,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Proof Preparations**
 
-We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obstuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tagent cone. Therefore, there is no little $o$ term. 
+We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obtuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tangent cone. Therefore, there is no little $o$ term for its polar cone defined on $\text{epi}(f)$ at $[\bar x \; f(\bar x)]^T$. 
 
 **Proof**
 
@@ -307,6 +307,7 @@ We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Becaus
 
 
 **Remarks**
+
 
 **Comments**
 

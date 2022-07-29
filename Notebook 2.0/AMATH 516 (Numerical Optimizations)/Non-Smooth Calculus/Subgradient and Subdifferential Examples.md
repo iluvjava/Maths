@@ -1,5 +1,6 @@
 [[Subgradient and Subdifferential Definition]]
 [[Subdifferentials Subgradient Computations]]
+[[Fenchel Identity]]
 
 
 ---
@@ -21,3 +22,7 @@ Every example here is going to be hardcore and aims at applying some of the stuf
 
 ---
 ### **Example 3: Piecewise Linear**
+
+
+---
+### **Example Omega: Subgradient of the Value Functions**

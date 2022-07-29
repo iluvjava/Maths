@@ -11,7 +11,7 @@ Recall that, not all convex function is Lipschitz Continuous on the closure of i
 
 
 ---
-### **Lemma:Lipschitz on one Line Segment**
+### **Lemma: Lipschitz on one Line Segment**
 
 > Given a function $f: \mathbb R \mapsto \bar {\mathbb R}$ that is proper and proper, then the function is lipschitz continuous for every $[x_1, x_2] \subset \text{int}\circ\text{dom}(f)$. 
 
@@ -155,7 +155,7 @@ $$
 \end{aligned}
 $$
 
-Which gives a lipschitz constant of: 
+Which gives a Lipschitz constant of: 
 
 $$
 \begin{aligned}
@@ -172,7 +172,7 @@ The second proof provides a bound that is tighter compare to the bound of the fi
 This proof is better. 
 
 ---
-### **Locally Lipschitz In Higher Dimenions**
+### **Locally Lipschitz In Higher Dimensions**
 
 Consider $f: \mathbb R^n\mapsto \mathbb{\bar{R}}$ that is convex proper, then the function is Lipschitz continuous over a compact set $C\subseteq \text{int}\circ \text{dom}(f)$. 
 
@@ -184,4 +184,15 @@ $$
 $$
 
 Convex function is locally Lipschitz inside of a compact subset of the interior of its domain. 
+
+---
+### **Corollary: Proper Convex function is Lipschitz in its Relative Interior**
+
+
+
+
+**Source**:
+
+Presented as Corollary 3.53 in Dimitry's Course notes AMATH 516, 2021 FALL, page: 74. 
+
 

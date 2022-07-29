@@ -1,4 +1,7 @@
-[[Subgradient]]
+[[Subgradient and Subdifferential Definition]]
+[[CPP MultiStage Compilation]]
+[[Epigraph]]
+[[Support Function]]
 
 ---
 ### **Intro**
@@ -24,8 +27,8 @@ From Professor's Demitry's standpoint, we understand the scope when the definiti
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
 > $$
 > \begin{aligned}
->   f'(x|u) = \lim\inf_{\substack{\tau \searrow 0 \\ v\rightarrow u}}
->     \frac{f(x + \tau w) - f(x)}{\tau}
+>   d[f](x|u) = \lim\inf_{\substack{\tau \searrow 0 \\ v\rightarrow u}}
+>     \frac{f(x + \tau v) - f(x)}{\tau}
 > \end{aligned}
 > $$
 
@@ -34,10 +37,17 @@ From Professor's Demitry's standpoint, we understand the scope when the definiti
 For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
 
 **Remarks**:
+Immediately Observe the Equivalence to the tangent cone definitions on the epigraph of the function: 
+
+$$
+\begin{aligned}
+	\text{epi}(d[f](x|\cdot)) = N_{\text{epi}(f)}([x \;f(x)]^T)
+\end{aligned}
+$$
 
 Such a definition is suitable for all type of real-valued functions, and just like what Dimitry's did for the subgradient, this definition of subderivative is much more generalized, and when $f$ is *Lipchitz Continuous* on a neighborhood of points, the above definition is Equivalent to the usual definition: 
 
-> Consider any $f$ that is an augmented real function that is finite at the point $x$, then the directional derivative in the direction of $u$ is: 
+> Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$
 > \begin{aligned}
 >      f'(x|u) = \lim_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}

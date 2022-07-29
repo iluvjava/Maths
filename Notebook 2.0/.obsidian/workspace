@@ -6,11 +6,11 @@
       {
         "id": "08a95f14879ccfc1",
         "type": "leaf",
-        "dimension": 49.32157394843962,
+        "dimension": 51.153324287652644,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
             "mode": "source",
             "source": true
           }
@@ -20,11 +20,11 @@
       {
         "id": "24f38ced94c9d3b3",
         "type": "leaf",
-        "dimension": 50.67842605156038,
+        "dimension": 48.846675712347356,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
             "mode": "preview",
             "source": true
           }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Convex Function is Locally Lipschitz.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,17 +116,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "24f38ced94c9d3b3",
+  "active": "08a95f14879ccfc1",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+    "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugation.md",
     "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Examples.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Properties.md",
-    "AMATH 515 (Optimization Fundamentals)/Gradient Descend/Gradient Descend 1.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Level Sets.md",
-    "AMATH 515 (Optimization Fundamentals)/AMATH 515.md",
-    "MATH ZZZ (My Ideas)/Line Search Assuming Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Tangent Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Normal Cone.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 515 (Optimization Fundamentals)/Softmax Regression.md",
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Introduction to Proximal Gradient.md",
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend Remastered/Proximal Operations Example Pack.md"
   ]
 }
