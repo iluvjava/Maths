@@ -1,10 +1,9 @@
 ### **Intro**
 
-This class is about: 
+We list the most important concepts for each part of Numerical Optimizations. 
 
-* Convex analysis. 
+* Convex analysis and Convex Geometry Big Ideas  
 * First order Methods, smooth and non-smooth. 
-* Variational Analysis. 
+* Duality and Subgradient
 
-[[Linear Algebra Basics for Optimization]] 
 

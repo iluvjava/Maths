@@ -31,8 +31,8 @@ $$
 \begin{aligned}
     & 0 \leq \frac{f(\bar{x} - t\nabla f(\bar{x})) - f(\bar{x})}{t}
     \\
-    & \text{Using Calculus}: 
-    \\&
+	& \text{Using Calculus}: 
+    \\ &
     \begin{aligned}
         f(\bar{x} - t\nabla f(\bar{x}))
         =&
@@ -57,16 +57,16 @@ $$
 
 * \[1\]: Substitute $f(\bar x - t \nabla f(\bar x))$. 
 
-* \[2\]:Taking the limit as $t\rightarrow 0$ and we keep in mind the non-negativity property of the norm, impliying that the norm of the gradient has to be approaching zero. 
+* \[2\]:Taking the limit as $t\rightarrow 0$ and we keep in mind the non-negativity property of the norm, implying that the norm of the gradient has to be approaching zero. 
 
 **Remarks**
 
-The converse is genearlly not true. Recall from your basic calculus class. 
+The converse is generally not true. Recall from your basic calculus class. 
 
 **Theorem: Second order Optimality _Necessary_ Conditions**
 
 > If f is twice differentiable, then
-> 1. $\bar{x}$ a local mean for f --> $\nabla f(\bar{x}) = \mathbf{0}$ and $\nabla^2 f(\bar{x})$ is **positive semi-definite**. 
+> 1. $\bar{x}$ a local min for f --> $\nabla f(\bar{x}) = \mathbf{0}$ and $\nabla^2 f(\bar{x})$ is **positive semi-definite**. 
 
 **Proof**: 
 
@@ -92,7 +92,7 @@ $\blacksquare$
 **Why Positive Semi-definite means optima for the given point?**
 
 
-The intuitive understanding comes from the fact that, the Jacobian of the gradient is Symmetric (or the Hessian). By spectral theorem ([[Hermitian Adjoint]]), the matrix is diagonalizable with an orthogonal basis: $H = QDQ^T$. If the matrix is positive definite, The eigenvalues are all strictly positive. Consequently for every unit vector $v$, $v^THv$ is positive. Which means that Hessian is describing a function in which, for every direction I walk in space, the function is increasiing in the direction. Since the function is already having a gradient of zero, then $f(x +v)- f(x) = 0 + v^THv + o(\Vert v\Vert^2)$, divinding by $v$ on both sides, we can choose $v$ small enough such that it's bounded by $v^THv$, the smallest eigenvalues of the matrix. Resulting in $f(x + v) - f(x) > 0$ for any $v$, proving that $x$ is the local minimum of the function. 
+The intuitive understanding comes from the fact that, the Jacobian of the gradient is Symmetric (or the Hessian). By spectral theorem ([[Hermitian Adjoint]]), the matrix is diagonalizable with an orthogonal basis: $H = QDQ^T$. If the matrix is positive definite, The eigenvalues are all strictly positive. Consequently for every unit vector $v$, $v^THv$ is positive. Which means that Hessian is describing a function in which, for every direction I walk in space, the function is increasing in the direction. Since the function is already having a gradient of zero, then $f(x +v)- f(x) = 0 + v^THv + o(\Vert v\Vert^2)$, dividing by $v$ on both sides, we can choose $v$ small enough such that it's bounded by $v^THv$, the smallest eigenvalues of the matrix. Resulting in $f(x + v) - f(x) > 0$ for any $v$, proving that $x$ is the local minimum of the function. 
 
 
 

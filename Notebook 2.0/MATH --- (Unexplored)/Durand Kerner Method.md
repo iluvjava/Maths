@@ -1,1 +1,1 @@
-See https://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method for more. 
+See [here](https://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method) for more. 

@@ -11,7 +11,13 @@ A set $K$ is a cone if, under $\lambda K, \lambda > 0$ scaling, we have $\lambda
 
 
 **Remarks**: 
-A cone is a special case of a subspace. It's a testriction of a subspace because it describes only positively weighted elements from the subspace. 
+A cone is a special case of a subspace. It's a restrictions of a subspace because it describes only positively weighted elements from the subspace. 
 
+When we talk about cone, the tip of the cone is usually centered around the origin. 
 
+**Pointed Cones**
+* A cone is called pointed if $-C \cap C= \{\mathbf 0\}$
+* It's also convex. 
 
+**Reproducing Cones**
+* Some times, $C - C = \mathbb E$, the whole Euclidean space. Then that space is called reproducing. 

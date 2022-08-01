@@ -1,5 +1,5 @@
-[[Subgradient and Subdifferential Definition]]
-[[Characterizing Functions for Optimizations]]
+* [[Subgradient and Subdifferential Definition]]
+* [[Characterizing Functions for Optimizations]]
 
 
 ---
@@ -23,7 +23,42 @@ The weak subgradient is relative easier to find.
 
 **Proofs**
 
-MISSING
+This proof is direct from the separable property of euclidean inner product. Let $(x_1, x_2), (y_1, y_2)\in \mathbb E_1\times \mathbb E_2$ then $\langle (x_1, x_2), (y_1, y_2)\rangle = \langle x_1, y_1\rangle + \langle x_2, y_2\rangle$. Therefore let's consider $x, y\in \mathbb E_1\times \mathbb E_2\times \cdots \times \mathbb E_n$ as a list of points, then consider the following direct decomposition of the vector group coordinate wise: 
+
+$$
+\begin{aligned}
+    \\
+    \text{let}:&\; \mathbf{e}_{i}:=  (\cdots, \mathbf 1, \cdots)\in \mathbb E_i 
+    \\
+    &
+    x = x_1 \mathbf{\hat e}_1 + x_2 \mathbf{\hat e}_2 + \cdots +x_n \mathbf{\hat e}_n \; \text{where}: x_1\in \mathbb E_1, x_2\in \mathbb E_2, \cdots, x_n \in \mathbb E_n
+    \\
+    &
+    y = y_1 \mathbf{\hat e}_1 + y_2 \mathbf{\hat e}_2 + \cdots +y_n \mathbf{\hat e}_n \; \text{where}: y_1\in \mathbb E_1, y_2\in \mathbb E_2, \cdots, y_n \in \mathbb E_n
+    
+    \\
+    \forall 1\le i \le n& : 
+    f_i(y_i) - f_i(x_i) \ge \langle \partial [f](x_i), y_i - x_i\rangle
+    \\
+    \implies & \partial [f](x_i)\in \mathbb E_i \implies \sum_{i = 1}^{n}\partial[f](x_i)\mathbf{\hat e}_i = \bigotimes_{i = 1}^{n}\partial[f](x_i)
+    \\
+    \implies &
+    \sum_{i = 1}^{n}f_i(y_i) - f_i(x_i)
+    \ge 
+    \langle \partial[f](x_i)\mathbf{\hat e_i}, (y_i - x_i) \mathbf{\hat e_i}\rangle
+    \\
+    \implies & 
+    f(y) - f(x) \ge \left\langle 
+        \bigotimes_{i = 1}^n\partial[f](x_i), \sum_{i = 1}^{n}(y_i - x_i)\mathbf{\hat e_i}    
+    \right\rangle
+    \\
+    \implies & f(y) - f(x)\ge 
+    \left\langle 
+        \bigotimes_{i = 1}^n\partial[f](x_i), y - x
+    \right\rangle
+\end{aligned}
+$$
+
 
 **Source:** 
 
@@ -38,7 +73,7 @@ Unassigned Exercises in AMATH 516 FALL 2021
 > $$
 
 **Proofs**: 
-MISSING
+The proof is direct from the definition of smooth gradient and non-smooth gradient. The little $o(\Vert x - y\Vert)$ sums up for both the equality of smooth function gradient and subgradient, and it combines into a new subgradient. And that subgradient translate to the direct sum of $\nabla[f](x)$ and $\partial [g](x)$. 
 
 **Source**: Unassigned exercise from AMATH 516. 
 
@@ -67,10 +102,19 @@ MISSING
 >   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b)	
 > $$
 
-**Proofs**
-MISSING
+**Proofs of Weak Results**
+Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Consider any $g\in \partial[f](Ax + b)$ we have from the definition that: 
 
-**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). 
+$$
+\begin{aligned}
+   
+\end{aligned}
+$$
+
+**Remarks**
+
+
+**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar 23.9. 
 
 
 
@@ -116,7 +160,7 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 > $$
 
 **Proofs**
-The direction $\supseteq$ is direct using the secand line inequality, the other $\subseteq$ is the hard direction. 
+The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. For this proof we also require: [[Normal Cone Addition]] for assistance. 
 
 **Source**: 
 

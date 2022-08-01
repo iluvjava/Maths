@@ -33,10 +33,10 @@ Direction summation of subspaces is stricter.
 
 > $$
 > \bigoplus_{v\in \mathcal{V}}^{}  v = \sum_{i = 1}^{m} w_iv_i \iff 
-> \exist! \{w_1, w_2, \cdots w_m\}: \bigoplus_{v\in \mathcal{V}} v = \sum_{i = 1}^{m}w_1v_i
+> \exists ! \{w_1, w_2, \cdots w_m\}: \bigoplus_{v\in \mathcal{V}} v = \sum_{i = 1}^{m}w_1v_i
 > $$
 
-The only way that direct summation is the same as Normal Summation is when the weights placed upon vectros from each of the subspaces is **unique**. 
+The only way that direct summation is the same as Normal Summation is when the weights placed upon vectors from each of the subspaces is **unique**. 
 
 **Direct Consequences of the Definition**
 

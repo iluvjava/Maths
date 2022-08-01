@@ -26,7 +26,7 @@ The direciton where, if a function is lower semi-continuous and it's convex, the
 >	|f(x) - f(x_0)| \le L \Vert x - x_0\Vert
 > $$
 > 
-> Where the function is locally lipschitz. 
+> Where the function is locally Lipschitz. 
 
 **Source**: Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitry's notes, chapter 3 for his AMATH 516. 
 
@@ -36,7 +36,7 @@ The direciton where, if a function is lower semi-continuous and it's convex, the
 The definition of Lipchitz is in [[Lipschitz Continuity]], and the proof and detailed discussion will be in here: [[Convex Function is Locally Lipschitz]]. 
 
 ---
-### **Continuity of Convex Unitvariate Functions**
+### **Proper Convex Functions are Lipschitz Continuous**
 
-**Proof** The proof needs the above statement. 
+For more details about it see [[Convex Function is Locally Lipschitz]] for more expositions. 
 

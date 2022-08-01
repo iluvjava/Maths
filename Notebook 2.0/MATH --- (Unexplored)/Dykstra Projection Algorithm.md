@@ -1,6 +1,5 @@
 
 
-
 Wiki Link [here](https://en.wikipedia.org/wiki/Dykstra%27s_projection_algorithm)
 
 A Cyclic Projection Algorithm Via duality:

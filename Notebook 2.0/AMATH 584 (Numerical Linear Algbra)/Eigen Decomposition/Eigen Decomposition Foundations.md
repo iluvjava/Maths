@@ -157,7 +157,8 @@ $$
 
 Observe that, the block triangular matrix contains all the eigenvalues of the block matrix $B$. Take this claim for granted, and it's also not hard to chech that this is true.
 
-### Importance of the Idea
+---
+### **Importance of the Idea**
 
 Notice that, $X$ can be some kind of generalized Eigenspaces, or the kyrlov subspace with grade $m$. In the case of Jordan form, the matrix $B$ is the jordan block, and the matrix $X$ is the eigen matrix. 
 

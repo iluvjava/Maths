@@ -1,4 +1,5 @@
-[[Unitary Matrix]], [[Complementary Nullity Theorem]]
+[[Unitary Matrix]],
+[[Complementary Nullity Theorem]]
 
 ---
 ### **Intro**

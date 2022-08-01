@@ -14,7 +14,7 @@ This lemma serves for [[Convex Function is Locally Lipschitz]]. The lemma stated
 
 
 ---
-### **Lemma: Boundedness of Subgradient In the Interier of the Domain**
+### **Lemma: Boundedness of Subgradient In the Interior of the Domain**
 
 > Let $f$ be $\mathbb R^n$ to $\mathbb{\bar{R}}$ be convex and proper, then for all $x\in \text{int}\circ \text{dom}(f)$ we have $g \in \partial [f](x)$ is bounded for all any $g$. Or briefly as: $\text{dom}(\partial [f]) \subseteq \text{int}\circ\text{dom}(f)$. 
 

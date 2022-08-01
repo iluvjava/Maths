@@ -4,13 +4,13 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 
 **The Augmented Real Functions**
 
-> $$
+>  $$
 > \begin{aligned}
 >     f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}
 > \end{aligned}
 > $$
 > 
-> The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+> The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics that are helpful for understanding the basics: 
 
@@ -75,7 +75,7 @@ Skipped for now. For a proof, see: \<First Order Method in Optimization\> by SIA
 A closed function is not enough for the function to be continuous, but a continuous function on a compact region is enough for it to be a closed function. 
 
 ---
-### **Coersive Function**
+### **Coercive Function**
 
 Recall Definition: 
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
@@ -171,8 +171,8 @@ For example, the function $\exp(x)$ is a strictly convex function.
 
 **Remarks**: 
 
-* Any strongly convex function is going to be coersive function. 
-* The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coersive. We cannot long lower "hug" the function using any type of quadratic function. 
+* Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
+* The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
 
 ---
 ### **Beta-Smoothness**
@@ -183,11 +183,20 @@ For example, the function $\exp(x)$ is a strictly convex function.
 > |f(x + h) - f(x) + \nabla f(x)^Th| \le \beta \frac{\Vert h\Vert^2}{2}
 > $$
 
+**Remarks**
+
+The absolute signs make it possible to model the smoothness for both convex and concave function. 
+
+
 **Theorem: Lipschitz Gradient means Beta Smooth**
 > The same beta the provides a bound between the linear approximation and the function it self is the Lipschitz constant for the function over the domain. 
 > $$
 > \Vert\nabla f(y) - \nabla f(x) \Vert \le \beta \Vert x - y\Vert
 > $$
+
+**Proofs**
+
+MISSING
 
 **Remarks**: 
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 

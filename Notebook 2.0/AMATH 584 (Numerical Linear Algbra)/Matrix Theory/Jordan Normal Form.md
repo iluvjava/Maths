@@ -13,7 +13,7 @@ Given any matrices, the Jordan normal form reduces matrix such that all of them 
 
 **Definition: Jordan Block**
 
-A jordan block is a diagonal matrix of eigenvalues together with a nullpotent operator. Let the nullpotent operator be $N_k = \text{diag}(\vec{1}, + 1)\in \mathbb{R}^{k \times k}$. It's called nullpotent because $N^{k} = \mathbf{0}$. Then a jordan block is defined to be: 
+A Jordan block is a diagonal matrix of eigenvalues together with a nullpotent operator. Let the nullpotent operator be $N_k = \text{diag}(\vec{1}, + 1)\in \mathbb{R}^{k \times k}$. It's called nullpotent because $N^{k} = \mathbf{0}$. Then a jordan block is defined to be: 
 
 $$
 J_k = \lambda I + N_k
