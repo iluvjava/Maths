@@ -107,21 +107,32 @@ Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$.
 
 $$
 \begin{aligned}
-   
+    & 
+    f(Ay + b) - f(Ax + b) \ge \langle g, Ay + b - (Ax + b)\rangle
+    \\
+    & 
+    f(Ay + b) - f(Ax + b) \ge \langle g, A(y - x)\rangle
+    \\
+    &
+    f(Ay + b) - f(Ax + b) \ge \langle A^Tg, y - x\rangle
+    \\
+    \implies & 
+    A^T g \in \partial [f(Ax + b)]_x(x)
 \end{aligned}
 $$
 
 **Remarks**
 
+The converse statement has more subtleties and we skip the proof here. 
+
 
 **Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar 23.9. 
-
 
 
 ---
 ### **Theorem: Subgradient of Composition (Weak Results)**
 
-> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function, and $f_i(x)$ are all convex. The weak result stated that: 
+> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in its all , and $f_i(x)$ are all convex. The weak result stated that: 
 > $$
 > \begin{aligned}
 >     & z \in \partial h(f_1(x), f_2(x), \cdots,f_n(x))

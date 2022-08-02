@@ -166,7 +166,7 @@ When $h_1, h_2$ is convex, the addition between the epigraphs of $h_1, h_2$ will
 
 **Example: Distance Function to Any Set is CONVEX**
 
-A distance function to any set, not neccessarily closed can be expressed as an infimal convolution: 
+A distance function to any set, not necessarily closed can be expressed as an infimal convolution: 
 
 $$
 \begin{aligned}
@@ -183,3 +183,19 @@ $\delta_C$ is convex and it's an augmented real function and $\Vert \cdot \Vert$
 
 **Source**
 Proof taken from \<First Order Optimizations\> by SIAM, theorem 2.19
+
+
+---
+### **Monotone Convex Compositions**
+
+> Let $h$ be $\mathbb{R}_n \mapsto \bar{\mathbb R}$ that is non-decreasing (More on this later) and convex. Let $g(x) = [f_1(x)\; f_2(x)\; \cdots \; f_n(x)]^T$ where $f_i(x)$ are all convex, then the composition $h(g(x))$ is still convex. 
+
+**Proof**
+
+I can't prove it need more research on what the hell is monotonicity on multiple variable function when obviously Euclidean space is not totally ordered. 
+
+
+**Source:**
+From a subgradient lecture [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). Further info about disciplined quasiconvex can be find [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). 
+
+

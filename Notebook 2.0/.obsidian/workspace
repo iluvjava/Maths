@@ -9,11 +9,12 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "source",
             "source": true
           }
-        }
+        },
+        "group": "5a45eabd05441c8c"
       },
       {
         "id": "3cc8af624ebcd0fd",
@@ -21,11 +22,12 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
             "mode": "preview",
             "source": true
           }
-        }
+        },
+        "group": "5a45eabd05441c8c"
       }
     ],
     "direction": "vertical"
@@ -77,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 455.5036315917969
+    "width": 455.5036315917969,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -93,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,15 +116,15 @@
   },
   "active": "24f38ced94c9d3b3",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
     "MATH 700 (Master Thesis)/References/Reliable Numberical Computations Chapter 1.pdf",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Normal Cone Addition.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
     "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Projection is L1 Lipschitz.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Cone.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md"
   ]
 }
