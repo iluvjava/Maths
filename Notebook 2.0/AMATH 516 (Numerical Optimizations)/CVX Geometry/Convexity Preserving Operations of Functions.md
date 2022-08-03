@@ -190,9 +190,47 @@ Proof taken from \<First Order Optimizations\> by SIAM, theorem 2.19
 
 > Let $h$ be $\mathbb{R}_n \mapsto \bar{\mathbb R}$ that is non-decreasing (More on this later) and convex. Let $g(x) = [f_1(x)\; f_2(x)\; \cdots \; f_n(x)]^T$ where $f_i(x)$ are all convex, then the composition $h(g(x))$ is still convex. 
 
+**Definitions: Monotonic Multivariables Functions** 
+
+The function $h$ is monotonic if $x \le y$ where $\le$ denotes every element of $x$ is less than $y$ and $x, y\in \mathbb R$, then $h(x) \ge f(y)$. Whis definition is also equivalent to $f(x + \epsilon \mathbf e_i) \ge f(x)$ for any given $x$ with $\epsilon \ge 0$. These 2 definitions are equivalent. 
+
 **Proof**
 
-I can't prove it need more research on what the hell is monotonicity on multiple variable function when obviously Euclidean space is not totally ordered. 
+The proof is direct by considering the convexity for each $f_i$: 
+
+$$
+\begin{aligned}
+    & \forall x, y \in \mathbb E, 1\le i \le n, \lambda\in [0, 1] : f_i(\lambda x + (1 - \lambda)y) \ge \lambda f_i(x) + (1 - \lambda)f_i(y)
+    \\
+    & g(x) := [f_1\; f_2\; \cdots \; f_n](x)
+    \\
+    \implies &
+    g(\lambda x + (1 - \lambda)y) \ge \lambda g(x) + (1 - \lambda)g(x)
+    \\
+    [1]\implies & 
+    h(g(\lambda x + (1 -\lambda)y)) \ge h(\lambda g(x) + (1 - \lambda)g(x))
+    \\
+    [2]\implies &
+    h(\lambda g(x) + (1 -\lambda)g(y)) \ge \lambda h(g(x)) + (1 - \lambda) h(g(y))
+    \\
+    \implies & 
+    h(g(\lambda x + (1 -\lambda)y)) \ge \lambda h(g(x)) + (1 - \lambda) h(g(y))
+\end{aligned}
+$$
+
+* [1]: By the monotonicity of $h$
+* [2]: By the convexity of $h$. 
+
+The proof is done. 
+
+**Remarks**
+
+**Monotonicity:** 
+  * The monotonicity can be extended to any type of partial ordering for $\mathbb E$, and I think there is more. 
+
+**Quasi Convex**
+  * A weaker theorem regarding the construction of quasi convex can be find: [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). It stated that the composition between any monotone functions (which they give a different definition of) with a convex function produces what they referred to as: "Disciplined Quasi Convex Functions". 
+
 
 
 **Source:**
