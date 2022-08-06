@@ -4,30 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "24f38ced94c9d3b3",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-            "mode": "source",
-            "source": true
-          }
-        },
-        "group": "5a45eabd05441c8c"
-      },
-      {
         "id": "3cc8af624ebcd0fd",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-            "mode": "preview",
-            "source": true
-          }
+          "type": "empty",
+          "state": {}
         },
-        "group": "5a45eabd05441c8c"
+        "group": "cc6f53be0e5697d8"
+      },
+      {
+        "id": "58f6c8d62657e476",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        },
+        "group": "cc6f53be0e5697d8"
       }
     ],
     "direction": "vertical"
@@ -79,8 +71,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 455.5036315917969,
-    "collapsed": true
+    "width": 455.5036315917969
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -96,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+                "file": "MATH --- (Unexplored)/LOBPCG.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,17 +105,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "24f38ced94c9d3b3",
+  "active": "3cc8af624ebcd0fd",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
-    "MATH 700 (Master Thesis)/References/Reliable Numberical Computations Chapter 1.pdf",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Normal Cone Addition.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Supporing Convex Sets using Halfspaces.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Strict Separations Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Sets.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convex Sets Properties.md"
+    "Untitled.md",
+    "MATH --- (Unexplored)/LOBPCG.md",
+    "MATH --- (Unexplored)/Untitled.md",
+    "MATH --- (Unexplored)/Functional Analysis/Functional Analysis.md",
+    "MATH --- (Unexplored)/Functional Analysis/Continuous Mapping.md",
+    "MATH --- (Unexplored)/Functional Analysis/Linear Operators.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Vector Space.md",
+    "MATH --- (Unexplored)/Tensor Product of Vector Spaces.md",
+    "MATH --- (Unexplored)/tensortheory.pdf"
   ]
 }

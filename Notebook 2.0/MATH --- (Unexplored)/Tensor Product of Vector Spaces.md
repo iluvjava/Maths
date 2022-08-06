@@ -58,14 +58,22 @@ A mapping from $\mathbb R^{m\times n}$ to $\mathbb R^{m'\times n'}$ can be defin
 > \end{aligned}
 > $$
 
-Which is saying that, we can represent the transformation of a basis vector as a sum of outter product of vectors take from a sequence of matrices $X^{(k)}, Y^{(k)}$, for $k\in [\min(m, n)]$. Please observe that $X_i^{(k)} \in \mathbb R^{m\times m}, Y_i^{(k)} \in \mathbb R^{n\times n}$. This theorem is useful if we can define the mapping for all the basis matrix $e_i, e_j$ to some output matrix $A_{i, j}$, and $X^{(k)}, Y^{(k)}$ can be defined via the SVD of the output matrix $A_{i, j}$ corresponding to that basis matrix. 
+Which is saying that, we can represent the transformation of a basis vector as a sum of outer product of vectors take from a sequence of matrices $X^{(k)}, Y^{(k)}$, for $k\in [\min(m, n)]$. Please observe that $X_i^{(k)} \in \mathbb R^{m\times m}, Y_i^{(k)} \in \mathbb R^{n\times n}$. This theorem is useful if we can define the mapping for all the basis matrix $e_i, e_j$ to some output matrix $A_{i, j}$, and $X^{(k)}, Y^{(k)}$ can be defined via the SVD of the output matrix $A_{i, j}$ corresponding to that basis matrix. 
+
+
 
 
 ---
-### **Reductions to Matrix Vectors/Matrix Multipliations**
+### **Reductions to Matrix Vectors/Matrix Multiplications**
 
 
 
 
 ---
 ### **Differentiation on Matrices**
+
+
+---
+### **List of Resources for Studying this Topic Further**
+
+* [Introduction to vectors and tensors Vol 1](https://oaktrust.library.tamu.edu/bitstream/handle/1969.1/2502/IntroductionToVectorsAndTensorsVol1.pdf)

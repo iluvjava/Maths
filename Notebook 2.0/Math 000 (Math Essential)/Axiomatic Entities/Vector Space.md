@@ -29,7 +29,7 @@ Where, the set $V$ contains the additive identity $\mathbf 0$.
 
 **Complete And Incomplete**: 
 
-> The set of vector spapces can be complete if all cauchy sequence converges to a given element in the set, else the set is incomplete. 
+> The set of vector space can be complete if all Cauchy sequence converges to a given element in the set, else the set is incomplete. 
 
 **Finite Fields**:
 
@@ -37,3 +37,10 @@ Where, the set $V$ contains the additive identity $\mathbf 0$.
 
 **Lacks of Inner Product**:
 > The definition above lacks the definition of an inner product for the vectors. 
+
+
+---
+### **Examples**
+
+**Linear Operator**
+* A linear transformations that links between 2 vector spaces is itself, in a vector space. 

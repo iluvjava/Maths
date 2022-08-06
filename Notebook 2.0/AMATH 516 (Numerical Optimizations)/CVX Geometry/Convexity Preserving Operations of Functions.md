@@ -223,17 +223,16 @@ $$
 
 The proof is done. 
 
-**Remarks**
+**Remarks**: 
 
-**Monotonicity:** 
+* ***Monotonicity:** 
   * The monotonicity can be extended to any type of partial ordering for $\mathbb E$, and I think there is more. 
 
-**Quasi Convex**
+* **Quasi Convex**
   * A weaker theorem regarding the construction of quasi convex can be find: [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). It stated that the composition between any monotone functions (which they give a different definition of) with a convex function produces what they referred to as: "Disciplined Quasi Convex Functions". 
 
 
-
 **Source:**
-From a subgradient lecture [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). Further info about disciplined quasiconvex can be find [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). 
+From a subgradient lecture [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). Further info about disciplined quasi-convex can be find [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). 
 
 
