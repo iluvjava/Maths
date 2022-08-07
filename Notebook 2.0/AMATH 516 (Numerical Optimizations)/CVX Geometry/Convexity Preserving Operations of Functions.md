@@ -225,7 +225,7 @@ The proof is done.
 
 **Remarks**: 
 
-* ***Monotonicity:** 
+* **Monotonicity:** 
   * The monotonicity can be extended to any type of partial ordering for $\mathbb E$, and I think there is more. 
 
 * **Quasi Convex**

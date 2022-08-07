@@ -12,4 +12,4 @@ The closure for a set is the set of all points such that, the epsilon ball of th
 
 **Remarks**
 
-A closed set is not neccessarily complete. For the set $\mathbb{Q}$ which is not complete, but it still has the epsilon ball intersecting region with itself that is non-zero for very element from it. Even worse, the cantour set is a closed set. See more in [[The Cantor Set]]. A set is closed, if its complement is an open set. 
+A closed set is not necessarily complete. For the set $\mathbb{Q}$ which is not complete, but it still has the epsilon ball intersecting region with itself that is non-zero for very element from it. Even worse, the Cantor set is a closed set. See more in [[The Cantor Set]]. A set is closed, if its complement is an open set. 

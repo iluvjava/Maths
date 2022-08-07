@@ -3,14 +3,12 @@ In fact, we need a bit of topology to get identify the type of functions that ca
 
 Please note that, some of the discussion will feel familiar to discussion spotted here: [[Closed, Proper, Level Bounded, Strong Convex]], which also concerns the topological properties of sets related to the family of convex functions. 
 
-
-
 ---
 ### **Intro**
 
 The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers, which is most applicable to most of the optimizations theories. 
 
-Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the rampy function. 
+Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
 **What is Closed Set?** 
 * $Q$ is closed
@@ -33,6 +31,12 @@ $$
 $$
 
 Since $\mathbb B_\epsilon(x)$ contains $x$ which is $\in Q$, we have the negation of subset denoted as $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$
+
+**Remarks**
+
+* **Intuitive Understanding**: 
+	* A set is closed if it has its own boundary inside of itself. 
+	* A set can be both opened and closed, only opened or closed, or both. A set that is opened and closed would be $[a, b)$, and a set that is both opened and closed is $\mathbb R$. And *the empty set is closed and opened*. 
 
 
 ---

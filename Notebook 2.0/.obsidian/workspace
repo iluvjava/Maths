@@ -7,8 +7,12 @@
         "id": "3cc8af624ebcd0fd",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+            "mode": "source",
+            "source": true
+          }
         },
         "group": "cc6f53be0e5697d8"
       },
@@ -16,8 +20,12 @@
         "id": "58f6c8d62657e476",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+            "mode": "preview",
+            "source": true
+          }
         },
         "group": "cc6f53be0e5697d8"
       }
@@ -71,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 455.5036315917969
+    "width": 337.5,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -87,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH --- (Unexplored)/LOBPCG.md",
+                "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,15 +116,15 @@
   },
   "active": "3cc8af624ebcd0fd",
   "lastOpenFiles": [
-    "Untitled.md",
-    "MATH --- (Unexplored)/LOBPCG.md",
-    "MATH --- (Unexplored)/Untitled.md",
-    "MATH --- (Unexplored)/Functional Analysis/Functional Analysis.md",
-    "MATH --- (Unexplored)/Functional Analysis/Continuous Mapping.md",
-    "MATH --- (Unexplored)/Functional Analysis/Linear Operators.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
     "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
-    "MATH 000 (Math Essential)/Axiomatic Entities/Vector Space.md",
-    "MATH --- (Unexplored)/Tensor Product of Vector Spaces.md",
-    "MATH --- (Unexplored)/tensortheory.pdf"
+    "MATH --- (Unexplored)/Functional Analysis/Continuous Mapping.md",
+    "MATH --- (Unexplored)/Functional Analysis/Functional Analysis.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
+    "MATH --- (Unexplored)/LOBPCG.md",
+    "Untitled.md",
+    "MATH --- (Unexplored)/Untitled.md",
+    "MATH --- (Unexplored)/Functional Analysis/Linear Operators.md"
   ]
 }
