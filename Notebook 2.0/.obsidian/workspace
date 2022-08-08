@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Dual Space.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Background/Dual Space.md",
             "mode": "preview",
             "source": true
           }
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 337.5,
-    "collapsed": true
+    "width": 457.5
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -96,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Background/Dual Space.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,15 +115,15 @@
   },
   "active": "3cc8af624ebcd0fd",
   "lastOpenFiles": [
-    "MATH 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
-    "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+    "MATH --- (Unexplored)/Functional Analysis/Continuous Mapping and Compactness.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Compact and Bounded Sets.md",
     "MATH --- (Unexplored)/Functional Analysis/Continuous Mapping.md",
     "MATH --- (Unexplored)/Functional Analysis/Functional Analysis.md",
+    "MATH --- (Unexplored)/Functional Analysis/Linear Operators.md",
+    "MATH --- (Unexplored)/Functional Analysis/Topological Continuity Characterizations.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Sequence Space.md",
+    "MATH 000 (Math Essential)/Axiomatic Entities/Metric Space.md",
     "AMATH 516 (Numerical Optimizations)/Background/Topological Basics for Optimizations.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md",
-    "MATH --- (Unexplored)/LOBPCG.md",
-    "Untitled.md",
-    "MATH --- (Unexplored)/Untitled.md",
-    "MATH --- (Unexplored)/Functional Analysis/Linear Operators.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Closure Topology.md"
   ]
 }
