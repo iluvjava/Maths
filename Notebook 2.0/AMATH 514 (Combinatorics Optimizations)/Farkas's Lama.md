@@ -4,7 +4,6 @@
 
 In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma)
 
-Proofs are Taken from: Alexander Schrijver pg 31, 32 , A Course in Combinatorics Optimizations, they are summerized and organized/reinterpreted by Professor Vincent of AMATH 514 at University of Washington, 2022, Spring. 
 
 ---
 ### **Intro**
@@ -258,4 +257,8 @@ $\implies$ tells a story that, for a polytope that is bounded on the direction o
 
 This theorem is linked to the duality of linear programming because the left part of the iff statement is the bounded primal and the right part of the iff is the dual reaching at least as much as what primal is; in this case $c_0$. 
 
-For one more extension that appared in AMATH 514, check out: [[Stiemke Theorem]]!!!
+For one more extension that appeared in AMATH 514, check out: [[Stiemke Theorem]]!!!
+
+---
+### **Source**:
+Proofs are Taken from: Alexander Schrijver pg 31, 32 , A Course in Combinatorics Optimizations, they are summarized and organized/reinterpreted by Professor Vincent of AMATH 514 at University of Washington, 2022, Spring. 

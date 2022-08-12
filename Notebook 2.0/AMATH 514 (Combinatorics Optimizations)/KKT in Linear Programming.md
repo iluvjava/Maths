@@ -26,7 +26,7 @@ $$
 The left is the primal problem, right is dual. 
 
 ---
-### **The Lagragian on Primal and KKT Conditions**
+### **KKT Conditions From Saddle Points of the Lagrangian**
 
 $$
 \begin{aligned}
@@ -34,7 +34,7 @@ $$
 \end{aligned}\tag{2}
 $$
 
-The negative sign is due to the maximization objective of the primal problem. The lagrangian is direct from the KKT conditions by treating $G(x) = Ax - b$, $H(x)\equiv \mathbf 0$, $f(x) = \langle c, x\rangle$. The KKT conditions are: 
+The negative sign is due to the maximization objective of the primal problem. The Lagrangian is direct from the KKT conditions by treating $G(x) = Ax - b$, $H(x)\equiv \mathbf 0$, $f(x) = \langle c, x\rangle$. The KKT conditions are: 
 
 $$
 \begin{aligned}
@@ -71,7 +71,7 @@ $$
 \end{aligned}\tag{4}
 $$
 
-This is another lagrangian where $\overline{G}(x) = A^Ty + c, \overline{f}(x)$, which can be interpreted as another Lagrangian: 
+This is another Lagrangian where $\overline{G}(x) = A^Ty + c, \overline{f}(x)$, which can be interpreted as the Lagrangian whose primal formulation is: 
 
 $$
 \begin{aligned}
@@ -84,23 +84,26 @@ $$
 It's a maximization due to the positive sign on the Lagrangian. The constraint is $A^Ty = c$ is an equality because $x\in \mathbb R^n$. 
 
 ---
-### **Strong Duality**
+### **Strong Duality from Complementary Slacks**
 Strong duality for the Linear programming can be found from the KKT conditions from the Lagrangian. Combining the stationary conditions with the complementary slack conditions we obtain the strong duality statement: 
 
 $$
 \begin{aligned}
-    A^Ty &= c
-    \\
-    \langle y, Ax - b\rangle &= 0
+    \langle y, Ax - b\rangle &= 0 \quad \text{Comp Slack}
     \\
     \langle y, Ax\rangle - \langle b, y\rangle &= 0
     \\
-    \langle A^Ty, x\rangle - \langle b, y\rangle &= 0
+    \langle A^Ty, x\rangle - \langle b, y\rangle &= 0 \quad \text{by: }A^Ty =c
     \\
     \langle c, x\rangle - \langle b, y\rangle &= 0
 \end{aligned}\tag{6}
 $$
 
 Which is the strong duality, without using hardcore mathematical proofs. 
+
+**Remarks**
+
+Assuming that strong duality holds (which it does for all LP problems), we then need either one of the Strong Duality or the Comp Slack conditions to characterize the KKT conditions, we don't need both. 
+
 
 

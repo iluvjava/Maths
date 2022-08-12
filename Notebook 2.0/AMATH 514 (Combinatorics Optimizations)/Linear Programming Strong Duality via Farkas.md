@@ -33,7 +33,7 @@ These 3 statements are equivalent, using some standard reduction tricks we can t
 ---
 ### **Strong Duality: Proof of The Second Form via Farkas' Lemma**
 
-The proof will make use of Lemma 2.1, a foundamental results of Farka's lemma, and then Corrollary 2.5(b), one of the extesion of the Farkas' Lemma. We proceed to prove the second variant of the strong duality: 
+The proof will make use of Lemma 2.1, a fundamental results of Farka's lemma, and then Corollary 2.5(b), one of the extension of the Farkas' Lemma. We proceed to prove the second variant of the strong duality: 
 
 $$
 \begin{aligned}
@@ -44,7 +44,7 @@ $$
 \end{aligned}
 $$
 
-Assuming that the primal and dualy are both feasible and bounded, then using Weak duality (Proof is an exercise in linear algebra): 
+Assuming that the primal and dual are both feasible and bounded, then using Weak duality (Proof is an exercise in linear algebra): 
 
 $$
 \begin{aligned}
@@ -95,4 +95,4 @@ Combining with the weak duality, the strong duality of LP is shown. The form of 
 ---
 ### **Remark**
 
-For a view of duality in Linear programming using the KKT conditions and the Lagrangian , check out [[KKT in Linear Programming]]. 
+For a view of duality in Linear programming using the KKT conditions and the Lagrangian, check out [[KKT in Linear Programming]]. 
