@@ -6,28 +6,51 @@
       {
         "id": "58f6c8d62657e476",
         "type": "leaf",
+        "dimension": 47.96296296296296,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH S01 Functional Analysis/Continuous Mapping.md",
-            "mode": "source",
-            "source": true
-          }
-        },
-        "group": "8c02c2f26b57841e"
-      },
-      {
-        "id": "376cfb6744b7c6ea",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "MATH S01 Functional Analysis/Continuous Mapping.md",
+            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
             "mode": "preview",
             "source": true
           }
-        },
-        "group": "8c02c2f26b57841e"
+        }
+      },
+      {
+        "id": "7e7d70c26c0f5a5f",
+        "type": "leaf",
+        "dimension": 52.03703703703704,
+        "state": {
+          "type": "localgraph",
+          "state": {
+            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
+            "options": {
+              "collapse-filter": false,
+              "search": "",
+              "localJumps": 5,
+              "localBacklinks": true,
+              "localForelinks": true,
+              "localInterlinks": false,
+              "showTags": false,
+              "showAttachments": false,
+              "hideUnresolved": false,
+              "collapse-color-groups": true,
+              "colorGroups": [],
+              "collapse-display": false,
+              "showArrow": false,
+              "textFadeMultiplier": 0,
+              "nodeSizeMultiplier": 1,
+              "lineSizeMultiplier": 1,
+              "collapse-forces": true,
+              "centerStrength": 0.518713248970312,
+              "repelStrength": 10,
+              "linkStrength": 1,
+              "linkDistance": 250,
+              "scale": 0.44281600324224624,
+              "close": true
+            }
+          }
+        }
       }
     ],
     "direction": "vertical"
@@ -54,7 +77,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "moreau envelope",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +102,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 457.5
+    "width": 457.5,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH S01 Functional Analysis/Continuous Mapping.md",
+                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,17 +137,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "33c93727ff10f098",
+  "active": "7e7d70c26c0f5a5f",
   "lastOpenFiles": [
-    "MATH S01 Functional Analysis/Continuous Linear Transform.md",
-    "MATH S01 Functional Analysis/Continuous Mapping.md",
-    "AMATH 514 (Combinatorics Optimizations)/KKT in Linear Programming.md",
-    "AMATH 514 (Combinatorics Optimizations)/Linear Programming Strong Duality via Farkas.md",
-    "AMATH 514 (Combinatorics Optimizations)/Farkas's Lama.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Introducing The KKT Conditions.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Normal Cone Addition.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Polar Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dual Space.md",
-    "MATH S01 Functional Analysis/Continuous Mapping and Compactness.md"
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
+    "MATH --- (Unexplored)/Tensor Product of Vector Spaces.md",
+    "MATH --- (Unexplored)/tensortheory.pdf",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Tangent Cone.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Set Addition.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Relative Interior And Relative Boundary.md"
   ]
 }
