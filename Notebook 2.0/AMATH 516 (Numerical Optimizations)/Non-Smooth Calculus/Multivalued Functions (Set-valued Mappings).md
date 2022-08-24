@@ -23,3 +23,20 @@ $$
 $$
 
 The graph of the operator is literally the multi-function visualized on a higher dimensions of the cross product space. 
+
+---
+### **Composition and Additions**
+
+Let $T, S$ be 2 set-valued operators, then the composition between the 2 operator 
+
+$$
+\text{gph}(T(S))= \{(x, y)| (x, z)\in \text{gph}(S), (z, y)\in \text{gph}(T)\}. 
+$$
+
+Let $T, S$ be 2 set-valued operators, then their additions is taking the same domains for both operators, but performing Minkowski summations for the output, giving us: 
+
+$$
+\text{gph}(T + S) = \{(x, y + z)|(x, y)\in T, (x, z)\in S\}, 
+$$
+
+For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. When thinking about the set-valued operators, we might treat then directly as their graph instead. 

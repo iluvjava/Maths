@@ -6,51 +6,72 @@
       {
         "id": "58f6c8d62657e476",
         "type": "leaf",
-        "dimension": 47.96296296296296,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
-            "mode": "preview",
+            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+            "mode": "source",
             "source": true
           }
-        }
+        },
+        "group": "c1c28e4078e2ac04"
       },
       {
-        "id": "7e7d70c26c0f5a5f",
-        "type": "leaf",
-        "dimension": 52.03703703703704,
-        "state": {
-          "type": "localgraph",
-          "state": {
-            "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
-            "options": {
-              "collapse-filter": false,
-              "search": "",
-              "localJumps": 5,
-              "localBacklinks": true,
-              "localForelinks": true,
-              "localInterlinks": false,
-              "showTags": false,
-              "showAttachments": false,
-              "hideUnresolved": false,
-              "collapse-color-groups": true,
-              "colorGroups": [],
-              "collapse-display": false,
-              "showArrow": false,
-              "textFadeMultiplier": 0,
-              "nodeSizeMultiplier": 1,
-              "lineSizeMultiplier": 1,
-              "collapse-forces": true,
-              "centerStrength": 0.518713248970312,
-              "repelStrength": 10,
-              "linkStrength": 1,
-              "linkDistance": 250,
-              "scale": 0.44281600324224624,
-              "close": true
+        "id": "25852755e36033ca",
+        "type": "split",
+        "children": [
+          {
+            "id": "7aa4909c08125716",
+            "type": "leaf",
+            "dimension": 66.76891615541922,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+                "mode": "preview",
+                "source": true
+              }
+            },
+            "group": "c1c28e4078e2ac04"
+          },
+          {
+            "id": "f1d1d1cf707c4244",
+            "type": "leaf",
+            "dimension": 33.23108384458078,
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 1,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": false,
+                  "showTags": false,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": false,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.518713248970312,
+                  "repelStrength": 10,
+                  "linkStrength": 1,
+                  "linkDistance": 250,
+                  "scale": 1.5319777827965726,
+                  "close": false
+                }
+              }
             }
           }
-        }
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -77,7 +98,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "moreau envelope",
+                "query": "TODO",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -119,7 +140,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Proximal Gradient Method.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,17 +158,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "7e7d70c26c0f5a5f",
+  "active": "58f6c8d62657e476",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Normal Cone Addition.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Support Function.md",
-    "MATH --- (Unexplored)/Tensor Product of Vector Spaces.md",
-    "MATH --- (Unexplored)/tensortheory.pdf",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Caratheodory Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Tangent Cone.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Projections and Dist.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Set Addition.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Relative Interior And Relative Boundary.md"
+    "AMATH 516 (Numerical Optimizations)/Moreau Envelope.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+    "AMATH 503 (Intro to Partial Differential Equations)/Dirichlet Theorem.md",
+    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
+    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Introducing The KKT Conditions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
+    "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugation.md",
+    "MATH --- (Unexplored)/LOBPCG.md"
   ]
 }

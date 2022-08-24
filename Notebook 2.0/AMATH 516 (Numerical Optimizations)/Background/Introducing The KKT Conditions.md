@@ -31,7 +31,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-We assume that $f(x)$, $G(x)$, $H(x)$ are all differentiable, having Hessian and Gradient(Jacobian) In the case of non-smooth function, we use sub-gradient technieques(**CITATION NEEDED**). This formulations is a generalization of the Fenchel-Rockafellar Duality. It's a minimization problem of objective functon $f(x)$, m constraints function $g_i(x)$, both equality and inequality constraints are presented here. We assume that $f:\mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is proper and $g_i(x) : \mathbb{R}^n\mapsto\mathbb{R}$. 
+We assume that $f(x)$, $G(x)$, $H(x)$ are all differentiable, having Hessian and Gradient(Jacobian) In the case of non-smooth function, we use sub-gradient techniques(**#CITATION_NEEDED**). This formulations is a generalization of the Fenchel-Rockafellar Duality. It's a minimization problem of objective functon $f(x)$, m constraints function $g_i(x)$, both equality and inequality constraints are presented here. We assume that $f:\mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is proper and $g_i(x) : \mathbb{R}^n\mapsto\mathbb{R}$. 
 
 **Lagrangian:** 
 

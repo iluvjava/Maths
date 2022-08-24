@@ -23,7 +23,7 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 
 **Notations**
 
-For clear notations, we will present conjugating a function wrt to a specific parameter for an expression, and show what intputs are given. For example, taking the conjugation of $f(Ax + b, y)$ wrt to $x$ and evaluating the conjugate at $z$ is denoted as: 
+For clear notations, we will present conjugating a function wrt to a specific parameter for an expression, and show what inputs are given. For example, taking the conjugation of $f(Ax + b, y)$ wrt to $x$ and evaluating the conjugate at $z$ is denoted as: 
 
 $$
 \begin{aligned}

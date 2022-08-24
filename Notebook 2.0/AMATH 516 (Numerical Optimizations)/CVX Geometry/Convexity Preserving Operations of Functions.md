@@ -153,7 +153,7 @@ Finally, there exists a epigraphical interpretations of Partial Minimizations by
 
 **Theorem: Preservation of Convexity Over Infimal Convolution**
 
-> Let $h_1$ be a *convex proper augmented real function* and let $h_1$ be a *convex real-valued function*, then their infimal convolution is a convex function. 
+> Let $h_1$ be a *convex proper augmented real function* and let $h_2$ be a *convex real-valued function*, then their infimal convolution is a convex function. 
 
 **Proof**
 
