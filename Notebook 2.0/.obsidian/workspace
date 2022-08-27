@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+            "file": "MATH --- (Unexplored)/Epigraphical Convergence.md",
             "mode": "source",
             "source": true
           }
@@ -23,11 +23,11 @@
           {
             "id": "7aa4909c08125716",
             "type": "leaf",
-            "dimension": 66.76891615541922,
+            "dimension": 73.21063394683026,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+                "file": "MATH --- (Unexplored)/Epigraphical Convergence.md",
                 "mode": "preview",
                 "source": true
               }
@@ -37,11 +37,11 @@
           {
             "id": "f1d1d1cf707c4244",
             "type": "leaf",
-            "dimension": 33.23108384458078,
+            "dimension": 26.789366053169733,
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+                "file": "MATH --- (Unexplored)/Epigraphical Convergence.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -123,8 +123,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 457.5,
-    "collapsed": true
+    "width": 409.5
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -140,7 +139,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
+                "file": "MATH --- (Unexplored)/Epigraphical Convergence.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,15 +159,15 @@
   },
   "active": "58f6c8d62657e476",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Moreau Envelope.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Nonempty Subdifferential Implies Convexity.md",
     "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Multivalued Functions (Set-valued Mappings).md",
-    "AMATH 503 (Intro to Partial Differential Equations)/Dirichlet Theorem.md",
-    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
-    "MATH 700 (Master Thesis)/Lanczos Projection onto Ritz Under Floats.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Introducing The KKT Conditions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
-    "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugation.md",
-    "MATH --- (Unexplored)/LOBPCG.md"
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Monotonicity of Subgradient on a Line.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Affine Hull, Affine Span.md",
+    "MATH S01 Functional Analysis/Continuous Linear Transform.md",
+    "MATH --- (Unexplored)/Dykstra Projection Algorithm.md",
+    "MATH --- (Unexplored)/Durand Kerner Method.md",
+    "MATH --- (Unexplored)/George Dantzig Decomposition.md"
   ]
 }

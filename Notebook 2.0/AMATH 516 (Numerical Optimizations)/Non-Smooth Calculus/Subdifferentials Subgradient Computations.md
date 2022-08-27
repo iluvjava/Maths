@@ -99,8 +99,11 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 
 > The subgradient of the function $f(Ax + b)$ wrt to x is: 
 > $$
->   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b)	
+>   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b).
 > $$
+> However, the case where $\partial[f(Ax + b)|x](x) \subseteq A^T\partial[f](Ax + b)$ is generally false, and it's true when: 
+> (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
+> (ii)$f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
 
 **Proofs of Weak Results**
 Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Consider any $g\in \partial[f](Ax + b)$ we have from the definition that: 

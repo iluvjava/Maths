@@ -1,5 +1,5 @@
 Major Reference Sources: 
-* [Stanford University](https://stanford.edu/~boyd/admm.html) ALL IN ONe Resources for ADMM 
+* [Stanford University](https://stanford.edu/~boyd/admm.html) ALL IN ONE Resources for ADMM 
 * Paper [link](https://stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf)
 
 Prerequisites: 
