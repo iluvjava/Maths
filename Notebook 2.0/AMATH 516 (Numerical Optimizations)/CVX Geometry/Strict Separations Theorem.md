@@ -195,7 +195,7 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 ---
 ### **Corollary: Strict Separations Between 2 Convex Sets**
 
-> The theorem regarding seprations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D \neq \emptyset$. 
+> The theorem regarding seprations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D = \emptyset$, then there exists a hyperplane separating them. 
 
 **Proofs Sketch**
 1. Invoke sequential compactness theorem to show that $C- D$ is a compact set. 

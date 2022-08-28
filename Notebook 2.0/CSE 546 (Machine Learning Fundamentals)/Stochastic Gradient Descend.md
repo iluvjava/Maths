@@ -66,7 +66,7 @@ $$
 \mathbb{E}\left[
     \Vert w_{t + 1}- w_*\Vert_2^2
     \right]
-= 
+=
 \mathbb{E}\left[
         \Vert 
             w_t - \eta \nabla l_{I_t}(w_t) - w_*
