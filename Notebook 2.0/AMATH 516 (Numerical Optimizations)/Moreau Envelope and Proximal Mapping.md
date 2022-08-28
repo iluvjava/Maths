@@ -43,10 +43,10 @@ Dimitry's Comments: The prox operator is a generalization of the set projection 
 ---
 ### **As a Operators**
 
-> When the function $f$ is convex closed and proper, the $\text{prox}_{\alpha, f}$ can be viewed the following operator $(I + \alpha \partial f)^{-1}$, which is also, a single valued operator that is Surjective. 
+> When the function $f$ is convex closed and proper, the $\text{prox}_{\alpha, f}$ can be viewed the following operator $(I + \alpha \partial f)^{-1}$, which is also, a single valued operator that sometimes has nice closed form solution to it.  
 
 **Proof**: 
-The prox has a unique solution when the function $f$ is convex with $\alpha \ge 0$, suppose that $y^+$ is such an optimal then using subgradient: 
+The prox has a unique solution when the function $f$ is convex with $\alpha > 0$, suppose that $y^+$ is such an optimal then using subgradient: 
 
 $$
 \begin{aligned}
@@ -61,9 +61,10 @@ $$
     \frac{x}{\alpha} &\in 
     (\partial f + \alpha^{-1}I)(y^+)
     \\
-    x &\in \alpha^{-1}(\partial f + \alpha^{-1}I)(y^+)
+    x &\in 
+    (\alpha \partial f + I)(y^+)
     \\
-    y^+ &\in \alpha(\partial f + \alpha^{-1}I)^{-1}(x).
+    y &\in (\alpha\partial f+ I)^{-1}(x).
 \end{aligned}
 $$
 
@@ -72,14 +73,14 @@ Therefore, the proximal operator on a function that is convex proper and closed 
 
 **Remarks**
 
-(#CITATION_NEEDED) to explain a bit more about the history of this particular operator. Right from the start, it's not possible to assume that it's possible to be invertible, and even if it is invertible, we need to know if it's, singled valued or not. In this particular case, because we know how subgradient work, and $f$ being closed convex and proper, it's singled value. But, to characterize such properties in the general case, we need to read more. 
+Right from the start, we should not assume that it's invertible, and even if it is invertible, we need to know if the inverse operator is still a multi-value mapping, or a single value mapping. In this particular case, because we know how subgradient work, and $f$ being closed convex and proper, it's singled value. But, to characterize such properties in the general case, we need to read more. Check out: The end of chapter 3 comments on Dimitry's work. 
 
-Check out: The end of chapter comments on Dimitry's work. 
+Here, I want to highlight one important observation we should make here, and that is the special case where $f(x) = \delta_C(x)$, under that case, the proximal operator becomes the set projection operator onto the set. 
+
 
 
 ---
 ### **Prox is L1-Lipschitz**
-
 
 
 

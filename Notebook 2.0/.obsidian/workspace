@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH --- (Unexplored)/Kurdyka Lojasiewicz Inequality.md",
+            "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
             "mode": "source",
             "source": true
           }
@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MATH --- (Unexplored)/Kurdyka Lojasiewicz Inequality.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
                 "mode": "preview",
                 "source": true
               }
@@ -41,7 +41,7 @@
             "state": {
               "type": "localgraph",
               "state": {
-                "file": "MATH --- (Unexplored)/Kurdyka Lojasiewicz Inequality.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
                 "options": {
                   "collapse-filter": true,
                   "search": "",
@@ -123,7 +123,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 482.5
+    "width": 359.5,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -139,7 +140,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH --- (Unexplored)/Kurdyka Lojasiewicz Inequality.md",
+                "file": "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,17 +158,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "58f6c8d62657e476",
+  "active": "7aa4909c08125716",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/ADMM.md",
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/Proximal Algorithms in Stats and ML.md",
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/References/Proximal Algorithms in Stats and ML.pdf",
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/Kurdyka Lojasiewicz Inequality.md",
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/The Laplacian Matrix.md",
     "MATH --- (Unexplored)/Kantorovich Inequality.md",
-    "MATH --- (Unexplored)/KKT Conditions with Details.md",
-    "MATH --- (Unexplored)/George Dantzig Decomposition.md",
-    "MATH --- (Unexplored)/Vapnik–Chervonenkis dimension.md",
-    "MATH --- (Unexplored)/Block Krylov Subspace Method.md",
-    "CSE 546 (Machine Learning Fundamentals)/Stochastic Gradient Descend.md",
-    "MATH --- (Unexplored)/Kurdyka Lojasiewicz Inequality.md",
-    "MATH --- (Unexplored)/Epigraphical Convergence.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subdifferentials Subgradient Computations.md",
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md"
+    "MATH --- (Unexplored)/KKT Conditions with Details.md"
   ]
 }
