@@ -75,8 +75,13 @@ Therefore, the proximal operator on a function that is convex proper and closed 
 
 Right from the start, we should not assume that it's invertible, and even if it is invertible, we need to know if the inverse operator is still a multi-value mapping, or a single value mapping. In this particular case, because we know how subgradient work, and $f$ being closed convex and proper, it's singled value. But, to characterize such properties in the general case, we need to read more. Check out: The end of chapter 3 comments on Dimitry's work. 
 
-Here, I want to highlight one important observation we should make here, and that is the special case where $f(x) = \delta_C(x)$, under that case, the proximal operator becomes the set projection operator onto the set. 
+In brief, the subgradient operator of a CCP function, we have $\partial f$ to be a maximal monotone operator. Meaning that for any $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. And because of this, it terms out that $I + \partial f$ is single-valued and it's surjective, meaning that the inverse $(I +\partial f)^{-1}$ is a singled value operator too. With $\alpha$ it doesn't change thing. 
 
+> The Surjectivity theorm stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as Theroem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
+
+Monotone operator deserves its pages. Here will skip the details. 
+
+Here, I want to highlight one important observation we should make here, and that is the special case where $f(x) = \delta_C(x)$, under that case, the proximal operator becomes the set projection operator onto the set. 
 
 
 ---
@@ -85,7 +90,7 @@ Here, I want to highlight one important observation we should make here, and tha
 
 
 ---
-### **Moreau Decomposition**
+### **Moreau Decomposition and Minty Parameterizations**
 
 
 ---

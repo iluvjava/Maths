@@ -44,3 +44,8 @@ $$
 $$
 
 Therefore, for any 2 elements from the epigraph of each of $f, g$, their sum is one of the element from the epigraph of $f\square g$. 
+
+
+**Remarks**
+
+I made the proof myself, and there might be cooler and better way to prove it. 
