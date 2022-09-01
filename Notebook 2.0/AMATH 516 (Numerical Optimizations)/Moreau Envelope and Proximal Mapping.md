@@ -77,7 +77,7 @@ Right from the start, we should not assume that it's invertible, and even if it 
 
 In brief, the subgradient operator of a CCP function, we have $\partial f$ to be a maximal monotone operator. Meaning that for any $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. And because of this, it terms out that $I + \partial f$ is single-valued and it's surjective, meaning that the inverse $(I +\partial f)^{-1}$ is a singled value operator too. With $\alpha$ it doesn't change thing. 
 
-> The Surjectivity theorm stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as Theroem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
+> The surjectivity theorem stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
 
 Monotone operator deserves its pages. Here will skip the details. 
 

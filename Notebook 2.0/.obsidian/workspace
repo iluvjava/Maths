@@ -4,74 +4,30 @@
     "type": "split",
     "children": [
       {
-        "id": "58f6c8d62657e476",
+        "id": "680fe35750336385",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md",
+            "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
             "mode": "source",
             "source": true
           }
         },
-        "group": "c1c28e4078e2ac04"
+        "group": "276c60bd43984634"
       },
       {
-        "id": "25852755e36033ca",
-        "type": "split",
-        "children": [
-          {
-            "id": "7aa4909c08125716",
-            "type": "leaf",
-            "dimension": 79.55010224948876,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md",
-                "mode": "preview",
-                "source": true
-              }
-            },
-            "group": "c1c28e4078e2ac04"
-          },
-          {
-            "id": "f1d1d1cf707c4244",
-            "type": "leaf",
-            "dimension": 20.449897750511248,
-            "state": {
-              "type": "localgraph",
-              "state": {
-                "file": "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md",
-                "options": {
-                  "collapse-filter": true,
-                  "search": "",
-                  "localJumps": 1,
-                  "localBacklinks": true,
-                  "localForelinks": true,
-                  "localInterlinks": false,
-                  "showTags": false,
-                  "showAttachments": false,
-                  "hideUnresolved": false,
-                  "collapse-color-groups": true,
-                  "colorGroups": [],
-                  "collapse-display": true,
-                  "showArrow": false,
-                  "textFadeMultiplier": 0,
-                  "nodeSizeMultiplier": 1,
-                  "lineSizeMultiplier": 1,
-                  "collapse-forces": true,
-                  "centerStrength": 0.518713248970312,
-                  "repelStrength": 10,
-                  "linkStrength": 1,
-                  "linkDistance": 250,
-                  "scale": 1.5319777827965726,
-                  "close": false
-                }
-              }
-            }
+        "id": "73a77abeb53c0df4",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+            "mode": "preview",
+            "source": true
           }
-        ],
-        "direction": "horizontal"
+        },
+        "group": "276c60bd43984634"
       }
     ],
     "direction": "vertical"
@@ -123,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 442.5,
-    "collapsed": true
+    "width": 387.5
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -140,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md",
+                "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "58f6c8d62657e476",
+  "active": "73a77abeb53c0df4",
   "lastOpenFiles": [
-    "MATH --- (Unexplored)/Monotone Operators (Historical Fundations).md",
-    "References/Monotone_Operators_and_the_Proximal_Point_Algorithm.pdf].md",
+    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
+    "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+    "MATH --- (Unexplored)/LOBPCG.md",
+    "Conjugate g.md",
+    "MATH --- (Unexplored)/Non-Linear Conjugate Gradient.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuity is Closedness of Epigraph.md",
     "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Infimal Convolution is Epigraph Addition.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Geometry/Convexity Preserving Operations of Functions.md",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/ADMM.md",
     "MATH 999 (Paper Reviews and Frontier Mathematics)/Proximal Algorithms in Stats and ML.md",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/References/Proximal Algorithms in Stats and ML.pdf",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/Kurdyka Lojasiewicz Inequality.md",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/The Laplacian Matrix.md"
+    "MATH 999 (Paper Reviews and Frontier Mathematics)/ADMM.md",
+    "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md"
   ]
 }
