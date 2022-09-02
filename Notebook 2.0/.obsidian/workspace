@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
             "mode": "preview",
             "source": true
           }
@@ -79,7 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 387.5
+    "width": 276.5
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "73a77abeb53c0df4",
+  "active": "680fe35750336385",
   "lastOpenFiles": [
-    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
+    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Properties of Strong Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
+    "AMATH 516 (Numerical Optimizations)/Moreau Envelope, Proximal Operator and Majorization.md",
+    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Non smooth convex optimization.md",
     "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
+    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
     "MATH --- (Unexplored)/LOBPCG.md",
     "Conjugate g.md",
-    "MATH --- (Unexplored)/Non-Linear Conjugate Gradient.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lower Semi-Continuity is Closedness of Epigraph.md",
-    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/Proximal Algorithms in Stats and ML.md",
-    "MATH 999 (Paper Reviews and Frontier Mathematics)/ADMM.md",
-    "MATH --- (Unexplored)/Nonnegative Matrix Factorization.md"
+    "MATH --- (Unexplored)/Non-Linear Conjugate Gradient.md"
   ]
 }
