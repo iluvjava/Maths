@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
             "mode": "preview",
             "source": true
           }
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5
+    "width": 407.5036315917969,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,11 +114,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "680fe35750336385",
+  "active": "73a77abeb53c0df4",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
     "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Properties of Strong Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
     "AMATH 516 (Numerical Optimizations)/Moreau Envelope, Proximal Operator and Majorization.md",
     "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Non smooth convex optimization.md",
     "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",

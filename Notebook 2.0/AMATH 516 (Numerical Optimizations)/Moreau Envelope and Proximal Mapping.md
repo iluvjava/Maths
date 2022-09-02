@@ -210,7 +210,6 @@ $$
 
 At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at $[6]$ we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. 
 
-
 **Remarks**
 
 Minty Parameterizations: 
@@ -219,7 +218,7 @@ Minty Parameterizations:
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
-  * We use the property that $(\alpha f(x))^\star = $
+  * We use the property that $(\alpha f(x))^\star =f^\star(z/\alpha)$ and the identity described at the start to simplify the Moreau Decompositions formula. 
 
 
 ---

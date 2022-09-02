@@ -289,10 +289,11 @@ $$
             \frac{z^T}{\lambda}
         \right)y  - f(y)
     \right\rbrace
-    &= 
-    f^\star\left(
-        \frac{z}{\lambda}
-    \right)
+    \\
+	&= 
+	f^\star\left(
+		\frac{z}{\lambda}
+	\right)
 \end{aligned}
 
 $$
