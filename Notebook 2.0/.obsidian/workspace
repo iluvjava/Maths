@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
             "mode": "preview",
             "source": true
           }
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "TODO",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 407.5036315917969,
-    "collapsed": true
+    "width": 452.5036315917969
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -96,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Duality/Convex Conjugate Examples.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,17 +113,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "73a77abeb53c0df4",
+  "active": "680fe35750336385",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Moreau Envelope and Proximal Mapping.md",
-    "AMATH 516 (Numerical Optimizations)/Duality/Fenchel Identity.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Properties of Strong Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/Moreau Envelope, Proximal Operator and Majorization.md",
-    "AMATH 515 (Optimization Fundamentals)/Proximal Gradient Descend/Non smooth convex optimization.md",
-    "MATH --- (Unexplored)/Proximal Conjugate Gradient.md",
-    "MATH --- (Unexplored)/Fourier Motzkin Eliminations.md",
-    "MATH --- (Unexplored)/LOBPCG.md",
-    "Conjugate g.md",
-    "MATH --- (Unexplored)/Non-Linear Conjugate Gradient.md"
+    "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics List.md",
+    "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
+    "MATH --- (Unexplored)/Block Krylov Subspace Method.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
+    "MATH --- (Unexplored)/Cyclical Monotonicity.md"
   ]
 }

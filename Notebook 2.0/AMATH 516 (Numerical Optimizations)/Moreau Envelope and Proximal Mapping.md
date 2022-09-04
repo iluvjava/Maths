@@ -128,7 +128,7 @@ $$
 \end{aligned}
 $$
 
-Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but it's also lipschitz continuos with a modulus of $1/\alpha$. 
+Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but it's also lipschitz continuous with a modulus of $1/\alpha$. 
 
 **Remarks**
 
@@ -137,15 +137,18 @@ The proof is from myself and it might contains some errors.
 ---
 ### **Prox is L1-Lipschitz**
 
-Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
+> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
+> $$
+> \begin{aligned}
+>     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
+>     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
+> \end{aligned}
+> $$
+Basically it's Lipschitz continuous with a constant of 1 (Try using the cauchy schwartz inequality). 
 
-$$
-\begin{aligned}
-    \Vert \text{prox}_f - \text{prox}_f\Vert^2 \le 
-    \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
-\end{aligned}
-$$
-Basically it's Lipschitz continuous with a constant of 1. 
+**Proof**
+
+To prove we make use of [[Properties of Strong Convexity]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
 
 
 ---
@@ -173,7 +176,7 @@ $$
 Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
 > $$
 > \begin{aligned}
-> x = \text{prox}_{f, 1}(x) + \text{prox}_{f^{\star}, 1}(x)
+>   x = \text{prox}_{f, 1}(x) + \text{prox}_{f^{\star}, 1}(x)
 > \end{aligned}
 > $$
 
@@ -223,5 +226,8 @@ Moreau Decomposition With the Alpha parameters on Proximal operators:
 
 ---
 ### **Gradient of Prox is Lipschitz for CCP Functions**
+
+
+
 
 

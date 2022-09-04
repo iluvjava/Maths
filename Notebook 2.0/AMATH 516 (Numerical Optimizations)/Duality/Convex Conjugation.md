@@ -7,7 +7,7 @@ Pre-requisite:
 ### **Intro**
 
 Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Transform. The below information is from the internet and the AMATH 515 class I took. There are several important things regarding convex conjugate functions: 
-1. The conjugate function are the slope and offset of supporting halfsapce that supports the original function from the bottom. 
+1. The conjugate function are the slope and offset of supporting halfspace that supports the original function from the bottom. 
 2. The conjugate function closes the epigraph of the original function and it also creates a convex envelope for it. 
 3. It's convex. 
 4. Convex conjugate function is related to the subgradient. 
@@ -42,7 +42,7 @@ The conjugate function is always convex, see the next section for more info. We 
 
 > $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
 
-Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *fenchel inequality*. 
+Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
 
 **Justification**
 

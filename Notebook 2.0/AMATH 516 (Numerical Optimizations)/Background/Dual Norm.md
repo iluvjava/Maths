@@ -31,7 +31,7 @@ $$
 \end{aligned}
 $$
 
-The absolute value can be obtained by considring $\Vert - y\Vert_\star$. $\Vert -y\Vert_\star = -\min_x\{\langle x, y\rangle: \Vert x \Vert \le 1\}$. 
+The absolute value can be obtained by considering $\Vert - y\Vert_\star$. $\Vert -y\Vert_\star = -\min_x\{\langle x, y\rangle: \Vert x \Vert \le 1\}$. 
 
 ---
 ### **P-Norm Dual**
@@ -46,7 +46,7 @@ An exercise for the reader, which is likely to be myself.
 ### **Dual of The Induced Energy Norm**
 
 
-# TODO: Fill THIS IN 
+**#TODO: Look for the Dual of the induced energy norm**. 
 
 Source: \<First Order method in Optimizations\> By SIAM Example 1.6
 

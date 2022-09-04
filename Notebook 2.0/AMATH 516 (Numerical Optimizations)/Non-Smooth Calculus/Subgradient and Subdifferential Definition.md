@@ -276,7 +276,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* ~~The regular subgradient is convex, because it's a part of a cone~~. **I think it's true but we need better arguments here** 
+* The regular subgradient is a convex set (**#REFERENCES_NEEDED**). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 
@@ -290,7 +290,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 
 ---
-### **Corollary: Generalized Subgradient to Subgradient Inequality for Convex Functions**
+### **Corollary: Regular Subgradient to Subgradient Inequality for Convex Functions**
 
 > If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
