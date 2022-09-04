@@ -216,8 +216,12 @@ a\pm b \mp c = \begin{cases}
 \end{cases}\quad \text{uncorrelated}
 $$
 
+Suppose $f:\mathbb E\mapsto \mathbb{\bar R}$, mapping from some euclidean space to augmented real with well-defined gradient defined everywhere and it has the property
+
 $$
-\underline{\overline{\underline{\overline{\underline{\overline{\pm^{\pm}_{\mp}}}^{\pm}_{\mp}}}_{\mp}^{\pm}}}_{\mp}^{\pm}
+\exists L > 0 \text{ s.t: }
+|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert x - y\Vert^2 
+\quad \forall x, y\in \mathbb E. 
 $$
 
-
+Then, is it possible that the gradient of the function is globally Lipschitz? 

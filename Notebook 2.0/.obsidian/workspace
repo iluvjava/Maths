@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+            "file": "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
             "mode": "preview",
             "source": true
           }
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 452.5036315917969
+    "width": 452.5036315917969,
+    "collapsed": true
   },
   "right": {
     "id": "65a8c93abd79c53c",
@@ -95,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+                "file": "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,15 +116,15 @@
   },
   "active": "680fe35750336385",
   "lastOpenFiles": [
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
     "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
-    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics List.md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
+    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
+    "AMATH 516 (Numerical Optimizations)/Background/Uniform, Pointwise Convergence.md",
     "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+    "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics List.md",
     "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
     "MATH --- (Unexplored)/Block Krylov Subspace Method.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Differential Characterization of Smooth Convexity.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Closed, Proper, Level Bounded, Strong Convex.md",
-    "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
-    "MATH --- (Unexplored)/Cyclical Monotonicity.md"
+    "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md"
   ]
 }
