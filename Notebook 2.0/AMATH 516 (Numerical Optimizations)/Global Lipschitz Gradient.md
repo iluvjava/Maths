@@ -85,13 +85,45 @@ $$
     dt = \frac{L}{2}\Vert y - x\Vert^2 .
 \end{aligned}
 $$
-From the third line to the 5th line, we have the inequality for the smoothness conditions. To prove condition 2, we start of rethinking about condition 1, there are 2 parts of the inequality for condition 2, we start with the lower bound by 
+From the third line to the 5th line, we have the inequality for the smoothness conditions. To prove condition 2, we start of rethinking about condition 1, there are 2 parts of the inequality for condition 2, we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the inf on the inequality
 $$
 \begin{aligned}
-    
+    & f(y) \le f(x) + \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y - x\Vert^2
+    \\
+    \inf_y\{f(y)\} &\le f(x) + \inf_y 
+    \left\lbrace
+        \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y -x \Vert^2
+    \right\rbrace
+    \\
+    & = \inf_{\Vert v\Vert = 1, t}\left\lbrace
+        t\langle \nabla f(x), v\rangle + \frac{t^2L}{2}
+    \right\rbrace
+    \\
+    & = 
+    \inf_{\Vert v\Vert = 1}\left\lbrace
+        \frac{-1}{L}(\langle \nabla f(x), v\rangle)^2 + 
+        \frac{1}{2L}(\langle \nabla f(x), v\rangle)^2
+    \right\rbrace
+    \\
+    &= 
+    f(x) + \inf_{\Vert v\Vert = 1} \left\lbrace
+        -\frac{1}{2L}\langle \nabla f(x), v\rangle^2
+    \right\rbrace = f(x) - \frac{1}{2L} \Vert \nabla f(x)\Vert^2_\star, 
 \end{aligned}
 $$
+since $x^+$ is a minimizer of $f$, we have $f(x^+)=\inf_y f(y)$ therefore the above simplies to: 
+$$
+\begin{aligned}
+    & f(x^+) \le f(x) - \frac{1}{2L} \Vert \nabla f(x)\Vert_\star^2
+    \\
+    & f(x) - f(x^+) \ge \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2. 
+\end{aligned}
+$$
+
+To prove the upper bound, we simply substitue $x^+$ to the smoothness condition, which will set $\nabla f(x^+)$ to $\mathbf 0$ because it's a minimizer for the function $f$. We skip it for simplicity. $\blacksquare$
 
 
 ---
 ### **Proof of Proposition 2**
+
+To prove proposition 3, we make the assumption that $f$ is a lsc convex function. 
