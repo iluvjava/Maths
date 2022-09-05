@@ -116,15 +116,15 @@
   },
   "active": "680fe35750336385",
   "lastOpenFiles": [
-    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
+    "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subderivatives Definitions.md",
     "AMATH 516 (Numerical Optimizations)/Strong Convexity.md",
+    "AMATH 516 (Numerical Optimizations)/Background/Uniform, Pointwise Convergence.md",
+    "AMATH 516 (Numerical Optimizations)/Non-Smooth Calculus/Subgradient and Subdifferential Definition.md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excercises (Strong Convexity).md",
     "AMATH 515 (Optimization Fundamentals)/Basic Convexity/Excericises, Proofs (Char of Strong Convexity).md",
-    "AMATH 516 (Numerical Optimizations)/Background/Uniform, Pointwise Convergence.md",
-    "AMATH 516 (Numerical Optimizations)/Global Lipschitz Gradient.md",
     "AMATH 516 (Numerical Optimizations)/CVX Analysis/Convex Functions Characteristics List.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Lipschitz Continuity.md",
-    "MATH --- (Unexplored)/Block Krylov Subspace Method.md",
-    "AMATH 516 (Numerical Optimizations)/Background/Dual Norm.md"
+    "MATH --- (Unexplored)/Block Krylov Subspace Method.md"
   ]
 }

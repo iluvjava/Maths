@@ -24,12 +24,17 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha$ strongly convex function 
 
 **Remarks**
 
-1. The condition is saying that the difference between the affine minorants of the function at a given point $x$ and the function itself can is a coersive function. one immediate consequence of this formulation is that strong convex function is coersive.
+We abuse notation slightly and write the subgradient inside of the inner product, resulting in the inner product being a set of values. 
+
+1. The condition is saying that the difference between the affine minorants of the function at a given point $x$ and the function itself can is a coercive function. one immediate consequence of this formulation is that strong convex function is coercive.
 2. The condition is saying that the subgradient of a strongly convex function is more than monotone, and it has a lower bound to the monotonicity of the subgradient operator. 
-3. The condition is a stronger version of the Jesen's inequality for the convex case. 
+3. The condition is a stronger version of the Jensen's inequality for the convex case. 
 
 **Theorem 1: Equivalences**
 > Conditions 1, 2, 3 are all equivalent to the definition of strong convexity of a function. 
+
+**Proof** 
+*#TODO Remember to add the proofs for equivalances characterizations of strongly convex functions*
 
 ---
 ### **Implications**
@@ -43,17 +48,16 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following 
 
 **Theorem**
 
-Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general proeprties for functions. 
+Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general properties for functions. 
 
 
 **Remarks**
 
-4. Conditions 5 links the optimality of the function to the distance of the subgradient set to the zero vector. 
-5. Condition 5 gives an lower bound for how much the gradient should change given the distance from $\Vert x - y\Vert$. 
+4. Conditions 5 links the optimality for the function to the distance of the subgradient set to the zero vector. 
+5. Condition 5 gives a lower bound for how much the gradient should change given the distance from $\Vert x - y\Vert$. 
 
 
 
+### **Proofs**
 
-
-
-
+**#TODO: Read the paper and add more proofs if you feel like it.**
