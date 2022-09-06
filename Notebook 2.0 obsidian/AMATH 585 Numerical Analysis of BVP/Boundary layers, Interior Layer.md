@@ -1,4 +1,4 @@
-It's some what related to: [[Pertubations Theory (Intro)]]
+It's some what related to: [[Intro to Pertubations Theory]]
 
 ---
 ### **Intro**

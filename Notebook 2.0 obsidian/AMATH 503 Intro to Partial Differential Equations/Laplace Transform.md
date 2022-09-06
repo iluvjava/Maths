@@ -1,4 +1,4 @@
-[[Fourier Transform (PDE Flavor)]]
+[[Fourier Transform, PDE Flavor]]
 It's just Fourier, but it's along the imaginary axis. 
 
 We assume that basic understanding of solving ODEs using Laplace transform. 

@@ -1,4 +1,4 @@
-[[Hessenberg Transform intro (HS Reflector)]]
+[[Hessenberg Transform intro, HS Reflector]]
 [[Hessenberg Transform with Arnoldi Iterations]]
 [[Krylov Matrix QR and Arnoldi Iterations]]
 

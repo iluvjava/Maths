@@ -1,5 +1,5 @@
 Homemade Spectrumgram. 
-prereq: [[Lecture 4 13.4 (Gobar Trans)]]
+prereq: [[Lecture 4 13.4, Gobar Transform]]
 
 ---
 ### Intro

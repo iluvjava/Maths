@@ -6,7 +6,7 @@
 We are interesting in deriving the error bound for the solution to the steady state of the heat equation via finite difference method. In particular, the steady state solution of the 1D problem on the unit interval with Dirichlet Boundary Conditions, for simplicity. 
 
 
-We will derive LTE(Local Truncation Error) and Global Error using a basic example. 
+We will derive LTE (Local Truncation Error) and Global Error using a basic example. 
 
 The example system is: 
 $$

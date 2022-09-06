@@ -1,5 +1,5 @@
 We are interested in writing a function as a sum of cosine series. 
-[[Fourier Sine Series (PDEs Flavor)]]
+[[Fourier Sine Series, PDEs Flavor]]
 
 
 ---

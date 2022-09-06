@@ -115,7 +115,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Steepest Descend for Matrix Vector]]
 
 * Problems
-	* [[MLE Robust Fit (Intro)]]
+	* [[Intro to MLE Robust Fit]]
 	* [[Generalized Linear Model]]
 
 

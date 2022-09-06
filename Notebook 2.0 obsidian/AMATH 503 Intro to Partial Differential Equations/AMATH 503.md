@@ -8,16 +8,16 @@ This class as prereq: [[Amath 501]]
 
 ### **Week 2**
 1. Cosine Fourier Series [[Fourier Cosine Series]]
-2. Sine Fourier Series [[Fourier Sine Series (PDEs Flavor)]]
-3. Complex Fourier Series [[Complex Fourier Series (PDF Flavor)]] 
+2. Sine Fourier Series [[Fourier Sine Series, PDEs Flavor]]
+3. Complex Fourier Series [[Complex Fourier Series, PDF Flavor]] 
 
 ### **Week 3**
-1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform (PDE Flavor)]]
-2. Application of Fourier Transform on some functions. [[Application of Fourier Transform (PDE Flavor)]]
+1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform, PDE Flavor]]
+2. Application of Fourier Transform on some functions. [[Application of Fourier Transform, PDE Flavor]]
 3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[1D Wave in Infinite Domain]]
 
 ### **Week 4**
-1. Fourier Transform and the Drunken Sailor Problem. [[The Drunken Sailor Problem (PDE Problem)]]
+1. Fourier Transform and the Drunken Sailor Problem. [[The Drunken Sailor Problem, PDE Problem]]
 2. Fourier Form and the Laplace Transform [[Laplace Transform]]
 3. Generalizing Laplace Transform and Inverse Laplace Transform: [[Laplace Transform Generalized]]
 4. Solving PDE with the Laplace Transform: [[Solving PDE with Laplace]]
@@ -73,6 +73,6 @@ And to do things in the other coordinate systems, we need tools like:
 ### **Week 9, 10**
 
 * [[Greens Function]]
-* [[Greens Function (Heat Eqn)]]
-* [[Greens Function 3 (3D Wave)]]
-* [[Greens Function 4 (Nonhonogeneous Wave)]]
+* [[Greens Function for Heat Eqn]]
+* [[Greens Function 3, 3D Wave]]
+* [[Greens Function 4, Nonhonogeneous Wave]]

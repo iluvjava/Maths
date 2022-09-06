@@ -3,7 +3,7 @@ For the binary classifications.
 
 To get a better understanding of the mechanics of Sigmoid Function, read [[Sigmoid And Odds]]
 
-And for theory behind statistical classification, read [[Classification (Statistics Theory)]]
+And for theory behind statistical classification, read [[Classification, Statistics Theory]]
 
 ---
 

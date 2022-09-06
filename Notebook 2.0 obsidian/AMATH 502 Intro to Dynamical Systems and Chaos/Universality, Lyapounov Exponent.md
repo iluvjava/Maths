@@ -1,4 +1,4 @@
-[[Chaos]], [[Periodic Orbit and Bifurcation (Logistic Map)]]
+[[Chaos]], [[Periodic Orbit and Bifurcation, Logistic Map]]
 1. Universality of the Feigenbaum constant
 2. Use Lyapounov Exponent to predict Chaotic Behavior
 	1. The lyaponouv exponent is the best indicator we have for this class as an indicator for chaos, it predicts the occurence for SDIC. 

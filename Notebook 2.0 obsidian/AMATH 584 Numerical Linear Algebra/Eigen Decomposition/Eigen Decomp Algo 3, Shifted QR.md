@@ -1,4 +1,4 @@
-Prereq: [[Eigen Decomp (The Pure QR)]], [[Inverse Power Iteration]]
+Prereq: [[Eigen Decomp, The Pure QR]], [[Inverse Power Iteration]]
 This time, we need to see how the QR algorithm that is shifted is related to the Inverse Power iterations. 
 
 ---

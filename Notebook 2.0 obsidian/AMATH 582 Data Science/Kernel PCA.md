@@ -1,4 +1,4 @@
-[[SVM]], [[PCA (Principal Components Analysis)]]
+[[SVM]], [[PCA, Principal Components Analysis]]
 
 Here we talk about another extension of the PCA method. The Kernel PCA which performs the PCA at a non-linear subspace compare to the original dimension where the data lies in. The same kernel trick used for SVM. 
 

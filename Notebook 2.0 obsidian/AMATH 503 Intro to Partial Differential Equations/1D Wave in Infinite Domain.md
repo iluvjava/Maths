@@ -1,4 +1,4 @@
-[[Fourier Transform (PDE Flavor)]]
+[[Fourier Transform, PDE Flavor]]
 One of the very important application of Fourier Transform is its application to Solving PDEs in the infinite domain. 
 
 

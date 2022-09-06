@@ -79,6 +79,6 @@ k = fftshift(k);               % Must shift this or it's not working.
 
 ### Applications 
 Stationary Time Series Analysis: 
-1. [[Lecture 2 Ch 13.2 (Filtering)]]
-2. [[Lecture 3 Ch 13.3 (Freq Denoise)]]
+1. [[Lecture 2 Ch 13.2, Filtering]]
+2. [[Lecture 3 Ch 13.3, Freq Denoise]]
 

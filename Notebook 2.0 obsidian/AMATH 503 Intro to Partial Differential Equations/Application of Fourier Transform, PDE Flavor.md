@@ -1,4 +1,4 @@
-[[Fourier Transform (PDE Flavor)]]
+[[Fourier Transform, PDE Flavor]]
 Let's take a look at some of the examples of using the Fourier Transform.
 
 ---
@@ -83,7 +83,7 @@ We can retrieve $\exp(-|x|)$ from $F(w) = \frac{2}{w^2 + 1}$, however, this is n
 ---
 ### **The Gaussian Example**
 
-Taking the Fourier Transform of a exponential to $x^2$ is related to the [[The Drunken Sailor Problem (PDE Problem)]]. And it's applied there. 
+Taking the Fourier Transform of a exponential to $x^2$ is related to the [[The Drunken Sailor Problem, PDE Problem]]. And it's applied there. 
 
 
 $$
@@ -253,4 +253,4 @@ Another important application of the Fourier Transform is to use it as a method 
 Here, we will list some example of such, but it's also very complicated, therefore it's convered in other files. 
 
 1. [[1D Wave in Infinite Domain]]
-2. [[The Drunken Sailor Problem (PDE Problem)]]
+2. [[The Drunken Sailor Problem, PDE Problem]]

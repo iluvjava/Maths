@@ -4,7 +4,7 @@ Here, we are going to learn about binary/multi-class classification in this file
 ---
 ### **Intro**
 
-So the predictions we are going to preduce will be in the format of $\{1, 2, \cdots K\}$, or in the case of binary classifications it will be like: $\{0, 1\}$. 
+So the predictions we are going to produce will be in the format of $\{1, 2, \cdots K\}$, or in the case of binary classifications it will be like: $\{0, 1\}$. 
  
 **Loss Function**
 

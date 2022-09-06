@@ -1,5 +1,5 @@
 Time series 3. 
-prereq: [[Lecture 2 Ch 13.2 (Filtering)]]
+prereq: [[Lecture 2 Ch 13.2, Filtering]]
 
 ---
 ### Intro

@@ -51,7 +51,7 @@ Here will also contain a lot of links to other places, so we can get more backgr
 ---
 ### PCA and SVD
 
-Ideas behind it is discussed in [[PCA (Principal Components Analysis)]]. It can be used for dimension reduction, and unsupervised clustering. 
+Ideas behind it is discussed in [[PCA, Principal Components Analysis]]. It can be used for dimension reduction, and unsupervised clustering. 
 
 ---
 ### K-Means
@@ -79,7 +79,7 @@ And the matrix $S_w$ helps with the variance within the clusters with labels.
 
 This method is good for supervised dimensionality reduction on data-set. 
 
-More in [[Linear Discriminant Analysis (LDA)]]
+More in [[Linear Discriminant Analysis, LDA]]
 
 ---
 ### GMM

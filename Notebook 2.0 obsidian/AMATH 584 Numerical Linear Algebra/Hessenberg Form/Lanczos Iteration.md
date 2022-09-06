@@ -1,5 +1,5 @@
 [[Hessenberg Transform with Arnoldi Iterations]],
-[[Hessenberg Transform intro (HS Reflector)]]
+[[Hessenberg Transform intro, HS Reflector]]
 
 ---
 ### **Intro**

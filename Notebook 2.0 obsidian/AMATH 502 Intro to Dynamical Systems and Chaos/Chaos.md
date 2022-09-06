@@ -1,4 +1,4 @@
-[[Periodic Orbit and Bifurcation (Logistic Map)]]
+[[Periodic Orbit and Bifurcation, Logistic Map]]
 We gonna define chaos and use the logistic chaos to demonstrate it. 
 
 

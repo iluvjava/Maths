@@ -61,7 +61,7 @@ X_n(x) = \sin\left(
 \quad \lambda_n = \frac{n\pi}{L} \quad n\in \mathbb{N}
 $$
 
-The coefficients the coefficients of Fourier Sine Series. [[Fourier Sine Series (PDEs Flavor)]]	of the initial condition. 
+The coefficients the coefficients of Fourier Sine Series. [[Fourier Sine Series, PDEs Flavor]]	of the initial condition. 
 
 #### **Neumann Boundary Conditions**
 
@@ -99,9 +99,9 @@ $$
 X_n(x) = A_n\sin(\lambda_n x) + B_n\cos(\lambda_n x) \quad \lambda_n = \frac{n\pi }{L}\quad n\in \mathbb{Z}
 $$
 
-Where, the coefficients $A_n$, $B_n$ are the Fourier Coefficients. [[Fourier Series (PDE Flavor)]]
+Where, the coefficients $A_n$, $B_n$ are the Fourier Coefficients. [[Fourier Series, PDE Flavor]]
 
-There is another basis function that people can choose to use. Which is [[Complex Fourier Series (PDF Flavor)]]. 
+There is another basis function that people can choose to use. Which is [[Complex Fourier Series, PDF Flavor]]. 
 
 Basis function: 
 
@@ -123,7 +123,7 @@ $$
 
 The function $f(x)$ is the initial condition. 
 
-See: [[Complex Fourier Series (PDF Flavor)]]. 
+See: [[Complex Fourier Series, PDF Flavor]]. 
 
 ### **Non-Homogeneous Dirichlet (Different Constant on Boundary)** 
 

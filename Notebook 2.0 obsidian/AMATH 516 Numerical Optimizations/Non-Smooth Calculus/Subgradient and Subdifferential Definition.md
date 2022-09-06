@@ -69,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Set-valued Mappings)](Multivalued Functions (Set-valued Mappings|Multivalued Functions (Set-valued Mappings)]].md). 
+And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions, Set-valued Mappings]]). 
 
 **Definition: Generalized Gradient (Regular Subgradient)**
 

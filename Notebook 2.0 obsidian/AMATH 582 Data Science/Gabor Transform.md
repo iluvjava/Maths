@@ -5,7 +5,7 @@ A brief overview on some of the limitations on Non-stationary wave analysis usin
 
 The transform is another alternative for analyzing non-stationary signal. 
 
-See [[Lecture 4 13.4 (Gobar Trans)]] for more information which covers the following: 
+See [[Lecture 4 13.4, Gobar Transform]] for more information which covers the following: 
 
 1. Definition
 2. Gaussian Filter

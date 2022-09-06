@@ -1,7 +1,7 @@
 In this file, we are going to look at 2 examples of the non-linear pendulumn problem, the linear and the non linear and non-linear damped, we will use: 
 
 1. [[2D Non-Linear System]]
-2. [[Conservative System (Hamiltonian)]]
+2. [[Conservative System, Hamiltonian]]
 To study the behavior of the system, and when studying the non-linear system without damping, we will introduce the idea of: 
 
 1. Heteroclinic Orbit

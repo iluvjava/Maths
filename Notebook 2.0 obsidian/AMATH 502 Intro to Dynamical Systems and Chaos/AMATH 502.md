@@ -43,7 +43,7 @@ Links:
 6. Identify and explain **hysteresis**. 
 
 Links:
-[[Bifurcation 1D]], [[Bifurcation 1D Extra]], [[Insect Outbreak]], [[Multiple Bifurcations (Examples)]]
+[[Bifurcation 1D]], [[Bifurcation 1D Extra]], [[Insect Outbreak]], [[Multiple Bifurcations Examples]]
 
 #### Chapter 4: Flows on the Circle 
 1. Find and classify the fixed points of a flow on a circle. 
@@ -74,7 +74,7 @@ Links:
 8. use that a system is conservative to show that a fixed point is a center. 
 
 Links: 
-[[2D Non-Linear System]], [[Pendulum System]], [[Gradient System]], [[Conservative System (Hamiltonian)]], [[Lotka Volterra]]
+[[2D Non-Linear System]], [[Pendulum System]], [[Gradient System]], [[Conservative System, Hamiltonian]], [[Lotka Volterra]]
 
 ---
 #### Chapter 7: Limit Cycles
@@ -103,11 +103,11 @@ Links:
 12. Use two-timing to approximate limit cycles for **weakly non-linear** oscillators. 
 
 Links: 
-[[Limit Cycles]],[[Pertubations Theory (Intro)]], [[Method of Multiple Time Scale]], [[Method of Averaging]]
+[[Limit Cycles]],[[Intro to Pertubations Theory]], [[Method of Multiple Time Scale]], [[Method of Averaging]]
 
 #### Chapter 8: 2D Bifurcations 
 1. Identify the **saddle-node**, **Transcritical**, and **pitchfork** bifurcations are **zero-eigenvalue bifurcations**. 
-	* [[2D Bifurcation (Zero Eigenvalues)]]
+	* [[2D Bifurcation with Zero Eigenvalues]]
 	* In 2D, the type of bifurcation that happens have 2 types. If it happens along one of the manifold along 2, 3 fixed points, then its eigenvalues are set to be zero at the moment of bifurcation. 
 1. Describe the eigenvalue behavior of a **Hopf Bifurcation**.
 	* [[Hopf Bifurcation and Global Bifurcation]]
@@ -121,7 +121,7 @@ Links:
 	* Supercritical bifurcation --> attractive limit cycle.
 	* Subcritical Bifurcation --> unstable limit cycle.
 2. Find the bifurcation point(s) for the types listed above for a given 2D dynamical system
-	* [[2D Bifurcation (Zero Eigenvalues)#Example 2 Pitchfork Bifurcation]] --> A complicated example for the non-idea case where Taylor Series has to be used for it.
+	* [[2D Bifurcation with Zero Eigenvalues#Example 2 Pitchfork Bifurcation]] --> A complicated example for the non-idea case where Taylor Series has to be used for it.
 	* For Hopf bifurcation... EXAMPLE NEEDED
 
 #### Chapter 10: Discrete-time Dynamical Systems
@@ -134,7 +134,7 @@ Links:
 1. Determine the stability of periodic orbits of a map 
     * $(f\circ f(x))'$ 
 3. Identify transcritical or period-double bifurcations of a map. 
-	* [[Periodic Orbit and Bifurcation (Logistic Map)]]
+	* [[Periodic Orbit and Bifurcation, Logistic Map]]
 1. Draw a cobweb diagram. 
 	* See code published by prof for the class. 
 1. Infer properties of a dynamical system from its cobweb diagram. 

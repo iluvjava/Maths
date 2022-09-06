@@ -1,5 +1,5 @@
 Continuing on Time series for non-stationary signals. 
-[[Lecture 3 Ch 13.3 (Freq Denoise)]]
+[[Lecture 3 Ch 13.3, Freq Denoise]]
 Topics: 
 1. Limitations of the Fourier Transform
 2. Gabor Transform and it's properties

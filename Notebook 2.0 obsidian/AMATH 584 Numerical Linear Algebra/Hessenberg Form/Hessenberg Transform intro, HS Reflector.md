@@ -270,4 +270,4 @@ Consider the case when the matrix is **Hermitian**, the Hessenberg reduction wil
 
 
 
-[[Eigen Decomp (The Pure QR)]]
+[[Eigen Decomp, The Pure QR]]

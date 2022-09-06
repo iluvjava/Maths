@@ -118,4 +118,4 @@ By induction, the **(1)** and **(2)** are asserted. $\blacksquare$
 
 ### The Next Step
 
-To speed up the algorithm using the idea of inverse iterations, it's discussed here: [[Eigen Decomp Algo 3 (Shifted QR)]]. 
+To speed up the algorithm using the idea of inverse iterations, it's discussed here: [[Eigen Decomp Algo 3, Shifted QR]]. 

@@ -2,7 +2,7 @@ Hopf Bifurcation is a special type of bifurcation in 2D.
 
 It has something to with the creation and destruction of [[Limit Cycles]]. 
 
-Relevant idea: [[2D Bifurcation (Zero Eigenvalues)]]
+Relevant idea: [[2D Bifurcation with Zero Eigenvalues]]
 
 ---
 

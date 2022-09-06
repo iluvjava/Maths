@@ -228,10 +228,11 @@ Then, is it possible that the gradient of the function is globally Lipschitz?
 
 > [!Proofs]-
 > Here's a callout block.
-> It supports **markdown** and [wikilinks](Internal%20link).
+
 
 
 Testing links conversion: 
-* [Convex Conjugation](Convex%20Conjugation.md)
-* [Basic Machine Learning](Basic%20Machine%20Learning.md)
-* [Monotone Operators](Monotone%20Operators.md)
+* [Convex Conjugation](AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation.md)
+* [Basic Machine Learning](AMATH%20582%20Data%20Science/Basic%20Machine%20Learning.md)
+* [Monotone Operators](AMATH%20516%20Numerical%20Optimizations/Monotone%20Operators.md)
+* [2D Bifurcation with Zero Eigenvalues](2D%20Bifurcation%20with%20Zero%20Eigenvalues.md)

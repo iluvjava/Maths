@@ -412,7 +412,7 @@ $$
 
 Where is the constant term: $T_n(0)$? 
 
-It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series (PDE Flavor)]]. 
+It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series, PDE Flavor]]. 
 
 ---
 ### **Mixed Boundary Conditions (Heat Equation)**

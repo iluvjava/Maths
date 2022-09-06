@@ -1,7 +1,7 @@
 Reference Lecture [this](https://www.youtube.com/watch?v=_e4SN4TWlgY&feature=youtu.be&ab_channel=NathanKutz)
 
 Cocktail party conversations. 
-[[PCA (Principal Components Analysis)]]
+[[PCA, Principal Components Analysis]]
 
 ---
 ### Intro

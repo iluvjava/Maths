@@ -1,6 +1,6 @@
 Here we are going to investigate some the idea of Multiple Time Scale. Which is a better way of doing Perturbations 
 
-[[Pertubations Theory (Intro)]]
+[[Intro to Pertubations Theory]]
 
 ---
 ### Operators, Different Time Scales 

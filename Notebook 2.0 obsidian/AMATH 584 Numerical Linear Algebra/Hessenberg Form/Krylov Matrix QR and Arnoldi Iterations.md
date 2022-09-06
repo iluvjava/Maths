@@ -1,6 +1,6 @@
 prereq: 
 [[Hessenberg Transform with Arnoldi Iterations]], 
-[[Hessenberg Transform intro (HS Reflector)]], 
+[[Hessenberg Transform intro, HS Reflector]], 
 and know something about 
 [[Krylov Subspace]] and its properties. 
 [IIT Math Lecture Notes](http://www.math.iit.edu/~fass/477577_Chapter_14.pdf)

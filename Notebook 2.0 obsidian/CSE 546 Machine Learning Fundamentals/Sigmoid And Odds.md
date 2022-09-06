@@ -1,4 +1,4 @@
-[[Classification (Statistics Theory)]]
+[[Classification, Statistics Theory]]
 [[Bayes Theorem]]
 
 Reference Recourse: [Logistic Regression And Bayes](https://www.countbayesie.com/blog/2019/6/12/logistic-regression-from-bayes-theorem)

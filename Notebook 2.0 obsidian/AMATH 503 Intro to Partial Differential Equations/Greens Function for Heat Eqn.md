@@ -158,7 +158,7 @@ And this is called the: Heat Kernel. This is the same as the Drunken Sailor Prob
 
 What is happening is that, the problem is just the drunken sailor problem, basically everything before $\tau$, the system is just a regular zero, A and then for everything after $\tau$ the system becomes a drunk sailor problem after the introduction of some instantaneous heat via the non-homogeneous right hand side of the equation. 
 
-see: [[The Drunken Sailor Problem (PDE Problem)]] for more. And in this case, have the solution: 
+see: [[The Drunken Sailor Problem, PDE Problem]] for more. And in this case, have the solution: 
 
 $$
 G(t, x, \tau, \xi) = \frac{1}{(4\pi D(t - \tau))^{3/2}} \exp \left(

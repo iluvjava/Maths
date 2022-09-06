@@ -1,4 +1,4 @@
-[[Fourier Series (PDE Flavor)]]
+[[Fourier Series, PDE Flavor]]
 Here, we will introduce the idea of Complex Fourier Series. An easier way to compute the Fourier Series, and it's more compact too, but it's the same as using the trig basis function. The only thing we need to tweak is the definition of Function Inner Product. Because the functions are complex, we will have to take the complex conjugate when taking the inner product between them. 
 
 ---

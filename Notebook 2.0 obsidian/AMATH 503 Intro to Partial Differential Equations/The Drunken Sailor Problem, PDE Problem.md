@@ -185,7 +185,7 @@ dx
 \tag{12}
 $$
 
-Now, the next thing is to solve this integral, and remember from the Gaussian Integral, which we have tried here: [[Application of Fourier Transform (PDE Flavor)]]
+Now, the next thing is to solve this integral, and remember from the Gaussian Integral, which we have tried here: [[Application of Fourier Transform, PDE Flavor]]
 
 The integral of the solution turns out to be: 
 

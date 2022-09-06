@@ -1,4 +1,4 @@
-[[Hessenberg Transform intro (HS Reflector)]]
+[[Hessenberg Transform intro, HS Reflector]]
 [[Modified GS Process]]
 [[Krylov Subspace]]
 

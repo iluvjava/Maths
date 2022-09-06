@@ -1,4 +1,4 @@
-[[Multivalued Functions (Set-valued Mappings)]]
+[[Multivalued Functions, Set-valued Mappings]]
 
 ---
 ### **Intro**
