@@ -1,4 +1,4 @@
-[[Ch 14.1 image Analysis]]
+[[Image Analysis]]
 Let's take a look at some of the more concepts about image processing.
 [reference](https://www.youtube.com/watch?v=EYOYjz9_J54&feature=youtu.be&ab_channel=NathanKutz)
 

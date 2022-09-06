@@ -1,5 +1,5 @@
 This is a Non-linear generalization of the PCA method. 
-Check [[Ch 16.1 independent Component Analysis]] for information on how PCA is used to find the best orthogonal basis to de-correlate input features. 
+Check [[Independent Component Analysis]] for information on how PCA is used to find the best orthogonal basis to de-correlate input features. 
 
 ---
 ### **Intro**

@@ -1,4 +1,4 @@
-[[Ch 16.1 independent Component Analysis]]
+[[Independent Component Analysis]]
 
 We are going over to learn something about independently component analysis. 
 
@@ -16,6 +16,8 @@ And we are also going to assume they are mixed in a good ways, meaning that not 
 $$
 x = A s
 $$
+
+
 
 
 ---

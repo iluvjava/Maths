@@ -2,11 +2,7 @@
 This is the major reference for this lecture note.
 [Reference](https://www.youtube.com/watch?v=a9jdQGybYmE&ab_channel=AMATH301)
 
-The principal component analysis is one of the applications of the SVD decomposition on the covariance matrix. 
-
-And Here are some other notes that talks about the same idea: 
-
-[[Applied PCA and KR-Approx]]
+The principal component analysis is one of the applications of the SVD decomposition on the covariance matrix. And Here are some other notes that talks about the same idea: [[Applied PCA and KR-Approx]]
 
 ---
 

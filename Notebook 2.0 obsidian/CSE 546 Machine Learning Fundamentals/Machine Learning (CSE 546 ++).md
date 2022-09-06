@@ -66,5 +66,5 @@ Unsupervised Learning
 
 ---
 Misc
-1. [[CSE 546 (Machine Learning Fundamentals)/Convexity]]
+1. [[Convexity]]
 2. [[BootStrap]]

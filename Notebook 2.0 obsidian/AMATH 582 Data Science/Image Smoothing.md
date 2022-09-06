@@ -1,4 +1,4 @@
-[[Ch 14.2 Image Processing]]
+[[Image Processing]]
 [[Spectral Method 2]]
 Instead of denoising, now we are interested in smoothing the images. 
 And we are going to use some ideas from scientific computing, especially the parts where we use numerical method to time step the heat equation. 

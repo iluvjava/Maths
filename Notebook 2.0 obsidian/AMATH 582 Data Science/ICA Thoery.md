@@ -2,7 +2,7 @@ This part we are going to see some of the theories that are behind the computati
 
 Reference Lecture video: [Lecture Link](https://www.youtube.com/watch?v=olKgmOuAvrc&feature=youtu.be&ab_channel=NathanKutz)
 
-[[Ch 16.1 independent Component Analysis]]
+[[Independent Component Analysis]]
 
 ---
 ### Recap 

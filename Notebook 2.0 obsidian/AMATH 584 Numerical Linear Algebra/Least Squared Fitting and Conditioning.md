@@ -1,6 +1,6 @@
 Here we will be focusing on the stability and conditioning of a particular problem, Linear least square fitting 
 
-prereq: [[Stability and Conditioning.md]], [[SVD.md]]
+prereq: [[Stability and Conditioning]], [[SVD]]
 
 SVD is need to understand some of the analysis of the condition of the least square problem. 
 
@@ -40,7 +40,7 @@ And this is hinting that, some times, a solution of $x$,  might have the change 
 
 The Linear Least Square problem: 
 
-The setup of our problem is perfect for the LS fitting problem, and it can be directly computed by using the Moore Penrose Inverse (Discussed here: [[Projector.md]]): 
+The setup of our problem is perfect for the LS fitting problem, and it can be directly computed by using the Moore Penrose Inverse (Discussed here: [[Projector]]): 
 
 $$x = A^\dagger y = (A^HA)^{-1}A^Hb$$
 

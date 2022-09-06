@@ -79,7 +79,7 @@ And the matrix $S_w$ helps with the variance within the clusters with labels.
 
 This method is good for supervised dimensionality reduction on data-set. 
 
-More in [[LDA (Linear Discriminant Analysis)]]
+More in [[Linear Discriminant Analysis (LDA)]]
 
 ---
 ### GMM

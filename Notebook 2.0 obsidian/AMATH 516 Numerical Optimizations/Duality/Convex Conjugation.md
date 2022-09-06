@@ -1,7 +1,7 @@
 Pre-requisite: 
-* [[Characterizing Functions for Optimizations.md]]
-* [[Support Function.md]]
-* [[Subgradient and Subdifferential Definition.md]]
+* [[Characterizing Functions for Optimizations]]
+* [[Support Function]]
+* [[Subgradient and Subdifferential Definition]]
 
 ---
 ### **Intro**
@@ -138,7 +138,7 @@ From the first line the the second line, we make the intuitive argument that the
 
 **Corollary: Convex Conjugate is Convex**
 
-Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function.md]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
+Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
 
 **Remarks**
 
@@ -208,12 +208,12 @@ $$
 
 **Proof**
 
-See [[Biconjugate Theorem.md]] for a more detailed proof of the theorem. 
+See [[Biconjugate Theorem]] for a more detailed proof of the theorem. 
 
 ---
 ### **Convex Conjugate Quick Maths References**
 
-In this section we list some important quick rules for computing the convex conjugation of functions. 
+In this section we list some important quick rules for computing the convex onjugation of functions. 
 
 
 $$
@@ -252,8 +252,8 @@ $$
 
 Entry 3: $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
 
-And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function.md]] to analyze the dual. 
+And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
-For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples.md]] for more information. Here we summarize some of the important results from there in a nice table format. 
+For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
 
 #TODO: FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 

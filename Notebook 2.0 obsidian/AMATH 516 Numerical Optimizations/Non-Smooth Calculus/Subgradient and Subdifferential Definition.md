@@ -25,12 +25,12 @@ Materials take with reference from Chapter 3 of \<First Order Method for Optimiz
 
 **Proof**
 
-The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[f](x) = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
+The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[[x|f]] = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
 
 $$
 \begin{aligned}
     & \forall (y, \beta) \not\in \text{epi}(f)\; 
-    \exists (x, f(x)) \in \text{bd}\circ \text{epi}(f), g\in \partial [f](y):
+    \exists (x, f(x)) \in \text{bd}\circ \text{epi}(f), g\in \partial [[y|f]]:
     \\
     &
     \langle (y, \beta), (g, -1)\rangle \le \delta \le \langle (g, -1), (x, f(x))\rangle
@@ -69,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions (Set-valued Mappings)]]. 
+And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Set-valued Mappings)](Multivalued Functions (Set-valued Mappings|Multivalued Functions (Set-valued Mappings)]].md). 
 
 **Definition: Generalized Gradient (Regular Subgradient)**
 
@@ -90,7 +90,7 @@ Where the little $o$ notation is a limit in disguise, in this case it has the pr
 The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
 $$
-\partial [f](x)\subseteq\hat{\partial}[f](x) 
+\partial [[x|f]]\subseteq\hat{\partial}[[x|f]] 
 $$
 
 Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
@@ -108,7 +108,7 @@ A good notations should be clear about several things when taking the derivative
 * What variables are we raking the derivative with? 
 * What values are we putting into the derivative functions? 
 
-For example: $\partial [f(Ax + b, u)](u = x^+), \partial [f(Ax + b, u)]_{u = x^+}, \partial [f(Ax + b, u)|u](x^+)$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
+For example: $\partial [[Ax + b, u)](u = x^+|f(Ax + b, u)]], \partial [[Ax + b, u)]_{u = x^+}, \partial [f(Ax + b, u)|u](x^+|f(Ax + b, u)]]$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
 
 ---
@@ -129,12 +129,12 @@ And it can be viewed that $g = \mathbf 0$, directly interpreted from the definit
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
->   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+>   v \in \hat\partial [[x|f]]\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
 >$$
 
 **Proof**
 
-To show the $\implies$, we consider any $v \in \hat\partial [f](x)$, from the definition of the generalized gradient, we have: 
+To show the $\implies$, we consider any $v \in \hat\partial [[x|f]]$, from the definition of the generalized gradient, we have: 
 
 $$
 \begin{aligned}
@@ -294,7 +294,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 > If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
->   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \hat\partial [f](x)
+>   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \hat\partial [[x|f]]
 > $$
 
 **Proof Preparations**
