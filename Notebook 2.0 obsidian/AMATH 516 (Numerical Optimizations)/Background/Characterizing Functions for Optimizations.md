@@ -44,7 +44,7 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 > A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
 
 **C1 Smooth**
-> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like. 
+> A function $f$ is a C1 function when it has a uniformly continuous derivative. It's quadratic-like. 
 
 ---
 ### **Closed Function**
@@ -55,18 +55,18 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 The following statements about function $f$ is equivalent: 
 
 * The function $f$ is closed. 
-* The function $f$ is lower semi-continuous 
+* The function $f$ is lower semi-continuous .
 * The function $f$ has closed level set for all $\alpha$, where the definition of level set is given as: 
 
 **Definition: Level Set**
 
 $$
-\text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}
+\text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}.
 $$
 
-Which is the domain where the function $f$ has a value that is bounded by $\alpha$.
+Which is the pre-image where the function $f$ has a value that is bounded by $\alpha$.
 
-**Proof**
+**Proof of Equivalences**
 
 Skipped for now. For a proof, see: \<First Order Method in Optimization\> by SIAM, page 16 Theorem 2.6. 
 
@@ -173,6 +173,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
+* For more about it see [[Strong Convexity, Equivalences and Implications]]
 
 ---
 ### **Beta-Smoothness**
@@ -196,11 +197,10 @@ The absolute signs make it possible to model the smoothness for both convex and 
 
 **Proofs**
 
-MISSING
+A proof can be found in [[Global Lipschitz Gradient and its weaker Implications]]
 
 **Remarks**: 
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 
-
 
 
 ---
@@ -218,7 +218,7 @@ Intuitively beta-smoothness refers to the ability to place a quadratic function 
 ---
 ### **Discussions**
 
-A big part of optimization is characterizing functions and understand how they these properties can be expoited for algorithm, and how they propagate through different types of operations. 
+A big part of optimization is characterizing functions and understand how they these properties can be exploited for algorithm, and how they propagate through different types of operations. 
 
 Some of the important properties that we need to keep track of about functions are basically: 
 1. Closedness
@@ -226,4 +226,4 @@ Some of the important properties that we need to keep track of about functions a
 3. Continuity
 4. Smoothness
 
-However, for special type of functions, we might need to focus on more interesting properties and such. 
+However, for special type of functions, we might need to focus on more interesting properties. 

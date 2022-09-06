@@ -276,7 +276,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* The regular subgradient is a convex set (**#REFERENCES_NEEDED**). 
+* The regular subgradient is a convex set (**#REFERENCE_NEEDED**). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 

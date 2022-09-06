@@ -1,10 +1,10 @@
-[[AMATH 582/SVM]], [[PCA (Principal Components Analysis)]]
+[[SVM]], [[PCA (Principal Components Analysis)]]
 
 Here we talk about another extension of the PCA method. The Kernel PCA which performs the PCA at a non-linear subspace compare to the original dimension where the data lies in. The same kernel trick used for SVM. 
 
 Reference: [Link](http://www.cs.haifa.ac.il/~rita/uml_course/lectures/KPCA.pdf), and wikipedia 
 
-In practice, people can use [Kernel PCA](https://scikit-learn.org/stable/auto_examples/decomposition/plot_kernel_pca.html#sphx-glr-auto-examples-decomposition-plot-kernel-pca-py) from the sklearn library. 
+In practice, people can use [Kernel PCA](https://scikit-learn.org/stable/auto_examples/decomposition/plot_kernel_pca.html#sphx-glr-auto-examples-decomposition-plot-kernel-pca-py) from the `sklearn` library. 
 
 ---
 ### **Intro**

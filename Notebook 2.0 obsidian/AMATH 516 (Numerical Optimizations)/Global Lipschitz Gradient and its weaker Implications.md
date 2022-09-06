@@ -1,10 +1,10 @@
-[[Characterizing Functions for Optimizations]]
-
+* [[Characterizing Functions for Optimizations]]
+* [[Dual Norm]]
 
 ---
 ### **Intro**
 
-We introduce $f:\mathbb E \mapsto \mathbb{\bar R}$, which has a Lipchitz continuous gradient, and we wish to see what is impied, and adding convexity shows a stronger equivalences between 3 different conditions. 
+We introduce $f:\mathbb E \mapsto \mathbb{\bar R}$, which has a Lipchitz continuous gradient, and we wish to see what is implied, and adding convexity shows a stronger equivalences between 3 different conditions. 
 
 **References:** 
 
@@ -169,20 +169,24 @@ And this completed our proof.
 
 **Remarks**
 
-The co-coersive conditions of the gradient implies the fact that the gradient is Lipschitz. However, without the assumption of function $f$ being convex, we cannot get condition 3 to hold. Which would mean that there exists some type of non-convex function that could be smooth, and makes condition 1 true, but it's not having a gradient that is Lipschitz, therefore, the conditions 2 specifically is a weaker conditions compare to globally Lipschitz gradient of the function. More specifically, we consider the $f(x) = x^2\sin(x^{-1}) ,\forall x\neq 0$ as a function who is smooth, but it doesn't have globally Lipschitz Gradient. We first show that this function $f$ is globally lipschitz, hence it's smooth. Consider that $f'(x) = 2x\sin(x^{-1}) + \cos(x^{-1})$ then: 
-$$
-\begin{aligned}
-    & f'(x) \le 2|x\sin(x^{-1})| + \cos(x^{-1}), \forall x
-    \\
-    & f'(x) \le M + 1, \forall x.
-\end{aligned}
-$$
-This is true because the limit of $x\sin(x^{-1})$ to $\pm\infty$ is $1$, and the function is continuous on the region $(-\infty, 0), (0, +\infty)$, therefore it has to be bounded, let it be bounded by $M$. Then we have $f$ being Lipschitz continuous because
-$$
-\begin{aligned}
-    |f(y) - f(z)| \le& \sup_{z\in \mathbb R} |f'(z)(y - x)|
-    \\
-    |f(y) - f(z)| \le& (M + 1)|y - x|
-\end{aligned}. 
-$$
-Giving us global Lipschitz continuity, and therefore $f$ has to be smooth. However, it's derivative is definitely not Lipschitz. Its derivative is differentialble but the derivative of $x\sin(x\^{-1})$ is not bounded, therefore it's derivative is no longer globally Lipschitz. Therefore we conclude the fact that under the general case, for any function with condition 2, the smoothness condition is strictly weaker than having globally Lipschitz gradient. 
+Without the convexity assumption for $f$, smoothness conditions and Lipschitz gradient is not equivalent, and the smoothness condition is more general than global Lipschitz gradient. Below is an example of a function where it's smooth but its gradient is not Lipschitz continuous. 
+
+> [!Example]-
+> 
+>The co-coersive conditions of the gradient implies the fact that the gradient is Lipschitz. However, without the assumption of function $f$ being convex, we cannot get condition 3 to hold. Which would mean that there exists some type of non-convex function that could be smooth, and makes condition 1 true, but it's not having a gradient that is Lipschitz, therefore, the conditions 2 specifically is a weaker conditions compare to globally Lipschitz gradient of the function. More specifically, we consider the $f(x) = x^2\sin(x^{-1}) ,\forall x\neq 0$ as a function who is smooth, but it doesn't have globally Lipschitz Gradient. We first show that this function $f$ is globally Lipschitz, hence it's smooth. Consider that $f'(x) = 2x\sin(x^{-1}) + \cos(x^{-1})$ then: 
+>$$
+>\begin{aligned}
+>    & f'(x) \le 2|x\sin(x^{-1})| + \cos(x^{-1}), \forall x
+>    \\
+>    & f'(x) \le M + 1, \forall x.
+>\end{aligned}
+>$$
+>This is true because the limit of $x\sin(x^{-1})$ to $\pm\infty$ is $1$, and the function is continuous on the region $(-\infty, 0), (0, +\infty)$, therefore it has to be bounded, let it be bounded by $M$. Then we have $f$ being Lipschitz continuous because
+>$$
+>\begin{aligned}
+>    |f(y) - f(z)| \le& \sup_{z\in \mathbb R} |f'(z)(y - x)|
+>    \\
+>    |f(y) - f(z)| \le& (M + 1)|y - x|
+>\end{aligned}. 
+>$$
+>Giving us global Lipschitz continuity, and therefore $f$ has to be smooth. However, it's derivative is definitely not Lipschitz. Its derivative is differentiable but the derivative of $x\sin(x\^{-1})$ is not bounded, therefore it's derivative is no longer globally Lipschitz. Therefore we conclude the fact that under the general case, for any function with condition 2, the smoothness condition is strictly weaker than having globally Lipschitz gradient. 

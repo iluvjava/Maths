@@ -225,3 +225,7 @@ $$
 $$
 
 Then, is it possible that the gradient of the function is globally Lipschitz? 
+
+> [!Proofs]-
+> Here's a callout block.
+> It supports **markdown** and [[Internal link|wikilinks]].

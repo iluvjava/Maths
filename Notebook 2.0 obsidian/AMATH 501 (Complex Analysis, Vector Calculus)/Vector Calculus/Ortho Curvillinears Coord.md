@@ -44,7 +44,7 @@ What this is saying is that, if I use a point $(u_1, u_2, u_3)$  to represent a 
 ---
 #### Alternate Basis Vectors
 
-So, we need to represent the curvilinear coordinate system as coordinate embedded into the cartesian coordiante, and we are going to use the above defintion to get them. 
+So, we need to represent the curvilinear coordinate system as coordinate embedded into the cartesian coordinate, and we are going to use the above definition to get them. 
 
 Suppose we have the given vector (It's actually a transformation): 
 $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
