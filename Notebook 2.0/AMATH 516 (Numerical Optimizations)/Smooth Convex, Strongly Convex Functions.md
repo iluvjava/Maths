@@ -1,4 +1,0 @@
-[[Characterizing Functions for Optimizations]]
-
-
----

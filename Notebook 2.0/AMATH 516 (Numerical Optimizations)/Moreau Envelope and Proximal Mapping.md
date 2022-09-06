@@ -148,7 +148,7 @@ Basically it's Lipschitz continuous with a constant of 1 (Try using the cauchy s
 
 **Proof**
 
-To prove we make use of [[Properties of Strong Convexity]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
+To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
 
 
 ---
@@ -221,7 +221,7 @@ Minty Parameterizations:
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
-  * We use the property that $(\alpha f(x))^\star =f^\star(z/\alpha)$ and the identity described at the start to simplify the Moreau Decompositions formula. 
+  * We use the property that $(\alpha f(x))^\star =\alpha f^\star(z/\alpha)$ and the identity described at the start to simplify the Moreau Decompositions formula. 
 
 
 ---
