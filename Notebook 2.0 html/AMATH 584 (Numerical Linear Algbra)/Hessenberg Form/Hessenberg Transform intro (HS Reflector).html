@@ -84,9 +84,9 @@
                     data-dark-mode-theme="dark"
                     data-light-mode-theme="default"></span>
                 <p>In this file we are going to see some modern approach to the Eigen Decomposition algorithms, which should give us better perspective on things.
-[[Inverse Power Iteration]]
-[[Schur Decomposition]]
-[[HS Reflector]]</p>
+<a href="Inverse%20Power%20Iteration.html">Inverse Power Iteration</a>
+<a href="Schur%20Decomposition.html">Schur Decomposition</a>
+<a href="HS%20Reflector.html">HS Reflector</a></p>
 <hr>
 <h3 id="intro"><strong>Intro</strong></h3>
 <p>Modern computing methods for the Eigenvalue/EigenVector problem uses the following computing architecture:</p>
@@ -323,9 +323,9 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z'/></svg><
 <p>But it has applications in eigenvalue decomposition.</p>
 <hr>
 <h3 id="iterative-algorithm-approach"><strong>Iterative Algorithm Approach</strong></h3>
-<p>read: [[Householder Triangularization]]</p>
+<p>read: <a href="Householder%20Triangularization.html">Householder Triangularization</a></p>
 <p>The same matrix <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span> for the household transformation is recursively applied to the matrix to reduce it to Hessenberg Form.</p>
-<p>![[Householder Reduction to Hessenberg Form.png]]</p>
+<p><img src="file:////Users/hongdali/Desktop/repos/Maths/Notebook 2.0 markdown/AMATH 584 (Numerical Linear Algbra)/Hessenberg Form/Householder%20Reduction%20to%20Hessenberg%20Form.png" alt="Householder Reduction to Hessenberg Form"></p>
 <p>From: Trefethen's Book page 198</p>
 <p><strong>Comment</strong></p>
 <blockquote>
@@ -335,7 +335,7 @@ c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z'/></svg><
 <h3 id="iterative-diagonalization"><strong>Iterative Diagonalization</strong></h3>
 <p>This process is usually very diverse, after the construction of the Hessenberg form, we iterate and get to the Triangular form, and that will give us the Schur Decomposition of the matrix.</p>
 <p>Consider the case when the matrix is <strong>Hermitian</strong>, the Hessenberg reduction will give a Tridiagonal Form matrix, which will speed up the iterations process. And there are a lot of good properties associated with the Tridiagonal Matrix.</p>
-<p>[[Eigen Decomp (The Pure QR)]]</p>
+<p><a href="Eigen%20Decomp%20(The%20Pure%20QR).html">Eigen Decomp (The Pure QR)</a></p>
 
         <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
         <script async type="text/javascript">

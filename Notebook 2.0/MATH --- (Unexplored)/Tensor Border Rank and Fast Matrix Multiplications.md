@@ -1,1 +1,0 @@
-This is the [Conference Paper](https://people.eecs.berkeley.edu/~nirkhe/talks/ma10presentation2.pdf)

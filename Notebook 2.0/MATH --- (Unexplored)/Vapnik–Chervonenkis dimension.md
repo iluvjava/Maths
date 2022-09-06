@@ -1,1 +1,0 @@
-wiki [here](https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_dimension)

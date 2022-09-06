@@ -85,7 +85,7 @@
                     data-light-mode-theme="default"></span>
                 <p>Adams Bashforth,  Adam Moulton Method
 Multi-stepping schemes requires several pre-established points to make one future time step, this is a feature from the derivative using the integral method with the Taylor approximation and finite difference.</p>
-<p>[[Finite Difference]]
+<p><a href="Finite%20Difference.html">Finite Difference</a>
 Contents:</p>
 <ul>
 <li>Forward Integration and Finite Difference Analysis</li>
@@ -167,7 +167,7 @@ f_n + \frac{f_n - f_{n+1}}{\Delta t}(t - t_n) dt</annotation></semantics></math>
 </blockquote>
 <h4 id="extra-notes"><strong>Extra Notes</strong></h4>
 <p>Because the Adams Bashforth scheme requires 2 points as for starting it, we might just need to to use Euler for the first iteration and then use this scheme to start the iterations.</p>
-<p>![[Adam B.M Derivation.jpg]]</p>
+<p><img src="file:////Users/hongdali/Desktop/repos/Maths/Notebook 2.0 markdown/AMATH 581 (Scientific Computing)/Adam%20B.M%20Derivation.jpg" alt="Adam B.M Derivation"></p>
 <hr>
 <h3 id="multi_stepping-and-predictors"><strong>Multi_Stepping and Predictors</strong></h3>
 <p>We can combine both of the implicit and the explicit time steppingg scheme together to get best of the both worlds. Assume that we have previous 2 points, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">y_{n - 1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">y _{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, then we can use the explicit method to get the future time step as:</p>

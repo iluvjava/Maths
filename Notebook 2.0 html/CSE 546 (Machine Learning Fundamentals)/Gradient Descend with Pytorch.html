@@ -84,7 +84,7 @@
                     data-dark-mode-theme="dark"
                     data-light-mode-theme="default"></span>
                 <p>Before training Neuro net, make sure to have some basic understanding on the back prop algorithm involved with the training:
-[[Back Propagation]], [[Back Propagation 2]]</p>
+<a href="Back%20Propagation.html">Back Propagation</a>, <a href="Back%20Propagation%202.html">Back Propagation 2</a></p>
 <p>This file is going to be a practical guide on training the Neural network using pytorch in python.</p>
 <p>Here are some useful links that can help with learning Pytorch
 <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">Pytorch in 60 mins</a></p>
@@ -144,7 +144,7 @@ y.backward()
 step_size = <span class="hljs-number">0.1</span>
 
 <span class="hljs-comment"># And starting w</span>
-w = torch.tensor([[<span class="hljs-number">1.</span>], [<span class="hljs-number">0</span>]], requires_grad=<span class="hljs-literal">True</span>)
+w = torch.tensor([<span class="hljs-number">1.</span>](<span class="hljs-number">1.</span>), requires_grad=<span class="hljs-literal">True</span>)
 
 <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;iter,\tloss,\tw&#x27;</span>)
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>):
@@ -176,7 +176,7 @@ w = torch.tensor([[<span class="hljs-number">1.</span>], [<span class="hljs-numb
 d_out = <span class="hljs-number">4</span>
 linear_module = nn.Linear(d_in, d_out)
 
-example_tensor = torch.tensor([[<span class="hljs-number">1.</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]])
+example_tensor = torch.tensor([<span class="hljs-number">1.</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>](<span class="hljs-number">1.</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
 <span class="hljs-comment"># applys a linear transformation to the data</span>
 transformed = linear_module(example_tensor)
 <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;example_tensor&#x27;</span>, example_tensor.shape)
