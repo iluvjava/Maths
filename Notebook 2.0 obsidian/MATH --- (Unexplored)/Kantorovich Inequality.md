@@ -1,0 +1,1 @@
+Wiki [here](https://en.wikipedia.org/wiki/Kantorovich_inequality)

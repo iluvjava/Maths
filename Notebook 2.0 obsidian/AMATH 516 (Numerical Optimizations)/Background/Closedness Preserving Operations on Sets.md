@@ -1,0 +1,12 @@
+[[Closure Topology]]
+
+---
+### **Intro**
+
+Certain operations on subsets of $\mathbb E$ preserves the closedness of sets. However, it can be counter intuitive and there exists some very interesting counter examples to seemingly correct statement. 
+
+#TODO: Follows Dimistry's notes and fill this in. 
+
+
+
+
