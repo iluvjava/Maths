@@ -122,7 +122,6 @@ $$
 
 To prove the upper bound, we simply substitue $x^+$ to the smoothness condition, which will set $\nabla f(x^+)$ to $\mathbf 0$ because it's a minimizer for the function $f$. We skip it for simplicity. $\blacksquare$
 
-
 ---
 ### **Proof of Proposition 2**
 
@@ -190,3 +189,5 @@ Without the convexity assumption for $f$, smoothness conditions and Lipschitz gr
 >\end{aligned}. 
 >$$
 >Giving us global Lipschitz continuity, and therefore $f$ has to be smooth. However, it's derivative is definitely not Lipschitz. Its derivative is differentiable but the derivative of $x\sin(x\^{-1})$ is not bounded, therefore it's derivative is no longer globally Lipschitz. Therefore we conclude the fact that under the general case, for any function with condition 2, the smoothness condition is strictly weaker than having globally Lipschitz gradient. 
+
+Instead, one-sided Lipschitz is equivalent to the smoothness conditions. Here we refer to [wikipedia](https://en.wikipedia.org/wiki/Lipschitz_continuity#One-sided_Lipschitz), and observe that simple algebraic manipulations of the smoothness conditions can lead to same inequality as the one-sided Lipschitz definition. 

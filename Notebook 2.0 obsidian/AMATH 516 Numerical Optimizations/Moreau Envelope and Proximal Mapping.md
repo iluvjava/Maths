@@ -144,7 +144,7 @@ The proof is from myself and it might contains some errors.
 >     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
 > \end{aligned}
 > $$
-Basically it's Lipschitz continuous with a constant of 1 (Try using the cauchy schwartz inequality). 
+Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy schwartz inequality). 
 
 **Proof**
 
@@ -211,7 +211,7 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at $[6]$ we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. 
+At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at \[6\] we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. 
 
 **Remarks**
 

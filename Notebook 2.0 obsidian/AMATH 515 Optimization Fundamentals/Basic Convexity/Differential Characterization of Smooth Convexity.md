@@ -140,7 +140,7 @@ For a given function that is $C^1$ smooth and convex, the following are equivale
 2. $x$ is a local minimizer for f
 3. $x$ is a stationary point ($\nabla f(x) = 0$)
 
-Proof: 1 --> 2 Trivial, 2 --> 3, already did in [[Optimality Conditions (Jacobian Hessian)]] 
+Proof: 1 --> 2 Trivial, 2 --> 3, already did in [[Optimality Conditions, Jacobian Hessian]] 
 What remains to be verified is: 3 --> 1 
 
 $$

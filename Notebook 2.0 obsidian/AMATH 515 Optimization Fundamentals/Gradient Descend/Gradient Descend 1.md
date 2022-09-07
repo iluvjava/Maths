@@ -72,7 +72,7 @@ $$
 And notice that in the contex of the gradient descent, $x$ is $x_{k}$ and $y^*$ will be $x_{k + 1}$. 
 
 ---
-### Convergence with Beta Smoothness
+### **Convergence with Beta Smoothness**
 
 Here, we are going to show how the iteration is going to  converge under the $\beta$ smoothness assumption for the function. 
 
@@ -102,7 +102,7 @@ $$
     \le f(x_0) - f(x_{k + 1})
 $$
 
-The sum of all the squared 2 norm of the gradient step we divided by the $\beta$ smoothness scale, we will have the change in the objective value for the algorithm as an lower bound. (A pretty pessimistic estimate)
+The sum of all the squared 2 norm of the gradient step we divided by the $\beta$ smoothness scale, we will have the change in the objective value for the algorithm as a lower bound. (A pretty pessimistic estimate)
 
 Let's make the assumption that the $x_{k + 1}$ is giving us $\inf(f)$, noted as $f^*$, then we can have: 
 
@@ -114,7 +114,7 @@ $$
 \frac{2\beta(f(x_0) - f^*)}{k}
 $$
 
-The first term is the smallest gradient step, and the second terms is the average gradient step, and the third term is the upper bouund of the objective decrease. 
+The first term is the smallest gradient step, and the second terms is the average gradient step, and the third term is the upper bound of the objective decrease. 
 
 Taking the square root at both side we have: 
 
@@ -173,6 +173,7 @@ Where the quotient is given as: $Q: = \beta/\alpha$. Where the alpha is the lowe
 In addition, the analysis of this follows from the previous case, and we can place another bound on the other optimality metric: 
 
 The minimal gradient is bounded by: 
+
 $$
 \min_{i}\Vert \nabla f(x_i)\Vert \in
 \mathcal{O}
@@ -186,6 +187,7 @@ $$
 $$
 
 And for the objective value it's bounded by: 
+
 $$
 f(x_k) - f^*
 \in
