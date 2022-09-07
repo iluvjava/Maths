@@ -227,7 +227,17 @@ Moreau Decomposition With the Alpha parameters on Proximal operators:
 ---
 ### **Gradient of Prox is Lipschitz for CCP Functions**
 
+Let $f$ be a convex function that is lsc, then the proximal mapping of the function has gradient, meaning that it's differentiable everywhere. We prove it consider: 
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
 
+
+**Remarks**
+
+When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
 
 
