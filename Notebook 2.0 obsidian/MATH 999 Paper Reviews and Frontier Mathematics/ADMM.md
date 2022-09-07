@@ -66,7 +66,6 @@ $$
 \end{aligned}
 $$
 
-
 ---
 ### **Methods of Dual Ascend**
 Performs gradient updated on the gradient of the dual, we assume that $l$ has global Lipschitz gradient and it's convex, and $\phi$ to be a convex function as well, then the strong duality applies, denote the dual problem then its gradient is given by: 

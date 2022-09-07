@@ -1,18 +1,32 @@
-prereq: [[Gradient Descend 1]], [[Subgradient and Subdifferential Definition]]
-
+prereq: 
+* [[Gradient Descend 1]]
+* [[Subgradient and Subdifferential Definition]]
+* [[Characterizing Functions for Optimizations]]
 
 ---
 ### **Intro**
 
-Welcome. Proximal gradient descend is a unconstrained optimization method, it aims to solve: 
+Proximal gradient descend is a unconstrained optimization method, it aims to solve: 
 
-> $$\min_x \{f(x) + h(x)\}$$
+> $$\min_x \{g(x) + h(x)\}$$
 
-where $f(x), h(x)$ are convex but $h(x)$ is non-smooth. 
+where $g(x), h(x)$ are convex but $h(x)$ is non-smooth and $g$ is smooth, meaning that it has gradient oracle and can be bounded by quadratic from above on every point for the domain of the function. Here, we derive the proximal gradient algorithm using the most common way of deriving the projected gradient algorithm: Majorizing and Minimizing. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
-**Intuitively**
+**The Upper-bounding Function**
 
-if $f(x)$ is complicated, it's hard to solve, however, if we have the convexity information for function $f(x)$ at a fixed point, then we might solve the following problem efficiently: 
+By $\beta$ convexity of $g$ and convexity of $h$ we have: 
+
+$$
+f(x) + h(x) \le 
+g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
++ h(y) = m_x(y) \tag{1}
+$$
+
+Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient. 
+
+
+
+**Define: The Proximal Operator**
 
 $$
 \underset{h, t}{\text{prox}}(
@@ -25,10 +39,10 @@ $$
     \right\Vert^2
     + 
     h(x)
-\right\rbrace
+\right\rbrace.
 $$
 
-This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. 
+This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion. 
 
 ---
 ### **Claim 1**
@@ -40,18 +54,10 @@ This is called the proximal operator, parameterized by a convexity information r
 >     \Vert y - x\Vert + h(y)
 > \right\rbrace
 > $$
-
-**Observe that**
-
-By $\beta$ convexity of $g$ and convexity of $h$ we have: 
-
-$$
-f(x) + h(x) \le 
-g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-+ h(y) = m_x(y) \tag{1}
-$$
-
-find the solution to minimize this is what **claim 1** is about. 
+> Solves $m_x(y)$ and it can be written as: 
+> $$
+> \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}.
+> $$
 
 **Proof**
 
@@ -173,7 +179,7 @@ Therefore, we have a way to solve the mini minimization problem $m_x(y)$ at a po
 ---
 ### **Claim 2**
 
-> If proximal operator "locked" itself during the iterations of proximal gradient descend, then optimality condition is satisfied. 
+> If proximal operator produces $x^{(k+ 1)} = x^{(k)}$, then optimality condition is satisfied. 
 
 **Proof**
 
@@ -192,9 +198,7 @@ $$
 
 $$
 
-Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. 
-
-Take notice that, IF $x^+ = x$, meaning that the proximal operator becomes the identity, then the optimal solution is satisified because zero belongs to the subgradient of $g(x) + h(x)$. 
+Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. Take notice that, if $x^+ = x$, meaning that the proximal operator becomes the identity, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
 ---
 ### **Formulation of Proximal Gradient Descend**
@@ -222,9 +226,7 @@ Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a p
 ---
 ### **FISTA, Accelerated Proximal Gradient**
 
-This accelerated gradient algorithm is referenced from: 
-
-[reference](http://www.princeton.edu/~yc5/ele522_optimization/lectures/accelerated_gradient.pdf)
+This accelerated gradient algorithm is referenced from: [[FISTA_ A Fast Iterative Shrinka - Amir Beck.pdf]]. 
 
 The iteration will be started with: $x_0 = y_0$, $t_0 = 1$, the update sequence is: 
 

@@ -230,10 +230,39 @@ Moreau Decomposition With the Alpha parameters on Proximal operators:
 Let $f$ be a convex function that is lsc, then the proximal mapping of the function has gradient, meaning that it's differentiable everywhere. We prove it consider: 
 $$
 \begin{aligned}
-    
+    & z\in \text{env}_{f}(x)
+    \\
+    & z\in \partial \left[
+        f(\cdot) \square \frac{1}{2}\Vert \cdot\Vert^2
+    \right](x)
+    \\
+    & x \in \partial \left[
+        \left(
+            f(\cdot) \square \frac{1}{2}\Vert \cdot \Vert^2
+        \right)^\star
+    \right](z)
+    \\
+    & x \in \partial \left[
+        f^\star + \frac{1}{2}\Vert \cdot \Vert^2
+    \right](z) &  [1]
+    \\
+    & x\in 
+    \partial f^\star(z) + z
+    \\
+    & \mathbf 0  \in \partial f^\star(z) + z - x
+    \\
+    & \mathbf 0 \in 
+    \partial \left[
+        f^\star(\cdot) + \frac{1}{2}\Vert \cdot - x\Vert
+    \right](z)
+    \\
+    & z\in \text{prox}_{f^\star}(x)
+    \\
+    & z \in x - \text{prox}_{f}(x) & [2]
 \end{aligned}
 $$
 
+At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. $\square$. 
 
 **Remarks**
 

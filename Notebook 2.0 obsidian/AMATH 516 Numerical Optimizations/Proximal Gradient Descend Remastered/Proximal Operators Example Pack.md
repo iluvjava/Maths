@@ -1,4 +1,4 @@
-prereq: [[Introduction to Proximal Gradient]]
+prereq: [[Introduction, Projected Proximal Gradient via MM]]
 
 
 ---
@@ -15,7 +15,7 @@ In the case of non-smooth function, regularization and simple constrained optimi
 ---
 ### **L1 Regularization**
 
-The proximal solution for the nonsmooth part is the same as this problem: 
+The proximal solution for the non-smooth part is the same as this problem: 
 $$
 \arg\min_x \left\lbrace
     \frac{1}{2t} \Vert x - y \Vert^2 + \lambda\Vert x\Vert_1
