@@ -95,7 +95,9 @@ which requires solving the problem problem for each ascend step of the dual vari
 
 
 ---
-### **Properties**
+### **Convergence Results**
+
+See the appendix of the references. 
 
 
 

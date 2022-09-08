@@ -76,7 +76,7 @@ $$
     \right) + 
     \underbrace{\left(
         \nabla g(x) - \beta x
-    \right)^T y + \frac{\beta}{2} \Vert y\Vert + h(y)}_{\text{Optimize This!}}
+    \right)^T y + \frac{\beta}{2} \Vert y\Vert + h(y)}_{\text{Optimize This!}}. 
 \end{aligned}\tag{2}
 $$
 
@@ -93,7 +93,7 @@ $$
         \underbrace{\left(
             \nabla g(x) - \beta x
         \right)^T y + \frac{\beta}{2} \Vert y\Vert^2}_{\text{the smooth part}} + h(y)
-    \right\rbrace 
+    \right\rbrace. 
 \end{aligned}\tag{3}
 $$
 
@@ -141,7 +141,7 @@ $$
     =& 
     \left\Vert
         y - \left(x - \frac{\nabla g(x)}{\beta}\right)
-    \right\Vert^2
+    \right\Vert^2. 
 \end{aligned}\tag{4}
 $$
 
@@ -165,11 +165,11 @@ $$
     \right\rbrace
     \\
     =& 
-    \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}
+    \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}, 
 \end{aligned}\tag{5}
 $$
 
-Therefore, minimizing the proximal operator using the convexity information at a point of the function will minimizes the parabolic approximation of that region, together with the nonconvex function. 
+therefore, minimizing the proximal operator using the convexity information at a point of the function will minimizes the parabolic approximation of that region, together with the nonconvex function. 
 
 $\blacksquare$
 

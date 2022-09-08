@@ -13,6 +13,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 * ADMM. Related topics are now in [[ADMM]], some of them taken from this paper. 
 * Proximal Methods .
 	* Proximal Methods as a minimum on the majorizing functions.
+		* The has been already summarized in [[Introduction, Projected Proximal Gradient via MM]]. 
 	* Proximal Methods as a fixed point iteration schemes.
 	* Proximal methods as gradient on the envelope. (Not mentioned?)
 	* Proximal methods an operator splitting methods for solve gradient dynamical system. (Definitely ignored in the paper)

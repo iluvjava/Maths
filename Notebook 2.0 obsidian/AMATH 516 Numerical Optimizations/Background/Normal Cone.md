@@ -1,12 +1,11 @@
 * [[Cone]]
 * [[Polar Cone]]
 
-
 ---
 ### **Intro**
 
 
-A normal cone is paramaterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
+A normal cone is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
 
 $$
 N_Q(\bar{x}) := \left\lbrace
@@ -31,10 +30,17 @@ However, if $x \not\in Q$, for consistency we define $N_Q(x) = \emptyset$.
 
 Finally, reader please observe that when with $x\in \text{int}(Q)$ (The relative interior), we would have $N_Q(x) = \{\mathbf 0\}$ which is a singleton, and when $Q$ is just our traditional linear subspaces: $L$, then the normal cone is $L^\perp$. 
 
-Observe that, the normal cone of a cone is just the polar of thta cone. 
-**Intuitively**:
+Observe that, the normal cone of a cone is just the polar of that cone. see [[Polar Cone]] for more information.
 
-Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. Imagine such a particle in the form of a car that has a headlight spanning a cone that is at 90 degree angles. Now imagine infinitely many such car approaching the point $\bar x\in Q$ in all possible continuous paths where their limit of velocity approaching $\bar x$ is $v$, then the intersection of their headlights will form the normal cone $N_Q(\bar x)$. 
+**Intuitively**: Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. Imagine such a particle in the form of a car that has a headlight spanning a cone that is at 90 degree angles. Now imagine infinitely many such car approaching the point $\bar x\in Q$ in all possible continuous paths where their limit of velocity approaching $\bar x$ is $v$, then the intersection of their headlights will form the normal cone $N_Q(\bar x)$. 
+
+Under the convex optimization, this normal cone is enough, but there are other types of normal cones, and this one in particular is referred to as the *regular normal cones*, denoted as $\hat N_Q(\bar x)$. 
+
+**References**
+
+Dimitry's 516 textbook, definition 2.34 page 38.  
 
 ---
 ### **Basic Properties**
+
+* Normal cone addition, see [[Normal Cone Addition]]. 

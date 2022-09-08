@@ -5,6 +5,8 @@
 ---
 ### **Intro**
 
+**Source**:
+
 Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
 * Definition of Subgradient for convex function
 * Definition of Generalized Subgradient
@@ -90,7 +92,7 @@ Where the little $o$ notation is a limit in disguise, in this case it has the pr
 The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
 $$
-\partial [[x|f]]\subseteq\hat{\partial}[[x|f]] 
+\partial [x|f]\subseteq\hat{\partial}[x|f]
 $$
 
 Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
@@ -99,7 +101,7 @@ Regardless of the fact that it's called the regular subgradient, the function $-
 
 
 **Source**: 
-The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition comes from \<Variational Analysis\> by Rockafellar, it's consistent with Dimitry's AMATH 516 FALL 2021. 
+The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> by Rockafellar, it's consistent with Dimitry's AMATH 516 FALL 2021. 
 
 ---
 ### **Notations**

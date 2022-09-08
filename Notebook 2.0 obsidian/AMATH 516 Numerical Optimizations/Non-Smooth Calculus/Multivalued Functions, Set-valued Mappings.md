@@ -22,7 +22,7 @@ $$
 \end{aligned}
 $$
 
-The graph of the operator is literally the multi-function visualized on a higher dimensions of the cross product space. 
+The graph of the operator is literally the multi-function visualized on a higher dimensions of the cross product space. One can also define the inverse of the set-value mapping via the graph of the operator. 
 
 ---
 ### **Composition and Additions**
@@ -40,3 +40,8 @@ $$
 $$
 
 For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. When thinking about the set-valued operators, we might treat then directly as their graph instead. 
+
+---
+### **Computations Rules**
+
+
