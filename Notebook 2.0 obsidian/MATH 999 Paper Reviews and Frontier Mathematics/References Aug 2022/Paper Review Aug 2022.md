@@ -26,7 +26,7 @@ For the Basics of proximal operators, see [[Moreau Envelope and Proximal Mapping
 1. > At 3.4, Nesterov accelerations is applicable to prox gradient algorithm. When $\phi$ is convex, the resulting proximal problem is strongly convex, which leads to better convergence. (cited [Zhan, Saha, Vishwananthan, 2010](https://arxiv.org/abs/1109.6058))
 2. > At 3.1, if these conditions are met(refers $l$ being convex and smooth and $\phi$ being convex.), then the proximal gradient method converges at rate $1/t$ with fixed step size $\gamma=1/\gamma_l$. ([Amir Beck andMarc Teboulle](http://www.math.tau.ac.il/~teboulle/papers/gradient_chapter.pdf) 2010)
 3. > At 5.0: For instance, ADMM methods will be viewed as the gradient step of the dual FB envelope (No citations, but refers to section 6)
-4. >For example, lasso can be viewed as a simple statistical model with the negative log-likelihood from $y=A x+\varepsilon$, where $\varepsilon$ is a standard normal measurement error, corresponding to the norm $l(x)=\|A x-y\|^2$, and each parameter $x_j$ has independent Laplace priors corresponding to the regularization penalty $\phi(x)=|x|$ (Refers to page 429, 224, machine learning a probabilistic perspective by Kevin P Murphy for more details).
+4. >For example, lasso can be viewed as a simple statistical model with the negative log-likelihood from $y=A x+\varepsilon$, where $\varepsilon$ is a standard normal measurement error, corresponding to the norm $l(x)=\|A x-y\|^2$, and each parameter $x_j$ has independent Laplace priors corresponding to the regularization penalty $\phi(x)=|x|$ (Refers to page 429, 224, machine learning a probabilistic perspective by Kevin P Murphy for more details). 
 
 **Suggested Further Research Directions**
 
