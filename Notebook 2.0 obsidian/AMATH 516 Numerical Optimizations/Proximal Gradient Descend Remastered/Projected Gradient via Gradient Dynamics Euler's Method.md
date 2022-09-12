@@ -5,10 +5,12 @@
 ### **Intro**
 
 Here, we consider the projected gradient algorithm for composition of 2 functions $f(x), h(x)$ where $h(x)$ is convex, lsc but non-smooth, but $f(x)$ is smooth convex and it has gradient defined everywhere in it's domain. Then the projected gradient performs the following updates that converges to the minimum
+
 $$
 x^{(t + 1)} = \text{prox}_{h, \gamma}(x^{(t)} - \gamma\nabla f(x)), 
 $$
-And we want to show that it's equivalent to an euler methods that is based on operator splitting. To do that let's consider the gradient dynamics: 
+
+and we want to show that it's equivalent to an euler methods that is based on operator splitting. To do that let's consider the gradient dynamics: 
 
 $$
 \begin{aligned}
@@ -44,6 +46,8 @@ This methods is an elementary methods where the dynamics can be separated into t
 
 I am suspecting using different formula for the finite difference term might produce the Douglas–Rachford Envelope scheme?
 
+Convergence rate might be related to the Lyaponouv function for this given dynamical system. 
+
 ---
 ### **Backwards Euler and Proximal Point**
 
@@ -59,9 +63,15 @@ which is equivalent to the backwards Euler methods on the gradient dynamics: $X'
 
 $$
 \begin{aligned}
-    & \frac{X(t + \Delta t) - X(t)}{\Delta t} = -\partial f(X(t  + \Delta t))
+    \frac{X(t + \Delta t) - X(t)}{\Delta t} &= -\partial f(X(t  + \Delta t))
     \\
-    
+     - X(t) &= 
+    - X(t + \Delta t)-\Delta t\partial f(X(t + \Delta t))
+    \\
+    X(t) &= 
+    [I + \Delta t\partial f](X(t + \Delta t))
+    \\
+    X(t + \Delta t) &= [I + \Delta t\partial f]^{-1}(x(t))
 \end{aligned}
 $$
 

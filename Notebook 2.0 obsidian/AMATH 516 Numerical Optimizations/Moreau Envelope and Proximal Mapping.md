@@ -9,20 +9,20 @@ $$
 \begin{aligned}
     & \text{env}_{\alpha, f}(x) := \min_{y}\left\lbrace
         f(y) + \frac{1}{2 \alpha }\Vert y - x\Vert^2
-    \right\rbrace
+    \right\rbrace, 
     \\
     & \text{prox}_{\alpha,f}(x) := 
     \arg\min_{y}\left\lbrace
         f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
-    \right\rbrace
+    \right\rbrace. 
 \end{aligned}
 $$
 
-The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by (**#REFERENCE_NEEDED**) the epigraph of the envelope is the set addition between the epigraph of those 2 functions.  
+The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[Infimal Convolution is Epigraph Addition]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions.  
 
 **Remarks**
 
-It's from Demitry's Textbook, definition 3.59, pg 77. 
+It's from Dimitry's Textbook, definition 3.59, pg 77. 
 
 If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value is given as: 
 
@@ -46,11 +46,16 @@ $$
 \begin{aligned}
     & \text{prox}_{f/\alpha, 1} =  \text{prox}_{f, \alpha}
     \\
-    & \alpha^{-1}\text{env}_{\alpha f, 1}(x) = \text{env}_{f, \alpha}(x)
+    & \alpha^{-1}\text{env}_{\alpha f, 1}(x) = \text{env}_{f, \alpha}(x). 
 \end{aligned}
 $$
 
 For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$. 
+
+**Good References**
+
+* Dimitry's class from UW. 
+* [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains other information. 
 
 ---
 ### **As a Operators**
@@ -109,12 +114,12 @@ $$
 \begin{aligned}
     & \text{env}_{f, \alpha}(x) = \min_y \left\lbrace
         f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
-    \right\rbrace
+    \right\rbrace ,
     \\
     & \text{let: }y^+ \in \text{prox}_{f, \alpha}(x) \text{ then: }
     \\
     & \begin{aligned}
-        \text{env}_{f, \alpha}(x) &= f(y^+) + \frac{1}{2\alpha} \Vert y^+ - x\Vert^2
+        \text{env}_{f, \alpha}(x) &= f(y^+) + \frac{1}{2\alpha} \Vert y^+ - x\Vert^2,
         \\
         \partial\text{env}_{f, \alpha}(x) &= \mathbf 0 + 
         \partial_x\left[
@@ -123,7 +128,7 @@ $$
         \\
         &= \mathbf 0 + \frac{1}{\alpha}(x - y^+)
         \\
-        &= \frac{1}{\alpha}(x - \text{prox}_{f, \alpha}(x))
+        &= \frac{1}{\alpha}(x - \text{prox}_{f, \alpha}(x)). 
     \end{aligned}
 \end{aligned}
 $$
@@ -149,6 +154,8 @@ Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy s
 **Proof**
 
 To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
+
+
 
 
 ---
@@ -182,7 +189,7 @@ Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed conve
 
 
 
-**Proof Theorem**
+**Proof**
 $$
 \begin{aligned}
     & z = \text{prox}_f(x) & 
@@ -207,7 +214,7 @@ $$
     \implies & 
     x - z= \text{prox}_{f^\star}(x) &[7]
     \\
-    & x = \text{prox}_f(x) + \text{prox}_{f^\star}(x) &[8]
+    & x = \text{prox}_f(x) + \text{prox}_{f^\star}(x).  &[8]
 \end{aligned}
 $$
 

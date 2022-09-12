@@ -1,5 +1,5 @@
 The Lagrangian from calculus has been generalized for constrained, convex optimization problems. And they are the key to duality. 
-[[Duality (Lagrangian and Algorithms)]]
+[[Duality, Lagrangian and Algorithms]]
 [[Duality (Dualization)]]
 
 ---

@@ -1,5 +1,5 @@
 Attacking Optimality conditions
-[[Duality (Dualitzation More Examples)]], [[Duality (Lagrangian and Algorithms)]]
+[[Duality (Dualitzation More Examples)]], [[Duality, Lagrangian and Algorithms]]
 
 This is a build up on the duality, and how to use the Lagrangian to get the optimal solutions, and use it to design the algorithm in general. 
 

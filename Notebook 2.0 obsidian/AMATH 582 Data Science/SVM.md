@@ -132,5 +132,5 @@ When solving the convex problem, **interior points method and KTT conditions** a
 
 Yep. So we probably want to see this part for more information about that: 
 
-[[Duality (Lagrangian and Algorithms)]]
+[[Duality, Lagrangian and Algorithms]]
 
