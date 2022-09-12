@@ -368,3 +368,8 @@ $$
 
 A geometric argument is that, the only way to support the linear vector using a affine minorants is a line that has the same slope as that objective function. 
 
+
+---
+### **Conjugate of Infimal Convolutions** $(f\square g)^\star$
+
+**#TODO** 

@@ -24,7 +24,7 @@ The proximal operator is a singleton when the function $f$ is convex, proper and
 
 It's from Dimitry's Textbook, definition 3.59, pg 77. 
 
-If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value is given as: 
+If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value $|x|$ is given as: 
 
 $$
 \begin{aligned}
@@ -36,7 +36,7 @@ $$
 \end{aligned}
 $$
 
-Which is the Huber function in statistics. 
+Which is the Huber Loss function in statistics. 
 
 Dimitry's Comments: The prox operator is a generalization of the set distance operations on sets. see [[Set Projections and Dist]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
@@ -55,7 +55,7 @@ For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$.
 **Good References**
 
 * Dimitry's class from UW. 
-* [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains other information. 
+* [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains more practical information about the prox operator. 
 
 ---
 ### **As a Operators**
@@ -97,7 +97,7 @@ When is it invertible and when is it a set-value mapping?
 The operator is maximal monotone: 
 * In brief, the subgradient operator of a CCP function, we have $\partial f$ to be a maximal monotone operator. Meaning that for any $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. And because of this, it terms out that $I + \partial f$ is single-valued and it's surjective, meaning that the inverse $(I +\partial f)^{-1}$ is a singled value operator too. With $\alpha$ it doesn't change thing. 
 
-* The Surjectivity Theorem
+* **The Surjectivity Theorem**
 
 * > The surjectivity theorem stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
 
@@ -145,7 +145,7 @@ The proof is from myself and it might contains some errors.
 > Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
 > \begin{aligned}
->     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
+>     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2_\star \le 
 >     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
 > \end{aligned}
 > $$
@@ -153,7 +153,81 @@ Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy s
 
 **Proof**
 
-To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
+To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. For simplicity we denotes $P_f(x), P_g(x)$ as the proximal operator at $x$. Define $g(z):= f(z) + \frac{1}{2}\Vert z - x\Vert^2$ is strongly convex wrt to $z$, $\alpha = 1$ then $g(y^+) - g(x^+)\ge \frac{1}{2}\Vert x^+ - y^+\Vert^2$ where $x^+\in P_f(x)$, $y^+\in P_f(y)$, expanding it we have: 
+
+$$
+\begin{aligned}
+    f(y^+) +\frac{1}{2}\Vert y^+ - x\Vert^2 - f(x) - \frac{1}{2}\Vert x^+ - x\Vert^2 & \ge 
+    \frac{1}{2}\Vert x^+ - y^+\Vert^2
+    \\
+    \implies 
+    f(x^+) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
+    \underbrace{f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. }_{
+        \begin{aligned}
+            & = 
+            \left(
+                f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2
+            \right) - \frac{1}{2} \Vert y^+ - y\Vert^2 + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}
+            \Vert x^+ - y^+\Vert^2 
+        \end{aligned}
+    }
+\end{aligned}
+$$
+
+Then we consider the term: $f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2$ and use strong convexity (wrt to $y^+$ in this case) again to obtain 
+$$
+\begin{aligned}
+    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2 - f(y^+) - \frac{1}{2}\Vert y^+ - y\Vert^2 
+    & \ge \frac{1}{2}\Vert x^+ - y^+\Vert
+    \\
+    \implies 
+    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2  
+    - \frac{1}{2}\Vert x^+ - y^+\Vert^2
+    & \ge 
+    f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2, 
+\end{aligned}
+$$
+
+replacing the expression with this larger quantity we obtain a larger rhs: 
+
+$$
+\begin{aligned}
+    f(x^+) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
+    f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2 - \frac{1}{2}\Vert y^+ - y\Vert^2
+    + \frac{1}{2}\Vert y^+ - x\Vert^2 - \Vert x^+ - y^+\Vert
+    \\
+    \implies
+    \Vert x^+ - y^+\Vert &\le 
+    \frac{1}{2}\Vert x^+ - y\Vert^2 - \frac{1}{2}\Vert y^+ - y\Vert^2
+    + \frac{1}{2}\Vert y^+ - x\Vert^2  - \frac{1}{2}\Vert x - x^+\Vert^2
+    \\
+    \implies
+    \Vert x^+ - y^+\Vert &\le 
+    \frac{1}{2}\left(
+        \Vert x^+ - y\Vert^2 - \Vert y^+ - y\Vert^2
+        + \Vert y^+ - x\Vert^2  - \Vert x - x^+\Vert^2
+    \right)
+    \\
+    & = \langle y^+ - x+^, y\rangle + \langle x^+ - y^+, x\rangle
+    \\
+    &= 
+    \langle y^+ - x^+, y - x\rangle. 
+\end{aligned}
+$$
+
+Since $y^+ \in P_f(y), x^+ \in P_f(x)$, and the choice is arbitrary, the above expression is equivalent to: 
+$$
+\begin{aligned}
+    & \Vert P_f(x) - P_f(y)\Vert^2 \le \langle P_f(y) - P_f(x), y - x\rangle \le 
+    \Vert P_f(y) - P_f(x) \Vert \Vert y - x\Vert_\star
+    \\
+    \implies & 
+    \Vert P_f(x) - P_f(y)\Vert \le \Vert y - x\Vert_\star .
+\end{aligned}
+$$
+
+Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. By properties of norm, the above inequality is sufficient for any more. $\blacksquare$. 
+
 
 
 
@@ -224,7 +298,7 @@ At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\ma
 
 Minty Parameterizations: 
   * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings: $T$, we have the equality: 
-  * $$(I + T^{-1})^{-1} = I - (1 - T)^{-1}.$$
+  * $$(I + T^{-1})^{-1} = I - (I - T)^{-1}.$$
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
@@ -269,11 +343,18 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$. 
+At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that $prox$ is L-1 Lipzchitz, the gradient is also a Lipschitz mapping. 
 
 **Remarks**
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
+
+---
+### **Inverse of Prox**
+
+> Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be CCP function then $\text{prox}_f^{-1}(x)$ is $\text{prox}_{f^\star}(x)$. 
+
+**Proof:**
 
 
 

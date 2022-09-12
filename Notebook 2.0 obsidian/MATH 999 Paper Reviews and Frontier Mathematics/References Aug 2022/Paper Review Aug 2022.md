@@ -44,6 +44,7 @@ Supplementary Papers:
 	> Source: \<Distributed Optimization and Statistical  
 	Learning via the Alternating Direction  
 	Method of Multipliers\>, pg 23. 
+	> #INVESTIGATE #URGENT 
 1. >For example, lasso can be viewed as a simple statistical model with the negative log-likelihood from $y=A x+\varepsilon$, where $\varepsilon$ is a standard normal measurement error, corresponding to the norm $l(x)=\|A x-y\|^2$, and each parameter $x_j$ has independent Laplace priors corresponding to the regularization penalty $\phi(x)=|x|$ (Refers to page 429, 224, machine learning a probabilistic perspective by Kevin P Murphy for more details). 
 
 
