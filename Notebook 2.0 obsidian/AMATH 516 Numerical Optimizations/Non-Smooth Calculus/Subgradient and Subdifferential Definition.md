@@ -92,7 +92,7 @@ Where the little $o$ notation is a limit in disguise, in this case it has the pr
 The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
 $$
-\partial [x|f]\subseteq\hat{\partial}[x|f]
+\partial [f]\subseteq\hat{\partial}[f]
 $$
 
 Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
@@ -110,13 +110,17 @@ A good notations should be clear about several things when taking the derivative
 * What variables are we raking the derivative with? 
 * What values are we putting into the derivative functions? 
 
-For example: $\partial [[Ax + b, u)](u = x^+|f(Ax + b, u)]], \partial [[Ax + b, u)]_{u = x^+}, \partial [f(Ax + b, u)|u](x^+|f(Ax + b, u)]]$: Taking the derivative of $f$ wrt to $u$ at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
+For example:
+* $\partial[f(Ax + b, u)|u](x_+)$
+* $\partial[f(Ax + b, u)]_{u = x^+}$
+
+All means taking the derivative of $f$ wrt to $u$ and fixing $x$ to be a constant at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
 
 ---
-### **Optimality on Sub-Gradient for Convex Functions**
+### **Optimality Conditions Characterized by Subgradient of Convex Functions**
 
-On almost trivial results from the above definition is that if $x^+$ is a minimizer for the convex function $f(x)$, then $\mathbf 0 \in \partial [f]_{x^+}$ because: 
+One almost trivial results from the above definition is that if $x^+$ is a minimizer for the convex function $f(x)$, then $\mathbf 0 \in \partial [f]_{x^+}$ because: 
 
 $$
 f(y) \ge f(x^+) \quad \forall y\in \mathbb E
@@ -131,7 +135,7 @@ And it can be viewed that $g = \mathbf 0$, directly interpreted from the definit
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
->   v \in \hat\partial [[x|f]]\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+>   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
 >$$
 
 **Proof**
@@ -296,7 +300,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 > If $f$ is convex, then the general subgradient definition degraded to the ordinary subgradient definition. 
 > $$
->   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \hat\partial [[x|f]]
+>   f(y) \ge f(x) + \langle g, y - x\rangle \; \forall g \in \hat\partial [f](x)
 > $$
 
 **Proof Preparations**

@@ -17,10 +17,30 @@ can be interpreted as:
 3. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Gradient via Gradient Dynamics Euler's Method]] for more. 
 
 ---
-### **Proximal Projected Gradients**
+### **Proximal Point Method is a Fixed Point Iterations**
 
-**#TODO #URGENT**
+Assuming that the iterations converges, consider: 
 
+$$
+\begin{aligned}
+    & \mathbf 0\in \partial f(x)
+    \\
+    & x\in \partial f(x) + x
+    \\
+    & x\in \left(
+        \partial f + I
+    \right)(x)
+    \\
+    & 
+    x \in (\partial f + I)^{-1}(x). 
+\end{aligned}
+$$
+
+Therefore, the solution it converged to is the solution for $\mathbf 0 \in \partial f(x)$. 
+
+
+---
+### **Proximal Point Method is Gradient Descend on Moreau Envelop**
 
 
 

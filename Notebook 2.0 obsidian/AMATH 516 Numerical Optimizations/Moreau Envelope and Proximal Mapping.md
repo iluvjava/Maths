@@ -178,7 +178,7 @@ Then we consider the term: $f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2$ and use st
 $$
 \begin{aligned}
     f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2 - f(y^+) - \frac{1}{2}\Vert y^+ - y\Vert^2 
-    & \ge \frac{1}{2}\Vert x^+ - y^+\Vert
+    & \ge \frac{1}{2}\Vert x^+ - y^+\Vert^2
     \\
     \implies 
     f(x^+) + \frac{1}{2}\Vert x^+ - y\Vert^2  
@@ -348,13 +348,6 @@ At \[1\] we use the conjugate formula for infimal convolution between 2 function
 **Remarks**
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
-
----
-### **Inverse of Prox**
-
-> Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be CCP function then $\text{prox}_f^{-1}(x)$ is $\text{prox}_{f^\star}(x)$. 
-
-**Proof:**
 
 
 

@@ -1,4 +1,4 @@
-Major References here: [[Proximal Algorithms in Stats and ML.pdf]], Bibtex
+Major References here: [[Proximal Algorithms in Stats and ML.pdf]]
 
 ---
 ### **Intro**
@@ -16,7 +16,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 		* The has been already summarized in [[Introduction, Projected Proximal Gradient via MM]]. 
 	* Proximal Methods as a fixed point iteration schemes. 
 		* [[Projected Gradient via Gradient Dynamics Euler's Method]]
-		* [[Proximal Point Method, Fixed Point Iteration]]
+		* [[Proximal Point Method, Interpretations]]
 	* Proximal methods as gradient on the envelope. (Not mentioned?)
 	* Proximal methods an operator splitting methods for solve gradient dynamical system. (Definitely ignored in the paper)
 * Proximal interpretations for envelope based methods.
