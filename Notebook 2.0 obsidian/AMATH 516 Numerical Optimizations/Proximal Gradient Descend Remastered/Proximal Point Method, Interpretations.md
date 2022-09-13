@@ -40,7 +40,17 @@ Therefore, the solution it converged to is the solution for $\mathbf 0 \in \part
 
 
 ---
-### **Proximal Point Method is Gradient Descend on Moreau Envelop**
+### **Proximal Point Method is Gradient Descend on Moreau Envelope**
 
+Here, we assume that the envelope indeed is differentialble and has gradient, implying the fact that $\text{prox}$ oracle is only returning one single value (Doesn't neccessarily means that the function $f$ is convex.), nontheless, we can consider one gradient step: 
 
+$$
+\begin{aligned}
+    x^{(t + 1)} &= x^{(t)} - \gamma \nabla (\text{env}_{f, \alpha}(x^{(t)}))
+    \\
+    x^{(t + 1)} &= x^{(t)} - \gamma \alpha^{-1}(x^{(t)} - \text{prox}_{f, \alpha}(x)), 
+\end{aligned}
+$$
+
+by being specific about the length of the gradient step, let $\gamma = \alpha$ then $x^{(t)}$ on the rhs cancelled out giving us the same expression for the proximal point method. 
 
