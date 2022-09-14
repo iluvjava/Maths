@@ -51,20 +51,59 @@ The scaled form is obtained by setting $u = \gamma^{-1}\lambda, r = x - z$:
 
 $$
 \begin{aligned}
-    \mathcal L_\gamma(x, z, \lambda) = l(x) + \phi(x) + \frac{1}{2\gamma}(
+    \mathcal L_\gamma(x, z, u) = l(x) + \phi(x) + \frac{1}{2\gamma}(
         \Vert r - u\Vert^2 - \Vert u\Vert^2
     )
 \end{aligned}, 
 $$
 
-we derive it by: 
+we derive it by considering: 
 
 $$
 \begin{aligned}
-    \mathcal L_\gamma(x, z, \lambda = \gamma u) = l(x) + \phi(x) + \langle \lambda, x - z\rangle + \frac{1}{2\gamma}\Vert x - z\Vert^2
-
+    \mathcal L_\gamma(x, z, \lambda = \gamma u) = l(x) + \phi(x) + 
+    \underbrace{\langle \lambda, x - z\rangle + \frac{1}{2\gamma}\Vert x - z\Vert^2}_{[1]}. 
 \end{aligned}
 $$
+
+And we would like to consider chainging the form of \[1\] so that it matches: $\frac{1}{2\gamma}(\Vert r - u\Vert^2 - \Vert u\Vert^2)$ as in the scaled form. Substituting the definition of $r$ into \[1\] we have: 
+$$
+\begin{aligned}
+    & \gamma \langle u, x - z\rangle + \frac{1}{2\gamma} \Vert r\Vert^2
+    \\
+    =& 
+    \gamma \langle u, r\rangle  + \frac{1}{2\gamma}\Vert r\Vert^2
+    \\
+    =& \frac{\gamma}{2}\left(
+        \frac{2}{\gamma^2}\langle u, r\rangle + 
+        \frac{1}{\gamma^2}\Vert r\Vert^2
+    \right)
+    \\
+    =& 
+    \frac{\gamma}{2}
+    \left(
+        2\left\langle \frac{u}{\gamma}, \frac{r}{\gamma} \right\rangle + 
+        \left\Vert
+             \frac{r}{\gamma} 
+        \right\Vert^2
+    \right)
+    \\
+    =& 
+    \frac{\gamma}{2}\left(
+        \left\Vert
+            \frac{r}{\gamma}+ \frac{u}{\gamma}
+        \right\Vert^2 - \left\Vert
+            \frac{u}{\gamma}
+        \right\Vert^2
+    \right)
+    =& \frac{1}{2\gamma} \left(
+        \Vert r - u\Vert^2 - \Vert u\Vert^2
+    \right), 
+\end{aligned}
+$$
+
+which is exactly the same as the last term for the scaled lagrangian. 
+
 
 ---
 ### **Methods of Dual Ascend**
@@ -83,11 +122,13 @@ $$
 \end{aligned}
 $$
 
-which requires solving the problem problem for each ascend step of the dual variable. 
+which requires solving the problem for each ascend step of the dual variable. 
 
 
 ---
 ### **Methods of Multipliers**
+
+
 
 
 ---

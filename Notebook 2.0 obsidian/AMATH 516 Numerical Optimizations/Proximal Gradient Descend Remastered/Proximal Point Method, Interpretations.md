@@ -14,7 +14,7 @@ $$
 can be interpreted as: 
 1. Gradient on the Moreau envelope. 
 2. Fixed point iterations on the subgradient operator.
-3. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Gradient via Gradient Dynamics Euler's Method]] for more. 
+4. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Gradient via Gradient Dynamics Euler's Method]] for more. 
 
 ---
 ### **Proximal Point Method is a Fixed Point Iterations**
@@ -42,7 +42,7 @@ Therefore, the solution it converged to is the solution for $\mathbf 0 \in \part
 ---
 ### **Proximal Point Method is Gradient Descend on Moreau Envelope**
 
-Here, we assume that the envelope indeed is differentialble and has gradient, implying the fact that $\text{prox}$ oracle is only returning one single value (Doesn't neccessarily means that the function $f$ is convex.), nontheless, we can consider one gradient step: 
+Here, we assume that the envelope indeed is differentiable and has gradient, implying the fact that $\text{prox}$ oracle is only returning one single value (Doesn't necessarily means that the function $f$ is convex.), nonetheless, we can consider one gradient step: 
 
 $$
 \begin{aligned}

@@ -229,7 +229,9 @@ $$
 Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. By properties of norm, the above inequality is sufficient for any more. $\blacksquare$. 
 
 
+**Remarks**
 
+To generalize the results where $\alpha$ is not neccesarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same lipschitz for any convex proper functions, for any parameter $\alpha > 0$. 
 
 
 ---

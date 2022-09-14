@@ -1,4 +1,4 @@
-[[ADMM]]
+[[Introduction ADMM]]
 
 ---
 ### **Intro**

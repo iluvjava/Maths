@@ -10,22 +10,23 @@ $$
 \end{aligned},
 $$
 and we are interested in minimization of $f$, where $l(x)$ is convex with Lipschitz Gradient and $\phi(x)$ is convex, but could be non-smooth with subgradient oracle. For implications and equivalences for function with globally Lipschitz gradient, visit: [[Global Lipschitz Gradient and its weaker Implications]]. This paper focuses on the use of following methods on penalties and composite penalties models (with $\phi(Bx)$ instead of $\phi(x)$): 
-* ADMM. Related topics are now in [[ADMM]], some of them taken from this paper. 
+* ADMM. Related topics are now in [[Introduction ADMM]], some of them taken from this paper. 
 * Proximal Methods .
 	* Proximal Methods as a minimum on the majorizing functions.
 		* The has been already summarized in [[Introduction, Projected Proximal Gradient via MM]]. 
 	* Proximal Methods as a fixed point iteration schemes. 
-		* [[Projected Gradient via Gradient Dynamics Euler's Method]]
 		* [[Proximal Point Method, Interpretations]]
 	* Proximal methods as gradient on the envelope. (Not mentioned?)
-	* Proximal methods an operator splitting methods for solve gradient dynamical system. (Definitely ignored in the paper)
-* Proximal interpretations for envelope based methods.
+		* In [[Proximal Point Method, Interpretations]], we discussed that proximal point method is just gradient descend on the Moreau envelope, where $\alpha$ is the step size. 
+	* Proximal methods as ODEs solver for gradient dynamical system. (Definitely ignored in the paper)
+		* [[Projected Gradient via Gradient Dynamics Euler's Method]]
+* Envelope Method
 	* NOT SURE
 
 For the Basics of proximal operators, see [[Moreau Envelope and Proximal Mapping]] for more context. 
 
 Supplementary Papers: 
-* the Stanford reference paper introduced in [[ADMM]]. 
+* the Stanford reference paper introduced in [[Introduction ADMM]]. 
 * [this](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper about the proximal mapping. 
 * Dimitry's class, which contains a lot more theory about the proximal operator, please also take note of the references he is using. 
 * Rockafellar, at the start of his book he also talks about prox. 
