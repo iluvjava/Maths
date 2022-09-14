@@ -13,8 +13,11 @@ Prerequisites:
 Alternating direction method of multiplier (ADMM). We state the assumptions of the algorithms and then summarized the algorithms. Including: 
 
 1. The formulations of the Augmented Lagrangian
-2. The assumptions made 
+2. The assumptions made: 
+	1. Strong duality 
+	2. Saddle point exists for the given problem. 
 3. The optimality conditions 
+	1. Primal and dual residuals of the ADMM iterations
 4. Some brief justifications for some of the claims
 
 The premise of the paper started with solving objectives that are separable, in the form of $f(x) + g(x)$, the splitting is the equivalent equality constrained optimization problem: 
@@ -102,7 +105,7 @@ $$
 \end{aligned}
 $$
 
-which is exactly the same as the last term for the scaled lagrangian. 
+which is exactly the same as the last term for the scaled Lagrangian. 
 
 
 ---
@@ -128,7 +131,7 @@ which requires solving the problem for each ascend step of the dual variable.
 ---
 ### **Methods of Multipliers**
 
-
+Method of multiplier updates each of the primal variable individually, in a Gauss Seidel like manner, and then at the end it performs a step of dual ascend. Through out the algorithm, the dual is feasible. 
 
 
 ---

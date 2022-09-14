@@ -236,3 +236,36 @@ Testing links conversion:
 * [Basic Machine Learning](AMATH%20582%20Data%20Science/Basic%20Machine%20Learning.md)
 * [Monotone Operators](AMATH%20516%20Numerical%20Optimizations/Monotone%20Operators.md)
 * [2D Bifurcation with Zero Eigenvalues](2D%20Bifurcation%20with%20Zero%20Eigenvalues.md)
+
+
+The toString function for big int. 
+
+```python 
+digits = '0123456789'
+def bigint(n,d=10):
+    s = ''
+    l = [(n,None)]
+    while l:
+        m, k = l.pop(0)
+        if m < d:
+            if k:
+                s += '0'*(k-1)
+            s + = digits[m]
+        else:
+            ll = []
+            while d <= m:
+                a = b = c = d
+                sb = 1
+                sc = 1
+                while (a := a*a) < m:
+                    c = b
+                    b = a
+                    sc = sb
+                    sb *= 2
+                ll.append((m//c, (k - sc) if k else None))
+                m = m%c
+                k = sc
+            ll.append((m,k))
+            l = ll + l
+    return s
+```
