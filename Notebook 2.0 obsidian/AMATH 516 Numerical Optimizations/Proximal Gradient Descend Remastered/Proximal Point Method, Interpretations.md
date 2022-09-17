@@ -14,7 +14,7 @@ $$
 can be interpreted as: 
 1. Gradient on the Moreau envelope. 
 2. Fixed point iterations on the subgradient operator.
-4. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Gradient via Gradient Dynamics Euler's Method]] for more. 
+4. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Proximal Gradient, Interpretations]] for more. 
 
 ---
 ### **Proximal Point Method is a Fixed Point Iterations**
@@ -54,3 +54,33 @@ $$
 
 by being specific about the length of the gradient step, let $\gamma = \alpha$ then $x^{(t)}$ on the rhs cancelled out giving us the same expression for the proximal point method. 
 
+---
+### **Backwards Euler and Proximal Point**
+
+We consider $f(x)$ to be a convex, lsc function that is proper, then the proximal point method considers the following update scheme: 
+
+$$
+\begin{aligned}
+    x^{(t + 1)} \in \text{prox}_{f, \gamma}(x^{(t)}), 
+\end{aligned}
+$$
+
+which is equivalent to the backwards Euler methods on the gradient dynamics: $X'(t) = -\partial f(X(t))$. To derive we starts by assuming the following approximation via first order forward finite differences: 
+
+$$
+\begin{aligned}
+    \frac{X(t + \Delta t) - X(t)}{\Delta t} &= -\partial f(X(t  + \Delta t))
+    \\
+     - X(t) &= 
+    - X(t + \Delta t)-\Delta t\partial f(X(t + \Delta t))
+    \\
+    X(t) &= 
+    [I + \Delta t\partial f](X(t + \Delta t))
+    \\
+    X(t + \Delta t) &= [I + \Delta t\partial f]^{-1}(x(t))
+\end{aligned}
+$$
+
+**Remarks**
+
+We abuse the notation and use subgradient dispite the fact that it's a set value mapping not a single value mapping as in the traditional derivation for the backwards Euler method. 

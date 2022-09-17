@@ -2,6 +2,7 @@ Major Reference Sources:
 * [Stanford University](https://stanford.edu/~boyd/admm.html) ALL IN ONE Resources for ADMM 
 * Paper [link](https://stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf)
 * Paper [[Proximal Algorithms in Stats and ML.pdf]]
+* Paper: [link](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf), starting with pg: 153, where it starts talking about interpretations of the ADMM methods. 
 
 Prerequisites: 
 * [[Characterizing Functions for Optimizations]]
@@ -183,15 +184,16 @@ $$
 $$
 
 ---
-### **Splitting and ADMM**
+### **Dual Feasibility of ADMM**
 
+**#TODO, #URGENT** 
 
 
 
 ---
 ### **Convergence Results**
 
-See the appendix of the references. 
+See [[ADMM Convergence]]. 
 
 
 

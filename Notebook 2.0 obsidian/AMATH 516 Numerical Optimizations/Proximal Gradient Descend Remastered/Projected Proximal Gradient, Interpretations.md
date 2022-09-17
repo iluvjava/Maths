@@ -44,37 +44,11 @@ Which is equivalent to the proximal gradient algorithm with $\gamma = \Delta t$.
 
 This methods is an elementary methods where the dynamics can be separated into the sum of a stiff term and a non-stiff term. In the above case, the stiff term became the subgradient set, by abusing the notation. For more, there is a brief coverage from MATH 6324 in CMU, 2014 [here](http://runge.math.smu.edu/Courses/Math6321_Fall14/_downloads/imex.pdf) about the splitting methods based on Euler time stepping. 
 
-I am suspecting using different formula for the finite difference term might produce the Douglas–Rachford Envelope scheme?
+I am suspecting using different formula for the finite difference term might produce the Douglas–Rachford Envelope scheme? No I don't think so, it's something totally different. 
 
 Convergence rate might be related to the Lyaponouv function for this given dynamical system. 
 
 ---
-### **Backwards Euler and Proximal Point**
+### **Projected Proximal Gradient is fixed point iterations**
 
-We consider $f(x)$ to be a convex, lsc function that is proper, then the proximal point method considers the following update scheme: 
 
-$$
-\begin{aligned}
-    x^{(t + 1)} \in \text{prox}_{f, \gamma}(x^{(t)}), 
-\end{aligned}
-$$
-
-which is equivalent to the backwards Euler methods on the gradient dynamics: $X'(t) = -\partial f(X(t))$. To derive we starts by assuming the following approximation via first order forward finite differences: 
-
-$$
-\begin{aligned}
-    \frac{X(t + \Delta t) - X(t)}{\Delta t} &= -\partial f(X(t  + \Delta t))
-    \\
-     - X(t) &= 
-    - X(t + \Delta t)-\Delta t\partial f(X(t + \Delta t))
-    \\
-    X(t) &= 
-    [I + \Delta t\partial f](X(t + \Delta t))
-    \\
-    X(t + \Delta t) &= [I + \Delta t\partial f]^{-1}(x(t))
-\end{aligned}
-$$
-
-**Remarks**
-
-We abuse the notation and use subgradient dispite the fact that it's a set value mapping not a single value mapping as in the traditional derivation for the backwards Euler method. 

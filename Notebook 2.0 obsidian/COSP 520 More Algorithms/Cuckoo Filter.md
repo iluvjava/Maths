@@ -54,4 +54,4 @@ Define `f` to be the finger print function, it generates hash for object `x` oth
 2. `i_1 := h_1(x)%m`, the index hashes for the first half of  `arr`. 
 3. `i_2:= i_1 ^ (h_1(f(x))%m)`, where `^` denotes the bitwise XOR operator for the byte array. 
 
-Immediately observe the fact that, 
+Immediately observe the fact that, if I take the 

@@ -1,5 +1,5 @@
 [[Introduction, Projected Proximal Gradient via MM]]
-[[Projected Gradient via Gradient Dynamics Euler's Method]]
+[[Projected Proximal Gradient, Interpretations]]
 [[Paper Review Aug 2022]]
 
 ---
