@@ -242,7 +242,7 @@ The toString function for big int.
 
 ```python 
 digits = '0123456789'
-def bigint(n,d=10):
+def bigint(n, d=10):
     s = ''
     l = [(n,None)]
     while l:

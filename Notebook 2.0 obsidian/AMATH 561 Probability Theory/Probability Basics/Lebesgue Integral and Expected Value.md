@@ -3,23 +3,20 @@ Here we introduce some fancy integral that can help use figure out the expected 
 
 ---
 ### **Intro**
-
-Firstly, we assume that we already know something basic about Lebesgue Integral. 
-
-The Expected value of a random variable has the following definition: 
+The expected value is a mapping that maps a random variable (a function) to the interval $[0, 1]$. We define the probability spaces $(\Omega, \mathcal F, P)$, then
 
 > $$
 > \mathbb{E}\left[X\right] = \int_{\Omega}^{} 
 >     X
-> dP
+> dP. 
 > $$
 
 **Explanation:**
-For all possible value of the pre-images, we want to integral it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. 
+For all possible value for the measure pre-images, we want to integrate it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. 
 
 
 ---
-### **Lesbesgue Integral**
+### **Lebesgue Integral**
 
 The Lebesgue integral of a measurable function $f:\Omega \mapsto\mathbb{R}$, defined on a measurable space $(\Omega, \mathcal{F})$, with respect to the measure $\mu: \mathcal{F}\mapsto \mathbb{R}_0^+$. Which looks like this: 
 
@@ -36,9 +33,7 @@ $\phi$ is simple when $\phi(\omega) = \sum_{i = 1}^{n}a_i \mathbb{I}_{A_i}$, Whe
 
 **Explnation:** 
 
-A simple function is a function that can be described by a finite linear combination of indicator function where each of the indictor function is on $A_i$, and all $A_i$ is discreate
-
-This can be viewed as assigning discrete value for each of the discrete domain for the function, partitioning the output of the function using the partitioned domain. 
+A simple function is a function that can be described by a finite linear combination of indicator function where each of the indictor function is on $A_i$, and all $A_i$ is discrete. This can be viewed as assigning discrete value for each of the discrete domain for the function, partitioning the output of the function using the partitioned domain. 
 
 **Simple Function Lesbegue Integral**
 
@@ -46,7 +41,7 @@ This can be viewed as assigning discrete value for each of the discrete domain f
 > \int_{\Omega}^{} \phi d\mu = \sum_{i = 1}^{n}a_i \mu(A_i)
 > $$
 
-The discrete sume of all the measure on the partitioned domain for the function. 
+The discrete sum of all the measure on the partitioned domain for the function. 
 
 ### **Bounded Functions**
 
@@ -113,7 +108,7 @@ Where, both $f^+, f^-$ will be non-negative function, and we already defined int
 ---
 ### **Back to Expected Value of Random Variable**
 
-To compute the expected value of a random variable over some weird topological spaces, we would need to compute it using the Lebesgue Integral, and we would like to make a change of varible and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
+To compute the expected value of a random variable over some weird topological spaces, we would need to compute it using the Lebesgue Integral, and we would like to make a change of variable and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
 
 $$
 \begin{aligned}

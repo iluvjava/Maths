@@ -21,7 +21,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 	* Proximal methods as ODEs solver for gradient dynamical system. (Definitely ignored in the paper)
 		* [[Projected Gradient via Gradient Dynamics Euler's Method]]
 * Envelope Method
-	* NOT SURE
+	* NOT SURE WHAT THE INEQUALITIES ARE ALL ABOUT. 
 
 For the Basics of proximal operators, see [[Moreau Envelope and Proximal Mapping]] for more context. 
 

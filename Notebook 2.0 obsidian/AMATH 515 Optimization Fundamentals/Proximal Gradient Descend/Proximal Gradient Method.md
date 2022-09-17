@@ -1,26 +1,20 @@
 [[Non smooth convex optimization]]
 In this section, we will be interested in solving the proximal gradient method. 
 
-And this we will be continue working on the gradient descent method with addition with a non-smooth function. 
-
-Which can be a one norm, or it can be an indicator function representing the constraints of the problem. 
+And this we will be continue working on the gradient descent method with addition with a non-smooth function. Which can be a one norm, or it can be an indicator function representing the constraints of the problem. 
 
 ---
 ### **Intro, Recap**
 
 > Solving the minimum of a quadratic model at point $x_k$ with concavity $\beta$ adding a non-smooth function $h$ is the same as looking for the solution of the proximal operator on the point $x_k - \nabla g(x_k)/\beta$
 
-We pick up from the optimality conditions of the Sub-gradient of a non-smooth function.
-
-Picking up from last time: 
+We pick up from the optimality conditions of the Sub-gradient of a non-smooth function. Picking up from last time: 
 
 $$
 f(y) \le m_{x_k}(y) = g(x_k) + \nabla g(x_k)(y - x_k) + \frac{\beta}{2}\Vert y - x_k\Vert^2 + h(y)
 $$
 
-Where $h(y)$ is the non-smooth function. 
-
-And from gradient descend, we will know that: 
+Where $h(y)$ is the non-smooth function. And from gradient descend, we will know that: 
 
 $$
 f(y) \le m_{x_k} (y) \quad \forall (y)
@@ -30,9 +24,7 @@ $$
 f(x_k) = m_{x_k}(x_k)
 $$
 
-The image in our mind is exactly the same as the Gradient descent for beta smooth function, however, notice that, the bounding function, $m_{x_k}$ doesn't have to be smooth. 
-
-The algorithm make that choice that: 
+The image in our mind is exactly the same as the Gradient descent for beta smooth function, however, notice that, the bounding function, $m_{x_k}$ doesn't have to be smooth. The algorithm make that choice that: 
 
 $$
 x_{k + 1} := \underset{y}{\text{argmin}} (m_{x_k}(y))
@@ -43,9 +35,7 @@ $$
 f(x_{k + 1}) \le m_{x_k}(x_{k + 1}) \le m_{x_k}(x_k) \le f(x_k) \tag{1}
 $$
 
-And the strategy here, is we minimize the model we created for the non-smooth function at each step of the gradient descend process. 
-
-And the minimization of the problem, for the non-smooth function can be summarized. 
+And the strategy here, is we minimize the model we created for the non-smooth function at each step of the gradient descend process. And the minimization of the problem, for the non-smooth function can be summarized. 
 
 $$
 x_{k + 1} = \underset{y}{\text{argmin}}\left(
@@ -74,12 +64,11 @@ This works as well as the gradient descend for the $g(x)$ function.
 
 For the proximity operator, we can allow a solution to it if the following condition is true: 
 
-For 
 $$
 \underset{t, h}{\text{prox}}(z) = 
 \underset{y}{\text{argmin}} \left(
     \frac{1}{2t} \Vert y - z\Vert^2 + h(y)
-\right)
+\right).
 $$
  
 When: 
@@ -94,9 +83,7 @@ $$
 \frac{1}{t} (z - x^+) \in \partial h(x^+) \tag{4}
 $$
 
-What about the terminal conditions for the Gradient Descent method? 
-
-From expression (4), assuming that the gradient descend method has gotten the result that: $x_{k + 1} = x_k$, then this would mean that: 
+What about the terminal conditions for the Gradient Descent method? From expression (4), assuming that the gradient descend method has gotten the result that: $x_{k + 1} = x_k$, then this would mean that: 
 
 $$
 x^+ = x_k \quad z = x_k - \frac{1}{\beta} \nabla g(x_k) \quad t = 1/\beta
@@ -104,7 +91,7 @@ $$
 
 So then: 
 $$
-\beta (x_k - \frac{1}{\beta} \nabla g(x_k) - x_k) \in \partial h(x_k) \implies 
+\beta \left(x_k - \frac{1}{\beta} \nabla g(x_k) - x_k\right) \in \partial h(x_k) \implies 
 -\nabla g(x_k) \in \partial h(x_k) \implies 0 \in \nabla g(x_k) + \partial h(x_k)
 $$
 

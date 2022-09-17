@@ -139,6 +139,8 @@ Notice that, if the function $f$ is convex, then the proximal operator produces 
 
 The proof is from myself and it might contains some errors. 
 
+
+
 ---
 ### **Prox is L1-Lipschitz**
 
@@ -231,7 +233,11 @@ Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \c
 
 **Remarks**
 
-To generalize the results where $\alpha$ is not neccesarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same lipschitz for any convex proper functions, for any parameter $\alpha > 0$. 
+To generalize the results where $\alpha$ is not neccesarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same lipschitz for any convex proper functions, for any parameter $\alpha > 0$. I deviated from the references materials and added the generality for $\Vert \cdot\Vert$ so that it works with $\Vert \cdot\Vert_\star$. 
+
+**Corollary: Moreau Envelope is Smooth**
+
+Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constent $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
 
 ---

@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-A transition matrix is a non-negative matrix such that its row sum is 1. Then one of the immdiate property can be proven via the Gershchgorin's Theorem. The theorem will be stated: 
+A transition matrix is a non-negative matrix such that its row sum is 1. Then one of the immediate property can be proven via the Gershchgorin's Theorem. The theorem will be stated: 
 
 > For all transition matrix, it only has eigenvalues with absolute values that are less than one. 
 

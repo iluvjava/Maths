@@ -75,7 +75,7 @@ Therefore, the CDF is strictly non-decreasing.
 ---
 ### **Discrete Random Variable (Distribution, Probability Measure)**
 
-A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countable set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to an countable set is somehow, $1$. 
+A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countable set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to a countable set is somehow, $1$. 
 
 
 
@@ -90,8 +90,6 @@ X(\omega) = \sup\{y : F_X(y) < \omega\} = \sup\{
     \}
 $$
 
-Given any $\omega$ outcome, the random variable map to the upper bound on the pre-image of $F_X$ for input $y$. 
-
-Thinking in terms of pre-images of functions will help us a lot with some of the analysis part. 
+Given any $\omega$ outcome, the random variable map to the upper bound on the pre-image of $F_X$ for input $y$. Thinking in terms of pre-images of functions will help us a lot with some of the analysis part. 
 
 

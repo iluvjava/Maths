@@ -131,11 +131,61 @@ which requires solving the problem for each ascend step of the dual variable.
 ---
 ### **Methods of Multipliers**
 
-Method of multiplier updates each of the primal variable individually, in a Gauss Seidel like manner, and then at the end it performs a step of dual ascend. Through out the algorithm, the dual is feasible. 
+Method of multiplier updates each of the primal variable individually, in a Gauss Seidel like manner, and then at the end it performs a step of dual ascend. Through out the algorithm, the dual is feasible. For a more generalized version of the problem we consider $f, g$ to be lsc, proper and convex, and form the primal problem and the augmented lagraian as the following: 
 
+$$
+\begin{aligned}
+    & \min_{x, z} f(x) + g(z) \text{ s.t: } Ax + Bz = c,
+    \\
+    & \mathcal L_\rho (x, z, y) = 
+    f(x) + g(z) + \langle y, Ax + Bz - c\rangle + \frac{\rho}{2}\Vert Ax + B z - c\Vert^2,
+\end{aligned}
+$$
+
+Then the method of multiplier does the following updates: 
+
+$$
+\begin{aligned}
+    & x^{(k + 1)} = 
+    \arg\min_{x}\mathcal L_\rho (x, z^{(k)}, y^{(k)})
+    \\
+    & z^{(k + 1)} = 
+    \arg\min_{z} \mathcal L_\rho(x^{(k + 1)}, z, y^{(k)})
+    \\
+    & y^{(k + 1)} =
+    y^{(k)} + \rho(Ax^{(k + 1)} + Bz^{(k + 1)} - c), 
+\end{aligned}
+$$
+
+and under some special case where $A, B = I$ the system of updates has a proximal method interpretations to it, we may also reconsider the scaled form of the Augmented Lagrangian, with the substitution $u = \rho^{-1}y$, and $r = Ax + Bz - c$, then we have scaled form given as: 
+
+$$
+\begin{aligned}
+    \mathcal L_\rho (x, z, u) = f(x) + g(z) + \frac{1}{2\rho}
+    \Vert Ax + Bz - c - u\Vert^2 - \frac{1}{2\rho}\Vert u\Vert^2, 
+\end{aligned}
+$$
+
+which consequently gives us an update form of the ADMM that is simpler: 
+
+$$
+\begin{aligned}
+    & x^{(k + 1)} := \arg\min_x \left\lbrace
+        f(x) + \frac{\rho}{2}\Vert Ax + Bz^{(k)} - c + u\Vert^2
+    \right\rbrace
+    \\
+    & z^{(k + 1)} := \arg\min_{z} \left\lbrace
+        g(z) + \frac{\rho}{2}\Vert Ax^{(k + 1)} + Bz- c + u^{(k)}\Vert^2
+    \right\rbrace
+    \\
+    & u^{(k + 1)} := u^{(k)} + \underbrace{Ax^{(k + 1)} + Bz^{(k + 1)} - c}_{=: r^{(k + 1)}}
+\end{aligned}
+$$
 
 ---
 ### **Splitting and ADMM**
+
+
 
 
 ---

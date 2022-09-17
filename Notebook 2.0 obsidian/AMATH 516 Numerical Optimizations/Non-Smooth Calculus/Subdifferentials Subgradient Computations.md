@@ -149,7 +149,7 @@ The converse statement has more subtleties and we skip the proof here.
 
 **Proofs**:
 
-MISSING
+**#TODO WRITE THE PROOF USING THE REFERENCES**
 
 **Remarks**:
 

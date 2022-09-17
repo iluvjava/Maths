@@ -1,0 +1,10 @@
+[[Introduction, Projected Proximal Gradient via MM]]
+[[Projected Gradient via Gradient Dynamics Euler's Method]]
+[[Paper Review Aug 2022]]
+
+---
+### **Intro**
+
+Here we derive the gradient for the envelope and states some inequality stated in the original paper: [[Proximal Algorithms in Stats and ML.pdf]]. 
+
+
