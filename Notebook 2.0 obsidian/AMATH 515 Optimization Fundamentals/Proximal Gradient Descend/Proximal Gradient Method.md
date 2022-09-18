@@ -4,24 +4,24 @@ In this section, we will be interested in solving the proximal gradient method.
 And this we will be continue working on the gradient descent method with addition with a non-smooth function. Which can be a one norm, or it can be an indicator function representing the constraints of the problem. 
 
 ---
-### **Intro, Recap**
+### **Intro**
 
 > Solving the minimum of a quadratic model at point $x_k$ with concavity $\beta$ adding a non-smooth function $h$ is the same as looking for the solution of the proximal operator on the point $x_k - \nabla g(x_k)/\beta$
 
 We pick up from the optimality conditions of the Sub-gradient of a non-smooth function. Picking up from last time: 
 
 $$
-f(y) \le m_{x_k}(y) = g(x_k) + \nabla g(x_k)(y - x_k) + \frac{\beta}{2}\Vert y - x_k\Vert^2 + h(y)
+f(y) \le m_{x_k}(y) = g(x_k) + h(y) + \nabla g(x_k)(y - x_k) + \frac{\beta}{2}\Vert y - x_k\Vert^2 .
 $$
 
-Where $h(y)$ is the non-smooth function. And from gradient descend, we will know that: 
+the $h(y)$ is the non-smooth function, and it provides us with a upwards models of the function. 
 
 $$
-f(y) \le m_{x_k} (y) \quad \forall (y)
-$$
-
-$$
-f(x_k) = m_{x_k}(x_k)
+\begin{aligned}
+    & f(y) \le m_{x_k} (y) \quad \forall (y)
+    \\
+    & f(x_k) = m_{x_k}(x_k)
+\end{aligned}
 $$
 
 The image in our mind is exactly the same as the Gradient descent for beta smooth function, however, notice that, the bounding function, $m_{x_k}$ doesn't have to be smooth. The algorithm make that choice that: 

@@ -39,7 +39,7 @@ which the approximation gets better when $m$ is huge, and we have to assume that
 ---
 ### **Hash Function Implementations**
 
-
+I don't know, use whatever, as long as the 2 hash function is uniformly distributed for the dataset and it's completely different. Then it should work fine. 
 
 
 

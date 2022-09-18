@@ -1,5 +1,4 @@
 prereq: 
-* [[Gradient Descend 1]]
 * [[Subgradient and Subdifferential Definition]]
 * [[Characterizing Functions for Optimizations]]
 
@@ -12,52 +11,67 @@ Proximal gradient descend is a unconstrained optimization method, it aims to sol
 
 where $g(x), h(x)$ are convex but $h(x)$ is non-smooth and $g$ is smooth, meaning that it has gradient oracle and can be bounded by quadratic from above on every point for the domain of the function. Here, we derive the proximal gradient algorithm using the most common way of deriving the projected gradient algorithm: Majorizing and Minimizing. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
-**The Upper-bounding Function**
+**The Upper model Function**
 
-By $\beta$ convexity of $g$ and convexity of $h$ we have: 
-
-$$
-f(x) + h(x) \le 
-g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-+ h(y) = m_x(y) \tag{1}
-$$
-
-Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient. 
-
-
-
-**Define: The Proximal Operator**
+By the property that $g$ is $\beta$ smooth and convexity of $h$ we have: 
 
 $$
-\underset{h, t}{\text{prox}}(
+\begin{aligned}
+    & f(x) + h(x) \le 
+    g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
+    + h(y) = m_x(y) \quad \forall y
+\end{aligned}
+
+$$
+
+Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient, and this function is strongly convex, a very useful properties ([[Strong Convexity, Equivalences and Implications]]). 
+
+
+
+**Define: The Proximal Operator and Moreau Envelope**
+
+$$
+\begin{aligned}
+    & \underset{h, t}{\text{prox}}(
     z
-) = 
-\arg\min_x \left\lbrace 
-    \frac{1}{2t}
-    \left\Vert
-        x - z
-    \right\Vert^2
-    + 
-    h(x)
-\right\rbrace.
+    ) = 
+    \arg\min_x \left\lbrace 
+        \frac{1}{2t}
+        \left\Vert
+            x - z
+        \right\Vert^2
+        + 
+        h(x)
+    \right\rbrace, 
+    \\
+    & \text{env}_{h,t}(z) = 
+    \min_{x} \left\lbrace
+        h(x) + \frac{1}{2t}\Vert x - z\Vert^2
+    \right\rbrace. 
+\end{aligned}
 $$
 
 This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion. 
+
+---
+### **Minimizing it and Getting the Proximal Envelope**
+
+
+
+
 
 ---
 ### **Claim 1**
 
 > 
 > $$
+> \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
 > \arg\min_y \left\lbrace
 >     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
->     \Vert y - x\Vert + h(y)
-> \right\rbrace
+>     \Vert y - x\Vert^2 + h(y)
+> \right\rbrace,
 > $$
-> Solves $m_x(y)$ and it can be written as: 
-> $$
-> \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}.
-> $$
+> the proximal operator minimize the upper model function $m_x(y)$. 
 
 **Proof**
 
@@ -80,7 +94,7 @@ $$
 \end{aligned}\tag{2}
 $$
 
-Which means that: 
+Therefore we consider:  
 
 $$
 \begin{aligned}

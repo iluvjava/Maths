@@ -49,9 +49,51 @@ The hash functions `h_2, h_1`  is defined in the paper based on hashes of the ob
 ---
 ### **Implementations Details**
 
-Define `f` to be the finger print function, it generates hash for object `x` other entities such as a byte array. , and the hashes should be fairly short, for example, a 4 bits number for `f(x)`. We define array `arr` to be an array with size `m` (For the simple case we only have one array.), Next, we define 2 hash functions: 
+Define `f` to be the finger print function, it generates hash for object `x` and other entities such as a byte array. And the hashes should be fairly short, for example, a 4 bits number for `f(x)`. We define array `arr` to be an array with size `m` (For the simple case we only have one array.), next, we introduce the modified partial hashing for cuckoo filter.
 1. `h_1(x)` is just an ordinary hash functions for the objects. 
 2. `i_1 := h_1(x)%m`, the index hashes for the first half of  `arr`. 
 3. `i_2:= i_1 ^ (h_1(f(x))%m)`, where `^` denotes the bitwise XOR operator for the byte array. 
 
-Immediately observe the fact that, if I take the 
+**Insert**
+
+```matlab
+fx = f(x);
+i1 = hash(x); i2 = i1 ^ hash(fx);
+if (arr[i1] || arr[i2]) is empty then: 
+	add fx to the empty one. 
+	return; 
+i = randly picked i1 or i2; 
+// collision happened, relocation needed. 
+for some large enough number n: 
+	select arr[i]; 
+	swap arr[i] with fx; 
+	i = i ^ hash(fx);
+	if arr[i] is empty then: 
+		add fx to arr[i]
+		return;
+//Hash table is full and re-hashing is needed. 
+
+```
+
+Observe the pattern that, it's always the case that for any object `x`, its finger print is either at position `i1`, or it's at `i2`. This is true by the fact that `(A^B)^B` is `B`, a property of the XOR operator. The key here is that, we can recover `i1` only using `hash(fx)` and the indices `i2` that the element is supposed to be hashed to. 
+
+Finally, observe that if we hash the same object 3 times (or 3 of the same objects hash to the same location), then a cycle will be created between `i1`, `i2`. In this case, we should consider re-sizing it, OR, adding more buckets for the entire array. 
+
+**Look up**
+
+```matlab
+fx = f(x);
+i1 = hash(x);
+i2 = i1*hash(fx);
+if arr[i1] == fx || arr[i2] == fx:
+	return true
+return false
+```
+
+We only need to check t position to known probabilistically, whether an element has already been present in the filter. 
+
+
+---
+### **Complexity and Analysis**
+
+The look up and insertion takes strictly $O(1)$. 
