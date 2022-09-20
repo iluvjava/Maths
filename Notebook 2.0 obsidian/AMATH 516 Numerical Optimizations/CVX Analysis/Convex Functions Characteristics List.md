@@ -23,6 +23,8 @@ There are finer, more complicated extension of convexity for functions, some of 
 * Strict convexity.
 * Weak convexity.
 * Quasi Convexity.
+* Psuedo Convexity 
+* Invexity
 
 Each of these topics deserves it's own files. 
 

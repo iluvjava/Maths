@@ -1,5 +1,5 @@
-[[Global Lipschitz Gradient and its weaker Implications]]
-[[Characterizing Functions for Optimizations]]
+1. [[Global Lipschitz Gradient and its weaker Implications]]
+2. [[Characterizing Functions for Optimizations]]
 
 ---
 ### **Intro**
@@ -26,11 +26,11 @@ $$
     \implies
     & f(y) \le f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2, \; \forall x, y \in \mathbb E,
     \\
-    & m_x(y) = f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2
+    & m_x(y) := f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2. 
 \end{aligned}
 $$
 
-we didn't assume convexity and hence, the gradient of the function might not be Lipzchitz (And it's implied that smooth functon will always have gradient, a singled value mapping), and we only need the upper bound. The functoin $m_x(y)$ is called the upper bounding function. Now we try looking for the minimium of the upper bounding function: 
+We didn't assume convexity, the weaker consequence from 2 sided smoothness includes concave function that are non-smooth, therefore we are going to assume that $f$ at least has a gradient, but the gradient of the function might not be Lipzchitz (And it's implied from 2-sided smoothness that function will always have gradient, a singled value mapping), and we only need the upper bound. The function $m_x(y)$ is called the upper bounding function. Now we try looking for the minimum of the upper bounding function: 
 
 $$
 \begin{aligned}
@@ -85,22 +85,30 @@ indicating that the minimum of the gradient converges to $\mathbf 0$ at a sub-li
 
 **Remarks**
 
-Note, without much assumptions this formula only states that, the sequence of $f(x^{(t)})$ is non-increasing, however, it said nothing about its convergence, meaning that: 
+Note, without much assumptions this formula only states that, the sequence of $f(x^{(t)})$ is non-increasing, however, it said nothing about its convergence, or whether we will have $x^{(t)}$ converging. 
 
-When it converges:
-   1. $f(x^{(t)})$ could converge, however, if it converges, it doesn't mean $x^{(t)}$ is converging (unless compact level sets), neither it states that we can't have a limit cycle of some sort (might be eliminated by smoothness? not sure). 
-   2. $f(x^{(t)})$ could decrease but converge to a non-optimal value dual to gradient can be a false measure of optimality. 
-
-When it diverges:
-1. $f(x^{(t)})$ could diverge very fast, which is the case of the function is not bounded below and the initial $x^{(0)}$ is chosen in such a way that it starts sliding down a steep hill indefinitely. And under thet case, the bound for the gradient failed completely. 
-   1. $f(x^{(t)})$ could diverge (but decreases) in just the right way that it cancels out with $1/\sqrt{k}$, making that bound a constant. 
+> [!Details]-
+> 
+> When it converges:
+>    1. $f(x^{(t)})$ could converge, however, if it converges, it doesn't mean $x^{(t)}$ is converging (unless compact level sets), neither it states that we can't have a limit cycle of some sort (might be eliminated by smoothness? not sure). 
+>    2. $f(x^{(t)})$ could decrease but converge to a non-optimal value dual to gradient can be a false measure of optimality. 
+> 
+> When it diverges:
+> 1. $f(x^{(t)})$ could diverge very fast, which is the case of the function is not bounded below and the initial $x^{(0)}$ is chosen in such a way that it starts sliding down a steep hill indefinitely. And under thet case, the bound for the gradient failed completely. 
+>    1. $f(x^{(t)})$ could diverge (but decreases) in just the right way that it cancels out with $1/\sqrt{k}$, making that bound a constant. 
 
 Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 
 
 ---
 ### **Smooth Descend with Convexity**
 
-When convexity, lsc, and proper assumptions are added to $f$, we have a convergence rate express in terms of the objective value of the function, additionally we also have the ability to express the optimality wrt to $f_{\min} = f(x^+)$, and we hae to assume the existence of $x^+$, one of the global minimums of the function. We derive it directly by 
+**Theorem: Convexity Implies Faster Sub-linear Rate:**
+
+> When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sublinear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
+
+**Proof:**
+
+We derive directly by considering: 
 
 $$
 \begin{aligned}
@@ -164,4 +172,21 @@ $$
 $$
 
 which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$. 
+
+---
+### **PL and Linear Convergence**
+
+PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. 
+
+**Definition: Polyak Inequality**
+
+> A function $f$ has a minimizer $f^+$ and it's differentiable. Then it satisfies PL inequality with a PL constant of $u > 0$ if 
+> 
+> $$
+> u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
+> $$
+
+**Theorem: Linaer Convergence Under PL** 
+
+> If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
 

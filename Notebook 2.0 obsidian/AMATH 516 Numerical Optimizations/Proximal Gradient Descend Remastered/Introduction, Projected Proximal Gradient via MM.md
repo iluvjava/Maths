@@ -1,6 +1,7 @@
 prereq: 
 * [[Subgradient and Subdifferential Definition]]
 * [[Characterizing Functions for Optimizations]]
+* [[Moreau Envelope and Proximal Mapping]]
 
 ---
 ### **Intro**
@@ -51,7 +52,7 @@ $$
 \end{aligned}
 $$
 
-This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion. 
+This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
 
 ---
 ### **Minimizing it and Getting the Proximal Envelope**
