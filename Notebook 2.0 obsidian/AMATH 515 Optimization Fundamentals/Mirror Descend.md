@@ -1,5 +1,5 @@
 Reference: [Stanford University](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
-[[Gradient Descend 1]],[[Gradient Descend 2]]
+[[Gradient Descend, Smoothness]],[[Gradient Descend 2]]
 
 ---
 ### **Intro**

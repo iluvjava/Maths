@@ -1,4 +1,4 @@
-[[Gradient Descend 1]], [[Newton Method]]
+[[Gradient Descend, Smoothness]], [[Newton Method]]
 
 ---
 

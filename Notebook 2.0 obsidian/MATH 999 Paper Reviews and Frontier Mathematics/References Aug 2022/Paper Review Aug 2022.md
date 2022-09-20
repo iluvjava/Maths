@@ -46,7 +46,10 @@ Supplementary Papers:
 	Learning via the Alternating Direction  
 	Method of Multipliers\>, pg 23. 
 	> #INVESTIGATE #URGENT 
+	> 
+	> This paper: [link](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf), talks about the dynamical system interpretations of some of the methods. 
 1. >For example, lasso can be viewed as a simple statistical model with the negative log-likelihood from $y=A x+\varepsilon$, where $\varepsilon$ is a standard normal measurement error, corresponding to the norm $l(x)=\|A x-y\|^2$, and each parameter $x_j$ has independent Laplace priors corresponding to the regularization penalty $\phi(x)=|x|$ (Refers to page 429, 224, machine learning a probabilistic perspective by Kevin P Murphy for more details). 
+2. "Mimicking the Froward-Backwards approach, Patric Nost, [Lorenzo And Alberto (2014)](https://arxiv.org/abs/1407.6723) defines the Douglas Rachford (DR) envelope as: ", my question is, what is it mimicking from the Forward Backwards Envelope exactly? 
 
 
 

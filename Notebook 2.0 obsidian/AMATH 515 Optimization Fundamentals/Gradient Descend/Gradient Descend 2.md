@@ -1,6 +1,6 @@
 Here we are going to talk about details of the analysis of the gradient descend algorithm. 
 
-[[Gradient Descend 1]]
+[[Gradient Descend, Smoothness]]
 
 
 ---

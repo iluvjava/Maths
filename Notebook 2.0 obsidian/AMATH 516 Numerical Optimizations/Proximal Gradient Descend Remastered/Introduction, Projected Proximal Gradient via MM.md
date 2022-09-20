@@ -56,7 +56,7 @@ This is called the proximal operator, parameterized by a convexity information r
 ---
 ### **Minimizing it and Getting the Proximal Envelope**
 
-
+Here we state some of the important results and claims related to upper smooth model, the Forward Backwards Envelope (FB Envelope) that we will soon define, and other associated properties. 
 
 
 

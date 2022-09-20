@@ -103,7 +103,7 @@ The **Challenging** part is the modeling part and the solving part.
 		* [[Non smooth convex optimization]]
 		
 * Algorithms and Analysis: 
-	* [[Gradient Descend 1]]
+	* [[Gradient Descend, Smoothness]]
 	* [[Gradient Descend 2]]
 	* [[Gradient Descend 3]]
     * [[Measuring Rate of Convergence]]
