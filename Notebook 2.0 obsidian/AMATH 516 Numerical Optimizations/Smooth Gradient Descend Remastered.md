@@ -17,10 +17,13 @@ The first 2 is hard and requires stronger assumtptions than the last one. Howeve
 ---
 ### **The Smooth Descend Frameworks**
 
-The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally with a constant that is $\le \beta$, then: 
+The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $\le \beta$, then: 
 
 $$
 \begin{aligned}
+    & |f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{\beta}{2}\Vert y - x\Vert^2
+    \\
+    \implies
     & f(y) \le f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2, \; \forall x, y \in \mathbb E,
     \\
     & m_x(y) = f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2
@@ -97,6 +100,47 @@ Additionally, the gradient doesn't classify local optimality nor global optimali
 ---
 ### **Smooth Descend with Convexity**
 
-When convexity, lsc, and proper assumptions are added to $f$, we have a convergence rate express in terms of the objective value of the function, additionally we also have the ability to express the optimality wrt to $f_{\min}$, one of the global minimums of the function.
+When convexity, lsc, and proper assumptions are added to $f$, we have a convergence rate express in terms of the objective value of the function, additionally we also have the ability to express the optimality wrt to $f_{\min} = f(x^+)$, and we hae to assume the existence of $x^+$, one of the global minimums of the function. We derive it directly by 
+
+$$
+\begin{aligned}
+    f(x^{(t + 1)}) 
+    & \le 
+    f(x^{(t)}) + \langle\nabla f(x^{(t)}), x^{(t + 1)} - x^{(t)} \rangle + \frac{\beta}{2}
+    \Vert x^{(t + 1)} - x^{(t)}\Vert^2
+    \\
+    &= 
+    \underbrace{f(x^{(t)}) + \langle\nabla f(x^{(t)}), x^{(t + 1)} - x^{+} \rangle}_{\le f(x^+)}
+    + 
+    \langle \nabla f(x^{(t)}), x^+ - x^{(t + 1)}\rangle
+    + \frac{\beta}{2}
+    \Vert x^{(t + 1)} - x^{(t)}\Vert^2
+    \\
+    & \le 
+    f(x^+) + 
+    \frac{\beta}{2}\Vert x^{(t + 1)} - x^{(t)}\Vert^2 + \langle \nabla f(x^{(t)}), x^{(t + 1)} - x^+\rangle
+    \\
+    & = 
+    f(x^+) + \frac{\beta}{2}\Vert x^{(t + 1)} - x^{(t)}\Vert^2 +
+    \langle \beta(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+\rangle
+    \\
+    &= 
+    f(x^+)+ \frac{\beta}{2}(
+        \Vert x^{(t + 1)} - x^{(t)}\Vert^2 +
+        2\langle x^{(t)} - x^{(t + 1)}, x^{(t + 1)} - x^+\rangle
+    )
+    \\
+    &= f(x^+) + 
+    \frac{\beta}{2}
+    (
+        \Vert x^{(t)} - x^{(t + 1)} + x^{(t + 1)} - x^+\Vert^2 - \Vert x^{(t + 1)} - x^+\Vert^2
+    )
+    \\
+    & = f(x^+) + \frac{\beta}{2}(\Vert x^{(t)} - x^+\Vert^2  - \Vert x^{(t + 1)} - x^+\Vert^2), 
+\end{aligned}
+$$
+
+Which is a telescoping series if I sum it up, because: 
+
 
 

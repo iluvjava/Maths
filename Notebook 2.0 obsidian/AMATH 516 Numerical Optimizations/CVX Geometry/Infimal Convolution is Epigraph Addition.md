@@ -1,4 +1,4 @@
-[[Convexity Preserving Operations of Functions]]
+[[Convexity Preserving Operations for Functions]]
 
 ---
 ### **Intro**

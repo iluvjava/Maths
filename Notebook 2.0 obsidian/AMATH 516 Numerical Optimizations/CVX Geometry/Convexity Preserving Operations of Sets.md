@@ -1,4 +1,4 @@
-[[Convex Sets]]
+[[Convex Sets Intro]]
 [[Generating Cone of a Set]]
 [[Set Addition]]
 
@@ -159,7 +159,7 @@ By the convexity of $L$, the set $\lambda U + (1 - \lambda)V$ is a subset of $Q$
 ---
 ### **Remarks:Convexity of Functions**
 
-[[Convexity Preserving Operations of Functions]]
+[[Convexity Preserving Operations for Functions]]
 
 
 

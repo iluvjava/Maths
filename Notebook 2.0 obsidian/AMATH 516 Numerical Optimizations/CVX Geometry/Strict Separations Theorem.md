@@ -1,4 +1,4 @@
-[[Convex Sets Properties]]
+[[Convex Sets Projection Obtuse Angle Theorem]]
 
 ---
 ### **Intro**

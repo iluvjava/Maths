@@ -1,5 +1,5 @@
 * [[Normal Cone]]
-* [[Convex Sets]]
+* [[Convex Sets Intro]]
 
 ---
 ### **Intro**

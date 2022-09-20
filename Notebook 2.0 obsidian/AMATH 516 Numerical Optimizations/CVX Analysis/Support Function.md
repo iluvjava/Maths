@@ -22,7 +22,7 @@
 
 **Remarks**
 
-When the set $C$ is not closed, the $\sup$ operator is closing it automatically. The function is convex because its the sum of 2 proper convex functions wrt $y$, $\langle y, x\rangle$ which is convex and real-valued, and $\delta_C$ the indicator function which is augmented real and proper, using [[Convexity Preserving Operations of Functions]], this is just taking the maximum of convex functions pointwise, therefore the resulting function is convex. 
+When the set $C$ is not closed, the $\sup$ operator is closing it automatically. The function is convex because its the sum of 2 proper convex functions wrt $y$, $\langle y, x\rangle$ which is convex and real-valued, and $\delta_C$ the indicator function which is augmented real and proper, using [[Convexity Preserving Operations for Functions]], this is just taking the maximum of convex functions pointwise, therefore the resulting function is convex. 
 
 When dealing with the support function for analysis purposes, keep in mind these good properties: 
 * It's convex 

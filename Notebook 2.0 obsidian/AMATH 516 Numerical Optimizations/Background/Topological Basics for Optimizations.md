@@ -86,14 +86,14 @@ $$
 
 General Topology
 * [[Closure Topology]]
-* [[Convex Sets]]
+* [[Convex Sets Intro]]
 * [[Interior Topology]]
 * [[Affine Hull, Affine Span]]
 * [[Relative Interior And Relative Boundary]]
 * [[Compact and Bounded Sets]]
 
 Sets and Convex Geometry related
-* [[Convex Sets]]
+* [[Convex Sets Intro]]
 * [[Euclidean Space]]
 * [[Lower Semi-Continuous]]
 * [[Generating Cone of a Set]]

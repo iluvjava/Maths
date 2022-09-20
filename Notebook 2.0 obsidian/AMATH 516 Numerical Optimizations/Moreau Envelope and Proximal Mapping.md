@@ -38,7 +38,7 @@ $$
 
 Which is the Huber Loss function in statistics. 
 
-Dimitry's Comments: The prox operator is a generalization of the set distance operations on sets. see [[Set Projections and Dist]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
+Dimitry's Comments: The prox operator is a generalization of the set distance operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
 In addition please observe the following identities: 
 

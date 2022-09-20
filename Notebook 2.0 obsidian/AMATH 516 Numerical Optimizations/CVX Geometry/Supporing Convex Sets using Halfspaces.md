@@ -1,4 +1,4 @@
-* [[Convex Sets]]
+* [[Convex Sets Intro]]
 * [[Strict Separations Theorem]]
 
 ---

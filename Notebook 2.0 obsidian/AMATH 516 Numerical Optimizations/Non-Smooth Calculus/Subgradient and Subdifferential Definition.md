@@ -1,6 +1,6 @@
 * [[Normal Cone]]
 * [[Characterizing Functions for Optimizations]]
-* [[Convex Sets]]
+* [[Convex Sets Intro]]
 
 ---
 ### **Intro**
@@ -305,7 +305,7 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 **Proof Preparations**
 
-We make use of the obtuse angle theorem from: [[Convex Sets Properties]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obtuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tangent cone. Therefore, there is no little $o$ term for its polar cone defined on $\text{epi}(f)$ at $[\bar x \; f(\bar x)]^T$. 
+We make use of the obtuse angle theorem from: [[Convex Sets Projection Obtuse Angle Theorem]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obtuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tangent cone. Therefore, there is no little $o$ term for its polar cone defined on $\text{epi}(f)$ at $[\bar x \; f(\bar x)]^T$. 
 
 **Proof**
 

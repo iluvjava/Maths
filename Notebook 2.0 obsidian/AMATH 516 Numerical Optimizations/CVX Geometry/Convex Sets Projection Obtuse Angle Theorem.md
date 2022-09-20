@@ -1,5 +1,5 @@
-[[Convex Sets]]
-[[Set Projections and Dist]]
+* [[Convex Sets Intro]]
+* [[Convex Sets Projections and Dist, Intro]]
 
 
 ---
@@ -10,7 +10,7 @@ We list/prove some of the useful properties of convex sets, in Finite Euclidean 
 ---
 ### **Obtuse Angle Projection**
 
-> For any closed, convex, non-empty set $Q$ in the finite Eulidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an abstuse angle with all the other points in the set $Q$. Mathematically: 
+> For any closed, convex, non-empty set $Q$ in the finite Euclidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an obtuse angle with all the other points in the set $Q$. Mathematically: 
 > $$
 > \begin{aligned}
 >     \forall y \;\exists z: \{z\} &= \underset{Q}{\text{proj}}(y)

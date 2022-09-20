@@ -1,12 +1,12 @@
-[[Lipschitz Continuity]]
-[[Convex Sets Properties]]
-[[Set Projections and Dist]]
+1. [[Lipschitz Continuity]]
+2. [[Convex Sets Projection Obtuse Angle Theorem]]
+3. Used in: [[Convex Sets Projections and Dist, Intro]]
 
 
 --- 
 ### **Intro**
 
-This theorem is beginning to get useful algorithmically. 
+This theorem is beginning to get useful algorithmically. Another way of stating it is that, convex projections are **non-expansive**. 
 
 ---
 ### **Statement of Theorem**
@@ -43,11 +43,11 @@ $$
     \Vert \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)\Vert_2 \Vert x_1 - x_2\Vert_2
     \\
     \implies 
-    \Vert \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)\Vert_2 &\le \Vert x_1 - x_2\Vert_2
+    \Vert \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)\Vert_2 &\le \Vert x_1 - x_2\Vert_2. 
 \end{aligned}
 $$
 
-The first imply is Cauchy Swarchtz, the second is direct. Let's prove the first statement by considering the fact that the set $Q$ is convex. W will make use of the **Obtuse Angle Property of Convex Sets**: 
+The first imply is Cauchy Swarchtz, the second is direct. Let's prove the first statement by considering the fact that the set $Q$ is convex. W will make use of the *Obtuse Angle Property of Convex Sets* from [[Convex Sets Projection Obtuse Angle Theorem]]:  
 
 $$
 \begin{aligned}

@@ -1,6 +1,7 @@
-[[Topological Basics for Optimizations]]
-[[Lipschitz Continuity]]
-[[Characterizing Functions for Optimizations]]
+1. [[Topological Basics for Optimizations]]
+2. [[Lipschitz Continuity]]
+3. [[Characterizing Functions for Optimizations]]
+
 
 ---
 ### **Intro**
@@ -26,7 +27,7 @@ $$
 
 **Remark**
 
-Reader please observe that, $\inf$ is implicityly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Becareful**.
+Reader please observe that, $\inf$ is implicitly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Be careful**.
 
 In some literature, $\Pi_Q(x)$ is used to denote the projection of a vector $x$ onto a set $Q$. 
 
@@ -52,13 +53,17 @@ Where, the activation function is closed, and the distance function is also clos
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
-**Proof:** See [[Convex Sets Properties]]
+**Proof:** See [[Convex Sets Projection Obtuse Angle Theorem]]
+
+**Remarks:**
+
+With the additional assumption that $C$ is a convex set, we obtain the fact that **the distance function is also a convex function** because it's the infimal convolution between 2 proper convex function, one real valued, the other one is augmented real valued, see [[Convexity Preserving Operations for Functions]]. 
 
 
 ---
 ### **Convex Projections**
 
-> For any closed, convex, non-empty set $Q$ in the finite Eulidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an abstuse angle with all the other points in the set $Q$. Mathematically: 
+> For any closed, convex, non-empty set $Q$ in the finite Euclidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an obtuse angle with all the other points in the set $Q$. Mathematically: 
 > $$
 > \begin{aligned}
 >     \forall y \exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
@@ -69,15 +74,30 @@ Where, the activation function is closed, and the distance function is also clos
 > $$
 
 **Remarks**: 
-This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Properties]]. In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that vists: [[Convex Projection is L1 Lipschitz]]
+This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Projection Obtuse Angle Theorem]]. In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [[Convex Projection is L1 Lipschitz]]. 
 
+---
+### **Obtuse Angle Theorem**
 
+Another important properties when projecting onto a convex set is the obtuse angle theorem, stated as: 
+
+> For any closed, convex, non-empty set $Q$ in the finite Euclidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an obtuse angle with all the other points in the set $Q$. Mathematically: 
+> $$
+> \begin{aligned}
+>     \forall y \;\exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
+>     \\
+>     \implies
+>     \langle y - z, x - z\rangle &\le 0 \quad \forall x \in Q
+> \end{aligned}
+> $$
+
+**Proved** in [[Convex Sets Projection Obtuse Angle Theorem]]. 
 
 
 ----
 ### **The Distance Function to $Q$ is L1 Lipschitz**
 
-> For any set $Q$, the function $\text{dist}_Q(y)$ is L1-Lipschitz. More specirically: 
+> For any set $Q$, the function $\text{dist}_Q(y)$ is L1-Lipschitz. More specifically: 
 > $$
 >     |\text{dist}_Q(x) - \text{dist}_Q(y)| \le \Vert x - y\Vert_2
 > $$
@@ -122,7 +142,7 @@ The absolute value of the distance is then bounded by the differences between th
 
 **Remarks**: 
 
-In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations of Functions]] as an example to illustrate the infimal convolution theorem. 
+In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimal convolution theorem. 
 
 
 ---
