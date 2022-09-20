@@ -140,7 +140,28 @@ $$
 \end{aligned}
 $$
 
-Which is a telescoping series if I sum it up, because: 
+which is a telescoping series if I sum it up, because for the rhs, the second term for $t$ will cancel out with the first term of $k - 1$, as we sum it up, we will only be left with the second term for $t = t + 1$, and the first term for $t = 0$, giving us: 
 
+$$
+\begin{aligned}
+    \sum_{j = 1}^k f(x^{(j)}) - k f(x^+) 
+    &\le 
+    \frac{\beta}{2}(
+        \Vert x^{(0)} - x^+\Vert^2 - \Vert x^{(k + 1)} - x^+\Vert^2
+    ) \le \frac{\beta}{2}\Vert x^{(0)} - x^+\Vert^2
+    \\
+    \implies
+    f(x^{(k + 1)}) - f(x^+) 
+    &\le 
+    \frac{1}{k}\sum_{j = 1}^{k}\left(
+        f(x^{j}) - f_{\min}
+    \right) \le \frac{\beta}{2k}\Vert x^{(0)} - x^+\Vert^2
+    \\
+    f(x^{k + 1}) - f(x^+) 
+    &\le 
+    \frac{\beta}{2k}\Vert x^{(0)} - x^+\Vert^2, 
+\end{aligned}
+$$
 
+which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$. 
 
