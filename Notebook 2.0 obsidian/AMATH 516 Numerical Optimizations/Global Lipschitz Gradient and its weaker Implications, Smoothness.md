@@ -37,7 +37,7 @@ An even strong statement for the Globally Lipschitz gradient is the fact that th
 > By assuming that $f$ is convex, and it has Lipchitz gradient, condition 3 is implied (by condition 1, and 2), and condition 3 is a equivalent to $f$ having a globally lipschitz gradient. hence all conditions are equivalent under the assumption that $f$ is a convex function. 
 
 **Propostion 3: Weakening the Assumption on Functions to Prove Equivalence**
-> For any $C^2$ functions that satisfies 2, it also satisfies the Globally Lipschitz gradient conditions. 
+> For any $C^3$ functions that satisfies 2, it also satisfies the Globally Lipschitz gradient conditions. 
 
 **Remarks**
 
@@ -200,5 +200,47 @@ Without the convexity assumption for $f$, smoothness conditions and Lipschitz gr
 > **THIS PROOF IS WRONG PLEASE DON'T TAKE IT.**
 
 Instead, one-sided Lipschitz is equivalent to the smoothness conditions. Here we refer to [wikipedia](https://en.wikipedia.org/wiki/Lipschitz_continuity#One-sided_Lipschitz), and observe that simple algebraic manipulations of the smoothness conditions can lead to same inequality as the one-sided Lipschitz definition. 
+
+---
+### **Infinitely Smooth Functions**
+
+For some function $f \in C^\infty$ will produce bounded Hessian norm under the smoothness conditions, and using the bounded norm, we can recover the global Lipschitz conditions for the gradient of the function. This is true directly by consider the Taylor expansion of $f$, assuming that $v$ is any unit vector 
+
+$$
+\begin{aligned}
+    f(x)  - f(x + tv) - t\langle \nabla f(x), v\rangle 
+    & = 
+    \frac{t^2}{2}\langle v ,(H|x)v\rangle + O(t^3)
+    \\
+    \implies
+    \left| \frac{t^2}{2}\langle v ,(H|x)v\rangle + O(t^3) \right|
+    & \le 
+    \frac{\beta}{2}t^2\Vert v\Vert^2
+    \\
+    \left| \frac{1}{2}\langle v ,(H|x)v\rangle + O(t) \right|
+    & \le 
+    \frac{\beta}{2}
+    \\
+    \implies 
+    \lim_{r\rightarrow 0}
+    \left|
+        \frac{1}{2}\langle v ,(H|x)v\rangle + O(t)
+    \right|
+    \le 
+    \frac{\beta}{2}
+    \\
+    \left|
+        \frac{1}{2}\langle v ,(H|x)v\rangle
+    \right|
+    \le 
+    \frac{\beta}{2}
+    \\
+    \implies
+    |\langle v, (H|x)v\rangle| \le \beta.
+\end{aligned}
+$$
+
+Take note that, at the last line, we know that $H$ is symmetric, and therefore, the spectral norm $\Vert (H|x)\Vert = \langle v, (H|x)v\rangle$ for some $v$, and hence, the norm of the matrix is also bounded by $\beta$. And from here, one can simply use the first order approximation for $\nabla f(x+ tv)$ to bound the value of the gradient, showing that the gradient is Lipscthiz continuous. 
+
 
 
