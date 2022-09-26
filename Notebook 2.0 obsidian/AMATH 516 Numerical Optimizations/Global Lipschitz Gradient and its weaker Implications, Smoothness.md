@@ -21,9 +21,13 @@ The statement is defined for any norm $\Vert \cdot\Vert$ in $\mathbb E$ and it i
 1. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. This gives an lower bound for the optimality gap using the gradient at the current point. 
 2. $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$, the function is smooth from below and above. 
 
-With the addition assumption that $f$ is a convex function, we can obtain a stronger version of monotonicity of gradients by giving it a lower bound to it. 
+With the addition assumption that $f$ is a convex function, we can obtain a stronger version of monotonicity of gradients by giving it a lower bound to it. This is called the co-coercivity of gradient. 
 
 3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$
+
+**Remarks**
+
+An even strong statement for the Globally Lipschitz gradient is the fact that the spectral norm of Hessian is bounded globally as well. 
 
 **Proposition 1: Implications**
 
@@ -31,6 +35,9 @@ With the addition assumption that $f$ is a convex function, we can obtain a stro
 
 **Proposition 2: Stronger Implications under Convexity and Equivalence**
 > By assuming that $f$ is convex, and it has Lipchitz gradient, condition 3 is implied (by condition 1, and 2), and condition 3 is a equivalent to $f$ having a globally lipschitz gradient. hence all conditions are equivalent under the assumption that $f$ is a convex function. 
+
+**Propostion 3: Weakening the Assumption on Functions to Prove Equivalence**
+> For any $C^2$ functions that satisfies 2, it also satisfies the Globally Lipschitz gradient conditions. 
 
 **Remarks**
 
@@ -189,5 +196,9 @@ Without the convexity assumption for $f$, smoothness conditions and Lipschitz gr
 >\end{aligned}. 
 >$$
 >Giving us global Lipschitz continuity, and therefore $f$ has to be smooth. However, it's derivative is definitely not Lipschitz. Its derivative is differentiable but the derivative of $x\sin(x\^{-1})$ is not bounded, therefore it's derivative is no longer globally Lipschitz. Therefore we conclude the fact that under the general case, for any function with condition 2, the smoothness condition is strictly weaker than having globally Lipschitz gradient. 
+> **#TODO, ADD MORE DETAILS, HOW IS THE LIPZ FUNCTION $x^2\sin(x^{-1})$ SMOOTH NEEDS MORE ARGUMENT**
+> **THIS PROOF IS WRONG PLEASE DON'T TAKE IT.**
 
 Instead, one-sided Lipschitz is equivalent to the smoothness conditions. Here we refer to [wikipedia](https://en.wikipedia.org/wiki/Lipschitz_continuity#One-sided_Lipschitz), and observe that simple algebraic manipulations of the smoothness conditions can lead to same inequality as the one-sided Lipschitz definition. 
+
+

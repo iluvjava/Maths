@@ -197,7 +197,7 @@ The absolute signs make it possible to model the smoothness for both convex and 
 
 **Proofs**
 
-A proof can be found in [[Global Lipschitz Gradient and its weaker Implications]]
+A proof can be found in [[Global Lipschitz Gradient and its weaker Implications, Smoothness]]
 
 **Remarks**: 
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 

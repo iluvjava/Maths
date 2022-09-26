@@ -186,6 +186,9 @@ $$
 ---
 ### **Dual Feasibility of ADMM**
 
+We prove that the solutions provided by the ADMM is always dual feasible. 
+
+
 **#TODO, #URGENT** 
 
 

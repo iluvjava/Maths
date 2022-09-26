@@ -1,4 +1,4 @@
-1. [[Global Lipschitz Gradient and its weaker Implications]]
+1. [[Global Lipschitz Gradient and its weaker Implications, Smoothness]]
 2. [[Characterizing Functions for Optimizations]]
 
 ---

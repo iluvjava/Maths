@@ -77,7 +77,8 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 
 **Source**: Unassigned exercise from AMATH 516. 
 
-**Theorem: Subgradient of Pointwise Maximum of Functions**
+---
+### **Theorem: Subgradient of Pointwise Maximum of Functions**
 
 > Suppose a function is in the form of a pointwise maximum of countably many function: $f(x):= \max_{i\in [n]}f_i(x)$ for all $f_i$ that are convex. Then the strong subgradient of the function is: 
 > $$
