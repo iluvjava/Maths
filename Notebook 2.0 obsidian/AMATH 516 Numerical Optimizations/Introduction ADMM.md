@@ -179,9 +179,11 @@ $$
         g(z) + \frac{\rho}{2}\Vert Ax^{(k + 1)} + Bz- c + u^{(k)}\Vert^2
     \right\rbrace
     \\
-    & u^{(k + 1)} := u^{(k)} + \underbrace{Ax^{(k + 1)} + Bz^{(k + 1)} - c}_{=: r^{(k + 1)}}
+    & u^{(k + 1)} := u^{(k)} + \underbrace{Ax^{(k + 1)} + Bz^{(k + 1)} - c}_{=: r^{(k + 1)}}, 
 \end{aligned}
 $$
+
+Finally, observe the fact that if $A, B$ are identity, then these 2 updates are proximal mapping. 
 
 ---
 ### **Dual Feasibility of ADMM**
@@ -221,17 +223,45 @@ $$
 \end{aligned}
 $$
 
-which means that [2] holds for $z^{(k + 1)}$ and the upcoming updated value $y^{(k + 1)}$. Next, we check [1], the first stationary point condition: 
+which means that \[2\] holds for $z^{(k + 1)}$ and the upcoming updated value $y^{(k + 1)}$. Next, we check \[1\], the first stationary point condition using the optimality condition of $x^{(k + 1)}$
 
+$$
+\begin{aligned}
+    x^{(k + 1)} &\in \arg\min_{x} \mathcal L(x, z^{(k)}, y^{(k)})
+    \\
+    \mathbf 0 &\in \partial f(x^{(k + 1)}) + A^Ty^{(k)} + \rho A^T(x^{(k + 1)} + Bz^{(k)} - c)
+    \\ 
+    &= \partial f(x^{(k + 1)}) + A^T(y^{(k)} + \rho(\underbrace{x^{(k + 1)} + Bz^{(k + 1)} -c}_{r^{(k + 1)}} +  B(z^{(k)} - z^{(k + 1)})))
+    \\
+    &= \partial f(x^{(k + 1)}) + A^T(y^{(k)} + \rho r^{(k + 1)} + \rho B(z^{(k)} - z^{(k + 1)}))
+    \\
+    &= \partial f(x^{(k + 1)}) + A^T(\underbrace{y^{(k)} + \rho r^{(k + 1)}}_{y^{(k + 1)}}) + \rho A^TB(z^{(k)} - z^{(k + 1)}))
+    \\
+    &= \partial f(x^{(k + 1)}) + A^Tr^{(k + 1)} + \rho A^TB(z^{(k)} - z^{(k + 1)})
+    \\
+    \implies
+    \rho A^T B(z^{(k + 1)} - z^{(k)}) &\in 
+    \partial f(x^{(k + 1)}) + A^Ty^{(k + 1)}, 
+\end{aligned}
+$$
 
-
-
+Some technicalities are involved with taking the subgradient when using the sum rules and the property of affine composition on convex function, but ignoring these allows us to get an optimality measure on condition \[2\], which is determined by the quantity: $\rho A^TB (z^{(k + 1)} - z^{(k)})$. Let's denote this quantity to be $s^{(k + 1)}$, depending on the value of $s^{(k + 1)}$ and details about the subgradient on [2], during the run time of the algorithm it might or might not violate the condition. Finally, we name the primal residual $r^{(k)}$ and the dual residual $s^{(k)}$, they will be quantity used during the proof of convergence. 
 
 ---
 ### **Convergence Results**
 
-See [[ADMM Convergence]]. 
+It's separate, see [[ADMM Convergence]] for more details. 
 
+
+---
+### **Proxing over the Affine Linear Composition**
+
+---
+### **Solving with Constraints**
+
+
+---
+### **Examples**
 
 [^1]: It's assumed instead of being a fact of the assumptions on $f, g$, and the optimal solution and Lagraigian, more invesitgations might be needed for this detail. 
 
