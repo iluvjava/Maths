@@ -243,7 +243,7 @@ Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alp
 ---
 ### **Moreau Decomposition and Minty Parameterizations**
 
-**Lemma**
+**Lemma: When are Subgradient Invertible**
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex, then $(\partial f)^{-1} = \partial f^\star$. 
 
 **Proof Lemma**
@@ -259,6 +259,18 @@ $$
     z \in \partial f^\star(x). 
 \end{aligned}    
 $$
+
+**Remarks:**
+
+Due to the nature of multi-valued mapping, it's possible that $(\partial f(z))^{-1} = \emptyset$ for some value of $z$. We may not assume that $\partial f(x)$ has $\text{rng}(\partial f) = \mathbb E$. And because of this, we can't specialize the statement for a strong class of differentiable functions. It's wrong to state the fact that $\nabla f^{-1} = \nabla f^\star$ because it's possible that the gradient $f$ was never one-to-one. Additional assumptions are needed. 
+
+The extra assumption needed are strict convexity (Positive definiteness of hessian) over the whole domain, and the function $f$ is coercive over the whole domain. 
+
+
+
+**References:**
+
+Proposition 11.3 in Rockafellar. 
 
 **Moreau Decomposition** 
 

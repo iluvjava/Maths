@@ -186,10 +186,44 @@ $$
 ---
 ### **Dual Feasibility of ADMM**
 
-We prove that the solutions provided by the ADMM is always dual feasible. 
+We prove that the solutions provided by the ADMM is always dual feasible. We first assume that $f, g$ are convex, and $\mathcal L_0$, the unregularized Lagrangian has a saddle point to it, so that: 
+
+$$
+\begin{aligned}
+    & \exists (x^+, z^+, y^+): \; \mathcal L_0 (x^+, z^+, y)\le \mathcal L_0(x^+, z^+, y^+) \le \mathcal L_0(x, z, y^+)\quad  \forall x, y, z
+    \\
+    & Ax^+ + Bz^+ = c, f(x^+) \le \infty \wedge g(x^+) \le \infty
+\end{aligned}
+$$
+
+Assuming that strong duality holds[^1], then ADMM converges. Before we prove that it converges, we need to check 2 of the important conditions related to duality
+
+$$
+\begin{aligned}
+    \mathbf 0 \in \partial f(x^+) + A^Ty^+ \quad [1]
+    \\
+    \mathbf 0 \in \partial g(z^+) + B^T y^+ \quad [2]
+\end{aligned}
+$$
+
+which comes from the optimality of the primal variables under the staionary point assumptions for duality, basically $\mathbf 0 \in \partial [\mathcal L_\rho (x, z^+, y^+)|x], \mathbf 0 \in \mathcal [L_\rho(x^+, z, y^+)|z]$. We wish to show that on every iteration, the second condition is held true becaue 
+$$
+\begin{aligned}
+    z^{(k + 1)} &\in \arg\min_{z}\mathcal L_\rho(x^{(k + 1)}, z, y^{k})
+    \\
+    \implies 
+    \mathbf 0 &\in 
+    \partial g(z^{k + 1}) + B^Ty^{(k)} + \rho B^T r^{(k + 1)}
+    \\
+    &= \partial g(z^{(k + 1)}) + B^Ty^{(k)} + \rho B^T r^{(k + 1)}
+    \\
+    &= \partial g(z^{(k + 1)}) + B^T y^{(k + 1)}
+\end{aligned}
+$$
+
+which means that [2] holds for $z^{(k + 1)}$ and the upcoming updated value $y^{(k + 1)}$. Next, we check [1], the first stationary point condition: 
 
 
-**#TODO, #URGENT** 
 
 
 
@@ -199,6 +233,6 @@ We prove that the solutions provided by the ADMM is always dual feasible.
 See [[ADMM Convergence]]. 
 
 
-
+[^1]: It's assumed instead of being a fact of the assumptions on $f, g$, and the optimal solution and Lagraigian, more invesitgations might be needed for this detail. 
 
 

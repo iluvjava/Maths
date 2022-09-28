@@ -163,7 +163,7 @@ $$
     \le& f(x) - f(y) - \langle \nabla f(y), x- y\rangle. 
 \end{aligned}
 $$
-Combining the 2 statement we obtain the co-coersive property of the gradient: 
+Combining the 2 statement we obtain the co-coercive property of the gradient: 
 
 $$
 \begin{aligned}
@@ -179,7 +179,7 @@ Without the convexity assumption for $f$, smoothness conditions and Lipschitz gr
 
 > [!Example]-
 > 
->The co-coersive conditions of the gradient implies the fact that the gradient is Lipschitz. However, without the assumption of function $f$ being convex, we cannot get condition 3 to hold. Which would mean that there exists some type of non-convex function that could be smooth, and makes condition 1 true, but it's not having a gradient that is Lipschitz, therefore, the conditions 2 specifically is a weaker conditions compare to globally Lipschitz gradient of the function. More specifically, we consider the $f(x) = x^2\sin(x^{-1}) ,\forall x\neq 0$ as a function who is smooth, but it doesn't have globally Lipschitz Gradient. We first show that this function $f$ is globally Lipschitz, hence it's smooth. Consider that $f'(x) = 2x\sin(x^{-1}) + \cos(x^{-1})$ then: 
+>The co-coercive conditions of the gradient implies the fact that the gradient is Lipschitz. However, without the assumption of function $f$ being convex, we cannot get condition 3 to hold. Which would mean that there exists some type of non-convex function that could be smooth, and makes condition 1 true, but it's not having a gradient that is Lipschitz, therefore, the conditions 2 specifically is a weaker conditions compare to globally Lipschitz gradient of the function. More specifically, we consider the $f(x) = x^2\sin(x^{-1}) ,\forall x\neq 0$ as a function who is smooth, but it doesn't have globally Lipschitz Gradient. We first show that this function $f$ is globally Lipschitz, hence it's smooth. Consider that $f'(x) = 2x\sin(x^{-1}) + \cos(x^{-1})$ then: 
 >$$
 >\begin{aligned}
 >    & f'(x) \le 2|x\sin(x^{-1})| + \cos(x^{-1}), \forall x

@@ -38,7 +38,7 @@ In some literature, $\Pi_Q(x)$ is used to denote the projection of a vector $x$ 
 
 **Proof** 
 
-Firstly, recall [[Existence of a Minimizer]]. Given $x$, the function $\min_{y\in C}\Vert x- y \Vert$ is coersive. The epigraph of the function will be closed because closedness is preserved under addition ([[Closedness Preserving Operations of Epigraph]]), and in this case the minimization problem can be phrased as the sum of 2 closed functions: 
+Firstly, recall [[Existence of a Minimizer]]. Given $x$, the function $\min_{y\in C}\Vert x- y \Vert$ is coercive. The epigraph of the function will be closed because closedness is preserved under addition ([[Closedness Preserving Operations of Epigraph]]), and in this case the minimization problem can be phrased as the sum of 2 closed functions: 
 
 $$
 \min_{y\in C}\Vert x - y\Vert = \min_{y}\left\lbrace
@@ -46,7 +46,7 @@ $$
 \right\rbrace
 $$
 
-Where, the activation function is closed, and the distance function is also closed. Since the function is closed and coersive, it has minimizers. 
+Where, the activation function is closed, and the distance function is also closed. Since the function is closed and coercive, it has minimizers. 
 
 
 **Theorem: Unique Projection of Convex Sets**

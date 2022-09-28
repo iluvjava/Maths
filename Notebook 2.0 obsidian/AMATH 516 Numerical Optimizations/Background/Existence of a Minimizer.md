@@ -83,11 +83,11 @@ Finally, **why do we use the Weistrass Theorem (Sequencial Compact Theorem)**? T
 ---
 ### **Existence of Minimizer Theorem**
 
-> let $f$ be a proper, closed, and coersive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
+> let $f$ be a proper, closed, and coercive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 
 **Proof**
 
-Choose any $x\in \text{dom}(f)\cap S$, from the coersiveness of the function $f$, there exists $M$: 
+Choose any $x\in \text{dom}(f)\cap S$, from the coerciveness of the function $f$, there exists $M$: 
 
 $$
 \begin{aligned}
@@ -99,6 +99,6 @@ For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le
 
 **Remarks**
 
-Compare to the Weistrass's theorem, we consider the the difference between this theorem and the above. The Existence of minimizer exists for all $S\subseteq \mathbb E$, which is the difference. Under these sets of assumptions, we are remained with a class of functons that looks like a bowl on the large scale because it's coersive, and if we shine lights from the bottom of the function, it will perfectly describe the epigraph of the function (closeness), and the function is bounded below. 
+Compare to the Weistrass's theorem, we consider the the difference between this theorem and the above. The Existence of minimizer exists for all $S\subseteq \mathbb E$, which is the difference. Under these sets of assumptions, we are remained with a class of functions that looks like a bowl on the large scale because it's coercive, and if we shine lights from the bottom of the function, it will perfectly describe the epigraph of the function (closeness), and the function is bounded below. 
 
 

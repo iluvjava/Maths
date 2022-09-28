@@ -5,6 +5,8 @@
 ---
 ### **Intro** 
 **References**
-Page 81 of MATH 516 from Dimitry's class. 
+Page 81 of MATH 516 from Dimitry's class notes. 
+
+
 
 
