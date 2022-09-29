@@ -190,13 +190,13 @@ Finally, observe the fact that if $A, B$ are identity, then these 2 updates are 
 
 We prove that the solutions provided by the ADMM is always dual feasible. We first assume that $f, g$ are convex, and $\mathcal L_0$, the unregularized Lagrangian has a saddle point to it, so that: 
 
-$$
-\begin{aligned}
-    & \exists (x^+, z^+, y^+): \; \mathcal L_0 (x^+, z^+, y)\le \mathcal L_0(x^+, z^+, y^+) \le \mathcal L_0(x, z, y^+)\quad  \forall x, y, z
-    \\
-    & Ax^+ + Bz^+ = c, f(x^+) \le \infty \wedge g(x^+) \le \infty
-\end{aligned}
-$$
+> $$
+> \begin{aligned}
+>     & \exists (x^+, z^+, y^+): \; \mathcal L_0 (x^+, z^+, y)\le \mathcal L_0(x^+, z^+, y^+) \le \mathcal L_0(x, z, y^+)\quad  \forall x, y, z
+>     \\
+>     & Ax^+ + Bz^+ = c, f(x^+) \le \infty \wedge g(x^+) \le \infty
+> \end{aligned}
+> $$
 
 Assuming that strong duality holds[^1], then ADMM converges. Before we prove that it converges, we need to check 2 of the important conditions related to duality
 
@@ -245,12 +245,12 @@ $$
 \end{aligned}
 $$
 
-Some technicalities are involved with taking the subgradient when using the sum rules and the property of affine composition on convex function, but ignoring these allows us to get an optimality measure on condition \[2\], which is determined by the quantity: $\rho A^TB (z^{(k + 1)} - z^{(k)})$. Let's denote this quantity to be $s^{(k + 1)}$, depending on the value of $s^{(k + 1)}$ and details about the subgradient on [2], during the run time of the algorithm it might or might not violate the condition. Finally, we name the primal residual $r^{(k)}$ and the dual residual $s^{(k)}$, they will be quantity used during the proof of convergence. 
+some technicalities are involved with taking the subgradient when using the sum rules and the property of affine composition on convex function, but ignoring these allows us to get an optimality measure on condition \[2\], which is determined by the quantity: $\rho A^TB (z^{(k + 1)} - z^{(k)})$. Let's denote this quantity to be $s^{(k + 1)}$, depending on the value of $s^{(k + 1)}$ and details about the subgradient on [2], during the run time of the algorithm it might or might not violate the condition. Finally, we name the primal residual $r^{(k)}$ and the dual residual $s^{(k)}$, they will be quantity used during the proof of convergence. 
 
 ---
 ### **Convergence Results**
 
-It's separate, see [[ADMM Convergence]] for more details. 
+It's separate, see [[ADMM Convergence]] for more details. We make the same assumptions as before when we derive the feasibility of the algorithm during the iteration, that $f, g$ are augmented real functions and CCP, at the same time, strong duality holds for the problem so that a saddle point can be identified. 
 
 
 ---
