@@ -20,14 +20,12 @@ $$
 \begin{aligned}
     & f(x) + h(x) \le 
     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-    + h(y) = m_x(y) \quad \forall y
+    + h(y) =: m_x(y) \quad \forall y
 \end{aligned}
 
 $$
 
 Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient, and this function is strongly convex, a very useful properties ([[Strong Convexity, Equivalences and Implications]]). 
-
-
 
 **Define: The Proximal Operator and Moreau Envelope**
 
@@ -55,9 +53,73 @@ $$
 This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
 
 ---
-### **Minimizing it and Getting the Proximal Envelope**
+### **Upperbound Function is Proximal Envelope on Gradient when Minimized**
 
 Here we state some of the important results and claims related to upper smooth model, the Forward Backwards Envelope (FB Envelope) that we will soon define, and other associated properties. 
+
+**The Forward Backward Envelope**: 
+> Let $m^+(x) := \min_y m_x(y)$, then it's given by: 
+> $$
+> \begin{aligned}
+>   m^+(x) &= m_x\circ \text{prox}_{g, \beta^{-1}}(x - \beta^{-1}\nabla l(x))
+>   \\
+>   &= \text{env}_{g, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
+> \end{aligned}
+> $$
+
+
+**Proof**
+
+$$
+\begin{aligned}
+    m_x(y) &= g(x) + \underbrace{\nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2 + h(y)}_{\text{this part}}. 
+\end{aligned}\tag{2}
+$$
+We complete the square on the terms that involves the variable $y$, then
+
+$$
+\begin{aligned}
+    & \quad \min_y \left\lbrace
+    g(x) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
+    \right\rbrace
+    \\
+    & = \min_y\left\lbrace
+        g(x) + 
+        \frac{\beta}{2}
+        \left(
+            \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
+        \right)
+    \right\rbrace
+    \\
+    & = \min_y\left\lbrace
+        g(x) + 
+        \frac{\beta}{2}
+        \left(
+            \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
+            + \Vert \beta^{-1}\nabla g(x)\Vert^2  - \Vert \beta^{-1}\nabla g(x)\Vert^2 
+        \right)
+    \right\rbrace
+    \\
+    & = \min_y\left\lbrace
+        g(x) + 
+        \frac{\beta}{2}
+        \left(
+            \left\Vert
+                 y - x + \beta^{-1}\nabla g(x)
+            \right\Vert^2
+            - \Vert \beta^{-1}\nabla g(x)\Vert^2 
+        \right)
+    \right\rbrace
+    \\
+    &= \text{env}_{g, \beta^{-1}}
+    (
+        x - \beta^{-1}\nabla g(x)
+    ) - \frac{\beta\Vert \beta^{-1}\nabla g(x)\Vert^2 }{2}, 
+\end{aligned}
+$$
+
+adding back the $g(x)$ that is not part of the minimizations, we hae what we claimed. 
+
 
 
 
@@ -71,129 +133,41 @@ Here we state some of the important results and claims related to upper smooth m
 >     \Vert y - x\Vert^2 + h(y)
 > \right\rbrace,
 > $$
-> the proximal operator minimize the upper model function $m_x(y)$. 
+> the proximal operator minimize the upper model function $m_x(y)$. Here we assume that $h$ is proper. 
 
 **Proof**
 
-$$
-\begin{aligned}
-    & g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-    \\
-    =&
-    g(x) + \nabla g(x)^T x - \nabla g(x)^T x + 
-    \frac{\beta}{2}\Vert x\Vert^2 + \frac{\beta}{2} \Vert x\Vert^2
-    -\beta y^T x + h(y)
-    \\
-    =& 
-    \left(
-        g(x) - \nabla g(x)^Tx + \frac{\beta }{2} \Vert x\Vert^2
-    \right) + 
-    \underbrace{\left(
-        \nabla g(x) - \beta x
-    \right)^T y + \frac{\beta}{2} \Vert y\Vert + h(y)}_{\text{Optimize This!}}. 
-\end{aligned}\tag{2}
-$$
-
-Therefore we consider:  
+The proof is direct by considering the optimal solution is obtained when the subgradient of the expression inside argmin contains zero, therefore we have: 
 
 $$
 \begin{aligned}
-    & \arg\min_y \left\lbrace
-    g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-    \right\rbrace
+    \mathbf 0 &\in 
+    \nabla g(x) + {\beta}(y - x) + \partial h(y)
     \\
-    =&
-    \arg\min_y \left\lbrace
-        \underbrace{\left(
-            \nabla g(x) - \beta x
-        \right)^T y + \frac{\beta}{2} \Vert y\Vert^2}_{\text{the smooth part}} + h(y)
-    \right\rbrace. 
-\end{aligned}\tag{3}
+    \nabla g(x) + \beta x & \in
+    \beta y + \partial h(y)
+    \\
+    -\beta^{-1} \nabla g(x) + x &\in y + \beta^{-1} \partial h(y)
+    \\
+    -\beta^{-1} \nabla g(x) + x &\in [I + \beta^{-1} \partial h](y)
+    \\
+    \implies
+    [I + \beta^{-1}\partial h]^{-1}(- \beta^{-1} \nabla g(x) + x) 
+    & \ni y,
+\end{aligned}
 $$
+and using one of the operator interpreation of prox, the lhs of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
 
-Let's complete the square here: 
+**Remarks**
 
-$$
-\begin{aligned}
-    \underbrace{\left(\nabla g(x) - \beta x\right)^T}_{b} y + \underbrace{\frac{\beta}{2}}_{a} \Vert y\Vert =&
-    b^Ty + a \Vert y\Vert^2
-    \\
-    =&
-    a \left(
-        \frac{b^T}{a}y + \Vert y\Vert^2
-    \right)
-    \\
-    =& 
-    a \left(
-        \frac{b^T}{a}y + \Vert y\Vert^2 + 
-        \left\Vert\frac{b^T}{2a}\right\Vert^2
-        - 
-        \left\Vert
-             \frac{b^T}{2a}
-        \right\Vert^2
-    \right)
-    \\
-    =& 
-    a \left(
-        \underbrace{\left\Vert
-              y + \frac{b}{2a}
-        \right\Vert^2}_{\text{Optimize This part}}
-        -
-        a \left\Vert
-             \frac{b^T}{2a}
-        \right\Vert^2
-    \right)
-    \\
-    \left\Vert
-        \frac{b}{2a} + y
-    \right\Vert^2
-    =& 
-    \left\Vert
-         \frac{\nabla g(x) - \beta x}{\beta} + y
-    \right\Vert^2 
-    \\
-    =& 
-    \left\Vert
-        y - \left(x - \frac{\nabla g(x)}{\beta}\right)
-    \right\Vert^2. 
-\end{aligned}\tag{4}
-$$
-
-Let's make the link back to the start, which means that: 
-
-$$
-\begin{aligned}
-    =& 
-    \arg\min_y\left\lbrace
-        \left(
-            \nabla g(x) - \beta x
-        \right)^T y + \frac{\beta}{2} \Vert y\Vert
-        + h(x)
-    \right\rbrace 
-    \\
-    =& 
-    \arg\min_y\left\lbrace
-        \frac{\beta}{2}\left\Vert
-        y - \left(x - \frac{\nabla g(x)}{\beta}\right)
-    \right\Vert^2 + h(x)
-    \right\rbrace
-    \\
-    =& 
-    \underset{h, t}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) \text{ where: } t= \frac{1}{\beta}, 
-\end{aligned}\tag{5}
-$$
-
-therefore, minimizing the proximal operator using the convexity information at a point of the function will minimizes the parabolic approximation of that region, together with the nonconvex function. 
-
-$\blacksquare$
-
-Therefore, we have a way to solve the mini minimization problem $m_x(y)$ at a point $x$ of a smooth convex function $f(x)$. 
+Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that smaller step size for the multiplier for the gradient of $g(x)$, and when $\beta$ is huge, less penalty will be placed on quadratic term inside of the proximal operator, making the infimal convolution resulting in more smoothing on the function $h$. 
 
 
 ---
-### **Claim 2**
+### **Termination Conditions and Optimality**
 
-> If proximal operator produces $x^{(k+ 1)} = x^{(k)}$, then optimality condition is satisfied. 
+> If proximal operator produces $x^{(k+ 1)} = x^{(k)}$ (it converges), then optimality condition for the original minimization problem is satisfied. 
+ 
 
 **Proof**
 
@@ -207,7 +181,7 @@ $$
     \\
     G_t(x) - \nabla g(x) &\in \partial h(x^+)
     \\
-    G_t(x) &\in \partial h(x^+) + \nabla g(x)
+    G_t(x) &\in \partial h(x^+) + \nabla g(x).
 \end{aligned}
 
 $$
