@@ -62,9 +62,8 @@ Here we state some of the important results and claims related to upper smooth m
 
 
 ---
-### **Claim 1**
+### **Proximal Gradient is the Minimizer of the Upper Envelope**
 
-> 
 > $$
 > \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
 > \arg\min_y \left\lbrace

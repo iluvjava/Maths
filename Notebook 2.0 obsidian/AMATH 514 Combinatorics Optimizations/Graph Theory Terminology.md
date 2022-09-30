@@ -20,7 +20,7 @@ A walk with distinct vertices.
 
 
 ### **Cycle**
-A wak with $v_0 = v_m$. Take note that it can have repeating vertices while going from $v_0$ to $v_m$. 
+A walk with $v_0 = v_m$. Take note that it can have repeating vertices while going from $v_0$ to $v_m$. 
 
 ### **Circuit**
 
@@ -53,7 +53,7 @@ A connected forest is connected, therefore for every vertices, there exists a pa
 
 ### **Spanning Tree:**
 
-*Spaanning*:
+*Spanning*:
 
 A subgraph $G'$ of $G$ is spanning if $V' = V$ and every $v\in V$ is connected to $e\in E'$. It's the set of edges that covers all the vertices of the original graph. 
 
@@ -61,6 +61,6 @@ A subgraph $G'$ of $G$ is spanning if $V' = V$ and every $v\in V$ is connected t
 
 A spanning Tree of a subgraph is a tree (one connected component) of a graph G that is also a tree (There is no cycle in the tree). 
 
-**Note**: A spanning subgraph is not neccessarily connected, nor it has to be a tree. 
+**Note**: A spanning subgraph is not necessarily connected, nor it has to be a tree. 
 
 

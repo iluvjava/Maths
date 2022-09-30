@@ -363,11 +363,16 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that $prox$ is L-1 Lipzchitz, the gradient is also a Lipschitz mapping. 
+At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipzchitz, the gradient is also a Lipschitz mapping. 
 
 **Remarks**
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
+
+
+---
+### **Quick Formulas for the Proximal Operators**
+
 
 
 

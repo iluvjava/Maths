@@ -16,6 +16,11 @@ can be interpreted as:
 2. Fixed point iterations on the subgradient operator.
 4. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Proximal Gradient, Interpretations]] for more. 
 
+References: 
+1. [Proximal Algorithms](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf)
+2. [[Primer on Monotone Operators.pdf]]
+
+
 ---
 ### **Proximal Point Method is a Fixed Point Iterations**
 
@@ -36,7 +41,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, the solution it converged to is the solution for $\mathbf 0 \in \partial f(x)$. 
+If the iteration converges, then it obtains the optimal values for function. However, the convergence of it largely depends analysis of monotone operators. 
 
 
 ---
@@ -53,6 +58,11 @@ $$
 $$
 
 by being specific about the length of the gradient step, let $\gamma = \alpha$ then $x^{(t)}$ on the rhs cancelled out giving us the same expression for the proximal point method. 
+
+**Remarks**
+
+Moreau envelope can be viewed as a type of smoothing for any given functions. From [[Moreau Envelope and Proximal Mapping]], we know that the subgradient of the Moreau envelope is indeed the gradient, implying the fact the the envelope is differentiable. Additionally, the Lipschitz constant for the gradient is bounded to bounded Lipschitz for the proximal operator, further implying the fact that the envelope gradient is globally Lipschitz. This allows for great convergence results for the proximal point method. 
+
 
 ---
 ### **Backwards Euler and Proximal Point**
@@ -83,4 +93,11 @@ $$
 
 **Remarks**
 
-We abuse the notation and use subgradient dispite the fact that it's a set value mapping not a single value mapping as in the traditional derivation for the backwards Euler method. 
+We abuse the notation and use subgradient despite the fact that it's a set value mapping not a single value mapping as in the traditional derivation for the backwards Euler method. 
+
+
+---
+### **Monotone Operators Interpretations**
+
+
+
