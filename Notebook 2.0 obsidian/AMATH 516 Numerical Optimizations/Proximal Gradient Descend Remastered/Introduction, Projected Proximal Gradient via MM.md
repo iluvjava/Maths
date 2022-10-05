@@ -164,6 +164,12 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 
 
 ---
+### **Gradient of the Forward Backwards Envelope**
+
+
+
+
+---
 ### **Termination Conditions and Optimality**
 
 > If proximal operator produces $x^{(k+ 1)} = x^{(k)}$ (it converges), then optimality condition for the original minimization problem is satisfied. 
@@ -209,7 +215,9 @@ Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a p
 >\end{aligned}
 >$$
 
-**Note** for accelerated gradient, it's exactly the same. 
+**Note** 
+
+For accelerated gradient, it's exactly the same. 
 
 ---
 ### **FISTA, Accelerated Proximal Gradient**

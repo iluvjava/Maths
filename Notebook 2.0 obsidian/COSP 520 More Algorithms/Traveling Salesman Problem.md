@@ -7,7 +7,7 @@ wiki: [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
 
 A tour goes through all the vertices once on the graph and ends up on the vertex that it started with, without repeating any other vertices on the graph. The traveling salesman consider a weight assignment function $f(x): E\mapsto \mathbb R$, and search for a tour $T$ such that its weight $f(T)$ is the smallest. The problem is np hard and we consider reducing it to an integer programming and analyze its properties and behaviors. 
 
-We assume knowledge of linear programming and basic graph theory terminology. 
+We assume knowledge of linear programming and basic graph theory terminology. This is made for the presentation of the class. 
 
 
 ---

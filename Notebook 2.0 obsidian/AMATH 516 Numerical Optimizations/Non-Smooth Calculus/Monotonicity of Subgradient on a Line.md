@@ -6,7 +6,7 @@ The subgradient monotonicity is a natural extension to what we have in the smoot
 ---
 ### **Intro**
 
-> Let $f$ be an augmented real valued function that is convex. Suppose that there exists a line segment $[x_1, x_2]\subseteq \text{int}\circ \text{dom}(f)$, and let $x_t$ be a point in the middle paramaterized by $t\in [0, 1]$, giving us: $x_t := x_1 + t(x_2 - x_1)$. Then the following statements are true: 
+> Let $f$ be an augmented real valued function that is convex. Suppose that there exists a line segment $[x_1, x_2]\subseteq \text{int}\circ \text{dom}(f)$, and let $x_t$ be a point in the middle parameterized by $t\in [0, 1]$, giving us: $x_t := x_1 + t(x_2 - x_1)$. Then the following statements are true: 
 > $$
 > \begin{aligned}
 >     & \forall g_1\in \partial [f](x_1), g_2 \in \partial [f](x_2), g_t \in \partial [f](x_t)
