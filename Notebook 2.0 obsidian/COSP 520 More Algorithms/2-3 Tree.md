@@ -1,10 +1,11 @@
 [[Binary Search Tree]]
+
 Major references: [here](https://iq.opengenus.org/2-3-trees/). Has code pics and explanations. 
 
 ---
 ### **Intro**
 
-It's a type of tree where each node has 2, or 3 children. For all nodes with one children it has one data piece in it, for all node with 3 children it has 2 data piece in it. During some operations of the tree, the node can temporarily have 4 children and 3 pieces of data in it. 
+It's a type of tree where each node has 2, or 3 children. For all nodes with one children it has one data piece in it, for all node with 3 children it has 2 data pieces in it. During some operations of the tree, the node can temporarily have 4 children and 3 pieces of data in it. 
 
 1. One data, 2 children
 2. 2 data OR 3 children
@@ -22,7 +23,7 @@ It's a type of tree where each node has 2, or 3 children. For all nodes with one
 ---
 ### **Searching For an Element**
 
-1. If any of the node that we encouter for the search is one data, then we just use the same strategy as the binary search tree. 
+1. If any of the node that we encounter for the search is one data, then we just use the same strategy as the binary search tree. 
 2. If any of the node is a 2 value tree, then the 2 value split into 3 sub tree. Left, Right, Middle, (L, R, M), and 2 values `v1, v2` so then at the insert element be `e`, we have: 
 	1. `e < v1` -> L
 	2. `e >= v1 && e <= v2` -> M
@@ -32,19 +33,49 @@ It's a type of tree where each node has 2, or 3 children. For all nodes with one
 ---
 ### **Inserting an Element**
 
-Let the element being inserted to be `e`, the value travers straight to the leaf node using the same traversal rule for element quiry. If the leaf node has more than 2 element, then we need to preserve the 2-3 tree properties. The strategy is called "median promotions". 
+Let the element being inserted to be `e`, the value travers straight to the leaf node using the same traversal rule for element query. If the leaf node has more than 2 element, then we need to preserve the 2-3 tree properties. The strategy is called "median promotions". 
 > "Median Promotions", a method of resolving if the leaf node being added with the new element already has 3 data in it.  ![[median-promote.png]]
 	
-**Median Pomotion**
-	
-The above graph shows the example of inserting elements **9, 5, 8, 3, 2, 4, 7** sequentially to the 2-3 tree starting with an empty tree. The strategy is triggered by a value inserted to the leaf node that already has 2 values, adding the new value to it, create a temporary 3 node that needs to be resolved, let these 3 values be `l, m, r`, let the value `m` be the value prompted from the root of the current subtree, then we have the cases where: 
-1. If the parent has 1 data value, then the `m`, which is promoted from either left or right sub tree, will have `m` less than, or equal to the root value `vr`, WLOG let it be that `l, m, r` come from the left subtree, then: 
-	1.  `m` will become the `l` value of the parent, 
-	2.  The `r` value become the middle child of the parent, 
-	3.  The value originaly in the parent become the `r` value of the parent. 
-View the current parent as the root of the new subtree and recursively apply above steps until the current node is the root node. 
-2.  If perent, `p`, of the current `m` be promoted from the left, middle or right subtree `r` has 2 value, then we will split `p` into a 3-4 tree and then resolve it into a regular binary subtree. Then `p` has 3 values, sorted in order where one of the value is prompted from `r`, the root of the subtree. It has 4 children, and this allows it to be able to split into a binary tree. See the picture for more information. 
 
+**Theorem 1**: 
+
+> A node is a 3 node then it's at level  `n-1` or `n`, the bottom 2 level. 
+
+**Proof**: 
+
+Suppose the statement stays true for the current tree and we show it inductively. The base case is skipped. 
+
+Suppose that a new element `e` is added to a leaf  `l` at the current step. If the leaf node is a 2 node then there is nothing to prove. If the node is a 3 node, then it will promote its left/right value to its parent.  Let its parent be the node `p` then there are 2 possibility: 
+1. `p` is a 2 node. In this case `p` becomes a 3 node. 
+2. `p` is a 3 node. In this case `p` becomes a 2 node by insertion rule. 
+
+For all other nodes that are not at the level `n, n - 1`, they can't be affected because its children is not the leaf node. 
+ 
+
+**Theorem 2**
+
+> All 4 node were at the bottom level `n`. This is true because we only add to node at the bottom level. And when any leaf node is a 4 node, it's being split to create a balanced tree. 
+
+
+---
+### **Psuedo-code that Makes Things more Concrete**
+Let the parent node be `node`, let `data_left, data_right` denotes the data in a 2-3 node if it's a 2-3 node. Let `data` denotes the data if it's just a binary node. Let `left, middle right` denotes the children of a 2-3 node or a binary node. 
+
+* \[1\]: One of the children of a binary node has a 3 children node. 
+	* \[1.1\]: It's the left child.
+	* \[1.2\]: It's the right child.
+
+* \[2\]: One of the children of a trio node has a 3 node. 
+	* \[2.1\]: It's the left child 
+	* \[2.2\]: It's the middle child
+	* \[2.3\]: It's the right child
+
+Let's discuss each of the cases here: 
+
+\[1.1\]: 
+```julia
+
+```
 
 
 
