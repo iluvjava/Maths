@@ -37,24 +37,6 @@ Let the element being inserted to be `e`, the value travers straight to the leaf
 > "Median Promotions", a method of resolving if the leaf node being added with the new element already has 3 data in it.  ![[median-promote.png]]
 	
 
-**Theorem 1**: 
-
-> A node is a 3 node then it's at level  `n-1` or `n`, the bottom 2 level. 
-
-**Proof**: 
-
-Suppose the statement stays true for the current tree and we show it inductively. The base case is skipped. 
-
-Suppose that a new element `e` is added to a leaf  `l` at the current step. If the leaf node is a 2 node then there is nothing to prove. If the node is a 3 node, then it will promote its left/right value to its parent.  Let its parent be the node `p` then there are 2 possibility: 
-1. `p` is a 2 node. In this case `p` becomes a 3 node. 
-2. `p` is a 3 node. In this case `p` becomes a 2 node by insertion rule. 
-
-For all other nodes that are not at the level `n, n - 1`, they can't be affected because its children is not the leaf node. 
- 
-
-**Theorem 2**
-
-> All 4 node were at the bottom level `n`. This is true because we only add to node at the bottom level. And when any leaf node is a 4 node, it's being split to create a balanced tree. 
 
 
 ---
