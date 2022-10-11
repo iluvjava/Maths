@@ -22,7 +22,8 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 3. $L$ is the lipschitz constant for the function over the closed domain $Q$. 
 4. $x^{(t)}$ is the solution obtained at the $t$ step of the iteration. 
 
-Reference: One of Jame Burke's Video for Math 512 you know. 
+**Reference**: One of Jame Burke's Video for Math 512 you know. 
+
 
 **Statement 1**
 
@@ -69,6 +70,10 @@ Reference: One of Jame Burke's Video for Math 512 you know.
 > \end{aligned}
 > $$
 
+
+**Remarks on Both Statements**
+
+Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Introduction, Projected Proximal Gradient via MM]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. 
 
 ---
 ### **Proof of Statement 1**
