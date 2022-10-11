@@ -22,6 +22,8 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 3. $L$ is the lipschitz constant for the function over the closed domain $Q$. 
 4. $x^{(t)}$ is the solution obtained at the $t$ step of the iteration. 
 
+Reference: One of Jame Burke's Video for Math 512 you know. 
+
 **Statement 1**
 
 > Using the above assumptions of convexity and Lipschitz continuity over a closed convex set over the domain of the function, then the value of the current iterate will satisfy: 
@@ -60,10 +62,10 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 > $$
 > \begin{aligned}
 >     f\left(
->         \frac{2}{t(t + 1)}\sum_{i = 1}^{t} i x_i
+>         \frac{2}{T(T + 1)}\sum_{i = 1}^{T} i x_i
 >     \right) - \bar f
 >     \le 
->     \frac{2 L^2}{\alpha(t + 1)}
+>     \frac{2 L^2}{\alpha(T + 1)}
 > \end{aligned}
 > $$
 
@@ -75,8 +77,188 @@ Start by considering:
 
 $$
 \begin{aligned}
+    \Vert x^{(t+ 1)} - \bar x\Vert^2 
+    &= 
+    \Vert 
+        \Pi_Q(x^{(t)} - \eta_t v_t) - 
+        \Pi_Q(\bar x)
+    \Vert^2
+    \\
+    & \le \Vert 
+        x^{(t)} - \bar x - \eta_t v_t
+    \Vert^2
+    \\
+    & = \Vert x^{(t)} - \bar x\Vert^2 + \eta^2_{t} \Vert v_t\Vert^2
+    -2\eta_t\langle x^{(t)} - \bar x, v_t\rangle, 
+    \\
+    [1]\implies & \le 
+    \Vert x^{(t)} - \bar x\Vert^2 + \eta_t^2L^2 - 2\eta_t(f(x^{(t)}) - \bar f)
+    \\
+    [2]\implies
+    & \le \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{t}\eta_i^2 - 2 \sum_{i = 0}^{t}\eta_i(f(x^{(i)}) - \bar f), 
+\end{aligned}
+$$
 
+\[1\]: This is done using the Lipschitz Continuity of $f$ implies that the gradient has to be bounded by the same constant, giving us $\forall v \in \partial g(x), \Vert v\Vert \le L$, and we can also use convexity giving us: 
+$$
+\begin{aligned}
+    2\eta_t \langle x^{(t)} - \bar x, v_t\rangle \le f(x^{(t)}) - \bar f, 
+\end{aligned}
+$$
+which lead us the inequality on the 4th line. 
+
+\[2\]: we expand the relation recursively by applying the inquality itself to $\Vert x^{(t)} - \bar x \Vert^2$ repeatedly for different value of $t$, giving us the summation of the other 2 terms in the expression as an upper bound. 
+
+Next we continue from the end of the end of the expression: 
+
+$$
+\begin{aligned}
+    \Vert x^{(T + 1)} - \bar x\Vert^2 
+    & \le \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{T}\eta_i^2 - 2
+    \sum_{t = 0}^{T}\eta_t(f(x^{(t)}) - \bar f)
+    \\
+    \sum_{t = 0}^T \eta_t f(x^{(t)}) - \bar f
+    &\le \frac{1}{2}
+    \left(
+        \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{T}\eta_i^2
+         - \Vert x^{(T + 1)} - \bar x\Vert^2
+    \right)
+    \\
+    \sum_{t = 0}^T \eta_t f(x^{(t)}) - \bar f\sum_{t = 0}^{T}\eta_t
+    &\le 
+    \frac{1}{2}\left(
+        \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{T}\eta_i^2
+    \right)
+    \\
+    \sum_{t = 0}^{T} \frac{\eta_t f(x^{(t)})}{\sum_{t = 0}^{T}\eta_t f(x^{(t)})} - \bar f 
+    & \le 
+    \frac{1}{2\sum_{t = 0}^{T}\eta_t} \left(
+        \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{T}\eta_i^2
+    \right)
+    \\ [3]\implies 
+    f \left(
+        \frac{\eta_tx^{(t)}}{\sum_{t = 0}^{T}\eta_t} 
+    \right) - \bar f
+    &\le 
+    \frac{
+        \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{T}\eta_i^2
+    }{2\sum_{t = 0}^T \eta_t}. 
+\end{aligned}
+$$
+
+\[3\]: It's from the convexity definition of the function. 
+
+And that completes the demonstration. Finally, a direct substitution of $\eta_t = \frac{R}{L\sqrt{T + 1}}$ with the relation that $R \ge \Vert x_0 - \bar x\Vert$ will complete the second part of the claim. We skip it here. 
+
+**Remarks**
+
+The convergence of the objective value doesn't imply the convergence of the weighted average over all the $x^{(t)}$. We can't say that, we only asserted the convergence of the objective value, given desired properties of the sequence $\eta_t$. One of the prime example for the sequence $\eta_t$ are the harmonic sequence because: 
+
+$$
+\begin{aligned}
+    \sum_{t = 0}^{\infty}\eta_t  = \infty \wedge \sum_{t = 0}^{\infty} \eta_t < \infty, 
+\end{aligned}
+$$
+which allows the RHS of the objective value gap to be decreasing as $T \rightarrow \infty$. For constant stepsize, we need to be careful about how we choose the stepsize, which involves some extra information about the initial error. 
+
+---
+### **Proof of Statment 2**
+
+The first few steps are the same compare to the proof for statement 1, then we re-derive the conditions related to the strong convexity: 
+
+$$
+\begin{aligned}
+    \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2 
+    &\le 
+    f(x^{(t)}) - f(\bar x) - \langle v_t, x^{(t)} - \bar x\rangle
+    \\
+    \implies
+    \langle v_t, x^{(t)} - \bar x\rangle 
+    &\le 
+    f(x^{(t)}) - f(\bar x) - \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2, 
+\end{aligned}
+$$
+
+we use the results of above at \[4\] in below giving us: 
+
+$$
+\begin{aligned}
+    \Vert x^{(t + 1)} - \bar x\Vert^2
+    & \le \Vert x^{(t)} - \bar x\Vert^2 + \eta^2_{t} \Vert v_t\Vert^2
+    -2\eta_t\langle x^{(t)} - \bar x, v_t\rangle, 
+    \\
+    \implies [4] & \le \Vert x^{(t)} - \bar x\Vert^2 + \eta^2_{t} L^2
+    - 2\eta_t
+    \left(
+        f(x^{(t)}) - \bar f - \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2
+    \right)
+    \\
+    f(x^{(t)}) - \bar f
+    & \le 
+    \frac{1}{2\eta_t}(\Vert x^{(t)} - \bar x\Vert^2 - \eta_t^2L^2)
+    - 
+    \frac{\alpha}{2}
+    \Vert x^{(t)} - \bar x\Vert^2
+    - 
+    \frac{1}{2\eta_t}\Vert x^{(t + 1)} - \bar x\Vert^2
+    \\
+    f(x^{(t)}) - \bar f
+    & \le 
+    \left(
+        \frac{1}{2\eta_t} - \frac{\alpha}{2}
+    \right)\Vert x^{(t)} - \bar x\Vert^2
+    + \frac{L^2\eta_t}{2} - \frac{1}{2\eta_t}\Vert x^{(t + 1)} - \bar x\Vert^2. 
+\end{aligned}
+$$
+
+In the next phase, we try a sequence of $\eta_t$ that allows to to invoke the telescoping series (make the terms into the same form but paramaterized differently). This allows use to sum up weight sum of the left handside and the RHS will be expression interms of some type of error terms. The approach after will invoke convexity of $f$ on the weight sum similar to before. More specifically we consider the sequence $\eta_t = 2/(\alpha(t + 1))$, and we multiple both hande of the inequality by $t$, obtaining: 
+
+$$
+\begin{aligned}
+    t\left(
+        \frac{1}{2\eta_t} - \frac{\alpha}{2}
+    \right) &= \frac{\alpha t (t - 1)}{4}
+    \\
+    \frac{t}{2\eta_t} &= \frac{\alpha t(t + 1)}{4}
+    \\
+    \frac{t\eta_t}{2} &= \frac{t}{2(t + 1)}, 
+\end{aligned}
+$$
+
+Therefore; 
+$$
+\begin{aligned}
+    t(f(x^{(t)}) - \bar f) & \le 
+    \frac{\alpha t(t - 1)}{4}\Vert x^{(t)} - \bar x\Vert^2
+    -
+    \frac{\alpha t(t + 1)}{4}\Vert x^{(t + 1)} - \bar x\Vert^2
+    + \frac{t}{\alpha (t + 1)}L^2
+    \\
+    [5]\implies 
+    \sum_{t = 0}^{T}t(f(x^{(t)}) - \bar f) 
+    & \le 
+    -\frac{\alpha t(t + 1)}{4}\Vert x^{(t + 1)} - \bar x\Vert^2 + 
+    \frac{L^2}{\alpha}\sum_{t = 0}^{T} \frac{t}{t + 1} \le \frac{TL^2}{\alpha}, 
+\end{aligned}
+$$
+
+where the last inequality uses the telescoping sum series, and then uses the fact that each term $\frac{t}{t + 1}$, next recall the the summation $\sum_{t = 0}^T t = T(T + 1)/2$ is the sum of all the weights, next we apply the convexity of the function by dividing both side by the sum of all the weights accmulated by $t$, giving us: 
+
+$$
+\begin{aligned}
+    \sum_{t = 0}^{T}\frac{2t(f(x^{(t)})) }{T(T + 1)} - \bar f 
+    &\le 
+    \frac{TL^2}{\alpha}
+    \\
+    f\left(
+        \sum_{t = 0}^{T}\frac{2tx^{(t)}}{T(T + 1)}
+    \right) - \bar f
+    &\le 
+    \frac{TL^2}{\alpha}. 
 \end{aligned}
 $$
 
 
+**Remarks**
+
+Intuitively, it makes sense to weight the iterats $x^{(t)}$ at the tail end a bit more because hopefully, the algorithm has converged as more $t$ were iterated, and this is what this proof above is showing us that, such a strategy indeed works under the strong convexity assumption! 
