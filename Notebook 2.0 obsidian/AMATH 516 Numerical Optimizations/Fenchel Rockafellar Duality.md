@@ -1,19 +1,20 @@
-[[Dualization Techniques]]
-[[Convex Conjugation]]
+[[Dualization Techniques]], finding the fenchel dual of a given function. 
+
+[[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function. 
 
 
 ---
 ### **Intro**
 
-
+``
 > This is the Fenchel Fenchel Rockafellar Duality is stated as the following: 
 > 
 > $$
 > \begin{aligned}
 >     \begin{cases}
->         \inf_{x\in \mathbb X} \{h(Ax) + g(x)\}
+>         \inf_{x\in \mathbb X} \{g(x) + h(Ax)\}
 >         \\
->         \sup_{y\in \mathbb Y} \{-h^\star(y) - g^\star(-Ay)\}
+>         \sup_{y\in \mathbb Y} \{-h^\star(-y) - g^\star(A^*y)\}
 >     \end{cases}
 > \end{aligned}
 > $$
@@ -21,7 +22,7 @@
 
 **Note**
 
-* The primal dual euclidean space is $\mathbb X, \mathbb Y$. 
+* The primal dual euclidean space is $\mathbb X, \mathbb Y$, so that A is a mapping $\mathbb X \mapsto \mathbb Y$. 
 * Operator $A$ is a linear operator. 
 
 

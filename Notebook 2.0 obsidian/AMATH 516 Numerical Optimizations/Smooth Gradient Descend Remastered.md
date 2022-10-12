@@ -6,13 +6,13 @@
 
 We try to remake a previous passage [[Gradient Descend, Smoothness]] but go more in depth into the related ideas, because this smoothness conditions goes beyond what is employed in the proof for the smooth gradient, it's also used in envelope method, such as the forward backwards envelope for non-smooth added with smooth objectives. 
 
-**Characerization of optimality**: 
+**Characterization of optimality**: 
 
-1. $x - x^+$
+1. $\Vert x - x^+\Vert$
 2. $f(x) - f(x^+)$ 
-3. $\Vert \nabla f(x)\Vert$ when we have smooth funciton. 
+3. $\Vert \nabla f(x)\Vert$ when we have smooth function. 
 
-The first 2 is hard and requires stronger assumtptions than the last one. However, the last one might be dependent on other assumption about the algorithm to show that it converges to something, to make matter worse, the gradient alone cannot perfectly characterize optimality, indicating that algorithm that decreases (3.) must have edge cases where it fails. 
+The first 2 is hard and requires stronger assumptions than the last one. However, the last one might be dependent on other assumption about the algorithm to show that it converges to something, to make matter worse, the gradient alone cannot perfectly characterize optimality, indicating that algorithm that decreases (3.) must have edge cases where it fails. 
 
 ---
 ### **The Smooth Descend Frameworks**
@@ -186,7 +186,7 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
 
-**Theorem: Linaer Convergence Under PL** 
+**Theorem: Linear Convergence Under PL** 
 
 > If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
 

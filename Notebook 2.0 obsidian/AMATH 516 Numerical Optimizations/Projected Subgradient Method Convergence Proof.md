@@ -8,7 +8,7 @@
 ---
 ### **Intro**
 
-The projected subgradient methods assumes a convex function $f:\mathbb E \mapsto \mathbb{\bar R}$ that has a subgradient oracle, with a convex set $Q$ where $Q$ is closed, then it performs the following updates: 
+The projected subgradient methods assumes a convex function $f:\mathbb E \mapsto \mathbb{\bar R}$ that has a subgradient oracle and minimizes the function value over a convex set $Q$ where $Q$ is closed, then it performs the following updates: 
 $$
 \begin{aligned}
     x^{(t + 1)} = \Pi_Q (x^{(t)} - \eta_t v_t) \quad \text{ where } v_t \in \partial f(x^{(t)}), 
@@ -75,10 +75,13 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 
 Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Introduction, Projected Proximal Gradient via MM]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. 
 
+Furthermore, what if the function has an relative interior of it's domain that is not the whole Euclidean space of its input? This might affect the Lipschitz condition of the original function, which is quite bad and it would be great to change the formulation of the problem. 
+
+
 ---
 ### **Proof of Statement 1**
 
-Start by considering: 
+Start by considering a non-unique optimal value $\bar x$ in the set $Q$: 
 
 $$
 \begin{aligned}
@@ -164,7 +167,9 @@ $$
     \sum_{t = 0}^{\infty}\eta_t  = \infty \wedge \sum_{t = 0}^{\infty} \eta_t < \infty, 
 \end{aligned}
 $$
-which allows the RHS of the objective value gap to be decreasing as $T \rightarrow \infty$. For constant stepsize, we need to be careful about how we choose the stepsize, which involves some extra information about the initial error. 
+which allows the RHS of the objective value gap to be decreasing as $T \rightarrow \infty$. For constant step size, we need to be careful about how we choose the step size, which involves some extra information about the initial error. 
+
+Further notice that non-uniqueness assumption of $\bar x$, which would imply that the upper bound could potentially be higher. But due to the fact that $Q$ is closed and $\bar x\in Q$, we are saved from having a RHS that is unbounded. 
 
 ---
 ### **Proof of Statment 2**
