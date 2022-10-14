@@ -1,6 +1,6 @@
-[[Farkas's Lama]]
-[[Polytopes]]
-[[A Brutal Introduction to Linear Programming]]
+* [[Farkas's Lama]]
+* [[Polytopes]]
+* [[A Brutal Introduction to Linear Programming]]
 Proof Taken from Theorem 2.6 of: Shrijver's book: A course in Combinatorics Optimizations. 
 
 

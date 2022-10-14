@@ -156,7 +156,7 @@ $$
     & \ni y,
 \end{aligned}
 $$
-and using one of the operator interpreation of prox, the lhs of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
+and using one of the operator interpretations of prox, the LHS of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
 
 **Remarks**
 

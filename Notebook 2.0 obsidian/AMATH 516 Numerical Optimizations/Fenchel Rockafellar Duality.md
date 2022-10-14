@@ -1,4 +1,4 @@
-[[Dualization Techniques]], finding the fenchel dual of a given function. 
+[[Dualization Techniques]], finding the Fenchel dual of a given function. 
 
 [[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function. 
 

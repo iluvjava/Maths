@@ -12,9 +12,7 @@ In addition, it's better to understand the usual linear model, [[Linear Regressi
 
 ### **Intro**
 
-Give  "Features" vectors $a_i \in \mathbb{R}$ with outcomes $y_i$. 
-
-However, notice that outcomes can be in many different domain: $\mathbb{R}, \mathbb{R}_{\le 0}, \mathbb{Z}_+, \mathbb{F_2}$
+Give  "Features" vectors $a_i \in \mathbb{R}$ with outcomes $y_i$. ßHowever, notice that outcomes can be in many different domain: $\mathbb{R}, \mathbb{R}_{\le 0}, \mathbb{Z}_+, \mathbb{F_2}$
 
 **The Big Picture**: 
 

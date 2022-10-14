@@ -1,6 +1,6 @@
 [[Introducing The KKT Conditions]]
 [[A Brutal Introduction to Linear Programming]]
-[[Linear Programming Strong Duality via Farkas]]
+[[Linear Programming Strong Duality via Farkas, Standard Forms]]
 
 
 No references are used, the whole thing is from myself. 

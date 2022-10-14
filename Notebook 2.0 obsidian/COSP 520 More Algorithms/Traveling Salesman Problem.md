@@ -60,14 +60,43 @@ Therefore, multiple discrete tours that includes all the vertices violates \[3.2
 
 The algorithm is still applicable even we have directed graph. Hence it's not hard to see that for the specific case where the graph is an undirected graph, there might exists reduction that stronger than the above formulations. 
 
-Even tho the discrete subtour solution doesn't count towards a tour, but it can be viewed as a LP relaxation to the IP, providing us with a lower bound and a solution that can be constrained to improve to be a tour. (Cook, Combinatorics Optimizations Theorem 7.2, the subtour bound. )
+Even tho the discrete sub-tour solution doesn't count towards a tour, but it can be viewed as a LP relaxation to the IP, providing us with a lower bound and a solution that can be constrained to improve to be a tour. (Cook, Combinatorics Optimizations Theorem 7.2, the sub-tour bound. )
 
 
 ---
 ### **Dantzig Fulkerson Johnson Reductions 1954**
+The DFJ formulation of the TSP problem is an exponentially sized IP problem. Its important contribution are the ideas of a lazy constraints and cutting plane methods. The formulation is exactly the same for constraints \[1, 2\] as listed in the MZT reduction. To eliminate discrete sub-tours, we consider any set $|Q| \ge 2$ and $Q\subseteq V$, then there must not be a sub-tour inside of $Q$, to asset it, we consider constraints \[3.3\] which is formulated as: 
 
-References: 257 page of Cook's book on Combinatorics Optimizations. 
+$$
+\begin{aligned}
+    \sum_{\substack{i \in Q \\ j\in Q\setminus\{i\}}}
+        x_{i, j} \le |Q|  - 1 \quad \forall Q \subseteq V, |Q| \ge 2 \quad [3.3]
+\end{aligned}
+$$
+where the $\ge |Q| - 1$ only allows for several disjoint paths running across the set $Q$, or at maximum, a spanning path in the set $Q$. 
 
+**Lazy Constraints with LP Sub-Problem**: 
+
+When solving it, we consider solving the IP with only the constraints \[1, 2\], and then after solving the relax problem, we find any 2 $Q_1, Q_2 \subseteq V$ where it violates \[3.3\], then we add this condition to the problem and solve the IP again. We solve until the sub-tour constraints are no longer violated, in which case the above IP problem would be solved completely. However, this is a combination of Branch and Bound (used in solving the sub-problem which is IP) and lazy constraints, which is not very fast when the problem is huge. 
+
+**Theorem: Dual and the One Tree Bound**
+
+> From the dual of the DFJ formulation without \[3.3\], we get the one-tree bound. 
+
+**Proofs**: 
+
+We skip the proof here and we list the references. 
+
+**References:** 
+
+pg: 260 of William Cook's combinatorics optimizations textbook. 
+
+**Methods of Cutting Planes and Column Generations**
+
+
+
+
+**References**: 257 page of Cook's book on Combinatorics Optimizations. 
 
 **Remarks:** 
 
