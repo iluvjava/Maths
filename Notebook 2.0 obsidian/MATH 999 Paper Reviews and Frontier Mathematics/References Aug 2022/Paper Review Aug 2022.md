@@ -35,14 +35,9 @@ Supplementary Papers:
 1. > At 3.4, Nesterov accelerations is applicable to prox gradient algorithm. When $\phi$ is convex, the resulting proximal problem is strongly convex, which leads to better convergence. (cited [Zhan, Saha, Vishwananthan, 2010](https://arxiv.org/abs/1109.6058))
 2. > At 3.1, if these conditions are met(refers $l$ being convex and smooth and $\phi$ being convex.), then the proximal gradient method converges at rate $1/t$ with fixed step size $\gamma=1/\gamma_l$. ([Amir Beck andMarc Teboulle](http://www.math.tau.ac.il/~teboulle/papers/gradient_chapter.pdf) 2010)
 3. > At 5.0: For instance, ADMM methods will be viewed as the gradient step of the dual FB envelope (No citations, but refers to section 6)
-	1. > The method of multipliers was shown to be a special case of the  
-	proximal point algorithm by Rockafellar \[141\]. Gabay \[81\] showed that  
-	ADMM is a special case of a method called Douglas-Rachford split-  
-	ting for monotone operators \[53, 112\], and Eckstein and Bertsekas  
-	\[63\] showed in turn that Douglas-Rachford splitting is a special case  
-	of the proximal point algorithm.
+	1. > The method of multipliers was shown to be a special case of the  proximal point algorithm by Rockafellar \[141\]. Gabay \[81\] showed that  ADMM is a special case of a method called Douglas-Rachford split-  ting for monotone operators \[53, 112\], and Eckstein and Bertsekas  \[63\] showed in turn that Douglas-Rachford splitting is a special case  of the proximal point algorithm.
 	> 
-	> Source: \<Distributed Optimization and Statistical  
+	> **Source**: \<Distributed Optimization and Statistical  
 	Learning via the Alternating Direction  
 	Method of Multipliers\>, pg 23. 
 	> #INVESTIGATE #URGENT 

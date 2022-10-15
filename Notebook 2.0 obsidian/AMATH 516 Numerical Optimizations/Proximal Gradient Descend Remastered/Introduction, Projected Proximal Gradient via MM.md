@@ -166,7 +166,111 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 ---
 ### **Gradient of the Forward Backwards Envelope**
 
+> If we assume that $l(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope given as: 
+> 
+> $$
+> \begin{aligned}
+>     \nabla_x m^+(x) = 
+>     [I - \beta^{-1}\nabla \nabla ^Tl(x)]^T(x)
+>     \beta(
+>         x - \text{prox}_{\phi, r}(x - \beta \nabla l(x))
+>     )
+> \end{aligned}
+> $$
 
+
+**Proof**
+
+$$
+\begin{aligned}
+    \nabla_x \left[
+        \frac{-1}{2\beta}\Vert \nabla l(x)\Vert^2
+        + l(x)
+    \right](x)
+    & = 
+    \nabla_x l(x) - \beta^{-1}\nabla \nabla^T l(x)^T \nabla l(x)
+    \\
+    &= 
+    \left[
+        I - \beta^{-1}\nabla \nabla L
+    \right]^T(x)\nabla l(x)
+    \\
+    \nabla_x \left[
+        \text{env}_{\phi, \beta^{-1}} (
+            x - \beta^{-1}\nabla l(x)
+            )
+    \right] &= 
+    \nabla_x [x - \beta^{-1}\nabla l(x)]^T(x)
+    \nabla_x [\text{env}_{\phi, \beta^{-1}}](x - \beta^{-1}\nabla l(x))
+    \\
+    &= 
+    [I - \beta^{-1}\nabla\nabla^T l(x)]^T(x) \beta
+    (
+        x - \beta^{-1}\nabla l(x) - \text{prox}_{\phi, \beta^{-1}}
+        (
+        x - \beta^{-1}\nabla l(x)
+        )
+    ),
+\end{aligned}
+$$
+
+Adds these 2 terms together and we will obtain the results for the claim. 
+
+
+---
+### **Envelope Optimality Bounds**
+
+> We can quantify how much the FB envelope does better compare to the upper bound function at the same point, and it's given by: 
+> 
+> $$
+> \begin{aligned}
+>     m^{+}(x) - m_x(x) \le \frac{-\beta}{2}\Vert x - P(x)\Vert^2, \;
+>     P(x) =
+>     \text{prox}_{\phi, \beta^{-1}} (x - \beta^{-1}\nabla l(x)). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+We directly consider the fact that the upper bounding function is strongly convex with a constaint of $\beta$, eahich means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
+
+$$
+\begin{aligned}
+    m_x(y^+) - m_x(x) \le \frac{-\beta}{2}\Vert x -y^+\Vert^2
+    \\
+    m^+(x) - \underbrace{m_x(x)}_{l(x) + \phi(x)} \le 
+    \frac{-\beta}{2}\Vert x -y^+\Vert^2, 
+\end{aligned}
+$$
+and this is direct by the strong convexity definition substituting in the optimal point that sets the gradient/subgradient equals to zero. 
+
+
+---
+### **Claim 5**
+
+> The difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
+> 
+> $$
+> \begin{aligned}
+>     f(P(x)) - m^+(x)\le 
+>     \frac{-1}{2\beta} (1 - \beta^2)
+>     \Vert \beta(x - P(x))\Vert^2, 
+> \end{aligned}
+> $$
+
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient and its weaker Implications, Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION NEEDED), we can derive the inequality 
+
+$$
+\begin{aligned}
+    m^+\circ P(x) - m^+(x) \le 
+    \frac{-\beta}{2}
+    \Vert 
+        \underbrace{[I - \beta^{-1}\nabla \nabla^T l(x)] 
+        \beta 
+        (x - P(x))}_{\nabla m^+(x)}
+    \Vert^2
+\end{aligned}
+$$
 
 
 ---

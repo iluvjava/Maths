@@ -95,7 +95,6 @@ pg: 260 of William Cook's combinatorics optimizations textbook.
 
 
 
-
 **References**: 257 page of Cook's book on Combinatorics Optimizations. 
 
 **Remarks:** 
