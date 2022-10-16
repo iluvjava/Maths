@@ -1,7 +1,8 @@
 prereq: 
 * [[Subgradient and Subdifferential Definition]]
-* [[Characterizing Functions for Optimizations]]
-* [[Moreau Envelope and Proximal Mapping]]
+* [[Characterizing Functions for Optimizations]], Strong convexity is used. 
+* [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
+* [[Global Lipschitz Gradient and its weaker Implications, Smoothness]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
 
 ---
 ### **Intro**
@@ -10,7 +11,7 @@ Proximal gradient descend is a unconstrained optimization method, it aims to sol
 
 > $$\min_x \{g(x) + h(x)\}$$
 
-where $g(x), h(x)$ are convex but $h(x)$ is non-smooth and $g$ is smooth, meaning that it has gradient oracle and can be bounded by quadratic from above on every point for the domain of the function. Here, we derive the proximal gradient algorithm using the most common way of deriving the projected gradient algorithm: Majorizing and Minimizing. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
+where $g(x), h(x)$ are convex but $h(x)$ is non-smooth and $g$ is smooth. It's the type of smooth to upper bound the function using a simple quadratic. Here, we derive the proximal gradient algorithm using the most common way of deriving the projected gradient algorithm: Majorizing and Minimizing. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
 **The Upper model Function**
 
@@ -22,10 +23,13 @@ $$
     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
     + h(y) =: m_x(y) \quad \forall y
 \end{aligned}
-
 $$
 
 Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient, and this function is strongly convex, a very useful properties ([[Strong Convexity, Equivalences and Implications]]). 
+
+**Remarks**
+
+Please observe that it is implied that $\beta$, will be larger than the Lipschitz constant for the gradient of $l(x)$. Please recall the property of this particular type of smoothness. Additionally, the upper bounding function is a strongly convex function. 
 
 **Define: The Proximal Operator and Moreau Envelope**
 
@@ -122,9 +126,8 @@ adding back the $g(x)$ that is not part of the minimizations, we hae what we cla
 
 
 
-
 ---
-### **Proximal Gradient is the Minimizer of the Upper Envelope**
+### **Proximal Gradient is the Minimizer of the Upper Bounding Function**
 
 > $$
 > \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
@@ -216,6 +219,10 @@ $$
 
 Adds these 2 terms together and we will obtain the results for the claim. 
 
+**Remarks**
+
+The forward and backwards envelope function and the original function share the same minimizer.  
+
 
 ---
 ### **Envelope Optimality Bounds**
@@ -248,7 +255,7 @@ and this is direct by the strong convexity definition substituting in the optima
 ---
 ### **Claim 5**
 
-> The difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
+> We define $f:= l + \phi$, then the difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
 > 
 > $$
 > \begin{aligned}
@@ -262,16 +269,52 @@ Here we use the additional fact that the Hessian for $l(x)$ has a bounded operat
 
 $$
 \begin{aligned}
-    m^+\circ P(x) - m^+(x) \le 
+    f\circ P(x) - m^+(x) \le 
     \frac{-\beta}{2}
     \Vert 
-        \underbrace{[I - \beta^{-1}\nabla \nabla^T l(x)] 
+        \underbrace{[I - \beta^{-1}\nabla \nabla^T l](x)
         \beta 
         (x - P(x))}_{\nabla m^+(x)}
-    \Vert^2
+    \Vert^2, 
 \end{aligned}
 $$
 
+An we focuses on only the RHS, we make the assumption is $\beta$ is larger than the maximum eigen values for the Hessian $\nabla \nabla^Tl(x)$ giving us (Which later we will see why this is important), then for the RHS: 
+
+$$
+\begin{aligned}
+    & \frac{-\beta}{2}
+    \Vert [\beta I - \nabla \nabla^Tl](x)\beta(x - P(x))\Vert^2
+    \\
+    \le& \frac{-\beta}{2} 
+    \Vert \beta I - \nabla \nabla^Tl(x) \Vert^2 \Vert \beta(x - P(x))\Vert^2, 
+\end{aligned}
+$$
+
+recall that the spectral norm for a matrix is the singular value, in the case when the matrix is symmetric, which it is in this case because it's the hessian and we assumed that $l(x)$ is $C^2$, then its spectral norm squared is equal to the maximum of all its eigenvalues. Now we assume that: 
+
+$$
+\begin{aligned}
+    & \lambda_{\max}(\nabla \nabla^T l(x)) = L, \; 
+    \lambda_{\min}(\nabla \nabla^T l(x)) = \lambda
+    \\
+    \implies
+    & 
+    \Vert [\beta I - \nabla\nabla^Tl](x)\Vert^2 \le \beta - \lambda, 
+\end{aligned}
+$$
+
+we also make use of the fact that $\nabla\nabla^T l(x) \succeq 0$, and we assume that $\beta \ge L$, so then we can obtain the new upper bound: 
+
+$$
+\begin{aligned}
+    f \circ P(x) - m^+(x) \le 
+    \frac{-\beta}{2}(\beta - \lambda)
+    \Vert x - P(x)\Vert^2 , 
+\end{aligned}
+$$
+
+which completes if we just move the beta into the norm. 
 
 ---
 ### **Termination Conditions and Optimality**
@@ -297,6 +340,54 @@ $$
 $$
 
 Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. Take notice that, if $x^+ = x$, meaning that the proximal operator becomes the identity, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
+
+---
+### **Objective Decrease of Each Step**
+
+Let $x$ be any point, and $x^+ \in P(x)$, the output of the prox gradient operator, then it will impose an objective decrease of the value of the function $F(x):= l(x) + \phi(x)$, more precisely we have the relation that: 
+
+$$
+\begin{aligned}
+    f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{2}{2\beta}\right)\Vert x - x^+\Vert^2, 
+\end{aligned}
+$$
+where $L$ is the lipschitz constant for the gradient of $l(x)$. To prove it we first consider the fact that $x^+$ minimizes the envelope we have: 
+
+$$
+\begin{aligned}
+    \phi(x^+)+ 
+    \langle \nabla l(x), x^+ - x\rangle + \frac{1}{2\beta}\Vert x^+ - x\Vert^2 
+    \le& \phi(x)
+    \\
+    \varphi(x^+) - \varphi(x) + \langle \nabla l(x) - x^+ - x\rangle 
+    \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
+\end{aligned}
+$$
+
+using the smoothness property of $l(x)$, we have: 
+
+$$
+\begin{aligned}
+    l(x^+) - l(x) - \langle \nabla l(x), x^+ - x\rangle 
+    \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2
+    \\
+    \implies
+    \varphi(x^+) + l(x^+) - l(x) - \varphi(x)
+    \le& 
+    \left(
+        \frac{L}{2} - \frac{1}{2\beta}
+    \right)\Vert x^+ - x\Vert^2
+    \\
+    f(x^+) - f(x) 
+    \le &
+    \left(
+        \frac{L}{2} - \frac{1}{2\beta}
+    \right)\Vert x^+ - x\Vert^2, 
+\end{aligned}
+$$
+
+And it's ot hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more carefule we have to be about the step size $\beta$. 
+
 
 ---
 ### **Formulation of Proximal Gradient Descend**
