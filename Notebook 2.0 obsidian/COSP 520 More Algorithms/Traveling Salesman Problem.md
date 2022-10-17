@@ -104,6 +104,8 @@ The reduction happens to be the core of one of the fastest TSP solver, the [conc
 ---
 ### **Branch and Bound Frameworks**
 
-The reduction is exponential sized unfortunately, and it also only give an lower bound for the objective.
+The reduction is exponential sized unfortunately, and it also only give a lower bound for the objective.
+
+
 
 [^1]: When all decision variables $x_{i, j} = 0$, the graph is also a DAG, the constraint can then be satisfied. And by asserting $x_{i, j}$, the constraints now become stronger, make it even more infeasible. 

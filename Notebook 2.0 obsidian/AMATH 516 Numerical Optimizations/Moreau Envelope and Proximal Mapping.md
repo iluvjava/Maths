@@ -377,29 +377,29 @@ The derivative of the envelope where $\alpha$ is not necessarily one is given as
 
 **Post Composition**
 
-Let $f(x) = \alpha \varphi(x) + b$ be closed and convex then, with $\alpha > 0$ to keep things convex then we have: 
-
-$$
-\begin{aligned}
-    \text{prox}_{\lambda, f}(v) 
-    = 
-    \text{prox}_{\alpha\lambda, \varphi}(v). 
-\end{aligned}
-$$
+> Let $f(x) = \alpha \varphi(x) + b$ be closed and convex then, with $\alpha > 0$ to keep things convex then we have: 
+> 
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda, f}(v) 
+>     = 
+>     \text{prox}_{\alpha\lambda, \varphi}(v). 
+> \end{aligned}
+> $$
 
 **Precomposition**
 
-if $f(x) = \varphi(\alpha x + b)$ with $\alpha \neq 0$, then we have
-$$
-\begin{aligned}
-    \text{prox}_{\lambda, f}(v)
-    = 
-    \frac{1}{\alpha} (
-        \text{prox}_{\alpha^2\lambda, \varphi}
-        (\alpha v + b) - b
-    ). 
-\end{aligned}
-$$
+> if $f(x) = \varphi(\alpha x + b)$ with $\alpha \neq 0$, then we have
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda, f}(v)
+>     = 
+>     \frac{1}{\alpha} (
+>         \text{prox}_{\alpha^2\lambda, \varphi}
+>         (\alpha v + b) - b
+>     ). 
+> \end{aligned}
+> $$
 
 And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
 
@@ -411,30 +411,29 @@ $$
 
 **Affine Addition**
 
-Let $f(x) = \varphi(x) + \langle a, x\rangle + b$ then: 
-
-$$
-\begin{aligned}
-    \text{prox}_{\lambda, f}(v) = 
-    \text{prox}_{\lambda, \varphi}(v - \lambda a). 
-\end{aligned}
-$$
+> Let $f(x) = \varphi(x) + \langle a, x\rangle + b$ then: 
+> 
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda, f}(v) = 
+>     \text{prox}_{\lambda, \varphi}(v - \lambda a). 
+> \end{aligned}
+> $$
 
 **Regularizations**
 
-Let $f(x) = \varphi(x) + \frac{\rho}{2}\Vert x - a\Vert^2$, then 
-
-$$
-\begin{aligned}
-    \text{prox}_{\lambda, f} (v)
-    = 
-    \text{prox}_{\tilde\lambda\varphi}
-    \left(
-        \frac{\tilde \lambda v}{\lambda}
-        + 
-        \rho \tilde\lambda a
-    \right)
-\end{aligned}
-$$
-
-where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
+> Let $f(x) = \varphi(x) + \frac{\rho}{2}\Vert x - a\Vert^2$, then 
+> 
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda, f} (v)
+>     = 
+>     \text{prox}_{\tilde\lambda\varphi}
+>     \left(
+>         \frac{\tilde \lambda v}{\lambda}
+>         + 
+>         \rho \tilde\lambda a
+>     \right)
+> \end{aligned}
+> $$
+> where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
