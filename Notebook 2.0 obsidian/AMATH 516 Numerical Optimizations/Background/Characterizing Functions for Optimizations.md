@@ -176,7 +176,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 * For more about it see [[Strong Convexity, Equivalences and Implications]]
 
 ---
-### **Beta-Smoothness**
+### **Beta-Smoothness | Strong Smoothness**
 
 > If $f$ is $\beta$ smooth, then there exists positive $\beta$ such that: 
 > 

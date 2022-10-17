@@ -106,29 +106,29 @@ $$
     & \begin{cases}
         u \ge \mathbf 0 
         \\
-        w \ge \mathbf 0
+        w \le \mathbf 0
         \\
         v  \text{ free}
     \end{cases}
     \\
     &
     \begin{bmatrix}
-        u^TA_{1, 1} & w^TA_{2, 1} & v^TA_{3, 1}
+        u^TA_{1, 1}^T & w^TA_{2, 1}^T & v^TA_{3, 1}^T
         \\
-        u^TA_{2, 1} & w^TA_{2, 2} & v^TA_{2, 3}
+        u^TA_{2, 1}^T & w^TA_{2, 2}^T & v^TA_{2, 3}^T
         \\
-        u^TA_{3, 1} & w^TA_{3, 2} & v^TA_{3, 3}
+        u^TA_{3, 1}^T & w^TA_{3, 2}^T & v^TA_{3, 3}^T
     \end{bmatrix}
     =
     \begin{bmatrix}
         u^T & w^T & v^T
     \end{bmatrix}
     \begin{bmatrix}
-        A_{1, 1} & A_{2, 1} & A_{3, 1}
+        A_{1, 1}^T & A_{2, 1}^T & A_{3, 1}^T
         \\
-        A_{2, 1} & A_{2, 2} & A_{2, 3}
+        A_{2, 1}^T & A_{2, 2}^T & A_{2, 3}^T
         \\
-        A_{3, 1} & A_{3, 2} & A_{3, 3}
+        A_{3, 1}^T & A_{3, 2}^T & A_{3, 3}^T
     \end{bmatrix}
     \begin{matrix}
         \ge \\ \le  \\  \ = 

@@ -373,6 +373,66 @@ When $f$ is an indicator function for a set, the function is definitely quadrati
 ---
 ### **Quick Formulas for the Proximal Operators**
 
+**Post Composition**
 
+Let $f(x) = \alpha \varphi(x) + b$ be closed and convex then, with $\alpha > 0$ to keep things convex then we have: 
 
+$$
+\begin{aligned}
+    \text{prox}_{\lambda, f}(v) 
+    = 
+    \text{prox}_{\alpha\lambda, \varphi}(v). 
+\end{aligned}
+$$
 
+**Precomposition**
+
+if $f(x) = \varphi(\alpha x + b)$ with $\alpha \neq 0$, then we have
+$$
+\begin{aligned}
+    \text{prox}_{\lambda, f}(v)
+    = 
+    \frac{1}{\alpha} (
+        \text{prox}_{\alpha^2\lambda, \varphi}
+        (\alpha v + b) - b
+    ). 
+\end{aligned}
+$$
+
+And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
+
+$$
+\begin{aligned}
+    \text{prox}_{\lambda, f}(v) = Q^T \text{prox}_{\lambda, \varphi}(Qv). 
+\end{aligned}
+$$
+
+**Affine Addition**
+
+Let $f(x) = \varphi(x) + \langle a, x\rangle + b$ then: 
+
+$$
+\begin{aligned}
+    \text{prox}_{\lambda, f}(v) = 
+    \text{prox}_{\lambda, \varphi}(v - \lambda a). 
+\end{aligned}
+$$
+
+**Regularizations**
+
+Let $f(x) = \varphi(x) + \frac{\rho}{2}\Vert x - a\Vert^2$, then 
+
+$$
+\begin{aligned}
+    \text{prox}_{\lambda, f} (v)
+    = 
+    \text{prox}_{\tilde\lambda\varphi}
+    \left(
+        \frac{\tilde \lambda v}{\lambda}
+        + 
+        \rho \tilde\lambda a
+    \right)
+\end{aligned}
+$$
+
+where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
