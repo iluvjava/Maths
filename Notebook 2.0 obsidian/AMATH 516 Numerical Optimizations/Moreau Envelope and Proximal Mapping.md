@@ -369,6 +369,8 @@ At \[1\] we use the conjugate formula for infimal convolution between 2 function
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
+The derivative of the envelope where $\alpha$ is not necessarily one is given as $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. 
+
 
 ---
 ### **Quick Formulas for the Proximal Operators**

@@ -67,7 +67,7 @@ Here we state some of the important results and claims related to upper smooth m
 > \begin{aligned}
 >   m^+(x) &= m_x\circ \text{prox}_{g, \beta^{-1}}(x - \beta^{-1}\nabla l(x))
 >   \\
->   &= \text{env}_{g, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
+>   &= \text{env}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
 > \end{aligned}
 > $$
 
@@ -84,11 +84,11 @@ We complete the square on the terms that involves the variable $y$, then
 $$
 \begin{aligned}
     & \quad \min_y \left\lbrace
-    g(x) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
+    h(y) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
@@ -96,7 +96,7 @@ $$
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
@@ -105,7 +105,7 @@ $$
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \left\Vert
@@ -115,7 +115,7 @@ $$
         \right)
     \right\rbrace
     \\
-    &= \text{env}_{g, \beta^{-1}}
+    &= \text{env}_{h, \beta^{-1}}
     (
         x - \beta^{-1}\nabla g(x)
     ) - \frac{\beta\Vert \beta^{-1}\nabla g(x)\Vert^2 }{2}, 
@@ -208,12 +208,17 @@ $$
     \\
     &= 
     [I - \beta^{-1}\nabla\nabla^T l(x)]^T(x) \beta
-    (
-        x - \beta^{-1}\nabla l(x) - \text{prox}_{\phi, \beta^{-1}}
+    \left(
+    \begin{aligned}
+        & x - \beta^{-1}\nabla l(x)
+        \\
+        & 
+        - \text{prox}_{\phi, \beta^{-1}}
         (
         x - \beta^{-1}\nabla l(x)
         )
-    ),
+    \end{aligned}
+    \right),
 \end{aligned}
 $$
 
