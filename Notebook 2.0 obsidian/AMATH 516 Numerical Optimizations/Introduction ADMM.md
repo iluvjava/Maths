@@ -23,12 +23,12 @@ Alternating direction method of multiplier (ADMM). We state the assumptions of t
 
 The premise of the paper started with solving objectives that are separable, in the form of $f(x) + g(x)$, the splitting is the equivalent equality constrained optimization problem: 
 $$
-\min_{x, z} l(x) + \phi(z) \text{ s.t: }x = z,
+\min_{x, z} \{l(x) + \phi(z)\} \text{ s.t: }x = z,
 $$
 
 were we have one more variables of the same dimension. The Lagrangian of this primal problem would be given as the following: 
 $$
-\mathcal{L}(x, z, \lambda) = g(x) + \phi(z) + \langle \lambda, x - z\rangle. 
+\mathcal{L}(x, z, \lambda) = l(x) + \phi(z) + \langle \lambda, x - z\rangle. 
 $$
 
 **Definition Augmented Lagrangian**: 
@@ -38,7 +38,7 @@ The augmented Lagrangian is the same problem listed above but with a quadratic p
 $$
 \begin{aligned}
     \mathcal L_\gamma(x, z, \lambda) = 
-    g(x) + \phi(z) + \langle \lambda, x - z\rangle + \frac{\gamma}{2}\Vert x - z\Vert^2
+    l(x) + \phi(z) + \langle \lambda, x - z\rangle + \frac{\gamma}{2}\Vert x - z\Vert^2
 \end{aligned}, 
 $$
 which has primal
@@ -55,7 +55,7 @@ The scaled form is obtained by setting $u = \gamma^{-1}\lambda, r = x - z$:
 
 $$
 \begin{aligned}
-    \mathcal L_\gamma(x, z, u) = l(x) + \phi(x) + \frac{1}{2\gamma}(
+    \mathcal L_\gamma(x, z, u) = l(x) + \phi(z) + \frac{1}{2\gamma}(
         \Vert r - u\Vert^2 - \Vert u\Vert^2
     )
 \end{aligned}, 
@@ -65,12 +65,12 @@ we derive it by considering:
 
 $$
 \begin{aligned}
-    \mathcal L_\gamma(x, z, \lambda = \gamma u) = l(x) + \phi(x) + 
+    \mathcal L_\gamma(x, z, \lambda = \gamma u) = l(x) + \phi(z) + 
     \underbrace{\langle \lambda, x - z\rangle + \frac{1}{2\gamma}\Vert x - z\Vert^2}_{[1]}. 
 \end{aligned}
 $$
 
-And we would like to consider chainging the form of \[1\] so that it matches: $\frac{1}{2\gamma}(\Vert r - u\Vert^2 - \Vert u\Vert^2)$ as in the scaled form. Substituting the definition of $r$ into \[1\] we have: 
+And we would like to consider changing the form of \[1\] by substituting $\lambda = \gamma u$ so that it matches: $\frac{1}{2\gamma}(\Vert r - u\Vert^2 - \Vert u\Vert^2)$ as in the scaled form. Substituting the definition of $r$ into \[1\] we have: 
 $$
 \begin{aligned}
     & \gamma \langle u, x - z\rangle + \frac{1}{2\gamma} \Vert r\Vert^2
@@ -106,11 +106,48 @@ $$
 \end{aligned}
 $$
 
-which is exactly the same as the last term for the scaled Lagrangian. 
+which is exactly the same as the last term for the scaled Lagrangian. Next, we list the scaled Lagragian for splitting that involves more than one functions. Here we list the objectives and the splitting of the problem: 
+
+$$
+\begin{aligned}
+    \min_{x\in \mathbb R_n} \left\lbrace
+        \sum_{i=1}^{m}f_i(x)
+    \right \rbrace
+    \equiv 
+    \min_{x_1, x_2, \cdots x_m \in \mathbb R^n}
+    \left\lbrace
+        \left.
+        \sum_{i = 1}^{m} f_i(x_i) 
+        \right|
+        x_j = x_{j + 1} \; \forall 
+        j = \{1, 2, \cdots, m- 1\}
+    \right\rbrace, 
+\end{aligned}
+$$
+
+And the corresponding Augmented Lagrangian of the system is given by: 
+
+$$
+\begin{aligned}
+    \mathcal L(\{x_j\}_{j = 1}^m\cdots , \{u_i\}_{i = 1}^{m}\cdots )
+    = 
+    \sum_{i = 1}^{m}f_i(x_i)
+    + 
+    \left(
+        \sum_{j = 1}^{m}
+            \frac{\Vert r - u \Vert^2
+            - \Vert u_i\Vert^2}{2\gamma_j}
+    \right),
+\end{aligned}
+$$
+where the constaint $\gamma_j$ have the freedom to change depending on which indices we are looking at. 
 
 
 ---
 ### **Methods of Dual Ascend**
+
+Due to the fact that these later parts of the materials comes from different references, we are going to use $f(x) + g(x)$ as the 2 separable objective function. 
+
 Performs gradient updated on the gradient of the dual, we assume that $l$ has global Lipschitz gradient and it's convex, and $\phi$ to be a convex function as well, then the strong duality applies, denote the dual problem then its gradient is given by: 
 $$
     \nabla g(x) = \nabla \mathcal L(x^+, z^+, \lambda) \text{ where } (x^+, z^+)\in \arg\min_{x, z} \mathcal L(x, z, \lambda). 
@@ -188,7 +225,7 @@ Finally, observe the fact that if $A, B$ are identity, then these 2 updates are 
 ---
 ### **Dual Feasibility of ADMM**
 
-We prove that the solutions provided by the ADMM is always dual feasible. We first assume that $f, g$ are convex, and $\mathcal L_0$, the unregularized Lagrangian has a saddle point to it, so that: 
+We prove that the solutions provided by the ADMM is always dual feasible. We first assume that $f, g$ are convex, and $\mathcal L_0$, the un-regularized Lagrangian has a saddle point to it, so that: 
 
 > $$
 > \begin{aligned}
@@ -198,7 +235,7 @@ We prove that the solutions provided by the ADMM is always dual feasible. We fir
 > \end{aligned}
 > $$
 
-Assuming that strong duality holds[^1], then ADMM converges. Before we prove that it converges, we need to check 2 of the important conditions related to duality
+Assuming that strong duality holds[^1], then ADMM converges and the condition \[2\] below will always be kept during the execution of the algorithm. Before we prove that it converges, we need to check 2 of the important conditions related to duality
 
 $$
 \begin{aligned}
@@ -256,8 +293,12 @@ It's separate, see [[ADMM Convergence]] for more details. We make the same assum
 ---
 ### **Proxing over the Affine Linear Composition**
 
+
+
 ---
 ### **Solving with Constraints**
+
+
 
 
 ---
