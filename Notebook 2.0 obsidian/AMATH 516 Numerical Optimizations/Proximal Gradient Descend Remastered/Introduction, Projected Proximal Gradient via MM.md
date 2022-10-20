@@ -67,7 +67,7 @@ Here we state some of the important results and claims related to upper smooth m
 > \begin{aligned}
 >   m^+(x) &= m_x\circ \text{prox}_{g, \beta^{-1}}(x - \beta^{-1}\nabla l(x))
 >   \\
->   &= \text{env}_{g, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
+>   &= \text{env}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
 > \end{aligned}
 > $$
 
@@ -84,11 +84,11 @@ We complete the square on the terms that involves the variable $y$, then
 $$
 \begin{aligned}
     & \quad \min_y \left\lbrace
-    g(x) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
+    h(y) + \langle\nabla g(x), y - x\rangle + \frac{\beta}{2} \Vert y - x\Vert^2
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
@@ -96,7 +96,7 @@ $$
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
@@ -105,7 +105,7 @@ $$
     \right\rbrace
     \\
     & = \min_y\left\lbrace
-        g(x) + 
+        h(y) + 
         \frac{\beta}{2}
         \left(
             \left\Vert
@@ -115,7 +115,7 @@ $$
         \right)
     \right\rbrace
     \\
-    &= \text{env}_{g, \beta^{-1}}
+    &= \text{env}_{h, \beta^{-1}}
     (
         x - \beta^{-1}\nabla g(x)
     ) - \frac{\beta\Vert \beta^{-1}\nabla g(x)\Vert^2 }{2}, 
@@ -169,14 +169,14 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 ---
 ### **Gradient of the Forward Backwards Envelope**
 
-> If we assume that $l(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope given as: 
+> If we assume that $g(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope given as: 
 > 
 > $$
 > \begin{aligned}
 >     \nabla_x m^+(x) = 
->     [I - \beta^{-1}\nabla \nabla ^Tl(x)]^T(x)
+>     [I - \beta^{-1}\nabla \nabla ^Tg(x)]^T(x)
 >     \beta(
->         x - \text{prox}_{\phi, r}(x - \beta \nabla l(x))
+>         x - \text{prox}_{h, r}(x - \beta \nabla g(x))
 >     )
 > \end{aligned}
 > $$
@@ -187,33 +187,38 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 $$
 \begin{aligned}
     \nabla_x \left[
-        \frac{-1}{2\beta}\Vert \nabla l(x)\Vert^2
-        + l(x)
+        \frac{-1}{2\beta}\Vert \nabla g(x)\Vert^2
+        + g(x)
     \right](x)
     & = 
-    \nabla_x l(x) - \beta^{-1}\nabla \nabla^T l(x)^T \nabla l(x)
+    \nabla_x l(x) - \beta^{-1}\nabla \nabla^T g(x)^T \nabla g(x)
     \\
     &= 
     \left[
-        I - \beta^{-1}\nabla \nabla L
-    \right]^T(x)\nabla l(x)
+        I - \beta^{-1}\nabla \nabla g
+    \right]^T(x)\nabla g(x)
     \\
     \nabla_x \left[
-        \text{env}_{\phi, \beta^{-1}} (
-            x - \beta^{-1}\nabla l(x)
+        \text{env}_{h, \beta^{-1}} (
+            x - \beta^{-1}\nabla g(x)
             )
     \right] &= 
     \nabla_x [x - \beta^{-1}\nabla l(x)]^T(x)
-    \nabla_x [\text{env}_{\phi, \beta^{-1}}](x - \beta^{-1}\nabla l(x))
+    \nabla_x [\text{env}_{h, \beta^{-1}}](x - \beta^{-1}\nabla g(x))
     \\
     &= 
-    [I - \beta^{-1}\nabla\nabla^T l(x)]^T(x) \beta
-    (
-        x - \beta^{-1}\nabla l(x) - \text{prox}_{\phi, \beta^{-1}}
+    [I - \beta^{-1}\nabla\nabla^T g(x)]^T(x) \beta
+    \left(
+    \begin{aligned}
+        & x - \beta^{-1}\nabla g(x)
+        \\
+        & 
+        - \text{prox}_{\phi, \beta^{-1}}
         (
-        x - \beta^{-1}\nabla l(x)
+        x - \beta^{-1}\nabla g(x)
         )
-    ),
+    \end{aligned}
+    \right),
 \end{aligned}
 $$
 
@@ -233,19 +238,19 @@ The forward and backwards envelope function and the original function share the 
 > \begin{aligned}
 >     m^{+}(x) - m_x(x) \le \frac{-\beta}{2}\Vert x - P(x)\Vert^2, \;
 >     P(x) =
->     \text{prox}_{\phi, \beta^{-1}} (x - \beta^{-1}\nabla l(x)). 
+>     \text{prox}_{h, \beta^{-1}} (x - \beta^{-1}\nabla g(x)). 
 > \end{aligned}
 > $$
 
 **Proof**
 
-We directly consider the fact that the upper bounding function is strongly convex with a constaint of $\beta$, eahich means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
+We directly consider the fact that the upper bounding function is strongly convex with a constant of $\beta$, each means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
 
 $$
 \begin{aligned}
     m_x(y^+) - m_x(x) \le \frac{-\beta}{2}\Vert x -y^+\Vert^2
     \\
-    m^+(x) - \underbrace{m_x(x)}_{l(x) + \phi(x)} \le 
+    m^+(x) - \underbrace{m_x(x)}_{g(x) + h(x)} \le 
     \frac{-\beta}{2}\Vert x -y^+\Vert^2, 
 \end{aligned}
 $$
@@ -255,7 +260,7 @@ and this is direct by the strong convexity definition substituting in the optima
 ---
 ### **Claim 5**
 
-> We define $f:= l + \phi$, then the difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
+> We define $f:= g + h$, then the difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
 > 
 > $$
 > \begin{aligned}
@@ -279,15 +284,15 @@ $$
 \end{aligned}
 $$
 
-An we focuses on only the RHS, we make the assumption is $\beta$ is larger than the maximum eigen values for the Hessian $\nabla \nabla^Tl(x)$ giving us (Which later we will see why this is important), then for the RHS: 
+An we focuses on only the RHS, we make the assumption is $\beta$ is larger than the maximum eigen values for the Hessian $\nabla \nabla^Tg(x)$ giving us (Which later we will see why this is important), then for the RHS: 
 
 $$
 \begin{aligned}
     & \frac{-\beta}{2}
-    \Vert [\beta I - \nabla \nabla^Tl](x)\beta(x - P(x))\Vert^2
+    \Vert [\beta I - \nabla \nabla^Tg](x)\beta(x - P(x))\Vert^2
     \\
     \le& \frac{-\beta}{2} 
-    \Vert \beta I - \nabla \nabla^Tl(x) \Vert^2 \Vert \beta(x - P(x))\Vert^2, 
+    \Vert \beta I - \nabla \nabla^Tg(x) \Vert^2 \Vert \beta(x - P(x))\Vert^2, 
 \end{aligned}
 $$
 
@@ -295,12 +300,12 @@ recall that the spectral norm for a matrix is the singular value, in the case wh
 
 $$
 \begin{aligned}
-    & \lambda_{\max}(\nabla \nabla^T l(x)) = L, \; 
-    \lambda_{\min}(\nabla \nabla^T l(x)) = \lambda
+    & \lambda_{\max}(\nabla \nabla^T g(x)) = L, \; 
+    \lambda_{\min}(\nabla \nabla^T g(x)) = \lambda
     \\
     \implies
     & 
-    \Vert [\beta I - \nabla\nabla^Tl](x)\Vert^2 \le \beta - \lambda, 
+    \Vert [\beta I - \nabla\nabla^Tg](x)\Vert^2 \le \beta - \lambda, 
 \end{aligned}
 $$
 
@@ -344,22 +349,22 @@ Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size fu
 ---
 ### **Objective Decrease of Each Step**
 
-Let $x$ be any point, and $x^+ \in P(x)$, the output of the prox gradient operator, then it will impose an objective decrease of the value of the function $F(x):= l(x) + \phi(x)$, more precisely we have the relation that: 
+Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient operator, then it will impose an objective decrease of the value of the function $g(x):= g(x) + h(x)$, more precisely we have the relation that: 
 
 $$
 \begin{aligned}
     f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{2}{2\beta}\right)\Vert x - x^+\Vert^2, 
 \end{aligned}
 $$
-where $L$ is the lipschitz constant for the gradient of $l(x)$. To prove it we first consider the fact that $x^+$ minimizes the envelope we have: 
+where $L$ is the Lipschitz constant for the gradient of $l(x)$. To prove it we first consider the fact that $x^+$ minimizes the envelope we have: 
 
 $$
 \begin{aligned}
-    \phi(x^+)+ 
-    \langle \nabla l(x), x^+ - x\rangle + \frac{1}{2\beta}\Vert x^+ - x\Vert^2 
-    \le& \phi(x)
+    h(x^+)+ 
+    \langle \nabla g(x), x^+ - x\rangle + \frac{1}{2\beta}\Vert x^+ - x\Vert^2 
+    \le& h(x)
     \\
-    \varphi(x^+) - \varphi(x) + \langle \nabla l(x) - x^+ - x\rangle 
+    h(x^+) - h(x) + \langle \nabla g(x) - x^+ - x\rangle 
     \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
 \end{aligned}
 $$
@@ -368,11 +373,11 @@ using the smoothness property of $l(x)$, we have:
 
 $$
 \begin{aligned}
-    l(x^+) - l(x) - \langle \nabla l(x), x^+ - x\rangle 
+    g(x^+) - g(x) - \langle \nabla g(x), x^+ - x\rangle 
     \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2
     \\
     \implies
-    \varphi(x^+) + l(x^+) - l(x) - \varphi(x)
+    h(x^+) + g(x^+) - g(x) - h(x)
     \le& 
     \left(
         \frac{L}{2} - \frac{1}{2\beta}
@@ -386,8 +391,15 @@ $$
 \end{aligned}
 $$
 
-And it's ot hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more carefule we have to be about the step size $\beta$. 
+and it's not hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more careful we have to be about the step size $\beta$. 
 
+---
+### **Convergence**
+
+When the conditions for function $g, h$ are properly satisfies, and proximal gradient is easy to compute using some methods, then the convergence rate of the gradient is $\mathcal (1/\sqrt{k})$, and the objective decrease is of value $\mathcal (1/k)$, where $k$ is just the iteration. The proof involves theories about averaged monotone operator, which will come in a later date. 
+
+
+#TODO:fill this up with theories for monotone operator, and prove cite the prove for convergence rate here. 
 
 ---
 ### **Formulation of Proximal Gradient Descend**

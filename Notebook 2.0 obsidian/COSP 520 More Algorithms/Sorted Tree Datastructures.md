@@ -4,7 +4,6 @@
 
 [[2-3 Tree]]
 
-[[Performance Profiles and Benchmarks]]
 
 ---
 ### **Intro**

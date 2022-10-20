@@ -93,19 +93,18 @@ pg: 260 of William Cook's combinatorics optimizations textbook.
 
 **Methods of Cutting Planes and Column Generations**
 
-
-
+We skip the column generation. One of the way to use cutting plane method is to utilize the minimum cut algorithm to identify subtours that are violating \[3.3\]. To do that, we consider the non-integral solution from just constraints \[1,2]\. It is easy to identify disconnected components when there are a lot of edges with zero value, but after adding more cuts to it, it's likely that most of the edges has $x_{i, j}\neq 0$ . In which case we have to check all pairs of the vertices and use max flow minimum cut to determine the set $S$ such that it's violating constraints \[3.3\] using with the non-integer solution. To do that we simply consider check the minimum cut set's flow value, if it's strictly less than 2, then it's violating the constraint \[3.3\] and requires a cut added to \[3.3\]. 
 **References**: 257 page of Cook's book on Combinatorics Optimizations. 
 
-**Remarks:** 
 
+**Remarks:** 
 The reduction happens to be the core of one of the fastest TSP solver, the [concord TSP solver](https://en.wikipedia.org/wiki/Concorde_TSP_Solver). 
 
 
 ---
 ### **Branch and Bound Frameworks**
 
-The reduction is exponential sized unfortunately, and it also only give an lower bound for the objective. 
+The reduction is exponential sized unfortunately, and it also only give a lower bound for the objective.
 
 
 

@@ -1,3 +1,6 @@
+
+[[Generalized Linear Model]]
+
 Why is the regression model focusing on the vertical distance between the model prediction and the data it tries to predict. 
 
 Gaussian & Cauchy Distribution for MLE on regression model
