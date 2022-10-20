@@ -133,11 +133,11 @@ $$
 \end{aligned}
 $$
 
-Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but it's also lipschitz continuous with a modulus of $1/\alpha$. 
+Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but its gradient also Lipschitz continuous with a modulus of $1/\alpha$, implying that it's also strongly smooth according to [[Global Lipschitz Gradient and its weaker Implications, Smoothness]]. 
 
 **Remarks**
 
-The proof is from myself and it might contains some errors. 
+The proof is from myself and it might contains some errors. It's a theorem stated in Dimitry's Textbook, Theorem 3.64. Notice that this works even if function $f$ is not necessarily strongly smooth ($\beta$ smooth). 
 
 
 

@@ -174,7 +174,7 @@ $$
 which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$. 
 
 ---
-### **PL and Linear Convergence**
+### **PL Inequality and Linear Convergence**
 
 PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. 
 
