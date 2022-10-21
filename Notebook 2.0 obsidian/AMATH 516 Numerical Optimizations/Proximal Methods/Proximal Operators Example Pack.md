@@ -1,4 +1,4 @@
-prereq: [[Introduction, Projected Proximal Gradient via MM]]
+prereq: [[Proximal Gradient via Forward Backwards Envelope]]
 
 
 ---

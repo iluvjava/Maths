@@ -29,7 +29,7 @@ Take note that, using the fact that function $f$ is smooth, we have a quadratic 
 
 **Remarks**
 
-Please observe that it is implied that $\beta$, will be larger than the Lipschitz constant for the gradient of $l(x)$. Please recall the property of this particular type of smoothness. Additionally, the upper bounding function is a strongly convex function. 
+Please observe that it is implied that $\beta$, will be larger than the Lipschitz constant for the gradient of $g(x)$, let's say it's $L$. Please recall the property of this particular type of smoothness. Additionally, the upper bounding function is a strongly convex function. 
 
 **Define: The Proximal Operator and Moreau Envelope**
 
@@ -55,6 +55,9 @@ $$
 $$
 
 This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
+
+
+
 
 ---
 ### **Upperbound Function is Proximal Envelope on Gradient when Minimized**
@@ -99,8 +102,11 @@ $$
         h(y) + 
         \frac{\beta}{2}
         \left(
-            \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
-            + \Vert \beta^{-1}\nabla g(x)\Vert^2  - \Vert \beta^{-1}\nabla g(x)\Vert^2 
+	        \textcolor{blue}{
+		        \Vert y - x\Vert^2 + 2\langle \beta^{-1} \nabla g(x), y - x\rangle
+	            + \Vert \beta^{-1}\nabla g(x)\Vert^2 
+		    }
+            - \Vert \beta^{-1}\nabla g(x)\Vert^2 
         \right)
     \right\rbrace
     \\
@@ -108,9 +114,12 @@ $$
         h(y) + 
         \frac{\beta}{2}
         \left(
-            \left\Vert
-                 y - x + \beta^{-1}\nabla g(x)
-            \right\Vert^2
+	        \textcolor{blue}
+	        {
+	            \left\Vert
+	                 y - x + \beta^{-1}\nabla g(x)
+	            \right\Vert^2
+            }
             - \Vert \beta^{-1}\nabla g(x)\Vert^2 
         \right)
     \right\rbrace
@@ -176,7 +185,7 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 >     \nabla_x m^+(x) = 
 >     [I - \beta^{-1}\nabla \nabla ^Tg(x)]^T(x)
 >     \beta(
->         x - \text{prox}_{h, r}(x - \beta \nabla g(x))
+>         x - \text{prox}_{h, \beta^{-1}}(x - \beta \nabla g(x))
 >     )
 > \end{aligned}
 > $$
@@ -186,38 +195,36 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 
 $$
 \begin{aligned}
-    \nabla_x \left[
+    & \nabla_x \left[
         \frac{-1}{2\beta}\Vert \nabla g(x)\Vert^2
         + g(x)
     \right](x)
-    & = 
-    \nabla_x l(x) - \beta^{-1}\nabla \nabla^T g(x)^T \nabla g(x)
+    \\
+    & =\nabla_x g(x) - \beta^{-1}\nabla \nabla^T g(x)^T \nabla g(x)
     \\
     &= 
     \left[
         I - \beta^{-1}\nabla \nabla g
     \right]^T(x)\nabla g(x)
-    \\
-    \nabla_x \left[
+    \\[2em]
+    & \nabla_x \left[
         \text{env}_{h, \beta^{-1}} (
             x - \beta^{-1}\nabla g(x)
             )
-    \right] &= 
-    \nabla_x [x - \beta^{-1}\nabla l(x)]^T(x)
+    \right] 
+    \\
+    &= 
+    \nabla_x [x - \beta^{-1}\nabla g(x)]^T(x)
     \nabla_x [\text{env}_{h, \beta^{-1}}](x - \beta^{-1}\nabla g(x))
     \\
     &= 
     [I - \beta^{-1}\nabla\nabla^T g(x)]^T(x) \beta
     \left(
-    \begin{aligned}
-        & x - \beta^{-1}\nabla g(x)
-        \\
-        & 
+        x - \beta^{-1}\nabla g(x) 
         - \text{prox}_{\phi, \beta^{-1}}
         (
         x - \beta^{-1}\nabla g(x)
         )
-    \end{aligned}
     \right),
 \end{aligned}
 $$
@@ -270,7 +277,7 @@ and this is direct by the strong convexity definition substituting in the optima
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient and its weaker Implications, Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION NEEDED), we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient and its weaker Implications, Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION_NEEDED), we can derive the inequality 
 
 $$
 \begin{aligned}
@@ -319,7 +326,8 @@ $$
 \end{aligned}
 $$
 
-which completes if we just move the beta into the norm. 
+which completes the proof if we just move the beta into the norm. 
+
 
 ---
 ### **Termination Conditions and Optimality**
@@ -332,19 +340,19 @@ which completes if we just move the beta into the norm.
 $$
 \begin{aligned}
     x^+ &= \underset{u}{\text{argmin}} \left(
-        g(x) + \nabla g(x)^T(u - x) + \frac{1}{2t}\Vert u - x\Vert^2 + h(u)
+        g(x) + \langle \nabla  g(x), u - x \rangle + \frac{\beta}{2}\Vert u - x\Vert^2 + h(u)
     \right)
     \\
-    0 &\in \nabla g(x) + \frac{1}{t}(x^+ - x) + \partial h(x^+)
+    \mathbf 0 &\in \nabla g(x) + \beta(x^+ - x) + \partial h(x^+)
     \\
-    G_t(x) - \nabla g(x) &\in \partial h(x^+)
+    G_\beta(x) - \nabla g(x) &\in \partial h(x^+)
     \\
-    G_t(x) &\in \partial h(x^+) + \nabla g(x).
+    G_\beta(x) &\in \partial h(x^+) + \nabla g(x).
 \end{aligned}
 
 $$
 
-Where $G_t(x) = \frac{1}{t}(x^+ - x)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. Take notice that, if $x^+ = x$, meaning that the proximal operator becomes the identity, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
+Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. Take notice that, if $x^+ = x$, meaning that current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
 ---
 ### **Objective Decrease of Each Step**
@@ -369,7 +377,7 @@ $$
 \end{aligned}
 $$
 
-using the smoothness property of $l(x)$, we have: 
+using the smoothness property of $g(x)$, we have: 
 
 $$
 \begin{aligned}
@@ -392,14 +400,6 @@ $$
 $$
 
 and it's not hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more careful we have to be about the step size $\beta$. 
-
----
-### **Convergence**
-
-When the conditions for function $g, h$ are properly satisfies, and proximal gradient is easy to compute using some methods, then the convergence rate of the gradient is $\mathcal (1/\sqrt{k})$, and the objective decrease is of value $\mathcal (1/k)$, where $k$ is just the iteration. The proof involves theories about averaged monotone operator, which will come in a later date. 
-
-
-#TODO:fill this up with theories for monotone operator, and prove cite the prove for convergence rate here. 
 
 ---
 ### **Formulation of Proximal Gradient Descend**

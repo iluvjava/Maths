@@ -10,7 +10,7 @@ $$
 x^{(t + 1)} = \text{prox}_{h, \gamma}(x^{(t)} - \gamma\nabla f(x)), 
 $$
 
-and we want to show that it's equivalent to an euler methods that is based on operator splitting. To do that let's consider the gradient dynamics: 
+and we want to show that it's equivalent to an Euler methods that is based on operator splitting. To do that let's consider the gradient dynamics: 
 
 $$
 \begin{aligned}
@@ -51,4 +51,5 @@ Convergence rate might be related to the Lyaponouv function for this given dynam
 ---
 ### **Projected Proximal Gradient is fixed point iterations**
 
+Here we wish to show that proximal gradient is a fixed point iterations on a maximal monotone operator. 
 

@@ -13,7 +13,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 * ADMM. Related topics are now in [[Introduction ADMM]], some of them taken from this paper. 
 * Proximal Methods .
 	* Proximal Methods as a minimum on the majorizing functions.
-		* The has been already summarized in [[Introduction, Projected Proximal Gradient via MM]]. 
+		* The has been already summarized in [[Proximal Gradient via Forward Backwards Envelope]]. 
 	* Proximal Methods as a fixed point iteration schemes. 
 		* [[Proximal Point Method, Interpretations]]
 	* Proximal methods as gradient on the envelope. (Not mentioned?)
@@ -46,11 +46,10 @@ Supplementary Papers:
 1. >For example, lasso can be viewed as a simple statistical model with the negative log-likelihood from $y=A x+\varepsilon$, where $\varepsilon$ is a standard normal measurement error, corresponding to the norm $l(x)=\|A x-y\|^2$, and each parameter $x_j$ has independent Laplace priors corresponding to the regularization penalty $\phi(x)=|x|$ (Refers to page 429, 224, machine learning a probabilistic perspective by Kevin P Murphy for more details). 
 2. "Mimicking the Froward-Backwards approach, Patric Nost, [Lorenzo And Alberto (2014)](https://arxiv.org/abs/1407.6723) defines the Douglas Rachford (DR) envelope as: ", my question is, what is it mimicking from the Forward Backwards Envelope exactly? 
 
-
-
 ---
-### **Suggested Further Research Directions**
+### **HALT**
 
+The paper talks about too much things. We are only going to focus on one or 2 algorithms for the sake of discussions. 
 
 
 

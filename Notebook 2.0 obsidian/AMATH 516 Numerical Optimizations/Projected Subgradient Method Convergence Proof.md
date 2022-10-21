@@ -73,7 +73,7 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 
 **Remarks on Both Statements**
 
-Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Introduction, Projected Proximal Gradient via MM]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. 
+Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Proximal Gradient via Forward Backwards Envelope]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. 
 
 Furthermore, what if the function has an relative interior of it's domain that is not the whole Euclidean space of its input? This might affect the Lipschitz condition of the original function, which is quite bad and it would be great to change the formulation of the problem. 
 

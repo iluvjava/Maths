@@ -1,4 +1,4 @@
-[[Introduction, Projected Proximal Gradient via MM]]
+[[Proximal Gradient via Forward Backwards Envelope]]
 [[Projected Proximal Gradient, Interpretations]]
 [[Paper Review Aug 2022]]
 
