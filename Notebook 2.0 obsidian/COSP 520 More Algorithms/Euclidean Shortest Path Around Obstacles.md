@@ -31,7 +31,18 @@ The graph always contains the optimal path.
 ---
 ### **Important Properties**
 
-**Theorem 1:** Optimal Path go Over Polygonal Convex Hull
+**Basic Properties**: 
+
+1. Any path that crosses itself is not going to be the shortest path. This is true because self loop will introduce extra distance to the total travel. 
+2. There cannot be any turning corner where side of the corner edges doesn't align with the side of the polygon. 
+
+To illustrate the first property, please look at: 
+
+![[fig1.png]]
+
+please observe that the red doted line shortens the total distance, hence the red line cannot be a shortest path. 
+
+**Theorem 1:** Optimal Path goes Over Polygonal Convex Hull
 
 > Given any two points $s, t$ whose line segment between them is separated by a single continuous piece of polygon denoted by $p$. Assuming that $\{s, t\}\subseteq l(s, t)\cap \text{cvxh}(l, p)$, then there will have a shortest path between $s,t$, and such a path consists of vertices that make up of the convex hull of $l, p$ (Hong, Murray 2013). 
 

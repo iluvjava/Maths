@@ -169,10 +169,14 @@ $$
 and we obtained a pessimistic converence bound for the proximal gradient method. How tight such a bound is remains as an open question. 
 
 
+**Remarks**
+
+Please realized the parallel between the role played by the residual $G_\beta$ and the gradient in the proof for the smooth gradient descend. They play the same type of role. 
+
+
 ---
 ### **Splitting as an Averaged Operator**
 
-
-#TODO: Another way of proving the convergence rate relates to the operator theory. We prove that the forward and backward splitting is an average operator and it has Fajer's convergence for a fixed point iteratoin algorithm. 
+#TODO: Another way of proving the convergence rate relates to the operator theory. We prove that the forward and backward splitting is an average operator and it has Fajer's convergence for a fixed point iteration algorithm. 
 
 
