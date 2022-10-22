@@ -54,6 +54,7 @@ $$
     \underbrace{\langle \nabla g(x), x - z\rangle }_{[1]}
     - 
     \underbrace{\beta^{-1}\langle \nabla g(x), G_\beta(x)\rangle}_{[2]}
+    \\& \quad \quad 
     + 
     \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2 + h(z) + 
     \underbrace{\langle \partial h(x^+), x^+ - z\rangle}_{[4]}, 
@@ -71,9 +72,11 @@ $$
     [3] + [4] &= 
     \langle \nabla g(x), x^+ - z\rangle + \langle G_\beta(x) - \nabla g(x), x^+ - z\rangle
     \\
-    &= \langle G_\beta(x), x^+ - z\rangle = \langle G_\beta(x), x - z - (x - x^+)\rangle
+    &= \langle G_\beta(x), x^+ - z\rangle 
     \\
-    &= \langle G_\beta, x - z\rangle - \langle G_\beta, x - x^+\rangle
+    &= \langle G_\beta(x), x - z - (x - x^+)\rangle
+    \\
+    &= \langle G_\beta, x - z\rangle - \langle G_\beta, \underbrace{x - x^+}_{ = \beta^{-1}G_\beta(x)}\rangle
     \\
     &= \langle G_\beta(x), x - z\rangle - \beta^{-1}\Vert G_\beta(x)\Vert^2, 
 \end{aligned}
@@ -163,4 +166,13 @@ $$
 \end{aligned}
 $$
 
-and we obtained a pessimistic converence bound for the proximal gradient method. How tight such a bound is remains as open question. 
+and we obtained a pessimistic converence bound for the proximal gradient method. How tight such a bound is remains as an open question. 
+
+
+---
+### **Splitting as an Averaged Operator**
+
+
+#TODO: Another way of proving the convergence rate relates to the operator theory. We prove that the forward and backward splitting is an average operator and it has Fajer's convergence for a fixed point iteratoin algorithm. 
+
+
