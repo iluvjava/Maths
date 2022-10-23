@@ -1,5 +1,5 @@
 [[Subgradient and Subdifferential Properties]]
-[[Monotone Operators]]
+[[Introduction to Operators for Optimizations]]
 
 ---
 ### **Intro**

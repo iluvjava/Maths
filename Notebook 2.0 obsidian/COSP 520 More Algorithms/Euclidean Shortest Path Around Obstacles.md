@@ -94,7 +94,7 @@ I am not sure. Neither does the paper said it. At the worse case, a convex hull 
 ---
 ### **Geometric Overlay**
 
-We continue the above discussion. We will start defining a few entities and quantities for describing the divide and conquer approach with geometric over lay. Geometric overlay refers to the method of cutting a polygons into faces that are lying on each side of the cutting line segment. This is leverage as a way to speed up the algorithm during the divide and conquer approach. 
+Geometric overlay handles the cases where, the line segment is inside of the convex hull $\text{cvxh}(l, k)$, where $k$ is the polygon, in this case,  constructing the path will lead us to delete, one or both end point of the line segment, causing use to obtain the incorrect visibility graph. To avoid, the idea of geometric overlay is introduced. We split the polygons using the line segment, and construct the convex hull with all the faces that split into and the line segment. 
 
 
 ---
@@ -121,3 +121,46 @@ It's a collection of polygons in 2d. For simplicity we assume that all finitely 
 
 We discuss 2 implementations, one is dumber and the other one is smarter. 
 
+
+---
+### **Reference Bibliography**
+
+
+**Web Tutorial abut ESP in General**
+```latex
+@online{eps_web_tutorial,
+  author = {R. Inkulu},
+  title = {Computing a Euclidean Shortest in the Plane using Visibility Graphs},
+  year = 1999,
+  url = {https://www.iitg.ac.in/rinkulu/talks/eucsptvg.pdf},
+}
+```
+
+**Efficient measurement of continuous space shortest distance around barriers**
+```latex
+@article{hong_murray_2013,
+	author = {Insu Hong and Alan T. Murray},
+	doi = {10.1080/13658816.2013.788182},
+	eprint = {https://doi.org/10.1080/13658816.2013.788182},
+	journal = {International Journal of Geographical Information Science},
+	number = {12},
+	pages = {2302-2318},
+	publisher = {Taylor & Francis},
+	title = {Efficient measurement of continuous space shortest distance around barriers},
+	url = {https://doi.org/10.1080/13658816.2013.788182},
+	volume = {27},
+	year = {2013},
+	Bdsk-Url-1 = {https://doi.org/10.1080/13658816.2013.788182}}
+```
+
+**Spatial filtering for identifying a shortest path around obstacles**
+```
+@article{hong_murray_wolf_2015, 
+	title={Spatial filtering for identifying a shortest path around obstacles}, 
+	volume={48}, 
+	DOI={10.1111/gean.12086}, 
+	number={2}, 
+	journal={Geographical Analysis}, 
+	author={Hong, Insu and Murray, Alan T. and Wolf, Levi J.}, year={2015}, 
+	pages={176–190}}
+```

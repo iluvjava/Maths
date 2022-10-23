@@ -5,11 +5,7 @@ Related: [[Direct Method]]
 
 ### **Jacobi Iteration**
 
-The Jacobi Iteration is used as a way to figure out the solution of a linear system. 
-
-Consider any matrix that is SDD (Strictly Diagonally Dominance), meaning that the absolute value of the diagonally elements is larger than all the other elements on that row of the matrix. 
-
-Say that matrix is $A$, and then we want to decompose the matrix into 2 parts the diagonal parts and the non-diagonal parts, so it's like: 
+The Jacobi Iteration is used as a way to figure out the solution of a linear system. Consider any matrix that is SDD (Strictly Diagonally Dominance), meaning that the absolute value of the diagonally elements is larger than all the other elements on that row of the matrix. Say that matrix is $A$, and then we want to decompose the matrix into 2 parts the diagonal parts and the non-diagonal parts, so it's like: 
 
 $$
 A = D + R
@@ -27,7 +23,7 @@ The key here is to realized that, iteratively, the norm of the matrix $D_{-1}R$ 
 
 ### **Gauss-Seidel Method**
 
-It's an modification of the Jacobi Method where sequencial substitution is used to speed up, because whenever $(\vec{x}_{k + 1})_1$ has been computed, then we will have this new element closer to the solution, and we can use it for the sub-sequence computation like: $(\vec{x}_{k + 1})_3, (\vec{x}_{k + 1})_3 \cdots$
+It's an modification of the Jacobi Method where sequential substitution is used to speed up, because whenever $(\vec{x}_{k + 1})_1$ has been computed, then we will have this new element closer to the solution, and we can use it for the sub-sequence computation like: $(\vec{x}_{k + 1})_3, (\vec{x}_{k + 1})_3 \cdots$
 
 Like that. 
 
