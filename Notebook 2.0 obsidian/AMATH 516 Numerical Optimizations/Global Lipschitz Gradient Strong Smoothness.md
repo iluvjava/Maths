@@ -23,7 +23,7 @@ The statement is defined for any norm $\Vert \cdot\Vert$ in $\mathbb E$ and it i
 
 With the addition assumption that $f$ is a convex function, we can obtain a stronger version of monotonicity of gradients by giving it a lower bound to it. This is called the co-coercivity of gradient. 
 
-3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$
+3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, strong monotonicity of the gradient operator. 
 
 **Remarks**
 

@@ -2,7 +2,7 @@ prereq:
 * [[Subgradient and Subdifferential Definition]]
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
-* [[Global Lipschitz Gradient and its weaker Implications, Smoothness]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+* [[Global Lipschitz Gradient Strong Smoothness]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
 
 ---
 ### **Intro**
@@ -277,7 +277,7 @@ and this is direct by the strong convexity definition substituting in the optima
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient and its weaker Implications, Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION_NEEDED), we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient Strong Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION_NEEDED), we can derive the inequality 
 
 $$
 \begin{aligned}
@@ -402,6 +402,11 @@ $$
 and it's not hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more careful we have to be about the step size $\beta$. 
 
 ---
+### **Sub-linear Convergence Proof**
+
+See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. 
+
+---
 ### **Formulation of Proximal Gradient Descend**
 
 Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
@@ -447,6 +452,12 @@ The iteration will be started with: $x_0 = y_0$, $t_0 = 1$, the update sequence 
 
 Take notice that this is exactly the same when compare to the gradient descent without the proximal operator. 
 
+
+---
+### **Extension and Augmentations**
+
+
+#TODO: Fill out the extension of the proximal gradient method in the future! 
 
 
 

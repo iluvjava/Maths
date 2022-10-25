@@ -16,7 +16,6 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ### **Lipschitz Operator**
 
 > And operator is called *Lipschitz* with a constant $L$ when for any $(u, v)\in \text{gph}(F), u \in F(x), v \in F(y)$ we have the inequality: 
-> 
 > $$
 > \begin{aligned}
 >     \Vert u - v\Vert_2 \le L \Vert x - y\Vert_2,
@@ -33,6 +32,14 @@ For simplicity we use the 2 norm to formulate the definition. And please observe
 ---
 ### **Monotone and Maximally Monotone Operator**
 
+**Definition: A Monotone Operator**:
+
+> The operator $F$ is monotone when $\langle Fy - Fx, y - x\rangle \ge 0$ for all $x, y \in \text{dom}(F)$. 
+
+For example, the subgradient operator of a convex function is monotone. 
+
+**Strongly Monotone Operator**: 
+
 
 
 
@@ -43,10 +50,10 @@ For simplicity we use the 2 norm to formulate the definition. And please observe
 > 
 > $$
 > \begin{aligned}
->     \left\lbrace
->         x\in \text{dom}(F)| x = F(x)
->     \right\rbrace = 
->     (I - F)^{-1}(0), 
+>    \left\lbrace
+>        x\in \text{dom}(F)| x = F(x)
+>    \right\rbrace = 
+>    (I - F)^{-1}(0), 
 > \end{aligned}
 > $$
 
@@ -147,22 +154,26 @@ $$
 \end{aligned}
 $$
 
-Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converges sublinearly with rate $\mathcal O(1/k)$. 
+Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converges sublinearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$
 
 
 **Remarks**
 
 In many cases, when the given gradient of a function is strongly smooth, meaning that it has an upper bound on it's lipschitz constant, then fixed sized gradient descend with $2/L$ will be a fixed point iteration that converges. The convergence is pessimistic, and it doesn't require the monotone property from the function, additionally, it also includes dynamical system that are not neccesarily a gradient system. 
 
+Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
+
 
 ---
 ### **Example: Convex Sets Projection Operator**
 
-Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *nonexpansive operator* that is also *monotone*. 
+Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *nonexpansive operator* that is also *monotone*. This is true because the projector has a Lipschitz constant that is $\le 1$. The monotone property can be derived using the obstuse angle theorem. 
 
 
 
 ---
 ### **Example: The Subgradient and Proximal Operators**
+
+#TODO: Keep filling up things about the operators. 
 
 

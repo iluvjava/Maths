@@ -175,8 +175,7 @@ Please realized the parallel between the role played by the residual $G_\beta$ a
 
 
 ---
-### **Splitting as an Averaged Operator**
+### **Splitting as an Operator**
 
-#TODO: Another way of proving the convergence rate relates to the operator theory. We prove that the forward and backward splitting is an average operator and it has Fajer's convergence for a fixed point iteration algorithm. 
-
+#TODO: Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
 
