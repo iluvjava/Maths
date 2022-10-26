@@ -15,14 +15,14 @@ $$
 \end{aligned}
 $$
 
-we use $\Pi$ to denote the set projection operator. And we list the following convergence results for the algorithm. We list these parameters for the remaining part of this excerp: 
+we use $\Pi$ to denote the set projection operator. And we list the following convergence results for the algorithm. We list these parameters for the remaining part of this excerpt: 
 
-1. $\bar x$, the optimal solution for the optimization problem that might not be unique. 
+1. $\bar x$, the optimal solution for the optimization problem that might not be unique, but it will have finite value in this case because the se $Q$ is bounded. 
 2. $\bar f$ is the optimal value for the optimization problem. 
-3. $L$ is the lipschitz constant for the function over the closed domain $Q$. 
+3. $L$ is the Lipschitz constant for the function over the closed domain $Q$. 
 4. $x^{(t)}$ is the solution obtained at the $t$ step of the iteration. 
 
-**Reference**: One of Jame Burke's Video for Math 512 you know. 
+**Reference**: One of Jame Burke's Video for MATH 516 you know, probably his last few lectures for the class MATH 516.  
 
 
 **Statement 1**
@@ -73,7 +73,7 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 
 **Remarks on Both Statements**
 
-Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Proximal Gradient via Forward Backwards Envelope]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. 
+Later in the proof, please observe that we only required the L-1 Lipschitz continuity from the projection on to the convex set $Q$, which means that this proof will be applicable to [[Proximal Gradient via Forward Backwards Envelope]], the proximal gradient algorithm. The reason that such an analysis is not utilized is because the projection onto a set is not necessarily smooth, but the proximal operator is, which gives it *stronger* convergence properties. Additionally, when applying this convergence proof for the case where Proximal Gradient has 2 non-smooth objectives, we need the additional assumptions that $\bar x$ is coming from a bounded set. Coersiveness of a function can ensure this. 
 
 Furthermore, what if the function has an relative interior of it's domain that is not the whole Euclidean space of its input? This might affect the Lipschitz condition of the original function, which is quite bad and it would be great to change the formulation of the problem. 
 
@@ -92,7 +92,7 @@ $$
         \Pi_Q(\bar x)
     \Vert^2
     \\
-    & \le \Vert 
+    [0]\implies & \le \Vert 
         x^{(t)} - \bar x - \eta_t v_t
     \Vert^2
     \\
@@ -106,6 +106,8 @@ $$
     & \le \Vert x^{(0)} - \bar x\Vert^2 + L^2 \sum_{i = 0}^{t}\eta_i^2 - 2 \sum_{i = 0}^{t}\eta_i(f(x^{(i)}) - \bar f), 
 \end{aligned}
 $$
+
+\[0\]: Nonexpansiveness of the projection onto a closed and convex set. 
 
 \[1\]: This is done using the Lipschitz Continuity of $f$ implies that the gradient has to be bounded by the same constant, giving us $\forall v \in \partial g(x), \Vert v\Vert \le L$, and we can also use convexity giving us: 
 $$
@@ -172,7 +174,7 @@ which allows the RHS of the objective value gap to be decreasing as $T \rightarr
 Further notice that non-uniqueness assumption of $\bar x$, which would imply that the upper bound could potentially be higher. But due to the fact that $Q$ is closed and $\bar x\in Q$, we are saved from having a RHS that is unbounded. 
 
 ---
-### **Proof of Statment 2**
+### **Proof of Statement 2**
 
 The first few steps are the same compare to the proof for statement 1, then we re-derive the conditions related to the strong convexity: 
 
