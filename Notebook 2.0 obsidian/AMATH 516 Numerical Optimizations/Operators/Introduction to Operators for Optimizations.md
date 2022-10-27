@@ -46,7 +46,7 @@ For example, the subgradient operator of a convex function is monotone.
 ---
 ### **Fixed Points of the Operator**
 
-> When $f$ is nonexpansize and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
+> When $f$ is nonexpansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
 > \begin{aligned}
@@ -159,10 +159,13 @@ Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converge
 
 **Remarks**
 
-In many cases, when the given gradient of a function is strongly smooth, meaning that it has an upper bound on it's lipschitz constant, then fixed sized gradient descend with $2/L$ will be a fixed point iteration that converges. The convergence is pessimistic, and it doesn't require the monotone property from the function, additionally, it also includes dynamical system that are not neccesarily a gradient system. 
+In many cases, when the given gradient of a function is strongly smooth, meaning that it has an upper bound on it's lipschitz constant, then fixed sized gradient descend with $2/L$ will be a fixed point iteration that converges. The convergence is pessimistic, and it doesn't require the monotone property from the function, additionally, it also includes dynamical system that are not necessarily a gradient system. 
 
 Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
 
+### **Example: Smooth Gradient Descend**
+
+#TODO Use the primer on operator reference to fill out the proof for the convergence of smooth gradient method on Functions that are strongly smooth. 
 
 ---
 ### **Example: Convex Sets Projection Operator**

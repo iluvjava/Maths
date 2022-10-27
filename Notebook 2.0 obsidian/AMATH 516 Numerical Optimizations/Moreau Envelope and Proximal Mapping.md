@@ -56,6 +56,7 @@ For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$.
 
 * Dimitry's class from UW. 
 * [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains more practical information about the prox operator. 
+* \<First Order Methods for Optimizations\> by Beck. This book has more details summarizations on the properties of proximal gradient. 
 
 ---
 ### **As a Operators**

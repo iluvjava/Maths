@@ -3,6 +3,7 @@ prereq:
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
 * [[Global Lipschitz Gradient Strong Smoothness]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+  [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
 ---
 ### **Intro**
@@ -56,13 +57,35 @@ $$
 
 This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
 
+---
+### **Formulation of Proximal Gradient Descend**
 
+Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
 
+>$$
+>\begin{aligned}
+>    & \text{Initialize: }x^{(0)}
+>    \\
+>    & \text{for } k = \text{ from } 1 \text{ to } \infty
+>    \\
+>    &\hspace{2em}
+>    \begin{aligned}
+>        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
+>        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
+>        \\  
+>        & \text{break if } x^{(k)} = x^{(k + 1)}
+>    \end{aligned}
+>\end{aligned}
+>$$
+
+**Note** 
+
+For accelerated gradient, it's exactly the same but with whatever momentum terms we want to use for it. 
 
 ---
-### **Upperbound Function is Proximal Envelope on Gradient when Minimized**
+### **Minimizations of the Upper Bound Function**
 
-Here we state some of the important results and claims related to upper smooth model, the Forward Backwards Envelope (FB Envelope) that we will soon define, and other associated properties. 
+Here we state some of the important results and claims related to upper smooth model, the Forward Backwards Envelope (FB Envelope) that we will soon define, and other associated properties. By minimizing the $m_x(y)$, the upper bounding function, we obtain the lower envelope of the function. 
 
 **The Forward Backward Envelope**: 
 > Let $m^+(x) := \min_y m_x(y)$, then it's given by: 
@@ -136,7 +159,7 @@ adding back the $g(x)$ that is not part of the minimizations, we hae what we cla
 
 
 ---
-### **Proximal Gradient is the Minimizer of the Upper Bounding Function**
+### **Proximal Gradient Minimizes the Upper Bounding Function**
 
 > $$
 > \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
@@ -233,7 +256,7 @@ Adds these 2 terms together and we will obtain the results for the claim.
 
 **Remarks**
 
-The forward and backwards envelope function and the original function share the same minimizer.  
+The forward and backwards envelope function and the original function share the same minimizer.  Not useful in the proof for the convergence of the method, But it's stated in \<Proximal Newton Methods for Convex Optimization\> by Alberto Bemporad. 
 
 
 ---
@@ -277,7 +300,7 @@ and this is direct by the strong convexity definition substituting in the optima
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient Strong Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function (??? #VERIFICATION_NEEDED), we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient Strong Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
 
 $$
 \begin{aligned}
@@ -329,6 +352,10 @@ $$
 which completes the proof if we just move the beta into the norm. 
 
 
+**Remarks**
+
+Not what this is and whether this is useful or not. But it's stated in the IEEE paper: \<Proximal Newton Methods for Convex Composite Optimizations\> by Panagiotis Patrinos and Alberto Bemporad. 
+
 ---
 ### **Termination Conditions and Optimality**
 
@@ -352,10 +379,14 @@ $$
 
 $$
 
-Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size function, but influenced by the smoothness and the regularization term. Take notice that, if $x^+ = x$, meaning that current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
+Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the error of the fixed point iterations on the prox gradient operator. Take notice that, if $x^+ = x$, it would mean current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
 ---
 ### **Objective Decrease of Each Step**
+
+**Theorem: Stepsize that Ensures Objective Decrease**
+
+> If $f$ is convex and Lipschitz smooth with constant $L$, then if a step size of $L^{-1} > \beta$ will give objective decrease at each step of the proximal gradient iteration. 
 
 Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient operator, then it will impose an objective decrease of the value of the function $g(x):= g(x) + h(x)$, more precisely we have the relation that: 
 
@@ -364,6 +395,7 @@ $$
     f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{2}{2\beta}\right)\Vert x - x^+\Vert^2, 
 \end{aligned}
 $$
+
 where $L$ is the Lipschitz constant for the gradient of $l(x)$. To prove it we first consider the fact that $x^+$ minimizes the envelope we have: 
 
 $$
@@ -399,37 +431,17 @@ $$
 \end{aligned}
 $$
 
-and it's not hard to see that to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more careful we have to be about the step size $\beta$. 
+to assert decreasing objective, the multiplier on the RHS for the norm will have to be strictly less than zero, meaning that $L^{-1} > \beta$. The larger the Lipschitz constant, the more careful we have to be about the step size $\beta$. 
 
 ---
-### **Sub-linear Convergence Proof**
+### **Convergence in the Convex Case**
 
 See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. 
 
 ---
-### **Formulation of Proximal Gradient Descend**
+### **Convergence For the Nonconvex Case**
 
-Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
 
->$$
->\begin{aligned}
->    & \text{Initialize: }x^{(0)}
->    \\
->    & \text{for } k = \text{ from } 1 \text{ to } \infty
->    \\
->    &\hspace{2em}
->    \begin{aligned}
->        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
->        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
->        \\  
->        & \text{break if } x^{(k)} = x^{(k + 1)}
->    \end{aligned}
->\end{aligned}
->$$
-
-**Note** 
-
-For accelerated gradient, it's exactly the same. 
 
 ---
 ### **FISTA, Accelerated Proximal Gradient**
@@ -458,6 +470,23 @@ Take notice that this is exactly the same when compare to the gradient descent w
 
 
 #TODO: Fill out the extension of the proximal gradient method in the future! 
+
+
+
+---
+### **Proximal Gradient and Projected Gradient**
+
+Take notice that, the closest algorithm to the proximal gradient method is the 
+projected subgradient method. For more details see: [[Projected Subgradient Method Convergence Proof]]. And here is a list of different names for the same methods: 
+
+|Model|Name|
+|---|---|
+|$\min_{x\in \mathbb E}f(x)$|Gradient Method|
+|$\min_{x\in C}f(x)$|Projected gradient|
+|$\min_{x\in \mathbb E}\{f(x) - \lambda \Vert x\Vert_1\}$|ISTA|
+
+Do note that, in the case where both functions $f,g$ are nonsmotoh, parts of the convergence for the projected subgradient method will still apply due to the links between the proximal operator and the convex set projection operator. 
+
 
 
 

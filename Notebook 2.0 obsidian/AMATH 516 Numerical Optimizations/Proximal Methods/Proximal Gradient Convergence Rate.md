@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$, recall from the previous file of the following facts: 
+We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$ and we also would assume that $f$ is convex not not necessarily smooth, recall from the previous file of the following facts: 
 
 
 1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. 
