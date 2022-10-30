@@ -22,7 +22,7 @@ $$
 \begin{aligned}
     & f(x) + h(x) \le 
     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-    + h(y) =: m_x(y) \quad \forall y
+	    + h(y) =: m_x(y) \quad \forall y \in \mathbb E 
 \end{aligned}
 $$
 
@@ -376,7 +376,6 @@ $$
     \\
     G_\beta(x) &\in \partial h(x^+) + \nabla g(x).
 \end{aligned}
-
 $$
 
 Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the error of the fixed point iterations on the prox gradient operator. Take notice that, if $x^+ = x$, it would mean current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
@@ -438,10 +437,6 @@ to assert decreasing objective, the multiplier on the RHS for the norm will have
 
 See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. 
 
----
-### **Convergence For the Nonconvex Case**
-
-
 
 ---
 ### **FISTA, Accelerated Proximal Gradient**
@@ -474,7 +469,7 @@ Take notice that this is exactly the same when compare to the gradient descent w
 
 
 ---
-### **Proximal Gradient and Projected Gradient**
+### **Proximal Gradient In Relations to Other Algorithms**
 
 Take notice that, the closest algorithm to the proximal gradient method is the 
 projected subgradient method. For more details see: [[Projected Subgradient Method Convergence Proof]]. And here is a list of different names for the same methods: 

@@ -61,7 +61,7 @@ $$
 \end{aligned}
 $$
 
-And we consider the summation term by term, giving us: 
+and we consider the summation term by term, keep in mind that $G_\beta (x) - \nabla f(x)\in \partial h(x^+)$, giving us: 
 
 $$
 \begin{aligned}
@@ -93,7 +93,7 @@ $$
     f(x^+) - f(z) 
     &\le 
     \langle G_\beta(x), x - z\rangle - \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2. 
-\end{aligned}
+\end{aligned}\tag{2}
 $$
 
 
@@ -173,9 +173,28 @@ and we obtained a pessimistic converence bound for the proximal gradient method.
 
 Please realized the parallel between the role played by the residual $G_\beta$ and the gradient in the proof for the smooth gradient descend. They play the same type of role. 
 
+---
+### **An Important Lemma We should Extract From This**
+
+The Lemma that we can extract from here is the results (2). 
+
+**Theorem: Proxstep 2 Points**
+
+> Let $h$ be convex, closed and proper, let $g$ be strongly smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = \text{prox}_{h, L^{-1}}(y)$, then for any $x\in \mathbb E$, we have : 
+> 
+> $$
+> \begin{aligned}
+>     f(x) - f(y^+) \ge \frac{L}{2}\Vert y^+ - y\Vert^2 + 
+>     L \langle y - x, y^+ - y\rangle. 
+> \end{aligned}
+> $$
+
+Please compare the term with (2). 
+
+
 
 ---
-### **Splitting as an Operator**
+### **In Relations to Fixed Point Iterations**
 
 #TODO: Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
 

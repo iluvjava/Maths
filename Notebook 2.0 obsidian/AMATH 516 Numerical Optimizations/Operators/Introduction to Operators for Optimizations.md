@@ -28,7 +28,6 @@ For simplicity we use the 2 norm to formulate the definition. And please observe
 
 1. The set of Lipschitz operators are closed under addition and composition. 
 
-
 ---
 ### **Monotone and Maximally Monotone Operator**
 
@@ -178,5 +177,7 @@ Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Proje
 ### **Example: The Subgradient and Proximal Operators**
 
 #TODO: Keep filling up things about the operators. 
+
+
 
 
