@@ -190,3 +190,9 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 
 > If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
 
+---
+### **Polyak Stepsize**
+
+Suppose that $f^*$, the optimal objective value for the optimization problem is known, then the sequence $\gamma_k = (f(x^{(k)}) - f^*)/\Vert \nabla f(x^{(k)})\Vert^2$ will converge on a convex function with rate $\mathcal O(k^{-1})$. 
+
+

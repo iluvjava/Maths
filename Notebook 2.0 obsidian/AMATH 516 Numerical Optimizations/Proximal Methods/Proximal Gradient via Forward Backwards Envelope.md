@@ -82,6 +82,10 @@ Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a p
 
 For accelerated gradient, it's exactly the same but with whatever momentum terms we want to use for it. 
 
+**Remarks**
+
+The step-size is fixed in the above algorithm and it's $\beta^{-1}$ to be precise, it's required to have $\beta \ge L$, where $L$ is the Lipschitz constant for $f$ to have the method as a monotone method. See later sections for me exposition of the matter. 
+
 ---
 ### **Minimizations of the Upper Bound Function**
 
@@ -381,7 +385,7 @@ $$
 Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the error of the fixed point iterations on the prox gradient operator. Take notice that, if $x^+ = x$, it would mean current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
 ---
-### **Objective Decrease of Each Step**
+### **A Monotone Method**
 
 **Theorem: Stepsize that Ensures Objective Decrease**
 
@@ -391,20 +395,20 @@ Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient op
 
 $$
 \begin{aligned}
-    f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{2}{2\beta}\right)\Vert x - x^+\Vert^2, 
+    f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{1}{2\beta}\right)\Vert x - x^+\Vert^2, 
 \end{aligned}
 $$
 
-where $L$ is the Lipschitz constant for the gradient of $l(x)$. To prove it we first consider the fact that $x^+$ minimizes the envelope we have: 
+where $L$ is the Lipschitz constant for the gradient of $g(x)$. To prove it we first consider the fact that $m_x(x^+)$ lower bounds the summed objective we have: 
 
 $$
 \begin{aligned}
     h(x^+)+ 
     \langle \nabla g(x), x^+ - x\rangle + \frac{1}{2\beta}\Vert x^+ - x\Vert^2 
-    \le& h(x)
+    &\le h(x)
     \\
     h(x^+) - h(x) + \langle \nabla g(x) - x^+ - x\rangle 
-    \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
+    &\le \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
 \end{aligned}
 $$
 
@@ -413,17 +417,17 @@ using the smoothness property of $g(x)$, we have:
 $$
 \begin{aligned}
     g(x^+) - g(x) - \langle \nabla g(x), x^+ - x\rangle 
-    \le& \frac{-1}{2\beta} \Vert x^+ - x\Vert^2
+    & \le \frac{L}{2}\Vert x^+ - x\Vert^2
     \\
     \implies
     h(x^+) + g(x^+) - g(x) - h(x)
-    \le& 
+    &\le 
     \left(
         \frac{L}{2} - \frac{1}{2\beta}
     \right)\Vert x^+ - x\Vert^2
     \\
     f(x^+) - f(x) 
-    \le &
+    &\le
     \left(
         \frac{L}{2} - \frac{1}{2\beta}
     \right)\Vert x^+ - x\Vert^2, 
@@ -436,6 +440,12 @@ to assert decreasing objective, the multiplier on the RHS for the norm will have
 ### **Convergence in the Convex Case**
 
 See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. 
+
+---
+### **Proximal Gradient Method**
+
+Choose a constant $\beta$ that is less than $L$, then the step size would be $\beta^{-1}$, and the algorithm is given as: 
+
 
 
 ---
@@ -479,6 +489,7 @@ projected subgradient method. For more details see: [[Projected Subgradient Meth
 |$\min_{x\in \mathbb E}f(x)$|Gradient Method|
 |$\min_{x\in C}f(x)$|Projected gradient|
 |$\min_{x\in \mathbb E}\{f(x) - \lambda \Vert x\Vert_1\}$|ISTA|
+|$\min_x{h(x)}$|Proximal Point Method|
 
 Do note that, in the case where both functions $f,g$ are nonsmotoh, parts of the convergence for the projected subgradient method will still apply due to the links between the proximal operator and the convex set projection operator. 
 

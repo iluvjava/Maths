@@ -7,7 +7,7 @@ We still assume that the function $g(x)$ has a gradient and it's strongly smooth
 
 
 1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. 
-2. By choosing the stepsize $\beta \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$. 
+2. By choosing the stepsize $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$. 
 
 **References**: [here](https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf). A coursenotes used for UC Berkley. 
 
@@ -125,7 +125,7 @@ $$
 \end{aligned}
 $$
 
-and here we are simplying using the trick that $\Vert x - x^+ - (x - \bar x)\Vert^2 = \Vert x^+ - \bar x\Vert^2 = \Vert x - x^+\Vert^2 - \Vert x - \bar x\Vert^2 - 2\langle x - x^+, x - \bar x\rangle$ to get rid of the cross term. Next, we consider the proximal gradient update, giving us $x^+ = x^{(t + 1)}, x = x^{(t)}$, then we can apply some more tricks: 
+and here we are simplifying using the trick that $\Vert x - x^+ - (x - \bar x)\Vert^2 = \Vert x^+ - \bar x\Vert^2 = \Vert x - x^+\Vert^2 - \Vert x - \bar x\Vert^2 - 2\langle x - x^+, x - \bar x\rangle$ to get rid of the cross term. Next, we consider the proximal gradient update, giving us $x^+ = x^{(t + 1)}, x = x^{(t)}$, then we can apply some more tricks: 
 
 $$
 \begin{aligned}
@@ -144,7 +144,7 @@ $$
 \end{aligned}
 $$
 
-Using the fact thta stepsize make sequence of value $f(x^{(i + 1)})$ non-decreasing, we can derive the the relation that: 
+Using the fact that the choice of stepsize make sequence of value $f(x^{(i + 1)})$ non-decreasing, we can derive the the relation that: 
 
 $$
 \begin{aligned}
@@ -180,7 +180,7 @@ The Lemma that we can extract from here is the results (2).
 
 **Theorem: Proxstep 2 Points**
 
-> Let $h$ be convex, closed and proper, let $g$ be strongly smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = \text{prox}_{h, L^{-1}}(y)$, then for any $x\in \mathbb E$, we have : 
+> Let $h$ be convex, closed and proper, let $g$ be strongly smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = \text{prox}_{h, L^{-1}}(y)$, then for any $x\in \mathbb E$, we have: 
 > 
 > $$
 > \begin{aligned}
@@ -189,7 +189,25 @@ The Lemma that we can extract from here is the results (2).
 > \end{aligned}
 > $$
 
-Please compare the term with (2). 
+Please compare the term with (2). Observe and keep in mind that $G_\beta = \beta(x - x^+)$, where $x^+$ is the prox step, therefore: 
+
+$$
+\begin{aligned}
+    f(x^+) - f(z) 
+    &\le 
+    \langle G_\beta(x), x - z\rangle - \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2. 
+    \\
+    f(x^+) - f(z) & \le 
+    \beta\langle x - x^+, x - z\rangle - \frac{1}{2\beta}\Vert \beta (x - x^+)\Vert^2
+    \\
+    f(z) - f(x^+) & \ge
+    \frac{\beta}{2}\Vert x - x^+\Vert^2
+     + 
+    \beta\langle x^+ - x, x - z\rangle, 
+\end{aligned}
+$$
+
+which is exactly same if we just let $\beta = L^{-1}$. 
 
 
 
@@ -197,4 +215,6 @@ Please compare the term with (2).
 ### **In Relations to Fixed Point Iterations**
 
 #TODO: Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
+
+
 
