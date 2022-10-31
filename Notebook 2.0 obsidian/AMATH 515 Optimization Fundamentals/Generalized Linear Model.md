@@ -23,50 +23,44 @@ Give  "Features" vectors $a_i \in \mathbb{R}$ with outcomes $y_i$. ßHowever, no
 ---
 #### **Example: Poisson**
 
-Poisson distribution has $y_i\in \mathbb{Z}_+$.  
+Poisson distribution has $y_i\in \mathbb{Z}_+$, the probability is conditioned on the rate parameter. Firstly we observe the following relations: 
 
 $$
-p(y_i| \lambda_i) := \frac{\exp(-\lambda_i)\lambda_i^{y_i}}{y_i!}
+\begin{aligned}
+    & p(y_i| \lambda_i) := \frac{\exp(-\lambda_i)\lambda_i^{y_i}}{y_i!}
+    \\
+    & \exp(
+        - (\lambda_i - y_i \ln(\lambda_i) + \ln(y_i!)), 
+    )
+\end{aligned}
 $$
 
-Which is actually: 
+Given a sequence of observation $y_i$, we want to maximize the likelihood of observing the entire set of observations: 
 
 $$
-\exp(
-    - (\lambda_i - y_i \ln(\lambda_i) + \ln(y_i!))
-)
-$$
-
-We want to maximize the likelihood of seeing the entire set of observations: 
-
-$$
-\max_{\lambda_1, \lambda_2 \cdots} \left(
-\prod_{i = 1}^{m} 
-    p(y_i| \lambda_i)
-\right)
-$$
-
-Putting log on the product we have: 
-
-$$
-\min_{\lambda_i} \left( 
+\begin{aligned}
+    \arg\max_{\lambda_1, \lambda_2 \cdots} \left(
+    \prod_{i = 1}^{m} 
+        p(y_i| \lambda_i)
+    \right)
+    =
+    \arg\min_{\lambda_i \forall 1 \le i \le m} \left( 
     \sum_{i = 1}^{m} \left(
             \lambda_i - y_i \ln(\lambda_i) + \ln(y_i!)
           \right)
-\right)
+    \right), 
+\end{aligned}
 $$
 
-Assume now that $\ln(\lambda_i) = a_i^Tx$ where $x$ is shared (We want a linear model for the poisson parameters). So when the problem reduces to: 
+Assume now that $\ln(\lambda_i) = a_i^Tx$ where $x$ is shared (We want a linear model for a list of poisson parameters). So when the problem reduces to: 
 
 $$
 \min_{x} \left(\sum_{i = 1}^{m} \left(
         \exp(a_i^Tx) - y_ia_i^Tx
-\right)\right) + C
+\right)\right) + C. 
 $$
 
-Where $C$ is some constant. 
-
-This objective function is convex, and it's $C^\infty$, however this is not Beta Smooth because the Hessian has unbounded eigenvalues. 
+Where $C$ is some constant. This objective function is convex, and it's $C^\infty$, however this is not Beta Smooth because the Hessian has unbounded eigenvalues. Finally, we will be only interested in the minimizer. 
 
 ---
 #### **Example: Logistic Regression**
