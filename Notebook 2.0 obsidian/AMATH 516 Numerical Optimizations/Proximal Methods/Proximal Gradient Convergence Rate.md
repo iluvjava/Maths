@@ -207,7 +207,7 @@ $$
 \end{aligned}
 $$
 
-which is exactly same if we just let $\beta = L^{-1}$. 
+which is exactly same if we just let $\beta = L^{-1}$. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
 
 
 
