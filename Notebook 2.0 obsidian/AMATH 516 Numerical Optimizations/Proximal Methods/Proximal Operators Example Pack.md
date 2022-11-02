@@ -116,7 +116,7 @@ up to this point, we have solved the proximal operator for all of the L1 Norm Re
 
 
 ---
-### **Box Constrained Optimizations**
+### **Box Constrained**
 
 Proximal gradient can also handle convex constrained optimization, where the constraints are expressed as an indicator function over a convex set. And the proximal operator is projecting points to that convex set. Notice that this is another example where we can use the parallel property of the proximal operator. 
 
