@@ -100,6 +100,25 @@ We skip the column generation. One of the way to use cutting plane method is to 
 **Remarks:** 
 The reduction happens to be the core of one of the fastest TSP solver, the [concord TSP solver](https://en.wikipedia.org/wiki/Concorde_TSP_Solver). 
 
+---
+### **The one Tree Bound**
+
+The one tree bound give the lower bound for the minimum cost tour of a graph. The crucial insight is the fact that, the all minimum spanning tree is a special type of spanning path on the graph. 
+
+**Definition: One Tree Bound**
+
+> Here we denote $\delta (v):= \{e: e = (v, u) \in E, u \neq v\}$ as the cut set for the fixed vertex $v$ and $c E \mapsto \mathbb R_+$ to be the cost functions on the edges for the graph then for some $v\in V$. Then the one tree bound given an $v\in G$ is defined as: 
+> 
+> $$
+> \min\{c(e) + c(f), \text{ s.t: } \{f, e\} \subseteq \delta (v), f \neq e\} + c(\text{MST}(V\setminus v)).
+> $$
+
+The above bound is lower than all the tours in the graph. And one has the potential to improve the bound by choose $v\in V$ that maximizes the quantity so that the heurstic is as close as possible. And if there is no spanning tree, obviously there is no spanning paths, and the cost is infinity. 
+
+**Proof**
+
+Fix $v\in V$ and select any $T$ such that it's a tour in $G$. Suppose that there exists $e, f \in T$ such that $e\neq f; \{e, f\} \subseteq \delta (v)$, then $P:= T\setminus \{e, f\}$ is a spanning path. Since $P$ is a spanning tree on $G \setminus v$, we define $M^+$ to be the minimum spanning tree on $V\setminus v$, then $c(P)\ge c(M^+)$. Next, choose any distinct $e^+, f^+\in \delta(v)$ such that $c(f^+) + c(e^+)$ is minimized, we have $c(f) + c(e)\ge c(e^+) + c(f^+)$ since both comes from $\delta (v)$, and therefore we have: $c(f) + c(e) + c(P)\ge c(e^+) + c(f^+) + c(M^+)\implies c(T)\ge c(M^+) + c(\{e^+, f^+\})$, and because this is true for all spanning tours, this will be an lower bound for the optimal tour as well. If there is no spanning trees in the graph, then the lower bound is infinity, and there is no spanning paths.
+
 
 ---
 ### **Branch and Bound Frameworks**
