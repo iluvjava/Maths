@@ -4,9 +4,7 @@ The Generalized linear models are used as a way of dealing with distribution tha
 
 [Good Reference](http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf)
 
-In addition, one of the major idea exploited here is: MLE (Maximal Likelihood Estimator). See [[Maximal Likelihood Estimator]] for more. 
-
-In addition, it's better to understand the usual linear model, [[Linear Regression]]. 
+In addition, one of the major idea exploited here is: MLE (Maximal Likelihood Estimator). See [[Maximal Likelihood Estimator]] for more. In addition, it's better to understand the usual linear model, [[Linear Regression]]. 
 
 ---
 
@@ -173,25 +171,49 @@ Which can be more compact and changed into:
 > \right\rbrace
 > $$
 
-And this is the objective for Poisson regression, using generalized Linear model. **What is $a_i$**? They are rows of the feature matrix, and each row vector of such a matrix is the predictors for our model. **How do we predict stuff using this model**? Remember the substitution we made: 
+And this is the objective for Poisson regression, using generalized Linear model. **What is $a_i$**? They are rows of the feature matrix, and each row vector of such a matrix is the predictors for our model. **How do we predict stuff using this model**? And that leads the next part about Model Inferences
+
+---
+### **Model Inferences**
+Remember the substitution we made: 
 
 $$
 \frac{p_i}{1 - p_i} = \exp(a_i^Tx), 
 $$
 
-And then we can solve for $p_i$, which is the probability of whether a given set of observed data $\exp(a_i^Tx)$ corresponds to $1$. 
+and then we can solve for $p_i$, which is the probability of whether a given set of observed data $\exp(a_i^Tx)$ corresponds to $1$. 
 
 $$
 p_i = \frac{\exp(a_i^Tx)}{1 + \exp(a_i^Tx)}
 $$
 
 ---
+### **Training the Model**
+
+Training the model would requires the gradient of the loss function. In this case we give the gradient of the loss function in parts, the first part is given as: 
+
+$$
+\begin{aligned}
+	& \nabla_x \left[\sum_{i = 1}^{m} \log(1 + \exp(a_i^T x))\right]
+	\\
+	= & 
+	\left(
+		\sum_{i = 1}^{m} 
+		\frac{\exp(a_i^Tx)}{1 + \exp(a_i^Tx)}
+	\right) a_i^T, 
+\end{aligned}
+$$
+
+And the gradient of $b^TAx$ is just $b^TA$. 
+
+---
 ### **Odds and Linearity of Odds**
 
 Here I want to point out that the Logistic equation is hidden in the expression here. When we construct the linear model, we did: 
 $$
-\frac{p_i}{1 - p_i} = \exp(a_i^Tx)
+\frac{p_i}{1 - p_i} = \exp(a_i^Tx). 
 $$
+
 And solving for $p_i$ it will give us: 
 
 $$

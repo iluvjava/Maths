@@ -319,6 +319,8 @@ There should be some point, where we can infer the properties of the sequence $t
 > Let $\{a, b\}$ be positive real numbers sequence satisfying: $a_k - a_{k - 1}\ge b_{k + 1} - b_k, \forall k \ge 1$, with $a_1 + b_1 \le c, c > 0$, and then it would mean that $a_{k + 1}\le c$. 
 
 
+
+
 **Lemma: The Fourth One**
 
 > The FISTA asserts $t_k \ge (k + 1)/2, \forall k \ge 1$. 

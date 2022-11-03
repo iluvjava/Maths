@@ -11,6 +11,10 @@ There are a lot of things we can do with proximal gradient descend:
 
 In the case of non-smooth function, regularization and simple constrained optimization that has a closed form proximal solution are the interesting one. 
 
+**References**: 
+
+The book \<First Order Optimizations\>, Amir's book. 
+
 
 ---
 ### **L1 Regularization**
@@ -110,15 +114,11 @@ $$
 x^+ = f \bullet(y)
 $$
 
-Where $\bullet$ saying that, the function has been vectorized on each element of the input vector. 
-
-up to this point, we have solved the proximal operator for all of the L1 Norm Regularized regression problem. 
+Where $\bullet$ saying that, the function has been vectorized on each element of the input vector. Up to this point, we have solved the proximal operator for all of the L1 Norm Regularized regression problem. 
 
 
 ---
 ### **Box Constrained**
-
-Proximal gradient can also handle convex constrained optimization, where the constraints are expressed as an indicator function over a convex set. And the proximal operator is projecting points to that convex set. Notice that this is another example where we can use the parallel property of the proximal operator. 
 
 Suppose that the box constraint is defined by $[l_i, u_i]\; \forall 1 \le i \le n$, for each of the variable $x_i$. Notice that projecting onto a single interval for $y_i$ just $\min(\max(y_i, l_i), u_i)$. Just apply this for $1\le i \le n$ will work. 
 
