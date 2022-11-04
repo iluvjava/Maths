@@ -13,7 +13,7 @@ We still assume that the function $g(x)$ has a gradient and it's strongly smooth
 
 
 ---
-### **A classical Proof of the Convergence Rate**
+### **A Classical Proof of the Convergence Rate**
 
 From the strong smoothness of the function $g(x)$, we have the condition that: 
 
@@ -31,7 +31,6 @@ $$
 $$
 
 which is direct from the strong smoothness of the function $g$ and the step sized chosen. Next, we consider the convexity assumption on function $f, h$ giving us: 
-
 
 $$
 \begin{aligned}
@@ -65,7 +64,7 @@ and we consider the summation term by term, keep in mind that $G_\beta (x) - \na
 
 $$
 \begin{aligned}
-    [3] &:= [1] + [2]
+    {[3]}:= [1] + [2]
     \\
     [3] &= \langle \nabla g(x), x - z - x + x^+\rangle = \langle \nabla g(x), x^+ - z\rangle
     \\
@@ -193,21 +192,21 @@ Please compare the term with (2). Observe and keep in mind that $G_\beta = \beta
 
 $$
 \begin{aligned}
-    f(x^+) - f(z) 
-    &\le 
-    \langle G_\beta(x), x - z\rangle - \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2. 
-    \\
-    f(x^+) - f(z) & \le 
-    \beta\langle x - x^+, x - z\rangle - \frac{1}{2\beta}\Vert \beta (x - x^+)\Vert^2
-    \\
-    f(z) - f(x^+) & \ge
-    \frac{\beta}{2}\Vert x - x^+\Vert^2
-     + 
-    \beta\langle x^+ - x, x - z\rangle, 
+    f(x^+) - f(z)
+	&\le
+	\langle G_\beta(x), x - z\rangle - \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2.
+	\\
+	f(x^+) - f(z) & \le
+	\beta\langle x - x^+, x - z\rangle - \frac{1}{2\beta}\Vert \beta (x - x^+)\Vert^2
+	\\
+	f(z) - f(x^+) & \ge
+	\frac{\beta}{2}\Vert x - x^+\Vert^2
+	+
+	\beta\langle x^+ - x, x - z\rangle,
 \end{aligned}
 $$
 
-which is exactly same if we just let $\beta = L^{-1}$. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
+and by substituting $x :=y$ and $z := x$ in the context of the lemma then, we complete the proof for the lemma. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
 
 
 

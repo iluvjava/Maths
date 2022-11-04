@@ -116,6 +116,10 @@ $$
 
 Where $\bullet$ saying that, the function has been vectorized on each element of the input vector. Up to this point, we have solved the proximal operator for all of the L1 Norm Regularized regression problem. 
 
+**Remarks**
+
+A simpler form is listed [here](https://math.stackexchange.com/questions/1961888/the-proximal-operator-of-the-l-1-norm-function), the prox operator supper the one norm on a complex vector too. 
+
 
 ---
 ### **Box Constrained**

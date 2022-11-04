@@ -3,11 +3,11 @@
 ---
 ### **Intro**
 
-A thorough understanding of the Proximal Gradient without momentum is needed to understand this. This part of the text will make heavy references to Amir's Beck's book, and the paper [[FISTA_ A Fast Iterative Shrinka - Amir Beck.pdf]], and then the Presentation from L. Vanderberghe [here](https://www.seas.ucla.edu/~vandenbe/236C/lectures/fgrad.pdf) on Nesterov momentum method. In this excerp, we will state the algorithm for the FISTA, and then we will attempt to prove the convergence rate while knowing the algorithm. And at the end we will try to discuss some of the magics behind sequence of numbers for the algorithm. 
+A thorough understanding of the Proximal Gradient without momentum is needed to understand this. This part of the text will make heavy references to Amir's Beck's book, and the paper [[FISTA_ A Fast Iterative Shrinka - Amir Beck.pdf]], and then the Presentation from L. Vanderberghe [here](https://www.seas.ucla.edu/~vandenbe/236C/lectures/fgrad.pdf)(Just for references materials here is not really taken from Vanderberghe's works) on Nesterov momentum method. In this excerp, we will state the algorithm for the FISTA, and then we will attempt to prove the convergence rate while knowing the algorithm. And at the end we will try to discuss some of the magics behind sequence of numbers for the algorithm. 
 
 **The FISTA Algorithm**
 
-> let $L$ be the lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$. 
+> let $L$ be the lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$, $t_1 = 1$. 
 > 
 > $$
 > \begin{aligned}
@@ -318,12 +318,38 @@ There should be some point, where we can infer the properties of the sequence $t
 
 > Let $\{a, b\}$ be positive real numbers sequence satisfying: $a_k - a_{k - 1}\ge b_{k + 1} - b_k, \forall k \ge 1$, with $a_1 + b_1 \le c, c > 0$, and then it would mean that $a_{k + 1}\le c$. 
 
-
-
+The base case of the proof is obvious by the fact that $b_1$ is positive, hence $a_1 \le c$ is true. the relation automatically holds true for all $k\ge 1$ because $a_k - a_{k + 1}\ge b_{k + 1} - b_k \implies a_k + b_k \le c$, then $a_k - a_{k + 1}\ge b_{k + 1} - b_k \implies a_k + b_k \le a_{k + 1} + b_{k + 1} \implies a_{k + 1} + b_{k + 1} \le c\implies a_{k + 1}\le c$. 
 
 **Lemma: The Fourth One**
 
 > The FISTA asserts $t_k \ge (k + 1)/2, \forall k \ge 1$. 
+
+Using the update formula from FISTA, this obviously holds true in the case of $k = 1, t_1 = 1$, andit's not hardto see that if for some $k$ it's true then it's true for $k + 1$ because: 
+
+$$
+\begin{align*}
+    t_k 
+    &\ge \frac{k + 1}{2}
+    \\
+    4t_k^2 
+    &\ge 4\left(
+        \frac{k + 1}{2}
+    \right)^2
+    \\
+    \implies 
+    t_k &= \frac{1}{2}\left(
+        1 + \sqrt{1 + 4t_k^2}
+    \right)
+    \\
+    &= 
+    \frac{1}{2} + \frac{\sqrt{1 + (k + 1)^2}}{2}
+    \\
+    & \ge \frac{1 + k}{2}, 
+\end{align*}
+$$
+
+because $\sqrt{1 + (k + 1)^2} \ge k$. 
+
 
 ---
 ### **Completing the Proof**

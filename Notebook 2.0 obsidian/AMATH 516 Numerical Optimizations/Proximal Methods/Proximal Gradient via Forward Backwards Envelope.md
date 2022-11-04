@@ -491,7 +491,7 @@ projected subgradient method. For more details see: [[Projected Subgradient Meth
 |$\min_{x\in \mathbb E}\{f(x) - \lambda \Vert x\Vert_1\}$|ISTA|
 |$\min_x{h(x)}$|Proximal Point Method|
 
-Do note that, in the case where both functions $f,g$ are nonsmotoh, parts of the convergence for the projected subgradient method will still apply due to the links between the proximal operator and the convex set projection operator. 
+Do note that, in the case where both functions $f,g$ are nonsmooth, parts of the convergence for the projected subgradient method will still apply due to the links between the proximal operator and the convex set projection operator. 
 
 
 
