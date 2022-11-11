@@ -19,7 +19,7 @@ A thorough understanding of the Proximal Gradient without momentum is needed to 
 >     y^{(k + 1)} 
 >     &=  x^{(k)} + \left(
 >         \frac{t_k - 1}{t_{k + 1}}
->     \right)(x_k - x_{k - 1})
+>     \right)(x^{(k)} - x^{(k)})
 >     \\
 >     k &= k + 1
 > \end{aligned}

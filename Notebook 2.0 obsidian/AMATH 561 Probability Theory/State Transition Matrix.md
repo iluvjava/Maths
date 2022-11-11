@@ -6,7 +6,7 @@
 
 A transition matrix is a non-negative matrix such that its row sum is 1. Then one of the immediate property can be proven via the Gershchgorin's Theorem. The theorem will be stated: 
 
-> For all transition matrix, it only has eigenvalues with absolute values that are less than one. 
+> For all transition matrix, it only has eigenvalues with absolute values that are less than or equal to one. 
 
 **Proof**: 
 
@@ -19,6 +19,4 @@ $$
 \end{aligned}
 $$
 
-And that completes the proof. 
-
-Such a matrix is used to model the behavior of discrete Markov Chain. 
+And that completes the proof. Such a matrix is used to model the behavior of discrete Markov Chain. 
