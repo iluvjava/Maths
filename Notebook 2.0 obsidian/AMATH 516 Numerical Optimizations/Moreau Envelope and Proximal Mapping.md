@@ -402,13 +402,14 @@ The derivative of the envelope where $\alpha$ is not necessarily one is given as
 > \end{aligned}
 > $$
 
-And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
-
-$$
-\begin{aligned}
-    \text{prox}_{\lambda, f}(v) = Q^T \text{prox}_{\lambda, \varphi}(Qv). 
-\end{aligned}
-$$
+**Unitary Composition**
+> And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
+> 
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda, f}(v) = Q^T \text{prox}_{\lambda, \varphi}(Qv). 
+> \end{aligned}
+> $$
 
 **Affine Addition**
 
@@ -438,3 +439,15 @@ $$
 > \end{aligned}
 > $$
 > where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
+
+
+**Parellelization**
+
+> Suppose that function $f(x)$ can be writte as the Euclidean cross product $(f_1(x_1), f_2(x_2), \cdots, f_m(x_m))$, and we assume that each of $x_1, x_2, \cdots, x_n$ are vector in $\mathbb R^{k_1}, \mathbb R^{k_2}, \cdots, \mathbb R^{k_m}$ such that $x =\bigotimes_{i=1}^m x_i$,then we can write the proximal gradient operator of $f$ in parallel form which is given as: 
+> $$
+> \begin{aligned}
+>     \text{prox}_{f, \lambda}((x_1, x_2, \cdots, x_m)) = 
+>     (\text{prox}_{f_1, \lambda}(x_1), \text{prox}_{f_2, \lambda}(x_2), \cdots \text{prox}_{f_m, \lambda}(x_m)).
+> \end{aligned}
+> $$
+> In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
