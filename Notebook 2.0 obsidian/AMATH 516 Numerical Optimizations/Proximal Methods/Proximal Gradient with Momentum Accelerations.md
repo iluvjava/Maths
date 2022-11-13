@@ -200,7 +200,7 @@ $$
 \end{aligned}\tag{3.RHS}
 $$
 
-The entirely of expression (3) is given by: 
+The entirety of expression (3) is given by: 
 
 $$
 \begin{aligned}
@@ -217,7 +217,7 @@ $$
 \end{aligned}\tag{3}
 $$
 
-The next part of the proof shows some of the magics involves in changing the LHS,RHS of (3) to be the same as the theorem statement. It's accomplished by the relations for the sequence $t_k$, more specifically *it's hinged on the relations* $t_k^2 = t^2_{k + 1} - t_{k + 1}$ which is asserted by the FISTA algorithm. Using this fact we proceed by multiplying $t_{k + 1}$ on both sides of (3) and obtain: 
+The next part of the proof shows some of the magics involves in changing the LHS,RHS of (3) to be the similar to what is in the theorem statement. It's accomplished by the relations for the sequence $t_k$, more specifically *it's hinged on the relations* $t_k^2 = t^2_{k + 1} - t_{k + 1}$ which is asserted by the FISTA algorithm. Using this fact we proceed by multiplying $t_{k + 1}$ on both sides of (3) and obtain: 
 
 $$
 \begin{aligned}
@@ -320,11 +320,15 @@ There should be some point, where we can infer the properties of the sequence $t
 
 The base case of the proof is obvious by the fact that $b_1$ is positive, hence $a_1 \le c$ is true. the relation automatically holds true for all $k\ge 1$ because $a_k - a_{k + 1}\ge b_{k + 1} - b_k \implies a_k + b_k \le c$, then $a_k - a_{k + 1}\ge b_{k + 1} - b_k \implies a_k + b_k \le a_{k + 1} + b_{k + 1} \implies a_{k + 1} + b_{k + 1} \le c\implies a_{k + 1}\le c$. 
 
+**Remarks**:
+
+*You should be pointing out the fact on where this lemma is useful for the convergence proof that comes later*. 
+
 **Lemma: The Fourth One**
 
 > The FISTA asserts $t_k \ge (k + 1)/2, \forall k \ge 1$. 
 
-Using the update formula from FISTA, this obviously holds true in the case of $k = 1, t_1 = 1$, andit's not hardto see that if for some $k$ it's true then it's true for $k + 1$ because: 
+Using the update formula from FISTA, this obviously holds true in the case of $k = 1, t_1 = 1$, and it's not hard to see that if for some $k$ it's true then it's true for $k + 1$ because: 
 
 $$
 \begin{align*}
@@ -354,9 +358,9 @@ because $\sqrt{1 + (k + 1)^2} \ge k$.
 ---
 ### **Completing the Proof**
 
-Firstly we defined the quantities: 
-1. $a_k := (2/L)t_k^2 \Delta_k$
-2. $b_k := \Vert u^{(k)}\Vert^2$
+Firstly we define the quantities: 
+1. $a_k := (2/L)t_k^2 \Delta_k$.
+2. $b_k := \Vert u^{(k)}\Vert^2$.
 3. $c:= \Vert x^{(0)} - \bar x\Vert^2 = \Vert y^{(1)} - \bar x\Vert^2$. 
 
 So  that the third lemma and the second lemma becomes relevant. Recall from the first lemma that: 
@@ -422,4 +426,4 @@ $$
 \end{aligned}
 $$
 
-The proof is not complete and the algorithm has strictly better worst case complexity compare to the case where momentum term is not used. 
+The proof is now complete and the algorithm has strictly better worst case complexity compare to the case where momentum term is not used. 

@@ -124,6 +124,6 @@ A simpler form is listed [here](https://math.stackexchange.com/questions/1961888
 ---
 ### **Box Constrained**
 
-Suppose that the box constraint is defined by $[l_i, u_i]\; \forall 1 \le i \le n$, for each of the variable $x_i$. Notice that projecting onto a single interval for $y_i$ just $\min(\max(y_i, l_i), u_i)$. Just apply this for $1\le i \le n$ will work. 
+Suppose that the box constraint is defined by $[l_i, u_i]\; \forall 1 \le i \le n$, for each of the variable $x_i$. Notice that projecting onto a single interval for $y_i$ just $\min(\max(y_i, l_i), u_i)$. Just apply this for $1\le i \le n$ will work, this is by the parellel property of the proximal operator. 
 
 
