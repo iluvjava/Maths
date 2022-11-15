@@ -376,6 +376,8 @@ The derivative of the envelope where $\alpha$ is not necessarily one is given as
 ---
 ### **Quick Formulas for the Proximal Operators**
 
+Here is a list of useful formula about the proximal operator, in the most general context possible. We stated without the proof. The reference is taken from the survey paper from Standford.  
+
 **Post Composition**
 
 > Let $f(x) = \alpha \varphi(x) + b$ be closed and convex then, with $\alpha > 0$ to keep things convex then we have: 
@@ -403,6 +405,7 @@ The derivative of the envelope where $\alpha$ is not necessarily one is given as
 > $$
 
 **Unitary Composition**
+
 > And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
 > 
 > $$

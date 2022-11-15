@@ -7,7 +7,7 @@ A thorough understanding of the Proximal Gradient without momentum is needed to 
 
 **The FISTA Algorithm**
 
-> let $L$ be the lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$, $t_1 = 1$. 
+> let $L$ be the lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$, $t_1 = 1$, initialize $y^{(0)} = x^{(0)}$. 
 > 
 > $$
 > \begin{aligned}
@@ -19,7 +19,7 @@ A thorough understanding of the Proximal Gradient without momentum is needed to 
 >     y^{(k + 1)} 
 >     &=  x^{(k)} + \left(
 >         \frac{t_k - 1}{t_{k + 1}}
->     \right)(x^{(k)} - x^{(k)})
+>     \right)(x^{(k)} - x^{(k - 1)})
 >     \\
 >     k &= k + 1
 > \end{aligned}
@@ -221,7 +221,7 @@ The next part of the proof shows some of the magics involves in changing the LHS
 
 $$
 \begin{aligned}
-    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + t}^2)
+    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + 1}^2)
     \\
     & \ge 
     \Vert t_{k + 1}(x^{(k + 1)} - y^{(k + 1)})\Vert^2 - 
@@ -231,7 +231,7 @@ $$
         (t_{k + 1} - 1)x^{(k)} - \bar x
     \rangle
     \\
-    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + t}^2)
+    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + 1}^2)
     \\ 
     & \ge 
     \Vert 
@@ -290,7 +290,7 @@ cf from previously we have:
 
 $$
 \begin{aligned}
-    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + t}^2)
+    & 2L^{-1}(\Delta_k t_k^2 - \Delta_{k + 1}t_{k + 1}^2)
     \\
     &\ge 
     \Vert 

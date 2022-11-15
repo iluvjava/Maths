@@ -125,7 +125,7 @@ $$
 \end{aligned}
 $$
 
-And the corresponding Augmented Lagrangian of the system is given by: 
+and the corresponding Augmented Lagrangian of the system is given by: 
 
 $$
 \begin{aligned}
@@ -135,7 +135,7 @@ $$
     + 
     \left(
         \sum_{j = 1}^{m}
-            \frac{\Vert r - u \Vert^2
+            \frac{\Vert r_i - u_i \Vert^2
             - \Vert u_i\Vert^2}{2\gamma_j}
     \right),
 \end{aligned}
