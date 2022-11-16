@@ -293,7 +293,7 @@ It's separate, see [[ADMM Convergence]] for more details. We make the same assum
 ---
 ### **Proxing over the Affine Linear Composition**
 
-
+References: 4.4.2 of \<Proximal Algorithm\> by Bloyd. Here we consider the case where $g$ has an easy proximal operator, but, that doesn't mean the proximal operator for $g(Ax)$ is anywhere related to $g$, or it is easy to figure out. 
 
 ---
 ### **Solving with Constraints**

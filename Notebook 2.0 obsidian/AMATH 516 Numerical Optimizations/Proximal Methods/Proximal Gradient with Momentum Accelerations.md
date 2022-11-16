@@ -7,7 +7,7 @@ A thorough understanding of the Proximal Gradient without momentum is needed to 
 
 **The FISTA Algorithm**
 
-> let $L$ be the lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$, $t_1 = 1$, initialize $y^{(0)} = x^{(0)}$. 
+> let $L$ be the Lipschitz constant for the gradient of smooth function $g$, and then let the step size to be constant with $\beta^{-1}$, where $\beta \ge L$, $t_1 = 1$, initialize $y^{(0)} = x^{(0)}$. 
 > 
 > $$
 > \begin{aligned}

@@ -310,6 +310,35 @@ $$
 
 Proof is trivial, skipped. 
 
+
+---
+### **Conjugate of the Ball Cone: $\Vert x\Vert_2$**
+
+Simply consider $\Vert x\Vert_2^\star = \sup_u \{\langle u, x\rangle - \Vert u\Vert_2\}$, let's take advantage of spherical symmetry and let $u = t v$ where $t \in \mathbb R^+, \Vert v\Vert = 1$ then: 
+
+$$
+\begin{aligned}
+    &\sup_{\Vert v\Vert = 1, t \in \mathbb R^+}
+    \left\lbrace
+        t\langle v, x\rangle - t
+    \right\rbrace
+    \\
+    =& 
+    \sup_{\Vert v\Vert = 1, t \in \mathbb R^+}
+    \left\lbrace
+        t(\langle v, x\rangle - 1)
+    \right\rbrace.
+\end{aligned}
+$$
+
+Notice that when $\exists v\langle v, x\rangle - 1 > 0$, we have infinity, else, we don't. To make $\langle v, x\rangle$ as big as possible, we let $v = x/\Vert x\Vert$, so then $\Vert x\Vert^2 > 1$, else, it's zero. Therefore we have: 
+
+$$
+\Vert x\Vert^\star_2 = \delta_{\Vert x\Vert_2 \le 0}(x). 
+$$
+
+
+
 ---
 ### **The 2-Norm Matrix Vector $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
