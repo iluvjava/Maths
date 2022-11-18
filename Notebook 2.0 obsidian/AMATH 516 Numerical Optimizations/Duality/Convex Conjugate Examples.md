@@ -8,11 +8,7 @@ Major References: The HW for AMATH 515.
 ---
 ### **Intro**
 
-Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. 
-
-Most of them will be coming straight from the HW problems for the class. 
-
-Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function (Failing the strong duality), hence here we only consider the case where all the functions are convex. 
+Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function (Failing the strong duality), hence here we only consider the case where all the functions are convex. 
 
 **Definition of Fenchel Conjugate Transform** 
 
@@ -337,10 +333,25 @@ $$
 \Vert x\Vert^\star_2 = \delta_{\Vert x\Vert_2 \le 0}(x). 
 $$
 
+**Remarks**
+
+In general, the conjugate of a norm is the indicator function of the dual unit norm ball. See [[Dual Norm]] for more information about dual norm. 
+
+---
+### **The 1-Norm $\Vert x\Vert_1$**
+
+$$
+(\Vert x\Vert_1)^{\star}(z) = \delta_{\mathbb{B}_\infty}(z)
+$$
+
+This is a dual pair and it's been show before. We invoke the bi-conjugate theorem here. 
 
 
 ---
-### **The 2-Norm Matrix Vector $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
+### **Energy Norm: $\Vert x\Vert_A$**
+
+---
+### **The 2-Norm Affine Composite $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
 The dualization procedures can be found using the Fenchel's Identity. In this case the sub-gradient will be replaced by gradient. Assume that that matrix $A$ is **full rank**, so that $A^TA$ can be reversed. 
 
@@ -377,15 +388,6 @@ Which we assume that $A^TA$ is invertible, or else this is not going to work out
 
 **Remarks**: 
 The variable $z$ for the conjugate function is the decision variables for th dual problem. 
-
----
-### **The 1-Norm $\Vert x\Vert_1$**
-
-$$
-(\Vert x\Vert_1)^{\star}(z) = \delta_{\mathbb{B}_\infty}(z)
-$$
-
-This is a dual pair and it's been show before. We invoke the biconjugate theorem here. 
 
 
 ---

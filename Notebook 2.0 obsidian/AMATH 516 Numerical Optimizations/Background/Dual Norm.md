@@ -10,6 +10,8 @@ $$
 
 Which is just simply, the objective value of a linear program on the convex set $\Vert x\Vert$ defined by the norm ball in the euclidean space. Note, it's also the support function of a specific unit norm ball. See [[Support Function]] for more info. 
 
+The idea is very useful for duality and looking for the prox of some functions that involves the use of some type of norms. 
+
 
 ---
 ### **Generalized Cauchy-Schwarz Inequality** 
@@ -48,5 +50,5 @@ An exercise for the reader, which is likely to be myself.
 
 **#TODO: Look for the Dual of the induced energy norm**. 
 
-Source: \<First Order method in Optimizations\> By SIAM Example 1.6
+Source: \<First Order method in Optimizations\> By SIAM Example 1.6, they a quick example. 
 

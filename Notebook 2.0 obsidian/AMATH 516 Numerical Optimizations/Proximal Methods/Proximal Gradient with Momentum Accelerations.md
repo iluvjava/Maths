@@ -121,7 +121,7 @@ $$
     2L^{-1} (\Delta_k - \Delta_{k + 1}) 
     & \ge 
     \Vert x^{(k + 1)} - y^{(k + 1)}\Vert^2 + 
-    2\langle x^{(k + 1)} - y^{(k + 1)}, y^{(k + 1)} - \bar x\rangle. 
+    2\langle x^{(k + 1)} - y^{(k + 1)}, y^{(k + 1)} - x^{(k)}\rangle. 
 \end{aligned}\tag{1}
 $$
 
