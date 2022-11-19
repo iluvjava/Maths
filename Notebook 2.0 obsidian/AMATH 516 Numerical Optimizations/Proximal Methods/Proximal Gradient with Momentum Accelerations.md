@@ -74,7 +74,7 @@ $$
 \end{aligned}
 $$
 
-The proof was listed in the proof for the convergence rate for Proximal Gradient in the un-accelerated case. Here, we just simplified the notations. This statement is listed as **Lemma 2.3** in \[Amir Beck and Marc Teboulle\]'s FISTA paper. 
+The proof was listed in the proof for the convergence rate for Proximal Gradient in the un-accelerated case (we extract out this particular lemma that pervious proof). Here, we just simplified the notations. This statement is listed as **Lemma 2.3** in \[Amir Beck and Marc Teboulle\]'s FISTA paper. 
 
 ---
 ### **The Second Lemma for the Proof**

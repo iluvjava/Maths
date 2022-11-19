@@ -6,8 +6,8 @@
 We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$ and we also would assume that $f$ is convex not not necessarily smooth, recall from the previous file of the following facts: 
 
 
-1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. 
-2. By choosing the stepsize $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$. 
+1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. This is the fixed point error of the proximal gradient operator, and it's also the velocity of the trajectory made by the proximal gradient algorithm. 
+2. By choosing the stepsizes $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$. 
 
 **References**: [here](https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf). A coursenotes used for UC Berkley. 
 
@@ -209,11 +209,11 @@ $$
 and by substituting $x :=y$ and $z := x$ in the context of the lemma then, we complete the proof for the lemma. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
 
 
-
 ---
 ### **In Relations to Fixed Point Iterations**
 
 #TODO: Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
+
 
 
 

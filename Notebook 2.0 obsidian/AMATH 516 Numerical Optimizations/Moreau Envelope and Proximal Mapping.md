@@ -268,7 +268,6 @@ Due to the nature of multi-valued mapping, it's possible that $(\partial f(z))^{
 The extra assumption needed are strict convexity (Positive definiteness of hessian) over the whole domain, and the function $f$ is coercive over the whole domain. 
 
 
-
 **References:**
 
 Proposition 11.3 in Rockafellar. 
@@ -281,8 +280,6 @@ Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed conve
 >   x = \text{prox}_{f, 1}(x) + \text{prox}_{f^{\star}, 1}(x)
 > \end{aligned}
 > $$
-
-
 
 **Proof**
 $$
@@ -313,7 +310,20 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at \[6\] we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. 
+At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at \[6\] we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. Additionally, one can Chose to use property from [[Convex Conjugation]] and use $\lambda f$ instead where $\lambda \ge 0$, in which case we have: 
+
+$$
+\begin{aligned}
+    x &= \text{prox}_{\lambda f}(x) + \text{prox}_{(\lambda f)^\star}(x)
+    \\
+    &= \text{prox}_{f, \lambda^{-1}}(x) + \text{prox}_{\lambda f^\star(\cdot/\lambda)}(x)
+    \\
+    &= 
+    \text{prox}_{f, \lambda^{-1}}(x) + \text{prox}_{f^\star(\cdot /\lambda), \lambda^{-1}}(x), 
+\end{aligned}
+$$
+
+which is more useful for direct applications. 
 
 **Remarks**
 
