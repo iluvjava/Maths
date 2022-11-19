@@ -253,4 +253,4 @@ $$
 \end{aligned}
 $$
 
-Which at this point, pertty much completes the proof because $t_k \ge (k + 1)/2$ in the case of the Nesterov Momentum. Take note that, there could be other sequences, however, this is the only squence the can performs the form match performed for the lemma. If we relax the conditions to obtain a residual for the telescoping sum, we can still get convergence, but the resulting sequence might not perform as well. It's possible that the residual terms and the sequence's bound just happens to cancels out if we use the Nesterov Momentum update. 
+Which at this point, pertty much completes the proof because $t_k \ge (k + 1)/2$ in the case of the Nesterov Momentum. Take note that, there could be other sequences, however, this is the only squence the can performs the form match performed for the lemma. If we relax the conditions to obtain a residual for the telescoping sum, we can still get convergence, but the resulting sequence might not perform as well. My hypothesis is that the residual terms and the sequence's bound just happens to cancels out if we use the Nesterov momentum update. 
