@@ -15,19 +15,18 @@ The following lemma is taken from the previous proof:
 
 > **The Prox 2 Points**
 > 
-> Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead. 
+Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead, Here we let $l = L^{-1} \ge L_g$ where $L_g$ denotes the Lipschitz constant for the smooth function $g$. 
 > 
 > $$
 > \begin{aligned}
->     f(\mathcal P(y)) 
+>     f\circ \mathcal Py
 >     &\le 
->     m_y(\mathcal{P}(y)|l)
+>     m_y(\mathcal{P}(y)|L)
 >     \\
->     \implies 
->     f(x) - f(\mathcal P(y)) 
+>     \implies f(x) - f\circ \mathcal Py
 >     &\ge 
->     \frac{L}{2}\Vert \mathcal P(y) - y\Vert^2 + 
->     L \langle y - x, \mathcal P (y) - y\rangle \quad 
+>     \frac{L}{2}\Vert \mathcal Py - y\Vert^2 + 
+>     L \langle y - x, \mathcal Py - y\rangle \quad 
 >     \forall x\in \mathbb R^n. 
 > \end{aligned}
 > $$
@@ -52,7 +51,7 @@ Where $k = 1, \cdots, N$, for some desirable big enough value of $N$. At current
 We introduce new notations with more interpretable meaning: 
 
 * $v^{(k)} = x^{(k)} - x^{(k -1)}$ is the velocity term. 
-* $\bar v^{(k)}= \theta_k v^{(k)}$ is the weigthed velocity term. 
+* $\bar v^{(k)}= \theta_k v^{(k)}$ is the weighed velocity term. 
 * $e^{(k)} := x^{(k)} - \bar x$, where $\bar x \in \arg\min_{x}(f(x))$, where $\bar x$ might not be unique. 
 * $\Delta_k := f(x^{(k)}) - f(\bar x)$ which represent the optimality gap at step $k$. 
 
@@ -79,7 +78,7 @@ $$
 \end{aligned}\tag{*}
 $$
 
-where we make use of the fact that $x^{(k + 1)} = \mathcal P y^{(k + 1)}$ at \[1\], and then we make use of the fact that $x^{(k + 1)} - y^{(k + 1)} = x^{(k + 1)} - x^{(k)} - \bar v^{(k)} = v^{(k + 1)} - \bar v^{(k)}$ at \[2\]. Similarly we can use the prox 2 points lemma and substitute $x = \bar x, y = y^{(k + 1)}$, giving us: 
+where we make use of the fact that $x^{(k + 1)} = \mathcal P y^{(k + 1)}$ at \[1\], and using $x^{(k + 1)} - y^{(k + 1)} = x^{(k + 1)} - x^{(k)} - \bar v^{(k)} = v^{(k + 1)} - \bar v^{(k)}$ at \[2\]. Similarly we can use the prox 2 points lemma and substitute $x = \bar x, y = y^{(k + 1)}$, giving us: 
 
 $$
 \begin{aligned}
@@ -95,7 +94,7 @@ $$
 \end{aligned}\tag{$\star$}
 $$
 
-we make use of the fact that $y^{(k + 1)} = x^{(k)} - \bar v^{(k)}$, then $y^{(k + 1)} - \bar x = x^{(k)} - \bar v^{(k)} - \bar x = e^{(k)} - \bar v^{(k)}$. Next we consider the following a linear combinations of $(*), (\star)$ such that it leaves $v^{(k)} - \bar v^{(k)}$ inside of the cross term with a single multipler, let's call it $t_k$ (Just a generic sequence that will contributes to the engineering of the algorithm), to do that we consider $(t_{k + 1}- 1)(*) + (\star)$ with $(t_k - 1)\ge 0$ for all $k$ giving us: 
+we make use of the fact that $y^{(k + 1)} = x^{(k)} - \bar v^{(k)}$, then $y^{(k + 1)} - \bar x = x^{(k)} - \bar v^{(k)} - \bar x = e^{(k)} - \bar v^{(k)}$. Next we consider the following linear combinations of $(*), (\star)$ such that it leaves $v^{(k)} - \bar v^{(k)}$ inside of the cross term with a single multiplier, let's call it $t_k$ (Just a generic sequence that will contributes to the engineering of the algorithm), to do that we consider $(t_{k + 1}- 1)(*) + (\star)$ with $(t_k - 1)\ge 0$ for all $k$ giving us: 
 
 $$
 \begin{aligned}
@@ -106,7 +105,7 @@ $$
 \end{aligned}\tag{$*\star$}
 $$
 
-unfortunately, at current step we won't be able to triger the montone property and sum it up like in the case without any momentum, instead, we need to consider new approach. 
+unfortunately, at current step we won't be able to trigger the monotone property and sum it up like in the case without any momentum, instead, we need to consider new approach. 
 
 ---
 ### **The Second Lemma: 2 Positive Sequences**
@@ -137,13 +136,13 @@ $$
 
 **Remarks**
 
-If we can match the form of the expression, then there is a way to restrain the value of $\Delta_k$, intuitive we are thinking of bounding the changes in the sequence. If the initial $a_1 + b_1$  is bounded by $c$, and the way $a_k$ changes is always bounded by the changes in $b_k$, given both $a_k, b_k$ are non-negative, the total amount of changes of $a_k$ will be bounded by the total amount of changes in the sequence $b_k$ as well. To 
+If we can match the form of the expression, then there is a way to restrain the value of $\Delta_k$, intuitive we are thinking of bounding the changes in the sequence. If the initial $a_1 + b_1$  is bounded by $c$, and the way $a_k$ changes is always bounded by the changes in $b_k$, given both $a_k, b_k$ are non-negative, the total amount of changes of $a_k$ will be bounded by the total amount of changes in the sequence $b_k$ as well.
 
 
 ---
 ### **Making use of the Lemma**
 
-We consider the expression $(*\star)$ from previously, and our goal is to match the coefficient of the term so that they can be matched with the form: $a_k - a_{k + 1}\le b_{k + 1} - b$, to accomplish, we further simplifies $(*\star)$ by multiplying both side by $t_{k + 1}$ (so that we can move the constant to the inside of the norm instead of letting it dangling outside) and we assume it to be a positive quantity larger han one: 
+We consider the expression $(*\star)$ from previously, and our goal is to match the coefficient of the term so that they can be matched with the form: $a_k - a_{k + 1}\le b_{k + 1} - b$, to accomplish, we further simplifies $(*\star)$ by multiplying both side by $t_{k + 1}$ (so that we can move the constant to the inside of the norm instead of letting it dangling outside) and we assume it to be a positive quantity larger than one: 
 
 $$
 \begin{aligned}
@@ -248,9 +247,10 @@ $$
 \begin{aligned}
     a_{N + 1} &\le c
     \\
-
     2L^{-1}t_{N + 1}^2\Delta_{N + 1} &\le \Vert e^{(0)} - v^{(0)}\Vert^2. 
 \end{aligned}
 $$
 
 Which at this point, pertty much completes the proof because $t_k \ge (k + 1)/2$ in the case of the Nesterov Momentum. Take note that, there could be other sequences, however, this is the only squence the can performs the form match performed for the lemma. If we relax the conditions to obtain a residual for the telescoping sum, we can still get convergence, but the resulting sequence might not perform as well. My hypothesis is that the residual terms and the sequence's bound just happens to cancels out if we use the Nesterov momentum update. 
+
+

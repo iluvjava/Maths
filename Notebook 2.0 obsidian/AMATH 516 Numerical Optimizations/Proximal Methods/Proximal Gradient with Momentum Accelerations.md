@@ -58,18 +58,18 @@ People don't think this is good enough and in Amir's textbook, and paper such as
 
 **Lemma 1**
 
-Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead. 
+Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead, Here we let $l = L^{-1} \ge L_g$ where $L_g$ denotes the Lipschitz constant for the smooth function $g$. 
 
 $$
 \begin{aligned}
-    f(\mathcal P(y)) 
+    f\circ \mathcal Py
     &\le 
-    m_y(\mathcal{P}(y)|l)
+    m_y(\mathcal{P}(y)|L)
     \\
-    \implies f(x) - f(\mathcal P(y)) 
+    \implies f(x) - f\circ \mathcal Py
     &\ge 
-    \frac{L}{2}\Vert \mathcal P(y) - y\Vert^2 + 
-    L \langle y - x, \mathcal P (y) - y\rangle \quad 
+    \frac{L}{2}\Vert \mathcal Py - y\Vert^2 + 
+    L \langle y - x, \mathcal Py - y\rangle \quad 
     \forall x\in \mathbb R^n. 
 \end{aligned}
 $$
