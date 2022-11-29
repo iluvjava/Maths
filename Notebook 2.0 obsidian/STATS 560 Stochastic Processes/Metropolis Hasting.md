@@ -1,4 +1,4 @@
-[[Discrete Ergotic Convergence Theory]]
+[[Discrete Ergotic Markov Chain]]
 
 ---
 ### **Intro**
@@ -11,7 +11,7 @@ The Metropolis chain is a special type of chain that can be used to draw samples
 
 **Algorithm Statement**
 
-Firstly we define a state space $S$ for all the markov chains. Suppose that at iteration $t$, $X^{(t)}$ is given as the output of the Metropolis Hasting Chain (MHC), then we draw the next $X^{(t + 1)}$ using the below procedures. 
+Firstly we define a state space $S$ for all the Markov chains. Suppose that at iteration $t$, $X^{(t)}$ is given as the output of the Metropolis Hasting Chain (MHC), then we draw the next $X^{(t + 1)}$ using the below procedures. 
 $$
 \begin{aligned}
     & Y^{(t)} \sim q (\cdot | x^{(t)})
@@ -59,7 +59,7 @@ $$
 we consider some states with $x\neq y, x, y\in S$, then
 $$
 \begin{aligned}
-    \rho(x, y) &:= \min\left\lbrace
+    \rho(x, y) &= \min\left\lbrace
         \frac{f(y)}{f(x)}\frac{q(x|y)}{q(y|x)}, 1
     \right\rbrace
     \\
@@ -92,22 +92,44 @@ therefore, $f$ is a stationary distributions for transition kernel $K$ because i
 ---
 ### **Regularity Conditions and Irreducibility**
 
-To invoke the discrete ergotic theorem for discrete markov chain, we need to prove that the MHC chain is also irreducible for the support of the distribution function $f$. 
+To invoke the discrete ergotic theorem for discrete Markov chain, we need to prove that the MHC chain is also irreducible for the support of the distribution function $f$. 
 
 **Definition: f-irreducible**
-> Given a markov chain $X$ with state space $S$ and a probability assignment function $f:S\mapsto \mathbb R_+$, it's f-irreducible means that for all $x, y\in \text{supp}(f)$, $x\rightarrow y$. The support set is $\text{supp}(f):= \{x: f(x) > 0\}$. 
+> Given a Markov chain $X$ with state space $S$ and a probability assignment function $f:S\mapsto \mathbb R_+$, it's f-irreducible means that for all $x, y\in \text{supp}(f)$, $x\rightarrow y$. The support set is $\text{supp}(f):= \{x: f(x) > 0\}$. 
 
 **Theorem: Conditions for MHC Kernel being Irreducible**: 
 
 > Denote $S_f = \text{supp}(f)$ as the support set of $f$, then MHC chain is f-irreducible when: 
-$$
-\begin{aligned}
-    \forall A \subseteq S_f: \sum_{}^{}
-\end{aligned}
-$$
+> $$
+> \begin{aligned}
+>     \forall x, y \in S_f, \rho_{x, y} > 0
+> \end{aligned}
+> $$
+
+Immediately observe that when $q(x|y)> 0\; \forall x, y\in S$, then the MHC is irreducible on $S_f$. 
+
+**Remark**
+
+Intuitive we want the instrumental chain $q$ to have the ability to diffuse out to every corner of the support sets of $f$. It's possible to have $q(x|y)$ that is not completely positive and yet still make the MHC irreducible. 
+
+The convergence to stationary distributions depends on the initial distribution, and for our case, with non-negativity assumptions for $q(x|y)$, the convergence is assured for any type of initial distributions on $S$. 
 
 
 **References**:
 
 pg 271 of the \<Montecarlo Statistical Method\> book. 
+
+
+---
+### **The Convergence of MHC**
+
+The conditions that: 
+
+* MHC is an irreducible chain on the supports sets of $f$, and MHC is a finite chain. 
+  * There is a unique stationary distribution, and that stationary distribution is shown to be $f$. 
+* MHC has $f$ satisfying the detailed balance property showed that $f$ is a stationary distribution of the kernel. 
+* MHC is aperiodic this is true by the definition of $\rho(x, y)$. 
+
+By [[Discrete Ergotic Markov Chain]], we know that HMC converges to the targeted stationary distribution $f$ in distribution. 
+
 
