@@ -35,6 +35,10 @@ As a consequence, we know that for each element $a\in G$, the inverse exists for
 
 The inverse of each element is also unique. Let $\bar a^{-1}, a^{-1}$ both be the inverse of the element $a$, then $a\bar a^{-1}= a a^{-1}\implies a^{-1} = \bar a^{-1}$ by the cencellation property. 
 
+**Closure**
+
+If element $a,b\in G$, then $a \leftarrow b \in G$. Doing this until all element is in $G$, then the group $G$ has closure. 
+
 **Why the arrow?**
 
 Group operator $*, +, \cdot$ are symmetric, which gives the impression that order of the element doesn't matter, meaning that the elements can commute with each other. But this is rarely the case, hece we are using the operator $\leftarrow$ to emphasize the fact that group operator **is not commutative**. 

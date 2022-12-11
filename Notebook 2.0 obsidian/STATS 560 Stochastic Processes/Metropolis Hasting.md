@@ -52,8 +52,6 @@ $$
 **Theorem: f is a stionary distribution for the Kernel**
 > The discrete probability assignment function $f$ is a stationary distribution for the MHC because it satisfies detailed balance. 
 
-
-
 **Proof**
 
 we consider some states with $x\neq y, x, y\in S$, then

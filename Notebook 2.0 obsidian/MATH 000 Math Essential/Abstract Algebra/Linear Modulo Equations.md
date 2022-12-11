@@ -1,4 +1,3 @@
-Pre-requisite: Some form of intelligence. 
+[[Basics of Integers]]
 
 ---
-### **Intro**
