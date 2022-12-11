@@ -331,7 +331,7 @@ The base case of the proof is obvious by the fact that $b_1$ is positive, hence 
 Using the update formula from FISTA, this obviously holds true in the case of $k = 1, t_1 = 1$, and it's not hard to see that if for some $k$ it's true then it's true for $k + 1$ because: 
 
 $$
-\begin{align*}
+\begin{aligned}
     t_k 
     &\ge \frac{k + 1}{2}
     \\
@@ -341,18 +341,18 @@ $$
     \right)^2
     \\
     \implies 
-    t_k &= \frac{1}{2}\left(
+    t_{k + 1} &= \frac{1}{2}\left(
         1 + \sqrt{1 + 4t_k^2}
     \right)
     \\
     &= 
     \frac{1}{2} + \frac{\sqrt{1 + (k + 1)^2}}{2}
     \\
-    & \ge \frac{1 + k}{2}, 
-\end{align*}
+    & \ge \frac{2 + k}{2}, 
+\end{aligned}
 $$
 
-because $\sqrt{1 + (k + 1)^2} \ge k$. 
+because $\sqrt{1 + (k + 1)^2} \ge k + 1$. 
 
 
 ---

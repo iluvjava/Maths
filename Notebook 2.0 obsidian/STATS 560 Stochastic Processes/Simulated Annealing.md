@@ -57,3 +57,6 @@ $$
 $$
 
 As the temperature approaches zero for the discrete chain, the distribution function approaches the indicator function of the optimal set.
+
+
+References: 'Markov Chain and Mixing time', chapter 3. 

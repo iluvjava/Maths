@@ -4,8 +4,8 @@
 ### **Intro**
 
 The Metropolis chain is a special type of chain that can be used to draw samples from distributions functions up to a constant without computing the  integrals and taking the inverse of these functions. We go over the following things: 
-1. What is Metropolis Hasting Chain?
-2. What are some of the regularity conditions? 
+1. What is the Metropolis Hasting Chain?
+2. What type of regularity conditions can assert the convergence to the targeted distributions. 
 3. How does the regularity conditions play a role for the convergence theory of the chain under the discrete case? 
 4. We briefly introduces what happens in the non-discrete case. 
 
@@ -32,7 +32,7 @@ $$
 
 which is an aperiodic chain and here are the properties expected for some of these quantities defined for the MHC: 
 
-1. $q(x|y)$ is the *instrumental distribution*, and it should be a defined on $S$. 
+1. $q(x|y)$ is the *instrumental distribution*, it is defined on $S$ and it's a doubly stochastic chain. 
 2. $f(x): S \mapsto \mathbb R_+$ is a probability mass function on the statespace $S$. 
 3. $\rho$ is an acceptance function, given $X^{(t)}$, it decides whether to accept $Y^{(t + 1)}$ from $q$ given $X^{(t)}$. 
 
@@ -66,10 +66,7 @@ $$
     \implies
     \rho(x, y)f(x) &= \min\left\lbrace
         f(y), f(x)
-    \right\rbrace
-    \\
-    \implies
-    \rho(y, x) f(y) &= 
+    \right\rbrace, \rho(y, x) f(y) = 
     \min\left\lbrace
         f(x), f(y)
     \right\rbrace

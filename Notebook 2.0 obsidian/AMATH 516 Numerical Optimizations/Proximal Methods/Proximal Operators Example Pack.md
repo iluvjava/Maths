@@ -130,6 +130,9 @@ Suppose that the box constraint is defined by $[l_i, u_i]\; \forall 1 \le i \le 
 ---
 ### **Example 6.16 in Beck's Textbook**! 
 
+
+
+---
 ### **Example 6.17 In Beck's Textbook**! 
 
 
