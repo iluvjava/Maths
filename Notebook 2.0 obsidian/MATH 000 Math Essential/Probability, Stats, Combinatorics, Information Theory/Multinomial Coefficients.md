@@ -1,6 +1,4 @@
-Given a string, how many different ways we can rearrange it with the same letters? 
-
-This is what we call Anagram of a given string. 
+Given a string, how many different ways we can rearrange it with the same letters but different strings? We 
 
 ---
 ### **Intro**
@@ -11,7 +9,7 @@ Suppose that we were given a string, "godoggy".
 ---
 ### **Counting Anagram**
 
-Using a multi-set to represent the string it will be: 
+The anagram of a string a specific ordering of the multi-set containing the letters used in a given string. Using a multi-set to represent the string "godoggy" it will be: 
 
 $$
 S = \{g: 3, 0: 2, d:1, y: 1\}

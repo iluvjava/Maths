@@ -59,8 +59,27 @@ and by the well ordering principle, eventually we will terminate, because the re
 ---
 ### **Linear Combinations and GCD**
 
-> The greatest common divisor between 2 numbers is the minimum number they can create using integers of linear combinations of the 2 numbers. Let $a, b$ be 2 integers then $d = ma + nb$ for all $m, n \in \mathbb Z$, then the smallest possible $d$ satisfying the equation gives the greatest common divisor between the 2 integers $a, b$. 
+> The greatest common divisor between 2 numbers is the minimum number they can create using integers of linear combinations of the 2 numbers. Let $a, b$ be 2 integers then $d = ma + nb$ for all $m, n \in \mathbb Z$, then the smallest possible $d$ satisfying the equation if and only if the greated common divisor between the 2 integers $a, b$ is also $d$. 
 
-To prove, we use the well orderin principle to assume that there exists minimum to the of all positive real integers: $\{ma + n b: m, n \in \mathbb Z\}$, and then let that number to be $d$. We then consider applying the Euclidean division algorithm to the linear combinations. 
+To prove, we use the well ordering principle to assume that there exists minimum to the of all positive real integers: $\{ma + n b: m, n \in \mathbb Z\}$, and then let that number to be $d$. We then consider applying the Euclidean division algorithm to the linear combinations, obtaining that $d|(ma + nb)$, if this is not the case, then there is a smaller value of $d$, making a contradiciton. 
+
+To see the converse, of $d = (ma + nb)$ then $d|a, d|b$, since $d$ is the smallest such value, it's the smallest number that can divide both $a, b$, which is equivalent to the definition of the greatec common divisor of $a, b$. 
 
 
+---
+### **Basics Properties and Claims**
+
+
+
+
+
+---
+### **Additive Modulo**
+
+
+
+
+---
+### **Relative Primes**
+
+> Let $a, b \in \mathbb Z$, then $a, b$ are relative primes to each other iff $\text{gcd}(a, b) = 1$. 
