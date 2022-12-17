@@ -19,7 +19,7 @@ Take this for granted, analogous to the completeness theorem for the real number
 ---
 ### **Euclidean Division Algorithm**
 
-The euclidean division algorithm computes the greated common divisor of for 2 integers $a, b$. Let $\text{gcd}(a, b)$ be a function that takes in $a \le b$ and for all $\text{gcd}(0, b) = b$, becaue any number divides $0$. Then the Euclidean divison algorithm is given as: 
+The euclidean division algorithm computes the greatest common divisor for 2 integers $a, b$. Let $\text{gcd}(a, b)$ be a function that takes in $a \le b$ and for all $\text{gcd}(0, b) = b$, because any number divides $0$. Then the Euclidean division algorithm is given as: 
 
 $$
 \begin{aligned}
@@ -45,8 +45,22 @@ $$
 $$
 and by the well ordering principle, eventually we will terminate, because the remainder operations is bounded by zero, and the Euclidean algorithm make the number smaller and smaller as it recur. While recurions make things easy to implement, we would still consider the iterative method for Euclidean Division algorithm. 
 
-$$
-\begin{aligned}
+**Iterative euclidean algorithm**
 
-\end{aligned}
-$$
+1. Let `S:={a, b}` be a stack with `a <= b`. 
+2. Peek the first 2 elements from the stack name it `r1, r2`. 
+3. Push `r1%r2` back into the stack. If the value is zero, then return `r_2`, which is going to be the GCD. 
+
+**Algorithm invariances**
+
+1. Suppose that $d = \text{gcd}(a, b)$ with $a < b$, then $\text{gcd}(a\div d, b\div d) = 1$.
+2. Suppose that $q$ is positive integers then $\text{gcd}(a, b - qa) = \text{gcd}(a, b)$. 
+
+---
+### **Linear Combinations and GCD**
+
+> The greatest common divisor between 2 numbers is the minimum number they can create using integers of linear combinations of the 2 numbers. Let $a, b$ be 2 integers then $d = ma + nb$ for all $m, n \in \mathbb Z$, then the smallest possible $d$ satisfying the equation gives the greatest common divisor between the 2 integers $a, b$. 
+
+To prove, we use the well orderin principle to assume that there exists minimum to the of all positive real integers: $\{ma + n b: m, n \in \mathbb Z\}$, and then let that number to be $d$. We then consider applying the Euclidean division algorithm to the linear combinations. 
+
+

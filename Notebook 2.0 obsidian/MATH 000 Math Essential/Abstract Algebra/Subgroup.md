@@ -1,4 +1,4 @@
-[[Group]]
+[[Group Basics]]
 
 ---
 ### **Intro**
@@ -15,7 +15,7 @@ $G$ is a subgroup of itself and $\{e\}$ is a trivial subgroup of any group. Note
 
 The rigid structure of group doesn't permit much ways subgroups can interact with each other arbitrarily. 
 
-**Theorem: Intersction of subgroups is a subgruops**
+**Theorem: intersections of subgroups is a subgroups**
 
 > Let $H_1, H_2$ be 2 distinct subgroups of group $G$, equipped with operator $\triangleleft$, then $H_1\cap H_2$ is still a subgroup. 
 
@@ -41,4 +41,10 @@ $$
 \end{aligned}
 $$
 
-which is a contradiciton. At one 2 we can multiply by $h_2^{-1}$ because $h_2 \in H_1\cap H_2$. 
+which is a contradiction. At one 2 we can multiply by $h_2^{-1}$ because $h_2 \in H_1\cap H_2$. 
+
+
+---
+### **Examples of Subgroups**
+
+
