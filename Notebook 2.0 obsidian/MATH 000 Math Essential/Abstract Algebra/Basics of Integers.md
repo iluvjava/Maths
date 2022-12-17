@@ -69,6 +69,9 @@ To see the converse, of $d = (ma + nb)$ then $d|a, d|b$, since $d$ is the smalle
 ---
 ### **Basics Properties and Claims**
 
+1. if $b|ac$ then $b|\text{gcd(a, b)}c$. 
+2. if $b|ac$ and $\text{gcd}(a, b) = 1$ then $b|c$. 
+3. if $b|c, c|a$ and $\text{gcd}(a, b) = 1$ then $\text{gcd}(a, c) = 1$. 
 
 
 

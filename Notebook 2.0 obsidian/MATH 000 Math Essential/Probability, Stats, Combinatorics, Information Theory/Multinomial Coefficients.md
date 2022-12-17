@@ -24,13 +24,16 @@ $$
 In general, suppose that there exists an multi-set of symbols $\{s_1:n_1, s_1:n_2, \cdots, s_k:n_k\}$, and we are interested in the total number of unique anagram that can be created by using all the symbols from the multi-set, then it's given as: 
 
 > $$
-> \frac{n!}{n_1!n_2!\cdots n_k!}\quad n = \sum_{i = 1}^{k}n_i
+> \frac{n!}{n_1!n_2!\cdots n_k!}
 > $$
 
+**Remark**: 
+
+Intuitively, the subset of all the same letter repeating letters multiplied by all permutations of the other letter provides us the total number of permutations. Therefore to eliminate the repetitions it make intuitive senes to divide by the total number of ways all possible subset of repeating elements can repeat by the total number of permutations of all letters, ignoring the repeating letters. 
 
 
 ---
-### **Proofs**
+### **Multinomial Expansions**
 
 The expression above is the coefficient of the Multinomial expansion: 
 
@@ -38,7 +41,7 @@ $$
 \left(x_{1}+x_{2}+\cdots+x_{m}\right)^{n}=\sum_{k_{1}+k_{2}+\cdots+k_{m}=n}\left(\begin{array}{c}
 n \\
 k_{1}, k_{2}, \ldots, k_{m}
-\end{array}\right) \prod_{t=1}^{m} x_{t}^{k_{t}}
+\end{array}\right) \prod_{t=1}^{m} x_{t}^{k_{t}}.
 $$
 
 For each term of the polynomial, it will contain multiplications of variables using $x_1, x_2\cdots x_m$, and the sum of their power will be less than $n$. And their coefficients represents the total number of permutations using $k_i$ of the symbols $x_i$. This is just straight up from the algebra. 
