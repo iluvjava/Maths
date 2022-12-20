@@ -47,6 +47,8 @@ A one-to-one relation exists if the kernel of  $\phi$ is the identity in $G$.
 
 
 ---
-### **Kernel Magics**
+### **Kernel Properties**
+
+
 
 

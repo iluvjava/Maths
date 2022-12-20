@@ -82,6 +82,8 @@ To see the converse, of $d = (ma + nb)$ then $d|a, d|b$, since $d$ is the smalle
 
 
 
+
+
 ---
 ### **Relative Primes**
 
