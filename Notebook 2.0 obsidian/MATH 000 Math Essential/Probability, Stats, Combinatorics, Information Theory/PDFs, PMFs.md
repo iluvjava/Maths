@@ -1,15 +1,13 @@
 PDFs: probability Density function 
 PMFs: Probability Mass function
-rvs: Random Variables
+R.Vs: Random Variables
 
 ---
 ### **Intro**
+1. PDFs are used to model continuous R.Vs. 
+2. PMFs are used to model discrete R.Vs. 
+3. Both models the probability of observing some values for random variable. 
 
-PDFs are used to model continuous rvs. 
-
-PMFs are used to model discrete rvs. 
-
-Both models the probability of observing some values for random variable. 
 
 ---
 ### **PDF/PMF**
@@ -27,17 +25,13 @@ $$
     \int_{x = l}^{x = u} f_X(x) dx    
 $$
 
-However, it would implies that $\mathbb{P}(X = a) = 0$, **don't mess up the probability with probability density function please**. 
-
-However, here are the restrictions for PDFs, PMFs: 
+However, it would implies that $\mathbb{P}(X = a) = 0$, **don't mess up the probability with probability density function please**. Here are the restrictions for PDFs, PMFs: 
 
 $$
 \forall x_i \quad p_x(x) > 0 \wedge \forall x_i \sum_{x\in\Omega_X}^{}\left(x\right) = 1
 $$
 
-The PMF must all be positive (Because probability) and their sum is always 1 (Because Probability). 
-
-The same thing can be said for PDFs, just replace the sum with the integral and we get the same thing. 
+The PMF must all be positive (Because probability) and their sum is always 1 (Because Probability). The same thing can be said for PDFs, just replace the sum with the integral and we get the same thing. 
 
 
 ---
@@ -61,3 +55,20 @@ F(a) =
 $$
 
 It's the probability of the event where, random variable $X\le a$. The expected value is just taking in finitely many such observation and determine the probability. In this case, this is an unbiased estimator to the output of the CDF function. 
+
+---
+### **Joint Distributions Functions**
+
+ A **joint distribution function** is a function with 2 variables is non-negative meaning that $f(x, y) > 0; \forall\; x \in \Omega_X, y \in \Omega_Y$ and satisfying 
+
+$$
+\iint_{(x, y)\in \Omega_X\times \Omega_Y} f(x, y) dxdy = 1, 
+$$
+
+often in the discrete case, the functions joint distribution function is written as: 
+
+$$
+p_{X, Y}(x, y)
+$$
+
+If, $X$ and $Y$ are independent, each having their own **independent probability** distribution, say: $p_X$, a univariate function and $p_Y$ also univariate, then their joint distribution is:$p_{X, Y} =p_X(x)p_Y(y)$. 

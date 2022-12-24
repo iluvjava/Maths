@@ -1,87 +1,89 @@
-Let's get ourselves familiar with conditional probability 
-
-This also mix well with the [[Bayes Theorem]], where we talked about conditional probability. 
-
-The basics are [[Expectation of Random Variables]], [[PDFs, PMFs]]
-
+[[Bayes Theorem]], [[Expectation of Random Variables]], [[PDFs, PMFs]]
 
 
 ---
 ### **Intro**
 
-Joint distribution. A **joint distribution function** is a function with 2 variables. 
-
-$$
-f(x, y) > 0 \quad \forall\; x \in \Omega_x, y \in \Omega_y
-$$
-
-And it's sum has to be positive, because it's a density function: 
-
-$$
-\iint_{-\infty}^{\infty} f(x, y) dxdy = 1
-$$
-
-often, in the discrete case, the functions joint distribution function is written as: 
-
-$$
-p_{X, Y}(x, y)
-$$
-
-If, $X$ and $Y$ are having their own **independent probability** distribution, say: $p_x$, a univariate function and $p_y$ also univariate, then their joint distribution is:
-
-$$
-p_{X, Y} =p_X(x)p_Y(y) 
-$$
-
-Just multiply them together and we will have it. 
+A conditional probability is a way of measuring the probability of an event given some specific information. A more technical definition involves the use of sigma algebra. Ignoring the technicality, we use $\mathbb P(A|B)$ to denote that probability of events $A$ given events $B$. For example: 
+1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same events. 
+2. $\mathbb P(A|B) = 0$ if $A = B^C$. 
 
 **Fundamental Laws of Joint Probability** 
 
+Suppose that 2 events $A, B$ are from the same probability space, then condition probability can be computed by: 
 $$
 \begin{aligned}
-    \mathbb{P}\left(X=x \wedge Y = y\right)
+    \mathbb{P}\left(A\cap B\right)
     &= 
-    \mathbb{P}\left(X = x|Y = y\right)\mathbb{P}\left(Y = y\right)
+    \mathbb{P}\left(A|B\right)\mathbb{P}\left(B\right)
     \\
-    \mathbb{P}\left(X = x| Y = y\right) &= 
-    \frac{\mathbb{P}\left(X = x \wedge Y = y\right)}
+    \mathbb{P}\left(A|B\right) &= 
+    \frac{\mathbb{P}
+    \left(A \cap B\right)}
     {
-        \mathbb{P}\left(Y = y\right)
+        \mathbb{P}\left(B\right)
     }
 \end{aligned}
 $$
 
-It's the same for continuous variable, just replace the probability operator with the PDF function for the random variable. 
+**Remarks**: 
+This is not a definition, but rather a way we can compute the conditional probability for some specific type of events. 
 
-Take these formula to understand the distribution and other kind of stuff. 
+**Terminology**: 
+A posterior probability refers to $\mathbb P(A|B)$, and the prior probaility of that posterior is $P(B)$. 
 
 ---
 ### **Conditional Distribution**
 
+A conditional distribution is a probability density function involving $X, Y$ in $\mathbb R^2$ such that, a specific value for one of the variable is provided. 
+
 $$
-p_{X|Y}(a|b) = \mathbb{P}\left(X = a | Y = b\right)
-= 
-\frac{p_{X, Y}(a, b)}{p_y(b)}
-=
-\frac{p_{Y|X}(b|a)p_X(a)}{p_Y(b)}
+\begin{aligned}
+    p_{X|Y}(x|y)
+    = 
+    \frac{p_{X, Y}(x, y)}{p_y(y)}
+    =
+    \frac{p_{Y|X}(y|x)p_X(a)}{p_Y(y)}, 
+
+\end{aligned}
 $$
 
 Take note that, there is a slight difference in the subscript, and the equality is that: 
 
 $$
-p_{X, Y}(a, b) = p_{X|Y}(b|a)p_X(a)
+p_{X, Y}(x, y) = p_{X|Y}(y|x)p_X(x). 
 $$
 
-The joint distribution function of random variable $X, Y$, with inputs $a, b$ will be the same as $p_{X|Y}$, probability of $X = b$ given $Y=a$, the prior, multiplied by $p_X(a)$, the probability of observing $X$ becomes $a$. 
+The formlas of conditional distribution for random variable that is continuous and discrete variables are the same. 
+
+---
+### **Marginal Distributions**
+
+A marginal distribution is observing the joint probability of $X, Y$ but ignoring one of the variable entirely. Suppose that the random variable $X, Y$ has a joint probability function $p_{X, Y}$ and they are discrete random variable from 2 different events space. Then the marginal distribution for $X$ is: 
+
+$$
+p_X(x) = \sum_{y\in \mathbb Z}^{} p_{X, Y}(x,y), 
+$$
+
+which is literally summing up all the probability outcomes of $Y$ for each value of $X$. In the continuous case the **marginal probability mass function** is: 
+
+$$
+f_X(x) = \int_{\mathbb R}^{} f_{X, Y}(x, y)dy = \int_{\mathbb R}^{} 
+f_{X|Y}(x|y)f_Y(y)dy = \mathbb{E}\left[f_{X|Y}(x|y)\right], 
+$$
+
+and note that this is not a definition, but merely a way to compute the above quantity. For more about marginal distributions, visit [wiki](https://en.wikipedia.org/wiki/Marginal_distribution). 
 
 ---
 ### **Conditional Expectation**
+
+Conditional expectation is defined via conditional probability. 
 
 $$
 \mathbb{E}\left[X\right|Y = y] = 
 \sum_{x \in \Omega_X}^{}x \mathbb{P}\left(X = x|Y = y\right) 
 =
-\sum_{x\in \Omega_X}^{}xp_{X, Y}(x|y)
+\sum_{x\in \Omega_X}^{}xp_{X, Y}(x|y). 
 $$
 
 The expected value of $X$ given that we observed $Y = y$ is it's just the summing up along the line where $Y = y$.
@@ -92,8 +94,10 @@ $$
 \mathbb{E}\left[g(X)\right|Y = y] = 
 \sum_{x \in \Omega_X}^{}x \mathbb{P}\left(g(X) = x|Y = y\right) 
 =
-\sum_{x\in \Omega_X}^{}g(x)p_{X, Y}(x|y)
+\sum_{x\in \Omega_X}^{}g(x)p_{X, Y}(x|y), 
 $$
+
+
 
 ---
 ### **Law of Total Expectation**
@@ -149,7 +153,7 @@ And by definition, this is the expected value for the joint distribution, of the
 $\blacksquare$
 
 ---
-### **Examples** 
+### **Examples and Applications** 
 
 > $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{Unif}(0, 1)$ until The first $T$ times $Y$ is less than $X$. Find the expected value of $T$. 
 

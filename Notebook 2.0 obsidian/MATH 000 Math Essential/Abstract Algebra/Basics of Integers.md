@@ -59,11 +59,11 @@ and by the well ordering principle, eventually we will terminate, because the re
 ---
 ### **Linear Combinations and GCD**
 
-> The greatest common divisor between 2 numbers is the minimum number they can create using integers of linear combinations of the 2 numbers. Let $a, b$ be 2 integers then $d = ma + nb$ for all $m, n \in \mathbb Z$, then the smallest possible $d$ satisfying the equation if and only if the greated common divisor between the 2 integers $a, b$ is also $d$. 
+> The greatest common divisor between 2 numbers is the minimum number they can create using integers of linear combinations of the 2 numbers. Let $a, b$ be 2 integers then $d = ma + nb$ for all $m, n \in \mathbb Z$, then the smallest possible $d$ satisfying the equation if and only if the greatest common divisor between the 2 integers $a, b$ is also $d$. 
 
-To prove, we use the well ordering principle to assume that there exists minimum to the of all positive real integers: $\{ma + n b: m, n \in \mathbb Z\}$, and then let that number to be $d$. We then consider applying the Euclidean division algorithm to the linear combinations, obtaining that $d|(ma + nb)$, if this is not the case, then there is a smaller value of $d$, making a contradiciton. 
+To prove, we use the well ordering principle to assume that there exists minimum to the of all positive real integers: $\{ma + n b: m, n \in \mathbb Z\}$, and then let that number to be $d$. We then consider applying the Euclidean division algorithm to the linear combinations, obtaining that $d|(ma + nb)$, if this is not the case, then there is a smaller value of $d$, making a contradiction. 
 
-To see the converse, of $d = (ma + nb)$ then $d|a, d|b$, since $d$ is the smallest such value, it's the smallest number that can divide both $a, b$, which is equivalent to the definition of the greatec common divisor of $a, b$. 
+To see the converse, of $d = (ma + nb)$ then $d|a, d|b$, since $d$ is the smallest such value, it's the smallest number that can divide both $a, b$, which is equivalent to the definition of the greatest common divisor of $a, b$. 
 
 
 ---

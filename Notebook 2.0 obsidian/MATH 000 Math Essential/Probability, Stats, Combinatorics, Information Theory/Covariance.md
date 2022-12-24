@@ -18,11 +18,11 @@ $$
     \mathbb{E}\left[Y\right]
 $$
 
-Which is somewhat similar to variance, especially the second way of viewing it. 
+Which is somewhat similar to variance, especially the second way of viewing it. The application of covariance are straight forward. Covariance is a measurement of linear dependence between 2 random variable, it's testing some underlying generate process such as the $Y = aX + b$. Where one of the random variable is linear related to the other one. 
 
-The application of covariance are striaght forward. 
+**Common Misconception**
 
-Covariance is a measurement of linear dependence between 2 random variable, it's testing some underlying generate process such as the $Y = aX + b$. Where one of the random variable is linear related to the other one. 
+If 2 random variable is independent, then their covariance will be zero, the converse is not true, and when they are dependent, their covariance can still be zero. 
 
 ---
 ### **Useful Properties**
@@ -30,8 +30,8 @@ Covariance is a measurement of linear dependence between 2 random variable, it's
 1. $X\perp Y\implies \text{Cov}\left(X,Y\right) = 0$, Where $X\perp Y$ means that these 2 random variables are independent. 
 2. $\text{Cov}(X,X) = \text{Var}\left[X\right]$
 3. $\text{Cov}\left(X,Y\right) = \text{Cov}\left(Y,X\right)$
-4. $\text{Cov}\left(X + c,Y\right) = \text{Cov}\left(X,Y\right)$, shifting one of the variable won't change the covariance. 
-5. $\text{Cov}\left(aX + bY, Z\right) = a\text{Cov}\left(X,Z\right) + b \text{Cov}\left(Y,Z\right)$, distributive and constants can be taken out. 
+4. $\text{Cov}\left(X + c,Y\right) = \text{Cov}\left(X,Y\right)$, Shift invariance. It's the same if we shift any/both of the variable by some constant. 
+5. $\text{Cov}\left(aX + bY, Z\right) = a\text{Cov}\left(X,Z\right) + b \text{Cov}\left(Y,Z\right)$. It's Collinear. 
 6. $\text{Var}\left[X + Y\right] = \text{Var}\left[X\right] + \text{Var}\left[Y\right] + 2 \text{Cov}\left(X,Y\right)$, think of the quadratic formula for $(X + Y)^2$ to remember this. 
 7. $\text{Cov}\left(\sum_{i = 1}^{n}X_i,\sum_{i = 1}^{n}Y_i\right) = \sum_{i = 1}^{n}\sum_{i = 1}^{m}\text{Cov}\left(X_i,Y_j\right)$
 

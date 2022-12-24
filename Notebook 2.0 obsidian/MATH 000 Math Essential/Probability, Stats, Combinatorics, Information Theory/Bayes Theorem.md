@@ -8,9 +8,7 @@ Here are some reference in use:
 
 ### **Intro**
 
-It's used everywhere and it's connecting related to conditional probability. 
-
-Here is the statement of the theorem: 
+It's used everywhere and it's connecting related to conditional probability. Here is the statement of the theorem: 
 
 $$
 \mathbb{P}\left(A|B\right)
