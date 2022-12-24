@@ -1,4 +1,4 @@
-[[Conditional Probability]]
+[[Conditional Probability, Expectations]]
 
 ---
 ### **Intro**

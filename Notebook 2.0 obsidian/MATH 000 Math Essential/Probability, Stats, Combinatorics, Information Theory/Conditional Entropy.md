@@ -1,4 +1,4 @@
-This is just continuing on the discussion on [[Shannon's Entropy]], [[Conditional Probability]]
+This is just continuing on the discussion on [[Shannon's Entropy]], [[Conditional Probability, Expectations]]
 
 
 ---

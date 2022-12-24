@@ -8,6 +8,8 @@ A conditional probability is a way of measuring the probability of an event give
 1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same events. 
 2. $\mathbb P(A|B) = 0$ if $A = B^C$. 
 
+In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. 
+
 **Fundamental Laws of Joint Probability** 
 
 Suppose that 2 events $A, B$ are from the same probability space, then condition probability can be computed by: 
@@ -86,9 +88,7 @@ $$
 \sum_{x\in \Omega_X}^{}xp_{X, Y}(x|y). 
 $$
 
-The expected value of $X$ given that we observed $Y = y$ is it's just the summing up along the line where $Y = y$.
-
-Notice that, it's just a simple tweak if we want to look for a transformed Expected value for the random variable $X$: 
+The expected value of $X$ given that we observed $Y = y$ is it's just the summing up the moment along the line where $Y = y$. Notice that, it's just a simple tweak if we want to look for a transformed Expected value for the random variable $X$: 
 
 $$
 \mathbb{E}\left[g(X)\right|Y = y] = 
@@ -102,7 +102,7 @@ $$
 ---
 ### **Law of Total Expectation**
 
-Using the conditional expectation to get the total expectation of the random variable. 
+Conditional expectation is similar to conditional probaility. Given the conditional expectation of a variable, we can find the unconditional expectation using: 
 
 $$
 \mathbb{E}\left[g(X)\right]
@@ -111,9 +111,7 @@ $$
 \mathbb{E}\left[g(X)| Y = y\right]p_Y(y)
 $$
 
-For each condition that $y$ is observed for rv $y$, we sum up the expectation when for random variable $X$, then we have the total expectation for the variable $g(X)$. 
-
-Notice that this is just basic conditional probability, and it makes intuitive sense. 
+For each condition that $y$ is observed for rv $y$, we sum up the expectation when for random variable $X$, then we have the total expectation for the variable $g(X)$. Notice that this is just basic conditional probability, and it makes intuitive sense. 
 
 **Proof**: 
 
@@ -155,13 +153,17 @@ $\blacksquare$
 ---
 ### **Examples and Applications** 
 
-> $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{Unif}(0, 1)$ until The first $T$ times $Y$ is less than $X$. Find the expected value of $T$. 
+We illustrate the use of conditional expectation and probability using some simple examples. 
+
+**Exponential Uniform Draws**:
+
+> $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{unif}(0, 1)$ until The first $T$ (The number of draws) time $Y$ is less than $X$. Find the expected value of $T$. 
 
 **Analysis:** 
 
-1. Given $X = x$, $T$ has distribution $(1 - X)^{T}$, a Geometric Distribution. 
-2. That above Geometric distribution has expectation of $\frac{1}{X}$, where $X$ is an random variable. 
-3. Notice that, $T$'s expected value is conditionally tied with $X$, therefore we are going to us the Laws of Total Expectation, which is going to be:  
+1. Given $X = x$, $T$ has distribution $X(1 - X)^{T-1}$, a geometric distribution with $p = X$. 
+2. That above geometric distribution has expectation of $\frac{1}{X}$, where $X$ is an random variable. 
+3. Notice that, events regardiing $T$ is dependent on $X$, therefore we are going to use the Laws of Total Expectation, which is going to be:  
 
 $$
 \begin{aligned}
@@ -179,13 +181,13 @@ $$
 The expected value is infinity. 
 
 
-> let $p$ be the probability of an even being successful, let $X$ be the numbr of trials on such an even up to and include the first success. Use LTE to find the expected value of the random variable. 
+**Success Trials (Simple Markov Stopping Time)**: 
+
+> let $p$ be the probability of an event being successful, let $X$ be the number of trials on such an even up to and include the first success. We make a random draw of a Bernoulli variables and until the success of the events. This is a simple exponential model, however, we use LTE to find the expected value of the random variable. 
 
 **Analysis**: 
 
-Let's denote $H$ to be the success of such an even and let $T$ to be failed. Think of it as head and tail of a coin flip. 
-
-Then the expectation of $\mathbb{E}[X]$ is going to be: 
+Let's denote $H$ to be the success of such an even and let $T$ to be failed. Think of it as head and tail of a coin flip. Then the expectation of $\mathbb{E}[X]$ is going to be: 
 
 $$
 \begin{aligned}
@@ -206,13 +208,11 @@ $$
 
 **Explanation**:
 
-(1): $\mathbb{E}[X|H]$, given that we got head, the sequence of trials terminate, giving us a sequence of one, therefore this term is one. 
+(1): $\mathbb{E}[X|H]$, given success, what is the expected number of steps until success? The sequence of trials terminate, giving us a sequence of one, therefore this term is one. 
 
-(2): $\mathbb{E}[X|T]$, given that we got tail, then we need to make another trial, we recursively represents the new expected to be: $1 +\mathbb{E}[X]$. 
+(2): $\mathbb{E}[X|T]$, given a failure occurred, then we need to make another trial, we recursively represents the new expected to be: $1 +\mathbb{E}[X]$. 
 
-Therefore, we have gotten ourselves a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. 
-
-The "Recursive Expression" is true, if we consider the empirical approach to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. Cute huh? 
+Therefore, we have gotten ourselves a "recursive expression" for the expected value for the number of trials using the Laws of total expected. Therefore, we can solve it and get the solution. The "Recursive Expression" is true, if we consider the empirical approach to the problem, by which I mean, we carry out the experiment and keep updating the expected value using an algorithm. Cute huh? 
 
 $$
 \begin{aligned}
@@ -236,6 +236,7 @@ $$
 
 The results is equivalent from using calculus and the Geometric Probability distribution function. 
 
+**Sums of i.i.d**
 
 > Given random variable $X_i$ draws from the same distribution, and random variable $N$ that has a finite expected value, independent wrt $X_i$, find the expected value of $\sum_{i=1}^{N}X_i$. 
 

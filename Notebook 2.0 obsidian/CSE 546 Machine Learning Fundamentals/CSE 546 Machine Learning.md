@@ -27,7 +27,7 @@ Concepts
 2. Markov's Inequality [[Markov Inequality]]
 3. [[Expectation of Random Variables]]
 4. [[IDD RVs]]
-5. [[Conditional Probability]]
+5. [[Conditional Probability, Expectations]]
 6. [[Bayes Theorem]]
 7. [[Expectation of Random Variables]]
 8. [[Expectation, Variance of Random Variables]]
