@@ -4,11 +4,11 @@
 ---
 ### **Intro**
 
-A conditional probability is a way of measuring the probability of an event given some specific information. A more technical definition involves the use of sigma algebra. Ignoring the technicality, we use $\mathbb P(A|B)$ to denote that probability of events $A$ given events $B$. For example: 
-1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same events. 
-2. $\mathbb P(A|B) = 0$ if $A = B^C$. 
+A conditional probability is a way of measuring the probability of an event given some specific information. A more technical definition involves the use of sigma algebra. Ignoring the technicality, we use $\mathbb P(A|B)$ to denote that probability of event $A$ given event $B$. We start off with the following intuitive reasoning: 
+1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same event. 
+2. $\mathbb P(A|B) = 0$ if $A = B^C$. Meaning that $A$ and $B$ are mutually exclusive events. 
 
-In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. At the end we look over some of the classical, non-trivial applications of the conditional expectations. Material presented here worth the weight of a Junior Probability theory class in a decent university. 
+In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. At the end we look over some of the classical, non-trivial applications of the conditional expectations. Material presented here worth the weight of a Junior/sophomore Probability Theory class in a decent university. 
 
 **Fundamental Laws of Joint Probability** 
 
@@ -29,10 +29,10 @@ $$
 $$
 
 **Remarks**: 
-This is not a definition, but rather a way we can compute the conditional probability for some specific type of events. 
+This is not a definition, but rather a way we can compute the conditional probability for some specific events. 
 
 **Terminology**: 
-A posterior probability refers to $\mathbb P(A|B)$, and the prior probaility of that posterior is $P(B)$. 
+A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of that posterior is $P(B)$. 
 
 ---
 ### **Disjoint Sums of Conditional Probability**
@@ -63,7 +63,7 @@ $$
 \end{aligned}
 $$
 
-Where on the last line, we used basic property of the sets and the property of a probability measure. In general, assume that a sequence of disjoint events $B_i$ for $1 \le i \le n$ such that it partition the whole event space, the probability of any event $A$ can be expressed as: 
+where on the last line, we used basic property of the sets and the property of a probability measure. In general, assume that a sequence of disjoint events $B_i$ for $1 \le i \le n$ such that it partitioned the whole event space, the probability of any event $A$ can be expressed as: 
 
 $$
 \begin{aligned}
@@ -77,6 +77,7 @@ and that concludes this section.
 ---
 ### **Conditional Probability Chain Rule**
 
+Hm.... hold my beer. 
 
 ---
 ### **Conditional Distribution**
@@ -94,13 +95,13 @@ $$
 \end{aligned}
 $$
 
-Take note that, there is a slight difference in the subscript, and the equality is that: 
+take note that, there is a slight difference in the subscript, and the equality is that: 
 
 $$
 p_{X, Y}(x, y) = p_{X|Y}(y|x)p_X(x). 
 $$
 
-The formlas of conditional distribution for random variable that is continuous and discrete variables are the same. 
+The formulas of conditional distribution for random variable that is continuous and discrete variables are the same. 
 
 ---
 ### **Marginal Distributions**
