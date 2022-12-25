@@ -1,4 +1,4 @@
-[[Bayes Theorem]], [[Expectation of Random Variables]], [[PDFs, PMFs]]
+[[Bayes Theorem]], [[Expectations of Random Variables without Sigma Algebra]], [[PDFs, PMFs]]
 
 
 ---
@@ -96,8 +96,6 @@ $$
 =
 \sum_{x\in \Omega_X}^{}g(x)p_{X, Y}(x|y), 
 $$
-
-
 
 ---
 ### **Law of Total Expectation**

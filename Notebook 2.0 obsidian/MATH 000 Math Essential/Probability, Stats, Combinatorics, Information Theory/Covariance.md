@@ -1,4 +1,4 @@
-Covariance needs [[Expectation, Variance of Random Variables]]
+Covariance needs [[Expectations of Random Variables without Sigma Algebra]]. 
 
 
 ---
@@ -33,11 +33,11 @@ If 2 random variable is independent, then their covariance will be zero, the con
 4. $\text{Cov}\left(X + c,Y\right) = \text{Cov}\left(X,Y\right)$, Shift invariance. It's the same if we shift any/both of the variable by some constant. 
 5. $\text{Cov}\left(aX + bY, Z\right) = a\text{Cov}\left(X,Z\right) + b \text{Cov}\left(Y,Z\right)$. It's Collinear. 
 6. $\text{Var}\left[X + Y\right] = \text{Var}\left[X\right] + \text{Var}\left[Y\right] + 2 \text{Cov}\left(X,Y\right)$, think of the quadratic formula for $(X + Y)^2$ to remember this. 
-7. $\text{Cov}\left(\sum_{i = 1}^{n}X_i,\sum_{i = 1}^{n}Y_i\right) = \sum_{i = 1}^{n}\sum_{i = 1}^{m}\text{Cov}\left(X_i,Y_j\right)$
+7. $\text{Cov}\left(\sum_{i = 1}^{n}X_i,\sum_{i = 1}^{m}Y_i\right) = \sum_{i = 1}^{n}\sum_{i = 1}^{m}\text{Cov}\left(X_i,Y_j\right)$, a general results from property 5. 
 
 Property 5, 6, 7 are interesting, let's look into it. 
 
-**Property 5**
+**Property 5: Collinearity**
 
 $$
 \begin{aligned}
@@ -62,8 +62,6 @@ $$
     a \text{Cov}\left(X,Z\right) + b \text{Cov}\left(Y,Z\right)
 \end{aligned}
 $$
-
-An alternative proof involves using **property 5** 
 
 **Property 6**
 
@@ -97,20 +95,24 @@ $$
 
 **Property 7**
 
-Use property 5 to prove this one, it's trivial, skipped. 
+Use property 5 to prove this one, it's trivial and left as an exercise for the readers. 
 
 ---
 ### **Examples and Stuff**
+
+**Application: Pearson Correlation Coefficients**
 
 > One of the important applications of the covariance is the Pearson's correlations, which is computed via: 
 
 $$
 \rho(X, Y) = 
 \frac{\text{Cov}\left(X,Y\right)}
-{\sqrt{\text{Var}\left[X\right]\text{Var}\left[Y\right]}}
+{\sqrt{\text{Var}\left[X\right]\text{Var}\left[Y\right]}}, 
 $$
 
-Like that, nothing spetial. 
+immediately observe that using property 2., the Pearson correlation coefficient of the variables with itself is the always 1. 
+
+**Example 1:** 
 
 > Given $Y = aX +b$, find $\text{Cov}\left(X,Y\right)$
 
@@ -127,6 +129,8 @@ $$
     a \text{Var}\left[X\right] + 0
 \end{aligned}
 $$
+
+**Example: Variance of Sum**
 
 > Given the sum of random variables, say $\sum_{i} X_i$, find the variance of the sum. First assume no independence, and then assume independence, give results for both type of assumptions. 
 
@@ -166,10 +170,11 @@ $$
     \right)
     +
     \sum_{i = 1}^{n}
-        \text{Var}\left[X_i\right]
+        \text{Var}\left[X_i\right], 
 \end{aligned}
 $$
 
+notice that assuming independence of the random variables, then the sum of the variance is the variance of the sum. 
 
 
 

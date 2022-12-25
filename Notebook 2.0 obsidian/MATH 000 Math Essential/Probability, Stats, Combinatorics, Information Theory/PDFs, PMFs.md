@@ -72,3 +72,8 @@ p_{X, Y}(x, y)
 $$
 
 If, $X$ and $Y$ are independent, each having their own **independent probability** distribution, say: $p_X$, a univariate function and $p_Y$ also univariate, then their joint distribution is:$p_{X, Y} =p_X(x)p_Y(y)$. 
+
+
+---
+### **Probability Density Function Transformations**
+

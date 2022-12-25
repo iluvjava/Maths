@@ -1,6 +1,6 @@
-Let's talked about Order statistics here. 
-[[Expectation, Variance of Random Variables]]
-[[PDFs, PMFs]]
+Let's talk about Order statistics here. 
+[[Expectations of Random Variables without Sigma Algebra]], 
+[[PDFs, PMFs]], 
 [[IDD RVs]]
 
 ---
@@ -21,9 +21,5 @@ Then, (This is given as a fact) the PDF for the rv $X_{(j)}$ is given as:
 > F(x)^{j - 1}(1 - F(x))^ {n - j}f(x)
 > $$
 
-Where $F(x), f(x)$ are the CDF, PDF for the random variable.  
-
-Note that, there are some kind of Binomial Distribution involved, and it shouldn't be surprising, because, we are looking for the number of combinations were $(n - j)$ number of observation is larger than a value: $x$. 
-
-This just a fact that can be directly applied.  
+Where $F(x), f(x)$ are the CDF, PDF for the random variable.  Note that, there are some kind of Binomial Distribution involved, and it shouldn't be surprising, because, we are looking for the number of combinations were $(n - j)$ number of observation is larger than a value: $x$. This just a fact that can be directly applied.  
 

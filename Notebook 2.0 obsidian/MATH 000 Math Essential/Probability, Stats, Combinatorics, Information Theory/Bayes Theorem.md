@@ -1,5 +1,5 @@
 Bayes Theorem
-[[PDFs, PMFs]]
+[[PDFs, PMFs]], 
 Here are some reference in use: 
 
 [Explain Bayes like I am Five](https://towardsdatascience.com/all-about-naive-bayes-8e13cef044cf)
@@ -26,7 +26,7 @@ $$
 \mathbb{P}\left(B|A\right)\mathbb{P}\left(A\right)
 $$
 
-Which is just $\mathbb{P}\left(A\wedge B\right)$
+Which is just $\mathbb{P}\left(A\cap B\right)$
 
 **Interpretations** 
 

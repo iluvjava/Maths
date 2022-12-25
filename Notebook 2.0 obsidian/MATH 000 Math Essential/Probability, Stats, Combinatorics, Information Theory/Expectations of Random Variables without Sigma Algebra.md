@@ -34,8 +34,8 @@ $$
     \right]
     \\
     &= 
-    \sum_{j \in Z}^{}\mathbb{E}\left[
-        \mathbb 1\{X\ge j\}
+    \sum_{j \in \mathbb Z}^{}\mathbb{E}\left[
+        \mathbf 1\{X\ge j\}
     \right]
     \\
     &= 
@@ -64,8 +64,20 @@ $$
 \end{aligned}
 $$
 
-and we skip the proof here. 
+and we skip the proof here. Additionally, if the transformation function is of joint variables of $X, Y$ we have: 
 
+$$
+\begin{aligned}
+    \mathbb{E}\left[g(X, Y)\right] = 
+    \iint_{\mathbb R^2}^{} 
+        g(x, y) f_{X, Y}(x, y)
+    dxdy. 
+\end{aligned}
+$$
+
+**Remarks**
+
+This law is very non-trivial and its derivations in the most general case involving only the use of sigma algebra and probability measure is unclear to me. I haven't found references that uses an Lebesgue integral approach to derive the above law. For statisticians and daily practitioners of statistics, the above state should suffice most applications. 
 
 ---
 ### **Independent Expectations**

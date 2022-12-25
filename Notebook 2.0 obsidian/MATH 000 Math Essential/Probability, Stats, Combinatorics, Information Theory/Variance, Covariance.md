@@ -1,0 +1,49 @@
+[[Expectations of Random Variables without Sigma Algebra]]
+
+---
+### **Intro**
+
+A variance measures how spread out a probability density function is. The construction of this particular concept is based on the idea of expected value. Let $X$ be an random variable then the variance is: 
+
+$$
+\begin{aligned}
+    \text{Var}\left[X\right]
+    &= 
+    \mathbb{E}\left[(X - \mathbb{E}\left[ X\right])^2\right]
+    \\
+    &= 
+    \mathbb{E}\left[X^2\right] - \mathbb{E}\left[X\right]^2, 
+\end{aligned}
+$$
+
+and similarly, covariance is a measure of underly linearity correlations between 2 random variable $X, Y$, and it's computed using the formula: 
+
+$$
+\begin{aligned}
+    \text{Cov}[X, Y] &= 
+    \mathbb{E}\left[(X - \mathbb{E}\left[X\right])(Y - \mathbb{E}\left[Y\right])\right], 
+\end{aligned}
+$$
+
+when the variable $X, Y$ are independent, then the variance between the 2 variables is zero. However, the converse statement is not true, and even if $X, Y$ are dependent, it can still be the case that their covariance is zero. For more information about covariance, see [[Covariance]] for a better coverage of the topic. And one important formula from the concepts of covariance is the variance of the sum of 2 dependent variable, which is give as: 
+
+$$
+\begin{aligned}
+    \text{Var}\left[X + Y\right] = 
+    \text{Var}\left[X\right] + \text{Var}\left[Y\right] + 
+    2\text{Cov}(X, Y). 
+\end{aligned}
+$$
+
+The concept of convariance is nothing scary. 
+
+---
+### **Variance Measure**
+
+
+---
+### **Empiracal Measure of Variance**
+
+
+
+

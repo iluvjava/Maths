@@ -1,5 +1,5 @@
 We need this for machine learning. 
-[[Expectation of Random Variables]]
+[[Expectations of Random Variables without Sigma Algebra]]
 
 Here is the wiki [here](https://www.wikiwand.com/en/Entropy_(information_theory))
 

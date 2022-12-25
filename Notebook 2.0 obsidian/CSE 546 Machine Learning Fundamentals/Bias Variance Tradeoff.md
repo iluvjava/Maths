@@ -1,53 +1,36 @@
-This is going to be a variable important concept that governs the realm of over-fitting and under-fitting. 
-[[Performance Metric]], 
+See [[Performance Metric]] first. 
 
-And, this is a very fundamental concept in statistical learning, here is a good resource that talks about it: 
-
-[link](http://scott.fortmann-roe.com/docs/BiasVariance.html) to Understanding the Bias and Variance Trade off. 
-
-We will use some knowledge from [[Expectation of Random Variables]] to manipulate the math a bit. 
-
-And the proof is here: [Wiki Link](https://www.wikiwand.com/en/Bias%E2%80%93variance_tradeoff)
+Relavent resources: 
+- [link](http://scott.fortmann-roe.com/docs/BiasVariance.html) to Understanding the Bias and Variance Trade off. 
+- We will use some knowledge from [[Expectations of Random Variables without Sigma Algebra]] to manipulate the math a bit. 
+- And the proof is here: [Wiki Link](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff)
 
 ---
 ### **Intro**
 
-When a trained model tries to predict something, there are 2 type of errors that arises. 
+When a trained model tries to predict something, there are 2 type of errors: 
 
-1. Error due the variance.
-2. Error due to bias. 
-   
-Errors of these 2 types are connected in some ways. 
+1. Error due the variance of the distributions.
+2. Error due to bias of the model. 
 
 **Errors Due to Biases**
 
-Assume that, a lot of models are trained using different samples draw from the populations. (Ideally, infinitely many such models are trained.)
-
-Then, the difference between the expected value of all the models and the actual ground truth expectation of the data. 
-
+> Infinite number of the same models are trained using the distribution of the data from the populations using finite many data. Then, the difference between the expected value of the predicted value of a given input of all the models and the actual ground truth expectation of the data is the error due to biases of the model. 
 
 **Errors Due to Variance**
 
-The variability of the prediction made by all different kind of models we trained. 
+> The variability of the prediction made by all different kind of models we trained using a finitely data. 
 
 **Mathematical Definition**
 
-Assume an underlying generative model of the form: 
-
-$$
-Y = f(X) + \epsilon
-$$
-
-Where $\epsilon$ is some kind of noise with some kind of distribution that has a variance of $\sigma_\epsilon$ and a mean of $0$. 
-
-And let the model $\hat{f}(x)$ be our estimate of the model using observation. 
+Assume an underlying generative model of the form: $Y = f(X) + \epsilon$ where $\epsilon$ is some kind of noise with some kind of distribution that has a variance of $\sigma_\epsilon$ and a mean of $0$. Let the model $\hat{f}(x)$ be our estimate of the model using a set of observations, then the squared error of the predicted values can e decomposed into the sum of the 2 errors, mathematically given as: 
 
 $$
 \text{Err}(x) = \mathbb{E}\left[(Y - \hat{f}(x))^2\right]
 =
 \mathbb{E}\left[(Y - f(x))^2\right]
  + 
-\mathbb{E}\left[(f(x) - \hat{f}(x))^2\right]
+\mathbb{E}\left[(f(x) - \hat{f}(x))^2\right],
 $$
 
 And this is the components of the learning errors of a trained model. 
