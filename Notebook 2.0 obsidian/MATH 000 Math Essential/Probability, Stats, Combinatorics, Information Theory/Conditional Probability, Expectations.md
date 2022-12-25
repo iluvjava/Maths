@@ -8,7 +8,7 @@ A conditional probability is a way of measuring the probability of an event give
 1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same events. 
 2. $\mathbb P(A|B) = 0$ if $A = B^C$. 
 
-In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. 
+In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. At the end we look over some of the classical, non-trivial applications of the conditional expectations. Material presented here worth the weight of a Junior Probability theory class in a decent university. 
 
 **Fundamental Laws of Joint Probability** 
 
@@ -33,6 +33,50 @@ This is not a definition, but rather a way we can compute the conditional probab
 
 **Terminology**: 
 A posterior probability refers to $\mathbb P(A|B)$, and the prior probaility of that posterior is $P(B)$. 
+
+---
+### **Disjoint Sums of Conditional Probability**
+
+> Disjoint decomposition. The probability of any event $A$ can be given by: 
+> 
+> $$
+> \begin{aligned}
+>     \mathbb P(A) &= \mathbb P(A|B)\mathbb P(B) + \mathbb P(A|B)\mathbb P(B^C). 
+> \end{aligned}
+> $$
+
+To prove we use the definition of conditional probability. Consider: 
+
+$$
+\begin{aligned}
+    & \mathbb P(A|B)\mathbb P(B) + \mathbb P(A|B^C)
+    \\
+    =&
+    \frac{\mathbb P(A\cap B)}{\mathbb P(B)} \mathbb P(B) + 
+    \frac{\mathbb P(A\cap B^C)}{\mathbb P(B^C)}
+    \\
+    =&
+    \mathbb P(A \cap B) + \mathbb P(A\cap B^C)
+    \\
+    =& \mathbb  P((A\cap B)\cup (A\cap B^C)) =  \mathbb 
+    P(A), 
+\end{aligned}
+$$
+
+Where on the last line, we used basic property of the sets and the property of a probability measure. In general, assume that a sequence of disjoint events $B_i$ for $1 \le i \le n$ such that it partition the whole event space, the probability of any event $A$ can be expressed as: 
+
+$$
+\begin{aligned}
+    \mathbb P(A) &= 
+    \sum_{i=1}^{n}\mathbb  P(A|B_i)\mathbb P(B_i), 
+\end{aligned}
+$$
+
+and that concludes this section. 
+
+---
+### **Conditional Probability Chain Rule**
+
 
 ---
 ### **Conditional Distribution**
@@ -153,7 +197,7 @@ $\blacksquare$
 
 We illustrate the use of conditional expectation and probability using some simple examples. 
 
-**Exponential Uniform Draws**:
+**Exponential, Uniform Draws**:
 
 > $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{unif}(0, 1)$ until The first $T$ (The number of draws) time $Y$ is less than $X$. Find the expected value of $T$. 
 
@@ -277,8 +321,21 @@ $$
 
 **Explanation:**
 
-(1): By the law of total expectation. 
+- (1): By the law of total expectation. 
+- (2): By the linearity of the expected operator. 
+- (3): The random variable $X_i$ all has the same expected value. 
 
-(2): By the linearity of the expected operator. 
+**The Monty Hall Problem**
 
-(3): The random variable $X_i$ all has the same expected value. 
+> There are 3 doors, one contains a goat and the other one contains a car. The contestant is asked to choose one of the doors at the start and the anouncer will anounce the unchosen door with/without a goat in it. There are 2 strategies based on a binary choice: 
+> 1. The contestant always choose to swtich to another door that is not yet opened. 
+> 2. The contestant always choose the current door. 
+
+First observe that trivially, if we don't switch, then the probability of wining the car is $\frac{1}{3}$. Let the event $C$ be the door after we switched has the car. Let the event $B$ be that, the first door we chose has the car in it. Then $\mathbb P(C) = \mathbb  P(C|B)P(B)  + \mathbb P(C|B^C)P(B^C)$. Then
+1. $\mathbb P(C|B)$ is the probability of getting the car if we always switch given that the door we first choose has the car in it. This is zero because we switched away from the right choice.  
+2. $\mathbb P(C|B^C)$, given that we didn't choose the car at first, then the car is in the remaining 2 doors. 
+   1. If one of the unchosen door is revealed to be empty, and the door we currently chosen is not the one with the car, then the other door must have the car, and this is certain hence we have $1$ for this. 
+   2. If one the unchosen door is revealed to be empty, and the door we currently chosen doesn't have the car, then the car must be in the remaining door. This is with 100%.
+   3. It's certain under both cases, therefore $\mathbb P(C|B^C) = 1$
+
+Therefore, $\mathbb P(C) = 0 + 2/3 = 2/3$. Switching the door gives higher probability of getting the car at the end. 

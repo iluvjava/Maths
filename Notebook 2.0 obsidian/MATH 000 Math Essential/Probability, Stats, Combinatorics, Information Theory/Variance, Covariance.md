@@ -38,12 +38,14 @@ $$
 The concept of convariance is nothing scary. 
 
 ---
-### **Variance Measure**
-
-
----
 ### **Empiracal Measure of Variance**
 
+Given sample $\{x_i\}_{i = 1}^n$ for a random variable, the sample variance is denoted by $S_X^2$ can be computed via
 
+$$
+S_X^2 = \frac{1}{n - 1}\sum_{i = 1}^{n}(x_i - \bar x)^2, 
+$$
+
+and the fraction below is called the bessel's correction. It's taking into account of the fact that, the sample mean $\bar x$, is computed using the sample instead of known in prior, hence it introduces a bias. To see how it make sense, notice that $n = 1$ is banned by the expression, meaning that we at leanst need 2 samples to compute the variance; which makes intuitive sense. 
 
 
