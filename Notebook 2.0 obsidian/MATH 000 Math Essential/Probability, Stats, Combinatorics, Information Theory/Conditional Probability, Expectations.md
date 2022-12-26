@@ -336,7 +336,7 @@ First observe that trivially, if we don't switch, then the probability of wining
 1. $\mathbb P(C|B)$ is the probability of getting the car if we always switch given that the door we first choose has the car in it. This is zero because we switched away from the right choice.  
 2. $\mathbb P(C|B^C)$, given that we didn't choose the car at first, then the car is in the remaining 2 doors. 
    1. If one of the unchosen door is revealed to be empty, and the door we currently chosen is not the one with the car, then the other door must have the car, and this is certain hence we have $1$ for this. 
-   2. If one the unchosen door is revealed to be empty, and the door we currently chosen doesn't have the car, then the car must be in the remaining door. This is with 100%.
+   2. If one the unchosen door is revealed to be contain the goat, and the door we currently chosen doesn't have the car, then the car must be in the remaining door. This is with 100%.
    3. It's certain under both cases, therefore $\mathbb P(C|B^C) = 1$
 
 Therefore, $\mathbb P(C) = 0 + 2/3 = 2/3$. Switching the door gives higher probability of getting the car at the end. 

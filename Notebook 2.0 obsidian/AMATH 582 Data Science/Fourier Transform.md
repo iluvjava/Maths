@@ -67,7 +67,7 @@ Please note that there is a shifting for the frequencies domain, and we need to 
 This is the case due some of the subtleties involved in the Discrete Fourier Transform Algorithm .
 
 **NOTE**: 
-The Fourier Transform of the Guassian is the Guassian. 
+The Fourier Transform of the Gaussian is the Gaussian. 
 
 To compute the shifted multiplier for FFT derivative, this is the procedures for doing so. 
 ```matlab
