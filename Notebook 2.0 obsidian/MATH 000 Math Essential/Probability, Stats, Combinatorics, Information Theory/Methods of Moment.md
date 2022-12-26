@@ -11,6 +11,3 @@ Reference Materials:
 The idea is to identify the empirically, what are the statistical moment for the random variable, and then use it to guess the underlying moment generating functions with prior assumptions about the moment generating functions behind the distribution. This method is an alternative to the maximum likelihood estimator. 
 
 
-
----
-
