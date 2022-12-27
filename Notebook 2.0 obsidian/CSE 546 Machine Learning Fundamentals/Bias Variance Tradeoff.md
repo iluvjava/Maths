@@ -13,7 +13,7 @@ When a trained model tries to predict something, there are 2 type of errors:
 1. Error due the variance of the distributions.
 2. Error due to bias of the model. 
 
-**Errors Due to Biases**
+**Errors Due to Biase**
 
 > Infinite number of the same models are trained using the distribution of the data from the populations using finite many data. Then, the difference between the expected value of the predicted value of a given input of all the models and the actual ground truth expectation of the data is the error due to biases of the model. 
 
@@ -23,7 +23,7 @@ When a trained model tries to predict something, there are 2 type of errors:
 
 **Mathematical Definition**
 
-Assume an underlying generative model of the form: $Y = f(X) + \epsilon$ where $\epsilon$ is some kind of noise with some kind of distribution that has a variance of $\sigma_\epsilon$ and a mean of $0$. Let the model $\hat{f}(x)$ be our estimate of the model using a set of observations, then the squared error of the predicted values can e decomposed into the sum of the 2 errors, mathematically given as: 
+Assume an underlying generative model of the form: $Y = f(X) + \epsilon$ where $\epsilon$ is some kind of noise with some kind of distribution that has a variance of $\sigma_\epsilon$ and a mean of $0$. Let the model $\hat{f}(x)$ be our estimate of the model using a set of observations (This is in fact, a random variable determined by a finite number of draws from the data-set and training the network using some algorithm), then the squared error of the predicted values can be decomposed into the sum of the 2 errors, mathematically given as: 
 
 $$
 \text{Err}(x) = \mathbb{E}\left[(Y - \hat{f}(x))^2\right]
@@ -38,23 +38,22 @@ And this is the components of the learning errors of a trained model.
 ---
 ### **Proof**
 
-We are going to use some algebra tricks for this one and it's like: 
+observe:
 
 $$
-\mathbb{E}\left[
-        (Y + f(x) - f(x) - \hat{f}(x))^2
-    \right]
+\begin{aligned}
+    &\mathbb{E}\left[
+            (Y + f(x) - f(x) - \hat{f}(x))^2
+        \right]
+    \\
+    =& 
+    \mathbb{E}\left[
+            (Y - f(x))^2 + 2(Y - f(x))(f(x) - \hat{f}(x)) + (f(x) - \hat{f}(x))^2
+        \right].
+\end{aligned}
 $$
 
-Which we then use the quadratic equation to get the expression that: 
-
-$$
-\mathbb{E}\left[
-        (Y - f(x))^2 + 2(Y - f(x))(f(x) - \hat{f}(x)) + (f(x) - \hat{f}(x))^2
-    \right]
-$$
-
-We assume that the random variable $\hat{f}(x)$ is independent of the noise $\epsilon$, then we can say that the cross term looks like: 
+Assume the random variable $\hat{f}(x)$ is *independent of the noise* $\epsilon$, then we can say that the cross term looks like: 
 
 $$
 \mathbb{E}\left[
@@ -71,9 +70,7 @@ $$
     \right] = 0
 $$
 
-This part is by the independence. and the fact that the expected value of $\epsilon$ is zero, we know that the expected value of the cross term in fact zero. 
-
-Hence, the bias and variance trade off theorem can be ultimately written like: 
+This part is by the independence. and the fact that the expected value of $\epsilon$ is zero, we know that the expected value of the cross term in fact zero. Hence, the bias and variance trade off has
 
 $$
 \text{Err}(x) = 
@@ -96,10 +93,10 @@ $$
             f(x) - \mathbb{E}\left[\hat{f}(x)\right] + 
             \mathbb{E}\left[\hat{f}(x)\right] - \hat{f}(x)
         \right)^2
-    \right]
+    \right],
 $$
 
-Just expanding the inside we have the expression that: 
+expand inside
 
 $$
 \left(
@@ -115,12 +112,10 @@ $$
 + 
 \left(
     \mathbb{E}\left[\hat{f}(x)\right] - \hat{f}(x)
-\right)^2
+\right)^2,
 $$
 
-Using the assumption that the noise is independence of the variable model $\hat{f}(x)$ produced, the cross term in the middle has expectation of zero. 
-
-Now we are left with 2 terms and this is like:
+using the assumption that the noise is independence of the variable model $\hat{f}(x)$ produced, the cross term in the middle has expectation of zero. Now we are left with 2 terms and this is like:
 
 $$
 \text{Learning Error}
@@ -142,8 +137,8 @@ $$
 
 And take note that, the learning errors consist of 2 pars too: 
 
-3. This is the **Bias**, like, it's possible that our model could be off for some reasons, due to the limitation of our model. 
-4. This is the **Variance**. This is he variance of the models we produce. Some of the learning errors created could just be the variance of the model. To overcome this. This is the term that govern the realm of over-fittings. 
+1. This is the **Bias**, like, it's possible that our model could be off for some reasons, due to the limitation of our model. It's there if the model $f(x)$ just cannot fit the random variable $Y$ by its expected value perfectly. 
+2. This is the **Variance**. This is he variance of the models we produce. Some of the learning errors created could just be the variance of the model. To overcome this. This is the term that govern the realm of over-fittings. 
 
 THIS, is the variance and the bias that we are going to be focus on for training machine learning models. 
 
@@ -157,11 +152,9 @@ $$
 \right)^2
 $$
 
-**Question**: 
+**Remarks**
 
-Why the proof feels so weird? 
-
-Because we are making something out of nothing, the induction of the terms: $f(x), \mathbb{E}\left[\hat{f}(x)\right]$ is just a matter of intuitive understanding of the matter instead of something that is based on theorem and axioms.
+This is somewhat similar to the variance derivation for the variance explained and variance unexplained stuff for simple statistical regression. 
 
 ---
 ### **Model Complexity**
