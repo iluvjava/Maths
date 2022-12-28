@@ -6,7 +6,8 @@
 
 Infinite probability spaces are used for a set of outcomes $\Omega$ that is infinite.
 
-**Disclaimer**: The textbook only uses infinite coin toss to introduce the concept, negating the mathematical rigoriosity. And for the purpose of the class, it's enough and the lesson will be true, in spirit. 
+**Disclaimer**: 
+The textbook only uses infinite coin toss to introduce the concept, negating the mathematical rigor. And for the purpose of the class, it's enough and the lesson will be true, in spirit. 
 
 ---
 ### **Intersection of $\sigma$ Algebra**
@@ -18,9 +19,7 @@ $$
 \bigcap_{i\in I} \mathcal{F}_i \text{ is $\sigma$ alg}
 $$
 
-Because, $\emptyset$ and $\Omega$ is in the set trivially, all sigma algebra contains these 2 sets. 
-
-If $A$ is in $\bigcap_i\mathcal{F}_i$, then then certainly $A^C$ is in $\bigcap_i F_i$ because each sigma algebra has $A^C$, therefore, $A^C$ is in the intersections of all $\sigma$ Algebra. 
+Because, $\emptyset$ and $\Omega$ is in the set trivially, all sigma algebra contains these 2 sets. If $A$ is in $\bigcap_i\mathcal{F}_i$, then then certainly $A^C$ is in $\bigcap_i F_i$ because each sigma algebra has $A^C$, therefore, $A^C$ is in the intersections of all $\sigma$ Algebra. 
 
 
 ---
@@ -33,7 +32,7 @@ $\mathcal{A}\subset \Omega$, then a $\sigma$ algebra can be generated on this su
 
 **Minimality**
 
-> The sigma algebra generated will be the minimal. Which means that, almong all the possible simgma algebra containing the set $\mathcal{A}$, the generaeted set will be the smallest. 
+> The sigma algebra generated will be the minimal. Which means that, among all the possible sigma algebra containing the set $\mathcal{A}$, the generated set will be the smallest. 
 
 This is important to generating uncountable probability spaces. 
 

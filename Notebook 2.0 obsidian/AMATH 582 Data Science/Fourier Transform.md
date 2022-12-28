@@ -2,27 +2,25 @@ prereq: [[Fourier Transform Fourier Series]]
 
 
 ---
-### Intro
+### **Intro**
 
-The Fourier transform is a more advanced Fourier series where we are going to focus on the infinite domain of a function. 
+The Fourier transform is a more advanced form of Fourier series where we are going to focus on the infinite domain for a function, and we are interested in expanding the Fourier coefficients from the set of natural number to all the real numbers. In this section define what it is and avoid going into the detailed analysis of the transform. Firstly, the function goes from an infinite sum of the weighted Trigs functions into a continuous mapping from the input domain to the Frequencies domain of the function.  
 
-Firstly, the function goes from an infinite sum of the weighted Trigs functions into a continuous mapping from the input domain to the Frequencies domain of the function.  
+ **Fourier transform**
+> 
+> $$
+> F(k) = 
+> \frac{1}{\sqrt{2\pi}}
+> \int_{-\infty}^{\infty} e^{-ikx}f(x)dx
+> $$
 
-This is the Transformation Formula: 
+**Inverse Fourier transform**
 
-$$
-F(k) = 
-\frac{1}{\sqrt{2\pi}}
-\int_{-\infty}^{\infty} e^{-ikx}f(x)dx
-$$
-
-And the inverse transform is gonna be: 
-
-$$
-f(x) = \frac{1}{\sqrt{2\pi}}
-\int_{-\infty}^{\infty}
-F(k)e^{ikx}dk
-$$
+> $$
+> f(x) = \frac{1}{\sqrt{2\pi}}
+> \int_{-\infty}^{\infty}
+> F(k)e^{ikx}dk
+> $$
 
 Take note that there are many different weight can be attached to the integral, but the key here is after a Fourier and the Inverse transform, the weight should allowed it transform back to the original function.  
 
@@ -32,11 +30,11 @@ It transform something from the data domain to the Frequencies Domain.
 **Properties**
 Derivative, ODEs, Please refer to the prereq. 
 
-
 **NOTE**
 Fourier transform on the infinite domain is only possible for function that is bounded on the infinite domain. 
 
-### FFT
+---
+### **FFT**
 
 This algorithm is fast and it will be the thing we will leverage. 
 1. $\mathcal{O}(N\log{N})$
@@ -51,7 +49,7 @@ We can move the function to a $[0, L]$ domain and only uses the $\sin$ or $\cos$
 `fft`, `dct`, `dct`. 
 
 
-### MATLAB Implementations 
+### MATLAB Commands 
 ```matlab
 L = 20;
 n = 128; 

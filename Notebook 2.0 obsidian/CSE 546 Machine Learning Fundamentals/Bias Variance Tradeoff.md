@@ -13,7 +13,7 @@ When a trained model tries to predict something, there are 2 type of errors:
 1. Error due the variance of the distributions.
 2. Error due to bias of the model. 
 
-**Errors Due to Biase**
+**Errors Due to Biases**
 
 > Infinite number of the same models are trained using the distribution of the data from the populations using finite many data. Then, the difference between the expected value of the predicted value of a given input of all the models and the actual ground truth expectation of the data is the error due to biases of the model. 
 
@@ -84,7 +84,7 @@ $$
 1. **Irreducible error**, and this is independent of the random variable $\hat{f}(x)$, which is the model we trained using some given samples. 
 2. And the second term is the **Learning Error**. This can be reduce by make a lot of observations, and it's the error we will be working on. 
 
-**Looking at the Learning Error more closely** 
+**Looking at the learning error more closely** 
 
 $$
 \text{Learning Error} = 
@@ -162,7 +162,6 @@ This is somewhat similar to the variance derivation for the variance explained a
 > The variance increases with the complexity of the model and the biases will increase as the models get too simple. 
 
 ![[bias-variance-tradeoff.png]]
-
 
 ---
 ### **Example Analysis: Linear Regression**
