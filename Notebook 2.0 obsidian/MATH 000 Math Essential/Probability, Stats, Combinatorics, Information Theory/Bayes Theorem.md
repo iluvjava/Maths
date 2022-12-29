@@ -61,9 +61,7 @@ People who actually have that disease and they actually got tested positive on t
 ---
 ### **Naive Bayes**
 
-However, it might be better to also consider the more general context. 
-
-Ok, if you see something that is red, and you want to classify it, then you should have an idea of all the things that is red in your head. 
+If you see something that is red, and you want to classify it, then you should have an idea of all the things that is red in your head. 
 
 > It's unlikely water is red, because it's never observed, and it's highly likely that ripe apple is red, because that is observed a lot. This is Naive Bayes. The Naive part is the assumption that attributes are independent from each other. 
 
@@ -72,9 +70,7 @@ Assume 3 attributes are observed for classifying fruits:
 2. Taste:  $T$ 
 3. Color: $C$
 
-Given that a fruit is long sweet and yellow, what is the probability that it's a banana? 
-
-Written in math it's: 
+Given that a fruit is long sweet and yellow, what is the probability that it's a banana? Written in math it's: 
 
 $$
 \mathbb{P}\left(F = \text{banana}
@@ -84,9 +80,7 @@ L = \text{long}\wedge T = \text{sweet} \wedge C = \text{Yellow}
 \tag{1}
 $$
 
-That is the same thing as saying that, among all fruits that I have seen where it's long, sweet and yellow, what portion of them are bananas? 
-
-Here, we assume that each observations on the random variable $L, T, C$ are independent random variables, hence, the probability of observing them at the same time it's just all of them multiplied together. 
+That is the same thing as saying that, among all fruits that I have seen where it's long, sweet and yellow, what portion of them are bananas? Here, we assume that each observations on the random variable $L, T, C$ *are independent* random variables, hence, the probability of observing them at the same time it's just all of them multiplied together. 
 
 And then the probability of (1) will be given by: 
 
@@ -102,8 +96,9 @@ $$
 $$
 
 Numerator: Among all the bananas, how many of them are long, sweet and yellow. 
-Denominator: How many of fruits are long, sweet, and Yellow? 
+Denominator: How many of fruits are long, sweet, and Yellow? Observe that if it's given that: a fruit is a banana if and only if it's long sweet and yellow, then the numerator is now $\mathbb P(L=\text{long}\wedge T=\text{sweet}, Y=\text{yellow})$, which by probability independence, it will get simplified to the denominator. 
 
 ---
 ### **Multi-Labels Classifications**
+
 

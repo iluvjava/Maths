@@ -1,5 +1,4 @@
 [[Subgradient and Subdifferential Definition]]
-[[CPP MultiStage Compilation]]
 [[Epigraph]]
 [[Support Function]]
 
