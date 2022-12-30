@@ -1,4 +1,4 @@
-1. [[Global Lipschitz Gradient Strong Smoothness]]
+1. [[Global Lipschitz Gradient, Strong Smoothness, Euivalences and Implications]]
 2. [[Characterizing Functions for Optimizations]]
 
 ---

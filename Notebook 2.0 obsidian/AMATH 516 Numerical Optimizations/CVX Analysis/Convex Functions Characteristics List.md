@@ -1,5 +1,5 @@
-[[Convex Sets Intro]]
-[[Characterizing Functions for Optimizations]]
+[[Convex Sets Intro]],
+[[Characterizing Functions for Optimizations]],
 [[Subgradient and Subdifferential Definition]]
 
 ---
@@ -63,7 +63,7 @@ The definition of Lipchitz is in [[Lipschitz Continuity]], and the proof and det
 
 For more details about it see [[Convex Function is Locally Lipschitz]] for more expositions. 
 
-
+---
 ### **Convex Functions with Gradients**
 
 For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. For the smooth case, please refer to [[Differential Characterization of Smooth Convexity]], where we present most of the important properties for convex function that has gradient to them. 

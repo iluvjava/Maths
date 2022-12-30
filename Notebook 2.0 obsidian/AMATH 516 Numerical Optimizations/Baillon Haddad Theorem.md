@@ -1,5 +1,5 @@
 1. [[Convex Conjugation]]
-3. [[Global Lipschitz Gradient Strong Smoothness]]
+3. [[Global Lipschitz Gradient, Strong Smoothness, Euivalences and Implications]]
 4. [[Characterizing Functions for Optimizations]]
 
 ---

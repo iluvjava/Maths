@@ -2,7 +2,7 @@ prereq:
 * [[Subgradient and Subdifferential Definition]]
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
-* [[Global Lipschitz Gradient Strong Smoothness]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+* [[Global Lipschitz Gradient, Strong Smoothness, Euivalences and Implications]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
   [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
 ---
@@ -304,7 +304,7 @@ and this is direct by the strong convexity definition substituting in the optima
 > \end{aligned}
 > $$
 
-Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient Strong Smoothness]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
+Here we use the additional fact that the Hessian for $l(x)$ has a bounded operator norm that is $< \beta$. Using the a non-trivial property of smoothness [[Global Lipschitz Gradient, Strong Smoothness, Euivalences and Implications]] of the upper envelope function $m^+(x)$ and the fact that $P(x)$ the projected gradient is the minimizer for the envelope function, we can derive the inequality 
 
 $$
 \begin{aligned}

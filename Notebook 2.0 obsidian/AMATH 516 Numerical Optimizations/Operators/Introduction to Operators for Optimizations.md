@@ -39,14 +39,15 @@ For simplicity we use the 2 norm to formulate the definition. And please observe
 For example, the subgradient operator of a convex function is monotone. 
 
 **Strongly Monotone Operator**: 
+> A monotone operator $T$ is strongly monotone with parameter $m$ if $\langle Tx - Ty, x - y\rangle \ge m \Vert x - y\Vert^2$ for all $x, y\in \mathbb E$. 
 
-
+For example, the subgradient of a strongly convex function is a strongly monotone operator. 
 
 
 ---
 ### **Fixed Points of the Operator**
 
-> When $f$ is nonexpansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
+> When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
 > \begin{aligned}
@@ -82,22 +83,22 @@ And the last line suggest that the point $Fz$ must lies on the line segment $[0,
 ### **An Averaged Operator**
 
 
-**Definition**: 
+**Definition: Averaged Operator**
 
-> Let $F$ be an averated operator then $F := (1 - \theta) I + \theta G$ where $\theta \in (0, 1)$, and $G$ has to be a nonexpansive operator. Consequently, the fixed point of $F$ will have to be a fixed point of $G$ as well. 
+> Let $F$ be an averaged operator if $F := (1 - \theta) I + \theta G$ where $\theta \in (0, 1)$, and $G$ has to be a non-expansive operator. Consequently, the fixed point of $F$ will have to be a fixed point of $G$ as well. 
 
 
 **Properties**:
 1. The set of averaged operator is closed under composition. 
 2. It's definitely a subset of Lipschitz Operators. 
 
-**Theorem: Averaged Operator has Fixed Point Convergence**
+**Theorem: Averaged Operator has Fixed Point Convergence (Fejer Convergence)**
 
 > Let $F$ be an averaged operator, then the fixed point iterations, defined as $x^{(k + 1)} = Fx^{(k)}$ monotonically converges to a point on the fixed point set of the operator, provided that the fixed poin set $X$ exists. Additionally, the rate of convergence is $\mathcal O(1/\sqrt(k))$. 
 
 **Proof**
 
-Observe the following tweak of Jensen's inequality is true: 
+From [[Tweaked Jensen's Inequality]]: 
 
 $$
 \begin{aligned}
@@ -106,7 +107,7 @@ $$
 \end{aligned}
 $$
 
-which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is nonexpansive. We denote an fixed point $\bar x\in X$, we start by considering that: 
+which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is non-expansive. We denote an fixed point $\bar x\in X$, we start by considering that: 
 
 $$
 \begin{aligned}
@@ -129,7 +130,7 @@ $$
 \end{aligned}
 $$
 
-immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recurison, we have: 
+immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recursion, we have: 
 
 $$
 \begin{aligned}
@@ -163,6 +164,7 @@ In many cases, when the given gradient of a function is strongly smooth, meaning
 
 Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
 
+---
 ### **Example: Smooth Gradient Descend**
 
 #TODO Use the primer on operator reference to fill out the proof for the convergence of smooth gradient method on Functions that are strongly smooth. 
@@ -170,7 +172,7 @@ Take note the that bound is very pessimistic. With additional assumption such as
 ---
 ### **Example: Convex Sets Projection Operator**
 
-Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *nonexpansive operator* that is also *monotone*. This is true because the projector has a Lipschitz constant that is $\le 1$. The monotone property can be derived using the obstuse angle theorem. 
+Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *non-expansive operator* that is also *monotone*. This is true because the projector has a Lipschitz constant that is $\le 1$. The monotone property can be derived using the obtuse angle theorem. 
 
 
 
