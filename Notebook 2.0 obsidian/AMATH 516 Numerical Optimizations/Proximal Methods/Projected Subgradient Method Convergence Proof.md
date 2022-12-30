@@ -1,8 +1,6 @@
-[[Characterizing Functions for Optimizations]], we use strong convexity. 
-
-[[Convex Function is Locally Lipschitz]], we use the property that there is a closed subset of the function that we can project onto in the domain and still have Lipschitz Continuity. 
-
-[[Convex Sets Projections and Dist, Intro]], we use the fact that projecting onto a convex set is L-1 Lipschitz. 
+- [[Characterizing Functions for Optimizations]], we use strong convexity. 
+- [[Convex Function is Locally Lipschitz]], we use the property that there is a closed subset of the function that we can project onto in the domain and still have Lipschitz Continuity. 
+- [[Convex Sets Projections and Dist, Intro]], we use the fact that projecting onto a convex set is L-1 Lipschitz. 
 
 
 ---
@@ -117,9 +115,7 @@ $$
 $$
 which lead us the inequality on the 4th line. 
 
-\[2\]: we expand the relation recursively by applying the inquality itself to $\Vert x^{(t)} - \bar x \Vert^2$ repeatedly for different value of $t$, giving us the summation of the other 2 terms in the expression as an upper bound. 
-
-Next we continue from the end of the end of the expression: 
+\[2\]: we expand the relation recursively by applying the inequality itself to $\Vert x^{(t)} - \bar x \Vert^2$ repeatedly for different value of $t$, giving us the summation of the other 2 terms in the expression as an upper bound. Next we continue from the end of the end of the expression: 
 
 $$
 \begin{aligned}
