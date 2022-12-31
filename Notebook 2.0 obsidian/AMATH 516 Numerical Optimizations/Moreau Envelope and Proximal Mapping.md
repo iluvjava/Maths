@@ -328,8 +328,7 @@ which is more useful for direct applications.
 **Remarks**
 
 Minty Parameterizations: 
-  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings: $T$, we have the equality: 
-  * $$(I + T^{-1})^{-1} = I - (I - T)^{-1}.$$
+  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [[Resolvent and Minty Paramaterization]] for more information. 
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 

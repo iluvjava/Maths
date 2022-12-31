@@ -11,23 +11,17 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 **References**
 1. **\<Large-scale convex Optimizations: Algorithms and analysis via Monotone Operators\>** by Ernest K. Ryu & Wotao Yin. A very complicate textbook, which should serve as primary references. 
 2. **\<A Primer on Monotone Operators\>**, this one is a really good one! The collections are extremely good.  See [Primer on Monotone Operators](Primer%20on%20Monotone%20Operators.pdf) for more. 
-3. **\<Convex Analysis and Monotone Operator Theory in Hilbert Spaces\>**`, this one is from Professor Heinz and it should be treated as an essential reference. 
+3. **\<Convex Analysis and Monotone Operator Theory in Hilbert Spaces\>**, this one is from Professor Heinz and it should be treated as an essential reference. 
 
 ---
 ### **Lipschitz Operator**
 
-> And operator is called *Lipschitz* with a constant $L$ when for any $(u, v)\in \text{gph}(F), u \in F(x), v \in F(y)$ we have the inequality: 
-> $$
-> \begin{aligned}
->     \Vert u - v\Vert_2 \le L \Vert x - y\Vert_2,
-> \end{aligned}
-> $$
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. 
 
-For simplicity we use the 2 norm to formulate the definition. And please observe that, for any operator to be Lipschitz, it has to be the case that the operator is single valued. If this is not true, the LHS of the function can simply chosen to be $u\in F(x), v\in F(x)$ with $u\neq v$, giving us a contradiction. An operator is called *nonexpansive* if its Lipschitz constant is $\le 1$. An operator is called a *contraction* if $L< 1$. 
+---
+### **Non-expansive Operators**
 
-**properties**
-
-1. The set of Lipschitz operators are closed under addition and composition. 
+see [[Non-expansive Operators]]. 
 
 ---
 ### **Monotone and Maximally Monotone Operator**
@@ -155,7 +149,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converges sublinearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$
+Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converges sublinearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$. 
 
 
 **Remarks**
@@ -182,5 +176,9 @@ Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Proje
 #TODO: Keep filling up things about the operators. 
 
 
+---
+### **Concepts Central Hubs**
+
+In here we list all the relevant and important concepts for equipping operator theory for optimization problem. 
 
 

@@ -1,4 +1,4 @@
-[[Characterizing Functions for Optimizations]]
+[[Characterizing Functions for Optimizations]], 
 [[Relations]]
 
 ---
@@ -27,6 +27,8 @@ The graph of the operator is literally the multi-function visualized on a higher
 ---
 ### **Operations**
 
+Common operations and their rules. 
+
 **Composition**
 > Let $T, S$ be 2 set-valued operators, then the composition between the 2 operator 
 > $$
@@ -45,13 +47,8 @@ For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. When think
 
 > Let $T^{-1}$ denotes the inverse of the operator $T$ if $T^{-1} = \{(y, x)| (x, y)\in T\}$, or $x \in T^{-1}y \iff y \in Tx$ for all $x, y \in \mathbb E$. 
 
-Notice that $T^{-1}T \neq TT^{-1} \neq I$. 
+Notice that $T^{-1}T \neq TT^{-1} \neq I$. However one conditions that allow it is bijective the property. 
 
----
-### **Resolvent**
+**Inverse of the composition**
 
-
-
-
-
-
+Let $T, S$ be 2 operator $\mathbb E\mapsto 2^{\mathbb E}$ then the inverse of their composition $(T\circ S)^{-1}$ equals to $S^{-1} \circ T^{-1}$. 
