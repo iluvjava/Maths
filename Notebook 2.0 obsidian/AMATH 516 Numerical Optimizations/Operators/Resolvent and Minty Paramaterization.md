@@ -69,7 +69,7 @@ which completes the proof.
 > \forall x, y \in \mathbb E. 
 > $$
 
-in particular, this resolvent operator is also non-expansive. 
+In particular, this resolvent operator is also non-expansive. 
 
 **References:** 
 

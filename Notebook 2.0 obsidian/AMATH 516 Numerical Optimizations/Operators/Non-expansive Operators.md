@@ -16,7 +16,7 @@ Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$
     $$
     \forall x \in D, y \in \text{Fix}(T) \; \Vert Tx - y\Vert \le \Vert x - y\Vert
     $$
-4. And f is strict-quasi-nonexpansive when: 
+4. And f is *strict-quasi-nonexpansive* when: 
     $$
     \forall x \in D \setminus \text{Fix}(D), y\in \text{Fix}(T)\; 
     \Vert Tx - y\Vert < \Vert x - y\Vert
@@ -24,4 +24,4 @@ Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$
 
 Immediately observe that (i) => (ii) => (iii), (i) => (iv). 
 
-References: Chapter 4 of the Mono Operator book from Heinz. 
+**References**: Chapter 4 of the Mono Operator book from Heinz. 

@@ -1,3 +1,5 @@
+For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]]. 
+
 In fact, we need a bit of topology to get identify the type of functions that can fit with first order optimizations. 
 [[Linear Algebra Basics for Optimization]]
 
