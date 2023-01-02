@@ -4,7 +4,7 @@
 ---
 ### **Fenchel's Identity**
 
-Fenchel's Identity relates the subgradient to the conjugate function. 
+Fenchel's Identity relates the subgradient to the conjugate function. The conjugate function returns the negative offset of the affine minorants that supports the function $f$ at given point; namely $f(x) \ge \langle x, z\rangle -f^\star(z)$
 
 **Claim 1**
 > The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 

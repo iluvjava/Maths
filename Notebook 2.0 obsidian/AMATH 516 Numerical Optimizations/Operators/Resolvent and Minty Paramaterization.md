@@ -9,7 +9,7 @@ The resolvent operator serves an important role in the theory of optimizations, 
 
 > Denote $\mathcal R_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
 
-When the mapping $A$ is maximally monotone, the resolvent operator is single-valued(Explained and stated in the next section). 
+When the mapping $A$ is maximally monotone, the resolvent operator is single-valued (Explained and stated in the next section). 
 
 Note the following immediate properties: 
 
@@ -62,14 +62,15 @@ which completes the proof.
 ---
 ### **Resolvent of Maximal Monotone Operators**
 
-> Let $T: \mathbb E \mapsto \mathbb E$ be maximal monotone operator, then the resolvent $\mathcal R_T: \mathbb E\mapsto \mathbb E$ is a globally defined singled-valued mapping satisfying:
+> Let $T: \mathbb E \mapsto \mathbb E$ be maximal monotone operator, then the resolvent $\mathcal R_T: \mathbb E\mapsto \mathbb E$ is a globally defined *singled-valued mapping* satisfying:
 > $$
 > \Vert \mathcal R_Tx - \mathcal R_Ty\Vert^2 \le 
 > \langle \mathcal R_Tx - \mathcal R_T, x - y\rangle\quad 
 > \forall x, y \in \mathbb E. 
-> $$
+> $$ 
+>  In particular, this resolvent operator is also *non-expansive*. 
 
-In particular, this resolvent operator is also non-expansive. 
+
 
 **References:** 
 

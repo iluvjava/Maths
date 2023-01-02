@@ -168,8 +168,6 @@ Take note the that bound is very pessimistic. With additional assumption such as
 
 Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *non-expansive operator* that is also *monotone*. This is true because the projector has a Lipschitz constant that is $\le 1$. The monotone property can be derived using the obtuse angle theorem. 
 
-
-
 ---
 ### **Example: The Subgradient and Proximal Operators**
 

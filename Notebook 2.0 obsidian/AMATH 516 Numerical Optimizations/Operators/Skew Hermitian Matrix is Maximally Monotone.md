@@ -1,10 +1,12 @@
-[[Introduction to Operators for Optimizations]]
+[[Skew Symmetric]], [[Monotone Operators]]
 
 
 ---
 ### **Intro**
 
-> For any skew symmetrix matrix $S$, it's maximally monotone meaning that $\forall x, y\in \mathbb E$, we have $\langle y - x, S(y - x)\rangle \ge 0$. 
+> For any skew symmetric matrix $S$, it's monotone meaning that $\forall x, y\in \mathbb E$, we have $\langle y - x, S(y - x)\rangle \ge 0$. 
+
+**Proof**
 
 Let $S$  be a skew symmetric matrix. Then
 
@@ -19,3 +21,8 @@ $$
 $$
 
 Take note that for any skewed symmetric matrix $S$, $S = \frac{1}{2}(S - S^T)$ by Toeplitz Decomposition of matrices. 
+
+
+**Remarks**
+
+This is the KKT conditions for the Fenchel Rockafellar Duality problem. And in fact the operator is also maximally monotone because it's linear. However I am not sure how to prove this part of the claim yet. 
