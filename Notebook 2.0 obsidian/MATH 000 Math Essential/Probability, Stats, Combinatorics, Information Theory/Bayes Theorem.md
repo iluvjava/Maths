@@ -98,7 +98,5 @@ $$
 Numerator: Among all the bananas, how many of them are long, sweet and yellow. 
 Denominator: How many of fruits are long, sweet, and Yellow? Observe that if it's given that: a fruit is a banana if and only if it's long sweet and yellow, then the numerator is now $\mathbb P(L=\text{long}\wedge T=\text{sweet}, Y=\text{yellow})$, which by probability independence, it will get simplified to the denominator. 
 
----
-### **Multi-Labels Classifications**
 
 

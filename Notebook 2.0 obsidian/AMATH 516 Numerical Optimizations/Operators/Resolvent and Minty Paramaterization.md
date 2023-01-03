@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]]
+[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Non-expansive Operators]]. 
 
 ---
 ### **Resolvent and Minty Re-paramatrizations**
@@ -70,8 +70,28 @@ which completes the proof.
 > $$ 
 >  In particular, this resolvent operator is also *non-expansive*. 
 
+**Proof**
+
+To show, we first requires everything from [[Minty's Theorem, The Surjectivity Theorem]]. 
+
 
 
 **References:** 
 
-Theorem 3.78 of Dimitry's Convex Analysis textbook for MATH 516. 
+Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516. 
+
+
+---
+### **Resolvent of Monotone Operators**
+
+> Let $A: \mathcal H \mapsto 2^{\mathcal H}$ be such that $\text{dom}(A)\neq \emptyset$, set $D:= \text{ran}(I + A)$, set $T = \mathcal R_A|_D$. Then: 
+> 
+> 1. $A = T^{-1} - I$. 
+> 2. $A$ is monotone iff $T$ is firmly non-expansive. Which implies that it's also singled-valued. 
+> 3. $A$ is max monotone iff T is fimrly non-expansive and $D = \mathcal H$. 
+
+
+**References:** Prop 23.9 in Heinz's book.
+
+
+
