@@ -1,5 +1,5 @@
 Major Reference Sources: 
-* [Stanford University](https://stanford.edu/~boyd/admm.html) ALL IN ONE Resources for ADMM 
+* [Stanford University](https://stanford.edu/~boyd/admm.html) Blody's Monograph for ADMM 
 * Paper [link](https://stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf)
 * Paper [[Proximal Algorithms in Stats and ML.pdf]]
 * Paper: [link](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf), starting with pg: 153, where it starts talking about interpretations of the ADMM methods. 
@@ -55,13 +55,13 @@ The scaled form is obtained by setting $u = \gamma^{-1}\lambda, r = x - z$:
 
 $$
 \begin{aligned}
-    \mathcal L_\gamma(x, z, u) = l(x) + \phi(z) + \frac{1}{2\gamma}(
+    \hat{\mathcal{L}}_\gamma(x, z, u) = l(x) + \phi(z) + \frac{1}{2\gamma}(
         \Vert r - u\Vert^2 - \Vert u\Vert^2
     )
 \end{aligned}, 
 $$
 
-we derive it by considering: 
+derive it using the augmented form form we have: 
 
 $$
 \begin{aligned}
@@ -100,13 +100,17 @@ $$
             \frac{u}{\gamma}
         \right\Vert^2
     \right)
-    =& \frac{1}{2\gamma} \left(
+    = \frac{1}{2\gamma} \left(
         \Vert r - u\Vert^2 - \Vert u\Vert^2
     \right), 
 \end{aligned}
 $$
 
-which is exactly the same as the last term for the scaled Lagrangian. Next, we list the scaled Lagragian for splitting that involves more than one functions. Here we list the objectives and the splitting of the problem: 
+which is exactly the same as the last term for the scaled Lagrangian.
+
+**Multiple Splittings**
+
+We consider the scaled Lagrangian for splitting the sum of finitely many functions. Here we list the objectives and the splitting of the problem: 
 
 $$
 \begin{aligned}
@@ -146,9 +150,7 @@ where the constaint $\gamma_j$ have the freedom to change depending on which ind
 ---
 ### **Methods of Dual Ascend**
 
-Due to the fact that these later parts of the materials comes from different references, we are going to use $f(x) + g(x)$ as the 2 separable objective function. 
-
-Performs gradient updated on the gradient of the dual, we assume that $l$ has global Lipschitz gradient and it's convex, and $\phi$ to be a convex function as well, then the strong duality applies, denote the dual problem then its gradient is given by: 
+Due to the fact that these later parts of the materials comes from different references, we are going to use $f(x) + g(x)$ as the 2-separable objective function. The methods of Dual Ascend performs a gradient minimum search on the primal objective and then a gradient ascend on the dual objective. This looks for the saddle point of the Lagrangian assuming the  appropriate use of strong duality. 
 $$
     \nabla g(x) = \nabla \mathcal L(x^+, z^+, \lambda) \text{ where } (x^+, z^+)\in \arg\min_{x, z} \mathcal L(x, z, \lambda). 
 $$
@@ -165,11 +167,10 @@ $$
 
 which requires solving the problem for each ascend step of the dual variable. 
 
-
 ---
 ### **Methods of Multipliers**
 
-Method of multiplier updates each of the primal variable individually, in a Gauss Seidel like manner, and then at the end it performs a step of dual ascend. Through out the algorithm, the dual is feasible. For a more generalized version of the problem we consider $f, g$ to be lsc, proper and convex, and form the primal problem and the augmented lagraian as the following: 
+Method of multiplier updates each of the primal variable individually, in a Gauss Seidel like manner ([[Stationary Iterative Methods]]), and then at the end it performs a step of dual ascend. Through out the algorithm, the dual is feasible. For the underlying convergence theory, we consider $f, g$ to be lsc, proper and convex, and form the primal problem and the augmented Lagrangian as the following: 
 
 $$
 \begin{aligned}
@@ -180,7 +181,7 @@ $$
 \end{aligned}
 $$
 
-Then the method of multiplier does the following updates: 
+then the method of multiplier does the following updates: 
 
 $$
 \begin{aligned}
@@ -296,14 +297,12 @@ It's separate, see [[ADMM Convergence]] for more details. We make the same assum
 References: 4.4.2 of \<Proximal Algorithm\> by Bloyd. Here we consider the case where $g$ has an easy proximal operator, but, that doesn't mean the proximal operator for $g(Ax)$ is anywhere related to $g$, or it is easy to figure out. 
 
 ---
-### **Solving with Constraints**
+### **Solving Problem with Constraints**
+
+This is down by exchanging one of the splitting objective function $g(x)$ into an indicator function, which then makes one of the variable updates for the Lagrangian a projections onto the existing set of constraints. 
 
 
 
-
----
-### **Examples**
-
-[^1]: It's assumed instead of being a fact of the assumptions on $f, g$, and the optimal solution and Lagraigian, more invesitgations might be needed for this detail. 
+[^1]: It's assumed instead of being a fact of the assumptions on $f, g$, and the optimal solution and Lagrangian, more investigations might be needed for this particular detail. 
 
 

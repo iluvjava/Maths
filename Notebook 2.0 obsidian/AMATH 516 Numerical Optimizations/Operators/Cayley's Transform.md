@@ -8,3 +8,10 @@ Cayley's transform is something quite general. It's in linear algebra, but at th
 
 
 
+
+
+
+
+**Remark**
+
+In Heinz's book, the Cayley's transform is referred to as: *the-reflected resolvent*. 

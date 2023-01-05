@@ -452,6 +452,10 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > $$
 > where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
 
+**quadratic sums**
+
+
+
 
 **Parellelization**
 
