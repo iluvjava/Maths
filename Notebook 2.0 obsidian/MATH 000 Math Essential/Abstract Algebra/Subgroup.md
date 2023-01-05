@@ -4,7 +4,7 @@
 ### **Intro**
 
 **Definition**
-> Let $G$ be a group and if $H\subseteq G$ also forms a group under the same binary operations defined for $G$ then we call it a subgroup. It's denoted as $H\le G$. 
+> Let $G$ be a group and if $H\subseteq G$ also forms a group under the same binary operations defined for $G$ then we call it a subgroup. It's denoted as $H\le G$ (Sometimes people use $\preceq$ too). 
 
 **Trivial subgroup and sharing the identity**
 

@@ -447,19 +447,32 @@ Here is a list of useful formula about the proximal operator, in the most genera
 >         \frac{\tilde \lambda v}{\lambda}
 >         + 
 >         \rho \tilde\lambda a
->     \right)
+>     \right).
 > \end{aligned}
 > $$
 > where $\tilde\lambda = \lambda/(1 + \lambda \rho)$. 
 
-**quadratic sums**
+**Quadratic sums**
 
+> Let $f(x) = g(x) + \sum_{i=1}^{n} \alpha_i\Vert x - y_i\Vert_2^2$. To find, we need to make use of the fact that the minimizer for sum of squared 2-norm is the weighted average of all points $y_i$ where the weight is the multiplier $\alpha_i$ where $\alpha_0 = \lambda^{-1}$. 
+> $$
+> \begin{aligned}
+>     \text{prox}_{\lambda f}(y_0)
+>     = 
+>     \text{prox}_{\lambda g}\left(
+>         \frac{\sum_{i = 0}^{n}\alpha_i y_i}{
+>             \sum_{i = 0}^{n}\alpha_i}
+>     \right).
+> \end{aligned}
+> $$
 
+**Proof**
 
+Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]]. 
 
-**Parellelization**
+**Parallelization**
 
-> Suppose that function $f(x)$ can be writte as the Euclidean cross product $(f_1(x_1), f_2(x_2), \cdots, f_m(x_m))$, and we assume that each of $x_1, x_2, \cdots, x_n$ are vector in $\mathbb R^{k_1}, \mathbb R^{k_2}, \cdots, \mathbb R^{k_m}$ such that $x =\bigotimes_{i=1}^m x_i$,then we can write the proximal gradient operator of $f$ in parallel form which is given as: 
+> Suppose that function $f(x)$ can be written as the Euclidean cross product $(f_1(x_1), f_2(x_2), \cdots, f_m(x_m))$, and we assume that each of $x_1, x_2, \cdots, x_n$ are vector in $\mathbb R^{k_1}, \mathbb R^{k_2}, \cdots, \mathbb R^{k_m}$ such that $x =\bigotimes_{i=1}^m x_i$,then we can write the proximal gradient operator of $f$ in parallel form which is given as: 
 > $$
 > \begin{aligned}
 >     \text{prox}_{f, \lambda}((x_1, x_2, \cdots, x_m)) = 
@@ -467,3 +480,4 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > \end{aligned}
 > $$
 > In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
+

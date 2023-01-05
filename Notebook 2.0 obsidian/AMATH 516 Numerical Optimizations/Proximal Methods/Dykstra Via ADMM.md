@@ -1,4 +1,4 @@
-[[Dykstra Projection Algorithm]], [[Introduction ADMM]]
+[[Dykstra Projection Algorithm]], [[Introduction ADMM]], [[Moreau Envelope and Proximal Mapping]]
 
 
 ---
@@ -20,7 +20,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-here, we define that $u_{-1} = u_d$. additionally, we might consider adding a penalty term $\frac{1}{2}\Vert u - y\Vert^2$. Additionally, one can replace the indicator function to a closed convex proper functions $f_i$, which works the same due to the properties shared by the proximal operator and the projection onto convex sets. To start, we state the dykstra algorithm applied to the problem which is: 
+here, *we define that* $u_{-1} = u_d$. additionally, we might consider adding a penalty term $\frac{1}{2}\Vert u - y\Vert^2$. Additionally, one can replace the indicator function to a closed convex proper functions $f_i$, which works the same due to the properties shared by the proximal operator and the projection onto convex sets. To start, we state the dykstra algorithm applied to the problem which is: 
 
 $$
 \begin{aligned}
@@ -108,4 +108,130 @@ And the last line above is the sacled augmented Lagragian for the splitted probl
 
 ---
 ### **Derving the ADMM**
+
+For updating the variables, we have: 
+
+$$
+\begin{aligned}
+    u_0^+ =& \underset{u_0\in \mathbb E}{\text{argmin}}
+    \left\lbrace
+       \frac{\rho_1}{2}\Vert z_1 + u_0 - u_1\Vert^2
+       + 
+       \frac{\rho_0}{2}\Vert z_0 + u_{-1} - u_0\Vert^2
+       + 
+       \textcolor{blue}{\frac{1}{2}\Vert u_0 - u_d \Vert^2}
+    \right\rbrace
+    \\
+    u_i^+ =& 
+    \underset{u_i\in \mathbb E}{\text{argmin}}
+    \left\lbrace
+       \delta_{C_i}(u) + 
+       \frac{\rho_i}{2}\Vert z_i + u_{i - 1} - u_i\Vert^2
+       + 
+       \frac{\rho_{i + 1}}{2}
+       \Vert z_i + u_i - u_{i + 1}\Vert^2 
+    \right\rbrace\quad 
+    \forall 1 \le i \le d, 
+\end{aligned}
+$$
+
+we define $\rho_{d + 1} = \rho_0$, and the term hilighted in blue is not part of the ADMM, this is an additional inertia term introduced just to make the argument work. Observe that it's the sum of a function adding finitely many 2 norm error to a constraint with a weight associated with the term. Refer to [[Minimizer of Quadratic Sum, Weighted Average]]. For $u_0^+$ we can assign $\alpha_1 = \rho_1, \alpha_2 = \rho_0, \alpha_3= 1; y_1 = u_1 - z_1, y_2 = z_0 + u_d, y_3 = u_d$. Therefore, the minimizer for $u_0^+$ is the weight average and it given by: 
+
+$$
+\begin{aligned}
+    u_0^+ := 
+    \frac{\rho_1(u_1 - z_1) + \rho_0(z_0 + u_d) + u_d}{1 + \rho_0 + \rho_1}. 
+\end{aligned}
+$$
+
+Similary, for $u_d^+$ we have $\alpha_1 = \rho_i, \alpha_2 = \rho_{i + 1}; y_1 = z_i + u_{i - 1}, y_2 = u_{i + 1} - z_i$, therefore: 
+
+$$
+\begin{aligned}
+    \bar y =& 
+    \frac{\rho_i(z_i + u_{i - 1}) + \rho_{i +1}(u_{i + 1} - z_i)}
+    {\rho_i + \rho_{i + 1}}
+    \\
+    = &
+    \frac
+    {(z_i + u_{i - 1}) + \frac{\rho_{i +1}}{\rho_i}(u_{i + 1} - z_i)}
+    {1 + \frac{\rho_{i + 1}}{\rho_i}}
+    \\
+    u_i^+ = &
+    P_{C_i}\left(
+        \bar y
+    \right)
+\end{aligned}, 
+$$
+
+finally, observe that if $i = d$, then we have $\rho_{i + 1}$, which is $\rho_0$ when $i = d$. 
+
+
+---
+### **Taking the Limit**
+
+The final step is to consider a limit where $\rho_i$ gets smaller for all value $0 \le i \le d$ in a very specific manner. Consider $\beta > 0$, we define $\rho_0 = \beta^{d + 1}, \rho_i = \beta^i$, then observe that we can first simplify $u_0^+$: 
+
+$$
+\begin{aligned}
+    & \frac{\rho_1(u_1 - z_1) + \rho_0(z_0 + u_d) + u_d}{1 + \rho_0 + \rho_1}
+    \\
+    =&
+    \frac{\beta_1(u_1 - z_1) + \beta^{d + 1}(z_0 + u_d) + u_d}{1 + \beta + \beta^{d + 1}} \implies
+    \\
+    \lim_{\beta \rightarrow 0 }u_0^+=& u_d, 
+\end{aligned}
+$$
+
+Next we consider taking the limint of $\bar y$ for $u^+_i$ which is given as: 
+
+$$
+\begin{aligned}
+    \bar y &=
+    \frac
+    {(z_i + u_{i - 1}) + \frac{\rho_{i +1}}{\rho_i}(u_{i + 1} - z_i)}
+    {1 + \frac{\rho_{i + 1}}{\rho_i}}
+    \\
+    &= 
+    \frac
+    {(z_i + u_{i - 1}) + \beta(u_{i + 1} - z_i)}
+    {1 + \beta}\implies 
+    \\
+    \lim_{\beta \rightarrow 0} \bar y &= z_i - u_{i - 1}. 
+\end{aligned}
+$$
+
+Finally, we can take the limit as and conclue that $\lim_{\beta\rightarrow 0}P_{C_i}(\bar y) = P_{C_i}(z_i - u_{i - 1})$ because projection onto a closed and convex set is a continuous mapping. After taking the limit, the ADMM algorithm has the following updates instead: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        u_0^+ = u_d, & 
+        \\
+        u_i^+ = P_{C_i}(z_i + u_{i - 1}^+) & \forall 1 \le i \le d, 
+        \\
+        z^+ = z + B u^+. 
+    \end{cases}
+\end{aligned}
+$$
+
+And this is the same algorithm as the Dykstra projection algorithm listed at the beginning. 
+
+
+---
+### **Extensions and Others**
+
+Take note that, we can reformulate the objective function to include one extra objective function and change the indicator functions to some generic closed convex proper functions: 
+
+$$
+\begin{aligned}
+    \underset{u = (u_0, \cdots, u_d)}{\text{argmin}}
+    \left\lbrace
+       f_0 + \sum_{i = 1}^{d}f_i(u_i): 
+       u_{i - 1} = u_i \; \forall 0 \le i \le d
+    \right\rbrace, 
+\end{aligned}\tag{2}
+$$
+
+Then following the same derivation and assuming that the regularity conditions and the continuity of the proximal operator holds (the later holds because the functions are all closed convex and proper. )
 
