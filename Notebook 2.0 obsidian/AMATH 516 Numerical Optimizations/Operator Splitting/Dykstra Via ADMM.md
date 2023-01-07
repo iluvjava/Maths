@@ -135,7 +135,7 @@ $$
 \end{aligned}
 $$
 
-we define $\rho_{d + 1} = \rho_0$, and the term hilighted in blue is not part of the ADMM, this is an additional inertia term introduced just to make the argument work. Observe that it's the sum of a function adding finitely many 2 norm error to a constraint with a weight associated with the term. Refer to [[Minimizer of Quadratic Sum, Weighted Average]]. For $u_0^+$ we can assign $\alpha_1 = \rho_1, \alpha_2 = \rho_0, \alpha_3= 1; y_1 = u_1 - z_1, y_2 = z_0 + u_d, y_3 = u_d$. Therefore, the minimizer for $u_0^+$ is the weight average and it given by: 
+we define $\rho_{d + 1} = \rho_0$, and the term highlighted in blue is not part of the ADMM, this is an additional inertia term introduced just to make the argument work. Observe that it's the sum of a function adding finitely many 2 norm error to a constraint with a weight associated with the term. Refer to [[Minimizer of Quadratic Sum, Weighted Average]]. For $u_0^+$ we can assign $\alpha_1 = \rho_1, \alpha_2 = \rho_0, \alpha_3= 1; y_1 = u_1 - z_1, y_2 = z_0 + u_d, y_3 = u_d$. Therefore, the minimizer for $u_0^+$ is the weight average and it given by: 
 
 $$
 \begin{aligned}
@@ -177,9 +177,9 @@ $$
     & \frac{\rho_1(u_1 - z_1) + \rho_0(z_0 + u_d) + u_d}{1 + \rho_0 + \rho_1}
     \\
     =&
-    \frac{\beta_1(u_1 - z_1) + \beta^{d + 1}(z_0 + u_d) + u_d}{1 + \beta + \beta^{d + 1}} \implies
+    \frac{\beta_1(u_1 - z_1) + \beta^{d + 1}(z_0 + u_d) + u_d}{1 + \beta + \beta^{d + 1}} 
     \\
-    \lim_{\beta \rightarrow 0 }u_0^+=& u_d, 
+    \implies \lim_{\beta \rightarrow 0 }u_0^+=& u_d, 
 \end{aligned}
 $$
 
@@ -195,9 +195,9 @@ $$
     &= 
     \frac
     {(z_i + u_{i - 1}) + \beta(u_{i + 1} - z_i)}
-    {1 + \beta}\implies 
+    {1 + \beta}
     \\
-    \lim_{\beta \rightarrow 0} \bar y &= z_i - u_{i - 1}. 
+    \implies \lim_{\beta \rightarrow 0} \bar y &= z_i - u_{i - 1}. 
 \end{aligned}
 $$
 
@@ -227,11 +227,83 @@ $$
 \begin{aligned}
     \underset{u = (u_0, \cdots, u_d)}{\text{argmin}}
     \left\lbrace
-       f_0 + \sum_{i = 1}^{d}f_i(u_i): 
+       f_0(u_0) + \sum_{i = 1}^{d}f_i(u_i): 
        u_{i - 1} = u_i \; \forall 0 \le i \le d
     \right\rbrace, 
 \end{aligned}\tag{2}
 $$
 
-Then following the same derivation and assuming that the regularity conditions and the continuity of the proximal operator holds (the later holds because the functions are all closed convex and proper. )
+Then following the same derivation and assuming that the regularity conditions and the continuity of the proximal operator holds (the later holds because the functions are all closed convex and proper.), hence we should get the following upate for our parameters $u_0^+, u_i^+$ 
+
+$$
+\begin{aligned}
+    u_0^+ =& \underset{u_0\in \mathbb E}{\text{argmin}}
+    \left\lbrace
+        f_0(u_0) 
+        +
+        \frac{\rho_1}{2}\Vert z_1 + u_0 - u_1\Vert^2
+        + 
+        \frac{\rho_0}{2}\Vert z_0 + u_{-1} - u_0\Vert^2
+        + 
+        \textcolor{blue}{\frac{1}{2}\Vert u_0 - u_d \Vert^2}
+    \right\rbrace
+    \\
+    u_i^+ =& 
+    \underset{u_i\in \mathbb E}{\text{argmin}}
+    \left\lbrace
+        f_i(u) + 
+        \frac{\rho_i}{2}\Vert z_i + u_{i - 1} - u_i\Vert^2
+        + 
+        \frac{\rho_{i + 1}}{2}
+        \Vert z_i + u_i - u_{i + 1}\Vert^2 
+    \right\rbrace\quad 
+    \forall 1 \le i \le d, 
+\end{aligned}
+$$
+
+going through a same line reasoning we can obtain the relation that: 
+
+$$
+\begin{aligned}
+    u_0^+ &= \text{prox}_{f_0}
+    \left(
+        \frac{\rho_1(u_1 - z_1) + \rho_0(z_0 - u_{-1}) + u_d}
+        {1 + \rho_0 + \rho_1}
+    \right)
+    \\
+    u_i^+ &= 
+    \text{prox}_{f_i}
+    \left(
+        \frac{\rho_i(z_i + u_{i - 1}) + \rho_{i +1}(u_{i + 1} - z_i)}
+        {\rho_i + \rho_{i + 1}}
+    \right), 
+\end{aligned}
+$$
+
+we take the same type of limit by setting $\rho_{-1} = \rho_0$, $\rho_i = \beta^i \; \forall 1 \le i \le d$, $\rho_0 = \beta^{i + 1}$, with $\beta >0$. Taking the limit as $\beta\rightarrow 0$, we end up with the following algorithm: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        u_0^+ = \text{prox}_{f_0} u_d \; ,& 
+        \\
+        u_i^+ = \text{prox}_{f_i}(z_i + u_{i - 1}^+) & \forall \; 1 \le i \le d\;,
+        \\
+        z^+ = z + B u^+,
+    \end{cases}
+\end{aligned}
+$$
+
+which is just a Dykstra Algorithm that seems to be suitable for any closed convex proper function. For example, one can make $f_i(x) = \text{dist}_{C_i}(x)^2, f_0 = \text{dist}_{\{y\}}(x)^2$, the square distance from the closed convex sets representing the constraints and a vector $y$. In this case, the regularity condition is satisfied for all non-empty set, and the solution is the closet point in the intersection of all constraints such that it's closest to the point $y$. 
+
+**Remark**
+
+When $d =1, 2$ are we getting Chambolle Pock by any chance(No it's different)? This update sequence is actually similar to a Gauss Seidel method in [[Stationary Iterative Methods]] (Yes, the GS is a coordinate descend on standard basis vector, and the dual of the Dykstra in Tibshirani's paper talks about it). 
+
+
+---
+### **A Better Proximal Problem**
+
+Take note that the regularity conditions are only satisfied whenever the intersections of all relative interios of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it's differentialble on the entire. 
+
 

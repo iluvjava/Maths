@@ -1,4 +1,4 @@
-[[Subgradient and Subdifferential Definition]]
+[[Subgradient and Subdifferential Definition]], [[Multivalued Functions, Set-valued Mappings]]
 
 
 ---
@@ -12,9 +12,7 @@ By the fact that $f$ is convex proper we can use the [[Fenchel Identity]]:
 
 $$
 \begin{aligned}
-    & x\in \partial f(z)
-    \\
-    \iff &
+    & x\in \partial f(z)\iff 
     z\in \partial f^\star(x), 
 \end{aligned}
 $$

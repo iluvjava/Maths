@@ -1,6 +1,4 @@
-This is the preq: [[Jacobi Gauss Sediel Iterations]]
-
-
+This is the preq: [[Jacobi Gauss Sediel Iterations]]. Here is more advanced coverage of the same topic. 
 
 ---
 ### **Intro**

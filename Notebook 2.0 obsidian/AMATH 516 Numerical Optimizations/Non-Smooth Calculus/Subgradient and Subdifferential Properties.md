@@ -20,4 +20,4 @@ Other Properties that I gather but doesn't have the time to write about them yet
 
 * The gradient is a closed operator when the function $f$ is closed and convex (Closed Subgradient When Convex Proper). 
 	* The graph of the subgradient for a closed convex function $f$ is also a closed set, meaning that the set $\{(x, v)\in \mathbb E \times \mathbb E: v \in \partial [f](v)\}$ is a closed set. 
-	* **Source**: Exercise 3.14, AND 3.5.2, the introduction to directional derivatives for Dimitry's Notes on convex analysis: AMATH 516. 
+	* **Source**: Exercise 3.14, AND 3.5.2, the introduction to directional derivatives for Dimitri's Notes on convex analysis: AMATH 516. 

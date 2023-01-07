@@ -1,18 +1,13 @@
-[[Steepest Descend for Matrix Vector]], [[Jacobi Gauss Sediel Iterations]]
+[[Steepest Descend for Matrix Vector]], [[Jacobi Gauss Sediel Iterations]], [[Stationary Iterative Methods]]
 
-Ortho Min stands for: Orthogonal minimizations. 
-
-We based discussions here on Green Baum's work. 
-[[Fields of Values]]: This is needed for the convergence analysis of the algorithm. 
+Ortho Min stands for: Orthogonal minimizations. We based discussions here on Green Baum's book. [[Fields of Values]] is needed for the convergence analysis of the algorithm. 
 
 ---
 ### **Intro**
 
 > The term OrthoMin is created by prof Greene Baum for the discussion for a class of iterative method. It seems to be an important idea and it's the stem for generalizing the idea into other type of algorithms. 
 
-We will be introducing another view on the steepest descend method for linear system. 
-
-Recall the brain dead method for minimizing the residual for a given matrix that is diagonally dominant, this is like: 
+We will be introducing another view on the steepest descend method for linear system. Recall the brain dead method for minimizing the residual for a given matrix that is diagonally dominant, this is like: 
 
 $$
 x^{(k + 1)} = x^{(k)} + M^{-1}(b - Ax^{(k)})

@@ -3,11 +3,7 @@ This is a comparison between [[Conjugate Gradient for Dummy]] and the method of 
 ---
 ### **Intro**
 
-The conjugate gradient method is secretively a momentum method. 
-
-A momentum method make use of previous descend direction to speed up the descend on the objective function. 
-
-Classical momentum can be characterized as: 
+The conjugate gradient method is secretively a momentum method. A momentum method make use of previous descend direction to speed up the descend on the objective function. Classical momentum can be characterized as: 
 
 $$
 \begin{aligned}
@@ -16,20 +12,17 @@ $$
     x^{(k + 1)} &= x^{(k)} + v^{(k + 1)}
 \end{aligned}
 $$
-Where the term $v^{(k + 1)}$ regarded as the momentum, $\alpha_k$ is the amount of momentum, and $\beta_k$ is the learning rate. 
 
-The following can be deduced: 
+Where the term $v^{(k + 1)}$ regarded as the momentum, $\alpha_k$ is the amount of momentum, and $\beta_k$ is the learning rate. The following can be deduced: 
 
 $$
 v^{(n)} = \alpha^{n - 1}v^{(0)} - \beta \sum^{n - 2}_{i = 0}
     \alpha^{(n - 1- i)}\nabla[f](x^{i})
 $$
 
-With the assumption that $\alpha, \beta$ is a constant, then the sequence is looking like a geometric sequence. 
+With the assumption that $\alpha, \beta$ is a constant, then the sequence is looking like a geometric sequence. There is a terminal velocity for the momentum if the gradient is unchanging. 
 
-There is a terminal velocity for the momentum if the gradient is unchanging. 
-
-**Intution**
+**Intuition**
 
 The speed at each time step is dragged by the gradient. This is like the physics, but in physics is $-v^2$ (which can reach terminal velocity even with accelerations!), but in here it's discretized and it's $v$, so it's faster. 
 
@@ -37,7 +30,7 @@ The speed at each time step is dragged by the gradient. This is like the physics
 ---
 ### **In Relation to Conjugate Gradient Method**
 
-For one update of the guess, the conjugate graidnet employ the following: 
+For one update of the guess, the conjugate gradient employ the following: 
 
 $$
 x^{(k +1)} = x^{(k)} + \alpha_k r^{(k)} + \beta_k (x^{(k)} - x^{(k -1)})

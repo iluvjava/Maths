@@ -1,7 +1,6 @@
 Optimization, especially non-linear optimization
 
 ---
-
 ### **Prereq:** 
 * Linalg
 * Calculus (Vector Calc)

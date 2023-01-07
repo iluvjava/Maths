@@ -5,7 +5,7 @@ Related: [[Direct Method]]
 
 ### **Jacobi Iteration**
 
-The Jacobi Iteration is used as a way to figure out the solution of a linear system. Consider any matrix that is SDD (Strictly Diagonally Dominance), meaning that the absolute value of the diagonally elements is larger than all the other elements on that row of the matrix. Say that matrix is $A$, and then we want to decompose the matrix into 2 parts the diagonal parts and the non-diagonal parts, so it's like: 
+The Jacobi Iteration is used as a way to figure out the solution of a linear system. Consider any matrix that is SDD (Strictly Diagonally Dominance), meaning that the absolute value of the diagonally elements is larger than the sum of absolute value of all other elements on that row. Say that matrix is $A$, and then we want to decompose the matrix into 2 parts the diagonal parts and the non-diagonal parts, so it's like: 
 
 $$
 A = D + R
@@ -41,12 +41,10 @@ $$
  
  **NOTE:**
  
- We can apply full permutations on the rows and columns of the matrix to make the matrix to be Strictly Diagonally Dominance. 
+ We can apply full permutations on the rows and columns of the matrix to make the matrix to be Strictly Diagonally Dominant. Both of these methods has a complexity of $\mathcal{O}(N^2)$, where $N$ is the dimension of the matrix. 
  
- Both of these methods has a complexity of $\mathcal{O}(N^2)$, where $N$ is the dimension of the matrix. 
  
- SDD: 
- **Strictly Diagonal Dominant**: The element on the diagonal of the matrix is larger than the sum of absolute value of all the non diagonal element. 
+ **Strictly Diagonally Dominant(SDD)**: The element on the diagonal of the matrix is larger than the sum of absolute value of all the non diagonal element. 
  
  **Computational Concerns**: 
  Jacobi Method: Supports Parallelization

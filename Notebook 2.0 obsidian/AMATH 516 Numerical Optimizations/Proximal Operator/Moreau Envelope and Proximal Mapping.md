@@ -328,7 +328,7 @@ which is more useful for direct applications.
 **Remarks**
 
 Minty Parameterizations: 
-  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [[Resolvent and Minty Paramaterization]] for more information. 
+  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [[Resolvent and Minty Paramaterization]], [[Inverse of Subgradient of the Convex Conjugate]] for more information. 
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
@@ -336,7 +336,7 @@ Moreau Decomposition With the Alpha parameters on Proximal operators:
 
 
 ---
-### **Gradient of Prox is Lipschitz for CCP Functions**
+### **Gradient of Moreau Envelope is Lipschitz for CCP Functions**
 
 Let $f$ be a convex function that is lsc, then the proximal mapping of the function has gradient, meaning that it's differentiable everywhere. We prove it consider: 
 $$

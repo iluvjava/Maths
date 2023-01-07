@@ -1,12 +1,10 @@
-[[Dualization Techniques]], finding the Fenchel dual of a given function. 
-
-[[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function. 
+[[Dualization Techniques]], finding the Fenchel dual of a given function. [[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function. 
 
 
 ---
 ### **Intro**
 
-``
+
 > This is the Fenchel Fenchel Rockafellar Duality is stated as the following: 
 > 
 > $$
