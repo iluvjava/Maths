@@ -99,3 +99,8 @@ $$
 
 and that conclude the proof. 
 
+
+**References:**
+
+Chapter's 6 of Amir's Beck's book on first order methods. Take note that we make use of [[Minimizer of Quadratic Sum, Weighted Average]] for figuring out the value of $u^+$. 
+
