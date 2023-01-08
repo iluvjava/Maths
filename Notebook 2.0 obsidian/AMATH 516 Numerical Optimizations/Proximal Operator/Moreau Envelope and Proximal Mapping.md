@@ -7,11 +7,11 @@ A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the pro
 
 $$
 \begin{aligned}
-    & \text{env}_{\alpha, f}(x) := \min_{y}\left\lbrace
+    & \text{env}_f^\alpha(x) := \min_{y}\left\lbrace
         f(y) + \frac{1}{2 \alpha }\Vert y - x\Vert^2
     \right\rbrace, 
     \\
-    & \text{prox}_{\alpha,f}(x) := 
+    & \text{prox}_{\alpha f}(x) := 
     \arg\min_{y}\left\lbrace
         f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
     \right\rbrace. 
@@ -20,11 +20,13 @@ $$
 
 The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[Infimal Convolution is Epigraph Addition]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions.  This conceptualization will help with the intuitive understanding of many proximal algorithm.
 
+**Notation nuance**
+
+When the proximal operator is written as $\text{prox}_{\alpha f}$ is the same as $\text{prox}_{f, \alpha}$. The second type of proximal operator has a constant indicated explicitly on the underscript. 
+
 **Remarks**
 
-It's from Dimitry's Textbook, definition 3.59, pg 77. 
-
-If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value $|x|$ is given as: 
+It's from Dimitry's Textbook, definition 3.59, pg 77. If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value $|x|$ is given as: 
 
 $$
 \begin{aligned}
@@ -38,15 +40,17 @@ $$
 
 Which is the Huber Loss function in statistics. 
 
-Dimitry's Comments: The prox operator is a generalization of the set distance operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
+**Dimitri's Comments**:
+> The prox operator is a generalization of the set distance operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
 In addition please observe the following identities: 
 
 $$
 \begin{aligned}
-    & \text{prox}_{f/\alpha, 1} =  \text{prox}_{f, \alpha}
+    & \text{prox}_{\alpha f} =  \text{prox}_{f, \alpha}
     \\
-    & \alpha^{-1}\text{env}_{\alpha f, 1}(x) = \text{env}_{f, \alpha}(x). 
+    & \lambda\text{env}_f^\mu = 
+    \text{env}_{\lambda f}^{\mu/\lambda}
 \end{aligned}
 $$
 
@@ -98,7 +102,7 @@ When is it invertible and when is it a set-value mapping?
 The operator is maximal monotone: 
 * In brief, the subgradient operator of a CCP function, we have $\partial f$ to be a maximal monotone operator. Meaning that for any $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. And because of this, it terms out that $I + \partial f$ is single-valued and it's surjective, meaning that the inverse $(I +\partial f)^{-1}$ is a singled value operator too. With $\alpha$ it doesn't change thing. 
 
-* **The Surjectivity Theorem**
+* **The Surjectivity Theorem**, [[Minty's Theorem, The Surjectivity Theorem]]
 
 * > The surjectivity theorem stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
 
@@ -379,13 +383,13 @@ At \[1\] we use the conjugate formula for infimal convolution between 2 function
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
-The derivative of the envelope where $\alpha$ is not necessarily one is given as $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. 
+The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. 
 
 
 ---
 ### **Quick Formulas for the Proximal Operators**
 
-Here is a list of useful formula about the proximal operator, in the most general context possible. We stated without the proof. The reference is taken from the survey paper from Standford.  
+Here is a list of useful formula about the proximal operator, in the most general context possible. We stated without the proof. The reference is taken from the survey paper from Stanford.  
 
 **Post Composition**
 
@@ -480,4 +484,9 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 > \end{aligned}
 > $$
 > In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
+
+---
+### **Misc**
+
+[[Proximal on Moreau Envelope]]. 
 

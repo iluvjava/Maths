@@ -22,6 +22,10 @@ We can take the proximal mapping on a Moreau Envelope. And this will help with g
 > \end{aligned}
 > $$
 
+**References**
+
+Theorem 6.63, in Amir Beck's textbook on First Order Methods for Optimizations.  
+
 ---
 ### **Proof**
 
@@ -50,4 +54,7 @@ $$
 $$
 
 Such a formula will prove to be useful once in a while. 
+
+
+
 

@@ -51,7 +51,7 @@ and hence, the existence of such an pair of $x, y$ is assured.
 
 **Reference**: 
 
-21.1 from Heinz's operator book. OR Theorem 3.79 on Dimitry's Book. They have similar proof. 
+21.1 from Heinz's operator book. OR Theorem 3.79, 3.83 on Dimitri's Book. They have similar proof. 
 
 
 **Remarks**

@@ -6,3 +6,5 @@ In this file, we will be interested in discussing the use of Gradient Descend me
 ---
 
 
+
+
