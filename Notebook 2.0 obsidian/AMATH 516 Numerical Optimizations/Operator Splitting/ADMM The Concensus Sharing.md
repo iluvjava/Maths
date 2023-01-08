@@ -4,6 +4,6 @@
 ---
 ### **Intro**
 
-**References**: The ADMM monograph from Stanford University. 
+ADMM algorithm gives amazing advantange for parallel implementations whenever we have a sum of more than one closed and convex functions. 
 
-We can figure out the ADMM for a function that can be written as the sum of more than 2 functions. 
+**References**: The ADMM monograph from Stanford University. 

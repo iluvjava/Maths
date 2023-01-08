@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
+This is a central hub for various concepts about Moreau Envelope and Proixmal mapping. Here we will focus on the case when the function $f$ is closed convex and proper so the properties of the prox is more predictable and allows us to derive more theorems. A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
 
 $$
 \begin{aligned}
@@ -18,11 +18,11 @@ $$
 \end{aligned}
 $$
 
-The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[Infimal Convolution is Epigraph Addition]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions.  This conceptualization will help with the intuitive understanding of many proximal algorithm.
+The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[Infimal Convolution is Epigraph Addition]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex.   This conceptualization will help with the intuitive understanding of many proximal algorithm.
 
 **Notation nuance**
 
-When the proximal operator is written as $\text{prox}_{\alpha f}$ is the same as $\text{prox}_{f, \alpha}$. The second type of proximal operator has a constant indicated explicitly on the underscript. 
+When the proximal operator is written as $\text{prox}_{\alpha f}$ is the same as $\text{prox}_{f, \alpha}$. The second type of proximal operator has a constant indicated explicitly on the under script. 
 
 **Remarks**
 
@@ -41,7 +41,7 @@ $$
 Which is the Huber Loss function in statistics. 
 
 **Dimitri's Comments**:
-> The prox operator is a generalization of the set distance operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
+> The moreau envelope is a generalization of the set distance squared operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
 In addition please observe the following identities: 
 
@@ -233,12 +233,12 @@ $$
 \end{aligned}
 $$
 
-Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. By properties of norm, the above inequality is sufficient for any more. $\blacksquare$. 
+Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. By properties of norm, the above inequality is sufficient for any more.$\blacksquare$
 
 
 **Remarks**
 
-To generalize the results where $\alpha$ is not neccesarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same lipschitz for any convex proper functions, for any parameter $\alpha > 0$. I deviated from the references materials and added the generality for $\Vert \cdot\Vert$ so that it works with $\Vert \cdot\Vert_\star$. 
+To generalize the results where $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same Lipschitz for any convex proper functions, for any parameter $\alpha > 0$. I deviated from the references materials and added the generality for $\Vert \cdot\Vert$ so that it works with $\Vert \cdot\Vert_\star$. 
 
 **Corollary: Moreau Envelope is Smooth**
 
@@ -489,4 +489,9 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 ### **Misc**
 
 [[Proximal on Moreau Envelope]]. 
+
+
+---
+### **Amir's Cheatsheet**
+
 

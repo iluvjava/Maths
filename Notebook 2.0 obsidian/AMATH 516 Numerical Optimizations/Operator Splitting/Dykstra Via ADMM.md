@@ -1,6 +1,5 @@
 [[Dykstra Projection Algorithm]], [[Introduction ADMM]], [[Moreau Envelope and Proximal Mapping]]
 
-
 ---
 ### **Intro**
 
@@ -44,7 +43,7 @@ We define $N = (d + 1)n$, where n is the dimension of $u_i$, or the domain of th
 $$
 \begin{aligned}
     B := \begin{bmatrix}
-        -I_n & & & I_n &
+        -I_n & & & & I_n
         \\
         I_n & -I_n & & &
         \\
@@ -59,7 +58,7 @@ $$
 \end{aligned}
 $$
 
-Then the constraints can be defined concisely as $Bx = \mathbf 0$. Allowing us to put the problem that has been splitted into the form: $\arg\min_{u\in \mathbb R^N}\{f(u)| Bu = \mathbf 0\}$. To consider the use of ADMM with the problem, we need a special type of norm induced by the following block structure matrix: 
+then the constraints can be defined concisely as $Bx = \mathbf 0$. Allowing us to put the problem that has been splitted into the form: $\arg\min_{u\in \mathbb R^N}\{f(u)| Bu = \mathbf 0\}$. To consider the use of ADMM with the problem, we need a special type of norm induced by the following block structure matrix: 
 
 $$
 \begin{aligned}
@@ -304,6 +303,6 @@ When $d =1, 2$ are we getting Chambolle Pock by any chance(No it's different)? T
 ---
 ### **A Better Proximal Problem**
 
-Take note that the regularity conditions are only satisfied whenever the intersections of all relative interios of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it's differentialble on the entire. 
+Take note that the regularity conditions are only satisfied whenever the intersections of all relative interiors of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it is differentiable on the entire. 
 
 
