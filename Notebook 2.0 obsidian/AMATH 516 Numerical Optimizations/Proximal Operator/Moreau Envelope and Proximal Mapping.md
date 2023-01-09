@@ -493,5 +493,6 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 
 ---
 ### **Amir's Cheatsheet**
+See [[Amir's Prox Cheatsheet.pdf]] for more fast references and stuff. 
 
 
