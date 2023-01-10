@@ -36,7 +36,7 @@ This file contains a list of topics that are great to start learning a new progr
 
 **Instantiating a type**
 1. Constructor
-2. Primodial 
+2. Primordial 
 3. Factory Methods
 
 **Method With a Type**
@@ -104,7 +104,7 @@ This file contains a list of topics that are great to start learning a new progr
     * How do we write forloops to iterate through it. 
     * Parallel Forloops? (c#)
     * Lambdas Based Forloops? (Javascript)
-  * Weird Constrol structure
+  * Weird control structure
     * Inner functions? (python)
     * Breaking out Nested loop? (Java Labels)
     * Goto? (Julia Macros)

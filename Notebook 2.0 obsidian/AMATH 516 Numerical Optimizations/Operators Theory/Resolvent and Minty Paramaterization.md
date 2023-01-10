@@ -75,7 +75,6 @@ which completes the proof.
 To show, we first requires everything from [[Minty's Theorem, The Surjectivity Theorem]]. 
 
 
-
 **References:** 
 
 Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516. 
@@ -88,10 +87,10 @@ Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516.
 > 
 > 1. $A = T^{-1} - I$. 
 > 2. $A$ is monotone iff $T$ is firmly non-expansive. Which implies that it's also singled-valued. 
-> 3. $A$ is max monotone iff T is fimrly non-expansive and $D = \mathcal H$. 
+> 3. $A$ is max monotone iff T is firmly non-expansive and $D = \mathcal H$. 
 
 
-**References:** Prop 23.9 in Heinz's book.
+**References:** Prop 23.9 in Heinz's book. See the Bloyd Primer on monotone operators paper for more good info. 
 
 
 

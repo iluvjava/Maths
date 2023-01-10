@@ -47,7 +47,7 @@ For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. When think
 
 > Let $T^{-1}$ denotes the inverse of the operator $T$ if $T^{-1} = \{(y, x)| (x, y)\in T\}$, or $x \in T^{-1}y \iff y \in Tx$ for all $x, y \in \mathbb E$. 
 
-Notice that $T^{-1}T \neq TT^{-1} \neq I$. However one conditions that allow it is bijective the property. 
+Notice that $T^{-1}T \neq TT^{-1} \neq I$. However one condition that allow it is bijective the property. 
 
 **Inverse of the composition**
 

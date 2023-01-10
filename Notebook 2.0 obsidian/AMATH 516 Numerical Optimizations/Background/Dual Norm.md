@@ -50,5 +50,7 @@ An exercise for the reader, which is likely to be myself.
 
 **#TODO: Look for the Dual of the induced energy norm**. 
 
+
+
 Source: \<First Order method in Optimizations\> By SIAM Example 1.6, they a quick example. 
 

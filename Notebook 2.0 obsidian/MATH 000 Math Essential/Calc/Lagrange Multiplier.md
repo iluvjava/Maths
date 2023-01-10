@@ -6,7 +6,7 @@ Wiki [here](https://en.wikipedia.org/wiki/Lagrange_multiplier#:~:text=In%20mathe
 
 This is covered as a basic idea in calc but it's actually essential to understanding more advance topics in mathematical optimizations. 
 
-We assume that the function $f(x): \mathbb{R}^n\mapsto \mathbb{R}$ is convex in some region $\Omega$. And suppose that one constratin vector function $G(x)$ is given and $\{x\in \mathbb{R}^n: G(x) = \mathbf{0}\} \subseteq \Omega$. We assume that $G(x) = \mathbf{0}$ is a set that has a smooth boundary. With this assumptions we consider the constrainted optimization problem: 
+We assume that the function $f(x): \mathbb{R}^n\mapsto \mathbb{R}$ is convex in some region $\Omega$. And suppose that one constrain vector function $G(x)$ is given and $\{x\in \mathbb{R}^n: G(x) = \mathbf{0}\} \subseteq \Omega$. We assume that $G(x) = \mathbf{0}$ is a set that has a smooth boundary. With this assumptions we consider the constrained optimization problem: 
 
 $$
 \max_x f(x) \text{ s.t: } G(x) = \mathbf{0}
@@ -44,10 +44,9 @@ The 2 players reaches a pareto efficiency at some saddle points of $\mathcal{L}(
 
 **Limitations**
 
-The intuitive understandinf doesn't extend to the case where the constraints of the system has inequality. 
+The intuitive understanding doesn't extend to the case where the constraints of the system has inequality. 
 
 ---
-### **Proof**
 
 
 

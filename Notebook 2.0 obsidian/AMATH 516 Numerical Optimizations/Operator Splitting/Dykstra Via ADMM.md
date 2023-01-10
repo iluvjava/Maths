@@ -301,6 +301,25 @@ When $d =1, 2$ are we getting Chambolle Pock by any chance(No it's different)? T
 
 
 ---
+### **2 Projection Cases**
+
+One can simplify the above extension by assuming that $d = 1$, and we were hit with the objectives of the classic case of Dykstra Feasibility problem with: 
+
+$$
+\begin{aligned}
+    \underset{u}{\text{argmin}}
+    \left\lbrace
+        f_0(u_0) + f_1(u_1) \text{ s.t: }
+        u_1 = u_0, u_0 = u_1
+    \right\rbrace, 
+\end{aligned}
+$$
+
+Which in many cases, represents the splitting of a objective function $f_0(u_0)$, with another function $f_1(x_1)$ that does the regularizations, or another function $f_0$ that represents the constraints of some kind. 
+
+
+
+---
 ### **A Better Proximal Problem**
 
 Take note that the regularity conditions are only satisfied whenever the intersections of all relative interiors of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it is differentiable on the entire. 

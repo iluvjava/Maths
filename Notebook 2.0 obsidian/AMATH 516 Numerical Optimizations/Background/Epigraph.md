@@ -1,6 +1,5 @@
 [[Topological Basics for Optimizations]]
 
-
 ---
 ### **Intro**
 

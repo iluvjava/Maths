@@ -16,12 +16,7 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. 
-
----
-### **Non-expansive Operators**
-
-see [[Non-expansive Operators]]. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. In practice, we actually want [[Non-expansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. 
 
 ---
 ### **Monotone and Maximally Monotone Operator**
@@ -154,19 +149,14 @@ Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converge
 
 **Remarks**
 
-In many cases, when the given gradient of a function is strongly smooth, meaning that it has an upper bound on it's lipschitz constant, then fixed sized gradient descend with $2/L$ will be a fixed point iteration that converges. The convergence is pessimistic, and it doesn't require the monotone property from the function, additionally, it also includes dynamical system that are not necessarily a gradient system. 
+In many cases, when the given gradient of a function is strongly smooth, meaning that it has an upper bound on it's Lipschitz constant, then fixed sized gradient descend with $2/L$ will be a fixed point iteration that converges. The convergence is pessimistic, and it doesn't require the monotone property from the function, additionally, it also includes dynamical system that are not necessarily a gradient system. 
 
 Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
 
 ---
-### **Example: Smooth Gradient Descend**
+### **Convex Sets Projection Operator, Proximal Operators**
 
-#TODO Use the primer on operator reference to fill out the proof for the convergence of smooth gradient method on Functions that are strongly smooth. 
-
----
-### **Example: Convex Sets Projection Operator**
-
-Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Projection Obtuse Angle Theorem]], the projection operator onto a convex set is a *non-expansive operator* that is also *monotone*. This is true because the projector has a Lipschitz constant that is $\le 1$. The monotone property can be derived using the obtuse angle theorem. 
+Recall from that the projection operator onto a closed and convex set is a *non-expansive operator* that is also *monotone* and singled valued. This is true because the projector has a Lipschitz constant that is $\le 1$ (Showed in [[Convex Projection is L1 Lipschitz]]). The monotone property can be derived using the obtuse angle theorem. 
 
 ---
 ### **Example: The Subgradient and Proximal Operators**
@@ -177,6 +167,9 @@ Recall from [[Convex Sets Projections and Dist, Intro]], and [[Convex Sets Proje
 ---
 ### **Concepts Central Hubs**
 
-In here we list all the relevant and important concepts for equipping operator theory for optimization problem. 
+In here we list all the relevant and important concepts for equipping operator theory for optimization problem, these concepts will be more advanced. 
+
+* [[Minty's Theorem, The Surjectivity Theorem]]
+* [[Resolvent and Minty Paramaterization]]
 
 
