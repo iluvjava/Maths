@@ -10,7 +10,7 @@ This file is talking about A.2 in the appendix of the paper [[Dykstra’s Algori
 $$
 \begin{aligned}
     & \arg\min_u \sum_{i = 1}^{d} \delta_{C_i}(u) 
-    \equiv \underset{u_0, u_2, \cdot, u_d}{\arg\min}
+    \equiv\underset{u_0, u_2, \cdot, u_d}{\arg\min}
     \left\lbrace
         \sum_{i = 1}^{d}\delta_{C_i}(u_i) \text{ s.t: }
     u_{i - 1} = u_{i} \; \forall\; 0\le i \le d
@@ -327,7 +327,6 @@ $$
     \end{cases}
 \end{aligned}
 $$
-
 
 
 ---

@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-Here us the 2 projections Dykstra algorithm and use an important observation about the averaged polling from [[ADMM The Consensus Sharing]] to derive a parallel version of the Dykstra projection algorithm suitable for solving constraints represented by intersection between finitely many constraints. This is also bsed on Tibishirani's paper [[Dykstra’s Algorithm, ADMM, and Coordinate Descent-Connections, Insights, and Extensions.pdf]]. 
+Here us the 2 projections Dykstra algorithm and use an important observation about the averaged polling from [[ADMM The Consensus Sharing]] to derive a parallel version of the Dykstra projection algorithm suitable for solving constraints represented by intersection between finitely many constraints. This is also based on Tibishirani's paper [[Dykstra’s Algorithm, ADMM, and Coordinate Descent-Connections, Insights, and Extensions.pdf]]. 
 
 The algorithm of Dykstra for finding any $x\in C\cap D$ where $C, D$ are convex is given as: 
 
@@ -17,7 +17,7 @@ $$
             u_1^{(k)} + z^{(k - 1)}
         \right),
         \\
-        z^{(k)} = z^{(k - 1)} + u_1^{(k)} - u_2^{(k)}. 
+        z^{(k)} = z^{(k - 1)} + u_1^{(k)} - u_2^{(k)}, 
     \end{cases}
 \end{aligned}
 $$
@@ -37,7 +37,7 @@ $$
 \end{aligned}\tag{0}
 $$
 
-take note that we can rephrase the constraints $\bigcap_{i = 1}^NC_i$ as 2 constraints: 
+take note that we can rephrase the constraints $\bigcap_{i = 1}^NC_i$ as two constraints: 
 
 $$
 \begin{aligned}
@@ -70,6 +70,10 @@ $$
 
 running algorithm (0) on problem (1) will produce the parallel dykstra algorithm. 
 
+**Remarks**
+
+For convergence, it will have to be the case that $\text{ri}(C)\cap \text{ri}(D)\neq \emptyset$. Whether such a conditions is exactly the same as the regularity conditions for problem described in (0) is unknown to me. 
+
 ---
 ### **The Parallel Dykstra Algorithm**
 
@@ -94,11 +98,17 @@ $$
     \\
     &= 
     \vec{\mathbf 1}_n\otimes
-    \argmin_{x\in \mathbb R^{nN}}
+    \underset{x\in \mathbb R^{nN}}{\text{argmin}}
     \left\lbrace
         \sum_{i = 1}^{N}
             \Vert x_i - b_i\Vert^2_2
-    \right\rbrace, 
+    \right\rbrace
+    \\
+    &= 
+    \vec{\mathbf{1}}_n\otimes 
+        \left(
+            N^{-1} \sum_{i = 1}^{N}b_i
+        \right)
 \end{aligned}
 $$
 
@@ -112,3 +122,9 @@ $$
 $$
 
 which is trivially parallelizable. 
+
+
+
+**Remarks**
+
+In practice, we won't know whether the algorithm can converge in advance because most of the time we don't know whether there exists a feasible solutions for the system of constraints: $C_i$. To make it better, we might consider using the ADMM with concensus instead, and consider using $\text{dist}_{C_i}(x)^2$ instead because this function has desirable properties when the set $C_i$ are convex. 
