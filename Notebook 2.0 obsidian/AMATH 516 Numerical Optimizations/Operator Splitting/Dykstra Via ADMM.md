@@ -10,8 +10,7 @@ This file is talking about A.2 in the appendix of the paper [[Dykstra’s Algori
 $$
 \begin{aligned}
     & \arg\min_u \sum_{i = 1}^{d} \delta_{C_i}(u) 
-    \equiv& 
-    \underset{u_0, u_2, \cdot, u_d}{\arg\min}
+    \equiv \underset{u_0, u_2, \cdot, u_d}{\arg\min}
     \left\lbrace
         \sum_{i = 1}^{d}\delta_{C_i}(u_i) \text{ s.t: }
     u_{i - 1} = u_{i} \; \forall\; 0\le i \le d
@@ -301,7 +300,7 @@ When $d =1, 2$ are we getting Chambolle Pock by any chance(No it's different)? T
 
 
 ---
-### **2 Projection Cases**
+### **2 Projection Case**
 
 One can simplify the above extension by assuming that $d = 1$, and we were hit with the objectives of the classic case of Dykstra Feasibility problem with: 
 
@@ -315,13 +314,25 @@ $$
 \end{aligned}
 $$
 
-Which in many cases, represents the splitting of a objective function $f_0(u_0)$, with another function $f_1(x_1)$ that does the regularizations, or another function $f_0$ that represents the constraints of some kind. 
+which in many cases, represents the splitting of a objective function $f_0(u_0)$, with another function $f_1(x_1)$ that does the regularizations, or another function $f_0$ that represents the constraints of some kind. For this objective, the "Dykstra Reformulations" will be given as: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        u_0^+ = \text{prox}_{f_0}u_1
+        \\
+        u_1^+ = \text{prox}_{f_1}(z_i + u_{0}^+)
+        \\
+        z^+ = z + Bu^+
+    \end{cases}
+\end{aligned}
+$$
 
 
 
 ---
 ### **A Better Proximal Problem**
 
-Take note that the regularity conditions are only satisfied whenever the intersections of all relative interiors of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it is differentiable on the entire. 
+Take note that the regularity conditions are only satisfied whenever the intersections of all relative interiors of the closed convex sets $C_i$ are none empty. In practice this might be a rare occurrence, and to rescue, we need to consider objective functions of the form $f_i = \text{dist}_{C_i}^2(x)$. In this case, an intersection of all the sets $C_i$ would be identified if the objective of the function is zero. The function $\text{dist}_{C_i}^2(x)$ is strongly smooth and it is differentiable on the entire. 
 
 

@@ -1,0 +1,114 @@
+[[Convex Sets Projections and Dist, Intro]], [[Dykstra Via ADMM]]
+
+
+---
+### **Intro**
+
+Here us the 2 projections Dykstra algorithm and use an important observation about the averaged polling from [[ADMM The Consensus Sharing]] to derive a parallel version of the Dykstra projection algorithm suitable for solving constraints represented by intersection between finitely many constraints. This is also bsed on Tibishirani's paper [[Dykstra’s Algorithm, ADMM, and Coordinate Descent-Connections, Insights, and Extensions.pdf]]. 
+
+The algorithm of Dykstra for finding any $x\in C\cap D$ where $C, D$ are convex is given as: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        u_1^{(k)} = \Pi_C\left(u_2^{(k - 1)}\right), 
+        \\
+        u_2^{(k)} = \Pi_D\left(
+            u_1^{(k)} + z^{(k - 1)}
+        \right),
+        \\
+        z^{(k)} = z^{(k - 1)} + u_1^{(k)} - u_2^{(k)}. 
+    \end{cases}
+\end{aligned}
+$$
+
+**Remarks**:
+
+This is directly taken from Tibshirani's paper. Different formulation exists but I am too lazy to verify their equivalences. 
+
+**Problem formulations**
+
+The problem is
+
+$$
+\begin{aligned}
+    \underset{x}{\text{argmin}} 
+    \sum_{i = 1}^{N}\delta_{C_i}(x), 
+\end{aligned}\tag{0}
+$$
+
+take note that we can rephrase the constraints $\bigcap_{i = 1}^NC_i$ as 2 constraints: 
+
+$$
+\begin{aligned}
+    C &:= \left\lbrace
+        \left. 
+            (x_1, x_2, \cdots, x_N)\in \bigotimes_{i = 1}^N \mathbb R^n
+        \right|
+        x_1 = x_2=\cdots, x_N 
+    \right\rbrace
+    \\
+    D &:= 
+    \left\lbrace
+        \left. 
+            (x_1, x_2, \cdots, x_N)\in \bigotimes_{i = 1}^N \mathbb R^n
+        \right|
+        \\
+        x_i \in C_i\; \forall i\in [N]
+    \right\rbrace. 
+\end{aligned}\tag{1}
+$$
+
+However, take notice that the first set $D$ can be characterize by the range of the matrix $\vec{\mathbf 1}_N \bigotimes I_n$, where $\bigotimes$ denotes the kronecker products between matrices. Therefore, the first problem (1) is equivalent to the problem below: 
+
+$$
+\begin{aligned}
+    \underset{x=(x_1,\cdots, x_n)}{\text{argmin}}
+    \delta_C(x) + \delta_D(x), 
+\end{aligned}
+$$
+
+running algorithm (0) on problem (1) will produce the parallel dykstra algorithm. 
+
+---
+### **The Parallel Dykstra Algorithm**
+
+To use (0), we just need to consider $\Pi_C, \Pi_D$. The first projection onto $C$ can be summarized as: 
+
+$$
+\begin{aligned}
+    \Pi_C(b) &= 
+    \underset{x\in \text{ran}(\vec{\mathbf 1}_N\otimes I_n)}
+    {\text{argmin}}
+    \left\lbrace
+        \Vert x  - b\Vert^2_2
+    \right\rbrace
+    \\
+    &= 
+    \underset{x\in \mathbb R^{nN}}{\text{argmin}}
+    \left\lbrace
+        \Vert 
+            (\vec{\mathbf 1}_N \otimes I_n)x - b
+        \Vert_2^2
+    \right\rbrace
+    \\
+    &= 
+    \vec{\mathbf 1}_n\otimes
+    \argmin_{x\in \mathbb R^{nN}}
+    \left\lbrace
+        \sum_{i = 1}^{N}
+            \Vert x_i - b_i\Vert^2_2
+    \right\rbrace, 
+\end{aligned}
+$$
+
+where $b = (b_1, \cdots, b_N)\in \mathbb R^{nN}$, in the same format as the vector $x$. And of course, observe that at the end, we are just taking out $n$ length blocks of vector from the vector $b$, taking the average of all of them element wise, and then copy them $N$ times to concatenate them, which produces $\Pi_C(b)$. When projecting onto $D$, because the projection happens on a cross product space, we can broadcast it and get: 
+
+$$
+\begin{aligned}
+    \Pi_D(b) &= 
+    \bigotimes_{i = 1}^N \Pi_{C_i}(b), 
+\end{aligned}
+$$
+
+which is trivially parallelizable. 

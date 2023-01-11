@@ -87,7 +87,7 @@ And the last line suggest that the point $Fz$ must lies on the line segment $[0,
 
 **Proof**
 
-From [[Tweaked Jensen's Inequality]]: 
+From [[Euclidean Jensen's Equality]]: 
 
 $$
 \begin{aligned}
