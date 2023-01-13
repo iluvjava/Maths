@@ -85,7 +85,7 @@ Q_1 + Q_2 = \left\lbrace
 \right\rbrace
 $$
 
-Choose any 2 elements from the addition of the set: 
+Choose any 2 elements $x, y$ from the addition of the set: 
 
 $$
 \begin{aligned}
@@ -118,6 +118,11 @@ $$
 $$
 
 And we have shown that any chosen 2 points from the set $Q_1 + Q_2$ will have has its convex combinations in the set as well.
+
+**Remarks**:
+
+The closedness of the set is not preserved. There are examples where 2 sets that are closed and convex but their sum is not closed. 
+
 
 ---
 ### **Intersection:** 

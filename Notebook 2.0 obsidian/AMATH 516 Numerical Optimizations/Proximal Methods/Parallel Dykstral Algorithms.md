@@ -123,8 +123,6 @@ $$
 
 which is trivially parallelizable. 
 
-
-
 **Remarks**
 
-In practice, we won't know whether the algorithm can converge in advance because most of the time we don't know whether there exists a feasible solutions for the system of constraints: $C_i$. To make it better, we might consider using the ADMM with concensus instead, and consider using $\text{dist}_{C_i}(x)^2$ instead because this function has desirable properties when the set $C_i$ are convex. 
+In practice, we won't know whether the algorithm can converge in advance because most of the time we don't know whether there exists a feasible solutions for the system of constraints: $C_i$. To make it better, we might consider using the ADMM with consensus instead, and consider using $\text{dist}_{C_i}(x)^2$ instead because this function has desirable properties when the set $C_i$ are convex. 
