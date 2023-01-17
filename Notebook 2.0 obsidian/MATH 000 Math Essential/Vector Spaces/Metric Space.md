@@ -1,7 +1,7 @@
 ### **Intro**
 
 
-Metric space is a function defines over a set $S$ and returns a non-negative real number that gives a sense of distance between any 2 elements in the set. For any 2 elements $x, y, z$ from $S$ the following must be true for the definition of a metric $d$: 
+Metric space is a function defines over a set $S\times S$ and returns a non-negative real number that gives a sense of distance between any 2 elements in the set. For any 2 elements $x, y, z$ from $S$ the following must be true for the definition of a metric $d$: 
 
 $$
 \begin{aligned}
@@ -13,6 +13,29 @@ $$
 \end{aligned}
 $$
 
+**Remarks**
+
+Generally, for intuitive purposes, element of the set $X$ is called point. 
+
+**References**: 
+- \<Introductory Functional Analysis with Applications\> 
+
+---
+### **Subspace**
+
+A subspace $(Y, \tilde d)$ of the metric space $(X, d)$ is where $Y\subseteq X$ with $\tilde d$ being an restriction to $Y\times Y$. 
+
+The first 2 axioms are trivially true, however, to verify that the subspace is again a metric space, we need to prove that the triangle inequality axiom holds. 
+
+---
+### **Example: Sequence Space L-Inf**
+
+> Any sequence $(x_n)_{n\in \mathbb N}$ where $x_n\in \mathbb C$ is a complex sequence such that $|x_n|\le \infty$. Given metric $d(x, y)$ as $\sup_{i\in \mathbb N}|x_i - y_i|$ for the complex sequence. 
+
+---
+### **Example: Function Space**
+
+> Let $C[a, b]$ denotes real functions defined on the closed interval $[a, b]$ such that it's continuous. Then the metric $d(x, y) := \max_{x\in [a, b]} |x(t) - y(t)|$ is a metric. 
 
 ---
 ### **Completeness**

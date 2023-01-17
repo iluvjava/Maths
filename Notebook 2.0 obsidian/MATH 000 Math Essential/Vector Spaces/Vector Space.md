@@ -24,8 +24,16 @@ $$
 
 Where, the set $V$ contains the additive identity $\mathbf 0$. 
 
+**Remarks**
+
+Using the language of group theory, for vector space, we anticipate that it's firstly an abelian group under the addition operations, then we also need a scalar field to complement the multiplications operations such that: 
+1. Distributive
+2. Multiplication Identity
+are satisfied for the vector space. A generalization where a vector space has a ring as its scalar field is a "Module". 
+
+
 ---
-### **Subtleties**
+### **Technical Subtleties**
 
 **Complete And Incomplete**: 
 
@@ -36,7 +44,7 @@ Where, the set $V$ contains the additive identity $\mathbf 0$.
 > Take note that the set $F$ is a scalar field, and it can be a finite field too. 
 
 **Lacks of Inner Product**:
-> The definition above lacks the definition of an inner product for the vectors. 
+> The definition above lacks the requirement for an inner product for the vectors. 
 
 
 ---

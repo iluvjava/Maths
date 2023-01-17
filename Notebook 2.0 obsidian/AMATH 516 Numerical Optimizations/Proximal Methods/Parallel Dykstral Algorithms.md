@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-Here us the 2 projections Dykstra algorithm and use an important observation about the averaged polling from [[ADMM The Consensus Sharing]] to derive a parallel version of the Dykstra projection algorithm suitable for solving constraints represented by intersection between finitely many constraints. This is also based on Tibishirani's paper [[Dykstra’s Algorithm, ADMM, and Coordinate Descent-Connections, Insights, and Extensions.pdf]]. 
+Here we use the 2 projections Dykstra algorithm and use an important observation about the averaged polling from [[ADMM The Consensus Sharing]] to derive a parallel version of the Dykstra projection algorithm suitable for solving constraints represented by intersection between finitely many closed and convex constraints. This is also based on claims from Tibishirani's paper [[Dykstra’s Algorithm, ADMM, and Coordinate Descent-Connections, Insights, and Extensions.pdf]]. 
 
 The algorithm of Dykstra for finding any $x\in C\cap D$ where $C, D$ are convex is given as: 
 
@@ -59,7 +59,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-However, take notice that the first set $D$ can be characterize by the range of the matrix $\vec{\mathbf 1}_N \bigotimes I_n$, where $\bigotimes$ denotes the kronecker products between matrices. Therefore, the first problem (1) is equivalent to the problem below: 
+Note, here we use $\otimes$ to denote the set cross product. However, take notice that the first set $D$ can be characterize by the range of the matrix $\vec{\mathbf 1}_N \bigotimes I_n$, where $\bigotimes$ denotes the kronecker products between matrices. Therefore, the first problem (1) is equivalent to the problem below: 
 
 $$
 \begin{aligned}

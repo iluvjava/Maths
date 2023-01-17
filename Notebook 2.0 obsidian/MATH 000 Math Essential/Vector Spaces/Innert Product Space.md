@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-It's a vector space the is together with an inner product defined with it. However, if the vector space is complete, then this makes no difference with [[Hilbert Space]]. 
+An Inner product space is a vector space the is together with an inner product defined with it. However, if the vector space is a complete metric space, then this makes no difference with [[Hilbert Space]]. 
 
 **Inner Product might Differ**: 
 

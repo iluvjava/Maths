@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"999ee8c5e67128d5","x":-400,"y":-2120,"width":560,"height":400,"color":"5","type":"file","file":"MATH 000 Math Essential/Vector Spaces/Metric Space.md"},
+		{"id":"4e024053adde10ba","x":560,"y":-2120,"width":400,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Complete Metric Space.md"},
+		{"id":"ab7a35eb764ec4a4","x":-546,"y":-1471,"width":600,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Vector Space.md"},
+		{"id":"cb9c544e36ea710c","x":262,"y":-740,"width":596,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Innert Product Space.md"},
+		{"id":"13e9250d01c80392","x":-546,"y":-740,"width":600,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Inner Product Axiomatically Defined.md"},
+		{"id":"0c06be43dd09db45","x":1016,"y":-1600,"width":400,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Banach Space.md"},
+		{"id":"2ff0a9ae2120da5f","x":1160,"y":-880,"width":400,"height":400,"type":"file","file":"MATH 000 Math Essential/Vector Spaces/Hilbert Space.md"}
+	],
+	"edges":[
+		{"id":"4c4ccd356a3893bf","fromNode":"999ee8c5e67128d5","fromSide":"bottom","toNode":"0c06be43dd09db45","toSide":"left"},
+		{"id":"b64dd011b5fb916a","fromNode":"cb9c544e36ea710c","fromSide":"right","toNode":"2ff0a9ae2120da5f","toSide":"left"},
+		{"id":"1480cc80c7f2cd1d","fromNode":"999ee8c5e67128d5","fromSide":"right","toNode":"4e024053adde10ba","toSide":"left"},
+		{"id":"96a78642cb825e38","fromNode":"ab7a35eb764ec4a4","fromSide":"right","toNode":"0c06be43dd09db45","toSide":"left"},
+		{"id":"9c76e5f3e66550ff","fromNode":"13e9250d01c80392","fromSide":"right","toNode":"cb9c544e36ea710c","toSide":"left"},
+		{"id":"4e760247fd268eca","fromNode":"ab7a35eb764ec4a4","fromSide":"right","toNode":"cb9c544e36ea710c","toSide":"top"},
+		{"id":"dbdeca32a1f19c5d","fromNode":"ab7a35eb764ec4a4","fromSide":"bottom","toNode":"13e9250d01c80392","toSide":"top"},
+		{"id":"b7d727dd88f7676c","fromNode":"4e024053adde10ba","fromSide":"bottom","toNode":"2ff0a9ae2120da5f","toSide":"left"},
+		{"id":"149b5c8a08b1a122","fromNode":"0c06be43dd09db45","fromSide":"bottom","toNode":"2ff0a9ae2120da5f","toSide":"left"}
+	]
+}
