@@ -8,7 +8,7 @@ An inner product is a function defined over 2 elements from a vector space and r
 
 > There are 2 types of inner product, Semi-inner-product and just inner product. The later is stricter than the former. 
 
-Semi-Inner Product is very similar to inner product defined over the vector space of complex vectors and the complex field. Inner product is very similar to the set of real vector space and the reald field. 
+Semi-Inner Product is very similar to inner product defined over the vector space of complex vectors and the with complex field. 
 
 
 ---
@@ -33,9 +33,9 @@ $$
 **Warning**: In general: $[f, g] \neq [g, f]$. This is because of the 4th property defined above. 
 
 
-### **Definite Inner Product**
+### **Inner Product Definition**
 
-> This is exactly the same as the inner product defined over all the finite dimensional real vectors. Let $\langle x, y\rangle$  be the inner product be any 2 elements from the vector space and consider an extra element $z$, then let $\alpha$ be the element from the scalar field, then the following must be true: 
+> The definition abstracts the inner product defined over all the finite dimensional real vectors. Let $\langle x, y\rangle$  be the inner product be any 2 elements from the vector space and consider an extra element $z$, then let $\alpha$ be the element from the scalar field the comes with the vector field, then the following must be true: 
 
 $$
 \begin{aligned}

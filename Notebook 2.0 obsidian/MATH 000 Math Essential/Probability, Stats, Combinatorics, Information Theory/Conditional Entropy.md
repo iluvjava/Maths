@@ -4,7 +4,7 @@ This is just continuing on the discussion on [[Shannon's Entropy]], [[Conditiona
 ---
 ### **Intro**
 
-Conditional Entropy is analogous to conditional expectation for random variable. Assuming Discrete Random Varaible $X, Y$, then using Laws of Total Expectation: 
+Conditional Entropy is analogous to conditional expectation for random variable. Assuming Discrete Random Variables $X, Y$ come with probability joint density function $p(x, y)$, then we define the conditional entropy to be: 
 
 $$
 \begin{aligned}

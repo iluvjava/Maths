@@ -11,7 +11,7 @@
 
 
 **Lacks of Inner Product**
-> The definition doesn't said anything about inner using inner product in the space to define the norm. The norm can be independent of the inner product. 
+> The definition doesn't said anything about  using inner product in the space to define the norm metric. The norm can be independent of the inner product. 
 
 
 

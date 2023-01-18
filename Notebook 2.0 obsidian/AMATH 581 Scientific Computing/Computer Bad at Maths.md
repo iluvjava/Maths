@@ -1,6 +1,6 @@
-Using finite difference to demosntrate the problem of roundoff error and truncation error
+Using finite difference to demonstrate the problem of roundoff error and truncation error
 
-prereq: [[Taylor Series]]
+prereq: [[Taylor Series]], [[Finite Precision Arithmetic]]
 
 ---
 

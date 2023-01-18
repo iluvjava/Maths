@@ -89,3 +89,12 @@ which is a measure of the pre-image, weighted by the probability density functio
 **Remark**
 
 It's easy to generalize this idea to any mapping between any spaces. It's just that we need the density function and the Lesbegue integral. 
+
+
+---
+### **Inverse Log Transform (Entropy)**
+
+
+
+
+

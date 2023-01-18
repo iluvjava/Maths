@@ -1,6 +1,4 @@
-[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation)
-
-[[Finite Difference]]
+[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation), [[Finite Difference]]
 
 ---
 ### **Intro**

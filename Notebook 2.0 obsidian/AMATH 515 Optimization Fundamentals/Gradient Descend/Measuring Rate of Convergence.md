@@ -3,6 +3,7 @@ How do we measure the speed at which some sequence approaches zero?
 ---
 
 ### **Introduction **
+
 Here we are interested in classifying different type of convergence rate, which serves as a board category metric for optimization algorithms. 
 
 
