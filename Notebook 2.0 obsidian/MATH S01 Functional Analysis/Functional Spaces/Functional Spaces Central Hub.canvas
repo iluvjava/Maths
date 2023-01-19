@@ -3,10 +3,10 @@
 		{"id":"ab7a35eb764ec4a4","x":-546,"y":-1471,"width":600,"height":400,"color":"1","type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Vector Space.md"},
 		{"id":"cb9c544e36ea710c","x":262,"y":-740,"width":596,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Innert Product Space.md"},
 		{"id":"13e9250d01c80392","x":-546,"y":-740,"width":600,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Inner Product Axiomatically Defined.md"},
-		{"id":"999ee8c5e67128d5","x":-546,"y":-2060,"width":600,"height":400,"color":"1","type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Metric Space.md"},
+		{"id":"0c06be43dd09db45","x":300,"y":-1600,"width":460,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Banach Space.md"},
 		{"id":"4e024053adde10ba","x":600,"y":-2060,"width":400,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Complete Metric Space.md"},
 		{"id":"2ff0a9ae2120da5f","x":1060,"y":-1271,"width":400,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Hilbert Space.md"},
-		{"id":"0c06be43dd09db45","x":300,"y":-1600,"width":460,"height":400,"type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Banach Space.md"}
+		{"id":"999ee8c5e67128d5","x":-546,"y":-2060,"width":600,"height":400,"color":"1","type":"file","file":"MATH S01 Functional Analysis/Functional Spaces/Metric Space.md"}
 	],
 	"edges":[
 		{"id":"b64dd011b5fb916a","fromNode":"cb9c544e36ea710c","fromSide":"right","toNode":"2ff0a9ae2120da5f","toSide":"left"},

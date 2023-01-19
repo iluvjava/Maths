@@ -64,7 +64,7 @@ Finally, **why do we use the Weistrass Theorem (Sequential Compact Theorem)**? T
 
 
 ---
-### **Existence of Minimizer Theorem over A Closed Set**
+### **Existence of Minimizer over A Closed Set**
 
 > let $f$ be a proper, closed, and coercive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 
@@ -92,6 +92,6 @@ Compare to the Weistrass's theorem, we consider the the difference between this 
 
 **Proof**
 
-Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is closed. It's bounded because the function $f$ is coersive. Therefore $C$ is compact. Involke previous theorem about the existence of a minimizer over a compact set, then we are done. 
+Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is closed by lower-semi continuity. It's bounded because the function $f$ is coersive. Therefore $C$ is compact. Involke previous theorem about the existence of a minimizer over a compact set, then we are done. 
 
 

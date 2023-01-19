@@ -47,6 +47,11 @@ The first 2 axioms are trivially true, however, to verify that the subspace is a
 Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
 
 ---
+### **More Examples**
+
+See [[Further Examples for Metric Space]] for more. 
+
+---
 ### **Vector Space with a Norm**
 
 > Given any vector field $(V, F, \Vert\cdot \Vert)$ denoting the vectors and the scalars and a norm function that maps the vector to the non-negative reals, then this space is a normed vector space. 
