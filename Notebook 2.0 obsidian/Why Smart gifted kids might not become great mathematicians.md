@@ -3,7 +3,7 @@ Loosely related to [[Quantifications of Mathematical Ability]].
 ---
 ### **Intro**
 
-Terence Tao is one of the examples of a smart kid who were put into the educations path for mathematics and become successful. In this file we assume that education plays a proper role for incubating gifted kids, and focus instead on why some kids appears to be smart but it might not correspond to giftedness in advanced mathematics. We refers the wold "*giftedness*"" as a type of promise that the kid, or student can be educated in mathematics properly and become successful. 
+Terence Tao is one of the examples of a smart kid who were put into the educations path for mathematics and become successful. In this file we assume that education plays a proper role for incubating gifted kids, and focus instead on why some kids appears to be smart but it might not correspond to giftedness in advanced mathematics. We refers the wold "*giftedness*" as a type of promise that the kid, or student can be educated in mathematics properly and become successful. 
 
 I think the reasons behind the fact that many kids were falsely identified to be good at mathematics are that the general populations, or the educators don't understand the type of qualities one would actually need for advanced mathematics. Here I will start of immediately by listing some commons observations that definitely doesn't correspond to giftedness in advanced mathematics: 
 1. Good at numbering. 

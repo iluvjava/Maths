@@ -11,6 +11,7 @@ Let $\{f_i\}_{i}^m, f$ be a listed of augmented real functions mapping between e
 * $\sum_{i = 1}^{m}\alpha_if_i(x)$ with $\alpha_i \; \ge 0 \forall i$ then the sum is convex as well. (By sets addition, where the sets are the epigraph of $f$)
 * $\max_i\{f_i(x)\}$ is convex too. (By intersection of convex epigraph of $f_i$)
 * Let $h_1, h_2$ be a convex proper augmented real function and a convex real-valued function, we have their infimal convolution $h_1\square h_2$ to be convex as well. 
+* Let $f(x, y)$ be a function in a product space such that it's a convex function for both parameters, then minimizing one of the product space, eg: $\inf_x f(x, y)$, with $y$ fixed, then it's still a convex function. 
 
 For the proofs for more interesting ones, see what is below. 
 

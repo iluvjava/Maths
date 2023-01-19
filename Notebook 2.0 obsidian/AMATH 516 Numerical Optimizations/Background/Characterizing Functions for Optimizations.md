@@ -29,6 +29,8 @@ This definition is introduced so we can get rid of some pathological function, m
 
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
 
+**References**: Credit due Rockafellar. 
+
 ---
 ### **Continuity and Smoothness**
 
@@ -79,6 +81,10 @@ A closed function is not enough for the function to be continuous, but a continu
 
 Recall Definition: 
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
+
+**Remarks**
+
+In Math 563, Heinz's class, there is the term *supercoercive*, which refers to function where $f(x)/\Vert x\Vert \rightarrow \infty$ as $\Vert x\Vert \rightarrow \infty$, a stronger version of coersiveness. 
 
 ---
 ### **Special Functions for Analysis**

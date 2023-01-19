@@ -39,3 +39,8 @@ $$
 ### **Newton's Interpolations and Finite Difference**
 See [here](https://www.youtube.com/watch?v=scQ51q_1nhw) for more. Finite difference it's a special case of Newton's Interpolation. 
 
+
+---
+### **Practical Concern over IEEE Floating Point Arithmetic**
+
+When actually computing the finite difference on the computer, there is a certain threshold for the discretization of the domain. See [[Computer Bad at Maths]] for more relevant discussion. 

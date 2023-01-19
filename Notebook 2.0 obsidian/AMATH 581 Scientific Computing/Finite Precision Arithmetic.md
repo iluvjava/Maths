@@ -19,6 +19,7 @@ The intrinsic representation of numbers are discrete, further more, the larger t
 1. **Adding**: The error is created when doing operations with numbers whose relative sizes are in different magnitudes. Allow me to illustrate it using addition in binary with 3 significant 4 for simplicity. Suppose that we have the number $a = 1.00\times 2^3$ and $b = 1.11\times 2^{-1}$, adding then together involves shifting $b$ by 4 digits, resulting in $0.00111\times2^{3}$ so that they have the same power. Adding them gives: $1.00111\times 2^3$, then, we perform chopping to fit into the memory, giving us: $1.00\times 2^3$. The absolute error is proportional to $\max(a, b)$, in this case, it's $2^{3}\times 2^{-2} = 2$.
 2. **Representation Error**: Given a number in decimal form, in any programming language, it will get represented as a binary and losing significant digits because some decimal numbers are recurrent in binary. This is due to gaps between the discrete representations of floating point. 
 
+
 ---
 ### **Fixed Relative Error for Additions**
 
@@ -44,7 +45,7 @@ $$
 \end{aligned}
 $$
 
-where, we represent the number using an infinite series that goes from the highest digits all the way to the end, and $x_0$ is the hightest non-zero digits of the number, and we shift it by the multiplying by $\lfloor \log_2x\rfloor$, which denotes the position of the highest digit. The multipler $(-1)^{-s}$ denotes the sign of the number. we approximate the relative error of $\text{fl}(x)$ by considering: 
+where, we represent the number using an infinite series that goes from the highest digits all the way to the end, and $x_0$ is the highest non-zero digits of the number, and we shift it by the multiplying by $\lfloor \log_2x\rfloor$, which denotes the position of the highest digit. The multiplier $(-1)^{-s}$ denotes the sign of the number. we approximate the relative error of $\text{fl}(x)$ by considering: 
 
 $$
 \begin{aligned}
@@ -108,7 +109,10 @@ $$
 \end{aligned}
 $$
 
-At $(*)$ we used the fact that the series expansion $\sum_{k = 0}^{\infty} x_{k + n + 1} 2^{-k - n - 1}$ is less than $\sum_{k = 0}^\infty 2^{-k-n-1}= 2^{-n}$, and for $(\star)$ we used the fact that the denominator $\sum_{k = 0}^{\infty}x_k2^{-k}$ is clearly $\ge 2^{0}$ by the assumption that $x_0 \neq 0$, which is a consequence with the assumption that $x \neq 0$. In the case when $x = 0$, the floating point representation error can be summarized as $\text{fl}(x) \in [-\epsilon, \epsilon]$. 
+At $(*)$ we used the fact that the series expansion $\sum_{k = 0}^{\infty} x_{k + n + 1} 2^{-k - n - 1}$ is less than $\sum_{k = 0}^\infty 2^{-k-n-1}= 2^{-n}$, and for $(\star)$ we used the fact that the denominator $\sum_{k = 0}^{\infty}x_k2^{-k}$ is clearly $\ge 2^{0}$ by the assumption that $x_0 \neq 0$, which is a consequence with the assumption that $x \neq 0$. In the case when $x = 0$, the floating point representation error can be summarized as $\text{fl}(0) \in [-\epsilon, \epsilon]$. 
+
+---
+### **Analysis for Multiplications and Division via Interval Arithmetic**
 
 
 
@@ -120,4 +124,5 @@ At $(*)$ we used the fact that the series expansion $\sum_{k = 0}^{\infty} x_{k 
 
 - [What every computer scientists should know about floating point arithemtic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html). 
 - [Stack overfloat: Rounding or chopping for Java IEEE](https://stackoverflow.com/questions/38245511/which-rounding-method-is-used-in-java-when-operating-on-floating-point-numbers).
-
+- [Stack Overflow: Is floating point broken](https://stackoverflow.com/questions/588004/is-floating-point-math-broken). 
+- [IEEE 754 wiki](https://en.wikipedia.org/wiki/IEEE_754)

@@ -1,5 +1,4 @@
-[[Topological Basics for Optimizations]]
-[[Characterizing Functions for Optimizations]]
+[[Topological Basics for Optimizations]],[[Characterizing Functions for Optimizations]]
 
 ---
 ### **Existence of a minimizer**
@@ -23,33 +22,17 @@ See proof in [[Lower Semi-Continuity is Closedness of Epigraph]].
 
 > For a proper, closed function $f$ over a compact set $C$ where $\text{dom}(f)\cap C\neq \emptyset$, then the function is bounded from below, and it will attain a minimum over the set $C$. 
 
-(a) Function $f$ is bounded below. 
-(b) $f$ obtains its minimum over the set $C$. 
+- (a) Function $f$ is bounded below. 
+- (b) $f$ obtains its minimum over the set $C$. 
 
 **Proof (a)**
 
-For contradiction suppose other wise that it's not bounded below. Then there exists a sequence $\{x_n\}_{n\in \mathbb N}$ such that: 
-
-$$
-\begin{aligned}
-    \lim_{n\rightarrow \infty} f(x_n) = -\infty
-\end{aligned}
-$$
-
-From Bozano Weistrass, there is a subsequence $\{x_{n_k}\}_{k\ge 1}$ such that it converges to $\bar x\in C$ by the compactness of the set $C$. Because the function is closed, it's equivalent to lower-semi-continuous. Which means that: 
-
-$$
-\begin{aligned}
-    f(\bar x) \le \lim\inf_{k\rightarrow \infty} f(x_{n_k})
-\end{aligned}
-$$
-
-Contradicting the fact that the function is proper. 
+The function is bounded from below by the definition of properness. 
 
 
 **Proof (b)**
 
-Since the function is bounded below, and the function is closed, consider $f_{\text{opt}}$ to be the minimum value over $C$. Then $\exists \{x_n\}_{n\in \mathbb N}$ such that $f(x_n)\rightarrow f_{\text{opt}}$. Take subsequence that converge to some point $\bar x$, using the lower semi-continuous property of $f$, we have: 
+Since the function is bounded below, and the function is closed, consider $f_{\text{opt}}$ to be the minimum value over $C$. Then $\exists \{x_n\}_{n\in \mathbb N}$ such that $f(x_n)\rightarrow f_{\text{opt}}$. Take subsequence $x_{n_k}$ that converge to some point $\bar x$, using the lower semi-continuous property of $f$, we have: 
 
 $$
     f(\bar x) \le \lim\inf_{k\rightarrow \infty} f(x_{n_k}) = f_{\text{opt}}
@@ -59,7 +42,7 @@ Proven.
 
 **Remarks**
 
-The proof seems so obvious, but it's not so much at the same time, we need to be aware of all the assumptions and why they are important to this proof of the theorem. The function will have to be proper, if not, the minimum is just $-\infty$, which it HAS a minimum, but it's not neccessarily useful. 
+The proof seems so obvious, but it's not so much at the same time, we need to be aware of all the assumptions and why they are important to this proof of the theorem. The function will have to be proper, if not, the minimum is just $-\infty$, which it HAS a minimum, but it's not used here. (I am not sure why this condition is here. )
 
 Function $f$ being a closed function implies no discontinuities that goes up. For example consider the following function defined on $[-M, M]$ where $M\ge 0$ where $M$ is assumed to be larger, then we consider this function: 
 
@@ -75,13 +58,13 @@ $$
 
 Observe that, the function can approach $-\infty$ as much as it wants, but the limiting point is not $-\infty$, and in this case, the minimum of the function doesn't exist. 
 
-If the set $C$ is open, then, the limit of the sequences might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point can'be attained. Creating problem for the minimum of the function over the region. 
+If the set $C$ is open, then, the limit of the sequences might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point can't be attained. Creating problem for the minimum of the function over the region. 
 
-Finally, **why do we use the Weistrass Theorem (Sequencial Compact Theorem)**? This is true because there could be infinitely many points on set $C\subseteq \text{dom}(f)$ such that it attains the minimum, or a desired value, however, it doesn't mean that they converge to a certain point. If we remove the assumption that $C$ is compact, then it's possible that some sequence $\{x\}_{n\in \mathbb N}$ such that the sequence diverges, but $f(x_n)$ converges to some minimum. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to be rigourous. 
+Finally, **why do we use the Weistrass Theorem (Sequential Compact Theorem)**? This is true because there could be infinitely many points on set $C\subseteq \text{dom}(f)$ such that it attains the minimum, or a desired value, however, it doesn't mean that they converge to a certain point. If we remove the assumption that $C$ is compact, then it's possible that some sequence $\{x\}_{n\in \mathbb N}$ such that the sequence diverges, but $f(x_n)$ converges to some minimum (so that the minimizer doesn't exist). Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to be rigourous. 
 
 
 ---
-### **Existence of Minimizer Theorem**
+### **Existence of Minimizer Theorem over A Closed Set**
 
 > let $f$ be a proper, closed, and coercive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 
@@ -100,5 +83,15 @@ For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le
 **Remarks**
 
 Compare to the Weistrass's theorem, we consider the the difference between this theorem and the above. The Existence of minimizer exists for all $S\subseteq \mathbb E$, which is the difference. Under these sets of assumptions, we are remained with a class of functions that looks like a bowl on the large scale because it's coercive, and if we shine lights from the bottom of the function, it will perfectly describe the epigraph of the function (closeness), and the function is bounded below. 
+
+
+---
+### **Existence of Minimizer**
+
+> Suppose that $f$ is lsc and proper and coercive, then it contains a minimizer. There could be many minimizers, but it contains at least one global minimizer. 
+
+**Proof**
+
+Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is closed. It's bounded because the function $f$ is coersive. Therefore $C$ is compact. Involke previous theorem about the existence of a minimizer over a compact set, then we are done. 
 
 
