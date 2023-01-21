@@ -1,4 +1,3 @@
-[[Groups]], 
 [[Factored Group, Cosets, Equivalence Relations]].
 
 ---

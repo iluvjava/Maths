@@ -22,7 +22,7 @@ $$
 > \begin{aligned}
 > T(e_i\otimes e_j) &:= A_{i, j} 
 >     \\
->     T(B) &:= \sum_{(i, j)\in }^{}X_{i, j}T(e_i\otimes e_j)
+>     T(B) &:= \sum_{(i, j)\in [m]\times [n]}^{}X_{i, j}T(e_i\otimes e_j)
 > \end{aligned}
 > $$
 > It's a mapping for each of the basis matrix, and it's going to be a linear mapping, and it's defining all possible linear mapping from $\mathbb R^{m\times n}$ to $\mathbb R^{m\times n}$. 

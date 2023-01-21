@@ -89,3 +89,7 @@ A spanning Tree of a subgraph is a tree (one connected component) of a graph G t
 
 **Note**: A spanning subgraph is not necessarily connected, nor it has to be a tree. 
 
+---
+### **Directed In/Out Tree**
+
+A directed in/out tree is a tree of directed edge where. If all paths goes from the roots to the leafs in the direction of the arcs, then it's a directed out tree. If all paths goes from the leafs to the node, then it's a directed in tree. Else, it's neither. 
