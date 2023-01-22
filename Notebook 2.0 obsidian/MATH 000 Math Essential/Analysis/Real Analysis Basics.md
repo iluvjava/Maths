@@ -36,6 +36,24 @@ It's suitable in general metric space.
 
 > A function $f$ is uniformly continuous over a region $A$ when for all $\epsilon > 0$ we have $\delta_\epsilon$ such that for all $|x - y|< \delta_\epsilon(A)$ we have $|f(x) - f(y)| \le \epsilon$ for any $x, y\in A$. 
 
+---
+### **Uniform convergence and Pointwise Convergence**
 
+We use pointwise convergence and uniform convergence to describe that possible ways where a sequence of functions can converge to another function in the space. 
+
+**Def: Point wise convergence**
+> $f_n \rightarrow f$ pointwise in $D$ when for all point $x_0\in D$ such that for all $\epsilon$ there exists $\delta_{\epsilon}(x_0)$ such that if $|x - x_0| \le \delta_\epsilon(x_0)$, then we have $|f_n(x_0) - f(x_0)| \le \epsilon$. 
+
+In brief, if we are long looking at each point on the function $f_n(x_0)$, then it gets closer to the point $f(x_0)$. 
+
+**Remarks**
+However, the relative speed of how each point converges to the target function is not described in the pointwise convergence definition. 
+
+
+**Def: Uniform Convergence**
+
+> $f_n \rightarrow f$ uniformally on $D$ when for all $\epsilon$ there exists $\delta_\epsilon$ where $\Vert f_n - f\Vert_D \le \epsilon$. Here, $\Vert g\Vert_D:= \sup_{x\in D}|g(x)|$ is a norom for the function. 
+
+In brief, all the point in the region $D$ will be close to the target function. There doesn't exists some point where it's always slower than all the other point when the function $f_n$ is converging. 
 
 
