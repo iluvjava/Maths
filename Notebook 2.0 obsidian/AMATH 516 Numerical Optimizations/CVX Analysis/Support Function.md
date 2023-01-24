@@ -20,12 +20,14 @@
 > \end{aligned}
 > $$
 
+
+
 **Remarks**
 
-When the set $C$ is not closed, the $\sup$ operator is closing it automatically. The function is convex because its the sum of 2 proper convex functions wrt $y$, $\langle y, x\rangle$ which is convex and real-valued, and $\delta_C$ the indicator function which is augmented real and proper, using [[Convexity Preserving Operations for Functions]], this is just taking the maximum of convex functions pointwise, therefore the resulting function is convex. 
+In some literatures, $\sigma_C$ is used for denoting the support unction for a set $C$. When the set $C$ is not closed, the $\sup$ operator is closing it automatically over a set of affine functions (could  be infinite), therefore the epigraph of the function is closed for all $C\neq \emptyset$. The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [[Convexity Preserving Operations for Functions]] for more information). 
 
-When dealing with the support function for analysis purposes, keep in mind these good properties: 
-* It's convex 
+When dealing with the support function for analysis purposes, keep in mind these good properties for all subsets $C$ of the Euclidean space: 
+* It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
 * $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
 * $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
 * Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
@@ -34,6 +36,10 @@ When dealing with the support function for analysis purposes, keep in mind these
 * Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[Convex Conjugation]] for more. 
 
 We will prove some of the properties that are not trivial to prove. 
+
+**References**:
+
+Amir's first order op textbook, section 2.4. 
 
 ---
 ### **Theorem: Convexity of Support Functions**
