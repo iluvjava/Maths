@@ -1,4 +1,4 @@
-[[Uniform Convergence Preserves Continuity]]
+[[Uniform Convergence, Continuity and More]]
 
 ---
 ### **Intro**
@@ -10,7 +10,7 @@ We state the theorem and them prove it in the next section. The Wiestrass M-Test
 > 1. $\Vert f_n(x)\Vert_{(A, \infty)}\le M_n\; \forall n \ge 0$
 > 2. $\sum_{i = 1}^{\infty}M_n < \infty$
 > 
-> Then the sequence of function $f_n$ converges uniformally and absolutely. 
+> Then the sequence of function $f_n$ converges uniformly and absolutely. 
 
 **Proof**
 
@@ -31,7 +31,7 @@ $$
     \le 
     \sum_{k = n+ 1}^{m} \Vert f_k\Vert_{(A, \infty)}
     \\
-    & \hspace{6.6em}
+    & \hspace{6.7em}
     \le 
     \sum_{k = n + 1}^{m}M_k \le \epsilon, 
 \end{aligned}

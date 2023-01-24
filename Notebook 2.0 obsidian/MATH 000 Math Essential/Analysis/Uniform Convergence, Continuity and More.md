@@ -2,7 +2,7 @@
 
 
 ---
-### **Intro**
+### **Uniform Convergence Preserves Continuity**
 
 > If the function $f_n$ converges to $f$ uniformly on the region $D$, then the resulting function $f$, and the function $f_n$ is continuous for all $n\in \mathbb N$, then the resulting function $f$ will be a continuous function. 
 
@@ -35,3 +35,11 @@ The theorem doesn't say anything about preserving uniform continuity of the func
 
 The proof is a very similar flavor as the previous one and we are skipping that. 
 
+
+---
+### **Uniform Convergence of Derivative, Differentiability**
+
+> Let $f_n$ be have continuous first derivative. If $f_n\rightarrow f$ uniformly and $f'_n\rightarrow g$ uniformly, then the limit $f$ is differentiable and $f' = g$. 
+
+**Proof**
+Skipped for now. 

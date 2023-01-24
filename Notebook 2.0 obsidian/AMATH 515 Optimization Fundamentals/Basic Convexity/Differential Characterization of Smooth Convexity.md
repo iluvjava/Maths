@@ -6,7 +6,7 @@ prereq: [[Introduction to Convexity]]
 ### **Differential Characterization of Convexity**
 
 
-> The following list is a list of statements are equivalent if: $f: T\mapsto R$ is a $C1$ smooth function. 
+> The following list is a list of statements are equivalent if: $f: T\mapsto R$ is a $C_1$ smooth function. 
 > 
 > 1. (**Convexity**) $f$ is a convex function. 
 > 2. (**Gradient Inequalities**) $f(y)\geq f(x) + \langle \nabla f(x), y - x\rangle$ for all $x, y\in U$. (The actual value of the function is always larger than the linear approximation of that point)
@@ -33,7 +33,7 @@ To proof a list of states are equivalent, we will have to do **a cyclic proof** 
 
 ---
 ### **Proofs**
-**Proof (1) -> (2)**
+**Proof (1) --> (2)**
 
 Assume that the function is convex, By secant line inequality, for any $t\in (0, 1)$, convexity implies that: 
 $$
@@ -49,20 +49,20 @@ Moving the derivative part of the function into it and then we get:
 
 $$
 \begin{aligned}
-	& f(x) + t\nabla f(x)^T(y - x) + o(t) \leq tf(y) + (1 - t)f(x)
+	f(x) + t\nabla f(x)^T(y - x) + o(t) &\leq tf(y) + (1 - t)f(x)
 	\\
-	\implies &
-	t\nabla f(x)^T(y - x) + o(t) \leq tf(y) - tf(x)
+	\implies 
+	t\nabla f(x)^T(y - x) + o(t) &\leq tf(y) - tf(x)
 	\\
-	\implies & 
-	\nabla f(x)^T(y - x) + o(t)/t \leq f(y) - f(x)
+	\implies
+	\nabla f(x)^T(y - x) + o(t)/t &\leq f(y) - f(x)
 	\\
-	[1]\implies &
-	\nabla f(x)^T(y - x) \leq f(y) - f(x)
+	[1]\implies
+	\nabla f(x)^T(y - x) &\leq f(y) - f(x)
 \end{aligned}
 $$
 
-At \[1\], we take the limit of $t\rightarrow 0$, then it's saying that, the predicted change using the first derivative is alawys going to be an underestimation of what the actual function value is, the same result as **(1)**. $\blacksquare$
+At \[1\], we take the limit of $t\rightarrow 0$, then it's saying that, the predicted change using the first derivative is always going to be an underestimation of what the actual function value is, the same result as **(2)**. $\blacksquare$
 
 **Proof (2) --> (3)**
 
@@ -90,7 +90,7 @@ $$
 Which is saying that the discrete change in the gradient between 2 points is point approximately to the same direction as the vector connecting these 2 points. This is refer to as the **monotonicity** of the gradient of the function, the change in the gradient is mono. 
 $\blacksquare$
 
-**Proof (3) --> (1)**: 
+**Proof (3) --> (2)**: 
 > $$(\nabla f(y)^T - \nabla f(x)^T)(y - x) \geq 0$$ 
 > implies that fact that the function is convex. 
 
