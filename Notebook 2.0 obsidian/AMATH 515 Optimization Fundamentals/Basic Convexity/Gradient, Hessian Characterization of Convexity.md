@@ -90,13 +90,13 @@ $$
 Which is saying that the discrete change in the gradient between 2 points is point approximately to the same direction as the vector connecting these 2 points. This is refer to as the **monotonicity** of the gradient of the function, the change in the gradient is mono. 
 $\blacksquare$
 
-**Proof (3) --> (2)**: 
+**Proof (3) --> (1)**: 
 > $$(\nabla f(y)^T - \nabla f(x)^T)(y - x) \geq 0$$ 
 > implies that fact that the function is convex. 
 
 **Proof**:
 
-Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. It represent the function value of $f$ along the line $[x_1, x_2]$, where $t\in [0, 1]$ specify the where we are on the line segment. Take notice that taking the derivative on the function gives us the following: 
+Define $\varphi (t) = f(x + t(y - x))$, and then $x_t := x + t(y - x)$ as the auxiliary function. It represent the function value of $f$ along the line $[x, y]$, where $t\in [0, 1]$ specify the where we are on the line segment. Take notice that taking the derivative on the function while gives us the following: 
 
 $$
 \begin{aligned}
@@ -115,22 +115,26 @@ $$
 \[1\] We make use of monotonic property of the gradient in statement hypothesis. Please observe that by definition $(t - s)(y - x) = x_t - x_s$. Therefore, the derivative of a convex function monotonically increases in any line segment in its domain. Let's consider the fundamental theorem of calculus on the line segment, applied to the function $\varphi (t)$: 
 
 $$
-\varphi(1) = \varphi(0) + \int_0^1 \varphi'(\tau)d\tau \ge \varphi(0) + (1)\varphi'(0)
+\varphi(1) = \varphi(0) + \int_0^1 \varphi'(\tau)d\tau \ge \varphi(0) + (1)\varphi'(0).
 $$
 
 We use the monotonicity to justify the $\ge$, resulting a lower bound for the integral. Next we consider substituting in the following parameters for the equation: $\varphi(1) = f(y)$, $\varphi (0) = f(x)$, $\varphi'(0) = \nabla f(x)^T (y - x)$, 
 Therefore: 
 
 $$
-f(y) \ge f(x) + \nabla f(x)^T(y - x)
+f(y) \ge f(x) + \nabla f(x)^T(y - x).
 $$
 
 This statement is true for all $x$, equivalent to statement **(2)**. Taking the supreme of all $x$ we obtain:
 $$
-f(y) \ge \sup_x\{ f(x) + \nabla f(x)^T(y - x)\}
+f(y) \ge \sup_{z\in [x, y]}\{ f(x) + \nabla f(z)^T(y - z)\},
 $$
 
-Due to monoticity of the gradient, we obtain the monotone increasing property of function over a line segment.
+observe that the above $\ge$ can be strict by the mean value theorem and that would mean $f(y)$ is a supremum of an affine function over a set of parameters, therefore by [[Convexity Preserving Operations for Functions]], taking the supremum over still makes it convex. 
+
+**Remarks**
+
+The last part of the proof: (3)--> (1), breaks when we have strict monotonicity due to missing the equality part of the argument. This argument is not as robust as it should be. 
 
 ---
 ### **Corollary 2.19**

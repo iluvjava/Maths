@@ -94,7 +94,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Introduction to Convexity]] 
 		* Convex Set
 		* Convex Functions
-		* [[Differential Characterization of Smooth Convexity]]
+		* [[Gradient, Hessian Characterization of Convexity]]
 	* Good to optimize functions: 
 		* [[Closed, Proper, Level Bounded, Strong Convex]]
 		* [[Beta Smoothness]]

@@ -45,7 +45,7 @@ Verified by taking the $n$ th derivative on the expression so that the remaining
 
 **Upper Bound Description**
 
-Assuming that the function is infinitely differentiable at every points in the real, then its continuous for any of its derivative, which implies that given a point $x_0, x$ that is close enough, the following is true:
+Assuming that the function is infinitely differentiable at every points in the real, then it's continuous for any of its derivative, which implies that given any point $x_0, x$, the following is true:
 
 > $$\exists M =\left| \sup_{x \in [\min(x_0, x), \max(x_0, x)]} f^{(n + 1)}(x) \right| \le \infty$$
 

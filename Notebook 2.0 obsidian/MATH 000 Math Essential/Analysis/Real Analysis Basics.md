@@ -16,13 +16,23 @@ The idea of sequential convergence gives reasoning behind the idea of continuity
 
 **Remarks**
 
-Intuitively it means that the number $a_n$ will stick very close to $a$, as much as we want it to, and it's sticking close to it all the way to infinity. 
+Intuitively it means that the number $a_n$ will stick very close to $a$, as much as we want it to, and it's sticking close to it all the way to infinity.
+
+**More Backgrounds**
+
+* [[Convergence of Cauchy Sequences]]
+
+---
+### **Monotone Convergence**
+
+> Let $a_n$ be a real sequence and $a_{n + 1}\le a_n$ so that it's monotone decreasing. If the sequence is also bounded below, rhen it has to converge to a point. 
+
 
 
 ---
 ### **Bozano Weierstrass | Converging Subsequence**
 
-> Given any sequence $a_n$ that is bounded in a compact interval $A$, there is a subsequence of $a_n$ that converges to a point in the space $A$. 
+> Given any real sequence $a_n$ that is bounded in a compact interval $A$, there is a subsequence of $a_n$ that converges to a point in the space $A$. 
 
 **Proof**
 
@@ -52,7 +62,7 @@ It's suitable in general metric space.
 
 
 ---
-### **Uniform convergence and Pointwise Convergence of a function**
+### **Uniform, Pointwise Convergence of a function**
 
 We use pointwise convergence and uniform convergence to describe that possible ways where a sequence of functions can converge to another function in the space. 
 

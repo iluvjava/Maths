@@ -52,3 +52,6 @@ are satisfied for the vector space. A generalization where a vector space has a 
 
 **Linear Operator**
 * A linear transformations that links between 2 vector spaces is itself, in a vector space. 
+
+**Euclidean Space**
+* Finite dimension real vectors are in Euclidean space, which is an instance of a vector space. 
