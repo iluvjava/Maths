@@ -1,4 +1,5 @@
-[[Topological Basics for Optimizations]]
+[[Topological Basics for Optimizations]], 
+We assume that the background set for our topology is the Euclidean space. 
 
 ----
 **Closure**
@@ -12,7 +13,7 @@ The closure for a set $Q\subseteq X$ relative to a background $X$ is the set of 
 
 **Remarks**
 
-A closed set is not necessarily complete. For the set $\mathbb{Q}$ which is not complete, but it still has the epsilon ball intersecting region with itself for for very element from it. Even worse, the Cantor set is a closed set. See more in [[The Cantor Set]]. 
+A closed set is not necessarily complete. For the set $\mathbb{Q}$ which is not complete, but it still has the epsilon ball intersecting region with itself for for very element from it. Even worse, the Cantor set in the real line is a closed set. See more in [[The Cantor Set]]. 
 
 **Facts**
 * A set is closed, if its complement is an open set. 

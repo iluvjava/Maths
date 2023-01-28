@@ -1,4 +1,4 @@
-[[Weierstrass M-Test]]
+[[Weierstrass M-Test]], #TODO
 
 ---
 ### **Intro**
@@ -9,7 +9,7 @@ The proof is quite long and I don't have enough time. See [[104_weierstrass.pdf]
 > This function illustrate the fact that continuity and uniform convergence of functions might not preserves the differentiability. And in addition to that, this pathological example is quite extreme as it demonstrate that a sequence of differentiable functions can converges uniformly (using a series), but it can be nowhere differentiable. 
 
 Maybe in the future I will have the time to write this long one down. 
-#UNFINISHED
+
 
 
 **References:** 

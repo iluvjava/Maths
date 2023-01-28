@@ -46,6 +46,8 @@ $$
 
 Since $\mathbb B_\epsilon(x)$ contains $x$ which is $\in Q$, we have the negation of subset denoted as $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$, and the gives the definition of the closure of a set. 
 
+
+
 **Remarks**
 
 * **Subtleties**: 
@@ -55,6 +57,8 @@ Since $\mathbb B_\epsilon(x)$ contains $x$ which is $\in Q$, we have the negatio
 **Basic Examples**
 * The empty set is open because we can't choose any element from it and exam its neighbour. The empty set is closed because for all element's neighbour, it intersects with the empty set, thus it's open trivially. The empty set is *clopen (closed and open)*. 
 * The set $\mathbb Q$ is neither closed nor open. For every epsilon ball open around $x\in \mathbb Q$, there exists an irrational number. Hence it's not open. It's not closed because a sequence of rational numbers can converge to an irrational number. 
+
+
 ---
 ### **Notations**
 
