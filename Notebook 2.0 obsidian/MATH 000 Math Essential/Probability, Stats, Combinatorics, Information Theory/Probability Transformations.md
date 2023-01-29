@@ -9,6 +9,8 @@ A lot of the time we let the random variables interact in many different ways, a
 3. Lesbegue integral for the general cases. 
 4. Special cases such as when we have the sum of 2 random variable. And in the case of i.i.d random variable, we just use the generating functions for the distributions. 
 
+Good references: [here](https://en.wikipedia.org/wiki/Probability_density_function#Function_of_random_variables_and_change_of_variables_in_the_probability_density_function). 
+
 **Theorem: 1D random variable transformations**
 
 > Let $g(X)$ be the transformed random variable where $X$ has a PDF of $f_X(x)$, well defined. Assuming that the function $g$ is strictly monotone, so that it will have a single value pre-image for any single interval input, the PDF of $g(X)$ is given as: 

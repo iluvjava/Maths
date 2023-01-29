@@ -1,4 +1,4 @@
-[[Banach Space]]
+[[Banach Space]], [[Real Analysis Basics]], 
 
 
 ---
@@ -11,6 +11,21 @@ A continuous mapping is similar to a function that is continuous for the real nu
 > $$
 > \forall \epsilon > 0\; \exists \; \delta: \Vert x - \bar x\Vert\le \delta \implies \Vert T(x) - T(\bar x)\Vert \le \epsilon
 > $$
+
+**Makes it Fancier**
+
+Sometimes we consider representing the definition in a fancier way. We now consider function $f$ accepting a set of input and transform it into another set of output in the range of the function. Define $\mathbb B_r(x)$ to be the epsilon ball around a point $x$ that is $r$ distance way wrt the underlying metric space that we are looking at. Taking up this glasses, we have the following definition for a continuous mapping in a metric space: 
+
+> The mapping $f:X\mapsto Y$ in metric space is continuous at the point $\bar x \in X$ if: 
+> $$
+> \begin{aligned}
+>     \forall \epsilon > 0 \;\exists\; \delta_\epsilon: 
+>     f \mathbb B_{\delta_\epsilon}(\bar x|X) \subseteq \mathbb B_\epsilon f(\bar x|Y), 
+> \end{aligned}
+> $$
+> where the $\mathbb B_r(x)$ are defined respectively for the intput and the output metric space for the mapping. 
+
+which states that the epsilon ball around intput $\bar x$ is bounded by the paramaterized $\delta_\epsilon$ such that in the output range, it's within the output $\epsilon$ ball around $f(\bar x)$. 
 
 
 ---
@@ -26,6 +41,28 @@ A continuous mapping is similar to a function that is continuous for the real nu
 **Proof Priors** 
 Before the proof, we establish the fact that $\sin(2n\pi x) \ge \frac{1}{\sqrt{2}}$ for all $x\in [\frac{1}{8n}, \frac{3}{8n}]$ and the fact that $f_n$ has a period of $1/n$. 
 
+
+
 **Source**:
 
 This is exercise 2.3 in \<A friendly approach to functional analysis\>. 
+
+---
+### **Theorem: Pre-image Preserves Openness of Sets**
+
+For background about topology, see [[Topological Basics for Optimizations]]. This topological definition defines continuity for mapping between metric spaces.
+
+> The mapping $T:X\mapsto T$ is continuous on $X$ if and only if $T^{-1}O\subseteq X$ is open whenever $O\subseteq Y$ is open. 
+
+**Proof**
+
+Suppose that $T$ is continuous, we show that $T^{-1}O$ is an open set for any $O\subseteq X$, we then show that the openness of the set is preserved. Take $y\in O$ then for all epsilon region $\mathbb B_\epsilon(y|Y)$ there exists delta region $\mathbb B_{\delta_{\epsilon}}f^{-1}(y)$ such that $f\mathbb B_{\delta_{\epsilon}}(f^{-1}(y))$ is within the epsilon ball. 
+
+Next suppose that the set $f^{-1}O$ is an open set then for any $x\in f^{-1}O$, we have $\delta > 0$ delta region that exists: $\mathbb B_{\delta}(x|X)\in f^{-1}O$, which would mean that $f_\delta(x|X)\in O$ by definition of pre-image of the function. Therefore the set $O$ is an open set. 
+
+
+---
+### **Accumulation Point of a Set**
+
+$x$ is an accumulation point to the subset $A\subseteq X$ if, for every point in $A$, there exists some other point that the point $x$ itself. 
+

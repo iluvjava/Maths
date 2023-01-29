@@ -6,21 +6,26 @@ We introduce the absolute basics of real analysis. There are approximately 2 par
 
 Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[Metric Space]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
 
+We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. 
+
 
 ---
 ### **Real Number Line**
-Basic Real analysis bases the topology on the real line. 
+Basic Real analysis bases the topology on the real line. The nature of the real line is elusive. 
 
 **Definition: A Dense Subset**
 > A subset $A$ of real is dense if, for all $x, y \in \mathbb R$, there exists an element $z\in A$ such that it's between $x, y$. 
 
+In brief, it's a set that is infinitely finely scattered on the background set. In our context the background set is the set of real number. 
+
 **Example:** 
-
-**Rationals are Dense In Real**
-
+The line of rationals is a dense set of the real. For every real number that is not the same, there is a rational that exist between the 2 number. 
 
 **Real is Separable**
 
+> A set $X$ is separable if it contains a countable dense subset. 
+
+In the case of the real number line, it contains the set of rationals as as a countable subset that is dense. 
 
 
 ---

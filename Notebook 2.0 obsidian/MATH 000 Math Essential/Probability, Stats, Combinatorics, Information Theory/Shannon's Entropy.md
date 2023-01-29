@@ -1,7 +1,5 @@
 We need this for machine learning. 
-[[Expectations of Random Variables without Sigma Algebra]]
-
-Here is the wiki [here](https://www.wikiwand.com/en/Entropy_(information_theory))
+[[Expectations of Random Variables without Sigma Algebra]]. Here is the wiki [here](https://www.wikiwand.com/en/Entropy_(information_theory))
 
 ---
 ### **Intro**
@@ -97,11 +95,9 @@ Remember from huffman encoding that, we can encode all the symbols from a set us
 - "the length of the message" is $\log_2$. 
 - "for each of the outcome is": $-\log(f(x))$.  
 
-Suppose that 3 messages need to be send, with a distribution of $\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{8}$. Then the message will be: $0, 10, 110, 111$ for each of these outcome. 
+Suppose that 3 messages need to be send, with a distribution of $\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{8}$. Then the message will be: $0, 10, 110, 111$ for each of these outcome. Take note that, if I put them into the $\log_2\left(\frac{1}{f(x)}\right)$ then we actually had the right thing. 
 
-Take note that, if I put them into the $\log_2\left(\frac{1}{f(x)}\right)$ then we actually had the right thing. 
-
-On this case, the measure of $\log(f(x)^{-1})$ gives us the deth of we need to go on the huffman tree before we getting to the code for that particular given message. 
+On this case, the measure of $\log(f(x)^{-1})$ gives us the depth of we need to go on the huffman tree before we getting to the code for that particular given message. 
 
 ---
 ### **Properties of the Shannon's Entropy**
@@ -114,12 +110,12 @@ On this case, the measure of $\log(f(x)^{-1})$ gives us the deth of we need to g
 
 One of the major applications for the entropy measure is the information gain when branching a [[Decision Tree]] learning model. 
 
-> When braching, we choose a splitting criteria such that the information gain is maximized. The information gain over a spliting criterion is measured as the entropy of the parant node minus the average entropy on the children nodes. 
+> When breaching, we choose a splitting criteria such that the information gain is maximized. The information gain over a splitting criterion is measured as the entropy of the parent node minus the average entropy on the children nodes. 
 
 $$
 \text{IG}(k) = H(X) - \frac{H(X|X > k) + H(X| X< k)}{2}
 $$
 
-And this is how information gain is relavent to shannon's entropy. 
+And this is how information gain is relevant to Shannon's entropy. 
 
 

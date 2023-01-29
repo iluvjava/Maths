@@ -3,6 +3,7 @@
 ---
 ### **Metric for Unbounded Sequence**
 
+References: \<Introductory Functional Analysis with Applications\>
 
 
 ---
@@ -10,8 +11,6 @@
 
 **Conjugate Pairs**
 > $p, q$ are conjugate pairs if they satisfies: $p^{-1} + q^{-1} = 1$. 
-
-
 
 
 **Theorem: Fenchel's Young's Inequality**
@@ -146,7 +145,7 @@ $$
         w_i^p
     \right)^{1 - 1/q}
     &\le 
-    \Vert a\Vert_p + \Vert b\Vert_p, 
+    \Vert a\Vert_p + \Vert b\Vert_p. 
 \end{aligned}
 $$
 
