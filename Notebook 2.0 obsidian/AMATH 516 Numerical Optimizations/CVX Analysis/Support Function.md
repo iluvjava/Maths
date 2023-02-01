@@ -106,12 +106,18 @@ $$
 \end{aligned}
 $$
 
-The diretion whre $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ is obvious.Using the previous results we obtain the equivalence between all these 3 functions. 
+The direction where $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ is obvious.Using the previous results we obtain the equivalence between all these 3 functions. 
 
 **Remarks**
 
 The magic here is the function inside of the sup can be superpositioned, and we take advantage of the properties of convex hull to support any points that are in convex hull using points from the original set $C$. 
 
+
+
+---
+### **Support Function for Closed Convex Sets**
+
+#UNFINISHED #HEINZ, Lemma 8.15
 
 ---
 ### **Example 1: Support Function of Finite Sets**

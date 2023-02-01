@@ -142,7 +142,14 @@ The absolute value of the distance is then bounded by the differences between th
 
 **Remarks**: 
 
-In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimal convolution theorem. 
+In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimal convolution theorem.
+
+
+---
+### **Strict Separations of Convex Sets**
+
+You can separate strictly, any 2 convex sets that are not intersecting with each other. [[Strict Separations Theorem]]. 
+
 
 
 ---

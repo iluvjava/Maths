@@ -125,7 +125,7 @@ Which is the definition of Lipschitz Continuity for the function along the line 
 * Note, the upper boundedness depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can choose the subgradient and $t$ to minimize the bound. 
 
 * I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always be between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
-	* In reply to this, it's indeed true and it's part of the monotone properties of convex subdifferential operator, see [[Monotonicity of Subgradient on a Line]] for more information. To apply the theorem, we need to reconsider: $\langle g_1, t(x_1 - x_2)\rangle + \langle g_t, (1 - t)(x_1 - x_2)\rangle$ using the monotonicity of the subgradient over interior line interval: $[x_1, x_2]$. 
+	* In reply to this, it's indeed true and it's part of the monotone properties of convex subdifferential operator, see [[Monotonicity of Subgradient]] for more information. To apply the theorem, we need to reconsider: $\langle g_1, t(x_1 - x_2)\rangle + \langle g_t, (1 - t)(x_1 - x_2)\rangle$ using the monotonicity of the subgradient over interior line interval: $[x_1, x_2]$. 
 
 **Comments**
 

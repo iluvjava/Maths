@@ -19,6 +19,9 @@ Suppose that there are non-zero lower bound such that $l\le x \le u$, then $x = 
 - $b'_i = b_i - l_{i, j}, b'_j = b_j + l_{i,j}$
 - $\mathbf 0 \le x' \le u - l = u'$
 
+**Invariants**
+- The sum of $b$ vector after the transform should still be the same as before. 
+
 **Remarks**
 
 $x = x' + l$ is the key, the new decision variable models how much more flow we need to send across an arc above the lower bound. 

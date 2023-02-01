@@ -25,6 +25,8 @@ Materials take with reference from Chapter 3 of \<First Order Method for Optimiz
 > 
 > Define the set of all Sub-gradient at $x$ to be: $\partial[f]_{x}$And when $x\not\in \text{dom}(f)$ we defined $\partial [f]_x = \emptyset$. 
 
+Immediately observe that $(x, f(x)), (\partial(x), -1)$ gives support separations plane for the $\text{epi}(f)$. 
+
 **Proof**
 
 The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[[x|f]] = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
@@ -73,6 +75,10 @@ $$
 
 And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions, Set-valued Mappings]]). 
 
+**Domain of the Subgradient**
+> The domain of the subgradient of a function $f$ denoted as $\text{dom}\partial f = \{x\in \partial f(x)| \partial f(x) \neq \emptyset\}$.
+
+
 **Definition: Generalized Gradient (Regular Subgradient)**
 
 > Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then: 
@@ -95,9 +101,7 @@ $$
 \partial [f]\subseteq\hat{\partial}[f]
 $$
 
-Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. 
-
-Regardless of the fact that it's called the regular subgradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
+Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. Regardless of the fact that it's called the regular subgradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
 
 
 **Source**: 
@@ -118,7 +122,7 @@ All means taking the derivative of $f$ wrt to $u$ and fixing $x$ to be a constan
 
 
 ---
-### **Optimality Conditions Characterized by Subgradient of Convex Functions**
+### **Optimality Conditions Characterized by Subgradient of Convex Functions | Fermat's Theorem**
 
 One almost trivial results from the above definition is that if $x^+$ is a minimizer for the convex function $f(x)$, then $\mathbf 0 \in \partial [f]_{x^+}$ because: 
 
@@ -282,7 +286,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* The regular subgradient is a convex set (**#REFERENCE_NEEDED**). 
+* The regular subgradient is a convex set (**#REFERENCE_NEEDED**, #HEINZ, Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 

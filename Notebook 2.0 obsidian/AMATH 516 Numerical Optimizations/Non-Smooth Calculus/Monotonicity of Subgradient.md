@@ -33,7 +33,7 @@ The subgradient monotonicity is a natural extension to what we have in the smoot
 
 **Proofs**: 
 
-From the gradient inequality at the point $x_1, x2$ we obtained lower bound for the change of objectives: 
+From the gradient inequality at the point $x_1, x_2$ we obtained lower bound for the change of objectives: 
 
 $$
 \begin{aligned}
@@ -85,4 +85,10 @@ $$
 
 **Source**:
 
-It's obvious and I did it myself. For references, just take a look at the monotonicity at a coursenotes [UCLA Notes](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for more information. 
+It's obvious and I did it myself. For references, just take a look at the monotonicity at a course notes [UCLA Notes](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for more information. 
+
+
+---
+### **Heinz's Monotone Operator**
+#HEINZ Proposition 9.8 in his course notes, the proof is direct, similar to what we have in [[Gradient, Hessian Characterization of Convexity]]. 
+

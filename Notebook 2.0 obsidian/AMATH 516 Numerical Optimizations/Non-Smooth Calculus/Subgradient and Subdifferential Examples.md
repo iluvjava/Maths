@@ -1,5 +1,5 @@
-[[Subgradient and Subdifferential Definition]]
-[[Subdifferentials Subgradient Computations]]
+[[Subgradient and Subdifferential Definition]],
+[[Subdifferentials Subgradient Computations]],
 [[Fenchel Identity]]
 
 
@@ -9,7 +9,7 @@
 Every example here is going to be hardcore and aims at applying some of the stuff listed above. 
 
 
-#TODO: FILL THIS IN WHEN GOT THE TIME. 
+#UNFINISHED. 
 
 
 ---

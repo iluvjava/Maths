@@ -64,5 +64,11 @@ Next suppose that the set $f^{-1}O$ is an open set then for any $x\in f^{-1}O$, 
 ---
 ### **Accumulation Point of a Set**
 
-$x$ is an accumulation point to the subset $A\subseteq X$ if, for every point in $A$, there exists some other point that the point $x$ itself. 
+> $x$ is an accumulation point to the subset $A\subseteq X$ if, for every point in $A$, there exists some other point that the point $x$ itself. Mathematically phrased as: 
+> $$
+> \bar X \in X \subseteq M\ \text{ is accmul point when } \forall \epsilon > 0, (\mathbb B_\epsilon(\bar x)\setminus \{\bar x\})\cap A\neq\emptyset
+> $$
+
+
+
 

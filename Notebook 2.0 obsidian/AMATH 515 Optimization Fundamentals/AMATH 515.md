@@ -88,7 +88,7 @@ The **Challenging** part is the modeling part and the solving part.
 * Calculus and Optimality
 	* [[Jacobian and Hessian]]
 	* [[Optimality Conditions, Jacobian Hessian]]
-	* [[Derivatives on Steroids]]
+	* [[Derivatives with Jacobian]]
 
 * Functions: 
 	* [[Introduction to Convexity]] 

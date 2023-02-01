@@ -1,5 +1,7 @@
 Somethings that is still convex analysis, but now it's now extended to some new cool stuff. 
 
+[[Characterizing Functions for Optimizations]]
+
 ---
 ### **Intro**
 

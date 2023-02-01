@@ -83,6 +83,10 @@ $$
 
 Take note that, $\varphi(t) \ge \varphi(0)$, which is how we get the inequality at the second last statement. In this statement we made use of the fact that the line segment is always in the set $Q$, and the monotone property of $\varphi(t)$ to get the proof work. 
 
+**Remarks:**
+
+The converse of the statement is not true. 
+
 
 ---
 ### **Uniqueness**
@@ -111,6 +115,9 @@ $$
 Take the difference between the 2 inner products and then get the norm less than zero, which implies that $z = z'$. 
 
 
+---
+### **Heinz's Proof**
 
+#unfinished , #HEINZ Theorem 8.4
 
 
