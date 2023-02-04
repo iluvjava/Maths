@@ -286,7 +286,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* The regular subgradient is a convex set (**#REFERENCE_NEEDED**, #HEINZ, Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
+* The regular subgradient is a convex set ([[Convex Subgradient]] Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 
@@ -311,16 +311,6 @@ The part where we chose $\epsilon = 1/2$ feels very arbitrary and inexplicable, 
 
 We make use of the obtuse angle theorem from: [[Convex Sets Projection Obtuse Angle Theorem]]. Because the function it's convex, using the previously proven theorem, we know that $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, then we make use of the convexity of $\text{epi}(f)$ and the obtuse angle theorem. The normal cone $[g \; -1]\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$ is the polar of $T_{\text{epi}(f)}([\bar x\; f(\bar x)]^T)$, and because $\text{epi}(f)$ is convex, the whole set is contained within the tangent cone. Therefore, there is no little $o$ term for its polar cone defined on $\text{epi}(f)$ at $[\bar x \; f(\bar x)]^T$. 
 
-**Proof**
-
-#TODO: FILL THE PROOF IF WE HAVE TIME. 
-
-
-**Remarks**
-
-
-**Comments**
-
-**Source**: Exercise 3.36 in Dimitry's Textbook, back in Fall 2021 UW, for AMATH 516. 
+**Source**: Exercise 3.36 in Dimitri's Textbook, back in Fall 2021 UW, for AMATH 516. 
 
 

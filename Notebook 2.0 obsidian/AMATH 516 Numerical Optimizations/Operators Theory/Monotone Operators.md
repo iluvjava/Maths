@@ -14,7 +14,7 @@ Let the space of the operator be the Euclidean spaces.
 A monotone operator doesn't imply: 
 1. Continuity of any kind. 
 2. Singled value property of any kind. 
-3. Surjectivity of any kind. 
+3. Subjectivity of any kind. 
 
 
 **Definition: Maximally Monotone**
