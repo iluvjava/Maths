@@ -5,4 +5,10 @@ $$
 \p
 $$
 
-Yeah. That is all you need to read this obsidian notebook. 
+Yeah. That is all you need to read this obsidian notebook. I have some global macros like: 
+
+$$
+\e, \R,\Z, 
+$$
+
+and that is for now. 
