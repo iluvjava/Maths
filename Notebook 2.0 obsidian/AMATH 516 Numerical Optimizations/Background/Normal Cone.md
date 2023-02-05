@@ -32,7 +32,7 @@ Finally, reader please observe that when with $x\in \text{int}(Q)$ (The relative
 
 Observe that, the normal cone of a cone is just the polar of that cone. see [[Polar Cone]] for more information.
 
-**Intuitively**: Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. Imagine such a particle in the form of a car that has a headlight spanning a cone that is at 90 degree angles. Now imagine infinitely many such car approaching the point $\bar x\in Q$ in all possible continuous paths where their limit of velocity approaching $\bar x$ is $v$, then the intersection of their headlights will form the normal cone $N_Q(\bar x)$. 
+**Intuitively**: Imagine any set of vector that is perpendicular to the velocity of a particle inside of the set $Q$ that is approaching the point $\bar{x} \in Q$. Imagine such a particle in the form point that defines a half space of all the vector making obtuse angle with all elements from the set $Q$. Now imagine infinitely many particles approaching the point $\bar x\in Q$ in all possible continuous paths where their limit of velocity approaching $\bar x$ is $v$, then the intersection of their headlights will form the normal cone $N_Q(\bar x)$. (This interpretation is based on the $\lim\inf$ set convergences)
 
 Under the convex optimization, this normal cone is enough, but there are other types of normal cones, and this one in particular is referred to as the *regular normal cones*, denoted as $\hat N_Q(\bar x)$. 
 

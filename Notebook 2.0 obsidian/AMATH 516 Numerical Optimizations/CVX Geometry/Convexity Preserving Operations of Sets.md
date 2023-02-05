@@ -121,7 +121,7 @@ And we have shown that any chosen 2 points from the set $Q_1 + Q_2$ will have ha
 
 **Remarks**:
 
-The closedness of the set is not preserved. There are examples where 2 sets that are closed and convex but their sum is not closed. 
+The closedness of the set is not preserved. There are examples where 2 sets that are closed and convex but their sum is not closed. On primary example I would give involves the use of Asymptopes. Consider the epigraph of function $1/x$ for all $x \ge 0$ to be the set $C$, consider the set $\{(x, y)| y = 0\}$ to be the set $D$, then the sequence $(-t, 0)\in D, (t, 1/t)$ added together is $(0, 1/t)$. As $t \rightarrow \infty$, the point would be $(0, 0)$, which is definitely not an element of the set $C + D$. Finally, we actually have $C + D = \mathbb R \times \mathbb R_{++}$, which is not closed. 
 
 
 ---
@@ -138,31 +138,29 @@ Trivial we skip that.
 
 > If $Q \subset \mathbf{E}$ is convex, $L \subset \mathbf{Y}$ is convex, $A:\mathbf{E}\mapsto Y$, then $A(Q), A^{-1}(L)$ are convex, where $A^{-1}$ is the pre-image of the linear map. 
 
-Choose $x, y$ from the image of $A$: $x, y \in A(Q)$, then $\exists u \in Q: A(u) = x, \exists v \in Q: A(v) = y$, by the definition of an image of the operator $A$. Here, $u, v$ belongs to the pre-image. Consider the convex combinations of $x, y$, we have: 
+The proof is direct. Define that $A^{-1}Q := \{x| Ax \in Q\}$, and we denote $AQ := \{Ax|x\in Q\}$, denote $x_\lambda = \lambda x_1 + (1 - \lambda)x_0$ then we can say that for any $x_0, x_1 \in A^{-1}Q$
 
 $$
 \begin{aligned}
-    \lambda x + (1 - \lambda) y &= \lambda A(u) + (1 - \lambda) A(v) \quad \forall \lambda \in (0, 1)
+    & x_0 \in A^{-1}Q \iff Ax_0 \in Q, Ax_1 \in Q
     \\
-    &= A(\lambda u + (1 - \lambda) v)
+    \iff & 
+    \lambda Ax_1 + (1 - \lambda)Ax_0 \in Q &  \quad \text{ convexity of } Q
+    \\
+    \iff
+    & A(\lambda x_1 + (1 - \lambda)x_0)\in Q & \quad \text{ linearity of A}
+    \\
+    \iff 
+    & x_\lambda \in A^{-1}Q, 
 \end{aligned}
 $$
 
-using the fact that $Q$ is a convex set, $\lambda u + (1 - \lambda)v$ is in $Q$, and $\lambda x + (1 - \lambda) y$ is in the range of the operator $A$. Next, Consider choices of $x, y$ from the pre-image of $A$ for $x, y$, let $U := \{u\in L: A^{-1}(u) = x\}$ and $V := \{v\in L: A^{-1}(v) = y\}$. Then consider the convex combinations of $x, y$: 
+and the last statement is by the definition of pre-image of the linear operator $A$. This completes the proof that the pre-image of a linear mapping of a whole set will preserves the convexity of the convexity. 
 
-$$
-\begin{aligned}
-    \lambda x + (1- \lambda)y &= \lambda A^{-1}(U) + (1- \lambda)A^{-1}(V) \quad \forall \lambda \in (0, 1)
-    \\
-    &= A^{-1}(\lambda U + (1- \lambda)V)
-\end{aligned}
-$$
-
-By the convexity of $L$, the set $\lambda U + (1 - \lambda)V$ is a subset of $Q$, therefore, the pre-image of the convex combinations of $x, y$ is still a preimage of $A$, and convex comb of $u, v$ is still in the range of $Q$. Therefore the set of pre-images of $A$ is convex if $L$ is convex. 
 
 
 ---
-### **Remarks:Convexity of Functions**
+### **Applications: Convexity of Functions**
 
 [[Convexity Preserving Operations for Functions]]
 

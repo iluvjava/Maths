@@ -4,26 +4,28 @@
 ---
 ### **Intro**
 
-A polar cone, denoted as $K^\circ$ where $K$ is a cone is defined to be the set of all vectors $v$ that makes an obstuse angle with vectors from the set $K$: 
+> A polar cone, denoted as $K^\ominus$ where $K$ is a cone is defined to be the set of all vectors $v$ that makes an obtuse angle with vectors from the set $K$: 
+> 
+> $$
+> K^\ominus := 
+> \left\lbrace
+>     v\in \mathbb{R}^n: 
+>     \langle v, x\rangle \le 0 \; \forall x \in K
+> \right\rbrace
+> $$
 
-$$
-K^\circ := 
-\left\lbrace
-    v\in \mathbb{R}^n: 
-    \langle v, x\rangle \le 0 \; \forall x \in K
-\right\rbrace
-$$
+The notation is borrowed from professor Heinz. 
 
 **Quick Facts**: 
 
-* When $L$ is a linear subspace, we have $L^\circ = L^\perp$. 
-* $(\mathbb R_+^n)^\circ = \mathbb R_-^n$, $(\mathbb S_+^n)^\circ =\mathbb S_-^n$
-* $K^{\circ\circ} = \text{cl}\circ \text{cvxh}(K)$: The double polar theorem, or the bipolar theorem. 
+* When $L$ is a linear subspace, we have $L^\ominus = L^\perp$. 
+* $(\mathbb R_+^n)^\ominus = \mathbb R_-^n$, $(\mathbb S_+^n)^\ominus =\mathbb S_-^n$
+* $K^{\ominus\ominus} = \text{cl}.\text{cvxh}(K)$: The double polar theorem, or the bipolar theorem. 
 
 ---
 ### **The Bipolar Theorem**
 
-> For any closed cone $K$ we have: $K^{\circ\circ} = \text{cl}(K)$. 
+> For any closed cone $K$ we have: $K^{\ominus\ominus} = \text{cl}(K)$. 
 
 **Proofs**: 
 
@@ -33,11 +35,11 @@ $$
 \begin{aligned}
     F_K &= \{a: \langle a, x\rangle \ge 0, \forall x \in K\}
     \\
-    -F_K &= \{a: \langle a, x\rangle \le 0, \forall x \in K\} = K^\circ
+    -F_K &= \{a: \langle a, x\rangle \le 0, \forall x \in K\} = K^\ominus
 \end{aligned}
 $$
 
-However at the same time because $\text{cl}\circ \text{cvxh}(k)$ is a convex set, it can be characterized by the intersection of all the halfspaces that contains it in one side hence: 
+However at the same time because $\text{cl}.\text{cvxh}(k)$ is a convex set, it can be characterized by the intersection of all the halfspaces that contains it in one side hence: 
 
 
 
@@ -56,10 +58,10 @@ $$
 
 We decompose the statement from left to right and in reverse to discuss how it's relevant to the definition of polar cones. 
 
-* $x \in A\implies \forall c \in B: \langle c, x\rangle \le 0 \implies B \subseteq A^\circ$ 
-* $\forall x \in A, \langle c, x\rangle \le 0\;  \forall c \in B \implies A^\circ \subseteq B$
+* $x \in A\implies \forall c \in B: \langle c, x\rangle \le 0 \implies B \subseteq A^\ominus$ 
+* $\forall x \in A, \langle c, x\rangle \le 0\;  \forall c \in B \implies A^\ominus \subseteq B$
 
-Therefore $A^\circ = B$ and using bipolar $B^\circ = A$. 
+Therefore $A^\ominus = B$ and using bipolar $B^\ominus = A$. 
 
 
 ---
@@ -75,7 +77,7 @@ Therefore $A^\circ = B$ and using bipolar $B^\circ = A$.
 
 **Remarks**
 
-Since the set $Q$ contains the origin, the polar cone $Q^\circ\subseteq \mathbb E\times \mathbb R_-$. 
+Since the set $Q$ contains the origin, the polar cone $Q^\ominus\subseteq \mathbb E\times \mathbb R_-$. 
 
 
 

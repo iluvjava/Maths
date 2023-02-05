@@ -38,9 +38,32 @@ $$
 \end{bmatrix}
 $$
 
-On the epigraph of $f(x)$, where $.^{-1}$ should be interpreted as the pre-image of the linear mapping. Because $f$ is convex, $\text{epi}(f)$ is also convex, and applying a linear transformation to a convex set preserves its convexity. 
+On the epigraph of $f(x)$, where $.^{-1}$ should be interpreted as the pre-image of the linear mapping. Because $f$ is convex, $\text{epi}(f)$ is also convex, and applying a linear transformation to a convex set preserves its convexity. This is shown in [[Convexity Preserving Operations of Sets]]. 
 
+---
+### **Point Wise limit of Convex function is Still Convex**
 
+> Let $f_n\rightarrow f$ pointwise and all $f_n$ are convex functions, then the limit function $f$ is still convex. 
+
+Let $x, y\in \text{dom}f$, then there exists $N$ such that for all $n \ge n$ we have $f_n(x), f_n(y) < \infty$ by the property of point wise convergence. Then Jensen's inequality yields that $\forall \lambda \in [0, 1]$: 
+
+$$
+\begin{aligned}
+    f_n(\lambda x + (1 - \lambda)y) &\le \lambda f_n(x) + (1 - \lambda) f_n(y)
+    \\
+    \lim_{n\rightarrow \infty}
+    f_n(\lambda x + (1 - \lambda)y) &\le \lim_{n\rightarrow \infty}\lambda f_n(x) + (1 - \lambda) f_n(y)
+    \\
+    \implies 
+    f(\lambda x + (1 - \lambda)y) &\le \lambda f(x) + (1 - \lambda) f(y), 
+\end{aligned}
+$$
+
+which is direct from the property of limit. 
+
+**Remarks**
+
+Lower Semi-continuous properties might not be preserved under the pointwise limit of functions. One of the example would be $|x|^p$ where $p > 1$. If we take the limit as $p\rightarrow \infty$, we have a parcular function that is $1$ at $|x| = 1$, $\infty$ at $|x| > 1$, and zero at $|x| < 1$. 
 
 ---
 ### **Convexity Under Partial Minimizations**
@@ -71,18 +94,18 @@ $$
 \end{aligned}
 $$
 
-The case where $\lambda = 0, \lambda = 1$ is trivial. From the definition of $g(x)$, and **assuming that** $g(x_1), g(x_2) > -\infty$, then: 
+The case where $\lambda = 0, \lambda = 1$ is trivial. From the definition of $g(x)$, and **assuming that** $g(x_1), g(x_2) > -\infty$, then for all very small $\epsilon > 0$: 
 $$
 \begin{aligned}
     & \forall \epsilon > 0: 
     \\
     & \exists y_1 \in \mathbb E_2: f(x_1, y_1)\le g(x_1) + \epsilon < \infty
     \\
-    & \exists y_2 \in \mathbb E_2: f(x_2, y_2)\le g(x_2) + \epsilon < \infty
+    & \exists y_2 \in \mathbb E_2: f(x_2, y_2)\le g(x_2) + \epsilon < \infty, 
 \end{aligned}
 $$
 
-Next, using the fact that $f(x, y)$ is convex we obtained: 
+We take note that $y_1, y_2$ are very close to $\arg\inf_y(f(x_1, y)), \arg\inf_y(f(x_2, y))$ Next, using the fact that $f(x, y)$ is convex we obtained: 
 
 $$
 \begin{aligned}
@@ -98,17 +121,15 @@ $$
     \\
     f(x_\lambda, y_\lambda) & \le \lambda g(x_1) + (1 - \lambda)g(x_2) + \epsilon
     \\
-    g(x_\lambda)\le f(x_\lambda, y_\lambda) & \le \lambda g(x_1) + (1 - \lambda)g(x_2) + \epsilon
+    g(x_\lambda)\le f(x_\lambda, y_\lambda) & \le \lambda g(x_1) + (1 - \lambda)g(x_2) + \epsilon. 
 \end{aligned}
 $$
 
-And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. On the contrary, assuming that $g(x_1)$ or $g(x_2)$ is $-\infty$, and WLOG, let $g(x_1) = -\infty$, then $g(x)$ would still be convex. Due to the fact that $g(x_1) = -\infty$, $g(x_\lambda) = -\infty$ as well. If $g(x_1) =\infty$ then: 
+And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. **On the contrary, assuming that** $g(x_1)$ or $g(x_2)$ is $-\infty$, and WLOG, let $g(x_1) = -\infty$, then $g(x)$ would still be convex. Due to the fact that $g(x_1) = -\infty$, $g(x_\lambda) = -\infty$ as well (????). If $g(x_1) =\infty$: 
 
 $$
 \begin{aligned}
-    & \forall M: 
-    \\
-    & \exists y_1: f(x_1, y_1) < M
+    & \forall M \exists y_1: f(x_1, y_1) < M
 \end{aligned}
 $$
 
@@ -123,19 +144,15 @@ $$
 \end{aligned}
 $$
 
-I's given that $f(x_1, y_1)$ is less than any $M$, at the same time, $f(x_2, y_2)$ is finite, therefore $f(x_2, y_2) \le -\infty$, which proves it. 
+It's given that $f(x_1, y_1)$ is less than any $M$, at the same time, $f(x_2, y_2)$ is finite, therefore $f(x_2, y_2) \le -\infty$, which proves it. 
 
 **Remarks**
 
-The epsilon bound limits the choice of $y$, for which, it's possible that for some given $x_1$, there exists an $y_1$ that approaches infinity. In addition, **it's not clear whether $f$ needs to be closed or not**. I believe might not requires it. Secondedly, there is convex functions where, there exists $x$ such that $g(x) = \infty$, for example, activation function $\delta_C(x, y)$ where $C:=\{x: \Vert x\Vert\le y\}$. 
+The epsilon bound limits the choice of $y$, for which, it's possible that for some given $x_1$, there exists an $y_1$ that approaches infinity. In addition, **it's not clear whether $f$ needs to be closed or not**. I believe might not requires it. Secondedly, there is convex functions where, there exists $x$ such that $g(x) = \infty$, for example, activation function $\delta_C(x, y)$ where $C:=\{x: \Vert x\Vert\le y\}$. In addition, the fact that $g(x)\neq \infty$ is there to prevent nonsense like $\infty \le \infty$. 
 
-In addition, the fact that $g(x)\neq \infty$ is there to prevent nonsense like $\infty \le \infty$. 
-
-Finally, there exists a epigraphical interpretations of Partial Minimizations by which, we skip it for discussion. 
+Finally, there exists a epigraphical interpretations of Partial Minimizations in Dimitri's textbook. A partial minimization is projection of the epi-graph onto one of the Euclidean space (of a Euclidean product space). And by the property of the projection as a linear transform, we proved that it's still going to be convex. 
 
 **Source**: \<First Oder Optimization Methods\> by SIAM, theorem 2.18
-
-
 
 ---
 ### **Corollary: Infimal Convolutions Preserves Convexity**
@@ -235,5 +252,4 @@ The proof is done.
 
 **Source:**
 From a subgradient lecture [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). Further info about disciplined quasi-convex can be find [here](https://web.stanford.edu/~boyd/papers/pdf/dqcp.pdf). 
-
 

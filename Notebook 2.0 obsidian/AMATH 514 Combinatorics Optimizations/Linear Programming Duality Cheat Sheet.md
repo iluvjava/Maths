@@ -121,14 +121,14 @@ $$
     \end{bmatrix}
     =
     \begin{bmatrix}
-        u^T & w^T & v^T
-    \end{bmatrix}
+        u \\ w \\ v
+    \end{bmatrix}^T
     \begin{bmatrix}
         A_{1, 1}^T & A_{2, 1}^T & A_{3, 1}^T
         \\
-        A_{2, 1}^T & A_{2, 2}^T & A_{2, 3}^T
+        A_{1, 2}^T & A_{2, 2}^T & A_{2, 3}^T
         \\
-        A_{3, 1}^T & A_{3, 2}^T & A_{3, 3}^T
+        A_{1, 3}^T & A_{2, 3}^T & A_{3, 3}^T
     \end{bmatrix}
     \begin{matrix}
         \ge \\ \le  \\  \ = 
@@ -144,3 +144,5 @@ $$
 $$
 
 Here, the dual variable plays the roles of selecting the correct combinations of rows from the transpose of the constraints matrix so that the regime where the primal variable controls forms a constraints, and the constraints try to bound the objective vector. 
+
+

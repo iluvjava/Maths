@@ -110,7 +110,7 @@ The direction where $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ i
 
 **Remarks**
 
-The magic here is the function inside of the sup can be superpositioned, and we take advantage of the properties of convex hull to support any points that are in convex hull using points from the original set $C$. 
+The magic here is the function inside of the sup can be super-positioned, and we take advantage of the properties of convex hull to support any points that are in convex hull using points from the original set $C$. 
 
 
 
