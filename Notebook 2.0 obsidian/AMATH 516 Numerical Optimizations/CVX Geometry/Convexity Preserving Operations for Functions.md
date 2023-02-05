@@ -125,7 +125,7 @@ $$
 \end{aligned}
 $$
 
-And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. **On the contrary, assuming that** $g(x_1)$ or $g(x_2)$ is $-\infty$, and WLOG, let $g(x_1) = -\infty$, then $g(x)$ would still be convex. Due to the fact that $g(x_1) = -\infty$, $g(x_\lambda) = -\infty$ as well (????). If $g(x_1) =\infty$: 
+And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. **On the contrary, assuming that** $g(x_1)$ or $g(x_2)$ is $-\infty$, and WLOG, let $g(x_1) = -\infty$, then $g(x)$ would still be convex, but $g(x_1) = -\infty$, $g(x_\lambda) = -\infty$ as well (because convex function are continuous along any line segment). If $g(x_1) =\infty$: 
 
 $$
 \begin{aligned}

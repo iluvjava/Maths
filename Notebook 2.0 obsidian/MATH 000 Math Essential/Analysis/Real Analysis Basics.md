@@ -21,7 +21,7 @@ In brief, it's a set that is infinitely finely scattered on the background set. 
 **Example:** 
 The line of rationals is a dense set of the real. For every real number that is not the same, there is a rational that exist between the 2 number. 
 
-**Real is Separable**
+**The Reals are a Separable Set**
 
 > A set $X$ is separable if it contains a countable dense subset. 
 
