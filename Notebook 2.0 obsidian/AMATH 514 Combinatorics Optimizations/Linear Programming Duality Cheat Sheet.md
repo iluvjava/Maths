@@ -1,6 +1,5 @@
-[[KKT in Linear Programming]], read this to gain more insights about how LP duality is a specific case of the KKT conditions. 
-
-[[Linear Programming Strong Duality via Farkas, Standard Forms]], read this for more insight specifically about LP duality. 
+- [[KKT in Linear Programming]], read this to gain more insights about how LP duality is a specific case of the KKT conditions. 
+- [[Linear Programming Strong Duality via Farkas, Standard Forms]], read this for more insight specifically about LP duality. 
 
 ---
 ### **Intro**
@@ -131,7 +130,7 @@ $$
         A_{1, 3}^T & A_{2, 3}^T & A_{3, 3}^T
     \end{bmatrix}
     \begin{matrix}
-        \ge \\ \le  \\  \ = 
+        \ge \\ \le  \\  = 
     \end{matrix}
     \begin{bmatrix}
         c \\ d \\ f
