@@ -161,7 +161,7 @@ Recall from that the projection operator onto a closed and convex set is a *non-
 ---
 ### **Example: The Subgradient and Proximal Operators**
 
-#TODO: Keep filling up things about the operators. 
+#UNFINISHED : Keep filling up things about the operators. 
 
 
 ---

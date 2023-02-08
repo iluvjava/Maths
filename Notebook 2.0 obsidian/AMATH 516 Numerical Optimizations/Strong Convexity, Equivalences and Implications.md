@@ -34,7 +34,7 @@ We abuse notation slightly and write the subgradient inside of the inner product
 > Conditions 1, 2, 3 are all equivalent to the definition of strong convexity of a function. 
 
 **Proof** 
-*#TODO Remember to add the proofs for equivalences characterizations of strongly convex functions*
+*#UNFINISHED Remember to add the proofs for equivalences characterizations of strongly convex functions*
 
 ---
 ### **Implications**
@@ -67,4 +67,4 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 
 We wish to prove that condition 1 is equivalent to the strong convexity and condition 8 is implied from the strong convexity.
 
-**#TODO: Read the paper and add more proofs if you feel like it, and fill up the easy proof yeah.**
+**#UNFINISHED: Read the paper and add more proofs if you feel like it, and fill up the easy proof yeah.**

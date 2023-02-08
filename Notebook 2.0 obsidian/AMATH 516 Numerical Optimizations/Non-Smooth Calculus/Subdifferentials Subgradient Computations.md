@@ -1,6 +1,5 @@
-* [[Subgradient and Subdifferential Definition]]
+ * [[Subgradient and Subdifferential Definition]]
 * [[Characterizing Functions for Optimizations]]
-
 
 ---
 ### **Intro**
@@ -130,7 +129,7 @@ $$
 The converse statement has more subtleties and we skip the proof here. 
 
 
-**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar 23.9. 
+**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Variational Analysis 23.9. 
 
 
 ---
@@ -150,16 +149,15 @@ The converse statement has more subtleties and we skip the proof here.
 
 **Proofs**:
 
-**#TODO WRITE THE PROOF USING THE REFERENCES**
+**#UNFINISHED**
 
 **Remarks**:
 
 This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. 
 
-Strong duality holding in these more general settings is equivalent to validity of a sum and  
-chain rules for subdifferentials. [^1]
+Strong duality holding in these more general settings is equivalent to the validity of a sum and  chain rules for subdifferentials. [^1]
 
-[^1]: Commented by Dimitry on his course notes AMATH 516, 2021 FALL, pg: 97
+[^1]: Commented by Dimitri on his course notes AMATH 516, 2021 FALL, pg: 97. see in [[../References/Math 516 Convex Analysis 2 - Dmitriy Drusvyatskiy.pdf]]. 
 
 
 **Source**:
@@ -179,7 +177,7 @@ The direction $\supseteq$ is direct using the secant line inequality, the other 
 
 **Source**: 
 
-A website for lecture notes, see [here](https://maunamn.wordpress.com/8-the-subdifferential-sum-rule/) for more. 
+A website for lecture notes, see [here](https://maunamn.wordpress.com/8-the-subdifferential-sum-rule/) for more. For a norma general and direct coverage of the theorem, see Rockafellar's convex book theorem 23.8. 
 
 
 ---

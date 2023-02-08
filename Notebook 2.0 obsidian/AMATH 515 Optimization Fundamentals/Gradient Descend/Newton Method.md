@@ -71,6 +71,9 @@ $$
 Where $H$ is positive definite. 
 
 
+---
 ### **Modified Newton's with Line Search**
 
-#TODO: Fill this if there is time. 
+#UNFINISHED: Fill this if there is time. 
+
+**References**: Stephen's J. Wright's Numerical Optimizations. 

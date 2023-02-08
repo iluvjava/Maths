@@ -208,9 +208,9 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 
 We make use of the convex sets properties. Because convexity of sets are preserved under sets addition, $C - D$ is a convex set. 
 
-In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ with $x_i\rightarrow x$ as $i \rightarrow \infty$, there exists $x_i = c_i + d_i$ where $c_i, d_i \in C, D$ by set addition. Because $C, D$ are both compact,by sequencial compactness theorem $c_i, d_i$ has convergence subsequence $\{c_{i_k}\}_{k\ge 1}, \{d_{i_k}\}_{k \ge 1}$ such that their limit is $x$. Therefore there exists sequence $\{x_{i_k}\}_{k\ge 1}$ such that it converges to $x$ in $C- D$. Therefore the set $C - D$ is again, compact. 
+In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ with $x_i\rightarrow x$ as $i \rightarrow \infty$, there exists $x_i = c_i + d_i$ where $c_i, d_i \in C, D$ by set addition. Because $C, D$ are both compact ,by sequential compactness theorem $c_i, d_i$ has convergence subsequence $\{c_{i_k}\}_{k\ge 1}, \{d_{i_k}\}_{k \ge 1}$ such that their limit is $x$. Therefore there exists sequence $\{x_{i_k}\}_{k\ge 1}$ such that it converges to $x$ in $C- D$. Therefore the set $C - D$ is again, compact. 
 
-#TODO: CONTINUE THE PROOF PLEASE. 
+#UNFINISHED: Check and perfect the proof with some actual math and theorem. 
 
 
 **Remarks**

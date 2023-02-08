@@ -6,4 +6,4 @@ References:
 * Dimitry's chapter 8.4, limiting normal cones, pg 193. 
 * \<Variational analysis and applications\> by boris definition 1.1, pg 3. 
 
-#TODO Write about it using the references. 
+#UNFINISHED  Write about it using the references. 

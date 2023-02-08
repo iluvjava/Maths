@@ -48,7 +48,7 @@ An exercise for the reader, which is likely to be myself.
 ### **Dual of The Induced Energy Norm**
 
 
-**#TODO: Look for the Dual of the induced energy norm**. 
+**#UNFINISHED: Look for the Dual of the induced energy norm**. 
 
 
 

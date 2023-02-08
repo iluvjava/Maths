@@ -56,5 +56,7 @@ $$
 Such a formula will prove to be useful once in a while. 
 
 
+---
+### **Applications**
 
-
+Reading the example 6.65 in Amir's Beck, First Order book. 

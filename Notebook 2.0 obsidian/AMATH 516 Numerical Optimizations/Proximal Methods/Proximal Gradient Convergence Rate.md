@@ -212,7 +212,7 @@ and by substituting $x :=y$ and $z := x$ in the context of the lemma then, we co
 ---
 ### **In Relations to Fixed Point Iterations**
 
-#TODO: Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
+#UNFINISHED : Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
 
 
 

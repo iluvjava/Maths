@@ -10,7 +10,7 @@ We assume that reader has basic mathematical maturity and at least know how to p
 
 
 ---
-### **Real Number Line**
+### **Topology of the Real Number Line**
 Basic Real analysis bases the topology on the real line. The nature of the real line is elusive. 
 
 **Definition: A Dense Subset**
@@ -26,7 +26,6 @@ The line of rationals is a dense set of the real. For every real number that is 
 > A set $X$ is separable if it contains a countable dense subset. 
 
 In the case of the real number line, it contains the set of rationals as as a countable subset that is dense. 
-
 
 ---
 ### **Sequential Convergence**

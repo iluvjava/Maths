@@ -73,7 +73,7 @@ And the last statement implies that the output of the mapping for any given $x$ 
 
 **Remarks**
 
-The theorem doesn't mean that a continuous mapping preseves the openness of a given set. 
+The theorem doesn't mean that a continuous mapping preserves the openness of a given set. 
 
 **Source**
 
@@ -81,7 +81,7 @@ This is the theorem 2.1 from the textbook \<A Friendly Introduction to Functiona
 
 
 ---
-### **Corollray**
+### **Corollary**
 > Let $f: X\mapsto Y$ be a mapping, then $f$ is continuous if and only if $\forall F\subseteq Y$ that is a closed set, $f^{-1}(F)$ is also closed. 
 
 To prove the theorem we make use of the following obvious facts:

@@ -1,4 +1,4 @@
-[[Weierstrass M-Test]], #TODO
+[[Weierstrass M-Test]], #UNFINISHED 
 
 ---
 ### **Intro**

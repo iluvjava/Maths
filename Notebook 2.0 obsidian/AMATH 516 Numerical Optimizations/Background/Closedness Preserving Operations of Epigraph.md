@@ -12,7 +12,7 @@ The following operations applied on a closed function will result in a new funct
 
 **Proof**
 
-#TODO: Skippppped for later. 
+#UNFINISHED : Skippppped for later. 
 
 
 

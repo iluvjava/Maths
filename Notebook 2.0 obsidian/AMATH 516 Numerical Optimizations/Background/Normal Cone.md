@@ -19,7 +19,7 @@ Where, the little $o$ notations denotes the limit that: $\lim_{x\rightarrow \bar
 $$
 \left\lbrace
     v\in \mathbb E: 
-    \underset{x\rightarrow \bar{x}\in Q}{\lim}
+    \underset{x\rightarrow \bar{x}\in Q}{\lim\sup}
     \frac{\langle v, x - \bar{x}\rangle}{\Vert x - \bar{x}\Vert_2} \le 0 \;\forall x \in Q: x \rightarrow \bar x
 \right\rbrace
 $$
@@ -39,6 +39,13 @@ Under the convex optimization, this normal cone is enough, but there are other t
 **References**
 
 Dimitry's 516 textbook, definition 2.34 page 38.  
+
+---
+### **Normal Cone on the Interior Points**
+
+
+
+**References:** Exercise 2.39 in Dimitri's textbook, Heinz's 563 course notes Prop 10.7. 
 
 ---
 ### **Basic Properties**

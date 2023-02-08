@@ -5,7 +5,7 @@
 
 Certain operations on subsets of $\mathbb E$ preserves the closedness of sets. However, it can be counter intuitive and there exists some very interesting counter examples to seemingly correct statement. 
 
-#TODO: Follows Dimistri's notes and fill this in. 
+#UNFINISHED: Follows Dimistri's notes and fill this in. 
 
 
 

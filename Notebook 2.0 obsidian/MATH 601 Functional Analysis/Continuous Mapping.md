@@ -1,6 +1,5 @@
 [[Banach Space]], [[Real Analysis Basics]], 
 
-
 ---
 ### **Intro**
 

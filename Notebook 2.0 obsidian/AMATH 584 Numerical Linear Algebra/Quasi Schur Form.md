@@ -6,5 +6,4 @@ This is introduced as the fundamentals for linear algebra in Yosaf Saad's book o
 ---
 ### **Intro**
 
-
-#TODO: Fill this up when you wanted to. 
+#UNFINISHED: Fill this up when you wanted to. 

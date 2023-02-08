@@ -199,8 +199,8 @@ And this completed our proof.
 >\end{aligned}. 
 >$$
 >~~Giving us global Lipschitz continuity, and therefore $f$ has to be smooth. However, it's derivative is definitely not Lipschitz. Its derivative is differentiable but the derivative of $x\sin(x\^{-1})$ is not bounded, therefore it's derivative is no longer globally Lipschitz. Therefore we conclude the fact that under the general case, for any function with condition 2, the smoothness condition is strictly weaker than having globally Lipschitz gradient.~~
-> **#TODO, ADD MORE DETAILS, HOW IS THE LIPZ FUNCTION $x^2\sin(x^{-1})$ SMOOTH NEEDS MORE ARGUMENT**
-> **THIS PROOF IS WRONG PLEASE DON'T TAKE IT.**
+> **ADD MORE DETAILS, HOW IS THE LIPZ FUNCTION $x^2\sin(x^{-1})$ SMOOTH NEEDS MORE ARGUMENT**
+> **THIS PROOF IS WRONG PLEASE DON'T TAKE IT.** #UNSOLVED
 
 Instead, one-sided Lipschitz is equivalent to the smoothness conditions. Here we refer to [wikipedia](https://en.wikipedia.org/wiki/Lipschitz_continuity#One-sided_Lipschitz), and observe that simple algebraic manipulations of the smoothness conditions can lead to same inequality as the one-sided Lipschitz definition. 
 

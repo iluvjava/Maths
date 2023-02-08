@@ -113,7 +113,7 @@ Here, I want to highlight one important observation we should make here, and tha
 
 
 ---
-### **Subgradient of Moreau Envelope**
+### **Subgradient (Gradient) of Moreau Envelope**
 
 $$
 \begin{aligned}

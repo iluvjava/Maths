@@ -467,9 +467,9 @@ Take notice that this is exactly the same when compare to the gradient descent w
 ### **Extension and Augmentations**
 
 
-#TODO: Fill out the extension of the proximal gradient method in the future! 
+#UNFINISHED: Fill out the extension of the proximal gradient method in the future! Just an overview would be great. 
 
-
+**References**: First Order Optimizations from Amir Beck. 
 
 ---
 ### **Proximal Gradient In Relations to Other Algorithms**

@@ -264,4 +264,4 @@ And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star
 
 For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
 
-#TODO: FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 
+#UNFINISHED : FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 

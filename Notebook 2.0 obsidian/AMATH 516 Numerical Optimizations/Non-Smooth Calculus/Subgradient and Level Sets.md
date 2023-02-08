@@ -4,11 +4,11 @@
 ---
 ### **Intro**
 
-> Let $f$ be a function, consider the subdifferential at any points $\bar x$ in the domain of the function. Consider the level sets defined via the function value at the point, then: $\text{lev}(f):= \{x\in \text{dom}(f): f(x) \le f(\bar x)\}$, then the subgradient $\partial [f](\bar x) \subseteq N_{\text{lev}(f)}(\bar x)$, the subgradient equals to the normal cone at the point of differential of the level set.
+> Let $f$ be a function, consider the subdifferential at any points $\bar x$ in the relative interior domain of the function and $f(\bar x)$ is not the minimum. Consider the level sets defined via the function value at the point, then: $\text{lev}(f|\bar x):= \{x\in \text{dom}(f): f(x) \le f(\bar x)\}$, then the subgradient $\partial [f](\bar x) \subseteq N_{\text{lev}(f|\bar x)}(\bar x)$, the subgradient equals to the normal cone at the point of differential of the level set.
 
 **Proof**
 
-Define the level bounded epigraph of the function given the point $\bar x$ to be: $\overline{\text{epi}}(f|\bar x) := \{(x, f(x)): f(x) \le f(\bar x)\}$. By the tegent cone theorem of subgradient we obtain from $[g\;-1]^T\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$: 
+Define the level bounded epigraph of the function given the point $\bar x$ to be: $\text{epi}'(f|\bar x) := \{(x, f(x)): f(x) \le f(\bar x)\}$. By the tangent cone theorem of subgradient we obtain from $[g\;-1]^T\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$: 
 
 $$
 \begin{aligned}
@@ -35,11 +35,11 @@ $$
 \end{aligned}
 $$
 
-Observe the fact that $\overline{\text{epi}}(f|\bar x) \subseteq \text{epi}(f)$, then we may consider any $[f(x) \quad l]^T\in \overline{\text{epi}}(f)$, giving and it would still $\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, which means the following inequality from the definition of tagent cones: 
+Observe the fact that $\text{epi'}(f|\bar x) \subseteq \text{epi}(f|\bar x)$, then we may consider any $[f(x) \quad l]^T\in \text{epi'}(f)$, giving and it would still $\in N_{\text{epi}(f)}([\bar x \; f(\bar x)]^T)$, which means the following inequality from the definition of tangent cones: 
 
 $$
 \begin{aligned}
-    & \langle g, x - \bar x\rangle - \underbrace{(l - f(\bar x)) \le o }_{\ge 0}
+    & \langle g, x - \bar x\rangle - \underbrace{(l - f(\bar x))}_{= 0\text{ when } l =f(\bar x)} \le o 
     \left(
         \left\Vert
             \begin{bmatrix}
@@ -82,5 +82,5 @@ And therefore we have $\partial [f](\bar x)\subseteq N_{\text{lev}(f)}(\bar x)$.
 
 
 **Source**: 
-Course notes [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf), part 2.11. But they didn't prove it. 
+Course notes [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf), part 2.11. But they didn't prove it. This is also listed as exercise 4.9 in Dimitri's UW Course notes AMATH 516. 
 
