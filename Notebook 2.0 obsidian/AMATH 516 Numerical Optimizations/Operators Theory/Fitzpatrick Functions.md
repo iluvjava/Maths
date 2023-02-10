@@ -1,4 +1,4 @@
-[[Subgradient and Subdifferential Definition]], [[Introduction to Operators for Optimizations]]
+[[../Non-Smooth Calculus/Subgradient Definition]], [[Introduction to Operators for Optimizations]]
 
 
 ---

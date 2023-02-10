@@ -1,4 +1,4 @@
-[[Non-Smooth Calculus/Subgradient and Subdifferential Definition]], 
+[[Non-Smooth Calculus/Subgradient Definition]], 
 
 ---
 ### **Intro**

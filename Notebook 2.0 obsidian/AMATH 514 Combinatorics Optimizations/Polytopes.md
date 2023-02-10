@@ -1,5 +1,5 @@
-[[Convex Sets Intro]]
-[[Cone]]
+- [[Convex Sets Intro]], 
+- [[Cone]], 
 
 
 ---- 

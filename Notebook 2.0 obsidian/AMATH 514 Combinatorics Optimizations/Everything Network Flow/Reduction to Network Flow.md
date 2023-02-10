@@ -12,15 +12,32 @@ Here, we denote the vertices with a tuple $(i, m)$ where $i$ is the index and $m
 ---
 ### **Non-zero Lower Bound**
 
-Suppose that there are non-zero lower bound such that $l\le x \le u$, then $x = x' + l$ which gives $\mathbf 0 \le x' \le u - l = u'$, and the inequality constraints gives $Mx' + Ml\le b \implies Mx' \le b - Ml=b'$, therefore for any arc $(i, j)\in A$, then we have $b'_i = b_i - l_{i, j}, b'_j = b_j + l_{i,j}$. Finally $b', x', u'$ are the parameters for the quivalent network flow problem with zero lower bound on the flow fitting the stdform. 
+suppose that initially we have an arc $(i, j)\in A$ such that it has lower bound $l_{i, j} > 0$, and upper bound $u_{i, j}$, with arc cost $c_{i, j}$, mass balance constraints on both vertex $i, j$ with $b_i, b_j$. As illustrated: 
 
-**Summary**:
-- No changes to the structure of the graph.
-- $b'_i = b_i - l_{i, j}, b'_j = b_j + l_{i,j}$
-- $\mathbf 0 \le x' \le u - l = u'$
+$$
+\begin{aligned}
+    (i, b_i) \longrightarrow (c_{i, j}, l_{i, j}, u_{i, j}) \longrightarrow (j, b_j).
+\end{aligned}
+$$
+
+We can eliminate the use of non-zero lower bound by considering changing it with substitutions $x'_{i, j} + l_{i, j} = x_{i, j}$, which would mean $x_{i, j}' = x_{i, j} - l_{i, j} \ge 0$. We make the following changes to the parameters: 
+
+* $(i, b_i)$ changed into $(i, b_i + l_{i, j})$, because's always sending out a flow amount of $l_{i, j}$ at the least. 
+* $(j, b_j)$ changed into $(j, b_j - l_{i, j})$ because it's always receiving the same amount of flows. 
+* $l_{i, j}$ changed into zero. 
+* $u_{i, j}$ changed into $u_{i, j} - l_{i,j}$, which reduce the maximum amount of flow that can be sent over the arc. 
+
+There is not changes to the structure of the graph. To illustrate we have the transformed: 
+
+$$
+\begin{aligned}
+    (i, b_i + l_{i, j}) \longrightarrow (c_{i, j}, 0, u_{i, j} - l_{i, j}) \longrightarrow (j, b_j - l_{i, j}).
+\end{aligned}
+$$
 
 **Invariants**
-- The sum of $b$ vector after the transform should still be the same as before. 
+- The sum of $b$ vector after the transform should still be the same as before, as shown in the transformation, therefore the constraints are still satisfied. 
+- The decision variable $x'$ and the decision variable $x$ has a bijective mapping from the reformulations. Translating solutions between the 2 is still ok. 
 
 **Remarks**
 
@@ -29,20 +46,21 @@ $x = x' + l$ is the key, the new decision variable models how much more flow we 
 
 ---
 ### **Undirected Edge**
-An undirected edge has an upper capacity of $u_{i, j}$ for both direction and it's modeled by the decision variable $x_{\{i, j\}}$, the constraints it asserts is $x_{i, j} + x_{j, i} \le u_{i, j}$, where both directions has positive flow. Let the costs for this edge be $c_{i, j}$. 
+An undirected edge has an upper capacity of $u_{i, j}$ for both direction and it's modeled by the decision variable $x_{\{i, j\}} = x_{i, j} + x_{j, i}$, the constraints it asserts is $x_{i, j} + x_{j, i} \le u_{i, j}$, where both directions has positive flow. Let the costs for this edge be $c_{i, j} > 0$. 
 
 To transform, we replace $\{i, j\}$ to 2 arcs $(i, j), (j, i)$, both with the same cost and capacity as the undirected edge. We then put 2 uncoupled decision variables $x_{i, j}', x_{j, i}'$ that are non-negative, then in the undirected network the flow of is given as $x_{\{i, j\}} = x_{i, j}' - x_{i, j}'$ where the sign indicates the direction of the flow on the undirected edge. 
 
 
-
 **Remarks**
 
-Undirected edge with an lower bound, or with negative cost, <span style="color:red">we cannot use the above transform</span>. This is just a direct transform of $x\in [u, l]\ni 0$ into $x = [x]_+ - [x]_-$. 
+Undirected edge with a lower bound that is not zero, or with negative cost, <span style="color:red">we cannot use the above transform</span>. 
+
+This transformed is made possible a direct substitutions of $x\in [u, l]\ni 0$ into $x = [x]_+ - [x]_-$. 
 
 ---
-### **Arc Reversal| Negative Arc**
+### **Arc Reversal | Negative Arc**
 
-Suppose that we have $c_{i, j} < 0$, which is unwanted for the standard form, we consider using $c_{i, j}' = -c_{i, j}$, and we introduce new decision variable $x_{j,i}' = u_{i, j} - x_{i, j}$, reversing the direction of the edge and make $b_i' = b_i - u_{i, j}, b_j' = b_j + u_{i, j}$, and the capacity $u_{i, j}' = u_{i, j}$, so it doesn't change. 
+Suppose that we have $c_{i, j} < 0$, which is unwanted for the standard form, we consider using $c_{i, j}' = -c_{i, j}$, and we introduce new decision variable $x_{j,i}' = u_{i, j} - x_{i, j}$, reversing the direction of the edge and make $b_i' = b_i - u_{i, j}, b_j' = b_j + u_{i, j}$, and the capacity $u_{i, j}' = u_{i, j}$. Intuitively, negative cost means gaining money while sending mass on the arc, if we models the flow of vacancy, then it means that it would cost money for us to not send vacancies on the arcs.  
 
 
 **Remarks**:

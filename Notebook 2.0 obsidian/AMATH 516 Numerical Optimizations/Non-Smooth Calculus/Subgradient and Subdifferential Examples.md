@@ -1,4 +1,4 @@
-[[Subgradient and Subdifferential Definition]],
+[[Subgradient Definition]],
 [[Subdifferentials Subgradient Computations]],
 [[Fenchel Identity]]
 

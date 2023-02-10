@@ -1,4 +1,4 @@
-[[Subgradient and Subdifferential Definition]]
+[[Non-Smooth Calculus/Subgradient Definition]]
 
 
 ---
@@ -28,3 +28,8 @@ $$
 $$
 
 therefore, the point $(1 - \lambda)u_0 + \lambda u_1$ is still going to be part of the subgradient at $x$. Next we consider the fact that for any $u_i\rightarrow u$, the inequality is going to hold by the fact that the function is affine and the property of the limit. 
+
+
+**Remarks**
+
+This would mean that adding the 2 subgradient preserves the convexity of both subgradient. 

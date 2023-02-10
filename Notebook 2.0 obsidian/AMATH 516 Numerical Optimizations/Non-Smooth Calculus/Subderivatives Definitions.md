@@ -1,6 +1,6 @@
-[[Subgradient and Subdifferential Definition]]
-[[Epigraph]]
-[[Support Function]]
+- [[Subgradient Definition]], 
+- [[Epigraph]], 
+- [[Support Function]], 
 
 ---
 ### **Intro**
@@ -19,7 +19,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
 
 
 ---
-### **Dimitry's Takes**
+### **Dimitri's Variational Definition**
 
 From Professor's Demitry's standpoint, we understand the scope when the definition of subderivative (directional derivative) is most applicable, and why when the function is not Lipschitz Continuous, we have to consider another type of derivative that preserves the closedness. 
 
@@ -40,11 +40,11 @@ Immediately Observe the Equivalence to the tangent cone definitions on the epigr
 
 $$
 \begin{aligned}
-	\text{epi}(d[f](x|\cdot)) = N_{\text{epi}(f)}([x \;f(x)]^T)
+	\text{epi}(d[f](x|\cdot)) = N_{\text{epi}(f)}((x ,f(x)))
 \end{aligned}
 $$
 
-Such a definition is suitable for all type of real-valued functions, and just like what Dimitry's did for the subgradient, this definition of subderivative is much more generalized, and when $f$ is *Lipchitz Continuous* on a neighborhood of points, the above definition is Equivalent to the usual definition: 
+Such a definition is suitable for all type of real-valued functions, and just like what Dimitri's did for the subgradient, this definition of subderivative is much more generalized, and when $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions), the above definition is Equivalent to the usual definition: 
 
 > Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$

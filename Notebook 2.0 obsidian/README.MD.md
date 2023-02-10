@@ -16,3 +16,6 @@ and that is for now. If you also use [Markdown all in one](https://marketplace.v
 ```
 
 for the `settings.json` file for your VS Code client. 
+
+Other Community Plugins Used: 
+- `highlightr`. 

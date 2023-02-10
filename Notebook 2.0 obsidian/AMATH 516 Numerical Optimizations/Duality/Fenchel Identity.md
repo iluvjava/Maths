@@ -1,5 +1,5 @@
 * [[Convex Conjugation]]
-* [[Subgradient and Subdifferential Definition]]
+* [[../Non-Smooth Calculus/Subgradient Definition]]
 
 ---
 ### **Fenchel's Identity**

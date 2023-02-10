@@ -1,4 +1,5 @@
-[[../../AMATH 515 Optimization Fundamentals/Gradient Descend/Measuring Rate of Convergence]]
+- [[../../AMATH 515 Optimization Fundamentals/Gradient Descend/Measuring Rate of Convergence]], 
+- [[../Calc/Taylor Series]], 
 
 ---
 ### **Intro**
@@ -33,7 +34,7 @@ We then introduce a theorem that is taylored for this situation.
 
 **proof:**
 
-We consider a taylor expansion around the fixed point $x$: 
+We consider a Taylor expansion around the fixed point $x$: 
 $$
 \begin{aligned}
     g(x + \delta) &= g(x) + \delta g'(x) + \frac{\delta^2}{2} g''(\xi), \; \xi \in [x - \delta, x+ \delta]
@@ -64,3 +65,7 @@ $$
 $$
 
 which is very close to the quadratic convergence. To make sure that it converges, we needs write $|g''(\xi)|\le M$ for all $\xi\in [x - \delta, x + \delta]$, then we set constant $C = \frac{M}{2}$, using the conditions for quadratic convergence we need to make sure that $|p_0|/C < 1$. Implying that the smallar the value for $M$, the more problem smaller the interval we will have to use to assert convergence. Also, observe that if $g''(\xi) = 0$, then the newton's method is going to converge in just one step. 
+
+
+**References:** 
+Numerical Analysis, Richard Burden. Proof is Adapted by myself. 

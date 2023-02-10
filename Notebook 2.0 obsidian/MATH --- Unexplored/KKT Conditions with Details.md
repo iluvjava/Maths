@@ -1,5 +1,5 @@
 [[Introducing The KKT Conditions]], 
-[[Subgradient and Subdifferential Definition]]
+[[../AMATH 516 Numerical Optimizations/Non-Smooth Calculus/Subgradient Definition]]
 
 ---
 ### Intro

@@ -1,6 +1,6 @@
 * [[Lipschitz Continuity]]
 * [[Characterizing Functions for Optimizations]]
-* [[Subgradient and Subdifferential Definition]]
+* [[Subgradient Definition]]
 
 ---
 ### **Intro**

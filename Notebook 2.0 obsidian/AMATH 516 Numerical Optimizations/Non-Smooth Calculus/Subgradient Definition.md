@@ -1,4 +1,4 @@
-e* [[Normal Cone]]
+* [[Normal Cone]]
 * [[Characterizing Functions for Optimizations]]
 * [[Convex Sets Intro]]
 
@@ -317,4 +317,4 @@ We make use of the obtuse angle theorem from: [[Convex Sets Projection Obtuse An
 ---
 ### **Directional Derivatives**
 
-For more about directional derivatives, the cousin concepts of subgradient, see [[../Directional Derivatives]] for more information. 
+For more about directional derivatives, the cousin concepts of subgradient, see [[../Directional Derivatives]] for more information about G-derivatives for convex functions, see [[Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 

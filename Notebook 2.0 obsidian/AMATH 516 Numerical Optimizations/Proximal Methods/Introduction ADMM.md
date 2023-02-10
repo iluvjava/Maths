@@ -7,7 +7,7 @@ Major Reference Sources:
 Prerequisites: 
 * [[Characterizing Functions for Optimizations]]
 * [[Moreau Envelope and Proximal Mapping]]
-* [[Subgradient and Subdifferential Definition]]
+* [[../Non-Smooth Calculus/Subgradient Definition]]
 
 ---
 ### **Intro**
