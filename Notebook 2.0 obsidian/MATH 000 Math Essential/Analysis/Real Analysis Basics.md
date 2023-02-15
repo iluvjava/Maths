@@ -33,7 +33,6 @@ In the case of the real number line, it contains the set of rationals as as a co
 The idea of sequential convergence gives reasoning behind the idea of continuity. 
 
 > A sequence $a_n\rightarrow a$ if for all $\epsilon > 0$ there exists $N_\epsilon$ such that if $n > N_\epsilon$ then $|a_n - a|\le \epsilon$. 
->
 
 **Remarks**
 

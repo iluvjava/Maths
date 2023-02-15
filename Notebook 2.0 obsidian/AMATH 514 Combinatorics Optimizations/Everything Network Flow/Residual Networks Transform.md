@@ -14,17 +14,17 @@ $$
 \end{aligned}
 $$
 
-the residual models the amount of given flow as an reverse arc, and the vacancy as an arc pointing in the same direction. After applying the transform, we obtain the following: 
+the residual models the amount of given flow as a reverse arc, and the vacancy as an arc pointing in the same direction. After applying the transform, we obtain the following: 
 
 $$
 \begin{aligned}
     (i, b_i) 
-    \overset{x^\circ_{i, j}}
+    \overset{x'_{i, j}}
     {
-        \underset{(-c_{i, j}, x^\circ)}{\longleftarrow}
+        \underset{(-c_{i, j}, x_{i, j}^\circ)}{\longleftarrow}
     }
     \overset{
-        u_{i, j}- x^\circ_{i, j}
+        x'_{j, i}
     }
     {
         \underset{(c_{i, j}, u_{i, j} - x^\circ_{i, j})}{\longrightarrow}
@@ -33,7 +33,7 @@ $$
 \end{aligned}
 $$
 
-Take note that, in the residual garph, we would need additional decision variables for an given edge to model additional flow the is flowing on the residual network. 
+Take note that, in the residual graph, we would need additional decision variables for a given edge to model additional flow the is flowing on the residual network. For flow that exists in the residual graph, we denote it using $x'$. 
 
 **Observe that**
 - When $x_{i, j}^\circ = 0$, then this particular edge does change because the reverse arc has a capacity of zero, making it useless. 
@@ -51,10 +51,10 @@ We want the non-negative flow to satisfy $x'$ as $x'_{i, j} - x'_{j, i} = x_{i, 
 $$
 \begin{aligned}
     \begin{cases}
-        x'_{i, j} = x_{i, j} - x^\circ_{i, j}, x_{j, i} = 0
+        x'_{i, j} = x_{i, j} - x^\circ_{i, j}, x_{j, i}' = 0
         &\text{when } x^\circ_{i, j}\le  x_{i, j} \le u_{i, j}
         \\
-        x'_{j, i} = x^\circ_{i, j} - x_{i, j}, x_{i, j} =  0
+        x'_{j, i} = x^\circ_{i, j} - x_{i, j}, x_{i, j}' =  0
         & \text{when }
         x_{i, j} \le x^\circ_{i, j}
     \end{cases}
@@ -74,13 +74,13 @@ We have seemed that the residual flow $x'$ is feasible in the residual graph $G(
 
 > Base on previous discussion, we let $c'$ to denote the cost on the residual network, we then show the relationship that: 
 > $$
-> \langle c', x\rangle = \langle c, x\rangle - \langle c, x^\circ\rangle. 
+> \langle c', x'\rangle = \langle c, x\rangle - \langle c, x^\circ\rangle. 
 > $$
 > The total costs of the flow on the residual network is the costs of the original network subtract the flow of the existing feasible flow. 
 
 **Proof**
 
-For every arc $(i, j)\in A$, $c_{i, j}' = c_{i, j}, c_{j, i}' = c_{i, j}$, we then compute the costs on the residual network on a signle arc with our residual flow $x'$, given as:
+For every arc $(i, j)\in A$, $c_{i, j}' = c_{i, j}, c_{j, i}' = c_{i, j}$, we then compute the costs on the residual network on a single arc with our residual flow $x'$, given as:
 
 $$
 \begin{aligned}
@@ -98,5 +98,14 @@ $$
 
 therefore, when we sum up the costs of the whole network, we will obtain the theorem above. 
 
-
 **References**: Page 45, 46 of Network Flow, Theory, Algorithm, and Applications.
+
+---
+### **Optimality Conditions on the Residual Graph**
+
+> A feasible solution $x^\circ$ of the minimum cost flow problem is an optimal solution if and only if the residual network $G(x^\circ)$ contains non negative directed cycles. 
+
+**References**: Theorem 3.8 in Network Flow algorithm and applications textbook. 
+
+
+

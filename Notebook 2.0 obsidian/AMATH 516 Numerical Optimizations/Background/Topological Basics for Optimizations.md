@@ -9,36 +9,38 @@ The geometric properties of function classifies them, and their properties that 
 
 Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
-**What is Closed Set?** 
-* $Q$ is closed
-* $\text{cl}(Q) = Q$: The closure of the set equals to the set itself. 
-* $Q$ contains all of it's limit points. 
-* $Q^C$ is an opened set. 
-
 
 **Definition: Opened Set**
 
 > The set $Q\subseteq X$ is *open* if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$.
 
-**Definition: Interior**
+**Definition: Interior of a set**
 
 > The interior of the set $Q\subseteq X$ is $\text{int}(Q):= \{x\in X|\mathbb B_\epsilon(x) \subseteq Q\}$. 
 
-**Definiton Closure**
+The concept of interior can be relative to another subset of the background set. One prime example of this is the application of the interior relative an affine space. See [[Relative Interior And Relative Boundary]] for more. 
 
-See [[Closure Topology]] for reference. 
+**Theorem: Interior of an Open Set**
+> The set $Q\subseteq X$ is an open set iff $\text{int}(Q) = Q$, given that the back ground set is the same. 
+
+The proof is direct. 
+
+**Definiton: Closure**
+> 
+
+See [[Closure Topology]] for more reference. 
 
 Observe that trivially, if a set is open, then it equals to its interior. 
 
 **Remark**
 
-Sometimes we discuss the openness of the set relative to a subset of the whole space. For example, the use of  [[Relative Interior And Relative Boundary]] discuss the interior of a set relative to a linear subspace. Or, we can discuss some subset of $\mathbb R$'s openess relative to $\mathbb Q$. 
+Sometimes we discuss the openness of the set relative to a subset of the whole space. For example, the use of  [[Relative Interior And Relative Boundary]] discuss the interior of a set relative to a linear subspace. Or, we can discuss some subset of $\mathbb R$'s openness relative to $\mathbb Q$. 
 
 **Theorem: Topology of the Complement**
 
 > $Q$ is open iff $Q^C$ is closed
 
-A complement on the set $Q$ is a negation of the statement that defines interior of set $Q$. Consider the negation from the definition of the interior of $Q$: 
+A complement on the set $Q$ is a negation of the statement that defines interior of the set $Q$. For $(\implies)$, consider the negation from the definition of the interior of $Q$ #INCORRECT: 
 
 $$
 x\in Q: \forall \epsilon: \mathbb B_\epsilon(x) \not\subseteq Q

@@ -34,3 +34,14 @@ Different order of choosing different $v\in S$ makes different algorithm:
   - If $j$ is a descendent of $i$, with $i\neq j$, then $\text{order}(j) > \text{order}(i)$. 
 - A priority queue for the number of incoming admissible arcs into the vertex $v$, then this become the topological search. (Assuming that it has a topological ordering.)
 - When the vertices are label by the distance function from the source node of the search, and the list is a priority queue listing all the vertices using their distance label, then the search algorithm becomes the Dijkstra algorithm. 
+
+**Further Observations and Potential Optimizations**
+- Each time we removed an element $v$ from the list, we have to check all the arcs $(v, u)$ for admissibility. If this element has be selected before from the list and not removed, then we would have rechecked all previous check arcs from previous selection of $v$. To improve, there are 2 possibilities: 
+	- Book keep the arcs that is coming out of the current vertex in the list, and only checks the one that haven't been checked since that last selection. (Preferable because it doesn't remove generality of the algorithm. )
+	- Check all the admissible arcs on selected vertex all at once. 
+
+---
+### **Potential Functions and Complexity Analysis**
+
+A potential function can be used book keeping the progress of the operations. 
+

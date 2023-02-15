@@ -71,7 +71,7 @@ $$
 \end{aligned}\tag{4}
 $$
 
-This is another Lagrangian where $\overline{G}(x) = A^Ty + c, \overline{f}(x)$, which can be interpreted as the Lagrangian whose primal formulation is: 
+This is another Lagrangian where $\overline{G}(x) = A^Ty + c, \bar{f}(x)$, which can be interpreted as the Lagrangian whose primal formulation is: 
 
 $$
 \begin{aligned}

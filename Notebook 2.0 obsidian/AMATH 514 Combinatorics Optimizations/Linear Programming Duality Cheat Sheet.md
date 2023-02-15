@@ -145,3 +145,7 @@ $$
 Here, the dual variable plays the roles of selecting the correct combinations of rows from the transpose of the constraints matrix so that the regime where the primal variable controls forms a constraints, and the constraints try to bound the objective vector. 
 
 
+---
+### **Strong Duality**
+
+The complementary slackness for dual variable $u, w$ holds as usual. They corresponds to the $\le, \ge$ inequality system. if $u_i$ is non zero, then the corresponding $i$ constraint is tight for the primal optimal solution. The dual variable $z$ is free. 

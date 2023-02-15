@@ -33,7 +33,7 @@ seeks for a solution such that it minimizes the costs of sending all the stuff b
 The vector $u_{i, j}$ can have elements of infinity, and the vector $c \ge \mathbf 0$. 
 
 ---
-### **Matrix Form**
+### **The Adjacency Matrix**
 
 For a directed graph, we can make use of the adjacency matrix of the graph. The adjacency matrix $M$ for a directed graph is $N \times M$ where $N$ is the number of vertices in the graph and $M$ is the number of edges. The matrix's entries can be describe as: 
 
@@ -52,29 +52,98 @@ $$
 since each edge only goes from one vertex to another, an immediate observations is that each column of $M$ consists of exactly 2 numbers, with exactly one $1$ and $-1$. And conveniently, the constraints of flows can be simply expressed as: $Mx = b$ for the network flow problem. This simplifies the process of looking for duals and stuff like those. To illustrate it better, we provide a row/column view of the adjacency matrix $M$: 
 
 $$
-\begin{bmatrix}
-    \delta_1^T 
-    \\
-    \delta_2^T
-    \\
-    \vdots
-    \\
-    \delta_N^T
-\end{bmatrix} \text{ where } 
-(\delta_i)_j = \left.\begin{cases}
-    1 & (i, j)\in A
-    \\
-    -1 & (j, i) \in A
-    \\
-    0 & \text{ else}
-\end{cases}\right\rbrace.
+\begin{aligned}
+    &M = \begin{bmatrix}
+        \delta_1^T 
+        \\
+        \delta_2^T
+        \\
+        \vdots
+        \\
+        \delta_N^T
+    \end{bmatrix} \text{ where } 
+    (\delta_i)_j = \left.\begin{cases}
+        1 & (i, j)\in A
+        \\
+        -1 & (j, i) \in A
+        \\
+        0 & \text{ else}
+    \end{cases}\right\rbrace.
+\\
+    & M = 
+    \begin{bmatrix}
+        \e_{i_1} - \e_{j_1}
+        & 
+        \e_{i_2} - \e{j_2}
+        &
+        \cdots
+        & 
+        \e_{i_m} - \e{j_m}
+    \end{bmatrix}
+\end{aligned}
 $$
 
-where, each row of the matrix is like an indicator vector denoting which edge is coming into/out of the vertex using $\pm 1$, positive one is coming out, and negative is coming in. The number of columns equal to the number of arcs in the graph. 
+where, each row of the matrix is like an indicator vector denoting which edge is coming into/out of the vertex using $\pm 1$, positive one is coming out, and negative is coming in. The number of columns equal to the number of arcs in the graph. And the second view is the column view of the matrix. The adjacency matrix $M$ consists of columns of vector that has only exactly one $+1$ and $-1$ on it. Suppose that the arc is $(i, j)$, then its corresponding column in the adjacency matrix has $+1$ at the $i$ th row and $-1$ at the j th position. 
+
 
 **The magic of directed cycles**
 
-The matrix contains null space and the null spaces are directed cycles on the graph. Suppose that we have a flow that goes through cycles on the graph, and it's like $(v_1, v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n), (v_n, v_1)$, and it corresponds to sending a unit amount of flow through the cycle, then the vector representing it will be in the null space of the graph. 
+The matrix contains null space and the null spaces are directed cycles/(closed directed walks) on the graph. Suppose that we have a flow  $x'$ that goes through cycles on the graph, and it's like $(v_1, v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n), (v_n, v_1)$, and it corresponds to sending a unit amount of flow through the cycle, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v\in C$ we have total mount of flow $1 - 1$, giving us zero for this vertex. This is true for all vertices, therefore, it's in the null space of the matrix. We are using the row interpretation of the adjacency matrix here. 
+
+
+
+---
+### **Formulations in Matrix Form**
+
+The problem has the form: 
+
+$$
+\begin{aligned}
+    & \min_{x}\langle c, x\rangle \text{ s.t: }
+    \\
+    & 
+    \begin{cases}
+	    Mx = b
+	    \\
+		\mathbf 0 \le x \le u
+    \end{cases}
+\end{aligned}
+$$
+Now we can try taking the dual of this using the useful [[../Linear Programming Duality Cheat Sheet]], allowing us to write down the dual as: 
+
+$$
+\begin{aligned}
+    \max_{\substack{y_1 \text{free} \\y_2 \ge \mathbf 0}}
+    \left\lbrace
+       \langle b, y_1\rangle + \langle u, y_2\rangle
+    \right\rbrace
+    \text{s.t: }
+    \begin{bmatrix}
+        M^T & I
+    \end{bmatrix}\begin{bmatrix}
+        y_1 \\ y_2
+    \end{bmatrix} \le
+    c, 
+\end{aligned}
+$$
+
+in the dual the choice of $y_1$ is free but the variable $y_2$ is strictly positive, if the dual were to be feasible, then it at least has to be the case that: 
+
+$$
+\begin{aligned}
+    M^Ty_1 \le c, y_1 \text{ free}, 
+\end{aligned}
+$$
+
+zoom in and select a row of the matrix such that it corresponds to the arc $(i, j)$, then we have: 
+
+$$
+\begin{aligned}
+c_{i, j} + (y_1)_i - (y_1)_j \ge 0, 
+\end{aligned}
+$$
+
+and this is what we called, the reduced costs. If we were solve the problem using the simplex algorithm, then the above expression, on the LHS, will become the objective row for each of the dictionary. And when all of them are larger than zero (for all basic feasible solution), then the algorithm terminates. For more about the property of reduced cost and how to use it, see [[Reduced Costs and Potentials]]. 
 
 
 ---

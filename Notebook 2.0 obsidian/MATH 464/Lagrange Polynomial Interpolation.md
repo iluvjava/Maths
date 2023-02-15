@@ -4,9 +4,7 @@ Basic Information for Lagrange Polynomials.
 
 ### Definition an Overview
 
-Assuming that we are going to interpolate the polynomial over a set of points; denoted as $\{(x_i, y_i)\}_{i = 0}^{k}$
-
-The Lagrange form of polynomial interpolation is written in the form of: 
+Assuming that we are going to interpolate the polynomial over a set of points; denoted as $\{(x_i, y_i)\}_{i = 0}^{k}$. The Lagrange form of polynomial interpolation is written in the form of: 
 
 $$
 L(x) := \sum_{j = 0}^{k} 
@@ -56,12 +54,10 @@ $$
  
 Because $\exists\; m$ such that $0 \leq m \leq k$ and $m\neq j$ making the term $x_n - x_m = 0$, and in that case, it means that the whole produce is zero. 
 
+---
+### **The Derivative of Lagrange Polynomial**
 
-### Derivative of Lagrange Polynomial
-
-This part is going to a lot of fancy math and it's going to be fun. 
-
-Rewrite some of the components involved in the polynomials: 
+This part is going to a lot of fancy math and it's going to be fun. Rewrite some of the components involved in the polynomials: 
 
 $$
 p_j(x) = \frac{1}{a_j}
@@ -69,14 +65,14 @@ p_j(x) = \frac{1}{a_j}
 \substack{
 k = 0 \\ k\neq j}
 }^N
-(x - x_k)
+(x - x_k). 
 $$
 
 Where the $a_j$ is just a constant and it's basically: 
 $$
 a_j = \prod_{\substack{
 	k = 0\\ k \neq j}}^N
-	(x_j - x_k)
+	(x_j - x_k). 
 $$
 
 Let's take care of the sign by considering: 

@@ -1,8 +1,4 @@
-We are gonna look at another type of optimization problems, and we will look out for the case when the function is not smooth. 
-
-Non-smooth: The functions don't have to be differentiable. 
-
-However, we are also assuming that the function is the sum of a beta smooth function and a non-smooth function. This is a lot of assumptions and it actually enclose a lot of classes of problems. 
+We are gonna look at another type of optimization problems, and we will look out for the case when the function is not smooth. Non-smooth: The functions don't have to be differentiable. However, we are also assuming that the function is the sum of a beta smooth function and a non-smooth function. This is a lot of assumptions and it actually enclose a lot of classes of problems. 
 
 [[Introduction to Convexity]]
 

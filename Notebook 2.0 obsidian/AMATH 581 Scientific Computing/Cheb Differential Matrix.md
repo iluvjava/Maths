@@ -2,6 +2,8 @@ prereq: [[Lagrange Polynomial Interpolation]]
 
 We need the derivative information for the Lagrange Polynomial interpolated at some points for given function. 
 
+**References**: Trefenthen's: Spectral Methods in MATLAB. 
+
 ---
 
 ### **Cheb Diff Matrix**
@@ -118,15 +120,7 @@ $$
 
 **(1.0)**
 
-Now, we set $x = x_i$, assuming that $i\neq j$
-
-Then take notice that, $k\neq j$ implies that $\exists \; k$  such that $k = i$. 
-
-Then the inner produce will be zero for all $l \neq i$
-
-And then the only non zero terms is when $l = i$. YEEEES!
-
-And then we have: 
+Now, we set $x = x_i$, assuming that $i\neq j$. Then take notice that, $k\neq j$ implies that $\exists \; k$  such that $k = i$. Then the inner produce will be zero for all $l \neq i$ And then the only non zero terms is when $l = i$. YEEEES! And then we have: 
 
 $$
 \prod_{\substack{k = 0\\k \neq i, j}}^N(x_i - x_k)
@@ -161,9 +155,7 @@ $$
 
 #### Using the Chebyshev Node
 
-Notice that, we are using a special type of nodes for interpolation here. 
-
-In Our case, we use the Chebyshev nodes, which is given by the formula: 
+Notice that, we are using a special type of nodes for interpolation here. In Our case, we use the Chebyshev nodes, which is given by the formula: 
 
  $$
 x_j = \cos(j\pi/N) \quad \forall \; j = 0, 1, 2 \cdots N
@@ -187,7 +179,8 @@ c_{i}=\left\{\begin{array}{ll}
 \end{array}\right.
 $$
 
-### Dirichlet Boundary Conditions
+---
+### **Dirichlet Boundary Conditions**
 
 Here we will consider general type of boundary conditions when taking derivative using the Chebyshev Matrix. 
 
@@ -218,12 +211,7 @@ D^2_{N + 1, 0} & \cdots & D^2_{N+1, N+1} \\
 \end{bmatrix}u = \mathbf{0}
 $$
 
-Where the matrix $\widetilde{D}^2$ denotes the interior parts of the $D^2$ matrix. 
-
-The key here is that, by asserting that: $u_0 = -2$ and $u_{N + 1} = 2$, we will be able to move the columns of the matrix $D^2$ to the right hand side where it becomes a vector $b$, a $N - 1\times 1$ vector. 
-
-
-Here is some matlab example codes of doing these: 
+Where the matrix $\widetilde{D}^2$ denotes the interior parts of the $D^2$ matrix. The key here is that, by asserting that: $u_0 = -2$ and $u_{N + 1} = 2$, we will be able to move the columns of the matrix $D^2$ to the right hand side where it becomes a vector $b$, a $N - 1\times 1$ vector. Here is some MATLAB example codes of doing these: 
 
 ```matlab
 [D, chebPoints] = cheb(20);
@@ -244,8 +232,7 @@ And hence solving this equation will get us all the interior points for the func
 
 **NOTE** This can be extended, the boundary can change according to time, or even in the 2d case, it can change according to the space too, and the key here is to just do the Surgery during each evaluate of the right hand side. The same as the [[Direct Method]] using the finite difference. 
 
-### Speed up The Computations
+---
+### **Speed up The Computations**
 
-So far this method does't provide any better computational benefits compare to the Direct Method with Finite difference, and hence, making it not that well. 
-
-However, FFT algorithm and some complex number magic will be able to help us to speed up the computations here. 
+So far this method does't provide any better computational benefits compare to the Direct Method with Finite difference, and hence, making it not that well. However, FFT algorithm and some complex number magic will be able to help us to speed up the computations here. 
