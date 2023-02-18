@@ -21,7 +21,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
 ---
 ### **Dimitri's Variational Definition**
 
-From Professor's Demitry's standpoint, we understand the scope when the definition of subderivative (directional derivative) is most applicable, and why when the function is not Lipschitz Continuous, we have to consider another type of derivative that preserves the closedness. 
+From Professor's Demitri's standpoint, we understand the scope when the definition of subderivative (directional derivative) is most applicable, and why when the function is not Lipschitz Continuous, we have to consider another type of derivative that preserves the closedness. 
 
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
 > $$
@@ -36,11 +36,11 @@ From Professor's Demitry's standpoint, we understand the scope when the definiti
 For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
 
 **Remarks**:
-Immediately Observe the Equivalence to the tangent cone definitions on the epigraph of the function: 
+Immediately Observe the Equivalence to the tangent cone definitions [[../Background/Tangent Cone]] on the epigraph of the function: 
 
 $$
 \begin{aligned}
-	\text{epi}(d[f](x|\cdot)) = N_{\text{epi}(f)}((x ,f(x)))
+	\text{epi}(f'(x|\cdot)) = N_{\text{epi}(f)}((x ,f(x)))
 \end{aligned}
 $$
 
@@ -53,7 +53,7 @@ Such a definition is suitable for all type of real-valued functions, and just li
 > \end{aligned}
 > $$
 
-We skip the proof for this remark item. 
+We skip the proof for this remark item. I need to point out that, any function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. Hence, under this case, we have the subderivative equals to above. See [[../Convex Directional Subderivatives]]. 
 
 
 ---
@@ -78,6 +78,7 @@ He didn't say and I don't know.
 
 **Proofs**:
 
+#UNFINISHED 
 
 **Remarks**:
 

@@ -1,4 +1,4 @@
-[[Characterizations of Shortest Paths]]
+[[Characterizations Pairwise of Shortest Paths]]
 
 ---
 ### **Intro**

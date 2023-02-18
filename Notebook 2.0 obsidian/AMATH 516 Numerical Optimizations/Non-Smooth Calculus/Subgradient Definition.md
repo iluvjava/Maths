@@ -315,6 +315,6 @@ We make use of the obtuse angle theorem from: [[Convex Sets Projection Obtuse An
 
 
 ---
-### **Directional Derivatives**
+### **Cousin Concept: Directional Derivatives**
 
-For more about directional derivatives, the cousin concepts of subgradient, see [[../Directional Derivatives]] for more information about G-derivatives for convex functions, see [[Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 
+For more about directional derivatives, the cousin concepts of subgradient, see [[../Convex Directional Subderivatives]] for more information about G-derivatives for convex functions, see [[Variational Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 

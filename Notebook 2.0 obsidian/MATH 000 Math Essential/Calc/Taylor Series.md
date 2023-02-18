@@ -229,7 +229,7 @@ $$
 \end{aligned}
 $$
 
-The expression for $C(f, n, k_1, k_2, \cdots k_m)$ is obtained simply by asserting the equality for all partial deriatives between the polynomial and the original function. Define the following notations for ease of reading and writing: 
+The expression for $C(f, n, k_1, k_2, \cdots k_m)$ is obtained simply by asserting the equality for all partial derivatives between the polynomial and the original function. Define the following notations for ease of reading and writing: 
 
 $$
 f^{(k_1, k_2, \cdots, k_m)}(\vec{x}_0) = 
