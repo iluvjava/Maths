@@ -69,7 +69,7 @@ $$
         \\
         0 & \text{ else}
     \end{cases}\right\rbrace.
-\\
+    \\
     & M = 
     \begin{bmatrix}
         \e_{i_1} - \e_{j_1}
@@ -139,11 +139,15 @@ zoom in and select a row of the matrix such that it corresponds to the arc $(i, 
 
 $$
 \begin{aligned}
-	c_{i, j} - (y_1)_i + (y_1)_j \ge (y_2)_{(i, j)} \underset{\substack{\text{when}\\\text{optimal}}}{=} 0, 
+	c_{i, j} - (y_1)_i + (y_1)_j \ge (y_2)_{(i, j)} \underset{\substack{\text{when}\\\text{optimal}}}{=} 0,\tag{*}
 \end{aligned}
 $$
 
 the LHS of the $\ge$ is the reduced costs. If we were to solve the problem using the simplex algorithm, then in the above expression, on the LHS, will become the objective row for each of the dictionary. And when all of them are larger than zero (for all basic feasible solution), then the algorithm terminates. For more about the property of reduced cost and how to use it, see [[Reduced Costs and Potentials]]. Note, more specifically, the variable $y_1$ is the potential of a graph, and the reduced costs is the entirely of the LHS of $\le$. 
+
+**Implication of Complementary Slackness**
+
+suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight, hence $c_{i, j} - (y_1)_i + (y_1)_j > 0$, then the dual of the dual, the primal, must have its variable equal to zero to satisfies the complementary slackness, e.g: $(c_{i, j} - (y_1)_i + (y_1)_j)x_{i, j} = 0$, since $x_{i, j}\ge 0$ by virtual of the network standard form, we conclude that $x_{i, j} = 0$. 
 
 
 ---

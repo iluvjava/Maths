@@ -1,4 +1,4 @@
-[[Continuous Mapping]]
+[[Topology of a Continuous Mapping]]
 
 ---
 ### **Intro**

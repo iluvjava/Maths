@@ -1,4 +1,4 @@
-[[Network Flow Standard Form]]
+[[Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Pairwise of Shortest Paths]]
 
 ---
 ### **Intro**
@@ -11,7 +11,6 @@ We assume that:
 - The graph is connected.
 - There is no directed cycle with a costs that is negative.
 - Then, we will be able to find the shorts path between 2 vertices with algorithms that are not too complicated.
-
 
 **Shortest Ancestor Tree**: 
 
@@ -39,8 +38,13 @@ $$
 
 **Observations**
 
-- There is no upper bound for the amount of flows. 
+- There is no upper bound for the amount of flows on each of the edges. 
 - If there is a negative cycle (formed by the costs on a directed cycle being arcs with all negative capacity), then this lp programming problem is unbounded with minimization objective. Because a negative cycle improves the minimum objective and it exists in the null space of the constraint adjacency matrix, hence, it gets ignored by the equality constraints and non-negativity constraints. 
+- The solution is an out-tree with the minimum flow cost. The tree posses a root node where every out going edge has a flow equals to the number of vertices it goes to (Size of the subtree).
+
+**Claim Without Much Proof**
+
+> The solution to the above LP problem produces integral results for all costs parameters $c$. 
 
 **Shortest Point to Point**
 
@@ -68,4 +72,38 @@ $$
 ---
 ### **Dual and Matrix Form**
 
-Read [[../../CSE 000 Basics Algorithms/Characterizations Pairwise of Shortest Paths]] first. We then show that the optimality conditions for the shortest distance is exactly matching the optimal reduced costs via the dual of the Network Standard form applied to the above LP formulations. Without lost of generality assume the graph $G=(V, A)$ is directed such that it satisfies the assumptions listed at the start, let $1, n$ to be the source and destination nodes, then we consider its linear programming form. 
+Read [[../../CSE 000 Basics Algorithms/Characterizations Pairwise of Shortest Paths]] first. We then show that the optimality conditions for the shortest distance is exactly matching the optimal reduced costs via the dual of the Network Standard form applied to the above LP formulations. Without lost of generality assume the graph $G=(V, A)$ is directed such that it satisfies the assumptions listed at the start, let $1, n$ to be the source and destination nodes, then we consider its dual linear programming form:  
+
+$$
+\begin{aligned}
+    \max_{\substack{y_1 \text{free} \\y_2 \le \mathbf 0}}
+    \left\lbrace
+       (n - 1)(y_1)_1 + \left(\sum_{i = 2}^{n}-(y_1)_i\right) + \langle u, y_2\rangle
+    \right\rbrace
+    \text{s.t: }
+    \begin{bmatrix}
+        M^T & I
+    \end{bmatrix}\begin{bmatrix}
+        y_1 \\ y_2
+    \end{bmatrix} \le
+    c, 
+\end{aligned}
+$$
+
+with optimality condition: 
+$$
+\begin{aligned}
+	c_{i, j} - (y_1)_i + (y_1)_j \ge (y_2)_{(i, j)} \underset{\substack{\text{when}\\\text{optimal}}}{=} 0,
+\end{aligned}
+$$
+
+if for example, then for any arc $(i, j)$, the above dual constraint becomes loose, then $c_{i, j} - (y_1)_i + (y_1)_j + (y_2)_{(i, j)} = 0$, then it's dual variable $x_{i, j} = 0$, meaning that it's not part of the ancestor tree. Furthermore, please observe that the shortest path characterization is $d_j \le d_{i} + c_{i, j}$, is just $c_{i, j} + d_i - d_j\ge 0$. By substituting $d_k = -(y_1)_k$, we obtain the same expression as the dual right constraints. Therefore: 
+
+> The shortest path optimality condition is satisfied when a dual constraints become tight, and the distance label is the negative of the dual decision variable. The dual feasibility form simplifies to: 
+> $c_{i, j} + d_i - d_j\ge 0$, for all arcs $(i, j)\in A$, and when $(i, j)$ is in the shortest ancestor tree, then the we have $c_{i, j} + d_i - d_j = 0$. 
+> 
+Such an observation becomes the major exploits for numerous shortest path algorithm, and applying the strong duality: 
+1. Primal feasible. 
+2. Dual feasible. 
+3. Complementary Slack. 
+One can test the optimality/infeasibility/unboundedness for a given shortest path problem. 
