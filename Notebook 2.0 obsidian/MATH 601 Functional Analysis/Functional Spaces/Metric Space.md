@@ -63,5 +63,18 @@ Matrices and vectors, this forms the axiomatic foundations for numerical linear 
 ---
 ### **Topologies**
 
-There are a lot of things related to the the topologies for Metric Spaces. 
+There are a lot of things related to the the topologies for Metric Spaces.
+
+
+---
+### **Equivalences of Metrics**
+
+> Let $d, d'$ be metrics on $X$, $d$ and $d'$ are equivalent if there exists $a, b > 0$ such that: 
+> 
+> $$
+> ad'(x, y) \le d(x, y) \le bd'(x, y) \; \forall x, y\in X. 
+> $$
+
+
+
 
