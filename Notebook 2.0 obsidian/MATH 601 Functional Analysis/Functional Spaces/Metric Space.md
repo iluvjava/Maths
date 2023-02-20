@@ -75,6 +75,6 @@ There are a lot of things related to the the topologies for Metric Spaces.
 > ad'(x, y) \le d(x, y) \le bd'(x, y) \; \forall x, y\in X. 
 > $$
 
+**Remarks**: 
 
-
-
+This fact in itself is not useful, please see the [[Topology of Metric Space]] for a topological and convergence characterizations of metrics that are equivalent to each other. The inequality will limit the convergence due, a direct application of squeeze theorem, giving equivalent metrics the same limit for the same converging sequence. 

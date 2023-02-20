@@ -126,7 +126,7 @@ This would bring the contradiction that $C$ is also uncountable like $S$, hence,
 
 
 ---
-### **Toplogical Characterizations of Equivalence Metric**
+### **Topological Characterizations of Equivalence Metric**
 
 > Let $d, d'$ be equivalent metrics, then: 
 > - $x_n\rightarrow x$ in $d$ if and only if $x_n\rightarrow x$ in $d'$. 
@@ -136,3 +136,8 @@ This would bring the contradiction that $C$ is also uncountable like $S$, hence,
 
 Consider the metrics $\Vert \cdot\Vert_\infty$ and $\Vert \cdot\Vert_1$ defined for $C[0, 1]$, they are not equivalent metrics for the same space. One of the counter example to consider is simple the function $x^n$ as $n\rightarrow \infty$, under these different metric, they are converging to different number when measured under these 2 norms. 
 
+
+---
+### **Completeness of Metric Space**
+
+Similar to real analysis, where we discussed that a sequence is Cauchy if and only if it converges to a real number, here we use the Cauchy sequence and the convergence in metric space to define the concept of a complete metric space. See [[Convergence in Metric Space]] for more details. 

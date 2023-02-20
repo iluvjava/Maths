@@ -38,5 +38,8 @@ It's not hard and I will skip it for not and has a tag: #UNFINISHED for this.
 
 > $(X, d)$ is a complete metric space if every Cauchy sequence in $(X, d)$ in the space converges to a limit that is in $X$. 
 
+---
+### **Metric Equivalences**
+
 
 
