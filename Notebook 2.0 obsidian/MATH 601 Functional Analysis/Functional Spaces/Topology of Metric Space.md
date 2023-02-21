@@ -1,4 +1,4 @@
-- [[Metric Space]], 
+- [[Metric Space]], [[../Further Examples for Metric Space]]
 - [[../../MATH 000 Math Essential/Analysis/Real Analysis Basics]], 
 - [[../../MATH 000 Math Essential/Countability of Sets]]. 
 
@@ -17,12 +17,9 @@ To start, we define the concept of vicinity around any "point" in the metric spa
 **Definition: A Closed Set**
 > $A\subseteq X$ is closed when $X\setminus A$ is open. 
 
-
-
 **Definition: Dense Subset**
 
 > A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
-
 
 **Definition: An Accumulation Point**
 
@@ -61,7 +58,9 @@ There is a subset that is countable such that it can cover almost every point in
 The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. 
 
 ---
-### **Seperablbility Examples**
+### **Separability Examples**
+
+Here we show that the sequence space $l_\infty$ is an example of incomplete space, and $l_2$ is an example of a complete metric space. 
 
 **Claim**: 
 > The $l_2$ sequence space is a separable space. 
@@ -136,8 +135,12 @@ This would bring the contradiction that $C$ is also uncountable like $S$, hence,
 
 Consider the metrics $\Vert \cdot\Vert_\infty$ and $\Vert \cdot\Vert_1$ defined for $C[0, 1]$, they are not equivalent metrics for the same space. One of the counter example to consider is simple the function $x^n$ as $n\rightarrow \infty$, under these different metric, they are converging to different number when measured under these 2 norms. 
 
-
 ---
 ### **Completeness of Metric Space**
 
 Similar to real analysis, where we discussed that a sequence is Cauchy if and only if it converges to a real number, here we use the Cauchy sequence and the convergence in metric space to define the concept of a complete metric space. See [[Convergence in Metric Space]] for more details. 
+
+---
+### **Examples And Exercises**
+
+Here is a good list of exercises from the textbook that will enhance our understanding of the matter. The specific examples that are incomplete spaces are interesting and they had been separated into: [[Example of Incomplete Metrics Space]]. 

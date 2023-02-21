@@ -31,15 +31,42 @@ It's not hard and I will skip it for not and has a tag: #UNFINISHED for this.
 
 **Observation**: 
 
-- From basic analysis fact, a Cauchy sequence is the same as an convergence sequence. 
-- The definition is very similar to the definition of closure, because a Cauchy sequence is a limit sequence, and hence it brings back to the definition of closure, however, they are also differen because the closure is for $M\subseteq X$ but completeness is only focused on the background set and its metric. Different focus. 
+- From basic analysis fact, a Cauchy sequence is the same as a convergence sequence. But we don't know what exact value the sequence is going to converge to. This definition is saying that we have a converging sequence that is converging to some point that is not in the space, and we don't necessarily know what that point is. 
+- The definition is very similar to the definition of closure, because a Cauchy sequence is a limit sequence, and hence it brings back to the definition of closure, however, they are also different because the closure is for $M\subseteq X$ but completeness is only focused on the background set and its metric. Different focus. 
 
 **Definition Completeness**: 
 
 > $(X, d)$ is a complete metric space if every Cauchy sequence in $(X, d)$ in the space converges to a limit that is in $X$. 
 
+
 ---
-### **Metric Equivalences**
+### **Quick and Dirty Incomplete Spaces**
 
+**Example: $\mathbb Q$**: 
+> The set $\mathbb Q$ equipped with $|\cdot|$ is not complete, because the limit of a sequence of rationals can easly become an irrational number. 
 
+Therefore, this is an incomplete metric space. 
 
+**Example: Polynomials**: 
+> Let $X$ be the set of polynomial on a closed interval $[a, b]$, then the metric $\Vert \cdot\Vert_\infty$ is incomplete. 
+
+Any polynomial that converges uniformally to some real function $f$ on $[a, b]$ that is not a polynomial is an example of a Cauchy sequence that punch a hole in this set after the limit. Uniform convergence is need for this matric: $\Vert \cdot\Vert_\infty$. Therefore this is incomplete. 
+
+**Example: Continuous Funtion**
+
+> Let $(X, d)$ be metric space where $X$ is the set of functions that is continuous on $[0, 1]$. Let $d$ be the $\Vert \cdot\Vert_1$ metric for functions. 
+
+The space is incomplete, consider the function $f_m(x)$ paramaterized by $m \le 1/2$ defined as the following: 
+
+$$
+\begin{aligned}
+    f_m(x) = \begin{cases}
+        0 & x \in [0, 1/2],
+        \\
+        \min(x/m, 1) & \text{else}, 
+    \end{cases}
+\end{aligned}
+$$
+then this function is converging as $m \rightarrow 0$ under the metric, however, this function is piece-wise linear and it has a vertical line at $x=1/2$, a discontinuous function if we insist on taking the limit $m\rightarrow \infty$. 
+
+For more complicated examples for incomplete metric spaces, view [[Example of Incomplete Metrics Space]]. 
