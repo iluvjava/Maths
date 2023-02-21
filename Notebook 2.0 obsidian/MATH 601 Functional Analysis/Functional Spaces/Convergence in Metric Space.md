@@ -20,6 +20,13 @@ Using the topology of a metric space and the metric together with real analysis,
 
 It's not hard and I will skip it for not and has a tag: #UNFINISHED for this. 
 
+**Theorem: Complete Subspace Topological Characterizations**
+> Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
+>
+
+**Remarks**
+
+This theorem provides an alternative to showing that a particular subspace of a metric space is complete or incomplete. We now show that $M\subseteq X$ to be incomplete by showing that every limit point of the set is a member of the set, the alternative negates the need to use the Cauchy convergence sequence, which sometimes very complicated to use. It also provides a way of showing that a closed subspace is gong to be complete. 
 
 ---
 ### **Cauchy Convergence and Completeness**
@@ -38,6 +45,11 @@ It's not hard and I will skip it for not and has a tag: #UNFINISHED for this.
 
 > $(X, d)$ is a complete metric space if every Cauchy sequence in $(X, d)$ in the space converges to a limit that is in $X$. 
 
+
+**Examples**: 
+
+- The Euclidean norm equiped with $\R^n$ and the p-norm metric form s complete metric space. 
+- The subset of all the rationals in the metric space is not forming a complete metric space. 
 
 ---
 ### **Quick and Dirty Incomplete Spaces**
@@ -69,4 +81,4 @@ $$
 $$
 then this function is converging as $m \rightarrow 0$ under the metric, however, this function is piece-wise linear and it has a vertical line at $x=1/2$, a discontinuous function if we insist on taking the limit $m\rightarrow \infty$. 
 
-For more complicated examples for incomplete metric spaces, view [[Example of Incomplete Metrics Space]]. 
+For more complicated examples for incomplete metric spaces, view [[Examples of Incomplete, Complete Metrics Space]]. 

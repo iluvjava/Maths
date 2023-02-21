@@ -130,3 +130,5 @@ However, the relative speed of how each point converges to the target function i
 
 In brief, all the point in the region $D$ will be close to the target function. There doesn't exists some point where it's always slower than all the other point when the function $f_n$ is converging. 
 
+
+
