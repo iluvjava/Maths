@@ -35,4 +35,4 @@ This is a direct application of the previous theorem.
 ---
 ### **In Relations to Linear Programming**
 
-The shortest path problem is related to the linear programming problem. The above conditions just an application of strong duality. Visit [[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/LP for Pairwise Shortest Paths]] for more information. 
+The shortest path problem is related to the linear programming problem. The above conditions just an application of strong duality. Visit [[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/LP for Source Tree Shortest Paths]] for more information. 

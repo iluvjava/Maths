@@ -154,7 +154,7 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 ### **Reductions from Other Problems**
 
 There are many problems that can be reduced to the network flow problems: 
-1. [[LP for Pairwise Shortest Paths]]. 
+1. [[LP for Source Tree Shortest Paths]]. 
 2. Max flow Min Cut. 
 3. Tournament Problems. 
 4. Bipartite Assignment problems. 

@@ -1,4 +1,4 @@
-[[Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Pairwise of Shortest Paths]]
+[[Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
 
 ---
 ### **Intro**
@@ -72,7 +72,7 @@ $$
 ---
 ### **Dual and Matrix Form**
 
-Read [[../../CSE 000 Basics Algorithms/Characterizations Pairwise of Shortest Paths]] first. We then show that the optimality conditions for the shortest distance is exactly matching the optimal reduced costs via the dual of the Network Standard form applied to the above LP formulations. Without lost of generality assume the graph $G=(V, A)$ is directed such that it satisfies the assumptions listed at the start, let $1, n$ to be the source and destination nodes, then we consider its dual linear programming form:  
+Read [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]] first. We then show that the optimality conditions for the shortest distance is exactly matching the optimal reduced costs via the dual of the Network Standard form applied to the above LP formulations. Without lost of generality assume the graph $G=(V, A)$ is directed such that it satisfies the assumptions listed at the start, let $1, n$ to be the source and destination nodes, then we consider its dual linear programming form:  
 
 $$
 \begin{aligned}

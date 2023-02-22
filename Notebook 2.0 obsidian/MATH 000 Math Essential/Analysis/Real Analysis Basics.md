@@ -49,7 +49,7 @@ Intuitively it means that the number $a_n$ will stick very close to $a$, as much
 
 **Proof**
 
-All numbers in the sequences form a subset of the real that is non-empty then it has to have an infimum by completeness of the reals. Let $L$ be the infimum, then for any $\epsilon > 0$ there exists $n$ such that $a_n \in [L, L + \epsilon]$, by monotonicity of $a_n$, we know that $a_k \in [L, L + \epsilon]\;\forall k > n$, which is exactly the definition of a convergence sequence. 
+All numbers in the sequences form a subset of the real that is non-empty then it has to have an infimum by completeness of the reals. Let $L$ be the infimum, then for any $\epsilon > 0$ there exists $n$ such that $a_n \in [L, L + \epsilon]\;\forall \epsilon > 0$, by monotonicity of $a_n$, we know that $a_k \in [L, L + \epsilon]\;\forall k > n$, which is exactly the definition of a convergence sequence. 
 
 ---
 ### **Bozano Weierstrass | Converging Subsequence**
