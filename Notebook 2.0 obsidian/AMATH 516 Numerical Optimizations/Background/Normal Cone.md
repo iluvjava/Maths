@@ -4,7 +4,7 @@
 ---
 ### **Variational Normal Cone**
 
-A <span style="color:red">variational normal</span> cone is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
+A <span style="color:red">variational normal cone</span>  is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
 
 > $$
 > N_Q(\bar{x}) := \left\lbrace
@@ -75,7 +75,15 @@ Get $\delta > 0$ such that $\mathbb B_\delta[x]\subseteq C$. Now let $u \in N_C(
 
 **Remarks**
 
-The same holds for the variational normal cone. The proof is not here yet. #UNFINISHED . 
+The same holds for the variational normal cone. The proof is not here yet. The convex normal cone is exactly the same as the variational normal cone whenever $C$ is a convex set. #UNFINISHED . 
+
+---
+### **Convex Normal Cone for Points Outside a Convex Set**
+
+#UNFINISHED
+
+
+**References**: I thought of it myself. 
 
 ---
 ### **Basic Properties**

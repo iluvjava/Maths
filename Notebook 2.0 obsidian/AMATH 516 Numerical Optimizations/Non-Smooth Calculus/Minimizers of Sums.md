@@ -55,3 +55,6 @@ The $\implies$ direction is handled by $x^+$ is an global minimizer then it is a
 **Remarks**: 
 
 When one assume that $g$ is the indicator function for some convex set $C$, then the above sufficient/necessary conditions for minimizer $x^+$ becomes $-\nabla f(x^+) \in N_C(x^+)$, where, the gradient of the optimal on function $f$ is now in the normal cone of the convex constrain at the optimal point $x^+$. Under the spacial case where $f(x^+) = \mathbf 0$, we attain $x^+\in C$. If this is not the case, then $\nabla f(x)\neq \mathbf 0$ for all $x\in C$ hence the minimizer has to satisfies that $-\nabla f(x^+) \in N_C(x^+)$ and $x^+$ has to be on the boundary of $C$ because $N_C(x)  \{\mathbf 0\}\;\forall x \in \text{int}(C)$ by the property of [[../Background/Normal Cone]]. 
+
+
+**References**: Heinz class at UBCO, Theorem 15.1 course notes. 
