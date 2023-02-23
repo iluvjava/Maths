@@ -17,7 +17,7 @@ Then, we will be able to find the shorts path between 2 vertices with algorithms
 
 **Proof**
 
-Firstly, let $\hat P(s, t)$ be a shortest path that consists of $k\in P(s, t)$ with $P(s, k)\cup P(k, t) = \hat P(s,t)$. Suppose for contradiction that the path $P(s, k)$ is not the shortest, hence there exists $P'(s, k)$ with lower costs. Conider a walk in the form of $P'(s, k) + P(k, t)$ ($+$ is just concatenations), this is a walk because $P'(s, k)$ and $P(k, t)$ are both paths, and they can crosses with each other. Then, the walk $P'(s, k) + P(k, t)$ has 2 cases: 
+Firstly, let $\hat P(s, t)$ be a shortest path that consists of $k\in P(s, t)$ with $P(s, k)\cup P(k, t) = \hat P(s,t)$. Suppose for contradiction that the path $P(s, k)$ is not the shortest, hence there exists $P'(s, k)$ with lower costs. Consider a walk in the form of $P'(s, k) + P(k, t)$ ($+$ is just concatenations), this is a walk because $P'(s, k)$ and $P(k, t)$ are both paths, and they can crosses with each other. Then, the walk $P'(s, k) + P(k, t)$ has 2 cases: 
 1. It contains a cycle, then that cycle cannot have negative cost, hence removing the cycles on the walk reduces the costs further, and making it a path, contradicting the fact that $\hat P(s, t)$ is a path of the shortest length. 
 2. It doesn't contain a cycle, then it's a shortest path that is shorter than $\hat P(s, t)$, creating a contradiction. 
 

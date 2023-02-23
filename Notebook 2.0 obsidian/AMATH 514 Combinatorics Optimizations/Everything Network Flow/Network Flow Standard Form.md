@@ -26,7 +26,7 @@ $$
 \end{aligned}
 $$
 
-seeks for a solution such that it minimizes the costs of sending all the stuff betweens the set of vertices such that deficit and surplus conditions are satisfied. As a sanity check, we assert the fact that $\sum_{i = 1}^{N}b_i = 0$ so that the surplus and deficit of everything on the network is balanced out, if not then it's obvious that this won't have a feasible solution. 
+seeks for a solution such that it minimizes the costs of sending all the stuff between the set of vertices such that deficit and surplus conditions are satisfied. As a sanity check, we assert the fact that $\sum_{i = 1}^{N}b_i = 0$ so that the surplus and deficit of everything on the network is balanced out, if not then it's obvious that this won't have a feasible solution. 
 
 **Remarks**
 

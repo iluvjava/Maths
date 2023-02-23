@@ -7,6 +7,8 @@ This is an algorithm comes from the generic label correct algorithm, which aims 
 
 One important thing is that in here, we are keeping the assumptions made for the shortest path problem under the LP formulation, so that it's at least not unbounded. 
 
+**References**: Chapter 5 of the Network flow, Algorithm and applications book. 
+
 **Generic Label Correcting algorithm**: 
 
 Let $G=(V, A)$ be a directed graph satisfying the assumptions, let $d(s)$ be a distance label for each of the vertices in the graph, let $s$ be the source vertex, we denote $c(i, j)$ to be the costs of the arc $(i, j)\in A$. The following algorithm returns a predecessor graph, such that it's with the lowest total cost. 
@@ -28,7 +30,7 @@ and this algorithm just correct the labels that doesn't satisfy the optimality c
 >
 **Proof:**
 
-If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j) \ge d(i) + c(i, j)$, else, it is in the tree, then it's the case that $d(j) = d(i) + c(i, j)$ by the algorithm during a specific iteration of the algorithm. In future iteration, if $d(j)$ is decreased then it still holds, when $d(i)$ is decreased then the arc $(i, j)$ will be removed from the predecessor graph, hence the claim would still hold. 
+If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j) \ge d(i) + c(i, j)$, else, it is in the tree, then it's the case that $d(j) = d(i) + c(i, j)$ by the algorithm during a specific iteration of the algorithm. In future iteration, if $d(j)$ (the predecessor of the node of interest: i) is decreased then it still holds, when $d(i)$ is decreased then the arc $(i, j)$ will be removed from the predecessor graph (in which case it goes back to the equality case), hence the claim would still hold. 
 
 
 **Observations:**
@@ -42,10 +44,44 @@ If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j)
 
 Let $C$ be the maximum arc costs across all the arcs in the graph, then the complexity is $O(Cmn)$. This is directly conclude from the simple description of the algorithm, and the observation on the theoretical upper bound for the initial distance label change of some vertex $d(j)$. 
 
+
+**Theorem: Existence of Negative Cost Directed Cycles** 
+
+> If the predecessor graph of the generic label-correcting algorithm contains a directed cycle, then the cycle has to be a negative cost cycle on the original graph. 
+
+**Proof**: 
+
+We use the invariant of the algorithm, and for simplicity and WLOG, we assume that $(1, 2), (2, 3)$ were already on the predecessor graph, and at the latest ieration of the algorithm, $(3, 1)$ is being added to the predecessor graph, then, using the invariant of the algorithm we have the conditions that: 
+
+$$
+\begin{aligned}
+    d(2) &\ge d(1) + c_{1, 2}
+    \\
+    d(3) &\ge d(2) + c_{2, 3}
+    \\
+    d(1) &= d(3) + c_{3, 1}, 
+\end{aligned}
+$$
+
+then if we substitute entries from the button to the top, we have the condition that: 
+
+$$
+\begin{aligned}
+    d(1) &\ge d(2) + c_{2, 3} + c_{1, 2}
+    \\
+    d(1) &\ge d(1) + c_{1, 2} + c_{2, 3} + c_{1, 2}
+    \\
+    0 &\ge c_{1, 2} + c_{2, 3} + c_{1, 2}, 
+\end{aligned}
+$$
+
+hence that cycle has a negative cost to it, (or zero...?). 
+
+
 ---
 ### **Pathological Example**
 
-The following pathological example is credit to our professor, Dovan Hare at UBCO, Spring Semester, 2023. 
+The following pathological example is credit to our professor, Dovan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
 
 ---
 ### **Modified Label Correcting Algorithm**
@@ -105,7 +141,7 @@ The edge case where there doesn't exist any path from $s$ to $k$ had been coded 
 
 **Proof of the theorem**
 
-The longest path in the algorithm cannot use more than $n - 1$ arcs because a path has no repeating vertices, therefore, $d^{(n-1)}(j)$ has to be optimal for all $j\in N$ using the lemma. And hence the algorithm produce the optimal label after $n - 1$ iterations of the while loop, each while loop go over $m$ many arcs and setup the optimal condition using $\mathcal O(1)$, therefore the total complexity for the algoritm is $\mathcal O(mn)$. 
+The longest path in the algorithm cannot use more than $n - 1$ arcs because a path has no repeating vertices, therefore, $d^{(n-1)}(j)$ has to be optimal for all $j\in N$ using the lemma. And hence the algorithm produce the optimal label after $n - 1$ iterations of the while loop, each while loop go over $m$ many arcs and setup the optimal condition using $\mathcal O(1)$, therefore the total complexity for the algorithm is $\mathcal O(mn)$. 
 
 **The Bellman Ford Algorithm**
 
@@ -119,10 +155,15 @@ FOR k = 1 ... (n - 1)
 END
 ```
 
-And this will construct the optimal label. We can get the predecessor tree afterwards by checking for the tight dual constraints. 
+And this will construct the optimal label. We can get the predecessor tree afterwards by checking for the tight dual constraints. Or we can choose to get the predecessor tree in the while loop, but that would give us some extra if statements to work with. 
 
 ---
-### **Negative Cycle Detection via Bellman Ford**
+### **Negative Cycle Detection**
 
+We check the cycles on the predecessor graph constructed by the algorithm at regular interval while the algorithm had been running. Here is how we check it: 
 
+> Start with the root node, changed its state to marked. For every unmarked node: $v$, trace back until it meet a marked node, during each time, check every node on when tracing back is $v$ itself, if its is, then it contains a cycle, all aren',t then label all node on this path as marked. 
 
+We take it for granted that this cycle on the predecessor graph has to be caused a negative weight cycle. This algorithm should take $\mathcal O(n)$ when the graph doesn't contain any negative cycles in it. 
+
+For the FIFO algorithm, we can just perform it more than $n - 1$ iteration, if there is an update on the $n$ th iteration, then the node with the weight changed on $n$ th iteration must be on a negative cycle. 

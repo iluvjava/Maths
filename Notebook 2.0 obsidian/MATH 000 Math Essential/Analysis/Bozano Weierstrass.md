@@ -37,13 +37,13 @@ $$
 
 Then the previous way of choosing a monotone subsequence won't be viable here because the monotone subsequence seems to be finite when this happens. 
 
-Consider that $x_{N + 1}$ bounded from above $\sup_{n \ge N}x_n = x'_{N}$ but it has supremum of value $x_{N}$, hence there exists $n_1$ such that $x_{n_1} \ge x_{N + 1}$, similarity, there exists $n_2$ such that $x_{n_2} \ge x_{n_1}$, because the sequence $x_{N + k}$ for $k \ge 1$ has to attain the value $x'_N$ infinitely many time, this produce another monotone subsequence that is increasing. Under both cases, we attain a montone subsequence of $x_n$ such that it's monotone. 
+Consider that $x_{N + 1}$ bounded from above $\sup_{n \ge N}x_n = x'_{N}$ but it has supremum of value $x_{N}$, hence there exists $n_1$ such that $x_{n_1} \ge x_{N + 1}$, similarity, there exists $n_2$ such that $x_{n_2} \ge x_{n_1}$, because the sequence $x_{N + k}$ for $k \ge 1$ has to attain the value $x'_N$ infinitely many time, this produce another monotone subsequence that is increasing. Under both cases, we attain a monotone subsequence of $x_n$ such that it's monotone. 
 
 
 ---
 ### **Proof of the Theorem**
 
-Given a sequence, $x_n$, it must contains a monotone subsequence, and in the case when $x_n \in C$, $C$ being a bounded set, we know that $\sup_{n\in \N}{x_n}$ or $\inf_{n\in \N}x_n$ must exist (bounded montone sequence theorem) and by the fact that the sequence is monotone, it must converge to one of those point, and when the set $C$ is closed, we know that $\sup_{n\in \N}x_n, \inf_{n\in \N}x_n$ must also be a member of $C$. This comples the proof. 
+Given a sequence, $x_n$, it must contains a monotone subsequence, and in the case when $x_n \in C$, $C$ being a bounded set, we know that $\sup_{n\in \N}{x_n}$ or $\inf_{n\in \N}x_n$ must exist (bounded monotone sequence theorem) and by the fact that the sequence is monotone, it must converge to one of those point, and when the set $C$ is closed, we know that $\sup_{n\in \N}x_n, \inf_{n\in \N}x_n$ must also be a member of $C$. This completes the proof. 
 
 
 ---
@@ -57,6 +57,4 @@ This is true because we can extract out a convergence subsquence that only conve
 
 
 ---
-### **Alternative Proof for $\R$ using Nested Interval**
-
-We skip this one for now. #UNFINISHED 
+### **Alternative Proof for $\R$ using Nested 
