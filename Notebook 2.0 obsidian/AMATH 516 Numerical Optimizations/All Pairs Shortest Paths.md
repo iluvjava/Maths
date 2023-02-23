@@ -9,6 +9,8 @@ There are 2 ways for figuring out the shortest path from all pairs of vertices o
 - Try Bellman Ford first and then use Dijkstra in future queries to figure out the shortest path on potential graph, and then translate it back to the solution on the original graph. 
 - Figure out the all pairs shortest path using algorithm like Floyd Warshall. 
 
+**Assumption:** 
+We make the exact same set of assumptions for the graph as in the case of the single source shortest path. 
 #UNFINISHED 
 
 
@@ -17,4 +19,5 @@ There are 2 ways for figuring out the shortest path from all pairs of vertices o
 
 **Lemma: All Pairs Optimality Conditions**
 
-
+----
+### **Algorithm**
