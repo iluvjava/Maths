@@ -15,7 +15,7 @@ This is just a generalization for fixed point iterations in $\R$, however, we ge
 
 > Let $T: X\mapsto X$ and $x_0\in T$, The fixed point iteration of $T$ is a sequence $(x_n)_{n\in \N}$ defined recursively as: $x_{n} = Tx_{n - 1}$. 
 
-**Definition:Banach Contraction**
+**Definition: Banach Contraction**
 
 > Suppose that the metric space $(X, d)$ is complete, then $T$ is a Banach contraction if there exists $\alpha\in [0, 1)$ such that: 
 > $$

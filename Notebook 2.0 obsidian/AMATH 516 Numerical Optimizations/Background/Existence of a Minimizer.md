@@ -50,7 +50,7 @@ Finally, why/how do we use the Weistrass Theorem (Sequential Compact Theorem)?
 > Observe that it's the set $\arg\inf_{x\in C}f(x)$ can have any type f topology or cardinality we want it to be. The sequence $x_n$ such that $f(x_n) \rightarrow f_{\text{opt}}$ doesn't have to converge in anything, it can circle around inside of the set. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to converge to on, and just one of the point in the compact region, say $\bar x$ such that it attain the minimum of $f(\bar x) = f_{\text{opt}}$. 
 
 ---
-### **Coersive Proper L.S.C Function Always has Closed Set**
+### **Coersive Proper L.S.C Function has Minimizer in a Closed Set**
 
 > let $f$ be a proper, closed, and coercive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 
@@ -60,11 +60,11 @@ Choose any $x\in \text{dom}(f)\cap S$ (By properness of the function), from the 
 
 $$
 \begin{aligned}
-    f(x) > f(x_0) \quad \forall x: \Vert x\Vert\ge M. 
+    f(x) \ge f(x_0)\ge \inf_{x\in \mathbb E} f(x) \quad \forall x: \Vert x\Vert\ge M. 
 \end{aligned}
 $$
 
-For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le f(x_0)$, then follows from above that $S\cap \{x: \Vert x\Vert\le M\}$ is a compact set. By Weistrass Theorem for closed function, from previous section, $\bar x$ is in $\text{dom}(f)\cap S$.
+For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le f(x_0)$, then follows from above that $S\cap \{x: \Vert x\Vert\le M\}$ is a compact set. By Bozano Weistrass Theorem for closed function, from previous section, $\bar x$ is in $\text{dom}(f)\cap S$.
 
 
 ---
@@ -74,9 +74,32 @@ For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le
 
 **Proof**
 
-Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is bounded by the coersive property, it's closed by l.s.c. Therefore $C$ is compact. Invoke previous theorem about the existence of a minimizer over a compact set, then we are done. 
+Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is bounded by the coersive property, it's closed by l.s.c, and the function attains minimum inside of $C$. Therefore $C$ is compact. Invoke previous theorem about the existence of a minimizer over a compact set, then we are done. 
 
 
 **References**: 
 
 This proof is closest to Amir's Beck Proof. 
+
+---
+### **Heinz's Compact Proof**
+
+> Let $f:X\mapsto (-\infty, + \infty]$ be a coercive, l.s.c, and proper. Prove that $f$ has a minimizer. 
+
+**Proof**
+
+By proper, $\exists x: f(x) < \infty \implies \exists \mu =\inf f(X)$ with $(x_n)_{n\in \N}$ such that $\lim_{n\rightarrow \N} f(x_n) = \mu$ by the definition of infimum.  
+
+**Claim**: 
+> The sequence $(x_n)_{n\in \N}$ has to be always be bounded. 
+
+Suppose for contradiction that this is not the case, such that there exists $\lim_{n\rightarrow \infty}f(x_n) = u \wedge \lim_{n\rightarrow \infty}\Vert x\Vert = \infty$, then by coersivity, $f(x_n) = \infty, n \rightarrow \infty$, meaning that $\mu = \infty$, contradicting that $f$ is proper. 
+
+Using the fact that $\Vert x_n\Vert$ is bounded, then it can be describeed through the set $S = \{x| \Vert x\Vert < \infty\}$, and this set will be compact. Therefore, we have a subsequence $x_{n_k} \rightarrow \bar x$ by Bozano Weierstrass, giving us $\lim_{k\rightarrow \infty}f(x_{n_k}) = \mu$ and $\lim_{k\rightarrow \infty} x_{n_k} = \bar x$, where $\bar x$ will be our minimizers. 
+
+**Remarks**
+
+Professor Heinz seems to made the assumption that $-\infty < f(x)$ for all $x$, and it seems to be unncessary. 
+
+**References**: Heinz's UBCO class. 
+

@@ -86,6 +86,10 @@ Recall Definition:
 
 In Math 563, Heinz's class, there is the term *supercoercive*, which refers to function where $f(x)/\Vert x\Vert \rightarrow \infty$ as $\Vert x\Vert \rightarrow \infty$, a stronger version of coersiveness. 
 
+**Gocha**
+
+ The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. It 
+
 ---
 ### **Special Functions for Analysis**
 
@@ -233,3 +237,6 @@ Some of the important properties that we need to keep track of about functions a
 4. Smoothness
 
 However, for special type of functions, we might need to focus on more interesting properties. 
+
+---
+

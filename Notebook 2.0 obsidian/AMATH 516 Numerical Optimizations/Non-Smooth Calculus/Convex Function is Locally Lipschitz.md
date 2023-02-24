@@ -139,7 +139,7 @@ $$
 \begin{aligned}
    & f(x_1) - f(x_2) \ge \langle v_2, x_1 - x_2\rangle 
    \\
-   &f(x_2) - f(x_1) \ge \langle v_1. x_2 - x_2\rangle
+   &f(x_2) - f(x_1) \ge \langle v_1, x_2 - x_2\rangle
    \\
    \implies & 
    \langle v_2, x_1 - x_2\rangle \le f(x_1) - f(x_2) \le \langle v_1, x_1 - x_2\rangle
@@ -151,17 +151,19 @@ $$
    \frac{|f(x_1) - f(x_2)|}{\Vert x_1 - x_2\Vert} &\le 
    \frac{\max(|\langle v_2, x_1 - x_2\rangle|, |\langle v_1, x_1 - x_2\rangle|)}{\Vert x_1 - x_2\Vert}
    \\
-   & \le \max(\Vert v_1\Vert, \Vert v_2\Vert)
+   & \le \max(\Vert v_1\Vert, \Vert v_2\Vert), 
 \end{aligned}
 $$
 
-Which gives a Lipschitz constant of: 
+Minimizing the RHS gives a Lipschitz constant of: 
 
 $$
 \begin{aligned}
-   L = \inf_{v_1\in \partial[f](x_1), v_2 \in \partial[f](x_2)}\max(\Vert v_1\Vert, \Vert v_2\Vert)
+   L(x_1, x_2) = \inf_{v_1\in \partial[f](x_1), v_2 \in \partial[f](x_2)}\max(\Vert v_1\Vert, \Vert v_2\Vert),
 \end{aligned}
 $$
+
+Apply the bounded subgradient lemma yields the desired results. 
 
 **Remarks**
 

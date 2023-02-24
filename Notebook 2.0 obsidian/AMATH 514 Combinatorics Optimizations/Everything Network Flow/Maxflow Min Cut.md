@@ -8,7 +8,7 @@ The maxflow min-cut is a problem and its dual, and this particular problem is th
 1. The network is directed. If not consider [[Reduction to Network Flow]] to make it so. 
 2. All the capacities are non-negative integers. This is required so that the algorithm terminates, and it produces flow with integral values. Without it the augmenting path algorithm will converge in solution and flow value , but it will never get to the irrational solution exact. 
 3. The network flow doesn't contain a directed path from node s to node t, composed only of infinite capacity arcs. 
-4. $(i, j)\in A \iff (j, i)\in A$, pairs of arcs of reverse direction exists in the graph. Zero capacity arcs are used to represent non-existing arcs on the graph. <mark style="background: #CACFD9A6;">(I think this is talking about the residual graph and has nothing to do about the original graph given that a zero flow from $s-t$ always being a feasible path for max flow problem.)</mark>
+4. $(i, j)\in A \iff (j, i)\in A$, pairs of arcs of reverse direction exists in the graph. Zero capacity arcs are used to represent non-existing arcs on the graph. <mark style="background:#CACFD9A6;">(I think this is talking about the residual graph and has nothing to do about the original graph given that a zero flow from $s-t$ always being a feasible path for max flow problem.)</mark>
 5. The network doesn't contain any parallel arcs across vertices. 
 
 Take it for granted now that these set of assumptions has no loss of generality to the network flow problem. The LP formulation of the network flow problem is given as: 

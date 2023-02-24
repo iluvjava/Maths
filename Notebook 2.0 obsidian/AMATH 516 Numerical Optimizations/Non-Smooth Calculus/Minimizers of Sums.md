@@ -29,7 +29,7 @@ $$
 \end{aligned}
 $$
 
-where on the first second inequality we applied the Jesen's inequality. Rearranging we have: 
+where on the first second inequality we applied the Jasen's inequality. Rearranging we have: 
 
 $$
 \begin{aligned}

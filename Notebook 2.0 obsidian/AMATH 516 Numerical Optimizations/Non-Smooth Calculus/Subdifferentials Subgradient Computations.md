@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-We introduce a simple theorem and then we are going fully hardcore about it using materials in \<Firt Order Method in Optimizations\> by SIAM. Before we start, there are 2 types of subgradient: 
+We introduce a simple theorem and then we are going fully hardcore about it using materials in \<First Order Method in Optimizations\> by SIAM. Before we start, there are 2 types of subgradient: 
 
 * **Strong Subgradient**: All the possible subgradient at a point given the function. 
 * **Weak Subgradient**: Just a subset of all the possible subgradient. 

@@ -83,6 +83,11 @@ hence that cycle has a negative cost to it, (or zero...?).
 
 The following pathological example is credit to our professor, Dovan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
 
+![[../../Assets/Pasted image 20230224004932.png]]
+**Source:** UBCO, Prof Hare, 2023 Spring, Lecture slides. 
+
+To get the worse update, always start with the longest path with sum over $2^n$ for all $0\le n \le 2^k$. Each time, shorten the destinations on the path by exactly one, giving us an exponential complexity (choosing the alternative of $2^1$ at the right most node). 
+
 ---
 ### **Modified Label Correcting Algorithm**
 

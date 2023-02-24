@@ -49,12 +49,14 @@ Given a sequence, $x_n$, it must contains a monotone subsequence, and in the cas
 ---
 ### **Corollary| Higher Dimensions**
 
-> Bozano Weierstrass's theorem can also be applied to $\R^n$. 
+> Bozano Weierstrass' theorem can also be applied to $\R^n$. 
 
 **Proof**: 
 
-This is true because we can extract out a convergence subsquence that only converges on the first coordinate, and then we repeat the same process on the subsequence and extract out a subsequence that converges on the second coordinate and so on. Then in the end, the sequence is going to converge to a point in $\R$. 
+This is true because we can extract out a convergence subsequence that only converges on the first coordinate, and then we repeat the same process on the subsequence and extract out a subsequence that converges on the second coordinate and so on. Then in the end, the sequence is going to converge to a point in $\R$. 
 
 
 ---
-### **Alternative Proof for $\R$ using Nested 
+### **Alternative Proof for $\R$ using Nested Intervals**
+
+This proof was in fact, the proof I was exposed to in my first ever analysis class. 

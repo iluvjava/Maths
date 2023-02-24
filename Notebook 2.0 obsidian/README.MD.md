@@ -19,3 +19,4 @@ for the `settings.json` file for your VS Code client.
 
 Other Community Plugins Used: 
 - `highlightr`. 
+- Dynamic Background. 

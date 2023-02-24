@@ -286,7 +286,7 @@ Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as s
 
 **Remarks**: 
 
-* The regular subgradient is a convex set ([[Convex Subgradient]] Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
+* The regular subgradient is a convex set ([[../When Subgradient is Convex]] Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 
@@ -317,4 +317,4 @@ We make use of the obtuse angle theorem from: [[Convex Sets Projection Obtuse An
 ---
 ### **Cousin Concept: Directional Derivatives**
 
-For more about directional derivatives, the cousin concepts of subgradient, see [[../Convex Directional Subderivatives]] for more information about G-derivatives for convex functions, see [[Variational Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 
+For more about directional derivatives, the cousin concepts of subgradient, see [[Convex Directional Subderivatives]] for more information about G-derivatives for convex functions, see [[Variational Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 

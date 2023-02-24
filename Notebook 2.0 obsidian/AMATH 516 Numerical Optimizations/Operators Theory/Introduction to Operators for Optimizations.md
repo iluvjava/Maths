@@ -16,7 +16,13 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. In practice, we actually want [[Non-expansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. In practice, we actually want [[Non-expansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+
+**Definition: Non-Expansive Operator**
+> 
+
+**Definition: Contraction**
+> 
 
 ---
 ### **Monotone and Maximally Monotone Operator**
@@ -27,7 +33,7 @@ Lipschitz operator bound the distance between 2 points in the output space of th
 
 For example, the subgradient operator of a convex function is monotone. 
 
-**Strongly Monotone Operator**: 
+**Definition: Strongly Monotone Operator**: 
 > A monotone operator $T$ is strongly monotone with parameter $m$ if $\langle Tx - Ty, x - y\rangle \ge m \Vert x - y\Vert^2$ for all $x, y\in \mathbb E$. 
 
 For example, the subgradient of a strongly convex function is a strongly monotone operator. 
@@ -47,12 +53,13 @@ For example, the subgradient of a strongly convex function is a strongly monoton
 > \end{aligned}
 > $$
 
-**Theorem: The set of fixed point for an nonexpansive operator is a closed and convex set**
+**Theorem: The set of fixed point for an non-expansive operator is a closed and convex set**
 
-> Assuming that $F$ is nonexpansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
+> Assuming that $F$ is non-expansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
 
 **Proof**: 
-To prove, we suppoe that $x, y \in X$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
+
+To prove, we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
 
 $$
 \begin{aligned}
@@ -66,7 +73,9 @@ $$
 \end{aligned}
 $$
 
-And the last line suggest that the point $Fz$ must lies on the line segment $[0, 1]$, for all value of $\theta\in [0, 1]$, implying the fact that the set $X$ has to be a convex set. 
+and the last line suggest that the point $Fz$ must lies on the line segment $[0, 1]$ because the equality of the triangle inequality is satisfied from the last expression, for all value of $\theta\in [0, 1]$, implying the fact that the set $X$ has to be a convex set. 
+
+**References**: Primer on Monotone Operators. 
 
 ---
 ### **An Averaged Operator**

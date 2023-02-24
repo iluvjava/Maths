@@ -1,4 +1,4 @@
-[[Fixed Point Iterations in Metric Space]]
+[[Banach Contraction in Metric Space]]
 
 
 ---

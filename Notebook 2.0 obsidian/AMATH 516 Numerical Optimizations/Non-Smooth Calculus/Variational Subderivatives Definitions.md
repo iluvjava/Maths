@@ -53,7 +53,7 @@ Such a definition is suitable for all type of real-valued functions, and just li
 > \end{aligned}
 > $$
 
-We skip the proof for this remark item. I need to point out that, any function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. Hence, under this case, we have the subderivative equals to above. See [[../Convex Directional Subderivatives]]. 
+We skip the proof for this remark item. I need to point out that, any function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. Hence, under this case, we have the subderivative equals to above. See [[Convex Directional Subderivatives]]. 
 
 
 ---

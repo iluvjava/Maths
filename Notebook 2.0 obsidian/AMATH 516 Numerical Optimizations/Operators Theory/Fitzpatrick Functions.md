@@ -16,7 +16,7 @@ Fitzpatrick, function is a generalization of the Fenchel inequality but for some
 
 ---
 ### **Lemma 3.8.2 (Fitzpatrick Inequality)**
-> Let $T: \mathbb E \mapsto \mathbb E$ be maximally monotone, then $F_T$ is closed convex and proper, additioally for any pair of $(x, y) \in \mathbb E \times \mathbb E$, we have: $F_T(x, y)\ge \langle x, y\rangle$. Furthermore, equality holds when $y \in T(x)$. 
+> Let $T: \mathbb E \mapsto \mathbb E$ be maximally monotone, then $F_T$ is closed convex and proper, add for any pair of $(x, y) \in \mathbb E \times \mathbb E$, we have: $F_T(x, y)\ge \langle x, y\rangle$. Furthermore, equality holds when $y \in T(x)$. 
 
 **Proof**:
 
@@ -58,10 +58,7 @@ $$
 \end{align*}
 $$
 
-uner both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity(This is by a very weird theorem in Rockafeller's textbook).
-
-
-
+under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity(This is by a very weird theorem in Rockafeller's textbook).
 
 
 **References**
@@ -102,7 +99,7 @@ $$
 \end{aligned}
 $$
 
-which is by the equality case from lemma 3.8.2. Continuing from (*) by substiting the above we have: 
+which is by the equality case from lemma 3.8.2. Continuing from (*) by substituting the above we have: 
 
 $$
 \begin{aligned}

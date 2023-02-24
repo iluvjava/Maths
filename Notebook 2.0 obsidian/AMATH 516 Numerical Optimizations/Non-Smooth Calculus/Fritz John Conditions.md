@@ -1,4 +1,4 @@
-[[Minimizers of Sums]]
+[[Minimizers of Sums]], [[Subdifferentials Subgradient Computations]]
 
 
 ---
@@ -55,7 +55,7 @@ Then the first part of the theorem is shown, next, consider setting $\alpha_i = 
 
 **Remarks**
 
-Fitz Jhon conditions describes all the linear programmng problems that has a minimizer. It's describing that: 
+Fritz John conditions describes all the linear programing problems that has a minimizer. It's describing that: 
 $$
 \begin{aligned}
     \alpha_0(-c) \in \left(\sum_{i\in T(x)\setminus \{0\}}^{}
@@ -68,3 +68,6 @@ using the fact that the constraint $g_0 = f(x) - \mu$ is achieved, we are able t
 > The minimizer of a linear program is a point where, there exists a convex combinations of the tight constraints such that it equals to the negative objective vector: $-c$. And complenary slackness holds. 
 
 The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs.  
+
+
+

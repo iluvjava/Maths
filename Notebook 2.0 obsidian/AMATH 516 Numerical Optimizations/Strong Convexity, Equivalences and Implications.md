@@ -42,10 +42,10 @@ We abuse notation slightly and write the subgradient inside of the inner product
 Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following conditions for the function: 
 
 4. $\frac{1}{2}\text{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
-	1. References, for globally Lipz Gradient strongly convex functions: [here](https://angms.science/doc/NCVX/PolyakLojasiewiczIQ.pdf). 
+	1. References, for globally Lipschitz Gradient strongly convex functions: [here](https://angms.science/doc/NCVX/PolyakLojasiewiczIQ.pdf). 
 5. $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
-6. $f(y)- f(x) - \langle \partial f(x), y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert, \forall u\in \partial f(x), v\in \partial f(y)$. 
-7. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert, \forall u\in \partial f(x), v\in \partial f(y)$. 
+6. $f(y) \le f(x) + \langle \partial f(x), y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
+7. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
 8. if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
 
 **Theorem: Weaker Implications**
@@ -67,4 +67,6 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 
 We wish to prove that condition 1 is equivalent to the strong convexity and condition 8 is implied from the strong convexity.
 
-**#UNFINISHED: Read the paper and add more proofs if you feel like it, and fill up the easy proof yeah.**
+#UNFINISHED:
+
+
