@@ -3,7 +3,7 @@
 ---
 ### **Banach Space**
 
-[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete normed [[Vector Space]], which makes it a [[Metric Space]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with".
+[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete normed [[Vector Space]], which makes it a [[Metric Space]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". 
 
 
 **Banach But not Hilbert**
@@ -13,10 +13,10 @@
 **Lacks of Inner Product**
 > The definition doesn't said anything about  using inner product in the space to define the norm metric. The norm can be independent of the inner product. 
 
+**Example: The Euclidean Space**
+> The space ($\R^n, \Vert \cdot\ - \cdot \Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
 
-
-
-
+For more information about norm in the real finite vector space, see [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]] for more information. 
 
 
 

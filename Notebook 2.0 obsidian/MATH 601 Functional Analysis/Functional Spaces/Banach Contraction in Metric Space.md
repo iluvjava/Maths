@@ -135,16 +135,16 @@ assuming that the metric space is complete, and the mapping for the fixed point 
 ---
 ### **Misc**
 
-> A contractive mappin is automatically a continuous mapping. 
+> A contractive mapping is automatically a continuous mapping. 
 
 
 **Theorem: Multiple Contractions**
 
 > Let $T, T_1, T_2$ be contractions with constants $\alpha, \alpha_1, \alpha_2$ respectively then: 
-> - $T$ is uniformally continuous on $X$. 
+> - $T$ is uniformly continuous on $X$. 
 > - If $X$ happens to be a normed vector space, and we have $d(x, y) = \Vert x - y\Vert$, then $(T_1 + T_2)/2$, their averages is also going to be a contractive mapping. 
 > - $T_2\circ T_1$, the composite for 2 of the mapping is going to be a contractive mapping as well. 
 
 **Proof**: 
-It's very direct and we are skipping it for sure. 
+#UNFINISHED
 

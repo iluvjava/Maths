@@ -77,7 +77,7 @@ The if the function is in $\mathbb{R}^{n}$ then we can say that the epigraph of 
 ---
 ### **Examples of Convex Functions**
 **Example 0**: Norms are convex function 
-A norm satisfies that (Which is coming from the axioms, [[Norm]]):
+A norm satisfies that (Which is coming from the axioms, [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]]):
 1. $||x + y||\leq \Vert x\Vert + \Vert y \Vert$
 2. $\Vert ax \Vert = |a|\Vert x \Vert$
 

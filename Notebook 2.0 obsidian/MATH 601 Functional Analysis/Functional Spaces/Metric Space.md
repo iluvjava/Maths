@@ -46,6 +46,8 @@ The first 2 axioms are trivially true, however, to verify that the subspace is a
 
 Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
 
+> Hamming Distances. The number of differences in bits in 2 bits stream with the same length. One can view this as an 1-norm applied directly on a vector of binary values. 
+
 ---
 ### **More Examples**
 
@@ -79,3 +81,4 @@ There are a lot of things related to the the topologies for Metric Spaces.
 
 This fact in itself is not useful, please see the [[Topology of Metric Space]] for a topological and convergence characterizations of metrics that are equivalent to each other. The inequality will limit the convergence due, a direct application of squeeze theorem, giving equivalent metrics the same limit for the same converging sequence. 
 
+The example metric: [[../Further Examples for Metric Space]], contains p-norm in the Euclidean space, and all p-norm for $p \ge 1$ is equivalent. 

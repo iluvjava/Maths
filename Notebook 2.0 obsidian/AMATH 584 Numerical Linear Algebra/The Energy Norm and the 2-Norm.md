@@ -1,4 +1,4 @@
-[[Norm]], 
+[[Matrix Theory/Norm, for Beginners]], 
 [[Hermitian Adjoint]]
 
 ---

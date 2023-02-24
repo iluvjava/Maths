@@ -1,6 +1,6 @@
 [[Eigen Decompose]], [[Schur Decomposition]]
 Reference: Intro part of the book: \<Iterative Method for Linear System\>
-[[Norm]]
+[[Norm, for Beginners]]
 
 ---
 ### **Intro**

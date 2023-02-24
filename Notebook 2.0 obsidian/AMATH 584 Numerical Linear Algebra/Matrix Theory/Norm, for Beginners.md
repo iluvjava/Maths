@@ -1,20 +1,23 @@
-### Norm
+### **Norm**
 Matrix and vectors norm
 
 Wiki: [link](https://www.wikiwand.com/en/Matrix_norm)
 
 ---
 
-### **Vector Norm**
+### **Norm Axioms**
 
-There are 3 axioms for the norm operator, suppose that, all the vector that support the operator $||\bullet||:\mathbb{C}^n\mapsto\mathbb{R}_+$ then it must satisfied the following: 
+Let $\mathbb C^n$ be a vector space equipped with complex scalar field, then the norm is a mapping $||\cdot||:\mathbb{C}^n\mapsto\mathbb{R}_+$ which satisfies the following: 
 
 * $\forall x \in \mathbb{C}^n, \; \alpha \in \mathbb{R} \quad ||\alpha x|| = |\alpha| ||x||$
 * $\forall x \in \mathbb{C}^n \quad ||x|| \geq 0$
 * $\forall x \in \mathbb{C}^n \quad ||x|| = 0 \iff x = \mathbb{0}$
 * $\forall x, y \in \mathbb{C}^n:\; ||x|| + ||y||  \geq ||x + y||$
 
-**Examples of Norm on Vectorspace**: 
+**Remarks**: 
+In general, the set $\mathbb C^n$ can be any vector space equipped with a scalar that is a subfield of $\mathbb C$. Then the same axioms would apply and defining the norm for us. 
+
+**Examples of Norm on Vector space**: 
 
 Generalized $p$ norm
 
@@ -33,11 +36,11 @@ $$\|x\|_{0}=\lim _{p \rightarrow 0} \sum_{k=1}^{n}\left|x_{k}\right|^{p}$$
 $$\sum_{i = 1}^n x_i \leq ||x||_1$$
 
 
-
+---
 ### **Matrix Induced Vector Norm** (Energy Norm)
 $$||x||_A:= ||x^TAx||$$
 
-Only positive definite opeartor can be used to induced such a norm. 
+Only positive definite operator can be used to induced such a norm. 
 
 See [[Positive Definiteness]]
 

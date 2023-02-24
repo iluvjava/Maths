@@ -16,13 +16,15 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator]]. In practice, we actually want [[Non-expansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Non-expansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+
 
 **Definition: Non-Expansive Operator**
-> 
+> The non-expansive operator has to be Lipschitz first and it has to be $X\mapsto X$, a , as a result, it has to be a single-valued mapping. A non-expansive operator has a Lipschitz constant of exactly $1$. 
+
 
 **Definition: Contraction**
-> 
+>  A contraction is a Lipschitz operator with a Lipschitz constant that is strictly less than one. 
 
 ---
 ### **Monotone and Maximally Monotone Operator**
@@ -40,11 +42,14 @@ For example, the subgradient of a strongly convex function is a strongly monoton
 
 
 ---
-### **Fixed Points of the Operator**
+### **Convex Fixed Point Set**
 
+
+**Definition: Fixed Point Set**
 > When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
+> \text{fix}(F) = 
 > \begin{aligned}
 >    \left\lbrace
 >        x\in \text{dom}(F)| x = F(x)

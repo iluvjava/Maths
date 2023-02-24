@@ -1,5 +1,5 @@
 [[Finite Euclidean Inner Product]]
-[[Norm]]
+[[Norm, for Beginners]]
 
 ---
 ### **Intro**
