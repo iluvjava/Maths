@@ -78,3 +78,17 @@ $$
 $$
 
 because the first term they differs is $\min(M, N)$, and this difference is the largest in absolute value, by this token, we can choose any $M, N$ such that $\min(M, N) > \epsilon^{-1}$ for all $\epsilon > 0$ to make $\min(M, N)^{-1}\le \epsilon$, then for all $m, n$ such that $\min(m, n)\ge\min(M, N)$, we will have: $d(x_N, x_M) \le \epsilon$. And this completes the proof. This subspace of the metric space is incomplete.
+
+
+
+---
+### **Example 3: The $l^\infty$ sequence space**
+
+The $l^\infty$ sequence space is a complete metric space. The metric between 2 elements of the space is $\sup_{n\in N}|x_n -y_n| =: d(x, y)\;\forall x, y\in X$, where $X$ just denotes the space for a sequence. Due to the additional fact that sequences are vectors, we use $\Vert \cdot\Vert_\infty$ ti simplifies the notations for the metric. 
+
+**Claim:**
+> The $l^\infty$ metric space is a complete metric space. For all Cauchy sequences of sequence, they must converge to a sequence that is $l^\infty$. 
+
+**Proof**: 
+
+

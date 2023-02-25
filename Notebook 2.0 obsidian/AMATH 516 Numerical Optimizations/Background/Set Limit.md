@@ -19,10 +19,10 @@ $$
 \end{aligned}
 $$
 
-Observe that $\lim\inf$ of a set should always be a subset of $\lim\sup$. When both set limit is the same, we define the limit of the setquence of set. 
+Observe that $\lim\inf$ of a set should always be a subset of $\lim\sup$. Sometimes we refers $\lim\inf$ of set to be the strong limit and $\lim\sup$ of the set to be the weak limit of the set sequence. 
 
 ---
-### **Characterizing Sequantial Limit using Set Limit**
+### **Characterizing Sequential Limit using Set Limit**
 
 
 

@@ -3,7 +3,7 @@
 ---
 ### **Banach Space**
 
-[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete normed [[Vector Space]], which makes it a [[Metric Space]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". 
+[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete, normed, [[Vector Space]]. It is already a [[Metric Space]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". 
 
 
 **Banach But not Hilbert**
@@ -14,9 +14,26 @@
 > The definition doesn't said anything about  using inner product in the space to define the norm metric. The norm can be independent of the inner product. 
 
 **Example: The Euclidean Space**
-> The space ($\R^n, \Vert \cdot\ - \cdot \Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
+> The space ($\R^n, d(x, y):= \Vert x - y\Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
 
 For more information about norm in the real finite vector space, see [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]] for more information. 
 
 
+---
+### **Norm as a Metric**
+
+Before we dive deeper, we show that norm is a special type of metrices that contains extra properties that general metric space might not process. These properties are paired up together with some of the computations in vector spaces. 
+
+Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space then: 
+1. $|\Vert x\Vert - \Vert y\Vert| \le \Vert x - y\Vert$. 
+2. $\Vert \cdot\Vert$ is a continuous mapping. And it's has a Lipschitz constant of 1. 
+3. For all $x, y, z\in X$, $\alpha > 0$ we have: 
+    $$
+    \begin{aligned}
+        d(x + a, y + a) &= d(x, y)
+        \\
+        d(\alpha x, \alpha y) &= |\alpha| d(x, y),
+    \end{aligned}
+    $$
+    it experiences translational and scaling invariance. This metric space reflect the underlying topology of Euclidean spaces. 
 
