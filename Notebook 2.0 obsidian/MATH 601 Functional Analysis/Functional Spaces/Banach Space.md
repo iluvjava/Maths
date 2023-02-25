@@ -22,7 +22,7 @@ For more information about norm in the real finite vector space, see [[../../AMA
 ---
 ### **Norm as a Metric**
 
-Before we dive deeper, we show that norm is a special type of metrices that contains extra properties that general metric space might not process. These properties are paired up together with some of the computations in vector spaces. 
+Before we dive deeper, we show that norm is a special type of metrics that contains extra properties that general metric space might not process. These properties are paired up together with some of the computations in vector spaces. 
 
 Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space then: 
 1. $|\Vert x\Vert - \Vert y\Vert| \le \Vert x - y\Vert$. 

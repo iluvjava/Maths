@@ -80,7 +80,6 @@ $$
 because the first term they differs is $\min(M, N)$, and this difference is the largest in absolute value, by this token, we can choose any $M, N$ such that $\min(M, N) > \epsilon^{-1}$ for all $\epsilon > 0$ to make $\min(M, N)^{-1}\le \epsilon$, then for all $m, n$ such that $\min(m, n)\ge\min(M, N)$, we will have: $d(x_N, x_M) \le \epsilon$. And this completes the proof. This subspace of the metric space is incomplete.
 
 
-
 ---
 ### **Example 3: The $l^\infty$ sequence space**
 
@@ -91,4 +90,16 @@ The $l^\infty$ sequence space is a complete metric space. The metric between 2 e
 
 **Proof**: 
 
-
+Let $(x^{(n)})_{n\in \N}$ be Cauchy and $x^{(n)}\in l^\infty$ then for all $\epsilon > 0$ there exists $N$ such that whenever $m > n > N$ we have $\Vert x^{(m)} - x^{(n)}\Vert_\infty \le \epsilon$ by definition of Cauchy. Since it's Cauchy, we have $\lim_{n\rightarrow \infty}x^{(n)} = \bar x$. Therefore for all $\epsilon > 0$ we have: 
+$$
+\begin{aligned}
+    & \exists N: n > N\implies
+    \Vert x^{(n)} - \bar x\Vert_\infty\le \epsilon\
+    \\
+    \implies &
+    \Vert \bar x\Vert_\infty \le 
+    \Vert \bar x - x^{(n)}\Vert_\infty + 
+    \Vert \bar x^{(n)} \Vert_\infty < \infty,
+\end{aligned}
+$$
+because it's established that $x^{(n)}\in l^{\infty}\; \forall n \in \N$. Since the point $\bar x$ still has $\Vert \bar x\Vert_\infty$ finite, we have $\bar x \in l^{\infty}$, therefore the metric space $l^{\infty}$ is a complete metric space. 
