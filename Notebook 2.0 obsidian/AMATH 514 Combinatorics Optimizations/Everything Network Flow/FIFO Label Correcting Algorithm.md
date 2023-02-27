@@ -193,17 +193,17 @@ Let `s` to be the source nde, the following algorithm constructs the least costs
 d(s) = 0, pred(s) = 0;  
 d(j) = Inf, FOEALL i != s;
 q1 = {s}; /* nodes whose distance lable had been updated */
-itr = 0 
+itr = 0;
 WHILE q1 NOT EMPTY && itr++ < |N|
     q1_next = {}
     FOR i IN q1
         FOREACH (i, j) IN A(i) in INCREASING ORDER OF j
             IF d(j) > d(i) + c(i, j)
-                d(j) := d(i) + c(i, j)
-                pred(j) := i
+                d(j) := d(i) + c(i, j);
+                pred(j) := i;
                     IF j NOT IN q_next
-                        ADD j to q_next
-        q1 = q1_next
+                        ADD j to q_next;
+        q1 = q1_next;
 
 ```
 

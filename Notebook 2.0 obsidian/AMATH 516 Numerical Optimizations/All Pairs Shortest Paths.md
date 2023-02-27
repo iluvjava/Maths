@@ -79,7 +79,7 @@ $$
         \left|
             P \in \Pi^{(k + 1)}(i, j) 
         \right.
-    \right\rbrace
+    \right\rbrace, \text{ Using the lemma:}
     \\
     d^{(k + 1)}(i, j) &= 
     \begin{cases}
@@ -153,15 +153,33 @@ END
 
 ```
 
-**Claims**: 
+**Claim**: 
 > There is a negative cycles if and only if the diagonal of the distance label matrix contains strictly negative entries, after the algorithm terminated. 
 
-**Claims**: 
-> At the k th iterations in the inner most forloop, we have the choice to ignore the kth row and column. Due to this fact, we also don't need to keep a copy of the table and worry about mutability issure for this algorithm. 
+**Proof**: 
+
+If there exists a cycle $C$ such that it has negative cost, then for all $i \in C$, $d^{(|C|)}(i, i) < 0$, because no directed cycle can have number of arcs larger than $n - 1$ in a graph. We have shown the $\implies$ direction. For the converse, if $d^{(k)}(i, i) < 0$, then it means there is a directed cycle (a shortest closed directed walk involving $i$) that has negative cost. 
+
+**Claim**: 
+> At the k th iterations in the inner most forloop, we have the choice to ignore the kth row and column if there is *no negative cycle in this graph*. Due to this fact, we can terminate whenever a negative entry is going to appear on the diagonal of the matrix, and we don't need to keep a immutable copy of the tale $d(i, j)$ for all $1 \le k \le |N|$. 
+
+**Proof**:
+
+let $d(i, j) = \min(d(i, j), d(i, k) + d(k, j))\forall i, j \in N$, WOLG assume that $i = k$, then: 
+
+$$
+\begin{aligned}
+    d(k, j) &= \min(d(k, j), \underbrace{d(k, k)}_{\ge 0} + d(k, j))
+    \\
+    \implies d(k, j) &= \min(d(k, j)) = d(k, j), 
+\end{aligned}
+$$
+
+therefore, when there is no negative cycles, there shouldn't be any update on any of the $i = k \vee j = k$, and if there is any, then it would have come from some $d(k, k) <0$, but there can't be any if we terminate right away when any of the shortest negative costs cycles were first discovered. 
 
 
 **Notes For the Programming Savy People**
 > We don't have to make the shortest path while the algorithm is running if we are only intersted in the shortest path costs. A search algorithm can be deployed later to look for the lowest cost spanning tree given the root node and the detinations. 
 
-> We can also terminates the algorithm early when there is no update on the table. Additionaly, one may consider using different datastructures to speed up the process when the graph is sparse. 
+> We can also terminate the algorithm early when there is no update on the table. Additionaly, one may consider using different datastructures to speed up the process when the graph is sparse. For each $k$, if we already know that $(k, i)$ or $(i, k)$ doesn't exists for some $i$, then there is no need to update $d(i, j)$ during that iteration. I am not sure what smart use of datastructure can do this, but this is left as an exercise for the programming savy readers.
 

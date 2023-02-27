@@ -12,14 +12,16 @@ Armed with subgradients calculus, we consider characterizing the minimizers for 
 > $$
 > is equivalent to minimizing: 
 > $$
->   F(x) := \min_{x\in \mathbb E}\max(f(x) - \mu, \max_{i\in I}g_i(x)), 
+>   F(x) := \min_{x\in \mathbb E}(\max \{f(x) - \mu, \max_{i\in I}g_i(x)\}) 
 > $$
-> Where we assume the existence of a minimizer $\mu$ define to be the minimum attained by the first form. 
+> Where we assume the existence of a minimizer $\mu$ define to be the minimum attained by the first form, i.e: $\mu\in \arg\inf_{x}\{f(x)| g_i(x) \le 0\forall i \in I\}$. 
 
 **Proposition**
-> The solution to $\min_{x} F(x) = 0$ is exactly the solution to the original constraint optimization problem. 
+> The solution to $\min_{x} F(x) = 0$ is exactly the solution to the original constraint optimization problem, assuming the minimizer exists. 
 
 This is true because a solution to minimizing $F$ gives $f(x) = \mu$, so that the minimum of the constraint optimization problem is attained, and $F(x) = 0$ meaning that all the constraints are also satisfied by solution $x$. Infeasibility will imply that $F(x) > 0$ for all $x$. 
+
+
 
 **Theorem: The Fritz John Conditions**
 > Assuming that all $g_i(x), i\in I$ are all convex and that $x$ solves (P), then there exists $\alpha_i \ge 0 \;\forall i\in [m]$ where it's not the case that all of them are equal to zero, and it satisfies: 
