@@ -6,7 +6,7 @@
 There are 2 ways for figuring out the shortest path from all pairs of vertices on a graph all at once, or, improve the speed of finding more shortest path between pairs of vertices on a graph. We list some of the possibilities here: 
 
 - Just do direct shortest path on all pairs of vertices, whenever asked. 
-- Try Bellman Ford first and then use Dijkstra in future queries to figure out the shortest path on potential graph, and then translate it back to the solution on the original graph. ( #UNFINISHED)
+- Try Bellman Ford first and then use Dijkstra in future queries to figure out the shortest path on potential graph, and then translate it back to the solution on the original graph. ( #UNFINISHED )
 - Figure out the all pairs shortest path using algorithm like Floyd Warshall. 
 
 **Assumption:** 
@@ -14,7 +14,7 @@ We make the exact same set of assumptions for the graph as in the case of the si
 
 
 ----
-### Floyd Warshall: 
+### **Floyd Warshall**
 Let $G = (A, N)$ be a directed graph satisfying the general assumptions for the label correcting shortest path algorithm. 
 
 **Lemma: All Pairs Optimality Conditions**
@@ -23,6 +23,11 @@ Let $G = (A, N)$ be a directed graph satisfying the general assumptions for the 
 **Proof**: 
 
 Following the same idea as [[../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. We skip the proof here because they are really similar. 
+
+**The Generic Labeling Algorithms**
+> One algorithm that asserts the optimality path conditions repeatedly will terminate and achieve optimality at the end. 
+
+
 
 **Theorem: All Pairs Shortest Path Recursion**
 > let $d^{(k)}(i ,j)$ denotes the low cost $i-j$ directed path only using nodes $1, 2, \cdots, k - 1$, then it satisfies the conditions: 
@@ -122,8 +127,41 @@ $$
 \end{aligned}
 $$
 
-Hopefully you are convinced. 
+Hopefully you are convinced. The base case is made in a way that the above recursive table is true by definition. Therefore, we skip the proof for that one. 
 
 ----
 ### **Algorithm**
+
+Here we proposed the algorithm. The Floyd Warshall Algorithm deploys the above dynamic programming idea. 
+
+```SQL
+d(i, j) = Inf IF (i, j) NOT IN A, FORALL i, j IN N WHERE i != j;
+d(i, j) = 0, FORALL i IN N; /*All pairs distance label */
+p(i, j) = NULL, FORALL i, j IN N;  /* Source tree for all i */ 
+p(i, j) = (i, j) FORALL (i, j) IN A; /* Shortest Path stores */
+FOR i = 1,..., |N| - 1
+    FOR j = 1,..., |N| - 1
+        FOR k = 1,..., |N| - 1
+            d_before = d(i, j)
+            d(i, j) = min(d(i, j), d(i, k) + d(k, j));
+            IF d(i, j) < d_before
+                p(i, j) = PATH JOIN p(i, k), p(k, j);
+            end
+        END
+    END
+END
+
+```
+
+**Claims**: 
+> There is a negative cycles if and only if the diagonal of the distance label matrix contains strictly negative entries, after the algorithm terminated. 
+
+**Claims**: 
+> At the k th iterations in the inner most forloop, we have the choice to ignore the kth row and column. Due to this fact, we also don't need to keep a copy of the table and worry about mutability issure for this algorithm. 
+
+
+**Notes For the Programming Savy People**
+> We don't have to make the shortest path while the algorithm is running if we are only intersted in the shortest path costs. A search algorithm can be deployed later to look for the lowest cost spanning tree given the root node and the detinations. 
+
+> We can also terminates the algorithm early when there is no update on the table. Additionaly, one may consider using different datastructures to speed up the process when the graph is sparse. 
 

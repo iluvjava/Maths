@@ -39,11 +39,9 @@ If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j)
 - Each time when an update is performed, the distance label $d(j)$ for each $d(j)$ must have improved! 
 - Therefore, for each $d(j)$, there is a limit to how many times its distance can be decreased, the upper bound for $d(j)$ should be $nC$, the value of $d(j)$. Under the worst case, we look for a longest possible path to the label $d(j)$, and then we correct the distance label for $d(j)$ as slow as possible by going over all possible paths leading to $d(j)$. At the worse case we decrease the value $nC$ (the theoretically longs path length) by a value of $1$ (the theoretically lowest capacity change by the integrality assumption on our graph). 
 
-
 **Complexity**: 
 
 Let $C$ be the maximum arc costs across all the arcs in the graph, then the complexity is $O(Cmn)$. This is directly conclude from the simple description of the algorithm, and the observation on the theoretical upper bound for the initial distance label change of some vertex $d(j)$. 
-
 
 **Theorem: Existence of Negative Cost Directed Cycles** 
 
@@ -114,7 +112,7 @@ END
 This algorithm is breed of the generic search algorithm and the previous generic label correcting algorithm. It can add the same vertex repeatedly, resulting in the same complexity class as the previous algorithm. In comparison it's just more implementation friendly. 
 
 ---
-### **FIFO Label Correcting Algorithm | Bellman Ford**
+### **Modified Generic Correcting Algorithm | Bellman Ford**
 
 In the above modified label-correcting algorithm, we still have the choice of ordering when going over the set of all $(i, j)\in A$ to look for violation to the shortest path characterizations. And we make the following claim: 
 
@@ -159,16 +157,54 @@ FOR k = 1 ... (n - 1)
     END
 END
 ```
+**Complexities**
 
+The outter forloops excutes for $n$ times while the inner for loop executes for $n^2$, this gives a total of $\mathcal O(n^3)$ complexity in total. 
+
+**Remarks**
 And this will construct the optimal label. We can get the predecessor tree afterwards by checking for the tight dual constraints. Or we can choose to get the predecessor tree in the while loop, but that would give us some extra if statements to work with. 
 
 ---
-### **Negative Cycle Detection**
+### **Negative Cycle Checking**
 
 We check the cycles on the predecessor graph constructed by the algorithm at regular interval while the algorithm had been running. Here is how we check it: 
+
+**Predecessor Tree Check**: 
 
 > Start with the root node, changed its state to marked. For every unmarked node: $v$, trace back until it meet a marked node, during each time, check every node on when tracing back is $v$ itself, if its is, then it contains a cycle, all aren',t then label all node on this path as marked. 
 
 We take it for granted that this cycle on the predecessor graph has to be caused a negative weight cycle. This algorithm should take $\mathcal O(n)$ when the graph doesn't contain any negative cycles in it. 
 
-For the FIFO algorithm, we can just perform it more than $n - 1$ iteration, if there is an update on the $n$ th iteration, then the node with the weight changed on $n$ th iteration must be on a negative cycle. 
+**Bellman Ford Negative Cycles Detections**: 
+
+For the Modified Generic Labeling algorithm, we can just perform it more than $n - 1$ iteration, if there is an update on the $n$ th iteration, then the node with the weight changed on $n$ th iteration must be on a negative cycle. 
+
+
+---
+### **FIFO Labeling Algorithm | $\mathcal O(mn)$**
+
+The FIFO labeling algorithm by checking a subset of the arcs based on the previously updated nodes. This algorithm is an improvement from the Bellmand Ford algorithm as it improves the algorithm runtime when the graph is sparse, meaning that $m \not \in \mathcal O(n^2)$. 
+
+**Algorithm Psuedo Code**: 
+
+Let `s` to be the source nde, the following algorithm constructs the least costs predecessor tree and the correct distance labels for all the nodes. 
+
+```sql
+d(s) = 0, pred(s) = 0;  
+d(j) = Inf, FOEALL i != s;
+q1 = {s}; /* nodes whose distance lable had been updated */
+itr = 0 
+WHILE q1 NOT EMPTY && itr++ < |N|
+    q1_next = {}
+    FOR i IN q1
+        FOREACH (i, j) IN A(i) in INCREASING ORDER OF j
+            IF d(j) > d(i) + c(i, j)
+                d(j) := d(i) + c(i, j)
+                pred(j) := i
+                    IF j NOT IN q_next
+                        ADD j to q_next
+        q1 = q1_next
+
+```
+
+This algorithm only update $d(j)$ when the incoming arcs of node $j$ corresponds to some $i$ whose label has been updated from the last iteration. Each inner loop only update for at most $\mathcal O(m)$ update (because we only check all the neighbours for a subset set of verticies in the graph). The outter most loop loops $\mathcal O(n)$ times. Therefore, the total complexity is $\mathcal O(mn)$. We made the assumption that the algoithm will produce the correct solution after at most $n - 1$ iteration. 

@@ -279,3 +279,15 @@ The paper cited in the wiki for that section criticizes the low quality of resea
 It would be lovely to research their theoretical properties because "Black Box" functions can be physical experiments, computer simulations, or other types of evaluations that are impossible to know the gradient of. It is also interesting to see how relaxing the functions and oracles leads to a different approach in optimizations, in this case, the lack of gradients and derivative information.
 
 The paradigms differ entirely from the deterministic NP-Hard algorithm for discrete problems, which uses branches and bounds. These algorithm DOES use heuristics, but they are well-defined lower bounding functions that produce partial solutions. In the case of these canonical BBOs algorithms, there are no apparent proofs or specific exploits on problem structures. And that is why mathematicians are unlikely to work on it too much. One would need to at least assume something about the function, something stronger to prove convergence or expected convergence in the stochastic case. However this is not the case as explained in the paper cited in the wiki. 
+
+$$
+f(
+A\overset{
+    \overbrace{.\;\cdots \;.}^{\text{n times}}
+    }{x} + b, y
+):= \partial_x^n f(Ax + b, y)
+$$
+
+$$
+{\cdot}^{{.\cdot}^3}
+$$
