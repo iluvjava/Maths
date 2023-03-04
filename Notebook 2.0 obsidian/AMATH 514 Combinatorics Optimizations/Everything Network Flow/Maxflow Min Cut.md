@@ -41,17 +41,29 @@ where $x$ is the vector representing all the flows on each of the arc, and the c
 
 **Application: Feasibility Search for Network Flow Problem**
 
-Assuming that we were given a network flow problem, with deficit nodes $b_i < 0$ and surplus node $b_i > 0$, then by creating a new node $s$ that connects to all nodes with surplus using infinite capacity arcs and a node $t$ where all nodes with surplus gets connected with infinite capacity arcs too, then a maximum flow on the new graph that balance all the nodes with deficit and surplus will produce a feasible flow for the min cost network flow problem. We skip the demonstration and proof of equivalency. This is left as a task to the readers. 
+
+Given a network flow problem with mass balance in standard form. Let sum of $b_i$ equals to zero. We look for a feasibility solution of the network using Maxflow Mincut. Modify the graph using the following transformation: 
+
+- $b_i < 0$ then $i$ is a surplus node, else $b_i > 0$, whic will be a deficit node. $b_i = 0$ is a circulation nodes and we ignore it for now. 
+- Then by creating a new node $s$ that connects to all $i$ such that it's a surplus node with $(s, i)$ with arc capacity $b_i$
+- Create a node $t$ where all nodes $i$ with surplus has arc $(i, t)$ created with capacity $b_i$. 
+
+Then a maximum flow on the new graph that balance all the nodes with deficit meaning that the s-t cut is $S = {s}$, then a feasible solution will be identified, after ignoring the modifications made to the original graph. 
+
+**References:**
+
+Chapter 6 of the networkflow theory and algorithm textbook. 
 
 ----
 ### **The Residual Graph**
 
-The residual flow denoted by $r_{i, j}$ represents the additional amount of flows that can be sent on arc $(i, j)$. Given any feasible flow $x_{i,j}$ on the original graph, $r_{i, j} = u_{i, j} - x_{i, j}$, representing the additional amount of flow that can be sent along the arc, and $r_{j, i} = x_{i, j}$, representing the amount of flow that is already sent. The value $r{i, j}$ is the flow capacities for all the arcs on the residual graph. Observe that: 
-- The capacity for arcs on the residual networks are all $\ge 0$. 
-- $r_{i, j} = u_{i, j} - x'_{i, j} + x'_{j, i}$, where $x'$  is a feasible flow on the residual graph. 
+The residual flow denoted by $r_{i, j}$ represents the additional amount of flows that can be sent on arc $(i, j)$. Let $a=(i, j)\in A$ denotes the arc in the graph, and let $a^{-1}:=(j, i)$ be the arc pointing in the inverse direction, then Given any feasible flow $x_{a}$ on the original graph, we define residual capacity: 
+- $r_{a} = u_{a} - x_{a}$, remaining Capcity that can be sent over. 
+- $r_{a^{-1}} =x_{a}$, amount of flow that we can reduce along the direction $a$. 
 
-Flow on the residual graph represent the amount of change to the feasible flow in the original graph. Flows in the residual that goes along the arc on the original increment the feasible flow and flows that goes against the arc in the original will decrease the amount of flow in the original. 
+Observe that: 
 
+- The capacity for arcs on the residual networks are all $\ge 0$, If, the flow $x_{i, j}$ is a feasible flow, else the flow is infeasible. 
 ---
 ### **$s-t$ Cut**
 
@@ -68,35 +80,88 @@ Flow on the residual graph represent the amount of change to the feasible flow i
 
 We also denote the capacity of an $s-t$ cut using $u(S)$, and the residual capacity $r(S)$. The total amount of flow through the network is given by: 
 
+**Claim: Weak Duality**
+> The amount of the flow is upper bounded by the capacity of the s-t cut. 
+> $$
+> \begin{aligned}
+>     v = \underbrace{\left(
+>         \sum_{(i, j)\in (S, S^C)}^{}
+>         x_{i, j}
+>     \right)}_{\text{S flow out}} - 
+>     \underbrace{\left(
+>         \sum_{(i, j) \in (S^C, S)}^{}
+>         x_{i, j}
+>     \right)}_{\text{S flow in}} \le u(S), 
+> \end{aligned}\tag{1}
+> $$
+> For all set $S$ such that $s\in S$ and $t\not\in S$. 
+
+**Observations:** 
+
+Intuitively, "S flow out" $\le u(S)$, for all $s \in S \subseteq N$, $t\not\in S$, and "S flow in" is greater than zero, hence, the inequality is true. 
+
+**Proof**: 
+
+To prove, take the the set of constraints from the LP formulation for all the $i\in S$ and then we sum it up (A linear combinations of the the rows of the constraint matrix), giving us the expression: 
+
 $$
 \begin{aligned}
-    v = \underbrace{\left(
-        \sum_{(i, j)\in (S, S^C)}^{}
-        x_{i, j}
-    \right)}_{\text{S flow out}} - 
-    \underbrace{\left(
-        \sum_{(i, j) \in (S^C, S)}^{}
-        x_{i, j}
-    \right)}_{\text{S flow in}} \le u(S), 
-\end{aligned}\tag{1}
-$$
-
-for all set $S$ such that $s\in S$ and $t\not\in S$. Immediately observe that the total mount of flow that can be sent from $s$ to $t$ is less than or equal to the capacity of the cut: $u(S)$, for all $s \in S \subseteq N$, $t\not\in S$. To prove, take the the set of constraints from the LP formulation for all the $i\in S$ and then we sum it up, giving us the expression: 
-
-$$
-\begin{aligned}
-    v = \sum_{i\in S}^{}\left(
+    v &= \sum_{i\in S}^{}\left(
         \sum_{(i, j)\in A}^{}x_{i, j}
         - 
-        \sum_{(j, i)\in A}^{}x_{j, i}
-    \right), 
+        \sum_{(k, i)\in A}^{}x_{k, i}
+    \right)
+    \\
+    v &= \sum_{i\in S}^{}
+    \left(
+        \underbrace{
+            \sum_{\substack{j\in S \\ (i, j)\in A}}^{}
+            x_{i, j}
+            - 
+            \sum_{\substack{k\in S\\ (k, i)\in A }}^{}
+            x_{i, j}
+        }_{=0}
+        + 
+        \sum_{\substack{j\notin S\\ (i, j)\in A}}^{}
+        x_{i, j}
+        - 
+        \sum_{\substack{k \notin S\\(k, i) \in A}}^{}
+        x_{k, i}
+    \right)
+    \\
+    v &= \sum_{i\in S}^{}
+    \left(
+        \sum_{(i, j)\in (S, S^C)}^{} x_{i, j}
+        - 
+        \sum_{(k, i)\in (S^C, S)}^{}
+        x_{k, i}
+    \right) 
+    \\
+    v &\le
+    \sum_{i\in S}^{}
+    \left(
+        \sum_{(i, j)\in (S, S^C)}^{} u_{i, j}
+        - 
+        \underbrace{
+            \sum_{(k, i)\in (S^C, S)}^{}
+            x_{k, i}
+        }_{\ge 0}
+    \right) \le u(S), 
 \end{aligned}\tag{2}
 $$
 
-where the single $v$ comes from $i = s$, and for all the other $i\in S$, the RHS of the mass balance constraint is zero, contributing zero to the LHS of the above expression. Notice that if $(k, l) \in A$ with $k, l \in S$, then $x_{k, l}, x_{l, k}$ will appear in the flow out of vertex $k$ and flow in of vertex $l$, giving us zero, therefore, the only sum remains are the arcs that crosses the set $S$, proving (1). The maximum flow out of $S$ is less than $u(S)$ is because the negative term is at best zero, and the positive term is at best $u_{i, j}$, and hence $u(S)$ is an upper bound for the flow $v$. 
+and this completed the proof that, all the flow inside of $S$ equals to (Flow out of S) - (Flow in of S) less than Capacity of the s-t cut. 
 
 
 ----
 ### **Dual LP and Its Interpretations**
 
 #UNFINISHED 
+
+
+
+---
+### **Ford Fulkerson Algorithm**
+
+
+

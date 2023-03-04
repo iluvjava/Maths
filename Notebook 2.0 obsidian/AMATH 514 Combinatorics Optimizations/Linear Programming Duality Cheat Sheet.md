@@ -146,7 +146,7 @@ Here, the dual variable plays the roles of selecting the correct combinations of
 
 
 ---
-### **Strong Duality**
+### **Complementary Slackness**
 
 The complementary slackness for dual variable $u, w$ holds as usual. They corresponds to the $\le, \ge$ inequality system. if $u_i$ is non zero, then the corresponding $i$ constraint is tight for the primal optimal solution. The dual variable $z$ is free.
 

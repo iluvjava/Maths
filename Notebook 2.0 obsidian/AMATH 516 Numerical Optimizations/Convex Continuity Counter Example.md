@@ -1,4 +1,4 @@
-[[Characterizing Functions for Optimizations]]
+[[Characterizing Functions for Optimizations]], [[CVX Analysis/Convex Line Segment Continuity]]
 
 ---
 ### **Intro**

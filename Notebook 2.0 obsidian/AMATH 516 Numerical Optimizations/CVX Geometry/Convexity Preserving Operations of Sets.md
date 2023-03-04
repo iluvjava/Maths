@@ -155,9 +155,25 @@ $$
 \end{aligned}
 $$
 
-and the last statement is by the definition of pre-image of the linear operator $A$. This completes the proof that the pre-image of a linear mapping of a whole set will preserves the convexity of the convexity. 
+and the last statement is by the definition of pre-image of the linear operator $A$. This completes the proof that the pre-image of a linear mapping of a whole set will preserves the convexity of the convexity. To show that the range of a linear mapping of a set is still convex, consider any $\lambda \in [0, 1]$ then: 
 
+$$
+\begin{aligned}
+    y_1, y_0 &\in AQ \implies y_\lambda := y_1 + (1 - \lambda)y_0
+    \\
+    y_1 &\in AQ \implies \exists Ax_1 = y_1
+    \\
+    y_2 &\in AQ \implies \exists Ax_0 = y_0
+    \\
+    \implies y_\lambda &= 
+    Ax_1 + (1 - \lambda)Ax_0
+    \\
+    A(x_1 + (1 - \lambda)x_0) &= 
+    Ax_\lambda, 
+\end{aligned}
+$$
 
+Observe that $x_\lambda \in Q$ by the convexity of $Q$, and hence $Ax_\lambda \in AQ$, then we have shown that $y_\lambda \in AQ$ for all $\lambda \in [0, 1]$. 
 
 ---
 ### **Applications: Convexity of Functions**

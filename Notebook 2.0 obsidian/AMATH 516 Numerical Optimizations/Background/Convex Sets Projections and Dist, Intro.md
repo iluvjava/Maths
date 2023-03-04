@@ -21,7 +21,6 @@ And the dist to the set $Q$, which is useful as a similar concept to the set pro
 $$
 \text{dist}_Q(y):= 
     \inf_{x\in Q}\Vert x - y\Vert_2
-
 $$
 
 
@@ -162,4 +161,15 @@ There exists several equivalent ways of describing the conditions of a point bei
 3. $\text{proj}_Q(\bar{x} + \lambda x) = \bar x \; \forall\lambda \ge 0$
 4. $\exists \lambda \ge 0 : \text{proj}_Q(\bar x + \lambda v) = \bar x$
 
+
+---
+### **Convex Sets and the Distance Function**
+
+**Claim**: 
+
+> If the distance $d_Q(x)$ function for some $Q$ set is convex, it won't mean that the set $Q$ is going to be a convex set. 
+
+**Proof**
+
+Consider $C = \{x: \Vert x\Vert \le 1\}\setminus \{\mathbf 0\}$. where, $C$ is not convex, but $\text{cl}(C)$ is, hence $d_{\text{cl}(C)} = d_{C}$ would be a better statement to put. $D$ is convex when $\text{cl}(C)$ is convex. 
 

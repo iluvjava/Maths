@@ -1,4 +1,4 @@
-[[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/Reduced Costs and Potentials]], [[../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]], 
+[[Reduced Costs and Potentials]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]], 
 
 ---
 ### **Intro**
@@ -10,8 +10,8 @@ There are 2 ways for figuring out the shortest path from all pairs of vertices o
 - Figure out the all pairs shortest path using algorithm like Floyd Warshall. 
 
 **Assumption:** 
-We make the exact same set of assumptions for the graph as in the case of the single source shortest path. 
 
+We make the exact same set of assumptions for the graph as in the case of the single source shortest path. 
 
 ----
 ### **Floyd Warshall**
@@ -22,7 +22,7 @@ Let $G = (A, N)$ be a directed graph satisfying the general assumptions for the 
 
 **Proof**: 
 
-Following the same idea as [[../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. We skip the proof here because they are really similar. 
+Following the same idea as [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. We skip the proof here because they are really similar. 
 
 **The Generic Labeling Algorithms**
 > One algorithm that asserts the optimality path conditions repeatedly will terminate and achieve optimality at the end. 
@@ -138,14 +138,13 @@ Here we proposed the algorithm. The Floyd Warshall Algorithm deploys the above d
 d(i, j) = Inf IF (i, j) NOT IN A, FORALL i, j IN N WHERE i != j;
 d(i, j) = 0, FORALL i IN N; /*All pairs distance label */
 p(i, j) = NULL, FORALL i, j IN N;  /* Source tree for all i */ 
-p(i, j) = (i, j) FORALL (i, j) IN A; /* Shortest Path stores */
 FOR i = 1,..., |N| - 1
     FOR j = 1,..., |N| - 1
         FOR k = 1,..., |N| - 1
             d_before = d(i, j)
             d(i, j) = min(d(i, j), d(i, k) + d(k, j));
             IF d(i, j) < d_before
-                p(i, j) = PATH JOIN p(i, k), p(k, j);
+                p(i, j) = k  /*go to k for intermediate transfer. */
             end
         END
     END
@@ -179,7 +178,13 @@ therefore, when there is no negative cycles, there shouldn't be any update on an
 
 
 **Notes For the Programming Savy People**
+
+Helpful notes for programmers actually coding it up. 
+
+**Lazy Path Evaluation**
+
 > We don't have to make the shortest path while the algorithm is running if we are only intersted in the shortest path costs. A search algorithm can be deployed later to look for the lowest cost spanning tree given the root node and the detinations. 
 
+**Smart Use of Datastructures**
 > We can also terminate the algorithm early when there is no update on the table. Additionaly, one may consider using different datastructures to speed up the process when the graph is sparse. For each $k$, if we already know that $(k, i)$ or $(i, k)$ doesn't exists for some $i$, then there is no need to update $d(i, j)$ during that iteration. I am not sure what smart use of datastructure can do this, but this is left as an exercise for the programming savy readers.
 

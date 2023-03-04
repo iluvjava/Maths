@@ -1,4 +1,4 @@
-[[Functional Spaces/Metric Space]]
+[[Functional Spaces/Metric Space Introduction]]
 
 ---
 ### **Intro**

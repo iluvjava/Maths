@@ -1,4 +1,4 @@
-[[Metric Space]], 
+[[Metric Space Introduction]], 
 [[../Further Examples for Metric Space]]
 
 

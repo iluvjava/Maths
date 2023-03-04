@@ -27,7 +27,7 @@ Firstly, let $\hat P(s, t)$ be a shortest path that consists of $k\in P(s, t)$ w
 
 The converse might not be true, in general the distance in graph satisfying properties in the introduction has $d(i, j) \le d(i, k) + d(k, j)$, the triangular inequality for a metric space. But, we would have $d(i, j) = \min_{k\in N}\{d(i, k), d(k, j)\}$ to be true, because there always exists some $k\in P(i, j)$, and $k = i\vee k = j$ is also accepted here. 
 
-**Colollary: Path Optimality Conditions**
+**Colollary: Subpath Plus Arc Optimality Conditions**
 
 > Let $d(i)$ denotes the cost of some $s-i$ path then $d(i)$ is the least cost directed path function from $s$ to $j$ if and only if $d(j) \le d(i) + c_{i, j}\;\forall (i, j)\in A$. 
 
@@ -71,15 +71,6 @@ Hence, if $d(v_n)$ is the least cost path, then it has length less than all othe
 **Note**:
 
 If $(v_{i}, v_{i + 1}) \not \in A$, then set $c_{v_{i}, v_{i + 1}} = \infty$ for all such arcs, then the argument follows smoothly. 
-
-
----
-### **Distance Functions from Source**
-
-> Fixed some vertex $s$ in a graph, $d(t)$ be  shortest path cost going from $s$ to $t$ if and only if $\forall i, j \in V: d(i) \le d(i) + d(j)$
-
-This is a direct application of the previous theorem. 
-
 
 **References**: Chapter 4 of the book: Network Flows, theory, Algorithms and Applications. Shortest subpath is property 4.2. 
 

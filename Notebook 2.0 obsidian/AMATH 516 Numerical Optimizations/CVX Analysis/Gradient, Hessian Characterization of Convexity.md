@@ -136,6 +136,8 @@ observe that the above $\ge$ can be strict by the mean value theorem and that wo
 
 The last part of the proof: (3)--> (1), breaks when we have strict monotonicity due to missing the equality part of the argument. This argument is not as robust as it should be. 
 
+**References**: Dimitri's Theorem 3.8, Course notes. 
+
 ---
 ### **Corollary 2.19**
 

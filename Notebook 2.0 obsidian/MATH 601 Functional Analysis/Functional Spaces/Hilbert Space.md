@@ -3,7 +3,7 @@
 ---
 ### **Into**
 
-[Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html) is a complete inner product space. It's similar to [[Banach Space]] but unlike Banach space the norm of the Hilbert Space must be defined via the inner product of that space. The completeness is inherited from the Banach Space definition. 
+[Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html) is a complete inner product space. It's similar to [[Banach Space Introduction]] but unlike Banach space the norm of the Hilbert Space must be defined via the inner product of that space. The completeness is inherited from the Banach Space definition. 
 
 **Hilbert Norm Definition**
 

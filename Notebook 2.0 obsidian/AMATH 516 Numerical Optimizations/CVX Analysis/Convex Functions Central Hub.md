@@ -51,20 +51,17 @@ The directions where, if a function is lower semi-continuous and it's convex, th
 > 
 > Where the function is locally Lipschitz. 
 
-**Source**: Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitry's notes, chapter 3 for his AMATH 516. 
+**Source**: Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitri's notes, chapter 3 for his AMATH 516. 
 
 
 **Remarks**: 
 
 The definition of Lipchitz is in [[Lipschitz Continuity]], and the proof and detailed discussion will be in here: [[Convex Function is Locally Lipschitz]]. 
 
----
-### **Proper Convex Functions are Lipschitz Continuous**
-
-For more details about it see [[Convex Function is Locally Lipschitz]] for more expositions. 
+Convex Functions are continuous on its domain, but only along a line segment. See [[Convex Line Segment Continuity]] for more information. 
 
 ---
-### **Convex Functions with Gradients**
+### **Characterization for Convex Functions**
 
-For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. For the smooth case, please refer to [[Gradient, Hessian Characterization of Convexity]], where we present most of the important properties for convex function that has gradient to them. 
+For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. For the smooth case, please refer to [[Gradient, Hessian Characterization of Convexity]], where we present most of the important properties for convex function that has gradient to them, for the epigraphical characterizations of convex functions and convexity preserving operations on function, visit [[../CVX Geometry/Convexity Preserving Operations for Functions]]. 
 

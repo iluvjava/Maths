@@ -1,4 +1,4 @@
-For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]], for optimization, the neighbours are point close to an element by the metric in a [[Metric Space]] (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbour" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
+For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]], for optimization, the neighbours are point close to an element by the metric in a [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]] (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbour" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
 
 Please note that, some of the discussion will feel familiar to discussion spotted here: [[Closed, Proper, Level Bounded, Strong Convex]], which also concerns the topological properties of sets related to the family of convex functions. 
 
@@ -50,7 +50,7 @@ Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $
 
 > $Q$ is open iff $Q^C$ is closed
 
-#UNIFINISHED. 
+#UNFINISHED . 
 
 **Remarks**
 * A set is closed if it has its own boundary inside of itself. 

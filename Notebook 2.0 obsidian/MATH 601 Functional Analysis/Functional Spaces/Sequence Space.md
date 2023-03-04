@@ -1,5 +1,5 @@
 * [[Vector Space]]
-* [[Metric Space]]
+* [[Metric Space Introduction]]
 
 ---
 ### **Intro**

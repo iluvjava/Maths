@@ -42,4 +42,4 @@ Therefore, the sequence $S_n$ is now Cauchy in the metric $\Vert \cdot\Vert_{(A,
 
 **Remarks**
 
-While this is not directly used, nor related, but the proof implicitly uses the concept of a [[Metric Space]] to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 
+While this is not directly used, nor related, but the proof implicitly uses the concept of a [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]] to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 

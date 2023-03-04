@@ -15,7 +15,7 @@ This is the key for duality. We state the theorem straight away and then prove i
 
 The first conditions is a necessary conditions for having potential a miniizer, the second condition is the sufficient conditions. See remarks about the case when $x\not\in \text{dom } g$. 
 
-**proof (1.)**
+**Proof (1.)**
 
 let $y\in \text{dom }g$ by convexity $x_{\lambda}:= (1 - \lambda)x^+ + \lambda y\in \text{dom }g \;\forall \lambda \in (0, 1)$. By $x^+$ being a local minimizer we have for sufficiently small $\lambda$: 
 

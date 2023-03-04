@@ -1,4 +1,4 @@
-[[Functional Spaces/Metric Space]], [[Set Diameter]]
+[[Functional Spaces/Metric Space Introduction]], [[Set Diameter]]
 
 
 ---

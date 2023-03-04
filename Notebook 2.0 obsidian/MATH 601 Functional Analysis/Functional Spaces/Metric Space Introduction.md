@@ -65,7 +65,7 @@ Matrices and vectors, this forms the axiomatic foundations for numerical linear 
 ---
 ### **Topologies**
 
-There are a lot of things related to the the topologies for Metric Spaces.
+There are a lot of things related to the the topologies for Metric Spaces. See [[Topology of Metric Space]] for more information. 
 
 
 ---

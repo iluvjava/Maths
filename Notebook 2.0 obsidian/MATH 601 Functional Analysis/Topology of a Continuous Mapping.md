@@ -1,4 +1,4 @@
-[[Banach Space]], [[Real Analysis Basics]], 
+[[Functional Spaces/Banach Space Introduction]], [[Real Analysis Basics]], 
 
 ---
 ### **Intro**
@@ -19,10 +19,10 @@ Sometimes we consider representing the definition in a fancier way. We now consi
 > $$
 > \begin{aligned}
 >     \forall \epsilon > 0 \;\exists\; \delta_\epsilon: 
->     f \mathbb B_{\delta_\epsilon}(\bar x|X) \subseteq \mathbb B_\epsilon f(\bar x|Y), 
+>     \mathbb B_{\delta_\epsilon}(\bar x|X) \subseteq \mathbb B_\epsilon (f(\bar x)|Y), 
 > \end{aligned}
 > $$
-> where the $\mathbb B_r(x)$ are defined respectively for the intput and the output metric space for the mapping. 
+> where the $\mathbb B_{\delta_\epsilon}(\bar x|X)$ are the $\delta_\epsilon$ ball around input $\bar x$ in input space $X$, and $\mathbb B_{\epsilon}(f(\bar x)|Y)$ is the epsilon ball around the output of the function at point $\bar x$. 
 
 which states that the epsilon ball around intput $\bar x$ is bounded by the paramaterized $\delta_\epsilon$ such that in the output range, it's within the output $\epsilon$ ball around $f(\bar x)$. 
 
@@ -58,6 +58,10 @@ For background about topology, see [[Topological Basics for Optimizations]]. Thi
 Suppose that $T$ is continuous, we show that $T^{-1}O$ is an open set for any $O\subseteq X$, we then show that the openness of the set is preserved. Take $y\in O$ then for all epsilon region $\mathbb B_\epsilon(y|Y)$ there exists delta region $\mathbb B_{\delta_{\epsilon}}f^{-1}(y)$ such that $f\mathbb B_{\delta_{\epsilon}}(f^{-1}(y))$ is within the epsilon ball. 
 
 Next suppose that the set $f^{-1}O$ is an open set then for any $x\in f^{-1}O$, we have $\delta > 0$ delta region that exists: $\mathbb B_{\delta}(x|X)\in f^{-1}O$, which would mean that $f_\delta(x|X)\in O$ by definition of pre-image of the function. Therefore the set $O$ is an open set. 
+
+**Examples and Stuff**
+
+#UNFINISHED. 
 
 
 ---

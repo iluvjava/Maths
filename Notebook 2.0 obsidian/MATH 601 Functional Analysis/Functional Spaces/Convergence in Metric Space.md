@@ -22,17 +22,18 @@ It's not hard and I will skip it for not and has a tag: #UNFINISHED for this.
 
 **Theorem: Complete Subspace Topological Characterizations**
 > Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
->
 
 **Remarks**
 
 This theorem provides an alternative to showing that a particular subspace of a metric space is complete or incomplete. We now show that $M\subseteq X$ to be incomplete by showing that every limit point of the set is a member of the set, the alternative negates the need to use the Cauchy convergence sequence, which sometimes very complicated to use. It also provides a way of showing that a closed subspace is gong to be complete. 
 
+For example about what metric spaces are complete and what is not, consider visiting: [[Examples of Incomplete, Complete Metrics Space]] for more examples. 
+
 ---
 ### **Cauchy Convergence and Completeness**
 
 
-**Definition: Cauchy Convergence Sequence**
+**Definition: Metric Cauchy Convergence Sequence**
 
 > A sequence $(x_n)$ in $(X, d)$ is Cauchy if for every $\epsilon > 0$, there exists $N \in \N$ such that $d(x_n, x_m) < \epsilon$ for all $m, n > N$. 
 
@@ -48,37 +49,6 @@ This theorem provides an alternative to showing that a particular subspace of a 
 
 **Examples**: 
 
-- The Euclidean norm equiped with $\R^n$ and the p-norm metric form s complete metric space. 
+- The Euclidean norm equipped with $\R^n$ and the p-norm metric form s complete metric space. 
 - The subset of all the rationals in the metric space is not forming a complete metric space. 
 
----
-### **Quick and Dirty Incomplete Spaces**
-
-**Example: $\mathbb Q$**: 
-> The set $\mathbb Q$ equipped with $|\cdot|$ is not complete, because the limit of a sequence of rationals can easly become an irrational number. 
-
-Therefore, this is an incomplete metric space. 
-
-**Example: Polynomials**: 
-> Let $X$ be the set of polynomial on a closed interval $[a, b]$, then the metric $\Vert \cdot\Vert_\infty$ is incomplete. 
-
-Any polynomial that converges uniformally to some real function $f$ on $[a, b]$ that is not a polynomial is an example of a Cauchy sequence that punch a hole in this set after the limit. Uniform convergence is need for this matric: $\Vert \cdot\Vert_\infty$. Therefore this is incomplete. 
-
-**Example: Continuous Funtion**
-
-> Let $(X, d)$ be metric space where $X$ is the set of functions that is continuous on $[0, 1]$. Let $d$ be the $\Vert \cdot\Vert_1$ metric for functions. 
-
-The space is incomplete, consider the function $f_m(x)$ paramaterized by $m \le 1/2$ defined as the following: 
-
-$$
-\begin{aligned}
-    f_m(x) = \begin{cases}
-        0 & x \in [0, 1/2],
-        \\
-        \min(x/m, 1) & \text{else}, 
-    \end{cases}
-\end{aligned}
-$$
-then this function is converging as $m \rightarrow 0$ under the metric, however, this function is piece-wise linear and it has a vertical line at $x=1/2$, a discontinuous function if we insist on taking the limit $m\rightarrow \infty$. 
-
-For more complicated examples for incomplete metric spaces, view [[Examples of Incomplete, Complete Metrics Space]]. 

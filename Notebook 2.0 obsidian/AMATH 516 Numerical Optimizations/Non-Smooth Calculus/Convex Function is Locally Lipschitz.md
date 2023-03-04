@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-In this file we provide proof the theorem listed in: [[Convex Functions Characteristics List#Continuity of Closed Convex Functions]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
+In this file we provide proof the theorem listed in: [[../CVX Analysis/Convex Functions Central Hub#Continuity of Closed Convex Functions]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
 
 Recall that, not all convex function is Lipschitz Continuous on the closure of it's domain, but if the subgradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 

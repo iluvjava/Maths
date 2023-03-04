@@ -113,12 +113,11 @@ $\impliedby$ is simple. Choose any $y^TA = c^T \implies y^TAx = c^Tx < 0$ be cau
 
 > It's impossible to have $\forall x: Ax \le \mathbf 0 \wedge \langle c, x\rangle = 0$, and in the case which $\exists x: \langle c, x\rangle = 0 \wedge Ax \le \mathbf 0$, then $Ax = \mathbf 0$ too. 
 > 
-> **Proof of Claim 1**: 
-> 
-> If $\forall x: Ax \le \mathbf 0$, then $c \perp a_i$ for some $i$ such that $\langle a_i, x\rangle < 0$. If this is not true for some $i^+\in [m]: \langle a_{i^+}, x\rangle = 0$, then reconsider $x + a_{i^+}$ which might gives $\langle c, a_{i^+}\rangle < 0$.
-> 
-> Else it's the case that $c\perp c_i \quad \forall i \in [m]$, then we choose $x = c$ to have $Ax = \mathbf 0$, but $\langle c, x\rangle$. In both cases, we should end up with a strictly negative $\langle c, x\rangle$. 
-> 
+**Proof of Claim 1**: 
+
+If $\forall x: Ax \le \mathbf 0$, then $c \perp a_i$ for some $i$ such that $\langle a_i, x\rangle < 0$. If this is not true for some $i^+\in [m]: \langle a_{i^+}, x\rangle = 0$, then reconsider $x + a_{i^+}$ which might gives $\langle c, a_{i^+}\rangle < 0$.
+
+Else it's the case that $c\perp c_i \quad \forall i \in [m]$, then we choose $x = c$ to have $Ax = \mathbf 0$, but $\langle c, x\rangle$. In both cases, we should end up with a strictly negative $\langle c, x\rangle$.  
 
 Then $\exists x: Ax \le \mathbf 0 \wedge \langle c, x \rangle < 0$. Consider: 
 
@@ -204,7 +203,7 @@ $$
 \end{aligned}
 $$
 
-The above expression fits the left hand condition of the **original form of the Ferkas lemma**, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By ferkas lamma $\exists [z^T \; z_0]^T$ such that: 
+The above expression fits the left hand condition of the **original form of the Farkas lemma**, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By Farkas lemma $\exists [z^T \; z_0]^T$ such that: 
 
 $$
 \begin{aligned}

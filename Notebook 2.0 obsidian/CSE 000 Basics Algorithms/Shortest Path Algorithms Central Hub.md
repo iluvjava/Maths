@@ -12,7 +12,7 @@ This file gives links to shortest path related algorithms only. The algorithm fi
 - [[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/FIFO Label Correcting Algorithm]] (Moore Bellman Ford Algorithm)
 	- Negative Cycle Detections.
 	- Single Source.
-- [[../AMATH 516 Numerical Optimizations/All Pairs Shortest Paths]] (Floyd Warshall Shortest Path)
+- [[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/All Pairs Shortest Paths]] (Floyd Warshall Shortest Path)
 	- Negative cycles detections. 
 	- Construct all pairs shortest distances and predecessor tree all at once. 
 

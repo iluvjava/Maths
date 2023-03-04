@@ -1,4 +1,4 @@
-[[Metric Space]]
+[[Functional Spaces/Metric Space Introduction]]
 
 ---
 ### **Metric for Unbounded Sequence**

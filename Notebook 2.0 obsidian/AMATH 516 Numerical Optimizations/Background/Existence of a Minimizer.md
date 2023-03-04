@@ -40,7 +40,7 @@ What is the role of having the function to be a proper function?
 
 What is the role of l.s.c or closedness of the function?
 
-> Function $f$ being a closed function implies no discontinuities that goes up. This can be seemed a generalization on the continuity conditions from the usual extreme value theorem from introduction to real analysis and calculus.
+> Function $f$ being a closed function implies no discontinuities that goes up. This can be seemed a generalization on the continuity conditions from the usual extreme value theorem from introduction to real analysis and calculus. It asserts that the function indeed takes the minimum value at the point $\bar x$, instead of jumping up due to some type of discontinuity. 
 
 What is the role for the closure of $C$? 
 > If the set $C$ is open, then, the limit of the sequence might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point, the minimizer we wan't can't be defined in $C$, or the domain of the function, this is a type of non-existence of the minimizer. 
@@ -95,11 +95,21 @@ By proper, $\exists x: f(x) < \infty \implies \exists \mu =\inf f(X)$ with $(x_n
 
 Suppose for contradiction that this is not the case, such that there exists $\lim_{n\rightarrow \infty}f(x_n) = u \wedge \lim_{n\rightarrow \infty}\Vert x\Vert = \infty$, then by coersivity, $f(x_n) = \infty, n \rightarrow \infty$, meaning that $\mu = \infty$, contradicting that $f$ is proper. 
 
-Using the fact that $\Vert x_n\Vert$ is bounded, then it can be describeed through the set $S = \{x| \Vert x\Vert < \infty\}$, and this set will be compact. Therefore, we have a subsequence $x_{n_k} \rightarrow \bar x$ by Bozano Weierstrass, giving us $\lim_{k\rightarrow \infty}f(x_{n_k}) = \mu$ and $\lim_{k\rightarrow \infty} x_{n_k} = \bar x$, where $\bar x$ will be our minimizers. 
+Using the fact that $\Vert x_n\Vert$ is bounded, then it can be describeed through the set $S = \{x| \Vert x\Vert < \infty\}$, and this set will be compact. Therefore, we have a subsequence $x_{n_k} \rightarrow \bar x$ by Bozano Weierstrass, giving us $\lim_{k\rightarrow \infty}f(x_{n_k}) = \mu$ and $\lim_{k\rightarrow \infty} x_{n_k} = \bar x$, where $\bar x$ will be our minimizer because by l.s.c: 
+
+$$
+\begin{aligned}
+    & \lim_{k\rightarrow \infty} 
+        f(x_{n_k}) \ge {\lim\inf}_{k\rightarrow \infty}f(x_n) \ge f(\bar x), 
+        \\
+    \implies &
+    \lim_{k\rightarrow \infty} f(x_{n_k}) = \mu = f(\bar x)
+\end{aligned}
+$$
 
 **Remarks**
 
-Professor Heinz seems to made the assumption that $-\infty < f(x)$ for all $x$, and it seems to be unncessary. 
+Professor Heinz seems to made the assumption that $-\infty < f(x)$ for all $x$, and it seems to be unnecessary. 
 
-**References**: Heinz's UBCO class. 
+**References**: Heinz's UBCO, course note. 
 

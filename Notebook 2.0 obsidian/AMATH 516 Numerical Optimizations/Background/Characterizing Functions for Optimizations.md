@@ -150,7 +150,7 @@ $$
 
 **Remarks:**
 
-And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [[Convex Functions Characteristics List]], [[Convexity Preserving Operations for Functions]]. 
+And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [[../CVX Analysis/Convex Functions Central Hub]], [[Convexity Preserving Operations for Functions]]. 
 
 
 ---

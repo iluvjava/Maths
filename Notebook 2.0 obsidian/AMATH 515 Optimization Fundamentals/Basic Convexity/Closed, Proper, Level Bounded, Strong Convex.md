@@ -1,5 +1,5 @@
 Prereq: 
-[[Introduction to Convexity]], [[Gradient, Hessian Characterization of Convexity]]
+[[Introduction to Convexity]], [[../../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convexity]]
 
 We are introducing some idea that can get rid some of the pathological problem for a minimization problem. 
 
@@ -136,7 +136,7 @@ Note: Note to confused with Strictly Convexity, which is totally different.
 > 3. If f is twice continuous differentiable, then $\nabla^2 f \succcurlyeq \alpha I$ (More positive definite than alpha identity, meaning that all eigenvalues of the Hessian is larger than $\alpha$)
 
 **Observation**
-Please observe that, this is very similar to 3 of the characteristics listed in [[Gradient, Hessian Characterization of Convexity]], where we discusses under the context of regular convexity. 
+Please observe that, this is very similar to 3 of the characteristics listed in [[../../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convexity]], where we discusses under the context of regular convexity. 
 * The second statement is just a tighter lower bound for the monoticity of the gradient. 
 * The third statement is an augmentation of the positive definiteness of the Hessian Matrix on regular convex case.
 

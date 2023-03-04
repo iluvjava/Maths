@@ -92,6 +92,10 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 > $$
 > The weak subgradient is to choose any $i\in I(x)$, and choose any $g\in \partial[f_i](x)$ and that will work: $g\in \partial[f](x)$. 
 
+**Proof**: 
+The $\subseteq$ direction is harder than $\supseteq$. 
+
+
 **Source**: [Stack Exchange Discussion](https://math.stackexchange.com/questions/229025/subgradients-of-function). Original course notes is: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
 
 ---
@@ -133,29 +137,31 @@ The converse statement has more subtleties and we skip the proof here.
 
 
 ---
-### **Theorem: Subgradient of Composition (Weak Results)**
+### **Theorem: Subgradient of Monotone Composition (Weak Results)**
 
-> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in its all , and $f_i(x)$ are all convex. The weak result stated that: 
+> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in each of its parameter , and $f_i(x)$ are all convex. The weak result stated that: 
 > $$
 > \begin{aligned}
->     & z \in \partial h(f_1(x), f_2(x), \cdots,f_n(x))
->     \\
->     & g\in \partial [[f_1 \; f_2\; \cdots \; f_n]^T](x)
->     \\
->     \implies & 
->     \langle g, z\rangle\in \partial [f](x)
+>     \begin{bmatrix}
+>           \\
+>           \partial f_1(x)& \partial f_2(x) & \cdots& \partial f_n(x) 
+>           \\ \\
+>     \end{bmatrix}
+>       \partial h(f_1(x), \cdots, f_n(x)) 
+> \in \partial [f](x),
 > \end{aligned}
 > $$
 
+where we abused the notation by using the set to represents any vector whose elements belong to that set. The matrix can be interpreted as a specific element from the union of all possible Jacobi matrix whose colons are made of subgradient vector. 
+
 **Proofs**:
 
-**#UNFINISHED**
+...
+
 
 **Remarks**:
 
-This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. 
-
-Strong duality holding in these more general settings is equivalent to the validity of a sum and  chain rules for subdifferentials. [^1]
+This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. Strong holds in some of these more general settings is equivalent to the validity of a sum and  chain rules for subdifferentials. [^1]
 
 [^1]: Commented by Dimitri on his course notes AMATH 516, 2021 FALL, pg: 97. see in [[../References/Math 516 Convex Analysis 2 - Dmitriy Drusvyatskiy.pdf]]. 
 
@@ -163,6 +169,12 @@ Strong duality holding in these more general settings is equivalent to the valid
 **Source**:
 
 See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
+
+**Corollary: Differentiable Monotone Composition**: 
+
+
+
+
 
 ---
 ### **Theorem: Subgradient of Simple Summations**
@@ -173,7 +185,7 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 > $$
 
 **Proofs**
-The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. For this proof we also require: [[Normal Cone Addition]] for assistance. 
+The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [[Normal Cone Addition]] for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)\neq \emptyset$, we will have $\supseteq$ instead of equality. 
 
 **Source**: 
 

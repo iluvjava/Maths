@@ -18,9 +18,11 @@ Where, the little $o$ notations denotes the limit that: $\lim_{x\rightarrow \bar
 > $$
 > N_Q(\bar x):= 
 > \left\lbrace
->     v\in \mathbb E: 
->     \underset{x\rightarrow \bar{x}\in Q}{\lim\sup}
->     \frac{\langle v, x - \bar{x}\rangle}{\Vert x - \bar{x}\Vert_2} \le 0 \;\forall x \in Q: x \rightarrow \bar x
+>     v\in \mathbb E 
+>     \left|
+>       \underset{x\rightarrow \bar{x}\in Q}{\lim\sup}
+>       \frac{\langle v, x - \bar{x}\rangle}{\Vert x - \bar{x}\Vert_2} \le 0 \;\forall x \in Q: x \rightarrow \bar x
+>       \right.
 > \right\rbrace
 > $$
 
