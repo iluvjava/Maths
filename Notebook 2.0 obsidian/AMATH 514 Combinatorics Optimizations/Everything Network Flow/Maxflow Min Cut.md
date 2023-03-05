@@ -209,8 +209,6 @@ These theorems uses observations about the Ford Fulkerson to characterize the op
 Each path find is bouned by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
 
 
-
-
 ----
 ### **Dual LP and Its Interpretations**
 
@@ -275,6 +273,9 @@ Observe that the first set of constraints describes a strategies of placing the 
 Using strong duality, we can attain the conditions that: 
 - $(y_2)_{i, j} = 0$, then $x_{i, j} \ge 0$, 
 - $(y_2)_{i, j} \neq 0$, the $x_{i, j} = 0$. 
+
+
+#UNFINISHED 
 
 
 

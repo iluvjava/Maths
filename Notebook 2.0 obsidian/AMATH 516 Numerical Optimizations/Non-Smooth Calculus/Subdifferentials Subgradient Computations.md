@@ -159,6 +159,16 @@ where we abused the notation by using the set to represents any vector whose ele
 ...
 
 
+**Theorem: Differential Monotone Subgradient Composition**: 
+
+> Let $f$ be convex on X and let G be convex, and increasing on $\R$, suppose that $g$ is differentialble at $f(x)$, then: 
+> $\partial (g\circ f)(x) = g'(f(x)) \partial f(x)$. 
+
+**Proofs**: 
+
+....
+
+
 **Remarks**:
 
 This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. Strong holds in some of these more general settings is equivalent to the validity of a sum and  chain rules for subdifferentials. [^1]
@@ -168,11 +178,7 @@ This is a weak result, and such $\langle g, z\rangle$ is not part of the subdiff
 
 **Source**:
 
-See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
-
-**Corollary: Differentiable Monotone Composition**: 
-
-
+See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for the first one, and then see Heinz's Monotone operator theory textbook for the second rule. 
 
 
 

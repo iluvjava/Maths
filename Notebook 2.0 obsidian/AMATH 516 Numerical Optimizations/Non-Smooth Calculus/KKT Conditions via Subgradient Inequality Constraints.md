@@ -1,4 +1,4 @@
-[[../Background/Introducing The KKT Conditions]], [[Fritz John Conditions]]
+[[../Background/Introducing The KKT Conditions]], [[Fritz John Conditions]], [[Subdifferentials Subgradient Computations]]. 
 
 ---
 ### **Intro**
@@ -21,12 +21,18 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 > $$
 > \begin{aligned}
 >   \begin{cases}
->       \mathbf 0 \in \partial f(x^+) + \sum_{i\in I}^{}\partial g_i(x^+) & \ \text{stationarity}, \\
+>       \mathbf 0 \in \partial f(x^+) + \sum_{i\in I}^{} \lambda_i \partial g_i(x^+) & \ \text{stationarity}, \\
 >       \forall i \in I \; \lambda_i g_i(x^+) = 0  & \substack{\text{complementary} \\ \text{slackness}}, 
 >   \end{cases}
 > \end{aligned}
 > $$
 > holds. 
+
+**Observations**: 
+
+The convexity of the function $g_i(x)$ here helps engineering the convexity into the constraints. For example, given any convex function $g_i(x)$, then $g_i(x) - b_i$ is still convex, then making it $g_i(x) - b_i\le 0$ defines the level set of the function $g_i$, at level $b_i$. Then, we have the conditions $\partial g_i(x^+)$ transformed into $N(x^+| \text{lev}_{b_i}(g_i))$, which it then says that $\partial f(x^+)\in - N(x^+| \text{lev}_{b_i}(g_i))$. The Slator point conditions transfer to the level set of the constraint function has an interior to it. 
+
+The neceesary conditions can be seemed as s special case of the Fritz John conditions where the Saltor point conditions allowed us to set $\alpha_0 = 0$, deriving a new conditions, removing the "not all zeros" assumptions for the Fritz John Coefficients. 
 
 **Theorem: KKT Sufficient Conditions**
 > Suppose that all functions $f, g_i, \cdots, g_m$ are convex and that $x\in X, \lambda \in \mathbb R^m$ and the following list of conditions are satisfied: 
@@ -38,7 +44,9 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 > Then $x$ solves $(P)$. 
 
 **Observations**:
-Slater's conditions are not stated here, this establishes the converse of the statement "KKT Necessary Conditions"
+
+Slater's conditions are not stated here, this establishes the converse of the statement "KKT Necessary Conditions". It's probably hidden somewhere as a derivative of the new conditions added to make the converse of the statement true. 
+
 
 **Corollary: KKT Full Conditions**
 > If $f, g_1, \cdots, g_m$ are all convex and the Slater's conditions holds , then $x^+$ solves $(P)$ if and only if there exists $\lambda\in \mathbb R_m$ such that: 
@@ -52,16 +60,97 @@ Slater's conditions are not stated here, this establishes the converse of the st
 **Proof**: 
 By the first 2 theorems. 
 
+**References**: Provided exclusively by Professor Heinz and his convex optimization class. 
+
 ---
 ### **Proof of The Necessary Conditions**
 
-#UNFINISHED
+From the Fritz John conditions: 
+
+$$
+\begin{aligned}
+    & \exists\; \alpha_1 \ge 0 \forall i \in I: \exists i \in I\; \alpha_i > 0 
+    & \quad (1)
+    \\
+    & \mathbf 0 \in \alpha_0 \partial f(x) + \sum_{i \in I}^{}\alpha_i \partial g_i(x) 
+    & \quad (2)
+    \\
+    & \alpha_i g_i(x) = 0 \; \forall i \in I
+\end{aligned}
+$$
+
+We show that $\alpha_0 > 0$ by assuming for contradiction that $\alpha_0 = 0$. Let $v_i \in G_i(x), \forall i$, which is possible from $(1), (2)$ such that: 
+
+$$
+\begin{aligned}
+    &
+    \sum_{i \in I}^{} \alpha_i v_i = \mathbf 0
+    \\
+    & 
+    \forall i \in I: 
+    g_i(x) + \langle  s- x, v_i\rangle \le g_i(s)
+    \\
+    \implies & 
+    \mathbf 0 = 
+    \langle  s - x, \mathbf 0\rangle 
+    = 
+    \sum_{i\in I}^{}
+    \langle  s - x, \alpha_i v_i\rangle \le 
+    \sum_{i\in I}^{}\alpha_ig_i(s), 
+\end{aligned}
+$$
+
+where on the last step, we proceeded to sum up the subgradients and using the fact that their $\alpha_i$ weighted sum is still zero. The contradiction arises from (1), $\exists \alpha_i > 0$ and $\alpha_i \ge 0$ for all $i\in I$, this consequently imply that $\sum_{i \in I}^{}\alpha_i g_i(s) < 0$ using the fact that $s$ makes $g_i(s) < 0$ because it's a Slator point, this is the contradiction. Therefore, we can divides $\alpha_0 > 0$ on (2) to obtain the condition: 
+$$
+\begin{aligned}
+    \mathbf 0 \in \partial f(x) + \sum_{ i\in I}^{}\alpha_i \partial g_i(x), 
+\end{aligned}
+$$
+
+and this is now done and the claim is verified. 
+
+**Remarks**: 
+
+This necessary conditions can be viewed as the Fritz John conditions turned stronger when we assumed for the additional Slater's conditions, then we have the additional $\alpha_0\neq 0$ and the non-zero conditions on the Fritz John multipliers has been removed as well. 
 
 
 ---
 ### **Proof of The Sufficient Conditions**
 
+**Recall**: 
 
+When primal, dual feasibility, stationarity and complementary slackness conditions hold for the KKT then the attain the converse and $x$ satisfying these conditions will be the optimal that solves (P). 
 
+**Proof**: 
+From primal feasibility, we take $x$ such that primal feasibility is true, now we define the function: 
+
+$$
+\begin{aligned}
+    h := f + \sum_{ i \in I}^{}\lambda_i g_i, 
+\end{aligned}
+$$
+
+where the $\lambda$ is the quantity taken from the necessary conditions of the KKT, then $h$ is a convex function by the dual feasibility, and from the subgradient sum rule (weak sum rule) and the staionarity, we attain: 
+
+$$
+\begin{aligned}
+    \mathbf 0 \in f(x) + \sum_{ i\in I}^{} \alpha_i \partial g_i(x) \subseteq
+    \partial h(x), 
+\end{aligned}
+$$
+
+and therefore, $x$ will be a global minimizer for $h$, now let $y\in X$ be feasible for (P), so that $g_i(x)\le 0$ for all $i\in I$, we show that: 
+
+$$
+\begin{aligned}
+    f(x) &= f(x) + \underbrace{\sum_{ i\in I}^{} \lambda_i g_i(x) }_{= 0} = h(x) \le h(y)
+    \\
+    & = f(y) + \sum_{i\in I}^{} \lambda_i g_i(x) \le f(y), 
+\end{aligned}
+$$
+
+therefore, the value $x$ attained minimizer status. Note that on the first line we use the complemenary slackness, and on the second line we used complementary slackness again. The inequality on the first line is simply that $x$ is the minimizer of the function h. 
+
+**Remarks**: 
 
 
