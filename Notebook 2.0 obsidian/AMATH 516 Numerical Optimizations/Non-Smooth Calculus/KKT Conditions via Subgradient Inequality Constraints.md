@@ -13,11 +13,11 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
         \min_x f(x) \text{ s.t: } g_i(x)\le 0 \; \forall i \in I 
         \tag{P}
     $$
-3. The optimal vaulue of $(P)$ is defined to be $\mu:= \inf\{f(x) \;|\; g_i(x)\le 0 \; \forall i \in I\}$. 
-4. When we say that $x$ solves $(P)$ we mean that the minimum is achived and, all the constraints are satisfied. 
+3. The optimal value of $(P)$ is defined to be $\mu:= \inf\{f(x) \;|\; g_i(x)\le 0 \; \forall i \in I\}$. 
+4. When we say that $x$ solves $(P)$ we mean that the minimum is achieved and, all the constraints are satisfied. 
 
 **Theorem:KKT Necessary Conditions**
-> let $f, g_1, \cdots, g_m$ all be convex and that $x^+$ solves $(P)$, assume that the *[Slater's Condition](https://en.wikipedia.org/wiki/Slater%27s_condition)* holds i.e: $\exists s\in X\;\forall i \in I\; g_i(s) < 0$, then there exists the Lagrange Multiplers $\lambda_1 \ge 0, \cdots, \lambda_m \ge 0$ such that the KKT conditions: 
+> let $f, g_1, \cdots, g_m$ all be convex and that $x^+$ solves $(P)$, assume that the *[Slater's Condition](https://en.wikipedia.org/wiki/Slater%27s_condition)* holds i.e: $\exists s\in X\;\forall i \in I\; g_i(s) < 0$, then there exists the Lagrange multipliers $\lambda_1 \ge 0, \cdots, \lambda_m \ge 0$ such that the KKT conditions: 
 > $$
 > \begin{aligned}
 >   \begin{cases}
@@ -41,7 +41,7 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 Slater's conditions are not stated here, this establishes the converse of the statement "KKT Necessary Conditions"
 
 **Corollary: KKT Full Conditions**
-> If $f, g_1, \cdots, g_m$ are all convex and the Slator's conditions holds , then $x^+$ solves $(P)$ if and only if there exists $\lambda\in \mathbb R_m$ such that: 
+> If $f, g_1, \cdots, g_m$ are all convex and the Slater's conditions holds , then $x^+$ solves $(P)$ if and only if there exists $\lambda\in \mathbb R_m$ such that: 
 > 1. $\forall i \in I\; g_i(x)\le 0$, primal feasibility;
 > 2. $\forall i\in I\; \lambda_i \ge 0$, dual feasibility;
 > 3. $\mathbf 0\in \partial f(x) + \sum_{i \in I}\lambda_i g_i(x)$, stationarity;
@@ -53,11 +53,13 @@ Slater's conditions are not stated here, this establishes the converse of the st
 By the first 2 theorems. 
 
 ---
-### **Proofs of Necessary Conditions**
+### **Proof of The Necessary Conditions**
+
+#UNFINISHED
 
 
 ---
-### **Proofs of the Sufficient Conditions**
+### **Proof of The Sufficient Conditions**
 
 
 

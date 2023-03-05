@@ -5,13 +5,19 @@
 
 The maxflow min-cut is a problem and its dual, and this particular problem is the network flow equivalent of a simplex feasibility search algorithm. Let's assume that we are maximizing the total amount of flow from the node $s$  to $t$, and the mass balance constraints on each of the vertex has to be zero, so that there is no loss of flow across the network. To start we consider a list of assumptions made without the loss of generalization, and it's made simplify the discussion for the algorithm later. 
 
+**Maximum Flow Standard Assumptions:**
+
 1. The network is directed. If not consider [[Reduction to Network Flow]] to make it so. 
 2. All the capacities are non-negative integers. This is required so that the algorithm terminates, and it produces flow with integral values. Without it the augmenting path algorithm will converge in solution and flow value , but it will never get to the irrational solution exact. 
 3. The network flow doesn't contain a directed path from node s to node t, composed only of infinite capacity arcs. 
 4. $(i, j)\in A \iff (j, i)\in A$, pairs of arcs of reverse direction exists in the graph. Zero capacity arcs are used to represent non-existing arcs on the graph. <mark style="background:#CACFD9A6;">(I think this is talking about the residual graph and has nothing to do about the original graph given that a zero flow from $s-t$ always being a feasible path for max flow problem.)</mark>
 5. The network doesn't contain any parallel arcs across vertices. 
 
-Take it for granted now that these set of assumptions has no loss of generality to the network flow problem. The LP formulation of the network flow problem is given as: 
+Take it for granted now that these set of assumptions has no loss of generality to the network flow problem. 
+
+**The LP Formulations**: 
+
+The LP of the network flow problem is given as: 
 
 $$
 \begin{aligned}
@@ -37,10 +43,17 @@ $$
 \end{aligned}
 $$
 
-where $x$ is the vector representing all the flows on each of the arc, and the capacity is the vector $u$. The above problem is equivalent to the network flow standard form. By considering zero cost on all the arcs and $0$ mass balance constraints on all the $i\neq s, t$, and consier the mass balance constaint on vertex $b_s = 1$  and $b_t = -t$, then modifying the graph by joining an arc $(s, t)$ with infinite capacity and a cost of $-1$ will produce a min cost network flow problem whose solution is the maximum flow to this problem. 
+where $x$ is the vector, when indexed by arc: $x_{i, j}$ represents the amount of flow on the arc $(i, j)$. $u$ is the capacity vector. 
+
+**Reduction to Minimum cost Network Flow**: 
+
+- Make zero cost on all the arcs and $0$ mass balance constraints on all the nodes $i\neq s, t$; 
+- Make the mass balance constaint on vertex $s, t$ with $b_s = 1$ and $b_t = -t$,
+- Join an arc $(s, t)$ with infinite capacity (or something that is large enough for sure) and a cost of $-1$, 
+
+Then a solution to the minimum costs flow in the transformed graph is equivalent to the solution for the maximum flow problem. 
 
 **Application: Feasibility Search for Network Flow Problem**
-
 
 Given a network flow problem with mass balance in standard form. Let sum of $b_i$ equals to zero. We look for a feasibility solution of the network using Maxflow Mincut. Modify the graph using the following transformation: 
 
@@ -64,6 +77,10 @@ The residual flow denoted by $r_{i, j}$ represents the additional amount of flow
 Observe that: 
 
 - The capacity for arcs on the residual networks are all $\ge 0$, If, the flow $x_{i, j}$ is a feasible flow, else the flow is infeasible. 
+
+**Definition: Augmenting Path**
+> An augmenting path is a path s-t path $P$ on the residual graph $G(x)$ such that $x$ is feasible and the minimum of all residual capacities $r_{i, j} \in P$ are $> 0$. 
+
 ---
 ### **$s-t$ Cut**
 
@@ -153,15 +170,114 @@ $$
 and this completed the proof that, all the flow inside of $S$ equals to (Flow out of S) - (Flow in of S) less than Capacity of the s-t cut. 
 
 
+---
+### **Ford Fulkerson Algorithm**
+
+The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. We describes it in Psuedo code as: 
+```SQL
+WHILE DiPath P(s, t) IN G(x):
+    FIND DiPath P = P(s, t); 
+    delta := MIN(r(i, j), (i, j) IN P)
+    EVAL "Augment all flow on the path: P". 
+```
+
+where, `DiPath(S, t)` denotes a s-t directed path, EVAL means interpreting the following string of human language. 
+
+**Observations**: 
+- From the integrality assumption, the algorithm increment at least $\delta \ge 1$. 
+- When the algorithm terminates, it can't find any s-t path on the residual graph $G(x)$, suppose that the set $S$ denotes all the nodes $i$ that can be reached by an s-i path, then consdier any $(i, j)$ it exists:
+  - Either as $(i, j) \in (S, S^C)$ in $G$, then it has $r_{i, j} = u_{i, j} - x_{i, j} = 0$, so that $x_{i, j} = u_{i, j}$; 
+  - Or $(i, j)\in (S^C, S)$ in G, so then $r_{j, i} = x_{i, j} = 0$ on the residual meaing that $x_{i, j} = 0$. 
+
+Therefore, on the S-t cut of the original graph, the out going arcs are all saturated and the incoming arcs are all empty. We had achieved strong duality and the minimum cut is the set $S$. 
+
+---
+### **Important Theorems**
+
+These theorems uses observations about the Ford Fulkerson to characterize the optimality of a flow. 
+
+**Theorem: Augmenting Path Optimality Conditions**
+> A flow $x^+$ is optimal if and only if residual $G(x^+)$ has no s-t augmenting path. 
+
+**Theorem: Integrality Theorem**
+> If all arcs capacity are integers, the maximum flow has an integer maximum flow. 
+
+**Theorem: Ford Fulkerson Complexity**
+> The Ford Fulkerson algorithm solves the maximum flow problem in $O(mn U)$ where $U = \max_{a\in A} u_a$.
+
+**Proof**:
+Each path find is bouned by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
+
+
+
+
 ----
 ### **Dual LP and Its Interpretations**
 
-#UNFINISHED
+Let $M$ be the incidence matrix of the graph, we assume that vertex $s, t$ are indexed with $1, 2$, let $n$ be the total number of nodes and $m$ be total number of arcs, then $M\in \mathbb R^{n\times m}$. The primal, dual of the problem can be stated in matrix form as ([[../Linear Programming Duality Cheat Sheet]]): 
+
+$$
+\begin{aligned}
+    (P)\quad &
+    \max_{\substack{x \ge \mathbf 0 \\ v \ge 0}} (v)
+    \; \text{ s.t: } 
+    \begin{bmatrix}
+        M & \e_1 - \e_n
+        \\
+        I & \mathbf 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x \\ v
+    \end{bmatrix}
+    \begin{Bmatrix}
+        = \\ \le 
+    \end{Bmatrix}
+    \begin{bmatrix}
+        \mathbf 0 \\ u
+    \end{bmatrix}
+    \\
+    (D) \quad & 
+    \min_{\substack{y_1 \text{free} \\ y_2 \le \mathbf 0}}
+    \langle y_2, u\rangle \; \text{s.t: }
+    \begin{bmatrix}
+        M^T & I 
+        \\
+        (\e_1 - \e_n)^T & \mathbf 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_2 \\ y_2
+    \end{bmatrix}
+    \ge 
+    \begin{bmatrix}
+        \mathbf 0 \\ 1 
+    \end{bmatrix}
+\end{aligned}, 
+$$
+
+we take a careful look at the constraints of the dual, and transform it so that it's more informative: 
+
+$$
+\begin{aligned}
+    \min_{\substack{y_1 \text{free} \\ y_2 \le \mathbf 0}}
+    \langle y_2, u\rangle \; \text{s.t: }
+    \begin{cases}
+        0 \ge (y_2)_{i, j} \ge (y_1)_{j} - (y_1)_{i} & \forall (i, j) \in A
+        \\
+        (y_1)_1 - (y_1)_n \ge 1 &
+    \end{cases}
+\end{aligned}
+$$
+
+**Observations**: 
+
+Observe that the first set of constraints describes a strategies of placing the arcs $(i, j)$ such that $j$ has less potential than $i$, and the second constraints stated that the potential of $1$ is one greater than the potential of $n$. $y_1$, the potential label on the vertices are free to be what they want, but $y_2$ is has to be minimizes. If $u$ is $\mathbf 1$, then we are looking for a way to assign the potential such that the set of arcs where potential are cut off by one is as large as possible. This is maximizing the total number or arc disjoint paths (s-t paths where non of the arcs are shared). 
+
+Using strong duality, we can attain the conditions that: 
+- $(y_2)_{i, j} = 0$, then $x_{i, j} \ge 0$, 
+- $(y_2)_{i, j} \neq 0$, the $x_{i, j} = 0$. 
 
 
 
----
-### **Ford Fulkerson Algorithm**
 
 
 
