@@ -113,14 +113,15 @@ Now we can try taking the dual of this using the useful [[../Linear Programming 
 
 $$
 \begin{aligned}
-    \max_{\substack{y_1 \text{free} \\y_2 \le \mathbf 0}}
+    \max_{\substack{y_1 \text{free} \\ y_2 \le \mathbf 0}}
     \left\lbrace
        \langle b, y_1\rangle + \langle u, y_2\rangle
     \right\rbrace
-    \text{s.t: }
+    \text{ s.t: }
     \begin{bmatrix}
         M^T & I
-    \end{bmatrix}\begin{bmatrix}
+    \end{bmatrix}
+    \begin{bmatrix}
         y_1 \\ y_2
     \end{bmatrix} \le
     c, 
@@ -139,8 +140,13 @@ zoom in and select a row of the matrix such that it corresponds to the arc $(i, 
 
 $$
 \begin{aligned}
-	c_{i, j} - (y_1)_i + (y_1)_j \ge (y_2)_{(i, j)} \underset{\substack{\text{when}\\\text{optimal}}}{=} 0,\tag{*}
-\end{aligned}
+	c_{i, j} - (y_1)_i + (y_1)_j \ge (y_2)_{(i, j)}
+	\underset
+	{
+		\substack{\text{when} \\ \text{optimal}}
+	}
+	{=} 0
+\end{aligned}\tag{*}
 $$
 
 the LHS of the $\ge$ is the reduced costs. If we were to solve the problem using the simplex algorithm, then in the above expression, on the LHS, will become the objective row for each of the dictionary. And when all of them are larger than zero (for all basic feasible solution), then the algorithm terminates. For more about the property of reduced cost and how to use it, see [[Reduced Costs and Potentials]]. Note, more specifically, the variable $y_1$ is the potential of a graph, and the reduced costs is the entirely of the LHS of $\le$. 
@@ -155,7 +161,7 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 There are many problems that can be reduced to the network flow problems: 
 1. [[LP for Source Tree Shortest Paths]]. 
-2. Max flow Min Cut. 
+2. [[Maxflow Min Cut]]
 3. Tournament Problems. 
 4. Bipartite Assignment problems. 
 

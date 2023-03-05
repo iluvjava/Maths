@@ -71,5 +71,7 @@ using the fact that the constraint $g_0 = f(x) - \mu$ is achieved, we are able t
 
 The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs.  
 
+I think the convex conbination conditions for $\alpha_i$ stating that $\Sigma_{i\in I(x)}\alpha_i = 1$ still remains true regardless of not appearing in the theorem statement. 
+
 
 

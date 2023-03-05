@@ -74,7 +74,11 @@ For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le
 
 **Proof**
 
-Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$ is bounded by the coersive property, it's closed by l.s.c, and the function attains minimum inside of $C$. Therefore $C$ is compact. Invoke previous theorem about the existence of a minimizer over a compact set, then we are done. 
+Since $f$ is proper, there exists some $x_0$ such that $f(x)$ is finite, then the level set $C := \{x: f(x) \le f(x_0)\}$: 
+- it is bounded by the coersive property. If not, then there exists $x_n$ such that $\lim_{n\rightarrow \infty} \Vert x_n\Vert = \infty$, then $f(x_0)=\infty$, contradicting f is proper. 
+- it's closed by l.s.c, and the function attains minimum inside of $C$. For all limiting sequence $x\rightarrow \bar x, x_n\in C$ we have $\lim_{n\rightarrow \infty} f(x_n) \ge \lim\inf_{n\rightarrow \infty} f(x_n)\ge f(\bar x)$, hence $\bar x \in C$ still, the set $C$ is closed. 
+
+Therefore $C$ is compact and intersect the domain of the function by the choice of $x_0$. Invoke previous theorem about the existence of a minimizer over a compact set, we are done. 
 
 
 **References**: 

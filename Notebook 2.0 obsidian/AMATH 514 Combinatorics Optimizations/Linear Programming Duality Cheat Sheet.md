@@ -63,7 +63,10 @@ $$
 \end{aligned}
 $$
 
-That is the cheat sheet. The duality changes constraints to dual variable and primal variable to cnstraints, read it row by row and goes from left to right to change between the primal and the dual formulations. 
+- Con: Represents the inequality for constraints where we have the decision variables only on the left hand side, and the constants on the right hand side. 
+- Var: The sign of the variables that corresponds to the dual constraints type. 
+
+That is the cheat sheet. The variables the primal chooses its sign that penalizes the constraints violations of the dual in favor of the primal objective, the constraints of the primal determine the sign of the dual variables that favors the dual objectives.  
 
 ---
 ### **The Ultimate Example to Demonstrate the Use of the Table:** 
