@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-We reduce different types of graph algorithm problem to an instance of network flow problem and solve it. This is much similar to linear programming where we always reduce a linear program of a model to the simplex standard form, maximizations, so that the simplex tabeau method can be employed to solving the problem. There are 2 types of reduction techniques: 
+We reduce different types of graph algorithm problem to an instance of network flow problem and solve it. This is much similar to linear programming where we always reduce a linear program of a model to the simplex standard form, maximizations, so that the simplex tableau method can be employed to solving the problem. There are 2 types of reduction techniques: 
 1. The type where changing the variable is enough. 
 2. The type where the structure of the graph is changed too and substitution of variables are also needed. 
 

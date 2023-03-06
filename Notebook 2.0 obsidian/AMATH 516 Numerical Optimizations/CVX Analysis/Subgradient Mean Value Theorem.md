@@ -19,4 +19,4 @@ First argue why that without loss of generality, we can assume that $x, y\in \te
 
 #UNFINISHED
 
-**Reference**: Exercise 3.65, Dimitri's Textbook for AMATH 516 
+**Reference**: Exercise 3.65, Dimitri's Textbook for AMATH 516. 

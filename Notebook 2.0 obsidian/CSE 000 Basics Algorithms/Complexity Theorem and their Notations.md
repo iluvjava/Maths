@@ -1,1 +1,0 @@
-We introduce all the list definition for the commonly used notations for tracking the growth of functions. See [here](https://en.wikipedia.org/wiki/Big_O_notation#Family_of_Bachmann%E2%80%93Landau_notations) for more details about it. 

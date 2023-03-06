@@ -1,7 +1,7 @@
 [[Graph Theory Terminology]]
 
 ---
-### **The Network Float Problem**
+### **The Network Flow Problem**
 
 We are interested in sending stuff between vertices on a directed graph where, sending per unit amount of stuff will costs us money and there are certain amount of deficit and surplus requirement must be satisfied for each of the vertices. To do this properly, we came up with a canonical form of LP problem formulations for the above problem, and this is what this file is about. Here are the list of quantities and their meaning: 
 
@@ -33,7 +33,7 @@ seeks for a solution such that it minimizes the costs of sending all the stuff b
 The vector $u_{i, j}$ can have elements of infinity, and the vector $c \ge \mathbf 0$. 
 
 ---
-### **The Adjacency Matrix**
+### **The Incidence Matrix**
 
 For a directed graph, we can make use of the adjacency matrix of the graph. The adjacency matrix $M$ for a directed graph is $N \times M$ where $N$ is the number of vertices in the graph and $M$ is the number of edges. The matrix's entries can be describe as: 
 

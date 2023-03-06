@@ -130,7 +130,7 @@ $$
 
 **Remarks**
 
-The converse statement has more subtleties and we skip the proof here. 
+The converse statement has more subtleties and we skip the proof here. For an example showcasing that $A^T\partial [f](Ax + b)\subsetneq \partial [f(Ax + b)|x](x)$, see [[Subgradient Affine Composition Special Case]] for more information. 
 
 
 **Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Variational Analysis 23.9. 

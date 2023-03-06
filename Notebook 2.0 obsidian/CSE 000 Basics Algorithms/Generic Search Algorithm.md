@@ -1,3 +1,6 @@
+[[Algorithm Complexity Introduction]], 
+
+---
 ### **Intro**
 
 we put the idea of all path finding and searching algorithm that generate a tree into one single framework. Consider a directed graph $G=(V, A)$ with: 
@@ -9,18 +12,22 @@ we put the idea of all path finding and searching algorithm that generate a tree
   - Predecessor: Which is just another label. 
   - Order: An integers indicating at which iteration the vertex is discovered by an admissible arc from its neighbor. 
 - An arc $(i, j)$ has 2 states: 
-  - <mark style="background: #BBFABBA6;">Admissible</mark>: if node $i$ is marked and node $j$ is umarked. 
-  - <mark style="background: #FF5582A6;">Inaddmissible</mark>: Otherwise. 
+  - <mark style="background: #BBFABBA6;">Admissible</mark>: if node $i$ is marked and node $j$ is unmarked. 
+  - <mark style="background: #FF5582A6;">Inadmissible</mark>: Otherwise. 
 
-The algorithm keeps: $M$, a set for all marked vertices. The algorithm performs the following: 
+The algorithm keeps: $S$, a set for all marked vertices. It produces the order of discovering each of the vertices on the graph, and it also returns a tree called the predecessor tree that represents the searching process. 
 
-**Algorithms**: 
+**Algorithms Descriptions**: 
+- Initialize $S = \{s\}$, where $s$ is chosen at random. 
+- Initialize counter $i = 0$
 - While $S \neq \emptyset$: 
   - Choose a vertex $v\in S$, if there exists $(v, u)$ such that it is <mark style="background: #BBFABBA6;">admissible</mark>: 
     - Set the predecessor of $u$ to be $v$
-    - Set the order of the vertex $u$, increment the order for future vertices. 
-    - Add $v$ to $S$
+    - Set the order of the vertex $u$ to be $i$, increment the order for future vertices using $i:= i + 1$
+    - Add $v$ to $S$. 
   - Else, there is no admissible arcs coming out of $v$, then remove $v$ from the set $S$. 
+
+**Algorithm Pseudocode**: 
 
 
 

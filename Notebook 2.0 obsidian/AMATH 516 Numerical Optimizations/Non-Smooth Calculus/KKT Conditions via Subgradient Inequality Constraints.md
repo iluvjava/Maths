@@ -5,7 +5,6 @@
 
 In simple terms, KKT conditions characterize the optimal solution to a constraint programming problem using a system of equations with inequality. 
 
-
 **Overall Assumptions:**
 1. $f, g_1, \cdots, g_m$ are all functions of $X \mapsto \mathbb R$. 
 2. $I:= \{1, \cdots, m\}$ and we consider the problem $(P)$ of solving: 
@@ -30,9 +29,9 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 
 **Observations**: 
 
-The convexity of the function $g_i(x)$ here helps engineering the convexity into the constraints. For example, given any convex function $g_i(x)$, then $g_i(x) - b_i$ is still convex, then making it $g_i(x) - b_i\le 0$ defines the level set of the function $g_i$, at level $b_i$. Then, we have the conditions $\partial g_i(x^+)$ transformed into $N(x^+| \text{lev}_{b_i}(g_i))$, which it then says that $\partial f(x^+)\in - N(x^+| \text{lev}_{b_i}(g_i))$. The Slator point conditions transfer to the level set of the constraint function has an interior to it. 
+The convexity of the function $g_i(x)$ here helps engineering the convexity into the constraints. For example, given any convex function $g_i(x)$, $g_i(x) \le 0$ defines the level set of the function $g_i$. Then, we have the conditions $\partial g_i(x^+)$ transformed into $N(x^+| \text{lev}_{0}(g_i))$, which it then says that $\partial f(x^+)\in - N(x^+| \text{lev}_{0}(g_i))$. The Slater point condition then translate to the fact that $\bigcap_{i\in I}\text{ri.dom}(g_i)\neq 0$, the strong conditions for the subgradient sum rule, this is relevant to the first condition: "stationarity" of the Fritz John conditions due to a use of the strong subgradient sum. 
 
-The neceesary conditions can be seemed as s special case of the Fritz John conditions where the Saltor point conditions allowed us to set $\alpha_0 = 0$, deriving a new conditions, removing the "not all zeros" assumptions for the Fritz John Coefficients. 
+The necessary conditions can be seemed as s special case of the Fritz John conditions where the Slater point conditions allowed us to set $\alpha_0 = 0$, deriving a new conditions, removing the "not all zeros" assumptions for the Fritz John Coefficients. 
 
 **Theorem: KKT Sufficient Conditions**
 > Suppose that all functions $f, g_i, \cdots, g_m$ are convex and that $x\in X, \lambda \in \mathbb R^m$ and the following list of conditions are satisfied: 
@@ -46,7 +45,6 @@ The neceesary conditions can be seemed as s special case of the Fritz John condi
 **Observations**:
 
 Slater's conditions are not stated here, this establishes the converse of the statement "KKT Necessary Conditions". It's probably hidden somewhere as a derivative of the new conditions added to make the converse of the statement true. 
-
 
 **Corollary: KKT Full Conditions**
 > If $f, g_1, \cdots, g_m$ are all convex and the Slater's conditions holds , then $x^+$ solves $(P)$ if and only if there exists $\lambda\in \mathbb R_m$ such that: 
@@ -95,7 +93,7 @@ $$
     \langle  s - x, \mathbf 0\rangle 
     = 
     \sum_{i\in I}^{}
-    \langle  s - x, \alpha_i v_i\rangle \le 
+    \langle  s - x, \alpha_i v_i\rangle < 
     \sum_{i\in I}^{}\alpha_ig_i(s), 
 \end{aligned}
 $$
