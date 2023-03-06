@@ -29,23 +29,96 @@ The algorithm keeps: $S$, a set for all marked vertices. It produces the order o
 
 **Algorithm Pseudocode**: 
 
+```SQL
+list = {s}; /*List of vertices to go over*/
+mkd = {s}; /*set of Marked vertices */
+pred[s] = 0; 
+counter = 0;
+ord[s] = counter; 
+WHILE list IS NOT EMPTY: 
+	SELECT i IN list; /*any i, algoritm is generic. */
+	adm_ngh = SELECT a = arc(i, j) WHERE EVAL("${a} is admissible ")
+	IF adm_ngh IS NOT EMPTY:
+		SELECT ANY j IN adm_ngh
+		ADD j TO mkd;
+		pred[j] = i;
+		counter += 1;
+		ord[j] = counter; 
+		ADD j TO list /*in any position*/;
+	ELSE: /*a must be inadmissible*/
+		DELETE i FROM list
+
+```
+
+`EVAL`means analyzing human English language, with string interpolations syntax.
+
+**Observations**: 
+1.  Observe that the set `mkd` is always being added and nothing is removed from it. It grows to eventually includes all the vertices in the graph. 
+2. For `list`: 
+	1. A node is either added to the list, or it's not. (obvious)
+	2. A node is added to or removed from `list` only once. Because, if `j` is added to `list` (then it's marked), then the number of admissible arcs coming out of it is strictly decreasing, when the number of admissible arc hit zero, it's removed, it can't be added back because it's already marked and all arcs coming into it is inadmissible. 
+3. If a vertex is in `mkd`, it's not necessarily in the list, but if it's in the `list`, then it has to be marked.
+
+**Complexities**: 
+
+By observation 2.2, we know that the outer while loops executes in $\mathcal O(n)$, the inner while loop executes for $\mathcal O (m)$, because that is the upper bound on the number of admissible arc, in total it's $\mathcal O (mn)$. The complexity can be improved if we keep track of the set of inadmissible arcs for each of the vertices. 
 
 
-**Observations**:  
-- The algorithm generates a search tree, and each vertices on the tree link to its parent via the predecessor label. 
-
+**Remarks**: 
 
 Different order of choosing different $v\in S$ makes different algorithm: 
-- When $S$ is a queue, we have breadth first search. 
-- A stack, we have a depth search. 
+- When `list` is a queue, we have breadth first search. 
+- When `list` is stack, we have a depth search. 
   - If $j$ is a descendent of $i$, with $i\neq j$, then $\text{order}(j) > \text{order}(i)$. 
 - A priority queue for the number of incoming admissible arcs into the vertex $v$, then this become the topological search. (Assuming that it has a topological ordering.)
 - When the vertices are label by the distance function from the source node of the search, and the list is a priority queue listing all the vertices using their distance label, then the search algorithm becomes the Dijkstra algorithm. 
 
-**Further Observations and Potential Optimizations**
+**Improving the Complexities of the Algorithm**
 - Each time we removed an element $v$ from the list, we have to check all the arcs $(v, u)$ for admissibility. If this element has be selected before from the list and not removed, then we would have rechecked all previous check arcs from previous selection of $v$. To improve, there are 2 possibilities: 
 	- Book keep the arcs that is coming out of the current vertex in the list, and only checks the one that haven't been checked since that last selection. (Preferable because it doesn't remove generality of the algorithm. )
 	- Check all the admissible arcs on selected vertex all at once. 
+
+
+---
+### **Generic Search Algorithm with Book Keeping**
+
+To improve the complexity of the basic generic search algorithm, we consider another set `inadm[i]` to dente the next admissible arcs for vertex `i`. We also introduce an datastructure that stores the kth neighbor of vertex `i` in the code, using `ngh[i]`. 
+
+```SQL
+INPUT: ngh, nodes, arc; 
+list={s}; 
+mkd={s};
+counter=0; 
+ord[s] = counter; 
+inadm[i] = 0 FOR ALL i IN nodes
+WHILE list IS NOT EMPTY: 
+	SELECT i IN list; /*any i, algoritm is generic. */
+	WHILE TRUE: 
+		IF j IS NULL: 
+			DELETE i FROM list
+			BREAK
+		j = next(ngh[i]);
+		IF j IS 
+		
+	IF adm_ngh IS NOT EMPTY:
+		SELECT ANY j IN adm_ngh
+		ADD j TO mkd;
+		pred[j] = i;
+		counter += 1;
+		ord[j] = counter; 
+		ADD j TO list /*in any position*/;
+	ELSE: /*a must be inadmissible*/
+		DELETE i FROM list
+
+```
+
+
+---
+### **Specific Search Algorithms**
+
+Using different order of selecting node `i` from `list`, we produces new search algorithms that constructs specific predecessor trees. 
+
+
 
 ---
 ### **Potential Functions and Complexity Analysis**

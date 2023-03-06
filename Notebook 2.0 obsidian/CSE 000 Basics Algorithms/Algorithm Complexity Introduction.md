@@ -21,10 +21,14 @@ If the number of operations it takes is $\mathcal O(n^2)$, then, for all functio
 
 **Theorem: Limit Characterizations of the Big-O**
 
-> $f(n)\in \mathcal O(g(n))$ if and only if $\exists C < \infty: \lim_{n\rightarrow \infty}f(n)/g(n)\le C$. 
+> $f(n)\in \mathcal O(g(n))$ if and only if $\exists\; 0 < C < \infty: \lim_{n\rightarrow \infty}f(n)/g(n)\le C$. We assume that $f(n), g(n) \ge 0$ because we are modeling operations count of algorithms. 
+
+**Proof**: 
+
+
 
 **Remarks**
-There can be more than one parameter. 
+There can be more than one parameter. For example when there is multiple parameters, suppose that the operation count $t$ of an algorithm is $\mathcal O(f(m, n))$, then $\exists c \le \infty$ such that for all $n, m \ge k$ we have $t \le cf(m, n)$. 
 
 
 ---
@@ -39,4 +43,12 @@ The best case complexity asks for an lower bound on the number of atomic operati
 **Obervation:**
 
 The bound for the lower bound on a complexity can be loose as well. If for a problem the least amount of time for it to runs, among all possible instance of problem size $n$ is $\Omega (n^2)$, then it's also $\Omega (n)$. 
+
+
+---
+### **Averaged Case**
+
+> Algorithm operations count is in $\Theta (f(n))$ if it's both $\mathcal O(f(n))$ and $\Omega (f(n))$. 
+
+
 
