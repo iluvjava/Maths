@@ -44,33 +44,29 @@ Observe that, the new approximation involving a linear combinatons of $A(h/t), A
 ---
 ### **Finite Difference Applications**
 
-We can use richardson extrapolation and talor series to approximate the second derivative to a certain degree of accuracy. 
-
-Consider finite difference approximation to the second derivative: 
+We can use Richardson extrapolation and Taylor series to approximate the second derivative to a certain degree of accuracy. Consider finite difference approximation to the second derivative: 
 
 $$
 \begin{aligned}
     \underbrace{h^{-2}\left(
         u(x + h) + u(x - h) - 2u(x)
     \right)}_{:= \varphi_1(h)} &= 
-    u''(x) + \frac{2h^2}{4!} u^{(5)}(x) + h^{-2}R_1(h)
+    u''(x) + \frac{2h^2}{4!} u^{(5)}(x) + h^{-2}R_1(h),
 \end{aligned}
 $$
 
-The remainder is $R_1(h)$ is like: 
+we define the remainder $R_1(h)$: 
 
 $$
 \begin{aligned}
-    R_1(h) &= \sum_{j = 6}^{\infty}(1 + (-1)^n)\frac{h^n}{n!}u^{(j)}(x) = \mathcal{O}(h^6)
-    \\
+    R_1(h) &= \sum_{j = 6}^{\infty}(1 + (-1)^n)\frac{h^n}{n!}u^{(j)}(x) \in \mathcal{O}(h^6)
+    \\\text{because: }
     R_1(h) &= \sum_{j = 3}^{\infty}
-    2\frac{h^{2n}}{(2n)!}u^{(j)}(x)
+    2\frac{h^{2n}}{(2n)!}u^{(j)}(x).
 \end{aligned}
 $$
 
-Because the term with odd power cancelled out.
-
-The interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
+Because the term with odd power cancelled out in the remainder, the first order interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
 
 $$
 \begin{aligned}
@@ -150,8 +146,19 @@ The results from Richardson Extrapolation should be consistent with what we get 
 
 It's better to prepare more terms before using Richardson so we don't have to expand out and remainder to check for the term missing for cancelling when ordering for higher order extrapolation. 
 
+**References**: 
+From Prof Anne Greebaum at UW, from class AMATH 585 2022 Spring. 
+
 ---
 ### **An Generic Example**
 
 To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example that requires 2 steps of Richardson Extrapolation to reduce. 
+
+#UNFINISHED
+
+
+---
+### **Successive Refinement Via Richardson Extrapolations**
+
+
 

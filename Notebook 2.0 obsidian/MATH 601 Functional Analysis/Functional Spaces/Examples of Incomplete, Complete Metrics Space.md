@@ -1,4 +1,4 @@
-[[Convergence in Metric Space]], 
+[[Convergence, Completeness in Metric Space]], 
 [[Topology of Metric Space]]
 
 ---

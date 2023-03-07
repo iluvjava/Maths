@@ -59,7 +59,7 @@ WHILE list IS NOT EMPTY:
 	2. A node is added to or removed from `list` only once. Because, if `j` is added to `list` (then it's marked), then the number of admissible arcs coming out of it is strictly decreasing, when the number of admissible arc hit zero, it's removed, it can't be added back because it's already marked and all arcs coming into it is inadmissible. 
 3. If a vertex is in `mkd`, it's not necessarily in the list, but if it's in the `list`, then it has to be marked.
 
-**Complexities**: 
+**Complexities**: $\mathcal O(mn)$. 
 
 By observation 2.2, we know that the outer while loops executes in $\mathcal O(n)$, the inner while loop executes for $\mathcal O (m)$, because that is the upper bound on the number of admissible arc, in total it's $\mathcal O (mn)$. The complexity can be improved if we keep track of the set of inadmissible arcs for each of the vertices. 
 
@@ -80,7 +80,7 @@ Different order of choosing different $v\in S$ makes different algorithm:
 
 
 ---
-### **Generic Search Algorithm with Book Keeping**
+### **Generic Search Algorithm with Book Keeping | $\mathcal O(m + n)$**
 
 To improve the complexity of the basic generic search algorithm, we consider another set `inadm[i]` to dente the next admissible arcs for vertex `i`. We also introduce an datastructure that stores the kth neighbor of vertex `i` in the code, using `ngh[i]`. 
 
@@ -90,27 +90,26 @@ list={s};
 mkd={s};
 counter=0; 
 ord[s] = counter; 
-inadm[i] = 0 FOR ALL i IN nodes
+inadm[i] = 0 FOR ALL i IN nodes;
 WHILE list IS NOT EMPTY: 
 	SELECT i IN list; /*any i, algoritm is generic. */
 	WHILE TRUE: 
 		IF j IS NULL: 
-			DELETE i FROM list
-			BREAK
+			DELETE i FROM list;
+			BREAK;
 		j = next(ngh[i]);
-		IF j IS 
-		
-	IF adm_ngh IS NOT EMPTY:
-		SELECT ANY j IN adm_ngh
+		IF j IN mkd: 
+			CONTINUE;
 		ADD j TO mkd;
 		pred[j] = i;
 		counter += 1;
 		ord[j] = counter; 
 		ADD j TO list /*in any position*/;
-	ELSE: /*a must be inadmissible*/
-		DELETE i FROM list
 
 ```
+
+
+The new algorithm consists of an iterator `ngh[i]` where, it remembers the last checked arc. Using this method, the total number of arc exam for each of the node is a constant, more specifically it's the out-degree for each of the node. Executing the outer loop for each of the vertices results in $\sum_{i\in N} \text{deg}^+(i)\in \mathcal O(m)$, in total. And since each time we need to select `i` from the `list` and remove it from `list`, this results in $2n$ exact operations. Therefore, the total number of operations required is in $\mathcal O(m + n)$. 
 
 
 ---
@@ -118,10 +117,20 @@ WHILE list IS NOT EMPTY:
 
 Using different order of selecting node `i` from `list`, we produces new search algorithms that constructs specific predecessor trees. 
 
+**Depth First Search:** 
 
+We make the following changes to the generic version of the algorithm: 
+- Select `i` the current node from the head of the `list`. 
+- Add `j` the neighbour just being marked by `i` to the head of the `list`. 
 
----
-### **Potential Functions and Complexity Analysis**
+**Breadth First Search**: 
+- Select `i` the current node from the head of the `list`. 
+- Add `j`, the neighbour that just got marked by `i` to the tail of the `list`. 
 
-A potential function can be used book keeping the progress of the operations. 
+**Topological Ordering**: 
+- Select first `i` from `list` where it has zero in-degree. 
+	- If such a `i` doesn't exists, then the graph cannot have topological ordering.
+- Add `j`, in whatever order. 
+
+Removing elements from the `list` is the same for all variants of the search algorithm. 
 

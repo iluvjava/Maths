@@ -25,7 +25,7 @@ If the number of operations it takes is $\mathcal O(n^2)$, then, for all functio
 
 **Proof**: 
 
-
+#UNFINISHED
 
 **Remarks**
 There can be more than one parameter. For example when there is multiple parameters, suppose that the operation count $t$ of an algorithm is $\mathcal O(f(m, n))$, then $\exists c \le \infty$ such that for all $n, m \ge k$ we have $t \le cf(m, n)$. 

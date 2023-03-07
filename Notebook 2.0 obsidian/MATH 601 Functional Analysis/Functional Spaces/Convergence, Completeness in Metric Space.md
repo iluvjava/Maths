@@ -3,24 +3,45 @@
 
 ---
 ### **Intro**
-Using the topology of a metric space and the metric together with real analysis, we can model the convergence some entities in the metric space, algebraic or not, using the definition of the metric. As usual, we define the concept of a epsilon ball vicinity $\mathbb B_r(x) = \{y| d(x, y) < r\}$ to be the point that is $r$ distance away for the given metric. 
+Using the topology of a metric space and the metric together with real analysis, we can model the convergence some entities in the metric space, algebraic or not, using the definition of the metric. As usual, we define the concept of an epsilon ball vicinity $\mathbb B_r(x) = \{y| d(x, y) < r\}$ to be the point that is $r$ distance away for the given metric. 
+
+**Definition: Convergence in Metric Space**
+> Let $(X, d)$ be metric space, $(x_n)_{n\in \mathbb N}\rightarrow x_\infty$ if for all $\epsilon > 0$ there exists $N$ such that $n\ge N$ implies $d(x_n, x_\infty)\le \epsilon$ . 
+
+**Observations**: 
+
+The metric $d$ is used, A topological interpretation can be involved saying that $\forall \epsilon > 0$, there exists $N$ such that $n > N$ implies that $x_n\in \mathbb B_\epsilon(x_\infty)$. 
+
+**Remarks**
+
+Convergence in the metric never implies the existence of $x_\infty$ in the space $X$. *Completeness* is a stronger conditions on the underlying metric that ensure the limit of the sequence in the metric is indeed in the set $X$. Convergence in one metric doesn't imply convergence in another, but it will be true if the metrics are equivalent. [^1]
+
+[^1]: See [[Metric Space Introduction]] for more. 
 
 
 **Definition: Bounded Subset**
 
 > A subset $M\subseteq M$ is a bounded set if there exists a $x\in X$, $r > 0$ such that $M \subseteq\mathbb B_{r}(x)$. 
 
-**Theorems:**
+**Theorems: Convergence Sequence in Metric Space**
 
-> Let $(X, d)$ be a metric space and $(x_n), (y_n)$ to be sequence in $X$, the: 
-> - if $(x_n)$ is converging, then it's bounded and its sequence is going to be an unique element in $X$. 
-> - if $x_n\rightarrow x$ and $y_n\rightarrow y$ as $n\rightarrow \infty$, then $d(x_n, y_n) \rightarrow d(x, y)$. The limit of the metric is the metric of their limit. 
+> Let $(X, d)$ be a metric space and $(x_n), (y_n)$ to be sequence in $X$, then: 
+> 1. if $(x_n)$ is converging, then it's bounded and its sequence is going to be a unique element in $X$. 
+> 2. if $x_n\rightarrow x$ and $y_n\rightarrow y$ as $n\rightarrow \infty$, then $d(x_n, y_n) \rightarrow d(x, y)$. The limit of the metric is the metric of their limit. 
+> 3. If a sequence is converging in the metric $d$, then it's a Cauchy sequence.  
 
-**Proofs**: 
+**Proof(1.)**: 
+It's direct by choosing a specific $\epsilon$ from the definition of convergence sequence in metric space. 
 
-It's not hard and I will skip it for not and has a tag: #UNFINISHED for this. 
+**Proof(2.)**:
 
-**Theorem: Complete Subspace Topological Characterizations**
+$$
+\begin{aligned}
+    d(x_n, )
+\end{aligned}
+$$
+
+**Theorem: Complete Subspace is Characterized by Closure**
 > Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
 
 **Remarks**
@@ -32,6 +53,9 @@ For example about what metric spaces are complete and what is not, consider visi
 ---
 ### **Cauchy Convergence and Completeness**
 
+**Motivations**
+
+Convergence in one metric might not means convergence in another metric. 
 
 **Definition: Metric Cauchy Convergence Sequence**
 
@@ -51,4 +75,14 @@ For example about what metric spaces are complete and what is not, consider visi
 
 - The Euclidean norm equipped with $\R^n$ and the p-norm metric form s complete metric space. 
 - The subset of all the rationals in the metric space is not forming a complete metric space. 
+
+
+---
+### **Complete Subspace Theorem**
+
+
+---
+### **Application: Banach Complete Subspace**
+
+
 

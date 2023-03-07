@@ -1,4 +1,4 @@
-- [[Metric Space Introduction]], [[Convergence in Metric Space]], [[../Further Examples for Metric Space]]. Which are the foundations for metric spaces and their properties. 
+- [[Metric Space Introduction]], [[Convergence, Completeness in Metric Space]], [[../Further Examples for Metric Space]]. Which are the foundations for metric spaces and their properties. 
 
 ---
 ### **Intro**

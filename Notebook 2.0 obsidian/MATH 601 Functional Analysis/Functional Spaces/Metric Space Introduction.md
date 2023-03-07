@@ -20,33 +20,46 @@ Generally, for intuitive purposes, element of the set $X$ is called point. This 
 - \<Introductory Functional Analysis with Applications\> 
 
 ---
-### **Subspace**
+### **Subspace of Metric Space**
 
 A subspace $(Y, \tilde d)$ of the metric space $(X, d)$ is where $Y\subseteq X$ with $\tilde d$ being an restriction to $Y\times Y$. 
 
 The first 2 axioms are trivially true, however, to verify that the subspace is again a metric space, we need to prove that the triangle inequality axiom holds. 
 
 ---
-### **Example: Sequence Space L-Inf**
+### **Example: Sequence Space $l^\infty$**
 
-> Any sequence $(x_n)_{n\in \mathbb N}$ where $x_n\in \mathbb C$ is a complex sequence such that $|x_n|\le \infty$. Given metric $d(x, y)$ as $\sup_{i\in \mathbb N}|x_i - y_i|$ for the complex sequence. 
+> Any sequence $(x_n)_{n\in \mathbb N}$ where $x_n\in \mathbb C$ is a complex sequence such that $|x_n|\le \infty$ for all $n\in \mathbb N$. Given metric $d(x, y)$ as $\sup_{i\in \mathbb N}|x_i - y_i|$ for the complex sequence. 
 
 ---
 ### **Example: Function Space**
 
 > Let $C[a, b]$ denotes real functions defined on the closed interval $[a, b]$ such that it's continuous. Then the metric $d(x, y) := \max_{x\in [a, b]} |x(t) - y(t)|$ is a metric. 
 
+---
+### **Example: The Sequence Space $l_+^2$**
+> Let $(x_n)_{n\in \Bbb{N}}$, then all sequence such that $\sum_{n=1}^{\infty}x_n^2 < \infty$, with $x_n \ge 0$ for all $n\in N$, with metric $d(x, y) = \sum_{i=1}^{\infty}(x_n - y_n)^2$ defines a metric space. 
+
 
 ---
 ### **Example: Discrete Metric Space**
 
+Discrete metric has $X$ finite, and potentially unordered. 
+
+**Example 1: Indicator Metric**
 > Suppose that we were given any non-empty set $X$ and define the metric $d(x, y)$ such that $d(x, y) = 1$ whenever $x \neq y$, and $=0$ whenever $x = y$, then $(X, d)$ still would form a metric space and this is an example of: discrete metric space. 
 
 **Remarks:** 
 
 Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
 
-> Hamming Distances. The number of differences in bits in 2 bits stream with the same length. One can view this as an 1-norm applied directly on a vector of binary values. 
+**Example 2: Hamming Distances**
+> The number of differences in bits in 2 bits stream with the same length. One can view this as an 1-norm applied directly on a vector of binary values. 
+
+**Example 3: Shortest Path on Graph**
+> The shortest $x-y$ path of a graph containing no negative directed cycles induces a metric for all the vertices in the graph. 
+
+See [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]] for more information on this discrete metric. 
 
 ---
 ### **More Examples**

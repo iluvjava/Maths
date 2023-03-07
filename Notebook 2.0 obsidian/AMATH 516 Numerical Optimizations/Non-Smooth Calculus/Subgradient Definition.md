@@ -25,16 +25,16 @@ Materials take with reference from Chapter 3 of \<First Order Method for Optimiz
 > 
 > Define the set of all Sub-gradient at $x$ to be: $\partial[f]_{x}$And when $x\not\in \text{dom}(f)$ we defined $\partial [f]_x = \emptyset$. 
 
-Immediately observe that $(x, f(x)), (\partial(x), -1)$ gives support separations plane for the $\text{epi}(f)$. 
+Immediately observe that $(x, f(x)), (\partial(x), -1)$ gives a support separations plane for the $\text{epi}(f)$. 
 
-**Proof**
+**Proof:**
 
-The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[[x|f]] = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
+The proof follows directly from the fact that a convex function has a convex epigraph, and using [[Strict Separations Theorem]] for convex set, one is able to separate anything in the epigraph with anything that is outside of the epigraph using elements from the subgradient $g$. $\text{epi}(f)$ is cvx and closed, if $\text{epi}(f)$ is a singleton, then $\partial[f](x) = \{(g, -1): g\in \mathbb E\}$. Otherwise, $\text{epi}(f)$ is not singleton. Since the set is convex, by strict separation we have: 
 
 $$
 \begin{aligned}
     & \forall (y, \beta) \not\in \text{epi}(f)\; 
-    \exists (x, f(x)) \in \text{bd}\circ \text{epi}(f), g\in \partial [[y|f]]:
+    \exists (x, f(x)) \in \text{bd}\circ \text{epi}(f), g\in \mathbb E:
     \\
     &
     \langle (y, \beta), (g, -1)\rangle \le \delta \le \langle (g, -1), (x, f(x))\rangle
@@ -58,6 +58,9 @@ $$
 
 Which demonstrates the geometric interpretations for the subgradient of a convex function. 
 
+**Comment:**
+
+<mark style="background: #FF5582A6;">The proof is not quite right and it won't for $x\in \text{bd.dom}(f)$, it fails for a point that is at the boundary of the domain of the function. </mark> We may not assume the format of $(g, -1)$ until we make use of convexity and $x\in \text{ri.dom}(f)$. 
 
 **Remarks**
 
@@ -91,7 +94,19 @@ And that is enough to understand what people are saying. Finally, please observe
 > 
 > And if $x\not\in \text{dom}(f)$, then there is no gradient, and we define the set of generalized **subdifferential** to be the set of all sub-gradient, noted as: $\hat\partial[f]_x$. 
 
-Where the little $o$ notation is a limit in disguise, in this case it has the property: $\lim_{x \rightarrow \infty}\frac{o(\Vert y - x\Vert)}{\Vert y - x\Vert} = 0$. 
+
+**Observations**: 
+
+Where the little $o$ notation is a limit in disguise, in this case it has the property: $\lim_{x \rightarrow \infty}\frac{o(\Vert y - x\Vert)}{\Vert y - x\Vert} = 0$, hence it would imply that for all $y_i\rightarrow x$ as $i\rightarrow \infty$: 
+$$
+\begin{aligned}
+    \underset{i\rightarrow \infty}{\lim\inf}\left(
+        \frac{f(y_i) - f(x) - \langle g, y_i - x\rangle}{\Vert y - x\Vert}
+    \right) \ge 0, 
+\end{aligned}
+$$
+
+very useful for characterizing $g$ that is in the subgradient of a function. The fact that if the subgradient equals to zero then it's a local minimizer at the point is somewhat obvious from this interpretation here. 
 
 **Remarks:**
 
@@ -139,12 +154,12 @@ And it can be viewed that $g = \mathbf 0$, directly interpreted from the definit
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, consider a point where $f(x)$ is finite, then the equivalence hold.
 > $$
->   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}(x, f(x))
+>   v \in \hat\partial [f](x)\iff (v, -1)\in N_{\text{epi}(f)}((x, f(x)))
 >$$
 
 **Proof**
 
-To show the $\implies$, we consider any $v \in \hat\partial [[x|f]]$, from the definition of the generalized gradient, we have: 
+To show the $\implies$, we consider any $v \in \hat\partial [f](s)$, from the definition of the generalized gradient, we have: 
 
 $$
 \begin{aligned}
@@ -152,11 +167,9 @@ $$
     \\
     & f(y) - f(x) \ge \langle v, y - x\rangle + o(\Vert y - x\Vert)
     \\
-    & \forall \alpha \ge f(y):
+    & \forall \alpha \ge f(y): \alpha - f(x) \ge \langle  v, y - x\rangle + o(\Vert  y - x\Vert)
     \\
-    & \alpha - f(x) \ge \langle  v, y - x\rangle + o(\Vert  y - x\Vert)
-    \\
-    \implies &
+    \iff &
     \left\langle 
         \begin{bmatrix}
             v \\ - 1
@@ -167,26 +180,35 @@ $$
         \end{bmatrix}
     \right\rangle
     \le 
-    o(\Vert y - x\Vert)
+    o(\Vert y - x\Vert) 
+    \\
+    & \text{let } (y, \alpha)\underset{\in \text{epi}(f)}{\longrightarrow} (x, f(x)), \text{ then }
     \\
     \implies &
     \begin{bmatrix}
         v\\-1
     \end{bmatrix}\in 
-    T_{\text{epi}(f)}(x, f(x))
+    T_{\text{epi}(f)}(x, f(x)).
 \end{aligned}\tag{1}
 $$
 
-AN element chose from the generalized gradient set will satisfies the tengent cone defintion. To prove the $\impliedby$ direction ,we consider any element in the form of $(v, - 1)$ that is taken from $N_{\text{epi}(f)}(x, f(x))$, and then we prove that it can serve as a subgradient. The problematic part is showing that, the small o part of the argument can be transferred. From the definition of the normal cone we have: 
+An element chose from the generalized gradient set will satisfies the tangent cone definition. To prove the $\impliedby$ direction, we consider any element in the form of $(v, - 1)$ that is taken from $N_{\text{epi}(f)}(x, f(x))$, and then we prove that it can serve as a subgradient. The problematic part is showing that, the little-o part of the argument can be transferred. From the definition of the normal cone we have: 
 
 $$
 \begin{aligned}
     r \ge f(x) + \langle v, y - x\rangle + o(\Vert (y, r) - (x, f(x))\Vert)
-    \quad \forall r \ge f(y)
+    \quad \forall r \ge f(y).
 \end{aligned}\tag{2}
 $$
 
-We wish to show that $o(\Vert (y, r) - (x, f(x))\Vert)$ is indeed bounded as $(y, r)\rightarrow (x, f(x))$ inside of the set $\text{epi}(f)$. To argue that, we wish to first prove that the quantity $\frac{f(y) - f(x)}{\Vert y - x\Vert}$ is bounded and uniformally bounded. Starting with the defintion of boundedness: 
+We wish to show that $o(\Vert (y, r) - (x, f(x))\Vert)$ is indeed bounded as $(y, r)\rightarrow (x, f(x))$ inside of the set $\text{epi}(f)$. 
+
+**Claim: Bounded Quotients**
+
+> To argue that, we wish to first prove that the quantity $\frac{f(y) - f(x)}{\Vert y - x\Vert}$ is bounded and uniformly bounded. 
+
+Starting with the definition of little-o: 
+
 
 $$
 \begin{aligned}
@@ -208,25 +230,25 @@ $$
     o(\Vert (y, r) - (x, f(x))\Vert) & \ge 
     -\frac{1}{2}(
         \Vert y - x\Vert + |r - f(x)|
-    )
+    ).
 \end{aligned}\tag{3}
 $$
 
-Continuing with results obtained from (3) with results from (2) we have: 
+substitute results obtained from (3) with results from (2), using the fact that $(y, r)\rightarrow (x, f(x))$ inside of the epigraph of $f$, when $r < f(x)$ at some point of the limit: 
 
 $$
 \begin{aligned}
-    & 2r \ge f(x) - 2\langle v, y -x\rangle - \Vert y - x\Vert - f(x) + r
+    & 2r \ge 2f(x) - 2\langle v, y -x\rangle - \Vert y - x\Vert - f(x) + r
     \\
     & 
     r \ge 2f(x) + 2\langle v, y - x\rangle - \Vert y - x\Vert - f(x)
     \\
     & 
-    r\ge f(x) + 2\langle v, y -x\rangle - \Vert y - x\Vert
+    r\ge f(x) + 2\langle v, y -x\rangle - \Vert y - x\Vert. 
 \end{aligned}\tag{4}
 $$
 
-Considerin the Cauchy Swartz: $\langle v, y - x\rangle \le \Vert v\Vert \Vert y - x\Vert$, giving us the results $2\langle v, y - x\rangle\le 2 \Vert v\Vert \Vert y-x\Vert$, giving us: 
+Considering the Cauchy Swartz: $\langle v, y - x\rangle \ge -\Vert v\Vert \Vert y - x\Vert$, giving us: 
 
 $$
 \begin{aligned}
@@ -237,19 +259,25 @@ $$
     r \ge f(x) - (1 + 2 \Vert v\Vert)\Vert x - y\Vert
     \\
     \implies & 
-    \lim  \frac{r - f(x)}{\Vert x - y\Vert} > -\infty
+    \underset{(y, r)\rightarrow (x, f(x))}{\lim\inf}\frac{r - f(x)}{\Vert x - y\Vert} \ge 
+    \underset{(y, r)\rightarrow (x, f(x))}{\lim\inf}
+    \frac{f(y) - f(x)}{\Vert x - y\Vert}
+    > -\infty.
 \end{aligned}\tag{5}
 $$
 
-Since it's true for all $r$, replacing $r$ into $f(y)$ we obtain the quotient: $\frac{f(y) - f(x)}{\Vert x - y\Vert}> -\infty$. The quotient is also bounded above. Let's consider the role of little o by considering any sequence $(y_i, r_i)\rightarrow (x, f(x))$ as $i \rightarrow \infty$ approaching the tagent point (boundary point)  in the epigraph of the function, let's also make the substitution: $\zeta_i =(y_i, r_i) - (x, f(x))$, then from (2): 
+Because in the problem statement, we assumed that the function takes finite value at $x$. Since it's true for all $r$, replacing $r$ into $f(y)$ we obtain the quotient: $\frac{f(y) - f(x)}{\Vert x - y\Vert}> -\infty$. The quotient is also bounded above. Let's consider the role of little o by considering any sequence $(y_i, r_i)\rightarrow (x, f(x))$ as $i \rightarrow \infty$ approaching the tagent point (boundary point)  in the epigraph of the function, let's also make the substitution: $\zeta_i =(y_i, r_i) - (x, f(x))$, then from (2): 
 
 $$
 \begin{aligned}
-    & r_i \ge f(x) + \langle v, y_i - x\rangle  + o(\Vert \zeta_i\Vert)
+    r_i 
+    &\ge 
+    f(x) + \langle v, y_i - x\rangle  + o(\Vert \zeta_i\Vert)
     \\
-    & r_i - o(\Vert \zeta_i\Vert) \ge f(x) + \langle v, y_i - x\rangle
+    r_i - o(\Vert \zeta_i\Vert) 
+    &\ge f(x) + \langle v, y_i - x\rangle
     \\
-    \implies & f(y_i) \le f(x) + \langle  v, y_i - x\rangle
+    \implies f(y_i) &\le f(x) + \langle  v, y_i - x\rangle
 \end{aligned}\tag{6}
 $$
 

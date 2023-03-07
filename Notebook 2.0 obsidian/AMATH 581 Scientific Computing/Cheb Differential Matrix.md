@@ -1,4 +1,4 @@
-prereq: [[Lagrange Polynomial Interpolation]]
+prereq: [[../MATH 464/Lagrange Polynomial Derivatives]]
 
 We need the derivative information for the Lagrange Polynomial interpolated at some points for given function. 
 

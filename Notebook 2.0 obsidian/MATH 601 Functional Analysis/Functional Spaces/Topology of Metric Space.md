@@ -138,9 +138,13 @@ Consider the metrics $\Vert \cdot\Vert_\infty$ and $\Vert \cdot\Vert_1$ defined 
 ---
 ### **Completeness of Metric Space**
 
-Similar to real analysis, where we discussed that a sequence is Cauchy if and only if it converges to a real number, here we use the Cauchy sequence and the convergence in metric space to define the concept of a complete metric space. See [[Convergence in Metric Space]] for more details. 
+Similar to real analysis, where we discussed that a sequence is Cauchy if and only if it converges to a real number, here we use the Cauchy sequence and the convergence in metric space to define the concept of a complete metric space. See [[Convergence, Completeness in Metric Space]] for more details. 
 
 ---
 ### **Examples And Exercises**
 
 Here is a good list of exercises from the textbook that will enhance our understanding of the matter. The specific examples that are incomplete spaces are interesting and they had been separated into: [[Examples of Incomplete, Complete Metrics Space]]. 
+
+**Example: Interior of $l_+^\infty$ is Empty**
+
+> 
