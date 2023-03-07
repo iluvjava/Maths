@@ -103,16 +103,29 @@ $$
 **Claim:** 
 > Let $C$ denoted a closed directed walk on the graph, then vector $\mathbf 1_C$ is in the null space of the incidence matrix $M$. 
 
-WLOG, let the arc collection $C$ be defined as: $(v_1, v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n), (v_n, v_1)$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. 
+WLOG (general up to a permultation of vertices), let the arc collection $C$ be defined as: $(v(1), v(2)), (v(2), v(3)), \cdots, (v(k - 1), v(k)), (v(k), v(1))$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. More precisely: 
 
-**Example**: 
+$$
+\begin{aligned}
+    M\mathbf 1_C &= \sum_{(i, j)\in C}^{} \e_i - \e_j
+    \\
+    &= \left(
+        \sum_{i=1}^{k-1}
+        \e_{v(i)} - \e_{v(i + 1)}
+    \right) + \e_{v(k)} - \e_{v(1)}
+    \\
+    &= 
+    \e_{v(1)} - \e_{v(k)} + \e_{v(k)} - \e_{v(1)} = \mathbf 0, 
+\end{aligned}
+$$
 
-#UNFINISHED
+a simple application of the column view of the incidence matrix and the telescoping series on these basis vector. 
 
 
 **claim**: 
 > Let $W$ denote a $i-j$ walk on the graph, then $M \mathbf 1_W = \e_i - \e_j$
 
+The justification is very similar to what we had for the closed directed walk, we won't repeat. 
 
 
 ---
