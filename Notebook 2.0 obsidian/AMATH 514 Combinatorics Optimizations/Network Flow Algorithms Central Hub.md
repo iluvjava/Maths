@@ -17,3 +17,9 @@
 	- Construct all pairs shortest distances and predecessor tree all at once. 
 
 
+**Basic Algorithms That Powers Everything Else**: 
+- Generic Search Algorithm: [[../CSE 000 Basics Algorithms/Generic Search Algorithm]]
+- Flow Decomposition Algorithm: [[Everything Network Flow/Flow Decomposition Algorithm]]
+
+
+

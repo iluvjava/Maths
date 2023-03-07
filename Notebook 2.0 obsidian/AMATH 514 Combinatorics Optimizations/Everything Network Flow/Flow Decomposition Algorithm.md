@@ -46,7 +46,7 @@ $$
 \end{aligned}
 $$
 
-We define $g_i < 0$ to be <mark style="background: #FF5582A6;">deficit</mark> node, $g_i>0$ to be <mark style="background: #ADCCFFA6;">excessive</mark> node. Currently let's ignore the mass balance constraints $b_i$ because we sometimes consider the flow decomposition a flow that is current feasible/infeasible, we are not interested in the mass balance constraints. As noted in the book, some algorithms doesn't have the mass balance constraints so here we choose this alternative formulation, for example the [[Maxflow Min Cut]]. 
+We define $g_i < 0$ to be <mark style="background: #FF5582A6;">deficit</mark> node, $g_i>0$ to be <mark style="background: #ADCCFFA6;">excessive</mark> node. Currently let's ignore the mass balance constraints $b_i$ because we sometimes consider the flow decomposition a flow that is current feasible/infeasible, we are not interested in the mass balance constraints. As noted in the book, some algorithms doesn't have the mass balance constraints so here we choose this alternative formulation, for example the [[Maxflow Min Cut, Ford Fulkersson]]. 
 
 **Flow Decomposition Algorithm (Proof)**
 

@@ -21,7 +21,7 @@ The LP of the network flow problem is given as:
 
 $$
 \begin{aligned}
-    &\max_{v, x} v \text{ s.t: }
+    &\max_{v \text{ free}, x} v \text{ s.t: }
     \\
     &
     \left(
@@ -185,11 +185,26 @@ where, `DiPath(S, t)` denotes a s-t directed path, EVAL means interpreting the f
 
 **Observations**: 
 - From the integrality assumption, the algorithm increment at least $\delta \ge 1$. 
-- When the algorithm terminates, it can't find any s-t path on the residual graph $G(x)$, suppose that the set $S$ denotes all the nodes $i$ that can be reached by an s-i path, then consdier any $(i, j)$ it exists:
+- When the algorithm terminates, it can't find any s-t path on the residual graph $G(x)$, suppose that the set $S$ denotes all the nodes $i$ that can be reached by an s-i path, then consider any $(i, j)$ it exists:
   - Either as $(i, j) \in (S, S^C)$ in $G$, then it has $r_{i, j} = u_{i, j} - x_{i, j} = 0$, so that $x_{i, j} = u_{i, j}$; 
-  - Or $(i, j)\in (S^C, S)$ in G, so then $r_{j, i} = x_{i, j} = 0$ on the residual meaing that $x_{i, j} = 0$. 
+  - Or $(i, j)\in (S^C, S)$ in G, so then $r_{j, i} = x_{i, j} = 0$ on the residual meaning that $x_{i, j} = 0$. 
 
 Therefore, on the S-t cut of the original graph, the out going arcs are all saturated and the incoming arcs are all empty. We had achieved strong duality and the minimum cut is the set $S$. 
+
+**LP View of Ford Fulkerson**
+
+For any feasible solution $x$, and increment vector $\delta \mathbf 1_P$, the indicator function for some s-t path. Then sending some flow from $s$ to $t$ equates to consider:
+
+$$
+\begin{aligned}
+    M(x + \delta \mathbf 1_P) &= Mx + M\delta \mathbf 1_P = v(\e_1 - \e_n) + \delta(\e_1 - \e_n)
+    \\
+    &= (v + \delta)(\e_1 - \e_n), 
+\end{aligned}
+$$
+
+since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. 
+
 
 ---
 ### **Important Theorems**
@@ -275,7 +290,6 @@ Observe that the first set of constraints describes a strategies of placing the 
 Using strong duality, we can attain the conditions that: 
 - $(y_2)_{i, j} = 0$, then $x_{i, j} \ge 0$, 
 - $(y_2)_{i, j} \neq 0$, the $x_{i, j} = 0$. 
-
 
 #UNFINISHED 
 

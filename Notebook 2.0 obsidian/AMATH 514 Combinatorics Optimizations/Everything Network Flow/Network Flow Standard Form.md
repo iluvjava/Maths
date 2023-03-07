@@ -86,9 +86,32 @@ $$
 where, each row of the matrix is like an indicator vector denoting which edge is coming into/out of the vertex using $\pm 1$, positive one is coming out, and negative is coming in. The number of columns equal to the number of arcs in the graph. And the second view is the column view of the matrix. The adjacency matrix $M$ consists of columns of vector that has only exactly one $+1$ and $-1$ on it. Suppose that the arc is $(i, j)$, then its corresponding column in the adjacency matrix has $+1$ at the $i$ th row and $-1$ at the j th position. 
 
 
-**The magic of directed cycles**
+**The Magic of Walks on the Incidence Matrix**
 
-The matrix contains null space and the null spaces are directed cycles/(closed directed walks) on the graph. Suppose that we have a flow  $x'$ that goes through cycles on the graph, and it's like $(v_1, v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n), (v_n, v_1)$, and it corresponds to sending a unit amount of flow through the cycle, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v\in C$ we have total mount of flow $1 - 1$, giving us zero for this vertex. This is true for all vertices, therefore, it's in the null space of the matrix. We are using the row interpretation of the adjacency matrix here. 
+The null spaces of the incidence matrices are directed cycles, or closed directed walks on the graph. Let $W$ denote the arc collection a directed walk on the graph, Suppose that we have a unit flow vector $\mathbf 1_W$ then we define the indicator vector for the walk as: 
+
+$$
+\begin{aligned}
+    (\mathbf  1_W)_{i} = \begin{cases}
+        1 & i \in W
+        \\
+        0 & \text{else}, 
+    \end{cases}
+\end{aligned}
+$$
+
+**Claim:** 
+> Let $C$ denoted a closed directed walk on the graph, then vector $\mathbf 1_C$ is in the null space of the incidence matrix $M$. 
+
+WLOG, let the arc collection $C$ be defined as: $(v_1, v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n), (v_n, v_1)$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. 
+
+**Example**: 
+
+#UNFINISHED
+
+
+**claim**: 
+> Let $W$ denote a $i-j$ walk on the graph, then $M \mathbf 1_W = \e_i - \e_j$
 
 
 
@@ -161,7 +184,9 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 There are many problems that can be reduced to the network flow problems: 
 1. [[LP for Source Tree Shortest Paths]]. 
-2. [[Maxflow Min Cut]]
+2. [[Maxflow Min Cut, Ford Fulkersson]]
 3. Tournament Problems. 
 4. Bipartite Assignment problems. 
+
+For reduction from other more general graph problem, read [[Reduction to Network Flow]] for more information. 
 
