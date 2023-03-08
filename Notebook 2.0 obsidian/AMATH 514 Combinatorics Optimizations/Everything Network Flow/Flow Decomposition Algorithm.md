@@ -3,15 +3,22 @@
 
 ---
 ### **Intro**
- 
+
+**Quantities Introduced**: 
+* $x$, a flow on the network, a flow creates imbalances on vertices of the graph. 
+* $\mathcal C$ family of cycles used to approximate a given flow. 
+* $\mathcal P$ family of simple path used to aproximate a given flow. 
+* $g$: The excess of deficit that we need to balance out on the given flow. 
+* $x'$: The flow we are using to approximate the flow $x$. 
+
 **Theorem: Flow Decomposition Theorem**
 
-> Every path and cycle flow has a unique representation as nonnegative arc flows. Conversely, every nonnegative arc flow x can be represented as a path and cycle flow (though not necessarily uniquely) with the following two properties:
+> Every path and cycle flow has a unique representation as *nonnegative* arc flows. Conversely, every *nonnegative* arc flow x can be represented as a path and cycle flow (though not necessarily uniquely) with the following two properties:
 > - (a): Every directed path with positive flow connects a deficit node to an excess node. 
 > - (b): At most n + m paths and cycles have nonzero flow; out of these, at most m
 cycles have nonzero flow.
 
-If we denote $\mathcal P, \mathcal C$ to be the set arcs in all directed paths and cycles on the graph that sense non-zero amount of flows between vertices. We also define an indicator function $\mathbf 1_{CP}\{v\}$ to denote $1$ if $v\in \mathcal C\cup \mathcal P$ else $0$, then ay flow between the vertices can be expressed as: 
+If we denote $\mathcal P, \mathcal C$ to be the set arcs in all directed paths and cycles on the graph that send *strictly positive amount of flows* between vertices. We also define an indicator function $\mathbf 1_{CP}\{v\}$ to denote $1$ if $v\in (\bigcup_{c\in \mathcal C} c)\cup(\bigcup_{c\in \mathcal P})$ else $0$, then any flow between the vertices can be expressed as: 
 
 $$
 \begin{aligned}
@@ -28,6 +35,8 @@ $$
 which is demonstrated mathematically as above. To demonstrate the theorem, we consider developing an algorithm that decomposes any flows into composition of cycles and paths, the algorithm is considered to be a kind of proof. 
 
 **References**: 
+
+Chapter 3 of the network flow theory, algorithm and application textbook. 
 
 ---
 ### **Flow Decomposition Algorithm**
@@ -48,12 +57,11 @@ $$
 
 We define $g_i < 0$ to be <mark style="background: #FF5582A6;">deficit</mark> node, $g_i>0$ to be <mark style="background: #ADCCFFA6;">excessive</mark> node. Currently let's ignore the mass balance constraints $b_i$ because we sometimes consider the flow decomposition a flow that is current feasible/infeasible, we are not interested in the mass balance constraints. As noted in the book, some algorithms doesn't have the mass balance constraints so here we choose this alternative formulation, for example the [[Maxflow Min Cut, Ford Fulkersson]]. 
 
-**Flow Decomposition Algorithm (Proof)**
 
-Given any flow $x$ on the graph. let $i$ be an <mark style="background: #ADCCFFA6;">excessive</mark> node with $g_i \ge 0$, assume for now that there exists an arc $(i_1, i_2)$ such that it has $u_{i_1, i_2} > 0$, it carries positive flow along the edge. This is a possibility by the imbalance constraint. Inductively suppose that we are doing this at $i_k$ with $g_k > 0$ so that this is a deficit node, then arc $(i_k, i_{k + 1})$ with positive flow that we identified has the following possibility: 
-1. $i_{k + 1}$ is an excessive node.
-   1. If $i_{k + 1} = i_1$, then a directed cycle has been identified. Name it $C$
-   2. Else, $i_{i + 1}$ is just another node with excessive flow, we repeat the argument and look for $i_{k + 2}$. 
-2. $i_{k + 1}$ is a deficit node, then the path terminates and the amount of flow we send over the path is $\min_{a\in P}f(a)$. 
+**Looking for one path**: 
 
-Once such a path or cycle is 
+Given any flow $x$ on the graph. let $i$ be an <mark style="background: #ADCCFFA6;">excessive</mark> node with $g_i > 0$, Look for a i-j path strict positive capacity (More on this soon) such that $g_j < 0$, Let this path be $P^{(1)}$, we determine the amount of flow send over $P^{(1)}$ to be $\min_{a \in P}x_a$, where $u(a)$ denotes the capacity of the arc $a\in P$. It's possible to have $P^{(1)}$ to have positive flow because $x$ is a feasible flow. 
+
+
+
+

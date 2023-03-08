@@ -69,9 +69,7 @@ $$
 using the fact that the constraint $g_0 = f(x) - \mu$ is achieved, we are able to choose $\alpha_0 > 0$, hence dividing both side by $\alpha_0$, we get the condition that: 
 > The minimizer of a linear program is a point where, there exists a convex combinations of the tight constraints such that it equals to the negative objective vector: $-c$. And complenary slackness holds. 
 
-The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs.  
-
-I think the convex conbination conditions for $\alpha_i$ stating that $\Sigma_{i\in I(x)}\alpha_i = 1$ still remains true regardless of not appearing in the theorem statement. 
+The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs.  The convex conbination conditions for $\alpha_i$ stating that $\Sigma_{i\in I(x)}\alpha_i = 1$ still remains true regardless of not appearing in the theorem statement, we just get a more restrictive statement if we do that, therefore due to the fact that the hypothesis of the statement didn't specify this conditions, we shouldn't care too much about it. 
 
 
 

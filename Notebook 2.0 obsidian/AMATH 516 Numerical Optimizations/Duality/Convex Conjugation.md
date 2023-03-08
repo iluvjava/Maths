@@ -21,6 +21,16 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 > \right\rbrace
 > $$
 
+**Observations**: 
+
+> The conjugate is closed and convex. 
+
+$y^Tx - f(x)$ is a affine function wrt to variable $y$ because $y^Tx$ is affine and $-f(x)$ is a constant. Since we are taking the $\sup$ of all such affine function using $y$, the result is a convex function wrt to $y$, therefore, $f^\star$ is a convex function, $\sup$ also takes the closure hence it's closed and convex. 
+
+
+
+
+
 **Notations**
 
 For clear notations, we will present conjugating a function wrt to a specific parameter for an expression, and show what inputs are given. For example, taking the conjugation of $f(Ax + b, y)$ wrt to $x$ and evaluating the conjugate at $z$ is denoted as: 
@@ -38,8 +48,12 @@ The conjugate function is always convex, see the next section for more info. We 
 
 
 ---
-### **Conjugate Epigraph Contains all Affine Minorants of the Original Function**
+### **Epigraphical Interpreations of Conjugation**
 
+- Conjugate encodes the maximum offert of Affine minorants of the original function. 
+- Fenchel conjugate is a special case of the support function on the epigraph of $f$. 
+
+**Claims: Conjugates Encode Affine Minorants**
 > $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
 
 Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
@@ -84,15 +98,15 @@ And it's not hard to see that the epigraph is described by intersection of all p
 
 **Theorem: Conjugate is the Support Function of the Epigraph of $f$**
 
-> The support function over the epigraph of function $f$ is the conjugate function $f^\star$, but in a high dimension. To quantify the epigraph, Define the convex indicator over the epigraph: 
-
-$$
-\delta_Q(x) := \begin{cases}
-    0 & x \in Q
-    \\
-    +\infty  &x \not\in Q    
-\end{cases}
-$$
+> The support function over the epigraph of function $f$ is the conjugate function $f^\star$, one dimension higher. More specifically: 
+> $$
+> \delta^\star_{\text{epi}(f)}
+> \left(
+>        \begin{bmatrix}
+>            x \\ - 1
+>        \end{bmatrix}
+> \right) = f^\star(x)
+> $$
 
 Recall the definition from the support functions and consider: 
 
@@ -136,7 +150,7 @@ $$
 
 From the first line the the second line, we make the intuitive argument that the finite value for supremum is always attain at the boundary of the epigraph, then using that we construct $z = [y \;f(y)]^T$ to denote it. And finally we arrive at the fact that, the conjugate function is the suppotr function for $\text{epi}(f)$, along the vector $[x\; - 1]^T$. 
 
-**Corollary: Convex Conjugate is Convex**
+**Corollary: Conjugate is Convex**
 
 Using the fact that the support function of any set is closed and convex (which is proved in: [[Support Function]]) and the above representation of conjugate function via the support function, we know that the conjugate funciton is also closed and convex. 
 
@@ -156,10 +170,44 @@ Using this property, we can make shortcut to finding the conjugates of some func
 
 Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$ at its lowest point, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
 
+---
+### **Legendre Transform**
+
+> Let $f:X\mapsto \mathbb R$ be convex and differentiable, then: 
+> $$
+> \begin{aligned}
+>     f^\star(\nabla f(x)) &= 
+>     \langle x, \nabla f(x)\rangle - f(x).
+> \end{aligned}
+> $$
+> Assuming $y\in \text{rng}(\nabla f)$. 
+
+To find the minimum observe that: 
+
+$$
+\begin{aligned}
+    f^\star(y) &= -\inf_{x\in X}\left\lbrace
+       f(x) - \langle x, y\rangle
+    \right\rbrace
+    \\
+    \iff 
+    \mathbf 0 &= \nabla f(x) - y \iff y = \nabla f(x),
+\end{aligned}
+$$
+
+suppose that $y\in \text{rng}(\nabla f)$ and $\nabla f$ is invertible on it's range by the fact that $f$ is convex and differentiable, hence $\nabla f$ will be a strict monotone mapping, hence invertible. Substitute it back: 
+
+$$
+f^\star (y) = -(f(\nabla f^{-1}(y)) - \langle \nabla f^{-1}(y), y\rangle)
+$$ 
+
+Substituting again with $y = \nabla f(x)$, we obtained the statement. 
 
 
 ---
 ### **Bi-Conjugation**
+
+Conjugate of the conjugate of a function. 
 
 **Theorem: Biconjugate Function is Always Smaller**
 
@@ -197,14 +245,14 @@ $$
 \end{aligned}
 $$
 
-[[MinMax MaxMin Lemma]]
+See [[MinMax MaxMin Lemma]] for applications. 
 
 **Corollary: The Biconjugate Theorem**
 
 > $$
 > \text{epi}(f^{\star\star}) = \text{cl}\circ \text{cvxh}\circ\text{epi}(f)
 > $$
-> The epigrah of the biconjugate function is the closure of the convex hull of the epigraph of the original function. 
+> The epigragh of the biconjugate function is the closure of the convex hull of the epigraph of the original function. 
 
 **Proof**
 
@@ -263,5 +311,7 @@ Entry 3: $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$.
 And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
 For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
+
+For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity]] for more. 
 
 #UNFINISHED : FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 

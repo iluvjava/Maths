@@ -69,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-Therefore it's convex. 
+Therefore it's convex.
 
 
 ---

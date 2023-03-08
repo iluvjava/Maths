@@ -52,7 +52,7 @@ $$
 
 **Remarks**
 
-* We do consider the case where $x^+$ has some of its components to be infinity (**CITATION NEEDED**). In that case, the claim $z\in \partial f(x^+)$ would still hold. 
+* We do consider the case where $x^+$ has some of its components to be infinity (**#CITATION_NEEDED**). In that case, the claim $z\in \partial f(x^+)$ would still hold. 
 
 * Notice that, this time, $z, x$ swapped, and we have $f^\star(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{\star\star}(x)$, then we will a new claim:
 
@@ -63,6 +63,7 @@ $$
 > Given dual, primal variable $x, z$, they are in the subgradient of each of their objective function, $f, f^\star$. 
 
 **Proof**
+
 See the remarks before the claim. 
 
 **Remarks**

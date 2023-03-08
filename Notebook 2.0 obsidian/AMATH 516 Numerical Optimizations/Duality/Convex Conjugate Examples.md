@@ -19,8 +19,48 @@ Here we will be packing a bunch of good examples with proofs, so it can serve as
 > \right\rbrace
 > $$
 
+
 ---
-### **The Natural Log: $-\ln(x)$**
+### **Linear Functions $c^Tx$**
+
+$$
+[c^Tx + d|x]^\star(z) = \delta_0(z - c) + d
+$$
+
+**Demonstration**
+
+$$
+\begin{aligned}
+    [\langle c, x\rangle + d|x]^\star (z) &= 
+    \sup_{y\in \mathbb R^n}
+    \left\lbrace
+       \langle y, z\rangle - \langle c, z\rangle - d
+    \right\rbrace
+    \\
+    &= 
+    \sup_{y\in \mathbb R^n}
+    \left\lbrace
+       \langle y- c, z\rangle - d
+    \right\rbrace
+    \\
+    &= 
+    \begin{rcases}
+        \begin{cases}
+            \infty & y \neq c
+            \\
+            -d & y = c
+        \end{cases}
+    \end{rcases} = \delta_{\{c\}}(z)
+\end{aligned}
+$$
+
+**Remarks**: 
+
+A geometric argument is that, the only way to support the linear vector using a affine minorants is a line that has the same slope as that objective function, other supporting minorants will wedge out of the function, giving us $\infty$. 
+
+
+---
+### **The Natural Log: $-\ln(x) + \delta_{\mathbb R_{++}}(x)$**
 
 This function is going to be treated as a single variable function, simply a $\mathbb{R}\mapsto \mathbb{R}$ function. By considering the definition of a convex conjugate we have: 
 
@@ -47,6 +87,52 @@ $$
 \right) =
 -1 + \ln(1) -\ln(-z) = -1 - \ln(-z)
 $$
+
+
+---
+### **The Exponential on $\mathbb R$**
+
+We find the conjugate of $\exp(x)$ on the whole domain, we verify that 
+
+$$
+\begin{aligned}
+    \exp^\star(y) &= 
+    \begin{cases}
+        +\infty & y< 0, 
+        \\
+        0 & y = 0, 
+        \\
+        y\ln(y) - y & y > 0.
+    \end{cases}
+\end{aligned}
+$$
+
+**Demonstration**
+
+$$
+\begin{aligned}
+    \exp^\star(y) &= \sup_{z\in \mathbb R}
+    \left\lbrace
+       zy - \exp(z)
+    \right\rbrace
+    \\
+    &= 
+    \sup_{z\in \mathbb R}
+    \left.
+    \begin{cases}
+        zy - \exp(z) & y < 0
+        \\
+        -\exp(z) & y = 0
+        \\
+        zy - \exp(z) & y > 0
+    \end{cases}
+    \right\rbrace, 
+\end{aligned}
+$$
+
+1. Case $y = 0$, we have $\sup_{z\in \mathbb R}(-\exp(z)) = 0$. 
+2. Case $y < 0$, we take $z \rightarrow -\infty$ then $zy - exp(x)$ approaches $\infty$, hence it's $\infty$. 
+3. Case $y> 0$, max of $zy - \exp(z)$ can be obtained by setting the derivative to zero because it's a concave function, solving $y - \exp(z) = 0$ we obtain $z = \ln(y)$, substituting to get $y\ln(y) - y$, hence, we obtain the conjugate as stated above. 
 
 
 ---
@@ -390,17 +476,12 @@ Which we assume that $A^TA$ is invertible, or else this is not going to work out
 The variable $z$ for the conjugate function is the decision variables for th dual problem. 
 
 
----
-### **Conjugation of Linear Functions $c^Tx$**
 
-$$
-(c^Tx + d)^\star(z) = \delta_0(z - c) + d
-$$
-
-A geometric argument is that, the only way to support the linear vector using a affine minorants is a line that has the same slope as that objective function. 
 
 
 ---
-### **Conjugate of Infimal Convolutions** $(f\square g)^\star$#UNFINISHED
+### **Conjugate of Infimal Convolutions** $(f\square g)^\star$
+
+#UNFINISHED
 
 

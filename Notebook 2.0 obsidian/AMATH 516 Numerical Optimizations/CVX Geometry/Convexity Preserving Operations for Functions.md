@@ -16,6 +16,16 @@ Let $\{f_i\}_{i}^m, f$ be a listed of augmented real functions mapping between e
 For the proofs for more interesting ones, see what is below. 
 
 ---
+### **Point-Wise Supremum of Convex Functions is Convex**
+
+> Let $f(x|c)$ be a convex function for all $c\in C$, we show that $\sup_{c\in C}f(x|c)$ is a closed convex function. 
+
+**Proof**
+
+
+
+
+---
 ### **Affine Transformation of Input Parameters**
 
 > $f:\mathbb E_1 \mapsto \mathbb E_2$ is a convex function, let $\mathcal A$ be a linear mapping $\mathbb E_3$ to $\mathbb E_1$ then $f(\mathcal Ax + b)$ is also a convex function. 

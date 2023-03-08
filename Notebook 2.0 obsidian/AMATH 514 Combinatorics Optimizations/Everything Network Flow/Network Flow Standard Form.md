@@ -191,6 +191,9 @@ the LHS of the $\ge$ is the reduced costs. If we were to solve the problem using
 
 suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight, hence $c_{i, j} - (y_1)_i + (y_1)_j > 0$, then the dual of the dual, the primal, must have its variable equal to zero to satisfies the complementary slackness, e.g: $(c_{i, j} - (y_1)_i + (y_1)_j)x_{i, j} = 0$, since $x_{i, j}\ge 0$ by virtual of the network standard form, we conclude that $x_{i, j} = 0$. 
 
+**Optimality Conditions and Negative Costs Cycles**
+
+
 
 ---
 ### **Reductions from Other Problems**
