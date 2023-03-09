@@ -193,7 +193,18 @@ Therefore, on the S-t cut of the original graph, the out going arcs are all satu
 
 **LP View of Ford Fulkerson**
 
-For any feasible solution $x$, and increment vector $\delta \mathbf 1_P$, the indicator function for some s-t path. Then sending some flow from $s$ to $t$ equates to consider:
+For any feasible solution $x$, and increment vector $\delta \mathbf 1_P$, the indicator function for some s-t path. This factor contains $\pm 1$, when $\mathbf (1_P)_a$ it's negative, it decreases the arc flow, when it's positive, it increases the arc flow. For all $a\in A$, we have: 
+
+$$
+(\mathbf 1_P)_a = \begin{cases}
+    1 & a\in P, a\in A, 
+    \\
+    -1 & a\in P, a^{-1}\in A, 
+    \\
+    0 & a \not\in a, 
+\end{cases}
+$$
+and such a vector has the property that $M\mathbf 1_P = \e_1 - \e_n$, then sending some flow from $s$ to $t$ along path $P$ would mean:
 
 $$
 \begin{aligned}
@@ -203,7 +214,7 @@ $$
 \end{aligned}
 $$
 
-since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. 
+since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. Furthermore, the new changes to the vector must keep its feasibility, and that is the condition that $l \le x + \mathbf 1_P \le u$ comes into the picture. This feasibility conditions will construct the residual graph for the network flow problem. 
 
 
 ---
@@ -222,9 +233,6 @@ These theorems uses observations about the Ford Fulkerson to characterize the op
 
 **Proof**:
 Each path find is bouned by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
-
-
-
 
 ----
 ### **Dual LP and Its Interpretations**
@@ -294,7 +302,19 @@ Using strong duality, we can attain the conditions that:
 #UNFINISHED 
 
 
+---
+### **Other More Advanced Classical Algorithms for Maximum Flow**
 
-
-
+- Ford Fulkerson: 
+  - Pseudo Polynomial, in $\mathcal O(mnC)$ where $C$ is the maxmum capacity for one of the arcs. 
+  - Very generic. 
+- Edmonds Karp Algorithm: 
+  - It's just FordFulkerson but with BFS for Augmentng path identifications on the residual graph. 
+  - The complexity is $\mathcal O(|V||E|^2)$. 
+- Dinic's Algorithm: 
+  - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robostly undo the BFS search whenever an saturated arc has been created by the augmentin path. 
+  - The complexity is $\mathcal O(|V|^2|E|)$. 
+- Delta Residual Graph Method: 
+  - Delete all the arcs with residual less than a certain threshold and do a path search for an augmenting path. 
+  - If such a path doesn't exist, cut our lower bounds for the flow in half. It looks for the minimum of the maximum flow that doesn't exceed all the arcs's capacity on the residual graphs. 
 
