@@ -1,4 +1,4 @@
- * [[Subgradient Definition]]
+* [[Subgradient Definition]]
 * [[Characterizing Functions for Optimizations]]
 
 ---
@@ -133,7 +133,7 @@ $$
 The converse statement has more subtleties and we skip the proof here. For an example showcasing that $A^T\partial [f](Ax + b)\subsetneq \partial [f(Ax + b)|x](x)$, see [[Subgradient Affine Composition]] for more information. 
 
 
-**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Variational Analysis 23.9. 
+**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Convex  Analysis 23.9, 
 
 
 ---
@@ -183,7 +183,7 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 
 
 ---
-### **Theorem: Subgradient of Simple Summations**
+### **Theorem: Subgradient of Summations**
 
 > Let $f_1,f_2$ be 2 convex function such that $\text{ri}(\text{dom})(f_1) \cap \text{ri}(\text{dom})(f_2)\neq \emptyset$, then we have the following strong subgradient theorem: 
 > $$
@@ -191,7 +191,8 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 > $$
 
 **Proofs**
-The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [[Normal Cone Addition]] for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)\neq \emptyset$, we will have $\supseteq$ instead of equality. 
+
+The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [[Normal Cone Addition]] for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)= \emptyset$, we will have $\supseteq$ instead of equality. For a full coverage of the matter, please see [[../Subgradient Sum Rule]] for more information. 
 
 **Source**: 
 

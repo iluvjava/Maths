@@ -197,11 +197,11 @@ For any feasible solution $x$, and increment vector $\delta \mathbf 1_P$, the in
 
 $$
 (\mathbf 1_P)_a = \begin{cases}
-    1 & a\in P, a\in A, 
+    1 & a\in P\wedge a\in A, 
     \\
-    -1 & a\in P, a^{-1}\in A, 
+    -1 & a\in P\wedge a^{-1}\in A, 
     \\
-    0 & a \not\in a, 
+    0 & a \not\in A, 
 \end{cases}
 $$
 and such a vector has the property that $M\mathbf 1_P = \e_1 - \e_n$, then sending some flow from $s$ to $t$ along path $P$ would mean:
@@ -313,7 +313,7 @@ Using strong duality, we can attain the conditions that:
   - The complexity is $\mathcal O(|V||E|^2)$. 
 - Dinic's Algorithm: 
   - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robostly undo the BFS search whenever an saturated arc has been created by the augmentin path. 
-  - The complexity is $\mathcal O(|V|^2|E|)$. 
+  - The complexity is $\mathcal O(|V|^2|E|)$. `
 - Delta Residual Graph Method: 
   - Delete all the arcs with residual less than a certain threshold and do a path search for an augmenting path. 
   - If such a path doesn't exist, cut our lower bounds for the flow in half. It looks for the minimum of the maximum flow that doesn't exceed all the arcs's capacity on the residual graphs. 

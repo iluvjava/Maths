@@ -39,7 +39,7 @@ This is the algorithm.
 **Observations**: 
 
 1. This is not exactly the same as the Generic Search algorithm because it checks all the admissible neighbours of a select vertex inside of the inner forloop, but the generic search algorithm just check one of the admissible arcs for the select vertex instead of all of its out-going neighbours. 
-2. The vertices leaves the set `suboptimal_set` once and it's removed from `optimal_set` exactly once. Hence, the outter forloop executes for exactly $n$ many times. 
+2. The vertices leaves the set `suboptimal_set` once and it's removed from `optimal_set` exactly once. Hence, the outer forloop executes for exactly $n$ many times. 
 
 ---
 ### **Proof of Correctness**

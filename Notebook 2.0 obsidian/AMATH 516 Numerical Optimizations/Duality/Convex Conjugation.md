@@ -48,9 +48,9 @@ The conjugate function is always convex, see the next section for more info. We 
 
 
 ---
-### **Epigraphical Interpreations of Conjugation**
+### **Epigraphical Interpretations of Conjugation**
 
-- Conjugate encodes the maximum offert of Affine minorants of the original function. 
+- Conjugate encodes the maximum offset of Affine minorants of the original function. 
 - Fenchel conjugate is a special case of the support function on the epigraph of $f$. 
 
 **Claims: Conjugates Encode Affine Minorants**
@@ -75,7 +75,7 @@ $$
 
 **Remarks**
 
-The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the functon $f$, given the slope of the affine function. 
+The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
 In fact, one can go on and make the claim the the epigraph of the original function is contains within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality, we can easily obtain that: 
 
