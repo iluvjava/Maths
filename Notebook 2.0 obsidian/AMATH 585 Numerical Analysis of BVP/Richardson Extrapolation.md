@@ -17,6 +17,10 @@ Suppose that the exact function $A^{+}$ is approximated by a function $A(h)$.
 > $$
 > Where $a_0, a_1, \cdots \neq 0$ and $k_0 < k_1 < k_2 \cdots$ and they are positive integers. 
 
+**Observations**: 
+
+The coefficient $a_i$ are not determine by the value of $h$. 
+
 Consider: 
 
 $$
@@ -150,15 +154,100 @@ It's better to prepare more terms before using Richardson so we don't have to ex
 From Prof Anne Greebaum at UW, from class AMATH 585 2022 Spring. 
 
 ---
-### **An Generic Example**
+### **An Generic Example for Even Errors**
 
-To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example that requires 2 steps of Richardson Extrapolation to reduce. 
+To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example for a series of only even power. Consider a quantity $A^+$ such that it has formula: 
 
-#UNFINISHED
+$$
+\begin{aligned}
+    \rho_0(h) &= a_0 + 
+    a_1h^2 + 
+    a_2h^4 + 
+    \sum_{n = 3}^{\infty} a_{n}h^{2n}
+    \\
+    \rho_0(h/2) &= a_0 + 
+    \frac{a_1h^2}{4} + 
+    \frac{a_2h^4}{16} + 
+    \sum_{n = 3}^{\infty}\frac{a_{n}h^{2n}}{2^{2n}}, 
+\end{aligned}
+$$
 
+Then we consider a linear combinations of the first 2 interpolants such that that $h^2$ term is canceled, this will result in: 
 
----
-### **Successive Refinement Via Richardson Extrapolations**
+$$
+\begin{aligned}
+    \frac{4\rho_{0}(h/2) - \rho_0(h)}{3} &= a_0 + 
+    \left(
+        \frac{\frac{4}{16} - 1}{3}
+    \right) a_2h^4 
+    +
+    \sum_{n = 3}^{\infty}
+    \left(
+        \frac{4}{3\cdot 2^{2n}} -  \frac{1}{3}
+    \right)a_{n}h^{2n}
+    \\
+    &= 
+    a_0 + 
+    \left(
+        \frac{1}{4}
+    \right)a_2h^4 +
+     \sum_{n = 3}^{\infty}
+    \underbrace{
+        \left(
+            \frac{4}{3\cdot 2^{2n}} -  \frac{1}{3}
+        \right)
+    }_{=:R_1(n)}
+    a_{n}h^{2n}
+    \\
+    &= \rho_1(h)
+\end{aligned}
+$$
 
+Then we can consider the second degree interpolant $\rho_2(h)$ by considering: 
+$$
+\begin{aligned}
+    \rho_2(h/2) &= 
+    a_0 + \left(
+        \frac{1}{64}
+    \right)a_0h^4
+    + 
+    \sum_{n = 3}^{\infty}
+    \left(
+        \frac{R_1(n)}{2^{2n}}
+    \right)
+    a_nh^{2n}
+    \\
+    \rho_1(h) &= 
+        a_0 + 
+    \left(
+        \frac{1}{4}
+    \right)a_2h^4 +
+    \sum_{n = 3}^{\infty}
+    R_1(n)
+    a_{n}h^{2n}
+    \\
+    \implies 
+    \frac{16\rho_2(h/2) - \rho_1(h)}{
+        15
+    } &= 
+    a_0 + 
+    \sum_{n = 3}^{\infty}
+    \underbrace{\left(
+        \frac{\frac{16R_1(n)}{2^{2n}} - R_1(n)}{15}
+    \right)}_{=:R_2(n)}
+    a_nh^{2n}
+    \\
+    &= \rho_2(h)
+\end{aligned}
+$$
 
+and the second degree interpolant now have an accuracy of $\mathcal O(h^6)$. And we now have the general formula to work combine any 2 interpolanet to give a higher order one. Observe that a general formula seems to emerge, but one might need to prove it inductively that we have the update: 
 
+$$
+\begin{aligned}
+    \rho_k(h) &= 
+    \frac{4^{k}\rho_{k-1}(h/2) - \rho_{k-1}(h)}{4^k - 1}, 
+\end{aligned}
+$$
+
+and we will just leave it at that for now. 

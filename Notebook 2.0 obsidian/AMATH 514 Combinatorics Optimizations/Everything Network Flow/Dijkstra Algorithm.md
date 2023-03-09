@@ -55,14 +55,14 @@ We introduce some basic quantities and then we proceed to prove using induction.
 
 **Inductive Hypothesis**:
 
-> 1. Distance label in $S$ is optimal, Meaning that $d(i) = \min_{P\in \Pi(s, i)}(c(P))$. 
+> 1. Distance label in $S$ is optimal, Meaning that $d(i) = \min_{P\in \Pi(s, i)}(c(P)), \forall i\in S$. 
 > 2. For all $i\in S^C$, $d(i)$ is the shortest path cost using only vertices in the set $S$, except for $i$, meaning that $d(i) = \min_{P\in \Pi(s, i)}\{c(P)| (P\cap S) = \{i\}\}$. 
 
 **Proof**: 
 
-The base case is trivial. Inductively, we run one step of the algorithm and show that the conition is still true. 
+The base case is trivial. Inductively, we run one step of the algorithm and show that the condition is still true. 
 
-> Suppose that $i\in S^C$ is chosen by the Dijkstra algorithm at the current step and before the update is performed for $d(i)$, we show that for all $P\in \Pi(s, i)$ the cost is at least $d(i)$, hence hypothesis (1) holds inductively for $S\cup \{i\}$. 
+> Suppose that $i\in S^C$ is chosen by the Dijkstra algorithm (characterize by the conditions that $d(i)= \min_{l\in S^C}\{d(l)\}$) at the current step and before the update is performed for $d(i)$, we show that for all $P\in \Pi(s, i)$ the cost is at least $d(i)$, hence hypothesis (1) holds inductively for $S\cup \{i\}$. 
 
 There are 2 types of $s-i$ path $P$, either $P\cap S = \{i\}$, or $(P\cap S) \supset \{i\}$. 
 
@@ -87,7 +87,7 @@ $$
 \end{aligned}
 $$
 
-because Dijkstra chooses the $i\in S^C$ with such that $d(i)$ is smallest. Using the fact that all arc lengths are negative, we have: 
+because Dijkstra chooses the $i\in S^C$ with such that $d(i)$ is smallest. Using the fact that all arc lengths are non-negative, we have: 
 
 $$
 \forall P\in \Pi(s, i), c(P) = c(P_1) + \underbrace{c(P_2)}_{\ge 0} \ge c(P_1) \ge d(k) \ge d(i), 
