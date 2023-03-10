@@ -160,13 +160,13 @@ where we abused the notation by using the set to represents any vector whose ele
 
 
 **Theorem: Differential Monotone Subgradient Composition**: 
-
+`
 > Let $f$ be convex on X and let G be convex, and increasing on $\R$, suppose that $g$ is differentialble at $f(x)$, then: 
 > $\partial (g\circ f)(x) = g'(f(x)) \partial f(x)$. 
 
 **Proofs**: 
 
-....
+... 
 
 
 **Remarks**:
