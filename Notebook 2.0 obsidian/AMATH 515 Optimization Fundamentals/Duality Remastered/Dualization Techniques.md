@@ -1,7 +1,7 @@
 To do this, we would need 
-[[Convex Conjugation]]. 
-And [[MinMax MaxMin Lemma]].
-But we also need [[Convex Conjugate Examples]]
+[[Convex Conjugation]], 
+And [[MinMax MaxMin Lemma]], 
+But we also need [[Convex Conjugate Examples]] for more context. 
 
 ---
 ### **Intro**

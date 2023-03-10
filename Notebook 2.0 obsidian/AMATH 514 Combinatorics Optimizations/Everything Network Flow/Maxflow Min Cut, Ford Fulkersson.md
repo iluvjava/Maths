@@ -311,9 +311,10 @@ Using strong duality, we can attain the conditions that:
 - Edmonds Karp Algorithm: 
   - It's just FordFulkerson but with BFS for Augmentng path identifications on the residual graph. 
   - The complexity is $\mathcal O(|V||E|^2)$. 
-- Dinic's Algorithm: 
+- [Dinic's Algorithm](https://en.wikipedia.org/wiki/Dinic%27s_algorithm):  
   - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robostly undo the BFS search whenever an saturated arc has been created by the augmentin path. 
   - The complexity is $\mathcal O(|V|^2|E|)$. `
+  - See [[Dinic's Algorithm]]
 - Delta Residual Graph Method: 
   - Delete all the arcs with residual less than a certain threshold and do a path search for an augmenting path. 
   - If such a path doesn't exist, cut our lower bounds for the flow in half. It looks for the minimum of the maximum flow that doesn't exceed all the arcs's capacity on the residual graphs. 

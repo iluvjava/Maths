@@ -134,3 +134,8 @@ We make the following changes to the generic version of the algorithm:
 
 Removing elements from the `list` is the same for all variants of the search algorithm. 
 
+---
+### **Properties of Predecessor Tree for the Specific Search Algorithms**
+
+
+
