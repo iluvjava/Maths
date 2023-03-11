@@ -1,4 +1,4 @@
-- [[LP for Source Tree Shortest Paths]]
+- [[LP for Source Tree Shortest Paths]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. 
 
 
 ---
@@ -59,9 +59,9 @@ We use the invariant of the algorithm, and for simplicity and WLOG, we assume th
 
 $$
 \begin{aligned}
-    d(2) &\ge d(1) + c_{1, 2}
+    d(2) &> d(1) + c_{1, 2}
     \\
-    d(3) &\ge d(2) + c_{2, 3}
+    d(3) &> d(2) + c_{2, 3}
     \\
     d(1) &= d(3) + c_{3, 1}, 
 \end{aligned}
@@ -71,11 +71,11 @@ then if we substitute entries from the button to the top, we have the condition 
 
 $$
 \begin{aligned}
-    d(1) &\ge d(2) + c_{2, 3} + c_{1, 2}
+    d(1) &> d(2) + c_{2, 3} + c_{1, 2}
     \\
-    d(1) &\ge d(1) + c_{1, 2} + c_{2, 3} + c_{1, 2}
+    d(1) &> d(1) + c_{1, 2} + c_{2, 3} + c_{1, 2}
     \\
-    0 &\ge c_{1, 2} + c_{2, 3} + c_{1, 2}, 
+    0 &> c_{1, 2} + c_{2, 3} + c_{1, 2}, 
 \end{aligned}
 $$
 
@@ -84,7 +84,7 @@ hence that cycle has a negative cost to it. It won't be zero because we only upd
 ---
 ### **Pathological Example**
 
-The following pathological example is credit to our professor, Dovan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
+The following pathological example is credit to our professor, Donavan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
 
 ![[../../Assets/Pasted image 20230224004932.png]]
 **Source:** UBCO, Prof Hare, 2023 Spring, Lecture slides. 
@@ -94,7 +94,9 @@ To get the worse update, always start with the longest path with sum over $2^n$ 
 ---
 ### **Modified Label Correcting Algorithm**
 
-The modified version proposes a different way of looking for an arc where the path optimality conditions are not satisfied. 
+The modified version order the nodes using a queue, where the tail of the queue stores the nodes whose distance label has been updated most recently updated by its neighbours. 
+
+**Algorithm**
 
 ```sql
 d(s) := 0; pred(s) := 0; 
@@ -114,7 +116,7 @@ WHILE{ L IS NOT EMPTY }
 END
 ```
 
-This algorithm is breed of the generic search algorithm and the previous generic label correcting algorithm. It can add the same vertex repeatedly, resulting in the same complexity class as the previous algorithm. It uses a generic search algorithm as the basis to locate a node first and then search for its neighbors. 
+It can add the same vertex repeatedly (due to $j$'s label being updated by multiple of its neighbors), resulting in the same complexity class as the previous algorithm. It uses a generic search algorithm as the basis to locate a node first and then search for its neighbors. 
 
 **Observations**
 
@@ -134,61 +136,99 @@ $$
 we make use of the fact that each of the label only comes into $L$ if its predecessor has been updated. The algorithm terminates by the monotone labeling property. I don't know of any pathological instances of choose $i$'s neighbors that can illustrate the worst case runtime. 
 
 ---
-### **Label Setting Algorithm: Bellman Ford**
+### **Label Correcting Algorithm: Bellman Ford**
 
-In the above modified label-correcting algorithm, we still have the choice of ordering when going over the set of all $(i, j)\in A$ to look for violation to the shortest path characterizations. And we make the following claim: 
+In the above modified label-correcting algorithm, we still have the choice of ordering when going over the set of all $(i, j)\in A$ to look for violation to the shortest path characterizations. A better strategies is to go over all the arcs at least once per "pass" to establish the shortest path. Doing this allows for a cooler proof that can construct the optimal path faster. 
 
-**Claim:  Complexity of Bellman Ford**
-> If we go over the list of edges in strict order every time the while loop repeats itself, then the algorithm has a complexity of $\mathcal O(mn)$. 
+**Algorithm**: 
 
-To show that, we need to show that the algorithm goes over exactly $n - 1$ passes for the set of arcs, $m$ of them. 
-
-**Lemma**: 
-> If we go over the edges in a fixed order each time the while loop repeats itself, then on the $k$ th iteration of the algorithm, the label $d(i)$ will be the shortest distance for all path that goes from $s$ to $j$ with less than or equal to $k$ many arcs. 
-
-**Proof of the Lemma**:
-
-We define the base case to be $d^{(0)}(j) = \infty$  when $j\neq s$, and then let $d^{(0)}(s) = 0$. The base case is the first execution of the algorithm. The while loop go over all the edges in order, it will update all $d^{(1)}(j)$ such that $(s, j)\in A$, and this is exactly all the possible path that using one arc or less that goes from $s$ to $j$. 
-
-**Inductive Hypothesis**
-> Inductively let's assume that the while loop at the $k$ th iteration establishes $d^{(k)}(j)$ as: "$d^{(k)}(j)$ denotes the cost of the shortest $s-j$ path that uses less than or equal to $j$ many arcs." 
-
-Suppose that the while loop is executing, fixed any $(i, j)\in A$, then there are 2 cases here: 
-1. The distance for $d^{(k + 1)}(j)$ is being updated to $d^{(k + 1)}(j) = c_{i, j} + d^{(k)}(i)$. 
-2. The distance is $d^{(k + 1)}(j) := d^{(k)}(j)$, not being updated yet. 
-
-If, there is an least cost path that goes from $s$ to $j$ with exactly $k + 1$ many arcs, then it can be decompose into a $s-i'$ path with exactly $k$ arcs, and an arc $(i' ,j)$, the $s-i'$ arc will be optimal and hence the edge $(i', j)$ will be updated by the while loop, by the optimality condition $d^{(k + 1)}(j)$ will also be optimal. 
-
-Else, there doesn't exist a path with a shorter cost such that it uses exactly $k + 1$ arcs, hence the least cost path still uses less than or equal to $k$ arcs, and in this case, $d^{(k + 1)}(j) = d^{(k)}(j)$ which is direct. 
-
-**Note:**
-
-The edge case where there doesn't exist any path from $s$ to $k$ had been coded into the algorithm through the numerical value $\infty$ of the distance label.  
-
-**Proof of the Claim**
-
-The longest path in the algorithm cannot use more than $n - 1$ arcs because a path has no repeating vertices, therefore, $d^{(n-1)}(j)$ has to be optimal for all $j\in N$ using the lemma. And hence the algorithm produce the optimal label after $n - 1$ iterations of the while loop, each while loop go over $m$ many arcs and setup the optimal condition using $\mathcal O(1)$, therefore the total complexity for the algorithm is $\mathcal O(mn)$. 
-
-**The Bellman Ford Algorithm**
-
-Algorithm Based On Arcs Scan: 
 ```SQL
 d(j) = Inf, FOR ALL j != s; 
 d(s) = 0; 
 FOR k = 1, ... , (n - 1): 
 	FOR ALL arc(i, j) IN A:  /*Odering of the arcs is not specified*/
-		d(i) := min(d(i), d(j) + c_{i, j}) /*The shortest path dist label is mutable */
+		d(i) := min(d(i), d(j) + c(i, j)) /*The shortest path dist label is mutable */
 	
 ```
-**Complexities**
 
-The outer for loop executes for $n$ times while the inner for loop executes for $n^2$, this gives a total of $\mathcal O(nm)$ complexity in total. The outer loop runs in $\mathcal O(n)$ and the inner loop runs in $\mathcal O(m)$. 
+**Algorithm with Predecessor Tree**: 
+```SQL 
+d(j) = inf, FOR ALL j != s; 
+d(s) = 0; 
+pred(j) = NULL FOR ALL j in N
+FOR k = 1,... , (n-1): 
+	FOR ALL arc(i, j) IN A: /*Again, in no particular order*/
+		if d(j) > d(i) + c(i, j): /*We refer to this step as: "relaxations"*/
+            pred(j) = i
+            d(j) = d(i) + c(i, j)
+```
+
+**Observations**
+
+Since the ordering of going over all the arcs is not specified, let's consider the case where the whole graph is just one path, $v_1, v_2, \cdots, v_n$, and we choose the arcs in the ordering of $(v_1,v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n)$, then the shortest path for all the vertices is updated in a single pass. If the ordering of the vertices are in reverse, then we would need $n-1$ passes to update all the labels correctly. Consequently, if all the arc has a cost of $1$, then  a BFS from the source is, one pass of Bellman Ford that establishes all the shortest path label in one pass. 
+
+Observe the according to algorithm, the update causes the labels of the nodes  decreases monotonically (not necessarily strictly) after each passing of the while loop. A proof is probably gonna assume the structure of the predecessor tree before the while loop update and then see how it's being updated. 
+
+**Quantities and Notations for the Proof**: 
+1. $d(i)$ denotes the optimal path length going from $s$ to $i$. 
+2. $P^+(i)$ denotes any of the paths with cost equals to $d(i)$. It's a collection of arcs or nodes depending on the context. 
+3. $l(i)$ denotes the label made by the Bellman Ford algorithm during execution of the algorithm. 
+
+
+**Theorem: $n-1$ Number of Iterations**: 
+> The algorithm can find all optimal labels at the end of $n-1$ iterations, if not there has to exist one negative cost cycles on the graph. This produces an over all complexity of $\mathcal O(mn)$. 
+
+**Proofs**: 
+
+We introduce an inductive hypothesis and a lemma. We will make use of the optimality path characterizations to prove things. 
+
+**Lemma 1: When Relaxations Stops**
+> It's always the case that $l(i) \ge d(i)$, if $l(i) = d(i)$, then it won't change for the future iterations of the algorithm assuming that there is no negative cost cycles on the graph. 
+
+**Proof**: 
+
+Since there is no negative cycles, we have $d(s) = 0$, and this is satisfied at the start of the algorithm with $d(s):= 0$ at the start of the algorithm. Further more, we have $d(i) = \infty$ for all $i\neq s$, which is the largest value possible. The because is true. 
+
+Inductively, after the $k$ th relaxations on node $i$ and the $K$ th iterations of the outer while loop , we have $l(i) \ge d(i)$. Then: 
+
+$$
+\begin{aligned}
+    l(i) &:= l(i') + c_{i', i}, 
+    \\
+    l(i) &\ge d(i') + c_{i', i} \text{ by } l(i') \ge d(i')
+    \\
+    l(i) &\ge d(i) \text{ by } d(i) = d(i') + c_{i', i}, \text{ By path optimaity condition}. 
+\end{aligned}
+$$
+
+The value $l(i) < d(i)$ is impossible, we didn't use the fact that no-negative cycle explicitly, it's used for the proof for the optimality path condition. If we ever have $d(i) = l(i)$, then for all $i'$ we have $d(i) \le d(i') + c_{i', i}$, by $d(i') \le l(i')$, we have $d(i) \le l(i')$ hence $l(i)\le l(i') + c_{i', i}$, the relaxation was never performed because the if state were never true. 
+
+
+**Inductive Hypothesis: Bellman Ford Relaxations**
+> WLOG Let $s-1-2- \cdots -k-\cdots -n$  be the actual shortest path from $s$ to $n$ with a length of $n$. Assuming that $l(i) = d(i)$ is optimal all the way up to $k$ (we can make this assumption), then after another iteration of the Bellman Ford, we at least have $l(k + 1) = d(k + 1)$. 
+
+**Proof**: 
+
+Assuming that: We finished the $K$ th iterations of the algorithm, and we are executingthe $K + 1$ th iterations of the algorithm. 
+
+By optimality of $l(i) \; \forall i = 1, \cdots, k$, the label is not changed (By Lemma), during the $K + 1$ th iteration of the algoritm. The arc $(k, k + 1)$ exists on the graph and it will be examed (By Bellmand Ford). Since $l(k) = d(k)$ is otpimal, we have $d(j) \ge l(k) + c_{k, j}\;\forall j$ (By Path Optimality), substituting $j = k + 1$, we have 2 possibilities: 
+
+1. Relaxation is not triggered, then we have $l(k + 1) = l(k) + c_{k, k + 1} = d(k + 1)$, by optimality of $l(k)$, the distance label is already optimal, perhaps the optimal path is non-unique. By the lemma, this label won't change any more in the future iteration and it's optimal. 
+2. If an update is performed with $l(k + 1) = l(k) + c_{k, k + 1}$, then the label is optimal by the optimality conditions of shortest path. 
+
+Under both cases, the label $l(k + 1)$ is optimal. The induction hypothesis holds true. 
+
+**Consideration of the Base case**: 
+
+We can make this assumption because at the start of the algorithm, for any $v_n$ in the graph such that its shortest path is $s, v_1, v_2, \cdots, v_n$, we have $d(s) = l(s) = 0$ being optimal, and the arc $(s, v_1)$ is relaxed. By optimality condition, the sub path $s- v_1$ is optimal, and hence an relaxtion of the arc $(s, v_1)$ will establish the label $l(v_1) = d(v_1)$ and this is not going to change for future iteration of the algorithm. 
 
 **Remarks**
 
-We can get the predecessor tree afterwards by checking for the tight dual constraints. Or we can choose to get the predecessor tree in the while loop, but that would give us some extra if statements.  
+About negative cycles. 
 
-The order of going over all the possible arcs is not specified, it seems like we can go over all the arcs in whatever order and the results will be the same, doing that might introduce improved heuristic into the algorithm. 
+**References:** 
+
+See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof that I found on the internet so far. Feels advohoc but it works I guess. 
 
 ---
 ### **Negative Cycle Checking**

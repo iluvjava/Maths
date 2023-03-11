@@ -9,7 +9,7 @@
 	- No negative cycles.
 	- No negative arcs.
 	- Single source. 
-- (Moore Bellman Ford Algorithm)[[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/FIFO Label Correcting Algorithm]] 
+- (Moore Bellman Ford Algorithm)[[Everything Network Flow/Shortest Path Label Correcting Algorithm]] 
 	- Negative Cycle Detections.
 	- Single Source.
 - (Floyd Warshall Shortest Path)[[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/All Pairs Shortest Paths]] 

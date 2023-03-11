@@ -306,16 +306,17 @@ Using strong duality, we can attain the conditions that:
 ### **Other More Advanced Classical Algorithms for Maximum Flow**
 
 - Ford Fulkerson: 
-  - Pseudo Polynomial, in $\mathcal O(mnC)$ where $C$ is the maxmum capacity for one of the arcs. 
+  - Pseudo Polynomial, in $\mathcal O(mnC)$ where $C$ is the maximum capacity for one of the arcs. 
   - Very generic. 
 - Edmonds Karp Algorithm: 
-  - It's just FordFulkerson but with BFS for Augmentng path identifications on the residual graph. 
+  - It's just Ford Fulkerson but with BFS for Augmenting path identifications on the residual graph. 
   - The complexity is $\mathcal O(|V||E|^2)$. 
 - [Dinic's Algorithm](https://en.wikipedia.org/wiki/Dinic%27s_algorithm):  
-  - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robostly undo the BFS search whenever an saturated arc has been created by the augmentin path. 
+  - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robustly undo the BFS search whenever an saturated arc has been created by the augmenting path. 
   - The complexity is $\mathcal O(|V|^2|E|)$. `
   - See [[Dinic's Algorithm]]
-- Delta Residual Graph Method: 
+- Capacity Scaling Method: 
   - Delete all the arcs with residual less than a certain threshold and do a path search for an augmenting path. 
   - If such a path doesn't exist, cut our lower bounds for the flow in half. It looks for the minimum of the maximum flow that doesn't exceed all the arcs's capacity on the residual graphs. 
-
+- [Preflow Push Algorithm](https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm)
+	- Make multiple flows from s to t each time. 
