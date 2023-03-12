@@ -1,4 +1,4 @@
-[[Maxflow Min Cut, Ford Fulkersson]]
+[[Maxflow Min Cut, Ford Fulkerson]]
 
 ---
 ### **Intro**

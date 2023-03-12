@@ -200,7 +200,7 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 There are many problems that can be reduced to the network flow problems: 
 1. [[LP for Source Tree Shortest Paths]]. 
-2. [[Maxflow Min Cut, Ford Fulkersson]]
+2. [[Maxflow Min Cut, Ford Fulkerson]]
 3. Tournament Problems. 
 4. Bipartite Assignment problems. 
 

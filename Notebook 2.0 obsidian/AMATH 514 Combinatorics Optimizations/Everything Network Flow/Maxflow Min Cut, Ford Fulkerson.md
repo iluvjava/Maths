@@ -214,7 +214,7 @@ $$
 \end{aligned}
 $$
 
-since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. Furthermore, the new changes to the vector must keep its feasibility, and that is the condition that $l \le x + \mathbf 1_P \le u$ comes into the picture. This feasibility conditions will construct the residual graph for the network flow problem. 
+since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. Furthermore, the new changes to the vector must keep its feasibility, and that is the condition that $l \le x + \mathbf 1_P \le u$ comes into the picture. This feasibility conditions will construct the residual graph for the network flow problem. We skip the details here and it's left as an exercise for the readers.
 
 
 ---

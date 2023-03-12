@@ -1,6 +1,5 @@
 - [[LP for Source Tree Shortest Paths]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. 
 
-
 ---
 ### **Intro**
 
@@ -165,14 +164,13 @@ FOR k = 1,... , (n-1):
 
 **Observations**
 
-Since the ordering of going over all the arcs is not specified, let's consider the case where the whole graph is just one path, $v_1, v_2, \cdots, v_n$, and we choose the arcs in the ordering of $(v_1,v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n)$, then the shortest path for all the vertices is updated in a single pass. If the ordering of the vertices are in reverse, then we would need $n-1$ passes to update all the labels correctly. Consequently, if all the arc has a cost of $1$, then  a BFS from the source is, one pass of Bellman Ford that establishes all the shortest path label in one pass. 
+Since the ordering of going over all the arcs is not specified, let's consider the case where the whole graph is just one path, $v_1, v_2, \cdots, v_n$, and we choose the arcs in the ordering of $(v_1,v_2), (v_2, v_3), \cdots, (v_{n - 1}, v_n)$, then the shortest path for all the vertices is updated in a single pass. If the ordering of the vertices are in reverse, then we would need $n-1$ passes to update all the labels correctly. Consequently, if all the arc has a cost of $1$, then  a BFS from the source is, one pass of Bellman Ford that establishes all the shortest path label in one pass. Even worse, if we know in advance what the predecessor tree is, we can just take the arcs from the predecessor tree to establish the shortest path in one iteration of Bellman Ford.
 
 Observe the according to algorithm, the update causes the labels of the nodes  decreases monotonically (not necessarily strictly) after each passing of the while loop. A proof is probably gonna assume the structure of the predecessor tree before the while loop update and then see how it's being updated. 
 
 **Quantities and Notations for the Proof**: 
 1. $d(i)$ denotes the optimal path length going from $s$ to $i$. 
-2. $P^+(i)$ denotes any of the paths with cost equals to $d(i)$. It's a collection of arcs or nodes depending on the context. 
-3. $l(i)$ denotes the label made by the Bellman Ford algorithm during execution of the algorithm. 
+2. $l(i)$ denotes the label made by the Bellman Ford algorithm during execution of the algorithm. 
 
 
 **Theorem: $n-1$ Number of Iterations**: 
@@ -203,24 +201,27 @@ $$
 
 The value $l(i) < d(i)$ is impossible, we didn't use the fact that no-negative cycle explicitly, it's used for the proof for the optimality path condition. If we ever have $d(i) = l(i)$, then for all $i'$ we have $d(i) \le d(i') + c_{i', i}$, by $d(i') \le l(i')$, we have $d(i) \le l(i')$ hence $l(i)\le l(i') + c_{i', i}$, the relaxation was never performed because the if state were never true. 
 
-
 **Inductive Hypothesis: Bellman Ford Relaxations**
-> WLOG Let $s-1-2- \cdots -k-\cdots -n$  be the actual shortest path from $s$ to $n$ with a length of $n$. Assuming that $l(i) = d(i)$ is optimal all the way up to $k$ (we can make this assumption), then after another iteration of the Bellman Ford, we at least have $l(k + 1) = d(k + 1)$. 
+> WLOG Let $s-1-2- \cdots -k-\cdots -n$  be the actual shortest path from $s$ to $n$ with a length of $n$. Assuming that $l(i) = d(i)$ is optimal all the way up to $k$ (we can make this assumption), then after another iteration of the Bellman Ford, we at least have $l(k + 1) = d(k + 1)$, at worst. 
 
 **Proof**: 
 
-Assuming that: We finished the $K$ th iterations of the algorithm, and we are executingthe $K + 1$ th iterations of the algorithm. 
+*Assuming that*: We finished the $K$ th iterations of the algorithm, and we are executing the $K + 1$ th iterations of the algorithm. 
 
-By optimality of $l(i) \; \forall i = 1, \cdots, k$, the label is not changed (By Lemma), during the $K + 1$ th iteration of the algoritm. The arc $(k, k + 1)$ exists on the graph and it will be examed (By Bellmand Ford). Since $l(k) = d(k)$ is otpimal, we have $d(j) \ge l(k) + c_{k, j}\;\forall j$ (By Path Optimality), substituting $j = k + 1$, we have 2 possibilities: 
+By optimality of $l(i) \; \forall i = 1, \cdots, k$, the label is not changed (By Lemma), during the $K + 1$ th iteration of the algorithm. The arc $(k, k + 1)$ exists on the graph and it will be exam (By Bellman Ford). Since $l(k) = d(k)$ is optimal, we have $d(j) \ge l(k) + c_{k, j}\;\forall j$ (By Path Optimality), substituting $j = k + 1$, we have 2 possibilities: 
 
-1. Relaxation is not triggered, then we have $l(k + 1) = l(k) + c_{k, k + 1} = d(k + 1)$, by optimality of $l(k)$, the distance label is already optimal, perhaps the optimal path is non-unique. By the lemma, this label won't change any more in the future iteration and it's optimal. 
+1. Relaxation is not triggered, then we have $l(k + 1) = l(k) + c_{k, k + 1} = d(k + 1)$, by optimality of $l(k)$, the distance label is already optimal, perhaps the optimal path is non-unique, or perhaps the ordering of the arcs has already establish optimality beyond the first $k + 1$ nodes in this path. By the lemma, this label won't change any more in the future iteration and it's optimal. 
 2. If an update is performed with $l(k + 1) = l(k) + c_{k, k + 1}$, then the label is optimal by the optimality conditions of shortest path. 
 
 Under both cases, the label $l(k + 1)$ is optimal. The induction hypothesis holds true. 
 
 **Consideration of the Base case**: 
 
-We can make this assumption because at the start of the algorithm, for any $v_n$ in the graph such that its shortest path is $s, v_1, v_2, \cdots, v_n$, we have $d(s) = l(s) = 0$ being optimal, and the arc $(s, v_1)$ is relaxed. By optimality condition, the sub path $s- v_1$ is optimal, and hence an relaxtion of the arc $(s, v_1)$ will establish the label $l(v_1) = d(v_1)$ and this is not going to change for future iteration of the algorithm. 
+We can make this assumption because at the start of the algorithm, for any $v_n$ in the graph such that its shortest path is $s, v_1, v_2, \cdots, v_n$, we have $d(s) = l(s) = 0$ being optimal, and the arc $(s, v_1)$ is relaxed. By optimality condition, the sub path $s- v_1$ is optimal, and hence a relaxation of the arc $(s, v_1)$ will establish the label $l(v_1) = d(v_1)$ and this is not going to change for future iteration of the algorithm. 
+
+**Proof of the Theorem**
+
+By the inductive hypothesis we know that, at least, the first $k$ nodes in the optimal path from $s$ to any vertices is optimal after the $k$ th iteration. Since there are no s-t paths longer than $n-1$ vertices (by property of path and the fact that we don't have negative cycles), the algorithm must stop updating all the labels after $n-1$ iterations, in the worst case. 
 
 **Remarks**
 
@@ -228,7 +229,7 @@ About negative cycles.
 
 **References:** 
 
-See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof that I found on the internet so far. Feels advohoc but it works I guess. 
+See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof that I found on the internet so far. Feels ad hoc but it works I guess. 
 
 ---
 ### **Negative Cycle Checking**
@@ -249,7 +250,7 @@ For the Modified Generic Labeling algorithm, we can just perform it more than $n
 ---
 ### **FIFO Labeling Algorithm | $\mathcal O(mn)$**
 
-The FIFO labeling algorithm by checking a subset of the arcs based on the previously updated nodes. This algorithm is slightly faster than Bellmand Ford algorithm. 
+The FIFO labeling algorithm by checking a subset of the arcs based on the previously updated nodes. It avoids updating on labels on the nodes such that the label is already optimal. This algorithm is slightly faster than Bellman Ford algorithm. 
 
 **Algorithm Pseudo Code**: 
 
