@@ -4,16 +4,16 @@
 ---
 ### **Intro**
 
-This is the key for duality. We state the theorem straight away and then prove it: 
+A characterization of minimal and the solution for the minimization problem under the assumption that, the function is in the form of the sum o 2 functions, $f, g$ where $f$ is differentiable and $g$ is convex and sub-differentiable. 
 
 **Theorem: Minimizing a Sum**
-> Let f be proper on $X$, and let g be convex,, l.s.c and proper. Consider the problem (P) of minimizing $f + g$ we have: 
+> Let f be proper on $X$, and let g be convex, l.s.c and proper. Consider the problem (P) of minimizing $f + g$ we have: 
 > 1. if $x^+$ is a local minimizer of (P), and f is differentiable at $x^+$ then $- \nabla f(x^+) \in \partial g(x^+)$. 
 > 2. If f is convex and differentiable at $x^+\in \text{dom}(g)$ then $x^+$ is a global minimizer of (P) iff $- \nabla f(x^+) \in \partial g(x^+)$. 
 
 **First Observations**
 
-The first conditions is a necessary conditions for having potential a miniizer, the second condition is the sufficient conditions. See remarks about the case when $x\not\in \text{dom } g$. 
+The first conditions is a necessary conditions for having potential a minimizer, the second condition is the sufficient conditions. See remarks about the case when $x\not\in \text{dom } g$. 
 
 **Proof (1.)**
 
@@ -54,7 +54,7 @@ The $\implies$ direction is handled by $x^+$ is an global minimizer then it is a
 
 **Remarks**: 
 
-When one assume that $g$ is the indicator function for some convex set $C$, then the above sufficient/necessary conditions for minimizer $x^+$ becomes $-\nabla f(x^+) \in N_C(x^+)$, where, the gradient of the optimal on function $f$ is now in the normal cone of the convex constrain at the optimal point $x^+$. Under the spacial case where $f(x^+) = \mathbf 0$, we attain $x^+\in C$. If this is not the case, then $\nabla f(x)\neq \mathbf 0$ for all $x\in C$ hence the minimizer has to satisfies that $-\nabla f(x^+) \in N_C(x^+)$ and $x^+$ has to be on the boundary of $C$ because $N_C(x)  \{\mathbf 0\}\;\forall x \in \text{int}(C)$ by the property of [[../Background/Normal Cone]]. 
+When one assume that $g$ is the indicator function for some convex set $C$, then the above sufficient/necessary conditions for minimizer $x^+$ becomes $-\nabla f(x^+) \in N_C(x^+)$, where, the gradient of the optimal on function $f$ is now in the normal cone of the convex constrain at the optimal point $x^+$. Under the spacial case where $f(x^+) = \mathbf 0$, we attain $x^+\in C$. If this is not the case, then $\nabla f(x)\neq \mathbf 0$ for all $x\in C$ hence the minimizer has to satisfies that $-\nabla f(x^+) \in N_C(x^+)$ and $x^+$ has to be on the boundary of $C$ because $N_C(x) = \{\mathbf 0\}\;\forall x \in \text{int}(C)$ by the property of [[../Background/Normal Cone]]. 
 
 
 **References**: Heinz class at UBCO, Theorem 15.1 course notes. 

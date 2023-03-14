@@ -128,7 +128,7 @@ $$
 \end{aligned}
 $$
 
-where the $\lambda$ is the quantity taken from the necessary conditions of the KKT, then $h$ is a convex function by the dual feasibility, and from the subgradient sum rule (weak sum rule) and the staionarity, we attain: 
+where the $\lambda$ is the quantity taken from the necessary conditions of the KKT, then $h$ is a convex function by the dual feasibility, and from the subgradient sum rule (weak sum rule) and the stationary, we attain: 
 
 $$
 \begin{aligned}

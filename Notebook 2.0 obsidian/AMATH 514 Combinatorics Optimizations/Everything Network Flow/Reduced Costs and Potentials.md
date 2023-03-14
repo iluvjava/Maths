@@ -40,11 +40,53 @@ Reduced costs seems to be related to the $(y_2)_{i,j}$ decision variable in the 
 
 > Minimum cost flow problem with arc costs $c^{(p)}_a$ and $c_{i,j}$ have the same optimal solutions. More over, $z(p) = z(0) - \langle p, b\rangle$. 
 
-
 **Proof**: 
 
-#UNFINISHED
+To see this, we let $x$ be an optimal solution, we consider the difference between 2 type of costs, and we show that their difference is a constant. For simplicity I write $c'$ for $c^{(p)}$, the reduced costs induced by the potential assignemnts on the nodes. 
 
+$$
+\begin{aligned}
+    \sum_{(i, j) \in A}^{}
+        c_{i, j}x_{i,j} - c'_{i, j}x_{i, j} 
+    &= 
+    \sum_{(i, j) \in A}^{}
+        x_{i, j}(c_{i, j} - c'_{i, j})
+    \\
+    &= 
+    \sum_{(i, j) \in A}^{}x_{i, j}(p_i - p_j)
+    \\
+    &= \sum_{(i, j) \in A}^{}x_{i, j}p_i
+    + 
+    \sum_{(i, j) \in A}^{} x_{i,j}p_j
+    \\
+    &= \sum_{i\in N}^{}\sum_{j: (i, j)\in A}^{}
+    p_ix_{i, j} + 
+    \sum_{j\in N}^{}
+    \sum_{i:(i, j)\in A}^{}p_jx_{i, j}
+    \\
+    &= 
+    \sum_{k\in N}^{}\sum_{j:(k, j)\in A}^{}
+    p_kx_{k, j} + 
+    \sum_{k\in N}^{}
+    \sum_{i:(i, k)\in A}^{} p_kx_{i, k}
+    \\
+    &= 
+    \sum_{k\in N}^{}p_k\sum_{j:(k, j)\in A}^{} x_{k, j} + 
+    \sum_{k\in N}^{}
+    p_k\sum_{i:(i, k)\in A}^{} x_{i, k}
+    \\
+    &= \sum_{k\in N}^{}p_k
+    \left(
+        \sum_{(k, j)\in A}^{}x_{k, j} +
+        \sum_{(i, k)\in A}^{}x_{i, k}
+    \right)
+    \\
+    &= \sum_{k \in N}^{}`
+    p_k b_k = \langle p, b\rangle, 
+\end{aligned}
+$$
+
+which is a constant, and this is true for all flows on the graph, therefore, the optimal for cost $c$, and the optimal for $c'$ is the same solution. 
 
 **Theorem: Potential of Directed Cycles and Paths**
 

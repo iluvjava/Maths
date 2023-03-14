@@ -81,7 +81,9 @@ $$
 hence that cycle has a negative cost to it. It won't be zero because we only update the label $d(j)$ if $d(j) < d(i) + c_{i, j}$, which is a strict inequality. 
 
 ---
-### **Pathological Example**
+### **Pathological Examples**
+
+**Example 1**
 
 The following pathological example is credit to our professor, Donavan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
 
@@ -90,10 +92,17 @@ The following pathological example is credit to our professor, Donavan Hare at U
 
 To get the worse update, always start with the longest path with sum over $2^n$ for all $0\le n \le 2^k$. Each time, shorten the destinations on the path by exactly one, giving us an exponential complexity (choosing the alternative of $2^1$ at the right most node). 
 
+**Example 2**
+
+![[../../Assets/Pasted image 20230313233556.png]]
+
+**Source:** 
+The network flow algorithm textbook. 
+
 ---
 ### **Modified Label Correcting Algorithm**
 
-The modified version order the nodes using a queue, where the tail of the queue stores the nodes whose distance label has been updated most recently updated by its neighbours. 
+The modified version order the nodes using a queue, where the tail of the queue stores the nodes whose distance label has been updated most recently updated by its neighbors. 
 
 **Algorithm**
 
