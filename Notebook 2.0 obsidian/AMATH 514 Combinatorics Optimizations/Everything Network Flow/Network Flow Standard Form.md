@@ -103,7 +103,7 @@ $$
 **Claim:** 
 > Let $C$ denoted a closed directed walk on the graph, then vector $\mathbf 1_C$ is in the null space of the incidence matrix $M$. 
 
-WLOG (general up to a permultation of vertices), let the arc collection $C$ be defined as: $(v(1), v(2)), (v(2), v(3)), \cdots, (v(k - 1), v(k)), (v(k), v(1))$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. More precisely: 
+WLOG (general up to a permutation of vertices), let the arc collection $C$ be defined as: $(v(1), v(2)), (v(2), v(3)), \cdots, (v(k - 1), v(k)), (v(k), v(1))$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. More precisely: 
 
 $$
 \begin{aligned}
@@ -121,8 +121,32 @@ $$
 
 a simple application of the column view of the incidence matrix and the telescoping series on these basis vector. 
 
+**Corollary: Non-directed Cycles their Indicator Vector**
 
-**claim**: 
+> On a directed graph, we make $\mathbf 1_C$(not necessarily positive this time) represent an nondirected cycles, and let $C$ be a collection of arcs on that cycles, then we would still be able to define the flow: 
+> $$
+> \begin{aligned}
+>     (\mathbf 1_C)_a = 
+>     \left.
+>     \begin{cases}
+>         1 & a \in C 
+>         \\
+>         -1 & a^{-1} \in C
+>         \\
+>         0 & \text{else}
+>     \end{cases}
+>     \right\rbrace \quad \forall a \in C, 
+> \end{aligned}
+> $$
+> Here we denote $a^{-1}$ as the reverse arc of $a$. $M \mathbf 1_C = \mathbf 0$ as well. 
+
+
+**Remarks**: 
+
+This is extremely useful for stuff on the residual graph. A direction along the arc implies adding some amount on existing feasible flow, and the direction against the arc implies removing flow on those arcs. 
+
+
+**Claim**: 
 > Let $W$ denote a $i-j$ walk on the graph, then $M \mathbf 1_W = \e_i - \e_j$
 
 The justification is very similar to what we had for the closed directed walk, we won't repeat. 
@@ -191,7 +215,15 @@ the LHS of the $\ge$ is the reduced costs. If we were to solve the problem using
 
 suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight, hence $c_{i, j} - (y_1)_i + (y_1)_j > 0$, then the dual of the dual, the primal, must have its variable equal to zero to satisfies the complementary slackness, e.g: $(c_{i, j} - (y_1)_i + (y_1)_j)x_{i, j} = 0$, since $x_{i, j}\ge 0$ by virtual of the network standard form, we conclude that $x_{i, j} = 0$. 
 
-**Optimality Conditions and Negative Costs Cycles**
+**Theorem: Optimality Conditions and Negative Costs Cycles**
+
+> $x^+$ is feasible for a minimum cost network flow problem if and only if the residual network $G(x^+)$, contains no negative cost directed cycles. 
+
+**Proof**: 
+
+The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. #UNFINISHED
+
+**References**: Theorem 3.8 in the Network Algorithms Textbook. 
 
 
 

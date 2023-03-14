@@ -121,3 +121,8 @@ If it's discovered that $d(i) + c_{i, j} < d(j)$ inside the iff statement, then 
 **References**: 
 
 MATH 409, at UW, Discrete Optimization Course notes, AND Combinatorics optimization MATH 604C at UBCO, Networkflow Theory, Algorithms and Applications. 
+
+
+**Complexity | No Proof**: 
+
+>The complexity of Dijkstra using a binary heap implementation is $\mathcal O((|V| + |E|)\log (|V|))$. 

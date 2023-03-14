@@ -223,9 +223,6 @@ We can make this assumption because at the start of the algorithm, for any $v_n$
 
 By the inductive hypothesis we know that, at least, the first $k$ nodes in the optimal path from $s$ to any vertices is optimal after the $k$ th iteration. Since there are no s-t paths longer than $n-1$ vertices (by property of path and the fact that we don't have negative cycles), the algorithm must stop updating all the labels after $n-1$ iterations, in the worst case. 
 
-**Remarks**
-
-About negative cycles. 
 
 **References:** 
 
@@ -280,7 +277,9 @@ This algorithm only update $d(j)$ when the incoming arcs of node $j$ corresponds
 
 The algorithm is equivalent to the Generic label correcting algorithm where, $L$ is a queue and we always dequeue from the from and add the nodes with changed labels back to the tail of the queue. Whenever it's empty, then the algorithm can terminates and returns the optimal labels for each node. 
 
-**Theorem**: 
+**Theorem | Proof Of Correctness**: 
 
 > The FIFO label correcting algorithm executes for at most $n-1$ iterations, and that is enough to find all the correct distances labels on the graph if there is no negative cost cycles. 
+
+We first establishes some notation, and quantities for the proof before we start proving it. 
 

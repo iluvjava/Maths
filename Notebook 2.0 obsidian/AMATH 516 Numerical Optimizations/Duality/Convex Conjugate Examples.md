@@ -12,7 +12,7 @@ Here we will be packing a bunch of good examples with proofs, so it can serve as
 
 **Definition of Fenchel Conjugate Transform** 
 
-> Given scalar function $f(x)$, preferably convex, the fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
+> Given scalar function $f(x)$, preferably convex, the Fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
 > $$
 > f^{\star} (z) = \sup_x \left\lbrace
 >     z^Tx + f(x)

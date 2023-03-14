@@ -48,7 +48,7 @@ where $x$ is the vector, when indexed by arc: $x_{i, j}$ represents the amount o
 **Reduction to Minimum cost Network Flow**: 
 
 - Make zero cost on all the arcs and $0$ mass balance constraints on all the nodes $i\neq s, t$; 
-- Make the mass balance constaint on vertex $s, t$ with $b_s = 1$ and $b_t = -t$,
+- Make the mass balance constraint on vertex $s, t$ with $b_s = 1$ and $b_t = -t$,
 - Join an arc $(s, t)$ with infinite capacity (or something that is large enough for sure) and a cost of $-1$, 
 
 Then a solution to the minimum costs flow in the transformed graph is equivalent to the solution for the maximum flow problem. 
@@ -57,11 +57,11 @@ Then a solution to the minimum costs flow in the transformed graph is equivalent
 
 Given a network flow problem with mass balance in standard form. Let sum of $b_i$ equals to zero. We look for a feasibility solution of the network using Maxflow Mincut. Modify the graph using the following transformation: 
 
-- $b_i < 0$ then $i$ is a surplus node, else $b_i > 0$, whic will be a deficit node. $b_i = 0$ is a circulation nodes and we ignore it for now. 
+- $b_i < 0$ then $i$ is a surplus node, else $b_i > 0$, which will be a deficit node. $b_i = 0$ is a circulation nodes and we ignore it for now. 
 - Then by creating a new node $s$ that connects to all $i$ such that it's a surplus node with $(s, i)$ with arc capacity $b_i$
-- Create a node $t$ where all nodes $i$ with surplus has arc $(i, t)$ created with capacity $b_i$. 
+- Create a node $t$ where all nodes $i$ with deficit has arc $(i, t)$ created with capacity $b_i$. 
 
-Then a maximum flow on the new graph that balance all the nodes with deficit meaning that the s-t cut is $S = {s}$, then a feasible solution will be identified, after ignoring the modifications made to the original graph. 
+Then a maximum flow on the new graph that balance all the nodes with deficit meaning that the s-t cut is $S = {s}$, then a feasible solution will be identified, after ignoring the modifications made to the original graph, assuming that the mass balance constraints for all vertices sums up to one. 
 
 **References:**
 
@@ -71,7 +71,7 @@ Chapter 6 of the networkflow theory and algorithm textbook.
 ### **The Residual Graph**
 
 The residual flow denoted by $r_{i, j}$ represents the additional amount of flows that can be sent on arc $(i, j)$. Let $a=(i, j)\in A$ denotes the arc in the graph, and let $a^{-1}:=(j, i)$ be the arc pointing in the inverse direction, then Given any feasible flow $x_{a}$ on the original graph, we define residual capacity: 
-- $r_{a} = u_{a} - x_{a}$, remaining Capcity that can be sent over. 
+- $r_{a} = u_{a} - x_{a}$, remaining capacity that can be sent over. 
 - $r_{a^{-1}} =x_{a}$, amount of flow that we can reduce along the direction $a$. 
 
 Observe that: 
@@ -171,9 +171,13 @@ and this completed the proof that, all the flow inside of $S$ equals to (Flow ou
 
 
 ---
+### **Derivations of Residual Capacity**
+
+
+---
 ### **Ford Fulkerson Algorithm**
 
-The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. We describes it in Psuedo code as: 
+The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. We describes it in Pseudo code as: 
 ```SQL
 WHILE DiPath P(s, t) IN G(x):
     FIND DiPath P = P(s, t); 
@@ -232,7 +236,8 @@ These theorems uses observations about the Ford Fulkerson to characterize the op
 > The Ford Fulkerson algorithm solves the maximum flow problem in $O(mn U)$ where $U = \max_{a\in A} u_a$.
 
 **Proof**:
-Each path find is bouned by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
+
+Each path find is bounded by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
 
 ----
 ### **Dual LP and Its Interpretations**
