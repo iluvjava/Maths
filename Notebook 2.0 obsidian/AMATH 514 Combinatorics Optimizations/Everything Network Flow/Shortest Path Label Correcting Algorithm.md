@@ -102,7 +102,7 @@ The network flow algorithm textbook.
 ---
 ### **Modified Label Correcting Algorithm**
 
-The modified version order the nodes using a queue, where the tail of the queue stores the nodes whose distance label has been updated most recently updated by its neighbors. 
+The modified version order the nodes using a list. We add all neighbors of any chosen node in the list, and then add those nodes back to the list. 
 
 **Algorithm**
 
@@ -270,7 +270,7 @@ itr = 0;
 WHILE q1 NOT EMPTY && itr++ < |N|
     q1_next = {}
     FOR i IN q1
-        FOREACH (i, j) IN A(i) in INCREASING ORDER OF j
+        FOREACH j IN A(i) in INCREASING ORDER OF j
             IF d(j) > d(i) + c(i, j)
                 d(j) := d(i) + c(i, j);
                 pred(j) := i;

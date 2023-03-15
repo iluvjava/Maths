@@ -124,7 +124,7 @@ We attained the following error bound estimate from the previous proof:
 
 $$
 \begin{aligned}
-    & d(x_m, x) \le \frac{\alpha^2}{1 - \alpha} \delta(x_0, x_1); 
+    & d(x_m, x) \le \frac{\alpha^m}{1 - \alpha} d(x_0, x_1); 
     \\
     & d(x_m, x) \le \frac{\alpha}{1 - \alpha}d(x_{m - 1}, x_m), 
 \end{aligned}
@@ -148,3 +148,15 @@ assuming that the metric space is complete, and the mapping for the fixed point 
 **Proof**: 
 #UNFINISHED
 
+
+### **Examples**
+
+**Contraction, Differentiable 1D**
+> Let $T:[a, b]\mapsto [a, b]$, a differentiable mapping in 1D, and $\sup_{x\in [a, b]}|T'x| < 1$, then $T$ is a contraction. 
+
+**Proof**: 
+
+It's directly from the mean value theorem of calculus. 
+
+**Remarks**
+Just by the condition that $\sup_{x\in[a, b]}|T'x| < 1$, we won't be able to assert the contraction in the converse case, we need the self-map property. Derivative got rid of a constant. 

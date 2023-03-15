@@ -37,7 +37,7 @@ $$
 \end{aligned}
 $$
 
-Here, the choice of $w$ is in between $(1, 2]$. That is a resonable range to paramaterize the above equation. Finally the above equation can be put into an iterative formula as: 
+Here, the choice of $w$ is in between $(1, 2]$. That is a reasonable range to paramaterize the above equation. Finally the above equation can be put into an iterative formula as: 
 
 $$
 \begin{aligned}
@@ -53,14 +53,16 @@ $$
 \end{aligned}
 $$
 
-This is directly the Gauss Sediel Method. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to backsolve than than using the inverse.  
+This is directly the Gauss Sediel Method. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to back solve than than using the inverse.  
 
 **Note:** Different conventions of naming these quantities exists sometimes $w$ above is actually the $w^{-1}$ in some literature. 
+
+**References**: Greenbaum's 2021 class, and her Iterative Method book. 
 
 ---
 ### **Intuitive Understanding of the Matter**
 
-To gain a better understanding, we haev to simplifies the system into another form. 
+To gain a better understanding, we have to simplifies the system into another form. 
 
 $$
 \begin{aligned}

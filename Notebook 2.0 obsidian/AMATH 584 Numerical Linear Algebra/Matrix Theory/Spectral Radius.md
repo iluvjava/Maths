@@ -7,7 +7,7 @@ Reference: Intro part of the book: \<Iterative Method for Linear System\>
 
 The spectral Radius of a square matrix the absolute value of its eigenvalue. 
 
-> $$\rho(A) = \max\{\lambda: \text{It is an eigen value of } A\}$$
+> $$\rho(A) = \max\{|\lambda|: \text{It is an eigen value of } A\}$$
 
 
 ---
@@ -35,9 +35,8 @@ $$
 $$
 
 
-
 > $$
-> \forall\; \epsilon > 0 \;\exists \;\Vert \bullet\Vert: \rho(A)\le  
+> \forall\; \epsilon > 0 \;\exists \;\Vert \cdot\Vert: \rho(A)\le  
 >  \Vert A\Vert \le \rho(A) + \epsilon
 > $$
 > We can define a norm, an induced norm that is as close to the spectral radius as possible. 

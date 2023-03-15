@@ -6,7 +6,7 @@
 Using the topology of a metric space and the metric together with real analysis, we can model the convergence some entities in the metric space, algebraic or not, using the definition of the metric. As usual, we define the concept of an epsilon ball vicinity $\mathbb B_r(x) = \{y| d(x, y) < r\}$ to be the point that is $r$ distance away for the given metric. 
 
 **Definition: Convergence in Metric Space**
-> Let $(X, d)$ be metric space, $(x_n)_{n\in \mathbb N}\rightarrow x_\infty$ if for all $\epsilon > 0$ there exists $N$ such that $n\ge N$ implies $d(x_n, x_\infty)\le \epsilon$ . 
+> Let $(X, d)$ be metric space, a sequence $(x_n)_{n\in \mathbb N}\rightarrow x_\infty$ if for all $\epsilon > 0$ there exists $N$ such that $n\ge N$ implies $d(x_n, x_\infty)\le \epsilon$ . 
 
 **Observations**: 
 
@@ -14,7 +14,7 @@ The metric $d$ is used, A topological interpretation can be involved saying that
 
 **Remarks**
 
-Convergence in the metric never implies the existence of $x_\infty$ in the space $X$. *Completeness* is a stronger conditions on the underlying metric that ensure the limit of the sequence in the metric is indeed in the set $X$. Convergence in one metric doesn't imply convergence in another, but it will be true if the metrics are equivalent. [^1]
+Convergence in the metric never implies the existence of $x_\infty$ in the space $X$, it only asserts the metric $d(x_n, x_\infty)$ is bounded. *Completeness* is a stronger conditions on the underlying metric that ensure the limit of the sequence in the metric is indeed in the set $X$. Convergence in one metric doesn't imply convergence in another, but it will be true if the metrics are equivalent. [^1]
 
 [^1]: See [[Metric Space Introduction]] for more. 
 
@@ -34,12 +34,46 @@ Convergence in the metric never implies the existence of $x_\infty$ in the space
 It's direct by choosing a specific $\epsilon$ from the definition of convergence sequence in metric space. 
 
 **Proof(2.)**:
+Directly from the definition of a metric, we have: 
 
 $$
 \begin{aligned}
-    d(x_n, )
+    d(x_n, y_n) &\le d(x_n, x) + d(x, y) + d(y, y_n)
+    \\
+    \implies 
+    d(x_n, y_n) - d(x, y) &\le 
+    d(x_n, x) - d(y, y_n)
+    \\[1em]
+    d(x, y) &\le d(x, y_n) + d(y_n, y)
+    \\
+    &\le d(x, x_n) + d(x_n, y_n) + d(y_n, y)
+    \\
+    d(x, y) - d(x_n, y_n) & \le d(x, x_n) - d(y_n, y), 
 \end{aligned}
 $$
+
+therefore we can conclude that: 
+
+$$
+\begin{aligned}
+    \underset{n\rightarrow \infty}{\lim\sup}
+    (d(x_n, y_n) - d(x, y)) 
+    &\le \lim_{n\rightarrow \infty} d(x_n, x) - d(x, y_n)
+    \\
+    \underset{n\rightarrow \infty}{\lim\inf}
+    (d(x_n, y_n) - d(x, y)) \ge & \lim_{n\rightarrow \infty}d(y_n, y) - d(x, x_n)  = 0, 
+\end{aligned}
+$$
+
+andtherefore, we have the limitof $d(x_n, y_n)\rightarrow d(x, y)$, if, both the quantities approach their respective limits. 
+
+**Proof(3.)**: Choose a $\epsilon > 0$ then by the definition of convergence in metric space, we have $d(x, x_n)\le \epsilon$, $d(x, x_m) \le \epsilon$ for some $\min(m, n) > N_\epsilon$. So then by triangle inequality of metric, we have $d(x_m, x_n) \le d(x_m, x) + d(x, x_n)$, and by convergence and non-negativity property of metric, we have $d(x_m, x_n) \le 2 \epsilon$, so we are ok here. 
+
+**Theorem: Sequential Limit Characterizations of Closure**
+> Let $M\subseteq X$, then $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)_{n\in \mathbb N}\in M$, such that $x_n\rightarrow x$. 
+
+**Proof**: 
+Firstly we state the fact $M \subseteq \text{cl}(M)$. If $x\in M$, then by definition is already in $\text{cl}(M)$, otherwise, let $x\in \text{cl}(M)\setminus M$, by definition of closure, we can select from the set $\mathbb B_{1/n}(x)\cap M$, therefore, constructing a convergence sequence. The other direction of $\impliedby$ is kinda easy to see. 
 
 **Theorem: Complete Subspace is Characterized by Closure**
 > Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.

@@ -6,7 +6,15 @@
 ---
 ### **Intro**
 
-Separability, Denseness, and completeness of the Metric Spaces and their derivatives. For the introduction, we define some of the concepts and then use theorems to paint a better picture for the topologies inside of a metric space.
+Separability, Denseness, and completeness of the Metric Spaces and their derivatives. For the introduction, we define some of the concepts and then use theorems to paint a better picture for the topologies inside of a metric space. To start define a metric ball: 
+
+$$
+\begin{aligned}
+	\mathbb B_r(\bar x|X) &= \{x\in X| d(x, \bar x) \le r\}
+	\\
+	\overline{\mathbb B}_r(\bar x|X) &= \text{cl}(\mathbb B_r(\bar x|X))
+\end{aligned}
+$$
 
 
 To start, we define the concept of vicinity around any "point" in the metric space. Given $(X, d)$, we then define 
@@ -17,19 +25,24 @@ To start, we define the concept of vicinity around any "point" in the metric spa
 **Definition: A Closed Set**
 > $A\subseteq X$ is closed when $X\setminus A$ is open. 
 
+**Remarks**: 
+
+Sometimes we need the convergence in a metric space to characterize the property of a closed set, see [[Convergence, Completeness in Metric Space]]. 
+
 **Definition: Dense Subset**
 
 > A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
 
 **Definition: An Accumulation Point**
 
->Let $M\subseteq X$, with $x_0\in X$, $x_0$ is an accumulation point if for all $\epsilon > 0$, we have $\mathbb B_\epsilon(x_0)\setminus \{x_0\} \neq \emptyset$. 
+>Let $M\subseteq X$, with $x_0\in X$, $x_0$ is an accumulation point of M if for all $\epsilon > 0$, we have $\mathbb B_\epsilon(x_0|M)\setminus \{x_0\} \neq \emptyset$. 
 
+**Observations**: 
 
-**Observation**
+- It's saying that the element $x_0$ is an accumulation point when it has neighbors in the subset $M$ that are infinitely close to itself. 
 - The accumulation point of a set doesn't have to be in that set $M$, but it does have to be in the background set $X$. 
-- It has to have some other neighbors in $M$ that is as close we want them to be $M$. 
-- This is not exactly the same as the definition of a limit point in real analysis as that one doesn't require the point to be part of the subset $A\subseteq \mathbb R$. 
+- It has to have some other neighbors that are not itself in $M$ that is as close we want them to be. 
+- This is not exactly the same as the definition of a limit point in real analysis as that one doesn't require the point to be excluded $A\subseteq \mathbb R$. 
 - If the union of all limit points of $A$ is the same as background set $X$, then the set $A\subseteq X$ is dense in the set $X$. 
 
 
@@ -42,8 +55,9 @@ To start, we define the concept of vicinity around any "point" in the metric spa
 
 This theorem is analogous to the limit point in the real line, hence we are skipping the proof here. 
 
-**Example:**
-The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any accumulation point because all the points in the set is a singleton. 
+**Example: No Accumulation Points**
+
+The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any accumulation point because all the points in the set are all singletons. 
 
 **Definition: A Separable Subset**
 
@@ -121,7 +135,7 @@ $$
 \end{aligned}
 $$
 
-This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distict $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
+This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinict $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
 
 
 ---
@@ -147,4 +161,4 @@ Here is a good list of exercises from the textbook that will enhance our underst
 
 **Example: Interior of $l_+^\infty$ is Empty**
 
-> 
+#UNFINISHED 

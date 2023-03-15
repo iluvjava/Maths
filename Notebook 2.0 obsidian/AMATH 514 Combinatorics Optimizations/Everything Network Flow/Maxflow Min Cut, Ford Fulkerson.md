@@ -173,11 +173,14 @@ and this completed the proof that, all the flow inside of $S$ equals to (Flow ou
 ---
 ### **Derivations of Residual Capacity**
 
+#UNFINISHED 
+
 
 ---
 ### **Ford Fulkerson Algorithm**
 
 The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. We describes it in Pseudo code as: 
+
 ```SQL
 WHILE DiPath P(s, t) IN G(x):
     FIND DiPath P = P(s, t); 
@@ -316,8 +319,9 @@ Using strong duality, we can attain the conditions that:
 - Edmonds Karp Algorithm: 
   - It's just Ford Fulkerson but with BFS for Augmenting path identifications on the residual graph. 
   - The complexity is $\mathcal O(|V||E|^2)$. 
+  - A dynamic version of the algorithm can be created by keeping the labels of the BFS level set. 
 - [Dinic's Algorithm](https://en.wikipedia.org/wiki/Dinic%27s_algorithm):  
-  - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robustly undo the BFS search whenever an saturated arc has been created by the augmenting path. 
+  - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robustly undo the BFS search whenever a saturated arc has been created by the augmenting path. 
   - The complexity is $\mathcal O(|V|^2|E|)$. `
   - See [[Dinic's Algorithm]]
 - Capacity Scaling Method: 
