@@ -56,7 +56,7 @@ We introduce some basic quantities and then we proceed to prove using induction.
 **Inductive Hypothesis**:
 
 > 1. Distance label in $S$ is optimal, Meaning that $d(i) = \min_{P\in \Pi(s, i)}(c(P)), \forall i\in S$. 
-> 2. For all $i\in S^C$, $d(i)$ is the shortest path cost using only vertices in the set $S$, except for $i$, meaning that $d(i) = \min_{P\in \Pi(s, i)}\{c(P)| (P\cap S) = \{i\}\}$. 
+> 2. For all $i\in S^C$, $d(i)$ is the shortest path cost using only vertices in the set $S$, except for $i$, meaning that $d(i) = \min_{P\in \Pi(s, i)}\{c(P)| (P\setminus S) = \{i\}\}$. 
 
 **Proof**: 
 

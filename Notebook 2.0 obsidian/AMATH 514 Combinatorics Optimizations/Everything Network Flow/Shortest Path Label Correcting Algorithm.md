@@ -290,5 +290,5 @@ The algorithm is equivalent to the Generic label correcting algorithm where, $L$
 
 > The FIFO label correcting algorithm executes for at most $n-1$ iterations, and that is enough to find all the correct distances labels on the graph if there is no negative cost cycles. 
 
-We first establishes some notation, and quantities for the proof before we start proving it. 
+We first establishes some notations, and quantities for the proof before we start proving it. 
 
