@@ -1,4 +1,4 @@
-[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Non-expansive Operators]]. 
+[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Nonexpansive Operators]]. 
 
 ---
 ### **Resolvent and Minty Re-paramatrizations**

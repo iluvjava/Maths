@@ -5,6 +5,8 @@
 
 [Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete, normed, [[Vector Space]]. It is already a [[Metric Space Introduction]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". If a vector space is normed, but it's not complete, them we just refer to it as "normed space". 
 
+In this section we introduces basics facts and theorems about Banach Spaces and we show some illustrating examples for those concepts. 
+
 **Banach Spaces should have**:
 - Vector space with a norm (not necessarily from inner product)
 - The vector space is complete (Topological Property)
@@ -66,15 +68,43 @@ The isometry is about the vector space. An example where we can use to complete 
 **Facts**: 
 Type (1) means type (2), but in general a type (2) convergence doesn't mean convergence for the first type, in a general normed vector space because of incompleteness. 
 
-**Theorem: Completeness and Absoluet Convergence**
+**Example**: 
+
+Here we define $c_{0, 0}$ be a sequence subspace of $l^\infty$ where $c_{0, 0} := \{x_1, x_2, \cdots, x_n, 0, 0, 0, \cdots\}$, it has finitely many nonzeros terms in it. This is a Banach space it's not hard to show that. Let the sequence $\eta^{(n)}_i$ be: 
+$$
+\begin{aligned}
+    \eta_{i}^{(n)} &=
+    \left.
+    \begin{cases}
+        1/n^2 & i = n
+        \\
+        0 & \text{else}
+    \end{cases} 
+    \right\rbrace
+    \implies \sum_{i = 1}^{\infty} \Vert \eta^{(i)}\Vert 
+    = \frac{\pi^2}{6}, 
+    \\
+    \text{but } &
+    \sum_{i = 1}^{\infty}
+    \eta^{(i)} \not\in c_{0, 0}, 
+\end{aligned}
+$$
+
+which serves as an example to illustrate that absolute convergence doesn't work with an complete metric subspace. 
+
+**Theorem: Completeness and Absolute Convergence**
 > A normed vector space $(X, \Vert \cdot\Vert)$ is complete if and only if every absolute convergence series converges. 
 
+**Proof**:
 
+**Remarks**: 
 
 ---
-### **Examples and Stuff**
+### **Important Examples**
 
-
-
-
-
+**Example 1: $(l^\infty, \Vert\cdot \Vert_\infty)$ is a Banach Space**
+> We verify that $(l^\infty, \Vert\cdot \Vert_\infty)$ is a space. 
+**Observations**: 
+- The space $l^\infty$ will need to be a vector space. 
+- The norm $\Vert \cdot\Vert_\infty$ will have to be a norm. 
+- The underlying metric space is complete. 

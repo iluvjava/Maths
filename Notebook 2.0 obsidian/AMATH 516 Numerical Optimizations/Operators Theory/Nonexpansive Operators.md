@@ -1,0 +1,174 @@
+[[Introduction to Operators for Optimizations]]
+
+---
+### **Non-Expansive Operators**
+Non-expansive is a subset of operator that has a Lipschitz constant of one. Quasi non-expansive operator is a generalization of it. 
+
+**Definition: non-expansiveness of operators**
+
+> Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
+> 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 
+>     $$
+>     \Vert Tx - Ty\Vert^2 + \Vert (I - T)x- (I - T)y\Vert^2 \le \Vert x - y\Vert^2
+>     $$
+> 2. f is *non-expansive* if it is Lipschitz continuous with parameter $L = 1$. 
+> 3. f is *quasi-non-expansive* if 
+>     $$
+>     \forall x \in D, y \in \text{Fix}(T) \; \Vert Tx - y\Vert \le \Vert x - y\Vert
+>     $$
+> 4. And f is *strict-quasi-nonexpansive* when: 
+>     $$
+>     \forall x \in D \setminus \text{Fix}(D), y\in \text{Fix}(T)\; 
+>     \Vert Tx - y\Vert < \Vert x - y\Vert
+>     $$
+
+Immediately observe that (i) => (ii) => (iii), (i) => (iv). 
+
+**References**: Chapter 4 of the Mono Operator book from Heinz. 
+
+---
+### **Convex Fixed Point Set**
+
+Nonexpansive operator has a fixed point set that is convex. 
+
+**Definition: Fixed Point Set**
+> When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
+> 
+> $$
+> \text{fix}(F) = 
+> \begin{aligned}
+>    \left\lbrace
+>        x\in \text{dom}(F)| x = F(x)
+>    \right\rbrace = 
+>    (I - F)^{-1}(0), 
+> \end{aligned}
+> $$
+
+**Theorem: The set of fixed point for an non-expansive operator is a closed and convex set**
+
+> Assuming that $F$ is non-expansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
+
+**Proof**: 
+
+To prove, we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
+
+$$
+\begin{aligned}
+    & \Vert Fz - x\Vert_2 = (1 - \theta)\Vert y - x\Vert_2
+    \\
+    & \Vert Fz - y\Vert_2 = \theta \Vert y - x\Vert_2
+    \\
+    \implies &
+    \Vert x - y\Vert_2 = \Vert x - Fz + Fz - y\Vert_2 \le 
+    \Vert Fz - x\Vert_2 + \Vert Fz - y\Vert_2 = \Vert x - y\Vert_2, 
+\end{aligned}
+$$
+
+and the last line suggest that the point $Fz$ must lies on the line segment $[0, 1]$ because the equality of the triangle inequality is satisfied from the last expression, for all value of $\theta\in [0, 1]$, implying the fact that the set $X$ has to be a convex set. 
+
+**References**: [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]]
+
+
+---
+### **Characterization of Firmly Nonexpansiveness**
+
+A set of expressions are equivalent for all firmly nonexpansive operators. 
+
+**Theorem**
+
+> Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
+> 1. $T$ is firmly nonexpansive. 
+> 2. $I - T$ is firmly nonexpansive. 
+> 3. $\forall x, y\in D: \Vert Tx - Tx\Vert^2 \le \langle x-y, Tx - Ty\rangle$ (Recall [[../CVX Geometry/Convex Sets Projection Obtuse Angle Theorem]]). 
+> 4. $2T - I$ is nonexpansive. 
+
+**Observations**: (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. 
+
+Before the proof we clean things using $a: x-y, b = Tx - Ty$. 
+
+**Proof: $(1)\iff (3)$** 
+
+Starting with an identity for 2 norm, we have: 
+
+$$
+\begin{aligned}
+    \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2) = 2(\langle a, b\rangle - \Vert b\Vert^2), 
+\end{aligned}
+$$
+
+using it we have: 
+$$
+\begin{aligned}
+    (1) &\iff 
+    \Vert b\Vert^2 + \Vert a - b\Vert^2 \le \Vert a\Vert^2 
+    \\
+    &\iff 
+    0 \le \Vert a\Vert^2 - (\Vert b\Vert^2 + \Vert a - b\Vert^2)
+    \\
+    &\iff 
+    0 \le 2(\langle a, b\rangle - \Vert b\Vert^2)
+    \\
+    & \iff 
+    \Vert b\Vert^2 \le \langle a, b\rangle \iff (3). 
+\end{aligned}
+$$
+
+**Proof $(3)\iff (4)$**
+
+We directly make use of the identity that: 
+
+$$
+\begin{aligned}
+    \Vert a\Vert^2 - \Vert 2b - a\Vert^2 &= 4(\langle a, b\rangle - \Vert b\Vert^2),
+\end{aligned}
+$$
+
+from the definition of nonexpansiveness, we have $\Vert 2b - a\Vert \le \Vert a\Vert$, iff $0 \le \Vert a\Vert^2 - \Vert 2b - a\Vert^2$ iff $0 \le 4(\langle a, b\rangle - \Vert b\Vert^2) \iff \Vert b\Vert^2 \le \langle a, b\rangle$, and now the arguments are complete. We have $(3)\iff (4)$. 
+
+**References**: Theorem 22.3, Professor Heinz's Lecture notes
+
+
+---
+### **Nonexpansiveness and Matrices**
+
+We use matrices to characterize these properties for some examples. 
+
+**Example: Nonexpansive Matrices**
+
+The nonexpansiveness is for self mapping $D\mapsto X$  where $D\subseteq X$, therefore a matrix that is nonexpansive will have to be a square matrix first. 
+
+$$
+\begin{aligned}
+    \Vert Ax - Ay\Vert &\le \Vert x - y\Vert
+    \\
+    \Vert A(x - y )\Vert^2 &\le \Vert x - y\Vert^2
+    \\
+    \frac{\Vert A(x - y)\Vert^2}{\Vert x - y\Vert^2} & \le 1
+    \\
+    \implies \lambda_i(A^TA) &\le 1 \implies |\lambda_i(A)| \le 1 \; \forall i, 
+\end{aligned}
+$$
+
+Therefore, a matrix is nonexpansive then its eignvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
+
+**Example: Firmly Nonexpansive Matrices**
+
+Starting directly from the nonexpansiveness of the matrix, we let $x - y = v$ for simplicity then:
+
+$$
+\begin{aligned}
+    v^TA^TAv + v(I - A)^T(I - A)v &\le v^Tv 
+    \\
+    \text{where: } (I - A)^T (I - A) &= I - A - A^T + A^TA
+    \\
+    \iff
+    v^T(I - A - A^T + 2A^TA) \le v^Tv
+    \\
+    \iff 
+    \lambda_{\max}( - A - A^T + 2A^TA) \le 0 
+    \\
+    \lambda_{\min}(A + A^T - 2A^TA) \ge 0. 
+\end{aligned}
+$$
+
+This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. 

@@ -27,6 +27,10 @@ With the additional assumption that $f$ is a *convex function*, we can obtain a 
 4. $f(x) + \langle \nabla f(x), y - x\rangle + (2\beta)^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2 \le f(y)$. 
 5. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le \beta \Vert x - y\Vert^2$. 
 
+Assuming that $f$ has a second derivative, Hessian matrix, we have the following characterizations of strong smoothness: 
+1. $\nabla^2 f(x)\preceq LI$
+
+
 **Remarks**
 
 An even strong statement for the Globally Lipschitz gradient is the fact that the spectral norm of Hessian is bounded globally as well. 

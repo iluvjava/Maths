@@ -12,8 +12,8 @@ $$
 \end{aligned}
 $$
 
-**Definition: Continous Mapping Between Metric Space**
-> Let $(X, d_X), (Y, d_Y)$ be 2 metric space. The mapping $T: X\mapsto Y$ is continous at $\bar x \in X$, if, for all $\epsilon > 0$ there exists $\delta > 0$ such that whenever $d_X(x, \bar x)\le \delta$, we have $d_Y(T\bar x, Tx) \le \epsilon$. Topologically, it can be expressed as:
+**Definition: Continuous Mapping Between Metric Space**
+> Let $(X, d_X), (Y, d_Y)$ be 2 metric space. The mapping $T: X\mapsto Y$ is continuous at $\bar x \in X$, if, for all $\epsilon > 0$ there exists $\delta > 0$ such that whenever $d_X(x, \bar x)\le \delta$, we have $d_Y(T\bar x, Tx) \le \epsilon$. Topologically, it can be expressed as:
 > $$
 > \forall \epsilon > 0 \exists \delta: T \mathbb B_\delta(\bar x|X) \subseteq \mathbb B_\epsilon(T\bar x|Y). 
 > $$
@@ -26,5 +26,38 @@ $$
 ---
 ### **Theorem: Metric Ball Characterization of Continuity**
 
-> Let $T$ be a mapping between the metric space $(X,d_X)$ and $(Y, d_Y)$, then it's a continous mapping if and ony if for all open set $O\in Y$, we have the pre-image $T^{-1}O$ is open in $X$. 
+> Let $T$ be a mapping between the metric space $(X,d_X)$ and $(Y, d_Y)$, then it's a continuous mapping if and only if for all open set $O\in Y$, we have the pre-image $T^{-1}O$ is open in $X$. 
 
+**Proof**: 
+
+In $\implies$, we assume that the mapping $T$ is continuous and we show that if $A\subseteq Y$ is open set then $T^{-1}A$ is an open set as well. Let $\bar x \in T^{-1}A$, by the property of open we have: 
+
+$$
+\begin{aligned}
+    & \exists \epsilon >0: \mathbb B_{\epsilon}(T\bar x|Y) \subseteq A \quad \text{ By } A \text{ open}
+    \\
+    & \exists \delta > 0: T \mathbb B_{\delta}(\bar x|X) \subseteq \mathbb B_\epsilon(T\bar x| Y) \subseteq A \quad \text{ By continuity of } T
+    \\
+    \iff &
+    \mathbb B_\delta(\bar x |X) \subseteq T^{-1}A, 
+\end{aligned}
+$$
+
+which is the definition of $T^{-1}A$ is an open set. Otherwise for $\impliedby$ we consider a mapping whose pre-image always preserve openness of the set. To start, $\forall \epsilon > 0$, an open ball $\mathbb B_\epsilon(T\bar x|Y)$ is an open set. Let $y = T\bar x$ then we have: 
+$$
+\begin{aligned}
+    & y\in \mathbb B_{\epsilon}(T\bar x|Y)
+    \\
+    \implies 
+    & x\in T^{-1}y \subseteq T^{-1}B_{\epsilon}(T\bar x|Y)
+    \\
+    \implies 
+    & x\in T^{-1}B_{\epsilon}(T\bar x|Y)
+    \\
+    & 
+    \exists \delta > 0: 
+    \mathbb B_{\delta}(\bar x| X) \subseteq T^{-1}B_{\epsilon}(T\bar x|Y), 
+\end{aligned}
+$$
+
+where on the last line, we use the fact that $T^{-1}B_{\epsilon}(T\bar x|Y)$ is the pre-image of an open subset in $Y$, therefore, it's open. Combining everything together, we have recover the definition of a continuous mapping in metric space.

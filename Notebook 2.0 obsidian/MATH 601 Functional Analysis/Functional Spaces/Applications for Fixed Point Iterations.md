@@ -61,3 +61,9 @@ because the iterative matrix, $C$, now is $D^{-1}(D - A)$. This is called a diag
 From Greenbaum's work, we know that this is strictly stronger to show the convergence of the iterative method. The spectral radius of the function sometimes is $< 1$ but the norm might be larger. In which case, the method would still converge, at the end. 
 
 **References**: Wang's Analysis II class. 
+
+
+---
+### **Stong Convexity**
+
+
