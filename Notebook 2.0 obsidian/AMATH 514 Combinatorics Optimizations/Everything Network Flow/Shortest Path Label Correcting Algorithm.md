@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-This is an algorithm comes from the generic label correct algorithm, which aims at exploiting the dual optimality conditions for the shortest path problem, a gem that we got from the LP formulation of shortest path. It improve over the complexity of the generic label correcting algorithm. This algorithm derived is exactly the same as the Bellman Ford algorithm. 
+We go from the generic label correcting algorithm to some of the cool algorithms for singled shortest path for directed graphs with any weights. We discuss negative cycle detections as well. 
 
 One important thing is that in here, we are keeping the assumptions made for the shortest path problem under the LP formulation, so that it's at least not unbounded. 
 
@@ -41,7 +41,7 @@ If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j)
 - Each time when an update is performed, the distance label $d(j)$ for each $d(j)$ must have improved! 
 - Therefore, for each $d(j)$, there is a limit to how many times its distance can be decreased, the upper bound for $d(j)$ should be $nC$, the value of $d(j)$. Under the worst case, we look for a longest possible path to the label $d(j)$, and then we correct the distance label for $d(j)$ as slow as possible by going over all possible paths leading to $d(j)$. At the worse case we decrease the value $nC$ (the theoretically longs path length) by a value of $1$ (the theoretically lowest capacity change by the integrality assumption on our graph). 
 
-**Complexity | $\mathcal O(mn^2C)$**: 
+**Complexity | $\mathcal O(mn^2C)$**:
 
 Let $C$ be the maximum arc capacity across all the arcs in the graph, then the complexity is $O(Cmn^2)$. See the discussion below for the pathological example for more information. 
 
@@ -50,7 +50,6 @@ $\mathcal O(m)$, time is required for looking for a specific `arc(i, j)` to upda
 **Theorem: Existence of Negative Cost Directed Cycles** 
 
 > If the predecessor graph of the generic label-correcting algorithm contains a directed cycle, then the cycle has to be a negative cost cycle on the original graph. 
-
 
 **Proof**: 
 
@@ -82,6 +81,8 @@ hence that cycle has a negative cost to it. It won't be zero because we only upd
 
 ---
 ### **Pathological Examples**
+
+Examples for exponential run time for the generic labeling algorithm. 
 
 **Example 1**
 
@@ -235,7 +236,7 @@ By the inductive hypothesis we know that, at least, the first $k$ nodes in the o
 
 **References:** 
 
-See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof that I found on the internet so far. Feels ad hoc but it works I guess. 
+See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof for Bellman Ford that I found on the internet so far. Feels ad hoc but it works I guess. 
 
 ---
 ### **Negative Cycle Checking**
@@ -284,11 +285,83 @@ WHILE q1 NOT EMPTY && itr++ < |N|
 
 This algorithm only update $d(j)$ when the incoming arcs of node $j$ corresponds to some $i$ whose label has been updated from the last iteration. Each inner loop only update for at most $\mathcal O(m)$ update (because we only check all the neighbors for a subset set of vertices in the graph). The outer most loop loops $\mathcal O(n)$ times. Therefore, the total complexity is $\mathcal O(mn)$. 
 
-The algorithm is equivalent to the Generic label correcting algorithm where, $L$ is a queue and we always dequeue from the from and add the nodes with changed labels back to the tail of the queue. Whenever it's empty, then the algorithm can terminates and returns the optimal labels for each node. 
+The algorithm is equivalent to the Generic label correcting algorithm where, $L$ is a queue and we always dequeue from the from and add the nodes with changed labels back to the tail of the queue. Whenever it's empty, then the algorithm can terminates and returns the optimal labels for each node. The 2 queues implementation is for better "book keeping". 
 
-**Theorem | Proof Of Correctness**: 
+**Theorem: Correctness**: 
 
 > The FIFO label correcting algorithm executes for at most $n-1$ iterations, and that is enough to find all the correct distances labels on the graph if there is no negative cost cycles. 
 
-We first establishes some notations, and quantities for the proof before we start proving it. 
+We first establishes some notations, and quantities for the proof before we start proving it. The proof is long. 
 
+**Basic Quantities**:
+1. $c$: is the costs assignment function for paths. 
+2. $\Pi(j, k)$: Set of s-j paths with at most k arcs. 
+3. $d^k(j) = \min\{c(P)| P\in \Pi(j, k)\}$, and if the set is empty, we have $d^{k}(j) = \infty$. This denote the shortest $s-j$ path costs for all paths using at most $k$ arcs. 
+4. $l^k(j)$ is the label for the node $j$ at iteration $k$. 
+5. The operator $\oplus$ is for concatenting paths that are representing a list of arcs, or nodes in the path. 
+
+**Inductive Hypothesis**: 
+> For all nodes $j\in N$, we have $l^k(j) = d^k(j)$ at the k th iteration of the outter most while loop of the FIFO label correcting algorithm. Denote this hypothesis as $\mathbb H(k)$. 
+
+**Proof of the Base Case**: 
+
+Under the base case, by the algorithm, it only labels the out-going neighbours of the source node with the length of the arcs: 
+
+$$
+\begin{aligned}
+    l^1(j) = \begin{cases}
+        \infty & (s, j)\not\in A
+        \\
+        c_{s, j} & \text{else}
+    \end{cases}, \text{ but } 
+    d^1(j) = 
+    \begin{cases}
+        \infty & (s, j) \not\in A
+        \\
+        c_{s,j} & \text{else} 
+    \end{cases} \; \text{ by definition}. 
+\end{aligned}
+$$
+
+Therefore, we established the basecase. 
+
+**Inductively**: 
+
+Let's assume that $\mathbb H(k)$ is true, meaning that $l^k(j) = d^k(j)$ for all $j\in N$. What we want to show is that: 
+
+> Let $P^* \in \Pi(j, k + 1)$ such that $c(P^*) = d^{k + 1}(j)$ and there does't exist $Q\in \Pi(j, k)$ with $c(Q) = d^{k + 1}(j)$. In brief, the optimal path is of length exactly $k + 1$ number of arcs. 
+
+Assume that $P^* = [i_0, i_1, i_2, \cdots, i_k, i_{k + 1}]$ where $i_0 = s, i_{k + 1} = j$. Let $R\in \Pi(i_k, k)$ then $c(R)\ge d^k(i_k)$, by the optimality of $d^k(i_k)$ and by the fact that $P^*$ is a path, $R$ contains $k$ arcs. It must not be the case that $c(R)> d^k(i_k)$, hence $c(R) = d^k(i_k)$, we show this next by a contraction. 
+
+$c(R) > d^k(i_k)\implies \exists R^*\in \Pi(k, i_k): c(R^*) = d^k(i_k)$. Because $R$ is obviously, not optimal. $R^* \oplus j$ produces a walk, it has at most $k + 1$ number of arcs. Removing redundant cycles in $R^*\oplus j$ walk yields $U$ which is an $s-j$ path, with less costs by non-existence of negative costs cycles. $U\in \Pi(s, k)$ obviously. Mathematically: 
+
+$$
+\begin{aligned}
+    & c(U) \le c(R^*\oplus j) = c(R^*) + c_{i_k, j}
+    \\
+    \implies & 
+    c(P^*) = d^{k + 1}(j) \le c(U) \le c(R^*) + c_{i_k, j} = d^k(i_k) + c_{i_k, j} < c(R) + c_{i_k, j} = c(P^*)
+    \\
+    \implies 
+    & c(P^*) < c(P^*), \text{ and we have FTL travel. ⚡} 
+\end{aligned}
+$$
+
+Therefore, it has to be $c(R) = d^k(i_k)$. The subpath of optimal path $P^*$ is "k-arcs" optimal. By inductive hypothesis $\mathbb H(k)$: 
+
+$$
+\begin{aligned}
+    & c(R) = d^k(i_k) = l(i_k)
+    \\
+    \implies & 
+    d^{k + 1}(j) = c(P^*) = c(P^*) + c_{i_k, j} = l^k(i_k) + c_{i_k, j}, 
+\end{aligned}
+$$
+
+where on the last line, we showed that the shortest distance of all $s-j$ path that uses at most $k + 1$ number of arcs can be updated from the previous label on vertex $j$. The algorithm does: 
+1. $l^k(j) > l^k(i_k) + c_{i_k, j}$, algorithm performs an update. 
+2. $l^k(j) = d^k(i_k) + c_{i_k, j}$, there is no update for $j$ by the algorithm. 
+
+In case (1), we have: $l^{k + 1}(j) = l^k(j) + c_{i_k, j} = d^{k + 1}(j)$, hence $l^{k + 1}(j)$ becomes optimal, $\mathbb H(k + 1)$ is true. In case (2), it means there exists $Q\in \Pi(j, k)$ such that $c(Q) = d^k(j) = l^k(j) = l^k(i_k) + c_{i_k, j} = d^{k + 1}(j)$, there doesn't exist a path $P^*$ of exact $k + 1$ many arcs such that it's shorter. Algorithm doesn't update. Then there exists path $Q\in \Pi(s,j)$ such that $c(Q) = d^k(j) = l^k(j) = l^k(i_k) + c_{i_k, j} = d^{k +1}(j)$, an path uses at most $k$ arcs remains optimal. Therefore, if no update is performed, no arcs are missed by the algorithm. $\mathbb H(k + 1)$ holds for this case too. 
+
+When $\Pi(j, k + 1) = \emptyset$, it has the same logic as the base case, no paths are missed by the algorithm. Finally, Inductive hypothesis $\mathbb H(k)\implies \mathbb H(k + 1)$. The proof is now completed. 

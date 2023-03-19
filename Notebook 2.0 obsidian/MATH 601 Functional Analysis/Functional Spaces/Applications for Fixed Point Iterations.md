@@ -66,4 +66,4 @@ From Greenbaum's work, we know that this is strictly stronger to show the conver
 ---
 ### **Stong Convexity**
 
-
+Strong convexity of functions make gradient operator that is also a contraction. This property allows to state the convergence properties of many algorithms for this special type of function. 

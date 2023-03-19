@@ -92,12 +92,12 @@ $$
 \end{aligned}
 $$
 
-whenever we have $n > m$. Now, we have shown that a fixed point iteration on a contractive mapping is producing a Cauchy sequence, and hence, $x_n\rightarrow x\in X$ by the fact that $(X, d)$ is a complete metric space. To show the non-emptiness of the fixed point set we consider: 
+whenever we have $n > m$. Now, we have shown that a fixed point iteration on a contractive mapping is producing a Cauchy sequence, and hence, $x_n\rightarrow x$ by the fact that $(X, d)$ is a complete metric space. To show the non-emptiness of the fixed point set we consider: 
 
 $$
 \begin{aligned}
     d(x, Tx) &\le 
-    d(x, x_m) + d(x_m, Tx) 
+    d(x, x_m) + d(x_m, Tx) \quad \text{impicitly assumed }Tx \in X
     \\
     &\le
     d(x, x_m) + \alpha d(x_{m - 1}, x)
@@ -116,8 +116,8 @@ $$
 \begin{aligned}
     d(x, \bar x) &= d(Tx, T\bar x) \le \alpha d(x, \bar x)
     \\
-    \implies
-    0 &\le (\alpha - 1) d(x, \bar x) \implies d(x, \bar x) \le 0 
+    \implies &
+    0 \le (\alpha - 1) d(x, \bar x) \implies d(x, \bar x) \le 0 
     \\
     \implies &
     d(x, \bar x) = 0, 
@@ -125,6 +125,10 @@ $$
 $$
 
 assuming that $\alpha \neq 0$, then it must be the case that $d(x, \bar x) = 0$, at the last step we directly apply the fact that the mapping is a contractive mapping. 
+
+**Remarks**: 
+
+Please reflect on the fact that the contraction property of the operator is not tied to the existedc of the fixed point set, one of the implicitly used property for the existence of the fixed point set is that $T:X\mapsto X$, it's a self-map. It's easy to take note if this face, if a contraction is only possible for a subset $Y \subseteq X$, then whenever $Tx_n \not\in Y$, the contraction property fails, converging to a different result (or diverges or whatever). 
 
 
 ---
@@ -159,6 +163,7 @@ It's Lischitz continuous in set $X$ with $L = \alpha\in [0, 1)$, a stronger type
 > - $T_2\circ T_1$, the composite for 2 of the mapping is going to be a contractive mapping as well. 
 
 **Proof**: 
+
 #UNFINISHED
 
  
@@ -187,15 +192,24 @@ which is the definition of a Banach Contraction. Furthermore, let's assume that 
 
 $$
 \begin{aligned}
-    f(a) - a & = a' - a \ge 0 
+    & f(a) - a = a' - a \ge 0 
     \\
-    f(b) - b &= b' - b \le 0, 
+    & f(b) - b = b' - b \le 0, 
     \\
-    \implies \exists& x \in [a, b] : f(x) - x = 0, \text{by continuity}. 
+    \implies \exists & x \in [a, b] : f(x) - x = 0, \text{by continuity}. 
 \end{aligned}
 $$
 
-The theorem is now complete. 
+Therefore, the fixed point set is non-empty. Finally, one observe the same argument as the contraction in the metric space can be used in this example be cause $g^{m}(x) \in [a, b]\forall x \in [a, b]$, to derive: 
+
+$$
+\begin{aligned}
+    |g^{m}(x) - g^{m - 1}(x)| \le \alpha|g^{m - 1}(x) - g^{m-2}(x)| \le \cdots\le 
+    \alpha^{m - 2}|g(x) - x|, 
+\end{aligned}
+$$
+
+and then we basically repeated what is stated earlier. We had used the contraction and the self map property to show the convergence of the fixed point iteration. 
 
 **Remarks**: 
 
@@ -205,10 +219,11 @@ Without the self-mapping properties for the operator, which is also implicitly s
 > Consdier the function $f = x + 1/x$, we have $\text{fix}(x) = \emptyset$ because $x = x - 1/x$ is not true $\forall x \in \R$, however, this is a contraction because $|f'(x)| = |1 - 1/x^2| < 1$ for all $x \in \R$. 
 
 **Remarks**: 
+
 A contraction that is local without the self mapping properties might not have a fixed point to it. 
 
 
-**Example: Squaer Root of Numbers**
+**Example: Square Root of Numbers**
 > An ancient trick of computing $\sqrt{c}$ is to use the iterations: $(1/2)(x_n + c/x_n)$. Here we show that this is a contraction and it converges to the wanted results as a form of Banach Contraction, and we show the importance of $c > 0$ assuming everything is real. 
 
 **Proof**: 

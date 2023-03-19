@@ -97,10 +97,73 @@ which serves as an example to illustrate that absolute convergence doesn't work 
 
 **Proof**:
 
-**Remarks**: 
+For $\implies$, let the space $X$ be complete, and $(x_n)_{n\in \N}$ be a sequence that forms an absolute convergence series, meaning that: 
+
+$$
+\begin{aligned}
+    & \lim_{N \rightarrow \infty}\sum_{n = 1}^{N}\Vert x_n\Vert \text{ exists}
+    \\
+    & S_N = \sum_{n = 1}^{N} x_n,
+    \\
+    N > M\implies & 
+    \Vert S_N - S_M\Vert 
+    = 
+    \left\Vert 
+        \sum_{i = N + 1}^{M} x_n
+    \right\Vert \le 
+    \sum_{i = N + 1}^{M} \Vert x_n\Vert
+    \\
+    \implies & 
+    \lim_{M \rightarrow \infty}
+    \Vert S_N - S_M\Vert = 0 \text{ by series convergence}, 
+\end{aligned}
+$$
+
+therefore, the vector sequence $S_N$ is now Cauchy, and by completeness of the space $X$, this sequence will converge to a limit in $X$. 
+
+To show that a space is complete, we need to show that any Cauchy sequence is converging to some point in the space. Choose any Cauchy sequence $x_n$, we make use of its absolute convergence property, by selecting a sequence of epsilon values: $1/2, 1/4, \cdots, 1/2^k$, giving us: 
+
+$$
+\begin{aligned}
+    & \exists N_1\; m > n \implies \Vert x_n - x_m\Vert < 1/2
+    \\
+    & \exists N_2\; m > n \implies \Vert x_n - x_m\Vert < 1/4
+    \\
+    & \vdots
+    \\
+    & \exists N_k > N_{k - 1} \implies 
+    \Vert x_n - x_m\Vert < 1/2^k, 
+\end{aligned}
+$$
+
+using these values of epsilon, we make the series: 
+
+$$
+\begin{aligned}
+    \sum_{k = 1}^{\infty}
+    \Vert x_{N_{k + 1}} - x_{N_k}\Vert &= 1
+    \\
+    \lim_{t\rightarrow \infty}\sum_{k = 1}^{t}x_{N_{k + 1}} - x_{N_k} &= \bar x \text{ by hypothesis}
+    \\
+    \implies 
+    \lim_{t\rightarrow \infty} x_{N_t} - x_{N_1} &= \bar x \text{ telescope}
+    \\
+    \implies \lim_{t\rightarrow \infty} x_{N_{t -1}} = x_{N_1} + \bar x, 
+\end{aligned}
+$$
+
+therefore, any Cauchy sequence in the space can converge to a point that is well defined as well. Therefore, the space $(X, \Vert \cdot\Vert)$ is complete. 
+
+
+
+**Remarks**:
+
+
 
 ---
 ### **Important Examples**
+
+These examples teach a story about Banach Space in general. 
 
 **Example 1: $(l^\infty, \Vert\cdot \Vert_\infty)$ is a Banach Space**
 > We verify that $(l^\infty, \Vert\cdot \Vert_\infty)$ is a space. 
