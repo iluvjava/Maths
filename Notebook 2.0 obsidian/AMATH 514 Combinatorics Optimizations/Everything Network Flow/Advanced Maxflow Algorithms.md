@@ -40,15 +40,12 @@ Hence, inductively, we have $d^{(k + 1)}(v)\ge d^{(k)}(v)$, for all $v\in N$.
 ---
 ### **Shortest path with Retreats and Advances**
 
+The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the dstination node t. 
 
 
-
-
-
----
-### **Dinic's Algorithm**
 
 
 ---
 ### **Preflow Push**
 
+The algorithm send everything at first, and then slowly adjust the flow such that all the vertices again have the correct mass balance constraints equals to zero again. 

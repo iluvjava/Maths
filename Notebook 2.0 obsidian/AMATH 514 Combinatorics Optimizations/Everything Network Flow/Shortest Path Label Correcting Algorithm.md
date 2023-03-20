@@ -365,3 +365,6 @@ where on the last line, we showed that the shortest distance of all $s-j$ path t
 In case (1), we have: $l^{k + 1}(j) = l^k(j) + c_{i_k, j} = d^{k + 1}(j)$, hence $l^{k + 1}(j)$ becomes optimal, $\mathbb H(k + 1)$ is true. In case (2), it means there exists $Q\in \Pi(j, k)$ such that $c(Q) = d^k(j) = l^k(j) = l^k(i_k) + c_{i_k, j} = d^{k + 1}(j)$, there doesn't exist a path $P^*$ of exact $k + 1$ many arcs such that it's shorter. Algorithm doesn't update. Then there exists path $Q\in \Pi(s,j)$ such that $c(Q) = d^k(j) = l^k(j) = l^k(i_k) + c_{i_k, j} = d^{k +1}(j)$, an path uses at most $k$ arcs remains optimal. Therefore, if no update is performed, no arcs are missed by the algorithm. $\mathbb H(k + 1)$ holds for this case too. 
 
 When $\Pi(j, k + 1) = \emptyset$, it has the same logic as the base case, no paths are missed by the algorithm. Finally, Inductive hypothesis $\mathbb H(k)\implies \mathbb H(k + 1)$. The proof is now completed. 
+
+
+**References**: Personal message with Prof Donavan Hare, at UBCO, 2023 spring. 
