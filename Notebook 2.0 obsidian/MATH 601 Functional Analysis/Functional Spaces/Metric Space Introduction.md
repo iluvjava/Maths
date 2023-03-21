@@ -16,8 +16,7 @@ $$
 
 Generally, for intuitive purposes, element of the set $X$ is called point. This make sense due to the wide application of metrics to vector space. 
 
-**References**: 
-- \<Introductory Functional Analysis with Applications\> 
+**References**: Introductory Functional Analysis with Applications, Kreyszig.
 
 ---
 ### **Subspace of Metric Space**

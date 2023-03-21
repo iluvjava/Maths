@@ -1,8 +1,12 @@
 [[Dualization Techniques]], finding the Fenchel dual for a given function. [[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function, and [[Duality/MinMax MaxMin Lemma]]. 
 
+We might need to use [[Duality/Fenchel Identity]] one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
+
 
 ---
 ### **Intro**
+
+The duality theorem, straight from the legendary researchers. We phrase the theorem and then we discuss its details, and problems. 
 
 
 **Theorem: Fenchel Rockafellar Dual Problems**
@@ -21,13 +25,18 @@
 
 **Observations**: 
 
-From the properties of the convex conjugate, the dual problem is obvious, concave with the maximization objective. 
+From the properties of the convex conjugate, the dual problem is obviously, concave. 
+
+**Standing Assumptions**: 
+
+We assume that $f, g$ are convex, closed and proper functions. This is required for the discussion of duality, but not necessary for generating the primal and the dual problem. 
 
 
-**Strong Duality Conditions:**
-The simultaneous existence of minizers for the primal and dual such that, their objective values are equaled to each other is characterized by the following theorem: 
+**Strong Duality Condition:**
 
-**Theorem: Duality**
+The simultaneous existence of minimizers both primal and dual such that their objectives are equaled is characterized following theorem: 
+
+**Theorem: Fenchel Rockafellar Duality**
 > Let $x\in \text{dom}(g), y \in \text{dom}(h)$, then all of the following are equivalent: 
 > 1. $x$ is a primal solution and $y$ is a dual solution achieving: $\mu = \mu^\star$. 
 > 2. $g(x) + h(Ax) = -g^\star(A^*y) - h^\star(-y)$. 
@@ -39,7 +48,32 @@ The simultaneous existence of minizers for the primal and dual such that, their 
 
 Consult theorem 20.4 in Heinz's coursenots for more information. 
 
-**Note**
+**Refernece**: 
+
+Theorem 20.4 in Heinz's coursenotes for the 563 optimization class at UBCO. 
+
+**Corollary: Primal Solution via Dual Solution**
+> Assuming that the dual problem has a solution, denoted as $y^+$, and there is no duality gap, meaning that $\mu^\star = \mu$, then the set of primal solutions has: 
+> $$
+> \begin{aligned}
+>   {\arg\inf}_{x\in \mathbb X}\{g(x) + h(Ax)\} = \partial g^\star(A^*y)\cap A^{-1}(\partial h^\star(-y)). 
+> \end{aligned}
+> $$
+> And, it's very much possible to have an empty set for the above dual characterizations for the primal optimal solutions.
+
+**Theorem: Regularity Conditions and existence of Minimizers**
+
+> For any of the following conditions, if they hold for $f, g$, then, the primal and dual will have a solutions with zero duality gap. 
+> 1. $\text{ri.dom}(g)\cap A(\text{ri.dom}(f))\neq \emptyset$ or, 
+> 2. $\text{int.dom}(g)\cap A(\text{dom}(f))\neq \emptyset$ or,
+> 3. $g$ is polyhedral and $\text{dom}(g)\cap \text{ri}(A(\text{dom}(f)))\neq \emptyset$ or, 
+> 4. $f, g$ are polyhedral and $(\text{dom}(f))\cap A(\text{dom}(f))\neq \emptyset$. 
+
+**Reference**: 
+
+The above theorem that characterizes the existence of the solution for the primal and dual, are presented in section 5.4 of Prof Heinz's Textbook. 
+
+**Notes**
 
 * The primal dual euclidean space is $\mathbb X, \mathbb Y$, so that A is a mapping $\mathbb X \mapsto \mathbb Y$. 
 * Operator $A$ is a linear operator. 
@@ -141,7 +175,12 @@ $$
 \end{aligned}
 $$
 
-and this derivation shows that the dual variable $y$ for the dualization of $g(Ax)$ is strictly negative of the dual variable in the end of the Fenchel Rockefellar Transform. For simplicity, we have the option to write the dual problem in triplet form that are easier to manipulate for things: 
+and this derivation shows that the dual variable $y$ for the dualization of $g(Ax)$ is strictly negative of the dual variable in the end of the Fenchel Rockefellar Transform. For simplicity, we have the option to write the dual problem in triplet form that are easier to manipulate for things:  
+
+
+**Remarks for Demonstrations**
+
+Things doesn't have to be convex for the above derivation to be correct. The convexity is really for the strong duality. 
 
 **Theorem: The Weak Duality**
 > 
@@ -150,6 +189,8 @@ and this derivation shows that the dual variable $y$ for the dualization of $g(A
 
 ---
 ### **Examples**
+
+We make some examples that illsutrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
 
 
 ---

@@ -45,6 +45,13 @@ The major idea that it exploit is the idea of *Maximum Capacity Augmening Path*.
 **Definition: Delta Residual Graph**: 
 > Let $x^\circ$ be a feasible flow, $\delta \ge 0$, then $G(x^\circ, \Delta)$ is subgraph of the residual graph obtained by deleting all arcs with a capacity that is less than $\Delta$. 
 
+**Algorithm: Capacity Scaling Via Binary Search**
+
+
+**Theorem: Maximum Cut Capacity**: 
+
+
+
 
 
 ---
@@ -57,6 +64,7 @@ The algorithm keeps a label of distance for node. $d(j)$ now represent the minim
 - *Admissible arcs*: An arc $(i, j)$ is admissible on the residual graph when $d(i) = d(j) + 1$, assume that the distance label is valid, because it's on the residual graph, the resiudal capacity would have to be strictly larger than zero too. 
 - *Admissible path*: A path is admissible when all of its arcs are admissible on the residual graph. 
 - `nghs(i)` denotes a collection of out-going neighbors of the node $i$, in the code. 
+- $A(i)$ denotes all the out-going neighbours for the vertex $i$, this is for the mathematics. 
 
 **Property 7.1**: 
 > If the distance label is valid, then $d(i)$ denotes the lower bound on the number of maximum arcs arcs needed for a path going from $i$ to $t$. 
@@ -76,7 +84,7 @@ Advances is performed on a given node, provided with the residual graph and the 
 /*Returns the next nodes to aug the path. */
 FUNCTION advance(i, G=(A, N)):
     FOR ALL j IN nghs(i): 
-        IF (i, j) IS EVAL("And admissible arc, e.g: d(i) = d(j) + 1"): 
+        IF (i, j) IS EVAL('And admissible arc, e.g: d(i) = d(j) + 1'): 
             RETURN j
 ```
 
@@ -102,7 +110,7 @@ FUNCTION retreat(i, G=(A, N)):
     RETURN nlb
 ```
 
-**Soubroutine: Initializations**
+**Subroutine: Initializations**
 
 At the start of the algorithm, we label all the nodes using an reverse search from $t$ to $S$, and $d(j)$ will be the level sets of BFS for all the vertices. 
 
@@ -112,7 +120,7 @@ Given graph $G = (A, N)$ with the source and destination node $s, t$, we have:
 
 ```SQL
 FUNCTION shortestAugPath(G=(A, N), s, t):
-    d = EVAL("Initialize the distance labels using the level sets of the reverse BFS.")
+    d = EVAL('Initialize the distance labels using the level sets of the reverse BFS.')
     i = s
     augpth = [i]
     WHILE d(s) < n: 
@@ -120,11 +128,10 @@ FUNCTION shortestAugPath(G=(A, N), s, t):
             j = advance(i, G)
             ADD j TO augpth
             IF j IS t: 
-                EVAL("Perform augpath and get the new residual graph, make it G")
+                EVAL('Perform augpath and get the new residual graph, make it G')
         ELSE: 
             d(i) = retreat(i)
-            i = EVAL("Find predecessor of i in $augpth, and change $augpth accordingly")
-
+            i = EVAL('Find predecessor of i in $augpth, and change $augpth accordingly')
 ```
 
 
@@ -142,7 +149,9 @@ We won't need to check the advance operations because there is no modifying the 
 
 **Proof**: 
 
+Let's be in case (1.) for Lemma 7.5, no modification is being made when augmenting one of the $s-t$ paths. Assume that one of the arc: $(i, j^+)$ is saturated and removed from the graph, then $A(i)$, or the `nghs[i]` set in the code, is now one element less, meaning that it's a proper subset of previous iteration. By inductive hypothesis we have: $d(i) \le \min_{j\in A(i)}\{d(j) + 1\}$, by reducing the set $A(i)$ into $A(i)\setminus \{j^+\}$, the same condition hold, therefore, the label $d(i)$, is still, a valid label. 
 
+In (2), retreated is needed because for the current node $i\in N$ we have: $d(i) < d(j) + 1$ for all $j\in A(i)$, then an update on node $i$, denoted as $d'(i)$ of $d'(j):= \min_{j\in A(i)}\{d(i) + 1\}$, which by definiton, $d'(i)$ is still less than or equal to all the $d(j)$ for $j\in A(i)$. Under both cases, the distance label for any arcs $(i, j) \in A$ has $d(i) \le d(j) + 1$. Therefore, Lemma 7.5 had been proved. 
 
 
 **References:**
