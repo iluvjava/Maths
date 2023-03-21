@@ -4,19 +4,18 @@
 ---
 ### **Fenchel's Identity**
 
-Fenchel's Identity relates the subgradient to the conjugate function. The conjugate function returns the negative offset of the affine minorants that supports the function $f$ at given point; namely $f(x) \ge \langle x, z\rangle -f^\star(z)$ is established directly as a consequence. 
+Fenchel's Identity relates the subgradient to the conjugate function. The conjugate function returns the negative offset of the affine minorants that supports the function $f$ at given point; namely $f(x) \ge \langle x, z\rangle -f^\star(z)$ is established directly as a consequence. However, we are now interested to see whether, and when, it is possible for the equality to be true. 
 
 **Claim 1**
-> The dual variable is in the sub gradient of the original function. (Make sense geometrically), The argument is reversible, which means that: 
 > $$
 > z \in \partial f(x) \tag{1}
-> \iff f(z) + f^{*}(x^+) = z^Tx^+
+> \iff f(z) + f^{*}(x^+) = z^Tx^+, 
 > $$
-> For $z \in \arg\sup_x\{z^T - f(x)\}$, and $f$ be a closed and convex function. 
+> for $z \in \arg\sup_x\{z^T - f(x)\}$, where $f$ is a closed and convex function. 
 
 **Proof**: 
 
-Recall: **f is closed and convex**, by definition equality is attainable using supporting halfspaces defined via the convex conjugate functions: 
+Recall: *f is closed and convex*, by definition equality is attainable using supporting halfspaces (or Fermat rules for the convex subgradient if we are no doing epigraphical intrepretations) defined via the convex conjugate functions: 
 
 $$
 \begin{aligned}

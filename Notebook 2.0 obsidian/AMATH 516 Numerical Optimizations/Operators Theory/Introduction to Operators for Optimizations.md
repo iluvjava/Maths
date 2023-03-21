@@ -32,6 +32,8 @@ A contraction has a singleton as its fixed point set. For more information about
 ---
 ### **Monotone and Maximally Monotone Operator**
 
+Maximally monotone operator can be have resolvent that are invertible. 
+
 **Definition: A Monotone Operator**:
 
 > The operator $F$ is monotone when $\langle Fy - Fx, y - x\rangle \ge 0$ for all $x, y \in \text{dom}(F)$. 
@@ -45,14 +47,9 @@ For example, the subgradient of a strongly convex function is a strongly monoton
 
 
 ---
-### **Convex Sets Projection Operator, Proximal Operators**
+### **Example: Convex Sets Projection Operator, Proximal Operators**
 
 Recall from that the projection operator onto a closed and convex set is a *non-expansive operator* that is also *monotone* and singled valued. This is true because the projector has a Lipschitz constant that is $\le 1$ (Showed in [[Convex Projection is L1 Lipschitz]]). The monotone property can be derived using the obtuse angle theorem. 
-
----
-### **Example: The Subgradient and Proximal Operators**
-
-#UNFINISHED : Keep filling up things about the operators. 
 
 
 ---

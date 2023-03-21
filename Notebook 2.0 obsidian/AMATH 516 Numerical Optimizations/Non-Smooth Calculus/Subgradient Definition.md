@@ -11,7 +11,7 @@ Materials take with reference from Chapter 3 of \<First Order Method for Optimiz
 * Definition of Subgradient for convex function
 * Definition of Generalized Subgradient
 * Notations 
-* Optimality of convex proper function and zero subgradient
+* Optimality of convex proper function and zero subgradient (Fermat's Theorem). 
 * Epigraphical Normal cone and generalized subgradient. 
 
 

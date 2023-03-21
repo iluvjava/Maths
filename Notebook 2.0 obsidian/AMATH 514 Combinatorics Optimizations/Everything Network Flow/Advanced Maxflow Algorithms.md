@@ -38,10 +38,116 @@ Hence, inductively, we have $d^{(k + 1)}(v)\ge d^{(k)}(v)$, for all $v\in N$.
 
 
 ---
+### **Capacity Scaling Heuristic**
+
+The major idea that it exploit is the idea of *Maximum Capacity Augmening Path*. It identified the issues with the usual Forward Fulkerson, and addresses by excluding paths that have small capacities. 
+
+**Definition: Delta Residual Graph**: 
+> Let $x^\circ$ be a feasible flow, $\delta \ge 0$, then $G(x^\circ, \Delta)$ is subgraph of the residual graph obtained by deleting all arcs with a capacity that is less than $\Delta$. 
+
+
+
+---
 ### **Shortest path with Retreats and Advances**
 
-The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the dstination node t. 
+The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the dstination node t. It's just Edmond Karp's algorithm, but improved. 
 
+**Basic Quantities and their Meaning**: 
+- $d(t) = 0$, $d(i)\le d(j) + 1$, for every arcs in $(i,j)\in A$. This is a distance label denoting the least number of arcs requires to travels from $j$ to node $t$. When $d(s)\ge n$, there is no path going from $s$ to $t$. 
+- *Admissible arcs*: An arc $(i, j)$ is admissible on the residual graph when $d(i) = d(j) + 1$, assume that the distance label is valid, because it's on the residual graph, the resiudal capacity would have to be strictly larger than zero too. 
+- *Admissible path*: A path is admissible when all of its arcs are admissible on the residual graph. 
+- `nghs(i)` denotes a collection of out-going neighbors of the node $i$, in the code. 
+
+**Property 7.1**: 
+> If the distance label is valid, then $d(i)$ denotes the lower bound on the number of maximum arcs arcs needed for a path going from $i$ to $t$. 
+
+**Observations**: 
+The property is just changing the $c_{i, j} = 1$ for the optimality conditions for shortest paths. 
+
+**Proof**: 
+
+Obvious from the fact that the distance always increment by 1 each time. 
+
+**Subroutine: Advances(i)**
+
+Advances is performed on a given node, provided with the residual graph and the current distance label for the node $i$. It performs one step of path searching by trying to reach the node $i$, with the least number of arcs. 
+
+```sql
+/*Returns the next nodes to aug the path. */
+FUNCTION advance(i, G=(A, N)):
+    FOR ALL j IN nghs(i): 
+        IF (i, j) IS EVAL("And admissible arc, e.g: d(i) = d(j) + 1"): 
+            RETURN j
+```
+
+this subroutine searches for the next node after $i$ to construct complete the augmeting path going from $s$ to $t$. 
+
+**Subroutine: Retreat(i)**
+
+The retreat algorithm tries to re-adjust the expectation on the shortest number of arcs needed to go from a node $i$ to $t$. It changes the distance label to allow for more admissible arcs for the augmenting paths. 
+
+Preconditions: 
+> $d(i) < d(j) + 1$, for all $(i, j)$ in the graph.
+
+Observation: 
+
+The retreat subroutine is only called whenever there is no adimissible arcs coming out of the vertex $i$. 
+
+```SQL
+/*Changes the distance to allow for more admissible arcs for the augpaths. */
+FUNCTION retreat(i, G=(A, N)): 
+    nlb = d(i)  /*value for the new label */ 
+    FOR ALL j IN nghs(i): 
+        nlb = min(nlb, d(j) + 1)
+    RETURN nlb
+```
+
+**Soubroutine: Initializations**
+
+At the start of the algorithm, we label all the nodes using an reverse search from $t$ to $S$, and $d(j)$ will be the level sets of BFS for all the vertices. 
+
+**Algorithm: Dynamic Shortest Augmenting Paths** 
+
+Given graph $G = (A, N)$ with the source and destination node $s, t$, we have: 
+
+```SQL
+FUNCTION shortestAugPath(G=(A, N), s, t):
+    d = EVAL("Initialize the distance labels using the level sets of the reverse BFS.")
+    i = s
+    augpth = [i]
+    WHILE d(s) < n: 
+        IF EVAL("$i has an admissible arc"): 
+            j = advance(i, G)
+            ADD j TO augpth
+            IF j IS t: 
+                EVAL("Perform augpath and get the new residual graph, make it G")
+        ELSE: 
+            d(i) = retreat(i)
+            i = EVAL("Find predecessor of i in $augpth, and change $augpth accordingly")
+
+```
+
+
+**Lemma 7.5**: 
+
+> The shortest augmenting path algorithm maintains valid distance labels at each step. Moreover, each relabel (or, retreat) operation strictly increases the distance label of a node.
+
+To show, we need to consider whether the distance labels are still valid after: 
+1. An augmentation by a correctly identified augmenting path, at least one of the arcs were deleted from the admissible paths on the graph. 
+2. A retreat operation. 
+We won't need to check the advance operations because there is no modifying the capacities on the residual graph. Let's make inductive hypothesis for the lemma to be: 
+
+**Inductive Hypothesis**:
+> The distance label, $d(i)$ is valid for all $i\in N$ after the previous iterations of the while loop of the algorithm. 
+
+**Proof**: 
+
+
+
+
+**References:**
+
+Professor's Hare's class at UBCO, and the Network Algorithms Textbook, chapter 7. 
 
 
 
@@ -49,3 +155,5 @@ The algorithm keeps a label of distance for node. $d(j)$ now represent the minim
 ### **Preflow Push**
 
 The algorithm send everything at first, and then slowly adjust the flow such that all the vertices again have the correct mass balance constraints equals to zero again. 
+
+**Basic Quantities**: 

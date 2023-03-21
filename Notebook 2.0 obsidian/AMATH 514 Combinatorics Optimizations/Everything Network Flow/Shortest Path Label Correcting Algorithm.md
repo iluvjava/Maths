@@ -323,7 +323,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, we established the basecase. 
+Therefore, we established the base case. 
 
 **Inductively**: 
 
