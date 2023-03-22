@@ -367,4 +367,15 @@ In case (1), we have: $l^{k + 1}(j) = l^k(j) + c_{i_k, j} = d^{k + 1}(j)$, hence
 When $\Pi(j, k + 1) = \emptyset$, it has the same logic as the base case, no paths are missed by the algorithm. Finally, Inductive hypothesis $\mathbb H(k)\implies \mathbb H(k + 1)$. The proof is now completed. 
 
 
-**References**: Personal message with Prof Donavan Hare, at UBCO, 2023 spring. 
+**References**: 
+
+Personal message with Prof Donavan Hare, at UBCO, 2023 spring. 
+
+
+---
+### **A Summarizations of Label Correcting Complexity**
+- Generic Label Correcting: $O(mn^2C)$
+- BFS Modified Label Correcting: $O(mnC)$
+- Bellmand Ford, FIFO Label correcting: $O(mn)$
+
+
