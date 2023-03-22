@@ -261,10 +261,11 @@ See [[Biconjugate Theorem]] for a more detailed proof of the theorem.
 ---
 ### **Convex Conjugate Quick Maths References**
 
-In this section we list some important quick rules for computing the convex onjugation of functions. 
+In this section we list some important quick rules for computing the convex conjugation of functions. 
 
 
 $$
+\def\arraystretch{1.4}
 \begin{array}{|c|c|c|c|}
 	\hline f(x) & \operatorname{dom} f & f^{\star}(y) & \operatorname{dom} f^{\star} \\
 	\hline \hline|x| & \mathbb{R} & 0 & {[-1,1]} \\
@@ -275,12 +276,16 @@ $$
 	\hline x \log (x) & (0, \infty) & e^{y}-1 & \mathbb{R} \\
 	\hline \log \left(1+e^{x}\right) & \mathbb{R} & y \log (y)+(1-y) \log (1-y) & {[0,1]} \\
 	\hline
+    \delta_{\mathbb R_+^n} & \mathbb R^n & \delta_{\mathbb R^n_-}
+    \\
+    \hline
 \end{array}
 $$
 
 And these are some of the quick rules for computations:
 
 $$
+\def\arraystretch{1.4}
 \begin{array}{|c|c|}
 	\hline \text { Function } h(x) & \text { Fenchel conjugate } h^{\star}(y) \\
 	\hline \hline \lambda f(x) & \lambda f^{\star}\left(\frac{y}{\lambda}\right) \\
@@ -306,7 +311,9 @@ These facts are useful for transforming between constrained optimizations and th
 
 **Remarks**: 
 
-Entry 3: $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
+By the bi-conjugate theorem, you should read the table back and forth to get double amount of conjugates for functions. 
+
+Entry 3, second table, $g^\star$ is dualizing on both parameters $(x,z)$ for the function $g$. 
 
 And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
@@ -314,4 +321,5 @@ For more, actual examples with step by step derivations regarding the convex con
 
 For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity]] for more. 
 
-#UNFINISHED : FILL THIS IN! WE NEED MORE CONJUGATE EXAMPLES. 
+**Source**: 
+This is coming from Prof Deimitri at UW, for AMATH 516. 

@@ -52,10 +52,15 @@ which doesn't change the monotonicity about the operator.
 
 **Remarks**
 
-In the case of maximally monotone operator being a subgradient operator, shiffing the output space by one vector is the same as adding an affine function to the original function. 
+In the case of maximally monotone operator being a subgradient operator, shifting the output space by one vector is the same as adding an affine function to the original function. 
+
+---
+### **Examples**
+
+**Example 1: Projection is Monotone**
 
 
 ---
 ### **References**
 
-Heinz's Book 20.2, for the shifting theorem that is an work of my own because it's used to prove the Minty's theorem. 
+Heinz's Book 20.2, for the shifting theorem that is a work of my own because it's used to prove the Minty's theorem. 

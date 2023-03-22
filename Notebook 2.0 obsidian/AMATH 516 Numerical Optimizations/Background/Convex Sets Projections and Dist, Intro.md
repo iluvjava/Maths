@@ -75,22 +75,6 @@ With the additional assumption that $C$ is a convex set, we obtain the fact that
 **Remarks**: 
 This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Projection Obtuse Angle Theorem]]. In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [[Convex Projection is L1 Lipschitz]]. 
 
----
-### **Obtuse Angle Theorem**
-
-Another important properties when projecting onto a convex set is the obtuse angle theorem, stated as: 
-
-> For any closed, convex, non-empty set $Q$ in the finite Euclidean space, the projection (it's a singleton set) of any points on to the set to the point itself make an obtuse angle with all the other points in the set $Q$. Mathematically: 
-> $$
-> \begin{aligned}
->     \forall y \;\exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
->     \\
->     \implies
->     \langle y - z, x - z\rangle &\le 0 \quad \forall x \in Q
-> \end{aligned}
-> $$
-
-**Proved** in [[Convex Sets Projection Obtuse Angle Theorem]]. 
 
 
 ----
@@ -164,6 +148,8 @@ There exists several equivalent ways of describing the conditions of a point bei
 
 ---
 ### **Convex Sets and the Distance Function**
+
+Distance function is blind to the closedness of the set. 
 
 **Claim**: 
 

@@ -131,8 +131,9 @@ $$
 $$
 
 1. Case $y = 0$, we have $\sup_{z\in \mathbb R}(-\exp(z)) = 0$. 
-2. Case $y < 0$, we take $z \rightarrow -\infty$ then $zy - exp(x)$ approaches $\infty$, hence it's $\infty$. 
+2. Case $y < 0$, we take $z \rightarrow -\infty$ then $zy - \exp(x)$ approaches $\infty$, hence it's $\infty$. 
 3. Case $y> 0$, max of $zy - \exp(z)$ can be obtained by setting the derivative to zero because it's a concave function, solving $y - \exp(z) = 0$ we obtain $z = \ln(y)$, substituting to get $y\ln(y) - y$, hence, we obtain the conjugate as stated above. 
+
 
 
 ---
@@ -276,9 +277,7 @@ $$
 ---
 ### **The Positivity Indicator** $\delta_+(x)$
 
-Let $\delta_+(x)$ be a mapping from $\mathbb{R}^n$ to $\mathbb{R}$, and let $\le, \ge$ be vectorized opertor on all elements of a vector. 
-
-The function basically forces all of its input to be in $\mathbb{R}_+$, else the function will just be undefined. 
+Let $\delta_+(x)$ be a mapping from $\mathbb{R}^n$ to $\mathbb{R}$, and let $\le, \ge$ be vectorized opertor on all elements of a vector. The function basically forces all of its input to be in $\mathbb{R}_+$, else the function will just be undefined. 
 
 $$
 \delta_+(x) = \begin{cases}
@@ -328,6 +327,8 @@ $$
 \end{aligned}
 $$
 
+---
+### **Indicator of a Cone**
 
 ---
 ### **Conjugate of $f(\lambda x)$**
@@ -482,6 +483,17 @@ The variable $z$ for the conjugate function is the decision variables for th dua
 ---
 ### **Conjugate of Infimal Convolutions** $(f\square g)^\star$
 
-#UNFINISHED
+The infimal convolution has epigraphical interpretations that makes the resulting form of the conjugate very beautiful. See [[../CVX Geometry/Infimal Convolution is Epigraph Addition]] for more information. 
+
+
+
+**Remarks**: 
+
+There are cases where, even we have convex functions $f, g$, the closure property might be broken after the conjutation on the infimal convolution. See: Exercise 21.7 in Heinz's coursenotes for more information. 
+
+#UNFINISHED 
+
+**References:**
+Prof Heinz's Monotone book, Proposition 15.5, and theorem 15.3, for a quick references that only involves convex function, see Prof Hein'z Course notes, Prop 21.1
 
 

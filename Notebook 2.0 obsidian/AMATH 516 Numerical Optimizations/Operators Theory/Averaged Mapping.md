@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]], [[Nonexpansive Operators]]
+[[Introduction to Operators for Optimizations]], [[Firmly Nonexpansive Operators]]
 
 ### **Intro**
 
@@ -19,7 +19,7 @@ Average operator is nonexpansive. Firmly nonexpansive operators are a subset of 
 
 **Proof**
 
-From [[Euclidean Jensen's Equality]]: 
+From [[../Background/Euclidean Jensen's Equality (Cute Formula)]]: 
 
 $$
 \begin{aligned}

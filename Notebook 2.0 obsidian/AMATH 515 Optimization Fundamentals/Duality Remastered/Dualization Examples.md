@@ -383,9 +383,9 @@ Takeaway:
 ---
 ### **Polyhedral Constraint, 2-Norm Objective**
 
-**Objective**: Using strong duality to find the optimality conditions for the 2-norm polyhedra minimization problem.
+**Objective**: 
 
-Here we consider the primal optimization problem to be: 
+Using strong duality to find the optimality conditions for the 2-norm polyhedra minimization problem.Here we consider the primal optimization problem to be: 
 
 $$
 \min_x \left\lbrace

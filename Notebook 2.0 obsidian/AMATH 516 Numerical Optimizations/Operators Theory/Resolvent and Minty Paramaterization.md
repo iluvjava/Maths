@@ -1,4 +1,4 @@
-[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Nonexpansive Operators]]. 
+[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Firmly Nonexpansive Operators]]. 
 
 ---
 ### **Resolvent and Minty Re-paramatrizations**
@@ -65,14 +65,19 @@ which completes the proof.
 > Let $T: \mathbb E \mapsto \mathbb E$ be maximal monotone operator, then the resolvent $\mathcal R_T: \mathbb E\mapsto \mathbb E$ is a globally defined *singled-valued mapping* satisfying:
 > $$
 > \Vert \mathcal R_Tx - \mathcal R_Ty\Vert^2 \le 
-> \langle \mathcal R_Tx - \mathcal R_T, x - y\rangle\quad 
+> \langle \mathcal R_Tx - \mathcal R_Ty, x - y\rangle\quad 
 > \forall x, y \in \mathbb E. 
 > $$ 
->  In particular, this resolvent operator is also *non-expansive*. 
+>  In particular, this resolvent operator is also *firmly non-expansive*. 
+
+**Observations**: 
+
+See [[Firmly Nonexpansive Operators]] for more information. 
 
 **Proof**
 
 To show, we first requires everything from [[Minty's Theorem, The Surjectivity Theorem]]. 
+
 
 
 **References:** 

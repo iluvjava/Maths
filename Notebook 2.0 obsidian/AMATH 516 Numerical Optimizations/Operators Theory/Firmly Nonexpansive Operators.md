@@ -2,7 +2,7 @@
 
 ---
 ### **Non-Expansive Operators**
-Non-expansive is a subset of operator that has a Lipschitz constant of one. Quasi non-expansive operator is a generalization of it. 
+Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
 **Definition: non-expansiveness of operators**
 
@@ -16,7 +16,7 @@ Non-expansive is a subset of operator that has a Lipschitz constant of one. Quas
 >     $$
 >     \forall x \in D, y \in \text{Fix}(T) \; \Vert Tx - y\Vert \le \Vert x - y\Vert
 >     $$
-> 4. And f is *strict-quasi-nonexpansive* when: 
+> 4. And f is *strict-quasi-non-expansive* when: 
 >     $$
 >     \forall x \in D \setminus \text{Fix}(D), y\in \text{Fix}(T)\; 
 >     \Vert Tx - y\Vert < \Vert x - y\Vert
@@ -74,17 +74,15 @@ and the last line suggest that the point $Fz$ must lies on the line segment $[0,
 
 A set of expressions are equivalent for all firmly nonexpansive operators. 
 
-**Theorem**
+**Theorem: Equivalences of Nonexpansiveness**
 
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
-> 2. $I - T$ is firmly nonexpansive. 
-> 3. $\forall x, y\in D: \Vert Tx - Tx\Vert^2 \le \langle x-y, Tx - Ty\rangle$ (Recall [[../CVX Geometry/Convex Sets Projection Obtuse Angle Theorem]]). 
+> 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
+> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a stronger type of Monotonicity for Nonexpansive operators. 
 > 4. $2T - I$ is nonexpansive. 
 
-**Observations**: (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. 
-
-Before the proof we clean things using $a: x-y, b = Tx - Ty$. 
+**Observations**: (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
 
 **Proof: $(1)\iff (3)$** 
 
@@ -125,11 +123,23 @@ $$
 
 from the definition of nonexpansiveness, we have $\Vert 2b - a\Vert \le \Vert a\Vert$, iff $0 \le \Vert a\Vert^2 - \Vert 2b - a\Vert^2$ iff $0 \le 4(\langle a, b\rangle - \Vert b\Vert^2) \iff \Vert b\Vert^2 \le \langle a, b\rangle$, and now the arguments are complete. We have $(3)\iff (4)$. 
 
-**References**: Theorem 22.3, Professor Heinz's Lecture notes
+**References**: 
+Theorem 22.3, Professor Heinz's Lecture notes
 
 
 ---
-### **Nonexpansiveness and Matrices**
+### **Properties of Nonexpansive Operators**
+
+Some properties of these operators are stated. 
+
+**Theorem: Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
+> Let $T_1, T_2$ be firmly nonexpansive operator, then $T_1\circ T_2$, denoted as $T_1T_2$ for short, is also a firmly nonexpansive operator. 
+
+
+
+
+---
+### **Nonexpansiveness Examples**
 
 We use matrices to characterize these properties for some examples. 
 
@@ -172,3 +182,44 @@ $$
 $$
 
 This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. 
+
+**Example: Projection Operators is Firmly Nonexpansive**: 
+
+The projection operator for a convex set is a firmly nonexpansive operator. We denote $P$ to be the projection onto some convex set, $C$, recall [[../CVX Geometry/Convex Sets Projection Obtuse Angle Theorem]], the projection point can be characterized as: 
+
+$$
+\begin{aligned}
+    & \forall x \in X, z\in C: 
+    \langle z - Px, x - Px\rangle \le 0
+    \\
+    & \forall x, y\in X: Px \in C \wedge Py \in C
+    \\
+    \implies & \forall x, y \in X: 
+    \begin{cases}
+        \langle Py - Px, x - Px\rangle \le 0
+        \\
+        \langle Px - Py, y - Py\rangle \le 0
+    \end{cases}
+    \\
+    \implies &
+    \forall x, y \in X:  \langle Py - Px, x - Px -(y - Py)\rangle\le 0
+    \\
+    \iff&
+    \forall x,y\in X: 
+    \langle Py - Px, Py - Px + x - y\rangle \le 0
+    \\
+    \iff & 
+    \forall x,y\in X: 
+    \langle Py - Px, x - y\rangle + \Vert Py - Px\Vert^2 \le 0
+    \\
+    \iff & 
+    \forall x, y\in X: 
+    \langle Py - Px, y - x\rangle \ge \Vert Py - Px\Vert^2, 
+\end{aligned}
+$$
+
+which is the third equivalence characterizations of a firmly nonexpansive opertor. Therefore, a convex projection operator is a firmly nonexpansive operator. 
+
+**Remark**: 
+
+If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Firmly nonexpansive, then it has to be a projector onto a convex set. The converse of the statement is also true. 

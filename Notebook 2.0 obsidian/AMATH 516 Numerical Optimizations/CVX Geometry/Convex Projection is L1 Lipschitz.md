@@ -94,3 +94,7 @@ $$
 $$
 
 and this loop back to the claim that is stated at the start of the proof. Theorem is proved. 
+
+**Remarks**: 
+
+This theorem shows that, a projection operator is also a Nonexpansive operator, see [[../Operators Theory/Firmly Nonexpansive Operators]] for more details about this class of operators. 

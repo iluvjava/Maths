@@ -486,13 +486,19 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 > In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
 
 ---
-### **Misc**
+### **Examples**
 
-[[Proximal on Moreau Envelope]]. 
+We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. 
 
 
 ---
-### **Amir's Cheatsheet**
+### **Misc**
+
+We can take the proximal operator over a Moreau Envelope, and doing that results in very convenient ways of solving for proximal operators. [[Proximal on Moreau Envelope]]. 
+
+
+---
+### **Beck's Cheatsheet**
 See [[Amir's Prox Cheatsheet.pdf]] for more fast references and stuff. 
 
 

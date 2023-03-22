@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-> The epigraph of the infimal convolutions is equivalent to convoluting the epigraph of the function. Let $f, g$ be convex, and $(f\square g)(x) = \min_{y}(f(y) + (x - y))$, then 
+> The epigraph of the infimal convolutions is equivalent to convoluting the epigraph of the function. Let $f, g$ be convex mapping from $\mathbb E$ to $\mathbb{\bar R}$, and $(f\square g)(x) = \min_{y}(f(y) + (x - y))$, then 
 > $$
 >     \text{epi}(f\square g) = \text{epi}(f) + \text{epi}(g) . 
 > $$
@@ -48,4 +48,4 @@ Therefore, for any 2 elements from the epigraph of each of $f, g$, their sum is 
 
 **Remarks**
 
-I made the proof myself, and there might be cooler and better way to prove it. 
+I made the proof myself, and there might be cooler and better way to prove it. This is from Dimitri's Lecture, and homework assignment. 

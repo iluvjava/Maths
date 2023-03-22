@@ -50,7 +50,7 @@ $$
 \end{aligned}
 $$
 
-Which completes this part of the proof, because the last statement states that for all $x \in Q$, it's clear that the distance from $y$ to $z$ is smaller than any other $x$ to $z$. Wether this set $Q$ is convex or not doesn't matter. 
+Which completes this part of the proof, because the last statement states that for all $x \in Q$, it's clear that the distance from $y$ to $z$ is smaller than any other $x$ to $z$. <mark style="background: #FFB8EBA6;">Wether this set $Q$ is convex or not doesn't matter</mark>. 
 
 **Please Observe:**
 
@@ -120,9 +120,14 @@ Take the difference between the 2 inner products and then get the norm less than
 
 #unfinished, 
 
-Professor's Heinz's Proof is specialized for convex sets, and it's beautiful mathematically, made for educational purpose. It doesn't provide as much insight as the one we shown above. More specifically it didn't hilight that: 
+Professor's Heinz's Proof is specialized for convex sets, and it's beautiful mathematically, made for educational purpose. It doesn't provide as much insight as the one we shown above. More specifically it didn't highlight that: 
 1. Obtuse angle implies projection, but convexity is not required. 
 2. Projection onto a convex set has to satisfies obtuse angle theorem. Convexity has to involve. 
 
 
 References: Heinz at UBCO, for Theorem 8.4. 
+
+---
+### **In Relation to Proximal Mapping and Subgradient**
+
+#UNFINISHED 

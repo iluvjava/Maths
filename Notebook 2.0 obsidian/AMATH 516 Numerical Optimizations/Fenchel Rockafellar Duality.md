@@ -46,11 +46,11 @@ The simultaneous existence of minimizers both primal and dual such that their ob
 
 **Proof**: 
 
-Consult theorem 20.4 in Heinz's coursenots for more information. 
+Consult theorem 20.4 in Heinz's course notes for more information. 
 
 **Refernece**: 
 
-Theorem 20.4 in Heinz's coursenotes for the 563 optimization class at UBCO. 
+Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO. 
 
 **Corollary: Primal Solution via Dual Solution**
 > Assuming that the dual problem has a solution, denoted as $y^+$, and there is no duality gap, meaning that $\mu^\star = \mu$, then the set of primal solutions has: 
@@ -177,20 +177,41 @@ $$
 
 and this derivation shows that the dual variable $y$ for the dualization of $g(Ax)$ is strictly negative of the dual variable in the end of the Fenchel Rockefellar Transform. For simplicity, we have the option to write the dual problem in triplet form that are easier to manipulate for things:  
 
+$$
+\begin{aligned}
+    (g, A, g)^\star = (g^\star\circ(-I), A^*, f^\star),
+\end{aligned}
+$$
+
+giving us the dual, and the primal problem, for easy notation. 
+
 
 **Remarks for Demonstrations**
 
 Things doesn't have to be convex for the above derivation to be correct. The convexity is really for the strong duality. 
 
 **Theorem: The Weak Duality**
-> 
+> For all $(x, y)\in X\times Y$, we have
+> $$ 
+> f(x) + g(Ax) \ge \mu \ge \mu^\star \ge - f^\star(A^*y) - g^\star(-y) 
+> $$
 
+**Proof**
+
+
+**Remarks**: 
+
+Sometimes, weak duality can be arbitrarily bad. The optimality gap can be infinite, and that would be somewhat common. 
 
 
 ---
 ### **Examples**
 
-We make some examples that illsutrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
+We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
+
+**Example 1: Non-Existence of Minimizers**
+
+
 
 
 ---

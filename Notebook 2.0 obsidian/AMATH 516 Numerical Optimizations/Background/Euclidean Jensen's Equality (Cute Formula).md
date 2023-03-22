@@ -1,6 +1,6 @@
 ### **Intro**
 
-This is the tweaked [[Euclidean Jensen's Equality]]: 
+This is the tweaked [[Euclidean Jensen's Equality (Cute Formula)]]: 
 
 $$
 \begin{aligned}
@@ -89,7 +89,7 @@ $$
 which is the general case of the above Jensen's inequality. The proof is direct and follows a similar manner compare to the case where $|I| = 2$. 
 
 
-**Reference**: Heinz's monotone operator textbook, Lemma 2.13 (ii). 
+**Reference**: Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
 
 
 

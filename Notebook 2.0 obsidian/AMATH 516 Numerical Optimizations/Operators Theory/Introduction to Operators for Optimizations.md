@@ -16,12 +16,13 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Firmly Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
 
 
 **Definition: Non-Expansive Operator**
 > The non-expansive operator has to be Lipschitz first and it has to be $X\mapsto X$, a , as a result, it has to be a single-valued mapping. A non-expansive operator has a Lipschitz constant of exactly $1$. 
 
+For more theoretical information for these type of operators, see [[Firmly Nonexpansive Operators]] for more information. These type of operators are also common in Non-smooth analysis. Projection onto a convex set is L-1 Lipschitz, see [[../Background/Convex Sets Projections and Dist, Intro]]. 
 
 **Definition: Contraction**
 >  A contraction is a Lipschitz operator with a Lipschitz constant that is strictly less than one.
