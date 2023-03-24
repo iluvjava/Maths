@@ -66,9 +66,11 @@ WHILE delta >= 1 :
 
 ```
 
-**Theorem: Maximum Cut Capacity**: 
+**Theorem: Maximum Cut Capacity**
+
 
 **Theorem: Complexity**
+
 
 
 
@@ -181,6 +183,9 @@ The algorithm terminates because the label for $s$ has an upper bound. It's impo
 
 **Complexity**: 
 > The algorithm runs for $\mathcal O(mn^2)$, faster than Edmond's Karp. 
+
+**Proof**: 
+We are skipping it for now. 
 
 
 

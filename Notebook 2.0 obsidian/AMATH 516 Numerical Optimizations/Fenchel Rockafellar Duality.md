@@ -1,6 +1,6 @@
 [[Dualization Techniques]], finding the Fenchel dual for a given function. [[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function, and [[Duality/MinMax MaxMin Lemma]]. 
 
-We might need to use [[Duality/Fenchel Identity]] one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
+We might need to use [[Duality/Fenchel Identity, Inequality]] one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
 
 
 ---

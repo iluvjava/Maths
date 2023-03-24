@@ -30,8 +30,6 @@ The first line is l.s.c, the second line is the secant line inequality for conve
 ---
 ### **Rockfaller 2D Counter Example**
 
-
-
-
+There are a lot more to that counter example than just this one fact. See [[../Convex Continuity Counter Example]] for more information about Rockfaller's example! 
 
 

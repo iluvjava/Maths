@@ -14,9 +14,9 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 
 Here is a list of topics that are helpful for understanding the basics: 
 
-* [[Epigraph]]
-* [[Lower Semi-Continuous]]
-* [[Convex Sets Intro]]
+* [[Epigraph]], this describes the geometry of the function.
+* [[Lower Semi-Continuous]], this put some lower bound on all limit point on the function. 
+* [[Convex Sets Intro]], this helps describing convexity of functions. 
 
 ---
 ### **Proper Function**
@@ -88,7 +88,7 @@ In Math 563, Heinz's class, there is the term *supercoercive*, which refers to f
 
 **Gocha**
 
- The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. It 
+ The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time.
 
 ---
 ### **Special Functions for Analysis**
@@ -132,13 +132,15 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 ---
 ### **Convexity**
 
-**Definition**
+Convex function has 2 equivalent definitions. 
+
+**Definition: Convex Epigraph**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
-**Secant Inequality**
+**Definition: Secant Inequality**
 
-A direct consequence is the convexity inequality. Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is proper if and only if: 
+Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
 
 $$
 \begin{aligned}

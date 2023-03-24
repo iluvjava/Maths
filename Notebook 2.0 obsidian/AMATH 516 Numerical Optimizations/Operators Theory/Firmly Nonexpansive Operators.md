@@ -4,7 +4,7 @@
 ### **Non-Expansive Operators**
 Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
-**Definition: non-expansiveness of operators**
+**Definition: nonexpansive operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
 > 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 
@@ -23,6 +23,7 @@ Non-expansive is a subset of operator that has a Lipschitz constant of one. Ther
 >     $$
 
 Immediately observe that (i) => (ii) => (iii), (i) => (iv). 
+
 
 **References**: Chapter 4 of the Mono Operator book from Heinz. 
 
@@ -50,7 +51,7 @@ Nonexpansive operator has a fixed point set that is convex.
 
 **Proof**: 
 
-To prove, we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
+When the fixed point set is empty, it's convex. Otherwise we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
 
 $$
 \begin{aligned}
@@ -66,7 +67,7 @@ $$
 
 and the last line suggest that the point $Fz$ must lies on the line segment $[0, 1]$ because the equality of the triangle inequality is satisfied from the last expression, for all value of $\theta\in [0, 1]$, implying the fact that the set $X$ has to be a convex set. 
 
-**References**: [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]]
+**References**: [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]], The Primer on Monotone Operator Paper. 
 
 
 ---
@@ -79,7 +80,7 @@ A set of expressions are equivalent for all firmly nonexpansive operators.
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
 > 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
-> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a stronger type of Monotonicity for Nonexpansive operators. 
+> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. 
 > 4. $2T - I$ is nonexpansive. 
 
 **Observations**: (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
@@ -135,8 +136,7 @@ Some properties of these operators are stated.
 **Theorem: Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
 > Let $T_1, T_2$ be firmly nonexpansive operator, then $T_1\circ T_2$, denoted as $T_1T_2$ for short, is also a firmly nonexpansive operator. 
 
-
-
+**References**: Heinz's class, proposition 22.8. 
 
 ---
 ### **Nonexpansiveness Examples**

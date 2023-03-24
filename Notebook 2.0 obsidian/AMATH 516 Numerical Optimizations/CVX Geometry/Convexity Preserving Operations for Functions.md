@@ -21,8 +21,9 @@ For the proofs for more interesting ones, see what is below.
 > Let $f(x|c)$ be a convex function for all $c\in C$, we show that $\sup_{c\in C}f(x|c)$ is a closed convex function. 
 
 **Proof**
+One may use the epigraphical interpretations of pointwise supremum. 
 
-
+#UNFINISHED 
 
 
 ---
@@ -78,7 +79,7 @@ Lower Semi-continuous properties might not be preserved under the pointwise limi
 ---
 ### **Convexity Under Partial Minimizations**
 
-> Let $f$ be $\mathbb E_1 \times \mathbb E_2 \rightarrow (-\infty, \infty]$ and *convex*, so that the function is a proper augmented real function, and it has the property that is: 
+> Let $f$ be $\mathbb E_1 \times \mathbb E_2 \rightarrow (-\infty, \infty]$ and *convex*, so that the function is a proper augmented real function, and it has the property that it can be partially minimized, meaning that: 
 > 
 > $$
 > \forall x \in \mathbb E_1 \exists y \in \mathbb E_2: f(x, y) < \infty
@@ -87,14 +88,18 @@ Lower Semi-continuous properties might not be preserved under the pointwise limi
 > Then define: 
 > 
 > $$
-> g(x) \equiv \min_{y\in \mathbb E_1} f(x, y) < \infty
+> g(x) \equiv \min_{y\in \mathbb E_2} f(x, y) < \infty
 > $$
 > 
 > Then $g(x)$ is a convex function. 
 
+**Observations**: 
+
+The function $f(x, y)$ is definitely a convex function. 
+
 **Proof**
 
-To prove that $g(x)$  is convex, WST: 
+To prove that $g(x)$  is convex, WST Jensen's Inequality: 
 
 $$
 \begin{aligned}
@@ -115,7 +120,7 @@ $$
 \end{aligned}
 $$
 
-We take note that $y_1, y_2$ are very close to $\arg\inf_y(f(x_1, y)), \arg\inf_y(f(x_2, y))$ Next, using the fact that $f(x, y)$ is convex we obtained: 
+we take note that $y_1, y_2$ are very close to $\arg\inf_y(f(x_1, y)), \arg\inf_y(f(x_2, y))$ Next, using the fact that $f(x, y)$ is convex we obtained: 
 
 $$
 \begin{aligned}
@@ -126,8 +131,7 @@ $$
     f(x_\lambda, y_\lambda) & \le \lambda f(x_1, y_1) + (1 - \lambda)f(x_2, y_2)
     \\
     f(x_\lambda, y_\lambda) & \le \lambda (g(x_1) + \epsilon) + (1 - \lambda)(g(x_2) + \epsilon)
-    \\
-    f(x_\lambda, y_\lambda) & \le \lambda (g(x_1) + \epsilon) + (1 - \lambda)(g(x_2) + \epsilon)
+
     \\
     f(x_\lambda, y_\lambda) & \le \lambda g(x_1) + (1 - \lambda)g(x_2) + \epsilon
     \\
@@ -135,37 +139,44 @@ $$
 \end{aligned}
 $$
 
-And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. **On the contrary, assuming that** $g(x_1)$ or $g(x_2)$ is $-\infty$, and WLOG, let $g(x_1) = -\infty$, then $g(x)$ would still be convex, but $g(x_1) = -\infty$, $g(x_\lambda) = -\infty$ as well (because convex function are continuous along any line segment). If $g(x_1) =\infty$: 
+And therefore, the function $g(x)$ is convex for all $x_1, x_2 \in \mathbb E_1$ where $g(x_1), g(x_2) > -\infty$. **On the contrary, assuming that** $g(x_1)$ or $g(x_2)$ is $-\infty$ (At least one of the point makes $g(x_1), g(x_2)$ is negative infinity), and WLOG, let $g(x_1) = -\infty$, to make $g(x)$ convex, we need $g(x_\lambda) = -\infty$ as well, by the Jensen's Inequality, using the fact that the function is partially minimized, we have: 
 
 $$
 \begin{aligned}
-    & \forall M \exists y_1: f(x_1, y_1) < M
+    & \forall M \exists y_1: f(x_1, y_1) \le M,
 \end{aligned}
 $$
 
-Consider the fact that $f$ is convex, then we have: 
+It can be bounded above for all values of $M$, by choosing a value $y_1$, given $x_1$. by the fact that $f$ is convex, then: 
 
 $$
 \begin{aligned}
     & f(x_\lambda, y_\lambda) \le \lambda f(x_1, y_1) + (1 - \lambda)f(x_2, y_2)
     \\
-    & \exists y_2: f(x_2, y_2) < \infty
-    \implies f(x_\lambda, y_\lambda) < \infty \text{ at least}
+    \implies & 
+    f(x_\lambda, y_\lambda) \le \lambda M + (1 - \lambda)f(x_2, y_2)
+    \\
+    \implies & 
+    g(x_\lambda) \le f(x_\lambda, y_\lambda) \le -\infty \text{ by } M \rightarrow -\infty, 
 \end{aligned}
 $$
 
-It's given that $f(x_1, y_1)$ is less than any $M$, at the same time, $f(x_2, y_2)$ is finite, therefore $f(x_2, y_2) \le -\infty$, which proves it. 
+Therefore, we have $g(x_\lambda) = -\infty$, hence the Jensen's inequality is still true. This completes the proof. 
 
 **Remarks**
 
-The epsilon bound limits the choice of $y$, for which, it's possible that for some given $x_1$, there exists an $y_1$ that approaches infinity. In addition, **it's not clear whether $f$ needs to be closed or not**. I believe might not requires it. Secondedly, there is convex functions where, there exists $x$ such that $g(x) = \infty$, for example, activation function $\delta_C(x, y)$ where $C:=\{x: \Vert x\Vert\le y\}$. In addition, the fact that $g(x)\neq \infty$ is there to prevent nonsense like $\infty \le \infty$. 
+The epsilon bound limits the choice of $y$, for which, it's possible that for some given $x_1$, there exists an $y_1$ that approaches infinity, if $f$ is not closed, we can use $\inf$ instead to get a closed, convex function $g(x)$. Secondly, there is convex functions where, there exists $x$ such that $g(x) = \infty$, for example, activation function $\delta_C(x, y)$ where $C:=\{x: \Vert x\Vert\le y\}$. In addition, the fact that $g(x)\neq \infty$ is there to prevent nonsense like $\infty \le \infty$. 
 
 Finally, there exists a epigraphical interpretations of Partial Minimizations in Dimitri's textbook. A partial minimization is projection of the epi-graph onto one of the Euclidean space (of a Euclidean product space). And by the property of the projection as a linear transform, we proved that it's still going to be convex. 
 
-**Source**: \<First Oder Optimization Methods\> by SIAM, theorem 2.18
+**Source**: 
+
+\<First Oder Optimization Methods\> by SIAM, theorem 2.18
 
 ---
 ### **Corollary: Infimal Convolutions Preserves Convexity**
+
+This is an application of the above theorem for convextiy preservation of partial minimizable for partially, minimizable function. 
 
 **Definition: Infimal Convolution**
 
@@ -207,6 +218,10 @@ $$
 $$
 
 $\delta_C$ is convex and it's an augmented real function and $\Vert \cdot \Vert$ is convex and a real-valued function. Applying infimal convolution preserving property, the distance function is convex. 
+
+**Remarks**
+
+Proximal operator for a convex function is also going to be convex, because it can be seemed as a convolution of the convex function $f$, with the convex function $1/2\Vert y - \cdot\Vert$. Beginner might get the $\inf$ confused with the $\sup$ of convex function is still convex theorem. 
 
 
 **Source**

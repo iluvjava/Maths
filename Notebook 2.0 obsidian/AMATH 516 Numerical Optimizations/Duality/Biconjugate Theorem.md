@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. 
+Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. We use the epigraphical interpretation to prove the theorem. 
 
 **Theorem Statement**
 
@@ -16,7 +16,7 @@ Convex conjugate represents the epigraph of a function via affine minorants, or 
 ---
 ### **Proof**
 
-Using the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
+Recall the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
 
 $$
 \begin{aligned}
@@ -40,6 +40,8 @@ $$
 
 Which is a contradiction to the definition of conjugate function because conjugate function $f^\star(y) = \sup_{x}\{\langle y, x\rangle - f(y)\}$. $\blacksquare$.
 
+
+#INCORECT, #UNFINISHED, the proof is not finished for the theorem yet. 
 
 **Remarks**
 

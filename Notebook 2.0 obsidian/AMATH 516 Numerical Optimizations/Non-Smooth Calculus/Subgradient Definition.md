@@ -5,9 +5,7 @@
 ---
 ### **Intro**
 
-**Source**:
-
-Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
+**Source**:Materials take with reference from Chapter 3 of \<First Order Method for Optimizations\> by SIAM. We discuss the following things: 
 * Definition of Subgradient for convex function
 * Definition of Generalized Subgradient
 * Notations 
@@ -60,7 +58,7 @@ Which demonstrates the geometric interpretations for the subgradient of a convex
 
 **Comment:**
 
-<mark style="background: #FF5582A6;">The proof is not quite right and it won't for $x\in \text{bd.dom}(f)$, it fails for a point that is at the boundary of the domain of the function. </mark> We may not assume the format of $(g, -1)$ until we make use of convexity and $x\in \text{ri.dom}(f)$. 
+<mark style="background: #FF5582A6;">The proof is not quite right and it won't for $x\in \text{bd.dom}(f)$, it fails for a point that is at the boundary of the domain of the function. </mark> We may not assume the format of $(g, -1)$ until we make use of convexity and $x\in \text{ri.dom}(f)$. #INCORRECT
 
 **Remarks**
 
@@ -120,6 +118,8 @@ Is true for the above definition. Whenever it's not mentioned whether $f$ is con
 
 
 **Source**: 
+
+
 The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> by Rockafellar, it's consistent with Dimitry's AMATH 516 FALL 2021. 
 
 ---
@@ -307,7 +307,7 @@ $$
 \end{aligned}\tag{7}
 $$
 
-Then, one can easily rewrite the conditions in (2) into the same form as a generalized subgradient. $\blacksquare$
+Then, one can easily rewrite the conditions in (2) into the same form as a generalized subgradient. $\blacksquare$. #LATER , the proof is still unclear, we need some clarifications and better phrasing for it. 
 
 **Source:**
 Theorem 3.35 in Dimitry's notes, AMATH 516 materials. The proof is the same as stated there but filled up with more details.

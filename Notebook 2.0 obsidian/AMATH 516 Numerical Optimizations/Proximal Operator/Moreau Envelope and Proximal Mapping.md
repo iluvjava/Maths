@@ -18,7 +18,7 @@ $$
 \end{aligned}
 $$
 
-The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[Infimal Convolution is Epigraph Addition]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex.   This conceptualization will help with the intuitive understanding of many proximal algorithm.
+The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[../CVX Geometry/Convexity Preserving Operations for Functions]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex.   This conceptualization will help with the intuitive understanding of many proximal algorithm.
 
 **Notation nuance**
 
@@ -55,6 +55,12 @@ $$
 $$
 
 For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$. 
+
+**Theorem: Equivalence Characterization for Proximal Point** 
+> For a convex proper, lower semi-continous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
+> 1. $x = \text{prox}_f(y)$, 
+> 2. $y - x\in \partial f(x)$,
+> 3. $\forall z \in X: \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
 
 **Good References**
 
@@ -252,7 +258,7 @@ Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alp
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex, then $(\partial f)^{-1} = \partial f^\star$. 
 
 **Proof Lemma**
-To show it, we make use of the [[Fenchel Identity]]: 
+To show it, we make use of the [[../Duality/Fenchel Identity, Inequality]]: 
 $$
 \begin{aligned}
     & x\in \partial f(z) \iff z \in \partial f^\star(x)
@@ -489,6 +495,9 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 ### **Examples**
 
 We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. 
+
+**Example: Projecton onto Convex Sets**
+> 
 
 
 ---

@@ -59,6 +59,9 @@ In the case of maximally monotone operator being a subgradient operator, shiftin
 
 **Example 1: Projection is Monotone**
 
+**Example2: Subgradient is Monotone**
+See [[../Non-Smooth Calculus/Monotonicity of Subgradient]] for more information. 
+
 
 ---
 ### **References**

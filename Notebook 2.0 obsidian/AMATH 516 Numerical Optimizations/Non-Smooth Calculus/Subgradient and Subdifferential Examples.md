@@ -1,6 +1,6 @@
 [[Subgradient Definition]],
 [[Subdifferentials Subgradient Computations]],
-[[Fenchel Identity]]
+[[../Duality/Fenchel Identity, Inequality]]
 
 
 ---

@@ -1,6 +1,6 @@
 ### **Intro**
 
-This is the tweaked [[Euclidean Jensen's Equality (Cute Formula)]]: 
+This formula is extremely useful when we are dealing with Euclidean norm, inner products, and convex combinations of things. We show the proof for it and we will provide more variance for it. The cute formula is: 
 
 $$
 \begin{aligned}
@@ -9,7 +9,9 @@ $$
 \end{aligned}
 $$
 
-in the case where the convex function is an euclidean norm, the additional term, the third term on the RHS is presented so that the inequality becomes an equality. 
+**Observation**
+
+The lhs is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. For more about Jensen's Inequality, 
 
 **Proof:** 
 
@@ -65,10 +67,13 @@ $$
 
 Therefore it yields the above equality but in a different format where the last term on the RHS is in the LHS. 
 
-References: Corollary 2.14 in Heinz's Monotone Operator's textbook. 
+**References**: 
+
+Corollary 2.14 in Heinz's Monotone Operator's textbook. 
 
 
-**A generalized version**
+---
+### **A Generalized Version**
 
 In the general version of the theorem, we consider an affine combinations of vectors in the Eulidean space, and form the equality: 
 
@@ -89,7 +94,16 @@ $$
 which is the general case of the above Jensen's inequality. The proof is direct and follows a similar manner compare to the case where $|I| = 2$. 
 
 
-**Reference**: Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
+**Reference**:
+
+Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
+
+---
+### **An Augmented Version**
+
+
+
+
 
 
 

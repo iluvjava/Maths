@@ -120,4 +120,4 @@ See proofs in [[Strict Separations Theorem]].
 > For any convex set, it can be seen as the union of all affine subspace that contains the convex set. 
 
 
-For such a characterizations of the convex sets, consider: [[Supporing Convex Sets using Halfspaces]]. 
+For such a characterizations of the convex sets, consider: [[../CVX Geometry/Supporting Convex Sets using Halfspaces]]. 

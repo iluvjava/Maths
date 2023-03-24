@@ -164,7 +164,7 @@ The proof is not easy neither intuitive.
 ---
 ### **Half Spaces Containment**
 
-> Every convex set can also be created using simple intersection of halfspaces in the Euclidean space. See [[Supporing Convex Sets using Halfspaces]] for more information. Such a method is more relavent and popular for analysis in general. 
+> Every convex set can also be created using simple intersection of halfspaces in the Euclidean space. See [[../CVX Geometry/Supporting Convex Sets using Halfspaces]] for more information. Such a method is more relavent and popular for analysis in general. 
 
 
 

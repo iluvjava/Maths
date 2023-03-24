@@ -63,5 +63,8 @@ Convex Functions are continuous on its domain, but only along a line segment. Se
 ---
 ### **Characterization for Convex Functions**
 
-For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. For the smooth case, please refer to [[Gradient, Hessian Characterization of Convexity]], where we present most of the important properties for convex function that has gradient to them, for the epigraphical characterizations of convex functions and convexity preserving operations on function, visit [[../CVX Geometry/Convexity Preserving Operations for Functions]]. 
+For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. 
+
+- For the smooth case, please refer to [[Gradient, Hessian Characterization of Convexity]]. 
+- For epigraphical characterizations of convex functions and their convexity preserving operations, visit: [[../CVX Geometry/Convexity Preserving Operations for Functions]]. 
 

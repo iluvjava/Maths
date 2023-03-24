@@ -25,11 +25,7 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 
 > The conjugate is closed and convex. 
 
-$y^Tx - f(x)$ is a affine function wrt to variable $y$ because $y^Tx$ is affine and $-f(x)$ is a constant. Since we are taking the $\sup$ of all such affine function using $y$, the result is a convex function wrt to $y$, therefore, $f^\star$ is a convex function, $\sup$ also takes the closure hence it's closed and convex. 
-
-
-
-
+$y^Tx - f(x)$ is a affine function wrt to variable $y$ because $y^Tx$ is affine and $-f(x)$ is a constant. Since we are taking the $\sup$ of all such affine function changing the value of  $x$, the result is a convex function wrt to $y$ by the property that supremum over a set of function is, convex ([[../CVX Geometry/Convexity Preserving Operations for Functions]]). Therefore the conjugate is convex. 
 
 **Notations**
 
@@ -53,10 +49,12 @@ The conjugate function is always convex, see the next section for more info. We 
 - Conjugate encodes the maximum offset of Affine minorants of the original function. 
 - Fenchel conjugate is a special case of the support function on the epigraph of $f$. 
 
-**Claims: Conjugates Encode Affine Minorants**
-> $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
+Before we start, please see [[Fenchel Identity, Inequality]], for the inequality. It's somewhat relevant. 
 
-Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function can be expressed as: $f(x)\ge y^Tx - f^\star(y)$. This is refers to as the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
+**Claim: Conjugate Encodes Affine Minorants**
+> For a function $f$ that is proper, we have $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
+
+Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
 
 **Justification**
 
@@ -69,15 +67,19 @@ $$
     & \alpha \ge f^\star(y) \ge \langle y, x\rangle - f(x) \quad \forall x,y
     \\
     \implies & 
-    f(x) \ge \langle y, x\rangle - \alpha
+    f(x) \ge \langle y, x\rangle - \alpha. 
 \end{aligned}
 $$
+
+We used the Fenchel inequality on the second line. 
 
 **Remarks**
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
-In fact, one can go on and make the claim the the epigraph of the original function is contains within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality, we can easily obtain that: 
+**Corollary: Enclosing the Epigraph**: 
+ 
+In fact, one can go on and make the claim the the epigraph of the original function is contained within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality: 
 
 $$
 \begin{aligned}
@@ -88,12 +90,15 @@ $$
     \\
     \implies & 
     \text{epi(f)} \subseteq
-    \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}
+    \bigcap_{(y, \alpha)\in \text{epi}(f^\star)}\{(x, \beta): \beta \ge \langle y, x\rangle - \alpha\}. 
 \end{aligned}
 $$
 
-And it's not hard to see that the epigraph is described by intersection of all possible halfspaces, giving us a convex set in the end. However, the hard part to justify here is $\text{cl}\circ\text{cvxh}\circ \text{epi}(f)$ equals to the intersection of all the affine minorants defined by the epigraph of the convex conjugate functions. 
+Recall from [[../CVX Geometry/Supporting Convex Sets using Halfspaces]], we had created a support for the epigraph of $f$, using the elements from the epigraph of $f^\star$. 
 
+**Remarks**
+
+Here we only showed $\subseteq$, the converse is not shown but it's true. It can be proved via a contradiction, and separation of convex sets, by bearing in mind for the property of an epigraph of a convex function. 
 
 
 **Theorem: Conjugate is the Support Function of the Epigraph of $f$**
@@ -166,12 +171,14 @@ Using this property, we can make shortcut to finding the conjugates of some func
 
 > The dual variable is the slope of the tangent line and the value of the function is the negative of the y intersect (or whatever intersect on the higher dimension). 
 
-**Observe** 
+**Observations** 
 
 Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$ at its lowest point, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
 
 ---
 ### **Legendre Transform**
+
+Legendre attached his name to the convex conjugate of differentiable function that is, strictly convex. 
 
 > Let $f:X\mapsto \mathbb R$ be convex and differentiable, then: 
 > $$
@@ -319,7 +326,7 @@ And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star
 
 For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
 
-For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity]] for more. 
+For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity, Inequality]] for more. 
 
 **Source**: 
 This is coming from Prof Deimitri at UW, for AMATH 516. 

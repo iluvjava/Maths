@@ -8,7 +8,7 @@
 
 **Proof**
 
-By the fact that $f$ is convex proper we can use the [[Fenchel Identity]]: 
+By the fact that $f$ is convex proper we can use the [[../Duality/Fenchel Identity, Inequality]]: 
 
 $$
 \begin{aligned}
