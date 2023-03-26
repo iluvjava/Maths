@@ -104,6 +104,8 @@ Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this fo
 
 
 
+**References**: Lemma 1.8, In professor's Heinz's Notes
+
 
 
 

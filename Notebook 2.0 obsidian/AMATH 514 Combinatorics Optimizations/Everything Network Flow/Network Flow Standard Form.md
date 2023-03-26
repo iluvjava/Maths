@@ -226,7 +226,6 @@ The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \de
 **References**: Theorem 3.8 in the Network Algorithms Textbook. 
 
 
-
 ---
 ### **Reductions from Other Problems**
 

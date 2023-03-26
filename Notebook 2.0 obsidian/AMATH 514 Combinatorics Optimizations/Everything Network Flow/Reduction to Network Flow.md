@@ -93,6 +93,11 @@ where we forces a fixed $-u_{i, j}$ of flow going through $(i, k)$ with the same
 ---
 ### **Vertex Splitting**
 
-Vertex splitting method make us possible to model network flow problem where vertices is representing a mass balance constraint, but rather a capacity of some kind. The original arcs can still have costs or whatever. 
+The maximum amount of flow in, of the vertex can also have a constraints in addition to the mass balance constraints on the node. 
 
+#UNFINISHED 
 
+---
+### **Double Arcs With Different Costs**
+
+#UNFINISHED

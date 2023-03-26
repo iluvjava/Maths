@@ -251,13 +251,21 @@ To generalize the results where $\alpha$ is not necessarily 1, we consider: $\te
 Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constent $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
 
+----
+### **Prox is Firmly Nonexpansive**
+
+The proximal operator is firmly nonexpansive. This helps with proving the convergence of many algorithms that uses th proximal operator. 
+
+
 ---
-### **Moreau Decomposition and Minty Parameterizations**
+### **Proximal Decomposition and Minty Parameterizations**
+
+The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
 
 **Lemma: When are Subgradient Invertible**
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex, then $(\partial f)^{-1} = \partial f^\star$. 
 
-**Proof Lemma**
+**Proof for Lemma**
 To show it, we make use of the [[../Duality/Fenchel Identity, Inequality]]: 
 $$
 \begin{aligned}
@@ -282,7 +290,7 @@ The extra assumption needed are strict convexity (Positive definiteness of hessi
 
 Proposition 11.3 in Rockafellar. 
 
-**Moreau Decomposition** 
+**Proximal Decomposition** 
 
 Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
 > $$
