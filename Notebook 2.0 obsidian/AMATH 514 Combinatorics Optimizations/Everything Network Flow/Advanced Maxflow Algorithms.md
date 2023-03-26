@@ -44,7 +44,7 @@ Hence, inductively, we have $d^{(k + 1)}(v)\ge d^{(k)}(v)$, for all $v\in N$.
 ---
 ### **Capacity Scaling Heuristic**
 
-The major idea that it exploit is the idea of *Maximum Capacity Augmenting Path*. It identified the issues with the usual Forward Fulkerson, and addresses by excluding paths that have small capacities. This is a general heuristic because it can be mixed with other type of augmenting path method for max flow together to improve the complexity of other algorithms. 
+The major idea that it exploit is the idea of *Maximum Capacity Augmenting Path*. It identified the issues with the usual Forward Fulkerson, and addresses by excluding paths that have small capacities. This is done via the use of *delta residual graph*. This is a general heuristic because it can be mixed with other type of augmenting path method for max flow together to improve the complexity of other algorithms. 
 
 **Basic Quantities**
 - `res(G, delta, f)`, denotes the delta residual graph for a given flow, in the code. 
@@ -70,7 +70,7 @@ WHILE delta >= 1 :
 
 **Observations**: 
 
-Due to the integrality constraints of maxflow problem. The outter while loop executse for at most $1 + \lceil \log_2(U)\rceil$, more iteration will reduces the capacity to a value less than 1. 
+Due to the integrality constraints of maxflow problem. The outer while loop executes for at most $1 + \lceil \log_2(U)\rceil$, more iteration will reduces the capacity to a value less than 1. 
 
 **Claim: Maximum Cut Capacity**
 > Let $v$ be the current flow on $G$, $v^*$ denotes the maximum flow on the network. The minimum amount of augmenting flow on the residual is now given by $(v^* - v)/m$. 
@@ -99,12 +99,18 @@ Let $v$ denotes the flow from *previous* scaling phase, with scaling capacity $\
 **Theorem: Complexity**
 > The complexity of total number of augmenting paths are $O(m \log(U))$. The total amount of augmentations now runs in $O(m^2\log(U))$. 
 
+**Proof**: 
 
+Each augmenting path costs $O(m)$. There are $2m$ at most augmentations for each scaling phase. $O(m^2)$ total amount of iterations. There could be $O(\log_2(U))$ such augmentation. Aggregating all yields: $O(m^2\log(U))$ operations for the algorithm. 
+
+**References**: 
+
+Lecture slides from SFU. See [here]([https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf](https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf "https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf") for the lecture slides. 
 
 ---
 ### **Shortest path with Retreats and Advances (Dinic's Algorithm)**
 
-The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the destination node t. It's just Edmond Karp's algorithm, but improved. It improved it by memorizing the labels from the BFS, and when a augmenting path is identified, one of the arcs on the shortest path is removed, causing a restructuring of the BFS level tree. This is accomplished via the use of a valid distance label: $d(i)$ on each of the node. 
+The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the destination node t. It's just Edmond Karp's algorithm, but improved. It improved it by memorizing the labels from the BFS, and when an augmenting path is identified, one of the arcs on the shortest path is removed, causing a restructuring of the BFS level tree. This is accomplished via the use of a valid distance label: $d(i)$ on each of the node. 
 
 **Basic Quantities and their Meaning**: 
 - *Distance label*: $d(t) = 0$, the distance is called a *valid label* when $d(i)\le d(j) + 1 \;\forall (i, j)\in A$, for every arcs in $(i,j)\in A$. This is a distance label denoting the expected least number of arcs require to travels from node $j$ to $t$. When $d(s)\ge n$, there is no path going from $s$ to $t$. 

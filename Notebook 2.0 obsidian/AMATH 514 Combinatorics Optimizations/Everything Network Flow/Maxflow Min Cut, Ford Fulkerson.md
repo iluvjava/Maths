@@ -10,8 +10,8 @@ The maxflow min-cut is a problem and its dual, and this particular problem is th
 1. The network is directed. If not consider [[Reduction to Network Flow]] to make it so. 
 2. All the capacities are non-negative integers. This is required so that the algorithm terminates, and it produces flow with integral values. Without it the augmenting path algorithm will converge in solution and flow value , but it will never get to the irrational solution exact. 
 3. The network flow doesn't contain a directed path from node s to node t, composed only of infinite capacity arcs. 
-4. $(i, j)\in A \iff (j, i)\in A$, pairs of arcs of reverse direction exists in the graph. Zero capacity arcs are used to represent non-existing arcs on the graph. <mark style="background:#CACFD9A6;">(I think this is talking about the residual graph and has nothing to do about the original graph given that a zero flow from $s-t$ always being a feasible path for max flow problem.)</mark>
-5. The network doesn't contain any parallel arcs across vertices. 
+4. $(i, j)\in A \iff (j, i)\in A$, pairs of arcs of reverse direction exists in the graph. Zero capacity arcs are used to represent non-existing arcs on the graph. 
+5. The network doesn't contain any parallel arcs of the same direction across any pair of nodes. 
 
 Take it for granted now that these set of assumptions has no loss of generality to the network flow problem. 
 
@@ -68,7 +68,7 @@ Then a maximum flow on the new graph that balance all the nodes with deficit mea
 Chapter 6 of the networkflow theory and algorithm textbook. 
 
 ----
-### **The Residual Graph**
+### **The Residual Graph Without Lower bound**
 
 The residual flow denoted by $r_{i, j}$ represents the additional amount of flows that can be sent on arc $(i, j)$. Let $a=(i, j)\in A$ denotes the arc in the graph, and let $a^{-1}:=(j, i)$ be the arc pointing in the inverse direction, then Given any feasible flow $x_{a}$ on the original graph, we define residual capacity: 
 - $r_{a} = u_{a} - x_{a}$, remaining capacity that can be sent over. 
@@ -77,6 +77,7 @@ The residual flow denoted by $r_{i, j}$ represents the additional amount of flow
 Observe that: 
 
 - The capacity for arcs on the residual networks are all $\ge 0$, If, the flow $x_{i, j}$ is a feasible flow, else the flow is infeasible. 
+- The zero flow will always be feasible according to our assumptions on the graph, and it will allow us to get the residual graph with zero flow on it. 
 
 **Definition: Augmenting Path**
 > An augmenting path is a path s-t path $P$ on the residual graph $G(x)$ such that $x$ is feasible and the minimum of all residual capacities $r_{i, j} \in P$ are $> 0$. 
@@ -169,9 +170,19 @@ $$
 
 and this completed the proof that, all the flow inside of $S$ equals to (Flow out of S) - (Flow in of S) less than Capacity of the s-t cut. 
 
+**Corollary: Strong Duality Conditions**
+
+> A flow will be maximum flow if and only if there exists a cut such that the cut capacity equals to the total amount of $s-t$ flow. 
+
+**Proof**: 
+
+We just applied the strong duality for linear programming, using the above formulation of weak duality for the Network flow LP. See [[../Linear Programming Strong Duality via Farkas, Standard Forms]] for more information. Assuming that the integrality assumption holds for the problem. 
+
 
 ---
-### **Derivations of Residual Capacity**
+### **Derivations of Residual Capacity via LP**
+
+The residual residual graph has a beautiful interpretations in terms of the LP of the maxflow programming problem. 
 
 #UNFINISHED 
 
@@ -179,7 +190,11 @@ and this completed the proof that, all the flow inside of $S$ equals to (Flow ou
 ---
 ### **Ford Fulkerson Algorithm**
 
-The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. We describes it in Pseudo code as: 
+The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. This algorithm find augmenting flows on the residual graph, which represents the changes in the feasible flow for the original graph. Each time, it promises to increases the total amount of flow going from $i$ to $t$, keeping the feasibility of the existing feasible flow after augmenting and modifying it. 
+
+**Algrithm**: 
+
+We describes it in Pseudo code as: 
 
 ```SQL
 WHILE DiPath P(s, t) IN G(x):
@@ -195,6 +210,7 @@ where, `DiPath(S, t)` denotes a s-t directed path, EVAL means interpreting the f
 - When the algorithm terminates, it can't find any s-t path on the residual graph $G(x)$, suppose that the set $S$ denotes all the nodes $i$ that can be reached by an s-i path, then consider any $(i, j)$ it exists:
   - Either as $(i, j) \in (S, S^C)$ in $G$, then it has $r_{i, j} = u_{i, j} - x_{i, j} = 0$, so that $x_{i, j} = u_{i, j}$; 
   - Or $(i, j)\in (S^C, S)$ in G, so then $r_{j, i} = x_{i, j} = 0$ on the residual meaning that $x_{i, j} = 0$. 
+- We note that at the start of the algorithm, if no feasible flow is given, we may always use a zero flow on the graph to generate a residual network that is suitable for the Ford Fulkerson Algorithm. 
 
 Therefore, on the S-t cut of the original graph, the out going arcs are all saturated and the incoming arcs are all empty. We had achieved strong duality and the minimum cut is the set $S$. 
 
@@ -232,8 +248,11 @@ These theorems uses observations about the Ford Fulkerson to characterize the op
 **Theorem: Augmenting Path Optimality Conditions**
 > A flow $x^+$ is optimal if and only if residual $G(x^+)$ has no s-t augmenting path. 
 
+
 **Theorem: Integrality Theorem**
 > If all arcs capacity are integers, the maximum flow has an integer maximum flow. 
+
+
 
 **Theorem: Ford Fulkerson Complexity**
 > The Ford Fulkerson algorithm solves the maximum flow problem in $O(mn U)$ where $U = \max_{a\in A} u_a$.
@@ -308,6 +327,8 @@ Using strong duality, we can attain the conditions that:
 - $(y_2)_{i, j} \neq 0$, the $x_{i, j} = 0$. 
 
 #UNFINISHED 
+
+
 
 
 ---

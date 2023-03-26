@@ -98,7 +98,7 @@ $$
     \text{where}& \begin{cases}
         x \ge \mathbf 0 \\ y \le \mathbf 0 \\ z \text{ free}
     \end{cases}
-\end{aligned}
+\end{aligned}ß
 $$
 
 then the dual problem assign a dual variable for each of the constraints of the primal, and it assign constraints according to each of the primal decision variable. Reading the columns from right to left on the table, we can get: 
@@ -117,9 +117,9 @@ $$
     \begin{bmatrix}
         u^TA_{1, 1}^T & w^TA_{2, 1}^T & v^TA_{3, 1}^T
         \\
-        u^TA_{2, 1}^T & w^TA_{2, 2}^T & v^TA_{2, 3}^T
+        u^TA_{1, 2}^T & w^TA_{2, 2}^T & v^TA_{3, 2}^T
         \\
-        u^TA_{3, 1}^T & w^TA_{3, 2}^T & v^TA_{3, 3}^T
+        u^TA_{1, 3}^T & w^TA_{2, 3}^T & v^TA_{3, 3}^T
     \end{bmatrix}
     =
     \begin{bmatrix}
@@ -151,5 +151,5 @@ Here, the dual variable plays the roles of selecting the correct combinations of
 ---
 ### **Complementary Slackness**
 
-The complementary slackness for dual variable $u, w$ holds as usual. They corresponds to the $\le, \ge$ inequality system. if $u_i$ is non zero, then the corresponding $i$ constraint is tight for the primal optimal solution. The dual variable $z$ is free.
+The complementary slackness for dual variable $u, w$ holds as usual. They corresponds to the $\le, \ge$ inequality system. if $u_i$ is non zero, then the corresponding $i$ constraint is tight for the primal optimal solution. Since the equality constraints are always tight, the free dual variables, $z, v$, is free and there is no constraints on them. 
 

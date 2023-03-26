@@ -32,6 +32,37 @@ seeks for a solution such that it minimizes the costs of sending all the stuff b
 
 The vector $u_{i, j}$ can have elements of infinity, and the vector $c \ge \mathbf 0$. 
 
+
+---
+### **Residual Network**
+
+The concept of residual network is relevant to the optimality conditions for an optimal solution. Given any flow $x^\circ$ that is feasible on the graph $G$, we can transform the graph $G$ into a residual network. The residual network can have 2 arcs along the same direction. To use the residual network we make the following assumptions about the input graph $G = (A, N)$, with upper bound $u$, lower bound $l$, and mass balance constraint vector $b$ and unit flow cost vector $c$. 
+
+1. The network is at least feasible. 
+2. The lower bound is zero, and the upper bound is positive, valid. If it's not the case the we have lower bounds, consult: [[Reduction to Network Flow]], removing lower bounds. 
+3. For all node $i, j$ where arc $(i, j)\in A$, there is only one arc. No double arcs are allowed. 
+
+**Definition: The Residual Network**
+
+> We define $x^\circ$ to be a feasible flow on the network. For the capacity on the residual network, we denote it using $r$, that is the upper bound for each arc. The lower bound for each arc in the residual network $G(x^\circ)$ will always be $0$. We denote the cost to be $c'$. Then: 
+> 
+> $$
+> \begin{aligned}
+>     & 
+>     (i, j) \in A' \iff 
+>     x^\circ_{i, j} < u_{i, j} \text{ with } r_{i, j} = u_{i, j} - x_{i, j}^\circ , c'_{i, j} = c_{i, j}
+>     \\ 
+>     & 
+>     (j, i) \in A' \iff 
+>     x^\circ_{i, j} > 0 \text{ with } r_{i, j} = x_{i, j}^\circ, c'_{j, i} = -c_{i, j}, 
+> \end{aligned}
+> $$
+> 
+> which completes the definition. 
+
+Intuitively, the residual network represent how a feasible flow may change, while still being feasible. Let $x'$ be the flow on the residual network. It will always be positive, but on the original graph, if $x_{i, j} > 0$ and we have $(i, j) \in A$, it is the amount of increase the flow $x^\circ_{i, j}$ else, $(j, i)\in A$, it is the amount of decrease on $x_{i, j}^\circ$. 
+
+
 ---
 ### **The Incidence Matrix**
 
@@ -224,6 +255,21 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. #UNFINISHED
 
 **References**: Theorem 3.8 in the Network Algorithms Textbook. 
+
+---
+### **The Dual Problem**
+
+We derive the dual problem of the minimum cost flow and simplify it so that it's easier for analysis purposes. 
+
+
+
+
+---
+### **Optimality Conditions of Min-cost Network Flows**
+
+The characterization of the minimum cost network's optimality is useful for designing algorithms for solving these problems. 
+
+
 
 
 ---
