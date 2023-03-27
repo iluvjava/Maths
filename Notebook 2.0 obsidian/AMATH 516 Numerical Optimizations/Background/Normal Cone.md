@@ -67,7 +67,7 @@ Heinz's 563 convex optimization class.
 ---
 ### **Convex Normal Normal Cone on the Interior Points**
 
-> Let $C$ be a *convex subset* of $X$, an let $x\in \text{int}(C)$. Then $N_C(x) = \{\mathbf 0\}$. 
+> Let $C$ be a *convex subset* of $X$, a let $x\in \text{int}(C)$. Then $N_C(x) = \{\mathbf 0\}$. 
 
 **Proof**
 

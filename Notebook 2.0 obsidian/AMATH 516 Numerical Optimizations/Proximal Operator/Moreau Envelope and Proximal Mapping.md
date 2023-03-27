@@ -254,8 +254,7 @@ Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alp
 ----
 ### **Prox is Firmly Nonexpansive**
 
-The proximal operator is firmly nonexpansive. This helps with proving the convergence of many algorithms that uses th proximal operator. 
-
+The proximal operator is firmly nonexpansive, a stronger type of operators than Lipschitz-1 Operators. This helps with proving the convergence of many algorithms that uses the proximal operator. For context, read [[../Operators Theory/Firmly Nonexpansive Operators]] for more about firmly nonexpansive operators in general.
 
 ---
 ### **Proximal Decomposition and Minty Parameterizations**
@@ -290,7 +289,7 @@ The extra assumption needed are strict convexity (Positive definiteness of hessi
 
 Proposition 11.3 in Rockafellar. 
 
-**Proximal Decomposition** 
+**Theorem: Proximal Decomposition** 
 
 Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
 > $$

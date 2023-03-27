@@ -65,9 +65,9 @@ The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any a
 
 **Intuitive Explanations**: 
 
-There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "fine enough" using limits on the metric for this metric space. 
+There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. 
 
-**Example: Separable Space**
+**Example: Separable Spaces**
 
 The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. 
 

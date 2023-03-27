@@ -218,8 +218,12 @@ $$
 \end{aligned}
 $$
 
-which is the third equivalence characterizations of a firmly nonexpansive opertor. Therefore, a convex projection operator is a firmly nonexpansive operator. 
+which is the third equivalence characterizations of a firmly nonexpansive operator. Therefore, a convex projection operator is a firmly nonexpansive operator. 
 
 **Remark**: 
 
 If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Firmly nonexpansive, then it has to be a projector onto a convex set. The converse of the statement is also true. 
+
+**Example: Proximal Mapping is Firmly Nonexpansive**
+
+Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. 

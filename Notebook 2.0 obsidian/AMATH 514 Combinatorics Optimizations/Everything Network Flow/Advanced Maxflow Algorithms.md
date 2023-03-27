@@ -108,7 +108,7 @@ Each augmenting path costs $O(m)$. There are $2m$ at most augmentations for each
 Lecture slides from SFU. See [here]([https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf](https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf "https://www.sfu.ca/~kabanets/307/Slides/slide_14.pdf") for the lecture slides. 
 
 ---
-### **Shortest path with Retreats and Advances (Dinic's Algorithm)**
+### **Shortest Aug Path with Retreats and Advances (Dinic's Algorithm)**
 
 The algorithm keeps a label of distance for node. $d(j)$ now represent the minimum number of arcs needed to travel from the current node $j$ to the destination node t. It's just Edmond Karp's algorithm, but improved. It improved it by memorizing the labels from the BFS, and when an augmenting path is identified, one of the arcs on the shortest path is removed, causing a restructuring of the BFS level tree. This is accomplished via the use of a valid distance label: $d(i)$ on each of the node. 
 
@@ -138,21 +138,22 @@ this subroutine searches for the next node after $i$ to construct complete the a
 
 The retreat algorithm tries to re-adjust the expectation on the shortest number of arcs needed to go from a node $i$ to $t$. It changes the distance label to allow for more admissible arcs for the augmenting paths. 
 
-Preconditions: 
+**Preconditions:** 
 > $d(i) < d(j) + 1$, for all $(i, j)$ in the graph.
 
-Observation: 
-
-The retreat subroutine is only called whenever there is no adimmissible arcs coming out of the vertex $i$. 
 
 ```SQL
 /*Changes the distance to allow for more admissible arcs for the augpaths. */
 FUNCTION retreat(i, G=(A, N)): 
     nlb = d(i)  /*value for the new label */ 
-    FOR ALL j IN nghs(i): 
+    FOR ALL j IN nghs(i) AND EVAL('Residual capacity strictly positive'): 
         nlb = min(nlb, d(j) + 1)
     RETURN nlb
 ```
+
+Observation: 
+
+The retreat subroutine is only called whenever there is no adimmissible arcs coming out of the vertex $i$. 
 
 **Subroutine: Initializations**
 
@@ -171,8 +172,9 @@ FUNCTION shortestAugPath(G=(A, N), s, t):
         IF EVAL("$i has an admissible arc"): 
             j = advance(i, G)
             ADD j TO augpth
-            IF j IS t: 
+            IF j IS t:  /*Augmenting happens here*/
                 EVAL('Perform aug path and get the new residual graph, make it G')
+            i = s
         ELSE: 
             d(i) = retreat(i)
             i = EVAL('Find predecessor of i in $augpth, and change $augpth accordingly')
@@ -223,8 +225,8 @@ Obvious from the previous inductive proof about the vadility of the distance lab
 
 We need 3 lemmas to prove it. 
 
-**Lemma1: Back and Forth the Same Arc**
-> Let $k$ be the maximum relabel for all nodes, then the algorithm saturates arcs at most $km/2$ times. 
+**Lemma 7.8 (1): Back and Forth the Same Arc**
+> Let $k$ be the maximum relabel for all nodes, then the algorithm saturates any arc $km/2$ times at most. 
 
 Saturating an arc meaning setting $r_{i, j} = 0$ after some augmenting, and then do $r_{i, j} = 0$ again. 
 
@@ -261,15 +263,15 @@ $$
 
 therefore, after using the arc $(i, j)$ 2 times, the label for node $i$ has increased by at least $2$. Saturating $(i, j)$ to times and then $(j, i)$ 2 times will increase the labels for both $i, j$ by 2. Assuming each relabel increase distance by 1. 2 Relabels are required for one saturations. $k/2$ is the number of relabeling for each arc. 
 
-**Lemma2: Maximum Number of Relabeling**
+**Lemma 7.7 (2): Maximum Number of Relabeling**
 > Let $k$ be the maximum number of relabeling on all nodes, then the total number of time looking for admissible arc would be $k\sum_{i\in N}^{}|A(i)|\in O(km)$. 
 
 **Proof**: 
 
-For any node $i\in N$, it exhausts all admissible arcs first. If all arcs are inadmissible then it relabels it. Therefore, it goes over all arcs of node $i$, with $k$ many times. Justifying the sum in the expression. 
+For any node $i\in N$, it exhausts all admissible arcs for the current label first (There is an iterator tye of book keeping algorithm behind the node to choose admissible arcs). If all arcs are inadmissible then it relabels it, and set the point back to its first neighbour. Therefore, it goes over all arcs of node $i$ ($|A(i)|$ many of them), with $k$ times. Justifying the sum in the expression. 
 
 
-**Lemma3: Maximum Number of Augmenting**
+**Lemma 7.9 (3): Maximum Total Number of Augmenting, Relabeling**
 > the maximum number of augmentation is at most $nm/2$. The total number of relabeling operation is at most $n^2$. 
 
 **Proof**
@@ -308,19 +310,20 @@ The algorithm sends everything at first. It will always be an over estimate to w
 3. The algorithm terminates and its complexity. 
 
 **Basic Quantities/Definitions**
-- The label $d(i)$ is the exepcted distance from node $i\in N$ to the node $t$ in number of arcs. It's valid when $d(i) = d(j) + 1$ for all $(i, j)\in A$. 
-- An arc $(i, j)\in A$ , is *admissible* when $d(i) = d(j) + 1$, and the residual capacity $r_{i, j}$ is $> 0$. 
-- The label excess, $e(i)\ge 0$ is created for all $N\setminus \{s, t\}$, it's a always a positive quantities denoting the amount of extra flow created on each node. The excess means there is more flow into the node than outof it. 
-- The node, $i$ is active whenever $e(i) > 0$, else it's inactive. The $s, t$ node were never active. 
+- The label $d(i)$ is the expected distance from node $i\in N$ to the node $t$ in number of arcs. It's valid when $d(i) = d(j) + 1$ for all $(i, j)\in A$. 
+- An arc $(i, j)\in A$ , is *admissible* when $d(i) = d(j) + 1$, and the residual capacity $r_{i, j}$ is $> 0$. We can only push flow through admissible arcs for any active nodes. Admissible arcs only refers to arcs in the residual graph. 
+- The label excess, $e(i)\ge 0$ is created for all $N\setminus \{s, t\}$, it's always a positive quantity denoting the amount of extra flow created on nodes. The excess means there is more flow into the node than out.
+- The node, $i$ is *active* whenever $e(i) > 0$, else it's inactive. The $s, t$ node were never active. 
 - $f: A \mapsto \R_+$  is a flow labeling function for all the arcs on the graph. It's anti-symmetric and strictly positive. 
 - Denote `nghs(i)` as the out-neighbours of the current node $i$ in the code, and in the math we use the notation $A(i)$ for that. 
 - `u`, $u$ is the capacity labels for each of the arc. $u_{i, j}$ would be the capacity for arc $(i, j)\in A$. 
-- A *saturating push* refers to a node that becomes *inactive* after an application of the push relabel subroutine on the node. This happens whenever the excess of the node becomes zero after pushing and/or relabeling the node. 
+- *saturating push*: If an operator applies on node $i$ with $e(i) > 0$, causing some arcs $(i, j)\in A$ to have $r_{i, j} = 0$ after the augmentations, then this is a *saturating push*. Otherwise it's not, and it will reduce the excess of node $i$ to zero after the push. 
 
 
-**Algorithm Overview:Subroutines and their descriptions**: 
+**Algorithm Overview: Subroutines and their descriptions**
 1. Preprecessing: This is for labeling the nodes with the correct distance label, and excess label before running the algorithm. 
 2. push/relabel: Changing the excess of the node on the graph and shifting the flow arounds. 
+3. Generic Preflow Push: An generic algorithm. It pushes excess on the nodes and build up the valid distance labels for all the nodes. 
 
 
 **Subroutine: Preprocess**
@@ -336,17 +339,21 @@ FUNCTION preprocess(G=(A, N), s, t):
 ```
 **Subroutine: Push\Relabel**
 
-The process gets rid of the excess for a specific node and adjust the $e, d$ label for that node. If there is some admissible arcs from the node $i$, then it will push the excess flow away from the node and adjust it, if not, it will increase its distance label to allow for more admissible arcs for the node $i\in N$. 
+The process gets rid of the excess for a specific node and adjust the $e, d$ label for that node. If there is some admissible arcs from the node $i$, then it will push the excess flow away from the node and adjust excess, if not, it will increase its distance label to allow for more admissible arcs for the node $i\in N$. We also update active status of the node. 
 
 ```SQL
 FUNCTION pushRelabel(G=(A, N), i, s, t)
     IF EXISTS (i, nghs(i)) EVAL('Such that (i, nghs(i)) is an admissible arc'): 
+	    /*Push flow through admissible one the arcs*/
         SELECT ANY j IN nghs(i) SUCH THAT (i, j) IS EVAL('An admissible arc'): 
             delta = min(e(i), r(i, j))
             IF NOT(j IS i OR j is T)
-            EVAL('Adjust the excess of the node $j')
+            e(i) -= delta
+            EVAL('If excess is zero, mark it as inactive') /*Saturating push*/
     ELSE: 
-        REPLACE d(i) BY min(d(j) + 1) WHERE j IN nghs(i) 
+	    /*relabel the distance and mark it as inactive. */
+        REPLACE d(i) BY min(d(j) + 1) WHERE j IN nghs(i)
+        EVAL("Mark node i as no longer active. ") 
 ```
 
 **Algorithm: Generic Pre-Flow Push**
@@ -362,6 +369,14 @@ FUNCTION preflowPush(G=(A, N), s, t):
 
 ```
 
+**Observations/Notes**
+
+The rules for distance label is exactly the same as it's for the *Shortest Augmenting Path with Advance and Retreat Algorithm*, theorems and properties used for the algorithm is applicable for this one as well. 
+
+**Algorithm: FIFO Preflow Push**
+
+This algorithm do things in a FIFO Manner. 
+
 
 **Example**: 
 ![](../../Assets/Prefow-push-example.jpeg)
@@ -375,17 +390,50 @@ Reading from left to right, top to bottom. When observing, keep noticing the mon
 **Facts of the Algorithm**
 
 We list these facts. Proof later. 
-1. At each stage of the algorithm, all nodes with positive excessive has a $s-i$ path in the residual network. 
+1. At each stage of the algorithm, all nodes with positive excessive has a $i-s$ path in the residual network. 
 2. For all node $i\in N$, $d(i) < 2n$. 
 3. Each distance label increases at most $2n$ times, the total number of relabel is at worst, $2n^2$. 
 4. The algorithm performs at most $nm$ saturating pushes. 
 
-**Complexity of the algorithm**
-> A FIFO implementation of the Preflow push algorithm has a complexity of $\mathcal O(n^3)$.  
+Each fact till be handled by a lemma. 
+
+
+**Complexity: Generic Preflow Push**
+> The generic preflow push algorithm executes for $O(n^2m)$ iterations. Same as the Dicnic's Algorithm. 
+
+**Proof**: 
+
+Denote $I$ to be the set of active nodes for the graph. 
+
+**Complexity: FIFO Preflow Push**
+> A FIFO implementation of the Preflow push algorithm has a complexity of $\mathcal O(n^3)$, strictly better than the generic case of the algorithm. 
 
 We use facts above to show. 
 
 **Proof**: 
+
+
+
+
+**Lemma (1)**: 
+> At each stage of the algorithm, all nodes with positive excess has a $s-i$ path in the residual network. 
+
+**Proof**: 
+
+By the algorithm all nodes $i\in N\setminus \{s,t\}$ will contain  a positive excess. The source node $s$ will be the only node with negatve excess. By the flow paths decomposition algorithm, all paths starts with a node with defecit and ends on a node with surplus. Therefore, all nodes with positive excess will have a $i-s$ path in the residual network, by the definition of the residual network. 
+
+**Lemma (2)**
+> For all node $i∈N$, $d(i) < 2n$
+
+**Proof**: 
+Recall property 7.1, of the *Shortest Aug Path with Retreats and Advances* that, the distance label is an lower bound estimate for the least number of arcs requires going for a given node $i$ to $t$. 
+
+**Lemma (3)**: 
+> The algorithm performs at most nmnm saturating pushes
+
+**Proof**: 
+
+Recall *lemma (2)* from algorithm *Shortest Aug Path with Retreats and Advances*, if $k$ is the number of relabeling for all nodes, then there will be $km/2$ saturations on the arcs at maximum. We now that the maximum relabeling on all arcs is $2n$ by lemma (1), multiplying we have $mn$ number of saturating pushes at maximum, for each arc. 
 
 
 
