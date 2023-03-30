@@ -254,22 +254,13 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. #UNFINISHED
 
-**References**: Theorem 3.8 in the Network Algorithms Textbook. 
+**References**:
 
----
-### **The Dual Problem**
+Theorem 3.8 in the Network Algorithms Textbook. 
 
-We derive the dual problem of the minimum cost flow and simplify it so that it's easier for analysis purposes. 
+**Comments**: 
 
-
-
-
----
-### **Optimality Conditions of Min-cost Network Flows**
-
-The characterization of the minimum cost network's optimality is useful for designing algorithms for solving these problems. 
-
-
+The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Mininum Cost Flow Basic Algorithms]] for more information. 
 
 
 ---

@@ -402,20 +402,23 @@ Reading from left to right, top to bottom. When observing, keep noticing the mon
 **Facts of the Algorithm**
 
 We list these facts. Proof later. 
-1. At each stage of the algorithm, all nodes with positive excessive has a $i-s$ path in the residual network. 
-2. For all node $i\in N$, $d(i) < 2n$. 
-3. Each distance label increases at most $2n$ times, the total number of relabel is at worst, $2n^2$. 
-4. The algorithm performs at most $nm$ saturating pushes. 
+1. At each stage of the algorithm, all nodes with positive excessive has a $i-s$ path in the residual network. (lemma 7.11)
+2. For all node $i\in N$, $d(i) < 2n$. (lemma 7.12)
+3. Each distance label increases at most $2n$ times, the total number of relabel is at worst, $2n^2$. This is obvious since at worst increases on the distance label of the node is at worst $1$.  (lemma 7.13)
+4. The algorithm performs at most $nm$ saturating pushes.  (lemma 7.14)
+5. The algorithm performs at most $O(n^2m)$ non-saturating pushes. (lemma 7.15)
 
-Each fact till be handled by a lemma. 
+Each fact is a lemma in the book. Their proof will come later after the complexity proofs which made use of them. 
 
+**Complexity: Generic Preflow Push**: 
 
-**Complexity: Generic Preflow Push**
-> The generic preflow push algorithm executes for $O(n^2m)$ iterations. Same as the Dicnic's Algorithm. 
+> The generic preflow push algorithm has an upper bound of $O(n^2m)$ complexity for the executions. 
 
 **Proof**: 
 
-Denote $I$ to be the set of active nodes for the graph. 
+During the proof for lemma (5), we specify the use of a potential function $\Phi$ whose value goes to zero marks the terminations of the algorithm, and since OPt3 decreases the potential function is at least $1$ and it's the only one that decreases the value,  we have the worst case performance of $O(n^2m)$, equals to the complexity bounds for the total number of non-saturating pushes the algorithm performs. 
+
+
 
 **Complexity: FIFO Preflow Push**
 > A FIFO implementation of the Preflow push algorithm has a complexity of $\mathcal O(n^3)$, strictly better than the generic case of the algorithm. 
@@ -441,12 +444,28 @@ By the algorithm all nodes $i\in N\setminus \{s,t\}$ will contain  a positive ex
 
 Recall property 7.1, of the *Shortest Aug Path with Retreats and Advances* that, the distance label is a lower bound estimate for the least number of arcs requires going for a given node $i$ to $t$. By Lemma (2), there exists $s-i$ path, $P$ on the residual graph. The longest distance to $t$ would be to go from $s$ to $t$. The label $d(s) = n$, this is fixed. The the longest $i-s$ path have length $n - 1$, therefore, we have $d(i) < 2n$, by the lemma I asked you recall from. 
 
-**Lemma (3)**: 
+**Lemma (4)**: 
 > The algorithm performs at most $mn$ saturating pushes. 
 
 **Proof**: 
 
 Recall *lemma (2)* from algorithm *Shortest Aug Path with Retreats and Advances*, if $k$ is the number of relabeling for all nodes, then there will be $km/2$ saturations on the arcs at maximum. We now that the maximum relabeling on all arcs is $2n$ by lemma (1), multiplying we have $mn$ number of saturating pushes at maximum, for each arc. 
+
+
+**Lemma (5)**
+> The algorithm performs at most $O(n^2m)$ non-saturating pushes. 
+
+**Proof**: 
+
+Denote $I$ to be the set of active nodes for the graph. Define potential function $\Phi(I) = \sum_{i\in I}^{}d(i)$, since $d(i) \le 2n$, we have $\Phi(I) \in O(n^2)$ initially. By the termination criteria, $\Phi = 0$ when the algorithm terminates. We classify the operations of the algorithms which it increases or decreases the value of the potential function. 
+
+1. A relabel operations that increase at least by $1$. The total amount of relabels is bounded by $2n^2$. This is by fact (3). (*Opt1*)
+2. A saturating push on any node $i$, through arc $(i, j)$, exess is introduced to $j$. $\Phi$ is increased by $d(j)$. (*Opt2*) 
+3. A nonsaturating push on any node $i$ through arc $(i, j)$, then there are 2 possibilities. But the worst case net decrease is $1$. 
+   1. If $d(j)$ is not active but becomes active afterwards, it will decrease the potential by $d(i)$ and incraese it by $d(j) = d(i) - 1$ by the property of admissible arcs, the potential value is decreased by $1$. (*Opt3*)
+   2. Else $d(j)$ is already active, since it's non-saturating, node $i$ is removed from $I$, hence $\Phi$ is decreased by a value of $d(i)$. 
+
+The initial value of $\Phi < 2n^2$. Total Opt1 is $2n^2$. and since there are $mn$ saturating pushes at maximum, and $d(j) \le 2n$, by fact 2, the total number of increase by Opt2 is $2n^2m$. Opt3 at worst decrase $\Phi$ by 1, therefore the total number of non-saturing pushes will be the sum of all Op1, Opt2 and the upper bound for the initial value of $\Phi$, which is: $2n^2 + 2n^2 + 2n^2m$. 
 
 
 

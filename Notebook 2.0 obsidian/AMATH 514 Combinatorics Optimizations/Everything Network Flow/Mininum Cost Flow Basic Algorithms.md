@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-Specialized algorithms for minimum cost flow type of problems are very fast, compare to the alternative such as the interior points method, or the simplex that solves the LP representation of the problem instead of the network flow problem directly. 
+Specialized algorithms for minimum cost flow type of problems are very fast, compare to the alternative such as the interior points method, or the simplex that solves the LP representation of the problem instead of the network flow problem directly. We will go over the Dual problems, how to identify the optimal flows and potentials if one of the other is given, and we will introduce the negative cycles removal algorithms for the min cost flow problem. 
 
 **Assumptions**
 
@@ -18,4 +18,4 @@ Specialized algorithms for minimum cost flow type of problems are very fast, com
 
 **References**: 
 
-Ahuja's Network Flow Algorithm Textbook. 
+Ahuja's Network Flow Algorithm Textbook, Chapter 9
