@@ -1,6 +1,6 @@
 ### **Intro**
 
-This formula is extremely useful when we are dealing with Euclidean norm, inner products, and convex combinations of things. We show the proof for it and we will provide more variance for it. The cute formula is: 
+This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), inner products, and convex combinations of things. We show the proof for it and we will provide more variance for it. The cute formula is: 
 
 $$
 \begin{aligned}
@@ -11,7 +11,7 @@ $$
 
 **Observation**
 
-The lhs is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. For more about Jensen's Inequality, 
+The lhs is the norm of the affine combinations: $\Vert (1 - \theta) a + \theta b\Vert^2$, the first 2 terms on the RHS: $(1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2$ is the affine combination of the individual norms, and the final term is an extra term that makes the equality true. 
 
 **Proof:** 
 
@@ -75,7 +75,7 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 ---
 ### **A Generalized Version**
 
-In the general version of the theorem, we consider an affine combinations of vectors in the Eulidean space, and form the equality: 
+In the general version of the theorem, we consider an affine combinations of vectors ($\sum_{i\in I} \alpha_i = 1$) in the Euclidean space, and form the equality: 
 
 $$
 \begin{aligned}
@@ -101,6 +101,7 @@ Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this fo
 ---
 ### **An Augmented Version**
 
+Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. 
 
 
 

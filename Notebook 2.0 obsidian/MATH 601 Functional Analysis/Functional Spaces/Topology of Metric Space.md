@@ -135,7 +135,7 @@ $$
 \end{aligned}
 $$
 
-This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinict $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
+This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinct $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
 
 
 ---

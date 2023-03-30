@@ -41,7 +41,7 @@ $$
     &= 
     (1 + \mu)^{-1}(x - \text{prox}_{(1 + \mu)f}(x))
     \\
-    x - (1 + \mu)^{-1} + (1 + \mu)^{-1}\text{prox}_{(1 + \mu)f}(x) 
+    x - (1 + \mu)^{-1}x + (1 + \mu)^{-1}\text{prox}_{(1 + \mu)f}(x) 
     &= 
     \text{prox}_{\text{env}_f^\mu}(x)
     \\

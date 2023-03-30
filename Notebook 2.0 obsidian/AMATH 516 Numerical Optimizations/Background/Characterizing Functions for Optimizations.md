@@ -29,10 +29,10 @@ This definition is introduced so we can get rid of some pathological function, m
 
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
 
-**References**: Credit due Rockafellar. 
+**References**: Tyrell Rockafellar did this to us. 
 
 ---
-### **Continuity and Smoothness**
+### **Continuity and Traditional Smoothness**
 
 For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
 
@@ -43,10 +43,10 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 > A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
 **C0 smooth**
-> A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
+> A function $f$ is a C0 function that are continuous. ramp function is a class of C0 functions. 
 
 **C1 Smooth**
-> A function $f$ is a C1 function when it has a uniformly continuous derivative. It's quadratic-like. 
+> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without any sharp turns on the graph. 
 
 ---
 ### **Closed Function**
@@ -90,8 +90,12 @@ In Math 563, Heinz's class, there is the term *supercoercive*, which refers to f
 
  The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time.
 
+Rarely used besides for the theories of functions. Used in [[Existence of a Minimizer]]. 
+
 ---
 ### **Special Functions for Analysis**
+
+These functions are new special objects unique to nonsmooth analysis. 
 
 **Def: The support Functions**
 
@@ -130,7 +134,7 @@ $$
 The function is only defined inside of the set $Q$, out of the set it's not giving infinity. This function has the usage of denoting constraints for optimization problems. 
 
 ---
-### **Convexity**
+### **Convexity of Functions**
 
 Convex function has 2 equivalent definitions. 
 
@@ -186,6 +190,12 @@ For example, the function $\exp(x)$ is a strictly convex function.
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
 * For more about it see [[Strong Convexity, Equivalences and Implications]]
+
+---
+### **Convexity and Lipschitz Functions**
+
+Functions that are convex and Lipschitz smooth, they are a strict subsets of all the convex functions. For a convex function, Local Lipschitz continuity will fail on the boundary of its domain. 
+
 
 ---
 ### **Beta-Smoothness | Strong Smoothness**

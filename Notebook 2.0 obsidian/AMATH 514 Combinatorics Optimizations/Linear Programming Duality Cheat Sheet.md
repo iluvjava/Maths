@@ -98,7 +98,7 @@ $$
     \text{where}& \begin{cases}
         x \ge \mathbf 0 \\ y \le \mathbf 0 \\ z \text{ free}
     \end{cases}
-\end{aligned}ß
+\end{aligned}
 $$
 
 then the dual problem assign a dual variable for each of the constraints of the primal, and it assign constraints according to each of the primal decision variable. Reading the columns from right to left on the table, we can get: 

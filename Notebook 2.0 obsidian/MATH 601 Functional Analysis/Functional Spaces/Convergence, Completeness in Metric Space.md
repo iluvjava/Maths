@@ -114,6 +114,9 @@ Convergence in one metric might not means convergence in another metric.
 ---
 ### **Complete Subspace Theorem**
 
+This theorem is useful for characterizing when, the subspace of a complete metric space is also complete, topologically, via closure of the subset. 
+
+
 
 ---
 ### **Application: Banach Complete Subspace**

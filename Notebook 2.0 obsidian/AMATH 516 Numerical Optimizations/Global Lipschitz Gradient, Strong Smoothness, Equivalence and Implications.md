@@ -249,5 +249,9 @@ $$
 
 Take note that, at the last line, we know that $H$ is symmetric, and therefore, the spectral norm $\Vert (H|x)\Vert = \langle v, (H|x)v\rangle$ for some $v$, and hence, the norm of the matrix is also bounded by $\beta$. And from here, one can simply use the first order approximation for $\nabla f(x+ tv)$ to bound the value of the gradient, showing that the gradient is Lipscthiz continuous. 
 
+### **Examples**
 
+We give examples for functions that is strongly smooth. 
+
+**References**: Chapter 23 of Prof Heinz's Course notes. 
 

@@ -49,7 +49,10 @@ When $C$ is a polyhedra, this is just another way of phrasing the duality of lin
 ---
 ### **Example 4: Subgradient of the Max Eigenvalue Function**
 
-References: Example 3.8 in Amir Beck's book: [[../References/First-Order Methods in Optimization-Societ - Beck, A_.pdf]]. 
+**References**: Example 3.8 in Amir Beck's book: [[../References/First-Order Methods in Optimization-Societ - Beck, A_.pdf]]. 
 
 ---
 ### **Example Omega: Subgradient of the Value Functions**
+
+
+**References**: I think it's in Amir's Beck book. 

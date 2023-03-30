@@ -19,18 +19,12 @@ $$
 u(0, t) = u(1, t) = 0 \quad u(x, 0) = \sin(\pi x)
 $$
 
-Under the domain: $x \in[0, 1]$
-
-Take not, this thing even works when the non-homogeneous part is depending in time. 
-
-So that PDE of the form: 
+Under the domain: $x \in[0, 1]$. Take note, this even works when the non-homogeneous part is depending in time: 
 $$
 \partial_t[u] + \alpha^2 \partial_x^2[u] = f(t, x)
 $$
 
-It's also ok. 
-
-Steps: 
+**Procedures**: 
 
 **1. Find the eigenfunctions for the solution for the Homogeneous version of the PDE.**
 

@@ -440,6 +440,8 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > \end{aligned}
 > $$
 
+**References**: Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
+
 **Affine Addition**
 
 > Let $f(x) = \varphi(x) + \langle a, x\rangle + b$ then: 

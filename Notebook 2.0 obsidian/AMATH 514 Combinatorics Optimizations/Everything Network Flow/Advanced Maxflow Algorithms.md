@@ -139,7 +139,7 @@ this subroutine searches for the next node after $i$ to construct complete the a
 The retreat algorithm tries to re-adjust the expectation on the shortest number of arcs needed to go from a node $i$ to $t$. It changes the distance label to allow for more admissible arcs for the augmenting paths. 
 
 **Preconditions:** 
-> $d(i) < d(j) + 1$, for all $(i, j)$ in the graph.
+> $d(i) < d(j) + 1$, for all $(i, j) \in A$ in the residual where $r_{i, j} = 0$.
 
 
 ```SQL
@@ -151,9 +151,9 @@ FUNCTION retreat(i, G=(A, N)):
     RETURN nlb
 ```
 
-Observation: 
+**Observation**: 
 
-The retreat subroutine is only called whenever there is no adimmissible arcs coming out of the vertex $i$. 
+The retreat subroutine is only called whenever there is no admissible arcs coming out of the vertex $i$. 
 
 **Subroutine: Initializations**
 
@@ -323,21 +323,27 @@ The algorithm sends everything at first. It will always be an over estimate to w
 **Algorithm Overview: Subroutines and their descriptions**
 1. Preprecessing: This is for labeling the nodes with the correct distance label, and excess label before running the algorithm. 
 2. push/relabel: Changing the excess of the node on the graph and shifting the flow arounds. 
-3. Generic Preflow Push: An generic algorithm. It pushes excess on the nodes and build up the valid distance labels for all the nodes. 
+3. Generic Preflow Push: A generic algorithm. It pushes excess on the nodes and build up the valid distance labels for all the nodes. 
 
 
 **Subroutine: Preprocess**
 
-The preprocess algorithm will constract a valid label for each of the nodes at the start of the algorithm. They make the distance labels, and the excess labels for each of the node. 
+The preprocess algorithm will construct a valid label for each of the nodes at the start of the algorithm. They make the distance labels, and the excess labels for each of the node. 
 
 ```SQL
 FUNCTION preprocess(G=(A, N), s, t): 
-    d = EVAL('Perform BFS to make valid distance label. ')
+    d = EVAL('Perform BFS from t to s to make valid distance label. ')
+    d(s) = n  /*We manually define this label for the algorithm. */
     FOR ALL j in nghs(s): 
         f(s, j) = u(s, j)
         e(j) = u(s, j)
+    EVAL('Update the residual graph given the current initial flow for the graph.')
 ```
-**Subroutine: Push\Relabel**
+
+**Observations**: 
+- The default value made to node $s$ made the algorithm no longer satisfies the *valid label* conditions as in the case of *Shortest Augmenting Path with Advance and Retreat*. 
+
+**Subroutine: Push/Relabel**
 
 The process gets rid of the excess for a specific node and adjust the $e, d$ label for that node. If there is some admissible arcs from the node $i$, then it will push the excess flow away from the node and adjust excess, if not, it will increase its distance label to allow for more admissible arcs for the node $i\in N$. We also update active status of the node. 
 
@@ -352,9 +358,13 @@ FUNCTION pushRelabel(G=(A, N), i, s, t)
             EVAL('If excess is zero, mark it as inactive') /*Saturating push*/
     ELSE: 
 	    /*relabel the distance and mark it as inactive. */
-        REPLACE d(i) BY min(d(j) + 1) WHERE j IN nghs(i)
-        EVAL("Mark node i as no longer active. ") 
+        d(i) = min(d(j) + 1) WHERE j IN nghs(i)
 ```
+
+**Observations**: 
+
+- If a relabels happened, then there is some excess left in the node but the distance labels, or the residual doesn't allow any flow send from current node. 
+- The only case where the node becomes an inactive node is when $e(i) \le r_{i, j}$, and the distance label remains unchanged, it might becomes active in the future iterations. 
 
 **Algorithm: Generic Pre-Flow Push**
 
@@ -375,7 +385,9 @@ The rules for distance label is exactly the same as it's for the *Shortest Augme
 
 **Algorithm: FIFO Preflow Push**
 
-This algorithm do things in a FIFO Manner. 
+For the set of active node $I$, the FIFO uses a queue to store then. It takes an element from the head of the queue and push it, and: 
+- New added node from pushing is added to the back of the queue. 
+- The current node is removed then added to the back of the queue if, it's being relabeled. 
 
 
 **Example**: 
@@ -426,10 +438,11 @@ By the algorithm all nodes $i\in N\setminus \{s,t\}$ will contain  a positive ex
 > For all node $i∈N$, $d(i) < 2n$
 
 **Proof**: 
-Recall property 7.1, of the *Shortest Aug Path with Retreats and Advances* that, the distance label is an lower bound estimate for the least number of arcs requires going for a given node $i$ to $t$. 
+
+Recall property 7.1, of the *Shortest Aug Path with Retreats and Advances* that, the distance label is a lower bound estimate for the least number of arcs requires going for a given node $i$ to $t$. By Lemma (2), there exists $s-i$ path, $P$ on the residual graph. The longest distance to $t$ would be to go from $s$ to $t$. The label $d(s) = n$, this is fixed. The the longest $i-s$ path have length $n - 1$, therefore, we have $d(i) < 2n$, by the lemma I asked you recall from. 
 
 **Lemma (3)**: 
-> The algorithm performs at most nmnm saturating pushes
+> The algorithm performs at most $mn$ saturating pushes. 
 
 **Proof**: 
 

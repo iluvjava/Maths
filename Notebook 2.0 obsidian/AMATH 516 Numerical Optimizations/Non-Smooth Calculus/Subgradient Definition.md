@@ -108,7 +108,7 @@ very useful for characterizing $g$ that is in the subgradient of a function. The
 
 **Remarks:**
 
-The supporting tagent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
+The supporting tangent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
 
 $$
 \partial [f]\subseteq\hat{\partial}[f]
