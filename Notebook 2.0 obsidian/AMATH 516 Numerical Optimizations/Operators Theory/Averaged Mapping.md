@@ -38,6 +38,9 @@ Setting $\alpha = 1/2$ in the above formula, we recover the definition for a fir
 
 Let $N$ be a firmly nonexpansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. Write $u = x - y$ and $v = Tx - Ty$. 
 
+
+#UNFINISHED 
+
 **References**: 
 
 Heinz's course notes, theorem 22.11. 

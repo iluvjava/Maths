@@ -153,7 +153,7 @@ The proof is from myself and it might contains some errors. It's a theorem state
 
 
 ---
-### **Prox is L1-Lipschitz**
+### **Prox is L1-Lipschitz, and Firmly Non-expansive**
 
 > Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
@@ -246,15 +246,18 @@ Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \c
 
 To generalize the results where $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same Lipschitz for any convex proper functions, for any parameter $\alpha > 0$. I deviated from the references materials and added the generality for $\Vert \cdot\Vert$ so that it works with $\Vert \cdot\Vert_\star$. 
 
+The proximal operator is also <mark style="background: #FFF3A3A6;">*firmly nonexpansive*</mark>, a stronger type of operators than Lipschitz-1 Operators. This helps with proving the convergence of many algorithms that uses the proximal operator. For context, read [[../Operators Theory/Firmly Nonexpansive Operators]] for more about firmly nonexpansive operators in general. There is also an simpler version of the proof for the firmly nonexpansiveness of the prox operators. 
+
 **Corollary: Moreau Envelope is Smooth**
 
-Consider the fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constent $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
+Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
+
+**References**: 
+
+Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where. 
 
 
-----
-### **Prox is Firmly Nonexpansive**
 
-The proximal operator is firmly nonexpansive, a stronger type of operators than Lipschitz-1 Operators. This helps with proving the convergence of many algorithms that uses the proximal operator. For context, read [[../Operators Theory/Firmly Nonexpansive Operators]] for more about firmly nonexpansive operators in general.
 
 ---
 ### **Proximal Decomposition and Minty Parameterizations**
@@ -327,7 +330,11 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. At \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. At \[4\] we invoke the Fenchel Identity and at \[6\] we re-interpreted the expression using the prox on the conjugate functions. At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. Additionally, one can Chose to use property from [[Convex Conjugation]] and use $\lambda f$ instead where $\lambda \ge 0$, in which case we have: 
+- \[1\]: we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. 
+- \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. 
+- At \[4\] we invoke the Fenchel Identity and at 
+- \[6\] we re-interpreted the expression using the prox on the conjugate functions. 
+- At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. Additionally, one can Chose to use property from [[Convex Conjugation]] and use $\lambda f$ instead where $\lambda \ge 0$, in which case we have: 
 
 $$
 \begin{aligned}
@@ -390,7 +397,7 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipzchitz, the gradient is also a Lipschitz mapping. 
+At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipschitz, the gradient is also a Lipschitz mapping. 
 
 **Remarks**
 

@@ -12,6 +12,13 @@ Specialized algorithms for minimum cost flow type of problems are very fast, com
 3. The sum of all the supplies and demands will sum up to zero. 
 4. All costs are non-negative in the network. 
 
+---
+### **The Dual of the LP**
+
+We restate the dual formulation from the network standard form LP for the problem, but using different symbols. 
+
+
+
 
 
 

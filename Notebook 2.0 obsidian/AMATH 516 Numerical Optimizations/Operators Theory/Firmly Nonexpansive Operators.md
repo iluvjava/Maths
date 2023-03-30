@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]]
+[[Introduction to Operators for Optimizations]], 
 
 ---
 ### **Non-Expansive Operators**
@@ -226,4 +226,31 @@ If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Fi
 
 **Example: Proximal Mapping is Firmly Nonexpansive**
 
-Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. 
+Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. Recall from [[../Non-Smooth Calculus/Subgradient and Subdifferential Properties]] that the subgradient operator is a monotone operator. Now we make the claim: 
+
+> let $f$ be convex, proper, and lower semi-continuous, we have the proximal operator of $f$, denoted as $P_f, I - P_f$ being firmly non-expansive operators. 
+
+**Proof**: 
+
+let $x, y\in X$ set $p = P_f(x), q = P_f(x)$, then by equivalence characterizations for the singleton element in $P_f$, we have: 
+
+$$
+\begin{aligned}
+    & x - p \in \partial f(p), y - q \in \partial f(q)
+    \\
+    \implies &
+    \langle x - p - (y - q), p - q\rangle \ge 0 
+    \\
+    \implies 
+    & \langle x - y, p - q\rangle - \Vert p - q\Vert^2 \ge 0
+    \\
+    \implies 
+    & \langle x - y, p - q\rangle\ge \Vert p - q\Vert^2, 
+\end{aligned}
+$$
+
+which is the definition for firmly nonexpansive operators. 
+
+**Remarks**: 
+
+This is strictly better that just a Lipschitz-1 operator. 
