@@ -53,7 +53,7 @@ and this comletes the proof and showed that the sequence $x_n$ is indeed Cauchy,
 ---
 ### **Example 2: Incomplete Subspace of $l^\infty$**
 
-$l^\infty$ itself is a complete metric space, but one of its dense subspace might not be complet. 
+$l^\infty$ itself is a complete metric space, but one of its dense subspace might not be complete. 
 
 **Claim**:
 > Let $M\subseteq l^\infty$ to be the subset of all the sequences that has finitely many non-zero terms in it. Then this subspace is incomplete in this metric. 
@@ -79,7 +79,7 @@ $$
 \end{aligned}
 $$
 
-because the first term they differs is $\min(M, N)$, and this difference is the largest in absolute value, by this token, we can choose any $M, N$ such that $\min(M, N) > \epsilon^{-1}$ for all $\epsilon > 0$ to make $\min(M, N)^{-1}\le \epsilon$, then for all $m, n$ such that $\min(m, n)\ge\min(M, N)$, we will have: $d(x_N, x_M) \le \epsilon$. And this completes the proof. This subspace of the metric space is incomplete.
+because the first term they differs is $\min(M, N)$, and this difference is the largest in absolute value, by this token, we can choose any $M, N$ such that $\min(M, N) > \epsilon^{-1}$ for all $\epsilon > 0$ to make $\min(M, N)^{-1}\le \epsilon$, then for all $m, n$ such that $\min(m, n)\ge\min(M, N)$, we will have: $d(x_N, x_M) \le \epsilon$. And this completes the proof. This subspace of the metric space is incomplete because the limiting sequence have, infinitely many none zero entries in it. 
 
 
 ---
@@ -90,21 +90,54 @@ The $l^\infty$ sequence space is a complete metric space. The metric between 2 e
 **Claim:**
 > The $l^\infty$ metric space is a complete metric space. For all Cauchy sequences of sequence, they must converge to a sequence that is $l^\infty$. 
 
-**Proof**: 
+Let's $(x^{(n)})_{n\in \N}$ be a sequence in $l^\infty$. 
 
-Let $(x^{(n)})_{n\in \N}$ be Cauchy and $x^{(n)}\in l^\infty$ then for all $\epsilon > 0$ there exists $N$ such that whenever $m > n > N$ we have $\Vert x^{(m)} - x^{(n)}\Vert_\infty \le \epsilon$ by definition of Cauchy. Since it's Cauchy, we have $\lim_{n\rightarrow \infty}x^{(n)} = \bar x$. Therefore for all $\epsilon > 0$ we have: 
+**Strategies**: 
+1. Show that for all $i\in \N$, $\lim_{m\rightarrow \infty}x_{i}^{(m)}$ exists and it's bounded, denote that as $\bar x_i$. 
+2. Show that, the sequences of pointwise limit, denoted as $\bar x = (\bar x_1, \bar x_2, \cdots)$ is in $l^\infty$. 
+
 $$
 \begin{aligned}
-    & \exists N: n > N\implies
-    \Vert x^{(n)} - \bar x\Vert_\infty\le \epsilon\
+    & (x^{(n)})_{n\in \N} \text{ is Cauchy in }  l^{\infty}
+    \\
+    \iff &
+    (\forall \epsilon > 0\; 
+    \exists N: (m > n > N \implies \Vert x^{(n)} - x^{(m)}\Vert_\infty \le \epsilon))
+    \\
+    \iff &
+    (\forall \epsilon > 0\; 
+    \exists N: (m > n > N \implies \forall i \in \N  \; |x^{(n)}_i - x^{(m)}_i| \le \epsilon))
     \\
     \implies &
-    \Vert \bar x\Vert_\infty \le 
-    \Vert \bar x - x^{(n)}\Vert_\infty + 
-    \Vert \bar x^{(n)} \Vert_\infty < \infty,
+    \forall i \in \N:  (x_i^{(m)})_{m\in \N} \text{ is Cauchy in } \mathbb R
+    \\
+    \iff &
+    \exists \bar x_i \in \mathbb R: \bar x_i = \lim_{m\rightarrow \infty} x^{(m)}_i, 
 \end{aligned}
 $$
-because it's established that $x^{(n)}\in l^{\infty}\; \forall n \in \N$. Since the point $\bar x$ still has $\Vert \bar x\Vert_\infty$ finite, we have $\bar x \in l^{\infty}$, therefore the metric space $l^{\infty}$ is a complete metric space. 
+
+Therefore, any cauchy sequence $(x^{(m)})_{m\in \N}$, has a limit for each of its element. Next we consider , $x^{(m)}\in l^{\infty}$, its norm must be bounded, for any $\epsilon > 0$ that is practically small, fix any $m\in \N$: 
+
+$$
+\begin{aligned}
+    & \Vert \bar x \Vert_\infty \le 
+    \underbrace{\Vert \bar x - x^{(m)}\Vert_\infty}_{< \epsilon} + 
+    \underbrace{\Vert x^{(m)}\Vert_\infty}_{< \infty}
+    \\
+    \implies &
+    \Vert \bar x\Vert_\infty < \infty, 
+    \\
+    \iff& 
+    \bar x \in l^{\infty}. 
+\end{aligned}
+$$
+
+therefore we had show in the later part that $\lim_{m\rightarrow \infty} \Vert x^{(m)}\Vert_\infty$ is indeed bounded, for any Cauchy sequence, and each of its element, $x_i^{(m)}$ is indeed $\in \mathbb R$. 
+
+**Reference**: 
+
+Kreyszig Functional analysis textbook, example 1.5-2. 
+
 
 ---
 ### **Quick and Dirty Incomplete Spaces**

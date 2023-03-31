@@ -1,7 +1,6 @@
-Here we are going to learn some theorems related to the LU decomposition. 
+The LU decomposition of an invertible matrix exists and it's unique. 
 
 ---
-
 ### Statement 1
 > The LU decomposition of a invertible matrix is unique. 
 

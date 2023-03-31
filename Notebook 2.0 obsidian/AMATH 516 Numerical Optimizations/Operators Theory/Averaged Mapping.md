@@ -50,9 +50,9 @@ Heinz's course notes, theorem 22.11.
 
 This type of non-expansive operator converges under fixed point iterations. 
 
-**Theorem: Averaged Operator has Fixed Point Convergence (Fejer Convergence)**
+**Theorem: Averaged Operator has Fixed Point Convergence**
 
-> Let $F$ be an averaged operator, then the fixed point iterations, defined as $x^{(k + 1)} = Fx^{(k)}$ monotonically converges to a point on the fixed point set of the operator, provided that the fixed poin set $X$ exists. Additionally, the rate of convergence is $\mathcal O(1/\sqrt{k})$. 
+> Let $F$ be an averaged operator, then the fixed point iterations, defined as $x^{(k + 1)} = Fx^{(k)}$ monotonically converges to a point on the fixed point set of the operator, provided that the fixed point set $X$ exists. Additionally, the rate of convergence is $\mathcal O(1/\sqrt{k})$. 
 
 **Proof**
 
@@ -138,6 +138,13 @@ This derivation is extremely similar to what we had for [[../Smooth Gradient Des
 For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [[Fejer's Monotone]] for more information. 
 
 **Reference**: See Primer on Monotone Operator for more information. [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]]. 
+
+
+---
+### **Fejer Monotonicity**
+
+Fixed point iteration of an averaged operator has Fejer Monotone convergence. 
+
 
 
 
