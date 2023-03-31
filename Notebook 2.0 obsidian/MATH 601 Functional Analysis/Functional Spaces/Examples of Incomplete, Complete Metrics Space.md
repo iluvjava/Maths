@@ -9,7 +9,7 @@ In this section, we show some of the examples where a metric space is not a comp
 To verify that a metric space $(d, X)$ is complete, we identify a sequence $(x_n)_{n\in \N}$ such that it's Cauchy wrt to metric $d$, and then we propose a limit for such a Cauchy sequence and check if it's in the space or not. The limit of the sequence is not related to the metric, while the Cauchyness of the sequence is metric related. 
 
 ---
-### **Example 1: Incomplete Metric, sequence space**
+### **Example 1: Incomplete Arctan Metric for Sequence Space**
 
 > Let $(X, d)$ be a metric space where $X$ is the set of reals, and $d$ is the metric: 
 > $$
@@ -51,7 +51,7 @@ $$
 and this comletes the proof and showed that the sequence $x_n$ is indeed Cauchy, since the limit $x_n$ is $\infty$, not part of $\R$, we know that the metric space is incomplete. 
 
 ---
-### **Example 2: Incomplete Subspace of $l^\infty$**
+### **Example 2: Incomplete Subspace of $l^\infty$, with Finite many None Zeros**
 
 $l^\infty$ itself is a complete metric space, but one of its dense subspace might not be complete. 
 
@@ -96,6 +96,8 @@ Let's $(x^{(n)})_{n\in \N}$ be a sequence in $l^\infty$.
 1. Show that for all $i\in \N$, $\lim_{m\rightarrow \infty}x_{i}^{(m)}$ exists and it's bounded, denote that as $\bar x_i$. 
 2. Show that, the sequences of pointwise limit, denoted as $\bar x = (\bar x_1, \bar x_2, \cdots)$ is in $l^\infty$. 
 
+**Proof**
+We start with: 
 $$
 \begin{aligned}
     & (x^{(n)})_{n\in \N} \text{ is Cauchy in }  l^{\infty}
@@ -137,6 +139,10 @@ therefore we had show in the later part that $\lim_{m\rightarrow \infty} \Vert x
 **Reference**: 
 
 Kreyszig Functional analysis textbook, example 1.5-2. 
+
+
+---
+### 
 
 
 ---

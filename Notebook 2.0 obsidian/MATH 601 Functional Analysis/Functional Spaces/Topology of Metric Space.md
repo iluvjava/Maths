@@ -1,12 +1,13 @@
-- [[Metric Space Introduction]], [[../Further Examples for Metric Space]]
+- [[Metric Space Introduction]], [[../Further Examples for Metric Space]], 
 - [[../../MATH 000 Math Essential/Analysis/Real Analysis Basics]], 
 - [[../../MATH 000 Math Essential/Countability of Sets]]. 
+- [[../../MATH 000 Math Essential/Topological Spaces]]
 
 
 ---
 ### **Intro**
 
-Separability, Denseness, and completeness of the Metric Spaces and their derivatives. For the introduction, we define some of the concepts and then use theorems to paint a better picture for the topologies inside of a metric space. To start define a metric ball: 
+A metric space is a topological space. Separability, Denseness, and completeness of the Metric Spaces and their derivatives. For the introduction, we define some of the concepts and then use theorems to paint a better picture for the topologies inside of a metric space. To start define a metric ball: 
 
 $$
 \begin{aligned}
@@ -29,10 +30,6 @@ To start, we define the concept of vicinity around any "point" in the metric spa
 
 Sometimes we need the convergence in a metric space to characterize the property of a closed set, see [[Convergence, Completeness in Metric Space]]. 
 
-**Definition: Dense Subset**
-
-> A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
-
 **Definition: An Accumulation Point**
 
 >Let $M\subseteq X$, with $x_0\in X$, $x_0$ is an accumulation point of M if for all $\epsilon > 0$, we have $\mathbb B_\epsilon(x_0|M)\setminus \{x_0\} \neq \emptyset$. 
@@ -48,16 +45,28 @@ Sometimes we need the convergence in a metric space to characterize the property
 
 **Theorem: Sequential Characterization of an Accumulation Point**
 
-> $x_0 \in X$ is an accumulation point of $M$ if and only if for all $\epsilon > 0$, $\mathbb B_{\epsilon}(x_0)\setminus \{x_0\}$ contains infinitely many points of $M$, i.e: there exists a sequence $(x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty}x = x_0$ with $x_n \neq x \; \forall n \in \mathbb N$. 
+> $x_0 \in X$ is an accumulation point of $M$ if and only if for all $\epsilon > 0$, $\mathbb B_{\epsilon}(x_0)\setminus \{x_0\}$ contains point/points of $M$, i.e: there exists a sequence $(x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty}x = x_0$ with $x_n \neq x \; \forall n \in \mathbb N$. 
 
 
 **Proof**:
 
-This theorem is analogous to the limit point in the real line, hence we are skipping the proof here. 
+This theorem is analogous to the limit point in the real line, but instead of the absolute value, we have the metric, hence we are skipping the proof here. 
 
 **Example: No Accumulation Points**
 
 The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any accumulation point because all the points in the set are all singletons. 
+
+**Definition: Points in Closure**
+
+An element in the closure of some set is characterized by the neighborhood of that point. Recall that a point $x\in X$ (note necessarily in $M$) is an accumulation point  of $M\subseteq X$ if every neighborhood of $x$ has at least one point $y\in M$ such that $y\neq x$. Using this, we define points in the closure. 
+
+> All points in $M$ union with all the accumulation points of $M$ is the closure of the set. It's also the smallest close set containing $M$.
+
+That was the definition. 
+
+**Definition: Dense Subset**
+
+> A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
 
 **Definition: A Separable Subset**
 
@@ -65,23 +74,24 @@ The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any a
 
 **Intuitive Explanations**: 
 
-There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. 
+There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. Because a sequential limit only has countably many points. In fact, this is as much as I can explain, more in depth explanations for this concept requires general topology. Anyway, see [here](https://math.stackexchange.com/questions/770146/why-do-we-need-separability), a stack exchange post for more information. 
 
 **Example: Separable Spaces**
 
 The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. 
+
 
 ---
 ### **Separability Examples**
 
 Here we show that the sequence space $l_\infty$ is an example of incomplete space, and $l_2$ is an example of a complete metric space. 
 
-**Claim**: 
-> The $l_2$ sequence space is a separable space. 
+**Claim: $l_2$ is Separable**
+> The $l_2$ sequence space is a separable space. The sequence space equipped with 2-norm. 
 
 **Proof Preparations**
 
-Define $S_n$ to be the set of all $(x_1, x_2, \cdots, x_n, 0, 0, \cdots)$ sequences. Observe that $|S_n|$ by basic knowledge about countability of sets. Furthermore we get that $\bigcup_{n\in \N} S_n$ is also a countable set. To show that the space is separable, we consider $\text{cl}(S_n) = l_2$. 
+Define $S_n$ to be the set of all $(x_1, x_2, \cdots, x_n, 0, 0, \cdots)$ sequences. By basic knowledge about countability of sets, we get that $\bigcup_{n\in \N} S_n$ is also a countable set. To show that the space is separable, we claim $\text{cl}(S_n) = l_2$, hence, it's a dense subset of $l_2$. 
 
 **Proof**
 
@@ -100,7 +110,7 @@ And therefore, for any size of $\epsilon$ we can approximate any sequence $x\in 
 For any sequence that is squared absolute convergence, we can establish the fact that the first $N - 1$ element can be approximated by some element from the dense set $S_n$, dense with relative to all finite sequence of length $N$, and then by the convergence property of the sequence, the tail $N$ sequence of term also converges to zero. Since both parts of the sequence in $l_2$ is converging to something, we carry out the proof with separate convergences. 
 
 
-**Claim**: 
+**Claim $l_\infty$ is not Separable** 
 
 > The set $l_\infty$, is not a separable sequence space. 
 

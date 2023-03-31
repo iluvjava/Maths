@@ -23,7 +23,7 @@ Convergence in the metric never implies the existence of $x_\infty$ in the space
 
 > A subset $M\subseteq M$ is a bounded set if there exists a $x\in X$, $r > 0$ such that $M \subseteq\mathbb B_{r}(x)$. 
 
-**Theorems: Convergence Sequence in Metric Space**
+**Theorem: Convergence Sequence in Metric Space**
 
 > Let $(X, d)$ be a metric space and $(x_n), (y_n)$ to be sequence in $X$, then: 
 > 1. if $(x_n)$ is converging, then it's bounded and its sequence is going to be a unique element in $X$. 
@@ -31,9 +31,11 @@ Convergence in the metric never implies the existence of $x_\infty$ in the space
 > 3. If a sequence is converging in the metric $d$, then it's a Cauchy sequence.  
 
 **Proof(1.)**: 
+
 It's direct by choosing a specific $\epsilon$ from the definition of convergence sequence in metric space. 
 
 **Proof(2.)**:
+
 Directly from the definition of a metric, we have: 
 
 $$
@@ -56,36 +58,39 @@ therefore we can conclude that:
 
 $$
 \begin{aligned}
-    \underset{n\rightarrow \infty}{\lim\sup}
-    (d(x_n, y_n) - d(x, y)) 
-    &\le \lim_{n\rightarrow \infty} d(x_n, x) - d(x, y_n)
+    & d(x_n, x) - d(y, y_n)
+    \le d(x, y) - d(x_n, y_n) 
+    \le d(x, x_n) - d(y_n, y)
     \\
-    \underset{n\rightarrow \infty}{\lim\inf}
-    (d(x_n, y_n) - d(x, y)) \ge & \lim_{n\rightarrow \infty}d(y_n, y) - d(x, x_n)  = 0, 
+    \implies & 
+    \lim_{n\rightarrow \infty}d(x_n, x) - d(y, y_n)
+    \le \lim_{n\rightarrow \infty} d(x, y) - d(x_n, y_n) 
+    \le \lim_{n\rightarrow \infty} d(x, x_n) - d(y_n, y)
+    \\
+    \implies & 
+    0
+    \le \lim_{n\rightarrow \infty} d(x, y) - d(x_n, y_n) 
+    \le 0
 \end{aligned}
 $$
 
-andtherefore, we have the limitof $d(x_n, y_n)\rightarrow d(x, y)$, if, both the quantities approach their respective limits. 
+and therefore, we have the limit of $d(x_n, y_n)\rightarrow d(x, y)$, if, both the quantities approach their respective limits. 
 
-**Proof(3.)**: Choose a $\epsilon > 0$ then by the definition of convergence in metric space, we have $d(x, x_n)\le \epsilon$, $d(x, x_m) \le \epsilon$ for some $\min(m, n) > N_\epsilon$. So then by triangle inequality of metric, we have $d(x_m, x_n) \le d(x_m, x) + d(x, x_n)$, and by convergence and non-negativity property of metric, we have $d(x_m, x_n) \le 2 \epsilon$, so we are ok here. 
+**Proof(3.)**: 
+
+Choose a $\epsilon > 0$ then by the definition of convergence in metric space, we have $d(x, x_n)\le \epsilon$, $d(x, x_m) \le \epsilon$ for some $\min(m, n) > N_\epsilon$. So then by triangle inequality of metric, we have $d(x_m, x_n) \le d(x_m, x) + d(x, x_n)$, and by convergence and non-negativity property of metric, we have $d(x_m, x_n) \le 2 \epsilon$, so we are ok here. 
 
 **Theorem: Sequential Limit Characterizations of Closure**
 > Let $M\subseteq X$, then $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)_{n\in \mathbb N}\in M$, such that $x_n\rightarrow x$. 
 
 **Proof**: 
+
 Firstly we state the fact $M \subseteq \text{cl}(M)$. If $x\in M$, then by definition is already in $\text{cl}(M)$, otherwise, let $x\in \text{cl}(M)\setminus M$, by definition of closure, we can select from the set $\mathbb B_{1/n}(x)\cap M$, therefore, constructing a convergence sequence. The other direction of $\impliedby$ is kinda easy to see. 
-
-**Theorem: Complete Subspace is Characterized by Closure**
-> Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
-
-**Remarks**
-
-This theorem provides an alternative to showing that a particular subspace of a metric space is complete or incomplete. We now show that $M\subseteq X$ to be incomplete by showing that every limit point of the set is a member of the set, the alternative negates the need to use the Cauchy convergence sequence, which sometimes very complicated to use. It also provides a way of showing that a closed subspace is gong to be complete. 
-
-For example about what metric spaces are complete and what is not, consider visiting: [[Examples of Incomplete, Complete Metrics Space]] for more examples. 
 
 ---
 ### **Cauchy Convergence and Completeness**
+
+
 
 **Motivations**
 
@@ -112,10 +117,33 @@ Convergence in one metric might not means convergence in another metric.
 
 
 ---
-### **Complete Subspace Theorem**
+### **Complete Subspace Equivalences**
 
 This theorem is useful for characterizing when, the subspace of a complete metric space is also complete, topologically, via closure of the subset. 
 
+**Theorem: Sequential Limit and Closure of a Set**
+> 1. $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)\in M$ such that $x_n\rightarrow x$. 
+> 2. $M$ is closed, meaning that $M = \text{cl}(M)$ if and only if $x_n\rightarrow x$ implies that $x\in M$. 
+
+**References**: 1.4-6, Kreyzig's Intro to Functional analysis. We are skipping the proof for now. 
+
+**Theorem: Complete Subspace, Closure Equivalence**
+> Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
+
+**Proof**: 
+
+Take $\text{cl}(M)$, then for all $x\in \text{cl}(M)$, there exists a sequence $x_n \rightarrow x$. By $x_n$ converging, we know that it's Cauchy, by $M$ be complete, this sequene converge to a point $x\in M$. 
+
+Suppose that $M$ is closed and $x_n$ is a Cauchy sequence in $M$, by completeness of $X$, $x\rightarrow x$ and $x\in X$, since $x_n\in M \;\forall n\in \N$, $x$ is an accumulation point of $M$, hence $x\in \text{cl}(M)$, then $x\in M$, by the definition of a closed set: $\text{cl}(M) = M$. 
+
+
+**Remarks**
+
+This theorem provides an alternative to showing that a particular subspace of a metric space is complete or incomplete. We now show that $M\subseteq X$ to be incomplete by showing that every limit point of the set is a member of the set, the alternative negates the need to use the Cauchy convergence sequence, which sometimes very complicated to use. It also provides a way of showing that a closed subspace is gong to be complete. 
+
+For example about what metric spaces are complete and what is not, consider visiting: [[Examples of Incomplete, Complete Metrics Space]] for more examples. 
+
+**References**: 1.4-7 in Kreyzig's Intro to Functional Analysis textbook. 
 
 
 ---
