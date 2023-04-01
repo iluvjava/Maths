@@ -72,6 +72,8 @@ That was the definition.
 
 > $X$ is a separable metric space if it has a countable subset that is dense in $X$. 
 
+**Note**: It has nothing to do with completeness. $\mathbb Q$ is a separable space, because it itself is a dense subset of itself, but, it's not complete. 
+
 **Intuitive Explanations**: 
 
 There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. Because a sequential limit only has countably many points. In fact, this is as much as I can explain, more in depth explanations for this concept requires general topology. Anyway, see [here](https://math.stackexchange.com/questions/770146/why-do-we-need-separability), a stack exchange post for more information. 

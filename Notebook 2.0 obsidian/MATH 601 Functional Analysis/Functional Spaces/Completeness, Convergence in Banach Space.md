@@ -14,7 +14,9 @@ The isometry is about the vector space. An example where we can use to complete 
 ---
 ### **Series Convergence Types in Banach Space**
 
-> **Definition**
+Completeness in Banach space is affected by the shift invariant of the norm. It seems to be the case that the shift invariance creates an relations between the convergence of the norm, and the convergence of the actual sequence itself in the space. 
+
+**Definition**
 > Let $(x_n)$ be a sequence in $(X, \Vert \cdot\Vert)$ (a normed vector space), then the series: 
 > 1. Converges to $x$ when $\lim_{n\rightarrow \infty} \sum_{i = 1}^nx_i = x$. 
 > 2. Converges absolutely when $\lim_{n\rightarrow \infty}\sum_{i = 1}^{n} \Vert x_i\Vert$ converges. 
@@ -111,9 +113,21 @@ $$
 
 therefore, any Cauchy sequence in the space can converge to a point that is well defined as well. Therefore, the space $(X, \Vert \cdot\Vert)$ is complete. 
 
-
-
 **Remarks**:
+
+This establishes the convergence of a series in the Banach space. The concept of convergence can be used to establish the idea of a basis. It's the Schauder Basis, we will define it next. 
+
+**Definition: Schaudar Basis**
+
+> If a normed space $X$ contains a sequence $(e_n)$ with the property that for ever $x\in X$ there exists a sequence of scalars such that $\Vert x - (\alpha e_1 + \cdots + \alpha e_n)\Vert\rightarrow 0$, then it's called a Schauder Basis.
+
+**Observations**: 
+
+This is very similar to what we had for Linear Algebra. Not all separable Banach space have a Schaudar Basis. it was given only quite recently, by P.Enflo (1973) who was able to construct a separable Banach space  which has no Schauder basis. See [here](https://math.stackexchange.com/questions/644732/example-of-a-separable-space-without-a-schauder-basis) for an explanations from Mathstack Exchange. 
+
+**Remark**: 
+
+The finite dimenstional equivalence of the above basis is the Hamel's Basis. 
 
 
 
@@ -131,5 +145,8 @@ These examples teach a story about Banach Space in general.
 - The underlying metric space is complete. We show this part. 
 
 Recall that a metric space is complete when every Cauchy sequences converges to a point that is in the space. To show that we need that the limit of the sequence to be bounded as well, and it exists as a real number too. See [[Examples of Incomplete, Complete Metrics Space]], Example 3
+
+
+
 
 

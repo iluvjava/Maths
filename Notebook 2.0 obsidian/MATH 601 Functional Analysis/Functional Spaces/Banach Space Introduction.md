@@ -5,10 +5,10 @@
 
 [Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete, normed, [[Vector Space]]. It is already a [[Metric Space Introduction]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". If a vector space is normed, but it's not complete, them we just refer to it as "normed space". 
 
-In this section we introduces basics facts and theorems about Banach Spaces and we show some illustrating examples for those concepts. 
+In this section we introduces basics facts and theorems about Banach Spaces and we show some illustrating examples for those concepts. Bear in mind that Banach space is just vector spaces but fancier. 
 
 **Banach Spaces should have**:
-- Vector space with a norm (not necessarily from inner product)
+- Vector space with a norm (not necessarily from inner product), that must be continuous. The continuity is a consequence of the Triangular Inequality, the expression is the consequence: $|\Vert x\Vert - \Vert y \Vert|\le \Vert x- y\Vert$, it looks like Lipschitz continuity. 
 - The vector space is complete (Topological Property)
 
 **Banach is a Metric Space**

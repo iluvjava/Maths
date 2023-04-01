@@ -90,7 +90,7 @@ Firstly we state the fact $M \subseteq \text{cl}(M)$. If $x\in M$, then by defin
 ---
 ### **Cauchy Convergence and Completeness**
 
-
+A Cauchy sequence will say that, a sequence that accumulates to some region in the space converges to a point, completeness ensures that point is converging to a point in that space. 
 
 **Motivations**
 
@@ -144,7 +144,6 @@ This theorem provides an alternative to showing that a particular subspace of a 
 For example about what metric spaces are complete and what is not, consider visiting: [[Examples of Incomplete, Complete Metrics Space]] for more examples. 
 
 **References**: 1.4-7 in Kreyzig's Intro to Functional Analysis textbook. 
-
 
 ---
 ### **Application: Banach Complete Subspace**

@@ -1,5 +1,5 @@
 [[Maxflow Min Cut, Ford Fulkerson]], 
-[[Network Flow Standard Form]]. 
+[[Min Cost Network Flow Standard Form]]. 
 
 ---
 ### **Intro**

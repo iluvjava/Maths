@@ -1,16 +1,19 @@
-[[Network Flow Standard Form]], 
+[[Min Cost Network Flow Standard Form]], 
 
 ---
 ### **Intro**
 
-Reduced costs is a trick. It labels the graph nodes with values and then checks the costs of cycles and flow on the graph. Assuming that we were given original graph in network standard form. The reduce costs is related to the dual formulation of the minimal cost flow problem. 
+Reduced costs is a trick. It labels the graph nodes with values and then checks the costs of cycles and flow on the graph. Assuming that we were given original graph in network standard form. The reduce costs is related to the dual formulation of the minimal cost flow problem. We quote the economic interpretations here, as it was more commonly taught in LP class by Jame Burkes: 
+
+> In general, the negative of the objective row coefficients
+for decision variables in the optimal tableau are the reduced costs of these variables. The reduced cost of a decision variable is the precise amount by which one must increase its objective row coefficient in order for it to be included in the optimal solution.
 
 Let $G = (A, N)$ be a directed graph, let $c$ denotes the arc costs for each unit flow on the graph. 
 
 
 **References**:
 
-Chapter 3 of the Networkflow algorithm textbook. 
+Chapter 3 of the Network-flow algorithm textbook. 
 
 ---
 ### **Reduced Costs**

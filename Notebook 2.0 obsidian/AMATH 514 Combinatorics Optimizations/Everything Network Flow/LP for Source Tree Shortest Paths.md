@@ -1,4 +1,4 @@
-[[Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
+[[Min Cost Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
 
 ---
 ### **Intro**
