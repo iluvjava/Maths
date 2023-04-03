@@ -127,3 +127,7 @@ It's implied that in a finite dimensional space, a closed unit ball is a set tha
 Take note that this statement is about metric spaces in general. This theorem allows us to generalize some of the theorems used for single variable calculus. 
 
 **References:** Kreyzig's textbook, 2.5-6. 
+
+
+**Thm: Minimizer and Maximizer of a Compact Mapping**
+> 

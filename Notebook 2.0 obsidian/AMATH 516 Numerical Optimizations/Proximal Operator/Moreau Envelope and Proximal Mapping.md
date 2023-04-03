@@ -304,37 +304,38 @@ Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed conve
 **Proof**
 $$
 \begin{aligned}
-    & z = \text{prox}_f(x) & 
+    & z = \text{prox}_f(x) 
     \\
-    \implies & \mathbf 0 \in \partial \left(
-        f(\cdot) + \frac{1}{2}\Vert \cdot - x\Vert^2
-    \right)(z) & [1]
+    \iff &
+    x - z \in \partial f(z) & [1]
     \\
-    \implies &\mathbf 0\in \partial f(z) + z - x & [2]
+    \iff &
+    \partial f^\star(x - z) \ni z & [2]
     \\
-    \implies & x - z \in \partial f(z)  & [3]
+    \iff & 
+    \mathbf 0 \in \partial f^\star(x - z) - z 
     \\
-    \implies & z\in \partial f^\star(x - z) & [4]
+    \iff & 
+    \mathbf 0 \in \partial f^\star(x - z)  + (x - z - x)
     \\
-    \implies& \mathbf 0 \in \partial f^\star(x - z) - z &[5]
+    \iff & 
+    \mathbf 0 \in \partial \left[
+        f^\star(\cdot) + \frac{1}{2}\Vert \cdot - x \Vert^2
+    \right](x - z) & [3]
     \\
-    \implies & 
-    \mathbf 0\in \partial\left(
-        f^\star(\cdot) - \frac{1}{2}\Vert \cdot - x\Vert^2
-    \right)(x - z) &[6]
-    \\
-    \implies & 
-    x - z= \text{prox}_{f^\star}(x) &[7]
-    \\
-    & x = \text{prox}_f(x) + \text{prox}_{f^\star}(x).  &[8]
+    \iff & 
+    x - z \in \text{prox}_{f^\star}(x)
+    \iff 
+    x - z = \text{prox}_{f^\star}(x) & [4]
 \end{aligned}
 $$
 
-- \[1\]: we use the fact that $f(x)$ is closed proper and convex, and hence $\mathbf 0$ is part of the subgradient set at $z$. 
-- \[2\] we simply use the subgradient of the sum of a smooth and non-smooth function. 
-- At \[4\] we invoke the Fenchel Identity and at 
-- \[6\] we re-interpreted the expression using the prox on the conjugate functions. 
-- At \[7\], \[8\] we simply use the definition of prox and the fact that $z = \text{prox}_f(x)$. Additionally, one can Chose to use property from [[Convex Conjugation]] and use $\lambda f$ instead where $\lambda \ge 0$, in which case we have: 
+* \[1\]: By using the second equivalence property that characterize the proximal point. 
+* \[2\]: Using the Fenchel Identity, see [[../Duality/Fenchel Identity, Inequality]]. 
+* \[3\]: Using the subgradient sum rule, $\iff$ is there for because we can use the strong sum rule in this case, due to the fact that the inner product is entire on its domain. 
+* \[4\]: When $f$ is convex proper and closed, the proximal operator is singled valued. 
+
+
 
 $$
 \begin{aligned}
