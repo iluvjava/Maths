@@ -28,6 +28,15 @@ In this section we introduces basics facts and theorems about Banach Spaces and 
 
 For more information about norm in the real finite vector space, see [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]] for more information. 
 
+**Subspace of a Banach Space**
+> $(Y, \Vert \cdot\Vert)$ is a subspace of $(X, \Vert \cdot\Vert)$ when, $Y\subseteq X$, and $X$ is also a closed vector space. Then it's a subspace of the Banach space, and it will still be a Banach space. 
+
+**Proof**
+Don't know where is the proof but this seems legit. 
+
+**Remarks**: 
+If, $Y\substeq X$ doesn't form a vector space, then it's definitely possible for $Y$ to be not a Banach spacet at all. 
+
 
 ---
 ### **Norm as a Metric**

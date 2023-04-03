@@ -1,7 +1,6 @@
 * [[Convex Conjugation]]
 * [[../Non-Smooth Calculus/Subgradient Definition]]
 
-
 ---
 ### **Intro**
 
@@ -18,14 +17,15 @@ The Fenchel inequality ties together the idea of convex conjugate, subgradients,
 > $$
 > This is direct from the definition of Fenchel Conjugate. 
 
-However, the equality can be achived if, the function $f$ is closed and convex. We state the theorem. 
+However, the equality can be achieved if, the function $f$ is closed and convex. We state the theorem. 
 
-**Theorem: Fenchel's Identity**
+**Theorem: Fenchel's Identity and Euivalencies**
 > Let $f$ be closed, convex and proper, let $x, y\in X$, then the following are equivalent: 
 > 1. $f(x) + f^\star(y) = \langle x, y\rangle$, 
 > 2. $y \in \partial f(x)$ , 
-> 3. $x\in \partial f^\star(y)$. 
-> The first item shows that equality can be achived, and the secon and third conditions gives what to expect for $x,y$ when equality is achived. 
+> 3. $x\in \partial f^\star(y)$ IF, $f$ is also l.s.c. 
+> 
+> The first item shows that equality can be achieved, and the second and third conditions gives what to expect for $x,y$ when equality is achieved. 
 
 
 ---
@@ -33,57 +33,58 @@ However, the equality can be achived if, the function $f$ is closed and convex. 
 
 Recall these facts: 
 - Conjugate is convex. 
-- Zero in subgradientis gobal optimal for any convex funtion. 
+- Zero in subgradient is gobal optimal for any convex function. 
 - Subgradient strong sum rule. 
 
 **Proof**
 
-Recall: *f is closed and convex*, by definition equality is attainable using supporting halfspaces (or Fermat rules for the convex subgradient if we are not doing epigraphical intrepretations) defined via the convex conjugate functions: 
-
+We first show that, (1) is equivalent to item (2). By the definition of convex conjugate we have: 
 $$
 \begin{aligned}
-    f^\star(y) &= \sup_{x'\in X} \{\langle x', y\rangle - f(x)\}
+    & 
+    f(x) + f^\star(y) = \langle x, y\rangle
     \\
-    f^\star(y) &= -\inf_{x'\in X}\{f(x') - \langle x', y\rangle\}
+    \iff &
+     f(x) + \sup_{z\in X}
+    \{
+        \langle y, z\rangle - f(z) 
+    \} = \langle x, y\rangle 
+    \\
+    \iff &
+    \sup_{z\in X}
+    \left\lbrace
+       \langle y, z\rangle - f(z)
+    \right\rbrace = \langle x, y\rangle - f(x)
+    \\
+    \iff &
+    x \in \arg\sup_{z\in X}
+    \left\lbrace
+       \langle y, z\rangle - f(z) 
+    \right\rbrace \neq \emptyset
+    \\
+    \iff & 
+    x \in - \arg\inf_{z\in Z} \left\lbrace
+       f(z) - \langle y, z\rangle
+    \right\rbrace
+    \\
+    \iff &
+    \mathbf 0 \in \partial [f(z) - \langle y, z\rangle |z](x) \quad \text{ by [1]}
+    \\
+    \iff & 
+    \mathbf 0 \in \partial f(x) - y \quad \text{ by [2]}
+    \\
+    \iff & 
+    y \in \partial f(x)
 \end{aligned}
 $$
 
-We note that, $\exists x^+ \in X: \mathbf 0 \in \partial f(x^+) - y$, because the function $f$ is a convex function on $X$, further more, we havee $\langle \cdot, y\rangle$ which has an entire domain of $X$, and $f$ is proper, therefore, we can use the subgradient sum rule, giving us the above conditions. Substituting $x^+$ we obtain: 
-$$
-\begin{aligned}
-    & \mathbf 0 \in \partial f(x^+) - y
-    \\
-    \iff & y \in \partial f(x^+)
-    \\
-    \iff & f^\star(y) = \langle x^+, y\rangle - f(x^+) \quad \text{subgradient fermat}
-    \\
-    \iff &
-    f(x^+) = f^\star(y) + \langle x^+, y\rangle
-    \\
-    \iff &
-    x^+\in \partial f^\star(y),
-\end{aligned}
-$$
+- [1]: The function $f(z)$ is convex and proper, we may use the Fermat's rule for convex subgradient. 
+- [2]: We use the strong subgradient sum rule since $f$ is convex proper, and $\langle . y\rangle$ is affine with domain on the entirety of $X$. 
 
-where on the last line, we use the observation that, the function $f^\star$ is a convex function, therefore we can use the subgradient Fermat theorem. 
+We had shown that, (1), (2) are equivalent conditions. We now show (3). Adding the fact that $f$ is lower semi-continuous, its epigraph is closed. Hence, we invoke [[Biconjugate Theorem]] to attain: $f = f^{\star\star}$. Re-applying the above proved euivalences, we have: $f^\star(y) + (f^\star)^\star(x) = \langle z, y\rangle \iff x \in \partial f^\star(y)$. By $f^{\star\star} = f$, we have $y\in \partial f(x)$as well. Therefore, $y\in \partial f(x)\iff x \in \partial f^\star(y)$. The closure of the function is essentialy.
 
 **Remarks**
 
-* Notice that, this time, $z, x$ swapped, and we have $f^\star(x)$ instead of $f(x)$. Go through the same proof for (1) but with $f(x)$ as $f^{\star\star}(x)$, then we will a new claim:
+One of the key things people focuses on is relevant to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$. 
 
-**Corollary: Fenchel's Identity**
-> $$
-> z\in \partial f(x^+) \iff x^+ \in \partial f^\star(z) \tag{2}
-> $$
-> Given dual, primal variable $x, z$, they are in the subgradient of each of their objective function, $f, f^\star$. 
-
-**Proof**
-
-See the remarks before the claim. 
-
-**Remarks**
-
-One of the key things people focuses on is relavent to the optimality conditions of the primal dual problem. The original function reaches optimality means that $z\in \partial f(\mathbf 0)$, and equivalently we have $x^+ \in \partial f^\star(0)$. 
-
-This corollary is **extremely important** because it opens up a new way of looking for both, subgradient and conjugate functions under various context. Giving us new interpretations for both entities, and helps with computational rules and proving those rules. 
-
+The last item, (3) is very important because it opens up a new way of looking for both, subgradient and conjugate functions under various context. Giving us new interpretations for both entities, and helps with computational rules and proving those rules. 

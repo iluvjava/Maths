@@ -1,8 +1,11 @@
-[[Convexity Preserving Operations for Functions]]
+[[Convexity Preserving Operations for Functions]], [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
 
 ---
 ### **Intro**
 
+We introduce the idea that, infimal convolutions can be interpreted as epigraph addition under certain conditions, and, it preserves smoothness of the functions, if one of the function is smooth. We also discuss the dual of the infimal convolutions. These results are non-trivial and play important roles. 
+
+**Thm: Infimal Convolutions as Epigraphical Additions**
 > The epigraph of the infimal convolutions is equivalent to convoluting the epigraph of the function. Let $f, g$ be convex mapping from $\mathbb E$ to $\mathbb{\bar R}$, and $(f\square g)(x) = \min_{y}(f(y) + (x - y))$, then 
 > $$
 >     \text{epi}(f\square g) = \text{epi}(f) + \text{epi}(g) . 
@@ -49,3 +52,7 @@ Therefore, for any 2 elements from the epigraph of each of $f, g$, their sum is 
 **Remarks**
 
 I made the proof myself, and there might be cooler and better way to prove it. This is from Dimitri's Lecture, and homework assignment. 
+
+
+**Thm: Infimal Convolutions Preserves Convexity**
+> 

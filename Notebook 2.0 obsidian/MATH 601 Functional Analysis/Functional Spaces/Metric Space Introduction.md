@@ -94,3 +94,6 @@ There are a lot of things related to the the topologies for Metric Spaces. See [
 This fact in itself is not useful, please see the [[Topology of Metric Space]] for a topological and convergence characterizations of metrics that are equivalent to each other. The inequality will limit the convergence due, a direct application of squeeze theorem, giving equivalent metrics the same limit for the same converging sequence. 
 
 The example metric: [[../Further Examples for Metric Space]], contains p-norm in the Euclidean space, and all p-norm for $p \ge 1$ is equivalent. 
+
+This becomes important when we discuss about [[Finite Dimensional Normed Space]]. Because finite finite dimensional, normed spaces, as a stronger type of metric spaces, has equivalences for all possible norms in the space. A very strong results. 
+
