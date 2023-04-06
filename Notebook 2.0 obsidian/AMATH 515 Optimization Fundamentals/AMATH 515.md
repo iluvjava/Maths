@@ -107,7 +107,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Gradient Descend 3]]
     * [[Measuring Rate of Convergence]]
     * [[Proximal Gradient Method]]
-    * [[Proximal Gradient 2]]
+    * [[Proximal Gradient Descend/Proximal Gradient 2]]
     Newton's Iterations are the inspirations for Accelerated Gradient Descend. 
 	* [[Newton Method]]
 	Here is an overview: 

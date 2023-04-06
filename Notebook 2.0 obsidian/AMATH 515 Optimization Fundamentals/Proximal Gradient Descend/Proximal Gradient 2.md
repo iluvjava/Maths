@@ -1,6 +1,6 @@
-[[Proximal Gradient Method]]
-[[Beta Smoothness]]
-[[Closed, Proper, Level Bounded, Strong Convex]]
+- [[Proximal Gradient Method]], 
+- [[Beta Smoothness]], 
+- [[Closed, Proper, Level Bounded, Strong Convex]].
 
 Here, we will be focusing with the proof of theorem 3.12. 
 

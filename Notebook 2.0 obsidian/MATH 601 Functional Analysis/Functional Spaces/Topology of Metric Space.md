@@ -171,7 +171,8 @@ by the discrete metric. This is true for all $x \in \R$, therefore, $c_x$ is now
 > Let $d, d'$ be equivalent metrics, if and only if: 
 > - $x_n\rightarrow x$ in $d$ if and only if $x_n\rightarrow x$ in $d'$. 
 > - $M$ is open in d if and only if it is open in $d'$. 
-> Another sufficient conditions of equivalences between $d$ and $d'$ is:  
+> 
+> Another sufficient (strictly stronger than needed) condition of equivalences between $d$ and $d'$ is:
 > - there exists $\alpha, \beta > 0$ such that for all $x, y\in X$: $\alpha d(x, y) \le d'(x, y) \le \beta d(x, y)$
 
 **Fact/Examples**:
