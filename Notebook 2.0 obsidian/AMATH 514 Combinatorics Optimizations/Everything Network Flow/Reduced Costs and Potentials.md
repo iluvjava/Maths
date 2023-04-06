@@ -84,12 +84,14 @@ $$
         \sum_{(i, k)\in A}^{}x_{i, k}
     \right)
     \\
-    &= \sum_{k \in N}^{}`
+    &= \sum_{k \in N}^{}
     p_k b_k = \langle p, b\rangle, 
 \end{aligned}
 $$
 
 which is a constant, and this is true for all flows on the graph, therefore, the optimal for cost $c$, and the optimal for $c'$ is the same solution. 
+
+**References**: Property 2.4 in Ahuja's Network flow textbook. 
 
 **Theorem: Potential of Directed Cycles and Paths**
 

@@ -246,7 +246,9 @@ the LHS of the $\ge$ is the reduced costs. If we were to solve the problem using
 
 suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight, hence $c_{i, j} - (y_1)_i + (y_1)_j > 0$, then the dual of the dual, the primal, must have its variable equal to zero to satisfies the complementary slackness, e.g: $(c_{i, j} - (y_1)_i + (y_1)_j)x_{i, j} = 0$, since $x_{i, j}\ge 0$ by virtual of the network standard form, we conclude that $x_{i, j} = 0$. 
 
-**Theorem: Optimality Conditions and Negative Costs Cycles**
+
+---
+### **Thm: Optimality Conditions and Negative Costs Cycles**
 
 > $x^+$ is feasible for a minimum cost network flow problem if and only if the residual network $G(x^+)$, contains no negative cost directed cycles. 
 
@@ -282,5 +284,5 @@ There are many problems that can be reduced to the network flow problems:
 3. Tournament Problems. 
 4. Bipartite Assignment problems. 
 
-For reduction from other more general graph problem, read [[Reduction to Network Flow]] for more information. 
+For reducing more general problems to the Network flow standard form, read [[Reduction to Network Flow]] for more information. 
 

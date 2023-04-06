@@ -19,7 +19,7 @@ References: \<Introductory Functional Analysis with Applications\>
 
 To prove, we simply take the derivative giving us $f'(\beta) = \alpha - \beta^{q - 1}$. By the assumption that $q - 1 > 0$, we know $q > 1, 0 < p < 1$ and the function $f'$ is monotone decreasing by $\beta > 0$. Meaning that the original function contains a maximum over $\mathbb R_+$. After that, we may just do some calculus to prove the inequality. 
 
-**Theorem: Holder's Inequality**
+**Theorem: Holder's Inequality (Cauchy Swartz?)**
 
 > Let $p, q > 0$ be a conjugate pairs and let $a, b \in \mathbb R^n_+$, then $\Vert a\Vert_p\Vert b\Vert_q \le \langle a, b\rangle$. 
 
@@ -85,7 +85,7 @@ $$
 \end{aligned}
 $$
 
-we used the monotonicity of raising something to the power of $1/p$ with $p > 1$. We target the RHS of the expression and seek for an upper bound on that quantity. Here we use the notation of $w^{\langle p\rangle}$ to denote taking the power of a vector elementwise. We define $w_i = |a_i| + |b_i|$, then $\sum_{i= 1}^{n}w_i^p = \sum_{i = 1}^{n} w_i^{p - 1}|a_i| + \sum_{i = 1}^{n}w_i^{p-1}|b_i|$. We apply Holder's Inequality to both quantities on the RHS obtaining:
+we used the monotonicity of raising something to the power of $1/p$ with $p > 1$. We target the RHS of the expression and seek for an upper bound on that quantity. Here we use the notation of $w^{\langle p\rangle}$ to denote taking the power of a vector element wise. We define $w_i = |a_i| + |b_i|$, then $\sum_{i= 1}^{n}w_i^p = \sum_{i = 1}^{n} w_i^{p - 1}|a_i| + \sum_{i = 1}^{n}w_i^{p-1}|b_i|$. We apply Holder's Inequality to both quantities on the RHS obtaining:
 
 $$
 \begin{aligned}

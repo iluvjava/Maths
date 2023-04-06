@@ -80,13 +80,13 @@ There is a subset that is countable such that it can cover almost every point in
 
 **Example: Separable Spaces**
 
-The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. 
+The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. The set of all rationals, $\Q^n$ is also separable, because the closure of the set is, itself, if the whole space is itself. 
 
 
 ---
 ### **Separability Examples**
 
-Here we show that the sequence space $l_\infty$ is an example of incomplete space, and $l_2$ is an example of a complete metric space. 
+Here we show that the sequence space $l_\infty$ is an example of separable space, and $l_2$ is an example of a non-separable metric space. 
 
 **Claim: $l_2$ is Separable**
 > The $l_2$ sequence space is a separable space. The sequence space equipped with 2-norm. 
@@ -112,9 +112,9 @@ And therefore, for any size of $\epsilon$ we can approximate any sequence $x\in 
 For any sequence that is squared absolute convergence, we can establish the fact that the first $N - 1$ element can be approximated by some element from the dense set $S_n$, dense with relative to all finite sequence of length $N$, and then by the convergence property of the sequence, the tail $N$ sequence of term also converges to zero. Since both parts of the sequence in $l_2$ is converging to something, we carry out the proof with separate convergences. 
 
 
-**Claim $l_\infty$ is not Separable** 
+**Claim $l^\infty$ is not Separable** 
 
-> The set $l_\infty$, is not a separable sequence space. 
+> The set $l^\infty$, is not a separable sequence space. 
 
 **Proof Preparations**:
 
@@ -127,7 +127,7 @@ $$
 \end{aligned}
 $$
 
-which characterize a sequence of only ones and zero. This is an uncountable set. The proof shows a contraction that, it's impossible to find a countable set $C\subseteq l_\infty$ such that we can let its limit point approaches points from the set $S$ using the given metric. 
+which characterize a sequence of only ones and zero $\in l^\infty$. This is an uncountable set. The proof shows a contraction that, it's impossible to find a countable set $C\subseteq l_\infty$ such that for any $x, y\in S$, we can find $c_x, c_y$ close to each of those point, and if it were the case, then the set $C$ would be unctountable. 
 
 **Proof**
 
@@ -139,7 +139,7 @@ $$
 \end{aligned}
 $$
 
-If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (by the fact that we can choose one element and approach the limit such that it's close enough to $x, y$) with: 
+$S$ is unctountable, this is a fact. If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (by the fact that we can choose one element and approach the limit such that it's close enough to $x, y$) with: 
 
 $$
 \begin{aligned}
@@ -150,16 +150,33 @@ $$
 This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinct $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
 
 
+**Claim $(\R, d)$ with a discrete metric is not separable**: 
+> Allowed $d(x, y)$ to be the indicator function of $\mathbf 1\{x = y\}$, let the space to be tbe reals, then this metric space is not a Separable space. 
+
+We use contradiction. If there were some subset $C \subseteq \R$ such that $\text{cl}(C) = \R$, meaning that for any $x\in \R$, for all $\epsilon > 0$, there exists $c_x\in C$ such that $d(c_x, x) \le \epsilon$, deriving a contradiction and hence, space is impossible to be separable. 
+
+**Proof**: 
+
+Let $C\subseteq \R$  be countable. For contradiction assume that $\text{cl}(C) = \R$, hence for all $x \in \R$, for all $\epsilon > 0$ there exists $c_x \in C$ such that $c_x\in\mathbb B_{\epsilon}(x)$. Make $\epsilon = 1/2$, then we have: 
+
+$$
+c_x \in \mathbb B_{1/2}(x) = \{x\}, 
+$$
+
+by the discrete metric. This is true for all $x \in \R$, therefore, $c_x$ is now uncountable, contradicting the assumption. This metric space is not separable. 
+
 ---
 ### **Topological Characterizations of Equivalence Metric**
 
-> Let $d, d'$ be equivalent metrics, then: 
+> Let $d, d'$ be equivalent metrics, if and only if: 
 > - $x_n\rightarrow x$ in $d$ if and only if $x_n\rightarrow x$ in $d'$. 
 > - $M$ is open in d if and only if it is open in $d'$. 
+> Another sufficient conditions of equivalences between $d$ and $d'$ is:  
+> - there exists $\alpha, \beta > 0$ such that for all $x, y\in X$: $\alpha d(x, y) \le d'(x, y) \le \beta d(x, y)$
 
 **Fact/Examples**:
 
-Consider the metrics $\Vert \cdot\Vert_\infty$ and $\Vert \cdot\Vert_1$ defined for $C[0, 1]$, they are not equivalent metrics for the same space. One of the counter example to consider is simple the function $x^n$ as $n\rightarrow \infty$, under these different metric, they are converging to different number when measured under these 2 norms. 
+Consider the metrics $\Vert \cdot\Vert_\infty$ and $\Vert \cdot\Vert_1$ defined for $C[0, 1]$, they are not equivalent metrics for the same space. One of the counter example to consider is simple the function $x^n$ as $n\rightarrow \infty$, under these different metric, they are converging to different number when measured under these 2 norms. More specifically, $\Vert x^n\Vert_1 \rightarrow 0$ but $\Vert x_n\Vert_\infty = 1\;\forall n\in \N$. Therefore, these 2 metrics are not equivalent. 
 
 ---
 ### **Completeness of Metric Space**

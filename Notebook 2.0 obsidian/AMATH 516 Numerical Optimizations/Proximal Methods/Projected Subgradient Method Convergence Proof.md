@@ -6,7 +6,7 @@
 ---
 ### **Intro**
 
-The projected subgradient methods assumes a convex function $f:\mathbb E \mapsto \mathbb{\bar R}$ that has a subgradient oracle and minimizes the function value over a convex set $Q$ where $Q$ is closed, then it performs the following updates: 
+The projected subgradient methods assume a closed convex function $f:\mathbb E \mapsto \mathbb{\bar R}$ that has a subgradient and minimizes the function value over a convex set $Q$ where $Q$ is closed, then it performs the following updates: 
 $$
 \begin{aligned}
     x^{(t + 1)} = \Pi_Q (x^{(t)} - \eta_t v_t) \quad \text{ where } v_t \in \partial f(x^{(t)}), 
@@ -15,12 +15,14 @@ $$
 
 we use $\Pi$ to denote the set projection operator. And we list the following convergence results for the algorithm. We list these parameters for the remaining part of this excerpt: 
 
-1. $\bar x$, the optimal solution for the optimization problem that might not be unique, but it will have finite value in this case because the se $Q$ is bounded. 
+1. $\bar x$, the optimal solution for the optimization problem that might not be unique, but it will have finite value in this case because the set $Q$ is bounded and closed. 
 2. $\bar f$ is the optimal value for the optimization problem. 
 3. $L$ is the Lipschitz constant for the function over the closed domain $Q$. 
 4. $x^{(t)}$ is the solution obtained at the $t$ step of the iteration. 
 
-**Reference**: One of Jame Burke's Video for MATH 516 you know, probably his last few lectures for the class MATH 516.  
+We show the convergence of the objective value by the projected subgradient method. 
+
+**Reference**: One of Jame Burke's Video for MATH 516 you know, probably his last few lectures for the class MATH 516. It's at the end of [this](https://sites.math.washington.edu/~burke/crs/516-21/recorded-lectures/051921.mp4) lecture. 
 
 
 **Statement 1**
@@ -41,7 +43,7 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 > \end{aligned}
 > $$
 > 
-> and constant step size with $\eta_t = R/(L\sqrt{T + 1})$ where $R \ge \Vert x_0 - \bar x\Vert$, with $T$ being the pre-determined number of steps expected to reach convergence, giving us: 
+> and constant step size with $\eta_t = R/(L\sqrt{T + 1})$ where $R \ge \Vert x_0 - \bar x\Vert$, with $T$ being the total number of steps executed by the algorithm then:
 > 
 > $$
 > \begin{aligned}
@@ -61,7 +63,7 @@ we use $\Pi$ to denote the set projection operator. And we list the following co
 > $$
 > \begin{aligned}
 >     f\left(
->         \frac{2}{T(T + 1)}\sum_{i = 1}^{T} i x_i
+>         \frac{2}{T(T + 1)}\sum_{t = 1}^{T} t x_t
 >     \right) - \bar f
 >     \le 
 >     \frac{2 L^2}{\alpha(T + 1)}
@@ -110,7 +112,9 @@ $$
 \[1\]: This is done using the Lipschitz Continuity of $f$ implies that the gradient has to be bounded by the same constant, giving us $\forall v \in \partial g(x), \Vert v\Vert \le L$, and we can also use convexity giving us: 
 $$
 \begin{aligned}
-    2\eta_t \langle x^{(t)} - \bar x, v_t\rangle \le f(x^{(t)}) - \bar f, 
+    2\eta_t \langle x^{(t)} - \bar x, v_t\rangle \le  \bar f - f(x^{(t)})
+    \\
+    - 2\eta_t \langle x^{(t)} - \bar x, v_t\rangle \ge f(x^{(t)}) - \bar f
 \end{aligned}
 $$
 which lead us the inequality on the 4th line. 
@@ -178,12 +182,12 @@ $$
 \begin{aligned}
     \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2 
     &\le 
-    f(x^{(t)}) - f(\bar x) - \langle v_t, x^{(t)} - \bar x\rangle
+    f(\bar x) -  f(x^{(t)}) - \langle v_t, \bar x - x^{(t)}\rangle
     \\
     \implies
-    \langle v_t, x^{(t)} - \bar x\rangle 
+    \langle v_t, \bar x - x^{(t)}\rangle 
     &\le 
-    f(x^{(t)}) - f(\bar x) - \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2, 
+    f(\bar x) -  f(x^{(t)}) - \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2, 
 \end{aligned}
 $$
 
@@ -198,13 +202,13 @@ $$
     \implies [4] & \le \Vert x^{(t)} - \bar x\Vert^2 + \eta^2_{t} L^2
     - 2\eta_t
     \left(
-        f(x^{(t)}) - \bar f - \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2
+        f(x^{(t)}) - \bar f + \frac{\alpha}{2}\Vert x^{(t)} - \bar x\Vert^2
     \right)
     \\
     f(x^{(t)}) - \bar f
     & \le 
     \frac{1}{2\eta_t}(\Vert x^{(t)} - \bar x\Vert^2 - \eta_t^2L^2)
-    - 
+    -
     \frac{\alpha}{2}
     \Vert x^{(t)} - \bar x\Vert^2
     - 
@@ -229,7 +233,7 @@ $$
     \\
     \frac{t}{2\eta_t} &= \frac{\alpha t(t + 1)}{4}
     \\
-    \frac{t\eta_t}{2} &= \frac{t}{2(t + 1)}, 
+    \frac{t\eta_t}{2} &= \frac{t}{t + 1}, 
 \end{aligned}
 $$
 
@@ -245,26 +249,31 @@ $$
     [5]\implies 
     \sum_{t = 0}^{T}t(f(x^{(t)}) - \bar f) 
     & \le 
-    -\frac{\alpha t(t + 1)}{4}\Vert x^{(t + 1)} - \bar x\Vert^2 + 
+    \left(
+        0 - \frac{4T(T + 1)}{4}\Vert x^{(T + 1)} - \bar x\Vert^2
+    \right)
+    + 
     \frac{L^2}{\alpha}\sum_{t = 0}^{T} \frac{t}{t + 1} \le \frac{TL^2}{\alpha}, 
 \end{aligned}
 $$
 
-where the last inequality uses the telescoping sum series, and then uses the fact that each term $\frac{t}{t + 1}$, next recall the the summation $\sum_{t = 0}^T t = T(T + 1)/2$ is the sum of all the weights, next we apply the convexity of the function by dividing both side by the sum of all the weights accmulated by $t$, giving us: 
+where the last inequality uses the telescoping sum series, and then uses the fact that each term $\frac{t}{t + 1} < 1$ to place an upper bound. Recall the the summation $\sum_{t = 0}^T t = T(T + 1)/2$, we divided the inequality and use the convexity of the function $f$. 
 
 $$
 \begin{aligned}
     \sum_{t = 0}^{T}\frac{2t(f(x^{(t)})) }{T(T + 1)} - \bar f 
     &\le 
-    \frac{TL^2}{\alpha}
+    \frac{2TL^2}{\alpha T (T + 1)}
     \\
     f\left(
         \sum_{t = 0}^{T}\frac{2tx^{(t)}}{T(T + 1)}
     \right) - \bar f
     &\le 
-    \frac{TL^2}{\alpha}. 
+    \frac{2L^2}{\alpha(T + 1)}, 
 \end{aligned}
 $$
+
+This completes the proof and the convex combinations of the weight $\epsilon_t$ corresponds the objective value of the function that converges. 
 
 
 **Remarks**

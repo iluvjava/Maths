@@ -8,7 +8,7 @@ An inner product is a function defined over 2 elements from a vector space and r
 
 > There are 2 types of inner product, Semi-inner-product and just inner product. The later is stricter than the former. 
 
-Semi-Inner Product is very similar to inner product defined over the vector space of complex vectors and the with complex field. 
+Semi-Inner Product is very similar to inner product defined over the vector space of complex vectors and the with complex field. It's very different for the inner product defined over the real space due to the presence of conjugacy and the linearity only applies to one of the arguments of the mapping. 
 
 
 ---

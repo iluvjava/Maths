@@ -15,39 +15,34 @@ Let $\mathbb C^n$ be a vector space equipped with complex scalar field, then the
 * $\forall x, y \in \mathbb{C}^n:\; ||x|| + ||y||  \geq ||x + y||$
 
 **Remarks**: 
-In general, the set $\mathbb C^n$ can be any vector space equipped with a scalar that is a subfield of $\mathbb C$. Then the same axioms would apply and defining the norm for us. 
+
+In general, the set $\mathbb C^n$ can be any vector space equipped with a scalar that is a subfield of $\mathbb C$. Then the same axioms would apply and defining the norm for us. Additionally, the space $\mathbb C^n$ contains a semi-inner product that can induce norms for the space. The absolute value here is applied on a complex number, $|a|^2 = \bar a a = (a_1 - a_2i)(a_1 + a_2i)$, it's the square root of their conjugate products. 
 
 **Examples of Norm on Vector space**: 
 
 Generalized $p$ norm
 
-$$\forall x \in \mathbb{R}^n \; ||x||_p := 
-\sqrt[n]{\sum_{i = 1}^n |x_i|^p} $$
+$$
+\forall x \in \mathbb{R}^n \; ||x||_p := 
+\sqrt[p]{\sum_{i = 1}^n |x_i|^p}
+$$
 
 And there are 2 types of weird norm that is the extreme case of the above norm
 
-$$||x||_\infty := \max_{1 \leq i \leq n}(x_i)$$
-$$||x||_i = \max_{1\leq i\leq n}|x_1|$$
-$$\|x\|_{0}=\lim _{p \rightarrow 0} \sum_{k=1}^{n}\left|x_{k}\right|^{p}$$
-
----
-### **Useful Inequalities **
-
-$$\sum_{i = 1}^n x_i \leq ||x||_1$$
+$$||x||_\infty := \max_{1 \leq i \leq n}(|x_i|)$$
+$$||x||_1 = \max_{1\leq i\leq n}|x_i|$$
 
 
 ---
 ### **Matrix Induced Vector Norm** (Energy Norm)
 $$||x||_A:= ||x^TAx||$$
 
-Only positive definite operator can be used to induced such a norm. 
-
-See [[Positive Definiteness]]
+Only positive definite operator can be used to induced such a norm. See [[Positive Definiteness]] for more context.
 
 ---
 ### **Matrix Norm**
 
-The matrix norm is induced by the vectors norm, it tells us how the matrices is able to manipulate the vectors. The norm is used to bound the transformation a bit with one real number, so we know just how badly the matrix transform the linear spaces. 
+The matrix norm is induced by the vectors norm, it tells us how the matrices is able to manipulate the vectors. The norm is used to bound the transformation with a real number, so we know just how badly the matrix distort the linear spaces. 
 
 For definitions of the norm, write the matrix $A \in \mathbb{C}^{m\times n}$ like: 
 $$A = \begin{bmatrix}
@@ -58,7 +53,7 @@ a_1 & a_2 & \cdots & a_n
 \end{bmatrix}
 $$
 
-Let's also define 2 different vector norm for the domain and range of the matrix, as $||\bullet||_n$ and $||\bullet||_m$, the induced matrix norm, denoted as $||A||_{m, n}$ is the smallest number $C\in \mathbb{R}$ such that: 
+Let's also define 2 different vector norm for the domain and range of the matrix, as $||\cdot||_n$ and $||\cdot||_m$, the induced matrix norm, denoted as $||A||_{m, n}$ is the smallest number $C\in \mathbb{R}$ such that: 
 
 $$||Ax||_m \leq C||x||_n \quad \forall x\in \mathbb{C^n}$$
 
@@ -71,38 +66,35 @@ And hence the definition of the matrix norm can be simply written as:
 The correct way to visualize this is via looking at the $L_n$ Lasbegue space and how the matrix shapes the spaces, and the number we are looking at is the longest line that cut through the space. (The idea of "long" depends on the vector norm used on the output space) 
 
 --- 
-### **The Matrix 1-Norm**
-Starts with
-$$||Ax||_1 = \left\Vert\sum_{i = 1} x_i a_i\right\Vert_1$$
+### **The Matrix 1-Norm/Inf-Norm**
 
-Let's find the maximal value among all the $x_i$, say it's $x_max$
-
-$$\left\Vert\sum_{i = 1} x_i a_i\right\Vert_1 \leq \sum_{i = 1}^n |x_i|a_i$$
-
-By one of the useful inequalities from the vector norm section 
-
-Now, we make use of the properties of vector $x$ from the definition.
-
-$$||x||_1 = 1 \quad \forall x \in \mathbb{C}^n$$
-
-Which means that $\sum_i |x_i| = 1$, and this will make 
-
-$$\sum_{i = 1}^n |x_i|a_i \leq \max_{1\leq i \leq n} ||a_i||_1$$
-
-And hence we got the formula for the one matrix norm using only the definition: 
+We provide some intuition about the definitionf of the one-norm of a matrix. Denotes $a_i$ to be the ith column of the matrix $A$, we consider the definition of $\Vert Ax\Vert_1$: 
 
 
-> $$\Vert A\Vert_i = \max_{1 \leq i \leq n} ||a_i||_1 $$
+$$
+\begin{aligned}
+    & ||Ax||_1 = \left\Vert\sum_{i = 1}^n x_i a_i\right\Vert_1 \leq \sum_{i = 1}^n |x_i|\Vert a_i\Vert_1
+\end{aligned}
+$$
 
-The matrix one norm equals to the norm of the column vector with the maximal one norm in the matrix. 
+By triangular inequality of the absolute value. Now, we make use of the properties of vector $x$ from the definition.
 
+$$
+    ||x||_1 = 1 \implies \sum_{i = 1}^n |x_i|a_i \leq \max_{1\leq i \leq n} ||a_i||_1.
+$$
 
-A similiar process as the above one can be used to prove the the **infinity norm** is going to be the maximal row absolute sum. 
+We used the fact;  $\sum_i |x_i| = 1$. The equality of is true when we have $x = (1/n)\mathbf 1 = [1/n \; 1/n\;, \cdots, 1/n]$.
 
-> $$||A||_\infty = \max_{1 \leq i \leq m}
-> \left(\sum_{j = 1}^n|a_{i, j}| \right)$$
+> $$\Vert A\Vert_1 = \max_{1 \leq i \leq n} ||a_i||_1$$
 
-where $$A\in \mathbb{C}^{m\times n}$$
+A similiar reasoning as the above one can be used to prove that substituting the infinity norm to the matrix norm definition will be able to yield the results of: 
+
+> $$
+>   ||A||_\infty = \max_{1 \leq i \leq m}
+>   \left(\sum_{j = 1}^n|a_{i, j}| \right) \text{ where: }    
+>   A\in \mathbb{C}^{m\times n}.
+> $$
+
 
 ---
 ### **Matrix F-Norm**
@@ -121,7 +113,7 @@ It's all of the following at the same time:
 ---
 ### **Matrix Induced 2-Norm (Spectral Norm)**
 
-**Notes**: This is very different from the Frobenius Norm of matrices because this is a norm induced by vector 2-norm. 
+**Notes**: This is very different from the Frobenius norm of a matrix. 
 
 Here let's derive it. By the definition of vector induced matrix norm:
 

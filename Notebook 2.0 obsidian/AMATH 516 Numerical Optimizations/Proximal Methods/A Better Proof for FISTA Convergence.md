@@ -33,6 +33,7 @@ Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \tex
 
 ---
 ### **Template Methods for Proximal Gradient**
+A generic method for updating the sequences for the proximal gradient method. 
 
 $$
 \begin{aligned}
@@ -110,7 +111,7 @@ unfortunately, at current step we won't be able to trigger the monotone property
 ---
 ### **The Second Lemma: 2 Positive Sequences**
 
-We consider sequence $a_k, b_k \ge 0$ for $k\in \mathbb N$ with $a_1 + b_1 \le c$, and inductively the 2 sequences satisfies: $a_{k} - a_{k + 1} \le b_{k + 1} - b_k$ , which describes a sequence whose oscillations is bounded by the difference of another sequence. Consider the telescoping sum: 
+We consider sequence $a_k, b_k \ge 0$ for $k\in \mathbb N$ with $a_1 + b_1 \le c$, and inductively the 2 sequences satisfies: $a_{k} - a_{k + 1} \le b_{k + 1} - b_k$ , it describes the the  oscillations of $a_k$ is bounded by $b_k$. Consider the telescoping sum: 
 
 $$
 \begin{aligned}
