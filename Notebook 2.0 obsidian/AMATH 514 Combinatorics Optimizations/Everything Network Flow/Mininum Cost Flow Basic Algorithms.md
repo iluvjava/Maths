@@ -129,7 +129,7 @@ We list results of LP duality applied to this specific formulation of Minimum co
 
 
 ---
-### **The Negative Cycle Canceling Algorthms**
+### **The Negative Cycle Canceling Algorithms**
 
 This basic algorithm exploits the optimality conditions of the network flow problem. 
 

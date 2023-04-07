@@ -87,14 +87,14 @@ indicating that the minimum of the gradient converges to $\mathbf 0$ at a sub-li
 
 Note, without much assumptions this formula only states that, the sequence of $f(x^{(t)})$ is non-increasing, however, it said nothing about its convergence, or whether we will have $x^{(t)}$ converging. 
 
-> [!Details]-
+> [!details]-
 > 
 > When it converges:
 >    1. $f(x^{(t)})$ could converge, however, if it converges, it doesn't mean $x^{(t)}$ is converging (unless compact level sets), neither it states that we can't have a limit cycle of some sort (might be eliminated by smoothness? not sure). 
 >    2. $f(x^{(t)})$ could decrease but converge to a non-optimal value dual to gradient can be a false measure of optimality. 
 > 
 > When it diverges:
-> 1. $f(x^{(t)})$ could diverge very fast, which is the case of the function is not bounded below and the initial $x^{(0)}$ is chosen in such a way that it starts sliding down a steep hill indefinitely. And under thet case, the bound for the gradient failed completely. 
+> 1. $f(x^{(t)})$ could diverge very fast, which is the case of the function is not bounded below and the initial $x^{(0)}$ is chosen in such a way that it starts sliding down a steep hill indefinitely. And under that case, the bound for the gradient failed completely. 
 >    1. $f(x^{(t)})$ could diverge (but decreases) in just the right way that it cancels out with $1/\sqrt{k}$, making that bound a constant. 
 
 Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 

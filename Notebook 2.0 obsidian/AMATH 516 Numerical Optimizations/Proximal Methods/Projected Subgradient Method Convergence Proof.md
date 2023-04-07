@@ -223,7 +223,7 @@ $$
 \end{aligned}
 $$
 
-In the next phase, we try a sequence of $\eta_t$ that allows to to invoke the telescoping series (make the terms into the same form but paramaterized differently). This allows use to sum up weight sum of the left handside and the RHS will be expression interms of some type of error terms. The approach after will invoke convexity of $f$ on the weight sum similar to before. More specifically we consider the sequence $\eta_t = 2/(\alpha(t + 1))$, and we multiple both hande of the inequality by $t$, obtaining: 
+In the next phase, we try a sequence of $\eta_t$ that allows to to invoke the telescoping series (make the terms into the same form but parameterized differently). This allows use to sum up weight sum of the left hand side and the RHS will be expression in terms of some type of error terms. The approach after will invoke convexity of $f$ on the weight sum similar to before. More specifically we consider the sequence $\eta_t = 2/(\alpha(t + 1))$, and we multiple both hand of the inequality by $t$, obtaining: 
 
 $$
 \begin{aligned}
@@ -273,9 +273,11 @@ $$
 \end{aligned}
 $$
 
-This completes the proof and the convex combinations of the weight $\epsilon_t$ corresponds the objective value of the function that converges. 
+This completes the proof and the convex combinations of the weight $\eta_t$ corresponds the objective value of the function that converges. Finally, observe that from the strong convexity, the iterates will converge to a singleton, therefore, the weighted convex combinations of the iterates converge. 
 
 
 **Remarks**
 
-Intuitively, it makes sense to weight the iterats $x^{(t)}$ at the tail end a bit more because hopefully, the algorithm has converged as more $t$ were iterated, and this is what this proof above is showing us that, such a strategy indeed works under the strong convexity assumption! 
+Intuitively, it makes sense to weight the iterates $x^{(t)}$ at the tail end a bit more because hopefully, the algorithm has converged as more $t$ were iterated, and this is what this proof above is showing us that, such a strategy indeed works under the strong convexity assumption! 
+
+Finally, observe that under the strong convexity assumption, we are certain the the iterates will converge to a fixed value. This is not true in general in the first case since, the minimizers for a convex function is a convex set and might not be a singleton like in the second case when the function is strongly convex. 

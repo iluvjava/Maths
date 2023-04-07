@@ -94,6 +94,11 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 
 **Lemma:Riesz Lemma (2.4-5)**
 > Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
+>
+
+**Observations**: 
+
+This lemma shows that, it's possible to lift a unitary vector perpendicular above a linear subspace, $Y$ in this case, name that vector $z$ (unitary), such that the distance of any vector from $Y$ to $z$, can be upper bounded by $1$ , and lower bounded by $0$. The closure and proper subset property of $y$ plays a role in the proof. 
 
 **Proof**:
 
