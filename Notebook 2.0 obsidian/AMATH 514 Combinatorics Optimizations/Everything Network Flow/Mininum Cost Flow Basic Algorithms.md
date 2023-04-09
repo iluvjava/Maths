@@ -34,6 +34,7 @@ We list theorem that relates several quantities to an optimal flow. These will u
 > Feasible solution $x^\circ$ is optimal of the minimum costs problem if and only if some set of node potential $\pi$ satisfies: $c^{(\pi)}_{i, j} = c_{i, j} - \pi_i + \pi_j \ge 0$ for all $(i, j) \in G(x^\circ)$, for all arcs in the residual graph. 
 
 **Proof**: 
+
 Skipped. 
 
 **Remarks**
@@ -53,12 +54,9 @@ $p_i$ is one set of the dual variable for the dual programming problem, it's rel
 >     \end{cases}
 > \end{aligned}
 > $$
-> which is the complementary slackness conditions for the LP. 
+> which is the complementary slackness conditions for the LP. Other equivalent description of the conditions exist. 
 
 **Proof**: Skipped. 
-
-
-
 
 ---
 ### **The Dual of the LP**
@@ -131,9 +129,16 @@ We list results of LP duality applied to this specific formulation of Minimum co
 ---
 ### **The Negative Cycle Canceling Algorithms**
 
-This basic algorithm exploits the optimality conditions of the network flow problem. 
+This basic algorithm exploits the optimality conditions of the network flow problem. It can be summarized simply by the following: 
+
+> Establish a feasible flow for the min cost network flow, and then detect cycles with negative costs in the residual graph. And then we augment along that cycle to bring down the cost of the flow. Each augmentation should saturates one of the arcs on the cycle. 
 
 
+**Thm: Solution is Integral\[9.10\]**
+> If the arc and node capacity for the graph is of integer values, then the minimum cost solution will be integers after the execution of this algorithm. 
+
+**Proof**: 
+Skipped. Refers to the textbook. 
 
 **References**: 
 

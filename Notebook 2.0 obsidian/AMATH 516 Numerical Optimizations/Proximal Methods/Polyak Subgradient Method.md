@@ -20,7 +20,7 @@ $$
 
 which gives very interesting results, theoretically. 
 
-**References:** 
+**References:**
 
 28.4 In Heinz's Course note. 
 
@@ -139,13 +139,13 @@ $$
     - \sum_{t = 0}^{k}
     \frac{E_t^2}{\Vert v^{(t)}\Vert^2}
     \\
-    [2]\implies 
+    \implies 
     \Vert e^{(k + 1)}\Vert^2 - \Vert e^{(0)}\Vert^2
     &\le 
     - \sum_{k = 0}^{k}
     \frac{E_t^2}{\Vert v^{(t)}\Vert^2}
     \\
-    \implies 
+    [2]\implies 
     \sum_{t = 0}^{k}
     \frac{E_t^2}{L^2}
     \le
@@ -155,6 +155,10 @@ $$
     \Vert e^{(0)}\Vert^2 - \Vert e^{(k)}\Vert^2 \le \Vert e^{(0)}\Vert^2, 
 \end{aligned}
 $$
+
+- \[1\]: Performs telescoping summation. 
+- \[2\]: Recall $L$ is the Lipschitz constant bounding the norm of all the subgradient of $f$. 
+
 By the montone property of the iterates $\Vert e^{(k)}\Vert$, the RHS is a positive quantities. This last statement means that the sum of all the gadient step sizes is a convergence series, which would implies that each term converges, hence $\eta_k$ converges to zero. Furthermore, if we characterize the smallest function value over all the iterates, then we have the following expression: 
 
 $$
@@ -167,7 +171,7 @@ $$
     \\
     \min_{1\le t\le k}E_t \
     & \le 
-    \frac{\Vert e^{(0)}\Vert^2}{(k + 1)},
+    \frac{\Vert e^{(0)}\Vert^2}{k + 1},
 \end{aligned}
 $$
 
