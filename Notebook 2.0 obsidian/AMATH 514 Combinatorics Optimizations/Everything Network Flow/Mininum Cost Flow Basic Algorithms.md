@@ -80,7 +80,7 @@ $$
 \end{aligned}
 $$
 
-and the constraints can be exressed in the form of: 
+and the constraints can be expressed in the form of: 
 
 $$
 \begin{aligned}
@@ -106,14 +106,14 @@ $$
 Which is a non-smooth optimization problem purely using the $\pi$ variable.
 
 **Thm: Strong Duality of Min Cost Network Flow \[thm: 9.6\]**
-> For all data, there exists $x^+$ as an optimal solution to the min cost flow prblem satisfying strong duaity, meaning that: 
+> For all data, there exists $x^+$ as an optimal solution to the min cost flow problem satisfying strong duality, meaning that: 
 > $$
 >     \langle c, x^+\rangle =     \langle b, \pi\rangle + 
 >         \sum_{(i, j)\in A}^{}
 >         u_{i, j}
 >         \min\left(0, c^{(\pi)}_{i, j}\right), 
 > $$
-> and the solution satisfies the conditions: $\langle -c^{(\pi)}, x\rangle = \langle -\min(c^{(\pi)}, 0), u\rangle$. 
+> and the solution satisfies the conditions: $\langle -c^{(\pi)}, x\rangle = \langle -\min(c^{(\pi)}, 0), u\rangle$, this is by the properties of reduced costs, obtained by moving $\langle b, \pi\rangle$ to the left. 
 
 **Proof**: 
 
