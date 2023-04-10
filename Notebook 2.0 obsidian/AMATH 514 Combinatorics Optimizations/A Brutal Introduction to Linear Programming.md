@@ -55,6 +55,6 @@ Then $\lambda \delta = \sup\{\lambda c^Tx: Ax \le b\} = \sup \{y^TAx: Ax \le b\}
 ---
 ### **Strong Duality**
 
-A statement of results from strong duality can are listed, and proofs can be found using various different methods and techniques.
+A statement of results from strong duality are listed, and proofs can be found using various different methods and techniques.
 
 
