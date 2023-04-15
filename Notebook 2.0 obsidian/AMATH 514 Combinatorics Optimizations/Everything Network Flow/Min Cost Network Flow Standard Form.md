@@ -272,7 +272,7 @@ Theorem 3.8 in the Network Algorithms Textbook, by Ahuja.  For a better coverage
 
 **Comments**: 
 
-The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Mininum Cost Flow Basic Algorithms]] for more information. 
+The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Minimum Cost Flow Basic Algorithms]] for more information. 
 
 
 ---

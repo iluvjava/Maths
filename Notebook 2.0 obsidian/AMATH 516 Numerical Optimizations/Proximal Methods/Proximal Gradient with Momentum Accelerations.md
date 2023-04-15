@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-A thorough understanding of the Proximal Gradient without momentum is needed to understand this. This part of the text will make heavy references to Amir's Beck's book, and the paper [[FISTA_ A Fast Iterative Shrinka - Amir Beck.pdf]], and then the Presentation from L. Vanderberghe [here](https://www.seas.ucla.edu/~vandenbe/236C/lectures/fgrad.pdf)(Just for references materials here is not really taken from Vanderberghe's works) on Nesterov momentum method. In this excerpt, we will state the algorithm for the FISTA, and then we will attempt to prove the convergence rate while knowing the algorithm. And at the end we will try to discuss some of the magics behind sequence of numbers for the algorithm. 
+A thorough understanding of the Proximal Gradient without momentum is needed to understand this. This part of the text will make heavy references to Amir's Beck's book, and the paper [[FISTA_ A Fast Iterative Shrinka - Amir Beck.pdf]], and then the Presentation from L. Vanderberghe [here](https://www.seas.ucla.edu/~vandenbe/236C/lectures/fgrad.pdf)(Just for references materials here is not really taken from Vanderberghe's works) on Nestrov momentum method. In this excerpt, we will state the algorithm for the FISTA, and then we will attempt to prove the convergence rate while knowing the algorithm. And at the end we will try to discuss some of the magics behind sequence of numbers for the algorithm. 
 
 **The FISTA Algorithm**
 
@@ -11,7 +11,7 @@ A thorough understanding of the Proximal Gradient without momentum is needed to 
 > 
 > $$
 > \begin{aligned}
->     x^{(k)} &= \text{prox}_{h, \beta^{-1}} (y^{(k)} + \beta^{-1}\nabla f(y^{(k)}))
+>     x^{(k)} &= \text{prox}_{h, \beta^{-1}} (y^{(k)} - \beta^{-1}\nabla f(y^{(k)}))
 >     \\
 >     t_{k + 1} &= 
 >     \frac{1 + \sqrt{1 + 4t_k^2}}{2}
@@ -47,11 +47,11 @@ Let $\bar x$ be one of the minimizer for the summed function $f$, then the conve
 > \end{aligned}
 > $$
 > 
-> $\alpha = 1$ if the step size is constant, and when backtracking is used, then there exists a constant $\eta$ such that $\beta^{-1}_k\le L_g$ for all iteration number $k$, so that in the backtracking case, the constrant $\alpha = \eta$. 
+> $\alpha = 1$ if the step size is constant, and when backtracking is used, then there exists a constant $\eta$ such that $\beta^{-1}_k\le L_g$ for all iteration number $k$, so that in the backtracking case, the constant $\alpha = \eta$. 
 
 **Remarks**
 
-People don't think this is good enough and in Amir's textbook, and paper such as [this one](https://arxiv.org/abs/1811.01430), people augmented and improve the behavior of the original algorithm, so that it works better, faster, and greedier. 
+People don't think this is good enough and in Amir's textbook, and paper such as [this one](https://arxiv.org/abs/1811.01430), people augmented and improve the behavior of the original algorithm, so that it works better, faster, and greedier. See MFIST (A montone FISTA) in Beck's textbook for more information. 
 
 ---
 ### **First Lemma For the Proof**

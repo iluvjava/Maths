@@ -1,5 +1,5 @@
 
-NOTES ABOUT NOTES. 
+This note is a note about notes. 
 
 # **Organizations**
 
@@ -11,7 +11,15 @@ NOTES ABOUT NOTES.
 	- [[MATH 601 Functional Analysis/Continuous Mapping and Compactness]]
 	- Need to be re-organized. 
 
+
+---
+# **Important Tasks about the Notes**
+
+Tasks that are important for something. Review, or research. 
+
 ---
 # **Tasks to To about the Notes**
 
+Something to do when we have time. 
 
+- Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]]

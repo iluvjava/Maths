@@ -1,4 +1,5 @@
-[[Mininum Cost Flow Basic Algorithms]]
+- [[Minimum Cost Flow Basic Algorithms]], 
+- [[Reduced Costs and Potentials]].
 
 
 ---
@@ -11,7 +12,7 @@ The algorithm works on the optimality conditions. Especially the conditions for 
 The graph represents the complementary slackness for the variables. Each point $(c_{i, j}^{\pi}, x_{i, j})$ are the primal and the corresponding reduced cost (another dual variable) for each arcs on the graph. The solid line sections contains 3 parts, each represents the complementary slackness for the primal and dual variables. 
 1. The horizontal line segment represents conditions $x_{i, j}\in (0, u_{i, j})\implies c^{(\pi)}_{i,j}= 0$. 
 2. The vertical line segment above the x-axis represents: $c^{(\pi)}_{i, j} > 0 \implies x_{i, j} = 0$. 
-3. The vertical line belows the horizontal x-axis represents: $c^{(\pi)}_{i,j} < 0 \implies x_{i,j} = u_{i,j}$. 
+3. The vertical line below the horizontal x-axis represents: $c^{(\pi)}_{i,j} < 0 \implies x_{i,j} = u_{i,j}$. 
 
 Any other points that doesn't lie in the solid area represents primal and dual variables that violates the complementary slackness conditions. 
 
@@ -65,7 +66,7 @@ We describe the algorithm via pseudocode. Before starting we establish quantitie
 
 ```SQL
 WHILE sigmaK > 0: 
-    SELECT (p, q) WHERE "It's out of Kilter" IN G(x)
+    SELECT (p, q) WHERE "Kilter number is positive" IN G(x)
     c_prime(i, j) := max(0, reduced_cost(ptl, i, j)) FOR ALL (i, j) IN G(x)
     d :=  "Shortest path distance from q to every other nodes in G(x)". 
     ptl :=  ptl(i) - d(i) FOR ALL i in N
@@ -78,7 +79,7 @@ WHILE sigmaK > 0:
 
 **Observe:** 
 
-We keep track of, $c'$, the costs for shortest path, $\pi$, `p` potential from the previous iteration, $d$ the distance labels, $c^{(\pi)}$ the reduced costs. Only update the potential if the reduced costs on the targeted arc is not negative after the new modified potentials, and the shortest path that we used to connect arc $(p, q)$ into a cycle is derived from the shortest path label from the previous iterations. 
+We keep track of, $c'$, the costs for shortest path, $\pi$, `p` potential from the previous iteration, $d$ the distance labels, $c^{(\pi)}$ the reduced costs. Only update the potential if the reduced costs on the targeted arc is not negative after the new modified potentials, and the shortest path that we used to connect arc $(p, q)$ into a cycle is derived from the shortest path label from the previous iterations. The progress of the algorithm is measured by the sum of all the kilter numbers for all arcs. 
 
 
 **Lemma\[9.13\]: Kilter Number won't Increase for All Arcs**
@@ -86,7 +87,7 @@ We keep track of, $c'$, the costs for shortest path, $\pi$, `p` potential from t
 
 **Proof**: 
 
-skipped for now. 
+Skipped for now. 
 
 **Lemma \[9.14\]: Kilter Number Strictly Decreases for arc (p, q)**
 > After augmenting the flow along some cycle $W$ from the algorithm, the kilter number of arc $(p, q)$ will strictly decrease. 

@@ -1,4 +1,4 @@
-[[Mininum Cost Flow Basic Algorithms]]
+[[Minimum Cost Flow Basic Algorithms]]
 
 ---
 ### **Intro**
