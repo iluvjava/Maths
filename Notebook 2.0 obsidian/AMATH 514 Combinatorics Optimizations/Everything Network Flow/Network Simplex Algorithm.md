@@ -45,14 +45,11 @@ We partition the set of all arcs into 3 set.
 2. $L$: The arcs that has a flow of zero and also not in $T$. 
 3. $U$: The arcs that has full flow that is also not in $T$. 
 
-The triple $(L, U, T)$ determines a spanning tree solution of the problem (We refers this as spanning tree structure). From \[thm 11.1\], suppose that a cycle free solution had been given. We construct a spanning tree solution from the cycle free solution. We do: 
+The triple $(L, U, T)$ determines a spanning tree solution of the problem (We refers this as spanning tree structure). From \[thm 11.1\], suppose that a cycle free solution had been given (imortant!). Let $F\subseteq A$ to be the set of arcs that are free. Since there is no cycle, the graph is a forest with less than or equal to $n - 1$ arcs. 
 1. Select the set of all free arcs, since there are no cycle of free arcs. 
-2. If the number of arcs is less than or equal to $n - 1$, then the set of free arcs gives a forest. 
-	1. Select any non-free arcs from the graph such that forest becomes a spanning tree. 
-3. Else, the number of arcs is larger than $n - 1$. 
-	1. We remove free arcs so that it's a spanning tree, of non-free arcs. 
+2. Select any non-free arcs from the graph, add it to the tree so that it becomes a spanning tree. 
 
-We have ourselves a spanning tree solution, it may be non-degenerate if, the cycle free solution already has set of all free arcs as a spanning tree, or it may be degenerate if we need to add additional arcs that are not free to form the spanning tree solution. 
+The spanning tree is non-degenerate if, the cycle free solution has strictly less than $n - 1$ number of free arcs. Else, the spanning tree solution is a non-degenerate tree. 
 
 
 
@@ -71,8 +68,11 @@ We have ourselves a spanning tree solution, it may be non-degenerate if, the cyc
 > $$
 
 **Observations**: 
+
 This is the optimality conditions for the min cost network flow, however, this is not on the residual graph. 
 
+**Proof**: 
+skipped. Vist basic algorithm for network flow for more background for the optimality conditions on the original graph. 
 
 ---
 ### **Computing the Node Potentials and Flows**
@@ -84,7 +84,7 @@ Given a spanning tree structure $(T, L, U)$. We describe the process of computin
 - `T, U, L` are sets for the tree structure in the code.  
 - `c(i, j)` is the cost assignment on the original graph `G` in the code. 
 - `thread` is an array, contains the ordering of node obtained by a pre-order traversal of the spanning tree $T$. 
-- - `pred`, is the list containing predecessor of all nodes in $T$, for the tree, this is determined by a pre-order tree traveral of the undirected tree $T$, consistent with the ordering of `thread`. 
+- `pred`, is the list containing predecessor of all nodes in $T$, for the tree, this is determined by a pre-order tree traveral of the undirected tree $T$, consistent with the ordering of `thread`. 
 
 
 **Algorithm Preconditions**: 
@@ -114,10 +114,18 @@ FUNCTION compute_node_potentials(T, L, U, G):
 ---
 ### **Computing Arcs Flow**
 
+Given a spanning tree structure, which corresponds to a spanning tree solution for the flow, we describe a algorithm procedures for computing all the flows that are on the tree. Given $(T, U, L)$, we already know what flow should be for $U, L$, out goal is to determine flow on arcs in $T$. 
+
+**Basic Quantities**: 
+
+
+**Algorithm Psuedo Code**: 
 
 
 
 
+---
+### **Strongly Feasible Spanning Tree Solution**
 
 
 
