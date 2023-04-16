@@ -17,7 +17,12 @@ We introduce and summarize the network simplex algorithms in the textbook by Ahu
 
 **High Level Summarizations**: 
 
-The algorithm identifies a spanning tree subgraph $T$ such that it's a *spanning tree solution*. It takes arcs that are restricted: $a \in A\setminus T$, depending on the which way it's restricted, it identifies a cycle on the tree, with the arc $a$, and then augment on that cycle depending on the governing boundary types. 
+The algorithm identifies a spanning tree subgraph $T$ such that it's a *spanning tree solution*. It takes arcs that are restricted: $a \in A\setminus T$, depending on the which way it's restricted, it identifies a cycle on the tree, with the arc $a$, and then augment on that cycle depending on the governing boundary types. There are a lot of things to consider when understanding this algorithm: 
+1. Why does solutions with a tree structure exists? 
+2. How to expoits the optimality conditions so that we are improving the flow? 
+3. How to update all the information, the potentials, reduced costs, and the tree structure? 
+   1. This includes the computation details and how to make them efficient. 
+   2. Also includes the type of heuristics one should employ to attain best cost reduction with least computational cost and storage. 
 
 **Reference**: 
 
@@ -45,7 +50,7 @@ We partition the set of all arcs into 3 set.
 2. $L$: The arcs that has a flow of zero and also not in $T$. 
 3. $U$: The arcs that has full flow that is also not in $T$. 
 
-The triple $(L, U, T)$ determines a spanning tree solution of the problem (We refers this as spanning tree structure). From \[thm 11.1\], suppose that a cycle free solution had been given (imortant!). Let $F\subseteq A$ to be the set of arcs that are free. Since there is no cycle, the graph is a forest with less than or equal to $n - 1$ arcs. 
+The triple $(L, U, T)$ determines a spanning tree solution of the problem (We refers this as spanning tree structure). From \[thm 11.1\], suppose that a cycle free solution had been given (important!). Let $F\subseteq A$ to be the set of arcs that are free. Since there is no cycle, the graph is a forest with less than or equal to $n - 1$ arcs. 
 1. Select the set of all free arcs, since there are no cycle of free arcs. 
 2. Select any non-free arcs from the graph, add it to the tree so that it becomes a spanning tree. 
 
@@ -72,6 +77,7 @@ The spanning tree is non-degenerate if, the cycle free solution has strictly les
 This is the optimality conditions for the min cost network flow, however, this is not on the residual graph. 
 
 **Proof**: 
+
 skipped. Vist basic algorithm for network flow for more background for the optimality conditions on the original graph. 
 
 ---
@@ -91,7 +97,7 @@ Given a spanning tree structure $(T, L, U)$. We describe the process of computin
 - We treat $T$ as an undirected graph, and we performed a pre-order tree traversal on the tree, which determines `pred` and `thread`, the arcs as defined by `(pred(i), i)` for all $i \in N$, can be either, a forward, or a backward arcs on the original graph $G$. 
 
 ```SQL
-FUNCTION compute_node_potentials(T, L, U, G): 
+FUNCTION compute_node_potentials(T, L, U, G=(A, N)): 
     pi(1) := 0 
     j:= thread (1)
     WHILE j != 1: 
@@ -117,20 +123,87 @@ FUNCTION compute_node_potentials(T, L, U, G):
 Given a spanning tree structure, which corresponds to a spanning tree solution for the flow, we describe a algorithm procedures for computing all the flows that are on the tree. Given $(T, U, L)$, we already know what flow should be for $U, L$, out goal is to determine flow on arcs in $T$. 
 
 **Basic Quantities**: 
-
+- $b'$, `b_prime`, denotes the temperory label for the flow balance on a node. 
+- `T_prime`, $T'$ is a copy of the tree, include all its arcs and nodes, and it has mass balance constraint: `b_prime`, $b'$. It will be modified when we run the algorithm. 
+- `x` is the flow, `x(i, j)` denotes the flow on arc $(i, j)$, positive. 
+- `u` is the upper bound function for the min cost flow problem. 
+- Finally, we keep using the quantities: `thread, pred` from the previous sections, they are relevant to the spanning tree structure. 
 
 **Algorithm Psuedo Code**: 
 
+```SQL
+FUNCTION compute_flows(T, L, U, G=(A, N)): 
+    b_prime(i) = b(i) FOR ALL i IN N
+    FOR (i, j) IN U: 
+        x(i, j) = u(i, j)
+        b_prime(i) -= u(i, j)
+        b_prime(j) += u(i, j)
+    FOR (i, j) IN L: 
+        x(i, j) = 0
+    T_prime := T
+    WHILE T_prime != {1}: 
+        j = SELECT EVAL("a leaf node in the graph that is not: 1. in $T_prime")
+        i = pred(j)
+        IF (i, j) IN T_prime: 
+            x(i, j) = - b_prime(j) 
+        ELSE:  /*The case where, (j, i) is in T_prime! */
+            x(i, j) = b_prime(j)
+        DELETE j FROM T_prime
+        DELETE (i, j) FROM T_prime
+```
 
+**Observations**
 
+For simplicty we may suppose that the whole graph is just a tree, and we were give a sanning tree-structure, which corresponds to a unique spanning tree solution on the graph. Then the algorithm delete the leaf node $j$, depending on whether the arc points away, a towards the node $j$, we set the flow using the mass balance. This is true because there is only one arc coming in/out of node $j$ by the fact that it's a leaf node. 
+
+---
+### **The Generic Network Simplex Algorithm**
+
+The the simplex algorithm for LP, but it's performed on the network directly. The theories behind it is not revealed for my education. But it's there is a deep connection between the 2 algorithm nonetheless. Suppose that a spanning tree solution is given by the tree structure $T, L, U$. The network simplex algorithm can be summarized simply:  
+1. Compute the node potentials. 
+2. Using the potentials to determine reduce costs. 
+3. Using the reduced costs to determine which arc to choose. 
+4. Choose the arc to add to the tree to create a cycle on the tree, increase, or decrease flow on the arcs, depending on the reduced costs. 
+
+**Algorithm Pseudocode**: 
+```SQL
+EVAL("Determine initial feasile tree structure (T, L, U)")
+EVAL("Determine the flow x, and potentials pi for the above tree structure")
+WHILE EVAL("There exists some arcs violating the optimality structure"):
+    SELECT (k, l) WHERE EVAL("It violates the optimality conditions")
+    ADD (k, l) TO T
+    EVAl("Determine an leaving arc (p, q).")
+    EVAL("Update the tree structure, the flow, the potentials")
+```
+
+The most important part of the algorithm that determines its behaviors is the part where we choose the entering, and the leaving arcs (like simplex pivoting), and how we avoid degeneracy on the tree structure for the solution. 
 
 ---
 ### **Strongly Feasible Spanning Tree Solution**
 
+Keeping a strong feasible spanning tree solution will allow nonegative flow everytime we pivot using the spanning tree. 
+
+**Definition: Strongly Feasible Spanning Tree Solution**
+> A spanning tree solution is a strongly feasible spanning tree solution if and only if the following, 2 equivalent statements are true with respect to some root node on the tree. 
+> 1. We can send some positive flow from any node in the tree to the root node of the tree. 
+> 2. For all tree arcs with zero flow, it points to the root node, for all arcs with full flow, it points away from the root node. 
+
+**Observations**: 
+- A root node must be defined for the tree before the defintion becomes valid for any tree. 
+- A non-degenerate spanning tree is always a strongly feasible spanning tree. Because none of the arcs in the tree is at capacity, or zero capacity. 
+- A degenerate spanning tree, can be strongly feasible, or not. It's not directly related. 
+
+**Defintion: Apex**
 
 
+**Leaving Arc Strategy**
+> Select the leaving arc as the last blocking arc encountered in traversing the pivot cycle W along its orientation starting at the apex w. 
 
+
+**References:**
+
+11.6 in the Ahuja's textbook for network flow algorithms. 
 
 ---
 
-### **Algorithm Descriptions**
+### **Pivoting Rules**
