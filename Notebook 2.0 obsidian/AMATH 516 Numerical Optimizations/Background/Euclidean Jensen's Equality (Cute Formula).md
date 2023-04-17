@@ -78,10 +78,23 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 ---
 ### **A Generalized Version**
 
-In the general version of the theorem, we consider an affine combinations of vectors ($\sum_{i\in I} \alpha_i = 1$) in the Euclidean space, and form the equality: 
+In the general version of the theorem, we consider an affine combinations of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space, and form the equality: 
 
 $$
 \begin{aligned}
+    &
+    \left\langle 
+        \left.
+        \sum_{i \in J}^{n}\alpha_i x_i
+        \right|
+        \sum_{i \in I}^{n}\alpha_i u_i
+    \right\rangle +
+    \sum_{i\in I}^{}\sum_{j\in I}^{}
+        \frac{\alpha_i\alpha_j}{2}\langle x_i - x_j, u_i - u_j\rangle
+    = 
+    \sum_{i \in I}^{}\alpha_i \langle x_i, u_i\rangle
+    \\
+    &
     \left\Vert \sum_{i \in I}^{}
         \alpha_ix_i
     \right\Vert^2
@@ -89,12 +102,12 @@ $$
     \sum_{i \in I}^{}
         \sum_{i \in I}^{}
             \alpha_i\alpha_j\Vert x_i - x_j\Vert^2/2
-    &= 
-    \sum_{i \in I}^{}\alpha \Vert x_i\Vert^2, 
+    = 
+    \sum_{i \in I}^{}\alpha_i \Vert x_i\Vert^2, 
 \end{aligned}
 $$
 
-which is the general case of the above Jensen's inequality. The proof is direct and follows a similar manner compare to the case where $|I| = 2$. 
+the first expression is a more general case of the second expression. By setting the $x_i = u_i$ on the frist expression, we obtain the second expression. By setting the $I - {1, 2}$ for the second expression, we obtained the formula proved in the previous section. 
 
 
 **Reference**:
@@ -104,8 +117,34 @@ Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this fo
 ---
 ### **An Augmented Version**
 
-Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. 
+Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. Here we derive another version of the same formula, which is occationally useful: 
 
+$$
+\begin{aligned}
+    \Vert (1 - \lambda)u + \lambda v\Vert^2 
+    &= 
+    (1 - \lambda)\Vert u\Vert^2 - (1 - \lambda)\lambda \Vert u - v\Vert^2 + \lambda \Vert v\Vert^2
+    \\
+    \Vert (1 - \lambda)u + \lambda v\Vert^2 
+    &= 
+    (1 - \lambda)\Vert u\Vert^2 - (1/\lambda - 1)\lambda^2\Vert u - v\Vert^2 + \lambda \Vert v\Vert^2, 
+\end{aligned}
+$$
+Let $\alpha = \frac{1}{\lambda}$, we now assume that $\lambda \neq 0$, then: 
+
+$$
+\begin{aligned}
+    \Vert (1 - \alpha^{-1})u + \alpha^{-1}v\Vert^2 &= 
+    (1 - \alpha^{-1})\Vert u\Vert^2 - (\alpha - 1)\alpha^{-2}
+    \Vert u - v\Vert^2 + \alpha^{-1}\Vert v\Vert^2
+    \\
+    \alpha \Vert (1 - \alpha^{-1})u + \alpha^{-1}v\Vert^2 &= 
+    \alpha(1 - \alpha^{-1})\Vert u\Vert^2 - (\alpha - 1)\alpha \Vert u - v\Vert^2
+    + \Vert v\Vert^2, 
+\end{aligned}
+$$
+
+and we called that the augmented version of the cute formula. 
 
 
 **References**: Lemma 1.8, In professor's Heinz's Notes

@@ -77,7 +77,6 @@ The spanning tree is non-degenerate if, the cycle free solution has strictly les
 This is the optimality conditions for the min cost network flow, however, this is not on the residual graph. 
 - Intuitively, if the reduced costs is negative, then it means sending more flow would save cost, hence, for an optimal solution, it better be the case that that arc is at capacity. 
 - Else, reduced cost is positive, meaning that we shouldn't be sending any thing on the arc to increase the costs. 
-- 
 
 **Proof**: 
 

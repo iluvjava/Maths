@@ -1,4 +1,5 @@
-[[Topological Basics for Optimizations]],[[Characterizing Functions for Optimizations]]
+[[Topological Basics for Optimizations]],
+[[Characterizing Functions for Optimizations]]
 
 ---
 ### **Existence of a minimizer**

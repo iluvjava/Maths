@@ -1,6 +1,6 @@
 ---
 alias: Smoothness and its Euivalences
-alias: Globally Lipschitz Gradient as an Implications of L-Smoothness
+alias: L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
 ---
 * [[Characterizing Functions for Optimizations]]
 * [[Dual Norm]]
@@ -12,7 +12,7 @@ We introduce $f:\mathbb E \mapsto \mathbb{\bar R}$, which has a Lipchitz continu
 
 **References:** 
 
-Lipschitz gradient characterize change of the objective value of the functions with the norm for the gradient, and smoothness of a function, which is important for the convergence behaviors of fixed gradient method. One of the major source for this file will be coming from the UCLA class lecture slides, linked [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf#page14). The references of this slide will also be acknowledged and cited. There is another paper talking about the Lipchitz Gradient and it's relations to strong convexity: [here](https://arxiv.org/abs/1803.06573). Finally, one of the ultimate reference we should use is Beck's \<First Order Methods in Optimizations\>, where it has detailed proofs and overview for characterizations of strong smoothness for functions. Finally, *Dimitri's AMATH 516* has Excercise 3.12 that covers the additional properties and equivalences for the Strong Smoothness Properties. 
+Lipschitz gradient characterize change of the objective value of the functions with the norm for the gradient, and smoothness of a function, which is important for the convergence behaviors of fixed gradient method. One of the major source for this file will be coming from the UCLA class lecture slides, linked [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf#page14). The references of this slide will also be acknowledged and cited. There is another paper talking about the Lipchitz Gradient and it's relations to strong convexity: [here](https://arxiv.org/abs/1803.06573). Finally, one of the ultimate reference we should use is Beck's \<First Order Methods in Optimizations\>, where it has detailed proofs and overview for characterizations of strong smoothness for functions. Finally, *Dimitri's AMATH 516* has Exercise 3.12 that covers the additional properties and equivalences for the Strong Smoothness Properties. 
 
 **Globally Lipchitz gradient**: 
 
