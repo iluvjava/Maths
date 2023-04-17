@@ -1,4 +1,4 @@
-For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]], for optimization, the neighbours are point close to an element by the metric in a [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]] (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbour" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
+For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]], for optimization, the neighbors are point close to an element by the metric in a [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]] (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbor" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
 
 Please note that, some of the discussion will feel familiar to discussion spotted here: [[Closed, Proper, Level Bounded, Strong Convex]], which also concerns the topological properties of sets related to the family of convex functions. 
 
@@ -8,7 +8,6 @@ Please note that, some of the discussion will feel familiar to discussion spotte
 The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers with the usual p-norm as the metric, which is most applicable to most of the optimizations theories. 
 
 Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
-
 
 **Definition: Interior of a set**
 

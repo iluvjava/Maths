@@ -1,3 +1,6 @@
+---
+alias: Cute Formula
+---
 ### **Intro**
 
 This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), inner products, and convex combinations of things. We show the proof for it and we will provide more variance for it. The cute formula is: 

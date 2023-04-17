@@ -1,3 +1,7 @@
+---
+alias: Smoothness and its Euivalences
+alias: Globally Lipschitz Gradient as an Implications of L-Smoothness
+---
 * [[Characterizing Functions for Optimizations]]
 * [[Dual Norm]]
 

@@ -75,6 +75,9 @@ The spanning tree is non-degenerate if, the cycle free solution has strictly les
 **Observations**: 
 
 This is the optimality conditions for the min cost network flow, however, this is not on the residual graph. 
+- Intuitively, if the reduced costs is negative, then it means sending more flow would save cost, hence, for an optimal solution, it better be the case that that arc is at capacity. 
+- Else, reduced cost is positive, meaning that we shouldn't be sending any thing on the arc to increase the costs. 
+- 
 
 **Proof**: 
 
@@ -89,7 +92,7 @@ Given a spanning tree structure $(T, L, U)$. We describe the process of computin
 - `pi`, $\pi$ is the potential assignments for nodes in the graph. 
 - `T, U, L` are sets for the tree structure in the code.  
 - `c(i, j)` is the cost assignment on the original graph `G` in the code. 
-- `thread` is an array, contains the ordering of node obtained by a pre-order traversal of the spanning tree $T$. 
+- `thread` is an array, contains the ordering of node obtained by a pre-order traversal of the spanning tree $T$. This also requires the defintion of a root node of the tree, WLOG, let the root node of the tree be indexed by 1. This assumption will be used throughout. 
 - `pred`, is the list containing predecessor of all nodes in $T$, for the tree, this is determined by a pre-order tree traveral of the undirected tree $T$, consistent with the ordering of `thread`. 
 
 
@@ -127,9 +130,9 @@ Given a spanning tree structure, which corresponds to a spanning tree solution f
 - `T_prime`, $T'$ is a copy of the tree, include all its arcs and nodes, and it has mass balance constraint: `b_prime`, $b'$. It will be modified when we run the algorithm. 
 - `x` is the flow, `x(i, j)` denotes the flow on arc $(i, j)$, positive. 
 - `u` is the upper bound function for the min cost flow problem. 
-- Finally, we keep using the quantities: `thread, pred` from the previous sections, they are relevant to the spanning tree structure. 
+- Finally, we keep using the quantities: `thread, pred` from the previous sections, they are relevant to the spanning tree structure, let the root node of the tree to be the same as in the previous case. 
 
-**Algorithm Psuedo Code**: 
+**Algorithm Pseudo Code**: 
 
 ```SQL
 FUNCTION compute_flows(T, L, U, G=(A, N)): 
@@ -154,7 +157,7 @@ FUNCTION compute_flows(T, L, U, G=(A, N)):
 
 **Observations**
 
-For simplicty we may suppose that the whole graph is just a tree, and we were give a sanning tree-structure, which corresponds to a unique spanning tree solution on the graph. Then the algorithm delete the leaf node $j$, depending on whether the arc points away, a towards the node $j$, we set the flow using the mass balance. This is true because there is only one arc coming in/out of node $j$ by the fact that it's a leaf node. 
+For simplicity we may suppose that the whole graph is just a tree, and we were give a spanning tree-structure, which corresponds to a unique spanning tree solution on the graph. Then the algorithm delete the leaf node $j$, depending on whether the arc points away, a towards the node $j$, we set the flow using the mass balance. This is true because there is only one arc coming in/out of node $j$ by the fact that it's a leaf node. 
 
 ---
 ### **The Generic Network Simplex Algorithm**
@@ -170,7 +173,7 @@ The the simplex algorithm for LP, but it's performed on the network directly. Th
 EVAL("Determine initial feasile tree structure (T, L, U)")
 EVAL("Determine the flow x, and potentials pi for the above tree structure")
 WHILE EVAL("There exists some arcs violating the optimality structure"):
-    SELECT (k, l) WHERE EVAL("It violates the optimality conditions")
+    SELECT (k, l) WHERE EVAL("It violates the optimality conditions (using the reduced costs). ")
     ADD (k, l) TO T
     EVAl("Determine an leaving arc (p, q).")
     EVAL("Update the tree structure, the flow, the potentials")
@@ -178,15 +181,21 @@ WHILE EVAL("There exists some arcs violating the optimality structure"):
 
 The most important part of the algorithm that determines its behaviors is the part where we choose the entering, and the leaving arcs (like simplex pivoting), and how we avoid degeneracy on the tree structure for the solution. 
 
+
+**Initial Spanning Tree Solution**: 
+
+- Create a feasible flow for the network min cost feasibility check to max flow problem. 
+
+
 ---
 ### **Strongly Feasible Spanning Tree Solution**
 
-Keeping a strong feasible spanning tree solution will allow nonegative flow everytime we pivot using the spanning tree. 
+Keeping a strong feasible spanning tree solution will allow the algorithm to terminate on finitely many iterations. It won't neceesarily make the spanning tree solution non-degenerate to assure increase on the objective, but it will prevent the algorithm to enter a cycle of pivoting. 
 
 **Definition: Strongly Feasible Spanning Tree Solution**
 > A spanning tree solution is a strongly feasible spanning tree solution if and only if the following, 2 equivalent statements are true with respect to some root node on the tree. 
 > 1. We can send some positive flow from any node in the tree to the root node of the tree. 
-> 2. For all tree arcs with zero flow, it points to the root node, for all arcs with full flow, it points away from the root node. 
+> 2. For all tree arcs with zero flow, it points to the root node, for all arcs with full flow, it points away from the root node.
 
 **Observations**: 
 - A root node must be defined for the tree before the defintion becomes valid for any tree. 
@@ -194,7 +203,7 @@ Keeping a strong feasible spanning tree solution will allow nonegative flow ever
 - A degenerate spanning tree, can be strongly feasible, or not. It's not directly related. 
 
 **Defintion: Apex**
-
+> We observe that that adding any arc to the tree will connect a cycle on the tree. Let the cycle to be the smallest possible cycle connected by the added arc, the apex is the only node with more than 2 arcs coming in/out of it. 
 
 **Leaving Arc Strategy**
 > Select the leaving arc as the last blocking arc encountered in traversing the pivot cycle W along its orientation starting at the apex w. 
@@ -207,3 +216,6 @@ Keeping a strong feasible spanning tree solution will allow nonegative flow ever
 ---
 
 ### **Pivoting Rules**
+
+
+
