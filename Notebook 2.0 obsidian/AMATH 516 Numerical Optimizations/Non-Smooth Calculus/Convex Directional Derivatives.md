@@ -1,8 +1,9 @@
 [[../../MATH 000 Math Essential/Analysis/Real Analysis Basics]]
 
-
 ---
 ### **Intro**
+
+Variational Directional derivative has a convex counter part where, everything is much nicer when the function is convex. 
 
 **Definition: Convex Direction Subderivatives**
 

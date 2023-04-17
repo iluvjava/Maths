@@ -226,7 +226,7 @@ If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Fi
 
 **Example: Proximal Mapping is Firmly Nonexpansive**
 
-Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. Recall from [[../Non-Smooth Calculus/Subgradient and Subdifferential Properties]] that the subgradient operator is a monotone operator. Now we make the claim: 
+Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. Recall from [[../Non-Smooth Calculus/Subgradient Central Hub]] that the subgradient operator is a monotone operator. Now we make the claim: 
 
 > let $f$ be convex, proper, and lower semi-continuous, we have the proximal operator of $f$, denoted as $P_f, I - P_f$ being firmly non-expansive operators. 
 

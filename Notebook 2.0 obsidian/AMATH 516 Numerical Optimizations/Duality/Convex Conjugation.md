@@ -1,7 +1,7 @@
 Pre-requisite: 
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]
-* [[../Non-Smooth Calculus/Subgradient Definition]]
+* [[../Non-Smooth Calculus/Subgradient Introduction]]
 
 ---
 ### **Intro**

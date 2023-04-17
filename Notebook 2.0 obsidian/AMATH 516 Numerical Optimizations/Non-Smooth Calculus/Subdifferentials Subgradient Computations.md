@@ -1,4 +1,4 @@
-* [[Subgradient Definition]]
+* [[Subgradient Introduction]]
 * [[Characterizing Functions for Optimizations]]
 
 ---

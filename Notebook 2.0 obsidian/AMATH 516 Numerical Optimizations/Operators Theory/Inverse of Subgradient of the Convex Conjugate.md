@@ -1,4 +1,4 @@
-[[../Non-Smooth Calculus/Subgradient Definition]], [[Multivalued Functions, Set-valued Mappings]]
+[[../Non-Smooth Calculus/Subgradient Introduction]], [[Multivalued Functions, Set-valued Mappings]]
 
 
 ---

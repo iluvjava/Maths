@@ -1,5 +1,5 @@
 * [[Convex Conjugation]]
-* [[../Non-Smooth Calculus/Subgradient Definition]]
+* [[../Non-Smooth Calculus/Subgradient Introduction]]
 
 ---
 ### **Intro**

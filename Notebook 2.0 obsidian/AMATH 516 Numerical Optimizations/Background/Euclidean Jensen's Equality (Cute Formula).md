@@ -107,7 +107,7 @@ $$
 \end{aligned}
 $$
 
-the first expression is a more general case of the second expression. By setting the $x_i = u_i$ on the frist expression, we obtain the second expression. By setting the $I - {1, 2}$ for the second expression, we obtained the formula proved in the previous section. 
+the first expression is a more general case of the second expression. By setting the $x_i = u_i$ on the first expression, we obtain the second expression. By setting the $I - {1, 2}$ for the second expression, we obtained the formula proved in the previous section. 
 
 
 **Reference**:
@@ -117,7 +117,7 @@ Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this fo
 ---
 ### **An Augmented Version**
 
-Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. Here we derive another version of the same formula, which is occationally useful: 
+Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. Here we derive another version of the same formula, which is occasionally useful: 
 
 $$
 \begin{aligned}

@@ -1,4 +1,4 @@
-* [[Subgradient Definition]]
+* [[Subgradient Introduction]]
 * [[Epigraph]]
 * [[Strict Separations Theorem]]
 * [[Characterizing Functions for Optimizations]]

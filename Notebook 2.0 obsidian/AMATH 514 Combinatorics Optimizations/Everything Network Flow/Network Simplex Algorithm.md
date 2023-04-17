@@ -189,7 +189,7 @@ The most important part of the algorithm that determines its behaviors is the pa
 ---
 ### **Strongly Feasible Spanning Tree Solution**
 
-Keeping a strong feasible spanning tree solution will allow the algorithm to terminate on finitely many iterations. It won't neceesarily make the spanning tree solution non-degenerate to assure increase on the objective, but it will prevent the algorithm to enter a cycle of pivoting. 
+Keeping a strong feasible spanning tree solution will allow the algorithm to terminate on finitely many iterations. It won't neceesarily make the spanning tree solution non-degenerate to assure increase on the objective for every iterations, but it will prevent the algorithm to enter a cycle of pivoting, causing it to halt. 
 
 **Definition: Strongly Feasible Spanning Tree Solution**
 > A spanning tree solution is a strongly feasible spanning tree solution if and only if the following, 2 equivalent statements are true with respect to some root node on the tree. 

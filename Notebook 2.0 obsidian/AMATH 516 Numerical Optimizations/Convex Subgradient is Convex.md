@@ -1,4 +1,4 @@
-[[Non-Smooth Calculus/Subgradient Definition]]
+[[Non-Smooth Calculus/Subgradient Introduction]]
 
 
 ---
@@ -7,7 +7,7 @@
 Using the definition of the subgradient, we wish to show that the subgradient of a function, as a multi-valued mapping, is mapping to a set that is convex.
 
 **Theorem**
-> Assuming that the function $f$ is closed an convex, then $\partial f(x)$ is also closed and convex for all $x\in \mathbb E$, the Euclidean space. 
+> Assuming that the function $f$ is closed a convex, then $\partial f(x)$ is also closed and convex for all $x\in \mathbb E$, the Euclidean space. 
 
 
 **Proof**

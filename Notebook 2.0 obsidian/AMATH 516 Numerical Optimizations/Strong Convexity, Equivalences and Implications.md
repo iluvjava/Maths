@@ -1,5 +1,5 @@
 [[Characterizing Functions for Optimizations]]
-[[Non-Smooth Calculus/Subgradient Definition]]
+[[Non-Smooth Calculus/Subgradient Introduction]]
 
 ---
 ### **Intro**

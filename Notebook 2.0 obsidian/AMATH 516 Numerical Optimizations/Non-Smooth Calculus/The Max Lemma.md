@@ -1,4 +1,4 @@
-[[Subgradient Definition]], [[Convex Directional Subderivatives]]. 
+[[Subgradient Introduction]], [[Convex Directional Derivatives]]. 
 
 ----
 ### **Intro**

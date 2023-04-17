@@ -1,15 +1,12 @@
-[[Subgradient Definition]],
-[[Subdifferentials Subgradient Computations]],
-[[../Duality/Fenchel Identity, Inequality]]
+- [[Subgradient Introduction]],
+- [[Subdifferentials Subgradient Computations]],
+- [[../Duality/Fenchel Identity, Inequality]]
 
 
 ---
 ### **Intro**
 
-Every example here is going to be hardcore and aims at applying some of the stuff listed above. 
-
-
-#UNFINISHED. 
+We look at some examples for subgradient. 
 
 
 ---
@@ -18,6 +15,8 @@ Every example here is going to be hardcore and aims at applying some of the stuf
 
 ---
 ### **Example 2: The Indicator Function**
+
+Before we start, recall contents from [[../Background/Normal Cone]]. 
 
 > Let $C$ be any subset of the Euclidean space, let $N_C$ denotes the normal cone of $C$, then $N_C = \partial \delta_C$, the normal cone equals to the convex subgradient on the indicator function of set $C$. 
 
@@ -40,7 +39,7 @@ and that completes the proof.
 
 When $C$ is a polyhedra, this is just another way of phrasing the duality of linear programming problem. 
 
-**References:** Heinz's coursenotes, theorem 10.2
+**References:** Heinz's course notes, theorem 10.2
 
 ---
 ### **Example 3: Piecewise Linear**
@@ -48,6 +47,8 @@ When $C$ is a polyhedra, this is just another way of phrasing the duality of lin
 
 ---
 ### **Example 4: Subgradient of the Max Eigenvalue Function**
+
+
 
 **References**: Example 3.8 in Amir Beck's book: [[../References/First-Order Methods in Optimization-Societ - Beck, A_.pdf]]. 
 
