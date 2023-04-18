@@ -283,7 +283,7 @@ $$
 	\hline \sqrt{1+x^{2}} & \mathbb{R} & -\sqrt{1-y^{2}} & {[-1,1]} \\
 	\hline-\log (x) & (0, \infty) & -1-\log (-y) & (-\infty, 0) \\
 	\hline e^{x} & \mathbb{R} & y \log (y)-y & {[0, \infty)} \\
-	\hline x \log (x) & (0, \infty) & e^{y}-1 & \mathbb{R} \\
+	\hline x \log (x) & (0, \infty) & e^{y - 1} & \mathbb{R} \\
 	\hline \log \left(1+e^{x}\right) & \mathbb{R} & y \log (y)+(1-y) \log (1-y) & {[0,1]} \\
 	\hline
     \delta_{\mathbb R_+^n} & \mathbb R^n & \delta_{\mathbb R^n_-}

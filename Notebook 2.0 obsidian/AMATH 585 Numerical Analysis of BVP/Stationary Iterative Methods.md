@@ -37,7 +37,7 @@ $$
 \end{aligned}
 $$
 
-Here, the choice of $w$ is in between $(1, 2]$. That is a reasonable range to paramaterize the above equation. Finally the above equation can be put into an iterative formula as: 
+Here, the choice of $w$ is in between $(1, 2]$. That is a reasonable range to parameterize the above equation. Finally the above equation can be put into an iterative formula as: 
 
 $$
 \begin{aligned}
@@ -53,11 +53,12 @@ $$
 \end{aligned}
 $$
 
-This is directly the Gauss Sediel Method. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to back solve than than using the inverse.  
+This is directly the *Gauss Sediel Method*. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to back solve than using the inverse.  
 
 **Note:** Different conventions of naming these quantities exists sometimes $w$ above is actually the $w^{-1}$ in some literature. 
 
 **References**: Greenbaum's 2021 class, and her Iterative Method book. 
+
 
 ---
 ### **Intuitive Understanding of the Matter**
@@ -133,7 +134,6 @@ Before one can make any claim, we need to put the iterations proceudure into the
 > If the iterations matrix $G$ for the stationary scheme has a spectral radius that is less than unity iff and only if the stationary scheme converges for all initial guesses. 
 
 **Optimal Relaxation Factor for SOR Method**
-
 > The spectrum of the iterative matrix is in the scale of $1 - \mathcal{O}(h)$ for the optimal sor relaxation factor, given as $w_{opt} = 1/\sqrt{1 - \rho(G_J)}$ where $G_J$ is the Jacobi Iteration Matrix. 
 
 

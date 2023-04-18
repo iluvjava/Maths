@@ -474,11 +474,6 @@ where $x\in \mathbb R^n$, assume we are in finite Euclidean space, and $z\in \ma
 > 
 
 ---
-### **Energy Norm: $\Vert x\Vert_A$**
-
-Recall that the dual of a norm is the indicator function of the normal ball of the dual norm of the norm. This is established from previous examples. Hence, we need to identify the dual norm of the energy norm. 
-
----
 ### **The 2-Norm Affine Composite $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
 The Dualization procedures can be found using the Fenchel's Identity, this example illustrate this techniques since otherwise it's harder to find the dual of this function. Recall [[Fenchel Identity, Inequality]]. 
@@ -528,7 +523,7 @@ The infimal convolution has epigraphical interpretations that makes the resultin
 
 **Remarks**: 
 
-There are cases where, even we have convex functions $f, g$, the closure property might be broken after the conjutation on the infimal convolution. See: Exercise 21.7 in Heinz's coursenotes for more information. 
+There are cases where, even we have convex functions $f, g$, the closure property might be broken after the conjugation on the infimal convolution. See: Exercise 21.7 in Heinz's coursenotes for more information. 
 
 #UNFINISHED 
 
