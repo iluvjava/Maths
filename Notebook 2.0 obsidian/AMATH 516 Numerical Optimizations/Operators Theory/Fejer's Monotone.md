@@ -46,9 +46,11 @@ $$
 \end{aligned}
 $$
 
-where, the subsequence and the sequence has the same limit, by the monotone property of the entire sequence. 
+where, the subsequence and the sequence has the same limit, from the monotone property of the entire sequence. 
 
+**References**: 
 
+Proposition 5.9 in Heinz's Combette's Monotone operator textbook. 
 
 
 ---

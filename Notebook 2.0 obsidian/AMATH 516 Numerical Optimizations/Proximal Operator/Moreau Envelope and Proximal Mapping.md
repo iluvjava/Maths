@@ -1,4 +1,8 @@
-[[Multivalued Functions, Set-valued Mappings]]
+---
+alias: Morau Envelope and Proximal Operators
+
+--- 
+- [[Multivalued Functions, Set-valued Mappings]]
 
 ---
 ### **Intro**
@@ -331,7 +335,7 @@ $$
 $$
 
 * \[1\]: By using the second equivalence property that characterize the proximal point. 
-* \[2\]: Using the Fenchel Identity, see [[../Duality/Fenchel Identity, Inequality]]. 
+* \[2\]: Using the Fenchel Identity, see [[../Duality/Fenchel Identity, Inequality]], also read the lemma at the start of the section. 
 * \[3\]: Using the subgradient sum rule, $\iff$ is there for because we can use the strong sum rule in this case, due to the fact that the inner product is entire on its domain. 
 * \[4\]: When $f$ is convex proper and closed, the proximal operator is singled valued. 
 

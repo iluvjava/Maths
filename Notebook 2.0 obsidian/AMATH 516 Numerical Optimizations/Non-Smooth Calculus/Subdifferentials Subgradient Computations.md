@@ -6,8 +6,8 @@
 
 We introduce a simple theorem and then we are going fully hardcore about it using materials in \<First Order Method in Optimizations\> by SIAM. Before we start, there are 2 types of subgradient: 
 
-* **Strong Subgradient**: All the possible subgradient at a point given the function. 
-* **Weak Subgradient**: Just a subset of all the possible subgradient. 
+* **Strong Subgradient**: The full set of subgradient is being characterized. 
+* **Weak Subgradient**: Just a subset of all the possible subgradient are characterized. 
 
 The weak subgradient is relative easier to find. 
 
@@ -106,34 +106,53 @@ The $\subseteq$ direction is harder than $\supseteq$.
 >   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b).
 > $$
 > However, the case where $\partial[f(Ax + b)|x](x) \subseteq A^T\partial[f](Ax + b)$ is generally false, and it's true when: 
-> (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
-> (ii)$f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
+> - (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
+> - (ii) $f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
 
-**Proofs of Weak Results**
-Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Consider any $g\in \partial[f](Ax + b)$ we have from the definition that: 
+**Proofs of Weak Results:**
+
+Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Firstly, we can assume $\partial [f](Ax + b) \neq \emptyset$ because if it is, then the statement is trivially true. By such an assumeption we can have $u \in \partial [f](Ax + b)$, then by definition of convex subgradient: 
 
 $$
 \begin{aligned}
-    & 
-    f(Ay + b) - f(Ax + b) \ge \langle g, Ay + b - (Ax + b)\rangle
+    f(Ax + b) + \langle u, y - (Ax + b)\rangle 
+    & \le f(y) 
+    \quad \forall y \in X
     \\
-    & 
-    f(Ay + b) - f(Ax + b) \ge \langle g, A(y - x)\rangle
+    z \in X: (y \in \text{rng}(A) + b\iff y &= Az + b)
     \\
-    &
-    f(Ay + b) - f(Ax + b) \ge \langle A^Tg, y - x\rangle
+    \implies 
+    f(Ax + b) + \langle u, Az + b - (Ax + b)\rangle 
+    &\le f(Az + b) \quad \forall z\in X
     \\
-    \implies & 
-    A^T g \in \partial [f(Ax + b)]_x(x)
+    \iff 
+    f(Ax + b) + \langle u, A(z - x)\rangle 
+    &\le f(Az + b)
+    \\
+    \iff
+    f(Ax + b) + \langle A^Tu, z - x\rangle 
+    &\le f(Az + b)
+    \\
+    \iff
+    A^T u 
+    &\in \partial [f(A(\cdot) + b)](x), 
 \end{aligned}
 $$
+
+where, this is always true, regardless of the regularity assmptions. Finally, we assumed that $u \in \partial [f](Ax + b)\neq \emptyset$, then $A^Tu\in \partial [f](Ax + b)$, by the conclusion of the last line, the weak subgradient condition is now true, under a strictly weaker assumption. 
+
+**Proofs of Strong Results**
+
+Skipped, I would need to read Rockafellar carefully to cover this topic. 
+
 
 **Remarks**
 
 The converse statement has more subtleties and we skip the proof here. For an example showcasing that $A^T\partial [f](Ax + b)\subsetneq \partial [f(Ax + b)|x](x)$, see [[Subgradient Affine Composition]] for more information. 
 
+**Source**: 
 
-**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Convex  Analysis 23.9, 
+See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Convex  Analysis 23.9, 
 
 
 ---

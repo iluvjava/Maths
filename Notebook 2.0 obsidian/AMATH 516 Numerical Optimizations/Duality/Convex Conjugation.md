@@ -1,3 +1,6 @@
+---
+alias: Fenchel Conjugate
+---
 Pre-requisite: 
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]

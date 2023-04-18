@@ -1,3 +1,6 @@
+---
+alias: Fenchel Equality
+---
 * [[Convex Conjugation]]
 * [[../Non-Smooth Calculus/Subgradient Introduction]]
 
@@ -29,11 +32,11 @@ However, the equality can be achieved if, the function $f$ is closed and convex.
 
 
 ---
-### **Fenchel's Equaltiy**
+### **Fenchel Equality**
 
 Recall these facts: 
 - Conjugate is convex. 
-- Zero in subgradient is gobal optimal for any convex function. 
+- Zero in subgradient is global optimal for any convex function. 
 - Subgradient strong sum rule. 
 
 **Proof**
