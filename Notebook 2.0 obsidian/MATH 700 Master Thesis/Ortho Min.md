@@ -1,4 +1,4 @@
-[[Steepest Descend for Matrix Vector]], [[Jacobi Gauss Sediel Iterations]], [[Stationary Iterative Methods]]
+[[Steepest Descend for Matrix Vector]], [[../AMATH 581 Scientific Computing/Jacobi, Gauss Sediel Iterations]], [[Stationary Iterative Methods]]
 
 Ortho Min stands for: Orthogonal minimizations. We based discussions here on Green Baum's book. [[Fields of Values]] is needed for the convergence analysis of the algorithm. 
 

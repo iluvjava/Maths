@@ -1,4 +1,7 @@
-·This is the preq: [[Jacobi Gauss Sediel Iterations]]. Here is more advanced coverage of the same topic. 
+---
+alias: Successive Over Relaxation (SOR)
+---
+This is the preq: [[../AMATH 581 Scientific Computing/Jacobi, Gauss Sediel Iterations]]. Here is more advanced coverage of the same topic. 
 
 ---
 ### **Intro**
@@ -9,11 +12,11 @@ Stationary iterative method refers to methods that just iterate with a matrix th
 
 Here is a list of the common methods: 
 
-* Jacobi Iteration: Talked in the prereq. 
-* Gauss Seidel: Talked in the prereq. 
+* Jacobi Iteration: in the prereq. 
+* Gauss Seidel: in the prereq. 
 * Successive Over Relaxation: About to come next. 
 
-Consider the factorization of matrix $A$ into 3 parts, the diagonal, lower diagonal, and the upper diagonal parts of the matrix: 
+Consider the factorization of matrix $A$ into 3 parts, the diagonal, strict lower diagonal, and the strict upper diagonal parts of the matrix: 
 
 $$
 A = L + D + U
