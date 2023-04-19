@@ -1,7 +1,11 @@
-[[Min Cost Network Flow Standard Form]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
+[[Min Cost Network Flow Standard Form]], 
+[[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
 
 ---
 ### **Intro**
+
+We solve the problem of looking for the shortest path going from one vertex on the graph to all other vertices on the graph. 
+
 **Shortest Paths Assumptions:** 
 
 We assume that:

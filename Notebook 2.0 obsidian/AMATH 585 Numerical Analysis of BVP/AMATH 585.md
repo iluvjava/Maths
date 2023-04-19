@@ -1,5 +1,5 @@
 ---
-alias: Finite Difference Methods For ODE, PDEs Central Hub
+alias: Finite Difference Methods For ODE PDEs Central Hub
 ---
 ### **Intro**
 
