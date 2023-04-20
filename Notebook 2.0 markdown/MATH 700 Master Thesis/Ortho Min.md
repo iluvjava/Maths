@@ -1,18 +1,13 @@
-[Steepest Descend for Matrix Vector](../AMATH%20515%20Optimization%20Fundamentals/Steepest%20Descend%20for%20Matrix%20Vector.md), [Jacobi Gauss Sediel Iterations](../AMATH%20581%20Scientific%20Computing/Jacobi%20Gauss%20Sediel%20Iterations.md)
+[Steepest Descend for Matrix Vector](../AMATH%20515%20Optimization%20Fundamentals/Steepest%20Descend%20for%20Matrix%20Vector.md), [Jacobi, Gauss Sediel Iterations](../AMATH%20581%20Scientific%20Computing/Jacobi,%20Gauss%20Sediel%20Iterations.md), [Stationary Iterative Methods](../AMATH%20585%20Numerical%20Analysis%20of%20BVP/Stationary%20Iterative%20Methods.md)
 
-Ortho Min stands for: Orthogonal minimizations. 
-
-We based discussions here on Green Baum's work. 
-[Fields of Values](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fields%20of%20Values.md): This is needed for the convergence analysis of the algorithm. 
+Ortho Min stands for: Orthogonal minimizations. We based discussions here on Green Baum's book. [Fields of Values](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fields%20of%20Values.md) is needed for the convergence analysis of the algorithm. 
 
 ---
 ### **Intro**
 
 > The term OrthoMin is created by prof Greene Baum for the discussion for a class of iterative method. It seems to be an important idea and it's the stem for generalizing the idea into other type of algorithms. 
 
-We will be introducing another view on the steepest descend method for linear system. 
-
-Recall the brain dead method for minimizing the residual for a given matrix that is diagonally dominant, this is like: 
+We will be introducing another view on the steepest descend method for linear system. Recall the brain dead method for minimizing the residual for a given matrix that is diagonally dominant, this is like: 
 
 $$
 x^{(k + 1)} = x^{(k)} + M^{-1}(b - Ax^{(k)})

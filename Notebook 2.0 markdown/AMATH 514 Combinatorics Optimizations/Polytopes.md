@@ -1,5 +1,5 @@
-[Convex Sets](../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets.md)
-[Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Cone.md)
+- [Convex Sets Intro](../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Intro.md), 
+- [Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Cone.md), 
 
 
 ---- 

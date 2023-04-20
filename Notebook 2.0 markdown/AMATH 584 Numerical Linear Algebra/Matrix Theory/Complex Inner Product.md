@@ -1,5 +1,5 @@
 [Finite Euclidean Inner Product](../../AMATH%20516%20Numerical%20Optimizations/Background/Finite%20Euclidean%20Inner%20Product.md): Inner product defined under euclidean space. 
-[Inner Product Axiomatically Defined](../../MATH%20000%20Math%20Essential/Axiomatic%20Entities/Inner%20Product%20Axiomatically%20Defined.md)
+[Inner Product Axiomatically Defined](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Inner%20Product%20Axiomatically%20Defined.md)
 
 In this section, we introduce define the complex of a dot product of 2 vectors from the field: $\mathbb{C}^n$
 

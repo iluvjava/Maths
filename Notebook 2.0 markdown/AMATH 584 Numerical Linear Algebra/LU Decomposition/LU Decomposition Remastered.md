@@ -8,7 +8,7 @@ LU looks complicated, but under the lenses of sub-matrices, or structure matrice
 
 **Goal**: 
 
-> Recursively we want to eliminate entries of the first column of the matrix, for all the rows belows the first row, and we wish to do it by considering the following: 
+> Recursively we want to eliminate entries of the first column of the matrix, for all the rows below the first row, and we wish to do it by considering the following: 
 
 $$
 \begin{bmatrix}
@@ -96,7 +96,7 @@ $$
 ---
 ### **Partial Pivoting**
 
-This is the LU decomposition process using partial Pivoting, let's consider the case of 3 by 3 matrix, this is like: 
+This is the LU decomposition process using partial Pivoting, let's consider the case of 3 by 3 matrix where 2 pivoting is involved: 
 
 $$
 \begin{aligned}

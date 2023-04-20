@@ -1,6 +1,7 @@
-This is the preq: [Jacobi Gauss Sediel Iterations](../AMATH%20581%20Scientific%20Computing/Jacobi%20Gauss%20Sediel%20Iterations.md)
-
-
+---
+alias: Successive Over Relaxation (SOR)
+---
+This is the preq: [Jacobi, Gauss Sediel Iterations](../AMATH%20581%20Scientific%20Computing/Jacobi,%20Gauss%20Sediel%20Iterations.md). Here is more advanced coverage of the same topic. 
 
 ---
 ### **Intro**
@@ -11,11 +12,11 @@ Stationary iterative method refers to methods that just iterate with a matrix th
 
 Here is a list of the common methods: 
 
-* Jacobi Iteration: Talked in the prereq. 
-* Gauss Sediel: Talked in the prereq. 
+* Jacobi Iteration: in the prereq. 
+* Gauss Seidel: in the prereq. 
 * Successive Over Relaxation: About to come next. 
 
-Consider the factorization of matrix $A$ into 3 parts, the diagonal, lower diagonal, and the upper diagonal parts of the matrix: 
+Consider the factorization of matrix $A$ into 3 parts, the diagonal, strict lower diagonal, and the strict upper diagonal parts of the matrix: 
 
 $$
 A = L + D + U
@@ -39,7 +40,7 @@ $$
 \end{aligned}
 $$
 
-Here, the choice of $w$ is in between $(1, 2]$. That is a resonable range to paramaterize the above equation. Finally the above equation can be put into an iterative formula as: 
+Here, the choice of $w$ is in between $(1, 2]$. That is a reasonable range to parameterize the above equation. Finally the above equation can be put into an iterative formula as: 
 
 $$
 \begin{aligned}
@@ -55,14 +56,17 @@ $$
 \end{aligned}
 $$
 
-This is directly the Gauss Sediel Method. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to backsolve than than using the inverse.  
+This is directly the *Gauss Sediel Method*. However, no choice of parameter on $w$ can recover the Jacobi Iterations. Take note that, in the case of sparse matrix, it might be easier to back solve than using the inverse.  
 
 **Note:** Different conventions of naming these quantities exists sometimes $w$ above is actually the $w^{-1}$ in some literature. 
+
+**References**: Greenbaum's 2021 class, and her Iterative Method book. 
+
 
 ---
 ### **Intuitive Understanding of the Matter**
 
-To gain a better understanding, we haev to simplifies the system into another form. 
+To gain a better understanding, we have to simplifies the system into another form. 
 
 $$
 \begin{aligned}
@@ -133,7 +137,6 @@ Before one can make any claim, we need to put the iterations proceudure into the
 > If the iterations matrix $G$ for the stationary scheme has a spectral radius that is less than unity iff and only if the stationary scheme converges for all initial guesses. 
 
 **Optimal Relaxation Factor for SOR Method**
-
 > The spectrum of the iterative matrix is in the scale of $1 - \mathcal{O}(h)$ for the optimal sor relaxation factor, given as $w_{opt} = 1/\sqrt{1 - \rho(G_J)}$ where $G_J$ is the Jacobi Iteration Matrix. 
 
 

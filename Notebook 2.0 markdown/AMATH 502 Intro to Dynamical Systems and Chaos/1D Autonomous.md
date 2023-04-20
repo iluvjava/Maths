@@ -13,4 +13,4 @@ For now, assume that the function $f(x)$ is continuous, meaning that, if it were
 
 #### Theorem
 
-Given any sytem $x' = f(x)$, assuming that the function $f(x)$ is continuous, then the solutions to the system will have to be monotonic. 
+Given any system $x' = f(x)$, assuming that the function $f(x)$ is continuous, then the solutions to the system will have to be monotonic. 

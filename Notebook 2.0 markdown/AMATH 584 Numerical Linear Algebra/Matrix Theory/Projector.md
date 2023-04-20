@@ -29,7 +29,7 @@ For more detailed look into this mathematical entity, visit: [Deeper Look into P
 
 ---
 
-#### **Ortho Projector Example**
+#### **Example: Ortho Projector**
 Assume that the matrix $!$ is given as a unitary matrix, $Q \in \mathbb{C}^{m\times n}$
 
 Ok, now if I want to represent any vector $x\in \mathbb{C}^{m}$ in the space, when we will do this: 
@@ -51,9 +51,9 @@ I - QQ^H
 $$
 
 ---
-### **Penrose Psuedo Inverse**
+### **Example: Penrose Pseudo Inverse**
 
-Penrose Psuedo Inverse is one projector matrix. Here is the definition of Penrose Peusdo Inverse matrix: 
+Penrose Pseudo Inverse is one projector matrix. Here is the definition of Penrose Paused Inverse matrix: 
 
 >$$ AA^\dagger = A(A^HA)^{-1}A$$
 

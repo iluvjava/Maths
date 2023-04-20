@@ -1,7 +1,6 @@
 Optimization, especially non-linear optimization
 
 ---
-
 ### **Prereq:** 
 * Linalg
 * Calculus (Vector Calc)
@@ -89,21 +88,21 @@ The **Challenging** part is the modeling part and the solving part.
 * Calculus and Optimality
 	* [Jacobian and Hessian](Smooth%20Calculus/Jacobian%20and%20Hessian.md)
 	* [Optimality Conditions, Jacobian Hessian](Smooth%20Calculus/Optimality%20Conditions,%20Jacobian%20Hessian.md)
-	* [Derivatives on Steroids](Smooth%20Calculus/Derivatives%20on%20Steroids.md)
+	* [Derivatives with Jacobian](Smooth%20Calculus/Derivatives%20with%20Jacobian.md)
 
 * Functions: 
 	* [Introduction to Convexity](Basic%20Convexity/Introduction%20to%20Convexity.md) 
 		* Convex Set
 		* Convex Functions
-		* [Differential Characterization of Smooth Convexity](Basic%20Convexity/Differential%20Characterization%20of%20Smooth%20Convexity.md)
+		* [Gradient, Hessian Characterization of Convexity](../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convexity.md)
 	* Good to optimize functions: 
 		* [Closed, Proper, Level Bounded, Strong Convex](Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md)
 		* [Beta Smoothness](Basic%20Convexity/Beta%20Smoothness.md)
 	* Non-Smooth
-		* [Non smooth convex optimization](Proximal%20Gradient%20Descend/Non%20smooth%20convex%20optimization.md)
+		* [Nonsmooth Convex Optimization Intro](Proximal%20Gradient%20Descend/Nonsmooth%20Convex%20Optimization%20Intro.md)
 		
 * Algorithms and Analysis: 
-	* [Gradient Descend 1](Gradient%20Descend/Gradient%20Descend%201.md)
+	* [Gradient Descend, Smoothness](Gradient%20Descend/Gradient%20Descend,%20Smoothness.md)
 	* [Gradient Descend 2](Gradient%20Descend/Gradient%20Descend%202.md)
 	* [Gradient Descend 3](Gradient%20Descend/Gradient%20Descend%203.md)
     * [Measuring Rate of Convergence](Gradient%20Descend/Measuring%20Rate%20of%20Convergence.md)

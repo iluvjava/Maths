@@ -1,33 +1,40 @@
-[Random Variables](Random%20Variables.md)
-Here we introduce some fancy integral that can help use figure out the expected value of some random variable. 
+[Random Variables](Random%20Variables.md), 
+
+Here we introduce some fancy integral that can help use figure out the expected value of some random variable, and it's complementary to [Expectations of Random Variables without Sigma Algebra](../../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Expectations%20of%20Random%20Variables%20without%20Sigma%20Algebra.md). 
 
 ---
 ### **Intro**
-
-Firstly, we assume that we already know something basic about Lebesgue Integral. 
-
-The Expected value of a random variable has the following definition: 
+The expected value is a mapping that maps a random variable (a function) to the interval $[0, 1]$. We define the probability spaces $(\Omega, \mathcal F, P)$, then
 
 > $$
 > \mathbb{E}\left[X\right] = \int_{\Omega}^{} 
 >     X
-> dP
+> dP. 
 > $$
 
+In this file, we progressively improve the definitions of the Lesbegue integral by removing more and more assumptions about the function at hand. 
+
+**Indicator Function**
+
+An indicator function $\mathbf 1_A$, or $\mathbb I_A$ describes an event in $\mathcal F$, the sigma algebra. If the random variable happens to satisfy the conditions for the event $A$, then the value $\mathbb I_A$ takes the value of $1$, else it takes the value of $0$. 
+
 **Explanation:**
-For all possible value of the pre-images, we want to integral it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. 
+For all possible value that the random variable can take, we want to integrate it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. 
+
+**References**: 
+\<Rick Durrett: Probability Theory and Applications\>
 
 
 ---
-### **Lesbesgue Integral**
+### **Lebesgue Integral**
 
-The Lebesgue integral of a measurable function $f:\Omega \mapsto\mathbb{R}$, defined on a measurable space $(\Omega, \mathcal{F})$, with respect to the measure $\mu: \mathcal{F}\mapsto \mathbb{R}_0^+$. Which looks like this: 
+The Lesbegue integral of a measurable function $f:\Omega \mapsto\mathbb{R}$, defined on a measurable space $(\Omega, \mathcal{F})$, with respect to the measure $\mu: \mathcal{F}\mapsto \mathbb{R}_0^+$. Which looks like this: 
 
 > $$
 > \int_{\Omega}^{} f d\mu
 > $$
 
-And this is the integral. Which is much general than Riemann integral becaues it can be applied to any type of measurable space, with all different type of topologies, not just the Real Number Line. 
+And this is the integral. Which is much general than Riemann integral because it can be applied to any type of measurable space, with all different type of topologies, not just the Real Number Line. And for all Riemann integrable function that is proper, it's going to be Lesbegue integrable. 
 
 ----
 ### **Simple Functions**
@@ -36,9 +43,7 @@ $\phi$ is simple when $\phi(\omega) = \sum_{i = 1}^{n}a_i \mathbb{I}_{A_i}$, Whe
 
 **Explnation:** 
 
-A simple function is a function that can be described by a finite linear combination of indicator function where each of the indictor function is on $A_i$, and all $A_i$ is discreate
-
-This can be viewed as assigning discrete value for each of the discrete domain for the function, partitioning the output of the function using the partitioned domain. 
+A simple function is a function that can be described by a finite linear combination of indicator function where each of the indictor function is on $A_i$, and all $A_i$ is discrete. This can be viewed as assigning discrete value for each of the discrete domain for the function, partitioning the output of the function using the partitioned domain. If the random variable $X$ is discrete, then it can be modeled using a simple function. 
 
 **Simple Function Lesbegue Integral**
 
@@ -46,11 +51,12 @@ This can be viewed as assigning discrete value for each of the discrete domain f
 > \int_{\Omega}^{} \phi d\mu = \sum_{i = 1}^{n}a_i \mu(A_i)
 > $$
 
-The discrete sume of all the measure on the partitioned domain for the function. 
+The discrete sum of all the measure on the partitioned domain for the function. 
 
+---
 ### **Bounded Functions**
 
-Choose any sent $E$ with $\mu(E)\le \infty$, and let $f$be a bounded function that vanishes on $E^{C}$. 
+Choose any sent $E$ with $\mu(E)\le \infty$, and let $f$ be a bounded function that vanishes on $E^{C}$. 
 
 **Explanation**:
 
@@ -63,7 +69,7 @@ Then we define:
 > \sup_{\phi \le f} \int_{\Omega} \phi d\mu = \inf_{\psi \ge f} \int_{\Omega}^{} \psi d\mu
 > $$
 
-Where, $\phi$ are all are simple functions such that $\phi(a) \le f(a)$ for all $a\in A_i$, and $\psi \ge f(a) \forall a \in A_i$, in this sense, by partitioning the simple function with finner and finner $A_i$ on the domain, one can take the $\sup, \inf$ and get the Lebesgue Integral. 
+Where, $\phi$ are all are simple functions such that $\phi(a) \le f(a)$ for all $a\in A_i$, and $\psi \ge f(a) \forall a \in A_i$, in this sense, by partitioning the simple function with finer and finer $A_i$ on the domain, one can take the $\sup, \inf$ and get the Lesbegue Integral. 
 
 ---
 ### **Non-Negative Function**
@@ -79,14 +85,15 @@ Assume that $f \ge 0$ then let:
 >         h
 >     d\mu
 >     : 
->     0 \le h \le f, \text{h is bounded and } \mu(\{x: h(x)\ge 0\}) \le \infty
+>     0 \le h \le f, \text{h is bounded and } \mu(\{x: h(x)\ge 0\}) < \infty
 > \right\rbrace
 > $$
-
-The General Non-negative function is approximated by bounded function that are on a domain that has a finite measure. 
+>
+> The General Non-negative function is approximated by bounded function that are on a domain which has a finite measure. 
 
 **Take notice that**, this is much general and the non-negative function is not necessarily bounded. 
 
+---
 ### **General Function**
 
 Assuming that function $f$ is integrable, then we mean that $\int_{\Omega}|f|d\mu \le \infty$. Let: 
@@ -113,7 +120,7 @@ Where, both $f^+, f^-$ will be non-negative function, and we already defined int
 ---
 ### **Back to Expected Value of Random Variable**
 
-To compute the expected value of a random variable over some weird topological spaces, we would need to compute it using the Lebesgue Integral, and we would like to make a change of varible and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
+To compute the expected value of a random variable over some weird topological spaces, we would need to compute it using the Lebesgue Integral, and we would like to make a change of variable and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
 
 $$
 \begin{aligned}

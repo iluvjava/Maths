@@ -1,4 +1,4 @@
-* [Subgradient and Subdifferential Definition](Subgradient%20and%20Subdifferential%20Definition.md)
+* [Subgradient Introduction](Subgradient%20Introduction.md)
 * [Epigraph](../Background/Epigraph.md)
 * [Strict Separations Theorem](../CVX%20Geometry/Strict%20Separations%20Theorem.md)
 * [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)

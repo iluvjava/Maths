@@ -1,6 +1,6 @@
-[Subgradient and Subdifferential Definition](Subgradient%20and%20Subdifferential%20Definition.md)
+[Subgradient Introduction](Subgradient%20Introduction.md)
 [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)
-[Convex Sets](../Background/Convex%20Sets.md)
+[Convex Sets Intro](../Background/Convex%20Sets%20Intro.md)
 
 ---
 ### **Intro**

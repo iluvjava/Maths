@@ -1,5 +1,5 @@
 * [Normal Cone](../Background/Normal%20Cone.md)
-* [Convex Sets](../Background/Convex%20Sets.md)
+* [Convex Sets Intro](../Background/Convex%20Sets%20Intro.md)
 
 ---
 ### **Intro**

@@ -27,11 +27,11 @@ The order of error is bounded by the Big O. It's a constant multiple of the term
 > \right) + \int_{a}^{x} \frac{f^{(n + 1)}(t)(x - t)^n}{n!}dt
 > $$
 
-Which can be verifeid by considering $\varphi^{(n + 1)}(x)$. 
+Which can be verified by considering $\varphi^{(n + 1)}(x)$. 
 
 **Exact Expression (Intermediate Value Theorem)**
 
-And the representation would be using the intermediate value theorem, by assuming that the function is $C^n$ smooth. So that, the $n$ the deriative is at least continuous. In that sense we have the following Taylor Series: 
+And the representation would be using the intermediate value theorem, by assuming that the function is $C^n$ smooth. So that, the $n$ the derivative is at least continuous. In that sense we have the following Taylor Series: 
 
 > $$
 > \exists \; t \in (x, c) : f(x) = \left(
@@ -45,10 +45,12 @@ Verified by taking the $n$ th derivative on the expression so that the remaining
 
 **Upper Bound Description**
 
-> $$M =\left| \sup_{x \in [\min(x_0, x), \max(x_0, x)]} f^{(n + 1)}(x) \right|$$
+Assuming that the function is infinitely differentiable at every points in the real, then it's continuous for any of its derivative, which implies that given any point $x_0, x$, the following is true:
 
-And this will give us 
-> $$|T_n(f| x_0) - f(x)| =  \left| 
+> $$\exists M =\left| \sup_{x \in [\min(x_0, x), \max(x_0, x)]} f^{(n + 1)}(x) \right| \le \infty$$
+
+And this will give us an upper bound for the error of approximation by Taylor series: 
+> $$|T_n(f| x_0) - f(x)| \le  \left| 
 > \frac{M}{(n + 1)!}(x - x_0)^{n + 1}
 > \right| \quad \forall x \in [\min(x_0, x), \max(x, x_0)]$$
 
@@ -227,7 +229,7 @@ $$
 \end{aligned}
 $$
 
-The expression for $C(f, n, k_1, k_2, \cdots k_m)$ is obtained simply by asserting the equality for all partial deriatives between the polynomial and the original function. Define the following notations for ease of reading and writing: 
+The expression for $C(f, n, k_1, k_2, \cdots k_m)$ is obtained simply by asserting the equality for all partial derivatives between the polynomial and the original function. Define the following notations for ease of reading and writing: 
 
 $$
 f^{(k_1, k_2, \cdots, k_m)}(\vec{x}_0) = 

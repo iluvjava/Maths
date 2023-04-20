@@ -91,7 +91,6 @@ $\blacksquare$
 
 **Why Positive Semi-definite means optima for the given point?**
 
-
 The intuitive understanding comes from the fact that, the Jacobian of the gradient is Symmetric (or the Hessian). By spectral theorem ([Hermitian Adjoint](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Hermitian%20Adjoint.md)), the matrix is diagonalizable with an orthogonal basis: $H = QDQ^T$. If the matrix is positive definite, The eigenvalues are all strictly positive. Consequently for every unit vector $v$, $v^THv$ is positive. Which means that Hessian is describing a function in which, for every direction I walk in space, the function is increasing in the direction. Since the function is already having a gradient of zero, then $f(x +v)- f(x) = 0 + v^THv + o(\Vert v\Vert^2)$, dividing by $v$ on both sides, we can choose $v$ small enough such that it's bounded by $v^THv$, the smallest eigenvalues of the matrix. Resulting in $f(x + v) - f(x) > 0$ for any $v$, proving that $x$ is the local minimum of the function. 
 
 

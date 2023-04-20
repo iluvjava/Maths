@@ -1,11 +1,9 @@
-This one is a useful lemma for the Lagrangian, and the Fenchel conjugate transform. 
+This one is a useful lemma for the Lagrangian, and the Fenchel conjugate transform. This file improves on the previous attempts of talking about Duality. [Duality Preparation](../../AMATH%20515%20Optimization%20Fundamentals/Duality/Duality%20Preparation.md), [Duality Prepraration 2](../../AMATH%20515%20Optimization%20Fundamentals/Duality/Duality%20Prepraration%202.md). 
 
 ---
 ### **Intro**
 
-It's introduced independently as a lemma from topics in duality. 
-
-It serves the double conjugacy, hence strong duality indirectly. It also serves for the lagrangian too. 
+It's introduced independently as a lemma from topics in duality. It serves the double conjugacy, hence strong duality indirectly. It also serves for the Lagrangian too. 
 
 **Claim 1**
 
@@ -30,9 +28,7 @@ $$
 \end{aligned}
 $$
 
-Adding a $\sup$ with $y$ on $\inf$ for $x$ won't change the existing sign. 
-
-By the same idea, starting with $\forall y \sup_y\{F(x, y)\} \ge F(x, y)$ can also reach the same conclusion, hopefully you are convinced. $\blacksquare$
+Adding a $\sup$ with $y$ on $\inf$ for $x$ won't change the existing sign. By the same idea, starting with $\forall y \sup_y\{F(x, y)\} \ge F(x, y)$ can also reach the same conclusion, hopefully you are convinced. $\blacksquare$
 
 ---
 ### **Intuitive Understanding**

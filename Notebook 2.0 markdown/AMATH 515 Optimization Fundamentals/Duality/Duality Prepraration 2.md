@@ -1,4 +1,4 @@
-Please read: [Duality Preparation](Duality%20Preparation.md) before reading about this.
+oPlease read: [Duality Preparation](Duality%20Preparation.md) before reading about this.
 A list of contents we will be going over for this document is: 
 
 1. Definition of the Conjugacy --> Frenchel's Inequality

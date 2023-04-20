@@ -1,22 +1,17 @@
 ### **Intro**
 
-Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. 
+Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. This file is a successor for the file [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written for Prof Sasha's class. 
 
-**The Augmented Real Functions**
+To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept ofan *Augmented real function*.
 
->  $$
-> \begin{aligned}
->     f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}
-> \end{aligned}
-> $$
-> 
-> The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+**Def: The Augmented Real Functions**
+> $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics that are helpful for understanding the basics: 
 
-* [Epigraph](Epigraph.md)
-* [Lower Semi-Continuous](Lower%20Semi-Continuous.md)
-* [Convex Sets](Convex%20Sets.md)
+* [Epigraph](Epigraph.md), this describes the geometry of the function.
+* [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
+* [Convex Sets Intro](Convex%20Sets%20Intro.md), this helps describing convexity of functions. 
 
 ---
 ### **Proper Function**
@@ -29,8 +24,12 @@ This definition is introduced so we can get rid of some pathological function, m
 
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
 
+**References**: 
+
+Tyrell Rockafellar did this to us. Yep. 
+
 ---
-### **Continuity and Smoothness**
+### **Continuity and Traditional Smoothness**
 
 For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
 
@@ -41,10 +40,10 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 > A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
 **C0 smooth**
-> A function $f$ is a C0 function that are Uniformly Continuous. ramp function is a class of C0 functions. 
+> A function $f$ is a C0 function that are continuous. ramp function is a class of C0 functions. 
 
 **C1 Smooth**
-> A function $f$ is a C1 function when it has a uniformly continuous derivative. It's quadratic-like. 
+> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without any sharp turns on the graph. 
 
 ---
 ### **Closed Function**
@@ -77,11 +76,32 @@ A closed function is not enough for the function to be continuous, but a continu
 ---
 ### **Coercive Function**
 
-Recall Definition: 
+This characteristic of function is key to existence of minimizers for function. It eliminate the case where minimizers of some function is only attained at infinity. 
+
+**Coersive Defintion**
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
+
+**Remarks**
+
+In Math 563, Heinz's class, there is the term *supercoercive*, which refers to function where $f(x)/\Vert x\Vert \rightarrow \infty$ as $\Vert x\Vert \rightarrow \infty$, a stronger version of coersiveness. 
+
+This concept is also equivalent to level boundedness, which is quoted by Tyrell Rockafellar. 
+
+**Gocha**
+
+The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. Rarely used besides for the theories of functions. Used in [Existence of a Minimizer](Existence%20of%20a%20Minimizer.md). 
+
+**References**: 
+
+Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational analysis. 
+
+
+
 
 ---
 ### **Special Functions for Analysis**
+
+These functions are new special objects unique to nonsmooth analysis. 
 
 **Def: The support Functions**
 
@@ -94,7 +114,7 @@ The support function of a set $Q$, is the conjugate of the indicator function. I
 
 **Remarks**
 
-See [Support Function](../CVX%20Analysis/Support%20Function.md) for more detailed informations.
+See [Support Function](../CVX%20Analysis/Support%20Function.md) for more detailed information.
 
 **Def: Gauge Functions**
 
@@ -120,27 +140,37 @@ $$
 The function is only defined inside of the set $Q$, out of the set it's not giving infinity. This function has the usage of denoting constraints for optimization problems. 
 
 ---
-### **Convexity**
+### **Convexity of Functions**
 
-**Definition**
+This is one of the most important characterizations for a class of functions. The theories developed for optimizing convex function and its variants are profound. Convex function has 2 equivalent definitions. 
+
+**Definition: Convex Epigraph**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
-**Secant Inequality**
+For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. 
 
-A direct consequence is the convexity inequality. Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is proper if and only if: 
+**Definition: Secant Inequality**
 
-$$
-\begin{aligned}
-    \forall x,y \in \text{dom}(f), \lambda \in [0, 1] : 
-    f(\lambda x + (1 - \lambda)y) \le 
-    \lambda f(x) + (1 - \lambda)f(y)
-\end{aligned}
-$$
+> Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
+> $$
+> \begin{aligned}
+>     \forall x,y \in \text{dom}(f), \lambda \in [0, 1] : 
+>     f(\lambda x + (1 - \lambda)y) \le 
+>     \lambda f(x) + (1 - \lambda)f(y)
+> \end{aligned}
+> $$
 
 **Remarks:**
 
-And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [Convex Functions Characteristics List](../CVX%20Analysis/Convex%20Functions%20Characteristics%20List.md), [Convexity Preserving Operations of Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20of%20Functions.md). 
+And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [Convex Functions CENTRAL HUB](../CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md).
+
+**Thm: Convex Level Graph**
+> A convex function has convex level graph. 
+
+**Proof**: 
+
+Direct because a level set is a subset of the epigraph, and since epigraph is convex for convex function by definition, the level graph is also convex. 
 
 
 ---
@@ -176,7 +206,13 @@ For example, the function $\exp(x)$ is a strictly convex function.
 * For more about it see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 ---
-### **Beta-Smoothness**
+### **Convexity and Lipschitz Functions**
+
+Functions that are convex and Lipschitz smooth, they are a strict subsets of all the convex functions. For a convex function, Local Lipschitz continuity will fail on the boundary of its domain. 
+
+
+---
+### **Beta-Smoothness | Strong Smoothness**
 
 > If $f$ is $\beta$ smooth, then there exists positive $\beta$ such that: 
 > 
@@ -197,7 +233,7 @@ The absolute signs make it possible to model the smoothness for both convex and 
 
 **Proofs**
 
-A proof can be found in [Global Lipschitz Gradient and its weaker Implications](../Global%20Lipschitz%20Gradient%20and%20its%20weaker%20Implications.md)
+A proof can be found in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 
 **Remarks**: 
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 
@@ -227,3 +263,6 @@ Some of the important properties that we need to keep track of about functions a
 4. Smoothness
 
 However, for special type of functions, we might need to focus on more interesting properties. 
+
+---
+

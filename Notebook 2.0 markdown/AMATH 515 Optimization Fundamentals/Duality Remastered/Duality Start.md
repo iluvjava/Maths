@@ -28,7 +28,7 @@ We are in the realm of $\bar{\mathbb{R}}$ and $\sup, \max$, $\min, \inf$ are use
 ---
 ### **Links**
 
-* Basics of Convex Conjugate [Convex Conjugation](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation.md)
-* Examples of Convex Conjugate [Convex Conjugate Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Examples.md)
+* Basics of Convex Conjugate [Convex Conjugation Introduction](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation%20Introduction.md)
+* Examples of Convex Conjugate [Convex Conjugate Computations Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Computations%20Examples.md)
 * The process of looking for dual of a given problem is highlighted [Lagrangian and Dualization Techniques](Lagrangian%20and%20Dualization%20Techniques.md)
 

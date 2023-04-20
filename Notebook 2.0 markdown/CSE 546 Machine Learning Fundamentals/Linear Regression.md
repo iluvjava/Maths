@@ -167,7 +167,7 @@ $$
 
 Where, $y$ is the label vector, and $w$ is parameters of the model, and $b$ is the offset vector. 
 
-Let's pick up from the Maximal likelihood estimator [](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Maximal%20Likelihood%20Estimator.md#Gaussian%20Continuous%20Variables), and the log likelihood for the Gaussian Model over a sequence of observation is like: 
+Let's pick up from the Maximal likelihood estimator [](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Maximal%20Likelihood%20Estimator.md#Gaussian%20Continuous%20Variables), and the log likelihood for the Gaussian Model over a sequence of observation is like: 
 
 $$
 \log P(D; \mu, \sigma) = 

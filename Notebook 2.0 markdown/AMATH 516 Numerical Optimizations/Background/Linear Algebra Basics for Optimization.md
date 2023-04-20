@@ -30,7 +30,7 @@ $$
 ---
 ### **Norms**
 
-Make sure to read [Norm](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Norm.md), which contains a lot of examples. 
+Make sure to read [Norm, for Beginners](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Norm,%20for%20Beginners.md), which contains a lot of examples. 
 
 Norm maps from vector space to $R$. 
 

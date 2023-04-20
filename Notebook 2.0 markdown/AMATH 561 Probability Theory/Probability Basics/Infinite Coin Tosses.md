@@ -5,9 +5,7 @@ An example we are going to try for Infinite Probability spaces, and probability 
 ---
 ### **Intro**
 
-Here, we will try to go from discrete probability spaces of finite many coin tosses, to an infinite probability spaces and demonstrate the construction of $\sigma$-alg and probability measure on the infinite probability spaces. 
-
-Let all the possible outcomes be $\Omega$, then an element $\omega \in \Omega$ is an infinitely long chain of coin tosses, denoted as $\omega = \omega_1\omega_2...$ where each $\omega_i$ is gonna take $\{H, T\}$ discrete outcome. This set of outcome will be **uncountable**. (Image the sequence to be a sliced python array for ease of notations. )
+Here, we will try to go from discrete probability spaces of finite many coin tosses, to an infinite probability spaces and demonstrate the construction of $\sigma$-alg and probability measure on the infinite probability spaces. Let all the possible outcomes be $\Omega$, then an element $\omega \in \Omega$ is an infinitely long chain of coin tosses, denoted as $\omega = \omega_1\omega_2...$ where each $\omega_i$ is gonna take $\{H, T\}$ discrete outcome. This set of outcome will be **uncountable**. (Image the sequence to be a sliced python array for ease of notations. )
 
 Let's start defining the set of Events: 
 

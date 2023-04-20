@@ -1,11 +1,11 @@
 * [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md)
 * [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)
-* [Subgradient and Subdifferential Definition](Subgradient%20and%20Subdifferential%20Definition.md)
+* [Subgradient Introduction](Subgradient%20Introduction.md)
 
 ---
 ### **Intro**
 
-In this file we provide proof the theorem listed in: [](../CVX%20Analysis/Convex%20Functions%20Characteristics%20List.md#Continuity%20of%20Closed%20Convex%20Functions). To prove it, we need to use the lemma: [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md), and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
+In this file we provide proof the theorem listed in: [](../CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md#Continuity%20of%20Closed%20Convex%20Functions). To prove it, we need to use the lemma: [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md), and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
 
 Recall that, not all convex function is Lipschitz Continuous on the closure of it's domain, but if the subgradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 
@@ -125,7 +125,7 @@ Which is the definition of Lipschitz Continuity for the function along the line 
 * Note, the upper boundedness depends on the point we choose, but nontheless it's bounded for points $x_1, x_2\in \text{int}\circ\text{dom}(f)$. In addition, one can choose the subgradient and $t$ to minimize the bound. 
 
 * I feel like the subgradient in the middle $x_t$ dotted with vector $x_2 - x_1$ might always be between $x_1, x_2$ dotted with that same vector, because it's evident when you draw it out, the slope in the middle on the line segment should be in between the slow of the boundary point if the function is convex. 
-	* In reply to this, it's indeed true and it's part of the monotone properties of convex subdifferential operator, see [Monotonicity of Subgradient on a Line](Monotonicity%20of%20Subgradient%20on%20a%20Line.md) for more information. To apply the theorem, we need to reconsider: $\langle g_1, t(x_1 - x_2)\rangle + \langle g_t, (1 - t)(x_1 - x_2)\rangle$ using the monotonicity of the subgradient over interior line interval: $[x_1, x_2]$. 
+	* In reply to this, it's indeed true and it's part of the monotone properties of convex subdifferential operator, see [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md) for more information. To apply the theorem, we need to reconsider: $\langle g_1, t(x_1 - x_2)\rangle + \langle g_t, (1 - t)(x_1 - x_2)\rangle$ using the monotonicity of the subgradient over interior line interval: $[x_1, x_2]$. 
 
 **Comments**
 
@@ -139,7 +139,7 @@ $$
 \begin{aligned}
    & f(x_1) - f(x_2) \ge \langle v_2, x_1 - x_2\rangle 
    \\
-   &f(x_2) - f(x_1) \ge \langle v_1. x_2 - x_2\rangle
+   &f(x_2) - f(x_1) \ge \langle v_1, x_2 - x_2\rangle
    \\
    \implies & 
    \langle v_2, x_1 - x_2\rangle \le f(x_1) - f(x_2) \le \langle v_1, x_1 - x_2\rangle
@@ -151,17 +151,19 @@ $$
    \frac{|f(x_1) - f(x_2)|}{\Vert x_1 - x_2\Vert} &\le 
    \frac{\max(|\langle v_2, x_1 - x_2\rangle|, |\langle v_1, x_1 - x_2\rangle|)}{\Vert x_1 - x_2\Vert}
    \\
-   & \le \max(\Vert v_1\Vert, \Vert v_2\Vert)
+   & \le \max(\Vert v_1\Vert, \Vert v_2\Vert), 
 \end{aligned}
 $$
 
-Which gives a Lipschitz constant of: 
+Minimizing the RHS gives a Lipschitz constant of: 
 
 $$
 \begin{aligned}
-   L = \inf_{v_1\in \partial[f](x_1), v_2 \in \partial[f](x_2)}\max(\Vert v_1\Vert, \Vert v_2\Vert)
+   L(x_1, x_2) = \inf_{v_1\in \partial[f](x_1), v_2 \in \partial[f](x_2)}\max(\Vert v_1\Vert, \Vert v_2\Vert),
 \end{aligned}
 $$
+
+Apply the bounded subgradient lemma yields the desired results. 
 
 **Remarks**
 

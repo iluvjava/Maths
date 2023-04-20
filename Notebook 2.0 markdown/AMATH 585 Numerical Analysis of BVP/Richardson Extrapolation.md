@@ -1,6 +1,4 @@
-[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation)
-
-[Finite Difference](../AMATH%20581%20Scientific%20Computing/Finite%20Difference.md)
+[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation), [Finite Difference](../AMATH%20581%20Scientific%20Computing/Finite%20Difference.md)
 
 ---
 ### **Intro**
@@ -18,6 +16,10 @@ Suppose that the exact function $A^{+}$ is approximated by a function $A(h)$.
 >   A^+ = A(h) + a_0h^{k_0} + a_1 h^{k_1} + a_2 h^{k_2} \cdots 
 > $$
 > Where $a_0, a_1, \cdots \neq 0$ and $k_0 < k_1 < k_2 \cdots$ and they are positive integers. 
+
+**Observations**: 
+
+The coefficient $a_i$ are not determine by the value of $h$. 
 
 Consider: 
 
@@ -46,33 +48,29 @@ Observe that, the new approximation involving a linear combinatons of $A(h/t), A
 ---
 ### **Finite Difference Applications**
 
-We can use richardson extrapolation and talor series to approximate the second derivative to a certain degree of accuracy. 
-
-Consider finite difference approximation to the second derivative: 
+We can use Richardson extrapolation and Taylor series to approximate the second derivative to a certain degree of accuracy. Consider finite difference approximation to the second derivative: 
 
 $$
 \begin{aligned}
     \underbrace{h^{-2}\left(
         u(x + h) + u(x - h) - 2u(x)
     \right)}_{:= \varphi_1(h)} &= 
-    u''(x) + \frac{2h^2}{4!} u^{(5)}(x) + h^{-2}R_1(h)
+    u''(x) + \frac{2h^2}{4!} u^{(5)}(x) + h^{-2}R_1(h),
 \end{aligned}
 $$
 
-The remainder is $R_1(h)$ is like: 
+we define the remainder $R_1(h)$: 
 
 $$
 \begin{aligned}
-    R_1(h) &= \sum_{j = 6}^{\infty}(1 + (-1)^n)\frac{h^n}{n!}u^{(j)}(x) = \mathcal{O}(h^6)
-    \\
+    R_1(h) &= \sum_{j = 6}^{\infty}(1 + (-1)^n)\frac{h^n}{n!}u^{(j)}(x) \in \mathcal{O}(h^6)
+    \\\text{because: }
     R_1(h) &= \sum_{j = 3}^{\infty}
-    2\frac{h^{2n}}{(2n)!}u^{(j)}(x)
+    2\frac{h^{2n}}{(2n)!}u^{(j)}(x).
 \end{aligned}
 $$
 
-Because the term with odd power cancelled out.
-
-The interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
+Because the term with odd power cancelled out in the remainder, the first order interpolant is denoted as $\varphi_1(h)$. The $R_1(h)$ denotes the exact remainder, and it's in $\mathcal{O}(h^6)$, let's consider: 
 
 $$
 \begin{aligned}
@@ -152,8 +150,104 @@ The results from Richardson Extrapolation should be consistent with what we get 
 
 It's better to prepare more terms before using Richardson so we don't have to expand out and remainder to check for the term missing for cancelling when ordering for higher order extrapolation. 
 
+**References**: 
+From Prof Anne Greebaum at UW, from class AMATH 585 2022 Spring. 
+
 ---
-### **An Generic Example**
+### **An Generic Example for Even Errors**
 
-To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example that requires 2 steps of Richardson Extrapolation to reduce. 
+To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example for a series of only even power. Consider a quantity $A^+$ such that it has formula: 
 
+$$
+\begin{aligned}
+    \rho_0(h) &= a_0 + 
+    a_1h^2 + 
+    a_2h^4 + 
+    \sum_{n = 3}^{\infty} a_{n}h^{2n}
+    \\
+    \rho_0(h/2) &= a_0 + 
+    \frac{a_1h^2}{4} + 
+    \frac{a_2h^4}{16} + 
+    \sum_{n = 3}^{\infty}\frac{a_{n}h^{2n}}{2^{2n}}, 
+\end{aligned}
+$$
+
+Then we consider a linear combinations of the first 2 interpolants such that that $h^2$ term is canceled, this will result in: 
+
+$$
+\begin{aligned}
+    \frac{4\rho_{0}(h/2) - \rho_0(h)}{3} &= a_0 + 
+    \left(
+        \frac{\frac{4}{16} - 1}{3}
+    \right) a_2h^4 
+    +
+    \sum_{n = 3}^{\infty}
+    \left(
+        \frac{4}{3\cdot 2^{2n}} -  \frac{1}{3}
+    \right)a_{n}h^{2n}
+    \\
+    &= 
+    a_0 + 
+    \left(
+        \frac{1}{4}
+    \right)a_2h^4 +
+     \sum_{n = 3}^{\infty}
+    \underbrace{
+        \left(
+            \frac{4}{3\cdot 2^{2n}} -  \frac{1}{3}
+        \right)
+    }_{=:R_1(n)}
+    a_{n}h^{2n}
+    \\
+    &= \rho_1(h)
+\end{aligned}
+$$
+
+Then we can consider the second degree interpolant $\rho_2(h)$ by considering: 
+$$
+\begin{aligned}
+    \rho_2(h/2) &= 
+    a_0 + \left(
+        \frac{1}{64}
+    \right)a_0h^4
+    + 
+    \sum_{n = 3}^{\infty}
+    \left(
+        \frac{R_1(n)}{2^{2n}}
+    \right)
+    a_nh^{2n}
+    \\
+    \rho_1(h) &= 
+        a_0 + 
+    \left(
+        \frac{1}{4}
+    \right)a_2h^4 +
+    \sum_{n = 3}^{\infty}
+    R_1(n)
+    a_{n}h^{2n}
+    \\
+    \implies 
+    \frac{16\rho_2(h/2) - \rho_1(h)}{
+        15
+    } &= 
+    a_0 + 
+    \sum_{n = 3}^{\infty}
+    \underbrace{\left(
+        \frac{\frac{16R_1(n)}{2^{2n}} - R_1(n)}{15}
+    \right)}_{=:R_2(n)}
+    a_nh^{2n}
+    \\
+    &= \rho_2(h)
+\end{aligned}
+$$
+
+and the second degree interpolant now have an accuracy of $\mathcal O(h^6)$. And we now have the general formula to work combine any 2 interpolanet to give a higher order one. Observe that a general formula seems to emerge, but one might need to prove it inductively that we have the update: 
+
+$$
+\begin{aligned}
+    \rho_k(h) &= 
+    \frac{4^{k}\rho_{k-1}(h/2) - \rho_{k-1}(h)}{4^k - 1}, 
+\end{aligned}
+$$
+
+and we will just leave it at that for now. 

@@ -2,7 +2,7 @@
 
 **Definition**
 
-> Let $M=(X, \mathcal B)$, be a matroid. Then $X$ is a set of elements, and $\mathcal B$ is a collection of subssets of $X$. Often refers to as the basis. Matroid satisfies: 
+> Let $M=(X, \mathcal B)$, be a matroid. Then $X$ is a set of elements, and $\mathcal B$ is a collection of subsets of $X$. Often refers to as the basis. Matroid satisfies: 
 > $$
 > \begin{aligned}
 >     & X \neq \emptyset

@@ -1,5 +1,5 @@
 * [Euclidean Space](Euclidean%20Space.md), We discuss compact and boundedness for subsets of the Euclidean Space. 
-* [Metric Space](../../MATH%20000%20Math%20Essential/Axiomatic%20Entities/Metric%20Space.md)
+* [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Metric%20Space%20Introduction.md)
 
 ---
 ### **Intro**

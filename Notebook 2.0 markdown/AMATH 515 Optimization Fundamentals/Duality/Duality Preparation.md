@@ -1,4 +1,4 @@
-[Closed Convex Set](../Basic%20Convexity/Closed%20Convex%20Set.md)
+[The Hyper Plane](../Basic%20Convexity/The%20Hyper%20Plane.md)
 We will need to understand the basic idea behind the closed convex set to understand that is going on with the idea of duality. 
 
 Content: 
@@ -40,7 +40,7 @@ $$
 f(x) = \sup_{g_i} \{f(x) \ge g_i(x) \; \forall x: g_i(x) \text{ is affine }\} 
 $$
 
-**Observe**
+**Observe**: 
 This is related to the differential characterization of convex function, assuming that the function is $C1$ smooth: 
 
 $$
@@ -58,9 +58,7 @@ $$
 
 **Interpretations**:
 
-If I have a vector $z$, I am gonna change the orientation of the vector using $x$, and I am taking the difference between the vector and the function $f(x)$, ok, after doing this, how much above the $f(x)$ I can make it to be? That is $f^*(z)$. 
-
-If I fixed vector $z$, I am gonna define a half space $z^Tx$, taking the difference between this and $f(x)$, how much above $f(x)$ I can get by tweaking $x$? That value is $f^*(z)$. 
+If I have a vector $z$, I am gonna change the orientation of the vector using $x$, and I am taking the difference between the vector and the function $f(x)$, ok, after doing this, how much above the $f(x)$ I can make it to be? That is $f^*(z)$. If I fixed vector $z$, I am gonna define a half space $z^Tx$, taking the difference between this and $f(x)$, how much above $f(x)$ I can get by tweaking $x$? That value is $f^*(z)$. 
 
 ---
 ### **Epigraph of $f(x)$ and affine Minorants of $f^*(x)$**. 
@@ -82,9 +80,7 @@ $$
 f^*(z) = \sup_{(x, \alpha)\in \underset{\alpha}{\text{epi}}(f)} l_x(z) = \sup_{x} (x^Tz - f(x))
 $$
 
-This is true because the $\alpha \ge f(x)$
-
-And when the point we choose on is on the function $f$, then we are trying to the affine linear function to be as high as possible. 
+This is true because the $\alpha \ge f(x)$. And when the point we choose on is on the function $f$, then we are trying to the affine linear function to be as high as possible. 
 
 ---
 

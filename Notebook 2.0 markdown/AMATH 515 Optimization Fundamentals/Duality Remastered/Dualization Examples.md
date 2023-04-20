@@ -1,5 +1,5 @@
 [Lagrangian and Dualization Techniques](Lagrangian%20and%20Dualization%20Techniques.md)
-[Convex Conjugate Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Examples.md)
+[Convex Conjugate Computations Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Computations%20Examples.md)
 
 ---
 ### **Intro**
@@ -383,9 +383,9 @@ Takeaway:
 ---
 ### **Polyhedral Constraint, 2-Norm Objective**
 
-**Objective**: Using strong duality to find the optimality conditions for the 2-norm polyhedra minimization problem.
+**Objective**: 
 
-Here we consider the primal optimization problem to be: 
+Using strong duality to find the optimality conditions for the 2-norm polyhedra minimization problem.Here we consider the primal optimization problem to be: 
 
 $$
 \min_x \left\lbrace

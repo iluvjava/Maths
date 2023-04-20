@@ -1,4 +1,4 @@
-[Norm](Matrix%20Theory/Norm.md), 
+[Norm, for Beginners](Matrix%20Theory/Norm,%20for%20Beginners.md), 
 [Hermitian Adjoint](Matrix%20Theory/Hermitian%20Adjoint.md)
 
 ---

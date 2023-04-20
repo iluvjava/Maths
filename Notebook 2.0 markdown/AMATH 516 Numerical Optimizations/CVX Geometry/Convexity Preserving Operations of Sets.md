@@ -1,4 +1,4 @@
-[Convex Sets](../Background/Convex%20Sets.md)
+[Convex Sets Intro](../Background/Convex%20Sets%20Intro.md)
 [Generating Cone of a Set](../Background/Generating%20Cone%20of%20a%20Set.md)
 [Set Addition](../Background/Set%20Addition.md)
 
@@ -85,7 +85,7 @@ Q_1 + Q_2 = \left\lbrace
 \right\rbrace
 $$
 
-Choose any 2 elements from the addition of the set: 
+Choose any 2 elements $x, y$ from the addition of the set: 
 
 $$
 \begin{aligned}
@@ -119,6 +119,11 @@ $$
 
 And we have shown that any chosen 2 points from the set $Q_1 + Q_2$ will have has its convex combinations in the set as well.
 
+**Remarks**:
+
+The closedness of the set is not preserved. There are examples where 2 sets that are closed and convex but their sum is not closed. On primary example I would give involves the use of Asymptopes. Consider the epigraph of function $1/x$ for all $x \ge 0$ to be the set $C$, consider the set $\{(x, y)| y = 0\}$ to be the set $D$, then the sequence $(-t, 0)\in D, (t, 1/t)$ added together is $(0, 1/t)$. As $t \rightarrow \infty$, the point would be $(0, 0)$, which is definitely not an element of the set $C + D$. Finally, we actually have $C + D = \mathbb R \times \mathbb R_{++}$, which is not closed. 
+
+
 ---
 ### **Intersection:** 
 
@@ -133,33 +138,47 @@ Trivial we skip that.
 
 > If $Q \subset \mathbf{E}$ is convex, $L \subset \mathbf{Y}$ is convex, $A:\mathbf{E}\mapsto Y$, then $A(Q), A^{-1}(L)$ are convex, where $A^{-1}$ is the pre-image of the linear map. 
 
-Choose $x, y$ from the image of $A$: $x, y \in A(Q)$, then $\exists u \in Q: A(u) = x, \exists v \in Q: A(v) = y$, by the definition of an image of the operator $A$. Here, $u, v$ belongs to the pre-image. Consider the convex combinations of $x, y$, we have: 
+The proof is direct. Define that $A^{-1}Q := \{x| Ax \in Q\}$, and we denote $AQ := \{Ax|x\in Q\}$, denote $x_\lambda = \lambda x_1 + (1 - \lambda)x_0$ then we can say that for any $x_0, x_1 \in A^{-1}Q$
 
 $$
 \begin{aligned}
-    \lambda x + (1 - \lambda) y &= \lambda A(u) + (1 - \lambda) A(v) \quad \forall \lambda \in (0, 1)
+    & x_0 \in A^{-1}Q \iff Ax_0 \in Q, Ax_1 \in Q
     \\
-    &= A(\lambda u + (1 - \lambda) v)
+    \iff & 
+    \lambda Ax_1 + (1 - \lambda)Ax_0 \in Q &  \quad \text{ convexity of } Q
+    \\
+    \iff
+    & A(\lambda x_1 + (1 - \lambda)x_0)\in Q & \quad \text{ linearity of A}
+    \\
+    \iff 
+    & x_\lambda \in A^{-1}Q, 
 \end{aligned}
 $$
 
-using the fact that $Q$ is a convex set, $\lambda u + (1 - \lambda)v$ is in $Q$, and $\lambda x + (1 - \lambda) y$ is in the range of the operator $A$. Next, Consider choices of $x, y$ from the pre-image of $A$ for $x, y$, let $U := \{u\in L: A^{-1}(u) = x\}$ and $V := \{v\in L: A^{-1}(v) = y\}$. Then consider the convex combinations of $x, y$: 
+and the last statement is by the definition of pre-image of the linear operator $A$. This completes the proof that the pre-image of a linear mapping of a whole set will preserves the convexity of the convexity. To show that the range of a linear mapping of a set is still convex, consider any $\lambda \in [0, 1]$ then: 
 
 $$
 \begin{aligned}
-    \lambda x + (1- \lambda)y &= \lambda A^{-1}(U) + (1- \lambda)A^{-1}(V) \quad \forall \lambda \in (0, 1)
+    y_1, y_0 &\in AQ \implies y_\lambda := y_1 + (1 - \lambda)y_0
     \\
-    &= A^{-1}(\lambda U + (1- \lambda)V)
+    y_1 &\in AQ \implies \exists Ax_1 = y_1
+    \\
+    y_2 &\in AQ \implies \exists Ax_0 = y_0
+    \\
+    \implies y_\lambda &= 
+    Ax_1 + (1 - \lambda)Ax_0
+    \\
+    A(x_1 + (1 - \lambda)x_0) &= 
+    Ax_\lambda, 
 \end{aligned}
 $$
 
-By the convexity of $L$, the set $\lambda U + (1 - \lambda)V$ is a subset of $Q$, therefore, the pre-image of the convex combinations of $x, y$ is still a preimage of $A$, and convex comb of $u, v$ is still in the range of $Q$. Therefore the set of pre-images of $A$ is convex if $L$ is convex. 
-
+Observe that $x_\lambda \in Q$ by the convexity of $Q$, and hence $Ax_\lambda \in AQ$, then we have shown that $y_\lambda \in AQ$ for all $\lambda \in [0, 1]$. 
 
 ---
-### **Remarks:Convexity of Functions**
+### **Applications: Convexity of Functions**
 
-[Convexity Preserving Operations of Functions](Convexity%20Preserving%20Operations%20of%20Functions.md)
+[Convexity Preserving Operations for Functions](Convexity%20Preserving%20Operations%20for%20Functions.md)
 
 
 

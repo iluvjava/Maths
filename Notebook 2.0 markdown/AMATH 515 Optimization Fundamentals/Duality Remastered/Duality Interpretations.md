@@ -1,5 +1,5 @@
 
-[Lagrangian and Dualization Techniques](Lagrangian%20and%20Dualization%20Techniques.md), [Dualization Examples](Dualization%20Examples.md), [Convex Conjugate Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Examples.md)
+[Lagrangian and Dualization Techniques](Lagrangian%20and%20Dualization%20Techniques.md), [Dualization Examples](Dualization%20Examples.md), [Convex Conjugate Computations Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Computations%20Examples.md)
 
 --- 
 

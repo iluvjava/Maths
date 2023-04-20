@@ -4,7 +4,7 @@ Readers are required to read th above source in advanced because that parts defi
 ---
 ### **Intro**
 
-The nightpoint Laplacian is concerned with the following stencil operations: 
+The night points Laplacian is concerned with the following stencil operations: 
 
 $$
 \vec{f}_{\mathcal{I}(i, j)} = 

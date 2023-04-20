@@ -1,6 +1,6 @@
-[Proximal Gradient Method](Proximal%20Gradient%20Method.md)
-[Beta Smoothness](../Basic%20Convexity/Beta%20Smoothness.md)
-[Closed, Proper, Level Bounded, Strong Convex](../Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md)
+- [Proximal Gradient Method](Proximal%20Gradient%20Method.md), 
+- [Beta Smoothness](../Basic%20Convexity/Beta%20Smoothness.md), 
+- [Closed, Proper, Level Bounded, Strong Convex](../Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md).
 
 Here, we will be focusing with the proof of theorem 3.12. 
 
@@ -102,7 +102,7 @@ f(y) \ge f(x^+) + G_t(x)^T(y - x) + t \left(
 $$
 
 ---
-### Consequence: 
+### **Consequence**: 
 
 Notice that, if we assume that $\alpha = 0$, so that it's not alpha strongly convex. And assume that $t = \frac{1}{\beta}$ so that the gradient step size is just what we had for smooth gradient descend, then we have: 
 $$
@@ -111,7 +111,7 @@ $$
 
 And this is the usual smooth gradient descent, without worrying about the non-smooth ness of function $h(x)$, and the alpha strong convexity of the function $g(x)$. 
 
-And starting from this theorem, we can carry out the complexity analysis for the gradient descent algorithm for prox gradient descend, and the good news the complexity didn't change with the strong convex, and strong convex beta smooth assumption. 
+And starting from this theorem, we can carry out the complexity analysis for the gradient descent algorithm but for prox gradient descend, and the good news the complexity didn't change with the strong convex, and strong convex beta smooth assumption. 
 
 FISTA: Accelerated Prox Gradient Descend.
 

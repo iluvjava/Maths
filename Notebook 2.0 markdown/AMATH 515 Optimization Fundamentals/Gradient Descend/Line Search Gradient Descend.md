@@ -1,4 +1,4 @@
-[Gradient Descend 1](Gradient%20Descend%201.md), [Newton Method](Newton%20Method.md)
+[Gradient Descend, Smoothness](Gradient%20Descend,%20Smoothness.md), [Newton Method](Newton%20Method.md)
 
 ---
 

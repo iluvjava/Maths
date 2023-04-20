@@ -30,7 +30,7 @@ $$
 
 Where the constant $\lambda$ is call the hyperparameter. This is a problem that is going to produce a unique solution for the over deteremined system. 
 
-The norm is exchangable: [Norm](Matrix%20Theory/Norm.md) for more of it
+The norm is exchangable: [Norm, for Beginners](Matrix%20Theory/Norm,%20for%20Beginners.md) for more of it
 There is more about regularization, see [Regression and Model Selection](Regression%20and%20Model%20Selection.md) for more.
 
 

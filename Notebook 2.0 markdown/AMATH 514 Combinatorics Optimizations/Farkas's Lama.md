@@ -113,12 +113,11 @@ $\impliedby$ is simple. Choose any $y^TA = c^T \implies y^TAx = c^Tx < 0$ be cau
 
 > It's impossible to have $\forall x: Ax \le \mathbf 0 \wedge \langle c, x\rangle = 0$, and in the case which $\exists x: \langle c, x\rangle = 0 \wedge Ax \le \mathbf 0$, then $Ax = \mathbf 0$ too. 
 > 
-> **Proof of Claim 1**: 
-> 
-> If $\forall x: Ax \le \mathbf 0$, then $c \perp a_i$ for some $i$ such that $\langle a_i, x\rangle < 0$. If this is not true for some $i^+\in [m]: \langle a_{i^+}, x\rangle = 0$, then reconsider $x + a_{i^+}$ which might gives $\langle c, a_{i^+}\rangle < 0$.
-> 
-> Else it's the case that $c\perp c_i \quad \forall i \in [m]$, then we choose $x = c$ to have $Ax = \mathbf 0$, but $\langle c, x\rangle$. In both cases, we should end up with a strictly negative $\langle c, x\rangle$. 
-> 
+**Proof of Claim 1**: 
+
+If $\forall x: Ax \le \mathbf 0$, then $c \perp a_i$ for some $i$ such that $\langle a_i, x\rangle < 0$. If this is not true for some $i^+\in [m]: \langle a_{i^+}, x\rangle = 0$, then reconsider $x + a_{i^+}$ which might gives $\langle c, a_{i^+}\rangle < 0$.
+
+Else it's the case that $c\perp c_i \quad \forall i \in [m]$, then we choose $x = c$ to have $Ax = \mathbf 0$, but $\langle c, x\rangle$. In both cases, we should end up with a strictly negative $\langle c, x\rangle$.  
 
 Then $\exists x: Ax \le \mathbf 0 \wedge \langle c, x \rangle < 0$. Consider: 
 
@@ -156,7 +155,7 @@ $$
 
 The variant of the theorem helps with figuring out the polar of polyhedral cones. 
 
-To clarify, if $\langle c, x\rangle\le 0$ forall $x$ such that $Ax \le \mathbf 0$, then it has to be the case that $y$ is in the cone spanned by rows of $A$. Which is equivalently saying: 
+To clarify, if $\langle c, x\rangle\le 0$ for all $x$ such that $Ax \le \mathbf 0$, then it has to be the case that $y$ is in the cone spanned by rows of $A$. Which is equivalently saying: 
 
 $$
 \{x: Ax \le \mathbf 0\}^\circ = \{A^Ty: y\ge \mathbf 0\}
@@ -173,12 +172,12 @@ And it helps use looking for the equivalent cones and polar cones in the case of
 
 > Let $P:= \{x|Ax \le b\}$ be non empty then we have: 
 > $$
-> (\forall x \in P: c^Tx \le c_0 ) \iff (\exists y \ge \mathbf 0: y^TA = c^T, y^Tb \le  c_0)
+> (\exists c_0\forall x \in P: c^Tx \le c_0 ) \iff (\exists y \ge \mathbf 0: y^TA = c^T)\wedge (\exists c_0 \; y^Tb \le  c_0)
 > $$
 
 **Things to Observe**
 
-It's fitting the form of Variant (1) of Ferkas Lemma, but it's having an extra parameter $c_0$ for the separating hyper plane defined by $b$, the plane separates points in the polytope and the vector $b$. 
+It's fitting the form of Variant (1) of Farkas Lemma, but it's having an extra parameter $c_0$ for the separating hyper plane defined by $b$, the plane separates points in the polytope and the vector $b$. 
 
 **Proof**
 
@@ -204,7 +203,7 @@ $$
 \end{aligned}
 $$
 
-The above expression fits the left hand condition of the **original form of the Ferkas lemma**, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By ferkas lamma $\exists [z^T \; z_0]^T$ such that: 
+The above expression fits the left hand condition of the **original form of the Farkas lemma**, but with $[y^T \; y_0]$ being a left hand side multiplier to the matrix. By Farkas lemma $\exists [z^T \; z_0]^T$ such that: 
 
 $$
 \begin{aligned}
@@ -247,9 +246,9 @@ $$
 \end{aligned}
 $$
 
-The last $<0$ on the last line is because of conclusion from (1). The last expression implies that $c^T(x - z\lambda) > c_0$ for a large enough choice of $\lambda$ assumine that $c^Tx \le c_0$ because $-\lambda c^Tz$ is a positive quantity. **For the second case**  if $z_0 > 0$ we can rescale the vector $[z^T \;\;z_0]$ so that it's $[z^T/z_0 \;\; 1]^T$, then $Az + b \ge \mathbf 0$ implies $A(-z)\le b$ implies $-z \in P$; also $c^Tz + c_0 < 0 \implies c^T(-z) - c_0 > 0 \implies c^T(-z) \ge 0$. Which contradicts that $\forall x \in P: c^Tx \le c_0$. 
+The last $<0$ on the last line is because of conclusion from (1). The last expression implies that $c^T(x - z\lambda) > c_0$ for a large enough choice of $\lambda$ assuming that $c^Tx \le c_0$ because $-\lambda c^Tz$ is a positive quantity. **For the second case**  if $z_0 > 0$ we can rescale the vector $[z^T \;\;z_0]$ so that it's $[z^T/z_0 \;\; 1]^T$, then $Az + b \ge \mathbf 0$ implies $A(-z)\le b$ implies $-z \in P$; also $c^Tz + c_0 < 0 \implies c^T(-z) - c_0 > 0 \implies c^T(-z) \ge 0$. Which contradicts that $\forall x \in P: c^Tx \le c_0$. 
 
-**Geometric Interpreations**
+**Geometric Interpretations**
 
 $\implies$ tells a story that, for a polytope that is bounded on the direction of $c$, then it's possible to find a combinations of the constraints normals pointing towards the same direction as $c^T$ ($y^TA = c^T$) such that $y^Tb\le c_0$. 
 

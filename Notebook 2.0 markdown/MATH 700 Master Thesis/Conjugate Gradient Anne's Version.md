@@ -308,7 +308,7 @@ This proof turns out to be way more convoluted than I originally imagined. Big O
 ---
 ### **A Subtle Remark**
 
-#TODO: GMRes and CG
+#UNFINISHED: GMRes and CG
 
 
 ---

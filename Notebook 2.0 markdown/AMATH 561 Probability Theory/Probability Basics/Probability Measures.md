@@ -3,26 +3,30 @@
 ---
 ### **Intro**
 
-A probability measure is a special type of measure placed on a probability spaces. Denoted as $p(x)$. Mapping from $\mathcal{F}$ to $[0, 1]$. 
+A probability measure is a special type of measure placed on a probability spaces. Denoted as $p(x)$. Mapping from $\mathcal{F}$ to $[0, 1]$. Firstly, we define what a measure is. 
 
 **Definition of a measure**: 
 
 > $$
 > \begin{aligned}
->     \text{(i)}&\quad   \mu(A) \ge \mu(\emptyset) = 0 \quad \forall \; A \in \mathcal{F}
->     \\
->     \text{(ii)}&\quad A_i \in \mathcal{F} \implies \mu (\cup_i A_i) = \sum_{i}^{}\mu(A_i)
+>       \text{(i)}&\quad   \mu(A) \ge \mu(\emptyset) = 0 \quad \forall \; A \in \mathcal{F}, 
+>       \\
+>       \text{(ii)}&\quad A_i \in \mathcal{F} \implies \mu (\cup_i A_i) = \sum_{i}^{}\mu(A_i),
 > \end{aligned}
 > $$
-And for the second conditions, we have a sequence of finite, or countable many infinite elements from the probability spaces. 
+where $\mathcal F$ is a set of set, denoting all the subsets of $\Omega$. And for the second conditions, we have a sequence of finite, or countable many infinite elements from the probability spaces. Notice that the nonneativity of measure is included in the first condition. 
+
+**Remarks**
+
+Measure is trying to construct a homomorphism between the group of sets $\mathcal F$ to the groups of positive reals, where the group of sets is based on the $\cup$ operator and the group of positive reals based on the $+$ operator. 
 
 **Definition of a probability measure**
 
-On top of the definitions for measures, we also have this for probability measures: 
-
-$$
-\mu(\Omega) = 1
-$$
+> For probability measure is a measure satisfiying: 
+> 
+> $$
+> \mu(\Omega) = 1.
+> $$
 
 ---
 ### **Properties of Measures**
@@ -35,17 +39,34 @@ $$
     A\subseteq\bigcup_m A_m \implies \mu (A) \le \sum_{m}^{}\mu(A_m) 
     \\
     &\text{(iii)}\quad 
-    A_i \subseteq A_{i + 1}\;\forall i \wedge \bigcup_iA_i = A \implies 
+    \left(
+	    A_i \subseteq A_{i + 1}\;\forall i 
+    \right)
+    \wedge
+    \left(\bigcup_iA_i = A \right)
+    \implies 
     \mu(A_i) \le \mu(A) \wedge \lim_{i \rightarrow \infty} \mu(A_i) = \mu(A)
     \\
     &\text{(iv)}\quad 
-    A_{i + 1}\subseteq A_i \forall i \;\wedge\; \bigcap_i A_i = A \;\wedge\; \mu(A_i) < \infty \implies \mu(A_i) \ge \mu(A_{i + 1}) \;\wedge\; \lim_{i\rightarrow \infty} \mu(A_i) = A
+    \left(
+        A_{i + 1}\subseteq A_i \; \forall i
+    \right) \;\wedge\; 
+    \left(
+        \bigcap_i A_i = A
+    \right) 
+    \;\wedge\;
+    \left(
+        \mu(A_i) < \infty 
+    \right)
+    \implies \mu(A_i) \ge \mu(A_{i + 1}) \;\wedge\; \lim_{i\rightarrow \infty} \mu(A_i) = A
 \end{aligned}
 $$
 
-Again, for property (iii) and (iv) we are assuming countable sequences. 
+For property (iii) and (iv) we are assuming countable sequences. 
 
-Here we are only going to prove the first 2 properties. 
+**Proof(i)**
+
+Treat $B$ as $A \cup (B\setminus A)$ then use the summation rule and the non-negativity rule. 
 
 **Proof (ii)**
 

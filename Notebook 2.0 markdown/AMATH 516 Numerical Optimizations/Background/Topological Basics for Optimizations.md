@@ -1,42 +1,65 @@
-In fact, we need a bit of topology to get identify the type of functions that can fit with first order optimizations. 
-[Linear Algebra Basics for Optimization](Linear%20Algebra%20Basics%20for%20Optimization.md)
+For a brief introduction of Topology that doesn't touch on optimizations, see [Topological Spaces](../../MATH%20000%20Math%20Essential/Topological%20Spaces.md), for optimization, the neighbors are point close to an element by the metric in a [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Metric%20Space%20Introduction.md) (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbor" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
 
 Please note that, some of the discussion will feel familiar to discussion spotted here: [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which also concerns the topological properties of sets related to the family of convex functions. 
 
 ---
 ### **Intro**
 
-The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers, which is most applicable to most of the optimizations theories. 
+The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers with the usual p-norm as the metric, which is most applicable to most of the optimizations theories. 
 
 Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
-**What is Closed Set?** 
-* $Q$ is closed
-* $\text{cl}(Q) = Q$: The closure of the set equals to the set itself. 
-* $Q$ contains all of it's limit points. 
-* $Q^C$ is an opened set. 
+**Definition: Interior of a set**
+
+> The interior of the set $Q\subseteq X$ is $\text{int}(Q):= \{x\in X|\mathbb B_\epsilon(x) \subseteq Q\}$. 
 
 **Definition: Opened Set**
 
-> The set $Q$ is opened if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$.
+> The set $Q\subseteq X$ is *open* if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$. Or equivalently, $Q = \text{int}(Q)$. 
 
-**Theorem:**
+**Observations**: 
+- $\text{int}\subseteq Q$. 
 
-> $Q$ is opened iff $Q^C$ is closed
 
-A complement on the set $Q$ is a negation of the statement that defines the set $Q$. Consider the negation from the definition of the open set: 
+**Remark**: 
 
-$$
-\exists x\in Q\forall \epsilon: \mathbb B_\epsilon(x) \not\subseteq Q
-$$
+The concept of interior can be relative to another subset of the background set. One prime example of this is the application of the interior relative an affine space. See [Relative Interior And Relative Boundary](Relative%20Interior%20And%20Relative%20Boundary.md) for more. 
 
-Since $\mathbb B_\epsilon(x)$ contains $x$ which is $\in Q$, we have the negation of subset denoted as $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$
+**Definition: Closure and Closed Sets**
+> Let $Q\subseteq X$ then the closure of the set is $\text{cl}(Q):= \{x\in X| \; \forall \epsilon > 0:  \mathbb B_{\epsilon}\cap Q \neq \emptyset\}$. The set $Q$ is closed when $Q = \text{cl}(Q)$. 
+
+**Observation**: 
+- $\text{int}(Q)\subseteq Q \subseteq \text{cl}(Q)$.
+
+**Remarks** 
+
+See [Closure Topology](Closure%20Topology.md) for more reference. Observe that trivially, if a set is open, then it equals to its interior. It also has similar concept such as relative closure, but I am not aware of whether this is being applied in the context of optimization. 
+
+Sometimes we discuss the openness of the set relative to a subset of the whole space. For example, the use of  [Relative Interior And Relative Boundary](Relative%20Interior%20And%20Relative%20Boundary.md) discuss the interior of a set relative to a linear subspace. Or, we can discuss some subset of $\mathbb R$'s openness relative to $\mathbb Q$. 
+
+**Definition: The boundary of a set** 
+
+> Let $Q\subseteq X$, then the boundary of $Q$, denoted as $\text{bd}(Q)$ is $\text{cl}(Q)\setminus \text{int}(Q)$. 
+
+**Observations:**
+
+Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $x\ \in X$, but for all $\epsilon > 0$, $\mathbb B_\epsilon(x) \not\subseteq Q$, and at the same time $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$, implies that $\mathbb B_\epsilon(x)\cap Q \neq \emptyset$ and $\mathbb B_\epsilon(x) \cap Q^C \neq \emptyset$ as well. And this characterize the set of all points that are at the boundary of $Q$. It's something that connects to both $Q, Q^C$ via the epsilon vicinity around elements from the set. 
+
+
+**Theorem: Topology of the Complement**
+
+> $Q$ is open iff $Q^C$ is closed
+
+#UNFINISHED . 
 
 **Remarks**
+* A set is closed if it has its own boundary inside of itself. 
+* A set can be both opened and closed, only opened or closed, or both. A set that is opened and closed would be $[a, b)$, and a set that is both opened and closed is $\mathbb R$. And *the empty set is closed and opened*. 
 
-* **Intuitive Understanding**: 
-	* A set is closed if it has its own boundary inside of itself. 
-	* A set can be both opened and closed, only opened or closed, or both. A set that is opened and closed would be $[a, b)$, and a set that is both opened and closed is $\mathbb R$. And *the empty set is closed and opened*. 
+
+**Basic Examples**
+* The empty set is open because we can't choose any element from it and exam its neighbour. The empty set is closed because for all element's neighbour, it intersects with the empty set, thus it's open trivially. The empty set is *clopen (closed and open)*. 
+* The set $\mathbb Q$ is neither closed nor open. For every epsilon ball open around $x\in \mathbb Q$, there exists an irrational number. Hence it's not open. It's not closed because a sequence of rational numbers can converge to an irrational number. 
 
 
 ---
@@ -84,16 +107,16 @@ $$
 ---
 ### **A List of Topics**
 
-General Topology
+More Topology Related
 * [Closure Topology](Closure%20Topology.md)
-* [Convex Sets](Convex%20Sets.md)
+* [Convex Sets Intro](Convex%20Sets%20Intro.md)
 * [Interior Topology](Interior%20Topology.md)
 * [Affine Hull, Affine Span](Affine%20Hull,%20Affine%20Span.md)
 * [Relative Interior And Relative Boundary](Relative%20Interior%20And%20Relative%20Boundary.md)
 * [Compact and Bounded Sets](Compact%20and%20Bounded%20Sets.md)
 
 Sets and Convex Geometry related
-* [Convex Sets](Convex%20Sets.md)
+* [Convex Sets Intro](Convex%20Sets%20Intro.md)
 * [Euclidean Space](Euclidean%20Space.md)
 * [Lower Semi-Continuous](Lower%20Semi-Continuous.md)
 * [Generating Cone of a Set](Generating%20Cone%20of%20a%20Set.md)

@@ -17,9 +17,7 @@ We need some special type of topologies to for probability to happen. And I prom
 ---
 ### **$\sigma$-algebra**
 
-$\sigma$-alg defines a probabiliity spaces for events. 
-
-The family of sets must satisfies the following: 
+$\sigma$-alg defines a probability spaces for events. The family of sets must satisfy the following: 
 
 * $\mathcal{F}\subseteq 2^{\Omega}$, the family is a subset of the power set on all the outcomes. And $\mathcal{F}$ is not the empty set. 
 * The set has closure under the set complement operations, which means that: $A\in \mathcal{F} \implies A^C\in \mathcal{F}$. 
@@ -33,8 +31,8 @@ The function mapping from $\mathcal{F}$ to $[0, 1]$ will be a function that sati
 $$
 \mathbb{P}\left(\Omega\right) = 1
 \quad
-\mathbb{P}\left(\dot{\bigcup}A_i\right)  = \sum_{i}^{}p(A_i) \quad \{A_i\} \text{ countable}
+\mathbb{P}\left(\dot{\bigcup}A_i\right)  = \sum_{i}^{}p(A_i) \quad \{A_i\} \text{ countable}, 
 $$
 
+Such a function is called a probability measure. 
 
-Yeah, these 2 properties. 

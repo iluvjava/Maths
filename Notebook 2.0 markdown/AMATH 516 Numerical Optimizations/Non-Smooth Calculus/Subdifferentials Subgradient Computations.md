@@ -1,14 +1,13 @@
-* [Subgradient and Subdifferential Definition](Subgradient%20and%20Subdifferential%20Definition.md)
+* [Subgradient Introduction](Subgradient%20Introduction.md)
 * [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md)
-
 
 ---
 ### **Intro**
 
-We introduce a simple theorem and then we are going fully hardcore about it using materials in \<Firt Order Method in Optimizations\> by SIAM. Before we start, there are 2 types of subgradient: 
+We introduce a simple theorem and then we are going fully hardcore about it using materials in \<First Order Method in Optimizations\> by SIAM. Before we start, there are 2 types of subgradient: 
 
-* **Strong Subgradient**: All the possible subgradient at a point given the function. 
-* **Weak Subgradient**: Just a subset of all the possible subgradient. 
+* **Strong Subgradient**: The full set of subgradient is being characterized. 
+* **Weak Subgradient**: Just a subset of all the possible subgradient are characterized. 
 
 The weak subgradient is relative easier to find. 
 
@@ -77,7 +76,8 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 
 **Source**: Unassigned exercise from AMATH 516. 
 
-**Theorem: Subgradient of Pointwise Maximum of Functions**
+---
+### **Theorem: Subgradient of Pointwise Maximum of Functions**
 
 > Suppose a function is in the form of a pointwise maximum of countably many function: $f(x):= \max_{i\in [n]}f_i(x)$ for all $f_i$ that are convex. Then the strong subgradient of the function is: 
 > $$
@@ -92,6 +92,10 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 > $$
 > The weak subgradient is to choose any $i\in I(x)$, and choose any $g\in \partial[f_i](x)$ and that will work: $g\in \partial[f](x)$. 
 
+**Proof**: 
+The $\subseteq$ direction is harder than $\supseteq$. 
+
+
 **Source**: [Stack Exchange Discussion](https://math.stackexchange.com/questions/229025/subgradients-of-function). Original course notes is: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
 
 ---
@@ -102,71 +106,103 @@ The proof is direct from the definition of smooth gradient and non-smooth gradie
 >   \partial[f(Ax + b)|x](x) = A^T\partial[f](Ax + b).
 > $$
 > However, the case where $\partial[f(Ax + b)|x](x) \subseteq A^T\partial[f](Ax + b)$ is generally false, and it's true when: 
-> (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
-> (ii)$f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
+> - (i) The range of $A$ contains a point from $\text{ri}\circ\text{dom}(f)$. 
+> - (ii) $f$ is polyhedral and the point $\text{ri}\circ\text{dom}f$ is contained in the range of $A$. 
 
-**Proofs of Weak Results**
-Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Consider any $g\in \partial[f](Ax + b)$ we have from the definition that: 
+**Proofs of Weak Results:**
+
+Here we prove that $A^T\partial [f](Ax + b) \subseteq \partial[f(Ax + b)]_x(x)$. Firstly, we can assume $\partial [f](Ax + b) \neq \emptyset$ because if it is, then the statement is trivially true. By such an assumeption we can have $u \in \partial [f](Ax + b)$, then by definition of convex subgradient: 
 
 $$
 \begin{aligned}
-    & 
-    f(Ay + b) - f(Ax + b) \ge \langle g, Ay + b - (Ax + b)\rangle
+    f(Ax + b) + \langle u, y - (Ax + b)\rangle 
+    & \le f(y) 
+    \quad \forall y \in X
     \\
-    & 
-    f(Ay + b) - f(Ax + b) \ge \langle g, A(y - x)\rangle
+    z \in X: (y \in \text{rng}(A) + b\iff y &= Az + b)
     \\
-    &
-    f(Ay + b) - f(Ax + b) \ge \langle A^Tg, y - x\rangle
+    \implies 
+    f(Ax + b) + \langle u, Az + b - (Ax + b)\rangle 
+    &\le f(Az + b) \quad \forall z\in X
     \\
-    \implies & 
-    A^T g \in \partial [f(Ax + b)]_x(x)
+    \iff 
+    f(Ax + b) + \langle u, A(z - x)\rangle 
+    &\le f(Az + b)
+    \\
+    \iff
+    f(Ax + b) + \langle A^Tu, z - x\rangle 
+    &\le f(Az + b)
+    \\
+    \iff
+    A^T u 
+    &\in \partial [f(A(\cdot) + b)](x), 
 \end{aligned}
 $$
 
+where, this is always true, regardless of the regularity assmptions. Finally, we assumed that $u \in \partial [f](Ax + b)\neq \emptyset$, then $A^Tu\in \partial [f](Ax + b)$, by the conclusion of the last line, the weak subgradient condition is now true, under a strictly weaker assumption. 
+
+**Proofs of Strong Results**
+
+Skipped, I would need to read Rockafellar carefully to cover this topic. 
+
+
 **Remarks**
 
-The converse statement has more subtleties and we skip the proof here. 
+The converse statement has more subtleties and we skip the proof here. For an example showcasing that $A^T\partial [f](Ax + b)\subsetneq \partial [f(Ax + b)|x](x)$, see [Subgradient Affine Composition](Subgradient%20Affine%20Composition.md) for more information. 
 
+**Source**: 
 
-**Source**: See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar 23.9. 
+See stack exchange discussions [here](https://math.stackexchange.com/questions/2656013/how-to-prove-the-affine-composition-of-the-subdifferential). For detailed proof on the converse, consult Rockafellar Convex  Analysis 23.9, 
 
 
 ---
-### **Theorem: Subgradient of Composition (Weak Results)**
+### **Theorem: Subgradient of Monotone Composition (Weak Results)**
 
-> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in its all , and $f_i(x)$ are all convex. The weak result stated that: 
+> Define $f(x):= h(f_1(x), f_2(x), \cdots, f_n(x))$, where $h(x_1, x_2, \cdots, x_n)$ is a convex and non-decreasing function in each of its parameter , and $f_i(x)$ are all convex. The weak result stated that: 
 > $$
 > \begin{aligned}
->     & z \in \partial h(f_1(x), f_2(x), \cdots,f_n(x))
->     \\
->     & g\in \partial [[f_1 \; f_2\; \cdots \; f_n]^T](x)
->     \\
->     \implies & 
->     \langle g, z\rangle\in \partial [f](x)
+>     \begin{bmatrix}
+>           \\
+>           \partial f_1(x)& \partial f_2(x) & \cdots& \partial f_n(x) 
+>           \\ \\
+>     \end{bmatrix}
+>       \partial h(f_1(x), \cdots, f_n(x)) 
+> \in \partial [f](x),
 > \end{aligned}
 > $$
 
+where we abused the notation by using the set to represents any vector whose elements belong to that set. The matrix can be interpreted as a specific element from the union of all possible Jacobi matrix whose colons are made of subgradient vector. 
+
 **Proofs**:
 
-MISSING
+...
+
+
+**Theorem: Differential Monotone Subgradient Composition**: 
+`
+> Let $f$ be convex on X and let G be convex, and increasing on $\R$, suppose that $g$ is differentialble at $f(x)$, then: 
+> $\partial (g\circ f)(x) = g'(f(x)) \partial f(x)$. 
+
+**Proofs**: 
+
+... 
+
 
 **Remarks**:
 
-This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. 
+This is a weak result, and such $\langle g, z\rangle$ is not part of the subdifferential. Strong holds in some of these more general settings is equivalent to the validity of a sum and  chain rules for subdifferentials. [^1]
 
-Strong duality holding in these more general settings is equivalent to validity of a sum and  
-chain rules for subdifferentials. [^1]
-
-[^1]: Commented by Dimitry on his course notes AMATH 516, 2021 FALL, pg: 97
+[^1]: Commented by Dimitri on his course notes AMATH 516, 2021 FALL, pg: 97. see in [Math 516 Convex Analysis 2 - Dmitriy Drusvyatskiy](../References/Math%20516%20Convex%20Analysis%202%20-%20Dmitriy%20Drusvyatskiy.pdf). 
 
 
 **Source**:
 
-See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf). 
+See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgradients.pdf) for the first one, and then see Heinz's Monotone operator theory textbook for the second rule. 
+
+
 
 ---
-### **Theorem: Subgradient of Simple Summations**
+### **Theorem: Subgradient of Summations**
 
 > Let $f_1,f_2$ be 2 convex function such that $\text{ri}(\text{dom})(f_1) \cap \text{ri}(\text{dom})(f_2)\neq \emptyset$, then we have the following strong subgradient theorem: 
 > $$
@@ -174,11 +210,12 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 > $$
 
 **Proofs**
-The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. For this proof we also require: [Normal Cone Addition](../CVX%20Analysis/Normal%20Cone%20Addition.md) for assistance. 
+
+The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [Normal Cone Addition](../CVX%20Analysis/Normal%20Cone%20Addition.md) for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)= \emptyset$, we will have $\supseteq$ instead of equality. For a full coverage of the matter, please see [Subgradient Sum Rule](../Subgradient%20Sum%20Rule.md) for more information. 
 
 **Source**: 
 
-A website for lecture notes, see [here](https://maunamn.wordpress.com/8-the-subdifferential-sum-rule/) for more. 
+A website for lecture notes, see [here](https://maunamn.wordpress.com/8-the-subdifferential-sum-rule/) for more. For a norma general and direct coverage of the theorem, see Rockafellar's convex book theorem 23.8. 
 
 
 ---

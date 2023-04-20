@@ -1,18 +1,17 @@
-
 Reference Materials Link: 
-[link](https://www.sjsu.edu/faculty/guangliang.chen/Math253S20/lec11lda.pdf)
-[Basic Machine Learning](Basic%20Machine%20Learning.md)
+- [link](https://www.sjsu.edu/faculty/guangliang.chen/Math253S20/lec11lda.pdf)
+- [Basic Machine Learning](Basic%20Machine%20Learning.md)
 
 ---
-### Intro
+### **Intro**
 
 Here, we will be interested in thinking about projecting label data onto a line in $\mathbb{R}^n$, and then formulate late the problem as a Eigenvalue Decomposition problem Computationally. 
-
-Scenario:
+ 
+**Application Scenario:**
 
 > Given training data set $x_1, x_2, \cdots, x_n\in \mathbb{R}^d$ consisting of 2 classes of labels, $C_1$, and $C_2$, we are looking for a unit vector such that, the projection of the data onto the vector best "Discriminate" the labeled data. 
 
-Maximizing Discrimination? 
+**Maximizing Discrimination:**
 
 > We projected into the subspace, and then maximize the ration between the maximal distance between the mean dividing the variances on all classes. 
 

@@ -1,4 +1,4 @@
-Soure: [wiki](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
+Source: [wiki](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
 
 ---
 ### **Intro**

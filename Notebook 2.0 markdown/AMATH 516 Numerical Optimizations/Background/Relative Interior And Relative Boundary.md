@@ -10,8 +10,8 @@ Let $Q\subseteq \mathbb{E}$ be a set in the Euclidean space, then the relative i
 > $$
 > \text{ri}:= 
 > \{
->     x\in Q:  \exists\; \epsilon > 0 \text{ s.t:}
->     \mathbb{B}_\epsilon(x)\cup \text{affhull}(Q)\subseteq Q
+>     x\in Q:  \exists\; \epsilon > 0 \text{ s.t: }
+>     \mathbb{B}_\epsilon(x)\cap \text{affhull}(Q)\subseteq Q
 > \}
 > $$
 

@@ -1,6 +1,6 @@
-[Introducing The KKT Conditions](../AMATH%20516%20Numerical%20Optimizations/Background/Introducing%20The%20KKT%20Conditions.md)
-[A Brutal Introduction to Linear Programming](A%20Brutal%20Introduction%20to%20Linear%20Programming.md)
-[Linear Programming Strong Duality via Farkas](Linear%20Programming%20Strong%20Duality%20via%20Farkas.md)
+[Introducing The KKT Conditions](../AMATH%20516%20Numerical%20Optimizations/Background/Introducing%20The%20KKT%20Conditions.md),
+[A Brutal Introduction to Linear Programming](A%20Brutal%20Introduction%20to%20Linear%20Programming.md),
+[Linear Programming Strong Duality via Farkas, Standard Forms](Linear%20Programming%20Strong%20Duality%20via%20Farkas,%20Standard%20Forms.md),
 
 
 No references are used, the whole thing is from myself. 
@@ -71,7 +71,7 @@ $$
 \end{aligned}\tag{4}
 $$
 
-This is another Lagrangian where $\overline{G}(x) = A^Ty + c, \overline{f}(x)$, which can be interpreted as the Lagrangian whose primal formulation is: 
+This is another Lagrangian where $\overline{G}(x) = A^Ty + c, \bar{f}(x)$, which can be interpreted as the Lagrangian whose primal formulation is: 
 
 $$
 \begin{aligned}

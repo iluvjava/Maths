@@ -1,20 +1,14 @@
-cateLet's learn the method of separation of variable and apply to the heat equation. 
-The heat equation is introduced here: [ODEs, PDEs Intro](ODEs,%20PDEs%20Intro.md), and we are using the same set up in this file as well. 
-
-See more about it here: [Heat Equations](../AMATH%20501%20Complex%20Analysis,%20Vector%20Calculus/Vector%20Calculus/Heat%20Equations.md), which is introduced in amath 501 before. 
+Let's learn the method of separation of variable and apply to the heat equation. 
+The heat equation is introduced here: [ODEs, PDEs Intro](ODEs,%20PDEs%20Intro.md), and we are using the same set up in this file as well. See more about heat equation here: [Heat Equations](../AMATH%20501%20Complex%20Analysis,%20Vector%20Calculus/Vector%20Calculus/Heat%20Equations.md), which is introduced in AMATH 501 before. 
 
 And, the procedure of using Separation of variables involves the usage of Fourier Series, then we need: [Fourier Transform Fourier Series](../AMATH%20581%20Scientific%20Computing/Fourier%20Transform%20Fourier%20Series.md) to hep us out. 
 
-Reference Materials: Chapter 4 of the Course Notes. 
+**Reference Materials**: Chapter 4 of the Course Notes. 
 
 ---
 ### **Intro**
 
-This is chapter 3 in the lecture notes, you **must read** it. 
-
-Separation of Variable, it works in the case when the boundary conditions is zero. 
-
-If a solution is not separable, but we did it anyway, we might get infinitely many solutions such that the super position of such solution is going to give us the true solution, which is non-separable. 
+This is chapter 3 in the lecture notes, you **must read** it. Separation of Variable, it works in the case when the boundary conditions is zero. If a solution is not separable, but we did it anyway, we might get infinitely many solutions such that the super position of such solution is going to give us the true solution, which is non-separable. 
 
 **Note**: 
 For the class, you don't have to show everything when solving ODEs, it's assumed that you know it so well that you can do it with eyes closed. Just stated he results and it will be fine. 
@@ -62,7 +56,10 @@ Let's summarize the procedure:
 
 ---
 ### **Dirichlet Boundary Conditions (Heat Equation)**
-#### **Separation and Substitution**
+
+The Eigen Components of the Heat kernel is described via the boundary conditions for the PDEs. 
+
+**Separation and Substitution**
 
 $$
 u_t = T'(t)X(x) \quad u_{xx} = X''(x)T(t)
@@ -78,9 +75,7 @@ $$
 \frac{T'(t)}{c^2} = \frac{X''(x)}{X(x)}
 $$
 
-The LHS, and the RHS are solely expressed wrt to $T(t), X(t)$, and means, it has been separated. 
-
-Notice that, this is function equality, a function of time equals to a function of space for all possible value of $t, x$, and this means that they both equals to a constant, giving us: 
+The LHS, and the RHS are solely expressed wrt to $T(t), X(t)$, and means, it has been separated. Notice that, this is function equality, a function of time equals to a function of space for all possible value of $t, x$, and this means that they both equals to a constant, giving us: 
 
 $$
 \frac{T'(t)}{c^2} = \frac{X''(x)}{X(x)} = K

@@ -1,5 +1,5 @@
-[Subgradient and Subdifferential Properties](../AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Subgradient%20and%20Subdifferential%20Properties.md)
-[Monotone Operators](../AMATH%20516%20Numerical%20Optimizations/Monotone%20Operators.md)
+[Subgradient Central Hub](../AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Subgradient%20Central%20Hub.md)
+[Introduction to Operators for Optimizations](../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Introduction%20to%20Operators%20for%20Optimizations.md)
 
 ---
 ### **Intro**

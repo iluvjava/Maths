@@ -1,8 +1,4 @@
-Here we are going to discuss in details about the LU decomposition, so that we have a better understanding of it. 
-
-This part of the book looks at some of the stuff behind the idea of an LU decomposition and find some exploit of it, so that it's easier to understand. 
-
-Most of this is coming from the Trefethen's book, numerical Linear Algebra. 
+**References**: Trefethen's book, numerical Linear Algebra. 
 
 [LU Theorems](LU%20Theorems.md)
 
@@ -23,7 +19,14 @@ $$
 
 and then The matrix $A = LU$. 
 
-**Note**: This algorithm is used to compute the determinant of a matrix in matlab codes. 
+**Note**: 
+
+This algorithm is used to compute the determinant of a matrix in MATLAB. The determinant of a matrix is simply the product of all diagonal elements of the $U$ matrix. 
+
+**Notations**
+* $v^H$ denotes the transpose conjugate of a vector/matrices, when the matrices/vector is real, $v^T$ is the same as transposing the vector/matrix. 
+
+**References**: Trefethen's book, numerical Linear Algebra. 
 
 
 ---
@@ -31,8 +34,7 @@ and then The matrix $A = LU$.
 
 The illustrative process of triangularizing the $A$ matrix is much similar to the Householder Triangularization, but instead of producing a Unitary Matrix, we produce a sequence of a special type of Lowe Triangular matrix for the Transformation, and it's looking like this: 
 
-
-#### Example
+**Illustration**
 
 The matrix that we are going to decompose is: 
 
@@ -46,88 +48,115 @@ A =
 \end{bmatrix}
 $$
 
-The first row operation matrix $L_1$ is going to cancel out the first column except for the first element, then it's like: 
+The first row operation matrix $L_1$ is eliminates all non-zero elements for the second row and beyond. 
 
 $$
-L_1 = 
-\begin{bmatrix}
-	1 & & & \\ 
-   -2 &1& & \\
-   -4 & &1& \\
-   -3 & & &1
-\end{bmatrix}
+\begin{aligned}
+    L_1 &= 
+    \begin{bmatrix}
+        1 & & & \\ 
+        -2 &1& & \\
+        -4 & &1& \\
+        -3 & & &1
+    \end{bmatrix}
+    \\
+    L_1 A &= 
+    \begin{bmatrix}
+        2 & 1 & 1 & 0 \\
+        & 1 & 1 & 1 \\
+        & 3 & 5 & 5 \\
+        & 4 & 6 & 8
+    \end{bmatrix}
+\end{aligned}
 $$
 
-Then the row operation matrix is going to make the transformation on $A$, giving us that: 
+Then, the second row operation matrix transforms on the submatrix, eliminates elements on the second column, blow the second row, the matrix $L_2$ is:
 
 $$
-L_1 A = 
-\begin{bmatrix}
-	2 & 1 & 1 & 0 \\
-	  & 1 & 1 & 1 \\
-	  & 3 & 5 & 5 \\
-	  & 4 & 6 & 8
-\end{bmatrix}
-$$
-
-Then, the new row operation matrix is going to make a transformation on the inner sub matrix, and terminates other elements on the second column to make the matrix upper triangular, the matrix $L_2$ is going to be like: 
-
-$$
-L_2 = 
-\begin{bmatrix}
-	1 &   &   & \\ 
-      & 1 &   & \\
-      &-3 & 1 & \\
-      &-4 &   & 1 
-\end{bmatrix}
-$$
-
-Then: 
-
-$$
-L_2L_1A = 
-\begin{bmatrix}
-	2 & 1 & 1 & 0 \\
-	  & 1 & 1 & 1 \\
-	  &   & 2 & 2 \\
-	  &   & 2 & 4
-\end{bmatrix}
+\begin{aligned}
+    L_2 = 
+    \begin{bmatrix}
+        1 &   &   & \\ 
+        & 1 &   & \\
+        &-3 & 1 & \\
+        &-4 &   & 1 
+    \end{bmatrix}
+    \\
+    L_2L_1A = 
+    \begin{bmatrix}
+        2 & 1 & 1 & 0 \\
+        & 1 & 1 & 1 \\
+        &   & 2 & 2 \\
+        &   & 2 & 4
+    \end{bmatrix}
+\end{aligned}
 $$
 
 
-And $L_3$ is literally just $R_4 \leftarrow R_4 - R_3$, and it's gonna be like: 
+and $L_3$ represents $R_4 \leftarrow R_4 - R_3$, and it's gonna be like: 
 
 $$
-L_3L_2L_1A = 
-\begin{bmatrix}
-	2 & 1 & 1 & 0 \\
-	  & 1 & 1 & 1 \\
-	  &   & 2 & 2 \\
-	  &   &   & 2
-\end{bmatrix}
+\begin{aligned}
+    L_3 &= 
+    \begin{bmatrix}
+        1& & & \\
+        & 1& & \\  
+        & & 1& \\
+        & & -1& 1
+    \end{bmatrix}
+    \\
+    L_3L_2L_1A &= 
+    \underbrace{
+        \begin{bmatrix}
+        2 & 1 & 1 & 0 \\
+        & 1 & 1 & 1 \\
+        &   & 2 & 2 \\
+        &   &   & 2
+    \end{bmatrix}}_{U}
+\end{aligned}
 $$
 
-And Conveniently, the Inverse of the matrix $L_3L_2L_1$ is pretty trivial to get, it's just taking the negative sign on all the non-diagonal elements of the matrix: 
+And Conveniently, the Inverse of the matrix $L_3L_2L_1$ is $L_1^{-1}L_2^{-1}L_3^{-1}$, and inverting the element that are not diagonals in the $L_k$ matrix will give use the inverse: $L^k$. For example (You should verify it yourself): 
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        1 &   &   & \\ 
+        & 1 &   & \\
+        &-3 & 1 & \\
+        &-4 &   & 1 
+    \end{bmatrix}^{-1} = 
+     \begin{bmatrix}
+        1 &   &   & \\ 
+        & 1 &   & \\
+        &3 & 1 & \\
+        &4 &   & 1 
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+Then afterwards, we retain the LU factorization of matrix $A$: 
+
+$$
+\begin{aligned}
+    A =\underbrace{L_1^{-1}L_2^{-1}L_3^{-1}}_{L} U
+\end{aligned}
+$$
+
 
 --- 
 ### **A General Formulation**
 
-For this part, we are still going to be assuming that the matrix $A\in \mathbb{C}^{m\times m}$. And we are looking at one of the row operation matrix, $L_k$
-
-The $L_k$ matrix is the matrix that operates on the $k^{th}$ column of the matrix, and aims to eliminates the entry zero for all rows that are below $k$. 
-
-The $L_k$ matrix experience the following structure: 
-
-$$(L_k)_{i, i}= 1 \quad \forall \; 1 \leq i \leq m$$
-This is for the diagonal entries, and for the row operational elements, it's gonna looking like: 
+The $L_k$ matrix is the matrix that operates on the $k^{th}$ column of the matrix, and aims to set the entries for all rows that are below $k$ to zero through elementary row operations. The $L_k$ matrix experience the following structure: 
 
 $$
-(L_k)_{i, k} = \frac{x_{j, k}}{x_{k, k}} \quad \forall \; k < j \leq m
+\begin{aligned}
+    (L_k)_{i, i} &= 1 \quad \forall \; 1 \leq i \leq m
+    \\
+    (L_k)_{i, k} &= \frac{a_{j, k}}{a_{k, k}} \quad \forall \; k < j \leq m,
+\end{aligned}
 $$
 
-Ok... too much indexing, let's try if we can leverage the power of the matrix by representing it as something else. 
-
-Let the vector $l$ be negative of the $k^{th}$ column of the matrix $L_k$, but with the $k$ element set to 1 instead of zero. 
+$L_k$ has a structural representation using block matrices. Let the vector $l$ be negative of the $k^{th}$ column of the matrix $L_k$, but with the $k$ element set to 1 instead of zero. 
 
 $$
 l_k = \begin{bmatrix}
@@ -146,17 +175,7 @@ $$
 L_k = I - l_k e_{k}^H
 $$
 
-Where the outer product of the $l_k$ vector and the $e_k$ vector actually makes up the matrix $L_k$ 
-
-Observe that: 
-
-$$
-	e_k^H l_k =  0
-$$
-
-This is the case because the $(l_k)_k$ is zero and it's not present, and hence the dot product is going to be zero. 
-
-Now let's consider the following express and see what it implies for the Row Operation Matrix: 
+Where the outer product of the $l_k$ vector and the $e_k$ vector actually makes up the matrix $L_k$, Observe that: $e_k^H l_k =  0$. This is the case because the $(l_k)_k$ is zero and it's not present, and hence the dot product is going to be zero. Now let's consider the following expression and see what it implies for the Row Operation Matrix: 
 
 $$
 	(I - l_ke_k^H)(I + l_ke_k^H)
@@ -166,9 +185,7 @@ and expanding it we have:
 $$
 	I - l_ke_k^Hl_ke_k^H
 $$
-and using the observation that $e_k^Hl_k = 0$, the expression equals to $I$, therefore, we have spotted the inverse matrix of the matrix $L_k$we simply swap the signs of all the non-diagonal elements in the matrix to get the inverse of the matrix $L_k$. 
-
-In addition, the block structure of the matrix allows us to easily multiply together a sequences of the inverse matrices, more specifically: 
+and using the observation that $e_k^Hl_k = 0$, the expression equals to $I$, therefore, we have spotted the inverse matrix of the matrix for each $L_k$ we simply swap the signs of all the non-diagonal elements in the matrix to get the inverse of the matrix $L_k$. In addition, the block structure of the matrix allows us to easily multiply together a sequences of the inverse matrices, more specifically: 
 
 $$
 	L = L_1^{-1}L_2^{-1} \cdots L^{-1}_{m-2}L^{-1}_{m-1}
@@ -177,6 +194,7 @@ $$
 And this is the formula to get the Lower Triangular matrix $L$ for the LU decomposition. With pivoting. 
 
 **Note:**
+
 Also the sum of all the Lower Triangular Matrices are looking the same as the final results of the Lower Triangular Matrix. 
 
 --- 
@@ -229,7 +247,7 @@ $$
 
 Notice that, the matrix $P_3$, $P_2$ are not acting on the first column of the matrix $L_1$, it leaves it alone, and this is recursively true for the sub-matrices. 
 
-#### In General
+#### **In General**
 So in general, we will have the following: 
 $$
 (L_{m-1}'\cdots L_2'L_1')(P_{m - 1}\cdots P_2P_1)A = U
@@ -331,7 +349,7 @@ def lu_decompose(A):
 
 ```
 
-This is a very well-optimized algorithm, the $P$ permutations matrices are never represented as an actual matrix multiplication! But the operations will be felt by these matrices because of the use of <--> on these matrices. 
+This is a very well-optimized algorithm, the $P$ permutations matrices are never represented as an actual matrix multiplication! But the operations will be felt by these matrices because of the use of swapping on these matrices. 
 
 How is the $L$ matrix constructed? This part of the algorithm is the most fascinating part. 
 

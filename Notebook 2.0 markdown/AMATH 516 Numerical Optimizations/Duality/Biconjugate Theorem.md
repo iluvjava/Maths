@@ -1,11 +1,11 @@
-[Convex Conjugation](Convex%20Conjugation.md)
+[Convex Conjugation Introduction](Convex%20Conjugation%20Introduction.md)
 
 ---
-### **Intro**
+# **Intro**
 
-Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. 
+Convex conjugate represents the epigraph of a function via affine minorants, or basically half spaces. We use the epigraphical interpretation to prove the theorem. 
 
-**Theorem Statement**
+### **Theorem Statement**
 
 > For any proper function we have the convex closure of the epigraph of a function is the same as the epigraph of the biconjugation of that function: 
 > $$
@@ -13,12 +13,10 @@ Convex conjugate represents the epigraph of a function via affine minorants, or 
 > $$
 
 
-
-
 ---
-### **Proof**
+# **Proof**
 
-Using the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
+Recall the fact that the epigraph of $f^\star$ consists of all the affine functions that are below the epigraph of $f$. Giving us the following description of the epigraph of $f$: 
 
 $$
 \begin{aligned}
@@ -42,6 +40,8 @@ $$
 
 Which is a contradiction to the definition of conjugate function because conjugate function $f^\star(y) = \sup_{x}\{\langle y, x\rangle - f(y)\}$. $\blacksquare$.
 
+
+#INCORRECT, #UNFINISHED, the proof is not finished for the theorem yet. 
 
 **Remarks**
 

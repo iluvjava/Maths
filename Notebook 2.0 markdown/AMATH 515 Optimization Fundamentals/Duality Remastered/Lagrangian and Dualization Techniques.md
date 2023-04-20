@@ -1,7 +1,7 @@
 To do this, we would need 
-[Convex Conjugation](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation.md). 
+[Convex Conjugation Introduction](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation%20Introduction.md). 
 And [MinMax MaxMin Lemma](../../AMATH%20516%20Numerical%20Optimizations/Duality/MinMax%20MaxMin%20Lemma.md).
-But we also need [Convex Conjugate Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Examples.md)
+But we also need [Convex Conjugate Computations Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Computations%20Examples.md)
 
 ---
 ### **Intro**
@@ -241,12 +241,12 @@ This process is very general and can be used in a lot of different cases.
 
 Here we consider list of convex equality and inequality constraints paired up with a minimization on a convex objective function. 
 
-#TODO: Write this! 
+#UNFINISHED: Write this! 
 
 ---
 ### **L1 Regularized Regression**
 
-#TODO: Write this! 
+#UNFINISHED: Write this! 
 
 We are interested in the Lagrangian of this problem. 
 

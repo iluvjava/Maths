@@ -1,4 +1,4 @@
-Basics of Linear Programming. 
+Basics of the Linear Programming. 
 This is stated similarly to the book: Numerical Optimization
 
 [Exploiting the Lagrangian (KKT)](Duality%20Remastered/Exploiting%20the%20Lagrangian%20(KKT).md), [Lagrangian and Dualization Techniques](Duality%20Remastered/Lagrangian%20and%20Dualization%20Techniques.md)
@@ -12,7 +12,7 @@ One General Format for the linear programming problem is:
 > \min_x \{c^Tx : Ax = b, x \ge \mathbf{0}\}\tag{1}
 > $$
 
-We assume that $A$'s row does not repeat, this is neccessary for bounding a unique solutions for the system. And let's say that $A \in \mathbb{R}^{m\times n}$. The argument is that any linear programming problem can be put into this form because of the following reduction techniques for different type of constraints: 
+We assume that $A$'s row does not repeat, this is necessary for bounding a unique solutions for the system. And let's say that $A \in \mathbb{R}^{m\times n}$. The argument is that any linear programming problem can be put into this form because of the following reduction techniques for different type of constraints: 
 
 > $$
 > \begin{aligned}
@@ -185,7 +185,7 @@ Algorithmically, the Simplex algorithm will try to achieve the followings:
 
 It moves the feasible point from one vertex of the polytope to another vertex of the Polytope. There are 2 cases: 
 
-1. Reduce any linear programming problem to a standard form, the equality pluse slack formuation. As described in (2). 
+1. Reduce any linear programming problem to a standard form, the equality pluse slack formulations. As described in (2). 
 2. Goes to another vertex with an objective value that is less than or equal to the last value. And there are 2 other cases for this:
    1. Goes to infinity. 
    2. Get stuck due to degeneracy of the vertex of polytope. 
@@ -194,6 +194,6 @@ The algorithm is kinda complicated hence it will be stated in another file.
 
 
 ---
-### **Presolving**
+### **Pre-solving**
 
 This is a complicated topic and someone wrote their master thesis about it [here](http://etd.fcla.edu/UF/UFE1000157/sadhana_v.pdf). 

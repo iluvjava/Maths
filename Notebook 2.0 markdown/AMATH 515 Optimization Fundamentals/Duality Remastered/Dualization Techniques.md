@@ -1,7 +1,7 @@
 To do this, we would need 
-[Convex Conjugation](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation.md). 
-And [MinMax MaxMin Lemma](../../AMATH%20516%20Numerical%20Optimizations/Duality/MinMax%20MaxMin%20Lemma.md).
-But we also need [Convex Conjugate Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Examples.md)
+[Convex Conjugation Introduction](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation%20Introduction.md), 
+And [MinMax MaxMin Lemma](../../AMATH%20516%20Numerical%20Optimizations/Duality/MinMax%20MaxMin%20Lemma.md), 
+But we also need [Convex Conjugate Computations Examples](../../AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugate%20Computations%20Examples.md) for more context. 
 
 ---
 ### **Intro**

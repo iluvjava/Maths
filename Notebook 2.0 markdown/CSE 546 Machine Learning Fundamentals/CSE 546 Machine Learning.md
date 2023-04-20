@@ -23,14 +23,12 @@ Machine Learning is a clusterfuck, a chimera, nonetheless, it's our best attempt
 **Machine Learning Fundamental**
 
 Concepts
-1. Maximal Likelihood Estimator [Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Maximal%20Likelihood%20Estimator.md)
+1. Maximal Likelihood Estimator [Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Maximal%20Likelihood%20Estimator.md)
 2. Markov's Inequality [Markov Inequality](Markov%20Inequality.md)
-3. [Expectation of Random Variables](Expectation%20of%20Random%20Variables.md)
+3. [Expectations of Random Variables without Sigma Algebra](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Expectations%20of%20Random%20Variables%20without%20Sigma%20Algebra.md)
 4. [IDD RVs](IDD%20RVs.md)
-5. [Conditional Probability](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Conditional%20Probability.md)
-6. [Bayes Theorem](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Bayes%20Theorem.md)
-7. [Expectation of Random Variables](Expectation%20of%20Random%20Variables.md)
-8. [Expectation, Variance of Random Variables](Expectation,%20Variance%20of%20Random%20Variables.md)
+5. [Conditional Probability, Expectations](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Conditional%20Probability,%20Expectations.md)
+6. [Bayes Theorem](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Bayes%20Theorem.md)
 
 Example 
 1. Linear Regression (With Offset) and Gaussian MLE [Linear Regression](Linear%20Regression.md)

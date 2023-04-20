@@ -1,6 +1,6 @@
 We need to talk about the algorithmic aspect of things like SVD, Eigen, and QR. 
 
-prereq: [Norm](Matrix%20Theory/Norm.md)
+prereq: [Norm, for Beginners](Matrix%20Theory/Norm,%20for%20Beginners.md)
 
 This is one of the metric used for measure the behavior of linear operator, which under the context of conditioning and stability for linear algebra, forms the basis for computational algorithm for the condition number. 
 
@@ -62,7 +62,7 @@ $$
 \right)
 $$
 
-Then an upper bound can be identified with some properties of Matrix Vecor Norm, [Norm](Matrix%20Theory/Norm.md), which will results in the following expression here: 
+Then an upper bound can be identified with some properties of Matrix Vecor Norm, [Norm, for Beginners](Matrix%20Theory/Norm,%20for%20Beginners.md), which will results in the following expression here: 
 
 > $$\kappa = \sup_{||x|| = 1}\frac{||A||\;||x||}{||Ax||}$$
 Relative Conditioning Number of a matrix
@@ -71,7 +71,7 @@ Now the condition number will tells us the upper bound for Relative Condition of
 
 #### **Proof:** 
 
-Here we will quickly work through the poof for the conditioning of a matrix in linear algebra and in this case, we might need to understand something about the [Norm](Matrix%20Theory/Norm.md) of a matrix, which is used here. 
+Here we will quickly work through the poof for the conditioning of a matrix in linear algebra and in this case, we might need to understand something about the [Norm, for Beginners](Matrix%20Theory/Norm,%20for%20Beginners.md) of a matrix, which is used here. 
 
 $$\underset{\delta x}{\sup}\left(
 \frac{

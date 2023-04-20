@@ -4,9 +4,7 @@ repreq: [Fourier Transform Fourier Series](Fourier%20Transform%20Fourier%20Serie
 ---
 
 ### **Intro**
-The FFT uses divide and conquer and it exploits the fractal properties of the DFT matrix, the roots of unity is the key for the exploitation here. 
-
-This is the task of computing the discrete Fourier Transform: 
+The FFT uses divide and conquer and it exploits the fractal like structure of the DFT matrix, the roots of unity is the key. We denote the signal in the time domain using $f$ and $F$ denotes the signal in the Fourier Domain. This is the task of computing the discrete Fourier Transform: 
 
 $$
 \begin{aligned}
@@ -21,16 +19,16 @@ $$
     \exp\left(
         i \frac{2\pi kj}{N}
     \right)F_k
-    \quad \forall\; 0 \le j \le N - 1
+    \quad \forall\; 0 \le j \le N - 1, 
 \end{aligned}
 $$
 
-Different convention exists for different form of DFT, but here we consider this particular form. A Naive way of computing the algorithm will take abou $\mathcal{O}(N^2)$ complexity. 
+different convention exists for different form of DFT, but here we consider this particular form. A Naive way of computing the algorithm will take abou $\mathcal{O}(N^2)$ complexity by just using the matrix vector multiplications. 
 
 ---
-### **Divide and Conquery Design**
+### **Divide and Conquer Approach**
 
-Here we assume that $N$ is an integer power of $2$, let $w = \exp(2\pi  i/N)$ and the signal $f_j$ is has $N$ samples in it. Then we consider the recursive nature of the expression; by splitting the term by odd and even. 
+Here we assume that $N$ is an integer power of $2$, let $w = \exp(2\pi  i/N)$ denotes the roots of unity, let the signal $f_j$ have $N$ samples in it. By splitting the term in the sum by odd and even we have:
 
 $$
 \begin{aligned}
@@ -67,11 +65,11 @@ $$
     \right)f_{2j + 1}
     \\
     &= 
-    F^{[e]}_k + w^{k}F^{[o]}_k
+    F^{[e]}_k + w^{k}F^{[o]}_k .
 \end{aligned}
 $$
 
-Where, we will be able the split the signal into 2 parts, where each part are also a sub-Fourier Transform. This particular property allows us to use a divide by conquery approach to implement the algorithm. Another good way of thinking about it is to partitioned DFT matrix's columns. 
+Where, $F_k^{[e]}, F_k^{[o]}$ denotes the summation terms indexed by even indices for the signal $F_k$, these 2 terms itself is the results of another Foutie Transform. This particular property allows us to use a divide by conquery approach to implement the algorithm. Another good way of thinking about it is to partitioned DFT matrix's columns. 
 
 Here, please also observe that $F_k^{[e]}$ is also $N/2$ periodic, which implies that $F_{k + N/2}^{[e]} = F_{k}^{[e]}$, the same can be said for $F_k^{[o]}$. This implies that the computations needed for $F_k^{[e]}, F_{k}^{[o]}$ is about half of the master problem. However, there is one more detail to discuss, consider expanding out the summation representing $F^{[e]}_k$: 
 
@@ -112,7 +110,7 @@ $$
 \end{aligned}
 $$
 
-And here, please take notice that, the index $j$ is paramaterized by the depth of th recursion, so is the multiplications of $w^{k}$. It depends on which lever of recursion we are looking at. 
+And here, please take notice that, the index $j$ is paramaterized by the depth of th recursion and in this case for $F_k^{[ee]}$, its multiplier is now $4$, so is the multiplications of $w^{k}$, which has a new multiplier of $2k$.
 
 **Optimizing the Memory Allocations**
 
@@ -254,3 +252,4 @@ The new ordering that allows for memory optimization is to reorder the binary nu
 ---
 ### **Matrix Representations** 
 
+Me have no time to fill this up aaaaaaaaa...

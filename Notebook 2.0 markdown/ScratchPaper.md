@@ -1,3 +1,4 @@
+### **Celestia AI**
 $$
 \max_{\forall x_i} \left\lbrace
     \sum_{j = 1}^{n}h_i(x_i): \text{via consent} \wedge \text{Friendship and Ponies}
@@ -232,7 +233,64 @@ Then, is it possible that the gradient of the function is globally Lipschitz?
 
 
 Testing links conversion: 
-* [Convex Conjugation](AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation.md)
+* [Convex Conjugation Introduction](AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation%20Introduction.md)
 * [Basic Machine Learning](AMATH%20582%20Data%20Science/Basic%20Machine%20Learning.md)
-* [Monotone Operators](AMATH%20516%20Numerical%20Optimizations/Monotone%20Operators.md)
+* [Introduction to Operators for Optimizations](Introduction%20to%20Operators%20for%20Optimizations.md)
 * [2D Bifurcation with Zero Eigenvalues](2D%20Bifurcation%20with%20Zero%20Eigenvalues.md)
+
+
+The toString function for big int. 
+
+```python 
+digits = '0123456789'
+def bigint(n, d=10):
+    s = ''
+    l = [(n,None)]
+    while l:
+        m, k = l.pop(0)
+        if m < d:
+            if k:
+                s += '0'*(k-1)
+            s + = digits[m]
+        else:
+            ll = []
+            while d <= m:
+                a = b = c = d
+                sb = 1
+                sc = 1
+                while (a := a*a) < m:
+                    c = b
+                    b = a
+                    sc = sb
+                    sb *= 2
+                ll.append((m//c, (k - sc) if k else None))
+                m = m%c
+                k = sc
+            ll.append((m,k))
+            l = ll + l
+    return s
+```
+
+
+Metaheuristic algorithms do local searches near the current found optimal, for example, the evolutionary algorithm and particle swarms. They assume the fact that underlying optimals are close to some of the current solutions found with good objective values. This is not surprising if we assume Lipschitz continuity for the functions as the level set of the true optimal is always a subset of the sub-optimal. Suppose current optimal solution $\bar x$ is found, then the true optimal $x^+$ satisfies $x^+ \in \{x: f(x)\le f(\bar x)\}=:\text{lev}_{f(\bar x)}(f)$, therefore, reducing the search spaces, further assume $\text{lev}_{f(\bar x)}(f)$ has non empty interior, then there exists some value $x$ in the set that is smaller than $\bar x$ and it's right next to it. Additionally the set $\text{lev}_{f(\bar x)}(f)$ has to contain $x^+$. Whether $x^+$ is contained within the same connected components (topology term not graph theory term) cannot be easily determined. And this, is what the mutation part of the genetic algorithm addresses. 
+
+When search space is uncountable and not close, it might be possible (Still thinking about this part.) to design a black box for each claimed algorithm that has a given convergence rate worse than what it claims, hence contradicting itself. 
+
+The paper cited in the wiki for that section criticizes the low quality of research, insufficient proof, and reinventing the wheels for ad hoc algorithms. This is believable because there are only a few frameworks for metaheuristics that made their names out from the field. The canonical algorithms were: Simulated Annealing, Genetic Evolutionary Algorithm, Ant Colonies, and Particle Swarms. 
+It would be lovely to research their theoretical properties because "Black Box" functions can be physical experiments, computer simulations, or other types of evaluations that are impossible to know the gradient of. It is also interesting to see how relaxing the functions and oracles leads to a different approach in optimizations, in this case, the lack of gradients and derivative information.
+
+The paradigms differ entirely from the deterministic NP-Hard algorithm for discrete problems, which uses branches and bounds. These algorithm DOES use heuristics, but they are well-defined lower bounding functions that produce partial solutions. In the case of these canonical BBOs algorithms, there are no apparent proofs or specific exploits on problem structures. And that is why mathematicians are unlikely to work on it too much. One would need to at least assume something about the function, something stronger to prove convergence or expected convergence in the stochastic case. However this is not the case as explained in the paper cited in the wiki. 
+
+$$
+f(
+A\overset{
+    \overbrace{.\;\cdots \;.}^{\text{n times}}
+    }{x} + b, y
+):= \partial_x^n f(Ax + b, y)
+$$
+
+$$
+{\cdot}^{{.\cdot}^3}
+$$
+
+

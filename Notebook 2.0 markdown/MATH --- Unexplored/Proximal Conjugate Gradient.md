@@ -1,5 +1,5 @@
 [Conjugate Gradient for Dummy](../AMATH%20515%20Optimization%20Fundamentals/Conjugate%20Gradient%20for%20Dummy.md)
-[Moreau Envelope and Proximal Mapping](../AMATH%20516%20Numerical%20Optimizations/Moreau%20Envelope%20and%20Proximal%20Mapping.md)
+[Moreau Envelope and Proximal Mapping](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md)
 
 ---
 ### **Intro**

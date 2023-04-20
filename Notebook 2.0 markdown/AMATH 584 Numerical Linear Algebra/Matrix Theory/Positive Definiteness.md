@@ -1,5 +1,5 @@
 [Finite Euclidean Inner Product](../../AMATH%20516%20Numerical%20Optimizations/Background/Finite%20Euclidean%20Inner%20Product.md)
-[Norm](Norm.md)
+[Norm, for Beginners](Norm,%20for%20Beginners.md)
 
 ---
 ### **Intro**

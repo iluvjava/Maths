@@ -1,5 +1,5 @@
 Reference: [Stanford University](http://www.princeton.edu/~yc5/ele522_optimization/lectures/mirror_descent.pdf)
-[Gradient Descend 1](Gradient%20Descend/Gradient%20Descend%201.md),[Gradient Descend 2](Gradient%20Descend/Gradient%20Descend%202.md)
+[Gradient Descend, Smoothness](Gradient%20Descend/Gradient%20Descend,%20Smoothness.md),[Gradient Descend 2](Gradient%20Descend/Gradient%20Descend%202.md)
 
 ---
 ### **Intro**
@@ -88,7 +88,7 @@ We can use the prior knowledge and assumptions about the function and choose the
 
 > Using Negative entropy as the generating function, and bregman divergence, we can make up the KL divergence. 
 
-More about [KL-Divergence](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/KL-Divergence.md)
+More about [KL-Divergence](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/KL-Divergence.md)
 
 **Observe**
 Negative entropy is convex and has a local minimum, and it's smooth. 

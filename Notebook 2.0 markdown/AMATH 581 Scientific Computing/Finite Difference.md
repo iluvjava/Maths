@@ -2,25 +2,26 @@ The story behind finite difference is a bit complicated, so here is just a quick
 [Taylor Series](../MATH%20000%20Math%20Essential/Calc/Taylor%20Series.md)
 
 ---
-### **Order 2**
+### **Order 2 Methods**
 **Forward, Backward**: 
 
 $\mathcal{O}(\Delta t^2)$ forward and backwards difference schemes for $f'(t)$ and $f''(t)$. 
 
 $$
-f'(t) = \frac{3f(t) -  4f(t\pm \Delta t) + f(t \pm 2\Delta t)}
-{\pm 2\Delta t}  + \mathcal{O}(h^2)
+\begin{aligned}
+	f'(t) &= \frac{3f(t) -  4f(t\pm \Delta t) + f(t \pm 2\Delta t)}
+	{\pm 2\Delta t}  + \mathcal{O}(h^2)
+	\\
+	f''(t) &= \frac{2f(t) - 5f(t \pm \Delta t) + 4f(t \pm 2\Delta t) - f(t \pm 3\Delta t)}
+	{\Delta t^2} + \mathcal{O}(h^2)
+\end{aligned}
 $$
 
-$$
-f''(t) = \frac{2f(t) - 5f(t \pm \Delta t) + 4f(t \pm 2\Delta t) - f(t \pm 3\Delta t)}
-{\Delta t^2} + \mathcal{O}(h^2)
-$$
-
-Or, you can use the Sympy (python module) to look for finite difference in a quick and dirty way.
+Or, you can use the Sympy (python module) to look for finite difference in a quick and dirty way (Solve it algebraically to get the right formula for points of interests). 
 
 **Proof**: 
-Use taylor series. 
+
+Use Taylor series. 
 
 **Central**: 
 $$
@@ -39,3 +40,8 @@ $$
 ### **Newton's Interpolations and Finite Difference**
 See [here](https://www.youtube.com/watch?v=scQ51q_1nhw) for more. Finite difference it's a special case of Newton's Interpolation. 
 
+
+---
+### **Practical Concern over IEEE Floating Point Arithmetic**
+
+When actually computing the finite difference on the computer, there is a certain threshold for the discretization of the domain. See [Computer Bad at Maths](Computer%20Bad%20at%20Maths.md) for more relevant discussion. 

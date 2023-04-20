@@ -1,5 +1,5 @@
 We are going to derive the MLE for the poisson distribution
-[Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Maximal%20Likelihood%20Estimator.md)
+[Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Maximal%20Likelihood%20Estimator.md)
 
 We also discussed the generalized linear model for poisson distribution in [Generalized Linear Model](../AMATH%20515%20Optimization%20Fundamentals/Generalized%20Linear%20Model.md), as an example, and putting it into an optimization problem in the optimization class. 
 

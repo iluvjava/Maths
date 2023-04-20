@@ -20,20 +20,26 @@
 > \end{aligned}
 > $$
 
+
+
 **Remarks**
 
-When the set $C$ is not closed, the $\sup$ operator is closing it automatically. The function is convex because its the sum of 2 proper convex functions wrt $y$, $\langle y, x\rangle$ which is convex and real-valued, and $\delta_C$ the indicator function which is augmented real and proper, using [Convexity Preserving Operations of Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20of%20Functions.md), this is just taking the maximum of convex functions pointwise, therefore the resulting function is convex. 
+In some literatures, $\sigma_C$ is used for denoting the support unction for a set $C$. When the set $C$ is not closed, the $\sup$ operator is closing it automatically over a set of affine functions (could  be infinite), therefore the epigraph of the function is closed for all $C\neq \emptyset$. The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md) for more information). 
 
-When dealing with the support function for analysis purposes, keep in mind these good properties: 
-* It's convex 
+When dealing with the support function for analysis purposes, keep in mind these good properties for all subsets $C$ of the Euclidean space: 
+* It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
 * $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
 * $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
 * Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
   * Its epigraph is a cone, literally. 
 * It's sub-additive: $\delta_C^\star(x_1 + x_2) \le \delta_C^\star(x_1) + \delta_C^\star(x_2)$
-* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [Convex Conjugation](../Duality/Convex%20Conjugation.md) for more. 
+* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [Convex Conjugation Introduction](../Duality/Convex%20Conjugation%20Introduction.md) for more. 
 
 We will prove some of the properties that are not trivial to prove. 
+
+**References**:
+
+Amir's first order op textbook, section 2.4. 
 
 ---
 ### **Theorem: Convexity of Support Functions**
@@ -63,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-Therefore it's convex. 
+Therefore it's convex.
 
 
 ---
@@ -100,12 +106,18 @@ $$
 \end{aligned}
 $$
 
-The diretion whre $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ is obvious.Using the previous results we obtain the equivalence between all these 3 functions. 
+The direction where $\delta_{C}^\star(x) \le \delta_{\text{cvxh}(C)}^\star(x)$ is obvious.Using the previous results we obtain the equivalence between all these 3 functions. 
 
 **Remarks**
 
-The magic here is the function inside of the sup can be superpositioned, and we take advantage of the properties of convex hull to support any points that are in convex hull using points from the original set $C$. 
+The magic here is the function inside of the sup can be super-positioned, and we take advantage of the properties of convex hull to support any points that are in convex hull using points from the original set $C$. 
 
+
+
+---
+### **Support Function for Closed Convex Sets**
+
+#UNFINISHED #HEINZ, Lemma 8.15
 
 ---
 ### **Example 1: Support Function of Finite Sets**

@@ -1,5 +1,5 @@
 [Classification, Statistics Theory](Classification,%20Statistics%20Theory.md)
-[Bayes Theorem](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics/Bayes%20Theorem.md)
+[Bayes Theorem](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Bayes%20Theorem.md)
 
 Reference Recourse: [Logistic Regression And Bayes](https://www.countbayesie.com/blog/2019/6/12/logistic-regression-from-bayes-theorem)
 

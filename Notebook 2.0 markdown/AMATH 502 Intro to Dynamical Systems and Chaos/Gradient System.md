@@ -12,7 +12,7 @@ Much like that hamiltonian system, The gradient system also have a potential fun
 And this is a class of system that cannot have limit cycles. 
 
 --- 
-### Def: Gradient System
+### **Def: Gradient System**
 
 $$
 x' = -\nabla V(x)
@@ -20,39 +20,30 @@ $$
 
 Where $V(x)$ is a vector, scalar function. 
 
-Notice that, this is like the gradient descent algorithm. 
+**Remarks**
 
-#### Theorem
+This looks like the dynamics for the gradient descend algorithm. 
 
-Closed loop trajectories are impossible for a gradient system.
+#### **Theorem**
 
-Let a close loop be $x(t)$, and it loops for $t = T$ then $x(0) = x(T)$
-
-Consider: 
+Closed loop trajectories are impossible for a gradient system. Let a close loop be $x(t)$, and it loops for $t = T$ then $x(0) = x(T)$ consider: 
 
 $$
-V(x(T)) - V(x(0)) = \int_{0}^T \nabla V(x(t))x'(t) dt = \int_{0}^{T} - (\nabla V(x(t)))^2 dt \le 0
+V(x(T)) - V(x(0)) = \int_{0}^T \nabla V(x(t))x'(t) dt = \int_{0}^{T} - (\nabla V(x(t)))^2 dt \le 0. 
 $$
 
-And notice that, when it's equal to zero, the system is all zero, and it has to be negative for this integral because the squares of real numbers are always positive. 
-
-There are no closed loop for a system of zeros. 
-
-There are no closed loop if the system any other than that system because the integral cannot be zero. 
-
-A closed loop is impossible in a gradient system. 
+Notice that, when it's equal to zero, the system is all zero, and it has to be negative for this integral because the squares of real numbers are always positive. There are no closed loop for a gradient system that is non-zero. A closed loop is impossible in a gradient system. 
 
 ---
 
-### How to identify Gradient System?
+### **How to identify Gradient System?**
+By assuming that the second derivative of the vector field exists, then we consider the curl on the given dynamics and if it's a gradient system, then it must satisfies: 
 
 $$
-\nabla \times (-\nabla V(x)) = 0
+\nabla \times (-\nabla V(x)) = \mathbf 0. 
 $$
 
-For any vector-> Scalar function, the curl is zero, be cause of $\partial xy V = \partial yx V$
-
-And notice that: 
+For any vector-> Scalar function, the curl is zero, be cause of $\partial xy V = \partial yx V$, notice that: 
 
 $$
 V(y) = - \int_{x_0}^{y} f(x) dx
@@ -64,7 +55,7 @@ $$
 $$
 
 ---
-### How to Find the Potential Function
+### **How to Find the Potential Function**
 
 Integrate $x'$ wrt to $x$, get a the constant as a function of $y$, say $c(y)$, take the partial derivative to get $c'(y)$, equates with $y'$ to solve for $c(y)$.
 
