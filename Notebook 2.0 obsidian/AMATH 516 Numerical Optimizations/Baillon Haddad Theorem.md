@@ -1,4 +1,4 @@
-1. [[Convex Conjugation]]
+1. [[Duality/Convex Conjugation Introduction]]
 3. [[Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
 4. [[Characterizing Functions for Optimizations]]
 

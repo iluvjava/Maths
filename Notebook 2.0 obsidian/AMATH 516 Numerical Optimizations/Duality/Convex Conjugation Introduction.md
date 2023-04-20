@@ -15,7 +15,7 @@ Convex conjugate is Fenchel conjugate, It's also called the Fenchel Legendre Tra
 3. It's convex. 
 4. Convex conjugate function is related to the subgradient. 
 
-**Definition**
+#### **Def-1**
 
 > Let $f(x): \mathbb{R}^n \mapsto \mathbb{R} \cup \{-\infty, \infty\}$, then the Fenchel Conjugate is defined to be: 
 > $$
@@ -54,7 +54,7 @@ The conjugate function is always convex, see the next section for more info. We 
 
 Before we start, please see [[Fenchel Identity, Inequality]], for the inequality. It's somewhat relevant. 
 
-**Claim: Conjugate Encodes Affine Minorants**
+#### **Claim-1: Conjugate Encodes Affine Minorants**
 > For a function $f$ that is proper, we have $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
 
 Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
@@ -80,7 +80,7 @@ We used the Fenchel inequality on the second line.
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
-**Corollary: Enclosing the Epigraph**: 
+#### **Corollary-1: Enclosing the Epigraph**: 
  
 In fact, one can go on and make the claim the the epigraph of the original function is contained within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality: 
 
@@ -327,7 +327,7 @@ Entry 3, second table, $g^\star$ is dualizing on both parameters $(x,z)$ for the
 
 And finally, the conjugate of the Indicator function of set $C$: $\delta_C^\star(x)$ is just the support function on the set $C$. In fact, for more special use of the conjugation, we must invoke the indicator function on epigraph of the function and use properties of the [[Support Function]] to analyze the dual. 
 
-For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
+For more, actual examples with step by step derivations regarding the convex conjugate of functions, see [[Convex Conjugate Computations Examples]] for more information. Here we summarize some of the important results from there in a nice table format. 
 
 For theorems that relates the subgradient and the Fenchel Conjugate, visits: [[Fenchel Identity, Inequality]] for more. 
 

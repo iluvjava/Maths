@@ -1,6 +1,6 @@
 This is the algorithm we are going to study in this section.
 
-[[Beta Smoothness]]
+[Beta Smoothness](../Basic%20Convexity/Beta%20Smoothness.md)
 This is going to help us with the analysis of the algorithm, especially under the some of the assumption where we can use uniform step size for the algorithm. 
 
 Content List: 
@@ -22,7 +22,7 @@ The major idea here is to use the $\beta$ Smoothness property of the function to
 > $$
 > Solve this mini minimization problem by changing $y$ resulting in monotonic decrease of the objective function, with an $\beta$ that is strictly larger than the smoothness constant of $f$. 
 
-Which is the RHS of the $\beta$ smoothness inequality from [[Beta Smoothness]]. Now, our task is to look for the unique minimizer for this quadratic term, we could do it with completing the square, or we can just take the gradient wrt $y$ and then solve for $y$ when gradient is zero. 
+Which is the RHS of the $\beta$ smoothness inequality from [Beta Smoothness](../Basic%20Convexity/Beta%20Smoothness.md). Now, our task is to look for the unique minimizer for this quadratic term, we could do it with completing the square, or we can just take the gradient wrt $y$ and then solve for $y$ when gradient is zero. 
 
 Facts:
 * Function value at $x$ matches with $m_x(y)$

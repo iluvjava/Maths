@@ -1,4 +1,4 @@
-[[Nonsmooth convex optimization Introduction]]
+[[Nonsmooth Convex Optimization Intro]]
 In this section, we will be interested in solving the proximal gradient method. 
 
 And this we will be continue working on the gradient descent method with addition with a non-smooth function. Which can be a one norm, or it can be an indicator function representing the constraints of the problem. 

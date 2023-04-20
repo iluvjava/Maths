@@ -1,6 +1,6 @@
-[[Maxflow Min Cut, Ford Fulkerson]], [[../../CSE 000 Basics Algorithms/Generic Search Algorithm]]. 
-
-[[Flow Decomposition Algorithm]], needed for the proof of capacity scaling algorithm. 
+- [Maxflow Min Cut, Ford Fulkerson](Maxflow%20Min%20Cut,%20Ford%20Fulkerson.md), 
+- [Generic Search Algorithm](../../CSE%20000%20Basics%20Algorithms/Generic%20Search%20Algorithm.md). 
+- [Flow Decomposition Algorithm](Flow%20Decomposition%20Algorithm.md), needed for the proof of capacity scaling algorithm. 
 
 ---
 ### **Intro**
@@ -294,7 +294,7 @@ By the above 3 reasons, we have the total number of advances/retreat bounded by 
 ---
 ### **Blocking Flows and Dinic's Algorithm**
 
-Some modifications can be to the above algorithm and show its equivalency to another algorithm, called the Dinic's algorithm for Maximum Flows. A *layered network* refers to a BFS performed on the graph where, each node is labeled with the distance from $i$, the node, to the destination $t$, in terms of the number of arcs needed. For more information about this variation, see [[Dinic's Algorithm]] for more details. 
+Some modifications can be to the above algorithm and show its equivalency to another algorithm, called the Dinic's algorithm for Maximum Flows. A *layered network* refers to a BFS performed on the graph where, each node is labeled with the distance from $i$, the node, to the destination $t$, in terms of the number of arcs needed. For more information about this variation, see [Dinic's Algorithm](Dinic's%20Algorithm.md) for more details. 
 
 
 **References:**
@@ -302,9 +302,9 @@ Some modifications can be to the above algorithm and show its equivalency to ano
 Professor's Hare's class at UBCO, and the Network Algorithms Textbook, chapter 7.4, and 7.5. 
 
 ---
-### **Generic Preflow Push**
+### **Generic Pre-flow Push**
 
-The algorithm sends everything at first. It will always be an over estimate to what is feasible to the network. Excess values will be added to the nodes. Intuitively, the algorithm pushes out the maximum amount of flow using all out-going arcs of $s$, and then it adjusts the amount of violations on each node. The violantion of flows will always be an excess amount of flow for each node. Each time the excess is adjusted, it creates more excess for all nodes in the graph. But since there is no excess for the node $s, t$, flows will eventually end up in nodes $s,t$. The algorithm will terminate with all zero excess on nodes $i\in N \setminus \{s, t\}$, creating a feasible flow. It remains to demonstrate: 
+The algorithm sends everything at first. It will always be an over estimate to what is feasible to the network. Excess values will be added to the nodes. Intuitively, the algorithm pushes out the maximum amount of flow using all out-going arcs of $s$, and then it adjusts the amount of violations on each node. The violation of flows will always be an excess amount of flow for each node. Each time the excess is adjusted, it creates more excess for all nodes in the graph. But since there is no excess for the node $s, t$, flows will eventually end up in nodes $s,t$. The algorithm will terminate with all zero excess on nodes $i\in N \setminus \{s, t\}$, creating a feasible flow. It remains to demonstrate: 
 1. The flow is max flow. 
 2. The algorithm details for squeezing excessive flows away on each node. 
 3. The algorithm terminates and its complexity. 

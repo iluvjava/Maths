@@ -1,7 +1,7 @@
 To do this, we would need 
-[[Convex Conjugation]], 
+[[../../AMATH 516 Numerical Optimizations/Duality/Convex Conjugation Introduction]], 
 And [[MinMax MaxMin Lemma]], 
-But we also need [[Convex Conjugate Examples]] for more context. 
+But we also need [[../../AMATH 516 Numerical Optimizations/Duality/Convex Conjugate Computations Examples]] for more context. 
 
 ---
 ### **Intro**

@@ -20,6 +20,7 @@ Set Topologies are particular useful for characterizing the behavior of function
 **Observations**: 
 - $\text{int}\subseteq Q$. 
 
+
 **Remark**: 
 
 The concept of interior can be relative to another subset of the background set. One prime example of this is the application of the interior relative an affine space. See [[Relative Interior And Relative Boundary]] for more. 

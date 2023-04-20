@@ -15,7 +15,7 @@ The maxflow min-cut is a problem and its dual, and this particular problem is th
 
 Take it for granted now that these set of assumptions has no loss of generality to the network flow problem. 
 
-**The LP Formulations**: 
+#### **The LP Formulations**: 
 
 The LP of the network flow problem is given as: 
 
@@ -45,7 +45,7 @@ $$
 
 where $x$ is the vector, when indexed by arc: $x_{i, j}$ represents the amount of flow on the arc $(i, j)$. $u$ is the capacity vector. 
 
-**Reduction to Minimum cost Network Flow**: 
+#### **Reduction to Minimum cost Network Flow**: 
 
 - Make zero cost on all the arcs and $0$ mass balance constraints on all the nodes $i\neq s, t$; 
 - Make the mass balance constraint on vertex $s, t$ with $b_s = 1$ and $b_t = -t$,
@@ -53,7 +53,7 @@ where $x$ is the vector, when indexed by arc: $x_{i, j}$ represents the amount o
 
 Then a solution to the minimum costs flow in the transformed graph is equivalent to the solution for the maximum flow problem. 
 
-**Application: Feasibility Search for Network Flow Problem**
+#### **Application: Feasibility Search for Network Flow Problem**
 
 Given a network flow problem with mass balance in standard form. Let sum of $b_i$ equals to zero. We look for a feasibility solution of the network using Maxflow Mincut. Modify the graph using the following transformation: 
 

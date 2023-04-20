@@ -14,8 +14,7 @@ Sometime, the function has Lipschitz Continuity over a compact domain, in that c
 **Remarks**
 Take notes that, all Lipschitz continuous functions are also uniformly continuous. This is direct from the definition above. Proof Skipped. However, the converse is not true and one exception is $\sqrt{x}$ where it has it's derivative being unbounded at $x = 0$, uniformly continuous is a more general characteristics for functions compare to Lipschitz, but they are very god damn close. The statement that is stronger than Lipschitz continuity is differentiable function, under the ordinary definition of differentiability. 
 
-$||\cdot||$ here is any norm, more importantly, it can be entirely different norm. 
-
+$||\cdot||$ here is any norm, more importantly, it can be entirely different norm. Things are very different when we are in infinite dimensional spaces. 
 
 
 ---

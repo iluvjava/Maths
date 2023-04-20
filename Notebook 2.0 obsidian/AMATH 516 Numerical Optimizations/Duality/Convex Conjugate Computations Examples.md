@@ -5,17 +5,16 @@ alias: Fenchel Conjugate Examples
 Here, I will summarize some of the examples we had for convex conjugates of different functions.
 They will be from HW, some of the notes for the courses, the goal is to make it more organized, and everything in place so we have references for the future. 
 
-[[Convex Conjugation]]
+[[Convex Conjugation Introduction]]
 
 Major References: The HW for AMATH 515. 
 
----
 ### **Intro**
 
 Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function. When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [[Biconjugate Theorem]]. 
 
 
-**Definition of Fenchel Conjugate Transform** 
+#### **Def-1: Fenchel Conjugate Transform** 
 
 > Given scalar function $f(x)$, preferably convex, the Fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
 > $$
@@ -308,38 +307,6 @@ which is the zero function.
 Let $\delta_+(x)$ be a mapping from $\mathbb{R}^n$ to $\mathbb{R}$, and let $\le, \ge$ be vectorized operator on all elements of a vector. The function basically forces all of its input to be in $\mathbb{R}_+$, else the function will just be undefined. 
 
 $$
-\delta_+(x) = \begin{cases}
-    0 & x \le \mathbf{0}
-    \\
-    \infty & \text{else}
-\end{cases}
-$$
-
-Then the convex conjugate is: $\delta_-(z)$, where it's just the negative conjugate function. 
-
-
-$$
-\begin{aligned}
-    \left(
-        \delta_+(x)
-    \right)^\star(z)
-    &= 
-    \sup_x \left\lbrace
-        z^Tx - \delta_+(x)
-    \right\rbrace
-    \\
-    &= \sup_{x \ge \mathbf{0}} \left\lbrace
-        z^Tx
-    \right\rbrace
-\end{aligned}
-$$
-
-* Consider $\exists z_i: z_i > 0$, then choose $x_i > 0$, then consider $\lim_{x_i\rightarrow \infty} z^Tx = \infty$
-* Else, $\forall z_i, z_i \le 0$, which means that $x = \mathbf{0}$ maximizes $z^Tx$. 
-
-Therefore: 
-
-$$
 \begin{aligned}
     \left(
         \delta_+(x)
@@ -351,9 +318,37 @@ $$
         \infty & \text{else}
     \end{cases}
     \\
-    &= \delta_-(x)
+    &= \delta_-(x) 
+    \\
+    \text{where }
+    \delta_+ &= \delta_{\mathbb R^n_+}
 \end{aligned}
 $$
+
+**Demonstration:**
+
+> [!details]-
+> $$
+> \begin{aligned}
+>     \left(
+>         \delta_+(x)
+>     \right)^\star(z)
+>     &= 
+>     \sup_x \left\lbrace
+>         z^Tx - \delta_+(x)
+>     \right\rbrace
+>     \\
+>     &= \sup_{x \ge \mathbf{0}} \left\lbrace
+>         z^Tx
+>     \right\rbrace
+> \end{aligned}
+> $$
+>
+> * Consider $\exists z_i: z_i > 0$, then choose $x_i > 0$, then consider $\lim_{x_i\rightarrow \infty} z^Tx = \infty$
+> * Else, $\forall z_i, z_i \le 0$, which means that $x = \mathbf{0}$ maximizes $z^Tx$. 
+> It's now shown. 
+
+
 
 ---
 ### **Indicator of a Cone, $\delta_{K}$**
@@ -378,43 +373,52 @@ $$
 $$
 
 **Justification:**
-
-$$
-\begin{aligned}
-    \left(
-        f(\lambda x)
-    \right)^\star
-    &= 
-    \sup_x\left\lbrace
-        z^Tx - f(\lambda x)
-    \right\rbrace
-    \\
-    &= 
-    \sup_y \left\lbrace
-        z^T\left(
-            \frac{y}{\lambda}
-        \right) - f(y)
-    \right\rbrace
-    \\
-    &= 
-    \sup_y \left\lbrace
-        \left(
-            \frac{z^T}{\lambda}
-        \right)y  - f(y)
-    \right\rbrace
-    \\
-	&= 
-	f^\star\left(
-		\frac{z}{\lambda}
-	\right)
-\end{aligned}
-$$
+> [!details]-
+> $$
+> \begin{aligned}
+>     \left(
+>         f(\lambda x)
+>     \right)^\star
+>     &= 
+>     \sup_x\left\lbrace
+>         z^Tx - f(\lambda x)
+>     \right\rbrace
+>     \\
+>     &= 
+>     \sup_y \left\lbrace
+>         z^T\left(
+>             \frac{y}{\lambda}
+>         \right) - f(y)
+>     \right\rbrace
+>     \\
+>     &= 
+>     \sup_y \left\lbrace
+>         \left(
+>             \frac{z^T}{\lambda}
+>         \right)y  - f(y)
+>     \right\rbrace
+>     \\
+> 	&= 
+> 	f^\star\left(
+> 		\frac{z}{\lambda}
+> 	\right)
+> \end{aligned}
+> $$
 
 ---
-### **Conjugate of $\alpha f(\lambda x)$**
+### **Conjugate of $\alpha f(x)$**
 
-Where, $\alpha > 0$, and let $\lambda \in \mathbb R$. We find a more general formula for taking the conjugate of a function after such a transform. 
+Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\bar R}$, then, $(\alpha f)^\star = \alpha f^\star(y/\alpha)$. 
 
+**Demonstrations**: 
+Directly from the defintion we have: 
+
+
+
+---
+### **Conjugate Over Invertible Affine Transform**
+
+Let $f:X \mapsto \mathbb{\bar{R}}$ be a proper, augmented real function. Let $A$ a bijective linear mapping on $X$, then $(f\circ A)^\star = f^\star\circ (A^{-1})^T$. 
 
 ---
 ### **Conjugation of Parallel Summations**
@@ -474,7 +478,7 @@ where $x\in \mathbb R^n$, assume we are in finite Euclidean space, and $z\in \ma
 > 
 
 ---
-### **The 2-Norm Affine Composite $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
+### **2-Norm Affine Composite $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
 The Dualization procedures can be found using the Fenchel's Identity, this example illustrate this techniques since otherwise it's harder to find the dual of this function. Recall [[Fenchel Identity, Inequality]]. 
 
@@ -523,11 +527,11 @@ The infimal convolution has epigraphical interpretations that makes the resultin
 
 **Remarks**: 
 
-There are cases where, even we have convex functions $f, g$, the closure property might be broken after the conjugation on the infimal convolution. See: Exercise 21.7 in Heinz's coursenotes for more information. 
+There are cases where, even we have convex functions $f, g$, the closure property might be broken after the conjugation on the infimal convolution. See: Exercise 21.7 in Heinz's course notes for more information. 
 
 #UNFINISHED 
 
 **References:**
-Prof Heinz's Monotone book, Proposition 15.5, and theorem 15.3, for a quick references that only involves convex function, see Prof Hein'z Course notes, Prop 21.1
+Prof Heinz's Monotone book, Proposition 15.5, and theorem 15.3, for a quick references that only involves convex function, see Prof Heinz's Course notes, Prop 21.1
 
 

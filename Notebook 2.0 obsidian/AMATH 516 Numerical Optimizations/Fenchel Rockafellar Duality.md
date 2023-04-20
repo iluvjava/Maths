@@ -1,15 +1,15 @@
-[[Dualization Techniques]], finding the Fenchel dual for a given function. [[Convex Conjugation]], the definition and interpretations for a convex conjugate of a function, and [[Duality/MinMax MaxMin Lemma]]. 
+[[Dualization Techniques]], finding the Fenchel dual for a given function. [[Duality/Convex Conjugation Introduction]], the definition and interpretations for a convex conjugate of a function, and [[Duality/MinMax MaxMin Lemma]]. 
 
 We might need to use [[Duality/Fenchel Identity, Inequality]] one theorem characterizing the existence of the minimizers for the primal and the dual problems. 
 
 
 ---
-### **Intro**
+# **Intro**
 
 The duality theorem, straight from the legendary researchers. We phrase the theorem and then we discuss its details, and problems. 
 
 
-**Theorem: Fenchel Rockafellar Dual Problems**
+**Theorem-1: Fenchel Rockafellar Dual Problems**
 > Let $g: \mathbb X\mapsto \mathbb{\bar{R}}$, let $h: \mathbb{Y}\mapsto \mathbb{\bar R}$, let $A$ be a linear mapping from $\mathbb X$ to $\mathbb Y$, then the primal and the dual problem have the following format: 
 > 
 > $$
@@ -36,7 +36,7 @@ We assume that $f, g$ are convex, closed and proper functions. This is required 
 
 The simultaneous existence of minimizers both primal and dual such that their objectives are equaled is characterized following theorem: 
 
-**Theorem: Fenchel Rockafellar Duality**
+**Theorem-2: Fenchel Rockafellar Duality**
 > Let $x\in \text{dom}(g), y \in \text{dom}(h)$, then all of the following are equivalent: 
 > 1. $x$ is a primal solution and $y$ is a dual solution achieving: $\mu = \mu^\star$. 
 > 2. $g(x) + h(Ax) = -g^\star(A^*y) - h^\star(-y)$. 
@@ -61,7 +61,7 @@ Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO.
 > $$
 > And, it's very much possible to have an empty set for the above dual characterizations for the primal optimal solutions.
 
-**Theorem: Regularity Conditions and existence of Minimizers**
+**Theorem-3: Regularity Conditions and existence of Minimizers**
 
 > For any of the following conditions, if they hold for $f, g$, then, the primal and dual will have a solutions with zero duality gap. 
 > 1. $\text{ri.dom}(g)\cap A(\text{ri.dom}(f))\neq \emptyset$ or, 
@@ -81,7 +81,7 @@ The above theorem that characterizes the existence of the solution for the prima
 **References**: Sasha, AMATH 515, of the Dualization Techniques, combined with Heinz's class materials, chapter 20 to be precise. 
 
 ---
-### **Demonstrations**
+# **Demonstrations**
 
 The duality statement can be constructed by using Dualizations techniques and the [[Duality/MinMax MaxMin Lemma]]. Starts by considering the following facts with $f, g$ instead: 
 
@@ -179,7 +179,7 @@ and this derivation shows that the dual variable $y$ for the dualization of $g(A
 
 $$
 \begin{aligned}
-    (g, A, g)^\star = (g^\star\circ(-I), A^*, f^\star),
+    (f, A, g)^\star = (g^\star\circ(-I), A^*, f^\star),
 \end{aligned}
 $$
 
@@ -190,14 +190,14 @@ giving us the dual, and the primal problem, for easy notation.
 
 Things doesn't have to be convex for the above derivation to be correct. The convexity is really for the strong duality. 
 
-**Theorem: The Weak Duality**
+**Theorem-4: The Weak Duality**
 > For all $(x, y)\in X\times Y$, we have
 > $$ 
 > f(x) + g(Ax) \ge \mu \ge \mu^\star \ge - f^\star(A^*y) - g^\star(-y) 
 > $$
 
 **Proof**
-
+#UNFINISHED
 
 **Remarks**: 
 
@@ -205,7 +205,7 @@ Sometimes, weak duality can be arbitrarily bad. The optimality gap can be infini
 
 
 ---
-### **Examples**
+# **Examples**
 
 We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
 

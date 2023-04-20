@@ -1,5 +1,5 @@
 
-[[Lagrangian and Dualization Techniques]], [[Dualization Examples]], [[Convex Conjugate Examples]]
+[[Lagrangian and Dualization Techniques]], [[Dualization Examples]], [[../../AMATH 516 Numerical Optimizations/Duality/Convex Conjugate Computations Examples]]
 
 --- 
 

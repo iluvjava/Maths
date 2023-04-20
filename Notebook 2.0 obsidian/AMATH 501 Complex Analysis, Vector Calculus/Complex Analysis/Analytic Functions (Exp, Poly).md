@@ -1,4 +1,4 @@
-prereq: [[Cauchy Riemann Conditions (Analyticity)]]
+prereq: [Cauchy Riemann Conditions (Analyticity)](Cauchy%20Riemann%20Conditions%20(Analyticity).md)
 
 This file will give some examples of Analytic functions. 
 * Polynomials, Exponential. 

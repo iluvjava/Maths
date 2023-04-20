@@ -2,15 +2,10 @@
 
 Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. This file is a successor for the file [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written for Prof Sasha's class. 
 
-**The Augmented Real Functions**
+To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept ofan *Augmented real function*.
 
->  $$
-> \begin{aligned}
->     f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}
-> \end{aligned}
-> $$
-> 
-> The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+**Def: The Augmented Real Functions**
+> $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics that are helpful for understanding the basics: 
 
@@ -173,7 +168,9 @@ And one can combine results and form a general statement using convex combinatio
 **Thm: Convex Level Graph**
 > A convex function has convex level graph. 
 
-#UNFINISHED 
+**Proof**: 
+
+Direct because a level set is a subset of the epigraph, and since epigraph is convex for convex function by definition, the level graph is also convex. 
 
 
 ---

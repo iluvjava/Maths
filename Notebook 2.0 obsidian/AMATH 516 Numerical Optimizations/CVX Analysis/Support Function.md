@@ -33,7 +33,7 @@ When dealing with the support function for analysis purposes, keep in mind these
 * Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
   * Its epigraph is a cone, literally. 
 * It's sub-additive: $\delta_C^\star(x_1 + x_2) \le \delta_C^\star(x_1) + \delta_C^\star(x_2)$
-* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[Convex Conjugation]] for more. 
+* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[../Duality/Convex Conjugation Introduction]] for more. 
 
 We will prove some of the properties that are not trivial to prove. 
 

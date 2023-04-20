@@ -1,4 +1,4 @@
-[[Duality/Convex Conjugation]]
+[[Duality/Convex Conjugation Introduction]]
 
 
 ---

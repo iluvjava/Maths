@@ -1,7 +1,7 @@
 This is a more specific type of Gradient Descend, it's one of the way of doing non-smooth optimization. 
 [[Gradient Descend, Smoothness]]: Some general understanding in Gradient Descend under convex context (or non-convex is good)
 
-[[../AMATH 515 Optimization Fundamentals/Proximal Gradient Descend/Nonsmooth convex optimization Introduction]]
+[[../AMATH 515 Optimization Fundamentals/Proximal Gradient Descend/Nonsmooth Convex Optimization Intro]]
 This will also be used, for example, the definite of sub gradient.
 
 ---

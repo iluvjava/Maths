@@ -51,7 +51,7 @@ Finally, why/how do we use the Weistrass Theorem (Sequential Compact Theorem)?
 > Observe that it's the set $\arg\inf_{x\in C}f(x)$ can have any type f topology or cardinality we want it to be. The sequence $x_n$ such that $f(x_n) \rightarrow f_{\text{opt}}$ doesn't have to converge in anything, it can circle around inside of the set. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to converge to on, and just one of the point in the compact region, say $\bar x$ such that it attain the minimum of $f(\bar x) = f_{\text{opt}}$. 
 
 ---
-### **Coersive Proper L.S.C Function has Minimizer in a Closed Set**
+### **Proper L.S.C Function has Minimizer in a Closed Set**
 
 > let $f$ be a proper, closed, and coercive function, let $S\subseteq \mathbb E$ be an non-empty closed set such that $\text{dom}(f)\cap S \neq \emptyset$, then $f$ attains some minimums in $S$. 
 

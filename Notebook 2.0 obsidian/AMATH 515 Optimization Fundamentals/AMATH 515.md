@@ -99,7 +99,7 @@ The **Challenging** part is the modeling part and the solving part.
 		* [[Closed, Proper, Level Bounded, Strong Convex]]
 		* [[Beta Smoothness]]
 	* Non-Smooth
-		* [[Proximal Gradient Descend/Nonsmooth convex optimization Introduction]]
+		* [[Proximal Gradient Descend/Nonsmooth Convex Optimization Intro]]
 		
 * Algorithms and Analysis: 
 	* [[Gradient Descend, Smoothness]]

@@ -1,7 +1,7 @@
 ---
 alias: Fenchel Equality
 ---
-* [[Convex Conjugation]]
+* [[Convex Conjugation Introduction]]
 * [[../Non-Smooth Calculus/Subgradient Introduction]]
 
 ---
