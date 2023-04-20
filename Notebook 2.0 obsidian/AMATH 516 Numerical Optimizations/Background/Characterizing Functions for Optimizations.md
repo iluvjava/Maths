@@ -1,6 +1,6 @@
 ### **Intro**
 
-Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. 
+Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. This file is a successor for the file [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written for Prof Sasha's class. 
 
 **The Augmented Real Functions**
 
@@ -29,7 +29,9 @@ This definition is introduced so we can get rid of some pathological function, m
 
 This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
 
-**References**: Tyrell Rockafellar did this to us. 
+**References**: 
+
+Tyrell Rockafellar did this to us. Yep. 
 
 ---
 ### **Continuity and Traditional Smoothness**
@@ -79,18 +81,27 @@ A closed function is not enough for the function to be continuous, but a continu
 ---
 ### **Coercive Function**
 
-Recall Definition: 
+This characteristic of function is key to existence of minimizers for function. It eliminate the case where minimizers of some function is only attained at infinity. 
+
+**Coersive Defintion**
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
 
 **Remarks**
 
 In Math 563, Heinz's class, there is the term *supercoercive*, which refers to function where $f(x)/\Vert x\Vert \rightarrow \infty$ as $\Vert x\Vert \rightarrow \infty$, a stronger version of coersiveness. 
 
+This concept is also equivalent to level boundedness, which is quoted by Tyrell Rockafellar. 
+
 **Gocha**
 
- The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time.
+The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. Rarely used besides for the theories of functions. Used in [[Existence of a Minimizer]]. 
 
-Rarely used besides for the theories of functions. Used in [[Existence of a Minimizer]]. 
+**References**: 
+
+Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational analysis. 
+
+
+
 
 ---
 ### **Special Functions for Analysis**
@@ -108,7 +119,7 @@ The support function of a set $Q$, is the conjugate of the indicator function. I
 
 **Remarks**
 
-See [[Support Function]] for more detailed informations.
+See [[Support Function]] for more detailed information.
 
 **Def: Gauge Functions**
 
@@ -136,27 +147,33 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 ---
 ### **Convexity of Functions**
 
-Convex function has 2 equivalent definitions. 
+This is one of the most important characterizations for a class of functions. The theories developed for optimizing convex function and its variants are profound. Convex function has 2 equivalent definitions. 
 
 **Definition: Convex Epigraph**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
+For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. 
+
 **Definition: Secant Inequality**
 
-Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
-
-$$
-\begin{aligned}
-    \forall x,y \in \text{dom}(f), \lambda \in [0, 1] : 
-    f(\lambda x + (1 - \lambda)y) \le 
-    \lambda f(x) + (1 - \lambda)f(y)
-\end{aligned}
-$$
+> Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
+> $$
+> \begin{aligned}
+>     \forall x,y \in \text{dom}(f), \lambda \in [0, 1] : 
+>     f(\lambda x + (1 - \lambda)y) \le 
+>     \lambda f(x) + (1 - \lambda)f(y)
+> \end{aligned}
+> $$
 
 **Remarks:**
 
-And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [[../CVX Analysis/Convex Functions Central Hub]]
+And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [Convex Functions CENTRAL HUB](../CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md).
+
+**Thm: Convex Level Graph**
+> A convex function has convex level graph. 
+
+#UNFINISHED 
 
 
 ---

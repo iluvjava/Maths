@@ -68,6 +68,18 @@ For all convex function, some of them will have gradient. The gradient might not
 - For epigraphical characterizations of convex functions and how their convexity is preserved constructively, visit: [[../CVX Geometry/Convexity Preserving Operations for Functions]]. 
 
 ---
-### **Minimizers of a Convex Functions**
+### **Minimizers of a Convex Function**
 
 The property of convex function will not ensure the existence of a minimizer. Consider the example of $\exp(x)$, it has a minimum and it's convex but it doesn't have minimizers. We need conditions that is stronger to ensures the existence of a minimizers. 
+
+**Thm: Minimizers for L.S.C Functions Over a Compact Subset**
+> Let $f$ be closed convex and proper, let $Q\subset X$ be a compact set in the space of where the function is defined such that $x\cap \text{dom}(f) \neq \emptyset$, then the set of minimizers, denoted as $S = \arg\min_{x\in Q}f(x)$ for the function is non-empty, and it's a convex set. 
+
+**Proof**:
+
+Since $x\cap \text{dom}(f) \neq \emptyset$, we have $\mu = \inf_{x\in Q}f(x) < \infty$. By property of the infimum, we have a sequence $\{x_n\}_{n\in \N}$ in $Q$ such that $\lim_{n\rightarrow \infty}f(x_n) = \mu$. Since the set is now compact, and the function is closed, we can invoke the lemma in [Existence of a Minimizer](../Background/Existence%20of%20a%20Minimizer.md), which means that there exist a minimizer $\bar x\in Q$ such that $f(\bar x) = \mu$. The set is a convex set because the level set $\text{lev}_{\mu}(f)$ is a convex set by the fact that $f$ is convex, the set is also closed by closure of $f$. Therefore, the set of minimizer has to be a convex set as well. 
+
+**Strong Convexity**
+
+This is a very useful concept and it has its own file, see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md), and some old notes from about the foundations of the 
+
