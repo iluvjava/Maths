@@ -24,7 +24,7 @@
 
 **Remarks**
 
-In some literatures, $\sigma_C$ is used for denoting the support unction for a set $C$. When the set $C$ is not closed, the $\sup$ operator is closing it automatically over a set of affine functions (could  be infinite), therefore the epigraph of the function is closed for all $C\neq \emptyset$. The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [[Convexity Preserving Operations for Functions]] for more information). 
+In some literatures, $\sigma_C$ is used for denoting the support unction for a set $C$. When the set $C$ is not closed, the $\sup$ operator is closing it automatically over a set of affine functions (could  be infinite), therefore the epigraph of the function is closed for all $C\neq \emptyset$. The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md) for more information). 
 
 When dealing with the support function for analysis purposes, keep in mind these good properties for all subsets $C$ of the Euclidean space: 
 * It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
@@ -42,7 +42,7 @@ We will prove some of the properties that are not trivial to prove.
 Amir's first order op textbook, section 2.4. 
 
 ---
-### **Theorem: Convexity of Support Functions**
+### **Theorem-1 | Convexity of Support Functions**
 
 > The support function of any nonempty $C$ is closed and convex. 
 
@@ -73,7 +73,8 @@ Therefore it's convex.
 
 
 ---
-### **Support Functions Equivalence Under Convex or Closure or Both**
+### **Thm-2 | Support Functions Equivalence Under Convex or Closure or Both**
+
 
 > For any set $C$, these functions are equivalent: 
 > $$
@@ -85,7 +86,7 @@ Therefore it's convex.
 
 The first inequality is easy because $C\subseteq\text{cl(C)}$ by def, and hence the $\sup$ of them yields $\delta_C^\star(x) \le \delta_{\text{cl}(C)}^\star(x)$, the other inequality $\delta^\star_{C}(x) \ge \delta_{\text{cl}(C)}^\star(x)$ by the property of $\sup$. 
 
-For the proof of the second equality, recall the [[Caratheodory Theorem]] for convex set. Let $x$ be arbitrary. Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem (Note, the supports can be less than $k - 1$): 
+For the proof of the second equality, recall the [Caratheodory Theorem](Caratheodory%20Theorem.md) for convex set. Let $x$ be arbitrary. Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem (Note, the supports can be less than $k - 1$): 
 
 $$
 \begin{aligned}
@@ -116,6 +117,13 @@ The magic here is the function inside of the sup can be super-positioned, and we
 
 ---
 ### **Support Function for Closed Convex Sets**
+
+
+> Let $A, B$ be non-empty closed and convex subsets of the Euclidean space. then we have $A= B \iff \sigma_A = \sigma_B$, the support functions of both sets are equaled to each other. 
+
+**Observations**: 
+
+One can conclude this directly using the [Thm-2](#**Thm-2%20Support%20Functions%20Equivalence%20Under%20Convex%20or%20Closure%20or%20Both**). Or we can assume that we don't know that and prove it differently. 
 
 #UNFINISHED #HEINZ, Lemma 8.15
 

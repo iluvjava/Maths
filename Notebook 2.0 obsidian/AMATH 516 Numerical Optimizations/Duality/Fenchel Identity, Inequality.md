@@ -70,19 +70,19 @@ $$
        f(z) - \langle y, z\rangle
     \right\rbrace
     \\
-    \iff &
-    \mathbf 0 \in \partial [f(z) - \langle y, z\rangle |z](x) \quad \text{ by [1]}
+    \text{ by [1]} \iff &
+    \mathbf 0 \in \partial [f(z) - \langle y, z\rangle |z](x) 
     \\
-    \iff & 
-    \mathbf 0 \in \partial f(x) - y \quad \text{ by [2]}
+    \text{ by [2]} \iff & 
+    \mathbf 0 \in \partial f(x) - y \quad 
     \\
     \iff & 
     y \in \partial f(x)
 \end{aligned}
 $$
 
-- [1]: The function $f(z)$ is convex and proper, we may use the Fermat's rule for convex subgradient. 
-- [2]: We use the strong subgradient sum rule since $f$ is convex proper, and $\langle . y\rangle$ is affine with domain on the entirety of $X$. 
+- \[1\]: The function $f(z)$ is convex and proper, we may use the Fermat's rule for convex subgradient. 
+- \[2\]: We use the strong subgradient sum rule since $f$ is convex proper, and $\langle . y\rangle$ is affine with domain on the entirety of $X$. 
 
 We had shown that, (1), (2) are equivalent conditions. We now show (3). Adding the fact that $f$ is lower semi-continuous, its epigraph is closed. Hence, we invoke [[Biconjugate Theorem]] to attain: $f = f^{\star\star}$. Re-applying the above proved equivalences, we have: $f^\star(y) + (f^\star)^\star(x) = \langle z, y\rangle \iff x \in \partial f^\star(y)$. By $f^{\star\star} = f$, we have $y\in \partial f(x)$as well. Therefore, $y\in \partial f(x)\iff x \in \partial f^\star(y)$. The closure of the function is essentially.
 
