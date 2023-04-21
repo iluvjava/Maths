@@ -1,5 +1,5 @@
 Here we are going to just brief over some of the geometry of conformal mapping and the geometry of a function that is entire analytical on the complex plane. 
-prereq: [[Cauchy Riemann Conditions (Analyticity)]]
+prereq: [[Cauchy Riemann Condition]]
 
 ---
 

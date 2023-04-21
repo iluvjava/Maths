@@ -4,7 +4,7 @@ alias: Fenchel Conjugate
 Pre-requisite: 
 * [[Characterizing Functions for Optimizations]]
 * [[Support Function]]
-* [[../Non-Smooth Calculus/Subgradient Introduction]]
+* [[../Non-Smooth Calculus/Subgradient Intro]]
 
 ---
 ### **Intro**
@@ -54,7 +54,8 @@ The conjugate function is always convex, see the next section for more info. We 
 
 Before we start, please see [[Fenchel Identity, Inequality]], for the inequality. It's somewhat relevant. 
 
-#### **Claim-1: Conjugate Encodes Affine Minorants**
+#### **Claim-1 | Conjugate Encodes Affine Minorants**
+
 > For a function $f$ that is proper, we have $\forall (y, \alpha) \in {\text{epi}}(f^\star)$, we have the claim that $f(x) \ge \langle y, x\rangle - \alpha$
 
 Please observe that the vector from $\text{epi}(f)$ is the slope of a supporting hyperplane of the original function $f(x)$. The relation between original and conjugate function is: $f(x)\ge y^Tx - f^\star(y)$. This is the *Cauchy Subgradient inequality* or *Fenchel inequality*. 
@@ -76,11 +77,17 @@ $$
 
 We used the Fenchel inequality on the second line. 
 
+**Illustrations**
+
+![](../../Assets/fenchel-conjugate-epigraphical-interpretations.png)
+
+Taken from Dimitri's class at UW. 
+
 **Remarks**
 
 The conjugate function $f^\star(x)$'s value provides the least offset of the affine functions that is below the function $f$, given the slope of the affine function. 
 
-#### **Corollary-1: Enclosing the Epigraph**: 
+#### **Corollary-1 | Enclosing the Epigraph**: 
  
 In fact, one can go on and make the claim the the epigraph of the original function is contained within all the halfspaces defined by the convex conjugate functions. Therefore, using the above inequality: 
 
@@ -102,7 +109,6 @@ Recall from [[../CVX Geometry/Supporting Convex Sets using Halfspaces]], we had 
 **Remarks**
 
 Here we only showed $\subseteq$, the converse is not shown but it's true. It can be proved via a contradiction, and separation of convex sets, by bearing in mind for the property of an epigraph of a convex function. 
-
 
 **Theorem: Conjugate is the Support Function of the Epigraph of $f$**
 
@@ -170,13 +176,13 @@ Using this property, we can make shortcut to finding the conjugates of some func
 ---
 ### **Geometric Interpretations**
 
-![[fenchel_transform_interpretations.png.png]]
+![[../../fenchel_transform_interpretations.png]]
 
 > The dual variable is the slope of the tangent line and the value of the function is the negative of the y intersect (or whatever intersect on the higher dimension). 
 
 **Observations** 
 
-Given $z$ the dual varible, representing the slope of the line I want to "touch" the function $f$ at its lowest point, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
+Given $z$ the dual variable, representing the slope of the line I want to "touch" the function $f$ at its lowest point, then $f^\star(z)$ gives me exactly the negative y intersect I need to move my line $z^Tx$ to touch $f$, at the point $x$, the dual variable. 
 
 ---
 ### **Legendre Transform**

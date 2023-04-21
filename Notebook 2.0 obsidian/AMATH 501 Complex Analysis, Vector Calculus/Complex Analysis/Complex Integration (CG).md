@@ -1,6 +1,6 @@
 Prereq: [[Complex Functions]]
 prereq: [[Line Integral]]
-prereq: [[Cauchy Riemann Conditions (Analyticity)]]
+prereq: [[Cauchy Riemann Condition]]
 
 ---
 

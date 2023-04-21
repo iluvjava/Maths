@@ -1,4 +1,4 @@
-* [[Subgradient Introduction]]
+* [[Subgradient Intro]]
 * [[Epigraph]]
 * [[Strict Separations Theorem]]
 * [[Characterizing Functions for Optimizations]]
@@ -8,13 +8,14 @@
 
 This lemma serves for [[Convex Function is Locally Lipschitz]]. The lemma stated that for a convex functions $f$, it's subgradient is: 
 
-* Nonempty bounded in all direction inside of $\text{int}\circ\text{dom}(f)$
-* Nonempty, bounded in some directions when inside of $\text{relint}\circ\text{dom}(f)$
-
+* Nonempty bounded in all direction inside of $\text{int}\circ\text{dom}(f)$, [**Lemma-1 Boundedness of Subgradient In the Interior of the Domain**](#**Lemma-1%20Boundedness%20of%20Subgradient%20In%20the%20Interior%20of%20the%20Domain**)
+* Nonempty, bounded in some directions when inside of $\text{relint}\circ\text{dom}(f)$, [**Lemma-2 Unboundedness of Subgradient in The Relative Interior of The Domain**](#**Lemma-2%20Unboundedness%20of%20Subgradient%20in%20The%20Relative%20Interior%20of%20The%20Domain**). 
 
 
 ---
-### **Lemma: Boundedness of Subgradient In the Interior of the Domain**
+### **Lemma-1 | Boundedness of Subgradient In the Interior of the Domain**
+
+If there exists an interior for the domain of the function, then the subgradient is bounded. 
 
 > Let $f$ be $\mathbb R^n$ to $\mathbb{\bar{R}}$ be convex and proper, then for all $x\in \text{int}\circ \text{dom}(f)$ we have $g \in \partial [f](x)$ is bounded for all any $g$. Or briefly as: $\text{dom}(\partial [f]) \subseteq \text{int}\circ\text{dom}(f)$. 
 
@@ -70,7 +71,7 @@ Which is bounded because $x, x \pm \epsilon \mathbf e_i$ are in the epsilon ball
 
 **Remarks**
 
-The proof can be modified for some points $x\in \text{relint}\circ \text{dom}(f)$ by changing the basis for $v$, then subgradient is at least bounded inside of some basis in the relative interior of the domain. The boundedness argument can also be applied by choosing some $v$ maximizing $\langle v, g\rangle$ for any choice of $g$ obtaining a bound under the dual norm. 
+The proof can be modified for some points $x\in \text{ri.dom}(f)$ by changing the basis for $v$, then subgradient is at least bounded inside of some basis in the relative interior of the domain. The boundedness argument can also be applied by choosing some $v$ maximizing $\langle v, g\rangle$ for any choice of $g$ obtaining a bound under the dual norm. 
 
 **Source**
 
@@ -78,7 +79,9 @@ I made it myself I am not sure how good the proof actually is.
 
 
 ---
-### **Lemma: Unboundedness of Subgradient in The Relative Interior of The Domain**
+### **Lemma-2 | Unboundedness of Subgradient in The Relative Interior of The Domain**
+
+The relative interior of a domain of a convex function is a larger set. The subgradient may not be bounded. For example, consider indicator function $\delta_{Q}$ of a singleton set $Q\subseteq X$. The subgradient is the normal cone of the singleton set, which is the whole space $X$, hence, unbounded. 
 
 
 

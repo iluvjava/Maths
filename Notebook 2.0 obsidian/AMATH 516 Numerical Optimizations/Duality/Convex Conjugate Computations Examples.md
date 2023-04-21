@@ -411,9 +411,25 @@ $$
 Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\bar R}$, then, $(\alpha f)^\star = \alpha f^\star(y/\alpha)$. 
 
 **Demonstrations**: 
-Directly from the defintion we have: 
-
-
+> [!details]-
+> Directly from the defintion we have: 
+> 
+> $$
+> \begin{aligned}
+>     (\alpha f)^\star(y) &= \sup_{x\in X}\left\lbrace
+>        \langle x, y\rangle - \alpha f(x)
+>     \right\rbrace
+>     \\
+>     \alpha > 0 \implies 
+>     &= \alpha\sup_{x\in X}\left\lbrace
+>        \langle x, y/\alpha\rangle - f(x)
+>     \right\rbrace
+>     \\
+>     & = \alpha f^\star\left(\frac{y}{\alpha} \right), 
+> \end{aligned}
+> $$
+> 
+> and we are done. 
 
 ---
 ### **Conjugate Over Invertible Affine Transform**

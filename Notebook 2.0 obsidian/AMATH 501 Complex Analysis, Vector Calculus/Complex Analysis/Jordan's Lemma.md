@@ -1,12 +1,8 @@
 prereq: [[Calculus of Residual 3.1]]
 
-For the Fourier type of integral, When does the integral of the upper arch Vanish after the limit?
-
-In this note, we introduce the idea of Jordan's lemma, which will be a shortcut for figuring out the limit of some cases of Fourier Integral. 
+For the Fourier type of integral, When does the integral of the upper arch Vanish after the limit? In this note, we introduce the idea of Jordan's lemma, which will be a shortcut for figuring out the limit of some cases of Fourier Integral. 
 
 ---
-
-
 ### Jordan's Lemma 
 
 Let $C^+ = \{z = R\exp(i\theta), 0 \leq \theta \leq \pi\}$ be an arch on the positive half of the complex plane, with radius R. 

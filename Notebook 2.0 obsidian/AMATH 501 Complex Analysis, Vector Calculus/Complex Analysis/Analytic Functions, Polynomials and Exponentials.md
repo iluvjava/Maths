@@ -1,39 +1,34 @@
-prereq: [Cauchy Riemann Conditions (Analyticity)](Cauchy%20Riemann%20Conditions%20(Analyticity).md)
+prereq: [Cauchy Riemann Condition](Cauchy%20Riemann%20Condition.md)
 
 This file will give some examples of Analytic functions. 
 * Polynomials, Exponential. 
 
 ---
 
-### Analytic Functions We Care About
+### **Analytic Functions We Care About**
 
-Let's take a look at some regular polynomials that are very easy to extend to the complex plane. 
+Regular Polynomials: 
 
-> $$\sum_{i = 0}^{\infty} a_i z^{i}$$ where $a_i \in \mathbb{C}$, $z\in \mathbb{C}$.
+> $\sum_{i = 0}^{\infty} a_i z^{i}$ where $a_i \in \mathbb{C}$, $z\in \mathbb{C}$.
 
-Polynomials with complex coefficients are Analytic on the Entire Complex plane. 
+Fractional Functions: 
 
 > $$\frac{\sum_{i = 0}^{\infty} a_i z^{i}}
-> {\sum_{i = 0}^{\infty} b_i z^{i}}
+> {\sum_{i = 0}^{\infty} b_i z^{i}}, 
 > $$
-> where $$a\in \mathbb{C}, z\in \mathbb{C}$$ and a fractions of polynomials are conformal everywhere excepts the when the roots of the numerators equal to zero. 
+> where $a\in \mathbb{C}, z\in \mathbb{C}$ and a fractions of polynomials are conformal everywhere excepts the when the roots of the numerators equal to zero. 
 
 ---
 
-### Complex Exponential (The Key)
-Here we are going to use the idea of analyticity to extend the complex realm, and we are going to make basics assumptions, and construct it from the void (First Principles). 
+### **Complex Exponential**
 
-#### Derivation
+We derive the complex exponential functions using these first principles: 
 
-* $f'(z) = f(z)$ the derivative of the function is the function itself. (1)
-* $f'(x)$ exists on the entire complex plane. (2)
-* $\forall x \in \mathbb{R}: f(x) = e^x$, when the complex number is a real number, the function is the same as the exponential function in real realm. (3)
+1. $f'(z) = f(z)$ the derivative of the function is the function itself.
+2. $f'(x)$ exists on the entire complex plane.
+3. $\forall x \in \mathbb{R}: f(x) = e^x$, when the complex number is a real number, the function is the same as the exponential function in real realm.
 
-Assume that the format of the complex function is like: 
-
-> $$w = v(x, y) + iv(x, y)$$
-
-And then in this case, we will use (1) to get: 
+Let the complex function takes the form: $w = v(x, y) + iv(x, y)$, use (1.): 
 
 $$
 u_x = u \hspace{2em} v_x = u

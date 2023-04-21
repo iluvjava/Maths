@@ -1,4 +1,4 @@
-- [[Subgradient Introduction]],
+- [[Subgradient Intro]],
 - [[Subdifferentials Subgradient Computations]],
 - [[../Duality/Fenchel Identity, Inequality]]
 

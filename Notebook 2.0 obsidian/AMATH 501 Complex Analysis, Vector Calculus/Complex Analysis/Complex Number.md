@@ -15,9 +15,9 @@ The conjugate of a number $z = x + yi$ and then the conjugate of this number wil
 
 And notice the following good stuff that comes with the definition, where we will be table to talk about properties of the complex number using only the complex number and its conjugate. 
 
-> $$Re(z) = \frac{1}{2}(z + z^*)$$
+> $$\Re(z) = \frac{1}{2}(z + z^*)$$
 
-> $$Im(z) = \frac{1}{2i}(z - z^*)$$
+> $$\Im(z) = \frac{1}{2i}(z - z^*)$$
 
 And then we can also have the following representation on the modulus of the complex number. 
 
@@ -38,8 +38,7 @@ $$\frac{a}{b} = \frac{ab^*}{|b|^2}$$
 See how simple this is. 
 
 --- 
-
-### Polar Form and Arguments
+### **Polar Form and Arguments**
 
 The argument of a complex number is a set of angles. 
 

@@ -82,13 +82,13 @@ The prox has a unique solution when the function $f$ is convex with $\alpha > 0$
 
 $$
 \begin{aligned}
-    0 &\in \partial\left[
+    \mathbf 0 &\in \partial\left[
         \left.
             f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2 
         \right| y
     \right](y^+)
     \\
-    0 &\in \partial f(y^+) + \frac{1}{\alpha}(y^+ - x)
+    \mathbf 0 &\in \partial f(y^+) + \frac{1}{\alpha}(y^+ - x)
     \\
     \frac{x}{\alpha} &\in 
     (\partial f + \alpha^{-1}I)(y^+)

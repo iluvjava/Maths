@@ -1,7 +1,7 @@
 
 The Complex Logarithm is a bit trick, but we will introduce some way to make it to the complex plane while keeping it as an analytical function in the complex plane (With some trade off of course) 
 
-prereq: [[Analytic Functions (Exp, Poly)]] Complex Exponential
+prereq: [[Analytic Functions, Polynomials and Exponentials]] Complex Exponential
 prereq: [[Complex Number]] We need to know about the principal argument of a complex number to work with the new definition of the Logarithm. 
 More resources: [Branch Cut](https://mathworld.wolfram.com/BranchCut.html)
 

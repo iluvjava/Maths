@@ -6,7 +6,6 @@ There are 2 cases when the 2D system bifurcate:
 Here we will be focusing on the first case. 
 
 ---
-
 ### Intro
 
 Fortunately, not much new theories are needed for the Bifurcation in 2D because when fixed points colliding/separating with other, they will be doing it on a curve. And locally, they are colliding on a line. 

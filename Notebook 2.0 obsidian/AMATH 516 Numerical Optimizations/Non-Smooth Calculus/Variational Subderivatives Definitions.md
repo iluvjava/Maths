@@ -1,7 +1,7 @@
 ---
 alias: Variational Directional Derivatives
 ---
-- [[Subgradient Introduction]], 
+- [[Subgradient Intro]], 
 - [[Epigraph]], 
 - [[Support Function]], 
 

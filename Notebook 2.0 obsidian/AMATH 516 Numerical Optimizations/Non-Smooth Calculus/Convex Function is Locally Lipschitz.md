@@ -1,6 +1,6 @@
 * [[Lipschitz Continuity]]
 * [[Characterizing Functions for Optimizations]]
-* [[Subgradient Introduction]]
+* [[Subgradient Intro]]
 
 ---
 ### **Intro**
@@ -11,9 +11,9 @@ Recall that, not all convex function is Lipschitz Continuous on the closure of i
 
 
 ---
-### **Lemma: Lipschitz on one Line Segment**
+### **Lemma-1 | Lipschitz on one Line Segment**
 
-> Given a function $f: \mathbb R \mapsto \bar {\mathbb R}$ that is proper and proper, then the function is lipschitz continuous for every $[x_1, x_2] \subset \text{int}\circ\text{dom}(f)$. 
+> Given a function $f: \mathbb R \mapsto \bar {\mathbb R}$ that is proper and proper, then the function is Lipschitz continuous for every $[x_1, x_2] \subset \text{int}\circ\text{dom}(f)$. 
 
 **Proof Summary**
 

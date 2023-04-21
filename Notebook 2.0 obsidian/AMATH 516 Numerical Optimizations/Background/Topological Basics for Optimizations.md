@@ -5,27 +5,27 @@ Please note that, some of the discussion will feel familiar to discussion spotte
 ---
 ### **Intro**
 
-The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers with the usual p-norm as the metric, which is most applicable to most of the optimizations theories. 
+The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers with the usual p-norm as the metric. We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. 
 
 Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
-**Definition: Interior of a set**
+**Definition-1 | Interior of a set**
 
 > The interior of the set $Q\subseteq X$ is $\text{int}(Q):= \{x\in X|\mathbb B_\epsilon(x) \subseteq Q\}$. 
 
-**Definition: Opened Set**
+**Definition-2 | An Opened Set**
 
 > The set $Q\subseteq X$ is *open* if for all $x\in Q$ we have $\exists \epsilon: \mathbb B_\epsilon(x)\subseteq Q$. Or equivalently, $Q = \text{int}(Q)$. 
 
 **Observations**: 
-- $\text{int}\subseteq Q$. 
+- $\text{int}(Q)\subseteq Q$. 
 
 
 **Remark**: 
 
 The concept of interior can be relative to another subset of the background set. One prime example of this is the application of the interior relative an affine space. See [[Relative Interior And Relative Boundary]] for more. 
 
-**Definition: Closure and Closed Sets**
+**Definition-3 | Closure and Closed Sets**
 > Let $Q\subseteq X$ then the closure of the set is $\text{cl}(Q):= \{x\in X| \; \forall \epsilon > 0:  \mathbb B_{\epsilon}\cap Q \neq \emptyset\}$. The set $Q$ is closed when $Q = \text{cl}(Q)$. 
 
 **Observation**: 
@@ -37,7 +37,7 @@ See [[Closure Topology]] for more reference. Observe that trivially, if a set is
 
 Sometimes we discuss the openness of the set relative to a subset of the whole space. For example, the use of  [[Relative Interior And Relative Boundary]] discuss the interior of a set relative to a linear subspace. Or, we can discuss some subset of $\mathbb R$'s openness relative to $\mathbb Q$. 
 
-**Definition: The boundary of a set** 
+**Definition-4 | The boundary of a set** 
 
 > Let $Q\subseteq X$, then the boundary of $Q$, denoted as $\text{bd}(Q)$ is $\text{cl}(Q)\setminus \text{int}(Q)$. 
 
@@ -45,8 +45,7 @@ Sometimes we discuss the openness of the set relative to a subset of the whole s
 
 Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $x\ \in X$, but for all $\epsilon > 0$, $\mathbb B_\epsilon(x) \not\subseteq Q$, and at the same time $\mathbb B_\epsilon(x) \cap Q \neq \emptyset$, implies that $\mathbb B_\epsilon(x)\cap Q \neq \emptyset$ and $\mathbb B_\epsilon(x) \cap Q^C \neq \emptyset$ as well. And this characterize the set of all points that are at the boundary of $Q$. It's something that connects to both $Q, Q^C$ via the epsilon vicinity around elements from the set. 
 
-
-**Theorem: Topology of the Complement**
+**Theorem-1 | Topology of the Complement**
 
 > $Q$ is open iff $Q^C$ is closed
 
@@ -56,14 +55,15 @@ Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $
 * A set is closed if it has its own boundary inside of itself. 
 * A set can be both opened and closed, only opened or closed, or both. A set that is opened and closed would be $[a, b)$, and a set that is both opened and closed is $\mathbb R$. And *the empty set is closed and opened*. 
 
-
 **Basic Examples**
 * The empty set is open because we can't choose any element from it and exam its neighbour. The empty set is closed because for all element's neighbour, it intersects with the empty set, thus it's open trivially. The empty set is *clopen (closed and open)*. 
 * The set $\mathbb Q$ is neither closed nor open. For every epsilon ball open around $x\in \mathbb Q$, there exists an irrational number. Hence it's not open. It's not closed because a sequence of rational numbers can converge to an irrational number. 
 
 
 ---
-### **Notations**
+### **Topologicaly Defined Limit Inf and Sup**
+
+We define the generalized definition of a Limit Infimum and Limit Supremum in the Euclidean spaces. 
 
 $$
 \begin{aligned}

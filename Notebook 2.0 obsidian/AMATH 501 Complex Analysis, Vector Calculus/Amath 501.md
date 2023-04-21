@@ -21,7 +21,7 @@
  2. Complex Analysis
 	 * Complex Numbers [[Complex Number]]
 	 * Functions of a complex variable [[Complex Functions]]
-	 * Analyticity [[Analytic Functions (Exp, Poly)]] [[Cauchy Riemann Conditions (Analyticity)]] 
+	 * Analyticity [[Complex Analysis/Analytic Functions, Polynomials and Exponentials]] [[Complex Analysis/Cauchy Riemann Condition]] 
 	 * Integration 
 		 * [[Cauchy Integral]]
 	 * [[Laurent Series]]

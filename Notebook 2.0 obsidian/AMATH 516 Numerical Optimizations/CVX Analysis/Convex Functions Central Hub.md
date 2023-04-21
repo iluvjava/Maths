@@ -1,6 +1,6 @@
 - [Convex Sets Intro](../Background/Convex%20Sets%20Intro.md),
 - [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md),
-- [Subgradient Introduction](../Non-Smooth%20Calculus/Subgradient%20Introduction.md)
+- [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 
 ---
 ### **Intro**
@@ -36,7 +36,7 @@ Each of these topics deserves its own files.
 
 **Proof**: 
 
-The directions where, if a function is lower semi-continuous and it's convex, then its epigraph is closed. This is direct and proved in [Lower Semi-Continuity is Closedness of Epigraph](../Background/Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md). The other direction is also obvious because if a function is closed, regardless of it being convex or not, it's l.s.c. 
+The directions where, if a function is lower semi-continuous and it's convex, then its epigraph is closed. This is direct and proved in [Lower Semi-Continuity is Closedness of Epigraph](../Background/Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph%20). The other direction is also obvious because if a function is closed, regardless of it being convex or not, it's l.s.c. 
 
 ---
 ### **Continuity of Closed Convex Functions**
@@ -56,9 +56,7 @@ Convex function is almost, continuous everywhere in their domain.
 
 **Remarks**: 
 
-The definition of Lipchitz is in [Lipschitz Continuity](../Background/Lipschitz%20Continuity.md), and the proof and detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz.md).
-
-Convex Functions are continuous on its domain, but only along a line segment. See [Convex Line Segment Continuity](Convex%20Line%20Segment%20Continuity.md) for more information. 
+The definition of Lipchitz is in [ Lipschitz Continuity](../Background/Lipschitz%20Continuity%20), and the proof and detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. See [this](Convex%20Line%20Segment%20Continuity%20) for more information. 
 
 ---
 ### **Characterization for Convex Functions**
@@ -66,7 +64,7 @@ Convex Functions are continuous on its domain, but only along a line segment. Se
 For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. 
 
 - For the smooth case, please refer to [Gradient, Hessian Characterization of Convexity](Gradient,%20Hessian%20Characterization%20of%20Convexity.md). 
-- For epigraphical characterizations of convex functions and how their convexity is preserved constructively, visit: [ Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions%20). 
+- For epigraphical characterizations of convex functions and how their convexity is preserved constructively, visit: [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions%20). 
 
 ---
 ### **Minimizers of a Convex Function**
@@ -78,7 +76,7 @@ The property of convex function will not ensure the existence of a minimizer. Co
 
 **Proof**:
 
-Since $x\cap \text{dom}(f) \neq \emptyset$, we have $\mu = \inf_{x\in Q}f(x) < \infty$. By property of the infimum, we have a sequence $\{x_n\}_{n\in \N}$ in $Q$ such that $\lim_{n\rightarrow \infty}f(x_n) = \mu$. Since the set is now compact, and the function is closed, we can invoke the lemma in [Key Existence Theorem](../Background/Existence%20of%20a%20Minimizer.md), which means that there exist a minimizer $\bar x\in Q$ such that $f(\bar x) = \mu$. The set is a convex set because the level set $\text{lev}_{\mu}(f)$ is a convex set by the fact that $f$ is convex, the set is also closed by closure of $f$. Therefore, the set of minimizer has to be a convex set as well. 
+Since $x\cap \text{dom}(f) \neq \emptyset$, we have $\mu = \inf_{x\in Q}f(x) < \infty$. By property of the infimum, we have a sequence $\{x_n\}_{n\in \N}$ in $Q$ such that $\lim_{n\rightarrow \infty}f(x_n) = \mu$. Since the set is now compact, and the function is closed, we can invoke the lemma in [Key Existence Theorem](../Background/Existence%20of%20a%20Minimizer%20), which means that there exist a minimizer $\bar x\in Q$ such that $f(\bar x) = \mu$. The set is a convex set because the level set $\text{lev}_{\mu}(f)$ is a convex set by the fact that $f$ is convex, the set is also closed by closure of $f$. Therefore, the set of minimizer has to be a convex set as well. 
 
 **Remarks**: 
 
@@ -86,5 +84,5 @@ When a function closed and convex and is strictly convex, it will have a unique 
 
 **Strong Convexity**
 
-This is a very useful concept and it has its own file, see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md), and some old notes from about the foundations of the 
+This is a very useful concept and it has its own file, see [here](../Strong%20Convexity,%20Equivalences%20and%20Implications%20), and some old notes from about the foundations of the 
 

@@ -1,4 +1,4 @@
-[[Subgradient Introduction]]
+[[Subgradient Intro]]
 [[Characterizing Functions for Optimizations]]
 [[Convex Sets Intro]]
 

@@ -155,3 +155,7 @@ $$
 Notice that this is only true if $\nabla f(y) = \gamma(y - x)$ where $\gamma > 0$. Simply put, the gradient of the function at all points is the same as the vector that points from the minimizer to that point. 
 
 This creates a contradiction if $x_1 \neq x_2$, because that means the gradient at point $y$ is a vector that points to 2 directions, and this is impossible. $\blacksquare$
+
+
+### Thm-1 
+**This is a Header**

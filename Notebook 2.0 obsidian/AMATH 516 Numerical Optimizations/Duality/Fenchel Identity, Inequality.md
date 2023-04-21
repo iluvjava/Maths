@@ -1,15 +1,15 @@
 ---
-alias: Fenchel Equality
+alias: Fenchel Equality, Fenchel Identity
 ---
 * [[Convex Conjugation Introduction]]
-* [[../Non-Smooth Calculus/Subgradient Introduction]]
+* [[../Non-Smooth Calculus/Subgradient Intro]]
 
 ---
 ### **Intro**
 
 The Fenchel inequality ties together the idea of convex conjugate, subgradients, and convexity of functions. 
 
-**Observation: Fenchel Inequality**
+**Observation-1 | Fenchel Inequality**
 > Let $f$ be a proper function, then it's possible to choose $x\in \text{dom}(x)$ such that $f(x)\neq \infty$, by this we have: 
 > $$
 > \begin{aligned}
@@ -22,8 +22,8 @@ The Fenchel inequality ties together the idea of convex conjugate, subgradients,
 
 However, the equality can be achieved if, the function $f$ is closed and convex. We state the theorem. 
 
-**Theorem: Fenchel's Identity and Equivalences**
-> Let $f$ be closed, convex and proper, let $x, y\in X$, then the following are equivalent: 
+**Theorem-1 | Fenchel's Identity and Equivalences**
+> Let $f$ be convex and proper, then there exists $x, y\in X$ which makes the following conditions equivalent: 
 > 1. $f(x) + f^\star(y) = \langle x, y\rangle$, 
 > 2. $y \in \partial f(x)$ , 
 > 3. $x\in \partial f^\star(y)$ IF, $f$ is also l.s.c. 

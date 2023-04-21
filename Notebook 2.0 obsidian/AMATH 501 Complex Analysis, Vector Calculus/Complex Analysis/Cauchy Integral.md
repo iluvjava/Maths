@@ -1,6 +1,6 @@
 We can figure out the value of the function at a point by just walk around the function, with a pole in the middle. 
 Prereq: 
-[[Cauchy Riemann Conditions (Analyticity)]]
+[[Cauchy Riemann Condition]]
 [[Complex Integration (CG)]]: We need Cauchy Goursat 
 
 ---

@@ -1,4 +1,7 @@
-[[Convex Sets Projection Obtuse Angle Theorem]]
+---
+alias: Convex Separations Theorems
+---
+- [[Convex Sets Projection Obtuse Angle Theorem]]
 
 ---
 ### **Intro**
@@ -10,7 +13,7 @@
 > $$
 > \langle a, x\rangle\le b < \langle a, y\rangle
 > $$ 
-> The point $a$ lies in the lowe half space and the point $y$ lines in the upper half space of the separation line with perpendicular vector $a$.(WLOG assuming a is positive).
+> The point $a$ lies in the lower half space and the point $y$ lines in the upper half space of the separation line with perpendicular vector $a$.(WLOG assuming a is positive).
 
 **Remark:**
 The theorem has its combinatorics optimization's counter parts regarding matrix inequality, see [[Farkas's Lama]] for more. 

@@ -1,4 +1,4 @@
-[[Subgradient Introduction]]. 
+[[Subgradient Intro]]. 
 
 ---
 ### **Intro**

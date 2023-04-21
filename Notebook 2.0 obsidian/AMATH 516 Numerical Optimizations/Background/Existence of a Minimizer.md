@@ -1,10 +1,10 @@
-[[Topological Basics for Optimizations]],
-[[Characterizing Functions for Optimizations]]
+- [[Topological Basics for Optimizations]],
+- [[Characterizing Functions for Optimizations]]
 
 ---
 ### **Existence of a minimizer**
 
-The existence of a minimizer depends on the continuity and the compactness of a subset of the domain of the function. 
+The existence of a minimizer depends on the continuity and the compactness of a subset of the domain of the function. Level boundedness (From Rockafellar), and Coersiveness is used to characterize the compactness of the set of minimizers for the function. 
 
 **Theorem: Closed Epigraph**
 
@@ -46,7 +46,7 @@ What is the role of l.s.c or closedness of the function?
 What is the role for the closure of $C$? 
 > If the set $C$ is open, then, the limit of the sequence might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point, the minimizer we wan't can't be defined in $C$, or the domain of the function, this is a type of non-existence of the minimizer. 
 
-Finally, why/how do we use the Weistrass Theorem (Sequential Compact Theorem)?
+Finally, why/how do we use the Weierstrass Theorem (Sequential Compact Theorem)?
 
 > Observe that it's the set $\arg\inf_{x\in C}f(x)$ can have any type f topology or cardinality we want it to be. The sequence $x_n$ such that $f(x_n) \rightarrow f_{\text{opt}}$ doesn't have to converge in anything, it can circle around inside of the set. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to converge to on, and just one of the point in the compact region, say $\bar x$ such that it attain the minimum of $f(\bar x) = f_{\text{opt}}$. 
 
@@ -65,7 +65,7 @@ $$
 \end{aligned}
 $$
 
-For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le f(x_0)$, then follows from above that $S\cap \{x: \Vert x\Vert\le M\}$ is a compact set. By Bozano Weistrass Theorem for closed function, from previous section, $\bar x$ is in $\text{dom}(f)\cap S$.
+For any minimizer of $f$ over $S$, denoted as $\bar x$, satisfies: $f(\bar x)\le f(x_0)$, then follows from above that $S\cap \{x: \Vert x\Vert\le M\}$ is a compact set. By Bozano Weierstrass Theorem for closed function, from previous section, $\bar x$ is in $\text{dom}(f)\cap S$.
 
 
 ---

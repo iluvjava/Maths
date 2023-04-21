@@ -1,5 +1,5 @@
 So, the trig functions and  the hyperbolic Trig Functions can be extended to the complex numbers too. 
-prereq: [[Analytic Functions (Exp, Poly)]]
+prereq: [[Analytic Functions, Polynomials and Exponentials]]
 
 ---
 

@@ -1,4 +1,4 @@
-[[../Non-Smooth Calculus/Subgradient Introduction]], [[Introduction to Operators for Optimizations]]
+[[../Non-Smooth Calculus/Subgradient Intro]], [[Introduction to Operators for Optimizations]]
 
 
 ---

@@ -59,7 +59,7 @@ $$
 -i\partial_yu + \partial_yv
 $$
 
-And they have to be equal, giving us: [[Cauchy Riemann Conditions (Analyticity)]]
+And they have to be equal, giving us: [[Cauchy Riemann Condition]]
 
 #### Geometrical Interpretation of Differential
 Let's write the limit in a different form and it will reveal something about the differential of a complex number: 
