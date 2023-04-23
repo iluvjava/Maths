@@ -1,3 +1,6 @@
+---
+alias: Enumerosity
+---
 ### **Intro**
 
 This would be the foundations of theoretical mathematics. Infinity like this would never occur in the real life, not even close, but it will be some very interesting mental exercises for the bright minds. 
@@ -5,7 +8,7 @@ This would be the foundations of theoretical mathematics. Infinity like this wou
 The set of all natural numbers, $\N$ has a concept of cardinality to it, a measure on the number of elements in the set. We can directly associate the member in $\N$ to a subset of $\N$. For example, $n\in \N$ is the number of elements from $1$ to $n$.  Immediately observe that there can't exists any natural number representing the number of elements in the set $\N$. For any natural number $n$, it can count the number of natural numbers from $1$ to $n$, but we can add one more element to the set such that the set become larger and yet is still not $\N$. We denote this to be $\aleph_0$. The cardinality of the set $\N$. Finally, we make implicit use of the [Continuum Hypothesis](https://en.wikipedia.org/wiki/Continuum_hypothesis). 
 
 ---
-### **Numerosity of Sets**
+### **Enumerosity of Sets**
 
 To set is the same cardinality of there exists a bijection between the 2 sets. The set $A$ would be larger than $B$, if there exists $f: A\mapsto B$ such that $f$ is a surjective function, then it would mean $A$ has a cardinality that is larger than or equal to $B$. 
 

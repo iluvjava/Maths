@@ -21,12 +21,13 @@ A Banach space where, the basis to span each element has finitely many elements 
 
 **Proof**: 
 
+
 Skipped.
 
 **References**: 2.4 In Kreyszig's Intro to Functional analysis textbook. 
 
 **Definition: Sequentially Compact Normed Space**
-> Let $(X, d)$ be a metric space, it's sequantially compact when every sequence in $X$ has a convergent subsequence. 
+> Let $(X, d)$ be a metric space, it's sequentially compact when every sequence in $X$ has a convergent subsequence. 
 
 **Proof**
 
@@ -92,7 +93,11 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 **References**: 
 2.5-3 in Kreyzig's textbook. 
 
-**Lemma:Riesz Lemma (2.4-5)**
+
+---
+### **An Lemma In the Middle**
+
+**Lemma | Riesz Lemma (2.4-5)**
 > Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
 >
 
@@ -113,7 +118,9 @@ Geometrically it means, it's possible to find a point $x\in Z\setminus Y$ such t
 This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into [here](http://mathonline.wikidot.com/riesz-s-lemma) on mathdot for a better exposition of the proof. 
 
 
-**Thm: Finite Dimensional Space [2.5-5]**
+---
+### **More Theorems**
+**Thm: Finite Dimensional Space (2.5-5)**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
 **Proof**: 
@@ -122,9 +129,9 @@ skipped.
 
 **Remarks**: 
 
-It's implied that in a finite dimensional space, a closed unit ball is a set that contains bounded sequences that has diverging subspace. But this is not possile in a finite dimensional space. 
+It's implied that in a finite dimensional space, a closed unit ball is a set that contains bounded sequences that has diverging subspace. But this is not possible in a finite dimensional space. 
 
-**Thm: Continuous Mapping [2.5-6]**
+**Thm: Continuous Mapping (2.5-6)**
 > Let $X, Y$ be metric spaces. Let $T: X \mapsto Y$ be a continuous mapping. Then the image of a compact subset $M$ of $X$ is, compact. $TM$ is a compact set as well. 
 
 **Remarks**: 

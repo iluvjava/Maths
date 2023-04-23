@@ -4,9 +4,9 @@ We introduce the absolute basics of real analysis. There are approximately 2 par
 - The limits, continuity.
 - The series, convergence. 
 
-Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
+Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction | Metric Space Introduction]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
 
-We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. 
+We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. For more about the concept of infinity, see [Countability of Sets](../Countability%20of%20Sets.md). 
 
 
 ---
@@ -58,15 +58,19 @@ All numbers in the sequences form a subset of the real that is non-empty then it
 
 **Proof**
 
-Use the nested interval theorem or something. Skip. 
+For a legit proof, see [Bozano Weierstrass](Bozano%20Weierstrass.md) for more information. 
 
 **Remarks**
 
-It's suitable in general metric space. 
+It's suitable in general metric space and converging subsequence characterizes compact spaces in metric space, this concept is very important because it generalizes to other places. 
 
 
 ---
 ### **Limit of a Function**
+
+There are 2 equivalent definitions for the limit of a function at a point. One uses convergent sequences and the other uses, epsilon vicinity of a point in the domain.  
+
+**Epsilon Region for the Limit of a Function**
 
 > $L$ is a limit of function $f$ at the point $x_0$ if for all $\epsilon > 0$ there exists $\delta_\epsilon(x_0)$ such that for all $x$ with $0 < |x - x_0|< \delta_\epsilon(x_0)$ we have $|f(x) - f(x_0)| \le \delta_\epsilon(x_0)$. 
 
@@ -85,12 +89,15 @@ We consider real numbers, let the background set to be real number.
 
 **Definition: Limit Point**
 > A point $x$ is the limit point of the set $A$ if, there exists a sequence of number $x_n\in A$ such that $\lim_{n\rightarrow \infty} x_n = x$. 
->
+
+Limit point is *used to described sequences*. For example, if, $x$ is a limit point for the sequence $(x_n)_{n\in \N}$, there is a subsequence of $x_n$ such that converges to the point $x$. 
 
 **Definition: Cluster Point**
 > A point $x$ is the cluster point of a set $A$ if, there exists a sequence of number $x_n\in A\setminus \{x\}$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
 
-Observe that a cluster point is a limit point, but a limit point is not a cluster point, because an isolated point in set $A$ can't be approached by a cluster point, but it can with a limit point. 
+Cluster points are used to *described sets with infinitely many points*. 
+
+Observe that a cluster point is a limit point, but a limit point is not a cluster point, because an isolated point in set $A$ can't be approached by a cluster point, but it can with a limit point. Due to this property, the sequence that describes the limit of a function, will have a cluster point, instead of a limit point, because in the context of a limit, we may never actually equals to that point at the limit. 
 
 
 **Example, Applications:**
@@ -103,11 +110,20 @@ Observe that a cluster point is a limit point, but a limit point is not a cluste
 
 > A real function is continuous at a point $x_0$ when $\forall \epsilon > 0$ we have $\delta_\epsilon(x_0)$ such that for all $x$ such that $|x - x_0|\le \delta_\epsilon(x_0)$, we have $|f(x) - f(x_0)| \le \epsilon$. 
 
+**Observations**: 
+
+A function is continuous at point $x_0$ if and only if $\lim_{x\rightarrow x_0}(x_n) = f(x_0)$. The definition of continuity is like, a more generalized concepts for limit. It's looking at the limit of some space, after the space being transformed by the function. This concept generalizes. 
 
 ---
 ### **Uniform Continuity**
 
-> A function $f$ is uniformly continuous over a region $A$ when for all $\epsilon > 0$ we have $\delta_\epsilon$ such that for all $|x - y|< \delta_\epsilon(A)$ we have $|f(x) - f(y)| \le \epsilon$ for any $x, y\in A$. 
+Uniform continuity is crucial for integrability of functions. 
+
+> A function $f$ is uniformly continuous over a region $A$ when for all $\epsilon > 0$ we have $\delta_\epsilon$ such that for all $x, y$ such that $|x - y|< \delta_\epsilon(A)$ we have $|f(x) - f(y)| \le \epsilon$ for any $x, y\in A$. 
+
+**Observations**: 
+
+It's saying that, for all epsilon vicinity for any points $x \in A$, some subset of the domain of the function, is going to be $\epsilon$ bounded, but in the pointwise definition, we are using, different $\epsilon$ to bound each and very points. This is a *stronger version of  point-wise continuity*. 
 
 
 ---
@@ -122,7 +138,6 @@ In brief, if we are long looking at each point on the function $f_n(x_0)$, then 
 
 **Remarks**
 However, the relative speed of how each point converges to the target function is not described in the pointwise convergence definition. 
-
 
 **Def: Uniform Convergence**
 

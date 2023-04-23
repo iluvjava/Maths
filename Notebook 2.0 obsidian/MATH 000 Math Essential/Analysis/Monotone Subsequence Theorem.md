@@ -6,7 +6,7 @@ Let $(x_n)_{n\in \N}$ be a sequence in $\R$, then a subsequence is the same sequ
 ---
 ### **Thm-1 | Monotone Subsequence Theorem**
 
-For every sequence $(x_n)_{n\in \N}$ there is a subsequence that is monotone. It might not be strictly monotone however. This is a lemma the underlies the Bozano Wierstrass theorem, a very important theorems that describes the space of real numbers. 
+For every sequence $(x_n)_{n\in \N}$ there is a subsequence that is monotone. It might not be strictly monotone however. This is a lemma the underlies the Bozano Wierstrass theorem, a very important theorem that describes the space of real numbers. 
 
 > For all sequences that in the real line, there exists a subsequence of that sequence such that it is monotone. 
 
