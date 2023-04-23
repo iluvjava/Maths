@@ -35,9 +35,9 @@ However, the equality can be achieved if, the function $f$ is closed and convex.
 ### **Fenchel Equality**
 
 Recall these facts: 
-- Conjugate is convex. 
-- Zero in subgradient is global optimal for any convex function. 
-- Subgradient strong sum rule. 
+- Conjugate is convex. (In Prereq)
+- Zero in subgradient is global optimal for any convex function. [Convex Subgradient](../Non-Smooth%20Calculus/Convex%20Subgradient.md)
+- Subgradient strong sum rule. [Subgradient Sum Rule](../Subgradient%20Sum%20Rule.md)
 
 **Proof**
 

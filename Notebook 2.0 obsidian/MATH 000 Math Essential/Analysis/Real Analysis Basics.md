@@ -76,7 +76,7 @@ It's suitable in general metric space.
 
 **Remarks**
 
-The 2 definition for the limit of a function is equivalent. 
+The 2 definitions for the limit of a function is equivalent. 
 
 ---
 ### **Limit Point, Cluster Point**

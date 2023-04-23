@@ -35,11 +35,10 @@ $$
 
 And that is enough to understand what people are saying. Finally, please observe that a subgradient is a type of multivalued function: [[Multivalued Functions, Set-valued Mappings]]), and it inherit some properties from multi-valued mappings. 
 
-
 ---
 ### **Differentiable Function Yields Singleton Subgradient**
 
-Recall that a function is F-differentiable at some point $x$, in the iterior of its domain then there exists $g \in X$ such that: 
+Recall that a function is F-differentiable at some point $x$, in the interior of its domain then there exists $g \in X$ such that: 
 
 $$
 \begin{aligned}

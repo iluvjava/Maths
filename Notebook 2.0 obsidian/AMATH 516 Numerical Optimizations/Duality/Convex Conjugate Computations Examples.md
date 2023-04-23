@@ -412,7 +412,7 @@ Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\
 
 **Demonstrations**: 
 > [!details]-
-> Directly from the defintion we have: 
+> Directly from the definition we have: 
 > 
 > $$
 > \begin{aligned}
@@ -430,6 +430,78 @@ Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\
 > $$
 > 
 > and we are done. 
+
+
+---
+### **Conjugate of $\alpha f(\lambda x + b) + \langle a, x\rangle$**
+
+We consider the conjugate of several simple composition and derive it to show where things go. We assume that $\alpha > 0$ and $\lambda \neq 0$, these are scalars and $a$ is a vector. The result is stated here: 
+
+$$
+\begin{aligned}
+    \left[
+        \alpha f(\lambda x + b) + \langle a, x\rangle
+    \right]^\star (y) 
+    &= 
+    \alpha f^\star\left(
+        \frac{\lambda}{\alpha}(y - a)
+    \right) - \left\langle 
+        b, \lambda \frac{y - a}{\alpha} 
+    \right\rangle
+\end{aligned}
+$$
+
+Observe that the linear offset wedge out a linear term in the dual. other type of transformation won't introduce extra terms for the resulting conjugate.
+
+**Demonstrations**
+> [!details]-
+> $$
+> \begin{aligned}
+>     & \quad \sup_{x\in X}\left\lbrace
+>         \langle y, x\rangle - \alpha f(\lambda x + b) - \langle a, x\rangle
+>     \right\rbrace
+>     \\
+>     \alpha > 0
+>     \implies 
+>     & = 
+>     \alpha \sup_{x\in X} 
+>     \left\lbrace
+>         \left\langle x, \frac{y - a}{\alpha}\right\rangle
+>         - f(\lambda x + b)
+>     \right\rbrace
+>     \\
+>     &= 
+>     \alpha 
+>     \sup_{x\in X} 
+>     \left\lbrace
+>         \left\langle \lambda^{-1}x, \frac{y - a}{\alpha}\right\rangle
+>         - f(x + b)
+>     \right\rbrace
+>     \\
+>     &= 
+>     \alpha
+>     \sup_{x\in X} 
+>     \left\lbrace
+>         \left\langle \lambda^{-1}x - b, \frac{y - a}{\alpha}\right\rangle
+>         - f(x)
+>     \right\rbrace
+>     \\
+>     &= 
+>     \alpha
+>     \sup_{x\in X} 
+>     \left\lbrace
+>         \left\langle \lambda^{-1}x, \frac{y - a}{\alpha}\right\rangle
+>         - f(x)
+>     \right\rbrace - \left\langle b, \frac{\lambda(y - a)}{\alpha} \right\rangle
+>     \\
+>     &= 
+>     \alpha f^\star\left(\frac{\lambda(y - a)}{\alpha}\right) 
+>     - 
+>     \left\langle b, \frac{\lambda(y - a)}{\alpha}\right\rangle, 
+> \end{aligned}
+> $$
+> 
+> I hope this exam serves a good references in the future. 
 
 ---
 ### **Conjugate Over Invertible Affine Transform**
