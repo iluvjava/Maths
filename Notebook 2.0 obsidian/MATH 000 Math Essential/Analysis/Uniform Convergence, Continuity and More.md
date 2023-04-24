@@ -4,6 +4,9 @@
 ---
 ### **Uniform Convergence Preserves Continuity**
 
+Only a specific type of convergence preserves the continuity for functions. 
+
+
 > If the function $f_n$ converges to $f$ uniformly on the region $D$, then the resulting function $f$, and the function $f_n$ is continuous for all $n\in \mathbb N$, then the resulting function $f$ will be a continuous function. 
 
 

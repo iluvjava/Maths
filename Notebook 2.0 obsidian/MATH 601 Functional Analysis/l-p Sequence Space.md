@@ -1,13 +1,16 @@
 [[Functional Spaces/Metric Space Introduction]]
 
 ---
-### **Metric for Unbounded Sequence**
+### **Intro**
 
-References: \<Introductory Functional Analysis with Applications\>
+In this file we discuss the l-p sequence space. This is a great example of a metric space that can change into all different types of metric space given different parameters of $p$, and it also contains good subspace for discussion on topics related to functional analysis. 
 
+To start, we define the inner product as an opperations on infinite sequences. Let $x, y$ be 2 sequences, then their inner product $\langle x, y\rangle := \sum_{i = 1}^\infty x_i y_i$. This is a notation that will simplify our discussion and it has not much to do with the inner product spaces. 
 
 ---
 ### **l-p Sequence Space**
+
+To start, we show the norm defined for the $l^p$ sequence space is indeed a metric. 
 
 **Conjugate Pairs**
 > $p, q$ are conjugate pairs if they satisfies: $p^{-1} + q^{-1} = 1$. 
@@ -53,7 +56,7 @@ $$
         \frac{a}{\Vert a\Vert_p}, \frac{b}{\Vert b\Vert_q}
     \right\rangle &\le 1
     \\
-    \Vert a\Vert_p\Vert b\Vert_q &\le \langle a, b\rangle. 
+    \Vert a\Vert_p\Vert b\Vert_q &\ge \langle a, b\rangle. 
 \end{aligned}
 $$
 

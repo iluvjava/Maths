@@ -1,5 +1,5 @@
-[[Finite Euclidean Inner Product]]: Inner product defined under euclidean space. 
-[[Inner Product Axiomatically Defined]]
+- [[Finite Euclidean Inner Product]]: Inner product defined under euclidean space. 
+- [[Inner Product Axiomatically Defined]]
 
 In this section, we introduce define the complex of a dot product of 2 vectors from the field: $\mathbb{C}^n$
 
@@ -90,7 +90,9 @@ Same thing, if 2 vectors are orthogonal, then for $x, y \in \mathbb{C}^n$, then 
 ---
 ### **Properties**
 
-**Conjugation When Communiting**
+These properties are crucial to understanding inner products for elements that are complex scalars, or vector. 
+
+**Conjugation When Commutating Arguments**
 
 > Let $x, y \in \mathbb{C}^n$, then $\langle x, y\rangle = \overline{\langle y, x\rangle}$. 
 

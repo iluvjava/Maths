@@ -1,5 +1,5 @@
 [[Metric Space Introduction]], 
-[[../Further Examples for Metric Space]]
+[[../l-p Sequence Space]]
 
 
 ---

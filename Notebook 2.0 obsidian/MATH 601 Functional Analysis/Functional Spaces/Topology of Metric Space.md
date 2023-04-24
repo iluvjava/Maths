@@ -1,4 +1,4 @@
-- [[Metric Space Introduction]], [[../Further Examples for Metric Space]], 
+- [[Metric Space Introduction]], [[../l-p Sequence Space]], 
 - [[../../MATH 000 Math Essential/Analysis/Real Analysis Basics]], 
 - [[../../MATH 000 Math Essential/Countability of Sets]]. 
 - [[../../MATH 000 Math Essential/Topological Spaces]]
