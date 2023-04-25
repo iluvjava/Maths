@@ -1,4 +1,4 @@
-[[Min Cost Network Flow Standard Form]]
+[[Minimum Cost Network Flow Standard Form]]
 
 ---
 ### **Intro**
@@ -53,19 +53,22 @@ where $x$ is the vector, when indexed by arc: $x_{i, j}$ represents the amount o
 
 Then a solution to the minimum costs flow in the transformed graph is equivalent to the solution for the maximum flow problem. 
 
-#### **Application: Feasibility Search for Network Flow Problem**
+#### **Application | Feasibility Search for Min Cost Flow Problem**
 
-Given a network flow problem with mass balance in standard form. Let sum of $b_i$ equals to zero. We look for a feasibility solution of the network using Maxflow Mincut. Modify the graph using the following transformation: 
+Given a network flow problem with mass balance in standard form. Let the sum of $b_i$ equals to zero (Else it's already infeasible). We look for a feasible solution of the network modeling it as a Maxflow Mincut. Modify the graph using the following transformation: 
 
 - $b_i < 0$ then $i$ is a surplus node, else $b_i > 0$, which will be a deficit node. $b_i = 0$ is a circulation nodes and we ignore it for now. 
-- Then by creating a new node $s$ that connects to all $i$ such that it's a surplus node with $(s, i)$ with arc capacity $b_i$
-- Create a node $t$ where all nodes $i$ with deficit has arc $(i, t)$ created with capacity $b_i$. 
+- Then by creating a new node $s$ that connects to all $i$ such that it's a deficit node, i.e $b_i > 0$, with $(s, i)$ with arc capacity $b_i$
+- Create a node $t$ where all nodes $i$ with surplus has arc $(i, t)$ created with capacity $b_i < 0$. 
+- Ignoring all the capacities on the node, we now have a maximum flow problem to solve. 
+	- If, it's possible to send flow from $s$ to $t$ such that the flow amount equals to the sum of all the surplus/deficit, then, all flows on the arcs of the original graph now forms a feasible flow. (Note that, this flow is definitely a maximum flow when it exists). 
+	- Else, there is no feasible solution to the original problem. 
 
 Then a maximum flow on the new graph that balance all the nodes with deficit meaning that the s-t cut is $S = {s}$, then a feasible solution will be identified, after ignoring the modifications made to the original graph, assuming that the mass balance constraints for all vertices sums up to one. 
 
 **References:**
 
-Chapter 6 of the networkflow theory and algorithm textbook. 
+Chapter 6 of the network flow theory and algorithm textbook by Ahuja. 
 
 ----
 ### **The Residual Graph Without Lower bound**
@@ -79,13 +82,13 @@ Observe that:
 - The capacity for arcs on the residual networks are all $\ge 0$, If, the flow $x_{i, j}$ is a feasible flow, else the flow is infeasible. 
 - The zero flow will always be feasible according to our assumptions on the graph, and it will allow us to get the residual graph with zero flow on it. 
 
-**Definition: Augmenting Path**
+**Definition | Augmenting Path**
 > An augmenting path is a path s-t path $P$ on the residual graph $G(x)$ such that $x$ is feasible and the minimum of all residual capacities $r_{i, j} \in P$ are $> 0$. 
 
 ---
 ### **$s-t$ Cut**
 
-**Definition: A s-t Cut**
+**Definition-1 | A s-t Cut**
 > Let $G = (A, N)$ be a directed graph and $s\neq t$. Let $S \subseteq N$ with $s\in S$ and $t\not S$, then the cut produce by the set $S$ is defined as: 
 > $$
 > \begin{aligned}
@@ -98,7 +101,7 @@ Observe that:
 
 We also denote the capacity of an $s-t$ cut using $u(S)$, and the residual capacity $r(S)$. The total amount of flow through the network is given by: 
 
-**Claim: Weak Duality**
+**Claim-1: Weak Duality**
 > The amount of the flow is upper bounded by the capacity of the s-t cut. 
 > $$
 > \begin{aligned}
@@ -170,7 +173,7 @@ $$
 
 and this completed the proof that, all the flow inside of $S$ equals to (Flow out of S) - (Flow in of S) less than Capacity of the s-t cut. 
 
-**Corollary: Strong Duality Conditions**
+**Corollary-1 | Strong Duality Conditions**
 
 > A flow will be maximum flow if and only if there exists a cut such that the cut capacity equals to the total amount of $s-t$ flow. 
 
@@ -182,89 +185,14 @@ We just applied the strong duality for linear programming, using the above formu
 ---
 ### **Derivations of Residual Capacity via LP**
 
-The residual residual graph has a beautiful interpretations in terms of the LP of the maxflow programming problem. 
-
-#UNFINISHED 
+The residual of the maxflow problem, can be viewed as a special case for the mincost flow problem where, all the arcs are having exactly zero costs for them. see [Residual Networks Transform](Residual%20Networks%20Transform.md) for more details. 
 
 
----
-### **Ford Fulkerson Algorithm**
-
-The Ford Fulkerson algorithm is also refers to as the generic augmenting path algorithm. This algorithm find augmenting flows on the residual graph, which represents the changes in the feasible flow for the original graph. Each time, it promises to increases the total amount of flow going from $i$ to $t$, keeping the feasibility of the existing feasible flow after augmenting and modifying it. 
-
-**Algrithm**: 
-
-We describes it in Pseudo code as: 
-
-```SQL
-WHILE DiPath P(s, t) IN G(x):
-    FIND DiPath P = P(s, t); 
-    delta := MIN(r(i, j), (i, j) IN P)
-    EVAL "Augment all flow on the path: P". 
-```
-
-where, `DiPath(S, t)` denotes a s-t directed path, EVAL means interpreting the following string of human language. 
-
-**Observations**: 
-- From the integrality assumption, the algorithm increment at least $\delta \ge 1$. 
-- When the algorithm terminates, it can't find any s-t path on the residual graph $G(x)$, suppose that the set $S$ denotes all the nodes $i$ that can be reached by an s-i path, then consider any $(i, j)$ it exists:
-  - Either as $(i, j) \in (S, S^C)$ in $G$, then it has $r_{i, j} = u_{i, j} - x_{i, j} = 0$, so that $x_{i, j} = u_{i, j}$; 
-  - Or $(i, j)\in (S^C, S)$ in G, so then $r_{j, i} = x_{i, j} = 0$ on the residual meaning that $x_{i, j} = 0$. 
-- We note that at the start of the algorithm, if no feasible flow is given, we may always use a zero flow on the graph to generate a residual network that is suitable for the Ford Fulkerson Algorithm. 
-
-Therefore, on the S-t cut of the original graph, the out going arcs are all saturated and the incoming arcs are all empty. We had achieved strong duality and the minimum cut is the set $S$. 
-
-**LP View of Ford Fulkerson**
-
-For any feasible solution $x$, and increment vector $\delta \mathbf 1_P$, the indicator function for some s-t path. This factor contains $\pm 1$, when $\mathbf (1_P)_a$ it's negative, it decreases the arc flow, when it's positive, it increases the arc flow. For all $a\in A$, we have: 
-
-$$
-(\mathbf 1_P)_a = \begin{cases}
-    1 & a\in P\wedge a\in A, 
-    \\
-    -1 & a\in P\wedge a^{-1}\in A, 
-    \\
-    0 & a \not\in A, 
-\end{cases}
-$$
-and such a vector has the property that $M\mathbf 1_P = \e_1 - \e_n$, then sending some flow from $s$ to $t$ along path $P$ would mean:
-
-$$
-\begin{aligned}
-    M(x + \delta \mathbf 1_P) &= Mx + M\delta \mathbf 1_P = v(\e_1 - \e_n) + \delta(\e_1 - \e_n)
-    \\
-    &= (v + \delta)(\e_1 - \e_n), 
-\end{aligned}
-$$
-
-since the variable $v$ is free, we can set the variable $v' = v + \delta$ to accommodate the changes in the flow. Take note that $M \mathbf 1_P = \e_1 - \e_n$ by the fact that $\mathbf 1_P$ represents a s-t path on the graph, and $M$ is the incidence matrix. Furthermore, the new changes to the vector must keep its feasibility, and that is the condition that $l \le x + \mathbf 1_P \le u$ comes into the picture. This feasibility conditions will construct the residual graph for the network flow problem. We skip the details here and it's left as an exercise for the readers.
-
-
----
-### **Important Theorems**
-
-These theorems uses observations about the Ford Fulkerson to characterize the optimality of a flow. 
-
-**Theorem: Augmenting Path Optimality Conditions**
-> A flow $x^+$ is optimal if and only if residual $G(x^+)$ has no s-t augmenting path. 
-
-
-**Theorem: Integrality Theorem**
-> If all arcs capacity are integers, the maximum flow has an integer maximum flow. 
-
-
-
-**Theorem: Ford Fulkerson Complexity**
-> The Ford Fulkerson algorithm solves the maximum flow problem in $O(mn U)$ where $U = \max_{a\in A} u_a$.
-
-**Proof**:
-
-Each path find is bounded by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
 
 ----
 ### **Dual LP and Its Interpretations**
 
-Let $M$ be the incidence matrix of the graph, we assume that vertex $s, t$ are indexed with $1, 2$, let $n$ be the total number of nodes and $m$ be total number of arcs, then $M\in \mathbb R^{n\times m}$. The primal, dual of the problem can be stated in matrix form as ([[../Linear Programming Duality Cheat Sheet]]): 
+Let $M$ be the incidence matrix of the graph, we assume that vertex $s, t$ are indexed with $1, 2$, let $n$ be the total number of nodes and $m$ be total number of arcs, then $M\in \mathbb R^{n\times m}$. The primal, dual of the problem can be stated in matrix form as ([Linear Programming Duality Cheat Sheet](../Linear%20Programming%20Duality%20Cheat%20Sheet.md)): 
 
 $$
 \begin{aligned}
@@ -301,7 +229,7 @@ $$
     \begin{bmatrix}
         \mathbf 0 \\ 1 
     \end{bmatrix}
-\end{aligned}, 
+\end{aligned}
 $$
 
 we take a careful look at the constraints of the dual, and transform it so that it's more informative: 
@@ -334,9 +262,12 @@ Using strong duality, we can attain the conditions that:
 ---
 ### **Classical Algorithms for Maximum Flow**
 
+Some of these algorithms I actually covered them. See [Advanced Maxflow Algorithms](Advanced%20Maxflow%20Algorithms.md) for more information. 
+
 - Ford Fulkerson: 
   - Pseudo Polynomial, in $\mathcal O(mnC)$ where $C$ is the maximum capacity for one of the arcs. 
   - Very generic, the worse case complexity can be demonstrated just using a DFS routine. 
+  - See [The Ford Folkerson Algorithm](The%20Ford%20Folkerson%20Algorithm.md) for more information. 
 - Edmonds Karp Algorithm: 
   - It's just Ford Fulkerson but with BFS for Augmenting path identifications on the residual graph. 
   - The complexity is $\mathcal O(|V||E|^2)$. 
@@ -345,7 +276,6 @@ Using strong duality, we can attain the conditions that:
   - It remembers all the labels from the first reverse BFS search from $t$ to $s$, and then robustly undo the BFS search whenever a saturated arc has been created by the augmenting path. 
   - Implementations difference may yield the Shortest Augment with Label Memorization instead. 
   - The complexity is $\mathcal O(|V|^2|E|)$. 
-  - See the notes [[Dinic's Algorithm]]
 - Capacity Scaling Method: 
   - Delete all the arcs with residual less than a certain threshold and do a path search for an augmenting path. 
   - If such a path doesn't exist, cut our lower bounds for the flow in half. It looks for the minimum of the maximum flow that doesn't exceed all the arcs's capacity on the residual graphs. 

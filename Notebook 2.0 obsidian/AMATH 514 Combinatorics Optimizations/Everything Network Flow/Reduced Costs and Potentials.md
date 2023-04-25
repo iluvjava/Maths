@@ -1,4 +1,4 @@
-[[Min Cost Network Flow Standard Form]], 
+[[Minimum Cost Network Flow Standard Form]], 
 
 ---
 ### **Intro**
@@ -6,10 +6,11 @@
 Reduced costs is a trick. It labels the graph nodes with values and then checks the costs of cycles and flow on the graph. Assuming that we were given original graph in network standard form. The reduce costs is related to the dual formulation of the minimal cost flow problem. We quote the economic interpretations here, as it was more commonly taught in LP class by Jame Burkes: 
 
 > In general, the negative of the objective row coefficients
-for decision variables in the optimal tableau are the reduced costs of these variables. The reduced cost of a decision variable is the precise amount by which one must increase its objective row coefficient in order for it to be included in the optimal solution.
+for decision variables in the optimal tableau are the reduced costs of these variables. The reduced cost of a decision variable is the precise amount by which one must increase its objective row coefficient in order for it to be included in the optimal solution. 
+> 
+> From: Jame Burke's Linear Programming at UW. 
 
 Let $G = (A, N)$ be a directed graph, let $c$ denotes the arc costs for each unit flow on the graph. 
-
 
 **References**:
 
@@ -20,7 +21,7 @@ Chapter 3 of the Network-flow algorithm textbook.
 
 We define it and show some of its properties. 
 
-**Definition: Reduced Costs**
+**Definition-1 | Reduced Costs **
 
 > Let $i\in N$, we associated $p_i$ for each node a number, then the reduced costs of the graph, denoted as $c^{(p)}_{i, j} := c_{i, j} + (p_j - p_i)$ is defined for all $(i, j)\in A$. For discussion, we also define $z^{(p)}$ to be the objective value on the reduced cost graph, defined as: 
 > $$
@@ -38,14 +39,17 @@ Consider an increase on the current potential of a specific node $i$, with $\del
 
 Reduced costs seems to be related to the $(y_2)_{i,j}$ decision variable in the dual formulation on the minimum cost flow problem. 
 
-
-**Theorem: Same Optimal on the Reduced Cost**
+**Thm-1 | The Potential Gap**
 
 > Minimum cost flow problem with arc costs $c^{(p)}_a$ and $c_{i,j}$ have the same optimal solutions. More over, $z(p) = z(0) - \langle p, b\rangle$. 
 
+**Observation**
+
+The objective of the dual problem is indeed $\langle p, b\rangle$ for the minimum cost flow problem. If a solution is optimal for a certain reduced cost, then it has to be optimal in the original costs. 
+
 **Proof**: 
 
-To see this, we let $x$ be an optimal solution, we consider the difference between 2 type of costs, and we show that their difference is a constant. For simplicity I write $c'$ for $c^{(p)}$, the reduced costs induced by the potential assignemnts on the nodes. 
+To see this, we let $x$ be an optimal solution, we consider the difference between 2 type of costs, and we show that their difference is a constant. For simplicity I write $c'$ for $c^{(p)}$, the reduced costs induced by the potential assignment on the nodes. 
 
 $$
 \begin{aligned}
@@ -93,7 +97,7 @@ which is a constant, and this is true for all flows on the graph, therefore, the
 
 **References**: Property 2.4 in Ahuja's Network flow textbook. 
 
-**Theorem: Potential of Directed Cycles and Paths**
+**Thm-2 | Potential of Directed Cycles and Paths**
 
 > Let $C$ be a directed cycle on the graph $G$ as collection of arcs, then the cost, denoted by $\text{cost}(C)$, and the reduced costs, denoted by $\text{cost}^p(C)$ is the same. When $P$ is a directed $k-l$ path on the graph G, we have $\text{cost}^p(P) = \text{cost}(P) + p_l - p_k$. 
 
@@ -118,5 +122,5 @@ Where on the third line, the sum of all potential over a cycles will trigger a t
 
 **Remarks**: 
 
-Very similar to a line integral on a conservative energy field in physics. 
+Too similar to a line integral on a conservative energy field in physics, but instead of the potential at the end points subtracting the potentials at the initial points, we had the reverse instead. 
 

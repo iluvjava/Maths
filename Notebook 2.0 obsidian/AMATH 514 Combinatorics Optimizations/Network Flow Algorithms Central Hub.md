@@ -1,20 +1,10 @@
-- [[Characterizations Shortest Paths from Source]]. 
+- [[../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]. 
 
 ---
 ### **Intro**
 
-**Shortest Path types of Algorithm**: 
 
-- (Dijkstra Algorithm)[[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/Dijkstra Algorithm]] 
-	- No negative cycles.
-	- No negative arcs.
-	- Single source. 
-- (Moore Bellman Ford Algorithm)[[Everything Network Flow/Shortest Path Label Correcting Algorithm]] 
-	- Negative Cycle Detections.
-	- Single Source.
-- (Floyd Warshall Shortest Path)[[../AMATH 514 Combinatorics Optimizations/Everything Network Flow/All Pairs Shortest Paths]] 
-	- Negative cycles detections. 
-	- Construct all pairs shortest distances and predecessor tree all at once. 
+For everything about shortest path algorithm, visit: [Shortest Paths Algorithms CENTRAL HUB](Everything%20Network%20Flow/Shortest%20Paths%20Algorithms%20CENTRAL%20HUB.md). 
 
 
 **Basic Algorithms That Powers Everything Else**: 

@@ -1,12 +1,12 @@
-[[Maxflow Min Cut, Ford Fulkerson]], 
-[[Min Cost Network Flow Standard Form]]. 
+- [[Maxflow Min Cut, Introduction]], 
+- [[Minimum Cost Network Flow Standard Form]]. 
 
 ---
 ### **Intro**
 
 Maximum flow with lower bound is a harder problem to solve compare to the case without any lower bound. To characterize such a problem, we now allow for a lot more on our graph $G = (A, N)$. Here is the list of assumptions we make for the network. 
 1. Compare to the original form for maxflow, we now allows for double arcs between vertices. 
-2. The uperbound, lower bound for the arc capacities, denoted by $l, u$ vector, must positive and $\mathbf 0 \le l\le u$. 
+2. The upperbound, lower bound for the arc capacities, denoted by $l, u$ vector, must positive and $\mathbf 0 \le l\le u$. 
    - If, some arc $(i, j)\not\in A$, we will have $0 = u_{i, j} = l_{i, j}$ so that the math formulas work out. 
 3. No parallel arcs on the same directions are allowed. 
 4. Feasible solution doesn't have to exists for the graph. 
@@ -28,7 +28,7 @@ Chapter 7.6 of the network flow algorithm, application textbook.
 ---
 ### **Residual with Lower Bounds**
 
-Given a feasible flow $x^\circ$ on the graph. We construct a residual net work $G(x^\circ)$, which will be compatible with the Ford Fulkerson algorithm. The residual capacity is calculated by: 
+The new way of computing the residual should be consistent with [Maxflow Min Cut, Introduction](Maxflow%20Min%20Cut,%20Introduction.md). Given a feasible flow $x^\circ$ on the graph. We construct a residual net work $G(x^\circ)$, which will be compatible with the Ford Fulkerson algorithm. The residual capacity is calculated by: 
 
 $$
 \begin{aligned}
@@ -129,11 +129,58 @@ $$
 \end{aligned}
 $$
 
-and it's that simple. This is for converting back an residual graph with an $s-t$ cut capacities of zero back to an optimal flows on the original network. 
+and it's that simple. This is for converting back a residual graph with an $s-t$ cut capacities of zero back to an optimal flows on the original network. 
 
 ---
-### **An LP View of the Residual Reduction Procedures**
+### **Feasibility Search on This Network**
+
+To summarize: 
+1. Convert the lower bound max flow problem to a minimum costs flow problem by first, marking all flows to be the lower bounds of the arcs.  
+2. Using maximum flow without lower bounds to find the feasible solution for the above min cost problem (This is one of the applications for the maxflow problem)
+3. Determine a feasible flow for the equivalent min cost flow. 
+4. Overlay the feasible flow of the min costs to the existing flows. 
+
+We now put it into more precise terms. Given $G = (A, N)$ with $\{s,t\} \in N$ to be the source node and the destination node. Let $l$ be the lower bound vector and $u$ to be the upper bound vector. Let $x = l + \Delta x$, this creates violation on mass balance on each node, giving us: 
+
+$$
+\begin{aligned}
+    0 &= \sum_{(i, j)\in A}^{}
+        x_{i, j} + 
+        \sum_{(j, i)\in A}^{}x_{j, i}
+    \quad \forall i \in N
+    \\
+    &= 
+    \left(
+        \sum_{(j, i)\in A}^{}l_{j, i} + \Delta x_{i, j}
+    \right) + 
+    \left(
+        \sum_{(i, i)\in A}^{}
+        l_{j, i} + \Delta x_{j, i}
+    \right)
+    \\
+    \sum_{(i, j\in A)}^{}l_{i, j}
+    - 
+    \sum_{(i, j)\in A}^{} l_{i, j} 
+    &= 
+    \sum_{(i, j)\in A}^{} \Delta x_{i, j} 
+    -
+    \sum_{(j, i)\in A}^{} \Delta x_{j, i} \quad \forall i \in N
+\end{aligned}
+$$
+
+And hence, the left hand side becomes the mass balance constraints for the minimum cost flow problem. But in this case, the minimum cost flow problem has all zero costs. To search for a feasible solution, all we need is a feasible solution for it, which requires us to apply the maximum flow for feasibility search of the min cost problem. 
 
 
+---
+### **Generalized Maxflow Min-Cut Theorems**
 
-#UNFINISHED
+> Let $S$ be any $s-t$ cut, then, there is an upper bound for the amount of flow on the graph, which is given as: 
+> 
+> $$
+> \begin{aligned}
+>     v \le \sum_{(i, j)\in (S, S^C)}^{}u_{i, j} - 
+>     \sum_{(i, j)\in (S^C, S)}^{} l_{i, j} = u[S, S^C], 
+> \end{aligned}
+> $$
+> 
+> The minimum capacity cut for all the s-t cut will be the optimal flow amount. 

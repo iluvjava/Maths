@@ -5,7 +5,7 @@
 
 In this file we discuss the l-p sequence space. This is a great example of a metric space that can change into all different types of metric space given different parameters of $p$, and it also contains good subspace for discussion on topics related to functional analysis. 
 
-To start, we define the inner product as an opperations on infinite sequences. Let $x, y$ be 2 sequences, then their inner product $\langle x, y\rangle := \sum_{i = 1}^\infty x_i y_i$. This is a notation that will simplify our discussion and it has not much to do with the inner product spaces. 
+To start, we define the inner product as an operations on infinite sequences. Let $x, y$ be 2 sequences, then their inner product $\langle x, y\rangle := \sum_{i = 1}^\infty x_i y_i$. This is a notation that will simplify our discussion and it has not much to do with the inner product spaces. 
 
 ---
 ### **l-p Sequence Space**

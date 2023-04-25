@@ -1,4 +1,4 @@
-[[Minimum Cost Flow Basic Algorithms]]
+[[Minimum Cost Flow Optimality Conditions]]
 
 ---
 ### **Intro**

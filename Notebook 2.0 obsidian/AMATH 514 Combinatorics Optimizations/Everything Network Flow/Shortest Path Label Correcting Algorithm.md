@@ -1,19 +1,26 @@
-- [[LP for Source Tree Shortest Paths]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. 
+- [[LP for Source Tree Shortest Paths]], 
+- [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md). 
 
 ---
 ### **Intro**
 
-We go from the generic label correcting algorithm to some of the cool algorithms for singled shortest path for directed graphs with any weights. We discuss negative cycle detections as well. 
+The term "label correcting" algorithm is generic, here, we will list the all the label correcting algorithms that are discussed in Ahuja's Textbook!
 
-One important thing is that in here, we are keeping the assumptions made for the shortest path problem under the LP formulation, so that it's at least not unbounded. 
 
-**References**: 
+**A Summarizations of Label Correcting Complexity**
+- Generic Label Correcting: $O(mn^2C)$
+- BFS Modified Label Correcting: $O(mnC)$
+- Bellmand Ford, FIFO Label correcting: $O(mn)$
 
-Chapter 5 of the Network flow, Algorithm and applications book. Some lecture notes from the internet [here](https://cs.yazd.ac.ir/hasheminezhad/STSCF13N3.pdf). 
+Where $m$ is the number of arcs, $n$ is the number of nodes, and $C = \max_{a \in A}|c_a|$. Throughout the discussion, we are assuming that $G = (A, N)$ denotes the graph. 
 
-**Generic Label Correcting algorithm**: 
+---
+### **Generic Label Correcting algorithm**: 
 
-Let $G=(V, A)$ be a directed graph satisfying the assumptions, let $d(s)$ be a distance label for each of the vertices in the graph, let $s$ be the source vertex, we denote $c(i, j)$ to be the costs of the arc $(i, j)\in A$. The following algorithm returns a predecessor graph, such that it's with the lowest total cost. 
+Let $G=(V, A)$ be a directed graph satisfying the assumptions, let $d(s)$ be a distance label for each of the vertices in the graph, let $s$ be the source vertex, we denote $c(i, j)$ to be the costs of the arc $(i, j)\in A$. The following algorithm returns a predecessor graph, such that it's with the lowest total cost.  
+
+
+**Algorithm Pseudocode | Generic Labeling**
 
 ```sql
 d(s) := 0; pred(s) = 0;
@@ -25,21 +32,31 @@ WHILE EVAL("there exists arc (i, j) such that d(j) > d(i) + c(i, j)")
 END
 ```
 
-and this algorithm just correct the labels that doesn't satisfy the optimality conditions. 
+**Observations**: 
 
-**Invariants**: 
+Recall: [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md)
 
-> For every predecessor graph created by the algorithm, the reduced costs introduce by the negative distance label $c^d_{i, j} = c_{i, j} + d(i) - d(j) \le 0$ for every arc $(i, j)\in A$. 
+#### **Invariant-1.1**: 
+
+> For every predecessor graph created by the algorithm, the reduced costs introduced by the negative distance label $c^{(-d)}_{i, j} = c_{i, j} + d(i) - d(j) \le 0$ for every arc $(i, j)\in A$. 
 
 **Proof:**
 
-If the arc $(i, j)$ is not yet in the predecessor graph, then it satisfied $d(j) \ge d(i) + c(i, j)$, else, it is in the tree, then it's the case that $d(j) = d(i) + c(i, j)$ by the algorithm during a specific iteration of the algorithm. In future iteration, if $d(j)$ (the predecessor of the node of interest: i) is decreased then it still holds, when $d(i)$ is decreased then the arc $(i, j)$ will be removed from the predecessor graph (in which case it goes back to the equality case), hence the claim would still hold. 
+At the current iterations of the Generic Labeling Algorithm, we consider the label for an arc $(i, j)$: 
+- IF the arc $(i, j)$ is not yet in the predecessor graph, 
+	- then it satisfied $d(j) \ge d(i) + c(i, j)$, or $d(j) = \infty$. Invariants hold under both cases. 
+- ELSE, it is in the tree, 
+	- then it's the case that $d(j) = d(i) + c(i, j)$ by the algorithm during a specific iteration of the algorithm. The invariant is true. 
+
+In future iteration, we are still looking at arc $(i, j)$. 
+- IF $d(i)$ (the predecessor of the node of interest: i) is decreased then it still holds, 
+- ELSE when $d(j)$ is decreased then the arc $(i, j)$ will be removed from the predecessor graph, because decreasing $d(j)$ means that at some point there exists another $i'$ such that $d(i') + c_{i', j} < d(j)$, the predecessor for $j$ will now be $i'$, and the arc $(i, j)$ is removed from the `pred` list. 
 
 **Observations:**
 
 - Similar to to the generic search algorithm, an arc can be picked repeatedly from the list of arcs, and for each vertices $d(i)$, their distance label can be updated more than once. 
-- Each time when an update is performed, the distance label $d(j)$ for each $d(j)$ must have improved! 
-- Therefore, for each $d(j)$, there is a limit to how many times its distance can be decreased, the upper bound for $d(j)$ should be $nC$, the value of $d(j)$. Under the worst case, we look for a longest possible path to the label $d(j)$, and then we correct the distance label for $d(j)$ as slow as possible by going over all possible paths leading to $d(j)$. At the worse case we decrease the value $nC$ (the theoretically longs path length) by a value of $1$ (the theoretically lowest capacity change by the integrality assumption on our graph). 
+- Each time when an update is performed, the distance label $d(j)$ for each $d(j)$ must have improved! By integral assumption, it must had been decreased by $\ge 1$. 
+	- Therefore, for each $d(j)$, there is a limit to how many times its distance can be decreased, the upper bound for $d(j)$ should be $nC$, the value of $d(j)$. Under the worst case, we look for a longest possible path to the label $d(j)$, and then we correct the distance label for $d(j)$ as slow as possible by going over all possible paths leading to $d(j)$. At the worse case we decrease the value $nC$ (the theoretically longs path length) by a value of $1$ (the theoretically lowest capacity change by the integrality assumption on our graph). 
 
 **Complexity | $\mathcal O(mn^2C)$**:
 
@@ -47,7 +64,7 @@ Let $C$ be the maximum arc capacity across all the arcs in the graph, then the c
 
 $\mathcal O(m)$, time is required for looking for a specific `arc(i, j)` to update. Then, we use a fact that "The `d(i)` is decreased for at least a value of $1$", and since the most a label can be decreased is to $-nC$ from $nC$, and we have $n$ vertices. Doing all the decrease on $d(i)$ for all $n$ gives $n^2C$, and multiply that with the complexity of searching for a specific arc, we have $mn^2C$. 
 
-**Theorem: Existence of Negative Cost Directed Cycles** 
+**Thm-1.1: Existence of Negative Cost Directed Cycles** 
 
 > If the predecessor graph of the generic label-correcting algorithm contains a directed cycle, then the cycle has to be a negative cost cycle on the original graph. 
 
@@ -80,11 +97,11 @@ $$
 hence that cycle has a negative cost to it. It won't be zero because we only update the label $d(j)$ if $d(j) < d(i) + c_{i, j}$, which is a strict inequality. 
 
 ---
-### **Pathological Examples**
+### **Pathological Examples For Generic Labeling Algorithm**
 
 Examples for exponential run time for the generic labeling algorithm. 
 
-**Example 1**
+**Example-1.1**
 
 The following pathological example is credit to our professor, Donavan Hare at UBCO, Spring Semester, 2023. The example demonstrates the exponential complexity of looking for a shortest path from a source using the generic label correcting algorithm without specifying the order of choosing the arcs. 
 
@@ -93,7 +110,7 @@ The following pathological example is credit to our professor, Donavan Hare at U
 
 To get the worse update, always start with the longest path with sum over $2^n$ for all $0\le n \le 2^k$. Each time, shorten the destinations on the path by exactly one, giving us an exponential complexity (choosing the alternative of $2^1$ at the right most node). 
 
-**Example 2**
+**Example-2.1**
 
 ![[../../Assets/Pasted image 20230313233556.png]]
 
@@ -103,9 +120,9 @@ The network flow algorithm textbook.
 ---
 ### **Modified Label Correcting Algorithm**
 
-The modified version order the nodes using a list. We add all neighbors of any chosen node in the list, and then add those nodes back to the list. 
+The modified version order the nodes using a list. We add all neighbors of any chosen node in the list, and then add those nodes back to the list. The way it chooses arcs for updating is exactly the same as a search algorithm, but the admissible arcs are now defined using the optimality conditions for paths. 
 
-**Algorithm**
+#### **Algorithm Pseudocode | Modified Label Correcting Algorithm**
 
 ```sql
 d(s) := 0; pred(s) := 0; 
@@ -129,7 +146,8 @@ It can add the same vertex repeatedly (due to $j$'s label being updated by multi
 
 **Observations**
 
-Suppose that during any step of the iteration, $j\in N$ has been updated due to condition $d(j) > d(i) + c_{i, j}$, then the new distance label $d'(j)$ gets strictly smaller, more specifically: $d'(j) < d(i) - 1$ due to the integrality assumptions for the graph. The distance labels for each of the vertices monotonically decreases. A node that has been removed can be added back to the $L$. 
+- Suppose that during any step of the iteration, $j\in N$ has been updated due to condition $d(j) > d(i) + c_{i, j}$, then the new distance label $d'(j)$ gets strictly smaller, more specifically: $d'(j) < d(i) - 1$ due to the integrality assumptions for the graph. The distance labels for each of the vertices monotonically decreases. A node that has been removed can be added back to the $L$. 
+- Suppose that $d(j)$ had been decreased in the iteration, and it's on the predecessor tree, let $k$ be a neighbor of $i$, let $d'(j)$ be the smaller label on the graph, then $d'(j) + c_{i, k} < d(k)$, by [**Invariant-1.1**:](#**Invariant-1.1**:), then, instead of searching for random arcs to update, we consider choosing the neighbours for node $j$ for the next update of the algorithm. This is a potential speed up for the algorithm. 
 
 **Complexities | $\mathcal O(mnC)$**
 
@@ -138,18 +156,18 @@ Compare to the generic algorithm, instead of scanning all the arcs and search fo
 $$
 \begin{aligned}
     \sum_{i \in N}^{}
-    2nC|\text{ngh}(i)| \in \mathcal O(mnC), 
+    2C|\text{ngh}(i)| \in \mathcal O(mnC), 
 \end{aligned}
 $$
 
-we make use of the fact that each of the label only comes into $L$ if its predecessor has been updated. The algorithm terminates by the monotone labeling property. I don't know of any pathological instances of choose $i$'s neighbors that can illustrate the worst case runtime. 
+we make use of the fact that each of the label only comes into $L$ if its predecessor has been updated. The algorithm terminates by the monotone labeling property. For each node, we update $C|\text{ngh}(i)|$ many times, by monotone property of label, and There are $n$ many node, resulting in the total run time complexity above for the algorithm. 
 
 ---
-### **Label Correcting Algorithm: Bellman Ford**
+### **Bellman Ford**
 
 In the above modified label-correcting algorithm, we still have the choice of ordering when going over the set of all $(i, j)\in A$ to look for violation to the shortest path characterizations. A better strategies is to go over all the arcs at least once per "pass" to establish the shortest path. Doing this allows for a cooler proof that can construct the optimal path faster. 
 
-**Algorithm**: 
+**Algorithm Pseudocode | Bellmand Ford**: 
 
 ```SQL
 d(j) = Inf, FOR ALL j != s; 
@@ -182,15 +200,14 @@ Observe the according to algorithm, the update causes the labels of the nodes  d
 1. $d(i)$ denotes the optimal path length going from $s$ to $i$. 
 2. $l(i)$ denotes the label made by the Bellman Ford algorithm during execution of the algorithm. 
 
-
-**Theorem: $n-1$ Number of Iterations**: 
+**Thm-3.1 | $n-1$ Number of Total Iterations**: 
 > The algorithm can find all optimal labels at the end of $n-1$ iterations, if not there has to exist one negative cost cycles on the graph. This produces an over all complexity of $\mathcal O(mn)$. 
 
 **Proofs**: 
 
 We introduce an inductive hypothesis and a lemma. We will make use of the optimality path characterizations to prove things. 
 
-**Lemma 1: When Relaxations Stops**
+**Lemma-3.1 | When Relaxations Stops**
 > It's always the case that $l(i) \ge d(i)$, if $l(i) = d(i)$, then it won't change for the future iterations of the algorithm assuming that there is no negative cost cycles on the graph. 
 
 **Proof**: 
@@ -211,7 +228,7 @@ $$
 
 The value $l(i) < d(i)$ is impossible, we didn't use the fact that no-negative cycle explicitly, it's used for the proof for the optimality path condition. If we ever have $d(i) = l(i)$, then for all $i'$ we have $d(i) \le d(i') + c_{i', i}$, by $d(i') \le l(i')$, we have $d(i) \le l(i')$ hence $l(i)\le l(i') + c_{i', i}$, the relaxation was never performed because the if state were never true. 
 
-**Inductive Hypothesis: Bellman Ford Relaxations**
+**Inductive Hypothesis | Bellman Ford Relaxations**
 > WLOG Let $s-1-2- \cdots -k-\cdots -n$  be the actual shortest path from $s$ to $n$ with a length of $n$. Assuming that $l(i) = d(i)$ is optimal all the way up to $k$ (we can make this assumption), then after another iteration of the Bellman Ford, we at least have $l(k + 1) = d(k + 1)$, at worst. 
 
 **Proof**: 
@@ -236,7 +253,7 @@ By the inductive hypothesis we know that, at least, the first $k$ nodes in the o
 
 **References:** 
 
-See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof for Bellman Ford that I found on the internet so far. Feels ad hoc but it works I guess. 
+See [here](https://people.csail.mit.edu/alinush/6.006-spring-2014/mit-fall-2010-bellman-ford.pdf) for a best proof for Bellman Ford that I found on the internet so far. Feels ad hoc but it works I guess. I also Refers to the Thomas Rothvoss Teaching of Math 409 from UW as well. 
 
 ---
 ### **Negative Cycle Checking**
@@ -287,7 +304,7 @@ This algorithm only update $d(j)$ when the incoming arcs of node $j$ corresponds
 
 The algorithm is equivalent to the Generic label correcting algorithm where, $L$ is a queue and we always dequeue from the from and add the nodes with changed labels back to the tail of the queue. Whenever it's empty, then the algorithm can terminates and returns the optimal labels for each node. The 2 queues implementation is for better "book keeping". 
 
-**Theorem: Correctness**: 
+#### **Theorem-4.1 | Correctness Proof**: 
 
 > The FIFO label correcting algorithm executes for at most $n-1$ iterations, and that is enough to find all the correct distances labels on the graph if there is no negative cost cycles. 
 
@@ -298,7 +315,7 @@ We first establishes some notations, and quantities for the proof before we star
 2. $\Pi(j, k)$: Set of s-j paths with at most k arcs. 
 3. $d^k(j) = \min\{c(P)| P\in \Pi(j, k)\}$, and if the set is empty, we have $d^{k}(j) = \infty$. This denote the shortest $s-j$ path costs for all paths using at most $k$ arcs. 
 4. $l^k(j)$ is the label for the node $j$ at iteration $k$. 
-5. The operator $\oplus$ is for concatenting paths that are representing a list of arcs, or nodes in the path. 
+5. The operator $\oplus$ is for concatenating paths that are representing a list of arcs, or nodes in the path. 
 
 **Inductive Hypothesis**: 
 > For all nodes $j\in N$, we have $l^k(j) = d^k(j)$ at the k th iteration of the outter most while loop of the FIFO label correcting algorithm. Denote this hypothesis as $\mathbb H(k)$. 
@@ -329,11 +346,11 @@ Therefore, we established the base case.
 
 Let's assume that $\mathbb H(k)$ is true, meaning that $l^k(j) = d^k(j)$ for all $j\in N$. What we want to show is that: 
 
-> Let $P^* \in \Pi(j, k + 1)$ such that $c(P^*) = d^{k + 1}(j)$ and there does't exist $Q\in \Pi(j, k)$ with $c(Q) = d^{k + 1}(j)$. In brief, the optimal path is of length exactly $k + 1$ number of arcs. 
+> Let $P^* \in \Pi(j, k + 1)$ such that $c(P^*) = d^{k + 1}(j)$ and there does't exist a $Q\in \Pi(j, k)$ with $c(Q) = d^{k + 1}(j)$. In brief, the optimal path is of length exactly $k + 1$ number of arcs, then, the algorithm will performs update on $l$. 
 
-Assume that $P^* = [i_0, i_1, i_2, \cdots, i_k, i_{k + 1}]$ where $i_0 = s, i_{k + 1} = j$. Let $R\in \Pi(i_k, k)$ then $c(R)\ge d^k(i_k)$, by the optimality of $d^k(i_k)$ and by the fact that $P^*$ is a path, $R$ contains $k$ arcs. It must not be the case that $c(R)> d^k(i_k)$, hence $c(R) = d^k(i_k)$, we show this next by a contraction. 
+Assume that $P^* = [i_0, i_1, i_2, \cdots, i_k, i_{k + 1}]$ where $i_0 = s, i_{k + 1} = j$. Let $R\in \Pi(i_k, k)$ be a subpath of $P^*$ from $s$ to $i_k$,  then $c(R)\ge d^k(i_k)$, by the optimality of $d^k(i_k)$ and by the fact that $P^*$ is a path, $R$ contains $k$ arcs. It must not be the case that $c(R)> d^k(i_k)$, hence $c(R) = d^k(i_k)$, we show this next by a contraction. 
 
-$c(R) > d^k(i_k)\implies \exists R^*\in \Pi(k, i_k): c(R^*) = d^k(i_k)$. Because $R$ is obviously, not optimal. $R^* \oplus j$ produces a walk, it has at most $k + 1$ number of arcs. Removing redundant cycles in $R^*\oplus j$ walk yields $U$ which is an $s-j$ path, with less costs by non-existence of negative costs cycles. $U\in \Pi(s, k)$ obviously. Mathematically: 
+$c(R) > d^k(i_k)\implies \exists R^*\in \Pi(i_k, k): c(R^*) = d^k(i_k)$. Because $R$ is obviously, not optimal. $R^* \oplus j$ produces a walk, it has at most $k + 1$ number of arcs. Removing redundant cycles in $R^*\oplus j$ walk yields $U$ which is an $s-j$ path, with less costs by non-existence of negative costs cycles. $U\in \Pi(s, k)$ obviously. Mathematically: 
 
 $$
 \begin{aligned}
@@ -372,10 +389,6 @@ When $\Pi(j, k + 1) = \emptyset$, it has the same logic as the base case, no pat
 Personal message with Prof Donavan Hare, at UBCO, 2023 spring. 
 
 
----
-### **A Summarizations of Label Correcting Complexity**
-- Generic Label Correcting: $O(mn^2C)$
-- BFS Modified Label Correcting: $O(mnC)$
-- Bellmand Ford, FIFO Label correcting: $O(mn)$
+
 
 

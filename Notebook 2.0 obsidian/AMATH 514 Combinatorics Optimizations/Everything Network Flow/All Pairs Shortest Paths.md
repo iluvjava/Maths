@@ -1,4 +1,4 @@
-[[Reduced Costs and Potentials]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]], 
+[[Reduced Costs and Potentials]], [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]], 
 
 ---
 ### **Intro**
@@ -17,19 +17,22 @@ We make the exact same set of assumptions for the graph as in the case of the si
 ### **Floyd Warshall**
 Let $G = (A, N)$ be a directed graph satisfying the general assumptions for the label correcting shortest path algorithm. 
 
-**Lemma: All Pairs Optimality Conditions**
+**Lemma-1 | All Pairs Optimality Conditions**
 >$d(i,j)$ represents the shortest cost of $i-j$ directed path if and only if $d(i, j) \le d(i, k) + d(k, j) \;\forall i, j, k \in N$. 
+
+**Observations**: 
+
+This is literally the metric space inequality. 
 
 **Proof**: 
 
-Following the same idea as [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]. We skip the proof here because they are really similar. 
+Following the same idea as [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]]. We skip the proof here because they are really similar. 
 
 **The Generic Labeling Algorithms**
 > One algorithm that asserts the optimality path conditions repeatedly will terminate and achieve optimality at the end. 
 
 
-
-**Theorem: All Pairs Shortest Path Recursion**
+**Thm-1 | All Pairs Shortest Path Recursion**
 > let $d^{(k)}(i ,j)$ denotes the low cost $i-j$ directed path only using nodes $1, 2, \cdots, k - 1$, then it satisfies the conditions: 
 > $d^{(k + 1)}(i, j) = \min(d^{(k)}(i, j), d^{(k)}(i, k) + d^{(k)}(k, j))$. 
 > 
@@ -130,7 +133,7 @@ $$
 Hopefully you are convinced. The base case is made in a way that the above recursive table is true by definition. Therefore, we skip the proof for that one. 
 
 ----
-### **Algorithm**
+### **Algorithm | Floy Warshall**
 
 Here we proposed the algorithm. The Floyd Warshall Algorithm deploys the above dynamic programming idea. 
 
@@ -142,9 +145,9 @@ FOR i = 1,..., |N| - 1
     FOR j = 1,..., |N| - 1
         FOR k = 1,..., |N| - 1
             d_before = d(i, j)
-            d(i, j) = min(d(i, j), d(i, k) + d(k, j));
-            IF d(i, j) < d_before
-                p(i, j) = k  /*go to k for intermediate transfer. */
+            d(i, j) = min(d(i, j), d(i, k) + d(k, j))
+            IF EVAL ("d(i, j) was updated on the last line")
+                p(i, j) = p(k, j)  /*inherit k's predecessor */
             end
         END
     END
@@ -152,14 +155,14 @@ END
 
 ```
 
-**Claim**: 
+**Claim-1 | Negative Cycles Conditions**
 > There is a negative cycles if and only if the diagonal of the distance label matrix contains strictly negative entries, after the algorithm terminated. 
 
 **Proof**: 
 
 If there exists a cycle $C$ such that it has negative cost, then for all $i \in C$, $d^{(|C|)}(i, i) < 0$, because no directed cycle can have number of arcs larger than $n - 1$ in a graph. We have shown the $\implies$ direction. For the converse, if $d^{(k)}(i, i) < 0$, then it means there is a directed cycle (a shortest closed directed walk involving $i$) that has negative cost. 
 
-**Claim**: 
+**Claim-2**
 > At the k th iterations in the inner most forloop, we have the choice to ignore the kth row and column if there is *no negative cycle in this graph*. Due to this fact, we can terminate whenever a negative entry is going to appear on the diagonal of the matrix, and we don't need to keep a immutable copy of the tale $d(i, j)$ for all $1 \le k \le |N|$. 
 
 **Proof**:
@@ -183,8 +186,8 @@ Helpful notes for programmers actually coding it up.
 
 **Lazy Path Evaluation**
 
-> We don't have to make the shortest path while the algorithm is running if we are only intersted in the shortest path costs. A search algorithm can be deployed later to look for the lowest cost spanning tree given the root node and the detinations. 
+> We don't have to make the shortest path while the algorithm is running if we are only interested in the shortest path costs. A search algorithm can be deployed later to look for the lowest cost spanning tree given the root node and the destinations. 
 
 **Smart Use of Datastructures**
-> We can also terminate the algorithm early when there is no update on the table. Additionaly, one may consider using different datastructures to speed up the process when the graph is sparse. For each $k$, if we already know that $(k, i)$ or $(i, k)$ doesn't exists for some $i$, then there is no need to update $d(i, j)$ during that iteration. I am not sure what smart use of datastructure can do this, but this is left as an exercise for the programming savy readers.
+> We can also terminate the algorithm early when there is no update on the table. Additionally, one may consider using different data structures to speed up the process when the graph is sparse. For each $k$, if we already know that $(k, i)$ or $(i, k)$ doesn't exists for some $i$, then there is no need to update $d(i, j)$ during that iteration. I am not sure what smart use of datastructure can do this, but this is left as an exercise for the programming savy readers.
 

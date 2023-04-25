@@ -14,6 +14,9 @@ An Inner product space is a vector space the is together with an inner product d
 
 > Let $X$ be an inner product space then it first has to equip with $\Vert \cdot\Vert$, and inner product mapping $\langle \cdot, \cdot\rangle$ such that $\Vert x\Vert = \sqrt{\langle x, x\rangle}$. 
 
+**References**: 
+Kryzig's Textbook, see section 4.1 for more information. 
+
 ---
 ### **The Parallelogram Equality**
 

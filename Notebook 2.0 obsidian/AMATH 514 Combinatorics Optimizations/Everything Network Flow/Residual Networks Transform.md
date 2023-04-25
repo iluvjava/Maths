@@ -1,4 +1,4 @@
-[[Min Cost Network Flow Standard Form]]
+[[Minimum Cost Network Flow Standard Form]]
 
 ---
 ### **Intro**
@@ -43,6 +43,10 @@ Take note that, in the residual graph, we would need additional decision variabl
 
 **References**: Network Flow, Theory, Algorithm, and Applications. 
 
+**Remarks**
+- If there is lower bound for the flow, we may consider using [Reduction to Network Flow](Reduction%20to%20Network%20Flow.md), some graph transform techniques to obtain an equivalent graph that doesn't have lower bounds to it. 
+- It's possible to construct the residual graph such that it's not necessarily feasible, however, this will result in a residual graph that doesn't have the negative cycle optimality conditions, and it has node mass balance violations. A huge problem and it has done nothing useful in this case.  
+
 ---
 ### **Residual Flow**
 
@@ -70,7 +74,7 @@ and this will be the flow on our residual network. This zero constraint for the 
 
 We have seemed that the residual flow $x'$ is feasible in the residual graph $G(x^\circ)$ with feasible $x^\circ$, and we verify the relations stated at the start. 
 
-**Theorem**
+**Thm-1 | Objective Value Characterized via Flows on the Residual**
 
 > Base on previous discussion, we let $c'$ to denote the cost on the residual network, we then show the relationship that: 
 > $$
@@ -80,7 +84,7 @@ We have seemed that the residual flow $x'$ is feasible in the residual graph $G(
 
 **Proof**
 
-For every arc $(i, j)\in A$, $c_{i, j}' = c_{i, j}, c_{j, i}' = c_{i, j}$, we then compute the costs on the residual network on a single arc with our residual flow $x'$, given as:
+For every arc $(i, j)\in A$, $c_{i, j}' = c_{i, j}, c_{j, i}' = -c_{i, j}$, we then compute the costs on the residual network on a single arc with our residual flow $x'$, given as:
 
 $$
 \begin{aligned}
@@ -100,12 +104,16 @@ therefore, when we sum up the costs of the whole network, we will obtain the the
 
 **References**: Page 45, 46 of Network Flow, Theory, Algorithm, and Applications.
 
+
 ---
-### **Optimality Conditions on the Residual Graph**
+### **Thm-2 | Differences Between 2 Flows**
 
-> A feasible solution $x^\circ$ of the minimum cost flow problem is an optimal solution if and only if the residual network $G(x^\circ)$ contains non negative directed cycles. 
+We show that, the differences between 2 feasible flow can be represented as a residual flow on the residual graph obtained by one of the feasible flow. 
 
-**References**: Theorem 3.8 in Network Flow algorithm and applications textbook. 
+> Given 2 flow $x^+, x^\circ$ both are feasible, then, their differences, $\Delta x = x^\circ - x^+$, will be a feasible flow on the residual $G(x^\circ)$, and $-\Delta x$ will be feasible on $G(x^+)$. 
 
+**Proof** 
+
+We skip it for now. 
 
 

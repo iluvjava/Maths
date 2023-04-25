@@ -115,11 +115,11 @@ $$
 
 **Proof**: Skipped
 
-**Only Binlinear on the First Parameter**
+**Only Bi-Linear on the First Parameter**
 
 > let $\alpha \in \mathbb{C}, x, y\in \mathbb{C}^n$. Then it would mean that only the first parameter is linear: $\langle \alpha x, y\rangle = \alpha\langle x, y \rangle$. 
 
-This is neccessary, suppose other wise that both parameters are Bi-linear, then consider: 
+This is necessary, suppose other wise that both parameters are Bi-linear, then consider: 
 
 $$
 \begin{aligned}
@@ -128,7 +128,7 @@ $$
 \end{aligned}
 $$
 
-The product of a vector on itself ceased to be a real number. However, if we only allows bi-linearity on the firat parameter, then we can use the previous theorem to get: 
+The product of a vector on itself ceased to be a real number. However, if we only allows bi-linearity on the first parameter, then we can use the previous theorem to get: 
 
 $$
 \begin{aligned}

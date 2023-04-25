@@ -1,10 +1,9 @@
-[[Min Cost Network Flow Standard Form]], [[Reduced Costs and Potentials]]. 
+[[Minimum Cost Network Flow Standard Form]], [[Reduced Costs and Potentials]]. 
 
 ---
 ### **Intro**
 
 Specialized algorithms for minimum cost flow type of problems are very fast, compare to the alternative such as the interior points method, or the simplex that solves the LP representation of the problem instead of the network flow problem directly. We will go over the Dual problems, how to identify the optimal flows and potentials if one of the other is given, and we will introduce the negative cycles removal algorithms for the min cost flow problem. 
-
 
 **Assumptions**
 
@@ -17,8 +16,8 @@ Before we start, please recall the theorem that:
 
 > A flow is optimal if and only if there is no negative costs cycles on the residual graph of that flow. 
 
-
-Which is important for the discussion.
+Which is important for the discussion because we exploit that. In addition to the above conditions, on a high level we give summary. 
+- We also assume the existence of a feasible flow for the problem first, before starting the process for improving the existing feasible solution. 
 
 **References**: 
 
@@ -30,7 +29,7 @@ Most of the theorems and content will be taken from Ahuja's Network flow textboo
 
 We list theorem that relates several quantities to an optimal flow. These will ultimately be tied to linear programming duality. 
 
-**Thm: Reduced Costs Optimality Conditions \[thm 9.3\]**
+**Thm-1｜ Reduced Costs Optimality Conditions \[thm 9.3\]**
 > Feasible solution $x^\circ$ is optimal of the minimum costs problem if and only if some set of node potential $\pi$ satisfies: $c^{(\pi)}_{i, j} = c_{i, j} - \pi_i + \pi_j \ge 0$ for all $(i, j) \in G(x^\circ)$, for all arcs in the residual graph. 
 
 **Proof**: 
@@ -41,7 +40,7 @@ Skipped.
 
 $p_i$ is one set of the dual variable for the dual programming problem, it's related to the quality constraints of the minimum cost flow problem. 
 
-**Thm: Complementary Slackness Optimality Conditions \[thm 9.4\]**
+**Thm-2 | Complementary Slackness Optimality Conditions \[thm 9.4\]**
 > Feasible solution $x^\circ$ is optimal if and only if there exists node potentials $\pi$  such that the reduced costs satisfies the complementary slackness conditions for all arcs $(i, j)$: 
 > $$
 > \begin{aligned}
@@ -105,7 +104,7 @@ $$
 
 Which is a non-smooth optimization problem purely using the $\pi$ variable.
 
-**Thm: Strong Duality of Min Cost Network Flow \[thm: 9.6\]**
+**Thm-3 | Strong Duality of Min Cost Network Flow \[thm: 9.6\]**
 > For all data, there exists $x^+$ as an optimal solution to the min cost flow problem satisfying strong duality, meaning that: 
 > $$
 >     \langle c, x^+\rangle =     \langle b, \pi\rangle + 

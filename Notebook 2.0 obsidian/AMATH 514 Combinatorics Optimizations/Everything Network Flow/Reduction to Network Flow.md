@@ -1,4 +1,7 @@
-[[Min Cost Network Flow Standard Form]]
+---
+alias: Network Flow Transformations
+---
+[[Minimum Cost Network Flow Standard Form]]
 
 ---
 ### **Intro**

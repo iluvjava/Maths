@@ -58,7 +58,7 @@ Remember that a classification error matrix for multi-class labeling in machine 
 **Example 3: Shortest Path on Graph**
 > The shortest $x-y$ path of a graph containing no negative directed cycles induces a metric for all the vertices in the graph. 
 
-See [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]] for more information on this discrete metric. 
+See [[../../CSE 000 Basics Algorithms/Single Source Shortest Path Optimality Conditions]] for more information on this discrete metric. 
 
 ---
 ### **More Examples**

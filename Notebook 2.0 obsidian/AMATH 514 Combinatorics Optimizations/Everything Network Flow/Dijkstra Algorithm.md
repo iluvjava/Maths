@@ -1,5 +1,5 @@
-[[../../CSE 000 Basics Algorithms/Generic Search Algorithm]], [[../../CSE 000 Basics Algorithms/Characterizations Shortest Paths from Source]]
-
+- [Generic Search Algorithm](../../CSE%20000%20Basics%20Algorithms/Generic%20Search%20Algorithm.md), 
+- [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md)
 ---
 ### **Intro**
 

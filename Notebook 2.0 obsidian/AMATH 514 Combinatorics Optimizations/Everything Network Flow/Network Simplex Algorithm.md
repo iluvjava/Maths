@@ -1,5 +1,5 @@
-- [[Min Cost Network Flow Standard Form]], 
-- [[Minimum Cost Flow Basic Algorithms]]. 
+- [[Minimum Cost Network Flow Standard Form]], 
+- [[Minimum Cost Flow Optimality Conditions]]. 
 
 ---
 ### **Intro**

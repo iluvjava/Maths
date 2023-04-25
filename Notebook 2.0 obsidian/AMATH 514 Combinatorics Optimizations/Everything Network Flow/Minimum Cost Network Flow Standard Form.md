@@ -28,6 +28,12 @@ $$
 
 seeks for a solution such that it minimizes the costs of sending all the stuff between the set of vertices such that deficit and surplus conditions are satisfied. As a sanity check, we assert the fact that $\sum_{i = 1}^{N}b_i = 0$ so that the surplus and deficit of everything on the network is balanced out, if not then it's obvious that this won't have a feasible solution. 
 
+**Economic Interpretations**: 
+- The node capacity denotes how much unit of flow to send out to from that node. 
+- The amount of flow needed to flow out $b_i$ subtracting the amount of flow actually flows out should be equal to flow in. If we are talking about money, $b_i$ is your credit card debts. 
+	- Positive: You are summing up flow (debt) out of void for that node. 
+	- Negative: There are a lot of flow collecting in that node for free. 
+
 **Remarks**
 
 The vector $u_{i, j}$ can have elements of infinity, and the vector $c \ge \mathbf 0$. 
@@ -36,15 +42,15 @@ The vector $u_{i, j}$ can have elements of infinity, and the vector $c \ge \math
 ---
 ### **Residual Network**
 
-The concept of residual network is relevant to the optimality conditions for an optimal solution. Given any flow $x^\circ$ that is feasible on the graph $G$, we can transform the graph $G$ into a residual network. The residual network can have 2 arcs along the same direction. To use the residual network we make the following assumptions about the input graph $G = (A, N)$, with upper bound $u$, lower bound $l$, and mass balance constraint vector $b$ and unit flow cost vector $c$. 
+The concept of residual network is relevant to the optimality conditions for an optimal solution. Given any flow $x^\circ$ that is feasible on the graph $G$, we can transform the graph $G$ into a residual network. The residual network can have 2 arcs along the same direction, if capacity is zero, we can ignore it for the residual graph. To use the residual network we make the following assumptions about the input graph $G = (A, N)$ with upper bound $u$, lower bound $l$, and mass balance constraint vector $b$ and unit flow cost vector $c$. 
 
-1. The network is at least feasible. 
-2. The lower bound is zero, and the upper bound is positive, valid. If it's not the case the we have lower bounds, consult: [[Reduction to Network Flow]], removing lower bounds. 
-3. For all node $i, j$ where arc $(i, j)\in A$, there is only one arc. No double arcs are allowed. 
+1. The network is at least feasible. This ensures the existence of $x^\circ$ for residual transformation. 
+2. The lower bound for flow is zero, and the upper bound is positive, valid. If it's not the case the we have lower bounds, see [Reduction to Network Flow](Reduction%20to%20Network%20Flow.md). 
+3. For all node $i, j$ where arc $(i, j)\in A$, there is only one arc. No double arcs are allowed, in the same direction or in opposite. ( #UNFINISHED), there are way to resolve this but I am not sure yet. 
 
-**Definition: The Residual Network**
+#### **Def-1 | The Residual Network**
 
-> We define $x^\circ$ to be a feasible flow on the network. For the capacity on the residual network, we denote it using $r$, that is the upper bound for each arc. The lower bound for each arc in the residual network $G(x^\circ)$ will always be $0$. We denote the cost to be $c'$. Then: 
+> We define $x^\circ$ to be a feasible flow on the network. For the capacity on the residual network, we denote it using $r$, a vector, that is the upper bound for each residual arc. The lower bound for each arc in the residual network $G(x^\circ)$ will always be $0$. We denote the residual cost to be $c'$. Then: 
 > 
 > $$
 > \begin{aligned}
@@ -60,8 +66,22 @@ The concept of residual network is relevant to the optimality conditions for an 
 > 
 > which completes the definition. 
 
-Intuitively, the residual network represent how a feasible flow may change, while still being feasible. Let $x'$ be the flow on the residual network. It will always be positive, but on the original graph, if $x_{i, j} > 0$ and we have $(i, j) \in A$, it is the amount of increase the flow $x^\circ_{i, j}$ else, $(j, i)\in A$, it is the amount of decrease on $x_{i, j}^\circ$. 
 
+**Observations**: 
+
+Intuitively, the residual network represent how a feasible flow may change, while still being feasible. Let $x'$ be the flow on the residual network. It will always be positive, but on the original graph, if $x_{i, j} > 0$ and we have $(i, j) \in A$, it is the amount of increase the flow $x^\circ_{i, j}$ else, $(j, i)\in A$, it is the amount of decrease on $x_{i, j}^\circ$. We illustrate it with some example cases. 
+
+> [!example]- 
+> This is an example transform. 
+> ![](../../Assets/IMG_8AF9F835253E-1.jpeg)
+
+
+For more information, visit [Residual Networks Transform](Residual%20Networks%20Transform.md)
+
+---
+### **Looking for a Feasible Solution**
+
+To get the residual network, we need a feasible solution. To get that, read the application parts in [Maxflow Min Cut, Introduction](Maxflow%20Min%20Cut,%20Introduction.md), this is the standard way of looking for a feasible solution for the minimum cost flow problems. 
 
 ---
 ### **The Incidence Matrix**
@@ -116,7 +136,6 @@ $$
 
 where, each row of the matrix is like an indicator vector denoting which edge is coming into/out of the vertex using $\pm 1$, positive one is coming out, and negative is coming in. The number of columns equal to the number of arcs in the graph. And the second view is the column view of the matrix. The adjacency matrix $M$ consists of columns of vector that has only exactly one $+1$ and $-1$ on it. Suppose that the arc is $(i, j)$, then its corresponding column in the adjacency matrix has $+1$ at the $i$ th row and $-1$ at the j th position. 
 
-
 **The Magic of Walks on the Incidence Matrix**
 
 The null spaces of the incidence matrices are directed cycles, or closed directed walks on the graph. Let $W$ denote the arc collection a directed walk on the graph, Suppose that we have a unit flow vector $\mathbf 1_W$ then we define the indicator vector for the walk as: 
@@ -131,7 +150,7 @@ $$
 \end{aligned}
 $$
 
-**Claim:** 
+#### **Claim-1** 
 > Let $C$ denoted a closed directed walk on the graph, then vector $\mathbf 1_C$ is in the null space of the incidence matrix $M$. 
 
 WLOG (general up to a permutation of vertices), let the arc collection $C$ be defined as: $(v(1), v(2)), (v(2), v(3)), \cdots, (v(k - 1), v(k)), (v(k), v(1))$, then the vector representing it will be in the null space of the graph. This is true by considering a cycle that is made of a list of vertices of the form $C = \{v_i\}_{i = 1}^k$, then for each vertex $v_i\in C$ we have $(j, v_i) \in C \iff (v_i, k) \in C$ by the fact that $C$ is a closed directed walk because if you walk over the vertex $v_i$, you have to come out of it at some point.  giving us $(1 - 1) + (1 - 1) + \cdots(1 - 1)$ on the row for $v_i$ in incidence matrix $M$. This is true for all vertices in $C$. For all vertices not on the walk, there is no arc intersecting the nodes, therefore it's zero automatically. More precisely: 
@@ -152,7 +171,7 @@ $$
 
 a simple application of the column view of the incidence matrix and the telescoping series on these basis vector. 
 
-**Corollary: Non-directed Cycles their Indicator Vector**
+**Corollary | Non-directed Cycles their Indicator Vector**
 
 > On a directed graph, we make $\mathbf 1_C$(not necessarily positive this time) represent an nondirected cycles, and let $C$ be a collection of arcs on that cycles, then we would still be able to define the flow: 
 > $$
@@ -177,7 +196,7 @@ a simple application of the column view of the incidence matrix and the telescop
 This is extremely useful for stuff on the residual graph. A direction along the arc implies adding some amount on existing feasible flow, and the direction against the arc implies removing flow on those arcs. 
 
 
-**Claim**: 
+#### **Claim-2** 
 > Let $W$ denote a $i-j$ walk on the graph, then $M \mathbf 1_W = \e_i - \e_j$
 
 The justification is very similar to what we had for the closed directed walk, we won't repeat. 
@@ -200,7 +219,8 @@ $$
     \end{cases}
 \end{aligned}
 $$
-Now we can try taking the dual of this using the useful [[../Linear Programming Duality Cheat Sheet]], allowing us to write down the dual as: 
+
+Now we can try taking the dual of this using the useful [Linear Programming Duality Cheat Sheet](../Linear%20Programming%20Duality%20Cheat%20Sheet.md), allowing us to write down the dual as: 
 
 $$
 \begin{aligned}
@@ -248,7 +268,7 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 
 ---
-### **Thm: Optimality Conditions and Negative Costs Cycles**
+### **Thm-1 | Optimality Conditions and Negative Costs Cycles**
 
 > $x^+$ is feasible for a minimum cost network flow problem if and only if the residual network $G(x^+)$, contains no negative cost directed cycles. 
 
@@ -257,32 +277,50 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. 
 
 To show $\impliedby$, we show that: 
-> (No Negative cycles) => (flow Optimal), equivalent to: (Flow not Optimal) => (Exists some neg cost cycles). 
+> If $x^\circ$ is a flow with $G(x^\circ)$, then it is an optimal flow. 
 
-By cycle path decomposition theorem, for all feasible flow, $x^\circ$, and another feasible flow $x^+$, the differences between them, $x^\circ - x^+$ is of some cycle flow. To prove, we assume that $x^\circ$ is feasible but not optimal, then it's implied that $x^\circ - x^+ = \mathbf1_{C}$, where $C$ denotes the set of all positive directed cycles that is in $x^\circ$, but not $x^+$. This is a circulations. #UNFINISHED 
+- (+) Denote $x^\circ$ to be a feasible flow such that $G(x^\circ)$, the residual graph has no negative costs. 
+- $\text{res.cost}(x)$ denotes the total residual costs of some flow  on the residual graph. 
+- $\text{cost}(x)$ denotes total cost of some flow on the original graph $G$. 
 
-$\mathbf 1_C$ can contain negative element, representing positive flow for a reverse directions on the graph of $G$. 
+Define $x^+ = x^+ + \Delta x$, wher, $\Delta x$ is the flow differences between the 2. Since both flows are feasible, their differences must be a circulations, hence: 
+- ($\star$): $\Delta x$ is a circulation on the graph $G$: 
 
+$$
+\begin{aligned}
+    \Delta x &= \sum_{c \in \mathcal C}^{ }c
+    \\
+    \implies 
+    \text{cost}(x^+) &= \text{cost}(x^\circ + \Delta x) 
+    \\
+    &= \text{cost}(x^\circ) + \text{res.cost}(\Delta x)
+    \\
+    \text{res.cost}(\Delta x) &\ge 0 \text{ by }(\star), (+)
+    \\
+    \implies \text{cost}(x^+) &\ge \text{cost}(x^\circ), 
+\end{aligned}
+$$
 
+By the optimality of $x^+$, it has to be the case that $x^\circ$ is an optimal flow on the graph. 
 
 
 **References**:
 
-Theorem 3.8 in the Network Algorithms Textbook, by Ahuja.  For a better coverage of the topic, see [here](https://www.cs.cmu.edu/~15451-f22/lectures/lec13-flow3.pdf), course notes from CMU. 
+*Theorem 3.8*, which is also *Theorem 9.1* in the Network Algorithms Textbook, by Ahuja.  For a better coverage of the topic, see [here](https://www.cs.cmu.edu/~15451-f22/lectures/lec13-flow3.pdf), course notes from CMU. 
 
 **Comments**: 
 
-The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Minimum Cost Flow Basic Algorithms]] for more information. 
+The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Minimum Cost Flow Optimality Conditions]] for more information. 
 
 
 ---
 ### **Reductions from Other Problems**
 
 There are many problems that can be reduced to the network flow problems: 
-1. [[LP for Source Tree Shortest Paths]]. 
-2. [[Maxflow Min Cut, Ford Fulkerson]]
-3. Tournament Problems. 
-4. Bipartite Assignment problems. 
+1. [[LP for Source Tree Shortest Paths]], 
+2. [[Maxflow Min Cut, Introduction]], 
+3. Circulation Problems
+4. Tournament Problems. 
+5. Bipartite Assignment problems. 
 
 For reducing more general problems to the Network flow standard form, read [[Reduction to Network Flow]] for more information. 
-

@@ -1,4 +1,4 @@
-- [Maxflow Min Cut, Ford Fulkerson](Maxflow%20Min%20Cut,%20Ford%20Fulkerson.md), 
+- [Maxflow Min Cut, Introduction](Maxflow%20Min%20Cut,%20Introduction.md), 
 - [Generic Search Algorithm](../../CSE%20000%20Basics%20Algorithms/Generic%20Search%20Algorithm.md). 
 - [Flow Decomposition Algorithm](Flow%20Decomposition%20Algorithm.md), needed for the proof of capacity scaling algorithm. 
 
@@ -27,7 +27,7 @@ The algorithm looks for the shortest path measured in the number of arcs and the
 - $d^{(k)}(j)$ denotes the distance needed to go from $j$ to $t$ using the least number of arcs, on after the $k$ th augmenting path operations on the graph. 
 - $L^k(l)$ is the level set assignment from the BFS for the node $l$, after the $k$ th iterations of the augmenting path algorithm. 
 
-**Theorem: Monotone Increasing Distance Labels**
+**Thm-1: Monotone Increasing Distance Labels**
 > The distance for any nodes in the graph strictly increases, we have $d^{(0)}(j) \ge d^{(1)}(j) \ge \cdots \ge d^{(k)}(j)$, for all $j\in N$. 
 
 **Proof**: 
@@ -52,7 +52,7 @@ The major idea that it exploit is the idea of *Maximum Capacity Augmenting Path*
 - $v$ denotes the flow value on the network, this comes from the LP formulations for the Maxflow problem. 
 - $\Delta$, denotes the capacity threadhold for the scaling phase. It's the `delta` in the code. 
 
-**Definition: Delta Residual Graph**: 
+**Def-1: Delta Residual Graph**: 
 > Let $x^\circ$ be a feasible flow, $\delta \ge 0$, then $G(x^\circ, \Delta)$ is subgraph of the residual graph obtained by deleting all arcs with a capacity that is less than $\Delta$. 
 
 **Methods: Capacity Scaling Via Binary Search**
@@ -72,7 +72,7 @@ WHILE delta >= 1 :
 
 Due to the integrality constraints of maxflow problem. The outer while loop executes for at most $1 + \lceil \log_2(U)\rceil$, more iteration will reduces the capacity to a value less than 1. 
 
-**Claim: Maximum Cut Capacity**
+**Claim-1: Maximum Cut Capacity**
 > Let $v$ be the current flow on $G$, $v^*$ denotes the maximum flow on the network. The minimum amount of augmenting flow on the residual is now given by $(v^* - v)/m$. 
 
 Use $x^\circ$to denote the feasible flow achieve flow value $v$, let $G(x^\circ)$ be the residual capacity of the graph given the feasible flow. 
@@ -390,8 +390,8 @@ For the set of active node $I$, the FIFO uses a queue to store then. It takes an
 - The current node is removed then added to the back of the queue if, it's being relabeled. 
 
 
-**Example**: 
-![](../../Assets/Prefow-push-example.jpeg)
+> [!Example]- 
+> ![](../../Assets/Prefow-push-example.jpeg)
 
 **Observations**: 
 
