@@ -16,9 +16,8 @@
 **Thm | Flow Decomposition Theorem**
 
 > Every path and cycle flow has a unique representation as *nonnegative* arc flows. Conversely, every *nonnegative* arc flow x can be represented as a path and cycle flow (though not necessarily uniquely) with the following two properties:
-> - (a): Every directed path with positive flow connects a deficit node to an excess node. 
-> - (b): At most n + m paths and cycles have nonzero flow; out of these, at most m
-cycles have nonzero flow.
+> 1. Every directed path with positive flow connects a deficit node to an excess node. 
+> 2. At most n + m paths and cycles have nonzero flow; out of these, at most m cycles have nonzero flow.
 
 If we denote $\mathcal P, \mathcal C$ to be the set arcs in all directed paths and cycles on the graph that send *strictly positive amount of flows* between vertices. We also define an indicator function $\mathbf 1_{CP}\{v\}$ to denote $1$ if $v\in (\bigcup_{c\in \mathcal C} c)\cup(\bigcup_{p\in \mathcal P}p)$ else $0$, then any flow between the vertices can be expressed as: 
 
@@ -78,7 +77,6 @@ If we can't find $i(n + 1)$ without repeating, then the original flow is not a f
 **Looking for Cycles on Circulations**:
 
 If, there is no such $i(1)$ with $g_{i(1)} > 0$, then it has to be the case that all $g_i = 0$ for all $i \in N$ else, the flow is infeasible to begin with. When $g_i = 0$ for all $i \in N$, then $x$ has to be a circulation. Select any arc $(i(1), i(2))\in A$ such $x_{i(1), 1(2)}> 0$. The base case would be to find the next node, which is possible by the fact that it's a circulation, there exists $x_{i(2), i(3)}$ with $i(3)\neq i(2)$ to balance out the inflow to node $i(1)$. 
-
 
 ---
 ### **The Matrix View of the Matter**

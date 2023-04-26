@@ -57,8 +57,7 @@ The triple $(L, U, T)$ determines a spanning tree solution of the problem (We re
 The spanning tree is non-degenerate if, the cycle free solution has strictly less than $n - 1$ number of free arcs. Else, the spanning tree solution is a non-degenerate tree. 
 
 
-
-**Thm: Min Cost Flow Optimality Conditions \[11.3\]**
+**Thm | Min Cost Flow Optimality Conditions \[11.3\]**
 > A spanning tree solution with $(U, L,T)$ is an optimal spanning tree solution if and only if, it is feasible for some choice of node potentials $\pi$ and the arc reduced costs, computed by: 
 > $$
 > \begin{aligned}
@@ -169,13 +168,13 @@ The the simplex algorithm for LP, but it's performed on the network directly. Th
 
 **Algorithm Pseudocode**: 
 ```SQL
-EVAL("Determine initial feasile tree structure (T, L, U)")
-EVAL("Determine the flow x, and potentials pi for the above tree structure")
-WHILE EVAL("There exists some arcs violating the optimality structure"):
+EVAL("Determine initial feasile tree structure (T, L, U).")
+EVAL("Determine the flow x, and potentials pi for the above tree structure.")
+WHILE EVAL("There exists some arcs violating the optimality structure."):
     SELECT (k, l) WHERE EVAL("It violates the optimality conditions (using the reduced costs). ")
     ADD (k, l) TO T
     EVAl("Determine an leaving arc (p, q).")
-    EVAL("Update the tree structure, the flow, the potentials")
+    EVAL("Update the tree structure, the flow, the potentials. ")
 ```
 
 The most important part of the algorithm that determines its behaviors is the part where we choose the entering, and the leaving arcs (like simplex pivoting), and how we avoid degeneracy on the tree structure for the solution. 
@@ -189,7 +188,7 @@ The most important part of the algorithm that determines its behaviors is the pa
 ---
 ### **Strongly Feasible Spanning Tree Solution**
 
-Keeping a strong feasible spanning tree solution will allow the algorithm to terminate on finitely many iterations. It won't neceesarily make the spanning tree solution non-degenerate to assure increase on the objective for every iterations, but it will prevent the algorithm to enter a cycle of pivoting, causing it to halt. 
+Keeping a strong feasible spanning tree solution will allow the algorithm to terminate on finitely many iterations. It won't necessarily make the spanning tree solution non-degenerate to assure increase on the objective for every iterations, but it will prevent the algorithm to enter a cycle of pivoting, causing it to halt. 
 
 **Definition: Strongly Feasible Spanning Tree Solution**
 > A spanning tree solution is a strongly feasible spanning tree solution if and only if the following, 2 equivalent statements are true with respect to some root node on the tree. 
@@ -197,7 +196,7 @@ Keeping a strong feasible spanning tree solution will allow the algorithm to ter
 > 2. For all tree arcs with zero flow, it points to the root node, for all arcs with full flow, it points away from the root node.
 
 **Observations**: 
-- A root node must be defined for the tree before the defintion becomes valid for any tree. 
+- A root node must be defined for the tree before the definition becomes valid for any tree. 
 - A non-degenerate spanning tree is always a strongly feasible spanning tree. Because none of the arcs in the tree is at capacity, or zero capacity. 
 - A degenerate spanning tree, can be strongly feasible, or not. It's not directly related. 
 
@@ -209,6 +208,7 @@ Keeping a strong feasible spanning tree solution will allow the algorithm to ter
 
 
 **References:**
+
 
 11.6 in the Ahuja's textbook for network flow algorithms. 
 

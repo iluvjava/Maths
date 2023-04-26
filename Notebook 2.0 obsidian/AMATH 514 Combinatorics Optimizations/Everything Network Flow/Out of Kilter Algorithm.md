@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-The algorithm works on the optimality conditions. Especially the conditions for complementary slackness. The kilter graph is used to understand the algorithm. 
+The algorithm works on the optimality conditions and it's a primal dual algorithm because it keeps updating the reduced costs and potentials at each steps. Especially the conditions for complementary slackness. The kilter graph is used to understand the algorithm. 
 
 ![](../../Assets/outof_kilter_graph.png)
 
@@ -16,7 +16,7 @@ The graph represents the complementary slackness for the variables. Each point $
 
 Any other points that doesn't lie in the solid area represents primal and dual variables that violates the complementary slackness conditions. 
 
-**Definition: Kilter Number**
+#### **Def | Kilter Number**
 > Kilter number $k_{i, j}$ is associated with each arcs on the graph. It's a positive number representing the amount of change in $x_{i, j}$ needed to put the coordinate $(c^{(\pi)}_{i, j}, x_{i, j})$ onto the kilter graph. There are 2 cases: 
 > 1. When $c^{(\pi)}_{i, j} > 0$ then it's $|x_{i, j} - 0|$. 
 > 2. When $c^{(\pi)}_{i, j} < 0$ then it's $|x_{i, j} - u_{i, j}|$. 
@@ -64,17 +64,19 @@ We describe the algorithm via pseudocode. Before starting we establish quantitie
 7. `ptl`, $\pi$ is the potential label for each node in the code, and the math notations. 
 8. $A, N$, `A,N` are the set of arcs and nodes in the graph $G$. 
 
+Initially, `ptl`, the potential label are all zero for each node. 
+
 ```SQL
 WHILE sigmaK > 0: 
     SELECT (p, q) WHERE "Kilter number is positive" IN G(x)
     c_prime(i, j) := max(0, reduced_cost(ptl, i, j)) FOR ALL (i, j) IN G(x)
-    d :=  "Shortest path distance from q to every other nodes in G(x)". 
+    d :=  "Shortest path distance from q to every other nodes in G(x), with $c_prime assignment for arc costs". 
     ptl :=  ptl(i) - d(i) FOR ALL i in N
     IF reduced_cost(ptl, p, q) < 0: 
 	    P := "Shortest path from $q to $p with costs $c_prime " 
         W := P UNION {(p, q)}  /*A cycle involving the arc (p, q). */
         delta := "Augmentation along the cycle W". 
-        UPDATE x, G(x) and reduced_costs
+        UPDATE x, G(x), reduced_costs with ptl, sigmaK
 ```
 
 **Observe:** 
@@ -82,14 +84,14 @@ WHILE sigmaK > 0:
 We keep track of, $c'$, the costs for shortest path, $\pi$, `p` potential from the previous iteration, $d$ the distance labels, $c^{(\pi)}$ the reduced costs. Only update the potential if the reduced costs on the targeted arc is not negative after the new modified potentials, and the shortest path that we used to connect arc $(p, q)$ into a cycle is derived from the shortest path label from the previous iterations. The progress of the algorithm is measured by the sum of all the kilter numbers for all arcs. 
 
 
-**Lemma\[9.13\]: Kilter Number won't Increase for All Arcs**
+**Lemma-\[9.13\]| Kilter Number won't Increase for All Arcs**
 > Updating the node potential won't increase the kilter number of any arcs, in the residual network. 
 
 **Proof**: 
 
 Skipped for now. 
 
-**Lemma \[9.14\]: Kilter Number Strictly Decreases for arc (p, q)**
+**Lemma \[9.14\] | Kilter Number Strictly Decreases for arc (p, q)**
 > After augmenting the flow along some cycle $W$ from the algorithm, the kilter number of arc $(p, q)$ will strictly decrease. 
 
 **Proof**: 

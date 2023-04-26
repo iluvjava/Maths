@@ -23,6 +23,53 @@ Which is important for the discussion because we exploit that. In addition to th
 
 Most of the theorems and content will be taken from Ahuja's Network flow textbook, theorems will be listed with a `[thm ??.??]` at the end of it to indicate which theorem in the notes corresponds to the theorem in the textbook.
 
+---
+### **Thm-1 | No Negative Costs Cycles on Residual Graph**
+
+We introduce this foundational results. 
+
+> $x^+$ is feasible for a minimum cost network flow problem if and only if the residual network $G(x^+)$, contains no negative cost directed cycles. 
+
+**Proof**: 
+
+The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. 
+
+To show $\impliedby$, we show that: 
+> If $x^\circ$ is a flow with $G(x^\circ)$, then it is an optimal flow. 
+
+- (+) Denote $x^\circ$ to be a feasible flow such that $G(x^\circ)$, the residual graph has no negative costs. 
+- $\text{res.cost}(x)$ denotes the total residual costs of some flow  on the residual graph. 
+- $\text{cost}(x)$ denotes total cost of some flow on the original graph $G$. 
+
+Define $x^+ = x^+ + \Delta x$, wher, $\Delta x$ is the flow differences between the 2. Since both flows are feasible, their differences must be a circulations, hence: 
+- ($\star$): $\Delta x$ is a circulation on the graph $G$: 
+
+$$
+\begin{aligned}
+    \Delta x &= \sum_{c \in \mathcal C}^{ }c
+    \\
+    \implies 
+    \text{cost}(x^+) &= \text{cost}(x^\circ + \Delta x) 
+    \\
+    &= \text{cost}(x^\circ) + \text{res.cost}(\Delta x)
+    \\
+    \text{res.cost}(\Delta x) &\ge 0 \text{ by }(\star), (+)
+    \\
+    \implies \text{cost}(x^+) &\ge \text{cost}(x^\circ), 
+\end{aligned}
+$$
+
+By the optimality of $x^+$, it has to be the case that $x^\circ$ is an optimal flow on the graph. 
+
+
+**References**:
+
+*Theorem 3.8*, which is also *Theorem 9.1* in the Network Algorithms Textbook, by Ahuja.  For a better coverage of the topic, see [here](https://www.cs.cmu.edu/~15451-f22/lectures/lec13-flow3.pdf), course notes from CMU. 
+
+**Comments**: 
+
+The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Minimum Cost Flow Optimality Conditions]] for more information. 
+
 
 ---
 ### **Optimality Conditions on the Graphs**
@@ -30,7 +77,7 @@ Most of the theorems and content will be taken from Ahuja's Network flow textboo
 We list theorem that relates several quantities to an optimal flow. These will ultimately be tied to linear programming duality. 
 
 **Thm-1｜ Reduced Costs Optimality Conditions \[thm 9.3\]**
-> Feasible solution $x^\circ$ is optimal of the minimum costs problem if and only if some set of node potential $\pi$ satisfies: $c^{(\pi)}_{i, j} = c_{i, j} - \pi_i + \pi_j \ge 0$ for all $(i, j) \in G(x^\circ)$, for all arcs in the residual graph. 
+> Feasible solution $x^\circ$ is optimal of the minimum costs problem if and only if some set of node potential $\pi$ satisfies: $c^{(\pi)}_{i, j} = c_{i, j} - \pi_i + \pi_j \ge 0$ for all $(i, j) \in G(x^\circ)$, for all arcs in the *residual graph.* 
 
 **Proof**: 
 
@@ -41,7 +88,7 @@ Skipped.
 $p_i$ is one set of the dual variable for the dual programming problem, it's related to the quality constraints of the minimum cost flow problem. 
 
 **Thm-2 | Complementary Slackness Optimality Conditions \[thm 9.4\]**
-> Feasible solution $x^\circ$ is optimal if and only if there exists node potentials $\pi$  such that the reduced costs satisfies the complementary slackness conditions for all arcs $(i, j)$: 
+> Feasible solution $x^\circ$ is optimal if and only if there exists node potentials $\pi$  such that the reduced costs satisfies the complementary slackness conditions for all arcs $(i, j)\in A$ (*The original graph* $G$): 
 > $$
 > \begin{aligned}
 >     \begin{cases}
@@ -53,9 +100,10 @@ $p_i$ is one set of the dual variable for the dual programming problem, it's rel
 >     \end{cases}
 > \end{aligned}
 > $$
-> which is the complementary slackness conditions for the LP. Other equivalent description of the conditions exist. 
+> which is the complementary slackness condition for the LP. Other equivalent description of the conditions exist. 
 
 **Proof**: Skipped. 
+
 
 ---
 ### **The Dual of the LP**
@@ -118,11 +166,70 @@ Which is a non-smooth optimization problem purely using the $\pi$ variable.
 
 Skipped for now. 
 
-
 ---
-### **LP Duality View of the Matter**
+### **LP Duality Applied to Minimum Cost Flow Problem**
 
-We list results of LP duality applied to this specific formulation of Minimum cost flow LP. 
+Theorem 9.4 can be derived from both, the optimality no negative cycle conditions, OR, the strong duality theorem from LP applied to the Primal and Dual Formulations of the Network Flow Standard Form. 
+
+#### **Claim-1 | Complementary Slackness Above is From LP Duality**
+> We can use the LP strong duality to derive the complentary slackness for the optimal flow conditions and the reduced costs from potentials. 
+
+**Proof**: 
+
+By LP strong duality, the primal objective and the dual objectives are equaled to each other, therefore, we may start with: 
+
+$$
+\begin{aligned}
+    \sum_{(i, j)\in A}^{} c_{i, j} x_{i, j} &= 
+    \langle b, \pi\rangle
+    - \sum_{(i, j)\in A}^{} \max\left(0, c_{i, j}^{(\pi)}\right)u_{i, j}
+    \\
+    \iff 
+    \langle c^{(\pi)}, x\rangle &= 
+    - 
+    \sum_{(i, j)\in A}^{} \max\left(0, -c^{(\pi)}_{i, j}\right)u_{i, j} \quad \text{by [1]}
+    \\
+    \iff
+    - \langle c^{(\pi)}, x\rangle &= \sum_{(i, j)\in A}^{} \max\left(0, -c^{(\pi)}_{i, j}\right)u_{i, j},  \quad [\star]
+\end{aligned}
+$$
+
+at \[1\], we used the property of reduced in relation to the objective value of the min cost flow, see [Reduced Costs and Potentials](Reduced%20Costs%20and%20Potentials.md), the potential gap property. Next, we observe: 
+
+$$
+\begin{aligned}
+    \max\left(0, -c^{(\pi)}_{i, j}\right) \ge - c^{(\pi)}_{i, j}  \quad \forall (i, j) \in A
+    \\
+    \max\left(0, -c^{(\pi)}_{i, j}\right)u_{i, j} \ge - x_{i, j}c^{(\pi)}_{i, j}, 
+    \\
+    [\star]\implies 
+    \max\left(
+        0, -c^{(\pi)}_{i, j}
+    \right) = -c^{(\pi)}_{i, j}x_{i, j}\; \forall (i, j)\in A \quad [+]
+\end{aligned}
+$$
+
+therefore, each term in the sum, is larger than or equal to the other term, by the fact that the sum of al these terms are equal, it has to be the case that each terms are equal, obtaining the last row on the previous section. Now we consider different cases for the reduced costs to derive the complementary slackness conditions, consider any $(i, j)\in A$, we then have: 
+
+$$
+\begin{aligned}
+    & c^{(\pi)}_{i, j} > 0 \implies \max\left(
+        0, -c^{(\pi)}_{i, j}
+    \right) = 0 
+    \\
+    & \quad \text{ by } [+] \implies 0 = -c^{(\pi)}_{i, j}x_{i, j} \implies x_{i, j} = 0
+    \\
+    & 
+    c^{(\pi)}_{i, j} < 0 \iff -c_{i, j}^{(\pi)}u_{i, j} > 0 \implies 
+    \max\left(0, -c^{(\pi)}_{i, j}\right) = -c^{(\pi)}_{i, j} 
+    \\
+    & \quad \text{by }[+] \implies  -c^{(\pi)}_{i, j} u_{i, j} = -c_{i, j}^{(\pi)}x_{i, j} \iff x_{i, j} = u_{i, j}
+    \\
+    & c^{(\pi)}_{i, j} = 0 \underset{[+]}{\implies} x_{i, j}\in [0, u_{i, j}], 
+\end{aligned}
+$$
+
+where, in the last case, the equality is already true with $c^{(\pi)}_{i, j} = 0$, regardless of what value $x_{i, j}$ takes. 
 
 
 ---
@@ -144,6 +251,10 @@ Skipped. Refers to the textbook.
 Ahuja's Network Flow Algorithm Textbook, Chapter 9. 
 
 ---
-### **Non-Uniqueness of the Minflow Solutions**
+### **Non-Uniqueness of the Min cost flow Solutions**
+
+The convex combinations of any 2 optimal flow is still an optimal flow. This is obvious from the theory of linear programming and we won't talk too much about it here. 
+
+
 
 

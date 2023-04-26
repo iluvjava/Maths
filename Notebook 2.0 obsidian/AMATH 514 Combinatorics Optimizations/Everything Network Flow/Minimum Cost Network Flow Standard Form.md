@@ -268,52 +268,6 @@ suppose that for some vertices $i\in [n]$, the dual constraint (*) is not tight,
 
 
 ---
-### **Thm-1 | Optimality Conditions and Negative Costs Cycles**
-
-> $x^+$ is feasible for a minimum cost network flow problem if and only if the residual network $G(x^+)$, contains no negative cost directed cycles. 
-
-**Proof**: 
-
-The $\implies$ direction is direct from the fact we can decompose $x^+ = x + \delta\mathbb 1_C$ where $C$ is a cycle on the graph, $x$ is the residual flow on the graph is still feasible, and hence, adding flow $\mathbf \delta1_C$ resulting in a strictly smaller objective value. To prove the other direction we need [[Flow Decomposition Algorithm]]. 
-
-To show $\impliedby$, we show that: 
-> If $x^\circ$ is a flow with $G(x^\circ)$, then it is an optimal flow. 
-
-- (+) Denote $x^\circ$ to be a feasible flow such that $G(x^\circ)$, the residual graph has no negative costs. 
-- $\text{res.cost}(x)$ denotes the total residual costs of some flow  on the residual graph. 
-- $\text{cost}(x)$ denotes total cost of some flow on the original graph $G$. 
-
-Define $x^+ = x^+ + \Delta x$, wher, $\Delta x$ is the flow differences between the 2. Since both flows are feasible, their differences must be a circulations, hence: 
-- ($\star$): $\Delta x$ is a circulation on the graph $G$: 
-
-$$
-\begin{aligned}
-    \Delta x &= \sum_{c \in \mathcal C}^{ }c
-    \\
-    \implies 
-    \text{cost}(x^+) &= \text{cost}(x^\circ + \Delta x) 
-    \\
-    &= \text{cost}(x^\circ) + \text{res.cost}(\Delta x)
-    \\
-    \text{res.cost}(\Delta x) &\ge 0 \text{ by }(\star), (+)
-    \\
-    \implies \text{cost}(x^+) &\ge \text{cost}(x^\circ), 
-\end{aligned}
-$$
-
-By the optimality of $x^+$, it has to be the case that $x^\circ$ is an optimal flow on the graph. 
-
-
-**References**:
-
-*Theorem 3.8*, which is also *Theorem 9.1* in the Network Algorithms Textbook, by Ahuja.  For a better coverage of the topic, see [here](https://www.cs.cmu.edu/~15451-f22/lectures/lec13-flow3.pdf), course notes from CMU. 
-
-**Comments**: 
-
-The descriptions from the dual is extremely useful for developing algorithms for the min cost flow problems algorithms. See [[Minimum Cost Flow Optimality Conditions]] for more information. 
-
-
----
 ### **Reductions from Other Problems**
 
 There are many problems that can be reduced to the network flow problems: 

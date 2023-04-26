@@ -72,7 +72,7 @@ WHILE delta >= 1 :
 
 Due to the integrality constraints of maxflow problem. The outer while loop executes for at most $1 + \lceil \log_2(U)\rceil$, more iteration will reduces the capacity to a value less than 1. 
 
-**Claim-1: Maximum Cut Capacity**
+**Claim-1 | Maximum Cut Capacity**
 > Let $v$ be the current flow on $G$, $v^*$ denotes the maximum flow on the network. The minimum amount of augmenting flow on the residual is now given by $(v^* - v)/m$. 
 
 Use $x^\circ$to denote the feasible flow achieve flow value $v$, let $G(x^\circ)$ be the residual capacity of the graph given the feasible flow. 
@@ -81,7 +81,7 @@ Use $x^\circ$to denote the feasible flow achieve flow value $v$, let $G(x^\circ)
 
 The cut capacity is $r(S)$. To minimize the flow each augmenting path can have, we need to divides up $r(S)$ on maximum number of $s-t$ path. By path decomposition, the maximum number of $s-t$ path is $m$. The augmenting flow is now $r(S)/m$. When $S$ is the minimum cut, $r(S) = v^* -v$, the difference between the current flow and the maximum amount of $s-t$ flow. Each augmenting path will have a minimum of $(v^* - v)/m$ upper bound. 
 
-**Lemma 1: Maximum Number of Iterations for the Scaling Phase**
+**Lemma 1 | Maximum Number of Iterations for the Scaling Phase**
 
 > Let $v$ be the flow after the termination of the capacity scaling phase of the algorithm. then: $v^* \le v + m\Delta$.
 
@@ -89,14 +89,14 @@ The cut capacity is $r(S)$. To minimize the flow each augmenting path can have, 
 
 By the termination of the scaling phase, all arcs in $(S, S^C)$ has a capacity less than $\Delta$. The maximum capacity of such a cut is $m\Delta$. This will be an upper bound for the amount of additional $s-t$ flows we can send on top of exists flow $v$. Therefore $v^* \le v + m\Delta$. 
 
-**Lemma 2: Maximum Number of Iterations for Capacity Scaling Phase**
+**Lemma 2 | Maximum Number of Iterations for Capacity Scaling Phase**
 > The maximum scaling phase executes for at most $2m$ number of iterations. 
 
 **Proof**: 
 
 Let $v$ denotes the flow from *previous* scaling phase, with scaling capacity $\Delta$. By first lemma we have $v^* \le v + 2m\Delta$. Each augmentations has a capacity of at least $\Delta$. If, $v^*$ is achieved at this scaling phase, then we are done. Else, it's not achieved, then at the end the capacity is less than $\Delta/4$, the remaining capacity is at cut by a half, at the least. 
 
-**Theorem: Complexity**
+**Thm-2 | Complexity**
 > The complexity of total number of augmenting paths are $O(m \log(U))$. The total amount of augmentations now runs in $O(m^2\log(U))$. 
 
 **Proof**: 

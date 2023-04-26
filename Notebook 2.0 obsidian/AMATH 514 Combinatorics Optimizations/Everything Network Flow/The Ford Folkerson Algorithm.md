@@ -73,3 +73,16 @@ These theorems uses observations about the Ford Fulkerson to characterize the op
 **Proof**:
 
 Each path find is bounded by $\mathcal O(m)$, the capacity of the cut is at most $\mathcal O (nU)$, we can at worse increment by an amount of $1$, therefore, the worse time complexity is given as $\mathcal O(mnU)$
+
+
+---
+### **Foundamental Theorems For Maxflow**
+
+  
+#### **Thm-6.5 |Integrality Theorem**
+
+> If all arc capacities are integer, the maximum flow problem has an integer maximum flow.
+
+**Proof**: 
+
+This is direct from the Ford Fulkerson algorithm where, each increment of the path is strictly integers, and the algorithm terminates, therefore, when it terminates, the flow amount will be integral. 
