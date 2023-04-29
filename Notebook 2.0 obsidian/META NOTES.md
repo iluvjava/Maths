@@ -4,22 +4,16 @@ This note is a note about notes.
 # **Organizations**
 
 - These files: 
-	- [[MATH 601 Functional Analysis/Topology of a Continuous Mapping]]
-	- [[MATH 601 Functional Analysis/Functional Spaces/Continuous Mapping in Metric Spaces]]
-	- [[MATH 601 Functional Analysis/Continuous Mapping and Compactness]]
-	- Need to be re-organized. 
+	- [Finite Dimensional Normed Space](MATH%20601%20Functional%20Analysis/Functional%20Spaces/Finite%20Dimensional%20Normed%20Space.md), contains some theorems and statements that are generalized to, Banach and Metric spaces, separate them to different files. 
 
 # **Important Tasks about the Notes**
 
-Tasks that are important for something. Review, or research. 
-
-- Fill out the part about minimizers of a convex function for [Convex Functions CENTRAL HUB](AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md). 
 
 # **Tasks to Do about the Notes**
 
 Something to do when we have time. 
 
-- Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]]
+- Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
 
 # **Tasks that Probably Will Never Get Done**
 

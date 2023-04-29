@@ -1,4 +1,5 @@
-[[Vector Space]], [[Metric Space Introduction]], [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]]
+[[Vector Space]], [[Metric Space Introduction]], 
+[Norm, for Beginners](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Norm,%20for%20Beginners.md)
 
 ---
 ### **Banach Space**
@@ -35,7 +36,7 @@ For more information about norm in the real finite vector space, see [[../../AMA
 Don't know where is the proof but this seems legit. 
 
 **Remarks**: 
-If, $Y\substeq X$ doesn't form a vector space, then it's definitely possible for $Y$ to be not a Banach spacet at all. 
+If, $Y\subseteq X$ doesn't form a vector space, then it's definitely possible for $Y$ to be not a Banach space at all. 
 
 
 ---
@@ -56,4 +57,4 @@ Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space the
     $$
     it experiences translational and scaling invariance. This metric space reflect the underlying topology of Euclidean spaces.
 
-
+### **Equivalent Metric**

@@ -172,7 +172,7 @@ Skipped for now.
 Theorem 9.4 can be derived from both, the optimality no negative cycle conditions, OR, the strong duality theorem from LP applied to the Primal and Dual Formulations of the Network Flow Standard Form. 
 
 #### **Claim-1 | Complementary Slackness Above is From LP Duality**
-> We can use the LP strong duality to derive the complentary slackness for the optimal flow conditions and the reduced costs from potentials. 
+> We can use the LP strong duality to derive the complementary slackness for the optimal flow conditions and the reduced costs from potentials. 
 
 **Proof**: 
 
@@ -240,7 +240,7 @@ This basic algorithm exploits the optimality conditions of the network flow prob
 > Establish a feasible flow for the min cost network flow, and then detect cycles with negative costs in the residual graph. And then we augment along that cycle to bring down the cost of the flow. Each augmentation should saturates one of the arcs on the cycle. 
 
 
-**Thm: Solution is Integral\[9.10\]**
+**Thm | Solution is Integral\[9.10\]**
 > If the arc and node capacity for the graph is of integer values, then the minimum cost solution will be integers after the execution of this algorithm. 
 
 **Proof**: 
@@ -254,7 +254,5 @@ Ahuja's Network Flow Algorithm Textbook, Chapter 9.
 ### **Non-Uniqueness of the Min cost flow Solutions**
 
 The convex combinations of any 2 optimal flow is still an optimal flow. This is obvious from the theory of linear programming and we won't talk too much about it here. 
-
-
 
 

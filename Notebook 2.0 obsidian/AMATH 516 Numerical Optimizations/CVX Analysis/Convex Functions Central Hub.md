@@ -71,7 +71,7 @@ For all convex function, some of them will have gradient. The gradient might not
 
 The property of convex function will not ensure the existence of a minimizer. Consider the example of $\exp(x)$, it has a minimum and it's convex but it doesn't have minimizers. We need conditions that is stronger to ensures the existence of a minimizers. 
 
-**Thm-2: Minimizers for L.S.C Functions Over a Compact Subset**
+**Thm-2 | Minimizers for L.S.C Convex Functions Over a Compact Subset**
 > Let $f$ be closed convex and proper, let $Q\subset X$ be a compact set in the space of where the function is defined such that $x\cap \text{dom}(f) \neq \emptyset$, then the set of minimizers, denoted as $S = \arg\min_{x\in Q}f(x)$ for the function is non-empty, and it's a convex set. 
 
 **Proof**:

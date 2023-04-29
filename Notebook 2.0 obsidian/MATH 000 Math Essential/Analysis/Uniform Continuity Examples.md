@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-We presents some examples to enlighten the concept of uniform continuity. 
+We present some examples to enlighten the concept of uniform continuity. Recall that a function $f: \mathbb R \mapsto \mathbb R$ is uniformly continuous when for all $\epsilon > 0$, exists $\delta_\epsilon$ such that for all $|x - y| \le \delta_\epsilon \implies |f(x) - f(y)|\le \epsilon$. 
 
 ---
 ### **Example-1 | $\sqrt{x}$**

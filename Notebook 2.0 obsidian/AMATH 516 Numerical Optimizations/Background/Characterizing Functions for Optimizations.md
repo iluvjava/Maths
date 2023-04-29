@@ -144,13 +144,13 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 
 This is one of the most important characterizations for a class of functions. The theories developed for optimizing convex function and its variants are profound. Convex function has 2 equivalent definitions. 
 
-**Definition: Convex Epigraph**
+**Definition | Convex Epigraph**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
 For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. 
 
-**Definition: Secant Inequality**
+**Definition | Secant Inequality**
 
 > Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
 > $$
@@ -165,7 +165,7 @@ For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more informat
 
 And one can combine results and form a general statement using convex combinations of points. For more discussions regarding this important properties, view: [Convex Functions CENTRAL HUB](../CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md).
 
-**Thm: Convex Level Graph**
+**Thm | Convex Level Graph**
 > A convex function has convex level graph. 
 
 **Proof**: 

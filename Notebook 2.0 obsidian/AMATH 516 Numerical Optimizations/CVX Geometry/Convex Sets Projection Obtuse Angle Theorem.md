@@ -13,12 +13,13 @@ We list/prove some of the useful properties of convex sets, in Finite Euclidean 
 > For any closed, convex, non-empty set $Q$ in the finite Euclidean space, the projection (it's a singleton set) of any points not in $Q$ on to the set to the point itself make an obtuse angle with all the other points in the set $Q$. Mathematically: 
 > $$
 > \begin{aligned}
->     \forall y \;\exists z: \{z\} &= \underset{Q}{\text{proj}}(y)
+>     \forall y \in \mathbb E , \exists \{z\} &= \underset{Q}{\text{proj}}(y)
 >     \\
 >     \iff
 >     \langle y - z, x - z\rangle &\le 0 \quad \forall x \in Q
 > \end{aligned}
 > $$
+> Where, the uniqueness condition is implied. 
 
 **Proof**:
 
@@ -52,8 +53,6 @@ $$
 
 Which completes this part of the proof, because the last statement states that for all $x \in Q$, it's clear that the distance from $y$ to $z$ is smaller than any other $x$ to $z$. <mark style="background: #FFB8EBA6;">Wether this set $Q$ is convex or not doesn't matter</mark>. 
 
-**Please Observe:**
-
 We didn't make use of the properties that $Q$ is convex, therefore this direction holds for non-convex set $Q$ as well. Next, we prove that if $x \in \text{proj}_Q(y)$ then the obtuse angle part of the statement is true. Please consider: 
 
 $$
@@ -64,7 +63,7 @@ $$
     \\
     \varphi(t) &:= \frac{1}{2}\Vert y - x(t)\Vert_2^2
     \\
-    \varphi(t) &\ge \varphi(0)
+    \varphi(t) &\ge \varphi(0) \text{ by projection point}
     \\
     Q \text{ Convex }\implies & 
     \varphi(t) \in Q\; \forall t \in [0, 1]
@@ -88,10 +87,14 @@ Take note that, $\varphi(t) \ge \varphi(0)$, which is how we get the inequality 
 If obtuse angle, then it's the projection point, regardless of convexity. If it's the projection, then it has to be obtuse angle, this has to be with convexity. Consider projecting the center of the circle (without its interior) to the circle, which results in the whole set of the circle. 
 
 
----
-### **Uniqueness**
+**References**: 
 
-> For an nonempty closed convex set $Q$ and any points $y\in \mathbb R^n$, the projection of $y$ onto $Q$ is unique and it's in the set $Q$. 
+Dimitri's 516. 
+
+---
+### **Uniqueness of the Projection Points**
+
+> For an nonempty closed convex set $Q$ and any points $y\in \mathbb R^n$, the projection of $y$ onto $Q$ is unique and it is in the set $Q$. 
 
 
 **Proof**:
@@ -125,9 +128,12 @@ Professor's Heinz's Proof is specialized for convex sets, and it's beautiful mat
 2. Projection onto a convex set has to satisfies obtuse angle theorem. Convexity has to involve. 
 
 
-References: Heinz at UBCO, for Theorem 8.4. 
+**References**: Heinz at UBCO, for Theorem 8.4. 
 
 ---
 ### **In Relation to Proximal Mapping and Subgradient**
+
+We show that it's been generalized to the nonexpansiveness property of proximal mapping on an indicator function for a convex set. . 
+
 
 #UNFINISHED 

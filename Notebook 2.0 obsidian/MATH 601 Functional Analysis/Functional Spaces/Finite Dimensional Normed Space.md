@@ -1,11 +1,15 @@
-[[Banach Space Introduction]],  [[Convergence, Completeness in Metric Space]].
+- [[Banach Space Introduction]],  
+- [[Convergence, Completeness in Metric Space]].
 
 ---
 ### **Intro**
 
-A Banach space where, the basis to span each element has finitely many elements in it. We will prove that, a vector space with norm, which is a type of metric space is, complete, hence Banach. The major consequences are equivalences between all norms, and, completeness of all subspaces and spaces. 
+A Banach space where, the basis to span each element has finitely many elements in it. We will prove that, a vector space with norm, which is a type of metric space is, complete, hence Banach. The major consequences are:  
+- equivalences between all norms, and, 
+- completeness of all subspaces and spaces, 
+- equivalences between compactness (existence of converging subsequences), and the condition: closed and bounded. 
 
-**Lemma: Lower Bound for the Basis Vectors**: 
+#### **Lemma-1 | Lower Bound for the Basis Vectors**: 
 > Let $\{x_i\}_{i=1}^n$ be a basis for the Finite dimensional linear basis, in the space $X$, then $\exists c > 0$ such that $\forall (\alpha_1, \cdots, c_n)$ we have: 
 > $$
 > \left\Vert 
@@ -21,26 +25,80 @@ A Banach space where, the basis to span each element has finitely many elements 
 
 **Proof**: 
 
+Denote $\vec \alpha = (\alpha_1, \alpha_2, \cdots, \alpha_n)$, notice that when $\vec\alpha = \mathbf 0$, then it's trivial, then we consider
+$$
+\begin{aligned}
+    \Vert \vec\alpha\Vert_1 \neq 0 \implies \beta_i := \frac{\alpha_i}{\Vert \vec \alpha\Vert_1} \implies \sum_{i = 1}^n |\beta_i| = 1, 
+\end{aligned}
+$$
 
-Skipped.
+WOLG, rewrite using: 
+$$
+\begin{aligned}
+    \left\Vert 
+        \sum_{i = 1}^{n}\frac{\alpha_i }{s}x_i
+    \right\Vert &\ge 
+    c 
+    \\
+    \left\Vert 
+        \sum_{i = 1}^{n}\beta_ix_i
+    \right\Vert &\ge 
+    c, 
+\end{aligned}
+$$
 
-**References**: 2.4 In Kreyszig's Intro to Functional analysis textbook. 
+otherwise, we consider some vector, we don't know what it is, such that it make the inequality false. We are in Banach space, then let's make a sequence of $y^{(m)}$ such that $\lim_{m\rightarrow \infty} \Vert y^{(m)}\Vert = 0$, we write: 
 
-**Definition: Sequentially Compact Normed Space**
-> Let $(X, d)$ be a metric space, it's sequentially compact when every sequence in $X$ has a convergent subsequence. 
+$$
+\begin{aligned}
+    y^{(m)} = \sum_{i=1}^{n} \beta_i^{(m)} x_i
+\end{aligned}
+$$
 
-**Proof**
+so that the basis represent it. $\Vert \vec \beta^{(m)}\Vert_1  = 1\implies |\beta_i^{(m)}|\le 1 \; \forall i \in [n]$. Certainly, the $\vec{\beta}$ is in a bounded subset of $\R^n$. Applied Bozano Weierstrass to $(\beta_1^{(m)})_{m\in \mathbb N}$, get subsequence transformation function $\sigma_1$, we then find a subsequence of $\sigma_1(m)$ such that $\beta_2$ also converges, denote that as $\sigma_2(m)$, repeat the process we then have $\sigma_n(m)$ such that, for all $1\le i \le n$, $\beta^{(\sigma_n(m))}_i$ is a subsequence of $\beta^{(m)}_i$, and we have limit: 
+$$
+\begin{aligned}
+    \lim_{m\rightarrow \infty} \beta_i^{(m)} = \beta_i \; \forall 1\le i \le n, 
+\end{aligned}
+$$
 
-Skipped. 
+then we have a problem because: 
+
+$$
+\begin{aligned}
+    \quad \lim_{m\rightarrow \infty} \left\Vert
+        y^{(m)}
+    \right\Vert &= 0
+    \\
+    \iff 
+    \lim_{m\rightarrow \infty} y^{(m)} &= \mathbf 0 
+    \\
+    \iff 
+    \lim_{m\rightarrow \infty}
+    \left\Vert \beta_i^{(m)}\right\Vert_1 
+    &= 0
+\end{aligned}
+$$
+
+By linear independence of basis, it has to be the case that, $\beta_i = 1$, the limit, for all $1 \le i \le n$. The key move here is the use of Bozano Weirestrass, which doesn't work in infinite dimemsion case. 
+
+
+
+**References**: 2.4-1 In Kreyszig's Intro to Functional analysis textbook. 
+
+#### **Definition-1 | Sequentially Compact Normed Space**
+> Let $(X, d)$ be a metric space, it's sequentially compact when every sequence in $X$ has a convergent subsequence whose limit is an element of $M$.  
 
 **Remarks**
 
-For functional analysis, different type of compactness turns out to be all equivalent in metric space. We will refer to sequential compact just as: compact. 
+For functional analysis, different type of compactness turns out to be all equivalent in metric space. We will refer to *sequential compact* just as: *compact*. 
 
-**Lemma: Compactness is Closed and Bounded**
+**Lemma-2 | Compactness is Closed and Bounded**
 > Compact subset $M$ of a metric space is, closed and bounded. 
 
-**Proof**: 
+**Proof**
+
+The closure is direct from the definition, take $x\in \text{cl}(M)$, then for every $x$, there is an epsilon region around it to construct a sequence $x_n \in M$ for all $n\in \mathbb N$ such that $\lim_{n\rightarrow \infty}$. The sequence itself is a subsequence, hence its limit is in $M$ by definition of compactness. The set is bounded because if it's not, then $(x_n)_{n\in \N}$ has $\Vert x_n\Vert$ approaching infinity, hence, all of it's subsequence never converges because they are not even bounded in the first place.
 
 **Remarks**: 
 
@@ -51,12 +109,17 @@ The converse is not true. Consider the set of canonical basis $\{e_n\} \in l^2$,
 
 2.5-2 in Kreyzig's Textbook. 
 
+
+**Remark**: 
+
+Closed and bounded doesn't neccessarily mean that the space is compact, this is well illustrated when we are dealing with infinite dimension. 
+
 ---
 ### **Finite Dimensional Spaces Theorems**: 
 
-We list important theorems and cite the places that they are coming from. 
+We list important theorems and cite the places that they are coming from. It's in Kryzig's textbook and the info is enclosed in \[\]. 
 
-**Thm: Closedness and Completeness [2.4-2]**
+#### **Thm | Closedness and Completeness (2.4-2)**
 > A finite dimensional subspace/space is complete, both at the same time. 
 
 **Proof**: 
@@ -70,17 +133,51 @@ Theorem is strengthen, from the case in infinite dimensional spaces where, a sub
 **Corollary: Always Complete and Banach**
 > If a subspace of a finite dimensional space is complete, then the whole space will be complete. 
 
-**Thm: Norms are all Equivalent [2.4-5]**
+#### **Thm | Norms are all Equivalent (2.4-5)**
 > In finite dimensional normed vector space, all norms are equivalent. 
 
+**Recall**:
+
+[Banach Space Introduction](Banach%20Space%20Introduction.md) about what it means to have an equivalent norm for the space. 
+
 **Proof**: 
-Skipped. 
+Let $\Vert \cdot\Vert$ be some norm and let $\Vert \cdot\Vert_a$ to be some alternative norm. Let $\{e_i\}_{i = 1}^n$ to be any basis. Then for any $x$ we have a basis representation for the vector, let $a$ denote the coefficients for the basis representing $x$, then from lemma-1 we have: 
+
+$$
+\begin{aligned}
+    & \exists c > 0: \Vert x\Vert \ge c \Vert a\Vert_1
+    \\
+    & 
+    \frac{\Vert x\Vert}{c} \ge \Vert a\Vert_1, 
+\end{aligned}
+$$
+
+simulataneously for the other norm we have: 
+
+$$
+\begin{aligned}
+    \Vert x\Vert_a &= \left\Vert
+        \sum_{i = 1}^{n} a_ie_i
+    \right\Vert
+    \\
+    &\le
+    \sum_{i = 1}^{n} |a_i|\Vert e_i\Vert
+    \\
+    &\le 
+    \underbrace{\max_{1\le i \le n}\{\Vert e_i\Vert\}}_{k}
+    \sum_{i = 1}^{n} |a_i|
+    \\
+    &= k \Vert a\Vert_1 \le \frac{k \Vert x\Vert}{c}, 
+\end{aligned}
+$$
+
+swapping the norm $\Vert \cdot\Vert, \Vert \cdot\Vert_a$ and perform the proof again to yield a lower bound for $\Vert x\Vert_a$, then, we would complete proof because we had recovered the equivalences for norms. 
 
 **References**: 
 
 Kreyzig's textbook, theorem 2.4-5. 
 
-**Thm: Closedness and Bounded Euivalent to Compactness [2.5-3]**
+#### **Thm | Closedness and Bounded Equivalent to Compactness (2.5-3)**
 > A finite dimensional subspace is compact, if and only if it's closed and bounded. 
 
 **Proof**: 
@@ -97,7 +194,9 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 ---
 ### **An Lemma In the Middle**
 
-**Lemma | Riesz Lemma (2.4-5)**
+This lemma can lift us up above a subspace in the normed space! 
+
+#### **Lemma | Riesz Lemma (2.4-5)**
 > Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
 >
 
@@ -120,7 +219,7 @@ This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into 
 
 ---
 ### **More Theorems**
-**Thm: Finite Dimensional Space (2.5-5)**
+**Thm |  Finite Dimensional Space (2.5-5)**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
 **Proof**: 
