@@ -19,7 +19,7 @@ $$
 > $$
 
 
-**Definition: Accumulation Point**
+**Definition | Accumulation Point**
 > See [[Topology of Metric Space]] for the definition there. 
 
 

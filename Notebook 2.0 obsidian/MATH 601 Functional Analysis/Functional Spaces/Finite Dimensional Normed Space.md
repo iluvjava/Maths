@@ -75,8 +75,9 @@ $$
     \\
     \iff 
     \lim_{m\rightarrow \infty}
-    \left\Vert \beta_i^{(m)}\right\Vert_1 
+    \left\Vert \vec \beta \right\Vert_1  
     &= 0
+    \quad \text{ Because basis. }
 \end{aligned}
 $$
 
@@ -84,7 +85,9 @@ By linear independence of basis, it has to be the case that, $\beta_i = 1$, the 
 
 
 
-**References**: 2.4-1 In Kreyszig's Intro to Functional analysis textbook. 
+**References**: 
+
+2.4-1 In Kreyszig's Intro to Functional analysis textbook. 
 
 #### **Definition-1 | Sequentially Compact Normed Space**
 > Let $(X, d)$ be a metric space, it's sequentially compact when every sequence in $X$ has a convergent subsequence whose limit is an element of $M$.  
@@ -145,10 +148,10 @@ Let $\Vert \cdot\Vert$ be some norm and let $\Vert \cdot\Vert_a$ to be some alte
 
 $$
 \begin{aligned}
-    & \exists c > 0: \Vert x\Vert \ge c \Vert a\Vert_1
+    & \exists c > 0: \Vert x\Vert \ge c \Vert a\Vert_a
     \\
     & 
-    \frac{\Vert x\Vert}{c} \ge \Vert a\Vert_1, 
+    \frac{\Vert x\Vert}{c} \ge \Vert a\Vert_a, 
 \end{aligned}
 $$
 
@@ -181,11 +184,11 @@ Kreyzig's textbook, theorem 2.4-5.
 > A finite dimensional subspace is compact, if and only if it's closed and bounded. 
 
 **Proof**: 
-Skipped. 
+From left to right it's direct from the definition of a compact space, from right to left requires some proofs. 
 
 **Remarks**: 
 
-Only a finite dimensional subspace has the ability to generalized the sequential compactness of the reals. 
+Only a finite dimensional subspace has the ability to generalized the sequential compactness for the reals. 
 
 **References**: 
 2.5-3 in Kreyzig's textbook. 
@@ -198,7 +201,7 @@ This lemma can lift us up above a subspace in the normed space!
 
 #### **Lemma | Riesz Lemma (2.4-5)**
 > Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
->
+
 
 **Observations**: 
 
@@ -230,8 +233,11 @@ skipped.
 
 It's implied that in a finite dimensional space, a closed unit ball is a set that contains bounded sequences that has diverging subspace. But this is not possible in a finite dimensional space. 
 
-**Thm: Continuous Mapping (2.5-6)**
+**Thm | Continuous Mapping (2.5-6)**
 > Let $X, Y$ be metric spaces. Let $T: X \mapsto Y$ be a continuous mapping. Then the image of a compact subset $M$ of $X$ is, compact. $TM$ is a compact set as well. 
+
+**Proof**: 
+Skipped 
 
 **Remarks**: 
 
@@ -239,6 +245,5 @@ Take note that this statement is about metric spaces in general. This theorem al
 
 **References:** Kreyzig's textbook, 2.5-6. 
 
-
-**Thm: Minimizer and Maximizer of a Compact Mapping**
+**Thm | Minimizer and Maximizer of a Compact Mapping**
 > A mapping from a compact subspace of a metric space, $M\subseteq X$ to $\R$ will give a maximum and a minimum at some point in $M$. 

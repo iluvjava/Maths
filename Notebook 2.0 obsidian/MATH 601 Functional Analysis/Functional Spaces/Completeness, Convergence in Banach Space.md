@@ -9,7 +9,7 @@
 
 **Observations**: 
 
-The isometry is about the vector space. An example where we can use to complete the metric space $l^\infty$ is [[Examples of Incomplete, Complete Metrics Space]], example 2. All the possible limit of sequences in the metric space will complete the space giving it closure. In the same section, one can also complete the space of polynomials over a closed interval to any continuous function to form a complete metric space (also a vector space) to form a Banach space. 
+The isometry is about the vector space. An example where we can use to complete the metric space $l^\infty$ is [[Examples for Metric Space]], example 2. All the possible limit of sequences in the metric space will complete the space giving it closure. In the same section, one can also complete the space of polynomials over a closed interval to any continuous function to form a complete metric space (also a vector space) to form a Banach space. 
 
 ---
 ### **Series Convergence Types in Banach Space**
@@ -144,7 +144,7 @@ These examples teach a story about Banach Space in general.
 - The norm $\Vert \cdot\Vert_\infty$ will have to be a norm. This is easy, we skip this part. 
 - The underlying metric space is complete. We show this part. 
 
-Recall that a metric space is complete when every Cauchy sequences converges to a point that is in the space. To show that we need that the limit of the sequence to be bounded as well, and it exists as a real number too. See [[Examples of Incomplete, Complete Metrics Space]], Example 3
+Recall that a metric space is complete when every Cauchy sequences converges to a point that is in the space. To show that we need that the limit of the sequence to be bounded as well, and it exists as a real number too. See [[Examples for Metric Space]], Example 3
 
 
 

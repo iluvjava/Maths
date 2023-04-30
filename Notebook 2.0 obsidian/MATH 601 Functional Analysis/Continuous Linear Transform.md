@@ -1,6 +1,4 @@
-[[Topology of a Continuous Mapping]]
 
----
 ### **Intro**
 
 We discuss the properties that describes linear mapping that is continuous. In the case of infinite dimensional mapping in the Banach space, a linear mapping doesn't have to be continuous. In the case of derivative as a linear transformations, $\sqrt{x}$ is a point where such operator is continuous at. 

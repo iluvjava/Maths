@@ -141,7 +141,7 @@ Suppose that $M$ is closed and $x_n$ is a Cauchy sequence in $M$, by completenes
 
 This theorem provides an alternative to showing that a particular subspace of a metric space is complete or incomplete. We now show that $M\subseteq X$ to be incomplete by showing that every limit point of the set is a member of the set, the alternative negates the need to use the Cauchy convergence sequence, which sometimes very complicated to use. It also provides a way of showing that a closed subspace is gong to be complete. 
 
-For example about what metric spaces are complete and what is not, consider visiting: [[Examples of Incomplete, Complete Metrics Space]] for more examples. 
+For example about what metric spaces are complete and what is not, consider visiting: [[Examples for Metric Space]] for more examples. 
 
 **References**: 1.4-7 in Kreyzig's Intro to Functional Analysis textbook. 
 

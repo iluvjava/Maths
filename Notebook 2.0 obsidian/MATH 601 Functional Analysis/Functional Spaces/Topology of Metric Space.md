@@ -187,7 +187,7 @@ Similar to real analysis, where we discussed that a sequence is Cauchy if and on
 ---
 ### **Examples And Exercises**
 
-Here is a good list of exercises from the textbook that will enhance our understanding of the matter. The specific examples that are incomplete spaces are interesting and they had been separated into: [[Examples of Incomplete, Complete Metrics Space]]. 
+Here is a good list of exercises from the textbook that will enhance our understanding of the matter. The specific examples that are incomplete spaces are interesting and they had been separated into: [[Examples for Metric Space]]. 
 
 **Example: Interior of $l_+^\infty$ is Empty**
 

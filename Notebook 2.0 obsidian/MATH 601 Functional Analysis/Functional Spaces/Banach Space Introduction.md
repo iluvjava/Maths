@@ -22,7 +22,7 @@ In this section we introduces basics facts and theorems about Banach Spaces and 
 > The definition doesn't said anything about  using inner product in the space to define the norm metric. The norm can be independent of the inner product.
 
 **Normed Vector Space but Not Banach**
-> These are incomplete normed vector spaces. For examples: $(\Q, |\cdot|), (C[0, 1], \Vert \cdot\Vert_1), (C[0, 1], \Vert \cdot\Vert_2)$. They are incomplete vector spaces. For more details see [[Examples of Incomplete, Complete Metrics Space]]. They have completions for their spaces as $\R, L^1[0, 1], L^{2}[0, 1]$. 
+> These are incomplete normed vector spaces. For examples: $(\Q, |\cdot|), (C[0, 1], \Vert \cdot\Vert_1), (C[0, 1], \Vert \cdot\Vert_2)$. They are incomplete vector spaces. For more details see [[Examples for Metric Space]]. They have completions for their spaces as $\R, L^1[0, 1], L^{2}[0, 1]$. 
 
 **Example: The Euclidean Space**
 > The space ($\R^n, d(x, y):= \Vert x - y\Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
