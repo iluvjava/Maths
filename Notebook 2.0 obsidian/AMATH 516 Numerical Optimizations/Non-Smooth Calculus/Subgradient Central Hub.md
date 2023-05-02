@@ -20,7 +20,7 @@ We list everything that is directly related to subgradient in this file so that 
 	* The general monotonicity of convex functions can be directly derived by consider 2 inequalities: $f(y) - f(x) \ge \langle \partial f(x), y - x\rangle$, and $f(x) - f(y)\ge \langle \partial f(x), x - y\rangle$ and summing them up. 
 * [[Subdifferentials Subgradient Computations]], Calculus rules for the subgradients. 
 * [[Subgradient and Subdifferential Examples]], Examples of subgradient for enlightenment and applications. 
-* [[Epigraphical Normal Cone Interpretation of Subgradient]], Specially offered from UW, by Jameburkes and Saha, and probably rooted in Rockafellar. 
+* [[Epigraphical Normal Cone Interpretation of Subgradient]], Specially offered from UW, by Jame Burkes and Saha, and probably rooted in Rockafellar. 
 
 Other Properties that I gather but doesn't have the time to write about them yet: 
 

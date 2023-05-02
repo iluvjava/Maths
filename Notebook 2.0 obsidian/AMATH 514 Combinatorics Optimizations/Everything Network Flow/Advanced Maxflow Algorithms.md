@@ -27,7 +27,7 @@ The algorithm looks for the shortest path measured in the number of arcs and the
 - $d^{(k)}(j)$ denotes the distance needed to go from $j$ to $t$ using the least number of arcs, on after the $k$ th augmenting path operations on the graph. 
 - $L^k(l)$ is the level set assignment from the BFS for the node $l$, after the $k$ th iterations of the augmenting path algorithm. 
 
-**Thm-1: Monotone Increasing Distance Labels**
+**Thm-1 | Monotone Increasing Distance Labels**
 > The distance for any nodes in the graph strictly increases, we have $d^{(0)}(j) \ge d^{(1)}(j) \ge \cdots \ge d^{(k)}(j)$, for all $j\in N$. 
 
 **Proof**: 
@@ -50,7 +50,7 @@ The major idea that it exploit is the idea of *Maximum Capacity Augmenting Path*
 - `res(G, delta, f)`, denotes the delta residual graph for a given flow, in the code. 
 - `U`, $U$ denotes the maximum capacity for all the arcs in the code, and the graph. $U = \max_{a\in A}u_a$. 
 - $v$ denotes the flow value on the network, this comes from the LP formulations for the Maxflow problem. 
-- $\Delta$, denotes the capacity threadhold for the scaling phase. It's the `delta` in the code. 
+- $\Delta$, denotes the capacity threshold for the scaling phase. It's the `delta` in the code. 
 
 **Def-1: Delta Residual Graph**: 
 > Let $x^\circ$ be a feasible flow, $\delta \ge 0$, then $G(x^\circ, \Delta)$ is subgraph of the residual graph obtained by deleting all arcs with a capacity that is less than $\Delta$. 
@@ -294,8 +294,9 @@ By the above 3 reasons, we have the total number of advances/retreat bounded by 
 ---
 ### **Blocking Flows and Dinic's Algorithm**
 
-Some modifications can be to the above algorithm and show its equivalency to another algorithm, called the Dinic's algorithm for Maximum Flows. A *layered network* refers to a BFS performed on the graph where, each node is labeled with the distance from $i$, the node, to the destination $t$, in terms of the number of arcs needed. For more information about this variation, see [Dinic's Algorithm](Dinic's%20Algorithm.md) for more details. 
+Some modifications can be to the above algorithm and show its equivalency to another algorithm, called the Dinic's algorithm for Maximum Flows. A *layered network* refers to a BFS performed on the graph where, each node is labeled with the distance from $i$, the node, to the destination $t$, in terms of the number of arcs needed. 
 
+We skip the description of the algorithm since it's quite complicated. 
 
 **References:**
 

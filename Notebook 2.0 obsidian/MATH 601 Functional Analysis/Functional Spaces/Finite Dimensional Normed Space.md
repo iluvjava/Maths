@@ -81,8 +81,11 @@ $$
 \end{aligned}
 $$
 
-By linear independence of basis, it has to be the case that, $\beta_i = 1$, the limit, for all $1 \le i \le n$. The key move here is the use of Bozano Weirestrass, which doesn't work in infinite dimemsion case. 
+By linear independence of basis, it has to be the case that, $\beta_i = 1$, the limit, for all $1 \le i \le n$. The key move here is the use of Bozano Weierstrass, which doesn't work in infinite dimension case. 
 
+**Remarks**: 
+
+This sweet lemma is actually saying that any nonzero, linear functional in a finite dimensional Banach space has a norm that is bounded from below. 
 
 
 **References**: 
@@ -115,7 +118,7 @@ The converse is not true. Consider the set of canonical basis $\{e_n\} \in l^2$,
 
 **Remark**: 
 
-Closed and bounded doesn't neccessarily mean that the space is compact, this is well illustrated when we are dealing with infinite dimension. 
+Closed and bounded doesn't necessarily mean that the space is compact, this is well illustrated when we are dealing with infinite dimension. 
 
 ---
 ### **Finite Dimensional Spaces Theorems**: 
