@@ -48,10 +48,10 @@ $$
 \end{aligned}
 $$
 
-and this comletes the proof and showed that the sequence $x_n$ is indeed Cauchy, since the limit $x_n$ is $\infty$, not part of $\R$, we know that the metric space is incomplete. 
+and this completes the proof and showed that the sequence $x_n$ is indeed Cauchy, since the limit $x_n$ is $\infty$, not part of $\R$, we know that the metric space is incomplete. 
 
 ---
-### **Example 2: Incomplete Subspace of $l^\infty$, with Finite many None Zeros**
+### **Example 2 | Incomplete Subspace of $l^\infty$, with Finite many None Zeros**
 
 $l^\infty$ itself is a complete metric space, but one of its dense subspace might not be complete. 
 
@@ -83,7 +83,7 @@ because the first term they differs is $\min(M, N)$, and this difference is the 
 
 
 ---
-### **Example 3: The $l^\infty$ sequence space is Complete**
+### **Example 3 | The $l^\infty$ sequence space is Complete**
 
 The $l^\infty$ sequence space is a complete metric space. The metric between 2 elements of the space is $\sup_{n\in N}|x_n -y_n| =: d(x, y)\;\forall x, y\in X$, where $X$ just denotes the space for a sequence. Due to the additional fact that sequences are vectors, we use $\Vert \cdot\Vert_\infty$ ti simplifies the notations for the metric. 
 
@@ -141,8 +141,7 @@ therefore we had show in the later part that $\lim_{m\rightarrow \infty} \Vert x
 Kreyszig Functional analysis textbook, example 1.5-2. 
 
 
----
-### 
+
 
 
 ---
