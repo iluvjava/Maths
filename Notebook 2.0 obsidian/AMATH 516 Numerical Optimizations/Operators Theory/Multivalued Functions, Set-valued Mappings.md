@@ -1,5 +1,5 @@
 [[Characterizing Functions for Optimizations]], 
-[[Relations]]
+[[../../MATH 000 Math Essential/Relations]]
 
 ---
 ### **Intro**

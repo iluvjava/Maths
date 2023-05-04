@@ -1,4 +1,4 @@
-[Linear Mapping in Banach Space](Linear%20Mapping%20in%20Banach%20Space.md)
+[Linear Mapping in Banach Space](../Linear%20Mapping%20in%20Banach%20Space.md)
 
 ---
 ### **Intro**
@@ -159,3 +159,9 @@ therefore, equality can be achived by using $x_0$, and therefore, the norm that 
 
 #### **Example-4 | The lp Sequence Space**
 > Let $p, q$ be conjugate dual to each other, with $p \ge 0$, so that $p^{-1} + q^{-1} = 1$, then the space $l^p$ and $l^q$ are dual spaces to each other. 
+
+
+---
+### **Rietz Representation Theorem**
+
+[[../Rietz Representation Theorem]]
