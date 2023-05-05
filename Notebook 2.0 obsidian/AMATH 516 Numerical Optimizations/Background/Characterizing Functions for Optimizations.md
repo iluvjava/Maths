@@ -4,7 +4,7 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 
 To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept ofan *Augmented real function*.
 
-**Def: The Augmented Real Functions**
+**Def | The Augmented Real Functions**
 > $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
 Here is a list of topics that are helpful for understanding the basics: 
@@ -12,6 +12,7 @@ Here is a list of topics that are helpful for understanding the basics:
 * [[Epigraph]], this describes the geometry of the function.
 * [[Lower Semi-Continuous]], this put some lower bound on all limit point on the function. 
 * [[Convex Sets Intro]], this helps describing convexity of functions. 
+* [Dom](Dom.md), The definition for the domain of a function that is on the augmented reals. 
 
 ---
 ### **Proper Function**

@@ -3,7 +3,7 @@
 ---
 ### **Inner Products**
 
-Some of the examples for intuitive understanding: 
+We list the definition of inner product in finite Euclidean spaces. 
 
 > $$
 > \begin{aligned}
@@ -19,7 +19,7 @@ Some of the examples for intuitive understanding:
 > \end{aligned}
 > $$
 
-As we can see, matrices and vector are examples of Euclidean space and they have inner products fdefined over there. In the most general sense: 
+As we can see, matrices and vector are examples of Euclidean space and they have inner products defined over there. In the most general sense: 
 
 $$
 \left\langle ::\mathbf{E},::\mathbf{E}  \right\rangle: \mathbf{E}\times \mathbf{E} \mapsto \mathbb{R}
@@ -28,10 +28,10 @@ $$
 **Properties**: 
 
 * Symmetrical
-* Bilinear (For the complex field, this is not true, the frist paramter is linear, and swapping the order of the parameter introduces complex conjugation.)
+* Bilinear (For the complex field, this is not true, the First parameter is linear, and swapping the order of the parameter introduces complex conjugation.)
 * Positive Definiteness
 
-$\mathbf{E}:$ denotesthe Euclidean space, it's a finite dimenstional vector space with inner product defined over it, they are basically $\mathbb{R}^n$. 
+$\mathbf{E}:$ denotes the Euclidean space, it's a finite dimensional vector space with inner product defined over it, they are basically $\mathbb{R}^n$. 
 
 
 ---

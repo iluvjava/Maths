@@ -6,11 +6,11 @@ This is fundamental about vector spaces and linear operators.
 
 There are 2 types of summation when it comes to subspaces in linear algebra. 
 
-**Define a bunch of subspaces:** 
+**Define a bunch of subspaces** 
 
 > $$
 > \mathcal{V} = \{
->     V_1\subseteq \mathbb{R}^{n}, V_2 \subseteq \mathbb{R}^n, \cdots V_m \in \mathbb{R}^n
+>     V_1\subseteq \mathbb{R}^{n}, V_2 \subseteq \mathbb{R}^n, \cdots V_m ,\subseteq \mathbb{R}^n
 > \} 
 > $$
 
@@ -33,7 +33,7 @@ Direction summation of subspaces is stricter.
 
 > $$
 > \bigoplus_{v\in \mathcal{V}}^{}  v = \sum_{i = 1}^{m} w_iv_i \iff 
-> \exists ! \{w_1, w_2, \cdots w_m\}: \bigoplus_{v\in \mathcal{V}} v = \sum_{i = 1}^{m}w_1v_i
+> \exists ! \{w_1, w_2, \cdots w_m\}: \bigoplus_{v\in \mathcal{V}} v = \sum_{i = i}^{m}w_1v_i
 > $$
 
 The only way that direct summation is the same as Normal Summation is when the weights placed upon vectors from each of the subspaces is **unique**. 
@@ -64,6 +64,8 @@ It's like a disjoint union of 2 sets, and the sets will have to be disjoint.
 
 ---
 ### **Relative Independence**
+
+
 
 
 ---

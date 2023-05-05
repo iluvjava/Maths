@@ -1,5 +1,6 @@
 ---
 alias: Convex Separations Theorems
+
 ---
 - [[Convex Sets Projection Obtuse Angle Theorem]]
 
@@ -75,7 +76,7 @@ Taking the theorem to its logical extreme, we can let $y$ approaching the convex
 
 
 ---
-### **Another Proof: Direct Minimal Distance**
+### **Another Proof | Direct Minimal Distance**
 
 We made another proof for the same problem. However this proof of the strict separation theorem doesn't require the use of the Obtuse Angle Lemma. It's something that can be found in \<A Coure in Combinatorial Optimizations\> by Alexander Schrijver. The approach is more direct and it uses proof by contradiction. 
 
@@ -200,14 +201,13 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 ---
 ### **Corollary | Strict Separations Between 2 Convex Sets**
 
-> The theorem regarding seprations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D = \emptyset$, then there exists a hyperplane separating them. 
+> The theorem regarding separations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D = \emptyset$, then there exists a hyperplane separating them. 
 
 **Proofs Sketch**
 1. Invoke sequential compactness theorem to show that $C- D$ is a compact set. 
-2. Convert the convex set projection between $C, D$ into a separation problem. 
-3. Find the plane of separations
+2. Convert the convex set projection between $C, D$ into a separation problem. We minimizes the distance between 2 points, coming from the set $C$ and $D$. 
+3. Find the plane of separations. 
 4. Used their respective projection points to construct the separation hyperplane for $C, D$ by converting the problem back. 
-
 
 **Proofs**
 

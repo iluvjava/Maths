@@ -15,3 +15,8 @@ $$
 $$
 
 A function's domain is where the function has a finite, defined output value to the range $\mathbb{R}$. 
+
+
+**Remarks**
+
+A function that is not proper can have negative infinity in its domain. 
