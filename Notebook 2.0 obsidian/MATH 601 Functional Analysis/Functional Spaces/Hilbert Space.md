@@ -6,6 +6,9 @@
 
 [Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html)(Wolfram Math World) is a complete inner product space. It's Banach space Enhanced with Euclidean geometry. There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. Other interests of Hilbert space includes orthogonal basis and linear operator, which will be more interesting due to the fact that [Hilbert spaces are self dual to each other](https://mathworld.wolfram.com/Self-Dual.html)(Wolfram Math World), which allows for an inner product, bilinear form representation for linear mapping, and the important Rietz Representation Theorem. 
 
+**Important Notes Throughout**
+1. Let $M$ be a subset of $\mathcal H$, the Hilbert space, then $\text{span}(M)$ is the span of finite many elements in $M$. This is important because closure of the span is something extra, and we want to keep that in mind since it only happens in Hilbert space and not finite Euclidean space. 
+
 
 **References**
 
@@ -270,11 +273,13 @@ $$
 
 Therefore, we have the uniqueness of the orthogonal complement projection proven at the end. 
 
-**Remark**
+**Remarks**:
 
-In general, we have $Y \subseteq Y^{\perp\perp}$ and $Y^\perp$ is always a closed set. In fact, we have $\text{cl}(Y) = Y^{\perp\perp}$. This is important because $Y$ is specifically said to be a closed subspace in $\mathcal H$, and in $\mathcal H$, there are subspace that are not closed. In which case, we don'thave the same looking teorem as above from the cause of finite dimensional spaces. 
+1. In general, we have $Y \subseteq Y^{\perp\perp}$ and $Y^\perp$ is always a closed set. In fact, we have $\text{cl}(Y) = Y^{\perp\perp}$. This is important because $Y$ is specifically said to be a closed subspace in $\mathcal H$, and in $\mathcal H$, there are subspace that are not closed. In which case, we don'thave the same looking teorem as above from the cause of finite dimensional spaces. 
 
-Let $Y, Y^\perp$ and $Y$ be closed. Then for all $x \in \mathcal H, x = u + v$, unique $u\in Y, v \in Y^\perp$. And we have $\Vert x\Vert^2 = \Vert u\Vert^2 + \Vert v\Vert^2$, because $u\perp v$. This is Pythagoras in the infinite dimensional space. 
+2. Let $Y, Y^\perp$ and $Y$ be closed. Then for all $x \in \mathcal H, x = u + v$, unique $u\in Y, v \in Y^\perp$. And we have $\Vert x\Vert^2 = \Vert u\Vert^2 + \Vert v\Vert^2$, because $u\perp v$. This is Pythagoras in the infinite dimensional space. 
+
+3. According to the orthogonal decomposition theorem, to span $\mathcal H$ given a subspace $Y$, we may have $\mathcal H = \text{cl}(Y) \oplus Y^\perp$ to span the whole space. 
 
 ---
 ### **Orthogonal Normal Basis In Hilbert Spaces**
@@ -322,11 +327,6 @@ It's a simple argument involving the theorem for projecting onto subspaces.
 
 1. $e_n = (\delta_{n, j})_{j\in \mathbb N}$ is the basis vector for $l^2$. 
 2. In $L^2[a, b]$, we have the Fourier basis. It's too famous to be stated here. 
-
-
-#### **Def | Total Subspace**
-
-> 
 
 
 ---
@@ -377,7 +377,45 @@ $$
 
 > Bessel's equality is true whenever we have $x\in \text{cl.span}(\{e\}_{i = \mathbb N})$. 
 
-**Proof**: Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner product form, Take the limit using the continuity of the inner product and the projection of $x$ onto $Y_n$. 
+**Proof**: 
+
+Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner product form, Take the limit using the continuity of the inner product and the projection of $x$ onto $Y_n$. 
 
 **Remarks**: 
+
 This condition is called Parseval's relations. 
+
+
+---
+### **Total Spaces in Hilbert Spaces**
+
+A total set has closure that spans the whole Hilbert Space. Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. 
+
+#### **Def | Total Space**
+> A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and oly if all terms in the sequence form a total set in $\mathcal H$. 
+
+#### **Thm | Ortho Complement of Total Space**
+> $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 
+
+**Proof**:
+Skipped for now. 
+
+**References**: 
+
+From prof wang's notes for math 328 in UBCO. 
+
+#### **Thm | Total Orthonormal Sequences**
+> Let $(e_i)_{i\in \mathbb N}$ be a total sequence for $\mathcal H$, let $M = \{e_i\}_{i \in \mathbb N}$, the set of all its value, then the following conditions are equivalent. 
+> 1. $M$ is total. 
+> 2. Bessel's inequality becomes equality. 
+> 3. For all $x \in \mathcal H, \Pi_{\text{cl}(M)} x= x$, projecting onto the closure of $M$ will recovers $x\in \mathcal H$. 
+
+
+#### **Thm | Separability of of Hilber Space and Basis**
+> The following theorem relate separability of the Hilbert space and the type of orthonormal basis for the Hilbert space $\mathcal H$. 
+> 1. If $\mathcal H$ has a countable orthonormal basis, then $\mathcal H$ is a separable space. Every $x \in \mathcal H$ can be described by the closure of the countable basis. 
+> 2. If $\mathcal H$ is a separable space, then every orthonormal basis set is, countable. 
+
+
+**Proof**: 
+Skipped for now. 
