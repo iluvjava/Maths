@@ -1,0 +1,1 @@
+Open this repository's folder in VS code, or Obsidian notebook. The mathJax interpreter on Github is not doing any shit. 
