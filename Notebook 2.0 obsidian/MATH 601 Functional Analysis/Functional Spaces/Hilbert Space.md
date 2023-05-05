@@ -4,7 +4,7 @@
 ---
 ### **Into**
 
-[Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html) is a complete inner product space. It's Banach space Enhanced with Euclidean geometry. There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. Other interests of Hilbert space includes orthogonal basis and linear operator, which will be more interesting due to the fact that [Hilbert spaces are self dual to each other](https://mathworld.wolfram.com/Self-Dual.html), which allows for an inner product, bilinear form representation for linear mapping, and the important Rietz Representation Theorem. 
+[Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html)(Wolfram Math World) is a complete inner product space. It's Banach space Enhanced with Euclidean geometry. There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. Other interests of Hilbert space includes orthogonal basis and linear operator, which will be more interesting due to the fact that [Hilbert spaces are self dual to each other](https://mathworld.wolfram.com/Self-Dual.html)(Wolfram Math World), which allows for an inner product, bilinear form representation for linear mapping, and the important Rietz Representation Theorem. 
 
 
 **References**
@@ -274,6 +274,8 @@ Therefore, we have the uniqueness of the orthogonal complement projection proven
 
 In general, we have $Y \subseteq Y^{\perp\perp}$ and $Y^\perp$ is always a closed set. In fact, we have $\text{cl}(Y) = Y^{\perp\perp}$. This is important because $Y$ is specifically said to be a closed subspace in $\mathcal H$, and in $\mathcal H$, there are subspace that are not closed. In which case, we don'thave the same looking teorem as above from the cause of finite dimensional spaces. 
 
+Let $Y, Y^\perp$ and $Y$ be closed. Then for all $x \in \mathcal H, x = u + v$, unique $u\in Y, v \in Y^\perp$. And we have $\Vert x\Vert^2 = \Vert u\Vert^2 + \Vert v\Vert^2$, because $u\perp v$. This is Pythagoras in the infinite dimensional space. 
+
 ---
 ### **Orthogonal Normal Basis In Hilbert Spaces**
 
@@ -292,9 +294,90 @@ We introduce the idea of ortho-normal basis in the Hilbert space. A type of infi
 >         \\
 >         1 & i = j
 >     \end{cases}
-> \end{aligned}
+> \end{aligned}, 
 > $$
+> The inner product between the elements of the basis equals to Kronecker delta. 
 
 **Remarks**
 
 The set of standard basis vector is not closed. Denote $\mathcal B = \{e_i\}_{i\in \mathbb N}$ to be the basis for space $l^2$, which is a Hilbert space. The set $\text{span}(\mathcal B)$ is not closed. For example, the sequence $(1, 1, \cdots)\not\in \mathcal B$, but rather, this number is in $\text{cl.span}(\mathcal B)$. This is very different to the way things work in finite dimensions. 
+
+Given such a basis, we can project onto this basis using very simple algebra, compare to projecting to any other type of basis in Hilbert space. A core part of Linear Algebra. 
+
+
+#### **Thm | Projection Onto Orthonormal Basis**
+> Let $\mathcal B = \text{span}(\{e_i\}_{i \in \mathcal I})$ be a basis with some index set $\mathcal I$. Can be countable or uncountable. Then a projection onto $\mathcal B$ is given by: 
+> $$
+> \begin{aligned}
+>     \Pi_Y(x) = \sum_{ i\in \mathcal I}\langle x, e_i\rangle e_i \in \text{cl}(\mathcal B),
+> \end{aligned}
+> $$
+> In finite dimensional projection, the closure is not necessary. 
+
+**Proof**
+
+It's a simple argument involving the theorem for projecting onto subspaces. 
+
+**Examples**: 
+
+1. $e_n = (\delta_{n, j})_{j\in \mathbb N}$ is the basis vector for $l^2$. 
+2. In $L^2[a, b]$, we have the Fourier basis. It's too famous to be stated here. 
+
+
+#### **Def | Total Subspace**
+
+> 
+
+
+---
+### **Bessel's Inequality**
+
+We introduce the Bessel's Inequality for Orthogonal Basis and their consequences. 
+
+#### **Thm | Bessel's Inequality**
+> Let $\mathcal B = \text{cl.span}(e_i)_{i \in \mathbb N}\subseteq \mathcal H$, and it is an orthonormal basis for $\mathcal H$, then for all $x \in \mathcal H$: 
+> $$
+> \begin{aligned}
+>     \sum_{i = 1}^{\infty} \langle x, e_i\rangle^2 \le \Vert x\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+We uses a limiting argument. Take $Y_n = \text{span}(\{e_i\}_{i=1}^n)$ to be a subset of $\mathcal B$, then using the theorem of orthogonal complement and projection onto an orthonormal subspace we have: 
+
+$$
+\begin{aligned}
+    \Vert x\Vert^2 &= 
+    \left\Vert
+        \sum_{i = 1}^{n} \langle x, e_i\rangle e_i
+    \right\Vert^2
+    + 
+    \left\Vert
+        x - \sum_{i = 1}^{n} \langle x, e_i\rangle e_i
+    \right\Vert^2 \ge 
+    \left\Vert
+        \sum_{i = 1}^{n} \langle x, e_i\rangle e_i
+    \right\Vert^2
+    \\
+    n\rightarrow \infty \implies 
+    \Vert x\Vert^2 &\ge 
+    \left\Vert
+        \sum_{i = 1}^{n} \langle x, e_i\rangle e_i
+    \right\Vert^2. 
+\end{aligned}
+$$
+
+**Observations**: 
+
+1. The coefficients for the basis vector after the projection onto an orthonormal basis gives a convergent series. That would the coefficients squared goes to zero as $n\rightarrow \infty$, and the coefficient is a sequence in $l^2$. 
+2. Regardless of having infinity many basis vector, it can still span a a subset of the whole space. This the simple fact that a subset of an infinite set can still, be infinite. 
+
+### **Corrolary | Bessel's Inequality with Equality**
+
+> Bessel's equality is true whenever we have $x\in \text{cl.span}(\{e\}_{i = \mathbb N})$. 
+
+**Proof**: Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner product form, Take the limit using the continuity of the inner product and the projection of $x$ onto $Y_n$. 
+
+**Remarks**: 
+This condition is called Parseval's relations. 

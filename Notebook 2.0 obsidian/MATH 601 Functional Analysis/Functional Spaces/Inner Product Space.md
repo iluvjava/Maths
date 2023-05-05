@@ -142,4 +142,4 @@ At \[1\], from the fact that $x_n, y_n$ converges, it has to be the case that $x
 ---
 ### **Bilinear Form**
 
-
+The inner product space gives rise to a special form. 
