@@ -164,4 +164,4 @@ therefore, equality can be achived by using $x_0$, and therefore, the norm that 
 ---
 ### **Rietz Representation Theorem**
 
-[[../Rietz Representation Theorem]]
+[[Bilinear Form, Rietz Representations]]

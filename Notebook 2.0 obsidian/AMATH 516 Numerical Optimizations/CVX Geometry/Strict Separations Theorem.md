@@ -6,6 +6,8 @@ alias: Convex Separations Theorems
 ---
 ### **Intro**
 
+We prove the strict separations theorems between convex set in finite dimensional Euclidean space. 
+
 **The strict Separations Theorem**: 
 
 > For a nonempty, closed and convex set $Q\subseteq \mathbb R^n$, a point $y\notin Q$, there exists a nonzero vector $a\in \mathbb R^n$ and a number $b\in \mathbb R$ such that: 
@@ -196,7 +198,7 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 
 
 ---
-### **Corollary: Strict Separations Between 2 Convex Sets**
+### **Corollary | Strict Separations Between 2 Convex Sets**
 
 > The theorem regarding seprations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D = \emptyset$, then there exists a hyperplane separating them. 
 
@@ -204,7 +206,7 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 1. Invoke sequential compactness theorem to show that $C- D$ is a compact set. 
 2. Convert the convex set projection between $C, D$ into a separation problem. 
 3. Find the plane of separations
-4. Used their respective projection points to convstruct the separation hyperplane for $C, D$ by converting the problem back. 
+4. Used their respective projection points to construct the separation hyperplane for $C, D$ by converting the problem back. 
 
 
 **Proofs**
@@ -220,4 +222,4 @@ In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ 
 
 The proof with minimal amount of knowledge about the convex set projection is complicated but still achievable. 
 
-The assumptions that $C, D$ are both bounded sets are important, there exists 2 unbouned sets such that their $C-D$ difference might not have a proper minimizer that is bounded. 
+The assumptions that $C, D$ are both bounded sets are important, there exists 2 unbounded sets such that their $C-D$ difference might not have a proper minimizer that is bounded. 

@@ -9,6 +9,9 @@
 
 ---
 ### **Hilbert Space Projection Theorem**
+
+We apply definition of Hilbert space, inner product, and norms in this theorem. 
+
 > Let $\mathcal H$ be a Hilbert space, and $M\subseteq \mathcal H$, and $M$ is a closed, convex set, then $\forall x \in \mathcal H \; \exists ! y \in M: \Vert x - y\Vert = \inf_{y'\in M} \Vert y' - x\Vert$, in brief, there is a unique point in the set $M$ such that it's closest to any arbitrary point $x \in \mathcal H$. 
 
 **Observations**: 
@@ -113,10 +116,24 @@ therefore, we have $\bar y = \bar y_0$. Therefore, the projection $\Pi_M(x)$, is
 ---
 ### **The Obtuse Angle Theorem in Hilbert Spaces**
 
-> Let $M\subseteq \mathcal H$ be closed and convex, then 
+Minimizing over a convex set or a subspace is of upmost interests in applications. We list theorems for them in the Hilbert spaces. 
 
+#### **Thm | Obtuse Angle Theorem Hilbert Space**
+> Let $M\subseteq \mathcal H$ be closed and convex, then $\bar x \in \Pi_M(x)$ if and only if $\langle y - \bar x, x - \bar x\rangle \le 0$ for all $y\in M$. 
+
+
+#### **Corollary | Projection onto Subspaces**
+> Let $M\subseteq \mathcal H$, let $x \in \mathcal H$, then $\bar x \in \Pi_M(x)$ if and only if $\bar x - x \perp \text{span}(M)$. 
 
 ---
 ### **Orthogonal Normal Basis**
 
 We introduce the idea of ortho-normal basis in the Hilbert space. A type of infinite dimension basis. 
+
+
+
+
+---
+### **Bilinear Form**
+
+
