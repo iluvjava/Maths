@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-An Inner product space is a vector space the is together with an inner product defined with it. However, if the vector space is a complete space, then this makes no difference with [[Hilbert Space]]. 
+An Inner product space is a vector space the is together with an inner product defined with it. However, if the vector space is a complete space, then this makes no difference with [[Hilbert Space Introduction]]. 
 
 **Inner Product might Differ**: 
 

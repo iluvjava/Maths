@@ -85,14 +85,44 @@ By linear independence of basis, it has to be the case that, $\beta_i = 1$, the 
 
 **Remarks**: 
 
-This sweet lemma is actually saying that any nonzero, linear functional in a finite dimensional Banach space has a norm that is bounded from below. 
+The use of Bozano Weierstrass subspace for the whole vector is using the fact that the space is a finite dimensional spaces. Here, we list an counter example for failing the above lemma in the infinite dimension. Consider a sum of infinite vector like: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        -1 \\ 0 \\ 0  \\  0  \\  \vdots 
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1/2 \\ -1/2 \\ 0  \\  0  \\ \vdots 
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1/4 \\ 1/4 \\ -1/4 \\ 0 \\\vdots 
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1/8 \\ 1/8 \\ 1/8 \\  -1/8 \\\vdots 
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1/16 \\ 1/16 \\ 1/16 \\ 1/16 \\\vdots 
+    \end{bmatrix} + 
+    \cdots 
+    \infty
+    = 
+    \mathbf 0.
+\end{aligned}
+$$
+
+that is the counter example for sure. 
 
 
 **References**: 
 
 2.4-1 In Kreyszig's Intro to Functional analysis textbook. 
 
-#### **Definition-1 | Sequentially Compact Normed Space**
+#### **Def-1 | Sequentially Compact Normed Space**
 > Let $(X, d)$ be a metric space, it's sequentially compact when every sequence in $X$ has a convergent subsequence whose limit is an element of $M$.  
 
 **Remarks**
@@ -130,13 +160,61 @@ We list important theorems and cite the places that they are coming from. It's i
 
 **Proof**: 
 
+To show that it's complete, it suffices to show that the space is a closed space. Let $\{e\}_{i = 1}^n$ to be a basis for $\mathbb R^n$. Let $y^{(m)}$ to be a sequence that is Cauchy them we have: 
+
+$$
+\begin{aligned}
+    & y^{(m)} = \sum_{i = 1}^{n} \alpha_i^{(m)} e_i \quad \text{A Cauchy sequence}
+    \\
+    & \forall \epsilon > 0 \; 
+    \exists \min(k, l) > N_\epsilon: 
+    (\Vert y^{(k)} - y^{(l)}\Vert \le \epsilon)
+    \\
+    \text{lemma } \implies 
+    & \exists c > 0 : \epsilon \ge 
+    \Vert y^{(k)} - y^{(l)}\Vert \ge  
+    c\sum_{i = 1}^{n} |\alpha_i^{(k)} - \alpha_i^{(l)}| 
+    \ge 
+    c|\alpha_j^{(k)} - \alpha_j^{(l)}| \; \forall 1 \le j \le n
+    \\
+    \implies 
+    & 
+    \exists c > 0: 
+    \epsilon/c \ge |\alpha_j^{(k)} - \alpha_j^{(l)}| \;\forall 1 \le j \le n
+    \\
+    \implies 
+    &
+    \forall 1 \le j \le n \; (\alpha^{(m)}_j)_{m\in \mathbb N} \text{ is Cauchy} 
+    \iff \forall 1 \le j \le n
+    \lim_{m\rightarrow \infty} \alpha^{(m)}_j = \alpha_j \in \mathbb R
+\end{aligned}
+$$
+
+therefore, the sequence of coefficients, $(\alpha_i^{(m)})_{m\in \mathbb N}$ is Cauchy for all of its component, and therefore it has a limit and they exists by the completeness of $\mathbb R$. Now we may write the limit of the sequence $y^{(m)}$, giving: 
+
+$$
+\begin{aligned}
+    & \lim_{m\rightarrow \infty} y^{(m)} = 
+    \lim_{m\rightarrow \infty}\sum_{i = 1}^{n} \alpha_i^{(m)} e_i = \sum_{i = 1}^{n} \alpha_i e_i
+    \\
+    & \lim_{m\rightarrow \infty} 
+    \Vert y^{(m)} - y\Vert = 
+    \lim_{m\rightarrow \infty}\sum_{i = 1}^{n} |\alpha^{(m)}_i - \alpha_i| \Vert e_i\Vert =0
+    \\
+    \iff & 
+    \lim_{m\rightarrow \infty} y^{(m)} = y, 
+\end{aligned}
+$$
+
+and therefore, the limit indeed exist for sequence $y^{(m)}$, and all the components of the vector are in $\mathbb R^n$, by the existence of the basis representation of the limit in $\mathbb R^n$. 
+
 **Observations**: 
 
-Theorem is strengthen, from the case in infinite dimensional spaces where, a subspace of a Banach space is necessarily complete disregarding the fact the space itself is a Banach space. $c_0$, denoting the sequences $\in l^\infty$ converges to zero is not a complete subspace. This would mean a finite dmensional space equipped with a norm will be a Banach Space. 
+Theorem is strengthen, from the case in infinite dimensional spaces where, a subspace of a Banach space is necessarily complete disregarding the fact the space itself is a Banach space. $c_0$, denoting the sequences $\in l^\infty$ converges to zero is not a complete subspace. This would mean a finite dimensional space equipped with a norm will be a Banach Space. 
 
 **References:** Kreyzigs, 2.4-2
 
-**Corollary: Always Complete and Banach**
+**Corollary | Always Complete and Banach**
 > If a subspace of a finite dimensional space is complete, then the whole space will be complete. 
 
 #### **Thm | Norms are all Equivalent (2.4-5)**

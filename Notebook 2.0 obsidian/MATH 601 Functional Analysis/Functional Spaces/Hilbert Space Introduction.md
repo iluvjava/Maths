@@ -12,7 +12,7 @@
 
 **References**
 
-All the content are comming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class. I believe similar things are found in Kryzig's Textbook, the entirety of chapter 3. 
+All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. 
 
 ---
 ### **Hilbert Space Projection Theorem**
@@ -129,9 +129,6 @@ A subspace in Hilbert space is convex, but not necessarily closed. If it's close
 > 2. $\Pi_Y$ is idempotent. 
 > 3. $\text{rng}(\Pi_Y) = Y, \text{null}(\Pi_Y) = Y^\perp$. 
 > 4. $\Pi_Y + \Pi_Y = I$. 
-
-**Proof**: 
-We skip it for now. 
 
 **References**
 
@@ -401,7 +398,6 @@ A total set has closure that spans the whole Hilbert Space. Its existence is imp
 > $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 
 
 **Proof**:
-
 Skipped for now. 
 
 **References**: 

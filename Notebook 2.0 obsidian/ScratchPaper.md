@@ -290,7 +290,23 @@ A\overset{
 $$
 
 $$
-{\cdot}^{{.\cdot}^3}
+\begin{aligned}
+    & \sum_{i =1}^{1}  1 &= 1
+    \\
+    & \sum_{i =1}^{2}  1/2 &= 1
+    \\
+    & \sum_{i =1}^{3}  1/3 &= 1
+    \\
+    & \quad \vdots & 
+    \\ 
+    & \sum_{i = 1}^n 1/n &= 1
+    \\
+    & \quad \vdots & 
+    \\
+    & \sum_{i = 1}^\infty 1/\infty &= ?
+\end{aligned}
 $$
+
+Or like, $\lim_{n\rightarrow \infty}\sum_{k = 1}^{n} 1/n = ?$
 
 
