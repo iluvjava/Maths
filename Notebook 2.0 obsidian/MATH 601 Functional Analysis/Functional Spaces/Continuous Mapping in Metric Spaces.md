@@ -78,8 +78,6 @@ We consider a linear functional applied to functions of $C^1[0, 1]$, and we show
 **Proof Priors** 
 Before the proof, we establish the fact that $\sin(2n\pi x) \ge \frac{1}{\sqrt{2}}$ for all $x\in [\frac{1}{8n}, \frac{3}{8n}]$ and the fact that $f_n$ has a period of $1/n$. 
 
-
-
 **Source**:
 
 This is exercise 2.3 in \<A friendly approach to functional analysis\>. 

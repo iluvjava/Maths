@@ -142,4 +142,4 @@ At \[1\], from the fact that $x_n, y_n$ converges, it has to be the case that $x
 ---
 ### **Bilinear Form**
 
-The inner product space gives rise to a special form. 
+The inner product space gives rise to a special form. Vist [Bilinear Form, Rietz Representations](../Bilinear%20Form,%20Rietz%20Representations.md) for more information. 

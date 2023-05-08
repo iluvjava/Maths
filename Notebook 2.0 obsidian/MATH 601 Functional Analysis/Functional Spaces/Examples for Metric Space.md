@@ -143,6 +143,7 @@ Kreyszig Functional analysis textbook, example 1.5-2.
 ---
 ### **Example-4 | l2 Sequence space is complete**
 
+
 > The $l^2$ sequence space is complete. The $l^2$ sequence space is the sequence squared gives a convergence series. 
 
 **Proof**
@@ -200,11 +201,11 @@ $$
 \end{aligned}
 $$
 
-Therefore, the norm of the limit of the sequence is indeed bounded in norm. Therefore, the space of $l^2$ is a complete space. 
+Therefore, the norm of the limit of the sequence is indeed bounded in norm. Therefore, the space of $l^2$ is a complete space. Here we made us of a property of norm explained in [Banach Space Introduction](Banach%20Space%20Introduction.md). 
 
 **Remarks**
 
-The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other Hilbert spaces that are separable. It's an very important entity. 
+The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other Hilbert spaces that are separable. It's a very important entity. 
 
 
 ---

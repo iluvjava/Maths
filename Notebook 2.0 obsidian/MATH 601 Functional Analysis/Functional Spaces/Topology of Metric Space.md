@@ -20,17 +20,17 @@ $$
 
 To start, we define the concept of vicinity around any "point" in the metric space. Given $(X, d)$, we then define 
 
-**Definition: An Open set**
+**Definition | An Open set**
 > $A\subseteq X$ is open when for all $x\in A$ there exists $\epsilon > 0$ such that $\mathbb B_\epsilon(x)\in A$. 
 
-**Definition: A Closed Set**
+**Definition | A Closed Set**
 > $A\subseteq X$ is closed when $X\setminus A$ is open. 
 
 **Remarks**: 
 
 Sometimes we need the convergence in a metric space to characterize the property of a closed set, see [[Convergence, Completeness in Metric Space]]. 
 
-**Definition: An Accumulation Point**
+**Definition | An Accumulation Point**
 
 >Let $M\subseteq X$, with $x_0\in X$, $x_0$ is an accumulation point of M if for all $\epsilon > 0$, we have $\mathbb B_\epsilon(x_0|M)\setminus \{x_0\} \neq \emptyset$. 
 
@@ -43,7 +43,7 @@ Sometimes we need the convergence in a metric space to characterize the property
 - If the union of all limit points of $A$ is the same as background set $X$, then the set $A\subseteq X$ is dense in the set $X$. 
 
 
-**Theorem: Sequential Characterization of an Accumulation Point**
+**Theorem | Sequential Characterization of an Accumulation Point**
 
 > $x_0 \in X$ is an accumulation point of $M$ if and only if for all $\epsilon > 0$, $\mathbb B_{\epsilon}(x_0)\setminus \{x_0\}$ contains point/points of $M$, i.e: there exists a sequence $(x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty}x = x_0$ with $x_n \neq x \; \forall n \in \mathbb N$. 
 
@@ -52,11 +52,11 @@ Sometimes we need the convergence in a metric space to characterize the property
 
 This theorem is analogous to the limit point in the real line, but instead of the absolute value, we have the metric, hence we are skipping the proof here. 
 
-**Example: No Accumulation Points**
+**Example | No Accumulation Points**
 
 The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any accumulation point because all the points in the set are all singletons. 
 
-**Definition: Points in Closure**
+**Definition | Points in Closure**
 
 An element in the closure of some set is characterized by the neighborhood of that point. Recall that a point $x\in X$ (note necessarily in $M$) is an accumulation point  of $M\subseteq X$ if every neighborhood of $x$ has at least one point $y\in M$ such that $y\neq x$. Using this, we define points in the closure. 
 
@@ -64,11 +64,11 @@ An element in the closure of some set is characterized by the neighborhood of th
 
 That was the definition. 
 
-**Definition: Dense Subset**
+**Definition | Dense Subset**
 
 > A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
 
-**Definition: A Separable Subset**
+**Definition | A Separable Subset**
 
 > $X$ is a separable metric space if it has a countable subset that is dense in $X$. 
 
@@ -78,7 +78,7 @@ That was the definition.
 
 There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. Because a sequential limit only has countably many points. In fact, this is as much as I can explain, more in depth explanations for this concept requires general topology. Anyway, see [here](https://math.stackexchange.com/questions/770146/why-do-we-need-separability), a stack exchange post for more information. 
 
-**Example: Separable Spaces**
+**Example | Separable Spaces**
 
 The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. The set of all rationals, $\Q^n$ is also separable, because the closure of the set is, itself, if the whole space is itself. 
 
@@ -88,7 +88,7 @@ The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space i
 
 Here we show that the sequence space $l_\infty$ is an example of separable space, and $l_2$ is an example of a non-separable metric space. 
 
-**Claim: $l_2$ is Separable**
+**Claim | $l_2$ is Separable**
 > The $l_2$ sequence space is a separable space. The sequence space equipped with 2-norm. 
 
 **Proof Preparations**
@@ -139,7 +139,7 @@ $$
 \end{aligned}
 $$
 
-$S$ is unctountable, this is a fact. If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (by the fact that we can choose one element and approach the limit such that it's close enough to $x, y$) with: 
+$S$ is uncountable, this is a fact. If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (by the fact that we can choose one element and approach the limit such that it's close enough to $x, y$) with: 
 
 $$
 \begin{aligned}
@@ -151,7 +151,7 @@ This would bring the contradiction that $C$ is also uncountable like $S$, hence,
 
 
 **Claim $(\R, d)$ with a discrete metric is not separable**: 
-> Allowed $d(x, y)$ to be the indicator function of $\mathbf 1\{x = y\}$, let the space to be tbe reals, then this metric space is not a Separable space. 
+> Allowed $d(x, y)$ to be the indicator function of $\mathbf 1\{x = y\}$, let the space to be reals, then this metric space is not a Separable space. 
 
 We use contradiction. If there were some subset $C \subseteq \R$ such that $\text{cl}(C) = \R$, meaning that for any $x\in \R$, for all $\epsilon > 0$, there exists $c_x\in C$ such that $d(c_x, x) \le \epsilon$, deriving a contradiction and hence, space is impossible to be separable. 
 

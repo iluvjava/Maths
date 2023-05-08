@@ -5,7 +5,7 @@
 ### **Intro**
 Using the topology of a metric space and the metric together with real analysis, we can model the convergence some entities in the metric space, algebraic or not, using the definition of the metric. As usual, we define the concept of an epsilon ball vicinity $\mathbb B_r(x) = \{y| d(x, y) < r\}$ to be the point that is $r$ distance away for the given metric. 
 
-**Definition: Convergence in Metric Space**
+**Definition | Convergence in Metric Space**
 > Let $(X, d)$ be metric space, a sequence $(x_n)_{n\in \mathbb N}\rightarrow x_\infty$ if for all $\epsilon > 0$ there exists $N$ such that $n\ge N$ implies $d(x_n, x_\infty)\le \epsilon$ . 
 
 **Observations**: 
@@ -19,11 +19,11 @@ Convergence in the metric never implies the existence of $x_\infty$ in the space
 [^1]: See [[Metric Space Introduction]] for more. 
 
 
-**Definition: Bounded Subset**
+#### **Definition | Bounded Subset**
 
 > A subset $M\subseteq M$ is a bounded set if there exists a $x\in X$, $r > 0$ such that $M \subseteq\mathbb B_{r}(x)$. 
 
-**Theorem: Convergence Sequence in Metric Space**
+#### **Theorem | Convergence Sequence in Metric Space**
 
 > Let $(X, d)$ be a metric space and $(x_n), (y_n)$ to be sequence in $X$, then: 
 > 1. if $(x_n)$ is converging, then it's bounded and its sequence is going to be a unique element in $X$. 
@@ -80,7 +80,7 @@ and therefore, we have the limit of $d(x_n, y_n)\rightarrow d(x, y)$, if, both t
 
 Choose a $\epsilon > 0$ then by the definition of convergence in metric space, we have $d(x, x_n)\le \epsilon$, $d(x, x_m) \le \epsilon$ for some $\min(m, n) > N_\epsilon$. So then by triangle inequality of metric, we have $d(x_m, x_n) \le d(x_m, x) + d(x, x_n)$, and by convergence and non-negativity property of metric, we have $d(x_m, x_n) \le 2 \epsilon$, so we are ok here. 
 
-**Theorem: Sequential Limit Characterizations of Closure**
+#### **Theorem | Sequential Limit Characterizations of Closure**
 > Let $M\subseteq X$, then $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)_{n\in \mathbb N}\in M$, such that $x_n\rightarrow x$. 
 
 **Proof**: 
@@ -96,7 +96,7 @@ A Cauchy sequence will say that, a sequence that accumulates to some region in t
 
 Convergence in one metric might not means convergence in another metric. 
 
-**Definition: Metric Cauchy Convergence Sequence**
+#### **Definition | Metric Cauchy Convergence Sequence**
 
 > A sequence $(x_n)$ in $(X, d)$ is Cauchy if for every $\epsilon > 0$, there exists $N \in \N$ such that $d(x_n, x_m) < \epsilon$ for all $m, n > N$. 
 
@@ -121,13 +121,13 @@ Convergence in one metric might not means convergence in another metric.
 
 This theorem is useful for characterizing when, the subspace of a complete metric space is also complete, topologically, via closure of the subset. 
 
-**Theorem: Sequential Limit and Closure of a Set**
+#### **Theorem | Sequential Limit and Closure of a Set**
 > 1. $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)\in M$ such that $x_n\rightarrow x$. 
 > 2. $M$ is closed, meaning that $M = \text{cl}(M)$ if and only if $x_n\rightarrow x$ implies that $x\in M$. 
 
 **References**: 1.4-6, Kreyzig's Intro to Functional analysis. We are skipping the proof for now. 
 
-**Theorem: Complete Subspace, Closure Equivalence**
+#### **Theorem | Complete Subspace, Closure Equivalence**
 > Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
 
 **Proof**: 

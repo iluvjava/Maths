@@ -24,7 +24,7 @@ In this section we introduces basics facts and theorems about Banach Spaces and 
 **Normed Vector Space but Not Banach**
 > These are incomplete normed vector spaces. For examples: $(\Q, |\cdot|), (C[0, 1], \Vert \cdot\Vert_1), (C[0, 1], \Vert \cdot\Vert_2)$. They are incomplete vector spaces. For more details see [[Examples for Metric Space]]. They have completions for their spaces as $\R, L^1[0, 1], L^{2}[0, 1]$. 
 
-**Example: The Euclidean Space**
+**The Euclidean Space**
 > The space ($\R^n, d(x, y):= \Vert x - y\Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
 
 For more information about norm in the real finite vector space, see [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]] for more information. 
@@ -57,4 +57,5 @@ Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space the
     $$
     it experiences translational and scaling invariance. This metric space reflect the underlying topology of Euclidean spaces.
 
+---
 ### **Equivalent Metric**

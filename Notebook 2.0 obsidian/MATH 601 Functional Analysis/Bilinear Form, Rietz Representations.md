@@ -1,5 +1,5 @@
 - [Hilbert Space Introduction](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
-- [Linear Operators](Linear%20Operators.md)
+- [Linear Operators in Hilbert Space](Linear%20Operators%20in%20Hilbert%20Space.md)
 - [Linear Functionals and Dual Spaces](Linear%20Functionals%20and%20Dual%20Spaces.md)
 
 ---
@@ -94,4 +94,4 @@ Similar to linear functionals in Hilbert space that has an inner product represe
 
 **Proof**: 
 
-We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definiton of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$. 
+We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definiton of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.
