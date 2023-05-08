@@ -46,9 +46,9 @@ $$
 \end{aligned}
 $$
 
-which serves as an example to illustrate that absolute convergence doesn't work with an complete metric subspace. 
+which serves as an example to illustrate that absolute convergence doesn't work with a complete metric subspace. 
 
-**Theorem: Completeness and Absolute Convergence**
+**Theorem | Completeness and Absolute Convergence**
 > A normed vector space $(X, \Vert \cdot\Vert)$ is complete if and only if every absolute convergence series converges. 
 
 **Proof**:
@@ -117,7 +117,7 @@ therefore, any Cauchy sequence in the space can converge to a point that is well
 
 This establishes the convergence of a series in the Banach space. The concept of convergence can be used to establish the idea of a basis. It's the Schauder Basis, we will define it next. 
 
-**Definition: Schaudar Basis**
+**Definition | Schaudar Basis**
 
 > If a normed space $X$ contains a sequence $(e_n)$ with the property that for ever $x\in X$ there exists a sequence of scalars such that $\Vert x - (\alpha e_1 + \cdots + \alpha e_n)\Vert\rightarrow 0$, then it's called a Schauder Basis.
 
@@ -127,8 +127,7 @@ This is very similar to what we had for Linear Algebra. Not all separable Banach
 
 **Remark**: 
 
-The finite dimenstional equivalence of the above basis is the Hamel's Basis. 
-
+The finite dimensional equivalence of the above basis is the Hamel's Basis. 
 
 
 ---
@@ -136,7 +135,7 @@ The finite dimenstional equivalence of the above basis is the Hamel's Basis.
 
 These examples teach a story about Banach Space in general. 
 
-**Example 1: $(l^\infty, \Vert\cdot \Vert_\infty)$ is a Banach Space**
+**Example 1 | $(l^\infty, \Vert\cdot \Vert_\infty)$ is a Banach Space**
 > We verify that $(l^\infty, \Vert\cdot \Vert_\infty)$ is a space. 
 
 **Want to show**: 

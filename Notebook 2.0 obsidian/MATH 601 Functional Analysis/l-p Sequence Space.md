@@ -107,7 +107,7 @@ Take note that this is very similar to the Cauchy Dual Norm Inequality.
 
 **Remarks**: 
 
-Reader, please make comparison with [[../AMATH 516 Numerical Optimizations/Duality/Fenchel Identity, Inequality]]. The statement here is a one dimensional variant the Fenchel Young Inequality for Subgradient a dual in general. 
+Reader, please make comparison with [Fenchel Identity, Inequality](../AMATH%20516%20Numerical%20Optimizations/Duality/Fenchel%20Identity,%20Inequality.md). The statement here is a one dimensional variant the Fenchel Young Inequality for Subgradient a dual in general. 
 
 **Thm | Minkowski Inequality (Triangle Inequality)**
 
@@ -201,5 +201,7 @@ $$
 
 Take note that $1 - \frac{1}{q}$ is $1/p$ by the fact that they are conjugate to each other. At this point we had finished the proof. This is a metric space and the other parts of the properties are trivial to prove. 
 
+**Remarks**: 
 
+We can take the limit at both side of the inequality to extend the inequality to l-p spaces with infinitely many entries in it. 
 

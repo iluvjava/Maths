@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-We state the theorem and them prove it in the next section. The Wiestrass M-Test tells us whether a series of function can converges to a continuous function absolutely, or it fails to do so. 
+We state the theorem and them prove it in the next section. The Weiestrass M-Test tells us whether a series of function can converges to a continuous function absolutely, or it fails to do so. 
 
 > Let $(f_n)_{n\in \mathbb N}$ be a sequence of function and let $(M_n)_{n\in \mathbb N}$ be a sequence of number. Let $A$ be the set where the function is going to converge on. Define $\Vert g\Vert_{(A, \infty)} = \sup_{x\in A}|g(x)|$ be a norm metric. If 
 >
@@ -37,9 +37,9 @@ $$
 \end{aligned}
 $$
 
-Therefore, the sequence $S_n$ is now Cauchy in the metric $\Vert \cdot\Vert_{(A, \infty)}$, therefore, it has to be a convergence sequence. And since it's converging under the norm, it would mean that it's converging uniformly, and hence this convergence will also preserves the continuity. 
+Therefore, the sequence $S_n$ is now Cauchy in the metric $\Vert \cdot\Vert_{(A, \infty)}$ (Uniformly Cauchy), therefore, it has to be a convergence sequence. And since it's converging under the norm, it would mean that it's converging uniformly, and hence this convergence will also preserves the continuity. 
 
 
 **Remarks**
 
-While this is not directly used, nor related, but the proof implicitly uses the concept of a [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]] to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 
+While this is not directly used, nor related, but the proof implicitly uses the concept of a [Banach Space Introduction](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Banach%20Space%20Introduction.md) to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 

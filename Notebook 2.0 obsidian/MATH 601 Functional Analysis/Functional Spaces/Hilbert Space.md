@@ -395,7 +395,7 @@ This condition is called Parseval's relations.
 A total set has closure that spans the whole Hilbert Space. Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. 
 
 #### **Def | Total Space**
-> A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and oly if all terms in the sequence form a total set in $\mathcal H$. 
+> A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and only if all terms in the sequence form a total set in $\mathcal H$. 
 
 #### **Thm | Ortho Complement of Total Space**
 > $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 

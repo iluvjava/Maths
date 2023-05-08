@@ -225,6 +225,7 @@ Theorem is strengthen, from the case in infinite dimensional spaces where, a sub
 [Banach Space Introduction](Banach%20Space%20Introduction.md) about what it means to have an equivalent norm for the space. 
 
 **Proof**: 
+
 Let $\Vert \cdot\Vert$ be some norm and let $\Vert \cdot\Vert_a$ to be some alternative norm. Let $\{e_i\}_{i = 1}^n$ to be any basis. Then for any $x$ we have a basis representation for the vector, let $a$ denote the coefficients for the basis representing $x$, then from lemma-1 we have: 
 
 $$
@@ -265,7 +266,10 @@ Kreyzig's textbook, theorem 2.4-5.
 > A finite dimensional subspace is compact, if and only if it's closed and bounded. 
 
 **Proof**: 
+
 From left to right it's direct from the definition of a compact space, from right to left requires some proofs. 
+
+
 
 **Remarks**: 
 
@@ -303,6 +307,9 @@ This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into 
 
 ---
 ### **More Theorems**
+
+More theorems about compactness and finite dimensional space. 
+
 **Thm |  Finite Dimensional Space (2.5-5)**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
@@ -314,11 +321,12 @@ skipped.
 
 It's implied that in a finite dimensional space, a closed unit ball is a set that contains bounded sequences that has diverging subspace. But this is not possible in a finite dimensional space. 
 
-**Thm | Continuous Mapping (2.5-6)**
+**Thm | Continuous Mapping Preserves Compact Space (2.5-6)**
 > Let $X, Y$ be metric spaces. Let $T: X \mapsto Y$ be a continuous mapping. Then the image of a compact subset $M$ of $X$ is, compact. $TM$ is a compact set as well. 
 
 **Proof**: 
-Skipped 
+
+Skipped
 
 **Remarks**: 
 

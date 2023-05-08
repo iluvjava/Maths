@@ -9,7 +9,7 @@ In this section, we show some of the examples where a metric space is not a comp
 To verify that a metric space $(d, X)$ is complete, we identify a sequence $(x_n)_{n\in \N}$ such that it's Cauchy wrt to metric $d$, and then we propose a limit for such a Cauchy sequence and check if it's in the space or not. The limit of the sequence is not related to the metric, while the Cauchyness of the sequence is metric related. 
 
 ---
-### **Example 1: Incomplete Arctan Metric for Sequence Space**
+### **Example 1 | Incomplete Arctan Metric for Sequence Space**
 
 > Let $(X, d)$ be a metric space where $X$ is the set of reals, and $d$ is the metric: 
 > $$
@@ -140,19 +140,84 @@ therefore we had show in the later part that $\lim_{m\rightarrow \infty} \Vert x
 
 Kreyszig Functional analysis textbook, example 1.5-2. 
 
+---
+### **Example-4 | l2 Sequence space is complete**
 
+> The $l^2$ sequence space is complete. The $l^2$ sequence space is the sequence squared gives a convergence series. 
 
+**Proof**
+Let $(y^{(m)})_{m\in \mathbb N}$ be a Cauchy sequence in $l^2$, from the definition of the Cauchy sequence we have: 
+
+$$
+\begin{aligned}
+    &
+    \forall \epsilon > 0 \; \exists N_\epsilon: (
+        \min(k, l) \ge N_\epsilon \implies 
+        \Vert y^{(k)} - y^{(l)}\Vert \le \epsilon
+    )
+    \\
+    & 
+    \begin{aligned}
+        \implies 
+        & \Vert y^{(k)} - y^{(l)}\Vert^2 \le \epsilon^2
+        \\
+        \iff
+        & \sum_{i = 1}^{\infty} (y^{(k)}_i - y^{(l)}_i)^2 \le \epsilon^2
+        \\
+        \implies 
+        &
+        (y^{(k)}_i - y^{(l)}_i)^2 \le \epsilon^2 \; \forall i \in \mathbb N
+    \end{aligned}
+    \\
+    \implies 
+    & 
+    \forall \epsilon > 0 \; 
+    \exists N_\epsilon: (
+        \min(k, l) \ge N_\epsilon \implies 
+        \forall i \in \mathbb N: 
+        (y^{(k)}_i - y^{(l)}_i) \le \epsilon
+    )
+    \\
+    \implies 
+    & \lim_{n\rightarrow \infty} \forall i \in \mathbb N :
+    y_i^{(m)} = y_i \in \mathbb R \quad \text{ completeness of reals}, 
+\end{aligned}
+$$
+
+The limit exists for each of the element for $y^{(m)}$. From Cauchy of $(y^{(m)})_{m\in \mathbb N}$. Using all these limit we make the limit vector $y = (y_1, y_2, \cdots)$. Next, we show that the limit vector is in $l^2$, it's squared summable. To see that we have: 
+
+$$
+\begin{aligned}
+    &
+    \left|
+        \Vert x^{(k)}\Vert - \Vert x^{(l)}\Vert
+    \right| \le \Vert x^{(k)} - x^{(l)}\Vert \le \epsilon
+    \\
+    \implies & 
+    \Vert x^{(k)}\Vert \text{ is Cauchy in } \mathbb R
+    \\
+    \iff  & (\Vert x^{(n)} \Vert)_{n\in \mathbb N} \text{ converges}. 
+\end{aligned}
+$$
+
+Therefore, the norm of the limit of the sequence is indeed bounded in norm. Therefore, the space of $l^2$ is a complete space. 
+
+**Remarks**
+
+The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other Hilbert spaces that are separable. It's an very important entity. 
 
 
 ---
 ### **Quick and Dirty Incomplete Spaces**
 
-**Example: $\mathbb Q$, Vector space**: 
+Examples with not too much explanations. 
+
+**Example | $\mathbb Q$, Vector space**: 
 > The set $\mathbb Q$ equipped with $|\cdot|$ is not complete, because the limit of a sequence of rationals can easily become an irrational number. 
 
 Therefore, this is an incomplete metric space. 
 
-**Example: Polynomials, Vector space**: 
+**Example | Polynomials, Vector space**
 > Let $X$ be the set of polynomial on a closed interval $[a, b]$, then the metric $\Vert \cdot\Vert_\infty$ is incomplete. 
 
 Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ that is not a polynomial is an example of a Cauchy sequence that punch a hole in this set after the limit by converging to a function that is not polynomial. Uniform convergence is need for this metric: $\Vert \cdot\Vert_\infty$ so that the metric of the sequence is Cauchy But as we know that not all uniform limit of Polynomials can provide us with a polynomials. Therefore this is incomplete. 
@@ -160,7 +225,7 @@ Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ th
 - Uniform convergence -> Cauchy sequences in the $\Vert \cdot\Vert_\infty$ metric. 
 - But the limit is not a polynomial. 
 
-**Example: Continuous Function, Vector space**
+**Example | Continuous Function, Vector space**
 
 > Let $(X, d)$ be metric space where $X$ is the set of functions that is continuous on $[0, 1]$. Let $d$ be the $\Vert \cdot\Vert_1$ metric for functions. 
 
