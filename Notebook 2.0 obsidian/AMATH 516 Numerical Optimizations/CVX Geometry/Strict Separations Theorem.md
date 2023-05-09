@@ -9,7 +9,7 @@ alias: Convex Separations Theorems
 
 We prove the strict separations theorems between convex set in finite dimensional Euclidean space. 
 
-**The strict Separations Theorem**: 
+**The strict Separations Theorem**
 
 > For a nonempty, closed and convex set $Q\subseteq \mathbb R^n$, a point $y\notin Q$, there exists a nonzero vector $a\in \mathbb R^n$ and a number $b\in \mathbb R$ such that: 
 >
@@ -78,9 +78,9 @@ Taking the theorem to its logical extreme, we can let $y$ approaching the convex
 ---
 ### **Another Proof | Direct Minimal Distance**
 
-We made another proof for the same problem. However this proof of the strict separation theorem doesn't require the use of the Obtuse Angle Lemma. It's something that can be found in \<A Coure in Combinatorial Optimizations\> by Alexander Schrijver. The approach is more direct and it uses proof by contradiction. 
+We made another proof for the same problem. However this proof of the strict separation theorem doesn't require the use of the Obtuse Angle Lemma. It's something that can be found in \<A Course in Combinatorial Optimizations\> by Alexander Schrijver. The approach is more direct and it uses proof by contradiction. 
 
-We define the set $\mathcal C \neq \emptyset$ to be convex and $z\neq \mathcal C$. We consider the following quatities: 
+We define the set $\mathcal C \neq \emptyset$ to be convex and $z\neq \mathcal C$. We consider the following qualities: 
 
 $$
 \begin{aligned}
@@ -92,7 +92,7 @@ $$
 \end{aligned}
 $$
 
-To make the speration works, we need to satisfies the conditions that: 
+To make the separation works, we need to satisfies the conditions that: 
 
 $$
 \langle c, z\rangle \ge b \wedge \langle c ,x\rangle \le b \;\forall x \in \mathcal C
@@ -203,23 +203,49 @@ This contradict with the definition where, $y$ is the closest point to $z$ in th
 
 > The theorem regarding separations between 2 convex sets $C, D$ is non-trivial. Let $C, D$ be 2 bounded, closed, convex sets such that $C\cap D = \emptyset$, then there exists a hyperplane separating them. 
 
-**Proofs Sketch**
-1. Invoke sequential compactness theorem to show that $C- D$ is a compact set. 
-2. Convert the convex set projection between $C, D$ into a separation problem. We minimizes the distance between 2 points, coming from the set $C$ and $D$. 
-3. Find the plane of separations. 
-4. Used their respective projection points to construct the separation hyperplane for $C, D$ by converting the problem back. 
+**Proof**
 
-**Proofs**
+Set $C - D$ is convex too by [Convexity Preserving Operations of Sets](Convexity%20Preserving%20Operations%20of%20Sets.md). Observe $A \cap B = \emptyset \iff c \neq d\;\forall (c\in C), (d \in D)$. Let $S = C - D$, consider: 
 
-We make use of the convex sets properties. Because convexity of sets are preserved under sets addition, $C - D$ is a convex set. 
+$$
+\begin{aligned}
+    & s^+ \in \Pi_S(\mathbf 0)
+    \\
+    \implies &
+    \exists s^{(n)} = c^{(n)} + d^{(n)}: \lim_{n\rightarrow \infty} s^{(n)} = s^+,
+    \left(\{c^{(n)}\}_{n\in \mathbb N} \subseteq C\right) \wedge 
+    \left(\{d^{(n)}\}_{n\in \mathbb N} \subseteq D\right)
+    \\
+    & C, D \text{ Compact } \implies \exists n_k : 
+    \lim_{k\rightarrow \infty} c^{(n_k)} = c^+ \in C, 
+    \lim_{k\rightarrow \infty} d^{(n_k)} = d^+ \in D
+\end{aligned}
+$$
 
-In addition, both $C, D$ is compact. By compactness, any sequence $x_i\in C -D$ with $x_i\rightarrow x$ as $i \rightarrow \infty$, there exists $x_i = c_i + d_i$ where $c_i, d_i \in C, D$ by set addition. Because $C, D$ are both compact ,by sequential compactness theorem $c_i, d_i$ has convergence subsequence $\{c_{i_k}\}_{k\ge 1}, \{d_{i_k}\}_{k \ge 1}$ such that their limit is $x$. Therefore there exists sequence $\{x_{i_k}\}_{k\ge 1}$ such that it converges to $x$ in $C- D$. Therefore the set $C - D$ is again, compact. 
+We can use hyperplane separation between a closed convex set and a point set and the limit giving us: 
 
-#UNFINISHED: Check and perfect the proof with some actual math and theorem. 
+$$
+\begin{aligned}
+    \forall (c\in C), (d\in D): 
+    & 
+    \lim_{k\rightarrow \infty}\langle s^{(n_k)}, c - d\rangle \le 0 
+    \\
+    \implies &\lim_{k\rightarrow \infty}
+    \langle c^{(n_k)}, c - d\rangle - \langle d^{(n_k)}, c - d\rangle 
+    \le 0
+    \\
+    \implies & \lim_{k\rightarrow \infty}
+    \langle c^{(n_k)} - d^{(n_k)}, c\rangle + 
+    \langle d^{(n_k)} - c^{(n_k)}, d\rangle
+    \le 0 
+    \\
+    & \langle c^+ - d^+, c\rangle \le 
+    \langle c^+ - d^+, d\rangle. 
+\end{aligned}
+$$
 
+therefore, there exists 2 points $c^+, d^+$ the can define the hyper plane vector separating the compact set $C, D$. 
 
 **Remarks**
 
-The proof with minimal amount of knowledge about the convex set projection is complicated but still achievable. 
-
-The assumptions that $C, D$ are both bounded sets are important, there exists 2 unbounded sets such that their $C-D$ difference might not have a proper minimizer that is bounded. 
+The assumption can be relaxed to $C, D$ one of them is compact, and the other one is closed. Then $C - D$ would still be a closed set, skipping some more steps of proofs. Under certain cases, even if sets are unbounded, the separations planes can still eixst, additional conditions are needed in this case. 

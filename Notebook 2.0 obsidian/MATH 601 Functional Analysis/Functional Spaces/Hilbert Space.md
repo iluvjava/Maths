@@ -58,7 +58,7 @@ $$
 \end{aligned}
 $$
 
-We now consider the paralelogram law: 
+We now consider the parallelogram law: 
 
 $$
 \begin{aligned}
@@ -376,7 +376,7 @@ $$
 1. The coefficients for the basis vector after the projection onto an orthonormal basis gives a convergent series. That would the coefficients squared goes to zero as $n\rightarrow \infty$, and the coefficient is a sequence in $l^2$. 
 2. Regardless of having infinity many basis vector, it can still span a a subset of the whole space. This the simple fact that a subset of an infinite set can still, be infinite. 
 
-### **Corrolary | Bessel's Inequality with Equality**
+### **Corollary | Bessel's Inequality with Equality**
 
 > Bessel's equality is true whenever we have $x\in \text{cl.span}(\{e\}_{i = \mathbb N})$. 
 
@@ -415,7 +415,7 @@ From prof wang's notes for math 328 in UBCO.
 > 3. For all $x \in \mathcal H, \Pi_{\text{cl}(M)} x= x$, projecting onto the closure of $M$ will recovers $x\in \mathcal H$. 
 
 
-#### **Thm | Separability of of Hilber Space and Basis**
+#### **Thm | Separability of of Hilbert Space and Basis**
 > The following theorem relate separability of the Hilbert space and the type of orthonormal basis for the Hilbert space $\mathcal H$. 
 > 1. If $\mathcal H$ has a countable orthonormal basis, then $\mathcal H$ is a separable space. Every $x \in \mathcal H$ can be described by the closure of the countable basis. 
 > 2. If $\mathcal H$ is a separable space, then every orthonormal basis set is, countable. 
@@ -424,7 +424,6 @@ From prof wang's notes for math 328 in UBCO.
 **Proof**: 
 Skipped for now. 
 
-
 **Remarks**: 
 
-Take note tha the existence of a basis for Hilbert space is, assumed. The existence of a basis for all Hilbert space is an important results. 
+Take note that the existence of a basis for Hilbert space is, assumed. The existence of a basis for all Hilbert space is an important results. 

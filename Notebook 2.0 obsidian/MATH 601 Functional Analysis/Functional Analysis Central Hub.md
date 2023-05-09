@@ -41,6 +41,8 @@ Metric space describes distance between 2 elements. It's useful because we can t
 ---
 ### **Banach Spaces**
 
+Banach space is a vector space with a norm. The vector space should be quipped with scalar $\mathbb C, \mathbb R$. The norm generalizes the metric from the metric space. 
+
 - [Banach Space Introduction](Functional%20Spaces/Banach%20Space%20Introduction.md)
 	- Norm as a metric
 	- A complete space
@@ -64,6 +66,9 @@ Metric space describes distance between 2 elements. It's useful because we can t
 
 ---
 ### **Hilbert Spaces**
+
+- [Hilbert Space](Functional%20Spaces/Hilbert%20Space.md) 
+	- It's an inner product space. 
 
 - [Inner Product Space](Functional%20Spaces/Inner%20Product%20Space.md)
 	- Parallelogram laws 
