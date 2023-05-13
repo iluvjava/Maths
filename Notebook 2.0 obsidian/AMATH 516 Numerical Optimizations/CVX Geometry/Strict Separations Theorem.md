@@ -248,4 +248,10 @@ therefore, there exists 2 points $c^+, d^+$ the can define the hyper plane vecto
 
 **Remarks**
 
-The assumption can be relaxed to $C, D$ one of them is compact, and the other one is closed. Then $C - D$ would still be a closed set, skipping some more steps of proofs. Under certain cases, even if sets are unbounded, the separations planes can still eixst, additional conditions are needed in this case. 
+The assumption can be relaxed to $C, D$ one of them is compact, and the other one is closed. Then $C - D$ would still be a closed set, skipping some more steps of proofs. Under certain cases, even if sets are unbounded, the separations planes can still exist, additional conditions are needed in this case. 
+
+
+---
+### **General Topological Convex Seperations**
+
+Read wiki: [here](https://en.wikipedia.org/wiki/Hahn%E2%80%93Banach_theorem) for a brief overview on Hahn Banach theorem. This is the theorem being used in the generalized vector spaces to prove separations using linear functionals in that space. 

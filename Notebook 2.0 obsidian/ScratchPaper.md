@@ -309,4 +309,13 @@ $$
 
 Or like, $\lim_{n\rightarrow \infty}\sum_{k = 1}^{n} 1/n = ?$
 
-
+You need
+$$
+\lim_{k\rightarrow\infty} \langle y_{n_{k}}, y-z\rangle 
+= 
+\lim_{k\rightarrow\infty} \langle z_{n_{k}}, y-z\rangle
+$$
+ 
+To get this
+\lim_{k\rightarrow\infty}\langle x_{k},y-x\rangle existence make sure both quantities above the same.
+ 

@@ -6,6 +6,8 @@
 
 [Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html)(Wolfram Math World) is a complete inner product space. It's Banach space Enhanced with Euclidean geometry. There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. Other interests of Hilbert space includes orthogonal basis and linear operator, which will be more interesting due to the fact that [Hilbert spaces are self dual to each other](https://mathworld.wolfram.com/Self-Dual.html)(Wolfram Math World), which allows for an inner product, bilinear form representation for linear mapping, and the important Rietz Representation Theorem. 
 
+
+
 **Important Notes Throughout**
 1. Let $M$ be a subset of $\mathcal H$, the Hilbert space, then $\text{span}(M)$ is the span of finite many elements in $M$. This is important because closure of the span is something extra, and we want to keep that in mind since it only happens in Hilbert space and not finite Euclidean space. 
 

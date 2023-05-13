@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-This theorem is an application of the compact space in $\mathbb R$ and the Bozano Wierestrass theorem. There is a much generalized version using lower-sermi-continuity to classify the existence of a minimizers for functions, see [Existence of a Minimizer](../../AMATH%20516%20Numerical%20Optimizations/Background/Existence%20of%20a%20Minimizer.md) for a generalization of this theorem in the realm of variational analysis. 
+This theorem is an application of the compact space in $\mathbb R$ and the Bozano Wierestrass theorem. There is a much generalized version using lower-semi-continuity to classify the existence of a minimizers for functions, see [Existence of a Minimizer](../../AMATH%20516%20Numerical%20Optimizations/Background/Existence%20of%20a%20Minimizer.md) for a generalization of this theorem in the realm of variational analysis. 
 
 #### **Thm-1 | Extreme Value Theorem**
 

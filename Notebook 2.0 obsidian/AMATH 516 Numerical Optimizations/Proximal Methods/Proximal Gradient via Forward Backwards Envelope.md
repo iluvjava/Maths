@@ -32,7 +32,7 @@ Take note that, using the fact that function $f$ is smooth, we have a quadratic 
 
 Please observe that it is implied that $\beta$, will be larger than the Lipschitz constant for the gradient of $g(x)$, let's say it's $L$. Please recall the property of this particular type of smoothness. Additionally, the upper bounding function is a strongly convex function. 
 
-**Define: The Proximal Operator and Moreau Envelope**
+**Define | The Proximal Operator and Moreau Envelope**
 
 $$
 \begin{aligned}

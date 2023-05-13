@@ -1,12 +1,11 @@
 [[Introduction to Operators for Optimizations]]
 
-
 ---
 ### **Intro**
 
 Fejer monotone is a type of strong generalization to a monotone sequence in Banach Spaces. 
 
-**Definition: Fejer Montone Sequence**
+**Definition | Fejer Montone Sequence**
 > A sequence $(x_n)_{n\in N}$ is fejer monotone wrt to the set $\emptyset \neq C \subseteq X$ when: 
 > $$\forall c \in C, k \in \N: \Vert x_{k + 1} - c\Vert \le \Vert x_k - c\Vert. $$
 
@@ -18,40 +17,98 @@ The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it wou
 
 If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer monotone to all the convex subsets of the set $C$.
 
-**Theorem: Convergence of Fejer Monotone Sequence**
 
-> Let $(x_k)_{k\in \N}$ be Fejer-Monotone w.r.t a nonempty subset $C$ of $X$, then $(x_k)_{k\in \N}$ is bounded; moreover, $(x_k)_{k\in N}$ converges to some point in $C\iff (x_k)_{k\in \N}$ has a cluster point. 
+#### **Thm | Convergence of Fejer Monotone Sequence To the Set**
 
-**Observations**: 
+> Let $(x_k)_{k\in \N}$ be Fejer-Monotone w.r.t a nonempty subset $C$ of $X$, then $(x_k)_{k\in \N}$ is bounded; moreover, $(x_k)_{k\in N}$ converges to a point in $C\iff (x_k)_{k\in \N}$ has a cluster point in $C$. 
 
-The theorem, decomposes monotone convergence into some set $C$ into 2 conditions, the existence of a cluster point, and the property of Fejer Monotone. And the existence of the cluster point inside of $C$ ensures that the limit of the sequence is in the set $C$. 
+**Proof**
 
-**Proof**: 
-
-Choose any point $c\in C$, we have: 
+The $\implies$ direction is clear. From the other direction, Let $\bar x \in C$ be a cluster point then exists subsequence $x^{(n_k)}$ such that $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$. For any $\epsilon > 0$, using Fejer Monotonicity we have: 
 
 $$
 \begin{aligned}
-    \forall k \in \mathbb N: \Vert x_{n + k} - c\Vert \le \Vert x_{n} - c\Vert < \infty, 
+    \exists N_\epsilon: k > N_\epsilon \implies (\Vert x^{(m)}  - \bar x\Vert \ge \Vert x^{(n_k)} - \bar x\Vert \; \forall m \ge n_k), 
 \end{aligned}
 $$
-therefore, the Fejer monotone sequence is bounded. Next we show $\implies$. If the sequence $x_n$ converges to $\bar c \in C$, then that point is the cluster point, by property of the limit. Let $\bar c \in C$ be a cluster point, then for all $\epsilon > 0$, there exists $N_\epsilon$ s.t: $n > N \implies \mathbb x_n\in \mathbb B_{\epsilon}(\bar c)$, this defines a subsequence $x_{n_k}\rightarrow \bar c \in C$. From the monotone property, for all $\epsilon > 0$ we have $N'_\epsilon$: 
+
+therefore, the sequence $x^{(m)}$ is a converging sequence by the virtual of Fejer Monotonicity wrt to the set $C$, and hence there is only one limit point $\bar x \in C$ for the sequence by the property of the norm. 
+
+
+#### **Thm | A Slightly Weaker Version in Finite Euclidean Space**
+> In finite dimensional Euclidean space, let $C\subseteq \mathbb R^n$ be non-empty. Suppose that for all $c \in C$ the sequence $\Vert x^{(n)} - c\Vert$ is convergent in $\mathbb R$, and the cluster point of the sequence $(x^{(n)})_{n \in \mathbb N}$ is in $C$, then the sequence converges to a limit in $C$. 
+
+
+**Proof**
+
+The norm of the sequence $\Vert x^{n} - c\Vert$ converging $\mathbb R$ for all $c \in C$. Hence the sequence is bounded in norm. Since the space is complete and finite dimensional, by Bozano Weierstrass theorem, there exists a subsequence $x^{(n_k)}$ that converges. Suppose that there are 2 such sub-sequential limit points $y, z$ in $C$, we want to show that they are the same point. We first show that, $\langle x^{(n)}, y - z\rangle$ are the same for all subsequences by using the identity $\langle x, y\rangle = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)$, consider any 2 points $y, z \in C$ then: 
 
 $$
 \begin{aligned}
-    & k > N'_\epsilon \implies \Vert x_{n_k} - \bar c\Vert \le \epsilon
+    2 \langle x^{(n)}, y - z\rangle &= 
+    \langle x^{(n)}, y\rangle - \langle x^{(n)}, z\rangle
     \\
-    \implies &
-    (n \ge n_k \implies \Vert x_n - \bar c \Vert\le \Vert x_{n_k} - \bar c\Vert \le \epsilon), 
+    &= 
+    \frac{1}{2}(
+        \Vert x^{(n)} - y\Vert^2
+        -
+        \Vert x^{(n)} - y\Vert^2
+        -
+        \Vert x^{(n)} + z\Vert^2
+        + 
+        \Vert x^{(n)} - z\Vert^2
+    )
+    \\
+    &= 
+    \frac{1}{2}(
+        \Vert x^{(n)}\Vert^2 + \Vert y\Vert^2 + 2\langle x^{(n)}, y\rangle
+        -
+        (\Vert x^{(n)}\Vert^2 + \Vert x\Vert^2 + 2\langle  x^{(n)}, z\rangle)
+    )
+    \\
+    &\quad\;
+    +
+    \Vert x^{(n)} - z\Vert^2
+    - \Vert x^{(n)} - y\Vert^2
+    \\
+    &= \frac{1}{2}(
+        \Vert y\Vert^2 - \Vert x\Vert^2 + 2\langle x^{(n)}, y - z\rangle + 
+        \Vert x^{(n)} - z\Vert^2
+        - \Vert x^{(n)} - y\Vert^2
+    )
+    \\
+    \iff 
+    \langle x^{(n)}, y - z\rangle &= 
+    \frac{1}{2}(
+        \Vert y\Vert^2 - \Vert x\Vert^2+ 
+        \Vert x^{(n)} - z\Vert^2
+        - \Vert x^{(n)} - y\Vert^2
+    ).
 \end{aligned}
 $$
 
-where, the subsequence and the sequence has the same limit, from the monotone property of the entire sequence. 
+since the sequence $\Vert x^{(n)} - y\Vert$ converges in $\mathbb R$, any subsequence has $\lim_{k\rightarrow \infty} \langle x^{(n_k)}, y - z\rangle = \Vert y\Vert^2 - \Vert x\Vert^2$, because which is fixed, therefore, consider again the use of B.W theorem and 2 subsequences indexed with $n_k, m_k$ converging to 2 different cluster point $\bar x, x^+ \in C$ we have equality between the 2 limits: 
 
-**References**: 
 
-Proposition 5.9 in Heinz's Combette's Monotone operator textbook. 
+$$
+\begin{aligned}
+    & \lim_{k\rightarrow \infty} \langle x^{(n_k)}, \bar x - x^+\rangle = \
+    \lim_{k\rightarrow \infty} \langle x^{(m_k)}, \bar x - x^+\rangle
+    \\
+    \iff & 
+    \langle \bar x, \bar x - x^+\rangle = \langle x^+, \bar x - x^+\rangle 
+    \\
+    \iff & \langle \bar x - x^+, \bar x - x^+\rangle = 0
+    \\
+    \iff & \Vert \bar x - x^+\Vert = 0, 
+\end{aligned}
+$$
 
+where we make use of the fact that inner product of an inner product space is a continuous mapping. See [Inner Product Space](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Inner%20Product%20Space.md) for more information. Therefore, all sub-sequential limit points of the sequence are the same, therefore, the sequence has a unique limit and it converges. 
+
+**Remark**
+
+Intuitively, if the sequence approches the set $C$ for all points and gets very close, it can't have too much room to wiggle. 
 
 ---
 ### **Applications**

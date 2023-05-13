@@ -6,7 +6,7 @@ A way to make make a function legit (Non multi-valued), analytic, so it's easier
 
 ### Intro
 
-The Branch cut is a set of points that we remove from the domain of a complex multi-valued function so that the function becomes a function that is single value and analytic too. 
+The Branch cut is a set of points that we remove from the domain of a complex multi-valued function so that the function becomes a function that is single value and analytic. 
 
 By introducing **principle argument** for the input of the functions around a special point, the multi-valued function changed into single valued function, however, and then we introduce a branch cut at the  **region of discontinuity** on the domain of the function so it remains analytic for derivatives. 
 
@@ -14,7 +14,7 @@ As we see in the case of the complex logarithm, $\text{Log}$, the principle cut 
 
 ---
 
-### Example 1: Square Root 
+### Example 1 | Square Root 
 Let's illustrate the it with the example of the complex root function. 
 
 $$

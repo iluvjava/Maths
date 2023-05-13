@@ -1,49 +1,72 @@
 Hi, this is some Super basic high school maths. 
 
 ---
-
-#### **Proof of Taylor Theorem**
-
-* The proof is an application of Rolle's Theorem
+### **Taylor Theorem**
+Taylor's theorem approximates some function around a point, using differential information of the function at the point, and a series (finite or not) of polynomials. In the case when the function is finitely differentiable, a reminder can be put at the end to model the error of the approximation. 
 
 #### **Formula for Single Variable**
 
-> $$T_n(f|x_0) + \sum_{k = n + 1}^\infty 
+> Let $f$ k-th differentiable at a point $x_0$ ($f^{(k)}(x)$ is a continuous function $\delta$ region around $x_0$), then the Taylor's expansion is: 
+> $$T_n(f|x_0)
+> =\left(\sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \right)+ \mathcal{O}((x - x_0)^{n + 1}),$$
+> when the function is smooth enough to be infinitely differentiable, then we have: 
+> $$
+> f(x) = \sum_{k = 0}^\infty 
 > \left(\frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \right)
-> =\left(\sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \right)+ \mathcal{O}((x - x_0)^{n + 1})$$
+> $$
+> For some value of $x$ near $x_0$. 
 
-**The Big O**
+**Note**: 
 
-The order of error is bounded by the Big O. It's a constant multiple of the term inside big O, assuming the function is at least $C^n$ smooth. 
+We won't be talking too much about the radius of convergence yet. This would requires some comlex analysis and knowledge of power series. 
 
-**Remainder**
-> $$\frac{f^{(n + 1)}(x_0)}{(n + 1)!}(x - x_0)^{n + 1}$$
+**Def | The Big O**
 
-**Exact Expression (Integral Remainder):**
+> A function $f \in O(g)$, if there exists a constant $C < \infty$ such that $f(x) < g(x)$ for all $x$ in $\mathbb R$. 
 
+---
+### **The remainder of Taylor's Expansion**
+
+Different mathematicians have different things to say about the remainder of Taylor's theorem. 
+
+#### **Riemann Integral Remainder**:
+> 
 > $$
 > \varphi(x) = \left(
 >     \sum_{k = 0}^{n} \frac{f^{(k)}(a)(x - a)^k}{k!} 
-> \right) + \int_{a}^{x} \frac{f^{(n + 1)}(t)(x - t)^n}{n!}dt
+> \right) + \int_{a}^{x} \frac{f^{(n + 1)}(t)(x - t)^n}{n!}dt,
 > $$
+> Which requires understanding in Lesbgue integrals to understand the proof for this one. 
 
-Which can be verified by considering $\varphi^{(n + 1)}(x)$. 
 
-**Exact Expression (Intermediate Value Theorem)**
+#### **Lagrange Differential Remainder, Exact**:
 
-And the representation would be using the intermediate value theorem, by assuming that the function is $C^n$ smooth. So that, the $n$ the derivative is at least continuous. In that sense we have the following Taylor Series: 
-
+> Let $f$ be $n + 1$ differentiable, i.e: $f^{(n + 1)}$ is continuous the open interval $(a, x)$, and $f^{(n)}$ is continuous on the closed interval $[a, x]$, then: 
+> 
 > $$
 > \exists \; t \in (x, c) : f(x) = \left(
 >     \sum_{k = 0}^{n} \frac{f^{(k)}(c)(x - c)^k}{k!}
 > \right) + 
-> \frac{f^{(n + 1)}(t)(x -c)^{n + 1}}{(n + 1)!}
+> \frac{f^{(n + 1)}(t)(x -c)^{n + 1}}{(n + 1)!}.
 > $$
 
-Verified by taking the $n$ th derivative on the expression so that the remaining terms give arise to the IVT theorem for $f^{(n)}(x)$. 
+#### **Peano Remainder Form**
 
+> Let $f(x)$  be a k-th differentiable function on a closed interval, $[a, b]$, then
+> 
+> $$
+> \begin{aligned}
+>     &f(x) = f(a) + f'(a)(x - a) + \frac{f''(a)(x - a)^2}{2} + \cdots + 
+>     \frac{f^{(k)}(x)(x - a)^k}{k!} + h_k (x)(x - a)^k 
+>     \\
+>     & \text{Where: }
+>     \lim_{x \rightarrow a} h_k(x) = 0, f^{(k)} \text{ is continuous}.
+> \end{aligned}
+> $$
 
-**Upper Bound Description**
+It's saying that the coefficients of the $k^\text{th}$ remainder is going to zero as $x\rightarrow a$. Peano remainder can be expressed using the $\mathcal{o}(|x - a|^k)$, and in that case, the remainder is paramaterized by $k$, say $R_k(x)$, and it's a function such that $\lim_{x \rightarrow a} R_k(x)/(x - a)^k = 0$. 
+
+**Upper Bound For the Remainder**
 
 Assuming that the function is infinitely differentiable at every points in the real, then it's continuous for any of its derivative, which implies that given any point $x_0, x$, the following is true:
 
@@ -64,28 +87,12 @@ And this will give us an upper bound for the error of approximation by Taylor se
 ---
 ### **Analysis Flavor of Taylor's Theorem**
 
-We are interested in looking for the different forms for the remainders of Taylor's Series. 
-
-Wiki Link: [here](https://en.wikipedia.org/wiki/Taylor%27s_theorem)
-
-**Peano Remainder Form**
-
-Stating the Form: 
-
-$$
-\begin{aligned}
-    f(x) &= f(a) + f'(a)(x - a) + \frac{f''(a)(x - a)^2}{2} + \cdots + 
-    \frac{f^{(k)}(x)(x - a)^k}{k!} + h_k (x)(x - a)^k 
-    \\
-    & \text{Where: }
-    \lim_{x \rightarrow a} h_k(x) = 0
-\end{aligned}
-$$
-
-It's saying that the coefficients of the $k^\text{th}$ remainder is going to zero as $x\rightarrow a$. Peano remainder can be expressed using the $\mathcal{o}(|x - a|^k)$, and in that case, the remainder is paramaterized by $k$, say $R_k(x)$, and it's a function such that $\lim_{x \rightarrow a} R_k(x)/(x - a)^k = 0$. 
+We are interested in looking for the different forms for the remainders of Taylor's Series. Wiki Link: [here](https://en.wikipedia.org/wiki/Taylor%27s_theorem)
 
 
-**Taylor's Remainder Form:** 
+
+
+#### **Taylor's Remainder Form:** 
 
 > Suppose $f:[a, b] \mapsto \mathbb{R}$ and $f^{(n + 1)}$ is differentiable in $(a, b)$ and $f^{(k)}$ is continuous and differentiable for $k \le n$, given $x\neq x_0 \in [a,b]$, $c \in [x_0, x]$ we have: 
 > 
@@ -99,43 +106,44 @@ It's saying that the coefficients of the $k^\text{th}$ remainder is going to zer
 
 **Proof**
 
-Consider $P_n(x|x_0)$ paramaterizing $\sum_{k = 0}^{n}(f^{(k)}(x_0)(x - x_0))/k!$, then: 
+Consider $P_n(x|x_0) =\sum_{k = 0}^{n}(f^{(k)}(x_0)(x - x_0))/k!$, then: 
 
 $$
 \begin{aligned}
-    \partial_x[P_n(x|x_0)]_{x = x_0} &= f(x_0)
+    \partial_x[P_n(x|x_0)](x_0) &= f(x_0)
     \\
-    \partial_x^2[P_n(x|x_0)]_{x = x_0} &= f''(x_0)
+    \partial_x^2[P_n(x|x_0)](x_0) &= f''(x_0)
     \\
-    & \vdots
+    & \hspace{0.5em}\vdots
     \\
-    \partial_x^n[P_n(x|x_0)]_{x = x_0} &= f^{(n)}(x_0)
+    \partial_x^n[P_n(x|x_0)](x_0) &= f^{(n)}(x_0)
 \end{aligned}
 $$
 
-Define $g(s):= f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}$. Fixing the value of $x$, let's assume that: 
+Define $g(x):= f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}$. Fixing the value of $x$, then: 
 
 $$
-\exists M_{x, x_0}: 0 = f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}
+\exists M_{x, x_0}: 0 = f(x) - P_n(x|x_0) - M_{x, x_0}(x - x_0)^{n + 1}, 
 $$
 
-Take note that $M_{x, x_0}$ exists, but it's just not in the form that we like it, and it can be solved by brute forcing on the equation. Finally observe that using intermediate value theorem: 
+For the value of $x$. Take note that $M_{x, x_0}$ exists, but it's just not in the form that we like it, and it can be solved by solving the equation directly. Finally observe that using intermediate value theorem: 
 
 $$
 \begin{aligned}
-    g(x_0) = 0 = g(x) &\implies \exists x_1 \in [x_0, x]: g'(x_1) = 0
+    & g(x_0) = 0 = g(x) \implies \exists x_1 \in [x_0, x]: g'(x_1) = 0
     \\
-    g'(x_1) = 0 =g'(x_0) \implies& \exists x_2\in[x_0, x_1]: g''(x_2) = 0
+    & g'(x_1) = 0 =g'(x_0) \implies \exists x_2\in[x_0, x_1]: g''(x_2) = 0
     \\
-    \vdots &
+    & \quad \vdots 
     \\
-    \exists x_{n + 1} : g^{n + 1}(x_{n + 1}) &= 0
+    & g^{(n)}(x_{n}) = 0 = g^{(n)}(x_n) \implies \exists x_{n + 1}\in [x_0, x_{n}]: g^{(n + 1)}(x_{n + 1}) = 0,
 \end{aligned}
 $$
 
-Letting $c = x_{n + 1}$, then $g^{(n + 1)}(c) = f^{(n + 1)}(c) - (n + 1)! M_{x, x_0}$ which means that $M_{x, x_0} = f^{(n + 1)}(c) (n + 1)!$
+Letting $c = x_{n + 1}$, then $g^{(n + 1)}(c) = f^{(n + 1)}(c) - (n + 1)! M_{x, x_0}$ which means that $M_{x, x_0} = f^{(n + 1)}(c) (n + 1)!$, this is the remainder. The use of mean value theorem requires that, $f^{(n)}$ is differentiable on the closed interval $[x_0, x]$. 
 
-Take note that, as long as the function is differentiable, this is applicable, however, taylor's theorem would still apply for function that is not differentialble but continuous at some pont in the interval $[x_0, x]$, but that would mean that function is not infinitely differentiable. In that case, mean value theorem would not be applicable. However, a continuous function will be integrable. 
+**Remarks**
+We can use the continuity of $g^{(n)}$ and Intermediate Value theorem instead to derive an error term on the scale of $(x - x_0)^n$. 
 
 **Integral Form of the Remainder**
 
@@ -145,6 +153,9 @@ Let $f^{(k)}$ be [<u>absolutely continuous</u>](https://en.wikipedia.org/wiki/Ab
 
 Due to absolute continuity of f(k) on the closed interval between a and x, its derivative f(k+1) exists as an L1-function, and the result can be proven by a formal calculation using fundamental theorem of calculus and integration by parts.
 
+**Reference**: 
+
+Baby Rudin I believe. 
 
 
 ---

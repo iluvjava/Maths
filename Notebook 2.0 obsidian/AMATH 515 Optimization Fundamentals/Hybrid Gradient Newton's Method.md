@@ -1,5 +1,5 @@
 This is purely my idea. 
-[[Newton Method]]
+[[Gradient Descend/Newton Method]]
 
 ---
 ### **Intro**

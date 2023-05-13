@@ -99,4 +99,6 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 	- The norms are equivalent.
 	- All subspaces are closed and complete if the subspace is complete.  
 	- Sequential Compactness
-	
+- [Strong and Weak Convergences Introduction](Strong%20and%20Weak%20Convergences%20Introduction.md)
+	- Motivations. 
+	- Theorems in Banach Spaces, Hilbert spaces, and theorems for finite dimensional spaces. 

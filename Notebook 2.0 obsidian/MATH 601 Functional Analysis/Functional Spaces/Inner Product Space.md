@@ -63,6 +63,29 @@ We give, without demonstrations, some examples of inner produce spaces and their
 - $l^p$ has inner product $\sum_{i = 1}^{\infty}x_iy_i$. 
 - $L^2[a, b]$ space has inner product: $\int f(x)g(x)dx =: \langle f, g\rangle$. 
 
+#### **Polerization Equality**
+
+> If the parallogram law is true, we can express the inner product of a Inner product space on the scalers of reals and complex by the following formula: 
+
+$$
+\begin{aligned}
+    & \langle x, y\rangle = \frac{1}{4} (\Vert x + y\Vert^2 - \Vert x - y\Vert^2) 
+\end{aligned}
+$$
+
+and in the complex case we have: 
+
+$$
+\begin{aligned}
+    & \Re(\langle x, y\rangle) = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)
+    \\
+    & \Im(\langle x, y\rangle) = \frac{1}{4}(\Vert x + i y\Vert^2 - \Vert x - iy\Vert^2). 
+\end{aligned}
+$$
+
+for the real and imaginary part of inner product. 
+
+
 ---
 ### **Orthogonality, Cauchy Swartchz, and Continuity of Inner Product**
 We defines some basics concepts. The concept of a inner product directly defines orthogonality. Next, we extend Cauchy Inequality to any inner product spaces, we show the cases for its equality, and then we use it to prove the the inner product mapping is indeed a continuous mapping. 

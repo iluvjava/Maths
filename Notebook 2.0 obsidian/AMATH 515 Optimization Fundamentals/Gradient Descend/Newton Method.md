@@ -35,7 +35,7 @@ $$
 -\Vert \nabla f(x_k)\Vert^2_M \text{  Where: } M = \nabla^2 f(x_k)^{-1}
 $$
 
-Notice that, the inverse of an Positive Definite matrix is still an Positive Definite Matrix, because the eigenvalues of the inverse are just the reciprocal of the original. 
+Notice that, the inverse of a Positive Definite matrix is still a Positive Definite Matrix, because the eigenvalues of the inverse are just the reciprocal of the original. 
 
 The Direction that the newton's Iterations is indeed going going into the descend direction. 
 

@@ -84,7 +84,7 @@ for any Hilbert space $\mathcal H$.
 ---
 ### **Representation of Bilinear Form in Hilbert space**
 
-Similar to linear functionals in Hilbert space that has an inner product representation, it's the same for bilinear functionals constructed between 2 Hilbertspaces. 
+Similar to linear functionals in Hilbert space that has an inner product representation, it's the same for bilinear functionals constructed between 2 Hilbert spaces. 
 
 
 #### **Thm | Bounded Bilinear form with Linear Operator**
@@ -94,4 +94,4 @@ Similar to linear functionals in Hilbert space that has an inner product represe
 
 **Proof**: 
 
-We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definiton of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.
+We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definition of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.

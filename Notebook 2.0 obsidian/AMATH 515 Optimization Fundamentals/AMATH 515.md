@@ -109,7 +109,7 @@ The **Challenging** part is the modeling part and the solving part.
     * [[Proximal Gradient Method]]
     * [[Proximal Gradient Descend/Proximal Gradient 2]]
     Newton's Iterations are the inspirations for Accelerated Gradient Descend. 
-	* [[Newton Method]]
+	* [[Gradient Descend/Newton Method]]
 	Here is an overview: 
 	* [[Steepest Descend for Matrix Vector]]
 

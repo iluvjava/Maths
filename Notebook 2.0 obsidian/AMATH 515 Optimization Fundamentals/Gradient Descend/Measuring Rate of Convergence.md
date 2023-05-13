@@ -32,6 +32,7 @@ by unrolling the recurrences presented by the first inequality, we can obtain th
 ---
 ### **Rate of Convergence for a Sequence in General**
 
+Defining the rate of convergence of a real sequence in the most general sense. 
 
 **Definition**
 
@@ -39,20 +40,68 @@ by unrolling the recurrences presented by the first inequality, we can obtain th
 > 
 > $$
 > \begin{align*}
->    \exists c > 0, n \in \mathbb N \text{ s.t: }\forall m \ge n \; |a_n| \le C|b_n|, 
+>    \exists C > 0, n \in \mathbb N \text{ s.t: }\forall m \ge n \; |a_m| \le C|b_m|, 
 > \end{align*}
 > $$
 > 
-> then we say that the sequence $a_n$ convergences with $\mathcal O(b_n)$. In general, when $a_n \rightarrow a$ as $n\rightarrow \infty$, we can just model the sequence $|a_n - a|\rightarrow 0$ and apply the above definition. 
+> then we say that the sequence $a_n$ convergences with $\mathcal O(b_n)$. In general, when $a_n \rightarrow a$ as $n\rightarrow \infty$, we can just model the sequence $|a_n - a|\rightarrow 0$ and apply the above definition. In brief it's saying that:
+> $$
+>   \limsup_{n\rightarrow \infty} \frac{|a_n|}{|b_n|} < \infty. 
+> $$
 
 
 **Remarks**
 
-Observe that in the above case, when a sequence has sublinear convergence, we have $b_n = 1/k^{n}$, when linear we have $b_n = q^n, q\in (0, 1)$, and super linear $b_k = a_0^{2^{k + 1}}$. 
+Observe that in the above case, when a sequence has sub-linear convergence, we have $b_n = 1/k^{n}$, when linear we have $b_n = q^n, q\in (0, 1)$, and super linear $b_k = a_0^{2^{k + 1}}$, where $a_0 <1$. 
+
+**Corollary | Linear Convergence**: 
+
+> If $b_n$ is converging towards zero, then $a_n$ is also a convergence sequence and it converges to zero. 
+
+**Proof**: 
+If not, using property of limit, and assumes that $a_n$ converges to ${\infty, c}$, then $\infty$ is obviously the limit of the sequence. 
 
 
 ---
-### **Further Characterizations for Type Super Linear convergence**
+### **Limit Ratio Characterizations of Linear Convergence Sequence**
+
+> If a sequence has: 
+> $$
+>   \lim_{n\rightarrow \infty}\frac{|a_{n + 1}|}{|a_{n}|} \le \alpha < 1, 
+> $$
+> Then it converges linearly. 
+
+
+**Proof**:
+
+Choose any $m \ge N_\epsilon$ lerge enough such that have an upper bound $\beta = \alpha + \epsilon < 1$ still, and for $|a_{n +1}/a_n|$ for all $m \ge N_\epsilon$, unrolling the recurrences we have: 
+
+$$
+\begin{aligned}
+    \frac{|a_{m + 1}|}{|a_m|} &\le \beta
+    \\
+    |a_{m + 1}| &\le \beta|a_{m}|
+    \\
+    |a_{m + 1}| &\le \beta^2|a_{m-1}|
+    \\
+    |a_{m + 1}| &\le \beta^{m}|a_1|
+    \\
+    \frac{|a_{m + 1}|}{\beta^{m}L} &\le \frac{|a_1|}{L}, \quad \text{Where } L > |a_1|, 
+    \\
+    \implies 
+    \frac{|a_{m + 1}|}{\beta^{m + 1}\frac{L}{\beta}} &< 1
+\end{aligned}
+$$
+
+Therefore, the sequence $M$ indices beyond $N_\epsilon$ can be bounded by the geometric sequence $\beta^{m +1}L/\beta$. Therefore, the sequence is of linear convergence. 
+
+**Remark**
+
+The converse is also ture, and in the converse case, some sequence $a_n$ can converges faster than exponential and still satisfies the limit characterization above. 
+
+
+---
+### **Limit Ratio Characterizations for Super Linear convergence**
 
 > Suppose that $\alpha > 1$, and WOLG we assume that the sequence $a_n\rightarrow 0$ and $\lim_{n\rightarrow 0}|a_{n + 1}|/|a_{n}|^\alpha \le C$, where $1 > |p_0|/C > 0$. Then the sequence of number has super linear convergence. 
 
