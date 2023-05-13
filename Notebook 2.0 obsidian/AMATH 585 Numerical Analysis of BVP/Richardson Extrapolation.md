@@ -1,4 +1,5 @@
-[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation), [[Finite Difference]]
+[wiki link](https://en.wikipedia.org/wiki/Richardson_extrapolation), 
+[[Finite Difference]]
 
 ---
 ### **Intro**
@@ -154,9 +155,9 @@ It's better to prepare more terms before using Richardson so we don't have to ex
 From Prof Anne Greebaum at UW, from class AMATH 585 2022 Spring. 
 
 ---
-### **An Generic Example for Even Errors**
+### **An Generic Example for Even Errors Series**
 
-To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be elimiated, we make a generic example for a series of only even power. Consider a quantity $A^+$ such that it has formula: 
+To get the point across, and to practice Richardson's Extrapolation when there are multiple terms to be eliminated, we make a generic example for a series of only even power. Consider a quantity $A^+$ such that it has formula: 
 
 $$
 \begin{aligned}
@@ -227,7 +228,7 @@ $$
     a_{n}h^{2n}
     \\
     \implies 
-    \frac{16\rho_2(h/2) - \rho_1(h)}{
+    \frac{16\rho_1(h/2) - \rho_1(h)}{
         15
     } &= 
     a_0 + 
@@ -241,7 +242,7 @@ $$
 \end{aligned}
 $$
 
-and the second degree interpolant now have an accuracy of $\mathcal O(h^6)$. And we now have the general formula to work combine any 2 interpolanet to give a higher order one. Observe that a general formula seems to emerge, but one might need to prove it inductively that we have the update: 
+and the second degree interpolant now have an accuracy of $\mathcal O(h^6)$. And we now have the general formula to work combine any 2 interpolan to give a higher order one. Observe that a general formula seems to emerge, but one might need to prove it inductively that we have the update: 
 
 $$
 \begin{aligned}
@@ -250,4 +251,12 @@ $$
 \end{aligned}
 $$
 
-and we will just leave it at that for now. 
+and we will just leave it at that for now. For most of the time, the we only need the first 3 levels of interpolating, their formulas are given as: 
+
+$$
+\begin{aligned}
+    \rho_1(h) &= \frac{3\rho_0(h/2) - \rho_0(h)}{3},
+    \\
+    \rho_2(h) &= \frac{16\rho_2(h/2) - \rho_1(h)}{15}. 
+\end{aligned}
+$$

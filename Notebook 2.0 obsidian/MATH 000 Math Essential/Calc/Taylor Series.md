@@ -265,6 +265,6 @@ $$
 
 And that completes the Taylor Series in differential function that have countably many parameters. 
 
-**Example: Recovering the Hessian Term from above Expression**
+**Example | Recovering the Hessian Term from above Expression**
 
 

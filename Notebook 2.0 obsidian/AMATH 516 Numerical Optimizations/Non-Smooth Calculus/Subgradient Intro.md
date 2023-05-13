@@ -13,7 +13,7 @@
 * Epigraphical Normal cone and generalized subgradient. 
 
 
-**Defintion: Convex Subgradient**
+**Defintion | Convex Subgradient**
 
 > Let $f$  be convex proper function mapping from $\mathbb E$ to $\mathbb {\bar R}$, a vector $g$ is referred to as sub-differential to the point $x\in \text{dom}(f)$ when: 
 > 
@@ -33,9 +33,9 @@ For everything about convex subgradient, visit [[Convex Subgradient]] for more i
 
 Motivate by the fact that, under non-convex case, for some functions, the subgradient is not equivalent to the traditional gradient, we make a better definition of subgradient to context when convexity is not involved. One famous such example is $x^3$ at the point $x = 0$, which it doesn't have a subgradient  because it's impossible to separate the non-convex epigraph from all other points using a tangent plane at $x = 0$ for $x^3$. Rockafellar thought of this and extended the definition, we call it the regular subgradient, or the variational subgradient. 
 
-**Definition: Generalized Gradient (Regular Subgradient)**
+**Definition | Generalized Subgradient (Regular Subgradient)**
 
-> Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then: 
+> Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then
 > 
 > $$
 > \begin{aligned}
@@ -60,21 +60,15 @@ $$
 \end{aligned}
 $$
 
-very useful for characterizing $g$ that is in the subgradient of a function. The fact that if the subgradient equals to zero then it's a local minimizer at the point is somewhat obvious from this interpretation here. 
+very useful for characterizing $g$ that is in the subgradient of a function. When a point is a local minimizer, the regular subgradient at the contains the zero vector. 
 
 **Remarks:**
 
-The supporting tangent line is now only a limiting behaviors for the given function, and now it's consistent with the gradient definition for ordinary smooth function. In fact, I will state my opinions here without proof: 
-
-$$
-\partial [f]\subseteq\hat{\partial}[f]
-$$
-
-Is true for the above definition. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. Regardless of the fact that it's called the regular subgradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
+The variational subgradient is consistent with the gradient definition for ordinary smooth function, which is not true for the convex subgradient when the function is not convex. I will state my guess here without proof that $\partial [f]\subseteq\hat{\partial}[f]$. Whenever it's not mentioned whether $f$ is convex or not, please stick with the second definition regardless whether there is a bar or not. Regardless of the fact that it's called the regular subgradient, the function $-|x|$ doesn't have generalized gradient at the point $x = 0$. 
 
 **Source**: 
 
-The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> by Rockafellar, it's consistent with Dimitri's AMATH 516 FALL 2021. 
+The definition for convex subgradient comes from: \<First Order Methods in Optimizations\> by SIAM, the second definition (regular subgradient) comes from \<Variational Analysis\> Definition 8.3 by Rockafellar, it's consistent with Dimitri's AMATH 516 FALL 2021
 
 ---
 ### **Notations**

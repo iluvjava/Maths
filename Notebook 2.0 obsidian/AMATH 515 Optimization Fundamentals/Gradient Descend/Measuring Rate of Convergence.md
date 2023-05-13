@@ -69,7 +69,7 @@ If not, using property of limit, and assumes that $a_n$ converges to ${\infty, c
 > $$
 >   \lim_{n\rightarrow \infty}\frac{|a_{n + 1}|}{|a_{n}|} \le \alpha < 1, 
 > $$
-> Then it converges linearly. 
+> Then it converges linearly to $0$. 
 
 
 **Proof**:
@@ -83,6 +83,8 @@ $$
     |a_{m + 1}| &\le \beta|a_{m}|
     \\
     |a_{m + 1}| &\le \beta^2|a_{m-1}|
+    \\
+    & \hspace{0.5em} \vdots
     \\
     |a_{m + 1}| &\le \beta^{m}|a_1|
     \\
@@ -103,17 +105,19 @@ The converse is also ture, and in the converse case, some sequence $a_n$ can con
 ---
 ### **Limit Ratio Characterizations for Super Linear convergence**
 
-> Suppose that $\alpha > 1$, and WOLG we assume that the sequence $a_n\rightarrow 0$ and $\lim_{n\rightarrow 0}|a_{n + 1}|/|a_{n}|^\alpha \le C$, where $1 > |p_0|/C > 0$. Then the sequence of number has super linear convergence. 
+> Suppose that $\alpha > 1$, and $\lim_{n\rightarrow 0}|a_{n + 1}|/|a_{n}|^\alpha \le C$, where $1 > |p_0|/C > 0$. Then the sequence of number has super linear convergence, and it converges to zero. 
 
 In the case when $\alpha = 2$, we have the quadratic convergence as before. This is obtained by expanding the recursively expanding the relations by assuming equality: 
 
 $$
 \begin{aligned}
-    \frac{|p_{n + 1}|}{|p_{n}|^\alpha} &\le C
+    \frac{|p_{n + 1}|}{|p_{n}|^2} &\le C
     \\
     |p_{n + 1}| &\le C|p_{n}|^2
     \\
     |p_{n + 1}| &\le C^3|p_{n - 1}|^{4}
+    \\
+    |p_{n + 1}| &\le C^7|p_{n - 1}|^{8}
     \\
     & (...)
     \\
