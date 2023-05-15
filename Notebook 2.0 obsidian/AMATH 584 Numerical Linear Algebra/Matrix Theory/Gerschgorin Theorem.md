@@ -3,11 +3,11 @@
 ---
 ### **Intro**
 
-All the eigenvalues of a square matrix lies within the union of a series of Gerschgorin Disks. 
+All the eigenvalues of a square matrix lies within the union of a series of Gerschgorin Disks. This method allows a way for checking whether a matrix is positive definite or not. 
 
 
-let $A \in \mathbb{R}^{n\times n}$ the Gerschgorin Disk: 
-
+#### **Def | Gershchgorin Disk**
+> let $A \in \mathbb{R}^{n\times n}$, the Gerschgorin Disk is 
 > $$R_i(A) = \sum_{j = 1, j \neq i }^n |a_{i, j}| \quad i = 1, \cdots n$$
 > The sum of the absolute value of all the non-diagonal entries of the ith row. 
 
@@ -19,7 +19,7 @@ let $A \in \mathbb{R}^{n\times n}$ the Gerschgorin Disk:
 >     |x - a_{i, i}| \le R_i(A)
 > \right\rbrace
 > $$
-> All the eigenvaluesof matrix $A$ are in the union of disks in the above set. 
+> All the eigenvalues of matrix $A$ are in the union of disks in the above set. 
 
 ---
 **Proof**

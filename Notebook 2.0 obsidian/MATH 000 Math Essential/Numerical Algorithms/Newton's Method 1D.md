@@ -64,9 +64,8 @@ which is just a geometric sequence. This is the graph
 ![](../../Assets/Newton%20Linear%20Converge%20Nontsmooth%20Edge%20Case.png)
 
 
-
 ---
-### **Sequence Ratio Characterizations**
+### **Sequence for the Error Ratio**
 
 In this section, we characterize the ratio between the error of successive iterations produced by a fixed point iteration on the mapping $g(x)$, the newton's method. we make the basic assumption that: 
 
@@ -182,7 +181,7 @@ guesses from both sides of the root $s = 1$ converges, from the left it converge
 
 A function $f$ has a root $s$ with multiplicity $m$ if $f(x) = (x - s)^mh(x)$ such that $\lim_{x\rightarrow s}h(x) \neq 0$. 
 
-### **Thm | Linear Convergence for Roots of Multiplicity**
+#### **Thm | Linear Convergence for Roots of Multiplicity**
 > The function $f$ has a root $s$ with a multiplicity of $m$ so it takes the form of $f(x) = (x - s)^mh(x)$, where $h(s)\neq 0$, and when $h'(x)$ have a first order removable singularity using $(x - s)$, meaning that $\lim_{x\rightarrow s}h'(x)(x - s) = 0$, then the Newton's method converges linearly.
 
 **Proof**
