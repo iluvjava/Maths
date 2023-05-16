@@ -182,7 +182,7 @@ $$
     \exists c > 0: 
     \epsilon/c \ge |\alpha_j^{(k)} - \alpha_j^{(l)}| \;\forall 1 \le j \le n
     \\
-    \implies 
+    \iff 
     &
     \forall 1 \le j \le n \; (\alpha^{(m)}_j)_{m\in \mathbb N} \text{ is Cauchy} 
     \iff \forall 1 \le j \le n
@@ -270,7 +270,6 @@ Kreyzig's textbook, theorem 2.4-5.
 From left to right it's direct from the definition of a compact space, from right to left requires some proofs. 
 
 
-
 **Remarks**: 
 
 Only a finite dimensional subspace has the ability to generalized the sequential compactness for the reals. 
@@ -282,33 +281,12 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 ---
 ### **An Lemma In the Middle**
 
-This lemma can lift us up above a subspace in the normed space! 
-
-#### **Lemma | Riesz Lemma (2.4-5)**
-> Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
-
-
-**Observations**: 
-
-This lemma shows that, it's possible to lift a unitary vector perpendicular above a linear subspace, $Y$ in this case, name that vector $z$ (unitary), such that the distance of any vector from $Y$ to $z$, can be upper bounded by $1$ , and lower bounded by $0$. The closure and proper subset property of $y$ plays a role in the proof. 
-
-**Proof**:
-
-Skipped. 
-
-**Remarks**: 
-
-Geometrically it means, it's possible to find a point $x\in Z\setminus Y$ such that, it's lifted with $1 - \epsilon$ distance away from the whole subspace, and it has a norm of $1$. This is possible for infinite dimensional spaces. 
-
-**References:**
-
-This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into [here](http://mathonline.wikidot.com/riesz-s-lemma) on mathdot for a better exposition of the proof. 
-
+This lemma can lift us up above a subspace in the normed space! Please read about the Rietz lemma stated in [Banach Space Introduction](Banach%20Space%20Introduction.md) for more information, the later content will continue from it. 
 
 ---
 ### **More Theorems**
 
-More theorems about compactness and finite dimensional space. 
+More theorems about compactness and finite dimensional space, 
 
 **Thm |  Finite Dimensional Space (2.5-5)**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
@@ -336,3 +314,5 @@ Take note that this statement is about metric spaces in general. This theorem al
 
 **Thm | Minimizer and Maximizer of a Compact Mapping**
 > A mapping from a compact subspace of a metric space, $M\subseteq X$ to $\R$ will give a maximum and a minimum at some point in $M$. 
+
+

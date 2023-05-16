@@ -19,9 +19,8 @@ We state the theorem, and discuss its corollaries and consequences.
 $p$ is a sub-linear functionals when $p(x + y) \le p(x) + p(y)$. 
 
 
-
 #### **Thm | Hahn Banach in Banach Space**
-> The norm $\Vert \cdot\Vert$ is a sublinear functionals in banach space. Let $f$ be a bounded linear functional in the subspace $Z\subseteq X$, then there exists a bounded linear functional $\tilde f$ on $X$, which is an extension of $f$ on $Z$, i.e: $f(x) = \tilde f(x)$ for all $x \in Z$, and they satisfy: 
+> The norm $\Vert \cdot\Vert$ is a sub-linear functionals in Banach space. Let $f$ be a bounded linear functional in the subspace $Z\subseteq X$, then there exists a bounded linear functional $\tilde f$ on $X$, which is an extension of $f$ on $Z$, i.e: $f(x) = \tilde f(x)$ for all $x \in Z$, and they satisfy: 
 > $$
 >   \Vert f\Vert_X = \Vert f\Vert_Z,
 > $$
@@ -29,7 +28,7 @@ $p$ is a sub-linear functionals when $p(x + y) \le p(x) + p(y)$.
 
 **Proof**
 
-When $f$ is the zero functional, there exists the zero functional on $X$ that serves as the trivial extension of $f$. From the norm of $f$ we have $|f(x)| \le \Vert x\Vert \Vert f\Vert_Z$, for all $z \in Z$, define $p(x) := \Vert f\Vert_Z \Vert x\Vert$, which is a sublinear functonal determined by the property of the norm. By the original H.B thm, there exists $\tilde f$ such that $\tilde f(x) \le \Vert x\Vert \Vert f\Vert_Z$, since $p$ is on $X$: 
+When $f$ is the zero functional, there exists the zero functional on $X$ that serves as the trivial extension of $f$. From the norm of $f$ we have $|f(x)| \le \Vert x\Vert \Vert f\Vert_Z$, for all $z \in Z$, define $p(x) := \Vert f\Vert_Z \Vert x\Vert$, which is a sub-linear functional determined by the property of the norm. By the original H.B theorem, there exists $\tilde f$ such that $\tilde f(x) \le \Vert x\Vert \Vert f\Vert_Z$, since $p$ is on $X$: 
 $$
 \begin{aligned}
     \sup_{x\in X} \frac{|\tilde f(x)|}{\Vert x\Vert} \le \Vert f\Vert_Z, 
@@ -44,7 +43,25 @@ choose any $x_0\in Z$, then we have $f(x_0) = \tilde f(x_0)$, hence, the above c
 
 **Proof**: 
 
-Let $Z\subseteq X$ be $\text{span}(x_0)$, 
+Let $Z\subseteq X$ be $\text{span}(x_0)$, on $Z$ define $f(x) = f(\alpha x_0)= \alpha \Vert x_0\Vert$ for all $x\in Z$, obviously
+
+$$
+\begin{aligned}
+    & |f(x)| = |f(\alpha x_0)| = |\alpha \Vert x\Vert| = |\alpha|\Vert x\Vert
+    \\
+    \iff 
+    & \Vert f\Vert = 1, 
+    \\
+    \text{and: }& f(x_0) = \Vert x_0\Vert
+\end{aligned}
+$$
+
+therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem, we have $\tilde f(x) = f(x)$ on $Z$ such that $\Vert \tilde f\Vert_X = \Vert f\Vert_Z = 1$, and $\tilde f(x_0) = \Vert x_0\Vert$. 
+
+
+**Remarks**
+
+This theorem has profound consequences and it's directly applicable for weak convergence results in Banach space. 
 
 
 ---

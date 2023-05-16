@@ -83,7 +83,10 @@ There are a lot of things related to the the topologies for Metric Spaces. See [
 ---
 ### **Equivalences of Metrics**
 
-> Let $d, d'$ be metrics on $X$, $d$ and $d'$ are equivalent if there exists $a, b > 0$ such that: 
+We introduce 2 type of equivalence between metric spaces. These are just the standard math stuff and can be found as a wiki topic [here](https://en.wikipedia.org/wiki/Equivalence_of_metrics). 
+
+#### **Thm | Strong Equivalence Conditions**
+> Let $d, d'$ be metrics on $X$, $d$ and $d'$ are strongly/bilipschitz equivalent if there exists $a, b > 0$ such that: 
 > 
 > $$
 > ad'(x, y) \le d(x, y) \le bd'(x, y) \; \forall x, y\in X. 
@@ -97,3 +100,10 @@ The example metric: [l-p Sequence Space](../l-p%20Sequence%20Space.md), contains
 
 This becomes important when we discuss about [[Finite Dimensional Normed Space]]. Because finite finite dimensional, normed spaces, as a stronger type of metric spaces, has equivalences for all possible norms in the space. A very strong results. 
 
+
+#### **Thm | A Weaker Equivalence Conditions**
+> Let $X$ be a set and $d_1, d_2$ be metrics in that set then they are equivalence if, The identity mapping between the space $(X, d_1)$ and $(X, d_2)$ are continuous and its inverse is also continuous. 
+
+**Observations**
+
+Using the toplogical characterization of a contnuous mapping, the above conditions is equivalence of saying that, $d_1, d_2$ are equivalence if and only if, any open set under $d_1$ is also an open set under $d_2$. 

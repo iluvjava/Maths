@@ -4,7 +4,7 @@
 ---
 ### **Banach Space**
 
-[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete, normed, [[Vector Space]]. It is already a [[Metric Space Introduction]]. It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". If a vector space is normed, but it's not complete, them we just refer to it as "normed space". 
+[Banach space](https://mathworld.wolfram.com/BanachSpace.html) is a complete, normed, [Vector Space](Vector%20Space.md). It is already a [Metric Space Introduction](Metric%20Space%20Introduction.md). It's a set of elements that can form a complete  vector space with a norm calculations.  **Note**: The "complete" in this context is referring to closure under Cauchy Sequence, not interpreted as "complete with". If a vector space is normed, but it's not complete, them we just refer to it as "normed space". 
 
 In this section we introduces basics facts and theorems about Banach Spaces and we show some illustrating examples for those concepts. Bear in mind that Banach space is just vector spaces but fancier. 
 
@@ -16,18 +16,18 @@ In this section we introduces basics facts and theorems about Banach Spaces and 
 > The metric $d(x, y)$ for Banach Space is define as $\Vert x - y\Vert$. The space $X$ is a vector space. 
 
 **Banach But not Hilbert**
-> It's implied from the definition, that, there exists instances of Banach Space that is not Hilbert Space. Such a space would have norm that is not defined via inner product, unlike a [[Hilbert Space Introduction]] where it has its norm defined via the inner product of elements. 
+> It's implied from the definition, that, there exists instances of Banach Space that is not Hilbert Space. Such a space would have norm that is not defined via inner product, unlike a [Hilbert Space Introduction](Hilbert%20Space%20Introduction.md) where it has its norm defined via the inner product of elements. 
 
 **Lacks of Inner Product**
 > The definition doesn't said anything about  using inner product in the space to define the norm metric. The norm can be independent of the inner product.
 
 **Normed Vector Space but Not Banach**
-> These are incomplete normed vector spaces. For examples: $(\Q, |\cdot|), (C[0, 1], \Vert \cdot\Vert_1), (C[0, 1], \Vert \cdot\Vert_2)$. They are incomplete vector spaces. For more details see [[Examples for Metric Space]]. They have completions for their spaces as $\R, L^1[0, 1], L^{2}[0, 1]$. 
+> These are incomplete normed vector spaces. For examples: $(\Q, |\cdot|), (C[0, 1], \Vert \cdot\Vert_1), (C[0, 1], \Vert \cdot\Vert_2)$. They are incomplete vector spaces. For more details see [Examples for Metric Space](Examples%20for%20Metric%20Space.md). They have completions for their spaces as $\R, L^1[0, 1], L^{2}[0, 1]$. 
 
 **The Euclidean Space**
 > The space ($\R^n, d(x, y):= \Vert x - y\Vert$) is an example of a Banach space because $\mathbb R^n$ is complete, and the p-norm for all the vector there are all equivalent metrics. 
 
-For more information about norm in the real finite vector space, see [[../../AMATH 584 Numerical Linear Algebra/Matrix Theory/Norm, for Beginners]] for more information. 
+For more information about norm in the real finite vector space, see [Norm, for Beginners](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Norm,%20for%20Beginners.md) for more information. 
 
 **Subspace of a Banach Space**
 > $(Y, \Vert \cdot\Vert)$ is a subspace of $(X, \Vert \cdot\Vert)$ when, $Y\subseteq X$, and $X$ is also a closed vector space. Then it's a subspace of the Banach space, and it will still be a Banach space. 
@@ -57,5 +57,34 @@ Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space the
     $$
     it experiences translational and scaling invariance. This metric space reflect the underlying topology of Euclidean spaces.
 
+#### **Def | Equivalent Norms**
+> Equivalent Metric strengthens in Banach space due to the properties of norms, using the any of the 2 equivalence norm defintion in metric space we can derive that, 2 norm $\Vert \cdot\Vert_a$ and $\Vert \cdot\Vert_b$ are equivalence if for all $x \in X$, we have: 
+> $$
+> \begin{aligned}
+>     \exists \alpha, \beta \in \mathbb R: 
+>     \alpha \Vert x\Vert_a \le \Vert x\Vert_b \le \beta \Vert x\Vert_b, 
+> \end{aligned}
+> $$
+> and vice versa. 
+
+
 ---
-### **Equivalent Metric**
+### **Lemma | Riesz Lemma (2.4-5)**
+
+> Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
+
+**Observations**: 
+
+This lemma shows that, it's possible to lift a unitary vector perpendicular above a linear subspace, $Y$ in this case, name that vector $z$ (unitary), such that the distance of any vector from $Y$ to $z$, can be upper bounded by $1$ , and lower bounded by $0$. The closure and proper subset property of $y$ plays a role in the proof. 
+
+**Proof**:
+
+Skipped. 
+
+**Remarks**: 
+
+Geometrically it means, it's possible to find a point $x\in Z\setminus Y$ such that, it's lifted with $1 - \epsilon$ distance away from the whole subspace, and it has a norm of $1$. This is possible for infinite dimensional spaces. 
+
+**References:**
+
+This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into [here](http://mathonline.wikidot.com/riesz-s-lemma) on mathdot for a better exposition of the proof. 

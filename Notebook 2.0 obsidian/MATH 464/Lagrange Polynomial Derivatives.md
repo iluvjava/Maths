@@ -1,4 +1,4 @@
-Basic Information for Lagrange Polynomials. 
+[Lagrange Interpolations](../MATH%20000%20Math%20Essential/Numerical%20Analysis/Lagrange%20Interpolations.md). Basic Information for Lagrange Polynomials.  
 
 ---
 

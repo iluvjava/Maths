@@ -231,7 +231,7 @@ A contraction that is local without the self mapping properties might not have a
 
 **Observation**:
 
-That mapping is actually the [Newton's Method 1D](../../MATH%20000%20Math%20Essential/Numerical%20Algorithms/Newton's%20Method%201D.md) for finding the root $x^2 - c=0$. 
+That mapping is actually the [Newton's Method 1D](../../MATH%20000%20Math%20Essential/Numerical%20Analysis/Newton's%20Method%201D.md) for finding the root $x^2 - c=0$. 
 
 **Proof**: 
 
@@ -285,4 +285,4 @@ $$
 \end{aligned}
 $$
 
-We had verified that this ancient formula for computing the square is a Banach Contraction. For more goodies about fixed point iterations and their theories, visit [Fixed Point Iterations 1D](../../MATH%20000%20Math%20Essential/Numerical%20Algorithms/Fixed%20Point%20Iterations%201D.md) for more information.
+We had verified that this ancient formula for computing the square is a Banach Contraction. For more goodies about fixed point iterations and their theories, visit [Fixed Point Iterations 1D](../../MATH%20000%20Math%20Essential/Numerical%20Analysis/Fixed%20Point%20Iterations%201D.md) for more information.

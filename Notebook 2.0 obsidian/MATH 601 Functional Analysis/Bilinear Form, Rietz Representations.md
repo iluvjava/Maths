@@ -8,7 +8,7 @@
 We introduce more quirks for linear operators in the Hilbert spaces, with inner product for extra flavors. 
 
 
-#### **Rietz Representation Theorem**
+#### **Thm | Rietz Representation Theorem**
 > Let $\mathcal H$ be a Hilbert space, then every bounded linear functional $f$ on $\mathcal H$ can be represented by an inner product. that is, for all $f \in \mathcal H^\star$, there exists $z \in \mathcal H$ such that: 
 > 1. For all $x \in \mathcal H$, $f(x)  = \langle z, x\rangle$
 > 2. $z$ is unique for each functional $f$ in $\mathcal H^\star$. 
@@ -16,7 +16,7 @@ We introduce more quirks for linear operators in the Hilbert spaces, with inner 
 
 **Proof**
 
-The case $f$ is the zero functional is a trivial case becase $\mathbf 0$ does the job. Assuming $f$ is not the zero functional. $\text{null}(f)$ is a closed set by the property of linear operators in Banach space. Then: $\mathcal H = \text{null}(f)\oplus \text{null}(f)^\perp$ with $\text{null}(f)^\perp \neq \{\mathbf 0 \}$ by $f$ being the non zero functional, then consider the existence of $z_0$ where: 
+The case $f$ is the zero functional is a trivial case because $\mathbf 0$ does the job. Assuming $f$ is not the zero functional. $\text{null}(f)$ is a closed set by the property of linear operators in Banach space. Then: $\mathcal H = \text{null}(f)\oplus \text{null}(f)^\perp$ with $\text{null}(f)^\perp \neq \{\mathbf 0 \}$ by $f$ being the non zero functional, then consider the existence of $z_0$ where: 
 
 $$
 \begin{aligned}

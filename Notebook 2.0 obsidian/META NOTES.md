@@ -3,11 +3,7 @@ This note is a note about notes.
 
 # **Organizations**
 
-- These files: 
-	- [Finite Dimensional Normed Space](MATH%20601%20Functional%20Analysis/Functional%20Spaces/Finite%20Dimensional%20Normed%20Space.md), contains some theorems and statements that are generalized to, Banach and Metric spaces, separate them to different files. 
-		- There is one lemma, the Rietz Lemma, which is about Banach space in general, take that out to [Banach Space Introduction](MATH%20601%20Functional%20Analysis/Functional%20Spaces/Banach%20Space%20Introduction.md) or somewhere better. 
-		- There is one theorem about compactness and continuous mapping, it's for metric space and continuous mapping. 
-	- Fill up the file [Continuous Linear Transform](MATH%20601%20Functional%20Analysis/Continuous%20Linear%20Transform.md), with the correct information. 
+
 
 # **Important Tasks about the Notes**
 - Fill up [Functional Analysis Central Hub](MATH%20601%20Functional%20Analysis/Functional%20Analysis%20Central%20Hub.md) for wrapping up elementary materials in this course. 

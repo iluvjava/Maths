@@ -1,4 +1,6 @@
-[[../Background/Introducing The KKT Conditions]], [[Fritz John Conditions]], [[Subdifferentials Subgradient Computations]]. 
+- [[../Background/Introducing The KKT Conditions]], 
+- [[Fritz John Conditions]], 
+- [[Subdifferentials Subgradient Computations]]. 
 
 ---
 ### **Intro**
@@ -15,7 +17,7 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 3. The optimal value of $(P)$ is defined to be $\mu:= \inf\{f(x) \;|\; g_i(x)\le 0 \; \forall i \in I\}$. 
 4. When we say that $x$ solves $(P)$ we mean that the minimum is achieved and, all the constraints are satisfied. 
 
-**Theorem:KKT Necessary Conditions**
+**Theorem | KKT Necessary Conditions**
 > let $f, g_1, \cdots, g_m$ all be convex and that $x^+$ solves $(P)$, assume that the *[Slater's Condition](https://en.wikipedia.org/wiki/Slater%27s_condition)* holds i.e: $\exists s\in X\;\forall i \in I\; g_i(s) < 0$, then there exists the Lagrange multipliers $\lambda_1 \ge 0, \cdots, \lambda_m \ge 0$ such that the KKT conditions: 
 > $$
 > \begin{aligned}

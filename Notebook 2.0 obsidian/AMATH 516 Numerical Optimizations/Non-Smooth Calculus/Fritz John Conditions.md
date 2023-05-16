@@ -22,8 +22,7 @@ Armed with subgradients calculus, we consider characterizing the minimizers for 
 This is true because a solution to minimizing $F$ gives $f(x) = \mu$, so that the minimum of the constraint optimization problem is attained, and $F(x) = 0$ meaning that all the constraints are also satisfied by solution $x$. Infeasibility will imply that $F(x) > 0$ for all $x$. 
 
 
-
-**Theorem: The Fritz John Conditions**
+#### **Theorem | The Fritz John Conditions**
 > Assuming that all $g_i(x), i\in I$ are all convex and that $x$ solves (P), then there exists $\alpha_i \ge 0 \;\forall i\in [m]$ where it's not the case that all of them are equal to zero, and it satisfies: 
 > $$
 >\begin{aligned}

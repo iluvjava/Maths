@@ -67,8 +67,6 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 ---
 ### **Hilbert Spaces**
 
-- [Hilbert Space](Functional%20Spaces/Hilbert%20Space.md) 
-	- It's an inner product space. 
 
 - [Inner Product Space](Functional%20Spaces/Inner%20Product%20Space.md)
 	- Parallelogram laws 
@@ -76,6 +74,10 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 	- Cauchy Swarts
 	- Continuity of inner product. 
 	- Orthogonality. 
+
+- [Hilbert Space](Functional%20Spaces/Hilbert%20Space.md) 
+	- It's an inner product space. 
+
 - [Hilbert Space Introduction](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
 	- Projection Theorem
 	- Obtuse angle and orthogonality characterization of subspace projections
@@ -93,7 +95,7 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 	- Subspace Projection is an Hilbert adjoint operator 
 
 ---
-### **Misc**
+### **Misc Important Results**
 - [Finite Dimensional Normed Space](Functional%20Spaces/Finite%20Dimensional%20Normed%20Space.md)
 	- Important lemmas regarding lower boundedness of basis by coefficients. 
 	- The norms are equivalent.

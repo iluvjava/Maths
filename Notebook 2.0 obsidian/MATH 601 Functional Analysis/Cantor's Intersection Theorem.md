@@ -4,9 +4,9 @@
 ---
 ### **Intro**
 
-Let $(X, d)$ be a metric space that is complete. Recall [[Set Diameter]] a definition.
+Let $(X, d)$ be a metric space that is *complete*. Recall [[Set Diameter]] a definition.
 
-**Theorem: Cantor Intersections**
+**Theorem | Cantor Intersections**
 > If $F_1\supseteq F_2 \supseteq\cdots$, and $\lim_{n\rightarrow \infty}\text{diam}(F_n) = 0$, then the strong limit of the set converges to a singleton; i.e: $\lim_{n\rightarrow \infty} F_n  = \bigcap_{n\in N}F_n = \{x\}$. 
 
 **Proof**
