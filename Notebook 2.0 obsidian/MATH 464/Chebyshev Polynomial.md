@@ -2,7 +2,7 @@
 
 Wiki link: [here](https://en.wikipedia.org/wiki/Chebyshev_polynomials). We introduce this entities without much of the proof. Serve as a quick references when using it. 
 
-**Canonical Definition:Chebyshv Type I** 
+**Canonical Definition | Chebyshev Type I** 
 
 > Chebyshev polynomial of the first kind is given as: 
 > $$T_n(x) = \cos(n\arccos(x))$$

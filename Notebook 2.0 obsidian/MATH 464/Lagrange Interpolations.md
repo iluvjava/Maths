@@ -1,6 +1,6 @@
 ### **Intro**
 
-The interpolating polynomial for a list of data point outputed by some function $f: \mathbb{R}\mapsto \mathbb R$ in the form of $\{(x_i, f(x_i))\}_{i=0}^k$ is given by the following formula: 
+The interpolating polynomial for a list of data point output from the function $f: \mathbb{R}\mapsto \mathbb R$ in the form of $\{(x_i, f(x_i))\}_{i=0}^k$ is given by the following formula: 
 $$
 P(x) = \sum_{j = 0}^{k} 
 	f(x_j)
