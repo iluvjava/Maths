@@ -89,7 +89,6 @@ $$
 
 since the sequence $\Vert x^{(n)} - y\Vert$ converges in $\mathbb R$, any subsequence has $\lim_{k\rightarrow \infty} \langle x^{(n_k)}, y - z\rangle = \Vert y\Vert^2 - \Vert x\Vert^2$, because which is fixed, therefore, consider again the use of B.W theorem and 2 subsequences indexed with $n_k, m_k$ converging to 2 different cluster point $\bar x, x^+ \in C$ we have equality between the 2 limits: 
 
-
 $$
 \begin{aligned}
     & \lim_{k\rightarrow \infty} \langle x^{(n_k)}, \bar x - x^+\rangle = \
