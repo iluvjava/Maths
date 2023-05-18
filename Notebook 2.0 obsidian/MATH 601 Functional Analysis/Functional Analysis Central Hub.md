@@ -27,8 +27,9 @@ Metric space describes distance between 2 elements. It's useful because we can t
 - [Topology of Metric Space](Functional%20Spaces/Topology%20of%20Metric%20Space.md): 
 	- Epsilon Ball, open/closed set. 
 	- Separability. 
-	- Completeness.
+	- Completeness. 
 	- Examples. 
+	- Compactness [Compactness in Metric Spaces](Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md), generalized from finite dimensional vector spaces. 
 - [Banach Contraction in Metric Space](Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md)
 	- Contractive mapping. 
 	- Completeness. 
@@ -88,7 +89,7 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 - [Bilinear Form, Rietz Representations](Bilinear%20Form,%20Rietz%20Representations.md)
 	- Rietz representation theorem for bounded linear functionals
 	- Bilinear form definition and its norm
-- [Linear Operators in Hilbert Space](Linear%20Operators%20in%20Hilbert%20Space.md)
+- [Linear Mapping in Hilbert Space](Linear%20Mapping%20in%20Hilbert%20Space.md)
 	- Hilbert Adjoint and their properties
 	- Unitary, Normal, operators
 	- Inverses of Adjoint operators
@@ -100,7 +101,10 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 	- Important lemmas regarding lower boundedness of basis by coefficients. 
 	- The norms are equivalent.
 	- All subspaces are closed and complete if the subspace is complete.  
-	- Sequential Compactness
+	- Compact Norm ball means finite dimensional spaces. 
+	- Sequential Compactness.
 - [Strong and Weak Convergences Introduction](Strong%20and%20Weak%20Convergences%20Introduction.md)
 	- Motivations. 
 	- Theorems in Banach Spaces, Hilbert spaces, and theorems for finite dimensional spaces. 
+- [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md)
+	- A Very important theorem in functional analysis. 

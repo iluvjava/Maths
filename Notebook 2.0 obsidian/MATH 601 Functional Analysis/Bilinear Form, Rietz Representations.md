@@ -1,5 +1,5 @@
 - [Hilbert Space Introduction](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
-- [Linear Operators in Hilbert Space](Linear%20Operators%20in%20Hilbert%20Space.md)
+- [Linear Mapping in Hilbert Space](Linear%20Mapping%20in%20Hilbert%20Space.md)
 - [Linear Functionals and Dual Spaces](Linear%20Functionals%20and%20Dual%20Spaces.md)
 
 ---

@@ -38,7 +38,6 @@ Don't know where is the proof but this seems legit.
 **Remarks**: 
 If, $Y\subseteq X$ doesn't form a vector space, then it's definitely possible for $Y$ to be not a Banach space at all. 
 
-
 ---
 ### **Norm as a Metric**
 
@@ -77,7 +76,7 @@ The following is about Normed space in general, not just Banach space, please no
 **Observations**: 
 
 
-The lemma says that it's possible to identify a unitary vector $z$ from the set $Z\setminus Y$ such that it barely touches the closed linear subspace $Y$, infinite dimension or not, meaning it's foundamentally possible to point away from all points in linear subspace $Y$, with just barely the same amount of distance as the size of the vector: $z$. 
+The lemma says that it's possible to identify a unitary vector $z$ from the set $Z\setminus Y$ such that it barely touches the closed linear subspace $Y$, infinite dimension or not, meaning it's fundamentally possible to point away from all points in linear subspace $Y$, with just barely the same amount of distance as the size of the vector: $z$. 
 
 **Proof**:
 
@@ -93,7 +92,7 @@ $$
 \end{aligned}
 $$
 
-At this step, we had made a minimizers $y^+$ that is closest to the element $v$ that has beend lifted up from $Y$, the closed set while still remains in $Z$, in a hilbert space (a stronger version of a normed vector space), this would become a projection. From the definition of $\inf$ we have: 
+At this step, we had made a minimizers $y^+$ that is closest to the element $v$ that has been lifted up from $Y$, the closed set while still remains in $Z$, in a Hilbert space (a stronger version of a normed vector space), this would become a projection. From the definition of $\inf$ we have: 
 
 $$
 \begin{aligned}
@@ -130,4 +129,4 @@ Geometrically it means, it's possible to find a point $x\in Z\setminus Y$ such t
 
 **References:**
 
-This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into [here](http://mathonline.wikidot.com/riesz-s-lemma) on mathdot for a better exposition of the proof. 
+This is listed as 2.4-5 in Kreyzig's textbook, but I would suggest looking into [here](http://mathonline.wikidot.com/riesz-s-lemma) on math-dot for a better exposition of the proof. 

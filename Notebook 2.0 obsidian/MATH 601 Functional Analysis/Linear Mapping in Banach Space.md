@@ -104,7 +104,7 @@ Continuity is boundedness, and vice versa. In the infinite dimension, it's possi
 **Proof**: We skip for now. 
 
 #### **Thm-4 | Bounded Linear Extension (2.7-11)**
-> Let $T$ be a bounded linear operator mapping from $\text{dom}(T)\subseteq X$ to $Y$, assuming that $\text{dom}(T)$ is a normed vector space and $Y$ is a Banach space (It's complete). Then $T$ has the following extnsion: 
+> Let $T$ be a bounded linear operator mapping from $\text{dom}(T)\subseteq X$ to $Y$, assuming that $\text{dom}(T)$ is a normed vector space and $Y$ is a Banach space (It's complete). Then $T$ has the following extension: 
 > $$
 >   \widetilde T: \text{cl.dom} (T) \mapsto Y, 
 > $$
@@ -121,9 +121,9 @@ We skip them for now.
 ---
 ### **Linear Functionals**
 
-Linear functions are a special type of linear mapping that is of special interests because they are the basic components of a linear mapping, and they also links to a concepts called: "Dual spaces", because they themselves can be represetned as a vector in the Dual Space. We didn't define it here. We introduce the definition of a linear functional: 
+Linear functions are a special type of linear mapping that is of special interests because they are the basic components of a linear mapping, and they also links to a concepts called: "Dual spaces", because they themselves can be represented as a vector in the Dual Space. We didn't define it here. We introduce the definition of a linear functional: 
 
-#### **Def-4 | Linear Functionl (2.8-1)**
+#### **Def-4 | Linear Functional (2.8-1)**
 
 > A linear functional $f$ is linear operator with domain in a vector space $X$, and its range is the scalar space for the vector space $X$. The scalar field is complex or real for the context of functional analysis because they have many desirable properties. 
 
