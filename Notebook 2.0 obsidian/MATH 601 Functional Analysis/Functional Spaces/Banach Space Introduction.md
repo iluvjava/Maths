@@ -67,19 +67,62 @@ Suppose that $d(x, y) = \Vert x - y\Vert$ is the metric for our vector space the
 > $$
 > and vice versa. 
 
-
 ---
 ### **Lemma | Riesz Lemma (2.4-5)**
 
-> Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a proper, closed, linear subspace of $Z$, Then for every $\theta \in (0, 1)$, a real number, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
+The following is about Normed space in general, not just Banach space, please note this fact. 
+
+> Let $Y, Z$ be a subspace of a normed space $X$. Let $Y$ be a closed proper linear subspace of $Z$, Then for every $\theta \in (0, 1)\subseteq \mathbb R$, there exists $z\in Z$ such that $\Vert z\Vert = 1$, and $\Vert z - y\Vert \ge \theta$ for all $y\in Y$. 
 
 **Observations**: 
 
-This lemma shows that, it's possible to lift a unitary vector perpendicular above a linear subspace, $Y$ in this case, name that vector $z$ (unitary), such that the distance of any vector from $Y$ to $z$, can be upper bounded by $1$ , and lower bounded by $0$. The closure and proper subset property of $y$ plays a role in the proof. 
+
+The lemma says that it's possible to identify a unitary vector $z$ from the set $Z\setminus Y$ such that it barely touches the closed linear subspace $Y$, infinite dimension or not, meaning it's foundamentally possible to point away from all points in linear subspace $Y$, with just barely the same amount of distance as the size of the vector: $z$. 
 
 **Proof**:
 
-Skipped. 
+$$
+\begin{aligned}
+    & Y \in \text{cl}(Y) \cap Y \subsetneq Z \implies Z \setminus Y \neq \emptyset
+    \\
+    \text{let }& v \in Z \setminus Y
+    \\
+    & a = \inf_{y\in Y} \Vert v - y\Vert
+    \\
+    & Y = \text{cl}(Y)\implies \exists y^+\in Y : \Vert v - y^+\Vert = a.
+\end{aligned}
+$$
+
+At this step, we had made a minimizers $y^+$ that is closest to the element $v$ that has beend lifted up from $Y$, the closed set while still remains in $Z$, in a hilbert space (a stronger version of a normed vector space), this would become a projection. From the definition of $\inf$ we have: 
+
+$$
+\begin{aligned}
+    & 
+    \forall \theta \in (0, 1)\; \exist y_0 \in Y: 
+    a \le \Vert v - y_0\Vert \le a / \theta
+    \\
+    \text{let: }
+    &
+    z = \frac{v - y_0}{\Vert v - y_0\Vert} = c(v - y_0) \text{ s.t: }\Vert z \Vert = 1. 
+\end{aligned}
+$$
+
+The $z$ vector is a vector pointing from a point $y_0$ to the vector $v$. Choose $y \in Y$, arbitrary, we have: 
+
+$$
+\begin{aligned}
+    \Vert z - y \Vert &= \Vert c(v - y_0) - y\Vert 
+    \\
+    &= c\Vert v - y_0 - c^{-1}y\Vert
+    \\
+    &= c \left\Vert v - \underbrace{(y_0 + c^{-1}y)}_{\in Y}\right\Vert
+    \\
+    [1]\implies 
+    &\ge ca = \frac{a}{\Vert v - y_0\Vert} \ge \frac{a}{ a/ \theta} = \theta , 
+\end{aligned}
+$$
+
+and hence the proof is complete. At \[1\] we used the fact that $a$ is the minimum distance going from the vector $v$ to the subspace $Y$. 
 
 **Remarks**: 
 

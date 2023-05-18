@@ -65,6 +65,8 @@ If not, using property of limit, and assumes that $a_n$ converges to ${\infty, c
 ---
 ### **Limit Ratio Characterizations of Linear Convergence Sequence**
 
+WOLG, we focus on solving sequences that converge to zero, for sequence that has a prior known limit, subtracting the sequence with the limit produces the error sequence, it's a sequence the converges to zero. 
+
 > If a sequence has: 
 > $$
 >   \lim_{n\rightarrow \infty}\frac{|a_{n + 1}|}{|a_{n}|} \le \alpha < 1, 
@@ -128,3 +130,9 @@ $$
 $$
 
 where, the convergence rate is quite aggressive. Finally, changing the value $\alpha$ will just change the base of the exponent on the exponent of the constant, it won't change the type of convergence. This characterize a big class of convergence rate that is faster than linear. 
+
+
+---
+### **Step Size over Error Ratio Characterizations of Different Convergence Rates**
+
+

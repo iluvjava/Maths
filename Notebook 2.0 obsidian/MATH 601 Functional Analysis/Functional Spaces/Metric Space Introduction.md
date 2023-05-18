@@ -81,6 +81,11 @@ There are a lot of things related to the the topologies for Metric Spaces. See [
 
 
 ---
+### **Convergences**
+
+Sometimes, when there are infinitely many things in the metric space, one would like to characterize specific elements in it via limit, please read [Convergence, Completeness in Metric Space](Convergence,%20Completeness%20in%20Metric%20Space.md) for more information. 
+
+---
 ### **Equivalences of Metrics**
 
 We introduce 2 type of equivalence between metric spaces. These are just the standard math stuff and can be found as a wiki topic [here](https://en.wikipedia.org/wiki/Equivalence_of_metrics). 

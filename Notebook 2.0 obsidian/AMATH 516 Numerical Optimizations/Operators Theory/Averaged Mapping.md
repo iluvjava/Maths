@@ -5,7 +5,7 @@
 
 Average operator is nonexpansive. Firmly nonexpansive operators are a subset of averaged operators. 
 
-**Definition: Averaged Operator**
+**Definition | Averaged Operator**
 
 > Let $F$ be an averaged operator if $F := (1 - \theta) I + \theta G$ where $\theta \in (0, 1)$, and $G$ has to be a non-expansive operator. Consequently, the fixed point of $F$ will have to be a fixed point of $G$ as well. 
 

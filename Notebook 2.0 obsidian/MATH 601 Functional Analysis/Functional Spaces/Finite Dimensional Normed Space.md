@@ -262,12 +262,44 @@ swapping the norm $\Vert \cdot\Vert, \Vert \cdot\Vert_a$ and perform the proof a
 
 Kreyzig's textbook, theorem 2.4-5. 
 
-#### **Thm | Closedness and Bounded Equivalent to Compactness (2.5-3)**
+#### **Thm | Closedness and Bounded is Equivalent to Compactness (2.5-3)**
 > A finite dimensional subspace is compact, if and only if it's closed and bounded. 
 
 **Proof**: 
 
-From left to right it's direct from the definition of a compact space, from right to left requires some proofs. 
+Going from from left to right, it is direct from the definition of a compact space, going from right to left requires some proofs. Let $M\subseteq X$ be closed and bounded, let $\text{dim}(X) = n$, let $\{e_i\}_{i = 1}^n$ be a basis for $X$, Let $(x^{(n)})_{n\in \mathbb{N}}$ be a sequence in $M$, written in the form: 
+
+$$
+\begin{aligned}
+    x^{(m)} = \xi_1^{(m)}e_1 + \cdots + \xi_n^{(m)} e_n, 
+\end{aligned}
+$$
+
+$M$ is bounded implies $\exists k : \Vert x^{(m)}\Vert \le k \; \forall m\in \mathbb  N$, using the coefficient one norm lower bound lemma we have: 
+
+$$
+\begin{aligned}
+    \implies 
+    &
+    \exists c: k \ge \Vert x^{(m)}\Vert = \left\Vert 
+        \sum_{j = 1}^{n} \xi_j^{(m)} e_j
+    \right\Vert 
+    \ge c \sum_{i = 1}^{n} |\xi_j^{(m)}|
+    \\
+    \implies & 
+    \frac{k}{c} \ge |\xi_j^{(m)}| \; \forall j \in [n], m \in \N, 
+\end{aligned}
+$$
+
+using B.W in $\R$, we consider subsequence mapper $m_1(k): \N \mapsto \N$ such that it's strictly monotone increasing that makes $\xi_1^{(m_1(k))}$ a converging subsequence of $\xi_1^{(m)}$, and then we make another mapping $m_2(k)$, It maps from the range of $m_1(k)$ to a subset of $\text{rng}(m_1)$, and it's strictly montone increasing, such that it makes $(\xi_2^{(m_2(k))})_{k\in \N}$ a converging subsequence. Keep doing this until $m_n(k)$, then it will be the case that $(\xi_i^{(m_n(k))})_{k\in \N}$ is a converging subsequence for all $1 \le i \le n$. Using this we have a converging subsequence with a limit, giving us: 
+
+$$
+\begin{aligned}
+    \lim_{k\rightarrow \infty} \xi^{(m_n(k))} = \bar \xi, 
+\end{aligned}
+$$
+
+and therefore, the closed and bounded set in finite dimension is a compact set. 
 
 
 **Remarks**: 
@@ -279,21 +311,42 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 
 
 ---
-### **An Lemma In the Middle**
+### **Lemma-2, Riesz Lemma | Lift up From a Closed Linear Subspace**
 
-This lemma can lift us up above a subspace in the normed space! Please read about the Rietz lemma stated in [Banach Space Introduction](Banach%20Space%20Introduction.md) for more information, the later content will continue from it. 
+This lemma can lift a vector up "vertically" above a closed linear subspace in the normed space, as much as the length of the vector allow. Please read about the Rietz lemma stated in [Banach Space Introduction](Banach%20Space%20Introduction.md) for more information, the later content will continue from it. In this section, we name it 
 
 ---
 ### **More Theorems**
 
-More theorems about compactness and finite dimensional space, 
+More theorems about compactness and finite dimensional space. 
 
 **Thm |  Finite Dimensional Space (2.5-5)**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
+**Observations**
+The converse is true, trivially from previous theorem. 
+
 **Proof**: 
 
-skipped. 
+Let $X$ be an infinite dimensional linear space, we use the Riesz lemma to make a sequence of vector that definitely doesn't have converging subsequence. Choose any $x_1\in X$ such that $\Vert x_2\Vert = 1$, let $X_1 = \text{span}(x_1)$, then we can choose $\Vert x_2\Vert$ such that $\Vert x_1 - x_2\Vert \ge 1/2$, by Riesz Lemma. So: 
+$$
+\begin{aligned}
+    & \text{def} X_2 = \text{span}(x_1, x_2)
+    \\
+    \implies & \exists x_3 : \Vert x_3\Vert = 1 \wedge (\Vert x_3 - x_i\Vert \ge 1/2 \;\forall i \in \{1, 2\})
+    \\
+    & \text{def }X_3 = \text{span}(x_1, x_2, x_3)
+    \\
+    \quad \vdots 
+    \\
+    \implies & \exists x_n: \Vert x_n\Vert = 1 (\Vert x_n - x_i\Vert \ge \frac{1}{2}\;\forall 1 \le i \le n - 1),
+    \\
+    \quad \vdots
+\end{aligned}
+$$
+
+then we had constructed a sequence $(x_n)_{n\in \N}$ such that $\Vert x_n - x_m\Vert \ge 1/2$ for all $m, n\in \N$, and therefore there is no converging subsequence, therefore, in an infinite dimensional space, we can always have a bounded sequence that doesn't have any converging subsequences, this is by the virtue of Riezs Lemma. 
+
 
 **Remarks**: 
 
