@@ -316,7 +316,7 @@ Only a finite dimensional subspace has the ability to generalized the sequential
 This lemma can lift a vector up "vertically" above a closed linear subspace in the normed space, as much as the length of the vector allow. Please read about the Rietz lemma stated in [Banach Space Introduction](Banach%20Space%20Introduction.md) for more information, the later content will continue from it. In this section, we name it 
 
 ---
-### **More Theorems**
+### **Closed Norm Ball is Always Compact in Finite Dimensions**
 
 More theorems about compactness and finite dimensional space. 
 
@@ -328,7 +328,7 @@ The converse is true, trivially from previous theorem.
 
 **Proof**: 
 
-Let $X$ be an infinite dimensional linear space, we use the Riesz lemma to make a sequence of vector that definitely doesn't have converging subsequence. Choose any $x_1\in X$ such that $\Vert x_2\Vert = 1$, let $X_1 = \text{span}(x_1)$, then we can choose $\Vert x_2\Vert$ such that $\Vert x_1 - x_2\Vert \ge 1/2$, by Riesz Lemma. So: 
+Let $X$ be an infinite dimensional linear space, we use the Riesz lemma to make a sequence of vector that definitely doesn't have converging subsequence. Choose any $x_1\in X$ such that $\Vert x_2\Vert = 1$, let $X_1 = \text{span}(x_1)$, then we can choose $\Vert x_2\Vert$ such that $\Vert x_1 - x_2\Vert \ge 1/2$, by Riezs Lemma. So: 
 $$
 \begin{aligned}
     & \text{def} X_2 = \text{span}(x_1, x_2)
@@ -339,7 +339,7 @@ $$
     \\
     \quad \vdots 
     \\
-    \implies & \exists x_n: \Vert x_n\Vert = 1 (\Vert x_n - x_i\Vert \ge \frac{1}{2}\;\forall 1 \le i \le n - 1),
+    \implies & \exists x_n: \Vert x_n\Vert = 1 (\Vert x_n - x_i\Vert \ge 1/2\;\forall 1 \le i \le n - 1),
     \\
     \quad \vdots
 \end{aligned}
@@ -351,21 +351,5 @@ then we had constructed a sequence $(x_n)_{n\in \N}$ such that $\Vert x_n - x_m\
 **Remarks**: 
 
 It's implied that in a finite dimensional space, a closed unit ball is a set that contains bounded sequences that has diverging subspace. But this is not possible in a finite dimensional space. 
-
-**Thm | Continuous Mapping Preserves Compact Space (2.5-6)**
-> Let $X, Y$ be metric spaces. Let $T: X \mapsto Y$ be a continuous mapping. Then the image of a compact subset $M$ of $X$ is, compact. $TM$ is a compact set as well. 
-
-**Proof**: 
-
-Skipped
-
-**Remarks**: 
-
-Take note that this statement is about metric spaces in general. This theorem allows us to generalize some of the theorems used for single variable calculus. 
-
-**References:** Kreyzig's textbook, 2.5-6. 
-
-**Thm | Minimizer and Maximizer of a Compact Mapping**
-> A mapping from a compact subspace of a metric space, $M\subseteq X$ to $\R$ will give a maximum and a minimum at some point in $M$. 
 
 

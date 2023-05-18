@@ -98,7 +98,7 @@ At this step, we had made a minimizers $y^+$ that is closest to the element $v$ 
 $$
 \begin{aligned}
     & 
-    \forall \theta \in (0, 1)\; \exist y_0 \in Y: 
+    \forall \theta \in (0, 1)\; \exists y_0 \in Y: 
     a \le \Vert v - y_0\Vert \le a / \theta
     \\
     \text{let: }
