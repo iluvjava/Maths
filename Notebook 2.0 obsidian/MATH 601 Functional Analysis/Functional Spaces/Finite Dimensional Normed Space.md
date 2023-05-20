@@ -143,8 +143,7 @@ The converse is not true. Consider the set of canonical basis $\{e_n\} \in l^2$,
 
 **References:** 
 
-2.5-2 in Kreyzig's Textbook. 
-
+2.5-2 in Kreyzig's Textbook
 
 **Remark**: 
 
@@ -157,6 +156,9 @@ We list important theorems and cite the places that they are coming from. It's i
 
 #### **Thm | Closedness and Completeness (2.4-2)**
 > A finite dimensional subspace/space is complete, both at the same time. 
+
+**Note**: 
+This seems to be just the Heine Borel Theorem. 
 
 **Proof**: 
 

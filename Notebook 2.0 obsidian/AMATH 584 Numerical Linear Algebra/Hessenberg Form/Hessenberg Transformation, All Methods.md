@@ -1,6 +1,6 @@
-[[Hessenberg Transform intro, HS Reflector]]
-[[Hessenberg Transform with Arnoldi Iterations]]
-[[Krylov Matrix QR and Arnoldi Iterations]]
+- [[Hessenberg Transform intro, HS Reflector]]
+- [[Hessenberg Transform with Arnoldi Iterations]]
+- [[Krylov Matrix QR and Arnoldi Iterations]]
 
 Need to know all above to understand what I am trying to talk about in this file
 

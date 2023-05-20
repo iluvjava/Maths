@@ -30,7 +30,7 @@ observe that the term $|f(x_1) - f_n(x_1)|, |f_n(x_2) - f(x_2)|$ can be arbitrar
 
 The theorem doesn't say anything about preserving uniform continuity of the function. 
 
-**Corollary: Uniform Convergence preserving Uniform Continuity**
+**Corollary | Uniform Convergence preserving Uniform Continuity**
 
 > When $f_n\rightarrow f$ uniformly, the limit of the function is also uniform continuous. 
 

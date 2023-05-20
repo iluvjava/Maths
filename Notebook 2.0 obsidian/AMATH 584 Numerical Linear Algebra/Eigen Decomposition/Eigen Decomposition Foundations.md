@@ -2,7 +2,7 @@ The following content is loosely related to this topic of discussions.
 [[Generalized Eigenspaces]]
 [[Krylov Subspace]]
 
-References: 
+**References**: 
 [Applied Numerical Linear Algebra](https://epubs.siam.org/doi/book/10.1137/1.9781611971446?mobileUi=0&) [Chapter 4](https://epubs.siam.org/doi/abs/10.1137/1.9781611971446.ch4)
 
 
@@ -11,7 +11,7 @@ References:
 
 Here we introduce extremely useful concepts and lemma that will assist with the understanding of Nonsymmetric algorithms.
 
-### **Lemma: Block Triangular Matrices**
+### **Lemma | Block Triangular Matrices**
 
 Consider a matrix $A$ that is squared real matrix consisting of block of square matrices in the following form:
 
@@ -38,12 +38,11 @@ $$
 Therefore, the eigenvalues of the matrix $A$ is the union of all the eigenvalues of block diagonals of the matrix $A$.
 
 ---
-### **Invariant Subspace: Proposition 4.3**
+### **Invariant Subspace | Proposition 4.3, pg 145**
 
-> A subspace $\mathcal{X}$ is invariant to the matrix $A$ if and only if there exists $B\in \mathbb{R}^{m\times m}$ such that $AX = XB$ where $X$ is a matrix that has columns spanning the subspace $\mathcal{X}$. 
-> 
-> Quantities are like: 
-> 
+> A subspace $\mathcal{X}$ is invariant to the matrix $A$ if and only if there exists $B\in \mathbb{R}^{m\times m}$ such that $AX = XB$ where $X$ is a matrix that has ordered columns of a basis spanning the subspace $\mathcal{X}$, at the same time $A, B$ share the same set of Eigenvalues. 
+
+**The Quantities are** 
 $$
 \begin{aligned}
     & A \in \mathbb{R}^{n\times n}
@@ -56,45 +55,34 @@ $$
 
 **Proof**
 
-Proving $\implies$, if $X$ is invariant to the matrix $A$, then $AX = XB$.
-
-The proof is straightforward from the definition of things and using basic linear algebra. 
-
-Proving $\impliedby$, if $AX = XB$, then span of the columns of $X$ is invariant to the matrix $A$.
+Proving $\implies$, if $X$ is invariant to the matrix $A$, then $AX = XB$. The proof is straightforward from the definition of things and using basic linear algebra. Proving $\impliedby$, if $AX = XB$, then each column of $(AX)_{:, i}$ is in the range of $X$, hence $X$ is invariant after transformation by $A$. 
 
 Assume: 
 
 $$
-AX = XB \quad n \ge m
+AX = XB, n \ge m
 $$
 
-Choose Any: 
+Choose any: 
 
 $$
-\widetilde{X} \in \mathbb{R}^{n\times (n -m)}: \widehat{X} = [X \; \widetilde{X}] \text{is Non-singular}
+\widetilde{X} \in \mathbb{R}^{n\times (n -m)}: \widehat{X} = [X \; \widetilde{X}] \text{ is Non-singular}
 $$
 
-The chosie is obvious, we can just choose the complementary subspace spanned by columns of the matrix $X$. Then I make the claim that:
-
-$$
-A \sim \widehat{X}^{-1}A \widehat{X}
-$$
-
-The matrix $\widehat{X}$ gives a similarity transform to the matrix $A$.
-
-Let's choose $\widehat{X}^{-1}$ be in the form of:
+$\widetilde X$ has columns that are the basis for a complementary subspace spanned on the range of $X$, hence $A \sim \widehat{X}^{-1}A \widehat{X}$
+, $\widehat{X}$ gives a similarity transform to the matrix $A$. Choose $\widehat{X}^{-1}$ be in the form of:
 
 $$
 \widehat{X}^{-1} = \begin{bmatrix}
     Y \\ \widetilde{Y}
-\end{bmatrix} \implies \widehat{X}^{-1}\widehat{X} = I
+\end{bmatrix}, \text{where } \widehat{X}^{-1}\widehat{X} = I, 
 $$
 
-Whih means:
+which means:
 
 $$
 \begin{aligned}
-    \widehat{X}^{-1}X &= 
+    \widehat{X}^{-1}\widehat X &= 
     \begin{bmatrix}
         Y \\ \widetilde {Y}
     \end{bmatrix} \begin{bmatrix}
@@ -114,11 +102,11 @@ $$
     \widetilde{Y}X &= \mathbf{0} = Y\widetilde{X}
     \\
     \implies 
-    \widetilde{X}\widetilde{Y} &= I = XY
+    \widetilde{X}\widetilde{Y} &= I = XY,
 \end{aligned}
 $$
 
-Then, consider the quantity:
+consider the similarity transform with the above we have: 
 
 $$
 \begin{aligned}
@@ -151,16 +139,15 @@ $$
         B & YA\widetilde{X}
         \\
         \mathbf{0} & \widetilde{Y}A\widetilde{X}
-    \end{bmatrix}
+    \end{bmatrix}. 
 \end{aligned}
 $$
 
-Observe that, the block triangular matrix contains all the eigenvalues of the block matrix $B$. Take this claim for granted, and it's also not hard to chech that this is true.
+Observe that, the block triangular matrix contains all the eigenvalues of the block matrix $B$ by the previous lemma about eigenvalues of block triangular matrices. 
 
----
-### **Importance of the Idea**
+**Remarks**
 
-Notice that, $X$ can be some kind of generalized Eigenspaces, or the kyrlov subspace with grade $m$. In the case of Jordan form, the matrix $B$ is the jordan block, and the matrix $X$ is the eigen matrix. 
+Notice that, $X$ can be some kind of generalized Eigenspaces, or the kyrlov subspace with grade $m$. In the case of Jordan form, the matrix $B$ is the Jordan block, and the matrix $X$ is the eigen matrix. 
 
 ---
 ### **Schur Decomposition** 
@@ -285,9 +272,7 @@ Done. $\blacksquare$
 ---
 ### **Getting A Simple Eigenvector From the Real Schur Form**
 
-Suppose that $T = Q^HAQ$ is the Schur's form of the matrix $A$, Consider that $Tx = \lambda x$, we have $AQx = QTx = \lambda Qx$, so then $Qx$ is an eigenvector of matrix $A$.
-
-Suppose that $\lambda = t_{ii}$ which is a simple eigenvalue, then consider $(T - \lambda I)x = 0$, we have: 
+Suppose that $T = Q^HAQ$ is the Schur's form of the matrix $A$, Consider that $Tx = \lambda x$, we have $AQx = QTx = \lambda Qx$, so then $Qx$ is an eigenvector of matrix $A$. Suppose that $\lambda = t_{ii}$ which is a simple eigenvalue, then consider $(T - \lambda I)x = 0$, we have: 
 
 $$
 0 = \begin{bmatrix}

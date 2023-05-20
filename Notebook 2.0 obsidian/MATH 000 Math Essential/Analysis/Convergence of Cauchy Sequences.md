@@ -26,7 +26,7 @@ $$
 \end{aligned}
 $$
 
-where, we already know that $|a_n - a_{n_l}| < \epsilon$ by the fact that it's a Cauchy sequence. The second term is bounded by any $\epsilon'$ by the fact that the subsequence converges to $a$. Therefore, the LHS is bounded. The proof is complete.  
+where, we already know that $|a_n - a_{n_l}| < \epsilon$ by the fact that it's a Cauchy sequence. The second term is bounded by any $\epsilon'$ by the fact that the subsequence converges to $a$. Therefore, the LHS is epsilon bounded. The proof is complete.  
 
 
 

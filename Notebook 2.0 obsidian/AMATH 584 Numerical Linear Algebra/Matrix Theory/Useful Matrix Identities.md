@@ -5,7 +5,7 @@ Results can be generalized to rings too.
 ---
 ### **List of Formulas**
 
-Let $P$ be invertable squared matrix, then we can say that: 
+Let $P$ be invertible squared matrix, then we can say that: 
 
 > $$
 > (I + P)^{-1} = I- P（I+ P)^{-1} = I - (I + P)^{-1}P \tag{1}
