@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-When there is vector space, we have linear operator. However, in the world Banach Space, we have infinite dimensional vector space to work with. 
+When there is vector space, we have linear operator. However, in the world Banach Space, we have infinite dimensional vector space to work with. In this file, we are following Kryzig's textbook, introduction to functional analysis. 
 
 #### **Def-1 | Linear Operators**
 > A linear operator $T$ is an operator such that: 
@@ -36,27 +36,46 @@ This part will be focusing on later part of chapter 2 of Kryzig's textbook for f
 
 These results are elementary, it's the same as basic linear algebra, but they are proved without explicit definition or intuitive, graphical interpretations of a linear operator in finite dimensional spaces. These proofs are not exactly useful, but they tells us what generalizes from the intuitions for linear operators in finite dimensional spaces. 
 
-#### **Thm-1 | Range and Null Spaces (2.6-9)**
+#### **Thm 1 | Range and Null Spaces (2.6-9)**
 > 1. Range of a linear operator is also a vector space. 
 > 2. If $\text{dim.dom}(T) = n < \infty$ , then $\text{rng}(T) \le n$. 
 > 3. The null space, $\text{null}(T)$ is a vector space. 
 
-**Proof** Skipped. 
+**Proof**
+
+1. Choose some $y_1, y_2 \in \text{rng}(T)$, we show that $\alpha y_1 + \beta y_2 \in \text{rng}(T)$, by def of in $\text{rng}(T)$ we have $\exists x_1, x_2 : Tx_1= y_1, Tx_2 \in y_2$, and the results directly follows from the linearity of the operator. 
+2. It's impossible to have a set of $n + 1$ element such that it's independent. Let $\{y_i\}_{i = 1}^{n + 1}\subseteq \text{dom}(T)$ be a set of $n + 1$ element, arbitrary. Then there exists a set of input vector $\{x_i\}_{i = 1}^{n + 1}$ such that $Tx_i = y_i\in \text{rng}(T)$ from the definition of domain of the linear operator. From the fact that $\text{dim.dom}(T) = n$, the set $\{x_i\}_{i = 1}^{n + 1}$ is linear dependent, which means that 
+$$
+\begin{aligned}
+    & \alpha_1 x_1 + \cdots + \alpha_{n + 1} x_{n + 1} = 0, \exists 1 \le i \le n + 1: \alpha_i \neq 0
+    \\
+    \implies 
+    & T(\alpha_1 x_1 + \cdots + \alpha_{n + 1} x_{n + 1})  = \alpha_1 y_1 + \cdots + \alpha_{n + 1}y_1 = 0,
+\end{aligned}
+$$
+
+therefore, the set of vectors $y_i\in \text{rng}(T)$ is linearly dependent. Since $x_i$ is an arbitrary set of vectors, there is no way we can have a linear independent set of dimension $n + 1$, hence $\text{dim.rng}(T) \le n$. 
+
+3. This one is direct from the definition of the null space of the linear operator, we skip this proof. 
+
 
 **Remarks**: 
 
 From (2.), a linear operator will preserve linear dependence of a set of vectors, 
 
-#### **Thm-2 | Inverse Operator (2.6-10)**
+#### **Thm 2 | Inverse Operator (2.6-10)**
 > Let $X, Y$be vector spaces, both real and complex, Let $T: \text{dom}(T)\mapsto Y$, be a linear operator, with some domain and range that are subsets of $X, Y$. Then: 
 > 1. The inverse exists if and only if $Tx =\mathbf 0  \iff x =\mathbf 0$. 
 > 2. $T^{-1}$ exists, then it will be a linear operator. 
 > 3. If $\text{dim}(T) = n < \infty$ and $T^{-1}$ exists, then $\text{dim.rng}(T) = \text{dim.dom}(T)$. 
 
-**Proof**: 
-For (1.) use the conditions to show the onto property for the linear operator. (2.) is direct from the linearity of the operator $T$. (3) Direct from (3.) in thm-1. 
+Note that, the inverse of the operator exists on the $\text{rng}(T)$ if $T$ is one-2-one. Meaning that $Tx_1 = Tx_2 \implies x_1 = x_2$, allowing for the inverse of some element $y\in \text{rng}(T)$ to be uniquely defined. And when $T$ is onto, the inverse exists on the entire vector space mapped by $T$. 
 
-#### **Lemma-1 | Inverse of Product (2.6-11)**
+**Proof**: 
+
+For (1.) use the conditions to show the onto property for the linear operator. (2.) is direct from the linearity of the operator $T$. (3) Direct from (2.) in thm-1 applying to $T$, and $T^{-1}$.
+
+#### **Lemma 1 | Inverse of Product (2.6-11)**
 > Let $T$ mapping from $X$ to $Z$, Let $S$ mapping from $Y$ to $Z$, and they are both bijective linear operator on vector spaces, then the inverse $(ST)^{-1} = T^{-1}S^{-1}$. 
 
 **Proof**
@@ -66,7 +85,7 @@ We skipped.
 ---
 ### **Bound and Continuous Linear Operators**
 
-Bounded linear operaors are important, they themselves are just another type of vector spaces with norms. We introduce them in this section. 
+Bounded linear operators are important, they themselves are just another type of vector spaces with norms. We introduce them in this section. 
 
 #### **Def-2 | Bounded Linear Opeartor**
 > Let $X, Y$ be normed spaces, and $T: X\mapsto Y$ a linear operator, where $\text{dom}(T)\subseteq X$, the opeartor $T$ is bounded if there is a real number C such that for all $x\in \text{dom}(T)$: $\Vert Tx\Vert \le c\Vert x\Vert$. 
@@ -96,12 +115,15 @@ For (1.), try $\Vert x - y\Vert \le \delta$, with $\delta = \epsilon / \Vert T\V
 Continuity is boundedness, and vice versa. In the infinite dimension, it's possible to have a mapping that is linear and not continuous. 
 
 
-#### **Corollary | Continuity, Null Space (2.7-10)**
+#### **Corollary | Continuity and Null Space (2.7-10)**
 > Let $T$ be a bounded linear operator, then: 
 > 1. $x_n \rightarrow x$ means that $Tx_n \rightarrow Tx$, preserving limits, closure of a subset of the domain will be preserved after the mapping of a bounded linear operator. 
 > 2. The null space $\text{null}(T)$ is a closed space. 
 
-**Proof**: We skip for now. 
+**Proof**:
+1. Since $T$ is bounded, from previous theorem, it's a continuous on the Banach space. Since we are in banach space, we can have limit, by continuity of the mapping, the limit in the space exists and will be preserved. 
+2. Choose $x\in \text{cl.rng}(T)$ be arbitrary, then exists $x_n\rightarrow x$ such that $Tx_n = \mathbf 0 $ for all $n \in \mathbb N$, by previous case (1), this has a limit and it's $\mathbf 0$. Therefore, $x\in \text{rng}(T)$, and therefore the set is a closed set. 
+
 
 #### **Thm-4 | Bounded Linear Extension (2.7-11)**
 > Let $T$ be a bounded linear operator mapping from $\text{dom}(T)\subseteq X$ to $Y$, assuming that $\text{dom}(T)$ is a normed vector space and $Y$ is a Banach space (It's complete). Then $T$ has the following extension: 

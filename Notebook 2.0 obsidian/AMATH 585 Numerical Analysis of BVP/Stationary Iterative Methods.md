@@ -12,8 +12,8 @@ Stationary iterative method refers to methods that just iterate with a matrix th
 
 Here is a list of the common methods: 
 
-* Jacobi Iteration: in the prereq. 
-* Gauss Seidel: in the prereq. 
+* Jacobi Iteration: in the pre-req. 
+* Gauss Seidel: in the pre-req. 
 * Successive Over Relaxation: About to come next. 
 
 Consider the factorization of matrix $A$ into 3 parts, the diagonal, strict lower diagonal, and the strict upper diagonal parts of the matrix: 

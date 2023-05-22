@@ -61,7 +61,7 @@ Fincally, using Cauchy Swartz inequality we have: $|f(x)|\le \Vert z\Vert\Vert x
 
 **Remarks**
 
-Unbounded linear functional would still have the representation of inner product form, it's just that their norm would be infinity. As a consequence of the representation theorm, we have the self-dual theorem: 
+Unbounded linear functional would still have the representation of inner product form, it's just that their norm would be infinity. As a consequence of the representation theorem, we have the self-dual theorem: 
 $$
 \mathcal H^\star =  \mathcal H
 $$

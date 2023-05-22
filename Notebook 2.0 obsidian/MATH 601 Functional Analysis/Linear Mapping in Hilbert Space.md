@@ -7,5 +7,9 @@
 
 The results from Banach space about linear mapping from the Banach space had been strength for the Hilbert Space. 
 
+**References**: 
+We will be taking theorems from Kryzig's textbook, and, Heinz's Monotone Book 1st ed, chapter 2. 
 
 #UNFINISHED 
+
+
