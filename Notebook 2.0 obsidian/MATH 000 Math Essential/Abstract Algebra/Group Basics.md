@@ -1,68 +1,111 @@
-No prerequisite. 
+[Equivalence Relations, Class](Equivalence%20Relations,%20Class.md)
 
 ---
 ### **Intro**
 
-Wiki for a Group [here](https://en.wikipedia.org/wiki/Group_(mathematics)). A group is a set $G$ associated with a binary operator $\leftarrow$. Suppose any 2 elements $a, b,c \in G$, then it has to satisfy that axioms: 
+We introduced the concept of a binary operations that is generic in the context of abstract algebra, and then we zoom in and see how it specializes to group operations. 
 
-1. Associative $(a\leftarrow b) \leftarrow c = a \leftarrow (b\leftarrow c)$. 
-2. There exists an element $e\in G$ such that $e \leftarrow a = a \leftarrow e = a$. 
-3. There exists inverse element for $a^{-1}\in G$ such that $a\leftarrow a^{-1} = a^{-1}\leftarrow a = e$. 
+#### **Def 1 (3.1.1) | Binary Operator**
+> Let $*$ be a binary operator, then it's a function $S\times S \mapsto S$, then let $a, b, c \in S$, the function satisfies: 
+> 1. Associativity, $(a*b)*c = a*(b*c)$. 
+> 2. Identity element. which might, or might not exists, might be unique, or it might not. An element is an identity element for the binary operation is an element $e\in S$ such that $e*a = a*e \; \forall a \in S$. 
+> 3. An inverse element, which might exists or it might not, which it might be unique or it might not. The element $a \in S$ has an inverse $b$ if $a*b=e= b*a$, requiring the existence of identity for the binary operator first. 
 
-**The cancelation property**: 
+**Note**
+
+1. This definition of binary operations is generic to Field, Rings, and Groups. In groups, some of these properties will be strengthened. We will see that later. 
+2. <mark style="background: #FF5582A6;">THIS OPERATION IS NOT SYMMETRIC</mark>! 
+
+**Observations**
+
+The logical operator $\implies$, is not an associative binary operations (for the set $\{0, 1\}$)! 
+
+**Remarks | Well Defined Binary Operations**
+
+Sometimes when a binary operations is applied on a set of elements, for example the equivalent class of some equivalence relations induced on the set, then it must be verified that the function maps all element in the equivalent set to the same output, or else, that won't be a binary operation. For example, all $q \in \mathbb Q$ have different representations, but all of the fractions are the same, hence, a binary operations on $\mathbb Q$ will have to be consistent regardless of how a fraction is represented in $\mathbb Q$, $2/2, 3/3$ should be the same number under the binary operator. 
+
+#### **Prop (3.1.3) | Constraints of Identities and Inverses of Binary Opt**
+
+> Let $*$ be an binary operator on the set $S$, then 
+> 1. The operation has at most one identity element. 
+> 2. If $*$ has the identity element, then the any element in $S$ has at most one inverse. 
+
+**Note**: 
+
+These 2 properties of the bnary operations are also generic to field, rings, or group
+
+**Proof**
+
+Let $e', e$ be 2 identity element in the set $S$, then 
 $$
 \begin{aligned}
-    \forall a, b, c & \in G: a\leftarrow  b = a\leftarrow c
+    & ee' = e'
     \\
-    \implies &
-    \exists a^{-1}: 
-    a^{-1} \leftarrow a \leftarrow b = 
-    a^{-1} \leftarrow a \leftarrow c
+    & e'e = e
     \\
-    e \leftarrow b &= e \leftarrow c
-    \\
-    b &= c.
+    \implies &e = e',
 \end{aligned}
 $$
 
-The order can be swapped and one can prove the right cancelation property where $b\leftarrow a = c\leftarrow a \implies b = c$ as well. 
+Assuming that $e$ is the unique identity element for the Binary operation on $S$, then consider $b, b'$ be the inverses for element $a \in S$, then 
+$$
+\begin{aligned}
+    b' = eb' = (ba)b' = b(ab') = be = b, 
+\end{aligned}
+$$
+therefore, if there exists inverses, then the inverse will be unique as well. 
 
-**Identity is unique**: 
 
-As a consequence, we know that for each element $a\in G$, the inverse exists for the element $a$ is unique, and the identity elemet is also, unique. Let $\bar e, e$ be 2 identity element then choose any $a \in G$ we have $e\leftarrow a = \bar e = \leftarrow e\implies e = \bar e$ by the existence of the inverse of $a$. 
+#### **Def 3 (3.1.4) | A Group, or Abelian Group**
+> Let $(G, >)$, be a tuple where $G$ is none empty and $>$ is a binary operation on the set $G$, then this is group when the following is satisfied: 
+> 1. Closure. 
+> 2. Associative Binary operation $>$. 
+> 3. Identity. There exists an identity element. 
+> 4. Inverses, there exists an inverse for each element in $G$. 
+> 
+> Additionally, when the binary operations on the set $G$ is symmetric, meaning that $ab = ba$, then it's an Abelian group. 
 
-**Inverse is unique**: 
+**Note**
 
-The inverse of each element is also unique. Let $\bar a^{-1}, a^{-1}$ both be the inverse of the element $a$, then $a\bar a^{-1}= a a^{-1}\implies a^{-1} = \bar a^{-1}$ by the cancellation property. 
+We use $>$ to denote the binary operations to emphasize the detail that, a group doesn't have to have a symmetric binary operation. 
 
-**Closure**
+#### **Proposition (3.1.7) | The cancelation property**: 
+> Let $(G, >)$ be a group, and $a, b, \in G$, then 
+> 1. $a>b = a>c \iff b = c$
+> 2. $a>c = b>c \iff a = b$
 
-If element $a,b\in G$, then $a \leftarrow b \in G$. Doing this until all element is in $G$, then the group $G$ has closure. 
+#### **Def (3.1.10) | The order of a Group**
+> The order of a group is just the number of elements in the set $G$, denoted as $|G|$. The order of a group can be infinite. 
 
-**Why the arrow?**
+---
+### **Conjugacy Relations On Group**
 
-Group operator $*, +, \cdot$ are symmetric, which gives the impression that order of the element doesn't matter, meaning that the elements can commute with each other. But this is rarely the case, hence we are using the operator $\leftarrow$ to emphasize the fact that group operator **is not commutative**. 
+We can construct requivalence relations directly from the group definiton. 
+
+#### **Def | Conjugacy Element**
+> For element $x, y$ of group $G$, define $x\sim y$ if there exists an element $a\in G$ such that $y = a xa^{-1}$. In this case, we say that $y$ is a *conjugate* of $x$. Then $\sim$ is an equivalence relation on the set $G$. 
+
+**Proof**
+
+Skpped, see example (3.1.7) in the brown book. 
+
 
 
 ---
-### **The Order of An Element**
-
-The natural number $n$ is the order of an element $a$ if it's the smallest natural number such that $a^n = e$. It's denoted as $|a|, \text{ord}(a)$ usually. 
-
-**Remark**
-
-The **order of a group** is the number of elements in the group. And if there is no such an $n$ exists such that $a^n$ gives $e$, then we say that it has an infinite order. 
-
----
-### **Examples**
-
-Group has rigit structure but it still arises everywhere. $\mathbb R, \mathbb C, \mathbb Z$ equipped with additions, they are the field but also a group. With multiplications, the zero element will have to be removed. They are examples of Abelian Group. An Abelian group allows commutative property for its element. 
+### **Illustrative Examples**
 
 
----
-### **The Symmetric Group**
+#### **Example (3.1.4) | The group of Integers Modulo n**
+> Let $n\in \Z$, then the set $Z_n$ is the set of integers modulo $n$, under addition of congruence classes (induced by the n-modulo equivalence relations on $\Z$. ) The group is finite and has $|Z_n| = n$. 
 
-A symmetric group should be kept into the brain whenever thinking about groups, especially when the group is finite. Symmetric group, denoted as $S_n$ is defined as all bijective functions that maps $[n]$ to $[n]$ $[n] = \{0, 1, 2, \cdots, n - 1\}$). Let $\circ$ be the operator, then $S$ defines a set of functions $f_i : S_n\mapsto S_n$. 
+To see that this is indeed a group, we observe that, elements from the equivalence classes are consistent under the addition operations $+$ for $\Z$. For all $x\in [a]_n, y\in [b]_n$, $[x + y]_n = [x]_n + [y]_n = [a]_n + [b]_n$, and hence the binary operation is consistent. Next, we see that this forms a group because $+$ is associative on the equivalence classes obviously. And $[0]_n$ is the identity element for the group, and $[-a]_n$ is the inverse of $[a]_n$. 
+
+#### **The Symmetric Group**
+
+> Symmetric group, denoted as $S_n$ is defined as all bijective functions that maps $[n]$ to $[n]$ $[n] = \{0, 1, 2, \cdots, n - 1\}$). Let $\circ$ be the binary operator of the group, then $S$ defines a set of all functions $f_i : S_n\mapsto S_n$. This group has order $n!$. 
+>
+
+**Observations**
 1. $id$ exists and it's the identity mapping on the set $[n]$. 
 2. $f^{-1}$ exists for any $f\in S_n$ because it's a bijection. 
 3. Functional composition is associative (obvious!), because each function doesn't know whether the input comes directly into the function or it's being passed as an output of another function. 
@@ -70,7 +113,6 @@ A symmetric group should be kept into the brain whenever thinking about groups, 
 Symmetric groups for countable and uncountable sets exist too. 
 
 
----
-### **The Generalized Linear Group**
+#### **The Generalized Linear Group**
 
 All the square invertible matrices creates an isomorphism between 2 subspaces, and all of these linear mapping creates a group under matrix multiplications. 

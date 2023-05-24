@@ -5,11 +5,7 @@ One of the very important application of Fourier Transform is its application to
 ---
 ### **Intro**
 
-We are going to solve the **wave equation** on the **infinite domain** using the **method of Fourier Transform** and **D'Alambert's Method**. 
-
-Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. 
-
-Suppose that that we are modeling the guitar string with: 
+We are going to solve the *wave equation* on the *infinite domain* using the *method of Fourier Transform* and *D'Alambert's Method*. Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. Suppose that that we are modeling the guitar string with: 
 
 $$
 \begin{cases}
@@ -45,7 +41,9 @@ $f(x)$ must be: **Absolutely Integrable**. So that means that integral over the 
 ---
 ### **Fourier Transform**
 
-**DO NOTE USE: Separation of Variables** for these type of PDE on an infinite domain. 
+
+> [!warn]-
+> DO NOTE USE separation of Variables for these type of PDE on an infinite domain. 
 
 Engenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial conditions. 
 

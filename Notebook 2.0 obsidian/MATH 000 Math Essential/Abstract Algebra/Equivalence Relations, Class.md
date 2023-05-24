@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-It's a relation that generalizes the idea of equality. 
+Equivalence relation is a relation that generalizes the idea of equality. 
 
 **Keywords**
 1. Equivalence Relation, Equivalent class. 
@@ -28,8 +28,7 @@ $$
 ----
 ### **Enlightening Examples**
 
-#### **Example 1 (2.2.1 in ref) | Congruence of on Modulo n**
-> This one is over used I am not typing it up. 
+I think the equality after mapping the elements over a function is the canonical ways of looking at equivalence relations. 
 
 #### **Example 2 (2.2.2 in ref)| Function on elements in S**
 > Let $f : S \mapsto T$ be any function. For $x_1, x_2 \in S$, we define $x_1 \sim_f x_2$ if $f(x_1) = f(x_2)$. Then for all $x_1, x_2, x_3 \in S$, we have: 
@@ -39,7 +38,12 @@ $$
 > therefore, this is indeed  an equivalence relation on the set $S$. 
 
 **Observations**
+
 This is a way of partitioning the domain of the function and reminds be of the construction behind Lesbegue Integral. 
+
+#### **Example 1 (2.2.1 in ref) | Congruence of on Modulo n**
+> It's not hard to see that, the equivalence relation under modulo-n is using a mapping $f(x) = \text{mod}(x, n)$ on the set $\Z$, and hence, using the previous example, this function will induce an equivalence relation on the set $\Z$. 
+
 
 ---
 ### **Theorems and Propositions**
@@ -52,3 +56,4 @@ We introduce some basic theorems followed from the above definitions.
 
 **Proof**
 #UNFINISHED 
+

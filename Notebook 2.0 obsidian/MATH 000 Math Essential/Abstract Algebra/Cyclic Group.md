@@ -1,5 +1,5 @@
 [[Group Basics]], 
-[[Factored Group, Cosets, Equivalence Relations]]. 
+[[Factored Group, Cosets]]. 
 
 ---
 ### **Intro**
