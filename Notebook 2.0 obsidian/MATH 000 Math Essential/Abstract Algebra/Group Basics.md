@@ -14,7 +14,7 @@ We introduced the concept of a binary operations that is generic in the context 
 **Note**
 
 1. This definition of binary operations is generic to Field, Rings, and Groups. In groups, some of these properties will be strengthened. We will see that later. 
-2. <mark style="background: #FF5582A6;">THIS OPERATION IS NOT SYMMETRIC</mark>! 
+2. <mark style="background: #FF5582A6;">THIS OPERATION IS NOT SYMMETRIC!</mark>
 
 **Observations**
 
