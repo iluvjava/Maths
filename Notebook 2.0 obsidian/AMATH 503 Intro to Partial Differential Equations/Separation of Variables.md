@@ -8,13 +8,13 @@ And, the procedure of using Separation of variables involves the usage of Fourie
 ---
 ### **Intro**
 
-This is chapter 3 in the lecture notes, you **must read** it. Separation of Variable, it works in the case when the boundary conditions is zero. If a solution is not separable, but we did it anyway, we might get infinitely many solutions such that the super position of such solution is going to give us the true solution, which is non-separable. 
+Separation of Variable, it works in the case when the boundary conditions are fixed to zero. If a solution is not separable, but we did it anyway, we might get infinitely many solutions such that the super position of such solution is going to give us the true solution, which is non-separable. 
 
 **Note**: 
 For the class, you don't have to show everything when solving ODEs, it's assumed that you know it so well that you can do it with eyes closed. Just stated he results and it will be fine. 
 
 ---
-### **Separation of Variables: Setting things up (Dirichlet Boundary Conditions, Heat Equation)**
+### **Separation of Variables | Setting things up (Dirichlet Boundary Conditions, Heat Equation)**
 
 Let's say that the solution is the product of 2 functions, then it will be like: 
 
