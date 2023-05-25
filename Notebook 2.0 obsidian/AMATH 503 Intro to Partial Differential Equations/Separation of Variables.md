@@ -110,11 +110,14 @@ $$
     & X(L) = 0 
     \\
     \underset{B = 0}{\implies}
-    & A\sin(\lambda L) = 0,
+    & A\sin(\lambda L) = 0
+    \\
+    \iff &
+    (A = 0) \vee (\sin(\lambda L) = 0)
 \end{aligned}
 $$
 
-then, it must be the cause that $\lambda L$ is a full period for $\sin$, if we assume nontrivial solution, and we index all solutions of $\lambda$ like $\lambda_n$, consider
+then, it must be the cause that $\lambda L$ is a full period for $\sin$,  if we assume nontrivial solution (when $A = 0$, solution is trivial), and we index all solutions of $\lambda$ like $\lambda_n$, consider
 
 $$
 \begin{aligned}
@@ -127,9 +130,9 @@ $$
 \end{aligned}
 $$
 
-$\lambda_n$ are called the eigenvalues, and for each value of $\lambda_n$ there is a Basis Function associated with it. It's sometimes called the harmonics, their coefficient are determined by initial conditions, which determine the initial harmonics. 
+$\lambda_n$ are called the eigenvalues, and for each value of $\lambda_n$ there is a Basis Function associated with it. It's sometimes called the harmonics, their coefficient are determined by initial conditions, which determine the initial harmonics. The constant, $A_n$ will just be a redundant constant, and it's obsorbed into the initial conditions for the second ODE $T(t)$. 
 
-#### **Solving for Second ODE | The Time Domain**
+#### **Solving for the Second ODE | The Time Domain**
 
 We index the coefficients $\lambda_n$, because it has already be paramaterized by the solutions for $X(x)$. For each $\lambda_n$, there is a solution for $T(t)$, and there will be a lot of them, hence we have: 
 
@@ -219,133 +222,113 @@ The exponent of the $\exp$ is getting super negative as $n\rightarrow \infty$ (v
 
 
 ---
-### **Neumann Boundary Conditions | Heat Trap**
+### **Neumann Boundary Conditions | Insulated Heat Trap**
 
-Here, we are assuming the *Neumann Boundary* conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. It's characterized by the $\partial_x$ being set to zero at the boundary of the domain. The derivative of the solution on $u(x, t)$ measure how much heat escape at the boundary of the domain. 
+Here, we are assuming the *Neumann Boundary* conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. It's characterized by the $\partial_x$ being set to zero at the boundary of the domain. The derivative of the solution on $u(x, t)$ measure how much heat escape at the boundary of the domain. Suppose that we are solving the exact same PDE as before, using $u(x,t)$ on $(0, L)$, and the same generic initial conditions. The boundary conditions are listed as below.
 
-Boundary Conditions: 
+#### **The Neumann Boundary Conditions** 
 
 >$$
 >u_x(x = L, t)=u_x(x=0, t) = 0 \quad \forall t > 0
 >$$
 
-And the initial conditions stays the same. When the derivative of the function is zero, it's saying that there is no diffusion of heat going on.
-
-Let's just grab the results from expression (2), and then we can mix them with the above boundary conditions, so that is taking the derivative: 
+C.f (1) we solve, then we can mix with the Neumann Boundary Conditions, taking the derivative on the solution of the eqn yields
 
 $$
-A\lambda\cos(\lambda x) - B\lambda\sin(\lambda x) = X'(x)
+\begin{aligned}
+    & X'(x)
+    = A\lambda\cos(\lambda x) - B\lambda\sin(\lambda x)
+    \\
+    \text{Left B.C}\implies & 
+    X'(0)T(t) = 0
+    \\
+    \iff & 
+    A\lambda T(t) = 0 \quad \forall t > 0
+    \\
+    \iff & A = 0 \text{ Assuming non-trivial }T(t). 
+\end{aligned}
 $$
 
-So then we have: 
+So then $A = 0$, consider the boundary condition when $x = L$,  
 
 $$
-X'(0)T(t) = 0
-$$
-
-So then $A = 0$, and then: 
-
-$$
--B\lambda\sin(\lambda x) = 0 \implies \sin(\lambda x) = 0 \implies \lambda = \frac{n\pi}{L}\quad \forall n\in \{0, 1, 2, \cdots\}
-$$
-
-**However, there is another case where** $B\lambda = 0$...? 
-
-If $\lambda != 0$, and the $B = 0$, then $A = 0$, hence we have the trivial solution of $X(x) = 0$. When $\lambda =0$, $X(x) = B$, we have a constant function for the spatial solution, which is not a trivial solution, therefore, the case where $\lambda = 0$ is included.  
-
-We had the same set of eigenvalues, but where is the eigen functions for the system? 
-
-It's there because: 
+\begin{aligned}
+    & -B\lambda\sin(\lambda x) = 0 
+    \\ 
+    \iff  & \sin(\lambda x) = 0  \vee B = 0
+    \\
+    \text{non-trivial}
+    \iff & \lambda_n = \frac{n\pi}{L}\quad \forall n\in \{0, 1, 2, \cdots\}
+\end{aligned}
 
 $$
-X(x) = B\cos(\lambda x)
-$$
 
-And then, we have the Basisfunction To be $\cos$ in this case. And we are normalizing it as just $\cos$.
-
-By principal of super position, the solution is going to take the form: 
+We now ask the question, what if $B\lambda = 0$? If $\lambda\neq 0$, and the $B = 0$, then $A = 0$, hence we have the trivial solution of $X(x) = 0$. When $\lambda=0$, $X(x) = B$, we have a constant function for the spatial solution, which is not a trivial solution, therefore, the case where $\lambda = 0$ is included, you should observe that the set of values for $n$ now includes $0$. The eigen functions for the spacial domain is given as: $X(x) = B\cos(\lambda_n x)$. The eigen componentis also the basis function, which is $\cos$ in this case. By principal of super position, the solution taks form
 
 $$
 u(x, t) = 
 \sum_{n = 0}^{\infty}
 T_n(0)\exp
 \left(
-    - \frac{-n^2t}{\tilde{t}}
+    \frac{-n^2t}{\tilde{t}}
 \right)
 \cos\left(
         \frac{n\pi x}{L}
     \right)
 $$
 
+The temporal ODE solution is still the same. The long term behavior approaches the eigen comonent when $n = 0$, which is the constant funtion equaling to the average of initial conditions $F(x)$ on $[0, L]$. This makes intuitive physical sense. 
 
 ---
 ### **Periodic Boundary Conditions | Heat on a Ring**
 
+This boundary conditions set the temperature at both ends of the domain to be the same temperature, and we allow the temperature to flow over. Physically we are joining both end of the rods together to form a ring. 
 
-let's pick up from the ODEs system from expression one, right after the assumption of the separation of variables. 
+#### **Periodic Boundary Condition**
 
-he **Boundary Condition** is: 
+> Temperature is the same: $(L, t) = u(-L, t)\; \forall t > 0$, denoted it as expression (4). And because heat is going to flow through the point, the derivative will also has to be equal to each other: $u_x(L, t) = u_x(-L, t)\; \forall t > 0$, denote ths as expression(5). 
 
-> $$
-> u(L, t) = u(-L, t) \quad \forall t > 0 \tag{4}
-> $$
-
-And because heat is going to flow through the point, the derivative will also has to be equal to each other: 
-
-> $$
-> u_x(L, t) = u_x(-L, t) \qquad \forall t > 0 \tag{5}
-> $$
-
-let's connect it back to the system of ODEs, together with the combined boundary conditions, we will have: 
+We include this boundary conditions with the ODEs gotten from the separations of variables from (1), giving us
 
 $$
 \begin{cases}
-    X''(x) - kX(x) = 0    \\
+    X''(x) - kX(x) = 0   \\
     X(L) = X(-L)  \\
-    X'(L) = X'(-L)
+    X'(L) = X'(-L).
 \end{cases}\tag{6}
 $$
 
-The periodic Boundary conditions now has been included with a system equations.  
-
-As usual connection of the Eigenvalues $\lambda$ and the constant $k$ is: 
+As usual connection of the Eigenvalues $\lambda$ and the constant $k$ is $k = -\lambda^2$. We are interested in search for the non-trivial solutions for this boundary conditions, we will relate it to the Fourier Series. The solution we can draw from the equation expression of (6) gives 
 
 $$
-k = -\lambda^2
-$$
-
-We are interested in search for the non-trivial solutions for this boundary conditions, and related it to the Fourier Series. 
-
-The solution we can draw from the first expression of (1) is: 
-
-$$
-X(x) = A\sin(\lambda x) + B\cos(\lambda x) \quad X'(x) = A\lambda \cos(\lambda x) + A\lambda \sin(\lambda x) \tag{7}
-$$
-
-**The temperature at the point equals**. 
-
-Using the boundary conditions: $u(-L, t) = u(L, t)\forall t> 0$, we have: 
+\begin{aligned}
+    & X(x) = A\sin(\lambda x) + B\cos(\lambda x) 
+    \\ 
+    & X'(x) = A\lambda \cos(\lambda x) + A\lambda \sin(\lambda x)     
+\end{aligned}\tag{7}
 
 $$
-(A\sin(\lambda L) + B\cos(\lambda L))T(t) = 
-T(t)(-A\sin(\lambda L) + B\cos(\lambda L)) \quad \forall t> 0
-\tag{9}
-$$
 
-The negative sign get ignored by $\cos$ because it's an even function. 
+#### **The temperature at Both Endpoints Equals**. 
 
-Assume that $T(t)\ne 0\;\forall t >0$, then we can divide by that and then get: 
+Using the boundary conditions: $u(-L, t) = u(L, t)\; \forall t> 0$, we have: 
 
 $$
--2A\sin(\lambda L) = 0\underset{A\ne 0}{\implies} \lambda_n = \frac{n\pi}{L} \;\forall n\in \mathbb{Z}_{\ge0}
-\tag{10}
+\begin{aligned}
+    & (A\sin(\lambda L) + B\cos(\lambda L))T(t) = T(t)(-A\sin(\lambda L) + B\cos(\lambda L)) \quad \forall t> 0
+    \\
+    T(t)\neq 0 
+    \implies &
+    -2A\sin(\lambda L) = 0
+    \\
+    \underset{A\ne 0}{\implies} &
+     \lambda_n = \frac{n\pi}{L} \;\forall n\in \mathbb{Z}_{>0}
+\end{aligned}
 $$
 
-Take note that $n = 0$ is ignored because it's a trivial solution to the system, where $X(x) = 0$. 
+The eigen component for the spacial dimension is $\sin(\lambda_n L)$. 
 
-For each solution to this system, we have a solution of $X_n(x)$. 
-
-**Heat passes through at the point $x = \pm L$**
+#### **Heat passes through at the point $x = \pm L$**
 
 Using $u_x(-L, t)  = u_x(L, t)$, so then we have: 
 
@@ -362,10 +345,7 @@ $$
 \tag{12}
 $$
 
-
-**Note**, the case where $\lambda = 0$ won't need the assumption that $A, B\ne 0$ to satisfy the boundary conditions. This is kinda weird. 
-
-So then, we will have a lot of basis function, each associated with a positive integer $n$, and the solution will be a super position of all of them: 
+Basis function for $X(t)$, or the eigen components for it, consists of both $\sin, \cos$. This gives
 
 $$
 X_n(x) = A_n\sin\left(
@@ -376,12 +356,10 @@ X_n(x) = A_n\sin\left(
 \tag{13}
 $$
 
-Notice that, we are not taking the normalized version of this as the basis function, because this time, the basis functions consists of 2 function, so we are keeping the constant coefficients for both of them. 
-
-Now we skip some steps that has already be covered in the separations of variable parts and solving for $T(t)$, then the solution is going to take the form: 
+We don't normalize, the basis functions consists of 2 functions, so we are keeping the constant $A_n, B_n$. Solutions for $T_n(t)$ can be solved in a similar way as before, with $T_n(0)$ absorbed into the constant coefficients $A_n, B_n$, which gives: 
 
 $$
-\sum_{i = 0}^{\infty}
+\sum_{n = 0}^{\infty}
 \left(
     A_n\sin\left(
         \frac{n\pi x}{L}
@@ -394,88 +372,45 @@ $$
 \right)
 $$
 
-
-Where is the constant term: $T_n(0)$? 
-
-It's distributed into the coefficients $A_n, B_n$, and we will see those coming in [[Fourier Series, PDE Flavor]]. 
+See [[Fourier Series, PDE Flavor]] on how to find n expression given the initial conditions. We observe the fact that, the long term behavior of the function is determined by the coefficient $B_0$, and that coefficient, is the average of the initial conditions function $F(x)$. 
 
 ---
 ### **Mixed Boundary Conditions (Heat Equation)**
 
-The rod is isolated on one size and the temperature is fixed on the other side.
+I forgot how to solve these. I am not sure it was never tested nor did it appears on any homework it seems like. 
 
 ---
-### **Nonhomogenous Dirichlet Boundary Conditions (Heat Equation)**
+### **Nonhomogenous Dirichlet Boundary Conditions**
 
-The boundary condition is: 
+> $$
+> u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t
+> $$
 
-$$
-u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t
-$$
-
-In this case, we must transform the problem into a homogenous Dirichilet by identifying the steady state solution to be: 
+The steady state solution $u_s(s, t)$ can be obtained in the case of a heat equation, and it's
 
 $$
 u_s(x, t) = \frac{(t_2 - t_1)}{L}x + t_1
 $$
 
-A straight line connecting between these 2. 
-
-Now, the solution to the PDE can be written as an overposition of the steady states solution and some other harmonics upon that, hence: 
-
-$$
-u(x, t) = u_s(x, t) + u_h(x, t)
-$$
-
-And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary condtion. 
-
-Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
-
-For the harmonic problem, the boundary condition is Dirichilet: 
-
-$$
-u_h(0, t) = u_h(L, t) = 0
-$$
+A straight line connecting between the different constatns on the 2 end points. The solution to the PDE can be written as an overposition of the steady states solution and some other harmonics upon that $u(x, t) = u_s(x, t) + u_h(x, t)$. $u_h$ is the harmonic part, it has homogenous Dirichlet Boundary condtion, i.e: $u_h(0, t) = u_h(L, t) = 0$. Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
 
 ---
 ### **Heat Equation Infinite Domain** 
 
-No, Separation of variable cannot do this, you will bee Fourier Transform and Laplace Transform for this one to work.
-
+No, Separation of variable cannot solve, you will bee Fourier Transform and Laplace Transform for this one to work.
 
 ---
-### **Only Heat Equation**? 
+### **Only Heat Equation**
 
 This is not true, heat equation is one of the example, and wave equation can also be solved using S.F.V. 
 
 ---
-### **Quick Overview on Wave Equation**
+### **Wave Equations**
 
-Wave equation is in the form 
-
-$$
-\partial_t^2u = \alpha^2\lambda_n^2T = 0
-$$
-
-For Diricilet boundary conditions: 
-
-$$
-T_n(t) = A_n\sin(\alpha\lambda_nt) + B_n\cos(\alpha\lambda_nt)
-$$
-
-For Neumann: 
-
-$$
-T_n(t) = A_n\sin(\alpha\lambda_nt) + B_ncos(\alpha\lambda_nt)
-\quad T_0(t) = A_0 t + B_0
-$$
-
-Where, the case within the constant equals to zero cannot not be dropped out. 
-
-To find the constant $A_n, B_n$ for $T$, we would need the initial conditions for the problem. 
+Wave equation takes form $\partial_t^2u = \alpha^2\lambda_n^2T = 0$, For Diricilet boundary conditions, the time eigen function is $T_n(t) = A_n\sin(\alpha\lambda_nt) + B_n\cos(\alpha\lambda_nt)$. For Neumann B.C, the temporal eigen component consists of $T_n(t) = A_n\sin(\alpha\lambda_nt) + B_n\cos(\alpha\lambda_nt)$ and $T_0(t) = A_0 t + B_0$. Where, the case within the constant equals to zero cannot not be dropped out. To find the constant $A_n, B_n$ for $T$, we would need the initial conditions for the problem. 
 
 ---
-### **Wave Equation Example: 1D fixed Ends**
+### **Wave Equation Example | 1D Dirichlet General Case with Non-dimensionalization**
 
 Here we consider a general case where both end of the rod is fixed and we have a distribution for the initial velocity and displacement for all the particles on the string. 
 
@@ -489,36 +424,32 @@ $$
 \end{cases}
 $$
 
-Notice that, this is the dimensionless version of the PDEs. And we have the choice to substitue some constant to scale the spatial and time domain parameter $x, t$. 
-
-Suppose that $u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t)$ is a solution to the PDEs system. then, consider $\tilde{u}(x,t) = \sum_{n = 1}^{\infty}X_n(\frac{x}{L})T_n(\alpha t)$. 
-
-Then: 
+Notice that, this is the dimensionless version of the PDEs. And we have the choice to substitue some constant to scale the spatial and time domain parameter $x, t$. Suppose that $u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t)$ is a solution to the PDEs system. then, consider $\tilde{u}(x,t) = \sum_{n = 1}^{\infty}X_n(\frac{x}{L})T_n(\alpha t)$. This is a method of non-dimensionalizations: 
 
 $$
-\partial_t^2[\tilde{u}]  = \partial_t^2\left[ \sum_{n = 1}^{\infty}X_n\left(
-    \frac{x}{L}
-\right)T_n(\alpha t)\right] 
-= 
-\alpha^2 \sum_{n = 1}^{\infty}
-    X_n(x)T_n''(\alpha t)
-$$
-
-At the same time the spatial derivative will be like: 
-
-$$
-\partial_x^2[\tilde{u}] = \partial_x^2 \left[
+\begin{aligned}
+    \partial_t^2[\tilde{u}]  
+    &= \partial_t^2\left[ \sum_{n = 1}^{\infty}X_n\left(
+        \frac{x}{L}
+    \right)T_n(\alpha t)\right] 
+    = 
+    \alpha^2 \sum_{n = 1}^{\infty}
+        X_n(x)T_n''(\alpha t)
+    \\
+    \partial_x^2[\tilde{u}] &= \partial_x^2 \left[
     \sum_{n = 1}^{\infty}X_n\left(
         \frac{x}{L}
     \right)T_n(\alpha t)
-\right] 
-= 
-\frac{1}{L^2}\sum_{n = 1}^{\infty}X_n''\left(
-        \frac{x}{L}
+    \right] 
+    = 
+    \frac{1}{L^2}\sum_{n = 1}^{\infty}X_n''\left(
+            \frac{x}{L}
     \right)T_n(\alpha t)
+\end{aligned}
 $$
+ 
 
-With substitution $\frac{x}{L} = y$ and $\alpha t = \tau$, the above expression will be expressed like: 
+With substitution $\frac{x}{L} = y$ and $\alpha t = \tau$, the above transforms into
 
 $$
 \partial_t^2[\tilde{u}] = \alpha^2 \sum_{n = 1}^{\infty}X_n(y)T_n''(\tau) 
@@ -527,9 +458,7 @@ $$
     X_n''(y)T_n(t)
 $$
 
-As $y$ goes from $0\rightarrow 1$, $x$ goes from $0\rightarrow L$. And as $\tau = t\alpha$. 
-
-And this will mean that $\tilde{u}$ is the solution to the following IBVP: 
+As $y$ goes from $0\rightarrow 1$, $x$ goes from $0\rightarrow L$. And as $\tau = t\alpha$. And this will mean that $\tilde{u}$ is the solution to the following IBVP: 
 
 $$
 \begin{cases}
@@ -541,9 +470,7 @@ $$
 \end{cases}
 $$
 
-Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it.  
-
-By sepration of variables, we have: 
+Hence, the solution to the original equation can be rescaled appropriately to solve any other IBVP with different coefficients on it.  By sepration of variables, we have: 
 
 $$
 \frac{T''}{T} = \frac{X''}{X} = -\lambda_n^2
