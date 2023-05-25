@@ -221,7 +221,7 @@ The exponent of the $\exp$ is getting super negative as $n\rightarrow \infty$ (v
 ---
 ### **Neumann Boundary Conditions | Heat Trap**
 
-Here, we are assuming the *Neumann Boundary* conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. It's characterized by the $\partial_x$ being set to zero at the boundary of the domain. The derivative of the solution on $u(x, t)$ measure how much heat escape at the boundary of the domain. 
+Here, we are assuming the **Neumann Boundary** conditions for the system. And it's used to represent the rods that has both ends insulated, so the heat is trapped here. 
 
 Boundary Conditions: 
 
@@ -421,17 +421,13 @@ $$
 
 A straight line connecting between these 2. 
 
-Now, the solution to the PDE can be written as an overposition of the steady states solution and some other harmonics upon that, hence: 
+Now, the solution to the PDE can be written as an superposition of the steady states solution and some other harmonics upon that, hence: 
 
 $$
 u(x, t) = u_s(x, t) + u_h(x, t)
 $$
 
-And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary condtion. 
-
-Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
-
-For the harmonic problem, the boundary condition is Dirichilet: 
+And then for the Extra Harmonic parts, $u_h$, it will have Dirichlet Boundary condition. Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. For the harmonic problem, the boundary condition is Dirichlet: 
 
 $$
 u_h(0, t) = u_h(L, t) = 0

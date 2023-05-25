@@ -6,7 +6,7 @@ for:
 Heat Equation, Wave Equation. 
 
 And, one of the most important concept we put into practice for the first part of the quarter seems to be: 
-[[Separation of Variables]]
+[[Separation of Variables for Heat and Waves]]
 
 ---
 ### **Intro**
@@ -174,7 +174,7 @@ $$
 X_n(x) = \sin(\lambda_n x) \quad \lambda_n = \frac{n\pi }{L} \quad n \in \mathbb{N}
 $$
 
-The full solution this boundary conditions for the dimensionless form is discussed in: [[Separation of Variables#Wave Equation Example 1D fixed Ends]].
+The full solution this boundary conditions for the dimensionless form is discussed in: [[Separation of Variables for Heat and Waves#Wave Equation Example 1D fixed Ends]].
 
 
 #### **One end Fixed Boundary Condition**

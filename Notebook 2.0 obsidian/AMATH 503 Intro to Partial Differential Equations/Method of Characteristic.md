@@ -124,9 +124,8 @@ Pick any point $(x, y)\in D$, describe it using the characteristic lines, mainly
 - Else, set $u(x, y) = w(s)$, where $w(t)$ is the solution to IVP ($\star*$), with initial conditions $w(0) = f(x_0, y_0).$
 
 
-
 ---
-### **Example**
+### **Example-1**
 
 We solve 
 
@@ -160,4 +159,19 @@ Choose any $(x_0, 0)\in S$, then solve $\phi(x_0, 0, s) = (x, y)$, which is $(x_
 
 **Step 5**
 
-Set $w(t) = u(\phi(x_0, 0, s)) = G(\phi(x_0, 0, t), w(t)) = w(t)$, solving it yields $w(t) = w(0)\exp(t)$. 
+Solve 
+$$
+\begin{aligned}
+    & w'(t) = G(\phi(x_0, 0, t), w(t)) = w(t)
+    \\
+    \text{solves }\implies & 
+    w(t) = w(0)\exp(t)
+    \\
+    & (x, y) = \phi(x_0, 0, s)\implies u(x, y) = u(\phi(x_0, 0, s))
+    \\
+    \implies &
+    u(x,y) = w(s) = w(0)\exp(s) = u(x_0, 0) \exp(s), 
+\end{aligned}
+$$
+
+and we had $x_0 = x - y/2, s = y/2$. Then $u(x, y) = u(x - y/2, 0)\exp(y/2) = (x - y/2)\exp(y/2)$. Solution obtained. 

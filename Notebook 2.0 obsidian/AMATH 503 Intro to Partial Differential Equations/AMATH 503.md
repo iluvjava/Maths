@@ -3,7 +3,7 @@ This class as prereq: [[Amath 501]]
 
 ---
 ### **Week 1**
-1. PDEs: Separations of Variables for Heat equation: [[Separation of Variables]]
+1. PDEs: Separations of Variables for Heat equation: [[Separation of Variables for Heat and Waves]]
 2. Fourier Series: Handling the initial conditions of the PDEs. 
 
 ### **Week 2**

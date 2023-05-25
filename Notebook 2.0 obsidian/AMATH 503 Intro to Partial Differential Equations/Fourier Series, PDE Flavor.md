@@ -1,6 +1,6 @@
 Here, we will look at the fourier Series at its full glory, when it comes to solving some basic differential equations. 
 [[Fourier Sine Series, PDEs Flavor]], [[Fourier Cosine Series]]
-[[Separation of Variables]]
+[[Separation of Variables for Heat and Waves]]
 Here, we are combining both the Fourier Sines and Fourier Cosine series. 
 
 ---

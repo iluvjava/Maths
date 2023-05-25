@@ -1,5 +1,5 @@
 Chapter 11 Materials 
-[[Separation of Variables]] <-- This is the technique we are going to apply here. 
+[[Separation of Variables for Heat and Waves]] <-- This is the technique we are going to apply here. 
 
 
 ---

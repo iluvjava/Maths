@@ -169,7 +169,7 @@ And then we have all the coefficient figured out.
 
 Why are we bothering with the $\cos$ series again? When we already had the $\sin$ series for the separation of variable? 
 
-We are going to keep using the heat equation, the same example we showed for [[Separation of Variables]]. 
+We are going to keep using the heat equation, the same example we showed for [[Separation of Variables for Heat and Waves]]. 
 
 Let's insulate the end of the rods. And then, we will have the **Neuman Boundary conditions**, which is giving us: 
 
@@ -181,7 +181,7 @@ And this is how we insulate it. The initial conditions is still going to be the 
 
 And in order to use this conditions, we have to use the basis function of $\cos(x)$. 
 
-And this is introduced in [[Separation of Variables]]. 
+And this is introduced in [[Separation of Variables for Heat and Waves]]. 
 
 ---
 ### **What lies Beyond**?

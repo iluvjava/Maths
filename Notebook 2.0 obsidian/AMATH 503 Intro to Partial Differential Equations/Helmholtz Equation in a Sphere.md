@@ -1,5 +1,5 @@
 Now, we are going to solve a wave equation inside of the Sphere. 
-This is still using: [[Separation of Variables]] method for solving a major part of the equation. 
+This is still using: [[Separation of Variables for Heat and Waves]] method for solving a major part of the equation. 
 
 And to read this we at least need to recognize the Bessel's equation when it popped up, which can be read more on [[Bessel's Equation]]. 
 
