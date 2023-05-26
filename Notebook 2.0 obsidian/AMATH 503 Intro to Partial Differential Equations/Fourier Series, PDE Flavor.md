@@ -1,37 +1,17 @@
 Here, we will look at the fourier Series at its full glory, when it comes to solving some basic differential equations. 
 [[Fourier Sine Series, PDEs Flavor]], [[Fourier Cosine Series]]
-[[Separation of Variables for Heat and Waves]]
+[[Separation of Variables for Heat and Waves in 1D]]
 Here, we are combining both the Fourier Sines and Fourier Cosine series. 
 
 ---
 ### **Intro**
 
-The Fourier Series is Periodic. 
-
-Heat conduction in a metal ring. 
-
-This is an interesting problem, be a metal has both ends connected to itself, it loops back, giving us a new boundary conditions that is neither Fourier Sine series, nor Fourier Cosine Series. 
-
-
+The Fourier Series is Periodic. Heat conduction in a metal ring,  be a metal has both ends connected to itself, it loops back, giving us a boundary periodic boundary conditions in $[0, L]$. 
 
 ---
 ### **Representing the Rod in an Interval**
 
-The circumference of the ring is $2L$. 
-
-Pick any point on the ring and let it be $0$. 
-
-Positive direction goes clockwise and negative number goes counter clockwise on the ring. 
-
-Then, an interval of $(-L, L)$ can represent every points on the ring. 
-
-Assume that the ring is insulated, there is no heat escaping it. 
-
-**Here is the Gist of it**
-
-Split any function into an even and odd parts. The odd parts is handle by the $\sin$ series and the even part is handled by the $\cos$ series. 
-
-
+The circumference of the ring is $2L$. Pick any point on the ring and let it be $0$. Positive direction goes clockwise and negative number goes counter clockwise on the ring. An open interval of $(-L, L)$ represents every points on the ring. Assume that the ring is insulated. The solution function exists on the interior of the interval, it models temperature on the rod. The function can be extended onto the whole reals, periodically. 
 
 ---
 ### **Setting up the Heat PEDs**

@@ -380,7 +380,7 @@ See [[Fourier Series, PDE Flavor]] on how to find n expression given the initial
 I forgot how to solve these. I am not sure it was never tested nor did it appears on any homework it seems like. 
 
 ---
-### **Nonhomogenous Dirichlet Boundary Conditions**
+### **Nonhomogenous Dirichlet Boundary Conditions | Steady State Solution**
 
 > $$
 > u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t
@@ -479,54 +479,44 @@ $$
 ODE on the spatial dimension will be: 
 
 $$
-X'' + \lambda_n^2 X = 0 \implies X = A_n\sin(\lambda_n x) + B_n\cos(\lambda_n x)
+\begin{aligned}
+    & X'' + \lambda_n^2 X = 0 
+    \\
+    \implies &
+    X = A_n\sin(\lambda_n x) + B_n\cos(\lambda_n x)   
+    \\
+    & X(0) = 0 
+    \\
+    \implies & B_n = 0 
+    \\
+    & X(1) = 0 
+    \\
+    \underset{B_n = 0}{\implies} & 
+    A_n\sin(\lambda_n) = 0 \underset{A_n\ne 0}{\implies} \lambda_n = n\pi\quad n\in \mathbb{Z}_{> 0}. 
+\end{aligned}
 $$
 
-The boundary conditions assert that: 
+The basis on the spatial dimension is: $X_n(x) = \sin(n\pi x)$. The solution on the time domain is in a similar way and it's $T(t) = C_n\sin(\lambda_nt) + D_n\cos(\lambda_nt)$. Now, we are ready to use the initial condition to solve for the indetermined constants. The initial conditions suggests that: 
 
 $$
-X(0) = 0 \implies B_n = 0 \quad X(1) = 0 \underset{B_n = 0}{\implies} A_n\sin(\lambda_n) = 0 \underset{A_n\ne 0}{\implies} \lambda_n = n\pi\quad n\in \mathbb{Z}_{> 0}
-$$
-
-The basis on the spatial dimension will be like: $X_n(x) = \sin(n\pi x)$. 
-
-The solution on the time domain will be like: 
-
-$$
-T(t) = C_n\sin(\lambda_nt) + D_n\cos(\lambda_nt)
-$$
-
-Now, we are ready to use the initial condition to solve for the indetermined constants.
-
-The initial conditions suggests that: 
-
-$$
-u(x, 0) = \sum_{n = 1}^{\infty}
+\begin{aligned}
+    u(x, 0) &= \sum_{n = 1}^{\infty}
     X_n(x)T_n(0) = f(x) \implies \sum_{n = 1}^{\infty} X_n(x)D_n = f(x)
+    \\
+    \partial_t[u](x, 0) &= \sum_{n = 1}^{\infty} X_n(x)T_n'(0) = g(x) 
+    \implies \sum_{n = 1}^{\infty}\lambda_n C_nX_n(x) = g(x)
+    \\
+    \text{where } & 
+    \\
+    &
+    \begin{aligned}
+        D_n &= 2 \int_{0}^{1} f(x)\sin(\lambda_n x) dx \quad \lambda_n = n\pi
+        \\
+        \lambda_nC_n &= 2 \int_{0}^{1} 
+            g(x)\sin(\lambda_n x)
+        dx \quad \lambda_n = n\pi,
+    \end{aligned} 
+\end{aligned}
 $$
 
-$$
-\partial_t[u](x, 0) = \sum_{n = 1}^{\infty} X_n(x)T_n'(0) = g(x) 
-\implies \sum_{n = 1}^{\infty}\lambda_n C_nX_n(x) = g(x)
-$$
-
-Here, we an use Fourier Series to solve the problem. More specifically: 
-
-$$
-D_n = 2 \int_{0}^{1} f(x)\sin(\lambda_n x) dx \quad \lambda_n = n\pi
-$$
-
-And
-
-$$
-\lambda_nC_n = 2 \int_{0}^{1} 
-    g(x)\sin(\lambda_n x)
-dx \quad \lambda_n = n\pi 
-$$
-
-Then then, we have the general solution to the original equation. 
-
----
-### **Wave Equation 1D One end Un-attached**
-
-
+and that was the expression for the general solution for the system! 

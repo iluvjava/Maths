@@ -1,4 +1,4 @@
-Rehash on [[Helmholtz Equation in a Cylinder]], [[Separation of Variables for Heat and Waves]], [[Frobenius Method]]
+Rehash on [[Helmholtz Equation in a Cylinder]], [[Separation of Variables for Heat and Waves in 1D]], [[Frobenius Method]]
 
 
 ---

@@ -3,8 +3,8 @@ This class as prereq: [[Amath 501]]
 
 ---
 ### **Week 1**
-1. PDEs: Separations of Variables for Heat equation: [[Separation of Variables for Heat and Waves]]
-2. Fourier Series: Handling the initial conditions of the PDEs. 
+1. PDEs: Separations of Variables for Heat equation: [Separation of Variables for Heat and Waves in 1D](Separation%20of%20Variables%20for%20Heat%20and%20Waves%20in%201D.md)
+2. Fourier Series: Handling the initial conditions of the PDEs. [Fourier Series, PDE Flavor](Fourier%20Series,%20PDE%20Flavor.md). 
 
 ### **Week 2**
 1. Cosine Fourier Series [[Fourier Cosine Series]]

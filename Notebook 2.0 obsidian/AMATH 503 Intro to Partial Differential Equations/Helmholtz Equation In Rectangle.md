@@ -1,4 +1,4 @@
-[[Schordinger Eqn in Box]] 
+[Schordinger Eqn in Box](Schordinger%20Eqn%20in%20Box.md)
 Here, we are sticking with the same thing, but we are going to look into some concrete examples for it. 
 
 

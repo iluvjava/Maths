@@ -3,7 +3,7 @@ Here are some other Fourier related stuff:
 
 [[Fourier Transform]], [[Fourier Transform Fourier Series]]
 
-And we are using the Fourier Series for [[Separation of Variables for Heat and Waves]]
+And we are using the Fourier Series for [[Separation of Variables for Heat and Waves in 1D]]
 
 ---
 ### **Intro**

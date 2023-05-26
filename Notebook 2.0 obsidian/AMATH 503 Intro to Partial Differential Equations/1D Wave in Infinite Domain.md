@@ -1,28 +1,27 @@
-[[Fourier Transform, PDE Flavor]]
-One of the very important application of Fourier Transform is its application to Solving PDEs in the infinite domain. 
-
+[[Fourier Transform, PDE Flavor]] One of the very important application of Fourier Transform is its application to Solving PDEs in the infinite domain. Materials referenced from [PDEchapter8](references/PDEchapter8.pdf), 8.4, additional information were presented by the instructor for the course. 
 
 ---
 ### **Intro**
 
-We are going to solve the *wave equation* on the *infinite domain* using the *method of Fourier Transform* and *D'Alambert's Method*. Yes, the only thing we changed is the boundary conditions, because now it's on infinite domain. Suppose that that we are modeling the guitar string with: 
+We are going to solve the *wave equation* on the *infinite domain* using the *method of Fourier Transform* and *D'Alambert's Method*. The IVBP has the following form: 
 
 $$
 \begin{cases}
-    u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R}
+    u_{tt} - c^2u_{xx} = 0 & x\in \mathbb{R},
     \\
-    \lim_{x\rightarrow \pm \infty }u = 0
+    \lim_{x\rightarrow \pm \infty }u(x, y) = 0 & \forall t \ge 0,
     \\
-    u(x, 0) = f(x) & u_t(x, 0) = \underbrace{0}_{g(x)}
+    u(x, 0) = f(x) & \forall x \in \mathbb R, 
+    \\
+    u_t(x, 0) = 0 & \forall x \in \mathbb R. 
 \end{cases}
 $$
 
-
-This is the wave equation on infinite domain. 
+it models waves in the domain of $(-\infty, \infty)$. The initial condition $f(x)$ describes the location of the particles at $t = 0$, the derivative information $u_t(x, 0)$ describes the speed the particles are moving at. 
 
 **Separating the Initial Conditions**
 
-Notice that, the PDE problem is linear, hence we can separate the problem into 2 parts. Let's separate the initial conditions into 2 parts by thinking of the following: $u = u_1 + u_2$
+Notice that, the PDE problem is linear, hence we can separate the problem into 2 parts: $u = u_1 + u_2$, such a substitution allows us to have simple to handle initial condtions: 
 
 $$
 \begin{cases}
@@ -32,7 +31,7 @@ $$
 \end{cases}
 $$
 
-This is in the general cases where, the initial conditions contains both the initial conditions and the derivative information, and in that case that is why we need the above separations for the general case. 
+This is in the general cases where, the initial conditions contains both the initial conditions and the derivative information, and in that case, we separate the initial conditions to make the problem easier. 
 
 **Note**:
 
@@ -43,212 +42,179 @@ $f(x)$ must be: **Absolutely Integrable**. So that means that integral over the 
 
 
 > [!warn]-
-> DO NOTE USE separation of Variables for these type of PDE on an infinite domain. 
+> DO NOTE USE separation of Variables for these type of PDE on an infinite domain. See [Separation of Variables for Heat and Waves in 1D](Separation%20of%20Variables%20for%20Heat%20and%20Waves%20in%201D.md) for more information. 
 
-Engenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial conditions. 
-
-**Introducing**: d' Alembert's method: 
-It's made for just the above PDE equation, not applicable to anything else. 
-
-**Back onto topic**: Fourier Transform
+Eigenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial conditions. 
+We introduce the d' Alembert's method, It's made for just the above PDE equation, not applicable to anything else. 
 
 Here is the list of procedures we use to get the solution for the PDE: 
-1. Take the equation to the Fourier Domain so it's an ODE in term of $t$ and $w$. 
+1. Take the equation to the Fourier Domain so it's an ODE in $t$, for all $w$. 
 2. Use the $u_t(x, 0) = 0$ get the solution format, in the Fourier Domain. 
 3. Use the $u(x, 0) = f(x)$ to get the undetermined coefficients for the system, in the Fourier domain. 
 4. Do the Inverse Fourier Transform to get the solution in the original spatial domain. 
 
-**Questions**: 
+---
+### **Solution Method Demonstrations**
 
-What is the Fourier Transform for the $u(x,t)$ function? Notice that we have a function of 2 variables here instead of one, but the FT we did is univariate function. 
+#### **Step One | Take it to Fourier Domain**
 
-Transform along the spatial dimension, on variable $x$ to frequency domain with variable $w$. 
-
-$$
-\mathcal{F}[u(x, t)](w, t) = \int_{-\infty}^{\infty} 
-    u(x, t)\exp(iwx)
-dx = \hat{u}(w, t)
-$$
-
-And hence the Inverse Fourier Transform is also defined. It's not hard to see that: 
+We use $x$ denote the spatial domain, and $w$ denotes the Fourier domain. 
 
 $$
-u(x,t) = \mathcal{F}^{-1}[u(w, t)] = 
-\frac{1}{2\pi}
-\int_{-\infty}^{\infty} 
-    \hat{u}(w, t)\exp(-iwx)
-dw
+\begin{aligned}
+    \hat{u}(w, t) &:=  \mathcal{F}[u(x, t) | x](w) = \int_{-\infty}^{\infty} u(x, t)\exp(iwx) dx
+    \\
+    \implies u(x,t) &:= \mathcal{F}^{-1}[u(w, t) | w](x) = 
+    \frac{1}{2\pi}
+    \int_{-\infty}^{\infty} 
+        \hat{u}(w, t)\exp(-iwx)
+    dw. 
+\end{aligned}
 $$
 
-We are going to use the inverse Fourier on the Frequency domain to simplify the PDEs. 
-
-Now are going to represent the differential from the original PDE in terms of the Transformed function in the $w$ domain: 
+We then represent the partial differentials in the Fourier doman. 
 
 $$
-\partial_t^2[u](x, t) = \partial_t^2
-\left[\frac{1}{2\pi}
-\int_{-\infty}^{\infty} 
-    \hat{u}(w, t)\exp(-iwx)
-dw\right] = 
-\int_{-\infty}^{\infty} 
-    \partial_t^2[\hat{u}](w, t)\exp(-iwx)
-dw \tag{1}
-$$
-
-The derivative moves in because the integrator is not wrt to the variable $t$. 
-
-At the same time if we take the derivative wrt to $x$ we have: 
-
-$$
-\partial_x[u](x, t) = \partial_x
-\frac{1}{2\pi}\int_{-\infty}^{\infty} 
-    \hat{u}(w, t)\exp(-iwx)
-dw
-\tag{2}
-$$
-
-The $\partial_x$ goes into the integral and act on the exponential function:
-
-$$
-\partial_x[u](x, t) = 
-\frac{1}{2\pi}\int_{-\infty}^{\infty} 
-    (-iwx)\hat{u}(w, t)\exp(-iwx)
+\begin{aligned}
+    \partial_t^2[u](x, t) 
+    &= 
+    \partial_t^2
+    \left[\frac{1}{2\pi}
+    \int_{-\infty}^{\infty} 
+        \hat{u}(w, t)\exp(-iwx)
+    dw\right] 
+    \\
+    &= 
+    \int_{-\infty}^{\infty} 
+        \partial_t^2[\hat{u}](w, t)\exp(-iwx)
     dw
-= 
-(-iw)\hat{u}(w, t)
-\tag{3}
+    \\
+    &= \mathcal F^{-1}[\partial_t\hat u(w, t) | w](x)
+    \\
+    \partial_x[u](x, t) 
+    &= \partial_x
+    \frac{1}{2\pi}\int_{-\infty}^{\infty} 
+        \hat{u}(w, t)\exp(-iwx)
+    dw
+    \\
+    &= 
+    \frac{1}{2\pi}\int_{-\infty}^{\infty} 
+        (-iw)\hat{u}(w, t)\exp(-iwx)
+        dw
+    \\
+    \implies 
+    \partial_x^2[u](x, t) &= 
+    \frac{1}{2\pi}\int_{-\infty}^{\infty} 
+        (-iw)^2\hat{u}(w, t)\exp(-iwx)
+    dw
+    \\
+    &= -\frac{1}{2\pi}\int_{-\infty}^{\infty} 
+        w^2\hat{u}(w, t)\exp(-iwx)
+    dw
+    \\
+    &= \mathcal F^{-1}[w^2\hat u(w, t) | w](x)
+\end{aligned}
 $$
 
-Taking the differential is the same as applying a scalar multiplication of $-iw$ on the Fourier domain function. 
-
-A very similar things can be said about the double differential which is just
+We now substitute the derivative's representation in the Fourier domain back into the PDEs, and then we take the fourier transform to cancle out with the inverse fourier transform. 
 
 $$
-\mathcal{F}[\partial_{xx}[u]](w, t) = w^2\hat{u}(w, t) 
-\tag{4}
+\begin{aligned}
+    \mathcal F^{-1}[\partial_t^2\hat u(w, t) | w](x) - c^2 \mathcal F^{-1} [-w^2 \hat u(w, t) | w](x) &= 0
+    \\
+    \partial_t^2\hat u(w, t) + c^2 w^2 \hat u(w, t) &= 0.
+\end{aligned}
 $$
 
-The key here is that, under the Fourier domain, the time derivative is still just a derivative wrt to time, but the spatial derivative, we have a constant multiplier instead of derivative. 
+Fixing $w$, the above is an ODE wrt $t$, solving it yields $\hat{u}(w, t) = A(w)\sin(cwt) + B(w)\cos(cwt)$. 
 
-Hence in the frequency domain we obtain the expression that:[^1]
+**Note**: 
 
-$$
-\partial_{t}^2[\hat{u}](w, t) + c^2w^2\hat{u}(w, t) = 0
-\tag{5}
-$$
+The constant $A, B$ are both functions of $w$, because for each value of $w$, we solve the above system for all $t$, hence, the parameters corresponds to all possible values of $w$, resulting in the function $A(w), B(w)$. They will be determined by the initial conditions of for the problem. 
 
-If we fix the quantity $w$, we have a ODE that is purely in term of time. Notice that, we can get the solution form for the function $\hat{u}(w, t)$, which is: 
+**Incooperating Initial Conditions**: 
 
 $$
-\hat{u}(w, t) = 
-A\sin(cwt) + B\cos(cwt)
+\begin{aligned}
+    & u_t(x, 0) = 0
+    \\
+    & \mathcal{F}^{-1}[\hat{u}_t](w, 0) = 0
+    \\
+    \implies & 
+    \hat{u}(w, 0) = 0,
+\end{aligned}
 $$
 
-**Note**: The constant $A, B$ are both functions of $w$, this part is important, and because we are not solving for coefficients for each natural numbers like we did for the separation of variables anymore, here we will be solving for a function that is wrt to $w$. 
-
-
-**Time Derivative Initial Conditions**: 
+using the form of the solution we had from the ODE in the Fourier domain, we conclude
 
 $$
-u_t(x, 0) = 0
+\begin{aligned}
+    & u(x, t) = f(x)
+    \\
+    & \hat u(w, t) = \hat f(w) \quad \text{Apply Fourier}
+    \\
+    & \hat{u}(w, 0) = A(w)\sin(cw0) - B(w)\cos(cw0) = \hat f(w)
+    \\
+    \implies &
+    B(w) = \hat f(w)
+    \\
+    \implies &\hat{u}(w, t) = \hat f(w)\cos(cwt) + A(w)\sin(cwt)
+\end{aligned}
 $$
 
+additionally, we can determine $A(w)$ using the initial condition $\partial_x u(x, 0) = 0$, consider for all $w$: 
 $$
-\mathcal{F}^{-1}[\hat{u}_t](w, 0) = 0
-$$
-
-$$
-\implies \hat{u}(w, 0) = 0
-$$
-
-And at the same time, we have the solution form for $\hat{u}(w, t)$, which means that: 
-
-$$
-\hat{u}(w, t) = Acw\cos(cwt) - Bcw\sin(cwt) = 0\implies A = 0
-$$
-
-So then: 
-
-$$
-\hat{u}(w, t) = B\cos(cwt)
+\begin{aligned}
+    \partial_t \hat u(w, 0) &= 0 
+    \\
+    cw (A(w)\cos(cw0) - B(w)\sin(cw0)) &= 0
+    \\
+    cw(A(w)) &= 0
+    \\
+    \implies A(w) &\equiv 0, 
+\end{aligned}
 $$
 
-**Displacement Initial Condition**
+and therefore, we $A(w)$ is, identically zero. The final solution in the Fourier domain takes the form $B(w)\cos(cwt)$. 
 
-But at the same time, the other part of the initial conditions is informing us that: 
+**Transforming Back to Spatial Domain**
 
-$$
-u(x, 0) = f(x)
-$$
-
-And it's been show that: 
+We transform it back to spatial domain. Consider
 
 $$
-\mathcal{F}^{-1}[\hat{u}](x, t = 0) = f(x)
+\begin{aligned}
+    & u(x, t) = \mathcal{F}[\hat{u}](x,t) = 
+    \frac{1}{2\pi}
+    \int_{-\infty}^{\infty} 
+        \hat f(w)\cos(cwt)\exp(-iwx)
+    dw
+    \\
+    \text{using: }
+    \cos(cwt) &= \frac{1}{2}\left(
+        \exp(icwt) + \exp(-icwt)
+    \right)
+    \\
+    & u(x, t) = \frac{1}{4\pi}\int_{-\infty}^{\infty} 
+    \hat f(w)\exp(\underbrace{-iwx + icwt}_{-iw(x - ct)})
+    dw 
+    + \frac{1}{2\pi}\int_{-\infty}^{\infty} 
+        \hat f(w)\exp(\underbrace{-iwx - icwt}_{-iw(x + ct)})
+    dw
+    \\
+    \implies  &
+    u(x, t) = \frac{1}{2}(f(x + ct) + f(x - ct)) \quad \text{by inverse Fourier}
+\end{aligned}
 $$
 
-So then we can take the Fourier transform on both side and we have: 
-
-$$
-\hat{u}(w, 0) = \underbrace{\mathcal{F}[f](w)}_{F(w)}
-$$
-
-And this is why we want to function $f(x)$ to be absolutely integrable just to be safe. We assume that the Fourier Transform has been applied and the function turns out to be $F(w)$. 
-
-So then we know that: $\hat{u}$ equals to the Fourier transform of $f(x)$ and at the same time, we know that it's $B\cos(cwt)$. 
-
-Take notice of the following: 
-
-$$
-\hat{u}(w, 0) = \mathcal{F}[f](w) \quad \hat{u}(w, 0) = B\cos(cwt) \implies 
-B_w = \mathcal{F}[f](w)
-$$
-
-Now, we have the solution the Fourier Domain, but, we want the solution in the original space, which is just one inverse Fourier Away: 
-
-$$
-u(x, t) = \mathcal{F}[\hat{u}](x,t) = 
-\frac{1}{2\pi}
-\int_{-\infty}^{\infty} 
-    F(w)\cos(cwt)\exp(-iwx)
-dw
-$$
-
-Take note that we can use the Euler Formula to help us to write the trig function in a different form for this problem, at the same time, notice that $F(w)$. 
-
-So this is like: 
-
-$$
-\cos(cwt) = \frac{1}{2}\left(
-    \exp(icwt) + \exp(-icwt)
-\right)
-$$
-
-Multiplying it into the expression we have: 
-
-$$
-u(x, t) = \frac{1}{4\pi}\int_{-\infty}^{\infty} 
-    F(w)\exp(\underbrace{iwx + icwt}_{iw(x + ct)})
-dw 
-+ \frac{1}{4\pi}\int_{-\infty}^{\infty} 
-    F(w)\exp(\underbrace{iwx - icwt}_{iw(x - ct)})
-dw
-$$
-
-And notice that, this is the inverse Fourier Transform which can be expressed like (After some non-trivial math): 
-
-$$
-u(x, t) = \frac{1}{2}(f(x + ct) + f(x - ct))
-$$
 
 And that, is the solution to the PDE. 
 
-**Questions**: Why we didn't use the Boundary Conditions? 
+**Remarks**: 
 
-Because the initial condition helped us to satisfies that part, the function is absolutely integrable, so whatever Fourier Transformations that are involved for this PDEs, it's going to keep that part. And for a function that is absolutely integrable, it will have to have limit that approaches zero as it goes to infinity.
+Why we didn't use the Boundary Conditions? Because the initial condition helped us to satisfies that part, we assume that the function $f(x)$ is absolutely integrable, it will have to have limit that approaches zero as it goes to infinity, which can be interpreted as a type of boundary condition. 
 
 ---
-### **An Alternative**: D Alambert's method
+### **An Alternative** | D Alambert's method
 
 Let's consider a more general formulations of the wave equation under the infinite domain, and it's: 
  

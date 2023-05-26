@@ -1,7 +1,7 @@
 It's 11.4 in the textbook of the course. 
 This time, we are solving this in a cylinder. 
 
-[[Separation of Variables for Heat and Waves]], [[Schordinger Eqn in Box]]
+[[Separation of Variables for Heat and Waves in 1D]], [[Schordinger Eqn in Box]]
 
 We are going to use Separation of variable to solve a special case of the 3D wave equation. This time it's in a cylinder. And we will introduce the bessel's basis function for the solutions too, which is need to model the wave in a circle (periodic boundary conditions). 
 
