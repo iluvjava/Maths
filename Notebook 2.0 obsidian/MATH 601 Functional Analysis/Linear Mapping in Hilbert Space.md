@@ -83,8 +83,67 @@ by property (3).
 **Exercises**
 1. $T + T^*$ and $T^*T$ are adjoint operators of themselves. 
 
-
-
 ---
 ### **Complementary Spaces between the Ranges and Null spaces of the Adjoint Operators**
+
+The range of the operator and the nullspace of the adjoint forms complementary spaces for the output space of the operator. 
+
+#### **Thm | Complementary Spaces**
+> Let $T: \mathcal H_1 \mapsto \mathcal H_2$, then the following are all true
+> 1. $\text{null}(T^*) = \text{rng}(T)^\perp$. 
+> 2. $\text{cl.rng}(T) = \text{null}(T^*)^\perp$. 
+
+**Observations**
+
+The range of the operator needs to be closed. The range of the operator involves finite span of vectors (Just the definition for spans of vectors), in hilbert spaces, finite spaces are not always closed, hence the closure is required. 
+
+**Proof**
+
+For (1.), it's a chain of equivalence 
+
+$$
+\begin{aligned}
+    & y \in N(T^*) \iff T^* y = \mathbf 0
+    \\
+    \iff & \forall x \in \mathcal H_1 : \langle x, T^* y\rangle = \langle  Tx, y\rangle = 0
+    \\
+    \iff & 
+    y \perp Tx \; \forall x \in \mathcal H_1
+    \\
+    \iff & 
+    y \perp \text{rng}(T). 
+\end{aligned}
+$$
+
+similarly, we consider 
+$$
+\begin{aligned}
+    & y \in \text{rng} (T)^\perp 
+    \\
+    \iff  &\forall y' \in \text{rng}(T): \langle y', y\rangle = 0
+    \\
+    \iff & \forall x \in \mathcal H_1: \langle Tx, y\rangle = 0
+    \\
+    \iff & \forall x \in \mathcal H_1: \langle x,T^* y\rangle = 0
+    \\
+    \iff & T^* y = \mathbf 0 
+    \\
+    \iff &
+    y \in \text{null}(T^*), 
+\end{aligned}
+$$
+
+recall that in Hilbert spaces, $M \subset \mathcal H$, we have $M^{\perp\perp} = \text{cl}(M)$, in above we have $\text{rng}(T)^\perp = \text{null}(T^*)$, hence $\text{rng}(T)^{\perp\perp} = \text{cl.rng}(T) =\text{null}(T^*)^\perp$, the proof is now complete. 
+
+#### **Thm | Injectivity**
+
+> Let $T:\mathcal H_1\mapsto \mathcal H_2$, a linear operators on the space itself. Then: 
+> 1. If $T$ is onto, then $T^*$ is injective. 
+> 2. If $T$ is injective, then $\text{cl.rng}(T^*) = \mathcal H_1$
+
+**Recall**
+
+Onto meaning that it maps to everything in the output space $\mathcal H_2$ for the operator. Injective means that, there all different elements in the input space $\mathcal H_1$ maps to a different element in $\mathcal H_2$. 
+
+
 
