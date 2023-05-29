@@ -47,16 +47,17 @@ $f(x)$ must be: **Absolutely Integrable**. So that means that integral over the 
 Eigenfunctions for the SV is because there is a boundary, the barrier, and it forces the shape of those eigen functions. However, under infinite domain, they are not discrete anymore, because we are considering limits for the boundary conditions. And the results is expressed in term of the initial conditions. 
 We introduce the d' Alembert's method, It's made for just the above PDE equation, not applicable to anything else. 
 
+
+---
+### **Solution Method Demonstrations**
+
 Here is the list of procedures we use to get the solution for the PDE: 
 1. Take the equation to the Fourier Domain so it's an ODE in $t$, for all $w$. 
 2. Use the $u_t(x, 0) = 0$ get the solution format, in the Fourier Domain. 
 3. Use the $u(x, 0) = f(x)$ to get the undetermined coefficients for the system, in the Fourier domain. 
 4. Do the Inverse Fourier Transform to get the solution in the original spatial domain. 
 
----
-### **Solution Method Demonstrations**
-
-#### **Step One | Take it to Fourier Domain**
+**Take it to Fourier Domain**
 
 We use $x$ denote the spatial domain, and $w$ denotes the Fourier domain. 
 
@@ -214,7 +215,7 @@ And that, is the solution to the PDE.
 Why we didn't use the Boundary Conditions? Because the initial condition helped us to satisfies that part, we assume that the function $f(x)$ is absolutely integrable, it will have to have limit that approaches zero as it goes to infinity, which can be interpreted as a type of boundary condition. 
 
 ---
-### **An Alternative** | D Alambert's method
+### **D Alambert's method**
 
 Let's consider a more general formulations of the wave equation under the infinite domain, and it's: 
  

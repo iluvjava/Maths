@@ -380,24 +380,26 @@ See [[Fourier Series, PDE Flavor]] on how to find n expression given the initial
 I forgot how to solve these. I am not sure it was never tested nor did it appears on any homework it seems like. 
 
 ---
-### **Nonhomogenous Dirichlet Boundary Conditions | Steady State Solution**
+### **Non-homogenous Dirichlet Boundary Conditions | Steady State Solution**
+
+Consider heat equation
 
 > $$
-> u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t
+> u(0, t) = t_1 \quad u(L, t) = t_2 \quad \forall t.
 > $$
 
-The steady state solution $u_s(s, t)$ can be obtained in the case of a heat equation, and it's
+The steady state solution $u_s(s, t)$ can be obtained by setting $\partial_t u(x, t) = 0$ then solve for $\partial_x^2u(x, \cdot) = 0$, using the boundary conditions we have: 
 
 $$
 u_s(x, t) = \frac{(t_2 - t_1)}{L}x + t_1
 $$
 
-A straight line connecting between the different constatns on the 2 end points. The solution to the PDE can be written as an overposition of the steady states solution and some other harmonics upon that $u(x, t) = u_s(x, t) + u_h(x, t)$. $u_h$ is the harmonic part, it has homogenous Dirichlet Boundary condtion, i.e: $u_h(0, t) = u_h(L, t) = 0$. Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
+A straight line connecting between the different constants on the 2 end points. The solution to the PDE can be written as an superposition of the steady states solution and some other harmonics upon that $u(x, t) = u_s(x, t) + u_h(x, t)$. $u_h$ is the harmonic part, it has homogenous Dirichlet Boundary conditions, i.e: $u_h(0, t) = u_h(L, t) = 0$. Solve for $u_h(x, t)$ and then use that add back the $u_s$ to get the full solution for the system. 
 
 ---
 ### **Heat Equation Infinite Domain** 
 
-No, Separation of variable cannot solve, you will bee Fourier Transform and Laplace Transform for this one to work.
+No, Separation of variable cannot solve, you will use Fourier Transform and Laplace Transform for this one to work. 
 
 ---
 ### **Only Heat Equation**
@@ -424,7 +426,7 @@ $$
 \end{cases}
 $$
 
-Notice that, this is the dimensionless version of the PDEs. And we have the choice to substitue some constant to scale the spatial and time domain parameter $x, t$. Suppose that $u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t)$ is a solution to the PDEs system. then, consider $\tilde{u}(x,t) = \sum_{n = 1}^{\infty}X_n(\frac{x}{L})T_n(\alpha t)$. This is a method of non-dimensionalizations: 
+Notice that, this is the dimensionless version of the PDEs. And we have the choice to substitute some constant to scale the spatial and time domain parameter $x, t$. Suppose that $u(x, t) = \sum_{n = 1}^{\infty}X_n(x)T_n(t)$ is a solution to the PDEs system. then, consider $\tilde{u}(x,t) = \sum_{n = 1}^{\infty}X_n(\frac{x}{L})T_n(\alpha t)$. This is a method of non-dimensionalizations: 
 
 $$
 \begin{aligned}

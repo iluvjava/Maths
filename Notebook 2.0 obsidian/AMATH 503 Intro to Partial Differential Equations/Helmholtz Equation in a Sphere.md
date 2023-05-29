@@ -30,7 +30,7 @@ There are 3 parameters describing the spherical coordinate.
 
 from Prof: it's likely to blow up at the center and the poles of the sphere, and we want it to be $2\pi$ periodic at the longitude, meaning that function wrt to $\psi$ will be $2\pi$ periodic. 
 
-**Phereical Laplacian Operator**
+**Spherical Laplacian Operator**
 
 $$
 \nabla^2 \cdot u = 
@@ -46,15 +46,13 @@ And we are going to take this for granted, and this crucial for solving in alter
 ---
 ### **Separation of Variable**
 
-Consider the first step of separation by variables: 
-
-Let: 
+Consider the first step of separation by variables. Let: 
 
 $$
-u(r, \theta, \psi) = R(r)Y(\theta, \psi)
+u(r, \theta, \psi) = R(r)Y(\theta, \psi).
 $$
 
-Then: 
+Recall $\nabla^2 \cdot u = -\lambda u$, then: 
 
 $$
 \begin{aligned}

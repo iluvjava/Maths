@@ -1,54 +1,49 @@
-This is the missing piece.
-It's in the chapter 12 of the textbook. 
+This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pdf) of the textbook. 
 
 ---
 ### **Intro**
 
-The problem we dealt with, like the eigenvalue, eigen-functions for the 1D heat, wave equation, and the bessel's equation, and the Legendre equations, they are all made from the same factory. 
-
-And that factory is Sturm Liouville System. Which will be referred to as the SL system for short.
-
-The coolest part is that, we also have an orthogonality theorem that comes with the Sturm Liouville Systems. 
-
-General Form: 
+The General Form for $y(x)$ of a Sturm-Liouville system (S.L Sys) takes the form: 
 
 $$
 \begin{aligned}
 \partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y = 0    
-\end{aligned}
+\end{aligned}. 
 \tag{1}
 $$
 
-Where $\lambda$ is a parameters to be determined. 
-
-For each value of $\lambda$, we will have a function on the interval as the solution to the problem. That function will be called the Eigenfunction, consider this: 
-
-**Note** Lambda, the eigenvalue is complex. $\lambda \in \mathbb{C}$ when the function involved are complex. 
-
-I am thinking if orthogonality property of the ODE has something to do with the fact that this is giving us a Hermitian operator, but it turns out to be  not that obvious. This is made my suspicions because of the fact that all the Eigenvalues are reals, and all the eigen functions are orthogonal, under weighted inner product of $r(x)$. 
-
-So let's expand out and see.. 
+This is a eigenvalue problem in functional space. Where $\lambda$ is a parameters to be determined, it's the eigenvalue for the system.  For each value of $\lambda$, there is a solution for the equation, which is the Eigenfunction. Note*, Lambda, the eigenvalue can be complex. $\lambda \in \mathbb{C}$ when the function involved are complex. The Orthogonality property of solutions for the above ODE in a weighted space is a results of the differential operator being an adjoint operator in functional spaces.  We expand out the S.L system form to have
 
 $$
 \begin{aligned}
-p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
-\\
-p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
-\\
-p'y' + py'' - qy -\lambda ry& = 0
+	p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
+	\\
+	p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
+	\\
+	p'y' + py'' - qy -\lambda ry& = 0
 \end{aligned}
 $$
 
-And there is nothing that I can see and say that: "Ah, this is a hermitian matrix". This is getting interesting. 
+It's not immediately obvious to why this is an eigenvalue problem, or the fact that the linear mapping involved is adjoint in functional spaces, under what type of conditions. We will clarify these concepts in the coming parts. 
+
+**Observations**
+
+The above form appears for the ODEs from method of separation for second order PDEs. For examples: 
+1. Fourier, (Anisotropic Heat)
+2. Legendre
+3. Bessel
+4. Chebyshev
+
+Previously, we solved it and get fancy polynomials/series for the solutions, now, we see why those polynomials are famous orthogonal polynomials. 
 
 ---
 ### **Singular and Regular SL**
 
 **Regular Summary**
 * $p, p', q, r$ are continuous in interval $[a, b]$, and doesn't have zero, in the domain. 
-* Robine boundary conditions that are legit. 
+* Robin boundary conditions that are legit. 
 
-**Explaination**
+**Explanation**
 
 The domain of the problem is a closed finite interval: $[a, b]$
 

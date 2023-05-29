@@ -87,7 +87,7 @@ We can construct requivalence relations directly from the group definiton.
 
 **Proof**
 
-Skpped, see example (3.1.7) in the brown book. 
+Skipped, see example (3.1.7) in the brown book. 
 
 
 

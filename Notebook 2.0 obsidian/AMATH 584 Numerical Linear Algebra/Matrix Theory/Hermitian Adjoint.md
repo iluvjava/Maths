@@ -1,8 +1,10 @@
 ### **Hermitian Adjoin**
 
+Hermitian adjoint refers to a type of adjoint linear mapping, that is a complex matrix that equals to itself after a conjugate transformation. 
+
 **Definition of Hermitian Adjoin**
 
-> Let $A: H_1\mapsto H_2$ where $H_1, H_2$ are hilbert space, then the operator $A^* : H_2 \mapsto H_1$ is consider to be the adjoint operator of $A$, and it's given by the property of: 
+> Let $A: H_1\mapsto H_2$ where $H_1, H_2$ are Hilbert space, then the operator $A^* : H_2 \mapsto H_1$ is consider to be the adjoint operator of $A$, and it's given by the property of: 
 > 
 > $$
 > \left\langle A h_{1}, h_{2}\right\rangle_{H_{2}}=\left\langle h_{1} , A^{*} h_{2}\right\rangle_{H_{1}}

@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-We introduce more quirks for linear operators in the Hilbert spaces, with inner product for extra flavors. 
+We introduce more quirks for linear mapping in the Hilbert spaces, with inner product for extra flavors. We assume that the real field defines the Hilbert space. Don't worry too much since they share the same theories. For more details visit [wikipedia](https://en.wikipedia.org/wiki/Riesz_representation_theorem). People had written it carefully. 
 
 
 #### **Thm | Rietz Representation Theorem**
@@ -57,7 +57,7 @@ $$
 \end{aligned}
 $$
 
-Fincally, using Cauchy Swartz inequality we have: $|f(x)|\le \Vert z\Vert\Vert x\Vert$, but we also have: $|f(z)| = \Vert z\Vert \le \Vert f\Vert$, hence it has to be that $\Vert f\Vert = \Vert z\Vert$. Therefore. 
+Finally, using Cauchy Swartz inequality we have: $|f(x)|\le \Vert z\Vert\Vert x\Vert$, but we also have: $|f(z)| = \Vert z\Vert \le \Vert f\Vert$, hence it has to be that $\Vert f\Vert = \Vert z\Vert$. Therefore. 
 
 **Remarks**
 
@@ -65,7 +65,7 @@ Unbounded linear functional would still have the representation of inner product
 $$
 \mathcal H^\star =  \mathcal H
 $$
-for any Hilbert space $\mathcal H$. 
+for any Hilbert space $\mathcal H$ equipped with a real field. 
 
 
 #### **Def-1 | Bilinear Form**
@@ -81,13 +81,22 @@ for any Hilbert space $\mathcal H$.
 > $$
 
 
+**Observations**:
+
+Fixing one of the parameters will create a linear mapping on the other, remaining parameter. 
+
+**Remarks**: 
+
+Bounded bilinear form will be to our interests. 
+
+
 ---
 ### **Representation of Bilinear Form in Hilbert space**
 
 Similar to linear functionals in Hilbert space that has an inner product representation, it's the same for bilinear functionals constructed between 2 Hilbert spaces. 
 
 
-#### **Thm | Bounded Bilinear form with Linear Operator**
+#### **Thm | Bounded Bilinear form Induced by Linear Mapping**
 > Let $h$ be a mapping between $\mathcal H_1 \times \mathcal H_2$ to the field of reals, then there exists a unique linear operator $S \in \mathcal B(\mathcal H_1, \mathcal H_2)$ such that: 
 > 1. $h(x, y) = \langle S x, y\rangle$ for all $x\in \mathcal H_1, y \in \mathcal H_2$. 
 > 2. $\Vert h\Vert = \Vert S\Vert$. 
@@ -95,3 +104,7 @@ Similar to linear functionals in Hilbert space that has an inner product represe
 **Proof**: 
 
 We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definition of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.
+
+**Remarks**
+
+The linear mapping can merge to the second parameters, and that would help with defining the existence of a, adjoint operators in Hilbert spaces, for bounded bilinear functionals. To motivate, observe that from a symmetric pointof view, a bilinear operator $h: \mathcal H_1 \times \mathcal H_2 \mapsto \mathbb R := \langle Sx, y\rangle$ is the same as the bilinear operator $q(y, x): \mathcal H_2\times \mathcal H_1 \mapsto \mathbb R:= \langle Ty, x\rangle$, these 2 bilinear operator is essentially the same, but they will have a different linear mapping for each. 

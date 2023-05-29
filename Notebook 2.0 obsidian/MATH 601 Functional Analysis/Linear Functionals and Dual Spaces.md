@@ -52,7 +52,7 @@ Next, we show that $T$ is surjective. Let $(y_{\mathcal I(1)}, y_{\mathcal I(2)}
 
 #### **The Norm of the Dual Space**
 
-> Let $\Vert \cdot\Vert_{\star}$ denot the dual space, the normed vector sapces for all the linear functionals in $\mathcal B(X, \mathbb K)$, then the norm is defined to be $\Vert Tf\Vert = \Vert f\Vert_\star$. 
+> Let $\Vert \cdot\Vert_{\star}$ denote the dual space, the normed vector spaces for all the linear functionals in $\mathcal B(X, \mathbb K)$, then the norm is defined to be $\Vert Tf\Vert = \Vert f\Vert_\star$. 
 >
 
 #### **The Dual Space**
@@ -76,7 +76,7 @@ We develop some theorems first. We put it here and cite it but we will not prove
 **Proof** Skipped. 
 
 **Remarks**
-In beif, the set of all bounded linear operator is a closed set. 
+In brief, the set of all bounded linear operator is a closed set. 
 
 ---
 ### **Illustrative Examples**
@@ -163,5 +163,7 @@ therefore, equality can be achived by using $x_0$, and therefore, the norm that 
 
 ---
 ### **Rietz Representation Theorem**
+
+In the Hilbert space, results of a dual space are strengthened. 
 
 [[Bilinear Form, Rietz Representations]]

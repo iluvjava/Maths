@@ -1,10 +1,4 @@
-This is use for solving the cylindrical wave equation, which is [[Helmholtz Equation in a Cylinder]], And because we introduce the method of [[Frobenius Method]] along the way as we go, here I listed some relevant discussion for frobenius method too. 
-
-And we encounter the problem of solving for the basis functions along the $r$ direction. 
-
-The objective is to look for the series representation of the solutions for the Bessel's equation. And we are using the Frobenius method because zero is a singularity of the ODE presented from the Bessel's Equation. 
-
-And because Bessel's equation is a topic on itself, it's in its file and [here](https://www.wikiwand.com/en/Bessel_function) is the Wiki!
+It's used for solving cylindrical wave equation, a type of [[Helmholtz Equation in a Cylinder]], using [[Frobenius Method]], and we further explore the application of Frobenius Method in for cylindrical wave equation. And we encounter the problem of solving for the basis functions along the $r$ direction. Our goal is to look for the series representation of the solutions for the Bessel's equation. And we are using the Frobenius method because zero is a singularity of the ODE presented from the Bessel's Equation. And because Bessel's equation is a topic on itself, it's in its file and [here](https://www.wikiwand.com/en/Bessel_function) is the Wiki!
 
 **Note**: This is also discussed in details in the chapter 11 of the textbook. 
 

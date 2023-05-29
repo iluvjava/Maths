@@ -7,22 +7,30 @@ This class as prereq: [[Amath 501]]
 2. Fourier Series: Handling the initial conditions of the PDEs. [Fourier Series, PDE Flavor](Fourier%20Series,%20PDE%20Flavor.md). 
 
 ### **Week 2**
+
+We work with Fourier series, they are the foundations for solving IBVPs. 
 1. Cosine Fourier Series [[Fourier Cosine Series]]
 2. Sine Fourier Series [[Fourier Sine Series, PDEs Flavor]]
 3. Complex Fourier Series [[Complex Fourier Series, PDF Flavor]] 
 
 ### **Week 3**
+
+Fourier transform applies for system that has infinite domains
 1. Fourier Transform: Chapter 7 -> Chapter 7.4 [[Fourier Transform, PDE Flavor]]
 2. Application of Fourier Transform on some functions. [[Application of Fourier Transform, PDE Flavor]]
 3. Using Fourier Transform for PDEs with I.C involving infinite domain. [[1D Wave in Infinite Domain]]
 
 ### **Week 4**
+
+Laplace transform and Fourier transform, with an illustrate example. 
 1. Fourier Transform and the Drunken Sailor Problem. [[The Drunken Sailor Problem, PDE Problem]]
 2. Fourier Form and the Laplace Transform [[Laplace Transform]]
 3. Generalizing Laplace Transform and Inverse Laplace Transform: [[Laplace Transform Generalized]]
 4. Solving PDE with the Laplace Transform: [[Solving PDE with Laplace]]
 
 ### **Week 5**
+
+We look at some examples of PDEs in 3D. 
 1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Helmholtz Equation In Rectangle]]
 2. 3D wave equations in a box, [[Schordinger Eqn in Box]]
 3. 3D wave equations in a cylinder, [[Helmholtz Equation in a Cylinder]]
