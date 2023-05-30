@@ -9,8 +9,7 @@ The results from Banach space about linear mapping from the Banach space had bee
 
 **References**: 
 
-We will be taking theorems from Kryzig's textbook, and, Heinz's Monotone Book 1st ed, chapter 2, 
-
+We will be taking theorems from Kryzig's textbook, and, Heinz's Monotone Book 1st ed, chapter 2. 
 
 ---
 ### **The Adjoint Operator of a Linear Mapping in a Real Hilbert Space**
@@ -144,6 +143,3 @@ recall that in Hilbert spaces, $M \subset \mathcal H$, we have $M^{\perp\perp} =
 **Recall**
 
 Onto meaning that it maps to everything in the output space $\mathcal H_2$ for the operator. Injective means that, there all different elements in the input space $\mathcal H_1$ maps to a different element in $\mathcal H_2$. 
-
-
-
