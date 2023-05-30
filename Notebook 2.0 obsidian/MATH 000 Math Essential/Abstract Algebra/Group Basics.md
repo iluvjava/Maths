@@ -90,10 +90,8 @@ We can construct requivalence relations directly from the group definiton.
 Skipped, see example (3.1.7) in the brown book. 
 
 
-
 ---
 ### **Illustrative Examples**
-
 
 #### **Example (3.1.4) | The group of Integers Modulo n**
 > Let $n\in \Z$, then the set $Z_n$ is the set of integers modulo $n$, under addition of congruence classes (induced by the n-modulo equivalence relations on $\Z$. ) The group is finite and has $|Z_n| = n$. 
