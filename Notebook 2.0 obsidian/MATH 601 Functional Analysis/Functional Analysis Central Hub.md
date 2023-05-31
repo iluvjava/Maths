@@ -74,12 +74,9 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 - [Inner Product Space](Functional%20Spaces/Inner%20Product%20Space.md)
 	- Parallelogram laws 
 	- Inner product induced Norm. 
-	- Cauchy Swarts
+	- Cauchy Schwarts
 	- Continuity of inner product. 
 	- Orthogonality. 
-
-- [Hilbert Space](Functional%20Spaces/Hilbert%20Space.md) 
-	- It's an inner product space. 
 
 - [Hilbert Space Introduction](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
 	- Projection Theorem

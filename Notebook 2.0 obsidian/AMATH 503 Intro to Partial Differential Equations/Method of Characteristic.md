@@ -125,7 +125,7 @@ Pick any point $(x, y)\in D$, describe it using the characteristic lines, mainly
 
 
 ---
-### **Example-1**
+### **Example-1 | Some random Example**
 
 We solve 
 
@@ -175,3 +175,9 @@ $$
 $$
 
 and we had $x_0 = x - y/2, s = y/2$. Then $u(x, y) = u(x - y/2, 0)\exp(y/2) = (x - y/2)\exp(y/2)$. Solution obtained. 
+
+---
+### **Advection Equation**
+
+
+

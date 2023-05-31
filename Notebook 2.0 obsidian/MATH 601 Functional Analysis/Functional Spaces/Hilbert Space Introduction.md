@@ -12,7 +12,8 @@
 
 **References**
 
-All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. 
+All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. #UNFINISHED Cite some of these theorems from the source! 
+
 
 ---
 ### **Hilbert Space Projection Theorem**
@@ -394,7 +395,7 @@ A total set has closure that spans the whole Hilbert Space. Its existence is imp
 #### **Def | Total Space**
 > A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and oly if all terms in the sequence form a total set in $\mathcal H$. 
 
-#### **Thm | Ortho Complement of Total Space**
+#### **Thm | Maximality of Basis**
 > $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 
 
 **Proof**:
