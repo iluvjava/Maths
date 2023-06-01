@@ -14,9 +14,7 @@ Summary:
 ---
 ### **Intro**
 
-We need some way of getting around the Bessel's Equation to get solution for the Helmholtz Equation in the  cylinder. 
-
-The Standard Form of the Bessel's Equation is: 
+We need some way of getting around the Bessel's Equation to get solution for the Helmholtz Equation in the  cylinder. The Standard Form of the Bessel's Equation is: 
 
 $$
 \begin{aligned}

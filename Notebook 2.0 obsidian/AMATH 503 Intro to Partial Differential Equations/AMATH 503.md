@@ -31,7 +31,7 @@ Laplace transform and Fourier transform, with an illustrate example.
 ### **Week 5**
 
 We look at some examples of PDEs in 3D. 
-1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Helmholtz Equation In Rectangle]]
+1. Multi-Dimensional PDEs (3d), the Schrodinger equations [[Helmholtz Equation In Box]]
 2. 3D wave equations in a box, [[Schordinger Eqn in Box]]
 3. 3D wave equations in a cylinder, [[Helmholtz Equation in a Cylinder]]
 
@@ -57,7 +57,7 @@ After the midterm, we will start to solve PDEs in multiple dimension.
 
 * Regular Cartesian Basis: 
 	* [[Schordinger Eqn in Box]]
-	* [[Helmholtz Equation In Rectangle]]
+	* [[Helmholtz Equation In Box]]
 * Other kind of Basis: 
 	* [[Helmholtz Equation in a Cylinder]]
 	* [[Helmholtz Equation in a Sphere]]

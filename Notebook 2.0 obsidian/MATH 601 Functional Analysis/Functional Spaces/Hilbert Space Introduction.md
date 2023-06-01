@@ -408,11 +408,11 @@ From prof wang's notes for math 328 in UBCO.
 #### **Thm | Total Orthonormal Sequences**
 > Let $(e_i)_{i\in \mathbb N}$ be a total sequence for $\mathcal H$, let $M = \{e_i\}_{i \in \mathbb N}$, the set of all its value, then the following conditions are equivalent. 
 > 1. $M$ is total. 
-> 2. Bessel's inequality becomes equality. 
+> 2. Bessel's inequality becomes equality (Parseval’s identity). 
 > 3. For all $x \in \mathcal H, \Pi_{\text{cl}(M)} x= x$, projecting onto the closure of $M$ will recovers $x\in \mathcal H$. 
 
 
-#### **Thm | Separability of of Hilber Space and Basis**
+#### **Thm | Separability of of Hilbert Space and Basis**
 > The following theorem relate separability of the Hilbert space and the type of orthonormal basis for the Hilbert space $\mathcal H$. 
 > 1. If $\mathcal H$ has a countable orthonormal basis, then $\mathcal H$ is a separable space. Every $x \in \mathcal H$ can be described by the closure of the countable basis. 
 > 2. If $\mathcal H$ is a separable space, then every orthonormal basis set is, countable. 

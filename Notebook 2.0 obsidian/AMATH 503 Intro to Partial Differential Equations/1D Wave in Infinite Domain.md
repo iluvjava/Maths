@@ -235,9 +235,7 @@ u(x, t) = \underbrace{f(x + ct)}_{\text{Backward traveling wave}} + \underbrace{
 \tag{7}
 $$
 
-Let's determine what is $f, g$ in the general solution. 
-
-Consider the differential operator in a more flexible way: 
+Let's determine what is $f, g$ in the general solution. Consider the differential operator in a more flexible way: 
 $$
 \begin{aligned}
     (\partial_t^2 - c^2\partial_x^2)[u] &= 0

@@ -319,3 +319,23 @@ $$
 To get this
 \lim_{k\rightarrow\infty}\langle x_{k},y-x\rangle existence make sure both quantities above the same.
  
+Definte $\Pi_{(\cdot, y)}[u](x)=u(x, y)$, this operator fixes $y$ the second parameter and passes $x$, the first parameter. This is a linear transform on some (...?) functional space. We note that the condition $u(x, b) + u_x(x, b) = f(x)$ for all $x\in (0, a)$, is a lot like a linear constraint in linear algebra. I mean that by
+
+$$
+\begin{aligned}
+    u(x, b) + u_x(x, b) &= f(x)
+    \\
+    [I + \partial_x]u(x, b) &= f(x)
+    \\
+    [\Pi_{(\cdot, b)}(I + \partial_x)]u(x, y) &= \Pi_{(\cdot, b)}f(x, \cdot).
+\end{aligned}
+$$
+Which is infinitely many linear constraints. And it's not hard to see that, the projection $\Pi_{(\cdot, b)}u(x, y)$, is actually: 
+
+$$
+\begin{aligned}
+    \Pi_{(\cdot, b)}[u](x) = \int_{-\infty}^{\infty} u(x, y)\delta(0, y - b)dy, 
+\end{aligned}
+$$
+
+making use of the Dirac delta, and representing it in a more... savage way. And I think, the use of Dirac delta, is representing a sequence of function approaching a limit, in Hilbert space $L^2$. Which is probably, the theoretical foundations. This simplifies a lot for $1D$ boundary problem, creating just a single linear constraints. To not have this constraints as redundant, I think we need to use linear algebra to determine pre-image of $\Pi_{(\cdot, b)}(I + \partial_x)$ on $f$ is not in the null space of the Laplace operator $[\partial_x^2 + \partial_y^2]$, or any other existing boundary conditions. Since it's a linear operator, the pre-image is the solution plus the span of null space or something. 

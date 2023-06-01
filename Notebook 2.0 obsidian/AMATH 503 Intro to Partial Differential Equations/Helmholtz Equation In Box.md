@@ -5,18 +5,14 @@ Here, we are sticking with the same thing, but we are going to look into some co
 ---
 ### **Intro**
 
-We are interested in a sound waves in a rectangular cavity. 
-
-The system of equations is given like: 
+We are interested in a sound waves in a rectangular cavity.  The system of equations is given like: 
 
 $$
 \partial_t^2[\psi] = 
 \alpha^2\nabla^2\psi
 $$
 
-And $\psi$ is the displacement. 
-
-And the box is rectangular. 
+And $\psi$ is the displacement. And the box is rectangular. 
 
 $$
 \psi = 0 \quad \text{when: } x = 0, L_1\quad y = 0, L_2\quad z = 0, L_3 
@@ -55,9 +51,7 @@ and, spoiler alert, because this is true for all value of $x, y, z, t$, the left
 
 **Note**: The $\alpha$ is going to be with $T$, on the left hand side of the equation. 
 
-And we are going to make the assumption that the constant on the RHS is $-\lambda^2$, this is true because we are looking at dirichlet boundary conditions for the system. 
-
-Applying the SOV, then we will have: 
+And we are going to make the assumption that the constant on the RHS is $-\lambda^2$, this is true because we are looking at Dirichlet boundary conditions for the system. Applying the SOV, then we will have: 
 
 $$
 \frac{X''}{X}
@@ -82,9 +76,7 @@ $$
 $$
 
 
-Well in this case, we will be getting basis functions for $X, Y, Z$, and each of then will be identified with a natural numbers. Which determines the frequencies of the Basis function. 
-
-Notice that it's hinted that: 
+Well in this case, we will be getting basis functions for $X, Y, Z$, and each of then will be identified with a natural numbers. Which determines the frequencies of the Basis function. Notice that it's hinted that: 
 
 $$
 -\lambda^2_{m, n, l} = -(a^2_n  + b^2_m  + c^2_l)
@@ -158,22 +150,14 @@ w_{n, m, l} = \alpha\pi \sqrt{
 }
 $$
 
-Notice that the frequencies of the sound wave is quantized. 
-
-The lowest frequency will be given by $w_{1, 1, 1}$ 
+Notice that the frequencies of the sound wave is quantized. The lowest frequency will be given by $w_{1, 1, 1}$ 
 
 **Some Important Facts**
 
-This means that, for higher requencies, it cannot be written as an integer multiple of $w_{1, 1, 1}$. 
-
-Notice that, in the first dimension, the harmonics of the basis function is given as: 
+This means that, for higher frequencies, it cannot be written as an integer multiple of $w_{1, 1, 1}$. Notice that, in the first dimension, the harmonics of the basis function is given as: 
 
 $$
 w_n = \frac{n\alpha\pi}{L}
 $$
 
-Which means that $w_2$ is a multiple of $w_4$, it's like a combination of ordered harmonics. 
-
-In the case of 3D partial standing waves, the harmonics is different, and they are not 2x multiple of each other. 
-
-That is also the reason why some of the instruments that make standing waves on a string has more of a soothing affect, it's because of the properties of the harmonics on the 1D vibrating string.   
+Which means that $w_2$ is a multiple of $w_4$, it's like a combination of ordered harmonics. In the case of 3D partial standing waves, the harmonics is different, and they are not 2x multiple of each other. That is also the reason why some of the instruments that make standing waves on a string has more of a soothing affect, it's because of the properties of the harmonics on the 1D vibrating string.   

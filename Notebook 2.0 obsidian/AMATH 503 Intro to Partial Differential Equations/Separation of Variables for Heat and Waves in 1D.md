@@ -121,7 +121,7 @@ then, it must be the cause that $\lambda L$ is a full period for $\sin$,  if we 
 
 $$
 \begin{aligned}
-    & \sin(\lambda_n L) = 0 \implies \lambda_n = \frac{n\pi}{L} \forall \; n\in \mathbb{N}
+    & \sin(\lambda_n L) = 0 \implies \lambda_n = \frac{n\pi}{L} \; \forall n\in \mathbb{N}
     \\
     \implies &
     X(x) = A_n\sin \left(

@@ -78,9 +78,7 @@ u(r, \theta, z) = R(r)\Theta(\theta)Z(z)
 \tag{2}
 $$
 
-**Note**: $T(t)$ is missing and we will come back to that later, and justify what is going on with it. 
-
-Yeah, something like that, and putting it into the PDE will yield this: 
+**Note**: $T(t)$ is missing and we will come back to that later, and justify what is going on with it. Yeah, something like that, and putting it into the PDE will yield this: 
 
 $$
 \frac{1}{r}\partial_r[r\partial_r[R]]\Theta Z + 
@@ -130,9 +128,7 @@ b_l = \frac{l\pi}{L} \quad Z_l(z) = \sin\left(
 \tag{7}
 $$
 
-And this is the configuration for $Z(z)$. 
-
-Sub (5) --> (4) we will get: 
+And this is the configuration for $Z(z)$. Sub (5) --> (4) we will get: 
 
 $$
 A = - (\lambda^2 - b_l^2)
@@ -193,9 +189,7 @@ $$
 \Theta (\theta) = \exp(im\theta) \quad m\in \mathbb{Z}
 $$
 
-Now, we will start solving for $R(r)$. 
-
-Substituting (8), (5) into (4) we will have: 
+Now, we will start solving for $R(r)$. Substituting (8), (5) into (4) we will have: 
 
 $$
 r \partial_r[r\partial_r [R]] + ((\lambda^2 - b_l^2)r^2 - m^2)^2R = 0
@@ -226,9 +220,7 @@ And let's just assume that we have the solutions for the equation now, and more 
 
 **There are 2 solutions, one of them is blowing up, and the other one is not blowing up.**
 
-We are going to assert another additional boundary conditions to restrain us to only solutions that are not blowing up. We want the solution to be bounded. 
-
-We want: 
+We are going to assert another additional boundary conditions to restrain us to only solutions that are not blowing up. We want the solution to be bounded. We want: 
 
 $$
 R(0) \ne \pm \infty
@@ -292,12 +284,7 @@ y' = \sum_{n = 0}^{\infty}a_n(n + s)x^{n + s - 1}=
     a_n(n + s - 1)x^{n + s}
 $$
 
-So now we have the index shifted. 
-
-Plugging it into the original equation with the shifted indices, we will have: 
-(After non-trivial amount of math)
-
-
+So now we have the index shifted. Plugging it into the original equation with the shifted indices, we will have: (After non-trivial amount of math)
 
 $$
 \sum_{n = 0}^{\infty}
@@ -313,11 +300,7 @@ $$
 a_0[s^2 - p^2]  = 0
 $$
 
-And this will imply that $s^2 = p^2$ implies that $s = \pm p$
-
-There is another file the talks about the Bessel's Equation in more detail: [[Bessel's Equation]]. All the details go into that file so it's not too cluttered here. Because it's kinda complicated. 
-
-Ans the solution for the standard form bessel's equation turns out to be: 
+And this will imply that $s^2 = p^2$ implies that $s = \pm p$. There is another file the talks about the Bessel's Equation in more detail: [[Bessel's Equation]]. All the details go into that file so it's not too cluttered here. Because it's kinda complicated. Ans the solution for the standard form Bessel's equation turns out to be: 
 
 $$
 y_1(x) = \sum_{n = 0}^{\infty}
@@ -364,13 +347,13 @@ $$
 x = (\lambda^2 - b_l^2)r
 $$
 
-With this susbtitution above, we will be able to transform the boundary conditions, and it will be like [^3]: 
+With this substitution above, we will be able to transform the boundary conditions, and it will be like [^3]: 
 
 $$
 R(0) \ne \infty
 $$
 
-And on the edge of the cap of the cylindar, the boundary conditions will be: 
+And on the edge of the cap of the cylinder, the boundary conditions will be: 
 
 $$
 y\left(
@@ -462,11 +445,7 @@ Up to this point, we have all the boundary conditions for the **Helmholtz Equati
 ---
 ### **The Time Dimension**
 
-We need time domain so we can have initial conditions and then solve to see how things evolve. 
-
-We only have the spatial domain solved, what about the time domain? Let's denote $\phi_{n, m, l}(x, y, z) = u_{n, m, l}(x, y, z)$. 
-
-The story is similar to what we did in one dimension and it will be like: 
+We need time domain so we can have initial conditions and then solve to see how things evolve. We only have the spatial domain solved, what about the time domain? Let's denote $\phi_{n, m, l}(x, y, z) = u_{n, m, l}(x, y, z)$. The story is similar to what we did in one dimension and it will be like: 
 
 $$
 \nabla^2 \cdot [\phi_{n, m, l}(x, y, z)T(t)] = c^2 \partial_t^2[\phi_{n, m , l}T(t)]
