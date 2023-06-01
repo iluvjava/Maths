@@ -121,11 +121,32 @@ $$
 \begin{aligned}
     P[u, v](x) &= [ua_1v + u'a_2v - u(a_2v)'](x)
     \\
+    &= [u(a_1 - a_2')v + u'a_2v - ua_2 v'](x)
+    \\
+    &= [u(a_1 - a_2')v + a_2(u'v - uv')](x)
+    \\
     \implies 
     \langle L[u],v \rangle &= P[u, v](b) - P[u, v](a) + 
     \left\langle u, \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v\right\rangle,
 \end{aligned}
 $$
 then the potantial candidate for the operator $L^*[v] = \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v$. The part of the proof is now complete. 
+
+---
+### **Sturm Liouville System is Self Adjoint**
+
+We show that under homogeneous boundary conditions (RHS of the boundary constraints is zero), the Sturm Liouville system becomes a self-adjoint system. The system's boundary conditions and the Linear operator are the same for the adjoint system. 
+
+#### **Def | Sturm Liouville's Form**
+
+> The Sturm Liouville's form is a type of BC ODE, second order. It has the form $(p(x)y')' + (q(x) + \lambda r(x))y = 0$ and some boundary conditions. 
+
+**Note**: 
+
+There are many different types for the Sturm Liouville's system, they are used to assist the analytical solutions for separation of variables for canonical Elliptic PDEs. 
+
+
+#### **Claim | It's self Adjoint**
+> We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = (p(x)y')' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen system under weights $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
 
 
