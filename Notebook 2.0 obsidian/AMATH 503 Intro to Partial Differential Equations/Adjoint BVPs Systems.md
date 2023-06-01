@@ -77,7 +77,7 @@ $$
 \end{aligned}
 $$
 
-And therefore, it's suggesting that $L^*[v] = (av)''$. And the boundary conditions must be stisfied in such a way that, $v\in D^*$ has the property that for all $u\in D$, we have the bilinear functional $\left [a u'v \right|_a^b - \left[u(av)'\right|_a^b = 0$. 
+And therefore, it's suggesting that $L^*[v] = (av)''$. And the boundary conditions must be satisfied in such a way that, $v\in D^*$ has the property that for all $u\in D$, we have the bilinear functional $\left [a u'v \right|_a^b - \left[u(av)'\right|_a^b = 0$. 
 
 
 #### **Generic Second Order ODE with BVP**
@@ -126,6 +126,6 @@ $$
     \left\langle u, \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v\right\rangle,
 \end{aligned}
 $$
-then the potantial candidate for the operator $L^*[v] = \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v$. It's claimed that, the boundary conditions for the function $v$ for the adjoint operator is the same as the one as the original system, next we show that $\alpha_1 v(a) + \beta_1 v'(b) = 0$ ,and $\alpha_2 v(b) + \beta_2 v'(b) = 0$, with the assumption that the coefficients $\alpha, \beta$ are both non-trivial, we show that $P[u, v](b) - P[u, v](a) = 0$. Define 
+then the potantial candidate for the operator $L^*[v] = \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v$. The part of the proof is now complete. 
 
 
