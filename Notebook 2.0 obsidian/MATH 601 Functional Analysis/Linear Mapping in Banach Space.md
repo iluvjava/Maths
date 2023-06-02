@@ -167,3 +167,9 @@ The theorems and properties for a bounded linear mapping also applies to a bound
 2. Dot product. 
 3. Choosing a fixed of a function and putting it into the function in the space $C[a, b]$. 
 4. The $l^2$ sequence space. 
+
+
+---
+### **Adjoint Operators in Banach Spaces**
+
+This section will be based on 4.5 of Kryzig's textbook for functional analysis. However, to make this concept useful and easier to understand, we need to view it as a generalization of adjoint operators in Hilbert spaces. See [Linear Mapping in Hilbert Space](Linear%20Mapping%20in%20Hilbert%20Space.md)  for more about adjoin operator in Hilbert space. 

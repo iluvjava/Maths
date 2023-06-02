@@ -9,7 +9,6 @@
 **Important Notes Throughout**
 1. Let $M$ be a subset of $\mathcal H$, the Hilbert space, then $\text{span}(M)$ is the span of finite many elements in $M$. This is important because closure of the span is something extra, and we want to keep that in mind since it only happens in Hilbert space and not finite Euclidean space. 
 
-
 **References**
 
 All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. #UNFINISHED Cite some of these theorems from the source! 
@@ -124,7 +123,7 @@ therefore, we have $\bar y = \bar y_0$. Therefore, the projection $\Pi_M(x)$, is
 
 A subspace in Hilbert space is convex, but not necessarily closed. If it's closed, then we can applied the above theorems and the theorem below. 
 
-#### **Thm | Characterizing Projections onto Hilbert Spaces**
+#### **Thm | Characterizing Hilbert Space Projections**
 > Let $Y\subseteq \mathcal H$ be a closed subspace, then we have the following that is true about the projection operator: 
 > 1. $\Pi_Y$ is linear. 
 > 2. $\Pi_Y$ is idempotent. 

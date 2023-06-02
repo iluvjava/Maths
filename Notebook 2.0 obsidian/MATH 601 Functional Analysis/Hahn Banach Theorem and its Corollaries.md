@@ -4,9 +4,9 @@
 ---
 ### **Intro**
 
-We state the theorem, and discuss its corollaries and consequences. 
+We state the theorem, and discuss its corollaries and consequences. Recall that $p$ is a sublinear mapping on a vector space $X$ when $p(x + y) \le p(x) + p(y)$, and $p(\alpha x) \le |\alpha| p(x)$. 
 
-#### **Thm-1 | Hahn Banach Theorem**
+#### **Thm (4.2-1) | Hahn Banach Theorem**
 > Let $X$ be a vector space, let $Z\subseteq X$, let 
 > 1. $f: Z\mapsto \mathbb R$ be a linear functional. 
 > 2. $p:Z\mapsto \mathbb R$ be a sub-linear functional.
@@ -19,7 +19,7 @@ We state the theorem, and discuss its corollaries and consequences.
 $p$ is a sub-linear functionals when $p(x + y) \le p(x) + p(y)$. 
 
 
-#### **Thm | Hahn Banach in Banach Space**
+#### **Thm (4.3-2) | Hahn Banach in Banach Space**
 > The norm $\Vert \cdot\Vert$ is a sub-linear functionals in Banach space. Let $f$ be a bounded linear functional in the subspace $Z\subseteq X$, then there exists a bounded linear functional $\tilde f$ on $X$, which is an extension of $f$ on $Z$, i.e: $f(x) = \tilde f(x)$ for all $x \in Z$, and they satisfy: 
 > $$
 >   \Vert f\Vert_X = \Vert f\Vert_Z,
@@ -38,7 +38,7 @@ $$
 choose any $x_0\in Z$, then we have $f(x_0) = \tilde f(x_0)$, hence, the above can become an equality. 
 
 
-#### **Corollary-1 | Bounded Linear Functional Theorem**
+#### **Corollary-1 (4.3-3) | Bounded Linear Functional Theorem**
 > Let $X$ be a normed space and $x_0 \neq \mathbf 0$ be any element of $X$, then there exists a bounded linear functional $\tilde f$ such that $\Vert \tilde f\Vert = 1, \tilde f(x_0) = \Vert x_0\Vert$. 
 
 **Proof**: 
@@ -47,7 +47,7 @@ Let $Z\subseteq X$ be $\text{span}(x_0)$, on $Z$ define $f(x) = f(\alpha x_0)= \
 
 $$
 \begin{aligned}
-    & |f(x)| = |f(\alpha x_0)| = |\alpha \Vert x\Vert| = |\alpha|\Vert x\Vert
+    & |f(x)| = |f(\alpha x_0)| = |\alpha|\Vert x_0\Vert
     \\
     \iff 
     & \Vert f\Vert = 1, 
@@ -56,8 +56,7 @@ $$
 \end{aligned}
 $$
 
-therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem, we have $\tilde f(x) = f(x)$ on $Z$ such that $\Vert \tilde f\Vert_X = \Vert f\Vert_Z = 1$, and $\tilde f(x_0) = \Vert x_0\Vert$. 
-
+therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem, we have $\tilde f(x) = f(x)$ on $Z$ such that $\Vert \tilde f\Vert_X = \Vert f\Vert_Z = 1$, and $\tilde f(x_0) = \Vert x_0\Vert$. However, Hanh Bamac Banach theorem will extend $\tilde f$ to the whole domain $X$. 
 
 **Remarks**
 

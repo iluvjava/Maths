@@ -38,7 +38,7 @@ For finite real/complex matrices, the transpose would be the adjoint operator. H
 
 **Proof**: 
  
-this is direct by considering $h(x, y) = \langle x, Ty\rangle = \langle T^*x, y\rangle$, however in real Hilbert space, we have $h(x, y) = \langle x, T^*y\rangle$, this provides us with $\Vert h\Vert = \Vert T\Vert = \Vert T^*\Vert$ from the norm defintion of $h$. 
+this is direct by considering $h(x, y) = \langle x, Ty\rangle = \langle T^*x, y\rangle$, however in real Hilbert space, we have $h(x, y) = \langle x, T^*y\rangle$, this provides us with $\Vert h\Vert = \Vert T\Vert = \Vert T^*\Vert$ from the norm definition of $h$. 
 
 
 ---
@@ -49,7 +49,7 @@ this is direct by considering $h(x, y) = \langle x, Ty\rangle = \langle T^*x, y\
 3. $T^{**} = T$. Direct by $\langle T^{**}x, y\rangle = \langle x, T^* y\rangle = \langle Tx, y\rangle$. We undo the adjoint by swapping it back and forth. 
 4. $\Vert T^*T\Vert = \Vert TT^*\Vert = \Vert T\Vert^2$. We prove this later. 
 5. $T^*T = 0$ if and only if $T = \mathbf 0$. Direct from property (5.)
-6. $(ST)^* = T^*S^*$, direct from the defintion of an Hilbert adjoint operator. 
+6. $(ST)^* = T^*S^*$, direct from the definition of an Hilbert adjoint operator. 
 
 
 #### **Demonstration for | Property (4)**
@@ -142,4 +142,4 @@ recall that in Hilbert spaces, $M \subset \mathcal H$, we have $M^{\perp\perp} =
 
 **Recall**
 
-Onto meaning that it maps to everything in the output space $\mathcal H_2$ for the operator. Injective means that, there all different elements in the input space $\mathcal H_1$ maps to a different element in $\mathcal H_2$. 
+Onto meaning that it maps to everything in the output space $\mathcal H_2$ for the operator. Injective means that, there are all different elements in the input space $\mathcal H_1$ maps to a different element in $\mathcal H_2$. 

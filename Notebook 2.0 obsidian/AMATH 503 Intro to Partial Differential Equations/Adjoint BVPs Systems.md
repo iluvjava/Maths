@@ -15,7 +15,7 @@ These materials will be taken from Prof Eric Foxall's classnotes for MATH 319 at
 We will find the adjoint of a ODE with B.C. We build example to example, and then to a generic form of the BVP with second order ODE. 
 
 #### **Def | Adjoint Operator from ODE**
-> Suppose that $L[y]:D\mapsto C^p[a, b]$ is a linear mapping on the functional space $D$ and suppose that $B[y]: C^p[a, b]\mapsto \mathbb R^p$ is a linear mapping denoting the boundary conditions for the ODE on $[a, b]$, then $D = \{y \in C^p[a, b] | B[y] = \mathbf 0\}$. Let the BVP ODE and the Boundary conditions be
+> Suppose that $L[y]:D\mapsto C^p[a, b]$ is a linear mapping on the functional space $D$ and suppose that $B[y]: C^p[a, b]\mapsto \mathbb R^p$ is a linear mapping denoting the boundary conditions for the ODE on $[a, b]$, then $D = \{y \in C^p[a, b] : B[y] = \mathbf 0\}$. Let the BVP ODE and the Boundary conditions be
 > $$
 >   \begin{cases}
 >         L[y]  = h, 

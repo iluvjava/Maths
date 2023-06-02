@@ -1,4 +1,4 @@
-This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pdf) of the textbook. 
+This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pdf) of the textbook. For more theoretical background for the idea of an adjoint system, visit [Adjoint BVPs Systems](Adjoint%20BVPs%20Systems.md). 
 
 ---
 ### **Intro**
@@ -45,15 +45,9 @@ Previously, we solved it and get fancy polynomials/series for the solutions, now
 
 **Explanation**
 
-The domain of the problem is a closed finite interval: $[a, b]$
+The domain of the problem is a closed finite interval: $[a, b]$. $p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. If it crosses zero in side the domain, we have the sour problem of singularities in the ODE. WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
 
-$p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. If it crosses zero in side the domain, we have the sour problem of singuarities in the ODE. 
-
-WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
-
-**Note**: By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. 
-
-The boundary conditions are of the form: 
+**Note**: By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. The boundary conditions are of the form: 
 
 $$
 c_1y(a) + c_2 y'(a) = 0 
