@@ -1,22 +1,21 @@
 - [Bilinear Form, Rietz Representations](Bilinear%20Form,%20Rietz%20Representations.md)
-- [Hilbert Space Introduction](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
 - [Linear Mapping in Banach Space](Linear%20Mapping%20in%20Banach%20Space.md)
 
 ---
 ### **Intro**
 
-The results from Banach space about linear mapping from the Banach space had been strength for the Hilbert Space. We introduce properties of the operators via the definition of a bilinear form and the representation theory. The theories are proved in real spaces, but in complex fields, the Hilbert space shares the similar theories. The theories of adjoin operators a crucial to the idea of [Fredholm Alternative](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fredholm%20Alternative.md), which underlies the existence of solutions for a linear system. 
+The results from Banach space about linear mapping from the Banach space had been strength in the Hilbert Space. The use of Riesz representation theorem and bilinear form introduces new theorems regarding Hilbert space linear mapping. We introduce properties of the operators via the definition of a bilinear form and the representation theory. The theories are proved in real spaces, but in complex fields, the Hilbert space shares the similar theories. The theories of adjoin operators a crucial to the idea of [Fredholm Alternative](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fredholm%20Alternative.md), which underlies the existence of solutions for a linear system. 
 
 **References**: 
 
-We will be taking theorems from Kryzig's textbook, and, Heinz's Monotone Book 1st ed, chapter 2. 
+We will be taking theorems from professor wang's lectures notes, and, Heinz's Monotone Book 1st ed, chapter 2. Wang's lecture notes are different from Kryzig's textbook because it only focuses on Hilbert space equipped with a real fields, but Kryzig did the theorem with quasi-inner product and sesquilinear form. Regardless, we still index the theorem numbers in the book. Because the theorems are analogous. 
 
 ---
 ### **The Adjoint Operator of a Linear Mapping in a Real Hilbert Space**
 
 The idea of an adjoint operators can be defined via the inner product for Hilbert space. There exists adjoint operators in Banach space, but it's different and would require the use of a dual space. The adjoint operators generalizes transpose of a matrices in finite dimensional Euclidean space perfectly. 
 
-#### **Def | The Hilbert-Adjoint Operators**
+#### **Def (3.9-1) | The Hilbert-Adjoint Operators**
 > Let $\mathcal H_1, \mathcal H_2$ be Hilbert spaces, and $T:\mathcal H_1 \mapsto \mathcal H_2$ be linear and bounded. The Hilbert adjoint operator denoted using $T^*: \mathcal H_2 \mapsto \mathcal H_1$ is an operator determined by $T$ uniquely such that $\langle Tx, y\rangle = \langle x, T^*y\rangle$ for all $(x, y)\in \mathcal H_1 \times \mathcal H_2$. 
 
 **Observations**
@@ -30,7 +29,7 @@ The operator $T$ induces a bounded by linear form $h(x, y) := \langle y, Tx\rang
 
 **Remarks**
 
-For finite real/complex matrices, the transpose would be the adjoint operator. However, please take note that, we only proved the Rietz representation theorem, and the inducing the bilinear form with a linear mapping over the ral fields, but, it would still work in the complex fields. 
+For finite real/complex matrices, the transpose would be the adjoint operator. However, please take note that, we only proved the Rietz representation theorem, and the inducing the bilinear form with a linear mapping over the real fields, but, it would still work in the complex fields. 
 
 #### **Corollary-1 | Adjoint has the Same Norm**
 > Let $T, T^*$ be the operator and its adjoint, then, $\Vert T^*\Vert = \Vert T\Vert$. 

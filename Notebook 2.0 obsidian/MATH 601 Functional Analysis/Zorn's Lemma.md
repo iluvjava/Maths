@@ -32,13 +32,10 @@ A total order is just a partial ordering where every element in the set are in t
 
 **Observations**
 
-Maximal element $m$ comes from the subet of the partially ordered set, and the upper bound of the subset is not from the subset. 
+Maximal element $m$ comes from the subset of the partially ordered set, and the upper bound of the subset is not from the subset. 
 
 
 ---
 ### **Axiom | Zorn's Lemma**
 > A partially ordered set containing upper bounds every chain, necessarily contains at least one maximal element. 
-
----
-### **Examples, Applications**
 

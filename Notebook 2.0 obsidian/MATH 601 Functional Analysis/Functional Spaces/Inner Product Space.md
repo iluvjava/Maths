@@ -8,7 +8,7 @@ An Inner product space is a vector space the is together with an inner product d
 
 **Inner Product might Differ**: 
 
-> However, there are also subtleties that come with the idea of inner product. See [[../Inner Product Axiomatically Defined]] for a detailed covered. Depending on the scalar field of the vector field, the choice of inner product might differ. Both semi-inner product and product space are fine for the theory I believe. 
+> However, there are also subtleties that come with the idea of inner product. See [[../Inner Product Axiomatically Defined]] for a detailed covered. Depending on the scalar field of the vector field, the choice of inner product might differ. Both Sesquilinear-inner product and product space are fine for the theory I believe. 
 
 
 **Def-1 | Inner Product Space**
@@ -121,7 +121,7 @@ and notice that the equality holds if and only if $g(t) = 0$ for all $t \in \mat
 
 **Remarks**
 
-There are other alterative proofs that only uses inner product and norms, and doesn't make the assumeptions that $t\in \mathbb R$, since $t\in \mathbb C$ is also valid for certain $\mathcal H$, certain Hilbert spaces. In those Hilbert spaces, we have semi-inner product instead. 
+There are other alterative proofs that only uses inner product and norms, and doesn't make the assumeptions that $t\in \mathbb R$, since $t\in \mathbb C$ is also valid for certain $\mathcal H$, certain Hilbert spaces. In those Hilbert spaces, we have Sesquilinear-inner product instead. 
 
 #### **Thm-2 | Inner Product is Continuous**
 

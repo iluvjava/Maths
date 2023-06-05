@@ -6,15 +6,15 @@
 
 An inner product is a function defined over 2 elements from a vector space and returns an element in a field that is defined together with that vector space. 
 
-> There are 2 types of inner product, Semi-inner-product and just inner product. The later is stricter than the former. 
+> There are 2 types of inner product, Sesquilinear-inner-product. The later is stricter than the former. 
 
-Semi-Inner Product is very similar to inner product defined over the vector space of complex vectors and the with complex field. It's very different for the inner product defined over the real space due to the presence of conjugacy and the linearity only applies to one of the arguments of the mapping. 
+Sesquilinear-Inner Product is very similar to inner product defined over the vector space of complex vectors and the with complex field. It's very different for the inner product defined over the real space due to the presence of conjugacy and the linearity only applies to one of the arguments of the mapping. 
 
 
 ---
-### **Semi-Inner Product**
+### **Sesquilinear-Inner Product**
 
-> A semi-inner-product is a vector space defined over the field of complex. Let the vector space be $V$ and $[f, g]$ be defined as the inner product for any 2 elements from the vector space then the following will have to be true: 
+> A Sesquilinear-inner-product is a vector space defined over the field of complex. Let the vector space be $V$ and $[f, g]$ be defined as the inner product for any 2 elements from the vector space then the following will have to be true: 
 
 $$
 \begin{aligned}
@@ -32,7 +32,7 @@ $$
 
 **Warning**: In general: $[f, g] \neq [g, f]$. This is because of the 4th property defined above. 
 
-For more on this one, see [Complex Inner Product](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Complex%20Inner%20Product.md) to get some concrete ideas for it. In general, we need to remember the following 3 laws when dealing with Semi-Inner product. 
+For more on this one, see [Complex Inner Product](../../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Complex%20Inner%20Product.md) to get some concrete ideas for it. In general, we need to remember the following 3 laws when dealing with Sesquilinear-Inner product. 
 
 1. $\langle x, y\rangle = \overline{\langle y, x\rangle}$, swapping elements means conjugating the output of the inner product. 
 2. $\langle x, \alpha y\rangle = \langle \bar \alpha x, y\rangle$, conjuating the operator when moving it from left to write in the inner product operator. 

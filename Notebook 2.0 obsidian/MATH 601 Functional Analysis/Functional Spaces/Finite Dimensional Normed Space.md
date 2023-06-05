@@ -9,7 +9,7 @@ A Banach space where, the basis to span each element has finitely many elements 
 - completeness of all subspaces and spaces, 
 - equivalences between compactness (existence of converging subsequences), and the condition: closed and bounded. 
 
-#### **Lemma-1 | Lower Bound for the Basis Vectors**: 
+#### **Lemma-1 (2.4-1) | Lower Bound for the Basis Vectors**: 
 > Let $\{x_i\}_{i=1}^n$ be a basis for the Finite dimensional linear basis, in the space $X$, then $\exists c > 0$ such that $\forall (\alpha_1, \cdots, c_n)$ we have: 
 > $$
 > \left\Vert 
@@ -157,7 +157,8 @@ We list important theorems and cite the places that they are coming from. It's i
 #### **Thm | Closedness and Completeness (2.4-2)**
 > A finite dimensional subspace/space is complete, both at the same time. 
 
-**Note**: 
+**Note**:
+
 This seems to be just the Heine Borel Theorem. 
 
 **Proof**: 
@@ -219,7 +220,7 @@ Theorem is strengthen, from the case in infinite dimensional spaces where, a sub
 **Corollary | Always Complete and Banach**
 > If a subspace of a finite dimensional space is complete, then the whole space will be complete. 
 
-#### **Thm | Norms are all Equivalent (2.4-5)**
+#### **Thm (2.4-5) | Norms are all Equivalent**
 > In finite dimensional normed vector space, all norms are equivalent. 
 
 **Recall**:
@@ -264,7 +265,7 @@ swapping the norm $\Vert \cdot\Vert, \Vert \cdot\Vert_a$ and perform the proof a
 
 Kreyzig's textbook, theorem 2.4-5. 
 
-#### **Thm | Closedness and Bounded is Equivalent to Compactness (2.5-3)**
+#### **Thm (2.5-3) | Closedness and Bounded is Equivalent to Compactness**
 > A finite dimensional subspace is compact, if and only if it's closed and bounded. 
 
 **Proof**: 
@@ -320,12 +321,13 @@ This lemma can lift a vector up "vertically" above a closed linear subspace in t
 ---
 ### **Closed Norm Ball is Always Compact in Finite Dimensions**
 
-More theorems about compactness and finite dimensional space. 
+The following theorem will be using the previous lemma. 
 
-**Thm |  Finite Dimensional Space (2.5-5)**
+**Thm (2.5-5) | Finite Dimensional Space**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
-**Observations**
+**Observations:**
+
 The converse is true, trivially from previous theorem. 
 
 **Proof**: 
@@ -339,11 +341,11 @@ $$
     \\
     & \text{def }X_3 = \text{span}(x_1, x_2, x_3)
     \\
-    \quad \vdots 
+    &\quad \vdots 
     \\
     \implies & \exists x_n: \Vert x_n\Vert = 1 (\Vert x_n - x_i\Vert \ge 1/2\;\forall 1 \le i \le n - 1),
     \\
-    \quad \vdots
+    &\quad \vdots
 \end{aligned}
 $$
 

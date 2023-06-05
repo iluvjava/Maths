@@ -69,7 +69,7 @@ Banach space is a vector space with a norm. The vector space should be quipped w
 ---
 ### **Hilbert Spaces**
 
-Hilbert space is a type of complete, inner product space. It has to be complete. It has to have an inner product that induces the norm (which consequently creates the Parallelogram law). In this space, inner product strength results about dual spaces, and it allows for certain type of ortho basis to exists for the space. The inner(or semi-inner) product is continuous, as demonstrate by the Cauchy Swartchz inequality, and induces euclidean geometry into the space, as demonstrated by the unique projection onto subspace, or convex sets, and the obtuse angle characterization of such a projection point within the space. 
+Hilbert space is a type of complete, inner product space. It has to be complete. It has to have an inner product that induces the norm (which consequently creates the Parallelogram law). In this space, inner product strength results about dual spaces, and it allows for certain type of ortho basis to exists for the space. The inner(or Sesquilinear-inner) product is continuous, as demonstrate by the Cauchy Swartchz inequality, and induces euclidean geometry into the space, as demonstrated by the unique projection onto subspace, or convex sets, and the obtuse angle characterization of such a projection point within the space. 
 
 - [Inner Product Space](Functional%20Spaces/Inner%20Product%20Space.md)
 	- Parallelogram laws 

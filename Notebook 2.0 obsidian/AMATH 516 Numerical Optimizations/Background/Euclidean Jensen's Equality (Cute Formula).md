@@ -78,7 +78,7 @@ Corollary 2.14 in Heinz's Monotone Operator's textbook.
 ---
 ### **A Generalized Version**
 
-In the general version of the theorem, we consider an affine combinations of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space, and form the equality: 
+In the general version of the theorem, we consider an affine combinations of vectors $\sum_{i\in I} \alpha_i = 1$ in the Euclidean space (Original statement is stated for the Hilbert spaces), and form the equality: 
 
 $$
 \begin{aligned}
@@ -112,7 +112,7 @@ the first expression is a more general case of the second expression. By setting
 
 **Reference**:
 
-Heinz's monotone operator textbook, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
+Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
 
 ---
 ### **An Augmented Version**

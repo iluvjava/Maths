@@ -56,17 +56,16 @@ $$
 \end{aligned}
 $$
 
-therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem, we have $\tilde f(x) = f(x)$ on $Z$ such that $\Vert \tilde f\Vert_X = \Vert f\Vert_Z = 1$, and $\tilde f(x_0) = \Vert x_0\Vert$. However, Hanh Bamac Banach theorem will extend $\tilde f$ to the whole domain $X$. 
+therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem, we have $\tilde f(x) = f(x)$ on $Z$ such that $\Vert \tilde f\Vert_X = \Vert f\Vert_Z = 1$, and $\tilde f(x_0) = \Vert x_0\Vert$. However, Hahn Banach theorem will extend $\tilde f$ to the whole domain $X$. 
 
 **Remarks**
 
 This theorem has profound consequences and it's directly applicable for weak convergence results in Banach space. 
 
-
 ---
 ### **Proof of the Most General Hahn Banach Theorem**
 
-The proof is long and no that trivial. We prove thm-1. 
+The proof is long and no that trivial. We prove the Hahn Banach Theorem in general vector spaces in this section. 
 
 **Basic Quantities**
 

@@ -8,7 +8,7 @@
 We introduce more quirks for linear mapping in the Hilbert spaces, with inner product for extra flavors. We assume that the real field defines the Hilbert space. Don't worry too much since they share the same theories. For more details visit [wikipedia](https://en.wikipedia.org/wiki/Riesz_representation_theorem). People had written it carefully. 
 
 
-#### **Thm | Rietz Representation Theorem**
+#### **Thm (3.8-1) | Riesz Representation Theorem**
 > Let $\mathcal H$ be a Hilbert space, then every bounded linear functional $f$ on $\mathcal H$ can be represented by an inner product. that is, for all $f \in \mathcal H^\star$, there exists $z \in \mathcal H$ such that: 
 > 1. For all $x \in \mathcal H$, $f(x)  = \langle z, x\rangle$
 > 2. $z$ is unique for each functional $f$ in $\mathcal H^\star$. 
@@ -68,7 +68,7 @@ $$
 for any Hilbert space $\mathcal H$ equipped with a real field. 
 
 
-#### **Def-1 | Bilinear Form**
+#### **Def-1 (3.8-3) | Bilinear Form**
 > $h(x, y): \mathcal H_1 \times \mathcal H_2\mapsto \mathbb R$ is a bilinear mapping from the cross product of 2 Hilbert space to the field of reals if, it's linear on both of its parameters. And we define the norm of a bilinear form to be: 
 > $$
 > \begin{aligned}
@@ -96,7 +96,7 @@ Bounded bilinear form will be to our interests.
 Similar to linear functionals in Hilbert space that has an inner product representation, it's the same for bilinear functionals constructed between 2 Hilbert spaces. 
 
 
-#### **Thm | Bounded Bilinear form Induced by Linear Mapping**
+#### **Thm (3.8-4) | Bilinear Form Riesz Representation**
 > Let $h$ be a mapping between $\mathcal H_1 \times \mathcal H_2$ to the field of reals, then there exists a unique linear operator $S \in \mathcal B(\mathcal H_1, \mathcal H_2)$ such that: 
 > 1. $h(x, y) = \langle S x, y\rangle$ for all $x\in \mathcal H_1, y \in \mathcal H_2$. 
 > 2. $\Vert h\Vert = \Vert S\Vert$. 

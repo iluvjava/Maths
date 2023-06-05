@@ -11,15 +11,17 @@
 
 **References**
 
-All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. #UNFINISHED Cite some of these theorems from the source! 
+All the content are coming from the lecture notes from Prof Shawn Wang at UBCO for his Math 328 class, I am not sure where he find these fascinating proofs. #UNFINISHED Cite some of these theorems by the references number in the book. 
 
 
 ---
-### **Hilbert Space Projection Theorem**
+### **Hilbert Space Projection Theorem | (3.3-1)**
 
 We apply definition of Hilbert space, inner product, and norms to prove theorems in the Hilbert space. 
 
 > Let $\mathcal H$ be a Hilbert space, and $M\subseteq \mathcal H$, and $M$ is a closed, convex set, then $\forall x \in \mathcal H \; \exists ! y \in M: \Vert x - y\Vert = \inf_{y'\in M} \Vert y' - x\Vert$, in brief, there is a unique point in the set $M$ such that it's closest to any arbitrary point $x \in \mathcal H$. 
+
+
 
 **Observations**: 
 
@@ -175,9 +177,9 @@ The use of limit on this proof surprises me.
 
 **References**: 
 
-From Prof Wang's course notes for Math 328, haven't seem this type of argument anywhere it's very interesting way of proving it. 
+From Prof Wang's course notes for Math 328, haven't seem this type of argument anywhere it's very interesting way of proving it. This is mirroring convex projection theorem that is used for optimization problem in Finite Euclidean spaces. This is not in Kryzig's textbook as far as I see. 
 
-#### **Corollary | Projection onto Subspaces**
+#### **Corollary | Projection onto Subspaces and Orthogonality**
 > Let $M\subseteq \mathcal H$ be a closed subspace, let $x \in \mathcal H$, then $\bar x = \Pi_M(x)$ if and only if $\bar x - x \perp \text{span}(M)$.
 
 **Observations**: 
@@ -334,7 +336,7 @@ It's a simple argument involving the theorem for projecting onto subspaces.
 
 We introduce the Bessel's Inequality for Orthogonal Basis and their consequences. 
 
-#### **Thm | Bessel's Inequality**
+#### **Thm (3.4-6) | Bessel's Inequality**
 > Let $\mathcal B = \text{cl.span}(e_i)_{i \in \mathbb N}\subseteq \mathcal H$, and it is an orthonormal basis for $\mathcal H$, then for all $x \in \mathcal H$: 
 > $$
 > \begin{aligned}
@@ -373,13 +375,14 @@ $$
 1. The coefficients for the basis vector after the projection onto an orthonormal basis gives a convergent series. That would the coefficients squared goes to zero as $n\rightarrow \infty$, and the coefficient is a sequence in $l^2$. 
 2. Regardless of having infinity many basis vector, it can still span a a subset of the whole space. This the simple fact that a subset of an infinite set can still, be infinite. 
 
-### **Corrolary | Bessel's Inequality with Equality**
+---
+### **Corollary | Parseval's Relations**
 
 > Bessel's equality is true whenever we have $x\in \text{cl.span}(\{e\}_{i = \mathbb N})$. 
 
 **Proof**: 
 
-Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner product form, Take the limit using the continuity of the inner product and the projection of $x$ onto $Y_n$. 
+Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner product form using the basis $Y_n$, Take the limit using the continuity of the inner product and the projection of $x$ onto $Y_n$. 
 
 **Remarks**: 
 
@@ -387,18 +390,27 @@ This condition is called Parseval's relations.
 
 
 ---
-### **Total Spaces in Hilbert Spaces**
+### **Total Basis in Hilbert Spaces**
 
-A total set has closure that spans the whole Hilbert Space. Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. 
+A total set has closure that spans the whole Hilbert Space. Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. Sometimes it'a also referred to be the maximal basis.
 
-#### **Def | Total Space**
-> A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and oly if all terms in the sequence form a total set in $\mathcal H$. 
+#### **Def (3.6-1) | Total Space**
+> A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and only if all terms in the sequence form a total set in $\mathcal H$. 
 
-#### **Thm | Maximality of Basis**
+**Note**: 
+
+Recall that $x\in \text{span}(M)$ if and only if there is a finite linear combinations of the lements from $M$ that represent the vector $x$, hence hte closure is not given for free.  
+
+**Remarks:**
+
+The Gram Schimidtz gives an algorithm for computing the ortho-normal basis out a given basis that is total. 
+
+#### **Thm  | Maximality of Basis**
 > $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 
 
 **Proof**:
-Skipped for now. 
+- For $\implies$, let $x\in M^\perp$, consider $x_n\rightarrow x$, by $\text{cl.span}(M) = \mathcal H$, $x_n \in \mathcal H\; \forall n$, and $x\in \mathcal H$ by closure. Then $\langle x, x_n\rangle = 0$ for all $n\in \mathbb N$, by continuity of inner product we have $\langle x, x\rangle = 0$, which means that $x = 0$ by the definition of norm. 
+- For $\impliedby$, consider $M^\perp = \{\mathbf 0\}$, let $V = \text{span}(M)$, then $\mathcal H = \text{cl}(V)\oplus \text{cl}(V)^\perp$, but $\text{cl}(V)^\perp = \text{cl.span}(M)^\perp = \{\mathbf 0\}$, then we have $\mathcal H = \text{cl}(V)$. The space $M$ is now total. 
 
 **References**: 
 
@@ -408,19 +420,54 @@ From prof wang's notes for math 328 in UBCO.
 > Let $(e_i)_{i\in \mathbb N}$ be a total sequence for $\mathcal H$, let $M = \{e_i\}_{i \in \mathbb N}$, the set of all its value, then the following conditions are equivalent. 
 > 1. $M$ is total. 
 > 2. Bessel's inequality becomes equality (Parseval’s identity). 
-> 3. For all $x \in \mathcal H, \Pi_{\text{cl}(M)} x= x$, projecting onto the closure of $M$ will recovers $x\in \mathcal H$. 
+> 3. For all $x \in \mathcal H, \Pi_{\text{cl}(M)} x= x$, projecting onto the closure of $M$ will recovers $x\in \mathcal H$. More specifically $x = \sum_{n = 1}^{\infty}\langle x, e_n\rangle e_n$. 
+
+**Proof**
+
+- To show (1) implies (3), choose any $x \in \mathcal H$, consider
+$$
+\begin{aligned}
+    y &= \sum_{n = 1}^{\infty} \langle x, e_n\rangle e_n
+    \\
+    \implies \forall k \in \mathbb N: 
+    \langle x - y, e_k\rangle &= \langle x, e_k\rangle - \langle y, e_k\rangle
+    \\
+    \text{[orthogonality]}\implies 
+    &= \langle x, e_k\rangle - \langle x, e_k\rangle = 0
+    \\
+    \iff \forall k \in \mathbb N : x - y & \perp e_k 
+    \\
+    x - y &\perp \text{cl.span}(M) 
+    \\
+    \iff x&= y \text{ by totality of }M
+\end{aligned}
+$$
+
+- To show that (3) implies (2), we directly take norm on expression in statement (3) and obtain the result. 
+- To show (2) implies (1), for contradiction assume $M$ is not total then $\exists x \in M^\perp\setminus \{\mathbf 0\}$, but $\langle x, e_n\rangle = 0 \; \forall n \in \mathbb N$, by $x\in M^\perp$, so then we have $\sum_{n = 1}^{\infty}\langle x, e_n\rangle^2 = 0$, which means that $\Vert x\Vert = 0$ by (3), which contradicts with the selection of $x$. 
 
 
-#### **Thm | Separability of of Hilbert Space and Basis**
+---
+### **Separability of of Hilbert Space and Basis (3.6-4)**
 > The following theorem relate separability of the Hilbert space and the type of orthonormal basis for the Hilbert space $\mathcal H$. 
 > 1. If $\mathcal H$ has a countable orthonormal basis, then $\mathcal H$ is a separable space. Every $x \in \mathcal H$ can be described by the closure of the countable basis. 
 > 2. If $\mathcal H$ is a separable space, then every orthonormal basis set is, countable. 
 
 
 **Proof**: 
+
 Skipped for now. 
+
 
 
 **Remarks**: 
 
-Take note tha the existence of a basis for Hilbert space is, assumed. The existence of a basis for all Hilbert space is an important results. 
+Take note that the existence of a basis for Hilbert space is, assumed. The existence of a total basis for all Hilbert spaces, is not a trivial statement. 
+
+
+---
+### **Examples for Total Basis**
+
+In $L^2$, one of the total basis is the space of polynomials, $x^n$ with $n\in \mathbb N$. Another basis would be the fourier basis, which is a maximal basis as well. Finally, in the space of $l^2$, we have $e_i$, the canonical basis being the maximal basis. 
+
+

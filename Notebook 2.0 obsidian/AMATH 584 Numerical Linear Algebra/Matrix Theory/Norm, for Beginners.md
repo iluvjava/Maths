@@ -16,7 +16,7 @@ Let $\mathbb C^n$ be a vector space equipped with complex scalar field, then the
 
 **Remarks**: 
 
-In general, the set $\mathbb C^n$ can be any vector space equipped with a scalar that is a subfield of $\mathbb C$. Then the same axioms would apply and defining the norm for us. Additionally, the space $\mathbb C^n$ contains a semi-inner product that can induce norms for the space. The absolute value here is applied on a complex number, $|a|^2 = \bar a a = (a_1 - a_2i)(a_1 + a_2i)$, it's the square root of their conjugate products. 
+In general, the set $\mathbb C^n$ can be any vector space equipped with a scalar that is a subfield of $\mathbb C$. Then the same axioms would apply and defining the norm for us. Additionally, the space $\mathbb C^n$ contains a Sesquilinear-inner product that can induce norms for the space. The absolute value here is applied on a complex number, $|a|^2 = \bar a a = (a_1 - a_2i)(a_1 + a_2i)$, it's the square root of their conjugate products. 
 
 **Examples of Norm on Vector space**: 
 

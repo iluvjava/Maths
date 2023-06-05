@@ -35,7 +35,7 @@ $\mathbf{E}:$ denotes the Euclidean space, it's a finite dimensional vector spac
 
 
 ---
-### **Complex Case: Semi-Inner Product**
+### **Complex Case: Sesquilinear-Inner Product**
 
 See [[Complex Inner Product]] for more info. 
 
