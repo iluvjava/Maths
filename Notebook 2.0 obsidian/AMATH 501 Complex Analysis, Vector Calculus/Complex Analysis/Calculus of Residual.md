@@ -6,11 +6,10 @@ This is one of the way we can take the contour integral of a Meromorphic functio
 
 ###  Introduction 
 The residual method is applied to the integral of Meromorphic Functions, and it provides a quick and dirty way to compute the exact integral of these functions with a pole, or poles inside of it, and the poles is denoted as: $z_0$. 
-
 This is the Residual Formula: 
 
 > $$
-> \oint_C f(z)dz = 2\pi i \text{Res}_{z_0}(f)
+> \oint_C f(z)dz = 2\pi i \text{Res}_{z_0}(f).
 > $$
 
 **The residue of a function at its singularity is just the coefficients of the term: $a_{-1}$ for the Laurent Series**, and it's crucial for figuring out the contour integrals around some singularities. 
@@ -57,9 +56,7 @@ Boom, magic, and we also know what the residual of a function is now. It's the o
 
 ### Multiple Poles Inside Contour
  
-Suppose that the Contour $C$ surrounds a set of Poles of the function: $\{z_n\}_{n = 1}^N$
-
-Which is just the sum among all the corridors around each individual isolated poles, and it gives: 
+Suppose that the Contour $C$ surrounds a set of Poles of the function: $\{z_n\}_{n = 1}^N$. Which is just the sum among all the corridors around each individual isolated poles, and it gives: 
 
 $$
 \oint_{C} f(z)dz = 2\pi i\sum_{k = 1}^{N} \text{Res}_{zk}(f)
