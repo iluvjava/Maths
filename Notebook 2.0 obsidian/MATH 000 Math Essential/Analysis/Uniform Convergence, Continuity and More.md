@@ -42,6 +42,8 @@ The proof is a very similar flavor as the previous one and we are skipping that.
 ---
 ### **Uniform Convergence of Derivative, Differentiability**
 
+The following theorems are frequently need for power series. To be able to differential a power series, the uniform convergence of its derivative must be assured. 
+
 > Let $f_n$ be have continuous first derivative. If $f_n\rightarrow f$ uniformly and $f'_n\rightarrow g$ uniformly, then the limit $f$ is differentiable and $f' = g$. 
 
 **Proof**

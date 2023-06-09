@@ -1,5 +1,3 @@
-So in this file we are going to discuss the basics about divergence theorem. 
-
 prereq: [[Volume Integrals]], [[Surfaces]], [[Div]]
 
 --- 

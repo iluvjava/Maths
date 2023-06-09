@@ -1,46 +1,28 @@
-
-The Complex Logarithm is a bit trick, but we will introduce some way to make it to the complex plane while keeping it as an analytical function in the complex plane (With some trade off of course) 
-
-prereq: [[Analytic Functions, Polynomials and Exponentials]] Complex Exponential
-prereq: [[Complex Number]] We need to know about the principal argument of a complex number to work with the new definition of the Logarithm. 
-More resources: [Branch Cut](https://mathworld.wolfram.com/BranchCut.html)
+- [[Analytic Functions, Polynomials and Exponentials]] Complex Exponential
+- [[Complex Number]] We need to know about the principal argument of a complex number to work with the new definition of the Logarithm. 
 
 ---
-### Introduction 
+### **Intro** 
 
-So the log function, the old version is going to return a set of arguments for a given complex function, and it's going to be a bit hard to handle as a function. (So the graph will be related to the Riemann Spiral and stuff like that. )
-
-Let's stuff to the polar form and start investigating the function a big. 
-
-Suppose that given any $z$, we want the function $\ln(z)$ to return all the solutions to this equation, we want to solve for $w$ for a given $z$, also let's also assume that the logarithm function is inverse function of the exponential. 
-
+Consider the polar form of a complex variable $z = |z|\exp(i\theta_z)$, where $\theta_z$ denotes a set of equivalent angle for $z\in \mathbb C$. It could imply that: $\ln(z) = \ln|z| + i\theta_z$. However, observe that, a complex number has a equivalent classes of values that it equals to, more specirically $z = |z|\exp(i\theta_z) = |z|\exp(i \theta_z + 2n\pi)$ for all $n \in \mathbb N$. The resolution is to use the idea of a Principal Branch, mapping the angle of $z$ to an half open interval of length $2\pi$. Usually we define
 $$
-\exp(w) = z
+\theta_{(\cdot)} : \mathbb C \mapsto (-\pi, \pi]. 
 $$
 
-And then in the end it will be like: 
 
-$$\exp(w) = \exp(u + iv)$$ and then, let's see
+#### **Def | Logartihm on Complex Numbers**
+> Let $\theta_{(\cdot)} : \mathbb C \mapsto (-\pi, \pi]$ be the angle of some complex variables, restricted to the half open interval of length $2\pi$ center around the origin. By periodicity, modularizing complex variables can bring the argument of it to the desired interval. Therefore, now we will be able to define the complex logarithm as the following: 
+> $$
+>   \ln(z) := \ln|z| + i \theta_z
+> $$
 
-$$
-\exp(u + iv) = e^u + e^{iv} = |z| \exp(i\arg(z))
-$$
+**Observations**
 
-Then we will have: 
+This function is discontinuous whenever $\theta_z$ approaches $\pm \pi$. The set of all complex variables with argument $\pm \pi$ is $[-\infty, 0] + i0$, the negative real lines. Otherwise, the logarithm is continuous on $\mathbb C \setminus \{[-\infty, 0] + i0\}$. In that way, the region of $\ln$ is defined for an open domain in the complex plane. 
 
-$$
-\ln(2) = \ln(u + iv) = \ln(|z|) + i\arg(z)
-$$
-
-Notice that $\arg(z)$ is a function the returns a set, and in this case it will be a lot of other angles that happen to give the number $z$ the same angle. 
-
-It's all good until we want to take the derivative on this thing and we want it to still be analytical on the domain. But this function is bad because: 
-* It has multiple returns values; $i(\theta + 2n\pi)$ where $n\in \mathbb{C}$
-* It's derivative is not continuous even if we are making the $\arg(z)$ into a principle argument $\text{Arg}(z)$
 
 ---
-
-### Principal Cuts 
+### **Principal Cuts**
 
 Here we are going to introduce the idea of principal cut to the function, and then define a new function: 
 

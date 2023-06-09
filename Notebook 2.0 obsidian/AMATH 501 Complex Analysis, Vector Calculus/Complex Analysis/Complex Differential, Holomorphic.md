@@ -3,11 +3,9 @@ Let's make the differential of complex function more detailed.
 
 ---
 
-The key here is the same as the real functions: 
 
-> If we approach the point in the domain in anyways we want, the output of the differential quotients are going to be the same. 
-
-#### **Example**
+---
+### **A Simple Example**
 
 Fix some complex number $x_0$, 
 

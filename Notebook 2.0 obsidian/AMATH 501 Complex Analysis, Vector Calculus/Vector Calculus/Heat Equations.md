@@ -25,9 +25,7 @@ $$
 \partial_t u = \partial^2_x u + \partial^2_y u
 $$
 
-The laplacian of the govern over the temporal evolution of the field. 
-
-We want to prove the following statement regarding the heat equation: 
+The laplacian of the govern over the temporal evolution of the field. We want to prove the following statement regarding the heat equation: 
 
 > $$
 > M(t) = 1/2\underset{B}{\iint} u^2 \;dxdy

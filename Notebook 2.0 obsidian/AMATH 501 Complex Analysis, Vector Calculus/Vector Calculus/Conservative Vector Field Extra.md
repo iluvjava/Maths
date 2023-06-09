@@ -6,7 +6,7 @@ Prereq: [[Line Integral]], [[Ortho Curvillinears Coord]], [[The Gradient]], [[Cu
 
 #### When it Comes to Solving Line Integral 
 
-* Test if the vector field is curl free, if it is, then we will know that that there eixsts a potential for the vector field, and it's easy to just test the vector field and then take the integral to recover the potential function. 
+* Test if the vector field is curl free, if it is, then we will know that that there exists a potential for the vector field, and it's easy to just test the vector field and then take the integral to recover the potential function. 
 
 * If the vector field is presented in the **curvilinear coordinates**, then we are going to use the Curl in Curvilinear coordinates! 
 

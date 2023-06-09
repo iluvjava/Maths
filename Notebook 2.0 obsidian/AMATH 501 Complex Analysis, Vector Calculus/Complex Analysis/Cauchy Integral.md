@@ -1,25 +1,20 @@
 We can figure out the value of the function at a point by just walk around the function, with a pole in the middle. 
 Prereq: 
 [[Cauchy Riemann Condition]]
-[[Complex Integration (CG)]]: We need Cauchy Goursat 
+[[Complex Integration with Cauchy Goursat]]: We need Cauchy Goursat 
 
 ---
+### **Cauchy Integral**
 
-### Cauchy Integral
-
+Assuming the function is analytic (or, equivalently Holomorphic) inside and on the contour of $C$. Fix some point $a$ such that it's a center of a disk that is inside of the contour $C$. 
+> 
 > $$
 > f(a) = \frac{1}{2\pi i} \oint \frac{f(z)}{z - a} dz
 > $$
 
-Assuming the function is analytic inside and on the contour of C. 
+**Proof**
 
-#### Proof
-
-Assuming a function is** analytical for all points inside and on the contour**. 
-
-For any Contour containing the point $a$, choose a disk that is strictly inside the contour $C$ containing the point $a$ with a radius: $\rho$, denote the infinitely small disk as $B$
-
-Then we can simplify the Line Integral a bit and get: 
+Assuming a function is *analytical for all points inside and on the contour*. For any Contour containing the point $a$, choose a disk that is strictly inside the contour $C$ containing the point $a$ with a radius: $\rho$, denote the infinitely small disk as $B$. Then we can simplify the Line Integral a bit and get: 
 
 $$
 \oint_C\frac{f(z)}{z - a} dz
@@ -41,9 +36,7 @@ $$
 \forall \epsilon > 0 \; \exists\;\delta |z - \delta| \implies |f(z) - f(a)| < \epsilon
 $$
 
-Denote that epsilon as $\delta(\epsilon)$, as a function. 
-
-Notice that, according to the Gaussian Goursat theorem, the disk around the ball has the same line integral as any Counter containing the ball, hence we have: 
+Denote that epsilon as $\delta(\epsilon)$, as a function. Notice that, according to the Gaussian Goursat theorem, the disk around the ball has the same line integral as any Counter containing the ball, hence we have: 
 
 $$
 \oint_C \frac{f(z) - f(a)}{z - a} dx = \oint_B \frac{f(z) - f(a)}{z - a} dx

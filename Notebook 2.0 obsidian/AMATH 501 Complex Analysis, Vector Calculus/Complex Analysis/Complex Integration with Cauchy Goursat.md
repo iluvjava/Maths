@@ -1,0 +1,75 @@
+- [[Complex Functions]]
+- [[Line Integral]]
+- [[Cauchy Riemann Condition]]
+
+---
+
+### Intro
+
+Integration on complex functions are line integral. Let $\gamma$ be the line between 2 points, $z_0, z_1$. And let's parameterize the <mark style="background: #FF5582A6;">*smooth curve*</mark> that links between these 2 paths, represented as $z(t) = x(t) + i y(t)$. The integral of on the complex plane will be the following: 
+
+> $$
+> \int_{z_0}^{z_1} zdz = \int_{x_0}^{z_1}z(t)z'(t)dt. 
+> $$
+
+
+#### Comment: 
+
+A <mark style="background: #FF5582A6;">*smooth curve*</mark> means that the derivative of the curve is continuous, and the derivative at the end point $t = a$, or $t = b$ cannot be zero. At the end point, it the derivative is a directional derivative. A piece-wise smooth curve means that: It's joined together by finitely many smooth curve, end to end, no space in between. The above theorem is applicable for both smooth and piece-wise smooth curve. 
+
+---
+### **FTCI | Fundamental Theorem of Contour Integration**
+
+> If the function is analytic, then $\int_{a}^{b} f(z(t))d(z(t)) = F(b) - F(b)$. 
+
+This is the same as the Fundamental Theorem of Calculus.  Let $f(z) = u(x, y) + iv(x, y)$ which then it can be viewed as 2 functions: $\text{Re}(f(z)) = u(x,y), \text{Im}(f(z)) = v(x, y)$. The line integral on this complex function can be implicitly stated as the following: 
+
+$$
+\begin{aligned}
+	& \int_{z_0}^{z_1} (u(x, y) + i v(x, y))(x' + iy')dt
+	\\
+	& 
+	\int_{z_0}^{z_1} (u(x, y)x' - v(x, y)y') + i(v(x, y) + u(x, y)y')dt.
+\end{aligned}
+$$
+
+Observe that, the vector field: $(u, -v)$ has a curl of $-u_y - v_x$,  by Cauchy Riemann conditions, this is zero. Similarly, the vector field $(v, u)$ has a curl of $\partial_x u - \partial_y v$ which is zero according to Cauchy Riemann Conditions. Then, both line integrals on the Real and Imaginary part of the function will be a *conservative field* (See [Conservative Vector Field Extra](../Vector%20Calculus/Conservative%20Vector%20Field%20Extra.md) for more info), then by conservative vector field, we there exists potential $F$ such that
+
+$$
+\int_{x_0}^{x_1} zdz = F(z_1) - F(x_2). 
+$$
+
+---
+### Cauchy Goursat Theorem 
+
+> If $f(z)$ is holomorphic *inside and on* a simple closed curve C, then the integral around the closed C is zero. 
+
+This is followed from the FTCI theorem, and definitely true because of that Conservative Field Argument. 
+
+**Note**: $1/z$ is not applicable for Cauchy Goursat Theorem if the closed path include the origin because the function is not differentiable at the origin, and this breaks the preconditions of the theorem. 
+
+#### Corollary
+
+> If $f(z)$ is analytic between C1 and C2, then the line integral on C1 and C2 gives the same value. 
+
+Here is what is happening: 
+
+![[Cauchy-Goursat.png]]
+
+Which is giving us that: 
+
+> $$\oint_C f(z) dz = 0 = \oint_{C1}f(z) dz - \oint_{C2} f(z)dz$$
+
+And hence, the Line integral of $C1, C2$ are equal. Notice that, the negative sign is there because the line integrals on $C1, C2$ has different direction that it's integrating on the path. 
+
+**Remarks**
+
+$$\int_{\theta = 0}^{\theta = 2\pi}\frac{1}{z}dz = i2\pi$$
+
+We state this without proof, and this is how Cauchy Integral came to be. 
+
+---
+### Simple Example
+
+Let's take a look at some of the simple example that uses the idea of a line integral. 
+

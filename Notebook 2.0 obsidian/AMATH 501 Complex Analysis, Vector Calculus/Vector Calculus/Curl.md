@@ -1,41 +1,30 @@
-The curl is a vector field over a vector field that measure sthe amount of swirls involved in a given vector field. 
-
-[[Ortho Curvillinears Coord]]
+The curl is a vector field over a vector field that measure the amount of swirls involved in a given vector field. [[Ortho Curvillinears Coord]]
 
 ---
-
-Using the abuse of notation we will be able to get the definition of curl as: 
-
-For a given function that $\mathbb{R}^{n} \mapsto \mathbb{R}^{n}$, 
-
-And the function is like: 
-
+### **Intro**
+For a given function that $\mathbb{R}^{n} \mapsto \mathbb{R}^{n}$ defined as
 $$F(x, y, z) = \begin{bmatrix} 
 	F_1(x, y, z)\\[0.5em]
 	F_2(x, y, z)\\[0.5em]
 	F_3(x, y, z)
 \end{bmatrix}$$
 
-> $$\nabla\times F $$
-
-And this this is literally just: 
+where $\nabla\times F$ is defined to be
 
 $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
 
-> $$\begin{vmatrix}
-\uvec{I} & \uvec{J} & \uvec{k} \\[0.5em]
-\partial_x & \partial_y & \partial_z\\[0.5em]
-F_1(x, y, z) & F_1(x, y, z) & F_1(x, y, z)
-\end{vmatrix}$$
+$$
+\begin{vmatrix}
+	\uvec{I} & \uvec{J} & \uvec{k} \\[0.5em]
+	\partial_x & \partial_y & \partial_z\\[0.5em]
+	F_1(x, y, z) & F_1(x, y, z) & F_1(x, y, z)
+\end{vmatrix}
+$$
 
-Remember, the direction is the **anti-clockwise**, and the direction of the orthogonal vector is given by the: "**Right Hand Rule**"
-
-Observe that, by abusing the notation, the curl is literally the cross product of the Nebla operator and  the the vector field. 
-
-In fact under the case of curvilinear coordinate, the curl of a vector field is simply: 
+take note that the direction of the orthogonal vector is given by the: "**Right Hand Rule**" Observe that, by abusing the notation, the curl is the cross product of the Nebla operator and  the the vector field. 
 
 ---
-### Curvilinear Curl 
+### **Curvilinear Curl** 
 
 $$
 \frac{1}{h_1h_2h_3}

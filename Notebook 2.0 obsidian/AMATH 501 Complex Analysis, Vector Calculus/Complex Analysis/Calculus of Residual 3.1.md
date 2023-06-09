@@ -11,7 +11,7 @@ We are going to use the Residual Theorem to solve more classes of function in an
 
 > $$\int_{0}^{2\pi} g(\sin(\theta), \cos(\theta))\;d\theta$$
 
-The key here is to convert the problem to an complex contour integral problem, and we will use the following facts about the trigs to guide us for the substitutions of the integrals. 
+The key here is to convert the problem to a complex contour integral problem, and we will use the following facts about the trigs to guide us for the substitutions of the integrals. 
 
 Let: 
 $$

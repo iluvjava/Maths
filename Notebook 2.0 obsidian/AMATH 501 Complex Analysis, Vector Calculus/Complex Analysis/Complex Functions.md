@@ -82,7 +82,7 @@ $$
 **The argument** of the number $f'(z)$ is actually the difference between $\text{Arg}(z - a)$ and and $\text{Arg}(f(z) - f(a))$. 
 
 **Note**
-There are some complications regarding how the argument of the changes and its differential for a complex multi-valued function, see [[Complex Logarithm (The Key)]], [[Branch Cut]] for more. 
+There are some complications regarding how the argument of the changes and its differential for a complex multi-valued function, see [[Complex Logarithm]], [[Branch Cut]] for more. 
 
 
 ---

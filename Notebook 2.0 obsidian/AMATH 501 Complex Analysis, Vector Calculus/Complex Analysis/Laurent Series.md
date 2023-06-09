@@ -1,6 +1,6 @@
 let's talk about some Fancier Power Series
 
-prereq: [[Power Series]], [[Cauchy Integral]], [[Complex Integration (CG)]]
+prereq: [[Power Series]], [[Cauchy Integral]], [[Complex Integration with Cauchy Goursat]]
 
 ---
 

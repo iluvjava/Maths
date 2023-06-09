@@ -17,7 +17,7 @@ However, the evaluation itself will use the Laurent Series of the function becau
 
 However, there are some shortcut here were $a_{-z}$ can be found by derivatives and some limit operations. 
 
-### Shortcut: Simple Pole
+### Shortcut | Simple Pole
 
 The key here is to quickly find the value of $\text{Res}(f, z_0)$ without expanding the laurent series of the function at the simple pole. 
 

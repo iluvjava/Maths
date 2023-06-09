@@ -23,7 +23,7 @@ Notice that, we can also use the explicit representations for the line integral 
 >  $$\int_{a}^b \vec{F}\cdot d\vec{r} = \int_{a}^bF_1dx + F_2dy + F_3dz
 > $$ 
 
-And notice that in this rerpesentation, the parameter $t$ is gone. 
+And notice that in this representation, the parameter $t$ is gone. 
 
 ### Parametrization
 
