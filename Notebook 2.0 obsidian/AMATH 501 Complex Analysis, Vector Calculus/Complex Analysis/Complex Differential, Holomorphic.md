@@ -2,9 +2,6 @@
 Let's make the differential of complex function more detailed. 
 
 ---
-
-
----
 ### **A Simple Example**
 
 Fix some complex number $x_0$, 
@@ -17,7 +14,7 @@ $$
     \\
     &= \lim_{z\rightarrow z_0}\frac{(z - z_0)(z + z_0)}{z - z_0}
     \\
-    &= \lim_{z_0\rightarrow 0} {z + z_0} = 2z_0. 
+    &= \lim_{z\rightarrow z_0} {z + z_0} = 2z_0. 
 \end{aligned}
 $$
 

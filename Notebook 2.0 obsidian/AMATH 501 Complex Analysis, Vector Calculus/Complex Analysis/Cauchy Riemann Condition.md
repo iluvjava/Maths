@@ -1,5 +1,5 @@
 - [[Complex Functions]], 
-- [Complex Differential, Holomorphic](Complex%20Differential,%20Holomorphic.md). 
+- [Complex Differential, Holomorphic](Complex%20Differential,%20Holomorphic.md), be familiar with the definition of a complex differential. 
 
 ---
 ### **Intro**
@@ -12,14 +12,14 @@ It's not true that among all the complex functions, that we can take the derivat
 ---
 ### **Cauchy Riemann Conditions | Necessary Condition**
 
-The cauchy riemann condition characterizes the complex differentibility of a function at a point. 
+The Cauchy Riemann condition characterizes the complex differentiability for a function at a point. 
 #### **Def | Complex Differentiability, Holomorphic**
 
 > A function $f: \mathbb C \mapsto C$ is complex differentiable at a point $z_0$ if and only if the limit 
 > $$
 >   \lim_{z\rightarrow z_0} \frac{f(z) - f(z_0)}{z - z_0}, 
 > $$
-> we amphasizes the fact that, $z \rightarrow z_0$ on the complex plane in all possible trajectories, with all possible paramaterization of the curves. 
+> we emphasizes the fact that, $z \rightarrow z_0$ on the complex plane in all possible trajectories, with all possible parameterization of the curves. 
 
 **Remarks**
 
@@ -34,7 +34,7 @@ the world *Holomprhic* is another term for describing that a function is complex
 >   \partial_x v = - \partial_y u.
 > \end{cases}
 > $$
-> Which is also equivalent to the condition that $\langle \nabla u, \nabla v\rangle = 0$. 
+> Which is also implies the condition that $\langle \nabla u, \nabla v\rangle = 0$. 
 
 **Proof**:  
 
@@ -138,11 +138,11 @@ $$
         \partial_y v = A
     \end{cases} \iff 
     \begin{cases}
-        \partial_x u = \partial y v
+        \partial_x u = \partial_y v
         \\
-        \partial y = -\partial_x v
+        \partial_y u= -\partial_x v
     \end{cases}
-    \iff 
+    \implies
     \langle \nabla v, \nabla v\rangle = 0. 
 \end{aligned}
 $$
@@ -151,8 +151,28 @@ which is the Cauchy Riemann conditions.
 
 **Remarks**
 
-For the condition to be sufficient, it will also have to be the case that, $u, v$ are Frechet
-diferetiable function as a $\mathbb R \mapsto R$ function on the real plane. We state this theorem next section. 
+For the condition to be sufficient, it will also have to be the case that, $u, v$ are Frechet differentiable function as a $\mathbb R \mapsto R$ function on the real plane. We state this theorem next section. The dot product form $\langle \nabla u, \nabla v\rangle = 0$ is easier to verify, but it's not exactly the same as the Cauchy Riemann conditions. Nonetheless it provides visual interpretation that the gradient field of the real and imaginary part of the complex function is perpendicular to each other. More precisely, an anti-clockwise rotation on $\nabla u$ gives $\nabla v$. Below, it's a visualization of the vector field of the real part (In ink blue), and the vector field for the imaginary part (in gold) for the Holomorphic function $\sin(x)$. 
+
+![](../../Assets/Cauchy%20Riemann.png)
+
+Finally, the C.R conditions can be simplified further and written in a compact form
+$$
+\begin{aligned}
+    \partial_x[f(x + iy)] &= \partial_x [u(x, y) + i v(x, y)]  
+    \\
+    &= \partial_x u(x, y) + i \partial_x v(x, y)
+    \\
+    C.R \implies & 
+    \partial_y v(x, y) - i\partial_y u(x, y)
+    \\
+    &= -i(i\partial_y v(x, y) + \partial_y u(x, y)) 
+    \\
+    &= -i \partial_y[f(x + iy)], 
+\end{aligned}
+$$
+
+which has a compact representation $f_x = -i f_y$. 
+
 
 **References**: 
 
@@ -160,7 +180,7 @@ This condition is a bit too famous to have any references.
 
 #### **Thm | Cauchy Riemann Condition (Sufficient)**
 
-> If $f = u + vi$ is a complex-valued function defined in a neighbourhood of $z \in \mathbb C$, with real and imaginary parts $u, v$, then $f$ has a complex derivative at $z$ if and only if $u, v$ are both differentiable (F-Differentiable at $(x, y)$ for $u, v: \mathbb R^2 \mapsto \mathbb R$), and satisfies the Cauchy Riemann condition at $z = x + yi$, them in this case, 
+> If $f = u + vi$ is a complex-valued function defined in a neighborhood of $z \in \mathbb C$, with real and imaginary parts $u, v$, then $f$ has a complex derivative at $z$ if and only if $u, v$ are both differentiable (F-Differentiable at $(x, y)$ for $u, v: \mathbb R^2 \mapsto \mathbb R$), and satisfies the Cauchy Riemann condition at $z = x + yi$, them in this case, 
 > $$
 > \begin{aligned}
 >   f' = \partial_x f=-i \partial_y f.  
@@ -173,31 +193,20 @@ This is Theorem 2.2.9 in the book *Complex Analysis*  by Joseph L. Taylor.
 
 
 ---
-### **Cauchy Riemann | Extensions to Polar and Complex Conjugate**
+### **Cauchy Riemann in Polar Coordinate**
 
-We extend the conditions to better suit different scenarios. For the conjugate trick, we take reference from [this post](https://math.stackexchange.com/questions/1124506/cauchy-riemann-equations-written-as-complex-conjugate). 
+This is a useful theorem when simple polar coordinate representation exists for the complex functions at hand. 
 
-#### **Condition-1 | Complex Conjugate Derivative**
+#### **Thm | CR Under Polar Coordinate**
+
+> if a function $f$ commit polar form $f(z) = u(r, \theta) + i v(r, \theta)$ And then the CR condition becomes 
 > $$
-> \frac{\partial f}{\partial z^*} = 
-> \frac{1}{2}\left(\partial_x f + i \partial_y f\right) = 0
+>   u_r = \frac{v_\theta}{r} \hspace{2em} u_\theta = -rv_r. 
 > $$
+> This is conveneit for function that has a simple polar form representation but not in Cartesian. 
 
-Take the conjugate of a complex number means. 
-
-**Under Polar Coordinates**
-
-yes, we are going to talk about how the Cauchy Riemann conditions feels like in the polar coordinates. Suppose we have a complex function expressed with the polar parameters in the following form: 
-
-> $$
->   w = f(z) = u(r, \theta) + i v(r, \theta)
-> $$
-> And then the CR is like: 
-> $$
->   u_r = \frac{v_\theta}{r} \hspace{2em} u_\theta = -rv_r
-> $$
-
-Yes, so each time the $\partial_r$ appeared, we are going to attach a Lame Coefficients to it and then it should be fine. 
+**Proof**
+We skipped. 
 
 **References**: 
 
@@ -206,7 +215,7 @@ Theorem 6.4, Theorem 6.5 in [Introduction to Complex Analysis](../Introduction%2
 ---
 ### **C.R and Null Space of The Laplacian**
 
-For any function that is analytic (Cauchy Riemann is True), it's going to be a solution for the Laplacian (In the null space of the Laplacian Operator). Directly from the CR conditions we have:
+For any function that is analytic (Such that cauchy Riemann is True), it's going to be a solution for the Laplace Equation (In the null space of the Laplacian Operator). Simply put
 
 $$
 \begin{aligned}
@@ -216,7 +225,7 @@ $$
 \end{aligned}
 $$
 
-then $u_{xx} + v_{yy} = 0$ by the fact the the partial derivative are symmetric, notice that this is also the trace of t he Jacobi. These type of functions, in the null space of the Laplacian is called: **Harmonic Functions**.For example, $\sin$ and $\cos$ are Harmonic Functions. 
+then $u_{xx} + v_{yy} = 0$ by the fact the the partial derivative are symmetric, notice that this is also the trace of t he Jacobi. These type of functions, in the null space of the Laplacian is called: *Harmonic Functions*.For example, $\sin$ and $\cos$ are Harmonic Functions. 
 
 #### **Fact-1**
 > If a function is analytic, then the function is going to be harmonic and it satisfied the Laplacian Operator. This is directly from the Cauchy Riemann Conditions. 
