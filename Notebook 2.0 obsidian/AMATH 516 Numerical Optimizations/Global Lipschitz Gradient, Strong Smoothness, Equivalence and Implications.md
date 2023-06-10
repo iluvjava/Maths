@@ -23,17 +23,17 @@ Lipschitz gradient characterize change of the objective value of the functions w
 
 The statement is defined for any norm $\Vert \cdot\Vert$ in $\mathbb E$ and it is very strong, and here is a list of conditions that are implied by it: 
 1. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. This gives a lower bound for the optimality gap using the gradient at the current point. 
-2. $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$, the function can be squeezed between 2 tangential quadratic function. 
+2. $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$, the function can be squeezed between 2 tangential quadratic function. Observe trivially that when $f$ is convex, the absolute value can be removed. 
 
 With the additional assumption that $f$ is a *convex function*, we can obtain a stronger version of monotonicity of gradients by giving it a lower bound to it. This is called the co-coercivity of gradient. 
 
-3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, co-coersive property, it's like monotone but stronger. 
+3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, co-coersive property, which is stronger than Lipscthiz continuity of the gradient. 
 4. $f(x) + \langle \nabla f(x), y - x\rangle + (2\beta)^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2 \le f(y)$. 
-5. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le \beta \Vert x - y\Vert^2$, monotone gradient and bounded. 
+5. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le \beta \Vert x - y\Vert^2$, monotone gradient and bounded, direct from condition (2) when convexity of $f$ is assumed. 
 
 Assuming that $f$ has a second derivative, a Hessian matrix, then 
 
-6. $\nabla^2 f(x)\preceq LI$
+6. $\nabla^2 f(x)\preceq LI$, this is direct from condition (2), after removing the absolute value and use the Taylor expansion for functions with a Hessian. 
 
 **Remarks**
 
@@ -62,7 +62,7 @@ When the condition for convexity is not present, smoothness and Lipschitz gradie
 ---
 ### **Proof of Proposition 1**
 
-We prove that Lipchitz gradient implies smoothness(condition 1) and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwart and $x, y\in \mathbb E$: 
+We prove that Lipchitz gradient implies smoothness (condition 1) and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwart and $x, y\in \mathbb E$: 
 
 $$
 \begin{aligned}
@@ -76,6 +76,9 @@ $$
     |\langle \nabla f(y) - \nabla f(x), y - x\rangle |\le L \Vert y - x\Vert^2. 
 \end{aligned}
 $$
+
+#### **Showing \[0\] => \[1\]**
+
 Let $\phi(t) = x - t(y - x)$ for $t \in [0, 1]$, then we consider the fundamental theorem of calculus: 
 $$
 \begin{aligned}
@@ -108,6 +111,9 @@ $$
     dt = \frac{L}{2}\Vert y - x\Vert^2 .
 \end{aligned}
 $$
+
+#### **Showing \[0\] => \[2\]**
+
 From the third line to the 5th line, we have the inequality for the smoothness condition (Condition (2)). There are 2 parts of the inequality for condition (1), we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness (condition (2))
 $$
 \begin{aligned}
@@ -148,7 +154,7 @@ To prove the upper bound, we simply substitute $x^+$ to the smoothness condition
 ---
 ### **Proof of Proposition 2**
 
-Recall materials from [Convex Conjugation Introduction](Duality/Convex%20Conjugation%20Introduction.md), assume that $f$ is a convex function, consider defining 2 functions of the form
+Assume that $f$ is a convex function, consider defining 2 functions of the form
 $$
 \begin{aligned}
     & f_x(z) := f(z) - \langle \nabla f(x), z\rangle
@@ -169,7 +175,7 @@ $$
 \end{aligned}
 $$
 
-The function $f_x, f_y$ has minimizer, which can be solved by setting the gradient to zero. $f_x, f_y$ has minimizers $x, y$ respectively, they are unique because $f$ is convex, and affine function are convex too, sum of 2 convex functions are convex. The gradient of $f_x, f_y$ is globally Lipschitz too because $f$ has globally Lipschitz gradient. $x, y$ are minimizers for $f_x, f_y$, we use condition (1) obtaining 
+The function $f_x, f_y$ has minimizer, which can be solved by setting the gradient to zero. $f_x, f_y$ has minimizers $x, y$ respectively, they are unique by convexity, $f$ is convex, and the affine function is convex too, sum of 2 convex functions are convex. The gradient of $f_x, f_y$ is globally Lipschitz too because $f$ has globally Lipschitz gradient. $x, y$ are minimizers for $f_x, f_y$, we use condition (1) obtaining 
 
 $$
 \begin{aligned}
