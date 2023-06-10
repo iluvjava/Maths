@@ -2,7 +2,15 @@
 Let's make the differential of complex function more detailed. 
 
 ---
-### **A Simple Example**
+### **Intro**
+
+Complex differentiation at a point is quite a strong condition. We define a complex differentiation first, which is exactly the same as a real differentiation, but with complex numbers and complex function. 
+
+#### **Def | Complex Differentiation at a point**
+
+
+
+### **Simple Examples**
 
 Fix some complex number $x_0$, 
 

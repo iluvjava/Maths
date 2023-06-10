@@ -339,3 +339,8 @@ $$
 $$
 
 making use of the Dirac delta, and representing it in a more... savage way. And I think, the use of Dirac delta, is representing a sequence of function approaching a limit, in Hilbert space $L^2$. Which is probably, the theoretical foundations. This simplifies a lot for $1D$ boundary problem, creating just a single linear constraints. To not have this constraints as redundant, I think we need to use linear algebra to determine pre-image of $\Pi_{(\cdot, b)}(I + \partial_x)$ on $f$ is not in the null space of the Laplace operator $[\partial_x^2 + \partial_y^2]$, or any other existing boundary conditions. Since it's a linear operator, the pre-image is the solution plus the span of null space or something. 
+
+
+What are the conditions on the gradient $\nabla f(x_0)$ at a point such that it's sufficient to say that the function is also Frechet Differentiable at that point $x_0$? 
+
+There really should be one, I would say that, if there exists a continuous Hessian at that point, then it must be Frechet Differentiable, but is this the weakest condition we can get? I am just curious tho, I ask it here so if people have time they can tell me where to look.
