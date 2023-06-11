@@ -1,34 +1,30 @@
-This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pdf) of the textbook. For more theoretical background for the idea of an adjoint system, visit [Adjoint BVPs Systems](Adjoint%20BVPs%20Systems.md). 
+This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pdf) of the textbook. For more theoretical background for the idea of an adjoint system for general ODE, BVP, visit [Adjoint BVPs Systems](Adjoint%20BVPs%20Systems.md). 
 
 ---
 ### **Intro**
 
-The General Form for $y(x)$ of a Sturm-Liouville system (S.L Sys) takes the form: 
+The Sturm Liouville theory is a mix of Linear Algebra, and Functional Analysis, applied to ODEs. 
 
-$$
-\begin{aligned}
-\partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y = 0    
-\end{aligned}. 
-\tag{1}
-$$
-
-This is a eigenvalue problem in functional space. Where $\lambda$ is a parameters to be determined, it's the eigenvalue for the system.  For each value of $\lambda$, there is a solution for the equation, which is the Eigenfunction. Note*, Lambda, the eigenvalue can be complex. $\lambda \in \mathbb{C}$ when the function involved are complex. The Orthogonality property of solutions for the above ODE in a weighted space is a results of the differential operator being an adjoint operator in functional spaces.  We expand out the S.L system form to have
-
-$$
-\begin{aligned}
-	p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
-	\\
-	p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
-	\\
-	p'y' + py'' - qy -\lambda ry& = 0
-\end{aligned}
-$$
-
-It's not immediately obvious to why this is an eigenvalue problem, or the fact that the linear mapping involved is adjoint in functional spaces, under what type of conditions. We will clarify these concepts in the coming parts. 
+#### **Def | Sturm Liouville System**
+> A Sturm Liouville system is defined for a funtion $y(x)$, over a interval, associated with a boundary conditions. The ODE is
+> $$
+> \begin{aligned}
+> 	\partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y &= 0    
+> 	\\
+> 	p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
+>	\\
+>	p'(x)\partial_x[y] + p(x)\partial_x^2[y] - q(x)y &= \lambda r(x)y 
+>	\\
+>	p'y' + py'' - qy -\lambda ry& = 0.
+> \end{aligned}	
+> $$
+> Where, $p, q, r$ are function wrt $x$, additional condiions are needed to asserts the existence of solutions, and $\lambda$ is a constant. 
 
 **Observations**
 
-The above form appears for the ODEs from method of separation for second order PDEs. For examples: 
+The S.L system is looking like an eigensystem, more specifically let's observe that $p'y' + py'' - qy = \lambda r y$. The left hand side is a linear operator on functions, and the right hand side is a product of constant and the vector. Dividing by $r(x)$, with some care, wil yield something that resemble an eigen value problem in linear algebra. 
+
+Additionally, the S.L form appears for the ODEs from method of separation for second order PDEs. The following ODEs from SV fits the S.L form. 
 1. Fourier, (Anisotropic Heat)
 2. Legendre
 3. Bessel
@@ -47,7 +43,9 @@ Previously, we solved it and get fancy polynomials/series for the solutions, now
 
 The domain of the problem is a closed finite interval: $[a, b]$. $p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. If it crosses zero in side the domain, we have the sour problem of singularities in the ODE. WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
 
-**Note**: By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. The boundary conditions are of the form: 
+**Note**: 
+
+By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. The boundary conditions are of the form: 
 
 $$
 c_1y(a) + c_2 y'(a) = 0 

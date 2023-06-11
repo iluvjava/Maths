@@ -51,6 +51,7 @@ $$
 Then this would imply that, one of the option for the adjoint operator is $L[v] = -(a(x)v)'$ and the set $D^* := \{u\in D : [au'v](b) - [au'v](a) = 0\}$. See later examples on how to extract out the boundary conditions for the dual system. 
 
 **Remark**
+
 When $a(x)$ is a constant, then we have an anti-symmetric operator, the negative of the operator  becomes its adjoint. 
 
 #### **Example 2 | Generic Second Order**
@@ -80,7 +81,7 @@ $$
 And therefore, it's suggesting that $L^*[v] = (av)''$. And the boundary conditions must be satisfied in such a way that, $v\in D^*$ has the property that for all $u\in D$, we have the bilinear functional $\left [a u'v \right|_a^b - \left[u(av)'\right|_a^b = 0$. 
 
 
-#### **Generic Second Order ODE with BVP**
+#### **Example 3 | Second Order ODE with BVP**
 
 > Define $L[u] = a_2u'' + a_1 u' + a_0u$, let the boundary condition be $\alpha_1 u(a) + \beta_1 u'(b) = 0$ and $\alpha_2 u(b) + \beta_2 u'(b) = 0$, denoting $B[u] = \mathbf 0$ to be a type of mixed boundary conditions. Defining $D = \{u \in C^2[a, b] : B[u] = \mathbf 0\}$ to be the domain of the operator $L$, then the adjoint operator $L^*[y]$ is $(a_2y)'' + (a_1y)' + a_0 y$. 
 
@@ -116,7 +117,7 @@ $$
 \end{aligned}
 $$
 
-take note the extra term. Here, we define a bilinear operator
+take note the extra term. Here, we define a bilinear operator (It's called a Bilinear Concomitant)
 $$
 \begin{aligned}
     P[u, v](x) &= [ua_1v + u'a_2v - u(a_2v)'](x)
@@ -149,4 +150,100 @@ There are many different types for the Sturm Liouville's system, they are used t
 #### **Claim | It's self Adjoint**
 > We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = (p(x)y')' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen-system problem under the weight $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
 
+**Demonstration**
 
+Expanding the operator $L$, we fit it to the generic BVP form discussed above: 
+
+$$
+\begin{aligned}
+    L[y] &= (py')' + qy + \lambda ry 
+    \\
+    &= p'y' + py'' + qy + \lambda ry
+    \\
+    & \text{with } a_2' = p' = a_1, a_0 = q + \lambda r, 
+\end{aligned}
+$$
+
+Recall previous results we obtain 
+
+$$
+\begin{aligned}
+    L^*[y] &= (a_2y)'' - (a_1y)' + A_0y
+    \\
+    &= (a_2'y + a_2y')' - (a_1y' + a_1'y) + a_0 y
+    \\
+    &= (a_2''y + a_2y' + a_2'y' + a_2y'') - (a_1y' + a_1' y) + a_0 y
+    \\
+    &= a_2y'' + (2a_2' - a_1)y' + (a''_2 - a_1' + a_0)y
+    \\
+    & \text{recall } a_2' = p' = a_1
+    \\
+    &= py'' + (2p' - p')y' + (p'' - p''' + a_0)y
+    \\
+    &= py'' + p'y' + a_0y. 
+\end{aligned}
+$$
+
+substituting back $a_0$ from before, we get back the same functional operator. To see the boundary conditions the operator support, we want to consider the Bilinear Concomitant
+
+$$
+\begin{aligned}
+    P[u, v] &= ua_1 v + u'a_2v - u(a_1v)'
+    \\
+    &= up'v + u'pv - u(pv)'
+    \\
+    &= up'v + u'pv - u(p'v + pv')
+    \\
+    &= up'v + u'pv - up'v + upv'
+    \\
+    &= u'pv + upv' 
+    \\
+    &= p(u'v - uv')
+    \\
+    &= P[v, u]. 
+\end{aligned}
+$$
+
+We wish to have the concomitant equals to zero, so that the adjoin operator equals to the original operator directly. Construct the condition that
+
+$$
+\begin{aligned}
+    [\star] &: P[u, v](b) - P[u, v](a) = p[u'v - uv'](b) - P[u'v - uv'](a) = 0
+    \\
+    \text{Consider Defining} &: 
+    |M(x)| := \text{det}\begin{bmatrix}
+        u' & v' \\ u & v
+    \end{bmatrix}(x)
+    \\
+    \text{then} &:
+    |M|(b) - |M|(b) = 0
+\end{aligned}
+$$
+
+then the adjoin operator domain $D^*$ should satisfies $D^*\{v\in C^2[a, b] : (\star), \forall u \in D\}$. Recall from the statement regarding the boundary conditions for the operator $L$ is 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        [\alpha_2u + \beta_2 u](b) =  0
+        \\
+        [\alpha_2v + \beta_2v](b) = 0
+    \end{cases} &\iff 
+    M(b)\begin{bmatrix}
+        \alpha_2 \\ \beta_2
+    \end{bmatrix} = \mathbf 0
+    \\
+    \begin{cases}
+        [\alpha_1 u + \beta_1 u](a) = 0
+        \\
+        [\alpha_1 + b_2u](b) = 0
+    \end{cases}
+    &\iff
+    M(a) \begin{bmatrix}
+        \alpha_1 \\ \beta_1 
+    \end{bmatrix}
+    = \mathbf 0
+\end{aligned}
+$$
+
+If assume that the boundary condition is non trivla, meaning that the vector $[\alpha_2 \; \beta_2]^2, [\alpha_1 \; \beta]^T$, and that would mean the matrix $M(a), M(b)$ both contains null spaces, and that would mean $|M|(b) - |M|(a) = 0$, hence, the adjoin operator is indeed $L$ itself, and $D = D^*$ in our case. 
