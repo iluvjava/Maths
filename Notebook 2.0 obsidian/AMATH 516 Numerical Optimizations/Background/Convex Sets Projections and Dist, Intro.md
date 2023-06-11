@@ -26,9 +26,7 @@ $$
 
 **Remark**
 
-Reader please observe that, $\inf$ is implicitly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Be careful**.
-
-In some literature, $\Pi_Q(x)$ is used to denote the projection of a vector $x$ onto a set $Q$. 
+Reader please observe that, $\inf$ is implicitly taking the closure of the set $Q$ over the space, therefore it's sometimes possible that $x\in \text{bd}(Q)$, as a consequence, $\text{proj}_Q(y) = \emptyset$. **Be careful**. In some literatures, $\Pi_Q(x)$ is used to denote the projection of a vector $x$ onto a set $Q$. 
 
 ---
 ### **Projection Existence**
@@ -48,7 +46,7 @@ $$
 Where, the activation function is closed, and the distance function is also closed. Since the function is closed and coercive, it has minimizers. 
 
 
-**Theorem: Unique Projection of Convex Sets**
+**Theorem | Unique Projection of Convex Sets**
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
@@ -74,7 +72,6 @@ With the additional assumption that $C$ is a convex set, we obtain the fact that
 
 **Remarks**: 
 This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Projection Obtuse Angle Theorem]]. In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [[Convex Projection is L1 Lipschitz]]. 
-
 
 
 ----

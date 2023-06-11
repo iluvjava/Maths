@@ -9,7 +9,7 @@ We can take the proximal mapping on a Moreau Envelope. And this will help with g
 - $\text{env}_{\text{env}_f^\mu} = \text{env}_f^{1 + \mu}$. 
 - $\nabla \text{env}_f^{\mu} = \mu^{-1}(x - \text{prox}_{\mu f}(x))$. 
 
-**Theorem: The Proximal Operators of Moreau Envelope**
+**Theorem | The Proximal Operators of Moreau Envelope**
 
 > Suppose that $f$ is closed proper and convex, then the proximal operator applied on the function $\text{env}_{f}^\mu$ is given like: 
 > 

@@ -517,8 +517,8 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 
 We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. 
 
-**Example: Projecton onto Convex Sets**
-> 
+**Example | Projection onto Convex Sets**
+> #UNFINISHED 
 
 
 ---

@@ -26,7 +26,7 @@ We will find the adjoint of a ODE with B.C. We build example to example, and the
 > Then the adjoint operator $L^*$ is an operator such that it has domain $D^*$, and satisfies $\langle Lu, v\rangle = \langle u,L^* v\rangle$ for all $(u, v)\in D\times D^*$. The domain $D^*$ for the adjoint contains conditions for the Adjoint ODE with BC. 
 
 
-#### **Generic Example 1**
+#### **Example 1 | Generic First Order**
 
 > Let $L[y] = a(x)y'(x)$, then the adjoint operator is $L[y] = -(a(x)y(x))'$, with a boundary conditions operator $B[y]$ on the boundary $a, b$ of a closed interval $[a, b]$.
 
@@ -53,7 +53,7 @@ Then this would imply that, one of the option for the adjoint operator is $L[v] 
 **Remark**
 When $a(x)$ is a constant, then we have an anti-symmetric operator, the negative of the operator  becomes its adjoint. 
 
-#### **Generic Example 2**
+#### **Example 2 | Generic Second Order**
 
 > Find the adjoint operator of $L[y] := a(x)y''(x)$, assuming we are on the interval $[a, b]$ and let $B[y]$ to be the appropriate linear operator packing the boundary conditions of the system. 
 
@@ -147,6 +147,6 @@ There are many different types for the Sturm Liouville's system, they are used t
 
 
 #### **Claim | It's self Adjoint**
-> We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = (p(x)y')' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen system under weights $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
+> We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = (p(x)y')' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen-system problem under the weight $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
 
 
