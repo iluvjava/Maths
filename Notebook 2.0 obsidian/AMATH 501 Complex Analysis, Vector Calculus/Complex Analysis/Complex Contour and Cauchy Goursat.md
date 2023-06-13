@@ -3,7 +3,7 @@
 - [[Cauchy Riemann Condition]]
 
 ---
-### Intro
+### **Intro**
 
 Integration on complex functions are line integral. Let $\gamma$ be the line between 2 points, $z_0, z_1$. And let's parameterize the <mark style="background: #FF5582A6;">*smooth curve*</mark> that links between these 2 paths, represented as $z(t) = x(t) + i y(t)$. The integral of on the complex plane will be the following: 
 
@@ -12,7 +12,7 @@ Integration on complex functions are line integral. Let $\gamma$ be the line bet
 > $$
 
 
-#### Comment: 
+#### **Comment**: 
 
 A <mark style="background: #FF5582A6;">*smooth curve*</mark> means that the derivative of the curve is continuous, and the derivative at the end point $t = a$, or $t = b$ cannot be zero. At the end point, it the derivative is a directional derivative. A piece-wise smooth curve means that: It's joined together by finitely many smooth curve, end to end, no space in between. The above theorem is applicable for both smooth and piece-wise smooth curve. 
 
@@ -51,7 +51,7 @@ This is a result from the FTCI theorem, and definitely true because of that Cons
 
 $1/z$ is not applicable for Cauchy Goursat Theorem if the closed path include the origin because the function is not differentiable at the origin, and this breaks the preconditions of the theorem. 
 
-#### **Corollary-1**
+#### **Corollary-1 | Key hole Isolation for Non-Analytical Region**
 
 > If $f(z)$ is analytic between C1 and C2, then the line integral on C1 and C2 gives the same value. 
 
@@ -65,5 +65,23 @@ $$\oint_C f(z) dz = 0 = \oint_{C1}f(z) dz - \oint_{C2} f(z)dz$$
 
 The negative sign is due to inner circular contour rotates close-wise. Hence, the Line integral of $C1, C2$ are equal. 
 
+
+---
+#### **Application | Differential Quotion**
+
+Let $f$ be analytical/holomorphic on an region $\Omega$ containing the closure of a disk $D$, centering at $z_0$. Observe that 
+
+$$
+\begin{aligned}
+	g(z) = \frac{f(z) - f(z_0)}{z - z_0}
+\end{aligned}
+$$
+
+is continuous over the region $\mathbb C \setminus \{z_0\}$, since it's analytical, we can redefine $g(z_0) = f'(z_0)$, then the function $g(z)$ is going to be analytical. This is true by considering the Taylor series expansion centered at $z_0$, we have
+
+$$
+\begin{aligned}
+\end{aligned}
+$$
 
 
