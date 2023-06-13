@@ -1,6 +1,4 @@
-Here, we are going to solve some ODE which is relevant with solving the helmholtz equation in 3d under the spherical coordinate. 
-
- [[Helmholtz Equation in a Sphere]]
+Here, we are going to solve some ODE coming from the SV when solving the Helmholtz equation in 3d under the spherical coordinate. Continue from [[Helmholtz Equation in a Sphere]]. 
 
 ---
 ### **Intro**
@@ -8,16 +6,14 @@ Here, we are going to solve some ODE which is relevant with solving the helmholt
 The ODE we are solving is: 
 
 $$
-\partial_x[(1 - x^2)\partial_x[y]] + \eta y = 0 \tag{1}
+\begin{aligned}
+    \partial_x[(1 - x^2)\partial_x[y]] + \eta y = 0 \quad (1)
+    \\
+    - 2x\partial_x[y] + (1 - x^2)\partial_x^2[y] + \eta y = 0 \quad (2)
+\end{aligned}
 $$
 
-$$
-- 2x\partial_x[y] + (1 - x^2)\partial_x^2[y] + \eta y = 0 \tag{2}
-$$
-
-This is also called the associated Legendre equation in spherical coordinates, but with the case where $m = 0$. This means that there is no affect by the longitude direction, meaning that $\Phi(\phi)$ is a constant. 
-
-To solve, we are going to use the Power Series expansion centered at a point. Let's call that point $b$. 
+but with the case where $m = 0$. This means that there is no affect by the longitude direction, meaning that $\Phi(\phi)$ is a constant. To solve, we are going to use the Power Series expansion centered at a point. Let's call that point $b$. 
 
 ---
 ### **Power Series**
@@ -283,7 +279,7 @@ And this is a plot for the first few, normalized Legendre Polynomials.
 
 **Fun Fact**: 
 
-**Legendre Polynomials are ORTHOGONAL.** and this is an amazing quality to have when we are using it as the basis functions fo something. 
+Legendre Polynomials are orthogonal under a weighted space. 
 
 ---
 ### **Generator**
@@ -308,7 +304,7 @@ $$
 
 These Legendre Polynomials are normalized, meaning that $P_n(1) = 1$. 
 
-And, one of the easier way, easier than the recusive series introduced above, is to use the Rodigue's Formula: 
+And, one of the easier way, easier than the recursive series introduced above, is to use the Rodrigues Formula: 
 
 $$
 \begin{aligned}

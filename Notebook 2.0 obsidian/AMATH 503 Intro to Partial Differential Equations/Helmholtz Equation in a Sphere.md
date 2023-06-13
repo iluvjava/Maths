@@ -1,34 +1,17 @@
-Now, we are going to solve a wave equation inside of the Sphere. 
-This is still using: [[Separation of Variables for Heat and Waves in 1D]] method for solving a major part of the equation. 
-
-And to read this we at least need to recognize the Bessel's equation when it popped up, which can be read more on [[Bessel's Equation]]. 
-
-And in this file, we will also be introduced to the **Legendre Equation**, which is similar to the Bessel's equation, it's pretty complicated. 
+using [[Separation of Variables for Heat and Waves in 1D]], we found Bessel's equation, read more in [[Bessel's Equation]]. In this file, we introduce the *Legendre Equation*, similar to the Bessel's equation, it's pretty complicated. 
 
 ---
 ### **Intro**
 
-The equation on the space domain is phrased by the following PDE: 
-
-$$
-\nabla^2 \cdot u = -\lambda u
-$$
-
-We are in our traditional spherical coordinate. 
-
-And the boundary condition will be discussed during the solving process. 
-
-There are 3 parameters describing the spherical coordinate. 
+Consider PDE: $\nabla^2 \cdot u = -\lambda u$, We are in a spherical coordinate, the boundary condition will be discussed during the solving process. There are 3 parameters describing the spherical coordinate, they helps with separation of variables: 
 
 * $r$ is the radial distance, which is $0 < r < a$
-
 * $\psi$ is the longitude, $-\pi \le \psi \le \pi$, and this is the same convention as the argument of a complex number.
-
 * $\theta$ is the co-latitude, $0 \le \theta  \le \pi$,  where the north pole is $0$ and the south pole is $\pi$
  
 **Avoiding solutions that blows up**: 
 
-from Prof: it's likely to blow up at the center and the poles of the sphere, and we want it to be $2\pi$ periodic at the longitude, meaning that function wrt to $\psi$ will be $2\pi$ periodic. 
+it's likely to blow up at the center and the poles of the sphere, and we want it to be $2\pi$ periodic at the longitude, meaning that function wrt to $\psi$ will be $2\pi$ periodic. 
 
 **Spherical Laplacian Operator**
 
@@ -41,18 +24,20 @@ $$
 \frac{1}{r^2\sin^2\theta} \partial_\psi^2[u]
 $$
 
-And we are going to take this for granted, and this crucial for solving in alternative coordinate. 
+And we are going to take this for granted, and this crucial for solving in alternative coordinate.
+
+
+**Objectives**
+
+* Use the separations of variables. 
+* Derive the Spherical Bessel's equation
+* Derive the Legendre Equation 
+* Reveal the relations of the eigenvalues. 
 
 ---
 ### **Separation of Variable**
 
-Consider the first step of separation by variables. Let: 
-
-$$
-u(r, \theta, \psi) = R(r)Y(\theta, \psi).
-$$
-
-Recall $\nabla^2 \cdot u = -\lambda u$, then: 
+Let: $u(r, \theta, \psi) = R(r)Y(\theta, \psi)$, recall $\nabla^2 \cdot u = -\lambda u$, then using the PDE: 
 
 $$
 \begin{aligned}
@@ -82,48 +67,48 @@ $$
     {R} + 
     \frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y}
 \end{aligned}
-
 \tag{1}
 $$
+
+The separation of variable results are
+
 $$
 \underset{(4)}{\implies}
     \begin{cases}
-        \frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y} = -\eta &
+        Y^{-1}
+        ((\sin\theta)^{-1} 
+        \partial_\theta[\sin\theta \partial_\theta[Y]] + 
+        (\sin^2\theta)^{-2}
+        \partial_\psi^2[Y])
+        = -\eta &
         \\
-        \frac{\partial_r[r^2\partial_r[R]]}
-        {R} = -\eta &
+        R^{-1}\partial_r[r^2\partial_r[R]] = -\eta &
         \\
         \eta = \lambda r^2
     \end{cases}
 $$
 
-**Explaination:** 
+**Explainations:** 
 1. Expanding the Spherical Laplacian Operator. 
 2. Substitute the expanded expression back to the original PDE, and put $-\lambda^2$ on the left hande side of the expression. 
 3. Multipy $r$ on both side of the expression. 
 4. Functions of $r, y$ are on the RHS and they equals to a constant, using the old trick from separations of variable, we get both equation equals to the same constant respectively. The sign for $\eta$ is not assumed. 
 
-
-**Let's focus on the part involving $R$, firstly, divide by $r$, this will be:**
-
-$$
--\lambda^2 - \frac{\partial_r[r^2\partial_r[R]]}{Rr^2} = \frac{-\eta}{r^2}
-$$
+Focusing on the part involving $R$, firstly, divide by $r$, this will be:
 
 $$
--R\lambda^2 - \frac{\partial_r[r^2\partial_r[R]]}{r^2} = \frac{-\eta R}{r^2}
-$$
-
-Substitute: 
-
-$$
-\partial_r[r^2\partial_r[R]] = 2r\partial_r[R] + r^2\partial_r^2[R]
-$$
-
-$$
--R\lambda^2 - \left(
-    \frac{2}{r}\partial_r[R] +\partial_r^2[R]
-\right) = \frac{-\eta R}{r^2}
+\begin{aligned}
+    -\lambda^2 - \frac{\partial_r[r^2\partial_r[R]]}{Rr^2} &= \frac{-\eta}{r^2}
+    \\
+    -R\lambda^2 - \frac{\partial_r[r^2\partial_r[R]]}{r^2} &= \frac{-\eta R}{r^2}
+    \\
+    \text{Substitute: } \partial_r[r^2\partial_r[R]] &= 2r\partial_r[R] + r^2\partial_r^2[R]
+    \\
+    \implies 
+    -R\lambda^2 - \left(
+        \frac{2}{r}\partial_r[R] +\partial_r^2[R]
+    \right) &= \frac{-\eta R}{r^2}
+\end{aligned}
 $$
 
 So that mean: 
@@ -135,100 +120,58 @@ So that mean:
 > \right) R = 0
 > \tag{1.1}
 > $$
-> Sphereical Bessel's equation. 
+> This is the *Sphereical Bessel's equation*. 
 
-**Expression 1.1 is called the Sphereical Bessel's Equation** 
 
-Let's focus on the part of equation involving $Y$, then we will be looking at:
-
-$$
-\frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y}  + \eta = 0
-$$
+Focusing $Y$, 
 
 $$
-\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]  + \eta Y = 0
+\begin{aligned}
+    \frac{\frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]}{Y}  + \eta &= 0
+    \\
+    \frac{1}{\sin\theta}\partial_\theta[\sin\theta \partial_\theta[Y]] + \frac{1}{\sin^2\theta}\partial_\psi^2[Y]  + \eta Y &= 0
+\end{aligned}
 $$
 
-And, take notice that, this is still a partial differential equation, which means that we are going to apply the SOV again here. 
-
-This is call the **Sphererical Harmonic Equation**.
-
-Let's assume that: 
+And, take notice that, this is still a partial differential equation, which means that we are going to apply the SOV again here. This is call the *Spherical Harmonic Equation*. using the same tricks, we begin with $Y(\theta, \psi) = \Theta (\theta) \Psi(\psi)$, then 
 
 $$
-Y(\theta, \psi) = \Theta (\theta) \Psi(\psi)
-$$
-
-Substitute above equation back to equation above we have: 
-
-$$
-\frac{\partial_\theta[\sin\theta \Theta'(\theta)\Psi(\psi)]}{\sin\theta} 
-+ 
-\frac{1}{\sin^2\theta}\Psi''(\psi)\Theta(\theta)
-+ 
-(\sin\theta)^2\eta Y = 0
-$$
-
-Multiply $\sin^2\theta$ on both side: 
-
-$$
-(\sin\theta)
-\partial_\theta[\sin\theta \Theta'(\theta)\Psi(\psi)]
-+ 
-\Psi''(\psi)\Theta(\theta)
-+ 
-\eta \Theta(\theta)\Psi(\psi)(\sin\theta)^2 = 0
-$$
-
-Dividing both size by $Y$ we will be getting: 
-
-$$
-\frac{
-(\sin\theta)
-\partial_\theta[\sin\theta \Theta'(\theta)]
-}{\Theta(\theta)}
-+ 
-\frac{\Psi''(\psi)}{\Psi(\psi)}
-+ 
-\frac{\eta(\sin\theta)^2}{\Theta(\theta)}  = 0
-$$
-
-$$
-\frac{
+\begin{aligned}
+    \frac{\partial_\theta[\sin\theta \Theta'(\theta)\Psi(\psi)]}{\sin\theta} 
+    + 
+    \frac{1}{\sin^2\theta}\Psi''(\psi)\Theta(\theta)
+    + 
+    (\sin\theta)^2\eta Y &= 0
+    \\
+    (\sin\theta)
+    \partial_\theta[\sin\theta \Theta'(\theta)\Psi(\psi)]
+    + 
+    \Psi''(\psi)\Theta(\theta)
+    + 
+    \eta \Theta(\theta)\Psi(\psi)(\sin\theta)^2 &= 0
+    \\
+    \frac{
+    (\sin\theta)
+    \partial_\theta[\sin\theta \Theta'(\theta)]
+    }{\Theta(\theta)}
+    + 
+    \frac{\Psi''(\psi)}{\Psi(\psi)}
+    + 
+    \frac{\eta(\sin\theta)^2}{\Theta(\theta)} &= 0
+    \\
+    \text{ introduce new constant}\quad 
+    \frac{
     (\sin\theta)
     \partial_\theta[\sin\theta \Theta'(\theta)]
     + 
     \eta (\sin\theta)^2
-}{\Theta} = 
-\frac{-\Psi''}{\Psi} = \lambda^2
-\tag{1.2}
+    }{\Theta} &= 
+    \frac{-\Psi''}{\Psi} = \alpha^2 
+    
+\end{aligned}\tag{1.2}
 $$
 
-And we introduced another constant $\alpha^2$, because of the usage of SOV. 
-
-And it's not hard to see that we have a pretty simple ODE: 
-
-$$
-\Psi'' + \alpha^2 \Psi = 0\quad -\pi \le \psi \le \pi
-$$
-
-And the boundary condition we want to apply here is that the function $\Psi$ is a $2\pi$ Periodic function, and notice that this is the same as the $\Theta(\theta)$ function in the Cylinder case, see [[Helmholtz Equation in a Cylinder]] for more information. 
-
-So then, we have: 
-
-$$
-\alpha = m, \quad m\in \mathbb{Z} = 0, \pm 1, \pm 2\cdots
-$$
-
-And the basis function will be:
-
-$$
-\Psi = \exp \left(
-im\psi
-\right)
-$$
-
-Now, we will need to focus on $\Theta(\theta)$, and we will be dividing by $\sin^2(\theta)$ on expression (1.2), giving us:
+And we introduced another constant $\alpha^2$ for the separation of variables. For $\Psi(\psi)$, we have the ODE, $\Psi'' + \alpha^2 \Psi = 0,  -\pi \le \psi \le \pi$. And the boundary condition is periodic, and notice that this is the same as the $\Theta(\theta)$ function in the Cylinder case, see [Helmholtz Equation in a Cylinder](Helmholtz%20Equation%20in%20a%20Cylinder.md) for more information. Recall from there that we had $\alpha = m, \; m\in \mathbb{Z} = 0, \pm 1, \pm 2\cdots$, with basis the basis functions $\Psi_m = \exp \left(im\psi\right)$. Finally, for $\Theta(\theta)$, and we devide $\sin^2(\theta)$ on expression (1.2) to yield the ODE
 
 $$
 \frac{1}{\sin\theta} \partial_\theta[\sin\theta \partial_\theta[\Theta]] + 
@@ -238,33 +181,7 @@ $$
 \tag{1.3}
 $$
 
-We also multiplied by $\Theta$ and at the same time, substitute the $\alpha= m$ for $\frac{\Psi''}{\Psi}$. 
-
-Now, we know that $\theta\in[0, \pi]$, and we want out solution to be bounded at the poles, and this will mean that: 
-
-$$
-\Theta(\pm \pi) \ne \infty
-$$
-
-And this is important.
-
-Now we are going to make a **Change of Variable**, this means that: 
-
-$$
-x = \cos\theta\implies dx = -\sin\theta d\theta
-$$
-
-$$
-\theta\in[0, \pi] \implies x\in [-1, 1]
-$$
-
-Let: 
-
-$$
-y(x) = \Theta(\theta)
-$$
-
-And for the expression (1.3) we are going to use the above **Change of Variable**, giving us a new Differential Equation: 
+We also multiplied by $\Theta$ and at the same time, substitute the $\alpha= m$ for $\Psi''/\Psi$. Now, we know that $\theta\in[0, \pi]$, and we want out solution to be bounded at the poles (CLARIFICATION NEEDED), and this will mean that $\Theta(\pm \pi) \ne \infty$. To get insight, we make a *Change of Variable* with $x = \cos\theta$ so $dx = -\sin\theta d\theta$ then $\theta\in[0, \pi]$ means $x\in [-1, 1]$, let $y(x) = \Theta(\theta)$ For expression (1.3) we use the above *Change of Variable*, obtaining a new ODE: 
 
 > $$
 > \partial_x[(1 - x^2)\partial_x[y]]
@@ -273,91 +190,11 @@ And for the expression (1.3) we are going to use the above **Change of Variable*
 > \right]y = 0
 > \tag{1.4}
 > $$
-> Associated Legendre Equation
+> Imposing condition: $y(\pm 1) \ne \infty$, and this is: *Associated Legendre Equation* a 2nd order ODE that is hard to solve. 
 
-And we want: $y(\pm 1) \ne \infty$, and this is called the **Associated Legendre Equation**, a 2nd order ODE and the coefficients are not all constant. 
+---
+### **Solving the Associated Bessel's Equation**
 
-The technique we are going to try to solve it, is the power series method, and it's goign to be centered at point $b$ where $b$ is a non-singular point of the differential equation. 
-
-**Spoiler Alert**: The singular point happens when $x = \pm 1$. Then we let $b = 0$. 
-
-This will mean that, the series we are goign to try is: 
-
-$$
-y(x) = \sum_{n = 0}^{\infty}
-    a_n x^2
-$$
-
-Then in this case, we don't want the series to be blowing up, especially at the point where $x = \pm 1$. 
-
-We want this series to be convergent at the point wher $x = \pm 1$, which means that we will be interested in the **radius of convergence** for the series. 
-
-Ok, using basic complex analysis, it's the Radius of convergence at the point of expansion is the distance from that point to the closest singularity. 
-
-And it turns out that, The radius of convergence is... Less than one. Because we already said that the singulraity is at $\pm 1$... 
-
-So then in this case, it would imply that the solution of the series, might blow up at the point $x = \pm 1$, unless... **The series somehow terminates** (so it's not an infinite sum). 
-
-**And Spoiler Alert**, we are goign to show that, the series is not going to blow up for certain values of $\eta$, especially: $\eta_n = n(n + 1)$ for $n\in \mathbb{Z}_{\ge 0}$, and in that case, tthese $\eta$ will be our eigenvalues, and the correspondign eigenfunctions are denoted as: $y(x) = P_{n}^m(x)$. This is going to be proved LATER. 
-
-Ok, let's assume that we know: 
-
-$$
-\eta_n = n(n + 1) \quad n = 0, 1, 2, 3, \cdots
-$$
-
-Now with $\eta$ we will be able to go back to (1) and get some info out for expression $R(r)$, so after that, the ODE for $R(r)$ will be like: 
-
-$$
-    r^2R''+ 2rR' + [\lambda^2 r^2 - n(n + 1)]R(r) = 0 \quad R(0)\ne \infty \wedge R(a) = 0
-$$
-
-This is called the **Spherical Bessel's Equation**. It is a bessel's equation, it's just not in the std form yet. 
-
-Now, with the substitution that: 
-
-$$
-x = \lambda r \quad R(r) = x^{\frac{-1}{2}}y(x)
-$$
-
-**Skipping some non-trivial math**: 
-
-$$
-x^2y'' + xy' + (x^2 - p^2)y = 0
-$$
-
-This is the Bessel's function in its standard form (After some simplification)
-
-Where $p = n + \frac{1}{2}$ wher $n = 0, 1, 2, 3\cdots$
-
-And, we are going to use the solution of the first kind, because we want the boundary condition $R(0)\ne \infty$ to be true, and that means: 
-
-$$
-R(r) = x^{\frac{-1}{2}}y(x)  = Ax^{-\frac{1}{2}}J_p(x)
-$$
-
-If we spcify: $A = \sqrt{\frac{\pi}{2}}$, then, $R(r) = \sqrt{\frac{\pi}{2x}}J_p(x)$ which will be: 
- 
-$$
-R(r) = \sqrt{\frac{\pi}{2\pi}}J_{n + \frac{1}{2}}(x) = j_n(x)
-$$
-
-Where we introduce the $j_n(x)$ as the Spherical Bessels function. 
-
-Looking at the boundary conditions: $R(a) = 0$: 
-
-$$
-R(a) = 0 \implies j_n(\lambda a) = 0 \implies J_{n + \frac{1}{2}}(\lambda a) = 0
-$$
-
-$$
-\implies \lambda a= z_{n + \frac{1}{2}, k}
-$$
-
-$$
-\lambda = \frac{z_{n + \frac{1}{2},k}}{a}
-$$
-
-And recall that $z_{m, n}$ is used to denote the roots of the bessel's funtions. Boom, we had an expression for the constant for the eigen function for $R(r)$. 
+For more information, please see [Legendre Polynomials](Legendre%20Polynomials.md), [Bessel's Equation](Bessel's%20Equation.md) for more information on how to solve these 2 complicated ODEs. 
 
 

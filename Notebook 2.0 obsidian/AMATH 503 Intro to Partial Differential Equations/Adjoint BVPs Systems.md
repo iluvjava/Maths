@@ -5,6 +5,10 @@
 
 BVPs, boundary value problem, are essentially linear system in the functional spaces. We can generalizes linear system to BVPs in $C^p[a, b]\mapsto \mathbb R$, where, $p$ is determined by the highest order of the ODE. We want to identifies the adjoint operators of general forms for the system, and we want to characterizes the existence of the solutions for the linear system. The theories as application to the Sturm Liouville's system and theorems. 
 
+**A Note on notations**
+
+
+
 **References**: 
 
 These materials will be taken from Prof Eric Foxall's classnotes for MATH 319 at UBCO, introduction to partial differential equations.
@@ -208,7 +212,7 @@ We wish to have the concomitant equals to zero, so that the adjoin operator equa
 
 $$
 \begin{aligned}
-    [\star] &: P[u, v](b) - P[u, v](a) = p[u'v - uv'](b) - P[u'v - uv'](a) = 0
+    [\star] &: P[u, v](b) - P[u, v](a) = p(b)[u'v - uv'](b) - p(a)[u'v - uv'](a) = 0
     \\
     \text{Consider Defining} &: 
     |M(x)| := \text{det}\begin{bmatrix}
@@ -216,11 +220,11 @@ $$
     \end{bmatrix}(x)
     \\
     \text{then} &:
-    |M|(b) - |M|(b) = 0
+    |M|(b) - |M|(b) = 0.
 \end{aligned}
 $$
 
-then the adjoin operator domain $D^*$ should satisfies $D^*\{v\in C^2[a, b] : (\star), \forall u \in D\}$. Recall from the statement regarding the boundary conditions for the operator $L$ is 
+Then the adjoin operator domain $D^*$ should satisfies $D^*\{v\in C^2[a, b] : (\star), \forall u \in D\}$. Anote on the notation that, $p(b)$ in smaller case if the $p$ function evaluated at $x = b$, and when I write $[u'v - uv'](b)$ I meant $u(b)'v(b) - u(b)v'(b)$. Recall from the statement regarding the boundary conditions for the operator $L$ is 
 
 $$
 \begin{aligned}

@@ -1,14 +1,11 @@
 Let's use the residue theorem to evaluate some of the scary looking series. 
 
-prereq: [[Calculus of Residual (Res Shortcut)]]
+prereq: [[Calculus of Residual, Res Shortcut]]
 
 ---
-
 ### Intro
 
-We can use the Residue theorem to figure out the infinite series. 
-
-Let's consider a really special function which is going to help us with that: 
+We can use the Residue theorem to figure out the infinite series. Let's consider a really special function which is going to help us with that: 
 
 $$
 F(z): = \pi \cot(\pi z)f(z) = \frac{\pi f(z)\cos(\pi z)}{\sin(\pi z)} 

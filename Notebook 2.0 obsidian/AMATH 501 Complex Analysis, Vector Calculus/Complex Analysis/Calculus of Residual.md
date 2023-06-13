@@ -3,24 +3,24 @@ prereq: [[Meromorphic Functions]], [[Types of Singularities]], [[Cauchy Integral
 This is one of the way we can take the contour integral of a Meromorphic function around a set of, finitely many singularities in the opened set $C$. 
 
 ---
+### **Introduction** 
 
-###  Introduction 
-The residual method is applied to the integral of Meromorphic Functions, and it provides a quick and dirty way to compute the exact integral of these functions with a pole, or poles inside of it, and the poles is denoted as: $z_0$. 
-This is the Residual Formula: 
+The residual method can be applied to the integral of Meromorphic Functions, and it provides a quick and dirty way to compute the exact integral of these functions with a pole, or poles inside of it, and the poles is denoted as: $z_0$. 
 
+#### **Thm | Calculus of Residual**
+> Let $C$ be a contour where $f$ is analytical in and on, then the residual formula is given by 
+>
 > $$
 > \oint_C f(z)dz = 2\pi i \text{Res}_{z_0}(f).
 > $$
 
-**The residue of a function at its singularity is just the coefficients of the term: $a_{-1}$ for the Laurent Series**, and it's crucial for figuring out the contour integrals around some singularities. 
+**Note**: *The residue of a function at its singularity is just the coefficients of the term: $a_{-1}$ for its Laurent Series*, and it's crucial for figuring out the contour integrals around some singularities. 
 
-#### Proof: 
+**Proof:** 
 
 $$\oint_Cf(z)dz = \oint_{C\epsilon} f(z)dz$$
 
-Where the contour $C$ is an contour that contains the pole $z_0$, and then we will have an "Inner Corridor", or a infinitely small circle that circles around the singularity $z_0$
-
-Consider the Laurent Series of the expansion: 
+Where the contour $C$ is a contour that contains the pole $z_0$, and then we will have an "Inner Corridor", or an infinitely small circle that circles around the singularity $z_0$. Consider the Laurent Series of the expansion: 
 
 $$
 f(z) = \sum_{n -\infty}^\infty a_n z^n \hspace{2em} \text{Where: } a_n = 

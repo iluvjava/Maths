@@ -34,3 +34,4 @@ Something to do when we have time.
 - #INCORRECT  CORECT The claim is just wrong, and I don't know what is right, so I just tag it. 
 - #LATER Unfinished and I don't want to work on it anytime soon. 
 - #UNSOLVED Some issues, or questions that is unresolved. 
+- #CRINGE, Very cringe writing please improve. 

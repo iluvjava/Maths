@@ -1,39 +1,32 @@
-The Frobenius Method is related to solving some very complected second order ODEs, i.e: used to look for the solution of the Bessel's equation, [[Bessel's Equation]]. But in the discussion of the Bessel's equation, there is a lack of clarification and formal treatment of the method, and this is what this file is about. We are going to give a more detailed view of the Frobenius method under a much general context for solving Second Order ODEs.  Here is the reference material [here](https://www.youtube.com/watch?v=uLORiAWe63A) And here is another reference resource that I didn't include them into my notes yet:  [Frobenius Method from Calc Tech](http://www.its.caltech.edu/~esp/acm95b/frobenius.pdf)
+The Frobenius Method is related to solving some very complected second order ODEs, i.e: used to look for the solution of the Bessel's equation, [[Bessel's Equation]]. But in the discussion of the Bessel's equation, there is a lack of clarification and formal treatment of the method, and this is what this file is about. We are going to give a more detailed view of the Frobenius method under a much general context for solving Second Order ODEs.  Here is the reference material [here](https://www.youtube.com/watch?v=uLORiAWe63A) And here is another reference resource that I didn't include them into my notes yet:  [Frobenius Method from Calc Tech](http://www.its.caltech.edu/~esp/acm95b/frobenius.pdf), [Frobenius method from MCGill](https://www.math.mcgill.ca/gantumur/math315w14/downloads/frobenius.pdf). 
 
 ---
 ### **Intro**
 
-The Frobenius method is a modified method for solving PDEs using Power series, it uses: 
+This is #CRINGE 
+
+The Frobenius method is a modified method for solving ODE BVPs using Power series, it assumes: 
 
 $$
 y(x) = x^s\sum_{n = 0}^{\infty}
     a_nx^n
 $$
 
-As the underlying assumption for the power series, and in this case, it can be used to solve PDEs whose singulraity is at: $x = 0$. 
+and it can be used to solve ODE whose singularity is at: $x = 0$. Why do we want to make the series centered at the singularity? Because, in the case where there are one singularity, the term $x^s$ can extract out the singularity by taking negative integers values. Recall the ODE of 2nd order $y'' + P(x)y' + Q(x)y = 0$ is said to have a singularity at the point $x = x_0$ if $\lim_{x\rightarrow x_0} P(x) = \infty$ and $\lim_{x \rightarrow x_0} Q(x) = \infty$. 
 
-Why do we want to make the series centered at the singularity?
+**Take Cautions**: 
 
-Because, in the case where there are one singularity, we an just use the Frobenius method to solve and  then we won't need to worry about the convergence radius anymore, because it will converge on all the complex! 
+Because we are using it to solve the second order ODE, we will get 2 solutions for $s$. When this happens, consider the type of solutions 
 
-Recall: The ODE 2nd order $y'' + P(x)y' + Q(x)y = 0$ is said to have a singularity at the point $x = x_0$ if $\lim_{x\rightarrow x_0} P(x) = \infty$ and $\lim_{x \rightarrow x_0} Q(x) = \infty$
-
-**Take Cautions While Solving the ODE**: 
-
-Because we are using it to solve the second order ODE, with 2 variables, we will inevitably runs into problem when there are 2 solutions for $s$. 
-
-And when this happens, we will need to take caution when: 
 1. $s$ has 2 integer solutions. 
-2. $s$ is the repeated root of a solution. 
+2. $s$ is the repeated root of an equation. 
 
-**When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constants are linear independent. And that will form the full solution for the ODEs.**
-
-But when this scenario for $s$ happened, we can not because the solution we had or $y(x)$ will be linear dependent.
+*When we solve for second order ODEs, we want 2 solution associated 2 constants where 2 constants are linearly independent. And that will form the full solution for the ODEs.* 
 
 
 #### **When $s_1 = s_2 = s$**: 
 
-Then, fix one of the roots and find the solution of that by unrolling the recursion and solving for the coefficients on the original 2nd ODE, giving us: 
+Fix one of the roots and find the solution of that by unrolling the recursion and solving for the coefficients on the original 2nd ODE, giving us: 
 
 
 $$
@@ -41,10 +34,7 @@ y_1(x) = (x - x_0)^r
 \sum_{n = 0}^{\infty}a_n(x - x_0)^n
 $$
 
-
-And then after that, we are make another solution format which is based **THIS** solution with $s_1$: 
-
-We are making the assumption that the solution for the other function takes the form of: 
+One solution takes $r = s_1$, and the second solution takes the form of: 
 
 $$
 y_2(x) = y_1\ln(x) + (x - x_0)^s \sum_{n = 0}^{\infty}

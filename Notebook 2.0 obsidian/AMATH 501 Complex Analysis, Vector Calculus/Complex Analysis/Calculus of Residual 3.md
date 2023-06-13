@@ -1,7 +1,7 @@
 
 Here we will be focusing on how to use the Residual Theorem as whole to solve real functions using the complex plane. 
 
-prereq: [[Calculus of Residual (Res Shortcut)]]
+prereq: [[Calculus of Residual, Res Shortcut]]
 
 ---
 

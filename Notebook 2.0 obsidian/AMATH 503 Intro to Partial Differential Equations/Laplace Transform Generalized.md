@@ -1,4 +1,4 @@
-[[Laplace Transform]], [[Calculus of Residual (Res Shortcut)]]
+[[Laplace Transform]], [[../AMATH 501 Complex Analysis, Vector Calculus/Complex Analysis/Calculus of Residual, Res Shortcut]]
 
 Previously we had the theory for Laplace Transform, now we will be interested in practicing it with some good examples. 
 

@@ -9,6 +9,8 @@ The Sturm Liouville theory is a mix of Linear Algebra, and Functional Analysis, 
 > A Sturm Liouville system is defined for a funtion $y(x)$, over a interval, associated with a boundary conditions. The ODE is
 > $$
 > \begin{aligned}
+> 	(py')' + (\lambda r - q)y &= 0
+> 	\\
 > 	\partial_x[p(x)\partial_x[y]] + (\lambda r(x) - q(x))y &= 0    
 > 	\\
 > 	p'(x)\partial_x[y] + p(x)\partial_x^2[y] + (\lambda r(x) - q(x)) y &= 0    
@@ -35,44 +37,31 @@ Previously, we solved it and get fancy polynomials/series for the solutions, now
 ---
 ### **Singular and Regular SL**
 
-**Regular Summary**
-* $p, p', q, r$ are continuous in interval $[a, b]$, and doesn't have zero, in the domain. 
-* Robin boundary conditions that are legit. 
-
-**Explanation**
-
-The domain of the problem is a closed finite interval: $[a, b]$. $p, p', q, r$ are continuous in the domain and $p(x), r(x)\ne 0$ in $[a, b]$. If it crosses zero in side the domain, we have the sour problem of singularities in the ODE. WLOG, we assume that $p(x)> 0, r(x) >0$ inside of the interval.
-
-**Note**: 
-
-By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well. We can do that because $\lambda$ is something left to be determined. The boundary conditions are of the form: 
+#### **Regular S.L System**
+A regular SL system is characterized by the functions $p, p', q, r$. 
+* $p, p', q, r$ are continuous in interval $[a, b]$. 
+* $p(x) > 0, r(x) > 0$ for all $x \in \mathbb R$. By changing the sign of $\lambda$, one might include the case $p(x) < 0, r(x) < 0$ as well, this will change sign of $\lambda$. 
+* Robin boundary conditions satisfies
 
 $$
-c_1y(a) + c_2 y'(a) = 0 
+\begin{aligned}
+	& \alpha_1 y(a) + \alpha_2 y(b) = 0 \text{ where }\alpha_1^2 + \alpha_2^2 > 0
+	\\
+	& \beta_1 y(b) + \beta_2y(b) = 0 \text{ where } \beta_1^2 + \beta_2^2 > 0, 
+\end{aligned}
 $$
 
-$$
-d_1y(b) +  d_2y'(b) = 0
-$$
-
-**Note**: At least one of $d_1$, $d_2$, or $c_1$, $c_2$ are non-zero.
+see [Adjoint BVPs Systems](Adjoint%20BVPs%20Systems.md) at the end for why this is the case. 
 
 **Singular**
 
-If the system in on an infinite domain, or, at least one of the conditions for the regular SL is not satisfied. 
-
-There are way more Singular than the Regular. But let's consider a subset of the singular system: 
-
+A singular system is not regular, can be seemed by 
 * $p(x), p'(x), q(x), r(x)$ are continuous on $(a, b)$. 
-
 * $p(x)> 0$, $r(x)> 0$, in $(a, b)$. but $p(x), q(x) = 0$ on the boundaries. 
- 
-* Domain might be infinite. 
+* Domain might be infinite, at which case, we just impose the boundary condition at the infinite domain of the function and assume that the solutions are squared integral function, or, $\in L^2$.
 * Boundary conditions are modified so that it's still solvable. 
 
 When a system is singular, there is a very good chance that we had singularities for the functions inside of the domain (in this case, it's the boundary), see the Legendre System in the example part for more about how to modify the boundary of the solution. 
-
-However, take notice we really need to take care of the boundary conditions so the solutions are still valid in a sense. This is one of the features for this subset of Singular SL. 
 
 **Boundary Modifications**
 
@@ -82,7 +71,7 @@ If, $p(x) = 0$ at either $a, b$, then:
 * $p(b) = 0$, let $y(b)$ be bounded, and then let $y(a) = 0$. 
 * $p(a) = p(b) - 0$, then let $y(a), y(b)$ both be bounded. 
 
-**This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable.** 
+This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable.
 
 ---
 ### **Examples of SL System**
@@ -96,51 +85,31 @@ If, $p(x) = 0$ at either $a, b$, then:
 
 Let's take a look at some of the examples, and determine whether they are singular, or regular. 
 
-**Fourier System**
+#### **Example 1 | Fourier System**
 
 $$
-y'' + \lambda y = 0 \quad y(0) = 0 \quad y(L) = 0
+\begin{cases}
+	y'' + \lambda y = 0 
+	\\
+	y(0) = 0, y(L) = 0	
+\end{cases}
 $$
 
-In this case, refer back and find out that, $p(x) = 1$, $q(x) = 1$, $r(x) = 1$. 
+In this case, refer back and find out that, $p(x) = 1$, $q(x) = 1$, $r(x) = 1$. Here, if we are on a finite domain with $p(x), p'(x)$, $r(x)$, both continuous then it's a *Regular SL system*. Recall that we solved it and found out that $\lambda_n = (\frac{n\pi}{L})^2$ for $n\in \mathbb{N}$ and the Eigenfunctions are $\sin(\sqrt{\lambda_n})$, it's coming from the SV of a heat equation. See [Separation of Variables for Heat and Waves in 1D](Separation%20of%20Variables%20for%20Heat%20and%20Waves%20in%201D.md) for more info.
 
-In this case, we are on a finite domain, $p(x)$, $r(x)$, both continuous and bigger than zero, then we are dealing with a **Regular SL system**. 
-
-We had done this before when solving the 1D equations PDEs waves and heat system. 
-
-We found out that $\lambda_n = (\frac{n\pi}{L})^2$ for $n\in \mathbb{N}$
-
-and Eigenfunctions are $\sin(\sqrt{\lambda_n})$
-
-**Legendre System**
+#### **Example 2 | Legendre System**
 
 $$
-\partial_x[(1 - x^2)\partial_x[y]] + \lambda y = 0
+\partial_x[(1 - x^2)\partial_x[y]] + \lambda y = 0,
 $$
 
-Where $p(x) = 1 - x^2$, $q(x) = 0$, and $r(x) = 1$, and in this case, $p(x) = 0$ at $x = \pm 1$, this means that this is a **singular SL-System**. Because we had $p(x)$ equals to zero, violating the regular case. 
-
-If, $p(x) = 0$ at either $a, b$, then: 
+where $p(x) = 1 - x^2$, $q(x) = 0$, and $r(x) = 1$, and in this case, $p(\pm 1) = 0$, this means that this is a *singular SL-System*. Because we had $p(x)$ equals to zero, violating the regular case. If, $p(x) = 0$ at either $a, b$, then: 
 
 * $p(a) = 0$, let $y(a)$ be bounded, and then let $y(b) = 0$. 
 * $p(b) = 0$, let $y(b)$ be bounded, and then let $y(a) = 0$. 
 * $p(a) = p(b) - 0$, then let $y(a), y(b)$ both be bounded. 
 
-**This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable.** 
-
-In the Legendre example, we had: 
-
-$$
-\lambda_n = n(n + 1) \quad n \in \mathbb{Z}_{\ge 0}
-$$
-
-And the eigenfunction is like: 
-
-$$
-y_n(x) = P_n(x)
-$$
-
-The famous, Legendre polynomials. 
+This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable. In the Legendre example, remember that we had: $\lambda_n = n(n + 1), n \in \mathbb{Z}_{\ge 0}$, and the Eigen function is the Legendre Polynomial $y_n(x) = P_n(x)$. See [Legendre Equation](Legendre%20Equation.md) for more. 
 
 **Bessel's Equation** 
 
