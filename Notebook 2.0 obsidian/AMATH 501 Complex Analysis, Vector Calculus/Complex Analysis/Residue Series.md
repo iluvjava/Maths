@@ -240,7 +240,6 @@ F(z) = \frac{\pi f(z)}{\sin(\pi z)}
 $$
 
 And take note that: 
-
 $$
 \text{Res}(F, n) = \lim_{z\rightarrow n}(z - n)\frac{\pi f(z)}{\sin(\pi z)} = \frac{f(n)}{\cos(\pi n)} = (-1)^nf(n)
 $$

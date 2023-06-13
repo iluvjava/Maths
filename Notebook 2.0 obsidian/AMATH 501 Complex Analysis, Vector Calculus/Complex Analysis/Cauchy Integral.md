@@ -1,7 +1,7 @@
 We can figure out the value of the function at a point by just walk around the function, with a pole in the middle. 
 Prereq: 
 - [[Cauchy Riemann Condition]]
-- [[Complex Contour and Cauchy Goursat]]: We need Cauchy Goursat 
+- [[Cauchy Goursat, Closed Curve Theorem]]: We need Cauchy Goursat 
 
 ---
 ### **Cauchy Integral**
@@ -56,7 +56,7 @@ $$
 $$
 
 
-Next, we observe the fact that the function is holomorphic, then it has to be continuous at the point $z_0$, which means that, for all there eixsts some $\rho_\epsilon$ that can bound the function value $|f(z) - f(z_0)| \le \epsilon$, therefore, we can place an upper bound onthe absolute value of the first integral on the RHS of the above expression 
+Next, we observe the fact that the function is holomorphic, then it has to be continuous at the point $z_0$, which means that, for all there exists some $\rho_\epsilon$ that can bound the function value $|f(z) - f(z_0)| \le \epsilon$, therefore, we can place an upper bound on the absolute value of the first integral on the RHS of the above expression 
 
 $$
 \begin{aligned}
@@ -73,7 +73,7 @@ $$
 \end{aligned}
 $$
 
-Then, as $\epsilon \rightarrow 0$, we made $\rho_\epsilon \rightarrow 0$, which made the original contour integral approaches zero as well. Therefore, the second term on the RHS is equal to zero if we take $\epsilon \rightarrow 0$, this yields the cauchy integral formula
+Then, as $\epsilon \rightarrow 0$, we made $\rho_\epsilon \rightarrow 0$, which made the original contour integral approaches zero as well. Therefore, the second term on the RHS is equal to zero if we take $\epsilon \rightarrow 0$, this yields the Cauchy integral formula
 
 $$
 \begin{aligned}
@@ -81,6 +81,10 @@ $$
 	f(z_0) 2 \pi i. 
 \end{aligned}
 $$
+
+**Remark**: 
+
+We used the continuity argument of the function $f$ near $z_0$, an alternative method is use the analyticity of the differential quotient and apply Cauchy Goursat's theorem, which is shown in [Cauchy Goursat, Closed Curve Theorem](Cauchy%20Goursat,%20Closed%20Curve%20Theorem.md). 
 
 ---
 ### **Extended Cauchy Integral Formula**

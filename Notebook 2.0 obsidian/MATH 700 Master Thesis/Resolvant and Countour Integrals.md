@@ -1,5 +1,5 @@
 [[GMRes Error Bound via Cauchy Integral on Resolvant]]
-[[Calculus of Residual]]
+[[../AMATH 501 Complex Analysis, Vector Calculus/Complex Analysis/Calculus of Residue]]
 [[../AMATH 501 Complex Analysis, Vector Calculus/Complex Analysis/Calculus of Residual, Res Shortcut]]
 
 ---

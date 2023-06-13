@@ -8,9 +8,22 @@ Complex differentiation at a point is quite a strong condition. We define a comp
 
 #### **Def | Complex Differentiation at a point**
 
+> A function $f$ is complex differentiable at a point $z_0$ if and only if the following limit is defined and exists as an finite value:
+> $$
+> \begin{aligned}
+>     \lim_{h\rightarrow 0 + 0 i} = \frac{f(z)  - f(z_0)}{z - z_0}. 
+> \end{aligned}
+> $$
+
+If the limit exist for the region $|z - z_0| > 0$, then it's called Holomorphic around the region $z_0$. 
+
+**Remarks**
+
+Holomorphic around a point is equivalent to analytical around that point. However, being complex differentiable point wise is not enough to conclude that the function is analytical around any, non-singular region of $z_0$. 
 
 
-### **Simple Examples**
+---
+### **Examples**
 
 Fix some complex number $x_0$, 
 

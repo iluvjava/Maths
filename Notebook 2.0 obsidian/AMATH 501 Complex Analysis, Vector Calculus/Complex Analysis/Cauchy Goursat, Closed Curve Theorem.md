@@ -19,7 +19,7 @@ A <mark style="background: #FF5582A6;">*smooth curve*</mark> means that the deri
 ---
 ### **FTCI | Fundamental Theorem of Contour Integration**
 
-> If the function is analytic, then $\int_{a}^{b} f(z(t))d(z(t)) = F(b) - F(b)$. 
+> If the function is analytic on a region connected region $\Omega$, then $\int_{a}^{b} f(z(t))d(z(t)) = F(b) - F(b)$ whenever the parametric curves are inside of $\Omega$. 
 
 This is the same as the Fundamental Theorem of Calculus.  Let $f(z) = u(x, y) + iv(x, y)$ which then it can be viewed as 2 functions: $\text{Re}(f(z)) = u(x,y), \text{Im}(f(z)) = v(x, y)$. The line integral on this complex function can be implicitly stated as the following: 
 
@@ -53,7 +53,7 @@ $1/z$ is not applicable for Cauchy Goursat Theorem if the closed path include th
 
 #### **Corollary-1 | Key hole Isolation for Non-Analytical Region**
 
-> If $f(z)$ is analytic between C1 and C2, then the line integral on C1 and C2 gives the same value. 
+> If $f(z)$ is analytic on an annulus region, $A = \{z \in \mathbb C :  R_2 \le |z - z_0| \le R_1\}\neq \emptyset$ , then the line over 2 circles in $A$ such that they both enclose the inner hole of the annulus, will yield the same contour integral along the positive direction of these circles. 
 
 Consider the contour
 
@@ -67,9 +67,9 @@ The negative sign is due to inner circular contour rotates close-wise. Hence, th
 
 
 ---
-#### **Application | Differential Quotion**
+### **Application | the Differential Quotient**
 
-Let $f$ be analytical/holomorphic on an region $\Omega$ containing the closure of a disk $D$, centering at $z_0$. Observe that 
+Let $f$ be analytical/holomorphic on the region $\Omega$ containing the closure of a disk $D$, centering at $z_0$. Observe that 
 
 $$
 \begin{aligned}
@@ -81,7 +81,17 @@ is continuous over the region $\mathbb C \setminus \{z_0\}$, since it's analytic
 
 $$
 \begin{aligned}
+	\frac{f(z) - f(z_0)}{z - z_0} &= 
+	\frac{f(z_0) + \sum_{n = 1}^{\infty} f^{(n)}(z_0)\frac{(z - z_0)^n}{n!} - f(z_0)}
+	{z - z_0}
+	\\
+	&= 
+	\frac{\sum_{n = 1}^{\infty} f^{(n)}(z_0)\frac{(z - z_0)^n}{n!}}{z - z_0}
+	\\
+	&= 
+	\sum_{n = 1}^{\infty} f^{(n)}(z_0)\frac{(z - z_0)^{n - 1}}{n!}, 
 \end{aligned}
 $$
 
+which is still analytical, and during the process of calculating the series, we removed the singularity at $z = z_0$. Applying the Cauchy Goursat theorem, integrating over any closed contour will yield zero on the differential quotient.
 

@@ -26,7 +26,7 @@
  * Integration 
 	 * [[Cauchy Integral]]
  * [[Laurent Series]]
- * [[Calculus of Residual]]
+ * [[Complex Analysis/Calculus of Residue]]
  * Fourier transform [[Calculus of Residual 3.3]]
 
 

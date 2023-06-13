@@ -1,56 +1,69 @@
-prereq: [[Calculus of Residual]], [[Type of Singularities (Limit Shotcut)]]
+prereq: [[Calculus of Residue]], [[Type of Singularities (Limit Shotcut)]]
 And in this file, we are going to how to actually compute it, demonstrated with some examples, and then we will apply for some special type of real integrals. 
 
 ---
 
 ### Intro
 
-Previously we have shown that: 
+previously, 
 
 $$
-\oint_Cf(z)dz = 2\pi i\sum_{n = 1}^N \text{Res}(f, z_n)
+\oint_Cf(z)dz = 2\pi i\sum_{n = 1}^N \text{Res}(f, z_n).
 $$
 
-The contour integral on a function that contains some poles in it is the sum of all the residual of the functions at those poles. 
+However, the evaluation for the residual at isolated singularities will use the Laurent Series of the function because the residual needs a series centered at the poles and the coefficient $a_{-1}$ is needed. We introduce some cool tricks in this file to compute the residual for the function at points faster and easier. 
 
-However, the evaluation itself will use the Laurent Series of the function because the residual needs a series centered at the poles and the coefficient $a_{-1}$ is needed. 
+---
+### **Shortcut | For Simple Pole**
 
-However, there are some shortcut here were $a_{-z}$ can be found by derivatives and some limit operations. 
+**Trick**
+> When $z_0$ is a simple pole of the function $f$, the residuel is cauclulated by the limit $\lim_{z\rightarrow z_0}(z - z_0)f(z)$.
 
-### Shortcut | Simple Pole
 
-The key here is to quickly find the value of $\text{Res}(f, z_0)$ without expanding the laurent series of the function at the simple pole. 
+**Proof**
 
-Let's assume that $z_0$ is a simple pole of the function $f(z)$, which means that the Laurent Series is going to be: 
-
-$$
-\sum_{n = -1}^{\infty}a_{n}(z - z_0)^n
-$$
-
-And now consider the limit: 
+Ny the fact that we have a simple pole, the series power for $z - z_0$ goes to $-1$ for the lowest, the Laurent series is then given by: 
 
 $$
-\lim_{z \rightarrow z_0}(z - z_0)f(z) = \lim_{z\rightarrow z_0} (z - z_0)\sum_{n = -1}^\infty a_n(z - z_0)^n
+\begin{aligned}
+	\sum_{n = -1}^{\infty}a_{n}(z - z_0)^n. 
+\end{aligned}
 $$
 
+we consider the limit 
 
 $$
-\lim_{z\rightarrow z_0}\sum_{n = -1}^\infty a_n(z - z_0)^{n + 1} = \lim_{z\rightarrow z_0}\sum_{n = 0}^\infty a_{n - 1}(z - z_0)^{n}
+\begin{aligned}
+	\lim_{z \rightarrow z_0}(z - z_0)f(z) 
+	&= \lim_{z\rightarrow z_0} (z - z_0)\sum_{n = -1}^\infty a_n(z - z_0)^n
+	\\
+	&= \lim_{z\rightarrow z_0}\sum_{n = -1}^\infty a_n(z - z_0)^{n + 1} 
+	\\
+	&= \lim_{z\rightarrow z_0}\sum_{n = 0}^\infty a_{n - 1}(z - z_0)^{n}
+	\\
+	&=
+	\lim_{z\rightarrow z_0} a_{-1} + \sum_{n = 1}^\infty a_{n - 1}(z - z_0)^n
+	\\
+	&= a_{-1} = \text{Res}(f, z_0). 
+\end{aligned}
 $$
 
-$$
-\lim_{z\rightarrow z_0}\sum_{n = 0}^\infty a_{n - 1}(z - z_0)^{n} = \lim_{z\rightarrow z_0} a_{-1} + \sum_{n = 1}^\infty a_{n - 1}(z - z_0)^n
-$$
+and we are done. 
 
-And note that this limit evaluates to: 
+---
+### **ShortCut: Higher Order Poles**
 
-$$
-\lim_{z\rightarrow z_0} a_{-1} + \sum_{n = 1}^\infty a_{n - 1}(z - z_0)^n = a_{-1} = \text{Res}(f, z_0)
-$$
+**Trick**
+> Let $z_0$ be a pole for $f$ with order $N$, then the residue of the function at $z_0$ can be calculated by 
+> $$
+> \lim_{z \rightarrow z_0} (N- 1)!
+> \frac{d^{N-1}}{dz^{N-1}}\left[
+> (z - z_0)^Nf(z)
+> \right] = a_{-1} = \text{Res}(f, z_0). 
+> $$
+> To memorize, the inner term $(z - z_0)^N$ "desingularize" the principal parts of the Laurent series, the derivative reduces the series to reveal the term with $N - 1$ power to be the constant in the analytical part, and the term $(N - 1)!$ cancles out the additional constant created by the differentiation. 
 
-And, let's repeat, assuming that the pole is a simple pole at the point $z_0$
-
-### ShortCut: Higher Order Poles 
+**Proof**
 
 let's consider the case where the order of the pole is $N$ and we are interested in finding the Residual of the function at that pole. And, first, start with the Laurent series expansion of the function at the pole, we will have: 
 
@@ -107,6 +120,9 @@ And this is the general way of looking for the Residual of the function at any p
 And then we can apply Residual Theorem to look for Contour Integrals of the complex around around any finitely many poles that are not clustered too tight together. (The set of poles cannot have the topology of limit set)
 
 
-### No Shortcut: Essential Singularity
 
-No it doesn't exist, you can take the limit on Essential Singularity, and you will need to find the Laurent series centered at the singularity to locate the multiplier, or coefficient $a_{-1}$, and that will be the Residual. 
+
+---
+### **No Shortcut | Essential Singularity**
+
+Haha no short cut goog luck fidning the Laurent series. 
