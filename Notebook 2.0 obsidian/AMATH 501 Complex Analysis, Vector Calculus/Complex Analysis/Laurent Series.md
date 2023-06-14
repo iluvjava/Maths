@@ -1,6 +1,4 @@
-let's talk about some Fancier Power Series
-
-prereq: [[Power Series]], [[Cauchy Integral]], [[Cauchy Goursat, Closed Curve Theorem]]
+let's talk about some Fancier Power Series. prereq: [[Power Series]], [[Cauchy Integral]], [[Cauchy Goursat, Closed Curve Theorem]]
 
 ---
 ### **Laurent Series**

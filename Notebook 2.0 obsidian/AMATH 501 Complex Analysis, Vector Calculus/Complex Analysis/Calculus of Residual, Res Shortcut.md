@@ -1,11 +1,10 @@
-prereq: [[Calculus of Residue]], [[Type of Singularities (Limit Shotcut)]]
+prereq: [[Calculus of Residue]], [[Identifying Type for Singularity]]
 And in this file, we are going to how to actually compute it, demonstrated with some examples, and then we will apply for some special type of real integrals. 
 
 ---
+### **Intro**
 
-### Intro
-
-previously, 
+previously on the method of residue we derived 
 
 $$
 \oint_Cf(z)dz = 2\pi i\sum_{n = 1}^N \text{Res}(f, z_n).
@@ -51,10 +50,10 @@ $$
 and we are done. 
 
 ---
-### **ShortCut: Higher Order Poles**
+### **ShortCut | Higher Order Poles**
 
-**Trick**
-> Let $z_0$ be a pole for $f$ with order $N$, then the residue of the function at $z_0$ can be calculated by 
+**The Trick**
+> Let $z_0$ be an isolated pole for $f$ with order $N$, then the residue of the function at $z_0$ can be calculated by 
 > $$
 > \lim_{z \rightarrow z_0} (N- 1)!
 > \frac{d^{N-1}}{dz^{N-1}}\left[
@@ -65,60 +64,49 @@ and we are done.
 
 **Proof**
 
-let's consider the case where the order of the pole is $N$ and we are interested in finding the Residual of the function at that pole. And, first, start with the Laurent series expansion of the function at the pole, we will have: 
+Lauren series expended at $z_0$, and then we do surgery on it. Observe the following sequences of steps. 
 
 $$
-f(z) = \sum_{n = -N}^\infty a_{n}(z - z_0)^n 
+\begin{aligned}
+	f(z) &= \sum_{n = -N}^\infty a_{n}(z - z_0)^n 
+	\\
+	(z - z_0)^Nf(z) 
+	&= 
+	\sum_{n = -N}^\infty a_{n}(z - z_0)^{n + N}
+	\\
+	&= \sum_{n = 0}^\infty a_{n - N}(z - z_0)^{n}
+\end{aligned}
 $$
 
-Now, consider multiplying this expression with the term $(z - z_0)^N$ so that all the negative power got shifted to the positive and it's: 
+Consider derivativethe $N - 1$ th derivative on the above desingularized series, which yield:  
 
 $$
-(z - z_0)^Nf(z) = \sum_{n = -N}^\infty a_{n}(z - z_0)^{n + N} = \sum_{n = 0}^\infty a_{n - N}(z - z_0)^{n} 
+\begin{aligned}
+	\frac{d^{N - 1}}{dz^{N - 1}}(z - z_0)f(z)
+	&= 
+	\frac{d^{N-1}}{dz^{N-1}} \left(
+		\sum_{n = 0}^\infty a_{n - N}(z - z_0)^{n} 
+	\right)
+	\\
+	&= 
+	\sum_{n = N - 1}^\infty 
+	n!a_{n - N}(z - z_0)^{n - N + 1} 
+	\\
+	&= (N - 1)!a_{-1} + \sum_{n = N}^{\infty} n!a_{n - N}(z - z_0)^{n - N + 1}
+	\\
+	\implies 
+	\frac{d^{N - 1}}{dz^{N - 1}}\frac{(z - z_0)f(z)}{(N - 1)!}
+	&=
+	a_{-1} + \frac{1}{(N - 1)!}\sum_{n = N}^{\infty} n!a_{n - N}(z - z_0)^{n - N + 1}
+	\\
+	\lim_{z\rightarrow z_0}\frac{d^{N - 1}}{dz^{N - 1}}\frac{(z - z_0)f(z)}{(N - 1)!}
+	&= a_{-1} = \text{Res}_{f}(z_0). 
+\end{aligned}
 $$
 
-Ok, but we want to get the coefficient: $a_{-1}$, and that is when $n = N - 1$, and the way to do this is via derivative on the series, so that we expose that term and it helps with the residual. 
-
-Let's take the derivative on this thing, and then we will have: 
-
-$$
-\frac{d^{N-1}}{dz^{N-1}} \left(
-	\sum_{n = 0}^\infty a_{n - N}(z - z_0)^{n} 
-\right)
-$$
-
-$$
-\sum_{n = N - 1}^\infty \frac{n!a_{n - N}(z - z_0)^{n - N + 1} }{(n -N + 1)!}
-$$
-
-$$
-(N - 1)!a_{-1} + \sum_{n = N}^{\infty} \frac{n!a_{n - N}(z - z_0)^{n - N + 1} }{(n -N + 1)!}
-$$
-
-And the cool thing here is that, if I divide the whole thing by the quantity: $(N - 1)!$, then the first constant term is the residual of the function at the pole of Order N. 
-
-Now, this will mean that, the limit of the whole thing multiplied by the quantity is the residual of the function at the $N$ th order pole, meaning that: 
-
-$$
-\lim_{z \rightarrow z_0} (N- 1)!
-\frac{d^{N-1}}{dz^{N-1}} \left(
-	\sum_{n = 0}^\infty a_{n - N}(z - z_0)^{n} 
-\right) = a_{-1} = \text{Res}(f, z_0)
-$$
-
-Or we collapse the series and have: 
-
-$$
-\lim_{z \rightarrow z_0} (N- 1)!
-\frac{d^{N-1}}{dz^{N-1}}\left[
-(z - z_0)^Nf(z)
-\right] = a_{-1} = \text{Res}(f, z_0)
-$$
-
-And this is the general way of looking for the Residual of the function at any poles. And then we can apply Residual Theorem to look for Contour Integrals of the complex around around any finitely many poles that are not clustered too tight together. (The set of poles cannot have the topology of limit set)
 
 
 ---
 ### **No Shortcut | Essential Singularity**
 
-Haha no short cut goog luck fidning the Laurent series. 
+Haha no short cut good luck finding the Laurent series. To apply the above methods, simply find out the type of singularities using the documents in the prereq for a given function, and then try these method above, when we have an isolated singularity that has finite order to it. 
