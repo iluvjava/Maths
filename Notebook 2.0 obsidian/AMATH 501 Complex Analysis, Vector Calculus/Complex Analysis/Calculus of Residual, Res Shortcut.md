@@ -17,7 +17,7 @@ However, the evaluation for the residual at isolated singularities will use the 
 ### **Shortcut | For Simple Pole**
 
 **Trick**
-> When $z_0$ is a simple pole of the function $f$, the residuel is cauclulated by the limit $\lim_{z\rightarrow z_0}(z - z_0)f(z)$.
+> When $z_0$ is a simple pole of the function $f$, the residue is calculated by the limit $\lim_{z\rightarrow z_0}(z - z_0)f(z)$.
 
 
 **Proof**
@@ -115,11 +115,7 @@ $$
 \right] = a_{-1} = \text{Res}(f, z_0)
 $$
 
-And this is the general way of looking for the Residual of the function at any poles.
-
-And then we can apply Residual Theorem to look for Contour Integrals of the complex around around any finitely many poles that are not clustered too tight together. (The set of poles cannot have the topology of limit set)
-
-
+And this is the general way of looking for the Residual of the function at any poles. And then we can apply Residual Theorem to look for Contour Integrals of the complex around around any finitely many poles that are not clustered too tight together. (The set of poles cannot have the topology of limit set)
 
 
 ---
