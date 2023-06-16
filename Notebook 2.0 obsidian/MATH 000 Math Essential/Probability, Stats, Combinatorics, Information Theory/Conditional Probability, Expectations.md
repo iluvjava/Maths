@@ -124,6 +124,8 @@ and note that this is not a definition, but merely a way to compute the above qu
 ---
 ### **Conditional Expectation**
 
+#INCORRECT, I don't think this is correct, the conditional expectation of a random variable is another random variable and not really a value. Need to fix this. 
+
 Conditional expectation is defined via conditional probability. 
 
 $$

@@ -97,8 +97,6 @@ The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 
 Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational analysis. 
 
 
-
-
 ---
 ### **Special Functions for Analysis**
 

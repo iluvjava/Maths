@@ -158,9 +158,7 @@ $$
 \end{aligned}
 $$
 
-
 which is a power series. The contour $C_1, C_2$ can be any circle inside of the annulus (Which e denoted using D, by corollary-1 in [Cauchy Goursat, Closed Curve Theorem](Cauchy%20Goursat,%20Closed%20Curve%20Theorem.md)), and the above integral for the coefficient for the series will yield the same results.
-
 
 **Remark**
 

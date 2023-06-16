@@ -3,7 +3,7 @@ The Frobenius Method is related to solving some very complected second order ODE
 ---
 ### **Intro**
 
-This is #CRINGE 
+This is #CRINGE Please fix it when you have time. 
 
 The Frobenius method is a modified method for solving ODE BVPs using Power series, it assumes: 
 

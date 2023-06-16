@@ -9,15 +9,20 @@ We can't compute the loss easily, because we need to sum up the loss for all the
 ---
 ### **Stochastic Gradient Descend**
 
+
+Assume uniform sampling of the sample, the expected value of gradient of the loss function can be expressed by: 
+
 $$
-\mathbb{E}\left[\nabla_L(w)\right]
+\mathbb{E}\left[\nabla L(w)\right]
 =
 \sum_{i = 1}^{N}
     \mathbb{P}\left(I_t = i\right)\nabla l_i(w)
 =
 \frac{1}{n}\sum_{i = 1}^{N}
-    \nabla l_i(w)
+    \nabla l_i(w). 
 $$
+
+Which coincided with the empirical mean measure. Here, $w$ is the differentiable parameters for the ML model. 
 
 ---
 ### **Bounded Convergence**
@@ -90,6 +95,7 @@ $$
     \right]
 \tag{2}
 $$
+
 
 The third term is bounded by the constant $G$, which is in the hypothesis of the theorem. Let's take a closer look at the second term. The expected value of loss on one of the sample is the expected value on all the sample, therefore: 
 

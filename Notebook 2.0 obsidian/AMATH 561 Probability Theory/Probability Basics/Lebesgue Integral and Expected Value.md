@@ -91,7 +91,7 @@ Assume that $f \ge 0$ then let:
 >
 > The General Non-negative function is approximated by bounded function that are on a domain which has a finite measure. 
 
-**Take notice that**, this is much general and the non-negative function is not necessarily bounded. 
+*Take notice that*, this is much general and the non-negative function is not necessarily bounded. 
 
 ---
 ### **General Function**
@@ -108,7 +108,7 @@ $$
 f(x) = f^+(x) - f^-(x) \quad |f(x)| = f^{+}(x) + f^{-}(x)
 $$
 
-Then the integal can be defined as: 
+Then the integral can be defined as: 
 
 > $$
 > \int_{\Omega}^{} fd\mu = \int_{\Omega} f^+ d\mu  - \int_{\Omega}^{} f^{-}d\mu
@@ -120,7 +120,7 @@ Where, both $f^+, f^-$ will be non-negative function, and we already defined int
 ---
 ### **Back to Expected Value of Random Variable**
 
-To compute the expected value of a random variable over some weird topological spaces, we would need to compute it using the Lebesgue Integral, and we would like to make a change of variable and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
+To compute the expected value of a random variable we would need to compute it using the Lebesgue Integral, and we would like to make a change of variable and bring it to the Borel Space instead of the originally defined $\sigma$-algebra.
 
 $$
 \begin{aligned}
@@ -145,6 +145,7 @@ And this is the expected value of the function, however, this is really only doa
 ---
 ### **Final Note**
 
-Lebesgue Integral are pretty similar to Riemman's Integral, the difference is just the way it's being integrated over any type of domains. They have the same properties. 
+Lebesgue Integral are pretty similar to Riemann
+'s Integral, the difference is just the way it's being integrated over any type of domains. They have the same properties. 
 
 Now, All proofs about the details are skipped. They are in the textbook(Probabiliy: Theory and Examples, Rick Durrett) with detailed proofs and discussions. 

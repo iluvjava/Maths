@@ -35,10 +35,10 @@ $$
 \end{aligned}
 $$
 
-The concept of convariance is nothing scary. 
+The concept of covariance is nothing scary. 
 
 ---
-### **Empirecal Measure of Variance**
+### **Empirical Measure of Variance**
 
 Given sample $\{x_i\}_{i = 1}^n$ for a random variable, the sample variance is denoted by $S_X^2$ can be computed via
 

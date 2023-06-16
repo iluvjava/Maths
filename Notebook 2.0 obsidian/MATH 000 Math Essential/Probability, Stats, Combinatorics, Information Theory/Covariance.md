@@ -1,6 +1,5 @@
 Covariance needs [[Expectations of Random Variables without Sigma Algebra]]. 
 
-
 ---
 ### **Intro**
 
@@ -37,7 +36,7 @@ If 2 random variable is independent, then their covariance will be zero, the con
 
 Property 5, 6, 7 are interesting, let's look into it. 
 
-**Property 5: Collinearity**
+**Property 5 | Collinearity**
 
 $$
 \begin{aligned}
@@ -100,7 +99,7 @@ Use property 5 to prove this one, it's trivial and left as an exercise for the r
 ---
 ### **Examples and Stuff**
 
-**Application: Pearson Correlation Coefficients**
+**Application | Pearson Correlation Coefficients**
 
 > One of the important applications of the covariance is the Pearson's correlations, which is computed via: 
 
@@ -110,9 +109,9 @@ $$
 {\sqrt{\text{Var}\left[X\right]\text{Var}\left[Y\right]}}, 
 $$
 
-immediately observe that using property 2., the Pearson correlation coefficient of the variables with itself is the always 1. 
+immediately observe that using property 2., the Pearson correlation coefficient for the variables with itself is the always 1. 
 
-**Example 1:** 
+**Example 1 | Co-Variance of Linear Composite** 
 
 > Given $Y = aX +b$, find $\text{Cov}\left(X,Y\right)$
 
@@ -130,7 +129,7 @@ $$
 \end{aligned}
 $$
 
-**Example: Variance of Sum**
+**Example | Variance of Sum**
 
 > Given the sum of random variables, say $\sum_{i} X_i$, find the variance of the sum. First assume no independence, and then assume independence, give results for both type of assumptions. 
 
