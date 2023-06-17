@@ -8,9 +8,7 @@ No references are used, the whole thing is from myself.
 ---
 ### **Intro**
 
-We illustrate the idea of KKT using one of the standard forms of linear programming problem. We reveal the fact that the Dual Problem can be read from the stationary conditions of the Lagrangian, and we can also derive the strong duality in the process. 
-
-The example primal and dual we use: 
+We illustrate the idea of KKT using one of the standard forms of linear programming problem. We reveal the fact that the Dual Problem can be read from the stationary conditions of the Lagrangian, and we can also derive the strong duality in the process. The example primal and dual we use: 
 
 $$
 \begin{aligned}

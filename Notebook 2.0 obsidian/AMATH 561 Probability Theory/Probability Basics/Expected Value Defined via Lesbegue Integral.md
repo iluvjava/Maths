@@ -19,7 +19,8 @@ In this file, we progressively improve the definitions of the Lesbegue integral 
 An indicator function $\mathbf 1_A$, or $\mathbb I_A$ describes an event in $\mathcal F$, the sigma algebra. If the random variable happens to satisfy the conditions for the event $A$, then the value $\mathbb I_A$ takes the value of $1$, else it takes the value of $0$. 
 
 **Explanation:**
-For all possible value that the random variable can take, we want to integrate it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. 
+
+For all possible value that the random variable can take, we want to integrate it along with the measure of this pre-image of the random variable, multiplying by the value took by the random variable. The above indictor functions are the simply type of functions with measurable pre-image. 
 
 **References**: 
 \<Rick Durrett: Probability Theory and Applications\>

@@ -68,7 +68,7 @@ Observe the similarity of the above expression and the transformed used for [[Co
 
 
 ---
-### **Example: Bernoulli Distribution**
+### **Example | The Bernoulli Distribution**
 
 The distribution function is discrete and can be represented continuously as: $f(x|\theta) = \theta^x(1 - \theta)^{1 - x}$ where $x \in \{0, 1\}, \theta \in [0, 1]$. Then for a series of observations: $\{x_1, x_2, \dots, x_3\}$ where we assume that it's a list of i.i.d Bernoulli variable then, the parameters that maximizes the likelihood of observing the sample given the parameter $\theta$ is: 
 
@@ -118,7 +118,7 @@ $$
 Therefore, the best value for $\theta$ is just the average of the sample, $\hat{\theta} = \frac{k}{n}$, where $k$ is the number of observations of hats from the sequence. And the expected variance of it will be: $\hat{\theta} \approx \mathbb{E}[{\hat{\theta}}] \pm \sqrt{\text{var}[\hat{\theta}]}$. In this case, it is called "Unbiased" Estimator. This means that, if we run the experiment a lot of time, then we will get a lot of estimates for $\hat{\theta}$. And taking the average will give us the true value. 
 
 ---
-### **Example Uniform Distribution**
+### **Example | Uniform Distribution**
 
 Assume observations are made for a sequence of i.i.d random variable from uniform distribution $[0, \theta]$. Then, the likelihood for a given sequence of observations ($x_1, x_2 \cdots x_N$) given parameter $\theta$ is: 
 $$
@@ -248,4 +248,4 @@ As we collect more and more data, this is Asymptotically Unbiased. To get the un
 6. Do that a lot of time and get some estimate for the best parameters. 
 
 
-[^1]: The proof here is skipped, please add resources. 
+[^1]: See [Sample Variance is Biased](Sample%20Variance%20is%20Biased.md) for more information. 
