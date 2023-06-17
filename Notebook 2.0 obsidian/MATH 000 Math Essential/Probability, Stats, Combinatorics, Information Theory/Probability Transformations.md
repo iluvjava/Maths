@@ -1,4 +1,4 @@
-[[Random Variables]], [[PDFs, PMFs]]
+[[../../AMATH 561 Probability Theory/Probability Basics/Random Variables as Measurable Functions]], [[PDFs, PMFs]]
 
 ---
 ### **Intro**

@@ -1,12 +1,12 @@
 Probability with a bit of measure theory in it. 
 
-
 ---
 ### **Intro**
 
 Probability spaces are profound and they are complicated in the sene that they aggregates several realms of mathematics. I think it was designed to restrict the type of events that can be asked for a probability measure, and they helps with the definition of a random variable and the computations associated with random variables. 
 
 **Reference**
+
 A Modern Approach to Probability Theory, chapter 1. 
 
 **Basic Quantities**
@@ -53,22 +53,16 @@ But what is a measure? A measure $\mu$ is a function mapping from the set of sig
 3. Countable aditivity which is the same as the probability measure as in the definition above. 
 For more just read the wiki [here](https://en.wikipedia.org/wiki/Measure_(mathematics)). 
 
----
-### **Def-3 | A Probability Space**
+**List of Propositions For the Probability Measures**
 
-> Let $(\Omega, \mathcal F, \mathbb P)$ where $\Omega$ is any set, and $\mathcal F$ is a $\sigma$ algebra based on $\Omega$, where $\mathbb P$ is a probability measured for $\mathcal F$, these 3 entities form a Probability spaces. 
-
-**Intuitions**
-
-The set $\Omega$ is the set of all outcomes, $\mathcal F$ is the set of all events for the probability spaces, which has to be a set that is measurable, and $\mathcal P$ is the probability measure, which can't exists without the other too, because it helps defining integration for random variables of the probability spaces. 
-
-**List of Propositions**
 Let $A\subseteq B$ be from $\mathcal F$, let $A_n$ be a countable sequence from $\mathcal F$, then 
 
 * $\mathbb P(\emptyset) = 0$. 
 * $\mathbb P (A)\le \mathbb P (B)$. 
 * $\mathbb P(B\setminus A) = \mathbb P(B) - \mathbb P(A)$.
 * $\mathbb P(A^C) = 1 - \mathbb P(A)$. 
+* if $A = \cup_{n\in \mathbb N} A_n$ such that $A_n \subseteq A_{n + 1}$ for all $n\in \mathbb N$, then their set relations trasnlate to limit of the measure of the set $\lim_{n\rightarrow \infty}\mu(A_n) = A_n$ and $\mu(A_n) \le \mu(A_{n + 1})$ for all $n \in \mathbb N$. 
+* A similar results can be said for $A = \cup_{n\in \mathbb N} A_n$. 
 
 All of these can be derived from first principles of the probability measure. And for the last one 
 
@@ -91,6 +85,17 @@ $$
 which is actually too much hint for the readers really. 
 
 ---
+### **Def-3 | A Probability Space**
+
+> Let $(\Omega, \mathcal F, \mathbb P)$ where $\Omega$ is any set, and $\mathcal F$ is a $\sigma$ algebra based on $\Omega$, where $\mathbb P$ is a probability measured for $\mathcal F$, these 3 entities form a Probability spaces. 
+
+**Intuitions**
+
+The set $\Omega$ is the set of all outcomes, $\mathcal F$ is the set of all events for the probability spaces, which has to be a set that is measurable, and $\mathcal P$ is the probability measure, which can't exists without the other too, because it helps defining integration for random variables of the probability spaces. 
+
+
+
+---
 ### **Def | Generating Sigma Algebra**
 
 > Let $G\subseteq 2^{\Omega}$, then there exists a unique sigma algebra $\mathcal F$ such that $G \subseteq \mathcal F$, and it's minimum which means that if $G \subseteq \mathcal G$, then it must be $\mathcal  G\subseteq \mathcal F$. 
@@ -110,9 +115,11 @@ We motivate the definition of a Borel set for the probability spaces.
 **Borel Set**
 > A Borel set, we denote using $\mathcal B$, is the set of all subsets of $\mathbb R$, or $[0, 1]$ that can be constructed using countable many union and complement of open intervals in $\mathbb R$, or $[0, 1]$. 
 
-**Fact**
+**Facts**
 
-Lesbesgue measure can be used on the Borel set and normalizing it by $\mu (\Omega)$ can then give us a probility measure over the space. 
+Lesbesgue measure can be used on the Borel set and normalizing it by $\mu (\Omega)$ can then give us a probility measure over the space. There are many different type of measures that we can use, but it depends on the topologies, for example, when a randm variable is from the Cantor set, some other measure will need to be used for this random variable. 
+
+Due the the quirks of real number, there are many sets that cannot be measured will be invisible to the probability measure. This is not a problem since the definition of a random variable (not in this file) will prevent taking the integral over these sets that are not measurable. 
 
 
 **Remarks**

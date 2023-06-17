@@ -5,7 +5,7 @@
 
 A probability measure is a special type of measure placed on a probability spaces. Denoted as $p(x)$. Mapping from $\mathcal{F}$ to $[0, 1]$. Firstly, we define what a measure is. 
 
-**Definition of a measure**: 
+**Definition of a measure**
 
 > $$
 > \begin{aligned}
@@ -14,7 +14,7 @@ A probability measure is a special type of measure placed on a probability space
 >       \text{(ii)}&\quad A_i \in \mathcal{F} \implies \mu (\cup_i A_i) = \sum_{i}^{}\mu(A_i),
 > \end{aligned}
 > $$
-where $\mathcal F$ is a set of set, denoting all the subsets of $\Omega$. And for the second conditions, we have a sequence of finite, or countable many infinite elements from the probability spaces. Notice that the nonneativity of measure is included in the first condition. 
+where $\mathcal F$ is a set of set, denoting all the subsets of $\Omega$. And for the second conditions, we have a sequence of finite, or countable many infinite elements from the probability spaces. Notice that the non-neativity of measure is included in the first condition. 
 
 **Remarks**
 
@@ -22,7 +22,7 @@ Measure is trying to construct a homomorphism between the group of sets $\mathca
 
 **Definition of a probability measure**
 
-> For probability measure is a measure satisfiying: 
+> For probability measure is a measure satisfying: 
 > 
 > $$
 > \mu(\Omega) = 1.

@@ -1,4 +1,4 @@
-[[Probability Spaces]], [[Probability Measures]]
+[[Probability Spaces]]. 
 
 
 ---
@@ -41,25 +41,18 @@ This is important to generating uncountable probability spaces.
 ---
 ### **Construction of Uncountable Probability Spaces**
 
-The conflict is that, Lebesgue Measure can't be estende
-to the power set of $(0, 1)$. In addition, we neede Lebsgue measure to create probability spaces because of the properties of the measure. 
-
-Let $p(x) = p$ for all $x\ in [0, 1]$, so that each number has equal probability of being chosen. 
-
-Consider the probability that a chosen number is rational: 
+The conflict is that, Lebesgue Measure can't be extended to the power set of $(0, 1)$. In addition, we need Lebesgue measure to create probability spaces because of the properties of the measure. Let $p(x) = p$ for all $x\ in [0, 1]$, so that each number has equal probability of being chosen. Consider the probability that a chosen number is rational: 
 
 $$
 \begin{aligned}
     & \mathbb{P}\left(\mathbb{Q}\cap [0,1]\right) = \mathbb{P}\left(
         \bigcup_{x\in \mathbb{Q}\cap[0,1]} \{x\}
     \right) = \sum_{x\in \mathbb{Q}\cap[0, 1]}^{}
-    p(x) = \sum_{x\in \mathbb{Q}\cap[0, 1]}^{} p = 0
+    p(x) = \sum_{x\in \mathbb{Q}\cap[0, 1]}^{} p = 0. 
 \end{aligned}
 $$
 
-Any $p > 0$ will give a measure of infinite on all the rational, therefore it has to be that $p = 0$. 
-
-With this knowledge, consider the sum of all the uncountable subsets of $[0, 1]$ and assigning probability to it, let the set be $B$ we have: 
+It's equal to zero because any singleton (no interior) has a measure of zero. Any $p > 0$ will give a measure of infinite on all the rational, therefore it has to be that $p = 0$.  With this knowledge, consider the sum of all the uncountable subsets of $[0, 1]$ and assigning probability to it, let the set be $B$ we have: 
 
 $$
 \mathbb{P}\left(\bigcup_{x\in B}\{x\}\right) = \sum_{x\in B}^{}p(x) = \sum_{x\in B}^{} 0 = 0
@@ -79,7 +72,7 @@ Specify $\mathbb{P}((b - a]) = b - a$ for all $0 \le a < b\le 1$.
 
 Consider generating on a subset of $[0, 1]$, using the set $\mathcal{A} := \{(a, b] :  0 \le a < b \le 1\}$
 
-By the Caratheodory's Extension theorem, there is only one way to assigne probability to set that are in the set $\sigma(\mathcal{A})$ but are not in $\mathcal{A}$. 
+By the Caratheodory's Extension theorem, there is only one way to assign probability to set that are in the set $\sigma(\mathcal{A})$ but are not in $\mathcal{A}$. 
 
 Such a generated sigma-algebra on all non degenerate intervals of the set is Borel Sigma Algebra, and it's denoted as $\mathcal{B}([0, 1])$. 
 

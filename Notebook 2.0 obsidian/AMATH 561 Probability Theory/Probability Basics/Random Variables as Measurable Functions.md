@@ -1,4 +1,4 @@
-[[Probability Spaces]], [[Probability Measures]]
+[[Probability Spaces]]
 
 
 ---

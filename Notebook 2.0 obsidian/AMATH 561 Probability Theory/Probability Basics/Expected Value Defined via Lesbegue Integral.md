@@ -1,4 +1,4 @@
-[[Random Variables]], 
+[[Random Variables as Measurable Functions]], 
 
 Here we introduce some fancy integral that can help use figure out the expected value of some random variable, and it's complementary to [[Expectations of Random Variables without Sigma Algebra]]. 
 
