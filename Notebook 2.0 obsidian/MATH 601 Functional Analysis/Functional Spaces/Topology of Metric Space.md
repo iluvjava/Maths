@@ -21,7 +21,7 @@ $$
 To start, we define the concept of vicinity around any "point" in the metric space. Given $(X, d)$, we then define 
 
 **Definition | An Open set**
-> $A\subseteq X$ is open when for all $x\in A$ there exists $\epsilon > 0$ such that $\mathbb B_\epsilon(x)\in A$. 
+> $A\subseteq X$ is open when for all $x\in A$ there exists $\epsilon > 0$ such that $\mathbb B_\epsilon(x)\subseteq A$. 
 
 **Definition | A Closed Set**
 > $A\subseteq X$ is closed when $X\setminus A$ is open. 
