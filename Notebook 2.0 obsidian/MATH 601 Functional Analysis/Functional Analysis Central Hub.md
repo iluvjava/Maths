@@ -108,5 +108,5 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 - [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md)
 	- A Very important theorem in functional analysis. 
 	- Make use the Zorn's lemma. 
-- [Baire Category, Unif Mapping](Baire%20Category,%20Unif%20Mapping.md)
+- [Baire Category, Unif Mapping, Metric Topologies](Baire%20Category,%20Unif%20Mapping,%20Metric%20Topologies.md)
 	- Attempts to show how much of the topologies can be translated from the Reals to any metric space. Showing that if the metric space 

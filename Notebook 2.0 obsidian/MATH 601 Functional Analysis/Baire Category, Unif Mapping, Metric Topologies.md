@@ -10,10 +10,13 @@ alias: Baire Catetory Theorem and Uniform Mapping Theorem
 This theorem shows how much of the topology of the reals can be used to represent abstract metric spaces. It has profound consequences. In [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf), it's stated that one of the profound consequence of the theorem is that existence of a function that is continuous but nowhere differentiable. See [this](https://math.stackexchange.com/questions/2993112/proving-that-the-set-of-continuous-nowhere-differentiable-functions-is-dense-usi) for a stack exchange post about it. 
 
 
+
 ---
 ### **More Topologies for Metric Spaces**
 
 We would need just a bit more topolgy to grasp the statement of the theorem better. In the following theorems, $\mathbb B_\epsilon(x)$ is the epsilon ball centered at $x$, with background topology $X$. 
+
+
 
 
 #### **Def | Boundary, Interior and Closure**
@@ -93,9 +96,14 @@ $$
 
 Therefore, the complement set is a closed set. 
 
+**Refererences**
+
+None, I thought all of these out myself. 
+
 ---
 ### **Baire's Category Theorem**
 
+We provide several different proofs here. 
 
 #### **Terminologies and background**
 Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is 
@@ -109,7 +117,7 @@ Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is
 
 **Proof**
 
-For the best comfort of readhing, I am experimenting with new format of presenting the proof. To proof, we derive a contradiction by assuming that, $M$ is the union of $C_n$, a sequence of set that are all closed, having empty interior (they are all N.D).To start, we list and label the following statements
+For the best comfort of readhing, I am experimenting with new format of presenting the proof. To proof, we derive a contradiction by assuming that, $M$ is the union of $C_n$, a sequence of set that are all closed, having empty interior (they are all N.D). To start, we list and label the following statements
 * \[(S1)\]: $(M, d)$ is a metric space that is complete with $M\neq \emptyset$. 
 * \[(S2)\]: $M= \cup_{n\in \mathbb N}C_n$. 
 * \[(S3)\]: $C_n = \overline C_n$, these sets the make up $M$ above are all closed sets. All N.D. 
@@ -146,7 +154,109 @@ $$
     \left([(2)]\wedge p_{n + 1}\not\in C_{n + 1}\right) &\implies
     \left(
         \exists \epsilon_{n + 1} : \epsilon_{n}/3 > \epsilon_{n + 1} > 0 : \mathbb B_{\epsilon_n}(p_{n + 1}) \cap C_{n + 1} = \emptyset
-    \right)
+    \right). 
 \end{aligned}
 $$
 
+Inducively, a sequence of $\epsilon_n, p_n$ satisfying conditions
+
+$$
+\begin{aligned}
+    & 
+    p_{n + 1}\in \mathbb B_{\epsilon_n/3}(p_n), 
+    \\
+    & \epsilon_{n + 1} \le \epsilon_n/3, 
+    \\
+    & \mathbb p_{n + 1} \cap C_{n +1} = \empty. 
+\end{aligned}
+$$
+
+All of these 3 conditions will be refered to as \[(IH)\]. From here we can derive the sequence $p_n$ is Cauchy in the metric space. Consider any integer $l, n > 0$, we have
+
+$$
+\begin{aligned}
+    d(p_{n}, p_{n + l}) &\le 
+    d(p_{n}, p_{n  +1}) + d(p_{n + 1}, p_{n + 2} ) + \cdots + d(p_{n + l - 1}, p_{n + l})
+    \\
+    [(IH)] \implies &\le 
+    \epsilon_n/3 + \epsilon_{n +1}/3 + \cdots + \epsilon_{n + l -1}/3
+    \\
+    \implies 
+    &\le 
+    \frac{\epsilon_n}{3} + \frac{\epsilon_n}{3^2} + \cdots + \frac{\epsilon_{n}}{3^l}
+    \\
+    &= \epsilon_n 
+    \left(
+        \frac{1}{3} + \frac{1}{3^2} + \cdots + \frac{1}{3^l}
+    \right)
+    \\
+    &\le 
+    \epsilon_{1}
+    \left(
+        \frac{1}{3^n} + \frac{1}{3^{n + 1}} + \cdots + \frac{1}{3^{n + l}}
+    \right)
+    \\
+    &= \frac{\epsilon_{1}}{3^{n}}
+    \left(
+        1 + \frac{1}{3} + \cdots + \frac{1}{3^{l}}
+    \right)
+    \\
+    &< \frac{\epsilon_1}{3^n} \sum_{m = 0}^{\infty} \frac{1}{3^m} = \frac{\epsilon_1}{2},
+    \\
+    \text{let }[(3)] \rightarrow d(p_{n}, p_{n + l}) &\le 
+    \epsilon_n 
+    \sum_{m = 1}^{l}\frac{1}{3^m}
+    \\
+    \text{let }[(4)] \rightarrow d(p_{n}, p_{n + l}) &\le 
+    \frac{\epsilon_1}{2}. 
+\end{aligned}
+$$
+
+Indepdent of $l$, we have $\lim_{n\rightarrow \infty} d(p_n, p_{n + l}) = 0$. The sequence is a Cauchy sequence, by \[(S1)\], the completeness of the metric space,there exists a limit $p$ to the sequence. Next we show that $p\not\in C_n$ for all values of $n\in \mathbb N$. To show, consider
+
+$$
+\begin{aligned}
+    [(3)]\implies 
+    d(p_{n + l}, p_{n + 1 + l}) &< 
+    \epsilon_{n + 1} \left(
+        \frac{1}{3} + \frac{1}{3^2} + \cdots+ \frac{1}{3^l}
+    \right)
+    \\
+    & 
+    < \epsilon_{n + 1} 
+    \sum_{n = 1}^\infty 3^{-n} = \frac{\epsilon_{k + 1}}{2}
+    \\
+    \implies 
+    \lim_{n\rightarrow \infty}d(p_{n + l}, p_{n + 1 + l}) 
+    &\le 
+    d(p_{n + 1}, p) \le \frac{\epsilon_{n + 1}}{2} < \frac{1}{2}\left(
+        \frac{\epsilon_n}{3}
+    \right) = \frac{\epsilon_n}{6}, 
+\end{aligned}
+$$
+
+now observe that 
+
+$$
+\begin{aligned}
+    d(p_n, p) 
+    &\le d(p_n, p_{n + 1}) + d(p_{n + 1}, p)
+    \\
+    [(IH)] \implies 
+    &\le
+    \frac{\epsilon_n}{3} + \frac{\epsilon_n}{6} < \epsilon_n, 
+\end{aligned}
+$$
+
+therefore, the limit point $p$, is always inside $\mathbb B_{\epsilon_n}(p_n)$, the ball never intersect with any $C_n$, therefore, $p\not \in C_n$ and $p\not\in M$, which is a contradiction that the union of all the sets $C_n = M$. To resolve the contradiction, it has to be the case that at least one of the $C_n$ doesn't have an empty interior. Therefore, since $C_n$ is already closed, it has to be the case that some $C_n$ is not nowhere dense. 
+
+
+**Alternative Proof**
+
+**References**
+
+The contradiction proof is improved from [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf) course notes. 
+
+
+---
+### **Uniform Mapping Theorem**
