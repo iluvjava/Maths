@@ -167,7 +167,7 @@ $$
     \\
     & \epsilon_{n + 1} \le \epsilon_n/3, 
     \\
-    & \mathbb p_{n + 1} \cap C_{n +1} = \empty. 
+    & \mathbb p_{n + 1} \cap C_{n +1} = \emptyset. 
 \end{aligned}
 $$
 
@@ -260,3 +260,6 @@ The contradiction proof is improved from [Functional Analysis From MIT OCW](Refe
 
 ---
 ### **Uniform Mapping Theorem**
+
+
+

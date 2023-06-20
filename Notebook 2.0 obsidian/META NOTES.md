@@ -10,9 +10,11 @@ This note is a note about notes.
 	- [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
 	- [Baire Category, Unif Mapping, Metric Topologies](MATH%20601%20Functional%20Analysis/Baire%20Category,%20Unif%20Mapping,%20Metric%20Topologies.md). Fill up the proof, the references are Prof Wang's notes, or the MIT OCW Functional analysis notes. 
 - Fill up a sequence of notes that describes the idea of adjoint operators in Hilbert spaces, and their applications. Files included are: 
-	- [Adjoint BVPs Systems](AMATH%20503%20Intro%20to%20Partial%20Differential%20Equations/Adjoint%20BVPs%20Systems.md), apply the adjoin BVP theories to the Sturm Liouville's system. 
 	- [Sturm Liouville Theory](AMATH%20503%20Intro%20to%20Partial%20Differential%20Equations/Sturm%20Liouville%20Theory.md)
 		- Cite the theories for the S.L Adjoin BVP theories from Sturm Liouville. 
+		- Improve cringe examples for the Sturm Liouville systems example. 
+		- Improve the parts of the orthogonality proofs using the notes on your ipad and from professor Erics 319. 
+- Add theorem 4.17 in the course notes for math 328, regarding the existence of an orthogonal basis for every Hilbert space, as a consequence of the Zorn's Lemma. 
 
 ---
 # **Tasks to Do about the Notes**
