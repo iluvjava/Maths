@@ -5,7 +5,7 @@
 
 Fejer monotone is a type of strong generalization to a monotone sequence in Banach Spaces. 
 
-**Definition | Fejer Montone Sequence**
+**Definition-1 | Fejer Montone Sequence**
 > A sequence $(x_n)_{n\in N}$ is fejer monotone wrt to the set $\emptyset \neq C \subseteq X$ when: 
 > $$\forall c \in C, k \in \N: \Vert x_{k + 1} - c\Vert \le \Vert x_k - c\Vert. $$
 
@@ -18,7 +18,7 @@ The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it wou
 If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer monotone to all the convex subsets of the set $C$.
 
 
-#### **Thm | Convergence of Fejer Monotone Sequence To the Set**
+#### **Thm-1 | Convergence of Fejer Monotone Sequence To the Set**
 
 > Let $(x_k)_{k\in \N}$ be Fejer-Monotone w.r.t a nonempty subset $C$ of $X$, then $(x_k)_{k\in \N}$ is bounded; moreover, $(x_k)_{k\in N}$ converges to a point in $C\iff (x_k)_{k\in \N}$ has a cluster point in $C$. 
 
@@ -35,13 +35,13 @@ $$
 therefore, the sequence $x^{(m)}$ is a converging sequence by the virtual of Fejer Monotonicity wrt to the set $C$, and hence there is only one limit point $\bar x \in C$ for the sequence by the property of the norm. 
 
 
-#### **Thm | A Slightly Weaker Version in Finite Euclidean Space**
+#### **Thm-2 | A Slightly Weaker Version in Finite Euclidean Space**
 > In finite dimensional Euclidean space, let $C\subseteq \mathbb R^n$ be non-empty. Suppose that for all $c \in C$ the sequence $\Vert x^{(n)} - c\Vert$ is convergent in $\mathbb R$, and the cluster point of the sequence $(x^{(n)})_{n \in \mathbb N}$ is in $C$, then the sequence converges to a limit in $C$. 
 
 
 **Proof**
 
-The norm of the sequence $\Vert x^{n} - c\Vert$ converging $\mathbb R$ for all $c \in C$. Hence the sequence is bounded in norm. Since the space is complete and finite dimensional, by Bozano Weierstrass theorem, there exists a subsequence $x^{(n_k)}$ that converges. Suppose that there are 2 such sub-sequential limit points $y, z$ in $C$, we want to show that they are the same point. We first show that, $\langle x^{(n)}, y - z\rangle$ are the same for all subsequences by using the identity $\langle x, y\rangle = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)$, consider any 2 points $y, z \in C$ then: 
+The norm of the sequence $\Vert x^{n} - c\Vert$ converging $\mathbb R$ for all $c \in C$. Hence the sequence is bounded in norm. Since the space is complete and finite dimensional, by Bozano Weierstrass theorem, there exists a subsequence $x^{(n_k)}$ that converges. Suppose that there are 2 such sub-sequential limit points $y, z$ in $C$, we want to show that they are the same point. We first show that, $\langle x^{(n)}, y - z\rangle$ are the same for all subsequences by using the paralellogram identity $\langle x, y\rangle = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)$, consider any 2 points $y, z \in C$ then: 
 
 $$
 \begin{aligned}
@@ -50,7 +50,7 @@ $$
     \\
     &= 
     \frac{1}{2}(
-        \Vert x^{(n)} - y\Vert^2
+        \Vert x^{(n)} + y\Vert^2
         -
         \Vert x^{(n)} - y\Vert^2
         -
@@ -60,16 +60,18 @@ $$
     )
     \\
     &= 
-    \frac{1}{2}(
+    \frac{1}{2}
+    \left(
         \Vert x^{(n)}\Vert^2 + \Vert y\Vert^2 + 2\langle x^{(n)}, y\rangle
         -
         (\Vert x^{(n)}\Vert^2 + \Vert x\Vert^2 + 2\langle  x^{(n)}, z\rangle)
-    )
-    \\
-    &\quad\;
-    +
-    \Vert x^{(n)} - z\Vert^2
-    - \Vert x^{(n)} - y\Vert^2
+    \right.
+	    \\
+	    &\quad\;
+	    +
+	\left.
+	    \Vert x^{(n)} - z\Vert^2
+	    - \Vert x^{(n)} - y\Vert^2 \right)
     \\
     &= \frac{1}{2}(
         \Vert y\Vert^2 - \Vert x\Vert^2 + 2\langle x^{(n)}, y - z\rangle + 
@@ -107,7 +109,7 @@ where we make use of the fact that inner product of an inner product space is a 
 
 **Remark**
 
-Intuitively, if the sequence approches the set $C$ for all points and gets very close, it can't have too much room to wiggle. 
+Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed. 
 
 ---
 ### **Applications**

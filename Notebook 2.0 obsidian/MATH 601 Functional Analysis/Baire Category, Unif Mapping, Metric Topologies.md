@@ -20,7 +20,7 @@ We would need just a bit more topolgy to grasp the statement of the theorem bett
 
 
 #### **Def | Boundary, Interior and Closure**
-> Let $(X, d)$ be a complete metric space, let $M \subseteq X$ we define the interior,closure and the boundary of for the set $M$. 
+> Let $(X, d)$ be a complete metric space, let $M \subseteq X$ we define the interior, closure and the boundary of for the set $M$. 
 > 1. The boundary is $\partial M := \{x \in X | \forall \epsilon > 0: \mathbb B_\epsilon(x)\cap M \neq \emptyset \wedge \mathbb B_\epsilon(x)\cap M^C \neq \emptyset\}$. It's all the point in the space where, any epsilon region of the space around the point intersect the set, and the complement of the set. 
 > 2. The interior of the set is $M^\circ$, defined as $M^\circ := \{x\in X | \exists \epsilon > 0 \text{ s.t: } \mathbb B_\epsilon(x) \subseteq M\}$. Describing the region of all points such that infinity small vicinity of the point is still part of the set. 
 > 3. The closure of the set is another set defined as $\overline M := \{x \in X | \forall \epsilon > 0, \mathbb B_\epsilon(x)\cap X \neq \emptyset\}$. Describing all the points where, the infinitely small vicinity of the point can intersect with the set. 
@@ -158,20 +158,20 @@ $$
 \end{aligned}
 $$
 
-Inducively, a sequence of $\epsilon_n, p_n$ satisfying conditions
+inductively, a sequence of $\epsilon_n, p_n$ satisfying conditions
 
 $$
 \begin{aligned}
     & 
-    p_{n + 1}\in \mathbb B_{\epsilon_n/3}(p_n), 
+    p_{n + 1}\in \mathbb B_{\epsilon_n/3}(p_n) \iff d(p_{n + 1}, p_n) \le \frac{\epsilon_n}{3}. 
     \\
     & \epsilon_{n + 1} \le \epsilon_n/3, 
     \\
-    & \mathbb p_{n + 1} \cap C_{n +1} = \emptyset. 
+    & p_{n + 1} \cap C_{n +1} = \emptyset. 
 \end{aligned}
 $$
 
-All of these 3 conditions will be refered to as \[(IH)\]. From here we can derive the sequence $p_n$ is Cauchy in the metric space. Consider any integer $l, n > 0$, we have
+All of these 3 conditions will be referred to as \[(IH)\]. From here we can derive the sequence $p_n$ is Cauchy in the metric space. Consider any integer $l, n > 0$, we have
 
 $$
 \begin{aligned}
@@ -222,7 +222,7 @@ $$
         \frac{1}{3} + \frac{1}{3^2} + \cdots+ \frac{1}{3^l}
     \right)
     \\
-    & 
+    [(3)], [(4)]\implies & 
     < \epsilon_{n + 1} 
     \sum_{n = 1}^\infty 3^{-n} = \frac{\epsilon_{k + 1}}{2}
     \\
@@ -250,8 +250,9 @@ $$
 
 therefore, the limit point $p$, is always inside $\mathbb B_{\epsilon_n}(p_n)$, the ball never intersect with any $C_n$, therefore, $p\not \in C_n$ and $p\not\in M$, which is a contradiction that the union of all the sets $C_n = M$. To resolve the contradiction, it has to be the case that at least one of the $C_n$ doesn't have an empty interior. Therefore, since $C_n$ is already closed, it has to be the case that some $C_n$ is not nowhere dense. 
 
-
 **Alternative Proof**
+
+Skipped for now, this proof is from Shambavi's notes. 
 
 **References**
 
