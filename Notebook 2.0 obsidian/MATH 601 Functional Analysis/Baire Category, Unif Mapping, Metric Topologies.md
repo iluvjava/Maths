@@ -322,7 +322,10 @@ The above formed the base caus of an inductive argument, next we state the induc
 
 $$
 \begin{aligned}
-
+    & \mathbb B_{r_{n + 1}}(x_{n + 1}) \subseteq U_n\cap \mathbb B_{r_{n -1}}(x_{n - 1}) \;\forall n \ge 2
+    \\
+    & 
+    \forall S \subseteq X, \text{open}: \mathbb B_{r_1}(x_1) \subseteq U_1 \cap S
 \end{aligned}
 $$
 
