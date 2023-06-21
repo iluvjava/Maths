@@ -10,13 +10,10 @@ alias: Baire Catetory Theorem and Uniform Mapping Theorem
 This theorem shows how much of the topology of the reals can be used to represent abstract metric spaces. It has profound consequences. In [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf), it's stated that one of the profound consequence of the theorem is that existence of a function that is continuous but nowhere differentiable. See [this](https://math.stackexchange.com/questions/2993112/proving-that-the-set-of-continuous-nowhere-differentiable-functions-is-dense-usi) for a stack exchange post about it. 
 
 
-
 ---
 ### **More Topologies for Metric Spaces**
 
-We would need just a bit more topolgy to grasp the statement of the theorem better. In the following theorems, $\mathbb B_\epsilon(x)$ is the epsilon ball centered at $x$, with background topology $X$. 
-
-
+We would need just a bit more topology to grasp the statement of the theorem better. In the following theorems, $\mathbb B_\epsilon(x)$ is the epsilon ball centered at $x$, with background topology $X$. 
 
 
 #### **Def | Boundary, Interior and Closure**
@@ -60,7 +57,7 @@ Therefore, $M^\circ \subseteq  \left(\overline M\right)^\circ$, and therefore. B
 
 **Remarks**
 
-A nowhere dense set is a set that is not dense. A dense set is a set $M\subseteq X$ such that $\overline M = X$. Dense and nowhere dense are mutually exclusive, however, there are sets that are neither dense, nor nowhere dense, those sets that are neither, can be devided into sets with empty interior, and without empty interior, nowhere dense sets are from the former category, and it's a stronger set of such category. 
+A nowhere dense set is a set that is not dense. A dense set is a set $M\subseteq X$ such that $\overline M = X$. Dense and nowhere dense are mutually exclusive, however, there are sets that are neither dense, nor nowhere dense, those sets that are neither, can be divided into sets with empty interior, and without empty interior, nowhere dense sets are from the former category, and it's a stronger set of such category. 
 
 #### **Thm-2 | Complement Topology**
 
@@ -96,7 +93,7 @@ $$
 
 Therefore, the complement set is a closed set. 
 
-**Refererences**
+**References**
 
 None, I thought all of these out myself. 
 
@@ -250,17 +247,82 @@ $$
 
 therefore, the limit point $p$, is always inside $\mathbb B_{\epsilon_n}(p_n)$, the ball never intersect with any $C_n$, therefore, $p\not \in C_n$ and $p\not\in M$, which is a contradiction that the union of all the sets $C_n = M$. To resolve the contradiction, it has to be the case that at least one of the $C_n$ doesn't have an empty interior. Therefore, since $C_n$ is already closed, it has to be the case that some $C_n$ is not nowhere dense. 
 
-**Alternative Proof**
-
-Skipped for now, this proof is from Shambavi's notes. 
-
 **References**
 
 The contradiction proof is improved from [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf) course notes. 
 
 
 ---
-### **Uniform Mapping Theorem**
+### **Baire's Category Alternative Proof**
+
+The previous proof is long and elementary. This proof package different stages of the above proofs into more lemmas that are relevant, and it also introduces lemmas on the topology of the Metric space system. 
+
+#### **Lemma-1**
+> Let $M\subseteq X$ be a dense set, $(X, d)$ is a complete metric. $M$ is dense, if and only if for all open set $K\subseteq X$ , $K\cap M \neq \emptyset$. Simply put, a dense set is so dense that every set with volumn will intersect with it. 
+
+**Proof**
+
+Let $K$ be open, then there exists $\epsilon > 0: \mathbb B_\epsilon(x)\subseteq K$, since $M$ is dense, $x\in X$ for sure, make a sequence $(x_n)_{n\in \mathbb N}$ in $M$, by convergence of the sequence, there exists $x_n$ with $n\ge N_\epsilon$ such that $x_n\in \mathbb B_\epsilon(x)\subseteq Q$, then $x_n\in K\cap M$ for all $n\ge N_\epsilon$. 
+
+For the converse, let $K\cap M \neq \emptyset$, for all $K\subseteq M$, open. For any $x\in X$, $\mathbb B_\epsilon(x)$ is an open set, there exists $y\in \mathbb B_\epsilon(x)$. Take the limit of $\epsilon\rightarrow 0$, $\mathbb B_\epsilon(x)\cap M\neq \emptyset$, therefore it has to be that $x\in \overline M$, the limit point is in the closure of $M$. Since the choice of $x\in X$ is arbitrary, the set $M$ is a dense set. 
 
 
+#### **Lemma-2**
+> For any sets $M\subseteq X$ with $(X, d)$ being a metric space, we have $(M^\circ)^C = \overline{(M^C)}$. 
+
+
+**proof**
+
+Directly we have
+
+
+$$
+\begin{aligned}
+    x\in \overline{(M^C)} &\iff \forall \epsilon >0 : \mathbb B_\epsilon(x) \cap M^C \neq \emptyset
+    \\
+    & \iff \forall \epsilon > 0 : \mathbb B_\epsilon(x)\not\subseteq M^C
+    \\
+    & \iff \neg \left(
+        \exists \epsilon > 0: \mathbb B_\epsilon(x)\subseteq M^C
+    \right)
+    \\
+    &\iff x \not\in M^\circ
+\end{aligned}
+$$
+
+
+#### **Lemma-3**
+> Let $(X, d)$ be a complete metric space, let $U_n$ be a countable sequence of open dense sets, then the intersection of all these set is dense in $X$!
+
+**Proof**
+
+To start, choose arbitrary open set $S\in X$, this is possible for any metric space that is not a singleton and has an interior to it. Consider the following statement
+
+$$
+\begin{aligned}
+    & U_1\cap S \neq \emptyset \text{ by } U_1 \text{ dense and } S \text{ open. }
+    \\
+    \implies &
+    \exists x_1: \mathbb B_{r_1}(x_1)\subseteq (U_1\cap S) \text{ by } U_1 \text{ open also}
+    \\
+    & \text{choose } r_1 < 1/2, \text{ above still true}
+    \\
+    & 
+    \mathbb B_{r_1}(x_1) \text{ open} \implies 
+    \left(
+        U_2\cap \mathbb B_{r_1}(x_1) \neq \emptyset 
+    \right), \text{ for same reasons}
+    \\
+    & \exists\; \mathbb B_{r_2}(x_2)\subseteq (U_2 \cap \mathbb B_{r_2}(x_1)) : 
+    r_2 < 1/4. 
+\end{aligned}
+$$
+
+The above formed the base caus of an inductive argument, next we state the inductive statment, which can be easily seemed and the reader should justify it themselves. The inductive statements follows: 
+
+$$
+\begin{aligned}
+
+\end{aligned}
+$$
 

@@ -5,7 +5,7 @@
 
 Fejer monotone is a type of strong generalization to a monotone sequence in Banach Spaces. 
 
-**Definition-1 | Fejer Montone Sequence**
+#### **Definition-1 | Fejer Montone Sequence**
 > A sequence $(x_n)_{n\in N}$ is fejer monotone wrt to the set $\emptyset \neq C \subseteq X$ when: 
 > $$\forall c \in C, k \in \N: \Vert x_{k + 1} - c\Vert \le \Vert x_k - c\Vert. $$
 
