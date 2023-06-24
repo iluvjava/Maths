@@ -4,11 +4,7 @@ Tail bound of a random variable, the variable we are interested is the MLE estim
 ---
 ### **Intro**
 
-We can bound the probability of observing a MLE from experiment. And this will be global to all MLE experiments. 
-
-The question we can answer with it is: 
-
-What is the probability of observing an MLE $\hat{\theta}$ that is $\epsilon$ away from the true MLE? 
+We can bound the probability of observing a MLE from experiment. And this will be global to all MLE experiments. The question we can answer with it is: What is the probability of observing an MLE $\hat{\theta}$ that is $\epsilon$ away from the true MLE? 
 
 $$
 \mathbb{P}\left(\left|

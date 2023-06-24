@@ -7,7 +7,7 @@ alias: Baire Catetory Theorem and Uniform Mapping Theorem
 ---
 ### **Intro**
 
-This theorem shows how much of the topology of the reals can be used to represent abstract metric spaces. It has profound consequences. In [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf), it's stated that one of the profound consequence of the theorem is that existence of a function that is continuous but nowhere differentiable. See [this](https://math.stackexchange.com/questions/2993112/proving-that-the-set-of-continuous-nowhere-differentiable-functions-is-dense-usi) for a stack exchange post about it. 
+This theorem shows how much of the topology of the reals can be used to represent abstract metric spaces. It has profound consequences. In [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf), it's stated that one of the profound consequence of the theorem is that existence of a function that is continuous but nowhere differentiable. See [this](https://math.stackexchange.com/questions/2993112/proving-that-the-set-of-continuous-nowhere-differentiable-functions-is-dense-usi) for a stack exchange post about it. Another is the uniform bounded theorem for bounded linear operators in Banach Spaces. 
 
 
 ---
@@ -25,7 +25,7 @@ We would need just a bit more topology to grasp the statement of the theorem bet
 **Observations**
 
 Direct from the definition, we can discover: 
-1. $M^\circ \subseteq M\subseteq \overline M$
+1. $M^\circ \subseteq M\subseteq \overline M$.
 2. For any type of singleton set $M$, we have $\partial M = M$. 
 3. In the case of $M = \mathbb Q, X = \mathbb R$, we have $\partial M = \mathbb R$, and $Q\subsetneq \partial \mathbb Q$. 
 4. For $[1, 0]$, we have $\partial [0, 1] = \{0, 1\}\subsetneq [0, 1]$. 
@@ -57,7 +57,7 @@ Therefore, $M^\circ \subseteq  \left(\overline M\right)^\circ$, and therefore. B
 
 **Remarks**
 
-A nowhere dense set is a set that is not dense. A dense set is a set $M\subseteq X$ such that $\overline M = X$. Dense and nowhere dense are mutually exclusive, however, there are sets that are neither dense, nor nowhere dense, those sets that are neither, can be divided into sets with empty interior, and without empty interior, nowhere dense sets are from the former category, and it's a stronger set of such category. 
+Dense and nowhere dense are mutually exclusive, however, there are sets that are neither dense, nor nowhere dense. The Cantor set is a nowhere dense set, and the rationals is a dense set, (So are the numbers with finitely many digits expansion, a subset of the rationals. )
 
 #### **Thm-2 | Complement Topology**
 
@@ -100,7 +100,7 @@ None, I thought all of these out myself.
 ---
 ### **Baire's Category Theorem**
 
-We provide several different proofs here. 
+We provide 2 different proofs here. We lable statement using \[(.)\] to keep track of them during the proof. 
 
 #### **Terminologies and background**
 Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is 
@@ -114,7 +114,7 @@ Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is
 
 **Proof**
 
-For the best comfort of readhing, I am experimenting with new format of presenting the proof. To proof, we derive a contradiction by assuming that, $M$ is the union of $C_n$, a sequence of set that are all closed, having empty interior (they are all N.D). To start, we list and label the following statements
+For the best comfort of reading, I am experimenting with new format of presenting the proof. To proof, we derive a contradiction by assuming that, $M$ is the union of $C_n$, a sequence of set that are all closed, having empty interior (they are all N.D). To start, we list and label the following statements
 * \[(S1)\]: $(M, d)$ is a metric space that is complete with $M\neq \emptyset$. 
 * \[(S2)\]: $M= \cup_{n\in \mathbb N}C_n$. 
 * \[(S3)\]: $C_n = \overline C_n$, these sets the make up $M$ above are all closed sets. All N.D. 
@@ -178,7 +178,7 @@ $$
     [(IH)] \implies &\le 
     \epsilon_n/3 + \epsilon_{n +1}/3 + \cdots + \epsilon_{n + l -1}/3
     \\
-    \implies 
+    [(IH)]\implies 
     &\le 
     \frac{\epsilon_n}{3} + \frac{\epsilon_n}{3^2} + \cdots + \frac{\epsilon_{n}}{3^l}
     \\
@@ -221,7 +221,7 @@ $$
     \\
     [(3)], [(4)]\implies & 
     < \epsilon_{n + 1} 
-    \sum_{n = 1}^\infty 3^{-n} = \frac{\epsilon_{k + 1}}{2}
+    \sum_{n = 1}^\infty 3^{-n} = \frac{\epsilon_{n + 1}}{2}
     \\
     \implies 
     \lim_{n\rightarrow \infty}d(p_{n + l}, p_{n + 1 + l}) 
@@ -245,7 +245,7 @@ $$
 \end{aligned}
 $$
 
-therefore, the limit point $p$, is always inside $\mathbb B_{\epsilon_n}(p_n)$, the ball never intersect with any $C_n$, therefore, $p\not \in C_n$ and $p\not\in M$, which is a contradiction that the union of all the sets $C_n = M$. To resolve the contradiction, it has to be the case that at least one of the $C_n$ doesn't have an empty interior. Therefore, since $C_n$ is already closed, it has to be the case that some $C_n$ is not nowhere dense. 
+therefore, the limit point $p$, is always inside $\mathbb B_{\epsilon_n}(p_n)$, the ball never intersect with any $C_n$, therefore, $p\not \in C_n$ and $p\not\in M$, which is a contradiction that the union of all the sets $C_n = M$. To resolve the contradiction, it has to be the case that at least one of the $C_n$ doesn't have an empty interior. Because $C_n$ is already closed, if it's also not N.D, then it must have non-empty interior to it. 
 
 **References**
 
@@ -286,7 +286,7 @@ $$
         \exists \epsilon > 0: \mathbb B_\epsilon(x)\subseteq M^C
     \right)
     \\
-    &\iff x \not\in M^\circ
+    &\iff x \not\in M^\circ.
 \end{aligned}
 $$
 
@@ -308,7 +308,7 @@ $$
     & \text{choose } r_1 < 1/2, \text{ above still true}
     \\
     & 
-    \mathbb B_{r_1}(x_1) \text{ open} \implies 
+    \mathbb B_{r_1}(x_1) \text{ open} \implies
     \left(
         U_2\cap \mathbb B_{r_1}(x_1) \neq \emptyset 
     \right), \text{ for same reasons}
@@ -322,10 +322,64 @@ The above formed the base caus of an inductive argument, next we state the induc
 
 $$
 \begin{aligned}
-    & \mathbb B_{r_{n + 1}}(x_{n + 1}) \subseteq U_n\cap \mathbb B_{r_{n -1}}(x_{n - 1}) \;\forall n \ge 2
+    & \mathbb B_{r_{n + 1}}(x_{n + 1}) \subseteq 
+    U_n\cap \mathbb B_{r_{n}}(x_{n})
+    \;\forall n \ge 2
     \\
     & 
     \forall S \subseteq X, \text{open}: \mathbb B_{r_1}(x_1) \subseteq U_1 \cap S
+    \\
+    & r_n \le 1/2^n, 
 \end{aligned}
 $$
 
+The second conition is able to show that the sequence is Cauchy. The first condition asserts that $\mathbb B_{r_{n + 1}}(x_{n + 1})\subseteq \mathbb B_{r_{n}}(x_n)$, for all $n\ge 2$, implying that $\forall l > 0, n \ge 2$ we have $\mathbb B_{r_{n + l}}(x_{n + l})\subseteq \mathbb B_{r_n}(x_n)$, implying that $d(x_{n + l}, x_{n})\le 1/2^n$. By completeness of the metric space, there is a limit point $x$ to the above generated sequence. Considering the membership of each $x_n$, we have
+
+$$
+\begin{aligned}
+    x_k \in \bigcap_{n \le k} U_n
+    \\
+    \lim_{k\rightarrow \infty} x_k = x \in \bigcap_{n\in \mathbb N} U_n, 
+\end{aligned}
+$$
+
+since the choice of the open set $S$ is arbitrary, the union of all open dense $U_n$, is a dense set. 
+
+
+#### **Thm | Baire Category Theorem**
+
+
+> In the complete metric space $(M, d)$, $M$ cannot be the union of a countable list of Nowhere dense sets. If it is the union of a countable many sets, at least one of the sets must have an non-empty interior. 
+
+**Proof**
+
+Let $V_n$ be a countable sequence of N.D sets, arbitrary. Then 
+
+$$
+\begin{aligned}
+    & (\overline V_n)^C \text{ is open,} 
+    \\
+    & \overline{((\overline V_n)^C)} = ((\overline V)^\circ)^C =(\emptyset)^C = X \text{ by N.D, Lemma-2.}
+    \\
+    & (\overline V_n)^C \text{ is dense }. 
+\end{aligned}
+$$
+
+Therefore, $(\overline V_n)^C$ is a countable sequence of open dense sets, by Lemma-3, their intersection is still a dense set. Consider
+
+$$
+\begin{aligned}
+    \bigcup_{n\in \mathbb N} V_n\subseteq 
+    \bigcup_{n\in \mathbb N} \overline{V_n}
+    \subseteq 
+    \left(
+            \bigcap_{n\in \mathbb N} (\overline{V_n})^C
+    \right)^C \neq M, 
+\end{aligned}
+$$
+
+Where, on the last line, we used that fact that, the intersection of a countable sequence of open dense set is still dense, hence its complement is not equal to $M$. 
+
+**References**:
+
+Shambavi's notes, who is my labmate at the date when this is written. 

@@ -97,7 +97,7 @@ Observe that every real numbers in $[0, 1)$can be represented as a binary number
 Invariance under translation and strictly positive scaling of any open real intervals will assure that every open epsilon region of the real around a singleton will yield more real numbers than integers. 
 
 ---
-### **Theorem 4: Countable Infinite Cross Product of $\{0, 1\}$ is Uncountable**
+### **Theorem 4 | Infinite Countable Cross Product of $\{0, 1\}$ is Uncountable**
 
 Any countably cross product, denoted as $\prod_{n\in \N}\{0, 1\}$ can be mapped to a binary number in the range $[0, 1)$, because they have infinitely many digits trailing behind it. Therefore it's uncountable by the previous: theorem 3. 
 
@@ -105,12 +105,13 @@ Any countably cross product, denoted as $\prod_{n\in \N}\{0, 1\}$ can be mapped 
 The cross product of countably infinite sets are going to be countable as well. Replacing the finite set with 2 elements in it only going to increase the total amount of elements. 
 
 ---
-### **Theorem 6: Unions of Countably Many Countable Set is Countable**
+### **Theorem 6 | Unions of Countably Many Countable Set is Countable**
 
 Consider $S_i$ to be a sequence of set that has the same cardinality with $\N$, then the set $G = \bigcup_{i \in \N}S_i$ is a countable set. We consider ordering all elements in the set $G$ with a tuple $(i, j)\in \N\times \N$. For any $(i, j)$ we have the element $(S_i)_j$ denoting the $j$ th element of the set $S_i$. We can map this to every element in $G$ by the fact that all $S_i$ has the same cardinality as $\N$. Then this problem reduces to finding a bijective maps between the set $\N\times \N$ and $\N$. 
 
+
 ---
-### **Theorem 5: Finite Cross Product of Countable sets are Countable**
+### **Theorem 5 | Finite Cross Product of Countable sets are Countable**
 
 We do this inductively. WLOG we just let the finite many countable set to be all $\N$. Assuming that we have a function $f_n:\N^n \mapsto \N$ such that it's bijective, we also let $f:\N^2 \mapsto \N$ to be the function we constructed for theorem 2. We show that we can construct a function of the form $f_{n + 1}: \N^{n + 1} \mapsto \N$ that is also bijective. The function simply is: 
 

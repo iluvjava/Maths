@@ -8,7 +8,7 @@ This note is a note about notes.
 # **Important Tasks about the Notes**
 - Fill up [Functional Analysis Central Hub](MATH%20601%20Functional%20Analysis/Functional%20Analysis%20Central%20Hub.md) for wrapping up elementary materials in this course. The following topics needs to be updated and filled up:
 	- [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
-	- [Baire Category, Unif Mapping, Metric Topologies](MATH%20601%20Functional%20Analysis/Baire%20Category,%20Unif%20Mapping,%20Metric%20Topologies.md). Fill up the proof, the references are Prof Wang's notes, or the MIT OCW Functional analysis notes. 
+	- [Uniform Mapping, Open Mapping](MATH%20601%20Functional%20Analysis/Uniform%20Mapping,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
 - Fill up a sequence of notes that describes the idea of adjoint operators in Hilbert spaces, and their applications. Files included are: 
 	- [Sturm Liouville Theory](AMATH%20503%20Intro%20to%20Partial%20Differential%20Equations/Sturm%20Liouville%20Theory.md)
 		- Cite the theories for the S.L Adjoin BVP theories from Sturm Liouville. 

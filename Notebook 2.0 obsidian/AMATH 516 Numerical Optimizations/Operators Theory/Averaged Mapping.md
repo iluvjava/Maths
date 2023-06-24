@@ -56,7 +56,7 @@ This type of non-expansive operator converges under fixed point iterations.
 
 **Proof**
 
-From [[../Background/Euclidean Jensen's Equality (Cute Formula)]]: 
+From [[../Background/Euclidean Jensen's Equality]]: 
 
 $$
 \begin{aligned}

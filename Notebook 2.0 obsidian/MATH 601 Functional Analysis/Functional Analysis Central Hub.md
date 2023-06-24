@@ -38,7 +38,10 @@ Metric space describes distance between 2 elements. It's useful because we can t
 	- Banach Fixed Point Theorem. 
 - [Examples for Metric Space](Functional%20Spaces/Examples%20for%20Metric%20Space.md)
 	- A lot of Examples. With proofs and demonstrations. 
-	- Focusing on completeness of metric space. 
+	- Focusing on completeness of metric space. Examples are not strictly a metric space, a lot of them are Banach, or the Hilbert space. 
+- [Baire Category, Metric Topologies](Baire%20Category,%20Metric%20Topologies.md)
+	- A lot more topologies facts and theorems
+	- Proved the Baire Category theorem under the context of a metric space. 
 
 ---
 ### **Banach Spaces**
@@ -95,7 +98,7 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 	- Subspace Projection is an Hilbert adjoint operator 
 
 ---
-### **Misc Important Results**
+### **Important Results**
 - [Finite Dimensional Normed Space](Functional%20Spaces/Finite%20Dimensional%20Normed%20Space.md)
 	- Important lemmas regarding lower boundedness of basis by coefficients. 
 	- The norms are equivalent.
@@ -108,5 +111,7 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 - [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md)
 	- A Very important theorem in functional analysis. 
 	- Make use the Zorn's lemma. 
-- [Baire Category, Unif Mapping, Metric Topologies](Baire%20Category,%20Unif%20Mapping,%20Metric%20Topologies.md)
+- [Baire Category, Metric Topologies](Baire%20Category,%20Metric%20Topologies.md)
 	- Attempts to show how much of the topologies can be translated from the Reals to any metric space. Showing that if the metric space 
+- [Uniform Mapping, Open Mapping](Uniform%20Mapping,%20Open%20Mapping.md)
+	- ?????

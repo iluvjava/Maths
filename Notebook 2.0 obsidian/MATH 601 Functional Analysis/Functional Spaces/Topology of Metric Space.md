@@ -1,7 +1,8 @@
-- [[Metric Space Introduction]], [[../l-p Sequence Space]], 
-- [[../../MATH 000 Math Essential/Analysis/Real Analysis Basics]], 
-- [[../../MATH 000 Math Essential/Countability of Sets]]. 
-- [[../../MATH 000 Math Essential/Topological Spaces]]
+- [Metric Space Introduction](Metric%20Space%20Introduction.md), 
+- [l-p Sequence Space](../l-p%20Sequence%20Space.md), 
+- [Real Analysis Basics](../../MATH%20000%20Math%20Essential/Analysis/Real%20Analysis%20Basics.md) ,
+- [Countability of Sets](../../MATH%20000%20Math%20Essential/Countability%20of%20Sets.md),
+- [Topological Spaces](../../MATH%20000%20Math%20Essential/Topological%20Spaces.md). 
 
 
 ---
@@ -20,10 +21,10 @@ $$
 
 To start, we define the concept of vicinity around any "point" in the metric space. Given $(X, d)$, we then define 
 
-**Definition | An Open set**
+#### **Definition | An Open set**
 > $A\subseteq X$ is open when for all $x\in A$ there exists $\epsilon > 0$ such that $\mathbb B_\epsilon(x)\subseteq A$. 
 
-**Definition | A Closed Set**
+#### **Definition | A Closed Set**
 > $A\subseteq X$ is closed when $X\setminus A$ is open. 
 
 **Remarks**: 
@@ -42,21 +43,19 @@ Sometimes we need the convergence in a metric space to characterize the property
 - This is not exactly the same as the definition of a limit point in real analysis as that one doesn't require the point to be excluded $A\subseteq \mathbb R$. 
 - If the union of all limit points of $A$ is the same as background set $X$, then the set $A\subseteq X$ is dense in the set $X$. 
 
-
-**Theorem | Sequential Characterization of an Accumulation Point**
+#### **Theorem | Sequential Characterization of an Accumulation Point**
 
 > $x_0 \in X$ is an accumulation point of $M$ if and only if for all $\epsilon > 0$, $\mathbb B_{\epsilon}(x_0)\setminus \{x_0\}$ contains point/points of $M$, i.e: there exists a sequence $(x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty}x = x_0$ with $x_n \neq x \; \forall n \in \mathbb N$. 
-
 
 **Proof**:
 
 This theorem is analogous to the limit point in the real line, but instead of the absolute value, we have the metric, hence we are skipping the proof here. 
 
-**Example | No Accumulation Points**
+#### **Example | No Accumulation Points**
 
 The set $\mathbb Z\subseteq \mathbb R$ with metric $|\cdot|$ is not having any accumulation point because all the points in the set are all singletons. 
 
-**Definition | Points in Closure**
+#### **Definition | Points in Closure**
 
 An element in the closure of some set is characterized by the neighborhood of that point. Recall that a point $x\in X$ (note necessarily in $M$) is an accumulation point  of $M\subseteq X$ if every neighborhood of $x$ has at least one point $y\in M$ such that $y\neq x$. Using this, we define points in the closure. 
 
@@ -64,11 +63,11 @@ An element in the closure of some set is characterized by the neighborhood of th
 
 That was the definition. 
 
-**Definition | Dense Subset**
+#### **Definition | Dense Subset**
 
 > A subset $A\subseteq X$ is dense when $\text{cl}(A) = X$. 
 
-**Definition | A Separable Subset**
+#### **Definition | A Separable Subset**
 
 > $X$ is a separable metric space if it has a countable subset that is dense in $X$. 
 
@@ -78,7 +77,7 @@ That was the definition.
 
 There is a subset that is countable such that it can cover almost every point in the set $X$ via the use of sequential limit. If this is not the case, then we can't really distinguish points "with enough precision" using limits on the metric for this metric space. Because a sequential limit only has countably many points. In fact, this is as much as I can explain, more in depth explanations for this concept requires general topology. Anyway, see [here](https://math.stackexchange.com/questions/770146/why-do-we-need-separability), a stack exchange post for more information. 
 
-**Example | Separable Spaces**
+#### **Example | Separable Spaces**
 
 The set $\mathbb R$ equipped with the usual $\Vert \cdot\Vert$ Euclidean space is separable because the closure of $\mathbb Q^n$, a countable subset gives us the space $\mathbb R^n$. The set of all rationals, $\Q^n$ is also separable, because the closure of the set is, itself, if the whole space is itself. 
 
@@ -194,6 +193,8 @@ Compactness is generalized from finite dimensional spaces, see [Compactness in M
 
 Here is a good list of exercises from the textbook that will enhance our understanding of the matter. The specific examples that are incomplete spaces are interesting and they had been separated into: [[Examples for Metric Space]]. 
 
-**Example: Interior of $l_+^\infty$ is Empty**
+#### **Example | Interior of $l_+^2$ is Empty**
 
-#UNFINISHED 
+Consider the fact that the tail end partial sum can be epsilon bounded for any $\epsilon$, $a\in l_2^+$, meaning there exists $M_\epsilon\in \mathbb N$ with $\sum_{n=M_\epsilon}^{\infty}a_i\le \epsilon$, then design a another sequecen that has negative component such it's more negative than $a_{j}$ with $j\ge M_\epsilon$, but still being epsilon bounded. This vector will break always be in the epsilon ball centered at $a$, but never an element of the set $l_2^+$. 
+
+**References:** Example 1.3.6 from Wang's MATH 328 note. 

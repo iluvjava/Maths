@@ -118,7 +118,9 @@ $$
 \end{aligned}
 $$
 
-Therefore, any cauchy sequence $(x^{(m)})_{m\in \N}$, has a limit for each of its element. Next we consider , $x^{(m)}\in l^{\infty}$, its norm must be bounded, for any $\epsilon > 0$ that is practically small, fix any $m\in \N$: 
+Therefore, any cauchy sequence $(x^{(m)})_{m\in \N}$, has a limit for each of its element. 
+
+Next we consider , $x^{(m)}\in l^{\infty}$, its norm must be bounded, for any $\epsilon > 0$ that is practically small, fix any $m\in \N$: 
 
 $$
 \begin{aligned}
@@ -185,7 +187,7 @@ $$
 \end{aligned}
 $$
 
-The limit exists for each of the element for $y^{(m)}$. From Cauchy of $(y^{(m)})_{m\in \mathbb N}$. Using all these limit we make the limit vector $y = (y_1, y_2, \cdots)$. Next, we show that the limit vector is in $l^2$, it's squared summable. To see that we have: 
+The limit exists for each of the element for $y^{(m)}$. From Cauchy of $(y^{(m)})_{m\in \mathbb N}$. Using all these limit we make the limit vector $y = (y_1, y_2, \cdots)$. Therefore we have $\lim_{l\rightarrow\infty} \Vert y^{(k)} - y^{(l)}\Vert = \Vert y^{(k)} - y\Vert = 0$ by the point-wise limit for each element. Next, we show that the limit vector is in $l^2$, it's squared summable. To see that we have: 
 
 $$
 \begin{aligned}
@@ -213,12 +215,12 @@ The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other H
 
 Examples with not too much explanations. 
 
-**Example | $\mathbb Q$, Vector space**: 
+**Example-1 | $\mathbb Q$, Vector space**: 
 > The set $\mathbb Q$ equipped with $|\cdot|$ is not complete, because the limit of a sequence of rationals can easily become an irrational number. 
 
 Therefore, this is an incomplete metric space. 
 
-**Example | Polynomials, Vector space**
+**Example-2 | Polynomials, Vector space**
 > Let $X$ be the set of polynomial on a closed interval $[a, b]$, then the metric $\Vert \cdot\Vert_\infty$ is incomplete. 
 
 Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ that is not a polynomial is an example of a Cauchy sequence that punch a hole in this set after the limit by converging to a function that is not polynomial. Uniform convergence is need for this metric: $\Vert \cdot\Vert_\infty$ so that the metric of the sequence is Cauchy But as we know that not all uniform limit of Polynomials can provide us with a polynomials. Therefore this is incomplete. 
@@ -226,7 +228,7 @@ Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ th
 - Uniform convergence -> Cauchy sequences in the $\Vert \cdot\Vert_\infty$ metric. 
 - But the limit is not a polynomial. 
 
-**Example | Continuous Function, Vector space**
+**Example-3 | Continuous Function, Vector space**
 
 > Let $(X, d)$ be metric space where $X$ is the set of functions that is continuous on $[0, 1]$. Let $d$ be the $\Vert \cdot\Vert_1$ metric for functions. 
 
