@@ -41,13 +41,15 @@ Show that if $A, B \in \mathcal F$, then $A\setminus B \in \mathcal F$ as well. 
 > \begin{aligned}
 >    \mathbb P \left(
 >     \bigcup_{m = 1}^\infty A_m
->     \right) &= \sum_{m = 1}^\infty \mathbb P(A_m). 
+>     \right) &= \sum_{m = 1}^\infty \mathbb P(A_m),
 > \end{aligned}
 > $$
+> For all pair-wise disjoint sets of $A_m\in \mathcal F$.
 
 
-**Remarks**
-But what is a measure? A measure $\mu$ is a function mapping from the set of sigma aglebra of $\Omega$ to the real satisfying the conditions 
+**Remarks**: 
+
+But what is a measure? A measure $\mu$ is a function mapping from the set of sigma algebra of $\Omega$ to the real satisfying the conditions 
 1. $\forall E \in \Omega$, $\mu(A) \ge 0$, Non-negativity
 2. $\mu(\emptyset) = 0$
 3. Countable aditivity which is the same as the probability measure as in the definition above. 

@@ -160,6 +160,36 @@ therefore, equality can be achived by using $x_0$, and therefore, the norm that 
 #### **Example-4 | The lp Sequence Space**
 > Let $p, q$ be conjugate dual to each other, with $p \ge 0$, so that $p^{-1} + q^{-1} = 1$, then the space $l^p$ and $l^q$ are dual spaces to each other. 
 
+---
+### **Reflexive Spaces and Double Dual Spaces**
+Something important that is not neccessarily clear, in Wang's notes, or Kryzig's book. 
+
+#### **Def-2 | The Elements of Double Dual**
+> Let $(V, \Vert \cdot\Vert)$ be a normed metric space, then the double dual mapping is defined to be $T_v: V^\star \mapsto \mathbb K$, with $T_v(v^\star) = v(v^\star)$. 
+
+**Observations**
+
+It's somewhat trivial to observe the fact that the mapping is a bounded linear mapping, and by the fact that it's taking from the space $V^\star$, this is an elemen of $V^{\star\star}$. 
+
+
+
+#### **Def-3 | Isometry for Normed Metric Space**
+
+> Let $V, W$ be normed spaces with $\Vert \cdot\Vert_W, \Vert \cdot\Vert_V$ be normed spaces, then $T\in \mathcal B(V, W)$ is isometric when for all $v\in V: \Vert Tv\Vert_W = \Vert v\Vert_V$. The distance between $V, W$, seems to be exchangable when linear functional $T$ is used.
+
+#### **Thm-54 | Isometry on Double Dual Spaces**
+
+> Let $T_v:V^\star \mapsto \mathbb K$ be defined the same way as an element of the double dual. Then $T: V\mapsto V^{\star \star}$ sending $v$ to $T_v$, is an isometric for $V^\star, V^{\star\star}$
+
+**Proof**
+
+skipped for now. 
+
+
+**References**
+
+MIT OCW, functional analysis, Theorem 54, example 51. 
+
 
 ---
 ### **Rietz Representation Theorem**

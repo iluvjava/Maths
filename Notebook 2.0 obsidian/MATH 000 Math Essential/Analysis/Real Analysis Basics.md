@@ -13,12 +13,13 @@ We assume that reader has basic mathematical maturity and at least know how to p
 ### **Topology of the Real Number Line**
 Basic Real analysis bases the topology on the real line. The nature of the real line is elusive. 
 
-**Definition: A Dense Subset**
+**Definition | A Dense Subset**
 > A subset $A$ of real is dense if, for all $x, y \in \mathbb R$, there exists an element $z\in A$ such that it's between $x, y$. 
 
 In brief, it's a set that is infinitely finely scattered on the background set. In our context the background set is the set of real number. 
 
-**Example:** 
+**Example** 
+
 The line of rationals is a dense set of the real. For every real number that is not the same, there is a rational that exist between the 2 number. 
 
 **The Reals are a Separable Set**
@@ -87,12 +88,12 @@ The 2 definitions for the limit of a function is equivalent.
 
 We consider real numbers, let the background set to be real number. 
 
-**Definition: Limit Point**
+**Definition | Limit Point**
 > A point $x$ is the limit point of the set $A$ if, there exists a sequence of number $x_n\in A$ such that $\lim_{n\rightarrow \infty} x_n = x$. 
 
 Limit point is *used to described sequences*. For example, if, $x$ is a limit point for the sequence $(x_n)_{n\in \N}$, there is a subsequence of $x_n$ such that converges to the point $x$. 
 
-**Definition: Cluster Point**
+**Definition | Cluster Point**
 > A point $x$ is the cluster point of a set $A$ if, there exists a sequence of number $x_n\in A\setminus \{x\}$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
 
 Cluster points are used to *described sets with infinitely many points*. 
@@ -131,7 +132,7 @@ It's saying that, for all epsilon vicinity for any points $x \in A$, some subset
 
 We use pointwise convergence and uniform convergence to describe that possible ways where a sequence of functions can converge to another function in the space. 
 
-**Def: Pointwise convergence**
+**Def | Pointwise convergence**
 > $f_n \rightarrow f$ pointwise in $D$ when for all point $x_0\in D$ such that for all $\epsilon$, if $n > N_\epsilon$ then we have $|f_n(x_0) - f(x_0)| \le \epsilon$. 
 
 In brief, if we are long looking at each point on the function $f_n(x_0)$, then it gets closer to the point $f(x_0)$. 
@@ -139,17 +140,13 @@ In brief, if we are long looking at each point on the function $f_n(x_0)$, then 
 **Remarks**
 However, the relative speed of how each point converges to the target function is not described in the pointwise convergence definition. 
 
-**Def: Uniform Convergence**
+**Def | Uniform Convergence**
 
 > $f_n \rightarrow f$ uniformly on $D$ when for all $\epsilon$ there exists $N_\epsilon$ when $n > N_\epsilon$ we have $\Vert f_n - f\Vert_D \le \epsilon$. Here, $\Vert g\Vert_D:= \sup_{x\in D}|g(x)|$ is a norm for the function. 
 
 In brief, all the point in the region $D$ will be close to the target function. There doesn't exists some point where it's always slower than all the other point when the function $f_n$ is converging. 
 
 
----
-### **Heine-Borel Theorem**
-
-This theorem is linking topology and real analysis. It describes the topology of compactness for a set. Especially applicable to a set in the Euclidean space. 
 
 
 

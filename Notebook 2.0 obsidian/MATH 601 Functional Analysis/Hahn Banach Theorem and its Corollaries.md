@@ -64,7 +64,7 @@ therefore, $f$ is a bounded linear functional on $Z$, using the previous theorem
 
 **Remarks**
 
-This theorem has profound consequences and it's directly applicable for weak convergence results in Banach space. 
+This theorem has profound consequences and it's directly applicable for weak convergence results in Banach space. Here, we advise the reader to think about some example under the $\Vert \cdot\Vert_p$, the  p-norm for the system. 
 
 ---
 ### **Proof of the Most General Hahn Banach Theorem**
@@ -96,7 +96,7 @@ $$
 \end{aligned}
 $$
 
-this particular element $\hat g$ is the upper bound element of the set $C$, which is direct from the definition of $\hat g$, and $\preceq$ for chain $C$. By Zorn's lemma, and the fact that $C$ is arbitrary, it is implied that $\exists \tilde f$, whch is the maximal element of the set $E$, with $\tilde f\in E$ means $\tilde f(x) \le p(x)$ for all $x \in \text{dom}(\tilde f)$. The next part of the proof will show that $\text{dom}(\tilde f) = X$ using proof by contradiction. Suppose for contradiction that $\exists y_1 \in X \setminus \text{dom}(\tilde f)$, define $Y_1 = \text{span}(\text{dom}(\tilde f), y_1)$. 
+this particular element $\hat g$ is the upper bound element of the set $C$, which is direct from the definition of $\hat g$, and $\preceq$ for chain $C$. By Zorn's lemma, and the fact that $C$ is arbitrary, it is implied that $\exists \tilde f$, which is the maximal element of the set $E$, with $\tilde f\in E$ means $\tilde f(x) \le p(x)$ for all $x \in \text{dom}(\tilde f)$. The next part of the proof will show that $\text{dom}(\tilde f) = X$ using proof by contradiction. Suppose for contradiction that $\exists y_1 \in X \setminus \text{dom}(\tilde f)$, define $Y_1 = \text{span}(\text{dom}(\tilde f), y_1)$. 
 
 $$
 \begin{aligned}

@@ -6,9 +6,9 @@ $$
 \begin{aligned}
     & d(x, y) = 0 \iff x = y
     \\
-    & g(x, y) = g(y, x)
+    & d(x, y) = d(y, x)
     \\
-    & g(x, z) + g(z, y) \ge g(x, y)
+    & d(x, z) + d(z, y) \ge d(x, y)
 \end{aligned}
 $$
 
@@ -111,4 +111,15 @@ This becomes important when we discuss about [[Finite Dimensional Normed Space]]
 
 **Observations**
 
-Using the toplogical characterization of a contnuous mapping, the above conditions is equivalence of saying that, $d_1, d_2$ are equivalence if and only if, any open set under $d_1$ is also an open set under $d_2$. 
+Using the topological characterization of a continuous mapping, the above conditions is equivalence of saying that, $d_1, d_2$ are equivalence if and only if, any open set under $d_1$ is also an open set under $d_2$. 
+
+
+
+---
+### **Isometry**
+
+Definition directly taken from [wiki](https://en.wikipedia.org/wiki/Isometry). 
+
+#### **Def | An isometry**
+
+> Let $X,Y$ be metric spaces with metrics $d_X, d_Y$, let $f$ be a functional $X\mapsto Y$, this functional is call isometry if it's distance preserving, meaning that $d_X(x, y) = d_Y(f(x), f(y))$. 

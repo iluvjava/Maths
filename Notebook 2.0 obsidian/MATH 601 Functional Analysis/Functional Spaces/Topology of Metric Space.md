@@ -71,7 +71,9 @@ That was the definition.
 
 > $X$ is a separable metric space if it has a countable subset that is dense in $X$. 
 
-**Note**: It has nothing to do with completeness. $\mathbb Q$ is a separable space, because it itself is a dense subset of itself, but, it's not complete. 
+**Note**: 
+
+It has nothing to do with completeness. $\mathbb Q$ is a separable space, because when it itself is the background topology, it itself is a dense subset of itself, but, it's not complete, the limit point can escape the into $\mathbb R$ . 
 
 **Intuitive Explanations**: 
 
@@ -126,11 +128,11 @@ $$
 \end{aligned}
 $$
 
-which characterize a sequence of only ones and zero $\in l^\infty$. This is an uncountable set. The proof shows a contraction that, it's impossible to find a countable set $C\subseteq l_\infty$ such that for any $x, y\in S$, we can find $c_x, c_y$ close to each of those point, and if it were the case, then the set $C$ would be unctountable. 
+which characterize a sequence of only ones and zero $\in l^\infty$. This is an uncountable set (see [Countability of Sets](../../MATH%20000%20Math%20Essential/Countability%20of%20Sets.md) for a justifications). The proof shows a contraction that, it's impossible to find a countable set $C\subseteq l_\infty$ such that for any $x, y\in S$, we can find $c_x, c_y$ close to each of those point, and if it were the case, then the set $C$ would be uncountable. 
 
 **Proof**
 
-By construction, let any $x, y\in S$ such that $x \neq y$, then $d(x, y) \ge 1$, however: 
+By construction, let any $x, y\in S$ such that $x \neq y$, then $d(x, y) = 1$, however: 
 
 $$
 \begin{aligned}
@@ -138,7 +140,7 @@ $$
 \end{aligned}
 $$
 
-$S$ is uncountable, this is a fact. If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (by the fact that we can choose one element and approach the limit such that it's close enough to $x, y$) with: 
+$S$ is uncountable, this is a fact. If there exists some $C\subseteq l_\infty$ such that $\text{cl}(C) = l_\infty$, then there exists some $c_x, c_y\in C$ (that is epsilon distance away from $x, y$) such that:
 
 $$
 \begin{aligned}
@@ -146,7 +148,12 @@ $$
 \end{aligned}
 $$
 
-This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinct $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
+To be $1/3$ distance away from $x$, the point $c_x$ is forced to be away from all other points in the space $l^\infty$, by a distance of at least $1/3$. This would bring the contradiction that $C$ is also uncountable like $S$, hence, the space $l_\infty$ is not a separable set. This is concluded by the fact that for every $x, y$ we would need a distinct $c_x, c_y$ that is at least 1/3 away from $x, y$ under inf metric. 
+
+
+**Intuitive understanding**
+
+Imagine, circling around all elements in the metric space $X$, and let the circle shrinks for all the singleton elements of the metric space. If it's separable, then these balls will intersect in a way that, the closure of a countable sets has limit to every singleton. If it's not separable, then there exists, a non-zero epsilon value such that, there is no intersection between all the singletons of the metric space. This is moral of the above proof. The next example illustrate the concept, in a more extreme way. 
 
 
 **Claim $(\R, d)$ with a discrete metric is not separable**: 
