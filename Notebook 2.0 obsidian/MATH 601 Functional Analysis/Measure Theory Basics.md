@@ -145,12 +145,12 @@ The claim already proved itself.
 
 **Remarks**
 
-To continue further, we want to discuss the magic of disjoint set, and to do that, we need to construct the idea of a closure. Because, as far as what we showned here, we didn't show that the complement of a measurable set is still a measurable set. 
+To continue further, we want to discuss the magic of disjoint set, and to do that, we need to construct the idea of a closure. Because, as far as what we showned here, we didn't show that the complement of a measurable set is still a measurable set.
 
 ---
 ### **Algebra, Sigma Algebra**
 
-Using 2 of the basic rules above, we can propagate measurable sets. The definition of an algebra capture a set of measurable sets satisfying Caratheodory criterion. They will be defined together in the most simplicity way, forming a sets of sets. 
+Using 2 of the basic rules above, we can propagate measurable sets. The definition of an *algebra* capture a set of measurable sets satisfying Caratheodory criterion. They will be defined together in the most simplicity way, forming a sets of sets.  Ultimately, in this section, we want to show that, $\mathcal M$, the set of all measurable sets form a *sigma algebra*, and we also define the *Borel Sigma-algebra*. 
 
 
 #### **Def-2 | Algebra, Sigma-Algebra**
@@ -162,10 +162,46 @@ Using 2 of the basic rules above, we can propagate measurable sets. The definiti
 The trivial algebra that is based on any set $\Omega$, has $\mathcal = \{\Omega, \emptyset\}$ as the trivial algebra, and $2^{\Omega}$ being another algebra. By the theorems proved before for measurable sets, the set of all measurable sets on $\mathbb R$ forms an algebra, but not all aglebra based on $\mathbb R$ is consisted of measurable set. As illterated before, $2^{\mathbb R}$ can't be measured, but, $2^{\mathbb R}$ is an example of an algebra as well. 
 
 
-#### **Example | XOR Countable Sets**
+#### **Example | XOR Countable Sets Sigma Algebra**
 > $\mathcal A = \{E\subseteq \mathbb R | E \text{ or } E^C \text{ is countable}\}$ is an sigma algebra. 
+
+**Proof**
+
+The definition makes it clear that it's closed under set complement. In one case Let $E_n$ be a countable sequence of countable set, then $\bigcup_{n\in \mathbb N}E_n$ is still countable, hence it's complement is uncountable, which is stil in the algebra. In the second case, let $E_n$ be a countable sequence of countable or uncountable sets, then $\bigcup_{n\in \mathbb N}E_n$ would be uncountable, select any $E_N$ such that it's uncountable, then $E_N^C$ would be countable, hence we derive
+
+$$
+\begin{aligned}
+    \left(
+        \bigcup_{n\in \mathbb N}E_n
+    \right)^C = \bigcap_{n\in \mathbb N}E_n^C \subseteq E_N^C, 
+\end{aligned}
+$$
+
+which is countable, the union would still be in the algebra. Therefore, this indeed forms a sigma-algebra. 
+
 
 #### **Lemma 73 | Disjoint Sets from the Algebra**
 
+> Let $E_i$ be a countable collection of elements from the algebra $\mathcal A$, then there eixsts another countable list of $F_i$ that are all disjoint such that $\bigcup_{n\in \mathbb N}E_n = \bigcup_{n\in \mathbb N}F_n$. 
 
+**Proof**
+
+Define $E^\cup_n = \bigcup_{i = 1}^n E_i$, Then consider $F_1 = E_1, F_{n + 1} = E_{n + 1}\setminus E_n^\cup$, then an simple inductive argument will establish the that $\bigcup_{i = 1}^n F_i = E^\cup_n$, with $\{F_i\}_{i = 1}^n$ disjoint, taking the limit, we then had the closure that for any countable sequence of $E_i$, we have the $F_i$ being disjoint and their union are equaled to each other. 
+
+**Remarks**:
+
+Apply this theorem on an algebra of meausrable sets, then we have an disjoin set of measurable sets that partition any countable union of measurable sets. 
+
+
+#### **Proposition 74 | Measuring with Disjoint Sets**
+> Let $A\subseteq \mathbb R$ be arbitrary, let $\{E_i\}_{i=1}^n$ be a set of disjoint measurable sets, then
+> $$
+> \begin{aligned}
+>     m^*\left(
+>         A\cap \left(
+>             \bigcup_{n\in \mathbb N} E_n
+>         \right)
+>     \right) = \sum_{ n\in \mathbb N}^{} m^*(A\cap E_n). 
+> \end{aligned}
+> $$
 
