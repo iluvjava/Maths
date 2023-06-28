@@ -1,9 +1,10 @@
 Probability with a bit of measure theory in it. 
+You would need to read [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis/Measure%20Theory%20Basics.md) for a brief introduction about the construct behind probability spaces. 
 
 ---
 ### **Intro**
 
-Probability spaces are profound and they are complicated in the sene that they aggregates several realms of mathematics. I think it was designed to restrict the type of events that can be asked for a probability measure, and they helps with the definition of a random variable and the computations associated with random variables. 
+Probability spaces are profound and they are complicated in the sense that they aggregates several realms of mathematics. I think it was designed to restrict the type of events that can be asked for a probability measure, and they helps with the definition of a random variable and the computations associated with random variables, more specifically, Lesbesgue integral. 
 
 **Reference**
 
