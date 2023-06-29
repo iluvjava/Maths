@@ -135,19 +135,17 @@ Let $\alpha = \frac{1}{\lambda}$, we now assume that $\lambda \neq 0$, then:
 $$
 \begin{aligned}
     \Vert (1 - \alpha^{-1})u + \alpha^{-1}v\Vert^2 &= 
-    (1 - \alpha^{-1})\Vert u\Vert^2 - (\alpha - 1)\alpha^{-2}
-    \Vert u - v\Vert^2 + \alpha^{-1}\Vert v\Vert^2
-    \\
-    \alpha \Vert (1 - \alpha^{-1})u + \alpha^{-1}v\Vert^2 &= 
-    \alpha(1 - \alpha^{-1})\Vert u\Vert^2 - (\alpha - 1)\alpha \Vert u - v\Vert^2
-    + \Vert v\Vert^2, 
+    (1 - \alpha^{-1})\Vert u\Vert^2 - (1- \alpha^{-1})\alpha^{-1}
+    \Vert u - v\Vert^2 + \alpha^{-1}\Vert v\Vert^2. 
 \end{aligned}
 $$
 
-and we called that the augmented version of the cute formula. 
+and we called that the augmented version of the cute formula. Which is, kinda unecessary. 
 
 
-**References**: Lemma 1.8, In professor's Heinz's Notes
+**References**: 
+
+Lemma 1.8, In professor's Heinz's Notes
 
 
 

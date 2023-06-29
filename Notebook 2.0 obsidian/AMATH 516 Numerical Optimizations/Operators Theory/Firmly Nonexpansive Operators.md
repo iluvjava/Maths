@@ -4,7 +4,7 @@
 ### **Non-Expansive Operators**
 Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
-**Definition: nonexpansive operators**
+**Definition | nonexpansive operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
 > 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 
@@ -25,14 +25,16 @@ Non-expansive is a subset of operator that has a Lipschitz constant of one. Ther
 Immediately observe that (i) => (ii) => (iii), (i) => (iv). 
 
 
-**References**: Chapter 4 of the Mono Operator book from Heinz. 
+**References**: 
+
+Chapter 4 of the Mono Operator book from Heinz. 
 
 ---
 ### **Convex Fixed Point Set**
 
 Nonexpansive operator has a fixed point set that is convex. 
 
-**Definition: Fixed Point Set**
+**Definition | Fixed Point Set**
 > When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
@@ -45,7 +47,7 @@ Nonexpansive operator has a fixed point set that is convex.
 > \end{aligned}
 > $$
 
-**Theorem: The set of fixed point for an non-expansive operator is a closed and convex set**
+**Theorem | The set of fixed point for an non-expansive operator is a closed and convex set**
 
 > Assuming that $F$ is non-expansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
 
@@ -67,7 +69,9 @@ $$
 
 and the last line suggest that the point $Fz$ must lies on the line segment $[0, 1]$ because the equality of the triangle inequality is satisfied from the last expression, for all value of $\theta\in [0, 1]$, implying the fact that the set $X$ has to be a convex set. 
 
-**References**: [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]], The Primer on Monotone Operator Paper. 
+**References**: 
+
+[Primer on Monotone Operators](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf), The Primer on Monotone Operator Paper. 
 
 
 ---
@@ -143,7 +147,7 @@ Some properties of these operators are stated.
 
 We use matrices to characterize these properties for some examples. 
 
-**Example: Nonexpansive Matrices**
+**Example | Nonexpansive Matrices**
 
 The nonexpansiveness is for self mapping $D\mapsto X$  where $D\subseteq X$, therefore a matrix that is nonexpansive will have to be a square matrix first. 
 
@@ -161,7 +165,7 @@ $$
 
 Therefore, a matrix is nonexpansive then its eignvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
 
-**Example: Firmly Nonexpansive Matrices**
+**Example | Firmly Nonexpansive Matrices**
 
 Starting directly from the nonexpansiveness of the matrix, we let $x - y = v$ for simplicity then:
 
@@ -181,9 +185,9 @@ $$
 \end{aligned}
 $$
 
-This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. 
+This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. Take note that a Skew Hermitian matrix satisfy the above condition. 
 
-**Example: Projection Operators is Firmly Nonexpansive**: 
+**Example | Projection Operators is Firmly Nonexpansive**: 
 
 The projection operator for a convex set is a firmly nonexpansive operator. We denote $P$ to be the projection onto some convex set, $C$, recall [[../CVX Geometry/Convex Sets Projection Obtuse Angle Theorem]], the projection point can be characterized as: 
 
@@ -224,7 +228,7 @@ which is the third equivalence characterizations of a firmly nonexpansive operat
 
 If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Firmly nonexpansive, then it has to be a projector onto a convex set. The converse of the statement is also true. 
 
-**Example: Proximal Mapping is Firmly Nonexpansive**
+**Example | Proximal Mapping is Firmly Nonexpansive**
 
 Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. Recall from [[../Non-Smooth Calculus/Subgradient Central Hub]] that the subgradient operator is a monotone operator. Now we make the claim: 
 
