@@ -344,3 +344,6 @@ making use of the Dirac delta, and representing it in a more... savage way. And 
 What are the conditions on the gradient $\nabla f(x_0)$ at a point such that it's sufficient to say that the function is also Frechet Differentiable at that point $x_0$? 
 
 There really should be one, I would say that, if there exists a continuous Hessian at that point, then it must be Frechet Differentiable, but is this the weakest condition we can get? I am just curious tho, I ask it here so if people have time they can tell me where to look.
+
+
+> For millennials, humanity stumbles in the darkness, learning slowly. And then the God said: "Let there be statistical inference." 200 years later, science rules and humanity enlightened. A surreal glows of knowledge and science shines through the darkness. And then, the God retired. We had quantified our beliefs and related them to observations through rigorous mathematics. 

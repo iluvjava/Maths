@@ -133,9 +133,9 @@ $$
 
 The above condition is equivalent to $E_1\cup E_2$ being a measurable set. 
 
-#### **Cor 68.5 | Pair-wise set diff Presevers Measuribility**
+#### **Cor 68.5 | Pair-wise set diff Preserves Measurability**
 
-> If $E_1, E_2$ are both measurable sets, then $E_1\setminus E_2$ is also a measurable set. Because $E_1^C, E_2$ are measurable, so $E_1^C \cup E_2$ measurable, so $(E_1^C \cup E_2)^C$ measurable, so $E_1\cap E_2^C$ measruable which is equivalent to $E_1\setminus E_2$. 
+> If $E_1, E_2$ are both measurable sets, then $E_1\setminus E_2$ is also a measurable set. Because $E_1^C, E_2$ are measurable, so $E_1^C \cup E_2$ measurable, so $(E_1^C \cup E_2)^C$ measurable, so $E_1\cap E_2^C$ measurable which is equivalent to $E_1\setminus E_2$. 
 
 The claim already proved itself. 
 
@@ -145,7 +145,7 @@ The claim already proved itself.
 
 **Remarks**
 
-To continue further, we want to discuss the magic of disjoint set, and to do that, we need to construct the idea of a closure. Because, as far as what we showned here, we didn't show that the complement of a measurable set is still a measurable set.
+To continue further, we want to discuss the magic of disjoint set, and to do that, we need to construct the idea of a closure. Because, as far as what we showed here, we didn't show that the complement of a measurable set is still a measurable set.
 
 ---
 ### **Algebra, Sigma Algebra**
@@ -159,10 +159,10 @@ Using 2 of the basic rules above, we can propagate measurable sets. The definiti
 
 **Observations**
 
-The trivial algebra that is based on any set $\Omega$, has $\mathcal = \{\Omega, \emptyset\}$ as the trivial algebra, and $2^{\Omega}$ being another algebra. By the theorems proved before for measurable sets, the set of all measurable sets on $\mathbb R$ forms an algebra, but not all aglebra based on $\mathbb R$ is consisted of measurable set. As illterated before, $2^{\mathbb R}$ can't be measured, but, $2^{\mathbb R}$ is an example of an algebra as well. 
+The trivial algebra that is based on any set $\Omega$, has $\mathcal = \{\Omega, \emptyset\}$ as the trivial algebra, and $2^{\Omega}$ being another algebra. By the theorems proved before for measurable sets, the set of all measurable sets on $\mathbb R$ forms an algebra, but not all aglebra based on $\mathbb R$ is consisted of measurable set. As said before, $2^{\mathbb R}$ can't be measured, but, $2^{\mathbb R}$ is an example of an algebra as well. 
 
 **Remarks**
-The term semi-aglebra is a type of alegebra where it's not closed under complement. 
+The term semi-aglebra is a type of algebra where it's not closed under complement. 
 
 
 #### **Example | XOR Countable Sets Sigma Algebra**
@@ -250,7 +250,7 @@ $$
 And therefore, for finite amount of disjoin set, it can be used to spread the measure of any sets (Not just measurable iet seems). 
 
 
-#### **Thm 75 | Collection of Measureble sets Form Sigma Algebra**
+#### **Thm 75 | Collection of Measurable sets Form Sigma Algebra**
 > The collection $\mathcal M$ we called earlier, can form a sigma-algebra. It's the set of all measurable sets of $\mathbb R$. 
 
 **Observations**
@@ -292,24 +292,24 @@ $$
 $$
 
 
-which is the equivalent condition for $E$ being a masurable set. 
+which is the equivalent condition for $E$ being a measurable set. 
 
 
 ---
 ### **Intervals, And Borel Sigma-Algebra on Reals**
 There are many measurable sets on $\mathbb R$, but I think people like talking about intervals. 
 
-#### **Prop 75 | Open Intervals Are Measurables**
+#### **Prop 75 | Open Intervals Are Measurable**
 > for all $a \in  \mathbb R$, the set $(a, \infty)$ is a measurable set. 
 
 **Proof**
 
-Let $A\subseteq \mathbb R$ be arbitrary. Split it using our interval we make $A-1 = A\cap (a, +\infty)$ and $A_2 = A\cap (-\infty, a]$, if $m^*(A) = \infty$, then it's trivial to show that $(a, \infty)$ is a measurable set. Other wise, consider $\{I_n\}_{n\in \mathbb N}$ be a collection of interval covering $A$, by the definition of the outer measure we have: $\sum_{ n \in \mathbb N}l(I_n) > m^*(A) + \epsilon$ for all $\epsilon > 0$, with $A\subseteq \bigcup_{n \in \mathbb N}I_n$. For each of the covering inverval $I_n$, split it and make interval (either empty, of an interval, which can be clopen...) $J_n  = I_n \cap (a, +\infty), K_n = I_n \cap (-\infty, a)$. Then
+Let $A\subseteq \mathbb R$ be arbitrary. Split it using our interval we make $A-1 = A\cap (a, +\infty)$ and $A_2 = A\cap (-\infty, a]$, if $m^*(A) = \infty$, then it's trivial to show that $(a, \infty)$ is a measurable set. Other wise, consider $\{I_n\}_{n\in \mathbb N}$ be a collection of interval covering $A$, by the definition of the outer measure we have: $\sum_{ n \in \mathbb N}l(I_n) > m^*(A) + \epsilon$ for all $\epsilon > 0$, with $A\subseteq \bigcup_{n \in \mathbb N}I_n$. For each of the covering invertal $I_n$, split it and make interval (either empty, of an interval, which can be clopen...) $J_n  = I_n \cap (a, +\infty), K_n = I_n \cap (-\infty, a)$. Then
 
 1. $A_1 = \bigcup_{n\in \mathbb B}J_n, A_2 = \bigcup_{n\in \mathbb N}K_n$. 
 2. $l(I_n) = l(J_n) + l(K_n)$. 
 
-By subadditivity of the measure
+By sub-additivity of the measure
 
 $$
 \begin{aligned}
@@ -348,15 +348,13 @@ $$
 $$
 
 
-therefore, by sigma-algebra, $(-\infty, b)$ is also a measurable set, usng more sigma-algebra we see
+therefore, by sigma-algebra, $(-\infty, b)$ is also a measurable set, using more sigma-algebra we see
 
 1. Open interval is also measurable because $(a, +\infty)\cap (-\infty, b) = (a,b)$ for all $a < b$. 
-2. Closed interval is measurable too due $[a, b] = ((-\infty, a)\cup(b, \infty))^C$ for all $a \le b$, and this would als inclde singleton. 
+2. Closed interval is measurable too due $[a, b] = ((-\infty, a)\cup(b, \infty))^C$ for all $a \le b$, and this would alos include singleton. 
 3. $(-\infty, a) = (a, +\infty)^C$, is also measurable. 
 4. $[b, +\infty) = (-\infty, b)^C$, is also measurable. 
-5. Using 3, 4, it's not hard to see that all bounded clopen intervals are also measureble. 
-
-
+5. Using 3, 4, it's not hard to see that all bounded clopen intervals are also measurable. 
 
 ---
 ### **Borel-Sigma Algebra**
@@ -372,7 +370,7 @@ The borel sigma-algebra is a subset of all measurable sets on $\mathbb R$. To ge
 >     \mathcal B = \bigcap_{\mathcal A \in \mathcal S} \mathcal A, 
 > \end{aligned}
 > $$
-> denotes the smallest sigma-aglebra containing all of the open susbets of $\mathbb R$, this is the *Borel-sigma-algebra*. 
+> denotes the smallest sigma-aglebra containing all of the open subsets of $\mathbb R$, this is the *Borel-sigma-algebra*. 
 
 
 This tutorial ends here. I wrote it intend to understand the high ground of probability spaces. 

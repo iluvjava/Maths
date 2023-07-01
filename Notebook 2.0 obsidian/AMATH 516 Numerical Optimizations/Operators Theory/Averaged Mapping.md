@@ -48,13 +48,13 @@ Heinz's course notes, theorem 22.11.
 
 This type of non-expansive operator converges under fixed point iterations. 
 
-**Theorem: Averaged Operator has Fixed Point Convergence**
+**Theorem | Averaged Operator has Fixed Point Convergence**
 
 > Let $F$ be an averaged operator, then the fixed point iterations, defined as $x^{(k + 1)} = Fx^{(k)}$ monotonically converges to a point on the fixed point set of the operator, provided that the fixed point set $X$ exists. Additionally, the rate of convergence is $\mathcal O(1/\sqrt{k})$. 
 
 **Proof**
 
-From [[../Background/Euclidean Jensen's Equality]]: 
+Recall from [Euclidean Jensen's Equality](../Background/Euclidean%20Jensen's%20Equality.md): 
 
 $$
 \begin{aligned}
@@ -122,7 +122,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, the squared norm of the residuals, $Gx^{(j)} - x^{(j)}$ will converges sub-linearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$. 
+Therefore, the squared norm of the residuals, The minimum norm of all iterations of $Gx^{(j)} - x^{(j)}$ will converge sub-linearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$. 
 
 
 **Remarks**

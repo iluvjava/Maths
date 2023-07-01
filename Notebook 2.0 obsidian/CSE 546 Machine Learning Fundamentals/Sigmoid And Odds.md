@@ -33,7 +33,7 @@ This is the portion of people who have cancer and have the specific set of sympt
 
 **Ok, the problem is**: It's very unlikely that this very specific set of symptoms occurred in our data set, because the symptoms covers a wide variety and span a very huge space. 
 
-Hence, we can't setimate it using Bayes Theorem alone. 
+Hence, we can't estimate it using Bayes Theorem alone. 
 
 
 ----

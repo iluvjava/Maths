@@ -14,7 +14,9 @@ $A\in \mathbb{M}_n(\mathbb{C})$, let $A$ be a **n by n Hermitian Matrix** over t
 > \lambda_i \le \mu_i \le \lambda_{i + n -m}
 > $$
 
-The eigenvalues of matrix $H$ are interlaced between the eigenvalues of the matrix $A$. Proof is skipped. 
+The eigenvalues of matrix $H$ are interlaced between the eigenvalues of the matrix $A$.
+
+**Proof is skipped**
 
 ---
 ### **Comments**

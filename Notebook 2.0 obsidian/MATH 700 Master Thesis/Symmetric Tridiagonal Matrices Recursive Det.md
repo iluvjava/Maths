@@ -75,13 +75,13 @@ And the claim has been proved.
 ---
 ### **Sturm Sequence**
 
-The sequence is the determinant to a series of sub matrices, in this case for example, the sequence is: $|T_1|, |T_2|, \cdots |T_{k - 1}|, |T_k|$. 
+The sequence is the determinant to a series of sub matrices, in this case for example, the sequence is: $|T_1|, |T_2|, \cdots |T_{k - 1}|, |T_k|$. This is potentially useful because each time it changes sign, it's indicated that there is one negative eigenvalues, and the number of times it change signs told us exact how many eigenvalues are less than zero! 
 
-This is potentially useful because each time it changes sign, it's indicated that there is one negative eigenvalues, and the number of times it change signs told us exact how many eigenvlues are less than zero. 
+**Reference**: Trefenthen's Numerical Linear Algebra book, page 228, in the section talking about the bisection methods for locating eigenvalues of a tridiagonal matrix. 
 
 
 ---
-### **Recrusive Characteristic Polynomials**
+### **Recursive Characteristic Polynomials**
 
 It's not hard to see that the recurrence can also be applied to any shifting of the characteristic polynomial of $T_k$, let $p^{(k)}(x) = \text{det}(T_k - xI)$, then the following relations are true: 
 

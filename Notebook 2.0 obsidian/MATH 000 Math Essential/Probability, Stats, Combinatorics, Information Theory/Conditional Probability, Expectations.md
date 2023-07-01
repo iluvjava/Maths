@@ -1,4 +1,6 @@
-[[Bayes Theorem]], [[Expectations of Random Variables without Sigma Algebra]], [[PDFs, PMFs]]
+- [[Bayes Theorem]], 
+- [[Expectations of Random Variables without Sigma Algebra]], 
+- [[PDFs, PMFs]]
 
 
 ---
@@ -17,7 +19,7 @@ $$
 \begin{aligned}
     \mathbb{P}\left(A\cap B\right)
     &= 
-    \mathbb{P}\left(A|B\right)\mathbb{P}\left(B\right)
+    \mathbb{P}\left(A|B\right)\mathbb{P}\left(B\right) = \mathbb P(B|A) \mathbb P(A), \text{Bayes Theorem}
     \\
     \mathbb{P}\left(A|B\right) &= 
     \frac{\mathbb{P}
