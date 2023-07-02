@@ -141,8 +141,46 @@ $$
 \end{aligned}
 $$
 
-With this assumption, we derive the probability of observing some specific set of labels, given the probability of observing some specific set of atrributes. 
+With this assumption, we derive the probability of observing some specific set of labels, given the probability of observing some specific set of atrributes. We now denote the events of observing spcific labels given a list of specific attributes. 
+Define $L_i' = \{L_i = l_i\}, A_i' = \{A_i = a_i\}$, then the conditional probability of observing some specific labels given some specific attributes can be computed by
 
+$$
+\begin{aligned}
+    P\left(
+        \left.\bigcap_{i = 1}^m L_i' \right| 
+        \bigcap_{i=1}^n A_i'
+    \right)
+    &= 
+    \frac{\prod_{i = 1}^m \mathbb P
+    \left(
+        L_i' \cap \left(
+            \bigcap_{j = 1}A_j'
+        \right)
+    \right)}{
+        P\left(
+            \bigcap_{i = 1}^n A_i'
+        \right)
+    }
+    \\
+    &= 
+    \frac{\left(
+        \prod_{i = 1}^m 
+        P\left(
+            \left.\bigcap^{n}_{j = 1}A'_j \right| 
+            L_i'
+        \right)
+        P(L_i')
+    \right)}{
+        \prod_{i = 1}^{n} P(A_i')
+    }
+    \\
+    &= 
+    \frac{\prod_{i = 1}^{m} \prod_{j = 1}^{n}
+        P(A_j'| L_i')P(L_i')}{\prod_{i = 1}^{n} P(A_i')}, 
+\end{aligned}
+$$
+
+Where, the conditional probablity has been decomposed into estimating the probablity of $P(A'_j | L_i), P(A_j'), P(L_i')$, which is much easier since they are all higher probability events to observe the conditioning on any specific combinations of labels, or attributes, and this can be directly gotten in the data, as long as, we had at least, observed occurences of data between at least, each pair of $a_j, l_i$. 
 
 
 ---
