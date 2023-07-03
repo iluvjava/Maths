@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]], 
+[Introduction to Operators for Optimizations](Introduction%20to%20Operators%20for%20Optimizations.md), 
 
 ---
 ### **Non-Expansive Operators**
@@ -84,10 +84,11 @@ A set of expressions are equivalent for all firmly nonexpansive operators.
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
 > 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
-> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. (An Important Characteristics for Sure)
+> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. (An Important Characteristics for Sure). The norm is any norm. 
 > 4. $2T - I$ is nonexpansive. 
 
 **Observations**: 
+
 (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
 
 **Proof: $(1)\iff (3)$** 
@@ -148,7 +149,7 @@ Some properties of these operators are stated.
 
 We use matrices to characterize these properties for some examples. 
 
-**Example | Nonexpansive Matrices**
+#### **Example | Nonexpansive Matrices**
 
 The nonexpansiveness is for self mapping $D\mapsto X$  where $D\subseteq X$, therefore a matrix that is nonexpansive will have to be a square matrix first. 
 
@@ -166,7 +167,7 @@ $$
 
 Therefore, a matrix is nonexpansive then its eignvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
 
-**Example | Firmly Nonexpansive Matrices**
+#### **Example | Firmly Nonexpansive Matrices**
 
 Starting directly from the nonexpansiveness of the matrix, we let $x - y = v$ for simplicity then:
 
@@ -188,9 +189,9 @@ $$
 
 This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. Take note that a Skew Hermitian matrix satisfy the above condition. 
 
-**Example | Projection Operators is Firmly Nonexpansive**: 
+#### **Example | Projection Operators is Firmly Nonexpansive**: 
 
-The projection operator for a convex set is a firmly nonexpansive operator. We denote $P$ to be the projection onto some convex set, $C$, recall [[../CVX Geometry/Convex Sets Projection Obtuse Angle Theorem]], the projection point can be characterized as: 
+The projection operator for a convex set is a firmly nonexpansive operator. We denote $P$ to be the projection onto some convex set, $C$, recall [Convex Sets Projection Obtuse Angle Theorem](../CVX%20Geometry/Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md), the projection point can be characterized as: 
 
 $$
 \begin{aligned}
@@ -229,9 +230,9 @@ which is the third equivalence characterizations of a firmly nonexpansive operat
 
 If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Firmly nonexpansive, then it has to be a projector onto a convex set. The converse of the statement is also true. 
 
-**Example | Proximal Mapping is Firmly Nonexpansive**
+#### **Example | Proximal Mapping is Firmly Nonexpansive**
 
-Due to it requires too many facts about this operator, visit [[../Proximal Operator/Moreau Envelope and Proximal Mapping]] for a coverage of this example. Recall from [[../Non-Smooth Calculus/Subgradient Central Hub]] that the subgradient operator is a monotone operator. Now we make the claim: 
+Due to it requires too many facts about this operator, visit [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md) for a coverage of this example. Recall from [Subgradient Central Hub](../Non-Smooth%20Calculus/Subgradient%20Central%20Hub.md) that the subgradient operator is a monotone operator. Now we make the claim: 
 
 > let $f$ be convex, proper, and lower semi-continuous, we have the proximal operator of $f$, denoted as $P_f, I - P_f$ being firmly non-expansive operators. 
 
@@ -261,4 +262,7 @@ which is the definition for firmly nonexpansive operators.
 This is strictly better that just a Lipschitz-1 operator. 
 
 
+#### **Example | Convex Lipschitz Gradient**
+
+The convex function having a global Lipschitz gradient has its gradient operator as a firmly-non-expansive operator. See [L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information, a lot of things a involved for this particular type of characterizations. 
 
