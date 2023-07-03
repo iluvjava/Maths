@@ -12,7 +12,7 @@ The set of all natural numbers, $\N$ has a concept of cardinality to it, a measu
 
 To set is the same cardinality of there exists a bijection between the 2 sets. The set $A$ would be larger than $B$, if there exists $f: A\mapsto B$ such that $f$ is a surjective function, then it would mean $A$ has a cardinality that is larger than or equal to $B$. 
 
-**Theorem 1: $|\N| = |\Z|$**
+**Theorem 1 | $|\N| = |\Z|$**
 
 The $f$, a bijection between $\N$ and $\Z$ is: 
 
@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-**Theorem 2: $|\mathbb Q_{++}| \le |\N|$**
+**Theorem 2 | $|\mathbb Q_{++}| \le |\N|$**
 
 > The cardinality of the natural number is bigger than or equal to the cardinality of the positive rationals. 
 

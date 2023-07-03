@@ -3,9 +3,15 @@ This note is a note about notes.
 
 # **Organizations**
 
-
 ---
 # **Important Tasks about the Notes**
+
+---
+# **Tasks to Do about the Notes**
+
+Something to do when we have time. 
+
+- Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
 - Fill up [Functional Analysis Central Hub](MATH%20601%20Functional%20Analysis/Functional%20Analysis%20Central%20Hub.md) for wrapping up elementary materials in this course. The following topics needs to be updated and filled up:
 	- [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
 	- [Uniform Mapping, Open Mapping](MATH%20601%20Functional%20Analysis/Uniform%20Mapping,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
@@ -15,13 +21,6 @@ This note is a note about notes.
 		- Improve cringe examples for the Sturm Liouville systems example. 
 		- Improve the parts of the orthogonality proofs using the notes on your ipad and from professor Erics 319. 
 - Add theorem 4.17 in the course notes for math 328, regarding the existence of an orthogonal basis for every Hilbert space, as a consequence of the Zorn's Lemma. 
-
----
-# **Tasks to Do about the Notes**
-
-Something to do when we have time. 
-
-- Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
 
 ---
 # **Tasks that Probably Will Never Get Done**

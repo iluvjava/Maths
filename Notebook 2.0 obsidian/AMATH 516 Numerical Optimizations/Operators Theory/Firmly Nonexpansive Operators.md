@@ -4,7 +4,7 @@
 ### **Non-Expansive Operators**
 Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
-**Definition | nonexpansive operators**
+**Def | nonexpansive operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
 > 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 
@@ -34,7 +34,7 @@ Chapter 4 of the Mono Operator book from Heinz.
 
 Nonexpansive operator has a fixed point set that is convex. 
 
-**Definition | Fixed Point Set**
+**Def | Fixed Point Set**
 > When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
@@ -47,7 +47,7 @@ Nonexpansive operator has a fixed point set that is convex.
 > \end{aligned}
 > $$
 
-**Theorem | The set of fixed point for an non-expansive operator is a closed and convex set**
+**Thm | The set of fixed point for an non-expansive operator is a closed and convex set**
 
 > Assuming that $F$ is non-expansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
 
@@ -79,15 +79,16 @@ and the last line suggest that the point $Fz$ must lies on the line segment $[0,
 
 A set of expressions are equivalent for all firmly nonexpansive operators. 
 
-**Theorem: Equivalences of Nonexpansiveness**
+**Thm | Equivalences of Nonexpansiveness**
 
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
 > 2. $I - T$ is firmly nonexpansive (direct from the symmetry of the definition)
-> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. 
+> 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. (An Important Characteristics for Sure)
 > 4. $2T - I$ is nonexpansive. 
 
-**Observations**: (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
+**Observations**: 
+(1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
 
 **Proof: $(1)\iff (3)$** 
 
@@ -137,7 +138,7 @@ Theorem 22.3, Professor Heinz's Lecture notes
 
 Some properties of these operators are stated. 
 
-**Theorem: Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
+**Thm | Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
 > Let $T_1, T_2$ be firmly nonexpansive operator, then $T_1\circ T_2$, denoted as $T_1T_2$ for short, is also a firmly nonexpansive operator. 
 
 **References**: Heinz's class, proposition 22.8. 
@@ -258,3 +259,6 @@ which is the definition for firmly nonexpansive operators.
 **Remarks**: 
 
 This is strictly better that just a Lipschitz-1 operator. 
+
+
+

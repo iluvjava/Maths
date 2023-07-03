@@ -18,7 +18,7 @@ Lipschitz gradient characterize change of the objective value of the functions w
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, and it has a gradient that Lipschitz continuous with constant $L >0$  when
 > $$
-> \Vert \nabla f(x) - \nabla f(y)\Vert_\star\le L \Vert y - x\Vert, \forall x, y\in \mathbb E. 
+> \Vert \nabla f(x) - \nabla f(y)\Vert_\star\le L \Vert y - x\Vert, \;\forall x, y\in \mathbb E. 
 > $$
 
 The statement is defined for any norm $\Vert \cdot\Vert$ in $\mathbb E$ and it is very strong, and here is a list of conditions that are implied by it: 
@@ -27,8 +27,8 @@ The statement is defined for any norm $\Vert \cdot\Vert$ in $\mathbb E$ and it i
 
 With the additional assumption that $f$ is a *convex function*, we can obtain a stronger version of monotonicity of gradients by giving it a lower bound to it. This is called the co-coercivity of gradient. 
 
-3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, co-coersive property, which is stronger than Lipscthiz continuity of the gradient. 
-4. $f(x) + \langle \nabla f(x), y - x\rangle + (2\beta)^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2 \le f(y)$. 
+3. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, co-coersive property, which is stronger than Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md). 
+4. $f(x) + \langle \nabla f(x), y - x\rangle + (2 L)^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y)$. 
 5. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le \beta \Vert x - y\Vert^2$, monotone gradient and bounded, direct from condition (2) when convexity of $f$ is assumed. 
 
 Assuming that $f$ has a second derivative, a Hessian matrix, then 
@@ -42,13 +42,13 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 **Proposition 1 | 1, 2 Are Implied by Lipschitz Gradient**
 
 > Globally Lipchitz Gradient $\nabla f$ implies condition 1, 2 are true. Mathematically, let \[0\] denote the statement that the gradient is globally lipscthiz continuous, let \[?\] denotes the item number for the above listed conditions, then I wish to say that
-> * $[0]\implies [1]$ 
-> * $[0]\implies [2]$
+> * $[0]\implies [2]$ 
+> * $[0]\implies [1]$
 
 **Proposition 2 | Equivalences Under Convexity**
 
 > By assuming that $f$ is convex, and it has Lipchitz gradient, condition 3 is implied (by condition 1, and 2), and condition 3 is a equivalent to $f$ having a globally Lipschitz gradient. hence all conditions are equivalent under the assumption that $f$ is a convex function. I wish that say that, which is also what the proof resemble, is the facts that 
-> * $[0]\wedge\text{cvs}\implies [3]$
+> * $[0]\wedge\text{cvs}\implies [3]$, $[4]\implies [3]$. 
 > * $[3]\implies [0]$
 
 **Open Question 3 | Equivalence of 1, 2 Requires Extra Ingredient**
@@ -62,7 +62,7 @@ When the condition for convexity is not present, smoothness and Lipschitz gradie
 ---
 ### **Proof of Proposition 1**
 
-We prove that Lipchitz gradient implies smoothness (condition 1) and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwart and $x, y\in \mathbb E$: 
+We prove that Lipchitz gradient implies smoothness (condition 1) and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwartz and $x, y\in \mathbb E$: 
 
 $$
 \begin{aligned}
@@ -77,7 +77,7 @@ $$
 \end{aligned}
 $$
 
-#### **Showing \[0\] => \[1\]**
+#### **Showing \[0\] => \[2\]**
 
 Let $\phi(t) = x - t(y - x)$ for $t \in [0, 1]$, then we consider the fundamental theorem of calculus: 
 $$
@@ -90,29 +90,32 @@ $$
     f(y) = f(x) + \int_{0}^1\langle \nabla f(\phi(t)), y - x\rangle dt
     \\
     \implies & 
-    \left|
+    \\[-2.2em]
+    & \begin{aligned}
+            \left|
         f(y) - f(x) - \langle \nabla f(x), y -x\rangle
-    \right| = 
-    \left|
-        \int_{0}^{1}\langle \nabla f(\phi(t)) - \nabla f(x), y - x\rangle dt
-    \right|
-    \\
-    & = \left|
+        \right| &= 
+        \left|
+            \int_{0}^{1}\langle \nabla f(\phi(t)) - \nabla f(x), y - x\rangle dt
+        \right|
+        \\
+        & = \left|
+            \int_{0}^{1} 
+                t^{-1}\langle \nabla f(\phi(t)) - \nabla f(x), \phi(t) - x \rangle
+            dt
+        \right|
+        \\
+        & \le 
         \int_{0}^{1} 
-            t^{-1}\langle \nabla f(\phi(t)) - \nabla f(x), \phi(t) - x \rangle
-        dt
-    \right|
-    \\
-    & \le 
-    \int_{0}^{1} 
-        \frac{L}{t}\Vert \phi(t) - x\Vert^2
-    dt = \int_{0}^{1} 
-        Lt\Vert y - x\Vert^2
-    dt = \frac{L}{2}\Vert y - x\Vert^2 .
+            \frac{L}{t}\Vert \phi(t) - x\Vert^2
+        dt = \int_{0}^{1} 
+            Lt\Vert y - x\Vert^2
+        dt = \frac{L}{2}\Vert y - x\Vert^2 .
+    \end{aligned}
 \end{aligned}
 $$
 
-#### **Showing \[0\] => \[2\]**
+#### **Showing \[0\] => \[1\]**
 
 From the third line to the 5th line, we have the inequality for the smoothness condition (Condition (2)). There are 2 parts of the inequality for condition (1), we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness (condition (2))
 $$
@@ -187,7 +190,7 @@ $$
     = & f(y) - f(x) - \langle \nabla f(x), y - x\rangle. 
 \end{aligned}
 $$
-By a similar token but in the case of $f_y$, we obtain
+By a similar token but in the case of $f_y$, we obtain condition (4)
 $$
 \begin{aligned}
     \frac{1}{2L}\Vert \nabla f_y(x)\Vert_\star^2
@@ -205,7 +208,7 @@ $$
     \langle \nabla f(y) - \nabla f(x), y -x\rangle.
 \end{aligned}
 $$
-For the above equation, using Cauchy inequality (Or Holder's Inequality in this case due to the use of the Dual norm.) yields Globally Lipschitz gradient. Condition 3 alone is enough to show Lipschitz gradient conditions. 
+For the above equation, using Cauchy inequality (Or Holder's Inequality in this case due to the use of the Dual norm). yields Globally Lipschitz gradient. Condition (3) alone is enough to show Lipschitz gradient conditions (condition (0)). 
 
 **Remarks**
 

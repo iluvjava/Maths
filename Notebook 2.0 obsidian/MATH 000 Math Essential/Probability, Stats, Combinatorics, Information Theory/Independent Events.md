@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-Probability Independence, covariance. And we also derive the Naive Bayes classifier based on the assumptions of independent events. Some of these materials will be based on [here](http://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf), notes from UW math 394. Throughout this file, we use $P$ to denote the probability measure of events. 
+Probability Independence, is extremely important. We also derive the Naive Bayes classifier based on the assumptions of independent events. Some of these materials will be based on [here](http://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf), notes from UW math 394. Throughout this file, we use $P$ to denote the probability measure of events. 
 
 ### **Def | Independence Between 2 Events**
 > 2 events, $A,B$ are independent, denoted using $A\perp B$ means that $P(A\cap B) =  P(A) P(B)$. 
@@ -15,7 +15,7 @@ Observe that this generates a lot of consequences when combined with the results
 
 1. $A\perp B$ means $P(A|B) = P(A\cap B)/P(B) = P(A)P(B)/P(B)$. 
 2. By a similar token from Bayes theorem, $A\perp B$ means $P(A\cap B|C) = P(A|C)P(B|C)$
-3. We may also make a multi-class Bayes theorem, let $C\perp D$, consider: 
+3. We may also make a simple multi-class Bayes theorem, let $C\perp D$, consider: 
     $$
     \begin{aligned}
         P(A|C\cap D) &= \frac{P(C\cap D|A)P(A)}{P(C)P(D)}
@@ -44,7 +44,7 @@ Obviously, this is a much stronger condition than pair-wise independent. For cou
 see [here](http://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf) for more. Additionally, $A\perp B, A\perp C\not\implies (A\perp B\cup C) \vee (A\perp B\cap C)$ is true in general. 
 
 
-#### **Thm | Sufficient Conditions for Mutual Indepedent Events**
+#### **Thm | Sufficient Conditions for Mutual Independent Events**
 
 > Let $\{E_i\}_{i=1}^n$ denotes a sequence of events, then the set of events are mutually independent if and only if we have 
 > $$
@@ -180,11 +180,13 @@ $$
 \end{aligned}
 $$
 
-Where, the conditional probablity has been decomposed into estimating the probablity of $P(A'_j | L_i), P(A_j'), P(L_i')$, which is much easier since they are all higher probability events to observe the conditioning on any specific combinations of labels, or attributes, and this can be directly gotten in the data, as long as, we had at least, observed occurences of data between at least, each pair of $a_j, l_i$. 
+Where, the conditional probability has been decomposed into estimating the probability of $P(A'_j | L_i), P(A_j'), P(L_i')$, which is much easier since they are all higher probability events to observe the conditioning on any specific combinations of labels, or attributes, and this can be directly gotten in the data, as long as, we had at least, observed occurrences of data between at least, each pair of $a_j, l_i$. 
 
 
 ---
-### **Covariances and Independent**
+### **Independent Random Variables**
+
+
 
 
 

@@ -5,7 +5,7 @@
 
 Average operator is non-expansive. Firmly non-expansive operators are a subset of averaged operators. 
 
-**Definition | Averaged Operator**
+**Def-1 | Averaged Operator**
 
 > Let $F$ be an averaged operator if $F := (1 - \theta) I + \theta G$ where $\theta \in (0, 1)$, and $G$ has to be a non-expansive operator. Consequently, the fixed point of $F$ will have to be a fixed point of $G$ as well. 
 
@@ -18,7 +18,7 @@ Average operator is non-expansive. Firmly non-expansive operators are a subset o
 
 We show that a similar equivalence characterization for the firmly non-expansive also exists for the alpha-averaged operators. 
 
-**Theorem | Averaged Operator is Weaker than Non-expansive**
+**Thm-1 | Averaged Operator is Weaker than Non-expansive**
 > Let $T: X\mapsto X$, let $\alpha \in (0, 1)$, then $T$ is $\alpha$-averaged if and only if for all $x, y\in X$ we have: 
 > $$
 > \begin{aligned}
@@ -29,12 +29,53 @@ We show that a similar equivalence characterization for the firmly non-expansive
 
 **Observations**
 
-Setting $\alpha = 1/2$ in the above formula, we recover the definition for a firmly non-expansive operator $T$. This is strictly weaker because changing the $\alpha$ value will produce formulas that doesn't correspond to firmly non-expansive operators. 
+Setting $\alpha = 1/2$ in the above formula, we recover the definition for a firmly non-expansive operator $T$. This is strictly weaker because changing the $\alpha$ value will produce formulas that doesn't correspond to firmly non-expansive operators. So we have $\text{Firstly Nexp}\subset \text{Avg} \subset \text{Nexp}$. 
 
 **Proof**: 
 
-Let $N$ be a firmly non-expansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. Write $u = x - y$ and $v = Tx - Ty$. 
+Let $N$ be a firmly non-expansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. Write $u = x - y$ and $v = Tx - Ty$. If, $N$ is a firmly non-expansive operator, consider the following chain of equivalences
 
+$$
+\begin{aligned}
+    \alpha(\Vert u\Vert^2 - \Vert Nx - Ny\Vert^2) \ge 0 \text{ By } N \text{ non-expansive}
+    \\
+    \alpha(\Vert u\Vert - \Vert 
+        \alpha^{-1}Tx + (1 - \alpha^{-1})x - 
+        \alpha^{-1}Ty - (1 + \alpha^{-1})y
+    \Vert^2)
+    &\ge 0
+    \\
+    \alpha(
+        \Vert u\Vert^2 - \Vert 
+            \alpha^{-1} (Tx - Ty) + (1 - \alpha^{-1})(x - y)
+        \Vert^2
+    )&\ge 0
+    \\
+    \alpha(
+        \Vert u\Vert^2 - \Vert \alpha^{-1} v + (1 - \alpha^{-1})u\Vert^2
+    ) &\ge 0
+    \\
+    
+    \alpha(
+        \textcolor{red}{\Vert u\Vert^2} - 
+        (
+            \alpha^{-1}\Vert v\Vert^2 + \textcolor{red}{(1 - \alpha^{-1}) \Vert u\Vert^2}
+            - 
+            \alpha^{-1}(1 - \alpha^{-1}) \Vert u - v\Vert^2
+        )
+    ) &\ge 0 \quad \text{ by cute formula}
+    \\
+    \alpha(
+        -\alpha^{-1}\Vert v\Vert + \textcolor{red}{\alpha^{-1}\Vert u\Vert^2}
+        - \alpha^{-1}(1 - \alpha^{-1})\Vert u - v\Vert^2
+    ) &\ge 0
+    \\
+    \Vert u\Vert^2 &\ge 
+    \Vert v\Vert^2 - (1 - \alpha^{-1}) \Vert u - v\Vert^2, 
+\end{aligned}
+$$
+
+and observe that, on the last line, we recover the characterizations for an averaged operator. And notice that all inequalities above are equivalent, hence, doing the proof in reverse means that the characterizations imply the averaged operator is the convex combination of an identity and a non-expansive operator. The cute formula refers to [Euclidean Jensen's Equality](../Background/Euclidean%20Jensen's%20Equality.md). 
 
 
 
@@ -48,7 +89,7 @@ Heinz's course notes, theorem 22.11.
 
 This type of non-expansive operator converges under fixed point iterations. 
 
-**Theorem | Averaged Operator has Fixed Point Convergence**
+**Thm-2 | Averaged Operator has Fixed Point Convergence**
 
 > Let $F$ be an averaged operator, then the fixed point iterations, defined as $x^{(k + 1)} = Fx^{(k)}$ monotonically converges to a point on the fixed point set of the operator, provided that the fixed point set $X$ exists. Additionally, the rate of convergence is $\mathcal O(1/\sqrt{k})$. 
 
