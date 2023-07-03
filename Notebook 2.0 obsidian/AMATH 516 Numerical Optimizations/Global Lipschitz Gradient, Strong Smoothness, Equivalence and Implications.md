@@ -32,7 +32,7 @@ We give it as a fact that, the gradient of a function is from the dual Spaces, b
 4. $f(x) + \langle \nabla f(x), y - x\rangle + (2 L)^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y)$. 
 5. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, 
     - co-coersive property, which is stronger than Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
-6. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le (L/2) \Vert x - y\Vert^2$, 
+6. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, 
     - Monotone gradient and bounded, direct from condition (3) when convexity of $f$ is assumed.  
 7. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
 1.  $\nabla^2 f(x)\preceq LI$. 
@@ -50,14 +50,19 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 #### **Proposition 2 | Equivalences Under Convexity**
 
 > By assuming that $f$ is convex, and it has Lipchitz gradient, we have 
-> * $[1]\implies [4]\wedge\textcolor{red}{[6]} \implies [5]\implies [0]$, 
+> * $[1]\implies [4]$
+> * $[1]\implies [3]$
+> * $[3]\implies [6]$
+> * $[4]\implies [5]$
+> * $[5]\implies [0]$
 > 
-> By prposition 1, $[0]\implies [1]$, hence condition (1), (4), (5) are all equivalent to condition (0), under convexity assumption for $f$. 
+> By prposition 1, $[0]\implies [1]$, the longest directed walk in the graph relation graph yields the biggest group of equivalences, which is $[0], [1], [4], [5]$. 
 
 #### **Proposition 3 | More Equivalances Under Convexity**
 > By assuming that $f$ is convex, with a $L$ Lipschitz gradient, we have
-> * $[2]\implies [3]\implies [6]\implies [7] \implies [3]$. 
-
+> * $[6]\implies [7] \implies [3]$ 
+> 
+> 
 **Open Question | Equivalence of 1, 2 Requires Extra Ingredient**
 
 > I am not sure when (1), (2) are equivalent if convexity is not used. However, for a function that has a well defined Hessian via second derivatives, it's equivalent. This means that counter examples if exist, might not have a continuous Hessian, and it shouldn't be convex. 
@@ -81,7 +86,7 @@ $$
 \end{aligned}
 $$
 
-Which is a nice try but the constant is a bit loose, we then consider a different proof. 
+Which means that the Hessian has bounded variation. Sorry for the digression. 
 
 #### **Showing \[0\] => \[2\]**
 
@@ -163,7 +168,7 @@ To prove the upper bound, we simply substitute $x^+$ to the smoothness condition
 ---
 ### **Proof of Proposition 2**
 
-Firstly, we want to show $[1]\implies [4]$. Assume that $f$ is a convex function, consider defining 2 functions of the form
+Firstly, we want to show $[1]\implies [3] \wedge [4]$. Assume that $f$ is a convex function, consider defining 2 functions of the form
 $$
 \begin{aligned}
     & f_x(z) := f(z) - \langle \nabla f(x), z\rangle
@@ -172,7 +177,7 @@ $$
     \nabla_z f_x(z) = \nabla f(z) - \nabla f(x)
     \\
     \implies 
-    & \arg\inf_z f_x(z) = x
+    & \arg\inf_z f_x(z) = \{x\}
     \\
     & f_y(z):= f(z) - \langle \nabla f(y), z\rangle
     \\
@@ -180,7 +185,7 @@ $$
     & \nabla_zf_y(z) = \nabla f(z) - \nabla f(y)
     \\
     \implies 
-    & \arg\inf_z f_y(z) = y.
+    & \arg\inf_z f_y(z) = \{y\}.
 \end{aligned}
 $$
 
@@ -188,33 +193,44 @@ The function $f_x, f_y$ has a unique minimizer, which can be solved by setting t
 
 $$
 \begin{aligned}
-    \frac{1}{2L}\Vert\nabla f_x(y) \Vert_\star^2 \le& f_x(y) - f_x(x)
+    \frac{1}{2L}\Vert\nabla f_x(y) \Vert_\star^2 
+    \le & f_x(y) - f_x(x) \le \frac{L}{2}\Vert x - y\Vert^2
     \\
-    \frac{1}{2L}\Vert \nabla f(y) - \nabla f(x)\Vert_\star^2 \le &
-    f(y) - f(x) - \langle \nabla f(x), z\rangle + \langle \nabla f(x), x\rangle
+    \frac{1}{2L}\Vert \nabla f(y) - \nabla f(x)\Vert_\star^2 
+    \le &
+    f(y) - f(x) - \langle \nabla f(x), y\rangle + \langle \nabla f(x), x\rangle
+    \le
+    \frac{L}{2}\Vert x - y\Vert^2
     \\
-    = & f(y) - f(x) - \langle \nabla f(x), y - x\rangle. 
+    \frac{1}{2L}\Vert\nabla f_x(y) \Vert_\star^2 
+    \le & f(y) - f(x) - \langle \nabla f(x), y - x\rangle
+    \le \frac{L}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
-By a similar token but in the case of $f_y$, we obtain condition (4) (So we showed $[1]\implies [4]$), 
+By a similar token but in the case of $f_y$, we obtain condition (4) (So we showed $[1]\implies [3]\wedge [4]$), 
 $$
 \begin{aligned}
     \frac{1}{2L}\Vert \nabla f_y(x)\Vert_\star^2
-    \le& f_y(x) - f_y(y)
+    \le& f_y(x) - f_y(y) 
+    \le 
+    \frac{L}{2}\Vert x - y\Vert^2
     \\
     \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2 
-    \le& f(x) - f(y) - \langle \nabla f(y), x- y\rangle. 
+    \le& f(x) - f(y) - \langle \nabla f(y), x- y\rangle
+    \le 
+    \frac{L}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
-Summing the 2 inequalities we obtain the co-coercive property of the gradient (condition (5)) (So we showed $[4]\implies [5]$): 
+Summing the 2 inequalities we obtain the co-coercive property of the gradient (condition (5)) (So we showed $[3]\implies [6], [4]\implies [5]$): 
 
 $$
 \begin{aligned}
     \frac{1}{L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2 \le 
-    \langle \nabla f(y) - \nabla f(x), y -x\rangle.
+    \langle \nabla f(y) - \nabla f(x), y -x\rangle 
+    \le \frac{L}{2}\Vert x - y\Vert^2.
 \end{aligned}
 $$
-For the above equation, using Cauchy inequality (Or Holder's Inequality in this case due to the use of the Dual norm). yields Globally Lipschitz gradient. Condition (5) alone is enough to show Lipschitz gradient conditions (condition (0)).
+For the above equation, using Cauchy inequality (Or Holder's Inequality in this case due to the use of the Dual norm) yields Globally Lipschitz gradient. Condition (5) alone is enough to show Lipschitz gradient conditions (condition (0)).
 
 $$
 \begin{aligned}
