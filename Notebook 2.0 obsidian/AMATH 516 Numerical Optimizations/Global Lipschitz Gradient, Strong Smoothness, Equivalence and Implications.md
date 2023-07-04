@@ -47,12 +47,12 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 > * $[0]\implies [1]$,
 > * $[1]\implies [2]$.
 > 
-> So, \[0\] is stronger than \[1\], which stronger than condition \[2\].
+> So, \[0\] could be is stronger than \[1\], which could be stronger than condition \[2\].
 
 
 #### **Proposition 2 | Convexity Equivalences Group 1**
 > Under convexity assumption for $f$, we have 
-> * $[4]\implies [3]$. 
+> * $[4]\implies [3]$, this particular one is not using convexity assumption.
 > * $[4]\wedge [3]\implies [5]$
 > * $[5]\implies [6]$
 > * $[6]\implies [0]$ 
@@ -70,12 +70,14 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 > By assuming that $f$ is convex, with a $L$ Lipschitz gradient, the conditions $[0], [1], [2], [3],[4], [5], [6], [7], [8]$ are all equivalent conditions. This is directly concluded from previous 3 proposition. 
 
 
+#### **An Open Question**
+
 
 ---
 ### **Proof of Proposition 1**
 
 #### **Showing \[0\]=> \[2\]**
-We prove that Lipchitz gradient implies smoothness (condition 1) and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwartz and $x, y\in \mathbb E$: 
+We prove that Lipchitz gradient implies smoothness and conditions 2. Let $f$ be a function whose gradient is globally Lipschitz. Let's start it with Cauchy Schwartz and $x, y\in \mathbb E$: 
 
 $$
 \begin{aligned}
@@ -90,7 +92,7 @@ $$
 \end{aligned}
 $$
 
-Which means that the Hessian has bounded variation. Sorry for the digression. 
+Which means that the Hessian has bounded variation.
 
 #### **Showing \[0\] => \[1\]**
 
@@ -133,12 +135,16 @@ $$
 #### **Showing \[1\] => \[2\]**
 Swap the $x, y$ in $[1]$, then add them together to get \[2\]. 
 
+**Remark**
+
+The converse should also be true without additional assumption. Rearranging the inequality should arraive at $\pm f(x) + \frac{L}{2}\Vert x\Vert^2$ is a convex function, then using convex subgradient to prove this. 
+
 ---
 ### **Proof of Proposition 2**
 
-#### **Showing \[4\] => \[3\] Under Convexity**
+#### **Showing \[4\] => \[3\]**
 
-From the third line to the 5th line, we have the inequality for the 2-side smoothness. There are 2 parts of the inequalities, with convexity assumption, we only need the upper inequality, we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness: 
+From the third line to the 5th line, we have the inequality for the 2-side smoothness. There are 2 parts of the inequalities, we only need the upper inequality, we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness: 
 $$
 \begin{aligned}
     f(y) &\le f(x) + \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y - x\Vert^2
@@ -186,13 +192,13 @@ $\blacksquare$
 
 **Remarks**
 
-Next, observe that the assumption can be weaken. For a convex function $f$, it can be the case that the minimizer doesn't exists, but the minimum exists, meaning that $f_+ = \inf_{x\in \mathbb E} f(x)$ is possible, then $f(x) - f_+ \ge \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2$ is a possible claim. If the minimum of the function also doesn't exist, then there is no claim to be made here. 
+Next, observe that the assumption can be weaken. For a convex function $f$, it can be the case that the minimizer doesn't exists, but the minimum exists, meaning that $f_+ = \inf_{x\in \mathbb E} f(x)$ is possible, then $f(x) - f_+ \ge \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2$ is a possible claim. If the minimum of the function also doesn't exist, then there is no claim to be made here. Additionally, I don't think convexity is used to connected these 2 statement together, this co-coersiveness condition could be relatively weak. 
 
 
 #### **Showing \[4\] AND \[3\] => \[5\]**
 
 **Claim | About Bregman Divergences**
-> Define $D_f(y | x) = f(y) - f(x) - \langle \nabla f(x), y -x\rangle$, then define $h(z) = D_f(z|x)$, then the function $h$ is convex, and it's also smooth, satisfying condition $[4]$. 
+> Define $D_f(y | x) = f(y) - f(x) - \langle \nabla f(x), y -x\rangle$, then define $h(z) = D_f(z|x)$, then the function $h$ is convex, and it's also L-smooth, satisfying condition $[4]$. 
 
 **Proof of the claim**
 

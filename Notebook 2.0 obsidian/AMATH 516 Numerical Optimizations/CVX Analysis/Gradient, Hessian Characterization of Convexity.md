@@ -14,6 +14,9 @@ prereq: [[Introduction to Convexity]]
 
 With the **additional assumption that the function is $C2$ smooth**, then we can say that: $\nabla^2 f(x)$ is a **Positive Semi-Definite Matrix**. 
 
+**References**: 
+Chapter 2 of Yurii Nesterov's "Lectures in Convex Optimizations" textbook contains these information. 
+
 **Remarks:**
 * Intuitive Understanding:
 	1. If a function is convex, then the line connecting 2 points will always lies above the function, this characteristics implies the **(2.)** condition in the above list. 
