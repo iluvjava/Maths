@@ -138,7 +138,7 @@ Swap the $x, y$ in $[1]$, then add them together to get \[2\].
 
 #### **Showing \[4\] => \[3\] Under Convexity**
 
-From the third line to the 5th line, we have the inequality for the smoothness condition (Condition (2)). There are 2 parts of the inequality for condition (1), we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness (condition (2))
+From the third line to the 5th line, we have the inequality for the 2-side smoothness. There are 2 parts of the inequalities, with convexity assumption, we only need the upper inequality, we start with the lower bound $\frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+)$ by taking the infimum on strong smoothness: 
 $$
 \begin{aligned}
     f(y) &\le f(x) + \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y - x\Vert^2
