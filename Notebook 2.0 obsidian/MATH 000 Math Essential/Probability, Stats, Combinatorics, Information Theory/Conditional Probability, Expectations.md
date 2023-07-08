@@ -5,10 +5,7 @@
 
 ---
 ### **Intro**
-
-A conditional probability is a way of measuring the probability of an event given some specific information. A more technical definition involves the use of sigma algebra. Ignoring the technicality, we use $\mathbb P(A|B)$ to denote that probability of event $A$ given event $B$. We start off with the following intuitive reasoning: 
-1. $\mathbb P(A|B) = 1$ if $A$ and $B$ is the same event. 
-2. $\mathbb P(A|B) = 0$ if $A = B^C$. Meaning that $A$ and $B$ are mutually exclusive events. 
+ 
 
 In this file, we highlight the computational approach for probability/expected values for random variables with PDFs without any mentions of probability theories. This is made with the intention to bring in probability without too much mathematical backgrounds. At the end we look over some of the classical, non-trivial applications of the conditional expectations. Material presented here worth the weight of a Junior/sophomore Probability Theory class in a decent university. 
 
@@ -17,11 +14,12 @@ In this file, we highlight the computational approach for probability/expected v
 Suppose that 2 events $A, B$ are from the same probability space, then condition probability can be computed by: 
 $$
 \begin{aligned}
-    \mathbb{P}\left(A\cap B\right)
-    &= 
+    & \mathbb{P}\left(A\cap B\right)
+    = 
     \mathbb{P}\left(A|B\right)\mathbb{P}\left(B\right) = \mathbb P(B|A) \mathbb P(A), \text{Bayes Theorem}
     \\
-    \mathbb{P}\left(A|B\right) &= 
+    & 
+    \mathbb{P}\left(A|B\right) = 
     \frac{\mathbb{P}
     \left(A \cap B\right)}
     {
@@ -31,10 +29,20 @@ $$
 $$
 
 **Remarks**: 
+
 This is not a definition, but rather a way we can compute the conditional probability for some specific events. 
 
 **Terminology**: 
+
 A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of that posterior is $P(B)$. 
+
+**Properties of Conditional Probability**
+
+1. If $A$,$B$ disjoin, then $P(A|B) = P(B|A) = 0$
+2. If $A\subseteq B$, then $P(A|B) = P(A)/P(B)$
+3. If $A\supseteq B$, then $P(A|B) = 1$. 
+4. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
+
 
 ---
 ### **Disjoint Sums of Conditional Probability**
@@ -43,7 +51,7 @@ A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of
 > 
 > $$
 > \begin{aligned}
->     \mathbb P(A) &= \mathbb P(A|B)\mathbb P(B) + \mathbb P(A|B)\mathbb P(B^C). 
+>     \mathbb P(A) &= \mathbb P(A|B)\mathbb P(B) + \mathbb P(A|B^C)\mathbb P(B^C). 
 > \end{aligned}
 > $$
 
@@ -55,7 +63,7 @@ $$
     \\
     =&
     \frac{\mathbb P(A\cap B)}{\mathbb P(B)} \mathbb P(B) + 
-    \frac{\mathbb P(A\cap B^C)}{\mathbb P(B^C)}
+    \frac{\mathbb P(A\cap B^C)}{\mathbb P(B^C)} \mathbb P(A\cap B^C)
     \\
     =&
     \mathbb P(A \cap B) + \mathbb P(A\cap B^C)

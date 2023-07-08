@@ -149,61 +149,64 @@ Kreyszig Functional analysis textbook, example 1.5-2.
 > The $l^2$ sequence space is complete. The $l^2$ sequence space is the sequence squared gives a convergence series. 
 
 **Proof**
-Let $(y^{(m)})_{m\in \mathbb N}$ be a Cauchy sequence in $l^2$, from the definition of the Cauchy sequence we have: 
+Let $(x^{n})_{n\in \mathbb N}$ be a Cauchy sequence in the space. We also defined the norm of the infinite sequence $\Vert x^{(n)}\Vert = \sum_{i = 1}^{\infty} (x_i^{(n)})^2$, which is indeed a norm (The reader should verify). By definition of a Cauchy sequence in the metric space we have
 
 $$
 \begin{aligned}
-    &
-    \forall \epsilon > 0 \; \exists N_\epsilon: (
-        \min(k, l) \ge N_\epsilon \implies 
-        \Vert y^{(k)} - y^{(l)}\Vert \le \epsilon
-    )
-    \\
-    & 
-    \begin{aligned}
-        \implies 
-        & \Vert y^{(k)} - y^{(l)}\Vert^2 \le \epsilon^2
-        \\
-        \iff
-        & \sum_{i = 1}^{\infty} (y^{(k)}_i - y^{(l)}_i)^2 \le \epsilon^2
-        \\
-        \implies 
-        &
-        (y^{(k)}_i - y^{(l)}_i)^2 \le \epsilon^2 \; \forall i \in \mathbb N
-    \end{aligned}
-    \\
-    \implies 
-    & 
-    \forall \epsilon > 0 \; 
-    \exists N_\epsilon: (
-        \min(k, l) \ge N_\epsilon \implies 
-        \forall i \in \mathbb N: 
-        (y^{(k)}_i - y^{(l)}_i) \le \epsilon
+    & \forall \epsilon > 0 \; \exists N_\epsilon \in \mathbb N : 
+    ( 
+        m > n > N_\epsilon \implies 
+        \Vert x^{(n)} - x^{(m)}\Vert \le \epsilon
     )
     \\
     \implies 
-    & \lim_{n\rightarrow \infty} \forall i \in \mathbb N :
-    y_i^{(m)} = y_i \in \mathbb R \quad \text{ completeness of reals}, 
+    & |\Vert x^{(m)}\Vert - \Vert x^{(n)}\Vert| \le \Vert x^{(m)} - x^{(n)}\Vert \le \epsilon
+    \\
+    \implies &
+    (\Vert x^{(n)}\Vert)_{n\in \mathbb N} \text{ is Cauchy in } \mathbb R, 
 \end{aligned}
 $$
 
-The limit exists for each of the element for $y^{(m)}$. From Cauchy of $(y^{(m)})_{m\in \mathbb N}$. Using all these limit we make the limit vector $y = (y_1, y_2, \cdots)$. Therefore we have $\lim_{l\rightarrow\infty} \Vert y^{(k)} - y^{(l)}\Vert = \Vert y^{(k)} - y\Vert = 0$ by the point-wise limit for each element. Next, we show that the limit vector is in $l^2$, it's squared summable. To see that we have: 
+and therefore, the norm of the sequence is going to be bounded with a limit. Next, my claim is that the limit of the sequence also exists. There are 2 implications from the fact that the sequence is Cauchy
 
 $$
 \begin{aligned}
-    &
-    \left|
-        \Vert x^{(k)}\Vert - \Vert x^{(l)}\Vert
-    \right| \le \Vert x^{(k)} - x^{(l)}\Vert \le \epsilon
+    & \sqrt{\sum_{i = 1}^{\infty} 
+        \left(
+            x^{(m)}_i - x^{(n)}_i
+        \right)^2
+    }\le \epsilon \implies 
+    \text{series converge }\forall m > n > N_\epsilon
     \\
-    \implies & 
-    \Vert x^{(k)}\Vert \text{ is Cauchy in } \mathbb R
+    \implies & \forall i \in \mathbb N
+    : |x_i^{(m)} + x_i^{(n)}| \le \sqrt{\epsilon}, (x^{(n)}_i)_{n\in \mathbb N} \text{ Is Cauchy in }\mathbb R
     \\
-    \iff  & (\Vert x^{(n)} \Vert)_{n\in \mathbb N} \text{ converges}. 
+    \implies &
+    \forall i \in \mathbb N: 
+    \lim_{n\rightarrow\infty}x^{(n)}_i = \bar x_i \text{ by completeness of }\mathbb R, 
 \end{aligned}
 $$
 
-Therefore, the norm of the limit of the sequence is indeed bounded in norm. Therefore, the space of $l^2$ is a complete space. Here we made us of a property of norm explained in [Banach Space Introduction](Banach%20Space%20Introduction.md). 
+Using these 2 facts, one is the convergence of the series, and the other is the point wise convergence for each element, we then know
+
+$$
+\begin{aligned}
+    \lim_{K\rightarrow \infty}\lim_{m\rightarrow \infty}\sqrt{\sum_{i = 1}^{K} \left(
+        x^{(m)}_i - x_i^{(n)}
+    \right)^2} &\le \epsilon
+    \\
+    \lim_{K\rightarrow \infty}
+    \sqrt{\sum_{i = 1}^{K} \left(
+        \bar x_i - x_i^{(n)}
+    \right)^2} &\le \epsilon
+    \\
+    \Vert x^{(n)} - \bar x\Vert 
+    &\le \epsilon,  \forall n \ge N_\epsilon, 
+\end{aligned}
+$$
+
+By $\epsilon$ being arbitrarly small, we have that $\lim_{n\rightarrow \infty} \Vert x^{(n)} - \bar x\Vert = 0$, by metric space convergence, it would mean $\lim_{n\rightarrow \infty} x^{(n)} = \bar x$. 
+
 
 **Remarks**
 

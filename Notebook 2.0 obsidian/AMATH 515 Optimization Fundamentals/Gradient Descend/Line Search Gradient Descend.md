@@ -2,7 +2,7 @@
 
 ---
 
-### Intro
+### **Intro**
 
 Inspired by Newton's method's way of looking for the optimal descend direction using the Positive Definite Hessian, we are now going to see how to use that idea for Gradient Descend algorithm. 
 

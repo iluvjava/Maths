@@ -6,18 +6,18 @@
 
 We try to remake a previous passage [[Gradient Descend, Smoothness]] but go more in depth into the related ideas, because this smoothness conditions goes beyond what is employed in the proof for the smooth gradient, it's also used in envelope method, such as the forward backwards envelope for non-smooth added with smooth objectives. 
 
-**Characterization of optimality**: 
+**Optimality, Assumptions, Results**: 
 
-1. $\Vert x - x^+\Vert$
-2. $f(x) - f(x^+)$ 
-3. $\Vert \nabla f(x)\Vert$ when we have smooth function. 
+1. Minimizer exists, measure with  $\Vert x - x^+\Vert$
+2. Minimum exists, measure with $f(x) - f(x^+)$ 
+3. $\Vert \nabla f(x)\Vert$, when we have smooth function. 
 
-The first 2 is hard and requires stronger assumptions than the last one. However, the last one might be dependent on other assumption about the algorithm to show that it converges to something, to make matter worse, the gradient alone cannot perfectly characterize optimality, indicating that algorithm that decreases (3.) must have edge cases where it fails. 
+The optimality conditions are listed in order of how strong they are. However, the last one might be dependent on other assumption about the algorithm to show that it converges to something, to make matter worse, the gradient alone cannot perfectly characterize optimality, indicating that algorithm that decreases (3.) must have edge cases where it fails. It's a bad measure of optimality globally.
 
 ---
 ### **The Smooth Descend Frameworks**
 
-The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $\le \beta$, then: 
+The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $\le \beta$, then the smoothness characterizations provides
 
 $$
 \begin{aligned}
@@ -30,7 +30,7 @@ $$
 \end{aligned}
 $$
 
-We didn't assume convexity, the weaker consequence from 2 sided smoothness includes concave function that are non-smooth, therefore we are going to assume that $f$ at least has a gradient, but the gradient of the function might not be Lipzchitz (And it's implied from 2-sided smoothness that function will always have gradient, a singled value mapping), and we only need the upper bound. The function $m_x(y)$ is called the upper bounding function. Now we try looking for the minimum of the upper bounding function: 
+We didn't assume convexity, the weaker consequence from 2 sided smoothness includes concave function that are non-smooth, therefore we are going to assume that $f$ at least has a gradient, but the gradient of the function might not be Lipschitz (And it's implied from 2-sided smoothness that function will always have gradient, a singled value mapping), and we only need the upper bound. The function $m_x(y)$ is called the upper bounding function. Now we try looking for the minimum of the upper bounding function: 
 
 $$
 \begin{aligned}
@@ -102,7 +102,7 @@ Additionally, the gradient doesn't classify local optimality nor global optimali
 ---
 ### **Smooth Descend with Convexity**
 
-**Theorem: Convexity Implies Faster Sub-linear Rate:**
+**Theorem | Convexity Implies Faster Sub-linear Rate:**
 
 > When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sublinear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
 
@@ -178,7 +178,7 @@ which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$
 
 PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. 
 
-**Definition: Polyak Inequality**
+**Definition | Polyak Inequality**
 
 > A function $f$ has a minimizer $f^+$ and it's differentiable. Then it satisfies PL inequality with a PL constant of $u > 0$ if 
 > 
@@ -186,7 +186,7 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
 
-**Theorem: Linear Convergence Under PL** 
+**Theorem | Linear Convergence Under PL** 
 
 > If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
 

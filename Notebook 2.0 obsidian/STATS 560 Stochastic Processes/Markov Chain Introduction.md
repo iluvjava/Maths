@@ -5,7 +5,7 @@
 
 We introduce the discrete case of the Markov Property. 
 
-**Definition: Markov Chain**
+**Definition | Markov Chain**
 
 > $X_n$ is a sequence of random variables indexed by $n$, it's a markov chain when we have: 
 > 
@@ -43,6 +43,11 @@ it's unintuitive, but remember the conditional probability is swapped in the exp
 **Remarks**:
 
 The matrix's row sum is equal to one because left multiplying $e_i$  gives the $i$ th row of the matrix and it's a discrete distribution on $S$ by definitions of probability. 
+
+
+---
+### **Chapman Kolmogorov**
+
 
 ---
 ### **Strong Markov Property**

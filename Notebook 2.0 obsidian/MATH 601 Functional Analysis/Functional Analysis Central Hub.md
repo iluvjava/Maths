@@ -113,5 +113,5 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 	- Make use the Zorn's lemma. 
 - [Baire Category, Metric Topologies](Baire%20Category,%20Metric%20Topologies.md)
 	- Attempts to show how much of the topologies can be translated from the Reals to any metric space. Showing that if the metric space 
-- [Uniform Mapping, Open Mapping](Uniform%20Mapping,%20Open%20Mapping.md)
+- [Uniform Boundedness, Open Mapping](Uniform%20Boundedness,%20Open%20Mapping.md)
 	- ?????

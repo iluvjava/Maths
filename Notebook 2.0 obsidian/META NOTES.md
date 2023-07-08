@@ -14,7 +14,7 @@ Something to do when we have time.
 - Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
 - Fill up [Functional Analysis Central Hub](MATH%20601%20Functional%20Analysis/Functional%20Analysis%20Central%20Hub.md) for wrapping up elementary materials in this course. The following topics needs to be updated and filled up:
 	- [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
-	- [Uniform Mapping, Open Mapping](MATH%20601%20Functional%20Analysis/Uniform%20Mapping,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
+	- [Uniform Boundedness, Open Mapping](MATH%20601%20Functional%20Analysis/Uniform%20Boundedness,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
 - Fill up a sequence of notes that describes the idea of adjoint operators in Hilbert spaces, and their applications. Files included are: 
 	- [Sturm Liouville Theory](AMATH%20503%20Intro%20to%20Partial%20Differential%20Equations/Sturm%20Liouville%20Theory.md)
 		- Cite the theories for the S.L Adjoin BVP theories from Sturm Liouville. 

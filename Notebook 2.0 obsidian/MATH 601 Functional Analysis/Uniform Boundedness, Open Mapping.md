@@ -1,4 +1,4 @@
-[Baire Category, Metric Topologies](Baire%20Category,%20Metric%20Topologies.md)
+- [Baire Category, Metric Topologies](Baire%20Category,%20Metric%20Topologies.md)
 
 
 ---
