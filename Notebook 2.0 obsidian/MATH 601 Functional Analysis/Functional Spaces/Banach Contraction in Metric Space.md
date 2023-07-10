@@ -108,7 +108,7 @@ $$
     0\le \lim_{m\rightarrow \infty} d(x, Tx) 
     &\le 
     \lim_{m\rightarrow \infty} d(x, x_m) + 
-    d(x_{m - 1}, x) = 0 \quad \text{by }x_m\rightarrow x
+    \alpha d(x_{m - 1}, x) = 0 \quad \text{by }x_m\rightarrow x
     \\
     d(x, Tx) &= 0.
 \end{aligned}

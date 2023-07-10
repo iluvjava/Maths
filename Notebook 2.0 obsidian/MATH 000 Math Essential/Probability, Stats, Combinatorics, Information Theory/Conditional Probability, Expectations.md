@@ -41,7 +41,8 @@ A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of
 1. If $A$,$B$ disjoin, then $P(A|B) = P(B|A) = 0$
 2. If $A\subseteq B$, then $P(A|B) = P(A)/P(B)$
 3. If $A\supseteq B$, then $P(A|B) = 1$. 
-4. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
+4. If, $P(B) = 1$, then $P(A|B) = P(A\cap B)$. 
+5. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
 
 
 ---
@@ -212,9 +213,9 @@ We illustrate the use of conditional expectation and probability using some simp
 
 **Exponential, Uniform Draws**:
 
-> $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{unif}(0, 1)$ until The first $T$ (The number of draws) time $Y$ is less than $X$. Find the expected value of $T$. 
+> Sample one $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{unif}(0, 1)$ repeatedly until the first $T$ (The number of draws, an R.V) time $Y$ is less than $X$. Find the expected value of $T$. 
 
-**Analysis:** 
+**Answer:** 
 
 1. Given $X = x$, $T$ has distribution $X(1 - X)^{T-1}$, a geometric distribution with $p = X$. 
 2. That above geometric distribution has expectation of $\frac{1}{X}$, where $X$ is an random variable. 

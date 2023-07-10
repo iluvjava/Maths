@@ -97,6 +97,7 @@ Let's $(x^{(n)})_{n\in \N}$ be a sequence in $l^\infty$.
 2. Show that, the sequences of pointwise limit, denoted as $\bar x = (\bar x_1, \bar x_2, \cdots)$ is in $l^\infty$. 
 
 **Proof**
+
 We start with: 
 $$
 \begin{aligned}
