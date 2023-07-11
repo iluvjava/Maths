@@ -1,25 +1,40 @@
+---
+alias: Random variables basics with measure theory
+
+---
 [[Probability Spaces]]
 
 
 ---
 ### **Intro**
 
-A Real Random Variable is a function that maps from the $\Omega$ to $\mathbb{R}$. Assume that random variable $X$ is associated with probability spaces $(\Omega, \mathcal{F}, P)$ then $X:\Omega \mapsto \mathbb{R}$ is a Random Variable (R.V.) when: 
+We note that random variable exists in abstract measurable space, here we defined the usual type of random variable that maps from some type of Sigma-algebra for the event space to the real line. 
 
+#### **Def | A Real Random Variables**
+> A Real Random Variable $X$ is a function that maps from the $\Omega$ to $\mathbb{R}$. Assume that random variable $X$ is associated with probability spaces $(\Omega, \mathcal{F}, P)$ then $X:\Omega \mapsto \mathbb{R}$ is a real Random Variable (R.V.) when: 
 > $$
 > \forall B\in \text{Borel}(\mathbb{R}): X^{-1}(B) \in \mathcal{F}.
 > $$
-
-If the for all elements in the Borel set on reals, the pre-image of the R.V is in the event spaces, then this mapping is called a random variable. And the pre-image is defined as: 
-
+> 
+> To test whether a function $\Omega \mapsto \mathbb R$ is a real random variable when its pre-image for all $B\in \text{Borel}(\mathbb R)$, 
+> 
 > $$
 > X^{-1}(B) = \{\omega \in \Omega: X(w) \in B\},
 > $$
+> is a measurable set, by the probability measure $P$. 
 
-And it should be a measurable set under $P$. 
+
+**Remarks**
+
+I am unaware of a simple counter example of a random variable whose pre-image is not a measurable set. 
+
+
+**References**
+
+Rick Durrett's, Probability, theory and applications. 
 
 ---
-### **Example | Indicator Function**
+### **Example-1 | Indicator Function**
 
 The indicator function is defined on $A\in \mathcal{F}$: 
 

@@ -10,8 +10,8 @@ We introduce what we want for a measure. Why such a concept of measure can not b
 
 A measure constructed on the set $\mathbb R$, is original thought to be a mapping from $2^{\mathbb R}$ the power set of $\mathbb R$. It's meant to measure how big a subset is, relative $\mathbb R$. To do that, there are several things that would, make intuitive sense for a measure to posses. Let $m$ denote the measure that we are about, then we would want: 
 1. If we measure the interval (open, closed, or clopen), in the form of $(a, b)$, we should measure out its length, giving us $b - a$. 
-2. If $E_n$ gives a sequence of measureable, disjoint subsets of $\mathbb R$, so that $m(\cup_{n\in \mathbb N}E_n) = \sum_{n \in \mathbb N }^{}m(E_n)$. 
-3. If have the measure for the set $E\subseteq \mathbb R$, then translatingit will preserve the size on the line, hence, $m(E + x) = m(E)$ for all $x \in  \mathbb R$. 
+2. If $E_n$ gives a sequence of measurable, disjoint subsets of $\mathbb R$, so that $m(\cup_{n\in \mathbb N}E_n) = \sum_{n \in \mathbb N }^{}m(E_n)$. (Sub additivity)
+3. If have the measure for the set $E\subseteq \mathbb R$, then translating it will preserve the size on the line, hence, $m(E + x) = m(E)$ for all $x \in  \mathbb R$. (Translational Invariance)
 
 
 #### **The fact that it's Impossible**
@@ -329,7 +329,7 @@ Taking the limit on $\epsilon$ yield the results of measurability of $(a, \infty
 
 **Remarks**
 
-We discuss the consequence of the above theorem. Since open set of the form $(a, \infty)$ is measureble, and all measurable set form a sigma algebra, we can claim different type of intervals on $\mathbb R$ also to be measurable sets, consider 
+We discuss the consequence of the above theorem. Since open set of the form $(a, \infty)$ is measurable, and all measurable set form a sigma algebra, we can claim different type of intervals on $\mathbb R$ also to be measurable sets, consider 
 
 $$
 \begin{aligned}
@@ -374,3 +374,7 @@ The borel sigma-algebra is a subset of all measurable sets on $\mathbb R$. To ge
 
 
 This tutorial ends here. I wrote it intend to understand the high ground of probability spaces. 
+
+**Remarks**: 
+
+The set of rationals, and the Cantor set are part of the Borel Set, see [here](https://mathworld.wolfram.com/BorelSet.html#:~:text=The%20set%20of%20rational%20numbers,as%20is%20the%20Cantor%20set.) for more info. 

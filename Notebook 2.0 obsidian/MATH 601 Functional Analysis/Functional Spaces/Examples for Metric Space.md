@@ -105,11 +105,11 @@ $$
     \\
     \iff &
     (\forall \epsilon > 0\; 
-    \exists N: (m > n > N \implies \Vert x^{(n)} - x^{(m)}\Vert_\infty \le \epsilon))
+    \exists N: (m > n > N \implies \Vert x^{(n)} - x^{(m)}\Vert_\infty < \epsilon))
     \\
     \iff &
     (\forall \epsilon > 0\; 
-    \exists N: (m > n > N \implies \forall i \in \N  \; |x^{(n)}_i - x^{(m)}_i| \le \epsilon))
+    \exists N: (m > n > N \implies \forall i \in \N  \; |x^{(n)}_i - x^{(m)}_i| < \epsilon))
     \\
     \implies &
     \forall i \in \N:  (x_i^{(m)})_{m\in \N} \text{ is Cauchy in } \mathbb R
@@ -119,25 +119,26 @@ $$
 \end{aligned}
 $$
 
-Therefore, any cauchy sequence $(x^{(m)})_{m\in \N}$, has a limit for each of its element. 
-
-Next we consider , $x^{(m)}\in l^{\infty}$, its norm must be bounded, for any $\epsilon > 0$ that is practically small, fix any $m\in \N$: 
+Therefore, any cauchy sequence $(x^{(m)})_{m\in \N}$, has a limit for each of its element. Combining the point wise limit argument with the Cauchy Sequence under the norm, fixing some $n > N_\epsilon$, then 
 
 $$
 \begin{aligned}
-    & \Vert \bar x \Vert_\infty \le 
-    \underbrace{\Vert \bar x - x^{(m)}\Vert_\infty}_{< \epsilon} + 
-    \underbrace{\Vert x^{(m)}\Vert_\infty}_{< \infty}
+    & \forall i \in \mathbb N: |x_i^{(m)} - x_i^{(n)}| < \epsilon
+    \\
+    & \forall i \in \mathbb N : \lim_{m\rightarrow \infty }|x_i^{(m)} - x^{(n)}_i| \le \epsilon
+    \\
+    & \forall i \in \mathbb N : |\bar x_i - x^{(n)}_i| \le \epsilon
+    \\
+    \iff & \sup_{i\in \mathbb N} |\bar x_i - x^{(n)}_i| \le \epsilon
+    \\
+    \iff & \Vert \bar x - x^{(n)}\Vert_\infty \le \epsilon \; \forall n \ge N_\epsilon
     \\
     \implies &
-    \Vert \bar x\Vert_\infty < \infty, 
-    \\
-    \iff& 
-    \bar x \in l^{\infty}. 
+    \lim_{n\rightarrow \infty} \Vert \bar x - x^{(n)}\Vert_\infty = 0, 
 \end{aligned}
 $$
 
-therefore we had show in the later part that $\lim_{m\rightarrow \infty} \Vert x^{(m)}\Vert_\infty$ is indeed bounded, for any Cauchy sequence, and each of its element, $x_i^{(m)}$ is indeed $\in \mathbb R$. 
+to show that $\Vert \bar x\Vert_\infty < \infty$, consider that $|\Vert x^{(n)}\Vert_\infty - \Vert x^{m}\Vert_\infty| \le \Vert x^{(m)} - x^{(n)}\Vert_\infty < \epsilon$, and hence, we have the norm sequence $(\Vert x^{(n)}\Vert_\infty)_{n\in \mathbb N}$ aso being a cauchy sequence, but in $\mathbb R$, and therefore, it's limit has to be finite, hence $\bar x \in l^\infty$. 
 
 **Reference**: 
 
@@ -192,21 +193,26 @@ Using these 2 facts, one is the convergence of the series, and the other is the 
 
 $$
 \begin{aligned}
-    \lim_{K\rightarrow \infty}\lim_{m\rightarrow \infty}\sqrt{\sum_{i = 1}^{K} \left(
+    & \sqrt{\sum_{i = 1}^{K} \left(
         x^{(m)}_i - x_i^{(n)}
-    \right)^2} &\le \epsilon
+    \right)^2} \le \epsilon \quad \forall K \in \mathbb N, m > n > N_\epsilon
     \\
-    \lim_{K\rightarrow \infty}
+    [1]\implies  &
+    \lim_{m\rightarrow \infty}\sqrt{\sum_{i = 1}^{K} \left(
+        x^{(m)}_i - x_i^{(n)}
+    \right)^2} \le \epsilon \quad \forall K \in \mathbb N, n > N_\epsilon
+    \\
+    [2]\implies & \lim_{K\rightarrow \infty}
     \sqrt{\sum_{i = 1}^{K} \left(
         \bar x_i - x_i^{(n)}
-    \right)^2} &\le \epsilon
+    \right)^2} \le \epsilon \quad \forall n > N_\epsilon
     \\
-    \Vert x^{(n)} - \bar x\Vert 
-    &\le \epsilon,  \forall n \ge N_\epsilon, 
+    & \Vert x^{(n)} - \bar x\Vert 
+    \le \epsilon,  \forall n \ge N_\epsilon, 
 \end{aligned}
 $$
 
-By $\epsilon$ being arbitrarly small, we have that $\lim_{n\rightarrow \infty} \Vert x^{(n)} - \bar x\Vert = 0$, by metric space convergence, it would mean $\lim_{n\rightarrow \infty} x^{(n)} = \bar x$. 
+At \[1\] we used the existence of the point wise limit and the continuity of the function. At \[2\] we used the montone convergence of a bounded series whose terms are all strictly positive. By $\epsilon$ being arbitrarly small, we have that $\lim_{n\rightarrow \infty} \Vert x^{(n)} - \bar x\Vert = 0$, by metric space convergence, it would mean $\lim_{n\rightarrow \infty} x^{(n)} = \bar x$. 
 
 
 **Remarks**
