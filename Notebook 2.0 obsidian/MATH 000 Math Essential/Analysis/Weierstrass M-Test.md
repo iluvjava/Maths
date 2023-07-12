@@ -1,3 +1,7 @@
+---
+alias: Uniform Convergence of Power Series
+
+---
 [[Uniform Convergence, Continuity and More]]
 
 ---

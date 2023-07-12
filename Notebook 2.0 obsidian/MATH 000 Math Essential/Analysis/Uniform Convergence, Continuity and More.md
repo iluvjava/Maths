@@ -4,12 +4,33 @@
 ---
 ### **Intro**
 
-Uniform convergence models the limit of a sequence of functions. It's slightly stronger than pointwise convergence and it has more desirable properties and theorems. Intuitively it tells us that all points in the output of the function approaches the limit together, instead of one by one. Review the definition for uniform convergence in the file linked above. 
+Uniform convergence models the limit of a sequence of functions. It's slightly stronger than pointwise convergence and it has more desirable properties and theorems. Intuitively it tells us that all points in the output of the function approaches the limit together, instead of one by one. Review the definition for uniform convergence in the file linked above. For determining type of convergence of a function, visit: [Weierstrass M-Test](Weierstrass%20M-Test.md) for more information. 
 
-### **Thm | Uniform Cauchy Convergence is Uniform Convergence**
+#### **Thm | Uniform Cauchy Convergence is Uniform Convergence**
 
+> A sequence of function $f_n$ is uniformly Cauchy convergence on the interval $D$ when for all $\epsilon > 0$ there exists $N_\epsilon \in \mathbb N$ such that when $n \ge N_\epsilon$ we have $\Vert f_n - f_m\Vert_D < \epsilon$, then the function converges uniformly to a limit function. 
 
+**Proof**
+$$
+\begin{aligned}
+    & \forall \epsilon > 0\; \exists N_\epsilon : m > n > N_\epsilon \implies \sup_{x \in D}
+    \Vert f_n(x) - f_m(x)\Vert 
+    < \epsilon
+    \\
+    \implies & 
+    \forall k\ge 0, x \in D, (|f_n(x) - f_{n + k}(x)|)_{k\in \mathbb N} \text{ is Cauchy}, \text{ let }f(x): D\mapsto \mathbb R := \lim_{k\rightarrow \infty} f_{n + k}(x)
+    \\
+    \implies & 
+    x\in D: \lim_{l \rightarrow \infty} |f_n(x) - f_{n + k}(x)| \le \epsilon
+    \\
+    \implies&
+    x \in D: |f_n(x) - f (x)| \le \epsilon
+    \\
+    \iff & \Vert f_n - f\Vert_D \le \epsilon, 
+\end{aligned}
+$$
 
+finally, for arbitrary small $\epsilon > 0$ we have $n > N_\epsilon$ that is smaller, hence $\lim_{n\rightarrow \infty} \Vert f_n - f\Vert_D  = 0$, hence, the function approach limit $f$ on the set $D$ uniformly. 
 
 
 ---
@@ -53,7 +74,7 @@ The proof is a very similar flavor as the previous one and we are skipping that.
 ---
 ### **Uniform Convergence of Derivative, Differentiability**
 
-The following theorems are frequently need for power series. To be able to differential a power series, the uniform convergence of its derivative must be assured. 
+The following theorems are frequently need for power series. To be able to differential a series of function, the uniform convergence of its derivative and the original function must be assured. 
 
 > Let $f_n$ be have continuous first derivative. If $f_n\rightarrow f$ uniformly and $f'_n\rightarrow g$ uniformly, then the limit $f$ is differentiable and $f' = g$. 
 
