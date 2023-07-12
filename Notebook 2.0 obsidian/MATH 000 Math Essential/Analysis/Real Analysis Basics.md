@@ -67,6 +67,39 @@ It's suitable in general metric space and converging subsequence characterizes c
 
 
 ---
+### **Cauchy Sequence**
+
+We apply the Bozano Wierestrass to prove the Cauchy convergence theorem for a sequence in $\mathbb R$. 
+
+#### **Def | Cauchy Sequence in $\mathbb R$**
+> Sequence $(a_n)_{n\in \mathbb N}$ a Cauchy sequence if, for all $\epsilon > 0$, there exists $N_\epsilon$ such that for all $m > n > N_\epsilon$ it satisfies that $|a_m - a_n| < \epsilon$, if and only if the sequence is a convergent sequence. 
+
+**Proof**
+
+If the sequence $a_n$ is convergent, then $|a_n - a_m|\le |a_n - a - (a_m - a)| \le |a_n - a| + |a_m - a|$ is bounded, by the limit existence, the right hand side has a limit of zero, and hence $|a_m - a_n|$ can be epsilon bounded. To show that a Cauchy sequence is a convergent sequence, direclty conider that 
+$$
+\begin{aligned}
+    & \forall \epsilon > 0 \exists N_\epsilon \in \mathbb N : m > n > N_\epsilon: 
+    m > n > N_\epsilon \implies |a_n - a_m| <\epsilon
+    \\
+    \text{ B.W} \implies & 
+    \forall n > N_\epsilon\; \exists
+    (|a_{m_k} - a_n|)_{k\in \mathbb N}: \lim_{k\rightarrow \infty} |a_{m_k} - a_n| = 0
+    \\
+    \implies & \forall n\ge N_\epsilon
+    \lim_{k\rightarrow \infty}|a_{m_k} - a_n| \le \epsilon
+    \\
+    \implies &\forall n \ge N_\epsilon: 
+    |a - a_n| \le \epsilon
+    \\
+    \implies & \lim_{n\rightarrow \infty} |a - a_n| = 0, 
+\end{aligned}
+$$
+
+and hence the proof is completed. 
+
+
+---
 ### **Limit of a Function**
 
 There are 2 equivalent definitions for the limit of a function at a point. One uses convergent sequences and the other uses, epsilon vicinity of a point in the domain.  
@@ -133,7 +166,7 @@ It's saying that, for all epsilon vicinity for any points $x \in A$, some subset
 We use pointwise convergence and uniform convergence to describe that possible ways where a sequence of functions can converge to another function in the space. 
 
 **Def | Pointwise convergence**
-> $f_n \rightarrow f$ pointwise in $D$ when for all point $x_0\in D$ such that for all $\epsilon$, if $n > N_\epsilon$ then we have $|f_n(x_0) - f(x_0)| \le \epsilon$. 
+> $f_n \rightarrow f$ pointwise in $D$ when for all point $x_0\in D$ such that for all $\epsilon$, if $n > N_\epsilon(x_0)$ then we have $|f_n(x_0) - f(x_0)| \le \epsilon$. 
 
 In brief, if we are long looking at each point on the function $f_n(x_0)$, then it gets closer to the point $f(x_0)$. 
 

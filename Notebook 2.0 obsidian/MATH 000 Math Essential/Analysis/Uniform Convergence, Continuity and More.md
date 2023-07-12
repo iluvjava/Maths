@@ -1,4 +1,15 @@
-[[Real Analysis Basics]]
+[Real Analysis Basics](Real%20Analysis%20Basics.md)
+
+
+---
+### **Intro**
+
+Uniform convergence models the limit of a sequence of functions. It's slightly stronger than pointwise convergence and it has more desirable properties and theorems. Intuitively it tells us that all points in the output of the function approaches the limit together, instead of one by one. Review the definition for uniform convergence in the file linked above. 
+
+### **Thm | Uniform Cauchy Convergence is Uniform Convergence**
+
+
+
 
 
 ---

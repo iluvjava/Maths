@@ -43,6 +43,7 @@ A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of
 3. If $A\supseteq B$, then $P(A|B) = 1$. 
 4. If, $P(B) = 1$, then $P(A|B) = P(A\cap B)$. 
 5. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
+6. The kick out formula: $P(A|B\cap C)P(B|C) = P(A\cap B |C)$, to kick out one set in the conditional probability, we need to multiply that set conditioned on the other set. 
 
 
 ---
@@ -88,7 +89,30 @@ and that concludes this section.
 ---
 ### **Conditional Probability Chain Rule**
 
-Hm.... hold my beer. 
+Let $(E_i)_{i=1}^n$ be a sequence of events, denote $\widetilde E_k = \bigcap_{i = k}^n E_i$. Then we consider 
+
+$$
+\begin{aligned}
+    P\left(\bigcap_{i = 1}^n E_i\right) &= P(\widetilde E_2 | E_1) P(E_1)
+    \\
+    &= P(\widetilde E_3\cap E_2 | E_1)P(E_1)
+    \\
+    &= P(\widetilde E_3 | E_1 \cap E_2)P(E_2 | E_1)P(E_1)
+    \\
+    & (...)
+    \\
+    &= 
+    \left(
+        \prod_{k = 1}^{n} 
+        P\left(
+            E_k \left| 
+            \bigcap_{i = 1}^{k - 1}E_i
+        \right.\right)
+    \right)P(E_1), 
+\end{aligned}
+$$
+
+which, we just condition each of the events on all the union of all previous events. On the second line, we made use of the push through formula from previous section. 
 
 ---
 ### **Conditional Distribution**
@@ -135,9 +159,7 @@ and note that this is not a definition, but merely a way to compute the above qu
 ---
 ### **Conditional Expectation**
 
-#INCORRECT, I don't think this is correct, the conditional expectation of a random variable is another random variable and not really a value. Need to fix this. 
-
-Conditional expectation is defined via conditional probability. 
+Suppose that we are undergraduate again and we are only conditioning the expected value for a discrete random variable, which it's conditioned on an event, then the conditional expectation is defined via conditional probability, given as: 
 
 $$
 \mathbb{E}\left[X\right|Y = y] = 

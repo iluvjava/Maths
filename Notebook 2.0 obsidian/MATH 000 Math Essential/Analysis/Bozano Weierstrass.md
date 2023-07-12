@@ -5,7 +5,7 @@
 
 We prove the Bozano Weierstrass theorem from first Principles. Confusions where quite involved when I first learn the topic, and it still is not easy to grasp after I started my graduate degree. Here we follow on of the proof from Wikipedia, and then we show it with mostly man, other than words. We do it for $\R$ first, and then state the Euclidean space $\R^n$ later. 
 
-**Thm-1 | BozanaWeierstrass, Converging Subsequences**
+**Thm-1 | Bozano Weierstrass, Converging Subsequences**
 > For any closed and bounded subset of $C\subseteq\R$, an infinite sequence $x_n\in C$ will contain a converging subsequence such that $x_{n_k}$ converges to a point $\bar x \in C$. 
 
 **Lemma 1**: 

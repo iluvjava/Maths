@@ -72,7 +72,7 @@ $$
 
 The left limit of the point is the probability of observing $X < y$, where equality is gone. 
 
-**Property 1**: 
+**Property 1**
 
 of CDF is directly derived using the fact that Pre-Images: 
 
@@ -88,12 +88,27 @@ $$
 
 Therefore, the CDF is strictly non-decreasing. 
 
+#### **Def | The Stieltjes measure**
+> The above function is a type of Stieltjes measure function. 
+
+
+#### **Thm 1.1.4 | The Stieltjes Measure Function**
+
+> Associated with each Stieltjes measure function function $F$, there is a unique measure $\mu$ on $(\mathbb R, \mathcal R)$, with $\mu((a, b])) = F(b) - F(a)$. 
+
+**Observations**
+
+When, $F(x) = x$, the Stieltjes measure becomes the Lebesgue measure. 
+
+**References**
+
+1.1.4 in Rick Durrett's Probability book. 
+
 
 ---
 ### **Discrete Random Variable (Distribution, Probability Measure)**
 
 A probability measure(And any random variable on it, and the distribution on the random variable) is said to be discrete if there is a countable set $S$ such that $P(S^C) = 0$. Basically, the probability assigned to a countable set is somehow, $1$, and it placed a measure of $1$ to the countable set. 
-
 
 ---
 ### **Reconstruction of Random Variable from CDF**
@@ -109,3 +124,33 @@ $$
 Given any $\omega$ outcome, the random variable map to the upper bound on the pre-image of $F_X$ for input $y$. Thinking in terms of pre-images of functions will help us a lot with some of the analysis part. 
 
 
+#### **Example-1 | Indicator function CDF**
+
+Let $\mathbb I_A$ be an indicator function for an event. Let $\mathbb R$ be the space of the random variable and let $A\subseteq R$, the Culmulative Frequence function $F(y) = P(X \le y)$. For all $y < 1$, we have $P(x < y) = 0$ due $X^{-1}((-\infty, y]) = \emptyset$, for $y\in [0, 1)$ we have $P(X\le y) = P(A^C)$, the probability of the events, and finally for all $y\ge 1$, we have $P(X \le y) = 1$. The function can be summarized as a piece-wise function equaling to 
+
+$$
+\begin{aligned}
+    F(y) = \begin{cases}
+        0 & y < 0,
+        \\
+        1 - P(A) & y \in [0, 1),
+        \\
+        P(A) & y \ge 1.
+    \end{cases}
+\end{aligned}
+$$
+
+The function is indeed non-decreasing and right continuous, and it has a limit of $1$ as $y\rightarrow \infty$. This function will be able to define a measure on the set of $\mathbb R$, the measure is defined on the sigma-Borrel Algebra with $\mu_X((a, b]) = F(b) - F(a)$. 
+
+**References**
+
+UW AMATH, intro to probability theory. 
+
+
+#### **Example-2 | Increasing Function on $\mathbb R$**
+
+> If $f: \mathbb R\mapsto \mathbb R$  is an increasing function, then it is a Lebesgue measurable function. 
+
+**Proof**
+
+With $f^{-1}([c, \infty))$ being an interval, the function is measurable. It's an interval, consider $S = f^{-1}([c, \infty))$ then for all $a\in S$, $b > a$, we have $c \le f(a) \le f(b)$, so $b\in S$. Implying that $S$ can only be interval in the form of $[\inf S, \infty), \emptyset, \mathbb R$, which are measurable sets in $\mathcal B(\mathbb R)$. 
