@@ -28,7 +28,7 @@ Concepts
 3. [[Expectations of Random Variables without Sigma Algebra]]
 4. [[IDD RVs]]
 5. [[Conditional Probability, Expectations]]
-6. [[Bayes Theorem]]
+6. [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Bayes Theorem for Baby]]
 
 Example 
 1. Linear Regression (With Offset) and Gaussian MLE [[Linear Regression]]

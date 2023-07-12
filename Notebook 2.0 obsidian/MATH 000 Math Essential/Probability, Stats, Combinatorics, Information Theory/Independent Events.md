@@ -1,4 +1,4 @@
-- [Bayes Theorem](Bayes%20Theorem.md), 
+- [Bayes Theorem for Baby](Bayes%20Theorem%20for%20Baby.md), 
 - [Conditional Probability, Expectations](Conditional%20Probability,%20Expectations.md), 
 
 ---
@@ -13,9 +13,10 @@ Probability Independence, is extremely important. We also derive the Naive Bayes
 
 Observe that this generates a lot of consequences when combined with the results from Bayes Theorem and conditional probability. 
 
-1. $A\perp B$ means $P(A|B) = P(A\cap B)/P(B) = P(A)P(B)/P(B)$. 
-2. By a similar token from Bayes theorem, $A\perp B$ means $P(A\cap B|C) = P(A|C)P(B|C)$
-3. We may also make a simple multi-class Bayes theorem, let $C\perp D$, consider: 
+1. $A\perp B$ means $P(A|B) = P(A\cap B)/P(B) = P(A)P(B)/P(B) = P(A)$. 
+2. The converse of above is also true, if $P(A|B) = P(A)$, then $A\perp B$. 
+3. By a similar token from Bayes theorem, $A\perp B$ means $P(A\cap B|C) = P(A|C)P(B|C)$
+4. We may also make a simple multi-class Bayes theorem, let $C\perp D$, consider: 
     $$
     \begin{aligned}
         P(A|C\cap D) &= \frac{P(C\cap D|A)P(A)}{P(C)P(D)}

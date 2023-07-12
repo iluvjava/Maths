@@ -1,7 +1,6 @@
-- [[Bayes Theorem]], 
+- [[Bayes Theorem for Baby]], 
 - [[Expectations of Random Variables without Sigma Algebra]], 
 - [[PDFs, PMFs]]
-
 
 ---
 ### **Intro**
@@ -42,8 +41,9 @@ A posterior probability refers to $\mathbb P(A|B)$, and the prior probability of
 2. If $A\subseteq B$, then $P(A|B) = P(A)/P(B)$
 3. If $A\supseteq B$, then $P(A|B) = 1$. 
 4. If, $P(B) = 1$, then $P(A|B) = P(A\cap B)$. 
-5. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
-6. The kick out formula: $P(A|B\cap C)P(B|C) = P(A\cap B |C)$, to kick out one set in the conditional probability, we need to multiply that set conditioned on the other set. 
+5. if, $P(A|B) = P(B|A)$ then $P(A) = P(B)$. 
+6. Conditioning on the same events means that whatever it's on the left side of the $|$, we can treat then just like normal probability and manipulate them so. 
+7. The kick out formula: $P(A|B\cap C)P(B|C) = P(A\cap B |C)$, to kick out one set in the conditional probability, we need to multiply that set conditioned on the other set. 
 
 
 ---

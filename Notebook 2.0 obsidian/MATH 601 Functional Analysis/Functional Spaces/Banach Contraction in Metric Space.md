@@ -131,19 +131,19 @@ assuming that $\alpha \neq 0$, then it must be the case that $d(x, \bar x) = 0$,
 
 **Remarks**: 
 
-Please reflect on the fact that the contraction property of the operator is not tied to the existedc of the fixed point set, one of the implicitly used property for the existence of the fixed point set is that $T:X\mapsto X$, it's a self-map. It's easy to take note if this face, if a contraction is only possible for a subset $Y \subseteq X$, then whenever $Tx_n \not\in Y$, the contraction property fails, converging to a different result (or diverges or whatever). 
+Please reflect on the fact that the contraction property of the operator is not tied to the existence of the fixed point set, one of the implicitly used property for the existence of the fixed point set is that $T:X\mapsto X$, it's a self-map. It's easy to take note if this face, if a contraction is only possible for a subset $Y \subseteq X$, then whenever $Tx_n \not\in Y$, the contraction property fails, converging to a different result (or diverges or whatever). 
 
 
 ---
-### **Corrollary | Error Bound**
+### **Corollary | Error Bound**
 
 We attained the following error bound estimate from the previous proof: 
 
 $$
 \begin{aligned}
-    & d(x_m, x) \le \frac{\alpha^m}{1 - \alpha} d(x_0, x_1); 
+    & d(x_m, x) \le \frac{\alpha^m}{1 - \alpha} d(x_0, x_1), \text{aprirori};
     \\
-    & d(x_m, x) \le \frac{\alpha}{1 - \alpha}d(x_{m - 1}, x_m), 
+    & d(x_m, x) \le \frac{\alpha}{1 - \alpha}d(x_{m - 1}, x_m), \text{posteri}; 
 \end{aligned}
 $$
 
@@ -156,7 +156,7 @@ assuming that the metric space is complete, and the mapping for the fixed point 
 
 **Proof**: 
 
-It's Lischitz continuous in set $X$ with $L = \alpha\in [0, 1)$, a stronger type of continuity. 
+It's Lipschitz continuous in set $X$ with $L = \alpha\in [0, 1)$, a stronger type of continuity. 
 
 **Theorem: Multiple Contractions**
 

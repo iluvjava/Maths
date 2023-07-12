@@ -16,7 +16,8 @@ $$
 
 Generally, for intuitive purposes, element of the set $X$ is called point. This make sense due to the wide application of metrics to vector space. 
 
-**References**: Introductory Functional Analysis with Applications, Kreyszig.
+**References**:
+Introductory Functional Analysis with Applications, Kreyszig.
 
 ---
 ### **Subspace of Metric Space**
@@ -43,22 +44,30 @@ The first 2 axioms are trivially true, however, to verify that the subspace is a
 ---
 ### **Example | Discrete Metric Space**
 
-Discrete metric has $X$ finite, and potentially unordered. 
 
-**Example 1: Indicator Metric**
+**Example 1 | Indicator Metric**
 > Suppose that we were given any non-empty set $X$ and define the metric $d(x, y)$ such that $d(x, y) = 1$ whenever $x \neq y$, and $=0$ whenever $x = y$, then $(X, d)$ still would form a metric space and this is an example of: discrete metric space. 
 
-**Remarks:** 
+**Remarks** 
 
 Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
 
-**Example 2: Hamming Distances**
+However, one can make the underlying space to be $X$, then this metric has several surprises to it.
+1. Not separable. 
+2. Not dense. 
+3. Not continuous. 
+
+
+#### **Example 2 | Hamming Distances**
 > The number of differences in bits in 2 bits stream with the same length. One can view this as an 1-norm applied directly on a vector of binary values. 
 
-**Example 3: Shortest Path on Graph**
+#### **Example 3 | Shortest Path on Graph**
 > The shortest $x-y$ path of a graph containing no negative directed cycles induces a metric for all the vertices in the graph. 
 
 See [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics%20Algorithms/Single%20Source%20Shortest%20Path%20Optimality%20Conditions.md) for more information on this discrete metric. 
+
+#### **Example 4 | The P-adic Metric** 
+> It's a metric used for the P-adic field. For more about this field, this is the [wiki](https://en.wikipedia.org/wiki/P-adic_number). 
 
 ---
 ### **More Examples**

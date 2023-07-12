@@ -79,4 +79,5 @@ The following theorems are frequently need for power series. To be able to diffe
 > Let $f_n$ be have continuous first derivative. If $f_n\rightarrow f$ uniformly and $f'_n\rightarrow g$ uniformly, then the limit $f$ is differentiable and $f' = g$. 
 
 **Proof**
+
 Skipped for now. 
