@@ -22,7 +22,7 @@ Where $S$ is refers to the state space of $X$. The sequence of random variable c
 
 **Transition Matrix**
 
-A transition matrix can be used if, the transition probability is the same for all $n$ (The Markoc chain is time Homogeous). Define the transition matrix to be a matrix whose columns are probability assignment, given as: 
+A transition matrix can be used if, the transition probability is the same for all $n$ (The Markoc chain is time Homogenous). Define the transition matrix to be a matrix whose columns are probability assignment, given as: 
 
 $$
 \begin{aligned}
@@ -87,8 +87,8 @@ This is my own work.
 
 The following claim is relevant to stopping time and it make use of the Markov property. 
 
-#### **Claim | Independent Sub-Chains**
-> Suppose that distribution for a sequence of intermediate steps with $n_0 = 0, n_1, n_2, \cdots, n_k$ where given with $P(X_{n_i}\in A_i) = 1$, certainty, then these probability distribution will break apart the probaility of observing the whole sequence into independent events of observing $k$ many sequences of $X_{n_i},\cdots, X_{n_{i + 1}}$. 
+#### **Claim-1 | Independent Sub-Chains**
+> Suppose that distribution for a sequence of intermediate steps with $n_0 = 0, n_1, n_2, \cdots, n_k$ where given with $P(X_{n_i}\in A_i) = 1$, certainty, then these probability distribution will break apart the probability of observing the whole sequence into independent events of observing $k$ many sequences of $X_{n_i},\cdots, X_{n_{i + 1}}$. 
 
 **Proof**
 

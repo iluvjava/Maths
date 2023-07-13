@@ -9,7 +9,7 @@ Suppose that $X$ is a continuous random variable with a PDF $f_X$, CDF(PMF) $F_X
     when the variable is continuous and with a PDF. 
 2. $$\mathbb{E}\left[X\right] = \sum_{x\in \Omega}^{} x p_X(x)$$ 
     when $X$ is discrete. 
-3. $$\mathbb{E}\left[X\right] = \sum_{k\in \mathbb N}^{}\mathbb P(X \ge k)$$ 
+3. $$\mathbb{E}\left[X\right] = \sum_{k\in \mathbb N}^{}\mathbb P(X \ge k) = \sum_{k \in \mathbb B}^{} \mathbb k \mathbb P(X = k)$$ 
     when $X$ is a discrete random variable. 
 4. $$\mathbb{E}\left[\mathbf 1_A\right] = \mathbb P(A)$$
     where $A$ is an indicator of an event, and an event is some type of conditions such that the random variable $X$ satisfies. This property of the most fundamental amoung all other rules listed here. 
@@ -43,7 +43,7 @@ $$
 \end{aligned}
 $$
 
-Which concludes the proof. 
+Which concludes the proof for (3.). 
 
 
 ---
@@ -106,7 +106,7 @@ which completes the proof.
 ---
 ### **Conditional Expectations**
 
-See [[Conditional Probability, Expectations]] for more details. It requires some understanding of conditional probability for things to make sense. 
+See [Conditional Probability, Expectations](Conditional%20Probability,%20Expectations.md) for more details. It requires some understanding of conditional probability for things to make sense. 
 
 
 

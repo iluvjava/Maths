@@ -1,4 +1,4 @@
-Covariance needs [[Expectations of Random Variables without Sigma Algebra]]. 
+Covariance needs [[Expectations of Random Variables without Measure Theory]]. 
 
 ---
 ### **Intro**

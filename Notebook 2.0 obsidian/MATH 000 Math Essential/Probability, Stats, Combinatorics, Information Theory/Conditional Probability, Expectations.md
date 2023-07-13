@@ -1,5 +1,5 @@
 - [[Bayes Theorem for Baby]], 
-- [[Expectations of Random Variables without Sigma Algebra]], 
+- [[Expectations of Random Variables without Measure Theory]], 
 - [[PDFs, PMFs]]
 
 ---
@@ -29,7 +29,7 @@ $$
 
 **Remarks**: 
 
-This is not a definition, but rather a way we can compute the conditional probability for some specific events. 
+This is not a definition, but rather a way we can compute the conditional probability for some specific events. Intuitively, it measure the intersection between event $A, B$, and then scale (or, renormalized) by the "area" of event $B$. 
 
 **Terminology**: 
 
@@ -235,11 +235,11 @@ We illustrate the use of conditional expectation and probability using some simp
 
 **Exponential, Uniform Draws**:
 
-> Sample one $X\sim \text{unif}(0, 1)$, Draw $Y\sim \text{unif}(0, 1)$ repeatedly until the first $T$ (The number of draws, an R.V) time $Y$ is less than $X$. Find the expected value of $T$. 
+> Sample one $X\sim \text{unif}(0, 1)$, Draw many $Y_n\sim \text{unif}(0, 1)$ repeatedly until the first $T$ (The number of draws, an R.V) time $Y$ is less than $X$. Find the expected value of $T$. 
 
 **Answer:** 
 
-1. Given $X = x$, $T$ has distribution $X(1 - X)^{T-1}$, a geometric distribution with $p = X$. 
+1. Given $X = x$, $T$ has distribution $X(1 - X)^{T-1} = x(1-x)^{T - 1}$, a geometric distribution with $p = X$. 
 2. That above geometric distribution has expectation of $\frac{1}{X}$, where $X$ is an random variable. 
 3. Notice that, events regardiing $T$ is dependent on $X$, therefore we are going to use the Laws of Total Expectation, which is going to be:  
 

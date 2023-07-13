@@ -1,5 +1,5 @@
 Let's talk about Order statistics here. 
-[[Expectations of Random Variables without Sigma Algebra]], 
+[[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]], 
 [[PDFs, PMFs]], 
 [[IDD RVs]]
 

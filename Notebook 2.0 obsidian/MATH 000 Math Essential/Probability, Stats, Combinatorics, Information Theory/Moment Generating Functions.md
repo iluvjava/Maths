@@ -1,4 +1,4 @@
-[[Expectations of Random Variables without Sigma Algebra]], [[PDFs, PMFs]]
+[[Expectations of Random Variables without Measure Theory]], [[PDFs, PMFs]]
 
 ---
 ### **Intro**

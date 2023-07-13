@@ -1,5 +1,6 @@
 ---
 alias: Random variables basics with measure theory
+alias: Random variable Distribution function
 
 ---
 [[Probability Spaces]]

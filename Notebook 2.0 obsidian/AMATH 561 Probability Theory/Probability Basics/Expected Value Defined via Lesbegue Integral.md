@@ -1,5 +1,5 @@
 - [Random Variables as Measurable Functions](Random%20Variables%20as%20Measurable%20Functions.md), 
-- Here we introduce some fancy integral that can help use figure out the expected value of some random variable, and it's complementary to [[Expectations of Random Variables without Sigma Algebra]]. 
+- Here we introduce some fancy integral that can help use figure out the expected value of some random variable, and it's complementary to [[../../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]]. 
 
 ---
 ### **Intro**
@@ -146,6 +146,4 @@ And this is the expected value of the function, however, this is really only doa
 ### **Final Note**
 
 Lebesgue Integral are pretty similar to Riemann
-'s Integral, the difference is just the way it's being integrated over any type of domains. They have the same properties. 
-
-Now, All proofs about the details are skipped. They are in the textbook(Probabiliy: Theory and Examples, Rick Durrett) with detailed proofs and discussions. 
+'s Integral, the difference is just the way it's being integrated over any type of domains. They have the same properties. Now, All proofs about the details are skipped. They are in the textbook(Probabiliy: Theory and Examples, Rick Durrett) with detailed proofs and discussions. 

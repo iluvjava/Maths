@@ -1,4 +1,4 @@
-[[Expectations of Random Variables without Sigma Algebra]]
+[[Expectations of Random Variables without Measure Theory]]
 
 ---
 ### **Intro**
