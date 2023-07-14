@@ -102,13 +102,44 @@ and inductively, we can show that if we returns to the state $k$ many times, and
 From the derivation of the process, we can see that all $T_y^{(k + 1)} - T_y^{(k)}$ are independent to the random variable $T_y^{(k)} - T_y^{k - 1}$ for all $k \ge 1$, and $T_y^{(1)} - T_y$ independent to $T_y$, as the base case. This could be a corollary for the above theorem. 
 
 
-#### **Thm-2 (1.21) | Expected Number of Returns to the Same State**
+#### **Lemma-1 (1.11) | Expected Number of returns to the same State**
+> Let the random variable $N_x(y)$ counts the number of time we hit state $y$ given that $X_0=x$ in an observed chain. Then this random variable can be computed by the quantities $\frac{\rho_{xy}}{1 - \rho_{yy}}$. 
 
-> Let the random variable $N_x(y)$ counts the number of time we hit state $y$ given that $X_0=x$. Then, 
+**Proof**
 
+Recall that, the expected value of a discrete random variable $X$ may be computed via $\mathbb{E}\left[N_x(y)\right] = \sum_{k\in \mathbb N}^{}P(N_x(y) \ge k)$, applying this formula in our case yields
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[N_x(y) | X_0 = x\right] &= 
+    \sum_{k\in \mathbb N}^{}P(N_x(y) \ge k | X_0 = x)
+    \\
+    &= \rho_{x,y}\sum_{k\in \mathbb N}^{}\rho_{y,y}^{k-1}
+    \\
+    &= \frac{\rho_{x, y}}{1 - \rho_{y, y}}, 
+\end{aligned}
+$$
+
+#### **Lemma-2 (1.12) | Expected Number of Returns to the Same State**
+
+> Let the random variable $N_x(y)$ counts the number of time we hit state $y$ given that $X_0=x$ in an observed chain. Then this random variable can be computed by the series $\sum_{n=1}^{\infty}\mathbf p^n(x, y)$. 
+
+**Proof**
+
+The random variable $N_x(y)$ is a simple discrete function that we can take the expected value of 
+
+$$
+\begin{aligned}
+    N_x(y) &= \sum_{n = 1}^{\infty} \mathbf 1 \{X_n = y\}
+    \\
+    \mathbb{E}\left[N_x(y)\right] &= 
+    \sum_{n = 1}^{\infty} P(X_n = y | X_0 = x). 
+\end{aligned}
+$$
 
 
 **References**
+
 This is theorem 1.21 from the Rick Durrett Essential Stochastic textbook. 
 
 
@@ -128,10 +159,7 @@ The above concepts are created to understand different type of states that can a
 > 1. A set $A\subseteq S$ is a *closed* set if it's impossible to go out, meaning that, if $i\in A$ and $j\not\in A$, then there is no chain with non-zero probability that starts with $x$ and ends up with $y$. 
 > 2. A set is called *irreducible* if, whenever $i, j \in A$, $i\rightarrow j$. 
 
----
-### **Determine the Types of States**
 
-Being able to determine the state in a Markov chain is, important for understanding and characterizing the long term behaviors of the Markov chain. 
-
+These definition uses the concept of stopping time, stopping probability and it will be used to discuss the appearance of stationary distributions for the Markov chain. 
 
 

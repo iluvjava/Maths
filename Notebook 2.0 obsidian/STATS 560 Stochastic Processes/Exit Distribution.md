@@ -1,11 +1,13 @@
 [Markov Chain Introduction](Markov%20Chain%20Introduction.md)
 
+
+---
 ### **Intro**
 
-exit distrbution is actually very useful. It tells us how things moves in the Markov chain. 
+exit distribution is actually very useful. It tells us how things moves in the Markov chain. 
 
 #### **Def-1 | Exit Distribution**
-> Suppose $\mathcal \Omega = S\cup \{t\}$ is the states for the Markov chain. We use $t$ to denote the exit state (Won the game). Denoting the $V_t = \min\{n \ge 0 : X_n = t\}$ to be a random variable that is the total travel steps to state $s$. Then the exit distribution is the portion of chains that ends up in state $t$, starting from the state $x$, it's $P(V_t < \infty \cap X_0 = x)$. We assume that, reaching $t$ from $x$ is possible, hence $V_t = \infty$ is an impossible event (which means $P(T_t < \infty | X_x) = 1$. See [Exit Distribution](Exit%20Distribution.md) for more information about this one). 
+> Suppose $\mathcal \Omega = S\cup \{t\}$ is the states for the Markov chain. We use $t$ to denote the exit state (Won the game). Denoting the $V_t = \min\{n \ge 0 : X_n = t\}$ to be a random variable that is the total travel steps to state $s$. Then the exit distribution is the portion of chains that ends up in state $t$, starting from the state $x$, it's $P(V_t < \infty \cap X_0 = x)$. We assume that, reaching $t$ from $x$ is possible, hence $V_t = \infty$ is an impossible event (which means $P(T_t < \infty | X_x) = 1$. See [Stopping Time and Classification of States](Stopping%20Time%20and%20Classification%20of%20States.md) for more information. 
 
 **Demonstrations**
 
@@ -48,9 +50,24 @@ Define a new random variable $T = \min(V_t, V_s)$, we are going to assume that $
 
 Fo any other states $y$ in the chain that is not the terminal chain, or exit distribution chain, but it's unreachable from the initial state $x$, then we may manually set $P(V_t < \infty | X_0 = y) = 0$. 
 
-### **Def-3 | Exit Time**
-> Let $s, t$ be the game over state and the terminal state. Then the hitting time $g_x$ is the average amount of steps it takes for the Markov chain to arrive at $t$, and begins with $X_0 = x$. 
+#### **Def-3 | Exit Time**
+> Let $t$ be the terminal state. Then the hitting time $g_x$ is the average amount of steps it takes for the Markov chain to arrive at $t$, begins with $X_0 = x$. The random variable $V_t$ is the stopping time the state $t$. 
 
+**Observations**
+
+There is an recurrences for the expected value of this random variable as well, simlar to what we did previously. The recurrence is simply
+
+$$
+\begin{aligned}
+    g(x) &= \begin{cases}
+        1 + \mathbb{E}\left[g(X_1) | X_0 = x\right] & x \neq t,
+        \\
+        0 & x= t. 
+    \end{cases}
+\end{aligned}
+$$
+
+For the second case with $x = t$, the intuitive argument is that, if we started at the terminal state $t$, then the average amount of time it takes to get there is zero. 
 
 
 ---
@@ -72,7 +89,7 @@ $$
 \end{aligned}
 $$
 
-Which in fact, doesn't have a nice description for each individual event in the summation. Directly, we may recall the Extend Chapman Homogorov formulation for observing any chain, after some simplication, it should yield this monstrosity
+Which in fact, doesn't have a nice description for each individual event in the summation. Directly, we may recall the Extend Chapman Homogorov formulation for observing any chain, after some simplification, it should yield this monstrosity
 
 $$
 \begin{aligned}
@@ -172,5 +189,12 @@ which describes exactly the event that had been posed at the first place. The tw
 
 I am using the column transition matrix, if you are using the row transition matrix, then the transposed will be removed in the theorem statement, and $u$ corresponds to the first column, excluding the first and last row of it. 
 
+**References**
+Rick Durrett, Essential Stochastic, 1.8 Exit distributions. 
 
+
+---
+### **Looking for the Expected Exit Time**
+
+Similar to the exit distribution, we solve the recurrence on the expected value and yield an general formula that describes the events by expending it with Neuman series. 
 
