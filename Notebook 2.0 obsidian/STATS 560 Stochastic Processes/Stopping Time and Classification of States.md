@@ -101,10 +101,21 @@ and inductively, we can show that if we returns to the state $k$ many times, and
 
 From the derivation of the process, we can see that all $T_y^{(k + 1)} - T_y^{(k)}$ are independent to the random variable $T_y^{(k)} - T_y^{k - 1}$ for all $k \ge 1$, and $T_y^{(1)} - T_y$ independent to $T_y$, as the base case. This could be a corollary for the above theorem. 
 
+
+#### **Thm-2 (1.21) | Expected Number of Returns to the Same State**
+
+> Let the random variable $N_x(y)$ counts the number of time we hit state $y$ given that $X_0=x$. Then, 
+
+
+
+**References**
+This is theorem 1.21 from the Rick Durrett Essential Stochastic textbook. 
+
+
 ---
 ### **Classifications of States**
 
-The above concepts are created to understand different type of states that can appear in a Markvo chain. We define them immediately. 
+The above concepts are created to understand different type of states that can appear in a Markov chain. We define them immediately. 
 
 #### **Def-3 | States**
 > Let $y$ be a state for a Markov chain then, 
@@ -121,4 +132,6 @@ The above concepts are created to understand different type of states that can a
 ### **Determine the Types of States**
 
 Being able to determine the state in a Markov chain is, important for understanding and characterizing the long term behaviors of the Markov chain. 
+
+
 
