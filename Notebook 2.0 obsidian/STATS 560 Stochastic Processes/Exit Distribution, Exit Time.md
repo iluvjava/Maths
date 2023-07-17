@@ -137,7 +137,7 @@ $$
     \text{Letting: } \widetilde P & = P_{2:N-1, 2N:-1}^T, 
     u = P_{1: 2:N-1}
     \\
-    \widetilde h &= (I - \widetilde P^T)^{-1} u, 
+    \widetilde h &= (I - \widetilde P^T)^{-1} u. 
 \end{aligned}
 $$
 
@@ -196,5 +196,15 @@ Rick Durrett, Essential Stochastic, 1.8 Exit distributions.
 ---
 ### **Looking for the Expected Exit Time**
 
-Similar to the exit distribution, we solve the recurrence on the expected value and yield an general formula that describes the events by expending it with Neuman series. 
+Similar to the exit distribution, we solve the recurrence on the expected value and yield a general formula that describes the events by expending it with Neuman series. 
+
+
+#### **Thm-2 | Formula for the Exit Time**
+> The expected exit time to a state $y$ starting with state $x$, can be computed by $(I - \widetilde P^T)^{-1}\mathbf 1$. 
+
+**Proof**
+
+It's similar in spirit to the expected exit distributions. 
+
+
 
