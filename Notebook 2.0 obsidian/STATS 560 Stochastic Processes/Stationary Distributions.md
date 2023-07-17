@@ -19,3 +19,5 @@ The Markov chain is finite and irreducible, then the stationary distribution is 
 
 
 
+
+

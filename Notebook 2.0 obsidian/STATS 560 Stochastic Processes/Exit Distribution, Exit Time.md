@@ -39,7 +39,7 @@ $$
 and that is the recurrence formula. Notice that, since the state $s$ is a terminal state, we artificially define $P(V_s < \infty \cap X_0 = t) = 1$. 
 
 
-#### **Def-1 | Exit Distribution with a Game over State**
+#### **Def-2 | Exit Distribution with a Game over State**
 > In addition to an exit state $t$, we also define a game over state: $s$. pictorially it's state where, if the chain hit, then it ends the observation of the chain (Lock it there). Let $\Omega = S\cup \{s, t\}$, then the same recurrence from above hold for all $x\not\in \{s, t\}$. 
 
 **Demonstrations**
@@ -111,7 +111,7 @@ and bro trust me, this is matrix product of all it's sub matrix indexed only wit
 Without the loss of generality, let there be $N$ many state in total, let the exit state be indexed by $1$, let the game over state be indexed by $N$. We use the column transition matrix $P_{i, j} = P(X_{n + 1} = i | X_{n} = j)$. 
 
 #### **Thm-1 | Formula for the Exit Distribution**
-> The exit distribution vector, $h_x = P(V_1 < V_n | X_0 = x)$ can be computed by the formula $\widetilde h = (I - \widetilde P^T)^{-1}u$, where $u = P_{1, 2:N}, \widetilde P_{2:N-1, 2:N-1}$, where we use matlab indexing convention here. 
+> The exit distribution vector, $h_x = P(V_1 < V_n | X_0 = x)$ can be computed by the formula $\widetilde h = (I - \widetilde P^T)^{-1}u$, where $u = P_{1, 2:N}, \widetilde P= P_{2:N-1, 2:N-1}$, where we use matlab indexing convention here. 
 
 **Proof**
 
@@ -190,6 +190,7 @@ which describes exactly the event that had been posed at the first place. The tw
 I am using the column transition matrix, if you are using the row transition matrix, then the transposed will be removed in the theorem statement, and $u$ corresponds to the first column, excluding the first and last row of it. 
 
 **References**
+
 Rick Durrett, Essential Stochastic, 1.8 Exit distributions. 
 
 
@@ -200,11 +201,47 @@ Similar to the exit distribution, we solve the recurrence on the expected value 
 
 
 #### **Thm-2 | Formula for the Exit Time**
-> The expected exit time to a state $y$ starting with state $x$, can be computed by $(I - \widetilde P^T)^{-1}\mathbf 1$. 
+> The expected exit time to a state $y$ starting with state $x$, can be computed by $(I - \widetilde P^T)^{-1}\mathbf 1$. Let the exit state to be state indexed by $0$, and we assume that there are $N + 1$ states in total labeled by $0, 1, \cdots, N$. 
 
 **Proof**
 
-It's similar in spirit to the expected exit distributions. 
+It's similar in spirit to the expected exit distributions. Let $P(i, j) = P(X_{n + 1} = i | X_n = j)$, which is a column probability transition matrix. Let $R$ denote a restriction by removing the row and column index by $0$. The recurrence relations for each state is then stated as 
+
+$$
+\begin{aligned}
+    g(x) &= 1 + \sum_{y = 1}^{N} P_{y, x} g(y)
+    \\
+    g(x) - \sum_{y =1}^{N} P_{y, x} g(y) &= 1
+    \\
+    \implies (I - R^T)g &= \mathbf 1
+    \\
+    g&= (I - R^{T})^{-1} \mathbf 1. 
+\end{aligned}
+$$
 
 
+using the Neuman series, we may have the convergence series of $I + R + R^2 + \cdots$, which highlights a different type of interpretations for the expression. We now derive the Neuman series. Recall from [Stopping Time and Classification of States](Stopping%20Time%20and%20Classification%20of%20States.md), that the counters for returning to state $y$ starting with state $x$ is random variable $N_x(y)$. We know how to compute the expected value for this random variable and it's linked to the stopping time ($V_0 = \min\{n : X_n = 0\}$) if, $y = 0$ and 
 
+$$
+\begin{aligned}
+    V_0 = \sum_{y =1}^N N_x(y)
+    \\
+    \mathbb{E}\left[V_0 | X_0 = 0\right] &= 
+    \sum_{y = 1}^{N}
+    \mathbb{E}\left[
+        N_x(y)
+    \right]
+    \\
+    &=\sum_{y = 1}^{N}\sum_{k = 0}^{\infty}
+        P(N_x(y)\ge k)
+    \\
+    &= \sum_{y = 1}^{N}\sum_{k = 0}^{\infty}
+        ((R^k)^T)_{x, y}
+    \\
+    &= \sum_{y = 1}^{N}(I - R^T)^{-1}
+    \\
+    &= ((I - R^T)^{-1}\mathbf 1)_x,
+\end{aligned}
+$$
+
+take note that, the first line comes from the intuitive that, the total number of stops for each of the states $1, \cdots, N$, which exludes the exit state $0$, is the total length of the chain before it terminated in the exit state. Hence the formula is justified in this perspective as well. 
