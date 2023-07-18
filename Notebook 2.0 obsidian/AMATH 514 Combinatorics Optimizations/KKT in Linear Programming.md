@@ -26,6 +26,8 @@ The left is the primal problem, right is dual.
 ---
 ### **KKT Conditions From Saddle Points of the Lagrangian**
 
+The Lagrangian contains the objective of both primal and dual. The primal increases the objective, the dual penalize the positive numbers (violations) of the constraints of primal. 
+
 $$
 \begin{aligned}
     \mathcal L(x, y) := \langle c, x\rangle - \langle y, Ax - b\rangle \quad x \in \mathbb R^n, y\in \mathbb R^m_+
@@ -101,7 +103,7 @@ Which is the strong duality, without using hardcore mathematical proofs.
 
 **Remarks**
 
-Assuming that strong duality holds (which it does for all LP problems), we then need either one of the Strong Duality or the Comp Slack conditions to characterize the KKT conditions, we don't need both. 
+Assuming that strong duality holds (which it does for all LP problems), we then need either one of the Strong Duality or the Comp Slack conditions to characterize the KKT conditions, we don't need both. In addition, the strong duality is just telling us that, slack variable on the primal corresponds to zero dual, and non-zero dual corresponds to tight inequality in the prima. 
 
 
 
