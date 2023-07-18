@@ -22,7 +22,7 @@ Where $S$ is refers to the state space of $X$. The sequence of random variable c
 
 **Transition Matrix**
 
-A transition matrix can be used if, the transition probability is the same for all $n$ (The Markoc chain is time Homogenous). Define the transition matrix to be a matrix whose columns are probability assignment, given as: 
+A transition matrix can be used if, the transition probability is the same for all $n$ (The Markov chain is time Homogenous). Define the transition matrix to be a matrix whose columns are probability assignment, given as: 
 
 $$
 \begin{aligned}

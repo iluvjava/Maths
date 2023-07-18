@@ -1,6 +1,6 @@
-* [[Farkas's Lama]]
-* [[Polytopes]]
-* [[A Brutal Introduction to Linear Programming]]
+* [Farkas's Lama](Farkas's%20Lama.md)
+* [Polytopes](Polytopes.md)
+* [A Brutal Introduction to Linear Programming](A%20Brutal%20Introduction%20to%20Linear%20Programming.md).
 Proof Taken from Theorem 2.6 of: Shrijver's book: A course in Combinatorics Optimizations. 
 
 
@@ -31,7 +31,7 @@ $$
 These 3 statements are equivalent, using some standard reduction tricks we can transform between different forms of LP and show their equivalences. 
 
 ---
-### **Strong Duality: Proof of The Second Form via Farkas' Lemma**
+### **Strong Duality | Proof of The Second Form via Farkas' Lemma**
 
 The proof will make use of Lemma 2.1, a fundamental results of Farka's lemma, and then Corollary 2.5(b), one of the extension of the Farkas' Lemma. We proceed to prove the second variant of the strong duality: 
 

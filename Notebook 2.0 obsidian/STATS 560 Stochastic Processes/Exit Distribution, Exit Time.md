@@ -111,7 +111,7 @@ and bro trust me, this is matrix product of all it's sub matrix indexed only wit
 Without the loss of generality, let there be $N$ many state in total, let the exit state be indexed by $1$, let the game over state be indexed by $N$. We use the column transition matrix $P_{i, j} = P(X_{n + 1} = i | X_{n} = j)$. 
 
 #### **Thm-1 | Formula for the Exit Distribution**
-> The exit distribution vector, $h_x = P(V_1 < V_n | X_0 = x)$ can be computed by the formula $\widetilde h = (I - \widetilde P^T)^{-1}u$, where $u = P_{1, 2:N}, \widetilde P= P_{2:N-1, 2:N-1}$, where we use matlab indexing convention here. 
+> The exit distribution vector, $h_x = P(V_1 < V_n | X_0 = x)$ can be computed by the formula $\widetilde h = (I - \widetilde P^T)^{-1}u$, where $u = P_{1, 2:N}, \widetilde P= P_{2:N-1, 2:N-1}$, we use matlab indexing convention here. 
 
 **Proof**
 

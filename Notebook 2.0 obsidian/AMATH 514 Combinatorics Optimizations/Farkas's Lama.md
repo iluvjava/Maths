@@ -1,6 +1,6 @@
-[[Polytopes]]
-[[Cone]]
-[[Strict Separations Theorem]]
+- [[Polytopes]]
+- [[Cone]]
+- [[Strict Separations Theorem]]
 
 In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma)
 
@@ -15,11 +15,15 @@ Farkas lemma is about the geometry of polytopes and cones.
 > \neg (\exists\; y: y^TA\ge \mathbf 0 , y^Tb < 0)
 > $$
 
-Take note that, if $Ax = b$ with $x \ge \mathbf 0$, then $b$ is in the cone of all the columns of the matrix $A$ (some columns might be forced to be multiplied by zero from $x$). In that case, it's impossible to have $y^TA\ge \mathbf 0$ ($y$ is pointing along the same directons of all columns of $A$) such that a hyperplane defined by $y$ (which defined via the rows of $a$) separates vector $b$ and columns of $A$. 
+Take note that, if $Ax = b$ with $x \ge \mathbf 0$, then $b$ is in the cone of all the columns of the matrix $A$ (some columns might be forced to be multiplied by zero from $x$). In that case, it's impossible to have $y^TA\ge \mathbf 0$ ($y$ is pointing along the same directions of all columns of $A$) such that a hyperplane defined by $y$ (which defined via the rows of $a$) separates vector $b$ and columns of $A$. 
+
+**Observations**
+
+This should remind the reader of the condition [Fredholm Alternative](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fredholm%20Alternative.md). 
 
 **Proof**
 
-We first consider the proof that $\implies$ by assuming that $x \ge \mathbf 0$ with $Ax = b$. For constradiction, further assume that $y: y^TA\ge \mathbf 0$, then: 
+We first consider the proof that $\implies$ by assuming that $x \ge \mathbf 0$ with $Ax = b$. For contradiction, further assume that $y: y^TA\ge \mathbf 0$, then: 
 
 $$
 \begin{aligned}

@@ -31,7 +31,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-We assume that $f(x)$, $G(x)$, $H(x)$ are all differentiable, having Hessian and Gradient(Jacobian) In the case of non-smooth function, we use sub-gradient techniques(**#CITATION_NEEDED**). This formulations is a generalization of the Fenchel-Rockafellar Duality. It's a minimization problem of objective functon $f(x)$, m constraints function $g_i(x)$, both equality and inequality constraints are presented here. We assume that $f:\mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is proper and $g_i(x) : \mathbb{R}^n\mapsto\mathbb{R}$. 
+We assume that $f(x)$, $G(x)$, $H(x)$ are all differentiable, having Hessian and Gradient(Jacobian) In the case of non-smooth function, we use sub-gradient techniques(**#CITATION_NEEDED**). This formulations is a generalization of the Fenchel-Rockafellar Duality. It's a minimization problem of objective function $f(x)$, m constraints function $g_i(x)$, both equality and inequality constraints are presented here. We assume that $f:\mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is proper and $g_i(x) : \mathbb{R}^n\mapsto\mathbb{R}$. 
 
 **Lagrangian:** 
 
@@ -44,7 +44,7 @@ $$
     \langle \mu, G(x)\rangle
     + 
     \langle \lambda, H(x)\rangle
-    \text{ For Minimizing} 
+    \text{ For Primal Minimizing} 
     \\
     \mathcal{L}(x, \mu, \lambda)
     &= 
@@ -53,14 +53,15 @@ $$
     \langle \mu, G(x)\rangle
     -
     \langle \lambda, H(x)\rangle
-    \text{ For Maximizing} 
+    \text{ For Primal Maximizing} 
 \end{aligned}\tag{2}
 $$
 
 $\nabla$ is the gradient when it applied to $f$, and the Jacobi matrix when applied to $G, H$. Next, an optimal solution for both the Primal and the Dual Problems gives the following set of conditions on the Lagrangian. Let the optimal solutions be denoted using super script $^+$.  
 
 **Remarks**
-The lagrangian is a 2 player games. Player one holds variable $x$, and it has the objective as $f(x)$ in (1), the second player holds $\mu, \lambda$ by penalizing the constraints vialations of $G(x), H(x)$, its objective is the opposite of the first player. Here, $\mu\ge 0$ because we only want to penalize entries of positive $G(x)$, and with $\lambda$ be a free variable to penalize $H(x)$ for either type of violations. 
+
+The Lagrangian is a 2 player games. Player one holds variable $x$, and it has the objective as $f(x)$ in (1), the second player holds $\mu, \lambda$ by penalizing the constraints violations of $G(x), H(x)$, its objective is the opposite of the first player. Here, $\mu\ge 0$ because we only want to penalize entries of positive $G(x)$, and with $\lambda$ be a free variable to penalize $H(x)$ for either type of violations. 
 
 **The Conditions**
 
@@ -76,7 +77,7 @@ $$
         \\
         H(x) = \mathbf 0    & \text{Primal Feasible}
         \\
-        \mu \ge \mathbf{0}  & \text{Dual Feasible}
+        \mu \ge \mathbf{0}, \lambda \text{ free}  & \text{Dual Feasible}
         \\
         \langle G(x), \mu\rangle = \mathbf{0} & \text{Complementary Slack}
     \end{cases}
@@ -100,7 +101,7 @@ $$
 **Proof**: 
 
 For contradiction assume that $\langle G(x), \mu\rangle\neq 0$, then it's implied that $\exists i \in [k]: g_i(x) \neq 0 \wedge u_i\neq 0$. Such a constraint violation gives 2 cases for $g_i(x)$: 
-* If $g_i(x) > 0$, then a positive $\mu_i$ can be increased indefinitely to satisifes the maximizing objective of the second player (Dual). 
+* If $g_i(x) > 0$, then a positive $\mu_i$ can be increased indefinitely to satisfies the maximizing objective of the second player (Dual). 
 * If $g_i(x) < 0$, then a zero $\mu_i$ can increase the objective of the dual, the second player. 
 
 Under either case, the point $x, \mu$ are not going to be stationary. 

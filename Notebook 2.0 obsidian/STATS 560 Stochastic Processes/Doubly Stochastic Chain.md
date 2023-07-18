@@ -5,7 +5,7 @@
 
 A doubly stochastic chain has some desirable properties. 
 
-**Definition: Doubly Stochastic Chain**
+**Def | Doubly Stochastic Chain**
 
 > A chain $P(x, y), x, y\in S$  is doubly stochastic when $P(x, y) = P(y, x)$ for all $x, y\in S$.
  
