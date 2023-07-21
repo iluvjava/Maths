@@ -81,11 +81,11 @@ $\blacksquare$
 
 ---
 ### **Exercise Statement 1**:
-#### Alpha And Level-Bounded
 
-**Proof strategies**: If $f$ is level bounded, then its domain under a certain level has to be smaller than the RHS of the strong convexity. If that function is level bounded, then so is $f$. 
+#### **Alpha And Level-Bounded**
 
-If a function $f$ is Alpha strongly convex, then it has minimizer and it will be level bounded.
+**Proof strategies**: 
+If $f$ is level bounded, then its domain under a certain level has to be smaller than the RHS of the strong convexity. If that function is level bounded, then so is $f$. If a function $f$ is Alpha strongly convex, then it has minimizer and it will be level bounded.
 
 Placing a gamma level bound on function $f$, we have: 
 $$
