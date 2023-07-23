@@ -50,7 +50,7 @@ Once a measure is defined, we will soon see that, the set of all measurable sets
 
 Inner measure is also defined. Since the sense of measure can be defined for simple sets, such as an open interval, or, countable many combinations of open intervals. This forms the besis of constructions for the sigma-algebra of measurable sets.
 
-Condition (3) assures that, if an interval $I$ is expressed in the form of its cover by finite many open intervals, then the sum of the measures of the covers are greater than the length of the interval $I$. This is not a trivial result. If the measure is defined as the intersection over uncountably infinite set, then it's possible to take the sum of singletons, to conjure a uncountable summation of zeros, breaking the math. Hence, it's necessary to assure condition (3) is true. 
+Condition (3) assures that, if an interval $I$ is expressed in the form of its cover by finite many open intervals, then the sum of the measures of the covers are greater than the length of the interval $I$. This is not a trivial result. If the measure is defined as the intersection over uncountably infinite set, then it's possible to take the sum of singletons, to conjure a uncountable summation of zeros, breaking the math. Hence, it's necessary to assure condition (3) is true. When reading the proof, pay attention to the use of Heine Borel Theorem from topology. 
 
 ---
 ### **Charathedory Criterion**

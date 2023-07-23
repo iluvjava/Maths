@@ -1,8 +1,12 @@
 ### **Defining Topological Spaces**
 
-> Let $\mathcal X$ be a set and $T \subseteq 2^{\mathcal X}$, with $\mathcal X, \emptyset \in T$ and $T$ contains all *arbitrary unions* and *finite intersection* of its element. Then $(\mathcal X, T)$ becomes a topological space and $T$ is a topology. 
+> Let $\mathcal X$ be a set and $T \subseteq 2^{\mathcal X}$, the set $T$ is a collection of $\mathcal X$ which we refers to be a topology when 
+> 1. $\empty, X \in T$. 
+> 2. Let $I$ be an arbitrary index set with $U_i\in T$ for all $i\in I$ then $\bigcup_{i\in I}U_i \in T$. It's closed under union. 
+> 3. Let $\{U_i\}_{i=1}^n$ be an arbitrary finite subset of $T$, then $\bigcap_{i=1}^n U_i \in T$. The set $T$ is closed under finite intersections. 
+> 
+> Then, $(\mathcal X, T)$ is a topological space. 
 
-1. Elements of $T$ are the open sets. The complement of any of its element is a closed set. 
 
 **Neighborhood**
 

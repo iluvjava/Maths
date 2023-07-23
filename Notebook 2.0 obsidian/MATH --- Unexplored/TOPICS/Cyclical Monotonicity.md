@@ -1,4 +1,4 @@
-[[../AMATH 516 Numerical Optimizations/Non-Smooth Calculus/Subgradient Central Hub]]
+[[../../AMATH 516 Numerical Optimizations/Non-Smooth Calculus/Subgradient Central Hub]]
 [[Introduction to Operators for Optimizations]]
 
 ---

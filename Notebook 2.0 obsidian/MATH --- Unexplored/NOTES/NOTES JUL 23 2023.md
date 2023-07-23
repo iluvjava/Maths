@@ -5,11 +5,3 @@ References:
 4. [Wiki proof](https://proofwiki.org/wiki/Convex_Real_Function_is_Measurable), convex, real functions in $\mathbb R$ are measurable functions. 
 5. [UC Davis](https://www.math.ucdavis.edu/~hunter/m206/ch1_measure.pdf), is a class in measure theory from U.C Davis. 
 6. [Lebesgue Density Theorem](https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem), partial density sets for measurable sets in the Lebesgue space has measure zero. 
-
----
-### **Intro**
-
-It's a less immediate observations that, convex sets in $\mathbb R^d$ are Lebesgue measurable. 
-
-
-
