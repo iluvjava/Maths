@@ -146,12 +146,10 @@ $$
 
 The Lagragian can be converted in such a way that it feels symmetric, by which I mean, the parameters of Dual and Primal can be swapped and the Lagragian will remains exactly the same. To illustrate the point, consider Primal, Dual Linear Programming Problem: 
 
-$$
 
-$$
 
 ---
-### **Theorems: Fundamental Theorems of Linear Programming**
+### **Theorems | Fundamental Theorems of Linear Programming**
 
 1. If problem has a non-empty feasible region, then there is at least one basic feasible point. (Feasible point exists)
 2. If problem has solutions, then at least one such solution is a basic optimal point. (BFOP exists if has solution)
@@ -160,12 +158,12 @@ $$
 ---
 ### **Strong Duality** 
 
-Strong Duality applies here, meaning that the primal objective and the dual objectives equals, when any one of the primal or the dual got solved. To be more percise: 
+Strong Duality applies here, meaning that the primal objective and the dual objectives equals, when any one of the primal or the dual got solved. To be more precise: 
 
 **Claim 3**
 
 > 1.  If either of the solutions for (1), or (1.2) is found, then the other is also found, and $b^T\lambda = c^Tx$. 
-> 2. If Primal is unbounded then dual is infeasible, if Primal is infeasible then the dual will be unbounded. 
+> 2. If Primal is unbounded, then the dual is infeasible, if Primal is infeasible then the dual will be unbounded. 
 
 ---
 ### **The Geometry**
@@ -175,9 +173,9 @@ Strong Duality applies here, meaning that the primal objective and the dual obje
 Algorithmically, the Simplex algorithm will try to achieve the followings: 
 
 * Choose the columns of $A$ such that it maximizes the $x$ values. Name that set $\mathcal{B}$. 
-* If the column is not choosen then that $x_j$ will be set to zero. 
+* If the column is not chosen then that $x_j$ will be set to zero. 
 * A chosen set of columns for the solutions is the vertex of the simplex of the Polytope representing the feasible region. 
-* If a tight constraint (Chosen set) has $x_j = 0$, then that is Degenercy. 
+* If a tight constraint (Chosen set) has $x_j = 0$, then that is degeneracy. 
 
 
 ---

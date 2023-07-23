@@ -21,4 +21,4 @@ with $f: \mathbb E \mapsto \mathbb R$ and $h(x): \mathbb E \mapsto \mathbb R^m$.
 
 
 ---
-# TODO: Fill this it's THAT not obvious. 
+# TODO | Fill this it's THAT not obvious. 

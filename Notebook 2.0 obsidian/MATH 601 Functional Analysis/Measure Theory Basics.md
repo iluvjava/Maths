@@ -1,12 +1,15 @@
 We formally introduce some measure theory. This file will follow [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
 
-
 ---
 ### **Intro**
 
-We introduce what we want for a measure. Why such a concept of measure can not be applied for everything in the reals, and what we do to characterize the sufficient conditions for measurable sets, and how they form an algebra, and then sigma-algebra. We then finally show, measurable spaces on the reals and acceptable measures. These ideas need to be constructed so that integral can make sense when we talk about it under different context. Ultimately we want to understand the *Borel Sigma-Algebra*, which makes preprarations for probability spaces. 
+We introduce what we want for a measure. Why such a concept of measure can not be applied for everything in the reals, and what we do to characterize the sufficient conditions for measurable sets, and how they form an algebra, and then sigma-algebra. We then finally show, measurable spaces on the reals and acceptable measures. These ideas need to be constructed so that integral can make sense when we talk about it under different context. Ultimately we want to understand the *Borel Sigma-Algebra*, which makes preparations for probability spaces. 
 
-#### **What do we want**
+**Sigma Finite Measure**: 
+
+The measure over the space is finite, instead of infinite. 
+
+#### **What do we want | The Actual Definitions**
 
 A measure constructed on the set $\mathbb R$, is original thought to be a mapping from $2^{\mathbb R}$ the power set of $\mathbb R$. It's meant to measure how big a subset is, relative $\mathbb R$. To do that, there are several things that would, make intuitive sense for a measure to posses. Let $m$ denote the measure that we are about, then we would want: 
 1. If we measure the interval (open, closed, or clopen), in the form of $(a, b)$, we should measure out its length, giving us $b - a$. 
@@ -16,7 +19,7 @@ A measure constructed on the set $\mathbb R$, is original thought to be a mappin
 
 #### **The fact that it's Impossible**
 
-It's impossible to construct a measure on the set $2^{\mathbb N}$ while satisfying all 3 conditions. This is just the quirks of the real numbers. It's pointing at the illusion of nature of the real line. The counter example that was constructed to break the above concept is called the [Vatali Set](https://en.wikipedia.org/wiki/Vitali_set), it's construction is based on the Axiom of Choice. Therefore, to be able to use the idea, it's a requirement to characterize a subset of $2^{\mathbb R}$, such that a measure can be defined. 
+It's impossible to construct a measure on the set $2^{\mathbb N}$ while satisfying all 3 conditions. This is just the quirks of the real numbers. Its pointing at the illusion of nature of the real line. The counter example that was constructed to break the above concept is called the [Vatali Set](https://en.wikipedia.org/wiki/Vitali_set), it's construction is based on the Axiom of Choice. Therefore, to be able to use the idea, it's a requirement to characterize a subset of $2^{\mathbb R}$, such that a measure can be defined. 
 
 Once a measure is defined, we will soon see that, the set of all measurable sets form a sigma-algebra. Which is justa fancy words for the set algebra we used for events when first learned about probability. And using this sigma-algebra, we can then defined a measure satisfying that conditions described above. To start, we define weaker sense of measure, the outer measure, to capture (1.), a weaker condition of (2.), and (3). 
 
@@ -37,12 +40,17 @@ Once a measure is defined, we will soon see that, the set of all measurable sets
 #### **Quick Facts**
 
 1. If $A$ is a subset of $\mathbb R$, then the outer measure of the set $A$, is $m(A) = 0$. (Countable sets are measured zero)
-2. $m^*(\cup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Subadditivity)
+2. $m^*(\cup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Subadditivity) The proof can be found in theorem 62 of [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
 3. If, $I\subseteq  \mathbb R$, is an interval, then $m^*(I) = l(I)$. The outer measure of an interval is the length. See [This](http://mathonline.wikidot.com/the-lebesgue-outer-measure-of-intervals) for more info we take this for granted. 
-4. If $A\subseteq B$, then $m^*(A)\le m^*(B)$. 
+4. If $A\subseteq B$, then $m^*(A)\le m^*(B)$. This is direct from the definition of the outter measure. 
 
-Take these facts for granted. All the proofs for the above facts can be found in [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf) for more information. 
 
+
+**Remarks**
+
+Inner measure is also defined. Since the sense of measure can be defined for simple sets, such as an open interval, or, countable many combinations of open intervals. This forms the besis of constructions for the sigma-algebra of measurable sets.
+
+Condition (3) assures that, if an interval $I$ is expressed in the form of its cover by finite many open intervals, then the sum of the measures of the covers are greater than the length of the interval $I$. This is not a trivial result. If the measure is defined as the intersection over uncountably infinite set, then it's possible to take the sum of singletons, to conjure a uncountable summation of zeros, breaking the math. Hence, it's necessary to assure condition (3) is true. 
 
 ---
 ### **Charathedory Criterion**
@@ -155,14 +163,14 @@ Using 2 of the basic rules above, we can propagate measurable sets. The definiti
 
 #### **Def-3 | Algebra, Sigma-Algebra**
 
-> Let $\mathcal A$ be an algebra (In our context it's based on $\mathbb R$), it is then, a subset of the power set of $2^{\mathbb R}$ such that, for all $E\in \mathcal A$, $E^C \in \mathcal A$, and for all finite collection of $\{E_i\}_{i = 1}^n$, their union is still $\in \mathcal A$. A sigma-aglebra is a type of algebra, where, countable union of elements is still in the algebra. 
+> Let $\mathcal A$ be an algebra (In our context it's based on $\mathbb R$), it is then, a subset of the power set of $2^{\mathbb R}$ such that, for all $E\in \mathcal A$, $E^C \in \mathcal A$, and for all finite collection of $\{E_i\}_{i = 1}^n$, their union is still $\in \mathcal A$. A sigma-algebra is a type of algebra, where, countable union of elements is still in the algebra. 
 
 **Observations**
 
 The trivial algebra that is based on any set $\Omega$, has $\mathcal = \{\Omega, \emptyset\}$ as the trivial algebra, and $2^{\Omega}$ being another algebra. By the theorems proved before for measurable sets, the set of all measurable sets on $\mathbb R$ forms an algebra, but not all aglebra based on $\mathbb R$ is consisted of measurable set. As said before, $2^{\mathbb R}$ can't be measured, but, $2^{\mathbb R}$ is an example of an algebra as well. 
 
 **Remarks**
-The term semi-aglebra is a type of algebra where it's not closed under complement. 
+The term semi-algebra is a type of algebra where, it's closed under intersections of sets, taking the complements results in a set that is the finite disjoin unions of other sets in the semi-algebra. 
 
 
 #### **Example | XOR Countable Sets Sigma Algebra**
@@ -260,7 +268,7 @@ From corollary 69, it's already clear that, the set $\mathcal M$ forms an algebr
 
 **Proof**
 
-It suffice to only show for $E_i$, a countable sequence of disjoin sets from algebra $\mathcal M$. Denote $E^\cup_n = \bigcup_{k = 1}^n E_k$, and we muse also assume that $E = \bigcup_{n\in \mathbb N}E_n$. From the previous lemma, we know that $E_N^\cup$ is still measurable for some $N\in \mathbb N$, and hence:
+It suffice to only show for $E_i$, a countable sequence of disjoin sets from algebra $\mathcal M$. Denote $E^\cup_n = \bigcup_{k = 1}^n E_k$, and we also assume that $E = \bigcup_{n\in \mathbb N}E_n$. From the previous lemma, we know that $E_N^\cup$ is still measurable for some $N\in \mathbb N$, and hence:
 
 $$
 \begin{aligned}
@@ -270,12 +278,15 @@ $$
     \quad &
     {\scriptsize
     \begin{aligned}
-        E^\cup_N \subseteq E\implies (E^\cup_N)\supseteq E^C, \text{ by property of outer measure}
+        E^\cup_N \subseteq E\implies (E^\cup_N)^C\supseteq E^C, \text{ by property of outer measure}
     \end{aligned}
     }
     \\
     &\ge m^*(A\cap E^\cup_n) + m^*(A\cap E^C)
-    \\& \ge \sum_{n = 1}^{N}m^*(A\cap E_n)
+    \\
+    & \ge \left(
+        \sum_{n = 1}^{N}m^*(A\cap E_n)
+    \right)
     + m^*(A\cap E^C)
     \\
     & \hspace{-1em} N\rightarrow \infty \text{ means}
@@ -285,14 +296,12 @@ $$
     + m^*(A\cap E^C)
     \\
     m^*(A) &\ge 
-    m^*(E) + m^*(A\cap E^C)
-    \\
-    &= m^*(A\cap E) + m^*(A\cap E^C), 
+    m^*(A\cap E) + m^*(A\cap E^C)
 \end{aligned}
 $$
 
 
-which is the equivalent condition for $E$ being a measurable set. 
+which is the equivalent condition for $E$ being a measurable set. On the last line, we made use of proposition 72 to sumplify the sums into a measure. 
 
 
 ---
@@ -304,7 +313,7 @@ There are many measurable sets on $\mathbb R$, but I think people like talking a
 
 **Proof**
 
-Let $A\subseteq \mathbb R$ be arbitrary. Split it using our interval we make $A-1 = A\cap (a, +\infty)$ and $A_2 = A\cap (-\infty, a]$, if $m^*(A) = \infty$, then it's trivial to show that $(a, \infty)$ is a measurable set. Other wise, consider $\{I_n\}_{n\in \mathbb N}$ be a collection of interval covering $A$, by the definition of the outer measure we have: $\sum_{ n \in \mathbb N}l(I_n) > m^*(A) + \epsilon$ for all $\epsilon > 0$, with $A\subseteq \bigcup_{n \in \mathbb N}I_n$. For each of the covering invertal $I_n$, split it and make interval (either empty, of an interval, which can be clopen...) $J_n  = I_n \cap (a, +\infty), K_n = I_n \cap (-\infty, a)$. Then
+Let $A\subseteq \mathbb R$ be arbitrary. Split it using our interval we make $A_1 = A\cap (a, +\infty)$ and $A_2 = A\cap (-\infty, a]$, if $m^*(A) = \infty$, then it's trivial to show that $(a, \infty)$ is a measurable set. Other wise, consider $\{I_n\}_{n\in \mathbb N}$ be a collection of interval covering $A$, by the definition of the outer measure we have: $\sum_{ n \in \mathbb N}l(I_n) > m^*(A) + \epsilon$ for all $\epsilon > 0$, with $A\subseteq \bigcup_{n \in \mathbb N}I_n$. For each of the covering invertal $I_n$, split it and make interval (either empty, of an interval, which can be clopen...) $J_n  = I_n \cap (a, +\infty), K_n = I_n \cap (-\infty, a)$. Then
 
 1. $A_1 = \bigcup_{n\in \mathbb B}J_n, A_2 = \bigcup_{n\in \mathbb N}K_n$. 
 2. $l(I_n) = l(J_n) + l(K_n)$. 
