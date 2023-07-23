@@ -146,12 +146,8 @@ $$
 
 The Lagragian can be converted in such a way that it feels symmetric, by which I mean, the parameters of Dual and Primal can be swapped and the Lagragian will remains exactly the same. To illustrate the point, consider Primal, Dual Linear Programming Problem: 
 
-$$
-
-$$
-
 ---
-### **Theorems: Fundamental Theorems of Linear Programming**
+### **Theorems | Fundamental Theorems of Linear Programming**
 
 1. If problem has a non-empty feasible region, then there is at least one basic feasible point. (Feasible point exists)
 2. If problem has solutions, then at least one such solution is a basic optimal point. (BFOP exists if has solution)
