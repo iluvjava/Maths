@@ -41,9 +41,8 @@ Once a measure is defined, we will soon see that, the set of all measurable sets
 
 1. If $A$ is a subset of $\mathbb R$, then the outer measure of the set $A$, is $m(A) = 0$. (Countable sets are measured zero)
 2. $m^*(\cup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Subadditivity) The proof can be found in theorem 62 of [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
-3. If, $I\subseteq  \mathbb R$, is an interval, then $m^*(I) = l(I)$. The outer measure of an interval is the length. See [This](http://mathonline.wikidot.com/the-lebesgue-outer-measure-of-intervals) for more info we take this for granted. 
-4. If $A\subseteq B$, then $m^*(A)\le m^*(B)$. This is direct from the definition of the outter measure. 
-
+3. If, $I\subseteq  \mathbb R$, is an interval, then $m^*(I) = l(I)$. The outer measure of an interval is the length. See [This](http://mathonline.wikidot.com/the-lebesgue-outer-measure-of-intervals) for more info we take this for granted. This made use of the compactness and [Heine Borel](../MATH%20000%20Math%20Essential/Analysis/Heine%20Borel.md) theorem. 
+4. If $A\subseteq B$, then $m^*(A)\le m^*(B)$. This is direct from the definition of the outer measure. 
 
 
 **Remarks**

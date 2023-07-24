@@ -17,11 +17,13 @@
 > \end{aligned}
 > $$
 
-In real analysis, the neighborhood of a real number is the open epsilon ball around that number.  
+**Observations**
+
+A neighborbood is not from the topology $T$, but rather, it's contained in some topology $U\in T$, with $x$ being an element of $U$. On the real line, the neighborhood of $x$ is $(x - \epsilon, x + \epsilon)$, an open set containing $x$, and it contains unctounably many open sets containing $x$ as well. 
 
 **Base**
 
-> A base $\mathbb B\subseteq T$ is when for all $x\in \mathcal X$, $V in \mathcal V(x)$ there exists $B\in \mathbb B$ such that $x\in B \subseteq V$. 
+> A base $\mathbb B\subseteq T$ is when for all $x\in \mathcal X$, $V \in \mathcal V(x)$ there exists $B\in \mathbb B$ such that $x\in B \subseteq V$. 
 
 $\mathbb  B$ is a base for topology $B$, then every set in $T$ can be written as a union of elements using elements from $\mathbb B$. 
 

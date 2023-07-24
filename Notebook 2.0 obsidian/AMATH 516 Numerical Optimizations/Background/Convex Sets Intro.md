@@ -56,7 +56,7 @@ For more discussion, see [[Convexity Preserving Operations of Sets]]
 
 
 ---
-### **Notations: Line Seg**
+### **Notations | Line Seg**
 
 $$
 [x, y]_Q := \{\lambda x + (1 - \lambda)y: 0 \le \lambda \le y\}\quad x, y \in Q
@@ -65,7 +65,7 @@ $$
 And the definition for $(x, y), [x, y)$ follows through naturally with a different definition on whether to include the boundary points or not. Next, we list some examples of convex sets that are foundamental to the discussion, 
 
 ---
-### **Example: Affine Subspace, Half Spaces**
+### **Example | Affine Subspace, Half Spaces**
 
 > The set $Q = \{x: \langle a, x\rangle\le b\}$ is convex. 
 
@@ -86,7 +86,7 @@ $$
 Therefore, the affine subspace is convex. 
 
 ---
-### **Example: Cone**
+### **Example | Cone**
 
 > A set $K$ which is a [[Cone]] is also convex. 
 
@@ -108,14 +108,14 @@ Done.
 
 
 ---
-### **Theorem: HyperPlane Separations**
+### **Theorem | HyperPlane Separations**
 > For any point lying outside of the set $Q$, which is a non-empty convex set, there exists a hyperplan separating the point and the set $Q$. 
 
 See proofs in [[Strict Separations Theorem]].	
 
 
 ---
-### **Theorem: Supporting Halfspaces**
+### **Theorem | Supporting Halfspaces**
 
 > For any convex set, it can be seen as the union of all affine subspace that contains the convex set. 
 
