@@ -410,4 +410,4 @@ This tutorial ends here. I wrote it intend to understand the high ground of prob
 
 **Remarks**: 
 
-The set of rationals, and the Cantor set are part of the Borel Set, see [here](https://mathworld.wolfram.com/BorelSet.html#:~:text=The%20set%20of%20rational%20numbers,as%20is%20the%20Cantor%20set.) for more info. Additionally, Borel Sets are a subset of Lesbesgue measurable sets. 
+The set of rationals, and the Cantor set are part of the Borel Set, see [here](https://mathworld.wolfram.com/BorelSet.html#:~:text=The%20set%20of%20rational%20numbers,as%20is%20the%20Cantor%20set.) for more info. Additionally, Borel Sets are a subset of Lebesgue measurable sets. 

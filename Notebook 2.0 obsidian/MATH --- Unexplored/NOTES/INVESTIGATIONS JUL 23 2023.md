@@ -1,3 +1,9 @@
+
+
+
+---
+### **Intro**
+
 Looking into measure theory, topologies and and various other stuff. This is a statement of investigations. We want to know why convex sets are measurable in $\mathbb R^n$. 
 
 **Major References**: 
@@ -12,6 +18,7 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 		1. [x] see [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md) for a full proof. 
 	3. The completeness of a Lebesgue Measure is used. 
 		1. [ ] What is completeness and how are the measure we are using in $\mathbb R^n$ is a complete measure? 
+	4. [ ] How to prove that a set is measurable? 
 
 **Auxiliary Resources**: 
 1. [Chapter 2 of a lecture notes of UC Davis](https://www.math.ucdavis.edu/~hunter/m206/ch1_measure.pdf) talks about measures in $\mathbb R^n$. [Here](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf) is the entire notes from the professors for the class. We summarize important theorems that are relevant to the convex measurability proof. 
@@ -21,7 +28,7 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 3. [Measure, Integrations and Real analysis](https://measure.axler.net/MIRA.pdf) by Sheldon Axler is a nice textbook for starting measure theory in $\mathbb R$. 
 	1. Heine Borel Theorem about outer measure of intervals on reals. A missing piece for my notes on Measure theory in the reals. 
 4. [Waterloo, Math 451](https://www.math.uwaterloo.ca/~krdavids/MT/PMath451Notes.pdf), a complete course notes for measure theory. 
-5. #### [Real Analysis by Stein](http://home.ustc.edu.cn/~matchbox/Real%20Analysis%20Stein.pdf), Standford series on analysis. 
+5. [Real Analysis by Stein](http://home.ustc.edu.cn/~matchbox/Real%20Analysis%20Stein.pdf), Stanford series on analysis. 
 
 **Deemed Not Directly Useful**: 
 1. [Lebesgue Density Theorem](https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem), partial density sets for measurable sets in the Lebesgue space has measure zero. This is related to the fact that the boundary of the convex set is going to have a fractional measure. Which is not directly useful for our purposes. 
@@ -34,15 +41,14 @@ We discuss some of the facts and theorems in details, cite their references and 
 ---
 ### **Measurability of Open Sets on Reals** 
 
-We want to show that, all open and closed sets on reals are measurable sets. Require [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) to understand. 
+We want to show that, all open and closed sets on reals are measurable sets. Require [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) to understand. This part allows for proving the theorem in $\mathbb R$. 
 
 #### **Thm-1 | All Open and Closed Sets on Reals Are Measurable**
 > All open, and closed sets on $\mathbb R$ are Lebesgue measurable sets. 
 
 **Context**
 
-For this theorem, read
-- [Open Sets are Measurable](https://mathcs.org/analysis/reals/integ/proofs/propmsr.html)
+For this theorem, read, [Open Sets are Measurable](https://mathcs.org/analysis/reals/integ/proofs/propmsr.html)
 
 **Proof**
 
@@ -63,8 +69,7 @@ The proof is not generalizable to outer measure in $\mathbb R^n$. For more infor
 
 **Proof**
 
-The proofs for the theorem is discussed in 
-- [this stack exchange post](https://math.stackexchange.com/questions/318299/any-open-subset-of-bbb-r-is-a-countable-union-of-disjoint-open-intervals). 
+The proofs for the theorem is discussed in [this stack exchange post](https://math.stackexchange.com/questions/318299/any-open-subset-of-bbb-r-is-a-countable-union-of-disjoint-open-intervals). 
 
 ---
 ### **Measurability of Sets in Rn** 
@@ -76,4 +81,25 @@ It's not true that theory in $\mathbb R^n$ generalizes directed to $\mathbb R^n$
 
 See page 16 of Standford series in analysis, (5.) for Auxilary Resources, property 1. 
 
+
+#### **Thm-4 | Zero Outter Measure Are Measurable**
+> Sets in $\mathbb R^n$ with a zero outer measure are measurable sets. 
+
+
+
+---
+### **Convex Sets are Measurable**
+
+Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoin set $C = C^\circ \sqcup \partial C$, the interior of a set is an open set, hence it's measurable, we show that, the boundary of the set, must have a measure of zero, hence, a measurable sets. Therefore, the whole set is measurable. In this proof, the following things are utlized: 
+
+1. $C = C^\circ \sqcup \partial C$. This should be done with basic topology. 
+2. Open sets in $\mathbb R^n$ are measurable sets. Prop 2.20 in \[1\]. 
+3. Sets with zero outer measure in $\mathbb R^n$ are measurable sets. ??? (True in $\mathbb R$, but not sure where is this theorem in $\mathbb R^n$)
+4. The disjoin union of 2 measurable sets $\subseteq \mathbb R^n$ is a measurable set. 
+
+
+#### **Claim | The Boundary od Convex Sets Has Measure Zero**
+> The boundary of the convex sets in $\mathbb R^n$ has a measure of zero, hence, it's a measurable set. 
+
+**Proof**
 
