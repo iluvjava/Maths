@@ -30,7 +30,7 @@ $$
 
 I think the equality after mapping the elements over a function is the canonical ways of looking at equivalence relations. 
 
-#### **Example 2 (2.2.2 in ref)| Function on elements in S**
+#### **Example 2 (2.2.2 in ref) | Function on elements in S**
 > Let $f : S \mapsto T$ be any function. For $x_1, x_2 \in S$, we define $x_1 \sim_f x_2$ if $f(x_1) = f(x_2)$. Then for all $x_1, x_2, x_3 \in S$, we have: 
 > 1. $f(x_1) = f(x_1)$ for sure. 
 > 2. $f(x_1) = f(x_2)$ then $f(x_2) = f(x_1)$ easily, 

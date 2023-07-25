@@ -16,7 +16,7 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Firmly Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Firmly Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
 
 
 **Definition: Non-Expansive Operator**
@@ -32,7 +32,7 @@ Lipschitz operator bound the distance between 2 points in the output space of th
 
 **Facts**: 
 
-A contraction has a singleton as its fixed point set. For more information about contraction, see [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]] for this type of operator in Banach space. 
+A contraction has a singleton as its fixed point set. For more information about contraction, see [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]] for this type of operator in Banach space. 
 
 ---
 ### **Monotone and Maximally Monotone Operator**

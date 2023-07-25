@@ -1,5 +1,5 @@
 Probability with a bit of measure theory in it. 
-You would need to read [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis/Measure%20Theory%20Basics.md) for a brief introduction about the construct behind probability spaces. 
+You would need to read [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) for a brief introduction about the construct behind probability spaces. 
 
 ---
 ### **Intro**

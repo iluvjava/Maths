@@ -1,4 +1,4 @@
-[[Banach Contraction in Metric Space]]
+[[Functional Spaces/Banach Contraction in Metric Space]]
 
 ---
 ### **Intro**

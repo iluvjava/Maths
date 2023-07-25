@@ -46,7 +46,7 @@ Therefore, the sequence $S_n$ is now Cauchy in the metric $\Vert \cdot\Vert_{(A,
 
 **Remarks**
 
-While this is not directly used, nor related, but the proof implicitly uses the concept of a Banach spaces (for more info: [Banach Space Introduction](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Banach%20Space%20Introduction.md)) to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 
+While this is not directly used, nor related, but the proof implicitly uses the concept of a Banach spaces (for more info: [Banach Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Banach%20Space%20Introduction.md)) to bound the functions uniformly. Also take note that, function that is not continuous can also converges uniformly, this stronger type of convergence doesn't really do much with the type of functions we have. 
 
 
 ---

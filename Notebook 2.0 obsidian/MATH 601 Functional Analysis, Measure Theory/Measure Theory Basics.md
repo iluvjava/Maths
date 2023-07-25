@@ -3,7 +3,7 @@ We formally introduce some measure theory. This file will follow [Functional Ana
 ---
 ### **Intro**
 
-We introduce what we want for a measure. Why such a concept of measure can not be applied for everything in the reals, and what we do to characterize the sufficient conditions for measurable sets, and how they form an algebra, and then sigma-algebra. We then finally show, measurable spaces on the reals and acceptable measures. These ideas need to be constructed so that integral can make sense when we talk about it under different context. Ultimately we want to understand the *Borel Sigma-Algebra*, which makes preparations for probability spaces. 
+We introduce measure theory in reals. 
 
 **Sigma Finite Measure**: 
 
@@ -29,15 +29,31 @@ Once a measure is defined, we will soon see that, the set of all measurable sets
 > Let $l$ be a function that only accepts intervals on $\mathbb R$, open, closed, or clopen, and it returns the length of the interval. Then, for any $A \subseteq \mathbb R$, the outer measure is defined to be 
 > $$
 > \begin{aligned}
->   m^*(A) = \inf \left\lbrace
+>   m^*(A) &= \inf \left\lbrace
 >       \left.\sum_{n\in \mathbb N}^{} l(I_n) \right| 
 >       \{I_n\}_{n\in \mathbb N} \text{ s.t: } A\subseteq \bigcup_{n\in \mathbb N} I_n
-> \right\rbrace. 
+> \right\rbrace, 
+> \\
+> \text{ with: }& 
+>   l(I) = 
+>   \begin{cases}
+>       b - a & \text{if } I = (b - a) , b > a
+>       \\
+>       0 & \text{else if } I = \emptyset
+>       \\
+>       \infty & \text{else if } a, b \in \{\pm\infty\}, b > a
+>       \\
+>       \text{undef}  & \text{else}
+>   \end{cases}
 > \end{aligned}
 > $$
 > Simply put, it's trying to measure the open interval that cover the any set $A$, and the smallest possible length interval, gives us the outer measure of the set. 
 
-#### **Quick Facts**
+**Context**
+
+This is the starting point for measure, it decomposes a set into intervals, a type of set defined by item (3), and they form the basis of measure theory. 
+
+**Properties of the Outer Measure on the Reals**
 
 1. If $A$ is a subset of $\mathbb R$, then the outer measure of the set $A$, is $m(A) = 0$. (Countable sets are measured zero)
 2. $m^*(\cup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Subadditivity) The proof can be found in theorem 62 of [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
@@ -169,6 +185,7 @@ Using 2 of the basic rules above, we can propagate measurable sets. The definiti
 The trivial algebra that is based on any set $\Omega$, has $\mathcal = \{\Omega, \emptyset\}$ as the trivial algebra, and $2^{\Omega}$ being another algebra. By the theorems proved before for measurable sets, the set of all measurable sets on $\mathbb R$ forms an algebra, but not all aglebra based on $\mathbb R$ is consisted of measurable set. As said before, $2^{\mathbb R}$ can't be measured, but, $2^{\mathbb R}$ is an example of an algebra as well. 
 
 **Remarks**
+
 The term semi-algebra is a type of algebra where, it's closed under intersections of sets, taking the complements results in a set that is the finite disjoin unions of other sets in the semi-algebra. 
 
 
@@ -254,7 +271,7 @@ $$
 \end{aligned}
 $$
 
-And therefore, for finite amount of disjoin set, it can be used to spread the measure of any sets (Not just measurable iet seems). 
+And therefore, for finite amount of disjoin set, it can be used to spread the measure of any sets (Not just measurable it seems). 
 
 
 #### **Thm 75 | Collection of Measurable sets Form Sigma Algebra**
@@ -385,4 +402,4 @@ This tutorial ends here. I wrote it intend to understand the high ground of prob
 
 **Remarks**: 
 
-The set of rationals, and the Cantor set are part of the Borel Set, see [here](https://mathworld.wolfram.com/BorelSet.html#:~:text=The%20set%20of%20rational%20numbers,as%20is%20the%20Cantor%20set.) for more info. 
+The set of rationals, and the Cantor set are part of the Borel Set, see [here](https://mathworld.wolfram.com/BorelSet.html#:~:text=The%20set%20of%20rational%20numbers,as%20is%20the%20Cantor%20set.) for more info. Additionally, Borel Sets are a subset of Lesbesgue measurable sets. 

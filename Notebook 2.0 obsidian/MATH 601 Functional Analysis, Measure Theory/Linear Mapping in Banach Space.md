@@ -2,7 +2,7 @@
 tags: 
 - unfinished
 ---
-- [Banach Space Introduction](Banach%20Space%20Introduction.md), 
+- [Banach Space Introduction](Functional%20Spaces/Banach%20Space%20Introduction.md), 
 
 ---
 ### **Intro**

@@ -1,5 +1,5 @@
 * [[Euclidean Space]], We discuss compact and boundedness for subsets of the Euclidean Space. 
-* [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction]]
+* [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Metric Space Introduction]]
 
 ---
 ### **Intro**

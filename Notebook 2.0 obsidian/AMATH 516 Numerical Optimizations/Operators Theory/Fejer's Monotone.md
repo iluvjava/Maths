@@ -109,7 +109,7 @@ $$
 \end{aligned}
 $$
 
-where we make use of the fact that inner product of an inner product space is a continuous mapping. See [Inner Product Space](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Inner%20Product%20Space.md) for more information. Therefore, all sub-sequential limit points of the sequence are the same, therefore, the sequence has a unique limit and it converges. 
+where we make use of the fact that inner product of an inner product space is a continuous mapping. See [Inner Product Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Inner%20Product%20Space.md) for more information. Therefore, all sub-sequential limit points of the sequence are the same, therefore, the sequence has a unique limit and it converges. 
 
 **Remark**
 

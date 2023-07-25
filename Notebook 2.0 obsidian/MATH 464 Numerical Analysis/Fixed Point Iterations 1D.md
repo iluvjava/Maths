@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-We show the convergence of fixed point iterations for function of type $\mathbb R \mapsto \mathbb R$. By the way, the whole thing is just am example of Banach contraction. See [Banach Contraction in Metric Space](../../MATH%20601%20Functional%20Analysis/Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md) for a more abstract version of the below theories. 
+We show the convergence of fixed point iterations for function of type $\mathbb R \mapsto \mathbb R$. By the way, the whole thing is just am example of Banach contraction. See [Banach Contraction in Metric Space](../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md) for a more abstract version of the below theories. 
 
 ---
 ### **Thm-1 | Existence of a Fixed Point via Self-Map**

@@ -1,4 +1,4 @@
-[[Vector Space]]
+[[Functional Spaces/Vector Space]]
 
 
 ---

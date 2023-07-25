@@ -4,7 +4,7 @@ We introduce the absolute basics of real analysis. There are approximately 2 par
 - The limits, continuity.
 - The series, convergence. 
 
-Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis/Functional Spaces/Metric Space Introduction | Metric Space Introduction]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
+Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Metric Space Introduction | Metric Space Introduction]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
 
 We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. For more about the concept of infinity, see [Countability of Sets](../Countability%20of%20Sets.md). 
 

@@ -1,4 +1,4 @@
-[Linear Mapping in Banach Space](../Linear%20Mapping%20in%20Banach%20Space.md)
+[Linear Mapping in Banach Space](Linear%20Mapping%20in%20Banach%20Space.md)
 
 ---
 ### **Intro**

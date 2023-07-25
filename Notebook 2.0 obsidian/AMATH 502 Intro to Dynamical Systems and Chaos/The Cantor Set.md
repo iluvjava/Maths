@@ -99,7 +99,7 @@ we removed all open intervals, and hence $C$ has a measure of zero.
 
 **Remarks**
 
-To understand the concept of a measure, and what the hell it is, see [Measure Theory Basics](../MATH%20601%20Functional%20Analysis/Measure%20Theory%20Basics.md). 
+To understand the concept of a measure, and what the hell it is, see [Measure Theory Basics](../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md). 
 
 ---
 ### **Totally Disconnected**

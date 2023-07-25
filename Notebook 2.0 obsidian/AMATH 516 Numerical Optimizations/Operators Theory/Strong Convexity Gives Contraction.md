@@ -1,4 +1,4 @@
-- [[../../MATH 601 Functional Analysis/Functional Spaces/Banach Contraction in Metric Space]], [[../Background/Characterizing Functions for Optimizations]]. 
+- [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]], [[../Background/Characterizing Functions for Optimizations]]. 
 - [[../Non-Smooth Calculus/Subgradient Intro]]
 - [[../Strong Convexity, Equivalences and Implications]]
 ---

@@ -1,4 +1,4 @@
-Looking into measure theory, topologies and and various other stuff. This is a statement of investigations. 
+Looking into measure theory, topologies and and various other stuff. This is a statement of investigations. We want to know why convex sets are measurable in $\mathbb R^n$. 
 
 **Major References**: 
 
@@ -7,16 +7,21 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 	
 	This proof requires the following ingredient to present 
 	1. An open sets in $\mathbb R^n$ is a measurable set. 
-		1. [ ] Proofs are required. Where. 
+		1. [x] 2.6 Borel Sets from the UC Davis's Notes. 
 	2. Accessibility lemma for convex set. 
 		1. [x] see [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md) for a full proof. 
 	3. The completeness of a Lebesgue Measure is used. 
 		1. [ ] What is completeness and how are the measure we are using in $\mathbb R^n$ is a complete measure? 
 
 **Auxiliary Resources**: 
-1. [Chapter 2 of a lecture notes](https://www.math.ucdavis.edu/~hunter/m206/ch1_measure.pdf), is a class in measure theory from U.C Davis. It talks about the basics of measurability in $\mathbb R^n$. [Here](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf) is the entire notes from the professors for measure theory. 
-2. [UBC Math 420 Course Notes](https://personal.math.ubc.ca/~feldman/m420/) for measure theory and integrations. This should be the vault used to find facts to support the details for the proofs used in the stack exchange discussion above. 
-3. [Canadian UW, Math 451](https://www.math.uwaterloo.ca/~krdavids/MT/PMath451Notes.pdf), a complete course notes for measure theory. 
+1. [Chapter 2 of a lecture notes of UC Davis](https://www.math.ucdavis.edu/~hunter/m206/ch1_measure.pdf) talks about measures in $\mathbb R^n$. [Here](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf) is the entire notes from the professors for the class. We summarize important theorems that are relevant to the convex measurability proof. 
+	1. All open sets in $\mathbb R^n$ real measurable is in Proposition 2.20
+	2. Theorem 2.24 tells us how to prove that a set in $\mathbb R^n$ is measurable! And it's exactly the proof technique used in (1.) of Major references. 
+2. [UBC Math 420 Course Notes](https://personal.math.ubc.ca/~feldman/m420/) for measure theory and integrations.
+3. [Measure, Integrations and Real analysis](https://measure.axler.net/MIRA.pdf) by Sheldon Axler is a nice textbook for starting measure theory in $\mathbb R$. 
+	1. Heine Borel Theorem about outer measure of intervals on reals. A missing piece for my notes on Measure theory in the reals. 
+4. [Waterloo, Math 451](https://www.math.uwaterloo.ca/~krdavids/MT/PMath451Notes.pdf), a complete course notes for measure theory. 
+5. #### [Real Analysis by Stein](http://home.ustc.edu.cn/~matchbox/Real%20Analysis%20Stein.pdf), Standford series on analysis. 
 
 **Deemed Not Directly Useful**: 
 1. [Lebesgue Density Theorem](https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem), partial density sets for measurable sets in the Lebesgue space has measure zero. This is related to the fact that the boundary of the convex set is going to have a fractional measure. Which is not directly useful for our purposes. 
@@ -24,12 +29,14 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 
 We discuss some of the facts and theorems in details, cite their references and stuff. 
 
+
+
 ---
 ### **Measurability of Open Sets on Reals** 
 
-We want to show that, all open and closed sets on reals are measurable sets. 
+We want to show that, all open and closed sets on reals are measurable sets. Require [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) to understand. 
 
-#### **Thm | All Open and Closed Sets on Reals Are Measurable**
+#### **Thm-1 | All Open and Closed Sets on Reals Are Measurable**
 > All open, and closed sets on $\mathbb R$ are Lebesgue measurable sets. 
 
 **Context**
@@ -39,14 +46,14 @@ For this theorem, read
 
 **Proof**
 
-We summarize the main argument. An open set is the union of countably many open intervals in $\mathbb R$, open intervals are measurable and has an outer measure equals to its Lebesgue Measure, intersections of countably many Lebesgue measurable sets are measurable (The Caratheodory Characterizations explained in [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis/Measure%20Theory%20Basics.md) thm75), therefore, any open sets in $\mathbb R$ are measurable. 
+We summarize the main argument. An open set is the union of countably many open intervals in $\mathbb R$, open intervals are measurable and has an outer measure equals to its Lebesgue Measure, intersections of countably many Lebesgue measurable sets are measurable (The Caratheodory Characterizations explained in [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) thm75), therefore, any open sets in $\mathbb R$ are measurable. 
 
 **Remarks**: 
 
-The proof seems to be generalizable to outer measure in $\mathbb R^n$. 
+The proof is not generalizable to outer measure in $\mathbb R^n$. For more information, see the 2.6 Borel Sets section from the UC Davis course notes.  
 
 
-#### **Thm | Countable Open Covers for All Open sets on Reals**
+#### **Thm-2 | Countable Open Covers for All Open sets on Reals**
 > All closed, and open sets on $\mathbb R$ can be covered by countably many open intervals that are disjoin. 
 
 **Context**
@@ -58,3 +65,15 @@ The proof seems to be generalizable to outer measure in $\mathbb R^n$.
 
 The proofs for the theorem is discussed in 
 - [this stack exchange post](https://math.stackexchange.com/questions/318299/any-open-subset-of-bbb-r-is-a-countable-union-of-disjoint-open-intervals). 
+
+---
+### **Measurability of Sets in Rn** 
+
+It's not true that theory in $\mathbb R^n$ generalizes directed to $\mathbb R^n$. 
+
+#### **Thm-3 | All Open Sets in $\mathbb R^n$ are Measurable**
+> Every open set in $\mathbb R^n$ is measurable. 
+
+See page 16 of Standford series in analysis, (5.) for Auxilary Resources, property 1. 
+
+
