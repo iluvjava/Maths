@@ -35,7 +35,7 @@ The goal is 2 folds.
 The abstract approach for Riemann integration is to assign weights to bars by the value of the functions and sum them up, taking the limit to yield the result. Following a similar approach, one can use the function itself to induce an equivalence relation between the domain and codomain to partition the domain of the functions into sets, and assign weights to then by partitioning the codomain of a function. One crucial problem is to assign an abstract sense of "width", or "volume" for the said partitions in the domain. <mark style="background: #FFB86CA6;">This approach has profound complications</mark>. 
 
 #### **Def-1 ([1] 2.1) | The Length**
-> We define a sense of volumn for any type of open interval in $\mathbb R$
+> We define a sense of volume for any type of open interval in $\mathbb R$
 > $$
 > l(I) = 
 > \begin{cases}
@@ -59,7 +59,7 @@ The abstract approach for Riemann integration is to assign weights to bars by th
 
 **Context**
 
-These things are absolutely true for the intervals that partitioning a function of type $\mathbb R\mapsto \mathbb R$, to extend, we want the sense of volumn for an interval $(a, b)\subseteq R$ to be extended in an abstract way, hence, the above criterion is considered. 
+These things are absolutely true for the intervals that partitioning a function of type $\mathbb R\mapsto \mathbb R$, to extend, we want the sense of volume for an interval $(a, b)\subseteq R$ to be extended in an abstract way, hence, the above criterion is considered. 
 
 **Proof**: 
 
@@ -126,21 +126,21 @@ The definition of a measure is very abstract. It has nothing to do with the leng
 
 **Observations**
 
-The introduction of this defintion allows us to talk about the measure of a limiting sequence of sets. This is possible due to the fact that, the measure is based on $\mathcal S$, the $\sigma$-algebra of some set. 
+The introduction of this definition allows us to talk about the measure of a limiting sequence of sets. This is possible due to the fact that, the measure is based on $\mathcal S$, the $\sigma$-algebra of some set. 
 
 **Properties**
 1. It preserves partial order created by set $\subseteq$ relations. (thm 2.57)
 2. It has countable sub-additivity, one of the properties of outer measure. (thm 2.58)
-3. Motone Convergence of sets means montone convergence of measure of the sequence of sets. (thm 2.59, 2.60)
+3. Monotone convergence of sets means monotone convergence of measure of the sequence of sets. (thm 2.59, 2.60)
 
 
 ----
-### **Lebesgue Measure, A Sanctury for All in the Reals**
+### **Lebesgue Measure, A Sanctuary for All in the Reals**
 
 Previously, it's emphasized that, outer measure won't be a measure on $2^{\mathbb R}$, the largest $\sigma$-algebra on $\mathbb R$. 
 
-#### **Def-7 (2.29) | Borel Set**
-> The smallest sigma-aglebra of $\mathbb R$ containing all the open subsets of $\mathbb R$ is the *Borel set*. 
+#### **Def-7 ([1] 2.29) | Borel Set**
+> The smallest $\sigma$-aglebra of $\mathbb R$ containing all the open subsets of $\mathbb R$ is the *Borel set*. 
 
 **Observations**
 
@@ -152,7 +152,7 @@ The definition is descriptive and it's not constructive. The existence of such a
 
 **Context**
 
-This theorem is crucial for the defintion of the Lebesuge measurable, and it's rooted in Borel Measure. 
+This theorem is crucial for the definition of the Lebesuge measurable, and it's rooted in Borel Measure. 
 
 **Observations**
 
@@ -160,20 +160,20 @@ Borel sets are elements of the $\sigma$-algebra generated on all open sets of $\
 
 **Remarks**
 
-Borel sets are restrictive compare to all subsets of $\mathbb R$, see Theorem 2.67 in \[1\] for more inforamtion on a set that a subset of $\mathbb R$, but not Borel. 
+Borel sets are restrictive compare to all subsets of $\mathbb R$, see Theorem 2.67 in \[1\] for more information on a set that a subset of $\mathbb R$, but not Borel. 
 
 #### **Def-8 ([1] 2.70) | Lebesgue Measurable Sets**
 > A set $A\subseteq \mathbb R$ is Lebesgue measurable if there exists a Borel set $B \subseteq A$ such that $m^*(A\setminus B) = 0$. 
 
 **Context**
 
-All Borel sets are Lebesgue measurable. But some Lebesgue measureable sets are not Borel Measurable. 
+All Borel sets are Lebesgue measurable. But some Lebesgue measurable sets are not Borel Measurable. 
 
 **Remarks**
 
-There are a lot of equivalences between for a Lebesgue measurable sets as specified above. The list of equivalence is in 2.71 of ref \[1\]. Additionally, the [Caratheodtory Criterion](https://en.wikipedia.org/wiki/Carath%C3%A9odory%27s_criterion) that is not listed there is also equivalent to the definition as above, see [This math stack exchange discussion](https://math.stackexchange.com/questions/2064678/proving-the-caratheodory-criterion-for-lebesgue-measurability) for more information on this claim. The sets that are Lebesgue measurable but not Borel Mesurable are all sets with measure zero. This fact is stated later in the definition for the Lebesgue measure. 
+There are a lot of equivalences between for a Lebesgue measurable sets as specified above. The list of equivalence is in 2.71 of ref \[1\]. Additionally, the [Caratheodtory Criterion](https://en.wikipedia.org/wiki/Carath%C3%A9odory%27s_criterion) that is not listed there is also equivalent to the definition as above, see [This math stack exchange discussion](https://math.stackexchange.com/questions/2064678/proving-the-caratheodory-criterion-for-lebesgue-measurability) for more information on this claim. The sets that are Lebesgue measurable but not Borel measurable are all sets with measure zero. This fact is stated later in the definition for the Lebesgue measure. 
 
-#### **Thm ([1] 2.72) | Outer Measure is a Measure on Lesbgue Measure Set**
+#### **Thm-2 ([1] 2.72) | Outer Measure is a Measure on Lebesgue Measure Set**
 > The set of all, Lebesgue Measurable sets form a $\sigma$-algebra and outer measure on this $\sigma$-algebra is indeed, a legit measure that we desired. 
 
 
@@ -183,5 +183,5 @@ There are a lot of equivalences between for a Lebesgue measurable sets as specif
 
 **Remarks**
 
-The Lebgesgue measure is not the same thing as the Borel Measure. The Lebesgue measure is that people called: "A completetion" of the Borel Measure. For more details about this claim, see this [blog post](https://www.math3ma.com/blog/lebesgue-but-not-borel#:~:text=The%20Basic%20Idea&text=Such%20a%20set%20exists%20because,open%20sets%20and%20zero%20sets.) for more information. Wihtout knowing the details, one should remember the fact that Borel measureble sets are strictly smaller than Lebesgue measure set, and the sets that are L-Measurable but not B-Measurable has an outer measure of zero. 
+The Lebesgue measure is not the same thing as the Borel Measure. The Lebesgue measure is that people called: "A completion" of the Borel Measure. For more details about this claim, see this [blog post](https://www.math3ma.com/blog/lebesgue-but-not-borel#:~:text=The%20Basic%20Idea&text=Such%20a%20set%20exists%20because,open%20sets%20and%20zero%20sets.) for more information. Without knowing the details, one should remember the fact that Borel measurable sets are strictly smaller than Lebesgue measure set, and the sets that are L-Measurable but not B-Measurable has an outer measure of zero. 
 

@@ -1,4 +1,6 @@
-We formally introduce some measure theory. This file will follow [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
+- We formally introduce some measure theory. This file will follow [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
+
+- This file is intended to clarify some of the concepts from [INVESTIGATIONS, Measure Theory Context and Background](../MATH%20---%20Unexplored/NOTES/INVESTIGATIONS,%20Measure%20Theory%20Context%20and%20Background.md). 
 
 ---
 ### **Intro**
@@ -12,6 +14,7 @@ The measure over the space is finite, instead of infinite.
 #### **What do we want | The Actual Definitions**
 
 A measure constructed on the set $\mathbb R$, is original thought to be a mapping from $2^{\mathbb R}$ the power set of $\mathbb R$. It's meant to measure how big a subset is, relative $\mathbb R$. To do that, there are several things that would, make intuitive sense for a measure to posses. Let $m$ denote the measure that we are about, then we would want: 
+1. It's a function mapping from $2^{\mathbb R}$ to $\mathbb R$. 
 1. If we measure the interval (open, closed, or clopen), in the form of $(a, b)$, we should measure out its length, giving us $b - a$. 
 2. If $E_n$ gives a sequence of measurable, disjoint subsets of $\mathbb R$, so that $m(\cup_{n\in \mathbb N}E_n) = \sum_{n \in \mathbb N }^{}m(E_n)$. (Sub additivity)
 3. If have the measure for the set $E\subseteq \mathbb R$, then translating it will preserve the size on the line, hence, $m(E + x) = m(E)$ for all $x \in  \mathbb R$. (Translational Invariance)
@@ -19,9 +22,13 @@ A measure constructed on the set $\mathbb R$, is original thought to be a mappin
 
 #### **The fact that it's Impossible**
 
-It's impossible to construct a measure on the set $2^{\mathbb N}$ while satisfying all 3 conditions. This is just the quirks of the real numbers. Its pointing at the illusion of nature of the real line. The counter example that was constructed to break the above concept is called the [Vatali Set](https://en.wikipedia.org/wiki/Vitali_set), it's construction is based on the Axiom of Choice. Therefore, to be able to use the idea, it's a requirement to characterize a subset of $2^{\mathbb R}$, such that a measure can be defined. 
+It's impossible to construct a measure on the set $2^{\mathbb N}$ while satisfying all conditions. The argument for it is non-trivial. The counter example that was constructed to break the above concept is called the [Vatali Set](https://en.wikipedia.org/wiki/Vitali_set), its construction is based on the Axiom of Choice. Therefore, to be able to use the idea, it's a requirement to characterize a subset of $2^{\mathbb R}$, such that a measure can be defined, and at the same time, a space that describes all such sets. We put the goals in emphasis: 
 
-Once a measure is defined, we will soon see that, the set of all measurable sets form a sigma-algebra. Which is justa fancy words for the set algebra we used for events when first learned about probability. And using this sigma-algebra, we can then defined a measure satisfying that conditions described above. To start, we define weaker sense of measure, the outer measure, to capture (1.), a weaker condition of (2.), and (3). 
+**The Goals**
+
+> Find a candidate for a measure of length on the real lines, satisfying conditions (2.), (3,), (4.) for a subsets of $2^{\mathbb R}$, and characterize the space formed by all these sets on $\mathbb R$. 
+
+The candidate measure is called, the outer measure. The characterization of measurable sets forms a $\sigma$-algebra, and they are called the Borel $\sigma$-Algebra, and it's completion, the Lebesgue $\sigma$-algebra. 
 
 
 #### **Def-1 | Outer Measure**
@@ -51,27 +58,26 @@ Once a measure is defined, we will soon see that, the set of all measurable sets
 
 **Context**
 
-This is the starting point for measure, it decomposes a set into intervals, a type of set defined by item (3), and they form the basis of measure theory. 
+This is the starting point for measure, it decomposes a set into intervals, a type of set defined by item (3. ), and they form the basis of measure theory. Condition (3.) for the ideal measure is not perfect satisfied for the outer measure on all subsets of the reals. 
 
 **Properties of the Outer Measure on the Reals**
 
-1. If $A$ is a subset of $\mathbb R$, then the outer measure of the set $A$, is $m(A) = 0$. (Countable sets are measured zero)
-2. $m^*(\cup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Subadditivity) The proof can be found in theorem 62 of [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
-3. If, $I\subseteq  \mathbb R$, is an interval, then $m^*(I) = l(I)$. The outer measure of an interval is the length. See [This](http://mathonline.wikidot.com/the-lebesgue-outer-measure-of-intervals) for more info we take this for granted. This made use of the compactness and [Heine Borel](../MATH%20000%20Math%20Essential/Analysis/Heine%20Borel.md) theorem. 
+1. If $A$ is a countable subset of $\mathbb R$, then the outer measure of the set $A$, is $m(A) = 0$. This is theorem 60 in [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
+2. $m^*(\bigcup_{n\in \mathbb N}A_n)\le \sum_{n\in \mathbb N}^{}m^*(A_n)$, for any countable sequence of $A_n$. (Countable Sub-additivity) The proof can be found in theorem 62 of [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
+3. If, $I\subseteq  \mathbb R$, is an interval, then $m^*(I) = l(I)$. The outer measure of an interval is the length. See [This](http://mathonline.wikidot.com/the-lebesgue-outer-measure-of-intervals) for more info, for now we take this for granted. This made use of the compactness and [Heine Borel](../MATH%20000%20Math%20Essential/Analysis/Heine%20Borel.md) theorem. I don't have the proof for this yet. 
 4. If $A\subseteq B$, then $m^*(A)\le m^*(B)$. This is direct from the definition of the outer measure. 
 
 
 **Remarks**
 
-Inner measure is also defined. Since the sense of measure can be defined for simple sets, such as an open interval, or, countable many combinations of open intervals. This forms the besis of constructions for the sigma-algebra of measurable sets.
+Inner measure is also defined. Since the sense of measure can be defined for simple sets, such as an open interval, or, countable many combinations of open intervals. This forms the basis of constructions for the sigma-algebra of measurable sets.
 
-Condition (3) assures that, if an interval $I$ is expressed in the form of its cover by finite many open intervals, then the sum of the measures of the covers are greater than the length of the interval $I$. This is not a trivial result. If the measure is defined as the intersection over uncountably infinite set, then it's possible to take the sum of singletons, to conjure a uncountable summation of zeros, breaking the math. Hence, it's necessary to assure condition (3) is true. When reading the proof, pay attention to the use of Heine Borel Theorem from topology. 
+Condition (3) assures that, if an interval $I$ is expressed in the form of its cover by finite many open intervals, then the sum of the measures of the covers are greater than the length of the interval $I$. This is not a trivial result. If the measure is defined as the intersection over uncountably infinite set, then it's possible to take the sum of singletons, to conjure an uncountable summation of zeros, breaking the math. Hence, it's necessary to assure condition (3) is true. When reading the proof, pay attention to the use of Heine Borel Theorem from topology. 
 
 ---
-### **Charathedory Criterion**
+### **Charatheodory Criterion**
 
-Carathedory Criterion is the necessary and sufficient conditions. This conditions helps with narrowing the set of all measurable sets. We won't show why, for more information, see [here](https://en.wikipedia.org/wiki/Carath%C3%A9odory's_criterion) for more about the criterion, see [here](https://math.stackexchange.com/questions/1366182/how-does-the-vitali-set-violate-the-definition-of-measurable-sets) for a discussion as to see how Vatali set from the intro is involved. We won't show why we in this file. A set is measurable here would mean that tha set is Lesbesgue measurable. 
-
+Caratheodory Criterion is the necessary and sufficient condition. There are many equivalent conditions too.  This condition helps with narrowing the set of all measurable sets. We won't show why, for more information, see [here](https://en.wikipedia.org/wiki/Carath%C3%A9odory's_criterion) for more about the criterion, see [here](https://math.stackexchange.com/questions/1366182/how-does-the-vitali-set-violate-the-definition-of-measurable-sets) for a discussion as to see how Vatali set from the intro is involved and how it doesn't satisfy this condition. Now that we feel safe, we start investigating this Criterion for Measurable sets on the reals. 
 
 #### **Def-2 | A Measurable sets**
 
@@ -102,8 +108,6 @@ $$
 $$
 
 Which is the equivalent to $E$ being  a measurable set. 
-
-
 
 #### **Proposition-68 | Union of 2 measurable sets is measurable**
 
@@ -156,7 +160,7 @@ $$
 
 The above condition is equivalent to $E_1\cup E_2$ being a measurable set. 
 
-#### **Cor 68.5 | Pair-wise set diff Preserves Measurability**
+#### **Cor 68.5 | Pairwise Set Diff Preserves Measurability**
 
 > If $E_1, E_2$ are both measurable sets, then $E_1\setminus E_2$ is also a measurable set. Because $E_1^C, E_2$ are measurable, so $E_1^C \cup E_2$ measurable, so $(E_1^C \cup E_2)^C$ measurable, so $E_1\cap E_2^C$ measurable which is equivalent to $E_1\setminus E_2$. 
 
@@ -194,7 +198,7 @@ The term semi-algebra is a type of algebra where, it's closed under intersection
 
 **Proof**
 
-The definition makes it clear that it's closed under set complement. In one case Let $E_n$ be a countable sequence of countable set, then $\bigcup_{n\in \mathbb N}E_n$ is still countable, hence it's complement is uncountable, which is stil in the algebra. In the second case, let $E_n$ be a countable sequence of countable or uncountable sets, then $\bigcup_{n\in \mathbb N}E_n$ would be uncountable, select any $E_N$ such that it's uncountable, then $E_N^C$ would be countable, hence we derive
+The definition makes it clear that it's closed under set complement. In one case Let $E_n$ be a countable sequence of countable set, then $\bigcup_{n\in \mathbb N}E_n$ is still countable, hence it's complement is uncountable, which is still in the algebra. In the second case, let $E_n$ be a countable sequence of countable or uncountable sets, then $\bigcup_{n\in \mathbb N}E_n$ would be uncountable, select any $E_N$ such that it's uncountable, then $E_N^C$ would be countable, hence we derive
 
 $$
 \begin{aligned}
@@ -209,7 +213,7 @@ which is countable, the union would still be in the algebra. Therefore, this ind
 
 #### **Lemma 73 | Disjoint Sets from the Algebra Is Measurable**
 
-> Let $E_i$ be a countable collection of elements from the algebra $\mathcal A$, then there eixsts another countable list of $F_i$ that are all disjoint such that $\bigcup_{n\in \mathbb N}E_n = \bigcup_{n\in \mathbb N}F_n$. 
+> Let $E_i$ be a countable collection of elements from the algebra $\mathcal A$, then there exists another countable list of $F_i$ that are all disjoint such that $\bigcup_{n\in \mathbb N}E_n = \bigcup_{n\in \mathbb N}F_n$. 
 
 **Proof**
 
@@ -217,7 +221,7 @@ Define $E^\cup_n = \bigcup_{i = 1}^n E_i$, Then consider $F_1 = E_1, F_{n + 1} =
 
 **Remarks**:
 
-Apply this theorem on an algebra of meausrable sets, then we have an disjoin set of measurable sets that partition any countable union of measurable sets. 
+Apply this theorem on an algebra of measurable sets, then we have a disjoin set of measurable sets that partition any countable union of measurable sets. 
 
 
 #### **Proposition 74 | Measuring with Disjoint Sets**
@@ -324,7 +328,7 @@ which is the equivalent condition for $E$ being a measurable set. On the last li
 ### **Intervals, And Borel Sigma-Algebra on Reals**
 There are many measurable sets on $\mathbb R$, but I think people like talking about intervals. 
 
-#### **Prop 75 | Open Intervals Are Measurable**
+#### **Prop 75 | Open Half Spaces  Are Measurable**
 > for all $a \in  \mathbb R$, the set $(a, \infty)$ is a measurable set. 
 
 **Proof**
@@ -385,7 +389,7 @@ therefore, by sigma-algebra, $(-\infty, b)$ is also a measurable set, using more
 ### **Borel-Sigma Algebra**
 
 
-The borel sigma-algebra is a subset of all measurable sets on $\mathbb R$. To get it we have to generate the sigma algebra for it, or we can defined it in a simpler way using the concept of minimum sigma algebra. 
+The Borel sigma-algebra is a subset of all measurable sets on $\mathbb R$. To get it we have to generate the sigma algebra for it, or we can defined it in a simpler way using the concept of minimum sigma algebra. 
 
 
 ### **Def-3 | Borel Sigma-Algebra**
@@ -396,6 +400,10 @@ The borel sigma-algebra is a subset of all measurable sets on $\mathbb R$. To ge
 > \end{aligned}
 > $$
 > denotes the smallest sigma-aglebra containing all of the open subsets of $\mathbb R$, this is the *Borel-sigma-algebra*. 
+
+**Observations**
+
+The definition above is descriptive, and it's not a constructive definition of the sets. It remains to show that the sets from the $\sigma$-algebra exists and it's unique. We assure the readers that this is true. But I don't have links for this to convince you yet. 
 
 
 This tutorial ends here. I wrote it intend to understand the high ground of probability spaces. 
