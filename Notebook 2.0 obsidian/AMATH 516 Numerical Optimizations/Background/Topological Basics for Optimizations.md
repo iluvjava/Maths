@@ -1,13 +1,10 @@
-For a brief introduction of Topology that doesn't touch on optimizations, see [[Topological Spaces]], for optimization, the neighbors are point close to an element by the metric in a [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Metric Space Introduction]] (We are talking about Euclidean space). But in the most general sense, the concept of a "neighbor" as described by the epsilon ball around a point, should directly from the definition of a topological space. 
-
-Please note that, some of the discussion will feel familiar to discussion spotted here: [[Closed, Proper, Level Bounded, Strong Convex]], which also concerns the topological properties of sets related to the family of convex functions. 
+- See [Topological Spaces](../../MATH%20000%20Math%20Essential/Topological%20Spaces.md) for a place where, topology happens. 
+- Relevant to [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which also concerns the topological properties of sets related to the family of convex functions. 
 
 ---
 ### **Intro**
 
-The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on Finite Euclidean spaces for real numbers with the usual p-norm as the metric. We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. 
-
-Set Topologies are particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
+The geometric properties of function classifies them, and their properties that are relevant to optimizations. We focuses on *Finite Euclidean spaces* for real numbers with the usual p-norm as the metric (see [Topology of Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Topology%20of%20Metric%20Space.md), [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md) for more context). We denote the epsilon in the vicinity of a point $x$ in space to be $\mathbb B_\epsilon(x)$, this is an open normal ball centered at $x$ with radius $\epsilon$. Topology of sets in $\mathbb R^n$ is particular useful for characterizing the behavior of functions that are $C1$, the ramp function. 
 
 **Definition-1 | Interior of a set**
 

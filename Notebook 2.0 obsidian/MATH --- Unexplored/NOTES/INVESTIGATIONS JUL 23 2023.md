@@ -1,4 +1,5 @@
-
+---
+alias: Measurability of convex sets in Rn
 
 
 ---
@@ -90,7 +91,7 @@ See page 16 of Standford series in analysis, (5.) for Auxilary Resources, proper
 ---
 ### **Convex Sets are Measurable**
 
-Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoin set $C = C^\circ \sqcup \partial C$, the interior of a set is an open set, hence it's measurable, we show that, the boundary of the set, must have a measure of zero, hence, a measurable sets. Therefore, the whole set is measurable. In this proof, the following things are utlized: 
+Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoin set $C = C^\circ \sqcup \partial C$, the interior of a set is an open set, hence it's measurable, we show that, the boundary of the set, must have a measure of zero, hence, a measurable sets. Therefore, the whole set is measurable. In this proof, the following things are utilized: 
 
 1. $C = C^\circ \sqcup \partial C$. This should be done with basic topology. 
 2. Open sets in $\mathbb R^n$ are measurable sets. Prop 2.20 in \[1\]. 
@@ -98,17 +99,25 @@ Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoi
 4. The disjoin union of 2 measurable sets $\subseteq \mathbb R^n$ is a measurable set. 
 
 
-#### **Claim | The Boundary od Convex Sets Has Measure Zero**
+#### **Claim-1 | The Boundary of Convex Sets Has Measure Zero**
 > The boundary of the convex sets in $\mathbb R^n$ has a measure of zero, hence, it's a measurable set. 
 
 **Proof**
 
 To prove, we need to assume without loss of generality that the set contains the zero point $\mathbf 0$. This can be done for any non-empty sets via a translation. Next, we assume that the set is bounded. The set is bounded, then the set $\overline C$ has a finite outer measure. This is necessary for bounding the measure. Let $C^\circ$ be the interior of $C$. The set $C = C^\circ \sqcup \partial C$. 
 
-#### **Claim-1 | Squeezing the Boundary**
+#### **Claim-2 | Squeezing the Boundary with Dilated Interior**
 
-> Consider $\epsilon > 0$, then $C^\circ \subseteq 1/(1 - \epsilon)C^\circ$. 
+> Consider $\epsilon > 0$, assuming $\mathbf 0 \in C^\circ$, then $C^\circ \subseteq 1/(1 - \epsilon)C^\circ$. 
+
+**WLOG**
+1. If the set doesn't have interior and bounded, then it lies in a sub-dimensional space with measure zero. To show that, make 2 $\mathbb R^{n-1}$ affine subspace that is $\epsilon$ apart to contain the set, and since the affine subspace are boundary of this convex set, they have measure zero. The outer measure is a countable union of zeros, which is what we are going to prove. 
+2. else If the set is not bounded, then partition the whole space $\mathbb R^n$ into countable many unions to intersect the set, every piece of it will be a convex set, and then go back to (1.)
+3. else, the set must have an interior. Then take any $x_0 \in C^\circ$, then consider $\mathbf 0 \in C^\circ - \{x_0\}$, which is a set with an interior containing $\mathbf 0$. 
+We now included all the cases. 
+
+
 
 **Proof**
 
-Choose any $x\in C^\circ$, by convexity, we have $(1 - \lambda)\mathbf 0 + \lambda x \in C^\circ$ for all $\lambda\in (0, 1)$, 
+This is a direct consequence from [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md). 
