@@ -2,8 +2,8 @@
 
 
 ---
-### Intro
-It's not union. 
+### **Intro**
+Set addition is not union. 
 
 
 ### **Addition**
@@ -23,5 +23,5 @@ $$
 \end{aligned}
 $$
 
-Where the first is scaling the subspace by a real number $\lambda$ and the second is the Minkowski Addition on sets. 
+Where the first is scaling the subspace by a real number $\lambda$ and the second is the Minkowski Addition on sets. Sometimes $A + A$ causes confusion, because $A + A$ means $x + y$ with $x, y \in A$, and it's not $2A$, which would means $x = y$. Hence, $A + A\subseteq 2A$. When the same set is used to encode memebership of elements, assume that they are different elements from the same set doing additions. 
 

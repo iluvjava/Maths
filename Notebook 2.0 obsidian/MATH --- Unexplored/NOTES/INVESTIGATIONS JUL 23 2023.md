@@ -103,3 +103,12 @@ Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoi
 
 **Proof**
 
+To prove, we need to assume without loss of generality that the set contains the zero point $\mathbf 0$. This can be done for any non-empty sets via a translation. Next, we assume that the set is bounded. The set is bounded, then the set $\overline C$ has a finite outer measure. This is necessary for bounding the measure. Let $C^\circ$ be the interior of $C$. The set $C = C^\circ \sqcup \partial C$. 
+
+#### **Claim-1 | Squeezing the Boundary**
+
+> Consider $\epsilon > 0$, then $C^\circ \subseteq 1/(1 - \epsilon)C^\circ$. 
+
+**Proof**
+
+Choose any $x\in C^\circ$, by convexity, we have $(1 - \lambda)\mathbf 0 + \lambda x \in C^\circ$ for all $\lambda\in (0, 1)$, 
