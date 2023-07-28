@@ -1,4 +1,4 @@
-[[Relations]]
+[Relations](../Relations.md)
 
 ---
 ### **Intro**
@@ -39,7 +39,7 @@ I think the equality after mapping the elements over a function is the canonical
 
 **Observations**
 
-This is a way of partitioning the domain of the function and reminds be of the construction behind Lesbegue Integral. 
+This is a way of partitioning the domain of the function and reminds me of the construction behind Lebesgue Integral. 
 
 #### **Example 1 (2.2.1 in ref) | Congruence of on Modulo n**
 > It's not hard to see that, the equivalence relation under modulo-n is using a mapping $f(x) = \text{mod}(x, n)$ on the set $\Z$, and hence, using the previous example, this function will induce an equivalence relation on the set $\Z$. 
@@ -53,6 +53,10 @@ We introduce some basic theorems followed from the above definitions.
 #### **Prp 1 (2.2.3)**
 
 > Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then each element of $S$ belongs to exactly one of the equivalence classes of $S$ determined by the relation $\sim$. 
+
+**Observations**
+
+Each element of $S$ belongs to exactly one equivalent class of $S$, this means that, the equivalent classes of $S$ is partitioning the set $S$. 
 
 **Proof**
 #UNFINISHED 

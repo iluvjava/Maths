@@ -18,8 +18,9 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 	2. Accessibility lemma for convex set. 
 		1. [x] see [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md) for a full proof. 
 	3. The completeness of a Lebesgue Measure is used. 
-		1. [ ] What is completeness and how are the measure we are using in $\mathbb R^n$ is a complete measure? 
-	4. [ ] How to prove that a set is measurable? 
+		1. [x] What is completeness and how are the measure we are using in $\mathbb R^n$ is a complete measure? The Lebesgue measure is complete, if a set has measure zero, then all of its subset is measurable. On the other hands, the Borel sets are not complete. 
+	1. How to prove that a set is measurable? 
+		1. [x] See (1.2) in the auxiliary resource. 
 
 **Auxiliary Resources**: 
 1. [Chapter 2 of a lecture notes of UC Davis](https://www.math.ucdavis.edu/~hunter/m206/ch1_measure.pdf) talks about measures in $\mathbb R^n$. [Here](https://www.math.ucdavis.edu/~hunter/measure_theory/measure_notes.pdf) is the entire notes from the professors for the class. We summarize important theorems that are relevant to the convex measurability proof. 
@@ -31,16 +32,14 @@ Looking into measure theory, topologies and and various other stuff. This is a s
 4. [Waterloo, Math 451](https://www.math.uwaterloo.ca/~krdavids/MT/PMath451Notes.pdf), a complete course notes for measure theory. 
 5. [Real Analysis by Stein](http://home.ustc.edu.cn/~matchbox/Real%20Analysis%20Stein.pdf), Stanford series on analysis. 
 
-**Deemed Not Directly Useful**: 
+**Deemed Not Directly Useful**:
 1. [Lebesgue Density Theorem](https://en.wikipedia.org/wiki/Lebesgue%27s_density_theorem), partial density sets for measurable sets in the Lebesgue space has measure zero. This is related to the fact that the boundary of the convex set is going to have a fractional measure. Which is not directly useful for our purposes. 
 2. [A note](https://link.springer.com/content/pdf/10.1007/BF01202504.pdf) on measurability of convex sets, springer. The argument is way too general for beginners. 
 
 We discuss some of the facts and theorems in details, cite their references and stuff. 
 
-
-
 ---
-### **Measurability of Open Sets on Reals** 
+### **Measurability of Open Sets on Reals**
 
 We want to show that, all open and closed sets on reals are measurable sets. Require [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md) to understand. This part allows for proving the theorem in $\mathbb R$. 
 
@@ -77,26 +76,42 @@ The proofs for the theorem is discussed in [this stack exchange post](https://ma
 
 It's not true that theory in $\mathbb R^n$ generalizes directed to $\mathbb R^n$. 
 
+
+#### **Def | Lebesgue Measurable Sets**
+> ?????
+
+**Context**
+
+There are many equivalent definitions for a Lebesgue measurable sets. I am not sure about how to talk about this yet. 
+
 #### **Thm-3 | All Open Sets in $\mathbb R^n$ are Measurable**
 > Every open set in $\mathbb R^n$ is measurable. 
 
-See page 16 of Standford series in analysis, (5.) for Auxilary Resources, property 1. 
+See page 16 of Stanford series in analysis, (5.) for auxiliary Resources, property 1. 
 
 
-#### **Thm-4 | Zero Outter Measure Are Measurable**
+#### **Thm-4 | Zero Outer Measure Are Measurable**
 > Sets in $\mathbb R^n$ with a zero outer measure are measurable sets. 
-
 
 
 ---
 ### **Convex Sets are Measurable**
 
-Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoin set $C = C^\circ \sqcup \partial C$, the interior of a set is an open set, hence it's measurable, we show that, the boundary of the set, must have a measure of zero, hence, a measurable sets. Therefore, the whole set is measurable. In this proof, the following things are utilized: 
+#### **Thm-0 | Measurability of Convex Sets**
+> Convex sets in $\mathbb R^n$ are measurable sets. 
+
+
+
+**Proof Summary**
+
+Let $C\subseteq \mathbb R^n$ be a convex set, it can be decomposed into 2 disjoin set $C = C^\circ \sqcup \partial C$, the interior of a set is an open set, hence it's measurable, we show that, the boundary of the set, must have a measure of zero, hence, a measurable sets. Therefore, the whole set is measurable. In this proof, the following proven facts are utilized: 
 
 1. $C = C^\circ \sqcup \partial C$. This should be done with basic topology. 
 2. Open sets in $\mathbb R^n$ are measurable sets. Prop 2.20 in \[1\]. 
-3. Sets with zero outer measure in $\mathbb R^n$ are measurable sets. ??? (True in $\mathbb R$, but not sure where is this theorem in $\mathbb R^n$)
+3. Sets with zero outer measure in $\mathbb R^n$ are measurable sets. (True in $\mathbb R$, but not sure where is this theorem in $\mathbb R^n$). 
 4. The disjoin union of 2 measurable sets $\subseteq \mathbb R^n$ is a measurable set. 
+
+To prove, combine claim-1 from below, and all the facts from above, both $C^\circ, \partial C$ are measurable, therefore their union is also a measurable set. 
 
 
 #### **Claim-1 | The Boundary of Convex Sets Has Measure Zero**
@@ -108,16 +123,38 @@ To prove, we need to assume without loss of generality that the set contains the
 
 #### **Claim-2 | Squeezing the Boundary with Dilated Interior**
 
-> Consider $\epsilon > 0$, assuming $\mathbf 0 \in C^\circ$, then $C^\circ \subseteq 1/(1 - \epsilon)C^\circ$. 
+> Consider $1 >\epsilon > 0$, assuming $\mathbf 0 \in C^\circ$, then $C^\circ \subseteq 1/(1 - \epsilon)C^\circ$. 
 
 **WLOG**
 1. If the set doesn't have interior and bounded, then it lies in a sub-dimensional space with measure zero. To show that, make 2 $\mathbb R^{n-1}$ affine subspace that is $\epsilon$ apart to contain the set, and since the affine subspace are boundary of this convex set, they have measure zero. The outer measure is a countable union of zeros, which is what we are going to prove. 
+	
+	> Let $S_\epsilon$ be maximal rectangle the contains the convex set with width of $\epsilon$,then the volume of the set has $\lim_{\epsilon\rightarrow \infty} S_\epsilon = 0$. By $C\subseteq S_\epsilon \forall \epsilon >0$, the set $C$ will have measure zero. 
 2. else If the set is not bounded, then partition the whole space $\mathbb R^n$ into countable many unions to intersect the set, every piece of it will be a convex set, and then go back to (1.)
+	
+	> A direct way to partition is to use the square $\prod_{i=1}^{n} (k, k + 1], k\in \mathbb N$, and their countable union makes up the entire $\mathbb R^n$. 
 3. else, the set must have an interior. Then take any $x_0 \in C^\circ$, then consider $\mathbf 0 \in C^\circ - \{x_0\}$, which is a set with an interior containing $\mathbf 0$. 
 We now included all the cases. 
 
-
-
 **Proof**
 
-This is a direct consequence from [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md). 
+This is a direct consequence from [Accessibility Lemma](../../AMATH%20516%20Numerical%20Optimizations/CVX%20Analysis/Accessibility%20Lemma.md). Next, to show claim-1, using the sub-additivity of outer measure, and the fact that $C^\circ$ has a finite measure, we have 
+
+$$
+\begin{aligned}
+	\partial C &\subseteq (1 - \lambda)^{-1}C^\circ \setminus C^\circ 
+	\\
+	m^*(\partial C) &\le 
+	m^*((1 - \lambda)^{-1}C^\circ) - m^*(C^\circ)
+	\\
+	&= (1-\lambda)^{-n}m^*(C^\circ) - m^*(C^\circ)
+	\\
+	&= ((1 - \lambda)^{-n} - 1)m^*(C^\circ)
+	\\
+	\implies \lim_{\lambda \searrow 0} m^*(\partial C) 
+	&\le 
+	m^*(C^*) \lim_{\lambda \searrow 0}((1 - \lambda)^{-1} - 1) = 0,
+\end{aligned}
+$$
+
+therefore, the boundary of the convex sets has a measure of zero. And hence, it's a measurable set by (3.). By (2.), open sets are measurable sets, hence $C^\circ \sqcup \partial C$ gives a measurable sets by disjoin union of 2 measurable sets are still measurable. 
+

@@ -1,3 +1,7 @@
+---
+alias: Measure Theory, Background and Context. 
+
+---
 ### **Intro**
 
 We give an overview of the topics for the start of Measure Theory. More specifically, all the topics relevant to measures for sets in $\mathbb R, \mathbb R^n$, and sets for all measurable sets. As we already saw in [Measure Theory Basics](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Measure%20Theory%20Basics.md), some topics had already been introduced, here, we will clarify the structures of things and make everything clear from above. We are interesting in, what problems we are addressing and how things are related to each other. We list the major references and index them. 
