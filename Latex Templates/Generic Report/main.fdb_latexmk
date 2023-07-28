@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1690529811 "main.aux" "main.bbl" "main" 1690529847
+["bibtex main"] 1690531312 "main.aux" "main.bbl" "main" 1690531353
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1690529847 2736 804fd4952bc23d5b6fe9a895bb86d4fa "pdflatex"
+  "main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
   "refs.bib" 1690526468 136 5cd00ac04c34e88cf1d928bc3aa82a1d ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1690529842 "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.tex" "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.pdf" "main" 1690529847
-  "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.aux" 1690529847 2736 804fd4952bc23d5b6fe9a895bb86d4fa ""
-  "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.tex" 1690529841 4024 e1b7417915acfd0bab4d122f9c21aaac ""
+["pdflatex"] 1690531349 "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" "main" 1690531353
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b ""
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" 1690531348 4100 3a745116b1ea0988f3061dd5767296d8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -57,7 +57,7 @@
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb" 1215737283 140176 d4962f948b4cc0adf4d3dde77a128c95 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb" 1215737283 135942 859a90cad7494a1e79c94baf546d7de5 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb" 1215737283 139826 9213617a7cb78635fc326b859c0b2273 ""
-  "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb" 1215737283 162624 9dcc92cd3b1dfe2ecc80e6da7f2eb6bd ""
+  "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb" 1215737283 164227 3df942b4ff2124425d8fb1b6d3e01c7a ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb" 1215737283 145929 f25e56369a345c4ff583b067cd87ce8e ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1215737283 136101 f533469f523533d38317ab5729d00c8a ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb" 1215737283 131078 d96015a2fa5c350129e933ca070b2484 ""
@@ -98,6 +98,7 @@
   "/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty" 1601675358 87353 2c21ff5f2e32e1bf714e600924d810db ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty" 1523134290 4116 32e6abd27229755a83a8b7f18e583890 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty" 1523134290 2432 8ff93b1137020e8f21930562a874ae66 ""
+  "/usr/local/texlive/2021/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty" 1195838950 3901 468c107ba2ff895578a5a95fe5d4bdbe ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/atveryend/atveryend.sty" 1576191570 19336 ce7ae9438967282886b3b036cfad1e4d ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/auxhook/auxhook.sty" 1576625391 3935 57aa3c3e203a5c2effb4d2bd2efbc323 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls" 1601675358 20145 aad8c3dd3bc36e260347b84002182bc2 ""
@@ -160,14 +161,14 @@
   "Assets/Minty_and_Alto.png" 1676165331 1726202 9662d2ff97dcd3bc720c545b13f1d4e8 ""
   "Code/juliacode.jl" 1690529436 596 7eb858acf3adeec298e3222d186d8f57 ""
   "Sections/section.tex" 1690528940 734 ccc1cdec0fc7477fb9ec047783241b0e ""
-  "main.aux" 1690529847 2736 804fd4952bc23d5b6fe9a895bb86d4fa "pdflatex"
-  "main.bbl" 1690529811 164 ce3453419438c9668dc157eaf83f317b "bibtex main"
-  "main.out" 1690529847 1300 b95deecc1c56c441f05855df84300c3c "pdflatex"
-  "main.tex" 1690529841 4024 e1b7417915acfd0bab4d122f9c21aaac ""
+  "main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
+  "main.bbl" 1690531312 164 ce3453419438c9668dc157eaf83f317b "bibtex main"
+  "main.out" 1690531353 1300 b95deecc1c56c441f05855df84300c3c "pdflatex"
+  "main.tex" 1690531348 4100 3a745116b1ea0988f3061dd5767296d8 ""
   (generated)
   "main.aux"
-  "main.log"
-  "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.pdf"
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf"
   "main.out"
   "main.pdf"
-  "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.log"
+  "main.log"
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.log"

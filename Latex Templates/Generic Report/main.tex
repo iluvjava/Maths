@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{algorithmic}
 \usepackage{algorithm}
+\usepackage{anyfontsize}
 % \usepackage{minted}
 
 % Basic Type Settings ----------------------------------------------------------
@@ -70,14 +71,14 @@
     showstringspaces = false,
 }
 
-\title{This is The Title}
+\title{Measurability of Convex Sets}
 \author{Name of the Author}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-    This is the Abstract
+    What is life? Why are we here? Where did we come from?
 \end{abstract}
 
 
@@ -92,7 +93,7 @@
     \subsection{Blah Blah Blah Bleeh Bleeh Bleeh}
     Check out this cool Bibtext ref \cite[this]{texbook}, woooooooooah, also it's in plain style. For some mind altering psychodelic, read \hyperref[alg:mhc]{algorithm \ref*{alg:mhc}} for the experience. For some brain expanding julia code, read \hyperref[code:brain_expand]{brain expanding julia code}. 
     \begin{algorithm}
-        \begin{algorithmic}[H]
+        \begin{algorithmic}[t]
             \STATE{\textbf{Input: $X^{(t)}$}}
             \STATE{$Y^{(t)} \sim q (\cdot | X^{(t)})$}
             \STATE{
@@ -117,7 +118,7 @@
         \label{alg:mhc}
     \end{algorithm}
     \label{code:brain_expand}
-    \lstinputlisting[language=julia, basicstyle=\ttfamily\tiny,numbers=left]{Code/juliacode.jl}
+    \lstinputlisting[language=julia, basicstyle=\ttfamily\scriptsize,numbers=left]{Code/juliacode.jl}
     
         
 

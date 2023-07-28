@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.17)  28 JUL 2023 00:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.17)  28 JUL 2023 01:02
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.tex"
-(/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.tex
+**"/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex"
+(/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -296,6 +296,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 \@float@every@algorithm=\toks29
 \c@algorithm=\count290
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
+Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -357,7 +359,7 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@definition=\count302
 \c@remark=\count303
 \c@assumption=\count304
-Package hyperref Info: Option `colorlinks' set `true' on input line 36.
+Package hyperref Info: Option `colorlinks' set `true' on input line 37.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
@@ -434,34 +436,34 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-)) (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.aux)
+)) (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 76.
+Package hyperref Info: Link coloring ON on input line 77.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -471,10 +473,10 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 76.
-LaTeX Info: Redefining \pageref on input line 76.
-LaTeX Info: Redefining \nameref on input line 76.
- (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.out) (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.out)
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
+ (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.out) (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -533,22 +535,22 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count324
-LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 116.
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 120.
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 120.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 117.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 121.
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 121.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
-) (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/Code/juliacode.jl [1
+) (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/Code/juliacode.jl [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/Sections/section.tex
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/Sections/section.tex
 <Assets/Alto_Legato.png, id=68, 385.09586pt x 303.65546pt>
 File: Assets/Alto_Legato.png Graphic file (type png)
 <use Assets/Alto_Legato.png>
@@ -559,23 +561,23 @@ File: Assets/Minty_and_Alto.png Graphic file (type png)
 <use Assets/Minty_and_Alto.png>
 Package pdftex.def Info: Assets/Minty_and_Alto.png  used on input line 17.
 (pdftex.def)             Requested size: 117.47131pt x 98.7635pt.
-) (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.bbl) [2 </Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/Assets/Alto_Legato.png> </Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/Assets/Minty_and_Alto.png>] (/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.aux)
+) (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.bbl [2 </Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/Assets/Alto_Legato.png> </Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/Assets/Minty_and_Alto.png>]) [3] (/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: B95DEECC1C56C441F05855DF84300C3C;1300.
  ) 
 Here is how much of TeX's memory you used:
- 15209 strings out of 478994
- 228044 string characters out of 5858183
- 656577 words of memory out of 5000000
- 32396 multiletter control sequences out of 15000+600000
- 418802 words of font info for 62 fonts, out of 8000000 for 9000
+ 15222 strings out of 478994
+ 226710 string characters out of 5858183
+ 656667 words of memory out of 5000000
+ 32404 multiletter control sequences out of 15000+600000
+ 419566 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,13n,89p,550b,2072s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on "/Users/hongdali/Library/CloudStorage/OneDrive-UBC/UBCO Is More Painful than UW/2023 Summer Term/Comp Exam Reviews Stuff/measurability of convex sets/main.pdf" (2 pages, 3050151 bytes).
+ 81i,13n,89p,468b,2072s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" (3 pages, 3054682 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
  75 words of extra memory for PDF output out of 10000 (max. 10000000)
 
