@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1690531312 "main.aux" "main.bbl" "main" 1690531353
+["bibtex main"] 1690532194 "main.aux" "main.bbl" "main" 1690532199
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
-  "refs.bib" 1690526468 136 5cd00ac04c34e88cf1d928bc3aa82a1d ""
+  "main.aux" 1690532199 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
+  "refs.bib" 1690532188 465 507c3521580ddd93c31e528632564297 ""
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1690531349 "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" "main" 1690531353
-  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b ""
-  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" 1690531348 4100 3a745116b1ea0988f3061dd5767296d8 ""
+  "main.blg"
+["pdflatex"] 1690532195 "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" "main" 1690532199
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux" 1690532199 2736 322744d6a2387ce359bd893b3959609b ""
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" 1690532184 4185 8f433d6479f602ea765af974d44f0577 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -161,14 +161,14 @@
   "Assets/Minty_and_Alto.png" 1676165331 1726202 9662d2ff97dcd3bc720c545b13f1d4e8 ""
   "Code/juliacode.jl" 1690529436 596 7eb858acf3adeec298e3222d186d8f57 ""
   "Sections/section.tex" 1690528940 734 ccc1cdec0fc7477fb9ec047783241b0e ""
-  "main.aux" 1690531353 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
-  "main.bbl" 1690531312 164 ce3453419438c9668dc157eaf83f317b "bibtex main"
-  "main.out" 1690531353 1300 b95deecc1c56c441f05855df84300c3c "pdflatex"
-  "main.tex" 1690531348 4100 3a745116b1ea0988f3061dd5767296d8 ""
+  "main.aux" 1690532199 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
+  "main.bbl" 1690532195 164 ce3453419438c9668dc157eaf83f317b "bibtex main"
+  "main.out" 1690532199 1300 b95deecc1c56c441f05855df84300c3c "pdflatex"
+  "main.tex" 1690532184 4185 8f433d6479f602ea765af974d44f0577 ""
   (generated)
-  "main.aux"
-  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf"
-  "main.out"
   "main.pdf"
-  "main.log"
   "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.log"
+  "main.log"
+  "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf"
+  "main.aux"
+  "main.out"
