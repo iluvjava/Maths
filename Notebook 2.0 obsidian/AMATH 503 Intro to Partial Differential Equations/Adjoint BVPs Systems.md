@@ -1,4 +1,4 @@
-[Linear Mapping in Hilbert Space](../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Linear%20Mapping%20in%20Hilbert%20Space.md)
+- [Linear Mapping in Hilbert Space](../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Linear%20Mapping%20in%20Hilbert%20Space.md)
 
 ---
 ### **Intro**
@@ -7,11 +7,12 @@ BVPs, boundary value problem, are essentially linear system in the functional sp
 
 **A Note on notations**
 
+We use $[\sim](\cdot)$ to mean a expression involving functions and the values to substitute for the expression of the functions. For example $[auv](x)$ means $au(x)v(x)$ where, $a$ should be clear in the context that it's a scalar. Even if it's clarified later, it won't change things because it would be a constant function, which is a constant. Additionally, to avoid confusion, if I were to multiply a function with a sum of 2 functions, with $p(v + u)$, I will use $p[v + u]$ instead, so that it's not confused with $p$ substituting expression for values $v + u$. 
 
 
 **References**: 
 
-These materials will be taken from Prof Eric Foxall's classnotes for MATH 319 at UBCO, introduction to partial differential equations.
+These materials will be taken from Prof Eric Foxall's classnotes for MATH 319 at UBCO, introduction to partial differential equations. We also combine it with Bagle's notes "Fundamentals of Differential Equations and Boundary Value Problems. "
 
 ----
 ### **The Adjoint BVP**
@@ -56,13 +57,14 @@ Then this would imply that, one of the option for the adjoint operator is $L[v] 
 
 **Remark**
 
-When $a(x)$ is a constant, then we have an anti-symmetric operator, the negative of the operator  becomes its adjoint. 
+When $a(x)$ is a constant, then we have an anti-symmetric operator, the negative of the operator  becomes its adjoint.<mark style="background: #FFF3A3A6;"> The regularity condition for the function $a(x)$ is unclear to me at the time of composing this writing.</mark> 
 
 #### **Example 2 | Generic Second Order**
 
 > Find the adjoint operator of $L[y] := a(x)y''(x)$, assuming we are on the interval $[a, b]$ and let $B[y]$ to be the appropriate linear operator packing the boundary conditions of the system. 
 
 **Demonstrations**
+
 consider the inner product form 
 $$
 \begin{aligned}
@@ -85,9 +87,9 @@ $$
 And therefore, it's suggesting that $L^*[v] = (av)''$. And the boundary conditions must be satisfied in such a way that, $v\in D^*$ has the property that for all $u\in D$, we have the bilinear functional $\left [a u'v \right|_a^b - \left[u(av)'\right|_a^b = 0$. 
 
 
-#### **Example 3 | Second Order ODE with BVP**
+#### **Thm | The Lagrange Identity**
 
-> Define $L[u] = a_2u'' + a_1 u' + a_0u$, let the boundary condition be $\alpha_1 u(a) + \beta_1 u'(b) = 0$ and $\alpha_2 u(b) + \beta_2 u'(b) = 0$, denoting $B[u] = \mathbf 0$ to be a type of mixed boundary conditions. Defining $D = \{u \in C^2[a, b] : B[u] = \mathbf 0\}$ to be the domain of the operator $L$, then the adjoint operator $L^*[y]$ is $(a_2y)'' + (a_1y)' + a_0 y$. 
+> Define $L[u] = a_2u'' + a_1 u' + a_0u$, let the boundary condition be $\alpha_1 u(a) + \beta_1 u'(b) = 0$ and $\alpha_2 u(b) + \beta_2 u'(b) = 0$, denoting $B[u] = \mathbf 0$ to be a type of mixed boundary conditions. Defining $D = \{u \in C^2[a, b] : B[u] = \mathbf 0\}$ to be the domain of the operator $L$, then the adjoint operator $L^*[y]$ is $(a_2y)'' + (a_1y)' + a_0 y$ for all y such that $P[u, v]|_a^b = 0$. 
 
 **Demonstrations**
 
@@ -137,6 +139,10 @@ $$
 $$
 then the potantial candidate for the operator $L^*[v] = \partial_x^2[a_2v] - \partial_x[a_1v] + a_0v$. The part of the proof is now complete. 
 
+**Remarks**
+
+Again, the regularity conditions for the coefficient functions $a_0, a_1, a_2$ are unclear to me. The domain of the adjoint operator is all function $v$ such that it's orthogonal under the bilinear mapping $P[u, v]|_a^b$. I think it is, the boundary conditions for the dual problem, implicitly. It is to my curiosity that that boundary conditions of the dual might also be the adjoint of something from the primal (the original).  
+
 ---
 ### **Sturm Liouville System is Self Adjoint**
 
@@ -152,7 +158,7 @@ There are many different types for the Sturm Liouville's system, they are used t
 
 
 #### **Claim | It's self Adjoint**
-> We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = (p(x)y')' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen-system problem under the weight $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
+> We show that the system with homogenous boundary conditions, $\alpha_1 u(0) + \beta_1 \partial_x u(0) = 0$ and $\alpha_2 u(1) + \beta_2 \partial_x u(1) = 0$. Define $L[y] = [p(x)y']' + q(x)y$, firstly observe that the S.L System is given as: $L[y] = -\lambda ry$, which becomes a type of Eigen-system problem under the weight $r(x)$. Let $B[y] = \mathbf 0$ denotes the above boundary conditions, we show that the BVP ODE system is self adjoint. 
 
 **Demonstration**
 
@@ -160,7 +166,7 @@ Expanding the operator $L$, we fit it to the generic BVP form discussed above:
 
 $$
 \begin{aligned}
-    L[y] &= (py')' + qy + \lambda ry 
+    L[y] &= [py']' + qy + \lambda ry 
     \\
     &= p'y' + py'' + qy + \lambda ry
     \\
@@ -172,17 +178,17 @@ Recall previous results we obtain
 
 $$
 \begin{aligned}
-    L^*[y] &= (a_2y)'' - (a_1y)' + A_0y
+    L^*[y] &= [a_2y]'' - [a_1y]' + A_0y
     \\
-    &= (a_2'y + a_2y')' - (a_1y' + a_1'y) + a_0 y
+    &= [a_2'y + a_2y']' - [a_1y' + a_1'y] + a_0 y
     \\
-    &= (a_2''y + a_2y' + a_2'y' + a_2y'') - (a_1y' + a_1' y) + a_0 y
+    &= [a_2''y + a_2y' + a_2'y' + a_2y''] - [a_1y' + a_1' y] + a_0 y
     \\
-    &= a_2y'' + (2a_2' - a_1)y' + (a''_2 - a_1' + a_0)y
+    &= a_2y'' + [2a_2' - a_1]y' + [a''_2 - a_1' + a_0]y
     \\
     & \text{recall } a_2' = p' = a_1
     \\
-    &= py'' + (2p' - p')y' + (p'' - p''' + a_0)y
+    &= py'' + [2p' - p']y' + [p'' - p''' + a_0]y
     \\
     &= py'' + p'y' + a_0y. 
 \end{aligned}
@@ -192,17 +198,17 @@ substituting back $a_0$ from before, we get back the same functional operator. T
 
 $$
 \begin{aligned}
-    P[u, v] &= ua_1 v + u'a_2v - u(a_1v)'
+    P[u, v] &= ua_1 v + u'a_2v - u[a_1v]'
     \\
-    &= up'v + u'pv - u(pv)'
+    &= up'v + u'pv - u[pv]'
     \\
-    &= up'v + u'pv - u(p'v + pv')
+    &= up'v + u'pv - u[p'v + pv']
     \\
     &= up'v + u'pv - up'v + upv'
     \\
     &= u'pv + upv' 
     \\
-    &= p(u'v - uv')
+    &= p[u'v - uv']
     \\
     &= P[v, u]. 
 \end{aligned}
@@ -212,19 +218,19 @@ We wish to have the concomitant equals to zero, so that the adjoin operator equa
 
 $$
 \begin{aligned}
-    [\star] &: P[u, v](b) - P[u, v](a) = p(b)[u'v - uv'](b) - p(a)[u'v - uv'](a) = 0
+    (\star) &: P[u, v](b) - P[u, v](a) = p(b)[u'v - uv'](b) - p(a)[u'v - uv'](a) = 0
     \\
     \text{Consider Defining} &: 
     |M(x)| := \text{det}\begin{bmatrix}
-        u' & v' \\ u & v
+        u' & u \\ v' & v
     \end{bmatrix}(x)
     \\
     \text{then} &:
-    |M|(b) - |M|(b) = 0.
+    p(b)|M|(b) - p(a)|M|(a) = 0.
 \end{aligned}
 $$
 
-Then the adjoin operator domain $D^*$ should satisfies $D^*\{v\in C^2[a, b] : (\star), \forall u \in D\}$. Anote on the notation that, $p(b)$ in smaller case if the $p$ function evaluated at $x = b$, and when I write $[u'v - uv'](b)$ I meant $u(b)'v(b) - u(b)v'(b)$. Recall from the statement regarding the boundary conditions for the operator $L$ is 
+Then the adjoin operator domain $D^*$, where $D^* = \{v\in C^2[a, b] : (\star), \forall u \in D\}$. A note on the notation that, $p(b)$ in smaller case if the $p$ function evaluated at $x = b$, and when I write $[u'v - uv'](b)$ I meant $u(b)'v(b) - u(b)v'(b)$. Recall from the statement regarding the boundary conditions for the operator $L$ is 
 
 $$
 \begin{aligned}
@@ -240,7 +246,7 @@ $$
     \begin{cases}
         [\alpha_1 u + \beta_1 u](a) = 0
         \\
-        [\alpha_1 + b_2u](b) = 0
+        [\alpha_1 v + \beta_1 v](b) = 0
     \end{cases}
     &\iff
     M(a) \begin{bmatrix}
@@ -251,3 +257,5 @@ $$
 $$
 
 If assume that the boundary condition is non trivla, meaning that the vector $[\alpha_2 \; \beta_2]^2, [\alpha_1 \; \beta]^T$, and that would mean the matrix $M(a), M(b)$ both contains null spaces, and that would mean $|M|(b) - |M|(a) = 0$, hence, the adjoin operator is indeed $L$ itself, and $D = D^*$ in our case. 
+
+

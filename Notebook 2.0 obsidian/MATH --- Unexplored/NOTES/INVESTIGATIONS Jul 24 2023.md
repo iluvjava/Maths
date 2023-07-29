@@ -1,5 +1,5 @@
 ---
-alias: Measure Theory, Background and Context. 
+alias: Measure Theory-Background and Context
 
 ---
 ### **Intro**
@@ -188,4 +188,3 @@ There are a lot of equivalences between for a Lebesgue measurable sets as specif
 **Remarks**
 
 The Lebesgue measure is not the same thing as the Borel Measure. The Lebesgue measure is that people called: "A completion" of the Borel Measure. For more details about this claim, see this [blog post](https://www.math3ma.com/blog/lebesgue-but-not-borel#:~:text=The%20Basic%20Idea&text=Such%20a%20set%20exists%20because,open%20sets%20and%20zero%20sets.) for more information. Without knowing the details, one should remember the fact that Borel measurable sets are strictly smaller than Lebesgue measure set, and the sets that are L-Measurable but not B-Measurable has an outer measure of zero. 
-

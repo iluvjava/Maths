@@ -182,19 +182,13 @@ And in this case, $p(x) = (1 - x^2)^{\frac{1}{2}}$, $r(x) = (1 - x^2)^{-\frac{1}
 ---
 ### **Orthogonality Theorems (Only a Sketch of Proof)**
 
-The eigenfuncitons corresponding to distinct eigen values are orthogonal, over the defined interval. 
-
-Basically
+The eigenfuncitons correspond to distinct eigen values are orthogonal over the interval. Basically
 
 $$
 \int_{a}^{b} r(x) \phi_j(x)\phi_k(x)dx \quad j\ne k
 $$
 
-Where $\phi_j(x)$ is the solution to the eigenvalue $\lambda_j$ and $\phi_k(x)$ is the solution with the eigen value $\lambda_k$. 
-
-To prove it, we will need to consider the following procedures: 
-
-Let's first, substitute both solutions into the system (System means expression (1)) so that would be: 
+Where $\phi_j(x)$ is the solution to the eigenvalue $\lambda_j$ and $\phi_k(x)$ is the solution with the eigen value $\lambda_k$. To prove it, we will need to consider the following procedures: Let's first, substitute both solutions into the system (System means expression (1)) so that would be: 
 
 $$
 [p(x)\phi_j']' + (\lambda_k - q(x))\phi_j = 0
