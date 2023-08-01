@@ -66,13 +66,14 @@ $\partial_{u_1} V$ gives the direction of the vector pointing perpendicular to t
 
 $$
 \begin{aligned}
+	(\mathbb J[V]^T \mathbb J[V])^{1/2}
 	\begin{bmatrix}
 		\\[1em]
 			\uvec{e}_1 & \uvec{e}_2 &\uvec{e}_3
 		\\[1em]
 		\\
 	\end{bmatrix}
-	&= \mathbb JV(u_1, u_2, u_3).
+	&=  \mathbb J[V](u_1, u_2, u_3).
 \end{aligned}
 $$
 
