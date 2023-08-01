@@ -10,8 +10,12 @@ and that is for now. If you also use [Markdown all in one](https://marketplace.v
 
 ```json
 "markdown.extension.katex.macros": {
-	// Katex Macros for Markdown all in on
-	"\\e": "\\mathbf{\\vec{e}}"
+	// Katex Macros for Markdown all in one
+	"\\e": "\\mathbf{\\vec{e}}",
+	"\\Q": "\\mathbb{Q}",
+	"\\R": "\\mathbb{R}",
+	"\\Z": "\\mathbb{Z}",
+	"\\uvec": "\\boldsymbol{\\hat{\\textbf{#1}}}"
 },
 ```
 

@@ -373,3 +373,7 @@ $$
     \hline
 \end{array}
 $$
+
+$$
+\vecu{t}, \e
+$$

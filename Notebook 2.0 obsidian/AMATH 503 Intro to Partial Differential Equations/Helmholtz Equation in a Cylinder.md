@@ -1,27 +1,17 @@
+From [[Separation of Variables for Heat and Waves in 1D]], [[Schordinger Eqn in Box]], we are going to use Separation of variable to solve a special case of the 3D wave equation. This time it's in a cylinder. And we will introduce the Bessel's basis function for the solutions too, which is need to model the wave in a circle (periodic boundary conditions). 
+
+**Note**: 
+
+There is a more comprehensive new version for the same topic: [[Helmholtz Eqn In Cylinder 2]], view this, which handles it better. 
+
+**Reference**: 
+
 It's 11.4 in the textbook of the course. 
-This time, we are solving this in a cylinder. 
-
-[[Separation of Variables for Heat and Waves in 1D]], [[Schordinger Eqn in Box]]
-
-We are going to use Separation of variable to solve a special case of the 3D wave equation. This time it's in a cylinder. And we will introduce the bessel's basis function for the solutions too, which is need to model the wave in a circle (periodic boundary conditions). 
-
-**Note**: There is a more comprehensive new version for the same topic: [[Helmholtz Eqn In Cylinder 2]], view this, which handles it better. 
 
 ---
 ### **Intro**
 
-We are going to solve the PDEs in the cylindrical coordinates. 
-
-The Helmholtz equation is the SPATIAL part of the wave equation. 	
-
-And, the given PDE is in this form: 
-
-$$
-\nabla^2\cdot u = -\lambda^2 \partial_t^2[u]
-$$
-
-
-Here is the parameters for the cylinder: 
+We solve the PDEs in the cylindrical coordinates. The Helmholtz equation is the spatial part of the wave equation. Solving it gives us the eigensystem for describing the wave equation inside of a cylinder. The wave equation in any space is of the form: $\nabla^2\cdot u = -\lambda^2 \partial_t^2[u]$. We define the parameters for the system: 
 
 1. Cylinder radius: $a$
 2. Radial direction of: $r$
@@ -29,23 +19,7 @@ Here is the parameters for the cylinder:
 4. Height: $L$
 5. Height Dependence: $z$
 
-This is like a flute. The solution is going to satisfy the wave equation, and it's going to represent the waves inside of the cylinder. 
-
-This is the boundary conditions for the equation: 
-
-$$
-u = 0 \quad z = 0, L
-$$
-
-There is no vibration on the cap of the cylinder. 
-
-$$
-u = 0  \quad r = a
-$$
-
-There is no vibration on the wall of the cylinder. 
-
-Here is a summary on the procedures to take when solving this equation: 
+Boundary conditions: $u = 0 =z, L$. There is no vibration on the cap of the cylinder $u = 0,  r = a$. There is no vibration on the wall of the cylinder. Summarizing the procedures: 
 1. Separate it into spatial domain and time domain, let the function takes the form: $\phi(x, y, z)T(t)$
 2. Then for the spatial domain, using the separation of variables to get the solution for each of the function that governs each dimension in the Cylindrical coordinate, by assuming that $\phi(x, y, z) = Z(z)\Theta(\theta)R(r)$. 
 3. Solve the ODE, starting with the part involving only $Z(z)$ using the boundary conditions that there is no vibrations on the cap of the cylinder, then $\Theta(\theta)$. And the function $\Theta(\theta)$ has a $2\pi$ period to it. Then finally, solve the $R(r)$ which is the bessel's equation, extract the bessel's of the first kind as the solution for functions $R(r)$ because of the boundary conditions that $R(0) \ne \inf$. When solving the bessel's equation, see: [[Bessel's Equation]] for a more formal treatment of the matter. 
@@ -66,7 +40,7 @@ $$
 \tag{1}
 $$
 
-And we never learned it, the proof or the derivation here is skipped. 
+And we never learned it, the proof or the derivation may make use of 
 
 ---
 ### **Separation of Variables**

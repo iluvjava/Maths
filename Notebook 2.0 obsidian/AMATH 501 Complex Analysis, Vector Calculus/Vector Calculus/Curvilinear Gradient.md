@@ -1,8 +1,8 @@
 In this note, we explore taking the gradient for a function defined under another curvilinear coordinate system. 
 
-preq: [[Ortho Curvillinears Coord]]
-preq: [[The Gradient]]
-extra materials: [Link](https://www.jfoadi.me.uk/documents/lecture_mathphys2_05.pdf)
+- preq: [[Ortho Curvillinears Coord]]
+- preq: [[The Gradient]]
+- extra materials: [Link](https://www.jfoadi.me.uk/documents/lecture_mathphys2_05.pdf)
 
 $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
 
@@ -12,9 +12,7 @@ $$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
 
 > $$\nabla  = e_r \frac{\partial}{\partial r} + e_\theta \frac{1}{r}\frac{\partial}{\partial \theta}$$
 
-This is Gradient operator for 2d polar coordinate. 
- 
-The following section will illustrate how that, the gradient are viewed with curvllinear variables under the lens of the Cartesian coordinate. 
+This is Gradient operator for 2d polar coordinate. The following section will illustrate how that, the gradient are viewed with curvllinear variables under the lens of the Cartesian coordinate. 
 
 ---
 

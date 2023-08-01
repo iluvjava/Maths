@@ -5,7 +5,7 @@ $$\newcommand{\uvec}[1]{\hat{\textbf{#1}}}$$
 
 ---
 
-#### Def
+### Def
 
 > $$u(r, \theta, z) = 
 > \begin{bmatrix}
@@ -26,9 +26,8 @@ $$
 $$
 
 Which is giving us the basis vector, if we normalized each of the column to get 
-$\hat{\textbf{e}}_r, \hat{\textbf{e}}_\theta, \hat{\textbf{e}}_z$. 
+$\hat{\textbf{e}}_r, \hat{\textbf{e}}_\theta, \hat{\textbf{e}}_z$. And they are like: 
 
-And they are like: 
 $$\uvec{e}_r = (\cos\theta, \sin\theta, 0)$$ 
 
 $$\uvec{e}_\theta = (-\sin{\theta}, \cos\theta, 0)$$ 

@@ -6,7 +6,7 @@ This is the missing piece. It's in the [PDEchapter12](references/PDEchapter12.pd
 The Sturm Liouville theory is a mix of Linear Algebra, and Functional Analysis, applied to ODEs. 
 
 #### **Def | Sturm Liouville System**
-> A Sturm Liouville system is defined for a funtion $y(x)$, over a interval, associated with a boundary conditions. The ODE is
+> A Sturm Liouville system is defined for a function $y(x)$, over an interval, associated with a boundary conditions. The ODE is
 > $$
 > \begin{aligned}
 > 	(py')' + (\lambda r - q)y &= 0
@@ -24,7 +24,7 @@ The Sturm Liouville theory is a mix of Linear Algebra, and Functional Analysis, 
 
 **Observations**
 
-The S.L system is looking like an eigensystem, more specifically let's observe that $p'y' + py'' - qy = \lambda r y$. The left hand side is a linear operator on functions, and the right hand side is a product of constant and the vector. Dividing by $r(x)$, with some care, wil yield something that resemble an eigen value problem in linear algebra. 
+The S.L system is looking like an eigensystem, more specifically let's observe that $p'y' + py'' - qy = \lambda r y$. The left hand side is a linear operator on functions, and the right hand side is a product of constant and the vector. Dividing by $r(x)$, with some care, will yield something that resemble an eigen value problem in linear algebra. 
 
 Additionally, the S.L form appears for the ODEs from method of separation for second order PDEs. The following ODEs from SV fits the S.L form. 
 1. Fourier, (Anisotropic Heat)
@@ -53,7 +53,7 @@ $$
 
 see [Adjoint BVPs Systems](Adjoint%20BVPs%20Systems.md) at the end for why this is the case. 
 
-**Singular**
+#### **Singular S.L System**
 
 A singular system is not regular, can be seemed by 
 * $p(x), p'(x), q(x), r(x)$ are continuous on $(a, b)$. 
@@ -111,54 +111,13 @@ where $p(x) = 1 - x^2$, $q(x) = 0$, and $r(x) = 1$, and in this case, $p(\pm 1) 
 
 This modification of the boundary conditions is required, for singular SL, this is needed so that the ODE is still solvable. In the Legendre example, remember that we had: $\lambda_n = n(n + 1), n \in \mathbb{Z}_{\ge 0}$, and the Eigen function is the Legendre Polynomial $y_n(x) = P_n(x)$. See [Legendre Equation](Legendre%20Equation.md) for more. 
 
-**Bessel's Equation** 
-
-$$
-x^2 y'' + xy' + (\lambda x^2 - \tilde p^2)y = 0  \quad x \in [0, b]
-$$
-
-This doesn't look right at the first glance, but we can divide both side by $x$ and get: 
-
-$$
-x y'' + y' + \left(
-    \lambda x - \frac{\tilde{p}^2}{x}
-\right) y = 0
-$$
-
-Boom, this is interesting. And this looks like a SL system. 
-
-$p(x) = x$, $r(x) = x$ and $q(x) = \frac{\tilde{p}^2}{x}$
+**Bessel's Equation**: $x^2 y'' + xy' + (\lambda x^2 - \tilde p^2)y = 0, x \in [0, b]$， we can divide both side by $x$ and get $x y'' + y' + \left(\lambda x - \frac{\tilde{p}^2}{x}\right) y = 0.$ Which is like a SL system with $p(x) = x$, $r(x) = x$ and $q(x) = \frac{\tilde{p}^2}{x}$. Let $p(0) = 0$, and $r(0) = 0$ to fit the boundary condition, in this case, some conditions for the regular system is not satisfied. This is a Singular SL System. As a consequence we impose conditions for $y(x)$ at the boundary giving: $y(x)$ is bounded at $x = 0$ and $y(x)$ is zero at $x = b$. 
 
 
-$p(0) = 0$, and $r(0) = 0$, so in this case, at least one of the conditions for the regular system is not satisfied. 
-
-This is a Singular SL System. 
-
-In this case, it's zeroing out on the boundary condition, therefore, we impose the boundary conditions that: 
-
-$y(x)$ is bounded at $x = 0$ and $y(x)$ is zero at $x = b$. 
+**Spherical Bessel's Equation**: $x^2 y'' + 2xy' + (\lambda x^2 - n(n + 1)) y = 0 \quad x\in [0, b]$. This is already in S.L form. And it's not hard to see that with $x^2 y'' + 2xy' = \partial_x[x^2 \partial_x[y]]$, with, $p(x) = x^2$, $r(x) = x^2$, $q(x) = n(n+ 1)$. And in this case, this is actually singular, because: $p(0) = 0$. And that means we need to change the boundary condition, to say that $y(x)$ being bounded at $x = 0$, and $y(x)$ being zero at $x = b$. 
 
 
-**Spherical Bessel's Equation**
-
-$$
-x^2 y'' + 2xy' + (\lambda x^2 - n(n + 1)) y = 0 \quad x\in [0, b]
-$$
-
-And it's not hard to see that $x^2 y'' + 2xy' = \partial_x[x^2 \partial_x[y]]$
-
-And in this case, $p(x) = x^2$, $r(x) = x^2$, $q(x) = n(n+ 1)$. And in this case, this is actually singular, because: $p(0) = 0$. 
-
-And that means we need to change the boundary condition, to say that $y(x)$ being bounded at $x = 0$, and $y(x)$ being zero at $x = b$. 
-
-
-**Chebyshev Equation**
-
-The star of today.  
-
-$$
-(1 - x^2) y'' - xy' + \lambda y = 0 \quad x \in [-1, 1]
-$$
+**Chebyshev Equation**: $(1 - x^2) y'' - xy' + \lambda y = 0 \quad x \in [-1, 1]$
 
 
 This equation is important because of it's applications to the Spectral Method, and it can be generated easily using the trigs function. 

@@ -1,6 +1,6 @@
 - We formally introduce some measure theory. This file will follow [Functional Analysis From MIT OCW](References/Functional%20Analysis%20From%20MIT%20OCW.pdf). 
-
 - This file is intended to clarify some of the concepts from [INVESTIGATIONS Jul 24 2023](../MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20Jul%2024%202023.md). 
+- For the background of the idea of measure theory, visit [Measure Theory-Background and Context](../MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20Jul%2024%202023.md) for more context and bigger picture. 
 
 ---
 ### **Intro**

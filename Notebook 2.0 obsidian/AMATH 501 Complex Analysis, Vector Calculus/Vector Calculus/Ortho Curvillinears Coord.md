@@ -1,95 +1,114 @@
-This is a more general formulation of a special type of transformation on the cartesian space. 
+This is the Jacobian for a coordinate transformation between the Cartesian coordinates system and other alternative coordinate system. 
+
+This is for Mathjax in Obsidian Notebook: 
+$$
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+$$
 
 ---
-
-### Introduction
-Consider a bijective mapping function that maps between 2 different coordinates. 
-
-This is trasforming coordinates point of $(u_1, u_2,, u_3)$ into a coordinate point in $(x, y, z)$: 
-
-$$\begin{bmatrix}
-x  = x(u_1, u_2, u_3) \\ 
-y  = y(u_1, u_2, u_3) \\ 
-z  = z(u_1, u_2, u_3) \\ 
-\end{bmatrix}
-$$
-
-And simiarly the reverse transformation of representing a coordinate points $(x, y, z)$ in the ortho curvilinear space will be: 
+### **Introduction**
+Consider a bijective mapping function that maps between 2 different coordinates, or $\mathbb R^3 \mapsto \mathbb R^3$, such that all angles remains orthogonal after the transformation. For example the polar coordinate transform has this property. Consider the transformation $[r\cos \theta\; r\sin \theta]$, which is $U(r, \theta) = r\cos \theta \uvec{i} + r\sin \theta \uvec{j}$, the Jacobian of the transformation is a orthogonal matrix because 
 
 $$
-u_1 = u_1 (x,y, z) \quad u_2 = u_2(x, y, z) \quad u_3 = u_3(x, y, z)
+\begin{aligned}
+	\mathbb J [U](r, \theta) &= 
+	\begin{bmatrix}
+		\cos \theta & -r\sin \theta
+		\\
+		\sin \theta & r\cos \theta
+	\end{bmatrix}
+	\\
+	\mathbb J[U]^T\mathbb J[U](r, \theta)&= 
+	\begin{bmatrix}
+		\cos \theta & \sin \theta
+		\\
+		-r\sin\theta & r\cos\theta
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos \theta & -r\sin \theta
+		\\
+		\sin \theta & r\cos \theta
+	\end{bmatrix}
+	
+	\\
+	&= \begin{bmatrix}
+		1 & 0 \\
+		0 & r^2
+	\end{bmatrix}, 
+\end{aligned}
 $$
-
-What is a coordinate curve? 
-
-$$\begin{bmatrix}
-x(u_1, u_2, u_3) \\ 
-y(u_1, u_2, u_3) \\ 
-z(u_1, u_2, u_3) \\ 
-\end{bmatrix} = 
-\begin{bmatrix}
-c_1 \\ c_2 \\ c_3
-\end{bmatrix}
-$$
-
-Where $c_1, c_2, c_3$ are constants. 
+i.e: the Jacobi matrix of the transform is orthogonal, describing a coordinate transformation that is locally orthogonal. In this case, it's orthogonal on all $\mathbb R^2$. For simplicity let's say that this coordinate transform is invertible everywhere and orthogonal everywhere. For some generality, we use $U(v_1, v_2, v_3) = [u_1 + u_2 + u_3](v_1, v_2, v_3)$ to describe a point under the alternative, curvilinear coordinate system $(\uvec e_1, \uvec e_2, \uvec e_3)$, and $V(u_1, u_2, u_3)$ to map the same point to the cartesian coordinate system $(\uvec i, \uvec j, \uvec k)$. 
 
 **Definition**
 
-> The curvilinear coordinates $(u_1, u_2, u_2)$ are said to be orthoganal if the $u_1$, $u_2$, $u_3$ coordinates curves are perpendicular to each other in every point in space. 
-
-
-What this is saying is that, if I use a point $(u_1, u_2, u_3)$  to represent a point $(c_1, c_2, c_3)$ in the cartesian coordinate, then the curved surfaces represented by the curvilinear space will interact at the point, in addition to that, all the normal vector are orthogonal, and all the tangence vectors at that point is also orthogonal. 
+> The curvilinear coordinates $(u_1, u_2, u_2)$ are said to be orthogonal if the $u_1$, $u_2$, $u_3$ coordinates curves (Fix 2 variable constant and vary the other one) are perpendicular to each other in every point in space. Succintly put it means that Jacobian of the mapping is an orthogonal matrix. 
 
 ---
-#### Alternate Basis Vectors
+#### **Alternate Basis Vectors**
 
-So, we need to represent the curvilinear coordinate system as coordinate embedded into the cartesian coordinate, and we are going to use the above definition to get them. 
+We investigate the relations between the basis vectors representations of the other coordinate system. Suppose we have the given vector (It's actually a transformation): 
 
-Suppose we have the given vector (It's actually a transformation): 
-$$\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}$$
+$$
+\begin{aligned}
+	V (u_1, u_2, u_3)
+	&= 
+	v_1(u_1, u_2, u_3)\uvec{i} + v_2(u_1, u_2, u_3)\uvec{j} + v_3(u_1, u_2, u_3)\uvec{k}
+	\\
+	&= [x\uvec{i} + y\uvec{j} + z\uvec{k}](u_1, u_2, u_3) \text{, for short. }
+	\\
+	U(v_1, v_2, v_3)
+	&= 
+	[u_1\uvec{e}_1 + u_2\uvec{e}_2 + u_3\uvec{e}_3](v_1, v_2, v_3), 
+\end{aligned}
+$$
 
-$$\vec{r} = x(\vec{u})\uvec{i} + y(\vec{u})\uvec{j} + z(\vec{u})\uvec{k}$$
+$\partial_{u_1} V$ gives the direction of the vector pointing perpendicular to the surface of fixing $u_2, u_3$ to be a constant. The vector is $\partial_{u_1} V = \partial_{v_1}x\uvec{i} + \partial_{v_2}y\uvec{j} + \partial_{v_3}\uvec k = h_1\uvec{e}_1$. $h_1$ is the *Lame coefficient*, it's a normalizing constant for the tangential vector. This is the cartesian representation of a basis vector of the alternative coordinate system. Packing the basis vector $\uvec{e}_1, \uvec{e}_2, \uvec{e}_3$ produces the following matrix representation: 
 
-Given the fact that the curvilinear coordinate axis is tangent to the vector of the level curves, we know that: 
+$$
+\begin{aligned}
+	\begin{bmatrix}
+		\\[1em]
+			\uvec{e}_1 & \uvec{e}_2 &\uvec{e}_3
+		\\[1em]
+		\\
+	\end{bmatrix}
+	&= \mathbb JV(u_1, u_2, u_3).
+\end{aligned}
+$$
 
-$$\uvec{e}_1 = \frac{\partial \vec{r}/\partial u_1}{||\partial \vec{r}/\partial u_1||}$$
+The vectors $\uvec e_1, \uvec e_2, \uvec e_3$ are orthogonal by the fact that the mapping produces orthogonal directions, we make the following observations for the Jocbian of the transformation 
 
-And similarly we have the other 2 of the coordinates as: 
+$$
+\begin{aligned}
+	U\circ V(u_1, u_2, u_3) &= I\vec u
+	\\
+	\mathbb J[U\circ V](u_1, u_2, u_3) &= I
+	\\
+	\mathbb J[U]\mathbb J[V] &=  I
+	\\
+	\mathbb J[U]^{-1} &= \mathbb J[V] = 
+	(\mathbb J[U]^T \mathbb J[U])^{-1}
+	\mathbb J[U]^T, 
+\end{aligned}
+$$
 
-$$\uvec{e}_2 = \frac{\partial \vec{r}/\partial u_2}{||\partial \vec{r}/\partial u_2||}$$    $$\uvec{e}_3 = \frac{\partial \vec{r}/\partial u_3}{||\partial \vec{r}/\partial u_3||}$$
+giving us $\mathbb J[V]= J[U]^T$ which is implying that
 
-And the numerators are referred to as the **Lame coefficients**, for example: 
+$$
+\uvec{e}_1 =  \frac{\nabla u_1}{||\nabla u_1||} = h_1\nabla u_1, 
+$$
 
-$$h_1 =\left\Vert \frac{\partial\vec{r}}{\partial u_1} \right\Vert$$
+giving us another formula for the basis vector in terms of $(v_1, v_2, v_3)$. 
 
-However, if the transformation given is in term of $(x,y, z)$, and we only know the inverse mapping: 
 
-$$r = u_1(x, y, z)\uvec{i} + u_2(x, y, z)\uvec{j} + u_3(x, y, z)\uvec{k}$$
+**Remarks**
 
-Then the alternative coordinates will become: 
+I read it again in 2023 summer, and this part is not entirely understood. I think there is something wrong or unexplained in the original notes. Starting from above all the way to the end of the document. Tag: #INCORRECT. 
 
-$$\uvec{e}_1 = \frac{\nabla u_1}{||\nabla u_1||}$$
+---
+### **Jacobi Matrix**
 
-Similarly for the other coordinates directions we have: 
-
-$$\uvec{e}_2 = \frac{\nabla u_2}{||\nabla u_2||}$$
-
-$$\uvec{e}_3 = \frac{\nabla u_3}{||\nabla u_3||}$$
-
-Then this is the steps to get all the coordinate vectors when we have $(x, y, z)$ and the inverse mapping. 
-
-This is also related to the **Lame Coefficient** by the following relations: 
-
-$$\uvec{e}_1 =  \frac{\nabla u_1}{||\nabla u_1||} = h_1\nabla u_1$$
-
-### Jacobi Matrix
-
-There is some relations we can say about curvilinear coordinates and the Jacobi Matrix of the coordinate transform. 
-
-Let the transformation function be: $(x, y, z)\mapsto (u, v, w)$. 
-
-Rewrite it in a better way: 
+There is some relations we can say about curvilinear coordinates and the Jacobi Matrix of the coordinate transform. Let the transformation function be: $(x, y, z)\mapsto (u, v, w)$. Rewrite it in a better way: 
 
 $$
 \begin{bmatrix}
@@ -112,11 +131,5 @@ $$
 \end{bmatrix}
 $$
 
-And in the case when the Mapping happens to be orthogonal, the matrix $\mathbb{J}$ is going to be orthogonal. 
-
-There for a set of orthogonal basis can be identified, which is computed via: 
-
-$$
-\mathbb{J}\sqrt{(\mathbb{J}^T\mathbb{J})^{-1}}
-$$
+And in the case when the Mapping happens to be orthogonal, the matrix $\mathbb{J}$ is going to be orthogonal. There for a set of orthogonal basis can be identified, which is computed via: $\mathbb{J}\sqrt{(\mathbb{J}^T\mathbb{J})^{-1}}$
 
