@@ -3,13 +3,13 @@
 ---
 ### **Intro**
 
-A moment generating function is like the Laplace transform for the probability mass functions of a random variables. See [wiki](https://en.wikipedia.org/wiki/Moment-generating_function) for a comprehensive overview of this big topic. In this file, we define it, point out some of its properties, and then show some simple examples/applications of the concept. The most important applications for the moment generating function invovles: 
+A moment generating function is like the Laplace transform for the probability mass functions of a random variables. See [wiki](https://en.wikipedia.org/wiki/Moment-generating_function) for a comprehensive overview of this big topic. In this file, we define it, point out some of its properties, and then show some simple examples/applications of the concept. The most notable applications for the moment generating function involves: 
 1. Sums of i.i.d random variables. 
 2. Central limit theorem. 
 
 Beyond this, there is also the characteristic function of a random variable, which is is pretty much a Fourier transform on the probability density function of the random variable. 
 
-**Definition: The moment Generating Function**
+**Definition | The moment Generating Function**
 
 > Let $M_X(t)$ denote the moment generating function for the random variable $X$ and
 > $$
@@ -24,11 +24,11 @@ $$
 \end{aligned}
 $$
 
-which is very similar to the laplace transform, but the intervals and the sign of $t$ is different. It also looks similar to the Fourier transform except for the missing imgaginary unit and a constant. 
+which is very similar to the Laplace transform, but the intervals and the sign of $t$ is different. It also looks similar to the Fourier transform except for the imaginary unit and a constant. 
 
-**the method of moment**
+**Method of the Moment**
 
-The $k$ th moment of a random variable $x$ is $\mathbb{E}\left[X^k\right]$. When the momoment generating function for the random variable, $M_X(t)$ is given, we can have the following: 
+The $k$ th moment of a random variable $x$ is $\mathbb{E}\left[X^k\right]$. When the moment generating function for the random variable, $M_X(t)$ is given, we can have the following: 
 
 $$
 \begin{aligned}
@@ -69,9 +69,9 @@ and the usefulness of this property depends on the context.
 Take this theorem for granted. 
 
 ---
-### **Example: The MGF of Bernouli Distributions**
+### **Example | The MGF of Bernoulli Distributions**
 
-Let $X$ be Bernoulli with parameter $p$, then the moment generatinf function of it can be computed using: 
+Let $X$ be Bernoulli with parameter $p$, then the moment generating function of it can be computed the unconscious statistician law: 
 
 $$
 \begin{aligned}
@@ -83,10 +83,10 @@ $$
 \end{aligned}
 $$
 
-which complets the proof. 
+which completes the demonstrations. 
 
 ---
-### **Example: The MGF of the Bonomial Distributions**
+### **Example | The MGF of the Binomial Distributions**
 
 Let $X$ be a binomial distribution with parameters $p,n$, then the MFG can be computed: 
 
@@ -105,14 +105,15 @@ $$
 \end{aligned}
 $$
 
-which is the MGF of Bernoulli all multiplied together. 
+which is the MGF of the same Bernoulli MGF multiplied together. 
 
 ---
 ### **Adding i.i.d Variables**
 
 One of the canonical use of the MGF is for summing up $X_i$, a sequence of random variables that are i.i.d. Adding the variable directly involves the use of convolution to figure out the distribution functions, however, the moment generating function of the sum of i.i.d variables are relatively easier to compute. 
 
-> Suppose that we want to compute the MGF of $Y = \sum_{i = 1}^{N} X_i$ given that $N \in N$ and it's probability measure and $X_i$ are all i.i.d variable with the same distributions, then the moment generating function of the variable can be expressed as: 
+#### **Claim | Sum of i.i.d variables**
+> Suppose that we want to compute the MGF of $Y = \sum_{i = 1}^{N} X_i$ given that $N \in N$ and it's probability measure and $X_i$ are all i.i.d variable with the same distributions (The same distribution as $X$ I would say), then the moment generating function of the variable can be expressed as: 
 > $$ M_Y(t) = \mathbb{E}\left[M_{X_i}(t)^N\right].$$
 
 **Proof**
@@ -136,8 +137,9 @@ $$
     \sum_{n\in \mathbb N}^{} M_{X}(t)^n 
     \mathbb P(N = n)
     \\
+    M_Y(t)
     &= 
-    \mathbb{E}\left[M_X(t)^N\right], 
+    \mathbb{E}_{\sim N}\left[M_X(t)^N\right], 
 \end{aligned}
 $$
 
@@ -145,9 +147,9 @@ where on the first line we use the law of total expectation on the second line w
 
 
 ---
-### **Example: The MGF for sum of Exponential (Gamma Distributions)**
+### **Example | The MGF for sum of Exponential (Gamma Distributions)**
 
-A gamma distribution is the sum of i.i.d exponential distribution with the same parameter $\lambda$. Firstly we compute the MFG for the exponential distributions: 
+A gamma distribution is the sum of i.i.d exponential distribution with the same parameter $\lambda$. Let $X$ be exponential with rate $\lambda$ computing the MFG for the exponential distribution yields: 
 
 $$
 \begin{aligned}
@@ -166,8 +168,6 @@ $$
     \right|_{0}^\infty
     \\
     &= 
-    \frac{\lambda}{t - \lambda}
-    + 
     \left.
     \begin{cases}
         0 & t - \lambda < 0
@@ -176,23 +176,38 @@ $$
         \\
         \infty & t > \lambda
     \end{cases}
-    \right\rbrace, 
+    \right\rbrace
+    - \frac{\lambda}{t - \lambda}
+    \\
+    M_X(t)
+    &= 
+    \left.
+    \begin{cases}
+        \frac{\lambda}{\lambda - t} & t < \lambda
+        \\
+        0  & t = \lambda
+        \\
+        \infty & t > \lambda
+    \end{cases}
+    \right\rbrace
 \end{aligned}
 $$
 
-and the function has a piece wise definition to it. Next, we consider the sum of all these random variables, then for all $ 0\le t \le \lambda$ we have: 
+and the function has a piecewise definition to it. Next, we consider the sum of all these random variables. Let random variable $Y:= X_1 + \cdots + X_n$ then for all $0\le t < \lambda$ the MGF for $Y$ is: 
 
 $$
 \begin{aligned}
-    \mathbb{E}\left[\exp
+    M_Y(t) = \mathbb{E}\left[\exp
     \sum_{i = 1}^{n}
         tX_i
     \right]
     &= 
-    \frac{\lambda^n}{(t - \lambda)^n}, 
+    \frac{\lambda^n}{(\lambda - t)^n}
 \end{aligned}
 $$
 using our previous theorem. It's not hard to find out the expected value and the variance of it using the method of moment introduced at the very start of this file. 
 
+**Remark**
 
+Reader should take this for granted. Up to the time this entry had been reviewed, no easy demonstration for showing that this is indeed the MGF of the Gamma distribution had been found by me. An integral of the form $\int t^k\exp(\alpha t)dt$ is involved and it's not easy to evaluate this one. 
 

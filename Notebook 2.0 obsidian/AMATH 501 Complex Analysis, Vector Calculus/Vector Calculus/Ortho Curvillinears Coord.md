@@ -1,6 +1,4 @@
-This is the Jacobian for a coordinate transformation between the Cartesian coordinates system and other alternative coordinate system. 
-
-This is for Mathjax in Obsidian Notebook: 
+This is the Jacobian for a coordinate transformation between the Cartesian coordinates system and other alternative coordinate system. This is for Mathjax in Obsidian Notebook: 
 $$
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
 $$
@@ -41,7 +39,8 @@ i.e: the Jacobi matrix of the transform is orthogonal, describing a coordinate t
 
 **Definition**
 
-> The curvilinear coordinates $(u_1, u_2, u_2)$ are said to be orthogonal if the $u_1$, $u_2$, $u_3$ coordinates curves (Fix 2 variable constant and vary the other one) are perpendicular to each other in every point in space. Succintly put it means that Jacobian of the mapping is an orthogonal matrix. 
+> The curvilinear coordinates $(u_1, u_2, u_2)$ are said to be orthogonal if the $u_1$, $u_2$, $u_3$ coordinates curves (Fix 2 variable constant and vary the other one) are perpendicular to each other in every point in space. Succinctly put it means that Jacobian of the mapping is an orthogonal matrix. 
+
 
 ---
 #### **Alternate Basis Vectors**
