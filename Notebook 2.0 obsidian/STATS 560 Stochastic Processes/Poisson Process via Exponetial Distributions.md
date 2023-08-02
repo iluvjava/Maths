@@ -93,10 +93,22 @@ we sekip the algebraic detail. It's recommended that the readers should do it fo
 
 
 #### **Thm-3 | Poisson Distributions and Possion Processes**
-> Let $X\in \mathbb N$ be a random variable paramaterized by $\mu > 0$, then the poisson distribution, $\text{Pois}(\mu)$ has the density function, measured as $P (X = n) = \exp(-\mu)\frac{\exp(-\mu)\mu^n}{n!}$. Let $t_1, t_2, \cdots$ be an i.d.d sequence of $\text{expo}(\lambda)$ random variables. Let $T_n = t_1 + \cdots + t_n$ be the partial sum of the first $n$ terms. Let $N(t) = \max\{n : T_n \le t\}$ be the number of arrivals by time $t$, then this is $\text{Pois}(\lambda t)$. 
+> Let $X\in \mathbb N$ be a random variable paramaterized by $\mu > 0$, then the poisson distribution, $\text{Pois}(\mu)$ has the density function, measured as $P (X = n) = \exp(-\mu)\frac{\exp(-\mu)\mu^n}{n!}$. Let $t_1, t_2, \cdots$ be an i.d.d sequence of $\text{Expo}(\lambda)$ random variables. Let $T_n = t_1 + \cdots + t_n$ be the partial sum of the first $n$ terms. Let $N(t) = \max\{n : T_n \le t\}$ be the number of arrivals by time $t$, then this is $\text{Pois}(\lambda t)$. 
 
 **Context**
 
 Please not confuse the Poisson distribution with the Gamma distributions. The Poisson process random variables counts the total number of occurrence of $n$ exponential random variable over a time period. The Gamma distribution is the amount of time it takes for $n$ exponential random variable to all occur. 
 
+**Facts**
+1. The mean and the variance of Poisson distrbution are both $\lambda$. 
+2. The generating function for Poisson is $M_{\text{Pois}(\lambda)} = \exp(-\lambda(1 - t))$. See [here](https://proofwiki.org/wiki/Probability_Generating_Function_of_Poisson_Distribution) for more information. 
+3. The Poisson variable $N(t) - N(t - s) \parp $
+
+---
+### **Properties of the Poisson Distributions**
+
+The Poisson distribution inherited some of the properties from the Geometric distributions. 
+
+
+#### **Thm | Post Independence**
 
