@@ -102,7 +102,7 @@ Please not confuse the Poisson distribution with the Gamma distributions. The Po
 **Facts**
 1. The mean and the variance of Poisson distrbution are both $\lambda$. 
 2. The generating function for Poisson is $M_{\text{Pois}(\lambda)} = \exp(-\lambda(1 - t))$. See [here](https://proofwiki.org/wiki/Probability_Generating_Function_of_Poisson_Distribution) for more information. 
-3. The Poisson variable $N(t) - N(t - s) \parp $
+3. The Poisson variable $N(t) - N(t - s) \perp N(u)$, for all $u < s$. 
 
 ---
 ### **Properties of the Poisson Distributions**
@@ -110,5 +110,50 @@ Please not confuse the Poisson distribution with the Gamma distributions. The Po
 The Poisson distribution inherited some of the properties from the Geometric distributions. 
 
 
-#### **Thm | Post Independence**
+#### **Thm | Pass Independence**
+> Let $t_0 < t_1 < \cdots < t_n$ be the sequence of time interval denoting the occurances of the exponential events. More specifically we let $\tau_i$ be an i.d.d sequence from $\text{exp}(\lambda)$, then the following are independent: $N(t_1) - N(t_0), N(t_2) - N(t_1)\cdots$ are independent events. For generally, the event $N(r) \perp N(t + s) - N(s)$ are independent events for all $0 < r < s$. 
+
+**Context**
+
+This is very similar to the stopping time property from a Markov chain. 
+
+#### **Thm | Sum is Rate of Poisson Added Up**
+> Let $N_1(t), N_2(t)$ be Poisson process rates $\lambda_1, \lambda_2$. Then their sum $Y = [N_1 + N_2](t)$ is a Poisson process with rates $\lambda_1 + \lambda_2$. 
+
+**Demonstrations**
+
+Using the law of total conditioning, we have the probability being: 
+
+$$
+\begin{aligned}
+    P(N_1(t) + N_2(t) = n) &= \sum_{m = 0}^{n}
+        P(N_1(t) + m = n)P(N_2(t) = m)
+    \\
+    &= \sum_{m = 0}^{n} \exp(-\lambda_1) \frac{\lambda_1^{m - n}}{(n - m)!}
+    \exp(\lambda_2)\frac{\lambda_2^{m}}{m!}
+    \\
+    &= 
+    \frac{\exp(-(\lambda_1 + \lambda_2))}{n!}
+    \sum_{m = 0}^{n}\frac{n!}{m!(n - m)!} \lambda_1^m \lambda_2^{n - m}
+    \\
+    &= 
+    \exp(-(\lambda_1 + \lambda_2))\frac{(\lambda_1 + \lambda_2)}{n!}
+    \sum_{m = 0}^{n} 
+    \frac{n!}{m!(n - m)!} 
+    \frac{\lambda_1^{n - m}}{(\lambda_1 + \lambda_2)^{n - m}}
+    \frac{\lambda^m}{(\lambda_1 + \lambda_2)^m}
+    \\
+    &= \exp(-(\lambda_1 + \lambda_2))\frac{(\lambda_1 + \lambda_2)}{n!}
+    \left(
+        \frac{\lambda_1}{\lambda_1 + \lambda_2} + 
+        \frac{\lambda_2}{\lambda_1 + \lambda_2}
+    \right)
+    \\
+    &= \exp(-(\lambda_1 + \lambda_2))\frac{(\lambda_1 + \lambda_2)}{n!}, 
+\end{aligned}
+$$
+
+which is the same probability density function as the Poisson process with rates $\lambda_1, \lambda_2$. 
+
+
 
