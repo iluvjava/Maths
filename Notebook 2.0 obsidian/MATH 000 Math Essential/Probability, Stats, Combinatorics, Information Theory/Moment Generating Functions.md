@@ -9,7 +9,7 @@ A moment generating function is like the Laplace transform for the probability m
 
 Beyond this, there is also the characteristic function of a random variable, which is is pretty much a Fourier transform on the probability density function of the random variable. 
 
-**Definition | The moment Generating Function**
+#### **Definition | The moment Generating Function**
 
 > Let $M_X(t)$ denote the moment generating function for the random variable $X$ and
 > $$
@@ -26,7 +26,7 @@ $$
 
 which is very similar to the Laplace transform, but the intervals and the sign of $t$ is different. It also looks similar to the Fourier transform except for the imaginary unit and a constant. 
 
-**Method of the Moment**
+#### **The Method of the Moment**
 
 The $k$ th moment of a random variable $x$ is $\mathbb{E}\left[X^k\right]$. When the moment generating function for the random variable, $M_X(t)$ is given, we can have the following: 
 
@@ -52,11 +52,14 @@ $$
     \left. 
         \int_{\mathbb R}^{} 
             x^k\exp(tx)
+            f_X(x)
         dx
     \right|_{t = 0}
     \\
     &= 
-    \mathbb{E}\left[X^k\right], 
+    \mathbb{E}\left[X^k\exp(0)\right] 
+    \\
+    &= \mathbb{E}\left[X^k\right], 
 \end{aligned}
 $$
 
@@ -143,7 +146,11 @@ $$
 \end{aligned}
 $$
 
-where on the first line we use the law of total expectation on the second line we use the property that $X$ is i.i.d, and then we proceed to use the LOTUS theorem. This is an quick and easy way to produce the momoment generating functions. Once the momen generating function is identified, we can check the table to get the distribution, or we can use the method of moment to find the expected value and the variance of the sum distribution using the moment generating function. In fact, this is related to the central limit theorem. 
+where on the first line we use the law of total expectation on the second line we use the property that $X$ is i.i.d, and then we proceed to use the LOTUS theorem. This is a quick and easy way to produce the moment generating functions. 
+
+**Remark**
+Once the moment generating function is identified, we can check the table to get the distribution, or we can use the method of moment to find the expected value and the variance of the sum distribution using the moment generating function. In fact, this is related to the central limit theorem. By the way, this is also related to Martingales, and the Branching Process. 
+
 
 
 ---

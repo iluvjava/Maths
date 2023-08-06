@@ -4,9 +4,9 @@
 ---
 ### **Intro**
 
-We introduce discrete, finite probability markov chain here. In Rick book there are more advanced definition for a Markov chan in the abstract probability spaces. We skip that one and follow the undergraduate "Essence of Stochastic Processes" for the Markov chain materials here. 
+We introduce discrete, finite probability Markov chain here. In Rick book there are more advanced definition for a Markov chan in the abstract probability spaces. We skip that one and follow the undergraduate "Essence of Stochastic Processes" for the Markov chain materials here. 
 
-**Definition | Markov Chain**
+**Def | Markov Chain**
 
 > $X_n$ is a sequence of random variables indexed by $n$, it's a Markov chain when we have: 
 > 
