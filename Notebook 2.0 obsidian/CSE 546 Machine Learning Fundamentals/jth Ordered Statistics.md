@@ -1,7 +1,7 @@
 Let's talk about Order statistics here. 
 [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]], 
 [[PDFs, PMFs]], 
-[[IDD RVs]]
+
 
 ---
 

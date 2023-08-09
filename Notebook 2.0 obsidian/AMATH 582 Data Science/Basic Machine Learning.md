@@ -1,8 +1,4 @@
-Here, we will go over some of the basic machine learning stuff introduced in this class. 
-
-This will be focusing on MATLAB implementations some of the ML related methods. 
-
-Here will also contain a lot of links to other places, so we can get more background for each of the machine learning method, intuitions, and implementations in different languages. 
+Here, we will go over some of the basic machine learning stuff introduced in this class. This will be focusing on MATLAB implementations some of the ML related methods. Here will also contain a lot of links to other places, so we can get more background for each of the machine learning method, intuitions, and implementations in different languages. 
 
 ---
 ### List of Algorithms and Techniques (Matlab)

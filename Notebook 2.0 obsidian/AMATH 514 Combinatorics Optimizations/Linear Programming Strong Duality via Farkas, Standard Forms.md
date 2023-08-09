@@ -12,6 +12,8 @@ We introduce linear programming strong duality using the theory of hyperplane se
 ---
 ### **Strong Duality Statement**
 
+A lot of the times, problems are reduced to standard forms so we don't need a set of theories for all possible way that a linear programming problem can be presented. 
+
 $$
 \begin{aligned}
     \max_{x\in \mathbb R_+^n}\{\langle c, x\rangle| Ax \le b\} &= \min_{y\in \mathbb R_+^m}\{\langle b, y\rangle| y^TA\ge c^T\}

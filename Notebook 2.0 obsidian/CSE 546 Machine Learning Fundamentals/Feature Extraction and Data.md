@@ -30,7 +30,7 @@ These are not just vectors or matrices.
 ---
 ### **Real Vectors**
 
-Pre-Processing Piplines: 
+Pre-Processing Pipelines: 
 
 1. Standardization 
    1. Standardize across all the features $x_i$, so that they are zero mean and unit variance. If considering row data matrix: 

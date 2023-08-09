@@ -4,7 +4,7 @@ Here, we will see how to manage cross validation techniques.
 ---
 ### **Intro**
 
-#### **LOO Leave One Out Cross Validations**
+#### **LOO, Leave One Out Cross Validations**
 
 Given a set of training set, we leave one sample out to get the error for the model that trains on the rest of the data set. 
 
@@ -43,12 +43,12 @@ $$
 
 **Note**: 
 
-This is the most statistlcally sound thing to do for getting the error for the model, but in truth, we don't use it because it's too slow. And everytime, we are going to t use: 
+This is the most statistically sound thing to do for getting the error for the model, but in truth, we don't use it because it's too slow. And everytime, we are going to t use: 
 
 ---
 ### **K-Fold Cross Validation**
 
-We aer goint to use a larger set that varification, by partitioning the training set into $k$ equal sized partition. 
+We are going to use a larger set that verification, by partitioning the training set into $k$ equal sized partition. 
 
 let's assume that the set is partition into equal sized sample set: $\mathcal{D}_j$ where $1 \le j \le k$. So the notation of $f_{\mathcal{D}\setminus\mathcal{D}_i}$ is a model that is trained using the training set for all the sample, but leave out the $i$ partitions from the k-fold technique. 
 

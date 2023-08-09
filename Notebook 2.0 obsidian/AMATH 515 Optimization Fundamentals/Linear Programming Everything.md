@@ -25,7 +25,7 @@ We assume that $A$'s row does not repeat, this is necessary for bounding a uniqu
 > $$
 > The idea is to pad the inequality with positive slack variables. 
 
-**Different Forms:** 
+**Different Forms** 
 
 > $$
 > \begin{aligned}
@@ -144,8 +144,7 @@ $$
 \end{aligned}
 $$
 
-The Lagragian can be converted in such a way that it feels symmetric, by which I mean, the parameters of Dual and Primal can be swapped and the Lagragian will remains exactly the same. To illustrate the point, consider Primal, Dual Linear Programming Problem: 
-
+The Lagrangian can be converted in such a way that it feels symmetric, by which I mean, the parameters of Dual and Primal can be swapped and the Lagrangian will remains exactly the same. To illustrate the point, consider Primal, Dual Linear Programming Problem: 
 
 
 ---
@@ -183,7 +182,7 @@ Algorithmically, the Simplex algorithm will try to achieve the followings:
 
 It moves the feasible point from one vertex of the polytope to another vertex of the Polytope. There are 2 cases: 
 
-1. Reduce any linear programming problem to a standard form, the equality pluse slack formulations. As described in (2). 
+1. Reduce any linear programming problem to a standard form, the equality plus slack formulations. As described in (2). 
 2. Goes to another vertex with an objective value that is less than or equal to the last value. And there are 2 other cases for this:
    1. Goes to infinity. 
    2. Get stuck due to degeneracy of the vertex of polytope. 

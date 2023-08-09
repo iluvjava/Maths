@@ -1,4 +1,4 @@
- Since a piece of research paper is very complicated, I made up these levels of readings to classify different meanings when I said "I read that paper". 
+Since a piece of research paper is very complicated, I made up these levels of readings to classify different meanings when I said "I read that paper". 
 
 - **I looked at it**: 
 	- It means I read the abstract, looked into the author, scanned some keywords. 

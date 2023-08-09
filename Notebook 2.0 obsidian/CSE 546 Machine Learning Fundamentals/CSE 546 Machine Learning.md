@@ -26,7 +26,6 @@ Concepts
 1. Maximal Likelihood Estimator [[Maximal Likelihood Estimator]]
 2. Markov's Inequality [[Markov Inequality]]
 3. [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]]
-4. [[IDD RVs]]
 5. [[Conditional Probability, Expectations]]
 6. [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Bayes Theorem for Baby]]
 
