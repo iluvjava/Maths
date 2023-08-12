@@ -1,9 +1,8 @@
-- [[Polytopes]]
+- [[Polytopes and Vertices]]
 - [[Cone]]
 - [[Strict Separations Theorem]]
 
-In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma)
-
+In fact, the wiki of this is very good: [wiki](https://en.wikipedia.org/wiki/Farkas%27_lemma). 
 
 ---
 ### **Intro**

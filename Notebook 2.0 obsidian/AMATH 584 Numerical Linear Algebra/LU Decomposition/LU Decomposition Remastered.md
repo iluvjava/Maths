@@ -40,7 +40,7 @@ $$
 a_{1, 1}l = -v\implies l = -v/a_{1,1}
 $$
 
-This process is then repeated recursively for the matrix $A^{(1)}$. 
+This process is then repeated recursively for the submatrix $lu^T +A^{(1)}$. 
 
 **Claim 1**
 

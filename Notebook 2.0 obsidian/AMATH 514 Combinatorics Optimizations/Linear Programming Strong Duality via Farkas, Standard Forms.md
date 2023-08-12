@@ -1,5 +1,5 @@
 * [Farkas's Lama](Farkas's%20Lama.md)
-* [Polytopes](Polytopes.md)
+* [Polytopes and Vertices](Polytopes%20and%20Vertices.md)
 * [A Brutal Introduction to Linear Programming](A%20Brutal%20Introduction%20to%20Linear%20Programming.md).
 Proof Taken from Theorem 2.6 of: Shrijver's book: A course in Combinatorics Optimizations. 
 

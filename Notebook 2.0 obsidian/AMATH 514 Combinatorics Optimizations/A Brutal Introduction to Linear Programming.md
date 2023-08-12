@@ -1,5 +1,5 @@
-[[Farkas's Lama]]
-[[Polytopes]]
+- [[Farkas's Lama]]
+- [[Polytopes and Vertices]]
 
 Proofs Taken from AMATH 514, Alexander Schrijver, A course in combinatorics optimizations. 
 
