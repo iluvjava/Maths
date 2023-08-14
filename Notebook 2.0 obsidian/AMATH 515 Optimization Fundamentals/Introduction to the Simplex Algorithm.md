@@ -110,7 +110,7 @@ $$
 
 Now the tight constraints are $s_1$, the first constraint, and $x_2\ge 0$, the non-negativity constraint for decision variable $x_1$. Next, we consider changing the objective. The changed objective vector reflects unit amount of changes by changing the variable $s_2, x_3$, the tight constraints slacks variables. Let $z = x_1 + 2x$, with $x_1$ on the LHS of the equation, we substitute, giving $(2 - s_2) + 2x_2$, giving us $2 - s_2 + 2x_2$. The new objective vector for the tight constraints is $(-1, 2)$. To increase profits further, it would make sense to increase $x_2$. This is the interpretation. 
 
-**Objective row as a "Constraint" Trick**
+**Objective Row as a "Constraint" Trick**
 
 Before pivoting, we introduce an additional trick for the objective. The objective can be interpreted as an equality constraint of the from $2 \ge -s_2 + 2x_2$, by non-negativity constraint of the variables, therefore we gain the equality $0 \le z = 2 -(s_2 - 2x_2)$. We may add it as a constraint to our system, but there is no intrinsic need to play non-negativity constraint to variable $z$, it doesn't have anything to do with feasibility, it's a cheap trick for now but plays some important roles later on, unexpectedly.  
 
@@ -229,6 +229,63 @@ When the problem is unbounded, and the provided initial point is not on a vertex
 ### **The Simplex Tableau Method**
 
 Some people prefers simplex tableau method. I used to do so as well, now I had gotten older, I stick to the simplex dictionary because it's more elementary. To see, we can derive the simplex tableau form from, the simplex dictionary form of the LP standard form. 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        s \\ \zeta
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        b \\ 0
+    \end{bmatrix}
+    - 
+    \begin{bmatrix}
+        A \\ -c^T
+    \end{bmatrix} x
+    \\
+    \begin{bmatrix}
+        s 
+        \\ 
+        \zeta
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        A \\ -c^T
+    \end{bmatrix}x 
+    &= 
+    \begin{bmatrix}
+        b \\ 0
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        A & I & \mathbf 0\\
+        -c^T & \mathbf 0^T & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        x \\ s \\ \zeta
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        b \\ 0
+    \end{bmatrix}
+    \\
+    \text{in augmented matrix form} &
+    \begin{bmatrix}
+        \left.
+        \begin{matrix}
+            A & I & \mathbf 0\\
+            -c^T & \mathbf 0^T & 1
+        \end{matrix}
+        \right|
+        & \hspace{-1.2em}
+        \begin{matrix}
+            b \\ 0
+        \end{matrix}
+    \end{bmatrix}, 
+\end{aligned}
+$$
+
+and that is what the simplex tableau method is trying to do. I personally don't like it, disregarding that it's popular and people use it. I think it's overly lavish and it sticks too strictly to simplex standard form. Which is expected since additional information about, which variables corresponds to which colum and their signs, are all fixed standard for better communications. The dictionary method is better, in the sense that it has this "original flavor" and it's probably the first thing people learned from linear programming. 
 
 
 ---
@@ -446,8 +503,232 @@ $$
 \end{aligned}
 $$
 
-We want to perform a pivot on these dictionary and show that, the correspondence appeared in the example symbolically holds up. For this purprose, it suffices to assume WLOG that, we pivot on $x_1$ and $s_1$ exists, which corresponds to $y_1$ enters and $-u_1$ exits, because the dictionaries are, equivalent up to a permutations of $x, s$, or $y, u$. 
+We want to perform a pivot on these dictionary and show that, the correspondence appeared in the example symbolically holds up. For this purprose, it suffices to assume WLOG that, we pivot on $x_1$ and $s_1$ exists, which corresponds to $y_1$ enters and $-u_1$ exits, because the dictionaries are, equivalent up to a permutations of $x, s$, or $y, u$. To start, we partition the block matrices in a way that is friendly for the pivoting. 
 
+$$
+\begin{aligned}
+    & 
+    \begin{cases}
+        a = A_{1, 1}
+        \\
+        \vec p = A_{2:, 1}
+        \\
+        \vec q = A_{1, 2:}
+        \\
+        \overline A = A_{2:, 2:}
+    \end{cases}
+    \\
+    \text{primal: }
+    \begin{bmatrix}
+        s_1 \\ \vec s_2 \\ \xi
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        b_1 \\ \vec b_2 \\ \alpha
+    \end{bmatrix}
+    - 
+    \begin{bmatrix}
+        a & q^T
+        \\
+        \vec p & \overline A
+        \\
+        -c_1 & - \vec c_2
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\ \vec x_2
+    \end{bmatrix}
+    \\
+    \text{dual: }
+    \begin{bmatrix}
+        -u_1 \\ - \vec u_2 \\ -\eta
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        c_1 \\ \vec c_2 \\ \beta
+    \end{bmatrix} - 
+    \begin{bmatrix}
+        a & \vec p^T
+        \\
+        \vec q & \overline A^T
+        \\
+        b_1 & \vec b_2
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_1 \\ \vec y_2, 
+    \end{bmatrix}
+\end{aligned}
+$$
+
+We now perform the pivoting for the primal prblem.  
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        a^{-1} s_1 
+        \\
+        \vec s_2 - a^{-1} \vec p s_1
+        \\
+        \xi - a^{-1}(-c_1)s_1
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        a^{-1}b_1 \\ \vec b_2 - b_1 a^{-1} \vec p
+        \\
+        \alpha - a^{-1}(-c_1)b_1
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        1 & a^{-1}\vec q  
+        \\
+        \mathbf 0 & \overline A - a^{-1} \vec p \vec q^T
+        \\
+        0 & -\vec c_2 - a^{-1}(-c_1)\vec q^T
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\ \vec x_2
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        0 \\ \vec s_2 \\ \xi
+    \end{bmatrix}
+    + 
+    s_1
+    \begin{bmatrix}
+        a^{-1} \\ a^{-1} \vec p \\ a^{-1} c_1
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+        a^{-1}b_1 \\ \vec b_2 - b_1 a^{-1} \vec p
+        \\
+        \alpha - a^{-1}(-c_1)b_1
+    \end{bmatrix}
+    - 
+    x_1 
+    \begin{bmatrix}
+        1 \\ \mathbf 0 \\ 0
+    \end{bmatrix} - 
+    \begin{bmatrix}
+        a^{-1}\vec q \\
+        \overline A - a^{-1} \vec p \vec q^{T}
+        \\
+        -\vec c_2 + a^{-1}c_1 \vec q^{T}
+    \end{bmatrix}x_2
+    \\
+    \begin{bmatrix}
+        x_1 \\ \vec s_2 \\ \xi
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        \textcolor{green}{a^{-1}b_1}
+        \\ 
+        \textcolor{green}{\vec b_2 - b_1 a^{-1} \vec p}
+        \\
+        \textcolor{blue}{\alpha - a^{-1}(-c_1)b_1}
+    \end{bmatrix}
+    - 
+    \begin{bmatrix}
+        \textcolor{red}{a^{-1}} & \textcolor{red}{a^{-1}\vec q }
+        \\
+        \textcolor{red}{a^{-1}q} & \textcolor{red}{\overline A - a^{-1} \vec p \vec q^{T}}
+        \\
+        \textcolor{blue}{a^{-1}c_1}
+        & 
+        \textcolor{blue}{-\vec c_2 + a^{-1}c_1 \vec q^{T}}
+    \end{bmatrix}
+    \begin{bmatrix}
+        s_1 \\ \vec x_2
+    \end{bmatrix}
+\end{aligned}
+$$
+
+We now perform the same pivoting on the dual problem. 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        -a^{-1}u_1 
+        \\ 
+        - \vec u_2 - (-u_1)a^-1{} \vec q
+        \\
+        -\eta - (-u_1)a^{-1}b_1
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        a^{-1}c_1 \\ 
+        \vec c_2 - c_1 a^{-1}\vec q \\
+        \beta - c_1 b_1 a^{-1}
+    \end{bmatrix}
+    - 
+    \begin{bmatrix}
+        1 & a^{-1} \vec p^{T} \\
+        \mathbf 0 & \overline A^{T} - a^{-1}\vec q \vec p^{T}
+        \\
+        0 & \vec b_2^T - a^{-1}b_1 \vec p^T
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_1 \\ \vec y_2
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        0 \\ -\vec u_2 \\ -\eta
+    \end{bmatrix}
+    + 
+    (-u_1) \begin{bmatrix}
+        a^{-1} \\ a^{-1}\vec q  \\ -a^{-1}b_1
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        a^{-1}c_1 \\ 
+        \vec c_2 - c_1 a^{-1}\vec q \\
+        \beta - c_1 b_1 a^{-1}
+    \end{bmatrix}
+    -
+    y_1 \begin{bmatrix}
+        1 \\ \mathbf 0 \\ 0
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        a^{-1}\vec p^T
+        \\
+        \overline A^T - a^{-1} \vec q \vec p^T
+        \\
+        \vec b_2^T - a^{-1}b_1 \vec p^T
+    \end{bmatrix}
+    \begin{bmatrix}
+        -u_1 \\ y_2
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        y_1 \\ -\vec u_2 \\ -\eta 
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        \textcolor{blue}{a^{-1}c_1 }
+        \\ 
+        \textcolor{blue}{\vec c_2 - c_1 a^{-1}\vec q }
+        \\
+        \textcolor{blue}{\beta - c_1 b_1 a^{-1}}
+    \end{bmatrix}
+    -
+    \begin{bmatrix}
+        \textcolor{red}{a^{-1} }
+        &
+        \textcolor{red}{a^{-1}\vec p^T}
+        \\
+        \textcolor{red}{-a^{-1}\vec q }
+        & 
+        \textcolor{red}{\overline A^T - a^{-1}\vec q \vec p^T}
+        \\
+        \textcolor{green}{- a^{-1}b_1}
+        &
+        \textcolor{green}{\vec b_2 - a^{-1} b_1 \vec q^T}
+    \end{bmatrix}
+    \begin{bmatrix}
+        -u_1 \\ y_2
+    \end{bmatrix}, 
+\end{aligned}
+$$
+
+As we can see, the primal dual correspondence of the Simplex dictionary indeed matches up. Hence, if any one of the primal dual problems are feasible for the initial solution $\mathbf 0$, we can solve the primal by thinking about its dual. 
 
 ---
 ### **Degeneracy, Cycling**
