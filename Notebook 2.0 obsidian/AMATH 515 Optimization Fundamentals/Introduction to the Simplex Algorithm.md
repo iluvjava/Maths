@@ -4,17 +4,17 @@ It's an iterative algorithm that designed for solving Linear Programming problem
 ---
 ### **Intro**
 
-The simplex algorithm is an iterative method for solving a linear programming problem. This idea is some of the hardest idea that I had ever seen, and it's my personal opinion. This text is being written around the time of my PhD, 4 years after I was taught about the simplex algorithm. All the contents from here are from my own, based on my own knowledge of the topic. 
+The simplex algorithm is an iterative method for solving a linear programming problem. I feel like this algorithm idea is some of the hardest (or weirdest) idea that I had learned, but it turns out to be foundamental to other areas of optimizations. This text is being written around the time of my PhD, 4 years after I was taught about the simplex algorithm. All the contents from here are from my own, based on my own knowledge of the topic. 
 
-A lot of the introductory materials skipped motivations and underlying "WHY" when talking about the simplex algorithm and its representations, e.g: Matrix Environment, Tableau and Dictionary. In here, we noted exactly why and when we want to stick to the vertices of the simplex, how the vertices are manifested in the dictionary of the simplex, and we make things abstract with STRUCTURAL MATRICES, instead of specific examples. The hope is that, after reading this file, aim the readers gained some understand of the simplex algorithm in an algorithmic way, and gains pictural understanding about the underlying manipulations of matrices and vectors for the simplex algorithm instead of the geometric, or the economic intuitions behind. 
+A lot of the introductory materials skipped motivations and underlying "WHY" when talking about the simplex algorithm and its representations, e.g: Matrix Environment, Tableau and Dictionary. In addition, I will attempt to link the content of the algorithm to foundational ideas in LP. We wish to know exactly why and when we want to stick to the vertices of the simplex, how the vertices are manifested in the dictionaries, and we make things abstract with structural matrices to understand primal dual tableau correspondence, instead of convincing it via specific examples. The hope is that, after reading this file, aim the readers gained some understand of the simplex algorithm in an algorithmic way, and gains pictural understanding about the underlying manipulations of matrices and vectors with relation to the geometric interpretations of the algorithm. 
 
 ---
 ### **Motivations | Farmer's Dilemma**
 
-Rooted in application, we demonstrates the procedures for solving a linear programming in standard form (See [Linear Programming Strong Duality via Farkas, Standard Forms](../AMATH%20514%20Combinatorics%20Optimizations/Linear%20Programming%20Strong%20Duality%20via%20Farkas,%20Standard%20Forms.md) for 3 of the standard from). 
+Rooted in application, we demonstrates the procedures for solving a linear program in standard form (See [Linear Programming Strong Duality via Farkas, Standard Forms](../AMATH%20514%20Combinatorics%20Optimizations/Linear%20Programming%20Strong%20Duality%20via%20Farkas,%20Standard%20Forms.md) for 3 of the standard froms). 
 
-#### **Problem | The Farmer's Potatoes and Carros**
-> Mr. John is a farmer. He sells potatoes at 1 unit of money and carrots at 2 units. He has 2 units of both potatoes and carrots seeds. He can plant a total unit of 3 for the sum of 2 type of crops. What portion of potatoes, carrots seed he should plant to maximize profits? 
+#### **Problem | The Farmer's Potatoes and Carrots**
+> Mr. John is a farmer. He sells potatoes at 1 unit of money and carrots at 2 units. He has 2 units of both potatoes and carrots seeds. He can plant a total unit of 3 land for the two types of crops. What portion of potatoes, carrots seed he should plant to maximize profits? 
 
 **Mathematical Modeling**
 
@@ -48,7 +48,7 @@ $$
 \end{aligned}
 $$
 
-the variable $s_1, s_2, s_3$ are the slack variables, if they are zero, then the corresponding constraint is tight, else, it's a loose constraint. Directly consider
+the variable $s_1, s_2, s_3$ are the slack variables, if they are zero, then the corresponding constraint is tight, else, it's a loose constraint. We now assume $(x_1, x_2) = (0, 0)$, hence we are tight on the constraint $x\ge \mathbf 0$, and the origin is one of the vertices of the feasible polytope. Next, directly consider
 
 $$
 \begin{aligned}
@@ -394,20 +394,59 @@ $$
 $$
 
 Observe that, firstly, the primal and dual disctionary are identical up to a sign different for entries in sharing the same color. Next, observe that, the dual is giving an infeasible solution while the primal gives a feasible solution. This is the *Primal Dual Simplex Correspondence*. By doing mental transformation between the primal and dual, one can choose $\mathbf 0$ to be feasible for the dual and pivot on dual for the solution of the primal. During the operations we have: 
-1. The primal slacks <-> objective row of the dual. 
-2. Primal slacks <--> objective row of the dual. 
+1. The primal slacks <--> Objective row of the dual. 
+2. Primal objective row <--> Dual slack vars. 
 3. When optimal is reached, the objective and the primal and dual is the same. 
+
+**Reading the Dual Information from the Primal Dictionary**
+
+The primal slack variables $s_1, s_2, s_3$ corresponds to the dual decision variable $y_1, y_2, y_3$. After the pivoting, $s_2$ has coefficient $-1$ on the objective row, which means that $y_2 = -1$ (Which is unfeasible), with an additional negative sign. Observe that if the slack is zero, then the dual variable corresponding to it is non-zero. 
 
 ---
 ### **Abstraction of the Dual Simplex Dictionary Method**
 
 The [simplex tableau](https://en.wikipedia.org/wiki/Simplex_algorithm#Simplex_tableau) method is an abstraction of the simplex dictionary method. It suffices to write everything in equation form and never mention the use of the simplex tableau method. Furthermore, the equation form also provides the advantages since also looks like the matrix environment method. In this section, we write the simplex method where we only do one pivot each time in an abstract way, together with the dual simplex problem. We attempt to hinted at the equivalent between the primal and dual simplex pivoting through a level of abstraction of the algorithm. 
 
+We now write the primal and the dual in abstract form, which can be given as 
 
+$$
+\begin{aligned}
+    \max_{x \ge \mathbf 0}  \{ \langle c, x\rangle | Ax \le b\}
+    \le \min_{y\ge \mathbf 0} \{
+        \langle b, y\rangle | A^Ty \ge c
+    \}
+\end{aligned}
+$$
 
+They have dictionary of the form 
 
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        s \\ \zeta
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        b \\ 0
+    \end{bmatrix}
+    - 
+    \begin{bmatrix}
+        A \\ -c^T
+    \end{bmatrix} x
+    \\
+    \begin{bmatrix}
+        -u \\ -\eta
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        c \\ 0
+    \end{bmatrix} - 
+    \begin{bmatrix}
+        A^T \\ b^T
+    \end{bmatrix}y, 
+\end{aligned}
+$$
 
-
+We want to perform a pivot on these dictionary and show that, the correspondence appeared in the example symbolically holds up. For this purprose, it suffices to assume WLOG that, we pivot on $x_1$ and $s_1$ exists, which corresponds to $y_1$ enters and $-u_1$ exits, because the dictionaries are, equivalent up to a permutations of $x, s$, or $y, u$. 
 
 
 ---
