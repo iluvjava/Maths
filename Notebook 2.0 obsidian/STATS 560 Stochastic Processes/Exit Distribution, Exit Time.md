@@ -69,6 +69,43 @@ $$
 
 For the second case with $x = t$, the intuitive argument is that, if we started at the terminal state $t$, then the average amount of time it takes to get there is zero. 
 
+**Demonstrations**
+
+The recurrence relations can be demonstrate via the law of total expectation. Here is how 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[
+        V_G | X_0 = x
+    \right] &= 
+    \sum_{y\in S}^{}
+        \mathbb{E}\left[
+            V_G | X_0 = x, X_1 = y
+        \right]
+        P(X_1 = y | X_0 = x)
+    \\
+    &= 
+    \sum_{y\in S}^{}
+    \mathbb{E}\left[
+        V_G |X_1 = y
+    \right]
+    P(X_1 = y | X_0 = x) \quad \text{ By Markov Property}
+    \\
+    &= 
+    \sum_{y\in S}^{}
+    \mathbb{E}\left[
+        V_G + 1 |X_0 = y
+    \right]
+    P(X_1 = y | X_0 = x) \quad \text{ By Strong Markov Property}
+    \\
+    &= 1 + \sum_{y \in S}^{} 
+    \mathbb{E}\left[V_G | X_0 = y\right]
+    P(X_1 = y | X_0 = x), 
+\end{aligned}
+$$
+
+writing $g(x) = \mathbb{E}\left[V_G| X_0 = x\right]$, the above formula simplifies to the first case of the recurrences for $g(x)$. 
+
 
 ---
 ### **Looking for the Exit Distribution**
@@ -110,7 +147,7 @@ and bro trust me, this is matrix product of all it's sub matrix indexed only wit
 
 Without the loss of generality, let there be $N$ many state in total, let the exit state be indexed by $1$, let the game over state be indexed by $N$. We use the column transition matrix $P_{i, j} = P(X_{n + 1} = i | X_{n} = j)$. 
 
-#### **Thm-1 | Formula for the Exit Distribution**
+#### **Thm-1 | Matrix Formula for the Exit Distribution**
 > The exit distribution vector, $h_x = P(V_1 < V_n | X_0 = x)$ can be computed by the formula $\widetilde h = (I - \widetilde P^T)^{-1}u$, where $u = P_{1, 2:N}, \widetilde P= P_{2:N-1, 2:N-1}$, we use matlab indexing convention here. 
 
 **Proof**
