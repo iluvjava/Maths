@@ -4,9 +4,12 @@ It's an iterative algorithm that designed for solving Linear Programming problem
 ---
 ### **Intro**
 
-The simplex algorithm is an iterative method for solving a linear programming problem. I feel like this algorithm idea is some of the hardest (or weirdest) idea that I had learned, but it turns out to be foundamental to other areas of optimizations. This text is being written around the time of my PhD, 4 years after I was taught about the simplex algorithm. All the contents from here are from my own, based on my own knowledge of the topic. 
+The simplex algorithm is an iterative method for solving a linear programming problem. I feel like this algorithm idea is some of the hardest (or weirdest) idea that I had learned, but it turns out to be fundamental to other areas of optimizations. This text is being written around the time of my PhD, 4 years after I was taught about the simplex algorithm. All the contents from here are from my own, based on my own knowledge of the topic. 
 
-A lot of the introductory materials skipped motivations and underlying "WHY" when talking about the simplex algorithm and its representations, e.g: Matrix Environment, Tableau and Dictionary. In addition, I will attempt to link the content of the algorithm to foundational ideas in LP. We wish to know exactly why and when we want to stick to the vertices of the simplex, how the vertices are manifested in the dictionaries, and we make things abstract with structural matrices to understand primal dual tableau correspondence, instead of convincing it via specific examples. The hope is that, after reading this file, aim the readers gained some understand of the simplex algorithm in an algorithmic way, and gains pictural understanding about the underlying manipulations of matrices and vectors with relation to the geometric interpretations of the algorithm. 
+A lot of the introductory materials skipped motivations and underlying "WHY" when talking about the simplex algorithm and its representations, e.g: Matrix Environment, Tableau and Dictionary. In addition, I will attempt to link the content of the algorithm to foundational ideas in LP. We wish to know exactly why and when we want to stick to the vertices of the simplex, how the vertices are manifested in the dictionaries, and we make things abstract with structural matrices to understand primal dual tableau correspondence, instead of convincing it via specific examples. The hope is that, after reading this file, aim the readers gained some understand of the simplex algorithm in an algorithmic way, and gains visual understanding about the underlying manipulations of matrices and vectors with relation to the geometric interpretations of the algorithm. This is what we do: 
+1. Simplex dictionary method with matrices for a specific example. 
+2. Primal dual simplex dictionary demonstrated with the same examples and correspondences are colored. 
+3. Generic formation of the previous items to convince that the correspondence theorem is legit as what it claims to be. 
 
 ---
 ### **Motivations | Farmer's Dilemma**
@@ -23,7 +26,7 @@ In mathematical term, the farmer has $x_1, x_2 > 0$ denoting the potatoes and th
 
 **Simplex Dictionary Method** 
 
-From [A Brutal Introduction to Linear Programming](../AMATH%20514%20Combinatorics%20Optimizations/A%20Brutal%20Introduction%20to%20Linear%20Programming.md) and [Polytopes and Vertices](../AMATH%20514%20Combinatorics%20Optimizations/Polytopes%20and%20Vertices.md), the set of optimal always intersect with a vertex of the feasible region, which is assumed to be bounded, and the description for a vertex on the polytope is a point such that $\ge m$ number of the inequality constraints are tight. To this degree, it suffices to search for each of the vertices in our problem. All solutions of the feasible set in our problem can be characterized by the equation (the equality, inequality, and the implicity non-negativity assumption on $x_1, x_2$): 
+From [A Brutal Introduction to Linear Programming](../AMATH%20514%20Combinatorics%20Optimizations/A%20Brutal%20Introduction%20to%20Linear%20Programming.md) and [Polytopes and Vertices](../AMATH%20514%20Combinatorics%20Optimizations/Polytopes%20and%20Vertices.md), the set of optimal always intersect with a vertex of the feasible region, which is assumed to be bounded, and the description for a vertex on the polytope is a point such that $\ge m$ number of the inequality constraints are tight. To this degree, it suffices to search for each of the vertices in our problem. All solutions of the feasible set in our problem can be characterized by the equation (the equality, inequality, and the implicitly non-negativity assumption on $x_1, x_2$): 
 
 $$
 \begin{aligned}
@@ -299,7 +302,7 @@ $$
         3 \\ 2 \\ 2
     \end{bmatrix}, 
     c = \begin{bmatrix}
-        1 & 2
+        1 \\ 2
     \end{bmatrix}, 
     A = \begin{bmatrix}
         1 & 1 \\ 1 & 0 \\ 0 & 1
@@ -460,7 +463,7 @@ Observe that, firstly, the primal and dual disctionary are identical up to a sig
 The primal slack variables $s_1, s_2, s_3$ corresponds to the dual decision variable $y_1, y_2, y_3$. After the pivoting, $s_2$ has coefficient $-1$ on the objective row, which means that $y_2 = -1$ (Which is unfeasible), with an additional negative sign. Observe that if the slack is zero, then the dual variable corresponding to it is non-zero. 
 
 ---
-### **Abstraction of the Dual Simplex Dictionary Method**
+### **Abstraction of the Primal Dual Correspondence**
 
 The [simplex tableau](https://en.wikipedia.org/wiki/Simplex_algorithm#Simplex_tableau) method is an abstraction of the simplex dictionary method. It suffices to write everything in equation form and never mention the use of the simplex tableau method. Furthermore, the equation form also provides the advantages since also looks like the matrix environment method. In this section, we write the simplex method where we only do one pivot each time in an abstract way, together with the dual simplex problem. We attempt to hinted at the equivalent between the primal and dual simplex pivoting through a level of abstraction of the algorithm. 
 
@@ -731,4 +734,7 @@ $$
 As we can see, the primal dual correspondence of the Simplex dictionary indeed matches up. Hence, if any one of the primal dual problems are feasible for the initial solution $\mathbf 0$, we can solve the primal by thinking about its dual. 
 
 ---
-### **Degeneracy, Cycling**
+### **Simplex Dictionary, Teleportations, Matrix Environment Method**
+
+
+

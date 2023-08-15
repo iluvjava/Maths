@@ -8,11 +8,11 @@ Proofs Taken from AMATH 514, Alexander Schrijver, A course in combinatorics opti
 
 Linear programming in brief is just optimizing on a polytopes/polyhedra along a vector. Nothing fancy. 
 
-**Definition of Linear Programming**
+**Definition | Linear Programming**
 
 > A LP problem is maximizing/minimizing the quantity $\langle c, x\rangle$ where $x\in P$ where $P$ is a polyhedra. 
 
-**A Fundamental Result**: 
+**Thm | Fundamental Theorem of Linear Programming**: 
 
 > If the polyhedra is bounded along direction $c$, then the maximum of the LP objective value of $\langle x, c\rangle$ is attained at some point that is inside of the polyhedra. Cite as Lemma 2.1 from \<A Course in Combinatorics Optimizations\>
 
@@ -55,6 +55,5 @@ Then $\lambda \delta = \sup\{\lambda c^Tx: Ax \le b\} = \sup \{y^TAx: Ax \le b\}
 ---
 ### **Strong Duality**
 
-A statement of results from strong duality are listed, and proofs can be found using various different methods and techniques.
-
+For a rigorous proof of the theorem, see [Linear Programming Strong Duality via Farkas, Standard Forms](Linear%20Programming%20Strong%20Duality%20via%20Farkas,%20Standard%20Forms.md) for more info. 
 
