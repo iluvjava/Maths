@@ -1,6 +1,4 @@
-PDFs: probability Density function 
-PMFs: Probability Mass function
-R.Vs: Random Variables
+This is linked to [Random variable Distribution function](../../AMATH%20561%20Probability%20Theory/Probability%20Basics/Random%20Variables%20as%20Measurable%20Functions.md). 
 
 ---
 ### **Intro**
@@ -77,7 +75,7 @@ If, $X$ and $Y$ are independent, each having their own **independent probability
 ---
 ### **Probability Density Function Transformations**
 
-Suppose that we were given 2 random variables $X, Y$ and a function $G$ that maps it to 2 other random variables then $(V, W) = G(X, Y)$. The question is, what is the distribution function for the random variable $(V, W)$? 
+Suppose that we were given 2 random variables $X, Y$ and a function $G$ that maps it to 2 other random variables then $(V, W) = G(X, Y)$. The question is, what is the distribution function for the random variable $(V, W)$? See [Probability Density Functions Transformations](Probability%20Density%20Functions%20Transformations.md) for more info. 
 
 
 

@@ -1,6 +1,6 @@
 ### **Intro**
 
-MLE estiamtes unknown parameters of a distributions function from a list of samples that are assumed to be [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables). 
+MLE estiamtes unknown parameters of a distributions function from a list of samples that are assumed to be [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables). Similar statistical methods exists, such as the method of moments, they aim to recover the moment generating functions of the distributions. 
 
 **References**: 
 

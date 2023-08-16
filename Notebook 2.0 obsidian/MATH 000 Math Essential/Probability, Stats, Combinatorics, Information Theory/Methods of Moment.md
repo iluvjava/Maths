@@ -1,6 +1,4 @@
-Similar to the idea of MLE (Maximal Likelihood) estimator, the method of MOM seeks to look for the best model parameters that explain that distributions. 
-
-[[Maximal Likelihood Estimator]], [[Moment Generating Functions]]
+Similar to the idea of MLE (Maximal Likelihood) estimator, the method of MOM seeks to look for the best model parameters that explain that distributions. [[Maximal Likelihood Estimator]], [[Moment Generating Functions]]
 
 Reference Materials: 
 [wiki](https://en.wikipedia.org/wiki/Method_of_moments_(statistics))
