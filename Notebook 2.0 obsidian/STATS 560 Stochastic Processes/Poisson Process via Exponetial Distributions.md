@@ -22,12 +22,12 @@ Recall the important property that, an exponential random variable is similar to
 
 **Context**
 
-The sum of $n$ exponential random variable is related to the construction of the Poisson processes, for more information and how we can attain the moment generating function of the random variable, see [Moment Generating Functions](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Moment%20Generating%20Functions.md). For an inductive proof of the PDF function of Gamma by its definition, see Theorem 2.1 in Rick's Essential Processes textbook. 
+The sum of $n$ exponential random variable is related to the construction of the Poisson processes, for more information and how we can attain the moment generating function of the random variable, see [Moment Generating Functions](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Moment%20Generating%20Functions.md). For an inductive proof of the PDF function of Gamma by its definition, see Theorem 2.1 in Rick's Essential Processes textbook. In general, the Gamma distribution is, the amount of time for chain of given number of geometric events to occur. This distribution is used for modeling queues. In the book examples for renewal process are given. 
 
 ---
 ### **Exponential Races**
 
-We discuss the events for the sum of a sequence of random exponential variables and the minimum of those random exponential random variables. 
+We discuss the events for a list of random exponential variables and the probability of observing a minimum of those random being a specific random variable we had in mind. 
 
 #### **Thm-2 | The Exponential Races**
 > Let $T_1, \cdots, T_n$ be independent, with $T_i = \text{Expo}(\lambda_i)$, and $S = \min(T_1, \cdots, T_n)$, then $S = \text{Expo}(\lambda_1 + \cdots, + \lambda_n)$, then

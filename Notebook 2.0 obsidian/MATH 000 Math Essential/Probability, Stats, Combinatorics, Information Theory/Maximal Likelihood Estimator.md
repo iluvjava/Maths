@@ -1,23 +1,22 @@
-MLE is a statistical tool. It looks for a model the maximizes the likelihood for a given list of observation from a [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables) random variable. 
-
-References: Random Googling and the CSE 312 Textbook. 
-
-For this topic, you might also be interested in another way of estimating the parameters involved in a model, it's the [[Methods of Moment]]. 
-
----
 ### **Intro**
 
-Let's define some keywords. 
+MLE estiamtes unknown parameters of a distributions function from a list of samples that are assumed to be [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables). 
 
-**Realization, Samples**: Observed Values from a random variable $X$. 
+**References**: 
 
-> Denoted as: $x_1, x_2 \cdots x_n$
+Random Googling and the CSE 312 Textbook. STATS 401, UBCO, statistical inferences. 
 
-**Likelihood**: 
 
-> Given a model parameter $\theta$, and idd observation $x$, The likelihood is the probability of observing the samples given the model with parameter $\theta$
 
-**Important Questions**: 
+#### **Realization, Samples**: 
+
+> Observed Values from a random variable $X$. Denoted as: $x_1, x_2 \cdots x_n$. Usually i.i.d sample. 
+
+#### **Likelihood**: 
+
+> Given a model parameter $\theta$, and idd observation $x_i$, The likelihood is a function that gives the probability of observing the list of samples given a model with parameter $\theta$. 
+
+#### **Question (Reading Outcomes)**: 
 
 > How is it computed? If the distribution is continuous, doesn't it mean it's almost impossible to observe that exact given sequence? (Because exactly equals to the observed probability is impossible when the random variable is defined to a real number). 
 
@@ -248,4 +247,4 @@ As we collect more and more data, this is Asymptotically Unbiased. To get the un
 6. Do that a lot of time and get some estimate for the best parameters. 
 
 
-[^1]: See [Sample Variance is Biased](Sample%20Variance%20is%20Biased.md) for more information. 
+[^1]: See [Why Sample Variance is Biased](Why%20Sample%20Variance%20is%20Biased.md) for more information. 

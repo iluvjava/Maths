@@ -187,7 +187,13 @@ Where, the conditional probability has been decomposed into estimating the proba
 ---
 ### **Independent Random Variables**
 
+It's best to illustrate some of the properties of mutually independent random variables from what we discussed above. Recall [Random variable Distribution function](../../AMATH%20561%20Probability%20Theory/Probability%20Basics/Random%20Variables%20as%20Measurable%20Functions.md) for a basic coverage of a random variable. Additionally, we need [Probability Spaces](../../AMATH%20561%20Probability%20Theory/Probability%20Basics/Probability%20Spaces.md) as well. 
 
+#### **Def | Independent Random Variables**
+> Two random variables $X, Y$, Let $\mathcal R$ be a sigma algebra such that for all $A\in \mathcal R, B \in \mathcal R$, we have $P(X\in A, Y\in B) = P(X\in A)P(Y\in B)$. For this section, we follows Rick Durrett's Probability, Theories and Applications, chapter 2. 
+
+#### **Def | Sigma Algebra Independence**
+> Two $\sigma$-algebra, $\mathcal F, \mathcal G$ are independence if for all $A\in \mathcal F, B\in \mathcal G$, we have $A\perp B$. The events are independent of each other. 
 
 
 
