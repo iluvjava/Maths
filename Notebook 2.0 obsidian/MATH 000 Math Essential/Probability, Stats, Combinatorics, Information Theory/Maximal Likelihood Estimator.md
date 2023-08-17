@@ -12,44 +12,32 @@ Random Googling and the CSE 312 Textbook. STATS 401, UBCO, statistical inference
 
 > Observed Values from a random variable $X$. Denoted as: $x_1, x_2 \cdots x_n$. Usually i.i.d sample. 
 
-#### **Likelihood**: 
+#### **Def | The Likelihood Function**
 
-> Given a model parameter $\theta$, and idd observation $x_i$, The likelihood is a function that gives the probability of observing the list of samples given a model with parameter $\theta$. 
-
-#### **Question (Reading Outcomes)**: 
-
-> How is it computed? If the distribution is continuous, doesn't it mean it's almost impossible to observe that exact given sequence? (Because exactly equals to the observed probability is impossible when the random variable is defined to a real number). 
-
-Ok, in order to pull a rigorous proof off I think we need some real analysis shit, but computing the likelihood is as simple as: 
-
+> Given a model parameter $\theta$, and idd observation $x_i$, The likelihood is a function that gives the "probability" of observing the list of samples given a model with parameter $\theta$. 
 > $$
-L(x|\theta) = \prod_{i = 1}^{n} f\left(x_i|\theta\right) $$
+> L(x|\theta) = \prod_{i = 1}^{n} f\left(x_i|\theta\right)
+> $$
 
-Where, the function $f$ is the probability density function parameterized by $\theta$, when the random variable is continuous and it's a probability mass function when the variable is discrete. 
+Take note, we can do this because the samples of $(x_i)_{i = 1}^n$ is i.i.d observation, therefore, the product spaces of all such observation has independence assumption, and therefore, direct product of the probability of observing each, gives the probability of observing the whole sequence. 
 
+**Remarks:**
 
-**Intuitions**: 
+The probability statement is in quotation marks because $P(X = x | \theta)$ is, zero. Under this context, the interpretation of "probability" needs to be revised. Which, at the time of writing, I am not sure of the interpretation. 
 
-> What is the intuition behind likelihood for continuous random variable? 
-
-Approximate the probability density function with a probability mass function ($\tilde{f}\approx f$), so that the $\tilde f$. Suppose that we are only dealing with a 1D random variables. Then $\tilde f$ is a function that maps discretized partitions of the 1D line to a single specific value, let's say the out put value for each interval is handled by parameter $\theta$, represented as a vector with finite length. Taking the log of the maximum likelihood expression yields results estimation for the negative log transform (entropy transform) for the random variable.... (Not sure what I am rambling about, there is more clearing up that needs to be done here.)
-
-Take the limit as we make the approximate function $\tilde{f}$ finer and finer, then we will have the probability density function $f$. 
 
 ---
 ### **MLE**
 
-Given a sequence of idd samples, the best parameters: $\Theta$ will be given as: 
+The maximum likely estimator is a number obtained by looking for $\theta$ that maximizes the likelihood function. Given a sequence of idd samples, the best parameters set $\Theta$ is 
 
 $$
 \Theta^* = 
 \underset{\Theta}{\text{argmax}} 
-\prod_{i = 1}^{n} f\left(x_i|\Theta\right)
+\prod_{i = 1}^{n} f\left(x_i|\Theta\right), 
 $$
 
-And then BOOM! we have the most likely model for the given data, and it will be: $f(X|\Theta)$. 
-
-For actual computation, it's often transformed into: 
+most of the time, it's not possible to obtain closed form solution to the above problem. And for better intuitions and computations, it's reduced to the log likelihood, being: 
 
 $$
 \Theta^* = 
@@ -59,11 +47,15 @@ $$
 \sum_{i = 1}^{n} \ln \left(\frac{1}{f\left(x_i|\Theta\right)}\right)
 $$
 
-If there is a closed form solution to the best estimator given the model then use it. If not, we need the power of optimization algorithm to figure out the best solution to the formulated MLE problem. 
-
 **Remarks**
 
-Observe the similarity of the above expression and the transformed used for [[Conditional Entropy]]. There is a link between the 2 concepts that is not clear to me yet. 
+Observe the similarity of the above expression and the transformed used for [[Conditional Entropy]]. There is a link between the 2 concepts that is not clear to me yet. Furthermore, it's also unclear to me regarding the existence of the minimizers for, all function $f$ that can be called a PDF. 
+
+
+---
+### **MLE As an a Random Variable**
+
+We now, treat us with the fact that, an MLE exists for some underlying distribution $f(X| \theta)$. 
 
 
 ---
@@ -144,7 +136,7 @@ Ok, take note that, the function above is monotonically decreasing, to make it a
 
 
 ---
-### **Gaussian (Continuous Variables)**
+### **Example | The Guassian Distribution**
 
 This is the Gaussian Models: 
 
