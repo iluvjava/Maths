@@ -1,14 +1,17 @@
+Needs [Independent Events, Random Variables](Independent%20Events,%20Random%20Variables.md) for a better background. 
+
+
+---
 ### **Intro**
 
-MLE estiamtes unknown parameters of a distributions function from a list of samples that are assumed to be [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables). Similar statistical methods exists, such as the method of moments, they aim to recover the moment generating functions of the distributions. 
+MLE estimates unknown parameters of a distributions function from a list of samples that are assumed to be [idd](https://www.wikiwand.com/en/Independent_and_identically_distributed_random_variables) (Independent and Identically Distributed Random Variables). Similar statistical methods exists, such as the method of moments, they aim to recover the moment generating functions of the distributions. 
 
 **References**: 
 
-Random Googling and the CSE 312 Textbook. STATS 401, UBCO, statistical inferences. 
+Random Googling and the CSE 312 Textbook. STATS 401, UBCO, statistical inferences, the textbook is "Probability and Statistical Inferences" by Hogg, Tanis, and Zimmerman, Chapter 6. 
 
 
-
-#### **Realization, Samples**: 
+#### **Realization, Samples**
 
 > Observed Values from a random variable $X$. Denoted as: $x_1, x_2 \cdots x_n$. Usually i.i.d sample. 
 
@@ -49,13 +52,96 @@ $$
 
 **Remarks**
 
-Observe the similarity of the above expression and the transformed used for [[Conditional Entropy]]. There is a link between the 2 concepts that is not clear to me yet. Furthermore, it's also unclear to me regarding the existence of the minimizers for, all function $f$ that can be called a PDF. 
+Observe the similarity of the above expression and the transformed used for [[Conditional Entropy]]. There is a link between the 2 concepts that is not clear to me yet. Furthermore, it's also unclear to me regarding the existence of the minimizers for, all function $f$ that can be called a PDF. But, for the context of this file, we assume that at least one minimum exists for the above optimization problem. 
 
 
 ---
 ### **MLE As an a Random Variable**
 
-We now, treat us with the fact that, an MLE exists for some underlying distribution $f(X| \theta)$. 
+Under a lot of convex, the MLE obtained via solving an optimization problem, is a random varaible. It's a random variable because the list of random variable taken as sample from a distribution function are random variables by their nature, and as a consequence, if we denote $\hat \theta_n$ for the maximal likelyhood estimator for the sample $(X_i)_{i = 1}^n$, then the randomness of the samling is transferred to the MLE. We now may discuss some of the properties of the random variables. 
+
+
+#### **Def | Consistent**
+> Let $\hat \theta_n$ be an MLE for some probability density/mass function $f$ that is deterministically parameterized by parameter $\theta$. Then the MLE is consistent for the true parameter $\theta$ if $\lim_{n\rightarrow \infty} P(|\hat \theta_n - \theta| > \epsilon) = 0$ for all $\epsilon > 0$. 
+
+**Observations**
+
+The random variable $\hat \theta_n$ converges almost surely to the random variable (which is actually a constant) $\theta$. 
+
+ 
+#### **Def | The Bias for the Random Variable**
+> Let $\theta_0$ be the true value for the distributions we sampled from, then the bias of a MLE is given by 
+> $$
+> \begin{aligned}
+>   \text{bias}(\hat \theta) = \mathbb{E}\left[\hat \theta - \theta_0\right], 
+> \end{aligned}
+> $$
+> It's the expected amount of difference between the true parameter and the parameter estimated by the maximal likelihood procedures. 
+
+### **Def | The MSE of the MLE**
+> The MSE is a measure of how good an estimated parameter is compare to the real parameter. Let $\hat \theta$ be the MLE produced by some procedures, then the MLE of the estimator is defined $\mathbb{E}\left[(\hat\theta - \theta_0)^2\right]$, the expected squared error from the true value. 
+
+**Demonsrations**
+
+The MSE of MLE is an aggregate measure of the variance and the biases of the estimator $\hat \theta$. Consider 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[(\hat \theta - \theta_0)^2\right] &= 
+    \mathbb{E}\left[
+        \left(
+            \hat \theta - \mathbb{E}\left[\hat \theta\right] + 
+            \mathbb{E}\left[\hat \theta\right] - \theta_0
+        \right)^2
+    \right]
+    \\
+    &= 
+    \mathbb{E}\left[
+        \left(
+            \hat \theta - \mathbb{E}\left[\hat \theta\right]
+        \right)^2 
+        + 
+        \left(
+            \mathbb{E}\left[\hat \theta\right] - \theta_0
+        \right)^2
+        + 
+        2\left(
+            \hat \theta  - \mathbb{E}\left[\hat \theta\right]
+        \right)\left(
+            \mathbb{E}\left[\hat \theta\right] - \theta_0
+        \right)
+    \right]
+    \\
+    &= \text{Var}\left[\hat \theta\right] + 
+    \text{bias}\left[\hat \theta\right]
+    + 0, 
+\end{aligned}
+$$
+wher, it's zero because the term $\mathbb E\hat \theta - \theta_0$ is a constant, taking in the expected value makes $\hat \theta - \mathbb E \hat \theta$.
+
+#### **Def | The Score Function**
+> The score function is a function conditioned on some distribution parameter $\theta$. Let $f(x | \theta)$ be the model generating i.i.d sequences of random variables, then the score function $U(X|\theta) = \partial_\theta \ln(f(X|\theta))$. 
+
+**Observations**
+
+It's looking a bit like entropy. More specifically, it's the changes in the negative entropy as we vary the parameter $\theta$ from the distribution. We also make the observation that $\mathbb E U(X|\theta) = 0$, if $\theta$is the TRUE underlying parameter for distribution function $f$. 
+
+
+#### **Def | The Fisher Information**
+> There are many equivalent definition for the Fisher information. The fisher information is a quantity defiend via some candidate parameter $\theta$: 
+> $$
+>   I(\theta) = \mathbb{E}\left[-\partial_\theta[\ln\circ f](X|\theta)\right] = \text{Var}\left[U(X|\theta)\right]. 
+> $$
+
+#### **Thm | Cramer Rao's Lowerbouned**
+> The cramer's Rao's lower bound gives a lower bound for the amount of variance of an unbiased MLE. Let $f(x|\theta)$ be a distribution function generating i.i.d sequence $(X_i)_{i = 1}^n$ with deterministic distribution $\theta$, let $\hat \theta_n$ be the MLE obtained as the solution of the optimization problem. The variance of the estimator is then lower bounded by $1 / n I(\theta)$. An estimator whose variance equals to the Cramer Rao's lower bound is called *Asymptoptically Efficient*. 
+
+**Observations**
+
+The second derivative information of the negative entropy of a specific parameter tells us the variance for our unbiased estimator. 
+
+
+
 
 
 ---
@@ -131,7 +217,7 @@ $$
 \log\left(\frac{1}{\theta^N}\right) = -N\log(\theta)
 $$
 
-Ok, take note that, the function above is monotonically decreasing, to make it as big as possible, we have to make the parameter as small as possible, and the smaller value of $\theta$ such that the likelihood is not zero is $\max_{1\le i\le N}(x_i)$. So the answer is so simple it's just: $\theta^+ = \max_{1 \le i \le N}(x_i)$. 
+Ok, take note that, the function above is monotonically decreasing, to make it as big as possible, we have to make the $\theta$ as small as possible, and the smaller value of $\theta$ such that the likelihood is not zero is $\max_{1\le i\le N}(x_i)$. So the answer is just: $\theta^+ = \max_{1 \le i \le N}(x_i)$. 
 
 
 
@@ -224,9 +310,7 @@ $$
 \frac{n - 1}{n}\sigma^2 = \mathbb{E}\left[\widehat{\sigma^2}\right] \ne \sigma^2
 $$
 
-To figure this out, just take the expected value for the optimal variance squared. 
-
-As we collect more and more data, this is Asymptotically Unbiased. To get the unbiased estimator, divide it $\sum_{i= 1}^n (x_i - \mu)^2$ by $\frac{1}{n - 1}$. Which will be an unbiased estimator 
+To figure this out, just take the expected value for the optimal variance squared. As we collect more and more data, this is Asymptotically Unbiased. To get the unbiased estimator, divide it $\sum_{i= 1}^n (x_i - \mu)^2$ by $\frac{1}{n - 1}$. Which will be an unbiased estimator 
 
 
 ---
