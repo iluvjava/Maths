@@ -220,7 +220,6 @@ $$
 Ok, take note that, the function above is monotonically decreasing, to make it as big as possible, we have to make the $\theta$ as small as possible, and the smaller value of $\theta$ such that the likelihood is not zero is $\max_{1\le i\le N}(x_i)$. So the answer is just: $\theta^+ = \max_{1 \le i \le N}(x_i)$. 
 
 
-
 ---
 ### **Example | The Guassian Distribution**
 

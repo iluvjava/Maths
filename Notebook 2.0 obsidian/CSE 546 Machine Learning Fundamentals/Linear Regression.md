@@ -1,21 +1,9 @@
-Here we are going to learn about linear regression. 
-
-1. Define the problem 
-2. Get the closed form solution 
-3. Get the offset version of the problem and its solution 
-4. Show that the estimation for the parameters is unbiased. 
-5. Find the variance of the estimator of the best parameters. 
+- [Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Maximal%20Likelihood%20Estimator.md)
 
 ---
 ### **Intro**
 
-The model is linear function, and the label we are predicting is a continuous value.
-
-Here we consider the case that, $(x, y_i)$ is the training data and labels. For each sample, we observe multiple features and pack them into a vector. 
-
-Linear function, the labels is a vector of $x_i$, and the parameter for the linear function, the coefficient is denoted by: $w$ vector, and the labels we want to predict is denoted by: $y$ vector. 
-
-The optimization problem we are trying to solve here is: 
+Assume a generative model of the form $y = Xw + \epsilon$ where $X$ is a matrix of realized random variables. Each row corresponds to a realized instance of random variable list $x_i\in \mathbb R^d$, there are $n$ of them in total. Let residual vector $\epsilon$, let it assume to have a Gaussian distribution with some known parameters then the maximal likely estimator for $w$ is provided by
 
 $$
 \widehat{w} = 
@@ -23,282 +11,189 @@ $$
     \left\Vert
          Xw - y
     \right\Vert_2^2
-\right\rbrace
+\right\rbrace. 
 $$
 
-In addition, we are assuming that the system is over determined(The same thing as getting a full rank matrix), meaning that there are more samples than the number of features in the dataset. 
-
-And, the generative model we are looking at is: 
-
-$$
-y = Xw + \epsilon
-$$
-
-With th residual vector $\epsilon$. 
-
----
-### **The Optimal Solution to the Least Square Regression**
-
-$$
-\widehat{w} = (X^TX)^{-1}X^Ty
-$$
-
-And, we are assuming a full-rank tall matrix. Let $X\in \mathbb{n\times d}$, where $n$ is the number of samples and $d$ is the number of features. 
-
-To make the matrix **full-rank**, it has to be the case that $d \le n$, so that the matrix is at least skinny. Not hard to observe that this is a row data matrix. 
-
-This is just applied math 101, we can use both the project idea, or the gradient of the function to solve for the expression for the optimal parameter. 
-
-Well, For the educated among us, in practice, we rarely have a full rank feature matrix, and all the columns are linear independent. Hence usually regularizer are used. 
+Let $x\in \mathbb R^{n\times d}$ be the realization of features. Assuming that the matrix is full ranked. It's at least the case that $d \le n$, then the MLE is given as $\widehat{w} = (X^TX)^{-1}X^Ty$. In practice, full rank is rarely the case and hence, the idea of regularization occurred. 
 
 ---
 ### **Linear Regression With Offset**
 
-This is the optimization problem with the offset vector $b$: 
+We look for the mostly likely unknow parameters from a linear function with random variables in it, from an i.i.d sequence of realizations, of the inputs and the outputs of the function. 
+
+#### **Claim | The Minimizing a Stochastic Function**
+> Suppose that we have a linear function $f(x | w, b ; \epsilon) = x^Tw + b + \epsilon$, where $w, b$ unknown parameters and $\epsilon$ is a guassian random variable $\sim N(0, \sigma^2)$. Further assume that a sequence of i.i.d observations had been made, recored as rows for the matrix $X$. Then the MLE for the parameters of the function is produced by the optimization problem
+> 
+> $$
+> \widehat{w}, \widehat{b} = 
+> \underset{w, b}{\text{argmin}} \Vert y - (Xw + \mathbf{1}b)\Vert_2^2, 
+> $$
+> where $\mathbf 1$ denotes a vector full of ones in it. 
+
+**The Centered Offset Approach for a Closed Form**
+
+Let the random varaible $Y = \vec X w + b + \epsilon$, where $\vec X$ is a vector of random variable from some unknown distribution. Observe that if $\epsilon\sim N(0, \sigma^2)$, then $b + \epsilon \sim N(b, \sigma^2)$. So then 
 
 $$
-\widehat{w}, \widehat{b} = 
-\underset{w, b}{\text{argmin}} \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+\begin{aligned}
+    Y - \vec X w &= b + \epsilon 
+    \\
+    Y - \langle \vec X, w\rangle &= b + \epsilon
+    \\
+    \mathbb{E}\left[
+        Y - \langle \vec X, w\rangle
+    \right] &= b
+    \\
+    \mathbb{E}\left[Y\right] - 
+    \mathbb{E}\left[\langle \vec X, w\rangle\right] &= b
+    \\
+    \mathbb{E}\left[Y\right] - 
+    \left\langle 
+    \mathbb{E}\left[
+        \vec X
+    \right], w
+    \right\rangle &= b,
+\end{aligned}
 $$
 
-Optimizing under the square 2-norm of course. Where $b$ is a constant scalar and $\mathbf{1}$ is a vector of ones in it. 
-
-**The Centered Offset Approach**
-
-Notice that, without the offset is implying the fact that, the mean of all the sample is exactly zero. And that solution is simple. 
-
-let's consider rearranging things by a bit: 
-
-$$
-y - (Xw + \mathbf{1}b) = y - (X - \mathbf{1}\mu^T)w - (\mathbf{1}\mu^T)w - \mathbf{1}b
-$$
-
-This is like a standardization, where we make the matrix that is multiplying the vector $w$ into a standardized matrix. So we optimize for $w$ first, and then we solve for the best $b$ vector. 
-
-Notice that, I inserted a rank-one matrix, which is the average of all the values of the features, represented as $\mathbf{1}\mu^T$. 
-
-So them, let's offset all the samples by a $\mu$ vector, and transform the feature space into a new one like: 
-
-$$
-\mu =\frac{1}{n}X^T\mathbf{1} \quad \widetilde{X} = X - \mathbf{1}u^T 
-$$
-
-Take note that $X^T\mathbf{1}=\mu$ implies that, for each feature associated with the sample space, the mean for each of the feature is $\mu_i$, where $1 \le i \le d$. 
-
-And then the matrix $\mathbf{1}u^T$ is the outter product between these 2 vectors. And hence, after removal of the feature mean, we have $\widetilde{X}$ remains here. 
-
-And then, after this, we can just get **the optimal** $\hat{w}$ by the formula: $(\tilde{X}^T\tilde{X})^{-1}\tilde{X}^Ty$, giving us the optimal value for the regression coefficients. 
-
-Then, we can try to add back a vector $b$, so that the zero mean feature space matrix maps back to the original matrix, which can be given by: 
-
-$$
-\hat{b} = \frac{1}{n} \sum_{i = 1}^{n}\left(
-        y_i\right) - \mu^T\hat{w}
-        = 
-        \frac{\mathbf{1}^Ty}{n} - \mu^T\hat{w}
-$$
-
+once an estimate for the value $w$ is specified, then we can obtain the value of the offsets depending on the value of $w$. 
 
 **The Gradient Approach**
 
-$$
-\nabla_w \left[
-        \frac{1}{2}\Vert y - (Xw + \mathbf{1}b)\Vert_2^2
-    \right]
-    =
-    -X^T (
-        y - (Xw + \mathbf{1}b)
-    ) = 0
-$$
+A gradient approach can be used to find the offset parameter for the model. 
 
 $$
-\partial_b \left[ \frac{1}{2}
+\begin{aligned}
+    \nabla_w \left[
+        \frac{1}{2}\Vert y - (Xw + \mathbf{1}b)\Vert_2^2
+    \right]
+    &=
+    -X^T (
+        y - (Xw + \mathbf{1}b)
+    ) = \mathbf 0
+    \\
+    \partial_b \left[ \frac{1}{2}
         \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
     \right]
-    =
+    &=
     \mathbf{1}^T(y - (Xw + \mathbf{1}b))
     = 
     0
+\end{aligned}
 $$
 
-I just added a $\frac{1}{2}$ so the derivative will come out without an extra 2 in  the front. 
 
-Gradient is for vector, and partial derivative is for the constant offset.
+I just added a $\frac{1}{2}$ so the derivative will come out without an extra 2 in  the front. 
 
 
 **The Augmented Matrix Approach**
 
-Augment matrix $X$ to be: 
-
-$$
-\tilde{X} = \begin{bmatrix}
-    X & \mathbf{1 }
-\end{bmatrix}
-$$
-
-And then the new optimizing vector will be defined as: 
-
-$$
-\widetilde{w} = \begin{bmatrix}
-    w \\ b
-\end{bmatrix}
-$$
-
-Notice that, this will keep everything the same in such at way that: 
-
-$$
-Xw + \mathbf{1}b = \tilde{X}\tilde{w}
-$$
-
-Boom, and then we solve the problem wrt to $\hat{w}$, and the solution for that vector will contain the constant we need: $b$.  
+Augment matrix $X$ to be: $\tilde{X} = \begin{bmatrix}X & \mathbf{1 }\end{bmatrix}$, And then the new optimizing vector will be defined as: $\widetilde{w} = \begin{bmatrix}w \\ b\end{bmatrix}$. Notice that, this will keep everything the same in such at way that: $Xw + \mathbf{1}b = \tilde{X}\tilde{w}$. Then we solve the problem wrt to $\hat{w}$, and the solution for that vector will contain the constant we need: $b$.  
 
 ---
-### **MLE, Gaussian and Least Square**
+### **Linear Regression MLE Formulations**
 
-There is a connection between the least square fit and the MLE for the Gaussian distribution, and that is also the reason why it makes least square a good model in under some certain cases.
+The optimization problem for the linear regression problem is posed from the Maximal Likelihood estimation from statistical inferences. 
 
-The connection is: Minimizing the square error for the Linear Regression Model is the same as optimizing for the best likelihood using the Gaussian Model, for a given set of observations. 
+#### **Claim | Regression via Statistical Inferences**
+> The optimization stems from a linear model of the distribution function and a noise vector that comes from a Gaussian Distribution. 
 
-The model we are using is: 
+**Demonstrations**
 
-$$
-\epsilon = y - Xw - b
-$$
-
-Where, $y$ is the label vector, and $w$ is parameters of the model, and $b$ is the offset vector. 
-
-Let's pick up from the Maximal likelihood estimator [[Maximal Likelihood Estimator#Gaussian Continuous Variables]], and the log likelihood for the Gaussian Model over a sequence of observation is like: 
+The linear regression model can be directly deduced using the idea of maximal likelyhood. Let our model be $Y = \langle \vec X, w \rangle + b + \epsilon$ with $e
+\sim N(0, \sigma^2)$, suppose that $n$ a list of $\{(x_i, y_i)\}_{i = 1}^n$ had been observed as i.i.d random variables. Then the likelihood of the unknown parameters can be computed using the pdf of zero mean random Gaussian: 
 
 $$
-\log P(D; \mu, \sigma) = 
--n\log (\sigma \sqrt{2\pi}) - 
-\sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
+\begin{aligned}
+    \mathcal L(w) &= \prod_{i = 1}^{n} 
+    \frac{1}{\sigma \sqrt{2 \pi}} 
+    \exp\left(
+        \frac{-1}{2}
+        \frac{(y_i - \langle x_i, w\rangle - b)^2}{\sigma^2}
+    \right)
+    \\
+    -\ln \mathcal L(w) &= 
+    \ln(\sigma \sqrt{w\pi})
+    -
+    \sum_{i = 1}^{n}
+    \frac{-1}{2}
+        \frac{(y_i - \langle x_i, w\rangle - b)^2}{\sigma^2}
+    \\
+    \text{in vector matrix form:}& 
+    \\
+
+    &= 
+    \ln (\sigma\sqrt{w\pi}) + 
+    \frac{1}{2} \Vert \vec y - M w - b\mathbf 1\Vert_2^2, 
+\end{aligned}
 $$
 
-Perfect, last time, the parameters we can tweak was $\mu, \sigma$, but this time the parameters we can tweak is: $w_i$, therefore we have the expression of maximizing the observed likelihood by tweaking $w$: 
-
-$$
-\underset{w}{\text{argmax}}
-\left\lbrace
-    -n\log (\sigma \sqrt{2\pi}) - 
-\sum_{i = 1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}
-\right\rbrace
-$$
-
-And notice that, some of the terms are just constants and multiplier, therefore this can be simplify into: 
-
-$$
-\underset{w}{\text{argmax}}
-\left\lbrace
-    \sum_{i = 1}^{n}(x_i - \mu)^2
-\right\rbrace
-$$
-
-However, take note that, the variance is just $\epsilon$ as defined above, hence this is giving us the expression: 
-
-$$
-\underset{w}{\text{argmax}}
-\left\lbrace
-    \sum_{i = 1}^{n}(y_i - x_i^Tw)^2
-\right\rbrace
-\quad
-\underset{w}{\text{argmax}}
-    \left\Vert
-         y - Xw - b
-    \right\Vert_2^2
-$$
-
-Boom, this is exactly the same as the linear regression we talked above.
+and maximizing the likelihood of equalste to finding the minimizing $-\ln \mathcal L(w)$ in this case. The matrix $M$ is a matrix whose row vectors are the list of observations $x_i$ sampled. And this is the form of the regression problem. Finally, we note here that, the solution to the problem is not necessarily unique. But in the case of full-ranked matrix the best estimator is give by $(M^TM)^{-1}M^T(\vec y - b \mathbf 1)$. 
 
 ---
-### **Gaussian Noise**
+### **Analysis of the MLE**
 
-We are going to show that the expected value of the best parameter is indeed the,ground truth for the gaussian distribution.
+We analyze the bias and the variance for the MLE provided from the previous section. 
 
-Consider some perturbations on the parameters: 
+#### **Claim | The Estimator is Unbiased**
+> The estimator $w = (M^TM)^{-1}M^T(\vec y - b \mathbf 1)$ is unbiased, meaning that $\mathbb{E}\left[\hat w - w\right] = 0$, for the observed sequence of i.i.d variables packed as rows of the matrix $M$. 
 
-$$
-\hat{w} = (X^TX)^{-1}X^T(Xw + \epsilon)
-$$
 
-Where we decided to add some noise. The assumption we made is that: 
+**Demonstration**
 
-$$
-y_i =  x_i^Tw + \epsilon_i
-$$
-
-And, each row vector represent all the features of a given sample, in this case, it's the vector $x_i^T$. 
-
-Then, the predicted labels, with the ground truth value $w$ will be given as: 
+We claim that $\hat{w} = (M^TM)^{-1}M^T(Mw + \epsilon)$, this is true because $\vec y = Mx + b \mathbf 1 + \vec \epsilon$, where $\vec \epsilon$ is a zero mean Gaussian random variable vector, re-arranging and substituting $\vec y - b = \mathbf 1 Mx + \vec \epsilon$, we linked the best estimator $\hat w$ with the theoretical noise in the model. To show that there is no bias, we fix the row data matrix $M$ for some i.i.d realizations of vector $x$ from the model, only noise vector $\epsilon$ left, taking the expected on the MLE we gain
 
 $$
-y = Xw + \epsilon \tag{5546}
-$$
-
-and that is how we get the expression for $\hat{w}$. 
-
-In this case, let's show that $\hat{w}$ is an unbiased estimator: 
-
-$$
-\mathbb{E}\left[\hat{w}\right] - w
-=
-\mathbb{E}\left[
-        (X^TX)^{-1}X^TX^TXw + (X^TX)^{-1}X^T\epsilon
+\begin{aligned}
+    \mathbb{E}\left[\hat{w}\right] - w
+    & =
+    \mathbb{E}\left[
+        (M^TM)^{-1}X^TM^TXw + (M^TM)^{-1}M^T\epsilon
     \right]
-$$
-
-And then we have: 
-
-$$
-\mathbb{E}\left[
-        w + (X^TX)^{-1}X^T\epsilon
+    \\
+    &= 
+    \mathbb{E}\left[
+        w + (M^TM)^{-1}M^T\epsilon
     \right]
+    \\
+    &= \mathbb{E}\left[w\right] + 
+    (M^TM)^{-1}M^T \mathbb{E}\left[\epsilon\right]. 
+\end{aligned}
 $$
 
-And the expected value for the Gaussian random vector is zero, therefore this quantity will equal to the ground truth: $w$. 
+and the expected value for the Gaussian random vector is zero, therefore this quantity will equal to the ground truth: $w$. 
 
 **Covariance Matrix for the estimator**
 
-In this part, we are interested in the co-variance matrix of the random variable $\hat{w}$, which is given as: 
+In this part, we are interested in investigating the covariance for the MLE estimator $\hat{w}$, to start we have that 
 
 $$
-\text{Var}\left[\hat{w}\right] = \mathbb{E}\left[
+\begin{aligned}
+    \text{Var}\left[\hat{w}\right] 
+    &= \mathbb{E}\left[
         (\hat{w}
             - \mathbb{E}\left[\hat{w}\right]
         )(\hat{w}
             - \mathbb{E}\left[\hat{w}\right]
         )^T
     \right]
+    \\
+    \text{recall: }
+    \hat{w} - \mathbb{E}\left[\hat{w}\right]
+    &= 
+    (M^TM)^{-1}X^T\epsilon
+    \\
+    (\hat w - \mathbb{E}\left[\hat w\right])(\hat w - \mathbb{E}\left[\hat w\right])^T&= 
+    (M^TM)^{-1}X^T\epsilon
+    \epsilon^TM(M^TM)^{-T} 
+    \\
+    & =
+    (M^TM)^{-1}X^T\epsilon
+    \epsilon^TMX^TM)^{-1}
+\end{aligned}
 $$
 
-Which will give us the covariance matrix, and we make the same assumption as expression (5546), we will get that the expected value of the co-variance of the estimator will be like: 
-
-$$
-\hat{w} - \mathbb{E}\left[\hat{w}\right]
-= (X^TX)^{-1}X^T\epsilon
-$$
-
-So then: 
-$$
-(\hat{w} - \mathbb{E}\left[\hat{w}\right])(\hat{w} - \mathbb{E}\left[\hat{w}\right])^T
-=
-(X^TX)^{-1}X^T\epsilon
-\epsilon^TX(X^TX)^{-T}
-$$
-
-Notice that, the matrix $X^TX$ is a symmetric matrix, and hence, it's transpose is going to be the same, and the inverse transpose is still going to be the inverse. 
-
-THerefore we have: 
-
-$$
-(X^TX)^{-1}X^T\epsilon
-\epsilon^TX(X^TX)^{-T} 
-=
-(X^TX)^{-1}X^T\epsilon
-\epsilon^TX(X^TX)^{-1}
-$$
-
-And take note that, when we take the expected value of that, the expected value goes all the way inside to the term $\epsilon\epsilon^T$, and hence it's going to be: 
+What we had produced, is the covariance matrix for the random variable $\hat w$, in this case, it's conditioned on $M$, the data matrix $M$. On the last line, we used the fact that $M^TM$ is a symmetric matrix. Finally, evaluating the expected value of the term yieds: 
 
 $$
 \text{Var}\left[\hat{w}\hat{w}^T\right] = 
@@ -309,9 +204,7 @@ $$
 X(X^TX)^{-1}
 $$
 
-Take note that, the epsilon vector is a vector of idd rvs where each $\epsilon_i$is drawn from the normal distribution, zero mean, and some kind of variance. 
-
-And it can be said that the variance of such a vector will be: 
+Take note that, the epsilon vector is a vector of idd rvs where each $\epsilon_i$is drawn from the normal distribution, zero mean, with some kind of variance. Therefore we may quantify it as
 
 $$
 \mathbb{E}\left[\epsilon 
@@ -323,40 +216,22 @@ $$
     \begin{bmatrix}
         \sigma_1^2 \\ \sigma_2^2 \\ \vdots \\\sigma_n^2
     \end{bmatrix}
-\right)
+\right),
 $$
 
-And this is the variance matrix.
+Let $\Sigma^2$ be the variance matrix. And hence, notice that, this matrix can be pulled up to the front and giving us: $\text{Var}\left[\hat{w}\hat{w}^T\right] =(X^TX)^{-1}X^T \Sigma^2 X(X^TX)^{-1}$.
+Here if we make the assumption that the distribution of the noise is homogenous, so that all the $\sigma_i^2$ equals to each other, therefore we can say that: 
 
-And hence, notice that, this matrix can be pull up to the front and giving us: 
-
-$$
-\text{Var}\left[\hat{w}\hat{w}^T\right] =
-(X^TX)^{-1}X^T \Sigma^2
-X(X^TX)^{-1}
-$$
-
-Notice that there is a matrix and matrix inverse product above, hence giving us: 
 
 $$
-\text{Var}\left[
-    \hat{w}\hat{w}^T
-    \right]
-=
-\Sigma^2
-(X^TX)^{-1} 
+\begin{aligned}
+    & 
+    \text{Var}\left[\hat{w}\hat{w}^T\right]
+    = 
+    \sigma^2(X^TX)^{-1}
+    \\
+    \implies & \hat ww^T \sim \mathcal{N}(w, \sigma^2(X^TX)^{-1}). 
+\end{aligned}
 $$
 
-Here we make the assumption that the distribution of the noise is homogenous, so that all the $\sigma_i^2$ equals to each other, therefore we can say that: 
-
-$$
-\text{Var}\left[\hat{w}\hat{w}^T\right]
-= 
-\sigma^2(X^TX)^{-1}
-$$
-
-$$
-\epsilon \sim \mathcal{N}(w, (X^TX)^{-1})
-$$
-
-Boom, we have both the variance and the expected value for the random variable $\hat{w}$. 
+And that is an expression for the covariance matrix of the MLE for the linear regression estimator. 

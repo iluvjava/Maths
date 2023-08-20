@@ -205,11 +205,11 @@ Sometimes, weak duality can be arbitrarily bad. The optimality gap can be infini
 
 
 ---
-# **Examples**
+### **Examples**
 
 We make some examples that illustrate some subtleties behind the Fenchel Rockafaller duality, especially about the existence of the minimizers for the primal and the dual problems. 
 
-**Example 1: Non-Existence of Minimizers**
+**Example 1 | Non-Existence of Minimizers**
 
 
 
