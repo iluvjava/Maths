@@ -138,7 +138,6 @@ We analyze the bias and the variance for the MLE provided from the previous sect
 #### **Claim | The Estimator is Unbiased**
 > The estimator $w = (M^TM)^{-1}M^T(\vec y - b \mathbf 1)$ is unbiased, meaning that $\mathbb{E}\left[\hat w - w\right] = 0$, for the observed sequence of i.i.d variables packed as rows of the matrix $M$. 
 
-
 **Demonstration**
 
 We claim that $\hat{w} = (M^TM)^{-1}M^T(Mw + \epsilon)$, this is true because $\vec y = Mx + b \mathbf 1 + \vec \epsilon$, where $\vec \epsilon$ is a zero mean Gaussian random variable vector, re-arranging and substituting $\vec y - b = \mathbf 1 Mx + \vec \epsilon$, we linked the best estimator $\hat w$ with the theoretical noise in the model. To show that there is no bias, we fix the row data matrix $M$ for some i.i.d realizations of vector $x$ from the model, only noise vector $\epsilon$ left, taking the expected on the MLE we gain
@@ -148,7 +147,7 @@ $$
     \mathbb{E}\left[\hat{w}\right] - w
     & =
     \mathbb{E}\left[
-        (M^TM)^{-1}X^TM^TXw + (M^TM)^{-1}M^T\epsilon
+        (M^TM)^{-1}M^TM^TMw + (M^TM)^{-1}M^T\epsilon
     \right]
     \\
     &= 
@@ -184,12 +183,12 @@ $$
     (M^TM)^{-1}X^T\epsilon
     \\
     (\hat w - \mathbb{E}\left[\hat w\right])(\hat w - \mathbb{E}\left[\hat w\right])^T&= 
-    (M^TM)^{-1}X^T\epsilon
+    (M^TM)^{-1}M^T\epsilon
     \epsilon^TM(M^TM)^{-T} 
     \\
     & =
-    (M^TM)^{-1}X^T\epsilon
-    \epsilon^TMX^TM)^{-1}
+    (M^TM)^{-1}M^T\epsilon
+    \epsilon^TM(M^TM)^{-1}
 \end{aligned}
 $$
 
@@ -197,11 +196,11 @@ What we had produced, is the covariance matrix for the random variable $\hat w$,
 
 $$
 \text{Var}\left[\hat{w}\hat{w}^T\right] = 
-(X^TX)^{-1}X^T
+(M^TM)^{-1}M^T
 \mathbb{E}\left[
         \epsilon\epsilon^T
     \right]
-X(X^TX)^{-1}
+M(M^TM)^{-1}. 
 $$
 
 Take note that, the epsilon vector is a vector of idd rvs where each $\epsilon_i$is drawn from the normal distribution, zero mean, with some kind of variance. Therefore we may quantify it as
@@ -219,7 +218,7 @@ $$
 \right),
 $$
 
-Let $\Sigma^2$ be the variance matrix. And hence, notice that, this matrix can be pulled up to the front and giving us: $\text{Var}\left[\hat{w}\hat{w}^T\right] =(X^TX)^{-1}X^T \Sigma^2 X(X^TX)^{-1}$.
+Let $\Sigma^2$ be the variance matrix. And hence, notice that, this matrix can be pulled up to the front and giving us: $\text{Var}\left[\hat{w}\hat{w}^T\right] =(M^TM)^{-1}M^T \Sigma^2 M(M^TM)^{-1}$.
 Here if we make the assumption that the distribution of the noise is homogenous, so that all the $\sigma_i^2$ equals to each other, therefore we can say that: 
 
 
@@ -228,9 +227,9 @@ $$
     & 
     \text{Var}\left[\hat{w}\hat{w}^T\right]
     = 
-    \sigma^2(X^TX)^{-1}
+    \sigma^2(M^TM)^{-1}
     \\
-    \implies & \hat ww^T \sim \mathcal{N}(w, \sigma^2(X^TX)^{-1}). 
+    \implies & \hat w\hat w^T \sim \mathcal{N}(w, \sigma^2(M^TM)^{-1}). 
 \end{aligned}
 $$
 

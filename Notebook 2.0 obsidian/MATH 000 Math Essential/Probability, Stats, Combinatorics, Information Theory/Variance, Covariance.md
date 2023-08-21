@@ -46,6 +46,6 @@ $$
 S_X^2 = \frac{1}{n - 1}\sum_{i = 1}^{n}(x_i - \bar x)^2, 
 $$
 
-and the fraction below is called the Bessel's correction(see [[Why Sample Variance is Biased]] for more information). It's taking into account of the fact that, the sample mean $\bar x$, is computed using the sample instead of known in prior, hence it introduces a bias. To see how it make sense, notice that $n = 1$ is banned by the expression, meaning that we at least need 2 samples to compute the variance; which makes intuitive sense. 
+and the fraction below is called the Bessel's correction(see [[Sample Variance is Biased]] for more information). It's taking into account of the fact that, the sample mean $\bar x$, is computed using the sample instead of known in prior, hence it introduces a bias. To see how it make sense, notice that $n = 1$ is banned by the expression, meaning that we at least need 2 samples to compute the variance; which makes intuitive sense. 
 
 

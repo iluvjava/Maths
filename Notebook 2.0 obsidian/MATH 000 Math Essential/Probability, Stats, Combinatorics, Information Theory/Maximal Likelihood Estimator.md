@@ -322,4 +322,4 @@ To figure this out, just take the expected value for the optimal variance square
 6. Do that a lot of time and get some estimate for the best parameters. 
 
 
-[^1]: See [Why Sample Variance is Biased](Why%20Sample%20Variance%20is%20Biased.md) for more information. 
+[^1]: See [Sample Variance is Biased](Sample%20Variance%20is%20Biased.md) for more information. 

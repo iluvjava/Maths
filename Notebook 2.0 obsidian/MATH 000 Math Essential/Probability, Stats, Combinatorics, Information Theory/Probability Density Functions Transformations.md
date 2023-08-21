@@ -11,10 +11,10 @@ A lot of the time we let the random variables interact in many different ways, a
 
 Good references: [here](https://en.wikipedia.org/wiki/Probability_density_function#Function_of_random_variables_and_change_of_variables_in_the_probability_density_function). 
 
-**Theorem: 1D random variable transformations**
+**Theorem | 1D random variable transformations**
 
 > Let $g(X)$ be the transformed random variable where $X$ has a PDF of $f_X(x)$, well defined. Assuming that the function $g$ is strictly monotone, so that it will have a single value pre-image for any single interval input, the PDF of $g(X)$ is given as: 
-> $$f_{G(x)}(x) = f(g^{-1}(x))|g'(x)^{-1}|. $$
+> $$f_{g(X)}(x) = f_X(g^{-1}(x))|g'(x)^{-1}|. $$
 
 **Proof**
 
