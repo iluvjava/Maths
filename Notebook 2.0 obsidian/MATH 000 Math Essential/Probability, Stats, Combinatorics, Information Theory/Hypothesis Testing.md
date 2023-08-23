@@ -26,8 +26,8 @@ Consequently, such a decision creates potential error in our decision. We write 
 
 |   | $H_0$  | $H_1$  |
 |---|---|---|
-| $\delta=0$  |  Correct |  Type II |
-|  $\delta=1$ |  Type I | Power  |
+| $\delta(\vec x)=0$  |  Correct |  Type II |
+|  $\delta(\vec x)=1$ |  Type I | Power  |
 
 Where Type I error is the probability of test results being $1$, suggesting $H_1$ when in fact, $H_0$ is true. In this case, the test function is being paranoid. Otherwise it's type II error where test result is $0$ and the actual truth is $H_1$, in this case, the test function is being insensitive. 
 
@@ -42,6 +42,10 @@ Observe that $\delta(\vec X)$ is a Bernoulli variable hence $\mathbb P(\delta(\v
 
 The sum of Type I, Type II error is not $1$. The column sum of the confusion matrix is $1$ instead. 
 The statistics set $T(\vec X)$ could be just a subset of $\mathbb R$. 
+
+**Exercise**
+
+Show that, the MSE of the test function's relation to the Type I, II error. 
 
 ---
 ### **Optimal Test Function**
@@ -79,5 +83,121 @@ Such a test function might exist, or it might not. It really depends on the dist
 ---
 ### **Nayman-Pearson Hypothesis Testing**
 
+We introduce a classification for different type of hypothesis, because they determine different test method for those hypothesis. Then we introduce the likelihood ratio methods for hypothesis testing for 2 of the scenarios. 
+
+**Type of Hypothesis**
+1. Simple vs simple, with $H_1: \theta = \theta_1$, $H_0: \theta = \theta_0$ with $\theta_0\neq \theta_1$. 
+2. Unilateral vs Unilateral, $H_0: \theta \le \theta_0$, $H_1: \theta > \theta_0$, and swapping $H_1, H_0$ gives the symmetric case for unilateral and uniteral hypothesis testing. 
+3. Simple vs Bilateral, $H_0: \theta = \theta_0$, $H_1: \theta \neq \theta_0$. 
+
+Each types of these hypothesis gives a different way of doing hypothesis testing. We now introduce the hypothesis testing for the first case.
+
+#### **Thm | Likelihood Ratio Test**
+> Let $\vec X$ be an i.i.d variable representing realizations from distribution with parameter $\theta$, let $f_{\vec X}$ to be the pdf/pmf function for the realization r.v. Suppose that $H_0 : \theta = \theta_0$ and $H_1: \theta = \theta_1$ with $\theta_1 \neq \theta_0$. Suppose that the test has threshold $\alpha$-level in $(0, 1)$. Lets define the likelihood ratio random varaible 
+> $$
+> \begin{aligned}
+>   \Lambda(\vec X) &= \frac{f_{\vec X}(\vec X | \theta_1)}{f_{\vec X}(\vec X | \theta_0)} = \frac{\mathcal L(\theta_1)}{\mathcal L (\theta_0)}, 
+> \end{aligned}
+> $$
+> is such that there exists $Q > 0$ satisfying $\mathbb P(\Lambda(\vec X) > Q) = \alpha$, then the optimal test function for the alpha level can be defined to be $\delta(\vec X) = \{\Lambda(\vec X) > Q\}$, provided that such a value of $Q$ exists. 
+
+**Intuition**
+
+The higher the ratio of the likelihood, the better it looks for $H_1$, and worse for $H_1$.
 
 
+**Proof**
+
+We prove that the propsed test function $\delta(\vec X)$ is indeed an optimal function. Observe that by definition $\delta\in \mathcal D_\alpha$. Let's characterize $\vec x \in \{\Lambda(\vec X) > Q\}$, a significant observation, and $\vec x' \in \{\Lambda(\vec X) < Q\}$. Observe that these events are equivalent to $\delta(\vec x) = 1$ and $\delta(\vec x) = 0$. Focusing on $\vec x$ then we have 
+$$
+\begin{aligned}
+    \delta(\vec x) = 1 \iff
+    \Lambda(\vec X) > Q \iff \frac{\mathcal L(\theta_1)}{\mathcal L(\theta_0)} 
+    &> Q
+    \\
+    \frac{f_{\vec X}(\vec x | \theta_1)}{f_{\vec X}(\vec x | \theta_0)} &\ge Q
+    \\
+    f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0)
+    &\ge 0, 
+\end{aligned}
+$$
+
+similarly, when we have $\delta(\vec x') = 0$, replacing $<$ for the above inequality to get another identity. We now consider any $\vec x \in \mathcal X^n$, we may claim a new inequality
+
+$$
+\begin{aligned}
+    \delta (\vec x)(f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    &\ge 
+    f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0), 
+\end{aligned}
+$$
+
+because when $\delta(\vec x) =1$, equality holds, when $\delta(\vec x) = 0$, then the RHS is less than zero, therefore the inequality is true. Next, suppose another candidate test function $\varphi \in \mathcal D_\alpha$, since it's either $0$ or $1$, we have the inequality: 
+
+$$
+\begin{aligned}
+    f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0) 
+    &\ge \varphi(\vec x)(
+    f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    \\
+    \implies 
+    \delta (\vec x)(f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    &\ge 
+    \varphi(\vec x)
+    (f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    \\
+    \int_{\mathcal X^n}^{} 
+        \delta (\vec x)(f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    dV(\vec x)
+    & \ge 
+    \int_{\mathcal X^n}^{} 
+        \varphi (\vec x)(f_{\vec X}(\vec x| \theta_1) - Qf_{\vec X}(\vec x | \theta_0))
+    dV(\vec x)
+    \\
+    \int_{\mathcal X^n}^{} 
+        (\delta(\vec x) - \varphi(\vec x))f_{\vec X}(\vec x| \theta_1) 
+    dV(\vec x) &\ge 
+    Q\int_{\mathcal X^n}^{} 
+        (\delta(\vec x) - \varphi(\vec x))f_{\vec x}(\vec x | \theta_0)
+    dV(\vec x)
+    \\
+    \mathbb{E}\left[
+    \left.
+        \delta(\vec X) - \varphi(\vec X)
+    \right| \theta = \theta_1\right] 
+    & \ge 
+    Q\mathbb{E}\left[
+        \left.
+        \delta(\vec X) - \varphi(\vec X) \right| \theta = \theta_0
+    \right]
+    \\
+    \mathbb P(\delta(\vec X) | \theta = \theta_1) -
+    \mathbb P(\varphi(\vec X) | \theta = \theta_1)
+    &\ge 
+    \underbrace{Q(\mathbb P(\delta(\vec X) | \theta = \theta_0) - \mathbb P(\varphi(\vec X) | \theta = \theta_0))}_{\le 0}, 
+\end{aligned}
+$$
+
+The rhs of the last line is less than zero because, $\mathbb P(\delta(\vec X) | \theta = \theta_0) = \alpha$, but since $\varphi \in \mathcal D_\alpha$, by definition this test function also respect $\alpha$-level, then $\mathbb P_{\theta_0}(\delta(\vec X) = 1) \ge \mathbb P_{\theta_0}(\varphi(\vec X) = 1)$, therefore, the LHS is greater than zero, meaning that $\mathbb P_{\theta_0}(\delta(\vec X)) \ge \mathbb P_{\theta_0}(\varphi(\vec X))$, therefore, the test function $\delta$ has more power than any $\varphi\in \mathcal D_\alpha$. 
+
+**Remarks**
+
+For any arbitrary value of $\alpha$, the existence of $Q$ for discrete random varaible usually doesn't exit for the equality of $\mathbb P(\Lambda(\vec X) > Q) = \alpha$. 
+
+
+#### **Thm | Likelihood Ratio Tests for Sets of Parameters**
+> Change the hypothesis from the previous theorem to be $H_1: \theta \in \Theta_1$ and $H_0: \theta \in \Theta_0$, then defining the likelihood ratio to be
+> $$
+> \begin{aligned}
+>   \Lambda(\vec X) &= \frac{\sup_{\theta \in \Theta_1} \mathcal L(\theta_1)}{\sup_{\theta\in \Theta_0}\mathcal L (\theta_0)}. 
+> \end{aligned}
+> $$
+> Define $\delta(\vec X) = \mathbf 1\{\Lambda(\vec X) \ge Q\}$ If there exists $Q$ such that $\mathbb P(\Lambda(\vec X) \ge Q) = \alpha$, then test function $\delta$ is optimal. 
+
+**Proof**
+
+It's not clarified in the proof, but after I go over the proof, I realized it's impossible to reuse the proof for the Simple vs Simple case if, the maximizer for $\sup_{\theta_1} \mathcal L(\theta_1), \sup_{\theta_0} \mathcal L(\theta_0)$ both exists and they are $\theta_0^*, \theta_1^*$. If this is the case, then the same inequality from the previous proof still holds but instead of $\theta_1, \theta_0$ we have $\theta_0^*, \theta_1^*$, then the same proof can be reused. 
+
+**Remarks**
+
+The existence of the minimizer implies the existence of some type of MLE among the set of parameter space $\Theta_0, \Theta_1$. 
