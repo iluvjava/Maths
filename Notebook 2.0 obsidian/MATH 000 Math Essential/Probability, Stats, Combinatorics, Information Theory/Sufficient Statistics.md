@@ -13,7 +13,7 @@ Suppose that $\{x_i\}_{i = 1}^n$ observations were made from some distributions,
 
 **Observations**
 
-No dependence meaning that given the value of $\theta$, the probability aout random variable $T$, won't change, for every possible realizations from the distribution, and the value of $T$. 
+No dependence meaning that given the value of $\theta$, the probability about random variable $T$, won't change, for every possible realizations from the distribution, and the value of $T$. 
 
 #### **Thm | Sufficient Characterizations, Fisher Neyman Factorizations**
 > Suppose that i.i.d realizations $(x_1, \cdots, x_n)$ has a join pmf/pdf $f(x_, \cdots, x_n | \theta)$, for some parameter $\theta \in \Theta$. A statistics $T$ is sufficient for $\theta$ if and only if there exists $g: \mathbb R\times \Theta \mapsto \mathbb R$, and $h: \mathcal X\mapsto \mathbb R$  such that 
@@ -27,7 +27,7 @@ No dependence meaning that given the value of $\theta$, the probability aout ran
 
 **Context**
 
-This is an equivalent condition for the definition of a sufficient statistics stated early. 
+This is an equivalent condition for the definition of a sufficient statistics stated early. The existence of factorization of the form above is equivalent to having a statistics that is able to fully describe the parameter $\theta$. 
 
 **Proof in the Discrete Case**
 

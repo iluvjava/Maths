@@ -1,5 +1,5 @@
-[Topological Spaces](../Topological%20Spaces.md)
-
+- [Topological Spaces](../Topological%20Spaces.md). 
+- [Real Analysis Basics](Real%20Analysis%20Basics.md). 
 ---
 ### **Intro**
 
@@ -25,6 +25,10 @@ We consider the equivalence of compactness and the Heine Borel theorem. To show,
 #### **Lemma | Finite Subcover for Closed and Bounded Interval**
 > The closed and bounded interval $[a, b]\subseteq \mathbb R$  has a finite sub cover to it. 
 
+**Observations and Context**
+
+This lemma is involved in the proof for the equivalence of closed and compactness and Finite Sub Covers for all ope Covers for the set. We observe the fact that, trivially if a set of points in a topology is finite, then for every open covers for the set (finite or not), there is a finite sub cover for that set by simply choosing one set the covers each of the point. 
+
 **Proof**
 
 $[a, b]$ is a closed interval, Let $C_{[a, b]}$ be any open cover of the closed interval. We define $D$, a set containing all the closed sub interval that has finite sub covers from $C_{[a, b]}$
@@ -47,7 +51,7 @@ We make the observations that:
 2. By completeness of $\mathbb R$, there exists $s = \sup D$. 
 
 
-Since $D\subseteq [a, b]$, we have $\sup D \le b$, and by closure of the closed interval and definition of $D$ we must have $s \in [a, b]$. Then, using $C_{[a, b]}$ there exists $G_s\in C_{[a, b]}$ such that $s\in G_s$. $G_s$ is open then $\exist \delta > 0 : (s - \delta, s + \delta)\subseteq G_s$. We now partition the set, cutting it from the middle with $s$, and consider some elements from these sets. Consider 
+Since $D\subseteq [a, b]$, we have $\sup D \le b$, and by closure of the closed interval and definition of $D$ we must have $s \in [a, b]$. Then, using $C_{[a, b]}$ there exists $G_s\in C_{[a, b]}$ such that $s\in G_s$. $G_s$ is open then $\exists \delta > 0 : (s - \delta, s + \delta)\subseteq G_s$. We now partition the set, cutting it from the middle with $s$, and consider some elements from these sets. Consider 
 
 $$
 \begin{aligned}
@@ -62,7 +66,7 @@ $$
 \end{aligned}
 $$
 
-then, let $\bigcup_{i\in J^*}G_i$ be the finite sub cover for $[a, d]$, with $J^*$ being a countable subsets of the index $I$. Next consdier another element from the other partition of the epsilon vicinity of $s$, giving us 
+then, let $\bigcup_{i\in J^*}G_i$ be the finite sub cover for $[a, d]$, with $J^*$ being a countable subsets of the index $I$. Next consider another element from the other partition of the epsilon vicinity of $s$, giving us 
 
 $$
 \begin{aligned}
@@ -79,7 +83,7 @@ $$
 \end{aligned}
 $$
 
-finally, we exame the possibility of $d' \in D$, by $D\subseteq [a, b]$, it has to be the case that $d' \in [s, s + \delta) \cap [a, b]$, since for any $s < d'$, we have $d' \in D$, it has to be the case that $d' \ge s$, but by $s = \sup D$, it has to be that $d' = s$. By the previous argument, we can take the sup over $[s, s + \delta)\cap [a, b]$, giving us the singleton $\{d\}$, which means that $d' = s = b$, and the limit assures that $[a, d
+finally, we exam the possibility of $d' \in D$, by $D\subseteq [a, b]$, it has to be the case that $d' \in [s, s + \delta) \cap [a, b]$, since for any $s < d'$, we have $d' \in D$, it has to be the case that $d' \ge s$, but by $s = \sup D$, it has to be that $d' = s$. By the previous argument, we can take the sup over $[s, s + \delta)\cap [a, b]$, giving us the singleton $\{d\}$, which means that $d' = s = b$, and the limit assures that $[a, d
 '] = [a, b]$ and the whole closed interval has a finite sub cover from $C_{[a, b]}$. By the fact that the open cover is arbitrary, the lemma is proven. 
 
 

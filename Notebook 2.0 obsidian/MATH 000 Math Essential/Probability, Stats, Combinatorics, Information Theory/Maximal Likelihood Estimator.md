@@ -133,15 +133,14 @@ It's looking a bit like entropy. More specifically, it's the changes in the nega
 >   I(\theta) = \mathbb{E}\left[-\partial_\theta[\ln\circ f](X|\theta)\right] = \text{Var}\left[U(X|\theta)\right]. 
 > $$
 
-#### **Thm | Cramer Rao's Lowerbouned**
-> The cramer's Rao's lower bound gives a lower bound for the amount of variance of an unbiased MLE. Let $f(x|\theta)$ be a distribution function generating i.i.d sequence $(X_i)_{i = 1}^n$ with deterministic distribution $\theta$, let $\hat \theta_n$ be the MLE obtained as the solution of the optimization problem. The variance of the estimator is then lower bounded by $1 / n I(\theta)$. An estimator whose variance equals to the Cramer Rao's lower bound is called *Asymptoptically Efficient*. 
+#### **Thm | Cramer Rao's Lower bound**
+> The Cramer's Rao's lower bound gives a lower bound for the amount of variance of an unbiased MLE. Let $f(x|\theta)$ be a distribution function generating i.i.d sequence $(X_i)_{i = 1}^n$ with deterministic distribution $\theta$, let $\hat \theta_n$ be the MLE obtained as the solution of the optimization problem. The variance of the estimator is then lower bounded by $1 / n I(\theta)$. An estimator whose variance equals to the Cramer Rao's lower bound is called *Asymptoptically Efficient*. 
 
 **Observations**
 
 The second derivative information of the negative entropy of a specific parameter tells us the variance for our unbiased estimator. 
 
-
-
+No proof here yet, for more information visit [wiki](https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound#Regularity_conditions) for more info, and please take a look at regularity conditions for the lower bound. 
 
 
 ---

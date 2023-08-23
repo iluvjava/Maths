@@ -5,9 +5,9 @@ Reference Materials Link:
 ---
 ### **Intro**
 
-Here, we will be interested in thinking about projecting label data onto a line in $\mathbb{R}^n$, and then formulate late the problem as a Eigenvalue Decomposition problem Computationally. 
+Here, we will be interested in thinking about projecting label data onto a line in $\mathbb{R}^n$, and then formulate late the problem as a Eigenvalue Decomposition problem Computationally. We are interested in the formulation of the problem and how it's solved. 
  
-**Application Scenario:**
+**Problem | Best Linear Separations with a Vector**
 
 > Given training data set $x_1, x_2, \cdots, x_n\in \mathbb{R}^d$ consisting of 2 classes of labels, $C_1$, and $C_2$, we are looking for a unit vector such that, the projection of the data onto the vector best "Discriminate" the labeled data. 
 
