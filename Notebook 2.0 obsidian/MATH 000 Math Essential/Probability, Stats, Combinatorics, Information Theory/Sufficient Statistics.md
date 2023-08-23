@@ -15,7 +15,7 @@ Suppose that $\{x_i\}_{i = 1}^n$ observations were made from some distributions,
 
 No dependence meaning that given the value of $\theta$, the probability about random variable $T$, won't change, for every possible realizations from the distribution, and the value of $T$. 
 
-#### **Thm | Sufficient Characterizations, Fisher Neyman Factorizations**
+#### **Thm | Sufficient Characterizations, Fisher Neymen Factorizations**
 > Suppose that i.i.d realizations $(x_1, \cdots, x_n)$ has a join pmf/pdf $f(x_, \cdots, x_n | \theta)$, for some parameter $\theta \in \Theta$. A statistics $T$ is sufficient for $\theta$ if and only if there exists $g: \mathbb R\times \Theta \mapsto \mathbb R$, and $h: \mathcal X\mapsto \mathbb R$  such that 
 >
 > $$
@@ -31,7 +31,7 @@ This is an equivalent condition for the definition of a sufficient statistics st
 
 **Proof in the Discrete Case**
 
-The full proof for the continuous case requires some measure theory. 
+The full proof for the continuous case requires some measure theory. However, the proof of sufficiency is more demonstrative. 
 
 
 ---
