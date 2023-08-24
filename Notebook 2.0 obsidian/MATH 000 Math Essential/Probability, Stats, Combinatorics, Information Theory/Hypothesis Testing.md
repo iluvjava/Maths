@@ -7,6 +7,12 @@
 
 We follow chapter 4 of the "Statistics for Mathematicians: A First Course". We discuss the full context for hypothesis testing with knowledge from MLE, and then we introduce the Naymen Pearson Frameworks for hypothesis testing followed by concrete ways of constructing the crition for statistics and ways for looking for the best test functions for those statistics. 
 
+**Overview**
+1. What is hypothesis testing
+2. Type of error
+3. Nayman Pearson Frameworks
+4. The likelihood ratio test
+
 
 ---
 ### **Define Hypothesis Testing**
@@ -26,10 +32,10 @@ Consequently, such a decision creates potential error in our decision. We write 
 
 |   | $H_0$  | $H_1$  |
 |---|---|---|
-| $\delta(\vec x)=0$  |  Correct |  Type II |
-|  $\delta(\vec x)=1$ |  Type I | Power  |
+| $\delta(\vec x)=0$  |  Correct |  Type II, $\beta$ |
+|  $\delta(\vec x)=1$|  Type I, $\alpha$ | Power  |
 
-Where Type I error is the probability of test results being $1$, suggesting $H_1$ when in fact, $H_0$ is true. In this case, the test function is being paranoid. Otherwise it's type II error where test result is $0$ and the actual truth is $H_1$, in this case, the test function is being insensitive. 
+Where Type I error is the probability of test results being $1$, suggesting $H_1$ when in fact, $H_0$ is true. In this case, the test function is being paranoid. Otherwise it's type II error where test result is $0$ and the actual truth is $H_1$, in this case, the test function is being insensitive. The values $\alpha, \beta$ are used in hypothesis testing, they are the threshold limiting the subjective tolerance for the test. 
 
 #### **Def | Type I, Type II Error**
 > Type I error is $\mathbb P(\delta(\vec X) = 1 | \theta \in \Theta_0)$, and type II error is $\mathbb P(\delta(\vec X) = 0 | \theta \in \Theta_1)$. 
@@ -178,7 +184,7 @@ $$
 \end{aligned}
 $$
 
-The rhs of the last line is less than zero because, $\mathbb P(\delta(\vec X) | \theta = \theta_0) = \alpha$, but since $\varphi \in \mathcal D_\alpha$, by definition this test function also respect $\alpha$-level, then $\mathbb P_{\theta_0}(\delta(\vec X) = 1) \ge \mathbb P_{\theta_0}(\varphi(\vec X) = 1)$, therefore, the LHS is greater than zero, meaning that $\mathbb P_{\theta_0}(\delta(\vec X)) \ge \mathbb P_{\theta_0}(\varphi(\vec X))$, therefore, the test function $\delta$ has more power than any $\varphi\in \mathcal D_\alpha$. 
+The rhs of the last line is less than zero because, $\mathbb P(\delta(\vec X) | \theta = \theta_0) = \alpha$, but since $\varphi \in \mathcal D_\alpha$, by definition this test function also respect $\alpha$-level, then $\mathbb P_{\theta_0}(\delta(\vec X) = 1) \ge \mathbb P_{\theta_0}(\varphi(\vec X) = 1)$, therefore, the LHS is greater than zero, meaning that $\mathbb P_{\theta_0}(\delta(\vec X)) \ge \mathbb P_{\theta_0}(\varphi(\vec X))$, therefore, the test function $\delta$ has more power than any $\varphi\in \mathcal D_\alpha$. By the way, $dV(\vec x)$ is $dx_1\cdots dx_n$ for taking the volume integral. 
 
 **Remarks**
 
