@@ -1,4 +1,5 @@
-[[../../AMATH 561 Probability Theory/Probability Basics/Random Variables as Measurable Functions]], [[PDFs, PMFs]]
+- [[../../AMATH 561 Probability Theory/Probability Basics/Random Variables as Measurable Functions]], 
+- [[PDFs, PMFs]]
 
 ---
 ### **Intro**
@@ -14,7 +15,7 @@ Good references: [here](https://en.wikipedia.org/wiki/Probability_density_functi
 **Theorem | 1D random variable transformations**
 
 > Let $g(X)$ be the transformed random variable where $X$ has a PDF of $f_X(x)$, well defined. Assuming that the function $g$ is strictly monotone, so that it will have a single value pre-image for any single interval input, the PDF of $g(X)$ is given as: 
-> $$f_{g(X)}(x) = f_X(g^{-1}(x))|g'(x)^{-1}|. $$
+> $$f_{g(X)}(x) = f_X(g^{-1}(x))|(g^{-1}(x))'|. $$
 
 **Proof**
 
@@ -92,9 +93,16 @@ which is a measure of the pre-image, weighted by the probability density functio
 
 It's easy to generalize this idea to any mapping between any spaces. It's just that we need the density function and the Lesbegue integral. 
 
+---
+### **Linear Transform**
+
+We consider the pdf of linear transform for some random variable. 
 
 ---
-### **Inverse Log Transform (Entropy)**
+### **Inverse Log Transform**
+
+We consider the negative log transform for a random variable. This distribution would represent the distribution of entropy for the random variable. Entropy of the random variable is the expected value of the transformed pdf. See [Shannon's Entropy](Shannon's%20Entropy.md) for more information. 
+
 
 
 

@@ -43,7 +43,7 @@ $$
     \right)
 $$
 
-We are tweaking all the parameters associated with all the Guassian Distributions, wrt to every sample $x_j$ and $\phi_i$, the weight of the membership for each of the sample. 
+We are tweaking all the parameters associated with all the Gaussian Distributions, wrt to every sample $x_j$ and $\phi_i$, the weight of the membership for each of the sample. 
 
 
 **Posterior Probability**[^1]

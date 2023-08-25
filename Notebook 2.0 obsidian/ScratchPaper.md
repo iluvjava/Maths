@@ -377,3 +377,8 @@ $$
 $$
 \vecu{t}, \e
 $$
+
+
+**The Ghoul Apocolypse.** 
+
+You work for Princess Celestia under the Ministry of magic. Equestria is at crisis. A potent type of arcane magic turns ponies into ghouls, the infected has incubation period of about a month, they have absolutely no discernible symptoms. Currently we have 1000 ponies in our isolated facility, they are all asymptomatic. According to the design of our tests, it has type I error $\alpha$ and type II error $\beta$. We carried out the tests for our populations and have $100$ positive results. Please provide a distribution of our prior estimate $\theta$ representing the probability of a pony actually having the disease. This is crucial since it will determine our response strategies.
