@@ -382,3 +382,13 @@ $$
 **The Ghoul Apocolypse.** 
 
 You work for Princess Celestia under the Ministry of magic. Equestria is at crisis. A potent type of arcane magic turns ponies into ghouls, the infected has incubation period of about a month, they have absolutely no discernible symptoms. Currently we have 1000 ponies in our isolated facility, they are all asymptomatic. According to the design of our tests, it has type I error $\alpha$ and type II error $\beta$. We carried out the tests for our populations and have $100$ positive results. Please provide a distribution of our prior estimate $\theta$ representing the probability of a pony actually having the disease. This is crucial since it will determine our response strategies.
+
+Let $\delta$ be the test function with type I, II error rate $\alpha, \beta$, then given prior hypothesis for the probability of any given pony from our facility of actually having the disease being $\theta$ and let $\Theta \sim \text{Bernoulli}(\theta)$. We directly have marginal distribution:
+
+$$
+\begin{aligned}
+    \mathbb P(\delta = 1) &= \mathbb P(\delta = 1 | \Theta = 0)\mathbb P(\Theta = 0) + \mathbb P(\delta = 1 | \Theta = 1) \mathbb P(\Theta = 1)
+    \\
+    &= \alpha(1 - \theta) + (1 - \beta) \theta \sim \text{Bernoulli}(\tau)
+\end{aligned}
+$$

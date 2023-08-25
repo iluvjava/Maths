@@ -37,5 +37,42 @@ The full proof for the continuous case requires some measure theory. However, th
 ---
 ### **Examples | The Exponential Family Distributions**
 
+The sufficient statistics for the exponential family of distribution is the same. A lot of the common distribution that has a name to it is from the exponentia family distribution. 
+
+#### **Def | Template for the Exponential Family**
+> The exponential family are pdf/pmf that admitted the form 
+> $$
+> \begin{aligned}
+>     f(x | \theta) = \exp(\eta(\theta)T(x) - d(\theta) + S(x)) = \frac{\exp(\eta(\theta)T(x))}{\exp(d(\theta))}\exp(s(x)), 
+> \end{aligned}
+> $$
+> which looks legit since it looks non-negative. It has $\sum_{i = 1}^{n}T(X_i)$ being its sufficient statistics.
+
+**Demonstration for Sufficient Statistics**
+
+Suppose that $\vec X$ denotes $n$ i.i.d realizations r.vs from the distribution then the logged likelihood function for the parameter $\theta$
+
+$$
+\begin{aligned}
+    -\ln\mathcal L(\vec X |\theta) &= 
+    \ln\exp
+    \left(
+        \eta(\theta) \sum_{i = 1}^{n}T(X_i) - 
+        nd(\theta) + \sum_{ i =1}^{n}S(x_i)
+    \right)
+    \\
+    &= 
+    \eta(\theta) \sum_{i = 1}^{n}T(X_i) - 
+        nd(\theta) + \sum_{ i =1}^{n}S(x_i)
+    \\
+    &= 
+    \underbrace{\left (\eta(\theta) \sum_{i = 1}^{n}T(X_i)\right)}_{\ln\varphi(\vec X| \theta)}
+    - 
+    \underbrace{\left(nd(\theta) + \sum_{ i =1}^{n}S(X_i)\right)}_{\ln h(\vec X)}, 
+\end{aligned}
+$$
+
+and hence we had performed a separations between the parameters, the sufficient statistics is the sum $\sum_{i = 1}^n T(X_i)$. 
+
 
 

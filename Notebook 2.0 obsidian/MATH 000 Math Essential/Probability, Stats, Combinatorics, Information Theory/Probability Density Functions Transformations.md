@@ -24,7 +24,7 @@ From the definition of probability density function:
 $$
 \begin{aligned}
     f_{g(X)}(x) &= \lim_{h\rightarrow 0}
-    \frac{\mathbb P(G(X)\in [x - h, x + h])}{2h}, 
+    \frac{\mathbb P(g(X)\in [x - h, x + h])}{2h}, 
 \end{aligned}
 $$
 
@@ -41,7 +41,7 @@ $$
 \end{aligned}
 $$
 
-take notice that here we use the fact that the function is strictly monotonic, therefore the pre-image for an interval is still an non-degenerate interval. And the measure of the interval is the maximum element subgract the minimum. Using the defintion of the culmulative density function, we are able to express it in term of $F_X$. Finally, taking the limit of the above quantity yields: 
+take notice that here we use the fact that the function is strictly monotonic, therefore the pre-image for an interval is still an non-degenerate interval. And the measure of the interval is the maximum element subtract the minimum. Using the definition of the cumulative density function, we are able to express it in term of $F_X$. Finally, taking the limit of the above quantity yields: 
 
 $$
 \begin{aligned}
@@ -51,9 +51,9 @@ $$
         F_X\circ g^{-1}(x + h) - F_X\circ g^{-1}(x - h)
     |}{2h}
     \\
-    &= |F_X'\circ g^{-1}(x)g'(x)^{-1}|
+    &= |F_X'\circ g^{-1}(x)(g(x)^{-1})'|
     \\
-    &= f_X\circ g^{-1}(x)|g'(x)^{-1}|, 
+    &= f_X\circ g^{-1}(x)|(g(x)^{-1})'|, 
 \end{aligned}
 $$
 
@@ -102,9 +102,6 @@ We consider the pdf of linear transform for some random variable.
 ### **Inverse Log Transform**
 
 We consider the negative log transform for a random variable. This distribution would represent the distribution of entropy for the random variable. Entropy of the random variable is the expected value of the transformed pdf. See [Shannon's Entropy](Shannon's%20Entropy.md) for more information. 
-
-
-
 
 
 
