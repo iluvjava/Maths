@@ -103,7 +103,127 @@ which is usually challenge to compute.
 
 Posterior has nice solution and they give rise to interested distribution statistics. 
 
+---
 ### **Problem | Posterior Distribution for Bernoulli, The Beta Distribution**
-> 
 
 
+
+---
+### **Problem | Posterior Distribution for Poisson, The Gamma Distribution**
+
+We motivate the problem first. Suppose that, we have some prior belief about the distribution of random variable $T$, and suppose that we observed some instance of the random variable $X\sim \text{Poisson}(T)$, duringa unit period of time. How do we infer about the distribution of $T$? We now state more. 
+
+#### **The Distribution for Posterior**
+
+> Suppose that random variable $T$ has a Gamma distribution, with parameter $\lambda, n$, then assume that $X$ to have a Poisson distribution with parameter $T$. Suppose that an specific instance $x$ is observed, we want to know the pdf function for $f_{T|X}(t|x)$. 
+
+**Demonstration**
+
+To start, we state the PDF for the random variables. 
+
+$$
+\begin{aligned}
+    T &\sim \text{Gamma}(\lambda, n)
+    \\
+    X &\sim \text{Poisson}(T)
+    \\
+    f_{T}(t | \lambda, n) &= \frac{t^{n - 1}\exp(-t/\lambda)}{(n - 1)!\lambda^n}, 
+    \quad n\in \mathbb N, \lambda\in \mathbb R_+
+    \\
+    f(x | \lambda) &= \frac{\lambda^x \exp(-\lambda)}{x!}.
+\end{aligned}
+$$
+
+Observe that Gamma with parameter $n = 1$, we recover the exponential distribution. To figure out the posterior distribution, we use the Bayes formula for PDF and we have 
+
+$$
+{\large
+\begin{aligned}
+    f_{T|X}(t | x) &= 
+    \frac{f_{X|T}(x|t) f_T(T|\lambda, n)}{f_X(x)}
+    \\
+    &= \frac{
+        \frac{t^x\exp(-t)}{x!} \frac{t^{n - 1}}{(n - 1)!\lambda^n}
+        \exp(-t/\lambda)
+    }{
+        \int_{\mathbb R_+}^{} 
+            \frac{t^x\exp(-t)}{x!}\frac{t^{n - 1}}{(n - 1)!\lambda^n}
+            \exp(-t/\lambda)
+        dt
+    }
+    \\
+    &= 
+    \frac{
+        t^x\exp(-t)t^{n- 1} \exp(-t/\lambda)
+    }{
+        \int_{\mathbb R_+}^{} 
+            t^x\exp(-t) t^{n - 1}\exp(-t/\lambda)
+        dt
+    }
+    \\
+    &= 
+    \frac{
+        t^{x +n- 1}\exp(-t(1 + 1/\lambda))
+    }{
+        \int_{\mathbb R_+}^{} 
+            t^{x +n- 1}\exp(-t(1 + 1/\lambda))
+        dt
+    }, 
+\end{aligned}
+}
+$$
+
+Next, we consider the marginal integral below, to evaluate, we consider the integral of the generic format with $\alpha = (1 + 1/\lambda) > 0$, and $k = x + n - 1\in \mathbb N$, then consider taking the integral
+
+$$
+\begin{aligned}
+    I_k &= \int_{\mathbb R_+}^{} 
+        t^k \exp(-t\alpha)
+    dt
+    \\
+    &= \left .t^k \frac{\exp(-t \alpha)}{-\alpha}
+    \right|_0^\infty + 
+    k \int_{\mathbb R_+} \frac{\exp(-t\alpha)}{\alpha} t^{k - 1}dt
+    \\
+    &= 0 + \frac{k}{\alpha} I_{k - 1}
+    \\
+    I_0 &= \int_{\mathbb R_+}^{}\exp(-t\alpha) dt
+    \\
+    &= \left. 
+        \frac{\exp(-t \alpha)}{\alpha}
+    \right|_\infty^0 = 1/
+    \alpha
+    \\
+    \implies & 
+    I_k = (k!/\alpha^k)I_0 = \frac{k!}{\alpha^{k + 1}}, 
+\end{aligned}
+$$
+
+and therefore, the posterior simplifies to 
+
+$$
+\begin{aligned}
+    f_{T|X}(t|x) &= 
+    \frac{t^{x +n- 1}\exp(-t(1 + 1/\lambda))}{
+        \frac{(x + n - 1)!}{
+            (1 + 1/\lambda)^{x + n}
+        }
+    }
+    \\
+    &= \frac{t^{x + n - 1}\exp(-t(1 + 1/\lambda))(1 + 1/\lambda)^{x + n}}{
+        (x + n-1)!
+    }
+    \\
+    &= \frac{
+        t^{x + n - 1}\exp\left(-t\left(
+            \frac{1 + \lambda}{\lambda}
+        \right)\right)
+    }{
+        (x + n - 1)! \left(
+            \frac{\lambda}{1 +\lambda}
+        \right)^{x + n}
+    }, 
+\end{aligned}
+$$
+
+observe that, it fits the gamma distribution with parameter $\text{Gamma}(t | x + n, \lambda/(1 + \lambda))$. The posterior has updated our belief using one observation of the Poisson random variable, over a unit amount of time. The number of events to occur has been updated to $n + x$, and the rate has been updated to $\lambda/(1 + \lambda)$. With large value of $\lambda$, the quantity is closer to one, and $n$ gets larger and larger as observation accumulates to our gamma distribution. 

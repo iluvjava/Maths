@@ -10,11 +10,7 @@ Reference resources:
 ---
 ### **Intro**
 
-KL divergence is "Kullback-Leibler Divergence", it has the other name: "Relative Entropy". 
-
-Given a probability distribution space $\chi$ and 2 probability distribution denoted as $P, Q$. 
-
-The KL divergence from $Q$ to $P$ is: 
+KL divergence is "Kullback-Leibler Divergence", it has the other name: "Relative Entropy". Given a probability distribution space $\chi$ and 2 probability distribution denoted as $P, Q$. The KL divergence from $Q$ to $P$ is: 
 
 $$
 D_{KL}(P||Q) = \sum_{x\in \chi}^{}P(x) \log_2 \left(
@@ -32,11 +28,11 @@ p(x)\log_2 \left(
 dx
 $$
 
-Note, usually: $D_{KL}(P||Q)\ne D_{KL}(Q||P)$. This is definitely **not a distance measure**. 
+It measure the similarity between 2 pdf/pmf function. Note, usually: $D_{KL}(P||Q)\ne D_{KL}(Q||P)$. This is definitely **not a distance measure** in the sense of a metric in real analysis. 
 
 **Key:** 
 
-> If we were to use some other kind of paramaterized distribution to represents a given observed distribution, how much information is lost? And this question is answered by the measure made by KL-Divergence. 
+> If we were to use some other kind of parameterized distribution to represents a given observed distribution, how much information is lost? And this question is answered by the measure made by KL-Divergence. 
 
 Consider this: 
 

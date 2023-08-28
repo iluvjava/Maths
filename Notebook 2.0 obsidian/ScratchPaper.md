@@ -379,7 +379,7 @@ $$
 $$
 
 
-**The Ghoul Apocolypse.** 
+**The Ghoul Apocalypse.** 
 
 You work for Princess Celestia under the Ministry of magic. Equestria is at crisis. A potent type of arcane magic turns ponies into ghouls, the infected has incubation period of about a month, they have absolutely no discernible symptoms. Currently we have 1000 ponies in our isolated facility, they are all asymptomatic. According to the design of our tests, it has type I error $\alpha$ and type II error $\beta$. We carried out the tests for our populations and have $100$ positive results. Please provide a distribution of our prior estimate $\theta$ representing the probability of a pony actually having the disease. This is crucial since it will determine our response strategies.
 
@@ -389,6 +389,8 @@ $$
 \begin{aligned}
     \mathbb P(\delta = 1) &= \mathbb P(\delta = 1 | \Theta = 0)\mathbb P(\Theta = 0) + \mathbb P(\delta = 1 | \Theta = 1) \mathbb P(\Theta = 1)
     \\
-    &= \alpha(1 - \theta) + (1 - \beta) \theta \sim \text{Bernoulli}(\tau)
+    &= \alpha(1 - \theta) + (1 - \beta) \theta \sim \text{Bernoulli}(\tau). 
 \end{aligned}
 $$
+
+We observe that the value of $\alpha, \beta$ restrict the value of $\tau$, forming a prior for our problem. With the assumption that $0 \le \alpha + \beta < 1$, we make prior assumption that variable $\tau$ is uniformly random, named it $\mathcal T$ is $(\alpha, 1 - \beta)$. Solving for $\theta$ we have $\theta = (\tau - \alpha)/(1 - \alpha - \beta)$. 

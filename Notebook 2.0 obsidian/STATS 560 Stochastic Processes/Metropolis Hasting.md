@@ -9,6 +9,9 @@ The Metropolis chain is a special type of chain that can be used to draw samples
 3. How does the regularity conditions play a role for the convergence theory of the chain under the discrete case? 
 4. We briefly introduces what happens in the non-discrete case. 
 
+**References**
+1. Monte Carlo Statistical Method by Christian P. Robert, George Casella. 
+
 **Algorithm Statement**
 
 Firstly we define a state space $S$ for all the Markov chains. Suppose that at iteration $t$, $X^{(t)}$ is given as the output of the Metropolis Hasting Chain (MHC), then we draw the next $X^{(t + 1)}$ using the below procedures. 
@@ -33,7 +36,7 @@ $$
 which is an aperiodic chain and here are the properties expected for some of these quantities defined for the MHC: 
 
 1. $q(x|y)$ is the *instrumental distribution*, it is defined on $S$ and it's a doubly stochastic chain. 
-2. $f(x): S \mapsto \mathbb R_+$ is a probability mass function on the statespace $S$. 
+2. $f(x): S \mapsto \mathbb R_+$ is a probability mass function on the state space $S$. 
 3. $\rho$ is an acceptance function, given $X^{(t)}$, it decides whether to accept $Y^{(t + 1)}$ from $q$ given $X^{(t)}$. 
 
 
@@ -49,7 +52,7 @@ $$
 $$
 
 
-**Theorem: f is a stionary distribution for the Kernel**
+**Theorem | f is a stationary distribution for the Kernel**
 > The discrete probability assignment function $f$ is a stationary distribution for the MHC because it satisfies detailed balance. 
 
 **Proof**
@@ -89,10 +92,10 @@ therefore, $f$ is a stationary distributions for transition kernel $K$ because i
 
 To invoke the discrete ergotic theorem for discrete Markov chain, we need to prove that the MHC chain is also irreducible for the support of the distribution function $f$. 
 
-**Definition: f-irreducible**
+**Definition | f-irreducible**
 > Given a Markov chain $X$ with state space $S$ and a probability assignment function $f:S\mapsto \mathbb R_+$, it's f-irreducible means that for all $x, y\in \text{supp}(f)$, $x\rightarrow y$. The support set is $\text{supp}(f):= \{x: f(x) > 0\}$. 
 
-**Theorem: Conditions for MHC Kernel being Irreducible**: 
+**Theorem | Conditions for MHC Kernel being Irreducible**: 
 
 > Denote $S_f = \text{supp}(f)$ as the support set of $f$, then MHC chain is f-irreducible when: 
 > $$
@@ -112,7 +115,7 @@ The convergence to stationary distributions depends on the initial distribution,
 
 **References**:
 
-pg 271 of the \<Montecarlo Statistical Method\> book. 
+pg 271 of the \<Monte Carlo Statistical Method\> book. 
 
 
 ---
