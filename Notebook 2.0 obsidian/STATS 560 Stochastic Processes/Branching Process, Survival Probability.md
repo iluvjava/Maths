@@ -1,4 +1,4 @@
-- [Moment Generating Functions](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Moment%20Generating%20Functions.md), a similar idea as generating function is used. 
+- [Moment Generating Functions](../STATS%20501%20Statistics%20for%20Mathematicians/Moment%20Generating%20Functions.md), a similar idea as generating function is used. 
 - [Markov Chain Introduction](Markov%20Chain%20Introduction.md), the branching process is, a Marko Process. 
 
 ---

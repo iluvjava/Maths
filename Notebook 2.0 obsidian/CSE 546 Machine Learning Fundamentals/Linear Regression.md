@@ -1,4 +1,4 @@
-- [Maximal Likelihood Estimator](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Maximal%20Likelihood%20Estimator.md)
+- [Maximal Likelihood Estimator](../STATS%20501%20Statistics%20for%20Mathematicians/Maximal%20Likelihood%20Estimator.md)
 
 ---
 ### **Intro**

@@ -1,5 +1,5 @@
 [[Classification, Statistics Theory]]
-[[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Bayes Theorem for Baby]]
+[[../MATH 000 Math Essential/Probability, Stats/Bayes Theorem for Baby]]
 
 Reference Recourse: [Logistic Regression And Bayes](https://www.countbayesie.com/blog/2019/6/12/logistic-regression-from-bayes-theorem)
 

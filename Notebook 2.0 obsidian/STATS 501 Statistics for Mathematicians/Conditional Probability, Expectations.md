@@ -1,4 +1,4 @@
-- [[Bayes Theorem for Baby]], 
+- [[../MATH 000 Math Essential/Probability, Stats/Bayes Theorem for Baby]], 
 - [[Expectations of Random Variables without Measure Theory]], 
 - [[PDFs, PMFs]]
 

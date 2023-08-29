@@ -60,3 +60,10 @@ As the temperature approaches zero for the discrete chain, the distribution func
 
 
 References: 'Markov Chain and Mixing time', chapter 3. 
+
+
+---
+### **A Report for this Topics**
+
+A report has been written for STATS 560 on the topics of the relationship between Metropolis Hasting and the Simulated Annealing algorithm. See file [Metropolis Hasting for Simulated Annealing report](Assets/Metropolis%20Hasting%20for%20Simulated%20Annealing%20report.pdf) for more information. 
+

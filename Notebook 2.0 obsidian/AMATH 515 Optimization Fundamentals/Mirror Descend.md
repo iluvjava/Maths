@@ -88,7 +88,7 @@ We can use the prior knowledge and assumptions about the function and choose the
 
 > Using Negative entropy as the generating function, and bregman divergence, we can make up the KL divergence. 
 
-More about [[KL-Divergence]]
+More about [[../STATS 501 Statistics for Mathematicians/KL-Divergence]]
 
 **Observe**
 Negative entropy is convex and has a local minimum, and it's smooth. 

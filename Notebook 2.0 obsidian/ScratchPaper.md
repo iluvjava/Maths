@@ -349,7 +349,7 @@ There really should be one, I would say that, if there exists a continuous Hessi
 > For millennials, humanity stumbles in the darkness, learning slowly. And then the God said: "Let there be statistical inference." 200 years later, science rules and humanity enlightened. A surreal glows of knowledge and science shines through the darkness. And then, the God retired. We had quantified our beliefs and related them to observations through rigorous mathematics. 
 
 $$
-\begin{array}{|c|c|c | c |c|}
+\begin{array}{|c|c|c |c |c|}
 \hline
     & \text{Rob} & \text{Lock} & \text{Drinks} & \text{Does nothing} \\ \hline
     \text{Rob} & &  &  &  \\ \hline

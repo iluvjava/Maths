@@ -1,4 +1,4 @@
-- [Conditional Probability, Expectations](../MATH%20000%20Math%20Essential/Probability,%20Stats,%20Combinatorics,%20Information%20Theory/Conditional%20Probability,%20Expectations.md)
+- [Conditional Probability, Expectations](../STATS%20501%20Statistics%20for%20Mathematicians/Conditional%20Probability,%20Expectations.md)
 - [Theories of Probability Conditioning](../AMATH%20561%20Probability%20Theory/Probability%20Basics/Theories%20of%20Probability%20Conditioning.md)
 
 ---

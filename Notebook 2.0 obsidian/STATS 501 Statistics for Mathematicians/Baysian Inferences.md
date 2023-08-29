@@ -101,11 +101,11 @@ which is usually challenge to compute.
 ---
 ### **Actual Applications**
 
-Posterior has nice solution and they give rise to interested distribution statistics. 
+Posterior has nice solution and they give rise to interesting distribution statistics. 
 
----
-### **Problem | Posterior Distribution for Bernoulli, The Beta Distribution**
 
+#### **Problem | Testing the Fair Coin**
+> Suppose that a coin with probability $p$ is thrown $n$ times, and suppose that we have no idea whether the coin is fair or not. Find the distribution of the probability parameter $p$ given the observed number of heads that showed for the realization. 
 
 
 ---

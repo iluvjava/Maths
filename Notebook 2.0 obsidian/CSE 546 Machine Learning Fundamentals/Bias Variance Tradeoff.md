@@ -2,7 +2,7 @@ See [[Performance Metric]] first.
 
 Relavent resources: 
 - [link](http://scott.fortmann-roe.com/docs/BiasVariance.html) to Understanding the Bias and Variance Trade off. 
-- We will use some knowledge from [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]] to manipulate the math a bit. 
+- We will use some knowledge from [[../STATS 501 Statistics for Mathematicians/Expectations of Random Variables without Measure Theory]] to manipulate the math a bit. 
 - And the proof is here: [Wiki Link](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff)
 
 ---

@@ -50,7 +50,7 @@ Prove that this formula is true and then we will be able to prove understand the
 
 **Observe**: 
 
-The number of terms in the sum can be produced by the [[Stars And Bars]] theorem. It's basically summing up all the different ways of $m$ positive integers that can sum up to $n$ exactly. 
+The number of terms in the sum can be produced by the [[../MATH 000 Math Essential/Probability, Stats/Stars And Bars]] theorem. It's basically summing up all the different ways of $m$ positive integers that can sum up to $n$ exactly. 
 
 **Example**: 
 

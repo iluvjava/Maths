@@ -78,10 +78,10 @@ The random variable $\hat \theta_n$ converges almost surely to the random variab
 > $$
 > It's the expected amount of difference between the true parameter and the parameter estimated by the maximal likelihood procedures. 
 
-### **Def | The MSE of the MLE**
+#### **Def | The MSE of the MLE**
 > The MSE is a measure of how good an estimated parameter is compare to the real parameter. Let $\hat \theta$ be the MLE produced by some procedures, then the MLE of the estimator is defined $\mathbb{E}\left[(\hat\theta - \theta_0)^2\right]$, the expected squared error from the true value. 
 
-**Demonsrations**
+**Demonstrations**
 
 The MSE of MLE is an aggregate measure of the variance and the biases of the estimator $\hat \theta$. Consider 
 

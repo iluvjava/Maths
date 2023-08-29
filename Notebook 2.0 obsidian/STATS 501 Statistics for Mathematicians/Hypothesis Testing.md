@@ -98,7 +98,7 @@ We introduce a classification for different type of hypothesis, because they det
 
 Each types of these hypothesis gives a different way of doing hypothesis testing. We now introduce the hypothesis testing for the first case.
 
-#### **Thm | Likelihood Ratio Test**
+#### **Thm | Likelihood Ratio Test, Simple vs Simple**
 > Let $\vec X$ be an i.i.d variable representing realizations from distribution with parameter $\theta$, let $f_{\vec X}$ to be the pdf/pmf function for the realization r.v. Suppose that $H_0 : \theta = \theta_0$ and $H_1: \theta = \theta_1$ with $\theta_1 \neq \theta_0$. Suppose that the test has threshold $\alpha$-level in $(0, 1)$. Lets define the likelihood ratio random varaible 
 > $$
 > \begin{aligned}
@@ -207,3 +207,16 @@ It's not clarified in the proof, but after I go over the proof, I realized it's 
 **Remarks**
 
 The existence of the minimizer implies the existence of some type of MLE among the set of parameter space $\Theta_0, \Theta_1$. 
+
+#### **Corollary | Bilateral Likelihood Ratio Tests**
+> Suppose that hypothesis for $H_0: \theta = \theta_0$ and $H_1 : \theta \neq \theta_1$, assume that $\mathcal L$ the likelihood function is also a continuous function, then the likelihood ratio random variable has $\mathcal L(\hat \theta)/\mathcal L(\theta)$, where $\hat \theta$ is the MLE. 
+
+**Proof**
+
+Observe that $\sup_{\Theta_1} \mathcal L(\theta) = \hat \theta$ , this is true by the continuity of the function $\mathcal L$, the set $\Theta_1 = \Theta_1 = \mathbb R \setminus \{\theta_0\}$, which is just missing a singleton. 
+
+
+---
+### **Hypothesis Testing on the Exponential Family**
+
+read [The Exponential Family](The%20Exponential%20Family.md) for more context about what an exponential family is for our context. 

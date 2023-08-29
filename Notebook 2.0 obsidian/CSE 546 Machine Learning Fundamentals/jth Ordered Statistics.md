@@ -1,6 +1,6 @@
 Let's talk about Order statistics here. 
-[[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]], 
-[[PDFs, PMFs]], 
+[[../STATS 501 Statistics for Mathematicians/Expectations of Random Variables without Measure Theory]], 
+[[../STATS 501 Statistics for Mathematicians/PDFs, PMFs]], 
 
 
 ---

@@ -52,7 +52,7 @@ $$
 
 In the case of using a polynomial to introduce non-linearity, we face the problem of large number of computations to achieve that. 
 
-Suppose that there are 2 features, and I want 3 degree polynomials, then there will be 4 of them in total. Basically this is a [[Stars And Bars]] problem, all 
+Suppose that there are 2 features, and I want 3 degree polynomials, then there will be 4 of them in total. Basically this is a [[../MATH 000 Math Essential/Probability, Stats/Stars And Bars]] problem, all 
 $x_1^ax_2^b$ where $a + b = p$ and $a, b$ are integers are a valid high dimensional features. **And the number of features grow exponentially fast**. 
 
 And this grows very quickly. 

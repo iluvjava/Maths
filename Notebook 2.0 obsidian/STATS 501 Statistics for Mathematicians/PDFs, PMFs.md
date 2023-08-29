@@ -75,7 +75,7 @@ If, $X$ and $Y$ are independent, each having their own **independent probability
 ---
 ### **Probability Density Function Transformations**
 
-Suppose that we were given 2 random variables $X, Y$ and a function $G$ that maps it to 2 other random variables then $(V, W) = G(X, Y)$. The question is, what is the distribution function for the random variable $(V, W)$? See [Probability Density Functions Transformations](Probability%20Density%20Functions%20Transformations.md) for more info. 
+Suppose that we were given 2 random variables $X, Y$ and a function $G$ that maps it to 2 other random variables then $(V, W) = G(X, Y)$. The question is, what is the distribution function for the random variable $(V, W)$? See [Probability Density Functions Transformations](../../STATS%20501%20Statistics%20for%20Mathematicians/Probability%20Density%20Functions%20Transformations.md) for more info. 
 
 
 

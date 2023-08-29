@@ -1,5 +1,5 @@
 Bayes Theorem
-[[PDFs, PMFs]], 
+[[../../STATS 501 Statistics for Mathematicians/PDFs, PMFs]], 
 Here are some reference in use: 
 
 [Explain Bayes like I am Five](https://towardsdatascience.com/all-about-naive-bayes-8e13cef044cf)

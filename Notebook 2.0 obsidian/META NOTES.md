@@ -12,11 +12,22 @@ This note is a note about notes.
 # **Tasks to Do about the Notes**
 
 Something to do when we have time. 
+### **Statistical Inferences**
+- [ ] Add stuff for statistics inference related materials. 
+	- [ ] [Asymptotic Behaviors of MLEs](STATS%20501%20Statistics%20for%20Mathematicians/Asymptotic%20Behaviors%20of%20MLEs.md). Characterize. 
+	- [ ] Discuss the MLE, hypothesis testing for the exponential family. 
+		- [ ] [The Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/The%20Exponential%20Family.md), 
+		- [ ] [MLE, Sufficient Statistics of the Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/MLE,%20Sufficient%20Statistics%20of%20the%20Exponential%20Family.md), 
+		- [ ] [Examples of Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/Examples%20of%20Exponential%20Family.md) 
+	- [ ] Add an entry about the Wald test method and likelihood ratio, continuing that discussion from [Hypothesis Testing](STATS%20501%20Statistics%20for%20Mathematicians/Hypothesis%20Testing.md). 
 
+### **Optimizations**
 - [ ] Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
 - Fill up [Functional Analysis Central Hub](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Analysis%20Central%20Hub.md), by considering: 
 	- [ ] [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
 	- [ ] [Uniform Boundedness, Open Mapping](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Uniform%20Boundedness,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
+
+### PDE
 - Fill up a sequence of notes that describes the idea of adjoint operators in Hilbert spaces, and their applications. Files included are: 
 	- [x] [Sturm Liouville Theory](AMATH%20503%20Intro%20to%20Partial%20Differential%20Equations/Sturm%20Liouville%20Theory.md)
 		- Cite the theories for the S.L Adjoin BVP theories from Sturm Liouville. 

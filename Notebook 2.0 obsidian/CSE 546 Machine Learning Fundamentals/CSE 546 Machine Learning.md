@@ -23,11 +23,11 @@ Machine Learning is a clusterfuck, a chimera, nonetheless, it's our best attempt
 **Machine Learning Fundamental**
 
 Concepts
-1. Maximal Likelihood Estimator [[Maximal Likelihood Estimator]]
+1. Maximal Likelihood Estimator [[../STATS 501 Statistics for Mathematicians/Maximal Likelihood Estimator]]
 2. Markov's Inequality [[Markov Inequality]]
-3. [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Expectations of Random Variables without Measure Theory]]
-5. [[Conditional Probability, Expectations]]
-6. [[../MATH 000 Math Essential/Probability, Stats, Combinatorics, Information Theory/Bayes Theorem for Baby]]
+3. [[../STATS 501 Statistics for Mathematicians/Expectations of Random Variables without Measure Theory]]
+5. [[../STATS 501 Statistics for Mathematicians/Conditional Probability, Expectations]]
+6. [[../MATH 000 Math Essential/Probability, Stats/Bayes Theorem for Baby]]
 
 Example 
 1. Linear Regression (With Offset) and Gaussian MLE [[Linear Regression]]

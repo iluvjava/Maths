@@ -130,4 +130,4 @@ The base case of the argument is simply Cantor's Zigzag argument used for theore
 
 
 [^1]: The image sourced from [here](https://nivotko.wordpress.com/2012/12/28/on-bijection-of-nxn-to-n/). 
-[^2]: Recall [[Probability, Stats, Combinatorics, Information Theory/Stars And Bars]], this one is specific applications of integers under a particular probability simplex in 2D. 
+[^2]: Recall [[Probability, Stats/Stars And Bars]], this one is specific applications of integers under a particular probability simplex in 2D. 

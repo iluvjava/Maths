@@ -50,7 +50,4 @@ $$
 ---
 ### **Applications Example**
 
-See [[Multinomial Coefficients]] for a good applications. 
-
-
-
+See [Multinomial Coefficients](../../STATS%20501%20Statistics%20for%20Mathematicians/Multinomial%20Coefficients.md) for a good application. 

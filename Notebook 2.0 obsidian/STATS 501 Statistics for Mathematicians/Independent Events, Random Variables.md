@@ -1,4 +1,4 @@
-- [Bayes Theorem for Baby](Bayes%20Theorem%20for%20Baby.md), 
+- [Bayes Theorem for Baby](../MATH%20000%20Math%20Essential/Probability,%20Stats/Bayes%20Theorem%20for%20Baby.md), 
 - [Conditional Probability, Expectations](Conditional%20Probability,%20Expectations.md), 
 
 ---
