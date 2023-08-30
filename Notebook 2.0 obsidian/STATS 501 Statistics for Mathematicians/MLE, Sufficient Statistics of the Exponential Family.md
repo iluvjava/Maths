@@ -74,7 +74,7 @@ $$
 \end{aligned}
 $$
 
-which is what we have. The sufficient statistics per sample gives the derivative of $\gamma$ function at the MLE. 
+which is what we have. The sufficient statistics per sample gives the derivative of $\gamma$ function at the MLE. And under the general representation, assuming that the function between the natural parameter $\phi$ and distribution parameter $\theta$ being bijective, then the distribution parameter has $\hat \theta = \eta^{-1}\circ \gamma^{-1}(\mathcal T/n)$. 
 
 
 **Remarks**
@@ -85,10 +85,6 @@ The fact that $\gamma(\phi)$ is not a constant function is an implicit assumptio
 **Exercises**
 
 The reader should verify some of these theorem in the context of the Gaussian Distribution parameterized by the variance, or the mean. 
-
-
----
-### **Examples**
 
 
 

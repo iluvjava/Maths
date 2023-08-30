@@ -215,8 +215,81 @@ The existence of the minimizer implies the existence of some type of MLE among t
 
 Observe that $\sup_{\Theta_1} \mathcal L(\theta) = \hat \theta$ , this is true by the continuity of the function $\mathcal L$, the set $\Theta_1 = \Theta_1 = \mathbb R \setminus \{\theta_0\}$, which is just missing a singleton. 
 
+**Remarks**
+
+The MLE needs to be unqiue and it exists. That is an implicity assumptions for our case. 
+
 
 ---
 ### **Hypothesis Testing on the Exponential Family**
 
-read [The Exponential Family](The%20Exponential%20Family.md) for more context about what an exponential family is for our context. 
+There are 2 cases that we are going to distinguish for the type of Unilateral hypothesis made about the parameters: 
+
+1. $H_0: \theta \le \theta_0$, $H_1 : \theta > H_0$, this shit should be higher. CASE I
+2. $H_1: \theta \le \theta_0$, $H_0 : \theta > H_0$, this shit should be lower. CASE II
+
+Then under the assumption for the exponential function, we have optimal test functions: 
+
+1. Let $\alpha$ be our significant level then $\delta = \mathbf \{\mathcal T> q_{1 - \alpha}\}$ would be uniformly most powerful, with $\mathbb P(\mathcal T < q_{1-\alpha}| \theta_0) = 1 - \alpha$. This is for CASE I when $\eta(\cdot)$ strict monotone increasing, else this os for CASE II. 
+2. Let $\alpha$ be our significant level then the test function $\delta = \{\mathcal T < q_\alpha\}$ is uniformly most powerful when $q_\alpha = \mathbb P(\mathcal T < q_\alpha) = \alpha$. This is for CASE II if $\eta (\cdot)$ strictly increasing, else this is for CASE I.    
+
+
+**Observations**
+
+Observe that the strict monotone increasing $\eta(\theta)$ suggests that larger statistics $\mathcal T$, larger likelihood for parameter $\theta$. This would justify the heuristic since to reject $H_0$, we are testing for extreme statistics that happens with very low probability. In CASE I the low probability events that classify for a rejection is $\mathcal T$ being too big as to measured by probability $\mathbb P(\mathcal T > q_{1 - \alpha})$. 
+
+#### **Claim | Simple VS Simple Hypothesis Testing on the Exponential Family**
+
+> Suppose that function $f(x | \theta) = \exp(\eta(\theta)T(x) - d(\theta) - S(x))$, a form of the exponential family with $\eta$ being strictly increaseing, then under the Neyman Pearson suggestion with hypothesis $H_0: \theta = \theta_0, H_1 = \theta_1 = \theta_1$, a simple hypothesis with $\theta_0 < \theta_1$, has optimal test function $\delta = \mathbf 1 \{\mathcal T > q\}$, where, $\mathbb P(T > q | \theta_0) = \alpha$, where $\mathcal T = \sum_{i = 1}^{n}X_i$, the sufficient statistics. 
+
+**Context**
+
+The theorem demonsrate the Neyman Pearson ratio tests applies to the exponential family will yield test function that only uses the sufficient statistics $\mathcal T$ and a lower/upper threshold for $\mathcal T$. 
+
+**Proof**
+
+Directly using the Naymen pearson frameworks with likelihood ratio test, the test function for the exponential family is 
+
+$$
+\begin{aligned}
+    \delta &= \mathbf 1 \left\lbrace
+       \frac{\mathcal L(\theta_1)}{\mathcal L(\theta_0)}
+       > Q
+    \right\rbrace
+    \\
+    &= 
+    \mathbf 1 \left\lbrace
+       \ln \mathcal L(\theta_0) - \ln \mathcal L(\theta_1) > \ln Q
+    \right\rbrace, 
+\end{aligned}
+$$
+
+Recall that $\mathcal L(\theta) = \eta(\theta)T(x) - d(\theta) + S(x)$, then we have 
+
+$$
+\begin{aligned}
+    \delta &= 
+    \mathbf 1 \left\lbrace
+        \sum_{ i =1}^{n} \eta(\theta_1)T(X_i) - \eta(\theta_0)T(X_i) - 
+        d(\theta_1) + d(\theta_0) > \ln Q
+    \right\rbrace
+    \\
+    &= \mathbf 1
+    \left\lbrace
+        \underbrace{(\eta(\theta_1) - \eta(\theta_0))}_{> 0, \text{by $\eta$ monotne}}
+        \sum_{ i =1}^{n} T(X_i)
+        + 
+        n(d(\theta_0) - d(\theta_1)) > \ln Q
+    \right\rbrace
+    \\
+    &= \mathbf 1 
+    \left\lbrace
+        \sum_{ i =1}^{n} T(X_i)
+         > 
+        \underbrace{\frac{\ln Q - n(d(\theta_0) - d(\theta_1))}{\eta(\theta_1) - \eta(\theta_0)}}_
+        {=:q}
+    \right\rbrace, 
+\end{aligned}
+$$
+
+and that big fraction there, it lower bounds the sufficient statistis of the distribution. and hence, if we can find the event $\{\mathcal T > q\}$ where the probability of observing $\mathcal T$ assuming $\theta = \theta_0$ is less than $\alpha$, the significant level, then the likelihood ratio will corresond to an event of type I error below or at $\alpha$-level. And that $q$ can be characterized by $\mathbb P(\mathcal T > q| \theta = \theta_0) < \alpha$. And by the Neyman Pearson Likelihood test, this is also the optimal test for this hypothesis. 
