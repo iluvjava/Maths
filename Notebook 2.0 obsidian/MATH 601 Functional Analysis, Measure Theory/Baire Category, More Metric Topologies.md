@@ -59,7 +59,7 @@ Therefore, $M^\circ \subseteq  \left(\overline M\right)^\circ$, and therefore. B
 
 Dense and nowhere dense are mutually exclusive, however, there are sets that are neither dense, nor nowhere dense. The Cantor set is a nowhere dense set, and the rationals is a dense set, (So are the numbers with finitely many digits expansion, a subset of the rationals. )
 
-#### **Thm-2 | Complement Topology**
+#### **Thm-2 | Closed, Open Complement**
 
 > Let $(X, d)$ be a metric space with $M \subseteq X$. If $M$ is an open set, meaning that $M^\circ = M$, then the complement set $M^C$ is a closed set. 
 

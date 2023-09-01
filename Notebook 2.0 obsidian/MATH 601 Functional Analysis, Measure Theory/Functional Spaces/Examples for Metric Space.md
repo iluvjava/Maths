@@ -55,7 +55,7 @@ and this completes the proof and showed that the sequence $x_n$ is indeed Cauchy
 
 $l^\infty$ itself is a complete metric space, but one of its dense subspace might not be complete. 
 
-**Claim**:
+**Claim | Finite Zero Sequences is an Incomplete Subspace**:
 > Let $M\subseteq l^\infty$ to be the subset of all the sequences that has finitely many non-zero terms in it. Then this subspace is incomplete in this metric. 
 
 We consider the sequence a sequence $x_N$ parameterized by some natural number $N$ given as: 

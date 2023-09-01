@@ -38,3 +38,4 @@ Maximal element $m$ comes from the subset of the partially ordered set, and the 
 ### **Axiom | Zorn's Lemma**
 > A partially ordered set containing upper bounds every chain, necessarily contains at least one maximal element. 
 
+This is technically, an axiom. And it's equivalent to the axiom of choice. 

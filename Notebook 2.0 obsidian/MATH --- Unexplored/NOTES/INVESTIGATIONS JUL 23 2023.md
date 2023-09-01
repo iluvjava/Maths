@@ -168,4 +168,5 @@ therefore, the boundary of the convex sets has a measure of zero. And hence, it'
 ---
 ### **A New Proof** 
 
-We summarize a new proof that can lead to nicer handling of the edge cases that we assumed WLOG. This new approach is far more involved, we will direct the reader to a separate report written in PDF for this one. 
+We summarize a new proof that can lead to nicer handling of the edge cases that we assumed WLOG. This new approach is far more involved, see [Measurability of Convex Sets](../References/Measurability%20of%20Convex%20Sets.pdf) for more information. 
+

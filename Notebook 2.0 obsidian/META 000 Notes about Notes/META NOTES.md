@@ -1,17 +1,19 @@
-
-This note is a note about notes. 
+This note is a note about notes. This is a list of Meta Notes: 
+- [META NOTES](../META%20000%20Notes%20about%20Notes/META%20NOTES.md)
+- [Editing Journal META NOTES](../META%20000%20Notes%20about%20Notes/Editing%20Journal%20META%20NOTES.md)
 
 # **Organizations**
 
 ---
 # **Important Tasks about the Notes**
 
-- [x] Complete: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), prove the measurability of convex sets. 
+- [ ] Complete and link: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), to the alternative proof of convex measurability. 
 
 ---
 # **Tasks to Do about the Notes**
 
 Something to do when we have time. 
+
 ### **Statistical Inferences**
 - [ ] Add stuff for statistics inference related materials. 
 	- [ ] [Asymptotic Behaviors of MLEs](STATS%20501%20Statistics%20for%20Mathematicians/Asymptotic%20Behaviors%20of%20MLEs.md). Characterize. 
@@ -34,12 +36,12 @@ Something to do when we have time.
 		- Improve cringe examples for the Sturm Liouville systems example. 
 		- Improve the parts of the orthogonality proofs for the Eigen system using the notes on your ipad and from professor Erics 319. 
 	- [x] And a note about how to use *Fredholm alternative* applied to the PDE BVP system. 
-- Add theorem 4.17 in the course notes for math 328, regarding the existence of an orthogonal basis for every Hilbert space, as a consequence of the Zorn's Lemma. 
+
 
 ---
 # **Tasks that Probably Will Never Get Done**
 
-This being empty is a good thing. 
+- Add theorem 4.17 in the course notes for math 328, regarding the existence of an orthogonal basis for every Hilbert space, as a consequence of the Zorn's Lemma. 
 
 ---
 # **Tasks Done for Keeping Track of Things**
