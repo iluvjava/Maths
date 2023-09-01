@@ -31,5 +31,7 @@ Take note that this statement is about metric spaces in general. This theorem al
 **Thm | Minimizer and Maximizer of a Compact Mapping**
 > A mapping from a compact subspace of a metric space, $M\subseteq X$ to $\R$ will give a maximum and a minimum at some point in $M$. 
 
+**Proof**
 
+Unfinished. 
 

@@ -6,7 +6,7 @@
 This is just a generalization for fixed point iterations in $\R$, however, we generalized it to metric spaces and mapping that maps back to the same metric space. The theory is somewhat dull, but the application is fruitful, forming the foundations for a lot of methods in optimizations. 
 
 
-**Definition: Fixed Point of Operators**: 
+**Definition | Fixed Point of Operators**: 
 
 > Let $T:X\mapsto X$ where $(X, d)$ gives a complete metric space, then $x\in X$ is a fixed point of $T$ if $Tx = x$. We denote $\text{fix}(T)$ to be the set of fixed point for the operator $T$. 
 
@@ -158,7 +158,7 @@ assuming that the metric space is complete, and the mapping for the fixed point 
 
 It's Lipschitz continuous in set $X$ with $L = \alpha\in [0, 1)$, a stronger type of continuity. 
 
-**Theorem: Multiple Contractions**
+**Theorem | Multiple Contractions**
 
 > Let $T, T_1, T_2$ be contractions with constants $\alpha, \alpha_1, \alpha_2$ respectively then: 
 > - $T$ is uniformly continuous on $X$. 

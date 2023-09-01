@@ -100,12 +100,12 @@ None, I thought all of these out myself.
 ---
 ### **Baire's Category Theorem**
 
-We provide 2 different proofs here. We lable statement using \[(.)\] to keep track of them during the proof. 
+We provide 2 different proofs here. We label statement using \[(.)\] to keep track of them during the proof. 
 
 #### **Terminologies and background**
 Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is 
 1. *Rare* (which is the same as Nowhere dense, abbreviated as N.D). 
-2. *Meager*, maens that $M$ is a union of countably(or finite) many *rare* sets.
+2. *Meager*, means that $M$ is a union of countably(or finite) many *rare* sets.
 3. Non-Meager, when $M$ is not a Meager set. 
 
 #### **Thm-3 | Baire Category**
@@ -115,20 +115,20 @@ Let $(X, d)$ be a complete metric space, with $M\subseteq X$, the $M$ is
 **Proof**
 
 For the best comfort of reading, I am experimenting with new format of presenting the proof. To proof, we derive a contradiction by assuming that, $M$ is the union of $C_n$, a sequence of set that are all closed, having empty interior (they are all N.D). To start, we list and label the following statements
-* \[(S1)\]: $(M, d)$ is a metric space that is complete with $M\neq \emptyset$. 
-* \[(S2)\]: $M= \cup_{n\in \mathbb N}C_n$. 
-* \[(S3)\]: $C_n = \overline C_n$, these sets the make up $M$ above are all closed sets. All N.D. 
+* \[\[S1\]\]: $(M, d)$ is a metric space that is complete with $M\neq \emptyset$. 
+* \[\[S2\]\]: $M= \cup_{n\in \mathbb N}C_n$. 
+* \[\[S3\]\]: $C_n = \overline C_n$, these sets the make up $M$ above are all closed sets. All N.D. 
 
-Observe that, if $C_n = M$ for any $n\in \mathbb N$, then the interior of $C_n = M$, which contradicts N.D assumptions from \[(S3)\]. Therefore it must be $C_n \neq M$ for all $n\in \mathbb N$. Therefore, let's consider fixing any $n \in \mathbb N$, then 
+Observe that, if $C_n = M$ for any $n\in \mathbb N$, then the interior of $C_n = M$, which contradicts N.D assumptions from \[\[S3\]\]. Therefore it must be $C_n \neq M$ for all $n\in \mathbb N$. Therefore, let's consider fixing any $n \in \mathbb N$, then 
 
 $$
 \begin{aligned}
-    (C_n \neq M \wedge [(S1)]) &\implies (M\setminus C_n \neq \emptyset)
+    (C_n \neq M \wedge [[\text{S1}]]) &\implies (M\setminus C_n \neq \emptyset)
     \\
     &\iff 
-    (\exists p_n \in M\setminus C_n) \leftarrow [(1)] 
+    (\exists p_n \in M\setminus C_n) \leftarrow [[1]] 
     \\
-    [(2)]\rightarrow (C_n \text{ is closed}) &\iff (M\setminus C_n \text{ open}) \; \text{ by thm-2}
+    [[2]]\rightarrow (C_n \text{ is closed}) &\iff (M\setminus C_n \text{ open}) \; \text{ by thm-2}
     \\
     &\iff (\exists \epsilon_n > 0: \mathbb B_{\epsilon_n}(p_n)\subseteq (M\setminus C_n))
     \\
@@ -148,7 +148,7 @@ $$
         p_{n + 1} \not\in C_{n + 1}
     \right) 
     \\
-    \left([(2)]\wedge p_{n + 1}\not\in C_{n + 1}\right) &\implies
+    \left([[2]]\wedge p_{n + 1}\not\in C_{n + 1}\right) &\implies
     \left(
         \exists \epsilon_{n + 1} : \epsilon_{n}/3 > \epsilon_{n + 1} > 0 : \mathbb B_{\epsilon_n}(p_{n + 1}) \cap C_{n + 1} = \emptyset
     \right). 
@@ -168,17 +168,17 @@ $$
 \end{aligned}
 $$
 
-All of these 3 conditions will be referred to as \[(IH)\]. From here we can derive the sequence $p_n$ is Cauchy in the metric space. Consider any integer $l, n > 0$, we have
+All of these 3 conditions will be referred to as \[[IH\]\]. From here we can derive the sequence $p_n$ is Cauchy in the metric space. Consider any integer $l, n > 0$, we have
 
 $$
 \begin{aligned}
     d(p_{n}, p_{n + l}) &\le 
     d(p_{n}, p_{n  +1}) + d(p_{n + 1}, p_{n + 2} ) + \cdots + d(p_{n + l - 1}, p_{n + l})
     \\
-    [(IH)] \implies &\le 
+    [[\text{IH}]] \implies &\le 
     \epsilon_n/3 + \epsilon_{n +1}/3 + \cdots + \epsilon_{n + l -1}/3
     \\
-    [(IH)]\implies 
+    [[\text{IH}]]\implies 
     &\le 
     \frac{\epsilon_n}{3} + \frac{\epsilon_n}{3^2} + \cdots + \frac{\epsilon_{n}}{3^l}
     \\
@@ -200,11 +200,11 @@ $$
     \\
     &< \frac{\epsilon_1}{3^n} \sum_{m = 0}^{\infty} \frac{1}{3^m} = \frac{\epsilon_1}{2},
     \\
-    \text{let }[(3)] \rightarrow d(p_{n}, p_{n + l}) &\le 
+    \text{let }[[3]] \rightarrow d(p_{n}, p_{n + l}) &\le 
     \epsilon_n 
     \sum_{m = 1}^{l}\frac{1}{3^m}
     \\
-    \text{let }[(4)] \rightarrow d(p_{n}, p_{n + l}) &\le 
+    \text{let }[[4]] \rightarrow d(p_{n}, p_{n + l}) &\le 
     \frac{\epsilon_1}{2}. 
 \end{aligned}
 $$
@@ -213,13 +213,13 @@ Indepdent of $l$, we have $\lim_{n\rightarrow \infty} d(p_n, p_{n + l}) = 0$. Th
 
 $$
 \begin{aligned}
-    [(3)]\implies 
+    [[3]]\implies 
     d(p_{n + l}, p_{n + 1 + l}) &< 
     \epsilon_{n + 1} \left(
         \frac{1}{3} + \frac{1}{3^2} + \cdots+ \frac{1}{3^l}
     \right)
     \\
-    [(3)], [(4)]\implies & 
+    [[3]], [[4]]\implies & 
     < \epsilon_{n + 1} 
     \sum_{n = 1}^\infty 3^{-n} = \frac{\epsilon_{n + 1}}{2}
     \\
@@ -239,7 +239,7 @@ $$
     d(p_n, p) 
     &\le d(p_n, p_{n + 1}) + d(p_{n + 1}, p)
     \\
-    [(IH)] \implies 
+    [[\text{IH}]] \implies 
     &\le
     \frac{\epsilon_n}{3} + \frac{\epsilon_n}{6} < \epsilon_n, 
 \end{aligned}

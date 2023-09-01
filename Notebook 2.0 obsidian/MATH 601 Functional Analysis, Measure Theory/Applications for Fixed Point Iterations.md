@@ -5,7 +5,7 @@
 
 We view over some fixed point iterations method that we probably learned at some point but wasn't able to make the connections for it. 
 
-**Applications:Minimum of Strongly Convex Function**
+**Applications | Minimum of Strongly Convex Function**
 
 > One immediate applications of the algorithm is to find minimum of a function that is strongly convex. Suppose that $f: \mathbb E\mapsto \R$ to be a strongly convex function. To perform the fixed point iterations, we solve the equation $\mathbf 0 = \nabla f(x)$ by transforming it to the fixed point form: $x = x - \beta \nabla f(x), \beta > 0$, then $(I - \beta \nabla f)^{-1}$ is now a contraction. A fixed point iterations performed on this operator is a proximal point method. 
 

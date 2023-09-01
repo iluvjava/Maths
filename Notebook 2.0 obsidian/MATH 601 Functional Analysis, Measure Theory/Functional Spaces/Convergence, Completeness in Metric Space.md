@@ -125,9 +125,13 @@ This theorem is useful for characterizing when, the subspace of a complete metri
 > 1. $x\in \text{cl}(M)$ if and only if there is a sequence $(x_n)\in M$ such that $x_n\rightarrow x$. 
 > 2. $M$ is closed, meaning that $M = \text{cl}(M)$ if and only if $x_n\rightarrow x$ implies that $x\in M$. 
 
-**References**: 1.4-6, Kreyzig's Intro to Functional analysis. We are skipping the proof for now. 
+**Proof**
 
-#### **Theorem | Complete Subspace, Closure Equivalence**
+(1.) Already has a proof from previous parts of the file. UNFINISHED. 
+
+**References**: 1.4-6, Kreyzig's Intro to Functional analysis. 
+
+#### **Theorem | Complete Subspace is Closed**
 > Let $M\subseteq X$ be a subspace of the metric space $(X, d)$, then the metric space is complete if and only if the set $M$ is closed in the set $X$.
 
 **Proof**: 

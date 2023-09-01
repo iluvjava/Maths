@@ -235,18 +235,18 @@ Then the adjoin operator domain $D^*$, where $D^* = \{v\in C^2[a, b] : (\star), 
 $$
 \begin{aligned}
     \begin{cases}
-        [\alpha_2u + \beta_2 u](b) =  0
+        [\alpha_2u + \beta_2 u] (b) =  0
         \\
-        [\alpha_2v + \beta_2v](b) = 0
+        [\alpha_2v + \beta_2v] (b) = 0
     \end{cases} &\iff 
     M(b)\begin{bmatrix}
         \alpha_2 \\ \beta_2
     \end{bmatrix} = \mathbf 0
     \\
     \begin{cases}
-        [\alpha_1 u + \beta_1 u](a) = 0
+        [\alpha_1 u + \beta_1 u] (a) = 0
         \\
-        [\alpha_1 v + \beta_1 v](b) = 0
+        [\alpha_1 v + \beta_1 v] (b) = 0
     \end{cases}
     &\iff
     M(a) \begin{bmatrix}

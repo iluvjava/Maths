@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-Rockefellar was motivated by the fact that the natural interior of a set in $\mathbb R^n$ might not exists when the set belongs to a lower dimensional subset of $\mathbb R^n$. He still wants the interior so he changed the background set for the topology to be the affine span of the set instead. We will follow chapter 6 of his Convex Optimization Textbook. 
+Rockafellar was motivated by the fact that the natural interior of a set in $\mathbb R^n$ might not exists when the set belongs to a lower dimensional subset of $\mathbb R^n$. He still wants the interior so he changed the background set for the topology to be the affine span of the set instead. We will follow chapter 6 of his Convex Optimization Textbook. 
 
 **Definition** 
 > Let $Q\subseteq \mathbb{E}$ be a set in the Euclidean space, then the relative interior of the set $Q$ denoted as $\text{ri}(Q)$ is the interior of the Affine Hull $\text{affhull}(Q)$: 

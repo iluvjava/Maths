@@ -16,7 +16,7 @@ The isometry is about the vector space. An example where we can use to complete 
 
 Completeness in Banach space is affected by the shift invariant of the norm. It seems to be the case that the shift invariance creates an relations between the convergence of the norm, and the convergence of the actual sequence itself in the space. 
 
-**Definition**
+**Definition | Type of Convergence of Series of Vectors**
 > Let $(x_n)$ be a sequence in $(X, \Vert \cdot\Vert)$ (a normed vector space), then the series: 
 > 1. Converges to $x$ when $\lim_{n\rightarrow \infty} \sum_{i = 1}^nx_i = x$. 
 > 2. Converges absolutely when $\lim_{n\rightarrow \infty}\sum_{i = 1}^{n} \Vert x_i\Vert$ converges. 

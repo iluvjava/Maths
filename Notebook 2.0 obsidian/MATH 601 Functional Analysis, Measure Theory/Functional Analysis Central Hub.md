@@ -1,14 +1,14 @@
 ### **Intro**
 
-Functional analysis is just calculus and linear algebra but in generalized spaces such as the normed spaces and Hilbert spaces. The theories goes deep and establishes theorems for spaces such as $C[a, b]$, continuous function over an interval, and $L^2[a, b]$, all Lesbesgue Integral functions over the interval $[a, b]$.
+Functional analysis is just calculus and linear algebra but in generalized spaces such as the normed spaces and Hilbert spaces. The theories goes deep and establishes theorems for spaces such as $C[a, b]$, continuous function over an interval, and $L^2[a, b]$, all Lebesgue Integral functions over the interval $[a, b]$.
 
 The whole course is kinda based on: 
 1. Kryzig's Introduction to Functional analysis. 
 2. Notes from Professor Wang for the Math 328 that teaches Analysis II at UBCO. 
-3. Various sources on the internet. 
+3. Various sources on the internet, they should be stated clearly under the context of the files. 
 4. A bit of Heinz, Combette's Monotone operator book where more advanced topics were introduced under the context of optimizations in Hilbert spaces. 
 
-Functional analysis has 2 foundations. Vector spaces and metric spaces. The first is of interests because many functions and sequences form a vector space. The second is of interest because it's a generalized norms. From these theories, we build up to wards more useful spaces such as the Hilbert spaces and linear operators in Hilbert spaces. 
+Functional analysis has 2 foundations. Vector spaces and metric spaces. The first is of interests because many functions and sequences form a vector space. The second is of interest because it's a generalized norms. From these theories, we build up to wards more useful spaces such as the Hilbert spaces and linear operators in Hilbert spaces. For an indexers of statements, claims theorems and lemma, see [Functional Analysis INDEXER](Functional%20Analysis%20INDEXER.md). 
 
 ---
 ### **Metric Spaces** 
@@ -88,9 +88,11 @@ Hilbert space is a type of complete, inner product space. It has to be complete.
 	- Orthonormal basis and Orthonormal sequence
 	- Bessel's inequality
 	- Total Basis
+
 - [Bilinear Form, Rietz Representations](Bilinear%20Form,%20Rietz%20Representations.md)
 	- Rietz representation theorem for bounded linear functionals
 	- Bilinear form definition and its norm
+
 - [Linear Mapping in Hilbert Space](Linear%20Mapping%20in%20Hilbert%20Space.md)
 	- Hilbert Adjoint and their properties
 	- Unitary, Normal, operators

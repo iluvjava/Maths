@@ -59,3 +59,9 @@ Refers to section 1.3 of the textbook reference (1.). All of the following distr
 
 Since there are a lot of distributions, it's not a great idea to work through then. For the purpose of the notes, I will list the parameters without derivations for some of these distributions, see [Examples of Exponential Family](Examples%20of%20Exponential%20Family.md) for more information. 
 
+
+---
+### **Hypothesis Testing on the Exponential Family**
+
+See [Hypothesis Testing](Hypothesis%20Testing.md) for more info. 
+

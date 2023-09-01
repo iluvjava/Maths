@@ -154,8 +154,8 @@ Closed and bounded doesn't necessarily mean that the space is compact, this is w
 
 We list important theorems and cite the places that they are coming from. It's in Kryzig's textbook and the info is enclosed in \[\]. 
 
-#### **Thm | Closedness and Completeness (2.4-2)**
-> A finite dimensional subspace/space is complete, both at the same time. 
+#### **Thm (2.4-2) | Closedness and Completeness **
+> A finite dimensional subspace/space is complete and closed, both at the same time. 
 
 **Note**:
 
@@ -323,7 +323,7 @@ This lemma can lift a vector up "vertically" above a closed linear subspace in t
 
 The following theorem will be using the previous lemma. 
 
-**Thm (2.5-5) | Finite Dimensional Space**
+**Thm (2.5-5) | Compact Norm Ball Means Finite Dimensional Space**
 > If a normed space $X$, $M = \{x: \Vert x\Vert \le 1\}$, the closed unit ball, is compact then $X$ is a finite dimensional space. 
 
 **Observations:**
