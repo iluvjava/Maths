@@ -52,12 +52,10 @@ Refers to section 1.3 of the textbook reference (1.). All of the following distr
 1. Exponential 
 2. Poisson, Gamma
 3. Gaussian
-4. Bernoulli, Catagorical
+4. Bernoulli, Categorical
 5. Dirichlet, Beta
 6. Geometric
 7. Chi-Square
 
 Since there are a lot of distributions, it's not a great idea to work through then. For the purpose of the notes, I will list the parameters without derivations for some of these distributions, see [Examples of Exponential Family](Examples%20of%20Exponential%20Family.md) for more information. 
-
----
 

@@ -53,7 +53,7 @@ Observe that, direct from the definition, we know that $x\in \text{bd}(Q)$ has $
 * A set can be both opened and closed, only opened or closed, or both. A set that is opened and closed would be $[a, b)$, and a set that is both opened and closed is $\mathbb R$. And *the empty set is closed and opened*. 
 
 **Basic Examples**
-* The empty set is open because we can't choose any element from it and exam its neighbour. The empty set is closed because for all element's neighbour, it intersects with the empty set, thus it's open trivially. The empty set is *clopen (closed and open)*. 
+* The empty set is open because we can't choose any element from it and exam its neighbor. The empty set is closed because for all element's neighbor, it intersects with the empty set, thus it's open trivially. The empty set is *clopen (closed and open)*. 
 * The set $\mathbb Q$ is neither closed nor open. For every epsilon ball open around $x\in \mathbb Q$, there exists an irrational number. Hence it's not open. It's not closed because a sequence of rational numbers can converge to an irrational number. 
 
 

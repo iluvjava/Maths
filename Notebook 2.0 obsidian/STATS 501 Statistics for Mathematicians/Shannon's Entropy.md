@@ -6,11 +6,13 @@ We need this for machine learning.
 
 The Shannon's Entropy is a measure on the amount of bits needed to represents the information from a given probability distribution of a random variable. 
 
-Remember this: 
+**The Key**
 
-> A rare events convey more information than a common event. 
+> A rare events convey more information than a common event. To make the measurable more concrete, consider the transformation $-\ln (\mathbb P(x))$ where it inverts probability, making small probability huge in value after the transformation. 
 
-Given a discrete random variable $X$, taking $n$ possible outcomes with nonzero possibility, the entropy is measured by: 
+
+#### **Definiton | The Entropy**
+Given a discrete random variable $X$, taking $n$ possible outcomes with nonzero possibility, the entropy is the expected value of the probability mass function transformed by $-\ln$, demonstrated below. 
 
 $$
 \begin{aligned}
@@ -54,7 +56,7 @@ The continuous version of the entropy exists and it defined by a continuous rand
 
 > What is this a measure of? 
 
-The measures the expected value of "surprises". 
+The measures the expected value of "surprises". A surprise is the occurance of a very small probability event. 
 
 > Why is there a log? 
 

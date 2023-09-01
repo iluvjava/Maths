@@ -46,3 +46,10 @@ $$
 $$
 
 which is essentially saying that $\text{cl}C\subseteq (1 - \lambda)^{-1} \text{int} C$, $\forall \lambda\in (0, 1)$. The slightly dilated interior of $C$ is able to contain the closure of the set $C$. Assuming $C$ has $\mathbf 0$ in its interior. 
+
+#### **Thm 6.1 | Accessibility Lemma with Relative Interior**
+> Let $C$ be cvx in $\mathbb R^n$, let $x \in \text{ri}C$ and $y \in \text{cl}C$, then $(1 - \lambda)x + \lambda y$ belongs to $\text{ ri}C$ and it's also in $C$ for $0\le \lambda < 1$. 
+
+**Proof**
+
+Project any set to the $\text{aff}(C)$, which should be span by $m\le n$  many points, then perform the same accessibility proof as above but for $C$ in $\mathbb R^m$. 

@@ -164,3 +164,8 @@ $$
 
 therefore, the boundary of the convex sets has a measure of zero. And hence, it's a measurable set by (3.). By (2.), open sets are measurable sets, hence $C^\circ \sqcup \partial C$ gives a measurable sets by disjoin union of 2 measurable sets are still measurable. 
 
+
+---
+### **A New Proof** 
+
+We summarize a new proof that can lead to nicer handling of the edge cases that we assumed WOLG. 

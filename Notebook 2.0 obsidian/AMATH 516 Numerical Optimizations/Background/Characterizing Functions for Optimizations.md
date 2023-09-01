@@ -2,16 +2,16 @@
 
 Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. This file is a successor for the file [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written for Prof Sasha's class. 
 
-To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept ofan *Augmented real function*.
+To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept of an *Augmented real function*.
 
 **Def | The Augmented Real Functions**
 > $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
 
-Here is a list of topics that are helpful for understanding the basics: 
+Read [Augmented Reals](Augmented%20Reals.md) for more information. Here is a list of topics that are helpful for understanding the basics: 
 
-* [[Epigraph]], this describes the geometry of the function.
-* [[Lower Semi-Continuous]], this put some lower bound on all limit point on the function. 
-* [[Convex Sets Intro]], this helps describing convexity of functions. 
+* [Epigraph](Epigraph.md), this describes the geometry of the function.
+* [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
+* [Convex Sets Intro](Convex%20Sets%20Intro.md), this helps describing convexity of functions. 
 * [Dom](Dom.md), The definition for the domain of a function that is on the augmented reals. 
 
 ---
@@ -48,7 +48,7 @@ For the most part of Convex Analysis, the study of functions focuses on $C^n$ fu
 
 ---
 ### **Closed Function**
-> a function $f$ is a closed if and only if the [[Epigraph]] is a closed set. 
+> a function $f$ is a closed if and only if the [Epigraph](Epigraph.md) is a closed set. 
 
 **Closeness Equivalence of Functions**
 
@@ -90,7 +90,7 @@ This concept is also equivalent to level boundedness, which is quoted by Tyrell 
 
 **Gocha**
 
-The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. Rarely used besides for the theories of functions. Used in [[Existence of a Minimizer]]. 
+The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 2 \pi n$ such that $f(x_n) = 0$ all the time. Rarely used besides for the theories of functions. Used in [Existence of a Minimizer](Existence%20of%20a%20Minimizer.md). 
 
 **References**: 
 
@@ -113,7 +113,7 @@ The support function of a set $Q$, is the conjugate of the indicator function. I
 
 **Remarks**
 
-See [[Support Function]] for more detailed information.
+See [Support Function](../CVX%20Analysis/Support%20Function.md) for more detailed information.
 
 **Def: Gauge Functions**
 
@@ -202,7 +202,7 @@ For example, the function $\exp(x)$ is a strictly convex function.
 
 * Any strongly convex function is going to be a coercive function, but the converse is definitely not true. 
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
-* For more about it see [[Strong Convexity, Equivalences and Implications]]
+* For more about it see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 ---
 ### **Convexity and Lipschitz Functions**
@@ -232,7 +232,7 @@ The absolute signs make it possible to model the smoothness for both convex and 
 
 **Proofs**
 
-A proof can be found in [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
+A proof can be found in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 
 **Remarks**: 
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 

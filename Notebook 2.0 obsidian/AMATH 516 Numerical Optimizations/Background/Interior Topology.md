@@ -1,19 +1,35 @@
-[[Topological Basics for Optimizations]]
+[Topological Basics for Optimizations](Topological%20Basics%20for%20Optimizations.md)
 
 
 ---
-**Interior**
+### **Interior**
 
-The interior of a set $B$ is the set of all the point such that for each point, there exists an epsilon ball surrounding that point and the whole ball is in the set $B$. Denotes the interior of the set as $\text{int}(B)$, then we have the definition that: 
+The interior of a set $B\subseteq \mathbb R^n$ is the set of all the point such that for each point, there exists an closed epsilon ball surrounding that point and the whole ball is in the set $B$. Denotes the interior of the set as $\text{int}(B)$, then we have the definition that: 
 
+#### **Def | Interior of a Set**
 > $$
 > x\in \text{int}(B)\iff 
-> \exists \delta: \mathbb{B}_\delta \subset Q
+> \exists \delta > 0: \mathbb{B}_\delta \subset Q
 > $$
 
-Nice and easy, and then we will be able to define a closed and an opened set: 
+**Context**
 
-* A set is open iff $Q = \text{int}(Q)$. 
-* A set is closed iff $Q = \text{cl}(Q)$
+The characterization allows moving around the point a tiny bit, make things easier when dealing with infinity. 
 
-To prove it, we will need to use the epsilon balls, and arbitrary sequences on the set under discussion. If a set is closed, then every limit point is in the set. If a set of open, then that is false. If a set if compact, then it means it's closed and bounded. 
+**Observations**
+
+If $C_1 \subseteq C_2$, then it's interior still preserves this relation 
+
+**Facts**
+
+We call a set $C$ is open if $\text{int}(C) = C$, for notation simplicity we make $\text{int}C = C^\circ$. 
+
+
+#### **Thm | Maximal Open set Subset is the Interior of the Set**
+> The interior of the set $C$ is the union of all open set that is contained in $C$, meaning that $\text{int}(C) = \bigcup\{S\subseteq C | S^\circ = S\}$
+
+
+**Proof**
+
+If $x \in C^\circ$ then exists open ball $\mathbb = \{x : \Vert x\Vert < 1\}$, $\epsilon > 0$ where $x + \epsilon \mathbb B \subseteq C$, since $x + \epsilon \mathbb B$ is an open set, it belongs to the maximal open subsets of $C$. Choose any $x \in \bigcup\{S\subseteq C | S^\circ = S\}$, then by some type of axiom (maybe the axiom of choice) we have $x \in S \subseteq S$, and by the axiom of topology, there exists $\epsilon > 0$ such that $s + \epsilon \subseteq S \subseteq C$, and hence by the above definition of interior we have $x \in C^\circ$. 
+

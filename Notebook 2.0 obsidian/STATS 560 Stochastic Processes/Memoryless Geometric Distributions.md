@@ -6,7 +6,7 @@
 
 We use theory of Markov chain to understand and derive the memoryless properties of the geometric random variable. Denote $X\sim \text{Geo}(\alpha)$, produces PDF $f_X(k)=(1 - \alpha)\alpha^{k - 1}$. 
 
-#### **Thm-1 | Memoryless**
+#### **Thm-1 | Memoryless of Geometric**
 > The random variable $T$ is memoryless meaning that $P(T = m + n | T > n) = P(T = m), \;\forall m \in \mathbb N$. 
 
 **Proof**
@@ -46,3 +46,7 @@ $$
 $$
 
 and that completes the proof. 
+
+
+### **Memoryless of Exponential**
+

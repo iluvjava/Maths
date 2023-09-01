@@ -1,7 +1,11 @@
+### **Intro**
+
+References were from Heinz's Monotone Book. 
+
 ### **Defining Topological Spaces**
 
 > Let $\mathcal X$ be a set and $T \subseteq 2^{\mathcal X}$, the set $T$ is a collection of $\mathcal X$ which we refers to be a topology when 
-> 1. $\empty, X \in T$. 
+> 1. $\emptyset, X \in T$. 
 > 2. Let $I$ be an arbitrary index set with $U_i\in T$ for all $i\in I$ then $\bigcup_{i\in I}U_i \in T$. It's closed under union. 
 > 3. Let $\{U_i\}_{i=1}^n$ be an arbitrary finite subset of $T$, then $\bigcap_{i=1}^n U_i \in T$. The set $T$ is closed under finite intersections. 
 > 

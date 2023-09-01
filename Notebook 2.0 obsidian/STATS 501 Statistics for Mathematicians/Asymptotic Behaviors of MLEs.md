@@ -4,4 +4,4 @@
 ---
 ### **Intro**
 
-
+We discuss how the MLE converges for distribution as more and more realizations were made for deriving the MLE. 
