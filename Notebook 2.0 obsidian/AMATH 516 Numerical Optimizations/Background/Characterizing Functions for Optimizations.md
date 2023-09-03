@@ -102,7 +102,7 @@ Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational a
 
 These functions are new special objects unique to nonsmooth analysis. 
 
-**Def: The support Functions**
+**Def | The support Functions**
 
 $$
 \delta^\star_Q(v) = 
@@ -115,7 +115,7 @@ The support function of a set $Q$, is the conjugate of the indicator function. I
 
 See [Support Function](../CVX%20Analysis/Support%20Function.md) for more detailed information.
 
-**Def: Gauge Functions**
+**Def | Gauge Functions**
 
 $$
 \gamma_Q(x) = \inf \left\lbrace
@@ -125,7 +125,7 @@ $$
 
 A gauge function scales the set $Q$ as little as possible so that the set contains the input parameters $x$. 
 
-**Def: Indicator Functions**
+**Def | Indicator Functions**
 
 $$
 \delta_Q := 

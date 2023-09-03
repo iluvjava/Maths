@@ -22,7 +22,7 @@ Introductory Functional Analysis with Applications, Kreyszig.
 ---
 ### **Subspace of Metric Space**
 
-A subspace $(Y, \tilde d)$ of the metric space $(X, d)$ is where $Y\subseteq X$ with $\tilde d$ being an restriction to $Y\times Y$. 
+A subspace $(Y, \tilde d)$ of the metric space $(X, d)$ is where $Y\subseteq X$ with $\tilde d$ being a restriction to $Y\times Y$. 
 
 The first 2 axioms are trivially true, however, to verify that the subspace is again a metric space, we need to prove that the triangle inequality axiom holds. 
 
@@ -129,6 +129,6 @@ Using the topological characterization of a continuous mapping, the above condit
 
 Definition directly taken from [wiki](https://en.wikipedia.org/wiki/Isometry). 
 
-#### **Def | An isometry**
+#### **Def | Metric isometry**
 
 > Let $X,Y$ be metric spaces with metrics $d_X, d_Y$, let $f$ be a functional $X\mapsto Y$, this functional is call isometry if it's distance preserving, meaning that $d_X(x, y) = d_Y(f(x), f(y))$. 

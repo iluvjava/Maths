@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-In this file we provide proof the theorem listed in: [[../CVX Analysis/Convex Functions CENTRAL HUB#Continuity of Closed Convex Functions]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
+In this file we provide proof the theorem listed in: [[../CVX Analysis/Convex Functions CENTRAL HUB#Continuity of Closed Convex Functions | Convex Function Central Hub]]. To prove it, we need to use the lemma: [[Bounded Subgradient Lemma]], and recall the fact that in $\text{int}(\text{dom}(f))$, the subgradient from there is always nonempty and bounded. 
 
 Recall that, not all convex function is Lipschitz Continuous on the closure of it's domain, but if the subgradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 
@@ -188,7 +188,7 @@ $$
 Convex function is locally Lipschitz inside of a compact subset of the interior of its domain. 
 
 ---
-### **Corollary: Proper Convex function is Lipschitz in its Relative Interior**
+### **Corollary | Proper Convex function is Lipschitz in its Relative Interior**
 
 
 

@@ -7,7 +7,7 @@
 
 The gradient of some functions, if it's nonexpansive if and only if it's firmly nonexpansive. 
 
-**Thm: Baillon Haddad Theorem**
+**Thm | Baillon Haddad Theorem**
 > Let $f:X\mapsto \R$ be convex and differentiable, then $\nabla f$ is nonexpansive if and only if $\nabla f$ is firmly nonexpansive. 
 
 

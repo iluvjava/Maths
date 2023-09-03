@@ -6,7 +6,7 @@
 
 The Asplund function is an example of a difference between 2 convex functions resulting in a function that is still convex. 
 
-**Definition: Asplund Function**
+**Definition | Asplund Function**
 > Define $S\subset X$ to be non-empty. Asplund function is defined as: 
 > $$
 > \begin{aligned}

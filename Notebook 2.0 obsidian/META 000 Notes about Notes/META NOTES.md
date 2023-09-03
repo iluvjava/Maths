@@ -22,6 +22,7 @@ Something to do when we have time.
 		- [x] [MLE, Sufficient Statistics of the Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/MLE,%20Sufficient%20Statistics%20of%20the%20Exponential%20Family.md), 
 		- [x] [Examples of Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/Examples%20of%20Exponential%20Family.md) 
 	- [ ] Add an entry about the Wald test method and likelihood ratio, continuing that discussion from [Hypothesis Testing](STATS%20501%20Statistics%20for%20Mathematicians/Hypothesis%20Testing.md). 
+- [ ] Make An Indexer Page for Optimizations
 
 ### **Optimizations**
 - [ ] Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 

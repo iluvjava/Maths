@@ -24,26 +24,18 @@ There are finer, more complicated extension of convexity for functions, some of 
 * Strict convexity.
 * Weak convexity.
 * Quasi Convexity.
-* Psuedo Convexity, strictly stronger than Quasi convexity. 
+* Pseudo Convexity, strictly stronger than Quasi convexity. 
 * Invexity
 
 Each of these topics deserves its own files. 
 
----
-### **Lower Semi-Continuous Convex function is Closed**
-
-> A convex function $f$ is closed if an only if it's lower semi-continuous. 
-
-**Proof**: 
-
-The directions where, if a function is lower semi-continuous and it's convex, then its epigraph is closed. This is direct and proved in [Lower Semi-Continuity is Closedness of Epigraph](../Background/Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph%20). The other direction is also obvious because if a function is closed, regardless of it being convex or not, it's l.s.c. 
 
 ---
 ### **Continuity of Closed Convex Functions**
 
 Convex function is almost, continuous everywhere in their domain. 
 
-**Thm-1: Local Lipschitz of Convex Function**
+**Thm-1 | Local Lipschitz of Convex Function**
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$ be convex. Let $x_0 \in \text{int}(\text{dom}(f))$, then there exists $\epsilon > 0$, and $L > 0$ such that $\mathbb B_{x_0}$ such that: 
 > 
 >  $$
@@ -52,11 +44,13 @@ Convex function is almost, continuous everywhere in their domain.
 > 
 > the function is locally Lipschitz. 
 
-**Source**: Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitri's notes, chapter 3 for his AMATH 516. 
+**Source**: 
+
+Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the main results in Dimitri's notes, chapter 3 for his AMATH 516. 
 
 **Remarks**: 
 
-The definition of Lipchitz is in [ Lipschitz Continuity](../Background/Lipschitz%20Continuity%20), and the proof and detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. See [this](Convex%20Line%20Segment%20Continuity%20) for more information. 
+The definition of Lipchitz is in [Lipschitz Continuity](../Background/Lipschitz%20Continuity%20), and the proof and detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. See [this](Convex%20Line%20Segment%20Continuity%20) for more information. 
 
 ---
 ### **Characterization for Convex Functions**
@@ -71,7 +65,7 @@ For all convex function, some of them will have gradient. The gradient might not
 
 The property of convex function will not ensure the existence of a minimizer. Consider the example of $\exp(x)$, it has a minimum and it's convex but it doesn't have minimizers. We need conditions that is stronger to ensures the existence of a minimizers. 
 
-**Thm-2 | Minimizers for L.S.C Convex Functions Over a Compact Subset**
+**Thm-2 | Minimizers for l.s.c Convex Functions Over a Compact Subset**
 > Let $f$ be closed convex and proper, let $Q\subset X$ be a compact set in the space of where the function is defined such that $x\cap \text{dom}(f) \neq \emptyset$, then the set of minimizers, denoted as $S = \arg\min_{x\in Q}f(x)$ for the function is non-empty, and it's a convex set. 
 
 **Proof**:

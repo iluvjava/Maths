@@ -9,7 +9,7 @@ We might need to use [[Duality/Fenchel Identity, Inequality]] one theorem charac
 The duality theorem, straight from the legendary researchers. We phrase the theorem and then we discuss its details, and problems. 
 
 
-**Theorem-1: Fenchel Rockafellar Dual Problems**
+**Theorem-1 | Fenchel Rockafellar Dual Problems**
 > Let $g: \mathbb X\mapsto \mathbb{\bar{R}}$, let $h: \mathbb{Y}\mapsto \mathbb{\bar R}$, let $A$ be a linear mapping from $\mathbb X$ to $\mathbb Y$, then the primal and the dual problem have the following format: 
 > 
 > $$
@@ -36,7 +36,7 @@ We assume that $f, g$ are convex, closed and proper functions. This is required 
 
 The simultaneous existence of minimizers both primal and dual such that their objectives are equaled is characterized following theorem: 
 
-**Theorem-2: Fenchel Rockafellar Duality**
+**Theorem-2 | Fenchel Rockafellar Duality**
 > Let $x\in \text{dom}(g), y \in \text{dom}(h)$, then all of the following are equivalent: 
 > 1. $x$ is a primal solution and $y$ is a dual solution achieving: $\mu = \mu^\star$. 
 > 2. $g(x) + h(Ax) = -g^\star(A^*y) - h^\star(-y)$. 
@@ -48,11 +48,11 @@ The simultaneous existence of minimizers both primal and dual such that their ob
 
 Consult theorem 20.4 in Heinz's course notes for more information. 
 
-**Refernece**: 
+**References**: 
 
 Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO. 
 
-**Corollary: Primal Solution via Dual Solution**
+**Corollary | Primal Solution via Dual Solution**
 > Assuming that the dual problem has a solution, denoted as $y^+$, and there is no duality gap, meaning that $\mu^\star = \mu$, then the set of primal solutions has: 
 > $$
 > \begin{aligned}
@@ -61,7 +61,7 @@ Theorem 20.4 in Heinz's course notes for the 563 optimization class at UBCO.
 > $$
 > And, it's very much possible to have an empty set for the above dual characterizations for the primal optimal solutions.
 
-**Theorem-3: Regularity Conditions and existence of Minimizers**
+**Theorem-3 | Regularity Conditions and existence of Minimizers**
 
 > For any of the following conditions, if they hold for $f, g$, then, the primal and dual will have a solutions with zero duality gap. 
 > 1. $\text{ri.dom}(g)\cap A(\text{ri.dom}(f))\neq \emptyset$ or, 
@@ -190,7 +190,7 @@ giving us the dual, and the primal problem, for easy notation.
 
 Things doesn't have to be convex for the above derivation to be correct. The convexity is really for the strong duality. 
 
-**Theorem-4: The Weak Duality**
+**Theorem-4 | The Weak Duality**
 > For all $(x, y)\in X\times Y$, we have
 > $$ 
 > f(x) + g(Ax) \ge \mu \ge \mu^\star \ge - f^\star(A^*y) - g^\star(-y) 

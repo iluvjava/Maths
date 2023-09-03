@@ -1,6 +1,6 @@
 ### **Intro**
 
-We seek to solve the follwoing problems: 
+We seek to solve the following problems: 
 
 $$
 \begin{aligned}

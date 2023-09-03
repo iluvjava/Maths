@@ -1,12 +1,11 @@
 ### **Intro**
-File links has list of Indices for theorems, lemma, and definitions talked about in function analysis and the context of their appearances. For a summarization of files, see [Functional Analysis CENTRAL HUB](Functional%20Analysis%20CENTRAL%20HUB.md). 
+File links has list of Indices for theorems, lemma, and definitions talked about in function analysis and the context of their appearances. 
 
 ---
 ### **Theorems**
 
 Theorems In red means it's unfinished. 
 
-#### **Theorems**
 **Topologies**
 - [Baire's Category Theorem | Closed Open Complement](Baire%20Category,%20More%20Metric%20Topologies.md)
 - [Hahn Banach Theorem | Bounded Linear Functional](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md), 
@@ -31,8 +30,7 @@ Theorems In red means it's unfinished.
 
 **Hilbert Space**
 - [Hilbert Space Projection Theorem | Characterizations of Hilbert Space Projection | Obtuse Angle Theorem | Orthogonal Decomposition in Hilbert Space | Projection onto Orthogonal Basis | Bessel's Inequality | Parseval's Relations | Maximal Basis Characterizations | Equivalences for Total Orthogonal Basis Sequence | Separability and Basis](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
-- [Properties of the Adjoint Operators | Complementary Spaces via Adjoint Operators | Theorem of Injetivity](Linear%20Mapping%20in%20Hilbert%20Space.md)
-
+- [Properties of the Adjoint Operators | Complementary Spaces via Adjoint Operators | Theorem of Injectivity](Linear%20Mapping%20in%20Hilbert%20Space.md)
 - <mark style="background: #FF5582A6;"> [Weierstrass Approximation Theorem](Weierstrass%20Approximation%20Theorem.md)</mark>
 
 
@@ -76,10 +74,11 @@ Theorems In red means it's unfinished.
 ---
 ### **Examples**
 
+- [Sequence Space $l^\infty$ | Continuous Function Space | Sequence Space $l_+^2$ | Discrete Metric | Hamming Distance | Shortest Path on Graph | P-adic Metric](Functional%20Spaces/Metric%20Space%20Introduction.md)
 - [1D Function Fixed Point Convergence | Contraction but Without Fixed Points | Square Root of Numbers](Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md)
 - [Banach and Not Hilbert | Normed Vector space But Not Banach](Functional%20Spaces/Banach%20Space%20Introduction.md)
 - [$l^\infty$ is a Banach Space](Functional%20Spaces/Completeness,%20Convergence%20in%20Banach%20Space.md)
-- [Arc Length Linear Function is NOT Continuous](Functional%20Spaces/Continuous%20Mapping%20in%20Metric%20Spaces.md)
-- [Incomplete Arctan Metric | Finite Zeros Incomplete Subspace of $l^\infty$ | $l^\infty$ sequence space is Complete | $l^2$ Sequence Space is Complete | Vector Space of Polynomials | Vector Space of Continuous Function](Functional%20Spaces/Examples%20for%20Metric%20Space.md)
+- [Arc Length Linear Functional is NOT Continuous](Functional%20Spaces/Continuous%20Mapping%20in%20Metric%20Spaces.md)
+- [Incomplete Arctan Metric | Finite Non-Zeros Incomplete Subspace of $l^\infty$ | $l^\infty$ sequence space is Complete | $l^2$ Sequence Space is Complete | Vector Space of Polynomials | Vector Space of Continuous Function](Functional%20Spaces/Examples%20for%20Metric%20Space.md)
 - [$\mathbb Z$ has no accumulation Points | $l_2$ is Separable | $l^\infty$ is not Separable | $\mathbb R$ with Discrete Metric is not Separable | Interior of $l_+^2$ is Empty](Functional%20Spaces/Topology%20of%20Metric%20Space.md)
 - [$\Vert \cdot\Vert_\infty, \Vert \cdot\Vert_1$ Are Dual Banach Spaces to Each Other](Linear%20Functionals%20and%20Dual%20Spaces.md)
