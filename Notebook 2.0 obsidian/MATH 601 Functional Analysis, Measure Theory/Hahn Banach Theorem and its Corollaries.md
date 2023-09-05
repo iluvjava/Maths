@@ -74,7 +74,7 @@ The proof is long and no that trivial. We prove the Hahn Banach Theorem in gener
 * $X$, a generic vector space. 
 * $\{\mathbf 0\}\neq Z\subseteq X$, a linear subspace of the space $X$
 * $f:Z\mapsto \mathbb R$, the linear functional mapping from a subset $Z\in X$. 
-* $p$, a sublinear functionals.  
+* $p$, a sub-linear functionals.  
 * $E$, is the set of linear functional that extends $f$, this set has a partial order. 
 * $C$ any chain from the set $E$. 
 
@@ -83,7 +83,7 @@ $$
 E := \{g \text{ lin functional in }X \;|\; g(x) = f(x)\; \forall x \in Z, g(x)\le p(x)\; \forall x \in \text{dom}(g), Z\subseteq \text{dom}(g)\}
 $$
 
-observe that $f\in E\implies E \neq \emptyset$. Let $E$ be a partial order induces by $\succeq$ such that $g \preceq h$ if and only if $h(x) = g(x)$ for all $x\in \text{dom}(g)$, and $\text{dom}(h)\supseteq \text{dom}(g)$ and $h(x) = g(x)$ for all $x\in \text{dom}(g)$. Due to the induced partial orderin, let $C\subseteq E$ to be a chain that exists by the virtue of the partial order. For all such $C$, define $\hat g(x)$ by 
+observe that $f\in E\implies E \neq \emptyset$. Let $E$ be a partial order induces by $\succeq$ such that $g \preceq h$ if and only if $h(x) = g(x)$ for all $x\in \text{dom}(g)$, and $\text{dom}(h)\supseteq \text{dom}(g)$ and $h(x) = g(x)$ for all $x\in \text{dom}(g)$. Due to the induced partial ordering, let $C\subseteq E$ to be a chain that exists by the virtue of the partial order. For all such $C$, define $\hat g(x)$ by 
 
 $$
 \begin{aligned}
@@ -96,7 +96,7 @@ $$
 \end{aligned}
 $$
 
-this particular element $\hat g$ is the upper bound element of the set $C$, which is direct from the definition of $\hat g$, and $\preceq$ for chain $C$. By Zorn's lemma, and the fact that $C$ is arbitrary, it is implied that $\exists \tilde f$, which is the maximal element of the set $E$, with $\tilde f\in E$ means $\tilde f(x) \le p(x)$ for all $x \in \text{dom}(\tilde f)$. The next part of the proof will show that $\text{dom}(\tilde f) = X$ using proof by contradiction. Suppose for contradiction that $\exists y_1 \in X \setminus \text{dom}(\tilde f)$, define $Y_1 = \text{span}(\text{dom}(\tilde f), y_1)$. 
+this particular element $\hat g$ is the upper bound element of the set $C$, which is direct from the definition of $\hat g$, and $\preceq$ for chain $C$. By [Zorn's Lemma](Zorn's%20Lemma.md), and the fact that $C$ is arbitrary, it is implied that $\exists \tilde f$, which is the maximal element of the set $E$, with $\tilde f\in E$ means $\tilde f(x) \le p(x)$ for all $x \in \text{dom}(\tilde f)$. The next part of the proof will show that $\text{dom}(\tilde f) = X$ using proof by contradiction. Suppose for contradiction that $\exists y_1 \in X \setminus \text{dom}(\tilde f)$, define $Y_1 = \text{span}(\text{dom}(\tilde f), y_1)$. 
 
 $$
 \begin{aligned}

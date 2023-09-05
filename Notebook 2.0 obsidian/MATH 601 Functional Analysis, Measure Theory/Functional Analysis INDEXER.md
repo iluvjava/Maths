@@ -49,7 +49,7 @@ Theorems In red means it's unfinished.
 - [Normed Lower Bound for Finite Basis Vectors Set | Compactness implies Closed and Bounded in Finite Dim](Functional%20Spaces/Finite%20Dimensional%20Normed%20Space.md)
 - [Orthogonality Conditions for Subspace Projections](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
 - [Lemma 1, 2, 3 for an Alternative Proof of Baire's Category Theorem](Baire%20Category,%20More%20Metric%20Topologies.md)
-- [Inverse of Product of Linear Opeartor](Linear%20Mapping%20in%20Banach%20Space.md)
+- [Inverse of Product of Linear Operator](Linear%20Mapping%20in%20Banach%20Space.md)
 
 ---
 ### **Definitions**

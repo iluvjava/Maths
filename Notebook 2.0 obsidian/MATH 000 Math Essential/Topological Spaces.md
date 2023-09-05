@@ -1,10 +1,14 @@
+---
+alias: General Topology Intro
+
+---
 ### **Intro**
 
 References were from Heinz's Monotone Book. 
 
 ### **Defining Topological Spaces**
 
-> Let $\mathcal X$ be a set and $T \subseteq 2^{\mathcal X}$, the set $T$ is a collection of $\mathcal X$ which we refers to be a topology when 
+> Let $\mathcal X$ be a set and $T \subseteq 2^{\mathcal X}$, the set $T$ is a collection of $\mathcal X$ which we refer to be a topology when 
 > 1. $\emptyset, X \in T$. 
 > 2. Let $I$ be an arbitrary index set with $U_i\in T$ for all $i\in I$ then $\bigcup_{i\in I}U_i \in T$. It's closed under union. 
 > 3. Let $\{U_i\}_{i=1}^n$ be an arbitrary finite subset of $T$, then $\bigcap_{i=1}^n U_i \in T$. The set $T$ is closed under finite intersections. 
@@ -12,7 +16,12 @@ References were from Heinz's Monotone Book.
 > Then, $(\mathcal X, T)$ is a topological space. 
 
 
-**Neighborhood**
+**Remarks**
+
+A general index sets $I$ can go beyond countable infinity. The sets in the topology $T$ are the open sets. Convince yourself with the fact that open intervals on $\mathbb R$ is an example of a topology. Infinite intersection of open sets can however, close an open set. 
+
+
+**Definition | Neighborhood**
 
 > $\mathcal V(x)$ is a neighborhood of an element $x\in \mathcal X$ is a subset $V\subseteq \mathcal X$ such that $\exists U\in T$ with $x\in U \subseteq V$, or mathematically given as: 
 > $$
@@ -23,7 +32,7 @@ References were from Heinz's Monotone Book.
 
 **Observations**
 
-A neighborbood is not from the topology $T$, but rather, it's contained in some topology $U\in T$, with $x$ being an element of $U$. On the real line, the neighborhood of $x$ is $(x - \epsilon, x + \epsilon)$, an open set containing $x$, and it contains unctounably many open sets containing $x$ as well. 
+A neighborbood is not necessarily from the topology $T$. If it is, then it's trivial since $V = U$ by $U$ is a subset of itself. The set containing $x$,  $U\in T$ is from the topology, with $x$ being an element of $U$. On the real line, the neighborhood of $x$ is $(x - \epsilon, x + \epsilon)$, an open set containing $x$, and it contains uncountably many open sets containing $x$ as well. 
 
 **Base**
 
@@ -50,4 +59,4 @@ For example, when $\text{cl}(C) = \mathcal X$, then the set $C$ is dense. And $x
 
 > $x_1, x_2 \in \mathcal X$, with $x_1 \neq x_2$, then exists $V_2 \in \mathcal V(x), V_2\in \mathcal V(x)$ such that $V_1\cap V_2 = \emptyset$. 
 
-Almost all spaces involved in analysis is Hausdorff space. 
+Almost all spaces involved in analysis is Hausdorff space. In $\mathcal H$ spaces, 2 open half spaces will be able to separate 2 points in the topology of $\mathcal H$. 

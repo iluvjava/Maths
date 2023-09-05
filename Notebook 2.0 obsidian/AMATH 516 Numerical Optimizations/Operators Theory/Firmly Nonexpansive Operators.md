@@ -131,7 +131,77 @@ $$
 from the definition of nonexpansiveness, we have $\Vert 2b - a\Vert \le \Vert a\Vert$, iff $0 \le \Vert a\Vert^2 - \Vert 2b - a\Vert^2$ iff $0 \le 4(\langle a, b\rangle - \Vert b\Vert^2) \iff \Vert b\Vert^2 \le \langle a, b\rangle$, and now the arguments are complete. We have $(3)\iff (4)$. 
 
 **References**: 
+
 Theorem 22.3, Professor Heinz's Lecture notes
+
+---
+### **Fixed Point Convergence of Firmly Nonexpansive operators**
+
+The convergence of fixed point would require the use of [Fejer's Monotone](Fejer's%20Monotone.md) convergence type and the assumption of finite Euclidean spaces. 
+
+#### **Thm | A Fixed Point Iteration on Nonexpansive Operator Converges Weakly**
+
+> Let $T: \mathcal H \mapsto \mathcal H$ be a nonexpansive operator, then the fixed poin iteration on the operator would converges to a point in the $\text{Fix} T$, a fixed point set of the operator. 
+
+**Proof**
+
+Let $y = \bar x \in \text{Fix} T$, and let $x = x^{(k)}$ be from the fixed point iteration sequence then the firmly nonexpansive operator definition becomes: 
+
+$$
+\begin{aligned}
+    \Vert Tx^{(k)} - \bar x\Vert^2 + \Vert x^{(k)} - x^{(k + 1)} - \bar x + \bar x\Vert 
+    & \le \Vert x^{(k)} - \bar x\Vert^2
+    \\
+    \implies 
+    \Vert x^{(k +1)} - \bar x\Vert^2 + \Vert x^{(k)} - x^{(k + 1)}\Vert^2
+    &\le \Vert x^{(k)} - \bar x\Vert^2 \leftarrow [[0]]
+\end{aligned}
+$$
+
+As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is montonely decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
+
+$$
+\begin{aligned}
+    [[0]] \implies 
+    \Vert x^{(k)} - x^{(k + 1)}\Vert^2 &\le 
+    \Vert x^{(k)} - \bar x\Vert^2 - 
+    \Vert x^{(k + 1)} - \bar x\Vert^2
+    \\
+    \implies 
+    \sum_{i = 0}^{\infty}
+    \Vert x^{(i)} - x^{(i + 1)}\Vert^2 &\le 
+    \Vert x^{(0)} - \bar x\Vert^2 - \underbrace{\lim_{k \rightarrow \infty}\Vert x^{(k)} - \bar x\Vert^2}_{ < \Vert x^{(0)} - \bar x\Vert}
+    \\
+    \implies \sum_{i = 0}^{\infty}
+    \Vert x^{(i)} - x^{(i + 1)}\Vert^2 & \text{ has a limit}
+    \\
+    \implies \lim_{k\rightarrow \infty} \Vert x^{(i)} - x^{(i + 1)}\Vert^2 &= 0, 
+\end{aligned}
+$$
+
+Such a limit would imply the strong convergence of the sequence $x^{(i)} - x^{(i + 1)}$, or $x^{(i)} - Tx^{(i)}$. Therefore we have 
+
+$$
+\begin{aligned}
+    \lim_{i\rightarrow \infty} x^{(i)} - Tx^{(i)} &= \mathbf 0
+    \\
+    \implies 
+    \lim_{i\rightarrow \infty} x^{(i)} &= 
+    \lim_{i\rightarrow \infty} Tx^{(i)}
+    \\
+    T\text{ is continuous}\implies 
+    \lim_{i\rightarrow \infty} x^{(i)} &= 
+    T\left (\lim_{i\rightarrow \infty} x^{(i)}\right), 
+\end{aligned}
+$$
+
+Next, from the subsequential convergence of $x^{(\sigma(i))}$, there exists a cluster point $x^+$ for the sequence, and by Fejer Monotonicity, the subsequential limit equals to the limit above and therefore $\lim_{i\rightarrow\infty} x^{(\sigma(i))} = x^+ =Tx^+$. Therefore, $x^+$ is also a fixed point for the operator $T$. 
+
+
+**Remarks**
+
+The firmly nonexpansive operator is a special case for the averaged operator. See [Averaged Mapping](Averaged%20Mapping.md) for a proof of the same behaviors for the averaged operators. Additionally, read theorem 5.13 for a proof in the weak convergence results for firmly non-expansive operators in Hilbert space. It hinges on the fact that a closed and bounded sets in Hilbert space is sequentially compact. 
+
 
 
 ---

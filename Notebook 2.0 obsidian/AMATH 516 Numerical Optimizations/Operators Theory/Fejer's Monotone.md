@@ -24,7 +24,7 @@ If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer mo
 
 **Proof**
 
-The $\implies$ direction is clear (Because the limit of the sequencie is a cluster point). From the other direction, Let $\bar x \in C$ be a cluster point then exists subsequence $x^{(n_k)}$ such that $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$. For any $\epsilon > 0$, using Fejer Monotonicity we have: 
+The $\implies$ direction is clear (Because the limit of the sequence is a cluster point). From the other direction, Let $\bar x \in C$ be a cluster point then exists subsequence $x^{(n_k)}$ such that $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$. For any $\epsilon > 0$, using Fejer Monotonicity we have: 
 
 $$
 \begin{aligned}
@@ -32,11 +32,14 @@ $$
 \end{aligned}
 $$
 
-therefore, it means that $\Vert x^{(m)} - \bar x\Vert \rightarrow 0$, and hence it convertes to a point $\bar x$ in $C$. Alternatively, we may also prove it this way. 
+therefore, it means that $\Vert x^{(m)} - \bar x\Vert \rightarrow 0$, and hence it converts to a point $\bar x$ in $C$. Alternatively, we may also prove it this way. 
 
 **Alternative Proof**
 
-For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded and monotone, therefore it has a limit. Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has subsequential limit. Since $\bar x \in C$, the subsequential limit must be the same as the monotone limit! Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
+For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded and monotone, therefore it has a limit. Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
+
+**Remarks**
+It converges weakly, since it's converging only by the norm. 
 
 
 #### **Thm-2 | A Slightly Weaker Version in Finite Euclidean Space**

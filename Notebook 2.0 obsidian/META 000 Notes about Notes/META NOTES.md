@@ -8,6 +8,7 @@ This note is a note about notes. This is a list of Meta Notes:
 # **Important Tasks about the Notes**
 
 - [ ] Complete and link: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), to the alternative proof of convex measurability. 
+- [ ] Complete the fixed point convergence for [Firmly Nonexpansive Operators](../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Firmly%20Nonexpansive%20Operators.md)! 
 
 ---
 # **Tasks to Do about the Notes**

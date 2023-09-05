@@ -16,43 +16,41 @@ Operator in general, introduces a relations between the 2 sets, or the set itsel
 ---
 ### **Lipschitz Operator**
 
-Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Firmly Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]] for more information. 
+Lipschitz operator bound the distance between 2 points in the output space of the operator wrt the input space. [[Lipschitz Operator in Euclidean Space]]. In practice, we actually want [[Firmly Nonexpansive Operators]], which is a type of operations that has a Lipschitz constant that is less than or equal to one. Under the best case we want to deal with operator that creates a contraction, see [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space | Banach Contraction]] for more information. 
 
 
-**Definition: Non-Expansive Operator**
+**Definition | Non-Expansive Operator**
 > The non-expansive operator has to be Lipschitz first and it has to be $X\mapsto X$, a , as a result, it has to be a single-valued mapping. A non-expansive operator has a Lipschitz constant of exactly $1$. 
 
 
-- Firmly non-expansive operator has fixed point montone convergences, see [[Firmly Nonexpansive Operators]] for more information.
-- The classical projection onto a convex set is a type of Non-expansive operator. Which is also firmly nonexpansive, see [[../Background/Convex Sets Projections and Dist, Intro]] for more information. 
+- Firmly non-expansive operator has fixed point monotone convergences, see [[Firmly Nonexpansive Operators]] for more information.
+- The classical projection onto a convex set is a type of Non-expansive operator. Which is also firmly nonexpansive, see [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more information. 
 
 
-**Definition: Contraction**
+**Definition | Contraction**
 >  A contraction is a Lipschitz operator with a Lipschitz constant that is strictly less than one.
 
-**Facts**: 
 
-A contraction has a singleton as its fixed point set. For more information about contraction, see [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]] for this type of operator in Banach space. 
 
 ---
 ### **Monotone and Maximally Monotone Operator**
 
 Maximally monotone operator can be have resolvent that are invertible. 
 
-**Definition: A Monotone Operator**:
+**Definition | A Monotone Operator**:
 
 > The operator $F$ is monotone when $\langle Fy - Fx, y - x\rangle \ge 0$ for all $x, y \in \text{dom}(F)$. 
 
 For example, the subgradient operator of a convex function is monotone. 
 
-**Definition: Strongly Monotone Operator**: 
+**Definition | Strongly Monotone Operator**: 
 > A monotone operator $T$ is strongly monotone with parameter $m$ if $\langle Tx - Ty, x - y\rangle \ge m \Vert x - y\Vert^2$ for all $x, y\in \mathbb E$. 
 
 For example, the subgradient of a strongly convex function is a strongly monotone operator. 
 
 
 ---
-### **Example: Convex Sets Projection Operator, Proximal Operators**
+### **Example | Convex Sets Projection Operator, Proximal Operators**
 
 Recall from that the projection operator onto a closed and convex set is a *non-expansive operator* that is also *monotone* and singled valued. This is true because the projector has a Lipschitz constant that is $\le 1$ (Showed in [[Convex Projection is L1 Lipschitz]]). The monotone property can be derived using the obtuse angle theorem. 
 

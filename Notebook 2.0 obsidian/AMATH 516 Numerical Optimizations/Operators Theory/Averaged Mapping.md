@@ -85,9 +85,9 @@ and observe that, on the last line, we recover the characterizations for an aver
 Heinz's course notes, theorem 22.11. 
 
 ---
-### **Fixed Point Convergences**
+### **Fixed Point Convergence of Averaged Operators**
 
-This type of non-expansive operator converges under fixed point iterations. 
+This is a type of non-expansive operator converges under fixed point iterations. 
 
 **Thm-2 | Averaged Operator has Fixed Point Convergence**
 
@@ -172,11 +172,12 @@ When the gradient of some function is strongly smooth, meaning that the gradient
 
 Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
 
-This derivation is extremely similar to what we had for [[../Smooth Gradient Descend Remastered]], more specifically the smooth descend frameworks. 
+This derivation is extremely similar to what we had for [Smooth Gradient Descend Remastered](../Smooth%20Gradient%20Descend%20Remastered.md), more specifically the smooth descend frameworks. 
 
 For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [[Fejer's Monotone]] for more information. 
 
-**Reference**: See Primer on Monotone Operator for more information. [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf]]. 
+**Reference**: 
+See Primer on Monotone Operator for more information. [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf | Primer on Monotone Operator]]. 
 
 
 ---
