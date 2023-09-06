@@ -9,7 +9,7 @@
 In this section we introduces basics facts and theorems about Banach Spaces and we show some illustrating examples for those concepts. Bear in mind that Banach space is just vector spaces but fancier. 
 
 **Banach Spaces should have**:
-- Vector space with a norm (not necessarily from inner product), that must be continuous. The continuity is a consequence of the Triangular Inequality, the expression is the consequence: $|\Vert x\Vert - \Vert y \Vert|\le \Vert x- y\Vert$, it looks like Lipschitz continuity. 
+- Vector space with a norm (not necessarily from inner product), that must be continuous. The continuity is a consequence of the Triangular Inequality, the expression is the consequence: $|\Vert x\Vert - \Vert y \Vert|\le \Vert x- y\Vert$, which is the 1-Lipschitz continuity for the norm function.
 - The vector space is complete (Topological Property)
 
 **Banach is a Metric Space**

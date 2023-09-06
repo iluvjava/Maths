@@ -4,7 +4,7 @@ File links has list of Indices for theorems, lemma, and definitions talked about
 ---
 ### **Theorems**
 
-Theorems In red means it's unfinished. 
+Theorems In red means it's unfinished. Theorem with only statement and references but without proofs are in Yellow. 
 
 **Topologies**
 - [Baire's Category Theorem | Closed Open Complement](Baire%20Category,%20More%20Metric%20Topologies.md)
@@ -21,7 +21,7 @@ Theorems In red means it's unfinished.
 - [Riesz Representations Theorem | Bilinear Form Via Riesz Representation](Bilinear%20Form,%20Rietz%20Representations.md)
 - <mark style="background: #FF5582A6;">[Uniform Boundedness | Open Mapping](Uniform%20Boundedness,%20Open%20Mapping.md)</mark>
 - [Bounded Linear Extension Theorem | Continuity and Boundedness is The Same](Linear%20Mapping%20in%20Banach%20Space.md)
-- [Completeness of Dual Space](Linear%20Functionals%20and%20Dual%20Spaces.md)
+- [<mark style="background: #FFF3A3A6;">Completeness of Dual Space</mark>](Linear%20Functionals%20and%20Dual%20Spaces.md)
 
 **Banach, Normed, Finite Dim Vector Spaces**
 - [Completeness is Equivalent to Absolute Convergence (in Normed Vector Spaces)](Functional%20Spaces/Completeness,%20Convergence%20in%20Banach%20Space.md)
@@ -81,4 +81,4 @@ Theorems In red means it's unfinished.
 - [Arc Length Linear Functional is NOT Continuous](Functional%20Spaces/Continuous%20Mapping%20in%20Metric%20Spaces.md)
 - [Incomplete Arctan Metric | Finite Non-Zeros Incomplete Subspace of $l^\infty$ | $l^\infty$ sequence space is Complete | $l^2$ Sequence Space is Complete | Vector Space of Polynomials | Vector Space of Continuous Function](Functional%20Spaces/Examples%20for%20Metric%20Space.md)
 - [$\mathbb Z$ has no accumulation Points | $l_2$ is Separable | $l^\infty$ is not Separable | $\mathbb R$ with Discrete Metric is not Separable | Interior of $l_+^2$ is Empty](Functional%20Spaces/Topology%20of%20Metric%20Space.md)
-- [$\Vert \cdot\Vert_\infty, \Vert \cdot\Vert_1$ Are Dual Banach Spaces to Each Other](Linear%20Functionals%20and%20Dual%20Spaces.md)
+- [Euclidean Norm is Self Dual | $\Vert \cdot\Vert_\infty, \Vert \cdot\Vert_1$ Are Dual Banach Spaces to Each Other](Linear%20Functionals%20and%20Dual%20Spaces.md)

@@ -10,7 +10,7 @@ Using the topology of a metric space and the metric together with real analysis,
 
 **Observations**: 
 
-The metric $d$ is used, A topological interpretation can be involved saying that $\forall \epsilon > 0$, there exists $N$ such that $n > N$ implies that $x_n\in \mathbb B_\epsilon(x_\infty)$. 
+The metric $d$ is used, A topological interpretation can be involved saying that $\forall \epsilon > 0$, there exists $N$ such that $n > N$ implies that $x_n\in \mathbb B_\epsilon(x_\infty)$. A fixed constant sequence should satisfies the convergence condition trivially. 
 
 **Remarks**
 

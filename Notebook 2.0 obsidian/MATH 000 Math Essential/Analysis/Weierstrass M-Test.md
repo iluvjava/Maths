@@ -14,7 +14,7 @@ We state the theorem and them prove it in the next section. The Weierstrass M-Te
 > 1. $\Vert f_n(x)\Vert_{(A, \infty)}\le M_n\; \forall n \ge 0$,
 > 2. $\sum_{i = 1}^{\infty}M_n < \infty$. 
 > 
-> Then the sequence of function $f_n$ converges uniformly and absolutely. 
+> Then the series of function $f_n$ converges uniformly and absolutely. Consequently, if each of the individual functions are continuous then the result is continuous. 
 
 **Proof**
 

@@ -151,7 +151,7 @@ Kreyszig Functional analysis textbook, example 1.5-2.
 > The $l^2$ sequence space is complete. The $l^2$ sequence space is the sequence squared gives a convergence series. 
 
 **Proof**
-Let $(x^{n})_{n\in \mathbb N}$ be a Cauchy sequence in the space. We also defined the norm of the infinite sequence $\Vert x^{(n)}\Vert = \sum_{i = 1}^{\infty} (x_i^{(n)})^2$, which is indeed a norm (The reader should verify). By definition of a Cauchy sequence in the metric space we have
+Let $(x^{n})_{n\in \mathbb N}$ be a Cauchy sequence in the space. We also defined the norm of the infinite sequence $\Vert x^{(n)}\Vert = \sum_{i = 1}^{\infty} \left(x_i^{(n)}\right)^2$, which is indeed a norm (The reader should verify). By definition of a Cauchy sequence in the metric space we have
 
 $$
 \begin{aligned}
@@ -212,12 +212,12 @@ $$
 \end{aligned}
 $$
 
-At \[1\] we used the existence of the point wise limit and the continuity of the function. At \[2\] we used the montone convergence of a bounded series whose terms are all strictly positive. By $\epsilon$ being arbitrarly small, we have that $\lim_{n\rightarrow \infty} \Vert x^{(n)} - \bar x\Vert = 0$, by metric space convergence, it would mean $\lim_{n\rightarrow \infty} x^{(n)} = \bar x$. 
+At \[1\] we used the existence of the point wise limit and the continuity of the function. At \[2\] we used the monotone convergence of a bounded series whose terms are all strictly positive. By $\epsilon$ being arbitrarily small, we have that $\lim_{n\rightarrow \infty} \Vert x^{(n)} - \bar x\Vert = 0$, by metric space convergence, it would mean $\lim_{n\rightarrow \infty} x^{(n)} = \bar x$. 
 
 
 **Remarks**
 
-The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other Hilbert spaces that are separable. It's a very important entity. 
+The $l^2$ space is also a Hilbert space, it's also isomorphic to all the other Hilbert spaces that are separable. It's a very important entity. There are other ways of proving the convergence of the partial sum, or the uniform convergence of the vector. The above proof can be made more convincing if split $\epsilon$ into a series of sum over the differences. 
 
 
 ---

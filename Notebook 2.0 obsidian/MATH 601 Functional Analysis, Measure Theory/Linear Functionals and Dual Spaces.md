@@ -68,7 +68,9 @@ We develop some theorems first. We put it here and cite it but we will not prove
 
 > If $Y$ is a Banach space, then $\mathcal B(X, Y)$ is a Banach space. 
 
-**Proof**: Skipped 
+**Proof**: 
+
+Skipped 
 
 #### **Thm-2 | Dual Space is Complete (2.10-3)**
 > The dual space $X'$ of $X$ is complete, hence a Banach space, regardless of whether the norm space $X$ is complete or not. 
@@ -113,15 +115,15 @@ $$
 \end{aligned}
 $$
 
-therefore, the equality is achived and the operator norm of any $f\in \mathcal B(\mathbb R^n, \mathbb R)$ is the same as the Euclidean norm of $Tf$. The norm didn't change for $Tf$ therefore, the space is a self dual space. 
+therefore, the equality is achieved and the operator norm of any $f\in \mathcal B(\mathbb R^n, \mathbb R)$ is the same as the Euclidean norm of $Tf$. The norm didn't change for $Tf$ therefore, the space is a self dual space. 
 
 
 #### **Example-2 | Inf-Norm, One-Norm Finite Dimensional Space**
-> The spaces $(\mathbb R^n, \Vert \cdot\Vert_1)$ is dual to $(\mathbb R^n, \Vert \cdot\Vert_\infty)$. 
+> The spaces $(\mathbb R^n, \Vert \cdot\Vert_\infty)$ is dual to $(\mathbb R^n, \Vert \cdot\Vert_1)$. 
 
 **Demonstrations**
 
-We find a upper bound and then push it to the upper bound using an specific vector. Consider any linear functional, and the special mapping $T$ as defined from before. Consider any $x \in \mathbb R^n$: 
+We find an upper bound and then push it to the upper bound using a specific vector. Consider any linear functional, and the special mapping $T$ as defined from before. Consider any $x \in \mathbb R^n$: 
 
 $$
 \begin{aligned}
@@ -135,7 +137,7 @@ $$
 \end{aligned}
 $$
 
-This would mean that, the norm of the operator $f$, will be bounded by $\Vert Tf\Vert_1$, the one norm on the vector represetation of operator $f$. Next we consider a special $x_0$: 
+This would mean that, the norm of the operator $f$, will be bounded by $\Vert Tf\Vert_1$, the one norm on the vector representation of operator $f$. Next we consider a special $x_0$: 
 
 $$
 \begin{aligned}
@@ -152,7 +154,7 @@ $$
 \end{aligned}
 $$
 
-therefore, equality can be achived by using $x_0$, and therefore, the norm that is dual to $\Vert \cdot\Vert_\infty$ is $\Vert \cdot\Vert_1$. On the last line, we make us of the fact that $\text{sign}(x)x = |x|$. 
+therefore, equality can be achieved by using $x_0$, and therefore, the norm that is dual to $\Vert \cdot\Vert_\infty$ is $\Vert \cdot\Vert_1$. On the last line, we make us of the fact that $\text{sign}(x)x = |x|$. 
 
 #### **Example-3 | Infinity Norm and 1 Norm Sequence Space**
 > The spaces $l^\infty$ and $l^1$ are dual spaces to each other. 
@@ -162,7 +164,7 @@ therefore, equality can be achived by using $x_0$, and therefore, the norm that 
 
 ---
 ### **Reflexive Spaces and Double Dual Spaces**
-Something important that is not neccessarily clear, in Wang's notes, or Kryzig's book. 
+Something important that is not necessarily clear, in Wang's notes, or Kryzig's book. 
 
 #### **Def-2 | The Elements of Double Dual**
 > Let $(V, \Vert \cdot\Vert)$ be a normed metric space, then the double dual mapping is defined to be $T_v: V^\star \mapsto \mathbb K$, with $T_v(v^\star) = v(v^\star)$. 
@@ -184,7 +186,7 @@ It's somewhat trivial to observe the fact that the mapping is a bounded linear m
 **Proof**
 
 skipped for now. 
-
+**
 
 **References**
 

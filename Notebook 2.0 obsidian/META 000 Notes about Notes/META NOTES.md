@@ -7,8 +7,8 @@ This note is a note about notes. This is a list of Meta Notes:
 ---
 # **Important Tasks about the Notes**
 
-- [ ] Complete and link: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), to the alternative proof of convex measurability. 
-- [ ] Complete the fixed point convergence for [Firmly Nonexpansive Operators](../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Firmly%20Nonexpansive%20Operators.md)! 
+- [x] Complete and link: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), to the alternative proof of convex measurability. 
+- [x] Complete the fixed point convergence for [Firmly Nonexpansive Operators](../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Firmly%20Nonexpansive%20Operators.md)! 
 
 ---
 # **Tasks to Do about the Notes**
@@ -27,9 +27,7 @@ Something to do when we have time.
 
 ### **Optimizations**
 - [ ] Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
-- Fill up [Functional Analysis CENTRAL HUB](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Analysis%20CENTRAL%20HUB.md), by considering: 
-	- [ ] [Linear Mapping in Banach Space](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Linear%20Mapping%20in%20Banach%20Space.md), Add information about the adjoin operator in Banach space, mostly its definition
-	- [ ] [Uniform Boundedness, Open Mapping](MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Uniform%20Boundedness,%20Open%20Mapping.md). Finish the proof for this one, as an application of the Baire's category theorem to Banach spaces. 
+- [x] Fill up some of the proofs remaining in [Functional Analysis INDEXER](../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Analysis%20INDEXER.md), for the famous theorems. They are colored in the INDEXER. 
 
 ### PDE
 - Fill up a sequence of notes that describes the idea of adjoint operators in Hilbert spaces, and their applications. Files included are: 
