@@ -1,4 +1,8 @@
-[[PDFs, PMFs]], [[Conditional Probability, Expectations]]
+---
+alias: Expected value of Random Variables without Measure Theory
+
+---
+- [[PDFs, PMFs]], [[Conditional Probability, Expectations]]
 
 ---
 ### **Intro**

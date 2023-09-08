@@ -5,16 +5,12 @@ Major Reference Materials:
 2. Medium article [link](https://towardsdatascience.com/entropy-how-decision-trees-make-decisions-2946b9c18c8)
 3. Elements of Statistical Learning
 
-[[Basic Machine Learning]]
+Require: [[Basic Machine Learning]]
 
 ---
 #### **Intro**
 
-It's a tree that split the samples by one feature at a time according to some kind of objective measure that serves as heuristic for classifying that data. 
-
-In general, getting the optimal tree that partition the features space to best locate each of the data point is NP-Hard, usually it's done differently by not going for the absolute optimal. 
-
-This models it's powerful because it assumes very little about the underlying structure of the data, resulting it tends to over-fit, and very likely to create a lot of variances because of noise. 
+It's a tree that split the samples by one feature at a time according to some kind of objective measure that serves as heuristic for classifying that data. In general, getting the optimal tree that partition the features space to best locate each of the data point is NP-Hard, usually it's done differently by not going for the absolute optimal. This models it's powerful because it assumes very little about the underlying structure of the data, resulting it tends to over-fit, and very likely to create a lot of variances because of noise. 
 
 ---
 ### **Partitioning Heuristics**
@@ -27,19 +23,15 @@ E(S) = \sum_{i = 1}^{c}\left(
     \right)
 $$
 
-Where $p_i$ denotes the frequencies (should be a fraction between 1 and 0) of a class $i$. This formula measure how disordered things are. When the quantity is high, it means that things are more relatively more disordered, when the quantity is low, it means that things are more pure. 
-
-Well, amazingly, under the context of binary classification, the labels are divided into $p$ and $1 - p$, then the above formula will be simplified into: 
+Where $p_i$ denotes the frequencies (should be a fraction between 1 and 0) of a class $i$, $S$ is the random variable denoting the samples. Higher the entropy, more uniform is the distribution. For a binary classification, the label are divided into $p$ and $1 - p$, then the above formula will be simplified to [Cross Entropy](../STATS%20501%20Statistics%20for%20Mathematicians/Cross%20Entropy.md): 
 
 $$
-E(S) = -p\log_2(p) - (1 - p)\log(1 - p) \quad \text{Where }
+E(S) = -p\log_2(p) - (1 - p)\log(1 - p) \quad \text{Where } p \in (0, 1)
 $$
 
 A plot of the above function: 
 
 ![[entropy-function.png]]
-
-And notice that, the more evenly labels are mixed together, the higher the entropy, meaning that it's going to be more disordered. 
 
 Here is the measure of information gain: 
 

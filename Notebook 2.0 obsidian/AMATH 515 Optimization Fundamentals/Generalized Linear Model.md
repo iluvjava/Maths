@@ -2,7 +2,7 @@ Let's talk about it under the context statistic modeling. Using Linear model to 
 
 [Good Reference](http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf)
 
-In addition, one of the major idea exploited here is: MLE (Maximal Likelihood Estimator). See [[../STATS 501 Statistics for Mathematicians/Maximal Likelihood Estimator]] for more. In addition, it's better to understand the usual linear model, [[Linear Regression]]. 
+In addition, one of the major idea exploited here is: MLE (Maximal Likelihood Estimator). See [Maximal Likelihood Estimator](../STATS%20501%20Statistics%20for%20Mathematicians/Maximal%20Likelihood%20Estimator.md) for more. In addition, it's better to understand the usual linear model, [[Linear Regression]]. 
 
 ---
 
