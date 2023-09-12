@@ -26,7 +26,7 @@ The Cauchy Riemann condition characterizes the complex differentiability for a f
 the world *Holomprhic* is another term for describing that a function is complex differentiable. And it means differentiable around a vicinity of a point $z_0 \in \mathbb C$. This condition is equivalent to the function being analytic around the point $z_0$. 
 
 #### **Thm | Cauchy Riemann Conditions (Necessary)**
-> Let $f: \mathbb C \mapsto \mathbb C := u(x, y) + i v(x, y)$ with $z = x + i y$ and $u, v$ maps from $\mathbb R^2 \mapsto \mathbb R$ has gradient at $(x, y)$, denoting the real and the imaginary part of the function. A necessary conditions for $f$ being differentiable around the point $z = x + iy$ is the cauchy Riemann conditions, stated as: 
+> Let $f: \mathbb C \mapsto \mathbb C := u(x, y) + i v(x, y)$ with $z = x + i y$ and $u, v$ maps from $\mathbb R^2 \mapsto \mathbb R$ has gradient at $(x, y)$, denoting the real and the imaginary part of the function. A necessary conditions for $f$ being differentiable around the point $z = x + iy$ is the Cauchy Riemann conditions, stated as: 
 > $$ 
 > \begin{cases}
 >   \partial_x u= \partial_y v, 

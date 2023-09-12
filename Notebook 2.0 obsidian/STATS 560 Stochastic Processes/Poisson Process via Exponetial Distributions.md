@@ -17,7 +17,7 @@ Rick Durrett, Essential or Stochastic Processes
 
 Recall the important property that, an exponential random variable is similar to the discrete geometric random variable, lacking a direct Markovnian interpretation, we have [Memoryless Geometric Distributions](Memoryless%20Geometric%20Distributions.md) property for exponential distribution as well. 
 
-### **Thm-1 | The Gamma Distributions**
+### **Thm-1 | The Gamma Distributions (Erlang)**
 > The sum of $n$ independent exponentials with a density $\lambda$ has the gamma distribution $\text{gamma}(n, \lambda)$, which has the PDF $\lambda \exp(-\lambda t)\frac{(\lambda t)^{n-1}}{(n - 1)!}$. 
 
 **Context**

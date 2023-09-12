@@ -28,7 +28,7 @@ A Banach space where, the basis to span each element has finitely many elements 
 Denote $\vec \alpha = (\alpha_1, \alpha_2, \cdots, \alpha_n)$, notice that when $\vec\alpha = \mathbf 0$, then it's trivial, then we consider
 $$
 \begin{aligned}
-    \Vert \vec\alpha\Vert_1 \neq 0 \implies \beta_i := \frac{\alpha_i}{\Vert \vec \alpha\Vert_1} \implies \sum_{i = 1}^n |\beta_i| = 1, 
+    \text{by: }\Vert \vec\alpha\Vert_1 \neq 0;\;   \beta_i := \frac{\alpha_i}{\Vert \vec \alpha\Vert_1} \implies \sum_{i = 1}^n |\beta_i| = 1, 
 \end{aligned}
 $$
 
@@ -233,10 +233,10 @@ Let $\Vert \cdot\Vert$ be some norm and let $\Vert \cdot\Vert_a$ to be some alte
 
 $$
 \begin{aligned}
-    & \exists c > 0: \Vert x\Vert \ge c \Vert a\Vert_a
+    & \exists c > 0: \Vert x\Vert \ge c \Vert a\Vert_1
     \\
     & 
-    \frac{\Vert x\Vert}{c} \ge \Vert a\Vert_a, 
+    \frac{\Vert x\Vert}{c} \ge \Vert a\Vert_1, 
 \end{aligned}
 $$
 
@@ -246,16 +246,16 @@ $$
 \begin{aligned}
     \Vert x\Vert_a &= \left\Vert
         \sum_{i = 1}^{n} a_ie_i
-    \right\Vert
+    \right\Vert_a
     \\
     &\le
-    \sum_{i = 1}^{n} |a_i|\Vert e_i\Vert
+    \sum_{i = 1}^{n} |a_i|\Vert e_i\Vert_a
     \\
     &\le 
     \underbrace{\max_{1\le i \le n}\{\Vert e_i\Vert\}}_{k}
     \sum_{i = 1}^{n} |a_i|
     \\
-    &= k \Vert a\Vert_1 \le \frac{k \Vert x\Vert}{c}, 
+    &= k \Vert a\Vert_1 \le \frac{k \Vert x\Vert_a}{c}, 
 \end{aligned}
 $$
 
