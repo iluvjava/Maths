@@ -97,7 +97,9 @@ We abuse the notation and use subgradient despite the fact that it's a set value
 
 
 ---
-### **Monotone Operators Interpretations**
+### **Proximal Point Can be a Banach Contraction**
+
+We state and prove that fact that a proximal point iterations on a strongly convex function is a contraction on the Euclidean space. See [Strong Convexity Gives Contraction](../Operators%20Theory/Strong%20Convexity%20Gives%20Contraction.md)  for a detailed exposition. 
 
 
 

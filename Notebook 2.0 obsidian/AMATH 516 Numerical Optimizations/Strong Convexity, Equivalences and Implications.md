@@ -30,7 +30,7 @@ We abuse notation slightly and write the subgradient inside of the inner product
 2. The condition is saying that the subgradient of a strongly convex function is more than monotone, and it has a lower bound to the monotonicity of the subgradient operator. 
 3. The condition is a stronger version of the Jensen's inequality for the convex case. 
 
-**Theorem 1: Equivalences**
+**Theorem 1 | Equivalences**
 > Conditions 1, 2, 3 are all equivalent to the definition of strong convexity of a function. 
 
 **Proof** 
@@ -51,7 +51,6 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following 
 **Theorem: Weaker Implications**
 
 Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general properties for functions. 
-
 
 **Remarks**
 

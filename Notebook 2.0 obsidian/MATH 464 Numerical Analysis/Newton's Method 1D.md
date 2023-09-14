@@ -19,13 +19,15 @@ $$
 \end{aligned}
 $$
 
-Ignoring the error term, we obtain the iterative formula: 
+Ignoring the error term, we obtain the iterative formula that may approximate the root. 
 
 $$
 \begin{aligned}
     g(x_n) := x_{n + 1} &= x_n + \frac{f(x_n)}{f'(x_n)} .
 \end{aligned}
 $$
+
+An engineer or undergraduate will stop here. As a mathematician, we go deeper. 
 
 #### **Complications of the Method**
 

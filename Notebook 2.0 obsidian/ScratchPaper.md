@@ -394,3 +394,25 @@ $$
 $$
 
 We observe that the value of $\alpha, \beta$ restrict the value of $\tau$, forming a prior for our problem. With the assumption that $0 \le \alpha + \beta < 1$, we make prior assumption that variable $\tau$ is uniformly random, named it $\mathcal T$ is $(\alpha, 1 - \beta)$. Solving for $\theta$ we have $\theta = (\tau - \alpha)/(1 - \alpha - \beta)$. 
+
+
+$$
+\forall \epsilon > 0: \exists a_k  \in (\sup a_n - \epsilon, \sup a_n)
+$$
+
+By monotone increase, for all $a_{k}$, $k\in \mathbb N$, we have $a_{k}\le \lim_{n} {a_n}$. So $\sup_{n\rightarrow \infty}a_n \le \lim_{n\rightarrow \infty}a_n$. But for any sequence that has a limit $\sup_{n\in \mathbb N} a_n \ge \lim_{n\rightarrow \infty} a_n$, because it's literally the supremum of the sequence. So it's equal by being both $\le, \ge$. 
+
+
+See [this stack exchange post](https://math.stackexchange.com/questions/1767674/prove-multidimensional-newtons-method-converge-at-least-quadratically) for a discussion on second order convergence of sequence $\Vert x^{(k)} - \bar x\Vert$, the constant is related to the lipscthiz constant $L$ of the Hessian AND the strong convex constant $\beta$, should be something like $L / \beta$. After that observe that from convexity and $L$-Lipz of Hessian, for all $y, x \in \mathbb R^n$
+
+$$
+\begin{aligned}
+    f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2
+    \\
+    f(y) - f(\bar x) - \langle \mathbf 0, y - \bar x\rangle \le \frac{L}{2}\Vert y - x \Vert^2
+    \\
+    f(y) - f(\bar x) \le \frac{L}{2}\Vert y - \bar x \Vert^2
+\end{aligned}
+$$
+
+with $y$ being $x^{(k)}$, the objective value $f(x^{(k)}) - f(\bar x)$ is bounded by the normed error between the sequence and the root $\Vert x - \bar x\Vert^2$. 

@@ -79,15 +79,16 @@ We apply the Bozano Wierestrass to prove the Cauchy convergence theorem for a se
 If the sequence $a_n$ is convergent, then $|a_n - a_m|\le |a_n - a - (a_m - a)| \le |a_n - a| + |a_m - a|$ is bounded, by the limit existence, the right hand side has a limit of zero, and hence $|a_m - a_n|$ can be epsilon bounded. To show that a Cauchy sequence is a convergent sequence, direclty conider that 
 $$
 \begin{aligned}
-    & \forall \epsilon > 0 \exists N_\epsilon \in \mathbb N : m > n > N_\epsilon: 
+    & \forall \epsilon > 0\;  \exists N_\epsilon \in \mathbb N : m > n > N_\epsilon: 
     m > n > N_\epsilon \implies |a_n - a_m| <\epsilon
     \\
     \text{ B.W} \implies & 
-    \forall n > N_\epsilon\; \exists
-    (|a_{m_k} - a_n|)_{k\in \mathbb N}: \lim_{k\rightarrow \infty} |a_{m_k} - a_n| = 0
+    \forall n > N_\epsilon\; 
+    \exists
+    (a_{m_k + n})_{k\in \mathbb N}: \lim_{k\rightarrow \infty} a_{m_k} =a
     \\
     \implies & \forall n\ge N_\epsilon
-    \lim_{k\rightarrow \infty}|a_{m_k} - a_n| \le \epsilon
+    \lim_{k\rightarrow \infty}|a_{n + m_k} - a_n| \le \epsilon
     \\
     \implies &\forall n \ge N_\epsilon: 
     |a - a_n| \le \epsilon
@@ -96,7 +97,7 @@ $$
 \end{aligned}
 $$
 
-and hence the proof is completed. 
+and hence the subsequential limit has to be the limit of the sequence. 
 
 
 ---
@@ -121,12 +122,12 @@ The 2 definitions for the limit of a function is equivalent.
 
 We consider real numbers, let the background set to be real number. 
 
-**Definition | Limit Point**
+#### **Definition | Limit Point**
 > A point $x$ is the limit point of the set $A$ if, there exists a sequence of number $x_n\in A$ such that $\lim_{n\rightarrow \infty} x_n = x$. 
 
 Limit point is *used to described sequences*. For example, if, $x$ is a limit point for the sequence $(x_n)_{n\in \N}$, there is a subsequence of $x_n$ such that converges to the point $x$. 
 
-**Definition | Cluster Point**
+#### **Definition | Cluster Point**
 > A point $x$ is the cluster point of a set $A$ if, there exists a sequence of number $x_n\in A\setminus \{x\}$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
 
 Cluster points are used to *described sets with infinitely many points*. 

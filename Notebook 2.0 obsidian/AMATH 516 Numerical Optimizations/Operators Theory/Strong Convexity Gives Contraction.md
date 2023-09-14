@@ -6,7 +6,7 @@
 
 A fixed point iterations can be applied to solve equations in fixed point form. It finds the root for equation of the form $x = Tx$ where $T$ is a contractive mapping. Recall that a function $g$ is strongly convex when $g(x) - (1/2)\Vert x\Vert$ is a convex function. The fixed point iterations tries to root find the equation $\mathbf 0 = \nabla f(x)$, which is equivalent to solving the equation $x = x - \beta \nabla f(x)$. Here we are in euclidean space, which is a special type of metric space. 
 
-**Theorem: The Proximal Point Methods**
+**Theorem | Strong Convexity make Proximal Point Contractive**
 > The proximal point method considers a form of fixed point iterations: 
 > $$
 >   \forall n \in \N: x_{n + 1} = (\partial f + I)^{-1}x_n, 
@@ -43,4 +43,5 @@ And by the fact that $\beta > 0$ for any strongly convex functions, the above fi
 
 
 **References**: 
+
 Prof Wang's Math 328 class, lecture 5. 
