@@ -84,7 +84,7 @@ Caratheodory Criterion is the necessary and sufficient condition. There are many
 > $E\subseteq \mathbb R$ is a measurable set, if, $\forall A\subseteq \mathbb R$, $m^*(A) = m^*(A\cap E) + m^*(A\cap E^C)$. 
 
 **Observations**
-1. Combining sub-addtivity property of outer measure, the measurable condition is equivalent to showing that for all $A\subseteq \mathbb R$, we have $m^*(A) \ge m^*(A\cap E) + m^*(A\cap E^C)$, because $m^*(E) = m^*((A\cap E)\cap (A\cap E^C))\le m^*(A\cap E) + m^*(A \cap E^C)$ by sub-additivity of the outer measure. 
+1. Combining sub-addtivity property of outer measure, the measurable condition is equivalent to showing that for all $A\subseteq \mathbb R$, we have $m^*(A) \ge m^*(A\cap E) + m^*(A\cap E^C)$, because $m^*(E) = m^*((A\cap E)\cup (A\cap E^C))\le m^*(A\cap E) + m^*(A \cap E^C)$ by sub-additivity of the outer measure. 
 2. The definition is symmetric wrt to parameter $E, E^C$. 
 3. Trivially, $\mathbb R, \emptyset$ are measurable set. 
 

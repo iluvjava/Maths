@@ -14,6 +14,10 @@ Give "Features" vectors $a_i \in \mathbb{R}$ with outcomes $y_i$. However, notic
 
 > Suppose that we observe a i.i.d sequence of $(y_i, a_i^T)$ and we want to construct a linear model that describes the missing parameter for the distribution for $Y_i$.  We choose the most appropriate pmf/pdf for the type of observed outcomes. For our case assume that the parameter is a single parameter. Assume that parameter is different for each observed instance. We analyize the likelihood for the i.i.d sequence. Next, we link *some parameters* from the likelihood function to the feature parameter $a_i\in\mathbb{R}^d$ via the linear model $a^T_ix$, with $x$ being our new parameter for the optimization problem.
 
+**Remarks**
+
+It's possible to create mixed models for it as well. 
+
 ---
 #### **Example | Simple Poisson Regression**
 
@@ -36,7 +40,7 @@ $$
         p(y_i| \lambda_i)
     \right)
 	\\
-	& \quad \text{apply logarithm}
+	& \quad \text{apply negative logarithm}
     \\
     & =
     \arg\min_{\lambda_i, \cdots, \lambda_m} 
@@ -55,7 +59,11 @@ $$
 \right) + C. 
 $$
 
-Where $C$ is some constant. This objective function is convex, and it's $C^\infty$, however this is not Beta Smooth because the Hessian has unbounded eigenvalues.
+Where $C$ is some constant. 
+
+**Remarks**
+ 
+This objective function is convex, and it's $C^\infty$, however this is not Beta Smooth because the Hessian has unbounded eigenvalues. Additionally this is also not strongly convex due  Hessian doesn't have lower bound for the eigen value over the entirety of $\mathbb R^n$. Whether we have some kind of other norms with desirable property, is something that I don't know but potentially useful. 
 
 ---
 #### **Example | Simple Logistic Regression**

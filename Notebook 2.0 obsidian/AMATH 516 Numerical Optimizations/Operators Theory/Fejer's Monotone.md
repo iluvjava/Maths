@@ -32,11 +32,11 @@ $$
 \end{aligned}
 $$
 
-therefore, it means that $\Vert x^{(m)} - \bar x\Vert \rightarrow 0$, and hence it converts to a point $\bar x$ in $C$. Alternatively, we may also prove it this way. 
+therefore, it means that $\Vert x^{(m)} - \bar x\Vert \rightarrow 0$ and the sequence is Cauchy, and hence it converts to a point $\bar x$ in $C$. Alternatively, we may also prove it this way. 
 
 **Alternative Proof**
 
-For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded and monotone, therefore it has a limit. Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
+For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded below and monotone, therefore it has a limit. Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
 
 **Remarks**
 It converges weakly, since it's converging only by the norm. 
@@ -116,7 +116,7 @@ where we make use of the fact that inner product of an inner product space is a 
 
 **Remark**
 
-Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed. 
+Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
 
 ---
 ### **Applications**

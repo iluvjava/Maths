@@ -1,6 +1,7 @@
-- [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Banach Contraction in Metric Space]], [[../Background/Characterizing Functions for Optimizations]]. 
-- [[../Non-Smooth Calculus/Subgradient Intro]]
-- [[../Strong Convexity, Equivalences and Implications]]
+- [Banach Contraction in Metric Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Banach%20Contraction%20in%20Metric%20Space.md), 
+- [Characterizing Functions for Optimizations](../Background/Characterizing%20Functions%20for%20Optimizations.md). 
+- [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
+- [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 ---
 ### **Intro**
 
@@ -39,9 +40,9 @@ $$
 \end{aligned}
 $$
 
-And by the fact that $\beta > 0$ for any strongly convex functions, the above fixed point iterations on the resolvent of subgradient is a contraction and it will converge to a unique minimum by Banach Contraction Theorems in metric space. 
+And by the fact that $\beta > 0$ for any strongly convex functions, the above fixed point iterations on the resolvent of subgradient is a contraction and it will converge to a unique minimum from Banach Contraction Theorems in metric space. 
 
 
-**References**: 
+**References**:
 
 Prof Wang's Math 328 class, lecture 5. 

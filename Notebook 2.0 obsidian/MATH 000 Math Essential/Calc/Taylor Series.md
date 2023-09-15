@@ -244,7 +244,7 @@ The expression for $C(f, n, k_1, k_2, \cdots k_m)$ is obtained simply by asserti
 
 $$
 f^{(k_1, k_2, \cdots, k_m)}(\vec{x}_0) = 
-(\partial_x^{k_1}\partial_x^{k_2}\cdots \partial_x^{k_m})[f(\vec{x})]_{\vec{x} = \vec{x}_0}
+(\partial_{x_1}^{k_1}\partial_{x_2}^{k_2}\cdots \partial_{x_m}^{k_m})[f(\vec{x})]_{\vec{x} = \vec{x}_0}
 $$
 
 Then one can simplify the expression and get the Taylor Series centered at any point, giving us: 
