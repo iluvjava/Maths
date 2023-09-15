@@ -99,7 +99,7 @@ We abuse the notation and use subgradient despite the fact that it's a set value
 ---
 ### **Proximal Point Can be a Banach Contraction**
 
-We state and prove that fact that a proximal point iterations on a strongly convex function is a contraction on the Euclidean space. See [Appearences of Contraction Operators](../Operators%20Theory/Appearences%20of%20Contraction%20Operators.md)  for a detailed exposition. 
+We state and prove that fact that a proximal point iterations on a strongly convex function is a contraction on the Euclidean space. See [Appearances of Contraction Operators in Optimizations Method](../Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md)  for a detailed exposition. 
 
 
 
