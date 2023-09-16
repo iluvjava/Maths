@@ -76,7 +76,7 @@ $$
     -
     2\eta \langle \nabla f(y) - \nabla f(x), y- x\rangle
     \\
-    [ [1] ] 
+    {[[1]]}
     \implies 
     & \le \Vert y - x\Vert^2 + \eta^2 \Vert \nabla f(y) - \nabla f(x)\Vert
     - \frac{2\eta }{L} \Vert \nabla f(x) - \nabla f(y)\Vert^2 
@@ -141,6 +141,7 @@ $$
     \Vert Ty - Tx\Vert^2 
     &\le \max((1 - \eta L)^2, (1 - \eta \beta)^2)\Vert y - x\Vert^2
     \\
+    {[[2.1]]} \wedge {[[2.2]]}
     \implies 
     \Vert Ty - Tx\Vert 
     &\le \max(|1 - \eta L|, |1 - \eta \beta|)\Vert y - x\Vert^2. 

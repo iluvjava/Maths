@@ -1,6 +1,6 @@
 ---
-alias: Smoothness and its Euivalences
-alias: L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
+aliases:
+  - L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
 ---
 * [Dual Norm](Background/Dual%20Norm.md)
 * [Gradient, Hessian Characterization of Convexity](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convexity.md)

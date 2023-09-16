@@ -58,7 +58,6 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 5. Condition 5 gives a lower bound for how much the gradient should change given the distance from $\Vert x - y\Vert$. 
 
 
-
 ---
 ### **Proofs**
 

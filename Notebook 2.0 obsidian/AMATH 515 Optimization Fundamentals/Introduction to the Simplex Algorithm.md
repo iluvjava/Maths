@@ -1,5 +1,7 @@
-It's an iterative algorithm that designed for solving Linear Programming problems. 
-
+---
+aliases:
+  - Introduction to Dual Simplex
+  - Introduction to Simplex Method
 
 ---
 ### **Intro**

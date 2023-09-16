@@ -5,8 +5,9 @@ prereq: [[Matrix Theory/Norm, for Beginners]]
 This is one of the metric used for measure the behavior of linear operator, which under the context of conditioning and stability for linear algebra, forms the basis for computational algorithm for the condition number. 
 
 ---
-### **Conceptually Speaking**
-Conditioning and stability are property of the functions that maps things from an input space to the output space of the function. 
+### **Intro**
+
+**Conceptually speaking,** conditioning and stability are property of the functions that maps things from an input space to the output space of the function. The function here is the algorithm that maps the inputs to the outputs. 
 
 #### **Conditioning**
  Perturbs the inputs and how does it change the output of the function. 
@@ -15,61 +16,63 @@ Conditioning and stability are property of the functions that maps things from a
  * Ill-Conditioned: 
  	* Small changes in the x causes huge changes in the output of the function. 
 
-This idea is relevant to controlling the error because if reflects how the round off errors could potentially got scaled up when smaller numerical errors are introduced. 
+This idea is relevant to controlling the error because if reflects how the round-off errors could potentially got scaled up when smaller numerical errors are introduced. 
+
 #### **Stability**
- Behaviors of the algorithm under perturbations 
+
+Behaviors of the algorithm under perturbations. Let $y^*$ be the correct answer for $x$ under exact computations. The forward absolute error is identified to be $f(x) - y^*$, and the backward error is $\Delta x$ such that $f(x + \Delta x) = y^*$, meaning the actual problem the algorithm had solved, given the output that we had obtained. 
 
  
- ---
- Assuming that the function $f(x): X \mapsto Y$ is our numerical algorithm. 
+---
+Assuming that the function $f(x): X \mapsto Y$ is our numerical algorithm. 
  
- Absolute Condition Number: 
+#### **Def | Absolute Condition Number** 
  
- > $$\sup_{\delta x} \left(\frac{||\delta f||}{||\delta x||}\right)$$
+> $$\sup_{\delta x} \left(\frac{||\delta f||}{||\delta x||}\right)$$
 
-However, if the function output at the point $x$ is just huge, then this is really not an representation, and hence we have the Relative condition number where the inputs and the outputs are normalized. 
+However, if the function output at the point $x$ is just huge, then this is really not a representation, and hence we have the Relative condition number where the inputs and the outputs are normalized. 
  
- Relative Condition Number: 
+#### **Def | Relative Condition Number** 
  
- > $$\lim_{\delta \rightarrow 0}\sup_{\delta x < \delta} \left( 
- > \frac{||\delta f||/||f||}
- > {||\delta x||/||x||}
- > \right)$$
+> $$
+> \lim_{\delta \rightarrow 0}\sup_{\delta x < \delta} \left( 
+> \frac{||\delta f||/||f||}
+> {||\delta x||/||x||}
+> \right)
+> $$
 
-So we measure the perturbations relative to the input vector, and measure the perturbations relative to the output vector from the function, and then we are interested in the ratio between the 2, if this scales too big, then we are in a bit of a trouble. 
-
-Generalizing the concepts to any function, we will use the jacobian matrix. 
+So we measure the perturbations relative to the input vector, and measure the perturbations relative to the output vector from the function, and then we are interested in the ratio between the 2, if this scales too big, then we are in a bit of a trouble. Generalizing the concepts to any function, we will use the jacobian matrix. 
 
 $$\delta f \approx \textbf{J}_f(x) $$
 
 And hence, we will know that the discussion of conditioning under the context of linear algebra will be helpful here. 
 
 **Note:**
+
 There are different types of norm which can be used here, but it's not specified here. 
 
  ---
-#### Conditioning Under the Context of Linalg
+#### **Conditioning Under the Context of Linalg**
 
-Now, assume that the matrix $A\in \mathbb{C}^{m\times n}$
-
-Then, using the definition from above on the general mapping functions, it's going to be 
+Now, assume that the matrix $A\in \mathbb{C}^{m\times n}$. Then using the definition from above on the general mapping functions, the maximal ratio between the relative error for intput and the output caused by $\delta x$ is defined to be
 
 $$
 \sup_{\delta x}
 \left(
 	\frac{||A(x + \delta x) - Ax||/||Ax||}
 	{||\delta x||/||x||}
-\right)
+\right), 
 $$
 
-Then an upper bound can be identified with some properties of Matrix Vecor Norm, [[Matrix Theory/Norm, for Beginners]], which will results in the following expression here: 
+Then an upper bound can be identified with some properties of Matrix Vecor Norm, [[Matrix Theory/Norm, for Beginners]], which results in the expression of the conditional number for a matrix. 
 
-> $$\kappa = \sup_{||x|| = 1}\frac{||A||\;||x||}{||Ax||}$$
-Relative Conditioning Number of a matrix
 
-Now the condition number will tells us the upper bound for Relative Condition of a matrix, and the upper bound will be tight. 
+#### **Def | The Condition Number for a Matrix is**
 
-#### **Proof:** 
+> $$\kappa = \sup_{||x|| = 1}\frac{||A||\;||x||}{||Ax||}, $$
+> is the relative conditioning number of a matrix.
+
+#### **Proof** 
 
 Here we will quickly work through the poof for the conditioning of a matrix in linear algebra and in this case, we might need to understand something about the [[Matrix Theory/Norm, for Beginners]] of a matrix, which is used here. 
 
@@ -112,35 +115,51 @@ $$
 $$
 
 
-#### Squared Matrices
+#### **For Invertible Square Matrices**
 Now assume that the matrix $A$ is also squared. 
 
-$$\frac{||x||}{||Ax||} \leq ||A^{-1}||$$
+$$
+\frac{||x||}{||Ax||} \leq ||A^{-1}||
+$$
 
 Under the case of the square matrices, the above definition will be useful for us, and hence we can say the following about the condition number of the squared matrix: 
 
 > $$\kappa = ||A||\;||A^{-1}||$$
 
-#### Condition Number and SVD for Squared Matrices
+#### **Condition Number and SVD for Squared Matrices**
 
-Fact: $||A||_2 = \sigma_{max}$
-
-The matrix induced 2 norm (Spectral Norm) is equaled to the maximal Singular value of the matrix. 
-
-Fact: $||A||_F = \sum_{i} \sigma_i$
-The Frobenius Norm of the matrix $A$ equals to the sum of all the singular values. 
+**Facts** 
+1. $||A||_2 = \sigma_{max}$. The matrix induced 2 norm (Spectral Norm) is equaled to the maximal Singular value of the matrix. 
+2. $||A||_F = \sum_{i} \sigma_i$. The Frobenius Norm of the matrix $A$ equals to the sum of all the singular values. 
 
 Notice that, the norm of the matrices can be computed using the SVD of the matrix, and then we will get the expression of $||A||_2, ||A||_F$ using the singular values of $||A||$. 
 
-$$||A||_2 =||U||_2|\Sigma||_2||V^H||_2 = \sigma_{max}$$
+$$
+\begin{aligned}
+	||A||_2 &=
+	||U||_2|\Sigma||_2||V^H||_2 
+	\\
+	&= \sigma_{\max}
+	\\
+	||A^{-1}||_2 &= ||(V\Sigma V^H)^{-1}||_2 
+	\\
+	& = ||\Sigma^{-1}||_2
+	\\
+	\kappa_2(A) &= 
+	||A||_2
+	||A^{-1}||_2 
+	\\
+	& = \frac{\sigma_{\max}}{\sigma_{\min}}
+\end{aligned}
+$$
 
-$$||A^{-1}||_2 = ||(V\Sigma V^H)^{-1}||_2 = ||\Sigma^{-1}||_2$$
 
-$$\kappa_2(A) = ||A||_2||A^{-1}||_2 = \frac{\sigma_{max}}{\sigma_{min}}$$
+
 
 
 Which is the expression of the Condition number, and it can be easily computed using the SVD decomposition of the matrix $A$. 
 
-#### For Non-squared Matrices
+---
+#### **For Non-squared Matrices**
 
-When the matrices is not squared, we are going to assume that the matrix is full rank so that the Penrose Pseudo Inverse of the matrix exists. 
+When the matrices is not squared, we are going to assume that the matrix is full rank so that the Penrose Pseudo Inverse instead, then a similar result exists compare to the case when the matrix is squared. 
