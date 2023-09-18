@@ -1,4 +1,4 @@
-[[Eigen Decompose]]
+[[Matrix Decomposition/Eigen Decomposition]]
 This is a weird theorem. Currently not sure what the proof is, and where it's applied. 
 
 ---

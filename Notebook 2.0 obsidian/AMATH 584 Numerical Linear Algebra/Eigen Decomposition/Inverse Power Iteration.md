@@ -1,5 +1,5 @@
 This file will give some overview on the algorithmic approach to the Eigen Decomposition. 
-prereq: [[Eigen Decompose]]
+prereq: [[../Matrix Theory/Matrix Decomposition/Eigen Decomposition]]
 
 Keywords: Rayleigh Quotient and Inverse Power Iterations. 
 

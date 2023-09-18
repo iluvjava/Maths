@@ -416,3 +416,9 @@ $$
 $$
 
 with $y$ being $x^{(k)}$, the objective value $f(x^{(k)}) - f(\bar x)$ is bounded by the normed error between the sequence and the root $\Vert x - \bar x\Vert^2$. 
+
+
+$$
+\overset{\overbrace{\cdots}^{\text{n times}} }
+{x}
+$$

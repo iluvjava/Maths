@@ -1,4 +1,4 @@
-[[Eigen Decompose]], [[Schur Decomposition]]
+[[Matrix Decomposition/Eigen Decomposition]], [[Schur Decomposition]]
 Reference: Intro part of the book: \<Iterative Method for Linear System\>
 [[Norm, for Beginners]]
 

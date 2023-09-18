@@ -10,7 +10,7 @@ Linear Algebra and Numerical Analysis
 
 ---
 ### **Eigen Decomposition**
-* [[Eigen Decompose]]: Basics
+* [[Matrix Theory/Matrix Decomposition/Eigen Decomposition]]: Basics
 * [[Inverse Power Iteration]]: Basics of Algorithmic approach of the matters. 
 	* [[Eigen Decomp, The Pure QR]]
 	* [[Eigen Decomp Algo 3, Shifted QR]]

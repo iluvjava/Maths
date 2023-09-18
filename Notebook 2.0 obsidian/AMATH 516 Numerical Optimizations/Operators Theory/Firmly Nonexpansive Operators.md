@@ -248,16 +248,20 @@ $$
     \text{where: } (I - A)^T (I - A) &= I - A - A^T + A^TA
     \\
     \iff
-    v^T(I - A - A^T + 2A^TA) \le v^Tv
+    v^T(I - A - A^T + 2A^TA) &\le v^Tv
     \\
     \iff 
-    \lambda_{\max}( - A - A^T + 2A^TA) \le 0 
+    \lambda_{\max}( - A - A^T + 2A^TA) &\le 0 
     \\
-    \lambda_{\min}(A + A^T - 2A^TA) \ge 0. 
+    \lambda_{\min}(A + A^T - 2A^TA) &\ge 0. 
 \end{aligned}
 $$
 
 This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is positive definite if and only if the matrix $A$ is firmly nonexpansive. Take note that a Skew Hermitian matrix satisfy the above condition. 
+
+**Remarks**
+
+Results can be strengthen a bit when $A$ is a symmetric matrix, and for application that would imply having a Hessian matrix. 
 
 #### **Example | Projection Operators is Firmly Nonexpansive**: 
 

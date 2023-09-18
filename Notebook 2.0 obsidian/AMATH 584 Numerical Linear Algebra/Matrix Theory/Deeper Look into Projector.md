@@ -5,13 +5,11 @@ Another attempt at covering the concepts of an projector is covered in [[Deeper 
 ---
 ### **Intro**
 
-Let's get some theoretical fundations for the entity we called: Projector in linear algebra. 
+#### **Def | Projector**
+> A square matrix $P$ is a projector if: $P^2 = P$
 
-A matrix $P$ is a projector if: 
+In general this property is called Idempotent. 
 
-> $$P^2 = P$$
-
-This ths is an Idempotent operator. 
 
 **Consequence 1**: 
 > $(I - P)$ is also a projector. 
@@ -19,9 +17,8 @@ This ths is an Idempotent operator.
 > (I - P)^2 = I - P
 > $$
 
-
-
-**Proof**: Trivial
+**Proof**: 
+Trivial
 
 **Consequence 2**: 
 

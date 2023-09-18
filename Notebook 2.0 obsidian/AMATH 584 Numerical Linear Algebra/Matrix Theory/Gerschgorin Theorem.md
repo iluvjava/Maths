@@ -1,4 +1,4 @@
-[[Eigen Decompose]]
+[[Matrix Decomposition/Eigen Decomposition]]
 
 ---
 ### **Intro**

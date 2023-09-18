@@ -107,7 +107,8 @@ $$
     \\
     [1]\implies 
     &= 
-    1 - \frac{\lim_{x\rightarrow s}\frac{f(x) - f(s)}{(x - s)}}{f'(s)}
+    1 - \frac{\lim_{x\rightarrow s}\frac{f(x) - f(s)}{(x - s)}}{f'(s)}, 
+    \text{by f(s) = 0}
     \\
     &= 
     1 - \frac{f'(s)}{f'(s)} = 0 <1
@@ -118,11 +119,20 @@ $$
 
 $$
 \begin{aligned}
-    &\left|1- \frac{f(x)(x - s)}{f'(x)} \right| \le \epsilon <1
+    & 
+    \forall \epsilon\;\exists \delta: 
+    \left(
+        x \in (s - \delta, s + \delta)\implies
+        \left|1- \frac{f(x)}{f'(x)(x - s)} \right| \le \epsilon <1
+    \right)
     \\
     \iff
     &
-    \frac{|g(x) - s|}{|x - s|} \le \epsilon <1, \forall x\in [x - \delta, + \delta]
+    \forall \epsilon\;\exists \delta: 
+    \left( 
+        x \in (s - \delta, s + \delta)\implies
+        \frac{|g(x) - s|}{|x - s|} \le \epsilon <1
+    \right)
 \end{aligned}
 $$
 
@@ -130,7 +140,7 @@ by the definition of the limit equals to $1$, there exists some $\delta > 0$ whe
 
 #### **Thm | Sufficient Conditions for Quadratic convergence around a Simple Root**
 
-> Based on the conditions previous theorem, we also choose the $\delta$ such that sequence start in $[s - \delta, s + \delta]$ converges, then it converges quadratically if, $f''(x)$ exists for $[x - \delta, x + \delta]$ (which can have discontinuity at $s$) and $f''(x)(x - s) \rightarrow 0$ as $x\rightarrow s$, then $|x_n - s|$ converges quadratically. 
+> Based on the conditions previous theorem, we also choose the $\delta$ such that sequence start in $[s - \delta, s + \delta]$ converges, then it converges quadratically if, $f''(x)$ exists for $[x - \delta, x + \delta]$ (which can have discontinuity at $s$) and $\lim_{x\rightarrow s}f''(x)(x - s) < \infty$ as $x\rightarrow s$, then $|x_n - s|$ converges quadratically. 
 
 **Proof**
 
@@ -154,11 +164,11 @@ $$
     \right| &= 
     \left|
         \frac{f''(x)(x - s)}{f'(x)}
-    \right| \le \epsilon < 1, 
+    \right| < \infty
 \end{aligned}
 $$
 
-by the fact that the initial guess make the first ratio strictly less than $1$, the quadratic convergence condition is satisfied and it converges quadratically for all initial $x\in [s - \delta, s + \delta]$. 
+Both quantities in the quotients are asympotically bounded as $x\rightarrow s$ by statement hypothesis. Conseqeuently by the RHS the quadratic convergence condition is satisfied and it converges quadratically for all initial $x\in [s - \delta, s + \delta]$. 
 
 **Remarks**
 
@@ -244,7 +254,7 @@ therefore, choosing any iterate $x$ such that the error ratio is strictly less t
 
 **Remark**
 
-Finally, even if $\lim_{x\rightarrow s}(x-s)h'(x) < \infty$, or even if it equals to $\infty$, it will still converge. In the first case it would still converge, but a rate slower than $1 - 1/m$, and in the latter case, it might converge, but at a sub-linear rate. 
+Finally, even if $\lim_{x\rightarrow s}(x-s)h'(x) < \infty$, or even if it equals to $\infty$, it will still converge. In the first case it would still converge, but a rate slower than $1 - 1/m$, and in the latter case, it might converge, but at a sub-linear rate. People can also circumvent the slow convergence of the sequence by altering newton's method, weighting the term $f(x)/f'(x)$. Other method such as Akiten accelerations can also be used here. Higher order methods will have trouble due numerical errors. 
 
 
 ---

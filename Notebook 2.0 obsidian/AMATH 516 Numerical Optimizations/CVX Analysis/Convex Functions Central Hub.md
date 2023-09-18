@@ -53,7 +53,7 @@ Theorem 2.21 from \<First Order Method in Optimizations\>, It's also one of the 
 The definition of Lipchitz is in [Lipschitz Continuity](../Background/Lipschitz%20Continuity%20), and the proof and detailed discussion will be in here: [Convex Function is Locally Lipschitz](../Non-Smooth%20Calculus/Convex%20Function%20is%20Locally%20Lipschitz%20). Convex Functions are continuous on its domain, but only along a line segment. See [this](Convex%20Line%20Segment%20Continuity%20) for more information. 
 
 ---
-### **Characterization for Convex Functions**
+### **Characterization for Differentiable Convex Functions**
 
 For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. 
 
