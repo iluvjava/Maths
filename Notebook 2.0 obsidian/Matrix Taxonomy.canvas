@@ -32,7 +32,7 @@
 		{"id":"fdb00fea26dba10b","type":"text","text":"### Permutation Matrix","x":-35,"y":900,"width":300,"height":63},
 		{"id":"7d244d11ffc46014","type":"text","text":"### **Intro**\n\nFor the larger picture, matrices are characterized by their characteristic polynomials. The class of non-singular matrices cut right over the groups","x":-847,"y":-20,"width":823,"height":169},
 		{"id":"d5fdbca903e0bcfc","type":"text","text":"### Jordan Block","x":-328,"y":1780,"width":445,"height":80},
-		{"id":"b4652a4edba96d6e","type":"text","text":"### Defective","x":-758,"y":1780,"width":322,"height":80},
+		{"id":"b4652a4edba96d6e","type":"text","text":"### Defective","x":-758,"y":1780,"width":191,"height":50},
 		{"id":"6ef0884831ad9713","type":"text","text":"- Gaussian Eliminations","x":2000,"y":770,"width":386,"height":60},
 		{"id":"25130a39cb04f0c9","type":"text","text":"- [Cholesky Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/Cholesky.md)","x":2000,"y":1445,"width":420,"height":70},
 		{"id":"116e754dcbc609b1","type":"text","text":"- $A$ is Hermitian if and only if $A^H = A$\n- It has a real Spectrum and it's normal","x":-1473,"y":815,"width":360,"height":171},
@@ -46,9 +46,9 @@
 		{"id":"3274f636366fc7db","type":"text","text":"$A \\in \\mathbb C^{m\\times m}$","x":-1300,"y":1240,"width":180,"height":60},
 		{"id":"bcd20a4b538b11d4","x":-28,"y":2222,"width":348,"height":127,"type":"text","text":"[Conjugate Gradient and Oblique Projectors](MATH%20700%20Master%20Thesis/Conjugate%20Gradient%20and%20Oblique%20Projectors.md)"},
 		{"id":"c751ea681d4ab960","type":"text","text":"- Rotations\n- Reflection\n-  Discrete Fourier Matrix","x":360,"y":2222,"width":321,"height":165},
-		{"id":"a195b426a5439df6","type":"text","text":"-  [SVD](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/SVD.md) (Polar Decomposition)\n- [QR Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/QR.md)\n- [LU Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/LU%20Decomposition/LU%20Decomposition.md)","x":2000,"y":1007,"width":500,"height":202},
 		{"id":"acff062de81019c6","type":"text","text":"- [Jordan Normal Form](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Jordan%20Normal%20Form.md)\n- [Schur Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Schur%20Decomposition/Schur%20Decomposition.md), [Hessenberg Form](AMATH%20584%20Numerical%20Linear%20Algebra/Hessenberg%20Form/Hessenberg%20Transformation,%20All%20Methods.md)\n- Toetplitz Decomposition","x":2000,"y":1260,"width":500,"height":155},
-		{"id":"24c45d6ac59c1555","type":"text","text":"- [Eigen Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/Eigen%20Decomposition.md)","x":2000,"y":880,"width":386,"height":98}
+		{"id":"24c45d6ac59c1555","type":"text","text":"- [Eigen Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/Eigen%20Decomposition.md)","x":2000,"y":880,"width":386,"height":98},
+		{"id":"a195b426a5439df6","type":"text","text":"-  [SVD](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/SVD.md) (Polar Decomposition)\n- [QR Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Matrix%20Decomposition/QR.md)\n- [LU Decomposition](AMATH%20584%20Numerical%20Linear%20Algebra/LU%20Decomposition/LU%20Decomposition.md)","x":2000,"y":1023,"width":500,"height":202}
 	],
 	"edges":[
 		{"id":"2f307c66005b2c9b","fromNode":"d46e7037cea8dc7b","fromSide":"right","toNode":"a195b426a5439df6","toSide":"left"},
@@ -65,9 +65,9 @@
 		{"id":"8d9124518a5d6ba7","fromNode":"a8c0d022d3816993","fromSide":"left","toNode":"268336913518c01e","toSide":"right"},
 		{"id":"f597aaf856717ecf","fromNode":"cb6b3f4725ef62bf","fromSide":"left","toNode":"6cd684364e4dfcaf","toSide":"top"},
 		{"id":"9a4c0a161a026d3e","fromNode":"8378d15f111dd712","fromSide":"right","toNode":"c751ea681d4ab960","toSide":"top"},
-		{"id":"67bc663d74e8eac2","fromNode":"2c29cf51f3d98a1e","fromSide":"bottom","toNode":"4a9390f0d9ed1510","toSide":"top"},
+		{"id":"67bc663d74e8eac2","fromNode":"2c29cf51f3d98a1e","fromSide":"right","toNode":"4a9390f0d9ed1510","toSide":"top"},
 		{"id":"4f746992bbd677ba","fromNode":"59bd209e6c66b881","fromSide":"right","toNode":"6ef0884831ad9713","toSide":"left"},
 		{"id":"6f3b840654b52427","fromNode":"62e258b2f7270d91","fromSide":"right","toNode":"25130a39cb04f0c9","toSide":"left"},
-		{"id":"21c6d35adc8b2e76","fromNode":"63177360d02e9de1","fromSide":"bottom","toNode":"bcd20a4b538b11d4","toSide":"top"}
+		{"id":"21c6d35adc8b2e76","fromNode":"63177360d02e9de1","fromSide":"right","toNode":"bcd20a4b538b11d4","toSide":"top"}
 	]
 }

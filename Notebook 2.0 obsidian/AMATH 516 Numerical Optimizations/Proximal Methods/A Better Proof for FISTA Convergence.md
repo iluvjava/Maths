@@ -54,7 +54,7 @@ We introduce new notations with more interpretable meaning:
 * $v^{(k)} = x^{(k)} - x^{(k -1)}$ is the velocity term. 
 * $\bar v^{(k)}= \theta_k v^{(k)}$ is the weighed velocity term. 
 * $e^{(k)} := x^{(k)} - \bar x$, where $\bar x \in \arg\min_{x}(f(x))$, where $\bar x$ might not be unique. 
-* $\Delta_k := f(x^{(k)}) - f(\bar x)$ which represent the optimality gap at step $k$. 
+* $\Delta_k := f(x^{(k)}) - f(\bar x) \ge 0$ which represent the optimality gap at step $k$. 
 
 Use the Prox 2 Points and substitute $x = x^{(k)}, y = y^{(k + 1)}$ gives: 
 
@@ -109,7 +109,7 @@ $$
 unfortunately, at current step we won't be able to trigger the monotone property and sum it up like in the case without any momentum, instead, we need to consider new approach. 
 
 ---
-### **The Second Lemma: 2 Positive Sequences**
+### **The Second Lemma | 2 Positive Sequences**
 
 We consider sequence $a_k, b_k \ge 0$ for $k\in \mathbb N$ with $a_1 + b_1 \le c$, and inductively the 2 sequences satisfies: $a_{k} - a_{k + 1} \le b_{k + 1} - b_k$ , it describes the the  oscillations of $a_k$ is bounded by $b_k$. Consider the telescoping sum: 
 
@@ -131,7 +131,7 @@ $$
     &\ge
     b_{N + 1} + a_{N +1}
     \\
-    \implies c \ge a_{N+1}. 
+    \implies c &\ge a_{N+1} \quad \textcolor{gray}{\triangleright \text{By }b_{n + 1} \ge 0.}
 \end{aligned}
 $$
 
@@ -139,6 +139,7 @@ $$
 
 If we can match the form of the expression, then there is a way to restrain the value of $\Delta_k$, intuitive we are thinking of bounding the changes in the sequence. If the initial $a_1 + b_1$  is bounded by $c$, and the way $a_k$ changes is always bounded by the changes in $b_k$, given both $a_k, b_k$ are non-negative, the total amount of changes of $a_k$ will be bounded by the total amount of changes in the sequence $b_k$ as well.
 
+The non-negativity of the 2 sequences has correspondence with knowing existence of minimizer $\bar x$. 
 
 ---
 ### **Making use of the Lemma**
@@ -151,11 +152,11 @@ $$
     \\
     & \ge  
     t_{k + 1}^2\Vert v^{(k + 1)} - \bar v^{(k)}\Vert^2 + 
-    2\langle t_{k + 1}^2(v^{(k + 1)} - \bar v^{(k)}), e^{(k)} + t_{k + 1} \bar v^{(k)}\rangle
+    2\langle t_{k + 1}(v^{(k + 1)} - \bar v^{(k)}), e^{(k)} + t_{k + 1} \bar v^{(k)}\rangle
     \\
     &=
     \Vert t_{k + 1} (v^{(k + 1)} - \bar v^{(k)}) \Vert^2 + 
-    2\langle t_{k + 1}^2(v^{(k + 1)} - \bar v^{(k)}), e^{(k)} + t_{k + 1}\bar v^{(k)}\rangle
+    2\langle t_{k + 1}(v^{(k + 1)} - \bar v^{(k)}), e^{(k)} + t_{k + 1}\bar v^{(k)}\rangle
     \\
     &=
     \Vert t_{k+1} v^{(k + 1)} - t_{k + 1}\bar v^{(k)} + e^{(k)} + t_{k + 1}\bar v^{(k)}\Vert^2
@@ -182,14 +183,14 @@ $$
 \end{aligned}
 $$
 
-where at \[1\] we use the fact that $e^{(k)}= x^{(k)} - \bar x = x^{(k)} - x^{(k - 1)}+ x^{(k - 1)} - \bar x = v^{(k)} - e^{(k)}$ and to match the form, we would need the sequence of $t_k, \theta_k$ to satisfies 
+where at \[1\] we use the fact that $e^{(k)}= x^{(k)} - \bar x = x^{(k)} - x^{(k - 1)}+ x^{(k - 1)} - \bar x = v^{(k)} + e^{(k-1)}$ and to match the form, we would need the sequence of $t_k, \theta_k$ to satisfies 
 
 $$
 \begin{aligned}    
     \begin{cases}
-        t^2_{k + 1} - t_{k + 1} = t_k^2,
+        t^2_{k + 1} - t_{k + 1} = t_k^2, &\text{For LHS, }
         \\
-        t_k = t_{k + 1}\theta_k + 1. 
+        t_k = t_{k + 1}\theta_k + 1, & \text{For RHS. }
     \end{cases}
 \end{aligned}\tag{$\star \star$}
 $$

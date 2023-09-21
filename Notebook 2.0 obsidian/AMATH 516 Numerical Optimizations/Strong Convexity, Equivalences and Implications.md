@@ -14,7 +14,6 @@ Here in this file we make use the following specific references:
 
 > Let function $f:\mathbb E \mapsto \mathbb{\bar R}$ be strongly convex, then there exists $\alpha > 0$ such that $f - \frac{\alpha}{2}\Vert x\Vert^2$ is a convex function. 
 
-
 Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha$ strongly convex function then for any $x,y\in \mathbb E$, the following conditions are equivalent: 
 
 1. $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
@@ -33,9 +32,6 @@ We abuse notation slightly and write the subgradient inside of the inner product
 **Theorem 1 | Equivalences**
 > Conditions 1, 2, 3 are all equivalent to the definition of strong convexity of a function. 
 
-**Proof** 
-*#UNFINISHED Remember to add the proofs for equivalences characterizations of strongly convex functions*
-
 ---
 ### **Implications**
 
@@ -48,7 +44,7 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following 
 7. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
 8. if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
 
-**Theorem: Weaker Implications**
+**Theorem 2 |  Weaker Implications**
 
 Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general properties for functions. 
 
@@ -61,10 +57,10 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 ---
 ### **Proofs**
 
-**Proof of Condition 1, and 8**
+**\[1\]=> \[4\]**
 
-We wish to prove that condition 1 is equivalent to the strong convexity and condition 8 is implied from the strong convexity.
+> Strong convexity means that the PL-Inequality is satisfied. 
 
-#UNFINISHED:
+
 
 
