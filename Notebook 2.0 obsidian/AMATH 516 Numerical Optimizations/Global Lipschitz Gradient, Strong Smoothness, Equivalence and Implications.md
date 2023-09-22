@@ -31,15 +31,16 @@ In this file we are interested in the following list of conditions:
 
 1. $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$, smoothness
    - the function can be squeezed between 2 tangential quadratic function. Observe trivially that when $f$ is convex, the absolute value can be removed. By the way the quantity inside the absolute value is the Bregmen Divergence.
-2. $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$, upper bounded monotonicity. 
-3. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. Co-coerciveness. 
+   - This is called the Descent Lemma by Heinz and Wang. 
+1. $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$, upper bounded monotonicity. 
+2. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. Co-coerciveness. 
    -  Take note that if $x^+$, a minimizer doesn't exists, we may still have the lower bound, and replace $f(x^+)$ with $\inf_{x\in \mathbb E}f(x)$. 
-4. $0\le f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2$, the one sided-smoothness condition. 
-5. $\frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y) -f(x) - \langle \nabla f(x), y - x\rangle$. Not sure what name this one has. 
-6. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, Non-expansiveness. 
+3. $0\le f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2$, the one sided-smoothness condition. 
+4. $\frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y) -f(x) - \langle \nabla f(x), y - x\rangle$. Not sure what name this one has. 
+5. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, Non-expansiveness. 
     - co-coersive property, which is as strong as Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
-7. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
-8. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
+6. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
+7. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
 
 
 **Remarks**

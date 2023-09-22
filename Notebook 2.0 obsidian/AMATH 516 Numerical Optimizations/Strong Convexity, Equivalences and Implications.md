@@ -18,7 +18,7 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha$ strongly convex function 
 
 1. $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
 2. $\langle \partial f(y) - \partial f(x), y - x\rangle \ge \frac{\alpha}{2}\Vert y - x\Vert^2$. 
-3. $f(\alpha x + (1 - \alpha)y) \le \alpha f(x) + (1 - \alpha)f(y) -\frac{\alpha(1 - \alpha)}{2}\Vert y - x\Vert^2, \forall \alpha \in [0, 1]$
+3. $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$
 
 
 **Remarks**
@@ -61,6 +61,41 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 
 > Strong convexity means that the PL-Inequality is satisfied. 
 
+Directly from \[1\] for all $x, y\in \mathbb R$. 
 
+$$
+\begin{aligned}
+	f(y) - f(x) - \langle \partial f(x), y -x\rangle &\ge 
+	\frac{\beta}{2}\Vert y - x\Vert^2
+	\\
+	\implies 
+	\min_{y} f(y)
+	&\ge \min_y
+	\left\lbrace
+	  \frac{\beta}{2}\Vert y - x\Vert^2 + f(x) + \langle \partial f(x), y -x\rangle
+	\right\rbrace
+	\\
+	\mathbf 0 &\in \beta(y - x) + \partial f(x) \quad \textcolor{gray}{\triangleright \text{ let, y minimizes, exist cause quadratic objective}}
+	\\
+	\iff y &\in x - \frac{1}{\beta} \partial f(x)
+	\\
+	\implies 
+	f(x_*) &\ge 
+	\frac{\beta}{2}\left\Vert 
+		\frac{1}{\beta}\partial f(x)
+	\right\Vert^2 + f(x) + 
+	\left \langle 
+		\partial f(x), -\frac{1}{\beta}\partial f(x)
+	\right\rangle \; \forall x \in \mathbb R^n
+	\\
+	& \ge \max_{u \in \partial f(x)}\left\lbrace
+	   \frac{1}{2\beta} \Vert u\Vert^2 + f(x) - \frac{1}{\beta}\Vert u\Vert^2
+	\right\rbrace
+	\\
+	&= f(x) -\frac{1}{2\beta} \min_{u\in \partial f(x)} \Vert u\Vert^2
+	\\
+	&= f(x) - \frac{1}{2\beta} \text{dist}^2_{\partial f(x)}(\mathbf 0).
+\end{aligned}
+$$
 
-
+Therefore, the size of the subgradient bounds the objective value of the function, simplifying the above statement provides us with $f(x) - f(x_*) \le \frac{1}{2\beta }\text{dist}_{\partial f(x)}^2(\mathbf 0)$. 
