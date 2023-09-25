@@ -1,9 +1,9 @@
-[[Proximal Gradient via Forward Backwards Envelope]], read this to understand some basic properties about the envelope and such. 
+[[Proximal Gradient, Forward Backwards Envelope]], read this to understand some basic properties about the envelope and such. 
 
 ---
 ### **Intro**
 
-We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$ and we also would assume that $f$ is convex not not necessarily smooth, recall from the previous file of the following facts: 
+We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$ and we also would assume that $f$ is convex not not necessarily smooth, recall from the previous file of the following facts:
 
 
 1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. This is the fixed point error of the proximal gradient operator, and it's also the velocity of the trajectory made by the proximal gradient algorithm. 
@@ -207,6 +207,10 @@ $$
 $$
 
 and by substituting $x :=y$ and $z := x$ in the context of the lemma then, we complete the proof for the lemma. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
+
+**Remarks**
+
+This is also stated as Theorem 10.16, In Amir Beck's first order optimization method. 
 
 
 ---

@@ -1,18 +1,26 @@
 prereq: 
-* [[../Non-Smooth Calculus/Subgradient Intro]]
+* [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
 * [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
-* [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
+* [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications | Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
   [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
 ---
 ### **Intro**
 
-Proximal gradient descend is a unconstrained optimization method, it aims to solve: 
+Sum of smooth and non smooth problems has structure that can be exploited. 
+
+#### **Def | Problem Form**
 
 > $$\min_x \{g(x) + h(x)\}$$
 
-where $g(x), h(x)$ are convex but $h(x)$ is non-smooth and $g$ is smooth. It's the type of smooth to upper bound the function using a simple quadratic. Here, we derive the proximal gradient algorithm using the most common way of deriving the projected gradient algorithm: Majorizing and Minimizing. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
+**Assumptions**
+
+1. $g(x), h(x)$ are convex
+2. $h(x)$ is non-smooth 
+3. $g$ is smooth with constant $L$. 
+
+Here, we derive the proximal gradient algorithm using the idea of upper Envelope Minimizations. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
 **The Upper model Function**
 
@@ -34,11 +42,11 @@ Please observe that it is implied that $\beta$, will be larger than the Lipschit
 
 **Define | The Proximal Operator and Moreau Envelope**
 
+For any $f:\mathbb R^n \mapsto \mathbb{\bar R}$, we have the gradient and the Moreau Enveloped defined to be: 
+
 $$
 \begin{aligned}
-    & \underset{h, t}{\text{prox}}(
-    z
-    ) = 
+    & \underset{th}{\text{prox}}(z) = 
     \arg\min_x \left\lbrace 
         \frac{1}{2t}
         \left\Vert
@@ -58,7 +66,7 @@ $$
 This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
 
 ---
-### **Formulation of Proximal Gradient Descend**
+### **The Proximal Gradient Descend Method**
 
 Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a parabolic of convexity $\beta$, and let $h$ be a convex but non-smooth function. 
 
@@ -84,18 +92,59 @@ For accelerated gradient, it's exactly the same but with whatever momentum terms
 
 **Remarks**
 
-The step-size is fixed in the above algorithm and it's $\beta^{-1}$ to be precise, it's required to have $\beta \ge L$, where $L$ is the Lipschitz constant for $f$ to have the method as a monotone method. See later sections for me exposition of the matter. 
+The step-size is fixed in the above algorithm and it's $\beta^{-1}$ to be precise, it's required to have $\beta \ge L$, where $L$ is the Lipschitz constant for $f$ to have the method as a monotone method. See later sections for me exposition of the matter.
+
+
+---
+### **Proximal Gradient Minimizes the Upper Bounding Function**
+
+> $$
+> \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
+> \arg\min_y \left\lbrace
+>     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
+>     \Vert y - x\Vert^2 + h(y)
+> \right\rbrace,
+> $$
+> the proximal operator minimize the upper model function $m_x(y)$. Here we assume that $h$ is proper. 
+
+**Proof**
+
+The proof is direct by considering the optimal solution is obtained when the subgradient of the expression inside argmin contains zero, therefore we have: 
+
+$$
+\begin{aligned}
+    \mathbf 0 &\in 
+    \nabla g(x) + {\beta}(y - x) + \partial h(y)
+    \\
+    \nabla g(x) + \beta x & \in
+    \beta y + \partial h(y)
+    \\
+    -\beta^{-1} \nabla g(x) + x &\in y + \beta^{-1} \partial h(y)
+    \\
+    -\beta^{-1} \nabla g(x) + x &\in [I + \beta^{-1} \partial h](y)
+    \\
+    \implies
+    [I + \beta^{-1}\partial h]^{-1}(- \beta^{-1} \nabla g(x) + x) 
+    & \ni y,
+\end{aligned}
+$$
+and using one of the operator interpretations of prox, the LHS of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
+
+**Remarks**
+
+Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that smaller step size for the multiplier for the gradient of $g(x)$, and when $\beta$ is huge, less penalty will be placed on quadratic term inside of the proximal operator, making the infimal convolution resulting in more smoothing on the function $h$. 
+
 
 ---
 ### **Minimizations of the Upper Bound Function**
 
-Here we state some of the important results and claims related to upper smooth model, the Forward Backwards Envelope (FB Envelope) that we will soon define, and other associated properties. By minimizing the $m_x(y)$, the upper bounding function, we obtain the lower envelope of the function. 
+The Forward Backward Envelope is the resulting function of minimizing upper bounding $m_x(y)$ wrt to parameter $y$. Readers should realize that the minimizers is unique due strong convexity of our upper bounding function. 
 
-**The Forward Backward Envelope**: 
+#### **Def | The Forward Backward Envelope**
 > Let $m^+(x) := \min_y m_x(y)$, then it's given by: 
 > $$
 > \begin{aligned}
->   m^+(x) &= m_x\circ \text{prox}_{g, \beta^{-1}}(x - \beta^{-1}\nabla l(x))
+>   m^+(x) &= m_x\circ \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))
 >   \\
 >   &= \text{env}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
 > \end{aligned}
@@ -161,51 +210,10 @@ $$
 adding back the $g(x)$ that is not part of the minimizations, we hae what we claimed. 
 
 
-
----
-### **Proximal Gradient Minimizes the Upper Bounding Function**
-
-> $$
-> \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
-> \arg\min_y \left\lbrace
->     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
->     \Vert y - x\Vert^2 + h(y)
-> \right\rbrace,
-> $$
-> the proximal operator minimize the upper model function $m_x(y)$. Here we assume that $h$ is proper. 
-
-**Proof**
-
-The proof is direct by considering the optimal solution is obtained when the subgradient of the expression inside argmin contains zero, therefore we have: 
-
-$$
-\begin{aligned}
-    \mathbf 0 &\in 
-    \nabla g(x) + {\beta}(y - x) + \partial h(y)
-    \\
-    \nabla g(x) + \beta x & \in
-    \beta y + \partial h(y)
-    \\
-    -\beta^{-1} \nabla g(x) + x &\in y + \beta^{-1} \partial h(y)
-    \\
-    -\beta^{-1} \nabla g(x) + x &\in [I + \beta^{-1} \partial h](y)
-    \\
-    \implies
-    [I + \beta^{-1}\partial h]^{-1}(- \beta^{-1} \nabla g(x) + x) 
-    & \ni y,
-\end{aligned}
-$$
-and using one of the operator interpretations of prox, the LHS of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
-
-**Remarks**
-
-Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that smaller step size for the multiplier for the gradient of $g(x)$, and when $\beta$ is huge, less penalty will be placed on quadratic term inside of the proximal operator, making the infimal convolution resulting in more smoothing on the function $h$. 
-
-
 ---
 ### **Gradient of the Forward Backwards Envelope**
 
-> If we assume that $g(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope given as: 
+> If we assume that $g(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope can be computed via
 > 
 > $$
 > \begin{aligned}
@@ -232,8 +240,8 @@ $$
     &= 
     \left[
         I - \beta^{-1}\nabla \nabla g
-    \right]^T(x)\nabla g(x)
-    \\[2em]
+    \right]^T(x)\nabla g(x);
+    \\[1em]
     & \nabla_x \left[
         \text{env}_{h, \beta^{-1}} (
             x - \beta^{-1}\nabla g(x)
@@ -256,7 +264,7 @@ $$
 \end{aligned}
 $$
 
-Adds these 2 terms together and we will obtain the results for the claim. 
+Adds these 2 terms together and we will obtain the results for the claim. We made use of the gradient of an moreau envelope. Recall from pre-requisite the the gradient of $\text{env}_{\alpha, f} = \alpha^{-1}[I - \text{prox}_{\alpha f}](x)$. 
 
 **Remarks**
 
@@ -292,7 +300,7 @@ and this is direct by the strong convexity definition substituting in the optima
 
 
 ---
-### **Claim 5**
+### **Claim 5 | One step Descent**
 
 > We define $f:= g + h$, then the difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
 > 

@@ -1,8 +1,9 @@
 {
 	"nodes":[
 		{"id":"6a5ef4929712e65f","x":-880,"y":-400,"width":600,"height":180,"type":"text","text":"### V-FISTA\n\n10.7.7; Amir Beck, First Order convergence of Nesterov Momentum with fixed momentum parameters. "},
-		{"id":"c8d59468630b2359","x":-160,"y":-400,"width":503,"height":129,"type":"text","text":"### QUASI-NEWTON\n\nStarts in 6.1 In J.Wright's Numerical Optimizations Textbook."},
-		{"id":"03622d849e701f8a","x":-160,"y":60,"width":601,"height":130,"type":"text","text":"### Mark Schmidts big Mixes\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. "}
+		{"id":"cc73e786031c1fc4","x":-880,"y":-180,"width":1169,"height":173,"type":"text","text":"### [ANOTHER LOOK AT THE FAST ITERATIVE   SHRINKAGE/THRESHOLDING ALGORITHM (FISTA)](https://web.eecs.umich.edu/~fessler/papers/files/jour/18/web/kim-18-ala.pdf)\n\n* Related to the worse case performance analysis of algorithms.  "},
+		{"id":"c8d59468630b2359","x":-214,"y":-400,"width":503,"height":180,"type":"text","text":"### QUASI-NEWTON\n\nStarts in 6.1 In J.Wright's Numerical Optimizations Textbook."},
+		{"id":"03622d849e701f8a","x":-880,"y":60,"width":820,"height":130,"type":"text","text":"### Mark Schmidts big Mixes\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. "}
 	],
 	"edges":[]
 }

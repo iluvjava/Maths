@@ -13,7 +13,7 @@ This is a build up on the duality, and how to use the Lagrangian to get the opti
 ---
 ### **Intro**
 
-**DEPRECATED WARNING: A lot of stuff in this page might not be correct.**
+<mark style="background: #FFB86CA6;">**DEPRECATED WARNING: A lot of stuff in this page might not be correct.**</mark>
 
 Previously we have seemed the slack relaxation and the interior points method. And converting non-linear equations into root finding, and then we use newton's method the continuation to get the optimal solution. 
 

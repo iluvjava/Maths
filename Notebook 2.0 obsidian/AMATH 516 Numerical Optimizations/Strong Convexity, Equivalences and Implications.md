@@ -57,7 +57,7 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 ---
 ### **Proofs**
 
-**\[1\]=> \[4\]**
+**\[1\]=>\[4\]**
 
 > Strong convexity means that the PL-Inequality is satisfied. 
 

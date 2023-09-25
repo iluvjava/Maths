@@ -1,4 +1,4 @@
-prereq: [[Proximal Gradient via Forward Backwards Envelope]]
+prereq: [[../Proximal Methods/Proximal Gradient, Forward Backwards Envelope]]
 
 
 ---

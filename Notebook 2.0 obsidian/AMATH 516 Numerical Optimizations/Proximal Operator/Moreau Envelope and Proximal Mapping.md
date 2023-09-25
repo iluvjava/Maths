@@ -122,37 +122,6 @@ Here, I want to highlight one important observation we should make here, and tha
 
 
 
----
-### **Subgradient (Gradient) of Moreau Envelope**
-
-$$
-\begin{aligned}
-    & \text{env}_{f, \alpha}(x) = \min_y \left\lbrace
-        f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
-    \right\rbrace ,
-    \\
-    & \text{let: }y^+ \in \text{prox}_{f, \alpha}(x) \text{ then: }
-    \\
-    & \begin{aligned}
-        \text{env}_{f, \alpha}(x) &= f(y^+) + \frac{1}{2\alpha} \Vert y^+ - x\Vert^2,
-        \\
-        \partial\text{env}_{f, \alpha}(x) &= \mathbf 0 + 
-        \partial_x\left[
-            \frac{1}{2\alpha}\Vert y^+ - x\Vert^2
-        \right]
-        \\
-        &= \mathbf 0 + \frac{1}{\alpha}(x - y^+)
-        \\
-        &= \frac{1}{\alpha}(x - \text{prox}_{f, \alpha}(x)). 
-    \end{aligned}
-\end{aligned}
-$$
-
-Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but its gradient also Lipschitz continuous with a modulus of $1/\alpha$, implying that it's also strongly smooth according to [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]. 
-
-**Remarks**
-
-The proof is from myself and it might contains some errors. It's a theorem stated in Dimitry's Textbook, Theorem 3.64. Notice that this works even if function $f$ is not necessarily strongly smooth ($\beta$ smooth). 
 
 
 
@@ -179,15 +148,13 @@ $$
     \\
     \implies 
     f(x^+) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
-    \underbrace{f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. }_{
-        \begin{aligned}
-            & = 
-            \left(
-                f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2
-            \right) - \frac{1}{2} \Vert y^+ - y\Vert^2 + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}
-            \Vert x^+ - y^+\Vert^2 
-        \end{aligned}
-    }
+    f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. 
+    \\
+    & = 
+    \left(
+        f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2
+    \right) - \frac{1}{2} \Vert y^+ - y\Vert^2 + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}
+    \Vert x^+ - y^+\Vert^2 
 \end{aligned}
 $$
 
@@ -252,15 +219,13 @@ To generalize the results where $\alpha$ is not necessarily 1, we consider: $\te
 
 The proximal operator is also <mark style="background: #FFF3A3A6;">*firmly nonexpansive*</mark>, a stronger type of operators than Lipschitz-1 Operators. This helps with proving the convergence of many algorithms that uses the proximal operator. For context, read [[../Operators Theory/Firmly Nonexpansive Operators]] for more about firmly nonexpansive operators in general. There is also an simpler version of the proof for the firmly nonexpansiveness of the prox operators. 
 
-**Corollary: Moreau Envelope is Smooth**
+**Corollary | Moreau Envelope is Smooth**
 
 Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
 **References**: 
 
 Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where. 
-
-
 
 
 ---
@@ -296,12 +261,12 @@ The extra assumption needed are strict convexity (Positive definiteness of hessi
 
 Proposition 11.3 in Rockafellar. 
 
-**Theorem: Proximal Decomposition** 
+**Theorem | Proximal Decomposition** 
 
 Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
 > $$
 > \begin{aligned}
->   x = \text{prox}_{f, 1}(x) + \text{prox}_{f^{\star}, 1}(x)
+>   x = \text{prox}_{f}(x) + \text{prox}_{f^{\star}}(x)
 > \end{aligned}
 > $$
 
@@ -380,11 +345,13 @@ $$
         \left(
             f(\cdot) \square \frac{1}{2}\Vert \cdot \Vert^2
         \right)^\star
-    \right](z)
+    \right](z) \quad 
+    \textcolor{gray}{\triangleright \text{ Fenchel Identity}}
     \\
     & x \in \partial \left[
         f^\star + \frac{1}{2}\Vert \cdot \Vert^2
-    \right](z) &  [1]
+    \right](z)\quad 
+    \textcolor{gray}{\triangleright \text{[1]}} 
     \\
     & x\in 
     \partial f^\star(z) + z
@@ -398,17 +365,51 @@ $$
     \\
     & z\in \text{prox}_{f^\star}(x)
     \\
-    & z \in x - \text{prox}_{f}(x) & [2]
+    & z \in x - \text{prox}_{f}(x) \quad
+    \textcolor{gray}{\triangleright \text{[2]}}
 \end{aligned}
 $$
 
-At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipschitz, the gradient is also a Lipschitz mapping. 
+- At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. 
+- At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipschitz, the gradient is also a Lipschitz mapping. 
 
 **Remarks**
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
 The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. 
+
+---
+### **Gradient of Moreau Envelope Alternative Proof**
+
+$$
+\begin{aligned}
+    & \text{env}_{f, \alpha}(x) = \min_y \left\lbrace
+        f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
+    \right\rbrace ,
+    \\
+    & \text{let: }y^+ \in \text{prox}_{\alpha f}(x) \text{ then: }
+    \\
+    & \begin{aligned}
+        \text{env}_{f, \alpha}(x) &= f(y^+) + \frac{1}{2\alpha} \Vert y^+ - x\Vert^2,
+        \\
+        \partial\text{env}_{f, \alpha}(x) &= \mathbf 0 + 
+        \partial_x\left[
+            \frac{1}{2\alpha}\Vert y^+ - x\Vert^2
+        \right]
+        \\
+        &= \mathbf 0 + \frac{1}{\alpha}(x - y^+)
+        \\
+        &= \frac{1}{\alpha}(x - \text{prox}_{\alpha f}(x)). 
+    \end{aligned}
+\end{aligned}
+$$
+
+Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but its gradient also Lipschitz continuous with a modulus of $1/\alpha$, implying that it's also strongly smooth according to [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]. 
+
+**Remarks**
+
+The proof is from myself and it might contains some errors. It's a theorem stated in Dimitry's Textbook, Theorem 3.64. Notice that this works even if function $f$ is not necessarily strongly smooth ($\beta$ smooth). There is also much doubts to the differentiability too since the uniqueness solution has nothing to do with the fact that it can be differentiable, $y^+$ is a function, and we should be using chain rule for our case. 
 
 
 ---

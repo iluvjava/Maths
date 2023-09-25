@@ -13,7 +13,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 * ADMM. Related topics are now in [[Introduction ADMM]], some of them taken from this paper. 
 * Proximal Methods .
 	* Proximal Methods as a minimum on the majorizing functions.
-		* The has been already summarized in [[Proximal Gradient via Forward Backwards Envelope]]. 
+		* The has been already summarized in [[../../AMATH 516 Numerical Optimizations/Proximal Methods/Proximal Gradient, Forward Backwards Envelope]]. 
 	* Proximal Methods as a fixed point iteration schemes. 
 		* [[Proximal Point Method, Interpretations]]
 	* Proximal methods as gradient on the envelope. (Not mentioned?)

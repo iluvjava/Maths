@@ -14,10 +14,10 @@ Then by convexity and positive definiteness we conclude that
 
 $$
 \begin{aligned}
-    f(x) &\le f(x) + \langle \nabla f(x), y - x\rangle + 
+    f(y) &\le f(x) + \langle \nabla f(x), y - x\rangle + 
     \langle y - x, H_f[x](y - x)\rangle \quad \forall x, y \in X
     \\
-    f(x) &\le 
+    f(y) &\le 
     f(x)  + \min_{y} \left\lbrace
        \langle \nabla f(x), y - x\rangle + 
        \langle y - x, H_f[x](y - x)\rangle
@@ -208,5 +208,5 @@ dividing both sides by the RHS norm establish the quadratic convergence of the n
 
 **Remarks**
 
-From strong convexity one can estalish that $\Vert \nabla f(x)\Vert^2 \ge 2\beta(f(x) - f(x_*))$, hence the objective value is also converging quadratically. 
+From [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) one can estabish that $\Vert \nabla f(x)\Vert^2 \ge 2\beta(f(x) - f(x_*))$, hence the objective value is also converging quadratically. 
 
