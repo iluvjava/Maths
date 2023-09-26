@@ -61,7 +61,7 @@ by being specific about the length of the gradient step, let $\gamma = \alpha$ t
 
 **Remarks**
 
-Moreau envelope can be viewed as a type of smoothing for any given functions. From [[Moreau Envelope and Proximal Mapping]], we know that the subgradient of the Moreau envelope is indeed the gradient, implying the fact the the envelope is differentiable. Additionally, the Lipschitz constant for the gradient is bounded to bounded Lipschitz for the proximal operator, further implying the fact that the envelope gradient is globally Lipschitz. This allows for great convergence results for the proximal point method. 
+Moreau envelope can be viewed as a type of smoothing for any given functions. [[Moreau Envelope and Proximal Mapping]] established that, the subgradient of the Moreau envelope is just the gradient, hence that the envelope is differentiable. Additionally, the Lipschitz constant for the gradient is bounded to bounded Lipschitz for the proximal operator, further implying the fact that the envelope gradient is globally Lipschitz. This allows for great convergence results for the proximal point method. 
 
 
 ---

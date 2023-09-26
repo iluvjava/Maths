@@ -1,11 +1,22 @@
-[[Convexity Preserving Operations for Functions]], [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
+- [[Convexity Preserving Operations for Functions]]
+- [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
 
 ---
 ### **Intro**
 
 We introduce the idea that, infimal convolutions can be interpreted as epigraph addition under certain conditions, and, it preserves smoothness of the functions, if one of the function is smooth. We also discuss the dual of the infimal convolutions. These results are non-trivial and play important roles. 
 
-**Thm: Infimal Convolutions as Epigraphical Additions**
+#### **Def | Infimal Convoltuion**
+> Let $h_1, h_2 : \mathbb E \mapsto \mathbb {\overline R}$ be 2 proper functions, then the infimal convolution is defined as 
+> $$
+>   h_1\square h_2 = \inf_{u \in \mathbb E}\{h_1(u) + h_2(x - u)\}.  
+> $$
+
+**Remarks**
+
+Stated in 2.3.2 in Amir Beck's First Order method book, convexity is not assumed for either $h_1, h_2$. 
+
+#### **Thm |  Infimal Convolutions as Epigraphical Additions**
 > The epigraph of the infimal convolutions is equivalent to convoluting the epigraph of the function. Let $f, g$ be convex mapping from $\mathbb E$ to $\mathbb{\bar R}$, and $(f\square g)(x) = \min_{y}(f(y) + (x - y))$, then 
 > $$
 >     \text{epi}(f\square g) = \text{epi}(f) + \text{epi}(g) . 
@@ -51,8 +62,26 @@ Therefore, for any 2 elements from the epigraph of each of $f, g$, their sum is 
 
 **Remarks**
 
-I made the proof myself, and there might be cooler and better way to prove it. This is from Dimitri's Lecture, and homework assignment. 
+I made the proof myself, and there might be cooler and better way to prove it. This is from Dimitri's In person Lecture, and homework assignment. 
 
 
-**Thm: Infimal Convolutions Preserves Convexity**
+#### **Theorem | Preservation of Convexity Over Infimal Convolution**
+
+> Let $h_1$ be a *convex proper augmented real function* and let $h_2$ be a *convex real-valued function*, then their infimal convolution is a convex function. 
+
+**Proof**
+
+See Corollaries for convexity preservations of partial minimizations of 2 functions in [Convexity Preserving Operations for Functions](Convexity%20Preserving%20Operations%20for%20Functions.md), the proof is there. 
+
+**Remarks**
+
+This is theorem 2.19 in Amir Beck's First Opt book, 2.3.2. 
+
+
+#### **Thm | Conjugate of Infimum Convolution**
 > 
+
+
+**Remarks**
+
+Stated as proposition 21.1 in Heinz's Course notes for convex optimizations. 

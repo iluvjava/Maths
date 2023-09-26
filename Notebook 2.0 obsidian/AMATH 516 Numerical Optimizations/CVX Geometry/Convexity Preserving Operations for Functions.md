@@ -174,11 +174,11 @@ Finally, there exists a epigraphical interpretations of Partial Minimizations in
 \<First Oder Optimization Methods\> by SIAM, theorem 2.18
 
 ---
-### **Corollary: Infimal Convolutions Preserves Convexity**
+### **Corollary |  Infimal Convolutions Preserves Convexity**
 
-This is an application of the above theorem for convextiy preservation of partial minimizable for partially, minimizable function. 
+This is an application of the above theorem for convexity preservation of partial minimizable for partially, minimizable function. 
 
-**Definition: Infimal Convolution**
+**Definition | Infimal Convolution**
 
 > Define the infimal convolution between 2 proper functions: $h_1, h_2$. Giving us: 
 > 
@@ -190,7 +190,7 @@ This is an application of the above theorem for convextiy preservation of partia
 > $$
 
 
-**Theorem: Preservation of Convexity Over Infimal Convolution**
+**Theorem | Preservation of Convexity Over Infimal Convolution**
 
 > Let $h_1$ be a *convex proper augmented real function* and let $h_2$ be a *convex real-valued function*, then their infimal convolution is a convex function. 
 
@@ -203,7 +203,7 @@ Both $h_1, h_2$ are convex, therefore their sum is also convex. Since $h_1$ is p
 
 When $h_1, h_2$ is convex, the addition between the epigraphs of $h_1, h_2$ will still be a convex function and it's equivalent to the infimal convolutions. It is implied that for a weaker assumption where, $h_1, h_2$  are both augmented real functions, the theorem might not fall through due to the $h_1\square h_2\neq \infty$ in addition, the converse is unclear. 
 
-**Example: Distance Function to Any Set is CONVEX**
+**Example |  Distance Function to Any Set is CONVEX**
 
 A distance function to any set, not necessarily closed can be expressed as an infimal convolution: 
 

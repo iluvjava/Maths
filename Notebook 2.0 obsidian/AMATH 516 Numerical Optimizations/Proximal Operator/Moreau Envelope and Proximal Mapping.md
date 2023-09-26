@@ -47,20 +47,34 @@ Which is the Huber Loss function in statistics.
 **Dimitri's Comments**:
 > The moreau envelope is a generalization of the set distance squared operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
-In addition please observe the following identities: 
+#### **Theorem | Basic Prox Identities**
 
-$$
-\begin{aligned}
-    & \text{prox}_{\alpha f} =  \text{prox}_{f, \alpha}
-    \\
-    & \lambda\text{env}_f^\mu = 
-    \text{env}_{\lambda f}^{\mu/\lambda}
-\end{aligned}
-$$
+> With $f$ Convex closed and proper, $\alpha > 0$. These identities transform the parameters of the prox/env operator. 
+> 
+> $$
+> \begin{aligned}
+>     & \text{prox}_{\alpha f} =  \text{prox}_{f, \alpha}
+>     \\
+>     & \lambda\text{env}_f^\mu = 
+>     \text{env}_{\lambda f}^{\mu/\lambda}
+>     \\
+>     & \text{prox}_{f}(\alpha f) = \alpha \left(\underset{\alpha^{-2}f(\alpha(\cdot))}{\text{prox}}(x)\right)
+>     \\
+>     & \text{prox}_{\alpha f}(x) = \sqrt{\alpha}\left(\underset{f(\sqrt{\alpha}(\cdot))}{\text{prox}}
+>     \left(x / \sqrt{\alpha}\right)\right). 
+> \end{aligned}
+> $$
+> For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$. 
 
-For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$. 
+**Proof**
 
-**Theorem: Equivalence Characterization for Proximal Point** 
+See Exercise below. 
+
+**Exercise**
+
+See proof for Basic Prox Identities. 
+
+#### **Theorem | Equivalence Characterization for Proximal Point** 
 > For a convex proper, lower semi-continous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
 > 1. $x = \text{prox}_f(y)$, 
 > 2. $y - x\in \partial f(x)$,
@@ -121,17 +135,13 @@ Monotone operator deserves its pages. Here will skip the details.
 Here, I want to highlight one important observation we should make here, and that is the special case where $f(x) = \delta_C(x)$, under that case, the proximal operator becomes the set projection operator onto the set. 
 
 
-
-
-
-
 ---
-### **Prox is L1-Lipschitz, and Firmly Non-expansive**
+### **Prox is L1-Lipschitz under 2-Norm, and Firmly Non-expansive**
 
 > Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
 > \begin{aligned}
->     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2_\star \le 
+>     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
 >     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
 > \end{aligned}
 > $$
@@ -142,12 +152,14 @@ Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy s
 To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. For simplicity we denotes $P_f(x), P_g(x)$ as the proximal operator at $x$. Define $g(z):= f(z) + \frac{1}{2}\Vert z - x\Vert^2$ is strongly convex wrt to $z$, $\alpha = 1$ then $g(y^+) - g(x^+)\ge \frac{1}{2}\Vert x^+ - y^+\Vert^2$ where $x^+\in P_f(x)$, $y^+\in P_f(y)$, expanding it we have: 
 
 $$
+{\scriptsize
 \begin{aligned}
-    f(y^+) +\frac{1}{2}\Vert y^+ - x\Vert^2 - f(x) - \frac{1}{2}\Vert x^+ - x\Vert^2 & \ge 
+    f\left(y^+\right) 
+    +\frac{1}{2}\Vert y^+ - x\Vert^2 - f(x) - \frac{1}{2}\Vert x^+ - x\Vert^2 & \ge 
     \frac{1}{2}\Vert x^+ - y^+\Vert^2
     \\
     \implies 
-    f(x^+) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
+    f\left(x^+\right) + \frac{1}{2}\Vert x - x^+\Vert^2 &\le 
     f(y^+) + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}\Vert y^+ - x^+\Vert^2. 
     \\
     & = 
@@ -156,6 +168,7 @@ $$
     \right) - \frac{1}{2} \Vert y^+ - y\Vert^2 + \frac{1}{2}\Vert y^+ - x\Vert^2 - \frac{1}{2}
     \Vert x^+ - y^+\Vert^2 
 \end{aligned}
+}
 $$
 
 Then we consider the term: $f(y^+) + \frac{1}{2}\Vert y^+ - y\Vert^2$ and use strong convexity (wrt to $y^+$ in this case) again to obtain 
@@ -233,28 +246,18 @@ Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where.
 
 The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
 
-**Lemma: When are Subgradient Invertible**
-> Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex, then $(\partial f)^{-1} = \partial f^\star$. 
+**Lemma | When are Subgradient Invertible**
+> Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex and subgradient $\partial f$ is surjective, then $(\partial f)^{-1} = \partial f^\star$. 
 
 **Proof for Lemma**
-To show it, we make use of the [[../Duality/Fenchel Identity, Inequality]]: 
-$$
-\begin{aligned}
-    & x\in \partial f(z) \iff z \in \partial f^\star(x)
-    \\
-    & x\in \partial f(z)\implies z \in (\partial f)^{-1}(x)
-    \\
-    \implies & z \in (\partial f)^{-1}(x) 
-    \iff  
-    z \in \partial f^\star(x). 
-\end{aligned}    
-$$
+
+To show it, we make use of the [Fenchel Identity, Inequality](../Duality/Fenchel%20Identity,%20Inequality.md). 
 
 **Remarks:**
 
-Due to the nature of multi-valued mapping, it's possible that $(\partial f(z))^{-1} = \emptyset$ for some value of $z$. We may not assume that $\partial f(x)$ has $\text{rng}(\partial f) = \mathbb E$. And because of this, we can't specialize the statement for a strong class of differentiable functions. It's wrong to state the fact that $\nabla f^{-1} = \nabla f^\star$ because it's possible that the gradient $f$ was never one-to-one. Additional assumptions are needed. 
+Function $\exp(x)$ doesn't have a surjective subgradient mapping. Hence, the domain of its subgradient is also not entire. The theorem here is not applicable for all values of $x$ outside of the domain of the subgradient of the conjugate, or outside of the range of the range of the subgradient. 
 
-The extra assumption needed are strict convexity (Positive definiteness of hessian) over the whole domain, and the function $f$ is coercive over the whole domain. 
+Global Strict convexity, coerciveness, are sufficient conditions for invertible subgradient operator using the dual subgradient, subgradient of these functions are surjective. 
 
 
 **References:**
@@ -304,16 +307,14 @@ $$
 * \[3\]: Using the subgradient sum rule, $\iff$ is there for because we can use the strong sum rule in this case, due to the fact that the inner product is entire on its domain. 
 * \[4\]: When $f$ is convex proper and closed, the proximal operator is singled valued. 
 
-
-
 $$
 \begin{aligned}
     x &= \text{prox}_{\lambda f}(x) + \text{prox}_{(\lambda f)^\star}(x)
     \\
-    &= \text{prox}_{f, \lambda^{-1}}(x) + \text{prox}_{\lambda f^\star(\cdot/\lambda)}(x)
+    &= \text{prox}_{f\lambda^{-1}}(x) + \text{prox}_{\lambda f^\star(\cdot/\lambda)}(x)
     \\
     &= 
-    \text{prox}_{f, \lambda^{-1}}(x) + \text{prox}_{f^\star(\cdot /\lambda), \lambda^{-1}}(x), 
+    \text{prox}_{\lambda^{-1}f}(x) + \text{prox}_{\lambda^{-1}f^\star(\cdot /\lambda)}(x), 
 \end{aligned}
 $$
 
@@ -370,46 +371,50 @@ $$
 \end{aligned}
 $$
 
-- At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. 
+- At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more info regarding taking the conjugate of the infimal convolution between 2 functions. 
 - At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipschitz, the gradient is also a Lipschitz mapping. 
 
 **Remarks**
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
-The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. 
-
----
-### **Gradient of Moreau Envelope Alternative Proof**
+The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. It's the same proof but slightly enhenced. The following would be a demonstration: 
 
 $$
 \begin{aligned}
-    & \text{env}_{f, \alpha}(x) = \min_y \left\lbrace
-        f(y) + \frac{1}{2\alpha} \Vert y - x\Vert^2
-    \right\rbrace ,
+    z &\in \partial [\text{env}^\alpha_f](x)
     \\
-    & \text{let: }y^+ \in \text{prox}_{\alpha f}(x) \text{ then: }
+    x &\in \partial \left[\left(
+        f(\cdot) \square \frac{1}{2\alpha}\Vert \cdot\Vert^2
+    \right)^\star\;\right](z)
     \\
-    & \begin{aligned}
-        \text{env}_{f, \alpha}(x) &= f(y^+) + \frac{1}{2\alpha} \Vert y^+ - x\Vert^2,
-        \\
-        \partial\text{env}_{f, \alpha}(x) &= \mathbf 0 + 
-        \partial_x\left[
-            \frac{1}{2\alpha}\Vert y^+ - x\Vert^2
-        \right]
-        \\
-        &= \mathbf 0 + \frac{1}{\alpha}(x - y^+)
-        \\
-        &= \frac{1}{\alpha}(x - \text{prox}_{\alpha f}(x)). 
-    \end{aligned}
+    x &\in \partial \left[
+        f^\star + \alpha^{-1}\left(\frac{1}{2}\Vert \alpha(\cdot)\Vert^2\right)
+    \right](z)
+    \\
+    x &\in \partial f^\star + \alpha z
+    \\
+    \mathbf 0 
+    &\in \partial f^\star(z) + \alpha z - x
+    \\
+    \mathbf 0 &\in 
+    \alpha^{-1}f^\star(z) + z - \alpha^{-1}x
+    \\
+    \mathbf 0 &\in \partial \left[
+        \alpha^{-1}f^\star(\cdot) + \frac{1}{2}\Vert (\cdot) - \alpha^{-1}x\Vert^2
+    \right](z)
+    \\
+    z & \in 
+    \text{prox}_{\alpha^{-1}f^\star} (\alpha^{-1} x) = \alpha^{-1} \text{prox}_{\alpha f^\star(\alpha(\cdot))}(x) = \alpha^{-1} \text{prox}_{(\alpha f)^\star}(x). 
+    \\
+    &\quad  \textcolor{gray}{\triangleright\text{first equality is prox identity}}
+    \\
+    &\quad \textcolor{gray}{\triangleright \text{[1]}}. 
 \end{aligned}
 $$
 
-Notice that, if the function $f$ is convex, then the proximal operator produces a unique solution, and in that case, the subgradient of the envelope is a gradient, because it's a singleton. It's also suggesting that the envelope is smooth, later we will see that it's not only smooth, but its gradient also Lipschitz continuous with a modulus of $1/\alpha$, implying that it's also strongly smooth according to [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]. 
-
-**Remarks**
-
-The proof is from myself and it might contains some errors. It's a theorem stated in Dimitry's Textbook, Theorem 3.64. Notice that this works even if function $f$ is not necessarily strongly smooth ($\beta$ smooth). There is also much doubts to the differentiability too since the uniqueness solution has nothing to do with the fact that it can be differentiable, $y^+$ is a function, and we should be using chain rule for our case. 
+\[1\]: We made use of a formula from [Convex Conjugate Computations Examples](../Duality/Convex%20Conjugate%20Computations%20Examples.md). 
+ 
 
 
 ---
@@ -429,6 +434,8 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > \end{aligned}
 > $$
 
+
+
 **Precomposition**
 
 > if $f(x) = \varphi(\alpha x + b)$ with $\alpha \neq 0$, then we have
@@ -443,6 +450,8 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > \end{aligned}
 > $$
 
+
+
 **Unitary Composition**
 
 > And in the spacial case where $Q$ is an orthogonal matrix, let's assume that $f(x) = \varphi(Qx)$: 
@@ -454,6 +463,9 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > $$
 
 **References**: Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
+
+
+
 
 **Affine Addition**
 
@@ -530,6 +542,6 @@ We can take the proximal operator over a Moreau Envelope, and doing that results
 
 ---
 ### **Beck's Cheatsheet**
-See [[Amir's Prox Cheatsheet.pdf]] for more fast references and stuff. 
+See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for more fast references for more advanced examples of the proximal operator. 
 
 
