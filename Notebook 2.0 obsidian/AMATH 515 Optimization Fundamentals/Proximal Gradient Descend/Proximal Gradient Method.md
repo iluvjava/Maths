@@ -1,3 +1,6 @@
+---
+tag: LEGACY
+---
 [[Nonsmooth Convex Optimization Intro]]
 In this section, we will be interested in solving the proximal gradient method. 
 

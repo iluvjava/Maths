@@ -378,7 +378,8 @@ $$
 
 When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 
-The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$. It's the same proof but slightly enhenced. The following would be a demonstration: 
+
+The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{\alpha f}(x))$. It's the same proof but slightly enhenced. The following would be a demonstration: 
 
 $$
 \begin{aligned}
@@ -409,13 +410,12 @@ $$
     \\
     &\quad  \textcolor{gray}{\triangleright\text{first equality is prox identity}}
     \\
-    &\quad \textcolor{gray}{\triangleright \text{[1]}}. 
+    &\quad \textcolor{gray}{\triangleright \text{[1]}}
 \end{aligned}
 $$
 
-\[1\]: We made use of a formula from [Convex Conjugate Computations Examples](../Duality/Convex%20Conjugate%20Computations%20Examples.md). 
+\[1\]: We made use of a formula from [Convex Conjugate Computations Examples](../Duality/Convex%20Conjugate%20Computations%20Examples.md). With prox decomposition, we have the final result of $\alpha^{-1}(x - \text{prox}_{\alpha f}(x))$
  
-
 
 ---
 ### **Quick Formulas for the Proximal Operators**
@@ -462,7 +462,9 @@ Here is a list of useful formula about the proximal operator, in the most genera
 > \end{aligned}
 > $$
 
-**References**: Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
+**References**: 
+
+Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
 
 
 

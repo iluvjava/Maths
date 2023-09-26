@@ -1,3 +1,7 @@
+---
+tag: LEGACY
+
+---
 - [[Proximal Gradient Method]], 
 - [[Beta Smoothness]], 
 - [[Closed, Proper, Level Bounded, Strong Convex]].

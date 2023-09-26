@@ -1,14 +1,13 @@
 {
 	"nodes":[
 		{"id":"cc73e786031c1fc4","type":"text","text":"### [ANOTHER LOOK AT THE FAST ITERATIVE   SHRINKAGE/THRESHOLDING ALGORITHM (FISTA)](https://web.eecs.umich.edu/~fessler/papers/files/jour/18/web/kim-18-ala.pdf)\n\n* Related to the worse case performance analysis of algorithms.  ","x":-880,"y":-180,"width":1169,"height":173},
-		{"id":"6f71a38ed9d6ebae","x":440,"y":-180,"width":656,"height":173,"type":"text","text":"### Performance of first-order methods for smooth convex minimization: a novel approach\n- Mathematical Programming. \n- Requires some context and background for SPD. "},
 		{"id":"6a5ef4929712e65f","type":"text","text":"### V-FISTA\n\n10.7.7; Amir Beck, First Order convergence of Nesterov Momentum with fixed momentum parameters. ","x":-880,"y":-400,"width":600,"height":180},
-		{"id":"03622d849e701f8a","type":"text","text":"### Mark Schmidts big Mixes\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. ","x":-900,"y":620,"width":820,"height":130},
-		{"id":"c8d59468630b2359","type":"text","text":"### QUASI-NEWTON\n\nStarts in 6.1 In J.Wright's Numerical Optimizations Textbook.","x":-880,"y":144,"width":503,"height":180},
-		{"id":"98fd0835363ff0d2","x":-240,"y":144,"width":981,"height":236,"type":"text","text":"### **Adaptive FISTA for Nonconvex Optimization**\n\n- SIAM\n- The FISTA algorithm in relations to a rank one quasi-Newton method. "}
+		{"id":"98fd0835363ff0d2","type":"text","text":"### **Adaptive FISTA for Nonconvex Optimization**\n\n- SIAM\n- The FISTA algorithm in relations to a rank one quasi-Newton method. ","x":-880,"y":140,"width":981,"height":236},
+		{"id":"03622d849e701f8a","type":"text","text":"### Mark Schmidts Talks about Everything\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. ","x":30,"y":-400,"width":820,"height":180},
+		{"id":"6f71a38ed9d6ebae","type":"text","text":"### Performance of first-order methods for smooth convex minimization: a novel approach\n- Mathematical Programming. \n- Requires some context and background for SPD. ","x":440,"y":-193,"width":800,"height":200}
 	],
 	"edges":[
 		{"id":"47e304841da9174f","fromNode":"cc73e786031c1fc4","fromSide":"right","toNode":"6f71a38ed9d6ebae","toSide":"left"},
-		{"id":"b442329106fb20c1","fromNode":"98fd0835363ff0d2","fromSide":"left","toNode":"c8d59468630b2359","toSide":"right"}
+		{"id":"a47802bbf266be47","fromNode":"6a5ef4929712e65f","fromSide":"right","toNode":"03622d849e701f8a","toSide":"left"}
 	]
 }

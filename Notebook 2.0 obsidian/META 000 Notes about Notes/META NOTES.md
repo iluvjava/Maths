@@ -7,8 +7,7 @@ This note is a note about notes. This is a list of Meta Notes:
 ---
 # **Important Tasks about the Notes**
 
-- [x] Complete and link: [INVESTIGATIONS JUL 23 2023](MATH%20---%20Unexplored/NOTES/INVESTIGATIONS%20JUL%2023%202023.md), to the alternative proof of convex measurability. 
-- [x] Complete the fixed point convergence for [Firmly Nonexpansive Operators](../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Firmly%20Nonexpansive%20Operators.md)! 
+
 
 ---
 # **Tasks to Do about the Notes**
@@ -53,7 +52,8 @@ Something to do when we have time.
 - #UNFINISHED is a tag that describes unfinished works. 
 - #CITATION_NEEDED need to add citations for some claims 
 - #HEINZ Professor Heinz's Special Deliveries. 
-- #INCORRECT  CORECT The claim is just wrong, and I don't know what is right, so I just tag it. 
+- #INCORRECT  CORRECT The claim is just wrong, and I don't know what is right, so I just tag it. 
 - #LATER Unfinished and I don't want to work on it anytime soon. 
 - #UNSOLVED Some issues, or questions that is unresolved. 
-- #CRINGE, Very cringe writing please improve. 
+- #CRINGE, Very cringe writing, please improve. 
+- #LEGACY, Very old writings, and has been covered by newer writings on the same topics. 
