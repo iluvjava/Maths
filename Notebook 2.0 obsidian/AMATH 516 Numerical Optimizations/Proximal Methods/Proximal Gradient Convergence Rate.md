@@ -3,13 +3,37 @@
 ---
 ### **Intro**
 
-We still assume that the function $g(x)$ has a gradient and it's strongly smooth constant $L$ and we also would assume that $f$ is convex not not necessarily smooth, recall from the previous file of the following facts:
+We still assume that
+1. $f = g+ h$. 
+2. $g(x)$ has a gradient and it's strongly smooth constant $L$. 
+3. $h$ is convex not not necessarily smooth. 
+4. $\beta$ is the stepsize of the algorithm, with $\beta \ge L$.
+
+To simplify notation, Let $T = \text{prox}_{\beta^{-1}h}\circ [I - \beta^{-1}\nabla g]$ be an operator denoting the proximal gradient operations. 
+
+**The Fixed Point Error**
+
+We introduce $G_\beta(x) = \beta(x - Tx)$ to be the fixed point error, with the $\beta$ stepsize multiplier. We claim that $G_\beta(x) = \partial h \circ Tx + \nabla g(x)$, here is the justification: 
+
+$$
+\begin{aligned}
+    x^+ &= [I + \beta^{-1}\partial h]^{-1}\circ [I - \beta^{-1}\nabla g](x)
+    \\
+    [I + \beta^{-1}\partial h](x^+) &= [I - \beta^{-1}\nabla g](x)
+    \\
+    x^+ + \beta^{-1}\partial h(x^+) &= x - \beta^{-1}\nabla g(x)
+    \\
+    x^+ - x + \beta^{-1}\partial h(x^+) &= \beta^{-1}\nabla g(x)
+    \\
+    \beta(x^+ - x) + \partial h(x^+) &= - \nabla g(x)
+    \\
+    \beta(x - x^+) &= \nabla g(x) + \partial h(x^+), 
+\end{aligned}
+$$
+and this is the quantity we aim to minimize via the fixed point iteration, and that expression above is one of its representation. By choosing the stepsizes $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$, this is established by previous discussion when we derived the method via the Envelope. 
 
 
-1. $G_\beta - \nabla g(x) \in \partial h(x^+)$ with $x^+ \in \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))$, and this general condition is true for all values of $x$. We refers $G_\beta(x)$ as the residual of the proximal gradient algorithm. Finally, $G_\beta(x) = \beta(x - x^+)$. This is the fixed point error of the proximal gradient operator, and it's also the velocity of the trajectory made by the proximal gradient algorithm. 
-2. By choosing the stepsizes $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$. 
-
-**References**: [here](https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf). A coursenotes used for UC Berkley. 
+**References**: [here](https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf). A course notes used for UC Berkley. I changed it now the algorithm details are coming from the Heinz's Lectures.  
 
 
 ---
@@ -177,40 +201,89 @@ Please realized the parallel between the role played by the residual $G_\beta$ a
 
 The Lemma that we can extract from here is the results (2). 
 
-**Theorem: Proxstep 2 Points**
+#### **Theorem | Fundamental Theorem of Proximal Gradient Lemma**
 
-> Let $h$ be convex, closed and proper, let $g$ be strongly smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = \text{prox}_{h, L^{-1}}(y)$, then for any $x\in \mathbb E$, we have: 
+> Let $h$ be convex, closed and proper, let $g$ be strongly smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = T(y)$ being the proximal gradient step, then for any $x\in \mathbb E$, we have: 
 > 
 > $$
 > \begin{aligned}
->     f(x) - f(y^+) \ge \frac{L}{2}\Vert y^+ - y\Vert^2 + 
->     L \langle y - x, y^+ - y\rangle. 
+>   f(x) - f(y^+)\ge \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y),
 > \end{aligned}
 > $$
+> Where $D_g(x, y):= g(x) - g(y) - \langle \nabla g(y), x -y\rangle$ is the Bregman Divergence for the smooth part of the sum: $g$. 
 
-Please compare the term with (2). Observe and keep in mind that $G_\beta = \beta(x - x^+)$, where $x^+$ is the prox step, therefore: 
+**Observations**
+
+starting with the RHS of the lemma stated above, using the convexity of $g$, Bregman Divergence $D_g(x, y)\ge 0$, with this in mind we have
 
 $$
 \begin{aligned}
-    f(x^+) - f(z)
-	&\le
-	\langle G_\beta(x), x - z\rangle - \frac{1}{2\beta}\Vert G_\beta(x)\Vert^2.
-	\\
-	f(x^+) - f(z) & \le
-	\beta\langle x - x^+, x - z\rangle - \frac{1}{2\beta}\Vert \beta (x - x^+)\Vert^2
-	\\
-	f(z) - f(x^+) & \ge
-	\frac{\beta}{2}\Vert x - x^+\Vert^2
-	+
-	\beta\langle x^+ - x, x - z\rangle,
+    \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y)
+    &\le 
+    \frac{L}{2}\left(
+        \Vert x - y^+\Vert^2 - \Vert x - y\Vert^2
+    \right)
+    \\
+    &= \frac{L}{2}\left(
+        \Vert x - y + y - y^+\Vert^2 - \Vert x - y\Vert^2
+    \right)
+    \\
+    &= \frac{L}{2}\left(
+        \Vert x - y\Vert^2 + \Vert y - y^+\Vert^2 + 
+        2\langle x - y, y - y^+\rangle - \Vert x - y\Vert^2
+    \right)
+    \\
+    &= \frac{L}{2}\left(
+        \Vert y - y^+\Vert^2 + 
+        2\langle x - y, y - y^+\rangle. 
+    \right)
 \end{aligned}
 $$
 
-and by substituting $x :=y$ and $z := x$ in the context of the lemma then, we complete the proof for the lemma. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
+Please compare the above results to (2) from the above derivation of convergence of the proximal gradient method. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
+
+**Proof**
+
+Recall that $m_x(y)$ denotes the upper non-smooth envelope modeled at $x$ and evaluated at $y$. By strong convexity of the upper envelope we have 
+
+$$
+\begin{aligned}
+    m_y(x) - m_y(Ty) &\ge 
+    \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality}}
+    \\
+    \frac{L}{2}\Vert x - Ty\Vert^2 &\le 
+    m_y(x) - m_y(Ty)
+    \\
+    &= 
+    g(y) + \langle \nabla g(y), x - y\rangle + \frac{L}{2} \Vert x - y\Vert^2 + h(x) - m_y(Ty)
+    \\
+    & \le 
+    g(y) + \langle \nabla g(y), x - y\rangle + \frac{L}{2} \Vert x - y\Vert^2 + h(x) - f(Ty) \quad \textcolor{gray}{\triangleright \text{[1]}}
+    \\
+    &=
+    g(y) - g(x) + \langle \nabla g(y), x - y\rangle + \frac{L}{2} \Vert x - y\Vert^2 + g(x) + h(x) - f(Ty)
+    \\
+    &= -(g(x) - g(y) - \langle \nabla g(y), x - y\rangle) + \frac{L}{2} \Vert x - y\Vert^2 + g(x) + h(x) - f(Ty)
+    \\
+    &= -D_g(x, y) + \frac{L}{2} \Vert x - y\Vert^2 + g(x) + h(x) - f(Ty)
+    \\
+    \implies f(Ty) - f(x) &\le -D_g(x, y) + \frac{L}{2} \Vert x - y\Vert^2 - \frac{L}{2}\Vert x - Ty\Vert^2, 
+\end{aligned}
+$$
+
+\[1\]: By the fact that the envelope is always larger than the value of the function at the same point. 
+
+And we had shown the statement in the lemma. 
 
 **Remarks**
 
-This is also stated as Theorem 10.16, In Amir Beck's first order optimization method. 
+This is also stated as Theorem 10.16, In Amir Beck's first order optimization method, and it's also stated in Heinz's convex optimization class. This lemma is central to the evaluation of proximal gradient related method and all the variance of the same method. 
+
+#### **Corollary-1 | Smooth Gradient Descent**
+> The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the identity function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 
+
+#### **Corollary-2 | Fundamental Proximal Gradient Lemma with Smooth and Strongly Convex Assumption**
+> 
 
 
 ---
