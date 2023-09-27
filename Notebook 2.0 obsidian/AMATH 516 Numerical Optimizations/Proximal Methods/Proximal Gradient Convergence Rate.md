@@ -240,7 +240,7 @@ $$
 \end{aligned}
 $$
 
-Please compare the above results to (2) from the above derivation of convergence of the proximal gradient method. This particular lemma is also crucial to the proof of [[Proximal Gradient with Momentum Accelerations]]. 
+Please compare the above results to (2) from the above derivation of convergence of the proximal gradient method. This particular lemma is also crucial to the proof of [Proximal Gradient with Momentum Accelerations](Proximal%20Gradient%20with%20Momentum%20Accelerations.md). 
 
 **Proof**
 
@@ -249,7 +249,7 @@ Recall that $m_x(y)$ denotes the upper non-smooth envelope modeled at $x$ and ev
 $$
 \begin{aligned}
     m_y(x) - m_y(Ty) &\ge 
-    \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality}}
+    \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality by S-CVX}}
     \\
     \frac{L}{2}\Vert x - Ty\Vert^2 &\le 
     m_y(x) - m_y(Ty)
@@ -280,9 +280,10 @@ And we had shown the statement in the lemma.
 This is also stated as Theorem 10.16, In Amir Beck's first order optimization method, and it's also stated in Heinz's convex optimization class. This lemma is central to the evaluation of proximal gradient related method and all the variance of the same method. 
 
 #### **Corollary-1 | Smooth Gradient Descent**
-> The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the identity function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 
+> The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the zero function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 
 
 #### **Corollary-2 | Fundamental Proximal Gradient Lemma with Smooth and Strongly Convex Assumption**
+> The Bregman divergence of smooth part $g$ can be lowered bounded by $\beta/2\Vert x - y\Vert^2$ when $g$ is $\alpha$-strong convex. This will yield the Fundamental Proximal Gradient Lemma to be 
 > 
 
 
