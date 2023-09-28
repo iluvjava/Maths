@@ -75,6 +75,8 @@ $$
 	\\
 	f(\lambda x + (1 - \lambda)y) &\le 
 	\lambda f(x) + (1 - \lambda) f(y) - 
+	\\
+	&\quad
 	\frac{\alpha}{2}(\Vert \lambda x + (1 - \lambda)y\Vert^2
 		 - \lambda \Vert x\Vert^2 - (1 - \lambda)\Vert y\Vert^2
 	)

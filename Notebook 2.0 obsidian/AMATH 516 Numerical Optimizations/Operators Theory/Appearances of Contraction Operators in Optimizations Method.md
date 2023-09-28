@@ -130,7 +130,7 @@ $$
     \\
     & \le (1 + \eta^2 \beta - 2\eta \beta/L)\Vert y - x\Vert^2,  \text{by } \beta/L \le 1
     \\
-    &= (1 - \eta\beta)^2\Vert y - x\Vert^2 \leftarrow [[2.2]], 
+    &= (1 - \eta\beta)^2\Vert y - x\Vert \leftarrow [[2.2]], 
 \end{aligned}
 $$
 
@@ -179,3 +179,12 @@ $$
 $$
 
 Hence it would be the case that $0 < \eta < \min(2/L, 2/\beta)$, however, we take note that $L$ is the upper bound for the Lipschitz constant and $\beta$ is the lower bound, resulting in $\min(2/L, 2/\beta) = 2/L$, taking the value of the smaller quantities. Therefore, the theorem is proven. 
+
+
+---
+### **Corollary | Proximal Gradient Method**
+> Let $f = g + h$ where $g$ is a smooth function with Lipschitz Gradient and $\beta$-strongly convex, let $h$ be convex with proximal operator. Then the proximal gradient operator is a contraction, with the same ratio as it was in the case of the gradient operator $\min(|1 - \eta L|, |1 - \eta \beta|)$, for $\eta\in (0, 2/L)$. 
+
+**Proof**
+
+The proximal gradient operator for this problem is $\text{prox}_{\eta g}\circ [I - \eta \nabla f]$, and this operator is a contraction because the prox operator is None Expansive and the gradient operator is a contraction, as proved previously. For more information about the none expansiveness of the proximal operator, see [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md) for more information. 

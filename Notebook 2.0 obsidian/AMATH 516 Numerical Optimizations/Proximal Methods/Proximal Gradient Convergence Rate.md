@@ -284,7 +284,6 @@ This is also stated as Theorem 10.16, In Amir Beck's first order optimization me
 
 #### **Corollary-2 | Fundamental Proximal Gradient Lemma with Smooth and Strongly Convex Assumption**
 > The Bregman divergence of smooth part $g$ can be lowered bounded by $\beta/2\Vert x - y\Vert^2$ when $g$ is $\alpha$-strong convex. This will yield the Fundamental Proximal Gradient Lemma to be 
-> 
 
 
 ---
