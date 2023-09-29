@@ -235,8 +235,8 @@ $$
     \\
     &= \frac{L}{2}\left(
         \Vert y - y^+\Vert^2 + 
-        2\langle x - y, y - y^+\rangle. 
-    \right)
+        2\langle x - y, y - y^+\rangle
+    \right). 
 \end{aligned}
 $$
 
@@ -290,7 +290,4 @@ This is also stated as Theorem 10.16, In Amir Beck's first order optimization me
 ### **In Relations to Fixed Point Iterations**
 
 #UNFINISHED : Another way to prove it is through the idea of operator. Unfortunately, the operator for the Forward and Backward method is not an Averaged Operator, hence it doesn't adhere to the fixed point convergence as stated and proved in [[Introduction to Operators for Optimizations]]. 
-
-
-
 

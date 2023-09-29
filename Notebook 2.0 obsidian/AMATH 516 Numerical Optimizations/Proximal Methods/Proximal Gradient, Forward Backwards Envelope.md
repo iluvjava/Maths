@@ -211,7 +211,7 @@ adding back the $g(x)$ that is not part of the minimizations, we hae what we cla
 
 
 ---
-### **Gradient of the Forward Backwards Envelope**
+### **Jacobi of the Forward Backwards Envelope**
 
 > If we assume that $g(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope can be computed via
 > 
