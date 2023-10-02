@@ -207,7 +207,7 @@ $$
 \end{aligned}
 $$
 
-adding back the $g(x)$ that is not part of the minimizations, we hae what we claimed. 
+adding back the $g(x)$ that is not part of the minimizations, we have what we claimed. 
 
 
 ---
@@ -497,7 +497,4 @@ projected subgradient method. For more details see: [[Projected Subgradient Meth
 |$\min_x{h(x)}$|Proximal Point Method|
 
 Do note that, in the case where both functions $f,g$ are nonsmooth, parts of the convergence for the projected subgradient method will still apply due to the links between the proximal operator and the convex set projection operator. 
-
-
-
 
