@@ -2,15 +2,17 @@
 	"nodes":[
 		{"id":"6f71a38ed9d6ebae","type":"text","text":"### Performance of first-order methods for smooth convex minimization: a novel approach\n- Mathematical Programming. \n- Requires some context and background for SPD. ","x":440,"y":-193,"width":800,"height":200},
 		{"id":"6a5ef4929712e65f","type":"text","text":"### V-FISTA\n\n10.7.7; Amir Beck, First Order convergence of Nesterov Momentum with fixed momentum parameters. ","x":-800,"y":600,"width":600,"height":180},
-		{"id":"df1278d9b3666624","x":242,"y":-433,"width":1398,"height":113,"type":"text","text":"### Computer-Assisted Design of Accelerated Composite Optimization Methods: OptISTA\n\n- SIAM"},
+		{"id":"df1278d9b3666624","type":"text","text":"### Computer-Assisted Design of Accelerated Composite Optimization Methods: OptISTA\n\n- SIAM","x":242,"y":-433,"width":1398,"height":113},
 		{"id":"cc73e786031c1fc4","type":"text","text":"### [ANOTHER LOOK AT THE FAST ITERATIVE   SHRINKAGE/THRESHOLDING ALGORITHM (FISTA)](https://web.eecs.umich.edu/~fessler/papers/files/jour/18/web/kim-18-ala.pdf)\n\n* Related to the worse case performance analysis of algorithms.  ","x":-849,"y":-193,"width":1169,"height":173},
 		{"id":"98fd0835363ff0d2","type":"text","text":"### **Adaptive FISTA for Nonconvex Optimization**\n\n- SIAM\n- The FISTA algorithm in relations to a rank one quasi-Newton method. ","x":-800,"y":140,"width":981,"height":236},
-		{"id":"03622d849e701f8a","type":"text","text":"### Mark Schmidts Talks about Everything\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. ","x":320,"y":340,"width":820,"height":180}
+		{"id":"03622d849e701f8a","type":"text","text":"### Mark Schmidts Talks about Everything\n\nQuasi-Newton, Nesterov, and various stuff all together. See [Here](https://www.cs.ubc.ca/~schmidtm/Courses/540-W18/L5.pdf) for more. ","x":320,"y":340,"width":820,"height":180},
+		{"id":"6269267e6885a77f","x":-854,"y":944,"width":1094,"height":316,"type":"text","text":"### **FISTA is an automatic geometrically optimized algorithm for strongly convex functions**\n\nAbstract: In this work, we are interested in the famous FISTA algorithm. We show that FISTA is an automatic geometrically optimized algorithm for functions satisfying a quadratic growth assumption. This explains why FISTA works better than the standard Forward-Backward algorithm (FB) in such a case, although FISTA is known to have a polynomial asymptotic convergence rate while FB is exponential. We provide a simple rule to tune the 𝛼 parameter within the FISTA algorithm to reach an εε-solution with an optimal number of iterations. These new results highlight the efficiency of FISTA algorithms, and they rely on new non asymptotic bounds for FISTA."}
 	],
 	"edges":[
 		{"id":"47e304841da9174f","fromNode":"cc73e786031c1fc4","fromSide":"right","toNode":"6f71a38ed9d6ebae","toSide":"left"},
 		{"id":"a47802bbf266be47","fromNode":"98fd0835363ff0d2","fromSide":"right","toNode":"03622d849e701f8a","toSide":"left"},
 		{"id":"39f246f8ff3e6ae4","fromNode":"98fd0835363ff0d2","fromSide":"bottom","toNode":"6a5ef4929712e65f","toSide":"top"},
-		{"id":"647a490b9d4a82bb","fromNode":"df1278d9b3666624","fromSide":"bottom","toNode":"6f71a38ed9d6ebae","toSide":"top"}
+		{"id":"647a490b9d4a82bb","fromNode":"df1278d9b3666624","fromSide":"bottom","toNode":"6f71a38ed9d6ebae","toSide":"top"},
+		{"id":"a2a6e511a0344a15","fromNode":"6a5ef4929712e65f","fromSide":"bottom","toNode":"6269267e6885a77f","toSide":"top"}
 	]
 }

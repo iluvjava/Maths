@@ -41,6 +41,7 @@ In this file we are interested in the following list of conditions:
     - co-coersive property, which is as strong as Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
 6. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
 7. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
+8. $f(\alpha x + (2 - \alpha)y)\le \alpha f(x) + (1 - \alpha)f(y) - \frac{\alpha(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$ for all $\alpha \in (0, 1)$. This co-coersiveness for the Jensen's inequality extension under smoothness. 
 
 
 **Remarks**
@@ -83,6 +84,10 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 > * $[2]\implies [0]$, with the same constant. 
 >
 > By proposition-1, the conditions $[0], [1], [2]$ all becomes equivalent. In proving so, we can also get some interesting lemma as well. 
+
+#### **Proposition 6 | Implications under Convexity**
+> Assume convexity, with any norm, we have the relation that 
+> * $[4]\implies 9$. <mark style="background: #FF5582A6;">Not yet proven</mark>
 
 
 **Remarks**
