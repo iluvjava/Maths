@@ -158,11 +158,11 @@ $$
 \end{aligned}
 $$
 
-As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is montonely decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
+As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
 
 $$
 \begin{aligned}
-    [[0]] \implies 
+    {[[0]]} \implies 
     \Vert x^{(k)} - x^{(k + 1)}\Vert^2 &\le 
     \Vert x^{(k)} - \bar x\Vert^2 - 
     \Vert x^{(k + 1)} - \bar x\Vert^2

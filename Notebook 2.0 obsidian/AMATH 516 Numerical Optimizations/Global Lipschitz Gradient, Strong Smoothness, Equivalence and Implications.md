@@ -88,7 +88,7 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 
 #### **Proposition 6 | Implications under Convexity**
 > Assume convexity, with specifically Euclidean norm, we have the relation that 
-> * $[5]\implies [9]$. <mark style="background: #FF5582A6;">Not yet proven</mark>
+> * $[5]\implies [9]$, 
 > * $[4]\implies [10]$. 
 > 
 > This is theorem 2.1.5, identity 2.1.13, 2.1.14, from Nesterov's lectures on convex optimization textbook. 
@@ -458,7 +458,7 @@ $$
 \end{aligned}
 $$
 
-moving the $L$ around and then take the square root yield the desired results. And hence, 2 sided smoothenss and differentiability is equivalent to gloable Lipscthiz gradient for function $f$ with constant $L$. 
+moving the $L$ around and then take the square root yield the desired results. And hence, 2 sided smoothness and differentiability is equivalent to global Lipscthiz gradient for function $f$ with constant $L$. 
 
 
 ----
@@ -559,7 +559,7 @@ and hence, we had verified the lower bound for the Bregman Divergence for the sm
 
 **Remarks**
 
-To see if this still works with different type of norms, we need to know whether the equality of the cute formula as a results being in Hilbert spaces, can be turned into an inequality that, still supports the above consequence, meaning that $\alpha\Vert a\Vert^2_\star - (1 - \alpha)\Vert b\Vert_\star^2\ge \alpha(1 - \alpha)\Vert a - b\Vert_? + \Vert \alpha a + (1 - \alpha)b\Vert_?$. Which is still possible. Another way is to adopt this equality as the definition, instead of having Lipschitz gradient and see what this leads to instead. In finite dimensional setting, the bridge between the dual norm and norm has a better luck of constructing. 
+To see if this still works with different type of norms, we need to know whether the equality of the cute formula as a results being in Hilbert spaces, can be turned into an inequality that, still supports the above consequence, meaning that $\alpha\Vert a\Vert^2_\star - (1 - \alpha)\Vert b\Vert_\star^2\ge \alpha(1 - \alpha)\Vert a - b\Vert_? + \Vert \alpha a + (1 - \alpha)b\Vert_?$. Which is still possible. Another way is to adopt this equality as the definition, instead of having Lipschitz gradient and see what this leads to instead. In finite dimensional setting, the bridge between the dual norm and norm has a better luck of constructing, because $\Vert x\Vert_\infty \le \Vert x\Vert_2\le \Vert x\Vert_1$. 
 
 #### **\[4\]=> \[10\]**
 

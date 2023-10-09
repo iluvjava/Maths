@@ -106,7 +106,7 @@ $$
 \end{aligned}
 $$
 
-which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is non-expansive. We denote an fixed point $\bar x\in X$, we start by considering that: 
+which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is non-expansive. We denote a fixed point of $F$ to be $\bar x\in X$, we start by considering that: 
 
 $$
 \begin{aligned}
@@ -121,15 +121,15 @@ $$
     (1 - \theta)\Vert x^{(k)} - \bar x\Vert^2
     + 
     \theta 
-    \underbrace{\Vert Gx^{(k)} - \bar x\Vert^2}_{\le \Vert x^{(k)} - x^{(k)}\Vert^2}
-    - \theta (1 - \theta)\Vert Gx^{(k)} - x^{(k)}\Vert
+    \underbrace{\Vert Gx^{(k)} - \bar x\Vert^2}_{\le \Vert x^{(k)} - \bar [x\Vert^2\; \leftarrow [[1]], }
+    - \theta (1 - \theta)\Vert Gx^{(k)} - x^{(k)}\Vert 
     \\
     & \le 
     \Vert x^{(k)} - \bar x\Vert^2 - \theta(1 - \theta)\Vert Gx^{(k)} - x^{(k)}\Vert^2, 
 \end{aligned}
 $$
 
-immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recursion, we have: 
+at `[[1]]`, $\bar x$ is a fixed point of $F$, hence also a fixed point of $G$. immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recursion, we have: 
 
 $$
 \begin{aligned}
@@ -165,28 +165,113 @@ $$
 \end{aligned}
 $$
 
-Therefore, the squared norm of the residuals, The minimum norm of all iterations of $Gx^{(j)} - x^{(j)}$ will converge sub-linearly with rate $\mathcal O(1/k)$. And the fast rate of convergence is given when $\theta = \frac{1}{2}$. 
+Therefore, the squared norm of the residuals, The minimum norm of all iterations of $Gx^{(j)} - x^{(j)}$ will converge sub-linearly with rate $\mathcal O(1/k)$. And the fastest rate of convergence is given when $\theta = \frac{1}{2}$. 
 
 
 **Remarks**
 
-When the gradient of some function is strongly smooth, meaning that the gradient of the function is Lipschitz, then the gradient operator is Lipschitz. Multiplying it by a constant will make it nonexpansive. We skip the details here. 
+For a function whose gradient is Lipschitz smooth with constant $L$, we have $1/L \nabla f(x)$ being non-expansive. 
 
-Take note the that bound is very pessimistic. With additional assumption such as the fact that the operator $G$ is monotone, we can derive the rate of convergence for the optimality, and with the assumption that $G$ is strongly monotone, we can derive that it has a linear convergence rate for a suitable step sizes. 
-
-This derivation is extremely similar to what we had for [Smooth Gradient Descend Remastered](../Smooth%20Gradient%20Descend%20Remastered.md), more specifically the smooth descend frameworks. 
+The above bound is pessimistic. It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend Remastered](../Smooth%20Gradient%20Descend%20Remastered.md), more specifically the smooth descend frameworks. 
 
 For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [[Fejer's Monotone]] for more information. 
 
 **Reference**: 
+
 See Primer on Monotone Operator for more information. [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf | Primer on Monotone Operator]]. 
 
 
 ---
 ### **Fejer Monotonicity**
 
-Fixed point iteration of an averaged operator has Fejer Monotone convergence. 
+Fixed point iteration of an averaged operator has Fejer Monotone convergence. Recall that, the convergence of the sequence of reals $\Vert Gx^{(j)} - x^{(j)}\Vert$ in itself is not enough to show convergence. There exists series whose successive error is approaching zero but the series itself is not approaching zero. In our picture, it's possible that the fixed point set is unbounded and we slide away into infinity. The following theorem made use of some analysis knowledge to show that the iterates of the fixed point sequence also converges. 
+
+### **Thm | Averaged Operator Fejer Monotone Convergence**
+> Let $F:= (1  - \theta) I + \theta G$ be an averaged operator, then a fixed point iterations on the sequence will produce a Fejer Monotone sequence wrt to $\text{Fix}(F)$, and the iterates will converge as well. 
+
+**Proof**
+
+From the previous proof we know that the sequence $\Vert x^{(k)} - \bar x\Vert$ is Fejer Monotone wrt to all $\bar x \in \text{Fix}(F)$. Next, the series $\sum_{j=0}^{k}\Vert Gx^{(j)} - x^{(j)}\Vert^2$ is bounded, and therefore by the convergence of the series, the sequence 
+
+$$
+\begin{aligned}
+    \lim_{j\rightarrow \infty}\Vert Gx^{(j)}- x^{(j)}\Vert &= 0
+    \\
+    \lim_{j\rightarrow \infty}Gx^{(j)} - x^{(j)} &= \mathbf 0
+    \\
+    \lim_{j\rightarrow \infty} Gx^{(j)} &= \lim_{j\rightarrow\infty}x^{(j)}, 
+\end{aligned}
+$$
+
+since the sequence is also bounded, choosing a subsequential limit $x^{(k_j)}$ would yield some kind of limit, say $x^+$, such that $\lim_{j\rightarrow \infty}Gx^{(k_j)} = \lim_{j\rightarrow \infty} x^{(k_j)}$, by continuity of non-expansive operators, we have $G x^+ = Gx^+$, hence, a cluster point is formed in the fixed point set of $G$, by [Fejer's Monotone](Fejer's%20Monotone.md) convergence, the limit of the sequence must also be $x^+$, one specific fixed point from the fixed point set. 
+
+**Remarks**
+
+It's hard to say which fixed point it is exactly. It would be great to know more about that for sure. However, in the context of optimization, it's possible to have some fixed point sets that are in the infinity and yet, the value of the function still manage to converge. For those type of instances, we will be unable to describe it using these 2 proofs above, which both assumed the non-emptiness of the fixed point set for the operators. 
 
 
+---
+### **Gradient Descent as an Example**
 
+We show that, for a function having Lipschitz gradient operator, then for some choice of the step sizes, the gradient descent operator is an averaged operator. 
+
+#### **Theorem | Gradient Descent is an Averaged Operator**
+> Let gradient $\nabla f$ be L Lipschitz, then the operator $I - \eta \nabla f$ would be $\eta L /2$ averaged for values of $\eta \in (0, L/2)$. 
+
+**Proof**
+
+Firstly we show that the gradient descent operator is non-expansive by considering 
+
+$$
+\begin{aligned}
+    \Vert [I - \eta \nabla f](x) - [I - \eta \nabla f](y)\Vert^2
+    &= 
+    \Vert (x - y) - \eta (\nabla f(x) - \nabla f(y))\Vert^2
+    \\
+    &= 
+    \Vert x - y\Vert^2 + \eta^2 \Vert \nabla f(x) - \nabla f(y)\Vert^2
+    - 
+    2 \eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle, 
+    \\
+    &  \textcolor{gray}{\triangleright {[[1]]}:\text{Using Co-coersive property :}}
+    \\
+    &\quad\quad
+    {\small
+    \begin{aligned}
+        \langle x - y, \nabla f(x) - \nabla f(y)\rangle &\ge \frac{1}{L}  
+        \Vert \nabla f(x) - \nabla f(y)\Vert^2
+        \\
+        -2\eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle 
+        & \le 
+        - \frac{2\eta}{L}\Vert \nabla f(x) - \nabla f(y)\Vert^2
+    \end{aligned}
+    }
+    \\
+    &\le 
+    \Vert x - y\Vert^2 + \eta^2 \Vert \nabla f(x) - \nabla f(y)\Vert^2 - 
+    \frac{2\eta}{L}\Vert \nabla f(x) - \nabla f(y)\Vert^2
+    \\
+    &\le \Vert x - y\Vert^2 + 
+    \eta(\eta - 2/L)\Vert \nabla f(x) - \nabla f(y)\Vert^2, 
+\end{aligned}
+$$
+
+and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[[1]]` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. To do that we simply fit the form 
+
+$$
+\begin{aligned}
+    I - \eta \nabla f(x) &= (1 - \theta)I + \theta (I - 2/L \nabla f)
+    \\
+    I - \eta \nabla f 
+    &= 
+    I - \theta 2/L \nabla f, 
+\end{aligned}
+$$
+
+with that we have $\eta = 2\theta /L$, whenever $\eta \in (0, L/2)$, with that we conclude $\theta = \eta L /2\in (0, 1)$, and hence it's an averaged operator. Therefore, the gradient descent on Lipschitz smooth function will admit Fejer Monotone convergence. 
+
+
+**Remarks**
+
+A question for the reader, can $I - \eta \nabla f$ be firmly non-expansive? 
 

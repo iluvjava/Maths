@@ -34,10 +34,14 @@ We didn't assume convexity, the weaker consequence from 2 sided smoothness inclu
 
 $$
 \begin{aligned}
-    & \min_y(m_x(y)) \implies
-    \nabla f(x) + \beta(y^+ - x) = \mathbf 0 \implies y^+ = x - \beta^{-1}\nabla f(x)
+    & \exists! y^+ \in \arg\min_y m_x(y) : \nabla f(x) + \beta(y^+ - x)  
+    = \mathbf 0 \quad 
+    \textcolor{gray}{\triangleright \text{S-CVX of }m_x(y)}
     \\
-    \implies &
+    &
+    y^+ = x - \beta^{-1}\nabla f(x)
+    \\
+    &
     m_x(y^+) = f(x) + \langle \nabla f(x), - \beta^{-1}\nabla f(x)\rangle + \frac{\beta}{2}\Vert  - \beta^{-1}\nabla f(x)\Vert^2, 
     \\
     & 
@@ -52,7 +56,7 @@ $$
 \end{aligned}
 $$
 
-The upper-bounding function ensures decreasing objective of the objective function by the amount of gradient. This can then be expanded to show a convergence relationship between serveral steps and the gradient. Let's suppose that updating scheme is simply: $x^{(t + 1)} = y^+ = x^{(t)} - \beta^{-1}\nabla f(x^{(t)})$, then we have: 
+The upper-bounding function ensures decreasing objective of the objective function by the amount of gradient. This can then be expanded to show a convergence relationship between several steps and the gradient. Let's suppose that updating scheme is simply: $x^{(t + 1)} = y^+ = x^{(t)} - \beta^{-1}\nabla f(x^{(t)})$, then we have: 
 
 $$
 \begin{aligned}
@@ -78,7 +82,7 @@ Which is saying that, the objective decrease of the function value, depends on w
 
 **Smooth Descend Gradient Conditions**: 
 > $$
-> \min_{0 \le j \le k}\Vert \nabla f(x^{(j)})\Vert \le k^{-1/2}\sqrt{2\beta(f(x^{0}) - f_{\min})}, 
+> \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert \le k^{-1/2}\sqrt{2\beta(f(x^{0}) - f_{\min})}, 
 > $$
 
 indicating that the minimum of the gradient converges to $\mathbf 0$ at a sub-linear rate of $\mathcal O(1/\sqrt{k})$. 
@@ -88,7 +92,6 @@ indicating that the minimum of the gradient converges to $\mathbf 0$ at a sub-li
 Note, without much assumptions this formula only states that, the sequence of $f(x^{(t)})$ is non-increasing, however, it said nothing about its convergence, or whether we will have $x^{(t)}$ converging. 
 
 > [!details]-
-> 
 > When it converges:
 >    1. $f(x^{(t)})$ could converge, however, if it converges, it doesn't mean $x^{(t)}$ is converging (unless compact level sets), neither it states that we can't have a limit cycle of some sort (might be eliminated by smoothness? not sure). 
 >    2. $f(x^{(t)})$ could decrease but converge to a non-optimal value dual to gradient can be a false measure of optimality. 
@@ -99,52 +102,68 @@ Note, without much assumptions this formula only states that, the sequence of $f
 
 Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 
 
+
+
 ---
 ### **Smooth Descend with Convexity**
 
-**Theorem | Convexity Implies Faster Sub-linear Rate:**
+We strengthen the results and show that we have convergence for gradient descent under the additional assumption that the function is convex. 
+
+#### **Theorem | Convexity Implies Faster Sub-linear Rate:**
 
 > When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sublinear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
 
 **Proof:**
 
-We derive directly by considering: 
+We derive directly by starting with the Lipschitz gradient descent lemma and anchoring on the points $x^{(t)}, x^{(t + 1)}$ for $(x, y)$: 
 
 $$
 \begin{aligned}
-    f(x^{(t + 1)}) 
+    f\left(x^{(t + 1)}\right) 
     & \le 
-    f(x^{(t)}) + \langle\nabla f(x^{(t)}), x^{(t + 1)} - x^{(t)} \rangle + \frac{\beta}{2}
-    \Vert x^{(t + 1)} - x^{(t)}\Vert^2
+    f\left(x^{(t)}\right) + 
+    \left\langle\nabla f\left(x^{(t)}\right), x^{(t + 1)} - x^{(t)} \right\rangle 
+    + \frac{\beta}{2}
+    \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
     &= 
-    \underbrace{f(x^{(t)}) + \langle\nabla f(x^{(t)}), x^{(t + 1)} - x^{+} \rangle}_{\le f(x^+)}
+    \underbrace{f\left(x^{(t)}\right) + \left\langle\nabla f\left(x^{(t)}\right), x^{(t + 1)} - x^{+} \right\rangle}
+    _{\le f(x^+)}
     + 
-    \langle \nabla f(x^{(t)}), x^+ - x^{(t + 1)}\rangle
+    \left\langle \nabla f\left(x^{(t)}\right), x^+ - x^{(t + 1)}\right\rangle
     + \frac{\beta}{2}
-    \Vert x^{(t + 1)} - x^{(t)}\Vert^2
+    \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
     & \le 
-    f(x^+) + 
-    \frac{\beta}{2}\Vert x^{(t + 1)} - x^{(t)}\Vert^2 + \langle \nabla f(x^{(t)}), x^{(t + 1)} - x^+\rangle
+    f(x^+) 
+    + 
+    \frac{\beta}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
+    \left\langle \nabla f(x^{(t)}), x^{(t + 1)} - x^+ \right\rangle
     \\
     & = 
-    f(x^+) + \frac{\beta}{2}\Vert x^{(t + 1)} - x^{(t)}\Vert^2 +
-    \langle \beta(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+\rangle
+    f(x^+) + \frac{\beta}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
+    \left\langle \beta(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
     \\
     &= 
-    f(x^+)+ \frac{\beta}{2}(
-        \Vert x^{(t + 1)} - x^{(t)}\Vert^2 +
-        2\langle x^{(t)} - x^{(t + 1)}, x^{(t + 1)} - x^+\rangle
-    )
+    f(x^+)+ \frac{\beta}{2}\left(
+        \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
+        2\left\langle x^{(t)} - x^{(t + 1)}, x^{(t + 1)} - x^+ \right\rangle
+    \right)
     \\
     &= f(x^+) + 
     \frac{\beta}{2}
-    (
-        \Vert x^{(t)} - x^{(t + 1)} + x^{(t + 1)} - x^+\Vert^2 - \Vert x^{(t + 1)} - x^+\Vert^2
-    )
+    \left(
+        \left\Vert 
+            x^{(t)} - x^{(t + 1)} + x^{(t + 1)} - x^+\right
+        \Vert^2 - 
+        \left\Vert x^{(t + 1)} - x^+
+        \right\Vert^2
+    \right)
     \\
-    & = f(x^+) + \frac{\beta}{2}(\Vert x^{(t)} - x^+\Vert^2  - \Vert x^{(t + 1)} - x^+\Vert^2), 
+    & = f(x^+) + \frac{\beta}{2}
+    \left(
+        \left\Vert x^{(t)} - x^+\right\Vert^2  - \left\Vert x^{(t + 1)} - x^+\right\Vert^2
+    \right), 
 \end{aligned}
 $$
 
@@ -152,33 +171,50 @@ which is a telescoping series if I sum it up, because for the rhs, the second te
 
 $$
 \begin{aligned}
-    \sum_{j = 1}^k f(x^{(j)}) - k f(x^+) 
+    k\sum_{j = 1}^k f\left(x^{(j)}\right) - f(x^+) 
     &\le 
-    \frac{\beta}{2}(
-        \Vert x^{(0)} - x^+\Vert^2 - \Vert x^{(k + 1)} - x^+\Vert^2
-    ) \le \frac{\beta}{2}\Vert x^{(0)} - x^+\Vert^2
+    \frac{\beta}{2}\left(
+        \left\Vert x^{(0)} - x^+\right\Vert^2 - \left\Vert x^{(k + 1)} - x^+\right\Vert^2
+    \right) \le \
+    \frac{\beta}{2}\left\Vert x^{(0)} - x^+\right\Vert^2
+    \\
+    & \textcolor{gray}{\triangleright f(x^{(j)}) \text{ monotone decreasing}}
     \\
     \implies
-    f(x^{(k + 1)}) - f(x^+) 
+    f\left(x^{(k + 1)}\right) - f(x^+) 
     &\le 
-    \frac{1}{k}\sum_{j = 1}^{k}\left(
-        f(x^{j}) - f_{\min}
+    \frac{1}{k}\left(
+        \sum_{j = 1}^{k}
+        f\left(x^{(j)}\right) - f(x^+)
     \right) \le \frac{\beta}{2k}\Vert x^{(0)} - x^+\Vert^2
     \\
-    f(x^{k + 1}) - f(x^+) 
+    f\left(x^{(k + 1)}\right) - f(x^+) 
     &\le 
-    \frac{\beta}{2k}\Vert x^{(0)} - x^+\Vert^2, 
+    \frac{\beta}{2k}\left\Vert x^{(0)} - x^+\right\Vert^2, 
 \end{aligned}
 $$
 
 which indicates that the convergence rate is sub-linear, in $\mathcal O(k^{-1})$. 
+
+**Remarks**
+
+I am not sure what happens when we still have the convexity but without the minimizer for the function. However, please observe that the fact that $x^+$ is a minimizer of the function is never used to make the gradient $\nabla f(x^+) = \mathbf 0$, for the first part of the proof. The fact that $x^+$ is a minimizer is only used for the second part of the proof. 
+
+#### **Corollary | Convergence of the Iterates and Gradient Norm**
+> The squared norm of the gradient would converges at the same rate as the optimality gap for the function, the iterates would also converges. 
+
+
+**Proof**
+
+The function value can bound the norm of the gradient by the Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. To show the convergence of the iterates, one would need to consider the fixed point iterations convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information.
+
 
 ---
 ### **PL Inequality and Linear Convergence**
 
 PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. 
 
-**Definition | Polyak Inequality**
+#### **Definition | Polyak Inequality**
 
 > A function $f$ has a minimizer $f^+$ and it's differentiable. Then it satisfies PL inequality with a PL constant of $u > 0$ if 
 > 
@@ -186,7 +222,7 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
 
-**Theorem | Linear Convergence Under PL** 
+#### **Theorem | Linear Convergence Under PL** 
 
 > If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
 
