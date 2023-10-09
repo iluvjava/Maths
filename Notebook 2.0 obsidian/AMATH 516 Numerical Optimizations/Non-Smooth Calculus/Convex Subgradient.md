@@ -5,7 +5,7 @@
 
 When the function is convex, the subgradient has epigraphical interpretation based on convexity, and theorems are nicer to prove. 
 
-**Defintion: Convex Subgradient**
+**Defintion | Convex Subgradient**
 
 > Let $f$  be convex proper function mapping from $\mathbb E$ to $\mathbb {\bar R}$, a vector $g$ is referred to as sub-differential to the point $x\in \text{dom}(f)$ when: 
 > 

@@ -12,3 +12,7 @@ Newton's iterations in multiple dimensions has difficulty for computations. Ther
 In this file, we take references from Stephen's J. Wright's Numerical optimization textbook. 
 
 
+### **Introducing the Quasi-Newton Frameworks**
+
+
+

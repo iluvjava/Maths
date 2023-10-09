@@ -1,3 +1,7 @@
+---
+aliases:
+  - Averaged Operators
+---
 [[Introduction to Operators for Optimizations]], [[Firmly Nonexpansive Operators]]
 
 ---
@@ -78,8 +82,6 @@ $$
 and observe that, on the last line, we recover the characterizations for an averaged operator. And notice that all inequalities above are equivalent, hence, doing the proof in reverse means that the characterizations imply the averaged operator is the convex combination of an identity and a non-expansive operator. The cute formula refers to [Euclidean Jensen's Equality](../Background/Euclidean%20Jensen's%20Equality.md). 
 
 
-
-
 **References**: 
 
 Heinz's course notes, theorem 22.11. 
@@ -87,7 +89,7 @@ Heinz's course notes, theorem 22.11.
 ---
 ### **Fixed Point Convergence of Averaged Operators**
 
-This is a type of non-expansive operator converges under fixed point iterations. 
+This is a type of non-expansive operator converges under fixed point iterations. In a sense, the none-expansive operator is damped by the identity operator. 
 
 **Thm-2 | Averaged Operator has Fixed Point Convergence**
 

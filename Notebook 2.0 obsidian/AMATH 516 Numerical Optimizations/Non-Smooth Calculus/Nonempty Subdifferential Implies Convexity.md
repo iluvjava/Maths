@@ -1,9 +1,11 @@
-[[Subgradient Intro]]
-[[Characterizing Functions for Optimizations]]
-[[Convex Sets Intro]]
+- [[Subgradient Intro]]
+- [[Characterizing Functions for Optimizations]]
+- [[Convex Sets Intro]]
 
 ---
 ### **Intro**
+
+
 
 **Theorem Statement**: 
 

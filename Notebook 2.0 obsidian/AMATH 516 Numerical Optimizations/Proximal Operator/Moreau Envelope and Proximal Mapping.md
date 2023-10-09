@@ -78,7 +78,25 @@ See proof for Basic Prox Identities.
 > For a convex proper, lower semi-continous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
 > 1. $x = \text{prox}_f(y)$, 
 > 2. $y - x\in \partial f(x)$,
-> 3. $\forall z \in X: \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
+> 3. $\forall z \in X, x \in \text{prox}_f(y): \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
+
+**Proof**
+
+To proof, we need to use the calculus rules of Non-smooth analysis. For all $x\in \text{prox}_f(x)$, we have
+
+$$
+\begin{aligned}
+    x &\in \text{prox}_f(y)
+    \\
+    \mathbf 0 &\in 
+    \partial f(x) + \{x - y\} \quad \textcolor{gray}{\triangleright \text{Subgradient addition rule, Prox def. }}
+    \\
+    y - x &\in \partial f(x)
+\end{aligned}
+$$
+
+which is what we proved, observe that one may use the singleton assumption with prox and providing us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$, in fact, with some set algebra it's possible to show $\subseteq$ relation. The last identity, it's just the subgradient inequality followed from identity 2, by the assumption of convexity on $f$. 
+
 
 **Good References**
 
