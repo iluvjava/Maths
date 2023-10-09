@@ -13,7 +13,7 @@ We introduce $f:\mathbb E \mapsto \mathbb{\bar R}$, which has a Lipchitz continu
 
 Lipschitz gradient characterize change of the objective value of the functions with the norm for the gradient, and smoothness of a function, which is important for the convergence behaviors of fixed gradient method. One of the major source for this file will be coming from the UCLA class lecture slides, linked [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/gradient.pdf#page14). The references of this slide will also be acknowledged and cited. There is another paper talking about the Lipchitz Gradient and it's relations to strong convexity: [here](https://arxiv.org/abs/1803.06573). The flavor of the proofs are taken from reference I used is Beck's \<First Order Methods in Optimizations\>, and \<Lectures in Convex Optimizations\>, where they have detailed proofs Finally, *Dimitri's AMATH 516* has Exercise 3.12 that covers the additional properties and equivalences for the Strong Smoothness Properties under the assumption of Euclidean norm, hence some of the proofs here are also completed by myself using the hints from Dimitry's textbook. For the equivalences under non-convexity, I assumed that the function is at least differentiable, and the proof idea is taken from [this paper](https://arxiv.org/pdf/2212.01504.pdf), lemma 2.5. 
 
-**Def-0 | Globally Lipchitz gradient**: 
+#### **Def-0 | Globally Lipchitz gradient**: 
 
 > Let $f: \mathbb E \mapsto \mathbb{\bar R}$, and it has a gradient that Lipschitz continuous with constant $L >0$  when
 > $$
@@ -32,16 +32,17 @@ In this file we are interested in the following list of conditions:
 1. $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$, smoothness
    - the function can be squeezed between 2 tangential quadratic function. Observe trivially that when $f$ is convex, the absolute value can be removed. By the way the quantity inside the absolute value is the Bregmen Divergence.
    - This is called the Descent Lemma by Heinz and Wang. 
-1. $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$, upper bounded monotonicity. 
-2. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. Co-coerciveness. 
+2. $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$, upper bounded monotonicity. 
+3. $x^+\in \arg\min_x{f(x)}\implies \frac{1}{2L}\Vert \nabla f(x)\Vert_\star^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$. Co-coerciveness. 
    -  Take note that if $x^+$, a minimizer doesn't exists, we may still have the lower bound, and replace $f(x^+)$ with $\inf_{x\in \mathbb E}f(x)$. 
-3. $0\le f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2$, the one sided-smoothness condition. 
-4. $\frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y) -f(x) - \langle \nabla f(x), y - x\rangle$. Not sure what name this one has. 
-5. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, Non-expansiveness. 
+4. $0\le f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2$, the one sided-smoothness condition. 
+5. $\frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y) -f(x) - \langle \nabla f(x), y - x\rangle$. Bregman Div lower bound. 
+6. $\langle \nabla f(x) - \nabla f(y), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, Non-expansiveness. 
     - co-coersive property, which is as strong as Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
-6. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
-7. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
-8. $f(\alpha x + (2 - \alpha)y)\le \alpha f(x) + (1 - \alpha)f(y) - \frac{\alpha(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$ for all $\alpha \in (0, 1)$. This co-coersiveness for the Jensen's inequality extension under smoothness. 
+7. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
+8. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
+9. $\alpha f(x) + (1 - \alpha)f(y) - f(\alpha x + (2 - \alpha)y) \ge \frac{\alpha(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$ for all $\alpha \in (0, 1)$. The Jensen Lower bound under strong smoothness of the function. 
+10. $0 \le \alpha f(x) + (1 - \alpha) f(y) - f(\alpha x + (1 - \alpha) y)\le \alpha(1 - \alpha)\frac{L}{2}\Vert x - y\Vert^2$, a Jesen's quadratic upper bound for the function. 
 
 
 **Remarks**
@@ -86,8 +87,11 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 > By proposition-1, the conditions $[0], [1], [2]$ all becomes equivalent. In proving so, we can also get some interesting lemma as well. 
 
 #### **Proposition 6 | Implications under Convexity**
-> Assume convexity, with any norm, we have the relation that 
-> * $[4]\implies 9$. <mark style="background: #FF5582A6;">Not yet proven</mark>
+> Assume convexity, with specifically Euclidean norm, we have the relation that 
+> * $[5]\implies [9]$. <mark style="background: #FF5582A6;">Not yet proven</mark>
+> * $[4]\implies [10]$. 
+> 
+> This is theorem 2.1.5, identity 2.1.13, 2.1.14, from Nesterov's lectures on convex optimization textbook. 
 
 
 **Remarks**
@@ -455,6 +459,111 @@ $$
 $$
 
 moving the $L$ around and then take the square root yield the desired results. And hence, 2 sided smoothenss and differentiability is equivalent to gloable Lipscthiz gradient for function $f$ with constant $L$. 
+
+
+----
+### **Proof of Proposition 6**
+
+#### **\[5\] => \[9\]**
+
+Under the assumption of convexity, using $x_\alpha = \alpha x + (1 - \alpha) y$. Then by \[5\] we have: 
+
+$$
+\begin{aligned}
+    f(x) &\ge f(x_\alpha) 
+    + 
+    \langle \nabla f(x_\alpha), (1 - \alpha)(x - y)\rangle 
+    + 
+    \frac{1}{2L}\Vert \nabla f(x) - \nabla f(x_\alpha)\Vert^2_\star
+    \\
+    &\quad  \textcolor{gray}{\triangleright x - x_\alpha = (1 - \alpha)(x - y)}
+    \\
+    f(y) &\ge f(x_\alpha) + \langle \nabla f(x_{\alpha}), \alpha (y - x)\rangle
+    + 
+    \frac{1}{2L} \Vert \nabla f(y) - \nabla f(x_\alpha)\Vert^2_\star, 
+    \\
+    &\quad \textcolor{gray}{\triangleright y - x_\alpha = \alpha (y - x)}
+\end{aligned}
+$$
+
+with Bregman Divergence notation for $D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), y - x\rangle \ge 0$, so the above 2 inequality are
+
+$$
+\begin{aligned}
+    D_f(x, x_\alpha) &\ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(x_\alpha)\Vert^2_\star
+    \\
+    \alpha D_f(x, x_\alpha) &\ge 
+    \frac{\alpha}{2L}\Vert 
+        \underbrace{\nabla f(x) - \nabla f(x_\alpha)}_{a}
+    \Vert^2_\star 
+    \leftarrow [[1]]
+    \\
+    D_f(y, x_\alpha) &\ge \frac{1}{2L} \Vert \nabla f(y) - \nabla f(x_\alpha)\Vert^2_\star
+    \\
+    (1 - \alpha) D_f(y, x_\alpha) &\ge 
+    \frac{1 - \alpha}{2L}
+    \Vert 
+        \underbrace{\nabla f(y) - \nabla f(x_\alpha)}_{b}
+    \Vert^2_\star
+    \leftarrow [[2]]
+\end{aligned}
+$$
+
+adding `[[1]]` + `[[2]]` the first and the second expression, and we must assume Euclidean norm to make use of an identity, as shown by the demonstrations below
+
+$$
+\begin{aligned}
+    (1 - \alpha)D_f(y, x_\alpha) + \alpha D_f(x, x_\alpha) 
+    &\ge 
+    \frac{1}{2L}\left(
+        \alpha\Vert a\Vert^2 
+         +
+        (1 - \alpha)\Vert
+            b
+        \Vert^2
+    \right)
+    \\
+    &= 
+    \frac{1}{2L}
+    \left(
+        \alpha(1 - \alpha) \Vert a - b\Vert^2 + 
+        \Vert \alpha a + (1 - \alpha) b\Vert^2
+    \right)\quad \textcolor{gray}{\triangleright [[3]]}
+    \\
+    &\ge 
+    \frac{\alpha(1 - \alpha)}{2L}\Vert a - b\Vert^2 = 
+    \frac{\alpha(1 - \alpha)}{2L}\Vert 
+    \nabla f(x) - \nabla f(y)
+    \Vert^2, 
+\end{aligned}
+$$
+
+at `[[3]]` we made use of the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md). This would produce the results that 
+
+$$
+{\small
+\begin{aligned}
+    & \alpha(f(x) - f(x_\alpha)) + 
+    \langle \nabla f(x_\alpha), \alpha(1 - \alpha)(x - y)\rangle
+    + (1 - \alpha)(f(y) - f(x_\alpha)) + 
+    \langle \nabla f(x_\alpha), \alpha(1 - \alpha)(y - x)\rangle
+    \\
+    &= \alpha(f(x) - f(x_\alpha))  + (1 - \alpha)(f(y) - f(x_\alpha))
+    \\
+    &= \alpha f(x) + (1 - \alpha)f(y) - f(x_\alpha). 
+\end{aligned}
+}
+$$
+
+and hence, we had verified the lower bound for the Bregman Divergence for the smooth function under Euclidean normed space. We had proved the theorem. 
+
+**Remarks**
+
+To see if this still works with different type of norms, we need to know whether the equality of the cute formula as a results being in Hilbert spaces, can be turned into an inequality that, still supports the above consequence, meaning that $\alpha\Vert a\Vert^2_\star - (1 - \alpha)\Vert b\Vert_\star^2\ge \alpha(1 - \alpha)\Vert a - b\Vert_? + \Vert \alpha a + (1 - \alpha)b\Vert_?$. Which is still possible. Another way is to adopt this equality as the definition, instead of having Lipschitz gradient and see what this leads to instead. In finite dimensional setting, the bridge between the dual norm and norm has a better luck of constructing. 
+
+#### **\[4\]=> \[10\]**
+
+We prove the upper bound of the Bregman Div next as well. The story is similar to above, starting with `[[5]]` and make $D_f(x, x_\alpha)\le \frac{L}{2}\Vert y - x\Vert^2, D_f(y, x_\alpha) \le \frac{L}{2}\Vert y - x\Vert^2$, then multiple $\alpha, (1 - \alpha)$ on both inequality, adding then and use the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) to get the result. 
 
 ----
 ### **Examples**
