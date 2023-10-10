@@ -68,11 +68,12 @@ $$
     \\
     \implies
     & 
-    \min_{0 \le j \le k}\Vert \nabla f(x^{(j)})\Vert^2 \le 
+    \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert^2 \le 
     \frac{1}{k}\sum_{j = 1}^{k}\Vert \nabla f(x_j)\Vert^2
     \le k^{-1}2\beta(f(x^{(0)}) - f(x^{(k + 1)}))
     \\
-    \implies & \min_{0 \le j \le k}\Vert \nabla f(x^{(j)})\Vert \le
+    \implies & 
+    \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert \le
     k^{-1/2}\sqrt{2\beta(f(x^{0}) - f(x^{(k + 1)}))} \; .
 \end{aligned}
 $$
@@ -82,7 +83,11 @@ Which is saying that, the objective decrease of the function value, depends on w
 
 **Smooth Descend Gradient Conditions**: 
 > $$
-> \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert \le k^{-1/2}\sqrt{2\beta(f(x^{0}) - f_{\min})}, 
+> \min_{0 \le j \le k}
+> \left\Vert 
+>   \nabla f\left(x^{(j)}\right)
+> \right\Vert 
+> \le k^{-1/2}\sqrt{2\beta(f(x^{0}) - f_{\min})}, 
 > $$
 
 indicating that the minimum of the gradient converges to $\mathbf 0$ at a sub-linear rate of $\mathcal O(1/\sqrt{k})$. 
@@ -230,3 +235,10 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 ### **Polyak Stepsize**
 
 Suppose that $f^*$, the optimal objective value for the optimization problem is known, then the sequence $\gamma_k = (f(x^{(k)}) - f^*)/\Vert \nabla f(x^{(k)})\Vert^2$ will converge on a convex function with rate $\mathcal O(k^{-1})$. For more about this visit [[Proximal Methods/Polyak Subgradient Method]]
+
+
+---
+### **Double Descent Rate under Strong Convexity**
+
+We have linear convergence rate for the gradient descent method under strong convexity. However, the old bound of sublinear convergence also apply. This creates a composite type of convergence scenario. 
+

@@ -5,7 +5,7 @@ alias: Fenchel Conjugate Examples
 Here, I will summarize some of the examples we had for convex conjugates of different functions.
 They will be from HW, some of the notes for the courses, the goal is to make it more organized, and everything in place so we have references for the future. 
 
-[[Convex Conjugation Introduction]]
+- [[Convex Conjugation Introduction]]
 
 Major References: The HW for AMATH 515. 
 
@@ -435,7 +435,7 @@ Let $\alpha > 0$, and let $\lambda \in \mathbb R$, and let $f:X\mapsto \mathbb{\
 ---
 ### **Conjugate of $\alpha f(\lambda x + b) + \langle a, x\rangle$**
 
-We consider the conjugate of several simple composition and derive it to show where things go. We assume that $\alpha > 0$ and $\lambda \neq 0$, these are scalars and $a$ is a vector. The result is stated here: 
+We consider the conjugate of several simple composition and derive it to show where things go. We assume that $\alpha > 0$ and $\lambda \neq 0$, they are scalars and $a, b$ are vectors. The result is stated here: 
 
 $$
 \begin{aligned}
@@ -502,6 +502,17 @@ Observe that the linear offset wedge out a linear term in the dual. other type o
 > $$
 > 
 > I hope this exam serves a good references in the future. 
+
+
+---
+### **Conjugate over Translation**
+Let $f: \mathbb R^n \mapsto \mathbb{\bar R}$, then the conjugate of the function $f(x + b)$ with $b$ being a vector is: $f^\star(y) - \langle b, y\rangle$. 
+
+**Demonstrations**
+
+> [!details]-
+> Use the previous rule, setting $\alpha = 1 = \lambda$ and $a = \mathbf 0$. 
+
 
 ---
 ### **Conjugate Over Invertible Affine Transform**
