@@ -11,7 +11,10 @@ Newton's iterations in multiple dimensions has difficulty for computations. Ther
 
 In this file, we take references from Stephen's J. Wright's Numerical optimization textbook. 
 
+Before we start, recall that if we apply the newton's method to minimize $f:\mathbb R \mapsto \mathbb R$, which is convex, then $x_{k + 1} = x_k - f'(x_k)/f''(x_k)$, one may estimate second derivative using previous iteration, giving $f''(x_k) \approx \frac{f'(x_{k}) - f'(x_{k - 1})}{x_k - x_{k - 1}}$, this would produce the secant line method, producing the iterates $x_{k + 1} = x_k - \frac{f'(x_k)(x_k - x_{k - 1})}{f'(x_k) - f'(x_{k - 1})}$. This formula, will make a come back in the multi-dimensional vector spaces. 
 
+
+---
 ### **Introducing the Quasi-Newton Frameworks**
 
 
