@@ -51,9 +51,9 @@ Prof Wang's Math 328 class, lecture 5.
 ---
 ### **Gradient Descent on Smooth and Strongly Convex Functions**
 
-Next, we prove that if a function is strongly convex and it's also smooth, then there exists
+Next, we prove that if a function is strongly convex and has Lipschitz gradient, then it has a gradient operator, then a gradient descent on such a function would be a contraction. By Lipschitz smoothness of the gradient, we trade off the need for proximal operator, and we still get linear convergence for the method. 
 
-
+---
 #### **Thm | Contraction Formed by Gradient Descent Operators on Lipschitz Smooth Strong Convex Functions**
 > The gradient descent operator for a strong convex and smooth function is a contraction operator. More specifically let $f$ be Lipscthiz smooth with parameter $L$, and strongly convex with $\beta$. Let the gradient operator to be $T = I - \eta \nabla f$, then for all $\eta \in (0, 2/L)$, the operator $T$ is a contraction with ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
 
@@ -120,7 +120,7 @@ $$
 \end{aligned}
 $$
 
-then we may use an lower bound from the strong convexity to create an upper bound for the constant. Strong convexity gives Lipz lower bound $\Vert \nabla f(y) - \nabla f(x)\Vert^2 \ge \beta^2 \Vert y - x\Vert^2$, with that we make 
+then we may use a lower bound from the [Strong Convexity](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) to create an upper bound for the normed difference of the gradient. Strong convexity gives lower bound $\Vert \nabla f(y) - \nabla f(x)\Vert^2 \ge \beta^2 \Vert y - x\Vert^2$, with that we make 
 
 $$
 \begin{aligned}

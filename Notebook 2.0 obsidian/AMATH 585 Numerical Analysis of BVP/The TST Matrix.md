@@ -1,40 +1,38 @@
+---
+alias: Tridiagonal Symmetric Toeplitz Matrix
 
-
+---
 ### **Intro**
 
-TST: Tridiagonal Symmetric Toeplitz Matrix. 
-
-This is a special type of matrix where we have solved it pretty thorougly. 
-
-The matrix looks like this: 
+TST: Tridiagonal Symmetric Toeplitz Matrix. This is a special type of matrix where we have solved it pretty thoroughly. The matrix looks like this: 
 
 $$
 \begin{aligned}
     T = \begin{bmatrix}
-        b& a& & 
+        a& b& & 
         \\
-        a & b& a&
+        b & a& b&
         \\
-        & a& &
+        &b& &
         \\
-        & & \ddots&a
+        & & \ddots&b
         \\
-        & & a&b
+        & & b&a
     \end{bmatrix}
 \end{aligned}\in \mathbb{R}^{m\times m}
 $$
 
-And for thes type matrix, it has an eigen system that is paramaterized by $a, b, c$ in the matrix. 
+And for these type of matrix, it has an eigen system that is parameterized by $a, b, c$. 
 
-> The eigenvalues are like: 
+> The eigenvalues are: 
 > 
 > $$
 > \lambda_k = a + 2b\cos \left(
 >     \frac{k\pi}{m + 1}
-> \right)\quad \forall\;  1 \le k \le m 
+> \right)\quad \forall\;  1 \le k \le m, 
 > $$
 > 
-> Which denotes the $k$ th eigenvalues for the matrix. 
+> The $k$ th eigen vectors for the matrix is
 > 
 > $$
 > v^{(k)}_l = \sqrt{\frac{2}{m + 1}} \sin\left(
@@ -42,10 +40,7 @@ And for thes type matrix, it has an eigen system that is paramaterized by $a, b,
 > \right) \quad \forall\; 1\le l \le m
 > $$
 
-Which denotes the $l$ element of the eigen vector $v{(k)}$. 
-
-
-Take note that the eigenvectors are indeed the eigenvector of the above matrices, which can be derived like: 
+Which denotes the $l$ element of the eigenvector $v{(k)}$. Take note that the eigenvectors are indeed the eigenvector of the above matrices, which can be derived like: 
 
 $$
 \begin{aligned}
@@ -124,6 +119,8 @@ Which proves that the eigenvectors are indeed the eigenvectors and its correspon
 
 ---
 ### **Poisson Discretized Operator**
+
+
 
 ---
 ### **Eigensystem**
