@@ -108,7 +108,6 @@ Note, without much assumptions this formula only states that, the sequence of $f
 Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 
 
 
-
 ---
 ### **Smooth Descend with Convexity**
 
@@ -116,7 +115,7 @@ We strengthen the results and show that we have convergence for gradient descent
 
 #### **Theorem | Convexity Implies Faster Sub-linear Rate:**
 
-> When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sublinear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
+> When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sub-linear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
 
 **Proof:**
 
@@ -240,5 +239,5 @@ Suppose that $f^*$, the optimal objective value for the optimization problem is 
 ---
 ### **Double Descent Rate under Strong Convexity**
 
-We have linear convergence rate for the gradient descent method under strong convexity. However, the old bound of sublinear convergence also apply. This creates a composite type of convergence scenario. 
+We have linear convergence rate for the gradient descent method under strong convexity. However, the old bound of sub-linear convergence also apply. This creates a composite type of convergence scenario. 
 

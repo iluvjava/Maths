@@ -1,3 +1,7 @@
+---
+alias: Nesterov Lower Convergence Bounds for Lipschitz Smooth Functions
+
+---
 ### **Intro**
 
 Yurri Nesterov in his "Lectures in Convex Optimizations", had proposed a lower bound on the convergence rate of iterates and objective values, of first order, generic method, and the class of [convex](CVX%20Analysis/Convex%20Functions%20CENTRAL%20HUB.md), [Lipschitz Smooth](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) functions. I go over his proof, in excruciating details. The goal is to uncover some the devils in the details and demistify his myth. 
