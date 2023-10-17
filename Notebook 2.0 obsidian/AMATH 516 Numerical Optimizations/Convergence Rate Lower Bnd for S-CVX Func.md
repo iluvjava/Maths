@@ -1,7 +1,7 @@
 ---
 alias: Nesterove Lower Convergence Bnd For Strongly Convex Functions
 ---
-### Intro
+### **Intro**
 
 Prerequisites: 
 1. [Convergence Rate Lower Bnd for Lip Funcs](Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Funcs.md). 
@@ -26,6 +26,9 @@ We use the same definition for the class of GA1st function to analyze the lower 
 > $$
 > With $x^*\in \arg\min_{x\in l^2} f(x)$, which it exists by the fact that we have a strongly convex function in Hilbert Space. 
 
+**Remarks**
+
+This lower bound provided by Nesterov is more straightforward than the case for Lipschitz Smooth function. It's simply saying that there eixsts a function for all algorithms such that the optimal value is bounded from below, for all iterations value $k \in \mathbb N$. 
 
 ---
 #### **Invstigating a Special Function**
