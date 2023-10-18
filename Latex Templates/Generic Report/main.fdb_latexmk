@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1690532194 "main.aux" "main.bbl" "main" 1690532199
+["bibtex main"] 1690532194 "main.aux" "main.bbl" "main" 1697586820
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "main.aux" 1690532199 2736 322744d6a2387ce359bd893b3959609b "pdflatex"
   "refs.bib" 1690532188 465 507c3521580ddd93c31e528632564297 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1690532195 "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" "main" 1690532199
+["pdflatex"] 1690532195 "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf" "main" 1697586820
   "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.aux" 1690532199 2736 322744d6a2387ce359bd893b3959609b ""
   "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.tex" 1690532184 4185 8f433d6479f602ea765af974d44f0577 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -166,9 +166,9 @@
   "main.out" 1690532199 1300 b95deecc1c56c441f05855df84300c3c "pdflatex"
   "main.tex" 1690532184 4185 8f433d6479f602ea765af974d44f0577 ""
   (generated)
-  "main.pdf"
   "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.log"
-  "main.log"
   "/Users/hongdali/Desktop/repos/Maths/Latex Templates/Generic Report/main.pdf"
   "main.aux"
   "main.out"
+  "main.pdf"
+  "main.log"
