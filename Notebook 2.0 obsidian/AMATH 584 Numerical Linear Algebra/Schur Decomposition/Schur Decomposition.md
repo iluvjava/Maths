@@ -1,4 +1,4 @@
- Prereq: [[SVD]]
+Prereq: [[SVD]]
  
 Reference Materials: [Course Notes](http://pfister.ee.duke.edu/courses/ecen601/notes_ch8.pdf)
 
