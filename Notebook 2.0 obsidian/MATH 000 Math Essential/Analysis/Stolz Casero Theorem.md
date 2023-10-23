@@ -55,7 +55,7 @@ $$
 \end{aligned}
 $$
 
-Taking the limit supremum of $n\rightarrow \infty$ on both side we have 
+Taking the limit supremum of $n\rightarrow \infty, n > k$ on both side we have 
 
 $$
 \begin{aligned}
@@ -71,4 +71,39 @@ therefore, we proved the first expression in the theorem.
 ---
 ### **Corollary**
 
-Change of ratio between the sequence having limit implies that the ratio between the sequene also has the same limit. 
+Change of ratio between the sequence having limit implies that the ratio between the sequene also has the same limit. Setting $a_1 = x_1, b_1 = y_1$, then define $a_n = x_n - x_{n - 1}, b_n= y_{n} - y_{n - 1}$. Notice that to use the theorem, $b_n$ has to be positive, and therefore, $y_n$ is monotonically increasing and diverges. Then using the previous theorem we have that 
+
+$$
+\begin{aligned}
+    \underset{n\rightarrow \infty}{\lim\sup}
+    \frac{\sum_{i = 1}^{n} x_i - x_{i + 1}}{
+        \sum_{i = 1}^{n} y_i - y_{i + 1}
+    } \le 
+    \underset{
+        \substack{
+            n\rightarrow \infty \\ n \ge 2
+        }
+    }{\lim\sup}
+    \frac{x_n - x_{n- 1}}{y_n - y_{n - 1}}, 
+\end{aligned}
+$$
+
+and observe that on the LHS, we have the telescoping sum. Further assume that the sequence $(x_n - x_{n - 1})/(y_n - y{n - 1})$ that has a finite limit, then it would be the case that 
+
+$$
+\begin{aligned}
+    \underset{n\rightarrow \infty}{\lim\sup} 
+    \frac{x_1 - x_n}{y_1 - y_n} &\le 
+    L, 
+\end{aligned}
+$$
+
+finally, the lhs of the limit would be $x_n / y_n$ by the fact that $y_n$ monotically increases and diverges to infinity. Therefore, we would have the following theorem as a result, and they are in fact, equivalent. 
+
+#### **Corollary | Lopital's Rule for Sequences**
+> Let $(y_n)_{n\in \mathbb N}$, be strictly increasing and diverges to infinity. Then for any sequence $(x_n)_{n \in \mathbb N}$, we have the $\lim\sup, \lim\inf$ of $x_n/y_n$ stucked between the $\lim\sup, \lim\inf$ of $(x_n - x_{n - 1})/(y_n - y_{n - 1})$. When limit of the later exists, the limit between sequence $x_n/y_n$ equals to $(x_n - x_{n -1})/(y_n - y_{n - 1})$. 
+
+**Proof**
+
+Read the paragraph before this claim. 
+
