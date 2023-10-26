@@ -107,3 +107,7 @@ finally, the lhs of the limit would be $x_n / y_n$ by the fact that $y_n$ monoti
 
 Read the paragraph before this claim. 
 
+---
+### **Applications**
+
+With the theorem we can show that the empirical mean of any sequence that has a limit, would be the limitof the sequence. 

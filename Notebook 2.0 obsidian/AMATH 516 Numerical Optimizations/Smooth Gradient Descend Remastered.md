@@ -1,10 +1,11 @@
 1. [[Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]]
 2. [[Characterizing Functions for Optimizations]]
+3. [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 ---
 ### **Intro**
 
-We try to remake a previous passage [[Gradient Descend, Smoothness]] but go more in depth into the related ideas, because this smoothness conditions goes beyond what is employed in the proof for the smooth gradient, it's also used in envelope method, such as the forward backwards envelope for non-smooth added with smooth objectives. 
+We try to remake a previous passage [[Gradient Descend, Smoothness]] but go more in depth into the related ideas, because this smoothness conditions goes beyond what is employed in the proof for the smooth gradient, it's also used in envelope method, such as the forward backwards envelope for non-smooth added with smooth objectives. Gradient descent is $x^{(k + 1)} = x^{(k)} - \eta\nabla f(x^{(k)})$, where $\eta$ is a step size that can change. 
 
 **Optimality, Assumptions, Results**: 
 
@@ -17,50 +18,52 @@ The optimality conditions are listed in order of how strong they are. However, t
 ---
 ### **The Smooth Descend Frameworks**
 
-The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $\le \beta$, then the smoothness characterizations provides
+The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $L$, which is the smallest it can possibly be, then the smoothness characterizations provides
 
 $$
 \begin{aligned}
-    & |f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{\beta}{2}\Vert y - x\Vert^2
+    & |f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2
     \\
     \implies
-    & f(y) \le f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2, \; \forall x, y \in \mathbb E,
+    & f(y) \le f(x) + \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y - x\Vert^2, \; \forall x, y \in \mathbb E,
     \\
-    & m_x(y) := f(x) + \langle \nabla f(x), y - x\rangle + \frac{\beta}{2}\Vert y - x\Vert^2. 
+    & m_x(y) := f(x) + \langle \nabla f(x), y - x\rangle + \frac{L}{2}\Vert y - x\Vert^2. 
 \end{aligned}
 $$
 
-We didn't assume convexity, the weaker consequence from 2 sided smoothness includes concave function that are non-smooth, therefore we are going to assume that $f$ at least has a gradient, but the gradient of the function might not be Lipschitz (And it's implied from 2-sided smoothness that function will always have gradient, a singled value mapping), and we only need the upper bound. The function $m_x(y)$ is called the upper bounding function. Now we try looking for the minimum of the upper bounding function: 
+The above conditions are all equivalent to gradient of $f$ being Lipschitz with a constant $L$. The function $m_x(y)$ is called the upper bounding function (or surrogate function). Now we try looking for the minimum of the upper bounding function: 
 
 $$
 \begin{aligned}
-    & \exists! y^+ \in \arg\min_y m_x(y) : \nabla f(x) + \beta(y^+ - x)  
+    & \exists!\; y^+ \in \arg\min_y m_x(y) : \nabla f(x) + L(y^+ - x)  
     = \mathbf 0 \quad 
     \textcolor{gray}{\triangleright \text{S-CVX of }m_x(y)}
     \\
     &
-    y^+ = x - \beta^{-1}\nabla f(x)
+    y^+ = x - L^{-1}\nabla f(x)
     \\
     &
-    m_x(y^+) = f(x) + \langle \nabla f(x), - \beta^{-1}\nabla f(x)\rangle + \frac{\beta}{2}\Vert  - \beta^{-1}\nabla f(x)\Vert^2, 
+    m_x(y^+) = f(x) + \langle \nabla f(x), - 
+    L^{-1}\nabla f(x)\rangle + 
+    \frac{L}{2}\Vert  - L^{-1}\nabla f(x)\Vert^2, 
     \\
     & 
-    m_x(y^+) = f(x) -\beta^{-1}\Vert \nabla f(x)\Vert^2 + \frac{1}{2\beta}\Vert \nabla f(x)\Vert^2, 
+    m_x(y^+) = f(x) -L^{-1}\Vert \nabla f(x)\Vert^2 + \frac{1}{2L}\Vert \nabla f(x)\Vert^2, 
     \\
     & 
-    m_x(y^+) = f(x) - \frac{1}{2\beta}\Vert \nabla f(x)\Vert^2
+    m_x(y^+) = f(x) - \frac{1}{2L}\Vert \nabla f(x)\Vert^2
     \\
     \implies
     & 
-    f(y^+) \le m_x(y^+) = f(x) - \frac{1}{2\beta}\Vert\nabla f(x) \Vert^2. 
+    f(y^+) \le m_x(y^+) = f(x) - \frac{1}{2L}\Vert\nabla f(x) \Vert^2. 
 \end{aligned}
 $$
 
-The upper-bounding function ensures decreasing objective of the objective function by the amount of gradient. This can then be expanded to show a convergence relationship between several steps and the gradient. Let's suppose that updating scheme is simply: $x^{(t + 1)} = y^+ = x^{(t)} - \beta^{-1}\nabla f(x^{(t)})$, then we have: 
+The reader should be surprised that $y^+ = x - L^{-1}\nabla f(x)$ is exactly the gradient descent. This is a results of our quadratic surrogate. Using different types of surrogates will yield different scheme. $y^+$ is the next guess that produces the maximum decrease in the objective value of the function. Let's suppose that updating scheme is simply: $x^{(t + 1)} = y^+ = x^{(t)} - L^{-1}\nabla f(x^{(t)})$, then we have: 
 
 $$
 \begin{aligned}
-    & f(x^{(t + 1)}) - f(x^{(t)}) \le -2\beta^{-1}\Vert \nabla f(x^{(t)})\Vert^2
+    & f(x^{(t + 1)}) - f(x^{(t)}) \le -2L^{-1}\Vert \nabla f(x^{(t)})\Vert^2
     \\
     \implies &
     f(x^{(t + 1)}) - f(x^{(0)}) \le 
@@ -70,16 +73,15 @@ $$
     & 
     \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert^2 \le 
     \frac{1}{k}\sum_{j = 1}^{k}\Vert \nabla f(x_j)\Vert^2
-    \le k^{-1}2\beta(f(x^{(0)}) - f(x^{(k + 1)}))
+    \le k^{-1}2L(f(x^{(0)}) - f(x^{(k + 1)}))
     \\
     \implies & 
     \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert \le
-    k^{-1/2}\sqrt{2\beta(f(x^{0}) - f(x^{(k + 1)}))} \; .
+    k^{-1/2}\sqrt{2L(f(x^{0}) - f(x^{(k + 1)}))} \; .
 \end{aligned}
 $$
 
 Which is saying that, the objective decrease of the function value, depends on whether the gradient is converging to $\mathbf{0}$ or not. And the rate of convergence, assuming that the sequence of $f(x^{(t)})$ actually converges to a local minimum (*bold assumption here, but it suffice to assume that the function is lsc and bounded from below*), we have: 
-
 
 **Smooth Descend Gradient Conditions**: 
 > $$
@@ -107,15 +109,61 @@ Note, without much assumptions this formula only states that, the sequence of $f
 
 Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 
 
+#### **Lemma | Acceptable Stepsizes for Gradient Descent via the Upper Surrogate**
+> A range of value for the stepsize for the simple smooth gradient descent is possible. Focusing on strictly decreasing the objective value, valid step sizes would be $\eta \in (0, 2/L)$ for an $L$-smooth function. 
+
+**Proof**
+
+We don't have to look for the step sizes that decrease the value of the function as large as possible. To assert decreasing objective value we should't find other values of $y$ such that $m_x(y) < f(x)$, since there would be many solution and it won't yield the gradient descent routine. To ensure strict decrease of the objective value we want $y = x - \eta \nabla f(x)$. 
+
+$$
+\begin{aligned}
+    m_x(x - \eta \nabla f(x)) 
+    &< f(x)
+    \\
+    f(x) + \langle \nabla f(x), - \eta \nabla f(x)\rangle 
+    + 
+    \frac{L}{2}\Vert  - \eta \nabla f(x)\Vert^2
+    &< f(x)
+    \\
+    - \eta \Vert \nabla f(x)\Vert^2
+    + 
+    \frac{L \eta^2}{2}\Vert \nabla f(x)\Vert^2
+    &< 0
+    \\
+    \left(
+        \frac{L\eta^2}{2} - \eta
+    \right)\Vert \nabla f(x)\Vert^2 
+    &< 0, 
+\end{aligned}
+$$
+there for solving for the value of $\eta$ we would have 
+
+$$
+\begin{aligned}
+    \frac{L\eta^2}{2} - \eta 
+    &< 0
+    \\
+    \frac{L \eta }{2} - 1 &< 0, \; \eta > 0
+    \\
+    \eta &< 2/L, 
+\end{aligned}
+$$
+
+it yield the result of $\eta \in (0, 2/L)$. 
+
 
 ---
 ### **Smooth Descend with Convexity**
 
 We strengthen the results and show that we have convergence for gradient descent under the additional assumption that the function is convex. 
 
-#### **Theorem | Convexity Implies Faster Sub-linear Rate:**
 
-> When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate can be expressed in term of the objective value of the function, and the sub-linear rate of the convergence of objective value is: $\mathcal O(k^{-1})$. 
+
+
+#### **Theorem-1 | Convexity and Smoothness Implies Faster Sub-linear Rate**
+
+> When convexity, lsc, proper and $x^+$ is a minimizer, then the convergence rate of a function $f$ that is $L$-smooth has its objective value converging sub-linearly with $\mathcal O(t^{-1})$ for the gradient descent routine
 
 **Proof:**
 
@@ -127,7 +175,7 @@ $$
     & \le 
     f\left(x^{(t)}\right) + 
     \left\langle\nabla f\left(x^{(t)}\right), x^{(t + 1)} - x^{(t)} \right\rangle 
-    + \frac{\beta}{2}
+    + \frac{L}{2}
     \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
     &= 
@@ -135,27 +183,33 @@ $$
     _{\le f(x^+)}
     + 
     \left\langle \nabla f\left(x^{(t)}\right), x^+ - x^{(t + 1)}\right\rangle
-    + \frac{\beta}{2}
+    + \frac{L}{2}
     \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
     & \le 
     f(x^+) 
     + 
-    \frac{\beta}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
+    \frac{L}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
     \left\langle \nabla f(x^{(t)}), x^{(t + 1)} - x^+ \right\rangle
     \\
     & = 
-    f(x^+) + \frac{\beta}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
-    \left\langle \beta(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
+    f(x^+) + \frac{L}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
+    \left\langle \frac{1}{\eta}(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
+    \\
+    & \textcolor{gray}{\eta\in (0, 2/L) \implies 1/\eta \in (L/2, \infty), }
+    \\
+    &< 
+    f(x^+) + \frac{1}{\eta}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
+    \left\langle \frac{1}{\eta}(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
     \\
     &= 
-    f(x^+)+ \frac{\beta}{2}\left(
+    f(x^+)+ \frac{\eta}{2}\left(
         \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
         2\left\langle x^{(t)} - x^{(t + 1)}, x^{(t + 1)} - x^+ \right\rangle
     \right)
     \\
     &= f(x^+) + 
-    \frac{\beta}{2}
+    \frac{\eta}{2}
     \left(
         \left\Vert 
             x^{(t)} - x^{(t + 1)} + x^{(t + 1)} - x^+\right
@@ -164,7 +218,7 @@ $$
         \right\Vert^2
     \right)
     \\
-    & = f(x^+) + \frac{\beta}{2}
+    & = f(x^+) + \frac{\eta}{2}
     \left(
         \left\Vert x^{(t)} - x^+\right\Vert^2  - \left\Vert x^{(t + 1)} - x^+\right\Vert^2
     \right), 
@@ -176,11 +230,11 @@ which is a telescoping series if I sum it up, because for the rhs, the second te
 $$
 \begin{aligned}
     k\sum_{j = 1}^k f\left(x^{(j)}\right) - f(x^+) 
-    &\le 
-    \frac{\beta}{2}\left(
+    &< 
+    \frac{\eta}{2}\left(
         \left\Vert x^{(0)} - x^+\right\Vert^2 - \left\Vert x^{(k + 1)} - x^+\right\Vert^2
     \right) \le \
-    \frac{\beta}{2}\left\Vert x^{(0)} - x^+\right\Vert^2
+    \frac{\eta}{2}\left\Vert x^{(0)} - x^+\right\Vert^2
     \\
     & \textcolor{gray}{\triangleright f(x^{(j)}) \text{ monotone decreasing}}
     \\
@@ -190,11 +244,11 @@ $$
     \frac{1}{k}\left(
         \sum_{j = 1}^{k}
         f\left(x^{(j)}\right) - f(x^+)
-    \right) \le \frac{\beta}{2k}\Vert x^{(0)} - x^+\Vert^2
+    \right) \le \frac{\eta}{2k}\Vert x^{(0)} - x^+\Vert^2
     \\
     f\left(x^{(k + 1)}\right) - f(x^+) 
     &\le 
-    \frac{\beta}{2k}\left\Vert x^{(0)} - x^+\right\Vert^2, 
+    \frac{\eta}{2k}\left\Vert x^{(0)} - x^+\right\Vert^2, 
 \end{aligned}
 $$
 
@@ -212,6 +266,38 @@ I am not sure what happens when we still have the convexity but without the mini
 
 The function value can bound the norm of the gradient by the Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. To show the convergence of the iterates, one would need to consider the fixed point iterations convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information.
 
+---
+### **Descent with Strong Convexity**
+
+We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
+
+When a function has Lipschitz smooth gradient and strong convexity, the gradient operator $I - \eta \nabla f$  is a contraction for values of $\eta \in (0, 2/L)$. Read [Appearances of Contraction Operators in Optimizations Method](Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for more detailed proof. That results presented there will show that $\Vert x^{(k)} - x^+\Vert$ contracts linearly with a ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
+
+#### **Claim | Linear Convergence of the Iterates**
+> Gradient descent on $f$, a function that has $L$-Lipschitz smooth gradient and $\beta$ strong convexity with step size $\eta \in (0, 2/L)$ will converge linearly with rate $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
+
+**Proof**
+
+We had $\Vert T x -  Ty\Vert \le \min(|1 - \eta L|, |1 - \eta \beta|) \Vert x - y\Vert$ directly from the gradient $T = I - \eta \nabla f(x)$ descent operator and the proof for contraction. Setting $x = x^{(0)}, y = \bar x$ with $x^{(k)}$ being the sequence generated by fixed point iterations of $T$, and $\bar x$ is an unique minimizer for $f$ which exists as a consequence of stron convexity, then unrolling the recursion of the inequality yield linaer convergence rate of the iterates wrt to the initial error to the minimizer. 
+
+**Remarks**
+
+$L$=smoothness of $f$ yield that for every point $x, y \in \mathbb R^n$ we have $f(x) - f(\bar x) \le L /2 \Vert x - \bar x\Vert^2$, therefore, the linear rate under strong convexity would translate to the objective value as well. Additionally, the convergence rate for a smooth function is not necessarily with strong convexity would still apply, and therefore yielding the final convergence rate of 
+
+$$
+\begin{aligned}
+    f\left(x^{(k)}\right) - f(\bar x) 
+    &\le 
+    \min \left(
+        \frac{L}{2} \max(|1 - \eta L|, |1 - \eta \beta|)^k,
+        \frac{\eta}{2k}
+    \right)\left\Vert
+        x^{(0)} - \bar x
+    \right\Vert^2, 
+\end{aligned}
+$$
+
+for all $\eta \in (0, 2/L)$
 
 ---
 ### **PL Inequality and Linear Convergence**
@@ -229,6 +315,9 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 #### **Theorem | Linear Convergence Under PL** 
 
 > If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
+
+**proof**
+
 
 ---
 ### **Polyak Stepsize**

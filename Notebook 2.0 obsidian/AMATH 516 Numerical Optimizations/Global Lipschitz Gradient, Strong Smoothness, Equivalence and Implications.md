@@ -82,7 +82,7 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 #### **Proposition 5 | Equivalences under only Euclidean Norm**
 > Assuming that we are working with the Euclidean norm, then 
 > * $[2]\implies [1]$, may differ by a constant. 
-> * $[2]\implies [0]$, with the same constant. 
+> * $[2]\wedge [5]\implies [0]$, with the same constant. 
 >
 > By proposition-1, the conditions $[0], [1], [2]$ all becomes equivalent. In proving so, we can also get some interesting lemma as well. 
 
@@ -374,7 +374,7 @@ $$
     \langle \pm (\nabla f(y) - \nabla f(x)) + L(y - x) , y - x\rangle \le 2L\Vert x - y\Vert_2^2
     \\
     \iff&
-    \pm f(x) + \Vert x\Vert_2^2/2\text{ is cvx and smooth}, 
+    \pm f(x) + L\Vert x\Vert_2^2/2\text{ is cvx and smooth}, 
 \end{aligned}
 $$
 
@@ -403,7 +403,7 @@ $$
 which is equivalent to condition $[1]$. 
 
 
-#### **Showing $[2]\implies [0]$**
+#### **Showing $[2]\wedge [5]\implies [0]$**
 
 Start with one of the claim from the previous proof, observe that $\pm f(x) + L\Vert x\Vert_2^2/2$ is cvx and smooth, then we can apply existing conditions for smooth and convex function. Let $\varphi = \pm f + L/2 \Vert \cdot\Vert_2^2$, then 
 
@@ -451,14 +451,30 @@ $$
     \frac{1}{2L}\Vert \nabla f(y) - \nabla f(x)\Vert_2^2 
     & \le 
     2L \Vert y - x\Vert_2^2 - \frac{L}{2}\Vert y - x\Vert_2^2 
-    \underbrace{\pm \langle \nabla f(y) - \nabla f(x), y - x\rangle}_{\le L\Vert y - x\Vert_2^2}
+    \pm \langle \nabla f(y) - \nabla f(x), y - x\rangle
+    \\
+    & \textcolor{gray}{\triangleright\text{This is 2 inequality together, taking the minimum of both:}}
     \\
     &\le 
-    L(1 - 1/2 - 1) \Vert y - x\Vert_2^2 = L/2\Vert y-x\Vert_2^2, 
+    L(2 - 1/2)\Vert y - x\Vert^2 + \min(-1, 1)|\langle \nabla f(y) - \nabla f(x), y -x\rangle|
+    \\
+    &\le 
+    L(3/2)\Vert y - x\Vert^2 - |\langle \nabla f(y) - \nabla f(x), y -x\rangle|
+    \\
+    &\textcolor{red}{\triangleright \text{apply [5], co-coerciveness (assumed convexity?)} }
+    \\
+    &\le 
+    (3L/2)\Vert y - x\Vert^2 - 1/L \Vert \nabla f(y) - \nabla f(x)\Vert^2 
+    \\
+    3/2L \Vert \nabla f(y) - \nabla f(x)\Vert^2
+    &\le 
+    (3L/2)\Vert y - x\Vert^2
+    \\
+    \Vert \nabla f(y) - \nabla f(x)\Vert^2 &\le L^2 \Vert y - x\Vert^2. 
 \end{aligned}
 $$
 
-moving the $L$ around and then take the square root yield the desired results. And hence, 2 sided smoothness and differentiability is equivalent to global Lipscthiz gradient for function $f$ with constant $L$. 
+When convexity is not assumed, the best bound for $|\langle \nabla f(y) - \nabla f(x), y - x\rangle|$ is just zero. We would still have Lipschitz Gradient but a different Lipschitz constant. 
 
 
 ----

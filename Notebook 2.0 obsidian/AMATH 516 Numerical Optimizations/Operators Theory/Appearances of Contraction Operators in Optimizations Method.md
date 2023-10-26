@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-A fixed point iterations can be applied to solve equations in fixed point form. It finds the root for equation of the form $x = Tx$ where $T$ is a contractive mapping. Recall that a function $g$ is strongly convex when $g(x) - (1/2)\Vert x\Vert$ is a convex function. The fixed point iterations tries to root find the equation $\mathbf 0 = \nabla f(x)$, which is equivalent to solving the equation $x = x - \beta \nabla f(x)$. Here we are in euclidean space, which is a special type of metric space. 
+A fixed point iterations can be applied to solve equations in fixed point form. It finds the root for equation of the form $x = Tx$ where $T$ is a contractive mapping. Recall that a function $g$ is strongly convex when $g(x) - (1/2)\Vert x\Vert$ is a convex function. The fixed point iterations tries to root find the equation $\mathbf 0 = \nabla f(x)$, which is equivalent to solving the equation $x = x^+ - \beta \nabla f(x^+)$. Here we are in euclidean space, which is a special type of metric space.
 
 **Theorem | Strong Convexity make Proximal Point Contractive**
 > The proximal point method considers a form of fixed point iterations: 
@@ -51,139 +51,102 @@ Prof Wang's Math 328 class, lecture 5.
 ---
 ### **Gradient Descent on Smooth and Strongly Convex Functions**
 
-Next, we prove that if a function is strongly convex and has Lipschitz gradient, then it has a gradient operator, then a gradient descent on such a function would be a contraction. By Lipschitz smoothness of the gradient, we trade off the need for proximal operator, and we still get linear convergence for the method. 
+Next, we prove that if a function is strongly convex and has Lipschitz gradient, then the gradient operator representing a gradient descent on such a function would be a contraction. By Lipschitz smoothness of the gradient, we trade off the need for proximal operator, and we still get linear convergence using the addition of smoothness. 
 
 ---
 #### **Thm | Contraction Formed by Gradient Descent Operators on Lipschitz Smooth Strong Convex Functions**
-> The gradient descent operator for a strong convex and smooth function is a contraction operator. More specifically let $f$ be Lipscthiz smooth with parameter $L$, and strongly convex with $\beta$. Let the gradient operator to be $T = I - \eta \nabla f$, then for all $\eta \in (0, 2/L)$, the operator $T$ is a contraction with ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
+> The gradient descent operator for a strong convex and smooth function is a contraction operator. More specifically let $f$ be Lipscthiz smooth with parameter $L$, and strongly convex with $\beta$. Let the gradient operator to be $T = I - \eta \nabla f$, then for all $\eta \in (0, 2/L)$, the operator $T$ is a contraction with ratio $\max(|1 - \eta L|, |1 - \eta \beta|)$. 
 
 **Proof**
 
-We may directly consider expanding the norm of the gradient operator over any 2 points $x, y \in \mathbb R^n$, with the [co-coersivenss of Lipschitz Smooth function](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) $[[1]]: \langle \nabla f(y) - \nabla f(x), y -x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert^2$ giving us: 
+$\nabla f$ is strongly monotone and Lipschitz bounded and hence 
 
 $$
 \begin{aligned}
-    \Vert 
-        [I - \eta \nabla f](y) - [I - \eta \nabla f](x)
-    \Vert^2 
-    &= 
-    \Vert 
-        (y - x) - \eta (\nabla f(y) - \nabla f(x))
-    \Vert^2
-    \\
+    \beta\Vert y - x\Vert^2
     & \le 
-    \Vert y - x\Vert^2 + \eta^2 \Vert \nabla f(y) - \nabla f(x)\Vert^2
-    -
-    2\eta \langle \nabla f(y) - \nabla f(x), y- x\rangle
+    \langle \nabla f(y) - \nabla f(x), y -x\rangle 
+    \le 
+    L \Vert y - x\Vert^2 
     \\
-    {[[1]]}
-    \implies 
-    & \le \Vert y - x\Vert^2 + \eta^2 \Vert \nabla f(y) - \nabla f(x)\Vert
-    - \frac{2\eta }{L} \Vert \nabla f(x) - \nabla f(y)\Vert^2 
+    -\eta L \Vert y - x\Vert^2 &\le 
+    -\langle \eta\nabla f(x) - \eta\nabla f(y), y -x \rangle \le 
+    -\eta \beta \Vert y - x\Vert^2
     \\
-    & \le \Vert y - x\Vert^2 
-    + \eta(\eta - 2 /L) \Vert \nabla f(y) - \nabla f(x)\Vert^2 \rightarrow [[2]]
+    (1 - \eta L)\Vert y - x\Vert^2 &\le 
+    \langle (y - x)- \eta(\nabla f(y) - \nabla f(x)), y - x\rangle \le 
+    (1-\eta \beta) \Vert y - x\Vert^2
+    \\
+    &\textcolor{gray}{
+        \triangleright \text{let } \hat f = \Vert \cdot\Vert^2/2 - \eta \nabla f(\cdot)
+    }
+    \\
+    (1 - \eta L)\Vert y - x\Vert^2 
+    &\le 
+    \langle \nabla \hat f(y) - \nabla \hat f (y), y -x\rangle 
+    \le 
+    (1 - \eta \beta)\Vert y - x\Vert^2. 
 \end{aligned}
 $$
 
-Depending on the sign of the quantity $(\eta^2 - 2\eta/L)$, we need to invoke different conditions to upper and lower bound it. Firstly if we assume that the quantity is larger than zero, which means we want an upper bound. And the upper bound can be provided by the Lipscthiz constant for the gradient operator. By the non-negativity assumption, we would made the restriction on the step size parameter giving us: 
+We make $Q \ge \max(|1 - \eta L|, |1 - \eta \beta|)$, and $l = (1 - \eta L), u = (1 - \eta \beta)$. Observe that if $\phi(x) = Q \Vert \cdot\Vert^2/2 - \hat f(x)$ would be a $Q - l$ smooth because
 
 $$
 \begin{aligned}
-    \eta(\eta - 2/L) &\ge 0
+    - u \Vert x - y\Vert ^2 
+    &\le -\langle \nabla \hat f(y) - \nabla \hat f(x), y-x\rangle
+    \le 
+    -l \Vert y - x\Vert^2
     \\
-    \eta  - 2/L &\ge 0
+    0 &\le \left\langle 
+        Q(y - x) - \left(\hat f(y) - \hat f(x)\right), y - x 
+    \right\rangle 
+    \le 
+    (Q - l)\Vert y - x\Vert^2
     \\
-    \eta &\ge 2/L, 
+    0 &\le
+    \left\langle 
+        \nabla \phi(y) - \nabla \phi(x), y - x 
+    \right\rangle 
+    \le 
+    (Q - l)\Vert y - x\Vert^2, 
 \end{aligned}
 $$
 
-With the lipschitz condition for the gradient operator we have $\Vert \nabla f(y) - \nabla f(x)\Vert \le L\Vert y - x\Vert$ then the upper bound \[\[2\]\] simplifies to 
-$$
-\begin{aligned}
-    {[[2]]} &\le  \Vert y - x\Vert^2 
-    + (\eta^2 - 2\eta/L) L^2 \Vert y - x\Vert^2
-    \\
-    &= (1 + \eta^2 L^2 - 2nL)\Vert y - x\Vert^2
-    \\
-    &= (1 - \eta L)^2 \Vert y - x\Vert^2 \rightarrow [[2.1]]. 
-\end{aligned}
-$$
-
-and when the condition of $\eta \ge 2 /L$ is false, the upper bound will be a lower bound instead. Next, to gain another upper bound, we consider a different sign for the coefficient, consider 
-
-$$
-\begin{aligned}
-    \eta(\eta - 2/L) &\le 0
-    \\
-    \eta &\le 2/L, 
-\end{aligned}
-$$
-
-then we may use a lower bound from the [Strong Convexity](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) to create an upper bound for the normed difference of the gradient. Strong convexity gives lower bound $\Vert \nabla f(y) - \nabla f(x)\Vert^2 \ge \beta^2 \Vert y - x\Vert^2$, with that we make 
+fuction $\phi$ would be $Q - l$ smooth hence $\Vert \nabla \phi (y) - \nabla \phi(x)\Vert^2 \le (Q - l)^2\Vert y - x\Vert^2$, the LHS equals to
 
 $$
 \begin{aligned}
-   {[[2]]} &\le \Vert y - x\Vert^2 + (\eta^2 - 2\eta/L) \beta^2 \Vert y - x\Vert^2
+    \Vert \nabla \phi(y) - \nabla \phi(x)\Vert^2 
+    &= 
+    Q^2\Vert y - x\Vert +
+    \Vert \nabla \hat f(y) - \nabla \hat f(x)\Vert^2 
+    - 2\left\langle Q(y - x), \nabla \hat f(y) - \nabla \hat f(x) \right\rangle
     \\
-    &\le (1 + \eta^2\beta^2 - 2\eta\beta^2/L) \Vert y - x\Vert^2 
+    & \textcolor{gray}{\triangleright\text{strong convexity has :}}
     \\
-    & \le (1 + \eta^2 \beta - 2\eta \beta/L)\Vert y - x\Vert^2,  \text{by } \beta/L \le 1
+    & 
     \\
-    &= (1 - \eta\beta)^2\Vert y - x\Vert \leftarrow [[2.2]], 
+    & \ge \left(
+        1 - \frac{2 Q}{l}
+    \right)\Vert \nabla \hat f(y) - \nabla \hat f(x)\Vert^2 + Q^2\Vert y - x\Vert^2
+
 \end{aligned}
 $$
 
-and when condition $\eta \le 2/L$ is not true, the upper bound then became a lower bound. Since the two conditions on $\eta$ are all possible values of eta, the maximum of the 2 bound will form the upper bound for the Lipschitz index, which is given by 
 
-$$
-\begin{aligned}
-    \Vert Ty - Tx\Vert^2 
-    &\le \max((1 - \eta L)^2, (1 - \eta \beta)^2)\Vert y - x\Vert^2
-    \\
-    {[[2.1]]} \wedge {[[2.2]]}
-    \implies 
-    \Vert Ty - Tx\Vert 
-    &\le \max(|1 - \eta L|, |1 - \eta \beta|)\Vert y - x\Vert^2. 
-\end{aligned}
-$$
 
-Next, we seek for a value of $\eta$ such that the Lipschitz constant gives a contraction. 
 
-$$
-\begin{aligned}
-    |1 - \eta L| &< 1
-    \\
-    -1 < 1 - \eta L &< 1
-    \\
-    -2 - \eta L & < 0
-    \\
-    0 < \eta L &< 2
-    \\
-    0 < \eta  &< 2/L, 
-\end{aligned}
-$$
+**Remarks**
 
-simultaneously 
-
-$$
-\begin{aligned}
-    |1 - \eta \beta| &< 1
-    \\
-    -1 < 1 - \eta\beta &< 1
-    \\
-    0 < \eta \beta &< 2
-    \\
-    0 < \eta &< 2/\beta, 
-\end{aligned}
-$$
-
-Hence it would be the case that $0 < \eta < \min(2/L, 2/\beta)$, however, we take note that $L$ is the upper bound for the Lipschitz constant and $\beta$ is the lower bound, resulting in $\min(2/L, 2/\beta) = 2/L$, taking the value of the smaller quantities. Therefore, the theorem is proven. 
+The situation would change drastically if we are looking at infinite dimension with different norms for strong convexity and Lipschitz smoothness of the gradient. If we had different type of norm in $\mathbb R^n$ for smoothness and strong convexity, the only thing differs would be $\beta, L$.
 
 
 ---
 ### **Corollary | Proximal Gradient Method**
-> Let $f = g + h$ where $g$ is a smooth function with Lipschitz Gradient and $\beta$-strongly convex, let $h$ be convex with proximal operator. Then the proximal gradient operator is a contraction, with the same ratio as it was in the case of the gradient operator $\min(|1 - \eta L|, |1 - \eta \beta|)$, for $\eta\in (0, 2/L)$. 
+> Let $f = g + h$ where $g$ is a smooth function with Lipschitz Gradient and $\beta$-strongly convex, let $h$ be convex with proximal operator. Then the proximal gradient operator is a contraction, with the same ratio as it was in the case of the gradient operator $\min(|1 - \eta L|, |1 - \eta \beta|)$, for $\eta\in (0, 2/L)$.  
+
+
 
 **Proof**
 
