@@ -60,6 +60,12 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 5. Condition 5 gives a lower bound for how much the gradient should change given the distance from $\Vert x - y\Vert$. 
 
 ---
+### **Strongly Convex and Smoothness Together**
+
+There are some results that only happens with both strong convexity and Lipschitz smoothness of the function. 
+
+
+---
 ### **Proofs for Theorem 1**
 
 **\[Def\] <=> \[1\]**

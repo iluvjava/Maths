@@ -405,76 +405,60 @@ which is equivalent to condition $[1]$.
 
 #### **Showing $[2]\wedge [5]\implies [0]$**
 
-Start with one of the claim from the previous proof, observe that $\pm f(x) + L\Vert x\Vert_2^2/2$ is cvx and smooth, then we can apply existing conditions for smooth and convex function. Let $\varphi = \pm f + L/2 \Vert \cdot\Vert_2^2$, then 
+Start with one of the claim from the previous proof, observe that $\pm f(x) + L\Vert x\Vert_2^2/2$ is cvx and smooth, then we can apply existing conditions for smooth and convex function. Let $\varphi = \pm f + L/2 \Vert \cdot\Vert_2^2$, the following is equivalent
 
 $$
 \begin{aligned}
     \frac{1}{2L}\Vert \nabla \varphi (y) - \nabla \varphi (x)\Vert_2^2 
     & \le 
     \langle \nabla \varphi(y) - \nabla \varphi(x), y - x\rangle
-    \le 
-    2L \Vert y - x\Vert_2^2, 
+    \\
+    \Vert \nabla \varphi (y) - \nabla \varphi (x)\Vert_2^2  
+    &\le 
+    2L\langle \nabla \varphi(y) - \nabla\varphi(x), y -x\rangle, 
 \end{aligned}
 $$
 
-starting with the LHS we have
+Starting with the LHS of the inequality then 
 
 $$
 \begin{aligned}
-    \frac{1}{2L}\Vert \nabla \varphi (y) - \nabla \varphi (x)\Vert_2^2 
+    &\; \Vert \nabla \varphi(y) - \nabla \varphi(x)\Vert_2^2
+    \\
     &= 
-    \frac{1}{2L}
-    \Vert 
-        \pm (\nabla f(y) - \nabla f(x)) + L(y - x)
-    \Vert_2^2
+    \Vert L(y - x) + (\nabla f(y) - \nabla f(x))\Vert_2^2
     \\
-    &=\frac{1}{2L}
-    \left(
-        \Vert \nabla f(y) - \nabla f(x)\Vert_2^2
-        + 
-        L^2 \Vert y - x\Vert_2^2 \pm 
-        2L \langle \nabla f(y) - \nabla f(x), y -x\rangle
-    \right)
-    \\
-    &=
-    \frac{1}{2L}\Vert \nabla f(y) - \nabla f(x)\Vert_2^2
+    &= 
+    L^2\Vert y -x \Vert_2^2 + 
+    \Vert \nabla f(y) - \nabla f(x)\Vert_2^2
     + 
-    \frac{L}{2} \Vert y - x\Vert_2^2 
-    \pm \langle \nabla f(y) - \nabla f(x), y -x\rangle, 
+    2L\left\langle 
+        y - x, \nabla f(y) - \nabla f(x)
+    \right\rangle, 
+\end{aligned}
+$$
+The RHS of the inequality is given as 
+$$
+\begin{aligned}
+    &\; 2L\langle \nabla \varphi(y) - \nabla\varphi(x), y -x\rangle
+    \\
+    &= 
+    2L \langle L(y - x) + \nabla f(y) - \nabla f(x), y - x\rangle 
+    \\
+    &= 2L^2\Vert y - x\Vert_2^2 + 2L \langle \nabla f(y) - \nabla f(x), y -x\rangle, 
 \end{aligned}
 $$
 
-Moving some extra terms from the LHS to the upper bound of RHS, which is $2L\Vert y - x\Vert_2^2$, we have
+the cross term $2L\langle y - x, \nabla f(y) - \nabla f(x) \rangle$ cancels out at bothside then we have the inequality 
 
 $$
 \begin{aligned}
-    \frac{1}{2L}\Vert \nabla f(y) - \nabla f(x)\Vert_2^2 
-    & \le 
-    2L \Vert y - x\Vert_2^2 - \frac{L}{2}\Vert y - x\Vert_2^2 
-    \pm \langle \nabla f(y) - \nabla f(x), y - x\rangle
-    \\
-    & \textcolor{gray}{\triangleright\text{This is 2 inequality together, taking the minimum of both:}}
-    \\
-    &\le 
-    L(2 - 1/2)\Vert y - x\Vert^2 + \min(-1, 1)|\langle \nabla f(y) - \nabla f(x), y -x\rangle|
-    \\
-    &\le 
-    L(3/2)\Vert y - x\Vert^2 - |\langle \nabla f(y) - \nabla f(x), y -x\rangle|
-    \\
-    &\textcolor{red}{\triangleright \text{apply [5], co-coerciveness (assumed convexity?)} }
-    \\
-    &\le 
-    (3L/2)\Vert y - x\Vert^2 - 1/L \Vert \nabla f(y) - \nabla f(x)\Vert^2 
-    \\
-    3/2L \Vert \nabla f(y) - \nabla f(x)\Vert^2
-    &\le 
-    (3L/2)\Vert y - x\Vert^2
-    \\
-    \Vert \nabla f(y) - \nabla f(x)\Vert^2 &\le L^2 \Vert y - x\Vert^2. 
+    L^2 \Vert y - x\Vert_2^2 + \Vert \nabla f(y) - \nabla f(x)\Vert_2^2
+    &\le 2L^2\Vert y - x\Vert_2^2, 
 \end{aligned}
 $$
 
-When convexity is not assumed, the best bound for $|\langle \nabla f(y) - \nabla f(x), y - x\rangle|$ is just zero. We would still have Lipschitz Gradient but a different Lipschitz constant. 
+subtracting $L^2\Vert y- x\Vert^2_2$at both side will yield the Lipschitz continuity results of the gradient. 
 
 
 ----
