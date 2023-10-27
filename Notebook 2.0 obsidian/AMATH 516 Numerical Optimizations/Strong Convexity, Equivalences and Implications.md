@@ -9,6 +9,7 @@ Here in this file we make use the following specific references:
 **References**: 
 * Blog Post: [here](http://xingyuzhou.org/blog/notes/strong-convexity)
 * Arxiv paper with more discussions and proofs: [here](https://arxiv.org/pdf/1803.06573.pdf)
+* Chapter of Nesterov book "Lectures on Convex Optimizations" is also a good source. However he consider smooth function. 
   
 #### **Def | Strongly Convex Function**
 
@@ -62,7 +63,7 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 ---
 ### **Strongly Convex and Smoothness Together**
 
-There are some results that only happens with both strong convexity and Lipschitz smoothness of the function. 
+There are some results that only happens with both strong convexity and Lipschitz smoothness of the function. These reasults are occationally useful, especially deriving the best kind of behavior an algorithm can experience. 
 
 
 ---

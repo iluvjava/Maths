@@ -538,7 +538,7 @@ $$
 \end{aligned}
 $$
 
-at `[[3]]` we made use of the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md). This would produce the results that 
+at `[[3]]` we made use of the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md). This would produce the results when we substitute in $D_f(y, x_\alpha), D_f(x, x_\alpha)$ that 
 
 $$
 {\small
