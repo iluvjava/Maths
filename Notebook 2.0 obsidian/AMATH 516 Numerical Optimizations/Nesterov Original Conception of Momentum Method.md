@@ -5,6 +5,9 @@
 ---
 ### **Intro**
 
-The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We follow Nesterov's Lectures on Convex Optimizations, chapter 2 of his book. 
+The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. 
+
+
+
 
 

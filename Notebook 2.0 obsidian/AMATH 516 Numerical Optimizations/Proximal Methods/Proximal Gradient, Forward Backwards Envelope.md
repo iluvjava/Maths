@@ -16,9 +16,10 @@ Sum of smooth and non smooth problems has structure that can be exploited.
 
 **Assumptions**
 
-1. $g(x), h(x)$ are convex
-2. $h(x)$ is non-smooth 
-3. $g$ is smooth with constant $L$. 
+1. $g(x), h(x)$ are convex.
+2. $h(x)$ is non-smooth.
+3. $g$ is smooth with constant $L$.
+4. $\beta \le L^{-1}$, $\beta$ in here is used to denote the step-size. 
 
 Here, we derive the proximal gradient algorithm using the idea of upper Envelope Minimizations. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
@@ -124,7 +125,7 @@ $$
     -\beta^{-1} \nabla g(x) + x &\in [I + \beta^{-1} \partial h](y)
     \\
     \implies
-    [I + \beta^{-1}\partial h]^{-1}(- \beta^{-1} \nabla g(x) + x) 
+    \left[I + \beta^{-1}\partial h\right]^{-1}(- \beta^{-1} \nabla g(x) + x) 
     & \ni y,
 \end{aligned}
 $$

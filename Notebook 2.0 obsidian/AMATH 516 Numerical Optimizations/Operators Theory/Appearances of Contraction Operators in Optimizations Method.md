@@ -55,7 +55,7 @@ Next, we prove that if a function is strongly convex and has Lipschitz gradient,
 
 ---
 #### **Thm | Contraction Formed by Gradient Descent Operators on Lipschitz Smooth Strong Convex Functions**
-> The gradient descent operator for a strong convex and smooth function is a contraction operator. More specifically let $f$ be Lipscthiz smooth with parameter $L$, and strongly convex with $\beta$. Let the gradient operator to be $T = I - \eta \nabla f$, then for all $\eta \in (0, 2/L)$, the operator $T$ is a contraction with ratio $\max(|1 - \eta L|, |1 - \eta \beta|)$. 
+> The gradient descent operator for a strong convex and smooth function is a contraction operator. More specifically let $f:\mathcal H\mapsto \mathbb R$ be a $L$-Lipschitz smooth function and strongly convex with $\beta > 0$. Let the gradient operator to be $T = I - \eta \nabla f$, then for all $\eta \in (0, 2/L)$, the operator $T$ is a contraction with ratio $\max(|1 - \eta L|, |1 - \eta \beta|)$. 
 
 **Proof**
 
@@ -78,68 +78,109 @@ $$
     (1-\eta \beta) \Vert y - x\Vert^2
     \\
     &\textcolor{gray}{
-        \triangleright \text{let } \hat f = \Vert \cdot\Vert^2/2 - \eta \nabla f(\cdot)
+        \triangleright\;  \text{let } \hat f = \Vert \cdot\Vert^2/2 - \eta \nabla f(\cdot)
     }
     \\
     (1 - \eta L)\Vert y - x\Vert^2 
     &\le 
-    \langle \nabla \hat f(y) - \nabla \hat f (y), y -x\rangle 
+    \left\langle 
+        \nabla \hat f(y) - \nabla \hat f (y), y -x
+    \right\rangle 
     \le 
     (1 - \eta \beta)\Vert y - x\Vert^2. 
 \end{aligned}
 $$
 
-We make $Q \ge \max(|1 - \eta L|, |1 - \eta \beta|)$, and $l = (1 - \eta L), u = (1 - \eta \beta)$. Observe that if $\phi(x) = Q \Vert \cdot\Vert^2/2 - \hat f(x)$ would be a $Q - l$ smooth because
+We make $Q \ge \max(|1 - \eta L|, |1 - \eta \beta|)$, and $l = (1 - \eta L), u = (1 - \eta \beta)$, transforming the above 2 sided smoothness condition of $\hat f$ into 
 
 $$
 \begin{aligned}
-    - u \Vert x - y\Vert ^2 
-    &\le -\langle \nabla \hat f(y) - \nabla \hat f(x), y-x\rangle
+    -Q\Vert y - x\Vert^2 
+    &\le 
+    \left\langle 
+        \nabla \hat f(y) - \nabla \hat f (y), y -x
+    \right\rangle 
     \le 
-    -l \Vert y - x\Vert^2
+    Q\Vert y - x\Vert^2
+    \\
+    0 
+    &\le 
+    \left\langle 
+        Q(y- x) + \nabla \hat f(y) - \nabla \hat f(x), y - x
+    \right\rangle
+    \le 2Q \Vert y - x\Vert^2
+    \\
+    & \textcolor{gray}{
+	    \triangleright  \; \text{let } \phi(x) := Q\frac{\Vert x\Vert^2}{2} + \hat f(x)
+    }
     \\
     0 &\le \left\langle 
-        Q(y - x) - \left(\hat f(y) - \hat f(x)\right), y - x 
-    \right\rangle 
-    \le 
-    (Q - l)\Vert y - x\Vert^2
-    \\
-    0 &\le
-    \left\langle 
-        \nabla \phi(y) - \nabla \phi(x), y - x 
-    \right\rangle 
-    \le 
-    (Q - l)\Vert y - x\Vert^2, 
+        \nabla \phi(y) - \nabla \phi(x), y - x
+    \right\rangle \le 2Q \Vert y - x\Vert^2, 
 \end{aligned}
 $$
 
-fuction $\phi$ would be $Q - l$ smooth hence $\Vert \nabla \phi (y) - \nabla \phi(x)\Vert^2 \le (Q - l)^2\Vert y - x\Vert^2$, the LHS equals to
+hence $\phi$ is a $2Q$-smooth function. Using [the co-coersivity](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of smooth function we have 
+
+$$
+{\small
+\begin{aligned}
+    2Q\left\langle 
+        \nabla \phi(y) - \nabla \phi(x), y - x
+    \right\rangle
+    &\ge 
+    \Vert \nabla \phi(y) - \nabla \phi(x)\Vert^2
+    \\
+    2Q 
+    \Vert Q(y - x)\Vert^2
+    + 
+    2Q^2\left\langle y-x, \nabla \hat f(y) - \nabla \hat f(x)  \right\rangle
+    &\ge 
+    Q^2\Vert y - x\Vert^2 + 
+    \left\Vert \nabla \hat f(y) - \nabla \hat f(x)\right\Vert^2
+    + 
+    2Q^2\left\langle y - x, \nabla f \hat f(y) - \nabla \hat f(x)\right\rangle
+    \\
+    2Q^2\Vert y - x\Vert^2 &\ge 
+    Q^2\Vert y - x\Vert^2 + \left\Vert
+        \nabla \hat f(y) - \nabla \hat f(x)
+    \right\Vert^2, 
+\end{aligned}
+}
+$$
+
+And therefore, the gradient of $\hat f$, has a Lipschitz constant $Q$. The minimum valid value of $Q$ is $\max(|u|, |l|)$. To see whether this can be a contraction, we solve for the values of step size $\eta$ such that it's a contraction. Consider 
 
 $$
 \begin{aligned}
-    \Vert \nabla \phi(y) - \nabla \phi(x)\Vert^2 
-    &= 
-    Q^2\Vert y - x\Vert +
-    \Vert \nabla \hat f(y) - \nabla \hat f(x)\Vert^2 
-    - 2\left\langle Q(y - x), \nabla \hat f(y) - \nabla \hat f(x) \right\rangle
+    & | 1 - \eta L | < 1 
     \\
-    & \textcolor{gray}{\triangleright\text{strong convexity has :}}
+    & 1 - \eta L \in (-1, 1)
     \\
-    & 
+    & -\eta L \in (-2, 0)
     \\
-    & \ge \left(
-        1 - \frac{2 Q}{l}
-    \right)\Vert \nabla \hat f(y) - \nabla \hat f(x)\Vert^2 + Q^2\Vert y - x\Vert^2
-
+    & \eta \in (0, 2/L)
 \end{aligned}
 $$
 
+simultaneously
+$$
+\begin{aligned}
+    & |1 - \eta \beta| < 1
+    \\
+    & -\eta \beta \in (-2, 0)
+    \\
+    & \beta \in (0, 2/\beta), 
+\end{aligned}
+$$
 
+by $\beta < L$, we have valid range for parameter $\eta \in (0, 2/L)$ by taking the intersections of the sets. 
 
 
 **Remarks**
 
-The situation would change drastically if we are looking at infinite dimension with different norms for strong convexity and Lipschitz smoothness of the gradient. If we had different type of norm in $\mathbb R^n$ for smoothness and strong convexity, the only thing differs would be $\beta, L$.
+The proof definitely won't work if we have other type of norms. Not sure what happens in other spaces. In finite Euclidean space, this theorem works solidly. Finally, the step size that minimize the contraction ratio is $2/(L + \beta)$, which is different from $1/L$, the step sizes for maximum descent of a smooth function. It's slightly larger in this case. 
+
 
 
 ---
