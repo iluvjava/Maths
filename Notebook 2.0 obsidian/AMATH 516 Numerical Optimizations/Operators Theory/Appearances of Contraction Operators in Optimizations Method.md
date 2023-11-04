@@ -181,11 +181,30 @@ by $\beta < L$, we have valid range for parameter $\eta \in (0, 2/L)$ by taking 
 
 The proof definitely won't work if we have other type of norms. Not sure what happens in other spaces. In finite Euclidean space, this theorem works solidly. Finally, the step size that minimize the contraction ratio is $2/(L + \beta)$, which is different from $1/L$, the step sizes for maximum descent of a smooth function. It's slightly larger in this case. 
 
+To see the convergence of the function value, recall that for a L smooth function we have $f(x) - f^* \le \frac{L}{2}\Vert x - \bar x\Vert^2$, where $\bar x$ is a fixed point for the gradient operator $I - \eta\nabla f$. The convergence rate of the iterates follows recursively by the contraction. 
 
+
+#### **Thm | The best Contraction Ratio**
+> The best contraction ratio is $(\kappa - 1)/(\kappa + 1)$ where $\kappa = L/\alpha$, $L$ is the smoothness constant and $\alpha$ would be the strong convexity value. The best contraction ratio is attained by the value of $\eta = 2/(L + \beta)$. 
+
+**Proof**
+
+The best step-size is when $|1 - \eta L|$ intersects with $|1 - \eta \beta|$. The curve $|1 - \eta L|$ meets the x-axis at $1/L$, coming before $\beta$, hence we solve $1 - \eta \beta = \eta L - 1$, giving us $\eta = 2/(\beta + L)$. And then 
+
+$$
+\begin{aligned}
+    |1 - 2L/(\beta + L)| &= |\beta + L - 2L|/(\beta + L) = (L - \beta)/(L + \beta)
+    \\
+    &= \frac{L/\beta - 1}{L/\beta + 1} = \frac{\kappa -1}{\kappa + 1}, 
+\end{aligned}
+$$
+
+and the completes the proof for the claim. 
 
 ---
 ### **Corollary | Proximal Gradient Method**
 > Let $f = g + h$ where $g$ is a smooth function with Lipschitz Gradient and $\beta$-strongly convex, let $h$ be convex with proximal operator. Then the proximal gradient operator is a contraction, with the same ratio as it was in the case of the gradient operator $\min(|1 - \eta L|, |1 - \eta \beta|)$, for $\eta\in (0, 2/L)$.  
+
 
 
 

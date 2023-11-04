@@ -27,11 +27,11 @@ When defining the sequence for the algorithm, it's also defined that $\lambda_0 
 
 $$
 \begin{aligned}
-    \lambda_n &= 1/2 + (1/2)\sqrt{1 + 4\lambda_{n-1}}
+    \lambda_n &= 1/2 + (1/2)\sqrt{1 + 4\lambda_{n-1}^2}
     \\
     &\ge \frac{1}{2} + \frac{1}{2}(2 \lambda_{n - 1}) \ge \lambda_{n - 1} + 1/2
     \\
-    \lambda_n &= 1/2 + (1/2)\sqrt{1 + 4\lambda_{n-1}}
+    \lambda_n &= 1/2 + (1/2)\sqrt{1 + 4\lambda_{n-1}^2}
     \\
     &\le  1/2+ (1/2)(1 + 2\lambda_{n - 1}) = 1 + \lambda_{n - 1},
 \end{aligned}
