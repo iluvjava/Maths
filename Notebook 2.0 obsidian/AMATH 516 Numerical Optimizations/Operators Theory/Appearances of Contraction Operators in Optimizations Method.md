@@ -181,7 +181,7 @@ by $\beta < L$, we have valid range for parameter $\eta \in (0, 2/L)$ by taking 
 
 The proof definitely won't work if we have other type of norms. Not sure what happens in other spaces. In finite Euclidean space, this theorem works solidly. Finally, the step size that minimize the contraction ratio is $2/(L + \beta)$, which is different from $1/L$, the step sizes for maximum descent of a smooth function. It's slightly larger in this case. 
 
-To see the convergence of the function value, recall that for a L smooth function we have $f(x) - f^* \le \frac{L}{2}\Vert x - \bar x\Vert^2$, where $\bar x$ is a fixed point for the gradient operator $I - \eta\nabla f$. The convergence rate of the iterates follows recursively by the contraction. 
+To see the convergence of the function value, recall that for a L smooth function, we have upper bound from the iterates on the function values $f(x) - f^* \le \frac{L}{2}\Vert x - \bar x\Vert^2$, where $\bar x$ is a fixed point for the gradient operator $I - \eta\nabla f$. The convergence rate of the iterates follows recursively by the contraction. 
 
 
 #### **Thm | The best Contraction Ratio**
