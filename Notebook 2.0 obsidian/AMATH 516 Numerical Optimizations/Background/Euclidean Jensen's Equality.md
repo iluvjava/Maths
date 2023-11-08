@@ -3,7 +3,7 @@ alias: Cute Formula
 ---
 ### **Intro**
 
-This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), inner products, and convex combinations of things. We show the proof for it and we will provide more variance for it. The cute formula is: 
+This formula is extremely useful when we are dealing with Euclidean norm (Also applicable for Hilbert space), with well defined inner products and norms. We show the proof for it and we will provide more variance for it. The cute formula is: 
 
 $$
 \begin{aligned}
@@ -73,6 +73,10 @@ Therefore it yields the above equality but in a different format where the last 
 **References**: 
 
 Corollary 2.14 in Heinz's Monotone Operator's textbook. 
+
+**Remarks**
+
+Exchaging $\langle ,\rangle$ to be $\langle ,\rangle_H$ and $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_H$ with $H$ being a positive definite operator in the space would yield the same results as the above. 
 
 
 ---

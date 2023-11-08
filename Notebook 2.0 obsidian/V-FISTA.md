@@ -93,4 +93,11 @@ Under the strong convexity assumption, the above claim becomes stronger using th
 ---
 #### **The Proof of the Linear Convergence of V-FISTA**
 
+The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's Book[^2]. For the proof we will assume a slightly weaker version of the algorithm, with several quantities to simplify the conditions for us. Consider the following recurrences for the algorithm. 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
 
