@@ -16,7 +16,7 @@ The story is long. We will point to relevant resources of fronter research whene
 The algorithm accepted parameters
 
 - $f$, a $L$-Lipschitz Smooth, $\sigma > 0$ strongly convex function. 
-- $T_{1/L} \overset{\Delta}{=}\underset{L^{-1}g}{\text{prox}}\circ [I - L^{-1}\nabla f]$, or $T$ for short depending on the context. 
+- $T_{1/L} \overset{\Delta}{=}\underset{L^{-1}g}{\text{prox}}\circ [I - L^{-1}\nabla f]$, or $T$ for short. 
 - $g$ is a convex and prox friendly function. 
 - $\kappa = L/\sigma$ is the condition number. 
 
@@ -97,7 +97,137 @@ The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's 
 
 $$
 \begin{aligned}
-    
+    y^{(0)} &= x^{(0)} 
+    \\
+    x^{(0)} &= T_L y^{(0)}
+    \\
+    \forall i \ge 1: & 
+    \\
+    y^{(i)} &= x^{(i)} + \theta_i (x^{(i)} - x^{(i - 1)}) 
+    \\
+    x^{(i + 1)} &= T_L y^{(i)}
+    \\
 \end{aligned}
 $$
+
+where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. We assume $t_{-1} = 1$.  We start with the prox grad lemma 
+
+$$
+\begin{aligned}
+    F(x) - F\circ T(y) &\ge 
+    \frac{L}{2}\Vert x - T (y)\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y)
+    \\
+    & \triangleright \text{ strong convexity of g makes }
+    D_g(x, y) \ge \frac{\sigma}{2}\Vert y - x\Vert^2
+    \\
+    & \ge \frac{L}{2}\Vert x - Ty\Vert^2 - \frac{L - \sigma}{2}\Vert x - y\Vert^2. 
+\end{aligned}\tag{[1]}
+$$
+
+With $k\ge 0$, make a squence $(t_k)_{k\in \mathbb N}$, we consider quantities 
+- $x = t^{-1}_k\bar x + (1 - t^{-1}_k)x^{(k)}, y = y^{(k)}$
+- $\bar x \in \argmin_{x}F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
+
+We analyze the RHS of (\[1\]) with the above quantities then 
+
+$$
+\begin{aligned}
+    x - T(y) &=  t^{-1}_k \bar x + (1 - t^{-1}_k) x^{(k)} - T y^{(k)}
+    \\
+    &= t^{-1}_k \bar x + (1 - t^{-1}_k) x^{(k)} - x^{(k + 1)}
+    \\
+    &= t^{-1}_k\left(
+        \bar x + (t_k - 1)x^{(k)} - t_kx^{(k + 1)}
+    \right)
+    \\
+    &= t^{-1}_k \left(
+        \bar x + t_k \left(
+            x^{(k)} - x^{(k + 1)}
+        \right) - x^{(k)}
+    \right)
+    \\
+    x - y &= t^{-1}_k \bar x + (1 - t_k^{-1}) x^{(k)} - y^{(k)}
+    \\
+    &= t^{-1}\left(
+        \bar x + (t_k - 1)x^{(k)} - t_k y^{(k)}
+    \right)
+    \\
+    &= t^{-1}_k\left(
+        \bar x + t_k \left(
+            x^{(k)} - y^{(k)}
+        \right) - x^{(k)}
+    \right), 
+\end{aligned}
+$$
+
+with the the RHS of expression (\[1\]) makes 
+
+$$
+\begin{aligned}
+    \frac{L}{2} \left\Vert
+       t^{-1}_k\left(
+        \bar x + t_k \left(
+            x^{(k)} - x^{(k + 1)}
+        \right) - x^{(k)}
+        \right)
+    \right\Vert^2 - 
+    \frac{(L - \sigma)}{2}
+    \left\Vert
+        t^{-1}_k\left(
+            \bar x + t_k \left(
+                x^{(k)} - y^{(k)}
+            \right) - x^{(k)}
+        \right)
+    \right\Vert^2. 
+\end{aligned}
+$$
+
+The LHS of (\[1\]) can be bounded using strong convexity of $F$.
+
+
+$$
+\begin{aligned}
+    F(x) - F\circ T(y)
+    &= F(x) - F\left(
+        x^{(k + 1)}
+    \right) 
+    \\
+    &= F\left(t_k^{-1}x^{(k)} + (1 - t^{-1}_k)\bar x\right) - 
+    F\left(x^{(k + 1)}\right)
+    \\
+    &\le 
+    t_k^{-1}F_{\text{opt}}
+    + 
+    (1 - t_k^{-1})F\left(x^{(k)}\right)
+    - 
+    \frac{\sigma}{2}t^{-1}_k\left(1 - t^{-1}_k\right)
+    \left\Vert 
+        x^{(k)} - \bar x
+    \right\Vert^2 
+    - F\left(x^{(k + 1)}\right)
+    \\
+    &= 
+    t_k^{-1} \left(
+        F_{\text{opt}} - F\left(x^{(k)}\right)
+    \right) + F\left(x^{(k)}\right) - F\left(x^{(k + 1)} \right)
+    -
+    \frac{\sigma}{2}t^{-1}_k\left(1 - t^{-1}_k\right)
+    \left\Vert 
+        x^{(k)} - \bar x
+    \right\Vert^2 
+    \\
+    & \triangleright  \text{ for better notation make }\delta_k = F\left(x^{(k)}\right) - F_{\text{opt}}
+    \\
+    &= -t_k^{-1}\delta_k + \delta_k  - \delta_{k + 1} 
+    -
+    \frac{\sigma}{2}t^{-1}_k\left(1 - t^{-1}_k\right)
+    \left\Vert 
+        x^{(k)} - \bar x
+    \right\Vert^2
+\end{aligned}
+$$
+
+With that we present (\[1\]) in full and do some minimal alterations. 
+
+
 

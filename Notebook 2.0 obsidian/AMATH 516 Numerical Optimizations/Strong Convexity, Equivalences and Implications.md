@@ -17,7 +17,7 @@ Here in this file we make use the following specific references:
 
 **Remarks**
 
-Becareful about the use of 2-norm here. In the general case, things might change, and there are alternative definition of strong convexity that works with different norm and vector spaces. 
+Becareful about the use of 2-norm here. In the general case, things might change, and there are alternative definition of strong convexity that works with different norm and vector spaces. This definition can be generalized with the energy norm. Generalizing to other norms (such as the infinity norm) will break the definition. 
 
 **Conditions**
 
@@ -25,7 +25,7 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}$ is a $\alpha$ strongly convex function 
 
 1. $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
 2. $\langle \partial f(y) - \partial f(x), y - x\rangle \ge \alpha\Vert y - x\Vert^2$. 
-3. $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$, the stronger Jensen's inequaity for strong convex function. 
+3. $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$, the stronger Jensen's inequality for strong convex function. 
 
 
 **Remarks**

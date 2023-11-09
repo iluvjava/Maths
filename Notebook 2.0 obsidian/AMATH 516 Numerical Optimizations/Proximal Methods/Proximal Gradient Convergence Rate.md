@@ -249,7 +249,7 @@ Recall that $m_x(y)$ denotes the upper non-smooth envelope modeled at $x$ and ev
 $$
 \begin{aligned}
     m_y(x) - m_y(Ty) &\ge 
-    \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality by S-CVX of upper surrogate}}
+    \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality by S-CVX of upper surrogate minimized}}
     \\
     \frac{L}{2}\Vert x - Ty\Vert^2 &\le 
     m_y(x) - m_y(Ty)
