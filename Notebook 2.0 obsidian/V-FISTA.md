@@ -91,24 +91,27 @@ This theorem is extracted from the proof of proximal gradient in [Proximal Gradi
 Under the strong convexity assumption, the above claim becomes stronger using the lower bound $D_g(x, y) \ge \sigma/2\Vert x - y\Vert^2$ because function $g$ is a strongly convex function. 
 
 ---
-#### **The Proof of the Linear Convergence of V-FISTA**
+#### **The Proof Preparations of the Linear Convergence of V-FISTA**
 
-The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's Book[^2]. For the proof we will assume a slightly weaker version of the algorithm, with several quantities to simplify the conditions for us. Consider the following recurrences for the algorithm. 
+The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's Book[^2]. For the proof we will assume a slightly weaker version of the algorithm, with several quantities to simplify the conditions for us. Consider the following recurrences for the Generic Algorihm algorithm. 
 
-$$
-\begin{aligned}
-    y^{(0)} &= x^{(0)} 
-    \\
-    x^{(0)} &= T_L y^{(0)}
-    \\
-    \forall i \ge 1: & 
-    \\
-    y^{(i)} &= x^{(i)} + \theta_i (x^{(i)} - x^{(i - 1)}) 
-    \\
-    x^{(i + 1)} &= T_L y^{(i)}
-    \\
-\end{aligned}
-$$
+
+#### **Fixed Step Generic Algorithm**
+> We define the generic recurrences for the fixed step FISTA algorithm. 
+> $$
+> \begin{aligned}
+>     y^{(0)} &= x^{(0)} 
+>     \\
+>     x^{(0)} &= T_L y^{(0)}
+>     \\
+>     \forall i \ge 1: & 
+>     \\
+>     y^{(i)} &= x^{(i)} + \theta_i (x^{(i)} - x^{(i - 1)}) 
+>     \\
+>     x^{(i + 1)} &= T_L y^{(i)}
+>     \\
+> \end{aligned}
+> $$
 
 where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. We assume $t_{-1} = 1$.  We start with the prox grad lemma 
 
@@ -124,9 +127,9 @@ $$
 \end{aligned}\tag{[1]}
 $$
 
-With $k\ge 0$, make a squence $(t_k)_{k\in \mathbb N}$, we consider quantities 
+With $k\ge 0$, make a sequence $(t_k)_{k\in \mathbb N}$, we consider quantities 
 - $x = t^{-1}_k\bar x + (1 - t^{-1}_k)x^{(k)}, y = y^{(k)}$
-- $\bar x \in \argmin_{x}F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
+- $\bar x \in \underset{x}{\text{argmin}} F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
 
 We analyze the RHS of (\[1\]) with the above quantities then 
 
@@ -230,4 +233,158 @@ $$
 With that we present (\[1\]) in full and do some minimal alterations. 
 
 
+$$
+\begin{aligned}
+    & (1-t_k^{-1})\delta_k  - \delta_{k + 1} 
+    -
+    \frac{\sigma}{2}t^{-1}_k\left(1 - t^{-1}_k\right)
+    \left\Vert 
+        x^{(k)} - \bar x
+    \right\Vert^2 \ge 
+    \\
+    &\frac{L}{2} \left\Vert
+       t^{-1}_k\left(
+        \bar x + t_k \left(
+            x^{(k)} - x^{(k + 1)}
+        \right) - x^{(k)}
+        \right)
+    \right\Vert^2 - 
+    \frac{(L - \sigma)}{2}
+    \left\Vert
+        t^{-1}_k\left(
+            \bar x + t_k \left(
+                x^{(k)} - y^{(k)}
+            \right) - x^{(k)}
+        \right)
+    \right\Vert^2. 
+    \\
+    & \triangleright \text{ Multiplying $t_k^2$ both sides}
+    \\
+    & (t_k^2 - t_k)\delta_k - t_k^2\delta_{k + 1}
+    - \frac{\sigma}{2}(t_k - 1)
+    \left\Vert
+        x^{(k)} - \bar x
+    \right\Vert^2 
+    \\
+    &\ge 
+    \frac{L}{2} \left\Vert
+        \bar x + t_k \left(
+            x^{(k)} - x^{(k + 1)}
+        \right) - x^{(k)}
+    \right\Vert^2 - 
+    \frac{(L - \sigma)}{2}
+    \left\Vert
+        \bar x + t_k \left(
+            x^{(k)} - y^{(k)}
+        \right) - x^{(k)}
+    \right\Vert^2
+    \\
+    & \triangleright \text{re-arranging}, 
+    \\
+    & 
+    (t_k^2 - t_k)\delta_k - t_k^2\delta_{k + 1} 
+    \underbrace{
+        - 
+        \frac{\sigma(t_k - 1)}{2}
+        \left\Vert
+            x^{(k)} - \bar x
+        \right\Vert^2 
+        + 
+        \frac{L - \sigma}{2}
+        \left\Vert
+            \bar x + t_k\left( x^{(k)} - y^{(k)}\right) - x^{(k)}
+        \right\Vert^2
+    }_{-R_k}
+    \\
+    &\ge 
+    \frac{L}{2}\left\Vert 
+        \bar x + t_k
+        \left(x^{(k)} - x^{(k + 1)}\right) - x^{(k)}
+    \right\Vert^2, 
+\end{aligned}\tag{[2]}
+$$
 
+To make further progress, we must simplify the notations. Make the following quantities to simplify the algebra. 
+
+- $s^{(k)} - x^{(k)} - x^{(k - 1)}$, the velocity vector. 
+- $e^{(k)} = x^{(k)} - \bar x$, the error vector at the kth iteration. 
+- $\theta_k = (t_k -1)/(t_k + 1)$, which is the momentum step size. 
+- $u^{(k)} = \bar x + t_{k - 1}(x^{(k - 1)} - x^{(k)}) - x^{(k - 1)}$, the error term extrapolated with the velocity. 
+- $R_k$, this quantity is underbraced in (\[2\]), it has importance in the proof. 
+
+These quantities simplify expression (\[2\]), they also made appearances in the proof [A Better Proof for FISTA Convergence](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md), making it more manageable, consider third term on the LHS of (\[2\]), using these above quantities we have 
+
+$$
+\begin{aligned}
+    &\quad \frac{L - \sigma}{2}
+    \left\Vert
+        \bar x + t_k\left( x^{(k)} - y^{(k)}\right) - x^{(k)}
+    \right\Vert^2
+    \\
+    & \triangleright \text{ Recall from algorithm: }
+    \\
+    &\qquad 
+    \begin{aligned}
+        y^{(k)} &= x^{(k)} + \theta_k(x^{(k)} - x^{(k - 1)})
+        \\
+        y^{(k)} - x^{(k)} &= \theta_k(x^{(k)} - x^{(k - 1)}) = \theta_k s^{(k)} 
+    \end{aligned}
+    \\
+    &=  \frac{L - \sigma}{2}\left\Vert
+        \bar x - x^{(k)} - t_k\theta_k s^{(k)}
+    \right\Vert^2
+    \\
+    &= \frac{L - \sigma}{2}\left\Vert e^{(k)} + t_k\theta_k s^{(k)}\right\Vert^2, 
+\end{aligned}
+$$
+
+And observe directly that $u^{(k + 1)}$ is exactly $\bar x + t_k(x^{(k)} - x^{(k +1)}) - x^{(k)}$, the term inside the norm on the only quantity on the RHS (\[2\]). And the relations between these quantities
+
+$$
+\begin{aligned}
+    u^{(k)} &= \bar x + t_{k - 1}\left(x^{(k - 1)} - x^{(k)} \right) - x^{(k - 1)}
+    \\
+    &= \bar x + (t_{k - 1} - 1)\left(
+        x^{(k - 1)} - x^{(k)}
+    \right) + 
+    \left(
+        x^{(k - 1)} - x^{(k)}
+    \right) - x^{(k - 1)}
+    \\
+    &= \bar x + 
+    (t_{k - 1} - 1)\left(x^{(k - 1)} - x^{(k)}\right)
+    - x^{(k)}
+    \\
+    &= - e^{(k)} - (t_{k - 1} - 1)s^{(k)}, 
+\end{aligned}
+$$
+
+and directly, one may also realize that
+
+$$
+\begin{aligned}
+    u^{(k)} &= \bar x - x^{(k - 1)} + t_{k - 1}(x^{(k - 1)} - x^{(k)})
+    \\
+    &= -e^{(k - 1)} - t_{k -1}s^{(k)}, 
+\end{aligned}
+$$
+
+with these simplifications, we will be able to write down an abstract form of expression ([2]), 
+
+$$
+\begin{aligned}
+    R_k &= - \frac{\sigma(t_k - 1)}{2}
+    \left\Vert e^{(k)}\right\Vert^2
+    - 
+    \frac{L - \sigma}{2}\left\Vert e^{(k)} + t_k\theta_k s^{(k)}\right\Vert^2
+    \\
+    t_k(t_k - 1)\delta_k - R_k
+    &\ge 
+    t_k^2\sigma_{k + 1} + \frac{L}{2}\left\Vert u^{(k + 1)}\right\Vert^2. 
+\end{aligned}\tag{[3]}
+$$
+
+---
+### **Necessary Assumptions for Linear Convergence**
+
+To assert linear convergence perfectly, we would need to derive it based on (\[3\]), we will make assumptions along the way until we see that it can produce a linear convergence rate as the upper bound. We will deal with the assumptions later. This generic appraoch applied for different convergence rate we want, by making assumptions to arrive at the convergence rate then deal with the list of assumptions later. 
