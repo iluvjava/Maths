@@ -302,7 +302,7 @@ for all $\eta \in (0, 2/L)$
 ---
 ### **PL Inequality and Linear Convergence**
 
-PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. 
+PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. This is one of the characterizations for function satisfying the PL inequality. 
 
 #### **Definition | Polyak Inequality**
 
@@ -311,12 +311,6 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > $$
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
-
-#### **Theorem | Linear Convergence Under PL** 
-
-> If a function is PL with a constant of $\alpha > 0$, and it has minimizer $x^+$ such that $f(x^+)$ is minimum, and it's also smooth with a smoothness constant of at most $\beta$, then gradient descend with a constant step size of $\beta$ has a linear convergence rate. 
-
-**proof**
 
 
 ---
