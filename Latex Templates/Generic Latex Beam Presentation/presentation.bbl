@@ -21,8 +21,20 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{texbook}
-D.~E. Knuth, \emph{The {\TeX} Book}.\hskip 1em plus 0.5em minus 0.4em\relax
-  Addison-Wesley Professional, 1986.
+\bibitem{paper:FISTA}
+\BIBentryALTinterwordspacing
+A.~Beck and M.~Teboulle, ``A fast iterative shrinkage-thresholding algorithm
+  for linear inverse problems,'' \emph{SIAM Journal on Imaging Sciences},
+  vol.~2, no.~1, pp. 183--202, 2009. [Online]. Available:
+  \url{https://doi.org/10.1137/080716542}
+\BIBentrySTDinterwordspacing
+
+\bibitem{book:first_order_opt}
+\BIBentryALTinterwordspacing
+A.~Beck, \emph{First-Order Methods in Optimization}.\hskip 1em plus 0.5em minus
+  0.4em\relax Philadelphia, PA: Society for Industrial and Applied Mathematics,
+  2017. [Online]. Available:
+  \url{https://epubs.siam.org/doi/abs/10.1137/1.9781611974997}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
