@@ -81,3 +81,13 @@ The following theorems are frequently need for power series. To be able to diffe
 **Proof**
 
 Skipped for now. 
+
+
+---
+### **Uniform Continuity Bounded Set**
+
+> $f$ is uniformly continuous over the set $A\subseteq \mathbb R$, if $A$ is bounded, then the function value over set $A$, would also be a bounded set. 
+
+**Proof**
+
+This claim is an alternation of the extreme value theorem of functions over a closed compact set. This claim relaxes the conditions of compactness and compensate it with uniform continuity of the function, and the same conclusion remains the same in this case. 
