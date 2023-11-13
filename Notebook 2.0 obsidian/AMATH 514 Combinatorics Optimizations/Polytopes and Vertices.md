@@ -13,12 +13,12 @@ $$
 \end{aligned}
 $$
 
-Where, $\le$ is an elementwise inequality. A closed polyhedra is referred to as a *polytopes*, and the close refers to having a finite space, and the fact that $P$ is a closed set is direct from the definition. 
+Where, $\le$ is an element-wise inequality. A closed polyhedra is referred to as a *polytopes*, and the close refers to having a finite space, and the fact that $P$ is a closed set is direct from the definition. 
 
 --- 
 ### **Vertices**
 
-**Definition**:
+**Definition | Vertices of a Polytopes**:
 
 > Let $P$ be a polytope, then a point $z\in P$ is called a vertex when: there dosen't exist any $x, y\in P\setminus\{z\}, \lambda \in (0, 1): z = \lambda x + (1 - \lambda)y$. Graphically, a vertex is something on the convex set where it's impossible to wiggle it along a line such that it stills remains inside of the convex set. 
 
