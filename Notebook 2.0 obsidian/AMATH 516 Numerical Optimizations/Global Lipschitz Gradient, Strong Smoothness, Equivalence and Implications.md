@@ -38,7 +38,7 @@ In this file we are interested in the following list of conditions:
 4. $0\le f(y) - f(x) - \langle \nabla f(x), y - x\rangle \le \frac{L}{2}\Vert y - x\Vert^2$, the one sided-smoothness condition. 
 5. $\frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2_\star \le f(y) -f(x) - \langle \nabla f(x), y - x\rangle$. Bregman Div lower bound. 
 6. $\langle \nabla f(y) - \nabla f(x), y - x\rangle \ge L^{-1}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$, Non-expansiveness. 
-    - co-coersive property, which is as strong as Lipscthitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
+    - co-coersive property, which is as strong as Lipschitz continuity of the gradient. Observe that this looks like [Firmly Nonexpansive Operators](Operators%20Theory/Firmly%20Nonexpansive%20Operators.md).
 7. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
 8. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
 9. $\alpha f(x) + (1 - \alpha)f(y) - f(\alpha x + (2 - \alpha)y) \ge \frac{\alpha(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$ for all $\alpha \in (0, 1)$. The Jensen Lower bound under strong smoothness of the function. 
@@ -51,7 +51,7 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 
 #### **Proposition 1 | Lipschitz Gradient Implications**
 
-> Globally Lipchitz Gradient $\nabla f$ implies condition 1, 2 are true. Mathematically, let \[0\] denote the statement that the gradient is globally lipscthiz continuous, let \[?\] denotes the item number for the above listed conditions, then I wish to say that
+> Globally Lipchitz Gradient $\nabla f$ implies condition 1, 2 are true. Mathematically, let \[0\] denote the statement that the gradient is globally Lipschitz continuous, let \[?\] denotes the item number for the above listed conditions, then I wish to say that
 > * $[0]\implies [2]$,
 > * $[0]\implies [1]$,
 > * $[1]\implies [2]$.
@@ -66,7 +66,7 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 > * $[5]\implies [6]$
 > * $[6]\implies [0]$ 
 >
-> Directly observe that under convexity assumption, using the subgradient inequality, $[2]\implies [4]$, and by Proposition $[1]$, we have $[0]\implies [2]$, hence, cycle of $[0] \implies [2] \implies [4]\implies [3]\implies [5] \implies [6]\implies [0]$, hencce all these conditions are equivalent under convexity and smoothness assumption! 
+> Directly observe that under convexity assumption, using the subgradient inequality, $[2]\implies [4]$, and by Proposition $[1]$, we have $[0]\implies [2]$, hence, cycle of $[0] \implies [2] \implies [4]\implies [3]\implies [5] \implies [6]\implies [0]$, hence all these conditions are equivalent under convexity and smoothness assumption!
 
 #### **Proposition 3 | Convexity and Lipschitz Gradient Equivalence Group 2 (Euclidean Norm)**
 
@@ -78,11 +78,10 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 #### **Proposition 4 | All Equivalent Under Convexity and Euclidean Norm**
 > By assuming that $f$ is convex, with a $L$ Lipschitz gradient, the conditions $[0], [1], [2], [3],[4], [5], [6], [7], [8]$ are all equivalent conditions. This is directly concluded from previous 3 proposition. 
 
-
 #### **Proposition 5 | Equivalences under only Euclidean Norm**
 > Assuming that we are working with the Euclidean norm, then 
-> * $[2]\implies [1]$, may differ by a constant. 
-> * $[2]\wedge [5]\implies [0]$, with the same constant. 
+> * $[2]\implies [1]$, with Euclidean norm. 
+> * $[2]\wedge [5]\implies [0]$, with Euclidean norm. 
 >
 > By proposition-1, the conditions $[0], [1], [2]$ all becomes equivalent. In proving so, we can also get some interesting lemma as well. 
 
@@ -96,7 +95,9 @@ An stronger statement for the Globally Lipschitz gradient is the fact that the s
 
 **Remarks**
 
-Norms are all equivalent in the finite dimensional Euclidean spaces, and hence, knowledge applies to any norm applies to any other. We explicitly mention the use of norm to stress the fact about a different constants, they might depends on dimensions and it has tremendous practial concerns and absolutely doesn't generalize to abstract vector spaces, hence, equivalences and the relations stated above for these conditions break. 
+Norms are all equivalent in the finite dimensional Euclidean spaces, and hence, knowledge applies to any norm applies to any other. We explicitly mention the use of norm to stress the fact about a different constants, they might depends on dimensions and it has tremendous practical concerns and absolutely doesn't generalize to abstract vector spaces, hence, equivalences and the relations stated above for these conditions break. 
+
+For an illustrations of the above propositions, see [Illustration of Lipschitz Smoothness Conditions](Illustration%20of%20Lipschitz%20Smoothness%20Conditions.canvas) canvas in obsidian notebook. 
 
 ---
 ### **Proof of Proposition 1**

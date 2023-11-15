@@ -172,7 +172,7 @@ Therefore, the squared norm of the residuals, The minimum norm of all iterations
 
 For a function whose gradient is Lipschitz smooth with constant $L$, we have $1/L \nabla f(x)$ being non-expansive. 
 
-The above bound is pessimistic. It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend Remastered With Convexity](../Smooth%20Gradient%20Descend%20Remastered%20With%20Convexity.md), more specifically the smooth descend frameworks. 
+The above bound is pessimistic. It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend The Basics](../Smooth%20Gradient%20Descend%20The%20Basics.md), more specifically the smooth descend frameworks. 
 
 For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [[Fejer's Monotone]] for more information. 
 

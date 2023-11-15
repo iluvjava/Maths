@@ -118,19 +118,26 @@ We don't have to look for the step sizes that decrease the value of the function
 
 $$
 \begin{aligned}
+    f(x - \eta \nabla f(x)) 
+    \le
     m_x(x - \eta \nabla f(x)) 
     &< f(x)
     \\
+    f(y) 
+    \le 
     f(x) + \langle \nabla f(x), - \eta \nabla f(x)\rangle 
     + 
     \frac{L}{2}\Vert  - \eta \nabla f(x)\Vert^2
     &< f(x)
     \\
+    f(y) - f(x)
+    \le 
     - \eta \Vert \nabla f(x)\Vert^2
     + 
     \frac{L \eta^2}{2}\Vert \nabla f(x)\Vert^2
     &< 0
     \\
+    f(y) - f(x) \le 
     \left(
         \frac{L\eta^2}{2} - \eta
     \right)\Vert \nabla f(x)\Vert^2 
@@ -179,10 +186,13 @@ $$
     \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
     &= 
-    \underbrace{f\left(x^{(t)}\right) + \left\langle\nabla f\left(x^{(t)}\right), x^{(t + 1)} - x^{+} \right\rangle}
+    \underbrace{
+        f\left(x^{(t)}\right) 
+        + \left\langle\nabla f\left(x^{(t)}\right), x^{+} - x^{(t)} \right\rangle
+        }
     _{\le f(x^+)}
     + 
-    \left\langle \nabla f\left(x^{(t)}\right), x^+ - x^{(t + 1)}\right\rangle
+    \left\langle \nabla f\left(x^{(t)}\right), x^{(t + 1)} - x^+ \right\rangle
     + \frac{L}{2}
     \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2
     \\
@@ -196,20 +206,23 @@ $$
     f(x^+) + \frac{L}{2}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
     \left\langle \frac{1}{\eta}(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
     \\
-    & \textcolor{gray}{\eta\in (0, 2/L) \implies 1/\eta \in (L/2, \infty), }
+    & \textcolor{gray}{
+        \eta\in (0, 2/L) \implies 1/\eta \in (L/2, \infty) \implies  1/\eta > L/2 > L
+    }
     \\
     &< 
-    f(x^+) + \frac{1}{\eta}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
+    f(x^+) + 
+    \frac{1}{2\eta}\left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 + 
     \left\langle \frac{1}{\eta}(x^{(t)} - x^{(t + 1)}), x^{(t + 1)} - x^+ \right\rangle
     \\
     &= 
-    f(x^+)+ \frac{\eta}{2}\left(
+    f(x^+)+ \frac{1}{2\eta}\left(
         \left\Vert x^{(t + 1)} - x^{(t)}\right\Vert^2 +
         2\left\langle x^{(t)} - x^{(t + 1)}, x^{(t + 1)} - x^+ \right\rangle
     \right)
     \\
     &= f(x^+) + 
-    \frac{\eta}{2}
+    \frac{1}{2\eta}
     \left(
         \left\Vert 
             x^{(t)} - x^{(t + 1)} + x^{(t + 1)} - x^+\right
@@ -218,7 +231,7 @@ $$
         \right\Vert^2
     \right)
     \\
-    & = f(x^+) + \frac{\eta}{2}
+    & = f(x^+) + \frac{1}{2\eta}
     \left(
         \left\Vert x^{(t)} - x^+\right\Vert^2  - \left\Vert x^{(t + 1)} - x^+\right\Vert^2
     \right), 
@@ -231,10 +244,10 @@ $$
 \begin{aligned}
     k\sum_{j = 1}^k f\left(x^{(j)}\right) - f(x^+) 
     &< 
-    \frac{\eta}{2}\left(
+    \frac{1}{2\eta}\left(
         \left\Vert x^{(0)} - x^+\right\Vert^2 - \left\Vert x^{(k + 1)} - x^+\right\Vert^2
     \right) \le \
-    \frac{\eta}{2}\left\Vert x^{(0)} - x^+\right\Vert^2
+    \frac{1}{2\eta}\left\Vert x^{(0)} - x^+\right\Vert^2
     \\
     & \textcolor{gray}{\triangleright f(x^{(j)}) \text{ monotone decreasing}}
     \\
@@ -244,11 +257,12 @@ $$
     \frac{1}{k}\left(
         \sum_{j = 1}^{k}
         f\left(x^{(j)}\right) - f(x^+)
-    \right) \le \frac{\eta}{2k}\Vert x^{(0)} - x^+\Vert^2
+    \right) 
+    \le \frac{1}{2k\eta}\Vert x^{(0)} - x^+\Vert^2
     \\
     f\left(x^{(k + 1)}\right) - f(x^+) 
     &\le 
-    \frac{\eta}{2k}\left\Vert x^{(0)} - x^+\right\Vert^2, 
+    \frac{1}{2k\eta}\left\Vert x^{(0)} - x^+\right\Vert^2, 
 \end{aligned}
 $$
 
@@ -264,21 +278,21 @@ I am not sure what happens when we still have the convexity but without the mini
 
 **Proof**
 
-The function value can bound the norm of the gradient by the Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. To show the convergence of the iterates, one would need to consider the fixed point iterations convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information.
+The function value can bound the norm of the gradient by the Co-Coersivity described in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) of the Lipschitz gradient, more specifically $1/2L \Vert \nabla f(x^{(j)})\Vert^2 \le f(x) - f(x^+)$, hence bounding the squared norm of the gradient as well. To show the convergence of the iterates, one would need to consider the fixed point iterations convergence of an averaged operator, see [Averaged Mapping](Operators%20Theory/Averaged%20Mapping.md) for more information. Without convexity, I don't have the proof to assert the convergence of the iterates from the gradient descent algorithm. 
 
 ---
-### **Descent with Strong Convexity**
+### **Gradient Descent with Strong Convexity**
 
 We present results on smooth gradient descent when the objective function is $\beta$-strongly convex. For a definition and the consequences of a function $f$ being strongly convex, see [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information. 
 
-When a function has Lipschitz smooth gradient and strong convexity, the gradient operator $I - \eta \nabla f$  is a contraction for values of $\eta \in (0, 2/L)$. Read [Appearances of Contraction Operators in Optimizations Method](Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for more detailed proof. That results presented there will show that $\Vert x^{(k)} - x^+\Vert$ contracts linearly with a ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
+When a function has Lipschitz smooth gradient and strong convexity, the gradient operator $I - \eta \nabla f$  is a contraction for values of $\eta \in (0, 2/L)$. Read [Appearances of Contraction Operators in Optimizations Method](Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md) for a more detailed proof. That results presented there will show that $\Vert x^{(k)} - x^+\Vert$ contracts linearly with a ratio $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
 
 #### **Claim | Linear Convergence of the Iterates**
 > Gradient descent on $f$, a function that has $L$-Lipschitz smooth gradient and $\beta$ strong convexity with step size $\eta \in (0, 2/L)$ will converge linearly with rate $\min(|1 - \eta L|, |1 - \eta \beta|)$. 
 
 **Proof**
 
-We had $\Vert T x -  Ty\Vert \le \min(|1 - \eta L|, |1 - \eta \beta|) \Vert x - y\Vert$ directly from the gradient $T = I - \eta \nabla f(x)$ descent operator and the proof for contraction. Setting $x = x^{(0)}, y = \bar x$ with $x^{(k)}$ being the sequence generated by fixed point iterations of $T$, and $\bar x$ is an unique minimizer for $f$ which exists as a consequence of stron convexity, then unrolling the recursion of the inequality yield linaer convergence rate of the iterates wrt to the initial error to the minimizer. 
+Linear convergence of the iterates and strong convexity are conditions sufficient for the linear convergence of the objective value of the function. We had $\Vert T x -  Ty\Vert \le \min(|1 - \eta L|, |1 - \eta \beta|) \Vert x - y\Vert$ directly from the gradient $T = I - \eta \nabla f(x)$ descent operator and the proof for contraction. Setting $x = x^{(0)}, y = \bar x$ with $x^{(k)}$ being the sequence generated by fixed point iterations of $T$, and $\bar x$ is an unique minimizer for $f$ which exists as a consequence of stron convexity, then unrolling the recursion of the inequality yield linaer convergence rate of the iterates wrt to the initial error to the minimizer. 
 
 **Remarks**
 
@@ -290,14 +304,20 @@ $$
     &\le 
     \min \left(
         \frac{L}{2} \max(|1 - \eta L|, |1 - \eta \beta|)^k,
-        \frac{\eta}{2k}
+        \frac{1}{2k\eta}
     \right)\left\Vert
         x^{(0)} - \bar x
     \right\Vert^2, 
 \end{aligned}
 $$
 
-for all $\eta \in (0, 2/L)$
+for all $\eta \in (0, 2/L)$.
+
+
+#### **Claim | Convergence of the Function Value under Strong Convexity**
+
+**Proof**
+
 
 ---
 ### **PL Inequality and Linear Convergence**
@@ -312,6 +332,9 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
 
+**Proof**
+
+
 
 ---
 ### **Polyak Stepsize**
@@ -319,8 +342,95 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 Suppose that $f^*$, the optimal objective value for the optimization problem is known, then the sequence $\gamma_k = (f(x^{(k)}) - f^*)/\Vert \nabla f(x^{(k)})\Vert^2$ will converge on a convex function with rate $\mathcal O(k^{-1})$. For more about this visit [[Proximal Methods/Polyak Subgradient Method]]
 
 
+
 ---
-### **Double Descent Rate under Strong Convexity**
+### **Lyaponouv Arguments for Gradient Descent type Algorithm**
 
-We have linear convergence rate for the gradient descent method under strong convexity. However, the old bound of sub-linear convergence also apply. This creates a composite type of convergence scenario. 
+Another way the are more fashionable is to use the Lyapnov argument to reveal the convergence of gradient descent algorithm. Lyaponov arguments are not limited to just gradient descent. To prove, we use $X(t), x^{(t)}$ to represent continuous, discrete dynamics generated by continuous gradient descent and discrete gradient descent. A continuous gradient descent is the dynamical system 
 
+$$
+\begin{aligned}
+    \partial_t X(t) = \underset{v}{\text{argmin}}
+    \left\lbrace
+        \langle \nabla f(X(t)), v\rangle + \frac{\Vert v\Vert^2}{2}
+    \right\rbrace
+    =-\nabla f(X(t)), 
+\end{aligned}
+$$
+
+for some objective function $f$. Lyaponove function $E_t$ is an expression involving some quantities parameterized by time such that it's monotonically decreasing. Use $\Upsilon_t$ to represent the Lyaponove function for continuous gradient dynamics. 
+
+
+#### **Claim | Lyapunov Function for Smooth Gradient Descent**
+> Assume $f$ is L-Lipschitz smooth and bounded below, then continuous Lyapunov function for smooth gradient is $\Upsilon_t = f(X(t)) - f_*$, and the descrete dynamical system is $E_t = f(x^{(t)}) - f_*$. 
+
+**Proof**
+
+Taking the derivative over $\Upsilon_t$ yields 
+$$
+\begin{aligned}
+\partial_t \Upsilon_t = 
+    \left\langle \nabla f(X(t)), \partial_t X(t)\rangle = - \langle \nabla f(X(t)), \nabla f(X(t))\right\rangle 
+    \le 0, 
+\end{aligned}
+$$
+
+for discrete dynamics we have $E_t = f(x^{(t)}) - f_*$, assuming $x^{(t + 1)} = x^{(t)} - \eta_t \nabla f(x^{(t)})$, with a time step sizes of $t = 1$ we have 
+
+$$
+\begin{aligned}
+    E_{t + 1} - E_t &= f(x^{(k + 1)}) - f(x^{(k)})
+    \\
+    &= -\eta \left(
+        1 - \frac{\eta L}{2}
+    \right)
+    \left\Vert \nabla f\left(x^{(t)}\right)\right\Vert^2
+    \\
+    & \triangleright \; \text{telescoping summation makes}
+    \\
+    E_k - E_0 &\le 
+    \sum_{t = 1}^{k}
+    - \eta_t\left(
+        1 - \frac{\eta_t L}{2}
+    \right)\left\Vert 
+        \nabla f\left(x^{(t)}\right)
+    \right\Vert^2
+    \\
+    E_0 - E_k &\ge \sum_{t = 1}^{k} 
+        \eta_t \left(
+            1 - \frac{\eta_t L}{2}
+        \right)\left\Vert
+            \nabla f\left(x^{(t)}\right)
+        \right\Vert^2
+    \\
+    & \triangleright ([1])
+    \\
+    &\ge 
+    \min_{t = 1, \cdots, k} 
+    \left\Vert
+        \nabla f\left(x^{(t)}\right)
+    \right\Vert^2
+    \sum_{t = 1}^{k} 
+        \eta_t \left(
+            1 - \frac{\eta_t L}{2}
+        \right)
+    \\
+    \implies 
+    \frac{E_0 - E_k}{
+       \sum_{t = 1}^{k} 
+        -\eta_t \left(
+            1 - \frac{\eta_t L}{2}
+        \right) 
+    } &\ge 
+    \min_{t = 1, \cdots, k} \left\Vert
+        \nabla f\left(x^{(t)}\right)
+    \right\Vert^2, 
+\end{aligned}
+$$
+
+At (\[1\]), we used the descent lemma to assert the terms in the summation are all positive.  We showed best case of a constant stepsize, we showed that $\mathcal O(1/\sqrt{k})$ convergence rate for $\Vert \nabla f(x^{(k)})\Vert$. 
+
+
+#### **Claim | Lyapunov Function for Smooth Gradient Descent with Convexity**
+
+> The Lyapunov function for the smooth gradient descent can be strengthen under the convexity of $f$, which manifested as an extra term. Let $\bar x$ be a minimizer of $f$, the continuous and discrete dynamics are $\Upsilon_t = 1/2\Vert x - \bar x\Vert^2 + t(f(x^{(t)}) - f_*)$, 
