@@ -332,7 +332,14 @@ PL means Polyak Inequalities, it's a relation between the norm of the gradient a
 > u(f(x) - f^+) \le \frac{1}{2}\Vert \nabla f(x)\Vert^2, \forall x. 
 > $$
 
-**Proof**
+**Observations**
+
+A strongly convex function would satisfy PL conditions. This is true, see [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md) for one of the implication of strong convexity. Upon this definition, we are motivated to show the convergence in a different way compared to just using the Lipschitz Contraction Property of the gradient operator of strongly convex function. Further, it's made clear in the literature that, function that are PL, is not necessarily convex function at all. 
+
+
+#### Thm | Linear Convergence Rate by PL Conditions
+
+[See here](Linear%20Convergence%20From%20PL%20Condition) for more coverage of this topic. 
 
 
 
@@ -414,7 +421,7 @@ $$
         \eta_t \left(
             1 - \frac{\eta_t L}{2}
         \right)
-    \\
+    \\ 
     \implies 
     \frac{E_0 - E_k}{
        \sum_{t = 1}^{k} 
@@ -433,4 +440,185 @@ At (\[1\]), we used the descent lemma to assert the terms in the summation are a
 
 #### **Claim | Lyapunov Function for Smooth Gradient Descent with Convexity**
 
-> The Lyapunov function for the smooth gradient descent can be strengthen under the convexity of $f$, which manifested as an extra term. Let $\bar x$ be a minimizer of $f$, the continuous and discrete dynamics are $\Upsilon_t = 1/2\Vert x - \bar x\Vert^2 + t(f(x^{(t)}) - f_*)$, 
+> The Lyapunov function for the smooth gradient descent can be strengthen under the convexity of $f$, which manifested as an extra term. Let $\bar x$ be a minimizer of $f$ and $f_*$ to be the minimum, the continuous and discrete dynamics are $\Upsilon_t = 1/2\Vert x - \bar x\Vert^2 + t(f(x^{(t)}) - f_*)$, $E_t = \frac{1}{2\eta}\Vert x^* - x^{(t)}\Vert^2 + t \delta_t$, where $\delta_t = f(x^{(t)}) - f_*$ is defined for the interest of easier notation. 
+
+**Proof**
+
+
+For the continuous dynamics we have 
+
+$$
+\begin{aligned}
+    \Upsilon_t &= \frac{1}{2}\Vert x^* - X(t)\Vert^2
+    + t(f(X(t)) - f_*)
+    \\
+    \partial_t \Upsilon_t &= 
+    - \langle \partial_t X(t), x^* - X(t) \rangle + f(X(t)) - f_*
+    + t \partial_t f(X(t))
+    \\
+    &= \langle \nabla f(X(t)), x^* - X(t)\rangle + 
+    f(X(t))
+    - f_*
+    + t\partial_t f(X(t))
+    \\
+    &= 
+    -D_f(x^*, X(t)) -t \Vert \nabla f(X(t))\Vert^2 \le 0
+\end{aligned}
+$$
+
+Therefore we may establish $\Upsilon_t \le \Upsilon_0$, meaning $f(X(t)) - f_* \in \mathcal O(1/t)$. For the discrete dynamics, consider fixed step size of $\eta \in (0, 2/L)$, checking the monotonicity decrease of $E_t$ we have 
+
+$$
+\begin{aligned}
+    E_{t + 1} - E_t &= 
+    \frac{1}{2\eta}
+    \left(
+        \left\Vert    
+            x^* - x^{(t + 1)}
+        \right\Vert^2
+        - 
+        \left\Vert    
+            x^* - x^{(t)}
+        \right\Vert^2
+    \right) + 
+    (t + 1)\delta_{t + 1} - t \delta_t
+    \\
+    &= 
+    \frac{1}{2\eta}
+    \left(
+        \left\Vert    
+            x^* - x^{(t + 1)}
+        \right\Vert^2
+        - 
+        \left\Vert    
+            x^* - x^{(t)}
+        \right\Vert^2
+    \right) + 
+    t(\delta_{t + 1} - \delta_t) + \delta_{t + 1}
+    \\
+    &= \frac{1}{2\eta}
+    \left(
+        \left\Vert
+            x^* - x^{(t)} + \eta \nabla f\left(
+                x^{(t)}
+            \right)
+        \right\Vert^2 - 
+        \left\Vert    
+            x^* - x^{(t)}
+        \right\Vert^2
+    \right) + \delta_{t + 1} + 
+    t(\delta_{t + 1} - \delta_t)
+    \\
+    &= \frac{1}{2\eta}
+    \left(
+        \eta^2 \left\Vert
+            \nabla f\left(
+                x^{(t)}
+            \right)
+        \right\Vert^2 + 
+        2 \left\langle x^* - x^{(t)}, \eta \nabla f\left(
+            x^{(t)}
+        \right) \right\rangle
+    \right) + 
+    \delta_{t + 1} + 
+    t(\delta_{t + 1} - \delta_t)
+    \\
+    & \triangleright \; \text{multiply the $1/2\eta$ into the parenthesis, } 
+    \\
+    & \triangleright \;
+    \left\langle x^* - x^{(t)}, \nabla f\left(
+        x^{(t)}
+    \right) \right\rangle \le f(x^*) - f\left(x^{(t)}\right), \text{by cvx of: } f
+    \\
+    & \triangleright \; \text{ expand $\delta_{t + 1}$}
+    \\
+    & \le 
+    \frac{\eta}{2}\left\Vert \nabla f\left(x^{(t)}\right)\right\Vert^2
+    + f(x^*) - f \left(x^{(t)}\right) + f\left(x^{(t + 1)}\right) - f_* + t(\delta_{t + 1} - \delta_t)
+    \\
+    & =
+    \frac{\eta}{2}\left\Vert \nabla f\left(x^{(t)}\right)\right\Vert^2
+     - f \left(x^{(t)}\right) + f\left(x^{(t + 1)}\right) + t(\delta_{t + 1} - \delta_t)
+    \\
+    & \triangleright\; 
+    f(x^{(t + 1)})-f(x^{(t)})  \le \left(
+        \frac{L \eta^2}{2} - \eta
+    \right)\left\Vert \nabla f\left( x^{(t)} \right)\right\Vert^2, \text{ by descent lemma}
+    \\
+    &\le  
+    \left(
+        \frac{L\eta^2}{2} - \frac{\eta}{2}
+    \right)
+    \left\Vert \nabla f(x^{(t)})\right\Vert^2
+     + t(\delta_{t + 1} - \delta_{t}), 
+\end{aligned}
+$$
+
+and we take notes of 2 things. The above coefficients for $\Vert \nabla f(x^{(t)})\Vert^2$ can be positive if $\eta \ge 1/L$ but $< 2/L$, it's not yet direct to conclude that the above quantity is negative. Using descent lemma, we place upper bound, a negative quantity for $\delta_{t + 1} - \delta_t \le (\frac{\eta^2 L}{2} - \eta)\Vert \nabla f(x^{(t)})\Vert^2$, with that we have 
+
+$$
+\begin{aligned}
+    E_{t + 1} - E_t &\le 
+    \left(
+        \left(
+            \frac{L\eta^2}{2} - \frac{\eta}{2}
+        \right) + 
+        t\left(
+          \frac{L \eta^2}{2}   - \eta /2
+        \right)
+    \right)
+    \left\Vert \nabla f\left( x^{(t)} \right)\right\Vert^2
+    \\
+    &= 
+    \left(
+        (t + 1) \frac{L\eta^2}{2} - 
+        t\eta - \frac{\eta}{2}
+    \right)\left\Vert
+        \nabla f\left(
+            x^{(t)}
+        \right)
+    \right\Vert^2
+    \\
+    &= \left(
+            (t + 1) \frac{L\eta^2}{2} - 
+            \eta \left(t + \frac{1}{2}\right)
+        \right)
+        \left\Vert
+        \nabla f\left(
+            x^{(t)}
+        \right)
+    \right\Vert^2
+    \\
+    &\le 
+    \left(
+        t + \frac{1}{2}
+    \right)
+    \left(
+        \frac{L}{2\eta^2} - \eta
+    \right) < 0, 
+\end{aligned}
+$$
+
+therefore, the Lypunov function is decreasing, with this piece of information, conclude 
+
+$$
+\begin{aligned}
+    E_{t} - E_0 &\le 0
+    \\
+    \frac{1}{2\eta}\left\Vert
+        x^{(t)} - x^*
+    \right\Vert^2 + 
+    t\left(f\left(
+        x^{(t)} - f(x^*)
+    \right)\right) &\le 0
+    \\
+    \implies 
+    f\left(
+        x^{(t)}
+    \right) - f(x^*) 
+    &\le 
+    \frac{E_0}{t} \in \mathcal O(1/t). 
+\end{aligned}
+$$
+
+Observe that, we didn't assume at all that, $x^*$ is a minimizer. Th assumption was made so that $E_0$ is strictly positive, and  $\delta_t$ would be strictly positive. for a function bounded below. But without the bounded below, and $x^*$ being a minimizer, the above derivation remains true. Finally, observe that the quantity $\Vert x^{(t + 1)} - x^*\Vert^2 - \Vert x^{(t)} - x^*\Vert$ is the same as the proof for smooth gradient descent, before we apply the telescoping sum. Walking that sequence of inequality in reverse would yield a different proof for the descent property of the Lyapunov function. 
