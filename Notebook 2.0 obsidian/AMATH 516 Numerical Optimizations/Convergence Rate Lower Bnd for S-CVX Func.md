@@ -1,5 +1,6 @@
 ---
-alias: Nesterove Lower Convergence Bnd For Strongly Convex Functions
+alias: Nesterov's Lower Convergence Bnd For Strongly Convex Functions
+
 ---
 ### **Intro**
 

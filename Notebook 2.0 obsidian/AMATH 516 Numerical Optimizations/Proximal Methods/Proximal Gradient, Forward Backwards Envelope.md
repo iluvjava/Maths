@@ -273,23 +273,23 @@ The forward and backwards envelope function and the original function share the 
 
 
 ---
-### **Envelope Minimum Compared to Function Value**
+### **Envelope Compared to Function Value**
 The minimum of the envelope is always less than or equal to the function value at the same point. 
 
 #### **Thm | Envelope Minimum is lower than Function Value**
 > We can quantify how much the FB envelope does better compare to the upper bound function at the same point, and it's given by: 
 > $$
 > \begin{aligned}
->     m^{+}(x) - m_x(x) \le \frac{-\beta}{2}\Vert x - P(x)\Vert^2, 
+>     m^{+}(x) - m_x(x) \le \frac{-\beta}{2}\Vert x - y^+\Vert^2, 
 >     \;
->     P(x) =
+>     y^+ =
 >     \text{prox}_{h, \beta^{-1}} (x - \beta^{-1}\nabla g(x)). 
 > \end{aligned}
 > $$
 
 **Proof**
 
-We directly consider the fact that the upper bounding function is strongly convex with a constant of $\beta$, each means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
+We directly consider the fact that the upper bounding function is strongly convex with a constant of $\beta$ (see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)), each means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
 
 $$
 \begin{aligned}

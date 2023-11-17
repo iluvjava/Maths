@@ -99,10 +99,10 @@ Under the strong convexity assumption, the above claim becomes stronger using th
 ---
 #### **The Proof Preparations of the Linear Convergence of V-FISTA**
 
-The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's Book[^2]. For the proof we will assume a slightly weaker version of the algorithm, with several quantities to simplify the conditions for us. Consider the following recurrences for the Generic Algorihm algorithm. 
+The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's Book[^2]. For the proof we will assume a slightly weaker version of the algorithm, with several quantities to simplify the conditions for us. Consider the following recurrences for the Generic Algorithm. 
 
 
-#### **Fixed Step Generic Algorithm**
+#### **Fixed Step Generic Momentum Algorithm**
 > We define the generic recurrences for the fixed step FISTA algorithm. 
 > $$
 > \begin{aligned}
@@ -710,8 +710,8 @@ $$
 Thta is the condition that the fixed point map must satisfy to preserve the same linear convergence rate. From the previous derivation it should be clear that the fixed point iteration on the mapping produces a sequence that converges to $\sqrt{L/\sigma}$. 
 
 
-#### **Thm | Non Fixed Momentum Method**
-> A fixed point iterations on (\[4\]) would generate a sequence such Assumption Set 1 is satisfied. 
+#### **Thm | Non Fixed Stepsize Momentum Method**
+> A fixed point iterations on (\[4\]) would generate a sequence such that Assumption Set 1 is satisfied. 
 
 
 **Proof**
