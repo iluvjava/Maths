@@ -90,3 +90,103 @@ The Estimating sequences and function are defined by an objective function $f$.
 **Observations**
 
 $\phi_{k + 1}(x)$ is the sum ofa lower surrogate function and the previous $\phi_k$. 
+
+**Proofs**
+
+Inductively we assume that $\phi_k$ satisfies definition 2.2.1 so that $\phi_k(x) \le (1 - \lambda_k)f(x) + \lambda_k \phi_0(x)$. Then we want to show $\phi_{k + 1}(x)\le (1 - \lambda_{k + 1})f(x) + \lambda_{k + 1}\phi_0(x)$. We may start with the update rule in lemma 2.2.2 so
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) &= (1 - \alpha_k)\phi_k(x) + \alpha_k \left(
+            f\left(y^{(k)}\right) + 
+            \left\langle f\left(
+                y^{(k)}
+            \right), x - y^{(k)} \right\rangle
+            + 
+            \frac{\mu}{2} \left\Vert x - y^{(k)}\right\Vert^2
+        \right)
+    \\
+    & \triangleright \; \text{using } f \in \mathcal F_{\mu, 0}^{1, 1}, 
+    \\
+    \phi_{k + 1}(x) &\le 
+    (1 - \alpha_k) \phi_k(x) + \alpha_k f(x)
+    \\
+    & \triangleright \text{apply IH, on $\phi_k$, ignore $(x)$ for better notation then}
+    \\
+    &\le 
+    \alpha_k f + (1 - \alpha_k)((1 - \lambda_k)f + \lambda_k \phi_0)
+    \\
+    &= \alpha_k f + (1 - \alpha_k)(1 - \lambda_k)f + (1 - \alpha_k)\lambda_k \phi_0
+    \\
+    &= (\alpha_k + (1 - \alpha_k)(1 - \lambda_k)) f + (1 - \alpha_k)\lambda_k \phi_0
+    \\
+    &\triangleright\quad 
+    \left\lbrace\begin{aligned}
+        & \alpha_k + 1 - \lambda_k - \alpha_k + \alpha_k \lambda_k
+        \\
+        =&\; 
+        1 - \lambda_k + \alpha_k \lambda_k
+        \\
+        =&\;1 - \lambda_k(1 - \alpha_k)  
+        \\
+        =& \; 1 - \lambda_{k + 1}
+    \end{aligned}\right.
+    \\
+    &= (1 - \lambda_{k + 1})f + (1 - \alpha_k)\lambda_k\phi_0
+    \\
+    &= (1 - \lambda_{k + 1})f + \lambda_{k + 1}\phi_0. 
+\end{aligned}
+$$
+
+**Remarks**
+
+To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the stimating functions. 
+
+
+---
+### **Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**
+
+Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such that, it's preseved under the update procedures. 
+
+#### **Lemma 2.2.3 | Updating with the Canonical Form**
+> Let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(k)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
+> $$
+> \begin{aligned}
+>     \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
+>     \\
+>     v^{(k + 1)} 
+>     &= \gamma_{k + 1}^{-1}\left(
+>         (1 - \alpha_k)\gamma_k v^{(k)} + \alpha \mu y^{(k)} - \alpha \nabla f\left(y^{(k)}\right)
+>     \right)
+>     \\
+>     \phi_{k + 1}^* 
+>     &= 
+>     (1 - \alpha_k)\phi_k^* + \alpha_k f\left(y^{(k)}\right) - 
+>     \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+>         \nabla f\left(y^{(k)}\right)
+>     \right\Vert^2
+>     \\
+>     &\qquad 
+>     + 
+>     \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+>     \left(
+>         \frac{\mu}{2}\left\Vert
+>              y^{(k)} - v^{(k)}
+>         \right\Vert^2 + 
+>         \left\langle 
+>             \nabla f\left(y^{(k)}\right), v^{(k)} - y^{(k)}
+>         \right\rangle
+>     \right)
+> \end{aligned}
+> $$
+
+
+**Proof**
+
+All quadratic function in the form $\frac{\gamma_k}{2}\Vert x\Vert^2 + \langle b, x\rangle + c$, they can be written into the cannoical form as presented above. They will be unique determined by $\phi_k^*, v^{(k)}$, the minimum and the minimizer. We only need to show that, the update from lemma 2.2.2 correctly update the convexity constant $\gamma_k$ fo $\phi_{k + 1}$. Inductively assume that $\nabla^2 \phi_k = \gamma_k I$, then the update rule from lemma 2.2.2 has 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
