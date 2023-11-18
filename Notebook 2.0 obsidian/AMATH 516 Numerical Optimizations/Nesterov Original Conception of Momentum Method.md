@@ -477,7 +477,7 @@ $$
         \right)
     \right\rangle
     \\
-    & \triangleright \text{ remove $\Vert y^{(k)} - v^{(k)}\Vert^2$ since it has a multiplier, inequality holds }
+    & \triangleright \text{ remove $\Vert y^{(k)} - v^{(k)}\Vert^2$ since it has a positive multiplier, inequality still holds }
     \\
     &\ge 
     (1 - \alpha_k)
@@ -601,7 +601,7 @@ $$
 \end{aligned}
 $$
 
-Let's call this Condition (\[2\]). It's only under Condition (\[1\]) and (\[2\]) that we may achieve $\phi_{k + 1}^* \ge f(x^{(k)})$, for simple quadratic $\phi_k$. The above will now results in the following algorithm that we initialize with $x^{(0)}, \gamma_0 > 0, v^{(0)} = \mathbf 0$ then 
+Let's call this Condition (\[2\]). It's only under Condition (\[1\]) and (\[2\]) that we may achieve $\phi_{k + 1}^* \ge f(x^{(k)})$, for simple quadratic $\phi_k$. The above results in the following algorithm that we initialize with $x^{(0)}, \gamma_0 > 0, v^{(0)} = \mathbf 0$ then 
 
 
 $$
@@ -664,7 +664,7 @@ Then the envelope is $f_\text{FB} (x) = \min_y (\tilde f_x(y))$, and with that w
 
 $$
 \begin{aligned}
-    \text{Let }\mathcal T &= [I + L^{-1}\partial h]^{-1}\cdot[I - L^{-1}\nabla g]
+    \text{Let }\mathcal T &= [I + L^{-1}\partial h]^{-1}\circ[I - L^{-1}\nabla g]
     \\
     f\left(
         \mathcal T(x)
@@ -707,4 +707,4 @@ $$
 \end{aligned}
 $$
 
-we had bridged the Nesterov generic method to the framework of proximal gradient via envelope the interpretation. 
+we had bridged the Nesterov generic method to the framework of proximal gradient via the forward backward envelope interpretation. 
