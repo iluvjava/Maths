@@ -5,7 +5,9 @@
 ---
 ### **Intro**
 
-The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. My contributions here involves extra gory mathematical details, better exposition and comments on what Nesterov ties to do. And finally, correctly identify the way of adding non-smoothness into Nesterov's derivations. 
+The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. 
+
+My contributions here involve some extra gory mathematical details for the record keeping, a better exposition and comments on what I think Nesterov tries to do. And finally, correctly identify the way of adding non-smoothness into Nesterov's derivations. 
 
 #### **Def (2.2.1) | Estimating Sequences and Estimating Functions**
 > A pair of sequences $\{\phi_k(x)\}_{k = 0}^\infty$ and $\{\lambda_k\}_{\kappa = 0}^\infty$, are called the estimating sequences of the function $f(\cdot)$ if $\lambda_k \rightarrow 0$, and for any $x\in \mathbb R^n$ and $k\ge 0$ we have 
@@ -77,13 +79,14 @@ The Estimating sequences and function are defined by an objective function $f$.
 >       \\
 >       \phi_{k + 1}(x) &= (1 - \alpha_k)\phi_k(x) + \alpha_k \left(
 >               f\left(y^{(k)}\right) + 
->               \left\langle f\left(
+>               \left\langle 
+>                   \nabla f\left(
 >                   y^{(k)}
 >               \right), x - y^{(k)} \right\rangle
 >               + 
 >               \frac{\mu}{2} \left\Vert x - y^{(k)}\right\Vert^2
 >           \right), 
->   \end{aligned}
+>   \end{aligned}\tag{[1]}
 > $$
 > Are estimating sequences and functions. 
 
@@ -120,7 +123,7 @@ $$
     \\
     &= (\alpha_k + (1 - \alpha_k)(1 - \lambda_k)) f + (1 - \alpha_k)\lambda_k \phi_0
     \\
-    &\triangleright\quad 
+    &\quad \triangleright
     \left\lbrace\begin{aligned}
         & \alpha_k + 1 - \lambda_k - \alpha_k + \alpha_k \lambda_k
         \\
@@ -156,7 +159,7 @@ Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such 
 >     \\
 >     v^{(k + 1)} 
 >     &= \gamma_{k + 1}^{-1}\left(
->         (1 - \alpha_k)\gamma_k v^{(k)} + \alpha \mu y^{(k)} - \alpha \nabla f\left(y^{(k)}\right)
+>         (1 - \alpha_k)\gamma_k v^{(k)} + \alpha_k \mu y^{(k)} - \alpha_k \nabla f\left(y^{(k)}\right)
 >     \right)
 >     \\
 >     \phi_{k + 1}^* 
@@ -187,6 +190,521 @@ All quadratic function in the form $\frac{\gamma_k}{2}\Vert x\Vert^2 + \langle b
 
 $$
 \begin{aligned}
-    
+    \phi_{k + 1}(x) &= 
+    (1 - \alpha_k)\phi_k(x) + 
+    \alpha_k \left(
+        f\left(y^{(k)}\right) 
+        + 
+        \left\langle \nabla f \left(
+                y^{(k)}
+            \right), x - y^{(k)}
+        \right\rangle 
+        + 
+        \frac{\mu}{2}
+        \left\Vert x - y^{(k)}\right\Vert^2
+    \right)
+    \\
+    \nabla^2 \phi_{k + 1}(x) &= 
+    (1 -\alpha_k) \nabla^2 \phi_k(x) + 
+    \alpha_k \mu I = ((1 - \alpha_k)\gamma_k + \alpha_k \mu)I, 
 \end{aligned}
 $$
+
+and by the update rule, the last line indicate $\nabla^2 \phi_{k + 1}(x) = \gamma_{k + 1} I$, therefore, the canonical form is preserved by the updates. Next, we determine that the recurrence is kept under lamme 2.2.2 for $v^{(k)}$, the minimizer for the quadratic canonical form. Substituting the canonical form of $\phi_{k}(x)$ into (\[1\]), results in 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) &= 
+    (1 - \alpha_k)\left(
+        \phi_k^* + \frac{\gamma_k}{2}
+        \left\Vert x - v^{(k)} \right\Vert^2
+    \right) + 
+    \alpha_k \left(
+        f\left(y^{(k)}\right) 
+        + 
+        \left\langle \nabla f \left(
+                y^{(k)}
+            \right), x - y^{(k)}
+        \right\rangle 
+        + 
+        \frac{\mu}{2}
+        \left\Vert x - y^{(k)}\right\Vert^2
+    \right)
+    \\
+    & \triangleright \text{ consider }\nabla \phi_{k + 1}(x) = \mathbf 0, \text{ solve for minimizer then }
+    \\
+    \mathbf 0 &= (1 - \alpha_k)\gamma_k \left(
+        x - v^{(k)}
+    \right) + \alpha_k \left(
+        \nabla f\left(
+            y^{(k)}
+        \right) + \mu\left(x - y^{(k)}\right)
+    \right)
+    \\
+    &= ((1 - \alpha_k)\gamma_k + \alpha_k \mu)x - 
+    (1 - \alpha_k)\gamma_k v^{(k)} + 
+    \alpha_k \nabla f \left(y^{(k)}\right) - \alpha_k \frac{\mu}{2}y^{(k)}
+    \\
+    & \triangleright \text{using the recurrence for }\gamma_{k + 1} \text{ to simplify the coefficient of $x$}. 
+    \\
+    \gamma_{k + 1}x
+    &= 
+    (1 - \alpha_k)\gamma_{k}v^{(k)} - \alpha_k \nabla f \left(
+        y^{(k)}
+    \right) + \alpha_k \mu y^{(k)}, 
+\end{aligned}
+$$
+
+setting $v^{(k + 1)} = x$, it then yields the second invariance from the update. Lastly, we prove that the reuccurrence for $\phi_{k + 1}^*$ holds as well. To prove, we simplify the update rule in (\[1\]) by letting $x = y^{(k)}$, and set $\phi_k$ to its canonical form, and then we equates it to the canonical form of $\phi_{k + 1}$, that is 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^* + \frac{\gamma_{k + 1}}{2}\left\Vert
+        y^{(k)} - v^{(k + 1)}
+    \right\Vert^2 
+    &= 
+    (1 - \alpha_k)
+    \left(
+        \phi_k^* + \frac{\gamma_k}{2}\left\Vert y^{(k)} - v^{(k)}\right\Vert^2
+    \right) + \alpha_k f\left(y^{(k)}\right)
+    \\
+    \phi_{k + 1}^* &= 
+    (1 - \alpha_k)
+    \left(
+        \phi_k^* + 
+        \frac{\gamma_k}{2}\left\Vert y^{(k)} - v^{(k)}\right\Vert^2
+    \right) + \alpha_k f\left(y^{(k)}\right)
+    - 
+    \frac{\gamma_{k + 1}}{2}\left\Vert
+        y^{(k)} - v^{(k + 1)}
+    \right\Vert^2
+    \\
+    &= 
+    (1 - \alpha_k)\phi_k^* + \alpha_k f\left(y^{(k)}\right) 
+    + 
+    \frac{\gamma_k(1 - \alpha_k)}{2}\left\Vert y^{(k)} - v^{(k)}\right\Vert^2 
+    - 
+    \frac{\gamma_{k + 1}}{2}\left\Vert
+        y^{(k)} - v^{(k + 1)}
+    \right\Vert^2
+    \\
+    & \triangleright \text{ Let this be [(4)]}. 
+\end{aligned}
+$$
+
+We note that the first 2 terms had matched. The remaining terms should match the recurrence as well. We need to find a representation for $y^{(k)} + v^{(k + 1)}$. For that we use the recurrence of $v^{(k)}$, this gives us 
+
+$$
+\begin{aligned}
+    v^{(k + 1)} - y^{(k)}
+    &= 
+   \gamma_{k + 1}^{-1}\left(
+        (1 - \alpha_k)\gamma_k v^{(k)} + \alpha \mu y^{(k)} - \alpha \nabla f\left(y^{(k)}\right)
+    \right) - y^{(k)}
+    \\
+    &= \gamma_{k + 1}^{-1}
+    \left(
+        (1 - \alpha_k)\gamma_k v^{(k)}
+        + (\alpha_k \mu  - \gamma_{k + 1})y^{(k)}
+        - \alpha_k \nabla f\left(y^{(k)}\right)
+    \right)
+    \\
+    & \triangleright 
+    \text{ useing } \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        (1 - \alpha_k)\gamma_k v^{(k)}
+        - (1 - \alpha_k )\gamma_k y^{(k)}
+        - \alpha_k \nabla f\left(y^{(k)}\right)
+    \right)
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        (1 - \alpha_k)\gamma_k (v^{(k)} - y^{(k)}) 
+        - \alpha_k \nabla f\left(y^{(k)}\right)
+    \right)
+    \\
+    \implies 
+    - \frac{\gamma_{k + 1}}{2}\left\Vert
+        v^{(k + 1)} - y^{(k)}
+    \right\Vert^2 
+    &= 
+    - \frac{\gamma_{k + 1}}{2}
+    \left\Vert
+        \gamma_{k + 1}^{-1}
+        \left(
+            (1 - \alpha_k)\gamma_k (v^{(k)} - y^{(k)}) 
+            - \alpha_k \nabla f\left(y^{(k)}\right)
+        \right)
+    \right\Vert^2
+    \\
+    &= \frac{1}{2\gamma_{k + 1}}
+    \left(
+        -(1 - \alpha_k)^2 \gamma_k^2
+        \left\Vert v^{(k)} - y^{(k)}\right\Vert^2
+        - 
+        \alpha_k^2 \left\Vert
+            \nabla f\left(
+                y^{(k)}
+            \right)
+        \right\Vert^2
+    \right.
+    \\
+    &\qquad 
+    \left.
+         + 
+        2(1 - \alpha_k)\gamma_k \alpha_k 
+        \left\langle v^{(k)} - y^{(k)}, \nabla f\left(y^{(k)}\right) \right\rangle
+    \right)
+\end{aligned}\tag{[5]}
+$$
+
+the coefficient for the term $\Vert \nabla f(y^{(k + 1)})\Vert^2$ matches with what we had for the recurrences, and the cross term $\langle v^{(k)} - y^{(k)}, \nabla f(y^{(k)})\rangle$ also matches. It remains to match the coefficient for the term $\Vert y^{(k)} - v^{(k)}\Vert^2$ when we substitute (\[5\]) back into (\[4\]) for the canonical form of $\phi_{k + 1}^*$. 
+
+
+$$
+\begin{aligned}
+    - \frac{(1 - \alpha_k)^2\gamma_k^2}{2\gamma_{k + 1}} + 
+    (1 - \alpha_k )\frac{\gamma_k}{2}
+    &= 
+    \frac{(1 - \alpha_k)\gamma_k}{2}
+    \left(
+        1 - \frac{(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \right)
+    \\
+    & \triangleright 
+    \text{ by update rule for $\gamma_{k + 1}$, replacing $(1 - \alpha_k)\gamma_k$ then }
+    \\
+    &= 
+    \frac{(1 - \alpha_k)\gamma_k}{2}
+    \left(
+        1 - \frac{\gamma_{k + 1} - \alpha_k \mu}{\gamma_{k + 1}}
+    \right)
+    \\
+    &= 
+    \frac{(1 - \alpha_k)\gamma_k}{2}
+    \left(
+        \frac{\alpha_k \mu}{\gamma_{k + 1}}
+    \right). 
+\end{aligned}
+$$
+
+
+---
+### **Deriving the Generic Accelerated Momentum Method**
+
+To allow the use of characterizations 2.2.1, which will play a major role in proving the convergence of the algorithm, we need choose $x^{(k)}$ algorithmically so that the condition 
+$$
+\phi_k^* \ge f\left(x^{(k)}\right)
+$$
+
+holds. let the above condition be the inductive hypothesis, from lemma 2.2.3, the update rules for $\phi_k$, we have 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^* 
+    &= 
+    (1 - \alpha_k)\phi_k^* + \alpha_k f\left(y^{(k)}\right) - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    \\
+    &\qquad 
+    + 
+    \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \left(
+        \frac{\mu}{2}\left\Vert
+            y^{(k)} - v^{(k)}
+        \right\Vert^2 + 
+        \left\langle 
+            \nabla f\left(y^{(k)}\right), v^{(k)} - y^{(k)}
+        \right\rangle
+    \right)
+    \\
+    &\triangleright \text{using the inductive hypothesis, substitute $\phi_k^*$}
+    \\
+    & =
+    (1 - \alpha_k)f\left(x^{(k)}\right) + \alpha_k f\left(y^{(k)}\right) - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    \\
+    &\qquad 
+    + 
+    \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \left(
+        \frac{\mu}{2}\left\Vert
+            y^{(k)} - v^{(k)}
+        \right\Vert^2 + 
+        \left\langle 
+            \nabla f\left(y^{(k)}\right), v^{(k)} - y^{(k)}
+        \right\rangle
+    \right)
+    \\
+    & \triangleright \text{ convexity of $f$ has $f(x^{(k)}) \ge f(y^{(k)}) + \langle \nabla f(y^{(k)}), x^{(k)} - y^{(k)}\rangle$}. 
+    \\
+    &\ge 
+    (1 - \alpha_k)
+    \left(
+        f\left(y^{(k)}\right) 
+        + 
+        \left\langle 
+            \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)} 
+        \right\rangle
+    \right)
+    + \alpha_k f\left(y^{(k)}\right) 
+    - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    \\
+    &\qquad 
+    + 
+    \frac{\alpha_k(1 - \alpha_k)\gamma_k\mu}{2\gamma_{k + 1}}
+    \left\Vert
+        y^{(k)} - v^{(k)}
+    \right\Vert^2 
+    + 
+    
+    \left\langle 
+        (1 - \alpha_k)\nabla f\left(y^{(k)}\right), 
+        \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}
+        \left(
+            v^{(k)} - y^{(k)}
+        \right)
+    \right\rangle
+    \\
+    & \triangleright \text{ remove $\Vert y^{(k)} - v^{(k)}\Vert^2$ since it has a multiplier, inequality holds }
+    \\
+    &\ge 
+    (1 - \alpha_k)
+    \left(
+        f\left(y^{(k)}\right) 
+        + 
+        \left\langle 
+            \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)} 
+        \right\rangle
+    \right)
+    + \alpha_k f\left(y^{(k)}\right) 
+    - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    \\
+    &\qquad 
+    + 
+    \left\langle 
+        (1 - \alpha_k)\nabla f\left(y^{(k)}\right), 
+        \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}
+        \left(
+            v^{(k)} - y^{(k)}
+        \right)
+    \right\rangle
+    \\
+    &=
+    \left\langle 
+        \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)}
+    \right\rangle
+    + 
+    f\left(y^{(k)}\right) 
+    - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    \\
+    &\qquad 
+    + 
+    \left\langle 
+        (1 - \alpha_k)\nabla f\left(y^{(k)}\right), 
+        \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}
+        \left(
+            v^{(k)} - y^{(k)}
+        \right)
+    \right\rangle
+    \\
+    &= 
+    f\left(y^{(k)}\right) 
+    - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
+        \nabla f\left(y^{(k)}\right)
+    \right\Vert^2
+    +
+    \left\langle 
+        (1 - \alpha_k)\nabla f\left(y^{(k)}\right), 
+        \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}
+        \left(
+            v^{(k)} - y^{(k)}
+        \right) + x^{(k)} - y^{(k)}
+    \right\rangle, 
+\end{aligned}
+$$
+
+we have some freedom to choose vector $y^{(k)}, \alpha_k, \gamma_k$, to do that we perform gradient descent on $y^{(k)}$, recall that for L-Smooth function $f$, with $x^{(k + 1)} = y^{(k)} - 1/L \nabla f(y^{(k)})$ we would have 
+
+$$
+\begin{aligned}
+    f\left(
+        y^{(k)}
+    \right) - 
+    \frac{1}{2L}
+    \left\Vert
+        \nabla f\left(
+            y^{(k)}
+        \right)
+    \right\Vert^2 \ge 
+    f \left(
+        x^{(k + 1)}
+    \right), 
+\end{aligned}
+$$
+
+fitting that to the inequality would require that 
+
+$$
+\begin{aligned}
+    \alpha_k^2/(2 \gamma_{k + 1}) &= 1/L
+    \\
+    \iff
+    L\alpha_k^2 &= (1 - \alpha_k)\gamma_k \alpha_k \mu, 
+\end{aligned}
+$$
+
+Let's call that Condition (\[1\]). We then force the cross product to be zero then 
+
+$$
+\begin{aligned}
+    \frac{\alpha_k\gamma_k}{\gamma_{k + 1}} 
+    \left(v^{(k)} - y^{(k)}\right)
+    &= - x^{(k)} + y^{(k)}
+    \\
+    \alpha_k \gamma_k \left(
+        y^{(k)} - v^{(k)}
+    \right) &= 
+    \gamma_{k + 1}x^{(k)} - \gamma_{k + 1}y^{(k)}
+    \\
+    (\alpha_k \gamma_k + \gamma_{k + 1})y^{(k)}
+    &= \gamma_{k + 1}x^{(k)} + \alpha_k \gamma_k v^{(k)}
+    \\
+    & \triangleright \;
+        \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu
+    \\
+    & \triangleright \;
+        \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu
+    \\
+    y^{(k)} &= 
+    \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+        \gamma_k + \alpha_k \mu
+    }, 
+\end{aligned}
+$$
+
+Let's call this Condition (\[2\]). It's only under Condition (\[1\]) and (\[2\]) that we may achieve $\phi_{k + 1}^* \ge f(x^{(k)})$, for simple quadratic $\phi_k$. The above will now results in the following algorithm that we initialize with $x^{(0)}, \gamma_0 > 0, v^{(0)} = \mathbf 0$ then 
+
+
+$$
+\begin{aligned}
+    \text{(a):}\; & \text{Choose }\alpha_k \in(0, 1) \text{ s.t: }
+    L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu.
+    \\
+    \text{(b):}\; &
+    \text{Choose } y^{(k)} = 
+    (\gamma_k + \alpha_k \mu)^{-1}\left(
+        \alpha_k\gamma_kv^{k} + \gamma_{k + 1}x^{(k)}
+    \right).
+    \\
+    \text{(c):}\; & y^{(k)} = 
+    \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+        \gamma_k + \alpha_k \mu
+    }.
+    \\
+    \;& \text{Find } x^{(k + 1)} \text{ s.t: }
+    f\left(
+        x^{(k + 1)}
+    \right) \le f\left(
+        y^{(k)}
+    \right) - \frac{1}{2L}\left\Vert
+        \nabla f \left(
+            y^{(k)}
+        \right)
+    \right\Vert^2
+    \\
+    \text{(d)}: & \; \text{Set }
+    v^{(k + 1)} 
+    = \gamma_{k + 1}^{-1}\left(
+        (1 - \alpha_k)\gamma_k v^{(k)} + \alpha_k \mu y^{(k)} - \alpha_k \nabla f\left(y^{(k)}\right)
+    \right)
+\end{aligned}
+$$
+
+
+**Remarks**
+
+This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. 
+
+---
+### **Adapting the Algorithm for Proximal Gradient Descent**
+
+#### **Claim | Envelope Acceleration**
+> If $f$ in the Nesterov's algorithm is chosen to be the smooth part of the compositie $f = g + h$, we can change the condition in (c) part of the algorithm and assert the same kind of descent condition using the Forward Backwards Envelope. 
+
+**Justifications**
+
+With $\tilde f_x$ being the upper surrogate model at $f(x) = g(x) + h(x)$, which is defined as
+
+$$
+\tilde f_x (y) = 
+    h(y) + 
+    \left\langle \nabla g(x), y -x \right\rangle + g(x) + \frac{L}{2}\Vert y - x\Vert^2, 
+$$
+
+Then the envelope is $f_\text{FB} (x) = \min_y (\tilde f_x(y))$, and with that we have the forward backwards envelope derived from [Proximal Gradient, Forward Backwards Envelope](Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), it would have 
+
+$$
+\begin{aligned}
+    \text{Let }\mathcal T &= [I + L^{-1}\partial h]^{-1}\cdot[I - L^{-1}\nabla g]
+    \\
+    f\left(
+        \mathcal T(x)
+    \right) &\le f_{FB}(x) = 
+    \text{env}_h^{L^{-1}}(x - L^{-1}\nabla g(x))
+    - 
+    \frac{1}{2L}\Vert \nabla g(x)\Vert^2. 
+\end{aligned}
+$$
+
+Replacing $x = y^{(k + 1)}$, let $x^{(k + 1)} = \mathcal T y^{(k + 1)}$ then the above rule becomes the new descent rule 
+
+$$
+f \left(\underbrace{\mathcal T y^{(k)}}_{x^{(k + 1)}}\right) 
+- 
+\text{env}_h^{L^{-1}}\left(
+    y^{(k)} - L^{-1}\nabla g\left(y^{(k)}\right)
+\right)
+\le - \frac{1}{2L}
+\left\Vert \nabla g\left(y^{(k)}\right)\right\Vert^2
+$$
+
+It's a descent rule because 
+
+$$
+\begin{aligned}
+    \text{env}_h^{L^{-1}}\left(
+        y^{(k)} - L^{-1}\nabla g\left(y^{(k)}\right)
+    \right) = \min_z \tilde f_{y^{(k)}}(z) &\le f(y^{(k)})
+    \\
+    \implies 
+    f\left(
+        x^{(k + 1)}
+    \right) - f\left(
+        y^{(k)}
+    \right)
+    &\le 
+    \frac{1}{2L}
+    \left\Vert \nabla g\left(y^{(k)}\right)\right\Vert^2.
+\end{aligned}
+$$
+
+we had bridged the Nesterov generic method to the framework of proximal gradient via envelope the interpretation. 
