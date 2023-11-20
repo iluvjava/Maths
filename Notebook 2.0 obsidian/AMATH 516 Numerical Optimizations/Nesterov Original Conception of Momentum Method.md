@@ -67,9 +67,9 @@ Is there a Lypunov interpretation for it?
 The Estimating sequences and function are defined by an objective function $f$. 
 
 #### **Lemma 2.2.2  | The Proposed Updates**
-> 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. Itmeans that the function is Lipschitz smooth, and it could be strongly convex, 
+> 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
 > 2. $\phi_0(\cdot)$ is a arbitrary convex function in $\mathbb R^n$, 
-> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbirary sequence of points in $\mathbb R^n$, 
+> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, 
 > 4. The coefficients $\{\alpha_k\}_{k = 0}^\infty$ satisfy conditions $\alpha_k \in (0, 1)$ and $\sum_{k = 0}^{\infty}\alpha_k = \infty$, 
 > 5. We choose $\lambda_0 = 1$. 
 > Then the pair of estimating sequence and function $(\phi_k(\cdot))_{k = 0}^\infty$ and $(\lambda_k)_{k = 0}^\infty$, defined recursively by the relations 
@@ -102,14 +102,14 @@ $$
 \begin{aligned}
     \phi_{k + 1}(x) &= (1 - \alpha_k)\phi_k(x) + \alpha_k \left(
             f\left(y^{(k)}\right) + 
-            \left\langle f\left(
+            \left\langle \nabla f\left(
                 y^{(k)}
             \right), x - y^{(k)} \right\rangle
             + 
             \frac{\mu}{2} \left\Vert x - y^{(k)}\right\Vert^2
         \right)
     \\
-    & \triangleright \; \text{using } f \in \mathcal F_{\mu, 0}^{1, 1}, 
+    & \triangleright \; \text{using } f \in \mathcal F_{\mu \ge 0, L}^{1, 1}, 
     \\
     \phi_{k + 1}(x) &\le 
     (1 - \alpha_k) \phi_k(x) + \alpha_k f(x)
@@ -140,6 +140,22 @@ $$
     &= (1 - \lambda_{k + 1})f + \lambda_{k + 1}\phi_0. 
 \end{aligned}
 $$
+
+Next, we wish to prove that the sequence $\lambda_k\rightarrow 0$. For contradiction if $\lim_{n\rightarrow \infty} \ge \epsilon > 0$ then 
+$$
+\begin{aligned}
+    (1 - \alpha_k)\lambda_k &= \lambda_k - \alpha_k \lambda_k
+    \\
+    &\le
+    \lambda_k - \epsilon\alpha_k
+    \\
+    \epsilon\alpha_k &\le \lambda_k - \lambda_{k + 1}
+    \\
+    \epsilon \sum_{k = 1}^{\infty}\alpha_k&\le \lambda_1 - \epsilon < \infty, 
+\end{aligned}
+$$
+
+therefore we must have $\lim_{k\rightarrow \infty} \lambda_k = 0$. 
 
 **Remarks**
 
@@ -243,7 +259,7 @@ $$
     \\
     &= ((1 - \alpha_k)\gamma_k + \alpha_k \mu)x - 
     (1 - \alpha_k)\gamma_k v^{(k)} + 
-    \alpha_k \nabla f \left(y^{(k)}\right) - \alpha_k \frac{\mu}{2}y^{(k)}
+    \alpha_k \nabla f \left(y^{(k)}\right) - \alpha_k \mu y^{(k)}
     \\
     & \triangleright \text{using the recurrence for }\gamma_{k + 1} \text{ to simplify the coefficient of $x$}. 
     \\
@@ -426,7 +442,7 @@ $$
     \\
     &\triangleright \text{using the inductive hypothesis, substitute $\phi_k^*$}
     \\
-    & =
+    & \ge
     (1 - \alpha_k)f\left(x^{(k)}\right) + \alpha_k f\left(y^{(k)}\right) - 
     \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
         \nabla f\left(y^{(k)}\right)
@@ -648,7 +664,7 @@ This algorithm is the basis of analysis for the convergence rate. It can also de
 ### **Adapting the Algorithm for Proximal Gradient Descent**
 
 #### **Claim | Envelope Acceleration**
-> If $f$ in the Nesterov's algorithm is chosen to be the smooth part of the compositie $f = g + h$, we can change the condition in (c) part of the algorithm and assert the same kind of descent condition using the Forward Backwards Envelope. 
+> If $f$ in the Nesterov's algorithm is chosen to be the smooth part of the composite $f = g + h$, we can change the condition in (c) part of the algorithm and assert the same kind of descent condition using the Forward Backwards Envelope. 
 
 **Justifications**
 
@@ -708,3 +724,8 @@ $$
 $$
 
 we had bridged the Nesterov generic method to the framework of proximal gradient via the forward backward envelope interpretation. 
+
+
+**Warn**
+<mark style="background: #FF5582A6;">
+There is something wrong with this claim. The forward backwards envelope is not quite right. </mark>

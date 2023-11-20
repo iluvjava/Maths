@@ -204,7 +204,6 @@ The Lemma that we can extract from here is the results (2).
 #### **Theorem | Fundamental Theorem of Proximal Gradient Lemma**
 
 > With $f = g + h$, where $h$ is convex, closed and proper, with $g$ be $L$-Lipschitz smooth with a constant of $L$, let $y\in \mathbb E$, defining $y^+ = T(y)$ being the proximal gradient step, then for any $x\in \mathbb E$, we have: 
-> 
 > $$
 > \begin{aligned}
 >   f(x) - f(y^+) \ge \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y),

@@ -119,7 +119,7 @@ The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's 
 > \end{aligned}
 > $$
 
-where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be.  We start with the prox grad lemma 
+where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. We start with the prox grad lemma 
 
 $$
 \begin{aligned}
@@ -134,7 +134,7 @@ $$
 $$
 
 With $k\ge 0$, make a sequence $(t_k)_{k\in \mathbb N}$, we consider quantities 
-- $x = t^{-1}_{k + 1}\bar x + (1 - t^{-1}_{k + 1})x^{(k)}, y = y^{(k)}$
+- $x = t^{-1}_{k + 1}\bar x + (1 - t^{-1}_{k + 1})x^{(k)}, y = y^{(k)}$. 
 - $\bar x \in \underset{x}{\text{argmin}} F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
 
 We analyze the RHS of (\[1\]) with the above quantities then 
@@ -313,10 +313,10 @@ $$
 
 To make further progress, we must simplify the notations. Make the following quantities to simplify the algebra. 
 
-- $s^{(k)} - x^{(k)} - x^{(k - 1)}$, the velocity vector. 
+- $s^{(k)} = x^{(k)} - x^{(k - 1)}$, the velocity vector. 
 - $e^{(k)} = x^{(k)} - \bar x$, the error vector at the kth iteration. 
 - $\theta_k = (t_k -1)/(t_k + 1)$, which is the momentum step size. 
-- $u^{(k)} = \bar x + t_{k}(x^{(k - 1)} - x^{(k)}) - x^{(k - 1)}$, the error term extrapolated with the velocity. 
+- $u^{(k)} = \bar x + t_{k}(x^{(k - 1)} - x^{(k)}) - x^{(k - 1)}$, the error term extrapolated with the velocity. We define $u^{(0)} = \bar x - x^{(0)}$. 
 - $R_k$, this quantity is underbraced in (\[2\]), it has importance in the proof. 
 
 These quantities simplify expression (\[2\]), they also made appearances in the proof [A Better Proof for FISTA Convergence](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md), making it more manageable, consider third term on the LHS of (\[2\]), using these above quantities we have 
@@ -468,14 +468,14 @@ $$
     \left(
         \prod_{i = 0}^{k} (1 - t_k^{-1})
     \right)\left(
-        \delta_0 + \frac{L}{2t_0}\left\Vert
+        \delta_0 + \frac{L}{2t_0^2}\left\Vert
             u^{(0)}
         \right\Vert^2
     \right). 
 \end{aligned}
 $$
 
-To make good convergence rate, $t\in (-1, 1)$. Further analysis will elimiate more options for the sequence of $t_k$. There is a list of assumptions we made
+To make good convergence rate, $t_k\in (-1, 1)$. Further analysis will elimiate more options for the sequence of $t_k$. There is a list of assumptions we made
 
 $$
 \begin{aligned}
@@ -533,7 +533,7 @@ $$
 \end{aligned}
 $$
 
-expanding each term, should have 3 conditions from the coefficients of $\langle s, e\rangle, \Vert s\Vert^2, \Vert e\Vert^2$ to work with. 
+expanding each term, should have these quantities from the coefficients of $\langle s, e\rangle, \Vert s\Vert^2, \Vert e\Vert^2$ to work with. 
 
 $$
 \begin{aligned}
@@ -612,7 +612,7 @@ $$
 To statisfy the assumption, it would be great to have the coefficients for $\langle s, e\rangle$ to be zero, and the coefficients of $\Vert e\Vert^2, \Vert s\Vert^2$ to be a positive quantities. 
 
 
-**Thm | Fixed Sequence Solutions for the Above Inequalities**
+#### **Thm | Fixed Sequence Solutions for the Above Inequalities**
 > With the suggested value of $t_k = t_{k -1} = \sqrt{L / \sigma}$, it can make the coefficients of $\Vert e\Vert^2, \Vert s\Vert^2$ to be larger than zero, and for the cross term to be equal to zero. 
 
 **Proof**
@@ -701,13 +701,98 @@ still makes the ceofficients of $\Vert s\Vert^2, \Vert e\Vert^2$ greater than ze
 
 $$
 \begin{aligned}
-    t_{k + 1} &\ge t_k + 1 - t_k^2 q 
-    \\
-    t_{k + 1}&\le t_k + 1. 
+    \begin{cases}
+        t_{k + 1} \ge t_k + 1 - t_k^2 q 
+        \\
+        t_{k + 1} \le t_k + 1.     
+    \end{cases}
 \end{aligned}
 $$
 
-Thta is the condition that the fixed point map must satisfy to preserve the same linear convergence rate. From the previous derivation it should be clear that the fixed point iteration on the mapping produces a sequence that converges to $\sqrt{L/\sigma}$. 
+That is the condition that the fixed point map must satisfy to preserve the same linear convergence rate. From the previous derivation it should be clear that the fixed point iteration on the mapping produces a sequence that converges to $\sqrt{L/\sigma}$. 
+
+**Justifications**
+
+The non-negativity conditions for the coefficients of $\Vert e^{(k)}\Vert^2, \Vert s^{(k)}\Vert^2$ places restrictions on the successive difference on the sequence $t_k$. Considers the coefficient for $\Vert e^{(k)}\Vert^2$ e then have 
+
+$$
+\begin{aligned}
+    \frac{t_{k + 1} - 1}{1 - q} 
+    \left(
+        1 + \frac{t_{k + 1}}{t_k^2}
+    \right)
+    -1
+    &\ge 0 \quad \triangleright\;  ([4]) \iff 
+    \frac{t_{k + 1}-1}{1 - q}
+    = \frac{t_k^2}{t_k + 1}
+    \\
+    \frac{t_k^2}{t_k + 1}\left(
+        q + \frac{t_{k + 1}}{t_k^2} 
+    \right) 
+    &> 1
+    \\
+    \triangleright \; t_k &\ge 1
+    \\
+    t_k^2 q + t_{k + 1} &\ge t_k + 1
+    \\
+    t_{k + 1} &\ge t_k + 1 - t_k^2 q.
+\end{aligned}
+$$
+
+similarly, the non-negatvity constraints for $\Vert s^{(k)}\Vert^2$ would yield 
+
+$$
+\begin{aligned}
+    (t_k - 1)^2 
+    \left(
+        \frac{t_{k + 1}(t_{k + 1} - 1)}{t_k^2(1 - q)}
+        -
+        \frac{t_{k + 1}^2}{(t_k + 1)^2}
+    \right) & 
+    \ge 0
+    \quad \triangleright \; [(4)] 
+    \iff \frac{t_{k + 1} - 1}{t_k^2(1 - q)}
+    = 
+    \frac{1}{t_k + 1}
+    \\
+    (t_k - 1)^2 \left(
+        \frac{t_{k +1}}{t_k + 1} - 
+        \frac{t_{k + 1}^2}{(t_k +1)^2} 
+    \right)
+    &\ge 0 \quad \triangleright \; \text{using } (t_k-1) > 0 
+    \\
+    \frac{t_{k + 1}}{t_k + 1} &\ge 
+    \frac{t_{k + 1}^2}{(t_k + 1)^2}
+    \\
+    \frac{1}{t_k + 1} & \ge 
+    \frac{t_{k + 1}}{(t_k + 1)^2}
+    \\
+    1 &\ge 
+    \frac{t_{k + 1}}{t_k + 1}
+    \\
+    t_k + 1 &\ge t_{k + 1}.
+\end{aligned}
+$$
+
+However the above is redundant because if $\langle s, e\rangle$ has zero coefficient it would mean 
+
+$$
+\begin{aligned}
+    \frac{t_{k + 1} - 1}{t_k^2(1 - q)}
+    -
+    \frac{1}{t_k + 1} &= 0
+    \\
+    t_{k + 1} - 1 - 
+    \frac{t_k^2(1 - q)}{t_k + 1} &= 0
+    \\
+    t_{k + 1} &= 1 + 
+    \frac{t_k^2(1 - q)}{t_k + 1}
+    \\
+    & \le 1 + t_k^2/(t_k + 1)
+    \\
+    &\le 1 + t_k^2/t_k = 1 + t_k
+\end{aligned}
+$$
 
 
 #### **Thm | Non Fixed Stepsize Momentum Method**
@@ -716,7 +801,7 @@ Thta is the condition that the fixed point map must satisfy to preserve the same
 
 **Proof**
 
-Exercise. 
+A proof would required that, a fixed point iterations generated based on equation (\[4\]) would yield a sequence of $t_k$ such that the inequality above is true. 
 
 
 ---
