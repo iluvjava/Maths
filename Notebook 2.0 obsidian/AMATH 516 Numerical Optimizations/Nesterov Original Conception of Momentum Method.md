@@ -198,6 +198,7 @@ Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such 
 >     \right)
 > \end{aligned}
 > $$
+> We name these Lemma 2.2.3 invariances 1, 2, 3. 
 
 
 **Proof**
@@ -495,6 +496,8 @@ $$
     \\
     & \triangleright \text{ remove $\Vert y^{(k)} - v^{(k)}\Vert^2$ since it has a positive multiplier, inequality still holds }
     \\
+    &\triangleright \text{Group ther term $f(y^{(k)})$. }
+    \\
     &\ge 
     (1 - \alpha_k)
     \left(
@@ -504,7 +507,7 @@ $$
             \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)} 
         \right\rangle
     \right)
-    + \alpha_k f\left(y^{(k)}\right) 
+    + f\left(y^{(k)}\right) 
     - 
     \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
         \nabla f\left(y^{(k)}\right)
@@ -581,7 +584,7 @@ fitting that to the inequality would require that
 
 $$
 \begin{aligned}
-    \alpha_k^2/(2 \gamma_{k + 1}) &= 1/L
+    \alpha_k^2/(2 \gamma_{k + 1}) &= 1/2L
     \\
     \iff
     L\alpha_k^2 &= (1 - \alpha_k)\gamma_k \alpha_k \mu, 
@@ -661,71 +664,265 @@ $$
 This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. 
 
 ---
-### **Adapting the Algorithm for Proximal Gradient Descent**
+### **Simplifying the Algorithm a Bit**
 
-#### **Claim | Envelope Acceleration**
-> If $f$ in the Nesterov's algorithm is chosen to be the smooth part of the composite $f = g + h$, we can change the condition in (c) part of the algorithm and assert the same kind of descent condition using the Forward Backwards Envelope. 
-
-**Justifications**
-
-With $\tilde f_x$ being the upper surrogate model at $f(x) = g(x) + h(x)$, which is defined as
-
-$$
-\tilde f_x (y) = 
-    h(y) + 
-    \left\langle \nabla g(x), y -x \right\rangle + g(x) + \frac{L}{2}\Vert y - x\Vert^2, 
-$$
-
-Then the envelope is $f_\text{FB} (x) = \min_y (\tilde f_x(y))$, and with that we have the forward backwards envelope derived from [Proximal Gradient, Forward Backwards Envelope](Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), it would have 
+In deriving the inductive relations of $\phi_k^* \ge f(x^{(k)})$, 2 relations between the parameters appeared. One comes by forcing the cross term to be zero to strengthen the inequality, and the other one comes by forcing the coefficient of $\Vert \nabla f(y^{(k)})\Vert^2$ to be $-1/2L$, creating the constraints 
 
 $$
 \begin{aligned}
-    \text{Let }\mathcal T &= [I + L^{-1}\partial h]^{-1}\circ[I - L^{-1}\nabla g]
+    L\alpha_k^2 &= (1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1}, 
     \\
-    f\left(
-        \mathcal T(x)
-    \right) &\le f_{FB}(x) = 
-    \text{env}_h^{L^{-1}}(x - L^{-1}\nabla g(x))
-    - 
-    \frac{1}{2L}\Vert \nabla g(x)\Vert^2. 
+    y^{(k)} &= 
+    \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+        \gamma_k + \alpha_k \mu
+    }, 
 \end{aligned}
 $$
 
-Replacing $x = y^{(k + 1)}$, let $x^{(k + 1)} = \mathcal T y^{(k + 1)}$ then the above rule becomes the new descent rule 
+And invariance 1 from lemma 2.2.3. These relations simplifies away the variable $\gamma_k, v^{(k)}$ from the algorithm we derived. 
 
-$$
-f \left(\underbrace{\mathcal T y^{(k)}}_{x^{(k + 1)}}\right) 
-- 
-\text{env}_h^{L^{-1}}\left(
-    y^{(k)} - L^{-1}\nabla g\left(y^{(k)}\right)
-\right)
-\le - \frac{1}{2L}
-\left\Vert \nabla g\left(y^{(k)}\right)\right\Vert^2
-$$
 
-It's a descent rule because 
+#### **Eliminating $v^{(k)}$ from the Algorithm**
+The update of $v^{(k)}$ from previously gives 
 
 $$
 \begin{aligned}
-    \text{env}_h^{L^{-1}}\left(
-        y^{(k)} - L^{-1}\nabla g\left(y^{(k)}\right)
-    \right) = \min_z \tilde f_{y^{(k)}}(z) &\le f(y^{(k)})
-    \\
-    \implies 
-    f\left(
-        x^{(k + 1)}
-    \right) - f\left(
-        y^{(k)}
+    v^{(k + 1)} &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        (1 - \alpha_k) \gamma_k v^{(k)} 
+        + 
+        \alpha_k \mu y^{(k)}
+        - 
+        \alpha_k \nabla f\left(
+            y^{(k)}
+        \right)
     \right)
-    &\le 
-    \frac{1}{2L}
-    \left\Vert \nabla g\left(y^{(k)}\right)\right\Vert^2.
+    \\
+    &\quad 
+    \left\lbrace 
+        \begin{aligned}
+            (\gamma_k + \alpha_k\mu)y^{(k)} &= \alpha_k \gamma_k v^{(k)}
+            + 
+            \gamma_{k + 1}x^{(k)}
+            \\
+            \alpha_k \gamma_k v^{(k)}
+            &= 
+            (\gamma_k + \alpha_k \mu)y^{(k)} - \gamma_{k + 1}x^{(k)}
+            \\
+            \gamma_k v^{(k)} &= 
+            \alpha_k^{-1}
+            \left(
+                (\gamma_k + \alpha_k \mu)y^{(k)} - \gamma_{k + 1}x^{(k)}
+            \right)
+        \end{aligned}
+    \right.
+    \\
+    & \triangleright \text{substitute $\gamma_k v^{(k)} $ then}
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        (1 - \alpha_k) 
+        \alpha_k^{-1}
+        \left(
+            (\gamma_k + \alpha_k \mu)y^{(k)} - \gamma_{k + 1}x^{(k)}
+        \right)
+        + 
+        \alpha_k \mu y^{(k)}
+        - 
+        \alpha_k \nabla f\left(
+            y^{(k)}
+        \right)
+    \right)
+    \\
+    &= 
+    \frac{1 - \alpha_k}{\gamma_{k + 1}\alpha_k}(\gamma_k + \alpha_k \mu)y^{(k)}
+    - 
+    \frac{1 - \alpha_k}{\alpha_k} x^{(k)} 
+    + 
+    \frac{\alpha_k}{\gamma_{k + 1}}\mu y^{(k)}
+    -
+    \frac{\alpha_k}{\gamma_{k + 1}}\nabla f\left(y^{(k)}\right)
+    \\
+    &= \gamma_{k + 1}^{-1}
+    \left(
+        \frac{(1 - \alpha_k)(\gamma_k + \alpha_k \mu)}{\alpha_k} 
+        + 
+        \alpha_k \mu
+    \right)y^{(k)}
+    - 
+    \frac{1 - \alpha_k}{\alpha_k} x^{(k)} 
+    -
+    \frac{\alpha_k}{\gamma_{k + 1}}\nabla f\left(y^{(k)}\right)
+    \\
+    &\quad  \triangleright 
+    \left\lbrace
+    \begin{aligned}
+        \frac{(1 - \alpha_k)(\gamma_k + \alpha_k \mu)}{\alpha_k} 
+        + 
+        \alpha_k \mu &= 
+        \frac{(1 - \alpha_k)\gamma_k}{\alpha_k} + (1 - \alpha_k)\mu + \alpha_k \mu
+        \\
+        &= \frac{(1 - \alpha_k)\gamma_k}{\alpha_k} + \mu
+        \\
+        & \triangleright 
+        (1 - \alpha_k)\gamma_k = \gamma_{k + 1} - \alpha_k \mu
+        \\
+        &= \gamma_{k + 1}/\alpha_k - \mu + \mu
+        \\
+        &= \gamma_{k + 1}/\alpha_k
+    \end{aligned}
+    \right.
+    \\
+    &= 
+    \alpha^{-1}_k y^{(k)} 
+    - 
+    \frac{1 - \alpha_k}{\alpha_k} x^{(k)} 
+    -
+    \frac{\alpha_k}{\gamma_{k + 1}}\nabla f\left(y^{(k)}\right)
+    \\
+    &= x^{(k)} + 
+    \alpha_{k}^{-1}\left(
+        y^{(k)} - x^{(k)}
+    \right)
+    - 
+    \frac{\alpha_k}{\gamma_{k + 1}}\nabla f\left(y^{(k)}\right)
+    \\
+    &= 
+    x^{(k)} + \alpha_{k}^{-1}
+    \left(
+        y^{(k)} - x^{(k)} - \frac{\alpha_k^2}{\gamma_{k + 1}}\nabla f\left(y^{(k)}\right)
+    \right)
+    \\
+    & \triangleright L\alpha_k^2 = \gamma_{k + 1}
+    \\
+    &= 
+    x^{(k)} + \alpha_{k}^{-1}
+    \left(
+        y^{(k)} - x^{(k)} - L^{-1}\nabla f\left(y^{(k)}\right)
+    \right)
+    \\
+    &
+    \triangleright x^{(k + 1)} = y^{(k)} - L^{-1}\nabla f(y^{(k)}) \text{ is a consequence of $(1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1}$}
+    \\
+    &= x^{(k)} + \alpha_k^{-1}\left(x^{(k + 1)} - x^{(k)}\right). 
 \end{aligned}
 $$
 
-we had bridged the Nesterov generic method to the framework of proximal gradient via the forward backward envelope interpretation. 
+
+Since the extrapolated momentum term is determined by $v^{(k)}$ and $x^{(k)}$, we may formulate $y^{(k + 1)}$ without $v^{(k)}$ as well. Expand the definition of $y^{(k)}$ will yield 
+
+$$
+\begin{aligned}
+    y^{(k + 1)} &= 
+    \frac{
+        \alpha_{k + 1}\gamma_{k + 1}v^{(k + 1)} + \gamma_{k + 2}x^{(k + 1)}
+    }
+    {\gamma_{k + 1} + \alpha_{k + 1}\mu} 
+    \\
+    &= \frac{\alpha_{k + 1}\gamma_{k + 1}}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \left(
+        v^{(k + 1)} + \frac{\gamma_{k + 2}}{\alpha_{k + 1}\gamma_{k + 1}}x^{(k + 1)}
+    \right)
+    \\
+    &= 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \left(
+        v^{(k + 1)}
+        -
+        x^{(k + 1)}
+        + 
+        \left(
+            \frac{\gamma_{k + 2}}{\alpha_{k + 1}\gamma_{k + 1}} + 1
+        \right)
+        x^{(k + 1)}
+    \right)
+    \\
+    & \triangleright  
+    \left\lbrace
+        \begin{aligned}
+            \frac{\gamma_{k + 2}}{\alpha_{k + 1}\gamma_{k + 1}} + 1 
+            & = 
+            \frac{\gamma_{k + 2} + \alpha_{k + 1}\gamma_{k + 1}}{
+                \alpha_{k + 1}\gamma_{k + 1}
+            }
+            \\
+            \triangleright  &\;
+            \gamma_{k + 2} = (1 - \alpha_{k + 1})\gamma_{k + 1} 
+            + \alpha_{k + 1}\mu
+            \\
+            &= 
+            \frac{
+                (1 - \alpha_{k + 1})\gamma_{k + 1} 
+                + \alpha_{k + 1}\mu + \alpha_{k + 1}\gamma_{k + 1}
+            }{
+                \alpha_{k + 1}\gamma_{k + 1}
+            }
+            \\
+            &= \frac{\gamma_{k + 1} + \alpha_{k + 1}\mu}{\alpha_{k + 1}\gamma_{k + 1}}
+        \end{aligned}
+    \right.
+    \\
+    &= 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \left(
+        v^{(k + 1)}
+        -
+        x^{(k + 1)}
+        + 
+        \left(
+            \frac{\gamma_{k + 1} + \alpha_{k + 1}\mu}{\alpha_{k + 1}\gamma_{k + 1}}
+        \right)
+        x^{(k + 1)}
+    \right)
+    \\
+    &= 
+    x^{(k + 1)} + 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \left(
+        v^{(k + 1)} - x^{(k + 1)}
+    \right), 
+\end{aligned}
+$$
+
+finally, recall that $v^{(k +1)}$ has a form that doesn't require $v^{(k)}$ from the previous iteration and therefore we have that 
+
+$$
+\begin{aligned}
+    v^{(k + 1)} - x^{(k +1)} &= x^{(k)} + \alpha_k\left(
+        x^{(k + 1)} - x^{(k)}
+    \right) - x^{(k +1)}
+    \\
+    &= x^{(k)} + \left(
+        \alpha_k^{-1} - 1
+    \right)x^{(k + 1)}
+    - \alpha_k^{-1}x^{(k)}
+    \\
+    &= (\alpha_k^{-1} - 1)\left(
+        x^{(k + 1)} - x^{(k)}
+    \right), 
+\end{aligned}
+$$
+
+resulting in the expression 
+
+$$
+\begin{aligned}
+    y^{(k + 1)} = 
+    x^{(k + 1)} + 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}(\alpha_k^{-1} - 1)}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \left(
+        x^{(k + 1)} - x^{(k)}
+    \right), 
+\end{aligned}
+$$
+
+for the extrapolated momentum term for the algorithm. 
 
 
-**Warn**
-<mark style="background: #FF5582A6;">
-There is something wrong with this claim. The forward backwards envelope is not quite right. </mark>
+#### **Eliminating the $\gamma_k$ Constant**
+
+
+
+

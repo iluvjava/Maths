@@ -45,7 +45,7 @@ $$
 Which is the Huber Loss function in statistics. 
 
 **Dimitri's Comments**:
-> The moreau envelope is a generalization of the set distance squared operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
+> The Moreau envelope is a generalization of the set distance squared operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
 #### **Theorem | Basic Prox Identities**
 
@@ -58,13 +58,15 @@ Which is the Huber Loss function in statistics.
 >     & \lambda\text{env}_f^\mu = 
 >     \text{env}_{\lambda f}^{\mu/\lambda}
 >     \\
+>     &\text{env}_f^\mu(x + y) = \text{env}_{f(x + (\cdot))}^\mu(y)
+>     \\
 >     & \text{prox}_{f}(\alpha f) = \alpha \left(\underset{\alpha^{-2}f(\alpha(\cdot))}{\text{prox}}(x)\right)
 >     \\
 >     & \text{prox}_{\alpha f}(x) = \sqrt{\alpha}\left(\underset{f(\sqrt{\alpha}(\cdot))}{\text{prox}}
 >     \left(x / \sqrt{\alpha}\right)\right). 
 > \end{aligned}
 > $$
-> For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$. 
+> For notational simplicity, $\text{prox}_{f,1}$ is the same as $\text{prox}_{f}$, the same applies for envelope. 
 
 **Proof**
 
@@ -75,7 +77,7 @@ See Exercise below.
 See proof for Basic Prox Identities. 
 
 #### **Theorem | Equivalence Characterization for Proximal Point** 
-> For a convex proper, lower semi-continous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
+> For a convex proper, lower semi-continuous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
 > 1. $x = \text{prox}_f(y)$, 
 > 2. $y - x\in \partial f(x)$,
 > 3. $\forall z \in X, x \in \text{prox}_f(y): \langle z - x, y - x\rangle \le f(z) - f(x)$, this is the generalized obtuse angle theorem for the proximal operator. 
@@ -156,14 +158,14 @@ Here, I want to highlight one important observation we should make here, and tha
 ---
 ### **Prox is L1-Lipschitz under 2-Norm, and Firmly Non-expansive**
 
-> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreoever, for any points $x, y\in \mathbb E$ the estimate holds: 
+> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
 > \begin{aligned}
 >     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
 >     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
 > \end{aligned}
 > $$
-Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy schwartz inequality). 
+Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy Schwartz inequality). 
 
 **Proof**
 
