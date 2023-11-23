@@ -564,38 +564,14 @@ $$
             \frac{L\eta^2}{2} - \frac{\eta}{2}
         \right) + 
         t\left(
-          \frac{L \eta^2}{2}   - \eta /2
+          \frac{L \eta^2}{2}   - \eta 
         \right)
     \right)
     \left\Vert \nabla f\left( x^{(t)} \right)\right\Vert^2
     \\
-    &= 
-    \left(
-        (t + 1) \frac{L\eta^2}{2} - 
-        t\eta - \frac{\eta}{2}
-    \right)\left\Vert
-        \nabla f\left(
-            x^{(t)}
-        \right)
-    \right\Vert^2
+    & \triangleright \text{if $\eta\in (0, 1/L)$, } 
     \\
-    &= \left(
-            (t + 1) \frac{L\eta^2}{2} - 
-            \eta \left(t + \frac{1}{2}\right)
-        \right)
-        \left\Vert
-        \nabla f\left(
-            x^{(t)}
-        \right)
-    \right\Vert^2
-    \\
-    &\le 
-    \left(
-        t + \frac{1}{2}
-    \right)
-    \left(
-        \frac{L}{2\eta^2} - \eta
-    \right) < 0, 
+    & < 0
 \end{aligned}
 $$
 
@@ -621,4 +597,8 @@ $$
 \end{aligned}
 $$
 
-Observe that, we didn't assume at all that, $x^*$ is a minimizer. Th assumption was made so that $E_0$ is strictly positive, and  $\delta_t$ would be strictly positive. for a function bounded below. But without the bounded below, and $x^*$ being a minimizer, the above derivation remains true. Finally, observe that the quantity $\Vert x^{(t + 1)} - x^*\Vert^2 - \Vert x^{(t)} - x^*\Vert$ is the same as the proof for smooth gradient descent, before we apply the telescoping sum. Walking that sequence of inequality in reverse would yield a different proof for the descent property of the Lyapunov function. 
+Observe that, we didn't assume at all that, $x^*$ is a minimizer. The assumption was made so that $E_0$ is strictly positive, and  $\delta_t$ would be strictly positive. for a function bounded below. But without the bounded below, and $x^*$ being a minimizer, the above derivation remains true. 
+
+**Remarks**
+
+We are not sure why the descent property is asserted for a range of $\sigma \in (0, 1/L)$, instead of the bigger range of $\sigma \in (0, 2/L)$, was it was the case when we derived the gradient descent algorithm. 

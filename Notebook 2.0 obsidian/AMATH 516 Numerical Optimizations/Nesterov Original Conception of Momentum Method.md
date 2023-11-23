@@ -159,7 +159,31 @@ therefore we must have $\lim_{k\rightarrow \infty} \lambda_k = 0$.
 
 **Remarks**
 
-To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the stimating functions. 
+To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the estimating functions. 
+
+#### **Corollary | Characterization of the Estimating Sequences and Functions**
+> 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
+> 2. $\phi_0(\cdot)$ is a arbitrary convex function in $\mathbb R^n$, 
+> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, 
+> 4. The coefficients $\{\alpha_k\}_{k = 0}^\infty$ satisfy conditions $\alpha_k \in (0, 1)$ and $\sum_{k = 0}^{\infty}\alpha_k = \infty$, 
+> 5. We choose $\lambda_0 = 1$. 
+> Then the pair of estimating sequence and function $(\phi_k(\cdot))_{k = 0}^\infty$ and $(\lambda_k)_{k = 0}^\infty$, defined recursively by the relations 
+> $$
+>   \begin{aligned}
+>       \lambda_{k + 1} &= (1 - \alpha_k) \lambda_k, 
+>       \\
+>       \phi_{k + 1}(x) &= (1 - \alpha_k)\phi_k(x) + \alpha_k
+>               \varphi(x | y^{(k)})
+>   \end{aligned}\tag{[1]}
+> $$
+> 6. Where $\varphi(x| y^{(k)})$ is the lower bounding function satisfying the condition $\varphi(x| y^{(k)}) \le F(x)\;\forall x$. 
+> Are estimating sequences and functions. 
+
+**Proof**
+
+The same exact proof follows through, replacing the convexiy lower bound for $f\in \mathcal F_{\mu, L}^{1, 1}$ with rule (6.) above. 
+
+
 
 
 ---
@@ -507,7 +531,7 @@ $$
             \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)} 
         \right\rangle
     \right)
-    + f\left(y^{(k)}\right) 
+    + \alpha_kf\left(y^{(k)}\right) 
     - 
     \frac{\alpha_k^2}{2 \gamma_{k + 1}}\left\Vert
         \nabla f\left(y^{(k)}\right)
@@ -525,7 +549,7 @@ $$
     \\
     &=
     \left\langle 
-        \nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)}
+        (1 - \alpha_k)\nabla f\left(y^{(k)}\right), x^{(k)} - y^{(k)}
     \right\rangle
     + 
     f\left(y^{(k)}\right) 
@@ -561,7 +585,7 @@ $$
 \end{aligned}
 $$
 
-we have some freedom to choose vector $y^{(k)}, \alpha_k, \gamma_k$, to do that we perform gradient descent on $y^{(k)}$, recall that for L-Smooth function $f$, with $x^{(k + 1)} = y^{(k)} - 1/L \nabla f(y^{(k)})$ we would have 
+we have some freedom to choose vector $y^{(k)}, \alpha_k, \gamma_k$, to do that we perform gradient descent on $y^{(k)}$, recall that for L-Smooth function $f$, with $x^{(k + 1)} = y^{(k)} - 1/L \nabla f(y^{(k)})$ we would have (This is the descent lemma for smooth gradient descent. )
 
 $$
 \begin{aligned}

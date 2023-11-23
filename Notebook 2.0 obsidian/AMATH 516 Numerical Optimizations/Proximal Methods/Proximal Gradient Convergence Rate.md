@@ -7,7 +7,7 @@ We still assume that
 1. $f = g+ h$. 
 2. $g(x)$ has a gradient and it's strongly smooth constant $L$. 
 3. $h$ is convex not not necessarily smooth. 
-4. $\beta$ is the stepsize of the algorithm, with $\beta \ge L$.
+4. $\beta$ is the smoothness upper bound parameter, with $\beta \ge L$.
 
 To simplify notation, Let $T = \text{prox}_{\beta^{-1}h}\circ [I - \beta^{-1}\nabla g]$ be an operator denoting the proximal gradient operations. 
 
@@ -282,7 +282,7 @@ This is also stated as Theorem 10.16, In Amir Beck's first order optimization me
 > The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the zero function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 
 
 #### **Corollary-2 | Fundamental Proximal Gradient Lemma with Smooth and Strongly Convex Assumption**
-> The Bregman divergence of smooth part $g$ can be lowered bounded by $\beta/2\Vert x - y\Vert^2$ when $g$ is $\alpha$-strong convex. This will yield the Fundamental Proximal Gradient Lemma to be 
+> The Bregman divergence of smooth part $g$ can be lowered bounded by $\beta/2\Vert x - y\Vert^2$ when $g$ is $\alpha$-strong convex. This will yield the Fundamental Proximal Gradient Lemma with strong convexity to it. 
 
 
 ---
