@@ -942,7 +942,7 @@ $$
 \end{aligned}
 $$
 
-for the extrapolated momentum term for the algorithm. 
+for the extrapolated momentum term for the algorithm.  The extrapolated step $y^{(k + 1)}$ will be used for the next iteration for $x^{(k + 1)}$, and the coefficients for $x^{(k + 1)} - x^{(k)}$ is the momentum term. 
 
 
 #### **Eliminating the $\gamma_k$ Constant**

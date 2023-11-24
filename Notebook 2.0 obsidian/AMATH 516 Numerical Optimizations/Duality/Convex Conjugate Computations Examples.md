@@ -19,7 +19,7 @@ Here we will be packing a bunch of good examples with proofs, so it can serve as
 > Given scalar function $f(x)$, preferably convex, the Fenchel conjugate is denoted as $f^*(x)$, sometimes $f^{\star}(x)$, and it's given by: 
 > $$
 > f^{\star} (z) = \sup_x \left\lbrace
->     z^Tx + f(x)
+>     z^Tx - f(x)
 > \right\rbrace
 > $$
 

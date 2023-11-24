@@ -585,8 +585,9 @@ $$
         x^{(t)} - x^*
     \right\Vert^2 + 
     t\left(f\left(
-        x^{(t)} - f(x^*)
-    \right)\right) &\le 0
+        x^{(t)} 
+        \right)- f(x^*)
+    \right) &\le 0
     \\
     \implies 
     f\left(
@@ -601,4 +602,4 @@ Observe that, we didn't assume at all that, $x^*$ is a minimizer. The assumption
 
 **Remarks**
 
-We are not sure why the descent property is asserted for a range of $\sigma \in (0, 1/L)$, instead of the bigger range of $\sigma \in (0, 2/L)$, was it was the case when we derived the gradient descent algorithm. 
+We are not sure why the descent property is asserted for a range of $\eta \in (0, 1/L)$, instead of the bigger range of $\eta \in (0, 2/L)$, was it was the case when we derived the gradient descent algorithm. Would be great to find a convex function where, the above quantity doesn't decrease for stepzies where $\eta \in (1/L, 2/L)$. 
