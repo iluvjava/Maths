@@ -159,7 +159,7 @@ therefore we must have $\lim_{k\rightarrow \infty} \lambda_k = 0$.
 
 **Remarks**
 
-To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the estimating functions. 
+To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the estimating functions. In the later text by Nesterov, a new lower bound function is proposed with the proximal operator, after some derivation, that lower bound function yield the accelerated proximal gradient method. 
 
 #### **Corollary | Characterization of the Estimating Sequences and Functions**
 > 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
@@ -946,6 +946,64 @@ for the extrapolated momentum term for the algorithm.  The extrapolated step $y^
 
 
 #### **Eliminating the $\gamma_k$ Constant**
+
+Observe that the new update formula for the extrapolated momentum $y^{(k + 1)}$, of the future iteration, contains a momentum term. Let the $\beta_k$ we then simplify away the $\gamma_{k + 1}$. We make use of the first constraints. 
+
+$$
+\begin{aligned}
+    \beta_k &= 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}(\alpha_k^{-1} - 1)}{\gamma_{k + 1} + \alpha_{k + 1}\mu}
+    \\
+    &= \frac{(1 - \alpha_k)\gamma_{k + 1}\alpha_{k + 1}}{
+        \alpha_k(\gamma_{k + 1} + \alpha_{k + 1}\mu)
+    }
+    \\
+    &\; 
+    \triangleright \text{using }
+    \mu\alpha_{k + 1} = L \alpha_{k + 1}^2 - L(1 - \alpha_{k + 1})\alpha_k^2
+    \\
+    &= \frac{\alpha_{k + 1}\gamma_{k + 1}(1 - \alpha_k)}{
+        \alpha_k(\gamma_{k + 1} + L \alpha_{k + 1}^2 - (1 - \alpha_{k + 1})\gamma_{k + 1})
+    }
+    \\
+    &= 
+    \frac{\alpha_{k + 1}\gamma_{k + 1}(1 - \alpha_k)}{
+        \alpha_k(
+            L \alpha_{k + 1}^2 + \alpha_{k + 1}\gamma_{k + 1}
+        )
+    }
+    \\
+    &= 
+    \frac{\gamma_{k + 1}(1 - \alpha_k)}{
+        \alpha_k(
+            L \alpha_{k + 1} + \gamma_{k + 1}
+        )
+    }
+    \\
+    &\; \triangleright \text{using }
+    \gamma_{k + 1} = \alpha_k^2 L
+    \\
+    &= 
+    \frac{
+        \alpha_{k}^2L(1 - \alpha_k)}{
+        \alpha_k(
+            L \alpha_{k + 1} + \alpha_{k}^2L
+        )
+    }
+    \\
+    &= 
+    \frac{\alpha_k^2 (1 - \alpha_k)}{
+        \alpha_k(\alpha_k^2 + \alpha_{k + 1})
+    }
+    \\
+    &= 
+    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}, 
+\end{aligned}
+$$
+
+and hence, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. 
+
+
 
 
 

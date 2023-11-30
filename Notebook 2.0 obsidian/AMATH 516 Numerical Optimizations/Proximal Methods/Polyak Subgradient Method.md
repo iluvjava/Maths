@@ -49,14 +49,14 @@ The method solves $\min_{x}f(x)$ given that we know:
 
 **Algorithm Properties**
 
-1. It's a montone convergence method, $x^{(k)}$ has Fejer Montone convergence towards the set $S$. The fixed point of the subgradient Polyak iteration will be a minimizer. 
+1. It's a monotone convergence method, $x^{(k)}$ has Fejer Monotone convergence towards the set $S$. The fixed point of the subgradient Polyak iteration will be a minimizer. 
 2. $f(x^{(k)})\rightarrow \mu$ at an rate of $\mathcal O (1/k)$. 
 3. The iterates, $x^{(k)}\rightarrow \bar x$, where, the point $\bar x \in S$ will be clear later on. 
 
 We prove these properties one by one in the up coming section. Before we start we list a major results from the pre-requisite of this file, which we will be reusing. 
 
 **Lemma: Projected Subgradient First Lemma**
-> Let $f$ be Lipschitz continuous on $Q$ with constant $L$, assumine that $S\neq \emptyset$, let $\bar x \in S$, then: 
+> Let $f$ be Lipschitz continuous on $Q$ with constant $L$, assume that $S\neq \emptyset$, let $\bar x \in S$, then: 
 > $$
 > \Vert x^{(k + 1)} - x^+\Vert^2 \le \Vert x^{(k)} -\bar x\Vert^2 + \eta_k^2 \Vert f'(x^{(k)})\Vert^2 -2\eta_k \langle x^{(k)} - \bar x, f'(x^{(k)})\rangle. 
 > $$
@@ -94,7 +94,7 @@ $$
 $$
 - \[1\]: Convexity, we use $\mu + \langle v^{(k)}, e^{(k)}\rangle \le f(x^{(k)})$, which is $\langle v^{(k)}, e^{(k)}\rangle \le E_k$. 
 
-To obtain maximum amount of decrease in the objective value, we take derivative of $\epsilon_t$ to minize the RHS, resulting in solving the equation: 
+To obtain maximum amount of decrease in the objective value, we take derivative of $\epsilon_t$ to minimize the RHS, resulting in solving the equation: 
 
 $$
 \begin{aligned}

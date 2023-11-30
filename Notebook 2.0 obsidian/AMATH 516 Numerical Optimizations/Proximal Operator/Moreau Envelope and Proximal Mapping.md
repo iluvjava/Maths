@@ -7,7 +7,7 @@ alias: Morau Envelope and Proximal Operators
 ---
 ### **Intro**
 
-This is a central hub for various concepts about Moreau Envelope and Proixmal mapping. Here we will focus on the case when the function $f$ is closed convex and proper so the properties of the prox is more predictable and allows us to derive more theorems. A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
+This is a central hub for various concepts about Moreau Envelope and Proixmal mapping. Here we will focus on the case when the function $f$ is closed convex and proper and $\Vert \cdot\Vert$ is the euclidean norm. so the properties of the prox is more predictable and allows us to derive more theorems. A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
 
 $$
 \begin{aligned}
@@ -22,7 +22,15 @@ $$
 \end{aligned}
 $$
 
-The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([[../CVX Geometry/Convexity Preserving Operations for Functions]]) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex.   This conceptualization will help with the intuitive understanding of many proximal algorithm.
+The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md)) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex. Of course, if $p\in \text{prox}_f(x)$ then 
+
+$$
+\begin{aligned}
+    \text{env}_f^\alpha(x) = f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2 \le f(y) + 
+    \frac{1}{2\alpha}\Vert x - y\Vert^2 \quad \forall y \in \mathbb R^n
+\end{aligned}
+$$
+setting $y = x$ would yield the fact that envelope is always below the function. 
 
 **Notation nuance**
 

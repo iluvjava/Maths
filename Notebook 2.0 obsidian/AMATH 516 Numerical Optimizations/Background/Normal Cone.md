@@ -51,7 +51,7 @@ Dimitry's 516 textbook, definition 2.34 page 38.
 > \begin{aligned}
 >     N_C(\bar x) = 
 >     \begin{cases}
->         \emptyset & x\not\in C
+>         \emptyset & \bar x\not\in C
 >         \\
 >         \{u| \langle y - \bar x, u\rangle \le 0\;\forall y\in C\} & \text{else}, 
 >     \end{cases}
