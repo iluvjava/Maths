@@ -159,7 +159,7 @@ $$
 - \[1\]: Performs telescoping summation. 
 - \[2\]: Recall $L$ is the Lipschitz constant bounding the norm of all the subgradient of $f$. 
 
-By the montone property of the iterates $\Vert e^{(k)}\Vert$, the RHS is a positive quantities. This last statement means that the sum of all the gadient step sizes is a convergence series, which would implies that each term converges, hence $\eta_k$ converges to zero. Furthermore, if we characterize the smallest function value over all the iterates, then we have the following expression: 
+By the monotone property of the iterates $\Vert e^{(k)}\Vert$, the RHS is a positive quantities. This last statement means that the sum of all the gradient step sizes is a convergence series, which would implies that each term converges, hence $\eta_k$ converges to zero. Furthermore, if we characterize the smallest function value over all the iterates, then we have the following expression: 
 
 $$
 \begin{aligned}
@@ -177,7 +177,7 @@ $$
 
 therefore $\lim\inf_{t\rightarrow \infty}{E_t}\rightarrow 0$[^1], and the error of the function value is converging at a rate of $\mathcal O(1/k)$ (2).  
 
-From (1), the sequence is Fejer Montone and also bounded. let $\bar x$ be a cluster point of the sequence, The projection operator $\Pi_Q$ asserts that $(x^{(k)})_{k\in \N}$ is a sequence in $Q$. Since $Q$ is closed, we know that $\bar x \in Q$ by limit point in a closed set. From the fact that $f$ is an l.s.c and (2): 
+From (1), the sequence is Fejer Monotone and also bounded. let $\bar x$ be a cluster point of the sequence, The projection operator $\Pi_Q$ asserts that $(x^{(k)})_{k\in \N}$ is a sequence in $Q$. Since $Q$ is closed, we know that $\bar x \in Q$ by limit point in a closed set. From the fact that $f$ is an l.s.c and (2): 
 
 $$
 \begin{aligned}

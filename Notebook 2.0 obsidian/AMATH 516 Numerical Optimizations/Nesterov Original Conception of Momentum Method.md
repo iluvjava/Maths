@@ -1004,7 +1004,15 @@ $$
 and hence, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. 
 
 
+---
+### **Conclusion**
 
-
-
-
+The Nesterov's framework for extrapolated momentum requires the use of 
+- An estimating function and estimating sequence. 
+  - Def 2.2.1
+  - Lemma 2.2.1
+- It requires a way of updating the nesterov sequence/functions consistently to work. For example in 
+    - Lemma 2.2.2
+    - A lower bounding function $\phi(x | y^{(k)})$, at the extrapolated point $y^{(k)}$. 
+    - A way of updating the estimating sequence/function. 
+- It may require a descent lemma, for example, it showed up at our derivation at the very end to inductively looking for $x^{(k)}$ such that $\phi_k^* \ge f(x^{(k)})$ for the generated sequence of iterates. 
