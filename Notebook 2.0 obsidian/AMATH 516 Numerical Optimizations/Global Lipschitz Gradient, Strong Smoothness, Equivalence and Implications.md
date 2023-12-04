@@ -42,12 +42,12 @@ In this file we are interested in the following list of conditions:
 7. $0 \le \langle \nabla f(x) - \nabla f(y), x - y\rangle\le  L\Vert x - y\Vert^2$, bounded monotonicity. 
 8. $\frac{L\Vert x\Vert^2}{2} - f(x)$ is a convex function. 
 9. $\alpha f(x) + (1 - \alpha)f(y) - f(\alpha x + (2 - \alpha)y) \ge \frac{\alpha(1 - \alpha)}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert_\star^2$ for all $\alpha \in (0, 1)$. The Jensen Lower bound under strong smoothness of the function. 
-10. $0 \le \alpha f(x) + (1 - \alpha) f(y) - f(\alpha x + (1 - \alpha) y)\le \alpha(1 - \alpha)\frac{L}{2}\Vert x - y\Vert^2$, a Jesen's quadratic upper bound for the function. 
+10. $0 \le \alpha f(x) + (1 - \alpha) f(y) - f(\alpha x + (1 - \alpha) y)\le \alpha(1 - \alpha)\frac{L}{2}\Vert x - y\Vert^2$, a Jensen's quadratic upper bound for the function. 
 
 
 **Remarks**
 
-An stronger statement for the Globally Lipschitz gradient is the fact that the spectral norm of Hessian is bounded globally as well, regardless of convexity of the function or not. 
+A stronger statement for the Globally Lipschitz gradient is the fact that the spectral norm of Hessian is bounded globally as well, regardless of convexity of the function or not. 
 
 #### **Proposition 1 | Lipschitz Gradient Implications**
 

@@ -29,10 +29,10 @@ We use the same definition for the class of GA1st function to analyze the lower 
 
 **Remarks**
 
-This lower bound provided by Nesterov is more straightforward than the case for Lipschitz Smooth function. It's simply saying that there eixsts a function for all algorithms such that the optimal value is bounded from below, for all iterations value $k \in \mathbb N$. 
+This lower bound provided by Nesterov is more straightforward than the case for Lipschitz Smooth function. It's simply saying the existence of some functions for all algorithms such that the optimal value is bounded from below, for all iterations value $k \in \mathbb N$. 
 
 ---
-#### **Invstigating a Special Function**
+#### **Investigating a Special Function**
 
 We choose $f \in \mathcal F^{\infty, 1}_{\mu, Q_f}$, which is a strongly convex function, and let $A\in l^2 \times l^2$ be an infinite sized matrix in $l^2$ sequence space. Suppose that $A = \text{tridiag}(-1, 2, -1)$, then we define and derive 
 

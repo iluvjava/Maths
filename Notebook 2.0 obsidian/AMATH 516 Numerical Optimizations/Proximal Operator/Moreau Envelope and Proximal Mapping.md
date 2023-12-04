@@ -558,10 +558,14 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 ---
 ### **Examples**
 
-We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. 
+We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. For more about the projection onto a convex set, see [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
 
 **Example | Projection onto Convex Sets**
-> #UNFINISHED 
+> Allow $f(x) = \delta_Q(x)$ to be an indicator function of a closed convex set $Q$, then the proximal operator $\text{prox}_{\delta_Q}(x) = \Pi_Q(x)$, which is the projection onto the convex $Q$. 
+
+**Demonstrations**
+
+We invoke the definition and the meaning of this, and then we exam the property of the proximal mapping and envelope from above using this example. 
 
 
 ---

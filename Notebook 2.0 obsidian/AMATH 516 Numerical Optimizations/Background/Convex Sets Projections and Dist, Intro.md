@@ -45,6 +45,10 @@ $$
 
 Where, the activation function is closed, and the distance function is also closed. Since the function is closed and coercive, it has minimizers. 
 
+**Remarks**
+
+The the existence of convex set projection in the Hilbert Space, visit [Hilbert Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Hilbert%20Space%20Introduction.md). 
+
 
 **Theorem | Unique Projection of Convex Sets**
 
@@ -54,7 +58,7 @@ Where, the activation function is closed, and the distance function is also clos
 
 **Remarks:**
 
-With the additional assumption that $C$ is a convex set, we obtain the fact that **the distance function is also a convex function** because it's the infimal convolution between 2 proper convex function, one real valued, the other one is augmented real valued, see [[Convexity Preserving Operations for Functions]]. 
+With the additional assumption that $C$ is a convex set, we obtain the fact that **the distance function is also a convex function** because it's the infimum convolution between 2 proper convex function, one real valued, the other one is augmented real valued, see [[Convexity Preserving Operations for Functions]]. 
 
 
 ---
@@ -122,7 +126,7 @@ The absolute value of the distance is then bounded by the differences between th
 
 **Remarks**: 
 
-In addition to being L1 Lipschitz, the function is also convex, it's convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimal convolution theorem.
+In addition to being L1 Lipschitz, the function is also convex, its convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimum convolution theorem.
 
 
 ---
