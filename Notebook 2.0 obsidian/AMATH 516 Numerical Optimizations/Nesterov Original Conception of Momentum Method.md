@@ -707,7 +707,21 @@ $$
 \end{aligned}
 $$
 
-And invariance 1 from lemma 2.2.3. These relations simplifies away the variable $\gamma_k, v^{(k)}$ from the algorithm we derived. 
+And invariance 1 from lemma 2.2.3. These relations simplifies away the variable $\gamma_k, v^{(k)}$ from the algorithm we derived. To start, we eliminate $\gamma_k$ from the expression for $\alpha_k$. To see that we have
+
+$$
+\begin{aligned}
+    L \alpha_{k + 1}^2 &= 
+    (1 - \alpha_{k + 1})\gamma_{k + 1} + \alpha_{k + 1}\mu
+    \\
+    &= (1 - \alpha_{k + 1})L \alpha_k^2 + \alpha_{k + 1}\mu
+    \\
+    \alpha_{k + 1}^2 &= 
+    (1 - \alpha_{k + 1}) \alpha_k^2 + \alpha_{k + 1}\frac{\mu}{L}. 
+\end{aligned}
+$$
+
+We will now use $q_f = \mu/L$. 
 
 
 #### **Eliminating $v^{(k)}$ from the Algorithm**
@@ -728,6 +742,7 @@ $$
     \right)
     \\
     &\quad 
+    \triangleright
     \left\lbrace 
         \begin{aligned}
             (\gamma_k + \alpha_k\mu)y^{(k)} &= \alpha_k \gamma_k v^{(k)}
@@ -876,7 +891,7 @@ $$
                 \alpha_{k + 1}\gamma_{k + 1}
             }
             \\
-            \triangleright  &\;
+            & \triangleright  \;
             \gamma_{k + 2} = (1 - \alpha_{k + 1})\gamma_{k + 1} 
             + \alpha_{k + 1}\mu
             \\
@@ -1001,11 +1016,60 @@ $$
     }
     \\
     &= 
-    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}, 
+    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}. 
 \end{aligned}
 $$
 
-and hence, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. 
+Finally, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. This results in the following simplified generic accelerated momentum method 
+
+$$
+\begin{aligned}
+    & \text{0. Choose any $x^{(0)} \in \mathbb R^n, \alpha_0 \in (0, 1),  y^{(0)} = x^{(0)}$}. 
+    \\
+    & \text{1. the kth iteration $k \ge 0$ is }
+    \\
+    & \quad 
+    \begin{aligned}
+        & \text{(a.) } x^{(k + 1)} = y_k - L^{-1}\nabla f(y^{(k)})
+        \\
+        & \text{(b.) } 
+        \alpha_{k + 1} \in (0, 1) \text{ s.t: }
+        \alpha_{k + 1}^2 = (1 + \alpha_{k + 1})\alpha_k^2 + q_f \alpha_{k + 1}
+        \\
+        & \text{(c.) } 
+        \beta_k := \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}
+        \\
+        & \text{(d.) }
+        y^{(k + 1)} = x^{(k + 1)} + \beta_k\left(
+            x^{(k + 1)} - x^{(k)}
+        \right)
+    \end{aligned}
+\end{aligned}
+$$
+
+
+---
+### **A Generic Convergence Results**
+
+We present a generic convergence results based on the above generic method. This is listed as Theorem 2.2.1 in Nesterov's writing. 
+
+### **Thm (2.2.1) | Generic Convergence Results**
+> The scheme generates a sequence of points $\{x^{(k)}\}_{k = 0}^\infty$ such that 
+> $$
+> \begin{aligned}
+>     f(x^{(k)})  - f^* &\le 
+>     \lambda_k 
+>     \left(
+>         f(x^{(0)}) - f^* + \gamma_0
+>         \Vert x^{(0)} - x^*\Vert^2
+>     \right), 
+> \end{aligned}
+> $$
+> and by the generic accelerated momentum method, we have $\lambda_0 = 1$ and $\lambda_k = \prod_{i = 0}^{k - 1}(1 - \alpha_i)$. 
+
+**Proof**
+
+This is just an example of lemma 2.2.1 for the proposed Generic Accelerated Momentum method. 
 
 
 ---

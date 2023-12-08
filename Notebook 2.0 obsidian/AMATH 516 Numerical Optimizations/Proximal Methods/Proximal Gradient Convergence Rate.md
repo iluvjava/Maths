@@ -218,10 +218,10 @@ starting with the RHS of the lemma stated above, using the convexity of $g$, Bre
 $$
 \begin{aligned}
     \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y)
-    &\le 
+    &\ge
     \frac{L}{2}\left(
         \Vert x - y^+\Vert^2 - \Vert x - y\Vert^2
-    \right)
+    \right) 
     \\
     &= \frac{L}{2}\left(
         \Vert x - y + y - y^+\Vert^2 - \Vert x - y\Vert^2
@@ -251,7 +251,7 @@ $$
     \frac{L}{2}\Vert x - Ty\Vert^2 \quad \textcolor{gray}{\triangleright \text{Polyak Inequality by S-CVX of upper surrogate minimized}}
     \\
     \frac{L}{2}\Vert x - Ty\Vert^2 &\le 
-    m_y(x) - m_y(Ty)
+    m_y(x) - m_y(Ty) \quad \triangleright \; \text{quadratic growth of strongly convex. }
     \\
     &= 
     g(y) + \langle \nabla g(y), x - y\rangle + \frac{L}{2} \Vert x - y\Vert^2 + h(x) - m_y(Ty)
@@ -270,9 +270,9 @@ $$
 \end{aligned}
 $$
 
-\[1\]: By the fact that the envelope is always larger than the value of the function at the same point. 
+\[1\]: By the fact that the envelope is always smaller than the value of the function at the same point. It's now done. 
 
-And we had shown the statement in the lemma. 
+
 
 **Remarks**
 
@@ -283,6 +283,11 @@ This is also stated as Theorem 10.16, In Amir Beck's first order optimization me
 
 #### **Corollary-2 | Fundamental Proximal Gradient Lemma with Smooth and Strongly Convex Assumption**
 > The Bregman divergence of smooth part $g$ can be lowered bounded by $\beta/2\Vert x - y\Vert^2$ when $g$ is $\alpha$-strong convex. This will yield the Fundamental Proximal Gradient Lemma with strong convexity to it. 
+>
+
+#### **Corollary 3 | Alternative Representation using Gradient Mapping**
+
+> 
 
 
 ---

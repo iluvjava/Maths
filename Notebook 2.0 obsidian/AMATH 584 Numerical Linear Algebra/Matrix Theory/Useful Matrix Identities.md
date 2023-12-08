@@ -8,7 +8,7 @@ Results can be generalized to rings too.
 Let $P$ be invertible squared matrix, then we can say that: 
 
 > $$
-> (I + P)^{-1} = I- P（I+ P)^{-1} = I - (I + P)^{-1}P \tag{1}
+> (I + P)^{-1} = I- P(I+ P)^{-1} = I - (I + P)^{-1}P \tag{1}
 > $$
 
 By symmetry

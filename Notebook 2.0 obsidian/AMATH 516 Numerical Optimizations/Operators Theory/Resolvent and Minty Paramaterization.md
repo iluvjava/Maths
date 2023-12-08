@@ -59,6 +59,16 @@ which completes the proof.
 
 **References**: Heniz's book, 23.18
 
+**Remarks**
+
+This theorem can hold for all $T: \mathbb E \mapsto 2^{\mathbb E}$, and it doesn't have to be a maximally monotone operator. The exercise from Dimitri didn't use have the condition that it's maximal monotone, it can be proved direclty by the definition of an inverse map. 
+
+---
+### **Resolvent and Inverse are Linear Transform on the Graph of the Operators**
+
+
+
+
 ---
 ### **Resolvent of Maximal Monotone Operators**
 
@@ -83,6 +93,7 @@ To show, we first requires everything from [[Minty's Theorem, The Surjectivity T
 **References:** 
 
 Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516. 
+
 
 
 ---
