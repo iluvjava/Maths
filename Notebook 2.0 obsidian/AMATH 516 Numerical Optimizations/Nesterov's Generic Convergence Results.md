@@ -3,7 +3,158 @@
 ----
 ### **Intro**
 
-We prove the convergence rate by faithfully follow Nesterov's book on chapter 2. We show the convergence of his generic method as well. We first present a generic results which doesn't necessarily requires knowledge about the sequence $\lambda_k, \alpha_k$. Based on that results we then find a convergence rate of the generic algorithm proposed earlier for the class of convex functions. 
+We prove the convergence rate **by faithfully following Nesterov's book on chapter 2.** We show the convergence of his generic method as well. We first present a generic results which doesn't necessarily requires knowledge about the sequence $\lambda_k, \alpha_k$. Based on that results we then find a convergence rate of the generic algorithm proposed earlier for the class of convex functions. 
+
+#### **Nesterov Generic Algorithm (2.2.7)**
 
 
+$$
+\begin{aligned}
+    \text{(1):}\; & \text{$k$ th iteration generates iterates by}
+    \\
+    &
+    \begin{aligned}
+        \text{(a):}\; & \text{Choose }\alpha_k \in(0, 1) \text{ s.t: }
+        L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1}.
+        \\
+        \text{(b):}\; &
+        \text{Choose } y^{(k)} = 
+        (\gamma_k + \alpha_k \mu)^{-1}\left(
+            \alpha_k\gamma_kv^{k} + \gamma_{k + 1}x^{(k)}
+        \right).
+        \\
+        \text{(c):}\; & y^{(k)} = 
+        \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+            \gamma_k + \alpha_k \mu
+        }
+        \\
+        \;& \text{Find } x^{(k + 1)} \text{ s.t: }
+        f\left(
+            x^{(k + 1)}
+        \right) \le f\left(
+            y^{(k)}
+        \right) - \frac{1}{2L}\left\Vert
+            \nabla f \left(
+                y^{(k)}
+            \right)
+        \right\Vert^2
+        \\
+        \text{(d)}: & \; \text{Set }
+        v^{(k + 1)} 
+        = \gamma_{k + 1}^{-1}\left(
+            (1 - \alpha_k)\gamma_k v^{(k)} + \alpha_k \mu y^{(k)} - \alpha_k \nabla f\left(y^{(k)}\right)
+        \right)
+    \end{aligned}
+\end{aligned}
+$$
 
+#### **Nesterov Generic Convergence Claims**
+
+Since the algorithm is derived based on the Nesterov estimating sequence frameworks, the convergence rate is the same as the growth rate of the sequence $\lambda_k$, in big-O. 
+
+---
+### **The Convergence Lemma**
+
+The following claims will model the convergence of the generic 
+
+#### **Lemma (2.2.4) | The Convergence Lemma**
+> If in the method (2.2.7) we choose $\gamma_0 \in (\mu, 3L + \mu)$, then for all $k \ge 0$, we have 
+> $$
+> \begin{aligned}
+>     \lambda_k &\le 
+>     \frac{
+>         4\mu
+>     }{
+>         (\gamma_0 - \mu)\left(
+>             \exp\left(\frac{k + 1}{2}q_f^{1/2}\right)
+>             - 
+>             \exp\left(-\frac{k + 1}{2}q_f^{1/2}\right)
+>         \right)
+>     }
+>     \le \frac{4L}{(\gamma_0 - \mu)(k + 1)^2}
+> \end{aligned}
+> $$
+> For $\gamma_0 = \mu$, we haev $\lambda_k = (1 - \sqrt{q_f})^k, k \ge 0$. 
+
+**Proof of Lemma (2.2.4)**
+
+With $\gamma_0 > \mu$, in algorithm (2.2.7 (a)) sugguests $\gamma_{k + 1} - \mu =(1 - \alpha_k)(\gamma_k - \mu)$, hence the relation 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1}- \mu = (\gamma_0 - \mu)\prod_{i=0}^{k} (1 - \alpha_i) = \lambda_{k + 1}(\gamma_0 - \mu). 
+\end{aligned}
+$$
+
+
+At the last line, we used the definition of an estimating sequence. The estimating sequence also has 
+$$
+\begin{aligned}
+    \lambda_{k + 1} &= (1 - \alpha_k)\lambda_n 
+    \\
+    \alpha_k &=1 -  \frac{\lambda_{k + 1}}{\lambda_k}. 
+\end{aligned}
+$$
+
+Recall from (1a) from the algorithm we have 
+
+$$
+\begin{aligned}
+    \alpha_k &= \sqrt{\frac{\alpha_k^2 L}{L}} 
+    \\
+    &= 
+    \sqrt{
+        \frac{\gamma_{k + 1}}{L}
+    }
+    \\
+    &= 
+    \sqrt{\frac{
+        \lambda_{k + 1}(\gamma_0 - \mu) + \mu
+    }{
+        L
+    }}
+    \\
+    &= 
+    \lambda^{1/2}_{k + 1}
+    \left(
+        L^{-1}(\gamma_0 - \mu) + \frac{q_f}{\lambda_{k + 1}}
+    \right)^{1/2}\quad  \text{dividing by $\lambda_{k + 1}$}, 
+    \\
+    \frac{1}{\lambda_{k + 1}} - \frac{1}{\lambda_k}
+    &= 
+    \lambda^{-1/2}_{k + 1}
+    \left(
+        L^{-1}(\gamma_0 - \mu) + \frac{q_f}{\lambda_{k + 1}}
+    \right)^{1/2} = \frac{\alpha_k}{\lambda_{k + 1}}. 
+\end{aligned}
+$$
+
+the above expression undergoes factorization on the LHS giving 
+
+$$
+\begin{aligned}
+    \frac{1}{\lambda_{k + 1}} - \frac{1}{\lambda_k}
+    &= 
+    \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} - \frac{1}{\lambda_k^{1/2}}
+    \right)
+    \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} + \frac{1}{\lambda_k^{1/2}}
+    \right)\;  \text{using $\lambda_{k + 1} \le \lambda_{k}$ by $\alpha \in (0, 1)$}, 
+    \\
+    &\le 
+    \frac{2}{\lambda_{k + 1}^{1/2}} \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} - \frac{1}{\lambda_{k}^{1/2}}
+    \right). 
+\end{aligned}
+$$
+
+##### **Claim (2.2.11) | A Monotonenically Increasing Quantity**
+> Define $\xi_k = \left(\frac{L}{(\gamma_0 - \mu)\lambda_k}\right)^{1/2}$, we get the following relation 
+> $$
+> \xi_{k + 1}- \xi_k \ge \frac{1}{2}\left(
+>     q_f \xi_{k + 1}^2 + 1
+> \right)^{1/2}. 
+> $$
+
+This is equation (2.2.11) in Nesterov's writing. 

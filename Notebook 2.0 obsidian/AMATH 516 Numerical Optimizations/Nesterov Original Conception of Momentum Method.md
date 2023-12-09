@@ -9,7 +9,7 @@ alias: Nesterov Acceleration Sequence Method
 ---
 ### **Intro**
 
-The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. 
+The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We faithfully follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. 
 
 My contributions here involve some extra gory mathematical details for the record keeping, a better exposition and comments on what I think Nesterov tries to do. And finally, correctly identify the way of adding non-smoothness into Nesterov's derivations. 
 
@@ -653,43 +653,48 @@ Let's call this Condition (\[2\]). It's only under Condition (\[1\]) and (\[2\])
 
 $$
 \begin{aligned}
-    \text{(a):}\; & \text{Choose }\alpha_k \in(0, 1) \text{ s.t: }
-    L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu.
+    \text{(1):}\; & \text{$k$ th iteration generates iterates by}
     \\
-    \text{(b):}\; &
-    \text{Choose } y^{(k)} = 
-    (\gamma_k + \alpha_k \mu)^{-1}\left(
-        \alpha_k\gamma_kv^{k} + \gamma_{k + 1}x^{(k)}
-    \right).
-    \\
-    \text{(c):}\; & y^{(k)} = 
-    \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
-        \gamma_k + \alpha_k \mu
-    }.
-    \\
-    \;& \text{Find } x^{(k + 1)} \text{ s.t: }
-    f\left(
-        x^{(k + 1)}
-    \right) \le f\left(
-        y^{(k)}
-    \right) - \frac{1}{2L}\left\Vert
-        \nabla f \left(
+    &
+    \begin{aligned}
+        \text{(a):}\; & \text{Choose }\alpha_k \in(0, 1) \text{ s.t: }
+        L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1}.
+        \\
+        \text{(b):}\; &
+        \text{Choose } y^{(k)} = 
+        (\gamma_k + \alpha_k \mu)^{-1}\left(
+            \alpha_k\gamma_kv^{k} + \gamma_{k + 1}x^{(k)}
+        \right).
+        \\
+        \text{(c):}\; & y^{(k)} = 
+        \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+            \gamma_k + \alpha_k \mu
+        }
+        \\
+        \;& \text{Find } x^{(k + 1)} \text{ s.t: }
+        f\left(
+            x^{(k + 1)}
+        \right) \le f\left(
             y^{(k)}
+        \right) - \frac{1}{2L}\left\Vert
+            \nabla f \left(
+                y^{(k)}
+            \right)
+        \right\Vert^2
+        \\
+        \text{(d)}: & \; \text{Set }
+        v^{(k + 1)} 
+        = \gamma_{k + 1}^{-1}\left(
+            (1 - \alpha_k)\gamma_k v^{(k)} + \alpha_k \mu y^{(k)} - \alpha_k \nabla f\left(y^{(k)}\right)
         \right)
-    \right\Vert^2
-    \\
-    \text{(d)}: & \; \text{Set }
-    v^{(k + 1)} 
-    = \gamma_{k + 1}^{-1}\left(
-        (1 - \alpha_k)\gamma_k v^{(k)} + \alpha_k \mu y^{(k)} - \alpha_k \nabla f\left(y^{(k)}\right)
-    \right)
+    \end{aligned}
 \end{aligned}
 $$
 
 
 **Remarks**
 
-This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. 
+This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. This is method (2.2.7) in Nesterov's writing. Do not forget about the implicit estimating sequence $\lambda_k$ that is associated with the above algorithm. 
 
 ---
 ### **Simplifying the Algorithm a Bit**
@@ -1047,13 +1052,14 @@ $$
 \end{aligned}
 $$
 
+This is 2.2.19 in Nesterov's textbook. 
 
 ---
 ### **A Generic Convergence Results**
 
 We present a generic convergence results based on the above generic method. This is listed as Theorem 2.2.1 in Nesterov's writing. 
 
-### **Thm (2.2.1) | Generic Convergence Results**
+#### **Thm (2.2.1) | Generic Convergence Results**
 > The scheme generates a sequence of points $\{x^{(k)}\}_{k = 0}^\infty$ such that 
 > $$
 > \begin{aligned}
