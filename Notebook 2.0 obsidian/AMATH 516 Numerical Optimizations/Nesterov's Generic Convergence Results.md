@@ -158,3 +158,114 @@ $$
 > $$
 
 This is equation (2.2.11) in Nesterov's writing. 
+
+**Proof of the claim**
+
+The claim is a consequence of what had ben derived in prior. It can be written as 
+
+$$
+\begin{aligned}
+    \frac{\lambda_{k + 1}^{1/2}}{2}
+    \left(
+        \frac{1}{\lambda_{k + 1}} - \frac{1}{\lambda_k}
+    \right) &\le \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} - \frac{1}{\lambda_{k}^{1/2}}
+    \right). 
+\end{aligned}
+$$
+
+We analyze the left hand side so
+
+$$
+\begin{aligned}
+    \frac{\lambda_{k + 1}^{1/2}}{2}
+    \left(
+        \frac{1}{\lambda_{k + 1}} - \frac{1}{\lambda_k}
+    \right)
+    &= 
+    \frac{1}{2}
+    \left(
+        \frac{q_f}{\lambda_{k + 1}} + 
+        \frac{\gamma_0 - \mu}{L}
+    \right)
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        \frac{\gamma_0 - \mu}{L}
+    \right)^{1/2} 
+    \left(
+        \frac{q_f}{\lambda_{k + 1}} \frac{L}{\gamma_0 - \mu}
+        + 1
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        \frac{\gamma_0 - \mu}{L}
+    \right)^{1/2} 
+    \left(
+        q_f \xi_k^2
+        + 1
+    \right)^{1/2}
+    \\
+    &\le 
+    \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} - \frac{1}{\lambda_{k}^{1/2}}
+    \right). 
+\end{aligned}
+$$
+
+implying that 
+
+$$
+\begin{aligned}
+    \frac{1}{2}
+    \left(
+        \frac{\gamma_0 - \mu}{L}
+    \right)^{1/2} 
+    \left(
+        q_f \xi_k^2
+        + 1
+    \right)^{1/2} 
+    &\le 
+    \left(
+        \frac{1}{\lambda_{k + 1}^{1/2}} - \frac{1}{\lambda_{k}^{1/2}}
+    \right)
+    \\
+    \frac{1}{2}\left(
+        q_f \xi_k^2
+        + 1
+    \right)^{1/2} 
+    &\le 
+    \left(
+        \frac{L}{\gamma_0 - \mu}
+        \left(
+            \frac{1}{\lambda_{k + 1}^{1/2}} - 
+            \frac{1}{\lambda_{k}^{1/2}}
+        \right)
+    \right) = \xi_{k +1} - \xi_k. 
+\end{aligned}
+$$
+
+And the claim is now proven. 
+
+**Continuing the proof of Lemma (2.2.4)**
+
+Next, we propose a lower bound for $\xi_k$. For $\delta = (1/2)\sqrt{q_f}$, we are going to prove by induction that 
+
+$$
+\begin{aligned}
+    \xi_{k + 1} &\ge \frac{1}{4\delta}(\exp((k + 1)\delta)) - \exp((k + 1)\delta)), \forall k \ge 0. 
+\end{aligned}
+$$
+
+As we can see, the hyperbolic cosine made an appearance here. For $k = 0$ we have the base case 
+
+$$
+\begin{aligned}
+    \xi_0 = \sqrt{\frac{L}{\gamma_0 - \mu}}
+\end{aligned}
+$$
+
+#TODO: Initial value of lambda is not known. 
