@@ -260,12 +260,58 @@ $$
 \end{aligned}
 $$
 
-As we can see, the hyperbolic cosine made an appearance here. For $k = 0$ we have the base case 
+The above is listed as (2.2.12) in Nesterov's writing. As we can see, the hyperbolic cosine made an appearance here. For $k = 0$ we have the base case 
 
 $$
 \begin{aligned}
-    \xi_0 = \sqrt{\frac{L}{\gamma_0 - \mu}}
+    \xi_0 &= \sqrt{\frac{L}{\gamma_0 - \mu}}
+    \\
+    &> \frac{1}{\sqrt{3}}
+    \\
+    &> \frac{1}{2}(\exp(1/2) - \exp(-1/2))
+    \\
+    &\ge \frac{1}{4}
+    (\exp(\delta) - \exp(-\delta)), 
 \end{aligned}
 $$
 
-#TODO: Initial value of lambda is not known. 
+the first equality is attained from $\lambda_0 = 1$, which we make the assumption tight here. The inequalities that follows can be justified by just simple numerical comparison. The final line uses the fact that $\delta \ge 1/2$ due $q_f \in (0, 1]$ by definition. Inductively we now assume that this is true for $k \ge 0$. Consider the function $\psi(t)$, define as 
+
+$$
+\begin{aligned}
+    \psi(t) &= \frac{1}{4\delta}(
+        \exp((t + 1)\delta) - \exp(-t(t + 1)\delta)
+    )
+    \\
+    \psi'(t) &= \frac{1}{4}(
+        \exp((t + 1)\delta) + \exp(-(t + 1)\delta)
+    ) > 0
+\end{aligned}
+$$
+
+is increasing in $t$. Thus in view of theorem 2.1.3 the function $\psi(\cdot)$ is convex. In view of our assumptions
+
+$$
+\begin{aligned}
+    \psi(k) \le \xi_k \le 
+    \xi_{k + 1} - \frac{1}{2}
+    (
+        q_f \xi_{k + 1}^2 + 1
+    )^{1/2}
+    =: 
+    \gamma(\xi_{k + 1}). 
+\end{aligned}
+$$
+
+For contradiction, suppose that $\xi_{k + 1}< \psi(t + 1)$. Then, we consider the following chain of equality
+
+$$
+\begin{aligned}
+    \psi(k) < \psi(k + 1) - \frac{1}{2}
+    \left(
+        4\delta^2\left(
+            
+        \right)
+    \right)
+\end{aligned}
+$$

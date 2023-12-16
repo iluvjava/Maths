@@ -97,4 +97,4 @@ Combining with the weak duality, the strong duality of LP is shown. The form of 
 ---
 ### **Remark**
 
-For a view of duality in Linear programming using the KKT conditions and the Lagrangian, check out [[KKT in Linear Programming]]. 
+For a view of duality in Linear programming using the KKT conditions and the Lagrangian, check out [[KKT in Linear Programming]]. The weak duality theorem asserts that: if primal is unbounded, then the dual is infeasible. A proof by contradiction argument works nicely for that claim. 
