@@ -307,11 +307,93 @@ For contradiction, suppose that $\xi_{k + 1}< \psi(t + 1)$. Then, we consider th
 
 $$
 \begin{aligned}
-    \psi(k) < \psi(k + 1) - \frac{1}{2}
+    \psi(k) &< 
+    \psi(k + 1) - \frac{1}{2}
     \left(
         4\delta^2\left(
-            
-        \right)
+            \frac{1}{4\delta}
+            (
+                \exp((k + 2)\delta) - \exp(-(k + 2)\delta)
+            )
+        \right)^2 + 1
+    \right)^{1/2}
+    \\
+    &= \psi(k + 1) 
+    - \frac{1}{2}\left(
+        \frac{1}{4}
+        \left(
+            \exp((k + 2)\delta) + \exp(-(k + 2)\delta)
+        \right)^2 + 1
+    \right)^{1/2}
+    \\
+    &= 
+    \psi(k + 1) 
+    - \frac{1}{2}\left(
+        \frac{1}{4}
+        \left(
+            \exp(2(k + 2)\delta) + \exp(-2(k + 2)\delta) - 2
+        \right) + 1
+    \right)^{1/2}
+    \\
+    &= 
+    \psi(k + 1) 
+    - \frac{1}{2}\left(
+        \frac{1}{4}\exp(2(k + 2)\delta) + 
+        \frac{1}{4}\exp(-2(k + 2)\delta) + 1/2
+    \right)^{1/2}
+    \\
+    &= 
+    \psi(t + 1) - 
+    \frac{1}{2}
+    \left(
+        \left(
+            \frac{1}{2}
+            \exp((k + 2)\delta) + 
+            \frac{1}{2}
+            \exp(-(k + 2)\delta)
+        \right)^2
+    \right)^{1/2}
+    \\
+    &= 
+    \psi(t + 1) - 
+    \frac{1}{4}\left(
+        \exp((k + 2)\delta) + \exp(-(k + 2)\delta)
     \right)
+    \\
+    &= \psi(k + 1) - \psi'(k + 1)
+    \\
+    &= \psi(k + 1) + \psi'(k + 1)(k - (k + 1)) \le \psi(k), 
 \end{aligned}
 $$
+
+which would be a contradiction, hence it has to be that $\xi_{k + 1}\ge \psi(k + 1)$. The last line is just using the fact that $\psi$ is a convex function. Next, we consider the case where $\mu = 0$, to accomplish we consider $\mu \searrow 0$ on $\psi$, so $q_f \searrow 0$ , so $\delta \searrow 0$ and hence 
+
+$$
+\begin{aligned}
+    \lim_{\delta \rightarrow 0}
+    \psi(t) &= 
+    \lim_{\delta \rightarrow 0}
+    \frac{1}{4\delta}
+    \left(
+        \exp((t + 1)\delta) - \exp(-(t + 1)\delta)
+    \right)
+    \\
+    &= 
+    \frac{1}{4}((t + 1)\exp((t + 1)\delta) + (t + 1)\exp(-(t + 1)\delta))
+    \\
+    &= \frac{1}{4}(2(t + 1)) = \frac{1}{2}(t + 1).
+\end{aligned}
+$$
+
+where from the second line to the third line I used the Lopital's rule. Finally, to recover the convergence rate for $\lambda_k$, we use 
+
+$$
+\begin{aligned}
+    \frac{\xi_k^2(\gamma_0 - \mu)}{L} 
+    &= \lambda_k^{-1}
+    \le \psi(k)
+    \\
+    
+\end{aligned}
+$$
+
