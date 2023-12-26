@@ -71,10 +71,10 @@ The following claims will model the convergence of the generic
 >             \exp\left(-\frac{k + 1}{2}q_f^{1/2}\right)
 >         \right)
 >     }
->     \le \frac{4L}{(\gamma_0 - \mu)(k + 1)^2}
+>     \le \frac{4L}{(\gamma_0 - \mu)(k + 1)^2}.
 > \end{aligned}
 > $$
-> For $\gamma_0 = \mu$, we haev $\lambda_k = (1 - \sqrt{q_f})^k, k \ge 0$. 
+> Assume that $\lambda_0 = 1$, and $\lambda_k = \prod_{i = 1}^{k} (1 - \alpha_i)$. For $\gamma_0 = \mu$, we haev $\lambda_k = (1 - \sqrt{q_f})^k, k \ge 0$. 
 
 **Proof of Lemma (2.2.4)**
 
@@ -275,11 +275,11 @@ $$
 \end{aligned}
 $$
 
-the first equality is attained from $\lambda_0 = 1$, which we make the assumption tight here. The inequalities that follows can be justified by just simple numerical comparison. The final line uses the fact that $\delta \ge 1/2$ due $q_f \in (0, 1]$ by definition. Inductively we now assume that this is true for $k \ge 0$. Consider the function $\psi(t)$, define as 
+the first equality is attained from $\lambda_0 = 1$, which is assumed for the lemma. The inequalities that follows can be justified by just simple numerical comparison. The final line uses the fact that $\delta \ge 1/2$ due $q_f \in (0, 1]$ by definition. Inductively we now assume that this is true for $k \ge 0$. Define the function $\psi(t)$, presented as 
 
 $$
 \begin{aligned}
-    \psi(t) &= \frac{1}{4\delta}(
+    \psi(t) &:= \frac{1}{4\delta}(
         \exp((t + 1)\delta) - \exp(-t(t + 1)\delta)
     )
     \\
@@ -370,30 +370,64 @@ which would be a contradiction, hence it has to be that $\xi_{k + 1}\ge \psi(k +
 
 $$
 \begin{aligned}
-    \lim_{\delta \rightarrow 0}
+    \lim_{\delta \searrow 0}
     \psi(t) &= 
-    \lim_{\delta \rightarrow 0}
+    \lim_{\delta \searrow 0}
     \frac{1}{4\delta}
     \left(
         \exp((t + 1)\delta) - \exp(-(t + 1)\delta)
     \right)
     \\
     &= 
-    \frac{1}{4}((t + 1)\exp((t + 1)\delta) + (t + 1)\exp(-(t + 1)\delta))
+    \lim_{\delta\searrow 0}\frac{1}{4}((t + 1)\exp((t + 1)\delta) + (t + 1)\exp(-(t + 1)\delta))
     \\
     &= \frac{1}{4}(2(t + 1)) = \frac{1}{2}(t + 1).
 \end{aligned}
 $$
 
-where from the second line to the third line I used the Lopital's rule. Finally, to recover the convergence rate for $\lambda_k$, we use 
+where from the second line to the third line I used the Lopital's rule. Finally, to recover the convergence rate for $\lambda_k$, we use how $\xi_k$ is defined,
 
 $$
 \begin{aligned}
-    \frac{\xi_k^2(\gamma_0 - \mu)}{L} 
-    &= \lambda_k^{-1}
-    \le \psi(k)
+    \xi_k = 
+    \left(
+        \frac{L}{(\gamma_0 - \mu)\lambda_k}
+    \right)^{1/2} 
+    &\ge \psi(k)
     \\
-    
+    &\; \triangleright 
+    \gamma_0 \in (\mu, \mu + 3L)
+    \\
+    \frac{\xi_k^2(\gamma_0 - \mu)}{L}
+    = \lambda_k^{-1}
+    &\ge
+    \frac{\psi(k)^2(\gamma_0 - \mu)}{L}
+    \\
+    \lambda_k
+    &\le 
+    \frac{L(\gamma_0 - \mu)}{\psi(k)^2}. 
 \end{aligned}
 $$
 
+Using the properties of the estimating sequence, the upper bound on the convergence rate of the function value follows from 
+
+$$
+\begin{aligned}
+    f(x^{(k)})  - f^* &\le 
+    \lambda_k 
+    \left(
+        f(x^{(0)}) - f^* + \gamma_0
+        \Vert x^{(0)} - x^*\Vert^2
+    \right)
+    \\
+    &\le 
+    \frac{L(\gamma_0 - \mu)}{\psi(k)^2}
+    \left(
+        f\left(x^{(0)}\right) - f^*
+        + \gamma_0 \left\Vert
+            x^{(0)} - x^*
+        \right\Vert^2
+    \right), 
+\end{aligned}
+$$
+where, $\psi(k)$, was defined as in earlier. This function, gives 2 type of convergence rate depending on the value of $\delta$, in the limiting case, where $\mu = 0$, the convergence is sublinear, otherwise, it's a linear convergence rate. 
