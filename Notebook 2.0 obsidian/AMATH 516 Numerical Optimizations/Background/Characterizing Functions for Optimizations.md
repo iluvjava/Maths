@@ -5,9 +5,13 @@ Sometimes, we need to understand the idea of functions over a Finite Euclidean s
 To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept of an *Augmented real function*.
 
 **Def | The Augmented Real Functions**
-> $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+> $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. 
 
-Read [Augmented Reals](Augmented%20Reals.md) for more information. Here is a list of topics that are helpful for understanding the basics: 
+**Commentary**
+
+The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+
+Read [Augmented Reals](Augmented%20Reals.md) for arithmetic rules. Here is a list of topics that are helpful for understanding the basics: 
 
 * [Epigraph](Epigraph.md), this describes the geometry of the function.
 * [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
@@ -17,54 +21,82 @@ Read [Augmented Reals](Augmented%20Reals.md) for more information. Here is a lis
 ---
 ### **Proper Function**
 
-This definition is introduced so we can get rid of some pathological function, making life easier for us. 
+Defining proper function eliminates certain pathologies for the type of functions for optimizations purposes. 
 
-**Proper Function**
+#### **Def | Proper Function**
 
-> $f$ is a **proper function** if $f(x) < \infty$ for at least one $x$ and $f(x)$ never equals $-\infty$ for any x. 
+> Consider $f$ of augmented real function, $f$ is a **proper function** if $f(x) < \infty$ for at least one $x$ and $f(x)$ never equals $-\infty$ for any x. 
 
-This means that, the function is going to be bounded on the direction we are minimizing and it's defined somewhere as a finite number. And all the function we work with in a minimization problem is **Proper Function**. 
+**Observations**
+Proper if it has a domain, and bounded from below. 
 
 **References**: 
 
 Tyrell Rockafellar did this to us. Yep. 
 
 ---
-### **Continuity and Traditional Smoothness**
+### **Continuity, Traditional Smoothness**
 
-For the most part of Convex Analysis, the study of functions focuses on $C^n$ function. Def: 
+Traditional smoothness is used to refer to a smooth function we learned in calculus class. Not to be confused with Lipschitz smoothness in optimizations. 
 
-**Lower Semi-Continuity**
-> The definition of lower semi-continuity should be listed as a link in the top. 
-
-**Continuous Functions**
-> A function is continuous if the limit of every points equal to the function evaluated at the point: $\lim_{x\rightarrow a}f(x) = f(x)$. 
 
 **C0 smooth**
-> A function $f$ is a C0 function that are continuous. ramp function is a class of C0 functions. 
+> A function $f$ is a C0 function that is continuous, continuous function is C0. 
+
+**Example**
+
+Ramp function is a class of C0 functions, the Heavy Side function won't be C0 smooth because it's not continuous. 
 
 **C1 Smooth**
 > A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without any sharp turns on the graph. 
 
+**Example**
+
+The derivative of a C1 function is a C0 function. C1 function won't allow any kind of sharp corners. 
+
 ---
 ### **Closed Function**
+
+Recall closure of a set in Euclidean space. 
+
+#### **Def | A Closed Function**
 > a function $f$ is a closed if and only if the [Epigraph](Epigraph.md) is a closed set. 
 
-**Closeness Equivalence of Functions**
+**Example**
 
-The following statements about function $f$ is equivalent: 
+The function $x^2 + \chi_{\{1\}}(x)$ won't be a closed function, this function can be written as 
+
+$$
+\begin{aligned}
+    f(x):= \begin{cases}
+        x^2 & x \neq 0 , 
+        \\
+        1 & x = 0. 
+    \end{cases}
+\end{aligned}
+$$
+
+Observe that the sequence $(1/n, f(1/n))$ would converge to $(0, 0)$ as $n\rightarrow \infty$, but $(0, 0)\not \in \text{epi}(f)$. 
+
+
+
+#### **Closeness Equivalence of Functions**
+
+The following statements about function $f$ are equivalent: 
 
 * The function $f$ is closed. 
 * The function $f$ is lower semi-continuous .
 * The function $f$ has closed level set for all $\alpha$, where the definition of level set is given as: 
 
-**Definition: Level Set**
+#### **Definition | Level Set**
+> $$
+> \text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}.
+> $$
 
-$$
-\text{lev}(f, \alpha) := \{x\in \mathbb E: f(x) \le \alpha\}.
-$$
+**Obesrvation**
 
-Which is the pre-image where the function $f$ has a value that is bounded by $\alpha$.
+A level set is the pre-image of $f$ on the set $[-\infty, α]$. 
+
 
 **Proof of Equivalences**
 
@@ -72,14 +104,14 @@ Skipped for now. For a proof, see: \<First Order Method in Optimization\> by SIA
 
 **Remarks**
 
-A closed function is not enough for the function to be continuous, but a continuous function on a compact region is enough for it to be a closed function. 
+A closed function is not enough for the function to be continuous, but a continuous function on a compact region is enough for it to be a closed function. If the region is not compact, limit will go out of the domain of the function and horizontal asymptopes of the function is not part of the epigraph. 
 
 ---
 ### **Coercive Function**
 
-This characteristic of function is key to existence of minimizers for function. It eliminate the case where minimizers of some function is only attained at infinity. 
+This characteristic of function is key to existence of minimizers for function. A coercive function cannot attain minimizers that are infinitely farway from the origin. 
 
-**Coersive Defintion**
+#### **Def | Coersive Defintion**
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
 
 **Remarks**
@@ -102,12 +134,12 @@ Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational a
 
 These functions are new special objects unique to nonsmooth analysis. 
 
-**Def | The support Functions**
+#### **Def | The support Functions**
 
-$$
-\delta^\star_Q(v) = 
-\sup_{x \in Q}\langle v, x\rangle
-$$
+> $$
+> \delta^\star_Q(v) = 
+> \sup_{x \in Q}\langle v, x\rangle
+> $$
 
 The support function of a set $Q$, is the conjugate of the indicator function. It drives a vector pointing in the direction of $v$ in the set until it reaches the boundary of the set, creating a support line around the point of contact. 
 
@@ -115,41 +147,43 @@ The support function of a set $Q$, is the conjugate of the indicator function. I
 
 See [Support Function](../CVX%20Analysis/Support%20Function.md) for more detailed information.
 
-**Def | Gauge Functions**
+#### **Def | Gauge Functions**
 
-$$
-\gamma_Q(x) = \inf \left\lbrace
-    \lambda \ge 0: x\in Q
-\right\rbrace
-$$
+> $$
+> \gamma_Q(x) = \inf \left\lbrace
+>     \lambda \ge 0: x\in Q
+> \right\rbrace
+> $$
 
 A gauge function scales the set $Q$ as little as possible so that the set contains the input parameters $x$. 
 
-**Def | Indicator Functions**
+#### **Def | Indicator Functions**
 
-$$
-\delta_Q := 
-\begin{cases}
-    0 & x \in Q
-    \\
-    \infty   & \text{else}
-\end{cases}
-$$
+> $$
+> \delta_Q := 
+> \begin{cases}
+>     0 & x \in Q
+>     \\
+>     \infty   & \text{else}
+> \end{cases}
+> $$
 
 The function is only defined inside of the set $Q$, out of the set it's not giving infinity. This function has the usage of denoting constraints for optimization problems. 
 
 ---
-### **Convexity of Functions**
+### **Convex Functions**
 
 This is one of the most important characterizations for a class of functions. The theories developed for optimizing convex function and its variants are profound. Convex function has 2 equivalent definitions. 
 
-**Definition | Convex Epigraph**
+#### **Definition | Convex Epigraph**
 
 > A function $f$ is convex if $\text{epi}(f)$ is convex, we use the convexity of sets to determine whether a function can be convex. 
 
-For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. 
+**Remarks**
 
-**Definition | Secant Inequality**
+For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. See [Convex Sets Intro](Convex%20Sets%20Intro.md) for more information about convex set. 
+
+#### **Definition | Secant Inequality**
 
 > Given a convex function $f: \mathbb E\mapsto \mathbb {\bar R}$, with affective domain $\text{dom}(f)$ being non-empty and $f$ is convex if and only if: 
 > $$
@@ -207,12 +241,16 @@ For example, the function $\exp(x)$ is a strictly convex function.
 ---
 ### **Convexity and Lipschitz Functions**
 
-Functions that are convex and Lipschitz smooth, they are a strict subsets of all the convex functions. For a convex function, Local Lipschitz continuity will fail on the boundary of its domain. 
+Let some $f$ be convex and Lipschitz smooth, then they are a strict subsets of all the convex functions. For a convex function, even locally Lipschitz continuous will fail on the boundary of its domain, however if the function is Lipschitz, then subgradient exists on $\text{dom}(f)$. 
 
 
 ---
-### **Beta-Smoothness | Strong Smoothness**
+### **Beta-Smoothness, Strong Smoothness, Lipschitz Smoothness**
 
+For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). This characterization of convex function is absolutely essential for gradient based method in optimizations, it developed important claims about the convergence rate of the algorithm. 
+
+
+#### **Def | Lipschitz Smoothness**
 > If $f$ is $\beta$ smooth, then there exists positive $\beta$ such that: 
 > 
 > $$
@@ -224,17 +262,15 @@ Functions that are convex and Lipschitz smooth, they are a strict subsets of all
 The absolute signs make it possible to model the smoothness for both convex and concave function. 
 
 
-**Theorem: Lipschitz Gradient means Beta Smooth**
-> The same beta the provides a bound between the linear approximation and the function it self is the Lipschitz constant for the function over the domain. 
+#### **Theorem | Lipschitz Gradient means Beta Smooth**
+> A function is $\beta$ smooth if and only if and only if its gradient is $\beta$ Lipschitz continuous. 
 > $$
 > \Vert\nabla f(y) - \nabla f(x) \Vert \le \beta \Vert x - y\Vert
 > $$
 
-**Proofs**
-
-A proof can be found in [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 
 **Remarks**: 
+
 Intuitively beta-smoothness refers to the ability to place a quadratic function that can always be an upper bound for the function at any point. 
 
 

@@ -13,7 +13,7 @@ We list everything that is directly related to subgradient in this file so that 
 
 Properties, and geometric interpretations of Subgradient. 
 
-* [ Subgradient is Convex](../Convex%20Subgradient%20is%20Convex%20), $\partial f(x)$ is a convex set. 
+* [Subgradient is Convex](../Convex%20Subgradient%20is%20Convex), $\partial f(x)$ is a convex set. 
 * [Bounded Subgradient Lemma](Bounded%20Subgradient%20Lemma.md)
 	* In the interior of the domain of a convex proper function, the subgradient is always bounded. 
 * [Nonempty Subdifferential Implies Convexity](Nonempty%20Subdifferential%20Implies%20Convexity.md)

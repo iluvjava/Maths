@@ -31,4 +31,4 @@ therefore, the point $(1 - \lambda)u_0 + \lambda u_1$ is still going to be part 
 
 **Remarks**
 
-This would mean that adding the 2 subgradient preserves the convexity of both subgradient. 
+This would mean that adding the 2 subgradient preserves the convexity of both subgradient. Moreover, this fact can also be revealed by realizing that the definition of a subgradient at a point $x$, is just a linear constrat applied to infinitely many vectors. Hence, it's a convex set because the intersection of linear constraints gives a convex set. 
