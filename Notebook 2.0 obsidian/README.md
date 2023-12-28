@@ -45,3 +45,4 @@ for the `settings.json` file for your VS Code client, or add this as a project s
 Other Community Plugins Used: 
 - `highlightr`. 
 - Dynamic Background. 
+- Obsidian Link Converter

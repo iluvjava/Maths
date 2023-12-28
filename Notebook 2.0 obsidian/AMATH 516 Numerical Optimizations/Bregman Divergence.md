@@ -20,9 +20,15 @@ Bregman generalizes the Euclidean distance that appeared in Rockafellar's proxim
 $D_\omega(x, x_0)$ is, $\omega(x) - (\omega(x_0) + \langle \nabla\omega (x_0), x - x_0\rangle)$, it's the difference between the function $\omega(x)$ and the linearization of $\omega$ at $x_0$. It contains the second order information for the differentiable function. Because $\omega$ is closed and convex, we immediately know that $D_\omega(x, y) \ge 0$, by convexity. 
 
 **Remarks**
+The definition is taken from Amir Beck [^1]. 
 
+
+#### **Definition | Legendre Transform**
 
 
 
 
 [^1]: A. Beck, _First-Order Methods in Optimization | SIAM Publications Library_. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: [https://epubs.siam.org/doi/book/10.1137/1.9781611974997](https://epubs.siam.org/doi/book/10.1137/1.9781611974997)
+
+[^2]: R. T. Rockafellar, Convex analysis, 10. print. and 1. paperb. print. in Princeton Landmarks in mathematics and physics. Princeton, NJ: Princeton Univ. Press, 1997.
+
