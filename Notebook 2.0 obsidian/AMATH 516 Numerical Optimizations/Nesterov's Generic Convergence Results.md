@@ -430,4 +430,5 @@ $$
     \right), 
 \end{aligned}
 $$
+
 where, $\psi(k)$, was defined as in earlier. This function, gives 2 type of convergence rate depending on the value of $\delta$, in the limiting case, where $\mu = 0$, the convergence is sublinear, otherwise, it's a linear convergence rate. 

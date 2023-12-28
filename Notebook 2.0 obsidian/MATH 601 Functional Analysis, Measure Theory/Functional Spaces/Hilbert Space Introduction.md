@@ -386,7 +386,7 @@ Use the subset $Y_n = \{e_i\}_{i = 1}^n$, then write $\Vert x\Vert^2$ in inner p
 
 **Remarks**: 
 
-This condition is called Parseval's relations. 
+This condition is called Parseval's relations, not to confused with the Parseval's theorem, which is a totally different thing. 
 
 
 ---

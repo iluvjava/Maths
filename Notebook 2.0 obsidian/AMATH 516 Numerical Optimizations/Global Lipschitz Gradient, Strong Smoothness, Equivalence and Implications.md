@@ -3,7 +3,7 @@ aliases:
   - L-Smoothness as an Implication of Globally Lipschitz Gradient Under Convexity
 ---
 * [Dual Norm](Background/Dual%20Norm.md)
-* [Gradient, Hessian Characterization of Convexity](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convexity.md)
+* [Gradient, Hessian Characterization of Convex Functions](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md)
 ---
 ### **Intro**
 
@@ -328,7 +328,7 @@ $$
 \end{aligned}
 $$
 
-Now recall from [Gradient, Hessian Characterization of Convexity](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convexity.md), the above condition is the monotonicity of the gradient of the function $\frac{L\Vert x\Vert^2_2}{2} - f(x)$, hence the function is a convex function, and this is condition $[y]$. 
+Now recall from [Gradient, Hessian Characterization of Convex Functions](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md), the above condition is the monotonicity of the gradient of the function $\frac{L\Vert x\Vert^2_2}{2} - f(x)$, hence the function is a convex function, and this is condition $[y]$. 
 
 #### **Showing \[8\] => \[4\]**
 

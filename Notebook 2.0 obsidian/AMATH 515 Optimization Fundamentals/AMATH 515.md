@@ -94,7 +94,7 @@ The **Challenging** part is the modeling part and the solving part.
 	* [[Introduction to Convexity]] 
 		* Convex Set
 		* Convex Functions
-		* [[../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convexity]]
+		* [[../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convex Functions]]
 	* Good to optimize functions: 
 		* [[Closed, Proper, Level Bounded, Strong Convex]]
 		* [[Beta Smoothness]]

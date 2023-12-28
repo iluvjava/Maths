@@ -57,7 +57,7 @@ The definition of Lipchitz is in [Lipschitz Continuity](../Background/Lipschitz%
 
 For all convex function, some of them will have gradient. The gradient might not be Lipschitz, because there exists convex function whose gradient is Uniform Continuous but not Lipschitz Continuous. 
 
-- For the smooth case, please refer to [Gradient, Hessian Characterization of Convexity](Gradient,%20Hessian%20Characterization%20of%20Convexity.md). 
+- For the smooth case, please refer to [Gradient, Hessian Characterization of Convex Functions](Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md). 
 - For epigraphical characterizations of convex functions and how their convexity is preserved constructively, visit: [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions%20). 
 
 ---

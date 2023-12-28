@@ -128,7 +128,7 @@ $$
 \langle x - y, Tx - Ty\rangle \ge 0 \quad \forall  x, y
 $$
 
-It's kinda like the old properties from the convex differential characterization. [[../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convexity]], but in this case, we have the sub-differential. Recall that Alpha strongly convex has the property that $(\nabla f(x) - \nabla f(y))^T(y - x)\ge \alpha ||y - x||^2$
+It's kinda like the old properties from the convex differential characterization. [[../AMATH 516 Numerical Optimizations/CVX Analysis/Gradient, Hessian Characterization of Convex Functions]], but in this case, we have the sub-differential. Recall that Alpha strongly convex has the property that $(\nabla f(x) - \nabla f(y))^T(y - x)\ge \alpha ||y - x||^2$
 
 **Example**
 
