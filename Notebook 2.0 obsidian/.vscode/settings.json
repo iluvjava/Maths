@@ -1,4 +1,11 @@
 {
     "todo-tree.tree.scanMode": "workspace",
-    "discord.enabled": true
+    "discord.enabled": true,
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "AMATH 516 Numerical Optimizations/Simply Legendre Type.md"
+        }
+    ]
 }

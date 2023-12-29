@@ -277,27 +277,21 @@ Intuitively beta-smoothness refers to the ability to place a quadratic function 
 ---
 ### **Positive Homogeneity**
 
-**Definition** 
+#### **Definition | Positively Homogeneous** 
 > A function is positive Homogenous when: $f(\alpha y) = \alpha f(y)\;\forall y$, where $\alpha \ge 0$. 
+
 
 ---
 ### **Sub-additive**
 
-**Definition**
+**Definition | Sub Additivity**
 > A function $f$ is sub-additive when $f(x + y)\le f(x) + f(y)$. 
+
+**Examples**
+
+$x^2$ would be a sub-additive function for $x, y \ge 0$. In fact, this is true for all $f: \mathbb R_+ \mapsto \mathbb R$ in $\mathbb R$ that has a monotonically increase derivative. 
 
 ---
 ### **Discussions**
 
-A big part of optimization is characterizing functions and understand how they these properties can be exploited for algorithm, and how they propagate through different types of operations. 
-
-Some of the important properties that we need to keep track of about functions are basically: 
-1. Closedness
-2. Convexity
-3. Continuity
-4. Smoothness
-
-However, for special type of functions, we might need to focus on more interesting properties. 
-
----
-
+There are a lot more properties, but the above properties are usually introduced to the students at the first few classes in convex analysis, or optimization. 
