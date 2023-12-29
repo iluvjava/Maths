@@ -6,6 +6,11 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "AMATH 516 Numerical Optimizations/Simply Legendre Type.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "AMATH 516 Numerical Optimizations/Bregman Divergence.md"
         }
     ]
 }

@@ -107,6 +107,15 @@ $$
 
 which is what we proved, observe that one may use the singleton assumption with prox and providing us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$, in fact, with some set algebra it's possible to show $\subseteq$ relation. The last identity, it's just the subgradient inequality followed from identity 2, by the assumption of convexity on $f$. 
 
+**Remarks**
+
+The third property is pivotal to understand the proximal gradient operator. 
+Recall from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), the proximal operator can be interpreted as the backward Euler scheme. 
+Then the second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of  directions indicated subgradient. 
+The second condition mirrors the backward Euler method. 
+The third condition is simply the results of $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$. 
+I don't have a good interpretation yet. 
+For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z) - f(x), x = \underset{f}{\text{prox}}(z)$. 
 
 **Good References**
 

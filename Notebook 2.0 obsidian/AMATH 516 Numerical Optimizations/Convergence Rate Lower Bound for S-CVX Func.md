@@ -5,7 +5,7 @@ alias: Nesterov's Lower Convergence Bnd For Strongly Convex Functions
 ### **Intro**
 
 Prerequisites: 
-1. [Convergence Rate Lower Bnd for Lip Funcs](Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Funcs.md). 
+1. [Convergence Rate Lower Bnd for Lip Functions](Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Functions.md). 
 
 We use the same definition for the class of GA1st function to analyze the lower convergence rate the class of Strongly convex function. We follow closely with Nesterov book "Lectures on Convex Optimization" section 2.1.4. We state the theorem here and then we prove it later. 
 

@@ -36,13 +36,61 @@ We took this definition from Rockafellar's red convex book.
 
 **Observations**
 
-The legendre type function is essentially smooth, hence it has a gradient mapping that is invertible with $(\nabla f(x))^{-1}$ being a well defined function of $\mathbb R^n \mapsto \Omega$. This is realized by the use of theorem 26.1. 
-
+The Legendre Type function is essentially smooth. 
+Hence, it has a gradient mapping that is invertible with $(\nabla f(x))^{-1}$ being a well-defined function of $\mathbb R^n \mapsto \Omega$. 
+That is a consequence of using theorem 26.1. 
+The inverse is the gradient of the convex conjugate. 
+For more discussion, read [Inverse of Subgradient of the Convex Conjugate](Operators%20Theory/Inverse%20of%20Subgradient%20of%20the%20Convex%20Conjugate.md). 
+Additionally, if $\nabla f$ has $\mathbb R^n \mapsto \mathbb R^n$ and surjective, then the gradient mapping would be bijective. 
+It is a specific case of Legendre Type Function. 
 
 
 **Remarks**
 
-We took the definition from Rockafellar[^1], but I am not sure where exactly it is in the book, it should be in section 26. 
+We took the definition from Rockafellar[^1], but I am unsure where it is in the book; it should be in section 26. 
+
+
+#### **Definition | Essential Strict Convexity**
+> A proper convex function $f$ on $\mathbb R^n$ is essential strictly convex if $f$ is strictly convex on every convex subsets of $\text{dom}(\partial f)$. 
+
+**Observations**
+
+One consequence of the definition is that a strictly convex function is also strictly convex on $\text{ri}\circ \text{dom}(f)$ due $\text{dom}\circ \text{dom}(f)\subseteq \text{dom}(\partial f)$. As commented by Rockafeller, in section 23 of the book, he explained why $\text{dom}(\partial f)$ may not be convex because something may happen at the boundary of $\text{dom}(f)$. 
+
+
+**Remarks**
+
+The converse is not true. A function that is strictly convex on $\text{ri.dom}(f)$, or $\text{dom}(\partial f)$ are not strictly convex on $\text{dom}(\partial f)$, or $\text{dom}(f)$. Recall the relation that 
+
+$$
+\text{ri.dom}(f) \subseteq \text{dom}(\partial f) \subseteq \text{dom}(f). 
+$$
+
+The weaker characterizations of Essential Strict Convexity are easier to remember. 
+However, they are never equivalent. 
+
+---
+### **Advanced Topics about Essential Smoothness for Convex Functions**
+We introduce more content from the Rockafeller's book on essential smoothness and functions of Legendre types. 
+
+
+#### **Theorem 26.2 | Equivalent Characterization of Essential Smoothness**
+> Assuming conditions 1., 2., are true in the definition for essential smoothness then the following condition is equivalent to condition 3. in the definition of essential smoothness.
+> 
+> 3.`*` $f'(x + \lambda(a - x) | a - x) \searrow -\infty$ as $\lambda \searrow -\infty$ for any $a \in C$, and any boundary point of $x \in C$. 
+
+**Observations**
+
+The directional derivative, if points inward towards a point $a \in C$ and anchored on a boundary point $x$, at the point $x + \lambda(a - x) \in C$, then the directional derivative approaches negative infinity. We know that $x + \lambda(a - x)\in C$ by the [Accessibility Lemma](CVX%20Analysis/Accessibility%20Lemma.md) of a convex set. 
+
+**Proof**
+
+---
+### **Non-trivial Counter Examples**
+
+
+
+
 
 
 
