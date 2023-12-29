@@ -12,5 +12,10 @@ This is expected to converge to the minimal when the function is convex because 
 However, it's referred to as a theoretical framework because solving the proximal operator for a given function is just as hard as minimizing the function itself. 
 As a results, proximal point method used a theoretical tool, and in practice, people look for ways to estimate the proximal point method under different context and assumptions. 
 
+---
+### **The Convergence of the Proximal Point Method**
+
+
+
 
 [^1]:R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” _SIAM J. Control Optim._, vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: [10.1137/0314056](https://doi.org/10.1137/0314056).
