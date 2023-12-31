@@ -51,7 +51,7 @@ $$
 
 $f(Wg(x | \Theta) + b)$ is a multi-valued mapping. 
 If we were to take derivative wrt to weight matrix $W$, then is a $\mathbb R^{m\times n}\mapsto \mathbb R^m$. 
-Treating all weights and biases $\Theta$ that come before the previous layer as a vector. 
+We treat all weights and biases $\Theta$ before the previous layer as a vector. 
 Recall from multi-variable calculus that compositing a multi-valued mapping would require the Jacobian matrix for using the chain rule. 
 
 #### **Computing Derivative of Weights and Biases Current and the Previous Layer**
@@ -64,19 +64,19 @@ To get each of the elements, we consider the partial derivative
 $$
 \begin{aligned}
     \partial_{W_{i, j}}[f(Wg(x|\Theta) + b)]_k &= 
-    \partial_{W_{i, j}} f([W]_{k, :}g(x|\Theta) + b)
+    \partial_{W_{i, j}} f([W]_{k, :}g(x|\Theta) + b_k)
     \\
     &= 
     \mathbf 1\{k = i\}
-    f'([W]_{k, :}g(x|\Theta) + b)[g(x | \Theta)]_j
+    f'([W]_{k, :}g(x|\Theta) + b_k)[g(x | \Theta)]_j
 \end{aligned}
 $$
 
 The function $\mathbf 1\{k = i\}$ is the indicator function in probability. 
-It takes value zero when $k \neq i$ and it takes $1$ when $k = 1$. 
-The weight $W_{i, j}$ is only affecting the $i$ th neuron on the current output layer. 
-This establishes the base case.
-The base case is the derivative of a weight that is in between the current layer and the output of the previous layer. 
+It takes value zero when $k \neq i$ and $1$ when $k = 1$. 
+The weight $W_{i, j}$ only affects the $i$ th neuron on the current output layer.
+This is the base case.
+The base case is the derivative of a weight between the current layer and the output of the previous layer. 
 
 #### **Computing the Derivative wrt Weights and Biases That Comes Before the Previous Layer**
 
