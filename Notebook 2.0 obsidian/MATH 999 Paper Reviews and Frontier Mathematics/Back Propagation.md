@@ -54,7 +54,7 @@ If we were to take derivative wrt to weight matrix $W$, then is a $\mathbb R^{m\
 Treating all weights and biases $\Theta$ that come before the previous layer as a vector. 
 Recall from multi-variable calculus that compositing a multi-valued mapping would require the Jacobian matrix for using the chain rule. 
 
-#### **Computing the Jacobian**
+#### **Computing Derivative of Weights and Biases Current and the Previous Layer**
 
 In general, the Jacobian is the tensor product of the gradient wrt to each output of the multi-valued function. 
 To compute a gradient for a specific output, we consider the expression $\nabla_W [f(Wg(x | \theta) + b)]_k$ for $1\le k \le m$. 
@@ -64,7 +64,30 @@ To get each of the elements, we consider the partial derivative
 $$
 \begin{aligned}
     \partial_{W_{i, j}}[f(Wg(x|\Theta) + b)]_k &= 
+    \partial_{W_{i, j}} f([W]_{k, :}g(x|\Theta) + b)
+    \\
+    &= 
+    \mathbf 1\{k = i\}
+    f'([W]_{k, :}g(x|\Theta) + b)[g(x | \Theta)]_j
+\end{aligned}
+$$
 
+The function $\mathbf 1\{k = i\}$ is the indicator function in probability. 
+It takes value zero when $k \neq i$ and it takes $1$ when $k = 1$. 
+The weight $W_{i, j}$ is only affecting the $i$ th neuron on the current output layer. 
+This establishes the base case.
+The base case is the derivative of a weight that is in between the current layer and the output of the previous layer. 
+
+#### **Computing the Derivative wrt Weights and Biases That Comes Before the Previous Layer**
+
+Inductively suppose we want to take the derivative wrt to a specific indexed element from the weights and biases collection $\Theta$. 
+Suppose it is $\Theta_j$, which is a scalar value. 
+Then the partial derivative wrt $\Theta_j$ on the $k$ th neuron on the current layer would yield the expression: 
+
+$$
+\begin{aligned}
+    \partial_{\Theta_j} 
+    [f(Wg(x | \Theta) + b)]_k
 \end{aligned}
 $$
 
