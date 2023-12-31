@@ -62,7 +62,7 @@ $$
 $$
 
 Observe that $f'\diamond (Wp + b)\odot \e_i$  is applying $f'$ to the value of the $i$ th neuron at the current layer. 
-And $p_j$, is the output of the jth neuron of the previous layer. 
+And $p_j$ is the output of the jth neuron of the previous layer. 
 
 #### **Computing the Derivative wrt Weights and Biases That Comes Before the Previous Layer**
 
@@ -73,7 +73,7 @@ Then the partial derivative wrt $\Theta_j$ on the $k$ th neuron on the current l
 $$
 \begin{aligned}
     \partial_{\Theta_j} \left[f\diamond(W p(x | \Theta) + b)\right]
-    (f'\diamond (Wp + b))\odot(\partial_{\Theta_j}p(x | \Theta))
+    &= (f'\diamond (Wp + b))\odot(\partial_{\Theta_j}p(x | \Theta))
 \end{aligned}
 $$
 
@@ -92,7 +92,7 @@ $$
 
 Denote $\Theta_j$ as a weight or bias that feeds into the $k - 1$ layer. 
 It can be in any neural network part before the layer $p^{(k- 1)}$. 
-We may now summarize the results from previous discussion using the new variables. 
+We may now summarize the results from the previous discussion using the new variables. 
 
 
 ---
