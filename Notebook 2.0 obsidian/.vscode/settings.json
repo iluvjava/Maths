@@ -11,6 +11,11 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "AMATH 516 Numerical Optimizations/Bregman Divergence.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "AMATH 516 Numerical Optimizations/Proximal Operator/Moreau Envelope and Proximal Mapping.md"
         }
     ]
 }

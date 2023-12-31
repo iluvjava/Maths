@@ -2,12 +2,15 @@
 alias: Morau Envelope and Proximal Operators
 
 --- 
-- [[Multivalued Functions, Set-valued Mappings]]
+- [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
 
 ---
 ### **Intro**
 
-This is a central hub for various concepts about Moreau Envelope and Proixmal mapping. Here we will focus on the case when the function $f$ is closed convex and proper and $\Vert \cdot\Vert$ is the euclidean norm. so the properties of the prox is more predictable and allows us to derive more theorems. A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
+We will focus on when the function $f$ is closed convex, proper, and $\Vert \cdot\Vert$ is the Euclidean norm. 
+That makes the properties of the prox more predictable. 
+We can derive more theorems. 
+A Moreau Envelope $\text{env}_{\alpha, f}(x)$, $\text{prox}_{\alpha, f}$ the proximal operator are defined for some function $f$: 
 
 $$
 \begin{aligned}
@@ -22,7 +25,10 @@ $$
 \end{aligned}
 $$
 
-The proximal operator is a singleton when the function $f$ is convex, proper and closed. Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md)) the epigraph of the envelope is the set addition between the epigraph of those 2 functions and it inherits properties of them. For example, if we assume that the function $f$ is closed convex and proper, the their infimal convolution is also a closed, proper and convex. Of course, if $p\in \text{prox}_f(x)$ then 
+The proximal operator is a singleton when the function $f$ is convex, proper, and closed. 
+Observe that $\text{env}_{\alpha, f}(x) = (f\square \frac{1}{2\alpha}\Vert \cdot \Vert^2)(x)$, which by ([Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md)) the epigraph of the envelope is the set addition between the epigraph of those two functions and it inherits properties of them. 
+For example, if we assume that the function $f$ is closed, convex, and proper, their infimal convolution is closed, proper, and convex. 
+Of course, if $p\in \text{prox}_f(x)$ then 
 
 $$
 \begin{aligned}
@@ -30,15 +36,19 @@ $$
     \frac{1}{2\alpha}\Vert x - y\Vert^2 \quad \forall y \in \mathbb R^n
 \end{aligned}
 $$
-setting $y = x$ would yield the fact that envelope is always below the function. 
+
+setting $y = x$, then the envelope is always below the function. 
 
 **Notation nuance**
 
-When the proximal operator is written as $\text{prox}_{\alpha f}$ is the same as $\text{prox}_{f, \alpha}$. The second type of proximal operator has a constant indicated explicitly on the under script. 
+When we write $\text{prox}_{\alpha f}$, it is the same as $\text{prox}_{f, \alpha}$. 
+The second type of proximal operator has a constant indicated explicitly on the under script. 
 
 **Remarks**
 
-It's from Dimitry's Textbook, definition 3.59, pg 77. If we consider the fact that the infimal convolution is the epigraphical addition of 2 functions, then a Moreau Envelop smooths the function using the parameter $\alpha$, for example the Moreau Envelope of the absolute value $|x|$ is given as: 
+It's from Dimitry's Textbook, definition 3.59, pg 77. 
+If the infimal convolution is the epigraphical addition of 2 functions, then a Moreau envelope smooths the function using the parameter $\alpha$. 
+For example, the Moreau Envelope of the absolute value $|x|$ is given as: 
 
 $$
 \begin{aligned}
@@ -53,7 +63,10 @@ $$
 Which is the Huber Loss function in statistics. 
 
 **Dimitri's Comments**:
-> The Moreau envelope is a generalization of the set distance squared operations on sets. see [[Convex Sets Projections and Dist, Intro]] for more. in fact their share similarities when the function $f$ is convex, closed and proper. More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
+> The Moreau envelope is a generalization of the set distance squared operations on sets. 
+> See [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more. 
+> In fact their share similarities when the function $f$ is convex, closed and proper. 
+> More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
 #### **Theorem | Basic Prox Identities**
 
@@ -78,11 +91,11 @@ Which is the Huber Loss function in statistics.
 
 **Proof**
 
-See Exercise below. 
+See the Exercise below. 
 
 **Exercise**
 
-See proof for Basic Prox Identities. 
+See above. 
 
 #### **Theorem | Equivalence Characterization for Proximal Point** 
 > For a convex proper, lower semi-continuous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
@@ -92,7 +105,7 @@ See proof for Basic Prox Identities.
 
 **Proof**
 
-To proof, we need to use the calculus rules of Non-smooth analysis. For all $x\in \text{prox}_f(x)$, we have
+To prove this, we need to use the calculus rules of Non-smooth analysis. For all $x\in \text{prox}_f(x)$, we have
 
 $$
 \begin{aligned}
@@ -105,15 +118,16 @@ $$
 \end{aligned}
 $$
 
-which is what we proved, observe that one may use the singleton assumption with prox and providing us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$, in fact, with some set algebra it's possible to show $\subseteq$ relation. The last identity, it's just the subgradient inequality followed from identity 2, by the assumption of convexity on $f$. 
+observe that one may use the singleton assumption with prox and provide us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$. 
+In fact, with some set algebra, it's possible to show $\subseteq$ relation. The last identity is just the subgradient inequality followed by identity 2, by the assumption of convexity on $f$. 
 
 **Remarks**
 
-The third property is pivotal to understand the proximal gradient operator. 
-Recall from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), the proximal operator can be interpreted as the backward Euler scheme. 
-Then the second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of  directions indicated subgradient. 
+The third property is pivotal to understanding the proximal gradient operator.
+Recall that from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), we can interpret the proximal operator as a Backward Euler scheme. 
+The second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of directions indicated subgradient. 
 The second condition mirrors the backward Euler method. 
-The third condition is simply the results of $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$. 
+The third condition results in $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$, and the third condition becomes the subgradient inequality.
 I don't have a good interpretation yet. 
 For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z) - f(x), x = \underset{f}{\text{prox}}(z)$. 
 
@@ -121,7 +135,7 @@ For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z
 
 * Dimitry's class from UW. 
 * [This](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf) survey paper from Stanford, it also contains more practical information about the prox operator. 
-* \<First Order Methods for Optimizations\> by Beck. This book has more details summarizations on the properties of proximal gradient. 
+* \<First Order Methods for Optimizations\> by Beck. This book has detailed summarizations for the properties of proximal gradient. 
 
 ---
 ### **As a Operators**
@@ -129,7 +143,7 @@ For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z
 > When the function $f$ is convex closed and proper, the $\text{prox}_{\alpha, f}$ can be viewed the following operator $(I + \alpha \partial f)^{-1}$, which is also, a single valued operator that sometimes has a nice closed form solution to it.  
 
 **Proof**: 
-The prox has a unique solution when the function $f$ is convex with $\alpha > 0$, suppose that $y^+$ is such an optimal then using subgradient: 
+The prox has a unique solution when the function $f$ is convex with $\alpha > 0$; suppose that $y^+$ is such an optimal then using subgradient: 
 
 $$
 \begin{aligned}
@@ -151,42 +165,67 @@ $$
 \end{aligned}
 $$
 
-Therefore, the proximal operator on a function that is convex proper and closed can be viewed as a weighted resolvant of the subgradient operator. 
+Therefore, we can view the proximal gradient operator as the resolvent of the subgradient operator $\alpha \partial f$. 
 
 
 **Remarks**
 
-When is it invertible and when is it a set-value mapping? 
-* Right from the start, we should not assume that it's invertible, and even if it is invertible, we need to know if the inverse operator is a multi-value mapping, or a single value mapping. In this particular case, because we know how subgradient work, and $f$ being closed convex and proper, it's singled value. But, to characterize such properties in the general case, we need to read more. Check out: The end of chapter 3 comments on Dimitry's work. Dimitry's also mentioned the fact that proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in proximal operator being a singled value operator. Dimity's discussion on the topic can be seem [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
+When is it invertible. 
+When is it a set-value mapping? 
+* Right from the start, we should not assume that it's invertible, and even if it is invertible, we need to know if the inverse operator is a multi-value map, or a single-value map. 
+Because we know how subgradient work, in our case we had $f$ being closed convex and proper, then the proximal operator is-singled value. 
+This is the result of $f + \frac{1}{2\alpha}\Vert \cdot - y\Vert$ being a strongly convex function. 
+To characterize when the proximal operator is single-valued is more complicated.
+$f$ being closed convex and proper is sufficient but unnecessary for the proximal map to be single-valued.
+For more about it, check out the comments on Dimitry's work at the end of chapter 3 of his textbook for math 516 at UW.
+Dimitry also mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
+Dimity's discussion on the topic can be seem [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
 
 
 The operator is maximal monotone: 
-* In brief, the subgradient operator of a CCP function, we have $\partial f$ to be a maximal monotone operator. Meaning that for any $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. And because of this, it terms out that $I + \partial f$ is single-valued and it's surjective, meaning that the inverse $(I +\partial f)^{-1}$ is a singled value operator too. With $\alpha$ it doesn't change thing. 
+* The subgradient operator of a closed convex and proper(CCP) function has $\partial f$ as a maximal monotone operator. 
+Therefore $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. 
+Consequently, $I + \partial f$ is single-valued and surjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
+For all $\alpha>0$, it's the same.
+* **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
+* > The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3.. 
 
-* **The Surjectivity Theorem**, [[Minty's Theorem, The Surjectivity Theorem]]
-
-* > The surjectivity theorem stated that, $T$ is maximal monotone iff $I + T$ is surjective. This is stated as theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3. 
-
-Monotone operator deserves its pages. Here will skip the details. 
-
-Here, I want to highlight one important observation we should make here, and that is the special case where $f(x) = \delta_C(x)$, under that case, the proximal operator becomes the set projection operator onto the set. 
-
+Monotone operators deserve their own pages. 
+We skip the details here.
+I want to highlight one essential observation. 
+When $f(x) = \delta_C(x)$, the proximal operator becomes the set projection operator onto the set. 
 
 ---
 ### **Prox is L1-Lipschitz under 2-Norm, and Firmly Non-expansive**
 
-> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
+The Proximal operator can be understood as the special case of the set projection. 
+It retains one of the properties of a set projection as well. 
+A set projection onto a convex set is a L1 Lipschitz mapping. 
+The proximal operator is also a L1 Lipschitz mapping for CCP functions. 
+
+### **Thm | The Proximal operator is Firmly Non-Expansive**
+> Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. Then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
 > \begin{aligned}
 >     \Vert \text{prox}_f(x) - \text{prox}_f(y)\Vert^2 \le 
 >     \langle \text{prox}_f(x) - \text{prox}_f(y), x - y\rangle. 
 > \end{aligned}
 > $$
-Basically it's Lipschitz continuous with a constant of 1 (Try using the Cauchy Schwartz inequality). 
+
+**Observations**
+
+Using Cauchy inequality, it's Lipschitz continuous with a constant of 1.
+The proximal operator is certainly continuous too. 
 
 **Proof**
 
-To prove we make use of [[Strong Convexity, Equivalences and Implications]], and the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. For simplicity we denotes $P_f(x), P_g(x)$ as the proximal operator at $x$. Define $g(z):= f(z) + \frac{1}{2}\Vert z - x\Vert^2$ is strongly convex wrt to $z$, $\alpha = 1$ then $g(y^+) - g(x^+)\ge \frac{1}{2}\Vert x^+ - y^+\Vert^2$ where $x^+\in P_f(x)$, $y^+\in P_f(y)$, expanding it we have: 
+We use [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) to prove. 
+We also use the fact that $x^+$ is the minimum solution of $\text{prox}_f(x)$ and $y^+$ is the minimum of $\text{prox}_f(y)$. 
+Define $g(z):= f(z) + \frac{1}{2}\Vert z - x\Vert^2$. 
+For simplicity, we denote $P_f(x), P_g(x)$ as the proximal operator at $x$. 
+$g(Z)$ is strongly convex.
+Let $\alpha = 1$ then $g(y^+) - g(x^+)\ge \frac{1}{2}\Vert x^+ - y^+\Vert^2$ because of strong convexity. 
+We use $x^+\in P_f(x)$, $y^+\in P_f(y)$, the strong convexity condition is
 
 $$
 {\scriptsize
@@ -222,7 +261,7 @@ $$
 \end{aligned}
 $$
 
-replacing the expression with this larger quantity we obtain a larger rhs: 
+replacing the expression with this larger quantity, the HRS has upper bound: 
 
 $$
 \begin{aligned}
@@ -249,7 +288,7 @@ $$
 \end{aligned}
 $$
 
-Since $y^+ \in P_f(y), x^+ \in P_f(x)$, and the choice is arbitrary, the above expression is equivalent to: 
+Since $y^+ \in P_f(y), x^+ \in P_f(x)$, and the choice is arbitrary, the above expression is equivalent to 
 $$
 \begin{aligned}
     & \Vert P_f(x) - P_f(y)\Vert^2 \le \langle P_f(y) - P_f(x), y - x\rangle \le 
@@ -260,18 +299,27 @@ $$
 \end{aligned}
 $$
 
-Which is the results. Observe that, redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. By properties of norm, the above inequality is sufficient for any more.$\blacksquare$
+That is the observation we made from the claim. 
+Observe that redefining $\Vert \cdot\Vert$ into $\Vert \cdot\Vert_\star$ will recover the inequality we wanted to prove. 
+By properties of norm, the above inequality is sufficient for any norm in finite Euclidean spaces.
+$\blacksquare$
 
 
 **Remarks**
 
-To generalize the results where $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. The prox has the same Lipschitz for any convex proper functions, for any parameter $\alpha > 0$. I deviated from the references materials and added the generality for $\Vert \cdot\Vert$ so that it works with $\Vert \cdot\Vert_\star$. 
+To generalize the results where $\alpha$ is not necessarily 1, we consider: $\text{prox}_{f, \alpha}(x) = \text{prox}_{f/\alpha, 1}(x)$, which doesn't affect the Lipschitz constant at all. 
+The prox has the same Lipschitz for any convex proper functions, for any parameter $\alpha > 0$. 
+I deviated from reference materials and added the generality for $\Vert \cdot\Vert$ to work with $\Vert \cdot\Vert_\star$. 
 
-The proximal operator is also <mark style="background: #FFF3A3A6;">*firmly nonexpansive*</mark>, a stronger type of operators than Lipschitz-1 Operators. This helps with proving the convergence of many algorithms that uses the proximal operator. For context, read [[../Operators Theory/Firmly Nonexpansive Operators]] for more about firmly nonexpansive operators in general. There is also an simpler version of the proof for the firmly nonexpansiveness of the prox operators. 
+The proximal operator is also <mark style="background: #FFF3A3A6;">*firmly nonexpansive*</mark>. 
+This subset of Lipschitz-1 Operators.
+It helps with proving the convergence of many algorithms that uses the proximal operator. 
+For context, read [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md) for more about Firmly Nonexpansive operators in general. 
+There is also a simpler version of the proof for the Firmly Nonexpansiveness of the prox operators. 
 
-**Corollary | Moreau Envelope is Smooth**
+**Corollary | The gradient of Moreau Envelope is Firmly Nonexpansive**
 
-Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
+> Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
 **References**: 
 
@@ -292,9 +340,12 @@ To show it, we make use of the [Fenchel Identity, Inequality](../Duality/Fenchel
 
 **Remarks:**
 
-Function $\exp(x)$ doesn't have a surjective subgradient mapping. Hence, the domain of its subgradient is also not entire. The theorem here is not applicable for all values of $x$ outside of the domain of the subgradient of the conjugate, or outside of the range of the range of the subgradient. 
+Function $\exp(x)$ doesn't have a surjective subgradient mapping. 
+Hence, the domain of its subgradient is also not entire. 
+The theorem here is not applicable for all values of $x$ outside of the domain of the subgradient of the conjugate or outside of the range of the range of the subgradient.
+Global strict convexity and coerciveness are the sufficient conditions for an invertible subgradient operator using the dual subgradient; the subgradient of these functions is surjective. 
+For more information, see [Simply Legendre Type](../Simply%20Legendre%20Type.md). 
 
-Global Strict convexity, coerciveness, are sufficient conditions for invertible subgradient operator using the dual subgradient, subgradient of these functions are surjective. 
 
 
 **References:**
@@ -340,7 +391,7 @@ $$
 $$
 
 * \[1\]: By using the second equivalence property that characterize the proximal point. 
-* \[2\]: Using the Fenchel Identity, see [[../Duality/Fenchel Identity, Inequality]], also read the lemma at the start of the section. 
+* \[2\]: Using the Fenchel Identity, see [Fenchel Identity, Inequality](../Duality/Fenchel%20Identity,%20Inequality.md), also read the lemma at the start of the section. 
 * \[3\]: Using the subgradient sum rule, $\iff$ is there for because we can use the strong sum rule in this case, due to the fact that the inner product is entire on its domain. 
 * \[4\]: When $f$ is convex proper and closed, the proximal operator is singled valued. 
 
@@ -360,7 +411,7 @@ which is more useful for direct applications.
 **Remarks**
 
 Minty Parameterizations: 
-  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [[Resolvent and Minty Paramaterization]], [[Inverse of Subgradient of the Convex Conjugate]] for more information. 
+  * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [Resolvent and Minty Paramaterization](../Operators%20Theory/Resolvent%20and%20Minty%20Paramaterization.md), [Inverse of Subgradient of the Convex Conjugate](../Operators%20Theory/Inverse%20of%20Subgradient%20of%20the%20Convex%20Conjugate.md) for more information. 
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
@@ -408,15 +459,25 @@ $$
 \end{aligned}
 $$
 
-- At \[1\] we use the conjugate formula for infimal convolution between 2 functions. Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function which has a unique minimum to it. See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more info regarding taking the conjugate of the infimal convolution between 2 functions. 
-- At \[2\] we make use of the Moreau decomposition. And finally, the conjugate $f^\star$ is convex, and hence adding a quadratic to it is strongly convex, producing a singleton for the proximal mapping. The subgradient is actually gradient.$\square$ additionally, using the fact that prox is L-1 Lipschitz, the gradient is also a Lipschitz mapping. 
+- At \[1\] we use the conjugate formula for infimal convolution between 2 functions. 
+Also, observe that $z$ is unique because $f(\cdot)\square\frac{1}{2}\Vert\cdot\Vert^2$ is a strongly convex function that has a unique minimum to it. 
+See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more info regarding taking the conjugate of the infimal convolution between 2 functions. 
+- At \[2\] we make use of the Moreau decomposition.
+
+Finally, the conjugate $f^\star$ is convex hence, adding a quadratic makes it strongly convex. 
+This produces a singleton for the proximal mapping. 
+The subgradient is a gradient.
+$\square$ 
+
+Additionally, using the fact that proximal mapping is L-1 Lipschitz, the gradient is a Lipschitz mapping. 
 
 **Remarks**
 
-When $f$ is an indicator function for a set, the function is definitely quadratic, and it's smooth too. For example $\delta_{\mathbf 0}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
-
-
-The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{\alpha f}(x))$. It's the same proof but slightly enhenced. The following would be a demonstration: 
+When $f$ is an indicator function for a set, the envelope is the distance to the set squared, which is smooth. 
+For example $\delta_{\{\mathbf 0\}}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
+The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{\alpha f}(x))$. 
+It's the same proof but slightly enhancedd. 
+We demonstrate below
 
 $$
 \begin{aligned}
@@ -457,7 +518,9 @@ $$
 ---
 ### **Quick Formulas for the Proximal Operators**
 
-Here is a list of useful formula about the proximal operator, in the most general context possible. We stated without the proof. The reference is taken from the survey paper from Stanford.  
+Here is a list of helpful formulas for the proximal operator. 
+We stated without proof.
+We referenced a survey paper on Stanford and Amir Beck's textbook. 
 
 **Post Composition**
 
@@ -470,7 +533,6 @@ Here is a list of useful formula about the proximal operator, in the most genera
 >     \text{prox}_{\alpha\lambda, \varphi}(v). 
 > \end{aligned}
 > $$
-
 
 
 **Precomposition**
@@ -502,8 +564,6 @@ Here is a list of useful formula about the proximal operator, in the most genera
 **References**: 
 
 Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
-
-
 
 
 **Affine Addition**
@@ -551,7 +611,7 @@ Amir Beck, Theorem 6.15 (Composition with Affine Mapping)
 
 **Proof**
 
-Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]]. 
+It follows directly from [Minimizer of Quadratic Sum, Weighted Average](../Minimizer%20of%20Quadratic%20Sum,%20Weighted%20Average.md). 
 
 **Parallelization**
 
@@ -565,26 +625,30 @@ Follows directly from [[Minimizer of Quadratic Sum, Weighted Average]].
 > In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
 
 ---
-### **Examples**
+### **Examples For Proximal Mapping**
 
-We list some examples of proximal operators here, for the purpose of illustrating its theoretical values. For more general examples for computing and implementations of optimization algorithm, visit: [[Proximal Operators Example Pack]]. For more about the projection onto a convex set, see [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
+We list one example of proximal operators here for demonstration. 
+For more examples or how to compute and implement it for optimization algorithms, visit: [Proximal Operators Example Pack](Proximal%20Operators%20Example%20Pack.md). 
+For more about the projection onto a convex set, see [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
 
 **Example | Projection onto Convex Sets**
 > Allow $f(x) = \delta_Q(x)$ to be an indicator function of a closed convex set $Q$, then the proximal operator $\text{prox}_{\delta_Q}(x) = \Pi_Q(x)$, which is the projection onto the convex $Q$. 
 
 **Demonstrations**
 
-We invoke the definition and the meaning of this, and then we exam the property of the proximal mapping and envelope from above using this example. 
+We invoke the definition and the meaning of this, and then we examine the property of the proximal mapping and envelope from above using this example. 
 
 
 ---
 ### **Misc**
 
-We can take the proximal operator over a Moreau Envelope, and doing that results in very convenient ways of solving for proximal operators. [[Proximal on Moreau Envelope]]. 
+We can take the proximal operator over a Moreau Envelope. 
+Doing that results in very convenient ways of solving for proximal operators. [Proximal on Moreau Envelope](Proximal%20on%20Moreau%20Envelope.md). 
+We may use it to identify more closed forms of proximal mapping for algorithms. 
 
 
 ---
 ### **Beck's Cheatsheet**
-See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for more fast references for more advanced examples of the proximal operator. 
+See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for a quick reference. 
 
 
