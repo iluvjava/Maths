@@ -650,5 +650,3 @@ We may use it to identify more closed forms of proximal mapping for algorithms.
 ---
 ### **Beck's Cheatsheet**
 See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for a quick reference. 
-
-
