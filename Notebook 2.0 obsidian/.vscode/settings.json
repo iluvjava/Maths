@@ -16,6 +16,16 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "AMATH 516 Numerical Optimizations/Proximal Operator/Moreau Envelope and Proximal Mapping.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "MATH 999 Paper Reviews and Frontier Mathematics/Back Propagation 2.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "MATH 999 Paper Reviews and Frontier Mathematics/Back Propagation.md"
         }
     ]
 }

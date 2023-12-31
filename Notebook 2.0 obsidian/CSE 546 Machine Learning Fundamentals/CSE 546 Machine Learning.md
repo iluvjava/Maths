@@ -49,7 +49,7 @@ Classification
 
 Non-Linearity
 1. [[Kernel Machine]]
-2. [[Back Propagation]], [[Back Propagation 2]]
+2. [[Back Propagation]]
 3. Neural Networks
 4. Neural Networks Architecture
 

@@ -1,5 +1,5 @@
 Before training Neuro net, make sure to have some basic understanding on the back prop algorithm involved with the training: 
-[[Back Propagation]], [[Back Propagation 2]]
+[[Back Propagation]]
 
 This file is going to be a practical guide on training the Neural network using pytorch in python. 
 

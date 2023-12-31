@@ -1,13 +1,4 @@
 [[Back Propagation]] 
-This one is a new approach to what we did before, but we are going to make things easier, nicer to understand than the previous iterations. 
-
-We will keep talking about Neural network backprop algorithm. 
-
-And we are sticking with matrix notations. 
-
-We are going to use better notations. 
-
-We are going to make taking the derivative easier to understand. 
 
 We will assume that reader has basic understanding in: 
 1. Structure of Neural network. 
@@ -16,25 +7,23 @@ We will assume that reader has basic understanding in:
 ---
 ### **Intro**
  
-Let $a_{i}^{(n)}$ denotes the output of Neural Network at layer $n$. 
+We define some basic quantities for the discussion. 
 
-Let $a_{0}^{(n)}$ denotes the bias neural node, so that it always has a value of 1 outputting from it. This node is dangling at each layer of the network. 
+* Let $a_{i}^{(n)}$ denote the output of Neural Network at the $n$th layer. 
+* Let $a_{0}^{(n)}$ denote the bias neural node so that it always has a value of 1 outputting from it. 
+This node is dangling at each layer of the network. 
+* Let $f$ be the activation function for each layer of the Neural Network, let's assume that it's the same on all the hidden layers. 
+For example, the ReLu activation function. 
+* Let the activation function of the input layer be the identity function. 
+* Let the output layer activation function be denoted by: $f_o$.
+* Let $x$ be the input of the Neural Network, which is a vector, and let $z^{(k)}_{i}$ be the ith input on the kth layer of the Neural Network.
+This is the output from the previous layer, also called the pre-activation of the current layer. 
+* Let $\hat{y}$ be the final output of the Neural Network. 
+Let $\mathcal{L}$ be the loss function applied to the final layer, so given the label and the prediction, it will be denoted by: $L(\hat{y}, y)$. 
+* Let $\theta^{(n)}_{i, j}$ be the weight between $a^{n - 1}_{j}$ and the $i$ th input into the $n$ th layer of the neural net. 
+* Let $\Theta^{(n)}$ be the weight matrix between the $n - 1$ and the $n$ th layer of the Neural Network. 
 
-Let $f$ be the activation function for each layer of the Neural Network, let's assume that it's the same on all the hidden layer. For example, the ReLu activation function. 
 
-Let the activation function of the input layer to be the identity function. 
-
-let the output layer activation function denoted by: $f_o$.
-
-Let $x$ be the input of the Neural Network, which is a vector, and let $z^{(k)}_{i}$ be the ith input on the kth layer of the Neural Network. This is the output from the previous layer, also called the pre-activation of the current layer. 
-
-Let $\hat{y}$ be the final output of th Neural Network. 
-
-Let $\mathcal{L}$ be the loss function at the final layer, so given the label and the prediction, it will be denoted by: $L(\hat{y}, y)$. 
-
-Let $\theta^{(n)}_{i, j}$ be the weight between $a^{n - 1}_{j}$ and the $i$ th input into the $n$ th layer of the neural net. 
-
-Let $\Theta^{(n)}$ be the weight matrix between the $n - 1$ and the $n$ th layer of the Neural Network. 
 
 **That is the introduction, let's now take these Variables for a spin**: 
 

@@ -1,118 +1,73 @@
-Back Propagation, a way of figuring out the derivative of the weights matrix for a given feed forward neuro-network.
+### **Intro**
 
-References: My imagination
+Backpropagation is an efficient algorithm that evaluates the derivative wrt to weights and biases on a simple dense layer artificial neural network. 
 
-A background in gradient descend is preferred, see: 
-[[Gradient Descend 3]]
+#### **Setting Up The Neural Networks**
+Assume that our neural network has one hidden layer in the middle of an input layer and an output layer with the 2-norm loss function. 
+Let $\Theta$ denote the parameters for the neural network. 
+The parameters symbol $\Theta$ denotes the weight and biases between the input layer and the hidden layer: $W_1, b_1$, and the weights and biases between the hidden layer and the output layer: $W_2, b_2$. 
+Let $f_3, f_2$ be the activation functions applied to the hidden layer and the last layer of the network.
+The loss function, or, error function can written as: 
 
-The objective is to find the derivative of the weight matrix given a set of deep Neuro-Network. 
+$$
+E(x | \Theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2) - y\Vert^2. 
+$$
+
+In the above expression, $x$ is the input of the neural network. 
+It's an instance of the observed sample when it's being trained. 
+It's an input when it's doing inferences. 
 
 ---
-### **1. Intro**
+### **Jacobian of the Neural Network Layer Composition**
 
-Let's be familiar with the set up of a Neuro Network with one hidden layer. 
+During the training of a Neural network, the optimizer needs the derivative on all the weights and biases through the loss function. 
+More specifically, we need to compute $\partial_{(W_1)_{i, j}}E(x | \Theta)$ where $x$ is one sample. 
+We need to compute all the weights and biases meaning that we need a gradient wrt to all $W_{i, j}, b_i$, whatever the $i, j$ are and the range they take. 
+Generically speaking, the composition at any layer takes in the output from the previous layer, feeds it over an affine function and then to the activation function. 
+Denoting the output of the previous layer using $g(x)$, the activation function of the current layer being $f$, the output of the current layer is represented as $f(Wg(x|\Theta) + b)$. 
+The $\Theta$ here denotes all the weight and biases that are not between the current layer and the previous layer. 
 
-$$
-E(x, \theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2) - y\Vert^2
-$$
-
-And this is the error function of the neuro net. It's taking the error by looking at a single sample. 
-
-3 layers, 2 fully connected layers exist between the input and the output, supported by the $W_1$ and the $W_2$ weight matrices. $\alpha_1, \alpha_2$ are the biases. 
-
-$f_3, f_2$ are th activation function on the second and the third layer of the Neuron. 
-
-$\theta$ is just denoting all the parameters one can find in the Neuro Net.
-
-
-**Training**: 
-
-We feed the Neuro Net a small example from the populations, and then we minimize the errors on that smaller patch of the samples. Notice, that convergence is not promised, but we can assume that there exists a function that can approximate the whole populations. 
-
----
-### **2. Preliminaries**
-
-Let's consider taking the derivative on a certain configuration of function that is similar to the Neuro-network architecture. 
-
-The function is the in the form of: 
+Let's make $W$ to be a $m\times n$ matrix. 
+It's an abstraction of the weight matrix in Neuro-Network. 
+Let the function $f$ be a univariate function broadcasted to a vector. 
+Let the function $g$ be a univariate function, it's broadcasted to the vector $x$. In matrix form, we have the representation:
 
 $$
-f(Wg(x) + b)
-$$
-
-Let's make $W$ to be a $m\times n$ matrix. It's like the weight matrix in Neuro-Network. 
-
-The function $f$ is a univariate function, it's broadcasted to the whole vector. 
-
-The function $g$ is a univariate function too, it's broadcasted to the whole vector $x$, 
-
-$$
-f(Wg(x) + b) = 
-\begin{bmatrix}
-    f([Wg(x) + b]_1)
-    \\
-    f([Wg(x) + b]_2)
-    \\
-    \vdots
-    \\
-    f([Wg(x) + b]_m)
-\end{bmatrix}
-\quad 
-g = \begin{bmatrix}
+f(Wg(x | \Theta) + b) = 
+    \begin{bmatrix}
+        f([Wg(x) + b]_1)
+        \\
+        f([Wg(x) + b]_2)
+        \\
+        \vdots
+        \\
+        f([Wg(x) + b]_m)
+    \end{bmatrix},
+    \quad 
+    g(x) = \begin{bmatrix}
     g(x_1) \\ g(x_2) \\ \vdots \\ g(x_n)
-\end{bmatrix}
+\end{bmatrix}. 
 $$
 
-Then certainly, we can take derivative wrt to one of te variable in the input vector, say $x_i$ where $1 \le i \le k$. When we take derivative with that, we are taking it wrt to all the $m$ outputs from the function, hence, we have a gradient and it's $\in \mathbb{R}^m$. 
+$f(Wg(x | \Theta) + b)$ is a multi-valued mapping. 
+If we were to take derivative wrt to weight matrix $W$, then is a $\mathbb R^{m\times n}\mapsto \mathbb R^m$. 
+Treating all weights and biases $\Theta$ that come before the previous layer as a vector. 
+Recall from multi-variable calculus that compositing a multi-valued mapping would require the Jacobian matrix for using the chain rule. 
 
-Consider: 
+#### **Computing the Jacobian**
 
-$$
-\partial_{x_i}\begin{bmatrix}
-    f([Wg(x) + b]_1)
-    \\
-    f([Wg(x) + b]_2)
-    \\
-    \vdots
-    \\
-    f([Wg(x) + b]_m)
-\end{bmatrix}
-= 
-\begin{bmatrix}
-    f'(\partial_{x_i} [Wg(x) + b]_1)
-    \\
-    f'(\partial_{x_i} [Wg(x) + b]_2)
-    \\
-    \vdots 
-    \\
-    f'(\partial_{x_i} [Wg(x) + b]_m)
-\end{bmatrix}
-$$
+In general, the Jacobian is the tensor product of the gradient wrt to each output of the multi-valued function. 
+To compute a gradient for a specific output, we consider the expression $\nabla_W [f(Wg(x | \theta) + b)]_k$ for $1\le k \le m$. 
+The gradient is a $m\times n$ matrix. 
+To get each of the elements, we consider the partial derivative 
 
 $$
-=
-\begin{bmatrix}
-    f'([W\partial_{x_i}[g(x)]]_1)
-    \\
-    f'([W\partial_{x_i}[g(x)]]_2)
-    \\
-    \vdots 
-    \\
-    f'([W\partial_{x_i}[g(x)]]_m)
-\end{bmatrix}
-=
-f'(W\partial_{x_i}g(x))
+\begin{aligned}
+    \partial_{W_{i, j}}[f(Wg(x|\Theta) + b)]_k &= 
+
+\end{aligned}
 $$
 
-However, notice that, because $g$ is broadcast to the vector $x$, only the $i$ th output of $g(x)$ is related to $x_i$, therefore $\partial_{x_i}g(x)$ has zeros on all entries that is not the $i$ th entry. 
-
-$$
-= f'(W_{[:, i]}g'(x_i))
-$$
-
-Inside is a scalar $g'(x_i)$ multiplied by the $i$ th column of the weight matrix $W$. 
-
-This is helpful when taking neuro-network. Inside a Neuro-network, the output from the previous layer are put under a weight and bias transform and then put into a new layer of the same activation function. 
 
 ---
 ### **3. Setting Things up**
