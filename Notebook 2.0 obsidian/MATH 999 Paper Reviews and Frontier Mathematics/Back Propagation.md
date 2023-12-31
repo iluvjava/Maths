@@ -6,96 +6,106 @@ Backpropagation is an efficient algorithm that evaluates the derivative wrt to w
 Assume that our neural network has one hidden layer in the middle of an input layer and an output layer with the 2-norm loss function. 
 Let $\Theta$ denote the parameters for the neural network. 
 The parameters symbol $\Theta$ denotes the weight and biases between the input layer and the hidden layer: $W_1, b_1$, and the weights and biases between the hidden layer and the output layer: $W_2, b_2$. 
-Let $f_3, f_2$ be the activation functions applied to the hidden layer and the last layer of the network.
-The loss function, or, error function can written as: 
+Let $f_3, f_2$ be the activation function applied to the hidden and output layer.
+The loss function, or error function, can written as: 
 
 $$
 E(x | \Theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2) - y\Vert^2. 
 $$
 
 In the above expression, $x$ is the input of the neural network. 
-It's an instance of the observed sample when it's being trained. 
-It's an input when it's doing inferences. 
+When we train the neural networ, $x$ is the sample from the training data set we feed to the neural network.
+It's an input when it's making inferences. 
 
 ---
-### **Jacobian of the Neural Network Layer Composition**
+### **Partial Derivative of the Neural Network Layer Composition**
 
-During the training of a Neural network, the optimizer needs the derivative on all the weights and biases through the loss function. 
-More specifically, we need to compute $\partial_{(W_1)_{i, j}}E(x | \Theta)$ where $x$ is one sample. 
-We need to compute all the weights and biases meaning that we need a gradient wrt to all $W_{i, j}, b_i$, whatever the $i, j$ are and the range they take. 
-Generically speaking, the composition at any layer takes in the output from the previous layer, feeds it over an affine function and then to the activation function. 
-Denoting the output of the previous layer using $g(x)$, the activation function of the current layer being $f$, the output of the current layer is represented as $f(Wg(x|\Theta) + b)$. 
+During the Neural network training, the optimizer needs the derivative on all the weights and biases through the loss function. 
+Specifically, we need to compute the partial derivative of $E(x | \Theta)$ wrt all the weights and biases.
+Therefore, we need a gradient wrt to all $W_{i, j}, b_i$, whatever the $i, j$ are and the range they take. 
+We introduce the following notations. 
+* Let $x^{(k)}$ denote the input for the kth layer of the neural network. 
+Let $x^{(0)}, x$ denote the input of the neural network. 
+* Let $p^{(k)}$ denote the output of the current layer. 
+So we have $p^{(k)} = f(x^{(k)})$, where the activation function $f$ is applied element-wise to $x^{(k)}$. 
+* Let $W^{(i - 1/2)}, b^{(i - 1/2)}$ denote the weights matrix and bias vector between the $i$ and $i - 1$ layer. 
+So then we have $x^{(i)} = W^{(i - 1/2)}p^{(i - 1)} + b^{(i -1/2)}$ to be the input of the layer $i$. 
+
+To simplify the notation, we ignore which layer of neurons we are looking at. 
+That get rid of the superscript. 
+Generically speaking, output at any layer takes in the output from the previous layer, feeds it over an affine function, and then feeds it to the activation function. 
+Denoting the output of the previous layer using $p(x | \Theta)$, the activation function of the current layer being $f$, the output of the current layer is represented as $f\diamond(W p(x|\Theta) + b)$. 
+We use $\odot$ to mean applying $f$ element-wise to a vector. 
 The $\Theta$ here denotes all the weight and biases that are not between the current layer and the previous layer. 
 
-Let's make $W$ to be a $m\times n$ matrix. 
-It's an abstraction of the weight matrix in Neuro-Network. 
-Let the function $f$ be a univariate function broadcasted to a vector. 
-Let the function $g$ be a univariate function, it's broadcasted to the vector $x$. In matrix form, we have the representation:
-
-$$
-f(Wg(x | \Theta) + b) = 
-    \begin{bmatrix}
-        f([Wg(x) + b]_1)
-        \\
-        f([Wg(x) + b]_2)
-        \\
-        \vdots
-        \\
-        f([Wg(x) + b]_m)
-    \end{bmatrix},
-    \quad 
-    g(x) = \begin{bmatrix}
-    g(x_1) \\ g(x_2) \\ \vdots \\ g(x_n)
-\end{bmatrix}. 
-$$
-
-$f(Wg(x | \Theta) + b)$ is a multi-valued mapping. 
-If we were to take derivative wrt to weight matrix $W$, then is a $\mathbb R^{m\times n}\mapsto \mathbb R^m$. 
+$f\diamond(W p(x | \Theta) + b)$ is a multi-valued mapping. 
+If we take derivative wrt to weight matrix $W$, then we treat it like a $\mathbb R^{m\times n}\mapsto \mathbb R^m$. 
 We treat all weights and biases $\Theta$ before the previous layer as a vector. 
 Recall from multi-variable calculus that compositing a multi-valued mapping would require the Jacobian matrix for using the chain rule. 
 
-#### **Computing Derivative of Weights and Biases Current and the Previous Layer**
+#### **Computing Derivative of Weights and Biases Between the Current and the Previous Layer**
 
-In general, the Jacobian is the tensor product of the gradient wrt to each output of the multi-valued function. 
-To compute a gradient for a specific output, we consider the expression $\nabla_W [f(Wg(x | \theta) + b)]_k$ for $1\le k \le m$. 
-The gradient is a $m\times n$ matrix. 
-To get each of the elements, we consider the partial derivative 
+Now we will take the partial derivative wrt to a specific $i, j$ element of the matrix $W$ on the vector $f\diamond(W p(x | \Theta) + b)$. 
+To do that please realize that $\partial_{W_{i, j}}(Wp + b) = p_j\e_i$.
+Additionally we need to realize that the partial derivative for a function that applies element-wise to a vector $g(x)$, we have $\partial_{x_i}[f\diamond x] = (f'\diamond g(x)) \odot \partial_{x_i} g(x)$. 
+Therefore, we may consider the partial derivative 
 
 $$
 \begin{aligned}
-    \partial_{W_{i, j}}[f(Wg(x|\Theta) + b)]_k &= 
-    \partial_{W_{i, j}} f([W]_{k, :}g(x|\Theta) + b_k)
+    \partial_{W_{i, j}}[f\diamond(Wp + b)] &= 
+    (f'\diamond (Wp + b)) \odot\partial_{x_i} [Wp + b]
     \\
     &= 
-    \mathbf 1\{k = i\}
-    f'([W]_{k, :}g(x|\Theta) + b_k)[g(x | \Theta)]_j
+    (f'\diamond (Wp + b))\odot
+    (p_j\e_i)
 \end{aligned}
 $$
 
-The function $\mathbf 1\{k = i\}$ is the indicator function in probability. 
-It takes value zero when $k \neq i$ and $1$ when $k = 1$. 
-The weight $W_{i, j}$ only affects the $i$ th neuron on the current output layer.
-This is the base case.
-The base case is the derivative of a weight between the current layer and the output of the previous layer. 
+Observe that $f'\diamond (Wp + b)\odot \e_i$  is applying $f'$ to the value of the $i$ th neuron at the current layer. 
+And $p_j$, is the output of the jth neuron of the previous layer. 
 
 #### **Computing the Derivative wrt Weights and Biases That Comes Before the Previous Layer**
 
-Inductively suppose we want to take the derivative wrt to a specific indexed element from the weights and biases collection $\Theta$. 
+Inductively, we want to take the derivative wrt to a specific indexed element from the weights and biases collection $\Theta$. 
 Suppose it is $\Theta_j$, which is a scalar value. 
 Then the partial derivative wrt $\Theta_j$ on the $k$ th neuron on the current layer would yield the expression: 
 
 $$
 \begin{aligned}
-    \partial_{\Theta_j} 
-    [f(Wg(x | \Theta) + b)]_k
+    \partial_{\Theta_j} \left[f\diamond(W p(x | \Theta) + b)\right]
+    (f'\diamond (Wp + b))\odot(\partial_{\Theta_j}p(x | \Theta))
 \end{aligned}
 $$
 
+#### **Writing Things Out Differently**
+
+Let's say we are currently looking at the $k$ th neural network layer. 
+We list the output of the previous layer $p^{(k-1)}$, the input of the current layer, $x^{(k)}$, and the output of the current layer, $p^{(k)}$ using the weights and biases in between the layers. 
+
+$$
+\begin{aligned}
+    x^{(k)} &= W^{(k - 1/2)} p^{(k - 1)} + b^{(k - 1/2)}
+    \\
+    p^{(k)} &= f \diamond x^{(k)}. 
+\end{aligned}
+$$
+
+Denote $\Theta_j$ as a weight or bias that feeds into the $k - 1$ layer. 
+It can be in any neural network part before the layer $p^{(k- 1)}$. 
+We may now summarize the results from previous discussion using the new variables. 
+
 
 ---
-### **3. Setting Things up**
+### **Applying the Formulas to our Shallow Neural Network**
 
-Here we consider a very general neuro-net work that is connected by dense layers of neurons. 
+
+
+
+
+---
+### **The Generic Setup of a Dense Forward Neural Network**
+
+We consider a general neuro-net work connected by dense neuron layers. 
 
 Samples: 
 
@@ -109,7 +119,7 @@ And $x$ is a vector and $y$ is also a vector.
 
 Here is the list of notations: 
 
-1. $w_{i, j}^{(k)}$: The weight on the matrix $W_k$, which is the matrix that links between the $k$ and the $k+1$ layer. The incoming node to the layer $k$ is $i$, linked from the $j$th node from the $k - 1$ layer. 
+1. $w_{i, j}^{(k)}$: The weight on the matrix $W^{(k)}$, which is the matrix that links between the $k$ and the $k+1$ layer. The incoming node to the layer $k$ is $i$, linked from the $j$th node from the $k - 1$ layer. 
 2. $W_i$ the weight matrix between the $i$ th layers and the $i - 1$ th layer. 
 3. $f$: The activation function for all the hidden layer of the Neuro-network. This is a univariate scalar function, it's broadcast to a vector element-wise.
 4. $f_{out}$: the output layer of the NeuroNetwork. 
