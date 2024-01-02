@@ -62,6 +62,11 @@ $$
 
 It's like a disjoint union of 2 sets, and the sets will have to be disjoint. 
 
+
+**Remarks**
+> [!warning]+
+> The "direct sum of subspaces" is completely different from the "direct sum of vector spaces". 
+
 ---
 ### **Relative Independence**
 
