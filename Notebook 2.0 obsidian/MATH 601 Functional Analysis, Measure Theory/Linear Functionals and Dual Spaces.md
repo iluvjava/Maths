@@ -3,7 +3,23 @@
 ---
 ### **Intro**
 
-Bounded linear functionals are, representable as a vector in the dual spaces. As an introduction we remind the readers that, linear operators form vector spaces. Denote $\mathcal B(X, Y)$ to be the set of bounded linear operator mapping from $X$ to $Y$ which are vector spaces. The norm for an operator is defined in the pre-requisite. Let $\mathbb K$ denotes sets for type of scalars: $\mathcal K \in \{\mathbb R, \mathbb C\}$, either reals or complex. 
+Bounded linear functionals are, representable as a vector in the dual spaces. 
+As an introduction we remind the readers that, linear operators form a vector space. Denote $\mathcal B(X, Y)$ to be the set of bounded linear operator mapping from $X$ to $Y$ which are vector spaces. 
+For linear mapping between Banach space $X, Y$ to be a vector space itself, we define field $\mathbb K$, together with the addition rules and scalar vector multiplication rules. 
+Let $T_1, T_2\in \mathcal B(X, Y)$ and $\alpha \in \mathbb K$, for any $x\in X$ then 
+$$
+\begin{aligned}
+    [T_1 + T_2](x) &:= T_1(x) + T_2(x)\in X
+    \\
+    \alpha [T_1](x) &:= \alpha T_1(x).
+\end{aligned}
+$$
+
+It's left as an exercise for the reader to verify the 7 axioms of vector spaces using the above definition of airthematic operation. 
+However, we also assumed that the linear mapping is bounded and hence a norm on the linear mapping exists. 
+Therefore it's also a Banach space. 
+The norm for an operator is defined in the pre-requisite. 
+Let $\mathbb K$ denotes sets for type of scalars: $\mathbb K \in \{\mathbb R, \mathbb C\}$, either reals or complex. 
 
 
 ### **Def-1 | Dual Spaces**
@@ -16,6 +32,7 @@ The zero operator $\mathbb O$ is the linear mapping that maps everything to the 
 
 
 **References**: 
+
 Chapter 2 of the Kryzig's textbook for introductory functional analysis. 
 
 ---

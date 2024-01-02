@@ -1,6 +1,6 @@
 ### **Intro**
 
-Backpropagation is an efficient algorithm that evaluates the derivative wrt to weights and biases on a simple dense layer artificial neural network. 
+Back propagation is an efficient algorithm that evaluates the derivative wrt to weights and biases on a simple dense layer artificial neural network. 
 
 #### **Setting Up The Neural Networks**
 Assume that our neural network has one hidden layer in the middle of an input layer and an output layer with the 2-norm loss function. 
@@ -14,14 +14,21 @@ E(x | \Theta) = \frac{1}{2}\Vert f_3(W_2f_2(W_1x + b_1) + b_2) - y\Vert^2.
 $$
 
 In the above expression, $x$ is the input of the neural network. 
-When we train the neural networ, $x$ is the sample from the training data set we feed to the neural network.
+When we train the neural network, $x$ is the sample from the training data set we feed to the neural network.
 It's an input when it's making inferences. 
+
+**Remarks**
+
+The first layer doesn't have an activation function. 
+The hidden layers usually have the same activation function. 
+The last layer may not have an activation function or use a different one. 
+
 
 ---
 ### **Partial Derivative of the Neural Network Layer Composition**
 
 During the Neural network training, the optimizer needs the derivative on all the weights and biases through the loss function. 
-Specifically, we need to compute the partial derivative of $E(x | \Theta)$ wrt all the weights and biases.
+Specifically, we must compute the partial derivative of $E(x | \Theta)$ wrt all the weights and biases.
 Therefore, we need a gradient wrt to all $W_{i, j}, b_i$, whatever the $i, j$ are and the range they take. 
 We introduce the following notations. 
 * Let $x^{(k)}$ denote the input for the kth layer of the neural network. 
@@ -31,9 +38,8 @@ So we have $p^{(k)} = f(x^{(k)})$, where the activation function $f$ is applied 
 * Let $W^{(i - 1/2)}, b^{(i - 1/2)}$ denote the weights matrix and bias vector between the $i$ and $i - 1$ layer. 
 So then we have $x^{(i)} = W^{(i - 1/2)}p^{(i - 1)} + b^{(i -1/2)}$ to be the input of the layer $i$. 
 
-To simplify the notation, we ignore which layer of neurons we are looking at. 
-That get rid of the superscript. 
-Generically speaking, output at any layer takes in the output from the previous layer, feeds it over an affine function, and then feeds it to the activation function. 
+To simplify the notation, we ignore which layer of neurons we are looking at. That gets rid of the superscript. 
+Generically speaking, output at any layer except for the first layer takes in the output from the previous layer, feeds it over an affine function, and then feeds it to the activation function. 
 Denoting the output of the previous layer using $p(x | \Theta)$, the activation function of the current layer being $f$, the output of the current layer is represented as $f\diamond(W p(x|\Theta) + b)$. 
 We use $\odot$ to mean applying $f$ element-wise to a vector. 
 The $\Theta$ here denotes all the weight and biases that are not between the current layer and the previous layer. 
@@ -53,7 +59,7 @@ Therefore, we may consider the partial derivative
 $$
 \begin{aligned}
     \partial_{W_{i, j}}[f\diamond(Wp + b)] &= 
-    (f'\diamond (Wp + b)) \odot\partial_{x_i} [Wp + b]
+    (f'\diamond (Wp + b)) \odot\partial_{W_{i, j}} [Wp + b]
     \\
     &= 
     (f'\diamond (Wp + b))\odot
@@ -63,6 +69,16 @@ $$
 
 Observe that $f'\diamond (Wp + b)\odot \e_i$  is applying $f'$ to the value of the $i$ th neuron at the current layer. 
 And $p_j$ is the output of the jth neuron of the previous layer. 
+Computing the bias is analogous. 
+We remind of the reader that $\partial_{b_j}(Wp + b) = \e_j$ and hence 
+
+$$
+\begin{aligned}
+    \partial_{b_j} [f\diamond (Wp + b)] 
+    = 
+    (f'\diamond(Wp + b))\odot \e_i
+\end{aligned}
+$$
 
 #### **Computing the Derivative wrt Weights and Biases That Comes Before the Previous Layer**
 
@@ -94,12 +110,51 @@ Denote $\Theta_j$ as a weight or bias that feeds into the $k - 1$ layer.
 It can be in any neural network part before the layer $p^{(k- 1)}$. 
 We may now summarize the results from the previous discussion using the new variables. 
 
+$$
+\begin{aligned}
+    \partial_{W_{i, j}^{(k - 1/2)}} p^{(k)}
+    &= 
+    \left(
+        f'\diamond x^{(k)}
+    \right) \odot 
+    p_j^{(k-1)}\e_i
+    \\
+    &= 
+    p^{(k - 1)}_jf'\left(x^{(k)}_j\right)\e_i
+    \\
+    \partial_{\Theta_j}p^{(k)}
+    &= 
+    f'\diamond x^{(k)} \odot \partial_{\Theta_j} p^{(k - 1)}. 
+\end{aligned}
+$$
+The first case is the base case, and the second is the recursive one.
+
 
 ---
 ### **Applying the Formulas to our Shallow Neural Network**
 
+We are now ready to apply the formula to our shallow neural network. 
+Our neural network has variables of the following relations
 
+$$
+\begin{aligned}
+    p^{(0)} &= x^{(0)}
+    \\
+    x^{(1)} &= W^{(1/2)} p^{(0)} + b^{(1/2)}
+    \\
+    p^{(1)} &= f\diamond x^{(1)}
+    \\
+    x^{(2)} &= W^{(3/2)} p^{(1)} + b^{(3/2)}
+    \\
+    p^{(2)} &= x^{(2)}. 
+\end{aligned}
+$$
 
+Let $x^{(0)} \in \mathbb R^{l_0}, x^{(1)}\in \mathbb R^{l_1}, x^{(2)}\in \mathbb R^{l_2}$. 
+Hence $W^{(1/2)}$ is $l_1\times l_0$ and $W^{(3/2)}$ is $l_1 \times l_2$. 
+And the loss function is just the 2-norm. 
+Let's take the partial derivative wrt to weight matrix $W^{(3/2)}$. 
+Therefore we consider $E(x; y \;|\; W^{(3/2)})$ with $y$ being the labels to predict for each sample.
 
 
 ---
@@ -463,6 +518,7 @@ $$
     p^{(k + 1)}_i
 \right)
 $$
+
 
 **Observe**: The derivative on the bias vector is not relevant to the variable $j$. 
 

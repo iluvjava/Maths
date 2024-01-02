@@ -101,7 +101,6 @@ To see that this is indeed a group, we observe that, elements from the equivalen
 #### **The Symmetric Group**
 
 > Symmetric group, denoted as $S_n$ is defined as all bijective functions that maps $[n]$ to $[n]$ $[n] = \{0, 1, 2, \cdots, n - 1\}$). Let $\circ$ be the binary operator of the group, then $S$ defines a set of all functions $f_i : S_n\mapsto S_n$. This group has order $n!$. 
->
 
 **Observations**
 1. $id$ exists and it's the identity mapping on the set $[n]$. 

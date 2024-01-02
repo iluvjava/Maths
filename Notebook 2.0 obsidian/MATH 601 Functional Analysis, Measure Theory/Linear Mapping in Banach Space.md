@@ -33,7 +33,7 @@ Such an operator will be able operate on any Normed Spaces, here we list some ex
 
 **References**:
 
-This part will be focusing on later part of chapter 2 of Kryzig's textbook for functional analysis. We will denote te indices for theorems in the book using: (.). 
+This part will be focusing on later part of chapter 2 of Kryzig's textbook for functional analysis. We will denote the indices for theorems in the book using: (.). 
 
 ---
 ### **Elementary Theorems**
@@ -171,6 +171,44 @@ The theorems and properties for a bounded linear mapping also applies to a bound
 2. Dot product. 
 3. Choosing a fixed of a function and putting it into the function in the space $C[a, b]$. 
 4. The $l^2$ sequence space. 
+
+---
+### **Kronecker Delta Representation of Linear Functional**
+
+We present the coordinate form of a linear funtional. 
+Let $\mathcal B = \{\e_1, \e_2\cdots\}$ be set of basis vectors for space $V$. 
+The basis could be finite but for generality we assumed that it's not. 
+We define $\beta_{i} : V \mapsto \mathbb R$, for $i \in \mathbb N$ to be such that 
+
+$$
+\begin{aligned}
+    \beta_i(\e_j) = 
+    \delta_{i, j} := 
+    \begin{cases}
+        0 & i \neq j, 
+        \\
+        1 & i = j. 
+    \end{cases}
+\end{aligned}
+$$
+
+Let's now consider generic vector $v \in V$ represented by basis $\mathcal B$. 
+Assuming that $\beta_i$ is a linear functional, then
+
+$$
+\begin{aligned}
+    \beta_i\left(
+        \sum_{j \in \mathbb N}^{} v_j\e_j
+    \right) &= 
+    \sum_{j\in \mathbb N}^{}
+    v_j \beta_i(\e_j)
+    \\
+    &= v_i. 
+\end{aligned}
+$$
+
+It quiry the multiplier of a basis representation of a vector $v$. 
+This is a special kind of linear functional. 
 
 
 ---

@@ -23,7 +23,9 @@ $$
 $$
 
 #### **Definition 2 (2.2.2) | Equivalent Class**
-> Let $\sim$ be an equivalence relation on the set $S$, for any $a \in S$. For a given element $a \in S$, we define the *equivalent class* of $a$ to be the set of all elements of $S$ such that are equivalent to $a$, it's denoted using notation $[a]$, in symbols $[a] := \{x \in S | x \sim a\}$. The notation $S/\sim$ denotes the collection of equivalence classes of $S$ defined by the equivalence relation $\sim$. We say that $S/\sim$ is the *factor set* of the relation $\sim$. 
+> Let $\sim$ be an equivalence relation on the set $S$, for any $a \in S$. 
+> For a given element $a \in S$, we define the *equivalent class* of $a$ to be the set of all elements of $S$ such that are equivalent to $a$, it's denoted using notation $[a]$, in symbols $[a] := \{x \in S | x \sim a\}$. 
+> The notation $S/\sim$ denotes the collection of equivalence classes of $S$ defined by the equivalence relation $\sim$. We say that $S/\sim$ is the *factor set* of the relation $\sim$. 
 
 ----
 ### **Enlightening Examples**
@@ -44,13 +46,24 @@ This is a way of partitioning the domain of the function and reminds me of the c
 #### **Example 1 (2.2.1 in ref) | Congruence of on Modulo n**
 > It's not hard to see that, the equivalence relation under modulo-n is using a mapping $f(x) = \text{mod}(x, n)$ on the set $\Z$, and hence, using the previous example, this function will induce an equivalence relation on the set $\Z$. 
 
+**Observations**
+By definition of an equivalent class, choose any $y \in \{0, 1, \cdots, n\}$, for some $n \ge 1$, then the equivalent class represented by $y$ is 
+
+$$
+\begin{aligned}
+    [y] &:= \{x \in \mathbb Z : \text{mod}(x, n) = y\}
+    \\
+    [y] &:= \{y + kn : k \in \mathbb Z\}. 
+\end{aligned}
+$$
+
 
 ---
 ### **Theorems and Propositions**
 
 We introduce some basic theorems followed from the above definitions. 
 
-#### **Prp 1 (2.2.3)**
+#### **Prp 1 | (2.2.3 in ref)**
 
 > Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then each element of $S$ belongs to exactly one of the equivalence classes of $S$ determined by the relation $\sim$. 
 

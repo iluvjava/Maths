@@ -7,7 +7,7 @@ We use the Abstract Algebra by John and William, the brown covered book.
 
 Homomorphism is a function that binds 2 groups together while preserving their respective group operations. See [Wolfram Math World definition](https://mathworld.wolfram.com/GroupHomomorphism.html) for more information. 
 
-**Definition | Homomorphism**
+#### **Definition | Homomorphism**
 
 > A homomorphism is a mapping between 2 groups $G_1, G_2$ the preserves the group operations. Let $\phi$ be a mapping $G_1\mapsto G_2$, it is a homomorphism if $\phi(xy) = \phi(x)\phi(y)$ for all $x,y\in G_1$. 
 
