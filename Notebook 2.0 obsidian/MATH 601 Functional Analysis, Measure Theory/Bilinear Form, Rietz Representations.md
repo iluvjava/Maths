@@ -104,6 +104,8 @@ Bounded bilinear form will be to our interests.
 ### **Representation of Bilinear Form in Hilbert space**
 
 Similar to linear functionals in Hilbert space that has an inner product representation, it's the same for bilinear functionals constructed between 2 Hilbert spaces. 
+For every bilinear functional of type $\mathcal H_1 \times\mathcal H_2\mapsto \mathbb R$, there exists a unique linear mapping of $\mathcal H_1\mapsto \mathcal H_2$ that represents the bilinear functional. 
+Speaking abstractly, we have a isomorphism between the vector space of linear mapping $\mathcal H_1\mapsto H_2$ and the vector space of bilinear functional $\mathcal H_1\times H_2\mapsto \mathbb R$. 
 
 
 #### **Thm (3.8-4) | Bilinear Form Riesz Representation**
@@ -113,8 +115,10 @@ Similar to linear functionals in Hilbert space that has an inner product represe
 
 **Proof**: 
 
-We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). And then we show from definition of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.
+We ignore one parameter and represent bilinear form as a linear functional, invoking the Rietz Representation theorem we deduce that there exist a linear mapping from $\mathcal H_2$ to $H_1$ (or the other direction). 
+And then we show from definition of the norm on bilinear form that the norm would be the same as the norm on the linear operator $S$.
 
 **Remarks**
 
-The linear mapping can merge to the second parameters, and that would help with defining the existence of a, adjoint operators in Hilbert spaces, for bounded bilinear functionals. To motivate, observe that from a symmetric pointof view, a bilinear operator $h: \mathcal H_1 \times \mathcal H_2 \mapsto \mathbb R := \langle Sx, y\rangle$ is the same as the bilinear operator $q(y, x): \mathcal H_2\times \mathcal H_1 \mapsto \mathbb R:= \langle Ty, x\rangle$, these 2 bilinear operator is essentially the same, but they will have a different linear mapping for each. 
+The linear mapping can merge to the second parameters, and that would help with defining the existence of a, adjoint operators in Hilbert spaces, for bounded bilinear functionals. 
+To motivate, observe that from a symmetric point of view, a bilinear operator $h: \mathcal H_1 \times \mathcal H_2 \mapsto \mathbb R := \langle Sx, y\rangle$ is the same as the bilinear operator $q(y, x): \mathcal H_2\times \mathcal H_1 \mapsto \mathbb R:= \langle Ty, x\rangle$, these 2 bilinear operator is essentially the same, but they will have a different linear mapping for each. 

@@ -23,7 +23,7 @@ A normal summation over these bunches of subspaces:
 > \sum_{i = 1}^{m}w_iv_i 
 > $$
 
-And this is a linear combinations in the traditional sense. Notice that, the vector $v_i$ is from the subspace. And there really could be multiple vectors from the subspace. And in that sense, this means we can have more flexitybilty. 
+And this is a linear combinations in the traditional sense. Notice that, the vector $v_i$ is from the subspace. And there really could be multiple vectors from the subspace. And in that sense, this means we can have more flexibility. 
 
 $w_i$ is there because the vector $v$ comes from a subspace. Then the choice for the weights on the vector is going to be arbitrary. 
 
