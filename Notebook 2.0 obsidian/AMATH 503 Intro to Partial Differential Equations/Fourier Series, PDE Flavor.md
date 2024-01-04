@@ -147,54 +147,45 @@ $$
 $$
 
 
-
-
 Take note that one of the integral is zero because it's an product of an even and odd function, which is odd, and it's zero when integrated over the symmetric interval. 
 
 ---
 ### **Handling the Even Parts**
 
-The Even part of the function is going to represented by the Fourier Cosine Series: 
+We represent the even parts $F_e$ of the function using the Fourier cosine series. 
+Because $F_e$ is even and $\cos$ is even as well, we can use the integral trick switching the domain from $[0, L]$ to $[-L, L]$ therefore: 
 
 $$
-b_n = \frac{2}{L}\int_{0}^{L} 
-F_e(x) \cos\left(
-    \frac{n\pi x}{L}
-\right)
-dx\quad\forall n\in \mathbb{N}
+\begin{aligned}
+    b_n &= \frac{2}{L}\int_{0}^{L} 
+    F_e(x) \cos\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx\; \forall n\in \mathbb{N}
+    \\
+    &= \frac{1}{L}\int_{-L}^{L}
+    F_e(x)\cos\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx
+    \\
+    &= 
+    \frac{1}{L}\int_{0}^{L}
+    F(x)\cos\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx
+    -
+    \underbrace{
+    \frac{1}{L}\int_{0}^{L}
+    F_o(x)\cos\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx}_{=0}
+\end{aligned}
 $$
-
-And take note that both function is even, and hence we can switch the bounds of the interval to make it on $[-L, L]$ giving us: 
-
-$$
-b_n = \frac{1}{L}\int_{-L}^{L}
-F_e(x)\cos\left(
-    \frac{n\pi x}{L}
-\right)
-dx
-$$
-
-Ok, let's play a similar tricks here: 
-
-$$
-b_n = 
-\frac{1}{L}\int_{0}^{L}
-F(x)\cos\left(
-    \frac{n\pi x}{L}
-\right)
-dx
--
-\underbrace{
-\frac{1}{L}\int_{0}^{L}
-F_o(x)\cos\left(
-    \frac{n\pi x}{L}
-\right)
-dx}_{=0}
-$$
-
-And one of the integral has an odd function inside of it, therefore it will be evaluated to $0$. 
-
-And, for the special part $b_0$, the value will be given by: 
+At the last line, we use the substitute of $F_e(x) = F(x) - F_o(x)$. 
+Finally, in the case of $n = 0$, we have the formula for the coefficient
 
 $$
 b_0 = 
@@ -213,24 +204,31 @@ dx
 $$
 
 And that is just the average value of the function over the interval $[-L, L]$. 
-
-Therefore, we have all the coefficients for the Fourier Series, expressed using function $F(x)$. Amazing. 
+Therefore, we have all the coefficients for the Fourier Series, expressed using function $F(x)$.
 
 ---
 ### **Series Calculus**: 
 
-**Integration**: 
 
-Can we integrate the Fourier Series Terms by Terms to get the integral of the function? 
+#### **Claim | We can do Integration on Fourier Series**
+> We can do Fourier series if we can identify the conditions when the Fourier series converges uniformly. 
+> There are many such conditions. 
+> We list some of the sufficient conditions when the Fourier series converges uniformly. 
+> 1. When the function is Holder continuous. 
+> 2. When the function is continuous, and the Fourier coefficients is absolutely summable. 
 
-Yes.
 
-**Differentiation**: 
+#### **Differentiation**
 
-Can we differentiate terms by terms? 
+Take the integral on Fourier seris is fine, but taking the derivative could be problematic. 
 
-No always, it depends, consider Fourier Sine Series: 
+#### **Claim | We May not be able to Take Derivative on Fourier Series**
 
+> We may not be able to take derivative on a convergent Fourier series. 
+
+**Justification**
+
+Let's consider the following example of a Fourier series. 
 $$
 x = 2
 \sum_{n = 1}^{\infty}
@@ -239,15 +237,15 @@ x = 2
 \right)
 \quad x \in [0, L) \tag{1}
 $$
+This is the saw wave. 
+The reader should try plotting it out for a good view and check the correctness of our claim. 
+Observe that, the coefficients of the series is having a harmonic series like convergence. 
+The saw wave is not continuous. 
+Consider at the behavior of the curve at the point of discontinuity, and remember the **Gibbs Phenomena**. 
 
-This is the saw wave. Observe that, the coefficients of the series is having a harmonic series like convergence. 
-
-The saw wave is not continuous. Consider at the behavior of the curve at the point of discontinuity, and remember the **Gibbs Phenomena**. 
-
-When $a_n \rightarrow \mathcal(\frac{1}{n})$, when the convergence of the Fourier series is behaving like harmonic series, it's always the case that this series has a discontinuity. This is noted by the professor. 
-
+When $a_n \rightarrow \mathcal(\frac{1}{n})$, when the convergence of the Fourier series is behaving like harmonic series, it's always the case that this series has a discontinuity. 
+This is noted by the professor of the class, wihtout much explaination. 
 When we take the derivative on the above series, we have: 
-
 $$
 1 \underset{?}{=} 
 2 \sum_{n = 1}^{\infty}
@@ -256,14 +254,11 @@ $$
 \right)
 $$
 
-This thing, has a coefficient that never decreases. 
+The aboe claim would be false because the series never converge. 
+It doesn't equal to one. 
+Depending on how the terms are arranged in the sum, we can sum them up to be any kind of number. 
+This series is undetermined. 
 
-This thing, doesn't equal to one. Depending on how it's arranged, we can make any kind of number. This series is undetermined. 
-
-Note that, the fourier cosine series for $1$ is just 1. 
-
+Note that, the Fourier cosine series for $1$ is just 1. 
 They are not equal to each other, be careful when we take the derivative on the fourier series. 
-
 Notice that, when the coefficient is not decreasing fast enough, we might have problem with the derivative of the series. 
-
-When the convergence rate is like: $\mathcal{O}(\frac{1}{n^2})$, yes, we will be able to take derivative on that. **BUT**, 2 derivatives might give us a problem. 
