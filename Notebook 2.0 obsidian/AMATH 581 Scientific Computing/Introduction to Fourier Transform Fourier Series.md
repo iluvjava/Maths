@@ -108,55 +108,46 @@ Please observe that, if we take the $L$ to infinity, then this formula is lookin
 In this section we list a set of useful properties about the Fourier Transform. 
 Each of these properties are specific to different type of functions. 
 
-#### **Representation of Derivative of Fourier Domain**. 
+#### **Claim | Representation of Derivative of Fourier Domain**. 
 
+> Let $f:\mathbb R \mapsto \mathbb C$ be a function that is absolutely integrable. 
+> Then the Fourier transform of the $n$ derivative can be represented as multiplying by $(ik)^n$ in the Fourier domain. 
+> $$
+> \widehat{f^{(n)}}(k) = (ik)^n\widehat{f}(k)
+> $$
 
-$$
-\widehat{f^{(n)}(x)} = (ik)^n\widehat{f(x)}
-$$
+**Example**
 
-Say we want to solve the equation: 
-
-$$
-y''(x) - \omega^2y(x) = -f(x)
-$$
-Where $x\in [-\infty, \infty]$
-
-And then applying the Fourier Transform to both side of the equations we are going to have: 
+Say we want to solve the ODE:  $y''(x) - \omega^2y(x) = -f(x)$ where $x\in [-\infty, \infty]$
+Apply Fourier Transform to both side of the equation, we have
 
 $$
--k^2\widehat{y} - \omega^2\widehat{y} = -\widehat{f}
+\begin{aligned}
+    -k^2\widehat{y} - \omega^2\widehat{y} &= -\widehat{f}
+    \\
+    \widehat{y} &= \frac{\widehat{f}}{k^2 + \omega^2}
+\end{aligned}
 $$
 
- Solving for $y$, we are going to have this: 
- 
-$$
-\widehat{y} = \frac{\widehat{f}}{k^2 + \omega^2}
-$$
-
-And then, we are literally one step away from getting the solution, applying an inverse Fourier Transform here to get the expression for the quantity $\widehat{y}$. 
+If we can apply the inverse Fourier Transform then we have a representation for $\widehat{y}$ as a solution to the ODE. 
 
 **NOTE:**
 
 This derivative property **only applies if the function is absolutely integrable on the whole $\mathbb{R}$ domain**, meaning that the absolute value of the function is finite over the whole real realm.  
 
-##### **Convolution Theorem**
+#### **Claim | Convolution Theorem**
 
+> The Fourier transform on the product of functions $f, g$ is the convolution of $\hat f, \hat g$ in the Fourier domain. 
 > $$
-> \mathcal{F}(fg|k) = \mathcal{F}(f|k) * \mathcal{F}(g|k)
+>   \mathcal{F}(fg|k) = \mathcal{F}(f|k) * \mathcal{F}(g|k)
 > $$
 > where * is the convolution operator where it's defined like: 
->  
->  $$(f*g)(x) = \int_{-\infty}^{\infty} f(y)g(x - y)dy$$
+> $$
+>   (f*g)(x) = \int_{-\infty}^{\infty} f(y)g(x - y)dy
+> $$
 
-The Fourier Transform of the product of 2 function is the convolution of those 2 functions under the Fourier Domain! 
+See [Convolution](https://www.wikiwand.com/en/Convolution_theorem) for more information about the theorem. 
 
-And this is really convenient for Transforming Non-Linear PDEs. 
-
-See [Convolution](https://www.wikiwand.com/en/Convolution_theorem)
-For more information about the theorem. 
-
-And this is used for spectral method when there are non-linear terms involved in the equation. 
 
 ---
 #### **The Discrete Fourier Transform**
@@ -194,14 +185,13 @@ This algorithm is fast and it will be the thing we will leverage.
 3. $2^n$ points
 4. Spectral accuracy
 
-### Odd and Even Extension
+### **Odd and Even Extension**
 
 We can move the function to a $[0, L]$ domain and only uses the $\sin$ or $\cos$ expansion for the function. 
+These are the commands in MATLAB `fft`, `dct`, `dct`. 
 
-`fft`, `dct`, `dct`. 
 
-
-### MATLAB Commands 
+### **MATLAB Example**
 ```matlab
 L = 20;
 n = 128; 
@@ -213,12 +203,11 @@ plot(ut);
 ```
 
 Please note that there is a shifting for the frequencies domain, and we need to use `fftshit` command to bring it back to match the frequencies domain defined in the Fourier Transform. 
-
-This is the case due some of the subtleties involved in the Discrete Fourier Transform Algorithm .
+This is the case due some of the subtleties involved in the Discrete Fourier Transform Algorithm.
 
 **NOTE**: 
-The Fourier Transform of the Gaussian is the Gaussian. 
 
+The Fourier Transform of the Gaussian is the Gaussian. 
 To compute the shifted multiplier for FFT derivative, this is the procedures for doing so. 
 ```matlab
 k = (2*pi/L)*(-N/2: N/2 - 1);  % The lower infinite and upper inifity on the fourier transform. 
