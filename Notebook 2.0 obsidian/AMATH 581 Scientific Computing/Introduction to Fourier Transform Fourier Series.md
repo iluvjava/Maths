@@ -59,16 +59,19 @@ Additionally, some other transform may use $k = 2\pi \omega$  so that the freque
 In practice, people use $\hat f$ to denote the Fourier transformed $F$ function. 
 
 ---
-### **Introduction to Fourier Series**:
+### **Introduction to Fourier Series**
 
-Presented in trigonometric form. 
-This is the trig Form Fourier series: 
+
+We presented the Fourier Series in trigonometric form below
+
 
 $$
-f(x) \approx b_0 + \sum_{n = 1}^Na_n\sin\left(\frac{n\pi x}{L}\right) + b_n\cos\left(\frac{n\pi x}{L}\right)
+\begin{aligned}
+    f(x) &\approx 
+    b_0 + \sum_{n = 1}^Na_n\sin\left(\frac{n\pi x}{L}\right) + b_n\cos\left(\frac{n\pi x}{L}\right)
+\end{aligned}
 $$
 
-And interestingly, the connection here is that: $F^{d}(k) = a_n, b_n$. 
 This is a transformation where we want to express the function in terms of it's Fourier Coefficients, and it's like, they are all smoothed out by the integral taken at the beginning. 
 This is the complex form of Fourier Series: 
 

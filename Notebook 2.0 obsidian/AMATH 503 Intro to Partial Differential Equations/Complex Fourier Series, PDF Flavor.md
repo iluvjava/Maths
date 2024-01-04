@@ -1,9 +1,10 @@
-[[Fourier Series, PDE Flavor]]
-Here, we will introduce the idea of Complex Fourier Series. An easier way to compute the Fourier Series, and it's more compact too, but it's the same as using the trig basis function. The only thing we need to tweak is the definition of Function Inner Product. Because the functions are complex, we will have to take the complex conjugate when taking the inner product between them. 
+- [[Fourier Series, PDE Flavor]]
+
 
 ---
 ### **Intro**
-
+We will use the idea of an orthogonal basis to deduce the complex Fourier Series of a given function. 
+The function maps from a real interval to a real interval. 
 This is a new way of getting the Fourier Series, it's the same thing but it's more beautiful and easier to compute. Let's take a look at the series: 
 
 $$

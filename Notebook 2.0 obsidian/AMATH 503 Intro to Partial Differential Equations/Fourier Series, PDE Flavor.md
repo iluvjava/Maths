@@ -1,47 +1,39 @@
-Here, we will look at the fourier Series at its full glory, when it comes to solving some basic differential equations. 
-[[Fourier Sine Series, PDEs Flavor]], [[Fourier Cosine Series]]
-[[Separation of Variables for Heat and Waves in 1D]]
+
+- [Fourier Sine Series, PDEs Flavor](Fourier%20Sine%20Series,%20PDEs%20Flavor.md)
+- [Fourier Cosine Series](Fourier%20Cosine%20Series.md)
+- [Separation of Variables for Heat and Waves in 1D](Separation%20of%20Variables%20for%20Heat%20and%20Waves%20in%201D.md)
 Here, we are combining both the Fourier Sines and Fourier Cosine series. 
 
 ---
 ### **Intro**
 
-The Fourier Series is Periodic. Heat conduction in a metal ring,  be a metal has both ends connected to itself, it loops back, giving us a boundary periodic boundary conditions in $[0, L]$. 
+The Fourier Series is Periodic. 
+It can model heat conduction in a metal ring. 
+Let it be a metal has both ends connected to itself, it loops back, giving us a boundary periodic boundary conditions in $[0, L]$. 
+A function over such a domain can model the temperature of the metal ring. 
 
 ---
 ### **Representing the Rod in an Interval**
 
-The circumference of the ring is $2L$. Pick any point on the ring and let it be $0$. Positive direction goes clockwise and negative number goes counter clockwise on the ring. An open interval of $(-L, L)$ represents every points on the ring. Assume that the ring is insulated. The solution function exists on the interior of the interval, it models temperature on the rod. The function can be extended onto the whole reals, periodically. 
+The circumference of the ring is $2L$. 
+Pick any point on the ring and let it be $0$. 
+Let the function $f$ model the temperature of the metal ring. 
+Positive direction goes clockwise and negative number goes counter clockwise on the ring. An open interval of $(-L, L)$ represents every points on the ring.
+It's the interior and doesn't include $L$ because we want $f(L) = f(-L)$ to be a boundary condition. 
+Assume that the ring is insulated. 
+Then the solution function exists on the interior of the interval, it models temperature on the rod. 
+The function can be extended onto the whole reals, by making it a periodic function extended by its value on $[-L, L]$. 
 
 ---
 ### **Setting up the Heat PEDs**
 
-The PDE is: 
+The set up of the PDE is
+* The PDE is: $u_t = \alpha^2 u_{xx}$. 
+* The **Boundary Condition** is: $u(L, t) = u(-L, t)\; \forall t > 0$. 
+And because heat is going to flow through the point $x = L$, the derivative at $x = L$ will also has to be equaled, imposing the condition $u_x(L, t) = u_x(-L, t) \;\forall t > 0$. 
+* The **Initial condition** is $u(x, 0) = F(x)$. 
 
-$$
-u_t = \alpha^2 u_{xx}\tag{1}
-$$
-
-The **Boundary Condition** is: 
-
-$$
-u(L, t) = u(-L, t) \quad \forall t > 0 \tag{2}
-$$
-
-And because heat is going to flow through the point, the derivative will also has to be equal to each other: 
-
-$$
-u_x(L, t) = u_x(-L, t) \qquad \forall t > 0 \tag{3}
-$$
-
-And then, the **Initial condition** is going to be: 
-
-$$
-u(x, 0) = F(x) \tag{4}
-$$
-
-
-Now, the problem is, how exactly are we going to represent the initial conditions ($F(x)$) of the PDEs, we are looking for a representation like this: 
+To represent the initial condition $F(x)$ of the PDEs, we are looking for a Fourier series representation of the function in the form of: 
 
 $$
 F(x) = 
@@ -56,22 +48,22 @@ b_n\cos\left(
 $$
 
 Over the interval of: $(-L, L)$. 
-
-And then we are solving for the coefficients. 
+Our goal is to solve for the Fourier Coefficients $a_n, b_n$. 
 
 **Facts**: 
 
-If the function $F(x)$ is odd, then it will be represented purely by the $\sin$ functions. 
+If the function $F(x)$ is odd, then it will be represented purely by the $\sin$ functions. If The function $F(x)$ is even, then it will be represented purely by the $\cos$ functions. 
 
-If The function $F(x)$ is even, then it will be represented purely by the $\cos$ functions. 
+**Remarks**
+
+Please observe that $n = 0$, which might make it different from Fourier series from the internet because they have a separate case of $b_0$ when $n = 0$. 
+This may be necessary because when $n = 0$, the formula for Fourier series $a_0, b_0$ are different from the case of any generic $n\in \mathbb N$ by a constant multiplier. 
 
 ---
 ### **Any function is the sum of an even and odd function**
 
 For any given function $F(x)$, the function $F(x) + F(-x)$ is even. 
-
 The function $F(x) - F(-x)$ is odd. 
-
 Consider the expression that: 
 
 $$
@@ -80,85 +72,86 @@ F(x) =
     \frac{1}{2}(F(x) + F(-x))}_{\text{Even}}
      +
     \underbrace{
-    \frac{1}{2}(F(x) - F(-x))}_{\text{Odd}}
+    \frac{1}{2}(F(x) - F(-x))}_{\text{Odd}}. 
 $$
 
-Boom, the function has been represented as the sum of even and odd function. 
+Therefore, the function has been represented as the sum of even and odd function. 
 
-**Therefore**
 
-The function $\frac{1}{2}(F(x) + F(-x))$ can be represented by $\cos$ series, over the interval $[0, L]$. 
-
-The function $\frac{1}{2}(F(x) - F(-x))$ can be represented by $\sin$ series, Over the interval $[0, L]$. 
-
-Then, when we combines them together, we will have the function $F(x)$ represented using both $\cos$ and $\sin$. 
-
-Denotes that: 
+As a consequence, The function $\frac{1}{2}(F(x) + F(-x))$ can be represented by $\cos$ series, over the interval $[0, L]$. The function $\frac{1}{2}(F(x) - F(-x))$ can be represented by $\sin$ series, Over the interval $[0, L]$. Then, when we combines them together, we will have the function $F(x)$ represented using both $\cos$ and $\sin$. Let's use the following notation for the odd and even sumee of $f$: 
 
 $$
-F_o(x):=\frac{1}{2}(F(x) - F(-x)) \quad F_e(x):= \frac{1}{2}(F(x) + F(-x))
+\begin{aligned}
+    F_o(x):=\frac{1}{2}(F(x) - F(-x)) 
+    \\
+    F_e(x):= \frac{1}{2}(F(x) + F(-x))
+    \\
+    F(x) := F_e(x) + F_o(x). 
+\end{aligned}
 $$
 
-And hence we know that:
-
-$$
-F(x) = F_e(x) + F_o(x)
-$$
-
-Which will be useful when we are using it in the integral. 
+To compute the coefficients for the fourier series, we compute the consine and sine series expansion of $F$ on the even part $F_e$ and the odd parts $F_o$. 
+The comming parts explain the process. 
 
 ---
 ### **Handling the Odd Parts**
 
-The function $F_o(x)$ is going to be represented by the Fourier Sine Series. 
-
-According the Fourier Sine series, the coefficients is given by: 
-
-$$
-a_n = 
-\frac{2}{L}\int_{0}^{L} F_o(x)\sin\left(
-    \frac{nx\pi}{L}
-\right)dx
-$$
-
-And, the produce of 2 odd function is even, and hence we can change the bound of the integral and get: 
+We represent the function $F_o(x)$ by the Fourier Sine Series. 
+Because the Furier sine series is applicable for an odd and periodic function on the interval $[-L, L]$. 
+Using the fact that $\sin$ and $F_o$ are both odd function, their product is even and hence simplifying the Fourier coefficients $a_n$: 
 
 $$
-a_n = 
-\frac{1}{L}\int_{-L}^{L} F_o(x)\sin\left(
-    \frac{nx\pi}{L}
-\right)dx \quad \forall n\in \mathbb{N}
+\begin{aligned}
+    a_n &= 
+    \frac{2}{L}\int_{0}^{L} F_o(x)\sin\left(
+        \frac{nx\pi}{L}
+    \right)dx \quad \forall n\in \mathbb{N}
+    \\
+    &= 
+    \frac{1}{L}\int_{-L}^{L} F_o(x)\sin\left(
+        \frac{nx\pi}{L}
+    \right)dx 
+    \\
+    \text{by}: 
+    \int_{-L}^{L} 
+    F_o(x)
+    \sin\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx
+    &=
+    \int_{-L}^{L} 
+    F(x)
+    \sin\left(
+        \frac{n\pi x}{L}
+    \right)
+    -
+    \underbrace{
+    \int_{-L}^{L} 
+    F_e(x)
+    \sin\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx}_{\text{ = 0}}
+    \\
+    \implies 
+    a_n &= 
+    \frac{1}{L}
+    \int_{-L}^{L} 
+    F_o(x)
+    \sin\left(
+        \frac{n\pi x}{L}
+    \right)
+    dx
+\end{aligned}
 $$
 
-let's take a closer look and see what happen when we substitute the value for $F_o(x)$: 
 
-$$
-\int_{-L}^{L} 
-F_o(x)
-\sin\left(
-    \frac{n\pi x}{L}
-\right)
-dx
-=
-\int_{-L}^{L} 
-F(x)
-\sin\left(
-    \frac{n\pi x}{L}
-\right)
--
-\underbrace{
-\int_{-L}^{L} 
-F_e(x)
-\sin\left(
-    \frac{n\pi x}{L}
-\right)
-dx}_{\text{ = 0}}
-$$
+
 
 Take note that one of the integral is zero because it's an product of an even and odd function, which is odd, and it's zero when integrated over the symmetric interval. 
 
-Ok it just got more complicated and I don't think switching variable is going to make things better. 
-
+---
 ### **Handling the Even Parts**
 
 The Even part of the function is going to represented by the Fourier Cosine Series: 
