@@ -1,7 +1,7 @@
  Here we are going to use Fourier Series, with application in solving PDEs. 
 Here are some other Fourier related stuff: 
 
-[[Fourier Transform]], [[Fourier Transform Fourier Series]]
+[[Introduction to Fourier Transform Fourier Series]], [[Introduction to Fourier Transform Fourier Series]]
 
 And we are using the Fourier Series for [[Separation of Variables for Heat and Waves in 1D]]
 

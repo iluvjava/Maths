@@ -1,4 +1,4 @@
-Prereq: [[Fourier Transform Fourier Series]]
+Prereq: [[Introduction to Fourier Transform Fourier Series]]
 The spectral method is using the FFT to solve PDEs with periodic boundary conditions. 
 
 ---

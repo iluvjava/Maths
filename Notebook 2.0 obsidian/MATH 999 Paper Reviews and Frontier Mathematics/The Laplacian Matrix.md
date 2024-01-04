@@ -35,7 +35,7 @@ The diagonal element of matrix $L$ is the degree of the vertex, and the non diag
 ---
 ### **Graph Fourier Transform**
 
-Ok, first you need to know about regular Fourier Transform [[Fourier Transform]]
+Ok, first you need to know about regular Fourier Transform [[Introduction to Fourier Transform Fourier Series]]
 
 The graph Fourier Transform make use of the Eigenspace of the matrix $L$. It's applied on any function mapping $V\mapsto \mathbb{R}$, and transform the function mapping $\{\lambda_l\}_{l = 1}^{|V|}$. These 2 sets have the same cardinality. 
 

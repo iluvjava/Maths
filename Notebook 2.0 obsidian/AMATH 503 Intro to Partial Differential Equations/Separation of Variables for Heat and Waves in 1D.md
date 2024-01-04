@@ -1,5 +1,5 @@
 Let's learn the method of separation of variable and apply to the heat equation. 
-The heat equation is introduced here: [[ODEs, PDEs Intro]], and we are using the same set up in this file as well. See more about heat equation here: [[Heat Equations]], which is introduced in AMATH 501 before. And, the procedure of using Separation of variables involves the usage of Fourier Series, then we need: [[Fourier Transform Fourier Series]] to hep us out. 
+The heat equation is introduced here: [[ODEs, PDEs Intro]], and we are using the same set up in this file as well. See more about heat equation here: [[Heat Equations]], which is introduced in AMATH 501 before. And, the procedure of using Separation of variables involves the usage of Fourier Series, then we need: [[Introduction to Fourier Transform Fourier Series]] to hep us out. 
 
 **Reference Materials**: Chapter 4 of the Course Notes. 
 

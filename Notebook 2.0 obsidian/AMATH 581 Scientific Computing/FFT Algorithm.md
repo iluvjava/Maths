@@ -1,8 +1,6 @@
-FFT algorithms is an quick algorithm for Discrete Fourier Transform,
-repreq: [[Fourier Transform Fourier Series]]
+- [[Introduction to Fourier Transform Fourier Series]]
 
 ---
-
 ### **Intro**
 The FFT uses divide and conquer and it exploits the fractal like structure of the DFT matrix, the roots of unity is the key. We denote the signal in the time domain using $f$ and $F$ denotes the signal in the Fourier Domain. This is the task of computing the discrete Fourier Transform: 
 

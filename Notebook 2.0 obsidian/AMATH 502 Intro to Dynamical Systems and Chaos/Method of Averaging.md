@@ -1,7 +1,7 @@
 This method is a continuation of the method of multiple time scale, but this time, we use fourier series to get rid of the resonance term. 
 
 [[Method of Multiple Time Scale 2]]
-[[Fourier Transform Fourier Series]]
+[[Introduction to Fourier Transform Fourier Series]]
 
 ---
 

@@ -1,4 +1,4 @@
-[[Fourier Transform]]
+[[Introduction to Fourier Transform Fourier Series]]
 
 ---
 ### **Intro**

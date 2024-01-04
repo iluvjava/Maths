@@ -1,7 +1,7 @@
 We are going to analyze the stability of different scheme for the 1D wave equations. 
 [[PDEs Time Stepping, Finite Difference]]: Basics stuff about spacial and temporal discretization on a given system of PDE, CFL, FE etc. 
 
-[[Fourier Transform Fourier Series]]: Because we are modeling the solution as a Fourier Series here. 
+[[Introduction to Fourier Transform Fourier Series]]: Because we are modeling the solution as a Fourier Series here. 
 
 ---
 

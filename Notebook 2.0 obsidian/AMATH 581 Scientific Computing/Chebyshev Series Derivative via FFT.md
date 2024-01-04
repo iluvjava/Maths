@@ -1,5 +1,5 @@
 1prereq: 
-[[Fourier Transform Fourier Series]]
+[[Introduction to Fourier Transform Fourier Series]]
 [[Cheb Differential Matrix]]
 
 ---
