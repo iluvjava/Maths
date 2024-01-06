@@ -1,5 +1,5 @@
 - [Introduction to Fourier Transform Fourier Series](Introduction%20to%20Fourier%20Transform%20Fourier%20Series.md)
-- [Introduction to Fourier Transform Fourier Series](Introduction%20to%20Fourier%20Transform%20Fourier%20Series.md)
+
 ---
 ### **Introduction**
 
