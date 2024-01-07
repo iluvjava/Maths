@@ -55,10 +55,10 @@ However, there are limits to what a wavelet can be.
 The following definition defines properties of a wavelet that were to be expected when applying the wavelets to wavelet transform. 
 
 #### **Def | Admissibility of Wavelets**
-> A mother wavelet of the form $\psi_{a,b}(t) = (1/\sqrt{a})\psi((t-b)/a)$ is addimissible if 
+> A mother wavelet of the form $\psi_{a,b}(t) = (1/\sqrt{a})\psi((t-b)/a)$ is admissible if 
 > $$
 >	C_\psi = 
-> 	\int_{-\infty}^{\infty}\frac{|\widehat{\psi}(\omega)|}{|\omega|^2}d\omega < \infty.
+> 	\int_{-\infty}^{\infty}\frac{|\widehat{\psi}(\omega)|^2}{|\omega|}d\omega < \infty.
 > $$
 > $\widehat\psi$ is the fourier transform of the mother wavelet $\psi_{a,b}(t)$. 
 
