@@ -43,7 +43,7 @@ The inverse is the gradient of the convex conjugate.
 For more discussion, read [Inverse of Subgradient of the Convex Conjugate](Operators%20Theory/Inverse%20of%20Subgradient%20of%20the%20Convex%20Conjugate.md). 
 Additionally, if $\nabla f$ has $\mathbb R^n \mapsto \mathbb R^n$ and surjective, then the gradient mapping would be bijective. 
 It is a specific case of Legendre Type Function. 
-
+We prompt the readers to consider sufficient conditions for surjective gradient mapping on closed and convex functions. 
 
 **Remarks**
 

@@ -192,6 +192,8 @@ These are the commands in MATLAB `fft`, `dct`, `dct`.
 
 
 ### **MATLAB Example**
+The following example transform the function $\exp(-x^2)$ on the interval $[-L/2, L/2]$ with $n + 1$ points into Fourier domain, it excludes the boundary points and then plot it out. 
+The boundary point $n + 1$ is excluded because it's the same as the $1$ element of `x2`, by the periodicity of Fourier transform. 
 ```matlab
 L = 20;
 n = 128; 
@@ -207,8 +209,9 @@ This is the case due some of the subtleties involved in the Discrete Fourier Tra
 
 **NOTE**: 
 
-The Fourier Transform of the Gaussian is the Gaussian. 
-To compute the shifted multiplier for FFT derivative, this is the procedures for doing so. 
+The Fourier Transform of the Gaussian distribution is the Gaussian distribution. 
+Below is an example of taking the derivatives for the Guassian distribution in the Fourier domain. 
+
 ```matlab
 k = (2*pi/L)*(-N/2: N/2 - 1);  % The lower infinite and upper inifity on the fourier transform. 
 k = fftshift(k);               % Must shift this or it's not working. 
