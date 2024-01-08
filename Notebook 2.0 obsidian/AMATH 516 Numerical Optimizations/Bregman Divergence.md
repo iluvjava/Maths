@@ -171,6 +171,9 @@ See [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md) for more informa
 ---
 ### **Examples of Bregman Divergence**
 
+For the first example we take a look at the famous KL-Divergence. 
+For more about KL-Divergence, visits [KL-Divergence](KL-Divergence.md). 
+
 #### **Example | KL Divergence is Bregman Div of Negative Entropy over Unit Simplex**
 > Let $\omega(x) =\sum x\odot \log(x)$ for all $x\in \mathbb R_{++}$, then $B_\omega(x)$ gives the KL-Divergence. 
 
