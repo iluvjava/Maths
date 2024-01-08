@@ -26,7 +26,8 @@ The concept of interior can be relative to another subset of the background set.
 > Let $Q\subseteq X$ then the closure of the set is $\text{cl}(Q):= \{x\in X| \; \forall \epsilon > 0:  \mathbb B_{\epsilon}\cap Q \neq \emptyset\}$. The set $Q$ is closed when $Q = \text{cl}(Q)$. 
 
 **Observation**: 
-- $\text{int}(Q)\subseteq Q \subseteq \text{cl}(Q)$.
+
+$\text{int}(Q)\subseteq Q \subseteq \text{cl}(Q)$.
 
 **Remarks** 
 
