@@ -13,7 +13,7 @@
 
 **Example**
 
-The following function is not lower semi-continuous: 
+The following function is **not** lower semi-continuous: 
 
 $$
 \begin{aligned}
@@ -73,7 +73,7 @@ Since the choice of $\epsilon > 0$ is arbitrary, and the fact that limit works w
 The see the converse, simply use the definition of liminf illustrated in the above definition. 
 
 #### **Claim | Sequential Lower Semi-Continuity**
-> Consider any $(x_n)_{n \in \mathbb N}$ to be a sequence such that it converges to $a$ then the sequential limit $\text{liminf}_{n\rightarrow \infty} f(x_n) \ge f(a)$ holds. 
+> Consider any $(x_n)_{n \in \mathbb N}$ to be a sequence such that it converges to $a$ then the sequential limit $\text{liminf}_{n\rightarrow \infty} f(x_n) \ge f(a)$ holds. This claim is equivalent to saying that $f$ is l.s.c at $a$. 
 
 **Proof**
 
@@ -83,17 +83,40 @@ Consider the previous claim
 
 $$
 \begin{aligned}
-    \forall \epsilon > 0 \exist \delta > 0: 
+    \forall \epsilon > 0 \exists \delta > 0: 
     \inf_{x \in \mathbb B_{\delta}(a)} f(x)\ge f(a) - \epsilon, 
 \end{aligned}
 $$
 
 choose $\epsilon = 1/n$ then it asserts the existence of $\mathbb B_{\delta_n}(a)$ for each $n\in \mathbb N$. 
 Using axiom of choice, we choose $x_n \in \mathbb B_{\delta_n}(a)$ for all $n\in \mathbb N$. 
-Therefore $f(x_n) \ge f(a) - 1/n$. 
-And so $\inf_{m\ge n} f(x_n) \ge f(a) - 1/n$. 
-Taking the limit as $m\rightarrow \infty$, proved the sequential limit. 
+We had identify that sequence $(x_n)_{n\in \mathbb N}$ that satisfies $\lim_{n\rightarrow \infty} f(x_n) \ge f(a)$ with $x_n \rightarrow a$, which is a stronger than the convergence of the subsequential limit. 
 
-To show the converse that the sequential lower semi-continuity is sufficient to the definition of l.s.c we have
+To show the converse that the sequential lower semi-continuity is sufficient to the definition of l.s.c we show that if the above claim is not true, then the definition of l.s.c doesn't hold for $f$. 
+This part of the proof is direct and doesn't need the axiom of choice. 
 
+**Remarks**
+
+Under a metric space, sequenctial characterization of l.s.c is sufficient to the continuous limit over the full space. They are equivalent if axiom of choice can be used. 
+
+
+#### **Thm| A list of Equivalent Conditions**
+> Let $f$ be a l.s.c function then the following conditions are equivalent to l.s.c. 
+> 1. The $\text{epi}(f)$ is a closed set. 
+> 2. For all $\alpha \in \mathbb R$ we have $\text{lev}_\alpha(f)$ being a closed set. 
+> 3. $\liminf_{x\rightarrow a}f(x) = \min\{\alpha \in \mathbb {\bar R} : \exists x_n \rightarrow \bar x \wedge f(\bar x) = \alpha \}$. 
+
+**Observations**
+
+For a proof about the first equivalent condition visit:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md) for more information. 
+
+
+---
+### **Calculus of Lower Semi-continuity**
+
+We investigate when and under what conttext, lower semi-continuity continue to work. 
+
+
+---
+### **Misc**
 
