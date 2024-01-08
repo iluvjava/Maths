@@ -36,7 +36,6 @@ $$
         f(x)z_0 - f(z_0)x &\in \text{null}(f)
         \\
         \iff 
-        
         \langle f(x)z_0 - f(z_0)x, z_0 \rangle &= 0
         \\
         \iff 
