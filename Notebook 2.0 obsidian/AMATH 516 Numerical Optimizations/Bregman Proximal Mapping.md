@@ -10,7 +10,7 @@ We will faithfully follow Chapter 9 of Amir Beck's First-Order Method textbook[^
 
 
 ---
-### **Mirror Descent from Amir Beck**
+### **The Bregman Proximal Mapping**
 
 Amir Beck introduced theories about Bregman proximal mapping as a generalization of the proximal point method[^1] and applied it to the Mirror Proximal method. 
 For more about proximal point method visit [Proximal Point Method, Interpretations](Proximal%20Point%20Method,%20Interpretations.md). 
@@ -38,7 +38,7 @@ The above conditions are sufficient to retain these properties of the Proximal m
 
 We formalize these consequences in the following lemmas. 
 
-#### **Lemma 9.7 | Uniquness of Bregman Proximal Mapping**
+#### **Lemma 9.7 | Uniquness of This Mapping**
 > Let $\omega$ be proper closed and convex, differentiable over $\text{dom}(\partial \omega)$. 
 > Let $\psi$ be convex proper and closed satisfying $\text{dom}(\psi)\subseteq \text{dom}(\partial\omega)$. 
 > Let $\omega + \delta_{\text{dom}(\psi)}$ be strongly convex with $\sigma > 0$. 
@@ -74,7 +74,79 @@ Therefore, we use the sum rule for gradient obtaining $\mathbf 0\in \partial \ps
 **Remark**
 
 I feel like Amir's Beck proof is not showing why the subgradient sum rule can be used here to get to the Fermat's rule. 
-This part of the proof is modified. It may be replaced with other theorems. 
+This part of the proof is modified. It may be replaced with other theorems.
+
+#### **Def | Bregman Prox and Admissibility Conditions for it**
+> If we define the following 
+> * Let $\omega: \mathbb E \mapsto \bar{\mathbb E}$ be proper, closed, cvx and differentiable over $\text{dom}(\partial \omega)$; 
+> * let $\psi: \mathbb E \mapsto \bar {\mathbb E}$ be proper, closed, cvx, satisfying $\text{dom}(\psi)\subseteq \text{dom}(\partial \omega)$;
+> * $\omega + \delta_{\text{dom}(\psi)}$ be $\sigma$-strongly convex, $\sigma > 0$. 
+> * Assuming $b\in \text{dom}(\partial \omega)$, let $a$ be Breman Proximal Mapping applied at the point $b$ defined as 
+> $a := \underset{x\in \mathbb E}{\text{argmin}}\{\psi(x) + D_\omega(x, b)\}$. 
+
+**Observations**
+
+Directly we may expand the definition of the Bregman Divergence over $\omega$ and we have 
+
+$$
+\begin{aligned}
+    \underset{x \in \mathbb E}{\text{argmin}} \left\lbrace
+       \psi(x) + D_\omega(x, b)
+    \right\rbrace &= 
+    \underset{x \in \mathbb E}{\text{argmin}}
+    \left\lbrace
+        \psi(x) + \omega(x) - \omega(b) - \langle \nabla \omega(b), x - b \rangle
+    \right\rbrace
+    \\
+    &= 
+    \underset{x \in \mathbb E}{\text{argmin}}\left\lbrace
+        \psi(x) + \omega(x) - \langle \nabla \omega(b), x\rangle
+    \right\rbrace. 
+\end{aligned}
+$$
+
+Wich gives us an alternative representation of the Bregman proximal mapping defined at point $b$ for $\psi, \omega$. 
+Now observe that the function $\psi(x) + \langle \nabla (b), x\rangle$ has domain on $\text{dom}(\partial \omega)$. 
+Applying lemma 9.7, we have that $a \in \text{dom}(\partial \omega)$. 
+And $a$ is the unique minimizer, satisfying $\mathbf 0 = \nabla \psi(a) + \nabla\omega(a) - \nabla \omega(b)$. 
+
+
+#### **Thm 9.12 | The Second Prox Lemma**
+> Based on the definition of the Bregman stated right before this theorem, we have the inequality that $\forall u \in \text{dom}(\psi)$: 
+> $$
+>     \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle \le \psi(u) - \psi(a).
+> $$
+> Which is analogous to the second proximal mapping lemma when $\omega = \Vert \cdot\Vert^2/2$. 
+
+**Proof**
+
+From the observations based on the defintion of the Bregman proximal mapping, we have the subgradient inequality for $a\in $
+
+$$
+\begin{aligned}
+    \nabla \psi(a) &= \nabla \omega(b) - \nabla \omega(a)
+    \\
+    &\text{use subgradient inequality then}
+    \\
+    \implies 
+    \langle \nabla \psi(a), u -a\rangle 
+    &\ge \psi(u) - \psi(a)
+    \\
+    \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle &\ge 
+    \psi(u) - \psi(a). 
+\end{aligned}
+$$
+
+The proof is complete and it's as obvious as the second proximal mapping lemma. 
+
+
+**Remark**
+The consequences of the lemma will be realized together in mirror prox algorithm, together with the cosine lemma for the Bregman divergence. 
+
+---
+### **An Example of Prixmal Mapping**
+
+
 
 
 
