@@ -3,9 +3,10 @@
 ---
 ### **Intro**
 
-A Legendre function is a type of function with a one-to-one gradient operator and hence invertible. Rockafellar classic red book[^1] discussed it in section 26. It's applicable to understanding duality in convex programming and relevant to concepts such as [Bregman Divergence](Bregman%20Divergence.md). 
+A Legendre function is a type of function with a one-to-one gradient operator and hence invertible. Rockafellar classic red book[^1] discussed it in section 26. 
+It's applicable to understanding duality in convex programming and relevant to concepts such as [Bregman Divergence](Bregman%20Divergence.md). 
 
-#### **Definition | Essentially Smooth**
+#### **Definition | Essential Smoothness**
 > A proper convex function is essentially smooth if, the following conditions are true on the set $C = \text{int}\circ \text{dom}(f)$: 
 > 
 > 1. $C\neq \emptyset$. 
@@ -22,6 +23,7 @@ As commented by Rockafellar, a function that is differentiable on the entirety o
 
 **Proof**
 
+#UNFINISHED
 
 
 **Remarks**
@@ -55,12 +57,14 @@ We took the definition from Rockafellar[^1], but I am unsure where it is in the 
 
 **Observations**
 
-One consequence of the definition is that a strictly convex function is also strictly convex on $\text{ri}\circ \text{dom}(f)$ due $\text{dom}\circ \text{dom}(f)\subseteq \text{dom}(\partial f)$. As commented by Rockafeller, in section 23 of the book, he explained why $\text{dom}(\partial f)$ may not be convex because something may happen at the boundary of $\text{dom}(f)$. 
+One consequence of the definition is that a strictly convex function is also strictly convex on $\text{ri}\circ \text{dom}(f)$ due $\text{ri}\circ \text{dom}(f)\subseteq \text{dom}(\partial f)$. 
+As commented by Rockafeller, in section 23 of the book, he explained why $\text{dom}(\partial f)$ may not be convex for a convex function $f$ because something may happen at the boundary of $\text{dom}(f)$. 
 
 
 **Remarks**
 
-The converse is not true. A function that is strictly convex on $\text{ri.dom}(f)$, or $\text{dom}(\partial f)$ are not strictly convex on $\text{dom}(\partial f)$, or $\text{dom}(f)$. Recall the relation that 
+The converse is not true. 
+A strictly convex function on $\text{ri.dom}(f)$, or $\text{dom}(\partial f)$ are not strictly convex on $\text{dom}(\partial f)$, or $\text{dom}(f)$. Recall the relation that 
 
 $$
 \text{ri.dom}(f) \subseteq \text{dom}(\partial f) \subseteq \text{dom}(f). 
@@ -84,6 +88,8 @@ We introduce more content from the Rockafeller's book on essential smoothness an
 The directional derivative, if points inward towards a point $a \in C$ and anchored on a boundary point $x$, at the point $x + \lambda(a - x) \in C$, then the directional derivative approaches negative infinity. We know that $x + \lambda(a - x)\in C$ by the [Accessibility Lemma](CVX%20Analysis/Accessibility%20Lemma.md) of a convex set. 
 
 **Proof**
+
+
 
 ---
 ### **Non-trivial Counter Examples**

@@ -1,6 +1,4 @@
-This is some of the major ideas used to produce the loss function for the variational auto-encoder.
-
-Something is similar to what we have here is the [[Shannon's Entropy]], [[Cross Entropy]]
+[Shannon's Entropy](Shannon's%20Entropy.md), [Cross Entropy](Cross%20Entropy.md)
 
 Reference resources: 
 

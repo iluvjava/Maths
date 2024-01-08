@@ -40,9 +40,9 @@ We formalize these consequences in the following lemmas.
 
 #### **Lemma 9.7 | Uniquness of Bregman Proximal Mapping**
 > Let $\omega$ be proper closed and convex, differentiable over $\text{dom}(\partial \omega)$. 
-> Let $\psi$ be convex proper and closed satisfying $\text{dom}(\psi)\subseteq \text{dom}(\omega)$. 
+> Let $\psi$ be convex proper and closed satisfying $\text{dom}(\psi)\subseteq \text{dom}(\partial\omega)$. 
 > Let $\omega + \delta_{\text{dom}(\psi)}$ be strongly convex with $\sigma > 0$. 
-> Then the minimizer of $\text{argmin}_{x\in \mathbb E}\{\psi(x) + \omega(x)\}$ is unique and belongs to $\text{dom}(\psi) \cap \text{dom}(\partial \omega)$. 
+> Then the minimizer of $\text{argmin}_{x\in \mathbb E}\{\psi(x) + \omega(x)\}$ is unique and belongs to $\text{dom}(\partial \omega)$. 
 
 **Proof**
 
@@ -59,14 +59,15 @@ $$
     \text{dom}(\partial \omega)&= 
     \text{ri.dom}(\omega). 
     \\
-    \text{dom}(\omega + \delta_{\text{dom}(\psi)}) &= \text{dom}(\psi)
+    \text{dom}(\psi) &\subseteq \text{dom}(\partial \omega)
     \\
-    &\subseteq \text{dom}(\omega)
+    &= \text{ri.dom}(\omega)
     \\
-
+    \implies \text{ri.dom}(\psi) &\subseteq \text{ri.dom}(\omega)\quad \triangleright \text{ri.dom}(\psi) \subseteq \text{dom}(\psi). 
 \end{aligned}
 $$
 
+Therefore, we use the sum rule for gradient obtaining $\mathbf 0\in \partial \psi(x^*) + \partial \omega(x^*)$. So $x^*\in \text{dom}(\partial\psi)\cap \text{dom}(\partial \omega) = \text{dom}(\partial \omega)$. 
 
 
 

@@ -168,6 +168,66 @@ One important possibility introduced by Bregman divergence is the generalization
 See [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md) for more information. 
 
 
+---
+### **Examples of Bregman Divergence**
+
+#### **Example | KL Divergence is Bregman Div of Negative Entropy over Unit Simplex**
+> Let $\omega(x) =\sum x\odot \log(x)$ for all $x\in \mathbb R_{++}$, then $B_\omega(x)$ gives the KL-Divergence. 
+
+**Demonstrations**
+
+We consider the gradient of $\omega$ directly giving 
+
+$$
+\begin{aligned}
+    \nabla \omega(y) &= 
+    \nabla \left[\sum x\odot\log(x)\right]
+    \\
+    &=\sum_{i = 1}^{n} \partial_x[x\log(x)](y_i)\e_i
+    \\
+    &= \sum_{i = 1}^{n} [1 + \log(\cdot)](y_i)\e_i
+    \\
+    \langle \nabla \omega (y), y - x\rangle
+    &= 
+    \sum_{ i =1}^{n}
+    (1 + \log y_i) \langle y - x, \e_i\rangle
+    \\
+    &= 
+    \sum_{i = 1}^{n} (1 + \log y_i)(y_i - x_i). 
+\end{aligned}
+$$
+
+Then using the definition of a Bregman Divergence we have the expression that for all $x \in \mathbb E$: 
+
+$$
+\begin{aligned}
+    D_\omega(x, y) &= 
+    \omega(x) - \omega(y) - \langle \nabla \omega(y), y - x\rangle
+    \\
+    &=
+    \sum_{i = 1}^{n} x_i \log x_i - \sum_{ i =1}^{n} y_i \log y_i
+    - 
+    \sum_{i = 1}^{n} (1 + \log y_i)(y_i - x_i)
+    \\
+    &= \sum_{i = 1}^{n} x_i \log x_i - \sum_{ i =1}^{n} y_i \log y_i
+    - 
+    \sum_{i = 1}^{n} (\log y_i) (y_i - x_i) - 
+    \left(
+        \sum_{i = 1}^{n} y_i - x_i
+    \right)
+    \\
+    &= 
+    \sum_{i = 1}^{n} x_i \log x_i - \sum_{i = 1}^{n}(\log y_i)(-x_i) - 
+    \underbrace{\left(
+        \sum_{i = 1}^{n} y_i - x_i
+    \right)}_{=0}
+    \\
+    &= 
+    \sum_{i = 1}^{n}x_i \log(x_i/y_i). 
+\end{aligned}
+$$
+
+Which is what we aimed to demonstrate. 
 
 [^1]: A. Beck, _First-Order Methods in Optimization | SIAM Publications Library_. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: [https://epubs.siam.org/doi/book/10.1137/1.9781611974997](https://epubs.siam.org/doi/book/10.1137/1.9781611974997)
 
