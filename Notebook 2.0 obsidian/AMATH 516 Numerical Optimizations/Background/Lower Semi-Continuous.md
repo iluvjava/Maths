@@ -100,7 +100,7 @@ This part of the proof is direct and doesn't need the axiom of choice.
 Under a metric space, sequenctial characterization of l.s.c is sufficient to the continuous limit over the full space. They are equivalent if axiom of choice can be used. 
 
 
-#### **Thm| A list of Equivalent Conditions**
+#### **Thm | A list of Equivalent Conditions**
 > Let $f$ be a l.s.c function then the following conditions are equivalent to l.s.c. 
 > 1. The $\text{epi}(f)$ is a closed set. 
 > 2. For all $\alpha \in \mathbb R$ we have $\text{lev}_\alpha(f)$ being a closed set. 
