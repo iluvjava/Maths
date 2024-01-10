@@ -1,5 +1,5 @@
 * [[Subgradient Intro]]
-* [[Epigraph]]
+* [[Epigraph, Level Sets]]
 * [[Strict Separations Theorem]]
 * [[Characterizing Functions for Optimizations]]
 

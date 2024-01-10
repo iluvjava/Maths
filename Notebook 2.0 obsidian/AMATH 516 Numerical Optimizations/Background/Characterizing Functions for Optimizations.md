@@ -13,7 +13,7 @@ The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definitio
 
 Read [Augmented Reals](Augmented%20Reals.md) for arithmetic rules. Here is a list of topics that are helpful for understanding the basics: 
 
-* [Epigraph](Epigraph.md), this describes the geometry of the function.
+* [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md), this describes the geometry of the function.
 * [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
 * [Convex Sets Intro](Convex%20Sets%20Intro.md), this helps describing convexity of functions. 
 * [Dom](Dom.md), The definition for the domain of a function that is on the augmented reals. 
@@ -28,6 +28,7 @@ Defining proper function eliminates certain pathologies for the type of function
 > Consider $f$ of augmented real function, $f$ is a **proper function** if $f(x) < \infty$ for at least one $x$ and $f(x)$ never equals $-\infty$ for any x. 
 
 **Observations**
+
 Proper if it has a domain, and bounded from below. 
 
 **References**: 
@@ -58,9 +59,10 @@ The derivative of a C1 function is a C0 function. C1 function won't allow any ki
 ### **Closed Function**
 
 Recall closure of a set in Euclidean space. 
+For more about the discussion below visits [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md). 
 
 #### **Def | A Closed Function**
-> a function $f$ is a closed if and only if the [Epigraph](Epigraph.md) is a closed set. 
+> a function $f$ is a closed if and only if the [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md) is a closed set. 
 
 **Example**
 
@@ -109,9 +111,11 @@ A closed function is not enough for the function to be continuous, but a continu
 ---
 ### **Coercive Function**
 
-This characteristic of function is key to existence of minimizers for function. A coercive function cannot attain minimizers that are infinitely farway from the origin. 
+This characteristic of function is key to existence of minimizers for function. 
+A coercive function cannot attain minimizers that are infinitely far away from the origin. 
+For more information about the section visits [Coersivity of Functions](Coersivity%20of%20Functions.md) for details. 
 
-#### **Def | Coersive Defintion**
+#### **Def | Coersive Definition**
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
 
 **Remarks**
@@ -132,7 +136,7 @@ Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational a
 ---
 ### **Special Functions for Analysis**
 
-These functions are new special objects unique to nonsmooth analysis. 
+These functions are new special objects unique to non-smooth analysis. 
 
 #### **Def | The support Functions**
 
@@ -181,7 +185,7 @@ This is one of the most important characterizations for a class of functions. Th
 
 **Remarks**
 
-For a definition for epigraph, visits: [Epigraph](Epigraph.md) for more information. See [Convex Sets Intro](Convex%20Sets%20Intro.md) for more information about convex set. 
+For a definition for epigraph, visits: [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md) for more information. See [Convex Sets Intro](Convex%20Sets%20Intro.md) for more information about convex set. 
 
 #### **Definition | Secant Inequality**
 
