@@ -1,4 +1,4 @@
- - [Convex Sets Intro](Background/Convex%20Sets%20Intro.md)
+- [Convex Sets Intro](Background/Convex%20Sets%20Intro.md)
 - [Gradient, Hessian Characterization of Convex Functions](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md)
 - [Simply Legendre Type](Simply%20Legendre%20Type.md)
 

@@ -11,4 +11,6 @@ These servers as a basis for the mirror descent algorithm.
 For this part we take heavy references from paper by Heinz et al[^1]. 
 
 
+
+
 [^1]: H. H. Bauschke, J. Bolte, and M. Teboulle, “A Descent Lemma Beyond Lipschitz Gradient Continuity: First-Order Methods Revisited and Applications,” Mathematics of OR, vol. 42, no. 2, pp. 330–348, May 2017, doi: 10.1287/moor.2016.0817.
