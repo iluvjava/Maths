@@ -1,4 +1,4 @@
-- [Convex Sets Intro](Background/Convex%20Sets%20Intro.md)
+ - [Convex Sets Intro](Background/Convex%20Sets%20Intro.md)
 - [Gradient, Hessian Characterization of Convex Functions](CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md)
 - [Simply Legendre Type](Simply%20Legendre%20Type.md)
 
@@ -87,7 +87,7 @@ Other Legendre Type functions may not provide those properties.
 
 The following lemma is famous enough to deserve a name. 
 
-#### **Lemma | 3 Points Lemma**
+#### **Lemma | 3 Points Lemma, Cosine Law**
 > Let $\omega: \mathbb E\mapsto (-\infty, \infty]$, and it's closed convex and proper, and it's of Legendre Type, then for all $a, b \in \text{dom}(\partial \omega)$, and $c \in \text{dom}(\omega)$, we have 
 > $$
 > \begin{aligned}
@@ -233,7 +233,6 @@ $$
 Which is what we aimed to demonstrate. 
 
 [^1]: A. Beck, _First-Order Methods in Optimization | SIAM Publications Library_. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: [https://epubs.siam.org/doi/book/10.1137/1.9781611974997](https://epubs.siam.org/doi/book/10.1137/1.9781611974997)
-
 
 [^3]: H. H. Bauschke, J. Bolte, and M. Teboulle, “A Descent Lemma Beyond Lipschitz Gradient Continuity: First-Order Methods Revisited and Applications,” Mathematics of OR, vol. 42, no. 2, pp. 330–348, May 2017, doi: 10.1287/moor.2016.0817.
 
