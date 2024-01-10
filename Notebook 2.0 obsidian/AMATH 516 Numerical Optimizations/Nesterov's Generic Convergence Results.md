@@ -3,9 +3,12 @@
 ----
 ### **Intro**
 
-We prove the convergence rate **by faithfully following Nesterov's book on chapter 2.** We show the convergence of his generic method as well. We first present a generic results which doesn't necessarily requires knowledge about the sequence $\lambda_k, \alpha_k$. Based on that results we then find a convergence rate of the generic algorithm proposed earlier for the class of convex functions. 
+We prove the convergence rate **by faithfully following Nesterov's book on chapter 2.** 
+We show the convergence of his generic method as well. We first present a generic results which doesn't necessarily requires knowledge about the sequence $\lambda_k, \alpha_k$. 
+Based on that results we then find a convergence rate of the generic algorithm proposed earlier for the class of convex functions. 
 
-#### **Nesterov Generic Algorithm (2.2.7)**
+
+#### **Nesterov's Generic Algorithm (2.2.7)**
 
 
 $$
@@ -432,3 +435,9 @@ $$
 $$
 
 where, $\psi(k)$, was defined as in earlier. This function, gives 2 type of convergence rate depending on the value of $\delta$, in the limiting case, where $\mu = 0$, the convergence is sublinear, otherwise, it's a linear convergence rate. 
+
+
+**Remarks**
+
+Recall the complexity lower bound from [Nesterov Lower Convergence Bounds for Lipschitz Smooth Functions](Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Functions.md) and [Convergence Rate Lower Bound for S-CVX Func](Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md), the above convergence rate is in the complexity class for both type of functions. 
+Therefore, the generic method proposed by Nesterov is an optimal method. 
