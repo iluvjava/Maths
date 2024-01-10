@@ -114,7 +114,7 @@ And $a$ is the unique minimizer, satisfying $\mathbf 0 = \nabla \psi(a) + \nabla
 #### **Thm 9.12 | The Second Prox Lemma**
 > Based on the definition of the Bregman stated right before this theorem, we have the inequality that $\forall u \in \text{dom}(\psi)$: 
 > $$
->     \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle \le \psi(u) - \psi(a).
+>    a = \arg\min_{x\in \mathbb E} \{\psi(x) + D_\omega(x, b)\} \implies  \langle \nabla \omega(b) - \nabla \omega(a), u - a\rangle \le \psi(u) - \psi(a).
 > $$
 > Which is analogous to the second proximal mapping lemma when $\omega = \Vert \cdot\Vert^2/2$. 
 
@@ -143,6 +143,7 @@ The proof is complete and it's as obvious as the second proximal mapping lemma.
 **Remark**
 
 The consequences of the lemma will be realized together in mirror prox algorithm, together with the cosine lemma for the Bregman divergence. 
+Replacing function $f$ with $\lambda f$ where $\lambda > 0$ then we can get the Bregman proximal operator with a different type of multiplier on the Bregman divergence for the function, i.e: $\arg\min_{x \in \mathbb E}\{\psi(x) + \lambda^{-1}D_\omega(x, b) \}$. 
 
 ---
 ### **An Example of Prixmal Mapping**
