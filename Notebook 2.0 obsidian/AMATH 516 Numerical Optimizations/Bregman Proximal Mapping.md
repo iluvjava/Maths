@@ -145,7 +145,7 @@ The proof is complete and it's as obvious as the second proximal mapping lemma.
 The consequences of the lemma will be realized together in mirror prox algorithm, together with the cosine lemma for the Bregman divergence. 
 
 ---
-### **An Example of Prixmal Mapping**
+### **An Example of Bregman Prixmal Mapping**
 
 
 
