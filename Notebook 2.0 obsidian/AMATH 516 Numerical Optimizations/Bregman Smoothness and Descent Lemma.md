@@ -44,7 +44,7 @@ The key idea here is to realize that the energy function $\omega(x) = \frac{\Ver
 For any $\omega$ that can induce a Bregman divergence, we say that $f$ is Bregman smooth wrt $\omega$ when $\omega(x) - f(x)$ is a convex function. 
 
 
-
+#### 
 
 
 [^1]: H. H. Bauschke, J. Bolte, and M. Teboulle, “A Descent Lemma Beyond Lipschitz Gradient Continuity: First-Order Methods Revisited and Applications,” Mathematics of OR, vol. 42, no. 2, pp. 330–348, May 2017, doi: 10.1287/moor.2016.0817.
