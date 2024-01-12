@@ -13,9 +13,9 @@ This file attempts to bind all the files related to: Proximal Gradient type of m
 	- Amirc Beck, Toubelle's original 2009 paper. 
 	- [[A Better Proof for FISTA Convergence]]
 		- Deriving the sequence as well as the convergence 
-- [V-FISTA](../../V-FISTA.md)
+- [V-FISTA](../../MATH%20602%20Nesterov%20Acceleration/V-FISTA.md)
 	- A variant of FISTA for strong convexity. 
-- [Nesterov Original Conception of Momentum Method](../Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
+- [Nesterov Original Conception of Momentum Method](../../MATH%20602%20Nesterov%20Acceleration/Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 	- Nesterov's estimating sequences and functions . 
 	- Generic momentum method derived. 
 	- Non-smoothness combined. 

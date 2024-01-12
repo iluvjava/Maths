@@ -1,4 +1,4 @@
-- [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
+- [Nesterov Original Conception of Momentum Method](../MATH%20602%20Nesterov%20Acceleration/Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 
 ----
 ### **Intro**
@@ -439,5 +439,5 @@ where, $\psi(k)$, was defined as in earlier. This function, gives 2 type of conv
 
 **Remarks**
 
-Recall the complexity lower bound from [Nesterov Lower Convergence Bounds for Lipschitz Smooth Functions](Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Functions.md) and [Convergence Rate Lower Bound for S-CVX Func](Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md), the above convergence rate is in the complexity class for both type of functions. 
+Recall the complexity lower bound from [Nesterov Lower Convergence Bounds for Lipschitz Smooth Functions](../MATH%20602%20Nesterov%20Acceleration/Convergence%20Rate%20Lower%20Bnd%20for%20Lip%20Functions.md) and [Convergence Rate Lower Bound for S-CVX Func](../MATH%20602%20Nesterov%20Acceleration/Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md), the above convergence rate is in the complexity class for both type of functions. 
 Therefore, the generic method proposed by Nesterov is an optimal method. 
