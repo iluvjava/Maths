@@ -108,13 +108,40 @@ Under a metric space, sequenctial characterization of l.s.c is sufficient to the
 
 **Observations**
 
-For a proof about the first equivalent condition visit:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md) for more information. 
+For a proof about the first equivalent condition (1.)<==> (2.) visit:[Lower Semi-Continuity is Closedness of Epigraph](Lower%20Semi-Continuity%20is%20Closedness%20of%20Epigraph.md) for more information. 
+Conditions 3 is self-explainatory. 
+Choose $\alpha \in \arg\min\{\alpha \in \mathbb{\bar R} : \exists x_n \rightarrow \bar x \wedge f(\bar x) = \alpha\}$ then $\exists (x_n)_{n\in \mathbb N}$ such that $\lim_{n\rightarrow \infty} x_n = \bar x$, at the same time for all $x_n'\rightarrow \bar x$ such that $\lim_{n\rightarrow \infty} f(x_n) = \alpha '$, we must have $\alpha \le x'$. 
+Select that specific best sequence $x_n$, then its subsequantial limit automatically equals to $\lim_{x\rightarrow a}f(x)$. 
+Therefore using the equivalence between the first 2 conditions we would have: (3.) <==> $f$ is l.s.c <==> $\text{epi}(f)$ is closed. 
+
+**Proof of (2.) => (3.)**
+
+It's direct by the observation that $\text{lev}_\alpha(f)\times \{\alpha\} = \text{epi}(f)\cap (\mathbb R^n \times \{\alpha\})$. 
+The set $\mathbb R^n\times \{\alpha\}$ is a closed set and since $\text{lev}_\alpha(f)$ is closed, the intersection of 2 closed set is still a closed set by basic topology of $\mathbb R^n$. 
+
+**Proof of (3.)==> (1.)**
+
 
 
 ---
 ### **Calculus of Lower Semi-continuity**
 
 We investigate when and under what conttext, lower semi-continuity continue to work. 
+We list all of them. 
+
+#### **Claims**
+
+> Let $f_1, f_2, \cdots f_m$ be many l.s.c functions mapping from $\mathbb R^n$ to $\mathbb{\bar R}$. 
+> 1. $f_1 + f_2$ is l.s.c. 
+> 2. $\lambda f_1$ is l.s.c on $\mathbb R^n$ for all $\alpha \ge 0$. 
+> 3. $\max\{f_1, \cdots, f_m\}$ is a l.s.c function. 
+> 4. $\min\{f_1, \cdots, f_m\}$ is a l.s.c function. This one can work for infinitely many l.s.c functions as well. 
+> 5. $\max\{f_1, \cdots, f_m\}$ and $\min\{f_1, \cdots, f_m\}$ are continuous if each of $f_1, \cdots, f_m$ are continuous functions. 
+
+
+#### **Thm 2.10 | Composition of l.s.c functions**
+> let $f(x) = \theta \circ g (x)$, where $g:\mathbb R^n\mapsto \mathbb{\bar R}$ and $\theta: \mathbb R \mapsto \mathbb {\bar R}$ both be l.s.c functions, let $\theta$ be non-decreasing, then $f$ would be a l.s.c function as well. 
+
 
 
 ---
