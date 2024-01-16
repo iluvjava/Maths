@@ -31,3 +31,23 @@ See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]
 ---
 ### **Local Lipschitz Coninuity**
 
+For this part of the content, we faithfully follow Prof Wang's teaching of MATH 564 at the university of Britich Columbia, Okanagan. 
+
+#### **Def 2.29 | Lipschitz Function**
+
+> Let $A\subseteq \mathbb R^n$, We say that $f: \mathbb R^n \mapsto \mathbb R$ is Lipschitz if $\exists K > 0$ such that $|f(x)  - f(y)| \le K\Vert x - y\Vert$ for all $x, y \in \mathbb A$. 
+> 1. When $A$ is $\mathbb R^n$, we say that $f$ is a *Lipschitz function*. 
+> 2. We say that if $f$ is *locally Lipschitz* on $O \subseteq \mathbb R^n$ if for all $x \in O$, there exists $\mathcal N(x) \subseteq O$, a neighbourhood of $x$ that is in $O$, such that $f$ is Lipschitz on $N(x)$. 
+
+
+**Observations**
+
+If the topology defines the neighbourhood function to be the open ball around $x$, then we have point $x$ in the boundary to be inadmissible for neithbourhood $\mathcal N(x)$, meaning that all locally Lipschitz function are locally Lipschitz on an open set. 
+
+#### **Example**
+
+> Let $f = x^2$ be a function on $\mathbb R$, then 
+> 1. $f$ is locally Lipschitz. 
+> 2. $f$ is not a Lipschitz function! 
+
+**Demonstration**

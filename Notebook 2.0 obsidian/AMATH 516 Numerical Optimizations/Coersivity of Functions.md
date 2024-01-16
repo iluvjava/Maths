@@ -24,6 +24,5 @@ The following content will be based on Prof Wang Teaching of MATH 564 at UBCO, t
 |  |  | | |
 
 
-
 ### **Thm 2.15 | Sufficient Conditions for Coercivity**
 > 

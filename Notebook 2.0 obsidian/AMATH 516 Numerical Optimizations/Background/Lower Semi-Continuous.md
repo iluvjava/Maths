@@ -134,9 +134,23 @@ We list all of them.
 > Let $f_1, f_2, \cdots f_m$ be many l.s.c functions mapping from $\mathbb R^n$ to $\mathbb{\bar R}$. 
 > 1. $f_1 + f_2$ is l.s.c. 
 > 2. $\lambda f_1$ is l.s.c on $\mathbb R^n$ for all $\alpha \ge 0$. 
-> 3. $\max\{f_1, \cdots, f_m\}$ is a l.s.c function. 
-> 4. $\min\{f_1, \cdots, f_m\}$ is a l.s.c function. This one can work for infinitely many l.s.c functions as well. 
+> 3. $\max\{f_1, \cdots, f_m\}$ is a l.s.c function. This one can work for infinitely many l.s.c functions as well. 
+> 4. $\min\{f_1, \cdots, f_m\}$ is a l.s.c function. Won't work for infinitely many l.s.c functions. 
 > 5. $\max\{f_1, \cdots, f_m\}$ and $\min\{f_1, \cdots, f_m\}$ are continuous if each of $f_1, \cdots, f_m$ are continuous functions. 
+
+**Arguments**
+
+If we let $f = \max(f_1, f_2), g = \min(f_1, f_2)$, then we have 
+
+$$
+\text{epi}(f) = \text{epi }(f_1) \cap \text{epi }(f_2); 
+\text{epi}(g) = \text{epi }(f_1) \cup \text{epi }(f_2). 
+$$
+
+In the above case 3., 4., finite number of intersection and union of closed set is still a closed set. 
+However, infinitely many union of open sets is always an open set, meaning that inifinitely may intersection of closed set is still a closed set, justifying 3. in the infinite case. 
+Infinitely many intersection of closed set is not a closed set. 
+Simply consider the closure of the list of singletons $\text{cl}\{1/n : n \in \mathbb N\}$. 
 
 
 #### **Thm 2.10 | Composition of l.s.c functions**
