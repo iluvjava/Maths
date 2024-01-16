@@ -136,7 +136,7 @@ We list all of them.
 > 2. $\lambda f_1$ is l.s.c on $\mathbb R^n$ for all $\alpha \ge 0$. 
 > 3. $\max\{f_1, \cdots, f_m\}$ is a l.s.c function. This one can work for infinitely many l.s.c functions as well. 
 > 4. $\min\{f_1, \cdots, f_m\}$ is a l.s.c function. Won't work for infinitely many l.s.c functions. 
-> 5. $\max\{f_1, \cdots, f_m\}$ and $\min\{f_1, \cdots, f_m\}$ are continuous if each of $f_1, \cdots, f_m$ are continuous functions. 
+> 5. $\max\{f_1, \cdots, f_m\}$ and $\min\{f_1, \cdots, f_m\}$ are continuous if each of $f_1, \cdots, f_m$ are continuous functions.
 
 **Arguments**
 
@@ -155,6 +155,16 @@ Simply consider the closure of the list of singletons $\text{cl}\{1/n : n \in \m
 
 #### **Thm 2.10 | Composition of l.s.c functions**
 > let $f(x) = \theta \circ g (x)$, where $g:\mathbb R^n\mapsto \mathbb{\bar R}$ and $\theta: \mathbb R \mapsto \mathbb {\bar R}$ both be l.s.c functions, let $\theta$ be non-decreasing, then $f$ would be a l.s.c function as well. 
+
+**Proof**
+
+
+
+**Remarks**
+
+Composition of l.s.c functions are never l.s.c. 
+Consider the example of the characteristic function $\chi_{0}$ and the function $x^2 - 1$. 
+Both functions are l.s.c. 
 
 
 
