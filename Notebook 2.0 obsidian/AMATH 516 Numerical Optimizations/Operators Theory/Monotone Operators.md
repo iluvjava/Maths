@@ -80,7 +80,7 @@ In the case of maximally monotone operator being a subgradient operator, shiftin
 **Example 1 | Convex Projection is Monotone**
 Recall [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
 
-**Example2 | Subgradient is Monotone**
+**Example 2 | Subgradient is Monotone**
 See [Monotonicity of Subgradient](../Non-Smooth%20Calculus/Monotonicity%20of%20Subgradient.md) for more information. 
 
 
