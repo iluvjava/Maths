@@ -44,7 +44,7 @@ If $T$ is not maximally monotone, then there exists a proper monotone operator $
 And there would exists a point $p=(x, x^*) \in \text{gph}(\tilde T)$, so that by monotonicity of $\tilde T$, we have $\forall (y, y^*) \in \text{gph}(T)$, $\langle x - x^*, y - y^*\rangle \ge 0$. 
 Because $\text{gph}(T)\subseteq \text{gph}(\tilde T)$. 
 
-To show $\implies$, it can be done by the definition of a maximally monotone operator. 
+To show $\implies$, it can be done by the definition of a maximally monotone operator, or a contrapositive argument as well. 
 
 
 
