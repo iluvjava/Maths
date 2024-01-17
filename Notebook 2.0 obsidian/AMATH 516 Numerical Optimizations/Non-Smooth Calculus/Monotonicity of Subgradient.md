@@ -1,7 +1,7 @@
 The subgradient monotonicity is a natural extension to what we have in the smooth case. The following materials will be relevant: 
-* [[Subgradient Intro]]
-* [[Characterizing Functions for Optimizations]], the convexity parts. 
-* [[../CVX Analysis/Gradient, Hessian Characterization of Convex Functions]], This one is older, but it discuss the case when the function is continuous. 
+* [Subgradient Intro](Subgradient%20Intro.md)
+* [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md), the convexity parts. 
+* [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md), This one is older, but it discuss the case when the function is continuous. 
 
 ---
 ### **Intro**
@@ -90,5 +90,5 @@ It's obvious and I did it myself. For references, just take a look at the monoto
 
 ---
 ### **Heinz's Monotone Operator**
-#HEINZ Proposition 9.8 in his course notes, the proof is direct, similar to what we have in [[../CVX Analysis/Gradient, Hessian Characterization of Convex Functions]]. 
+#HEINZ Proposition 9.8 in his course notes, the proof is direct, similar to what we have in [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md) for the monotonicity of just a gradient operator. 
 
