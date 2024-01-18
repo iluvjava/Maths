@@ -108,6 +108,12 @@ Posterior has nice solution and they give rise to interesting distribution stati
 > Suppose that a coin with probability $p$ is thrown $n$ times, and suppose that we have no idea whether the coin is fair or not. Find the distribution of the probability parameter $p$ given the observed number of heads that showed for the realization. 
 
 
+**Demonstrations**
+
+#UNFINISHED 
+
+
+
 ---
 ### **Problem | Posterior Distribution for Poisson, The Gamma Distribution**
 
