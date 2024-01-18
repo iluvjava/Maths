@@ -35,14 +35,35 @@ For this part of the content, we faithfully follow Prof Wang's teaching of MATH 
 
 #### **Def 2.29 | Lipschitz Function**
 
-> Let $A\subseteq \mathbb R^n$, We say that $f: \mathbb R^n \mapsto \mathbb R$ is Lipschitz if $\exists K > 0$ such that $|f(x)  - f(y)| \le K\Vert x - y\Vert$ for all $x, y \in \mathbb A$. 
+> Let $A\subseteq \mathbb R^n$, We say that $f: \mathbb R^n \mapsto \mathbb R$ is Lipschitz if $\exists K > 0$ such that $|f(x)  - f(y)| \le K\Vert x - y\Vert$ for all $x, y \in  A$. 
 > 1. When $A$ is $\mathbb R^n$, we say that $f$ is a *Lipschitz function*. 
-> 2. We say that if $f$ is *locally Lipschitz* on $O \subseteq \mathbb R^n$ if for all $x \in O$, there exists $\mathcal N(x) \subseteq O$, a neighbourhood of $x$ that is in $O$, such that $f$ is Lipschitz on $N(x)$. 
+> 2. We say that if $f$ is *locally Lipschitz* on $O \subseteq \mathbb R^n$ if for all $x \in O$, there exists $\mathcal N(x) \subseteq O$, a neighbourhood of $x$ that is in $O$, such that $f$ is Lipschitz on $\mathcal N(x)$. 
 
 
 **Observations**
 
-If the topology defines the neighbourhood function to be the open ball around $x$, then we have point $x$ in the boundary to be inadmissible for neithbourhood $\mathcal N(x)$, meaning that all locally Lipschitz function are locally Lipschitz on an open set. 
+If the topology defines the neighbourhood function to be the open ball around $x$, then we have point $x$ in the boundary to be inadmissible for a neighbourhood $\mathcal N(x)$ because points on the boundary intersect points outside the boundary and the function takes positive infinity for points that are outside of the boundary, meaning that all locally Lipschitz function are locally Lipschitz on an open set. 
+
+If a function $f$ is locally Lipschitz on a compact set, then it's globally Lipschitz. 
+Recall from [Heine Borel](Heine%20Borel.md) that a compact sets in in finite Euclidean space has finite open subcover. 
+The domain of the function can be covered by a union of finitely many open sets. 
+On each of these subcover, the function is Lipschitz. 
+Taking the maximum among all the Lipschitz constants on these subcovers provides us with a Lipschitz constant over the compact domain. 
+
+### **Remarks**
+
+The definitions can be extended to functions whose domain is in $\mathbb R^n$ if we use different norms. 
+For all normed spaces, Lipschitz continuity can be defined for any single-valued mapping. 
+
+#### **Facts | Calculus of Locally Lipschitz Functions**
+Let $f_1, f_2$ be locally lipschitz around the same point $\bar x$ then the following functions are still locally Lipschitz around $\bar x$. 
+1. $f_1 + f_2$. The sum 
+2. $f_1f_2$. The product
+3. $f_1 / f_2$ where $f_2(\bar x)\neq 0$. 
+4. $\max(f_1, f_2)$ or $\min(f_1, f_2)$. 
+
+
+
 
 #### **Example**
 
@@ -51,3 +72,105 @@ If the topology defines the neighbourhood function to be the open ball around $x
 > 2. $f$ is not a Lipschitz function! 
 
 **Demonstration**
+
+To show (1.).
+Fix $x_0 \in \mathbb R$ choose $r > 0$ then choose $x, y \in (x_0 - r, x_0 + r)$, then we have 
+$$
+\begin{aligned}
+    |f(x) - f(y)| &= |x^2 - x^2|
+    \\
+    &= |x - y||x + y|
+    \\
+    &\le |x - y|(|x| + |y|) 
+    \\
+    &= |x - y|(|x - x_0 + x_0| + |y - x_0 + x_0|)
+    \\
+    &\le   |x - y|(|x - x_0| + |x_0| + |y - x_0| + |x_0|)
+    \\
+    &\le 
+    2|x - y|(r  + |x_0|), 
+\end{aligned}
+$$
+
+where we made use of the fact that $|x - x_0| \le r$ by how we choose $x, y$. 
+Notice that $r + |x_0|$ is a bounded quantity for all values of $x_0 \in \mathbb R$. 
+Therefore the function is a locally Lipschitz function. 
+
+To see (2.)
+Just fix $x = 0$ and let $y\in \mathbb R$  then the Lipschitz condition is $y^2 \le K|y|$, which means $y^2/|y| \le K$ and it's impossible to find a fixed $K \in \mathbb R$ such that the condition is true for all values of $y \in \mathbb R$. 
+
+**Remarks**
+
+The norm function $\Vert \cdot\Vert$ is a classical example of a Gloablly Lipschitz function. 
+
+----
+### **Equivalence for F-Differentiable Functions that is Locally Lipschitz**
+
+The following theorem is taken from Prof Wang teaching of class 564 in UBCO 2024 Winter term 2. 
+
+#### **Thm | Bounded Gradient and Local Lipschitz Continuity**
+> Let $f: \mathbb  R^n \mapsto \mathbb R$ be a differentiable function. Then $f$ is Lipschitz on $O$ iff $\exists O$ such that $x \in O \implies \Vert \nabla f(x)\Vert\le K$. 
+
+**Proof**
+
+For proving the direction $\implies$, le tassume that $f$ is Lipschitz on $O$ then by definition for all $x, y \in O$ we have $|f(x) - f(y)| \le K \Vert x - y\Vert$. 
+Where $K \in \mathbb R$. 
+Directly consider the substitution $h = x - y$ and a scalar $t > 0$ then we have
+
+$$
+\begin{aligned}
+    |f(x + t h) - f(x)| &\le K t\Vert h\Vert
+    \\
+    \iff 
+    \frac{|f(x + t h) - f(x)|}{t} &\le K \Vert h\Vert \quad \text{ by } t > 0
+    \\
+    |\langle \nabla f(x), h\rangle| &\le K \Vert h\Vert \quad \text{ by $f$ differentiable. }
+    \\
+    \left|
+        \frac{\langle \nabla f(x), h\rangle}{\Vert h\Vert}
+    \right| &\le K, 
+\end{aligned}
+$$
+
+Taking the supremum of the LHS for all $h \neq \mathbf 0$ yields $\Vert \nabla f(x)\Vert$ by an appliction of the Cauchy Schwartz inequality. 
+
+For the other direction, assuming that $\Vert \nabla f(x)\Vert \le K$ for all $x \in O$. 
+By MVT then 
+
+$$
+\begin{aligned}
+    \exists c \in [x, y] : |f(x) - f(y)| &= |\langle \nabla f(c), x - y\rangle|\le 
+    \Vert \nabla f(c)\Vert \Vert x - y\Vert \le K \Vert x - y\Vert. 
+\end{aligned}
+$$
+
+So $f$ is Lipschitz continuous on the set $O$. 
+
+
+---
+### **Counter Example | Differentialble Everywhere but not Locally Lipschitz Everywhere**
+
+The following is in MATH 564 taught by professor Wang in UBCO 2024 Winter Term 2. 
+The result is highly unintuitive. 
+
+### **Example | Differentiable but not Locally Lipschitz**
+
+> The function: 
+> $$
+> \begin{aligned}
+>     f(x) =
+>     \begin{cases}
+>         |x|^{3/2} \sin(1/x) & t \neq 0, 
+>         \\
+>         0 & \text{else}. 
+>     \end{cases}
+> \end{aligned}
+> $$
+> is a function that has 
+> 1. It's differentiable on $\mathbb R$, but it's not $C^1$ around $x = 0$. (So this function is from the subset of function that is differentiable but not continuously differentiable. )
+> 2. It's not Locally Lipschitz. 
+
+**Proof**
+
+
+

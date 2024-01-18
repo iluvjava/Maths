@@ -5,16 +5,16 @@
 
 The theorem is rooted in topology and it defines compactness in topological spaces, and it only becomes closed and bounded in finite Euclidean spaces. See [here](https://en.wikipedia.org/wiki/Heine%E2%80%93Borel_theorem) for more info. In Metric space, the theorem states the equivalence between closed and bounded condition, and existence of sub-sequential convergence. For form information regarding the last claim, see [Compactness in Metric Spaces](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Compactness%20in%20Metric%20Spaces.md) for more details. 
 
+**References**
+
+These materials were covered in an undergraduate friendly textbook: Measure, Integration, and Real Analysis by Sheldon Axler. 
+
 #### **Def-1 | Open Cover**
 > A set $A$ has open cover $C_A$ means that $C_A = \bigcup_{i\in I} G_i$, where $I$ is the index set with some type of cardinality, and $G_i, i\in I$ are all open sets. 
 
 #### **Def-2 | Finite Sub Cover**
 > For the cover of a set $A$, $C_A$, it's finite sub-cover is a subset $C'_A\subseteq C_A$ such that it's a finite set. 
 
-
-**References**
-
-1. Measure, Integration and Real Analysis, Sheldon Axler. 
 
 
 ---

@@ -9,6 +9,8 @@ In this file we provide proof the theorem listed in: [[../CVX Analysis/Convex Fu
 
 Recall that, not all convex function is Lipschitz Continuous on the closure of it's domain, but if the subgradient is bounded on all points and the function is convex, then it's Lipschitz, however the converse is not true, one of the canonical counter example is the function $-\sqrt{x}$ which is convex but it's not Lipschitz at $x = 0$. 
 
+**References**
+
 
 ---
 ### **Lemma-1 | Lipschitz on one Line Segment**
@@ -133,7 +135,9 @@ I made the proof myself I don't know how legit it is. But it's consistent with o
 
 **Proof 2**:
 
-Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$, then consider the subgradient $v_1\in \partial [f](x_1), v_2 \in \partial[f](x_2)$, we have: 
+Choose any line segment $[x_1, x_2]\in \text{int}\circ\text{dom}(f)$. 
+This is possible because the function is convex. 
+We consider the subgradient $v_1\in \partial [f](x_1), v_2 \in \partial[f](x_2)$, we have: 
 
 $$
 \begin{aligned}
