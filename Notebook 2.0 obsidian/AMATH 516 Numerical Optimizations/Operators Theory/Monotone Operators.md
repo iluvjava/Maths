@@ -4,7 +4,9 @@
 ---
 ### **Intro**
 
-Let the space of the operator be the Euclidean spaces. 
+Let the space of the monotone operators. 
+Most of the materials are from Heinz's book Convex Analysis and Monotone Operator, and his teaching of MATH 565 in the university of British Columbia, 2024 Term 2 winter. 
+
 
 #### **Definition | Monotone Operator**
 
@@ -34,6 +36,7 @@ A monotone operator doesn't imply:
 
 We need to show that a maximally monotone operator exists, and then we show an equivalent definition. 
 
+
 #### **Definition | Maximally Monotone Equivalent Definition**
 > The operator $T: X \mapsto 2^X$ is a maximally monotone operator if and only if whenever any $(x, x^*)$ implies $\forall (y, y^*)\in \text{gph}(T)$ we have $\langle x - y, x^* - y^*\rangle \ge 0$ then it must be that $(x, x^*)\in \text{gph}(T)$. 
 
@@ -45,6 +48,12 @@ And there would exists a point $p=(x, x^*) \in \text{gph}(\tilde T)$, so that by
 Because $\text{gph}(T)\subseteq \text{gph}(\tilde T)$. 
 
 To show $\implies$, it can be done by the definition of a maximally monotone operator, or a contrapositive argument as well. 
+
+
+#### **Thm | Maximal Extension of Monotone Operators**
+> 
+
+**Remarks**
 
 
 
