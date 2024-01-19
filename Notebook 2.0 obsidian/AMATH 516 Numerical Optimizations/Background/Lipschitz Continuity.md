@@ -170,6 +170,26 @@ The result is highly unintuitive.
 > 1. It's differentiable on $\mathbb R$, but it's not $C^1$ around $x = 0$. (So this function is from the subset of function that is differentiable but not continuously differentiable. )
 > 2. It's not Locally Lipschitz. 
 
+**Observations**
+
+The function is differentiable but it's not continuously differentable. 
+By considering its derivative on $\mathbb R\setminus \mathbb \{ 0\}$ gives us
+
+$$
+\begin{aligned}
+    f'(x) &= 
+    \frac{|x^{3/2}|}{x^{3/2}}\frac{3}{2} x^{1/2}\sin(1/x) + 
+    |x|^{3/2} \left(
+        \frac{-1}{x^{2}}
+    \right)\cos(1/x)
+    \\
+    &= 
+\end{aligned}
+$$
+
+Here we used the fact that the derivative of $|\cdot|$ function has representation $|\cdot|/(\cdot)$. 
+
+
 **Proof**
 
 
