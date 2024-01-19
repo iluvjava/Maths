@@ -51,7 +51,7 @@ To show $\implies$, it can be done by the definition of a maximally monotone ope
 
 
 #### **Thm | Maximal Extension of Monotone Operators**
-> 
+> For all monotone operator $A: X \mapsto 2^X$, there exists a maximal monotone operator $B$ such that $\text{gph}(A)\subseteq \text{gph}(B)$.
 
 **Remarks**
 
