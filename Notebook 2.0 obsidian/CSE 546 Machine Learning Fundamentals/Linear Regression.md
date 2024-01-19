@@ -128,7 +128,7 @@ $$
 \end{aligned}
 $$
 
-and maximizing the likelihood of equalste to finding the minimizing $-\ln \mathcal L(w)$ in this case. The matrix $M$ is a matrix whose row vectors are the list of observations $x_i$ sampled. And this is the form of the regression problem. Finally, we note here that, the solution to the problem is not necessarily unique. But in the case of full-ranked matrix the best estimator is give by $(M^TM)^{-1}M^T(\vec y - b \mathbf 1)$. 
+and maximizing the likelihood means minimizing $-\ln \mathcal L(w)$ in this case. The matrix $M$ is a matrix whose row vectors are the list of observations $x_i$ sampled. And this is the form of the regression problem. Finally, we note here that, the solution to the problem is not necessarily unique. But in the case of full-ranked matrix the best estimator is give by $(M^TM)^{-1}M^T(\vec y - b \mathbf 1)$. 
 
 ---
 ### **Analysis of the MLE**

@@ -184,6 +184,7 @@ $$
     \right)\cos(1/x)
     \\
     &= 
+    
 \end{aligned}
 $$
 
