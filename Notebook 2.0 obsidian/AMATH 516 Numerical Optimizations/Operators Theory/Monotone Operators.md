@@ -55,7 +55,8 @@ To show $\implies$, it can be done by the definition of a maximally monotone ope
 
 **Remarks**
 
-
+The proof is very similar to [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md). 
+The extension of a monotone operators requires a very similar constructions. 
 
 ---
 ### **Surjectivity of Maximally Monotone Operators**

@@ -103,6 +103,8 @@ Just fix $x = 0$ and let $y\in \mathbb R$  then the Lipschitz condition is $y^2 
 
 The norm function $\Vert \cdot\Vert$ is a classical example of a Gloablly Lipschitz function. 
 
+
+
 ----
 ### **Equivalence for F-Differentiable Functions that is Locally Lipschitz**
 
@@ -146,6 +148,10 @@ $$
 
 So $f$ is Lipschitz continuous on the set $O$. 
 
+#### **Thm | Composition of Lipschitz Functions**
+> Composition of functions $f, g$ is still a locally Lipschitz continuous function. Suppose that $f: \mathbb R^n \mapsto \mathbb R$ and $g: \mathbb R^m\mapsto \mathbb R^n$. 
+> Let $\bar x \in \mathbb R^m$, let $g$ be locally Lipschitz at $\bar x$, let $f$ be locally Lipschitz at $g(\bar x)$, then the function $f\circ g$ is a locally Lipschitz function at $\bar x$. 
+
 
 ---
 ### **Counter Example | Differentialble Everywhere but not Locally Lipschitz Everywhere**
@@ -173,25 +179,69 @@ The result is highly unintuitive.
 **Observations**
 
 The function is differentiable but it's not continuously differentable. 
-By considering its derivative on $\mathbb R\setminus \mathbb \{ 0\}$ gives us
+To see that we list the derivative of the absolute value to some power. 
 
 $$
 \begin{aligned}
-    f'(x) &= 
-    \frac{|x^{3/2}|}{x^{3/2}}\frac{3}{2} x^{1/2}\sin(1/x) + 
-    |x|^{3/2} \left(
-        \frac{-1}{x^{2}}
-    \right)\cos(1/x)
+    \frac{d}{dx}|x|^{3/2} &= 
+    \frac{d}{dx}
+    \left. 
+    \begin{cases}
+        x^{3/2} & x > 0 
+        \\
+        (-x )^{3/2} & x < 0
+    \end{cases}
+    \right\rbrace
     \\
     &= 
-    
+    \left.
+    \begin{cases}
+        (3/2)x^{1/2} & x > 0 
+        \\
+        (3/2)(-x )^{1/2} & x < 0
+    \end{cases}
+    \right\rbrace
+    \\
+    &= 
+    (3/2)\text{sign}(x) |x|^{1/2}, 
+\end{aligned}
+$$
+Therefore we would have 
+
+$$
+\begin{aligned}
+    f'(x)&= 
+    \text{sign}(x)(3/2)|x|^{1/2}\sin(1/x) - 
+    \text{sign}(x)|x|^{1/2} \cos(1/x). 
 \end{aligned}
 $$
 
-Here we used the fact that the derivative of $|\cdot|$ function has representation $|\cdot|/(\cdot)$. 
+The derivative is defined everywhere on $\mathbb R \setminus \{0\}$. 
+Next we show that the derivative at $x = 0$ is also defined and it's zero. 
 
+$$
+\begin{aligned}
+    \lim_{h\rightarrow 0}
+    \frac{f(h) - 0}{h} &= 
+    \lim_{h\rightarrow 0} \frac{|h|^{3/2}\sin(1/h)}{h}
+    \\
+    &= \lim_{h\rightarrow 0} |h|^{1/2}\sin(1/h) = 0, 
+\end{aligned}
+$$
+
+and at the last step, we just use the fact that $\sin(1/h)$ is bounded between $- |h|^{1/2}, |h|^{1/2}$ and then ue the squeeze theorem. 
+We observe that the derivative is defined everywhere,, but it's discontinuous at the point $x=0$. 
 
 **Proof**
+
+According to the observation, the function is no longer Lipschitz continuous for the differentiable function $f$. 
+The discontinuity of the derivative of the function at $x = 0$ means that it's not bounded around $\mathcal N(0)$. 
+To see that do the math using the sequence $x_n = (2n\pi)^{-1}$ and $y_n = (2n\pi + \pi/2)^{-1}$. 
+
+
+
+
+
 
 
 
