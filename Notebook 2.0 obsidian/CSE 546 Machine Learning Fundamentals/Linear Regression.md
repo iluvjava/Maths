@@ -3,7 +3,11 @@
 ---
 ### **Intro**
 
-Assume a generative model of the form $y = Xw + \epsilon$ where $X$ is a matrix of realized random variables. Each row corresponds to a realized instance of random variable list $x_i\in \mathbb R^d$, there are $n$ of them in total. Let residual vector $\epsilon$, let it assume to have a Gaussian distribution with some known parameters then the maximal likely estimator for $w$ is provided by
+Assume a generative model of the form $y = Xw + \epsilon$ where $X\in \mathbb R^{n\times d}$ is a matrix of realized random variables, $\epsilon$ is the residual vector from an equal variance Guassian $\mathcal N(0, \mu I)$. 
+Each row of $X$ corresponds to a realized instance of random variable vector $x_i\in \mathbb R^d$. 
+In practice they are usually observed instance of features. 
+There are $n$ of them in total. 
+The maximal likelihood estimator for $w$ is provided by 
 
 $$
 \widehat{w} = 
@@ -19,20 +23,24 @@ Let $x\in \mathbb R^{n\times d}$ be the realization of features. Assuming that t
 ---
 ### **Linear Regression With Offset**
 
-We look for the mostly likely unknow parameters from a linear function with random variables in it, from an i.i.d sequence of realizations, of the inputs and the outputs of the function. 
 
-#### **Claim | The Minimizing a Stochastic Function**
-> Suppose that we have a linear function $f(x | w, b ; \epsilon) = x^Tw + b + \epsilon$, where $w, b$ unknown parameters and $\epsilon$ is a guassian random variable $\sim N(0, \sigma^2)$. Further assume that a sequence of i.i.d observations had been made, recored as rows for the matrix $X$. Then the MLE for the parameters of the function is produced by the optimization problem
+#### **Objective | Minimizing a Stochastic Function**
+> Suppose that we have a stochastic linear function $f(x | w, b ; \epsilon) = x^Tw + b + \epsilon$, where $w, b$ unknown parameters and $\epsilon$ is a guassian random variable $\sim N(0, \sigma^2)$. 
+> Further assume that a sequence of i.i.d observations are realized, they are recorded as rows for the matrix $X$. 
+> Then the MLE for parameters $\bar w, \hat b$ of the function is produced by the optimization problem
 > 
 > $$
 > \widehat{w}, \widehat{b} = 
 > \underset{w, b}{\text{argmin}} \Vert y - (Xw + \mathbf{1}b)\Vert_2^2, 
 > $$
 > where $\mathbf 1$ denotes a vector full of ones in it. 
+> We will demonstrate how to minimize the above objective. 
 
-**The Centered Offset Approach for a Closed Form**
+**Closed Form Relations between the Weights and the Offsets**
 
-Let the random varaible $Y = \vec X w + b + \epsilon$, where $\vec X$ is a vector of random variable from some unknown distribution. Observe that if $\epsilon\sim N(0, \sigma^2)$, then $b + \epsilon \sim N(b, \sigma^2)$. So then 
+Let the vector random varaible $Y = \vec X w + b + \epsilon$. 
+$\vec X$ is a random variable from some distribution in $\mathbb R^n$. 
+Observe that if $\epsilon\sim N(0, \sigma^2)$, then $b + \epsilon \sim N(b, \sigma^2)$. So then 
 
 $$
 \begin{aligned}
@@ -56,11 +64,27 @@ $$
 \end{aligned}
 $$
 
-once an estimate for the value $w$ is specified, then we can obtain the value of the offsets depending on the value of $w$. 
+once an estimate for the value $w$ is specified, then we can obtain the offset $b$ using the above formula. 
+The expected value of the random variable can be empirically computed via $n$ realizations of the vector. 
+Suppose that $y_i, x_i$ for $i = 1, \cdots, n$ are realizations of $\vec X$, $Y$ then 
+
+$$
+\begin{aligned}
+    \mathbb{E}\left[Y\right] &= \sum_{i = 1}^{n} y_i = \bar y
+    \\
+    \mathbb{E}\left[\vec X\right] &= \sum_{i = 1}^{n} x_i = \bar x
+\end{aligned}
+$$
+
+the second empirical average is a sume of vectors. 
+So $b = \bar y - \langle \bar x, w\rangle$. 
+
 
 **The Gradient Approach**
 
 A gradient approach can be used to find the offset parameter for the model. 
+The function is a convex quadratic form. 
+Solving for points when the gradient gives the set of minimizers. 
 
 $$
 \begin{aligned}
@@ -72,23 +96,27 @@ $$
         y - (Xw + \mathbf{1}b)
     ) = \mathbf 0
     \\
+    w &= (X^TX)^{-1}X^T(y - \mathbf 1b)
+    \\
     \partial_b \left[ \frac{1}{2}
         \Vert y - (Xw + \mathbf{1}b)\Vert_2^2
     \right]
     &=
     \mathbf{1}^T(y - (Xw + \mathbf{1}b))
-    = 
-    0
+    = 0
 \end{aligned}
 $$
-
 
 I just added a $\frac{1}{2}$ so the derivative will come out without an extra 2 in  the front. 
 
 
+
 **The Augmented Matrix Approach**
 
-Augment matrix $X$ to be: $\tilde{X} = \begin{bmatrix}X & \mathbf{1 }\end{bmatrix}$, And then the new optimizing vector will be defined as: $\widetilde{w} = \begin{bmatrix}w \\ b\end{bmatrix}$. Notice that, this will keep everything the same in such at way that: $Xw + \mathbf{1}b = \tilde{X}\tilde{w}$. Then we solve the problem wrt to $\hat{w}$, and the solution for that vector will contain the constant we need: $b$.  
+Augment the matrix $X$ to $\tilde{X} = \begin{bmatrix}X & \mathbf{1 }\end{bmatrix}$. 
+The new optimizing vector will be defined as: $\widetilde{w} = \begin{bmatrix}w \\ b\end{bmatrix}$. 
+Notice that, this will keep everything the same in such at way that: $Xw + \mathbf{1}b = \tilde{X}\tilde{w}$. 
+Then we solve the problem wrt to $\hat{w}$, and the solution for that vector will contain the constant we need: $b$.  
 
 ---
 ### **Linear Regression MLE Formulations**
@@ -136,7 +164,7 @@ and maximizing the likelihood means minimizing $-\ln \mathcal L(w)$ in this case
 We analyze the bias and the variance for the MLE provided from the previous section. 
 
 #### **Claim | The Estimator is Unbiased**
-> The estimator $w = (M^TM)^{-1}M^T(\vec y - b \mathbf 1)$ is unbiased, meaning that $\mathbb{E}\left[\hat w - w\right] = 0$, for the observed sequence of i.i.d variables packed as rows of the matrix $M$. 
+> The estimator $\hat w = (M^TM)^{-1}M^T(\vec y - b \mathbf 1)$ is unbiased, meaning that $\mathbb{E}\left[\hat w - w\right] = 0$, for the observed sequence of i.i.d variables packed as rows of the matrix $M$. 
 
 **Demonstration**
 
@@ -162,7 +190,10 @@ $$
 
 and the expected value for the Gaussian random vector is zero, therefore this quantity will equal to the ground truth: $w$. 
 
-**Covariance Matrix for the estimator**
+#### **Claim | Covariance Matrix for the estimator**
+> The covariance of the maximal likelihood estimator $\bar w$, which is also a vector random variable has a distribution of $\hat w\hat w^T \sim \mathcal{N}(w, \sigma^2(M^TM)^{-1})$. 
+
+**Demonstrations**
 
 In this part, we are interested in investigating the covariance for the MLE estimator $\hat{w}$, to start we have that 
 

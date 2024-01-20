@@ -1,8 +1,6 @@
-[[Decision Forest and Committee]]
-
-[NCSU Lectures on Boosting](https://www4.stat.ncsu.edu/~lu/ST7901/lecture%20notes/2019Lect23-Boosting.pdf)
-
-[Towards data Science on Boosting](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30)
+- [[Decision Forest and Committee]]
+- [NCSU Lectures on Boosting](https://www4.stat.ncsu.edu/~lu/ST7901/lecture%20notes/2019Lect23-Boosting.pdf)
+- [Towards data Science on Boosting](https://towardsdatascience.com/boosting-algorithms-explained-d38f56ef3f30)
 
 ---
 ### **Intro**

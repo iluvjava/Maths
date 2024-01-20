@@ -1,6 +1,5 @@
 ---
-alias: Random variables basics with measure theory
-alias: Random variable Distribution function
+alias: Random variables basics with measure theory, Random variable Distribution function
 
 ---
 [[Probability Spaces]]
@@ -12,7 +11,7 @@ alias: Random variable Distribution function
 We note that random variable exists in abstract measurable space, here we defined the usual type of random variable that maps from some type of Sigma-algebra for the event space to the real line. 
 
 #### **Def | A Real Random Variables**
-> A Real Random Variable $X$ is a function that maps from the $\Omega$ to $\mathbb{R}$. Assume that random variable $X$ is associated with probability spaces $(\Omega, \mathcal{F}, P)$ then $X:\Omega \mapsto \mathbb{R}$ is a real Random Variable (R.V.) when: 
+> A Real Random Variable $X$ is a function that maps from the out space $\Omega$ to $\mathbb{R}$. Assume that random variable $X$ is associated with probability spaces $(\Omega, \mathcal{F}, P)$ then $X:\Omega \mapsto \mathbb{R}$ is a real Random Variable (R.V.) when: 
 > $$
 > \forall B\in \text{Borel}(\mathbb{R}): X^{-1}(B) \in \mathcal{F}.
 > $$
@@ -28,6 +27,10 @@ We note that random variable exists in abstract measurable space, here we define
 **Remarks**
 
 I am unaware of a simple counter example of a random variable whose pre-image is not a measurable set. 
+Intuitively, random variable bridges from the abstract outcome space of $\Omega$ to a set that can be measured, in this case we used $\mathbb R$. 
+Since $(\Omega, \mathcal F, P)$ is a $\sigma$-algebra, we can measure every combinations of outcome (the events). 
+Since the variable $X$ also maps to $\mathbb R$, the measure of abstract probability space can be translated to the measuring in the space of $\mathbb R$. 
+This allows us to tools in real analysis to tackle probability issue. 
 
 
 **References**

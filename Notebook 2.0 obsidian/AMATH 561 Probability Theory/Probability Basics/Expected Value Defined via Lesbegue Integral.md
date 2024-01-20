@@ -11,7 +11,7 @@ The expected value is a mapping that maps a random variable (a function) to the 
 > dP. 
 > $$
 
-In this file, we progressively improve the definitions of the Lesbegue integral by removing more and more assumptions about the function at hand. 
+In this file, we progressively improve the definitions of the Lebesgue integral by removing more and more assumptions about the function at hand. 
 
 **Indicator Function**
 
@@ -28,20 +28,20 @@ For all possible value that the random variable can take, we want to integrate i
 ---
 ### **Lebesgue Integral**
 
-The Lesbegue integral of a measurable function $f:\Omega \mapsto\mathbb{R}$, defined on a measurable space $(\Omega, \mathcal{F})$, with respect to the measure $\mu: \mathcal{F}\mapsto \mathbb{R}_0^+$. Which looks like this: 
+The Lebesgue integral of a measurable function $f:\Omega \mapsto\mathbb{R}$, defined on a measurable space $(\Omega, \mathcal{F})$, with respect to the measure $\mu: \mathcal{F}\mapsto \mathbb{R}_0^+$. Which looks like this: 
 
 > $$
 > \int_{\Omega}^{} f d\mu
 > $$
 
-And this is the integral. Which is much general than Riemann integral because it can be applied to any type of measurable space, with all different type of topologies, not just the Real Number Line. And for all Riemann integrable function that is proper, it's going to be Lesbegue integrable. 
+And this is the integral. Which is much general than Riemann integral because it can be applied to any type of measurable space, with all different type of topologies, not just the Real Number Line. And for all Riemann integrable function that is proper, it's going to be Lebesgue integrable. 
 
 ----
 ### **Simple Functions**
 
 $\phi$ is simple when $\phi(\omega) = \sum_{i = 1}^{n}a_i \mathbb{I}_{A_i}$, Where $A_i$ are disjoint sets such that $\mu_{A_i} \le \infty$. 
 
-**Explnation:** 
+**Explanation:** 
 
 A simple function is a function that can be described by a finite linear combination of indicator function where each of the indictor function is on $A_i$, and all $A_i$ is discrete. This can be viewed as assigning discrete value for each of the discrete domain for the function, partitioning the output of the function using the partitioned domain. If the random variable $X$ is discrete, then it can be modeled using a simple function. 
 
@@ -52,6 +52,10 @@ A simple function is a function that can be described by a finite linear combina
 > $$
 
 The discrete sum of all the measure on the partitioned domain for the function. 
+
+**Remarks**
+
+
 
 ---
 ### **Bounded Functions**
