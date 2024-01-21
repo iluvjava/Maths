@@ -615,7 +615,7 @@ It follows directly from [Minimizer of Quadratic Sum, Weighted Average](../Minim
 
 **Parallelization**
 
-> Suppose that function $f(x)$ can be written as the Euclidean cross product $(f_1(x_1), f_2(x_2), \cdots, f_m(x_m))$, and we assume that each of $x_1, x_2, \cdots, x_n$ are vector in $\mathbb R^{k_1}, \mathbb R^{k_2}, \cdots, \mathbb R^{k_m}$ such that $x =\bigotimes_{i=1}^m x_i$,then we can write the proximal gradient operator of $f$ in parallel form which is given as: 
+> Suppose that function $f(x)$ can be written as the Euclidean cross product $(f_1(x_1), f_2(x_2), \cdots, f_m(x_m))$, and we assume that each of $x_1, x_2, \cdots, x_n$ are vector in $\mathbb R^{k_1}, \mathbb R^{k_2}, \cdots, \mathbb R^{k_m}$ such that $x =\bigoplus_{i=1}^m x_i$,then we can write the proximal gradient operator of $f$ in parallel form which is given as: 
 > $$
 > \begin{aligned}
 >     \text{prox}_{f, \lambda}((x_1, x_2, \cdots, x_m)) = 
