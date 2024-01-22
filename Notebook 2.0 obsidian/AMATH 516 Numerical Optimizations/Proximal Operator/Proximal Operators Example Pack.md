@@ -147,20 +147,21 @@ See theorem 6.27, Amir Beck First Order method textbook.
 ---
 ### **Projection onto Probability Simplex**
 
-Let $C\subseteq \mathbb R^n$ defined as 
+> Let $C\subseteq \mathbb R^n$ defined as 
+> $$
+> C = H_{a, b} \cap \text{Box}[l, u] = \{x\in \mathbb R^n: \langle a, x\rangle= b \wedge l \le x \le u\}, 
+> $$
+> where $a\neq \mathbf 0$, $b \in \mathbb R$, $l \in [-\infty, \infty), u \in (-\infty, \infty]$. Assuming that $C\neq \emptyset$ then 
+> $$
+> \begin{aligned}
+>     &\Pi_C(x) = \Pi_{\text{box}[l, u]}(x - \mu a)
+>     \\
+>     &\text{where }\mu \in \mathbb R \text{ solves: } \langle a, \Pi_{\text{Box}[l, u]}(x - \mu a)\rangle = b. 
+> \end{aligned}
+> $$
+> The equation can be easily solved using bisection method because it's a $\mathbb R \mapsto \mathbb R$ equation. 
 
-$$
-C = H_{a, b} \cap \text{Box}[l, u] = \{x\in \mathbb R^n: \langle a, x\rangle= b \wedge l \le x \le u\}, 
-$$
-where $a\neq \mathbf 0$, $b \in \mathbb R$, $l \in [-\infty, \infty), u \in (-\infty, \infty]$. Assuming that $C\neq \emptyset$ then 
-$$
-\begin{aligned}
-    \Pi_C(x) &= \Pi_{\text{box}[l, u]}(x - \mu a)
-    \\
-    \text{where }\mu &\in \mathbb R \text{ solves: } \langle a, \Pi_{\text{Box}[l, u]}(x - \mu a)\rangle = b. 
-\end{aligned}
-$$
-The equation can be easily solved using bisection method because it's a $\mathbb R \mapsto \mathbb R$ equation. 
+**Demonstration**
 
 
 
