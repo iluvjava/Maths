@@ -227,7 +227,7 @@ This demonstration is taken from, Amir Beck First Order method textbook, theorem
 > \begin{aligned}
 >     & \Pi_{\Delta_n}(x) = \Pi_{\mathbb R_+}(x - \mu a)
 >     \\
->     & \text{where }\mu \in \mathbb R \text{ solves: } \langle a, \Pi_{\mathbb R_+}(x - \mu \mathbf 1)\rangle = 1. 
+>     & \text{where }\mu \in \mathbb R \text{ solves: } \langle \mathbf 1, \Pi_{\mathbb R_+}(x - \mu \mathbf 1)\rangle = 1. 
 > \end{aligned}
 > $$
 

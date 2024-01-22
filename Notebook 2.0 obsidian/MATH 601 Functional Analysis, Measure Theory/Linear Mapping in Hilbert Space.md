@@ -85,6 +85,7 @@ by property (3).
 ### **Complementary Spaces between the Ranges and Null spaces of the Adjoint Operators**
 
 The range of the operator and the nullspace of the adjoint forms complementary spaces for the output space of the operator. 
+This is [Fredholm Alternative](../AMATH%20584%20Numerical%20Linear%20Algebra/Matrix%20Theory/Fredholm%20Alternative.md) in the finite dimensional case. 
 
 #### **Thm | Complementary Spaces**
 > Let $T: \mathcal H_1 \mapsto \mathcal H_2$, then the following are all true
