@@ -1,3 +1,8 @@
+---
+
+alias: Proximal Mapping Examples
+
+---
 [Proximal Gradient, Forward Backwards Envelope](../Proximal%20Methods/Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md)
 
 
@@ -136,20 +141,14 @@ $$
 \end{aligned}
 $$
 
-### **Projection on to Hyper Plane Box Intersections**
 
-
-
-**Remarks**
-
-See theorem 6.27, Amir Beck First Order method textbook. 
 
 ---
-### **Projection onto Probability Simplex**
+### **Projection on to Hyper Plane Box Intersections**
 
 > Let $C\subseteq \mathbb R^n$ defined as 
 > $$
-> C = H_{a, b} \cap \text{Box}[l, u] = \{x\in \mathbb R^n: \langle a, x\rangle= b \wedge l \le x \le u\}, 
+> C = H_{a, b}^= \cap \text{Box}[l, u] = \{x\in \mathbb R^n: \langle a, x\rangle= b \wedge l \le x \le u\}, 
 > $$
 > where $a\neq \mathbf 0$, $b \in \mathbb R$, $l \in [-\infty, \infty), u \in (-\infty, \infty]$. Assuming that $C\neq \emptyset$ then 
 > $$
@@ -163,6 +162,81 @@ See theorem 6.27, Amir Beck First Order method textbook.
 
 **Demonstration**
 
+The problem become aparently if we can consider its Lagrangian. 
+We group the inequality box constrant and us the equality constraint to make the dual variable $u\in \mathbb R$ then the projection also has representation 
+
+$$
+\begin{aligned}
+    \Pi_{\text{Box}[l, u]\cap H_{a, b}^=}(x)
+    &= 
+    \underset{l \le y \le u}{\text{argmin}}
+    \left\lbrace
+        \frac{1}{2}\Vert x - y\Vert^2 + \delta_{H_{a, b}^=}(y)
+    \right\rbrace
+    \\
+    \mathcal L(y, u) &= 
+    \delta_{\text{Box}[l, u]}(y) + \frac{1}{2}\Vert x - y\Vert^2 + 
+    u(\langle a, y\rangle - b). 
+\end{aligned}
+$$
+
+Let $(y, u)$ be optimal solution to the saddle point of $\mathcal L$, then it satisfies the conditions: 
+
+$$
+\begin{aligned}
+    \nabla_u \mathcal L(y^*, u^*) &= \langle a, y^*\rangle - b = 0
+    \\
+    \iff 
+    \langle a, y^*\rangle - b&= 0
+    \\
+    \partial [\mathcal L(\cdot, u^*)](y^*) &= 
+    \partial \delta_{\text{Box}[l, u]}(y^*) + 
+    \left\lbrace
+        (y^* - x) + u^* a
+    \right\rbrace \ni \mathbf 0
+    \\
+    \mathbf 0 &\in 
+    N_{\text{Box}[l, u]}(y^*) + 
+    \left\lbrace
+        (y^* - x) + u^* a
+    \right\rbrace
+    \\
+    x - ua &\in \{y^*\} + N_{\text{Box}[l, u]}(y^*)
+    \\
+    \iff y^* & \in \Pi_{\text{Box}[l, u]}(x - u^* a)
+\end{aligned}
+$$
+
+We use one characterization from [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) to jump from the second last step to the last step. 
+The first condition $\langle a, y^*\rangle - b$, substituted by $y^* = \Pi_{\text{Box}[l, u]}(x - u^*a)$, then we attained an equation for solving for $u^*$. 
+The solution exists as long as we assume non-empty $C$, then strong duality would apply and solutions $(y^*, u^*)$ of the Lagrangian exists. 
+
+
+**Remarks**
+
+The equation $\langle a, \Pi_{\text{Box}[l, u]}(x - \mu a)\rangle = b$ can be solved efficiently because it's a $\mathbb R\mapsto \mathbb R$ mapping. 
+Simple bisection root finding method will work. 
+This demonstration is taken from, Amir Beck First Order method textbook, theorem 6.27. 
+
+
+---
+### **Probability Simplex Projection**
+
+> Proximal mapping over the indicator function of the probability simplex $\Delta_n$ in $\mathbb R^n$ yield the projectin operator onto the convex set $\Delta_n$. The projection can be computed as 
+> $$
+> \begin{aligned}
+>     & \Pi_{\Delta_n}(x) = \Pi_{\mathbb R_+}(x - \mu a)
+>     \\
+>     & \text{where }\mu \in \mathbb R \text{ solves: } \langle a, \Pi_{\mathbb R_+}(x - \mu \mathbf 1)\rangle = 1. 
+> \end{aligned}
+> $$
+
+**Demonstrations**
+
+In the previous theorem, observe that $u$ the vector has the option to be an infinite vector, which means that $\mathbb R_+$ is a perfectly fine box to use for the above theorem. 
+Based on this observation, setting $a = \mathbf 1, b =1$ then $H_{a, b}^=$ is $\sum_{i = 1}^{n}x_i = 1$ for our case. 
+Combining these two sets, the intersection of them is the definition of probability simplex. 
+There for we apply the previously proved theorem on projection onto the intersection of a box and a hyper plane. 
 
 
 ---
