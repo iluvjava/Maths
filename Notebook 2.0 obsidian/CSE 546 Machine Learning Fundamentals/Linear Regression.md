@@ -223,7 +223,7 @@ $$
 \end{aligned}
 $$
 
-What we had produced, is the covariance matrix for the random variable $\hat w$, in this case, it's conditioned on $M$, the data matrix $M$. On the last line, we used the fact that $M^TM$ is a symmetric matrix. Finally, evaluating the expected value of the term yieds: 
+What we had produced, is the covariance matrix for the random variable $\hat w$, in this case, it's conditioned on $M$, the data matrix $M$. On the last line, we used the fact that $M^TM$ is a symmetric matrix. Finally, evaluating the expected value of the term yields: 
 
 $$
 \text{Var}\left[\hat{w}\hat{w}^T\right] = 
