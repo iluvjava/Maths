@@ -1,6 +1,6 @@
-[[Cone]]
-[[Polar Cone]]
-[wiki](https://en.wikipedia.org/wiki/Dual_cone_and_polar_cone)
+- [[Cone]]
+- [[Polar Cone]]
+- [wiki](https://en.wikipedia.org/wiki/Dual_cone_and_polar_cone)
 
 ---
 ### **Intro**
