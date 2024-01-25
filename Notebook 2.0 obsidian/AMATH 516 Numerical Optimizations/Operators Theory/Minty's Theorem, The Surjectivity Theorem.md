@@ -59,3 +59,10 @@ and hence, the existence of such an pair of $x, y$ is assured.
 Minty's theorem is applied for the single-valueness of the resolvent of a maximally monotone operator, it also ensures the existence of the resolvent. 
 
 
+---
+### **Illustrative Examples**
+
+We illustrate the theorems with some special cases of a maximally monotone operators. 
+
+
+

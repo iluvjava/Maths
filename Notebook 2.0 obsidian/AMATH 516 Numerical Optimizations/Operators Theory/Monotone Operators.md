@@ -38,7 +38,7 @@ We need to show that a maximally monotone operator exists, and then we show an e
 
 
 #### **Definition | Maximally Monotone Equivalent Definition**
-> The operator $T: X \mapsto 2^X$ is a maximally monotone operator if and only if whenever any $(x, x^*)$ implies $\forall (y, y^*)\in \text{gph}(T)$ we have $\langle x - y, x^* - y^*\rangle \ge 0$ then it must be that $(x, x^*)\in \text{gph}(T)$. 
+> The operator $T: X \mapsto 2^X$ is a maximally monotone operator if and only if any $(x, x^*)$ satisfies $\forall (y, y^*)\in \text{gph}(T)$ we have $\langle x - y, x^* - y^*\rangle \ge 0$ then it must be that $(x, x^*)\in \text{gph}(T)$. 
 
 **Demonstrations**
 
@@ -57,6 +57,14 @@ To show $\implies$, it can be done by the definition of a maximally monotone ope
 
 The proof is very similar to [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md). 
 The extension of a monotone operators requires a very similar constructions. 
+
+
+---
+### **Illustrative Examples for Max Monotone, Monotone Operators**
+
+We discuss some examples that can illsutrate the properties of a maximal monotone, or a maximally monotone operators. 
+
+
 
 ---
 ### **Surjectivity of Maximally Monotone Operators**
