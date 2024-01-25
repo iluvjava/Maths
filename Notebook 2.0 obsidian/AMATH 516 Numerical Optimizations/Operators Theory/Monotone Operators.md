@@ -31,7 +31,6 @@ A monotone operator doesn't imply:
 
 
 
-
 ---
 ### **Existence and Equivalent Definitions of Maximally Monotone operators**
 
@@ -65,7 +64,82 @@ The extension of a monotone operators requires a very similar constructions.
 There are useful properties of maximal monotone operators. 
 
 #### **Theorem | Sum of Max Mono Operators is Mono**
-> 
+> Let $A, B$ be montone operator on $X$. Show that $A + B$ is montone on $X$. 
+
+**Proof**
+Directly we consider from the definition of a monotone operator called $A + B$. Take 2 points from the operator $(x, x^*) \in [A + B](x), (y, y^*) \in [A + B](y)$ then we would check 
+
+$$
+\begin{aligned}
+    & \langle x - y, x^* - y^*\rangle
+    \\
+    &
+    \begin{cases}
+        \exists x_A \in Ax, x_B \in B x : x^* = x_A + x_B
+        \\
+        \exists y_A \in Ay, y_B \in By: y^* = y_A + x_B
+    \end{cases}
+    \\
+    \implies 
+    &= \langle x - y, x^* - y^*\rangle 
+    \\
+    &= 
+    \langle x - y, x_A + x_B - (y_A + y_B)\rangle
+    \\
+    &= \langle x - y, x_A - y_A\rangle + \langle x - y, x_B - y_B\rangle, 
+\end{aligned}
+$$
+
+using the monotonicity of both operator $A$ and $B$, the above quantity has a positive sum. 
+
+#### **Theorem | Continuous Montone Operator is Maximal Monotone**
+> Let $A : X \mapsto X$ be a continuous and monotne, then $A$ would be maximal monotone. 
+
+**Proof**
+
+Let $(x, x^*)$ monotonically relate to $\text{gph}(A)$. 
+The graph of the operator would be defined through $\text{gph}(A) = \{(y, Ay) | y \in X\}$, then we can use one point $y \in X$ instead and call the definition of monotone graph we would have 
+
+$$
+\begin{aligned}
+    \forall y \in X: 
+    \langle x - y, x^* - Ay\rangle &\ge 0. 
+\end{aligned}
+$$
+
+We wat to show that $(x, x^*)$ is in $\text{gph}(A)$. 
+
+$$
+\begin{aligned}
+    & \forall \alpha > 0, y_\alpha := x + \alpha(x^* - Ax)
+    \\
+    = & 
+    \lim_{\alpha \searrow 0}
+    x + \alpha(x^* - Ax) = x. 
+\end{aligned}
+$$
+
+Using $y_\alpha$ instead of $y$, we try with $\alpha > 0$
+
+$$
+\begin{aligned}
+    \langle x - y_\alpha, x^* - Ay_\alpha\rangle
+    &\ge 0
+    \\
+    -\alpha \langle x^* - Ax, x^* - A y_\alpha\rangle &\le 0, 
+\end{aligned}
+$$
+
+talking the limit of $\alpha \rightarrow 0$, by continuity of $A$, and the inner product on Hilbert spaces, we would have $\langle x^* - Ax, x^* - Ax\rangle \le 0$, and the only possible way for that is $x^* = Ax$, and therefore, $(x, x^*)\in \text{gph}(A)$. 
+
+**Remarks**
+
+The assumption that $A$ is continuous is strictly stronger than necessary because the limit we use is the limit of $\alpha(x^* - Ax)$ approaching zero, which is only along the direction of the vector $x^* - Ax$. 
+This type of continuity is a weaker type called Hemi-Continuity. 
+See [wiki](https://en.wikipedia.org/wiki/Hemicontinuity) for more information. 
+Of course, naturally for all linear operator in finite Euclidean spaces, it's maximal monotone if and only if it's monotone. 
+We used the previous proved theorem and the fact that any linear mapping on finite Euclidean space is a continuous mapping. 
+
 
 
 ---
