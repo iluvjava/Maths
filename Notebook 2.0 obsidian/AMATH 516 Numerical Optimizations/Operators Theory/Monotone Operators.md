@@ -31,6 +31,7 @@ A monotone operator doesn't imply:
 
 
 
+
 ---
 ### **Existence and Equivalent Definitions of Maximally Monotone operators**
 
@@ -56,7 +57,15 @@ To show $\implies$, it can be done by the definition of a maximally monotone ope
 **Remarks**
 
 The proof is very similar to [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md). 
-The extension of a monotone operators requires a very similar constructions. 
+The extension of a monotone operators requires a very similar constructions.
+
+
+---
+### **Properties of Maximal Monotone Operators**
+There are useful properties of maximal monotone operators. 
+
+#### **Theorem | Sum of Max Mono Operators is Mono**
+> 
 
 
 ---
@@ -91,6 +100,7 @@ which doesn't change the monotonicity about the operator.
 **Remarks**
 
 In the case of maximally monotone operator being a subgradient operator, shifting the output space by one vector is the same as adding an affine function to the original function. 
+In general the sum of 2 monotone operator is still a monotone operator. 
 
 ---
 ### **Examples**
