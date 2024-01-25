@@ -141,11 +141,19 @@ Of course, naturally for all linear operator in finite Euclidean spaces, it's ma
 We used the previous proved theorem and the fact that any linear mapping on finite Euclidean space is a continuous mapping. 
 
 
-
 ---
 ### **Illustrative Examples for Max Monotone, Monotone Operators**
 
 We discuss some examples that can illsutrate the properties of a maximal monotone, or a maximally monotone operators. 
+
+#### **Thm | Characterizing when Square Matrices are Maximal Monotone Operators**
+> A matrix $A \in \mathbb R^{n\times n}$ be a maximally monotone operator, then the following are equivalent 
+> 1. $\langle x, Ax\rangle \ge 0$ for all $x \in \mathbb R^{n}$, equivalently $A$ symmetric positive definite. 
+> 2. $A_+:= (1/2)(A^T + A)$ is positive semi-definite, or equivalently $A_+$ is monotone. 
+> 3. $A^*$ is montone. 
+
+**Proof**
+
 
 
 

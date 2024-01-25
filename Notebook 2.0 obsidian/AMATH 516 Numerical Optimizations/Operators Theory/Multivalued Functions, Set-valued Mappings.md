@@ -4,10 +4,17 @@
 ---
 ### **Intro**
 
-A multifunction is a special time of relations. Let $F(x)$ be a multifunction, we denote $R$ to be a relations then: 
+
+#### **Def | Multi-Valued Mapping**
+
+
+
+A multifunction is a special time of relations. 
+
+Let $F(x)$ be a multifunction, we denote $R$ to be a relations then: 
 
 $$
-F(x) = y \iff (x, y)\in R
+F(x) \ni y \iff (x, y)\in R
 $$
 
 $F$ is an operator that maps $\mathbb E$ to $\mathbb E$ where $\mathbb E$ denotes the Euclidean space here, back to itself, denoted as $F: \mathbb E\rightrightarrows\mathbb E$ or $F: \mathbb E \mapsto 2^{\mathbb E}$. Here is a list of concepts for the operators we defined consequently: 
