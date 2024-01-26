@@ -8,7 +8,9 @@
 ---
 ### **Intro**
 
-**Definition: Support Functions**
+Support function is special and play an important analysis role. 
+
+#### **Definition | Support Functions**
 
 > A support function is parameterized by a set $C\subset \mathbb E$. And it's defined as: 
 > 
@@ -20,13 +22,21 @@
 > \end{aligned}
 > $$
 
+**Observations**
+
+Choose a vector from $C$, given a vector $x$, the $x$ finds the best vector $y$ whose that is pointing to the same direction as $x$ as close as possible, and also as long as possible. 
+The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md) for more information). 
+This function has domain $\mathbb R^n$ as long as $C \neq \emptyset$, because it's the supremum of infinitely many affine functions. 
 
 
 **Remarks**
 
-In some literatures, $\sigma_C$ is used for denoting the support unction for a set $C$. When the set $C$ is not closed, the $\sup$ operator is closing it automatically over a set of affine functions (could  be infinite), therefore the epigraph of the function is closed for all $C\neq \emptyset$. The function is also convex because it's the supremum over all affine function of the form $\langle c, x\rangle$ where $c\in C$, and using the fact that the pointwise supremum/maximum over a list of convex function is still going to be convex. (See [Convexity Preserving Operations for Functions](../CVX%20Geometry/Convexity%20Preserving%20Operations%20for%20Functions.md) for more information). 
+In some literature, $\sigma_C$ is used for denoting the support unction for a set $C$. 
+When the set $C$ is not closed, the $\sup$ operator is closing it automatically by supping over a set of affine functions (usually infinite many of those), therefore the epigraph of the function is closed for all $C\neq \emptyset$. 
+
 
 When dealing with the support function for analysis purposes, keep in mind these good properties for all subsets $C$ of the Euclidean space: 
+
 * It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
 * $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
 * $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
@@ -42,8 +52,11 @@ We will prove some of the properties that are not trivial to prove.
 Amir's first order op textbook, section 2.4. 
 
 ---
-### **Theorem-1 | Convexity of Support Functions**
+### **Basic Theorems and Results**
 
+We prove a trivial results different than what we did in the observations parts after the definition. 
+
+#### **Theorem | Support Function is Convex**
 > The support function of any nonempty $C$ is closed and convex. 
 
 **Proof**: 
@@ -70,6 +83,9 @@ $$
 $$
 
 Therefore it's convex.
+
+#### **Theorem | Support Function Bounded if and only if $C$ is Bounded**
+> $C$ is bounded if and only if $\sigma_C$ is a bounded function. 
 
 
 ---
