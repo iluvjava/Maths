@@ -238,7 +238,7 @@ Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ th
 - Uniform convergence -> Cauchy sequences in the $\Vert \cdot\Vert_\infty$ metric. 
 - But the limit is not a polynomial. 
 
-**Example-3 | Continuous Function, Vector space**
+#### **Example-3 | Continuous Function, Vector space, Incomplete Metric**
 
 > Let $(X, d)$ be metric space where $X$ is the set of functions that is continuous on $[0, 1]$. Let $d$ be the $\Vert \cdot\Vert_1$ metric for functions. 
 
