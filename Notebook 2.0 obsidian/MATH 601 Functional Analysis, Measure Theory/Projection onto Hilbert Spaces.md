@@ -124,6 +124,57 @@ If it's closed, then we can applied the above theorems and the theorem below.
 
 Shawn Wang's Lecture notes. 
 
+
+---
+### **Complications of Infinite Dimensional Space Projection**
+
+The roles of convexity and closedness is completely different in Hilbert space where the dimension is infinite. 
+The closed and convex conditions acts differently to assert the existence of a projection point. 
+In finite dimensiona, if the set is closed, then the projection points exists, and if the set is convex, then the projection point would be unique. 
+However in infnite dimension, closedness itself is not sufficient for the existence of a projection points. 
+We provide such a counter example 
+
+#### **Thm | Closed but No Projection**
+> The set $C = \{(1 + \epsilon_n)\e_n | n \in \mathbb N\}$ is a closed set in Hilbert space $l^2$, and $\e_n$ is the standard basis set for $l^2$. Let $\epsilon_n = 1/(n + 1)$, it's a sequence that approaches zero but never get to zero. 
+> This set has $\Pi_C(\mathbf 0 ) = \empty$. 
+
+**Proof**
+
+$C$ would be a closed set. 
+Consider any sequence $x_n$ such that $x_n \in C$ and it converges to $\bar x$. 
+We show that it's impossible that it has to be the case that, there exists $N \in \mathbb N$ such that for all $m, n \ge N$, we have $x_n = x_m$. 
+Suppose that this is not the case and we have $x_n\rightarrow \bar x$ such that for all $N\in \mathbb N$ there we have $m > n > n$ such that $\Vert x_n - x_m\Vert^2 \le \epsilon$ and $x_n \neq x_m$. 
+The sequence and hence it's Cauchy, and that was what we used. 
+Then we consider the the norm squared of the quantity giving us 
+
+$$
+\begin{aligned}
+    \Vert x_n - x_m\Vert^2 &= 
+    (1 + \epsilon_n)^2 + (1 + \epsilon_n)^2 >2, 
+\end{aligned}
+$$
+
+and therefore, it has to be the case that there exists some $N \in \mathbb N$ where $x_n = x_m$ for all $m, n \ge N$. 
+This is the only way the sequence $x_n\rightarrow \bar x$. 
+And if that is the only way $x_n$ converges, it implies that $x_n\in C$ for some $n\ge N$, because we know $x_n \in C$ and after a certain finite value of $x_n$, the sequence becomes a constant sequence. 
+
+Next, the projection of $\Pi_C(\mathbf 0)$ by the definition of $C$ is 
+
+$$
+\begin{aligned}
+    d_C(\mathbf 0)&= \inf_{n \in \mathbb N} \Vert \mathbf 0 - (1 + \epsilon_n)\e_n\Vert^2
+    \\
+    &= \inf_{n\in \mathbb N} (1 + \epsilon_n) = 1. 
+\end{aligned}
+$$
+
+But there never exists any point $x_n$ with $n\in \mathbb N$ such that it's exactly $1$. 
+Therefore, the set is closed, but there is no point of projection. 
+
+**References**
+
+Prof Heinz's class, MATH 565 2024 at UBCO. 
+
 ---
 ### **The Obtuse Angle Theorem in Hilbert Spaces**
 
@@ -160,7 +211,8 @@ $$
 \end{aligned}
 $$
 
-\[1\]:If, $\lambda = 0$, then $z = y$, the obtuse angle theorem is true trivially. Therefore at this step we may assume that $\lambda \neq 0$and we divided it on both side of $\lambda$ because $\lambda \in (0, 1)$. 
+\[1\]:If, $\lambda = 0$, then $z = y$, the obtuse angle theorem is true trivially.
+Therefore at this step we may assume that $\lambda \neq 0$and we divided it on both side of $\lambda$ because $\lambda \in (0, 1)$. 
 
 At the last step, the result is equivalent to the claim. 
 
@@ -170,7 +222,8 @@ The use of limit on this proof surprises me.
 
 **References**: 
 
-From Prof Wang's course notes for Math 328, haven't seem this type of argument anywhere it's very interesting way of proving it. This is mirroring convex projection theorem that is used for optimization problem in Finite Euclidean spaces. This is not in Kryzig's textbook as far as I see. 
+From Prof Wang's course notes for Math 328, haven't seem this type of argument anywhere it's very interesting way of proving it. 
+This is mirroring convex projection theorem that is used for optimization problem in Finite Euclidean spaces. This is not in Kryzig's textbook as far as I see. 
 
 #### **Corollary | Projection onto Subspaces and Orthogonality**
 > Let $M\subseteq \mathcal H$ be a closed subspace, let $x \in \mathcal H$, then $\bar x = \Pi_M(x)$ if and only if $\bar x - x \perp \text{span}(M)$.

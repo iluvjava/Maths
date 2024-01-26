@@ -90,7 +90,7 @@ A set of expressions are equivalent for all firmly nonexpansive operators.
 > 3. $\textcolor{red}{\forall x, y\in D}: \Vert Tx - Ty\Vert^2 \le \langle x-y, Tx - Ty\rangle$ a slightly stronger type of Monotonicity for Nonexpansive operators. (An Important Characteristics for Sure). The norm is any norm. 
 > 4. $2T - I$ is nonexpansive. 
 
-**Observations**: 
+**Observations**:
 
 (1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
 
@@ -200,7 +200,8 @@ $$
 \end{aligned}
 $$
 
-Next, from the subsequential convergence of $x^{(\sigma(i))}$, there exists a cluster point $x^+$ for the sequence, and by Fejer Monotonicity, the subsequential limit equals to the limit above and therefore $\lim_{i\rightarrow\infty} x^{(\sigma(i))} = x^+ =Tx^+$. Therefore, $x^+$ is also a fixed point for the operator $T$. 
+Next, from the subsequential convergence of $x^{(\sigma(i))}$, there exists a cluster point $x^+$ for the sequence, and by Fejer Monotonicity, the subsequential limit equals to the limit above and therefore $\lim_{i\rightarrow\infty} x^{(\sigma(i))} = x^+ =Tx^+$. 
+Therefore, $x^+$ is also a fixed point for the operator $T$. 
 
 
 **Remarks**
@@ -311,7 +312,8 @@ $$
 \end{aligned}
 $$
 
-Therefore, a matrix is nonexpansive then its eigenvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
+Therefore, a matrix is nonexpansive then its eigenvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. 
+The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
 
 #### **Example | Firmly Nonexpansive Matrices**
 
