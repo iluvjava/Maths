@@ -1,4 +1,6 @@
-[[Multivalued Functions, Set-valued Mappings]], [[Monotone Operators]], [[Fitzpatrick Functions]], we prove the Minty's theorem. 
+- [[Multivalued Functions, Set-valued Mappings]]
+- [[Monotone Operators]]
+- [[Fitzpatrick Functions]], we prove the Minty's theorem. 
 
 ---
 ### **Minty's Theorem**
@@ -60,9 +62,6 @@ Minty's theorem is applied for the single-valueness of the resolvent of a maxima
 
 
 ---
-### **Illustrative Examples**
+### **Applications of the Theorem**
 
-We illustrate the theorems with some special cases of a maximally monotone operators. 
-
-
-
+We will apply the theorem in our context. 

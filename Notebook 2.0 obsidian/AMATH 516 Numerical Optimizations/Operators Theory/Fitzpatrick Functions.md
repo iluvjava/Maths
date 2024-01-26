@@ -1,12 +1,12 @@
-[[../Non-Smooth Calculus/Subgradient Intro]], [[Introduction to Operators for Optimizations]]
-
+- [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md), 
+- [Introduction to Operators for Optimizations](Introduction%20to%20Operators%20for%20Optimizations.md)
 
 ---
 ### **Intro**
 
 Fitzpatrick, function is a generalization of the Fenchel inequality but for some monotone operators. 
 
-**Definition: Fitzpatrick Function**
+#### **Definition | Fitzpatrick Function**
 > With any monotone operator $T:\mathbb E \mapsto \mathbb E$ we associate $F_T: \mathbb E\times \mathbb E \mapsto \mathbb{\bar{R}}$ defined as: 
 > $$
 > \begin{aligned}
@@ -58,7 +58,7 @@ $$
 \end{align*}
 $$
 
-under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity(This is by a very weird theorem in Rockafeller's textbook).
+under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity (This is by a very weird theorem in Rockafeller's textbook).
 
 
 **References**

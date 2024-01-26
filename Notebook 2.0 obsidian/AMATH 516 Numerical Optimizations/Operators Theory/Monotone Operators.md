@@ -90,7 +90,11 @@ $$
 \end{aligned}
 $$
 
-using the monotonicity of both operator $A$ and $B$, the above quantity has a positive sum. 
+using the monotonicity of both operator $A$ and $B$, the above quantity has a positive sum.
+
+**Remarks**
+
+So, for any monotone opeartor $A$, we would have $A + \{v\}$ being a monotone operator, and $I + A$ being a monotone operator as well using the above theorem. 
 
 #### **Theorem | Continuous Montone Operator is Maximal Monotone**
 > Let $A : X \mapsto X$ be a continuous and monotne, then $A$ would be maximal monotone. 
@@ -140,13 +144,21 @@ See [wiki](https://en.wikipedia.org/wiki/Hemicontinuity) for more information.
 Of course, naturally for all linear operator in finite Euclidean spaces, it's maximal monotone if and only if it's monotone. 
 We used the previous proved theorem and the fact that any linear mapping on finite Euclidean space is a continuous mapping. 
 
+#### **Thm | The Inverse of Monotone Operator is Still Monotone**
+> Suppose that $A$ is a monotone operator, then $A^{-1}$ is also a monotone operator. 
+
+**Proof**
+
+This is direct. 
+The reader should prove this as an exercise. 
+
 
 ---
 ### **Illustrative Examples for Max Monotone, Monotone Operators**
 
 We discuss some examples that can illsutrate the properties of a maximal monotone, or a maximally monotone operators. 
 
-#### **Thm | Characterizing when Square Matrices are Maximal Monotone Operators**
+#### **Example | Characterizing when Square Matrices are Maximal Monotone Operators**
 > A matrix $A \in \mathbb R^{n\times n}$ be a maximally monotone operator, then the following are equivalent 
 > 1. $\langle x, Ax\rangle \ge 0$ for all $x \in \mathbb R^{n}$, equivalently $A$ symmetric positive definite. 
 > 2. $A_+:= (1/2)(A^T + A)$ is positive semi-definite, or equivalently $A_+$ is monotone. 
@@ -154,6 +166,16 @@ We discuss some examples that can illsutrate the properties of a maximal monoton
 
 **Proof**
 
+(1.) Is directly by the linearity of the opeartor and the definition of a monotone opeartor. 
+For (2., 3.), use the property of inner product. 
+
+
+#### **Example | Subgradient**
+> Subgradient of a convex function is a maximally monotone operator. 
+
+**Demonstrations**
+
+See [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md) for more information. 
 
 
 
@@ -162,35 +184,14 @@ We discuss some examples that can illsutrate the properties of a maximal monoton
 
 [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md) asserts the equivalence of surjectivity of $I + T$ for a maximal monotone operator. 
 
----
-### **Shifting Output is Still Monotone**
-
-Let $T$ be monotone then $T - \{v\}$ for any $v \in \mathbb E$ is still monotone because: 
-
-$$
-\begin{aligned}
-    & \langle x - y,(T - \{v\})x - (T - \{v\})y\rangle 
-    \\
-    =& \langle x - y, Tx - v - (Ty - v)\rangle 
-    \\
-    =& \langle x -y, Tx - Ty\rangle \ge 0, 
-\end{aligned}
-$$
-
-which doesn't change the monotonicity about the operator. 
-
-**Remarks**
-
-In the case of maximally monotone operator being a subgradient operator, shifting the output space by one vector is the same as adding an affine function to the original function. 
-In general the sum of 2 monotone operator is still a monotone operator. 
 
 ---
 ### **Examples**
 
-**Example 1 | Convex Projection is Monotone**
+#### **Example 1 | Convex Projection is Monotone**
 Recall [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
 
-**Example 2 | Subgradient is Monotone**
+#### **Example 2 | Subgradient is Monotone**
 See [Monotonicity of Subgradient](../Non-Smooth%20Calculus/Monotonicity%20of%20Subgradient.md) for more information. 
 
 

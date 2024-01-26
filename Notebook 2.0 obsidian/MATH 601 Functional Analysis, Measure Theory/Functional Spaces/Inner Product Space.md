@@ -6,12 +6,12 @@
 
 An Inner product space is a vector space the is together with an inner product defined with it. However, if the vector space is a complete space, then this makes no difference with [[Hilbert Space Introduction]]. 
 
-**Inner Product might Differ**: 
+#### **Inner Product might Differ**: 
 
 > However, there are also subtleties that come with the idea of inner product. See [[../Inner Product Axiomatically Defined]] for a detailed covered. Depending on the scalar field of the vector field, the choice of inner product might differ. Both Sesquilinear-inner product and product space are fine for the theory I believe. 
 
 
-**Def-1 | Inner Product Space**
+#### **Def-1 | Inner Product Space**
 
 > Let $X$ be an inner product space then it first has to equip with $\Vert \cdot\Vert$, and inner product mapping $\langle \cdot, \cdot\rangle$ such that $\Vert x\Vert = \sqrt{\langle x, x\rangle}$. 
 

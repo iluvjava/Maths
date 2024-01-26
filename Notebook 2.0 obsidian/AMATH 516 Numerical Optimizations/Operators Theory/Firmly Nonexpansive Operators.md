@@ -4,7 +4,7 @@
 ### **Non-Expansive Operators**
 Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
-**Def | nonexpansive operators**
+#### **Def | nonexpansive operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
 > 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 

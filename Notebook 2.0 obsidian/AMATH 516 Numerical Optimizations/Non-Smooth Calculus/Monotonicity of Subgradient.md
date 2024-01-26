@@ -2,6 +2,7 @@ The subgradient monotonicity is a natural extension to what we have in the smoot
 * [Subgradient Intro](Subgradient%20Intro.md)
 * [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md), the convexity parts. 
 * [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md), This one is older, but it discuss the case when the function is continuous. 
+* [Monotone Operators](Monotone%20Operators.md). 
 
 ---
 ### **Intro**
@@ -89,6 +90,26 @@ It's obvious and I did it myself. For references, just take a look at the monoto
 
 
 ---
-### **Heinz's Monotone Operator**
-#HEINZ Proposition 9.8 in his course notes, the proof is direct, similar to what we have in [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md) for the monotonicity of just a gradient operator. 
+### **Subgradient as a Maximally Monotone Operator**
+Proposition 9.8 in his course notes, the proof is direct, similar to what we have in [Gradient, Hessian Characterization of Convex Functions](../CVX%20Analysis/Gradient,%20Hessian%20Characterization%20of%20Convex%20Functions.md) for the monotonicity of just a gradient operator. 
+
+Recall from [Monotone Operators](Monotone%20Operators.md) about what is a monotone operator is. 
+
+#### **Claim | Convex Subgradient is Monotone**
+> Let $f$ be a proper function, then $\partial f$ is a monotone opeartor. 
+
+**Proof**
+
+Let $x, y \in \text{dom}(f)$, then $f(x), f(y) \in \mathbb R$ so defning $x^* \in \partial f(x), y^* \in \partial f(y)$ then we have 
+
+$$
+\begin{aligned}
+    f(x) + \langle y -x, x^*\rangle &\le f(y)
+    \\
+    f(y) + \langle x - y, y^*\rangle &\le f(x), 
+\end{aligned}
+$$
+
+adding them together we have $\langle y-x, x^* - y^*\rangle \le 0$, threfore we have the definition of the monotonicity (take out the negative sign). 
+
 

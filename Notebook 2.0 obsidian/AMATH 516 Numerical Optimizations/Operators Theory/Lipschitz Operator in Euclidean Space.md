@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]]
+- [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md)
 
 ---
 ### **Lipschitz Operator**
