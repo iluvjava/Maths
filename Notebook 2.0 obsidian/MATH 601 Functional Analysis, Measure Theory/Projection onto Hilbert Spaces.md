@@ -10,7 +10,9 @@ We apply definition of Hilbert space, inner product, and norms to prove theorems
 
 **Observations**: 
 
-Take note that, this is a generalized case of the extreme-value theorem where, the function is the distance function from a closed convex set, which is continuous, and it's stronger in the sense that we have a unique minimizer to such function and without compactness to hold for the domain of the function, which is $M \subseteq \mathcal H$. 
+Take note that, this is a generalized case of the extreme-value theorem where, the function is the distance function from a closed convex set, which is continuous. 
+This makes the claim stronger and more specialized to indicator of closed and convex functions on $\mathcal H$. 
+It's weaker in the sense that we have a unique minimizer to such function and without compactness to hold for the domain of the function, which is $M \subseteq \mathcal H$. 
 In the proof, please observe how the properties of Hilbert space and inner product space is being used. 
 To summarize the proof: 
 
@@ -34,7 +36,8 @@ $$
 \end{aligned}
 $$
 
-From the property of $\inf$, take sequence $(y^{(n)})_{n\in \N}$ with $y^{(n)} \in M$, for all $n\in \N$, then we have $\lim_{n\rightarrow \infty} \Vert x - y^{(n)}\Vert = d_M(x)$. We show that the sequence $y^{(n)}$ is Cauchy. By $M$ is convex, we have: 
+$d_M(x) \ge 0$ so the $\inf$ exists, from the property of $\inf$, take sequence $(y^{(n)})_{n\in \N}$ with $y^{(n)} \in M$, for all $n\in \N$, then we have $\lim_{n\rightarrow \infty} \Vert x - y^{(n)}\Vert = d_M(x)$. 
+We show that the sequence $y^{(n)}$ is Cauchy. By $M$ is convex, we have: 
 
 $$
 \begin{aligned}
@@ -51,28 +54,32 @@ We now consider the paralelogram law:
 
 $$
 \begin{aligned}
-    \Vert 
-        \underbrace{y^{(n)} - x - (y^{(m)}- x)}_{ = y^{(n)} - y^{(m)}}
-    \Vert^2 + 
-    \Vert y^{(n)} - x + (y^{(m)}- x)\Vert
+    \left\Vert 
+        y^{(n)} - x - (y^{(m)}- x)
+    \right\Vert^2 + 
+    \left\Vert y^{(n)} - x + \left(y^{(m)}- x\right)\right\Vert
     &= 
-    2 \Vert y^{(n)} - x\Vert^2 + 2\Vert y^{(m)} - x\Vert^2
+    2 \left\Vert y^{(n)} - x\right\Vert^2 + 2\left\Vert y^{(m)} - x\right\Vert^2
     \\
-    \Vert y^{(m)} - y^{(n)}\Vert^2 &= 
-    2\Vert y^{(n)} - x\Vert^2 + 2 \Vert y^{(m)} - x\Vert^2 
+    \left\Vert y^{(m)} - y^{(n)}\right\Vert^2 &= 
+    2\left\Vert y^{(n)} - x\right\Vert^2 + 2 \left\Vert y^{(m)} - x\right\Vert^2 
     - \Vert (y^{(m)} - x) + (y^{(n)} - x)\Vert^2
     \\
-    &= 2(\Vert y^{(n)} - x\Vert^2 + \Vert y^{(m)} - x\Vert^2) 
-    - \Vert y^{(m)} - y^{(n)} - 2x\Vert^2
+    &= 
+    2\left(\left\Vert y^{(n)} - x\right\Vert^2 + \left\Vert y^{(m)} - x\right\Vert^2\right) 
+    - 
+    \left\Vert y^{(m)} - y^{(n)} - 2x\right\Vert^2
     \\
     &= 
-    2(\Vert y^{(n)} - x\Vert^2 + \Vert y^{(m)} - x\Vert^2) 
+    2\left(
+        \left\Vert y^{(n)} - x\right\Vert^2 + \left\Vert y^{(m)} - x\right\Vert^2
+    \right) 
     - 4\left\Vert
         \frac{y^{(m)} - y^{(n)}}{2} - x
     \right\Vert^2
     \\
     &\le 
-    2(\Vert y^{(n)} - x\Vert^2 + \Vert y^{(m)} - x\Vert^2) 
+    2\left(\left\Vert y^{(n)} - x\right\Vert^2 + \left\Vert y^{(m)} - x\right\Vert^2\right) 
     - 4d_M^2(x), 
 \end{aligned}
 $$
@@ -86,7 +93,10 @@ $$
 \end{aligned}
 $$
 
-therefore, the sequence $y^{n}$ is indeed a Cauchy sequence, it sure has a limit, and therefore, by closure of $M$, denote the limt $\bar y \in M\subseteq \mathcal H$, and $\bar y\in \Pi_M(x)$. Next we show that the projection point onto the set $M$ is unique. Choose $\bar y_0 \in \Pi_M(x)$, then $d_M(x) = \Vert y_0 - x\Vert$, we use the Parallarogram law and consider: 
+therefore, the sequence $y^{n}$ is indeed a Cauchy sequence, it will have a limit. 
+By closure of $M$ we have $\bar y \in M\subseteq \mathcal H$, and $\bar y\in \Pi_M(x)$. 
+Next we show that the projection point onto the set $M$ is unique. 
+Choose $\bar y_0 \in \Pi_M(x)$, then $d_M(x) = \Vert y_0 - x\Vert$, we use the Parallarogram law and consider: 
 
 $$
 \begin{aligned}
@@ -110,7 +120,7 @@ therefore, we have $\bar y = \bar y_0$. Therefore, the projection $\Pi_M(x)$, is
 
 **Remarks**: 
 
-A subspace in Hilbert space is convex, but not necessarily closed. 
+A linear subspace in Hilbert space is convex, but not necessarily closed. 
 If it's closed, then we can applied the above theorems and the theorem below. 
 
 #### **Thm | Characterizing Hilbert Space Projections**
@@ -136,7 +146,7 @@ We provide such a counter example
 
 #### **Thm | Closed but No Projection**
 > The set $C = \{(1 + \epsilon_n)\e_n | n \in \mathbb N\}$ is a closed set in Hilbert space $l^2$, and $\e_n$ is the standard basis set for $l^2$. Let $\epsilon_n = 1/(n + 1)$, it's a sequence that approaches zero but never get to zero. 
-> This set has $\Pi_C(\mathbf 0 ) = \empty$. 
+> This set has $\Pi_C(\mathbf 0 ) = \emptyset$. 
 
 **Proof**
 
@@ -187,8 +197,10 @@ Projecting onto a finite subspace is what engineers need to do everyday, i.e: Th
 
 **Proof**
 
-For the direction $\impliedby$, the requirement of convexity for set $M$ is not required. We just use the definition of inner product, Cauchy inequality to get it. 
-For more see [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md). For the $\implies$ direction, we present a simpler proof. 
+For the direction $\impliedby$, the convexity for set $M$ is not required. 
+We just use the definition of inner product, Cauchy inequality to get it. 
+For more see [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md). 
+For the $\implies$ direction, we present a simpler proof. 
 Let $y = \Pi_M(x)$, by property of projection, $y\in M$, now for all $\lambda \in [0, 1]$ and $z\in M$, we have $(1 - \lambda)y + \lambda z \in M$ from convexity. 
 From the minimization property of convex set projection we have: 
 
@@ -213,12 +225,12 @@ $$
 
 \[1\]:If, $\lambda = 0$, then $z = y$, the obtuse angle theorem is true trivially.
 Therefore at this step we may assume that $\lambda \neq 0$and we divided it on both side of $\lambda$ because $\lambda \in (0, 1)$. 
-
 At the last step, the result is equivalent to the claim. 
 
 **Remarks**
 
 The use of limit on this proof surprises me. 
+The cross product in the claim is just the consequence of the 2-norm squared being used. 
 
 **References**: 
 
@@ -230,7 +242,9 @@ This is mirroring convex projection theorem that is used for optimization proble
 
 **Observations**: 
 
-$M$ is a closed subspace. In finite dimensional space, the closure is not required. But infinite dimension, the subspace itself can also be infinite, and it would require the closure to describe the span of the whole subspace. Pay attention and try to see where the closure of $Y$ is used and what if this conditions is not present? 
+$M$ is a closed subspace. In finite dimensional space, the closure is not required. 
+But infinite dimension, the subspace itself can also be infinite, and it would require the closure to describe the span of the whole subspace. 
+Pay attention and try to see where the closure of $Y$ is used and what if this conditions is not present? 
 
 **Proof**
 
@@ -264,12 +278,78 @@ $$
 \end{aligned}
 $$
 
-therefore, the direction $\implies$ is done. For $\impliedby$ by, we use the defintion of orthognality to have $\langle \bar x - x, y'\rangle = 0 \; \forall y' \in M$, $\bar x = \Pi_M(x) \in Y$ too by projection theorem and closure, therefore $y' - \bar x \in Y$ by $Y$ is a subspace, therefore $\langle y' - \bar x, \bar x - x\rangle = 0 \; \forall y' \in M$. 
+therefore, the direction $\implies$ is done. For $\impliedby$ by, we use the definition of orthogonality to have $\langle \bar x - x, y'\rangle = 0 \; \forall y' \in M$, $\bar x = \Pi_M(x) \in Y$ too by projection theorem and closure, therefore $y' - \bar x \in Y$ by $Y$ is a subspace, therefore $\langle y' - \bar x, \bar x - x\rangle = 0 \; \forall y' \in M$. 
 
 **Remarks:**
 
 When closure of $Y$ is not present, the $\impliedby$ direction is failing. Let $M$ be a subspace of $\mathcal H$, if we have $\bar x - x \perp \text{span}(M)$ for all $x \in \mathcal H$, we can only have $x \in \text{cl}(M)$, the closure. 
+The theorem can be written in a quite fancy way. 
+Given that $\Pi_M(x)$ is a singleton for $x \in \mathcal H$, we would have 
+
+$$
+\begin{aligned}
+    \sup_{z\in M} \left\langle z - \Pi_C(x), x - \Pi_C(x) \right\rangle \le 0
+\end{aligned}
+$$
+
+
 
 **References**: 
 
 Professor wang's lecture notes for Math 328. Haven't seem it in other places yet. 
+
+
+
+---
+### **Convex Set Projection is Maximally Monotone**
+
+In Hilbert space $\mathcal H$ the projection operator $\Pi_C$ onto a convex set $C$ is a maximally Monotone operator. 
+See [Monotone Operators](Monotone%20Operators.md) for more info. 
+See [Normal Cone](Normal%20Cone.md) for more info about normal cone operator on convex sets and sets. 
+
+#### **Thm | Projection is Maximally Monotone**
+> With $C\subseteq \mathcal H$ being a non-empty convex subsets of we have $\Pi_C = (I + N_C(x))^{-1}$ where $N_C$ is the normal cone operator, then $N_C$ is maximally monotone operator. 
+
+**Proof**
+
+Let $x \in X$ using the obtuse angle characterization of $\Pi_C$ by convexity of $C$ we have 
+
+$$
+\begin{aligned}
+    p = \Pi_C x  
+    &\iff \sup_{c\in C} \langle c - p, x - p\rangle \le 0
+    \\
+    &\iff
+    \sup_{y \in X} \left\lbrace
+        \delta_C(p) + \langle y - p, x - p\rangle
+    \right\rbrace \le \delta_C(y)
+    \\
+    &\iff 
+    x - p \in \partial_{\delta_C}(y) = N_C(y) 
+    \\
+    &\iff 
+    p \in [I + N_C]^{-1}(x). 
+\end{aligned}
+$$
+
+From the first line to the second line, the $\implies$ direction is direct because $p\in C$ by the property of a projection. 
+The $\iff$ relation between is direct if $y\in C$, when $y\neq C$, then the second line is always true, and therefore only the case $y\in C$ matters of the second line, hence the equivalence still hold. 
+Since the projection point is a singleton when $C$ is closed and convex, we have $\Pi_C = [I + N_C]^{-1}$. 
+From the previous theorem, $\Pi_C$ has domain on $C$ and hence: 
+
+$$
+\begin{aligned}
+    \text{dom}((I + N_C)^{-1})  &= X 
+    \\
+    \iff \text{rng}(I + N_C) &= X, 
+\end{aligned}
+$$
+
+By Minty's surjectivity theorem, we have that $N_C$ is a maximally monotone operator. 
+See [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md) for more information. 
+
+
+
+**References**: 
+
+This is taken from Prof Heinz MATH 565 class at UBCO, 2024. 

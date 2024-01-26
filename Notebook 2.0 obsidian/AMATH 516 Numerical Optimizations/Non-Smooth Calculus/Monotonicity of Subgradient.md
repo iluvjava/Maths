@@ -96,11 +96,11 @@ Proposition 9.8 in his course notes, the proof is direct, similar to what we hav
 Recall from [Monotone Operators](Monotone%20Operators.md) about what is a monotone operator is. 
 
 #### **Claim | Convex Subgradient is Monotone**
-> Let $f$ be a proper function, then $\partial f$ is a monotone opeartor. 
+> Let $f$ be a proper function, then $\partial f$ is a monotone operator. 
 
 **Proof**
 
-Let $x, y \in \text{dom}(f)$, then $f(x), f(y) \in \mathbb R$ so defning $x^* \in \partial f(x), y^* \in \partial f(y)$ then we have 
+Let $x, y \in \text{dom}(f)$, then $f(x), f(y) \in \mathbb R$ so defining $x^* \in \partial f(x), y^* \in \partial f(y)$ then we have 
 
 $$
 \begin{aligned}
@@ -110,6 +110,6 @@ $$
 \end{aligned}
 $$
 
-adding them together we have $\langle y-x, x^* - y^*\rangle \le 0$, threfore we have the definition of the monotonicity (take out the negative sign). 
+adding them together we have $\langle y-x, x^* - y^*\rangle \le 0$, therefore we have the definition of the monotonicity (take out the negative sign). 
 
 

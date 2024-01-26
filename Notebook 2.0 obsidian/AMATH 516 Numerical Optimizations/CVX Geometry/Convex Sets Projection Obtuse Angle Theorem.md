@@ -121,19 +121,20 @@ Take the difference between the 2 inner products and then get the norm less than
 ---
 ### **Heinz's Proof**
 
-#unfinished, 
 
-Professor's Heinz's Proof is specialized for convex sets, and it's beautiful mathematically, made for educational purpose. It doesn't provide as much insight as the one we shown above. More specifically it didn't highlight that: 
+Professor's Heinz's Proof is specialized for convex sets, and it's beautiful mathematically, made for educational purpose. 
+It doesn't provide as much insight as the one we shown above. More specifically it didn't highlight that: 
 1. Obtuse angle implies projection, but convexity is not required. 
 2. Projection onto a convex set has to satisfies obtuse angle theorem. Convexity has to involve. 
 
 
-**References**: Heinz at UBCO, for Theorem 8.4. 
+**References**: 
+
+Heinz at UBCO, for Theorem 8.4. 
 
 ---
 ### **In Relation to Proximal Mapping and Subgradient**
 
-We show that it's been generalized to the nonexpansiveness property of proximal mapping on an indicator function for a convex set. . 
+We show that it's been generalized to the nonexpansiveness property of proximal mapping on an indicator function for a convex set. 
 
 
-#UNFINISHED 

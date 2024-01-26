@@ -94,10 +94,12 @@ using the monotonicity of both operator $A$ and $B$, the above quantity has a po
 
 **Remarks**
 
-So, for any monotone opeartor $A$, we would have $A + \{v\}$ being a monotone operator, and $I + A$ being a monotone operator as well using the above theorem. 
+So, for any monotone operator $A$, we would have $A + \{v\}$ being a monotone operator, and $I + A$ being a monotone operator as well using the above theorem. 
+For the sum of 2 maximally monotone operators, see [mon-sum.pdf (carmamaths.org)](https://carmamaths.org/resources/jon/mon-sum.pdf) for some context. 
 
-#### **Theorem | Continuous Montone Operator is Maximal Monotone**
-> Let $A : X \mapsto X$ be a continuous and monotne, then $A$ would be maximal monotone. 
+
+#### **Theorem | Continuous Monotone Operator is Maximal Monotone**
+> Let $A : X \mapsto X$ be a continuous and monotone, then $A$ would be maximal monotone. 
 
 **Proof**
 
