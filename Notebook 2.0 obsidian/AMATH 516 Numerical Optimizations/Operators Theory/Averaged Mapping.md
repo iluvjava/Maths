@@ -9,7 +9,7 @@ aliases:
 
 Average operator is non-expansive. Firmly non-expansive operators are a subset of averaged operators. 
 
-**Def-1 | Averaged Operator**
+#### **Def-1 | Averaged Operator**
 
 > Let $F$ be an averaged operator if $F := (1 - \theta) I + \theta G$ where $\theta \in (0, 1)$, and $G$ has to be a non-expansive operator. Consequently, the fixed point of $F$ will have to be a fixed point of $G$ as well. 
 
@@ -22,7 +22,7 @@ Average operator is non-expansive. Firmly non-expansive operators are a subset o
 
 We show that a similar equivalence characterization for the firmly non-expansive also exists for the alpha-averaged operators. 
 
-**Thm-1 | Averaged Operator is Weaker than Non-expansive**
+#### **Thm-1  | Averaged Operator is Weaker than Non-expansive**
 > Let $T: X\mapsto X$, let $\alpha \in (0, 1)$, then $T$ is $\alpha$-averaged if and only if for all $x, y\in X$ we have: 
 > $$
 > \begin{aligned}
@@ -33,11 +33,14 @@ We show that a similar equivalence characterization for the firmly non-expansive
 
 **Observations**
 
-Setting $\alpha = 1/2$ in the above formula, we recover the definition for a firmly non-expansive operator $T$. This is strictly weaker because changing the $\alpha$ value will produce formulas that doesn't correspond to firmly non-expansive operators. So we have $\text{Firstly Nexp}\subset \text{Avg} \subset \text{Nexp}$. 
+Setting $\alpha = 1/2$ in the above formula, we recover the definition for a firmly non-expansive operator $T$. 
+This is strictly weaker because changing the $\alpha$ value will produce formulas that doesn't correspond to firmly non-expansive operators. 
+So we have $\text{Firstly Nexp}\subset \text{Avg} \subset \text{Nexp}$. 
 
 **Proof**: 
 
-Let $N$ be a firmly non-expansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. Write $u = x - y$ and $v = Tx - Ty$. If, $N$ is a firmly non-expansive operator, consider the following chain of equivalences
+Let $N$ be a firmly non-expansive operator, by definition the averaged operator $T = (1 - \alpha)I + \alpha N$, so $N = (1 - \alpha^{-1})I + \alpha^{-1}T$. 
+Write $u = x - y$ and $v = Tx - Ty$. If, $N$ is a firmly non-expansive operator, consider the following chain of equivalences
 
 $$
 \begin{aligned}

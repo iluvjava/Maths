@@ -113,6 +113,7 @@ $$
 
 We wat to show that $(x, x^*)$ is in $\text{gph}(A)$. 
 
+
 $$
 \begin{aligned}
     & \forall \alpha > 0, y_\alpha := x + \alpha(x^* - Ax)
@@ -138,11 +139,11 @@ talking the limit of $\alpha \rightarrow 0$, by continuity of $A$, and the inner
 
 **Remarks**
 
-The assumption that $A$ is continuous is strictly stronger than necessary because the limit we use is the limit of $\alpha(x^* - Ax)$ approaching zero, which is only along the direction of the vector $x^* - Ax$. 
-This type of continuity is a weaker type called Hemi-Continuity. 
-See [wiki](https://en.wikipedia.org/wiki/Hemicontinuity) for more information. 
-Of course, naturally for all linear operator in finite Euclidean spaces, it's maximal monotone if and only if it's monotone. 
-We used the previous proved theorem and the fact that any linear mapping on finite Euclidean space is a continuous mapping. 
+The assumption that $A$ is continuous is strictly stronger than necessary because the limit we use is the limit of $\alpha(x^* - Ax)$ approaching zero, which is only along the direction of the vector $x^* - Ax$.
+This type of continuity is a weaker type called Hemi-Continuity.
+See [wiki](https://en.wikipedia.org/wiki/Hemicontinuity) for more information.
+Of course, naturally for all linear operator in finite Euclidean spaces, it's maximal monotone if and only if it's monotone.
+We used the previous proved theorem and the fact that any linear mapping on finite Euclidean space is a continuous mapping.
 
 #### **Thm | The Inverse of Monotone Operator is Still Monotone**
 > Suppose that $A$ is a monotone operator, then $A^{-1}$ is also a monotone operator. 

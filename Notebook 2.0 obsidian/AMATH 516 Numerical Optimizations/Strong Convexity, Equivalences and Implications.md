@@ -63,7 +63,8 @@ Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those stateme
 ---
 ### **Strongly Convex and Smoothness Together**
 
-There are some results that only happens with both strong convexity and Lipschitz smoothness of the function. These reasults are occationally useful, especially deriving the best kind of behavior an algorithm can experience. 
+There are some results that only happens with both strong convexity and Lipschitz smoothness of the function. 
+These results are occasionally useful, especially deriving the best kind of behavior an algorithm can experience. 
 
 
 ---

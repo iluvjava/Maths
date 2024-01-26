@@ -5,7 +5,8 @@
 ### **Into**
 
 [Hilbert space](https://mathworld.wolfram.com/HilbertSpace.html)(Wolfram Math World) is a complete inner product space. It's Banach space Enhanced with Euclidean geometry. 
-There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. 
+There is one important results that come from the completeness of the Hilbert space, and that is the projection theorem. 
+For more about the projection theorem in finite dimensional spaces, visit [Convex Sets Projections and Dist, Intro](../../AMATH%20516%20Numerical%20Optimizations/Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md) for more info. 
 Other interests of Hilbert space includes orthogonal basis and linear operator, which will be more interesting due to the fact that [Hilbert spaces are self dual to each other](https://mathworld.wolfram.com/Self-Dual.html)(Wolfram Math World), which allows for an inner product, bilinear form representation for linear mapping, and the important Rietz Representation Theorem. 
 
 **Important Notes Throughout**
@@ -27,7 +28,6 @@ We discuss the properties of orthogonal complements and their properties. Please
 **Fact**: 
 
 If, $Y = \mathcal H$, then $\{\mathbf 0\}$ is the complement of that. 
-
 
 #### **Thm | Orthogonal Decomposition**
 > Ler $Y\subseteq \mathcal H$ be a closed subspace, for all $x \in \mathcal H$, there exists unique $u\in Y, v\in Y^\perp$ such that $x = y + v$. 
@@ -65,7 +65,7 @@ Therefore, we have the uniqueness of the orthogonal complement projection proven
 
 **Remarks**:
 
-1. In general, we have $Y \subseteq Y^{\perp\perp}$ and $Y^\perp$ is always a closed set. In fact, we have $\text{cl}(Y) = Y^{\perp\perp}$. This is important because $Y$ is specifically said to be a closed subspace in $\mathcal H$, and in $\mathcal H$, there are subspace that are not closed. In which case, we don'thave the same looking teorem as above from the cause of finite dimensional spaces. 
+1. In general, we have $Y \subseteq Y^{\perp\perp}$ and $Y^\perp$ is always a closed set. In fact, we have $\text{cl}(Y) = Y^{\perp\perp}$. This is important because $Y$ is specifically said to be a closed subspace in $\mathcal H$, and in $\mathcal H$, there are subspace that are not closed. In which case, we don't have the same looking theorem as above from the cause of finite dimensional spaces. 
 
 2. Let $Y, Y^\perp$ and $Y$ be closed. Then for all $x \in \mathcal H, x = u + v$, unique $u\in Y, v \in Y^\perp$. And we have $\Vert x\Vert^2 = \Vert u\Vert^2 + \Vert v\Vert^2$, because $u\perp v$. This is Pythagoras in the infinite dimensional space. 
 
@@ -74,7 +74,8 @@ Therefore, we have the uniqueness of the orthogonal complement projection proven
 ---
 ### **Orthogonal Normal Basis In Hilbert Spaces**
 
-We introduce the idea of ortho-normal basis in the Hilbert space. A type of infinite dimension basis ([Schauder Basis](https://en.wikipedia.org/wiki/Schauder_basis)). 
+We introduce the idea of ortho-normal basis in the Hilbert space. 
+A type of infinite dimension basis ([Schauder Basis](https://en.wikipedia.org/wiki/Schauder_basis)). 
 
 #### **Def | Orthogonal Basis**
 
@@ -95,9 +96,13 @@ We introduce the idea of ortho-normal basis in the Hilbert space. A type of infi
 
 **Remarks**
 
-The set of standard basis vector is not closed. Denote $\mathcal B = \{e_i\}_{i\in \mathbb N}$ to be the basis for space $l^2$, which is a Hilbert space. The set $\text{span}(\mathcal B)$ is not closed. For example, the sequence $(1, 1, \cdots)\not\in \mathcal B$, but rather, this number is in $\text{cl.span}(\mathcal B)$. This is very different to the way things work in finite dimensions. 
+The set of standard basis vector is not closed. Denote $\mathcal B = \{e_i\}_{i\in \mathbb N}$ to be the basis for space $l^2$, which is a Hilbert space. 
+The set $\text{span}(\mathcal B)$ is not closed. 
+For example, the sequence $(1, 1, \cdots)\not\in \mathcal B$, but rather, this number is in $\text{cl.span}(\mathcal B)$. 
+This is very different to the way things work in finite dimensions. 
 
-Given such a basis, we can project onto this basis using very simple algebra, compare to projecting to any other type of basis in Hilbert space. A core part of Linear Algebra. 
+Given such a basis, we can project onto this basis using very simple algebra, compare to projecting to any other type of basis in Hilbert space. 
+A core part of Linear Algebra. 
 
 
 #### **Thm | Projection Onto Orthonormal Basis**
@@ -180,18 +185,20 @@ This condition is called Parseval's relations, not to confused with the Parseval
 ---
 ### **Total Basis in Hilbert Spaces**
 
-A total set has closure that spans the whole Hilbert Space. Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. Sometimes it'a also referred to be the maximal basis.
+A total set has closure that spans the whole Hilbert Space. 
+Its existence is important because it places idealism for describing the whole Hilbert space only using basis that is countable. 
+Sometimes it'a also referred to be the maximal basis.
 
 #### **Def (3.6-1) | Total Space**
 > A set $M\subseteq M$ is total if $\text{cl.span}(M) = \mathcal H$. And a sequence is total if and only if all terms in the sequence form a total set in $\mathcal H$. 
 
 **Note**: 
 
-Recall that $x\in \text{span}(M)$ if and only if there is a finite linear combinations of the lements from $M$ that represent the vector $x$, hence hte closure is not given for free.  
+Recall that $x\in \text{span}(M)$ if and only if there is a finite linear combinations of the elements from $M$ that represent the vector $x$, hence the closure is not given for free.  
 
 **Remarks:**
 
-The Gram Schimidtz gives an algorithm for computing the ortho-normal basis out a given basis that is total. 
+The Gram Schimdtz gives an algorithm for computing the ortho-normal basis out a given basis that is total. 
 
 #### **Thm  | Maximality of Basis**
 > $M \subseteq \mathcal H$ is total if and only if $M^\perp = \{\mathbf 0\}$. 
@@ -247,15 +254,17 @@ $$
 Skipped for now. 
 
 
-
 **Remarks**: 
 
-Take note that the existence of a basis for Hilbert space is, assumed. The existence of a total basis for all Hilbert spaces, is not a trivial statement. 
+Take note that the existence of a basis for Hilbert space is, assumed. 
+The existence of a total basis for all Hilbert spaces, is not a trivial statement. 
 
 
 ---
 ### **Examples for Total Basis**
 
-In $L^2$, one of the total basis is the space of polynomials, $x^n$ with $n\in \mathbb N$. Another basis would be the fourier basis, which is a maximal basis as well. Finally, in the space of $l^2$, we have $e_i$, the canonical basis being the maximal basis. 
+In $L^2$, one of the total basis is the space of polynomials, $x^n$ with $n\in \mathbb N$. 
+Another basis would be the Fourier basis, which is a maximal basis as well. 
+Finally, in the space of $l^2$, we have $e_i$, the canonical basis being the maximal basis. 
 
 

@@ -2,7 +2,9 @@
 
 ---
 ### **Non-Expansive Operators**
-Non-expansive is a subset of operator that has a Lipschitz constant of one. There are a lot of generalizations for this character for operators. Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
+Non-expansive is a subset of operator that has a Lipschitz constant of one. 
+There are a lot of generalizations for this character for operators. 
+Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
 #### **Def | nonexpansive operators**
 
@@ -34,7 +36,7 @@ Chapter 4 of the Mono Operator book from Heinz.
 
 Nonexpansive operator has a fixed point set that is convex. 
 
-**Def | Fixed Point Set**
+#### **Def | Fixed Point Set**
 > When $f$ is non-expansive and domain of $F$ is $\mathbb R$, then the set of fixed point of the operator is: 
 > 
 > $$
@@ -47,13 +49,14 @@ Nonexpansive operator has a fixed point set that is convex.
 > \end{aligned}
 > $$
 
-**Thm | The set of fixed point for an non-expansive operator is a closed and convex set**
+#### **Thm | The set of fixed point for an non-expansive operator is a closed and convex set**
 
 > Assuming that $F$ is non-expansive, then the fixed point of the operator has to be a convex set. In the case when $F$ is a contraction, the set of fixed point will have to be a singleton. 
 
 **Proof**: 
 
-When the fixed point set is empty, it's convex. Otherwise we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
+When the fixed point set is empty, it's convex. 
+Otherwise we suppose that $x, y \in \text{fix}(F)$ in the fixed point set of the operator $T$, with $\theta \in [0, 1]$, and then we will show that $z = \theta x + (1 - \theta)y$ will again have to be a fixed point of the operator as well, additionally it has to on the line segment for all valid $\theta$, this is true because: 
 
 $$
 \begin{aligned}
@@ -79,7 +82,7 @@ and the last line suggest that the point $Fz$ must lies on the line segment $[0,
 
 A set of expressions are equivalent for all firmly nonexpansive operators. 
 
-**Thm | Equivalences of Nonexpansiveness**
+#### **Thm | Equivalences of Nonexpansiveness**
 
 > Let $T: D\mapsto X$, where $D\subseteq X$, the the following are equivalent: 
 > 1. $T$ is firmly nonexpansive. 
@@ -158,7 +161,9 @@ $$
 \end{aligned}
 $$
 
-As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
+As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. 
+By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. 
+Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
 
 $$
 \begin{aligned}
@@ -209,10 +214,81 @@ The firmly nonexpansive operator is a special case for the averaged operator. Se
 
 Some properties of these operators are stated. 
 
-**Thm | Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
-> Let $T_1, T_2$ be firmly nonexpansive operator, then $T_1\circ T_2$, denoted as $T_1T_2$ for short, is also a firmly nonexpansive operator. 
+#### **Thm | Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
+> Let $T_1, T_2$ be firmly nonexpansive operator, then $T_2\circ T_1$, denoted as $T_2T_1$, then $T_2T_1$ is nonexpansive, and we have 
+> $$
+> \begin{aligned}
+>     \frac{1}{2}\Vert (I - T_2T_1)x - (I - T_2T_1y)\Vert^2 
+>     &\le 
+>     \Vert x - y\Vert^2 - \Vert T_2T_1x - T_2T_1y\Vert^2, 
+> \end{aligned}
+> $$
+
+**Proof**
+
+With this we make $a = x -y, b - T_1x - T_1y$, and $c = T_2T_1x - T_2T_1y$. 
+$T_1$ is fimrly nonexpansive therefore 
+
+$$
+\begin{aligned}
+    \Vert T_1x - T_1 y\Vert^2 + 
+    \Vert (I - T_1)x + (I - T_1)y\Vert^2 
+    &\le 
+    \Vert x - y\Vert^2, 
+\end{aligned}
+$$
+
+$T_2$ is fimrly nonexpansive, let the firmly nonexpansive definition be defined on $T_1x, T_2y$ then it yields: 
+
+$$
+\begin{aligned}
+    \Vert T_2T_1x - T_2 T_1y\Vert^2 
+    &\le 
+    \Vert T_1x - T_1y\Vert^2 -
+    \Vert (I - T_2)T_1x + (I - T_2)T_1y\Vert^2 
+    \\
+    &\le 
+    \Vert x - y\Vert^2 - 
+    \Vert (I - T_1)x + (I - T_2)y\Vert^2 
+    - 
+    \Vert (I - T_2)T_1x + (I - T_2)T_1x\Vert^2, 
+\end{aligned}
+$$
+
+which we just replaced the term $\Vert T_1x - T_1 y\Vert$ from the part before the above. 
+Then the above can be summarized in form 
+
+$$
+\begin{aligned}
+    \Vert c\Vert^2 &\le \Vert a\Vert^2 - \Vert a - b\Vert^2 - \Vert b - c\Vert^2
+    \\
+    \Vert a - b\Vert^2 + \Vert b - c\Vert^2 & < \Vert a\Vert^2 - \Vert c\Vert^2, 
+\end{aligned}
+$$
+
+Now recalled the parallelogram rule, we can use it on the above and get 
+
+$$
+\begin{aligned}
+    2 \Vert a - b\Vert^2 + 2 \Vert b - c\Vert^2 &= 
+    \Vert a - b + b - c\Vert^2 + \Vert a - b - b + c\Vert^2
+    \\
+    &= \Vert a - c\Vert^2 + \Vert a + c - 2b\Vert^2
+    \\
+    &\ge \Vert a - c\Vert^2, 
+    \\
+    \implies 
+    \Vert a - c\Vert^2 &\le \Vert a\Vert^2 - \Vert c\Vert^2, 
+\end{aligned}
+$$
+
+and therefore the composition $T_2T_1$ is a nonexpansive operator. 
 
 **References**: Heinz's class, proposition 22.8. 
+
+**Remarks**
+
+See [Hilbert Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Hilbert%20Space%20Introduction.md) for more information about the parallelogram law. 
 
 ---
 ### **Nonexpansiveness Examples**
@@ -235,7 +311,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, a matrix is nonexpansive then its eignvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
+Therefore, a matrix is nonexpansive then its eigenvalues are all bounded in absolute value by $1$, and it would mean that $1 - \lambda_i(A^TA) \ge 0$, hence it will be $\lambda_i(I - A^TA)\ge0$. The matrix is definitely already symmetric, therefore, if all of its eigenvalues are positive, it's a symmetric positive definite real matrix.
 
 #### **Example | Firmly Nonexpansive Matrices**
 
