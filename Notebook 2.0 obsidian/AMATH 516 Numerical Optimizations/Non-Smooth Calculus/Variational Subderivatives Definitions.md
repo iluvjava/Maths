@@ -22,10 +22,11 @@ Subderivative is a number, not a vector. It tells how the function changes given
 
 
 ---
-### **Dimitri's Variational Definition**
+### **Dini-Hadamard Variational Subderivative**
 
-From Professor's Demitri's standpoint, we understand the scope when the definition of subderivative (directional derivative) is most applicable, and why when the function is not Lipschitz Continuous, we have to consider another type of derivative that preserves the closedness. 
+Dini-Hadmard variational sub-derivative tells us how a function behaves near a given ray. 
 
+#### **Def | Dini-Hadamard Variational Subderivative**
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
 > $$
 > \begin{aligned}
@@ -62,14 +63,19 @@ We skip the proof for this remark item. I need to point out that, any function t
 ---
 ### **Lack of Closedness**
 
-One prime example is the indicator function of a closed unit disk in $\mathbb R^2$. Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. Therefore, we consider a different definition of subderivative, where, the ray itself is also converging to $u$ in addition to taking the infimum on the sequence of limit points.
+Observe that the above definition involves the use of $\liminf$ instead of just $\lim$. 
+This choice is intentional and it's used to preserves the lower semi-continuity of a function in the Dini-Hadamard subderivative. 
+Consider the indicator function of a closed unit disk in $\mathbb R^2$. 
+Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. 
+Therefore, we consider a different definition of a subderivative with $\liminf$, where, the ray itself is also converging to $u$ in addition to taking the infimum on the sequence of limit points. 
+Then, the derivative of function would be lower semi-continuous at a the point $(1, 0)$. 
 
 **Why closedness is a concern here for the subderivative of Non-Lipschitz function in Dimitry's writing?**
 
 He didn't say and I don't know. 
 
 ---
-### **Theorem: Subderivative is Supporting the Subgradient Set**
+### **Theorem | Subderivative is Supporting the Subgradient Set**
 
 > Let $f$ be any augmented real valued convex proper function, then for any $x\in \text{int}\circ \text{dom}(f)$, Then the direction derivative along the direction $u$ is the support function on the subgradient set $\partial[f](x)$: 
 > 
