@@ -152,11 +152,41 @@ However, infinitely many union of open sets is always an open set, meaning that 
 Infinitely many intersection of closed set is not a closed set. 
 Simply consider the closure of the list of singletons $\text{cl}\{1/n : n \in \mathbb N\}$. 
 
+#### **Thm | Composition with a Continuous Mapping**
+> Let $f = g \circ F$ where $g : \mathbb R^n \mapsto \mathbb {\bar R}$ is a l.s.c mapping at $F(\bar x)$, and $F: \mathbb R^\ om \mapsto \mathbb R^n$ is a continuous mapping at $\bar x$. 
+> Then $f$ is a l.s.c mapping.
 
-#### **Thm 2.10 | Composition of l.s.c functions**
+**Proof**
+
+Take $x \rightarrow \bar x$ to be an arbitrary convergence sequence in $\mathbb R^n$, for all $\epsilon \ge 0$, using the l.s.c property of $g$, wehave 
+
+$$
+\begin{aligned}
+    \exists \epsilon_\epsilon: \Vert y - F(\bar x)\Vert < \delta_\epsilon: 
+    g(y) - g(F(\bar x)) > -\epsilon, 
+\end{aligned}
+$$
+
+From the continuity of $F$, $\exists M(\delta_\epsilon) \in \mathbb N$ such that $\Vert F(x_n) - F(\bar x)\Vert \le \delta_\epsilon$, so then 
+
+$$
+\begin{aligned}
+    n \ge M(\delta_\epsilon) \implies g(F(x_n)) - g(F(\bar x)) > -\epsilon
+    \\
+    \implies 
+    \inf_{n> M(\delta_\epsilon)} \left\lbrace
+        g\circ F(x_n) - g\circ F(\bar x)
+    \right\rbrace > -\epsilon, 
+\end{aligned}
+$$
+
+and therefore, considering $\epsilon \searrow 0$, we derived the fact that $g\circ F$ is a l.s.c mapping at the point $x = \bar x$. 
+
+#### **Thm | Composition of l.s.c functions**
 > let $f(x) = \theta \circ g (x)$, where $g:\mathbb R^n\mapsto \mathbb{\bar R}$ and $\theta: \mathbb R \mapsto \mathbb {\bar R}$ both be l.s.c functions, let $\theta$ be non-decreasing, then $f$ would be a l.s.c function as well. 
 
 **Proof**
+
 
 
 

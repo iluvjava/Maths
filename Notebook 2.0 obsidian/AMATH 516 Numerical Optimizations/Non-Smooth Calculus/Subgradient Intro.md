@@ -1,6 +1,11 @@
-* [[Normal Cone]]
-* [[Characterizing Functions for Optimizations]]
-* [[Convex Sets Intro]]
+---
+aliases:
+  - Variagional Subgradient
+  - Regular Subgradient
+---
+* [Normal Cone](Normal%20Cone.md)
+* [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
+* [Convex Sets Intro](Convex%20Sets%20Intro.md)
 
 ---
 ### **Intro**
@@ -23,7 +28,9 @@
 > 
 > Define the set of all Sub-gradient at $x$ to be: $\partial[f]_{x}$And when $x\not\in \text{dom}(f)$ we defined $\partial [f]_x = \emptyset$. 
 
-For everything about convex subgradient, visit [[Convex Subgradient]] for more information. A subgradient describes the set of all possible plane that touches the function in a set-valued mapping. We illustrate the concept with a figure from Amir Beck's textbook on the famous non-smooth convex function $|\cdot|$. 
+For everything about convex subgradient, visit [Convex Subgradient](Convex%20Subgradient.md) for more information. 
+A subgradient describes the set of all possible plane that touches the function by a set-valued mapping. 
+We illustrate the concept with a figure from Amir Beck's textbook on the famous non-smooth convex function $|\cdot|$. 
 
 ![](../../Assets/convex-subgradient-illustration-amir-beck.png)
 
@@ -80,12 +87,14 @@ We depart from Rockafellar's notation of subgradient. A good notation should be 
 For example: $\partial[f(Ax + b, u)|u](x_+)$ means taking the derivative of $f$ wrt to $u$ and fixing $x$ to be a constant at the point $x^+$. This notation is adopted by me because it's much clearer compare to some of the textbooks out there. 
 
 ---
-### **Cousin Concept: Variational Directional Derivatives**
+### **Cousin Concepts**
 
-For more about directional derivatives, the cousin concepts of subgradient, see [[Convex Directional Derivatives]] for more information about G-derivatives for convex functions, see [[Variational Subderivatives Definitions]] for more about the variational extensions for directional derivatives. 
+- See [Convex Directional Derivatives](Convex%20Directional%20Derivatives.md) for directional derivatives on convex functions. 
+- [Convex Subgradient](Convex%20Subgradient.md) for more information about subgradient on a convex function. 
+
 
 
 ---
 ### **Comments**
 
-The introduction is done. Visit [[Subgradient Central Hub]] for all the things related to this concept. 
+The introduction is done. Visit [Subgradient Central Hub](Subgradient%20Central%20Hub.md) for all the things related to this concept. 

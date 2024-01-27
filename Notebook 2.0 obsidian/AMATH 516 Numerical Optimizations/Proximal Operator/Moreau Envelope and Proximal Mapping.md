@@ -624,6 +624,11 @@ It follows directly from [Minimizer of Quadratic Sum, Weighted Average](../Minim
 > $$
 > In general, if there exists any permutation of the list of $x_1, x_2, \cdots, x_m$, the parallelization property of prox will be come applicable. 
 
+
+#### **Beck's Cheatsheet**
+See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for a quick reference for more formulas for use for applications. 
+
+
 ---
 ### **Examples For Proximal Mapping**
 
@@ -648,5 +653,6 @@ We may use it to identify more closed forms of proximal mapping for algorithms.
 
 
 ---
-### **Beck's Cheatsheet**
-See [Amir's Prox Cheatsheet](../References/Amir's%20Prox%20Cheatsheet.pdf) for a quick reference. 
+### **Proximal Mapping and Moreau Envelope in the Nonconvex Case**
+
+
