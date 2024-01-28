@@ -102,7 +102,9 @@ Therefore it's convex.
 
 The first inequality is easy because $C\subseteq\text{cl(C)}$ by def, and hence the $\sup$ of them yields $\delta_C^\star(x) \le \delta_{\text{cl}(C)}^\star(x)$, the other inequality $\delta^\star_{C}(x) \ge \delta_{\text{cl}(C)}^\star(x)$ by the property of $\sup$. 
 
-For the proof of the second equality, recall the [Caratheodory Theorem](Caratheodory%20Theorem.md) for convex set. Let $x$ be arbitrary. Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem (Note, the supports can be less than $k - 1$): 
+For the proof of the second equality, recall the [Caratheodory Theorem](Caratheodory%20Theorem.md) for convex set. 
+Let $x$ be arbitrary. 
+Using the fact that the set $\text{cvxh}(C)$ is closed set, the supremum can be obtained by the set $\{y_n\}_{n \ge 1}$ such that $\lim_{n\rightarrow \infty}\langle x, y_n\rangle = \delta_{C}^\star(x)$. Then for any $y_n$, it can be supported by $\{z_i\}_{i = 1}^{k + 1}$ using the Caratheodory Theorem (Note, the supports can be less than $k - 1$): 
 
 $$
 \begin{aligned}
@@ -144,34 +146,33 @@ One can conclude this directly using the [Thm-2](#**Thm-2%20Support%20Functions%
 #UNFINISHED #HEINZ, Lemma 8.15
 
 ---
-### **Example 1: Support Function of Finite Sets**
+### **Example 1 | Support Function of Finite Sets**
 
 > Given a nonempty convex set of vector in $C\subset \mathbb E$: $\{b_i\}_{i = 1}^n$, the support function of the set is: $\delta_C^\star(y) = \max_{i\in [n]}\{\langle y, b_i\rangle\}$. 
 
 proof: Too easy skipped
 
 ---
-### **Example 2: Support Function for a Cone**
+### **Example 2 | Support Function for a Cone**
 > Given a non-empty cone: $K$, the support function of the cone is: $\delta^\star_K(x) \equiv \delta_{K^\circ}(x)$. It's the activation function on the polar of the cone. 
 
 Proof: Too easy skipped
 
 ---
-### **Example 3: Supporting Polyhedral Cone**
+### **Example 3 | Supporting Polyhedral Cone**
 
 > Suppose a polyhedral cone $K = \{x: Ax \le \mathbf 0\}$, then it's polar is $\{A^Ty: y\ge \mathbf 0\}$, which means that the support function of $K$ is the indicator function of the polar cone: 
-
-$$
-\begin{aligned}
-    \delta_K^{\star}(x) = \delta_{\{A^Ty: y\ge \mathbf 0\}}(x)
-\end{aligned}
-$$
+> $$
+> \begin{aligned}
+>     \delta_K^{\star}(x) = \delta_{\{A^Ty: y\ge \mathbf 0\}}(x)
+> \end{aligned}
+> $$
 
 
 ---
-### **Example 3:Supporting the Unit Simplex**
+### **Example 3 | Supporting the Unit Simplex**
 
-**Def: Simplex**
+#### **Def | Simplex**
 > $$
 >     \Delta_n := \text{cvxh}\left\lbrace
 >         \mathbf e_1, \mathbf e_2, \cdots, \mathbf e_n

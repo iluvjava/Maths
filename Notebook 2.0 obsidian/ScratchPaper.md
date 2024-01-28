@@ -422,3 +422,30 @@ $$
 \overset{\overbrace{\cdots}^{\text{n times}} }
 {x}
 $$
+
+
+$$
+    {\scriptsize
+    \begin{aligned}
+        \mathrm{d}L 
+        = 
+        \int_{t_{0}}^{t_{1}} 
+        \left[ 
+            \left( 
+            I_{\mathbf{u}}(\mathbf{x}(t),\mathbf{u}(t),t)
+            + 
+            \mathbf{\lambda}^{\mathsf{T}}(t) \mathbf{f}_{\mathbf{u}} 
+            (\mathbf{x}(t),\mathbf{u}(t),t) 
+            \right) 
+            \mathrm{d}\mathbf{u}(t) + 
+            \left( I_{\mathbf{x}}(\mathbf{x}(t),\mathbf{u}(t),t) + 
+                \mathbf{\lambda}^{\mathsf{T}}(t) \mathbf{f}_{\mathbf{x}} 
+            (\mathbf{x}(t),\mathbf{u}(t),t) + \dot{\mathbf{\lambda}}(t) 
+            \right) \mathrm{d}\mathbf{x}(t) 
+            \right]
+        \mathrm{d}t 
+        \\
+        - \mathbf{\lambda}^{\mathsf{T}}(t_{1}) \mathrm{d}\mathbf{x}(t_{1}) + \mathbf{\lambda}^{\mathsf{T}}(t_{0}) \mathrm{d}\mathbf{x}(t_{0}) \leq 0
+    \end{aligned}   
+}
+$$

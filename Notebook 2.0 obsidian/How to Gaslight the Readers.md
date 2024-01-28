@@ -23,4 +23,4 @@ When giving lectures, consider gaslighting the audiences. This is especially eff
 
 [^1]: Non trivial sources.
 [^2]: Where the heck is the paper.
-[^3]: Some dead people's works and can't find the corresponding lemma. 
+[^3]: Some dead people's works and I can't find the corresponding lemma. 

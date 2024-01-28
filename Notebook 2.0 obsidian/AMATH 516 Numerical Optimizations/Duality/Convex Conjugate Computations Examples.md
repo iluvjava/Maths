@@ -7,6 +7,7 @@ They will be from HW, some of the notes for the courses, the goal is to make it 
 
 - [[Convex Conjugation Introduction]]
 
+
 Major References: The HW for AMATH 515. 
 
 ### **Intro**

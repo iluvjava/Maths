@@ -353,3 +353,12 @@ See [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surje
 **References**: 
 
 This is taken from Prof Heinz MATH 565 class at UBCO, 2024. 
+
+
+---
+### **Projecting onto Cones**
+
+Cones are geometric objects that exists in vector spaces. 
+See [Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Cone.md), [Dual Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Dual%20Cone.md), [Normal Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Normal%20Cone.md) for more information. 
+They are special enough that projections onto these sets were used in applications quite often. 
+

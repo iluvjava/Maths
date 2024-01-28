@@ -144,7 +144,7 @@ The convergence of fixed point would require the use of [Fejer's Monotone](Fejer
 
 #### **Thm | A Fixed Point Iteration on Nonexpansive Operator Converges Weakly**
 
-> Let $T: \mathcal H \mapsto \mathcal H$ be a nonexpansive operator, then the fixed poin iteration on the operator would converges to a point in the $\text{Fix} T$, a fixed point set of the operator. 
+> Let $T: \mathcal H \mapsto \mathcal H$ be a nonexpansive operator, then the fixed point iteration on the operator would converges to a point in the $\text{Fix} T$, a fixed point set of the operator. 
 
 **Proof**
 
