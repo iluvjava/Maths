@@ -11,11 +11,12 @@ When there is vector space, we have linear operator. However, in the world Banac
 
 #### **Def-1 | Linear Operators**
 > A linear operator $T$ is an operator such that: 
-> 1. Maps between 2 normed spaces/subspaces that has the same scalar. Denote the 2 spaces as $D\subseteq X, R\subseteq Y$. 
+> 1. Maps between 2 normed spaces/subspaces that has the same scalar. 
+> Denote the 2 spaces as $D\subseteq X, R\subseteq Y$. 
 > 2. for all $x, y \in D$ and scalars: $\alpha$: 
->   - $T(x + y) = Tx + y$, 
+>   - $T(x + y) = Tx + Ty$, 
 >   - $T(\alpha x) = \alpha T(x)$. 
->   Constructing a homomorphism for the ring, which is the vector space (Using abstract algebra language). 
+>   It constructing a homomorphism for the ring, which is the vector space (Using abstract algebra language). 
 
 **Keywords and Basic Quantities**
 - *Null space* is the set of all $x$ such that $Tx = \mathbf 0$
@@ -38,7 +39,8 @@ This part will be focusing on later part of chapter 2 of Kryzig's textbook for f
 ---
 ### **Elementary Theorems**
 
-These results are elementary, it's the same as basic linear algebra, but they are proved without explicit definition or intuitive, graphical interpretations of a linear operator in finite dimensional spaces. These proofs are not exactly useful, but they tells us what generalizes from the intuitions for linear operators in finite dimensional spaces. 
+These results are elementary, it's the same as basic linear algebra, but they are proved without explicit definition or intuitive, graphical interpretations of a linear operator in finite dimensional spaces. 
+These proofs are not exactly useful, but they tells us what generalizes from the intuitions for linear operators in finite dimensional spaces. 
 
 #### **Thm 1 | Range and Null Spaces (2.6-9)**
 > 1. Range of a linear operator is also a vector space. 
@@ -58,26 +60,31 @@ $$
 \end{aligned}
 $$
 
-therefore, the set of vectors $y_i\in \text{rng}(T)$ is linearly dependent. Since $x_i$ is an arbitrary set of vectors, there is no way we can have a linear independent set of dimension $n + 1$, hence $\text{dim.rng}(T) \le n$. 
+therefore, the set of vectors $y_i\in \text{rng}(T)$ is linearly dependent. 
+Since $x_i$ is an arbitrary set of vectors, there is no way we can have a linear independent set of dimension $n + 1$, hence $\text{dim.rng}(T) \le n$. 
 
 3. This one is direct from the definition of the null space of the linear operator, we skip this proof. 
 
 
 **Remarks**: 
 
-From (2.), a linear operator will preserve linear dependence of a set of vectors, 
+From (2.), a linear operator will preserve linear dependence of a set of vectors. 
+Given a linear combination of vectors $\alpha_1 x_1+ \cdots, \alpha_nx_n$ that are linear dependent, then applying the linear transform still produce a sum of vectors: $\alpha_1Tx_1 + \cdots + \alpha_n T_nx_n$. 
+
 
 #### **Thm 2 | Inverse Operator (2.6-10)**
-> Let $X, Y$be vector spaces, both real and complex, Let $T: \text{dom}(T)\mapsto Y$, be a linear operator, with some domain and range that are subsets of $X, Y$. Then: 
+> Let $X, Y$ be vector spaces, both real and complex, Let $T: \text{dom}(T)\mapsto Y$, be a linear operator, with some domain and range that are subsets of $X, Y$. Then: 
 > 1. The inverse exists if and only if $Tx =\mathbf 0  \iff x =\mathbf 0$. 
 > 2. $T^{-1}$ exists, then it will be a linear operator. 
 > 3. If $\text{dim}(T) = n < \infty$ and $T^{-1}$ exists, then $\text{dim.rng}(T) = \text{dim.dom}(T)$. 
 
-Note that, the inverse of the operator exists on the $\text{rng}(T)$ if $T$ is one-2-one. Meaning that $Tx_1 = Tx_2 \implies x_1 = x_2$, allowing for the inverse of some element $y\in \text{rng}(T)$ to be uniquely defined. And when $T$ is onto, the inverse exists on the entire vector space mapped by $T$. 
+Note that, the inverse of the operator exists on the $\text{rng}(T)$ if $T$ is one-2-one. 
+It implies that $Tx_1 = Tx_2 \implies x_1 = x_2$, allowing for the inverse of some element $y\in \text{rng}(T)$ to be uniquely defined. And when $T$ is onto, the inverse exists on the entire vector space mapped by $T$. 
 
 **Proof**: 
 
-For (1.) use the conditions to show the onto property for the linear operator. (2.) is direct from the linearity of the operator $T$. (3) Direct from (2.) in thm-1 applying to $T$, and $T^{-1}$.
+For (1.) use the conditions to show the onto property for the linear operator. 
+(2.) is direct from the linearity of the operator $T$. (3) Direct from (2.) in thm-1 applying to $T$, and $T^{-1}$.
 
 #### **Lemma 1 | Inverse of Product (2.6-11)**
 > Let $T$ mapping from $X$ to $Z$, Let $S$ mapping from $Y$ to $Z$, and they are both bijective linear operator on vector spaces, then the inverse $(ST)^{-1} = T^{-1}S^{-1}$. 
@@ -87,12 +94,16 @@ For (1.) use the conditions to show the onto property for the linear operator. (
 We skipped. 
 
 ---
-### **Bound and Continuous Linear Operators**
+### **Bounded and Continuous Linear Operators**
 
-Bounded linear operators are important, they themselves are just another type of vector spaces with norms. We introduce them in this section. 
+In finite dimensional vector spaces, all linear mapping are bounded. 
+In infinite dimensional vector spaces, not all linear mapping are bounded. 
+And it turns out that boundedness and continuity is equivalent in the case of a linear mapping. 
+Bounded linear operators are important, they themselves are just another type of vector spaces with norms. 
+We introduce them in this section. 
 
 #### **Def-2 | Bounded Linear Opeartor**
-> Let $X, Y$ be normed spaces, and $T: X\mapsto Y$ a linear operator, where $\text{dom}(T)\subseteq X$, the opeartor $T$ is bounded if there is a real number C such that for all $x\in \text{dom}(T)$: $\Vert Tx\Vert \le c\Vert x\Vert$. 
+> Let $X, Y$ be normed spaces, and $T: X\mapsto Y$ a linear operator, where $\text{dom}(T)\subseteq X$, the opeartor $T$ is bounded if there is a real number $c$ such that for all $x\in \text{dom}(T)$: $\Vert Tx\Vert \le c\Vert x\Vert$. 
 
 #### **Def-3 | Norm of Linear Operator**
 > Let $T$ be a bounded linear operator mapping from $X$ to $Y$ be some normed spaces, then the norm of a linear opeartor is defined as: 
