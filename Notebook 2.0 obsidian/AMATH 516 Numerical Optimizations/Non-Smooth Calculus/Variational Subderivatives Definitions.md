@@ -48,7 +48,12 @@ $$
 \end{aligned}
 $$
 
-Such a definition is suitable for all type of real-valued functions, and just like what Dimitri's did for the subgradient, this definition of subderivative is much more generalized, and when $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions), the above definition is Equivalent to the usual definition: 
+
+#### **Def | Directional Derivative for Locally Lipschitz Functions**
+The Dini-Hadamard definition of directional derivative is suitable for all kinds of real-valued functions.
+Prof Dimitri pointed out that, the Dini-Hadamard definition of subderivative is more generalized. 
+Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual definition of a directional derivative. 
+Here we state the theorem.  
 
 > Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$

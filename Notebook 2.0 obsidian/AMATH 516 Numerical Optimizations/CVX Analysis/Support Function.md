@@ -37,15 +37,21 @@ When the set $C$ is not closed, the $\sup$ operator is closing it automatically 
 
 When dealing with the support function for analysis purposes, keep in mind these good properties for all subsets $C$ of the Euclidean space: 
 
-* It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
-* $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
-* $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
-* Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
+1. It's convex. proper when $C$ is non-empty, and lower semi-continuous. 
+2. $\delta_{C}^\star \equiv \delta^\star_{\text{cl}(C)}\equiv \delta^\star_{\text{cvxh}(C)}$
+3. $\delta^\star_{A + B} \equiv \delta^\star_{A} + \delta^\star_{B}$
+4. Positive Homogeneous: $\alpha\delta_C^\star(x) = \delta_C^\star(\alpha x)\;\forall \alpha \ge 0$
   * Its epigraph is a cone, literally. 
-* It's sub-additive: $\delta_C^\star(x_1 + x_2) \le \delta_C^\star(x_1) + \delta_C^\star(x_2)$
-* Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[../Duality/Convex Conjugation Introduction]] for more. 
+5. It's sub-additive: $\delta_C^\star(x_1 + x_2) \le \delta_C^\star(x_1) + \delta_C^\star(x_2)$
+6. Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[../Duality/Convex Conjugation Introduction]] for more. 
 
 We will prove some of the properties that are not trivial to prove. 
+The properties 4., 5, shows that support funciton is also a sublinear function. 
+Property 4, positive homogeneuity shows that the epigraph of the support function is a cone. 
+One consequence of property 4. would mean that $f(0x) = 0f(x) = 0$ for all $x \in \mathbb E$. 
+That is assumine that $f$ is a positive homogeneous function. 
+Therefore $f(0) = 0$, therefore the support function $\delta^\star$ would have an epigraph that is also a cone. 
+
 
 **References**:
 
@@ -143,7 +149,10 @@ The magic here is the function inside of the sup can be super-positioned, and we
 
 One can conclude this directly using the [Thm-2](#**Thm-2%20Support%20Functions%20Equivalence%20Under%20Convex%20or%20Closure%20or%20Both**). Or we can assume that we don't know that and prove it differently. 
 
-#UNFINISHED #HEINZ, Lemma 8.15
+
+**Remarks**
+
+#UNFINISHED, #HEINZ, Lemma 8.15
 
 ---
 ### **Example 1 | Support Function of Finite Sets**
