@@ -222,7 +222,7 @@ $$
     \\
     \text{Consider Defining} &: 
     |M(x)| := \text{det}\begin{bmatrix}
-        u' & u \\ v' & v$$
+        u' & u \\ v' & v
     \end{bmatrix}(x)
     \\
     \text{then} &:
