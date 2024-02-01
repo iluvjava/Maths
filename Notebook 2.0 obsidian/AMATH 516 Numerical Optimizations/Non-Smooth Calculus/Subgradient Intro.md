@@ -38,7 +38,9 @@ We illustrate the concept with a figure from Amir Beck's textbook on the famous 
 ---
 ### **Variational Subgradient**
 
-Motivate by the fact that, under non-convex case, for some functions, the subgradient is not equivalent to the traditional gradient, we make a better definition of subgradient to context when convexity is not involved. One famous such example is $x^3$ at the point $x = 0$, which it doesn't have a subgradient  because it's impossible to separate the non-convex epigraph from all other points using a tangent plane at $x = 0$ for $x^3$. Rockafellar thought of this and extended the definition, we call it the regular subgradient, or the variational subgradient. 
+Motivate by the fact that, under non-convex case, for some functions, the subgradient is not equivalent to the traditional gradient, we make a better definition of subgradient to context when convexity is not involved. 
+One famous such example is $x^3$ at the point $x = 0$, which it doesn't have a subgradient  because it's impossible to separate the non-convex epigraph from all other points using a tangent plane at $x = 0$ for $x^3$. 
+Rockafellar thought of this and extended the definition, we call it the regular subgradient, or the variational subgradient. 
 
 **Definition | Generalized Subgradient (Regular Subgradient)**
 

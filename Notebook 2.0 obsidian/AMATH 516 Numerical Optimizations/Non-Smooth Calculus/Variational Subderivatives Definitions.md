@@ -64,6 +64,8 @@ Here we state the theorem.
 
 We skip the proof for this remark item. I need to point out that, any function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. Hence, under this case, we have the subderivative equals to above. See [[Convex Directional Derivatives]]. 
 
+---
+### **Subgradient and Lower Supporting Functions**
 
 ---
 ### **Lack of Closedness**
