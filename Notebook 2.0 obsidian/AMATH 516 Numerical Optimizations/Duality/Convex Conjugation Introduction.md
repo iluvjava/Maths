@@ -320,7 +320,7 @@ $$
 Finally we observe the cases for some of the special functions
 
 1. Support functions and indicator functions are dual to each other. 
-2. Indicator of the [[Cone]] and [[Polar Cone]] are dual to each other. 
+2. Indicator of the [[Introducing Cone]] and [[Polar Cone]] are dual to each other. 
 3. Affine function and indicator function of a singletons are dual to each other. 
 
 These facts are useful for transforming between constrained optimizations and their duals. 

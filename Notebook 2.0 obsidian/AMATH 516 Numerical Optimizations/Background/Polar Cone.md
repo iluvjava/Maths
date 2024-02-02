@@ -1,4 +1,4 @@
-* [[Cone]]
+- [[Introducing Cone]]
 
 
 ---
@@ -22,6 +22,9 @@ The notation is borrowed from professor Heinz.
 * $(\mathbb R_+^n)^\ominus = \mathbb R_-^n$, $(\mathbb S_+^n)^\ominus =\mathbb S_-^n$
 * $K^{\ominus\ominus} = \text{cl}.\text{cvxh}(K)$: The double polar theorem, or the bipolar theorem. 
 
+#### **Warnings | Notation Conflicts**
+> Prof Dimitry uses $C^\circ$ instead for polar cone definition. The $C^\ominus$ is a notation from Prof Heinz. 
+
 ---
 ### **The Bipolar Theorem**
 
@@ -44,7 +47,7 @@ However at the same time because $\text{cl}.\text{cvxh}(k)$ is a convex set, it 
 
 
 ---
-### **Example 1: Polar Polyhedral Cone**
+### **Example 1 | Polar Polyhedral Cone**
 
 > The set $A := \{x: Ax \le \mathbf 0\}$ is $B:=\{A^T y: y\ge \mathbf 0\}$. We assume that $A \in \mathbb R^{m\times n}$. 
 
@@ -65,9 +68,11 @@ Therefore $A^\ominus = B$ and using bipolar $B^\ominus = A$.
 
 
 ---
-### **Extension: Homogenizations**
+### **Extension Homogenizations**
 
-**Definition:**
+The following definition can generate cones for every set. 
+
+**Definition | Generalizing Cones via Homogenizations**
 
 > Consider a set $Q\subseteq \mathbb E$ and it contains the origin. Let the cone be generated on the set $Q\times \{1\}\subseteq \mathbb E\times \mathbb R$, which is given by: 
 > 
@@ -86,9 +91,7 @@ Since the set $Q$ contains the origin, the polar cone $Q^\ominus\subseteq \mathb
 
 We establish a list of rules for computing polar cone, so it's easier and faster to compute when we are dealing with computations and applications. 
 
-
 #UNFINISHED: ISN'T FILLED OUT YET
-
 
 **Source**: Dimitry's AMATH 516 2021 FALL. (We might need to look into Rockafellar)
 

@@ -1,5 +1,5 @@
 [[Topological Basics for Optimizations]], 
-[[Cone]]
+[[Introducing Cone]]
 
 ---
 

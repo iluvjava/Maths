@@ -1,4 +1,4 @@
-* [[Cone]]
+* [[Introducing Cone]]
 * [[Polar Cone]]
 
 ---

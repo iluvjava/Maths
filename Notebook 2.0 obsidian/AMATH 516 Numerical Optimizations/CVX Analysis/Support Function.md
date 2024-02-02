@@ -2,7 +2,7 @@
 * [[Convex Hull, Convex Span]]
 * [[Set Addition]]
 * [[Caratheodory Theorem]]
-* [[Cone]]
+* [[Introducing Cone]]
 * [[Polar Cone]]
 
 ---

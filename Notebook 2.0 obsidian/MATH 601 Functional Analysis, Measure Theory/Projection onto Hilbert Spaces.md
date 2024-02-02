@@ -53,6 +53,7 @@ $$
 We now consider the paralelogram law: 
 
 $$
+{\small
 \begin{aligned}
     \left\Vert 
         y^{(n)} - x - (y^{(m)}- x)
@@ -82,6 +83,7 @@ $$
     2\left(\left\Vert y^{(n)} - x\right\Vert^2 + \left\Vert y^{(m)} - x\right\Vert^2\right) 
     - 4d_M^2(x), 
 \end{aligned}
+}
 $$
 
 by $\lim_{n\rightarrow \infty} \Vert y^{(n)} - x\Vert = d_M(x)$, we have: 
@@ -359,6 +361,8 @@ This is taken from Prof Heinz MATH 565 class at UBCO, 2024.
 ### **Projecting onto Cones**
 
 Cones are geometric objects that exists in vector spaces. 
-See [Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Cone.md), [Dual Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Dual%20Cone.md), [Normal Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Normal%20Cone.md) for more information. 
+See [Introducing Cone](Introducing%20Cone.md), [Dual Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Dual%20Cone.md), [Normal Cone](../AMATH%20516%20Numerical%20Optimizations/Background/Normal%20Cone.md) for more information. 
 They are special enough that projections onto these sets were used in applications quite often. 
+
+
 
