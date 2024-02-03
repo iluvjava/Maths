@@ -76,7 +76,6 @@ and the last line suggest that the point $Fz$ must lies on the line segment $[0,
 
 [Primer on Monotone Operators](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf), The Primer on Monotone Operator Paper. 
 
-
 ---
 ### **Characterization of Firmly Nonexpansiveness**
 
@@ -215,7 +214,7 @@ The firmly nonexpansive operator is a special case for the averaged operator. Se
 
 Some properties of these operators are stated. 
 
-#### **Thm | Composition of Firmly Nonexpansive operator is still Firmly Nonexpansive**
+#### **Thm | Composition of Firmly Nonexpansive operator is Non-Expansive**
 > Let $T_1, T_2$ be firmly nonexpansive operator, then $T_2\circ T_1$, denoted as $T_2T_1$, then $T_2T_1$ is nonexpansive, and we have 
 > $$
 > \begin{aligned}
