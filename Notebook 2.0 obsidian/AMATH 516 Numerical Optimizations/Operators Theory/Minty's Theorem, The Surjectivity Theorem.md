@@ -23,7 +23,7 @@ $$
 \end{aligned}
 $$
 
-therefore, the operator $T$ is maximally monotone. To prove $\implies$, we assume $T$ is maximal monoton, then we show that $\mathbf 0 \in \text{ran}(I + T)$, which we will clarify later. Supoose that there exists $(x, y)\in \mathbb E \times \mathbb E$, such that $-(x, y)\in \partial F_T(x, y)$ whose existence will be clarify later, then applying lemma 3.8.3 for the Fitzpatric Function: 
+therefore, the operator $T$ is maximally monotone. To prove $\implies$, we assume $T$ is maximal monotone, then we show that $\mathbf 0 \in \text{ran}(I + T)$, which we will clarify later. Suppose that there exists $(x, y)\in \mathbb E \times \mathbb E$, such that $-(x, y)\in \partial F_T(x, y)$ whose existence will be clarify later, then applying lemma 3.8.3 for the Fitzpatrick Function: 
 
 $$
 \begin{aligned}

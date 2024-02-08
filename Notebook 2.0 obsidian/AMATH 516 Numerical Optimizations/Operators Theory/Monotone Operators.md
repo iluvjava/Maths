@@ -38,7 +38,32 @@ We need to show that a maximally monotone operator exists, and then we show an e
 
 
 #### **Definition | Maximally Monotone Equivalent Definition**
-> The operator $T: X \mapsto 2^X$ is a maximally monotone operator if and only if any $(x, x^*)$ satisfies $\forall (y, y^*)\in \text{gph}(T)$ we have $\langle x - y, x^* - y^*\rangle \ge 0$ then it must be that $(x, x^*)\in \text{gph}(T)$. 
+> The operator $T: X \mapsto 2^X$ is a maximally monotone operator if and only if any $(x, x^*)$ that satisfies $\forall (y, y^*)\in \text{gph}(T)$ we have $\langle x - y, x^* - y^*\rangle \ge 0$ if and only if $(x, x^*)\in \text{gph}(T)$. 
+
+**Observations**
+
+Mathematically we have the equivalence 
+
+$$
+\begin{aligned}
+    & 
+    T: X \mapsto 2^X \text{ is max mono} \iff 
+    [
+        (x, x^*) \text{ monotonically relates to } (y, y^*) \in \text{gph} T
+        \iff 
+        (x, x^*) \in \text{gph} T
+    ]
+    \\
+    & 
+    (x, x^*) \text{ monotonically relates to} (y, y^*) \iff 
+    \forall (y, y^*) \in \text{gph} T: \langle x - y, x^* - y^*\rangle \ge 0
+\end{aligned}
+$$
+
+Take note that taking the negations on $\iff$ of the state can make many more equivalent statement as the above statements. 
+Some different ways of saying the same thing could occastionally be useful. 
+
+
 
 **Demonstrations**
 
@@ -197,8 +222,11 @@ Recall [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20P
 #### **Example 2 | Subgradient is Monotone**
 See [Monotonicity of Subgradient](../Non-Smooth%20Calculus/Monotonicity%20of%20Subgradient.md) for more information. 
 
+#### **Example 3 | Subgradient of Convex Function is Maximally Monotone**
+> if $f$ is a convex function, then $\partial f$ is a maximally monotone operators. 
+
+**Proof**
+
+Read 31.5.2 of Rockafellar's red convex analysis textbook. 
 
 ---
-### **References**
-
-Heinz's Book 20.2, for the shifting theorem that is a work of my own because it's used to prove the Minty's theorem. 
