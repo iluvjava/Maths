@@ -121,7 +121,8 @@ Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Heinz himself
 ---
 ### **An Augmented Version**
 
-Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. Here we derive another version of the same formula, which is occasionally useful: 
+Differs from the generalized version, this rule is for convex combinations of 2 vector in Hilbert Space. 
+Here we derive another version of the same formula, which is occasionally useful: 
 
 $$
 \begin{aligned}
@@ -144,7 +145,7 @@ $$
 \end{aligned}
 $$
 
-and we called that the augmented version of the cute formula. Which is, kinda unecessary. 
+and we called that the augmented version of the cute formula.
 
 
 **References**: 

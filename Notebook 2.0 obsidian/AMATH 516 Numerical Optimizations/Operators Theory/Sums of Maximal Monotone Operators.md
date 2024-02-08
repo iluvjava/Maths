@@ -1,4 +1,4 @@
--[Monotone Operators](Monotone%20Operators.md)
+- [Monotone Operators](Monotone%20Operators.md)
 
 
 ---
