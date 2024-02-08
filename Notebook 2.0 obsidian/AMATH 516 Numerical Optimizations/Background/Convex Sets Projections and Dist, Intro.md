@@ -1,6 +1,6 @@
-1. [[Topological Basics for Optimizations]]
-2. [[Lipschitz Continuity]]
-3. [[Characterizing Functions for Optimizations]]
+1. [Topological Basics for Optimizations](Topological%20Basics%20for%20Optimizations.md)
+2. [Lipschitz Continuity](Lipschitz%20Continuity.md)
+3. [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md)
 
 
 ---
@@ -35,7 +35,7 @@ Reader please observe that, $\inf$ is implicitly taking the closure of the set $
 
 **Proof** 
 
-Firstly, recall [[Existence of a Minimizer]]. Given $x$, the function $\min_{y\in C}\Vert x- y \Vert$ is coercive. The epigraph of the function will be closed because closedness is preserved under addition ([[Closedness Preserving Operations of Epigraph]]), and in this case the minimization problem can be phrased as the sum of 2 closed functions: 
+Firstly, recall [Existence of a Minimizer](Existence%20of%20a%20Minimizer.md). Given $x$, the function $\min_{y\in C}\Vert x- y \Vert$ is coercive. The epigraph of the function will be closed because closedness is preserved under addition ([Closedness Preserving Operations of Epigraph](Closedness%20Preserving%20Operations%20of%20Epigraph.md)), and in this case the minimization problem can be phrased as the sum of 2 closed functions: 
 
 $$
 \min_{y\in C}\Vert x - y\Vert = \min_{y}\left\lbrace
@@ -54,11 +54,11 @@ The the existence of convex set projection in the Hilbert Space, visit [Hilbert 
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
-**Proof:** See [[Convex Sets Projection Obtuse Angle Theorem]]
+**Proof:** See [Convex Sets Projection Obtuse Angle Theorem](Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md)
 
 **Remarks:**
 
-With the additional assumption that $C$ is a convex set, we obtain the fact that **the distance function is also a convex function** because it's the infimum convolution between 2 proper convex function, one real valued, the other one is augmented real valued, see [[Convexity Preserving Operations for Functions]]. 
+With the additional assumption that $C$ is a convex set, we obtain the fact that **the distance function is also a convex function** because it's the infimum convolution between 2 proper convex function, one real valued, the other one is augmented real valued, see [Convexity Preserving Operations for Functions](Convexity%20Preserving%20Operations%20for%20Functions.md). 
 
 
 ---
@@ -76,8 +76,8 @@ With the additional assumption that $C$ is a convex set, we obtain the fact that
 
 **Remarks**: 
 
-This is a property of convex set, not projection in general, the proof is listed in [[Convex Sets Projection Obtuse Angle Theorem]]. 
-In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [[Convex Projection is L1 Lipschitz]]. 
+This is a property of convex set, not projection in general, the proof is listed in [Convex Sets Projection Obtuse Angle Theorem](Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md). 
+In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [Convex Projection is L1 Lipschitz](Convex%20Projection%20is%20L1%20Lipschitz.md). 
 
 
 ----
@@ -85,56 +85,48 @@ In addition, the projections function of a set if L1 Lipschitz when the set $Q$ 
 
 > For any set $Q$, the function $\text{dist}_Q(y)$ is L1-Lipschitz. More specifically: 
 > $$
->     |\text{dist}_Q(x) - \text{dist}_Q(y)| \le \Vert x - y\Vert_2
+>     |\text{dist}_Q(x) - \text{dist}_Q(y)| \le \Vert x - y\Vert
 > $$
 
 **Proof**
 
-The proof is constructed by 3 points, consider $x, y\in \mathbb{E}$, and $z \in Q$, the choice is arbitrary. Then, the distance of the points $x, y$ can be expressed in relation to any other points: 
+The proof only requires the triangular inequality of the norm, the properties of infimum, and the definition of the distance function. 
+Denote $\text{dist}_Q = d_Q$ for short, then consider 
 
 $$
 \begin{aligned}
-    \text{dist}_Q(x) \le& \Vert x - z\Vert_2
+    d_Q(x) &= \inf_{z \in C} \Vert x - z\Vert
     \\
-    \text{dist}_Q(x) \le& \Vert x - z\Vert_2 \le \Vert x - y\Vert_2 + \Vert y - z\Vert_2
+    &\le \Vert x - z\Vert \; \forall z \in Q
     \\
-    \implies \text{dist}_Q(x) \le& \Vert x - y\Vert_2 + \Vert y - z\Vert_2
+    &\le \Vert x - y\Vert + \Vert y - z\Vert \; \forall z \in Q
     \\
-    \text{dist}_Q(y) \le&
-    \Vert y - x\Vert_2 + \Vert x - z\Vert_2
+    \iff
+    d_Q(x) 
+    &\le 
+    \Vert x - y\Vert + \inf_{z \in Q} \Vert y - z\Vert 
+    \\
+    d_Q(x)
+    &\le  \Vert x - y\Vert + \inf_{z \in Q} \Vert y - z\Vert. 
+    \\
+    d_Q(x) &\le \Vert x - y\Vert + d_Q(y)
 \end{aligned}
 $$
 
-The first line is by definition of $\text{dist}$, the second and third statement made use of the point $z$, the third one is a consequence of the first 2 statements and the last statement is by a similar argument but for the point $y$. Taking the difference between the last 2 statements, one can come out and get: 
+Therefore, we have $d_Q(x) - d_Q(y) \le \Vert x - y\Vert$, since the statement is still true if we swap $x, y$, and therefore, we would have $|d_Q(x) - d_Q(y)| \le \Vert x - y\Vert$. 
 
-$$
-\begin{aligned}
-    \left|\text{dist}_Q(x) - \text{dist}_Q(y)\right|
-    &\le 
-    \Vert y - z\Vert_2 - \Vert x - z\Vert_2
-    \\
-    \Vert y - z\Vert_2 - \Vert x - z\Vert_2 
-    &\le \Vert x -y\Vert_2
-    \\
-    \implies
-    \left|\text{dist}_Q(x) - \text{dist}_Q(y)\right|
-    &\le 
-    \Vert x - y\Vert_2
-\end{aligned}
-$$
+**Remarks**
 
-The absolute value of the distance is then bounded by the differences between these points. This is true simply because that the distance between the 2 is always positive. 
+It works for any functions that has a triangular inequality to it. 
+This would mean any metric would work. 
 
 
-**Remarks**: 
-
-In addition to being L1 Lipschitz, the function is also convex, its convexity can be directly derived using [[Convexity Preserving Operations for Functions]] as an example to illustrate the infimum convolution theorem.
 
 
 ---
 ### **Strict Separations of Convex Sets**
 
-You can separate strictly, any 2 convex sets that are not intersecting with each other. [[Strict Separations Theorem]]. 
+You can separate strictly, any 2 convex sets that are not intersecting with each other. [Strict Separations Theorem](Strict%20Separations%20Theorem.md). 
 
 
 

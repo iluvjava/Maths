@@ -4,9 +4,10 @@
 ---
 ### **Existence of a minimizer**
 
-The existence of a minimizer depends on the continuity and the compactness of a subset of the domain of the function. Level boundedness (From Rockafellar), and Coersiveness is used to characterize the compactness of the set of minimizers for the function. 
+The existence of a minimizer depends on the continuity and the compactness of a subset of the domain of the function. 
+Level boundedness (From Rockafellar), and Coersiveness is used to characterize the compactness of the set of minimizers for the function. 
 
-**Theorem: Closed Epigraph**
+**Theorem | Closed Epigraph Euivalent to L.S.C**
 
 > The epigraph of a function is closed iff the function is lower-semi-continuous. 
 
@@ -15,17 +16,18 @@ The existence of a minimizer depends on the continuity and the compactness of a 
 See proof in [[Lower Semi-Continuity is Closedness of Epigraph]]. 
 
 
-**Definition: Coercive Function**
+**Definition | Coercive Function**
 
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 
 
-**Lemma: Minimizer over a Closed Set**
+**Lemma | Minimizer over a Closed Set**
 
 > For a proper, closed function $f$ over a compact set $C$ where $\text{dom}(f)\cap C\neq \emptyset$, then the function will attain a minimum over the set $C$. 
 
 **Proof**
 
-Consider $f_{\text{opt}} = \inf_{x\in C}f(x)$. Then $\exists (x_n)_{n\in \mathbb N}$ such that $f(x_n)\rightarrow f_{\text{opt}}$. Take subsequence $x_{n_k}$ that converge to some point $\bar x$ (Bozano Wierestrass), using the lower semi-continuous property of $f$, we have: 
+Consider $f_{\text{opt}} = \inf_{x\in C}f(x)$. Then $\exists (x_n)_{n\in \mathbb N}$ such that $f(x_n)\rightarrow f_{\text{opt}}$. 
+Take subsequence $x_{n_k}$ that converge to some point $\bar x$ (Bozano Wierestrass), using the lower semi-continuous property of $f$, we have: 
 
 $$
     f(\bar x) \le \lim\inf_{k\rightarrow \infty} f(x_{n_k}) = f_{\text{opt}}
@@ -37,18 +39,21 @@ $\bar x$ is well defined via Bozano Weierstrass, and it's also a minimizer of th
 
 What is the role of having the function to be a proper function? 
 
-> The proof seems so obvious, but it's not so much at the same time, we need to be aware of all the assumptions and why they are important to this proof of the theorem. The function will have to be proper, for all $x$, $f(x) = -\infty$ or $f(x) = \inf$. It comes with $\text{dom}(f)\neq \emptyset$, make things convenient. 
+> An improper function either have $+\infty$ everywhere so that it cannot have minimizers and minimum, or it has $-\infty$ everywhere so that it has minimizer everywhere. 
 
 What is the role of l.s.c or closedness of the function?
 
-> Function $f$ being a closed function implies no discontinuities that goes up. This can be seemed a generalization on the continuity conditions from the usual extreme value theorem from introduction to real analysis and calculus. It asserts that the function indeed takes the minimum value at the point $\bar x$, instead of jumping up due to some type of discontinuity. 
+> It asserts that the function indeed takes the minimum value at the point $\bar x$, instead of jumping up due to some type of discontinuity. 
+> It's more general than continuity and yet still let the sub-sequential limit works out. 
 
-What is the role for the closure of $C$? 
-> If the set $C$ is open, then, the limit of the sequence might not be in $C$ at all, hence, creating a limiting sequence that can make the function small, but the actual limiting point, the minimizer we wan't can't be defined in $C$, or the domain of the function, this is a type of non-existence of the minimizer. 
+What is the role for the compactness of $C$? 
+> If the set $C$ is open, then, the limit of the sequence might not be in $C$. 
+> Hence, creating a limiting sequence that can make the function small, but the actual limiting point, the minimizer we can't be defined in $C$. Therefore their is no minimizer given the minimum of the function over some sequence converges. 
 
 Finally, why/how do we use the Weierstrass Theorem (Sequential Compact Theorem)?
-
-> Observe that it's the set $\arg\inf_{x\in C}f(x)$ can have any type f topology or cardinality we want it to be. The sequence $x_n$ such that $f(x_n) \rightarrow f_{\text{opt}}$ doesn't have to converge in anything, it can circle around inside of the set. Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to converge to on, and just one of the point in the compact region, say $\bar x$ such that it attain the minimum of $f(\bar x) = f_{\text{opt}}$. 
+> Observe that it's the set $\arg\inf_{x\in C}f(x)$ can have any type f topology or cardinality we want it to be. The sequence $x_n$ such that $f(x_n) \rightarrow f_{\text{opt}}$ doesn't have to converge in anything, it can circle around inside of the set. 
+> Therefore, we have to make use of the compactness of $C$ and the existence of converging subsequence for it to converge to on, and just one of the point in the compact region, say $\bar x$ such that it attain the minimum of $f(\bar x) = f_{\text{opt}}$. 
+> Consider the function $\exp(x)$, then it will be clear why a compact set $C$ allows the theorem to work out. 
 
 ---
 ### **Proper L.S.C Function has Minimizer in a Closed Set**
