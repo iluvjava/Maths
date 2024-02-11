@@ -1,7 +1,8 @@
 ---
-alias: Variational Directional Derivatives
+alias: Variational Directional Derivatives, Dini Hadamard Subderivatives
+
 ---
-- [[Subgradient Intro]], 
+- [[Subgradient Intro]], [Variational Subgradient](Variational%20Subgradient.md)
 - [[Epigraph, Level Sets]], 
 - [[Support Function]], 
 
@@ -19,6 +20,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
   * 4.1, page 150. 
 * \<First Order Methods in Optimizations\>
   * Section 3.3 starts talking about directional derivatives. pg: 44
+* Professor Wang's Lectures at UBCO. 
 
 
 ---
@@ -26,7 +28,7 @@ Subderivative is a number, not a vector. It tells how the function changes given
 
 Dini-Hadmard variational sub-derivative tells us how a function behaves near a given ray. 
 
-#### **Def | Dini-Hadamard Variational Subderivative**
+#### **Def-1 | Dini-Hadamard Variational Subderivative**
 > Consider any augmented real function $f$ at a point $x$ where $f(x)$ is finite, the direction derivative in the direction of $u$ is given as: 
 > $$
 > \begin{aligned}
@@ -40,6 +42,7 @@ Dini-Hadmard variational sub-derivative tells us how a function behaves near a g
 For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
 
 **Remarks**:
+
 Immediately Observe the Equivalence to the tangent cone definitions [[../Background/Tangent Cone]] on the epigraph of the function: 
 
 $$
@@ -49,26 +52,49 @@ $$
 $$
 
 
-#### **Def | Directional Derivative for Locally Lipschitz Functions**
-The Dini-Hadamard definition of directional derivative is suitable for all kinds of real-valued functions.
-Prof Dimitri pointed out that, the Dini-Hadamard definition of subderivative is more generalized. 
-Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual definition of a directional derivative. 
-Here we state the theorem.  
+#### **Def-2 | Classic Directional Derivative Locally Lipschitz Functions**
+
 
 > Consider any $f$ that is an augmented real function and it's Lipschitz continuous around the point $x$, then the directional derivative in the direction of $u$ is: 
 > $$
 > \begin{aligned}
->      f'(x|u) = \lim_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}
+>      f'(x|u) = \liminf_{\tau \searrow 0}\frac{f(x + \tau u) - f(x)}{\tau}
 > \end{aligned}
 > $$
 
-We skip the proof for this remark item. I need to point out that, any function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. Hence, under this case, we have the subderivative equals to above. See [[Convex Directional Derivatives]]. 
+We skip the proof. 
+Function that is locally Lipschitz is true for all close, convex, lsc function at the $\text{ri}.\text{dom}(f)$. 
+Hence, under this case, we have the subderivative equals to above. 
+The classical directional derivative simplifies further to just $\lim$ when the function is convex. 
+See [[Convex Directional Derivatives]] for more information. 
+
+**Remarks**
+
+The Dini-Hadamard definition of directional derivative is suitable for all kinds of real-valued functions.
+Prof Dimitri pointed out that, the Dini-Hadamard definition of subderivative is more generalized. 
+Observe that replacing $\liminf$ with $\lim$, then this becomes directional Gataux Derivative. 
+Allow $\eta\rightarrow 0$ from both direction will yield Gataux derivative definition. 
+
+Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual definition of a directional derivative. 
+
+---
+### **Recovering Fenchet Differentiability**
+
+
+
+---
+### **Local Lipschitz Continuity**
+
+Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
+
+
+
 
 ---
 ### **Subgradient and Lower Supporting Functions**
 
 ---
-### **Lack of Closedness**
+### **Lack of Closedness of Classical Directional Derivative**
 
 Observe that the above definition involves the use of $\liminf$ instead of just $\lim$. 
 This choice is intentional and it's used to preserves the lower semi-continuity of a function in the Dini-Hadamard subderivative. 

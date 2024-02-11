@@ -3,7 +3,7 @@
 ----
 ### **Intro**
 
-We introduce the concepts of Frechet and Gataux differentiablity for $\mathbb R^m\mapsto \mathbb R$ functions. 
+We introduce the concepts of Frechet and Gataux differentiability for $\mathbb R^m\mapsto \mathbb R$ functions. 
 The concept itself is more generalized and it can present it self in variational calculus. 
 See [Frechet Derivative](Frechet%20Derivative.md) for the same concept but in a much more generalized context. 
 
@@ -53,7 +53,7 @@ That weaker condition is called Gataux derivative.
 > \begin{aligned}
 >     \lim_{\tau \rightarrow 0}
 >     &= 
->     \frac{f(\bar x + \tau w) - f(\bar x)}{\tau} &= \langle v, w\rangle. 
+>     \frac{f(\bar x + \tau w) - f(\bar x)}{\tau} = \langle v, w\rangle. 
 > \end{aligned}
 > $$
 
@@ -68,6 +68,6 @@ Direction derivative is capable of describing the linear locality of a function 
 #### **Thm | Frechet Differentiable Equivalence**
 $$
 \begin{aligned}
-    
+
 \end{aligned}
 $$
