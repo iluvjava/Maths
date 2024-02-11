@@ -156,3 +156,7 @@ In this section let's just make sure that the definition of a regular subgradien
 #### **Claim | Regular Subgradient Reduces to Convex Subgradient when Function is Convex**
 > When $f$ is convex, proper and lsc, then $\hat \partial f = \partial f$ where $\partial f$ here denotes the convex subgradient. 
 
+
+
+#### **Claim | Characterizing Subgradient by Dini Hadmard Subderivatives**
+> 
