@@ -140,7 +140,7 @@ This contradiction the assumption we made, therefore the converse is proven and 
 
 Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
 
-Thm | 
+#### Thm | 
 
 
 
