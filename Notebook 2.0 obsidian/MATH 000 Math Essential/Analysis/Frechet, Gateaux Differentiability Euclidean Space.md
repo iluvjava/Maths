@@ -68,6 +68,5 @@ Direction derivative is capable of describing the linear locality of a function 
 #### **Thm | Frechet Differentiable Equivalence**
 $$
 \begin{aligned}
-
 \end{aligned}
 $$

@@ -43,7 +43,7 @@ $$
 $$
 
 Please compare this quantity to [Bregman Divergence](Bregman%20Divergence.md), and see that this is a generalization of a Bregman Divergence to function that are not necessarily differentiable. 
-With this we may also represent a differentiable function (See [Frechet, Gataux Differentiability Euclidean Space](Frechet,%20Gataux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
+With this we may also represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
 Let $f : \mathbb R^n \mapsto \mathbb {\bar R}$ be a differentiable at $\bar x \in \mathbb R^n$ if and only if there exists $v \in \mathbb R^n$ such that 
 
 $$
@@ -145,6 +145,8 @@ $$
 The reader should convince yourself in your head that $f(\bar x) = h(\bar x)$ and $f(x) \ge h(x)$. 
 Next, we need to show the equivalent between the condition $v \in \hat \partial f(\bar x)$ and $v = \nabla f(\bar x)$. 
 The proof is similar to what we had for the previous proof. 
+
+
 
 
 ---
