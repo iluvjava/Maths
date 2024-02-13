@@ -44,11 +44,11 @@ $$
 $$
 
 It can be achieved via substituting $x = \bar x + \tau w$. 
-That weaker condition is called Gataux derivative. 
+That weaker condition is called Gataeux derivative. 
 
 
-#### **Def | Gataux Differentiable**
-> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gataux differentiable when there exists $v \in \mathbb R$ such that 
+#### **Def | Gataeux Differentiable**
+> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gataeux differentiable when there exists $v \in \mathbb R$ such that 
 > $$
 > \begin{aligned}
 >     \lim_{\tau \rightarrow 0}
@@ -58,11 +58,11 @@ That weaker condition is called Gataux derivative.
 > $$
 
 ---
-### **Sufficient Characterization of Frechet Derivative via Gataux Derivatives**
+### **Sufficient Characterization of Frechet Derivative via Gateaux Derivatives**
 
-We can describe the Frechet derivative fully via the use of direcitonal derivatives.
+We can describe the Frechet derivative fully via the use of directional derivatives.
 The following theorem does that.  
-Direction derivative is capable of describing the linear locality of a function by quatifying all the ways a limit approaches the point $\bar x$. 
+Direction derivative is capable of describing the linear locality of a function by quantifying all the ways a limit approaches the point $\bar x$. 
 
 
 #### **Thm | Frechet Differentiable Equivalence**
