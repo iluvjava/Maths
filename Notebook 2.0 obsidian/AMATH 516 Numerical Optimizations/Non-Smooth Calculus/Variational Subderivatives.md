@@ -144,6 +144,7 @@ This contradiction the assumption we made, therefore the converse is proven and 
 ### **Local Lipschitz Continuity**
 
 Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
+It simplisifes so it only has one limit occuring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
 
 #### Thm | 
 
