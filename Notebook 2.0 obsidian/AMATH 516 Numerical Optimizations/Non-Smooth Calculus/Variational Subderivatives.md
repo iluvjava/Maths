@@ -41,6 +41,11 @@ Dini-Hadmard variational sub-derivative tells us how a function behaves near a g
 
 For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
 
+**Obesrvations**
+
+When $u = \mathbf 0$, we would have $df(x | \mathbf 0 ) = 0$ for all $f$, for all $x$. 
+This is by the definiton. 
+
 **Remarks**:
 
 Immediately Observe the Equivalence to the tangent cone definitions [[../Background/Tangent Cone]] on the epigraph of the function: 
