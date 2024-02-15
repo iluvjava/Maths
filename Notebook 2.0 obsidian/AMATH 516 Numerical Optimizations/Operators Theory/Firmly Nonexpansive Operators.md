@@ -3,9 +3,10 @@
 
 ---
 ### **Non-Expansive Operators**
-Non-expansive is a subset of operator that has a Lipschitz constant of one. 
-There are a lot of generalizations for this character for operators. 
-Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
+Fimrly Non-expansive is a subset of operator that has a Lipschitz constant of one. 
+All properties of the non-expansive operators are applicable to the class of firmly non-expansive operators. 
+There are many subcategories of firmly non-expansive operator and we will only discuss the properties of the class of the firmly non-expansive operator. 
+
 
 #### **Def | Sub Categories of Nonexpansive Operators**
 

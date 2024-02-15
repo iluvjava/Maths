@@ -23,12 +23,11 @@ $$
 $$
 
 
-
-
 ---
 ### **Firmly Non-expansiveness of the Resolvent Operators**
 
 We discuss how the resolvent operator preserves some favorable properties of the original operator. 
+See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more information about firmly non-expansive operators. 
 
 
 #### **Prop | Resolvent of Monotone Operators are Firmly non-expansive**
@@ -56,7 +55,15 @@ $$
 Observe that this is the definition of $\mathcal J_A$ being a firmly-nonexpansiev operator. 
 In addition, a firmly non-expansive operator is a single valued operator because it's already non-expansive. 
 It's evident from above by setting $u = v$, then $x = y$ from the inequality. 
+To see that $T$ is a full domain operator, apply the observations we made about resolvent operators at the start of the file. 
 
+**Remarks**
+
+Using the equivalent characterizations of a firmly non-expansive operators, we obtain the following fact with minimal efforts: 
+
+1. $I - \mathcal J_A$ is a firmly non-expansive operator as well. 
+2. $\mathcal R_A = 2\mathcal J_A - I$ is non-expansive and a full domain operator. 
+3. The resolvent operator is obviously monotone as well because it's already firmly non-expansive. 
 
 
 
