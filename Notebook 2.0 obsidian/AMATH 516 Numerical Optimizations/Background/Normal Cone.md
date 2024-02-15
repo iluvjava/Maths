@@ -65,7 +65,7 @@ when the set $C$ is a convex set, the variational normal cone reduces to the con
 Heinz's 563 convex optimization class. 
 
 ---
-### **Convex Normal Normal Cone on the Interior Points**
+### **Convex Normal Cone on the Interior Points**
 
 > Let $C$ be a *convex subset* of $X$, a let $x\in \text{int}(C)$. Then $N_C(x) = \{\mathbf 0\}$. 
 
@@ -73,14 +73,18 @@ Heinz's 563 convex optimization class.
 
 Get $\delta > 0$ such that $\mathbb B_\delta[x]\subseteq C$. Now let $u \in N_C(x)$. Then $0 \ge \sup \langle \mathbb B_\delta[x] - x, u\rangle = \sup\langle \mathbb B_\delta[\mathbf 0], u\rangle = \delta\Vert u\Vert \ge 0$. This would imply that $\Vert u\Vert = 0$ so that $u = \mathbf 0$. 
 
-**References:** Exercise 2.39 in Dimitri's textbook, Heinz's 563 course notes Prop 10.7. 
+**References:** 
+
+Exercise 2.39 in Dimitri's textbook, Heinz's 563 course notes Prop 10.7. 
 
 **Remarks**
 
 The same holds for the variational normal cone. The proof is not here yet. The convex normal cone is exactly the same as the variational normal cone whenever $C$ is a convex set. #UNFINISHED . 
 
 ---
-### **Convex Normal Cone for Points Outside a Convex Set**
+### **Resolvent of the Normal Cone is Projection**
+
+
 
 #UNFINISHED
 
