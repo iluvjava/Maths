@@ -1,3 +1,4 @@
+
 ### **Intro**
 
 Dual norm denoted as $\Vert \cdot\Vert_\star$ is defined for a norm $\Vert \cdot\Vert$ in $\mathbb E$. Here it's the definition: 

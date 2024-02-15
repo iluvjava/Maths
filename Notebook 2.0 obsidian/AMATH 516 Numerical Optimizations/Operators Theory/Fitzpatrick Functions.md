@@ -62,6 +62,7 @@ under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, 
 
 
 **References**
+
 Lemma 3.8.2 in Dimitry's textbook for 516. 
 
 ---

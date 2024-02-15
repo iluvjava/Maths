@@ -119,6 +119,7 @@ Therefore, we have $d_Q(x) - d_Q(y) \le \Vert x - y\Vert$, since the statement i
 
 It works for any functions that has a triangular inequality to it. 
 This would mean any metric would work. 
+There is no assumption about the convexity of the set $Q$. 
 
 
 
