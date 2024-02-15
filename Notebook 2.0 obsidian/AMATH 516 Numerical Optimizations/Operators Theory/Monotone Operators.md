@@ -120,7 +120,8 @@ using the monotonicity of both operator $A$ and $B$, the above quantity has a po
 **Remarks**
 
 So, for any monotone operator $A$, we would have $A + \{v\}$ being a monotone operator, and $I + A$ being a monotone operator as well using the above theorem. 
-For the sum of 2 maximally monotone operators, see [mon-sum.pdf (carmamaths.org)](https://carmamaths.org/resources/jon/mon-sum.pdf) for some context. 
+The sum of maximally monotone operator may not be maximally monotone. 
+For the sum of 2 maximally monotone operators, see [mon-sum.pdf (carmamaths.org)](https://carmamaths.org/resources/jon/mon-sum.pdf) for more. 
 
 
 #### **Theorem | Continuous Monotone Operator is Maximal Monotone**
@@ -190,21 +191,12 @@ We discuss some examples that can illsutrate the properties of a maximal monoton
 > A matrix $A \in \mathbb R^{n\times n}$ be a maximally monotone operator, then the following are equivalent 
 > 1. $\langle x, Ax\rangle \ge 0$ for all $x \in \mathbb R^{n}$, equivalently $A$ symmetric positive definite. 
 > 2. $A_+:= (1/2)(A^T + A)$ is positive semi-definite, or equivalently $A_+$ is monotone. 
-> 3. $A^*$ is montone. 
+> 3. $A^*$ is monotone. 
 
 **Proof**
 
 (1.) Is directly by the linearity of the opeartor and the definition of a monotone opeartor. 
 For (2., 3.), use the property of inner product. 
-
-
-#### **Example | Subgradient**
-> Subgradient of a convex function is a maximally monotone operator. 
-
-**Demonstrations**
-
-See [Monotonicity of Subgradient](Monotonicity%20of%20Subgradient.md) for more information. 
-
 
 
 ---

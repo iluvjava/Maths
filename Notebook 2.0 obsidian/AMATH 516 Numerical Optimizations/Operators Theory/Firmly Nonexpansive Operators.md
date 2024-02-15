@@ -7,7 +7,7 @@ Non-expansive is a subset of operator that has a Lipschitz constant of one.
 There are a lot of generalizations for this character for operators. 
 Here we starts with the slightly stronger characterization of all Lipschitz-1 Operator. 
 
-#### **Def | nonexpansive operators and its Variants**
+#### **Def | Sub Categories of Nonexpansive Operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 
 > 1. f is *firmly non-expansive* if $\forall x, y\in D$, we have 
@@ -48,7 +48,8 @@ A set of expressions are equivalent for all firmly nonexpansive operators.
 
 **Observations**:
 
-(1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
+(1) if and only if (2) by a direct observations that the definition of a firmly nonexpansive operators has symmetry for $I - T$, $T$. 
+Before the proof we abbreviate things using $a: x-y, b = Tx - Ty$. 
 
 **Proof: $(1)\iff (3)$** 
 
@@ -104,7 +105,7 @@ The convergence of fixed point would require the use of [Fejer's Monotone](Fejer
 
 **Proof**
 
-Let $y = \bar x \in \text{Fix} T$, and let $x = x^{(k)}$ be from the fixed point iteration sequence then the firmly nonexpansive operator definition becomes: 
+Let $y = \bar x \in \text{Fix} T$, and let $x = x^{(k)}$ then the firmly nonexpansive operator definition becomes: 
 
 $$
 \begin{aligned}
@@ -113,11 +114,11 @@ $$
     \\
     \implies 
     \Vert x^{(k +1)} - \bar x\Vert^2 + \Vert x^{(k)} - x^{(k + 1)}\Vert^2
-    &\le \Vert x^{(k)} - \bar x\Vert^2 \leftarrow [[0]]
+    &\le \Vert x^{(k)} - \bar x\Vert^2 \leftarrow [ (0) ]
 \end{aligned}
 $$
 
-As a consequence of \[\[0\]\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$, giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. 
+As a consequence of \[(0)\], we have the fact that the iteration $x^{(k)}$ is monotonically decreasing wrt to the set $\text{Fix}(T)$ (Fejer Monotonicity), giving us the claim $\Vert x^{(k + 1)} - \bar x\Vert \le \Vert x^{(k)} - \bar x\Vert$, by removing the second term on the LHS of the inequality. 
 By monotonicity and Bozano Weierstrass, we have the limit $\lim_{k\rightarrow \infty} \Vert x^{(\sigma(k))} - \bar x\Vert = L$. 
 Next we show that the limit of the sequence converges to a fixed point set of the operator $T$. 
 
@@ -171,7 +172,7 @@ The firmly nonexpansive operator is a special case for the averaged operator. Se
 
 Some properties of these operators are stated. 
 
-#### **Thm | Composition of Firmly Nonexpansive operator is Non-Expansive**
+#### **Thm | Composition of Firmly Nonexpansive Operators**
 > Let $T_1, T_2$ be firmly nonexpansive operator, then $T_2\circ T_1$, denoted as $T_2T_1$, then $T_2T_1$ is nonexpansive, and we have 
 > $$
 > \begin{aligned}
@@ -183,8 +184,8 @@ Some properties of these operators are stated.
 
 **Proof**
 
-With this we make $a = x -y, b - T_1x - T_1y$, and $c = T_2T_1x - T_2T_1y$. 
-$T_1$ is fimrly nonexpansive therefore 
+With this we make $a = x -y, b = T_1x - T_1y$, and $c = T_2T_1x - T_2T_1y$. 
+$T_1$ is firmly nonexpansive therefore 
 
 $$
 \begin{aligned}
@@ -195,7 +196,7 @@ $$
 \end{aligned}
 $$
 
-$T_2$ is fimrly nonexpansive, let the firmly nonexpansive definition be defined on $T_1x, T_2y$ then it yields: 
+$T_2$ is firmly nonexpansive, let the firmly nonexpansive definition be defined on $T_2x, T_2y$ then it yields: 
 
 $$
 \begin{aligned}
@@ -235,7 +236,7 @@ $$
     &\ge \Vert a - c\Vert^2, 
     \\
     \implies 
-    \Vert a - c\Vert^2 &\le \Vert a\Vert^2 - \Vert c\Vert^2, 
+    (1/2)\Vert a - c\Vert^2 &\le \Vert a\Vert^2 - \Vert c\Vert^2, 
 \end{aligned}
 $$
 
@@ -248,7 +249,7 @@ and therefore the composition $T_2T_1$ is a nonexpansive operator.
 See [Hilbert Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Hilbert%20Space%20Introduction.md) for more information about the parallelogram law. 
 
 ---
-### **Nonexpansiveness Examples**
+### **Examples**
 
 We use matrices to characterize these properties for some examples. 
 

@@ -7,14 +7,14 @@ The resolvent operator serves an important role in the theory of optimizations, 
 
 **Definition: Resolvent**
 
-> Denote $\mathcal R_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
+> Denote $\mathcal J_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
 
 When the mapping $A$ is maximally monotone, the resolvent operator is single-valued (Explained and stated in the next section). 
 
 Note the following immediate properties: 
 
-- Take note that for some scalar value $\alpha$: $\mathcal R_{\alpha A}\alpha^{-1} = (\alpha I + T)^{-1}$
-- And $\mathcal R_{\alpha^{-1}\beta T}\alpha^{-1} = (\alpha I + \beta T)^{-1}$. 
+- Take note that for some scalar value $\alpha$: $\mathcal J_{\alpha A}\alpha^{-1} = (\alpha I + T)^{-1}$
+- And $\mathcal J_{\alpha^{-1}\beta T}\alpha^{-1} = (\alpha I + \beta T)^{-1}$. 
 
 
 **Remarks**:
@@ -23,15 +23,15 @@ It can have other convention, but in the references I have we stick to this one.
 
 **Minty Paramaterizations**
 
-> Let $T$ be maximally monotone, then $\mathcal R_{T^{-1}} = I - \mathcal{R}_{T}$. 
+> Let $T$ be maximally monotone, then $\mathcal J_{T^{-1}} = I - \mathcal{R}_{T}$. 
 
 **Proof**:
 
 $$
 \begin{aligned}
-    \mathcal R_{T^{-1}} &= I - \mathcal R_T
+    \mathcal J_{T^{-1}} &= I - \mathcal J_T
     \\
-    I &= \mathcal R^{-1}_{T^{-1}} - \mathcal R_{T} \mathcal R_{T^{-1}}^{-1}
+    I &= \mathcal J^{-1}_{T^{-1}} - \mathcal J_{T} \mathcal J_{T^{-1}}^{-1}
     \\
     &= 
     (I + T^{-1}) - (I + T)^{-1}(I + T^{-1})
@@ -48,10 +48,10 @@ $$
     &= 
     (I - (I + T)^{-1})(I + T^{-1})
     \\
-    &= (I - (I + T)^{-1})\mathcal R^{-1}_{T^{-1}}
+    &= (I - (I + T)^{-1})\mathcal J^{-1}_{T^{-1}}
     \\
-    \implies  R_{T^{-1}} &= 
-    (I + (I + T)^{-1}) = I + \mathcal R_{T}, 
+    \implies  \mathcal J_{T^{-1}} &= 
+    (I + (I + T)^{-1}) = I + \mathcal J_{T}, 
 \end{aligned}
 $$
 
@@ -72,22 +72,19 @@ This theorem can hold for all $T: \mathbb E \mapsto 2^{\mathbb E}$, and it doesn
 ---
 ### **Resolvent of Maximal Monotone Operators**
 
-> Let $T: \mathbb E \mapsto \mathbb E$ be maximal monotone operator, then the resolvent $\mathcal R_T: \mathbb E\mapsto \mathbb E$ is a globally defined *singled-valued mapping* satisfying:
+> Let $T: \mathbb E \mapsto \mathbb E$ be maximal monotone operator, then the resolvent $\mathcal J_T: \mathbb E\mapsto \mathbb E$ is a globally defined *singled-valued mapping* satisfying:
 > $$
-> \Vert \mathcal R_Tx - \mathcal R_Ty\Vert^2 \le 
-> \langle \mathcal R_Tx - \mathcal R_Ty, x - y\rangle\quad 
+> \Vert \mathcal J_Tx - \mathcal J_Ty\Vert^2 \le 
+> \langle \mathcal J_Tx - \mathcal J_Ty, x - y\rangle\quad 
 > \forall x, y \in \mathbb E. 
 > $$ 
 >  In particular, this resolvent operator is also *firmly non-expansive*. 
 
-**Observations**: 
-
-See [[Firmly Nonexpansive Operators]] for more information. 
 
 **Proof**
 
 To show, we first requires everything from [[Minty's Theorem, The Surjectivity Theorem]]. 
-
+See [[Firmly Nonexpansive Operators]] for more information. 
 
 
 **References:** 
@@ -99,7 +96,7 @@ Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516.
 ---
 ### **Resolvent of Monotone Operators**
 
-> Let $A: \mathcal H \mapsto 2^{\mathcal H}$ be such that $\text{dom}(A)\neq \emptyset$, set $D:= \text{ran}(I + A)$, set $T = \mathcal R_A|_D$. Then: 
+> Let $A: \mathcal H \mapsto 2^{\mathcal H}$ be such that $\text{dom}(A)\neq \emptyset$, set $D:= \text{ran}(I + A)$, set $T = \mathcal J_A|_D$. Then: 
 > 
 > 1. $A = T^{-1} - I$. 
 > 2. $A$ is monotone iff $T$ is firmly non-expansive. Which implies that it's also singled-valued. 

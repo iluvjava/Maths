@@ -26,7 +26,8 @@ This is also based on Kryzig's textbook on functional analysis.
 ---
 ### **Orthogonal Complements In Hilbert Spaces**
 
-We discuss the properties of orthogonal complements and their properties. Please read carefully since they are not exactly the same as in finite dimensional inner product spaces. 
+We discuss the properties of orthogonal complements and their properties. 
+Please read carefully since they are not exactly the same as in finite dimensional inner product spaces. 
 
 #### **Def | Orthogonal Complement Subspace**
 > Let $Y\subseteq \mathcal H$ be a subspace, then we define the orthogonal complement to be $Y^\perp := \{x\in \mathcal H | x \perp Y\}$. 
