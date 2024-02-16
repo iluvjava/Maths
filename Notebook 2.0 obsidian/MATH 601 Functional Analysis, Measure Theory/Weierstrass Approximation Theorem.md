@@ -68,5 +68,40 @@ Observe that if $X\sim \text{Binomial}(n, k, p)$  then $\mathbb{P}\left(X = k\ri
 > 1. $B_n[x] = x$, 
 > 2. $B_n[x] = x^2 + (x - x^2)/n$. 
 
+**Proof**
+
+Directly from the definition we have 
+
+$$
+\begin{aligned}
+    B_n[x](x) &= \sum_{k=0}^n \frac{k}{n}P_k^n(x)
+    \\
+    &= \sum_{ k =0}^{n}\frac{k}{n} \frac{n!}{k!(n - k)!} x^k(1 - x)^{n - k}
+    \\
+    &= \sum_{k = 1}^{n} \frac{(n - 1)!}{(k - 1)!(n - k!)}x^k (1 - x)^{n - k}
+    \\
+    k = k' + 1 \implies
+    &= 
+    \sum_{k' = 0}^{n - 1}\frac{(n - 1)!}{k'!(n - k' - 1)!} x^{k' + 1}(1 - x)^{n - k'-1}
+    \\
+    &= x \sum_{k' = 0}^{n - 1}
+    \mathbf C_k^{n - 1}x^{k'} (1 - x)^{n - 1- k'} = x. 
+\end{aligned}
+$$
+
+The second equality would take some more efforts. 
+
+
+
+---
+### **Probability Interpretations of the Convergence of Bernstein Transformation**
+
+This interpretation is listed on the Wikipedia page and we shall investigate. 
+It's intuitive but it's not elementary. 
+
+
+---
+### **Weierstrass Approximation Theorem**
+
 
 
