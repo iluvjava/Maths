@@ -226,6 +226,7 @@ By continuity of non-expansive operators, we have $G x^+ = Gx^+$, hence, a clust
 **Remarks**
 
 The assumption of the existence of a fixed point set is quite usual. 
+However this proofs hinges on the fact that we are in finite dimensions. 
 In the case where the averaged operator is the gradient descent operator, a function such as $\exp(x)$ will have a gradient operator: $x - \exp(x)$ that never has a fixed point to it. 
 That is the case when things doesn't converge. 
 
@@ -233,6 +234,7 @@ That is the case when things doesn't converge.
 ### **Composition of Averaged Operators**
 
 The composition of averaged operator is still an averaged operator, but with a different constant $\theta$. 
+
 
 
 
@@ -283,7 +285,8 @@ $$
 \end{aligned}
 $$
 
-and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. To do that we simply fit the form 
+and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
+To do that we simply fit the form 
 
 $$
 \begin{aligned}
@@ -301,4 +304,5 @@ with that we have $\eta = 2\theta /L$, whenever $\eta \in (0, L/2)$, with that w
 **Remarks**
 
 A question for the reader, can $I - \eta \nabla f$ be firmly non-expansive? 
+A question for the reader, what is the sufficient conditions to assert the convergence of the gradient descent algorithm? 
 

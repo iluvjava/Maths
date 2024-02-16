@@ -234,7 +234,7 @@ Therefore, this is an incomplete metric space.
 > Let $X$ be the set of polynomial on a closed interval $[a, b]$, then the metric $\Vert \cdot\Vert_\infty$ is incomplete. 
 
 Any polynomial that converges uniformly to some real function $f$ on $[a, b]$ that is not a polynomial is an example of a Cauchy sequence that punch a hole in this set after the limit by converging to a function that is not polynomial. Uniform convergence is need for this metric: $\Vert \cdot\Vert_\infty$ so that the metric of the sequence is Cauchy But as we know that not all uniform limit of Polynomials can provide us with a polynomials. Therefore this is incomplete. 
-- Polynomial Uniformly converges to a non-polynomial. ([[../Weierstrass Approximation Theorem]]) But the limit is a continuous function nonetheless. 
+- Polynomial Uniformly converges to a non-polynomial. ([[Bernstein Polynomials]]) But the limit is a continuous function nonetheless. 
 - Uniform convergence -> Cauchy sequences in the $\Vert \cdot\Vert_\infty$ metric. 
 - But the limit is not a polynomial. 
 
