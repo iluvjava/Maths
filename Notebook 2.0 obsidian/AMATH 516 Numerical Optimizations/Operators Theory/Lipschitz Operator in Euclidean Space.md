@@ -1,6 +1,12 @@
 - [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md)
 
 ---
+### **Intro**
+
+See [Lipschitz Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md) for operator theory in the infinite dimensions. 
+
+
+---
 ### **Lipschitz Operator**
 
 > And operator is called *Lipschitz* with a constant $L$ when for any $(u, v)\in \text{gph}(F), u \in F(x), v \in F(y)$ we have the inequality: 

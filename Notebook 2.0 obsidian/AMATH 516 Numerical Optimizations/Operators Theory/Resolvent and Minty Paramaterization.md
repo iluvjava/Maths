@@ -1,11 +1,14 @@
-[[Monotone Operators]], [[Minty's Theorem, The Surjectivity Theorem]], [[Firmly Nonexpansive Operators]]. 
+- [[Monotone Operators]]
+- [[Minty's Theorem, The Surjectivity Theorem]]
+- [[Firmly Nonexpansive Operators]]. 
+- [Resolvent Operators](Resolvent%20Operators.md)
 
 ---
 ### **Resolvent and Minty Re-paramatrizations**
 
 The resolvent operator serves an important role in the theory of optimizations, it's part of the operator theory. 
 
-**Definition: Resolvent**
+**Definition | Resolvent**
 
 > Denote $\mathcal J_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
 
@@ -57,7 +60,9 @@ $$
 
 which completes the proof. 
 
-**References**: Heniz's book, 23.18
+**References**: 
+
+Heniz's book, 23.18
 
 **Remarks**
 
@@ -83,13 +88,12 @@ This theorem can hold for all $T: \mathbb E \mapsto 2^{\mathbb E}$, and it doesn
 
 **Proof**
 
-To show, we first requires everything from [[Minty's Theorem, The Surjectivity Theorem]]. 
-See [[Firmly Nonexpansive Operators]] for more information. 
+See [Resolvent Operators](Resolvent%20Operators.md) for more information. 
 
 
 **References:** 
 
-Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516. 
+Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516. Professor Heinz MATH 565 at UBCO
 
 
 
@@ -102,8 +106,13 @@ Theorem 3.78 of Dimitri's Convex Analysis textbook for MATH 516.
 > 2. $A$ is monotone iff $T$ is firmly non-expansive. Which implies that it's also singled-valued. 
 > 3. $A$ is max monotone iff T is firmly non-expansive and $D = \mathcal H$. 
 
+**Proof**
 
-**References:** Prop 23.9 in Heinz's book. See the Bloyd Primer on monotone operators paper for more good info. 
+Not yet written. 
+
+**References:**
+
+Prop 23.9 in Heinz's book. See the Bloyd Primer on monotone operators paper for more good info. 
 
 
 

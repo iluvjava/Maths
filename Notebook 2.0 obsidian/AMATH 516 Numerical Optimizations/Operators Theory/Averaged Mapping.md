@@ -2,12 +2,15 @@
 aliases:
   - Averaged Operators
 ---
-[[Introduction to Operators for Optimizations]], [[Firmly Nonexpansive Operators]]
+- [Lipschitz Operator in Euclidean Space](Lipschitz%20Operator%20in%20Euclidean%20Space.md)
+- [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md)
 
 ---
 ### **Intro**
 
-Average operator is non-expansive. Firmly non-expansive operators are a subset of averaged operators. 
+Average operator is non-expansive. 
+Firmly non-expansive operators are a subset of averaged operators. 
+Averaged operators are the super set of firmly non-expansive operators and the subset of non-expansive operators. 
 
 #### **Def-1 | Averaged Operator**
 
@@ -124,7 +127,7 @@ $$
     (1 - \theta)\Vert x^{(k)} - \bar x\Vert^2
     + 
     \theta 
-    \underbrace{\Vert Gx^{(k)} - \bar x\Vert^2}_{\le \Vert x^{(k)} - \bar [x\Vert^2\; \leftarrow [[1]], }
+    \underbrace{\Vert Gx^{(k)} - \bar x\Vert^2}_{\le \Vert x^{(k)} - \bar [x\Vert^2\; \leftarrow [1](1), }
     - \theta (1 - \theta)\Vert Gx^{(k)} - x^{(k)}\Vert 
     \\
     & \le 
@@ -132,7 +135,7 @@ $$
 \end{aligned}
 $$
 
-at `[[1]]`, $\bar x$ is a fixed point of $F$, hence also a fixed point of $G$. immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recursion, we have: 
+at `[1](1)`, $\bar x$ is a fixed point of $F$, hence also a fixed point of $G$. immediately observe that it's decreasing monotonically, and that gives an recursion to work with, unrolling the recursion, we have: 
 
 $$
 \begin{aligned}
@@ -147,7 +150,8 @@ $$
 \end{aligned}
 $$
 
-the series converges by the fact that it's positive and bounded above, therefore the limit of $Gx^{(j)} - x^{(j)}$ equals to the zero vector. Therefore it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. Additionally, the rate of the convergence can be derived using the monotone convergence property of the series: 
+the series converges by the fact that it's positive and bounded above, therefore the limit of $Gx^{(j)} - x^{(j)}$ equals to the zero vector. 
+Therefore it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. Additionally, the rate of the convergence can be derived using the monotone convergence property of the series: 
 $$
 \begin{aligned}
     (k + 1)
@@ -175,13 +179,14 @@ Therefore, the squared norm of the residuals, The minimum norm of all iterations
 
 For a function whose gradient is Lipschitz smooth with constant $L$, we have $1/L \nabla f(x)$ being non-expansive. 
 
-The above bound is pessimistic. It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend The Basics](../Smooth%20Gradient%20Descend%20The%20Basics.md), more specifically the smooth descend frameworks. 
+The above bound is pessimistic. 
+It's not clear whether it's tight or not, and in what sense that it can be optimal. This derivation is extremely similar to what we had for [Smooth Gradient Descend The Basics](../Smooth%20Gradient%20Descend%20The%20Basics.md), more specifically the smooth descend frameworks. 
 
-For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [[Fejer's Monotone]] for more information. 
+For more about the theories for Fejer montone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [Fejer's Monotone](Fejer's%20Monotone.md) for more information. 
 
 **Reference**: 
 
-See Primer on Monotone Operator for more information. [[../../MATH 999 Paper Reviews and Frontier Mathematics/References Sep 2022/Primer on Monotone Operators.pdf | Primer on Monotone Operator]]. 
+See Primer on Monotone Operator for more information. [ Primer on Monotone Operator](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf%20). 
 
 
 ---
@@ -236,7 +241,7 @@ $$
     - 
     2 \eta \langle x - y, \nabla f(x) - \nabla f(y)\rangle, 
     \\
-    &  \textcolor{gray}{\triangleright {[[1]]}:\text{Using Co-coersive property :}}
+    &  \textcolor{gray}{\triangleright {[1](1)}:\text{Using Co-coersive property :}}
     \\
     &\quad\quad
     {\small
@@ -259,7 +264,7 @@ $$
 \end{aligned}
 $$
 
-and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[[1]]` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. To do that we simply fit the form 
+and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. To do that we simply fit the form 
 
 $$
 \begin{aligned}

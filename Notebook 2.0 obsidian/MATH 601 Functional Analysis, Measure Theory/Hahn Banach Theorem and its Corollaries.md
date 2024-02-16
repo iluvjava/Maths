@@ -39,7 +39,7 @@ choose any $x_0\in Z$, then we have $f(x_0) = \tilde f(x_0)$, hence, the above c
 
 
 #### **Corollary-1 (4.3-3) | Bounded Linear Functional Theorem**
-> Let $X$ be a normed space and $x_0 \neq \mathbf 0$ be any element of $X$, then there exists a bounded linear functional $\tilde f$ such that $\Vert \tilde f\Vert = 1, \tilde f(x_0) = \Vert x_0\Vert$. 
+> Let $X$ be a normed space and $x_0 \neq \mathbf 0$ be any element of $X$, then there exists a bounded linear functional $\tilde f$ form the dual space such that $\Vert \tilde f\Vert = 1, \tilde f(x_0) = \Vert x_0\Vert$. 
 
 **Proof**: 
 
