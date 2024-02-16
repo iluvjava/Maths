@@ -64,6 +64,12 @@ $$
 \end{aligned}
 $$
 
+We know define the regular subgradient. 
+We already did in the introduction but we will do it again here using the new notations. 
+
+#### **Definition | Regular Subgradient**
+> 
+
 
 #### **Claim | Second Order Lower Model**
 > Let $v \in \hat \partial f(\bar x)$, if and only if there exists $\varphi(x - \bar x)$ such that $\mathbb D_f (x, \bar x | v) \ge \varphi(x - \bar x)$ and $\nabla \varphi (\bar x) = \mathbf 0$. 
@@ -130,6 +136,10 @@ On the second line we take the limit and dividing by nonzero quantity $\Vert x -
 The limit moves in because $\min(x, 0)$ is a continuous function. 
 Next, the existence of the limit implies that existence of minimal subsequantial limit and therefore we exchange $\lim$ for $\liminf$. 
 Finally, since $\min(\cdot, 0) = 0$ for the subsequential limit, it means the other term inside of it must have a positive limit. 
+
+**Remarks**
+
+The above characterization is equivalent to the definition of regular subgradient. 
 
 #### **Claim | Differentiable Lower Bounding Functions**
 > $v\in \hat \partial f(\bar x)$ if and oly if there exists $h : \mathbb R^n \mapsto \mathbb R$ such that $h$ is differentiable at $\bar x$ with $f(x) \ge h(x), f(\bar x) = h (\bar x)$ and $\nabla f(\bar x) = v$. 

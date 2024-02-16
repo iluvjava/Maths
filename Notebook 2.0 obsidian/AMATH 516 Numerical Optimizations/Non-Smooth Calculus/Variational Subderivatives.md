@@ -105,8 +105,7 @@ For contradiction let's assume that we have $h(x) = \langle v, w\rangle$ for all
 
 $$
 \begin{aligned}
-    \forall w \in \mathbb R^n 
-    : 
+    \forall w \in \mathbb R^n : 
     \lim_{\substack{\tau\searrow 0 \\ w' \rightarrow \bar w}}
     \frac{f(\bar x + \tau) - f(\bar x)}{\tau}
     &= \langle v, w\rangle. 
@@ -144,9 +143,10 @@ This contradiction the assumption we made, therefore the converse is proven and 
 ### **Local Lipschitz Continuity**
 
 Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
-It simplisifes so it only has one limit occuring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
+It simplifies so it only has one limit occurring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
 
-#### Thm | 
+#### **Thm | Dini Hadamard under Locally Lipschitz Conditions**
+
 
 
 
