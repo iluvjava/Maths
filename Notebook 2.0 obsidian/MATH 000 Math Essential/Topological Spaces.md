@@ -59,4 +59,6 @@ For example, when $\text{cl}(C) = \mathcal X$, then the set $C$ is dense. And $x
 
 > $x_1, x_2 \in \mathcal X$, with $x_1 \neq x_2$, then exists $V_2 \in \mathcal V(x), V_2\in \mathcal V(x)$ such that $V_1\cap V_2 = \emptyset$. 
 
-Almost all spaces involved in analysis is Hausdorff space. In $\mathcal H$ spaces, 2 open half spaces will be able to separate 2 points in the topology of $\mathcal H$. 
+
+Almost all spaces involved in analysis is Hausdorff space. 
+In $\mathcal H$ spaces, 2 open half spaces will be able to separate 2 points in the topology of $\mathcal H$. 

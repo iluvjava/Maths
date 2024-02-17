@@ -140,7 +140,9 @@ therefore, the equality is achieved and the operator norm of any $f\in \mathcal 
 
 **Demonstrations**
 
-We find an upper bound and then push it to the upper bound using a specific vector. Consider any linear functional, and the special mapping $T$ as defined from before. Consider any $x \in \mathbb R^n$: 
+We find an upper bound and then push it to the upper bound using a specific vector. 
+We verify the results. 
+Consider any linear functional, and the special mapping $T$ as defined from before. Consider any $x \in \mathbb R^n$: 
 
 $$
 \begin{aligned}
@@ -154,7 +156,8 @@ $$
 \end{aligned}
 $$
 
-This would mean that, the norm of the operator $f$, will be bounded by $\Vert Tf\Vert_1$, the one norm on the vector representation of operator $f$. Next we consider a special $x_0$: 
+This would mean that, the norm of the operator $f$, will be bounded by $\Vert Tf\Vert_1$, the one norm on the vector representation of operator $f$. 
+Next we consider a special $x_0$: 
 
 $$
 \begin{aligned}
@@ -171,7 +174,8 @@ $$
 \end{aligned}
 $$
 
-therefore, equality can be achieved by using $x_0$, and therefore, the norm that is dual to $\Vert \cdot\Vert_\infty$ is $\Vert \cdot\Vert_1$. On the last line, we make us of the fact that $\text{sign}(x)x = |x|$. 
+therefore, equality can be achieved by using $x_0$, and therefore, the norm that is dual to $\Vert \cdot\Vert_\infty$ is $\Vert \cdot\Vert_1$. 
+On the last line, we make us of the fact that $\text{sign}(x)x = |x|$. 
 
 #### **Example-3 | Infinity Norm and 1 Norm Sequence Space**
 > The spaces $l^\infty$ and $l^1$ are dual spaces to each other. 

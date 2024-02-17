@@ -1,3 +1,4 @@
+
 ### **Intro**
 
 Dual norm denoted as $\Vert \cdot\Vert_\star$ is defined for a norm $\Vert \cdot\Vert$ in $\mathbb E$. Here it's the definition: 
@@ -8,7 +9,7 @@ $$
 \right\rbrace
 $$
 
-Which is just simply, the objective value of a linear program on the convex set $\Vert x\Vert$ defined by the norm ball in the euclidean space. Note, it's also the support function of a specific unit norm ball. See [[Support Function]] for more info. 
+Which is just simply, the objective value of a linear program on the convex set $\Vert x\Vert$ defined by the norm ball in the Euclidean space. Note, it's also the support function of a specific unit norm ball. See [[Support Function]] for more info. 
 
 The idea is very useful for duality and looking for the prox of some functions that involves the use of some type of norms. 
 

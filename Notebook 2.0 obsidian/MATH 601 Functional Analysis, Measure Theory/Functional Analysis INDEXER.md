@@ -31,7 +31,7 @@ Theorems In red means it's unfinished. Theorem with only statement and reference
 **Hilbert Space**
 - [Hilbert Space Projection Theorem | Characterizations of Hilbert Space Projection | Obtuse Angle Theorem | Orthogonal Decomposition in Hilbert Space | Projection onto Orthogonal Basis | Bessel's Inequality | Parseval's Relations | Maximal Basis Characterizations | Equivalences for Total Orthogonal Basis Sequence | Separability and Basis](Functional%20Spaces/Hilbert%20Space%20Introduction.md)
 - [Properties of the Adjoint Operators | Complementary Spaces via Adjoint Operators | Theorem of Injectivity](Linear%20Mapping%20in%20Hilbert%20Space.md)
-- <mark style="background: #FF5582A6;"> [Weierstrass Approximation Theorem](Weierstrass%20Approximation%20Theorem.md)</mark>
+- <mark style="background: #FF5582A6;"> [Bernstein Polynomials](Bernstein%20Polynomials.md)</mark>
 
 
 **Miscs**

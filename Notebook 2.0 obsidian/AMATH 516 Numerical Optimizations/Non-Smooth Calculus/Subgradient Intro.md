@@ -42,7 +42,7 @@ Motivate by the fact that, under non-convex case, for some functions, the subgra
 One famous such example is $x^3$ at the point $x = 0$, which it doesn't have a subgradient  because it's impossible to separate the non-convex epigraph from all other points using a tangent plane at $x = 0$ for $x^3$. 
 Rockafellar thought of this and extended the definition, we call it the regular subgradient, or the variational subgradient. 
 
-**Definition | Generalized Subgradient (Regular Subgradient)**
+**Definition | Regular Subgradient**
 
 > Let $f$ be $\mathbb E \mapsto \mathbb{\bar R}$, let $g$ be part of the sub-gradient, and let $x\in \text{dom}(f)$, then
 > 

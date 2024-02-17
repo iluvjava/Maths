@@ -5,14 +5,14 @@ alias: Fenchel Conjugate Examples
 Here, I will summarize some of the examples we had for convex conjugates of different functions.
 They will be from HW, some of the notes for the courses, the goal is to make it more organized, and everything in place so we have references for the future. 
 
-- [[Convex Conjugation Introduction]]
+- [Convex Conjugation Introduction](Convex%20Conjugation%20Introduction.md)
 
 
 Major References: The HW for AMATH 515. 
 
 ### **Intro**
 
-Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function. When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [[Biconjugate Theorem]]. 
+Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function. When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [Biconjugate Theorem](Biconjugate%20Theorem.md). 
 
 
 #### **Def-1: Fenchel Conjugate Transform** 
@@ -133,7 +133,7 @@ $$
 > [!details]-
 > 
 > **Demonstrations**
-> This is direct from the definition because $\sup_{x\in X}\{\langle x, y\rangle - \delta_Q(x)\} = \sup_{x\in Q}\{\langle x, y\rangle\} = \sigma_Q(y)$ by the definition of a support function. See [[../CVX Analysis/Support Function]] for more context for it. 
+> This is direct from the definition because $\sup_{x\in X}\{\langle x, y\rangle - \delta_Q(x)\} = \sup_{x\in Q}\{\langle x, y\rangle\} = \sigma_Q(y)$ by the definition of a support function. See [Support Function](../CVX%20Analysis/Support%20Function.md) for more context for it. 
 
 ---
 ### **The Exponential on $\mathbb R$**
@@ -286,7 +286,7 @@ $$
 > \end{aligned}
 > $$
 > 
-> at the first equality, we make use of the previous examples of the dual on indicator function of sets, the second equality is the definition of support function, and the last equality is the definition of dual norm, see [[../Background/Dual Norm]] for more information. 
+> at the first equality, we make use of the previous examples of the dual on indicator function of sets, the second equality is the definition of support function, and the last equality is the definition of dual norm, see [Dual Norm](../Background/Dual%20Norm.md) for more information. 
 
 
 ---
@@ -580,7 +580,7 @@ where $x\in \mathbb R^n$, assume we are in finite Euclidean space, and $z\in \ma
 ---
 ### **2-Norm Affine Composite $\Vert Ax - b\Vert_2^2$, with Full Rank $A$**
 
-The Dualization procedures can be found using the Fenchel's Identity, this example illustrate this techniques since otherwise it's harder to find the dual of this function. Recall [[Fenchel Identity, Inequality]]. 
+The Dualization procedures can be found using the Fenchel's Identity, this example illustrate this techniques since otherwise it's harder to find the dual of this function. Recall [Fenchel Identity, Inequality](Fenchel%20Identity,%20Inequality.md). 
 
 In this case the sub-gradient will be replaced by gradient. Assume that that matrix $A$ is **full rank**, so that $A^TA$ can be reversed. 
 
@@ -623,7 +623,7 @@ The variable $z$ for the conjugate function is the decision variables for th dua
 ---
 ### **Conjugate of Infimal Convolutions** $(f\square g)^\star$
 
-The infimal convolution has epigraphical interpretations that makes the resulting form of the conjugate very beautiful. See [[../CVX Geometry/Infimal Convolution and its Properties]] for more information. 
+The infimal convolution has epigraphical interpretations that makes the resulting form of the conjugate very beautiful. See [Infimal Convolution and its Properties](../CVX%20Geometry/Infimal%20Convolution%20and%20its%20Properties.md) for more information. 
 
 **Remarks**: 
 

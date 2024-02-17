@@ -43,7 +43,7 @@ $$
 $$
 
 Please compare this quantity to [Bregman Divergence](Bregman%20Divergence.md), and see that this is a generalization of a Bregman Divergence to function that are not necessarily differentiable. 
-With this we may also represent a differentiable function (See [Frechet, Gataux Differentiability Euclidean Space](Frechet,%20Gataux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
+With this we may also represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
 Let $f : \mathbb R^n \mapsto \mathbb {\bar R}$ be a differentiable at $\bar x \in \mathbb R^n$ if and only if there exists $v \in \mathbb R^n$ such that 
 
 $$
@@ -63,6 +63,12 @@ $$
     \frac{ \mathbb D_f(x, \bar x | v)}{\Vert x -\bar x\Vert} = 0
 \end{aligned}
 $$
+
+We know define the regular subgradient. 
+We already did in the introduction but we will do it again here using the new notations. 
+
+#### **Definition | Regular Subgradient**
+> 
 
 
 #### **Claim | Second Order Lower Model**
@@ -131,6 +137,10 @@ The limit moves in because $\min(x, 0)$ is a continuous function.
 Next, the existence of the limit implies that existence of minimal subsequantial limit and therefore we exchange $\lim$ for $\liminf$. 
 Finally, since $\min(\cdot, 0) = 0$ for the subsequential limit, it means the other term inside of it must have a positive limit. 
 
+**Remarks**
+
+The above characterization is equivalent to the definition of regular subgradient. 
+
 #### **Claim | Differentiable Lower Bounding Functions**
 > $v\in \hat \partial f(\bar x)$ if and oly if there exists $h : \mathbb R^n \mapsto \mathbb R$ such that $h$ is differentiable at $\bar x$ with $f(x) \ge h(x), f(\bar x) = h (\bar x)$ and $\nabla f(\bar x) = v$. 
 
@@ -145,6 +155,8 @@ $$
 The reader should convince yourself in your head that $f(\bar x) = h(\bar x)$ and $f(x) \ge h(x)$. 
 Next, we need to show the equivalent between the condition $v \in \hat \partial f(\bar x)$ and $v = \nabla f(\bar x)$. 
 The proof is similar to what we had for the previous proof. 
+
+
 
 
 ---

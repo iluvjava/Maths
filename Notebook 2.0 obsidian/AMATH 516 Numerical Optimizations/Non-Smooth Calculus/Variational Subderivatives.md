@@ -41,6 +41,11 @@ Dini-Hadmard variational sub-derivative tells us how a function behaves near a g
 
 For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
 
+**Obesrvations**
+
+When $u = \mathbf 0$, we would have $df(x | \mathbf 0 ) = 0$ for all $f$, for all $x$. 
+This is by the definiton. 
+
 **Remarks**:
 
 Immediately Observe the Equivalence to the tangent cone definitions [[../Background/Tangent Cone]] on the epigraph of the function: 
@@ -80,12 +85,67 @@ Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of point
 ---
 ### **Recovering Fenchet Differentiability**
 
+The definition of Dini-Hadmard variational subderivatives breaks the definition of other type of variational derivatives down to small components. 
+To illustrate, we consider the following claims that proposed an equivalent characterizations of the Fenchet Differentiability. 
+
+#### **Claim | Sufficient for Fenchet Differentiability**
+> $F$ is differentiable if and only if 
+> $$
+>   \forall w \in \mathbb R^n\quad  h(w)= 
+>   \lim_{\substack{\lambda\searrow 0 \\ w' \rightarrow \bar w}}
+>   \frac{f(\bar x - \lambda w') - f(\bar x)}{\Vert x - \bar x \Vert}. 
+> $$
+> And $h(w)$ is a linear function. 
+
+**Proof**
+
+If $f$ is Frenchet differentiable, then the above conditions are true since it's just much stronger by the definition. 
+Let $f$ bt non-differentiable, then the definition of Fenchet derivative is false. 
+For contradiction let's assume that we have $h(x) = \langle v, w\rangle$ for all $w \in \mathbb R^n$ and we have: 
+
+$$
+\begin{aligned}
+    \forall w \in \mathbb R^n : 
+    \lim_{\substack{\tau\searrow 0 \\ w' \rightarrow \bar w}}
+    \frac{f(\bar x + \tau) - f(\bar x)}{\tau}
+    &= \langle v, w\rangle. 
+\end{aligned}
+$$
+
+Assuming the $f$ is not Fenchet differentiable, there exists sequence $(x^{(\gamma)})_{\gamma\in \mathbb N}$ such that 
+
+$$
+\begin{aligned}
+  \frac{f(x^{(\gamma)}) - f(\bar x) - \langle v, x^{(\gamma)} - \bar x\rangle}{
+    \Vert x^{(\gamma)} - \bar x\Vert
+  } \rightarrow 
+  \beta &\neq 0, 
+\end{aligned}
+$$
+
+By the fact that $f$ is not differentiable at $\bar x$. 
+Set $\tau_\gamma = \Vert x^{(\gamma)} - \bar x\Vert$, then $w^{(\gamma)} = (x^{(\gamma)} - \bar x) / \tau_{\gamma}$, and therefore the limit simplifies to 
+
+$$
+\begin{aligned}
+    \frac{f(\bar x + \tau_\gamma w^{(\gamma)}) - f(\bar x)}{
+        \tau_\gamma
+    } - \langle v, w^{(\gamma)}\rangle \rightarrow \beta. 
+\end{aligned}
+$$
+By definition, we have $\Vert w^{(\gamma)}\Vert = 1$, since we are in $\mathbb R^n$, there exists some subsequential limit say $w^{(\rho)}$ such that it converges. 
+Therefore, the above claim won't be equal to zero. 
+This contradiction the assumption we made, therefore the converse is proven and the limit is sufficient for Frenchet differentiability. 
+
 
 
 ---
 ### **Local Lipschitz Continuity**
 
 Lipschitz continuous function simplifies the definition of the Dini-Hadamard subderivatives. 
+It simplifies so it only has one limit occurring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
+
+#### **Thm | Dini Hadamard under Locally Lipschitz Conditions**
 
 
 
