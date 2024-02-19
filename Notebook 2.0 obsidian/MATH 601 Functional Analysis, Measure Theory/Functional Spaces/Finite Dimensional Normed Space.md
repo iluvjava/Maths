@@ -129,16 +129,22 @@ that is the counter example for sure.
 
 For functional analysis, different type of compactness turns out to be all equivalent in metric space. We will refer to *sequential compact* just as: *compact*. 
 
-**Lemma-2 | Compactness is Closed and Bounded**
+#### **Lemma-2 | Compactness is Closed and Bounded**
 > Compact subset $M$ of a metric space is, closed and bounded. 
 
 **Proof**
 
-The closure is direct from the definition, take $x\in \text{cl}(M)$, then for every $x$, there is an epsilon region around it to construct a sequence $x_n \in M$ for all $n\in \mathbb N$ such that $\lim_{n\rightarrow \infty}$. The sequence itself is a subsequence, hence its limit is in $M$ by definition of compactness. The set is bounded because if it's not, then $(x_n)_{n\in \N}$ has $\Vert x_n\Vert$ approaching infinity, hence, all of it's subsequence never converges because they are not even bounded in the first place.
+The closure is direct from the definition, take $x\in \text{cl}(M)$, then for every $x$, there is an epsilon region around it to construct a sequence $x_n \in M$ for all $n\in \mathbb N$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
+The sequence itself is convergence and it can be its own subsequence, hence its limit is in $M$ by definition of compactness. 
+Hence it's closed. 
+The set is bounded because if it's not, then $(x_n)_{n\in \N}$ has $\Vert x_n\Vert$ approaching infinity, hence, all of it's subsequence never converges because they are not even bounded in the first place.
 
 **Remarks**: 
 
-The converse is not true. Consider the set of canonical basis $\{e_n\} \in l^2$, they are bounded with $\Vert e_1\Vert = 1$, but all of the points are $\sqrt{2}$ distance away in the 2-normed sequence space. They are all singletons and the the set has no accumulation points. This set is now closed and bounded. We now consider the sequence $(e_n)_{i\in \N}$, which is not gonna have any convergent subsequence. It's never Cauchy. 
+The converse is not true. Consider the set of canonical basis $\{e_n\} \in l^2$, they are bounded with $\Vert e_1\Vert = 1$, but all of the points are $\sqrt{2}$ distance away in the 2-normed sequence space. 
+They are all singletons and the the set has no accumulation points. 
+This set is now closed and bounded. 
+We now consider the sequence $(e_n)_{i\in \N}$, which is not gonna have any convergent subsequence. It's never Cauchy. 
 
 
 **References:** 
@@ -332,7 +338,9 @@ The converse is true, trivially from previous theorem.
 
 **Proof**: 
 
-Let $X$ be an infinite dimensional linear space, we use the Riesz lemma to make a sequence of vector that definitely doesn't have converging subsequence. Choose any $x_1\in X$ such that $\Vert x_2\Vert = 1$, let $X_1 = \text{span}(x_1)$, then we can choose $\Vert x_2\Vert$ such that $\Vert x_1 - x_2\Vert \ge 1/2$, by Riezs Lemma. So: 
+Let $X$ be an infinite dimensional linear space, we use the Riesz lemma to make a sequence of vector that definitely doesn't have converging subsequence. 
+Choose any $x_1\in X$ such that $\Vert x_2\Vert = 1$, let $X_1 = \text{span}(x_1)$, then we can choose $\Vert x_2\Vert$ such that $\Vert x_1 - x_2\Vert \ge 1/2$, by Riezs Lemma. 
+So: 
 $$
 \begin{aligned}
     & \text{def} X_2 = \text{span}(x_1, x_2)

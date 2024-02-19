@@ -2,7 +2,6 @@
 alias: Nonexpansive Operator
 
 ---
-
 - [Lipschitz Operator in Euclidean Space](Lipschitz%20Operator%20in%20Euclidean%20Space.md)
 - [Strong and Weak Convergences Introduction](Strong%20and%20Weak%20Convergences%20Introduction.md)
 
@@ -85,7 +84,7 @@ Finally, the cross term approches zero by the weak convergence of $x_n \righthar
 If we only have $x_n - Tx_n \rightarrow \mathbf 0$, it won't mean that $x_n$ converges to anything. 
 Imagine the case where $T$ is just the identity operator. 
 Therefore, here we provide the sufficient conditions to show $x_n \rightarrow T x_n$, which requires $x_n \rightharpoonup x$. 
-The theoerem characterize one way where a sequence can converge to the fixed point of an operator. 
+The theorem characterize one way where a sequence can converge to the fixed point of an operator. 
 
 
 #### **Thm | Existence of a Fixed Point Set**
@@ -123,5 +122,5 @@ $$
 $$
 
 From the above claim we have $\lambda\nearrow 1$ implies $\Vert x_0 - Tx_\lambda\Vert \rightarrow 0$. 
-Since the set $C$ is bounded, then for all sequence of $x_{\lambda_n}$ with $\lambda \nearrow 1$, we will have a subsequence of it say $x_{\lambda(n)} = z_n \in C$ such that it weakly converges to some number $z\in C$. 
-Now we are in Hilbert space and we have a sequence $z_n \rightharpoonup z$, and $\Vert x_0 - T z_n\Vert \rightarrow 0$, using the demi-closure principle we know that $z$ is a fixed point of operator $T$. 
+Since the set $C$ is bounded, then for all sequence of $x_{\lambda_n}$ with $\lambda \nearrow 1$, we will have a subsequence of it (Every bounded sequence in Hilbert space has a weakly convergence subsequence) say $x_{\lambda(n)} = z_n \in C$ such that it weakly converges to some number $z\in C$. 
+Now we are in Hilbert space and we have a sequence $z_n \rightharpoonup z$, and $\Vert x_0 - T z_n\Vert \rightarrow 0$, using the demi-closure principle we know that $z$ is a fixed point of operator $T$.

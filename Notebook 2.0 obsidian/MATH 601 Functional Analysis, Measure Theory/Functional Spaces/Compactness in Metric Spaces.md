@@ -1,7 +1,6 @@
 - [Convergence, Completeness in Metric Space](Convergence,%20Completeness%20in%20Metric%20Space.md), we are talking about convergence subsequence in here. 
 - [Continuous Mapping in Metric Spaces](Continuous%20Mapping%20in%20Metric%20Spaces.md), we are using continuity here. 
 
-
 ---
 ### **Intro**
 
