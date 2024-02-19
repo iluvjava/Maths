@@ -1,3 +1,8 @@
+---
+alias: Nonexpansive Operator
+
+---
+
 - [Lipschitz Operator in Euclidean Space](Lipschitz%20Operator%20in%20Euclidean%20Space.md)
 - [Strong and Weak Convergences Introduction](Strong%20and%20Weak%20Convergences%20Introduction.md)
 
@@ -35,6 +40,7 @@ See [this](https://math.stackexchange.com/questions/739168/subspace-of-hilbert-s
 **Observations**
 
 The strong convergence of $x_n - Tx_n$ can be equivalently written as $\Vert x_n - Tx_n\Vert \rightarrow 0$  and $x_n \rightharpoonup Tx_n$. 
+We emphasize the, $T$ is a generic operator and it may not be a Lipschitz operator. 
 
 **Proof**
 
@@ -70,10 +76,52 @@ $$
 $$
 
 Observe that, the term $\Vert x_n - Tx_n\Vert\rightarrow 0$ by strong convergence hypothesis. 
-The term $\Vert Tx_n - Tx\Vert \le \Vert x_n - x\Vert < \infty$  by assumption that $T$ is non-expansive ans weak convergence sequence is bounded. 
+The term $\Vert Tx_n - Tx\Vert \le \Vert x_n - x\Vert < \infty$  by assumption that $T$ is non-expansive and weak convergence sequence is bounded. 
 Finally, the cross term approches zero by the weak convergence of $x_n \rightharpoonup x$. 
 
 
 **Remarks**
 
-If the sequence $x_n$ converges strongly, then there is no need for this theorem. 
+If we only have $x_n - Tx_n \rightarrow \mathbf 0$, it won't mean that $x_n$ converges to anything. 
+Imagine the case where $T$ is just the identity operator. 
+Therefore, here we provide the sufficient conditions to show $x_n \rightarrow T x_n$, which requires $x_n \rightharpoonup x$. 
+The theoerem characterize one way where a sequence can converge to the fixed point of an operator. 
+
+
+#### **Thm | Existence of a Fixed Point Set**
+> If $C\subseteq X$ is a closed bounded convex set, and $T: C \mapsto C$ is a non-expansive operator, then $\text{fix}(T)\neq \emptyset$. 
+
+**Observations**
+
+We emphasize that the domain is closed and bounded. 
+
+**Proof**
+
+In this proof we will make use of the Banach Contraction principle. See [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md) for more information. 
+Choose $x_0 \in C$ and $\lambda \in [0, 1)$, define operator $T_\lambda = (1 - \lambda)x_0 + \lambda Tx$. 
+Observe that this operator would be a contraction since 
+$$
+\begin{aligned}
+    \Vert T_\lambda x - T_\lambda y\Vert = 
+    \lambda \Vert Tx - Ty\Vert \le \lambda \Vert x - y\Vert, 
+\end{aligned}
+$$
+using the nonexpansive property of $T$. 
+Since $T_\lambda$ is a contraction, for all $\lambda \in [0, 1)$ there exists $x_\lambda = T_\lambda x_\lambda$ and it's unique. 
+Then 
+$$
+\begin{aligned}
+    0 &\le \Vert x_\lambda - Tx_\lambda\Vert
+    \\
+    & = 
+    \Vert T_\lambda x_\lambda - Tx_\lambda\Vert 
+    \\
+    & = \Vert (1 - \lambda)x_0 + \lambda Tx_\lambda - Tx_\lambda\Vert
+    \\
+    &= (1 - \lambda)\Vert x_0 - T x_\lambda\Vert. 
+\end{aligned}
+$$
+
+From the above claim we have $\lambda\nearrow 1$ implies $\Vert x_0 - Tx_\lambda\Vert \rightarrow 0$. 
+Since the set $C$ is bounded, then for all sequence of $x_{\lambda_n}$ with $\lambda \nearrow 1$, we will have a subsequence of it say $x_{\lambda(n)} = z_n \in C$ such that it weakly converges to some number $z\in C$. 
+Now we are in Hilbert space and we have a sequence $z_n \rightharpoonup z$, and $\Vert x_0 - T z_n\Vert \rightarrow 0$, using the demi-closure principle we know that $z$ is a fixed point of operator $T$. 

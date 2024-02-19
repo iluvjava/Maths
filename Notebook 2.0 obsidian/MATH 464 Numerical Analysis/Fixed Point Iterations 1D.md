@@ -14,6 +14,10 @@ We show the convergence of fixed point iterations for function of type $\mathbb 
 
 If the fixed point is of either $a, b$, then we are done. We now assume that that $s\neq a, b$ is not the fixed point. Consider $g(x) = x - f(x)$, By the self-map property consider $g(a) = a - f(a), g(b) = b - f(b)$, then $f(a) \in [a, b], f(b) \in [a, b]$, hence $g(a) = a - f(a) \le 0, g(b) = b - f(b) \ge 0$. By IVT, we have [Intermediate Value Theorem](../Analysis/Intermediate%20Value%20Theorem.md), therefore $\exists s \in [a, b]$ such that $g(s) = 0$, hence $f(s) = s$. The fixed point exists in the interval. 
 
+**Remark**
+THis is also known as Brouwer’s ﬁxed point theorem in $\mathbb R$.
+
+
 ---
 ### **Thm-2 | Contraction and Uniqueness**
 
