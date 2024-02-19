@@ -9,3 +9,4 @@ We will state and proof the sufficient conditions for bounded and closed set in 
 We will take reference from [MIT lecture notes](https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2009/00667882fb5855c8013c8cfe8fe6c49e_MIT18_102s09_lec12.pdf) for functional analysis. 
 
 
+
