@@ -29,8 +29,50 @@ We emphasize that the set $C$ is already a closed set.
 The proof is not quite trivial, and it needs some technically knowledge that we don't possess yet. 
 See [this](https://math.stackexchange.com/questions/739168/subspace-of-hilbert-space-is-closed-if-and-only-if-it-is-weakly-closed) stack exchange post for more information about the weak closure of conve subspaces. 
 
+---
+### **Some Weird Things Regarding Weak Convergence in Hilbert Space**
+
+The limit of a weak converging sequence whent put into a continuous mapping in the Hilbert space, may not be the same as putting the limit into the continuous mapping directly. 
+Consider the following example. 
+
+#### **Example | Continuity doesn't Preserve Weak Limits**
+> Consider $C$ to be the closed unit norm ball in Hilbert space $\mathcal H$. 
+> Consider the sequence $x_n = e_0 + e_n$. 
+> We starts indexing at zero. Let $P_C$ be the projection onto the set $C$, then it would be a Lipschitz operator in Hilbert space hence continuous. 
+> Then $x_n \rightharpoonup x$, but $P_Cx_n$ doesn't converges weakly to $P_C x$ the weak limit. 
+
+**Demonstrations**
+
+Observe that $\lim_{n\rightarrow \infty} \e_0 + \e_n$ has weak limit $\e_0$ because $\e_n$ has weak limit $\mathbf 0$.  
+Then $P_Cx = P_C \e_0 = \e_0$. 
+To consider the weak limit we consider the sequence $P_Cx_n - x_n$. 
+
+$$
+\begin{aligned}
+    P_Cx_n &= P_C(\e_0 + \e_n)
+    \\
+    &= (\e_0 + \e_n)/\sqrt{2}. 
+    \\
+    \lim_{n\rightarrow \infty} \langle z, P_Cx_n\rangle &= 
+    \lim_{n\rightarrow \infty} \langle z,(\e_0 + \e_n)/\sqrt{2}\rangle \quad \forall z \in X
+    \\
+    &= \e_0/\sqrt{2}. 
+\end{aligned}
+$$
+
+Which is not the same as applying the projection to the limit of the sequence $\e_0$ in this case. 
+This is very trippy. 
+
+**Remarks**
+
+The projection operator in this case, considers the norm of the vector as well. 
+This could be the reason that it makes things complicated. 
+Because the norm of the weak limit, is never the norm of the sequence. 
 
 
+
+
+---
 #### **Thm | Demi-Closure Principle**
 > Let $T: C \mapsto X$, and $C$ is $\neq \emptyset$, closed, convex. 
 > Then $x_n \rightharpoonup x$, a weak convergence sequence that satisfies $x_n - Tx_n \rightarrow \mathbf 0$, a strongly convergence sequence, then it must be that $x - Tx = 0$. 
@@ -124,3 +166,4 @@ $$
 From the above claim we have $\lambda\nearrow 1$ implies $\Vert x_0 - Tx_\lambda\Vert \rightarrow 0$. 
 Since the set $C$ is bounded, then for all sequence of $x_{\lambda_n}$ with $\lambda \nearrow 1$, we will have a subsequence of it (Every bounded sequence in Hilbert space has a weakly convergence subsequence) say $x_{\lambda(n)} = z_n \in C$ such that it weakly converges to some number $z\in C$. 
 Now we are in Hilbert space and we have a sequence $z_n \rightharpoonup z$, and $\Vert x_0 - T z_n\Vert \rightarrow 0$, using the demi-closure principle we know that $z$ is a fixed point of operator $T$.
+

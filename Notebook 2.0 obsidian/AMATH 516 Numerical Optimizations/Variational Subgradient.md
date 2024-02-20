@@ -68,7 +68,10 @@ We know define the regular subgradient.
 We already did in the introduction but we will do it again here using the new notations. 
 
 #### **Definition | Regular Subgradient**
-> 
+> $v \in \hat \partial f(\bar x)$ is a subgradient if and only if 
+> $$
+>   \liminf_{x \rightarrow \bar x} \frac{\mathbb D_f(x, \bar x | v)}{\Vert x - \bar x\Vert} \ge 0. 
+> $$
 
 
 #### **Claim | Second Order Lower Model**

@@ -19,6 +19,7 @@ Averaged operators are the super set of firmly non-expansive operators and the s
 **Properties**:
 1. The set of averaged operator is closed under composition. 
 2. It's definitely a subset of Lipschitz Operators. 
+3. This class includes the class of firmly non-expansive operators. It's also strictly weaker than the class of firmly non-expansive operator. 
 
 ---
 ### **Characterizations**
@@ -93,10 +94,35 @@ The cute formula refers to [Euclidean Jensen's Equality](../Background/Euclidean
 
 Heinz's course notes, theorem 22.11. 
 
+
+#### **Corrollary | Averaged operator is Strictly Quasi Nonexpansive**
+
+> Let $x \in X \setminus \text{fix}T$, $y \in \text{fix}(T)$ with $T$ being an $\alpha$-averaged operator, then it's strictly quansi-nonexpansive, $\Vert Tx - y\Vert^2 \le \Vert x - y\Vert^2$. 
+
+**Proof**
+$$
+\begin{aligned}
+    \Vert Tx - y\Vert^2 &= \Vert Tx - Ty\Vert^2
+    \\
+    & \le \Vert x - y\Vert^2 - \frac{1 - \alpha}{\alpha}\Vert x - Tx - (y - Ty)\Vert^2
+    \\
+    &\le \Vert x - y\Vert^2 - \frac{1 - \alpha}{\alpha} \Vert x - Ty\Vert \quad \text{by } y \in \text{fix}(T)
+    \\
+    & < 
+    \Vert x - y \Vert^2. 
+\end{aligned}
+$$
+
+and this completes the proof. 
+This property is useful for algorithms. 
+
+
+
 ---
 ### **Fixed Point Convergence of Averaged Operators**
 
-This is a type of non-expansive operator converges under fixed point iterations. In a sense, the none-expansive operator is damped by the identity operator. 
+This is a type of non-expansive operator converges under fixed point iterations. 
+In a sense, the none-expansive operator is damped by the identity operator. 
 
 **Thm-2 | Averaged Operator has Fixed Point Convergence**
 
@@ -113,7 +139,9 @@ $$
 \end{aligned}
 $$
 
-which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is non-expansive. We denote a fixed point of $F$ to be $\bar x\in X$, we start by considering that: 
+which is not hard to verify, and it would be easier to verify by starting on the right side of the equation first. 
+Next, by definition of $F$ being an averaged operator, it would mean that $F = (1 - \theta)I + \theta G$ where $G$ is non-expansive. 
+We denote a fixed point of $F$ to be $\bar x\in X$, we start by considering that: 
 
 $$
 \begin{aligned}
@@ -153,7 +181,8 @@ $$
 $$
 
 the series converges by the fact that it's positive and bounded above, therefore the limit of $Gx^{(j)} - x^{(j)}$ equals to the zero vector. 
-Therefore it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. Additionally, the rate of the convergence can be derived using the monotone convergence property of the series: 
+Therefore it converges to some point $\bar x$ satisfying $G\bar x = \bar x$. 
+Additionally, the rate of the convergence can be derived using the monotone convergence property of the series: 
 $$
 \begin{aligned}
     (k + 1)
@@ -186,11 +215,12 @@ However, this proof assumed the existence of a fixed point set, which is equival
 We emphasize that this is a major difference between the two proofs. 
 The convergence of successive iterates doesn't mean that the sequence of the limit of the sequence. 
 
-For more about the theories for Fejer monotone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. Please refer too [Fejer's Monotone](Fejer's%20Monotone.md) for more information. 
+For more about the theories for Fejer monotone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. 
+Please refer too [Fejer's Monotone](Fejer's%20Monotone.md) for more information. 
 
 **Reference**: 
 
-See Primer on Monotone Operator for more information. [ Primer on Monotone Operator](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf%20). 
+See Primer on Monotone Operator for more information. [Primer on Monotone Operator](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf%20). 
 
 
 ---
@@ -285,7 +315,8 @@ $$
 \end{aligned}
 $$
 
-and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
+and hence, the term is non-expansive, for all values of $\eta \in (0, 2/L)$, it maybe a contraction but it would really depends on how $\nabla f(x) - \nabla f(y)$ behaves wrt to $x - y$. 
+At `[1](1)` we used some info from [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md), and especially the Co-coersive property. Next we show that the gradient operator is an averaged operator. 
 To do that we simply fit the form 
 
 $$
@@ -305,4 +336,6 @@ with that we have $\eta = 2\theta /L$, whenever $\eta \in (0, L/2)$, with that w
 
 A question for the reader, can $I - \eta \nabla f$ be firmly non-expansive? 
 A question for the reader, what is the sufficient conditions to assert the convergence of the gradient descent algorithm? 
+There might be other operators that are averaged and doesn't have to be a gradiet operator. 
+Where are those operators? 
 

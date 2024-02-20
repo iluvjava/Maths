@@ -6,6 +6,7 @@
 See [Lipschitz Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md) for operator theory in the infinite dimensions. 
 
 
+
 ---
 ### **Lipschitz Operator**
 
@@ -24,6 +25,11 @@ Obviously, if $A$ is Lipschitz then it's continuous and single valued ,else the 
 
 **properties**
 1. The set of Lipschitz operators are closed under addition and composition. 
+
+**Remarks**
+
+Lipschitz-1 operators are also called non-expansive operators. 
+This name should be self-explainatory according to the above definition. 
 
 ---
 ### **Convex Fixed Point Set of Non-Expansive Operators**

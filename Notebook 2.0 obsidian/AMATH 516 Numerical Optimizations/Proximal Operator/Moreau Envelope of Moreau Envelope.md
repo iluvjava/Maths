@@ -1,5 +1,4 @@
-[[Moreau Envelope and Proximal Mapping]]
-
+- [[Moreau Envelope and Proximal Mapping]]
 
 ---
 ### **Intro**

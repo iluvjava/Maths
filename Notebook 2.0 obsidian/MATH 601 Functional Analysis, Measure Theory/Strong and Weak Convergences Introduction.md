@@ -32,7 +32,7 @@ Also it doesn't converge because it's not Cauchy.
 In finite dimension, weak convergence is the same as strong convergence. 
 
 
-#### **Def | Sequential Weakly Closed**
+#### **Def | Weak Seqeuentially Closed**
 > A set $D \subseteq X$ is a sequential weakly closed set if, for all $x_n \in X$ such that $x_n \rightharpoonup x$, then $x \in D$. 
 
 
