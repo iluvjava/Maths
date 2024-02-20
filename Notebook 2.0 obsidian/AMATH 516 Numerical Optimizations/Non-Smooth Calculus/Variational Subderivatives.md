@@ -146,12 +146,144 @@ Lipschitz continuous function simplifies the definition of the Dini-Hadamard sub
 It simplifies so it only has one limit occurring and it's sufficient to discover the derivative based on only the behaviors of the function along the direction of the ray. 
 
 #### **Thm | Dini Hadamard under Locally Lipschitz Conditions**
+> The dini Hamdamard Subderivative would is equivalent to 
+> $$
+>   \liminf_{\lambda \searrow 0} \frac{f(\bar x + \lambda w) - f(\bar x)}{\lambda}, 
+> $$
+> if $f$ is locally Lipschitz at $\bar x$. 
 
+**Proof**
 
+Let $f$ be locally Lipschitz at $\bar x$. 
+Consider the definition of the directional dervative then 
+
+$$
+\begin{aligned}
+    \liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}} 
+    \frac{f(\bar x + \lambda w') - f(\bar x)}{\lambda}
+	&= 
+	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}} 
+	\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
+	+ 
+	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}
+	\\
+	& =
+	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}}
+	\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
+	+ 
+	\liminf_{\substack{\lambda\searrow 0\\ w'\rightarrow w}}
+	\frac{f(x + \lambda w) - f(\bar x)}{\lambda}. 
+\end{aligned}
+$$
+
+On the last line, we can do this because the term on the left has a limit. 
+It has a limit because $f$ is Locally Lipschitz at $\bar x$ therefore 
+
+$$
+\begin{aligned}
+	\left|
+		\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
+	\right| 
+	&\le K_{\bar x} \Vert w' - w\Vert
+	\\
+	\implies  \lim_{w'\rightarrow w} \left|
+		\frac{f(\bar x + \lambda w') -f(\bar x + \lambda w)}{\lambda}
+	\right|  &= 0. 
+\end{aligned}
+$$
+
+Since the limit exists, then $\liminf$ would be the same as the limt and therefore, the first term in the sum is zero. 
+Additioanlly, the second term in the sum only has $w$ which is not dependent on the variable $w'$ therefore the claim is proven. 
 
 
 ---
-### **Subgradient and Lower Supporting Functions**
+### **Subgradient Dini-Hadarmard Subderivative**
+
+The following theorem is introduced in Professor's wang Lecture of MATH 564 at UBCO. 
+This theorem is in fact an exercise in Rockafellar and Wett's textbook. 
+
+#### **Thm | Regular Subgradient and Dini-Hadarmard Subderivative**
+> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \forall w \in \mathbb R^n\}$. 
+
+**Proof**
+
+Start with $v \in \hat \partial f(\bar x)$. 
+$$
+\begin{aligned}
+	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}
+	\frac{f(x) - f(\bar x) - \langle v, x - \bar x\rangle}{\Vert x - \bar x\Vert}
+	&\ge 0
+	\\
+	\text{let } x = \bar x + \tau w', & \text{ assuming } w \neq \mathbf 0
+	\\
+	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}
+	\frac{f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle}{\Vert \tau w'\Vert}
+	&\ge 0
+	\\
+	\tau \ge 0 \implies 
+	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}} 
+	\frac{
+			f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle
+		}
+	{\tau}
+	&\ge 0
+	\\
+	\liminf_{\substack{x\rightarrow \bar x \\ x \neq \bar x}}  \frac{
+			f(\bar x + \tau w') - f(\bar x) - \langle v, \tau w'\rangle
+		}
+	{\tau}
+	- \langle v, w'\rangle &\ge 0
+	\\
+	df(x | w) &\ge \langle  v, w'\rangle. 
+\end{aligned}
+$$
+
+We made the assumption that $w' \neq 0$, this evade the division by zero problem. 
+We can split the parts inside of the limit because the second term has a well defined limit to it. 
+However, the convergence $x \rightarrow \bar x$ may not be limited to the mode of convergence under just $\bar x + \lambda w$ with $\lambda \searrow 0$ and $w \neq 0$. 
+Let's consider the case where $w = \mathbf 0$. 
+From definition we always have $df(\bar x | \mathbf 0) = 0$ if $v \in \hat \partial f(\bar x)$. 
+Assuming $v \in \hat \partial f(\bar x)$
+Consider substitution $x = \bar x + \tau w'$
+$$
+\begin{aligned}
+	f(\bar x + \tau w') &\ge 
+	f(\bar x) + \langle v, x - \bar x\rangle + o(\Vert x - \bar x\Vert)
+	\\
+	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
+	\langle  v, w'\rangle + \frac{o(\Vert x - \bar x\Vert)}{\tau}
+	\\
+	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
+	\langle  v, w'\rangle + 
+	\frac{o(\Vert x - \bar x\Vert)}{\tau}.
+\end{aligned}
+$$
+
+Also consider $\tau w' = x - \bar x$ so $w' = \frac{x - \bar x}{\tau}$ so $o(\Vert x - \bar x\Vert) = o(\tau \Vert w'\Vert)$ and therefore continuing we have 
+
+$$
+\begin{aligned}
+	\frac{f(\bar x + \tau w') - f(\bar x)}{\tau} &\ge 
+	\langle  v, w'\rangle + 
+	\frac{o(\Vert x - \bar x\Vert)}{\tau}
+	\\
+	&= \langle v, w'\rangle + \frac{o(\tau \Vert w'\Vert)}{\tau}
+	\\
+	&= \langle v, w'\rangle + \frac{o(\tau \Vert w'\Vert)}{\tau \Vert w'\Vert}
+	\Vert w'\Vert, 
+\end{aligned}
+$$
+
+now takingthe liminf on both sides with $\tau \searrow 0$ and $w \rightarrow \mathbf 0$, we have the limit of RHS equals to zero. 
+The LHS is $d(\bar x | w) \ge 0$. 
+Therefore we have $df(\bar x | \mathbf 0 ) \le 0$. 
+
+**Remarks**
+
+Obviously, the set $\hat \partial f(\bar x)$ is an intersection of all the halfe spaces that satisfies the conditions where, it supports the dini-hadamard subderivative. 
+Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set. 
+
+
 
 ---
 ### **Lack of Closedness of Classical Directional Derivative**

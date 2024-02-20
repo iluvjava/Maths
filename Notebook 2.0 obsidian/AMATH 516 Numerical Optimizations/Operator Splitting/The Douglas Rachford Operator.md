@@ -51,9 +51,9 @@ $$
 \end{aligned}
 $$
 
-Therefore the 2 reflectant identit representation is the equivalent to the original defnition. 
+Therefore the 2 reflectant identity representation is the equivalent to the original definition. 
 Next, $T_i$ is firmly nonexpansive for $i \in \{1, 2\}$ is equivalent to $R_i$ are firmly nonexpansive for $i \in \{1, 2\}$ which implies that $R_2R_1$ is nonexpansive which implies that $(1/2)(I + R_2 R_1)$is firmly nonexpansive. 
-For the above reasoning we only used equivlaneces and implications of non-expansive operators. 
+For the above reasoning we only used equivalencies and implications of non-expansive operators. 
 Finally, conditions (3.) can be reasoned with 
 
 $$
