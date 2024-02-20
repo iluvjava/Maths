@@ -171,7 +171,59 @@ In this section let's just make sure that the definition of a regular subgradien
 #### **Claim | Regular Subgradient Reduces to Convex Subgradient when Function is Convex**
 > When $f$ is convex, proper and lsc, then $\hat \partial f = \partial f$ where $\partial f$ here denotes the convex subgradient. 
 
+**Proof**
+
+This is direct since when $f$ is convex, we have $\mathcal D_f(x, \bar x | v)$ for all $v$, all $\bar x \in \text{dom}(f)$. 
+The little-o term is gone. 
 
 
-#### **Claim | Characterizing Subgradient by Dini Hadmard Subderivatives**
-> 
+#### **Claim | Characterizing Subgradient by Dini Hadamard Subderivatives**
+> If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \forall w \in \mathbb R^n\}$. 
+
+See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivatives.md) for more information. 
+
+#### **Thm | Regular Subgradient is Dense for L.S.C Functions**
+> L.S.C functions has dense regular subgradient. 
+> Let $f : \mathbb R^n \mapsto \mathbb{\bar R}$, then for all $\epsilon > 0$, there exists $y \in x_0 + \epsilon \mathbb B$ such that $\hat \partial f(y) \neq \emptyset$ and $f(x_0) - \epsilon \le f(x) \le f(x_0)$. 
+
+**Proof**
+
+#UNFINISHED. 
+
+#### **Thm | Sufficient Conditions for Differentiability**
+> If $\hat\partial [f](\bar x) \neq \emptyset$  and $\hat \partial [-f](\bar x) \neq \emptyset$, then the function $f$ is differentiable at $\bar x$. 
+
+**Proof**
+
+#UNFINISHED. 
+
+
+---
+### **Examples**
+
+We introduce some non-convex examples of regular subgradient. 
+
+#### **Example | Negative Absolute Value**
+> Consider $f(x) = - |x|$. 
+> Then $\hat \partial f(0) = \emptyset$. 
+
+**Demonstrations**
+
+Using the theorem we had, we have 
+
+$$
+\begin{aligned}
+    df(0 | w) &= - |w| \ge v w \quad \forall w \in \mathbb R^n
+    \\
+    \implies - \frac{|w|}{|w|} &\ge v \text{ sign}(w)
+\end{aligned}
+$$
+And from above we would have $-1 \ge v$ and $-1 \ge -v$, which is impossible for all values of $v \in \mathbb R$, therefore the regular subgradient is zero at that point. 
+
+
+**Remarks**
+
+However, there are regular subgradient whenever $x \neq 0$, but it suddenly vanished at the point $x = 0$. 
+This raises concern and mathematicians try to address that as well using the ideas of limiting subgradient. 
+See [Limiting Subgradient](Limiting%20Subgradient.md) for more information. 
+Obviously, we would also have that $\hat \partial f(\bar x) \neq \hat \partial [-f](\bar x)$. 

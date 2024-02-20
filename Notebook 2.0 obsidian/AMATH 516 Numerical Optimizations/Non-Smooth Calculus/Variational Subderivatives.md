@@ -291,7 +291,8 @@ Therefore, the set $\hat \partial f (\bar x)$ will have to be a convex set.
 Observe that the above definition involves the use of $\liminf$ instead of just $\lim$. 
 This choice is intentional and it's used to preserves the lower semi-continuity of a function in the Dini-Hadamard subderivative. 
 Consider the indicator function of a closed unit disk in $\mathbb R^2$. 
-Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. 
+Let $\delta(x)$ be the function, then we consider its directional derivative at the point $x = (1, 0)$ along the direction of $(0, 1)$. 
+Let $\bar x$ be the point that we are taking the derivative and $u$ be the direction, then the limit: $\lim_{\tau \searrow 0}(f(\bar x + \tau u) - f(\bar x))/\tau = \infty$ because the ray: $\bar x + \mathbb R_+(u)$ just lay outside of the disk which is always infinity. 
 Therefore, we consider a different definition of a subderivative with $\liminf$, where, the ray itself is also converging to $u$ in addition to taking the infimum on the sequence of limit points. 
 Then, the derivative of function would be lower semi-continuous at a the point $(1, 0)$. 
 
