@@ -102,4 +102,3 @@ By the fact that $\exists x_\gamma \in U(f, \bar x, 1/k)$ for all $k\in \mathbb 
 ### **Examples**
 
 We illustrate the this serves as a closure of the regular subgradient over region where the function may not be differentiable. 
-
