@@ -8,7 +8,7 @@ This formula is extremely useful when we are dealing with Euclidean norm (Also a
 $$
 \begin{aligned}
     \Vert (1 - \theta) a + \theta b\Vert^2 = (1 - \theta)\Vert  a\Vert^2 + \theta \Vert b\Vert^2 - 
-    (\theta)(1 - \theta)\Vert a - b\Vert^2 \quad \forall \theta \in \mathbb R, 
+    (\theta)(1 - \theta)\Vert a - b\Vert^2 \quad \forall \theta \in \mathbb R. 
 \end{aligned}
 $$
 

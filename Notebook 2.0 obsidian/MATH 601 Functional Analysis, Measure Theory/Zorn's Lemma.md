@@ -58,7 +58,7 @@ Well suppose that we have the power set $\{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$,
 Then a chain could be the sequence of sets 
 
 $$
-\empty \subseteq \{1\} \subseteq \{1, 2\}, 
+\emptyset \subseteq \{1\} \subseteq \{1, 2\}, 
 $$
 
 and removing $\{1\}$ freom the above chain forms another chain. 

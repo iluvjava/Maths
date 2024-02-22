@@ -159,11 +159,15 @@ $$
     \langle x - y_\alpha, x^* - Ay_\alpha\rangle
     &\ge 0
     \\
-    -\alpha \langle x^* - Ax, x^* - A y_\alpha\rangle &\le 0, 
+    -\alpha
+    \langle x^* - Ax, x^* - A y_\alpha\rangle &\ge 0
+    \\
+    \langle x^* - Ax, x^* - Ay_\alpha\rangle &\le 0
 \end{aligned}
 $$
 
-talking the limit of $\alpha \rightarrow 0$, by continuity of $A$, and the inner product on Hilbert spaces, we would have $\langle x^* - Ax, x^* - Ax\rangle \le 0$, and the only possible way for that is $x^* = Ax$, and therefore, $(x, x^*)\in \text{gph}(A)$. 
+talking the limit of $\alpha \rightarrow 0$, by continuity of $A$ and the definition of $y_\alpha$, and the inner product on Hilbert spaces, we would have $\langle x^* - Ax, x^* - Ax\rangle \le 0$. 
+The only possible way for that is $x^* = Ax$, and therefore, $(x, x^*)\in \text{gph}(A)$. 
 
 **Remarks**
 
