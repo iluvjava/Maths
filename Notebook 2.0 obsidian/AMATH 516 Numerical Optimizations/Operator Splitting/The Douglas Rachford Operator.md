@@ -1,5 +1,5 @@
 - [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md)
-
+- [Resolvent Operators](../Operators%20Theory/Resolvent%20Operators.md)
 ---
 ### **Intro**
 
@@ -26,7 +26,15 @@ $$
 \end{aligned}
 $$
 
-therefore it's also the fixed point of the DR operator. additionally, 
+therefore it's also the fixed point of the DR operator. 
+
+**Remarks**
+
+The $T_1, T_2$ usually take the form of a resolvent of a maximally monotone operator. 
+The the context of optimization, the resolvent is the proximal mapping, which is a resolvent of a subgradient. 
+When the original function is convex, closed and proper, then it would be maximal monotone. 
+Which suits the above format. 
+However, it remains to verify that the fixed point of the Douglas Rachford operator is relevant to the some optimization problem. 
 
 
 #### **Thm | DR has good fixed point and it's Firmly Nonexpansive**
@@ -69,3 +77,7 @@ $$
 $$
 and from the last line, the result we want to show is self evident. 
 
+---
+### **The Fixed Point of the DRS Operator**
+
+To understand the potential of the DR operator, we need to understand what is its fixed point and what problem the fixed point can represent in the real world. 
