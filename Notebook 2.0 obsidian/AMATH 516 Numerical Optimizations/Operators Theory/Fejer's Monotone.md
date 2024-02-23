@@ -36,10 +36,15 @@ therefore, it means that $\Vert x^{(m)} - \bar x\Vert \rightarrow 0$ and the seq
 
 **Alternative Proof**
 
-For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded below and monotone, therefore it has a limit. Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
+For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, the real sequence $\Vert x^{(n)} - \bar x\Vert$ is bounded below and monotone, therefore it has a limit. 
+This limit exists for all value of $\bar x \in C$. 
+Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. 
+Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! 
+Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
 
 **Remarks**
-It converges weakly, since it's converging only by the norm. 
+
+It converges strongly, since it's converging only by the norm. 
 
 
 #### **Thm-2 | A Slightly Weaker Version in Finite Euclidean Space**
@@ -48,7 +53,11 @@ It converges weakly, since it's converging only by the norm.
 
 **Proof**
 
-The norm of the sequence $\Vert x^{n} - c\Vert$ converging $\mathbb R$ for all $c \in C$. Hence the sequence is bounded in norm. Since the space is complete and finite dimensional, by Bozano Weierstrass theorem, there exists a subsequence $x^{(n_k)}$ that converges. Suppose that there are 2 such sub-sequential limit points $y, z$ in $C$, we want to show that they are the same point. We first show that, $\langle x^{(n)}, y - z\rangle$ are the same for all subsequences by using the paralellogram identity $\langle x, y\rangle = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)$, consider any 2 points $y, z \in C$ then: 
+The norm of the sequence $\Vert x^{n} - c\Vert$ converging $\mathbb R$ for all $c \in C$. 
+Hence the sequence is bounded in norm. 
+Since the space is complete and finite dimensional, by Bozano Weierstrass theorem, there exists a subsequence $x^{(n_k)}$ that converges. 
+Suppose that there are 2 such sub-sequential limit points $y, z$ in $C$, we want to show that they are the same point. 
+We first show that, $\langle x^{(n)}, y - z\rangle$ are the same for all subsequences by using the paralellogram identity $\langle x, y\rangle = \frac{1}{4}(\Vert x + y\Vert^2 - \Vert x - y\Vert^2)$, consider any 2 points $y, z \in C$ then: 
 
 $$
 \begin{aligned}
@@ -117,6 +126,19 @@ where we make use of the fact that inner product of an inner product space is a 
 **Remark**
 
 Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
+
+#### **Thm | Convergence wrt to the Convehull**
+> Let $C\subseteq X$ be nonempty and $x_n$ F-Monotone Convergens wrt to $C$, then it's also F-Monotone Convergenes wrt to $\text{cl.cvxh}(C)$, the convex hull of the set. 
+
+**Proof**
+
+#### **Thm | Finite Length Trajectory**
+> If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
+
+**Proof**
+
+
+
 
 ---
 ### **Applications**

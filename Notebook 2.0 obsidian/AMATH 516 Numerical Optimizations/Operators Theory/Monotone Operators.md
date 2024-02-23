@@ -78,6 +78,10 @@ To show $\implies$, it can be done by the definition of a maximally monotone ope
 #### **Thm | Maximal Extension of Monotone Operators**
 > For all monotone operator $A: X \mapsto 2^X$, there exists a maximal monotone operator $B$ such that $\text{gph}(A)\subseteq \text{gph}(B)$.
 
+**Proof**
+
+The proof is quite involved, and it may be moved to its own file instead of appearing in here. 
+
 **Remarks**
 
 The proof is very similar to [Hahn Banach Theorem and its Corollaries](Hahn%20Banach%20Theorem%20and%20its%20Corollaries.md). 

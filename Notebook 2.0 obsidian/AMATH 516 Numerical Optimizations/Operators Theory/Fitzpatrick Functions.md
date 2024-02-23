@@ -16,7 +16,8 @@ Fitzpatrick, function is a generalization of the Fenchel inequality but for some
 
 ---
 ### **Lemma 3.8.2 (Fitzpatrick Inequality)**
-> Let $T: \mathbb E \mapsto \mathbb E$ be maximally monotone, then $F_T$ is closed convex and proper, add for any pair of $(x, y) \in \mathbb E \times \mathbb E$, we have: $F_T(x, y)\ge \langle x, y\rangle$. Furthermore, equality holds when $y \in T(x)$. 
+> Let $T: \mathbb E \mapsto \mathbb E$ be maximally monotone, then $F_T$ is closed convex and proper, add for any pair of $(x, y) \in \mathbb E \times \mathbb E$, we have: $F_T(x, y)\ge \langle x, y\rangle$. 
+> Furthermore, equality holds when $y \in T(x)$. 
 
 **Proof**:
 
@@ -45,7 +46,8 @@ $$
 \end{aligned}
 $$
 
-immediately observe that the Fitzpatrick function is a convex function because it's being written as the pointwise supremum of 3 affine functions. Take note that by the maximal monotonicity property of the operator $T$, we claim that: 
+immediately observe that the Fitzpatrick function is a convex function because it's being written as the pointwise supremum of 3 affine functions. 
+Take note that by the maximal monotonicity property of the operator $T$, we claim that: 
 
 $$
 \begin{align*}
@@ -58,7 +60,8 @@ $$
 \end{align*}
 $$
 
-under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity (This is by a very weird theorem in Rockafeller's textbook).
+under both cases, the inf part of the RHS is less than zero, therefore, $F_T(x, y)\ge \langle x, y\rangle$ as claimed. 
+Further more, the function $F_T(x, y)$ is proper because it's convex and there exists at least one point where the function is not negative infinity (This is by a very weird theorem in Rockafeller's textbook).
 
 
 **References**
@@ -130,7 +133,8 @@ $$
 \end{aligned}
 $$
 
-and at the end notice that $y_2, x_2$ are swapped. And by previous lemma we have the equality whenever $y_2 \in Tx_2$, which is also swapped. Please take care of this particular detail when applying this theorem. 
+and at the end notice that $y_2, x_2$ are swapped. And by previous lemma we have the equality whenever $y_2 \in Tx_2$, which is also swapped. 
+Please take care of this particular detail when applying this theorem. 
 
 
 **References:**
