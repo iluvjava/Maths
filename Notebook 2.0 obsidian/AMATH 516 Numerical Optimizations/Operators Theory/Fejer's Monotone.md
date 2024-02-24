@@ -134,6 +134,14 @@ Intuitively, if the sequence approaches the set $C$ for all points and gets very
 
 **Proof**
 
+#### **Thm | Convergence of the Shadow Sequence**
+> Let $x_n$ be Fejer Monotone wrt to $C\subseteq X$ that is non-empty. 
+> Then $\Pi_C$ converges strongly to some point. 
+
+**Proof**
+
+
+
 #### **Thm | Finite Length Trajectory**
 > If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
 

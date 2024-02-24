@@ -11,6 +11,7 @@ This motivates the definition and discussion for regular subgradient.
 
 Let $f : \mathbb R^n \mapsto \mathbb{\bar R}$. 
 Let $v \in \hat \partial f(\bar x)$. 
+Let $\bar x \in \text{dom}(f)$. 
 Suppose that we take some $x \in \bar x + \epsilon \mathbb B$, some point $x$ that is very close to the point $\bar x$ where we evaluated our regular subgradient. 
 One interpretation on the definition of regular subgradient is the inequality 
 
