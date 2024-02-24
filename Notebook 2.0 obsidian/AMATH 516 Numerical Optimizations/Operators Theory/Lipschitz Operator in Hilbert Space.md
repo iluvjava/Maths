@@ -70,8 +70,6 @@ This could be the reason that it makes things complicated.
 Because the norm of the weak limit, is never the norm of the sequence. 
 
 
-
-
 ---
 #### **Thm | Demi-Closure Principle**
 > Let $T: C \mapsto X$, and $C$ is $\neq \emptyset$, closed, convex. 

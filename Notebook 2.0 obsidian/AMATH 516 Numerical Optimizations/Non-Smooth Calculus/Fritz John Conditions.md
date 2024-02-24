@@ -4,9 +4,11 @@
 ---
 ### **Intro**
 
-Armed with subgradients calculus, we consider characterizing the minimizers for a function that is the sum over a lot of convex functions. This  characterization that we are introducing encapsulate duality theory in the land of linear programming, but under some stricter assumptions, but it can also be used for constraints optimizations under different context. Consider problem of the form: 
+Armed with subgradients calculus, we consider characterizing the minimizers for a function that is the sum over finite convex functions. 
+This  characterization that we are introducing encapsulate duality theory in the land of linear programming, but under some stricter assumptions, but it can also be used for constraints optimizations under different context. 
+Consider problem of the form: 
 
-> Let $f, g_1, \cdots, g_m$ be functions mapping from an Euclidean space to $\R$, let $I:= [m]$ be an index set from $1$ to $m$, then the problem of constraint minimizations: 
+> Let $f, g_1, \cdots, g_m$ be functions mapping from an Euclidean space to $\R$, let $I:= [m]$ be the index set $\{1, \cdots, m\}$, then the problem of constraint minimizations: 
 > $$
 >   \min f(x) \text{ s.t: } g_i(x) \le 0 \;\forall i \in I \tag{P}
 > $$
@@ -19,14 +21,15 @@ Armed with subgradients calculus, we consider characterizing the minimizers for 
 **Proposition**
 > The solution to $\min_{x} F(x) = 0$ is exactly the solution to the original constraint optimization problem, assuming the minimizer exists. 
 
-This is true because a solution to minimizing $F$ gives $f(x) = \mu$, so that the minimum of the constraint optimization problem is attained, and $F(x) = 0$ meaning that all the constraints are also satisfied by solution $x$. Infeasibility will imply that $F(x) > 0$ for all $x$. 
+This is true because a solution to minimizing $F$ gives $f(x) = \mu$, so that the minimum of the constraint optimization problem is attained, and $F(x) = 0$ meaning that all the constraints are also satisfied by solution $x$. 
+Infeasibility will imply that $F(x) > 0$ for all $x$. 
 
 
 #### **Theorem | The Fritz John Conditions**
 > Assuming that all $g_i(x), i\in I$ are all convex and that $x$ solves (P), then there exists $\alpha_i \ge 0 \;\forall i\in [m]$ where it's not the case that all of them are equal to zero, and it satisfies: 
 > $$
 >\begin{aligned}
->   \mathbf 0 \in \alpha_0 f(x) + \left(\sum_{i \in I}^{}\alpha_i \partial g_i(x)\right), 
+>   \mathbf 0 \in \alpha_0 f(x) + \sum_{i \in I}^{}\alpha_i \partial g_i(x), 
 > \end{aligned}
 > $$
 > And the complementary slackness conditions: $\alpha_ig_i(x) = 0 \;\forall i \in I$. 
@@ -68,7 +71,8 @@ $$
 using the fact that the constraint $g_0 = f(x) - \mu$ is achieved, we are able to choose $\alpha_0 > 0$, hence dividing both side by $\alpha_0$, we get the condition that: 
 > The minimizer of a linear program is a point where, there exists a convex combinations of the tight constraints such that it equals to the negative objective vector: $-c$. And complenary slackness holds. 
 
-The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs.  The convex conbination conditions for $\alpha_i$ stating that $\Sigma_{i\in I(x)}\alpha_i = 1$ still remains true regardless of not appearing in the theorem statement, we just get a more restrictive statement if we do that, therefore due to the fact that the hypothesis of the statement didn't specify this conditions, we shouldn't care too much about it. 
+The $\alpha_i$ in this case, is relevant to the dual variables of the linear programs. 
+The convex conbination conditions for $\alpha_i$ stating that $\Sigma_{i\in I(x)}\alpha_i = 1$ still remains true regardless of not appearing in the theorem statement, we just get a more restrictive statement if we do that, therefore due to the fact that the hypothesis of the statement didn't specify this conditions, we shouldn't care too much about it. 
 
 
 

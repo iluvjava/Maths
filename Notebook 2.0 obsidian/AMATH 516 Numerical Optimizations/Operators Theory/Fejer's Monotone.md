@@ -121,14 +121,16 @@ $$
 \end{aligned}
 $$
 
-where we make use of the fact that inner product of an inner product space is a continuous mapping. See [Inner Product Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Inner%20Product%20Space.md) for more information. Therefore, all sub-sequential limit points of the sequence are the same, therefore, the sequence has a unique limit and it converges. 
+where we make use of the fact that inner product of an inner product space is a continuous mapping. 
+See [Inner Product Space](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Inner%20Product%20Space.md) for more information. 
+Therefore, all sub-sequential limit points of the sequence are the same, therefore, the sequence has a unique limit and it converges. 
 
 **Remark**
 
 Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
 
-#### **Thm | Convergence wrt to the Convehull**
-> Let $C\subseteq X$ be nonempty and $x_n$ F-Monotone Convergens wrt to $C$, then it's also F-Monotone Convergenes wrt to $\text{cl.cvxh}(C)$, the convex hull of the set. 
+#### **Thm | Convergence wrt to the Convexhull**
+> Let $C\subseteq X$ be nonempty and $x_n$ F-Monotone convergence wrt to $C$, then it's also F-Monotone converges wrt to $\text{cl.cvxh}(C)$, the convex hull of the set. 
 
 **Proof**
 
@@ -144,5 +146,6 @@ Intuitively, if the sequence approaches the set $C$ for all points and gets very
 ### **Applications**
 
 Fejer monotone sequence characterizes a weaker type of convergences for the averaged operators. 
+See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more information. 
 
 
