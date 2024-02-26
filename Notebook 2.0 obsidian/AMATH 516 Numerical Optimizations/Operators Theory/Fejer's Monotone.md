@@ -127,9 +127,10 @@ Therefore, all sub-sequential limit points of the sequence are the same, therefo
 
 **Remark**
 
-Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
+Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. 
+This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
 
-#### **Thm | Convergence wrt to the Convexhull**
+#### **Thm | Convergence wrt to the Convex hull**
 > Let $C\subseteq X$ be nonempty and $x_n$ F-Monotone convergence wrt to $C$, then it's also F-Monotone converges wrt to $\text{cl.cvxh}(C)$, the convex hull of the set. 
 
 **Proof**
@@ -146,6 +147,9 @@ Intuitively, if the sequence approaches the set $C$ for all points and gets very
 > If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
 
 **Proof**
+
+
+### **Quasi-Monotone Sequences**
 
 
 
