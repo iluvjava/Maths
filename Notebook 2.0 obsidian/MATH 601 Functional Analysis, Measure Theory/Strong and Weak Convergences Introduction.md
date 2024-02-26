@@ -49,6 +49,11 @@ In finite dimension, weak convergence is the same as strong convergence.
 > 5. Weak convergence is able to achieve convergence point-wise. Meaning that if $x_n \rightharpoonup y$, then $x_{n, k}\rightarrow y_{n, k}$ for all $k \in \mathbb N$. 
 > 6. Every bounded sequence has a weakly convergent subsequence. 
 
+
+**Remarks**
+
+(6.) is the Bozano Weierstrass theorem manifested in the infinite dimensional Hilbert Space. 
+
 ---
 ### **Theorems**
 

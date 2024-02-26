@@ -18,7 +18,7 @@ The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it wou
 If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer monotone to all the convex subsets of the set $C$.
 
 
-#### **Thm-1 | Convergence of Fejer Monotone Sequence To the Set**
+#### **Thm-1 | Uniqueness of Cluster Points in the Set**
 
 > Let $(x_k)_{k\in \N}$ be Fejer-Monotone w.r.t a nonempty subset $C$ of $X$, then $(x_k)_{k\in \N}$ is bounded; moreover, $(x_k)_{k\in \N}$ converges to a point in $C\iff (x_k)_{k\in \N}$ has a cluster point in $C$. 
 
@@ -42,9 +42,65 @@ Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow
 Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! 
 Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
 
+
 **Remarks**
 
 It converges strongly, since it's converging only by the norm. 
+
+
+#### **Thm-1.1 | Uniquness of Cluster Points on the Set in Hilbert space**
+> Let $x_n$ in $X$ be a Fejer Monotone sequence wrt $C\neq \emptyset$. 
+> Then $x_n\rightharpoonup x \in C$ if and only if ever weak sequential clusters points are in the set $C$. 
+
+**Observations**
+
+We relax the conditions so that we are in infinite dimnsional spaces. 
+And in infinite dimension, we only requires weak cluster points. 
+
+**Proof**
+
+The direction ($\implies$) is direct because the unique weak convergence limit is in the set $C$. 
+For ($\impliedby$), given that $x_n$ is F-monotone then it must be bounded and in infinite dimension Hilbert space, a bounded sequence must have a weakly converging subsequence. 
+Therefore, lets take $c_1, c_2 \in C$ to be 2 weak cluster points that is in $C$ by assumptions. 
+Then $(\Vert x_n - c_i\Vert^2)_{n \in \mathbb N}$ converges to a limit in $\mathbb R$ for $i \in \{1, 2\}$ because the sequence os Fejer Monotone. 
+Then 
+
+$$
+\begin{aligned}
+    & \exists \lambda_1 : \Vert x_n - c_1\Vert^2 - \Vert x_n - c_2\Vert \rightarrow \lambda_1
+    \\
+    & 
+    = \Vert c_1\Vert^2 - \Vert c_2\Vert^2 - 2\langle c_n, c_1 - c_2\rangle
+    \\
+    \implies 
+    &
+    -2\langle x_n, c_1 - c_2\rangle \rightarrow \lambda_1 - \Vert c_1\Vert^2 + \Vert c_2\Vert^2 =: \lambda_2
+    \\
+    & 
+    \langle x_n, c_2 - c_2\rangle \rightarrow -\lambda_2/2. 
+\end{aligned}
+$$
+
+Using the weak convergence, we choose $c_{k_n}\rightharpoonup c_1$ and $x_{l_n}\rightharpoonup c_2$. 
+Then consider 
+
+$$
+\begin{aligned}
+    \lim_{n\rightarrow \infty}\langle x_{k_n}, c_2 - c_1\rangle 
+    &= 
+    \langle c_1, c_2 - c_1\rangle = -\lambda_2/2
+    \\
+    \lim_{n\rightarrow \infty}\langle x_{l_n}, c_2 - c_1\rangle 
+    &= 
+    \langle c_2, c_2 - c_1\rangle = -\lambda_2/2, 
+\end{aligned}
+$$
+
+
+subtracking we would have $\langle c_2 - c_1, c_2 - c_1\rangle = 0$ and therefore we have $c_2 = c_1$. 
+The weak limit has to be unqiue in this case. 
+
+
 
 
 #### **Thm-2 | A Slightly Weaker Version in Finite Euclidean Space**
@@ -149,6 +205,7 @@ This theorem is weaker compare to the first theorem in the sense that, in finite
 **Proof**
 
 
+----
 ### **Quasi-Monotone Sequences**
 
 
