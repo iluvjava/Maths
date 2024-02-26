@@ -22,6 +22,11 @@ If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer mo
 
 > Let $(x_k)_{k\in \N}$ be Fejer-Monotone w.r.t a nonempty subset $C$ of $X$, then $(x_k)_{k\in \N}$ is bounded; moreover, $(x_k)_{k\in \N}$ converges to a point in $C\iff (x_k)_{k\in \N}$ has a cluster point in $C$. 
 
+**Observations**
+
+The convergence of $x_k$ to a cluster point in $C$, is strong convergence if we assume that the set $X$ is the Hilbert space. 
+
+
 **Proof**
 
 The $\implies$ direction is clear (Because the limit of the sequence is a cluster point). From the other direction, Let $\bar x \in C$ be a cluster point then exists subsequence $x^{(n_k)}$ such that $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$. For any $\epsilon > 0$, using Fejer Monotonicity we have: 
@@ -40,7 +45,7 @@ For the $\impliedby$ direction, consider any $\bar x \in C$, then monotonicity, 
 This limit exists for all value of $\bar x \in C$. 
 Fix a $\bar x \in C$ and let it be the cluster point we have $\lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence, the real sequence has sub sequential limit. 
 Since $\bar x \in C$, the sub-sequential limit must be the same as the monotone limit (the sub-sequential limit of the norm must equals to the limit of the monotone convergence by definition of a convergence. )! 
-Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$. 
+Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\rightarrow \infty} \Vert x^{(n_k)} - \bar x\Vert = 0$, hence the sequence converges to $\bar x$ strongly. 
 
 
 **Remarks**
@@ -48,7 +53,7 @@ Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\r
 It converges strongly, since it's converging only by the norm. 
 
 
-#### **Thm-1.1 | Uniquness of Cluster Points on the Set in Hilbert space**
+#### **Thm-1.1 | Uniquness of Weak Cluster Point**
 > Let $x_n$ in $X$ be a Fejer Monotone sequence wrt $C\neq \emptyset$. 
 > Then $x_n\rightharpoonup x \in C$ if and only if ever weak sequential clusters points are in the set $C$. 
 
@@ -104,7 +109,8 @@ The weak limit has to be unqiue in this case.
 
 
 #### **Thm-2 | A Slightly Weaker Version in Finite Euclidean Space**
-> In finite dimensional Euclidean space, let $C\subseteq \mathbb R^n$ be non-empty. Suppose that for all $c \in C$ the sequence $\Vert x^{(n)} - c\Vert$ is convergent in $\mathbb R$, and the cluster point of the sequence $(x^{(n)})_{n \in \mathbb N}$ is in $C$, then the sequence converges to a limit in $C$. 
+> In finite dimensional Euclidean space, let $C\subseteq \mathbb R^n$ be non-empty. 
+> Suppose that for all $c \in C$ the sequence $\Vert x^{(n)} - c\Vert$ is convergent in $\mathbb R$, and the cluster point of the sequence $(x^{(n)})_{n \in \mathbb N}$ is in $C$, then the sequence converges to a limit in $C$. 
 
 
 **Proof**
