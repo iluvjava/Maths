@@ -4,9 +4,14 @@ We introduce the absolute basics of real analysis. There are approximately 2 par
 - The limits, continuity.
 - The series, convergence. 
 
-Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. I am doing this for functional analysis. These 2 things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Metric Space Introduction | Metric Space Introduction]], a fundamental element that build up the functional spaces. Another one is vector space which has foundations in linear algebra. 
+Besides that, I will just put whatever I want here. I am only writing this file after I am graduate school, PhD. 
+So it's quite late and I forgot a bunch of the basics Real Analysis that I learned. 
+I am doing this in preparation for functional analysis. 
+These two things lie too close to each other to be ignored because a lot of these results are generalized into [[../../MATH 601 Functional Analysis, Measure Theory/Functional Spaces/Metric Space Introduction | Metric Space Introduction]], a fundamental element that build up the functional spaces. 
+Another one is vector space which has foundations in linear algebra. 
 
-We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. For more about the concept of infinity, see [Countability of Sets](../Countability%20of%20Sets.md). 
+We assume that reader has basic mathematical maturity and at least know how to prove and the enumerosity of sets, countability and knows the symbolic representation of first order logic. 
+For more about the concept of infinity, see [Countability of Sets](../Countability%20of%20Sets.md). 
 
 
 ---
@@ -99,23 +104,45 @@ $$
 
 and hence the subsequential limit has to be the limit of the sequence. 
 
-
 ---
-### **Limit of a Function**
+### **Subsequence and Subsequential Limit**
 
-There are 2 equivalent definitions for the limit of a function at a point. One uses convergent sequences and the other uses, epsilon vicinity of a point in the domain.  
+To define a subsequence, we need a sequence in $\mathbb R$. 
+Let $a_n$ be a sequence in $\mathbb R$. 
 
-**Epsilon Region for the Limit of a Function**
+#### **Def | Subsequence**
+> A subsequence of $a_n$ is the sequence $a_{n_k}$ such that $n_{k + 1} > n_{k}$. 
 
-> $L$ is a limit of function $f$ at the point $x_0$ if for all $\epsilon > 0$ there exists $\delta_\epsilon(x_0)$ such that for all $x$ with $0 < |x - x_0|< \delta_\epsilon(x_0)$ we have $|f(x) - f(x_0)| \le \delta_\epsilon(x_0)$. 
+**Observations**
 
-**Sequential Limit of a Function**
-
-> $L$ is a limit of a function $f$ at the point $x_0$ if, for all sequence $x_n$ that converges to $x_0$ but $x_n\neq x_0\;\forall n \in \mathbb N$, we have $\lim_{n\rightarrow \infty}f(x_n) = L$. 
+We may treat any sequence as a function, for example $a_n: \mathbb N \mapsto \mathbb R$. 
+This sequence is essentially a function mapping from the indices of the sequence that is in the set of natural number to the set of reals. 
+Then a subsequence would be defined as a restriction of the function $a_n$ on a countably infinite set of $\mathbb N$. 
+In more abstract term, the set $\mathbb N$ also has total order and a sequence is a always a map from a set that has total order to another set. 
 
 **Remarks**
 
-The 2 definitions for the limit of a function is equivalent. 
+The definition excludes finite sequence. 
+Assuming finite sequence is included, the set of all subsets of $\mathbb N$ is uncountable. 
+However, it's not sure to the writer whether the subset of all infinite countable set of $\mathbb N$ forms a uncountable family, or coumtable family. 
+
+#### **Def | Subseequential Limit**
+> Let $a_n$ be a sequence then it has subsequential limit $a_n$ when there exists a subsequence $a_{n_k}$ such that $\lim_{k\rightarrow \infty} a_{n_k} = a$. 
+
+**Observations**
+
+Immediately observe that a subsequential limit $a$ can be characterized. 
+If $a \in \mathbb R$ is the subsequential limit of $a_n$ then for all $\epsilon > 0$ there exists some $n \in \mathbb N$ such that $|a_n - a| < \epsilon$. 
+We emphaize that this is not the same as limit of the sequence because we didn't say there exists some $m \in \mathbb N$ such that for all $m > n$, that same condition $|a_n - a| < \epsilon$ is true. 
+
+**Remarks**
+
+This simple concept is over powered. 
+Since the set of all $\mathbb Q$ is iterable by $\mathbb N$, it would mean that there exists a sequence $a_n$ maps from $\mathbb N$ to $\mathbb  Q$. 
+Since for all $a \in \mathbb R$ there is a rational number that is arbitrarily close to $a$, it would mean the existence of a sequence $a_{n_k}$ that converges to $a\in \mathbb R$ . 
+Therefore, the limits of all subsequential limit would be the entire set $\mathbb R$. 
+
+
 
 ---
 ### **Limit Point, Cluster Point**
@@ -125,20 +152,55 @@ We consider real numbers, let the background set to be real number.
 #### **Definition | Limit Point**
 > A point $x$ is the limit point of the set $A$ if, there exists a sequence of number $x_n\in A$ such that $\lim_{n\rightarrow \infty} x_n = x$. 
 
-Limit point is *used to described sequences*. For example, if, $x$ is a limit point for the sequence $(x_n)_{n\in \N}$, there is a subsequence of $x_n$ such that converges to the point $x$. 
+**Observations**
+
+Limit point is *used to described sequences*. 
+Let $x_n \in \mathbb R$ be a sequence then let $A = \{x_n : n \in \mathbb N\}$. 
+Then it would mean that either there exists $x_j = x$ for some $j \in \mathbb N$, or that there exists a subsequence $x_{n_k}$ such that its limit is $x$. 
+
 
 #### **Definition | Cluster Point**
 > A point $x$ is the cluster point of a set $A$ if, there exists a sequence of number $x_n\in A\setminus \{x\}$ such that $\lim_{n\rightarrow \infty}x_n = x$. 
 
-Cluster points are used to *described sets with infinitely many points*. 
 
-Observe that a cluster point is a limit point, but a limit point is not a cluster point, because an isolated point in set $A$ can't be approached by a cluster point, but it can with a limit point. Due to this property, the sequence that describes the limit of a function, will have a cluster point, instead of a limit point, because in the context of a limit, we may never actually equals to that point at the limit. 
+**Observations**
+Cluster points are used to *described sets with uncountable infinitely many points*. 
+
+Observe that a cluster point is a limit point, but a limit point is not a cluster point. 
+We call $x \in A$ to be isoloated if there exists an open interval $\mathcal N(x)= (x - \epsilon, x  + \epsilon)$ such that $\mathcal N(x)\cap A = \emptyset$. 
+A isolated point in set $A$ can't be approached indefinitely as the limit of a sequence that because $x_n \not \in A$, but it can with a limit point. 
+
 
 
 **Example, Applications:**
 
 * [[Limit, Cluster Point of a Sequence Set]]
 * [[Closure Topology]], which can be characterized by limit point of the set. 
+
+
+---
+### **Limit of a Function**
+
+There are 2 equivalent definitions for the limit of a function at a point. 
+One uses convergent sequences and the other uses, epsilon vicinity of a point in the domain.  
+
+**Epsilon Region for the Limit of a Function**
+
+> $L$ is a limit of function $f$ at the point $x_0$ if for all $\epsilon > 0$ there exists $\delta_\epsilon(x_0)$ such that for all $x$ with $0 < |x - x_0|< \delta_\epsilon(x_0)$ we have $|f(x) - f(x_0)| \le \delta_\epsilon(x_0)$. 
+
+**Sequential Limit of a Function**
+
+> $L$ is a limit of a function $f$ at the point $x_0$ if, for all sequence $x_n$ that converges to $x_0$ but $x_n\neq x_0\;\forall n \in \mathbb N$, we have $\lim_{n\rightarrow \infty}f(x_n) = L$. 
+
+**Observations**
+
+$L$ is a limit point on the range of the function when there exists a sequence in the domain of the function such that it also has a limit point. 
+
+
+**Remarks**
+
+The two definitions for the limit of a function is equivalent. 
+When talking about the limit of a function, $f$ doesn't have to be defined at $x$ at all. 
 
 ---
 ### **Pointwise Continuity**
