@@ -181,6 +181,8 @@ The little-o term is gone.
 #### **Claim | Characterizing Subgradient by Dini Hadamard Subderivatives**
 > If $\bar x \in \text{dom}(f)$ then $\hat \partial f(\bar x) = \{v\in \mathbb R^n | \langle v, w\rangle \le df(x | w) \forall w \in \mathbb R^n\}$. 
 
+**proof**
+
 See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivatives.md) for more information. 
 
 #### **Thm | Regular Subgradient is Dense for L.S.C Functions**
@@ -196,7 +198,48 @@ See [Variational Subderivatives](Non-Smooth%20Calculus/Variational%20Subderivati
 
 **Proof**
 
-#UNFINISHED. 
+We list out the conditions by the definition of variational subgradient: 
+
+$$
+\begin{aligned}
+    v \in \hat\partial [f](\bar x) \iff 
+    f(x) - f(\bar x) - \langle v, x - \bar x\rangle 
+    & \ge 
+    o(\Vert x - \bar x\Vert)
+    \\
+    u \in \hat\partial [-f](\bar x) \iff 
+    - f(x) + f(\bar x) - \langle u, x - \bar x\rangle 
+    & \ge 
+    o(\Vert x - \bar x\Vert)
+\end{aligned}
+$$
+
+the sum of the expression yield $-\langle u + v, x - \bar x\rangle \ge o(\Vert x - \bar x\Vert)$. 
+By the fact that this is true for all $x - \bar x$, setting $x - \bar x$ by $tw$, then $w \in \mathbb R^n$ could be arbitrary vector of $\mathbb R^n$. 
+In this sense we have $- t\langle u + v, w\rangle \ge o(\Vert w\Vert)$. 
+Dividing both side by $\Vert w\Vert$ it would have $-t\langle u + v, w/\Vert w\Vert\rangle \ge 0$ for all $w \in \mathbb R^n$. 
+And it could only happen if $u + v = \mathbf 0$ because $w, -w$ will force the inequality to be equality. 
+With the the original condition a substitution of $u = -v$ transforms it: 
+
+$$
+\begin{aligned}
+    f(x) - f (\bar x) - \langle v, x- \bar x\rangle & \ge o(\Vert x - \bar x\Vert) \quad [(1)]
+    \\
+    -f(x) + f (\bar x) + \langle v, x- \bar x\rangle & \ge o(\Vert x - \bar x\Vert)\quad 
+    [(2)]
+    \\
+    [(2)]
+    \iff 
+    f(x) - f(\bar x) - \langle v, x - \bar x\rangle &\le o(\Vert x - \bar x\Vert)
+    \\
+    [(1)] \wedge [(2)]\implies 
+    | f(x) - f(\bar x) - \langle v, x - \bar x\rangle | &\le o(\Vert x - \bar x\Vert), 
+\end{aligned}
+$$
+
+and at the last line we have the definition of Frechet derivative. 
+Hence the claim has been proven. 
+
 
 
 ---
