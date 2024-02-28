@@ -39,7 +39,8 @@ Dini-Hadmard variational sub-derivative tells us how a function behaves near a g
 
 **Notations**
 
-For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[f(Ax + b)]'(x|u)$. 
+For more complex expression such as $f(Ax + b)$ in the direction of $u$, we use the notation $[x \mapsto f(Ax + b)]'(x|u)$. 
+There will be less ambiguity regarding which single vector variable that we are taking the derivative with. 
 
 **Obesrvations**
 
@@ -77,10 +78,10 @@ See [[Convex Directional Derivatives]] for more information.
 
 The Dini-Hadamard definition of directional derivative is suitable for all kinds of real-valued functions.
 Prof Dimitri pointed out that, the Dini-Hadamard definition of subderivative is more generalized. 
-Observe that replacing $\liminf$ with $\lim$, then this becomes directional Gataux Derivative. 
+Observe that replacing $\liminf$ with $\lim$, then **this becomes directional Gataux Derivative**. 
 Allow $\eta\rightarrow 0$ from both direction will yield Gataux derivative definition. 
 
-Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual definition of a directional derivative. 
+Under the condition that $f$ is *Lipchitz Continuous* on a neighborhood of points (A characterization of convex functions as well), the above definition is equivalent to the usual calculus definition of a directional derivative introduced to second year undergraduate students. 
 
 ---
 ### **Recovering Fenchet Differentiability**

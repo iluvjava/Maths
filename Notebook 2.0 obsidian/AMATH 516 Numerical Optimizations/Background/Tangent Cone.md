@@ -29,6 +29,7 @@ Assuming $T_Q(\bar x)\neq \emptyset$ , we may assert that $\lim_{i\rightarrow \i
 
 
 **Intuitively** 
+
 this is a cone because of the definition of the non-negative decreasing sequence of scalars can be scaled up, which is equivalent to scaling the the set $T_Q(\bar{x})$, which it also doesn't change the definition of the tangent cone. Therefore, it's a cone 
 
 **References**:
