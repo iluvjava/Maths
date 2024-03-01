@@ -52,7 +52,7 @@ $$
 \end{aligned}
 $$
 
-Observe that this is the definition of $\mathcal J_A$ being a firmly-nonexpansiev operator. 
+Observe that this is the definition of $\mathcal J_A$ being a firmly-nonexpansive operator. 
 In addition, a firmly non-expansive operator is a single valued operator because it's already non-expansive. 
 It's evident from above by setting $u = v$, then $x = y$ from the inequality. 
 To see that $T$ is a full domain operator, apply the observations we made about resolvent operators at the start of the file. 

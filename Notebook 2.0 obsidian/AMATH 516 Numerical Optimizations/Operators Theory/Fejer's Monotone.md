@@ -11,7 +11,8 @@ Fejer monotone is a type of strong generalization to a monotone sequence in Bana
 
 **Observations**: 
 
-The points in the sequences, is getting closer, to very elements in the set $C$. This is a very strong type of convergence, especially for the set $C\subseteq X$. We explicitly assume that, the set $X$ is some type of Banach space. Traditionally, in the realm of real analysis, a monotone increasing sequence $x_n$ approaches $\sup_{n\in N}x_n$, but observe that, a monotone increasing sequence approaches $C = [\sup_{n\in \N}x_n, \infty)$. We hence showed that our observation is ok. 
+The points in the sequences, is getting closer, to very elements in the set $C$. This is a very strong type of convergence, especially for the set $C\subseteq X$. We explicitly assume that, the set $X$ is some type of Banach space. 
+Traditionally, in the realm of real analysis, a monotone increasing sequence $x_n$ approaches $\sup_{n\in N}x_n$, but observe that, a monotone increasing sequence approaches $C = [\sup_{n\in \N}x_n, \infty)$. We hence showed that our observation is ok. 
 
 The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it would mean that $d_C(x_n)$ is a monotone sequence, however, the converse is not true, since Fejer monotone asserts the monotone conditions for all the points in the set $C$. 
 

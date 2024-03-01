@@ -8,6 +8,7 @@ All properties of the non-expansive operators are applicable to the class of fir
 There are many subcategories of firmly non-expansive operator and we will only discuss the properties of the class of the firmly non-expansive operator. 
 
 
+
 #### **Def | Sub Categories of Nonexpansive Operators**
 
 > Let $D$ be a subset of $\mathbb E$, then let $T: D \mapsto \mathcal H$, then $T$ is: 

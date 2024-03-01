@@ -8,7 +8,7 @@
 
 The resolvent operator serves an important role in the theory of optimizations, it's part of the operator theory. 
 
-**Definition | Resolvent**
+#### **Definition | Resolvent**
 
 > Denote $\mathcal J_A^{\alpha}:= (I - \alpha A)$ to be the resolvent of the operator $A: \mathbb E \mapsto 2^{\mathbb E}$. This is by definition. 
 
@@ -24,7 +24,7 @@ Note the following immediate properties:
 
 It can have other convention, but in the references I have we stick to this one. 
 
-**Minty Paramaterizations**
+#### **Thm | Minty Re-Paramaterizations**
 
 > Let $T$ be maximally monotone, then $\mathcal J_{T^{-1}} = I - \mathcal{R}_{T}$. 
 
@@ -66,7 +66,8 @@ Heniz's book, 23.18
 
 **Remarks**
 
-This theorem can hold for all $T: \mathbb E \mapsto 2^{\mathbb E}$, and it doesn't have to be a maximally monotone operator. The exercise from Dimitri didn't use have the condition that it's maximal monotone, it can be proved direclty by the definition of an inverse map. 
+This theorem can hold for all $T: \mathbb E \mapsto 2^{\mathbb E}$, and it doesn't have to be a maximally monotone operator. 
+The exercise from Dimitri didn't use have the condition that it's maximal monotone, it can be proved directly by the definition of an inverse map. 
 
 ---
 ### **Resolvent and Inverse are Linear Transform on the Graph of the Operators**
