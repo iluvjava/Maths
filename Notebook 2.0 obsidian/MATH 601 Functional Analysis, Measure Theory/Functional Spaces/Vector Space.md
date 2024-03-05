@@ -11,15 +11,15 @@ There are a list of axioms that satisfy for the choice of $F, V$.
 > Let $x,y,z$ and $r, s$ be any members of the set $V, F$. 
 > Define a multiplications between vectors and scalar, addition between vector and vector, such that the following must be all true: 
 > 1. The addition operator for the vectors a group operator and it's abelian. This makes 
-> 	1. $x + y = y + x$. Symmetric. 
-> 	2. $(x + y) + z = x + (y + z)$. Associative. 
-> 	3. $\mathbf 0 + x = x + \mathbf 0 = x$. Additive identity. 
-> 	4. $\exists (-x): x + (-x) = \mathbf 0$. Additive inverse. 
-> 2. The multiplication between the vector space and the scalar field is compatible so that 
-> 	1. $r(sx) = (rs) s$. Associative. 
-> 	2. $(r + s)x = rx + sx$. Distributive. 
-> 	3. $r(x + y) = rx + ry$. Distributive too. 
-> 	4. $1(x) = x$. Scalar identity works. 
+> 	    1. $x + y = y + x$. Symmetric. 
+> 	    2. $(x + y) + z = x + (y + z)$. Associative. 
+> 	    3. $\mathbf 0 + x = x + \mathbf 0 = x$. Additive identity. 
+> 	    4. $\exists (-x): x + (-x) = \mathbf 0$. Additive inverse. 
+> 2. The multiplication between the vector space and the scalar field is compatible so that: 
+> 	    1. $r(sx) = (rs) s$. Associative. 
+> 	    2. $(r + s)x = rx + sx$. Distributive. 
+> 	    3. $r(x + y) = rx + ry$. Distributive too.
+>       4. $1(x) = x$. Scalar identity works. 
 > 
 > Where, the set $V$ contains the additive identity $\mathbf 0$, and $F$ is strictly a field. 
 
