@@ -155,5 +155,3 @@ Distance function is blind to the closedness of the set.
 
 Consider $C = \{x: \Vert x\Vert \le 1\}\setminus \{\mathbf 0\}$. where, $C$ is not convex, but $\text{cl}(C)$ is, hence $d_{\text{cl}(C)} = d_{C}$ would be a better statement to put. $D$ is convex when $\text{cl}(C)$ is convex. 
 
-
-

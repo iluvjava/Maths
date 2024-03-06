@@ -300,9 +300,10 @@ This completes the proof, and we showed that the matrix $A + A^T - 2A^TA$ is pos
 
 Results can be strengthen a bit when $A$ is a symmetric matrix, and for application that would imply having a Hessian matrix. 
 
-#### **Example | Projection Operators is Firmly Nonexpansive**: 
+#### **Example | Projection Operator is Firmly Nonexpansive**: 
 
-The projection operator for a convex set is a firmly nonexpansive operator. We denote $P$ to be the projection onto some convex set, $C$, recall [Convex Sets Projection Obtuse Angle Theorem](../CVX%20Geometry/Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md), the projection point can be characterized as: 
+The projection operator for a convex set is a firmly nonexpansive operator. 
+We denote $P$ to be the projection onto some convex set, $C$, recall [Convex Sets Projection Obtuse Angle Theorem](../CVX%20Geometry/Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md), the projection point can be characterized as: 
 
 $$
 \begin{aligned}

@@ -216,11 +216,74 @@ For (2., 3.), use the property of inner product.
 ---
 ### **Examples**
 
-#### **Example 1 | Convex Projection is Monotone**
-Recall [Convex Sets Projections and Dist, Intro](../Background/Convex%20Sets%20Projections%20and%20Dist,%20Intro.md), 
+We take a look at some of the specifric examples of monotone operators that are relavent to real world application. 
+
+#### **Example 1.1 | Projection is Monotone**
+> Let $C\subseteq X$ be non-empty, then the projection operator onto the set: $\Pi_C$ is a monotone operator. 
+
+**Observations**
+
+We emphaize that convexity of the set $C$ is not assume therefore $\Pi_C$ can be multi-valued and the obtuse angle theorem won't be applicable anymore. 
+This theorem is in Hilbert space. 
+Therefore, norm that doesn't support inner product won't be comptible. 
+
+**Proof**
+
+Directly by the definition of a projection operator we have: 
+
+$$
+\begin{aligned}
+    \begin{rcases}
+        x^* \in \Pi_C x, 
+        \\
+        y^* \in \Pi_C y. 
+    \end{rcases}\implies
+    \begin{cases}
+        \Vert x^* - x\Vert \le \Vert x - y^*\Vert, 
+        \\
+        \Vert y^* - y\Vert \le \Vert y - x^*\Vert. 
+    \end{cases}
+\end{aligned}
+$$
+
+Squaring both sides and then add then up together we have 
+
+$$
+\begin{aligned}
+    \Vert x^* - x\Vert^2 + \Vert y^* - y\Vert^2 
+    &\le 
+    \Vert x - y^*\Vert^2 + \Vert y - x^*\Vert^2
+    \\
+    \Vert x^*\Vert^2 + \Vert x\Vert^2 - 2\langle x^*, x \rangle 
+    + 
+    \Vert y\Vert^2 + \Vert y^*\Vert^2 - 2\langle y^*, y\rangle
+    & \le 
+    \Vert x^* \Vert^2 + \Vert y^*\Vert^2 - 2 \langle x, y^*\rangle + 
+    \Vert y\Vert^2 + \Vert x\Vert^2 - 2\langle y, x^*\rangle
+    \\
+    2\langle y^*, x - y\rangle 
+        &\le 
+    2\langle x^*, x - y\rangle
+    \\
+    0 &\le \langle  x^* - y^*, x - y\rangle. 
+\end{aligned}
+$$
+
+In this way, we get that the projection operator is a monotone operator using the minimization property and the inner product endowed by Hilbert space. 
+
+
+
+#### **Example 1.2 | Convex Projection is Monotone**
+> Let $C$ be a non-empty convex subset of $X$, then the projection onto the set $C$ is firmly-nonexpansive. 
+
+**Observations**
+
+Firmly non-expansive operator is also a monotone operator. 
+Compare to the previous example, we added convexity into the operator to get a stronger version of monotonicity of the opeartor. 
+For more information, read [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more. 
 
 #### **Example 2 | Subgradient is Monotone**
-See [Monotonicity of Subgradient](../Non-Smooth%20Calculus/Monotonicity%20of%20Subgradient.md) for more information. 
+See [Monotonicity of Subgradient](../Non-Smooth%20Calculus/Monotonicity%20of%20Subgradient.md) for more information.
 
 #### **Example 3 | Subgradient of Convex Function is Maximally Monotone**
 > if $f$ is a convex function, then $\partial f$ is a maximally monotone operators. 
