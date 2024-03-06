@@ -38,7 +38,7 @@ The reader should realize the similarity between the definition of the limiting 
 >     N_C(\bar x) := 
 >     \left\lbrace
 >         v \in \mathbb R^n\left| 
->             \exists x^{(\gamma)}  \overset{\in C}{\rightarrow} \bar x \text{ s.t: }
+>             \exists x^{(\gamma)}  \overset{\in C}{\longrightarrow} \bar x \text{ s.t: }
 >             v^{(\gamma)} \in \widehat 
 >             N\left(x^{(\gamma)}\right), v^{(\gamma)}\rightarrow v
 >         \right.
