@@ -117,10 +117,10 @@ Directly consider the
 
 $$
 \begin{aligned}
-    \frac{o(\Vert y - \bar x, F(y) - f(\bar x)\Vert)}{\Vert y - \bar x\Vert}
+    \frac{o(\Vert (y - \bar x, F(y) - f(\bar x))\Vert)}{\Vert y - \bar x\Vert}
     &= 
-    \frac{o(\Vert y - \bar x, F(y) - f(\bar x)\Vert)}{\Vert y - \bar x, F(y) - F(\bar x)\Vert}
-    \frac{\Vert y - \bar x, F(y)  - F(\bar x)\Vert}{\Vert y - \bar x\Vert}. 
+    \frac{o(\Vert (y - \bar x, F(y) - f(\bar x))\Vert)}{\Vert (y - \bar x, F(y) - F(\bar x))\Vert}
+    \frac{\Vert (y - \bar x, F(y)  - F(\bar x))\Vert}{\Vert y - \bar x\Vert}. 
 \end{aligned}
 $$
 
@@ -128,13 +128,27 @@ Using local Lipschitz property of $F$, let $K(\bar x)$ be the local Lipschitz co
 
 $$
 \begin{aligned}
-    \frac{ \Vert y - \bar x, F(y) - F(\bar x)\Vert}{\Vert y - \bar x\Vert}
+    \frac{ \Vert (y - \bar x, F(y) - F(\bar x))\Vert}{\Vert y - \bar x\Vert}
     &\le 
     \frac{\Vert y - \bar x\Vert + K(\bar x) \Vert y - \bar x\Vert}{\Vert y - \bar x\Vert}
     \\
     &= K +1. 
 \end{aligned}
 $$
+
+And therefore we would have 
+
+$$
+\begin{aligned}
+    \frac{o(\Vert (y - \bar x, F(y) - f(\bar x))\Vert)}{\Vert y - \bar x\Vert}
+    &\le 
+    (K + 1)
+    \frac{o(\Vert (y - \bar x, F(y) - f(\bar x))\Vert)}{\Vert (y - \bar x, F(y) - F(\bar x))\Vert}. 
+\end{aligned}
+$$
+
+Observe that if we take limit as $y\rightarrow \bar x$ then the above quantity approaches zero as the limit. 
+This means that $o(\Vert y - \bar x\Vert)$. 
 
 
 ----
