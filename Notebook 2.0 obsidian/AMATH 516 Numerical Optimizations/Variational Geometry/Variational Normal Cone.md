@@ -38,7 +38,8 @@ The reader should realize the similarity between the definition of the limiting 
 >     N_C(\bar x) := 
 >     \left\lbrace
 >         v \in \mathbb R^n\left| 
->             \exists x^{(\gamma)}  \overset{\in C}{\longrightarrow} \bar x \text{ s.t: }
+>             \exists\; 
+>              x^{(\gamma)}  \overset{\in C}{\longrightarrow} \bar x \text{ s.t: }
 >             v^{(\gamma)} \in \widehat 
 >             N\left(x^{(\gamma)}\right), v^{(\gamma)}\rightarrow v
 >         \right.
@@ -104,4 +105,10 @@ And the conclusion of the above derivation would be that $\alpha u + \beta v \in
 The set is closed because by the definition we have that $\mathbf 0 \in \widehat N_{C}(\bar x)$ trivially. 
 
 #### **Thm | Parallelization Properties of Normal Cone**
+> Let $C = A \times B$, so that it can be represented as the product space of 2 vector spaces. 
+> I.e: $A \subseteq \mathbb R^k$, $B \subseteq \mathbb R^l$, with $k + l = n$. 
+> Then the regular normal cone has $\widehat N_C(\bar x) = \widehat N_A(\bar x) \times \widehat N_B(\bar x)$
+
+
+**Proof**
 
