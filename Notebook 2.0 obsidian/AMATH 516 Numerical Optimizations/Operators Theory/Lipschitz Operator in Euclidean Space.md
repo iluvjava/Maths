@@ -1,4 +1,5 @@
 - [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md)
+- [Lipschitz Continuity](Lipschitz%20Continuity.md)
 
 ---
 ### **Intro**
@@ -95,6 +96,8 @@ Let $x = Fx$ so $x \in \text{fix} (F)$.
 Then consider $x_n \rightarrow x$ where $x_n \in \text{fix}(T)$ for all $n \in \mathbb N$. 
 So $x_n = Tx_n$, and since $T$ is continuous (Because non-expansive means continuity), taking the limit we have $x  = Tx$. 
 Therefore the set $\text{fix}(T)$ is a closed set. 
+
+
 
 
 

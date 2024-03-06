@@ -33,7 +33,7 @@ See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications]
 
 For this part of the content, we faithfully follow Prof Wang's teaching of MATH 564 at the university of Britich Columbia, Okanagan. 
 
-#### **Def 2.29 | Lipschitz Function**
+#### **Def 2.29 | Lipschitz Function on a Set**
 
 > Let $A\subseteq \mathbb R^n$, We say that $f: \mathbb R^n \mapsto \mathbb R$ is Lipschitz if $\exists K > 0$ such that $|f(x)  - f(y)| \le K\Vert x - y\Vert$ for all $x, y \in  A$. 
 > 1. When $A$ is $\mathbb R^n$, we say that $f$ is a *Lipschitz function*. 
@@ -101,8 +101,40 @@ Just fix $x = 0$ and let $y\in \mathbb R$  then the Lipschitz condition is $y^2 
 
 **Remarks**
 
-The norm function $\Vert \cdot\Vert$ is a classical example of a Gloablly Lipschitz function. 
+The norm function $\Vert \cdot\Vert$ is a classical example of a Globally Lipschitz function. 
 
+---
+### **Little-o Asymptoptic Properties of Locally Lipschitz Mapping**
+
+Locally Lipschitz properties makes the little-o Asymptoptic behaviors of mapping more manageable under certain conditions. 
+
+#### **Thm | Asymptoptic Behavrios of a Locally Lipschitz Mapping**
+> Let $F: \mathbb R^n \mapsto \mathbb R^m$ be locally Lipschitz at $\bar x \in \mathbb R^n$ then, we have $o(\Vert y - \bar x, F(y) - F(\bar x)\Vert)$ is Asymptoptically the same as $o(\Vert y - \bar x\Vert)$. 
+
+**Proof**
+
+Directly consider the 
+
+$$
+\begin{aligned}
+    \frac{o(\Vert y - \bar x, F(y) - f(\bar x)\Vert)}{\Vert y - \bar x\Vert}
+    &= 
+    \frac{o(\Vert y - \bar x, F(y) - f(\bar x)\Vert)}{\Vert y - \bar x, F(y) - F(\bar x)\Vert}
+    \frac{\Vert y - \bar x, F(y)  - F(\bar x)\Vert}{\Vert y - \bar x\Vert}. 
+\end{aligned}
+$$
+
+Using local Lipschitz property of $F$, let $K(\bar x)$ be the local Lipschitz constant around some neighbourhood of $y \in \mathcal N(\bar x)$.
+
+$$
+\begin{aligned}
+    \frac{ \Vert y - \bar x, F(y) - F(\bar x)\Vert}{\Vert y - \bar x\Vert}
+    &\le 
+    \frac{\Vert y - \bar x\Vert + K(\bar x) \Vert y - \bar x\Vert}{\Vert y - \bar x\Vert}
+    \\
+    &= K +1. 
+\end{aligned}
+$$
 
 
 ----

@@ -216,16 +216,16 @@ For (2., 3.), use the property of inner product.
 ---
 ### **Examples**
 
-We take a look at some of the specifric examples of monotone operators that are relavent to real world application. 
+We take a look at some of the specific examples of monotone operators that are relavent to real world application. 
 
 #### **Example 1.1 | Projection is Monotone**
 > Let $C\subseteq X$ be non-empty, then the projection operator onto the set: $\Pi_C$ is a monotone operator. 
 
 **Observations**
 
-We emphaize that convexity of the set $C$ is not assume therefore $\Pi_C$ can be multi-valued and the obtuse angle theorem won't be applicable anymore. 
+We emphasize that convexity of the set $C$ is not assume therefore $\Pi_C$ can be multi-valued and the obtuse angle theorem won't be applicable anymore. 
 This theorem is in Hilbert space. 
-Therefore, norm that doesn't support inner product won't be comptible. 
+Therefore, norm that doesn't support inner product won't be compatible. 
 
 **Proof**
 
