@@ -49,6 +49,7 @@ The reader should realize the similarity between the definition of the limiting 
 > In short, the outer set limit of the set operator $\widehat N_C(\bar x)$ is the limiting normal cone. 
 
 
+---
 ### **The Basics**
 
 We introduce some basic properties of the normal based on the definition of the normal cone. 
@@ -105,10 +106,94 @@ And the conclusion of the above derivation would be that $\alpha u + \beta v \in
 The set is closed because by the definition we have that $\mathbf 0 \in \widehat N_{C}(\bar x)$ trivially. 
 
 #### **Thm | Parallelization Properties of Normal Cone**
-> Let $C = A \times B$, so that it can be represented as the product space of 2 vector spaces. 
+> Let $C = \Omega_1 \times \Omega_2$, so that it can be represented as the product space of 2 vector spaces. 
 > I.e: $A \subseteq \mathbb R^k$, $B \subseteq \mathbb R^l$, with $k + l = n$. 
-> Then the regular normal cone has $\widehat N_C(\bar x) = \widehat N_A(\bar x) \times \widehat N_B(\bar x)$
+> Then the regular normal cone has $\widehat N_C(\bar x) = \widehat N_{\Omega_1}(\bar x) \times \widehat N_{\Omega_2}(\bar x)$. 
+> The same thing happens for limiting normal cone. 
 
 
 **Proof**
+
+
+To show $\supseteq$ consider $(v_1, v_2) \in \widehat N_{\Omega_1}(\bar x_1)\times \widehat N_{\Omega_2}(\bar x_2)$. 
+
+
+$$
+\begin{aligned}
+    \langle v_i, x_i - \bar x_i\rangle 
+    &\le o (\Vert x_i - \bar x_i\Vert) \quad i \in \{1, 2\}
+    \\
+    \langle v_1, x_1 - \bar x_1\rangle + \langle v_2, x_2 - \bar x_2\rangle 
+    &\le 
+    o(\Vert x_0- \bar x_1\Vert) + o(\Vert x_2 - \bar x_2\Vert)
+    \\
+    \langle (v_1, v_2), (x_1 - \bar x_1, x_2 - \bar x_2)\rangle
+    &\le 
+    o(\Vert x_1 - \bar x_1\Vert) + o(\Vert x_2 - \bar x_2\Vert)
+    \\
+    \frac{\langle (v_1, v_2), (x_1 - \bar x_1, x_2 - \bar x_2)\rangle}{
+        \Vert (x_1, x_2) - (\bar x_1, \bar x_2)\Vert
+    }
+    &\le 
+    \frac{o(\Vert x_1 - \bar x_1\Vert) + o(\Vert x_2 - \bar x_2\Vert)}{
+        \Vert (x_1, x_2) - (\bar x_1, \bar x_2)\Vert
+    }.
+\end{aligned}
+$$
+
+That last statement proved what we want by the observation that $\Vert (x_1, x_2) - (\bar x_1, \bar x_2)\Vert = \Vert x_1 - \bar x_1\Vert + \Vert x_2 -\bar x_2\Vert$. 
+Taking limsup on the LHS yields the result $(v_1, v_2) \in \widehat N_{\Omega_1 \times \Omega_2}((\bar x_1, \bar x_2))$. 
+$\supseteq$ is now proven. 
+To show that other direction consider $(v_1, v_2)\in \widehat N_{\Omega_1 \times \Omega_2}(\bar x)$. 
+By the definition that would give 
+$$
+\begin{aligned}
+    \langle (v_1, v_2), (x_1 - \bar x_1, x_2 - \bar x_2)\rangle &\le 
+    o (\Vert (x_1 - \bar x_1, x_2 - \bar x_2)\Vert) \quad 
+    \forall (x_1, x_2) \in \Omega_1 \times \Omega_2. 
+\end{aligned}
+$$
+
+If $x_1 = \bar x_1$ then $\langle (v_1, v_2), (x_1 - \bar x_1, x_2 - \bar x_2)\rangle = \langle v_2, x_2 - \bar x_2\rangle \le o(\Vert x_2 - \bar x_2\Vert)$, which implies that $v_2 \in \widehat N_{\Omega_2}(\bar x_2)$. 
+Similarly if we set $x_2 = \bar x_2 \in \Omega_2$, we deduce that $v_1 \in \Omega_1(\bar x  _1)$. 
+Therefore the $\subseteq$ is proven. 
+
+For the limiting normal cone, consider the limit $(x_1^{(n)}, x_2^{(n)}) \in \Omega_1 \times \Omega_2$ for $n \in \mathbb N$. 
+Then we have that
+
+$$
+\begin{aligned}
+    N_{\Omega_1\times\Omega_2}(\bar x_1, \bar x_2) &= 
+    \underset{n \rightarrow \infty}{\text{Limsup}} \widehat N_{\Omega_1 \times \Omega_2}((\bar x_1, \bar x_2))
+    \\
+    &= \underset{n \rightarrow \infty}{\text{Limsup}}
+    \left(
+        \widehat N_{\Omega_1}(\bar x_1)
+    \right)\times \left(
+        \widehat N_{\Omega_2}(\bar x_2) 
+    \right)
+    \\
+    &= 
+    \left(
+        \underset{n \rightarrow \infty}{\text{Limsup}} 
+        \widehat N_{\Omega_1}(\bar x_1)
+    \right)
+    \times 
+    \left(
+        \underset{n \rightarrow \infty}{\text{Limsup}} 
+        \widehat N_{\Omega_2}(\bar x_2)
+    \right). 
+\end{aligned}
+$$
+
+Because set limit can be broacasted to each of the components directly for any converging sequence. 
+
+
+---
+### **Normal Cone of Graph of a Lipschitz Mapping**
+
+The normal cone of the graph of a Lipschitz mapping is related to the regular subgradient. 
+
+
+
 
