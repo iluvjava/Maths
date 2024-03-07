@@ -164,7 +164,10 @@ Then we have that
 $$
 \begin{aligned}
     N_{\Omega_1\times\Omega_2}(\bar x_1, \bar x_2) &= 
-    \underset{n \rightarrow \infty}{\text{Limsup}} \widehat N_{\Omega_1 \times \Omega_2}((\bar x_1, \bar x_2))
+    \underset{n \rightarrow \infty}{
+        \text{Limsup }
+    } 
+    \widehat N_{\Omega_1 \times \Omega_2}((\bar x_1, \bar x_2))
     \\
     &= \underset{n \rightarrow \infty}{\text{Limsup}}
     \left(
@@ -194,6 +197,51 @@ Because set limit can be broacasted to each of the components directly for any c
 
 The normal cone of the graph of a Lipschitz mapping is related to the regular subgradient. 
 
+####  **Thm | Tangent Cone of Locally Lipschitz Mapping**
+> Let $F: \mathbb R^n \mapsto \mathbb R^m$ be locally Lipschitz, let $S = \text{gph}(F):= \{(x, F(x)) | x \in \mathbb R^n\}$. 
+> Then we have 
+> 1. $(x^*, - y^*) \in \widehat N_S(\bar x, F(\bar x))\implies x^* \in \widehat \partial [\langle y^*, F(\cdot)\rangle](\bar x)$. 
+> 2. $(x^*, - y^*)\in N_S(\bar x, F(\bar x)) \implies x^* \in \partial [\langle y^*, F(\cdot)\rangle](\bar x)$. 
+
+**Observation**
+
+The converse is not gonna be proved here. 
+
+**Proof**
+
+Directly from the definition we have 
+
+$$
+\begin{aligned}
+    (x^*, - y^*) \in \widehat N_S(x, F(\bar x)) 
+    \iff 
+    0 \ge \langle (x^*, -y^*), (y - \bar x, F(y) - F(\overline x))\rangle + 
+    o(\Vert (y - \bar x, F(y) - F(\bar x))\Vert)
+\end{aligned}
+$$
+
+By locally Lipschitz property of the mapping $F$, we have $o(\Vert (y - \bar x, F(y) - F(\bar x))\Vert)$ is of $o(\Vert y - \bar x\Vert)$. 
+With that we simply the conditions and gives 
+
+$$
+\begin{aligned}
+    0 &\ge 
+    \langle (x^*, - y^*), (y - \bar x, F(y) - F(\bar x))\rangle
+    + o(\Vert y - \bar x\Vert)
+    \\
+    0 &\ge 
+    \langle x^*, y - \bar x\rangle - 
+    \langle y^*, F(y) - F(\bar x)\rangle
+    + 
+    o(\Vert y - \bar x\Vert)
+    \\
+    \langle y^*, F(y) - F(\bar x)\rangle - \langle x^*, \bar x - y\rangle
+    &\ge 
+    o(\Vert y - \bar x\Vert). 
+\end{aligned}
+$$
+
+The condition of the last line is equivalent to the definition of regular subgradient, i.e: $x^* \in \widehat \partial [z \mapsto \langle y^*, F(z)\rangle](\bar x)$. 
 
 
 
