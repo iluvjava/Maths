@@ -14,7 +14,7 @@ We wish to prove the that projector as a function of $\mathbb{R}^n\mapsto \mathb
 
 > $$
 > \forall x, y \in \mathbb{R}^n: \left\Vert
->     \underset{Q}{\text{proj}} (x) - \underset{Q}{\text{proj}}(y)
+>     \Pi_Q (x) - \Pi_Q(y)
 > \right\Vert_2 \le 
 > \Vert 
 >     x - y
@@ -29,24 +29,24 @@ Assume that following claim is true then we can derive the theorem from the clai
 
 $$
 \begin{aligned}
-    \left\Vert \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)\right\Vert_2^2
+    \left\Vert \Pi_Q(x_1) - \Pi_Q(x_2)\right\Vert_2^2
     &\le 
     \left\langle 
-        \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2), x_1 - x_2
+        \Pi_Q(x_1) - \Pi_Q(x_2), x_1 - x_2
     \right\rangle
     \\
     \implies 
     \left\langle 
-            \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2), x_1 - x_2
+            \Pi_Q(x_1) - \Pi_Q(x_2), x_1 - x_2
     \right\rangle
     &\le 
     \left\Vert 
-	    \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)
+	    \Pi_Q(x_1) - \Pi_Q(x_2)
 	\right\Vert_2 
 	\Vert x_1 - x_2\Vert_2
     \\
     \implies 
-    \Vert \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2)\Vert_2 &\le \Vert x_1 - x_2\Vert_2. 
+    \Vert \Pi_Q(x_1) - \Pi_Q(x_2)\Vert_2 &\le \Vert x_1 - x_2\Vert_2. 
 \end{aligned}
 $$
 
@@ -56,13 +56,13 @@ $$
 \begin{aligned}
     \forall x_1, x_2 \in Q:&   \\
     \left\langle 
-        \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
-        x_1 - \underset{Q}{\text{proj}}(x_1) 
+        \Pi_Q(x_2) - \Pi_Q(x_1), 
+        x_1 - \Pi_Q(x_1) 
     \right\rangle &\le 0 
     \\
     \left\langle 
-    \underset{Q}{\text{proj}}(x_1) - \underset{Q}{\text{proj}}(x_2), 
-    x_2 - \underset{Q}{\text{proj}}(x_1) 
+    \Pi_Q(x_1) - \Pi_Q(x_2), 
+    x_2 - \Pi_Q(x_1) 
     \right\rangle &\le 0. 
 \end{aligned}
 $$
@@ -72,24 +72,24 @@ For any 2 points, $x_1, x_2$ in the set $Q$, relative to each other they make a 
 $$
 \begin{aligned}
         \left\langle 
-            \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
-            x_1 - \underset{Q}{\text{proj}}(x_1) 
+            \Pi_Q(x_2) - \Pi_Q(x_1), 
+            x_1 - \Pi_Q(x_1) 
         \right\rangle &\le 0 
         \\
         \left\langle 
-        \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
-        \underset{Q}{\text{proj}}(x_1)  - x_2
+        \Pi_Q(x_2) - \Pi_Q(x_1), 
+        \Pi_Q(x_1)  - x_2
         \right\rangle &\le 0
         \\
         \underset{\text{add them}}{\implies} \left\langle 
-            \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), 
-            x_1 - x_2 + \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1)
+            \Pi_Q(x_2) - \Pi_Q(x_1), 
+            x_1 - x_2 + \Pi_Q(x_2) - \Pi_Q(x_1)
         \right\rangle &\le 0
         \\
         \left\Vert 
-	        \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1)
+	        \Pi_Q(x_2) - \Pi_Q(x_1)
 	    \right\Vert_2^2
-		- \left\langle \underset{Q}{\text{proj}}(x_2) - \underset{Q}{\text{proj}}(x_1), x_2 - x_1 \right\rangle &\le 0, 
+		- \left\langle \Pi_Q(x_2) - \Pi_Q(x_1), x_2 - x_1 \right\rangle &\le 0, 
 \end{aligned}
 $$
 
