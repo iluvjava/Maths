@@ -81,6 +81,7 @@ Because the norm of the weak limit, is never the norm of the sequence.
 The strong convergence of $x_n - Tx_n$ can be equivalently written as $\Vert x_n - Tx_n\Vert \rightarrow 0$  and $x_n \rightharpoonup Tx_n$. 
 We emphasize the, $T$ is a generic operator and it may not be a Lipschitz operator. 
 
+
 **Proof**
 
 $$
@@ -121,10 +122,9 @@ Finally, the cross term approches zero by the weak convergence of $x_n \righthar
 
 **Remarks**
 
-If we only have $x_n - Tx_n \rightarrow \mathbf 0$, it won't mean that $x_n$ converges to anything. 
-Imagine the case where $T$ is just the identity operator. 
-Therefore, here we provide the sufficient conditions to show $x_n \rightarrow T x_n$, which requires $x_n \rightharpoonup x$. 
-The theorem characterize one way where a sequence can converge to the fixed point of an operator. 
+This theorem is useful to characterize the convergence of $x_n$ to the fixed point of the operator $T$. 
+Assume that $x_n$ is a sequence with a weak limit, and in addition we showed that the sequence $x_n - Tx_n$ converges strongly to $\mathbf 0$. 
+These 2 conditions together would be able to assert that the limit of the sequence $x_n$, which is $\bar x$ belows to the fixed point of $T$, which is that $\bar x - T\bar x =  \mathbf{0}$. 
 
 
 #### **Thm | Existence of a Fixed Point Set**
