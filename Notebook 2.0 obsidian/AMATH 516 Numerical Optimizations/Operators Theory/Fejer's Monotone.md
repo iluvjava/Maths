@@ -14,10 +14,14 @@ Fejer monotone is a type of strong generalization to a monotone sequence in Bana
 The points in the sequences, is getting closer, to very elements in the set $C$. This is a very strong type of convergence, especially for the set $C\subseteq X$. We explicitly assume that, the set $X$ is some type of Banach space. 
 Traditionally, in the realm of real analysis, a monotone increasing sequence $x_n$ approaches $\sup_{n\in N}x_n$, but observe that, a monotone increasing sequence approaches $C = [\sup_{n\in \N}x_n, \infty)$. We hence showed that our observation is ok. 
 
-The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it would mean that $d_C(x_n)$ is a monotone sequence, however, the converse is not true, since Fejer monotone asserts the monotone conditions for all the points in the set $C$. 
+The convergence is strong. If $(x_n)_{n\in \mathbb N}$ is Fejer monotone, it would mean that $d_C(x_n)$ is a monotone sequence too, however, the converse is not true, since Fejer monotone asserts the monotone conditions for all the points in the set $C$. 
 
-If $x_n$ is Fejer monotone wrt to a convex set $C\subset X$, then it is Fejer monotone to all the convex subsets of the set $C$.
 
+----
+### **Theorems and Discussions**
+
+We list some of the useful theorems for this specific type of monotone convergence. 
+The definition may seems simple but the consequences are profound and they characterizes fixed point iterations in practical applications and problems. 
 
 #### **Thm-1 | Uniqueness of Cluster Points in the Set**
 
@@ -54,9 +58,9 @@ Therefore, we have $\lim_{n\rightarrow } \Vert x^{(n)} - \bar x\Vert = \lim_{k\r
 It converges strongly, since it's converging only by the norm. 
 
 
-#### **Thm-1.1 | Uniquness of Weak Cluster Point**
+#### **Thm-1.1 | Uniquness of Weak Cluster Point in $C$**
 > Let $x_n$ in $X$ be a Fejer Monotone sequence wrt $C\neq \emptyset$. 
-> Then $x_n\rightharpoonup x \in C$ if and only if ever weak sequential clusters points are in the set $C$. 
+> Then $x_n\rightharpoonup x \in C$ if and only if every weak sequential clusters points are in the set $C$. 
 
 **Observations**
 
@@ -193,21 +197,128 @@ Therefore, all sub-sequential limit points of the sequence are the same, therefo
 Intuitively, if the sequence approaches the set $C$ for all points and gets very close, it can't have too much room to wiggle. 
 This theorem is weaker compare to the first theorem in the sense that, in finite Euclidean space, the Fejer monotonicity can be removed at the cost of removing the "if and only if" relations between the two parts. 
 
-#### **Thm | Convergence wrt to the Convex hull**
+#### **Thm | Convergence wrt to the closed Convex hull**
 > Let $C\subseteq X$ be nonempty and $x_n$ F-Monotone convergence wrt to $C$, then it's also F-Monotone converges wrt to $\text{cl.cvxh}(C)$, the convex hull of the set. 
 
 **Proof**
 
+Let $x_n$ be Fejer Montone convergence wrt to the set $C$. 
+Consider the equivalence: 
+
+$$
+\begin{aligned}
+    \forall n \in \mathbb N, c \in C \iff 
+    \left[
+        \Vert x_n - c\Vert^2 \le \Vert x_n - c\Vert^2 
+        \iff 
+        \langle c, x_n - x_{n + 1}\rangle \le 
+        \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2
+    \right], 
+\end{aligned}
+$$
+
+and the above characterzation is equivalent to the definition of Fejer Monotone convergence of the sequence. 
+Let $c_k \rightarrow \overline c$, be a sequence in $C$ that converges to $\overline c \in \text{cl}(C)$, then from the above we have 
+
+$$
+\begin{aligned}
+    \langle c_k , x_{n} - x_{n + 1}\rangle &\le 
+    \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2
+    \\
+    \implies 
+    \lim_{n\rightarrow \infty}
+    \langle c_k , x_{n} - x_{n + 1}\rangle
+    & \le 
+    \lim_{n\rightarrow \infty}
+    \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2
+    \\
+    \langle \overline c, x_n - x_{n + 1}\rangle
+    &\le \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2. 
+\end{aligned}
+$$
+
+This is from the continuity of norm and inner product of Hilbert space. 
+Next, for every points in the $\text{cvxh}(C)$, it is represetned as $c_1, \cdots, c_k$ of set $C$, and $\lambda_i > 0$  with $\lambda_1 + \cdots + \lambda_k = 1$, and with that we have 
+
+$$
+\begin{aligned}
+    \langle c_i, x_n - x_{n + 1}\rangle &\le 
+    \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2 \quad \forall i = 1, \cdots, k
+    \\
+    \sum_{i = 1}^{k}\lambda_i \langle c_i, x_n - x_{n + 1}\rangle 
+    &\le 
+    \sum_{i = 1}^{k} \lambda_i (\Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2)
+    \\
+    \left\langle 
+        \sum_{i = 1}^{k} \lambda_i c_i, x_n - x_{n + 1}
+    \right\rangle
+    &\le 
+    \Vert x_n\Vert^2 - \Vert x_{n + 1}\Vert^2. 
+\end{aligned}
+$$
+
+And therefore, the sequence is also F-Monotone wrt point $\sum_{i = 1}^{k}\lambda_i c_i$, which is an arbitrary element from the $cvxh(C)$. 
+By the sequence, we can conclude that $x_n$ is Fejer monotone wrt $\text{cl.cvxh}(C)$, the closed convex hull of $C$. 
+
+
+
 #### **Thm | Convergence of the Shadow Sequence**
-> Let $x_n$ be Fejer Monotone wrt to $C\subseteq X$ that is non-empty. 
+> Let $x_n$ be Fejer Monotone wrt to $C\subseteq X$ that is non-empty, closed and convex.  
 > Then $\Pi_C$ converges strongly to some point. 
+
+**Observations**
+
+Although convergence is never assured, but the projected sequence of a F-monotone seequence is sufficient to produce a sequence that converges strongly. 
 
 **Proof**
 
+Consider: 
+
+$$
+\begin{aligned}
+    \Vert \Pi_C x_n - \Pi_C x_{n + m}\Vert^2 
+    &= 
+    \Vert \Pi_C x_n - x_{m + n} + x_{m + n} - \Pi_C x_{m + n}\Vert^2
+    \\
+    &= 
+    \Vert \Pi_C x_n - x_{n + m}\Vert^2 + 
+    \Vert x_{m + n} - \Pi_C x_{m + n}\Vert^2
+    -2 \langle \Pi_C x_n - x_{m + n}, x_{m + n} - \Pi_C x_{m + n}\rangle
+    \\
+    &\le \Vert \Pi_C x_n - x_n\Vert^2 + d_C(x_{m + n})^2 
+    + 2 \left\langle 
+        (\Pi_C x_n - \Pi_C x_{m + n}) + 
+        (\Pi_C x_{m + n} - x_{m + n}), 
+        x_{m + n} - \Pi_C x_{m + n}
+    \right\rangle
+    \\
+    &= d_C(x_n)^2 + d_C(x_{m+ n})^2
+    + 2 \langle \Pi_C x_n - \Pi_C x_{m + n}, x_{m + n} - \Pi_C x_{m + n}\rangle
+    - 2  \Vert \Pi_C x_{m + n} - x_{m + n}\Vert^2. 
+\end{aligned}
+$$
+
+Observe that the cross term admit the point $\Pi_C x_n \in C$, therefore we may apply the obtuse angle theorem for the point $x_{m + n}$ using the fact that $C$ is a closed and convex set, then the cross term is less than zero and therefore we have 
+
+$$
+\begin{aligned}
+    \Vert \Pi_C x_n - \Pi_C x_{n + m}\Vert^2 
+    & \le 
+    d_C(x_n)^2 + d_C(x_{m + n})^2 - 2d_C(x_{m + n})^2
+    \\
+    &= d_C(x_n)^2 - d_C(x_{m + n})^2. 
+\end{aligned}
+$$
+
+
+Using the fact that the sequence is F-Monotone, the above would suggest that the distance converges $\lim_{n \rightarrow \infty} d_C(x_n)^2 - d_C(x_{m + n})^2 = 0$ for all $m \in \mathbb N$. 
+Since that is the upper bound of the norm squared, we haev that the projected sequence is a Cauchy sequence as well. 
 
 
 #### **Thm | Finite Length Trajectory**
 > If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
+
+
 
 **Proof**
 
