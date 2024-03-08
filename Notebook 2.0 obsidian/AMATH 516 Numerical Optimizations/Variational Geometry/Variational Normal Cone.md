@@ -244,4 +244,7 @@ $$
 The condition of the last line is equivalent to the definition of regular subgradient, i.e: $x^* \in \widehat \partial [z \mapsto \langle y^*, F(z)\rangle](\bar x)$. 
 
 
+---
+### **Variational Characterzation of the Frechet Normal Cone**
+
 

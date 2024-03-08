@@ -121,7 +121,23 @@ It works for any functions that has a triangular inequality to it.
 This would mean any metric would work. 
 There is no assumption about the convexity of the set $Q$. 
 
+---
+### **The Projection Operator onto Convex set is Firmly-Nonexpansive**
 
+The following properties makes convex projection easier to deal with. 
+
+#### **Thm | Convex Projection Operator is Firmly Non-expansive**
+> Let $Q\subseteq \mathbb R^n$, let $C$ be a closed non-empty convex set, then the projection operator $\Pi_Q$ is firmly nonexpansive characterized by the inequality: 
+> $$
+> \langle x - y, \Pi_Qx - \Pi_Q y\rangle \ge \Vert \Pi_Qx - \Pi_Q y\Vert^2_2. 
+> $$
+
+**Proof**
+See the example in [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md). 
+
+**Remarks**
+
+This claim is only true with standard Euclidean Spaces and the set $Q$ is convex.
 
 
 ---
