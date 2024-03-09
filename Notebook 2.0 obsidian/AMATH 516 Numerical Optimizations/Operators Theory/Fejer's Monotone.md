@@ -319,8 +319,11 @@ Since that is the upper bound of the norm squared, we haev that the projected se
 > If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
 
 
-
 **Proof**
+
+
+
+
 
 
 ----
