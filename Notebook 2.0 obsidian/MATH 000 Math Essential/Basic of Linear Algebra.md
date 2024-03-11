@@ -29,7 +29,7 @@ Linear combinations is for a finite set of vectors, which itself is a vector.
 **Observations**
 
 In finite dimension, subspaces are closed, in infinite dimension, vector spaces are not necessarily closed. 
-The vector $(1,1/2, \cdots, )$ in Hilbert space $l^2$ is not a vector that can be a finite linear combination of $\e_i, i\in \mathbb N$ the standard basis vactor. 
+The vector $(1,1/2, \cdots, )$ in Hilbert space $l^2$ is not a vector that can be a finite linear combination of $\e_i, i\in \mathbb N$ the standard basis vector. 
 Hence there is a limit of the sequence of vector that is in the subspace but not closed. 
 
 #### **Prop | Minimal Subspace, Maximal Span**
