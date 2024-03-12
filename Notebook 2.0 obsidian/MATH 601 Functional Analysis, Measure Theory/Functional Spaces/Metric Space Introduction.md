@@ -45,17 +45,21 @@ The first 2 axioms are trivially true, however, to verify that the subspace is a
 ### **Example | Discrete Metric Space**
 
 
-**Example 1 | Indicator Metric**
+#### **Example 1 | Indicator Metric**
 > Suppose that we were given any non-empty set $X$ and define the metric $d(x, y)$ such that $d(x, y) = 1$ whenever $x \neq y$, and $=0$ whenever $x = y$, then $(X, d)$ still would form a metric space and this is an example of: discrete metric space. 
 
 **Remarks** 
 
-Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
+Remember that a classification error matrix for multi-class labeling in machine learning is an example of such a discrete metric. 
+In a more general sense, the number of edges for the *shortest path* between 2 vertex in a graph can also be a discrete metric. 
+The continuous analog of the shortest path metric is the geodesic. 
 
 However, one can make the underlying space to be $X$, then this metric has several surprises to it.
 1. Not separable. 
 2. Not dense. 
 3. Not continuous. 
+
+If the space $X$ is infinite. 
 
 
 #### **Example 2 | Hamming Distances**
@@ -68,6 +72,8 @@ See [Single Source Shortest Path Optimality Conditions](../../CSE%20000%20Basics
 
 #### **Example 4 | The P-adic Metric** 
 > It's a metric used for the P-adic field. For more about this field, this is the [wiki](https://en.wikipedia.org/wiki/P-adic_number). 
+
+
 
 ---
 ### **More Examples**

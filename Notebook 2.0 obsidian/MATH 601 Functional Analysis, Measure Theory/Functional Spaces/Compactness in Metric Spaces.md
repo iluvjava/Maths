@@ -14,7 +14,7 @@ However, this is not the cause in general, infinite dimensional normed spaces, a
 
 We introduce theorems that are corollaries of a compact metric spaces. 
 
-**Thm | Continuous Mapping Preserves Compact Space (2.5-6)**
+#### **Thm | Continuous Mapping Preserves Compact Space (2.5-6)**
 > Let $X, Y$ be metric spaces. Let $T: X \mapsto Y$ be a continuous mapping. Then the image of a compact subset $M$ of $X$ is, compact. $TM$ is a compact set as well. 
 
 **Proof**: 

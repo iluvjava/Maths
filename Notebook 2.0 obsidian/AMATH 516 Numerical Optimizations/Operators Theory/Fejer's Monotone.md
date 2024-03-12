@@ -257,7 +257,7 @@ $$
 \end{aligned}
 $$
 
-And therefore, the sequence is also F-Monotone wrt point $\sum_{i = 1}^{k}\lambda_i c_i$, which is an arbitrary element from the $cvxh(C)$. 
+And therefore, the sequence is also F-Monotone wrt point $\sum_{i = 1}^{k}\lambda_i c_i$, which is an arbitrary element from the $\text{cvxh}(C)$. 
 By the sequence, we can conclude that $x_n$ is Fejer monotone wrt $\text{cl.cvxh}(C)$, the closed convex hull of $C$. 
 
 
