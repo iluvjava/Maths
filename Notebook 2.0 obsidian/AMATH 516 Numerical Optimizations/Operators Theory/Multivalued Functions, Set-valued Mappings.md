@@ -157,8 +157,12 @@ $$
 > $$
 > \text{gph}(T + S) = \{(x, y + z)|(x, y)\in T, (x, z)\in S\}, 
 > $$
+> For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. 
 
-For simplicity we denotes $(x, y)\in T$ as $(x, y)\in \text{gph}(T)$. When thinking about the set-valued operators, we might treat then directly as their graph instead. 
+> [!Tip]-
+>  When thinking about the set-valued operators, we might treat then directly as their graph instead. 
+
+
 
 
 #### **Def | The Inverse of the Multi-valued Mapping**
