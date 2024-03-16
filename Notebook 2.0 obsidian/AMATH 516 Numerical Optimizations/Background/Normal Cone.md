@@ -4,7 +4,7 @@
 ---
 ### **Variational Normal Cone**
 
-A <span style="color:red">variational normal cone</span>  is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
+A [Variational Normal Cone](Variational%20Normal%20Cone.md)  is parameterized by a set $Q\subseteq \mathbb{R}^n$ and a point $\bar{x}\in Q$ such that: 
 
 > $$
 > N_Q(\bar{x}) := \left\lbrace

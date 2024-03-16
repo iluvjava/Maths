@@ -72,14 +72,15 @@ Because the norm of the weak limit, is never the norm of the sequence.
 
 ---
 #### **Thm | Demi-Closure Principle**
-> Let $T: C \mapsto X$, and $C$ is $\neq \emptyset$, closed, convex. 
+> Let $T: C \mapsto X$ be non-expansive, and $C$ is $\neq \emptyset$, closed, convex. 
 > Then $x_n \rightharpoonup x$, a weak convergence sequence that satisfies $x_n - Tx_n \rightarrow \mathbf 0$, a strongly convergence sequence, then it must be that $x - Tx = 0$. 
 
 
 **Observations**
 
 The strong convergence of $x_n - Tx_n$ can be equivalently written as $\Vert x_n - Tx_n\Vert \rightarrow 0$  and $x_n \rightharpoonup Tx_n$. 
-We emphasize the, $T$ is a generic operator and it may not be a Lipschitz operator. 
+Observe that if $x_n - Tx_n \rightarrow \mathbf 0$ is true, it doesn't mean the sequence converges to the fixed point set, but rather it gets closer and closer to the fixed point set. 
+This theorem is assuring in the sense that, adding the conditions that $x \rightharpoonup x$ is sufficient to show that the limit $x$ is indeed in the fixed point set of the non-expansive operator. 
 
 
 **Proof**

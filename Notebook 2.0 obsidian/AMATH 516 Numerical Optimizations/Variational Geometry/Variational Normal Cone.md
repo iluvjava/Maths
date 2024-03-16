@@ -10,24 +10,35 @@ Recall the definition of a regular Frechet normal cone defined on set $C \subset
 
 #### **Def | Frechet Regular Normal Cone**
 
-$$
-\begin{aligned}
-    v \in \widehat N_C(\bar x) \iff 
-    \limsup_{
-        \substack{
-            x \rightarrow \bar x 
-            \\
-            x \in C}
-        }
-    \frac{\langle c, x - \bar x\rangle}{\Vert x - \bar x\Vert} \le 
-    0 \quad 
-    \forall c \in C. 
-\end{aligned}
-$$
+> $$
+> \begin{aligned}
+>     v \in \widehat N_C(\bar x) \iff 
+>     \limsup_{
+>         \substack{
+>             x \rightarrow \bar x 
+>             \\
+>             x \in C}
+>         }
+>     \frac{\langle c, x - \bar x\rangle}{\Vert x - \bar x\Vert} \le 
+>     0 \quad 
+>     \forall c \in C. 
+> \end{aligned}
+> $$
+> When $\bar x \not \in C$, we have $\widehat N(\bar x) = \emptyset$. 
+
+
 
 
 **Remarks**
+
 The reader should realize the similarity between the definition of the limiting normal cone and the limiting subgradient. 
+Equivalently, we may define normal cone as $v \in \widehat N (\bar x)$ if and only if 
+$$
+    \langle v, x - \bar x\rangle \le o(\Vert x - \bar x\Vert) \quad 
+    \forall x \in C, 
+$$
+
+and $\bar x \in C$. 
 
 ---
 #### **Def | Limiting Normal Cone**

@@ -67,17 +67,17 @@ $$
     \\
     \implies &
     f(x^{(t + 1)}) - f(x^{(0)}) \le 
-    \sum_{j = 1}^{t} \Vert \nabla f(x^{(j)})\Vert^2
+    \sum_{j = 1}^{t} -2L^{-1}\Vert \nabla f(x^{(j)})\Vert^2
     \\
     \implies
     & 
     \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert^2 \le 
     \frac{1}{k}\sum_{j = 1}^{k}\Vert \nabla f(x_j)\Vert^2
-    \le k^{-1}2L(f(x^{(0)}) - f(x^{(k + 1)}))
+    \le k^{-1}(L/2)(f(x^{(0)}) - f(x^{(k + 1)}))
     \\
     \implies & 
     \min_{0 \le j \le k}\left\Vert \nabla f(x^{(j)})\right\Vert \le
-    k^{-1/2}\sqrt{2L(f(x^{0}) - f(x^{(k + 1)}))} \; .
+    k^{-1/2}\sqrt{(L/2)(f(x^{0}) - f(x^{(k + 1)}))} \; .
 \end{aligned}
 $$
 
