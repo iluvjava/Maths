@@ -10,7 +10,7 @@ This is a fixed point iterations that aims to find the fixed point of a non-expa
 
 #### **Thm | Kransnoselkii - Mann Iterations**
 > Let $T: D \mapsto D$ be non-expansive, with $D \neq \emptyset$, closed and convex in Hilbert space $\mathcal H$. 
-> Suppose that $\text{Fix}(T) \neq \emptyset$, $\lambda_n$ lies in $[0, 1]$, and $\sum_{ i = 0}^{\infty}\lambda_n(1 - \lambda_n) = \infty$, Let $x_0 \in D$, we define the iterations: 
+> Suppose that $\text{Fix}(T) \neq \emptyset$, $\lambda_n$ lies in $[0, 1]$, and $\sum_{n = 0}^{\infty}\lambda_n(1 - \lambda_n) = \infty$, Let $x_0 \in D$, we define the iterations: 
 > $$ x_{n + 1} := (1 - \lambda_n)x_n + \lambda_n Tx_n, $$
 > then the following are all true: 
 > 1. $x_n$ is F-mono wrt set $\text{Fix}(T)$. 
@@ -20,6 +20,9 @@ This is a fixed point iterations that aims to find the fixed point of a non-expa
 **Observations**
 
 The iterations chains up a series of averaged operators,  by taking the convex combinations between $I$  the identity and the non-expansive operator $T$. 
+The fixed point set is assumed to exist. 
+Recall that if we have the condition that $D$ is a bounded set, then we can remove the existence assumption of the fixed point set. 
+
 
 **Proof**
 
@@ -137,5 +140,14 @@ $$
 $$
 
 using the property of Demi-closure of a non-expansive operator the limit of the subsequence converges to $\bar x \in \text{Fix } T$, by F-Monotone convergence of the sequence, all the clusters point must be also in $\text{Fix }T$. 
+
+
+---
+### **Convergence rate**
+
+We are interested in the rate of convergence for the fixed point error $Tx_n - x_n$. 
+
+---
+### **Applications and Examples**
 
 
