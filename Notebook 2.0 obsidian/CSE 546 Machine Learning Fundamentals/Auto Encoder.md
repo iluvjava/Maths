@@ -5,11 +5,8 @@ Check [[Independent Component Analysis]] for information on how PCA is used to f
 ### **Intro**
 
 Auto Encoder is a data transformation technique. 
-
 it's a generalization of the PCA method, it's non-linear. 
-
 We want to find a lower dimensional embedding to represent the data in the higher dimension. 
-
 The optimization problem can be phrased as: 
 
 $$

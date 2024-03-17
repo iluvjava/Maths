@@ -4,13 +4,14 @@ This is a statistical method for estimating variance on some predictor given the
 ---
 ### **Intro**
 
-How accurate is hour estimator? 
+**Questions**
+- How accurate is the estimator? 
+- How do I get statistics from the model parameters I trained? 
+- What could be the error for a particular sample x? 
 
-How do I get statistics from the model parameters I trained? 
+**Answers**
 
-What could be the error for a particular sample x? 
-
-**Bootstrap: 1979 by Bradley Elfon**
+Use bootstrap: 1979 by Bradley Elfon. 
 
 
 ---
