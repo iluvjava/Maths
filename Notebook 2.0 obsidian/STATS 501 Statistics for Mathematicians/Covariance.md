@@ -3,25 +3,48 @@ Covariance needs [[Expectations of Random Variables without Measure Theory]].
 ---
 ### **Intro**
 
-Let $X, Y$ be 2 random variables, then we define the covariance to be: 
+#### **Def | Covariance**
+> Let $X, Y$ be 2 random variables, then we define the covariance to be: 
+> $$
+> \text{Cov}[X, Y] = 
+>     \mathbb{E}\left[
+>         (X -\mathbb{E}\left[X\right])
+>         (Y -\mathbb{E}\left[Y\right])
+>         \right]
+>     = 
+>     \mathbb{E}\left[XY\right] - 
+>     \mathbb{E}\left[X\right]
+>     \mathbb{E}\left[Y\right]. 
+> $$
 
-$$
-\text{Cov}(X, Y) = 
-    \mathbb{E}\left[
-        (X -\mathbb{E}\left[X\right])
-        (Y -\mathbb{E}\left[Y\right])
-        \right]
-    = 
-    \mathbb{E}\left[XY\right] - 
-    \mathbb{E}\left[X\right]
-    \mathbb{E}\left[Y\right]
-$$
+**Observations**
 
-Which is somewhat similar to variance, especially the second way of viewing it. The application of covariance are straight forward. Covariance is a measurement of linear dependence between 2 random variable, it's testing some underlying generate process such as the $Y = aX + b$. Where one of the random variable is linear related to the other one. 
+Observe that $\cov[X, Y] = \var{X}$. 
+Covariance is a measurement of linear dependence between 2 random variable, it's testing some underlying generate process such as the $Y = aX + b$, where one of the random variable is linear related to the other one. 
 
-**Common Misconception**
+**Remarks**
 
 If 2 random variable is independent, then their covariance will be zero, the converse is not true, and when they are dependent, their covariance can still be zero. 
+
+#### **Def | Covariance Matrix**
+> Let $X, Y$ be random variable from $\mathbb R^m, \mathbb R^n$, the the covariance matrix for the 2 variable is defined as: 
+> $$
+> \begin{aligned}
+> \cov[X, Y] = \expect
+>     {
+>         (X - \expect{X})(Y - \expect{Y})^T
+>     }. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+$$
+\cov[X, Y]_{i, j} = \cov[X_i, Y_j]. 
+$$
+
+It's a $\mathbb R^{m\times n}$ matrix and the quantity inside is the outter product between 2 variable. 
+
 
 ---
 ### **Useful Properties**
@@ -99,19 +122,20 @@ Use property 5 to prove this one, it's trivial and left as an exercise for the r
 ---
 ### **Examples and Stuff**
 
-**Application | Pearson Correlation Coefficients**
+#### **Application | Pearson Correlation Coefficients**
 
 > One of the important applications of the covariance is the Pearson's correlations, which is computed via: 
+> $$
+> \rho(X, Y) = 
+> \frac{\text{Cov}\left(X,Y\right)}
+> {\sqrt{\text{Var}\left[X\right]\text{Var}\left[Y\right]}}. 
+> $$
 
-$$
-\rho(X, Y) = 
-\frac{\text{Cov}\left(X,Y\right)}
-{\sqrt{\text{Var}\left[X\right]\text{Var}\left[Y\right]}}, 
-$$
+**Observation**
 
 immediately observe that using property 2., the Pearson correlation coefficient for the variables with itself is the always 1. 
 
-**Example 1 | Co-Variance of Linear Composite** 
+#### **Example 1 | Co-Variance of Linear Composite** 
 
 > Given $Y = aX +b$, find $\text{Cov}\left(X,Y\right)$
 
@@ -129,7 +153,7 @@ $$
 \end{aligned}
 $$
 
-**Example | Variance of Sum**
+#### **Example | Variance of Sum**
 
 > Given the sum of random variables, say $\sum_{i} X_i$, find the variance of the sum. First assume no independence, and then assume independence, give results for both type of assumptions. 
 

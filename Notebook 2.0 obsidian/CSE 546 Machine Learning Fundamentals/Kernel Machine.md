@@ -21,7 +21,7 @@ A kernel is a function that can take the inner product given 2 instance of sampl
 Let $K: \mathbb{R}^{d}\times \mathbb{R}^{d} \mapsto \mathbb{R}$, then the function $K$ will be a kernel function when: 
 
 $$
-K(x_1, x_2) = \langle \phi(x) \phi(x_2)\rangle
+K(x_1, x_2) = \langle \phi(x), \phi(x_2)\rangle
 $$
 
 Where the function $\phi(x)$ is a mapping from the lower dimensional feature space to a higher dimensional feature space.
