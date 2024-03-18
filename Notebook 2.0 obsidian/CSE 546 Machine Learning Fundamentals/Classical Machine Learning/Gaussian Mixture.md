@@ -1,13 +1,9 @@
-This concept has already been introduced in the AMATH class. 
-
-In [[Basic Machine Learning]]. [[Normal Distribution]]
-
-And this is a similar idea compare to 
+- [[Gaussian Distribution]]
 
 ---
 ### **Intro**
 
-
+Gaussian mixture is a type of unsupervised clustering methods. 
 The Gaussian Distribution in $n$ dimension can be: 
 
 $$
@@ -19,14 +15,13 @@ P(x; \mu, \Sigma) -
 $$
 
 This is a Gaussian Distribution with a linear transform matrix $\Sigma$, and a center $\mu$.
-
-Each of the Guassian distribution for each of the classes are going to give us a $\mu$, and a $\Sigma$. 
+Each of the Gaussian distribution for each of the classes are going to give us a $\mu$, and a $\Sigma$. 
 
 And, let's construct the weight for each of the sample: $\phi_i$, representing the amount of portion that a given sample is in the Gaussian distribution $i$, this implies that $\sum_{i = 1}^k\phi_i = 0$ and $\phi_i> 0$ for all $i$. 
 
 So that if a sample is given $\phi_1 = \frac{1}{2}$ and $\phi_2 = \frac{1}{2}$, then that sample belongs right between 2 of the gaussian distribution. 
 
-What is the probability of getting a sample $x_j$from the Guassian distribution indexed with $1$? 
+What is the probability of getting a sample $x_j$from the Gaussian distribution indexed with $1$? 
 
 It's given by: 
 

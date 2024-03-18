@@ -4,13 +4,13 @@
 ### **Intro**
 
 <mark style="background: #FFB86CA6;">This is an introduction for people who already know about Neural Networks</mark>. 
-Artificial neural network is a is a specific models that looks cool and has a lot of parameters. 
+Artificial neural network is a is a computational model that looks cool and has a lot of parameters. 
 They were inspired by real neurons and they were never the same thing as the neurons in human brain. 
-For mathematician, it's mostly safe to assume that it's a function mapping between $\mathbb R^n,\mathbb  R^m$. 
+For mathematicians, it's mostly safe to assume that it's a function mapping between $\mathbb R^n,\mathbb  R^m$(Mostly safe, not always). 
 More precisely, and this is mixed with my own personal opinion: 
 
 #### **Opinion | What is Artificial Neural Network**
-> Artificial Neural is one of the representation of some numerical algorithm with automatically differentiable parameters. 
+> Artificial Neural is one of the representations of differentiable numerical algorithms. 
 
 There are many differentiable numerical algorithms and Artificial Neural Networks (ANNs) are a subset of them. 
 
@@ -60,7 +60,7 @@ A differentiable dual number is $(x, 1)$, and a constant that we are not interes
 **Remarks**
 
 Using these rules to compute numerical operations inside of a computer by representing it as a type in programming language, it can enable automatic differentiation without the autodiff algorithm. 
-It's less efficient because we can only take derivatie wrt to a single variable each time (or equivalently, taking directional derivative, which we will demonstrate in the comming parts) and we have to repeat computations for all parameters when we want gradient wrt to all parameters. 
+It's less efficient because we can only take derivatie wrt to a single variable each time (or equivalently, taking directional derivative, which we will demonstrate in the coming parts) and we have to repeat computations for all parameters when we want gradient wrt to all parameters. 
 But hey, coordinate descent everyone? 
 
 #### **Examples | Directional Derivative via Differentiable Dual**

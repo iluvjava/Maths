@@ -469,7 +469,7 @@ Compare to taking the derivative on the weight matrices, taking derivative on th
 ---
 ### **5. Recursion Fully Unrolled**
 
-**Unrolling the Weights Derivative**
+#### **Unrolling the Weights Derivative**
 
 Consider the Derivative of a particular weight in the Network: $w_{i, j}^{(k)}$, the $i$ th row $j$ th column of the weight matrix in the k th layer after the input layer.  
 
@@ -490,13 +490,13 @@ $$
 \circ
 (W_{k+ 1})_{[:, i]}f' 
 \left(
-    p^{(k + 1)}_i
+	p^{(k + 1)}_i
 \right) f \left(
-    p_j^{(k)}
+	p_j^{(k)}
 \right)
 $$
 
-**Unrolling Bias Derivative**
+#### **Unrolling Bias Derivative**
 
 $$
 =
@@ -521,6 +521,7 @@ $$
 
 
 **Observe**: The derivative on the bias vector is not relevant to the variable $j$. 
+
 
 ---
 ### **Formulation of an Algorithm**

@@ -1,7 +1,9 @@
-This thing is used so much it deserves its page. 
+- [PDFs, PMFs](../STATS%20501%20Statistics%20for%20Mathematicians/PDFs,%20PMFs.md)
 
 ---
 ### **Intro**
+
+
 
 $$
 \mathcal{N}(x; \mu, \sigma=\beta^{-1}) = 

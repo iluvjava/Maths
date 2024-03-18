@@ -1,8 +1,4 @@
-Automatic Differential is an algorithmic approach to taking derivative of functions. 
-
-This made the process of taking derivative on the Neural Network easier. 
-
-For some similar concepts like this, check out: [[Back Propagation]]
+[[Back Propagation]]
 
 Ok, check out this very cool course notes from University of Toronto: [Automatic Differential](https://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/readings/L06%20Automatic%20Differentiation.pdf) and the [code repo](https://github.com/mattjj/autodidact)
 

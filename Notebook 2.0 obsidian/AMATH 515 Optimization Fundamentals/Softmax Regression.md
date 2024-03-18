@@ -1,67 +1,64 @@
 [[Generalized Linear Model]]
 
-The softmax regression is a on layer Neural Networks with a softmax activation function. 
-
 ---
 
 ### **Intro**
 
-This is a model where the inputs are features, and the output is a categorical vector. Basically: $y\in\mathbb{Z}^{q}_+$
-
-The prediction vector made my the model is a vector of probability, meaning that:
-
-$$
-\sum_{i = 1}^{d}\hat{y}_i = 1
-$$
-
-Where, the sum of probability equals to one.
-
-The label vector that used for testing is a standard basis vector, where the correct label is marked with $1$ on it.
+This is a model where the inputs are continuous features, and the output is a categorical vector. 
+A categorical random variable in our case will be encoded by a standard basis vector $\e_i$. 
+The prediction vector made my the model is a discrete probability distributions, i.e: $\sum_{i = 1}^{d}\hat{y}_i = 1$. 
+The label vector in the training set for each sample a standard basis vector, where the correct label is marked with $1$ on it.
 
 ---
 ### **Setting Things up**
 
-Let $X$ be a example features set with dimensionality $d$, number of inputs, and sample size $n$, number of samples. Hence: $X\in\mathbb{R}^{n\times d}$, and the weights of the model is matrix: $W\in \mathbb{R}^{d\times q}$, and a bias vector, which is written as: $b\in \mathbb{R}^{1\times q}$. Where $q$ is the number of labels the model is going to produce.
+Let $X\in \mathbb R^{n\times d}$ encodes all observed sample features in $\mathbb R^d$, over a sample of size  $n$. 
+1. $X\in\mathbb{R}^{n\times d}$. 
+2. $W\in \mathbb{R}^{d\times q}$ encodes the weights of the model. Each column codes a regression model for specific label. 
+3. $b\in \mathbb{R}^{1\times q}$, encodes the bias of the model. Each element encodes a bias of the regression model for a specific feature. 
+4. $q$ is the total number of categories for the labels. 
 
-And, the set of labels with probability produced will be denoted as:
+
+#### **Softmax (Log Sum Exp)**
+The model predictions is: 
 
 $$
-\hat{Y} = \text{softmax}(XW + b)
+\begin{aligned}
+    O &= XW + \mathbf 1 b^T, 
+    \\
+    \text{SftMtx}(z): \mathbb R^n \mapsto \mathbb R^n &:= 
+    \text{Cat}\left(
+        \frac{z_i}{\sum_{i = 1}^{n}\exp(z_i)}
+    \right),
+    \\
+    \hat{Y} &= \text{SftMx}(O). 
+\end{aligned}
 \tag{1}
 $$ 
-[^1]
 
-And the $Y$ matrix is $n \times d$.
+The bias vector, is shared across each column because each column 
+$\hat Y$ matrix is $n \times d$. 
+$\text{Cat}$ is just vector concatenating. 
 
-We are also define the output function to be:
-$$
-O = WX + b
-$$
+### **Cross Entropy Loss Function**
 
-### **Loss Function**
-
-The Loss function introduced next is the negative of the log likelihood. [^2]
-
-And the loss function is: 
-
+The loss function mapss from $X\in \mathbb R^{n\times d}$, for all $n\in \mathbb N$ to $\mathbb R$. 
+It is a function of input training samples, the output of the model $\hat y$, and the actual correct labels in the training set $y$. 
+In the case of cross entropy, it can be derived and we present: 
 $$
 l(y, \hat{y}) = - \sum_{j = 1}^{q}
     y_j\log(\hat{y}_j)
 =
 \sum_{j = 1}^{n}
-    -\log \mathbb{P}(y^{(i)}|x^{(i)})
+    -\log \mathbb{P}(y^{(i)}|x^{(i)}).
 $$
 
-And this is the loss function for one particular label. 
 
 
 ---
 ### **Gradient**
 
-The gradient of the loss function is worth considering because it's common. 
-
-And the loss function is also convex, meaning that gradient descent is going to solve it. 
-
+The loss function is convex. 
 Starting with the loss function: 
 
 $$
@@ -127,5 +124,4 @@ Note: This is actually a common occurrence for generalized linear model. [^3]
 
 
 [^1]: The vector $b$ is broadcasted into a matrix when summing up with $XW$. 
-[^2]: Take it as true, can't find good resources on the internet for it.
 [^3]: stated [here](https://d2l.ai/chapter_linear-networks/softmax-regression.html)
