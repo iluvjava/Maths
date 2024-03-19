@@ -12,6 +12,3 @@ Denote $\mathbb E$ to be the original space, then the dual space of it is $\math
 One good example of Dual basis is to consider the matrix $V$, be a matrix whose columns is a basis for the Euclidean space, then there exists $F^TV = I$, then $F$ will be the dual basis for $V$, which is just directly: $F = (V^{-1})^T$. 
 
 
-
-
-

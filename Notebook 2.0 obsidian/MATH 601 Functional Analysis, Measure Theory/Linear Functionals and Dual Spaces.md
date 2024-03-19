@@ -58,7 +58,7 @@ $$
 \end{aligned}
 $$
 
-### **Claim-1 | $T$ is Bijective**
+#### **Claim-1 | $T$ is Bijective**
 > The mapping $T: \mathcal (X, \mathbb K) \mapsto X'$ is a bijective mapping. We denote $X'$ to be the norm of the dual space. 
 
 To be bijective, it has to be surjective(onto) and injective(one-2-one). For a linear operator, it's injective if and only if $\text{null}(T) = \{\mathbf 0\}$. We wish to show that $Tf = \mathbf 0 \iff f = \mathbb O$. 
