@@ -1,1 +1,0 @@
-This report template is generic, but it's best suited for UBCO research seminar. 
