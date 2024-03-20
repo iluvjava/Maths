@@ -41,7 +41,7 @@ However, it remains to verify that the fixed point of the Douglas Rachford opera
 > Let $T$ be the DR operator of the operator $T_1, T_2$, then 
 > 1. $T = (1/2)(I + R_2 R_1)$ as well. 
 > 2. $T$ is firmly non-expansive. 
-> 3. $\text{fix}(T) = \text{fixed}(R_2R_1)$
+> 3. $\text{fix}(T) = \text{fix}(R_2R_1)$
 
 **Proof**
 
