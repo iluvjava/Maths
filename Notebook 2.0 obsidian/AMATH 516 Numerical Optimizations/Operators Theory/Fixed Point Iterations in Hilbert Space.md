@@ -124,3 +124,4 @@ $$
 That enables the an interpretation of the vector $T^x + nv$ as the sum of the displacement vector from the Iterates and the minimal displacement vector $v$. 
 
 **Proof**
+
