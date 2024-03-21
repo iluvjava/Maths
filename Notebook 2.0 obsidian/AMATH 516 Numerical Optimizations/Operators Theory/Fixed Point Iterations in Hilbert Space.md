@@ -123,6 +123,9 @@ $$
 
 That enables the an interpretation of the vector $T^x + nv$ as the sum of the displacement vector from the Iterates and the minimal displacement vector $v$. 
 
+For the first part of the claim, where it says that $C$ is a closed, convex and non-empty set is because $N$ is non-expansive, and therefore $I - N$ is maximally monotone because $T$ maps from $X$ to $X$, the entire ambient space. 
+And, it's not non-trivial results from Rockfellar's convex analysis that, the range of a maximally monotone operator is a closed, convex set. 
+
 **Proof**
 
 From the observation directly, we have the following interpretations 
@@ -290,3 +293,7 @@ $$
 $$
 
 And comining the results about the upper abd lower cluster point of the norm of the fix point iteration vector we have the claim that $\lim_{n\rightarrow \infty}(1/n)\Vert T^n x\Vert = \Vert v\Vert$. 
+
+### **Thm (Pazy) | Limit of the Fixed Point Iteration Vector**
+> Let $T: X \mapsto X$ be non-expansive, then $C = \text{cl.rng}(I - T)$ is a closed, convex and non-empty convex subset of $X$, and the fixed point iterations $T^n x$ satisfies for all $x \in X$: $(1/n)T^nx \rightarrow - v$. 
+> It converges strongly to the negative of the minimal displacement vector! 
