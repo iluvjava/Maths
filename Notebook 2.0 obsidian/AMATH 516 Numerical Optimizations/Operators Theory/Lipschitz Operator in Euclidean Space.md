@@ -1,3 +1,7 @@
+---
+aliases:
+  - Nonexpansive Operator in Euclidean Space
+---
 - [Banach Contraction in Metric Space](Banach%20Contraction%20in%20Metric%20Space.md)
 - [Lipschitz Continuity](Lipschitz%20Continuity.md)
 
@@ -5,6 +9,7 @@
 ### **Intro**
 
 See [Lipschitz Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md) for operator theory in the infinite dimensions. 
+Lipschitz operator's theorem can all be developed on a non-expansive operator without the loss of generality. 
 
 
 

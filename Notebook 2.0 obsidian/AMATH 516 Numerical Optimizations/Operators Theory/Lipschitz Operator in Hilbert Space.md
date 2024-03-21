@@ -1,5 +1,5 @@
 ---
-alias: Nonexpansive Operator
+alias: Nonexpansive Operator in Hilbert Space
 
 ---
 - [Lipschitz Operator in Euclidean Space](Lipschitz%20Operator%20in%20Euclidean%20Space.md)
@@ -27,12 +27,12 @@ We emphasize that the set $C$ is already a closed set.
 **Remark**
 
 The proof is not quite trivial, and it needs some technically knowledge that we don't possess yet. 
-See [this](https://math.stackexchange.com/questions/739168/subspace-of-hilbert-space-is-closed-if-and-only-if-it-is-weakly-closed) stack exchange post for more information about the weak closure of conve subspaces. 
+See [this](https://math.stackexchange.com/questions/739168/subspace-of-hilbert-space-is-closed-if-and-only-if-it-is-weakly-closed) stack exchange post for more information about the weak closure of convex subspaces. 
 
 ---
 ### **Some Weird Things Regarding Weak Convergence in Hilbert Space**
 
-The limit of a weak converging sequence whent put into a continuous mapping in the Hilbert space, may not be the same as putting the limit into the continuous mapping directly. 
+The limit of a weak converging sequence when put into a continuous mapping in the Hilbert space, may not be the same as putting the limit into the continuous mapping directly. 
 Consider the following example. 
 
 #### **Example | Continuity doesn't Preserve Weak Limits**
