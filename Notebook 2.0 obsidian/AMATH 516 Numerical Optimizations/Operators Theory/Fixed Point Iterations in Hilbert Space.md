@@ -125,3 +125,168 @@ That enables the an interpretation of the vector $T^x + nv$ as the sum of the di
 
 **Proof**
 
+From the observation directly, we have the following interpretations 
+
+$$
+\begin{aligned}
+    \langle T^n x + nv, v\rangle &=  
+    \langle v, x\rangle + 
+    \sum_{k = 1}^{n}
+    \langle v - (I - T)^{k -1}x, v\rangle, 
+\end{aligned}
+$$
+
+now, fix any value of $k \in \{1, \cdots, n\}$, then the quantity inside of the sum will be less than zero because: 
+
+$$
+\begin{aligned}
+    \left\langle v - (I - T)T^{-1} x, v, v
+    \right\rangle 
+    &= 
+    \left\langle 
+        \Pi_C(\mathbf 0) - (I - T)T^{k - 1} x, 
+        \Pi_C(\mathbf 0)
+    \right\rangle
+    \\
+    &= 
+    \left\langle 
+        \Pi_C(\mathbf 0) - (I - T)T^{k - 1} x, 
+        \Pi_C(\mathbf 0) - \mathbf 0
+    \right\rangle
+    \\
+    (I - T)T^{k-1}x \in C \implies 
+    & \le 0, 
+\end{aligned}
+$$
+
+here we made use of the obtuse angle theorem. 
+Therefore each term inside of the sm oummation is less than zero and we have 
+
+$$
+\begin{aligned}
+    &
+    \begin{aligned}
+        ([1]): &
+        \left\langle T^nx + nv, v \right\rangle 
+        - \langle v, x\rangle \le 0 \; ;
+        \\
+        ([2]): &
+        \frac{1}{n}\langle x - T^nx, v\rangle
+        \le 
+        \frac{1}{n}\Vert x - T^nx\Vert\Vert v\Vert \; ;
+    \end{aligned}
+    \\
+    &
+    \begin{aligned}
+        ([1]) \implies 
+        \left\langle T^nx, v \right\rangle + n\Vert v\Vert^2 
+        - \langle v, x\rangle &\le 0
+        \\
+        \langle T^n x - x, v\rangle &\le -n \Vert v\Vert^2
+        \\
+        \langle x - T^n, v\rangle &\ge n \Vert v\Vert^2; 
+    \end{aligned}
+    \\
+    & 
+    \begin{aligned}
+        ([1]) \wedge ([2])
+        & \implies 
+        \Vert v\Vert^2 
+        \le 
+        \frac{1}{n}
+        \left\langle x - T^n x, v \right\rangle 
+        \le  
+        \frac{1}{n}\Vert x - T^nx\Vert\Vert v\Vert
+        \\
+        & \implies 
+        \Vert v\Vert 
+        \le 
+        \frac{1}{n}\Vert x - T^n x\Vert
+        \le 
+        (1/n)(\Vert x\Vert + \Vert T^n x\Vert)
+        \\
+        & \implies 
+        (1/n)\Vert T^n x\Vert 
+        \ge
+        \Vert v\Vert - \frac{1}{n}\Vert x\Vert
+    \end{aligned}
+    \\
+    \implies &
+    \liminf_{n\rightarrow \infty} 
+    \frac{1}{n}\Vert T^n x\Vert 
+        \ge
+    \Vert v\Vert.
+\end{aligned}
+$$
+
+The second claim of the statement is now true. 
+To see that the upper cluster point of the averaged norm of the iterates is bounded by $\Vert v\Vert$, we consider $y_n \in X$, by the fact that $v = \Pi_C(\mathbf 0)$, there exists $y_n \in C$ such that it minimizes its distance to $\mathbf 0$, so $\lim_{n\rightarrow \infty} \Vert Ty_n - y_n\Vert = 0$. 
+For $y_n$, fixed any $m\in \mathbb N$ and consider $y_m$ and 
+
+$$
+\begin{aligned}
+    & ([3]): 
+    T^ny_m = 
+    y_m + \sum_{k = 1}^{n}\left(
+        T^k y_m - T^{k - 1}y_m
+    \right)\; ; 
+    \\
+    & ([4]): 
+    \text{Nonexpansive} T \implies 
+    \Vert T^k y_m - T^{k-1} y_m\Vert &\le 
+    \Vert T^{k-1} y_m - T^{k-2} y_m\Vert \le \cdots 
+    \Vert Ty_m - y_m\Vert. 
+\end{aligned}
+$$
+
+Therefore, use ([4]) on ([3]) we have 
+
+$$
+\begin{aligned}
+    ([5]):
+    \Vert T^n y_m\Vert  &\le 
+    \Vert y_m\Vert + \sum_{k = 1}^{n}
+    \left\Vert
+        T^{k}y_m - T^{k-1}y_m
+    \right\Vert
+    \\
+    &\le \Vert y_m \Vert + n \Vert Ty_m - y_m\Vert. 
+\end{aligned}
+$$
+
+Now, the fixed point iterations vector satisfies: 
+
+$$
+\begin{aligned}
+    \Vert T^n x\Vert &\le 
+    \Vert T^nx - T^n y_m\Vert + 
+    \Vert T^n y_m\Vert
+    \\
+    \text{$T$ nonexpansive} \wedge ([5])
+    \implies 
+    &\le 
+    \Vert x - y_m\Vert + \Vert y_m\Vert + 
+    n \Vert Ty_m - y_m\Vert 
+    \\
+    \implies 
+    \frac{1}{n}\Vert T^n x\Vert
+    &\le 
+    (1/n)\Vert x - y_m\Vert + \Vert y_m\Vert /n
+    + 
+    \Vert Ty_m - y_m\Vert. 
+    \\
+    \implies 
+    \limsup_{n\rightarrow \infty} 
+    \frac{\Vert T^n x\Vert}{n} 
+    &\le 
+    \Vert Ty_m - y_m\Vert 
+    \\
+    \implies 
+    \limsup_{n\rightarrow \infty} 
+    \frac{\Vert T^n x\Vert}{n} 
+    &\le 
+    \lim_{m\rightarrow \infty }\Vert Ty_m - y_m\Vert = \Vert v\Vert. 
+\end{aligned}
+$$
+
+And comining the results about the upper abd lower cluster point of the norm of the fix point iteration vector we have the claim that $\lim_{n\rightarrow \infty}(1/n)\Vert T^n x\Vert = \Vert v\Vert$. 
