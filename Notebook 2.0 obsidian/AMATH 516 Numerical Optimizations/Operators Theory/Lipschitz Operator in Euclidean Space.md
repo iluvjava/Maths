@@ -136,6 +136,19 @@ If we already know the definition of an averaged operator and their properties, 
 
 **Proof**
 
+Let $T = (1/2)(N + I)$, consider that 
+
+$$
+\begin{aligned}
+    2T &= N + I
+    \\
+    N &= 2T - I. 
+\end{aligned}
+$$
+
+Since $N$ non-expansive, by the property of firmly non-expansive operator, the RHS is a reflector, and therefore $T$ is firmly nonexpansive. 
+
+
 
 
 ---

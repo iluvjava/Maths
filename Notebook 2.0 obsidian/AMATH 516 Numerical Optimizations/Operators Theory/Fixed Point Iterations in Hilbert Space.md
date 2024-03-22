@@ -294,7 +294,7 @@ $$
 
 And comining the results about the upper abd lower cluster point of the norm of the fix point iteration vector we have the claim that $\lim_{n\rightarrow \infty}(1/n)\Vert T^n x\Vert = \Vert v\Vert$. 
 
-### **Thm (Pazy) | Limit of the Fixed Point Iteration Vector**
+#### **Thm (Pazy) | Limit of the Fixed Point Iteration Vector**
 > Let $T: X \mapsto X$ be non-expansive, then $C = \text{cl.rng}(I - T)$ is a closed, convex and non-empty convex subset of $X$, and the fixed point iterations $T^n x$ satisfies for all $x \in X$: $(1/n)T^nx \rightarrow - v$. 
 > It converges strongly to the negative of the minimal displacement vector! 
 
@@ -341,3 +341,6 @@ $$
 
 Since the vector $-(1/n)T^nx + x \in \text{cl}(C)$, we can claim using the first lemma that the vector $(1/n)(-T^nx + x)\rightarrow v$, but with $x/n \rightarrow \mathbf 0$, we have that $(1/n)(-T^nx)\rightarrow v$. 
 The theorem is now proven. 
+
+#### **Thm | Boundedness of the Iterates**
+> 
