@@ -58,7 +58,7 @@ For contraction in the most general sense, visit [Banach Contraction in Metric S
 Maximally monotone operator can be resolvent that are invertible. 
 Maximally monotone operator could be the subgradient of a convex function. 
 Monotone operator could be the subgradient of the Lagrangian. 
-For more discussion about a monotone operator vist [Monotone Operators](Monotone%20Operators.md). 
+For more discussion about a monotone operator vist [Monotone Operators Introduction](Monotone%20Operators%20Introduction.md). 
 
 #### **Definition | A Monotone Operator**:
 

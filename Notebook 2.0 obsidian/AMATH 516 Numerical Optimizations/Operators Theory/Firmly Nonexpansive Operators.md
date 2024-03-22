@@ -3,7 +3,7 @@
 
 ---
 ### **Non-Expansive Operators**
-Fimrly Non-expansive is a subset of operator that has a Lipschitz constant of one. 
+Firmly Non-expansive is a subset of operator that has a Lipschitz constant of one. 
 All properties of the non-expansive operators are applicable to the class of firmly non-expansive operators. 
 There are many subcategories of firmly non-expansive operator and we will only discuss the properties of the class of the firmly non-expansive operator. 
 
@@ -39,6 +39,7 @@ Chapter 4 of the Mono Operator book from Heinz.
 ### **Characterization of Firmly Nonexpansiveness**
 
 A set of expressions are equivalent for all firmly nonexpansive operators. 
+The following reveals that there are some tight links between firmly nonexpansive operators and nonexpansive operator. 
 
 #### **Thm | Equivalences of Nonexpansiveness**
 

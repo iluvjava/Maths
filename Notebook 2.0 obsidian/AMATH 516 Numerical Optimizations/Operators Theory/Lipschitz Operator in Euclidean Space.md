@@ -103,6 +103,38 @@ So $x_n = Tx_n$, and since $T$ is continuous (Because non-expansive means contin
 Therefore the set $\text{fix}(T)$ is a closed set. 
 
 
+**Remarks**
+
+This theorem generalizes to Hilbert space due to strong convergence. 
+
+
+---
+### **Lipschitz Operators in Relations to Other type of Operators**
+
+Slight modifications of a non-expansive operator makes it into a maximally monotone operator. 
+
+#### **Thm | Monotone Operator from a Nonexpansive Operator**
+> Let $N: D \mapsto D$ be a nonexpansive operator if and only if $I - N$ is a montone operator, if $D = X$, then $I - N$ is a maximaly monotone operator if and only if $N$ is a nonexpansive operator. 
+
+**Proof**
+
+
+#### **Claim | Averaged Operator and Nonexpansive Operators**
+> A strict convex combinations between a nonexpansive operator and the identity operator makes it an averaged operator. 
+
+**Observation**
+
+This is the definition of an averaged operator and can be viewed [Averaged Operators](Averaged%20Mapping.md). 
+
+
+#### **Proposition | Nonexpansive operator and Firmly Nonexpansive Operators**
+> Let $N$ be nonexpansive operator if and only if $(1/2)(N + I)$ is a firmly non-expansive operator. 
+
+**Observations**
+
+If we already know the definition of an averaged operator and their properties, then $(1/2)(N + I)$ is an $(1/2)$ averaged operator and therefore it's equivalent to a firmly nonexpansive operator. 
+
+**Proof**
 
 
 

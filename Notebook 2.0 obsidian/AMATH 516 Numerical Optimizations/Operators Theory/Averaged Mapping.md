@@ -39,7 +39,7 @@ We show that a similar equivalence characterization for the firmly non-expansive
 
 Setting $\alpha = 1/2$ in the above formula, we recover the definition for a firmly non-expansive operator $T$. 
 This is strictly weaker because changing the $\alpha$ value will produce formulas that doesn't correspond to firmly non-expansive operators. 
-So we have $\text{Firstly Nexp}\subset \text{Avg} \subset \text{Nexp}$. 
+So we have $\text{F.Nexp}\subset \text{Avg} \subset \text{Nexp}$. 
 
 **Proof**: 
 
@@ -217,6 +217,8 @@ The convergence of successive iterates doesn't mean that the sequence of the lim
 
 For more about the theories for Fejer monotone sequences, and their type of convergence is very special because it monotonically approaches all the points in the fixed point set, which is not obvious from what had been stated in here. 
 Please refer too [Fejer's Monotone](Fejer's%20Monotone.md) for more information. 
+
+Finally, for a generalization of the fixed point iterations convergence on the averaged mapping, visit [Krasnoselskii Mann Iteration](Krasnoselskii%20Mann%20Iteration.md) for more information. 
 
 **Reference**: 
 

@@ -1,4 +1,4 @@
-- [[Monotone Operators]]
+- [[Monotone Operators Introduction]]
 - [[Minty's Theorem, The Surjectivity Theorem]]
 - [[Firmly Nonexpansive Operators]]. 
 - [Resolvent Operators](Resolvent%20Operators.md)

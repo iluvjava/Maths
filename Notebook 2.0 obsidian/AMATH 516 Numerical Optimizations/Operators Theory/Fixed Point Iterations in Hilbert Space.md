@@ -5,16 +5,16 @@
 ### **Intro**
 
 We are in Hilbert space. 
-We discuss fixed point iterations of a non-expansive operator when: 
+We discuss fixed point iterations sequence $T^n x$ of a non-expansive operator $N$ when: 
 1. It has a fixed point set. 
 2. It doesn't have a fixed point set. 
 
 When it has a fixed point set, the iteration may not converge to the fixed point set. 
 A basic counter example would be the minus identity operator. 
-Therefore, use [Krasnoselskii Mann Iteration](Krasnoselskii%20Mann%20Iteration.md) to look for the fixed point set of the Non-expansive operator. 
-The difficulty part is that even if the fixed point set of the Non-expansive operator is empty, there is still convergence for the operator. 
+When a fixed point set of the non-expansive operator exists, use [Krasnoselskii Mann Iteration](Krasnoselskii%20Mann%20Iteration.md) to look for the fixed point set of the Non-expansive operator. 
+The interesting part is that even if the fixed point set of the Non-expansive operator is empty, there is still convergence for the operator. 
 
-Before we start, we set up our goal to be proving the following master theorem regarding he fixed point iterations of a non-expansive opeartor: 
+Before we start, we set up our goal to be proving the following master theorem regarding he fixed point iterations of a non-expansive operator: 
 
 #### **Thm | Trichotomy of Non-Expansive Fixed Point Iterations**
 > Let $T : C \mapsto C$ be non-expansive, $C$ is non-empty, closed and convex subset of $X$, then exactly one of the following is true about the fixed point iteration of the operator: 
@@ -297,3 +297,47 @@ And comining the results about the upper abd lower cluster point of the norm of 
 ### **Thm (Pazy) | Limit of the Fixed Point Iteration Vector**
 > Let $T: X \mapsto X$ be non-expansive, then $C = \text{cl.rng}(I - T)$ is a closed, convex and non-empty convex subset of $X$, and the fixed point iterations $T^n x$ satisfies for all $x \in X$: $(1/n)T^nx \rightarrow - v$. 
 > It converges strongly to the negative of the minimal displacement vector! 
+
+**Proof**
+
+THe fact that $C$ is a closed, convex and non-empty convex set is because $T$ is non-expansive, $I - T$ would be maximally monotone, and there is one non-trivial theorem from Rockfellar that the range and domain of a maximally monotone function is closed and convex. 
+
+From reverse telescoping we have 
+
+$$
+\begin{aligned}
+    (1/n)(-T^nx + x) &= 
+    \frac{1}{n}\sum_{k = 1}^{n}(I - T)T^{-1} x
+    \in \text{cvxh.rng}(I - T)\subseteq C. 
+\end{aligned}
+$$
+
+Lemma-2 assures $(1/n)\Vert T^nx\Vert \rightarrow \Vert v\Vert$ converges in norm to the vector $v = \Pi_C(\mathbf 0)$. 
+Under our current situation, consider that: 
+
+$$
+\begin{aligned}
+    \left|
+        (1/n)\Vert T^n x\Vert - (1/n)\Vert x\Vert
+    \right|
+    \le 
+    (1/n)\Vert T^nx - x \Vert 
+    &\le 
+    \frac{1}{n}\Vert T^n x\Vert + \frac{\Vert x  \Vert}{n}
+    \\
+    \implies 
+    \Vert v\Vert =
+    \lim_{n\rightarrow \infty}(1/n)\Vert T^n x\Vert 
+    \le 
+    \lim_{n\rightarrow \infty } (1/n)\Vert T^n x - x\Vert 
+    &\le 
+    \Vert v\Vert
+    \\
+    \implies
+    \lim_{n\rightarrow \infty} (1/n)\Vert T^n x - x\Vert 
+    &= \Vert v\Vert. 
+\end{aligned}
+$$
+
+Since the vector $-(1/n)T^nx + x \in \text{cl}(C)$, we can claim using the first lemma that the vector $(1/n)(-T^nx + x)\rightarrow v$, but with $x/n \rightarrow \mathbf 0$, we have that $(1/n)(-T^nx)\rightarrow v$. 
+The theorem is now proven. 
