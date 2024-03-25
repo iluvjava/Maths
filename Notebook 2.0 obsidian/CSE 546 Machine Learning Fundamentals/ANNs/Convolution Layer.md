@@ -9,6 +9,108 @@ Vectors in neural networks can be treated a discrete representation of a one dim
 If reader knows, recall [Introduction to Wavelets](../../AMATH%20582%20Data%20Science/Introduction%20to%20Wavelets.md) but the kernel function is now a learnable parameters for the artificial neural network. 
 This component in modern artificial neural network has a history. 
 
-**History**
+#### **Def | Integral Convolution between 2 Functions**
+> Let $f, g$ be $\mathbb R \mapsto \mathbb R$, we define the convolution between them to be 
+> $$
+> \begin{aligned}
+>    [f * g](t) = \int_{-\infty}^{\infty} f(\tau)g (t - \tau)d \tau. 
+> \end{aligned}
+> $$
+> The definition is symmetric wrt to permutation of $f, g$. 
+
+#### **Def | Discrete Convolution, Infinite Boundary**
+> Let $f, g$ be defined on $\mathbb Z$, maps to $\mathbb C$. 
+> The convolution between the function is discrete convolution defined as: 
+> $$
+> [f * g](t) = \sum_{k = -\infty}^{\infty} f(k) g(t - k). 
+> $$
 
 
+---
+### **1D Convolution Layer**
+
+It's a disappointment that there is no good resources that precisely define what a convolution is like inside of the ANNs. 
+see [pytorch here](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html#torch.nn.Conv1d). 
+
+#### **Def | 1D Convolution Operator**
+> Let $u, v$ discrete vector indexed with $1,\cdots, m$, and $1, \cdots, n$. 
+> We assume that $m \le n$, then we define the convolution operator $*$ between $u, v$ to be a mapping of $\mathbb C^m\times \mathbb C^n \mapsto \mathbb C^{m - n}$ that can be defined as: 
+> $$
+> \begin{aligned}
+>     (u*v)_t = \sum_{i = 1}^{m}u_iv_{i + t}, \quad \forall\;  t = 1, \cdots, n - m. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+We can pad the vector $u, v$ so that it has infinite domain. 
+Padding on a vector means $[0 \; 0 \; \cdots v  \cdots \; 0]$, so that the head and tail of the vector are filled with zero. 
+Then a convolution between the two vectors will yield the same definition as previously. 
+$t$ is an offsets the shorter vector to begins at $t$.
+
+**Remarks**
+
+There are many other ways define the convolution. 
+The input reduces in sizes for this type of convolutions. 
+
+
+#### **Def | 2D Convolution**
+> Let $u, v$ be multi-array of dimension $m \times n$ and $k \times l$. 
+> We assume that $m \le  k$ and $n \le l$.
+> Then the convolution operator $*$ is a mapping from $(\mathbb C^M \times \mathbb C^n)\times (\mathbb C^k \times \mathbb C^l) \mapsto \mathbb C^{(m - k)\times (n - l)}$. 
+> Then the convolution is defined as 
+> $$
+> \begin{aligned}
+>     (u* v)_{t, \tau} = 
+>     \sum_{i = 1}^{k}\sum_{j = 1}^{l}u_{i, j}v_{i + t, j + \tau}
+> \end{aligned}
+> $$
+
+**Observations**
+
+The convolution take the inner product locally between the matrix $u$, the smaller matrix and the bigger matrix $v$. 
+
+
+
+---
+### **The Convolution Component**
+
+The convolution component of an ANN makes use of the convolution opreations in mathematics.
+Instead we only deals with real numbers instead of complex numbers. (In most cases I am sure some research find good use of complex numbers in machine learning. )
+We define a list of quantities that are useful for the component. 
+1. `stride`, striding means ignoring some of the element of the convoluted vectors. In the case of `stride=2`, the dimension is odd or even will matter. 
+2. `padding`, padding adds zero elements to the input vector/matrix. 
+3. `dialation`, dilation dilate the filter, making it bigger and fills it with more zeros. The trainable weights will distributed with integers spacing between them. 
+
+See [here](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for a visual explanations of what these parameter means for the convolution 2d layer for the ANNs. 
+These parameters only affects the convolution operations between the vector/matrices, with. 
+We introduce the computational mode of the convolutional layer next. 
+
+#### **Def | 2D Convolution**
+> Assuming that we have a single sample. 
+> Let $(C, H, W)$ be the shape of the input tensor. 
+> $C$ is the number of channel, and $H, W$ are the height and width. 
+> We use this because image tensors are usually in the shape of $(3, H, W)$. 
+> Define the component to be a function, mapping from $(C', H', W')$. 
+> Let $(C, K, L)$ denotes the dimension of the kernel: $\mathcal K$. 
+> Then mathematically, the computation of the output tensor $Y$ given input tensor $X$ can be computed as
+> $$
+> \begin{aligned}
+>     Y_{c', h', w'} = 
+>     \text{ReLU}\left( b_{c'} + 
+>     \sum_{n = 1}^{C} (\mathcal K_{c'} * X)_{h', w'}\right). 
+> \end{aligned}
+> $$
+
+**Observation**
+
+each output is the result of one kernel applies to multiple channels on the input and sums the convoluted channels together. 
+Each channel of the output, corresponds to a bias of the channel, which applies to all the coordinate for the matrix of the channel. 
+
+
+
+
+**Remarks**
+
+The output dimension heavily depends on the parameters that control the convolution of the kernel and the image. 
+According to sources like pytorch, there seems to be no activation function coming out of the convolution layer. 
