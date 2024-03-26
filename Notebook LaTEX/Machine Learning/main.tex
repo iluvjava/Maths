@@ -24,6 +24,7 @@
 \newtheorem{prop}{Proposition}[section]  % proposition counter is section
 \newtheorem{lemma}{Lemma}[subsection]  % lemma counter is subsection
 \newtheorem{definition}{Definition}
+\newtheorem{example}{Example}[subsection]
 \newtheorem{remark}{Remark}[subsection]
 {
     % \theoremstyle{plain}
@@ -73,68 +74,122 @@
     showstringspaces = false,
 }
 
-\title{Generic Report}
-\author{Name of the Author}
+\title{Machine Learning, a Review for Tree Segmentations Tasks}
+\author{Hongda Li}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-    What is life? Why are we here? Where did we come from?
+    This is my own notes. 
 \end{abstract}
 
 
 \section{Introduction}
-    This is an introduction. 
+    Artificial Neural networks represents modes of numerical computations that are differentiable programs. 
+    We skips the basics and assume the reader already know something about Deep Neural Network, their components, and the automatic differentiation program on modern deep learning frameworks. 
+    For our discussion we introduce some definitions to make for a better presentation of computataional concepts occured in Artificial Neural Networks (ANNs). 
+    \begin{definition}[Component]
+        A component is a function $f(x; p|w): \mathbb R^m \mapsto \mathbb R^n$. 
+        $x$ is the inputs and $w$ represent trainable parameters, usually in the form of a multi-dimensional array. 
+        And $p$ represents parameters that are not trainable parameters. 
+        
+    \end{definition}
+    \begin{definition}[Connection]
+        Let $f:\mathbb R^n \mapsto \mathbb R^m, g: \mathbb R^m \mapsto \mathbb R^k$ be two components, then a connection between is a $\mathbb R^m \mapsto \mathbb R^m$ function $h(x; p | w)$ with trainable parameters $w$, and parameter $p$. 
+    \end{definition}
 
-\section{Preliminaries}\label{sec:preliminaries}
-    \hyperref[sec:preliminaries]{This} is the preliminary (hyperref without text labeling). 
+
+    \begin{example}[Dense Layer]
+        Let $m, n \in \mathbb N$, let $A \in \mathbb R^{n\times m}$, $b \in \mathbb R^n$, then a Dense layer is a $\mathbb R^m \mapsto \mathbb R^n$ functions with a list of activation functions $\sigma_i$ for $i = 1, \cdots, n$. 
+        Let $x \in \mathbb R^m$ be the input, then a dense layer is a component. We define its computation: 
+        $$
+        \begin{aligned}
+            \text{DnsLyr}(x ; m, n | (A, b), \{\sigma_i\}_{i=1}^n) = 
+            \left[
+                z \mapsto \bigoplus_{i = 1}^n\sigma_i(z_i)
+            \right]
+            \left(
+                Ax + b
+            \right). 
+        \end{aligned}
+        $$
+        Where, inside of $[\cdot]$, we denote the definition of a anonymous function. 
+    \end{example}
     
-\section{Blah Blah Bleeeh}
-    This is the blah blah bleeeh section. 
-    \subsection{Blah Blah Blah Bleeh Bleeh Bleeh}
-    Check out this cool Bibtext ref \cite[this]{texbook}, woooooooooah, also it's in plain style. For some mind altering psychodelic, read \hyperref[alg:mhc]{algorithm \ref*{alg:mhc}} for the experience. For some brain expanding julia code, read \hyperref[code:brain_expand]{brain expanding julia code}. 
-    \begin{algorithm}
-        \begin{algorithmic}[t]
-            \STATE{\textbf{Input: $X^{(t)}$}}
-            \STATE{$Y^{(t)} \sim q (\cdot | X^{(t)})$}
-            \STATE{
-                $ 
-                \rho(x, y) := 
-                \min\left\lbrace
-                    \frac{f(y)}{f(x)}\frac{q(x|y)}{q(y|x)}, 1
-                \right\rbrace
-                $ 
-            }
-            \STATE{
-                $
-                X^{(t + 1)} := 
-                \begin{cases}
-                    Y^{(t)} & \text{w.p}:  \rho(X^{(t)}, Y^{(t)})
-                    \\
-                    X^{(t)} &  \text{otherwise}
-                \end{cases}$
-            }
-        \end{algorithmic}
-        \caption{Metropolis Chain}
-        \label{alg:mhc}
-    \end{algorithm}
-    \label{code:brain_expand}
-    \lstinputlisting[language=julia, basicstyle=\ttfamily\scriptsize,numbers=left]{Code/juliacode.jl}
-    
+    \begin{example}[Multi-Layer Perceptron]
+        Let $l_1, l_2, \cdots, l_N$ be integers. 
+        We define the Multi-Layer Perceptron to be a composition of dense layer mapping from $l_{i}$ to $l_{i + 1}$ for $i = 1, \cdots, N - 1$. 
+        Let $\sigma_{i, j}$ represent the activation function for the $j$ th output in the $i$ th layer. 
+        Then a Multi-Layer Perceptron (MLP) is a component admit representation
+        $$
+        \begin{aligned}
+            & \text{MLP}\left(x ; l_1, \cdots, l_n | \{(A_i, b_i)\}_{i=1}^N\right): \mathbb R^{l_1} \mapsto \mathbb R^{l_N}
+            \\
+            :=&
+            \left[
+            \bigodot_{i = 1}^n \text{DnsLyr}
+            \left(
+                (\cdot) ; l_i, l_{i + 1} \left| (A_i, b_i), \{\sigma_{j, i}\}_{j=1}^{l_i} \right.
+            \right)
+            \right](x). 
+        \end{aligned}
+        $$
+        Where $\bigodot$ is functional composition and it represents $\bigodot_{i=1}^n f_i = f_n\circ\cdots\circ f_1(x)$, and $(\cdot)$ represents the input of the anonymous function, in this case it's the dense layer. 
+    \end{example}
+
+\section{Preliminaries}
+    These concepts and components are relevant to the architecture of Vision Networks. 
+    \begin{definition}[Convolution 2D]
+        Let $u, v$ be multi-array of dimension $m \times n$ and $k \times l$. 
+        We assume that $m \le  k$ and $n \le l$.
+        Then the convolution operator $*$ is a mapping from $(\mathbb C^M \times \mathbb C^n)\times (\mathbb C^k \times \mathbb C^l) \mapsto \mathbb C^{(m - k)\times (n - l)}$. 
+        Then the convolution is defined as 
+        $$
+        \begin{aligned}
+            (u* v)_{t, \tau} = 
+            \sum_{i = 1}^{k}\sum_{j = 1}^{l}u_{i, j}v_{i + t, j + \tau}. 
+        \end{aligned}
+        $$
+    \end{definition}
+
+    \subsection{Convolutional Layers}
+        In this section we talk about \href{https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html}{2D convolution component (pytorch link)} inside of an ANNs. 
+        The convolution operations module contains more detailed parameters. 
+        \begin{definition}[2D Convolution Layers]
+            Assuming that we have a single sample. 
+            Let $(C, H, W)$ be the shape of the input tensor. 
+            $C$ is the number of channel, and $H, W$ are the height and width. 
+            We use this because image tensors are usually in the shape of $(3, H, W)$. 
+            Define the component to be a function, mapping from $(C', H', W')$. 
+            Let $(C, K, L)$ denotes the dimension of the kernel: $\mathcal K$. 
+            Then mathematically, the computation of the output tensor $Y$ given input tensor $X$ can be computed as
+            $$
+            \begin{aligned}
+                Y_{c', h', w'} = 
+                \text{ReLU}\left( b_{c'} + 
+                \sum_{n = 1}^{C} (\mathcal K_{c'} * X)_{h', w'}\right). 
+            \end{aligned}
+            $$
+        \end{definition}
+        \begin{remark}
+            Observe that each of the output channel is the sum of $C$ many kernels convluted with all inputs channels and summed up. 
+        \end{remark}
+        \begin{definition}[2D Max Pooling Layers]
+            
+        \end{definition}
+
         
 
 \appendix
-\section{Bleeh Bleeh Bleeh I am not Listening}
-    This is the Bleeh Bleeh Bleeh I am not Listening section. 
+\section{Appendix Section 1}
+    This is the appendix section. 
 
-\section{This section is in another .tex file} 
-    \input{Sections/section.tex}
 
 
 
 \bibliographystyle{plain}
-\bibliography{refs.bib}
+% \bibliography{refs.bib}
 
 
 \end{document}
