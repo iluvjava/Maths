@@ -81,6 +81,7 @@ We define a list of quantities that are useful for the component.
 1. `stride`, striding means ignoring some of the element of the convoluted vectors. In the case of `stride=2`, the dimension is odd or even will matter. 
 2. `padding`, padding adds zero elements to the input vector/matrix. 
 3. `dialation`, dilation dilate the filter, making it bigger and fills it with more zeros. The trainable weights will distributed with integers spacing between them. 
+4. `group`, see [here](https://towardsdatascience.com/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148) for an explanations. I am not sure what this parameter is doing really.  
 
 See [here](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for a visual explanations of what these parameter means for the convolution 2d layer for the ANNs. 
 These parameters only affects the convolution operations between the vector/matrices, with. 
@@ -106,7 +107,6 @@ We introduce the computational mode of the convolutional layer next.
 
 each output is the result of one kernel applies to multiple channels on the input and sums the convoluted channels together. 
 Each channel of the output, corresponds to a bias of the channel, which applies to all the coordinate for the matrix of the channel. 
-
 
 
 
