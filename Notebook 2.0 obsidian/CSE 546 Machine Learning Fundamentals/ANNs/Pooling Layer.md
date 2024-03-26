@@ -8,11 +8,11 @@ A pooling layer extract out useful statistics from the results of a filter.
 
 
 ---
-#### **Max Pool Layer**
+### **Max Pool Layer**
 
 Similar to convolution layer, max pool can be applied to multi-channels of signals. 
 
 
 #### **Def | Max Pool on 1D input**
-> 
+> A max pool transform on $u \in \mathbb R^n$, takes parameter $k \le n$ which is the size of the window sliding over vector $u$. 
 
