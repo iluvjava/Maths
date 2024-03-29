@@ -15,4 +15,19 @@ Similar to convolution layer, max pool can be applied to multi-channels of signa
 
 #### **Def | Max Pool on 1D input**
 > A max pool transform on $u \in \mathbb R^n$, takes parameter $k \le n$ which is the size of the window sliding over vector $u$. 
+> Then mathematically we may express it as a $\mathbb R^n \mapsto \mathbb R^{n - k}$: 
+> $$
+> \begin{aligned}
+>     v_i = \max(u_i, u_{i + 1}, \cdots, u_{i + k}), 
+> \end{aligned}
+> $$
+> for $1 \le i \le m - k$. 
 
+**Observations**
+
+This transformation is a continuous transformation. 
+
+#### **Def | Max Pull 2D Input**
+> A max pull transfrom on $u \in \mathbb R^{n_1\times n_2}$ takes out the maximal element locally. 
+> Define a $k_1 \times k_2$ sized matrix to be the filter. 
+> 

@@ -147,7 +147,36 @@ using the property of Demi-closure of a non-expansive operator the limit of the 
 
 We are interested in the rate of convergence for the fixed point error $Tx_n - x_n$. 
 
----
-### **Applications and Examples**
+#### **Thm | The Convergence of Kransnoselkii Mann**
+> The convergence rate of the normed error vector: $\Vert x_n - Tx_n\Vert$, decreases at the rate of $\mathcal O(\sum_{i = 0}^{n}\lambda_n(1 - \lambda_n)^{1/2})$. 
+
+
+**Proof**
+
+Recall from monotonicity of the fixed point error, which is $\Vert x_{n + 1} - Tx_{n + 1}\Vert \le \Vert x_n - Tx_n\Vert$. 
+With that, we reconsider the telescoping sum which gives 
+
+$$
+\begin{aligned}
+    \Vert x_0 - y\Vert^2 
+    &\ge 
+    \sum_{n = 0}^{N}\lambda_n(1 - \lambda_n)\Vert x_n - Tx_n\Vert^2
+    \ge 
+    \left(
+        \sum_{n = 0}^{N}\lambda_n(1 - \lambda_n)
+    \right)\Vert x_N  - Tx_N\Vert^2
+    \\
+    \Vert x_0 - y\Vert^2
+    &\ge 
+    \left(
+        \sum_{n = 0}^{N}\lambda_n(1 - \lambda_n)
+    \right)\Vert x_N  - Tx_N\Vert^2
+    \\
+    \frac{\Vert x_0 - y\Vert}{\left(
+        \sum_{n = 0}^{N} \lambda_n(1 - \lambda_n)
+    \right)^{1/2}} &\ge 
+    \Vert x_N - Tx_N\Vert. 
+\end{aligned}
+$$
 
 
