@@ -450,5 +450,40 @@ $$
 }
 $$
 
+Let $N_Y(y)$ be the normal cone of the set $Y$ at $y$. 
 
+$$
+\begin{aligned}
+    & \argmin{x} f(x, y^+) \text{ s.t: } y^+ \in \argmin{y \in Y} g(x, y) 
+    \\
+    & \argmin{x} f(x, y^+) \text{ s.t: } \nabla[\cdot \mapsto g(x, \cdot)](y^+) + N_Y(y^+)\ni \mathbf 0
+    \\
+    & \argmin{x} f(x, y^+) \text{ s.t: } -\nabla[\cdot \mapsto g(x, \cdot)](y^+) \in N_Y(y^+)
+\end{aligned}
+$$
 
+When $\nabla [\cdot \mapsto g(x, \cdot)](y)$ is strictly convex, there exists an inverse mapping (single valued) $\nabla [\cdot \mapsto g(x, \cdot)]^{-1}(z)$, with $z \in \text{rng }(\nabla g(x, \cdot))$. 
+Hence we maybe able to say $y^+ \in \nabla [\cdot \mapsto g(x, \cdot)]^{-1}(-N_y(y^+))$, so $y$ belongs to the fixed point set of some multi-valued operators. Kinda scary. 
+
+Why not consider $z = \nabla [\cdot\mapsto g(x, \cdot)](y^+)$, so then $y^+ = \nabla [\cdot\mapsto g(x, \cdot)]^{-1}(z)$ transforming the above problem into 
+
+$$
+\begin{aligned}
+    & \argmin{x} f(x, \nabla [\cdot\mapsto g(x, \cdot)]^{-1}(z)) \text{ s.t: } -z 
+    \in N_Y(\nabla [\cdot\mapsto g(x, \cdot)]^{-1}(z))
+    \\
+    &
+    \argmin{x} f(x, \nabla [\cdot\mapsto g(x, \cdot)]^{-1}(z)) \text{ s.t: }
+    \mathbf 0 \in [I + 
+    N_Y\circ \nabla [\cdot\mapsto g(x, \cdot)]^{-1}]z
+    \\
+    & 
+    \argmin{x} f(x, \nabla [\cdot\mapsto g(x, \cdot)]^{-1}(z)) \text{ s.t: }
+    z \in [I + 
+    N_Y\circ \nabla [\cdot\mapsto g(x, \cdot)]^{-1}]^{-1}(\mathbf 0). 
+\end{aligned}
+$$
+
+If somehow, we can get the resolvent $[I + N_Y\circ M]^{-1}$ with $M = \nabla [\cdot \mapsto g(x, \cdot)]^{-1}$ for each value of $x$, then we have a convex constraints here. 
+Because fixed point of the constraint seems to be convex. 
+The inverse of the partial gradient of $g$ here is messing things up. 

@@ -89,9 +89,9 @@ $$
     &
     \left\langle 
         \left.
-        \sum_{i \in J}^{n}\alpha_i x_i
+        \sum_{i \in J}^{}\alpha_i x_i
         \right|
-        \sum_{i \in I}^{n}\alpha_i u_i
+        \sum_{i \in I}^{}\alpha_i u_i
     \right\rangle +
     \sum_{i\in I}^{}\sum_{j\in I}^{}
         \frac{\alpha_i\alpha_j}{2}\langle x_i - x_j, u_i - u_j\rangle
@@ -116,7 +116,7 @@ the first expression is a more general case of the second expression. By setting
 
 **Reference**:
 
-Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Heinz himself refer this formula as the cute formula. 
+Heinz's monotone operator textbook first edition, Lemma 2.13 (ii). Professor Heinz himself refers this formula as the cute formula. 
 
 ---
 ### **An Augmented Version**

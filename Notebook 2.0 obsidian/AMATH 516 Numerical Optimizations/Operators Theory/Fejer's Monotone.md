@@ -285,7 +285,10 @@ $$
     \Vert x_{m + n} - \Pi_C x_{m + n}\Vert^2
     -2 \langle \Pi_C x_n - x_{m + n}, x_{m + n} - \Pi_C x_{m + n}\rangle
     \\
-    &\le \Vert \Pi_C x_n - x_n\Vert^2 + d_C(x_{m + n})^2 
+    &\le 
+    \Vert \Pi_C x_n - x_n\Vert^2 + d_C(x_{m + n})^2 
+    \\
+    &\quad 
     + 2 \left\langle 
         (\Pi_C x_n - \Pi_C x_{m + n}) + 
         (\Pi_C x_{m + n} - x_{m + n}), 
@@ -293,6 +296,8 @@ $$
     \right\rangle
     \\
     &= d_C(x_n)^2 + d_C(x_{m+ n})^2
+    \\
+    &\quad 
     + 2 \langle \Pi_C x_n - \Pi_C x_{m + n}, x_{m + n} - \Pi_C x_{m + n}\rangle
     - 2  \Vert \Pi_C x_{m + n} - x_{m + n}\Vert^2. 
 \end{aligned}
@@ -315,21 +320,215 @@ Using the fact that the sequence is F-Monotone, the above would suggest that the
 Since that is the upper bound of the norm squared, we haev that the projected sequence is a Cauchy sequence as well. 
 
 
+**Remarks**
+
+The strong convergence of the projection point make it possible to track the convergence rate for certain algorithm. 
+
+
 #### **Thm | Finite Length Trajectory**
 > If the set $C$ has non-empty interior and $x_n$ is a convergent sequence then the trajectory for $x_n$ is finite meaning that $\sum_{i = 1}^{\infty} \Vert x_{n} - x_{n -1 }\Vert < \infty$. 
 
 
 **Proof**
 
+Let $c \in \text{int }(C)$, with $r > 0$, such that $\mathbb B_r(c) \subseteq C$. 
+Now set the sequence: 
+
+$$
+\begin{aligned}
+    c_n := 
+    \begin{cases}
+        c  & \text{ if } x_n = x_{n + 1}. 
+        \\
+        c - r \frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert} 
+        & 
+        \text{else}. 
+    \end{cases}
+\end{aligned}
+$$
+
+clearly, $c_n \in C$, by its definition. 
+$x_n$ is F Monotone wrt to $C$, hence we have 
+
+$$
+\begin{aligned}
+    \Vert x_{n + 1} - c_n\Vert &\le 
+    \Vert x_n - c_n\Vert, 
+\end{aligned}
+$$
+
+assume momentarily that $x_{n + 1} \neq x_n$, we substitute the formula for $c_n$ into the above definition of F Monotonicity which yields: 
+
+$$
+\begin{aligned}
+    \left\Vert 
+        x_{n + 1} - c + 
+        r\frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\Vert^2
+    & \le 
+    \left\Vert
+        (x_n - c) + r\frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\Vert^2
+    \\
+    \Vert x_{n + 1} - c\Vert^2 + r^2 
+    + 
+    2r \left\langle 
+        x_{n + 1}, \frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\rangle
+    & \le 
+    \Vert x_n - c\Vert^2 + r^2 
+    + 
+    \left\langle 
+        x_n - c, \frac{x_{n + 1} - x_n}{x_{n + 1} - x_n}
+    \right\rangle
+    \\
+    \Vert x_{n + 1} - c\Vert^2 
+    + 
+    2r \left\langle 
+        x_{n + 1}, \frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\rangle
+    &\le 
+    \Vert x_n - c\Vert^2 + 
+     \left\langle 
+        x_n, \frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\rangle
+    \\
+    \Vert x_{n + 1}- c\Vert^2 
+    &\le 
+    \Vert x_n - c\Vert^2 + 
+    2r \left\langle 
+        x_n - x_{n + 1}, \frac{x_{n + 1} - x_n}{\Vert x_{n + 1} - x_n\Vert}
+    \right\rangle
+    \\
+    \Vert x_{n + 1}- c\Vert^2 
+    &\le 
+    \Vert x_n - c\Vert^2 
+    + 
+    -2r \Vert x_n - x_{n + 1}\Vert
+    \\
+    2r \Vert x_n - x_{n + 1}\Vert 
+    &\le 
+    \Vert x_n - c\Vert^2 - \Vert x_{n + 1} - c\Vert^2. 
+\end{aligned}
+$$
+
+
+observe that the above inequality asserts that some extra length difference can be put into the difference between $\Vert x_n - c\Vert, \Vert x_{n + 1} - c\Vert$. 
+The results here would be trivial if we assumed $x_{n} - x_{n + 1}$, which makes it equivalent to Fejer Montone sequence. 
+
+Next we consider the Telescoping sum of the sequence, which would produce 
+
+$$
+\begin{aligned}
+    2 r \sum_{n = 0}^{\infty}
+        \Vert x_{n} - x_{n + 1}\Vert
+    &\le 
+    \Vert x_0 - c\Vert^2 - 
+    \lim_{n\rightarrow \infty }
+    \Vert x_n - c\Vert^2 
+    \le \infty. 
+\end{aligned}
+$$
+
+Therefore, the sequence generated has a finite length to it. 
 
 
 
+#### **Thm | Ray Convergence towards Linear Subspace**
+> Let $C\subseteq X$ be an closed affine space. 
+> Let $(x_n)_{n\in \mathbb N}$ be Fejer Monotone wrt to $C$, then $\Pi_C(x_n) = \Pi_C(x_0)$. 
 
+**Observations**
 
-----
-### **Quasi-Monotone Sequences**
+The sequence $x_n$ always projects onto the same point of $x_0$, since $C$ is affine, the sequence follows a perfect straight ray along meet with $C$ at $\Pi_C x_0$.
 
+**Proof**
 
+Consider any $n \in \mathbb N$, and $\alpha \in \mathbb R$, since $C$ is a linear subspace, we make affine combinations $y_\alpha := \alpha\Pi_C x_0 + (1 - \alpha)\Pi_C x_n \in C$. 
+Consider: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    \alpha^2 \Vert \Pi_C x_n - \Pi_C x_n\Vert^2 
+    \\
+    &= \Vert \alpha \Pi_C x_n - \alpha \Pi_C x_0\Vert^2
+    \\
+    &= \Vert y_\alpha - \Pi_C x_n\Vert^2
+    \\
+    \text{Nonexpansive }\implies 
+    &\le \Vert y_\alpha - x_n\Vert^2
+    \\
+    &\le 
+    \Vert y_\alpha - x_{n - 1}\Vert^2
+    \\
+    \text{F Mono} \implies 
+    &\le 
+    \Vert x_0 - y_\alpha\Vert^2. 
+\end{aligned}
+$$
+
+On the following parts, we consider a sequence of inequality on the above quantity, our goal is trying to re-create the projection operators somewhere in there as well. 
+
+$$
+\begin{aligned}
+    \Vert x_n - y_\alpha\Vert^2 
+    &= 
+    \Vert 
+        \underbrace{x_0 - \Pi_C x_0}_{\in C^\perp}
+        + 
+        \underbrace{\Pi_C x_0 - y_\alpha}_{\in C}
+    \Vert^2
+    \\
+    &= 
+    \Vert 
+        x_0 - \Pi_C x_0
+    \Vert^2
+        + 
+    \left\Vert
+        \Pi_C x_0 - y_\alpha
+    \right\Vert^2 
+    \\
+    &= 
+    d_C^2(x_0) + \Vert 
+        (1 - \alpha)(\Pi_Cx_n - \Pi_C x_0)
+    \Vert^2
+    \\
+    &= 
+    d_C^2(x_0) + (1 - \alpha)^2\Vert 
+        \Pi_Cx_n - \Pi_C x_0
+    \Vert^2
+    \\
+    &= 
+    d_C^2(x_0) + \alpha^2\Vert 
+        \Pi_Cx_n - \Pi_C x_0
+    \Vert^2 + 
+    (1 - 2 \alpha)
+    \Vert \Pi_C x_n - \Pi_C x\Vert^2. 
+\end{aligned}
+$$
+
+Going back to the initially derived inequality, this gives us the expression that 
+
+$$
+\begin{aligned}
+    0 \le 
+    \alpha^2 \Vert \Pi_Cx_n - \Pi_C x_0\Vert^2 
+    & \le 
+    d_C^2(x_0) + \alpha^2\Vert 
+        \Pi_Cx_n - \Pi_C x_0
+    \Vert^2 + 
+    (1 - 2 \alpha)
+    \Vert \Pi_C x_n - \Pi_C x\Vert^2
+    \\
+    (2\alpha - 1)\Vert \Pi_C x_n - \Pi_C x_0\Vert^2 
+    &\le 
+    d_C^2(x_0) < \infty, 
+\end{aligned}
+$$
+
+Taking $\alpha \rightarrow \infty$, then we have that $\Vert \Pi_C x_n - \Pi_C x_0\Vert^2 = 0$, if and only if $\Pi_C x_n = \Pi_C x_0$. 
+Therefore, the theorem is now proven. 
 
 
 ---
