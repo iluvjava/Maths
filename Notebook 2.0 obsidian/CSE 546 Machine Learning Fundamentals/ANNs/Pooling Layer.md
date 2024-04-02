@@ -86,3 +86,14 @@ Other more complicated operations include:
 
 1. `padding`, adding zeros to the boundary of the input signal on all channels. 
 2. `dilation`, pulling from a dilated kernel instead. 
+
+
+
+---
+### **Max Unpool Layer**
+
+The inverse of the max pool layer. 
+Usually used in generative AIs. 
+
+
+
