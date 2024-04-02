@@ -89,6 +89,11 @@
     Artificial Neural networks represents modes of numerical computations that are differentiable programs. 
     We skips the basics and assume the reader already know something about Deep Neural Network, their components, and the automatic differentiation program on modern deep learning frameworks. 
     For our discussion we introduce some definitions to make for a better presentation of computataional concepts occured in Artificial Neural Networks (ANNs). 
+    \par
+    \subsection{Note}
+        The index starts with ``1'' in our writings. 
+        But it starts with zero if we are using programming languages such as python. 
+
     \begin{definition}[Component]
         A component is a function $f(x; p|w): \mathbb R^m \mapsto \mathbb R^n$. 
         $x$ is the inputs and $w$ represent trainable parameters, usually in the form of a multi-dimensional array. 
@@ -175,13 +180,49 @@
         \end{definition}
         \begin{remark}
             Observe that each of the output channel is the sum of $C$ many kernels convluted with all inputs channels and summed up. 
-            
+            For more information about using it in pytorch, visit 
+            The following parameters are extra and can be used to alter the computations. 
+            \begin{enumerate}
+                \item ``stride'', striding means ignoring some of the element of the convoluted vectors. In the case of `stride=2', the dimension is odd or even will matter. 
+                
+                \item ``padding'', padding adds zero elements to the input vector/matrix. 
+                
+                \item ``dialation'', dilation dilate the filter, making it bigger and fills it with more zeros. The trainable weights will distributed with integers spacing between them. 
+                
+                \item  ``group'', see \href{https://towardsdatascience.com/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148}{here} for an explanations. I am not sure what this parameter is doing really.  
+            \end{enumerate}
+            The activaton function above is ``ReLU'', but it doesn't have to be. 
+            See \href{https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html}{here} for the pytorch documentations. 
         \end{remark}
-        \begin{definition}[2D Max Pooling Layers]
+    \subsection{Pooling Layer}
+        Let's define these quantities 
+        \begin{enumerate}
+            \item $(N, C, H, W)$ is the size of the input signal. 
+            \item $(N, C, H', W')$ is the signal of the output layer.
+            \item $(k_1, k_2)$ is the size of the kernel. 
+            \item $N$ is usually the size of the Batched samples. 
+            \item $[s_1, s_2]$ be the stride parameters for the kernels. 
+        \end{enumerate}
             
+        \begin{definition}[2D Max Pooling Layers]
+            Let $X$ be the signal of size $(N,C, H, W)$, let the output signal be $Y$ of size $(N, C, H', W')$, then the output can be precisely described by the following formula: 
+            {
+            \large
+            \[
+                \begin{aligned}
+                    Y_{i,c, h, w} = 
+                    \max_{
+                        \substack{m = 1, \;\cdots, H\\n = 1, \; \cdots \; , W}
+                    }
+                    \{
+                        X_{i, c, hs_1 + m, s_2w + n}
+                    \}. 
+                \end{aligned} 
+            \]
+            }
         \end{definition}
-
-        
+    
+    
 
 \appendix
 \section{Appendix Section 1}
