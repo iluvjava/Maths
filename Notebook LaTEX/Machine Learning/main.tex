@@ -30,6 +30,7 @@
     % \theoremstyle{plain}
     \newtheorem{assumption}{Assumption}
 }
+\newtheorem{fact}{Fact}[subsection]
 \numberwithin{equation}{subsection}
 
 \hypersetup{
@@ -46,6 +47,10 @@
 \usepackage{wrapfig}
 \graphicspath{{.}}
 \usepackage{fancyvrb}
+
+\newcommand{\inlinecode}[1]{\texttt{\footnotesize #1}}
+
+%% CUSTOMIZED MATHEMATICAL OPERATORS ===========================================
 
 %%
 %% Julia definition (c) 2014 Jubobs
@@ -74,7 +79,7 @@
     showstringspaces = false,
 }
 
-\title{Machine Learning, a Review for Tree Segmentations Tasks}
+\title{Machine Learning, a Review for Tree Segmentations Task}
 \author{Hongda Li}
 
 \begin{document}
@@ -90,10 +95,10 @@
     We skips the basics and assume the reader already know something about Deep Neural Network, their components, and the automatic differentiation program on modern deep learning frameworks. 
     For our discussion we introduce some definitions to make for a better presentation of computataional concepts occured in Artificial Neural Networks (ANNs). 
     \par
-    \subsection{Note}
+    \subsection{Notations, Common Operations}
         The index starts with ``1'' in our writings. 
         But it starts with zero if we are using programming languages such as python. 
-
+        To distinguish these 2 type of indexing on a tensor $X$, we use $X_{i_1, 1_2, \cdots}$ to denotes indexing using the natural number and we use $X_{[i_1, i_2, \cdots]}$ to denote indexing of the tensor using offset indices that starts with zero. 
     \begin{definition}[Component]
         A component is a function $f(x; p|w): \mathbb R^m \mapsto \mathbb R^n$. 
         $x$ is the inputs and $w$ represent trainable parameters, usually in the form of a multi-dimensional array. 
@@ -143,7 +148,7 @@
         Where $\bigodot$ is functional composition and it represents $\bigodot_{i=1}^n f_i = f_n\circ\cdots\circ f_1(x)$, and $(\cdot)$ represents the input of the anonymous function, in this case it's the dense layer. 
     \end{example}
 
-\section{Preliminaries}
+\section{Basic of Neural Architecture}
     These concepts and components are relevant to the architecture of Vision Networks. 
     \begin{definition}[Convolution 2D]
         Let $u, v$ be multi-array of dimension $m \times n$ and $k \times l$. 
@@ -157,50 +162,128 @@
         \end{aligned}
         $$
     \end{definition}
+    \subsection{The Input and Output of Multi-Channel Fixed Dimension Signal}
+        In this section, we discuss the shape of the output signal for a 2D/1D signal after 
+        \begin{enumerate}
+            \item Max/average Pooling,
+            \item Convolution. 
+        \end{enumerate}
+        Here we note that these above operations places the same type of constraints on the output shape of the signal given the shape of the input. 
+        We all these type of operations: ``Multi-Channel Fixed Dimenion Transform (MCFDT)''. 
+        This is not a name from the literature I just made it up. 
+        These operations share a common set of parameters that determine the shape of the output tensor given the shape of the output tensor. 
+        These are the list of parameters: 
+        \begin{enumerate}
+            \item \inlinecode{in\_channel}: Type integers. The number of channels expected for the input signal. 
+            
+            \item \inlinecode{Out\_channels}: Type integers. The number of channel expected for the output signal. 
+            
+            \item \inlinecode{kernel\_size}: The size of the kernel used for the 1D signal, for certain type of operations. The kernel represent the size of the window where an computations are going to carry out locally on the input signal. 
+            
+            \item \inlinecode{stride}: How many elements does the kernel skips with respect to the input signal for each of the adjacent output elements in the output signal. 
+            
+            \item \inlinecode{padding}: The numbers of zero/null/-inf elements added to the 2 side of the 1D signal. 
+                \begin{enumerate}
+                    \item \inlinecode{padding\_mode}: Determine different modes of padding the boundary of the input signal. 
+                    \begin{enumerate}
+                        \item  \inlinecode{zero}, (default)
+                        \item  \inlinecode{reflect}, 
+                        \item  \inlinecode{replicate}, 
+                        \item  \inlinecode{circular}. 
+                    \end{enumerate}
+                \end{enumerate}   
+                  
+            \item \inlinecode{dilation}: Spacing between the elements of the kernels. 
+            
+            \item \inlinecode{blocks}: Number of blocked connections from intput channels to output channels, default to 1. 
+            
+            \item \inlinecode{bias}: Add learnable bias to the component, default to `true`. 
+        \end{enumerate}
+
+        \begin{fact}[MCFDT 1D]
+            Let input signal be a tensor of size $(N, C, L)$. 
+            \begin{enumerate}
+                \item $N$ is the number of samples from the batch. 
+                \item $C$ is the number of imput channels for the signal. 
+                \item $L$ is the length of the input signal. 
+            \end{enumerate}
+            Let $p, d, k, s$ denotes: "padding, dilation, kernel size, stride". 
+            Then the output signal is a tensor of size $(N, C', L')$ with 
+            \begin{align}
+                L' = \left\lfloor
+                    \frac{(L + 2p)- (d(k-1)+1)}{s} + 1
+                \right\rfloor. 
+            \end{align}
+            The parameter $C'$, is user defined. 
+        \end{fact}
+        \begin{remark}
+            The size of the input signal with paddin is $(L + 2p)$. 
+            The size of the dilated kernel is $d(k - 1)$. 
+            The $+1$ on the numerator of the fraction and the $+1$ at the outside of the fraction remains as a mystery to the writer. 
+            The process of computing the shape for an input signal of dimension $(N, C, [\cdots])$, is applying the same computations on all the dimensions to compute the output of the signal. 
+        \end{remark}
+        \begin{fact}[MCFDT 2D]\label{fact:MCFDT_2D}
+            Let $X$ be a tensor of shape $(C, N, L_1, L_2)$, then the output signal is of size $(C', N, L_1', L_2')$, where $C'$ is defined. 
+            \begin{enumerate}
+                \item $N$ is the number of samples from the batch. 
+                \item $C$ is the number of imput channels for the signal. 
+                \item $L$ is the length of the input signal. 
+            \end{enumerate}
+            
+            Let $p_i,d_i,k_i,s_i, \; i \in \{1, 2\}$ be the ``padding, dilation, kernel size, stride'' along the $L_1$ and $L_2$ dimension of the input signal. 
+            Then the shape parameters $(L_1', L_2')$ can be computed by the formula: 
+            $$
+            \begin{aligned}
+                L'_i = \left\lfloor
+                \frac{(L_i + 2p_i)- (d_i(k_i-1)+1)}{s_i} + 1
+                \right\rfloor \quad \forall i \in \{1, 2\}. 
+            \end{aligned}
+            $$
+        \end{fact}
+        \begin{remark}
+            This is analogous to the 1D case and it's just applying the same formula to the corresponding dimension of the tensor to determine the shape of the output tensor. 
+        \end{remark}
 
     \subsection{Convolutional Layers}
         In this section we talk about \href{https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html}{2D convolution component (pytorch link)} inside of an ANNs. 
         The convolution operations module contains more detailed parameters. 
-        
         \begin{definition}[2D Convolution Layers]
             Assuming that we have a single sample. 
             Let $(C, H, W)$ be the shape of the input tensor. 
             $C$ is the number of channel, and $H, W$ are the height and width. 
             We use this because image tensors are usually in the shape of $(3, H, W)$. 
             Define the component to be a function, mapping from $(C', H', W')$. 
-            Let $(C, K, L)$ denotes the dimension of the kernel: $\mathcal K$. 
+            Let $(C', C, K, L)$ denotes the dimension of the kernel tensor denoted by: $\mathcal K$. 
             Then mathematically, the computation of the output tensor $Y$ given input tensor $X$ can be computed as
-            $$
-            \begin{aligned}
+            {\large
+            \begin{align}
                 Y_{c', h', w'} = 
                 \text{ReLU}\left( b_{c'} + 
-                \sum_{n = 1}^{C} (\mathcal K_{c'} * X)_{h', w'}\right). 
-            \end{aligned}
-            $$
+                \sum_{k = 1}^{C} (\mathcal K_{c',k,:, :} * X)_{h', w'}\right). 
+            \end{align}
+            }
         \end{definition}
+
         \begin{remark}
-            Observe that each of the output channel is the sum of $C$ many kernels convluted with all inputs channels and summed up. 
-            For more information about using it in pytorch, visit 
-            The following parameters are extra and can be used to alter the computations. 
+            There is a bias term and an activation function for a specific channel. 
+            The kernel for an image, which is a 3D tensor, is also a 3D tensor. 
+            A single tensor is applied to all channels of the input channel, aggregated by summing up across these different channels. 
             \begin{enumerate}
-                \item ``stride'', striding means ignoring some of the element of the convoluted vectors. In the case of `stride=2', the dimension is odd or even will matter. 
                 
-                \item ``padding'', padding adds zero elements to the input vector/matrix. 
-                
-                \item ``dialation'', dilation dilate the filter, making it bigger and fills it with more zeros. The trainable weights will distributed with integers spacing between them. 
-                
-                \item  ``group'', see \href{https://towardsdatascience.com/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148}{here} for an explanations. I am not sure what this parameter is doing really.  
+                \item  ``group'', see \href{https://towardsdatascience.com/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148}{here} for an explanations. 
             \end{enumerate}
             The activaton function above is ``ReLU'', but it doesn't have to be. 
             See \href{https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html}{here} for the pytorch documentations. 
+            The size of the output tensor is determined by \hyperref[fact:MCFDT_2D]{fact \ref*{fact:MCFDT_2D}}. 
         \end{remark}
-    \subsection{Pooling Layer}
+
+    \subsection{Pooling Layers}
         Let's define these quantities 
         \begin{enumerate}
             \item $(N, C, H, W)$ is the size of the input signal. 
             \item $(N, C, H', W')$ is the signal of the output layer.
             \item $(k_1, k_2)$ is the size of the kernel. 
-            \item $N$ is usually the size of the Batched samples. 
+            \item $N$ is usually the size of the batched samples. 
             \item $[s_1, s_2]$ be the stride parameters for the kernels. 
         \end{enumerate}
             
@@ -212,7 +295,7 @@
                 \begin{aligned}
                     Y_{i,c, h, w} = 
                     \max_{
-                        \substack{m = 1, \;\cdots, H\\n = 1, \; \cdots \; , W}
+                        \substack{m = 1, \;\cdots, k_1 - 1\\n = 1, \; \cdots \; , k_2-1}
                     }
                     \{
                         X_{i, c, hs_1 + m, s_2w + n}
@@ -221,8 +304,39 @@
             \]
             }
         \end{definition}
+        \begin{remark}
+            See \href{https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html}{max pool 2d} for pytorch documentation for this component. 
+        \end{remark}
+
+        \begin{definition}[2D Averge Pooling Layer]
+            Let $X$ be the input signal of size $(N, C, H, W)$, let output signal $Y$ be of size $(N, C, H', W')$, then the output for an average pooling layer can be computed as
+            {\large
+            \begin{align*}
+                Y_{[i, c, h, w]} = 
+                \operatorname{mean} \left(
+                    X_{[i, c, hs_1 + m, hs_2 + n]}, m \in \{ 0, \cdots, k_1 -1\}, n \in \{0 \cdots, k_2 -1\}
+                \right). 
+            \end{align*}
+            }
+        \end{definition}
+        \begin{remark}
+            See \href{https://pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html}{averaeg pool 2d} for pytorch documentation for this component. 
+        \end{remark}
     
+    \subsection{Inverted Operations}
+
     
+\section{Graphical Model and Probability Dependence}
+    
+\section{Variational Autoencoder, Bayesian Learning}
+
+\section{Computer Vision Networks}
+    
+\section{Case Study | Direct LiDAR Point Cloud Architecture}
+    
+\section{Case Study | The Deepforest Project}
+
+
 
 \appendix
 \section{Appendix Section 1}
