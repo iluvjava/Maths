@@ -71,7 +71,6 @@ The input reduces in sizes for this type of convolutions.
 The convolution take the inner product locally between the matrix $u$, the smaller matrix and the bigger matrix $v$. 
 
 
-
 ---
 ### **The Convolution Component**
 
@@ -89,28 +88,39 @@ We introduce the computational mode of the convolutional layer next.
 
 #### **Def | 2D Convolution**
 > Assuming that we have a single sample. 
+> This simplies the size of the input channels.  
 > Let $(C, H, W)$ be the shape of the input tensor. 
 > $C$ is the number of channel, and $H, W$ are the height and width. 
 > We use this because image tensors are usually in the shape of $(3, H, W)$. 
 > Define the component to be a function, mapping from $(C', H', W')$. 
-> Let $(C, K, L)$ denotes the dimension of the kernel: $\mathcal K$. 
+> Let $(J, C, K, L)$ denotes the dimension of the kernel tensor denoted by: $\mathcal K$. 
 > Then mathematically, the computation of the output tensor $Y$ given input tensor $X$ can be computed as
 > $$
+> {\large
 > \begin{aligned}
 >     Y_{c', h', w'} = 
 >     \text{ReLU}\left( b_{c'} + 
->     \sum_{n = 1}^{C} (\mathcal K_{c'} * X)_{h', w'}\right). 
+>     \sum_{k = 1}^{C} (\mathcal K_{c',k,:, :} * X)_{h', w'}\right). 
 > \end{aligned}
+> }
 > $$
 
 **Observation**
 
-each output is the result of one kernel applies to multiple channels on the input and sums the convoluted channels together. 
-Each channel of the output, corresponds to a bias of the channel, which applies to all the coordinate for the matrix of the channel. 
-
+There is a bias term and an activation function for a specific channel. 
+The kernel for an image, which is a 3D tensor, is also a 3D tensor. 
+A single tensor is applied to all channels of the input channel, aggregated by summing up across these different channels. 
 
 
 **Remarks**
 
-The output dimension heavily depends on the parameters that control the convolution of the kernel and the image. 
+The intput signal $X$ for $N$ samples are usually of size $(N, 3, H, W)$, where $H, W$ are the sizes for all $N$ instances of images. 
 According to sources like pytorch, there seems to be no activation function coming out of the convolution layer. 
+See [here](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html) for the documentations in pytorch. 
+
+
+---
+### **The Transposed Convolution Components**
+
+
+

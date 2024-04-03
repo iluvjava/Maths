@@ -5,6 +5,7 @@
 
 Max pool is often used in networks for computer visions. 
 A pooling layer extract out useful statistics from the results of a filter. 
+Let $X$ be a tensor, when indexed using natural number, we use $X_{i_1, i_2, \cdots}$, when indexed using offset indices, so using indices that starts with zero, we use $X_{[1_1, 1_2, \cdots]}$ to denote that. 
 
 
 ---
@@ -49,15 +50,19 @@ This transformation is a continuous transformation.
 
 This is a locally Lipschitz continuous mapping wrt to elements in the input matrix $X$. 
 
+### **The Pooling Component**
 
-#### **Def | The Simple Max Pull Layer**
-> Let's define these quantities 
-> 1. $(N, C, H, W)$ is the size of the input signal. 
-> 2. $(N, C, H', W')$ is the signal of the output layer.
-> 3. $(k_1, k_2)$ is the size of the kernel. 
-> 4. $N$ is usually the size of the Batched samples. 
-> 5. $[s_1, s_2]$ be the stride parameters for the kernels. 
-> 
+For the definitions of different type of pooling layers in ANNs, we firstly consider common parameters shared among them. 
+
+#### **Def | Parameters for Pooling Layers**
+1. $(N, C, H, W)$ is the size of the input signal. 
+2. $(N, C, H', W')$ is the signal of the output layer.
+3. $(k_1, k_2)$ is the size of the kernel. 
+4. $N$ is usually the size of the Batched samples. 
+5. $[s_1, s_2]$ be the stride parameters for the kernels. 
+
+
+#### **Def | The Simple Max Pool Layer 2D**
 > Let $X$ be the signal of size $(N,C, H, W)$, let the output signal be $Y$ of size $(N, C, H', W')$, then the output can be precisely described by the following formula: 
 > $$
 > {
@@ -65,7 +70,7 @@ This is a locally Lipschitz continuous mapping wrt to elements in the input matr
 > \begin{aligned}
 >     Y_{i,c, h, w} = 
 >     \max_{
->         \substack{m = 0, \;\cdots, H\\n = 0, \; \cdots \; , W}
+>         \substack{m = 0, \;\cdots, \; k_1 - 1\\n = 0, \; \cdots \; ,\; k_2 - 1}
 >     }
 >     \{
 >         X_{i, c, hs_1 + m, s_2w + n}
@@ -87,6 +92,17 @@ Other more complicated operations include:
 1. `padding`, adding zeros to the boundary of the input signal on all channels. 
 2. `dilation`, pulling from a dilated kernel instead. 
 
+
+#### **Def | Simple Averge Pooling Layer**
+> Let $X$ be the input signal of size $(N, C, H, W)$, let output signal $Y$ be of size $(N, C, H', W')$, then the output for an average pooling layer can be computed as
+> $$
+> \begin{aligned}
+>     Y_{[i, c, h, w]} = 
+>     \operatorname{mean} \left(
+>         X_{[i, c, hs_1 + m, hs_2 + n]}, m \in \{ 0, \cdots, k_1 - 1\}, n \in \{0 \cdots, k_2 - 1\}
+>     \right). 
+> \end{aligned}
+> $$
 
 
 ---
