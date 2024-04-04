@@ -9,7 +9,7 @@ alias: Subgradient Properties
 
 We list everything that is directly related to subgradient in this file so that we have a place to refer to various concepts all at the same time. 
 
-### **Properties of the Subgradient**
+### **Properties of the Convex Subgradient**
 
 Properties, and geometric interpretations of Subgradient. 
 
@@ -37,9 +37,12 @@ Properties, and geometric interpretations of Subgradient.
 	* **Source**: Exercise 3.14, AND 3.5.2, the introduction to directional derivatives for Dimitri's Notes on convex analysis: AMATH 516. **Source**, Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient), See for a brief proof, refer to: 
 
 
-### **Calculus of the Subgradient**
+---
+### **Variational Subgradient**
 
 In this section, we expand some of the classic calculus rules for convex subdifferentials. We prove and cite their classics source. 
 
-
-
+#### **Topics**
+- [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md) (Regular Subgradient)
+- [Dini Hadamard Subderivatives](Variational%20Subderivatives.md) (Variational Subderivative)
+- [Limiting Subgradient](Limiting%20Subgradient.md) (Mordukhovich Limiting Subdifferential)

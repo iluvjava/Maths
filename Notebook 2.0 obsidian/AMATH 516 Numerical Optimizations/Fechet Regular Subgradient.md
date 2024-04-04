@@ -161,8 +161,6 @@ Next, we need to show the equivalent between the condition $v \in \hat \partial 
 The proof is similar to what we had for the previous proof. 
 
 
-
-
 ---
 ### **Testing out the Regular Subgradient** 
 

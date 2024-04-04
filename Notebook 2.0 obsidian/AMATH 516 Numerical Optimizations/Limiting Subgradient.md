@@ -1,4 +1,9 @@
-[Variational Subgradient](Variational%20Subgradient.md)
+---
+alias: Mordukhovich Limiting Subdifferential
+---
+
+---
+- [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
 
 
 ---
