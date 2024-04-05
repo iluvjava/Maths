@@ -1,5 +1,5 @@
 - wikipedia [here](https://en.wikipedia.org/wiki/Set-theoretic_limit).
-
+- [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md)
 ---
 ### **Intro**
 

@@ -1,4 +1,6 @@
 - [Discrete Set Limit](Discrete%20Set%20Limit.md)
+- [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
+- [Set Valued Analysis](../Operators%20Theory/Set%20Valued%20Analysis.md)
 
 ---
 ### **Intro**
@@ -67,8 +69,93 @@ instead of $x \in  C_{k_n}$ as it were the case in discrete set limit, we relaxe
 > $$
 
 
+#### **Def | Outer Limits of a Set-Valued Mapping**
+> Consider $S : \mathbb R^n \rightarrow 2^{\mathbb R^n}$. 
+> The outer limit and the inner limit of the multi-valued mapping $S$ as
+> $$
+> \begin{aligned}
+>     \Limsup{x\rightarrow \bar x} S(\bar x)
+>     &= 
+>     \bigcup_{x\rightarrow \bar x}
+>     \Limsup{n\rightarrow \infty} S(x_n)
+>     \\
+>     &= \left\lbrace
+>         u \left | 
+>             \exists x_n \rightarrow \bar x, \exists u_n \rightarrow u: 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace, 
+>     \\
+>     \Liminf{x\rightarrow \bar x}S(x)&= 
+>     \bigcap_{x\rightarrow\infty} 
+>     \Liminf{n\rightarrow \infty} S(x_n) 
+>     \\
+>     &= 
+>     \left\lbrace
+>         u \left | 
+>             \forall x_n \rightarrow \bar x, \exists N \in \mathcal N_\infty, 
+>             u_n \underset{u\in N}{\longrightarrow} u, 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace.
+> \end{aligned}
+> $$
+
+**Proof**
+
+We will prove that the equality is equivalent to the conditions stated in the set definitions of the multi-valued mapping limit. 
+
 ---
 ### **Characterizations of Inner, Outer set Limits**
+
+We characterize the limits stated above using other mathematical entities. 
+
+#### **Thm | Characterizing Set Limits via Distance Function**
+> Define $d_C(x)$ to be the shortest distance between all points in $C$ and the point $x$. 
+> $$
+> \begin{aligned}
+>     \Liminf{n\rightarrow \infty} C_n 
+>     &= 
+>     \left\lbrace
+>         x \left| 
+>             \; \limsup_{n\rightarrow \infty} d_{C_n}(x) = 0
+>         \right.
+>     \right\rbrace, 
+>     \\
+>     \Limsup{n\rightarrow \infty} C_n
+>     &= 
+>     \left\lbrace
+>         x \left | 
+>             \liminf_{n\rightarrow \infty} d_{C_n}(x) = 0
+>         \right.
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+
+
+#### **Thm | Characterizing Set Limits via Sets Operations**
+> Similarly, the outer and inner set limit defined above can be considered through sets operations: 
+> $$
+> \begin{aligned}
+>     \Liminf{n\rightarrow \infty} C_n 
+>     &= 
+>     \bigcap_{N \in \mathcal N_\infty^\#} 
+>     \text{cl}\left(
+>         \bigcup_{n \in N} C_n
+>     \right), 
+>     \\
+>     \Limsup{n\rightarrow \infty} C_n 
+>     &= 
+>     \bigcup_{N \in \mathcal N_\infty} 
+>     \text{cl} \left(
+>         \bigcup_{n \in N}C_n
+>     \right). 
+> \end{aligned}
+> $$
+
+**Obervations**
+
+We observe that, the first set, Liminf is always a closed set because it's a the intersection of a sequence of closed set. 
 
 
 
