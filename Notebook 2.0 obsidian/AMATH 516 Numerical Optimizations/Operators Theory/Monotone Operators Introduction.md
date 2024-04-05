@@ -30,7 +30,6 @@ A monotone operator doesn't imply:
 > Mapping $A: X \mapsto 2^{X}$ is maximally monotone if $B: X \mapsto 2^X$ and satisfies $\text{gph}(A)\subseteq \text{gph}(B)$ then it must be $A = B$. 
 
 
-
 ---
 ### **Existence and Equivalent Definitions of Maximally Monotone operators**
 
@@ -191,6 +190,12 @@ The reader should prove this as an exercise.
 
 
 ---
+### **Surjectivity of Maximally Monotone Operators**
+
+[Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md) asserts the equivalence of surjectivity of $I + T$ for a maximal monotone operator. 
+
+
+---
 ### **Illustrative Examples for Max Monotone, Monotone Operators**
 
 We discuss some examples that can illsutrate the properties of a maximal monotone, or a maximally monotone operators. 
@@ -205,12 +210,6 @@ We discuss some examples that can illsutrate the properties of a maximal monoton
 
 (1.) Is directly by the linearity of the opeartor and the definition of a monotone opeartor. 
 For (2., 3.), use the property of inner product. 
-
-
----
-### **Surjectivity of Maximally Monotone Operators**
-
-[Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md) asserts the equivalence of surjectivity of $I + T$ for a maximal monotone operator. 
 
 
 ---

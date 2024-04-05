@@ -5,7 +5,7 @@
 ---
 ### **Intro**
 
-This is a fixed point iterations that aims to find the fixed point of a non-expansive operator in Hilbert space. 
+This is a fixed point iterations that aims to find the fixed point of a non-expansive operator in Hilbert space by averaging the operator at each step of the iterations. 
 
 
 #### **Thm | Kransnoselkii - Mann Iterations**

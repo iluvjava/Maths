@@ -142,7 +142,7 @@ Shawn Wang's Lecture notes.
 
 The roles of convexity and closedness is completely different in Hilbert space where the dimension is infinite. 
 The closed and convex conditions acts differently to assert the existence of a projection point. 
-In finite dimensiona, if the set is closed, then the projection points exists, and if the set is convex, then the projection point would be unique. 
+In finite dimensional, if the set is closed, then the projection points exists, and if the set is convex, then the projection point would be unique. 
 However in infnite dimension, closedness itself is not sufficient for the existence of a projection points. 
 We provide such a counter example 
 

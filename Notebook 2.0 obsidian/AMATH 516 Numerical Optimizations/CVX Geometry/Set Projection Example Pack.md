@@ -1,4 +1,4 @@
-[[../Background/Convex Sets Projections and Dist, Intro]]
+- [Convex Sets Projections and Dist, Intro](Convex%20Sets%20Projections%20and%20Dist,%20Intro.md)
 
 
 ---

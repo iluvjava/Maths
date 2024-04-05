@@ -20,7 +20,7 @@ With these, we are ready to introduce the definitions for the outer/inner limit 
 >     \left\lbrace
 >          x 
 >         \left|
->             \forall v \in \mathcal N(x), \exists k_n \in \mathcal N_\infty^\# : 
+>             \forall v \in \mathcal N(x), \exists (k_n)_{n \in \mathbb N} \in \mathcal N_\infty^\# : 
 >             C_{k_n} \cap V \neq \emptyset 
 >         \right.
 >     \right\rbrace. 
@@ -31,8 +31,44 @@ With these, we are ready to introduce the definitions for the outer/inner limit 
 
 In $\mathbb R^n$, the neighborhood function for an element $x$, is $\mathcal N(x) = \{\mathbb B_\delta(x) | \delta > 0\}$. 
 We can convert the definition in the language of $\epsilon, \delta$. 
+The above mathematical definition is equivalent to 
 
+$$
+\begin{aligned}
+    \Limsup{n\rightarrow \infty} C_n
+    &= 
+    \left\lbrace
+        x \left| 
+            \forall \delta > 0\; 
+            \exists 
+            (k_n)_{n\in \mathbb N}: 
+            C_{k_n} \cap \mathbb B_\delta(x) \neq \emptyset
+        \right.
+    \right\rbrace, 
+\end{aligned}
+$$
+instead of $x \in  C_{k_n}$ as it were the case in discrete set limit, we relaxed the conditions to $C_{k_n } \cap \mathbb B_\delta(x) \neq \emptyset$. 
 
 #### **Def | Inner Limits of a Sequence of Sets**
 > Replacing the space of sequence $\mathcal N_\infty^\#$ into $\mathcal N_\infty$, then we get the definition of the Innert limits of a sequence of sets. 
+> Mathematically we have the definition 
+> $$
+> \begin{aligned}
+>     \Limsup{n \rightarrow \infty} C_n
+>     = 
+>     \left\lbrace
+>         x 
+>         \left|
+>             \forall v \in \mathcal N(x), \exists (k_n)_{n \in \mathbb N} \in \mathcal N_\infty : 
+>             C_{k_n} \cap V \neq \emptyset 
+>         \right.
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+
+
+---
+### **Characterizations of Inner, Outer set Limits**
+
+
 

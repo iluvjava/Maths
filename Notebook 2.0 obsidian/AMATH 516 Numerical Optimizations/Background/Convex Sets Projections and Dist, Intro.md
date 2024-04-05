@@ -50,7 +50,7 @@ Where, the activation function is closed, and the distance function is also clos
 The the existence of convex set projection in the Hilbert Space, visit [Hilbert Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Hilbert%20Space%20Introduction.md). 
 
 
-**Theorem | Unique Projection of Convex Sets**
+#### **Theorem | Unique Projection of Convex Sets**
 
 > In the case of a closed convex set, the projection is also a singleton. 
 
@@ -133,6 +133,7 @@ The following properties makes convex projection easier to deal with.
 > $$
 
 **Proof**
+
 See the example in [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md). 
 
 **Remarks**
