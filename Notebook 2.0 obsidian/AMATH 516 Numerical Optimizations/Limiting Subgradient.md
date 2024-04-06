@@ -4,7 +4,8 @@ alias: Mordukhovich Limiting Subdifferential
 
 ---
 - [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
-
+- [Continuous Set Limits](Continuous%20Set%20Limits.md)
+- [Multivalued Functions, Set-valued Mappings](Multivalued%20Functions,%20Set-valued%20Mappings.md)
 
 ---
 ### **Intro**
@@ -48,7 +49,7 @@ As long as the sequence of set $\hat \partial f(x_\gamma)$ share some points in 
 > Define Kuratowski convergence of a set value operator, which in this case is $\partial f(x)$ to be 
 > $$
 > \begin{aligned}
->     \limsup_{x\rightarrow_f \bar x} \hat \partial f(x) &= 
+>     \Limsup{x\rightarrow_f \bar x} \hat \partial f(x) &= 
 >     \left\lbrace
 >         v \in \mathbb R^n 
 >         \left | 
@@ -59,7 +60,7 @@ As long as the sequence of set $\hat \partial f(x_\gamma)$ share some points in 
 > Then the limiting subgradient will admit representation 
 > $$
 > \begin{aligned}
->     \partial f(\bar x) &= \limsup_{x\rightarrow_f \bar x} \hat \partial f(x)
+>     \partial f(\bar x) &= \Limsup{x\rightarrow_f \bar x} \hat \partial f(x)
 >     = \bigcap_{\delta > 0} \overline{
 >         \hat \partial f(U(f, \bar x, \delta))
 >     }. 
@@ -83,7 +84,7 @@ Let $v \in \limsup_{x\rightarrow_f \bar x}\hat \partial f(x)$ then there exists 
 $$
 \begin{aligned}
     v_\gamma 
-    &\in \hat f(U(f, \bar x, \delta))
+    &\in \hat\partial f(U(f, \bar x, \delta))
     \\
     &= \bigcup_{x \in U(f, \bar x, \delta)} \hat \partial f(x)
     \\

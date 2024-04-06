@@ -9,4 +9,5 @@
 
 The saga starts with the properties for the maximally monotone operators. 
 The maximal monotone operators posses certain amount of generality, and it can transform into other type of operators that process single-valued properties, which incubate the operators for potential in real life applications. 
+We introduce a list of acrynyms for explaining the relations between operators. 
 
