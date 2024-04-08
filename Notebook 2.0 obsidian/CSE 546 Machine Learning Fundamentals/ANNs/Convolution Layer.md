@@ -1,5 +1,5 @@
 - [Introduction to Artificial Neural Network](Introduction%20to%20Artificial%20Neural%20Network.md)
-
+- [1D, 2D Components](1D,%202D%20Components.md)
 
 ---
 ### **Intro**
@@ -127,6 +127,8 @@ See [Conv2DNormActivation](https://pytorch.org/vision/main/generated/torchvision
 ---
 ### **The Transposed Convolution Components**
 
+Transposed convolution plays with the parameters and increase the dimension of the input channels instead of decreasing it. 
+
 #### **Warning | It's not Reversing Convolution**
 > A transposed convolutional layer only reverse the dimension and it does't reverse the convolutions. 
 In brief it's a trainable convolutional layer that upscale the input signal instead of downsacaling the input signal. 
@@ -134,7 +136,30 @@ In brief it's a trainable convolutional layer that upscale the input signal inst
 **Remark**
 
 For more information see [CONVTRANSPOSE1D](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html). 
-See [here](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for more visualizations of the underlying computational process. 
+Please watch [here](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for more visualizations of the underlying computational process. 
+Compared to convolution, the input is paded by the size of the filter. 
 
 
+#### **Fact | Shapes of the Input and Output For 1D Signal**
+> Let the input of the signal be $(C, L)$  from $C$ number of channels, let $K$ be the size of the kernel. 
+> Let $(C', L')$ be the output of the signal. 
+> We define the following parameters for the operations: 
+> 1. $s$, the `stride`. Default: 1. 
+> 2. $p$, the input `padding``. Default: 0
+> 3. $d$, `dilation`. Default 1. Dilating the input signal wit zero. 
+> 4. $p'$, `output_padding`. Default: 0.  Padding on the outputof the signal.
+>
+> Then the output signal can be computed as 
+> $$
+> \begin{aligned}
+>     L' = (L - 1)s - 2 p + d(K - 1) + p'. 
+> \end{aligned}
+> $$
+> Observe that in the default case, we have $s = 1, p = 1, d =1, p' = 0$ simplyfing the above into 
+> $L' = (L - 1) - 2 + (K - 1)$. 
 
+**Observations**
+
+The major difference here is that the stride, and the size of kernel, instead of dividing by the stride like in the case of convolution, it nows multiplies the input signal. 
+The parameters now are inverting the dimension of the output. 
+Dilation still means the same thing. 

@@ -1,6 +1,5 @@
 - [Conditional Probability, Expectations](Conditional%20Probability,%20Expectations.md)
 
-
 ---
 ### **Intro**
 
@@ -24,7 +23,7 @@ We formalize the definitions next.
 
 
 #### **Def | A DAG Graph**
-> Let 
+> 
 
 #### **Thm | Topological Ordering**
 > 
