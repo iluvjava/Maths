@@ -31,7 +31,7 @@ We emphasize the the mini network are the same hence it's shared over multiple r
 The region proposal network is translational invariant wrt to the bounding boxes of an object of interests. 
 Because we are sliding over the same shared mini network of the feature map. If an object is somewhere, it will be detected. 
 
-#### **The Mini Network**
+#### **The Mini Network | RPN Head**
 > It's a simple convolutional network and a 1x1 convolution layer with multiple channel, branching for box regression and classification regression. 
 
 #### **Anchor**
