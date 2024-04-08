@@ -114,13 +114,27 @@ A single tensor is applied to all channels of the input channel, aggregated by s
 
 **Remarks**
 
-The intput signal $X$ for $N$ samples are usually of size $(N, 3, H, W)$, where $H, W$ are the sizes for all $N$ instances of images. 
+The input signal $X$ for $N$ samples are usually of size $(N, 3, H, W)$, where $H, W$ are the sizes for all $N$ instances of images. 
 According to sources like pytorch, there seems to be no activation function coming out of the convolution layer. 
 See [here](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html) for the documentations in pytorch. 
 
+---
+### **Normalized 2D convolution Layer**
+
+Normalizations convlution layer incorperate batch normlaizations in between every layer of convolutions. 
+See [Conv2DNormActivation](https://pytorch.org/vision/main/generated/torchvision.ops.Conv2dNormActivation.html) for more information. 
 
 ---
 ### **The Transposed Convolution Components**
+
+#### **Warning | It's not Reversing Convolution**
+> A transposed convolutional layer only reverse the dimension and it does't reverse the convolutions. 
+In brief it's a trainable convolutional layer that upscale the input signal instead of downsacaling the input signal. 
+
+**Remark**
+
+For more information see [CONVTRANSPOSE1D](https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html). 
+See [here](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for more visualizations of the underlying computational process. 
 
 
 

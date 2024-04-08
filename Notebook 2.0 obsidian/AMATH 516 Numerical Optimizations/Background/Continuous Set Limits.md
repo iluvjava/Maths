@@ -8,6 +8,7 @@
 We define continuous set limits using the subsequences characterizations. 
 Recall that subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
 Denote $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions. 
+Please also recall the projection operator of sets $\Pi_C(x) \ni y$  means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
 Before we start, we define the following quantities relevant to discussion of set limits in complete metric space and Banach spaces. 
 
 #### **Def | Distance Beteen set and Points**
@@ -63,7 +64,7 @@ The addition is Minkowski set addition and the overline is taking the closure of
 
 
 #### **Observation 1 | Both the Upper and Lower Limits of Sets are Closed Sets**
-> In banach space $(X, d)$, we have that the lower and upper limit of the sequence of set $(K_n)_{n \in \mathbb N}$ are closed sets. 
+> In Banach space $(X, d)$, we have that the lower and upper limit of the sequence of set $(K_n)_{n \in \mathbb N}$ are closed sets. 
 
 **Proof**
 
@@ -88,7 +89,7 @@ which is the intersection of closed sets, and therefore it's a closed set.
 Similarly, if we have $x \in \Limsup{n\rightarrow \infty} K_n$, a similar proof can be conduct like the above to show the closure of upper limit as well. 
 
 
-#### **Observations 2 | Lower Limit is a Subet of Upper Limits**
+#### **Observations 2 | Lower Limit is a Subset of Upper Limits**
 > We have that for any sequence of sets $\Liminf{n\rightarrow \infty}K_n \subseteq \Limsup{n\rightarrow \infty} K_n$. 
 
 **Proof**
@@ -120,7 +121,7 @@ $$
 \begin{aligned}
     \liminf_{n\rightarrow \infty}d_{K_n}(x)
     &= \lim_{n\rightarrow \infty} \inf_{m \ge n} d_{K_n}(x)
-    &= 
+	= 
     \lim_{n\rightarrow \infty} d_{K_n}(x). 
 \end{aligned}
 $$
@@ -208,7 +209,9 @@ take the limit as $n \rightarrow \infty$, we have that $x \in \bigcap_{n \in \ma
 
 **Remark**
 
-This is called the Kuratowski convergence. 
+> [!note]- Remark
+> This is called the Kuratowski convergence. 
+> To understand, read the coming parts. 
 
 ---
 ### **Characterizations of Inner, Outer set Limits for Sequence of Sets**
@@ -235,16 +238,100 @@ We characterize the limits stated above using other mathematical entities.
 > \end{aligned}
 > $$
 
-**Observatnions**
+**Observations**
 
 The upper limit of sets is the union of all the clusters points of some sequences taken from the sequences of sets, with the assumptions that there are not empty set here. 
 The lower limit, is the limit of the all the points the can be converged to using sequences that eventually comes from the sequence of sets. 
 
 **Proof**
 
-To prove it, we need to show that any sequences satisfiying the conditions will have a limit that eventually converged using the metric definition, and to show the converse, we need to construct sequences satisfying the condtions given the the metric distance $d_{K_n}(x)$ converges in specific ways. 
+Let's choose any subsequence $(k_n)_{n \in \mathbb N}$ of the naturals $(n)_{n \in \mathbb N}$, and assume that it satisfes for all $n \in \mathbb N$, $\lim_{n\rightarrow \infty} d_{C_{k_n}}(\bar x) = 0 \wedge d_{C_{k_n}}(\bar x) < \infty$. 
+Define $r_n : = d_{C_{k_n}}(\bar x)$, so $r_n \searrow 0$. 
+Because $d_{C_{k_n}}(\bar x) < \infty$, hence $C_{k_n} \neq \emptyset$ for all $n \in \mathbb N$. 
+Reader should agree that for all $n \in \mathbb N$ we have dilated norm ball characterizations
 
+$$
+\begin{aligned}
+    r_n = d_{C_{k_n}}(x_{k_n}) \iff \bar x \in \overline{\mathbb B_{r_n}(C_{k_n})}. 
+\end{aligned}
+$$
 
+Consider the subsequence defined as 
+
+$$
+\begin{aligned}
+    x_n &:= \begin{cases}
+        \bar x & n \not\in \{k_n | n \in \mathbb N\}, 
+        \\
+        x_n \in & \Pi_{\text{cl}\left(C_{k_n}\right)} \bar x \text{ else} 
+    \end{cases}
+    \\
+    \implies & 
+    d(\bar x, x_{k_n}) = d(\bar x, \Pi_{\text{cl}(C_{k_n})}\bar x) \le r_n
+    \\
+    \implies &
+    x_{k_n}, x_n \rightarrow \bar x \text{ by } \lim_{n\rightarrow \infty} r_n = 0. 
+\end{aligned}
+$$
+
+However, at this point we only have $x_{k_n} \in \overline{C_{k_n}}$, to relax it consider proximity sequence defined as 
+
+$$
+\begin{aligned}
+    x'_n
+    := 
+    \begin{cases}
+        \exists x'_{k_n} \in \mathbb B_{\epsilon_n}(x_{k_n})\cap C_{k_n} \neq \emptyset & 
+        n \in \{k_n | n \in \mathbb N\}, 
+        \\
+        x_n & \text{ else}. 
+    \end{cases}
+\end{aligned}
+$$
+
+We have the freedom to choose $\epsilon_n \le r_n$, sothat $\epsilon_n \searrow 0$ too then we have the subsequence of the proximity sequence satisfying: 
+
+$$
+\begin{aligned}
+    d(x'_{k_n} \bar x) &\le d(x'_{k_n}, x_{k_n}) + d(x_{k_n}, \bar x)
+    \\
+    &= \epsilon_n + r_n, 
+\end{aligned}
+$$
+
+taking limit of the above sequence, we have $x_{k_n} \rightarrow \bar x$ as $n\rightarrow \infty$. 
+This time, by definition of $x'_{k_n}$, we have $x'_{k_n} \in C_{k_n}$. 
+In this case, we have transferred the definition between the distance function and the sequence, more precisely, fixing any $\bar x$ and subsequence $k_n$, we have that 
+
+$$
+\begin{aligned}
+    \lim_{n\rightarrow \infty} d_{C_{k_n}}(x) = 0 \wedge d_{C_{k_n}}(x) < \infty 
+    \implies 
+    \exists x'_{k_n} \rightarrow \bar x : x_{k_n}' \in C_{k_n}. 
+\end{aligned}
+$$
+
+The other direcion is easier. 
+Assuming that we have $x_n$ as a sequence, and a subsequence $(k_n)_{n \in \mathbb N}$ of $(n)_{n\in \mathbb N}$, such that $x_{k_n} \in C_{k_n}$ and $x_{k_n}\rightarrow \bar x$, which means that 
+
+$$
+\begin{aligned}
+    & d(x_{k_n}, \bar x) \rightarrow 0, 
+    \\
+    & x_{k_n} \in C_{k_n} \implies 
+    d_{C_{k_n}}(\bar x) \le d(x_{k_n}, \bar x) 
+    \\
+    \implies 
+    &
+    \lim_{n\rightarrow \infty} d_{C_{k_n}}(\bar x) = 0. 
+\end{aligned}
+$$
+
+therefore, we actually had equivalence between these 2 conditions. 
+The sequence definition of upper, lower set limit is the implies convergence of the metric is the easier direction, however, we need to smooth out some of the cases when $C_n = \emptyset$ for some $n$. 
+Observe that $\lim_{n\rightarrow \infty} d_{C_n}(\bar x) = 0$ doesn't mean that $d_{C_n}$ is a bounded sequence, it means that there exists $m\in \mathbb N$ such that if $n \ge m$, we have that $d_{C_n}(\bar x) < \infty$ hence $C_n \neq \infty$. 
+Therefore, without loss of generality, we have the choose the subsequence again to assure the finiteness of the distance to make use of the above prove. 
+For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequence to $k_{n + m}$ would still be in $\mathcal N_{\infty}$, hence, without loss of generality we assumed that $C_{k_n} \neq \emptyset$ for the above proof. 
 
 
 #### **Thm | Neighborhood Characterizations of Outer Limits of Sets**
@@ -295,34 +382,6 @@ To prove it, we need to show that any sequences satisfiying the conditions will 
 > $$
 
 **Proof**
-
-
-
-
-#### **Thm | Characterizing Set Limits via Distance Function**
-> Define $d_C(x)$ to be the shortest distance between all points in $C$ and the point $x$. 
-> $$
-> \begin{aligned}
->     \Liminf{n\rightarrow \infty} C_n 
->     &= 
->     \left\lbrace
->         x \left| 
->             \; \limsup_{n\rightarrow \infty} d_{C_n}(x) = 0
->         \right.
->     \right\rbrace, 
->     \\
->     \Limsup{n\rightarrow \infty} C_n
->     &= 
->     \left\lbrace
->         x \left | \; 
->             \liminf_{n\rightarrow \infty} d_{C_n}(x) = 0
->         \right.
->     \right\rbrace. 
-> \end{aligned}
-> $$
-
-**Proof**
-
 
 
 
