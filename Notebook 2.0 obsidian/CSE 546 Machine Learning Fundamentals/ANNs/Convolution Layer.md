@@ -121,7 +121,7 @@ See [here](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html) for t
 ---
 ### **Normalized 2D convolution Layer**
 
-Normalizations convlution layer incorperate batch normlaizations in between every layer of convolutions. 
+Normalizations convolution layer incorperate batch normalization in between every layer of convolutions. 
 See [Conv2DNormActivation](https://pytorch.org/vision/main/generated/torchvision.ops.Conv2dNormActivation.html) for more information. 
 
 ---
