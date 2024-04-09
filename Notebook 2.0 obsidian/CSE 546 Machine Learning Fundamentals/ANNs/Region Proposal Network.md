@@ -35,11 +35,12 @@ Because we are sliding over the same shared mini network of the feature map. If 
 > It's a simple convolutional network and a 1x1 convolution layer with multiple channel, branching for box regression and classification regression. 
 
 #### **Anchor**
-> Region proposal are made by the mini network over feature map. 
+> An anchor is a point in the original image, inside the perception field of each of the mini network every time when they does an inference on the feature map. 
+> The anchor is associated with the outputs of the mini network. 
 > The mini network focuses on 2 type of outputs. 
 > Let $k$ be the total number of region proposal over the feature map. 
-> The output for the bounding box are 4 of the cooredinate related to the center of the anchor. 
-> An anchor is in the input image, framing the object of interests and the parameters are the relevant coordinate. 
+> 1. The output for the bounding box are 4 of the cooredinate related to the center of the anchor. 
+> 2. An anchor is in the input image, framing the object of interests and the parameters are the relevant coordinate. 
 
 **Remarks**
 
