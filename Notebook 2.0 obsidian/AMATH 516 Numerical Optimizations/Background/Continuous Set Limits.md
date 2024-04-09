@@ -289,7 +289,7 @@ $$
 \end{aligned}
 $$
 
-We have the freedom to choose $\epsilon_n \le r_n$, sothat $\epsilon_n \searrow 0$ too then we have the subsequence of the proximity sequence satisfying: 
+We have the freedom to choose $\epsilon_n \le r_n$, so that $\epsilon_n \searrow 0$ too then we have the subsequence of the proximity sequence satisfying: 
 
 $$
 \begin{aligned}
