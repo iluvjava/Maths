@@ -130,8 +130,8 @@ See [Conv2DNormActivation](https://pytorch.org/vision/main/generated/torchvision
 Transposed convolution plays with the parameters and increase the dimension of the input channels instead of decreasing it. 
 
 #### **Warning | It's not Reversing Convolution**
-> A transposed convolutional layer only reverse the dimension and it does't reverse the convolutions. 
-In brief it's a trainable convolutional layer that upscale the input signal instead of downsacaling the input signal. 
+> A transposed convolutional layer only reverse the dimension and it doesn't reverse the convolutions. 
+In brief it's a trainable convolutional layer that upscale the input signal instead of down scaling the input signal. 
 
 **Remark**
 

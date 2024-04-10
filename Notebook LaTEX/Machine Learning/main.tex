@@ -328,7 +328,11 @@
         
     
     \subsection{Tranpose Convolution Layer}
-        A transpose convolution is a partial reverse of the convolution operations. 
+        A transpose convolution is not a partial reverse of the convolution operations. 
+        It simply another convolution layer where parameters such as: ``\inlinecode{stride, padding, dilation}'' means different things. 
+        It increase the dimension of the input signal instead of decreasing it. 
+        It's usually used as a learnable upsample component inside of a Neural Network. 
+        For more information visit \href{https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html}{CONV2DTRANSPOSED} for pytorch documentations. 
         
     
 \section{Graphical Model and Probability Dependence}
@@ -339,10 +343,37 @@
 \section{Variational Autoencoder, Bayesian Learning}
     
 \section{Computer Vision Networks}
-    
+    \subsection{ResNet}
+
+\section{Image Instance Segmentations}
+    We introduce the problem of Image Instance Segmentations. 
+    Given an image that contains objects of interests, we want: 
+    \begin{enumerate}
+        \item [1.] Classify objects by the categories 
+        \item [2.] Segment/identify their locations on the images. 
+        \item [3.] Differentiate different instance of the objects that belong to category of interest. 
+    \end{enumerate}
+
+    \subsection{Faster RCNN}
+        In this section, we take a look at ``Faster RCNN'' proposed by Ren et al.\cite{ren_faster_2016}. 
+        Read \href{https://www.neuralception.com/objectdetection-fasterrcnn/}{this blog post} for a quick overview of the neural network. 
+        \subsubsection{Region Proposal Network}
+
+            The RPN takes input from convolutional feature map and propose rectangular back in the original images that may contain objects of intersts. 
+            It consists of a small network (referred as mini network) that slides through the convolution featuer map to produce output. 
+            In paper, the mini network takes in a  tensor from the convolutional feature map as the input. 
+            The output at each location is fed into two components, one for box regression, and the other one for box classifications. 
+            The feature maps are low dimensional laten features produced by any generic vision networks.
+            \par
+            The pytorch implementations of the Region proposal network can be found \href{https://github.com/pytorch/vision/blob/5181a854d8b127cf465cd22a67c1b5aaf6ccae05/torchvision/models/detection/rpn.py}{here}. 
+            In MATLAB, it's implemented as one single atomic component and it's made by the function \href{https://www.mathworks.com/help/vision/ref/nnet.cnn.layer.regionproposallayer.html}{\inlinecode{regionProposalLayer}}. 
+            
+            
+
+\section{Case Study | The Deepforest Project}
 \section{Case Study | Direct LiDAR Point Cloud Architecture}
     
-\section{Case Study | The Deepforest Project}
+
 
 \section{Case Study | Forest Allometrics Extractions, Predictions}
 
@@ -357,7 +388,7 @@
 
 
 \bibliographystyle{plain}
-% \bibliography{refs.bib}
+\bibliography{MLGeneral.bib}
 
 
 \end{document}
