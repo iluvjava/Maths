@@ -16,8 +16,8 @@ Read [This Blog Post](https://www.neuralception.com/objectdetection-fasterrcnn/)
 See [RPN](RPN.canvas) for visualizations of the modules. 
 
 #### **High Level Summarizations**
-> The RPN takes input from *<mark style="background: #FFB86CA6;">convolutional feature map</mark>* and propose rectangular back in the original images that may contain objects of intersts. 
-> It consists of a small network (referred as *mini network*) that slides through the convolution featuer map to produce output. 
+> The RPN takes input from *<mark style="background: #FFB86CA6;">convolutional feature map</mark>* and propose rectangular back in the original images that may contain objects of interests. 
+> It consists of a small network (referred as *mini network*) that slides through the convolution feature map to produce output. 
 > In paper, the mini network takes in a $3\times 3$ tensor from the convolutional feature map as the input. 
 > The output at each location is fed into two components, one for *<mark style="background: #FFB86CA6;">box regression</mark>*, and the other one for *<mark style="background: #FFB86CA6;">box classifications</mark>*. 
 > The feature maps are low dimensional laten features produced by any generic vision networks. 
@@ -35,24 +35,29 @@ The region proposal network is translational invariant wrt to the bounding boxes
 Because we are sliding over the same shared mini network of the feature map. If an object is somewhere, it will be detected. 
 
 #### **The Mini Network | RPN Head**
-> It's a simple convolutional network and a 1x1 convolution layer with multiple channel, branching for box regression and classification regression. 
+> In the paper, It takes in a $n\times n$ region from the feature map, pass it through several layers of convolutional network, branch into two $1\times 1$ convolution layer before. 
+> They are then flattened into a vector and feed into two dense stacked linear neural networks. These two dense networks are classifications, and regression network. 
 
 **Remark**
 
-The source code of this component is [line 15 here](https://github.com/pytorch/vision/blob/5181a854d8b127cf465cd22a67c1b5aaf6ccae05/torchvision/models/detection/rpn.py#L15)
+The source code of this component is [line 15 here](https://github.com/pytorch/vision/blob/5181a854d8b127cf465cd22a67c1b5aaf6ccae05/torchvision/models/detection/rpn.py#L15). 
+We will talk more about it when it comes to training the RPN using a loss function. 
 
-#### **Anchor**
-> An anchor is a point in the original image, inside the perception field of each of the mini network every time when they does an inference on the feature map. 
-> The anchor is associated with the outputs of the mini network. 
-> The mini network focuses on 2 type of outputs. 
-> Let $k$ be the total number of region proposal over the feature map. 
-> 1. The output for the bounding box are 4 of the cooredinate related to the center of the anchor. 
-> 2. An anchor is in the input image, framing the object of interests and the parameters are the relevant coordinate. 
+#### **Anchor Boxes**
+> Let a tensor $X$ of shape $(H, W, C)$ be the feature map resulted from a single input sample.
+> The mini network takes in $X_{[i-1:i+1, j-1:j+1, :]}$, from the feature map and it produces *anchor boxes* and classifications scores for each box. 
+> These anchors boxes represent regions with a fixed set of ratios and sizes, corresponding to a region in the original image (it will be used by other components inside of RCNN neural network) centered at the center of the reception field of $X_{[i, j, :]}$. 
+
+
+
 
 **Remarks**
 
 The type of anchors are fixed. 
-The mini network only predict predetermined type of anchor window. 
+The mini network only predict predetermined type of anchor window.
+We state the following facts associated with the anchor boxes.  
+1. The output for the bounding box are 4 of the coordinate related to the center of the anchor. 
+2. An anchor is in the input image, framing the object of interests and the parameters are the relevant coordinate. 
 
-#### **Multi-Scales of Anchors**
-> The mininetwork prposes fixed sized regression boxes around the anchor in the reception field of the input image. 
+#### **Multi-Scales of Anchors Boxes**
+> The mini network processes fixed sized regression boxes around the anchor in the reception field of the input image. 

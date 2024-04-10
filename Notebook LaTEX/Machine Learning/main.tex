@@ -88,6 +88,7 @@
 \begin{abstract}
     This is my own notes. 
 \end{abstract}
+
 \tableofcontents
 
 \section{Introduction}
@@ -333,6 +334,9 @@
         It increase the dimension of the input signal instead of decreasing it. 
         It's usually used as a learnable upsample component inside of a Neural Network. 
         For more information visit \href{https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html}{CONV2DTRANSPOSED} for pytorch documentations. 
+    
+    \subsection{Batch Normalization Layer}
+        
         
     
 \section{Graphical Model and Probability Dependence}
@@ -342,8 +346,16 @@
     
 \section{Variational Autoencoder, Bayesian Learning}
     
+    
 \section{Computer Vision Networks}
-    \subsection{ResNet}
+    \subsection{Residual Net}
+        Residual net is one of the most phenomenal vision network. 
+        Back in the early day people use to train deeper and deeper convolutional networks, but the convergence of the error gets worse as the layer deepens. 
+        He et al.\cite{he_deep_2015} proposed a remedy. 
+        The remedy for low convergence of raining and test error to set up the neural network to learn perturbations on an identity map, they call it the residual neural network. 
+
+
+
 
 \section{Image Instance Segmentations}
     We introduce the problem of Image Instance Segmentations. 
@@ -358,19 +370,51 @@
         In this section, we take a look at ``Faster RCNN'' proposed by Ren et al.\cite{ren_faster_2016}. 
         Read \href{https://www.neuralception.com/objectdetection-fasterrcnn/}{this blog post} for a quick overview of the neural network. 
         \subsubsection{Region Proposal Network}
-
-            The RPN takes input from convolutional feature map and propose rectangular back in the original images that may contain objects of intersts. 
-            It consists of a small network (referred as mini network) that slides through the convolution featuer map to produce output. 
-            In paper, the mini network takes in a  tensor from the convolutional feature map as the input. 
+            The RPN takes input from \textit{convolutional feature map} (hidden layer of another vision network) propose rectangular region back in the original images that may contain objects of intersts. 
+            It consists of a small network (referred as the \textit{mini network}) that slides through the convolutional feature map to produce outputs. 
+            In paper, the mini network takes in a matrix from the convolutional feature map as the input. 
             The output at each location is fed into two components, one for box regression, and the other one for box classifications. 
             The feature maps are low dimensional laten features produced by any generic vision networks.
+            We clear up some key words here: 
+            \begin{enumerate}
+                \item [1.] \textit{Convolutional Feature Map}, in the paper, it refers to a 2 dimensional tensor that is the hidden layer of any vision network, i.e: VGG, AlexNet, or RestNet. 
+                \item [2.] \textit{Reception Field}. Take any outputs $(i, j, c)$ from the convolutional feature map, the ouput can be tranced back to a region in the original image, i.e: pixels $(i', j', c')$ in the original image where perturbing pixels values will change the output at $(i, j, c)$ in the convolutional feature map. 
+                \item [3.] \textit{Mini Network}. It's the neural network that we slide through the center of every position in the convolutional feature map. 
+                The same mini-network is used for the convolutional feature map of the entire image. 
+            \end{enumerate}
             \par
             The pytorch implementations of the Region proposal network can be found \href{https://github.com/pytorch/vision/blob/5181a854d8b127cf465cd22a67c1b5aaf6ccae05/torchvision/models/detection/rpn.py}{here}. 
             In MATLAB, it's implemented as one single atomic component and it's made by the function \href{https://www.mathworks.com/help/vision/ref/nnet.cnn.layer.regionproposallayer.html}{\inlinecode{regionProposalLayer}}. 
+            \begin{definition}[Anchor Boxes]
+                Let a tensor $X$ of shape $(H, W, C)$ be the feature map resulted from a single input sample.
+                The mini network takes in $X_{[i-1:i+1, j-1:j+1, :]}$, from the feature map and it produces \textit{anchor boxes} and classifications scores for each box. 
+                These \textit{anchors boxes} represent regions with a fixed set of ratios and sizes, corresponding to a region in the original image (it will be used by other components inside of RCNN neural network) centered at the center of the reception field of $X_{[i, j, :]}$. 
+                The center of the reception field of any give output location $(i, j)$ in the convolutional feature map are referred to as \textit{anchor}. 
+            \end{definition}
+            \begin{remark}
+                Anchor boxes are produced by the mini network and it consists of $k$ boxes at each anchor. 
+                The mini network only predict predetermined type of anchor boxes.
+                We state the following facts associated with the anchor boxes.  
+                \begin{enumerate}
+                    \item [1.] The output for the bounding box are 4 of the coordinate related to the center of the anchor. 
+                    \item [2.] An anchor is in the input image, framing the object of interests and the parameters are the relevant coordinate. 
+                \end{enumerate}
+            \end{remark}
+            \par
+            We now discuss the mini network (RPN Head) component. 
+            In the paper, It takes in a $n\times n$ region from the feature map, pass it through several layers of convolutional network, branch into two $1\times 1$ convolution layer before. 
+            They are then flattened into a vector and feed into two dense stacked linear neural networks. These two dense networks are classifications, and regression network. 
+            The source code of this component is \href{https://github.com/pytorch/vision/blob/5181a854d8b127cf465cd22a67c1b5aaf6ccae05/torchvision/models/detection/rpn.py#L15}{line 15 here}. 
+            We will talk more about it when it comes to training the RPN using a loss function. 
             
-            
-
 \section{Case Study | The Deepforest Project}
+    Links: 
+    \begin{enumerate}
+        \item \href{https://github.com/weecology/DeepForest/blob/6b1c199ce65f95dc74c9e79d1e2c686e784910b2/deepforest/main.py}{Deepforest repo source code commit \inlinecode{7992b82}, main.py}. 
+        \item \href{https://deepforest.readthedocs.io/en/latest/getting_started.html}{Deep forest documentations. }
+    \end{enumerate}
+
+    
 \section{Case Study | Direct LiDAR Point Cloud Architecture}
     
 
