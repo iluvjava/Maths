@@ -49,8 +49,6 @@ We will talk more about it when it comes to training the RPN using a loss functi
 > These anchors boxes represent regions with a fixed set of ratios and sizes, corresponding to a region in the original image (it will be used by other components inside of RCNN neural network) centered at the center of the reception field of $X_{[i, j, :]}$. 
 
 
-
-
 **Remarks**
 
 The type of anchors are fixed. 
