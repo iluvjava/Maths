@@ -59,3 +59,9 @@ We state the following facts associated with the anchor boxes.
 
 #### **Multi-Scales of Anchors Boxes**
 > The mini network processes fixed sized regression boxes around the anchor in the reception field of the input image. 
+
+
+---
+#### **Loss Functions and Training**
+
+
