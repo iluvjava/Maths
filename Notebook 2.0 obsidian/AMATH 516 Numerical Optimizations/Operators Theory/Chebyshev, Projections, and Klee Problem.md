@@ -35,46 +35,55 @@ In a finite dimensional space, $C$ being a Chebyshev set would be equivalent for
 
 **Proof**
 
-Let $x_n\rightarrow x$, let $d_C$  be the distance to the set $C$, and hence it's a 1-Lipschitz function, then according to the definitions we have 
+Choose any $x \in X$. 
+Let $x_n\rightarrow x$, we want to show that $\Pi_C x_n \rightarrow \Pi_Cx$, and since $\Pi_C x$ is singleton by $C$ being Chebyshev, we would had shown that $\Pi_C$ is continuous. 
+distance function $d_C$ is continuous and therefore we have $d_C(x_n) \rightarrow d_C(x)$. 
+And by definition of distance function, the convergence implies $\Vert \Pi_C x_n - x_n\Vert \rightarrow \Vert \Pi_C x - x\Vert$. 
+$x_n \rightarrow x$ implies $\Vert x_n\Vert < M_1 <\infty$ for all $n$, the convergence of distance function implies $\Vert \Pi_C x_n - x_n\Vert < M_2 < \infty$ as well, therefore: 
 
 $$
 \begin{aligned}
-    \Vert x_n - \Pi_C x_n\Vert &= d_C(x_n) 
-    \rightarrow \Vert x - \Pi_Cx\Vert = d_C(x), 
+    \Vert x_n - \Pi_C x_n\Vert 
+    &\ge |\Vert x_n\Vert - \Vert \Pi_C x_n\Vert|
+    \\
+    M_2 
+    &\ge |\Vert x_n\Vert - \Vert \Pi_C x_n\Vert |
+    \\
+    \Vert x_n\Vert - \Vert \Pi_C x_n\Vert
+    &\in [-M_2, M_2]
+    \\
+    \Vert \Pi_C x_n\Vert
+    &\in [-M_2 - M_1, M_2 + M_1] \; \forall n \in \mathbb N, 
 \end{aligned}
 $$
 
-which we used the continuity of the distance function. 
-Using the fact that $x_n$ is convergence in finite dim space, we have that $\Vert x_n\Vert$ bounded and $\Pi_C x_n$ bounded as well by the Lipschitz 1 Property of projection operator. 
-Therefore, Bozano Weierstrass would give 
+therefore, these conditions translate to $\Pi_C x_n$ being a bounded sequence as well. 
+By Bozano Wereistrass, we would have that $\text{clstr}(\Pi_C x_n) \neq \emptyset$, the cluster point of the projection sequence is non-empty. 
+Take any $y \in \text{clstr}(\Pi_C x_n)$, we would have $\Pi_C x_{k_n} \rightarrow y$. 
+Here the subsequence is associated with the specific choice of $y \in \text{clstr}(\Pi_C x_n)$. 
+The consequence for any cluster point $y$ is 
 
 $$
 \begin{aligned}
-    \text{dim}(X) < \infty \wedge \Vert \Pi_C x\Vert < \infty \implies 
-    &
-    \exists (k_n)_{n \in \mathbb N}: 
-    \Vert x_{k_n} - \Pi_C x_{k_n}\Vert \rightarrow \Vert x - \Pi_C x\Vert
+    \Vert x_n - \Pi_C x_n \Vert\rightarrow d_C(x) 
     \\
-    \implies & 
-    (\exists y \in C : \Vert x - \Pi_C y\Vert = d_C(x) )\implies 
-    y = \Pi_C x, \; y \in C 
-    \\
-    & \text{ Singled valued projection by $C$ being Chebyshev} 
-    \\
-    \implies & 
-    \Pi_C x_n \rightarrow \Pi_C x = y \in C. 
+    \implies 
+    \Vert x_{k_n} - \Pi_C x_{k_n}\Vert \rightarrow d_C(x). 
 \end{aligned}
 $$
 
-To summarized, we used the subsequential limit and the definition of a projection operator to identify one of the outputs of the operator $\Pi_C$. 
-Then that limit will have to be unique by the fact that $C$ is a Chebyshev set. 
+Since the choice of $y \in \text{clstr}(\Pi_C x_n)$ is arbitrary, consider any other $\overline y, y \in \text{clstr}(\Pi_C x_n)$, both would satisifes the above conditions. 
+Using the fact that $C$ is Chebyshev, $\Pi_C$ is singled valued and therefore, the closest point to $C$ from $x$ is unique and therefore $y = \overline y$
+
+
+
 
 **Remarks**
 
 Projection may not be Lipschitz operator when the underlying set $C$ is not a convex set. 
 
 
-#### **Thm | Chebyshev Operator Means Convexity of the Set (Finite Dimention Only)**
+#### **Thm | Chebyshev Operator Means Convexity of the Set (Finite Dimension Only)**
 > Let $X$ be finite dimensional, and $C$ is Chebyshev, then $C$ is a convex set. 
 
 **Proof**
