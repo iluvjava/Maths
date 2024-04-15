@@ -17,7 +17,7 @@ $$
     \\
     \langle x - \hat x, \hat x - x\rangle &\ge 0
     \\
-    \implies & - \Vert x - \hat x\Vert^2 \implies x = \hat x
+    \implies & - \Vert x - \hat x\Vert^2 \ge 0 \iff x = \hat x
     \\
     \implies & y = \hat y \implies \hat y \in T\hat x, 
 \end{aligned}

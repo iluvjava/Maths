@@ -53,8 +53,11 @@ $$
         (x, x^*) \in \text{gph} T
     ]
     \\
+    & \text{Where monotonic relations relative to a monotone operator means: }
+    \\
     & 
-    (x, x^*) \text{ monotonically relates to} (y, y^*) \iff 
+    (x, x^*) \text{ monotonically relates to } (y, y^*) 
+    \iff 
     \forall (y, y^*) \in \text{gph} T: \langle x - y, x^* - y^*\rangle \ge 0
 \end{aligned}
 $$
@@ -72,6 +75,23 @@ And there would exists a point $p=(x, x^*) \in \text{gph}(\tilde T)$, so that by
 Because $\text{gph}(T)\subseteq \text{gph}(\tilde T)$. 
 
 To show $\implies$, it can be done by the definition of a maximally monotone operator, or a contrapositive argument as well. 
+
+**Remarks**
+
+This equivalent characterizations hinted at the another way of describing $Ax$ for all $x \in \text{dom}A$ where $A$ is maximally monotone. 
+$x_A \in Ax$ would be all the point such that all other points in $\text{gph} A$ are monotinically related to $(x, x_A)$. 
+Which is expressed as 
+
+$$
+\begin{aligned}
+    Ax = \bigcap_{(y, v)\in \text{gph } A}
+    \left\lbrace
+        u \in X \; |\;  \langle x - y, u - v\rangle \ge 0
+    \right\rbrace. 
+\end{aligned}
+$$
+
+And as a consequence, $Ax$ is the insetsection of half spaces, therefore $Ax$ must also be a convex set as well. 
 
 
 #### **Thm | Maximal Extension of Monotone Operators**
@@ -133,7 +153,7 @@ For the sum of 2 maximally monotone operators, see [mon-sum.pdf (carmamaths.org)
 **Proof**
 
 Let $(x, x^*)$ monotonically relate to $\text{gph}(A)$. 
-The graph of the operator would be defined through $\text{gph}(A) = \{(y, Ay) | y \in X\}$, then we can use one point $y \in X$ instead and call the definition of monotone graph we would have 
+The graph of the operator would be defined through $\text{gph}(A) = \{(y, Ay) \;|\; y \in X\}$, then we can use one point $y \in X$ instead and call the definition of monotone graph we would have 
 
 $$
 \begin{aligned}
@@ -142,7 +162,7 @@ $$
 \end{aligned}
 $$
 
-We wat to show that $(x, x^*)$ is in $\text{gph}(A)$. 
+We want to show that $(x, x^*)$ is in $\text{gph}(A)$. 
 
 
 $$
@@ -172,6 +192,8 @@ $$
 talking the limit of $\alpha \rightarrow 0$, by continuity of $A$ and the definition of $y_\alpha$, and the inner product on Hilbert spaces, we would have $\langle x^* - Ax, x^* - Ax\rangle \le 0$. 
 The only possible way for that is $x^* = Ax$, and therefore, $(x, x^*)\in \text{gph}(A)$. 
 
+The strongly closed since weak convergence is weaker than strong convergence. 
+
 **Remarks**
 
 The assumption that $A$ is continuous is strictly stronger than necessary because the limit we use is the limit of $\alpha(x^* - Ax)$ approaching zero, which is only along the direction of the vector $x^* - Ax$.
@@ -187,6 +209,35 @@ We used the previous proved theorem and the fact that any linear mapping on fini
 
 This is direct. 
 The reader should prove this as an exercise. 
+
+
+#### **Thm | The Graph of a Maximally Monotone Operator is Closed**
+> Let $A: X \mapsto 2^X$ be a maximally monotone operator. 
+> Let $(x_n, y_n) \in \text{gph}A \; \forall n \in \mathbb N$ such that $x_n \rightharpoonup x$ and $y_n \rightarrow y$, assume $(x, y) \in \text{gph} A$, hence the graph $\text{ gph}(A)$ is closed in $X_\text{weak}$ and $X$. 
+
+**Proof**
+
+Recall [Strong and Weak Convergences Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Strong%20and%20Weak%20Convergences%20Introduction.md) that, let $x_n \rightharpoonup x$ and $y_n \rightarrow y$, then $\langle x_n, y_n\rangle\rightarrow \langle x ,y\rangle$. 
+As long as one of the sequence converges strongly, the limit can go through the inner product. 
+In our case, consider that 
+
+$$
+\begin{aligned}
+    (x_n, y_n) &\in \text{gph }A \iff \langle x_n - u, y_n - v\rangle \ge 0 \;\forall (u, v) \in \text{gph} A \quad \text{ by mono of A}, 
+    \\
+    \implies & 
+    \langle x_n - u, y_n - v\rangle \rightarrow \langle x - u, v - v\rangle\ge 0. 
+\end{aligned}
+$$
+
+Therefore, $(x, y)$ monotonically relate to point $(u, v) \in \text{gph}(A)$, $A$ is maximally monotone asserts that the limit is also in the graph of the monotone operator. 
+
+
+**Remark**
+
+This works the same if we have $x_n\rightarrow x \wedge y_n \rightharpoonup y$ in the graph of $A$.
+To show that we consider applying the same theorem to $A^{-1}$ instead. 
+Here we used the fact that $A^{-1}$ is also a maximal monotone operator. 
 
 
 ---

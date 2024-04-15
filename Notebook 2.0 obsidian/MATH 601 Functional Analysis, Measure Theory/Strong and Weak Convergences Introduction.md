@@ -90,7 +90,7 @@ Therefore $y = z$.
 We can break the limit apart in the above derivation because weak convergence asserts the existence of the limits of both parts. 
 
 
-#### **Thm | Equivalen Conditions for Strong Convergence**
+#### **Thm | Equivalent Conditions for Strong Convergence**
 > Let $x_n \in X$ be a sequence in Hilbert space then$x_n \rightarrow x$ if and onlyif $x \rightharpoonup x$ and $\Vert x_n \Vert\rightarrow \Vert x\Vert$. 
 
 **Proof**

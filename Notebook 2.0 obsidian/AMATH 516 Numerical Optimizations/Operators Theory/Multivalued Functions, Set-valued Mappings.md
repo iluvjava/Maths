@@ -85,7 +85,7 @@ $F^2 = F = -F$
 > $$
 > \begin{aligned}
 >     T = \begin{bmatrix}
->         I & \mathbf 0 \\ I & I
+>         I & \mathbf 0 \\ -I & I
 >     \end{bmatrix}
 > \end{aligned}. 
 > $$
@@ -95,19 +95,33 @@ $F^2 = F = -F$
 $$
 \begin{aligned}
     (x, y) \in \text{gph } A 
-    &\iff y \in Ax 
+    &\iff 
+    y \in Ax + x
     \\
     & \iff 
-    y + x \in \{x\} + Ax
+    y - x \in Ax
     \\
     &\iff 
-    (x, y + x) \in \text{gph }A
+    (x, y - x) \in \text{gph }A
     \\
     &\iff 
-    T(x, y) \in \text{gph }A
+    T(x, y) \in \text{gph }A. 
 \end{aligned}
 $$
 
+**Remark**
+
+We have 
+
+$$
+\begin{aligned}
+    T^{-1} = \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        -I & I
+    \end{bmatrix}. 
+\end{aligned}
+$$
 
 
 

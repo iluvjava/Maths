@@ -86,6 +86,6 @@ The monotone property can be derived using the obtuse angle theorem.
 In here we list all the relevant and important concepts for equipping operator theory for optimization problem, these concepts will be more advanced. 
 
 * [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
-* [Resolvent and Minty Re-Paramaterization](Resolvent%20and%20Minty%20Re-Paramaterization.md)
+* [Resolvent Identity, Minty Re-Paramaterization](Resolvent%20Identity,%20Minty%20Re-Paramaterization.md)
 
 

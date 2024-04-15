@@ -73,7 +73,7 @@ To summarized, we used the subsequential limit and the definition of a projectio
 Then that limit will have to be unique by the fact that $C$ is a Chebyshev set. 
 
 
-#### **Thm | Chebyshev Operator Means Convexity of the Set**
+#### **Thm | Chebyshev Operator Means Convexity of the Set (Finite Dimention Only)**
 > Let $X$ be finite dimensional, and $C$ is Chebyshev, then $C$ is a convex set. 
 
 **Proof**

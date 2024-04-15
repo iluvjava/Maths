@@ -1,11 +1,11 @@
 - [Multivalued Functions, Set-valued Mappings](Multivalued%20Functions,%20Set-valued%20Mappings.md) 
 - [Minty's Theorem, The Surjectivity Theorem](Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
 
-
 ---
 ### **Intro**
 
 The resolvent operators are important objects optimizations due to its favorable properties. 
+It makes multi-valued mapping such as a monotone operator into an, singled valued mapping for study. 
 
 ### **Def | Resolvent Operators**
 
@@ -22,6 +22,10 @@ $$
 \end{aligned}
 $$
 
+The graph of the resolvent operator is a linear transform of the graph of the original operator. 
+Recall from multi-valued mapping that, $\text{gph}(A^{-1})$ and $\text{gph}(I - A)$ are sets that are just one linear transformation away. 
+The transformation is in $X \times X$. 
+
 
 ---
 ### **Firmly Non-expansiveness of the Resolvent Operators**
@@ -33,7 +37,7 @@ See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for mo
 #### **Prop | Resolvent of Monotone Operators are Firmly non-expansive**
 > Let $A: X \mapsto 2^X$, and $D = \text{rng}(I + A)$, and $T = \mathcal J_A  = (I + A)^{-1}$.
 >  Then 
-> 1. $A$ is mono implies$T: D\mapsto X$ is firmly non-expansive. 
+> 1. $A$ is mono implies $T: D\mapsto X$ is firmly non-expansive. 
 > 2. $A$ is maximal monotone then $T: X \mapsto X$ is firmly non-expansive. 
 > And under both cases $T$ is a single valued operator. 
 
@@ -52,7 +56,26 @@ $$
 \end{aligned}
 $$
 
-Observe that this is the definition of $\mathcal J_A$ being a firmly-nonexpansive operator. 
+However, we would also have 
+
+$$
+\begin{aligned}
+    v - y &\in A y \iff y \in [I + A]^{-1}v =\mathcal J_A v, 
+    \\
+    u - x &\in Ax \iff x \in [I + A]^{-1} u =\mathcal  J_A u. 
+\end{aligned}
+$$
+
+and therefore, we would have 
+
+$$
+\begin{aligned}
+    \langle \mathcal J_Au - \mathcal J_A v, u - v\rangle  
+    &\ge \Vert \mathcal J_A u -\mathcal J_Av\Vert^2. 
+\end{aligned}
+$$
+
+which is equivalent to that $J_A$ is a firmly non-expansive operator by one equivalent characterization of firmly nonexpansive operators. 
 In addition, a firmly non-expansive operator is a single valued operator because it's already non-expansive. 
 It's evident from above by setting $u = v$, then $x = y$ from the inequality. 
 To see that $T$ is a full domain operator, apply the observations we made about resolvent operators at the start of the file. 
