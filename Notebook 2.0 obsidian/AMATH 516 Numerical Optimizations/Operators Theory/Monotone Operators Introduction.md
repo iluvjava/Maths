@@ -26,6 +26,55 @@ A monotone operator doesn't imply:
 3. Subjectivity of any kind. 
 
 
+#### **Thm | Another Equivalent Definition of Monotone Operator**
+> $A$ is monotone (as defined above) is equivalent to the condition that 
+> $$
+> \begin{aligned}
+>     \forall (x, u) \in \text{gph}A, (y, v) \in \text{gph} A: 
+>     \Vert y - u\Vert^2 + \Vert x - v\Vert^2 \ge 
+>     \Vert x - u\Vert^2 + \Vert y - v\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+This is equivalent by considering that: 
+
+$$
+\begin{aligned}
+    \Vert y - u\Vert^2 + \Vert x - v\Vert^2 
+    &\ge 
+    \Vert x - u\Vert^2 + \Vert y - v\Vert^2
+    \\
+    - \langle y, u\rangle - \langle x, v\rangle
+    &\ge 
+    - \langle x, u\rangle - \langle y, v\rangle
+    \\
+    \langle - y, u\rangle + 
+    \langle - x, v\rangle + 
+    \langle x, u\rangle + 
+    \langle y, v\rangle &\ge 0
+    \\
+    \langle x, u - v\rangle + \langle y, v - u\rangle
+    &\ge 0
+    \\
+    \langle x - y, u - v\rangle &\ge 0.
+\end{aligned}
+$$
+
+That, is just the definition of being a monotone operator. 
+It's equivalent because the process is revertible. 
+
+**Remarks**
+
+This characterizations opens a new view monotonicity of an operator. 
+The convex hull of points $x + u, y + v, x, y$, forms are shape of 4 corners. 
+On this shape, the vector $\Vert y - u\Vert^2, \Vert x - v\Vert^2$ are the diagonal of this shape. 
+$u - x, v - y$ are on the convex hull of this shape. 
+Therefore, it's saying that the vector inside of this shape, squared it, is longer than the squared side of the shape. 
+
+
+
 #### **Definition | Maximally Monotone**
 > Mapping $A: X \mapsto 2^{X}$ is maximally monotone if $B: X \mapsto 2^X$ and satisfies $\text{gph}(A)\subseteq \text{gph}(B)$ then it must be $A = B$. 
 
@@ -144,6 +193,7 @@ using the monotonicity of both operator $A$ and $B$, the above quantity has a po
 
 So, for any monotone operator $A$, we would have $A + \{v\}$ being a monotone operator, and $I + A$ being a monotone operator as well using the above theorem. 
 The sum of maximally monotone operator may not be maximally monotone. 
+Their domain must satisfies certain conditions for their sum to be maximally monotone. 
 For the sum of 2 maximally monotone operators, see [mon-sum.pdf (carmamaths.org)](https://carmamaths.org/resources/jon/mon-sum.pdf) for more. 
 
 
@@ -191,8 +241,7 @@ $$
 
 talking the limit of $\alpha \rightarrow 0$, by continuity of $A$ and the definition of $y_\alpha$, and the inner product on Hilbert spaces, we would have $\langle x^* - Ax, x^* - Ax\rangle \le 0$. 
 The only possible way for that is $x^* = Ax$, and therefore, $(x, x^*)\in \text{gph}(A)$. 
-
-The strongly closed since weak convergence is weaker than strong convergence. 
+The graph would be strongly closed as well since weak convergence is weaker than strong convergence. 
 
 **Remarks**
 

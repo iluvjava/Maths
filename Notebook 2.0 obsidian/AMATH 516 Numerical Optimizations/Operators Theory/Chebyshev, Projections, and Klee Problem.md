@@ -50,9 +50,6 @@ Therefore, Bozano Weierstrass would give
 
 $$
 \begin{aligned}
-    & C \in \{\text{Chebyshev}\} \implies 
-    C \in \{\text{closed}\} \implies y \in C, 
-    \\
     \text{dim}(X) < \infty \wedge \Vert \Pi_C x\Vert < \infty \implies 
     &
     \exists (k_n)_{n \in \mathbb N}: 
@@ -60,17 +57,21 @@ $$
     \\
     \implies & 
     (\exists y \in C : \Vert x - \Pi_C y\Vert = d_C(x) )\implies 
-    y = \Pi_C x 
+    y = \Pi_C x, \; y \in C 
     \\
     & \text{ Singled valued projection by $C$ being Chebyshev} 
     \\
     \implies & 
-    \Pi_C x_n = \Pi_C x = y \in C. 
+    \Pi_C x_n \rightarrow \Pi_C x = y \in C. 
 \end{aligned}
 $$
 
 To summarized, we used the subsequential limit and the definition of a projection operator to identify one of the outputs of the operator $\Pi_C$. 
 Then that limit will have to be unique by the fact that $C$ is a Chebyshev set. 
+
+**Remarks**
+
+Projection may not be Lipschitz operator when the underlying set $C$ is not a convex set. 
 
 
 #### **Thm | Chebyshev Operator Means Convexity of the Set (Finite Dimention Only)**
