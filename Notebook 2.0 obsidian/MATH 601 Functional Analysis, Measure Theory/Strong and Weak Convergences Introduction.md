@@ -126,7 +126,7 @@ $$
 therefore, the sequence converges strongly. 
 
 
----
+
 #### **Thm | Convergence of the Dot Product**
 > Let $x_n\rightarrow x$ and $y_n \rightharpoonup y$, then $\langle x_n, y_n\rangle\rightarrow \langle x, y\rangle$. 
 

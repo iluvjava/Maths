@@ -86,7 +86,7 @@ Taking the limit $n\rightarrow \infty$ with the assumption that $\Vert c_n\Vert\
 
 
 
-#### **Lemma 2 | Another Usefule Lemma**
+#### **Lemma 2 | Another Useful Lemma**
 > Let $T: X \mapsto X$ be a non-expansive mapping. 
 > Define $C:= \text{cl.rng}(I - T)$, then it would be convex, closed and non-empty. 
 > Set $v = \Pi_C(\mathbf 0)$, which we call it the Minimal Displacement Vector. 
