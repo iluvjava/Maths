@@ -107,7 +107,7 @@ Note, without much assumptions this formula only states that, the sequence of $f
 > 1. $f(x^{(t)})$ could diverge very fast, which is the case of the function is not bounded below and the initial $x^{(0)}$ is chosen in such a way that it starts sliding down a steep hill indefinitely. And under that case, the bound for the gradient failed completely. 
 >    1. $f(x^{(t)})$ could diverge (but decreases) in just the right way that it cancels out with $1/\sqrt{k}$, making that bound a constant. 
 
-Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Kurdyka Lojasiewicz Inequality]]. 
+Additionally, the gradient doesn't classify local optimality nor global optimality. It could be a false convergence to an inflection point of some sort. Due to these complications, it raise up the motivation to discuss [[Proximal Methods/Kurdyka Lojasiewicz Inequality]]. 
 
 #### **Lemma | Acceptable Stepsizes for Gradient Descent via the Upper Surrogate**
 > A range of value for the stepsize for the simple smooth gradient descent is possible. Focusing on strictly decreasing the objective value, valid step sizes would be $\eta \in (0, 2/L)$ for an $L$-smooth function. 
@@ -322,7 +322,7 @@ for all $\eta \in (0, 2/L)$.
 ---
 ### **PL Inequality and Linear Convergence**
 
-PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. This is one of the characterizations for function satisfying the PL inequality. 
+PL means Polyak Inequalities, it's a relation between the norm of the gradient and the difference in the function's objective value. It's a Generalization of the KL inequality with some specific parameters. See [[Proximal Methods/Kurdyka Lojasiewicz Inequality]] for more details. The inequality allows us to derive linear rate convergence without assumptions about uniqueness of the minimizer and the convexity of the objective function. This is one of the characterizations for function satisfying the PL inequality. 
 
 #### **Definition | Polyak Inequality**
 
