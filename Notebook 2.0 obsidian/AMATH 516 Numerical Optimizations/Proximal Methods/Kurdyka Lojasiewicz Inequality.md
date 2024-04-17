@@ -54,3 +54,7 @@ Reader should verify that, the point wise conditions of KL is automatically sati
 >     \text{dist}(\mathbf 0, \partial f(x)) \ge c. 
 > \end{aligned}
 > $$
+
+**Proof**
+
+We prove by contradiction. 
