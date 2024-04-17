@@ -24,7 +24,7 @@ which gives very interesting results, theoretically.
 
 28.4 In Heinz's Course note. 
 
-**Assumptions, Basic Quantities**: 
+#### **Assumptions, Basic Quantities**: 
 
 The method solves $\min_{x}f(x)$ given that we know: 
 
@@ -39,7 +39,7 @@ The method solves $\min_{x}f(x)$ given that we know:
 - For ease of reading we consider using $e^{(k)}:= x^{(k)} - \bar x$, denoting the errors of the successive estimate. 
 - We also use $E^{(k)} = f(x^{(k)}) - f(\bar x)$, this denote the objective gaps of the current iterate of the functions. 
 
-**Algorithm Statement**: 
+#### **Algorithm | Projected Polyak Subgradient**: 
 
 > We dente $f'(x) \in \partial f(x)$, and $x^{(k)}$ to be the successive iterates produced by the algorithm. The algorithm can be stated like: 
 > $$
@@ -55,7 +55,7 @@ The method solves $\min_{x}f(x)$ given that we know:
 
 We prove these properties one by one in the up coming section. Before we start we list a major results from the pre-requisite of this file, which we will be reusing. 
 
-**Lemma: Projected Subgradient First Lemma**
+#### **Lemma | Projected Subgradient First Lemma**
 > Let $f$ be Lipschitz continuous on $Q$ with constant $L$, assume that $S\neq \emptyset$, let $\bar x \in S$, then: 
 > $$
 > \Vert x^{(k + 1)} - x^+\Vert^2 \le \Vert x^{(k)} -\bar x\Vert^2 + \eta_k^2 \Vert f'(x^{(k)})\Vert^2 -2\eta_k \langle x^{(k)} - \bar x, f'(x^{(k)})\rangle. 

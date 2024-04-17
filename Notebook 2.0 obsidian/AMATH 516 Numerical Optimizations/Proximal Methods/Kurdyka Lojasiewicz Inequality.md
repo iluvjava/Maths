@@ -35,6 +35,7 @@ Secondly, the function $\phi$, we used here, is often called as a *desingularizi
 
 $x \in U(x^*) \cap \{x | f(x^*) < f(x) < f(x^*) + \eta\}$ means that $f(x) - f(x^*) > 0$. 
 $\phi'$ may not be differentiable at boundary point $0$. 
+Also, $\phi(x) \le x$, strict monotone increasing. 
 
 
 
@@ -42,4 +43,14 @@ $\phi'$ may not be differentiable at boundary point $0$.
 
 Reader should verify that, the point wise conditions of KL is automatically satisfied at points that are not critical points. 
 
-
+#### **Lemma | Non-Critical Point of KL**
+> Let $f \in \{\text{KL at } x^* \in \text{dom} \partial f\}$. 
+> Let $x^*$ be a non-critical point of $f$, i.e $\mathbf 0 \not\in \partial f(x^*)$, 
+> Then we claim that 
+> $$
+> \begin{aligned}
+>     \Vert x - x^*\Vert + 
+>     \Vert f(x) - f(x^*)\Vert \le c \implies 
+>     \text{dist}(\mathbf 0, \partial f(x)) \ge c. 
+> \end{aligned}
+> $$
