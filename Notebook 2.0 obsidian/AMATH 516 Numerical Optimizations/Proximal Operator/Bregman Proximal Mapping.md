@@ -81,7 +81,7 @@ This part of the proof is modified. It may be replaced with other theorems.
 > * Let $\omega: \mathbb E \mapsto \bar{\mathbb E}$ be proper, closed, cvx and differentiable over $\text{dom}(\partial \omega)$; 
 > * let $\psi: \mathbb E \mapsto \bar {\mathbb E}$ be proper, closed, cvx, satisfying $\text{dom}(\psi)\subseteq \text{dom}(\partial \omega)$;
 > * $\omega + \delta_{\text{dom}(\psi)}$ be $\sigma$-strongly convex, $\sigma > 0$. 
-> * Assuming $b\in \text{dom}(\partial \omega)$, let $a$ be Breman Proximal Mapping applied at the point $b$ defined as 
+> * Assuming $b\in \text{dom}(\partial \omega)$, let $a$ be Bregman Proximal Mapping applied at the point $b$ defined as 
 > $a := \underset{x\in \mathbb E}{\text{argmin}}\{\psi(x) + D_\omega(x, b)\}$. 
 
 **Observations**
@@ -105,7 +105,7 @@ $$
 \end{aligned}
 $$
 
-Wich gives us an alternative representation of the Bregman proximal mapping defined at point $b$ for $\psi, \omega$. 
+Which gives us an alternative representation of the Bregman proximal mapping defined at point $b$ for $\psi, \omega$. 
 Now observe that the function $\psi(x) + \langle \nabla (b), x\rangle$ has domain on $\text{dom}(\partial \omega)$. 
 Applying lemma 9.7, we have that $a \in \text{dom}(\partial \omega)$. 
 And $a$ is the unique minimizer, satisfying $\mathbf 0 = \nabla \psi(a) + \nabla\omega(a) - \nabla \omega(b)$. 

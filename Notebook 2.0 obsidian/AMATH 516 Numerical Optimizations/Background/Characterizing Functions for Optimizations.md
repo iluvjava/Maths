@@ -130,7 +130,7 @@ The function $f(x):= |x|\sin(x)$ is not Coersive, because there exists $(x_n) = 
 
 **References**: 
 
-Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for variational analysis. 
+Prof Heinz class, Theorem 1.9 In Tyrell Rockafellar's textbook for Variational analysis. 
 
 
 ---
@@ -242,16 +242,12 @@ For example, the function $\exp(x)$ is a strictly convex function.
 * The function $\exp(x)$ is alpha strongly convex but the function is not strictly convex because it's not coercive. We cannot long lower "hug" the function using any type of quadratic function. 
 * For more about it see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
----
-### **Convexity and Lipschitz Functions**
-
-Let some $f$ be convex and Lipschitz smooth, then they are a strict subsets of all the convex functions. For a convex function, even locally Lipschitz continuous will fail on the boundary of its domain, however if the function is Lipschitz, then subgradient exists on $\text{dom}(f)$. 
-
 
 ---
 ### **Beta-Smoothness, Strong Smoothness, Lipschitz Smoothness**
 
-For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). This characterization of convex function is absolutely essential for gradient based method in optimizations, it developed important claims about the convergence rate of the algorithm. 
+For more information about this characterization, [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](../Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md). 
+This characterization of convex function is absolutely essential for gradient based method in optimizations, it developed important claims about the convergence rate of the algorithm. 
 
 
 #### **Def | Lipschitz Smoothness**
@@ -294,6 +290,14 @@ Intuitively beta-smoothness refers to the ability to place a quadratic function 
 **Examples**
 
 $x^2$ would be a sub-additive function for $x, y \ge 0$. In fact, this is true for all $f: \mathbb R_+ \mapsto \mathbb R$ in $\mathbb R$ that has a monotonically increase derivative. 
+
+---
+### **Nonconvex Functions**
+
+#### **KL Functions**
+- [Kurdyka Lojasiewicz Inequality](Kurdyka%20Lojasiewicz%20Inequality.md). 
+
+
 
 ---
 ### **Discussions**
