@@ -73,6 +73,30 @@ By the assumption that $\sigma \in [0, 1)$, we had that $b = (1 - \sigma)/2 > 0$
 In thisection we verify that the method of proximal descent is an example of the inexact proximal point method. 
 
 #### **Conditions | The Setup for Proximal Gradient Method**
+> Let $f:= h + g$ be proper, l.s.c, and KL. 
+> Assume $h$ has a $L$-Lipschitz continuous gradient and $C^1$. 
+
+**Observations**
+
+We use of the fact that $\widehat \partial [g + h](x) = \widehat\partial g(x) + \{\nabla h(x)\}$ to derive the algorithm. 
+
+
+
+#### **Algorithm | The Generic Forward Backward Splitting Algorithm**
+> Take $a, b > 0$. 
+> Let $a > L$. 
+> Take $x^{(0)} \in \text{dom} g$. 
+> Then the algorithm generates sequence $\{x^{(k)}\}_{k \in \mathbb N}$ satisfying the conditions: 
+> 1. $g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle + \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2$, 
+> 2. $v^{(k + 1)} \in \partial g(x^{(k + 1)})$, 
+> 3. $\Vert v^{(k + 1)} + \nabla h(x^{(k)})\Vert \le b \Vert x^{(k + 1)} - x^{(k)}\Vert$. 
+
+#### **Lemma | Descent Lemma**
+> 
+
+#### **Claim | FBS is a Stronger Version of The Inexact Proximal Point Method**
+> The FBS algorithm's conditions implies conditions in the inexact proximal point method. 
+
 
 
 

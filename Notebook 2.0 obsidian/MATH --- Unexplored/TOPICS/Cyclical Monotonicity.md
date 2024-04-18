@@ -1,5 +1,5 @@
 - [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md)
-- [Introduction to Operators for Optimizations](../../AMATH%20516%20Numerical%20Optimizations/Operators%20Theory/Introduction%20to%20Operators%20for%20Optimizations.md)
+- [Operators for Optimizations CENTRAL HUB](Operators%20for%20Optimizations%20CENTRAL%20HUB.md)
 
 ---
 ### **Intro**

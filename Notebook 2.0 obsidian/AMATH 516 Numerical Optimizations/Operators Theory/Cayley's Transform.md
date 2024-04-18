@@ -1,5 +1,5 @@
 
-[[Introduction to Operators for Optimizations]], [[Multivalued Functions, Set-valued Mappings]]
+[[Operators for Optimizations CENTRAL HUB]], [[Multivalued Functions, Set-valued Mappings]]
 
 ---
 ### **Intro**

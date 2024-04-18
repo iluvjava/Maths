@@ -1,4 +1,4 @@
-[[Introduction to Operators for Optimizations]]
+[[Operators for Optimizations CENTRAL HUB]]
 
 ---
 ### **Intro**

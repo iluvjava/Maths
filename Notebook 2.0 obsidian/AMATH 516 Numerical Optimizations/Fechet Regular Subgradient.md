@@ -238,6 +238,9 @@ $$
 and at the last line we have the definition of Frechet derivative. 
 Hence the claim has been proven. 
 
+---
+### **Basic Theorems for Regular Subgradient**
+
 
 
 ---

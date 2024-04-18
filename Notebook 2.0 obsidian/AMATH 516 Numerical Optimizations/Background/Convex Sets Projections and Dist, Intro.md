@@ -77,7 +77,7 @@ With the additional assumption that $C$ is a convex set, we obtain the fact that
 **Remarks**: 
 
 This is a property of convex set, not projection in general, the proof is listed in [Convex Sets Projection Obtuse Angle Theorem](Convex%20Sets%20Projection%20Obtuse%20Angle%20Theorem.md). 
-In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [Convex Projection is L1 Lipschitz](Convex%20Projection%20is%20L1%20Lipschitz.md). 
+In addition, the projections function of a set if L1 Lipschitz when the set $Q$ is convex, for more information about that visits: [Convex Projection is Firmly Nonexpansive](Convex%20Projection%20is%20Firmly%20Nonexpansive.md). 
 
 
 ----

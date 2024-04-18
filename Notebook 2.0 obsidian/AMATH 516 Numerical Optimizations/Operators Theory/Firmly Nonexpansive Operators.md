@@ -1,4 +1,4 @@
-- [Introduction to Operators for Optimizations](Introduction%20to%20Operators%20for%20Optimizations.md), 
+- [Operators for Optimizations CENTRAL HUB](Operators%20for%20Optimizations%20CENTRAL%20HUB.md), 
 - [Lipschitz Operator in Euclidean Space](Lipschitz%20Operator%20in%20Euclidean%20Space.md)
 
 ---

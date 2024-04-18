@@ -1,5 +1,5 @@
 - [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md), 
-- [Introduction to Operators for Optimizations](Introduction%20to%20Operators%20for%20Optimizations.md)
+- [Operators for Optimizations CENTRAL HUB](Operators%20for%20Optimizations%20CENTRAL%20HUB.md)
 
 ---
 ### **Intro**
