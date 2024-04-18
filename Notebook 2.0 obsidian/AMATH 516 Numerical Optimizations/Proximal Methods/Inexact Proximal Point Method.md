@@ -90,9 +90,13 @@ We use of the fact that $\widehat \partial [g + h](x) = \widehat\partial g(x) + 
 > Let $a > L$. 
 > Take $x^{(0)} \in \text{dom} g$. 
 > Then the algorithm generates sequence $\{x^{(k)}\}_{k \in \mathbb N}$ satisfying the conditions: 
-> 1. $g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle + \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2 \le g(x^{(k)})$, 
+> 1. $g(x^{(k + 1)}) + \left\langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \right\rangle + \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2 \le g(x^{(k)})$, 
 > 2. $v^{(k + 1)} \in \partial g(x^{(k + 1)})$, 
 > 3. $\Vert v^{(k + 1)} + \nabla h(x^{(k)})\Vert \le b \Vert x^{(k + 1)} - x^{(k)}\Vert$. 
+
+**Observations**
+
+
 
 #### **Lemma | Descent Lemma**
 > Let $\nabla g: \mathbb R^n \mapsto \mathbb R^n$ be $L$-Lipschitz, then for all $x, y \in \mathbb R^n$
@@ -115,14 +119,16 @@ We show that condition (1.) matches the (1.) in the inexact proximal point metho
 Using the descent lemma on $g$, we set $y - x^{(k + 1)}, x = x^{(k)}$, then 
 $$
 \begin{aligned}
-    h(x^{(k + 1)}) - h(x^{(k)}) - \langle \nabla h(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle &\le 
-    \frac{L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert^2
-    \\
-    h(x^{(k + 1)}) - h(x^{(k)})
-    -
-    \frac{L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert^2
+    h\left(x^{(k + 1)}\right) - h\left(x^{(k)}\right) - 
+    \left\langle \nabla h(x^{(k)}), x^{(k + 1)} - x^{(k)}\right\rangle 
     &\le 
-    \langle \nabla h(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle . 
+    \frac{L}{2}\left\Vert x^{(k + 1)} - x^{(k)}\right\Vert^2
+    \\
+    h\left(x^{(k + 1)}\right) - h\left(x^{(k)}\right)
+    -
+    \frac{L}{2}\left\Vert x^{(k + 1)} - x^{(k)}\right\Vert^2
+    &\le 
+    \left\langle \nabla h\left(x^{(k)}\right), x^{(k + 1)} - x^{(k)}\right\rangle . 
 \end{aligned}
 $$
 
@@ -130,7 +136,8 @@ now consider (1.) for the FBS we substitute the above lower bound for the inner 
 
 $$
 \begin{aligned}
-    g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle 
+    g(x^{(k + 1)}) + 
+    \left\langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \right\rangle 
     + 
     \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2 
     &\le g(x^{(k)})
@@ -167,6 +174,7 @@ With $a > L > 0$, $a - L > 0$ hence $\lambda_k > 0$ and finite.
 **Observations**
 
 We will show that this proposed sequence satisfies the generic formulations of the FBS algorithm. 
+To do that we show that with the sequences, the generic algorithm conditions are satisfied. 
 
 
 

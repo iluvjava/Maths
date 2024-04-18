@@ -17,7 +17,7 @@ We introduce a list of acronyms for explaining the relations between operators.
 3. Nexp: Nonexpansive. 
 4. F.Nexp: Firmly Nonexpansive. 
 5. $\alpha$-Avg: Alpha Averaged. 
-6. $\beta$-SMono: Beta strongly monontone. 
+6. $\beta$-SMono: Beta strongly monotone. 
 
 Here is an illustration for how resolvent of maximal monotone operators: 
 
