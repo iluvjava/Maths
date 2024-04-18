@@ -9,7 +9,7 @@ To set up our problem, we make the following assumption about the function $f$ t
 1. $f: \mathbb R^n \mapsto \overline {\mathbb R}$ is a proper, lower semi-continuous function and bounded below. 
 
 Recall that $\partial f$ is the [Limiting Subgradient](Limiting%20Subgradient.md). 
-When the proximal point operator is solved inexactly, it yield the following generic set of conditions that are relavent to the convergence of the iterates of the algorithm. 
+When the proximal point operator is solved inexactly, it yield the following generic set of conditions that are relevant to the convergence of the iterates of the algorithm. 
 
 #### **Algorithm | Inexact Proximal Point Method**
 > The inexact proximal point method is defined through a set of conditions. 
@@ -96,6 +96,9 @@ We use of the fact that $\widehat \partial [g + h](x) = \widehat\partial g(x) + 
 
 **Observations**
 
+The first condition is not quite descent lemma from the KL convergence framework. 
+The third condition is relative error from the KL descent framework. 
+Which is a weaker condition than the (3.) condition stated for the inexact proximal point method. 
 
 
 #### **Lemma | Descent Lemma**
@@ -173,8 +176,29 @@ With $a > L > 0$, $a - L > 0$ hence $\lambda_k > 0$ and finite.
 
 **Observations**
 
-We will show that this proposed sequence satisfies the generic formulations of the FBS algorithm. 
-To do that we show that with the sequences, the generic algorithm conditions are satisfied. 
+We will show that this proposed sequence satisfies the condition (3.) of the generic forward backward algorithm. 
+Which is just the third condition in the KL descent framework. 
+Solving the proximal operator means that 
+
+$$
+\begin{aligned}
+    \gamma_k v^{(k + 1)} + \gamma_k \nabla h(x^{(k)}) + 
+    x^{(k + 1)} - x^{(k)} &= \mathbf 0, \quad v^{(k + 1)} \in \partial g(x^{(k + 1)})
+    \\
+    v^{(k + 1)} + \nabla h(x^{(k)}) + \gamma_k^{-1}(x^{(k + 1 )} - x^{(k)}) &= \mathbf 0
+    \\
+    \implies 
+    \Vert v^{(k + 1)} + \nabla h(x^{(k)})\Vert 
+    &= 
+    \frac{1}{\gamma_k} \Vert x^{(k + 1)} - x^{(k)}\Vert \le 
+    \frac{1}{\underline \gamma} \Vert x^{(k + 1)} - x^{(k)}\Vert. 
+\end{aligned}
+$$
+
+Therefore the third condition of the generic FBS is satisfied. 
+
+
+
 
 
 

@@ -8,7 +8,7 @@ The concept of a semi-algebraic sets are relevant to characterizing functions wi
 #### **Def | Real Semi-Algebraic Set**
 > $S \subseteq \mathbb R^n$ is Semi-Algebraic, denoted as $S \in \{\text{Semi-Alg}\}$, if there exists a finite numbre of polynomial functions $P_{i, j}, Q_{i, j}: \mathbb R^n \mapsto \mathbb R$ such that 
 > $$
->     S = \bigcup_{j = 1}^q \bigcap_{i = 1}^q 
+>     S = \bigcup_{j = 1}^p \bigcap_{i = 1}^q 
 >     \left\lbrace
 >         x \in \mathbb R^n : P_{i, j}(x) = 0, Q_{i, j} < 0
 >     \right\rbrace. 
@@ -21,7 +21,7 @@ The concept of a semi-algebraic sets are relevant to characterizing functions wi
 > $$
 > \begin{aligned}
 >     & \left\lbrace
->         (x, y) \in \mathbb R^{n + 1} : f(x) = \lambda
+>         (x, \lambda) \in \mathbb R^{n + 1} : f(x) = \lambda
 >     \right\rbrace \in 
 >     \{\text{Semi-Alg}\}
 >     \\
@@ -35,6 +35,12 @@ The concept of a semi-algebraic sets are relevant to characterizing functions wi
 > $$
 > Where, for the multivalued mapping, $y\in F(x) \iff (x, y) \in \text{gph}(F)$. 
 
+**Observations**
+
+The first set, is the level set of the function. 
+The second set, is the graph of the multi-valued mapping. 
+
 **Remark**
 
 If a function is Real semi-algebraic, then it's a KL function. 
+The converse is not true by considering $\exp(x)$. 
