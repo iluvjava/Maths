@@ -66,6 +66,9 @@ Substituting back, we obtain the claim that $\Vert x^{(k + 1)} - x^{(k)}\Vert \g
 By the assumption that $\sigma \in [0, 1)$, we had that $b = (1 - \sigma)/2 > 0$. 
 This weaker condition is the relative error condition in the KL Convergence framework. 
 
+**Remarks**
+
+As a consequence, we showed this Generic Proximal Point algorithm satsifies the first two conditions in the KL convergence frameworks. 
 
 ---
 ### **Proximal Gradient Method**
