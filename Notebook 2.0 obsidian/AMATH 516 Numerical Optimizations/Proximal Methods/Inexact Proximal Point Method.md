@@ -64,7 +64,7 @@ $$
 
 Substituting back, we obtain the claim that $\Vert x^{(k + 1)} - x^{(k)}\Vert \ge ((1 - \sigma)/2)\Vert \lambda_kw^{(k + 1)}\Vert$.
 By the assumption that $\sigma \in [0, 1)$, we had that $b = (1 - \sigma)/2 > 0$. 
-
+This weaker condition is the relative error condition in the KL Convergence framework. 
 
 
 ---
@@ -87,17 +87,83 @@ We use of the fact that $\widehat \partial [g + h](x) = \widehat\partial g(x) + 
 > Let $a > L$. 
 > Take $x^{(0)} \in \text{dom} g$. 
 > Then the algorithm generates sequence $\{x^{(k)}\}_{k \in \mathbb N}$ satisfying the conditions: 
-> 1. $g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle + \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2$, 
+> 1. $g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle + \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2 \le g(x^{(k)})$, 
 > 2. $v^{(k + 1)} \in \partial g(x^{(k + 1)})$, 
 > 3. $\Vert v^{(k + 1)} + \nabla h(x^{(k)})\Vert \le b \Vert x^{(k + 1)} - x^{(k)}\Vert$. 
 
 #### **Lemma | Descent Lemma**
-> 
+> Let $\nabla g: \mathbb R^n \mapsto \mathbb R^n$ be $L$-Lipschitz, then for all $x, y \in \mathbb R^n$
+> $$
+> \begin{aligned}
+>     g(y) - g(x) - \langle \nabla g(x), y - x\rangle \le \frac{L}{2}\Vert x - y\Vert^2. 
+> \end{aligned}
+> $$
 
-#### **Claim | FBS is a Stronger Version of The Inexact Proximal Point Method**
+**Proof**
+
+See [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md) for more information on this lemma. 
+
+#### **Claim | Generic FBS Has Decent Property Satisfied**
 > The FBS algorithm's conditions implies conditions in the inexact proximal point method. 
 
+**Proof**
 
+We show that condition (1.) matches the (1.) in the inexact proximal point method. 
+Using the descent lemma on $g$, we set $y - x^{(k + 1)}, x = x^{(k)}$, then 
+$$
+\begin{aligned}
+    h(x^{(k + 1)}) - h(x^{(k)}) - \langle \nabla h(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle &\le 
+    \frac{L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert^2
+    \\
+    h(x^{(k + 1)}) - h(x^{(k)})
+    -
+    \frac{L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert^2
+    &\le 
+    \langle \nabla h(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle . 
+\end{aligned}
+$$
+
+now consider (1.) for the FBS we substitute the above lower bound for the inner product and yield
+
+$$
+\begin{aligned}
+    g(x^{(k + 1)}) + \langle x^{(k + 1)} - x^{(k)},\nabla h(x^{(k)}) \rangle 
+    + 
+    \frac{a}{2} \Vert x^{(k + 1)} - x^{(k)}\Vert^2 
+    &\le g(x^{(k)})
+    \\
+    \implies 
+    g(x^{(k + 1)}) + 
+    h(x^{(k + 1)}) - h(x^{(k)})
+    +
+    \frac{a -L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert^2
+    &\le 
+    g(x^{(k)})
+    \\
+    \iff 
+    f(x^{(k + 1)}) + \frac{a - L}{2}\Vert x^{(k + 1)} - x^{(k)}\Vert 
+    &\le 
+    f(x^{(k)}).
+\end{aligned}
+$$
+
+Therefore, if it fits, then we have $\theta/(2 \lambda_k) = (a - L)/2$, so $\lambda_k^{-1} = a - L$. 
+With $a > L > 0$, $a - L > 0$ hence $\lambda_k > 0$ and finite. 
+
+#### **Algorithm | The Concrete FBS Algorithm**
+> Assume that $\inf g(\mathbb R^n) > -\infty$, consider a sequence of step sizes $(\gamma_k)_{k \in \mathbb N}$ satisfies $0 < \underline \gamma < \gamma < \overline \gamma < 1/ L$ for all $k$. 
+> Then we suggests the following sequence updates: 
+> $$
+> \begin{aligned}
+>     x^{(k + 1)} = \text{prox}_{\gamma_k g}\left(
+>         x^{(k)} - \gamma_k \nabla h\left(x^{(k)}\right)
+>     \right). 
+> \end{aligned}
+> $$
+
+**Observations**
+
+We will show that this proposed sequence satisfies the generic formulations of the FBS algorithm. 
 
 
 

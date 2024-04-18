@@ -15,9 +15,8 @@ The major idea here is to use the $\beta$ Smoothness property of the function to
 
 > $$
 > m_x(y):=
-> f(y) + \left\langle
-> \nabla f(x), y
-> \right\rangle(y - x) + 
+> f(y) +
+> \nabla f(x)(y - x) + 
 > \frac{\beta}{2}\Vert y - x\Vert^2
 > $$
 > Solve this mini minimization problem by changing $y$ resulting in monotonic decrease of the objective function, with an $\beta$ that is strictly larger than the smoothness constant of $f$. 

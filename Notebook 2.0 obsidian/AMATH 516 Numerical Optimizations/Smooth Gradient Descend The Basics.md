@@ -18,7 +18,8 @@ The optimality conditions are listed in order of how strong they are. However, t
 ---
 ### **The Smooth Descend Frameworks**
 
-The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $L$, which is the smallest it can possibly be, then the smoothness characterizations provides
+The main idea is to create an upper bounding function and then minimize the upper bounding function to attain the next point for the gradient descend method. 
+Suppose that $f$ is smooth globally (both from above and below!) with a constant that is $L$, which is the smallest it can possibly be, then the smoothness characterizations provides
 
 $$
 \begin{aligned}
