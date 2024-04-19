@@ -13,7 +13,7 @@ We will use https://doi.org/10.1007/s10107-011-0484-9, title "Convergence of des
 
 #### **Def | KL Functions, Pointwise**
 > $f: \mathbb R^n \mapsto \overline {\mathbb R} \in \{\text{KL at } x^* \in \text{dom}(\partial f)\}$ if and only if the following conditions are true: 
-> $\exists \eta \in (0, + \infty]$, neighborhood around $x^*$, denoted by $U(x^*)$ and a function $\phi : [0, \eta) \mapsto \mathbb R_+ \in \{\text{Continuous}\} \cap \{\text{Concave}\}$, such these are true: 
+> $\exists \eta \in (0, + \infty]$, neighborhood around $x^*$, denoted by $U(x^*)$ and a function $\phi : [0, \eta) \mapsto \mathbb R_+ \in \{\text{Continuous}\} \cap \{\text{Concave}\}$, such that these are true: 
 > 1. $\phi(0) = 0$, 
 > 2. $\phi$ is $C^1$ on $(0, \eta)$, 
 > 3. $\phi'(s) > 0 \; \forall s \in (0, \eta)$, 

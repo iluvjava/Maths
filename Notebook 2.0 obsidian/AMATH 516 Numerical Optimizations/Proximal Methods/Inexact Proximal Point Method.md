@@ -70,6 +70,9 @@ This weaker condition is the relative error condition in the KL Convergence fram
 
 As a consequence, we showed this Generic Proximal Point algorithm satsifies the first two conditions in the KL convergence frameworks. 
 
+
+#### **Theorem | Convergence Claim**
+
 ---
 ### **Proximal Gradient Method**
 
