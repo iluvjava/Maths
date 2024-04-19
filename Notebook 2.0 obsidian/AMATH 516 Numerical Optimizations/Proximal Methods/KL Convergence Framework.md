@@ -60,8 +60,16 @@ With the assumptions that the function $f$ is a KL function, the following lemma
 > 2. $\sum_{k = 0}^{\infty} \Vert x^{(k +1)} - x^{(k)}\Vert < \infty$, 
 > 3. $f(x^{(k)})\rightarrow f(x^*)$, when $k\rightarrow \infty$. 
 
-#### **Convergence to a Critical Point**
-> 
+#### **Thm | Convergence to a Critical Point**
+> Let $f: \mathbb R^n \mapsto \overline {\mathbb R}$ be a proper, l.s.c function. 
+> Consider sequence $(x_k)_{k \in \mathbb N}$ That satisfies conditions 1, 2,3 from above. 
+> If $f$ is KL at cluster point $\tilde x$ as specified in condition 3, then sequence $x^{(k)} \rightarrow \bar x = \tilde x$ as $k\rightarrow \infty$, and $\bar x$ would be a critical point of $f$. 
+> Moreover, the trajectory of $x^{(k)}$ has finite length i.e: $\sum_{k = 0}^{\infty} \Vert x^{(k + 1)} - x^{(k)}\Vert < \infty$.
+
+
+**Remarks**
+
+This is theorem 2.9 from Attouch, Bolte's paper. 
 
 
 [^1]: H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).
