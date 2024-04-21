@@ -64,6 +64,7 @@ Therefore the 2 reflectant identity representation is the equivalent to the orig
 
 Next, $T_i$ is firmly nonexpansive for $i \in \{1, 2\}$ is equivalent to $R_i$ are nonexpansive for $i \in \{1, 2\}$ which implies that $R_2R_1$ is nonexpansive which implies that $(1/2)(I + R_2 R_1)$is firmly nonexpansive. 
 We used the property of a firmly non-expansive operator here. 
+You can also see that it's an $1/2$-averaged operator too. 
 For the above reasoning we only used equivalencies and implications of non-expansive operators. 
 
 Finally, conditions (3.) can be reasoned with 
@@ -93,8 +94,85 @@ $$
 $$
 
 
-
 ---
 ### **The Fixed Point of the DRS Operator**
 
 To understand the potential of the DR operator, we need to understand what is its fixed point and what problem the fixed point can represent in the real world. 
+
+
+#### **Claim | Zero set is the Resolvent of the Fixed Point of DR operator**
+> For a DR operator T constructed by maximal monotone operators $A, B$, we have the following sequence equalities for its zero sets. 
+> $$
+> \begin{aligned}
+>     \text{zer}(A + B) = \mathcal J_A(\text{fix }T)
+>     = \mathcal J_A \text{ fix}((1/2)(I + \mathcal R_B \mathcal R_A))
+>     = \mathcal J_A (\text{fix }\mathcal R_B \mathcal R_A). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+We consider
+
+$$
+\begin{aligned}
+    z \in \text{zer}(A + B)
+    &\iff 
+    \exists z \in X: z \in Ax \wedge  -z \in Bx
+    \\
+    &\iff 
+    \exists z \in X : 
+    (z + x\in Ax + x )\wedge 
+    (x - z \in Bx + x)
+    \\
+    &\iff 
+    (\mathcal J_A(z + x) = x) 
+    \wedge 
+    (\mathcal J_B(x - z) = x)
+    \\
+    &\quad  \forall z \exists y: z = y- x
+    \\
+    & \iff
+    \mathcal J_A y = x \wedge
+    \mathcal J_B(2x - y) = x
+    \\
+    &\iff 
+    \mathcal J_A y = x \wedge
+    \mathcal J_B(2 \mathcal J_A y - y) = x
+    \\
+    &\iff 
+    \mathcal J_A y = x \wedge
+    \mathcal J_B(\mathcal R_A y) = x, 
+\end{aligned}
+$$
+
+and therefore we have the consequence that $\mathcal J_Ay = \mathcal J_B \mathcal R_A y$, by previous theorem, $y \in \text{fix }T$. 
+The second equality is justified by $T = (1/2)(I + \mathcal R_B \mathcal R_A)$. 
+Finally, the fixed point set of $(1/2)(I + \mathcal R_B \mathcal R_A)$ is the same as $\mathcal R_B \mathcal R_A$, Let $N = \mathcal R_B \mathcal R_A$ then 
+
+$$
+\begin{aligned}
+    x \in \text{fix}((1/2)(I - N))
+    & \iff 
+    x = (1/2)x - (1/2 )Nx
+    \\
+    & \iff 
+    -(1/2)x  = - (1/2)Nx
+    \\
+    &\iff 
+    x \in \text{fix}(N). 
+\end{aligned}
+$$
+
+The $1/2$-averaged operator on $N$, a non-expansive operator, has the same fixed point set. 
+
+---
+### **Some Simple Examples**
+
+We consider some simple examples. 
+
+#### **Example | Same Affine Space Projection**
+> Define $T_1x = T_2x = 1/2\nabla f$. Then DR operator as a operator for minimizations of objective $f$. 
+
+**Demonstrations**
+
