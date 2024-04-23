@@ -1,0 +1,89 @@
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage{hyperref}
+% \usepackage{theorem}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{anyfontsize} % fix font size warning. 
+\usepackage{url} \urlstyle{same} % fix wacky url links in bib entries. 
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+% \usepackage{minted}
+
+% Basic Type Settings ----------------------------------------------------------
+% \usepackage[margin=1in,footskip=0.25in]{geometry}
+% \linespread{1}  % double spaced or single spaced
+% \usepackage[fontsize=12pt]{fontsize}
+% \usepackage{authblk}
+
+% FORMATTING ===================================================================
+\oddsidemargin -0.1cm
+\textwidth  16.5cm
+\topmargin  0.0cm
+\headheight 0.0cm
+\textheight 21.0cm
+\parindent  4mm
+\parskip    10pt
+%\parskip    8pt
+\tolerance  3000
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}       % Theorem counter global 
+\newtheorem{prop}{Proposition}[section]  % proposition counter is section
+\newtheorem{lemma}{Lemma}[subsection]  % lemma counter is subsection
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}[subsection]
+{
+    % \theoremstyle{plain}
+    \newtheorem{assumption}{Assumption}
+}
+
+\numberwithin{equation}{subsection}
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\usepackage[final]{graphicx}
+
+\usepackage{listings} \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\usepackage{courier}
+
+\newcommand{\indep}{\perp \!\!\! \perp}
+\usepackage{wrapfig}
+\graphicspath{{.}}
+\usepackage{fancyvrb}
+
+%%
+%% Julia definition (c) 2014 Jubobs
+%%
+\usepackage[T1]{fontenc}
+\usepackage{beramono}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do, else, elseif,%
+      end, export, false, for, function, immutable, import, importall, if, in,%
+      macro, module, otherwise, quote, return, switch, true, try, type, typealias,%
+      using, while},%
+   sensitive=true,%
+   alsoother={$},%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+\lstset{%
+    language         = Julia,
+    basicstyle       = \ttfamily,
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{ForestGreen},
+    showstringspaces = false,
+}

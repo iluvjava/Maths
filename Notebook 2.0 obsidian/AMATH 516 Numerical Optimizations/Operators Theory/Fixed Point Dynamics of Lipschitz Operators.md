@@ -380,7 +380,7 @@ Therefore, $\Vert T^nx - y\Vert \ge |\Vert T^nx\Vert - \Vert y\Vert| \le \Vert x
 ---
 ### **Illustrative Examples**
 
-We propose examples to illsutrate different type of behaviors of the fixed point sequences based on the dislacement vectors: 
+We propose examples to illustrate different type of behaviors of the fixed point sequences based on the displacement vectors: 
 1. $\mathbf 0\in \text{rng}(I - T)$. 
    1. The operator $I$. Convergence on the iterates. 
    2. Skew 90 degree rotation. 
