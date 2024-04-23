@@ -73,7 +73,7 @@ Because the norm of the weak limit, is never the norm of the sequence.
 ---
 #### **Thm | Demi-Closure Principle**
 > Let $T: C \mapsto X$ be non-expansive, and $C$ is $\neq \emptyset$, closed, convex. 
-> Then $x_n \rightharpoonup x$, a weak convergence sequence that satisfies $x_n - Tx_n \rightarrow \mathbf 0$, a strongly convergence sequence, then it must be that $x - Tx = 0$. 
+> Then $x_n \rightharpoonup x$, a weak convergence sequence that satisfies $x_n - Tx_n \rightarrow \mathbf 0$, a strongly convergence sequence, then it must be that $x - Tx = \mathbf 0$, the weak limit of the sequence is in the fixed point set of $T$. 
 
 
 **Observations**

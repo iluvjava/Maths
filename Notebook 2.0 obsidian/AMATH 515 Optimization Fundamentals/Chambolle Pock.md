@@ -1,8 +1,5 @@
-Chambolle Pock
-[[Interior Points]]
-
+Chambolle Pock [[Interior Points]]. 
 Firstly, we are going to look at some basics for the Chambolle Pock Method. 
-
 We are going to show that: 
 
 1. $(I + T)^{-1}$ is Firmly Non Extensible (Firmly Non Extensible) 

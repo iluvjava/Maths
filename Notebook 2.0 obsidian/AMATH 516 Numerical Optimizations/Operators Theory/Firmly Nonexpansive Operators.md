@@ -87,11 +87,18 @@ We directly make use of the identity that:
 
 $$
 \begin{aligned}
-    \Vert a\Vert^2 - \Vert 2b - a\Vert^2 &= 4(\langle a, b\rangle - \Vert b\Vert^2),
+    \Vert a\Vert^2 - \Vert 2b - a\Vert^2 &= 4(\langle a, b\rangle - \Vert b\Vert^2) \ge 0,
 \end{aligned}
 $$
 
 from the definition of nonexpansiveness, we have $\Vert 2b - a\Vert \le \Vert a\Vert$, iff $0 \le \Vert a\Vert^2 - \Vert 2b - a\Vert^2$ iff $0 \le 4(\langle a, b\rangle - \Vert b\Vert^2) \iff \Vert b\Vert^2 \le \langle a, b\rangle$, and now the arguments are complete. We have $(3)\iff (4)$. 
+
+**remark**
+
+Condition (4.) is unintuitive to prove. 
+It illustrate that the error between $\Vert Tx - Ty\Vert, \langle x - y, Tx - Ty\rangle$, is exactly the same as $1/4$ of the Lipschitz upper bound error of the reflectant. 
+It is NOT the re-arrangement of the same inequality that is why this is so interesting. 
+
 
 **References**: 
 
@@ -100,7 +107,7 @@ Theorem 22.3, Professor Heinz's Lecture notes
 ---
 ### **Fixed Point Convergence of Firmly Nonexpansive operators**
 
-The convergence of fixed point would require the use of [Fejer's Monotone](Fejer's%20Monotone.md) convergence type and the assumption of finite Euclidean spaces. 
+The convergence of fixed point would require the use of [Fejer's Monotone](Fejer's%20Monotone.md) convergence type and the assumption of finite Euclidean spaces.
 
 #### **Thm | A Fixed Point Iteration on a Firmly Nonexpansive Operator Converges Weakly**
 
@@ -166,7 +173,9 @@ Therefore, $x^+$ is also a fixed point for the operator $T$.
 
 **Remarks**
 
-The firmly nonexpansive operator is a special case for the averaged operator. See [Averaged Mapping](Averaged%20Mapping.md) for a proof of the same behaviors for the averaged operators. Additionally, read theorem 5.13 for a proof in the weak convergence results for firmly non-expansive operators in Hilbert space. It hinges on the fact that a closed and bounded sets in Hilbert space is sequentially compact. 
+The firmly nonexpansive operator is a special case for the averaged operator. See [Averaged Mapping](Averaged%20Mapping.md) for a proof of the same behaviors for the averaged operators. 
+Additionally, read theorem 5.13 for a proof in the weak convergence results for firmly non-expansive operators in Hilbert space. 
+It hinges on the fact that a closed and bounded sets in Hilbert space is sequentially compact. 
 
 
 

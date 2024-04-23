@@ -265,7 +265,45 @@ That is the case when things doesn't converge.
 ---
 ### **Composition of Averaged Operators**
 
-The composition of averaged operator is still an averaged operator, but with a different constant $\theta$. 
+The composition of averaged operator is still an averaged operator. 
+Composition of nonexpansive operator would still be non-expansive too. 
+Composition of firmly nonexpansive operator is not firmly nonexpansive anymore, it becomes an averaged operator. 
+This fact is useful in the analysis of optimization algorithms. 
+
+#### **Thm | Composition of two Averaged Mapping**
+> Let $T_i \in \{\alpha_i-\text{Avg}\}$, for $i \in \{1, 2\}$ then the composition $T_2\circ T_1$ is $\alpha$-averaged with $\alpha = \frac{\alpha_1 + \alpha_2 - 2\alpha_1 \alpha_2}{1 - \alpha_1 \alpha_2}$. 
+> However, when $\alpha_1 = \alpha_2 = 1$, that becomes invalid and we set $\alpha = 1$. 
+
+**Observations**
+
+The case when $\alpha_1 = 1 = \alpha_2$ is describing the composition of non-expansive operators. 
+The composited averaged operator is less than 1 and positive since with $\alpha_1, \alpha_2 \in (0, 1)$ we can have
+$$
+\begin{aligned}
+    \alpha_1 + \alpha_2 - \alpha_1\alpha_2 - \alpha_1\alpha_2
+    &= 
+    1 + \alpha_1 + \alpha_2 - \alpha_1\alpha_2 - 1 - \alpha_1\alpha_2
+    \\
+    &= -1 + \alpha_1 + \alpha_2 - \alpha_1\alpha_2 + 1 - \alpha_1\alpha_2
+    \\
+    &= -(1 - \alpha_1)(1 - \alpha_2) + 1 - \alpha_1\alpha_2 
+    \\
+    &\le 1 - \alpha_1 \alpha_2, 
+\end{aligned}
+$$
+
+therefore the composited ratio is still valid for an averaged operator. 
+
+**Proof**
+
+
+#### **Thm | Composition of many Averaged Mapping**
+> Let $T_i \in \{\alpha_i-\text{Avg}\}$ , for $i \in \{1, \cdots, n\}$. 
+> Each $\alpha_i \in (0, 1)$. 
+> Then the composition $T_1\circ T_2\circ \cdots \circ T_n$ is an averaged mapping with constant $\alpha = \kappa/ (1 + \kappa)$, and $\kappa = \sum_{i = 1}^{n}\frac{\alpha_i}{1 - \alpha_i}$. 
+
+**Proof**
+
 
 
 

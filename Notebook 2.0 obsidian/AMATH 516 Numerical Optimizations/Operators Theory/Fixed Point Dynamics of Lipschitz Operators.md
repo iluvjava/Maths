@@ -1,3 +1,7 @@
+---
+aliases:
+  - Fixed Point Iterations of Nonexpansive Operators
+---
 - [Fixed Point Iterations 1D](Fixed%20Point%20Iterations%201D.md)
 - [Nonexpansive Operator](Lipschitz%20Operator%20in%20Hilbert%20Space.md)
 
@@ -16,6 +20,12 @@ The interesting part is that even if the fixed point set of the Non-expansive op
 
 Before we start, we set up our goal to be proving the following master theorem regarding he fixed point iterations of a non-expansive operator: 
 
+#### **Thm (Pazy) | The Convergence of the Averaged Iterates**
+> Let $T: X \mapsto X$ be non-expansive, then $C = \text{cl.rng}(I - T)$ is a closed, convex and non-empty convex subset of $X$, and the fixed point iterations $T^n x$ satisfies for all $x \in X$: $(1/n)T^nx \rightarrow - v$. 
+> It converges strongly to the negative of the minimal displacement vector! 
+
+
+
 #### **Thm | Trichotomy of Non-Expansive Fixed Point Iterations**
 > Let $T : C \mapsto C$ be non-expansive, $C$ is non-empty, closed and convex subset of $X$, then exactly one of the following is true about the fixed point iteration of the operator: 
 > 1. $\mathbf 0 \in \text{rng }(I - T)$, then $(T^nx)_{n \in \mathbb N}$ is bounded. 
@@ -27,6 +37,7 @@ for all $x \in C$, or for some $x \in C$.
 ---
 ### **In Preparations for the Master Theorem**
 
+We want to show the Trichotomy of the iterates of fixed point iterations. 
 
 #### **Thm | Averaged Sequenced Converges for Convergent Sequence**
 > Let $(\alpha_n)_{n \in \mathbb N}$ be $\alpha_n \rightarrow \alpha$, then $(1/n)\sum_{i = 1}^{n}\alpha_i \rightarrow \alpha$. 
@@ -121,10 +132,10 @@ $$
 \end{aligned}
 $$
 
-That enables the an interpretation of the vector $T^x + nv$ as the sum of the displacement vector from the Iterates and the minimal displacement vector $v$. 
+That enables the an interpretation of the vector $T^n x + nv$ as the sum of all displacements from the iterates and the vector $v$. 
 
 For the first part of the claim, where it says that $C$ is a closed, convex and non-empty set is because $N$ is non-expansive, and therefore $I - N$ is maximally monotone because $T$ maps from $X$ to $X$, the entire ambient space. 
-And, it's not non-trivial results from Rockfellar's convex analysis that, the range of a maximally monotone operator is a closed, convex set. 
+And, it's not non-trivial results from Rockfellar's convex analysis that, the range of a maximally monotone operator is a closed, convex set. See [Monotone Operators In Depth](Monotone%20Operators%20In%20Depth.md) for more information. 
 
 **Proof**
 
@@ -339,8 +350,59 @@ $$
 \end{aligned}
 $$
 
-Since the vector $-(1/n)T^nx + x \in \text{cl}(C)$, we can claim using the first lemma that the vector $(1/n)(-T^nx + x)\rightarrow v$, but with $x/n \rightarrow \mathbf 0$, we have that $(1/n)(-T^nx)\rightarrow v$. 
+Since the vector $-(1/n)T^nx + x \in C$, we can claim using the first lemma that the vector $(1/n)(-T^nx + x)\rightarrow v$, but with $x/n \rightarrow \mathbf 0$, we have that $(1/n)(-T^nx)\rightarrow v$. 
 The theorem is now proven. 
 
-#### **Thm | Boundedness of the Iterates**
-> 
+**Remarks**
+
+This behaviors prompted people to invent the concept of a generalized fixed point set. 
+The convergenced of the averaged iterates $(1/n) x_n$ is a compromised to the convergence since if $x_n$ converges, $(1/n)x_n$ converges to the zero vector. 
+Let $v = \Pi_{C}(\mathbf 0)$, the set $\{x \in X : x - Tx = v\}$ is the generalized fixed point set. 
+When fixed point set exists, $\mathbf 0 \in C$, hence $x - Tx = \mathbf 0$, producing the original definition of the fixed point set. 
+
+
+
+#### **Thm (Browder Petryshyn) | Boundedness of the Iterates**
+> If $T$ is nonexpansive then $\text{fix}T \neq \emptyset$, then the following are equivalent: 
+> 1. $\text{fix} T \neq \emptyset$. 
+> 2. $\forall x \in X: T^n x$ is bounded. 
+> 3. $\exists x \in X : (T^n x)$ is bounded. 
+
+**Proof**
+
+$y \in \text{fix }T$ then for any $x \in X$ $\Vert T^n x - T^ny\Vert  = \Vert T^nx - y\Vert \le \Vert T^{n-1}x - y\Vert \le \cdots \le \Vert x - y\Vert$. 
+$T$ being a Lipschitz operator produced these sequence of inequalites. 
+Therefore, $\Vert T^nx - y\Vert \ge |\Vert T^nx\Vert - \Vert y\Vert| \le \Vert x - y\Vert$, so $\Vert T^nx - y\Vert$ is bounded. 
+
+
+(1.) implies (3.) is obvious. To show that (3.) implies (1.) however, it's not easy at all. 
+
+---
+### **Illustrative Examples**
+
+We propose examples to illsutrate different type of behaviors of the fixed point sequences based on the dislacement vectors: 
+1. $\mathbf 0\in \text{rng}(I - T)$. 
+   1. The operator $I$. Convergence on the iterates. 
+   2. Skew 90 degree rotation. 
+2. $\mathbf 0 \in \text{cl.rng}(I - T)$. No convergence of the iterates. 
+   1. $\Pi_{\mathbb R_-}(x - \exp(x))$, projected gradient descent of the exponential function. 
+   2. 
+    $$
+    f(x) = \begin{cases}
+        x + 1 & x \le 1 \\ x + 1/x & x \ge 1 
+        \end{cases}
+    $$
+3. $\mathbf 0\not\in \text{cl.rng}(I - T)$. 
+   1. $(x)\mapsto x + v$, direct translation. 
+
+All of these are not STRICTLY averaged operators because we are going to talk about averaged operator next. 
+
+
+---
+### **Fixed Point Dynamics for Averaged Operators**
+
+In this section we strengthen the results for nonexpansive operator for averaged operators. 
+
+
+
+
