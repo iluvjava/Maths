@@ -375,7 +375,10 @@ $T$ being a Lipschitz operator produced these sequence of inequalites.
 Therefore, $\Vert T^nx - y\Vert \ge |\Vert T^nx\Vert - \Vert y\Vert| \le \Vert x - y\Vert$, so $\Vert T^nx - y\Vert$ is bounded. 
 
 
-(1.) implies (3.) is obvious. To show that (3.) implies (1.) however, it's not easy at all. 
+(1.) implies (3.) is obvious. 
+To show that (3.) implies (1.) however, it's not easy at all. 
+
+
 
 ---
 ### **Illustrative Examples**

@@ -9,6 +9,9 @@ This file attempts to bind all the files related to: Proximal Gradient type of m
 	- Surrogate. 
 	- Forward Backward Envelope.
 	- Gradient of the Envelope. 
+
+---
+### **FBS With Accelerations**
 - [[Proximal Gradient with Momentum Accelerations]],
 	- Amirc Beck, Toubelle's original 2009 paper. 
 	- [[A Better Proof for FISTA Convergence]]

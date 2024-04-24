@@ -9,7 +9,7 @@ alias: Nesterov Acceleration Sequence Method
 ---
 ### **Intro**
 
-The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We faithfully follow Nesterov's Lectures on Convex Optimizations (2nd edition), chapter 2 of his book. 
+The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We faithfully follow "Nesterov's Lectures on Convex Optimizations (2nd edition)", chapter 2 of his book. 
 
 My contributions here involve some extra gory mathematical details for the record keeping, a better exposition and comments on what I think Nesterov tries to do. And finally, correctly identify the way of adding non-smoothness into Nesterov's derivations. 
 
@@ -1025,7 +1025,8 @@ $$
 \end{aligned}
 $$
 
-Finally, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. This results in the following simplified generic accelerated momentum method 
+Finally, we get a momentum update term without the constant $\gamma_{k}$ from the estimating function. 
+This results in the following simplified generic accelerated momentum method 
 
 $$
 \begin{aligned}
