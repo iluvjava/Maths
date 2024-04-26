@@ -10,7 +10,6 @@ Based on that results we then find a convergence rate of the generic algorithm p
 
 #### **Nesterov's Generic Algorithm (2.2.7)**
 
-
 $$
 \begin{aligned}
     \text{(1):}\; & \text{$k$ th iteration generates iterates by}
@@ -152,7 +151,7 @@ $$
 \end{aligned}
 $$
 
-##### **Claim (2.2.11) | A Monotonenically Increasing Quantity**
+##### **Claim (2.2.11) | A Monotonically Increasing Quantity**
 > Define $\xi_k = \left(\frac{L}{(\gamma_0 - \mu)\lambda_k}\right)^{1/2}$, we get the following relation 
 > $$
 > \xi_{k + 1}- \xi_k \ge \frac{1}{2}\left(
