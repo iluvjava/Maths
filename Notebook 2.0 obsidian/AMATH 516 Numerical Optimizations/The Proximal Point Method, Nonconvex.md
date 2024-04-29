@@ -15,7 +15,11 @@ As a results, proximal point method used a theoretical tool, and in practice, pe
 ---
 ### **The Convergence of the Proximal Point Method**
 
+The literature we are referencing here is Attouch, Bolte[^2]. 
+
 
 
 
 [^1]:R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” _SIAM J. Control Optim._, vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: [10.1137/0314056](https://doi.org/10.1137/0314056).
+[^2]: H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” Math. Program., vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: 10.1007/s10107-007-0133-5.
+
