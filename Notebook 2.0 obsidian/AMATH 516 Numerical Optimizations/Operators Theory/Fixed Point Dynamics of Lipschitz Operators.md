@@ -377,7 +377,70 @@ Therefore, $\Vert T^nx - y\Vert \ge |\Vert T^nx\Vert - \Vert y\Vert| \le \Vert x
 
 (1.) implies (3.) is obvious. 
 To show that (3.) implies (1.) however, it's not easy at all. 
+Let $(T^nx)_{n \in \mathbb N}$ be a bounded sequence, define $x^n = T^n x$. 
+Define $\delta = \text{diam}\{x_n| n \in \mathbb N\}$ by the fact that $T^nx$ is a bounded sequence. 
+Define $\forall n \in \N \; C_n := \bigcap_{m \ge n} \overline{\mathbb B}_{\delta}(x_m) \subseteq \{x_n | n \in \N\} + \overline {\mathbb B}_\delta(\mathbf 0)$. 
+To simplify our proofs, we make the following claims relevant claims: 
 
+### **Claims | Intermediate Claims for the Proof**
+> 1. $C_n$ is a convex, closed and nonempty set. 
+> 2. $C_n \subseteq C_{n + 1}$. 
+> 3. $T(C_n)\subseteq C_{n + 1}$. 
+
+**Proof of the claims**
+
+By definition we have $C_{n + 1}\cap \overline{\mathbb B}_\delta(x_n) = C_n$, implies that $C_{n + 1}\supseteq C_n$. 
+(2.) is verified. 
+$C_n$ is the intersection of convex sets, therefore, it's a convex set. 
+It's also closed because it's the intersection of closed balls. 
+It's nonempty because $\{x_{k} | k \in \N\} \subseteq C_n$. 
+Therefore, (1.) is verified. 
+
+To verify (3.), consider 
+$$
+\begin{aligned}
+    y \in C_n \implies& \sup_{m \ge n} \Vert x_m - y\Vert < \delta \implies 
+    \sup_{m \ge n} \Vert T x_m - y\Vert \le \delta \text{ by T nonexpansive}. 
+    \\
+    \iff& \sup_{m \ge n} \Vert x_{m + 1} - y\Vert \le \delta
+    \\
+    \iff & Ty \in \bigcap_{m \ge n + 1}^\infty \overline {\mathbb B}_\delta(x_m) 
+    \\
+    \iff & Ty \in C_{n+ 1}. 
+\end{aligned}
+$$
+
+Therefore, we have $T(C_n)\subseteq C_{n + 1}$. 
+However, we would want $TC_n = C_{n + 1}$, in order to have a fixed point set for the operator. 
+To do that define $S = \bigcup_{n \in \N} C_n$, we claim that $\text{cl } S$ is a convex, closed and nonempty set. 
+Consider 
+
+$$
+\begin{aligned}
+    y \in S \implies& \exists n \in \N: y \in Cn \implies Ty \in C_{n + 1} \subseteq S
+    \\
+    \implies & T(S) \subseteq S
+    \\
+    \implies& T(\text{cl }S) \subseteq \text{cl }S,  \text{ by continuity of }T. 
+\end{aligned}
+$$
+
+We set $\text{cl }S = C$. 
+Suppose sequence $s_n \rightarrow c \in C$, then $Ts_n \rightarrow T(C) \in \text{cl }(T(S))\subseteq \text{cl }S$, using we we had proved. 
+Therefore, the fixed point set is nonempty. 
+The limit of the sequence is in the fixed point set of $T$. 
+Finally, thet set $S$ is convex by the property of $C_n$. 
+With that 
+$$
+\begin{aligned}
+    C_n &\subseteq C_{n + 1} \forall n \in \N 
+    \\
+    \bigcup_{n \in \N} C_n & = \bigcap_{n \in \N}C_n = \Lim{n\rightarrow \infty}C_n, 
+\end{aligned}
+$$
+
+$C_n$ a convex set and therefore its limit is also a convex set. 
+Now we use Browder Gohde Kirck theorem, if $C$ is a convex closed bounded set such that $T(C) = C$, then the fixed point set of $T$ is a nonempty set. 
 
 
 ---

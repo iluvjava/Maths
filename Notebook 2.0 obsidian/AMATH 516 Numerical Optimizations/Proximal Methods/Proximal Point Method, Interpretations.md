@@ -1,4 +1,4 @@
-- [[Moreau Envelope and Proximal Mapping]]
+- [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md)
 
 
 ---
@@ -14,11 +14,11 @@ $$
 can be interpreted as: 
 1. Gradient on the Moreau envelope. 
 2. Fixed point iterations on the subgradient operator.
-4. Backward Euler on the gradient dynamics involving the subgradient oracle. [[Projected Proximal Gradient, Interpretations]] for more. 
+4. Backward Euler on the gradient dynamics involving the subgradient oracle. [Projected Proximal Gradient, Interpretations](Projected%20Proximal%20Gradient,%20Interpretations.md) for more. 
 
 References: 
 1. [Proximal Algorithms](https://web.stanford.edu/~boyd/papers/pdf/prox_algs.pdf)
-2. [[Primer on Monotone Operators.pdf]]
+2. [Primer on Monotone Operators](../../MATH%20999%20Paper%20Reviews%20and%20Frontier%20Mathematics/References%20Sep%202022/Primer%20on%20Monotone%20Operators.pdf)
 
 
 ---
@@ -41,7 +41,10 @@ $$
 \end{aligned}
 $$
 
-If the iteration converges, then it obtains the optimal values for function. However, the convergence of it largely depends analysis of monotone operators. 
+If the iteration converges, then it obtains the optimal values for function. However, the convergence of it largely depends analysis of monotone operators.
+When function $f$ is a convex function, the resolvent operator experience desired properties for designing optimization algorithms. 
+The resolvent will have full domain, single value output, and it's a firmly-nonexpansive operator that converges to the fixed point set when iterations are conducted. 
+See [Resolvent Operators](../Operators%20Theory/Resolvent%20Operators.md) and [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md) for more information and their convergence analysis. 
 
 
 ---
@@ -61,7 +64,9 @@ by being specific about the length of the gradient step, let $\gamma = \alpha$ t
 
 **Remarks**
 
-Moreau envelope can be viewed as a type of smoothing for any given functions. [[Moreau Envelope and Proximal Mapping]] established that, the subgradient of the Moreau envelope is just the gradient, hence that the envelope is differentiable. Additionally, the Lipschitz constant for the gradient is bounded to bounded Lipschitz for the proximal operator, further implying the fact that the envelope gradient is globally Lipschitz. This allows for great convergence results for the proximal point method. 
+Moreau envelope can be viewed as a type of smoothing for any given functions. [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md) established that, the subgradient of the Moreau envelope is just the gradient, hence that the envelope is differentiable. 
+Additionally, the Lipschitz constant for the gradient is bounded to bounded Lipschitz for the proximal operator, further implying the fact that the envelope gradient is globally Lipschitz. 
+This allows for great convergence results for the proximal point method. 
 
 
 ---

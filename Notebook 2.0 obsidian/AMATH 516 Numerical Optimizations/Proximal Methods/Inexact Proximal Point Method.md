@@ -1,4 +1,4 @@
-- [The Proximal Point Method](The%20Proximal%20Point%20Method.md)
+- [The Proximal Point Method, Nonconvex](../The%20Proximal%20Point%20Method,%20Nonconvex.md)
 - [KL Convergence Framework](KL%20Convergence%20Framework.md)
 
 ---

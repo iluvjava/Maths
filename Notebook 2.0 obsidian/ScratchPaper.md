@@ -487,3 +487,4 @@ $$
 If somehow, we can get the resolvent $[I + N_Y\circ M]^{-1}$ with $M = \nabla [\cdot \mapsto g(x, \cdot)]^{-1}$ for each value of $x$, then we have a convex constraints here. 
 Because fixed point of the constraint seems to be convex. 
 The inverse of the partial gradient of $g$ here is messing things up. 
+
