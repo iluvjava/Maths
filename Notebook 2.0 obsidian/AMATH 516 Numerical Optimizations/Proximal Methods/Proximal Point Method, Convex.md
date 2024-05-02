@@ -10,3 +10,4 @@ We make the assumption that $f$ is a convex function.
 
 
 #### **Foundamental Prox Lemma**
+> 
