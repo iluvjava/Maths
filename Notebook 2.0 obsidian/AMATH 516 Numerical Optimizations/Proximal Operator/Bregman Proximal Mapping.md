@@ -20,7 +20,7 @@ Given a set $C$, for $\omega$ to be a function that introduces the Bregman dista
 
 These conditions belongs to the characterizations  [Simply Legendre Type](Simply%20Legendre%20Type.md). 
 The strict convexity condition is necessary. 
-To generalize the famous properties of [Moreau Envelope and Proximal Mapping](Moreau%20Envelope%20and%20Proximal%20Mapping.md), Amir Beck constructed assumption 9.3 and we quote 
+To generalize the famous properties of [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md), Amir Beck constructed assumption 9.3 and we quote 
 
 #### **Assumption 9.2 | Favorable Assumptions for Bregman Divergence on Mirror Descent**
 > For the Bregman prox operator to possess favorable conditions that generalize the Euclidean based proximal mapping, we propose the following conditions for the function $\omega$ and the domain $C$ of our interest: 

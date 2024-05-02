@@ -1,5 +1,5 @@
 [[Conjugate Gradient for Dummy]]
-[[Moreau Envelope and Proximal Mapping]]
+[[Moreau Envelope and Convex Proximal Mapping]]
 
 ---
 ### **Intro**

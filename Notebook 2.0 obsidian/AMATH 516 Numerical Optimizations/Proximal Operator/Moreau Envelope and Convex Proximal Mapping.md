@@ -1,5 +1,5 @@
 ---
-alias: Morau Envelope and Proximal Operators
+alias: Morau Envelope and Convex Proximal Operators
 
 --- 
 - [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
@@ -123,13 +123,16 @@ In fact, with some set algebra, it's possible to show $\subseteq$ relation. The 
 
 **Remarks**
 
-The third property is pivotal to understanding the proximal gradient operator.
+The second property is pivotal to understanding the proximal gradient operator.
 Recall that from [Proximal Point Method, Interpretations](../Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md), we can interpret the proximal operator as a Backward Euler scheme. 
+Which is just another word for [Resolvent Operators](Resolvent%20Operators.md) of the subgradient operator. 
 The second condition, $y - x \in \partial f(x)$, states that, given any point $y$, the point $x$, is a point where the vector $y - x$ points along the set of directions indicated subgradient. 
 The second condition mirrors the backward Euler method. 
 The third condition results in $y - x \in \partial f(x)$, with the additional convexity assumption placed on $f$, and the third condition becomes the subgradient inequality.
 I don't have a good interpretation yet. 
 For condition 3, observe that with $y = z$, it gives $\Vert z - x\Vert^2 \le f(z) - f(x), x = \underset{f}{\text{prox}}(z)$. 
+
+Conditions 3, works for lsc continuous function in Hilbert spaces, see Heinz's monotone book proposition 12.26. 
 
 **Good References**
 

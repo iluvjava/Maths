@@ -1,4 +1,4 @@
-[[Moreau Envelope of Moreau Envelope]], [[Moreau Envelope and Proximal Mapping]]
+[[Moreau Envelope of Moreau Envelope]], [[Moreau Envelope and Convex Proximal Mapping]]
 
 
 ---

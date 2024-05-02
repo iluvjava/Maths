@@ -1,4 +1,4 @@
-[[../../MATH --- Unexplored/TOPICS/Dykstra Projection Algorithm]], [[Introduction ADMM]], [[Moreau Envelope and Proximal Mapping]]
+[[../../MATH --- Unexplored/TOPICS/Dykstra Projection Algorithm]], [[Introduction ADMM]], [[Moreau Envelope and Convex Proximal Mapping]]
 
 ---
 ### **Intro**

@@ -1,4 +1,4 @@
-[[../Background/Characterizing Functions for Optimizations]], [[../Proximal Operator/Moreau Envelope and Proximal Mapping]]
+[[../Background/Characterizing Functions for Optimizations]], [[Moreau Envelope and Convex Proximal Mapping]]
 
 ---
 ### **Intro**

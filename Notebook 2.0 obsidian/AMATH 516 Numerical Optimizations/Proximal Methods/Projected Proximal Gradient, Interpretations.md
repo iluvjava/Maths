@@ -1,4 +1,4 @@
-* [[Moreau Envelope and Proximal Mapping]]
+* [[Moreau Envelope and Convex Proximal Mapping]]
 * [[Gradient System]]
 
 ---

@@ -213,4 +213,4 @@ and the completes the proof for the claim.
 
 **Proof**
 
-The proximal gradient operator for this problem is $\text{prox}_{\eta g}\circ [I - \eta \nabla f]$, and this operator is a contraction because the prox operator is None Expansive and the gradient operator is a contraction, as proved previously. For more information about the none expansiveness of the proximal operator, see [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md) for more information. 
+The proximal gradient operator for this problem is $\text{prox}_{\eta g}\circ [I - \eta \nabla f]$, and this operator is a contraction because the prox operator is None Expansive and the gradient operator is a contraction, as proved previously. For more information about the none expansiveness of the proximal operator, see [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) for more information. 

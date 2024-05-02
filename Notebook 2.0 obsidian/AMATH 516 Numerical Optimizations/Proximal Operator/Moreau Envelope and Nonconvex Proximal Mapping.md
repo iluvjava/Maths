@@ -1,4 +1,4 @@
-[Moreau Envelope and Proximal Mapping](Moreau%20Envelope%20and%20Proximal%20Mapping.md)
+[Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
 
 ---
 ### **Intro**

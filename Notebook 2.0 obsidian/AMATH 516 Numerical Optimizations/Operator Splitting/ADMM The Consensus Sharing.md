@@ -54,7 +54,7 @@ $$
 \end{aligned}
 $$
 
-the second step is easily parallelizable, it's just the average, simply given as: $z^{(k + 1)} = \bar x^{(k + 1)} + \rho^{-1}\bar y^{(k)}_i$, the bar denotes the sample average for all $x_i, y_i\; \forall i \in [N]$.Note, the $\bigotimes$ is the euclidean cross product, and we made use of the parallel product property for proximal operator introduced at the end of [[Moreau Envelope and Proximal Mapping]]. 
+the second step is easily parallelizable, it's just the average, simply given as: $z^{(k + 1)} = \bar x^{(k + 1)} + \rho^{-1}\bar y^{(k)}_i$, the bar denotes the sample average for all $x_i, y_i\; \forall i \in [N]$.Note, the $\bigotimes$ is the euclidean cross product, and we made use of the parallel product property for proximal operator introduced at the end of [[Moreau Envelope and Convex Proximal Mapping]]. 
 
 **Clarifying the average polling**
 

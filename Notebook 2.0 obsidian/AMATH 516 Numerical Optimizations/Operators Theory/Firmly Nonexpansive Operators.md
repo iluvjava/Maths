@@ -354,7 +354,7 @@ If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Fi
 
 #### **Example | Proximal Mapping is Firmly Nonexpansive**
 
-Due to it requires too many facts about this operator, visit [Moreau Envelope and Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Proximal%20Mapping.md) for a coverage of this example. Recall from [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
+Due to it requires too many facts about this operator, visit [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) for a coverage of this example. Recall from [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
 
 > let $f$ be convex, proper, and lower semi-continuous, we have the proximal operator of $f$, denoted as $P_f, I - P_f$ being firmly non-expansive operators. 
 

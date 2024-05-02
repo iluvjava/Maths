@@ -1,7 +1,7 @@
 prereq: 
 * [Subgradient Intro](../Non-Smooth%20Calculus/Subgradient%20Intro.md)
 * [[Characterizing Functions for Optimizations]], Strong convexity is used. 
-* [[Moreau Envelope and Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
+* [[Moreau Envelope and Convex Proximal Mapping]], We use the proximal operator a lot in here, and some of the important properties of the proximal operator. 
 * [[../Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications | Strong Smoothness Conditions]], We use one of the smoothness property and its relations to convexity and Lipschitz of the gradient of the convex function. 
   [[Proximal Gradient Method]], The old notes for proximal gradient methods when Sasha was teaching for the class. 
 
@@ -64,7 +64,7 @@ $$
 \end{aligned}
 $$
 
-This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
+This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Convex Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
 
 ---
 ### **The Proximal Gradient Descend Method**

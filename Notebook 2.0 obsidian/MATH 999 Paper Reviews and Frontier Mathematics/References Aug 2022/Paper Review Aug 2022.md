@@ -23,7 +23,7 @@ and we are interested in minimization of $f$, where $l(x)$ is convex with Lipsch
 * Envelope Method
 	* NOT SURE WHAT THE INEQUALITIES ARE ALL ABOUT. 
 
-For the Basics of proximal operators, see [[Moreau Envelope and Proximal Mapping]] for more context. 
+For the Basics of proximal operators, see [[Moreau Envelope and Convex Proximal Mapping]] for more context. 
 
 Supplementary Papers: 
 * the Stanford reference paper introduced in [[Introduction ADMM]]. 
