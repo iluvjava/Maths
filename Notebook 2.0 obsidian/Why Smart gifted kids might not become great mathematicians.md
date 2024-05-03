@@ -9,7 +9,7 @@ I think the reasons behind the fact that many kids were falsely identified to be
 1. Good at numbering. 
 2. Good at memorizations. 
 3. Good at imitating. 
-4. Thinks, react very fast^[Thinking too slow is also not a good sign to for mathematical promise. ]. 
+4. Thinks, react very fast^[Thinking too slow is also not a good sign to for mathematical promise.]. 
 
 The first two items are obvious. The third item is not a sign of giftedness because imitations might not require understanding of the topic itself. The last one is important but with a catch. Thinking very fast is certainly advantageous, but it alone will impede mathematical thinking sometimes. The fast-thinking students have the potential downfall of skipping important steps and follow by intuitions, which is dangerous because advanced mathematics is all about discovering complicated, unintuitive truths. 
 

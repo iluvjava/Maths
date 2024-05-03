@@ -180,3 +180,8 @@ $$
 $$
 
 
+---
+### **Corollaries, and Misc Results**
+
+We state results of applying KM iterations to averaged operator. 
+Because averaged operator is a subclass of non-expansive operator, it allows for more choices of $\lambda_n$. 
