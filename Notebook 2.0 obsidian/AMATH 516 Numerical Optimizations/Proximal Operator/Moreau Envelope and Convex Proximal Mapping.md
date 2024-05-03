@@ -38,6 +38,27 @@ $$
 $$
 
 setting $y = x$, then the envelope is always below the function. 
+Moreover, with $f$ being convex, $f(\cdot) + \frac{1}{2\alpha}\Vert \cdot - x\Vert^2$ is strongly convex, since $f(\cdot) + \frac{1}{2\alpha}\Vert \cdot - x\Vert^2 - \frac{1}{2\alpha}\Vert \cdot - x\Vert^2$ is convex, the strong convexity index is $\alpha^{-1}$, recall that for any strongly convex function $g$ with convexity index $\lambda$ ([Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)), we have 
+
+$$
+\begin{aligned}
+    g(x) - g(x^*) \ge \frac{\lambda}{2} \; \Vert x - x^*\Vert, x \in \argmin{x} f
+    \\
+    \implies 
+    \left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
+    - 
+    \left(
+        f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
+    \right)
+    &\le 
+    - \frac{1}{2\alpha}\Vert y - p\Vert^2 
+    \quad \forall y \in \R^n, 
+\end{aligned}
+$$
+
+because, $p$ is a minimizer of $f(\cdot) + (1/(2\alpha ))\Vert \cdot - x\Vert^2$. 
+Which is a much weaker conditions compare to descent condition imposed by just the Moreau Envelope. 
+
 
 **Notation nuance**
 
@@ -119,7 +140,19 @@ $$
 $$
 
 observe that one may use the singleton assumption with prox and provide us with the identity $y - \text{prox}_f(y) \in \partial f(\text{prox}_f(y))$. 
-In fact, with some set algebra, it's possible to show $\subseteq$ relation. The last identity is just the subgradient inequality followed by identity 2, by the assumption of convexity on $f$. 
+In fact, with some set algebra, it's possible to show $\subseteq$ relation. The last identity is just the subgradient inequality followed by identity 2, by the assumption of convexity on $f$, i.e.: 
+
+$$
+\begin{aligned}
+    y - x &\in \partial f(x), f(z) - f(x) - \langle \partial f(x),\; 
+    z - x\rangle \ge 0 \; \forall z \in X
+    \\
+    \implies 
+    f(z) - f(x) - \langle y - x, z - x\rangle 
+    &\ge 0
+    \; \forall z \in X. 
+\end{aligned}
+$$
 
 **Remarks**
 
