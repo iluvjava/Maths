@@ -23,10 +23,11 @@ and one of its variant, the method of gradient descent.
 #### **Lemma | Foundamental Prox Lemma for Prox Lyaponouv Function**
 > $f$ is convex, proper, lsc. 
 > Then 
-> $$\left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
+> $$
+>    \left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
 >     - 
 >     \left(
->         f(y) - \frac{1}{2\alpha}\Vert x - y\Vert^2 
+>         f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
 >     \right)
 >     \le 
 >     - \frac{1}{2\alpha}\Vert y - p\Vert^2 
@@ -39,6 +40,19 @@ and one of its variant, the method of gradient descent.
 By definition of the proximal operator, we have optimality of the point $p\in X$.
 So it must be smaller than all other points a minimizing the expression $f(z) + (1/(2\alpha))\Vert x - z\Vert^2$, and we use the strong convexity. 
 
+**Remarks**
+
+Alternatively we can represent it as 
+
+$$
+\begin{aligned}
+    \text{env}^\alpha_f(x) - 
+    \left(
+        f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
+    \right) \le 
+    -\frac{1}{2\alpha}\left\Vert y - \prox{\alpha f}(x)\right\Vert^2. 
+\end{aligned}
+$$
 
 #### **Proposition | Lyaponouv Function for Proximal Point Method**
 > let $f$, then the function $\Phi_t$ is a Lyponouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
@@ -88,7 +102,7 @@ $$
     \end{aligned}
     \\
     \implies 
-    & f(x_{t + 1}) - f(x_t) \le 0, \leftarrow \text{([INEQ2])}. 
+    & f(x_{t + 1}) - f(x_t) \le 0 \leftarrow \text{([INEQ2])}, 
 \end{aligned}
 $$
 
@@ -160,6 +174,7 @@ Therefore, $\Phi_t$ is a Lyaponouv function of the proximal point method for con
 
 We obesrve that, combining (\[INEQ1\]) and (\[INEQ2\]), we know that the function value and the error from the optimal solution $x^*$, decreases monotonically. 
 The later is Fejer Monotonicity, and the former is much weaker implications. 
+The line right before (\[INEQ1\]), it quantifies the difference $\Phi_{t + 1} - \Phi_t \le - (1/2)\Vert x_{t + 1} - x_t\Vert^2$. 
 
 
 #### **Thm | Baseline Convergence via Method of PPM**
