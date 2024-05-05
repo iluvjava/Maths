@@ -59,6 +59,21 @@ The quadratic growth conditions of $f$, is strictly weaker than strong convexity
 There is potential for $f + (1/2)\Vert \cdot + x\Vert^2$ that is not necessarily a strongly convex function. 
 The reader should ponder and appreciate that $y$ is free. 
 
+Similarly, if $f$ is $\beta$-strongly convex, $f(\cdot) + \frac{1}{2\alpha}\Vert  \cdot - x\Vert$ is $\beta + (1/\alpha)$ strongly convex, hence we have: 
+
+$$
+\begin{aligned}
+    \text{env}^\alpha_f(x) - 
+    \left(
+        f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
+    \right) 
+    \le 
+    -\frac{(\beta + \alpha^{-1})}{2}\left\Vert y - \prox{\alpha f}(x)\right\Vert^2. 
+\end{aligned}
+$$
+
+Which gives us more decrease. 
+
 #### **Proposition 2 | Lyaponouv Function for Proximal Point Method**
 > let $f$, then the function $\Phi_t$ is a Lyponouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
 > $\Phi_t$ is 
@@ -132,6 +147,7 @@ $$
 Then, we consider the following operations
 
 $$
+{\scriptsize
 \begin{aligned}
     & 
     ([\text{INEQ1}]) + \left(
@@ -167,7 +183,6 @@ $$
     \end{aligned}
     \\
     \iff & 
-    {\scriptsize
     = 
     \left(
         \sum_{i = 1}^{t + 1}\eta_i
@@ -183,14 +198,15 @@ $$
         \frac{1}{2}
         \Vert x_{t} - x_*\Vert^2
     \right) \le 0
-    }
     \\
     \iff & =
     \Phi_{t + 1} - \Phi_{t} \le 0. 
 \end{aligned}
+}
 $$
 
 Therefore, $\Phi_t$ is a Lyaponouv function of the proximal point method for convex, closed, proper $f$. 
+
 
 
 **remarks**
@@ -198,6 +214,21 @@ Therefore, $\Phi_t$ is a Lyaponouv function of the proximal point method for con
 We obesrve that, combining (\[INEQ1\]) and (\[INEQ2\]), we know that the function value and the error from the optimal solution $x^*$, decreases monotonically. 
 The later is Fejer Monotonicity, and the former is much weaker implications. 
 
+\(\[INEQ2\]\) is unecessary for the proof of the Lyapnouv function, but it's presented to show that the function value strictly decreases. 
+It's not necessary because observe that directly we have 
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_{t} = 
+    \eta_{t + 1}(f(x_{t + 1} - f(x_t))) + 
+    \frac{1}{2}\Vert x^* - x_{t + 1} \Vert^2 
+    - 
+    \frac{1}{2}\Vert x^* - x_t\Vert^2, 
+\end{aligned}
+$$
+
+so it equals to the LHS of (\[INEQ1\]). 
+So $\Phi_{t + 1} - \Phi_t \le 0$. 
 
 
 #### **Thm 1 | Baseline Convergence via Method of PPM**
@@ -228,8 +259,12 @@ $$
 
 **Remarks**
 
-I am not sure about the convergence of $\Vert x_t - x^*\Vert^2$, or $x_t$. 
+The convergence of $\Vert x_t - x^*\Vert^2$, or $x_t$, is not so obvious from this theorem alone. 
+Additional assumptions for $f$ is required. 
 
+
+#### **Corollary | PPM for Strongly Convex Function**
+> ...
 
 
 ---
@@ -265,12 +300,12 @@ Proximal gradient is one fine example where $l_f(x; \bar x)$ is not necessarily 
 We illusrate how this property is used in the below proof for a claim. 
 
 
-#### **Claim 1 | Inexact Lower Bounding PPM Descent Lemma**
+#### **Thm 2 | Generic Descent Lemma via PPM of Lower Bounding Function and Upper Smoothness**
+> Let $f$ be a function that has minimizer: $x_*$.
 > Let $l_f(x; x_t)$ be a convex, lsc, proper lower bound function. 
-> Let $\phi(x) = \eta_{t + 1}l_f(x; x_t)$, 
 > Let the lower bounding $\phi$ function satisfies inequality: 
 > $$
-> \phi(x) \le \eta_{t + 1}f(x) \le \phi(x) + \frac{L\eta_{n + 1}}{2}\Vert x - x_t\Vert^2, 
+> \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{n + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in X, 
 > $$ 
 > Assume an algorithm the makes: 
 > $$
@@ -292,61 +327,112 @@ We illusrate how this property is used in the below proof for a claim.
 > \end{aligned}
 > $$
 > This is a result analogous to Lemma-1. 
+> We name this inequality (\[INEQ1 GD\])
 
 **Proof**
 
-By $\phi(x)$ be a convex function and Lemma 1, Moreau Envelope Inequality produces: 
+By $\phi_t(x)$ be a convex function and Lemma 1, Moreau Envelope Inequality produces $\forall u$: 
 
 $$
-{\small
+{\scriptsize
 \begin{aligned}
-    \tag{$\star$}
-    \phi(x_{t + 1}) - \phi(x_*) - 
-    \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    \phi_t(x_{t + 1}) - \phi_t(u) - 
+    \frac{1}{2}\Vert x_t - u\Vert^2 
     + 
-    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+    \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
     &\le 
     - \frac{1}{2}\Vert x_{t + 1} - x_t \Vert^2
     \\
     \left(
-        \phi(x_{t + 1}) + \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
+        \phi_t(x_{t + 1}) + \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
     \right)
-    - \phi(x_*) - \frac{1}{2}\Vert x_t - x_*\Vert^2 + \frac{1}{2}\Vert x_* - x_{t + 1} \Vert^2
+    - \phi_t(u) - \frac{1}{2}\Vert x_t - u\Vert^2 + \frac{1}{2}\Vert u - x_{t + 1} \Vert^2
     &\le 
     \left(
         \frac{\eta_{t + 1}L}{2} - \frac{1}{2}
-    \right)\Vert x_{t+1} - x_t\Vert^2
-\end{aligned}
+    \right)\Vert x_{t+1} - x_t\Vert^2. 
+\end{aligned}\tag{$\star$}
 }
-
 $$
 
 Using the assumption of the lower bounding function of $f$, the hypothesis allows for 
 $$
 \begin{aligned}
     \left(
-        \phi(x_{t + 1}) + \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
+        \phi_t(x_{t + 1}) + 
+        \frac{\eta_{t + 1}L}{2}\Vert x_{t+1} -x_t\Vert^2
     \right) &\ge \eta_{t + 1}f(x_{t + 1}), 
     \\
-    - \phi(x_*) &\ge  - \eta_{t + 1}f(x_*), 
+    - \phi_t(u) &\ge  - \eta_{t + 1}f(u), 
 \end{aligned}
 $$
 
-substituting the above inequality into the RHS of $(\star)$, we obtain: 
+substituting the above inequality into the RHS of $(\star)$, we obtain $\forall u \in X$: 
 
 $$
 \begin{aligned}
     \left(
-        \eta_{t + 1} f(x_{t + 1}) - \eta_{t + 1}f(x_*)
+        \eta_{t + 1} f(x_{t + 1}) - \eta_{t + 1}f(u)
     \right) 
-    - \frac{1}{2}\Vert x_t - x_*\Vert^2 + 
-    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+    - \frac{1}{2}\Vert x_t - u\Vert^2 + 
+    \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
     &\le 
     \left(
-        \frac{\eta_{t + 1}L}{2} - \frac{1}{2}\Vert x_{t + 1} - x_t \Vert^2
-    \right). 
+        \frac{\eta_{t + 1}L}{2} - \frac{1}{2}
+    \right)
+    \Vert x_{t + 1} - x_t \Vert^2. 
 \end{aligned}
 $$
 
 Since this is true for all $x_t$, we can can claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - x(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
+
+
+**Remark**
+
+If, $f$ is differentiable, and $\phi_t(x) = l_f(x, x_t) = f(x_t) + \langle \nabla f(x_t), x - x_t\rangle$. 
+Then, the upper $L$-Lipschitz gradient smooth condition and convexity of $f$ are backed into the inequality: 
+
+$$
+\eta_{t + 1}l_f(x, x_t) \le 
+\eta_{t + 1} f(x) \le \eta_{t + 1}l_f(x, x_t) + \frac{\eta_{t + 1}L}{2}\Vert x - x_t\Vert^2
+\quad \forall x \in X. 
+$$
+
+we empahsize that it's the upper smoothness wrt to 2-norm. 
+In implementation of algorithms, we only need to make sure that: 
+
+$$
+\eta_{t + 1}l_f(x_{t + 1}, x_t) \le 
+\eta_{t + 1} f(x_{t + 1}) \le \eta_{t + 1}l_f(x_{t + 1}, x_t) 
++ 
+\frac{\eta_{t + 1}L_t}{2}\Vert x_{t + 1} - x_t\Vert^2
+\quad \forall t \in \N. 
+$$
+
+for the appropriate $L_t$, this is called: "line search". 
+This is strictly weaker than what is used to prove the theorem. 
+There are some potential for generalization and creativity by considering various kind of convex $\phi_t(x)$. 
+
+
+#### **Thm-2 | Stepsize and the Convergence of the Gradient Descent Method**
+> Choose stepsize $0 < \eta_t \le L^{-1}$, then the method of PPM on convex lower bounding function (which is gradient descent) has convergence rate $\mathcal O\left(\sum_{i = 1}^{T}\eta_t^{-1}\right)$. 
+
+**Proof**
+
+Set $\eta_{t + 1} \in (0, L^{-1}]$, then we can conclude the same conclusion as theorem 1. 
+Because the inequality in claim 1 are less than zero, and that makes the exact same inequalities as proposition 2, making the results of theorem 1 follows naturally. 
+
+
+#### **Corollary-2.1 | Proximal Gradient Descent**
+> Consider additive composite $f = g + h$ where $g$ is convex and $h$ is convex smooth with $L$-Lipschitz gradient. 
+> Consider $l_f(x; \bar x) = g(x) + h(\bar x) + \langle \nabla h(\bar x), x - \bar x\rangle$. 
+> Then proximal point method $x_{t + 1} \in \text{prox}[l_f(\cdot, \bar x)](x_t)$ produces the proximal gradient method and the above convergence analysis.   
+
+**Proof**
+
+The proximal point on $l_f(x, \bar x)$, is proximal gradient, that part is obvious. 
+See [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md) for more information. 
+Next, $l_f(\cdot, \bar x)$ is convex for all $\bar x \in X$, and by convexity of $g$, it is a lower bounding function for $f$. 
+The inequality in Theorem 2 is satsified hence the results of theorem 2 applies. 
+
 

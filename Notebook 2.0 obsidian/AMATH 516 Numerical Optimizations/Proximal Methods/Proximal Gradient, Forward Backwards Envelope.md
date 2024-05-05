@@ -400,7 +400,7 @@ Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the 
 
 A point produced by the proximal gradient point step, will decrease the objective function. 
 
-**Theorem: Stepsize that Ensures Objective Decrease**
+#### **Theorem | Stepsize that Ensures Objective Decrease**
 
 > If $f$ is convex and Lipschitz smooth with constant $L$, then if a step size of $L^{-1} > \beta$ will give objective decrease at each step of the proximal gradient iteration. 
 
@@ -408,7 +408,9 @@ Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient op
 
 $$
 \begin{aligned}
-    f(x^+) - f(x) \le \left(\frac{L}{2} - \frac{1}{2\beta}\right)\Vert x - x^+\Vert^2, 
+    f(x^+) - f(x) 
+    \le 
+    \left(\frac{L}{2} - \frac{1}{2\beta}\right)\Vert x - x^+\Vert^2, 
 \end{aligned}
 $$
 
@@ -420,8 +422,9 @@ $$
     \langle \nabla g(x), x^+ - x\rangle + \frac{1}{2\beta}\Vert x^+ - x\Vert^2 
     &\le h(x)
     \\
-    h(x^+) - h(x) + \langle \nabla g(x) - x^+ - x\rangle 
-    &\le \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
+    h(x^+) - h(x) + \langle \nabla g(x), x^+ - x\rangle 
+    &\le 
+    \frac{-1}{2\beta} \Vert x^+ - x\Vert^2, 
 \end{aligned}
 $$
 
