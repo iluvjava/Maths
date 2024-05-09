@@ -232,11 +232,6 @@ Then, is it possible that the gradient of the function is globally Lipschitz?
 
 
 
-Testing links conversion: 
-* [Convex Conjugation Introduction](AMATH%20516%20Numerical%20Optimizations/Duality/Convex%20Conjugation%20Introduction.md)
-* [Basic Machine Learning](AMATH%20582%20Data%20Science/Basic%20Machine%20Learning.md)
-* [Operators for Optimizations CENTRAL HUB](Operators%20for%20Optimizations%20CENTRAL%20HUB.md)
-* [2D Bifurcation with Zero Eigenvalues](2D%20Bifurcation%20with%20Zero%20Eigenvalues.md)
 
 
 The toString function for big int. 
@@ -487,4 +482,7 @@ $$
 If somehow, we can get the resolvent $[I + N_Y\circ M]^{-1}$ with $M = \nabla [\cdot \mapsto g(x, \cdot)]^{-1}$ for each value of $x$, then we have a convex constraints here. 
 Because fixed point of the constraint seems to be convex. 
 The inverse of the partial gradient of $g$ here is messing things up. 
+
+
+Footnote ^[this is a footnote. ]
 

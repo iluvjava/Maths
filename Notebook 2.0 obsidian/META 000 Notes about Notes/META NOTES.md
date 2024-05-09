@@ -2,11 +2,7 @@ This note is a note about notes. This is a list of Meta Notes:
 - [META NOTES](../META%20000%20Notes%20about%20Notes/META%20NOTES.md)
 - [Editing Journal META NOTES](../META%20000%20Notes%20about%20Notes/Editing%20Journal%20META%20NOTES.md)
 
-# **Organizations**
-
----
-# **Important Tasks about the Notes**
-
+The content of this notes has been broken down and moved to [Editing Journal META NOTES](Editing%20Journal%20META%20NOTES.md) because it that creates a timeline for the tasks involved. 
 
 
 ---
@@ -14,15 +10,7 @@ This note is a note about notes. This is a list of Meta Notes:
 
 Something to do when we have time. 
 
-### **Statistical Inferences**
-- [ ] Add stuff for statistics inference related materials. 
-	- [ ] [Asymptotic Behaviors of MLEs](STATS%20501%20Statistics%20for%20Mathematicians/Asymptotic%20Behaviors%20of%20MLEs.md). Characterize. 
-	- [ ] Discuss the MLE, hypothesis testing for the exponential family. 
-		- [x] [The Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/The%20Exponential%20Family.md), 
-		- [x] [MLE, Sufficient Statistics of the Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/MLE,%20Sufficient%20Statistics%20of%20the%20Exponential%20Family.md), 
-		- [x] [Examples of Exponential Family](STATS%20501%20Statistics%20for%20Mathematicians/Examples%20of%20Exponential%20Family.md) 
-	- [ ] Add an entry about the Wald test method and likelihood ratio, continuing that discussion from [Hypothesis Testing](STATS%20501%20Statistics%20for%20Mathematicians/Hypothesis%20Testing.md). 
-- [ ] Make An Indexer Page for Optimizations
+
 
 ### **Optimizations**
 - [ ] Add/link some calculus rules for the projection, distance operator described here: [[AMATH 516 Numerical Optimizations/Background/Convex Sets Projections and Dist, Intro]], add them from Heinz's course notes yes. 
@@ -40,7 +28,15 @@ Something to do when we have time.
 ---
 # **Tasks that Probably Will Never Get Done**
 
+### **Functional Analysis**
 - Add theorem 4.17 in the course notes for math 328, regarding the existence of an orthogonal basis for every Hilbert space, as a consequence of the Zorn's Lemma. 
+
+### **Statistical Inferences**
+- [ ] Add stuff for statistics inference related materials. 
+	- [ ] [Asymptotic Behaviors of MLEs](STATS%20501%20Statistics%20for%20Mathematicians/Asymptotic%20Behaviors%20of%20MLEs.md). Characterize. 
+	- [ ] Add an entry about the Wald test method and likelihood ratio, continuing that discussion from [Hypothesis Testing](STATS%20501%20Statistics%20for%20Mathematicians/Hypothesis%20Testing.md). 
+- [ ] Make An Indexer Page for Optimizations
+
 
 ---
 # **Tasks Done for Keeping Track of Things**
