@@ -1,6 +1,6 @@
-[[Lanczos Iteration]]
-[[Steepest Descend for Matrix Vector]]
-[[Conjugate Gradient Anne's Version]]
+- [[Lanczos Iteration]]
+- [[Steepest Descend for Matrix Vector]]
+- [[Conjugate Gradient Anne's Version]]
 
 
 ----

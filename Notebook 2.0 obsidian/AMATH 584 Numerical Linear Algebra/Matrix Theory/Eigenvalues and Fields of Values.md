@@ -5,8 +5,10 @@
 
 Here we are going to prove this statement: 
 
+#### **Claim | Convex Hull of the Spectrum of a Normal Matrix if Field of Values**
 > The eigenvalues of a **normal matrix** is the convex hull of the Fields of values of the matrix. 
 
+**Proof**
 
 $A$ is a square normal matrix then: 
 
@@ -33,7 +35,6 @@ $$
 $$
 
 Take note that, $\Lambda$  is a diagonal matrix consists of all the Eigenvalues for the matrix $A$. 
-
 Which is basically: 
 
 $$
@@ -41,5 +42,3 @@ $$
 $$
 
 Notice that, this is the convex combinations of all the Eigenvalues of $A$, and because the equality, it's the convex hull of all the eigenvalues of the matrix $A$. 
-
-
