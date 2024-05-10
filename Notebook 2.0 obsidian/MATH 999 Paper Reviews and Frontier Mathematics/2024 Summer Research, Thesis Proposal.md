@@ -34,30 +34,30 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
     - [ ] **Optimization with Functional Constraints**
     - [ ] **The Method for Constrained Minimization**
 - Chapter 3 | Nonsmooth convex optimization 
-	- General Convex Functions
-    	- Motivation and Definitions 
-    	- Operations with Convex Functions
-    	- Continuity and Differentiability
-    	- Separation Theorem
-    	- Subgradients
-    	- [ ] **Computing Subgradients**
-    	- Optimality Conditions
-    	- [ ] **Minmax Theorem**
-    	- [ ] **Basic Elements of Primal Dual Methods **
-	- Methods of Nonsmooth Minimization 
-    	- [ ] **General Lower Complexity Bounds**
-    	- [ ] **Estimating Quality of Approximate Solution **
-    	- The Subgradient Method 
-    	- [ ] Minimization of Functional Constraints 
-    	- [ ] Approximating the Optimal Lagrange Multpliers 
-    	- Strongly Convex Functions
-    	- [ ] Complexity Bounds in Finite Dimensions 
-    	- [ ] Cutting Plane Schemes
-	- Methods with Complete Data
-    	- [ ] Nonsmooth Model of the Objective Functions 
-    	- [ ] Kelley's Method 
-    	- [ ] The Level Method 
-    	- [ ] Constrained Minimization
+  - General Convex Functions
+    - Motivation and Definitions 
+    - Operations with Convex Functions
+    - Continuity and Differentiability
+    - Separation Theorem
+    - Subgradients
+    - [ ] **Computing Subgradients**
+    -  Optimality Conditions
+    - [ ] **Minmax Theorem**
+    - [ ] **Basic Elements of Primal Dual Methods **
+  - Methods of Nonsmooth Minimization 
+    - [ ] **General Lower Complexity Bounds**
+    - [ ] **Estimating Quality of Approximate Solution **
+    - [ ] The Subgradient Method 
+    - [ ] Minimization of Functional Constraints 
+    - [ ] Approximating the Optimal Lagrange Multpliers 
+    - Strongly Convex Functions
+    - [ ] Complexity Bounds in Finite Dimensions 
+    - [ ] Cutting Plane Schemes
+  - Methods with Complete Data
+    - [ ] Nonsmooth Model of the Objective Functions 
+    - [ ] Kelley's Method 
+    - [ ] The Level Method 
+    - [ ] Constrained Minimization
 
 
 ---
