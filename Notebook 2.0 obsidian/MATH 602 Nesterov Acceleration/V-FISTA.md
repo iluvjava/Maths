@@ -808,3 +808,9 @@ A proof would required that, a fixed point iterations generated based on equatio
 ### **One Open Question**
 
 Does estimating the momentum sequence $t_k \approx \sqrt{\kappa}$, still give a sub linear convergence rate of $1/k^2$??? If so, how close does the estimation has to be? 
+
+---
+### **Reduction to FISTA**
+
+If, the proof is correct, the reader should be convinced by the fact that if $\mu = 0$, then we will have the convergence rate being $(1/k^2)$ for the algorithm and the choices of stepsize $t_k$ will be limited. 
+This is a call back to the convergence rate of FISTA. 

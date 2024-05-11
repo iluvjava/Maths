@@ -145,10 +145,84 @@ The proof is complete and it's as obvious as the second proximal mapping lemma.
 The consequences of the lemma will be realized together in mirror prox algorithm, together with the cosine lemma for the Bregman divergence. 
 Replacing function $f$ with $\lambda f$ where $\lambda > 0$ then we can get the Bregman proximal operator with a different type of multiplier on the Bregman divergence for the function, i.e: $\arg\min_{x \in \mathbb E}\{\psi(x) + \lambda^{-1}D_\omega(x, b) \}$. 
 
+When the bregman divergence function $\omega = (1/2)\Vert \cdot\Vert^2$, it reduces to the second proximal lemma: 
+
+$$
+\begin{aligned}
+    \langle b - a, u - a\rangle \ge \psi (u) - \psi(a). 
+\end{aligned}
+$$
+
+
 ---
-### **An Example of Bregman Prixmal Mapping**
+### **An Example of Bregman Proximal Mapping**
 
+Surprisingly, the [Proximal Gradient Method](Proximal%20Gradient%20Method.md) is related to the idea of a Bregman Proximal Mapping. 
+We have the following claim: 
 
+#### **Claim | Proximal Gradient and Bregman Prox**
+> With $f$ being $L$-Lipschitz smooth differentiable function. 
+> Let $g$ be convex with $\phi = f + g$ being closed convex proper. 
+> Suppose that $L < \gamma^{-1}$ for some $\gamma$. 
+> Then we have the Bregman prox interpretation of the proximal gradient method: 
+> $$
+> \begin{aligned}
+>   \prox{\gamma g} (x - \gamma^{-1}\nabla f(x)) = \argmin{u} 
+>   \left\lbrace
+>       \phi(u) + D_{h}(x, u)
+>   \right\rbrace,
+> \end{aligned}
+> $$
+> where $h = \frac{1}{2\gamma}\Vert \cdot\Vert^2 - f$. 
+> $D_h(\cdot, \cdot)$ is Bregman divergence. 
+
+**Proof**
+
+Directly we start by considering: 
+
+$$
+\begin{aligned}
+    \prox{\gamma g} \left\lbrace
+        x - \gamma^{-1} \nabla f(x)
+    \right\rbrace
+    &= 
+    \argmin{u}
+    \left\lbrace
+        f(x) + g(u) + \langle \nabla f(x), u - x\rangle 
+        + \frac{1}{2\gamma} \Vert x - u\Vert^2
+    \right\rbrace
+    \\
+    &= 
+    \argmin{u}
+    \left\lbrace
+        f(x) + \underbrace{f(u)+ g(u)}_{\phi(u)} - f(u) + \langle \nabla f(x), u - x\rangle 
+        + \frac{1}{2\gamma} \Vert x - u\Vert^2
+    \right\rbrace
+    \\
+    &= 
+    \argmin{u}
+    \left\lbrace
+        \phi(u) - D_f(u, x)
+        + 
+        \frac{1}{2\gamma} \Vert x - u\Vert^2
+    \right\rbrace
+    \\
+    &= 
+    \argmin{u} \left\lbrace
+        \phi(u) + D\left[\frac{1}{2\gamma}\Vert \cdot\Vert^2 - f\right](x, u)
+    \right\rbrace. 
+\end{aligned}
+$$
+
+which basically verifies the claim. 
+To see that $(1/(2\gamma))\Vert \cdot\Vert^2 - f$ is a function of Legendre type, the hypothesis in the claim that $f$ is convex $L$-Lipschitz smooth, with $L < \gamma^{-1}$, then we have $\lim_{\Vert x\Vert\rightarrow \infty}(1/(2\gamma))(\Vert \cdot\Vert^2 - f) = \infty$ as well. 
+At the last step, the property of $D_f + D_g = D_{f + g}$ should be obvious from the definition of Bregman divergence induced by $f, g$ of Legendre type. 
+
+**Remark**
+
+This interpretation bridges the concept between a Bregman Proximal Point method, and the method of proximal gradient descent. 
+In this case, the proximal gradient is a specific case of Proximal point method using Bregman Divergence. 
+However, not all method can be reduced to proximal point since any operator $T$ the update the iterates $x_{k + 1} = Tx_k$, may not corresponds to a gradient dynamics of any potential function. 
 
 
 

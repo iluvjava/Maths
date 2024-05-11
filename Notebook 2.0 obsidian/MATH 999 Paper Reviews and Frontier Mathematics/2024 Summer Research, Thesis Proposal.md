@@ -59,6 +59,8 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
     - [ ] The Level Method 
     - [ ] Constrained Minimization
 
+Lectures on Convex Optimizations ^[Y. Nesterov, _Lectures on Convex Optimization_, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: [10.1007/978-3-319-91578-4](https://doi.org/10.1007/978-3-319-91578-4).]
+
 
 ---
 ### **Papers**
@@ -67,14 +69,23 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
 - Linear convergence of First order method for non-strongly convex optimization ^[I. Necoara, Yu. Nesterov, and F. Glineur, “Linear convergence of first order methods for non-strongly convex optimization,” _Math. Program._, vol. 175, no. 1, pp. 69–107, May 2019, doi: [10.1007/s10107-018-1232-1](https://doi.org/10.1007/s10107-018-1232-1).]
 - Efficiency of Coordinate Descent Methods on Huge-Scale Optimization Problems ^[Y. Nesterov, “Efficiency of Coordinate Descent Methods on Huge-Scale Optimization Problems,” _SIAM Journal on Optimization_, vol. 22, no. 2, pp. 341–362, 2012, doi: [10.1137/100802001](https://doi.org/10.1137/100802001).]
 
+
 #### **Sasha**
 
 - Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for nonsmooth nonconvex problems.”]. 
 
 
-#### **Siam Review**
+#### **Siam Review | Education**
+
+- Nesterov's Method of Convex Optimization^[W. Noel, “Nesterov’s method for convex optimization,” _SIAM Review_, vol. 65, no. 2, pp. 539–562, doi: [10.1137/21M1390037](https://doi.org/10.1137/21M1390037).]. 
+- The Reflection Method for the numerical Solution of Linear Systems ^[M. Guida and C. Sbordone, “The Reflection Method for the Numerical Solution of Linear Systems,” _SIAM Rev._, vol. 65, no. 4, pp. 1137–1151, Nov. 2023, doi: [10.1137/22M1470463](https://doi.org/10.1137/22M1470463).]
 
 #### **Theory Papers**
+
+- Understanding nesterov's acceleration via proximal point method. ^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
+-  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]
+- On the convergence of the proximal algorithm for nonsmooth functions involving analytic features ^[H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” _Math. Program._, vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: [10.1007/s10107-007-0133-5](https://doi.org/10.1007/s10107-007-0133-5).]
+
 
 #### **Applications and Modeling**
 
