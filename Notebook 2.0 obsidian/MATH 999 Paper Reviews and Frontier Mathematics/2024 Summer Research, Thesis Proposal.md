@@ -50,7 +50,7 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
     - [ ] The Subgradient Method 
     - [ ] Minimization of Functional Constraints 
     - [ ] Approximating the Optimal Lagrange Multpliers 
-    - Strongly Convex Functions
+    - [ ] Strongly Convex Functions
     - [ ] Complexity Bounds in Finite Dimensions 
     - [ ] Cutting Plane Schemes
   - Methods with Complete Data
@@ -64,6 +64,8 @@ Lectures on Convex Optimizations ^[Y. Nesterov, _Lectures on Convex Optimization
 
 ---
 ### **Papers**
+
+I plan on reading these papers. 
 
 #### **Nesterov**
 - Linear convergence of First order method for non-strongly convex optimization ^[I. Necoara, Yu. Nesterov, and F. Glineur, “Linear convergence of first order methods for non-strongly convex optimization,” _Math. Program._, vol. 175, no. 1, pp. 69–107, May 2019, doi: [10.1007/s10107-018-1232-1](https://doi.org/10.1007/s10107-018-1232-1).]

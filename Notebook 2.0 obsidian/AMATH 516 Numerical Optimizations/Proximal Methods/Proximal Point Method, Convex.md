@@ -334,7 +334,7 @@ We illusrate how this property is used in the below proof for a claim.
 By $\phi_t(x)$ be a convex function and Lemma 1, Moreau Envelope Inequality produces $\forall u$: 
 
 $$
-{\scriptsize
+{\small
 \begin{aligned}
     \phi_t(x_{t + 1}) - \phi_t(u) - 
     \frac{1}{2}\Vert x_t - u\Vert^2 
@@ -422,6 +422,9 @@ There are some potential for generalization and creativity by considering variou
 Set $\eta_{t + 1} \in (0, L^{-1}]$, then we can conclude the same conclusion as theorem 1. 
 Because the inequality in claim 1 are less than zero, and that makes the exact same inequalities as proposition 2, making the results of theorem 1 follows naturally. 
 
+**Remarks**
+
+In practice, the step size is usually constant, or it's determined by some type line search algorithm. 
 
 #### **Corollary-2.1 | Proximal Gradient Descent**
 > Consider additive composite $f = g + h$ where $g$ is convex and $h$ is convex smooth with $L$-Lipschitz gradient. 

@@ -1,4 +1,4 @@
-- [Bregman Divergence](Bregman%20Divergence.md)
+- [Bregman Divergence](../Bregman%20Divergence.md)
 
 ---
 ### **Intro**
@@ -223,10 +223,16 @@ At the last step, the property of $D_f + D_g = D_{f + g}$ should be obvious from
 This interpretation bridges the concept between a Bregman Proximal Point method, and the method of proximal gradient descent. 
 In this case, the proximal gradient is a specific case of Proximal point method using Bregman Divergence. 
 However, not all method can be reduced to proximal point since any operator $T$ the update the iterates $x_{k + 1} = Tx_k$, may not corresponds to a gradient dynamics of any potential function. 
-
+Finally, set $g = 0$, the zero function. 
+Then the above derivation can derive a Bregman Prox interpretation of the gradient descent method. 
 
 
 [^1]: A. Beck, First-Order Methods in Optimization | SIAM Publications Library. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: https://epubs.siam.org/doi/book/10.1137/1.9781611974997
 [^2]: H. H. Bauschke, J. Bolte, and M. Teboulle, “A Descent Lemma Beyond Lipschitz Gradient Continuity: First-Order Methods Revisited and Applications,” Mathematics of OR, vol. 42, no. 2, pp. 330–348, May 2017, doi: 10.1287/moor.2016.0817.
+
+
+---
+### **Three Points Bregman Lemma with The Second Prox Lemma**
+
 
 

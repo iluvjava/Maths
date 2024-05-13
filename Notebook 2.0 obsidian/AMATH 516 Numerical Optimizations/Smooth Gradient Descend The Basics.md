@@ -439,6 +439,11 @@ $$
 At (\[1\]), we used the descent lemma to assert the terms in the summation are all positive.  We showed best case of a constant stepsize, we showed that $\mathcal O(1/\sqrt{k})$ convergence rate for $\Vert \nabla f(x^{(k)})\Vert$. 
 
 
+**Remark**
+
+Continuous time dynamics won't work with discrete time dynamics like what we usually have for optimization algorithms. 
+To check the vadility of the claim, we need to consider $\eta_t(E_{t +1} - E_t)$ so that we have $(1 - \eta L /2) \le 0$ to allow for the value of the Lyaponouv function to decrease. 
+
 #### **Claim | Lyapunov Function for Smooth Gradient Descent with Convexity**
 
 > The Lyapunov function for the smooth gradient descent can be strengthen under the convexity of $f$, which manifested as an extra term. Let $\bar x$ be a minimizer of $f$ and $f_*$ to be the minimum, the continuous and discrete dynamics are $\Upsilon_t = 1/2\Vert x - \bar x\Vert^2 + t(f(x^{(t)}) - f_*)$, $E_t = \frac{1}{2\eta}\Vert x^* - x^{(t)}\Vert^2 + t \delta_t$, where $\delta_t = f(x^{(t)}) - f_*$ is defined for the interest of easier notation. 

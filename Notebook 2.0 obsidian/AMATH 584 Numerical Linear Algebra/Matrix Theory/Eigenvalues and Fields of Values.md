@@ -1,7 +1,7 @@
 [[Fields of Values]]
 
 ---
-### **Eignevalues of Normal Matrices**
+### **Eigenvalues of Normal Matrices**
 
 Here we are going to prove this statement: 
 
