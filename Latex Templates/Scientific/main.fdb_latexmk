@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1714083393 "c:/Users/alto/Desktop/repos/Maths/Latex Templates/Scientific/main.tex" "main.pdf" "main" 1714083395
-  "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1713901495 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
+["pdflatex"] 1715647858 "c:/Users/alto/Desktop/repos/Maths/Latex Templates/Scientific/main.tex" "main.pdf" "main" 1715647859
+  "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1715029537 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1713914578 8268 c8b3375c74a9fa939f1e7d12acd0ca24 ""
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1713914579 11548 7b68c4a26053c7bd332a0108670e715d ""
   "C:/Users/alto/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1666893782 10787539 152cb807f892717dbbfe4a4f6571af5d ""
@@ -134,10 +134,10 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/tools/thp.sty" 1654690828 1908 fe625a4c2e82e49a095c52e8f3ac4c67 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/alto/Desktop/repos/Maths/Latex Templates/Scientific/main.tex" 1714083391 8339 41674919515913368928885f28536a9f ""
-  "main.aux" 1714083394 1250 9ce195829ef84767ff7e8437d83a8bdf "pdflatex"
-  "main.out" 1714083394 536 694d2f5946d2ce731970f30a0e3d39ef "pdflatex"
-  "main.tex" 1714083391 8339 41674919515913368928885f28536a9f ""
+  "c:/Users/alto/Desktop/repos/Maths/Latex Templates/Scientific/main.tex" 1715647856 8393 570d7997d0b0d035edaa0eae25c1b45b ""
+  "main.aux" 1715647859 1267 896725b6e9e594abf747757b3c443e90 "pdflatex"
+  "main.out" 1715647859 536 694d2f5946d2ce731970f30a0e3d39ef "pdflatex"
+  "main.tex" 1715647856 8393 570d7997d0b0d035edaa0eae25c1b45b ""
   "presets/julia_lstlisting.tex" 1713915213 824 21ef5c0cb95296a4c603ba575c67e325 ""
   "presets/misc.tex" 1713899494 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1713914625 8617 f3e54393849be218f01f21578e531c4c ""
