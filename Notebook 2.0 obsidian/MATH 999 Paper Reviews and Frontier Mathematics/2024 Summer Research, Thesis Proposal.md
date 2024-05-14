@@ -84,7 +84,7 @@ I plan on reading these papers.
 
 #### **Theory Papers**
 
-- Understanding nesterov's acceleration via proximal point method. ^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
+- <mark style="background: #FF5582A6;">Understanding nesterov's acceleration via proximal point method. ^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]</mark>
 -  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]
 - On the convergence of the proximal algorithm for nonsmooth functions involving analytic features ^[H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” _Math. Program._, vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: [10.1007/s10107-007-0133-5](https://doi.org/10.1007/s10107-007-0133-5).]
 

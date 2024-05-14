@@ -84,6 +84,12 @@ This part of the proof is modified. It may be replaced with other theorems.
 > * Assuming $b\in \text{dom}(\partial \omega)$, let $a$ be Bregman Proximal Mapping applied at the point $b$ defined as 
 > $a := \underset{x\in \mathbb E}{\text{argmin}}\{\psi(x) + D_\omega(x, b)\}$. 
 
+
+**Note:**
+
+The goal of the admissibility conditions of Bregman proximal mapping is to assure existence and single valuedness property of the mapping. 
+This is essential in the use of deriving algorithms. 
+
 **Observations**
 
 Directly we may expand the definition of the Bregman Divergence over $\omega$ and we have 
@@ -109,6 +115,11 @@ Which gives us an alternative representation of the Bregman proximal mapping def
 Now observe that the function $\psi(x) + \langle \nabla (b), x\rangle$ has domain on $\text{dom}(\partial \omega)$. 
 Applying lemma 9.7, we have that $a \in \text{dom}(\partial \omega)$. 
 And $a$ is the unique minimizer, satisfying $\mathbf 0 = \nabla \psi(a) + \nabla\omega(a) - \nabla \omega(b)$. 
+
+
+**Rmarks**
+
+Other type of admissibility conditions for the Bregman Proximal operator exists, and it really depends on which literature we are reading. 
 
 
 #### **Thm 9.12 | The Second Prox Lemma**
@@ -209,7 +220,7 @@ $$
     \\
     &= 
     \argmin{u} \left\lbrace
-        \phi(u) + D\left[\frac{1}{2\gamma}\Vert \cdot\Vert^2 - f\right](x, u)
+        \phi(u) + D_{\left[\frac{1}{2\gamma}\Vert \cdot\Vert^2 - f\right]}(x, u)
     \right\rbrace. 
 \end{aligned}
 $$
@@ -234,5 +245,65 @@ Then the above derivation can derive a Bregman Prox interpretation of the gradie
 ---
 ### **Three Points Bregman Lemma with The Second Prox Lemma**
 
+Assuming that $\omega$ is able to induce Bregman divergence $D_\omega$. 
+A descent inequality of the Bregman Envelope that is analogous to [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md), which is essential to the derivation of convergence of algorithms that uses the Bregman Proximal mapping. 
 
+#### **Thm | The Bregman Prox Envelope Descent Inequality**
+> Let $\omega$ induces a Bregman Divergence $D_\omega$ in $\R^n$ and assume that it satisfies Bregman Prox Admissibility conditions for function $\varphi: \R^n \mapsto \overline \R$.
+> Then we claim that for all $c \in \text{dom}(\omega), b \in \text{dom}(\partial \omega)$, 
+> If 
+> $$
+> \begin{aligned}
+>     a = \argmin{x}\left\lbrace
+>        \varphi(x) + D_\omega(x, b)
+>     \right\rbrace, 
+> \end{aligned}
+> $$
+> we have the inequality, 
+> $$
+> \begin{aligned}
+>     (\varphi(c) + D_\omega(c, b)) - 
+>     (\varphi(a) + D_\omega(a, b)) \ge 
+>     D_\omega(c, a). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Suppose that $c \in $
+Using the second prox lemma for the Bregman Proximal mapping, we have for all $c \in \R^n$: 
+
+$$
+\begin{aligned} 
+    \langle \nabla \omega(b) - \nabla \omega(a), c - a \rangle
+    & \le 
+    \varphi(u) - \varphi(a), 
+\end{aligned}
+$$
+
+recall 3 points (cosine inequality) lemma of a Bregman Divergence, we have equality for the LHS of the above: 
+
+$$
+\begin{aligned}
+    & 
+    \langle \nabla w(b) - \nabla w(a), c - a\rangle
+    = 
+    D_\omega(c, a) + D_\omega(a, b) - D_\omega(c, b)
+    \\
+    \\
+    & 
+    \begin{aligned}
+        \implies &
+        D_\omega(c, a) + D_\omega(a, b) - D_\omega(c, b) 
+        \le \varphi(u) - \varphi(a)
+        \\
+        \iff &
+        \varphi(c) + D_\omega(c, b) - \varphi(b) - D_\omega(a, b)
+        \ge 
+        D_\omega(c, a). 
+    \end{aligned}
+\end{aligned}
+$$
+
+And this is the decent inequality. 
 

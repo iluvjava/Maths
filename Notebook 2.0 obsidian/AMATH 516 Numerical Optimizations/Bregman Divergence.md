@@ -160,6 +160,16 @@ The cosine rule interpretation makes it easier to memorize and reveals some insi
 We encourage the readers to consider the case when $a, b, c$ are all on one line. 
 We speculate that if there exist points $a, b \in \text{dom}(\partial f)$ and $c \in \text{dom}(f)$ such that $\langle \nabla \omega(b) - \nabla \omega(a), c - a\rangle = 0$, then it would recover the analogous Pythagoras theorem for the Bregman divergence. 
 
+Finally, observe that if we have $c = b$, then the 3 points lemma becomes: 
+
+$$
+\begin{aligned}
+    \langle \nabla \omega(b) - \nabla \omega(a), b - a\rangle = 
+    D_\omega(b, a) + D_\omega(a, b), 
+\end{aligned}
+$$
+
+And it has now become symmetric, and has only 2 points on it. 
 
 ---
 ### **Bregman Proximal Mapping**
