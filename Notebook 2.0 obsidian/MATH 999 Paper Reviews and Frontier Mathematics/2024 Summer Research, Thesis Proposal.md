@@ -12,12 +12,12 @@ There are a list of good books that we need to read.
 
 Nesterov's writing is unique in the way it covers the topic of Optimal Method (common knows as Nesterov accelerations). 
 It's also unique because of a computation perspective for algorithms, it's manifested as ample amount of derivations for the behaviors of algorithms, complexity and theoretical lower bounds. 
-We will hightlight content in bold if I hadn't read it carefully or the content is new and/or it gives interesting perspective on things that I already know. 
+We will highlight content in bold if I hadn't read it carefully or the content is new and/or it gives interesting perspective on things that I already know. 
 
 For Nesterov's Lecture on Convex Optimization, I think these chapters requires absolute mastery. 
 - Chapter 2 | Smooth Convex Optimization 
   - Minimization of smooth functions
-    - Lower complexity bounds for Lipschitz smooth funciton
+    - Lower complexity bounds for Lipschitz smooth function
     - Strongly convex function
     - Lower complexity bounds for strongly convex function
     - The Gradient Method
@@ -62,6 +62,13 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
 Lectures on Convex Optimizations ^[Y. Nesterov, _Lectures on Convex Optimization_, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: [10.1007/978-3-319-91578-4](https://doi.org/10.1007/978-3-319-91578-4).]
 
 
+#### Amir Beck's Book
+
+
+
+#### Rockafellar, Wets Book
+
+
 ---
 ### **Papers**
 
@@ -76,15 +83,22 @@ I plan on reading these papers.
 
 - Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for nonsmooth nonconvex problems.”]. 
 
+#### **Jerome Bolte**
+
+
 
 #### **Siam Review | Education**
 
 - Nesterov's Method of Convex Optimization^[W. Noel, “Nesterov’s method for convex optimization,” _SIAM Review_, vol. 65, no. 2, pp. 539–562, doi: [10.1137/21M1390037](https://doi.org/10.1137/21M1390037).]. 
 - The Reflection Method for the numerical Solution of Linear Systems ^[M. Guida and C. Sbordone, “The Reflection Method for the Numerical Solution of Linear Systems,” _SIAM Rev._, vol. 65, no. 4, pp. 1137–1151, Nov. 2023, doi: [10.1137/22M1470463](https://doi.org/10.1137/22M1470463).]
 
-#### **Theory Papers**
 
-- <mark style="background: #FF5582A6;">Understanding nesterov's acceleration via proximal point method. ^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]</mark>
+
+#### **Theory Papers**
+Nesterov Accelerations:
+- <mark style="background: #FF5582A6;">Understanding nesterov's acceleration via proximal point method. </mark>^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
+
+Algorithmic Convergence of Nonconvex KL Functions
 -  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]
 - On the convergence of the proximal algorithm for nonsmooth functions involving analytic features ^[H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” _Math. Program._, vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: [10.1007/s10107-007-0133-5](https://doi.org/10.1007/s10107-007-0133-5).]
 
@@ -92,5 +106,7 @@ I plan on reading these papers.
 #### **Applications and Modeling**
 
 - Statistical Problems. 
+	- ????
 - Forestry and machine learning. 
+	- ????
 

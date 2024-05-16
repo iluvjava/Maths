@@ -8,4 +8,8 @@ We use the descent inequality and Lyapunov frameworks proposed in [Proximal Poin
 We will also prove the convergence rate of the method and deduce the optimal step sizes. 
 Before we start, we set up the stage by setting up some quantities that are useful for our derivations later. 
 
+- $f:\R^n \mapsto \overline \R$ is a convex function. 
+
+
+
 #### **Algorithm | PPM Formulation of Nesterov Accelerations**
