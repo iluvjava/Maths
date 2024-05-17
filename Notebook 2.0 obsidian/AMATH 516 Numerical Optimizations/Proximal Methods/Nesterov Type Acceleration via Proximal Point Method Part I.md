@@ -584,3 +584,4 @@ I am still not sure where we used the fact that $x^*$ is the minimizers, except 
 ### **Why is it Called A similar Triangle Form?**
 
 
+
