@@ -4,7 +4,7 @@
 ---
 ### **Intro**
 
-We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex](Proximal%20Point%20Method,%20Convex.md) to derive the method to derive a specific form of the accelerated gradient. 
+We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex](Proximal%20Point%20Method,%20Convex.md) to derive the method for a specific form of the accelerated gradient. 
 We will also prove the convergence rate of the method and deduce the optimal step sizes. 
 Before we start, we set up the stage by setting up some quantities that are useful for our derivations later. 
 
@@ -65,12 +65,13 @@ Our goal is to derive the Nesterove accelerations method, derive its convergence
 **Remarks**
 
 The proof is complicated and it should be dealt with in separate files. 
+It's briefly explained the paper, or the last chapter of Ryu's Monotone Operator Book. 
 
 #### **Thm 1 | INEQ1 AGM**
 > If we execute algorithm: Nesterov Triangular Form I, for convex and differentiable $f: \R^n \mapsto \overline \R$ with a $L$-Lipschitz gradient, Let $(\eta_t)_{t \in \N}$ be strictly positive,then we can obtain following bound on the Lyponouv function: 
 > $$
 > \begin{aligned}
->     & \eta_{t + 1} f(z_{t + 1} - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+>     & \eta_{t + 1} f(z_{t + 1}) - f(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
 >     - \Vert x_* - x_t\Vert^2 
 >     \\
 >     &\le 
@@ -198,7 +199,7 @@ $$
     \rangle
     \\
     &= 
-    - L^{- 1} \Vert f(y_t) \Vert^2 + 
+    - L^{- 1} \Vert \nabla f(y_t) \Vert^2 + 
     \langle \nabla f(y_t), y_t - x_t\rangle + 
     \eta_{t + 1} \Vert \nabla f(y_t)\Vert^2. 
 \end{aligned}
@@ -250,7 +251,7 @@ $$
 \end{aligned}
 $$
 
-Use ([4.9a]), we have update relation $y_t - x_t = L \eta_t(z_t - y_t)$ (**Steps are skipped here**). 
+Use ([4.9a]), we have update relation $y_t - x_t = L \eta_t(z_t - y_t)$ (**The algebra skipped here is not bad.**). 
 Which simplifies the above futher 
 
 $$
@@ -280,8 +281,12 @@ We didnt' use the condition that $x_*$ is a minimizer, this inequality is true f
 It is unclear why it's stated as such in the original paper. 
 It could be the artifacts of something else, and this provide potential directions for generalizations of the proof as well. 
 
+Let's rethink how some of the conditions are made use in the proof for the derivations. 
+1. $\phi_t$ has to be a lower bounding function, and it has to be convex in order to make use of the Descent lemma of PPM for convex function. 
+2. $f$ just has to be smooth, convexity is not used for INEQ1 AGM, but it's used in INEQ2 AGM, which is the next theorem. 
 
-#### **Thm 2 | INEQ2**
+
+#### **Thm 2 | INEQ2 AGM**
 > With the exact same assumption used in Thm 1 for deriving INEQ1, we have additionally the inequality: 
 >
 > $$
@@ -358,8 +363,224 @@ and this is AGM INEQ2.
 The eastalishment of Thm 1, 2, which are INEQ1 AGM, INEQ2 AGM, allows us to select for a specific stepsizes sequence $\eta_t$ such that the method of Nesterov Similar Triangle Form I has convergence of $f(z_t)$. 
 This is stated by the following theorem: 
 
-#### **Thm | Optimal Convergence Rate of The Nesterov Triangular Form I**
-> 
+#### **Thm | Stepsize Sequence for Optimal Convergence Rate of The Nesterov Triangular Form I**
+> For all $t \in \N$ we define the RHS of INEQ1 AGM, INEQ2 AGM as: 
+> $$
+> \begin{aligned}    
+>     \Upsilon_{1, t + 1}^{\text{AGM}} 
+>     &:= 
+>     \left(
+>         \frac{\eta_{t + 1}^2}{2} - 
+>         \frac{\eta_{t + 1}}{2L}
+>     \right) \Vert \nabla f(y_t)\Vert^2 
+>     + 
+>     L \eta_{t} \eta_{t + 1}\langle \nabla f(y_t), z_t - y_t\rangle, 
+>     \\
+>     \Upsilon^{\text{AGM}}_{2, t + 1} &:= 
+>     - \frac{1}{2L} \Vert \nabla f(y_t)\Vert^2 + 
+>     \langle \nabla f(y_t), y_t - z_t\rangle. 
+> \end{aligned}
+> $$
+> Next we define the Lyaponouv function for the algorithm as 
+> $$
+> \begin{aligned}
+>     \Phi_t := \left(
+>         \sum_{i = 1}^{t}\eta_i
+>     \right)(f(z_t) - f(z_*)) + \frac{1}{2} \Vert x_t - x_*\Vert^2, 
+> \end{aligned}
+> $$
+> and for the base case we define $\Phi_0 = \frac{1}{2}\Vert x_0 - x_*\Vert^2$. 
+> Here we assume that $x_*$ is a minimizer for $f$. 
+> Finally, with the choice of $\eta_t = t/(2L)$, the algorithm of Nesterov Triangular Form I achieved convergence rate $\mathcal O(t^{-2})$. 
 
+**Proof**
+
+Directly we consider the quantities: 
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_t 
+    &= 
+    \left(
+        \sum_{i = 1}^{t + 1} \eta_i
+    \right)(f(z_{t + 1}) - f(x_*)) + 
+    \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
+    - 
+    \left(
+        \sum_{i = 1}^{t} \eta_i
+    \right)(f(z_{t}) - f(x_*))
+    - 
+    \frac{1}{2}\Vert x_{t} - x_*\Vert^2 
+    \\
+    &= 
+    \left(
+        \eta_{t + 1} + \sum_{i = 1}^{t} \eta_i 
+    \right)\left(
+        f(z_{t + 1}) - f(z_t) + f(z_t) - f(z_*)
+    \right) + 
+    \frac{1}{2} \Vert x_{t + 1} - x_*\Vert^2 
+    \\
+    &\quad 
+    - \left(
+        \sum_{i = 1}^{t} \eta_i 
+    \right)(f(z_t) - f(x_*))
+    - \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    \\
+    &= 
+    \left(
+        \sum_{i = 1}^{t}\eta_i
+    \right)\left(
+        f(z_{t + 1}) - f(z_t)
+    \right) + 
+    \underbrace 
+    {
+        \color{red}
+        {
+            \eta_{t + 1} (f(z_t) - f(x_*))
+            + 
+            \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 - 
+            \frac{1}{2}\Vert x_t - x_*\Vert^2. 
+        }
+    }_{
+        = \Upsilon_{1, t+1}^{\text{AGM}}
+    }
+    \\
+    \implies 
+    \Phi_{t + 1} - \Phi_t
+    &\le 
+    \Upsilon_{1, t+1}^{\text{AGM}}
+    + 
+    \left(
+        \sum_{i = 1}^{t} \eta_i
+    \right)(f(z_{t + 1}) - f(z_t)) 
+    \\
+    &\le
+    \Upsilon_{1, t+1}^{\text{AGM}}
+    + 
+    \left(
+        \sum_{i = 1}^{t} \eta_i
+    \right)\Upsilon_{t, t + 1}^{\text{AGM}}. 
+\end{aligned}
+$$
+
+And on the last line, we used the INEQ2 AGM inequality. 
+For the algorithm to work, one way is to assure the monotone convergence of the sequence $\Phi_t$ for a suitable choice of stepsize sequence $(\eta_t)_{t \in \N}$. 
+To do that we invoke the definition of $\Upsilon_{1, t + 1}^{\text{AGM}}, \Upsilon_{2, t + 1}^{\text{AGM}}$, so: 
+
+$$
+{\small
+\begin{aligned}
+    \Upsilon_{1, t + 1}^{\text{AGM}} + \Upsilon_{2, t + 1}^{\text{AGM}}
+    &= 
+    \left(
+        \frac{\eta_{t + 1}^2}{2} - \frac{\eta_{t + 1}}{2L}
+    \right)\Vert 
+        \nabla f(y_t)
+    \Vert^2 + 
+    L\eta_t \eta_{t + 1} \langle \nabla f(y_t), z_t - y_t\rangle 
+    + 
+    \left(
+        \sum_{i = 1}^{t} \eta_i
+    \right)\left(
+        - \frac{1}{2L} \Vert \nabla f(y_t)\Vert^2 + 
+        \langle \nabla f(y_t), y_t - z_t\rangle
+    \right)
+    \\
+    &= 
+    \left(
+        \frac{\eta_{t + 1}^2}{2} 
+        - \frac{1}{2L} \sum_{i = 1}^{t + 1}\eta_i
+    \right)\Vert \nabla f(y_t)\Vert^2 
+    + 
+    \left(
+        \sum_{i = 1}^{t}\eta_{i} - L\eta_t\eta_{t + 1}
+    \right)\langle \nabla f(y_t), y_t - z_t\rangle 
+    \\
+    &\le 0. 
+\end{aligned}
+}
+$$
+
+To allow the inequality to be satisfies, the sequence of stepsizes $\eta_t$ should set the stepsize inner prodcut to be zero and setting the gradient $\Vert \nabla f(y_t)\Vert^2$ to be non-positive. 
+Which gives us 
+
+$$
+\begin{aligned} 
+    \begin{cases}
+        \sum_{i = 1}^{t} \eta_i = L\eta_t\eta_{t + 1}, 
+        \\
+        L \eta_{t + 1}^2 - \sum_{i = 1}^{t + 1} \eta_i \le 0. 
+    \end{cases}
+\end{aligned}
+$$
+
+Substituting the sum from the first inequality into the second inequality it yields: 
+
+$$
+\begin{aligned}
+    L\eta_{t + 1}^2 - (\eta_{t + 1} + L\eta_t\eta_{t + 1}) &\le 0 
+    \\
+    L\eta^2_{t + 1} - \eta_{t + 1}
+    &\le 
+    L\eta_t \eta_{t + 1} 
+    \\
+    \eta_{t + 1}(L\eta_{t + 1} - 1) 
+    &\le L\eta_t\eta_{t + 1}
+    \\
+    \eta_t > 0 
+    \implies 
+    L\eta_{t + 1} - 1 &\le 
+    L\eta_t 
+    \\
+    \eta_{t + 1} &\le \eta_t + L^{-1}. 
+\end{aligned}
+$$
+
+Now, observe that we may **suggests** the stespzies to be $\eta_{t} = t/(2L)$, so that the inequality is satisfied, alternatively, $\eta_{t} = t/L$, works too (but it will breaks the equality $\sum_{i = 1}^{t}\eta_i = L\eta_t\eta_{t + 1}$). 
+To derive the convergence rate, we use $\Phi_t$ and do $\forall t \in \N$
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_t 
+    &\le 0 
+    \\
+    \implies 
+    \Phi_{t + 1} \le \Phi_0 
+    &= \frac{1}{2} \Vert x_0 - x_*\Vert^2 
+    \\
+    \left(
+        \sum_{i = 1}^{t}\eta_i
+    \right)(f(z_t) - f(x_*)) 
+    + 
+    \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    &\le 
+    \frac{1}{2}\Vert x_0 - x_*\Vert^2 
+    \\
+    \implies 
+    \left(
+        \sum_{i = 1}^{t}\eta_i
+    \right)(f(z_t) - f(x_*)) 
+    &\le 
+    \frac{1}{2}\Vert x_0 - x_*\Vert^2 
+    \\
+    f(z_t) - f(x_*) &\le 
+    \frac{1}{2}\left(
+        \sum_{t = 1}^{t}\eta_i
+    \right)^{-1}
+    \Vert x_0 - x_*\Vert^2, 
+\end{aligned}
+$$
+
+with $\eta_t = t/L$, the convergence rate of $f(z_t) - f(x_*)$ is in the class of $\mathcal O(t^{-2})$. 
+As testified by Nesterov's seminal works, this convergence rate is optimal for all Convex Lipschitz Smooth function $f$. 
+
+
+**Remarks**
+
+I am still not sure where we used the fact that $x^*$ is the minimizers, except at the very last step where we need it to derive the convergence rate of the optimal gap $f(z_t) - f(x_*)$ where it only makes sense to have $x_*$ to be the minimizer. 
+
+
+---
+### **Why is it Called A similar Triangle Form?**
 
 

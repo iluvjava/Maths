@@ -307,3 +307,8 @@ $$
 
 And this is the decent inequality. 
 
+---
+### **A Simple Application of Bregman Proximal Mapping**
+
+
+
