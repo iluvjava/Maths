@@ -4,7 +4,7 @@
 ### **Intro**
 
 2-Norm is a type of Bregman divergence. 
-The 2-Norm is is used in the proximal mapping. 
+The 2-Norm is used in the proximal mapping. 
 Hence, in this file we investigate the generalization of a proximal mapping when the 2-Norm inside of the proximal mapping is a Bregman Divergence instead of just a regular 2-Norm. 
 We will faithfully follow Chapter 9 of Amir Beck's First-Order Method textbook[^1], and complement it with a paper by Heinz et al.[^2], and some Rockafellar classics. 
 
