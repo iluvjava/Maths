@@ -5,3 +5,5 @@
 - [x] Finish [Proximal Point Method, Convex](Proximal%20Point%20Method,%20Convex.md) for background for momentum related methods. 
 - [ ] [The Proximal Point Method, Nonconvex](../AMATH%20516%20Numerical%20Optimizations/The%20Proximal%20Point%20Method,%20Nonconvex.md)
 	- Finish this entry. 
+- [x] [Nesterov Type Acceleration via Proximal Point Method Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20I.md) 
+- [ ] [Nesterov Type Acceleration via Proximal Point Method Part II](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20II.md) 

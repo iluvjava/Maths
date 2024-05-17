@@ -412,6 +412,7 @@ $$
 for the appropriate $L_t$, this is called: "line search". 
 This is strictly weaker than what is used to prove the theorem. 
 There are some potential for generalization and creativity by considering various kind of convex $\phi_t(x)$. 
+One can imagine maximizing $\eta_{t + 1}L_t$ by appropriate choice of $x_{t + 1}$ to obtain faster convergence rate. 
 
 
 #### **Thm-2 | Stepsize and the Convergence of the Gradient Descent Method**

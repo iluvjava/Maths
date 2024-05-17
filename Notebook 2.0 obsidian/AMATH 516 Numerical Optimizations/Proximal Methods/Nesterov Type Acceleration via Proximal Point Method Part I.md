@@ -30,7 +30,7 @@ Our goal is to derive the Nesterove accelerations method, derive its convergence
 > \begin{aligned}
 >     x_{t + 1} &= \argmin{x \in \R^n} 
 >     \left\lbrace
->         l_f(x; y_t) + \frac{1}{\eta_{t + 1}}\Vert x - x_t\Vert^2
+>         l_f(x; y_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
 >     \right\rbrace & \text{([4.8a])}
 >     \\
 >     y_{t + 1} &= \argmin{x \in \R^n}
@@ -46,7 +46,7 @@ Our goal is to derive the Nesterove accelerations method, derive its convergence
 > The nesterov triangular has recurrenced based on $(x_t, y_t, z_t)$, with $x_0 = y_0 = z_0$. 
 > $$
 > \begin{aligned}
->     y_t &= \frac{L^{-1}}{L^{-1} + \eta_t} + 
+>     y_t &= \frac{L^{-1}}{L^{-1} + \eta_t}x_t + 
 >     \frac{\eta_t}{L^{-1} + \eta_t} z_t , 
 >     & \text{([4.9a])}
 >     \\
@@ -66,6 +66,7 @@ Our goal is to derive the Nesterove accelerations method, derive its convergence
 
 The proof is complicated and it should be dealt with in separate files. 
 It's briefly explained the paper, or the last chapter of Ryu's Monotone Operator Book. 
+
 
 #### **Thm 1 | INEQ1 AGM**
 > If we execute algorithm: Nesterov Triangular Form I, for convex and differentiable $f: \R^n \mapsto \overline \R$ with a $L$-Lipschitz gradient, Let $(\eta_t)_{t \in \N}$ be strictly positive,then we can obtain following bound on the Lyponouv function: 
@@ -268,7 +269,7 @@ $$
         \frac{\eta_{t + 1}^2}{2} - \frac{\eta_{t + 1}}{2L}
     \right) 
     \Vert \nabla f(y_t)\Vert^2  + 
-    L \eta_{t + 1} \eta_t\langle \nabla f(y_t), (z_t - y_t)\rangle, 
+    L \eta_{t + 1} \eta_t\langle \nabla f(y_t), z_t - y_t\rangle, 
 \end{aligned}
 $$
 
@@ -284,6 +285,7 @@ It could be the artifacts of something else, and this provide potential directio
 Let's rethink how some of the conditions are made use in the proof for the derivations. 
 1. $\phi_t$ has to be a lower bounding function, and it has to be convex in order to make use of the Descent lemma of PPM for convex function. 
 2. $f$ just has to be smooth, convexity is not used for INEQ1 AGM, but it's used in INEQ2 AGM, which is the next theorem. 
+
 
 
 #### **Thm 2 | INEQ2 AGM**
@@ -478,7 +480,8 @@ $$
         \nabla f(y_t)
     \Vert^2 + 
     L\eta_t \eta_{t + 1} \langle \nabla f(y_t), z_t - y_t\rangle 
-    + 
+    \\
+    &\quad+ 
     \left(
         \sum_{i = 1}^{t} \eta_i
     \right)\left(
@@ -536,7 +539,7 @@ $$
 \end{aligned}
 $$
 
-Now, observe that we may **suggests** the stespzies to be $\eta_{t} = t/(2L)$, so that the inequality is satisfied, alternatively, $\eta_{t} = t/L$, works too (but it will breaks the equality $\sum_{i = 1}^{t}\eta_i = L\eta_t\eta_{t + 1}$). 
+Now, observe that we may **suggests** the stespzies to be $\eta_{t} = t/(2L)$, so that the inequality is satisfied, alternatively, $\eta_{t} = t/L$, works too (but it will break the equality $\sum_{i = 1}^{t}\eta_i = L\eta_t\eta_{t + 1}$). 
 To derive the convergence rate, we use $\Phi_t$ and do $\forall t \in \N$
 
 $$
@@ -582,6 +585,46 @@ I am still not sure where we used the fact that $x^*$ is the minimizers, except 
 
 ---
 ### **Why is it Called A similar Triangle Form?**
+
+Consider $([4.9a])$, which gives 
+
+$$
+\begin{aligned}
+    y_t &= \frac{L^{-1}}{L^{-1} + \eta_t}x_t + \frac{\eta_t}{L^{-1} + \eta_t} z_t
+    \\
+    &= \frac{1}{1 + L\eta_t} x_t + 
+    \frac{L\eta_t}{1 + L \eta_t} z_t
+    \\
+    \iff 
+    (1 + L\eta_t)y_t
+    &= 
+    x_t + L\eta_t z_t
+    \\
+    \iff 
+    y_t - x_t &= 
+    L\eta_t(z_t - y_t), \text{collinear vectors}. 
+    \\
+    \implies 
+    \frac{\Vert y_t - x_t \Vert}{\Vert z_t - y_t\Vert} &= L\eta_t, 
+\end{aligned}
+$$
+
+for all $t \in \N$. 
+The triangle is with vertices $(y_t, z_t, z_{t + 1})$, and $(x_t, z_t, x_{t + 1})$. 
+With $y_t - x_t = L\eta_t(z_t - y_t)$, we have 3 points $y_t, x_t, z_t$ all lies on the same line. 
+By $([4.9b])$ we have $x_{t + 1} - x_t = -\eta_{t + 1}\nabla f(y_t)$, and $z_{t + 1} - y_t = -L^{-1} \nabla f(y_t)$, therefore the vector $z_{t + 1} - y_t$ are collinear with $x_{t + 1} - x_t$. 
+However, the vector $z_t - z_{t + 1}$, and $z_{t + 1} - x_{t + 1}$ may not align. 
+See the image below for an illustrations. 
+![](../../Assets/Pasted%20image%2020240516224535.png)
+
+The author argue that, by aligningthe vector $z_t - z_{t + 1}$ with $z_{t + 1} - x_{t + 1}$, we can get two more Nesterov Accelerations method, which is variants of the Nesterov Trianglular Form I, but with a different sequence that also makes the algorithm converges at the same rate. 
+To achieve that, we are presented with only two choices: 
+1. Modify $x_{t + 1}$. In which we choose $\eta_{t + 1}$ carefully to allow that. 
+2. Modify $z_{t + 1}$. In which we choose a different stepsizes to for $z_{t + 1}$ on the method of gradient descent to allow that. 
+
+
+---
+### **The Nesterov Similar Triangle Form II**
 
 
 
