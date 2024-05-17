@@ -68,6 +68,13 @@ Lectures on Convex Optimizations ^[Y. Nesterov, _Lectures on Convex Optimization
 
 #### Rockafellar, Wets Book
 
+Try understand these: 
+ - Chapter 1: 
+	 - F: Parametric Dependence
+	 - G: Moreau Envelopes
+ - Chapter 10 G with as much context as possible. 
+	 - G: Semiderivatives and Subsmoothness
+
 
 ---
 ### **Papers**
@@ -84,14 +91,19 @@ I plan on reading these papers.
 - Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for nonsmooth nonconvex problems.”]. 
 
 #### **Jerome Bolte**
+- Optimal complexity and cerification of Bregman first-order methods^[R.-A. Dragomir, A. B. Taylor, A. d’Aspremont, and J. Bolte, “Optimal complexity and certification of Bregman first-order methods,” _Math. Program._, vol. 194, no. 1–2, pp. 41–83, Jul. 2022, doi: [10.1007/s10107-021-01618-1](https://doi.org/10.1007/s10107-021-01618-1).].
 
+#### **Peter Osch**
+
+
+
+#### **Aujol**
 
 
 #### **Siam Review | Education**
 
 - Nesterov's Method of Convex Optimization^[W. Noel, “Nesterov’s method for convex optimization,” _SIAM Review_, vol. 65, no. 2, pp. 539–562, doi: [10.1137/21M1390037](https://doi.org/10.1137/21M1390037).]. 
-- The Reflection Method for the numerical Solution of Linear Systems ^[M. Guida and C. Sbordone, “The Reflection Method for the Numerical Solution of Linear Systems,” _SIAM Rev._, vol. 65, no. 4, pp. 1137–1151, Nov. 2023, doi: [10.1137/22M1470463](https://doi.org/10.1137/22M1470463).]
-
+- The Reflection Method for the numerical Solution of Linear Systems ^[M. Guida and C. Sbordone, “The Reflection Method for the Numerical Solution of Linear Systems,” _SIAM Rev._, vol. 65, no. 4, pp. 1137–1151, Nov. 2023, doi: [10.1137/22M1470463](https://doi.org/10.1137/22M1470463).].
 
 
 #### **Theory Papers**
@@ -99,8 +111,16 @@ Nesterov Accelerations:
 - <mark style="background: #FF5582A6;">Understanding nesterov's acceleration via proximal point method. </mark>^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
 
 Algorithmic Convergence of Nonconvex KL Functions
--  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]
-- On the convergence of the proximal algorithm for nonsmooth functions involving analytic features ^[H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” _Math. Program._, vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: [10.1007/s10107-007-0133-5](https://doi.org/10.1007/s10107-007-0133-5).]
+-  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]. 
+	- For PPM related algorithm,
+	- in nonexonvex settings, 
+	- with KL and semi-algebraic functions. 
+- On the convergence of the proximal algorithm for nonsmooth functions involving analytic features ^[H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” _Math. Program._, vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: [10.1007/s10107-007-0133-5](https://doi.org/10.1007/s10107-007-0133-5).].
+	- For PPM related algorithm in nonconvex settings, 
+	- with KL and Semi-algebraic functions. 
+- A universal catalyst for first order optimizations ^[H. Lin, J. Mairal, and Z. Harchaoui, “A Universal Catalyst for First-Order Optimization,” in _Advances in Neural Information Processing Systems_, Curran Associates, Inc., 2015. Accessed: May 17, 2024. \[Online\]. Available: [https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html](https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html)]. 
+	- For PPM and Nestrov Accelerations. 
+
 
 
 #### **Applications and Modeling**
