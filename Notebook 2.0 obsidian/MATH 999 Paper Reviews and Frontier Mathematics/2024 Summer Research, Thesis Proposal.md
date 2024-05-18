@@ -64,11 +64,12 @@ Lectures on Convex Optimizations ^[Y. Nesterov, _Lectures on Convex Optimization
 
 #### Amir Beck's Book
 
-
+Chapter 12, Frank Wolfe conditional Gradient descent. 
 
 #### Rockafellar, Wets Book
 
 Try understand these: 
+
  - Chapter 1: 
 	 - F: Parametric Dependence
 	 - G: Moreau Envelopes
@@ -91,14 +92,12 @@ I plan on reading these papers.
 - Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for nonsmooth nonconvex problems.”]. 
 
 #### **Jerome Bolte**
-- Optimal complexity and cerification of Bregman first-order methods^[R.-A. Dragomir, A. B. Taylor, A. d’Aspremont, and J. Bolte, “Optimal complexity and certification of Bregman first-order methods,” _Math. Program._, vol. 194, no. 1–2, pp. 41–83, Jul. 2022, doi: [10.1007/s10107-021-01618-1](https://doi.org/10.1007/s10107-021-01618-1).].
+- <mark style="background: #FFB86CA6;">Optimal complexity and cerification of Bregman first-order methods</mark>^[R.-A. Dragomir, A. B. Taylor, A. d’Aspremont, and J. Bolte, “Optimal complexity and certification of Bregman first-order methods,” _Math. Program._, vol. 194, no. 1–2, pp. 41–83, Jul. 2022, doi: [10.1007/s10107-021-01618-1](https://doi.org/10.1007/s10107-021-01618-1).].
 
 #### **Peter Osch**
 
-
-
-#### **Aujol**
-
+- iPiano^[P. Ochs, Y. Chen, T. Brox, and T. Pock, “iPiano: Inertial Proximal Algorithm for Nonconvex Optimization,” _SIAM J. Imaging Sci._, vol. 7, no. 2, pp. 1388–1419, Jan. 2014, doi: [10.1137/130942954](https://doi.org/10.1137/130942954).]. 
+	- Demonstrated the applications of Attouch, Jorem Bolte's KL, PPM convergence frameworks. 
 
 #### **Siam Review | Education**
 
@@ -108,10 +107,10 @@ I plan on reading these papers.
 
 #### **Theory Papers**
 Nesterov Accelerations:
-- <mark style="background: #FF5582A6;">Understanding nesterov's acceleration via proximal point method. </mark>^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
+- <mark style="background: #FF5582A6;">Understanding Nesterov's acceleration via proximal point method. </mark>^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
 
 Algorithmic Convergence of Nonconvex KL Functions
--  Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]. 
+-  <mark style="background: #FFB86CA6;">Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods</mark> ^[H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).]. 
 	- For PPM related algorithm,
 	- in nonexonvex settings, 
 	- with KL and semi-algebraic functions. 
@@ -120,7 +119,8 @@ Algorithmic Convergence of Nonconvex KL Functions
 	- with KL and Semi-algebraic functions. 
 - A universal catalyst for first order optimizations ^[H. Lin, J. Mairal, and Z. Harchaoui, “A Universal Catalyst for First-Order Optimization,” in _Advances in Neural Information Processing Systems_, Curran Associates, Inc., 2015. Accessed: May 17, 2024. \[Online\]. Available: [https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html](https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html)]. 
 	- For PPM and Nestrov Accelerations. 
-
+- <mark style="background: #FFB86CA6;">New Proximal Point Algorithms for Convex Minimizations</mark> ^[O. Güler, “New Proximal Point Algorithms for Convex Minimization,” _SIAM J. Optim._, vol. 2, no. 4, pp. 649–664, Nov. 1992, doi: [10.1137/0802032](https://doi.org/10.1137/0802032).]. 
+- Monotone Operators and the Proximal Point Algorithm^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” _SIAM J. Control Optim._, vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: [10.1137/0314056](https://doi.org/10.1137/0314056).]
 
 
 #### **Applications and Modeling**
