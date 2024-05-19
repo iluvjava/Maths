@@ -124,8 +124,8 @@ This above algorithm can also be transformed into the classic exptrapolated grad
 > If we execute algorithm: AGM Triangular Form I, for convex and differentiable $f: \R^n \mapsto \overline \R$ with a $L$-Lipschitz gradient, Let $(\eta_t)_{t \in \N}$ be strictly positive,then we can obtain following bound on the Lyponouv function: 
 > $$
 > \begin{aligned}
->     & \eta_{t + 1} f(z_{t + 1}) - f(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
->     - \Vert x_* - x_t\Vert^2 
+>     & \eta_{t + 1}(f(z_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+>     - \frac{1}{2}\Vert x_* - x_t\Vert^2 
 >     \\
 >     &\le 
 >     \left(
@@ -410,6 +410,10 @@ $$
 
 and this is AGM INEQ2. 
 
+**Remarks**
+
+That is the role of (\[4.9b\]) in the proof of the above 2 theorems? 
+
 
 ---
 ### **The Convergence Theorem**
@@ -496,7 +500,7 @@ $$
             \frac{1}{2}\Vert x_t - x_*\Vert^2. 
         }
     }_{
-        = \Upsilon_{1, t+1}^{\text{AGM}}
+        \le \Upsilon_{1, t+1}^{\text{AGM}}, \text{ by INEQ1 AGM}
     }
     \\
     \implies 
@@ -517,14 +521,19 @@ $$
 \end{aligned}
 $$
 
-And on the last line, we used the INEQ2 AGM inequality. 
+And on the last line, we used the INEQ2 AGM inequality and the fact that $f(z_*)$ is a minimum, so we also use $\eta_{n + 1}(f(z_{t + 1}) - f(z_*)) \le 0$ to get the inequality. 
 For the algorithm to work, one way is to assure the monotone convergence of the sequence $\Phi_t$ for a suitable choice of stepsize sequence $(\eta_t)_{t \in \N}$. 
 To do that we invoke the definition of $\Upsilon_{1, t + 1}^{\text{AGM}}, \Upsilon_{2, t + 1}^{\text{AGM}}$, so: 
 
 $$
 {\small
 \begin{aligned}
-    \Upsilon_{1, t + 1}^{\text{AGM}} + \Upsilon_{2, t + 1}^{\text{AGM}}
+    \Upsilon_{1, t + 1}^{\text{AGM}} 
+    + 
+    \left(
+        \sum_{i = 11}^{t}\eta_i
+    \right)
+    \Upsilon_{2, t + 1}^{\text{AGM}}
     &= 
     \left(
         \frac{\eta_{t + 1}^2}{2} - \frac{\eta_{t + 1}}{2L}
@@ -676,7 +685,14 @@ To achieve that, we are presented with only two choices:
 
 
 ---
-### **The Nesterov Similar Triangle Form II**
+### **The Nesterov Similar Triangle Form II, III**
 
+
+
+
+---
+### **The Ultimate AGM Form**
+
+In this section, we introduce the ultimate triangular form that can be used to derive a lot of the variants of the Nesterov Accelerated Gradient method. 
 
 

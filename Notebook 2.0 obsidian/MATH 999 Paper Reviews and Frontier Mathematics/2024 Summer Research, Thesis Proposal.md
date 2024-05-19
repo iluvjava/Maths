@@ -73,9 +73,8 @@ Try understand these:
  - Chapter 1: 
 	 - F: Parametric Dependence
 	 - G: Moreau Envelopes
- - Chapter 10 G with as much context as possible. 
+ - Chapter 10: 
 	 - G: Semiderivatives and Subsmoothness
-
 
 ---
 ### **Papers**
@@ -89,7 +88,7 @@ I plan on reading these papers.
 
 #### **Sasha**
 
-- Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for nonsmooth nonconvex problems.”]. 
+- Relax and Split for Nonconvex Inverse Problem ^[P. Zheng and A. Aravkin, “Relax-and-split method for Nonsmooth nonconvex problems.”]. 
 
 #### **Jerome Bolte**
 - <mark style="background: #FFB86CA6;">Optimal complexity and cerification of Bregman first-order methods</mark>^[R.-A. Dragomir, A. B. Taylor, A. d’Aspremont, and J. Bolte, “Optimal complexity and certification of Bregman first-order methods,” _Math. Program._, vol. 194, no. 1–2, pp. 41–83, Jul. 2022, doi: [10.1007/s10107-021-01618-1](https://doi.org/10.1007/s10107-021-01618-1).].
@@ -106,6 +105,7 @@ I plan on reading these papers.
 
 
 #### **Theory Papers**
+
 Nesterov Accelerations:
 - <mark style="background: #FF5582A6;">Understanding Nesterov's acceleration via proximal point method. </mark>^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: [10.48550/arXiv.2005.08304](https://doi.org/10.48550/arXiv.2005.08304).]
 

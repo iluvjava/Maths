@@ -264,7 +264,12 @@ Additional assumptions for $f$ is required.
 
 
 #### **Corollary | PPM for Strongly Convex Function**
-> ...
+> Let $f$ be $\beta$-strongly convex. 
+> Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_t/\beta)$. 
+
+**Proof**
+
+
 
 
 ---
@@ -435,11 +440,11 @@ In practice, the step size is usually constant, or it's determined by some type 
 **Proof**
 
 The proximal point on $l_f(x, \bar x)$, is proximal gradient, that part is obvious. 
-See [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md) for more information. 
+See [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md) for more information.
 Next, $l_f(\cdot, \bar x)$ is convex for all $\bar x \in X$, and by convexity of $g$, it is a lower bounding function for $f$. 
 The function $h$ is smooth, and therefore the upper bound
 $$
-f(\cdot) \le l_f(\cdot | x_t) + \frac{L}{2}\Vert\cdot - x_t\Vert^2 
+    f(\cdot) \le l_f(\cdot | x_t) + \frac{L}{2}\Vert\cdot - x_t\Vert^2 
 $$
 applies. 
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 

@@ -53,7 +53,7 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following 
 
 **Theorem 2 |  Weaker Implications**
 
-Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general properties for functions. 
+> Conditions 4, 5, 6, 7 are all implied by the strong convexity, and those statements are important to convergence analysis for different algorithm however, they will be more general properties for functions. 
 
 **Remarks**
 
@@ -70,7 +70,7 @@ These results are occasionally useful, especially deriving the best kind of beha
 ---
 ### **Proofs for Theorem 1**
 
-**\[Def\] <=> \[1\]**
+**\[Def\] <=> \[3.\]**
 
 We show that the definition of a strongly convex function is equivalent to having a strong Jensen's Inequality, with the assumptions that $\Vert \cdot\Vert$ is the Euclidean norm. It's direct and consider any $\lambda \in (0, 1)$, we have 
 
@@ -79,14 +79,14 @@ $$
 	f(\lambda x + (1 - \lambda)y) &\le
 	\lambda f(x) + (1 - f(y)) - \alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2
 	\\
-	&\quad \textcolor{gray}{\triangleright \text{using [1]}} 
+	&\quad \textcolor{gray}{\triangleright \text{using ([1])}} 
 	\\
 	f(\lambda x + (1 - \lambda)y) &\le 
 	\lambda f(x) + (1 - \lambda) f(y) - 
 	\\
 	&\quad
-	\frac{\alpha}{2}(\Vert \lambda x + (1 - \lambda)y\Vert^2
-		 - \lambda \Vert x\Vert^2 - (1 - \lambda)\Vert y\Vert^2
+	\frac{\alpha}{2}(
+		\Vert \lambda x + (1 - \lambda)y\Vert^2 - \lambda \Vert x\Vert^2 - (1 - \lambda)\Vert y\Vert^2
 	)
 	\\
 	f(\lambda x + (1 - \lambda)y) - \frac{\alpha}{2}\Vert \lambda x + (1 - \lambda)y\Vert^2
@@ -101,7 +101,7 @@ $$
 \end{aligned}
 $$
 
-at \[1\] we used the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) because of the Euclidean norm, and hence the function is $\alpha$-strongly convex in the 2 norm, if and only if $f - \alpha/2\Vert \cdot\Vert$ is a convex function. 
+(\[1\]): We used the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) because of the Euclidean norm, and hence the function is $\alpha$-strongly convex in the 2 norm, if and only if $f - \alpha/2\Vert \cdot\Vert$ is a convex function. 
 
 ---
 ### **Proofs for Theorem 2**
