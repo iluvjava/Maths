@@ -49,7 +49,7 @@ Prof Wang's Math 328 class, lecture 5.
 
 **Remarks**
 
-The convergence can make arbitrarily fast by a choice of stepsize $\eta$ for the resolvent, so, $(I - \eta\partial f)^2$ gives faster convergence by a choice of $\eta$ that is huge. The above presentation is simplified by ignoring a factor $\eta$. 
+The convergence can make arbitrarily fast by a choice of stepsize $\eta$ for the resolvent, so, $(I - \eta\partial f)^{-1}$ gives faster convergence by a choice of $\eta$ that is huge. The above presentation is simplified by ignoring a factor $\eta$. 
 
 ---
 ### **Gradient Descent on Smooth and Strongly Convex Functions**

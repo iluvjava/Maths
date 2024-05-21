@@ -517,7 +517,7 @@ $$
     + 
     \left(
         \sum_{i = 1}^{t} \eta_i
-    \right)\Upsilon_{t, t + 1}^{\text{AGM}}. 
+    \right)\Upsilon_{2, t + 1}^{\text{AGM}}. 
 \end{aligned}
 $$
 
@@ -683,12 +683,19 @@ To achieve that, we are presented with only two choices:
 1. Modify $x_{t + 1}$. In which we choose $\eta_{t + 1}$ carefully to allow that. 
 2. Modify $z_{t + 1}$. In which we choose a different stepsizes to for $z_{t + 1}$ on the method of gradient descent to allow that. 
 
+---
+### **What Specific Algorithm do we Get**
+
+If we substitute the choice of stepsize, we will obtain a form of nesterov accelerated method that I never seen before. 
+
+
 
 ---
 ### **The Nesterov Similar Triangle Form II, III**
 
+We repeat the same proof ideas, but proving several variants of Nesterov using one single formulations of PPM and the ideas of similar triangle. 
 
-
+See [Nesterov Type Acceleration via Proximal Point Method Part II](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20II.md) for more stories. 
 
 ---
 ### **The Ultimate AGM Form**

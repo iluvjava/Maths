@@ -59,7 +59,7 @@ The quadratic growth conditions of $f$, is strictly weaker than strong convexity
 There is potential for $f + (1/2)\Vert \cdot + x\Vert^2$ that is not necessarily a strongly convex function. 
 The reader should ponder and appreciate that $y$ is free. 
 
-Similarly, if $f$ is $\beta$-strongly convex, $f(\cdot) + \frac{1}{2\alpha}\Vert  \cdot - x\Vert$ is $\beta + (1/\alpha)$ strongly convex, hence we have: 
+Similarly, if $f$ is $\beta$-strongly convex, $f(\cdot) + \frac{1}{2\alpha}\Vert  \cdot - x\Vert$ is $\beta + (1/\alpha)$ strongly convex, hence we have $\forall y \in \R^n$: 
 
 $$
 \begin{aligned}
@@ -138,7 +138,9 @@ $$
     &\quad  
     \begin{aligned}
         \implies& 
-        f(x_{t + 1}) - f(x_t) \le 0 \leftarrow \text{([INEQ2])}, 
+        f(x_{t + 1}) - f(x_t) \le 
+        -\frac{1}{2\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2
+        \leftarrow \text{([INEQ2])}, 
     \end{aligned}
     
 \end{aligned}

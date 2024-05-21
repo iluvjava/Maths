@@ -17,7 +17,7 @@ Here in this file we make use the following specific references:
 
 **Remarks**
 
-Becareful about the use of 2-norm here. In the general case, things might change, and there are alternative definition of strong convexity that works with different norm and vector spaces. This definition can be generalized with the energy norm. Generalizing to other norms (such as the infinity norm) will break the definition. 
+Be careful about the use of 2-norm here. In the general case, things might change, and there are alternative definition of strong convexity that works with different norm and vector spaces. This definition can be generalized with the energy norm. Generalizing to other norms (such as the infinity norm) will break the definition. 
 
 **Conditions**
 
