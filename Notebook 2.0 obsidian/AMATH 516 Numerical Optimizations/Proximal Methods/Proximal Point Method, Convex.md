@@ -105,7 +105,7 @@ $$
     &\quad 
     \begin{aligned}
         \implies &
-        \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         +  
@@ -114,7 +114,7 @@ $$
         \frac{1}{2}\Vert x^* - x_t\Vert^2 \le 0
         \\
         \iff & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         -
@@ -124,7 +124,7 @@ $$
         \le 0
         \\
         \implies & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         -
@@ -217,7 +217,7 @@ We obesrve that, combining (\[INEQ1\]) and (\[INEQ2\]), we know that the functio
 The later is Fejer Monotonicity, and the former is much weaker implications. 
 
 \(\[INEQ2\]\) is unecessary for the proof of the Lyapnouv function, but it's presented to show that the function value strictly decreases. 
-It's not necessary because observe that directly we have 
+However, we may verify that $\phi_t$ is a lyaponuv function if we know what it is in prior, consider that: 
 
 $$
 \begin{aligned}
@@ -231,6 +231,18 @@ $$
 
 so it equals to the LHS of (\[INEQ1\]). 
 So $\Phi_{t + 1} - \Phi_t \le 0$. 
+
+Additionally, the choice of $x^*$ can be arbitrary. 
+The Lyaponouv function be alternatively defined as 
+
+$$
+\begin{aligned}
+    \phi_t(u) = \left(
+        \sum_{i = 1}^{t} \eta_i
+    \right)(f(x_t) - f(u)) + 
+    \frac{1}{2}\Vert u - x_t\Vert^2. 
+\end{aligned}
+$$
 
 
 #### **Thm 1 | Baseline Convergence via Method of PPM**

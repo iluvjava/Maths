@@ -120,7 +120,7 @@ Algorithmic Convergence of Nonconvex KL Functions
 - A universal catalyst for first order optimizations ^[H. Lin, J. Mairal, and Z. Harchaoui, “A Universal Catalyst for First-Order Optimization,” in _Advances in Neural Information Processing Systems_, Curran Associates, Inc., 2015. Accessed: May 17, 2024. \[Online\]. Available: [https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html](https://proceedings.neurips.cc/paper_files/paper/2015/hash/c164bbc9d6c72a52c599bbb43d8db8e1-Abstract.html)]. 
 	- For PPM and Nestrov Accelerations. 
 - <mark style="background: #FFB86CA6;">New Proximal Point Algorithms for Convex Minimizations</mark> ^[O. Güler, “New Proximal Point Algorithms for Convex Minimization,” _SIAM J. Optim._, vol. 2, no. 4, pp. 649–664, Nov. 1992, doi: [10.1137/0802032](https://doi.org/10.1137/0802032).]. 
-- Monotone Operators and the Proximal Point Algorithm^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” _SIAM J. Control Optim._, vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: [10.1137/0314056](https://doi.org/10.1137/0314056).]
+- <mark style="background: #FF5582A6;">Monotone Operators and the Proximal Point Algorithm</mark>^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” _SIAM J. Control Optim._, vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: [10.1137/0314056](https://doi.org/10.1137/0314056).]
 
 
 #### **Applications and Modeling**
