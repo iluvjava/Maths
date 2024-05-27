@@ -89,5 +89,105 @@ Using the equivalent characterizations of a firmly non-expansive operators, we o
 3. The resolvent operator is obviously monotone as well because it's already firmly non-expansive. 
 
 
+---
+### **The Resolvent of a Strongly Monotone Operator**
 
+By the realization that a strongly monotone operator is monotone. 
+The above results apply for the resolvent of strongly monotone operator too. 
+In this section, we show that the resolvent of a strongly monotone operator exhibits additional properties compare. 
+
+
+### **Claim | Resolvent of a Strongly Monotone Operator**
+> With $B$ $\alpha$-strongly monotone written as $B = A + \alpha I$ where A is maximally monotone,  then the resolvent operator $\mathcal J_{B} = (I + B)^{-1}$ is $\alpha$-strongly monotone.
+> In addition, $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
+
+**Proof**
+
+Consider $x' = ((I + \beta) + A)^{-1}x = \mathcal J_Bx$. 
+By definition of things we have 
+
+$$
+\begin{aligned}
+    (1 + \beta) x' + Ax' \ni x
+    &= (1 + \beta) x' + x'_A \; \exists x'_A \in Ax, 
+\end{aligned}
+$$
+
+similarly for $y' = \mathcal J_B y$, we have $\exists y\in Ay: (1 + \beta)y + y'_A = y$. 
+Condier the cross product 
+
+$$
+\begin{aligned}
+    \langle x - y, x' - y'\rangle
+    &= 
+    \left\langle 
+        (1 + \beta)(x' - y') + (x'_A - y'_A), x - y
+    \right\rangle
+    \\
+    &= \left\langle 
+        x' - y' + (y_A' - y'_A), x' - y'
+    \right\rangle 
+    + \beta\Vert x' - y'\Vert^2, 
+\end{aligned}
+$$
+
+with $u = \mathcal J_A x'$, so $u = x' + x'_A \;\exists x' \in Ax'$, possible my Minty. 
+Similarly we make $v = \mathcal J_A y', v = y' + y'_A\; \exists y' \in Ay'$. 
+With $u, v$ we continue from the above then 
+
+$$
+\begin{aligned}
+    \langle x - y, x'- y'\rangle
+    &= 
+    \langle u- v, x' - y'\rangle + 
+    \beta\Vert x' - y'\Vert^2
+    \\
+    & \ge 
+    \beta \Vert x' - y'\Vert^2, 
+\end{aligned}
+$$
+
+by $\mathcal J_A$ is firmly nonexpansive hence maximally monotone, combining the results we have 
+$$
+\begin{aligned}
+    \langle x - y, x' - y'\rangle 
+    &\ge 
+    \beta \Vert x' - y'\Vert^2, 
+\end{aligned}
+$$
+
+therefore, $\mathcal J_B$ is a $\beta$-strongly monotone operator. 
+
+With $u = \mathcal J_B x, v = \mathcal J_B y$, so there exists $u \in Bu, v \in Bv$ where $x = u_B + u, y = v_B + v$ 
+
+$$
+\begin{aligned}
+    & \langle u - v, x - y\rangle 
+    \\
+    &= \langle u - v, u + u_B - (v - v_B)\rangle
+    \\
+    &= \Vert u - v\Vert^2 + \langle u - v, u_B - v_B\rangle
+    \\
+    ([1])\implies 
+    &\ge \Vert u - v\Vert^2 + \beta \Vert u - v\Vert^2
+    \\
+    &\ge (1 + \beta) \Vert u - v\Vert^2, 
+\end{aligned}
+$$
+
+where at (\[1\]), we used strong monotonicity of $B$. 
+By cauchy Swarts we have: 
+
+$$
+\begin{aligned}
+    \Vert u - v\Vert \Vert x + y\Vert
+    &\ge 
+    (1 + \beta) \Vert u - v\Vert^2
+    \\
+    \Vert u - v\Vert
+    &\le (1 + \beta)^{-1} \Vert x - y\Vert, 
+\end{aligned}
+$$
+
+therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
 

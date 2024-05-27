@@ -19,7 +19,7 @@ A fixed point iterations can be applied to solve equations in fixed point form. 
 Let $u, v$ be in Euclidean space $\mathbb E$ then there exists $x, y$ such that $u \in \partial f(x) + x, v\in \partial f(x) + y$ (<mark style="background:#CACFD9A6;">By unknown facts</mark>, Max Monotone Operators related), Let $T$ be the resolvent to $\partial f$ then $Tu = x, Tv = y$. Then: 
 $$
 \begin{aligned}
-    (1 - \beta)\Vert x - y\Vert &= \Vert x - y\Vert - \beta\Vert x - y\Vert
+    (1 + \beta)\Vert x - y\Vert^2 &= \Vert x - y\Vert^2 - \beta\Vert x - y\Vert^2
     \\
     & \le 
     \langle x - y, x - y\rangle + 
@@ -50,6 +50,19 @@ Prof Wang's Math 328 class, lecture 5.
 **Remarks**
 
 The convergence can make arbitrarily fast by a choice of stepsize $\eta$ for the resolvent, so, $(I - \eta\partial f)^{-1}$ gives faster convergence by a choice of $\eta$ that is huge. The above presentation is simplified by ignoring a factor $\eta$. 
+Not ignoring it makes 
+
+$$
+\begin{aligned}
+    \left \Vert 
+        (I + \eta \partial f)^{-1}x - (I + \eta \partial f)^{-1} y
+    \right\Vert
+    \le 
+    (1 + \beta \eta )^{-1}\Vert x - y\Vert, 
+\end{aligned}
+$$
+
+for all $x, y$. 
 
 ---
 ### **Gradient Descent on Smooth and Strongly Convex Functions**

@@ -105,7 +105,7 @@ $$
     &\quad 
     \begin{aligned}
         \implies &
-        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         +  
@@ -114,7 +114,7 @@ $$
         \frac{1}{2}\Vert x^* - x_t\Vert^2 \le 0
         \\
         \iff & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         -
@@ -124,7 +124,7 @@ $$
         \le 0
         \\
         \implies & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
         + 
         \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
         -
@@ -254,7 +254,6 @@ $$
 
 **Proof**
 
-With (\[INEQ1\]) alone. 
 Let $\Delta_t = f(x_t) - f(x_0), \Upsilon_t = \sum_{i = 1}^{t}\eta_i$ so $\Phi_t = \Upsilon_t\Delta_t + \frac{1}{2}\Vert x_t - x_*\Vert^2$. 
 Just do 
 
@@ -279,9 +278,22 @@ Additional assumptions for $f$ is required.
 
 #### **Corollary | PPM for Strongly Convex Function**
 > Let $f$ be $\beta$-strongly convex. 
-> Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_t/\beta)$. 
+> Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_{t + 1}\beta)$. 
 
 **Proof**
+Recall from ???, using $f$ is $\beta$-strongly convex, the proximal operator $P_{t} = (I - \eta_{t + 1}\partial f)$ is has $\Vert P_t(x) - P_t(x')\Vert \le (1 + \beta \eta_{t + 1})^{-1}\Vert x - x'\Vert$. 
+With $F_t(x) = \min_{u} \{\eta_{t + 1}f(u) + (1/2)\Vert u - x\Vert^2\}$ as the Moreau envelope of $f$, recall from [Moreau Envelope and Convex Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) that the gradient of the envelope relates to the proximal mapping by 
+
+$$
+\begin{aligned}
+    \nabla F_t(x) := \nabla \left[
+        (\cdot)\mapsto
+        \min_{u} \left\lbrace
+            \eta_{t + 1} f(u) + \frac{1}{2}\Vert (\cdot) - u\Vert^2
+        \right\rbrace 
+    \right](x) = I - P_t x. 
+\end{aligned}
+$$
 
 
 
