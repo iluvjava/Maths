@@ -7,7 +7,7 @@
 
 \begin{document}
 
-\title{{\fontfamily{ptm}\selectfont Lorum ipsum}}
+\title{{\fontfamily{ptm}\selectfont Nesterov Type Momentum Methods}}
 
 \author{
     Alto Legato
@@ -17,7 +17,7 @@
     }
 }
 
-\date{March 2, 2020}
+\date{\today}
 
 \maketitle
 
@@ -26,6 +26,7 @@
 \begin{abstract} 
     \noindent
     These are ntoes for Nesterov Type Acceleration Methods, in the convex case. 
+    They may get made into papers, proposal, and thesis in the future. 
 \end{abstract}
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
 Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
@@ -34,11 +35,128 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 % ==============================================================================
 \section{Preliminaries}
     In this section we list fundational results that are important for proofs in coming sections. 
+    For this section, let the ambient space be $\RR^n$ and $\Vert \cdot\Vert$ be the Euclidean 2 norm until it's specified in the context. 
     \subsection{Lipschitz Smoothness}
+        \begin{definition}[Lipschitz Smooth]
+            Let $f$ be differentiable. 
+            It has Lipschitz smoothness with constant $L$ if for all $x, y$
+            $$
+                \Vert \nabla f(x) - \nabla f(y)\Vert 
+                \le 
+                L \Vert x - y\Vert. 
+            $$    
+        \end{definition}
+
+        \begin{theorem}[Lipschitz Smoothness Equivalence]
+            With $f$ convex, the following conditions are equivalent conditions for all $x, y$: 
+            \begin{enumerate}
+                \item $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$. 
+                \item $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$. 
+                \item $x^+\in \arg\min_x{f(x)} \implies \frac{1}{2L}\Vert \nabla f(x)\Vert^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$
+                \item $ 1/(2L)\Vert x - y\Vert^2 \le  f(y) - f(x) - \langle \nabla f(x), y -x\rangle \le (L/2)\Vert x - y\Vert^2$
+            \end{enumerate}    
+        \end{theorem}
+        \begin{remark}
+            In the convex of operator theorem, Lipschitz smoothness of the gradient of a convex function is an example of a Firmly Nonexpansive operator. 
+        \end{remark}
+
+        \begin{definition}[Strong Convexity]
+            With $f: \RR^n \mapsto \overline \RR$, it is strongly convex with constant $\alpha$ if and only if $f - (\alpha/2)\Vert \cdot\Vert^2$ is a convex function. 
+        \end{definition}
+        
+        \begin{theorem}[Strongly Convex Equivalent Results]
+            With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are equivalent conditions for all $x, y$: 
+            \begin{enumerate}
+                \item $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
+                \item $\langle \partial f(y) - \partial f(x), y - x\rangle \ge \alpha\Vert y - x\Vert^2$. 
+                \item $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$. 
+            \end{enumerate}
+        \end{theorem}
+
+        \begin{theorem}[Strong Convexity Implications]
+            With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are implied: 
+            
+        \end{theorem}
+        \begin{remark}
+            In the context of operator theory, the subgradient of a strongly convex function is an example of a Strongly Monotone Operator. 
+        \end{remark}
     \subsection{Proximal Descent Inequality}
+        \begin{theorem}[Proximal Descent Inequality]\label{thm:prox_descent_ineq}
+            With $f: \RR^n \mapsto \overline \RR^n$ convex, fix any $x \in \RR^n$, let $p = \hprox_\alpha f(x)$, then for all $y$ we have inequality 
+            $$
+                \left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
+                - 
+                \left(
+                    f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
+                \right)
+                \le 
+                - \frac{1}{2\alpha}\Vert y - p\Vert^2. 
+            $$
+            Recall $\hprox_\alpha f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
+        \end{theorem}
+        We make use of this theorem in the proof of convergence of proximal point method.     
+        \begin{remark}
+            This descent inequality can be generalized to bregman proximal mapping as well. 
+        \end{remark}
+
 
 \section{The Proximal Point Method in the Convex Case}
-
+    In this section we quickly go over the analysis of Proximal point method (PPM) in the convex case and see how the theories can be generalized into the cases where PPM is approximated. 
+    \par
+    With $f: \RR^n \mapsto \overline \RR$ lsc proper and convex, 
+    given any $x_0$ the PPM generates sequence $(x_n)_{n\in \NN}$ by $x_{k + 1} = \hprox_{\eta_{k + 1}}f(x_k)$ for all $k \in \NN$ where the sequence $(\eta_{k})_{k \in \NN}$ is a nonegative sequence of real numbers. 
+    \subsection{The Lyapunov function of PPM}
+        \begin{theorem}
+            Define the quantity for all $u \in \RR^n$
+            $$
+                \Phi_t = 
+                \left(
+                    \sum_{i = 1}^{t} \eta_i
+                \right)(f(x_t) - f(u)) + \frac{1}{2} \Vert u - x_t\Vert^2 \quad \forall t \ge 1, 
+            $$
+            then it is a Lyapunov function for the PPM algorithm. 
+            Meaning for all $(x_k)_{k \in \NN}$ generated by PPM, it satisfies that $\Phi_{t + 1} - \Phi_t \le 0$. 
+            Additionally, by the definition we have 
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_{t} = 
+                \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+                + 
+                \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
+                -
+                \frac{1}{2}\Vert u - x_t\Vert^2 
+                \le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+            \end{align*}
+            as a consequence of choosing $u = x_{t + 1}$
+            \begin{align*}
+                f(x_{t + 1}) - f(x_t) \le \frac{1}{\eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            With $p, \alpha, y$ in theorem \ref*{thm:prox_descent_ineq} as $x_{t + 1}, \eta_{t + 1}, u$ we have for all $u$
+            \begin{align*}
+                \eta_{t + 1} (f(x_{t + 1}) - f(u)) + 
+                \frac{1}{2}(
+                    \Vert x_t - x_{t + 1} \Vert^2 
+                    - 
+                    \Vert x_t - u\Vert^2
+                ) &\le 
+                - \frac{1}{2}\Vert u - x_{t + 1}\Vert^2
+                \\
+                \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+                + 
+                \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
+                -
+                \frac{1}{2}\Vert u - x_t\Vert^2 
+                & \le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+            \end{align*}
+            next it's not hard to check that $\Phi_{t + 1} - \Phi_t$ equals to the above quantity. 
+        \end{proof}
+        \begin{remark}
+            This theorem act as a descent inequality and it can be generalized under a diverse context, such as all algorithms that are approximation to the PPM method. 
+        \end{remark}
+    
 
 \section{Application of the Proximal Point Method}
 
