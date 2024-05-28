@@ -97,7 +97,9 @@ The above results apply for the resolvent of strongly monotone operator too.
 In this section, we show that the resolvent of a strongly monotone operator exhibits additional properties compare. 
 
 
-### **Claim | Resolvent of a Strongly Monotone Operator**
+**WORK IS VERY BAD PLEASE CHECK**! 
+
+#### **Claim | Resolvent of a Strongly Monotone Operator**
 > With $B$ $\alpha$-strongly monotone written as $B = A + \alpha I$ where A is maximally monotone,  then the resolvent operator $\mathcal J_{B} = (I + B)^{-1}$ is $\alpha$-strongly monotone.
 > In addition, $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
 
@@ -113,7 +115,7 @@ $$
 \end{aligned}
 $$
 
-similarly for $y' = \mathcal J_B y$, we have $\exists y\in Ay: (1 + \beta)y + y'_A = y$. 
+similarly for $y' = \mathcal J_B y$, we have $\exists y'_A\in Ay: (1 + \beta)y' + y'_A = y$. 
 Condier the cross product 
 
 $$
@@ -121,7 +123,7 @@ $$
     \langle x - y, x' - y'\rangle
     &= 
     \left\langle 
-        (1 + \beta)(x' - y') + (x'_A - y'_A), x - y
+        (1 + \beta)(x' - y') + (x'_A - y'_A), x' - y'
     \right\rangle
     \\
     &= \left\langle 
@@ -162,7 +164,8 @@ With $u = \mathcal J_B x, v = \mathcal J_B y$, so there exists $u \in Bu, v \in 
 
 $$
 \begin{aligned}
-    & \langle u - v, x - y\rangle 
+    \langle \mathcal J_Bx - \mathcal J_A y, x - y\rangle
+    &= \langle u - v, x - y\rangle 
     \\
     &= \langle u - v, u + u_B - (v - v_B)\rangle
     \\
@@ -190,4 +193,6 @@ $$
 $$
 
 therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
+Which is also the Lipschitz constant of the $\mathcal J_B$. 
+
 

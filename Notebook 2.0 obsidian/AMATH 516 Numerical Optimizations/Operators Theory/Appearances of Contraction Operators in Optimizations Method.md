@@ -63,6 +63,7 @@ $$
 $$
 
 for all $x, y$. 
+For more information about contraction in the context of resolvent operator, visit [Resolvent Operators](Resolvent%20Operators.md), where it discusses the more general case of a resolvent operator of a strongly monotone operator. 
 
 ---
 ### **Gradient Descent on Smooth and Strongly Convex Functions**

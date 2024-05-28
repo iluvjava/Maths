@@ -16,7 +16,7 @@ $$
 \end{aligned}
 $$
 
-We introduce a Lyponouv function derived from PPM using Moreau envelope. 
+We introduce a Lyapunov function derived from PPM using Moreau envelope. 
 We also derive the convergence rate of PPM. 
 After that we present analogous result for inexact proximal algorithms and how this idea is powerful. 
 
@@ -281,7 +281,8 @@ Additional assumptions for $f$ is required.
 > Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_{t + 1}\beta)$. 
 
 **Proof**
-Recall from ???, using $f$ is $\beta$-strongly convex, the proximal operator $P_{t} = (I - \eta_{t + 1}\partial f)$ is has $\Vert P_t(x) - P_t(x')\Vert \le (1 + \beta \eta_{t + 1})^{-1}\Vert x - x'\Vert$. 
+
+Recall from [Appearances of Contraction Operators in Optimizations Method](../Operators%20Theory/Appearances%20of%20Contraction%20Operators%20in%20Optimizations%20Method.md), using $f$ is $\beta$-strongly convex, the proximal operator $P_{t} = (I + \eta_{t + 1}\partial f)^{-1}$ has $\Vert P_t(x) - P_t(x')\Vert \le (1 + \beta \eta_{t + 1})^{-1}\Vert x - x'\Vert$ which is a contraction. 
 With $F_t(x) = \min_{u} \{\eta_{t + 1}f(u) + (1/2)\Vert u - x\Vert^2\}$ as the Moreau envelope of $f$, recall from [Moreau Envelope and Convex Proximal Mapping](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) that the gradient of the envelope relates to the proximal mapping by 
 
 $$
@@ -291,11 +292,45 @@ $$
         \min_{u} \left\lbrace
             \eta_{t + 1} f(u) + \frac{1}{2}\Vert (\cdot) - u\Vert^2
         \right\rbrace 
-    \right](x) = I - P_t x. 
+    \right](x) = x - P_t x. 
 \end{aligned}
 $$
 
+Next, our goal is to see that $F$ is a smooth function. 
+Note that $P_tx$ is Lipschitz continuous with constant $1$, and strongly convex with constant $\alpha = (1 + \eta_{t+ 1}\beta)^{-1} \in (0, 1)$ by [Resolvent Operators](../Operators%20Theory/Resolvent%20Operators.md). 
+By considering for all $x, y$: 
 
+$$
+\begin{aligned}
+    (1 + \eta_{t + 1}\beta)^{-1}
+    \Vert x - y\Vert^2
+    &\le 
+    \left\langle 
+        x- y, P_t x - P_ty  
+    \right\rangle
+    \le \Vert x - y\Vert^2
+    \\
+    - \Vert x - y\Vert^2 
+    &\le 
+    \langle x - y, P_t y - P_t x\rangle
+    \le 
+    - (1 + \eta_{t + 1}\beta)^{-1} \Vert x - y\Vert^2
+    \\
+    0 &\le 
+    \langle x - y, [I - P_t]x - [I - P_t]y\rangle 
+    \le
+    \left(
+        1 -  (1 + \eta_{t + 1}\beta)^{-1}
+    \right)
+    \Vert x - y\Vert^2, 
+\end{aligned}
+$$
+
+therefore the gradient $\nabla F_t$ is Lipschitz coontinuous with constant $2 + \eta_{t + 1}\beta$. 
+
+**Remarks**
+
+A lot of conditions in here should be able to generalized from having convexity. 
 
 
 ---
@@ -476,3 +511,7 @@ applies.
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
 
 
+---
+### **Proximal Point in the Rockafellar Manner**
+
+This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
