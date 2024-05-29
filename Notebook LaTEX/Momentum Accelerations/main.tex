@@ -182,6 +182,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             The analysis of the above is taken from (REFERENCE NEEDED). 
         \end{remark}
+        However, the convergence rate of the algorithm can be faster for the same choice of the sequence $(\eta_t)_{t \in \NN}$. 
+        \begin{theorem}[Convergence Rate of PPM (Strongly Convex)]
+            
+            
+        \end{theorem}
 \section{Application of the Proximal Point Method}
     The PPM method and the Lyaounov function derived above serves as tamplate for other algorithms. 
     In optimizations, people uses lower and upper approximation of the objective function to approximate the PPM. 
@@ -196,6 +201,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \par 
     The approximated proximal point method is applying PPM to the function $l_f(x|x_t)$ for each iteration, i.e: $x_{t +1} = \hprox_{\eta_{t + 1}}[u\mapsto l_f(u | x_t)](x_t)$. 
     
+    \begin{theorem}[Convergence of Approximated PPM]\label{thm:lower_approx_ppm_convergence}
+        With $f$ be a function that has minimizer: $x_*$; $l_f(x; x_t)$ be a convex, lsc, proper lower-bounding function then the lower-bounding $\phi$ function satisfies inequality: 
+        $$
+        \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{n + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n, 
+        $$ 
+        Assume an algorithm the makes: 
+        $$
+        \begin{aligned}
+            x_{t +1} = \argmin_{x} \left\lbrace
+                l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
+            \right\rbrace, 
+        \end{aligned}
+        $$
+        Then the iterates satisfies: 
+        $$
+        \begin{aligned}
+            \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
+            - \frac{1}{2}\Vert x_* - x_t\Vert 
+            & \le 
+            \left(
+                \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
+            \right)\Vert x_{t + 1} - x_t\Vert^2.
+        \end{aligned}
+        $$
+    \end{theorem}
+    \begin{proof}
+        
+    \end{proof}
 
 
 \bibliographystyle{plain}
