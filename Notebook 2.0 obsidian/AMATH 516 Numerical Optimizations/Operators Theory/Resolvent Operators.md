@@ -94,77 +94,19 @@ Using the equivalent characterizations of a firmly non-expansive operators, we o
 
 By the realization that a strongly monotone operator is monotone. 
 The above results apply for the resolvent of strongly monotone operator too. 
-In this section, we show that the resolvent of a strongly monotone operator exhibits additional properties compare. 
-
-
-**WORK IS VERY BAD PLEASE CHECK**! 
+In this section, we show that the resolvent of a strongly monotone operator exhibits additional favorable properties. 
 
 #### **Claim | Resolvent of a Strongly Monotone Operator**
-> With $B$ $\alpha$-strongly monotone written as $B = A + \alpha I$ where A is maximally monotone,  then the resolvent operator $\mathcal J_{B} = (I + B)^{-1}$ is $\alpha$-strongly monotone.
+> With $B$ $\beta$-strongly monotone written as $B = A + \beta I$ where A is maximally monotone,  then the resolvent operator $\mathcal J_{B} = (I + B)^{-1}$ is $((1 + \beta)^{-1} - 1)$-strongly monotone.
 > In addition, $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
 
 **Proof**
-
-Consider $x' = ((I + \beta) + A)^{-1}x = \mathcal J_Bx$. 
-By definition of things we have 
-
-$$
-\begin{aligned}
-    (1 + \beta) x' + Ax' \ni x
-    &= (1 + \beta) x' + x'_A \; \exists x'_A \in Ax, 
-\end{aligned}
-$$
-
-similarly for $y' = \mathcal J_B y$, we have $\exists y'_A\in Ay: (1 + \beta)y' + y'_A = y$. 
-Condier the cross product 
-
-$$
-\begin{aligned}
-    \langle x - y, x' - y'\rangle
-    &= 
-    \left\langle 
-        (1 + \beta)(x' - y') + (x'_A - y'_A), x' - y'
-    \right\rangle
-    \\
-    &= \left\langle 
-        x' - y' + (y_A' - y'_A), x' - y'
-    \right\rangle 
-    + \beta\Vert x' - y'\Vert^2, 
-\end{aligned}
-$$
-
-with $u = \mathcal J_A x'$, so $u = x' + x'_A \;\exists x' \in Ax'$, possible my Minty. 
-Similarly we make $v = \mathcal J_A y', v = y' + y'_A\; \exists y' \in Ay'$. 
-With $u, v$ we continue from the above then 
-
-$$
-\begin{aligned}
-    \langle x - y, x'- y'\rangle
-    &= 
-    \langle u- v, x' - y'\rangle + 
-    \beta\Vert x' - y'\Vert^2
-    \\
-    & \ge 
-    \beta \Vert x' - y'\Vert^2, 
-\end{aligned}
-$$
-
-by $\mathcal J_A$ is firmly nonexpansive hence maximally monotone, combining the results we have 
-$$
-\begin{aligned}
-    \langle x - y, x' - y'\rangle 
-    &\ge 
-    \beta \Vert x' - y'\Vert^2, 
-\end{aligned}
-$$
-
-therefore, $\mathcal J_B$ is a $\beta$-strongly monotone operator. 
 
 With $u = \mathcal J_B x, v = \mathcal J_B y$, so there exists $u \in Bu, v \in Bv$ where $x = u_B + u, y = v_B + v$ 
 
 $$
 \begin{aligned}
-    \langle \mathcal J_Bx - \mathcal J_A y, x - y\rangle
+    \langle \mathcal J_Bx - \mathcal J_B y, x - y\rangle
     &= \langle u - v, x - y\rangle 
     \\
     &= \langle u - v, u + u_B - (v - v_B)\rangle
@@ -195,4 +137,68 @@ $$
 therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
 Which is also the Lipschitz constant of the $\mathcal J_B$. 
 
+Consider $x' = ((1 + \beta)I + A)^{-1}x = \mathcal J_Bx$, 
+then $\exists x'_A \in Ax: (1 + \beta)x' + x'_A = x$, similarly for $y$ we have $\exists y \in Ay: (1 + \beta)x' + y'_A = y$. 
+With that information consider any $u' = \mathcal J_B u$ for any $u$: 
+$$
+\begin{aligned}
+    & \exists u'_A \in Au: 
+    (1 + \beta) u' = u - u'_A
+    \\
+    & \exists u'_A \in Au: u' = (1 + \beta)^{-1}(u - u_A')
+\end{aligned}
+$$
+and hence: 
 
+$$
+\begin{aligned}
+    & \exists x'_A \in Ax: x' = (1 + \beta)^{-1}(x - x_A')
+    \\
+    & \exists y'_A \in Ay: y' = (1 + \beta)^{-1}(y - y_A')
+\end{aligned}
+$$
+
+with $u \in \{x, y\}$, we would have
+
+$$
+\begin{aligned}
+    \langle x' - y', x - y\rangle &= 
+    (1 + \beta)^{-1}\langle x - x'_A - (y - y'_A), x - y \rangle
+    \\
+    &= (1 + \beta)^{-1} \langle (x - y) - (x'_A - y'_A), x- y\rangle
+    \\
+    &= (1 + \beta)^{-1}\Vert x - y\Vert^2 + 
+    \langle -(x_A' - y_A'), x - y\rangle
+    \\
+    &= 
+    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
+    \langle (x - y) -(x_A' - y_A'), x - y\rangle 
+    \\
+    &= 
+    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
+    \langle x - x'_A - (y - y'_A), x - y\rangle
+    \\
+    & \text{by } x - x'_A = (1 + \beta) x', y - y'_A = (1 + \beta) y'
+    \\
+    & = ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
+    \langle (1 + \beta)(x' - y'), x - y\rangle
+    \\
+    ([1])\implies 
+    &\ge 
+    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + (1 + \beta)^2 \Vert x' - y'\Vert^2
+    \\
+    &\ge 
+    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+At (\[1\]) we used $\langle \mathcal J_B x - \mathcal J_B y, x - y \rangle \ge (1 + \beta)\Vert \mathcal J_B x - \mathcal J_B y\Vert^2$
+Observe that with $\beta > 0$, $((1 + \beta)^{-1} - 1) > 0$ and hence $\mathcal J_B$ is strongly monotone with constant: $((1 + \beta)^{-1} - 1)$. 
+Combining both results we have 
+$$
+\begin{aligned}
+    ((1 + \beta)^{-1} - 1) \Vert x - y\Vert^2 
+    \le \langle \mathcal J_B x - \mathcal J_B y, x - y\rangle 
+    \le (1 + \beta)^{-1}\Vert x - y\Vert^2
+\end{aligned}
+$$

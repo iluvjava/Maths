@@ -103,6 +103,9 @@ $$
 
 (\[1\]): We used the [Cute Formula](Background/Euclidean%20Jensen's%20Equality.md) because of the Euclidean norm, and hence the function is $\alpha$-strongly convex in the 2 norm, if and only if $f - \alpha/2\Vert \cdot\Vert$ is a convex function. 
 
+**\[Def\] <=> \[2.\]**
+
+
 ---
 ### **Proofs for Theorem 2**
 

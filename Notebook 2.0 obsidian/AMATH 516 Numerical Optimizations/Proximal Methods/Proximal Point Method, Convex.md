@@ -139,7 +139,7 @@ $$
     \begin{aligned}
         \implies& 
         f(x_{t + 1}) - f(x_t) \le 
-        -\frac{1}{2\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2
+        -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2
         \leftarrow \text{([INEQ2])}, 
     \end{aligned}
     
@@ -222,7 +222,7 @@ However, we may verify that $\phi_t$ is a lyaponuv function if we know what it i
 $$
 \begin{aligned}
     \Phi_{t + 1} - \Phi_{t} = 
-    \eta_{t + 1}(f(x_{t + 1} - f(x_t))) + 
+    \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) + 
     \frac{1}{2}\Vert x^* - x_{t + 1} \Vert^2 
     - 
     \frac{1}{2}\Vert x^* - x_t\Vert^2, 
@@ -287,12 +287,15 @@ With $F_t(x) = \min_{u} \{\eta_{t + 1}f(u) + (1/2)\Vert u - x\Vert^2\}$ as the M
 
 $$
 \begin{aligned}
-    \nabla F_t(x) := \nabla \left[
-        (\cdot)\mapsto
+    \nabla F_t(x) :&= \nabla \left[
         \min_{u} \left\lbrace
-            \eta_{t + 1} f(u) + \frac{1}{2}\Vert (\cdot) - u\Vert^2
+            f(u) + \frac{1}{2\eta_{t + 1}}\Vert (\cdot) - u\Vert^2
         \right\rbrace 
-    \right](x) = x - P_t x. 
+    \right](x) 
+    \\ 
+    & = x - P_t x 
+    \\ 
+    &= f(P_t x) + \frac{1}{2\eta_{t + 1}} \Vert P_t x - u\Vert^2.
 \end{aligned}
 $$
 
@@ -302,35 +305,72 @@ By considering for all $x, y$:
 
 $$
 \begin{aligned}
-    (1 + \eta_{t + 1}\beta)^{-1}
-    \Vert x - y\Vert^2
-    &\le 
-    \left\langle 
-        x- y, P_t x - P_ty  
-    \right\rangle
-    \le \Vert x - y\Vert^2
+    \langle P_t x - P_ty, x - y \rangle 
+    & \le 
+    (1 + \beta \eta_{t + 1})^{-1} \Vert x - y\Vert^2
     \\
-    - \Vert x - y\Vert^2 
+    -(1 + \beta \eta_{t + 1})^{-1}
+    \Vert x- y\Vert^2 
     &\le 
-    \langle x - y, P_t y - P_t x\rangle
-    \le 
-    - (1 + \eta_{t + 1}\beta)^{-1} \Vert x - y\Vert^2
+    \langle -(P_tx - P_ty), x - y \rangle 
     \\
-    0 &\le 
-    \langle x - y, [I - P_t]x - [I - P_t]y\rangle 
-    \le
-    \left(
-        1 -  (1 + \eta_{t + 1}\beta)^{-1}
-    \right)
-    \Vert x - y\Vert^2, 
+    1 - (1 + \beta\eta_{t + 1})^{-1} 
+    &\le 
+    \langle 
+        x - P_tx - (y - P_t y), x - y
+    \rangle
 \end{aligned}
 $$
 
-therefore the gradient $\nabla F_t$ is Lipschitz coontinuous with constant $2 + \eta_{t + 1}\beta$. 
+therefore the gradient $\nabla F_t$ is strongly convex with sonctant $1 - (1 + \beta \eta_{t + 1})^{-1}$. Denote $\alpha_t = (1 - (1 + \beta \eta_{t + 1})^{-1})$. 
+With proximal point method we have inequalities: 
+
+$$
+\begin{aligned}
+    f(x_{t + 1}) \le 
+    F(x_t) = f(x_{t + 1}) + \frac{1}{2\eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+    \le 
+    f(x_t). 
+\end{aligned}\tag{$[*]$}
+$$
+
+By strong convexity of $\nabla F_t$, with $x_* \in \argmin{x}F_t(x) = \argmin{x}f(x)$ we have inequality
+
+$$
+\begin{aligned}
+    \Vert \nabla F_t(x_t)\Vert^2 
+    &= 
+    \Vert x_t - x_{t + 1}\Vert^2 
+    \\
+    &\ge 
+    \alpha_t \Vert F(x_t) - F(x_*)\Vert^2
+    \\
+    &=\alpha_t \Vert F(x_t) - f(x_*)\Vert^2
+\end{aligned}
+$$
+
+Using proposition 2 with $x_* = x_{t}$ then 
+
+$$
+\begin{aligned}
+    \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) 
+    + 
+    \frac{1}{2}\Vert x_t - x_{t + 1}\Vert^2 
+    & \le 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+    \\
+    f(x_{t + 1}) - f(x_t)
+    + 
+    \frac{1}{2\eta_{t + 1}}\Vert x_t - x_{t + 1}\Vert^2 
+    & \le 
+    - \frac{1}{2\eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+\end{aligned}
+$$
 
 **Remarks**
 
 A lot of conditions in here should be able to generalized from having convexity. 
+
 
 
 ---
