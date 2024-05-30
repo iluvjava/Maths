@@ -202,3 +202,9 @@ $$
     \le (1 + \beta)^{-1}\Vert x - y\Vert^2
 \end{aligned}
 $$
+
+
+**Remark**
+
+The strongly convexity index $(1 + \beta)^{-1} - 1$ is useless because it's always less zero when $\beta > 0$. 
+I did a mistake here and this theorem may not be correct. 
