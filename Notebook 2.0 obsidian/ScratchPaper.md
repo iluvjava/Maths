@@ -486,3 +486,244 @@ The inverse of the partial gradient of $g$ here is messing things up.
 
 Footnote ^[this is a footnote. ]
 
+
+### **Genesis AI Stuff**
+
+$$
+\begin{align}
+    \sum_{i = 1}^{K} y_i 
+    &= 1,\quad 
+    y_j \ge 
+    0 \; 
+    \forall\;  j \in \{1, \cdots, K\}
+\end{align}
+$$
+
+so, we define the error matrix is defined as: 
+$$
+\begin{align*}
+    E_f(\hat y, y  | \Theta)
+    &= 
+    \sum_{k = 1}^{K} 
+        \mathbf {\hat e}_{\hat \sigma(k)} 
+        \mathbf{\hat e}_{ \sigma(k)}^T
+        \left.
+        \begin{cases}
+            (1 - |\hat y_{\hat \sigma(k)} - y_{\sigma(k)} |) & \text{if } \hat \sigma(k) = \sigma(k), 
+            \\
+            1 & \text{else }. 
+        \end{cases}
+        \right\rbrace
+\end{align*}
+$$
+
+where 
+1. $\hat\sigma, \sigma$ is a permutations on $\{1, \cdots, K\}$ such that it makes $\hat y_{\hat \sigma(1)} \le \hat y_{\hat \sigma (2)}\le \cdots y_{\hat \sigma (K)}$, similarly for $\hat \sigma$ it permutes so that it satisfies: $y_{\sigma(1)}\le y_{\sigma (2)}\le \cdots y_{\sigma(K)}$. 
+2. $\mathbf {\hat e_i}$ is the standard basis vector of $\mathbb R^K$. 
+3. $y:= f(x | \Theta)$, by our own definition. 
+
+#### **Example 1**
+
+Let [pine, spruce, other] be the categoryof species that the model is predicting. 
+Say the actual label is $\hat y = [\text{pine: } 0.1, \text{spruce: }0.7, \text{other: }0.2]$, our model predicted categorical composition 
+$y = [\text{pine: }0.2, \text{spruce: }0.5, \text{other: }0.3]$ then we would have permutations: 
+$$
+\begin{align*}
+    {\hat \sigma}:\{1, 2, 3\} \mapsto \{1, 2, 3\}
+    & = \{(1, 1), (2, 3), (3, 2)\}
+    \\
+    {\sigma}:\{1, 2, 3\} \mapsto \{1, 2, 3\}
+    & = \{(1, 1), (2, 3), (3, 2)\}, 
+\end{align*}
+$$
+then the metrics evaluates to 
+$$
+\begin{align*}
+    E_f(\hat y, y | \Theta)
+    &= 
+    \sum_{k = 1}^{K} 
+        \mathbf {\hat e}_{\hat \sigma(k)} 
+        \mathbf{\hat e}_{ \sigma(k)}^T
+        \left.
+        \begin{cases}
+            (1 - |\hat y_{\hat \sigma(k)} - y_{\sigma(k)} |) & \text{if } \hat \sigma(k) = \sigma(k), 
+            \\
+            1 & \text{else }. 
+        \end{cases}
+    \right\rbrace
+    \\
+    &= 
+    (1 - |0.1 - 0.2|)\begin{bmatrix}
+        1 \\ 0 \\ 0
+    \end{bmatrix}\begin{bmatrix}
+        1 & 0 & 0 
+    \end{bmatrix}
+    \\
+    & \quad 
+    + 
+    (1 - |0.7 - 0.5|)
+    \begin{bmatrix}
+        1 \\ 0 \\ 0
+    \end{bmatrix}\begin{bmatrix}
+        0 & 0 & 1
+    \end{bmatrix}
+    \\
+    & \quad 
+    + 
+    \begin{bmatrix}
+    0 \\ 1 \\ 0 
+    \end{bmatrix}
+    \begin{bmatrix}
+    0 & 1 & 0 
+    \end{bmatrix}
+    (1 - |0.7 - 0.5|)
+    \\
+    &= 
+    0.9 \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & 0 
+    \end{bmatrix}
+    + 
+    0.8 \begin{bmatrix}
+        0 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0 
+    \end{bmatrix}
+    + 
+    0.8\begin{bmatrix}
+        0 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0 
+    \end{bmatrix}
+    \\
+    &= \begin{bmatrix}
+        0.9 & 0 & 0 \\
+        0 & 0.8 & 0 \\
+        0 & 0 & 0.8
+    \end{bmatrix}
+\end{align*}
+$$
+
+This is an example where the ordering of the composition across species are correctedly identified by the model, hence the matrix is a diagonal matrix. 
+When this is not the case, consider the following example: 
+
+#### **Example 2**
+
+Let [pine, spruce, other] be the categoryof species that the model is predicting. 
+Say the actual label is $\hat y = [\text{pine: } 0.1, \text{spruce: }0.7, \text{other: }0.2]$, our model predicted categorical composition 
+$y = [\text{pine: }0.5, \text{spruce: }0.4, \text{other: }0.1]$ then we would have permutations: 
+
+$$
+\begin{align*}
+    \hat \sigma &= \{
+        (1, 1), (2, 3), (3, 2)    
+    \}, 
+    \\
+    \sigma &= 
+    \{(1, 3), (2, 2), (3, 1)\}, 
+\end{align*}
+$$
+then the metrics evaluates to 
+$$
+\begin{aligned}
+    E_f(\hat y, y, | \Theta) &= 
+    \sum_{k = 1}^{K}         \mathbf {\hat e}_{\hat \sigma(k)} 
+        \mathbf{\hat e}_{ \sigma(k)}^T
+        (1 - |\hat y_{\hat \sigma(k)} - y_{\sigma(k)} |)
+    \\
+    &= 
+    \begin{bmatrix}
+        1 \\ 0 \\ 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 & 0 & 1
+    \end{bmatrix}
+    + 
+    \begin{bmatrix}
+        0 \\ 0 \\ 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 & 1 & 0
+    \end{bmatrix}
+    + 
+    \begin{bmatrix}
+        0 \\ 1 \\ 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 0 & 0
+    \end{bmatrix}
+    \\
+    &= \begin{bmatrix}
+        0 & 0 & 1 \\ 
+        0 & 0 & 0 \\
+        0 & 0 & 0
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 & 0 & 0 \\ 
+        0 & 0 & 0 \\
+        0 & 1 & 0
+    \end{bmatrix} 
+    +
+    \begin{bmatrix}
+        0 & 0 & 0 \\ 
+        1 & 0 & 0 \\
+        0 & 0 & 0
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        0 & 0 & 1 \\ 
+        1 & 0 & 0 \\
+        0 & 1 & 0
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+Please observe that getting the permutations incorrectly always results in a permutation matrix. 
+
+### **Importance Ranking**
+
+However, it's not always the case that each of the species are going to ranked as exactly the same. For example let's say the actual vector is given as $\hat y = \{\text{pine: } 0.9, \text{spruce: } 0.00, \text{other: } 0.1\}$, but hour model predicted $y = \{\text{pine: } 0.8, \text{spruce: } 0.2, \text{other: } 0.0\}$, in which case, it got the dominant species correctly, but the second, and third most populous species were mixed up, but if we use the above evaluation metric we would have error matrix: 
+$$
+\begin{align*}
+    \begin{bmatrix}
+        (1 - |0.9 - 0.8|) & 0 & 0 \\
+        0 & 0 &  1 \\
+        0 &1 & 0 
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        0.9 & 0 & 0 \\
+        0 & 0 &  1 \\
+        0 &1 & 0 
+    \end{bmatrix}
+\end{align*}
+$$
+
+Which can be miss leading because it's saying that mixing up "spruce", and "other" in this example is as important as mixing up "pine" with other species when, the majorti of species is pine. 
+Therefore, we proposed the following evaluation metric the gives geometric weights to the ordering of the species, from low to high inside of the error matrix, giving definition: 
+
+$$
+\begin{align*}
+    E_f(\hat y, y | \Theta) = 
+    \sum_{k = 1}^{K} 
+        \mathbf {\hat e}_{\hat \sigma(k)} 
+        \mathbf{\hat e}_{ \sigma(k)}^T
+        \left.
+        \begin{cases}
+            1 - |\hat y_{\hat \sigma(k)} - y_{\sigma(k)} | & \text{if } \hat \sigma(k) = \sigma(k), 
+            \\
+            (1/2)^k/(\sum_{t = 1}^{K}(1/2)^t) & \text{else }. 
+        \end{cases}
+    \right\rbrace. 
+\end{align*}
+$$
+We call this the generalized rank-weighted confusion matrix 
+
+And finally, given test sets $(x^{(i)}, \hat y^{(i)})$ for $i = 1, \cdots, T$, then the generalized rank-weighted confusion matrix is the sum over all the sample which is compuated as 
+$$
+\begin{aligned}
+   \sum_{i = 1}^{T} E_f(\hat y^{(j)}, y^{(j)} | \Theta). 
+\end{aligned}
+$$

@@ -276,7 +276,7 @@ The convergence of $\Vert x_t - x^*\Vert^2$, or $x_t$, is not so obvious from th
 Additional assumptions for $f$ is required. 
 
 
-#### **Corollary | PPM for Strongly Convex Function**
+#### **Theorem | PPM Convergence for Strongly Convex Function**
 > Let $f$ be $\beta$-strongly convex. 
 > Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_{t + 1}\beta)$. 
 
