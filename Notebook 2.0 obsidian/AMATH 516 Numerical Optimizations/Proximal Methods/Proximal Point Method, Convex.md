@@ -457,9 +457,12 @@ applies.
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
 
 ---
-### **The PPM with Storngly Convex Objective**
+### **The PPM with Strongly Convex Objective**
 
 It may be counter intuitive to write things in this order, but we will see the necessity since the convergence proof for PPM for strongly convex objective function involves more theorems. 
+The proof below will be similar to proving the convergence rate of gradient descent on a strongly convex and Lipchitz smooth function. 
+To elucidate recall from [Proximal Point Method, Interpretations](Proximal%20Point%20Method,%20Interpretations.md) that, the proximal point method with a constant stepsize is equivalent to gradient descent on the Moreau Envelope of the function. 
+The only difference here is that our PPM analysis is based on varying stepsizes. 
 
 #### **Theorem | PPM Convergence for Strongly Convex Function**
 > Let $f$ be $\beta$-strongly convex. 
@@ -467,13 +470,138 @@ It may be counter intuitive to write things in this order, but we will see the n
 
 **Proof**
 
-With strong convexity of $f$, the proximal operator $P_t(x)$ is a contraction with constant $(1 + \beta)^{-1}$. 
+With $\beta$-strong convexity of $f$, the proximal operator $P_{t + 1}=(I + \eta_{t + 1}\partial f)^{-1}$ is a contraction with constant $(1 + \beta_{t + 1})^{-1}$ where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \N$. 
+We can conclude that $I - P_{t + 1}$ is strongly monotone and Lipschitz smooth by the demonstration: 
 
+$$
+\begin{aligned}
+    0 &\le \langle P_{t + 1} x - P_{t + 1} y, x - y\rangle 
+    \\
+    &\le \Vert P_{t + 1}x - P_{t + 1} y\Vert \Vert x - y\Vert \leftarrow \text{ Cauchy }
+    \\
+    &\le (1 + \beta_{t + 1})^{-1} \Vert x - y \Vert^2 \leftarrow \text{ Contraction} 
+    \\
+    \implies 
+    - (1 + \beta_{t + 1})^{-1} \Vert x - y\Vert^2 
+    &\le 
+    \langle -(P_{t + 1} x - P_{t + 1}y), x - y\rangle \le 0
+    \\
+    (1 - (1 + \beta_{t + 1})^{-1}) \Vert x - y\Vert^2 
+    &\le 
+    \langle (x - y) - (P_{t + 1}x - P_{t + 1}y), x - y\rangle 
+    \le \Vert x - y\Vert^2 
+    \\
+    (1 - (1 + \beta_{t + 1})^{-1}) \Vert x - y\Vert^2 
+    &\le 
+    \langle [I - P_{t + 1}]x - [I - P_{t + 1}]y, x - y\rangle 
+    \le \Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+Recall from [Moreau Envelope of Moreau Envelope](Moreau%20Envelope%20of%20Moreau%20Envelope.md) that for any convex $g$ the gradient on the Moreau Envelope of $g$ has
+
+$$
+\begin{aligned}
+    \underbrace{\nabla \left[x \mapsto \min_{u}\left\lbrace
+        g(u) + \frac{1}{2}\Vert u - x\Vert^2
+    \right\rbrace\right](x)}_{
+        \nabla \env{g}(x)
+    } 
+    &= 
+    x - (I + \partial g)^{-1}x, 
+\end{aligned}
+$$
+
+with $g = \eta_{t + 1}f$ then the above is 
+
+$$
+\begin{aligned}
+   \nabla \env{\eta_{t + 1}f}(x) = 
+   x - (I + \eta_{t + 1}\partial g)^{-1}x = [I - P_t] x, 
+\end{aligned}
+$$
+
+naming $\env{\eta_{t+ 1}f}$ as $F_{t + 1}$ for short, we have $\forall t \in \Z_+: \nabla F_{t + 1} = [I - P_{t + 1}]x$ being a strongly monotone operator, which we previously derived. 
+For the base case we let $F_0(x) = f(x)$, so implicitly $\eta_0 = 1$. 
+Therefore, $F_{t + 1}$ is a strongly convex function and Lipschitz smooth function with constants: $(1 - (1 + \beta_{t + 1})^{-1}), 1$. 
+Now, we make use of the Lipschitz Smoothness and strong convexity to yield: 
+
+$$
+\begin{aligned}
+    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_t) &= 
+    F_{t + 1}(P_{t + 1} x_t)  - F_{t + 1}(x_t)
+    \\
+    &= F_{t + 1}(x_t - (x_t - P_{t + 1}x_t)) - F_{t + 1}(x_t)
+    \\
+    &= 
+    F_{t + 1}(x_t - \nabla F_{t + 1}(x_t)) - F_{t + 1}(x_t)
+    \\
+    &\le - \frac{1}{2}\Vert \nabla F_{t + 1}(x_t)\Vert^2 \leftarrow \text{ By $1$-Lipschitz Smooth}. 
+\end{aligned}
+$$
+
+Next, by strongly convexity of $F_{t + 1}$, let $x_* = \argmin{x}f(x) = \argmin{x}F_{t + 1}(x)$ (it's one of the implications stated in [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)) we would have for all $t \in \N$: 
+$$
+\begin{aligned}
+    \frac{1}{2} \Vert \nabla F_{t + 1}(x_t)\Vert^2 &\ge 
+    (1 - (1 + \beta_{t + 1})^{-1})(
+        F_{t + 1}(x_t) - F_{t + 1}(x_*)
+    ) \leftarrow \text{ Result of Strong convexity. }
+    \\
+    \implies 
+    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_t)
+    &\le 
+    -(1 - (1 + \beta_{t + 1})^{-1}) (F_{t + 1}(x_t) - F_{t + 1}(x_*))
+    \\
+    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_*)
+    &\le 
+    F_{t + 1}(x_t) - F_{t + 1}(x_*) 
+    -(1 - (1 + \beta_{t + 1})^{-1}) (F_{t + 1}(x_t) - F_{t + 1}(x_*))
+    \\
+    &= 
+    (1 + \beta_{t + 1})^{-1} (F_{t + 1}(x_t) - F_{t + 1}(x_*)). 
+\end{aligned}
+$$
+
+Amazingly, unrollowing the above would yield: 
+
+$$
+\begin{aligned}
+    F_{t + 1}(x_{t + 1}) - F_{t+1}(x_*) &\le 
+    \left(
+        \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
+    \right)(F_{0}(x_0) - F_0(x_*)). 
+\end{aligned}\tag{$[*]$}
+$$
+
+Recall the property of a Moreau Envelope and by the definition of $F_{t + 1}$ satisfies for all $x$: 
+
+$$
+\begin{aligned}
+    \eta_{t + 1} f(x)
+    &\le 
+    F_{t + 1}(x) = \eta_{t + 1} f(P_{t + 1} x) + \frac{1}{2}\Vert P_{t + 1}x - x \Vert^2 
+    \le 
+    \eta_{t + 1} f(x). 
+\end{aligned}
+$$
+
+Continuing (\[*\]), we can simplify with the above and $F_0 = f$ so 
+
+$$
+\begin{aligned}
+    f_{t + 1}(x_{t + 1}) - f_{t+1}(x_*) &\le 
+    \eta_{t + 1}^{-1} 
+    \left(
+        \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
+    \right)(f_{0}(x_0) - f_0(x_*)). 
+\end{aligned}
+$$
 
 ---
 ### **Analysis of Prox Convex Lower Bounding Function (Strongly Convex)**
 
-In this section, we consider lowerbounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convexity. 
+In this section, we consider lowerbounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
 
 ---
 ### **Proximal Point in the Rockafellar Manner**
