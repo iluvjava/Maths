@@ -145,7 +145,7 @@ $$
 \end{aligned}
 $$
 
-Next, we wish to prove that the sequence $\lambda_k\rightarrow 0$. For contradiction if $\lim_{n\rightarrow \infty} \ge \epsilon > 0$ then 
+Next, we wish to prove that the sequence $\lambda_k\rightarrow 0$. For contraposition if $\lim_{n\rightarrow \infty}\lambda_n \ge \epsilon > 0$ then sum over $\alpha_k$ is bounded because: 
 $$
 \begin{aligned}
     (1 - \alpha_k)\lambda_k &= \lambda_k - \alpha_k \lambda_k
@@ -153,6 +153,7 @@ $$
     &\le
     \lambda_k - \epsilon\alpha_k
     \\
+    \implies 
     \epsilon\alpha_k &\le \lambda_k - \lambda_{k + 1}
     \\
     \epsilon \sum_{k = 1}^{\infty}\alpha_k&\le \lambda_1 - \epsilon < \infty, 

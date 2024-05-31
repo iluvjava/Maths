@@ -97,8 +97,8 @@ The above results apply for the resolvent of strongly monotone operator too.
 In this section, we show that the resolvent of a strongly monotone operator exhibits additional favorable properties. 
 
 #### **Claim | Resolvent of a Strongly Monotone Operator**
-> With $B$ $\beta$-strongly monotone written as $B = A + \beta I$ where A is maximally monotone,  then the resolvent operator $\mathcal J_{B} = (I + B)^{-1}$ is $((1 + \beta)^{-1} - 1)$-strongly monotone.
-> In addition, $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
+> With $B$ $\beta$-strongly monotone written as $B = A + \beta I$ where A is maximally monotone, then $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
+> And $I - \mathcal J_B$ is a strongly monotone operator. (Also known as Co-coersive.). 
 
 **Proof**
 
@@ -137,74 +137,3 @@ $$
 therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
 Which is also the Lipschitz constant of the $\mathcal J_B$. 
 
-Consider $x' = ((1 + \beta)I + A)^{-1}x = \mathcal J_Bx$, 
-then $\exists x'_A \in Ax: (1 + \beta)x' + x'_A = x$, similarly for $y$ we have $\exists y \in Ay: (1 + \beta)x' + y'_A = y$. 
-With that information consider any $u' = \mathcal J_B u$ for any $u$: 
-$$
-\begin{aligned}
-    & \exists u'_A \in Au: 
-    (1 + \beta) u' = u - u'_A
-    \\
-    & \exists u'_A \in Au: u' = (1 + \beta)^{-1}(u - u_A')
-\end{aligned}
-$$
-and hence: 
-
-$$
-\begin{aligned}
-    & \exists x'_A \in Ax: x' = (1 + \beta)^{-1}(x - x_A')
-    \\
-    & \exists y'_A \in Ay: y' = (1 + \beta)^{-1}(y - y_A')
-\end{aligned}
-$$
-
-with $u \in \{x, y\}$, we would have
-
-$$
-\begin{aligned}
-    \langle x' - y', x - y\rangle &= 
-    (1 + \beta)^{-1}\langle x - x'_A - (y - y'_A), x - y \rangle
-    \\
-    &= (1 + \beta)^{-1} \langle (x - y) - (x'_A - y'_A), x- y\rangle
-    \\
-    &= (1 + \beta)^{-1}\Vert x - y\Vert^2 + 
-    \langle -(x_A' - y_A'), x - y\rangle
-    \\
-    &= 
-    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
-    \langle (x - y) -(x_A' - y_A'), x - y\rangle 
-    \\
-    &= 
-    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
-    \langle x - x'_A - (y - y'_A), x - y\rangle
-    \\
-    & \text{by } x - x'_A = (1 + \beta) x', y - y'_A = (1 + \beta) y'
-    \\
-    & = ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + 
-    \langle (1 + \beta)(x' - y'), x - y\rangle
-    \\
-    ([1])\implies 
-    &\ge 
-    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2 + (1 + \beta)^2 \Vert x' - y'\Vert^2
-    \\
-    &\ge 
-    ((1 + \beta)^{-1} - 1)\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-At (\[1\]) we used $\langle \mathcal J_B x - \mathcal J_B y, x - y \rangle \ge (1 + \beta)\Vert \mathcal J_B x - \mathcal J_B y\Vert^2$
-Observe that with $\beta > 0$, $((1 + \beta)^{-1} - 1) > 0$ and hence $\mathcal J_B$ is strongly monotone with constant: $((1 + \beta)^{-1} - 1)$. 
-Combining both results we have 
-$$
-\begin{aligned}
-    ((1 + \beta)^{-1} - 1) \Vert x - y\Vert^2 
-    \le \langle \mathcal J_B x - \mathcal J_B y, x - y\rangle 
-    \le (1 + \beta)^{-1}\Vert x - y\Vert^2
-\end{aligned}
-$$
-
-
-**Remark**
-
-The strongly convexity index $(1 + \beta)^{-1} - 1$ is useless because it's always less zero when $\beta > 0$. 
-I did a mistake here and this theorem may not be correct. 

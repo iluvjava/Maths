@@ -396,7 +396,7 @@ $$
 \end{aligned}
 $$
 
-Since this is true for all $x_t$, we can can claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - x(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
+Since this is true for all $x_t$, we can can claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - f(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
 
 
 **Remark**
@@ -498,7 +498,7 @@ $$
 \end{aligned}
 $$
 
-Recall from [Moreau Envelope of Moreau Envelope](Moreau%20Envelope%20of%20Moreau%20Envelope.md) that for any convex $g$ the gradient on the Moreau Envelope of $g$ has
+Recall from [[Moreau Envelope and Convex Proximal Mapping]] that for any convex $g$ the gradient on the Moreau Envelope of $g$ has
 
 $$
 \begin{aligned}
@@ -594,14 +594,20 @@ $$
     \eta_{t + 1}^{-1} 
     \left(
         \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
-    \right)(f_{0}(x_0) - f_0(x_*)). 
+    \right)(f_{0}(x_0) - f_0(x_*)), 
 \end{aligned}
 $$
+
+where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \Z_+$. 
 
 ---
 ### **Analysis of Prox Convex Lower Bounding Function (Strongly Convex)**
 
 In this section, we consider lowerbounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
+
+#### **Condition 1 | Strongly Convex Lower-Bounding Function**
+> 
+
 
 ---
 ### **Proximal Point in the Rockafellar Manner**

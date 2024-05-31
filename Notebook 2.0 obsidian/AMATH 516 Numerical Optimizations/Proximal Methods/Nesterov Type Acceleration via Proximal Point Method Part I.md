@@ -147,7 +147,7 @@ $$
     \phi_t(x) 
     &\le \eta_{t + 1} f(x) 
     \le 
-    \phi_t(x)  + \frac{L}{2} \Vert x - y_t\Vert^2. 
+    \phi_t(x)  + \frac{\eta_{t + 1}L}{2} \Vert x - y_t\Vert^2. 
 \end{aligned}
 $$
 
@@ -160,10 +160,10 @@ $$
     - \frac{1}{2}\Vert x_* - x_t\Vert^2
     &\le 
     -\frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 \quad \forall x^* \in \R^n. 
-\end{aligned}\tag{$\star$}
+\end{aligned}\tag{$[*]$}
 $$
 
-The above inequality can be viewed as a consequence of ([4.8a]). 
+~~The above inequality can be viewed as a consequence of ([4.8a]).~~
 By the definition of $\phi_t(x)$, we have that
 
 $$
@@ -183,14 +183,14 @@ $$
             &\le 
             \frac{L}{2}\Vert z_{t + 1} - y_t \Vert^2, 
             \\
-            -(\langle \nabla f(y_t), z_{t + 1} - y_t \rangle + f(y_t) + f(y_t))
+            -(\langle \nabla f(y_t), z_{t + 1} - y_t \rangle + f(y_t))
             &\le 
             \frac{L}{2}\Vert z_{t + 1} - y_t \Vert^2 - f(z_{t + 1}). 
         \end{aligned}
     \right.
     \\
     \implies 
-    \phi(x_{t + 1}) & \ge 
+    \phi_t(x_{t + 1}) & \ge 
     \eta_{t + 1} 
     \left(
         f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2
@@ -217,13 +217,13 @@ $$
         \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
         + 
         \langle \nabla f(y_t), z_{t + 1} - x_{t + 1}\rangle
-    \right). \leftarrow ([\star\star])
+    \right). \leftarrow ([\star*])
 \end{aligned}
 $$
 
 $f(z_{t + 1})$ comes from RHS of ([$\star$]). 
-Other terms in RHS of ([$\star$]) is put as negative as it moves to the RHS of ([$\star\star$]). 
-To investigate futher, we split the inner product term on RHS of $([\star\star])$. 
+Other terms in RHS of ([$\star$]) is put as negative as it moves to the RHS of ([$\star*$]). 
+To investigate futher, we split the inner product term on RHS of $([\star*])$. 
 So, 
 
 $$
@@ -244,7 +244,7 @@ $$
         &
         z_{t + 1} - y_t = L^{-1} \nabla f(y_t) 
     \end{aligned}
-    \right\rbrace \leftarrow ([\star **]), 
+    \right\rbrace , 
     \\
     &= 
     \langle \nabla f(y_t), 
@@ -258,7 +258,7 @@ $$
 \end{aligned}
 $$
 
-Substitute above back to RHS of $([\star\star])$, we obtain the inequality: 
+Substitute above back to RHS of $([\star*])$, we obtain the inequality: 
 
 $$
 \begin{aligned}
@@ -280,9 +280,8 @@ $$
     - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
     \eta_{t + 1}
     \left(
-        \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-        + 
-       - L^{- 1} \Vert f(y_t) \Vert^2 + 
+        \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+        - L^{- 1} \Vert \nabla f(y_t) \Vert^2 + 
     \langle \nabla f(y_t), y_t - x_t\rangle + 
     \eta_{t + 1} \Vert \nabla f(y_t)\Vert^2
     \right)
@@ -338,7 +337,7 @@ Let's rethink how some of the conditions are made use in the proof for the deriv
 1. $\phi_t$ has to be a lower bounding function, and it has to be convex in order to make use of the Descent lemma of PPM for convex function. 
 2. $f$ just has to be smooth, convexity is not used for INEQ1 AGM, but it's used in INEQ2 AGM, which is the next theorem. 
 
-
+At (\[*\]), the strategy differs from the analysis of PPM on gradient descent. 
 
 #### **Thm 2 | INEQ2 AGM**
 > With the exact same assumption used in Thm 1 for deriving INEQ1, we have additionally the inequality: 
