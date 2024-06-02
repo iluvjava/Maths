@@ -10,7 +10,7 @@
 \title{{\fontfamily{ptm}\selectfont Nesterov Type Momentum Methods}}
 
 \author{
-    Alto Legato
+    Alto
     \thanks{
         Subject type, Some Department of Some University, Location of the University,
         Country. E-mail: \texttt{author.name@university.edu}.
@@ -48,16 +48,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
 
         \begin{theorem}[Lipschitz Smoothness Equivalence]
-            With $f$ convex, the following conditions are equivalent conditions for all $x, y$: 
+            With $f$ convex and $L$-Lipschitz smooth, the following conditions are equivalent conditions for all $x, y$: 
             \begin{enumerate}
-                \item $|f(y) - f(x) - \langle \nabla f(x), y - x\rangle| \le \frac{L}{2}\Vert y - x\Vert^2$. 
-                \item $|\langle \nabla f(y) - \nabla f(x), y - x\rangle| \le L\Vert y - x\Vert^2$. 
-                \item $x^+\in \arg\min_x{f(x)} \implies \frac{1}{2L}\Vert \nabla f(x)\Vert^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$
-                \item $ 1/(2L)\Vert x - y\Vert^2 \le  f(y) - f(x) - \langle \nabla f(x), y -x\rangle \le (L/2)\Vert x - y\Vert^2$
+                \item $L^{-1}\Vert \nabla f(y) - \nabla f(x)\Vert^2 \le \langle \nabla f(y) - \nabla f(x), y - x\rangle \le L\Vert y - x\Vert^2$. 
+                \item $x^+\in \argmin_x f(x) \implies \frac{1}{2L}\Vert \nabla f(x)\Vert^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$, co-coersiveness. 
+                \item $ 1/(2L)\Vert \nabla f(x) - \nabla f(y)\Vert^2 \le  f(y) - f(x) - \langle \nabla f(x), y -x\rangle \le (L/2)\Vert x - y\Vert^2$
             \end{enumerate}    
         \end{theorem}
         \begin{remark}
-            In the convex of operator theorem, Lipschitz smoothness of the gradient of a convex function is an example of a Firmly Nonexpansive operator. 
+            Lipschitz smoothness of the gradient of a convex function is an example of a firmly nonexpansive operator.  
         \end{remark}
 
         \begin{definition}[Strong Convexity]
@@ -75,91 +74,215 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
         \begin{theorem}[Strong Convexity Implications]
             With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are implied: 
-            
+            \begin{enumerate}
+                \item $\frac{1}{2}\operatorname{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
+                \item $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
+                \item $f(y) \le f(x) + \langle \partial f(x), y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
+                \item $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
+                \item if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
+            \end{enumerate}
         \end{theorem}
         \begin{remark}
             In the context of operator theory, the subgradient of a strongly convex function is an example of a Strongly Monotone Operator. 
         \end{remark}
+    
     \subsection{Proximal Descent Inequality}
-        \begin{theorem}[Proximal Descent Inequality]\label{thm:prox_descent_ineq}
-            With $f: \RR^n \mapsto \overline \RR^n$ convex, fix any $x \in \RR^n$, let $p = \hprox_\alpha f(x)$, then for all $y$ we have inequality 
+        \begin{theorem}[Proximal Descent Inequality]\label{thm:ppm_descent_ineq}
+            With $f: \RR^n \mapsto \overline \RR^n$ $\beta$-convex where $\beta \ge 0$, fix any $x \in \RR^n$, let $p = \hprox_f(x)$, then for all $y$ we have inequality 
             $$
-                \left(f(p) + \frac{1}{2\alpha}\Vert x - p\Vert^2\right)
+                \left(f(p) + \frac{1}{2}\Vert x - p\Vert^2\right)
                 - 
                 \left(
-                    f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
+                    f(y) + \frac{1}{2}\Vert x - y\Vert^2 
                 \right)
                 \le 
-                - \frac{1}{2\alpha}\Vert y - p\Vert^2. 
+                - \frac{(1 + \beta)}{2}\Vert y - p\Vert^2. 
             $$
             Recall $\hprox_\alpha f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
         \end{theorem}
-        We make use of this theorem in the proof of convergence of proximal point method.     
+        We make use of this theorem in the proof of convergence of proximal point method. 
         \begin{remark}
             This descent inequality can be generalized to bregman proximal mapping as well. 
         \end{remark}
 
 
 \section{The Proximal Point Method in the Convex Case}
-    In this section we quickly go over the analysis of Proximal point method (PPM) in the convex case and see how the theories can be generalized into the cases where PPM is approximated. 
+    In this section we go over the analysis of Proximal point method (PPM) in the convex case and see how the theories can be generalized into the cases where PPM is approximated. 
     \par
     With $f: \RR^n \mapsto \overline \RR$ lsc proper and convex, 
     given any $x_0$ the PPM generates sequence $(x_n)_{n\in \NN}$ by $x_{k + 1} = \hprox_{\eta_{k + 1}}f(x_k)$ for all $k \in \NN$ where the sequence $(\eta_{k})_{k \in \NN}$ is a nonegative sequence of real numbers. 
-    \subsection{The Lyapunov function of PPM}
+
+    \subsection{The Lyapunov function of Convex PPM}
         \begin{theorem}
-            Define the quantity for all $u \in \RR^n$
+            With $f$ being $\beta\ge 0$ strongly convex and $x_{t + 1} = \hprox_{\eta_{t + 1}f}$ generated by PPM. 
+            Define the Lyapunov function $\Phi_t$ for all $u \in \RR^n$: 
             \begin{align*}
-                \Phi_t &= 
+                \Phi_t &:= 
                 \left(
                     \sum_{i = 1}^{t} \eta_i
-                \right)(f(x_t) - f(u)) + \frac{1}{2} \Vert u - x_t\Vert^2 \; \forall t \ge 1, 
+                \right)(f(x_t) - f(u)) + \frac{1}{2} \Vert u - x_t\Vert^2 \quad \forall t \ge 1, 
                 \\
-                \Phi_0 &= (1/2)\Vert x_0 - u\Vert^2, 
+                \Phi_0 &:= (1/2)\Vert x_0 - u\Vert^2, 
             \end{align*}
             then it is a Lyapunov function for the PPM algorithm. 
             Meaning for all $(x_k)_{k \in \NN}$ generated by PPM, it satisfies that $\Phi_{t + 1} - \Phi_t \le 0$. 
             Additionally, by the definition we have 
+            {\small
+                \begin{align*}
+                    \Phi_{t + 1} - \Phi_{t} 
+                    &= 
+                    \left(\sum_{i = 1}^{t}\eta_{i}\right)
+                    (f(x_{t + 1}) - f(x_t)) 
+                    + \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                    - \frac{1}{2}\Vert x_{t} - u\Vert^2
+                    +
+                    \eta_{t + 1}(f(x_{t + 1}) - f(u))
+                    \\
+                    & \le 
+                    -\left(\sum_{i = 1}^{t}\eta_{i}\right)
+                    (1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2
+                    + 
+                    \left(
+                        - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                        -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2
+                    \right)
+                    \\
+                    & \le 0,
+                \end{align*}
+            }
+            and additionarlly, recovering the descent lemma: 
             \begin{align*}
-                \Phi_{t + 1} - \Phi_{t} = 
-                \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
-                + 
-                \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
-                -
-                \frac{1}{2}\Vert u - x_t\Vert^2 
-                \le 
-                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
-            \end{align*}
-            as a consequence of choosing $u = x_{t + 1}$
-            \begin{align*}
-                f(x_{t + 1}) - f(x_t) \le \frac{1}{\eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2. 
+                f(x_{t + 1}) - f(x_t) 
+                &\le
+                -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2 
+                - \frac{\beta}{2}\Vert x_t - x_{t + 1}\Vert^2. 
             \end{align*}
         \end{theorem}
         \begin{proof}
-            With $p, \alpha, y$ in theorem \ref*{thm:prox_descent_ineq} as $x_{t + 1}, \eta_{t + 1}, u$ we have for all $u$
+            Let $\phi_{t + 1}: \RR^n \mapsto \overline \RR = \eta_{t + 1} f$ be convex,  consider proximal point method $x_{t + 1} = \hprox_{\phi}(x_t)$, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}, we have $\forall u \in \RR^n$
             \begin{align*}
-                \eta_{t + 1} (f(x_{t + 1}) - f(u)) + 
-                \frac{1}{2}(
-                    \Vert x_t - x_{t + 1} \Vert^2 
-                    - 
-                    \Vert x_t - u\Vert^2
-                ) &\le 
-                - \frac{1}{2}\Vert u - x_{t + 1}\Vert^2
-                \\
-                \eta_{t + 1}(f(x_{t + 1}) - f(u)) 
+                & \phi_{t + 1}(x_{t + 1}) 
                 + 
-                \frac{1}{2}\Vert u - x_{t + 1}\Vert^2 
-                -
-                \frac{1}{2}\Vert u - x_t\Vert^2 
-                & \le 
-                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                - \phi_{t + 1}(u) - \frac{1}{2}\Vert u - x_t\Vert^2
+                \le 
+                - 
+                \frac{1}{2}(1 + \beta\eta_{t + 1})\Vert 
+                    u - x_{t + 1}
+                \Vert^2
+                \\
+                & \text{let } u = x_*
+                \\
+                &\quad 
+                \begin{aligned}
+                    \implies &
+                    \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
+                    + 
+                    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+                    +  
+                    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -
+                    \frac{1}{2}\Vert x_* - x_t\Vert^2 
+                    \\
+                    & \quad \le 
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
+                    \\
+                    \iff & 
+                    \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
+                    + 
+                    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+                    -
+                    \frac{1}{2}\Vert x_* - x_t\Vert^2 
+                    \\
+                    & \quad \le 
+                    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
+                    \le 0. 
+                \end{aligned}
+                \\
+                & \text{let } u = x_{t}
+                \\
+                &\quad  
+                \begin{aligned}
+                    \implies& 
+                    f(x_{t + 1}) - f(x_t)
+                    \le 
+                    -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2 
+                    - \frac{\beta}{2}\Vert x_t - x_{t + 1}\Vert^2
+                    \le 0. 
+                \end{aligned}
             \end{align*}
-            next it's not hard to check that $\Phi_{t + 1} - \Phi_t$ equals to the above quantity. 
+            Let's define the following quantities for all $u, \beta\ge 0$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}(u) &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(u)) + \frac{1}{2}(
+                    \Vert x_{t + 1} - u\Vert^2 - 
+                    \Vert x_t - u\Vert^2
+                )
+                \\
+                & \le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2, 
+                \\
+                \Upsilon_{2, t + 1}
+                &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                \\
+                &\le 
+                - \Vert x_{t + 1} - x_t\Vert^2 - 
+                \frac{\beta\eta_{t + 1}}{2}
+                \Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                &= 
+                -(1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2 \le 0. 
+            \end{align*}
+            With $\Phi_t$ as defined in the theorem, observe the following demonstration for all $u$, $\beta \ge 0$: 
+            {\small
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_{t}
+                &= 
+                \left(
+                    \sum_{i = 1}^{t + 1}\eta_i
+                \right)(f(x_{t + 1}) - f(u)) + 
+                \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                - 
+                \left(
+                    \sum_{i = 1}^{t}\eta_i
+                \right)(f(x_{t}) - f(u))
+                - 
+                \frac{1}{2}\Vert x_{t} - u\Vert^2
+                \\
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)
+                (f(x_{t + 1}) - f(x_t)) 
+                + \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                - \frac{1}{2}\Vert x_{t} - u\Vert^2
+                +
+                \eta_{t + 1}(f(x_{t + 1}) - f(u))
+                \\
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)\Upsilon_{2, t + 1}
+                + \Upsilon_{1, t + 1}(u)
+                \\
+                &\le 
+                -\left(\sum_{i = 1}^{t}\eta_{i}\right)
+                (1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2
+                + 
+                \left(
+                    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2
+                \right)
+                \le 0. 
+            \end{align*}
+            }
+            Therefore, $\Phi_t$ is a legitimate Lyapunov funtion for all $u, \beta \ge 0$. 
         \end{proof}
         \begin{remark}
-            This theorem act as a descent inequality and it can be generalized under a diverse context, such as all algorithms that are approximation to the PPM method. 
+            The above Lyapunov is not unique and it's not optimal for $\beta > 0$, striclty strongly convex functions. 
+
         \end{remark}
 
-        \begin{theorem}[Convergence Rate of PPM]
+        \begin{theorem}[Convergence Rate of PPM]\label{thm:ppm_convergence_rate}
             The convergence rate of PPM applied to $f$, closed, convex proper, we have convergence rate of the function value: 
             $$
             f(x_T) - f(x_*) \le O\left(\left(\sum_{i=1}^{T}\eta_t\right)^{-1}\right). 
@@ -167,7 +290,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Where $x_*$ is the minimizer of $f$. 
         \end{theorem}
         \begin{proof}
-            With $\Delta_t = f(x_t) - f(x_*), \Upsilon_t = \sum_{i = 1}^{t}\eta_i$ so $\Phi_t = \Upsilon_t\Delta_t + \frac{1}{2}\Vert x_t - x_*\Vert^2$ by consider $u = x_*$, invoking previous theorem and do
+            With $\Delta_t = f(x_t) - f(x_*), \Upsilon_t = \sum_{i = 1}^{t}\eta_i$ so $\Phi_t = \Upsilon_t\Delta_t + \frac{1}{2}\Vert x_t - x_*\Vert^2$ by consideration $u = x_*$, invoking previous theorem and do
             \begin{align*}
                 \Upsilon_T\Delta_T \le \Phi_T 
                 &\le 
@@ -177,61 +300,319 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &\le 
                 \frac{1}{2\Upsilon_T} \Vert x_0 - x_*\Vert^2. 
             \end{align*}
-            Hence, the convergence rate of PPM for all convex function is the above. 
         \end{proof}
         \begin{remark}
             The analysis of the above is taken from (REFERENCE NEEDED). 
         \end{remark}
-        However, the convergence rate of the algorithm can be faster for the same choice of the sequence $(\eta_t)_{t \in \NN}$. 
+        With the same choice of the sequence $(\eta_t)_{t \in \NN}$, convergence of PPM method of a strongly convex function is faster. 
+        
         \begin{theorem}[Convergence Rate of PPM (Strongly Convex)]
             
             
         \end{theorem}
-\section{Application of the Proximal Point Method}
-    The PPM method and the Lyaounov function derived above serves as tamplate for other algorithms. 
-    In optimizations, people uses lower and upper approximation of the objective function to approximate the PPM. 
-    Such an approach involves a diverse range of algorithms, including second order algorithms such as Newton's method. 
+\section{Simple of the Proximal Point Method}
+    The PPM method and the Lyaounov function derived above serves as the tamplate for other algorithms. 
+    In optimizations, people use a lower, or an upper approximation of the objective function to approximate the PPM. 
+    The approaches are a diverse, including second order algorithms such as Newton's method. 
     To demonstrate, assume that $f$ is a lsc convex function such that it can be approximated by an lower bounding function $l_f(x|\bar x)$ at $\bar x$ such that it satisfies for all $x$: 
     \begin{align}
         l_f(x| \bar x) 
         \le f(x) \le l_f(x|\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
     \end{align}
-    The above characterization is generic enough to include the case where $l_f(x|\bar x)$ under approximates function that is non-smooth. 
-    To make use of the theorems discussed previously, we assume that $l_f(x|\bar x)$ is convex for all $x$, at all $\bar x$. 
+    The above characterization is generic enough to include the case where $l_f(x|\bar x)$, the under approximating function is nonsmooth. 
+    We assume that $l_f(x|\bar x)$ is convex for all $x$, at all $\bar x$ so that the previous theorems are applicable. 
     \par 
-    The approximated proximal point method is applying PPM to the function $l_f(x|x_t)$ for each iteration, i.e: $x_{t +1} = \hprox_{\eta_{t + 1}}[u\mapsto l_f(u | x_t)](x_t)$. 
-    
-    \begin{theorem}[Convergence of Approximated PPM]\label{thm:lower_approx_ppm_convergence}
-        With $f$ be a function that has minimizer: $x_*$; $l_f(x; x_t)$ be a convex, lsc, proper lower-bounding function then the lower-bounding $\phi$ function satisfies inequality: 
-        $$
-        \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{n + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n, 
-        $$ 
-        Assume an algorithm the makes: 
-        $$
-        \begin{aligned}
-            x_{t +1} = \argmin_{x} \left\lbrace
-                l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
-            \right\rbrace, 
-        \end{aligned}
-        $$
-        Then the iterates satisfies: 
-        $$
-        \begin{aligned}
-            \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
-            - \frac{1}{2}\Vert x_* - x_t\Vert 
-            & \le 
-            \left(
-                \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
-            \right)\Vert x_{t + 1} - x_t\Vert^2.
-        \end{aligned}
-        $$
-    \end{theorem}
-    \begin{proof}
+    The approximated proximal point method is applying PPM to the function $l_f(x|x_t)$ for each iteration, i.e: $x_{t +1} = \hprox_{\eta_{t + 1}l_f(\cdot | x_t)}(x_t)$. 
+    \subsection*{Generic Gradient Descent}
+        As a warm up, we consider deriving gradient descent via the PPM approach. 
+        Please pay attention to the remarks, it reveals parts of the proof that could inspirate the idea of non-monotone line search method in a practical settings. 
+        \begin{theorem}[Generic Approximated PPM]\label{thm:lower_approx_ppm_convergence}
+            With $f$ be a function that has minimizer: $x_*$; $l_f(x; x_t)$ be a convex, lsc, proper lower-bounding function, define lower-bounding $\phi_t = \eta_{t + 1}l_f(x; x_t)$. 
+            Assume the following estimates hold: 
+            $$
+            \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+            + 
+            \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n, 
+            $$ 
+            Fix any $x_0$, assume that the iterates $x_t$ defined for $t\in \NN$ satisfies
+            \begin{align*}
+                x_{t +1} = \argmin_{x} \left\lbrace
+                    l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
+                \right\rbrace, 
+            \end{align*}
+            then the iterates satisfies: 
+            \begin{align*}
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
+                - \frac{1}{2}\Vert x_* - x_t\Vert^2
+                & \le 
+                \left(
+                    \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
+                \right)\Vert x_{t + 1} - x_t\Vert^2.
+            \end{align*}
+            And for all $\eta_{t} \in (\epsilon, 2L^{-1} - \epsilon)$ with $\epsilon > 0$, the algorithm has sublinear convergence rates of
+            \begin{align*}
+                \frac{L - \epsilon^{-1}}{TL\epsilon} &\le 
+                \frac{L - \epsilon^{-1}}{TL\epsilon} (f(x_0) - f(x_T))
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            By $\phi_t$ convex, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} with $\alpha = 1$ and $f = \phi_t$, $x = x_t$ making $x_{t + 1} = p$, yielding $\forall y$
+            {\footnotesize
+                \begin{align*}
+                    \phi_t(x_{t + 1}) + \frac{1}{2}\Vert x_t - x_{t + 1}\Vert^2 
+                    - 
+                    \phi_t(y) - \frac{1}{2}\Vert x_t - y\Vert^2
+                    &\le 
+                    - \frac{1}{2}\Vert y - x_{t + 1}\Vert^2
+                    \\
+                    \phi_t(x_{t + 1}) - \phi_t(y)
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) &\le 
+                    - \frac{1}{2} \Vert x_t - x_{t + 1}\Vert^2
+                    \\
+                    \left(
+                        \phi_t(x_{t + 1}) + \frac{L\eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert
+                    \right)
+                    - \phi_t(y)
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) &\le 
+                    \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                    \right) \Vert x_t - x_{t + 1}\Vert^2
+                    \\
+                    \implies 
+                    \eta_{t + 1}f(x_{t + 1}) - \eta_{t + 1}f(y) 
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) 
+                    &\le 
+                    \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                    \right) \Vert x_t - x_{t + 1}\Vert^2. 
+                \end{align*}
+            }
+            Setting $y = x_t$ yields
+            \begin{align*}
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) + 
+                \frac{1}{2}
+                    \Vert x_t - x_{t + 1}\Vert^2
+                &\le 
+                \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2
+                \\
+                \iff 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                &\le 
+                \left(
+                        \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            In a similar manner to the derivation of Lyapunov function for PPM, we make for all $y$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}(y) &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(y)) + \frac{1}{2}(
+                    \Vert x_{t + 1} - y\Vert^2 - 
+                    \Vert x_t - y\Vert^2
+                )
+                \\
+                & \le 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2, 
+                \\
+                \Upsilon_{2, t + 1}
+                &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                \\
+                &\le 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            Now, consider defining $\Phi_t$ for all $y$: 
+            $$
+                \Phi_t = \left(
+                    \sum_{i = 1}^{t} \eta_{i}
+                \right)
+                (f(x_t) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2, 
+            $$
+            which is previously proposed Lyapunov function for PPM, we define the basecase $\Phi_0 = \frac{1}{2}\Vert y - x_0\Vert^2$. 
+            Consider the difference $\forall y$: 
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_t
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)\Upsilon_{2, t + 1}
+                + \Upsilon_{1, t + 1}(y)
+                \\
+                &\le 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right) 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2 + 
+                \left(
+                    \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            Observe that if $\eta_i \le L^{-1}$, then $\Phi_{t + 1} - \Phi_t \le 0$, hence the convergence rate of $\mathcal O\left((\sum_{i = 1}^{t}\eta_i)^{-1}\right)$ of PPM for $\Phi_t$ is applicable. 
+            \par
+            Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still convergeces. 
+            For simplicity we make $\sigma_t = \sum_{i = 1}^{t}\eta_i$. 
+            It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
+            \begin{align*}
+                f(x_{t + 1}) - f(x_t) &\le 
+                \left(\frac{L\eta_{t + 1}}{2} - 1\right)\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                f(x_T) - f(x_0)
+                &\le 
+                \underbrace{
+                \left(
+                    \frac{L\sigma_T}{2} - T
+                \right)
+                }_{< 0}
+                \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                \implies 
+                \sum_{t = 0}^{T -1}\Vert x_t - x_{t + 1}\Vert^2
+                &\le 
+                \left(
+                    \frac{L}{2}\sigma_T  - T
+                \right)^{-1} 
+                (f(x_T) - f(x_0))
+            \end{align*}
+            Continue on the RHS of $\Phi_{t + 1} - \Phi_t$ so 
+            \begin{align*}
+                \sum_{t = 0}^{T - 1}\Phi_{t + 1} - \Phi_t 
+                &\le 
+                \left(
+                    \frac{L}{2}\sigma_T - \frac{T}{2}
+                \right)\sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                \Phi_T - \Phi_0 &\le 
+                \left(
+                    \frac{\frac{L}{2}\sigma_T - \frac{T}{2}}{
+                        \frac{L}{2}\sigma_T - T
+                    }
+                \right)
+                (f(x_T) - f(x_0))
+                \\
+                &= 
+                \left(
+                    \frac{L\sigma_T - T}{L\sigma_T - 2T}
+                \right)
+                (f(x_T) - f(x_0)), 
+            \end{align*}
+            implies
+            \begin{align*}
+                \sigma_T (f(x_t) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2
+                - \frac{1}{2}\Vert y - x_0 \Vert^2 
+                &\le 
+                \left(
+                    \frac{L\sigma_T - T}{L\sigma_T - 2T}
+                \right)
+                (f(x_T) - f(x_0))
+                \\
+                \iff
+                f(x_t) - f(y) + 
+                \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+                &\le 
+                \left(
+                    \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+                \right)
+                (f(x_0) - f(x_T)), 
+            \end{align*}
+            therefore we obtain the bound: 
+            \begin{align*}
+                f(x_t) - f(y) &\le 
+                \left(
+                    \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+                \right)
+                (f(x_0) - f(x_T))
+                - 
+                \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+            \end{align*}
+            In the case where $\sup_{i\in \NN} \eta_i \le 2L^{-1} - \epsilon$, and $\inf_{i\in \NN}\eta_i \ge \epsilon$ with $\epsilon > 0$. 
+            Then we have 
+            \begin{align*}
+                \frac{L -T\sigma_T^{-1}}{2T - L\sigma_T}
+                &\le 
+                \frac{L - \epsilon^{-1}}{2T - LT(2L^{-1} - \epsilon)}
+                \\
+                &= 
+                \frac{L - \epsilon^{-1}}{2T - T(2 - L\epsilon)}
+                \\
+                &= 
+                \frac{L - \epsilon^{-1}}{TL\epsilon}. 
+            \end{align*}
+            With $y = x_*$, we get the claimed convergence rate. 
+        \end{proof}
+
+        \begin{remark}
+            We speculate based on observing that the inequality 
+            $$
+                \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+                + 
+                \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n, 
+            $$
+            was invoked with $x = x_{t + 1}$ for the PPM descent inequality, meaning that having $\forall x \in \RR^n$ can be relaxed into $\forall (x_t)_{t \in \NN}$ generated by the algorithm, $\exists (L_t)_{t \in \NN}$, 
+            $$
+                \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+                + 
+                \frac{L_t\eta_{t + 1}}{2}\Vert x - x_t\Vert^2,
+            $$
+            where the sequence is generated by the algorithm. 
+            This can be achieved by choosing the function $\Phi_{t + 1}$ at each iteration smartly. 
+            \par
+            The convergence rate is loose and when function $f$ exhibits additional favorable properties, such as being strongly convex, the convergence rate can be faster. 
+        \end{remark}
+    \subsection{Examples}
+        \begin{example}[Proximal Gradient]
+            In this section, we illustrate algorithms that satisfies the lower and uppwer bound estimate used in the above proof. 
+            Consider $f = g + h$ with $h$ nonsmooth convex, and $g$ being $L$-Lipschitz smooth convex and differentiable. 
+            Define $D_g(x, y) = g(x) - g(y) - \langle \nabla f(x), y - x\rangle$, which is the Bregman divergence of the function $g$. 
+            Consider for all $x$: 
+            \begin{align*}
+                0 & \le 
+                D_g (x, y) \le  \frac{L}{2} \Vert x - y\Vert^2 
+                \\
+                l_g (x; y) &\le 
+                g(x) 
+                \le l_g(x; y) + \frac{L}{2} \Vert x - y\Vert^2 
+                \\
+                h(x) + l_g(x; y) &\le f(x) = g(x) + h(x)
+                \le 
+                l_g(x; y) + h(x) + \frac{L}{2}\Vert x - y\Vert^2. 
+            \end{align*}
+            Define $\phi_t (x) = \eta_{t + 1}(h(x) + l_g(x; x_t))$, then results from previous theorems apply.    
+        \end{example}
+        \begin{remark}
+            The envelope interpretation restricts the use of the theorem, since it requires that the proixmal operator is applied to the gradient of a function. 
+            Extending the usage of the PPM descent inequality to other context requires operator theories and creativities. 
+        \end{remark} 
         
-    \end{proof}
+\section{Accelerated gradient descent}
+    By recent works from (CITATION NEEDED), Nesterov accelerated gradient (CITATION NEEDED) can be interpreted as an approximation to the PPM method. 
+    Additionally, works on accelerating PPM had bey done by Guler (CITATION NEEDED) decades ago. 
+    The recent interpretations of Nesterov acceleration method via PPM focuses on the idea of a similar triangle, and unifying all varieties of Nesterov acceleration. 
+    \subsection{The varieties of Nesterov Accelerated gradient}
+        In this section, we list different varities of Nesterov accelerated method. 
+        Each of the varieties will be presented generically because we are only interested in the forms they take. 
+
+    \subsection{Interpreting Nesterov accelerated gradient via PPM. }
+        
+
+
 
 
 \bibliographystyle{plain}
+
+\appendix
+\section*{Postponed Proofs}
 
 
 \end{document}
