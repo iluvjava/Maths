@@ -102,7 +102,7 @@ with the substituting of $z_{t + 1} = y_t - L^{-1}\nabla f(y_t)$, which occurs b
 $$
 \begin{aligned}
     \begin{cases}
-        z_{t + 1} = x_t - \eta_{t + 1} \nabla f(y_t) 
+        x_{t + 1} = x_t - \eta_{t + 1} \nabla f(y_t) 
         & \text{([4.9a])}
         \\
         z_{t + 1} = y_t - L^{-1}\nabla f(y_t) 
@@ -564,7 +564,7 @@ $$
 }
 $$
 
-To allow the inequality to be satisfies, the sequence of stepsizes $\eta_t$ should set the stepsize inner prodcut to be zero and setting the gradient $\Vert \nabla f(y_t)\Vert^2$ to be non-positive. 
+To satify the inequalities, the sequence of stepsizes $\eta_t$ should set the stepsize inner prodcut to be zero and setting the gradient $\Vert \nabla f(y_t)\Vert^2$ to be non-positive. 
 Which gives us 
 
 $$

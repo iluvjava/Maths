@@ -1,5 +1,6 @@
 ---
-alias: Nesterov Acceleration Sequence Method
+alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
+
 
 ---
 - [Smooth Gradient Descend The Basics](Smooth%20Gradient%20Descend%20The%20Basics.md)
@@ -23,7 +24,7 @@ My contributions here involve some extra gory mathematical details for the recor
 
 Anchoring on the initial function $\phi_0$, the estimating sequence and estimating function gives a function $\phi_k$ that such the convex combination between $f, \phi_0$ with $\lambda_k$ is always a lower estimation. 
 
-The next lemma provide one sufficient characterizations for an estimating sequence/function. 
+The next lemma provide one sufficient characterizations for an estimating sequence/function, along with the potential usefulness for upper-bounding the optimality gap. 
 
 #### **Characterizations (Lemma 2.2.1) | Conditions for Descent on Objective Value**
 > If for some sequence of points $(x^{(k)})_{k = 0}^\infty$, we have  
@@ -1078,6 +1079,10 @@ We present a generic convergence results based on the above generic method. This
 **Proof**
 
 This is just an example of lemma 2.2.1 for the proposed Generic Accelerated Momentum method. 
+
+**Remark**
+
+It's complicated, please visit [[Nesterov's Generic Convergence Results]] for more information about the proof of convergence. 
 
 
 ---

@@ -21,7 +21,7 @@ We also derive the convergence rate of PPM.
 After that we present analogous result for inexact proximal algorithms and how this idea is powerful. 
 
 
-#### **Lemma 1 | Convex Moreau Envelope Inequality**
+#### **Lemma 1.1 | Convex Moreau Envelope Inequality**
 > $f$ is convex, proper, lsc. 
 > Then 
 > $$
@@ -74,8 +74,8 @@ $$
 
 Which gives us more decrease. 
 
-#### **Proposition 2 | Lyaponouv Function for Proximal Point Method**
-> let $f$, then the function $\Phi_t$ is a Lyponouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
+#### **Proposition 1.2 | Lyaponouv Function for Proximal Point Method**
+> let $f$ be lsc and $\beta$-strongly convex where $\beta \ge 0$, then the function $\Phi_t$ is a Lyponouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
 > $\Phi_t$ is 
 > $$
 > \Phi_t = 
@@ -88,49 +88,45 @@ Which gives us more decrease.
 
 **Proof**
 
-Let $\phi: X \mapsto \overline \R$ be convex,  consider proximal point method $x_{t + 1} = \prox{\phi}(x_t)$, apply the optimality conditions of the Moreau envelope, we have $\forall u \in \R^n$
+Let $\phi_{t + 1}: \R^n \mapsto \overline \R = \eta_{t + 1} f$ be convex,  consider proximal point method $x_{t + 1} = \prox{\phi}(x_t)$, apply the optimality conditions of the Moreau envelope, we have $\forall u \in \R^n$
 
 $$
 \begin{aligned}
-    & \phi(x_{t + 1}) + \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
-    - \phi(u) - \frac{1}{2}\Vert u - x_t\Vert^2
+    & \phi_{t + 1}(x_{t + 1}) 
+    + 
+    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+    - \phi_{t + 1}(u) - \frac{1}{2}\Vert u - x_t\Vert^2
     \le 
     - 
-    \frac{1}{2}\Vert 
+    \frac{1}{2}(1 + \beta\eta_{t + 1})\Vert 
         u - x_{t + 1}
     \Vert^2
     \\
-    & \text{let } \phi = \eta_{t + 1} f, u = x^*
+    & \text{let } u = x_*
     \\
     &\quad 
     \begin{aligned}
         \implies &
-        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
         + 
-        \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
+        \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
         +  
         \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
         -
-        \frac{1}{2}\Vert x^* - x_t\Vert^2 \le 0
+        \frac{1}{2}\Vert x_* - x_t\Vert^2 
+        \le 
+        -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
         \\
         \iff & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
+        \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
         + 
-        \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
+        \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
         -
-        \frac{1}{2}\Vert x^* - x_t\Vert^2 
+        \frac{1}{2}\Vert x_* - x_t\Vert^2 
         \le 
         - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+        -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
         \le 0
-        \\
-        \implies & 
-        \eta_{t + 1}(f(x_{t + 1}) - f(x^*)) 
-        + 
-        \frac{1}{2}\Vert x^* - x_{t + 1}\Vert^2 
-        -
-        \frac{1}{2}\Vert x^* - x_t\Vert^2 
-        \le 0
-        \leftarrow \text{([INEQ1])}
     \end{aligned}
     \\
     & \text{let } u = x_{t}
@@ -138,111 +134,90 @@ $$
     &\quad  
     \begin{aligned}
         \implies& 
-        f(x_{t + 1}) - f(x_t) \le 
-        -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2
-        \leftarrow \text{([INEQ2])}, 
+        f(x_{t + 1}) - f(x_t)
+        \le 
+        -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2 
+        - \frac{\beta}{2}\Vert x_t - x_{t + 1}\Vert^2
+        \le 0
     \end{aligned}
-    
 \end{aligned}
 $$
 
-Then, we consider the following operations
+
+$\forall u$, define quantities
 
 $$
-{\scriptsize
 \begin{aligned}
-    & 
-    ([\text{INEQ1}]) + \left(
-        \sum_{ i =1}^{t} \eta_t 
-    \right)([\text{INEQ2}]) \le 0 
+    \Upsilon_{1, t + 1}(u) &= 
+    \eta_{t + 1}(f(x_{t + 1}) - f(u)) + \frac{1}{2}(
+        \Vert x_{t + 1} - u\Vert^2 - 
+        \Vert x_t - u\Vert^2
+    )
     \\
-    \iff &
-    \eta_{t + 1}(f(x_{t + 1}) - f(x_*))
-    + 
-    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
-    - 
-    \frac{1}{2}\Vert x^* - x_t\Vert
-    + 
-    \left(
-        \sum_{i = 1}^t \eta_i  
-    \right)(f(x_{t + 1}) - f(x_t)) \le 0
+    & \le 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+    -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2, 
     \\
-    \text{ Observe that } &
+    \Upsilon_{2, t + 1}
+    &= 
+    \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
     \\
-    & 
-    \begin{aligned}
-        & \quad 
-        \left(\sum_{i = 1}^{t} \eta_i\right)
-        (f(x_{t + 1}) - f(x_t))
-        \\
-        &= 
-        \left(\sum_{i = 1}^{t} \eta_i\right)
-        (f(x_{t + 1})- f(x_*) + f(x_*) - f(x_t))
-        \\
-        &= 
-        \left(\sum_{i = 1}^{t} \eta_i\right)(f(x_{t + 1}) - f(x_*)) - 
-        \left(\sum_{i = 1}^{t} \eta_i\right)(f(x_t) - f(x_*))
-    \end{aligned}
+    &\le 
+    - \Vert x_{t + 1} - x_t\Vert^2 - 
+    \frac{\beta\eta_{t + 1}}{2}
+    \Vert x_{t + 1} - x_t\Vert^2
     \\
-    \iff & 
-    = 
+    &= 
+    -(1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2. 
+\end{aligned}
+$$
+
+With $\Phi_t$ as defined in the proposition, observe the following demonstration for all $u$, $\beta \ge 0$: 
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_{t}
+    &= 
     \left(
         \sum_{i = 1}^{t + 1}\eta_i
-    \right)(f(x_{t + 1}) - f(x_*))
-    + 
-    \frac{1}{2}
-    \Vert x_{t + 1} - x_*\Vert^2 - 
-    \left(
-        \left(
-            \sum_{i = 1}^{t}\eta_i
-        \right)(f(x_{t}) - f(x_*))
-        + 
-        \frac{1}{2}
-        \Vert x_{t} - x_*\Vert^2
-    \right) \le 0
-    \\
-    \iff & =
-    \Phi_{t + 1} - \Phi_{t} \le 0. 
-\end{aligned}
-}
-$$
-
-Therefore, $\Phi_t$ is a Lyaponouv function of the proximal point method for convex, closed, proper $f$. 
-
-
-
-**remarks**
-
-We obesrve that, combining (\[INEQ1\]) and (\[INEQ2\]), we know that the function value and the error from the optimal solution $x^*$, decreases monotonically. 
-The later is Fejer Monotonicity, and the former is much weaker implications. 
-
-\(\[INEQ2\]\) is unecessary for the proof of the Lyapnouv function, but it's presented to show that the function value strictly decreases. 
-However, we may verify that $\phi_t$ is a lyaponuv function if we know what it is in prior, consider that: 
-
-$$
-\begin{aligned}
-    \Phi_{t + 1} - \Phi_{t} = 
-    \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) + 
-    \frac{1}{2}\Vert x^* - x_{t + 1} \Vert^2 
+    \right)(f(x_{t + 1}) - f(u)) + 
+    \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
     - 
-    \frac{1}{2}\Vert x^* - x_t\Vert^2, 
+    \left(
+        \sum_{i = 1}^{t}\eta_i
+    \right)(f(x_{t}) - f(u))
+    - 
+    \frac{1}{2}\Vert x_{t} - u\Vert^2
+    \\
+    &= 
+    \left(\sum_{i = 1}^{t}\eta_{i}\right)
+    (f(x_{t + 1}) - f(x_t)) 
+    + \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+    - \frac{1}{2}\Vert x_{t} - u\Vert^2
+    +
+    \eta_{t + 1}(f(x_{t + 1}) - f(u))
+    \\
+    &= 
+    \left(\sum_{i = 1}^{t}\eta_{i}\right)\Upsilon_{2, t + 1}
+    + \Upsilon_{1, t + 1}(u)
+    \\
+    &\le 
+    -\left(\sum_{i = 1}^{t}\eta_{i}\right)
+    (1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2
+    + 
+    \left(
+        - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+        -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2
+    \right)
+    \le 0. 
 \end{aligned}
 $$
 
-so it equals to the LHS of (\[INEQ1\]). 
-So $\Phi_{t + 1} - \Phi_t \le 0$. 
+Therefore, we verified that $\Phi_t$ can indeed be a Lyapunouv function for the PPM algorithm.
 
-Additionally, the choice of $x^*$ can be arbitrary. 
-The Lyaponouv function be alternatively defined as 
+**Remark**
 
-$$
-\begin{aligned}
-    \phi_t(u) = \left(
-        \sum_{i = 1}^{t} \eta_i
-    \right)(f(x_t) - f(u)) + 
-    \frac{1}{2}\Vert u - x_t\Vert^2. 
-\end{aligned}
-$$
+This Lyapunouv function is not optimal for $\beta > 0$. 
 
 
 #### **Thm 1 | Baseline Convergence via Method of PPM**
@@ -274,9 +249,7 @@ $$
 
 The convergence of $\Vert x_t - x^*\Vert^2$, or $x_t$, is not so obvious from this theorem alone. 
 Additional assumptions for $f$ is required. 
-
-
-
+I think we may need the operator theories in optimizations. 
 
 
 ---
@@ -331,7 +304,7 @@ We illusrate how this property is used in the below proof for a claim.
 > $$
 > \begin{aligned}
 >     \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
->     - \frac{1}{2}\Vert x_* - x_t\Vert 
+>     - \frac{1}{2}\Vert x_* - x_t\Vert^2
 >     & \le 
 >     \left(
 >         \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
@@ -339,7 +312,7 @@ We illusrate how this property is used in the below proof for a claim.
 > \end{aligned}
 > $$
 > This is a result analogous to Lemma-1. 
-> We name this inequality (\[INEQ1 GD\])
+> Furhter more, if $\exists \epsilon > 0: \eta_i\in (\epsilon, 2L^{-1} - \epsilon)\;\forall i \in \N$ then $f(x_T) -f(x_*)$ at a rate of $\frac{L - \epsilon^{-1}}{TL\epsilon}$ where $x_*$ is the minimizer of $f$. 
 
 **Proof**
 
@@ -397,6 +370,107 @@ $$
 $$
 
 Since this is true for all $x_t$, we can can claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - f(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
+Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still convergeces. 
+For simplicity we make $\sigma_t = \sum_{i = 1}^{t}\eta_i$. 
+It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
+
+$$
+\begin{aligned}
+    f(x_{t + 1}) - f(x_t) &\le 
+    \left(\frac{L\eta_{t + 1}}{2} - 1\right)\Vert x_{t + 1} - x_t\Vert^2
+    \\
+    f(x_T) - f(x_0)
+    &\le 
+    \underbrace{
+    \left(
+        \frac{L\sigma_T}{2} - T
+    \right)
+    }_{< 0}
+    \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+    \\
+    \implies 
+    \sum_{t = 0}^{T -1}\Vert x_t - x_{t + 1}\Vert^2
+    &\le 
+    \left(
+        \frac{L}{2}\sigma_T  - T
+    \right)^{-1} 
+    (f(x_T) - f(x_0))
+\end{aligned}
+$$
+
+Continue on the RHS of $\Phi_{t + 1} - \Phi_t$ so 
+$$
+\begin{aligned}
+    \sum_{t = 0}^{T - 1}\Phi_{t + 1} - \Phi_t 
+    &\le 
+    \left(
+        \frac{L}{2}\sigma_T - \frac{T}{2}
+    \right)\sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+    \\
+    \Phi_T - \Phi_0 &\le 
+    \left(
+        \frac{\frac{L}{2}\sigma_T - \frac{T}{2}}{
+            \frac{L}{2}\sigma_T - T
+        }
+    \right)
+    (f(x_T) - f(x_0))
+    \\
+    &= 
+    \left(
+        \frac{L\sigma_T - T}{L\sigma_T - 2T}
+    \right)
+    (f(x_T) - f(x_0)), 
+\end{aligned}
+$$
+implies
+$$
+\begin{aligned}
+    \sigma_T (f(x_T) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2
+    - \frac{1}{2}\Vert y - x_0 \Vert^2 
+    &\le 
+    \left(
+        \frac{L\sigma_T - T}{L\sigma_T - 2T}
+    \right)
+    (f(x_T) - f(x_0))
+    \\
+    \iff
+    f(x_T) - f(y) + 
+    \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+    &\le 
+    \left(
+        \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+    \right)
+    (f(x_0) - f(x_T)), 
+\end{aligned}
+$$
+therefore we obtain the bound: 
+$$
+\begin{align}
+    f(x_T) - f(y) &\le 
+    \left(
+        \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+    \right)
+    (f(x_0) - f(x_T))
+    - 
+    \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+\end{align}
+$$
+In the case where $\sup_{i\in \N} \eta_i \le 2L^{-1} - \epsilon$, and $\inf_{i\in \N}\eta_i \ge \epsilon$ with $\epsilon > 0$. 
+Then we have 
+$$
+\begin{aligned}
+    \frac{L -T\sigma_T^{-1}}{2T - L\sigma_T}
+    &\le 
+    \frac{L - \epsilon^{-1}}{2T - LT(2L^{-1} - \epsilon)}
+    \\
+    &= 
+    \frac{L - \epsilon^{-1}}{2T - T(2 - L\epsilon)}
+    \\
+    &= 
+    \frac{L - \epsilon^{-1}}{TL\epsilon}. 
+\end{aligned}
+$$
+With $y = x_*$, we get the claimed convergence rate. 
 
 
 **Remark**
@@ -426,6 +500,11 @@ This is strictly weaker than what is used to prove the theorem.
 There are some potential for generalization and creativity by considering various kind of convex $\phi_t(x)$. 
 One can imagine maximizing $\eta_{t + 1}L_t$ by appropriate choice of $x_{t + 1}$ to obtain faster convergence rate. 
 
+
+**Questions**
+
+Would a similar analysis work for strongly convex functions, or it's going to be a different story since $\Phi_t$, the Lyapunov function would change accordingly? 
+I don't have any good ideas but to use gradient descent on the envelope interpretation to asist the analysis in the strongly convex case. 
 
 #### **Thm-2 | Stepsize and the Convergence of the Gradient Descent Method**
 > Choose stepsize $0 < \eta_t \le L^{-1}$, then the method of PPM on convex lower bounding function (which is gradient descent) has convergence rate $\mathcal O\left(\sum_{i = 1}^{T}\eta_t^{-1}\right)$. 
@@ -522,7 +601,6 @@ $$
 $$
 
 naming $\env{\eta_{t+ 1}f}$ as $F_{t + 1}$ for short, we have $\forall t \in \Z_+: \nabla F_{t + 1} = [I - P_{t + 1}]x$ being a strongly monotone operator, which we previously derived. 
-For the base case we let $F_0(x) = f(x)$, so implicitly $\eta_0 = 1$. 
 Therefore, $F_{t + 1}$ is a strongly convex function and Lipschitz smooth function with constants: $(1 - (1 + \beta_{t + 1})^{-1}), 1$. 
 Now, we make use of the Lipschitz Smoothness and strong convexity to yield: 
 
@@ -559,10 +637,15 @@ $$
     -(1 - (1 + \beta_{t + 1})^{-1}) (F_{t + 1}(x_t) - F_{t + 1}(x_*))
     \\
     &= 
-    (1 + \beta_{t + 1})^{-1} (F_{t + 1}(x_t) - F_{t + 1}(x_*)). 
+    (1 + \beta_{t + 1})^{-1} (F_{t + 1}(x_t) - F_{t + 1}(x_*))
+    \\
+    \iff 
+    F_{t + 1}(x_{t + 1}) - F_{t + 1}(x_*) 
+    &\le (1 + \beta_{t + 1})^{-1}(F_{t + 1}(x_t) - F_{t + 1}(x_*))
 \end{aligned}
 $$
 
+This establishes the descent of optimality gap for one step of the iteration. 
 Amazingly, unrollowing the above would yield: 
 
 $$
@@ -570,7 +653,7 @@ $$
     F_{t + 1}(x_{t + 1}) - F_{t+1}(x_*) &\le 
     \left(
         \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
-    \right)(F_{0}(x_0) - F_0(x_*)). 
+    \right)(F_{1}(x_0) - F_1(x_*)). 
 \end{aligned}\tag{$[*]$}
 $$
 
@@ -590,15 +673,20 @@ Continuing (\[*\]), we can simplify with the above and $F_0 = f$ so
 
 $$
 \begin{aligned}
-    f_{t + 1}(x_{t + 1}) - f_{t+1}(x_*) &\le 
+    f(x_{t + 1}) - f(x_*) &\le 
     \eta_{t + 1}^{-1} 
     \left(
         \prod_{j = 0}^{t} (1 + \beta_{t + 1})^{-1} 
-    \right)(f_{0}(x_0) - f_0(x_*)), 
+    \right)(F_1(x_0) - f(x_*)), 
 \end{aligned}
 $$
 
 where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \Z_+$. 
+
+
+**Comments**
+
+From a theoretical point of view, this proof is not good and it's kinda cheating since it made use of the gradient descent interpretation and theory of monotone operator, while at the same time, reusing the same old convergence proof of gradient descent instead of innovating the old ideas. 
 
 ---
 ### **Analysis of Prox Convex Lower Bounding Function (Strongly Convex)**
@@ -613,3 +701,4 @@ In this section, we consider lowerbounding functions that are strongly convex, i
 ### **Proximal Point in the Rockafellar Manner**
 
 This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
+In this section we briefly view over how geniuses like Rockafellar handles the situations. 

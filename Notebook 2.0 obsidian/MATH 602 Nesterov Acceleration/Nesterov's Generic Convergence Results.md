@@ -397,7 +397,7 @@ $$
     \right)^{1/2} 
     &\ge \psi(k)
     \\
-    &\; \triangleright 
+    &\; \triangleright \; 
     \gamma_0 \in (\mu, \mu + 3L)
     \\
     \frac{\xi_k^2(\gamma_0 - \mu)}{L}
