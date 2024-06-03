@@ -470,7 +470,16 @@ $$
     \frac{L - \epsilon^{-1}}{TL\epsilon}. 
 \end{aligned}
 $$
-With $y = x_*$, we get the claimed convergence rate. 
+With $y = x_*$, by $f(x_t)$ strictly monotone decreasing, we get the claimed convergence rate by 
+$$
+\begin{aligned}
+    f(x_T) - f(x_*) 
+    &\le 
+    \frac{L - \epsilon^{-1}}{TL\epsilon}(f(x_0) - f(x_T)) 
+    \le 
+    \frac{L - \epsilon^{-1}}{TL\epsilon}(f(x_0) - f(x_*)) 
+\end{aligned}
+$$
 
 
 **Remark**

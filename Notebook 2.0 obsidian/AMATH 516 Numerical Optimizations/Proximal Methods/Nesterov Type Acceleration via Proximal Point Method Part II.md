@@ -5,6 +5,46 @@
 
 We need to re-derive the Lyponouv convergence theorem to allows for more genericity so that it can be applied for proving the convergence for more varieties of the accelerated gradient methods. 
 
+---
+### **Varieties of Nesterov Accelerated Gradient**
+
+The analysis of PPM eventually extends to all varieties of Nesterov accelerated gradient methods. 
+
+### **Def | AG Generic Form I**
+> Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
+> Here we faithfully resented it as the way it is in the book
+> Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
+> Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$ it: 
+> 1. Computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
+> 2. Set $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
+> 3. Choose $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$. 
+> 4. Find $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$. 
+> 5. Set $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
+
+**Remarks**
+
+For a faithful derivation of the algorithm as written in Nesterov's book, visit [Nesterov Estimating Sequence](../../MATH%20602%20Nesterov%20Acceleration/Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
+Claimed by Ahn ^[K. Ahn and S. Sra, “Understanding nesterov’s acceleration via proximal point method.” arXiv, Jun. 02, 2022. doi: 10.48550/arXiv.2005.08304.], the above Nesterov accelerated gradient fits the generic form of the algorithm: 
+
+$$
+\left\lbrace
+\begin{aligned}    
+    y_t &= \alpha_t x_t + (1 - \alpha_t)z_t
+    \\
+    x_{t + 1} &= \beta_t x_t + (1 - \beta)y_t - \gamma_t \nabla f(y_t)
+    \\
+    z_{t + 1} &= y_t - \delta_t \nabla f(y_t)
+\end{aligned}
+\right.
+$$
+
+
+
+
+---
+### **PPM Analysis**
+
+We derive some of the Nesterov accelerated gradient variants using PPM as a tool for interpretations. 
 
 #### **Definition | Two Ways PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
@@ -110,6 +150,11 @@ $$
 the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
 The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the initial guess. 
 
+#### **Definition | 2-ways Strongly Convex PPM**
+> 
+
+#### **Definition | 2-ways Strongly Convex Bregman PPM**
+> 
 
 
 #### **Lemma | The upper bounds of 2 steps PPM**

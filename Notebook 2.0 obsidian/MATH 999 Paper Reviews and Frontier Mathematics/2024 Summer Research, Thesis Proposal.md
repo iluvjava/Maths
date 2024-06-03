@@ -49,7 +49,7 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
     - [ ] **Estimating Quality of Approximate Solution **
     - [ ] The Subgradient Method 
     - [ ] Minimization of Functional Constraints 
-    - [ ] Approximating the Optimal Lagrange Multpliers 
+    - [ ] Approximating the Optimal Lagrange Multipliers 
     - [ ] Strongly Convex Functions
     - [ ] Complexity Bounds in Finite Dimensions 
     - [ ] Cutting Plane Schemes
