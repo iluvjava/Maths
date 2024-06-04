@@ -40,7 +40,7 @@ $$
 
 This algorithm s a variant of FISTA to achieve linear convergence rate when the function admit a strong convexity index $\sigma$. In practice, one can estimate the quadratic growth parameter (the strong convexity index) of $\sigma$ using the formula: 
 $$
-\frac{\langle \nabla g(x^{(k + 1)}) - g(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle}{\Vert x^{(k + 1)} - x^{(k)}\Vert^2}. 
+\frac{\langle \nabla g(x^{(k + 1)}) - \nabla g(x^{(k)}), x^{(k + 1)} - x^{(k)}\rangle}{\Vert x^{(k + 1)} - x^{(k)}\Vert^2}. 
 $$
 
 Empirical experiment shows that the convergence is very good with this estimation. 

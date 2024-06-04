@@ -249,7 +249,7 @@ Assuming that $\omega$ is able to induce Bregman divergence $D_\omega$.
 A descent inequality of the Bregman Envelope that is analogous to [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md), which is essential to the derivation of convergence of algorithms that uses the Bregman Proximal mapping. 
 
 #### **Thm | The Bregman Prox Envelope Descent Inequality**
-> Let $\omega$ induces a Bregman Divergence $D_\omega$ in $\R^n$ and assume that it satisfies Bregman Prox Admissibility conditions for function $\varphi: \R^n \mapsto \overline \R$.
+> Let $\omega$ induce a Bregman Divergence $D_\omega$ in $\R^n$ and assume that it satisfies Bregman Prox Admissibility conditions for function $\varphi: \R^n \mapsto \overline \R$.
 > Then we claim that for all $c \in \text{dom}(\omega), b \in \text{dom}(\partial \omega)$, 
 > If 
 > $$
@@ -277,7 +277,7 @@ $$
 \begin{aligned} 
     \langle \nabla \omega(b) - \nabla \omega(a), c - a \rangle
     & \le 
-    \varphi(u) - \varphi(a), 
+    \varphi(c) - \varphi(a), 
 \end{aligned}
 $$
 
@@ -295,10 +295,10 @@ $$
     \begin{aligned}
         \implies &
         D_\omega(c, a) + D_\omega(a, b) - D_\omega(c, b) 
-        \le \varphi(u) - \varphi(a)
+        \le \varphi(c) - \varphi(a)
         \\
         \iff &
-        \varphi(c) + D_\omega(c, b) - \varphi(b) - D_\omega(a, b)
+        \varphi(c) + D_\omega(c, b) - \varphi(a) - D_\omega(a, b)
         \ge 
         D_\omega(c, a). 
     \end{aligned}

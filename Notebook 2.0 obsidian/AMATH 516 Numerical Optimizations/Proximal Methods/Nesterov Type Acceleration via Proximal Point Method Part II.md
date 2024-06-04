@@ -157,7 +157,7 @@ The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the in
 > 
 
 
-#### **Lemma | The upper bounds of 2 steps PPM**
+#### **Lemma | The Lyapunov upper bounds of 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
 > With definitions for quantities: 
 > $$

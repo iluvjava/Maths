@@ -73,9 +73,11 @@ $$
 $$
 
 Which gives us more decrease. 
+The theorem is readily available for Bregman proximal point method as well. 
+See [Bregman Proximal Mapping](../Proximal%20Operator/Bregman%20Proximal%20Mapping.md) for more information. 
 
-#### **Proposition 1.2 | Lyaponouv Function for Proximal Point Method**
-> let $f$ be lsc and $\beta$-strongly convex where $\beta \ge 0$, then the function $\Phi_t$ is a Lyponouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
+#### **Proposition 1.2 | Lyapunouv Function for Proximal Point Method**
+> let $f$ be lsc and $\beta$-strongly convex where $\beta \ge 0$, then the function $\Phi_t$ is a Lyapunouv function of the proximal point method, with step size $(\eta_t)_{t \in \N}$. 
 > $\Phi_t$ is 
 > $$
 > \Phi_t = 

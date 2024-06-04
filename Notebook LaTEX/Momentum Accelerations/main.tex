@@ -35,7 +35,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 % ==============================================================================
 \section{Preliminaries}
     In this section we list fundational results that are important for proofs in coming sections. 
-    For this section, let the ambient space be $\RR^n$ and $\Vert \cdot\Vert$ be the Euclidean 2 norm until it's specified in the context. 
+    For this section, let the ambient space be $\RR^n$ and $\Vert \cdot\Vert$ be the 2-norm until it's specified in the context. 
+    For a generate over views of smoothness and strong convexity in the Euclidean space, see \cite[theorem 2.1.5, theorem 2.1.10]{nesterov_lectures_2018} for full exposition of the topic. 
     \subsection{Lipschitz smoothness}
         \begin{definition}[Lipschitz Smooth]
             Let $f$ be differentiable. 
@@ -63,7 +64,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             With $f: \RR^n \mapsto \overline \RR$, it is strongly convex with constant $\alpha$ if and only if $f - (\alpha/2)\Vert \cdot\Vert^2$ is a convex function. 
         \end{definition}
         
-        \begin{theorem}[Strongly Convex Equivalent Results]
+        \begin{theorem}[Stong convexity equivalences]\label{thm:str_cvx_equiv}
             With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are equivalent conditions for all $x, y$: 
             \begin{enumerate}
                 \item $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
@@ -72,7 +73,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{enumerate}
         \end{theorem}
 
-        \begin{theorem}[Strong Convexity Implications]
+        \begin{theorem}[Strong convexity implications]\label{thm:str_cvx_implied}
             With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are implied: 
             \begin{enumerate}
                 \item $\frac{1}{2}\operatorname{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
@@ -87,6 +88,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
     
     \subsection{Proximal descent inequality}
+        The proximal descent inequality below is a crucial piece of inequality for deriving the behaviors of algorithms. 
         \begin{theorem}[Proximal Descent Inequality]\label{thm:ppm_descent_ineq}
             With $f: \RR^n \mapsto \overline \RR^n$ $\beta$-convex where $\beta \ge 0$, fix any $x \in \RR^n$, let $p = \hprox_f(x)$, then for all $y$ we have inequality 
             $$
@@ -98,23 +100,49 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \le 
                 - \frac{(1 + \beta)}{2}\Vert y - p\Vert^2. 
             $$
-            Recall $\hprox_\alpha f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
+            Recall: $\hprox_f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
         \end{theorem}
-        We make use of this theorem in the proof of convergence of proximal point method. 
         \begin{remark}
-            This descent inequality can be generalized to bregman proximal mapping as well. 
+            We make use of this theorem in the proof of convergence of proximal point method. 
+            See the proof (\cite{bauschke_convex_2017}, theorem 12.26). 
+            The additional strong convexity index is a consequence of \hyperref[thm:str_cvx_implied]{theorem \ref*{thm:str_cvx_implied}}, item (v). 
+        \end{remark}
+        
+        \begin{theorem}[The Bregman proximal descent inequality]\label{thm:ppm_breg_descent_ineq}
+            Let $\omega$ induce a Bregman Divergence $D_\omega$ in $\RR^n$ and assume that it satisfies Bregman Prox Admissibility conditions for function $\varphi: \RR^n \mapsto \overline \RR$.
+            Then we claim that for all $c \in \text{dom}(\omega), b \in \text{dom}(\partial \omega)$, 
+            If 
+            \begin{align*}
+                a = \argmin_{x}\left\lbrace
+                \varphi(x) + D_\omega(x, b)
+                \right\rbrace, 
+            \end{align*}
+            we have the inequality, 
+            \begin{align*}
+                (\varphi(c) + D_\omega(c, b)) - 
+                (\varphi(a) + D_\omega(a, b)) \ge 
+                D_\omega(c, a). 
+            \end{align*}
+        \end{theorem}
+        \begin{remark}
+            For more information about what function $\omega$ can induce a bregman divergence and the admissibility conditions for Bremgna proximal mapping, consult (CITATION NEEDED for Heinz's NopLips Paper). 
         \end{remark}
 
 
 \section{The Proximal Point Method in the Convex Case}
     In this section we go over the analysis of Proximal point method (PPM) in the convex case and see how the theories can be generalized into the cases where PPM is approximated. 
     \subsection{Literature reviews}
-        
-    \par
-    With $f: \RR^n \mapsto \overline \RR$ lsc proper and convex, 
-    given any $x_0$ the PPM generates sequence $(x_n)_{n\in \NN}$ by $x_{k + 1} = \hprox_{\eta_{k + 1}}f(x_k)$ for all $k \in \NN$ where the sequence $(\eta_{k})_{k \in \NN}$ is a nonegative sequence of real numbers. 
+        Rockafellar \cite{rockafellar_monotone_1976} pioneered the analysis of the method of proximal point method in the convex case. 
+        The analysis is developed in the context of maximal monotone operators in Hilbert spaces. 
+        Applications in convex optimizations are covered. 
+        Using his theorems appropriately requires some opportunities, realizations, and characterizations of assumptions (A), (B) in his paper in the context of the applications. 
+
+    \subsection{The proximal point method}
+        With $f: \RR^n \mapsto \overline \RR$ lsc proper and convex, given any $x_0$ the PPM generates sequence $(x_n)_{n\in \NN}$ by $x_{k + 1} = \hprox_{\eta_{k + 1}}f(x_k)$ for all $k \in \NN$ where the sequence $(\eta_{k})_{k \in \NN}$ is a nonegative sequence of real numbers.
 
     \subsection{The Lyapunov function of Convex PPM}
+        We present some theorems that illusrate the use of \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}. 
+        The following analysis, techniques can be found in Guler's work \cite{guler_convergence_1991}. 
         \begin{theorem}
             With $f$ being $\beta\ge 0$ strongly convex and $x_{t + 1} = \hprox_{\eta_{t + 1}f}$ generated by PPM. 
             Define the Lyapunov function $\Phi_t$ for all $u \in \RR^n$: 
@@ -304,9 +332,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proof}
         \begin{remark}
-            The analysis of the above is taken from (REFERENCE NEEDED). 
+            With the same choice of the sequence $(\eta_t)_{t \in \NN}$, convergence of PPM method of a strongly convex function is faster.     
         \end{remark}
-        With the same choice of the sequence $(\eta_t)_{t \in \NN}$, convergence of PPM method of a strongly convex function is faster. 
+        
         
 \section{Applying the analysis of PPM}
     The PPM method and the Lyaounov function derived above serves as the tamplate for other algorithms. 
@@ -325,7 +353,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         As a warm up, we consider deriving gradient descent via the PPM approach. 
         Please pay attention to the remarks, it reveals parts of the proof that could inspirate the idea of non-monotone line search method in a practical settings. 
         \begin{theorem}[Generic Approximated PPM]\label{thm:lower_approx_ppm_convergence}
-            With $f$ convex having minimizer: $x_*$; $l_f(\cdot; x_t)$ convex, lsc and proper, define $\phi_t = \eta_{t + 1}l_f(x; x_t)$. 
+            With $f$ convex having minimizer: $x_*$; $l_f(\cdot; x_t)$ convex, lsc and proper, define $\phi_t(x) = \eta_{t + 1}l_f(x; x_t)$. 
             Assume the following estimates hold: 
             $$
             \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
@@ -358,7 +386,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{theorem}
         \begin{proof}
-            By $\phi_t$ convex, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} with $\alpha = 1$ and $f = \phi_t$, $x = x_t$ making $x_{t + 1} = p$, yielding $\forall y$
+            By $\phi_t$ convex, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} with $f = \phi_t$, $x = x_t$, $x_{t + 1} = p$, yielding $\forall y$
             {\footnotesize
                 \begin{align*}
                     \phi_t(x_{t + 1}) + \frac{1}{2}\Vert x_t - x_{t + 1}\Vert^2 
@@ -463,7 +491,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             Observe that if $\eta_i \le L^{-1}$, then $\Phi_{t + 1} - \Phi_t \le 0$, hence the convergence rate of $\mathcal O\left((\sum_{i = 1}^{t}\eta_i)^{-1}\right)$ of PPM for $\Phi_t$ is applicable. 
             \par\noindent
-            Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still convergeces. 
+            Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still convergeces under mild conditions. 
             For simplicity we set $\sigma_t := \sum_{i = 1}^{t}\eta_i$. 
             It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
             \begin{align*}
@@ -567,16 +595,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{L_t\eta_{t + 1}}{2}\Vert x - x_t\Vert^2,
             $$
             where the sequence is generated by the algorithm. 
-            This can be achieved by choosing the function $\phi_t{t + 1}$ at each iteration smartly, then it's possible to still have the same convergenace rate. 
-            In a practical setting, when $L_t = L$, and $\phi_{t + 1}(x) = \eta_{t + 1}f$, this is called a line search.
+            This can be achieved by choosing the function $\phi_{t + 1}$ at each iteration smartly, then it's possible to still have the same convergenace rate. 
+            In a practical setting, when $L_t = L$, and $\phi_{t}(x) = \eta_{t + 1}f$, this is called a line search.
             \par
             The convergence rate is loose and when function $f$ exhibits additional favorable properties, such as being strongly convex, the convergence rate can be faster. 
         \end{remark}
     \subsection{Examples}
-        \begin{example}[Proximal Gradient]
+        \begin{example}[Convergence of the proximal gradient method]
             In this section, we illustrate algorithms that satisfies the lower and uppwer bound estimate used in the above proof. 
             Consider $f = g + h$ with $h$ nonsmooth convex, and $g$ being $L$-Lipschitz smooth convex and differentiable. 
-            Define $D_g(x, y) = g(x) - g(y) - \langle \nabla f(x), y - x\rangle$, which is the Bregman divergence of the function $g$. 
+            Define $D_g(x, y) = g(x) - g(y) - \langle \nabla f(x), y - x\rangle$, $l_g(x; y) = g(y) + \langle \nabla g(y), y - x\rangle$, which is the Bregman divergence of the function $g$. 
             Consider for all $x$: 
             \begin{align*}
                 0 & \le 
@@ -590,30 +618,90 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \le 
                 l_g(x; y) + h(x) + \frac{L}{2}\Vert x - y\Vert^2. 
             \end{align*}
-            Define $\phi_t (x) = \eta_{t + 1}(h(x) + l_g(x; x_t))$, then results from previous theorems apply.    
+            Define $\phi_{t + 1} (x) = \eta_{t + 1}(h(x) + l_g(x; x_t))$, then results from previous theorems apply.    
         \end{example}
         \begin{remark}
             The envelope interpretation restricts the use of the theorem, since it requires that the proixmal operator is applied to the gradient of a function. 
             Extending the usage of the PPM descent inequality to other context requires operator theories and creativities. 
         \end{remark}
 
+        \begin{example}[The fundamental proximal gradient lemma]
+            The fundamental proximal gradient lemma was used heavily in the literatures to derive convergence results in the convex case. 
+            The "fundamental proximal gradient lemma" originate from Beck's writings\cite[theorem 10.16]{beck_first-order_nodate}. 
+            We demonstrate in this example that it's a consequence of \hyperref[thm:ppm_breg_descent_ineq]{theorem \ref*{thm:ppm_breg_descent_ineq}}. 
+            \par
+            With $f = g + h$, $h$ convex, lsc, $g$ be $L$-Lipschitz smooth, then for all $y\in \RR^n$, $x\in \RR^n$, $y^+ := \hprox_{L^{-1}h}(y - L^{-1}\nabla (y))$ satisfies: 
+            \begin{align*}
+                f(x) - f(y^+) \ge \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y).
+            \end{align*}
+            A similar analysis as \hyperref[thm:lower_approx_ppm_convergence]{ theorem \ref*{thm:lower_approx_ppm_convergence}} with \hyperref[thm:ppm_breg_descent_ineq]{theorem \ref*{thm:ppm_breg_descent_ineq}} obtains the same inquality. 
+            With $\phi(y) = \eta(h(y) + g(x) + \langle \nabla g(x), y - x\rangle)$ as an lower bounding function of $f$. 
+            Let $x^+ = \hprox_\phi(x)$, then for all $u$:
+            \begin{align*}
+                & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
+                \ge \frac{1}{2}\Vert x^+ - u\Vert^2, 
+                \\
+                \implies &
+                \eta\underbrace{(h(u) + g(x) + \langle \nabla g(x), u - x\rangle + \frac{L}{2}\Vert u - x\Vert^2)}_{\ge \phi(u)} 
+                - \eta \underbrace{f(x^+)}_{\le \phi(x^+)} - \frac{1}{2}\Vert x - x^+\Vert^2 
+                \\
+                &\quad  
+                + \left(
+                    \frac{1}{2} - \frac{\eta L}{2}
+                \right)\Vert u - x\Vert^2 
+                \ge 
+                \frac{1}{2}\Vert x^+ - u\Vert^2 
+                \\
+                \iff & 
+                f(u) + g(x) - g(u) + 
+                \langle \nabla g(x), u -x\rangle 
+                - f(x^+) + \frac{L}{2}\Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x - x^+\Vert^2
+                \\
+                & \quad 
+                + 
+                \left(
+                    \frac{1}{2\eta} - \frac{L}{2}
+                \right)\Vert u - x\Vert^2 
+                \ge 
+                \frac{1}{2\eta}\Vert x^+ - u\Vert^2 
+                \\
+                \iff 
+                & f(u) - f(x^+) - D_g(u, x)
+                + \frac{1}{2\eta} \Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x^+ - x\Vert^2
+                \ge 
+                \frac{1}{2\eta} \Vert x^+ - u\Vert^2. 
+            \end{align*}
+            Remove the negative term $-1/2\eta \Vert x - x^+\Vert^2$ makes LHS larger, which establish the fundamental proximal gradient lemma. 
+        \end{example}
         
-\section{Accelerated gradient descent}
-    By recent works from (CITATION NEEDED), Nesterov accelerated gradient (CITATION NEEDED) can be interpreted as an approximation to the PPM method. 
-    Additionally, works on accelerating PPM had bey done by Guler (CITATION NEEDED) decades ago. 
-    The recent interpretations of Nesterov acceleration method via PPM focuses on the idea of a similar triangle, and unifying all varieties of Nesterov acceleration. 
-    \subsection{The varieties of Nesterov accelerated gradient}
+\section{Accelerated gradient descent and PPM}
+    This section is heavily inspired by recent works from Ahn \cite{ahn_understanding_2022}, Nesterov \cite{nesterov_lectures_2018}.
+    Ahn in his works explored the interpretation of Nesterov acceleration via PPM. 
+    They proposed the idea of ``similar triangle" for unifying all varieties of Nesterov accelerated gradient. 
+    The PPM is used as a tool to derive different variations of the Nesterov accelerated gradient algorithms. 
+    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{Theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergece rate of accelerated gradient.
+    Their analysis results in relatively simple and exhibits powerful extension to several variants of Nesterov accelerated gradient. 
+    \par\noindent
+    Interestingly, Nesterov accelerated gradient is applicable for PPM.
+    It's been done by \cite{guler_new_1992} two decades ago. 
+    He uses the idea of a Nesterov acceleration sequence faithfully. 
+    One recent development of the accelerated PPM is an algorithmic framework named: ``Universial Catalyst accelreation", proposed by \cite{lin_universal_2015}.
+    It is an application of Guler work in the context of veriance-reduction stochatic gradient algorithms for machine learning. 
+    
+    
+    \subsection{Varieties of Nesterov accelerated gradient}
         In this section, we list different varities of Nesterov accelerated method. 
-        Each of the varieties will be presented generically because we are only interested in the forms they take. 
+        We present these varieties generically because the form of these algorithms are of interests.  
 
 
-    \subsection{Interpreting Nesterov accelerated gradient via PPM}
-        
+    \subsection{Nesterov accelerated gradient via PPM}
+    \subsection{Convergence rate of Nesterov accelerated gradient via PPM}
+
+\section{Classical analysis of Nesterov accelerated gradient}
+    
 
 
-
-
-\bibliographystyle{plain}
+\printbibliography
 
 \appendix
 \section*{Postponed Proofs}
