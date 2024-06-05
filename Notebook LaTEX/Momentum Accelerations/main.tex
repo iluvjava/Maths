@@ -125,7 +125,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{theorem}
         \begin{remark}
-            For more information about what function $\omega$ can induce a Bregman divergence and the admissibility conditions for Bremgna proximal mapping, consult (CITATION NEEDED for Heinz's NopLips Paper). 
+            For more information about what function $\omega$ can induce a Bregman divergence and the admissibility conditions for Bremgna proximal mapping, consult Heinz et.al \cite{bauschke_descent_2017}. 
         \end{remark}
 
 
@@ -684,13 +684,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Recent works from Ahn \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
     In his works, Ahn explored the interpretation of Nesterov acceleration via PPM. 
     They proposed the idea of ``similar triangle" for unifying all varieties of Nesterov accelerated gradient. 
-    They used PPM to derive different variations of the Nesterov accelerated gradient algorithms. 
-    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{Theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate of the accelerated gradient.
-    Their analysis results are relatively simple and exhibit powerful extensions to several variants of the Nesterov accelerated gradient. 
+    They used PPM to derive several variations of the Nesterov accelerated gradient algorithms. 
+    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate of the accelerated gradient.
+    Their analysis results in relatively simple arguments that exhibits powerful extensions to several variants of the Nesterov accelerated gradient. 
     \par\noindent
     Interestingly, the Nesterov accelerated gradient applies to PPM; Guler \cite{guler_new_1992} did it two decades ago. 
     He uses the idea of a Nesterov acceleration sequence faithfully. 
-    One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by \cite{lin_universal_2015}.
+    One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by Lin et al \cite{lin_universal_2015}. 
     It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
     \par\noindent
     In this section, we
@@ -705,13 +705,37 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Varieties of Nesterov accelerated gradient}
         In this section, we list different varieties of the Nesterov accelerated method. 
         We present these varieties generically because these algorithms' forms are of interest.  
+        \begin{definition}[Accelearted Gradient Generic Original Form]
+            Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
+            Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
+            \begin{enumerate}
+                \item[1.] computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$; 
+                \item[2.] sets $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$;
+                \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
+                \item[4.] finds $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$; 
+                \item[5.] sets $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
+            \end{enumerate}
+        \end{definition}
+        \begin{remark}
+            This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
+            It is the most generic algorithm in his book about accelerated gradient method. 
+            The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
+        \end{remark}
+
+        \begin{definition}[Accelerated Gradient Generic Triangular Form]
+            
+        \end{definition}
+
+        \begin{definition}[Accelerated Gradient Generic PPM Form]
+            
+        \end{definition}
 
 
     \subsection{Nesterov accelerated gradient via PPM}
     \subsection{Convergence rate of Nesterov accelerated gradient via PPM}
 
 \section{Classical analysis of Nesterov accelerated gradient}
-    
+    In this section, we reproduce some of the analysis for Nesterov accelerated gradient method with excruciating details. 
 
 
 \printbibliography

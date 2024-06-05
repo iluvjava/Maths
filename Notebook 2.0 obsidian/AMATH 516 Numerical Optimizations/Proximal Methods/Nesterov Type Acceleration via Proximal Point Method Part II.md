@@ -12,7 +12,7 @@ The analysis of PPM eventually extends to all varieties of Nesterov accelerated 
 
 ### **Def | AG Generic Form I**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
-> Here we faithfully resented it as the way it is in the book
+> Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
 > Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$ it: 
 > 1. Computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
@@ -157,7 +157,7 @@ The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the in
 > 
 
 
-#### **Lemma | The Lyapunov upper bounds of 2 steps PPM**
+#### **Lemma | The Lyapunov upper bounds for generic 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
 > With definitions for quantities: 
 > $$
@@ -187,6 +187,78 @@ IN the above inequality, $\eta_{t + 1}$ is not playing any roles yet.
 
 **Proof**
 
+Define $\phi_t(x) = \tilde \eta_{t +1}(f(y_t) + \langle \nabla f(y_t), x- y_t\rangle)$.  
+With $L$-smoothness of $f$ in mind, consider the following sequence of inequalities: 
+$$
+\begin{aligned}
+    \phi_t(x_{t + 1}) 
+    &= 
+    \tilde\eta_{t + 1} (f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle)
+    \\
+    \phi_t (x_{t + 1}) &= \tilde \eta_{t + 1}(
+        f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
+    )
+    \\
+    &\ge 
+    \tilde \eta_{t + 1}
+    \left(
+        f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
+        \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+    \right), 
+\end{aligned}
+$$
 
+Performing PPM on the function produces the PPM Lyapunov inequality, substituing yields equivalences for all $x_*$: 
+$$
+{\footnotesize
+\begin{aligned}
+    & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+    - \frac{1}{2}\Vert x_* - x_t\Vert^2 
+    \\
+    \quad 
+    &\le 
+    - \frac{1}{2} \Vert x_{t + 1} - x_t\Vert^2 
+    \\
+    & 
+    \tilde \eta_{t + 1}\left(
+        f(z_{t + 1}) - \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+        + 
+        \langle \nabla f(y_t), x_{t + 1} - z_{t + 1}\rangle
+    \right) - \tilde \eta_{t + 1} f(x_*)
+    + 
+    \frac{1}{2}\left(
+        \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_{t} - x_*\Vert^2
+    \right)
+    \\
+    \quad &\le - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    \\
+    & 
+    \tilde \eta_{t + 1} \left(
+        f(z_{t + 1}) - f(x_*)
+    \right) + \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
+    - \frac{1}{2}\Vert x_{t} - x_*\Vert^2 
+    \\
+    \quad &\le 
+    -\frac{1}{2} \Vert x_{t + 1 } - x_t\Vert^2 + 
+    \frac{\tilde \eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2 
+    - \langle \tilde \eta_{t + 1}\nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle =: \Upsilon_{1, t + 1}. 
+\end{aligned}
+}
+$$
 
+Observe that, the rhs and lhs of the Lyapunov inequality are anchored at $z_{t + 1}$. 
+Similarly for the descent inequality we wish to obtain: 
 
+$$
+\begin{aligned}
+    f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
+    \\
+    &\le 
+    \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+    + 
+    \langle \nabla f(y_t), y_t - z_t\rangle =: \Upsilon_{2, t + 1}. 
+\end{aligned}
+$$
+
+Which is the descent inequality anchored on $z_{t + 1}$. 
+Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
