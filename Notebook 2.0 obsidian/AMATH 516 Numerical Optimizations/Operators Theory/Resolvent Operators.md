@@ -96,7 +96,7 @@ By the realization that a strongly monotone operator is monotone.
 The above results apply for the resolvent of strongly monotone operator too. 
 In this section, we show that the resolvent of a strongly monotone operator exhibits additional favorable properties. 
 
-#### **Claim | Resolvent of a Strongly Monotone Operator**
+#### **Claim 3.1 | Resolvent of a Strongly Monotone Operator**
 > With $B$ $\beta$-strongly monotone written as $B = A + \beta I$ where A is maximally monotone, then $\mathcal J_B$ is a contraction with contraction index $(1 + \beta)^{-1}$. 
 > And $I - \mathcal J_B$ is a strongly monotone operator. (Also known as Co-coersive.). 
 
@@ -137,3 +137,47 @@ $$
 therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
 Which is also the Lipschitz constant of the $\mathcal J_B$. 
 
+#### **Claim 3.2 | Co-Coersivity of the resolvent operator of strongly monotone monotone operator**
+> With $\beta$ strongly monotone operator $B$, resolvent $\mathcal J_B$, then $I - \mathcal J_B$ is a $(1 - (1 + \beta)^{-1})$ strongly monotone operator. 
+
+**Proof**
+
+Firstly, we consider for all $x, y$ which has
+
+$$
+\begin{aligned}
+    \langle x - y, \mathcal J_B x - \mathcal J_B y\rangle  
+    &\le 
+    \Vert x - y\Vert \Vert \mathcal J_Bx - \mathcal J_B y\Vert
+    \\
+    &= \Vert x - y\Vert (1 + \beta)^{-1}\Vert x - y\Vert
+    \\
+    &= (1 + \beta)^{-1}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+With that we have inequality 
+
+$$
+\begin{aligned}
+    \langle x - y, -\mathcal J_Bx + \mathcal J_By \rangle 
+    &\ge - (1 + \beta)^{-1}\Vert x - y\Vert^2 
+    \\
+    \iff
+    \langle x - y, x - y -(\mathcal J_Bx - \mathcal J_By) \rangle 
+    &\ge
+    (1 - (1 + \beta)^{-1})\Vert x - y\Vert^2
+    \\
+    \implies 
+    \Vert x - y\Vert\Vert [I - \mathcal J_B]x - [I - \mathcal J_B] y\Vert
+    &\ge
+    (1 - (1 + \beta)^{-1})\Vert x - y\Vert^2
+    \\
+    \iff
+    \Vert [I - \mathcal J_B]x - [I - \mathcal J_B] y\Vert 
+    &\ge
+     (1 - (1 + \beta)^{-1})\Vert x - y\Vert, 
+\end{aligned}
+$$
+
+therefore, it establishes that $[I - \mathcal J_B]$ is a $1 - (1 + \beta)^{-1}$ strongly convex operator. 

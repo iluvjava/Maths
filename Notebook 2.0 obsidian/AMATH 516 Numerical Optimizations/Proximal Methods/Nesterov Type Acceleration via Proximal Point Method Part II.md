@@ -10,7 +10,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 
 The analysis of PPM eventually extends to all varieties of Nesterov accelerated gradient methods. 
 
-### **Def | AG Generic Form I**
+### **Def 1.1 | AG Generic Form I**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
 > Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
@@ -46,7 +46,7 @@ $$
 
 We derive some of the Nesterov accelerated gradient variants using PPM as a tool for interpretations. 
 
-#### **Definition | Two Ways PPM**
+#### **Definition 2.1 | Two Ways PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
 > $$
@@ -66,7 +66,7 @@ for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PP
 
 
 
-#### **Lemma | The 3 Points Generic Accelerated Gradient**
+#### **Lemma 2.2 | The 3 Points Generic Accelerated Gradient**
 > The Two ways PPM defined above reduces to the following 3 points accelerated gradient algorithm: 
 > $$
 > \begin{aligned}
@@ -150,14 +150,14 @@ $$
 the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
 The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the initial guess. 
 
-#### **Definition | 2-ways Strongly Convex PPM**
+#### **Definition 2.3 | 2-ways Strongly Convex PPM**
 > 
 
-#### **Definition | 2-ways Strongly Convex Bregman PPM**
+#### **Definition 2.4 | 2-ways Strongly Convex Bregman PPM**
 > 
 
 
-#### **Lemma | The Lyapunov upper bounds for generic 2 steps PPM**
+#### **Lemma 2.5 | The Lyapunov upper bounds for generic 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
 > With definitions for quantities: 
 > $$
@@ -262,3 +262,9 @@ $$
 
 Which is the descent inequality anchored on $z_{t + 1}$. 
 Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
+
+
+---
+### **Not similar triangle**
+
+In this section, we repeat part II, but with the above theorem. 

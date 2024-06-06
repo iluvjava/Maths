@@ -222,7 +222,7 @@ Therefore, we verified that $\Phi_t$ can indeed be a Lyapunouv function for the 
 This Lyapunouv function is not optimal for $\beta > 0$. 
 
 
-#### **Thm 1 | Baseline Convergence via Method of PPM**
+#### **Thm 1.3 | Baseline Convergence via Method of PPM**
 > The convergence rate of the proximal point method applied to $f$, closed, convex proper, we have convergence rate of the function value: 
 > $$
 >   f(x_T) - f(x_*) \le O\left(\left(\sum_{i=1}^{T}\eta_t\right)^{-1}\right). 
@@ -554,14 +554,14 @@ The proof below will be similar to proving the convergence rate of gradient desc
 To elucidate recall from [Proximal Point Method, Interpretations](Proximal%20Point%20Method,%20Interpretations.md) that, the proximal point method with a constant stepsize is equivalent to gradient descent on the Moreau Envelope of the function. 
 The only difference here is that our PPM analysis is based on varying stepsizes. 
 
-#### **Theorem | PPM Convergence for Strongly Convex Function**
+#### **Theorem 3.1 | PPM Convergence for Strongly Convex Function**
 > Let $f$ be $\beta$-strongly convex. 
 > Then the proximal point method has a linear convergence rate with a ratio of $(1 -\eta_{t + 1}\beta)$. 
 
 **Proof**
 
 With $\beta$-strong convexity of $f$, the proximal operator $P_{t + 1}=(I + \eta_{t + 1}\partial f)^{-1}$ is a contraction with constant $(1 + \beta_{t + 1})^{-1}$ where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \N$. 
-We can conclude that $I - P_{t + 1}$ is strongly monotone and Lipschitz smooth by the demonstration: 
+We can conclude that $I - P_{t + 1}$ is $1 - (1 + \beta)^{-1}$ strongly monotone and Lipschitz smooth by
 
 $$
 \begin{aligned}
@@ -607,7 +607,7 @@ with $g = \eta_{t + 1}f$ then the above is
 $$
 \begin{aligned}
    \nabla \env{\eta_{t + 1}f}(x) = 
-   x - (I + \eta_{t + 1}\partial g)^{-1}x = [I - P_t] x, 
+   x - (I + \eta_{t + 1}\partial f)^{-1}x = [I - P_t] x, 
 \end{aligned}
 $$
 
@@ -699,10 +699,116 @@ where $\beta_{t+ 1} = \eta_{t + 1}\beta$ for all $t \in \Z_+$.
 
 From a theoretical point of view, this proof is not good and it's kinda cheating since it made use of the gradient descent interpretation and theory of monotone operator, while at the same time, reusing the same old convergence proof of gradient descent instead of innovating the old ideas. 
 
+We try an alternative approach the addresses the above comment. 
+The alternative proof doesn't use the Lipschitz smoothness of the Moreau envelope. 
+
+**Alternative Proof**
+
+With $\beta$-strongly convex $f$, let $\phi = \eta_{t + 1}f$, let $E_\phi(x)$ be $\min_u \{\eta_{t + 1} f(u) + (1/2)\Vert u - x\Vert^2\}$ which is the Moreau envelope of $\phi$, let $P_\phi := [I + \eta_{t + 1}\partial f]^{-1}$. 
+For any $x_0$ let $x_{t + 1} = P_\phi(x_t)$, with $x_* \in \argmin{x} \phi(x)$, we realize these consequences:
+1. $I - P_\phi$ is a $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly monotone operator;
+2. $\nabla E_\phi = I - P_\phi$, meaning that $E_\phi$ is $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly convex;
+3. $P_\phi$ is a contractive mapping with constant $(1 + \beta\eta_{t + 1})^{-1}$. 
+
+Using strong convexity of the Moreau envelope it has 
+
+$$
+\begin{aligned}
+    \frac{1}{2}\Vert \nabla E_\phi(x_t)\Vert^2 
+    &\ge 
+    (1 - (1 + \beta\eta_{t + 1})^{-1}) (E_\phi(x_t) - E_\phi(x_*))
+    \\
+    &\ge 
+    (1 - (1 + \beta\eta_{t + 1})^{-1})\left(
+        \frac{1}{2}(1 - (1 + \beta\eta_{t + 1})^{-1})
+    \right)\Vert x - x_*\Vert^2
+    \\
+    &= 
+    \frac{1}{2}\left(
+        1 - (1 + \eta_{t + 1}\beta)^{-1}
+    \right)^2 \Vert x_t - x_*\Vert^2
+\end{aligned}
+$$
+
+invoke PPM descent inequality on the function $\phi$, it has 
+
+$$
+{\small
+\begin{aligned}
+    E_\phi(x_{t + 1}) - \phi(x_*) - \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    &\le 
+    -\frac{1 + \eta_{t + 1}\beta}{2}\Vert x_{t + 1} - x_*\Vert^2
+    \\
+    \iff 
+    \phi(x_{t + 1}) - \phi(x_*)
+    &\le 
+    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    + \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \\
+    \implies 
+    \phi(x_{t + 1}) - \phi(x_*)
+    &\le 
+    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
+    - \frac{1}{2}(1 - (1 + \eta_{t + 1}\beta)^{-1})^2\Vert x_t - x_*\Vert^2
+    + \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \\
+    \iff
+    \phi(x_{t + 1}) - \phi(x_*)
+    &\le 
+    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
+    + \frac{1}{2}\left(
+        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
+    \right)
+    \Vert x_t - x_*\Vert^2
+    \\
+    \implies
+    \phi(x_{t + 1}) - \phi(x_*)
+    &\le 
+    -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
+    \\
+    & \quad 
+    + \frac{1}{2}\left(
+        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
+    \right)
+    \left(
+        \prod_{i = 1}^{t}
+            (1 + \eta_i \beta)^{-1}
+    \right)\Vert x_0 - x_*\Vert^2. 
+\end{aligned}
+}
+$$
+
+On the last inequality, we used the property of $P_\phi$ being a $(1 + \eta_{t + 1}\beta)^{-1}$ contractive mapping. 
+Using the definition of $\phi$, we have 
+
+$$
+\begin{aligned}
+    f(x_{t + 1}) - f(x_*)
+    &\le 
+    -\frac{1}{2\eta_{t + 1}}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
+    \\
+    & \quad 
+    + \frac{1}{2\eta_{t + 1}}\left(
+        1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
+    \right)
+    \left(
+        \prod_{i = 1}^{t}
+            (1 + \eta_i \beta)^{-1}
+    \right)\Vert x_0 - x_*\Vert^2, 
+\end{aligned}
+$$
+
+and the convergence is asymptotically $\mathcal O\left(\prod_{i = 1}^{t} (1 + \eta_i\beta)^{-1}\right)$. 
+
+**Comment:** 
+
+The convergence rate is a bit too good to be true, considering upper bounding $(1/2)\Vert x_0 - x_*\Vert^2 \le (\eta_{t + 1}\beta)(f(x_t) - f(x_*))$ applied to the middle of the inequality to derive step-wise Lyapunov function, then we are in trouble. 
+
 ---
 ### **Analysis of Prox Convex Lower Bounding Function (Strongly Convex)**
 
-In this section, we consider lowerbounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
+In this section, we consider lower bounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
 
 #### **Condition 1 | Strongly Convex Lower-Bounding Function**
 > 
@@ -713,3 +819,7 @@ In this section, we consider lowerbounding functions that are strongly convex, i
 
 This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
 In this section we briefly view over how geniuses like Rockafellar handles the situations. 
+
+#### **Assumption (A), (B) | Approximation on PPM**
+
+
