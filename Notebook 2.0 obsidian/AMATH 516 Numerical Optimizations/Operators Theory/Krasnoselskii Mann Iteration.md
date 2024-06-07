@@ -179,6 +179,12 @@ $$
 \end{aligned}
 $$
 
+**Remarks**
+
+The convergence rate is very slow and it's always sublinear. 
+This theorem doesn't have enough descriptive power for algorithms such as the proximal point method with varying stepsizes, or gradient descent with Lipschitz smoothness and strong convexity. 
+To realize faster convergence rate, such as the case when $T$ is a contraction, it will heavily depend on the context. 
+
 
 ---
 ### **Corollaries, and Misc Results**

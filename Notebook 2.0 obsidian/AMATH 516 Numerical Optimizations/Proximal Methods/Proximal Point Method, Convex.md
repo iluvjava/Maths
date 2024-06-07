@@ -20,6 +20,40 @@ We introduce a Lyapunov function derived from PPM using Moreau envelope.
 We also derive the convergence rate of PPM. 
 After that we present analogous result for inexact proximal algorithms and how this idea is powerful. 
 
+#### **Interpretations of Proximal Point Method**
+
+The proximal point method solves a mini problem at each steps. 
+By definition of resolvent, $x_{t + 1}$ satisfies: 
+$$
+\left.
+\begin{aligned}
+    \eta_{t + 1} Ax_{t + 1} + x_{t + 1} &\ni x_t   
+    \\
+    \frac{x_t - x_{t + 1}}{\eta_{t + 1}} &\in Ax_{t + 1}
+\end{aligned}
+\right\rbrace
+\iff 
+\begin{aligned}
+    \exists y_{t + 1} 
+    \in Ax_{t + 1} : 
+    \eta_{t + 1}^{-1}(x_t - x_{t + 1}) = y_{t + 1}, 
+\end{aligned}
+$$
+
+In English, it's saying: 
+> Where would I choose my $x_{t + 1}$ such that $x_t - x_{t + 1}$ points in the direction in the set $Ax_{t + 1}$. 
+
+Interestingly, notice that we can perform telescoping sum on $x_t - x_{t + 1} \in \eta_{t + 1}A_{t + 1}$: 
+
+$$
+\begin{aligned}
+    x_0 - x_{t + 1} = \sum_{i= 0}^{t} x_i - x_{i + 1} = \sum_{i = 0}^{t}\eta_{0}y_{i + 1}, \;\exists y_{i} \in Ax_{i}\;
+    \forall i = 1, \cdots, t + 1. 
+\end{aligned}
+$$
+Bu choosing $\eta$ big, we can make $x_{i + 1} - x_i$ huge, hence more progress for the algorithm. 
+If we can also characterize mistakes or deviation made to approximate the algorithm, then PPM forms the universal ideas behind most gradient based algorithms. 
+
 
 #### **Lemma 1.1 | Convex Moreau Envelope Inequality**
 > $f$ is convex, proper, lsc. 
@@ -811,7 +845,7 @@ The convergence rate is a bit too good to be true, considering upper bounding $(
 In this section, we consider lower bounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
 
 #### **Condition 1 | Strongly Convex Lower-Bounding Function**
-> 
+
 
 
 ---
@@ -819,7 +853,56 @@ In this section, we consider lower bounding functions that are strongly convex, 
 
 This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
 In this section we briefly view over how geniuses like Rockafellar handles the situations. 
+He heavily make use of theories of monotone opeartors in Hilbert spaces, and he focuses more on the iterates than the function value. 
+His analysis is a world of difference compare to Guler's work which inspired all previous sections. 
+This part will follow the works of Rockafellar^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” SIAM J. Control Optim., vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: 10.1137/0314056.]. 
 
-#### **Assumption (A), (B) | Approximation on PPM**
+#### **Proposition | PPM and Monotone Operators**
+> With $P_k:= (1 + c_kT)^{-1}$, where $T$ is a maximally monotone operator. 
+> Consider for all $k$, $c_k > 0$. 
+> Define $Q_k = I - P_k = (I - (c_kT)^{-1})^{-1}$. 
+> Then $0\in T(z) \iff P_k(z) = z \iff Q_k(z) = 0$. 
+> And the following are all true for all $k$: 
+> 1. $z = P_k(z) + Q_k(z)$ and $c_k^{-1}Q_k(z) \in T(P_k(z))$ for all $z$. 
+> 2. $\langle P_k(z) - P_k(z'), Q_k(z) - Q_k(z')\rangle \ge 0$ for all $z, z'$. 
+> 3. $\Vert P_k(z) - P_k(z')\Vert^2 + \Vert Q_k(z) - Q_k(z')\Vert^2 \le \Vert z' - z\Vert^2$ for all $z, z'$. 
+
+**Proof**
+
+$I = P_k + Q_k$ is Moreau decomposition. 
+By definition we have 
+$$
+\begin{aligned}
+    c_k TP_kz + P_kz 
+    &\ni z
+    \\
+    c_k TP_kz 
+    &\ni z - P_k z = Q_kz, 
+\end{aligned}
+$$
+which is what we want. 
+For 2., consider monotonicity of $T$, by abusing the notation: 
+
+$$
+\begin{aligned}
+    \langle Tz - T z', z - z'\rangle &\ge 0\;  \forall z, z'
+    \\
+    \text{let }(z, z') &= (P_kz, P_kz'); 
+    \\
+    \langle TP_kz - TP_kz', P_kz - P_kz'\rangle &\ge 0
+    \\
+    \langle Q_kz - Q_kz', P_kz - P_kz'\rangle &\ge 0. 
+\end{aligned}
+$$
+
+For the last item, it's just the firmly non-expansiveness of the resolvent operator. 
+For more information, visits [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md). 
+
+**Remarks**
+
+The first item 1. is crucial to show the convergence of proximal point algorithms in the most general case. 
+
+
+#### **Proposition | Weak Convergence of PPM**
 
 

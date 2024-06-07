@@ -352,11 +352,13 @@ which is the third equivalence characterizations of a firmly nonexpansive operat
 
 If an operator $T$ is idempotent, meaning that $T\circ Tx = x$, and it's also Firmly nonexpansive, then it has to be a projector onto a convex set. The converse of the statement is also true. 
 
-#### **Example | Proximal Mapping is Firmly Nonexpansive**
-
-Due to it requires too many facts about this operator, visit [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) for a coverage of this example. Recall from [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
-
+#### **Example | Proximal Mapping of Convex Subgradient is Firmly Nonexpansive**
 > let $f$ be convex, proper, and lower semi-continuous, we have the proximal operator of $f$, denoted as $P_f, I - P_f$ being firmly non-expansive operators. 
+
+**Before Proof**
+
+Due to it requires too many facts about this operator, visit [Moreau Envelope and Convex Proximal Mapping](Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md) for a coverage of this example. 
+Recall from [Subgradient CENTRAL HUB](Subgradient%20CENTRAL%20HUB.md) that the subgradient operator is a monotone operator. Now we make the claim: 
 
 **Proof**: 
 

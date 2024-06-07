@@ -538,8 +538,6 @@ Fejer monotone sequence characterizes a weaker type of convergences for the aver
 See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more information. 
 
 
-
-
 ---
 ### **Quasi-Montone Sequences**
 
