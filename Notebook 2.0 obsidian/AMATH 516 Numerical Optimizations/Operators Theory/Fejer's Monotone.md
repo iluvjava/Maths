@@ -538,3 +538,97 @@ Fejer monotone sequence characterizes a weaker type of convergences for the aver
 See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more information. 
 
 
+
+
+---
+### **Quasi-Montone Sequences**
+
+Convergence is still possible even if a sequence approximates a Fejer monotone sequence. 
+
+#### **Lemma | Quasi Monotone Sequences**
+> With $a_{k + 1} \le a_k + \epsilon_k$ for all $k\in \N$ and $\sum_{k = 1}^{\infty} \epsilon_k \le \infty$, we consequence: $\lim_{k\rightarrow \infty} a_k$ exists and finite.  
+
+**Proof**
+
+$$
+\begin{aligned}
+    a_{k + 1} & \le a_k + \epsilon_k \iff 
+    \\
+    a_{k + 1} + \sum_{l = k+ 1 }^{\infty} \epsilon_l &\le 
+    a_k + \sum_{l = k}^{\infty} \epsilon_l. 
+\end{aligned}
+$$
+
+Define $b_k = a_k + \sum_{l = k}^{\infty} \epsilon_l$, then it is a monotonically decreasing sequence by the above inequalities. 
+It is also bounded by considering: 
+
+$$
+\begin{aligned}
+    & 0 \le a_k \le  a_{k - 1} + \epsilon_{k - 1} 
+    \le \cdots \le a_0 + \sum_{k - 1}^{l = 0} \epsilon_l 
+    \le a_0 + \sum_{l = 0}^{\infty} \epsilon_l 
+    \\
+    \implies& (a_k)_{k\in \N} \text{ bounded}. 
+\end{aligned}
+$$
+
+By convergence of series $\sum_{l = 0}^{\infty}\epsilon_l$, the sequence $(\sum_{l = k}^{\infty} \epsilon_l)_{k \in \N}$ is converging to zero hence bounded as well. 
+Both parts for $b_k$ is a bounded sequence, $b_k$ is bouned. 
+By monotone convergence theorem, the sequence $b_k$ converges to a limit. 
+By convergence of the series, using property of the limit we have 
+
+$$
+\begin{aligned}
+    \lim_{k\rightarrow \infty}a_k &= \lim_{k \rightarrow \infty } \left(
+        b_k - \sum_{l = k}^{\infty} \epsilon_l
+    \right)
+    \\
+    &= 
+    \lim_{k\rightarrow \infty} b_k. 
+\end{aligned}
+$$
+
+So, there sure is a limit what exactly it is depends on the context. 
+
+#### **Def | Quasi-Fejer Montone Sequence**
+> Let $(x_k)_{k \in \N}$ be a sequence in $\R^n$. 
+> Let $C \subseteq \R^n$ be nonempty subset. 
+> We say that $(x_k)_{k \in \N}$ is quasi-Fejer monotone with respect to $C$ if $\exists \epsilon_k \ge 0$ such that $\sum_{k = 1}^{\infty}\epsilon_k < \infty$ such that 
+> $$
+> \begin{aligned}
+>     \forall k \in \N, c \in C: 
+>     \Vert x_k - c\Vert \le \Vert x_{k - 1} - c\Vert + \epsilon_{k - 1}. 
+> \end{aligned}
+> $$
+
+
+#### **Thm | Convergence of Quasi-Monotone sequences**
+> With $(x_k)_{k \in \N}$ quasi-monotone wrt to set $C$. 
+> Assume all cluster poin of $(x_k)_{\in \N}$ lies in $C$, then $x = \lim_{k\rightarrow \infty} x_k$ exists and $x \in C$. 
+
+**Proof**
+
+With $c \in C$, for all $k$
+
+$$
+\begin{aligned}
+    \Vert x_k - c\Vert &\le \Vert x_{k - 1} - c\Vert + \epsilon_{k - 1} 
+    \\
+    & \le \cdots 
+    \\
+    & \le \Vert x_0 - c\Vert + \sum_{l = 0}^{k - 1} \epsilon_l
+    \\
+    &\le 
+    \Vert x_0 - c\Vert + \sum_{l = 0}^{\infty} \epsilon_l < \infty, 
+\end{aligned}
+$$
+
+from the above, the sequence $(\Vert x_k - c\Vert)_{k \in \N}$ is a bounded sequence in $\R$. 
+By $\Vert x_k\Vert \le \Vert x_k - c\Vert + \Vert c\Vert$, $(\Vert x_k\Vert)_{k \in N}$ is bounded. 
+With $(\Vert x_k - c\Vert)_{k \in \N}$ as a quasi-monotone sequence, it converges to a limit for all $c \in C$ by the first lemma stated in this section. 
+From Bozano Weierstrass, the bounded $\Vert x_k\Vert$ implies there exists $x_{k_l}\rightarrow x \in \R^n$. 
+By assmption, $x$ is a cluster point of $(x_k)_{k\in \N}$ therefore $x\in C$. 
+Therefore $\lim_{l \rightarrow \infty} \Vert x_{k_l} - x\Vert = 0$, with $x \in C$, and $\Vert x_k - c\Vert$ converges for all $c$, the subsequential limit is the same as the limit of the sequence $(\Vert x_k  - x\Vert)_{k\in \N}$, which is zero. 
+Therefore, $x_k \rightarrow x$ by definition of vector convergence. 
+
+

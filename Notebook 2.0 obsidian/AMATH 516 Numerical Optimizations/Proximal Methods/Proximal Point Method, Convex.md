@@ -735,7 +735,7 @@ invoke PPM descent inequality on the function $\phi$, it has
 $$
 {\small
 \begin{aligned}
-    E_\phi(x_{t + 1}) - \phi(x_*) - \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    E_\phi(x_{t}) - \phi(x_*) - \frac{1}{2}\Vert x_t - x_*\Vert^2 
     &\le 
     -\frac{1 + \eta_{t + 1}\beta}{2}\Vert x_{t + 1} - x_*\Vert^2
     \\

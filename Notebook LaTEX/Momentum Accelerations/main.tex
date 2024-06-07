@@ -341,109 +341,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark}
 
         \begin{theorem}[PPM Strongly Convex Lyapunov Function]\label{ppm_lyapunov_scvx}
-            With $f$ being $\beta > 0$ strogly convex, with $x_{t + 1} = \hprox_{\eta_{t + 1}f}(x_t)$, then $\Phi_t = f(x_t) - f(x_*)$ is a Lyapunov function satisfying: 
+            With $f$ being $\beta > 0$ strogly convex, with $x_{t + 1} = \hprox_{\eta_{t + 1}f}(x_t)$, then $\Phi_t = \Vert x_{t} - x_*\Vert$ is a Lyapunov function satisfying: 
             \begin{align*}
-                f(x_{t + 1}) - f(x_*)
-                &\le 
-                -\frac{1}{2\eta_{t + 1}}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-                \\
-                & \quad 
-                + \frac{1}{2\eta_{t + 1}}\left(
-                    1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-                \right)
-                \left(
-                    \prod_{i = 1}^{t}
-                        (1 + \eta_i \beta)^{-1}
-                \right)\Vert x_0 - x_*\Vert^2, 
+                \frac{\Vert x_{t + 1} - x_*\Vert}{
+                    \Vert x_k - x_*\Vert
+                } &\le (1 + \eta_{t + 1}\beta)^{-1}. 
             \end{align*}
-            hence a convergence rate of $\mathcal O\left(
-                \prod_{i = 1}^{t}(1 + \eta_i \beta)^{-1}
-            \right)$ is prominent. 
         \end{theorem}
         \begin{proof}
-            With $\beta$-strongly convex $f$, let $\phi = \eta_{t + 1}f$, let $E_\phi(x)$ be: $\min_u \{\eta_{t + 1} f(u) + (1/2)\Vert u - x\Vert^2\}$ which is the Moreau envelope of $\phi$, let $P_\phi := [I + \eta_{t + 1}\partial f]^{-1}$. 
-            For any $x_0$ let $x_{t + 1} = P_\phi(x_t)$, with $x_* \in \argmin_{x} \phi(x)$, we realize these consequences:
-            \begin{enumerate}
-                \item [1.] $I - P_\phi$ is a $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly monotone operator;
-                \item [2.] $\nabla E_\phi = I - P_\phi$, meaning that $E_\phi$ is $1 - (1 + \eta_{t + 1}\beta)^{-1}$ strongly convex;
-                \item [3.] $P_\phi$ is a contractive mapping with constant $(1 + \beta\eta_{t + 1})^{-1}$. 
-            \end{enumerate}
-            Using strong convexity of the Moreau envelope it has 
-            \begin{align*}
-                \frac{1}{2}\Vert \nabla E_\phi(x_t)\Vert^2 
-                &\ge 
-                (1 - (1 + \beta\eta_{t + 1})^{-1}) (E_\phi(x_t) - E_\phi(x_*))
-                \\
-                &\ge 
-                (1 - (1 + \beta\eta_{t + 1})^{-1})\left(
-                    \frac{1}{2}(1 - (1 + \beta\eta_{t + 1})^{-1})
-                    \Vert x - x_*\Vert^2
-                \right)
-                \\
-                &= 
-                \frac{1}{2}\left(
-                    1 - (1 + \eta_{t + 1}\beta)^{-1}
-                \right)^2 \Vert x_t - x_*\Vert^2
-            \end{align*}
-            invoke PPM descent inequality on the function $\phi$, it has 
-            {\footnotesize
-            \begin{align*}
-                E_\phi(x_{t + 1}) - \phi(x_*) 
-                &\le 
-                \frac{1}{2}\Vert x_t - x_*\Vert^2 
-                -\frac{1 + \eta_{t + 1}\beta}{2}\Vert x_{t + 1} - x_*\Vert^2
-                \\
-                \iff 
-                \phi(x_{t + 1}) - \phi(x_*)
-                &\le 
-                -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-                + \frac{1}{2}\Vert x_t - x_*\Vert^2
-                \\
-                \implies 
-                \phi(x_{t + 1}) - \phi(x_*)
-                &\le 
-                -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-                - \frac{1}{2}(1 - (1 + \eta_{t + 1}\beta)^{-1})^2\Vert x_t - x_*\Vert^2
-                + \frac{1}{2}\Vert x_t - x_*\Vert^2
-                \\
-                \iff
-                \phi(x_{t + 1}) - \phi(x_*)
-                &\le 
-                -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-                + \frac{1}{2}\left(
-                    1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-                \right)
-                \Vert x_t - x_*\Vert^2
-                \\
-                \implies
-                \phi(x_{t + 1}) - \phi(x_*)
-                &\le 
-                -\frac{1}{2}(1 + \eta_{t + 1}\beta)\Vert x_{t + 1} - x_*\Vert^2
-                \\
-                & \quad 
-                + \frac{1}{2}\left(
-                    1 - (1 - (1 + \eta_{t + 1}\beta)^{-1})^2
-                \right)
-                \left(
-                    \prod_{i = 1}^{t}
-                        (1 + \eta_i \beta)^{-1}
-                \right)\Vert x_0 - x_*\Vert^2. 
-            \end{align*}
-            }
-            $\phi$ is a $\eta_{t + 1}\beta$ strongly convex function, implying that 
-            $$
-                (1/2)\Vert x_{t} - x_*\Vert^2 \le (\eta_{t + 1}\beta)^{-1}(\phi(x_t) - \phi(x_*)). 
-            $$
-            Therefore at each iteration, the Lyapunov function would satisfy: 
-
-
+            This is a direct application that $\hprox_{\eta_{t + 1}f}$ is a contraction with constant $(1 + \beta\eta_{t +1})^{-1}$. 
         \end{proof}
         \begin{remark}
-            In both Guler\cite{guler_convergence_1991} and Rockafellar's \cite{rockafellar_monotone_1976} for PPM, they didn't mention the convergence of function value for strongly convex function explicitly. 
-            The lack of interests could be due to the triviality of it, or, the assumption of strongly convex is too strong. 
-            We do it here for completeness and pointing out the obvious.
-
+            It's still a mystery on how to show $f(x_t) - f(x_*)$ is a Lyapunov function. 
+            Do observe that, by the choice of $x_*$, the contraction property of the proximal operator is strictly stronger than necessary. 
         \end{remark}
         
 \section{Applying the analysis of PPM}
