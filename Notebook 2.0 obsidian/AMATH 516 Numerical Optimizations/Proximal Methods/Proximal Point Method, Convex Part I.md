@@ -321,7 +321,7 @@ Proximal gradient is one fine example where $l_f(x; \bar x)$ is not necessarily 
 We illusrate how this property is used in the below proof for a claim. 
 
 
-#### **Thm 2 | Generic Descent Lemma via PPM of Lower Bounding Function and Upper Smoothness**
+#### **Thm 2.1 | Generic Descent Lemma via PPM of Lower Bounding Function and Upper Smoothness**
 > Let $f$ be a function that has minimizer: $x_*$.
 > Let $l_f(x; x_t)$ be a convex, lsc, proper lower bound function. 
 > Let the lower bounding $\phi$ function satisfies inequality: 
@@ -406,7 +406,7 @@ $$
 $$
 
 Since this is true for all $x_t$, we can can claim that $\Phi_t = (\sum_{i = 1}^t \eta_i)(f(x_t) - f(x_*)) + \frac{1}{2}\Vert x_* - x_t\Vert^2$ is strictly non-increasing when $\eta_{t + 1}\le L^{-1}$. 
-Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still convergeces. 
+Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still converge. 
 For simplicity we make $\sigma_t = \sum_{i = 1}^{t}\eta_i$. 
 It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
 
@@ -551,7 +551,7 @@ One can imagine maximizing $\eta_{t + 1}L_t$ by appropriate choice of $x_{t + 1}
 Would a similar analysis work for strongly convex functions, or it's going to be a different story since $\Phi_t$, the Lyapunov function would change accordingly? 
 I don't have any good ideas but to use gradient descent on the envelope interpretation to asist the analysis in the strongly convex case. 
 
-#### **Thm-2 | Stepsize and the Convergence of the Gradient Descent Method**
+#### **Thm 2.2 | Stepsize and the Convergence of the Gradient Descent Method**
 > Choose stepsize $0 < \eta_t \le L^{-1}$, then the method of PPM on convex lower bounding function (which is gradient descent) has convergence rate $\mathcal O\left(\sum_{i = 1}^{T}\eta_t^{-1}\right)$. 
 
 **Proof**
@@ -563,7 +563,31 @@ Because the inequality in claim 1 are less than zero, and that makes the exact s
 
 In practice, the step size is usually constant, or it's determined by some type line search algorithm. 
 
-#### **Corollary-2.1 | Proximal Gradient Descent**
+#### **Example | Bounded Bregman Divergence**
+> In the case where $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$ is the linearization of $f$ at the point $\bar x$, then the the following ineualities are be equivalent, for any norm $\Vert \cdot\Vert$. 
+> 1. $l_f(x, \bar x) \le f(x) \le l_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2$. 
+> 2. $0 \le D_f(x, \bar x) \le (L/2)\Vert y - x\Vert^2$. 
+
+**Proof**
+
+Directly by considering 
+
+$$
+\begin{aligned}
+    & l_f(x, \bar x) \le f(x) \le l_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2
+    \\
+    & f(x) - D_f(x, \bar x) \le f(x) \le f(x) - D_f(x, \bar x) + (L/2)\Vert x - \bar x\Vert^2 
+    \\
+    & -D_f(x, \bar x) \le 0 \le -D_f(x, \bar x) + (L/2)\Vert y - x\Vert^2 
+    \\
+    & 0 \le D_f(x, \bar x) \le (L/2)\Vert y - x\Vert^2. 
+\end{aligned}
+$$
+
+
+
+
+#### **Corollary-2.3 | Proximal Gradient Descent**
 > Consider additive composite $f = g + h$ where $g$ is convex and $h$ is convex smooth with $L$-Lipschitz gradient. 
 > Consider $l_f(x; \bar x) = g(x) + h(\bar x) + \langle \nabla h(\bar x), x - \bar x\rangle$. 
 > Then proximal point method $x_{t + 1} \in \text{prox}[l_f(\cdot, \bar x)](x_t)$ produces the proximal gradient method and the above convergence analysis.   
@@ -579,6 +603,66 @@ $$
 $$
 applies. 
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
+
+
+#### **Theorem 2.4 | Recovery of the Fundamental Lemma of Proximal Gradient**
+> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$. 
+> Then performing proximal point on lower bounding function $\phi(u)$ yields inequality 
+> $$
+> \begin{aligned}
+>    f(u) - f(x^+) 
+>     + \frac{1}{2\eta} \Vert u - x\Vert^2 
+>     - \frac{1}{2\eta} \Vert x^+ - u\Vert^2 
+>     \ge 
+>     D_g(u, x) + \frac{1}{2\eta}\Vert x^+ - x\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+$$
+\begin{aligned}
+    & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
+    \ge \frac{1}{2}\Vert x^+ - u\Vert^2
+    \\
+    \implies &
+    \eta\underbrace{
+        \left(
+            h(u) + g(x) + \langle \nabla g(x), u - x\rangle 
+        \right)
+    }_{= \phi(u)} 
+    - \eta \underbrace{f(x^+)}_{\le \phi(x^+)} - \frac{1}{2}\Vert x - x^+\Vert^2 
+    \\
+    &\quad  
+    + \frac{1}{2} \Vert u - x\Vert^2 
+    \ge 
+    \frac{1}{2}\Vert x^+ - u\Vert^2 
+    \\
+    \iff & 
+    f(u) + \left(
+        g(x) - g(u) + \langle \nabla g(x), u -x\rangle 
+    \right)
+    - f(x^+) - \frac{1}{2\eta}\Vert x - x^+\Vert^2
+    \\
+    & \quad 
+    + 
+    \frac{1}{2}\Vert u - x\Vert^2 
+    \ge 
+    \frac{1}{2\eta}\Vert x^+ - u\Vert^2 
+    \\
+    \iff 
+    & f(u) - f(x^+) - D_g(u, x)
+    + \frac{1}{2\eta} \Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x^+ - x\Vert^2
+    \ge 
+    \frac{1}{2\eta} \Vert x^+ - u\Vert^2. 
+\end{aligned}
+$$
+
+**Remarks**
+
+This is the fundamental proximal gradient lemma in Amir Beck's writings. 
+This bound is tighter. 
+This can also be used for deriving the convergence of the gradient descent method. 
 
 ---
 ### **The PPM with Strongly Convex Objective**
@@ -844,65 +928,9 @@ The convergence rate is a bit too good to be true, considering upper bounding $(
 
 In this section, we consider lower bounding functions that are strongly convex, in which case we hope to make use of proximal point method with strongly convex objective that has a constant $\mu$. 
 
-#### **Condition 1 | Strongly Convex Lower-Bounding Function**
-
-
+#### **Theorem 4.1 | Approximated PPM under strong convexity**
 
 ---
-### **Proximal Point in the Rockafellar Manner**
+### **Rockafellar's PPM Analysis**
 
-This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
-In this section we briefly view over how geniuses like Rockafellar handles the situations. 
-He heavily make use of theories of monotone opeartors in Hilbert spaces, and he focuses more on the iterates than the function value. 
-His analysis is a world of difference compare to Guler's work which inspired all previous sections. 
-This part will follow the works of Rockafellar^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” SIAM J. Control Optim., vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: 10.1137/0314056.]. 
-
-#### **Proposition | PPM and Monotone Operators**
-> With $P_k:= (1 + c_kT)^{-1}$, where $T$ is a maximally monotone operator. 
-> Consider for all $k$, $c_k > 0$. 
-> Define $Q_k = I - P_k = (I - (c_kT)^{-1})^{-1}$. 
-> Then $0\in T(z) \iff P_k(z) = z \iff Q_k(z) = 0$. 
-> And the following are all true for all $k$: 
-> 1. $z = P_k(z) + Q_k(z)$ and $c_k^{-1}Q_k(z) \in T(P_k(z))$ for all $z$. 
-> 2. $\langle P_k(z) - P_k(z'), Q_k(z) - Q_k(z')\rangle \ge 0$ for all $z, z'$. 
-> 3. $\Vert P_k(z) - P_k(z')\Vert^2 + \Vert Q_k(z) - Q_k(z')\Vert^2 \le \Vert z' - z\Vert^2$ for all $z, z'$. 
-
-**Proof**
-
-$I = P_k + Q_k$ is Moreau decomposition. 
-By definition we have 
-$$
-\begin{aligned}
-    c_k TP_kz + P_kz 
-    &\ni z
-    \\
-    c_k TP_kz 
-    &\ni z - P_k z = Q_kz, 
-\end{aligned}
-$$
-which is what we want. 
-For 2., consider monotonicity of $T$, by abusing the notation: 
-
-$$
-\begin{aligned}
-    \langle Tz - T z', z - z'\rangle &\ge 0\;  \forall z, z'
-    \\
-    \text{let }(z, z') &= (P_kz, P_kz'); 
-    \\
-    \langle TP_kz - TP_kz', P_kz - P_kz'\rangle &\ge 0
-    \\
-    \langle Q_kz - Q_kz', P_kz - P_kz'\rangle &\ge 0. 
-\end{aligned}
-$$
-
-For the last item, it's just the firmly non-expansiveness of the resolvent operator. 
-For more information, visits [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md). 
-
-**Remarks**
-
-The first item 1. is crucial to show the convergence of proximal point algorithms in the most general case. 
-
-
-#### **Proposition | Weak Convergence of PPM**
-
-
+Read [Proximal Point Method, Convex Part II](Proximal%20Point%20Method,%20Convex%20Part%20II.md) for more. 

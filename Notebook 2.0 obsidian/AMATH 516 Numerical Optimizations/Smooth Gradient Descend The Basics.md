@@ -259,7 +259,9 @@ $$
         \sum_{j = 1}^{k}
         f\left(x^{(j)}\right) - f(x^+)
     \right) 
-    \le \frac{1}{2k\eta}\Vert x^{(0)} - x^+\Vert^2
+    \le \frac{1}{2k\eta}\left
+        \Vert x^{(0)} - x^+\right\Vert
+    ^2
     \\
     f\left(x^{(k + 1)}\right) - f(x^+) 
     &\le 

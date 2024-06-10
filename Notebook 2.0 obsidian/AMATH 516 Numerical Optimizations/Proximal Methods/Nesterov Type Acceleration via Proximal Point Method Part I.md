@@ -1,10 +1,10 @@
-- [Proximal Point Method, Convex](Proximal%20Point%20Method,%20Convex.md)
+- [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md)
 
 
 ---
 ### **Intro**
 
-We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex](Proximal%20Point%20Method,%20Convex.md) to derive the method for a specific form of the accelerated gradient. 
+We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md) to derive the method for a specific form of the accelerated gradient. 
 We will also prove the convergence rate of the method and deduce the optimal step sizes. 
 Before we start, we set up the stage by setting up some quantities that are useful for our derivations later. 
 
@@ -449,6 +449,10 @@ This is stated by the following theorem:
 > and for the base case we define $\Phi_0 = \frac{1}{2}\Vert x_0 - x_*\Vert^2$. 
 > Here we assume that $x_*$ is a minimizer for $f$. 
 > Finally, with the choice of $\eta_t = t/(2L)$, the algorithm of AGM Triangular Form I achieved convergence rate $\mathcal O(t^{-2})$. 
+
+**Observations**
+
+It's $(1/2)\Vert x_t - x_*\Vert^2$ and not $\frac{1}{2}\Vert z_t - x_*\Vert$, this distinguishes it from the simple gradient descent case where similar analysis occurred. 
 
 **Proof**
 
