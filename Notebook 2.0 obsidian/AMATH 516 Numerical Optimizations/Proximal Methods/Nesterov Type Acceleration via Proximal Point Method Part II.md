@@ -308,6 +308,7 @@ Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired resu
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
+
 In this section, we repeat part II, but with the above theorem. 
 With $x_* \in \argmin{x} f(x)$, and 
 
@@ -450,7 +451,7 @@ $$
 {\small
 \begin{aligned}
     & \Upsilon_{1, t + 1}^{\text{AG}} + \left(
-        \sum_{i=1}^{t}\eta_i 
+        \sum_{i=1}^{t}\tilde\eta_i 
     \right) \Upsilon_{2, t + 1}^{\text{AG}} 
     \\
     &\quad \le 
@@ -461,7 +462,7 @@ $$
     \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle
     + 
     \left(
-        \sum_{i = 1}^{t}\eta_i 
+        \sum_{i = 1}^{t}\tilde \eta_i 
     \right)\left(
         -\frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
         + \langle \nabla f(y_t), y_t - z_t\rangle
@@ -473,13 +474,13 @@ $$
             \tilde \eta_{t +1} - L^{-1}
         \right)
         - 
-        \frac{1}{2L}\sum_{i = 1}^{t}\eta_i
+        \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
     \right)\Vert \nabla f(y_t)\Vert^2
     + 
     \tilde \eta_{t + 1}\langle \nabla f(y_t), L\eta_t (z_t - y_t)\rangle
     + 
     \left(
-        \sum_{i = 1}^{t}\eta_i
+        \sum_{i = 1}^{t}\tilde \eta_i
     \right)
     \langle \nabla f (y_t), y_t - z_t\rangle
     \\
@@ -490,11 +491,11 @@ $$
             \tilde \eta_{t +1} - L^{-1}
         \right)
         - 
-        \frac{1}{2L}\sum_{i = 1}^{t}\eta_i
+        \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
     \right)\Vert \nabla f(y_t)\Vert^2
     + 
     \left(
-        L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\eta_i
+        L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
     \right)
     \langle \nabla f(y_t), z_t - y_t\rangle. 
 \end{aligned}
@@ -599,17 +600,197 @@ $$
 \end{aligned}
 $$
 
-Additinally, this algorithm will allows us to reduce to the classical form of Accelerated Gradient by 
+this algorithm will allows us to reduce to the classical form of Accelerated Gradient by 
 
 $$
 \begin{aligned}
-    
+    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
+    \\
+    &= (1 + L\eta_{t + 1})^{-1} (
+        z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
+    )
+    \\
+    &= 
+    (1 + L\eta_{t + 1})^{-1} (
+        (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
+    )
+    \\
+    &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
 \end{aligned}
 $$
 
+which allows us to get rid of $x_{t + 1}$, simplifyingit into 
+
+$$
+\begin{aligned}
+    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+    \\
+    y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
+
 ##### **The Similar Triangle Geometry**
+> At each step of the momentum algorithm, we have triangle $(y_t, z_t, z_{t + 1})$ and triangle $(x_t, z_t, x_{t + 1})$ similar to each other. 
+
+**Demonstration**
+
+1. Observe that $y_t = (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)$ is a convex combination between $x_t, z_t$. Hence $z_t, y_t, x_t$ are three collinear points. Additionally, we have $y_t - x_t = L\eta_t (z_t - y_t)$, hence $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+1. By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \nabla f(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \nabla f(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+2. Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
+
+From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - z_t$. 
+
+The visual understanding of the situation allows us to duduce the upper bound because it creates a different way of eliminating the cross terms in the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
+The next claim will clarify the sitaution. 
+
+#### **Claim | Recovering Nesterov Original Form**
+> With the choice of $\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
+> This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
+
+**Demonstrations**
+
+Start with the consideration of Lypunov analysis on PPM formulation of the Accelerated gradient. 
+With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ from the updates of $y_t$, we have 
+
+$$
+\begin{aligned}
+    \Upsilon_{1, t + 1}^\text{AG} &\le 
+    - \frac{1}{2}\Vert x_{t+1 } - x_t\Vert^2 + 
+    \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+    \\
+    &= 
+    - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
+    \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+    \\
+    &= 
+    \left(
+        \frac{L^2\tilde\eta_{t + 1}^2}{2}
+         + 
+        \frac{\tilde \eta_{t +1}}{2}
+    \right)
+    \Vert z_{t+1} - y_t\Vert^2
+    - 
+    \langle 
+        \tilde \eta_{t+ 1} \nabla f(y_t), x_{t+1} - z_{t+1}
+    \rangle. 
+\end{aligned}
+$$
+
+This completes the analysis for $\Upsilon_{1, t + 1}^\text{AG}$ with $\tilde\eta_{t+1}$. 
+Next we consider 
+$$
+\begin{aligned}
+    \Upsilon_{2, t + 1}^{\text{AG}} &= 
+    \langle \nabla f(y_t), z_{t+1} - z_t\rangle
+    + 
+    \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2 + 
+    \langle \nabla f(y_t), y_t - z_t\rangle
+    \\
+    &= 
+    \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+    + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+\end{aligned}
+$$
+
+Here, we made use of the assumption that $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, it allowed for updates $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, as demonstrated previously. 
+Therefore, the upper bound for the Lyapunov function evaluates to 
+
+$$
+\begin{aligned}
+    & \Upsilon_{1, t + 1}^{\text{AG}} + 
+    \left(
+        \sum_{i = 1}^{t}\tilde \eta_i
+    \right)\Upsilon_{2, t + 1}^{\text{AG}}
+    \\
+    &\quad \le 
+    \left(
+        - \frac{L^2\tilde \eta_{t + 1}^2}{2}
+        + \frac{\tilde\eta_{t+1}L}{2}
+    \right)
+    \Vert z_{t+1} - y_t\Vert^2
+    - 
+    \langle \tilde \eta_{t+1} \nabla f(y_t), x_{t+1} - z_{t + 1}\rangle
+    \\
+    & \qquad + 
+    \left(
+        \sum_{i = 1}^{t}\tilde \eta_i
+    \right)\left(
+        \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+        + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+    \right). 
+\end{aligned}\tag{$[*]$}
+$$
+
+Next, we consider coefficient for the term $\Vert z_{t+1} - y_t\Vert$, if it's non-positive then we have
+
+$$
+\begin{aligned}
+    - \frac{1}{2}\left(
+        L^2 \tilde\eta_{t+1}^2 - \tilde\eta_{t+1}L 
+    \right) + 
+    \frac{L}{2}\left(
+        \sum_{i = 1}^{t} \tilde \eta_i
+    \right) &\le 0
+    \\
+    - \left(
+        L\tilde \eta_{t + 1}^2 
+        - 
+        \tilde\eta_{t + 1}
+    \right) + 
+    \sum_{i = 1}^{t}\tilde \eta_i 
+    &\le 0
+    \\
+    -L \tilde \eta_{t+1} + 
+    \sum_{i = 1}^{t + 1} \tilde \eta_i 
+    &\le 0
+    \\
+    \sum_{i = 1}^{t + 1}\tilde \eta_i 
+    &\le L \tilde \eta_{t + 1}^2. 
+\end{aligned}
+$$
+
+We would also want the coefficient for the cross product term to be zero in $[(*)]$ making: 
+
+$$
+\begin{aligned}
+    -\tilde \eta_{t + 1} + 
+    \left(
+        \sum_{i = 1}^{t}\tilde \eta_i
+    \right)L^{-1}\eta_t^{-1} 
+    &= 0
+    \\
+    \sum_{i = 1}^{t}\tilde \eta_i 
+    &= 
+    L \eta_t \tilde \eta_{t + 1}. 
+\end{aligned}
+$$
+
+Substituting the above expression into the inequality then we it satisfied
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1} + \sum_{i = 1}^{t} \tilde \eta_i 
+    &\le L \tilde \eta_{t + 1}^2
+    \\
+    \tilde \eta_{t + 1} + L\eta_t \tilde \eta_{t + 1}
+    &\le L \tilde \eta_{t + 1}^2
+    \\
+    1 + L\eta_t &\le L \tilde\eta_{t + 1}. 
+\end{aligned}
+$$
+
+Observe that with $\tilde \eta_{t + 1} = \eta + L^{-1}$ the inequality an equality. 
+
+Finally, we will demonstrate how to recover the classic stepszie update formula for the momentum term in Nesterov acceleartions using the PPM stepsize paramters. 
 
 
-#### **Scenario 3 | Similar Triangle II**
+**Remarks**
 
+
+
+#### **Scenario 3 | Similar Triangle II**   
+
+In the previous scenario II, we choose the stepsize so that $x_{t + 1}$ can be projected into the correct position by $z_{t + 1}$ to allow colinearity for points $z_t, x_{t +1}, x_{t + 1}$. 
+In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinations of the point $x_{t+1}, z_t$. 
 
