@@ -353,8 +353,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
         \begin{remark}
             It's still a mystery on how to show $f(x_t) - f(x_*)$ is a Lyapunov function. 
-            The answer is not realized by me, nor is it in Rockafellar or Guler's writings. 
+            The answer is not realized by us, nor it is in Rockafellar \cite{rockafellar_monotone_1976} or Guler's\cite{guler_convergence_1991} writings. 
             Do observe that, by the choice of $x_*$, the contraction property of the proximal operator is strictly stronger than necessary. 
+            This inequality at the end is tighter than what we derived for gradient descent. 
         \end{remark}
         
 \section{Applying the analysis of PPM}
@@ -367,10 +368,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Its scope broadens to primal-dual optimization algorithms with creativities in the Lyapunov functions or theories in monotone operators. 
     \par\noindent
     To demonstrate, assume that $f$ is a lsc convex function such that it can be approximated by a lower bounding function $l_f(x|\bar x)$ at $\bar x$ such that it satisfies for all $x$: 
-    \begin{align}
+    \begin{align*}
         l_f(x| \bar x) 
         \le f(x) \le l_f(x|\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
-    \end{align}
+    \end{align*}
     The above characterization is generic enough to include the case where $l_f(x|\bar x)$, the under-approximating function is nonsmooth. 
     We assume that $l_f(x|\bar x)$ is convex for all $x$, at all $\bar x$, so the previous theorems apply. 
     \par\noindent
@@ -623,9 +624,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             where the algorithm generates the sequence. 
             By smartly choosing the function $\phi_{t + 1}$ at each iteration, we can increase the stepsize while retaining a similar convergence proof. 
             In a practical setting, when $L_t = L$, and $\phi_{t}(x) = \eta_{t + 1}f$, this is called a line search.
-            \par
+            \par\noindent
             The convergence rate is loose, and when $f$ exhibits additional favourable properties, such as being strongly convex, the convergence rate can be faster. 
+            Furthermore, if the choice of $y$ remains arbitrary, then the theorem is applicable for function without minimizers. 
         \end{remark}
+
     \subsection{Examples}
         \begin{example}[Convergence of the proximal gradient method]
             This section illustrates algorithms that satisfy the above proof's lower and upper bound estimates. 
@@ -662,32 +665,30 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             A similar analysis as \hyperref[thm:lower_approx_ppm_convergence]{ theorem \ref*{thm:lower_approx_ppm_convergence}} with \hyperref[thm:ppm_breg_descent_ineq]{theorem \ref*{thm:ppm_breg_descent_ineq}} obtains the same inquality. 
             With $\phi(y) = \eta(h(y) + g(x) + \langle \nabla g(x), y - x\rangle)$ as an lower bounding function of $f$. 
-            Let $x^+ = \hprox_\phi(x)$, then for all $u$:
+            Choose any $x$, let $x^+ = \hprox_\phi(x)$, then for all $u$:
+            {\small
             \begin{align*}
                 & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
-                \ge \frac{1}{2}\Vert x^+ - u\Vert^2, 
+                \ge \frac{1}{2}\Vert x^+ - u\Vert^2
                 \\
                 \implies &
-                \eta\underbrace{(h(u) + g(x) + \langle \nabla g(x), u - x\rangle + \frac{L}{2}\Vert u - x\Vert^2)}_{\ge \phi(u)} 
+                \eta\underbrace{
+                    \left(
+                        h(u) + g(x) + \langle \nabla g(x), u - x\rangle 
+                    \right)
+                }_{= \phi(u)} 
                 - \eta \underbrace{f(x^+)}_{\le \phi(x^+)} - \frac{1}{2}\Vert x - x^+\Vert^2 
-                \\
-                &\quad  
-                + \left(
-                    \frac{1}{2} - \frac{\eta L}{2}
-                \right)\Vert u - x\Vert^2 
+                + \frac{1}{2} \Vert u - x\Vert^2 
                 \ge 
                 \frac{1}{2}\Vert x^+ - u\Vert^2 
                 \\
                 \iff & 
-                f(u) + g(x) - g(u) + 
-                \langle \nabla g(x), u -x\rangle 
-                - f(x^+) + \frac{L}{2}\Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x - x^+\Vert^2
-                \\
-                & \quad 
+                f(u) + \left(
+                    g(x) - g(u) + \langle \nabla g(x), u -x\rangle 
+                \right)
+                - f(x^+) - \frac{1}{2\eta}\Vert x - x^+\Vert^2
                 + 
-                \left(
-                    \frac{1}{2\eta} - \frac{L}{2}
-                \right)\Vert u - x\Vert^2 
+                \frac{1}{2}\Vert u - x\Vert^2 
                 \ge 
                 \frac{1}{2\eta}\Vert x^+ - u\Vert^2 
                 \\
@@ -697,9 +698,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \ge 
                 \frac{1}{2\eta} \Vert x^+ - u\Vert^2. 
             \end{align*}
+            }
+            \par\noindent
             Removing the negative term $-1/2\eta \Vert x - x^+\Vert^2$ makes LHS larger, establishing the fundamental proximal gradient lemma. 
         \end{example}
-        
+        \begin{remark}
+            Linking the PPM descent inequality to the Bregman divergence of the smooth part of the function on parameters $u, x$ is a clever move. 
+        \end{remark}
+
         
 \section{Accelerated gradient descent and PPM}
     Recent works from Ahn \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
@@ -726,7 +732,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Varieties of Nesterov accelerated gradient}
         In this section, we list different varieties of the Nesterov accelerated method. 
         We present these varieties generically because these algorithms' forms are of interest.  
-        \begin{definition}[Accelearted Gradient Generic Original Form]\label{def:agg_original}
+        \begin{definition}[AG Generic Original Form]\label{def:agg_original}
             Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
             Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
             \begin{enumerate}
@@ -743,11 +749,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
         \end{remark}
 
-        \begin{definition}[Accelerated Gradient Generic Triangular Form]\label{def:agg_tri}
-            
+        \begin{definition}[AG Generic Triangular Form]\label{def:agg_tri}
+            With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0$, the algorithm admits form: 
+            \begin{align*}
+                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                \\
+                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                \\
+                y_{t + 1} &= 
+                (1 + L\eta_{t + 1})^{-1}
+                (
+                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                ). 
+            \end{align*}
         \end{definition}
 
-        \begin{definition}[Accelerated Gradient Generic PPM Form]\label{agg_ppm}
+        \begin{definition}[AG Generic PPM Form]\label{agg_ppm}
             
         \end{definition}
 
