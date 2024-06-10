@@ -357,6 +357,9 @@ $$
 }
 $$
 
+Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t \le 0$ for the appropriate choice of $\tilde \eta_t, \eta_t$ in the algorithm, we have a convergence rate of $f(z_{T + 1}) - f(x_*) \le \mathcal O\left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ from the analysis of PPM. 
+
+
 
 #### **Scenario 1 | Not Similar Triangle**
 
@@ -783,6 +786,8 @@ $$
 Observe that with $\tilde \eta_{t + 1} = \eta + L^{-1}$ the inequality an equality. 
 
 Finally, we will demonstrate how to recover the classic stepszie update formula for the momentum term in Nesterov acceleartions using the PPM stepsize paramters. 
+
+
 
 
 **Remarks**
