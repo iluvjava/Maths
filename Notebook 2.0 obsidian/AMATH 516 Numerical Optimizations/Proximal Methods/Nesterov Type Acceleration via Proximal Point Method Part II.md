@@ -248,7 +248,7 @@ $$
 \begin{aligned}
     & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
     - \frac{1}{2}\Vert x_* - x_t\Vert^2 
-    =: \tilde\eta_{t + 1}\Upsilon_{1, t + 1}^{\text{AG}}
+    =: \Upsilon_{1, t + 1}^{\text{AG}}
     \\
     \quad 
     &\le 
@@ -373,7 +373,7 @@ $$
 \end{aligned}
 $$
 
-we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it 
+we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it: 
 
 $$
 \begin{aligned}
@@ -446,7 +446,7 @@ $$
 \end{aligned}
 $$
 
-Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't perfectly match. 
+Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
 Hence let's consider $y_t - x_t = L \eta_t (z_t - y_t)$ from the algorithm, we make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \nabla f(y_t), y_t - x_t\rangle = \langle \nabla f(y_t), L \eta_t (z_t - y_t)\rangle$. 
 With this in mind, applying the RHS of $[(*)]$ yields: 
 
@@ -505,8 +505,7 @@ $$
 }
 $$
 
-We had progress this far, and the final piece is to select a choice for stepsize parameter $\eta_t, \tilde \eta_{t +1}$ such that the coefficient for the $\Vert \nabla f(y_t)\Vert^2$ is negative, and is zero for the cross product term. 
-In this scenario, we makes the choice of $\tilde \eta_t = \eta_t$. 
+In this scenario, we make the choice of $\tilde \eta_t = \eta_t$. 
 Continuting will simplify the upper bound so that it is: 
 
 $$
@@ -561,6 +560,10 @@ $$
 $$
 
 To satisfies the equality, reader should verify that $\eta_{t + 1} = t/ L$ is one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
+
+##### **The variant of AG that it reduces to**
+> We show that the above analysis allows us to reduce the algorithm to a particular variants of accelerated gradient algorithm. 
+> 
 
 
 **Remarks**
@@ -622,7 +625,7 @@ $$
 \end{aligned}
 $$
 
-which allows us to get rid of $x_{t + 1}$, simplifyingit into 
+which allows us to get rid of $x_{t + 1}$, simplifying it into the classical acceleration form: 
 
 $$
 \begin{aligned}
@@ -769,7 +772,7 @@ $$
 \end{aligned}
 $$
 
-Substituting the above expression into the inequality then we it satisfied
+Substituting the above expression into the inequality then it satisfies
 
 $$
 \begin{aligned}
@@ -784,14 +787,79 @@ $$
 $$
 
 Observe that with $\tilde \eta_{t + 1} = \eta + L^{-1}$ the inequality an equality. 
-
 Finally, we will demonstrate how to recover the classic stepszie update formula for the momentum term in Nesterov acceleartions using the PPM stepsize paramters. 
 
+Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
+$$
+\begin{aligned}
+    L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+    &= L \tilde \eta_{t + 1} + L \sum_{i = 1}^{t} \tilde \eta_i 
+    \\
+    &= 
+    L \tilde \eta_{t + 1} + L (L \eta_t \tilde \eta_{t + 1}) 
+    \\
+    &= L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
+    \\
+    &= L (\eta_t + L^{-1}) + L\eta_t (L \eta_t + 1)
+    \\
+    &= (L\eta_t + 1)^2, 
+\end{aligned}
+$$
 
+Simultaneously we have 
+
+$$
+\begin{aligned}
+    L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+    &= L^2 \eta_{t + 1} \tilde \eta_{t + 1}
+    \\
+    &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
+\end{aligned}
+$$
+
+combining yields: 
+
+$$
+\begin{aligned}
+    (L\eta_t + 1)^2 
+    &= L\eta_{t + 1}(1 + L \eta_{t + 1})
+    \\
+    &= L\eta_{t + 1} + L^2 \eta_{t + 1}^2
+    \\
+    \iff 
+    (L\eta_t + 1)^2 + 1/4 &= 
+    1/4 + 2(1/2)L \eta_{t + 1} + (L \eta_{t + 1})^2
+    \\
+    \iff 
+    (L\eta_t + 1)^2 + 1/4 &= 
+    (L \eta_{t + 1} + 1/2)^2. 
+\end{aligned}
+$$
+
+With $a_t = L\eta_t + 1 = L \tilde \eta_t$ this is 
+$$
+\begin{aligned}
+    a_t^2 + 1/4 &= (a - 1/2)^2 
+    \\
+    a_{t + 1} - a_t &= a_t^2. 
+\end{aligned}
+$$
+
+Recall that the momentum coefficients as described through the PPM is: 
+
+$$
+\begin{aligned}
+    (1 + L \eta_{t+ 1})^{-1}L\eta_t = L\eta_t / a_{t + 1} = (a_t - 1)/a_{t + 1}. 
+\end{aligned}
+$$
+
+And this is a full recovery of the Nesterov sequence. 
 
 
 **Remarks**
 
+This derivation only leave a single choice for the stepsize parameter. 
+We are not sure if there could be more choices for the parameters that assures convergence rate of the algorithm. 
 
 
 #### **Scenario 3 | Similar Triangle II**   
