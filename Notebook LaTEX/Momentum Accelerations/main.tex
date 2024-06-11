@@ -631,7 +631,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Examples}
         \begin{example}[Convergence of the proximal gradient method]
-            This section illustrates algorithms that satisfy the above proof's lower and upper bound estimates. 
+            This section \\ illustrates algorithms that satisfy the above proof's lower and upper bound estimates. 
             Consider $f = g + h$ with $h$ nonsmooth convex, and $g$ being $L$-Lipschitz smooth convex and differentiable. 
             Define $D_g(x, y) = g(x) - g(y) - \langle \nabla f(x), y - x\rangle$, $l_g(x; y) = g(y) + \langle \nabla g(y), y - x\rangle$, which is the Bregman divergence of the function $g$. 
             Consider for all $x$: 
@@ -712,10 +712,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In his works, Ahn explored the interpretation of Nesterov acceleration via PPM. 
     They proposed the idea of ``similar triangle" for unifying all varieties of Nesterov accelerated gradient. 
     They used PPM to derive several variations of the Nesterov accelerated gradient algorithms. 
-    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate of the accelerated gradient.
+    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate for the accelerated gradient.
     Their analysis results in relatively simple arguments that exhibits powerful extensions to several variants of the Nesterov accelerated gradient. 
     \par\noindent
-    Interestingly, the Nesterov accelerated gradient applies to PPM; Guler \cite{guler_new_1992} did it two decades ago. 
+    Interestingly, the Nesterov accelerated gradient applies to PPM too; Guler \cite{guler_new_1992} did it two decades ago. 
     He uses the idea of a Nesterov acceleration sequence faithfully. 
     One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by Lin et al \cite{lin_universal_2015}. 
     It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
@@ -747,10 +747,33 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
             It is the most generic algorithm in his book about accelerated gradient method. 
             The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
+
+        \end{remark}
+
+        \begin{definition}[AG Generic PPM Form]\label{def:agg_ppm}
+            With $f$ convex, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$ such that: 
+            \begin{align*}
+                x_{t + 1} &= \argmin_{x} \left\lbrace
+                l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                \right\rbrace, 
+                \\
+                y_{t + 1} &= \argmin_{x} 
+                \left\lbrace
+                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                    \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                \right\rbrace. 
+            \end{align*}
+            where $l_f(x, \bar x)$ is a convex function satisfying
+            \begin{align*}
+                l_f(x, \bar x) \le f(x) \le f(\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            With $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, then the above is equivalent to AG Generic Triangular form. 
         \end{remark}
 
         \begin{definition}[AG Generic Triangular Form]\label{def:agg_tri}
-            With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0$, the algorithm admits form: 
+            With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0=z_0$, the algorithm admits form: 
             \begin{align*}
                 x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
                 \\
@@ -763,17 +786,463 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 ). 
             \end{align*}
         \end{definition}
-
-        \begin{definition}[AG Generic PPM Form]\label{agg_ppm}
-            
+        \begin{remark}
+            The parameter $\eta_t, \eta_{t + 1}$ are coming from the previous generic PPM. 
+            They are the same parameters for both algorithms. 
+        \end{remark}
+        
+        \begin{definition}[AG Generic PPM Form with Strong Convexity]\label{def:agg_ppm_scvx}
+            Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y)$ to be a function such that for all $x, \bar x \in \RR^n$: 
+            \begin{align*}
+               l_f(x; \bar x) + \frac{\mu}{2}\Vert x - \bar x\Vert^2
+               \le f(x; \bar x) 
+               \le l_f(x; \bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2, 
+            \end{align*}
+            then for all $x_0 \in \RR^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
+            \begin{align*}
+                x_{t + 1} &= \argmin_{x} \left\lbrace
+                l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                \right\rbrace, 
+                \\
+                y_{t + 1} &= \argmin_{x} 
+                \left\lbrace
+                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                    \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                \right\rbrace. 
+            \end{align*}
+            Here we assume that $\eta_{t + 1} > 0$ for all $t \in \NN$. 
         \end{definition}
+        \begin{remark}
+            Set $\mu = 0$, the above is the same as AG Generid Triangular Form. 
+        \end{remark}
+
+        \begin{proposition}[Triangular Form via PPM Form]
+            with $f$ being $L$-Lipschitz continuous, let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
+        \end{proposition}
+        \begin{proof}
+            Solving the optimality on the first PPM yields: 
+            \begin{align*}
+                \mathbf 0 &= \nabla f(y_t) + 
+                \frac{1}{\tilde \eta_{t + 1}} (x - x_t)
+                \\
+                x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
+            \end{align*}
+
+            Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
+            Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
+            \begin{align*}
+                \mathbf 0 &= \nabla f (y_t) + L (x - y_t) + \eta_{t + 1}^{-1} (x - x_{t + 1})
+                \\
+                \mathbf 0 &= \eta_{t + 1}\nabla f (y_t) + \eta_{t + 1}L (x - y_t) + x - x_{t + 1}
+                \\
+                \mathbf 0 &= 
+                \eta_{t + 1}\nabla f(y_t) -\eta_{t + 1} Ly_t + (\eta_{t + 1}L + 1)x - x_{t + 1}
+                \\
+                (1 + \eta_{t + 1}L)x
+                &= 
+                x_{t + 1} - \eta_{t + 1}\nabla f(y_t) + \eta_{t + 1}L y_t
+                \\
+                \text{define: } y_{t + 1} &:= x. 
+            \end{align*}
+
+            In the above expression, it hides a step of gradient descent, continuing it we have 
+            \begin{align*}
+                (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                x_{t + 1}  + \eta_{t + 1}L (-L^{-1}\nabla f(y_t) + y_t)
+                \\
+                \text{let: } z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), \text{ so, }
+                \\
+                (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
+            \end{align*}
+
+            Combining it yields the tree points update format 
+
+            \begin{align*}
+                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                \\
+                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                \\
+                y_{t + 1} &= 
+                (1 + L\eta_{t + 1})^{-1}
+                (
+                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                ), 
+            \end{align*}
+            the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
+            The base case is when $t = 0$, so then $x_0 = y_0$ for the initial guess.
+        \end{proof}
+
+    \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
+        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
+        \begin{lemma}[Smooth Generic AG Lyapunov Analysis]
+            With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} and \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} then these are the upper bounds for the RHS of the PPM descent inequality: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^{\text{AG}}&= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
+                + \frac{1}{2}(
+                    \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_t - x_* \Vert^2
+                )  
+                \\
+                & \quad \le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
+                \frac{\tilde \eta_{t + 1} L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                - 
+                \langle \tilde \eta_{t + 1} \nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle, 
+                \\
+                \Upsilon_{2, t + 1}^{\text{AG}} 
+                &= f(z_{t + 1}) - f(z_t) 
+                \le 
+                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Define $\phi_t(x) = \tilde \eta_{t +1}(f(y_t) + \langle \nabla f(y_t), x- y_t\rangle)$.  
+            With $L$-smoothness of $f$ in mind, consider the following sequence of inequalities: 
+            $$
+            \begin{aligned}
+                \phi_t(x_{t + 1}) 
+                &= 
+                \tilde\eta_{t + 1} (f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle)
+                \\
+                \phi_t (x_{t + 1}) &= \tilde \eta_{t + 1}(
+                    f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
+                )
+                \\
+                &\ge 
+                \tilde \eta_{t + 1}
+                \left(
+                    f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
+                    \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+                \right), 
+            \end{aligned}
+            $$
+            performing PPM on the function produces the PPM Lyapunov inequality, substituting yields equivalences for all $x_*$: 
+            {\footnotesize
+            \begin{align*}
+                & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+                - \frac{1}{2}\Vert x_* - x_t\Vert^2 
+                =: \Upsilon_{1, t + 1}^{\text{AG}}
+                \\
+                &\quad \le 
+                - \frac{1}{2} \Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \implies & 
+                \tilde \eta_{t + 1}\left(
+                    f(z_{t + 1}) - \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                    + 
+                    \langle \nabla f(y_t), x_{t + 1} - z_{t + 1}\rangle
+                \right) - \tilde \eta_{t + 1} f(x_*)
+                + 
+                \frac{1}{2}\left(
+                    \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_{t} - x_*\Vert^2
+                \right)
+                \\
+                &\quad \le
+                 - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \iff 
+                & 
+                \tilde \eta_{t + 1} \left(
+                    f(z_{t + 1}) - f(x_*)
+                \right) + \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
+                - \frac{1}{2}\Vert x_{t} - x_*\Vert^2 
+                \\
+                &\quad \le 
+                -\frac{1}{2} \Vert x_{t + 1 } - x_t\Vert^2 + 
+                \frac{\tilde \eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                - \langle \tilde \eta_{t + 1}\nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle. 
+            \end{align*}
+            }
+
+            Observe that, the rhs and lhs of the Lyapunov inequality are anchored at $z_{t + 1}$. 
+            Similarly for the descent inequality we wish to obtain: 
+
+            \begin{align*}
+                f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
+                \\
+                &\le 
+                \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                + 
+                \langle \nabla f(y_t), y_t - z_t\rangle
+                \\
+                &= 
+                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \\
+                \text{let }\Upsilon_{2, t + 1}^{\text{AG}} 
+                &:= f(z_{t + 1}) - f(z_t)
+            \end{align*}
+
+            Which is the descent inequality anchored on $z_{t + 1}$. 
+            Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
+        \end{proof}
+
+        \begin{theorem}[Generic AG Convergence]\label{thm:generic_smooth_ag_convergence}
+            If there is a choice of $\eta_i, \tilde \eta_i$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} such that we have 
+            \begin{align*}
+                \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}} \le 0, 
+            \end{align*}
+            then with 
+            \begin{align*}
+                \Phi_t &= \left(
+                    \sum_{i = 1}^{t} \tilde\eta_{t + 1}
+                \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \NN
+                \\
+                \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2, 
+            \end{align*}
+            we have $\Phi_{t + 1} - \Phi_t \le 0$, which allows for a convergence rate of $\mathcal O \left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ for $f(z_t) - f(x_*)$. 
+        \end{theorem}
+        \begin{proof}
+            The derivation is direct and very similar to \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} which is 
+            {\footnotesize
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_t 
+                &= 
+                \left(
+                    \sum_{i = 1}^{t+1} \tilde\eta_{i}
+                \right) (f(z_{t + 1}) - f(x_*)) 
+                - 
+                \left(
+                    \sum_{i = 1}^{t} \tilde\eta_{i}
+                \right) (f(z_{t}) - f(x_*)) 
+                + \frac{1}{2}\Vert x_t - x_*\Vert^2
+                - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
+                \\
+                &= 
+                \tilde \eta_{t + 1} (f(z_{t + 1}) - f(z_*))
+                +
+                \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)(f(z_{t + 1}) - f(z_t))
+                + \frac{1}{2}\Vert x_t - x_*\Vert^2
+                - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
+                \\
+                &= \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}} \le 0. 
+            \end{align*}
+            }
+            Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
+        \end{proof}
+
+    \subsection{Scenario I}
+        In this scenario, we aim to recover the following variant of the Accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 
+        \begin{align*}
+            z_{t + 1} &= y_k + L^{-1}\nabla f(y_t), 
+            \\
+            y_{t + 1} &= z_{t + 1} + \frac{t - 1}{t + 2}\left(
+                z_{k + 1} - z_k
+            \right). 
+        \end{align*}
+        An equivalent form of the above is also provided by Ryu: 
+        \begin{align*}
+            z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+            \\
+            x_{k + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
+            \\
+            y_{k + 1} &= \left(
+                1 - \frac{2}{k + 2} 
+            \right)z_{k + 1} + 
+            \left(
+                \frac{1}{k + 2}
+            \right)x_{k + 1}. 
+        \end{align*}
+        We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
+        It goes over the full context and history for this particular variant of gradient acceleration method. 
+        As the time of composing this notes, the writer is still reading on the topic of accelerated gradient. 
+        
+        \begin{proposition}
+            The above algorithm is a consequence of a specific choice of $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$.     
+        \end{proposition}
+        \begin{proof}
+            Consider the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$, together with the updates of the Generic Triangular Form of the algorithm:  
+            \begin{align*}
+                x_{t + 1} - x_t &= \tilde \eta_{t + 1}\nabla f(y_t)
+                \\
+                z_{t +1} - y_t &= L^{-1}\nabla f(y_t), 
+            \end{align*}
+            we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it: 
+            {\footnotesize
+            \begin{align*}
+                \Upsilon_{1, t + 1}^{\text{AG}}
+                &\le 
+                -\frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                + 
+                \frac{\tilde \eta_{t + 1}L }{2} \Vert z_{t + 1} - y_t\Vert^2 
+                - 
+                \langle \tilde \eta_{t + 1} \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+                \\
+                &\le 
+                - \frac{1}{2}\Vert \tilde \eta_{t + 1} \nabla f(y_t)\Vert^2 
+                + \frac{\tilde \eta_{t + 1} L}{2}\Vert L^{-1} \nabla f(y_t)\Vert^2 
+                + 
+                \langle 
+                    - \tilde \eta_{t + 1} \nabla f(y_t), 
+                    -L^{-1}\nabla f(y_t) + y_t - x_t + \tilde \eta_{t + 1}\nabla f(y_t)
+                \rangle
+                \\
+                &= 
+                \left(
+                    \frac{\tilde \eta_{t + 1}^2}{2} + 
+                    \frac{\tilde \eta_{t + 1}}{2L}
+                \right)
+                \Vert \nabla f(y_t)\Vert^2 
+                + \tilde \eta_{t + 1} 
+                \left\langle 
+                    \nabla f(y_t), 
+                    (\tilde \eta_{t + 1} - L^{-1})\nabla f(y_t) + y_t - x_t 
+                \right\rangle
+                \\
+                &= 
+                (1/2)(L^{-1}\tilde \eta_{t + 1} - \tilde \eta_{t + 1}^2)
+                \Vert \nabla f(y_t)\Vert^2
+                + 
+                \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1})
+                \Vert \nabla f(y_t)\Vert^2
+                + 
+                \tilde \eta_{t + 1}\langle \nabla f(y_t), y_t - x_t\rangle
+                \\
+                &= \frac{1}{2}\left(
+                    -L^{-1}\tilde \eta_{t + 1} + \tilde \eta_{t + 1}^2
+                \right)\Vert \nabla f(y_t)\Vert^2 
+                + 
+                \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle. 
+            \end{align*}
+            }
+            For $\Upsilon_{2, t + 1}^\text{AG}$, we simplify it with the same updates relation in mind: 
+            \begin{align*}
+                \Upsilon_{2, t + 1}^\text{AG}
+                &\le 
+                \langle \nabla f(y_t), z_{t +1} - y_t\rangle + 
+                \frac{L}{2}\Vert z_{t +1} - y_{t} \Vert^2 
+                + 
+                \langle \nabla f(y_t), y_t - z_t\rangle
+                \\
+                &= 
+                \langle 
+                    \nabla f(y_t), -L^{-1} \nabla f(y_t)
+                \rangle + 
+                \frac{L}{2}\Vert L^{-1}\nabla f(y_t) \Vert^ 2
+                + 
+                \langle \nabla f(y_t), y_t - z_t\rangle
+                \\
+                &= -\frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
+                + \langle \nabla f(y_t), y_t - z_t\rangle. 
+            \end{align*}
+            Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
+            Hence let's consider $y_t - x_t = L \eta_t (z_t - y_t)$ from the algorithm, we make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \nabla f(y_t), y_t - x_t\rangle = \langle \nabla f(y_t), L \eta_t (z_t - y_t)\rangle$. 
+            With this in mind, applying the RHS of \hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}} yields inequality: 
+            {\footnotesize
+            \begin{align*}
+                & \Upsilon_{1, t + 1}^{\text{AG}} + \left(
+                    \sum_{i=1}^{t}\tilde\eta_i 
+                \right) \Upsilon_{2, t + 1}^{\text{AG}} 
+                \\
+                & \le 
+                \frac{1}{2}\left(
+                    -L^{-1}\tilde \eta_{t + 1} + \tilde \eta_{t + 1}^2
+                \right)\Vert \nabla f(y_t)\Vert^2 
+                + 
+                \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle
+                + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i 
+                \right)\left(
+                    -\frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
+                    + \langle \nabla f(y_t), y_t - z_t\rangle
+                \right)
+                \\
+                & =
+                \left(
+                    \frac{1}{2}\tilde\eta_{t + 1}\left(
+                        \tilde \eta_{t +1} - L^{-1}
+                    \right)
+                    - 
+                    \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
+                \right)\Vert \nabla f(y_t)\Vert^2
+                + 
+                \tilde \eta_{t + 1}\langle \nabla f(y_t), L\eta_t (z_t - y_t)\rangle
+                + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)
+                \langle \nabla f (y_t), y_t - z_t\rangle
+                \\
+                & = 
+                \left(
+                    \frac{1}{2}\tilde\eta_{t + 1}\left(
+                        \tilde \eta_{t +1} - L^{-1}
+                    \right)
+                    - 
+                    \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
+                \right)\Vert \nabla f(y_t)\Vert^2
+                + 
+                \left(
+                    L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
+                \right)
+                \langle \nabla f(y_t), z_t - y_t\rangle. 
+            \end{align*}
+            }
+            Next, we select a choice for stepsize parameter $\eta_t, \tilde \eta_{t +1}$ such that the coefficient for the $\Vert \nabla f(y_t)\Vert^2$ is negative, and is zero for the cross product term. 
+            In this scenario, we makes the choice of $\tilde \eta_t = \eta_t$. 
+            Continuting will simplify the upper bound so that it is: 
+            \begin{align*}
+                \frac{1}{2}\left(
+                    \eta_{t + 1}^2 - L^{-1}\eta_{t +1} - L^{-1}\sum_{i = 1}^{t}\eta_i
+                \right)\Vert \nabla f(y_t)\Vert^2
+                + 
+                \left(
+                    L\eta_t \eta_{t + 1} - \sum_{i = 1}^{t} \eta_i
+                \right)
+                \langle \nabla f(y_t), z_t - y_t\rangle 
+                &
+                \le 0. 
+            \end{align*}
+            Assuming the above inequality holds then one of the sufficient conditions would happen when the coefficient of the cross product term is zero and the coefficient for the normed term is negative, yielding the condition for all $t \in \NN$: 
+            \begin{align*}
+                \begin{cases}
+                    L\eta_{t + 1}^2 + \eta_{t + 1} - \sum_{i = 1}^{t}\eta_i 
+                    \le 0, 
+                    \\
+                    L\eta_t \eta_{t + 1} - \sum_{i = 1}^{t} \eta_i 
+                    = 0. 
+                \end{cases}
+            \end{align*}
+            Substituting the sequence equality back to the first one yield: 
+            \begin{align*}
+                L\eta_{t + 1}^2 - (\eta_{t + 1} + L\eta_t\eta_{t + 1}) &\le 0 
+                \\
+                L\eta^2_{t + 1} - \eta_{t + 1}
+                &\le 
+                L\eta_t \eta_{t + 1} 
+                \\
+                \eta_{t + 1}(L\eta_{t + 1} - 1) 
+                &\le L\eta_t\eta_{t + 1}
+                \\
+                \eta_t > 0 
+                \implies 
+                L\eta_{t + 1} - 1 &\le 
+                L\eta_t 
+                \\
+                \eta_{t + 1} &\le \eta_t + L^{-1}. 
+            \end{align*}
+            To satisfies the equality, reader should verify that $\eta_{t + 1} = (t - 1)/ L$ is one of the options. 
+            And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
+        \end{proof}
 
 
-    \subsection{Nesterov accelerated gradient via PPM}
-    \subsection{Convergence rate of Nesterov accelerated gradient via PPM}
+    \subsection{Scenario II}
+        
+    \subsection{Scenario III}
+    
+
 
 \section{Classical analysis of Nesterov accelerated gradient}
     In this section, we reproduce some of the analysis for Nesterov accelerated gradient method with excruciating details. 
+
+\section{Modern techniques in analysis of accelerated gradient algorithms}
 
 
 \printbibliography
