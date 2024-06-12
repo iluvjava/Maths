@@ -563,7 +563,6 @@ To satisfies the equality, reader should verify that $\eta_{t + 1} = t/ L$ is on
 
 ##### **The variant of AG that it reduces to**
 > We show that the above analysis allows us to reduce the algorithm to a particular variants of accelerated gradient algorithm. 
-> 
 
 
 **Remarks**
