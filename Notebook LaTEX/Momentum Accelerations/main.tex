@@ -1040,18 +1040,55 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align*}
             z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
             \\
-            x_{k + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
+            x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
             \\
-            y_{k + 1} &= \left(
-                1 - \frac{2}{k + 2} 
-            \right)z_{k + 1} + 
+            y_{t + 1} &= \left(
+                1 - \frac{2}{t + 2} 
+            \right)z_{t + 1} + 
             \left(
-                \frac{1}{k + 2}
-            \right)x_{k + 1}. 
+                \frac{1}{t + 2}
+            \right)x_{t + 1}. 
         \end{align*}
+        The base case requires cares since it's not unique, and depending on how the base case is define, there even more representations of it. 
+        \begin{observation}
+            Observe that the second equivalent form is an example of \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+            \par\noindent
+            It is stated in Ryu's writing that the base case is $x_0 = y_0 = z_0$, 
+            \textcolor{purple}{we think this is not the only options.} 
+            We remind the reader that there is not an obvious choice of $t\in \mathbb Z$ such that $x_t = y_t = z_t$ where the above algorithm remains consistent for all $t \ge -1$. 
+            The choice of base case presented in Ryu's writing is a choice and not a necessity. 
+            We state that one of the base case scenario only requires knowing $y_1$. 
+            
+            \par\noindent 
+            We need to observe the case where $t = 0$ to understand the base case of the algorithm. 
+            At each iteration $t$, Given $(x_t, y_t)$, the above formula maps to $(x_{t + 1}, y_{t + 1}, z_{t + 1})$. 
+            When $t= 0$, it has $y_1 = x_1$. 
+            Therefore, knowing only either $y_1$, or $x_1$ can initiate the algorithm. 
+            This is an alternative scenario of the base case. 
+            If, we wish to write $y_0 = x_0$ at $t = 0$ for the base case instead, then it creates the following algorithm 
+            \begin{align*}
+                y_{t} &= \left(
+                1 - \frac{2}{t + 2} 
+                \right)z_{t} + 
+                \left(
+                    \frac{1}{t + 2}
+                \right)x_{t}, 
+                \\
+                z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+                \\
+                x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t). 
+            \end{align*}
+            It has a different representations due to a specific choice of the base case. 
+            \par\noindent
+            Finally, by the observation that given $(z_t, y_t)$ for any $t\ge -1$, we can solve for $x_t$ \newline via $y_t = (1 - 2/(1 + t))z_t + 1/(t + 1)x_t$, obtaining $(x_t, y_t, z_t)$, hence the algorithm can be reduced to a representations with only $(z_t, y_t)$ and an updates using only $(z_t, y_t)$ to $(z_{t + 1}, y_{t + 1})$. 
+            That is the momentum form presented above. 
+
+
+        \end{observation}
         We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
         It goes over the full context and history for this particular variant of gradient acceleration method. 
         As the time of composing this notes, the writer is still reading on the topic of accelerated gradient. 
+        
         
         \begin{proposition}
             The above algorithm is a consequence of a specific choice of $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$.     
