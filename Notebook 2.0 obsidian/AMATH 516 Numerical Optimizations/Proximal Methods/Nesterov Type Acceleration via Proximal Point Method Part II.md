@@ -81,6 +81,7 @@ We derive some of the Nesterov accelerated gradient variants using PPM as a tool
 >     ). 
 > \end{aligned}
 > $$
+> Let the base case be: $y_0 = x_0$. 
 
 
 
@@ -149,6 +150,12 @@ $$
 
 the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
 The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the initial guess. 
+
+**Remarks**
+
+By the base case $x_0 = y_0$, the update sequence would be $z_1, y_1, x_1$, then increment in that order. 
+Depending on the bas case, the order of the update will differ! 
+If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
 #### **Definition 2.3 | 2-ways Strongly Convex PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
@@ -308,7 +315,6 @@ Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired resu
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
-
 In this section, we repeat part II, but with the above theorem. 
 With $x_* \in \argmin{x} f(x)$, and 
 
@@ -352,7 +358,7 @@ $$
     \\
     &= \left(
         \sum_{i = 1}^{t} \tilde \eta_i
-    \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}}
+    \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}}. 
 \end{aligned}\tag{$[*]$}
 }
 $$
@@ -559,15 +565,33 @@ $$
 \end{aligned}
 $$
 
-To satisfies the equality, reader should verify that $\eta_{t + 1} = t/ L$ is one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
+To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
 
 ##### **The variant of AG that it reduces to**
-> We show that the above analysis allows us to reduce the algorithm to a particular variants of accelerated gradient algorithm. 
+> With the choice of $\tilde \eta_{t} = \eta_t = t/(2L)$ in the definition of the Generic AG PPM form, we have the algorithm: 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t), 
+>     \\
+>     z_{t + 1} &= y_t - L^{-1} \nabla f(y_t), 
+>     \\
+>     y_{t + 1} &= 
+>     \left(
+>         \frac{2}{t + 3}
+>     \right)x_{t +1} + 
+>     \left(
+>         1 - \frac{2}{t + 3}
+>     \right)z_{t + 1}. 
+> \end{aligned}
+> $$
+> For the basecase, we make $y_0 = x_0$. 
 
+**Observations**
 
-**Remarks**
+If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the base case; 
+so $z_0$ is undefined. 
+Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
 
-We repeated the analysis as in Part I of the writing on Nesterov Accelerated Momentum. 
 
 #### **Scenario 2 | Similar Triangle I**
 This similar triangle approach will recover the original Nesterov acceleration sequence method proposed back in 1983. 
@@ -785,7 +809,7 @@ $$
 \end{aligned}
 $$
 
-Observe that with $\tilde \eta_{t + 1} = \eta + L^{-1}$ the inequality an equality. 
+Observe that with $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality an equality. 
 Finally, we will demonstrate how to recover the classic stepszie update formula for the momentum term in Nesterov acceleartions using the PPM stepsize paramters. 
 
 Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
