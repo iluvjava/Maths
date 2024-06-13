@@ -816,7 +816,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Set $\mu = 0$, the above is the same as AG Generid Triangular Form. 
         \end{remark}
 
-        \begin{proposition}[Triangular Form via PPM Form]
+        \begin{proposition}[Triangular Form via PPM Form]\label{prop:tri_form_via_ppm}
             with $f$ being $L$-Lipschitz continuous, let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
         \end{proposition}
         \begin{proof}
@@ -827,7 +827,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
             \end{align*}
-
             Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
             Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
             \begin{align*}
@@ -844,7 +843,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \text{define: } y_{t + 1} &:= x. 
             \end{align*}
-
             In the above expression, it hides a step of gradient descent, continuing it we have 
             \begin{align*}
                 (1 + \eta_{t + 1}L)y_{t + 1} &= 
@@ -855,9 +853,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 (1 + \eta_{t + 1}L)y_{t + 1} &= 
                 x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
             \end{align*}
-
             Combining it yields the tree points update format 
-
             \begin{align*}
                 x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
                 \\
@@ -875,7 +871,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
-        \begin{lemma}[Smooth Generic AG Lyapunov Analysis]
+        \begin{lemma}[Smooth Generic AG Lyapunov Analysis]\label{lemma:smooth_agg_lyapunov_upper_bound}
             With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} and \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} then these are the upper bounds for the RHS of the PPM descent inequality: 
             \begin{align*}
                 \Upsilon_{1, t + 1}^{\text{AG}}&= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
@@ -954,10 +950,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - \langle \tilde \eta_{t + 1}\nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle. 
             \end{align*}
             }
-
             Observe that, the rhs and lhs of the Lyapunov inequality are anchored at $z_{t + 1}$. 
             Similarly for the descent inequality we wish to obtain: 
-
             \begin{align*}
                 f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
                 \\
@@ -970,10 +964,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
                 \\
                 \text{let }\Upsilon_{2, t + 1}^{\text{AG}} 
-                &:= f(z_{t + 1}) - f(z_t)
+                &:= f(z_{t + 1}) - f(z_t). 
             \end{align*}
-
-            Which is the descent inequality anchored on $z_{t + 1}$. 
+            Which is the descent inequality anchored on $z_{t + 1}$.
             Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
         \end{proof}
 
@@ -992,10 +985,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2, 
             \end{align*}
-            we have $\Phi_{t + 1} - \Phi_t \le 0$, which allows for a convergence rate of $\mathcal O \left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ for $f(z_t) - f(x_*)$. 
+            we have $\Phi_{t + 1} - \Phi_t \le 0$, which allows for a convergence rate of $\mathcal O \left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ for $f(z_T) - f(x_*)$. 
         \end{theorem}
         \begin{proof}
-            The derivation is direct and very similar to \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} which is 
+            By definition we have
             {\footnotesize
             \begin{align*}
                 \Phi_{t + 1} - \Phi_t 
@@ -1024,11 +1017,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}} \le 0. 
             \end{align*}
             }
+            The derivation for the convergence raet is direct and similar to 
+            \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} 
             Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
         \end{proof}
 
     \subsection{Scenario I}
-        In this scenario, we aim to recover the following variant of the Accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 
+        In this scenario, we aim to recover the following variant of the accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 
         \begin{align*}
             z_{t + 1} &= y_k + L^{-1}\nabla f(y_t), 
             \\
@@ -1052,9 +1047,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
         It goes over the full context and history for this particular variant of gradient acceleration method. 
         As the time of composing this notes, the writer is still reading on the topic of accelerated gradient. 
-        
         \begin{proposition}
-            The above algorithm is a consequence of a specific choice of $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$.     
+            With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$, we derive the following algorithm: 
+            \begin{align*}
+            \end{align*}
+
         \end{proposition}
         \begin{proof}
             Consider the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$, together with the updates of the Generic Triangular Form of the algorithm:  
@@ -1133,7 +1130,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
             Hence let's consider $y_t - x_t = L \eta_t (z_t - y_t)$ from the algorithm, we make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \nabla f(y_t), y_t - x_t\rangle = \langle \nabla f(y_t), L \eta_t (z_t - y_t)\rangle$. 
-            With this in mind, applying the RHS of \hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}} yields inequality: 
+            With this in mind, applying 
+            \hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}} 
+            and upper bound from 
+            \hyperref[lemma:smooth_agg_lyapunov_upper_bound]{lemma \ref*{lemma:smooth_agg_lyapunov_upper_bound}} 
+            yields inequality: 
             {\footnotesize
             \begin{align*}
                 & \Upsilon_{1, t + 1}^{\text{AG}} + \left(
@@ -1228,22 +1229,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \eta_{t + 1} &\le \eta_t + L^{-1}. 
             \end{align*}
-            To satisfies the equality, reader should verify that $\eta_{t + 1} = (t - 1)/ L$ is one of the options. 
+            To satisfy the equality, reader should verify that $\eta_{t + 1} = (t - 1)/ L$ is one of the options. 
             And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
         \end{proof}
 
-
     \subsection{Scenario II}
-        
+        With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
+
     \subsection{Scenario III}
     
 
 
 \section{Classical analysis of Nesterov accelerated gradient}
     In this section, we reproduce some of the analysis for Nesterov accelerated gradient method with excruciating details. 
+    We will also go over some details about the history, development and motivations behind the accelerated gradient algorithm. 
 
 \section{Modern techniques in analysis of accelerated gradient algorithms}
-
+    
 
 \printbibliography
 
