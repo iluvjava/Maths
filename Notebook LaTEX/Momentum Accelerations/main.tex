@@ -1086,9 +1086,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proposition}
             With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$, we derive the following algorithm: 
             \begin{align*}
+                x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t), 
+                \\
+                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t), 
+                \\
+                y_{t + 1} &= 
+                \left(
+                    \frac{2}{t + 3}
+                \right)x_{t +1} + 
+                \left(
+                    1 - \frac{2}{t + 3}
+                \right)z_{t + 1}. 
             \end{align*}
-
         \end{proposition}
+        \begin{observation}
+            Observe that this is the same algorithm as stated in Ryu's book but with an alternative choice of indexing for $y_t$ and initial condition. 
+        \end{observation}
         \begin{proof}
             Consider the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$, together with the updates of the Generic Triangular Form of the algorithm:  
             \begin{align*}
@@ -1265,7 +1278,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \eta_{t + 1} &\le \eta_t + L^{-1}. 
             \end{align*}
-            To satisfy the equality, reader should verify that $\eta_{t + 1} = (t - 1)/ L$ is one of the options. 
+            To satisfy the equality, reader should verify that $\eta_{t + 1} = (t)/ L$ is one of the options. 
             And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
         \end{proof}
 
