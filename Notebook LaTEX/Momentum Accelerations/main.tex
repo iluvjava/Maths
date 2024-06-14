@@ -1052,7 +1052,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \textcolor{purple}{we think this is not the only options.} 
             We remind the reader that there is not an obvious choice of $t\in \mathbb Z$ such that $x_t = y_t = z_t$ where the above algorithm remains consistent for all $t \ge -1$. 
             The choice of base case presented in Ryu's writing is a choice and not a necessity. 
-            We state that one of the base case scenario only requires knowing $y_1$. 
+            We state that one of the base case scenario that only requires knowing $y_1$. 
 
             \par\noindent 
             We need to observe the case where $t = 0$ to understand the base case of the algorithm. 
@@ -1280,9 +1280,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             To satisfy the equality, reader should verify that $\eta_{t} = t/(2L)$ is one of the options. 
             And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
         \end{proof}
+        \begin{remark}
+            In the original writing by Ahn \cite[4.9]{ahn_understanding_2022}, they didn't list what exactly this algorithm is. Here we stated that it should be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
+        \end{remark}
 
     \subsection{Scenario II}
         With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
+        We will discuss how other choices of $\tilde \eta_{t +1}$ results in other varients of the Accelerated gradient such as the variants proposed by Chambolle \cite{chambolle_convergence_2015}. 
 
     \subsection{Scenario III}
     
