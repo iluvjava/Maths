@@ -1077,14 +1077,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \par\noindent
             Finally, by the observation that given $(z_t, y_t)$ for any $t\ge -1$, we can solve for $x_t$ \newline via $y_t = (1 - 2/(1 + t))z_t + 1/(t + 1)x_t$, obtaining $(x_t, y_t, z_t)$, hence the algorithm can be reduced to a representations with only $(z_t, y_t)$ and an updates using only $(z_t, y_t)$ to $(z_{t + 1}, y_{t + 1})$. 
             That is the momentum form presented above. 
-
-
         \end{observation}
         We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
         It goes over the full context and history for this particular variant of gradient acceleration method. 
         As the time of composing this notes, the writer is still reading on the topic of accelerated gradient. 
+
         \begin{proposition}
-            With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = (t - 1)/L$, we derive the following algorithm: 
+            With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = 2/(2L)$, we derive the following algorithm: 
             \begin{align*}
                 x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t), 
                 \\
@@ -1278,7 +1277,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \eta_{t + 1} &\le \eta_t + L^{-1}. 
             \end{align*}
-            To satisfy the equality, reader should verify that $\eta_{t + 1} = (t)/ L$ is one of the options. 
+            To satisfy the equality, reader should verify that $\eta_{t} = t/(2L)$ is one of the options. 
             And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
         \end{proof}
 
