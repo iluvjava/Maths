@@ -597,7 +597,7 @@ Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}
 This similar triangle approach will recover the original Nesterov acceleration sequence method proposed back in 1983. 
 It is called a similar triangle approach because it employed the following conditions on top of the Triangular Generic Form of AG: $\tilde\eta_{t + 1} = \eta_t + L^{-1}$. 
 This stepsize allows us to change updates so that $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, $\nabla f(y_t)$ is now nullified. 
-To start, substituting the definition of $z_{t +1}, z_t$ into the above expression then we have: 
+To start, substituting the definition of $z_{t +1} = z_{t} - L^{-1}\nabla f(y_t), z_t$ into the above expression then we have: 
 
 $$
 \begin{aligned}
@@ -605,11 +605,11 @@ $$
     + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
     \\
     &= 
-    (1 + L\eta_t)y_t - (\eta_t - L^{-1})\nabla f(y_t) - L\eta_t z_t
+    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
     \\
-    &= \eta_t Lz_t + x_t -(\eta_t - L^{-1}) \nabla f(y_t)  - L\eta_t z_t
+    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
     \\
-    &= x_t - (\eta_t - L^{-1})\nabla f(y_t). 
+    &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
 \end{aligned}
 $$
 
@@ -674,7 +674,7 @@ The visual understanding of the situation allows us to duduce the upper bound be
 The next claim will clarify the sitaution. 
 
 #### **Claim | Recovering Nesterov Original Form**
-> With the choice of $\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
+> With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
 **Demonstrations**
@@ -711,10 +711,15 @@ Next we consider
 $$
 \begin{aligned}
     \Upsilon_{2, t + 1}^{\text{AG}} &= 
-    \langle \nabla f(y_t), z_{t+1} - z_t\rangle
+    \langle \nabla f(y_t), z_{t+1} - y_t\rangle
     + 
     \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2 + 
     \langle \nabla f(y_t), y_t - z_t\rangle
+    \\
+    &= 
+    \langle \nabla f(y_t), z_{t + 1} - z_t\rangle
+    + 
+    \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
     \\
     &= 
     \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
@@ -809,9 +814,7 @@ $$
 \end{aligned}
 $$
 
-Observe that with $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality an equality. 
-Finally, we will demonstrate how to recover the classic stepszie update formula for the momentum term in Nesterov acceleartions using the PPM stepsize paramters. 
-
+Observe that with $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality is an equality. 
 Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
 $$
 \begin{aligned}
@@ -859,12 +862,18 @@ $$
 \end{aligned}
 $$
 
-With $a_t = L\eta_t + 1 = L \tilde \eta_t$ this is 
+With $a_t = L\eta_t + 1 = L \tilde \eta_{t + 1}$ this is 
 $$
 \begin{aligned}
-    a_t^2 + 1/4 &= (a - 1/2)^2 
+    a_t^2 + 1/4 &= (a_{t + 1} - 1/2)^2 
     \\
-    a_{t + 1} - a_t &= a_t^2. 
+    a_t^2 + 1/4 &= a_{t + 1}^2 + 1/4 - a_{t + 1}
+    \\
+    a_t^2 + a_{t + 1} &= a_{t + 1}^2. 
+    \\
+    \implies 
+    a_{t + 1} &= 
+    \frac{1 + \sqrt{1 + 4a_t^2}}{2}
 \end{aligned}
 $$
 

@@ -10,7 +10,7 @@
 \title{{\fontfamily{ptm}\selectfont Nesterov Type Momentum Methods}}
 
 \author{
-    Alto
+    The Alto Hivemind (My Pen name)
     \thanks{
         Subject type, Some Department of Some University, Location of the University,
         Country. E-mail: \texttt{author.name@university.edu}.
@@ -37,6 +37,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     This section lists foundational results important for proof in the coming sections. 
     For this section, let the ambient space be $\RR^n$ and $\Vert \cdot\Vert$ be the 2-norm until specified in the context. 
     For a general overview of smoothness and strong convexity in the Euclidean space, see \cite[theorem 2.1.5, theorem 2.1.10]{nesterov_lectures_2018} for a full exposition of the topic. 
+    \par\noindent
+    We assume the reader is well-versed in convex optimization and convex analysis. 
     \subsection{Lipschitz smoothness}
         \begin{definition}[Lipschitz Smooth]
             Let $f$ be differentiable. 
@@ -801,7 +803,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             then for all $x_0 \in \RR^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
             \begin{align*}
                 x_{t + 1} &= \argmin_{x} \left\lbrace
-                l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
                 \right\rbrace, 
                 \\
                 y_{t + 1} &= \argmin_{x} 
@@ -1281,12 +1283,286 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
         \end{proof}
         \begin{remark}
-            In the original writing by Ahn \cite[4.9]{ahn_understanding_2022}, they didn't list what exactly this algorithm is. Here we stated that it should be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
+            In the original writing by Ahn \cite[equation (4.9)]{ahn_understanding_2022}, they didn't identify the algorithm in the literature. 
+            Here we identify it to be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
         \end{remark}
 
     \subsection{Scenario II}
         With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
         We will discuss how other choices of $\tilde \eta_{t +1}$ results in other varients of the Accelerated gradient such as the variants proposed by Chambolle \cite{chambolle_convergence_2015}. 
+        \par\noindent
+        To start, we make the claim that the new stepsizes results in a different algorithm. 
+        \begin{lemma}[Similar Triangular Form]
+            With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ as in \ref*{def:agg_tri}, we have the following specific similar triangular form of the accelerated gradient algorithm: 
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                \\
+                x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
+                \\
+                y_{t + 1} &= 
+                (1 + L\eta_{t + 1})^{-1}
+                (
+                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                ). 
+            \end{align*}
+            It also has an equivalent momentum form 
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                \\
+                y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+            Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
+            \begin{align*}
+                x_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
+                + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
+                \\
+                &= 
+                (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
+                \\
+                &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
+                \\
+                &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
+            \end{align*}
+            By assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we ends with $x_{t + 1} = x_t + \tilde \eta_{t + 1}\nabla f(y_t)$. 
+            Reducing it to the classic momentum form starts by 
+            \begin{align*}
+                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
+                \\
+                &= (1 + L\eta_{t + 1})^{-1} (
+                    z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
+                )
+                \\
+                &= 
+                (1 + L\eta_{t + 1})^{-1} (
+                    (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
+                )
+                \\
+                &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
+            \end{align*}
+            it negates the $x_t$ variables, therefore we have 
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                \\
+                y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            In this remark we clarify the name "similar triangule" as given in the literatures. 
+            We think it is a fitting name, becaues it has a similar triangle in it. 
+            We list the following observations
+            \begin{enumerate}
+                \item 
+                The updates for $y_{t}$ from the algorithm has 
+                $$
+                    y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
+                $$
+                therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
+                We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                \item 
+                The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
+                The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
+            \end{enumerate}
+            By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+        \end{remark}
+        The next lemma will determine one choice of the stepsize sequence $\eta_t$ that recovers the classical form of Nesterov accelerated gradient method. 
+
+        \begin{lemma}[Deriving the Nesterov Sequence]
+            For all $t \in \mathbb N$
+            \begin{align*}
+                \left\lbrace
+                \begin{aligned}
+                    (1 + L\eta_{t + 1})^{-1}L \eta_t 
+                    &= \frac{a_t - 1}{a_{t + 1}} , 
+                    \\
+                    a_{t + 1}^2 - a_t &= a_t^2. 
+                \end{aligned} 
+                \right. 
+            \end{align*}
+            allows \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}} to converge at an optimal rate. 
+            The base case is $\eta_0 = 0$. 
+        \end{lemma}
+        \begin{proof}
+            Continue from \ref*{lemma:smooth_agg_lyapunov_upper_bound}, With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ for $y_t$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^\text{AG} &\le 
+                - \frac{1}{2}\Vert x_{t+1 } - x_t\Vert^2 + 
+                \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+                \\
+                &= 
+                - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
+                \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+                \\
+                &= 
+                \left(
+                    \frac{L^2\tilde\eta_{t + 1}^2}{2}
+                    + 
+                    \frac{\tilde \eta_{t +1}}{2}
+                \right)
+                \Vert z_{t+1} - y_t\Vert^2
+                - 
+                \langle 
+                    \tilde \eta_{t+ 1} \nabla f(y_t), x_{t+1} - z_{t+1}
+                \rangle. 
+            \end{align*}
+            This completes the analysis for $\Upsilon_{1, t + 1}^\text{AG}$ with $\tilde\eta_{t+1}$. 
+            Next we consider 
+            \begin{align*}
+                \Upsilon_{2, t + 1}^{\text{AG}} &= 
+                \langle \nabla f(y_t), z_{t+1} - y_t\rangle
+                + 
+                \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2 + 
+                \langle \nabla f(y_t), y_t - z_t\rangle
+                \\
+                &= 
+                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle
+                + 
+                \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
+                \\
+                &= 
+                \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+                + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            Here we used $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, which was the consequence of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$, as discussed from before. 
+            Hence, the upper bound of the Lyapunov function for smooth AG PPM 
+            (\hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}}) 
+            has 
+            \begin{align*}
+                & \Upsilon_{1, t + 1}^{\text{AG}} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)\Upsilon_{2, t + 1}^{\text{AG}}
+                \\
+                &\quad \le 
+                \left(
+                    - \frac{L^2\tilde \eta_{t + 1}^2}{2}
+                    + \frac{\tilde\eta_{t+1}L}{2}
+                \right)
+                \Vert z_{t+1} - y_t\Vert^2
+                - 
+                \langle \tilde \eta_{t+1} \nabla f(y_t), x_{t+1} - z_{t + 1}\rangle
+                \\
+                & \qquad + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)\left(
+                    \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+                    + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \right). 
+            \end{align*}
+            If the above quantity less than or equal to zero, it will allow for convergence of the algorithm. 
+            One sufficient condition is to have the coefficients for all the cross product terms to sum up to zero, and the squared normed term to sum up to a non-positive number for all $t \in \mathbb N$. 
+            This gives relations 
+            \begin{align*}
+                - \frac{1}{2}\left(
+                    L^2 \tilde\eta_{t+1}^2 - \tilde\eta_{t+1}L 
+                \right) + 
+                \frac{L}{2}\left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right) &\le 0
+                \\
+                - \left(
+                    L\tilde \eta_{t + 1}^2 
+                    - 
+                    \tilde\eta_{t + 1}
+                \right) + 
+                \sum_{i = 1}^{t}\tilde \eta_i 
+                &\le 0
+                \\
+                -L \tilde \eta_{t+1} + 
+                \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &\le 0
+                \\
+                \sum_{i = 1}^{t + 1}\tilde \eta_i 
+                &\le L \tilde \eta_{t + 1}^2, 
+            \end{align*}
+            and equations 
+            \begin{align*}
+                -\tilde \eta_{t + 1} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)L^{-1}\eta_t^{-1} 
+                &= 0
+                \\
+                \sum_{i = 1}^{t}\tilde \eta_i 
+                &= 
+                L \eta_t \tilde \eta_{t + 1}. 
+            \end{align*}
+            Susbtituting the equality into the inequalites we have 
+            \begin{align*}
+                \tilde \eta_{t + 1} + \sum_{i = 1}^{t} \tilde \eta_i 
+                &\le L \tilde \eta_{t + 1}^2
+                \\
+                \tilde \eta_{t + 1} + L\eta_t \tilde \eta_{t + 1}
+                &\le L \tilde \eta_{t + 1}^2
+                \\
+                1 + L\eta_t &\le L \tilde\eta_{t + 1}. 
+            \end{align*}
+            The choice $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ makes the inequality is an equality. 
+            Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider relations 
+            \begin{align*}
+                L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &= L \tilde \eta_{t + 1} + L \sum_{i = 1}^{t} \tilde \eta_i 
+                \\
+                &= 
+                L \tilde \eta_{t + 1} + L (L \eta_t \tilde \eta_{t + 1}) 
+                \\
+                &= L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
+                \\
+                &= L (\eta_t + L^{-1}) + L\eta_t (L \eta_t + 1)
+                \\
+                &= (L\eta_t + 1)^2, 
+            \end{align*}
+            Simultanenously 
+            \begin{align*}
+                L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &= L^2 \eta_{t + 1} \tilde \eta_{t + 1}
+                \\
+                &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
+            \end{align*}
+            Combining yeilds that 
+            \begin{align*}
+                (L\eta_t + 1)^2 
+                &= L\eta_{t + 1}(1 + L \eta_{t + 1})
+                \\
+                &= L\eta_{t + 1} + L^2 \eta_{t + 1}^2
+                \\
+                \iff 
+                (L\eta_t + 1)^2 + 1/4 &= 
+                1/4 + 2(1/2)L \eta_{t + 1} + (L \eta_{t + 1})^2
+                \\
+                \iff 
+                (L\eta_t + 1)^2 + 1/4 &= 
+                (L \eta_{t + 1} + 1/2)^2. 
+            \end{align*}
+            With $a_t = L\eta_t + 1 = L \tilde \eta_t$ this is 
+            \begin{align*}
+                a_t^2 + 1/4 &= (a_{t + 1} - 1/2)^2 
+                \\
+                a_t^2 + 1/4 &= a_{t + 1}^2 + 1/4 - a_{t + 1}
+                \\
+                a_t^2 + a_{t + 1} &= a_{t + 1}^2. 
+                \\
+                \implies 
+                a_{t + 1} &= 
+                \frac{1 + \sqrt{1 + 4a_t^2}}{2}
+            \end{align*}
+            And that is the updates for the Nesterov momentum, recall that the momentum term is linked to the PPM sequence via relation 
+            \begin{align*}
+                (1 + L \eta_{t+ 1})^{-1}L\eta_t = L\eta_t / a_{t + 1} = (a_t - 1)/a_{t + 1}. 
+            \end{align*}
+            We had recovered the classic Nesterov accelerated sequence method for the smooth gradient descent algorithm. 
+        \end{proof}
+        \begin{remark}
+            This variant is distinct from the variants proposed by Chambolled \cite{chambolle_convergence_2015}, but both of which fits into the same frameworks. 
+            At the time of writing, the writer is still investigating the relations between these variants of algorithms.. 
+        \end{remark}
+        
+
+
 
     \subsection{Scenario III}
     
