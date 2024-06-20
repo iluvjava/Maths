@@ -27,11 +27,15 @@
     \noindent
     These are notes for Nesterov Type Acceleration Methods in the convex case. 
     They can be made into papers, proposals, and a thesis in the future. 
+    They are tayped in \LaTeX\; so it's easier to work with. 
 \end{abstract}
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
 Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \noindent{\bfseries Keywords:}
 
+\pagebreak
+\tableofcontents
+\pagebreak
 % ==============================================================================
 \section{Preliminaries}
     This section lists foundational results important for proof in the coming sections. 
@@ -1289,7 +1293,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Scenario II}
         With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
-        We will discuss how other choices of $\tilde \eta_{t +1}$ results in other varients of the Accelerated gradient such as the variants proposed by Chambolle \cite{chambolle_convergence_2015}. 
+        The variants proposed by Chambolle Dossal \cite{chambolle_convergence_2015}, is distinct from the possibility proposed in this secenario. 
         \par\noindent
         To start, we make the claim that the new stepsizes results in a different algorithm. 
         \begin{lemma}[Similar Triangular Form]
@@ -1362,7 +1366,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
                 We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
                 \item 
-                The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1}\nabla f(y_t), \tilde\eta_{t +1}\nabla f(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
                 \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
                 The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
             \end{enumerate}
@@ -1557,13 +1561,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             We had recovered the classic Nesterov accelerated sequence method for the smooth gradient descent algorithm. 
         \end{proof}
         \begin{remark}
-            This variant is distinct from the variants proposed by Chambolled \cite{chambolle_convergence_2015}, but both of which fits into the same frameworks. 
-            At the time of writing, the writer is still investigating the relations between these variants of algorithms.. 
+            This variant is distinct from the variants proposed by Chambolle \cite{chambolle_convergence_2015}, but both of which fits into the same frameworks. 
+            The variantis presented as 
+            \begin{align*}
+                y_n &= (1 - t_n^{-1})z_n + t_n^{-1} x_n
+                \\
+                z_{n + 1} &= y_n - L^{-1}\nabla f(y_n)
+                \\
+                x_{n + 1} &= z_n + t_{n + 1}(z_{n + 1} - z_n)
+            \end{align*}
+            They listed the choice of $t_n = (n + a - 1)/a$ for all $a > 2$. 
+            Under this choice, unfortunately, it's in no way obvious that this format reduces to \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+            It fails the similar triangule description Without the explict representation $x_{n + 1} = z_n + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+            \par\noindent
+            At the time of writing, we are still investigating the relations between these variants of algorithms.
         \end{remark}
         
-
-
-
     \subsection{Scenario III}
     
 
@@ -1579,6 +1592,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \appendix
 \section*{Postponed Proofs}
-
+    
 
 \end{document}
