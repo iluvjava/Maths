@@ -736,144 +736,148 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     
     
     \subsection{Varieties of Nesterov accelerated gradient}
-        In this section, we list different varieties of the Nesterov accelerated method. 
-        We present these varieties generically because these algorithms' forms are of interest.  
-        \begin{definition}[AG Generic Original Form]\label{def:agg_original}
-            Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
-            Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
-            \begin{enumerate}
-                \item[1.] computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$; 
-                \item[2.] sets $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$;
-                \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
-                \item[4.] finds $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$; 
-                \item[5.] sets $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
-            \end{enumerate}
-        \end{definition}
-        \begin{remark}
-            This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
-            It is the most generic algorithm in his book about accelerated gradient method. 
-            The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
+        \subsubsection{AG Abstract Forms}
+            In this section, we list different varieties of the Nesterov accelerated method. 
+            \begin{definition}[AG Generic Original Form]\label{def:agg_original}
+                Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
+                Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
+                \begin{enumerate}
+                    \item[1.] computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$; 
+                    \item[2.] sets $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$;
+                    \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
+                    \item[4.] finds $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$; 
+                    \item[5.] sets $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
+                \end{enumerate}
+            \end{definition}
+            \begin{remark}
+                This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
+                It is the most generic algorithm in his book about accelerated gradient method. 
+                The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
 
-        \end{remark}
+            \end{remark}
 
-        \begin{definition}[AG Generic PPM Form]\label{def:agg_ppm}
-            With $f$ convex, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$ such that: 
-            \begin{align*}
-                x_{t + 1} &= \argmin_{x} \left\lbrace
-                l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
-                \right\rbrace, 
-                \\
-                y_{t + 1} &= \argmin_{x} 
-                \left\lbrace
-                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
-                    \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-                \right\rbrace. 
-            \end{align*}
-            where $l_f(x, \bar x)$ is a convex function satisfying
-            \begin{align*}
-                l_f(x, \bar x) \le f(x) \le f(\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            With $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, then the above is equivalent to AG Generic Triangular form. 
-        \end{remark}
+            \begin{definition}[AG Generic PPM Form]\label{def:agg_ppm}
+                With $f$ convex, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$ such that: 
+                \begin{align*}
+                    x_{t + 1} &= \argmin_{x} \left\lbrace
+                    l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace, 
+                    \\
+                    y_{t + 1} &= \argmin_{x} 
+                    \left\lbrace
+                        l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace. 
+                \end{align*}
+                where $l_f(x, \bar x)$ is a convex function satisfying
+                \begin{align*}
+                    l_f(x, \bar x) \le f(x) \le f(\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                This formulation of the Nesterov Accelerated gradient method is a second handed idea taken from Ahn \cite{ahn_understanding_2022}. 
+                It is claimed that this is an PPM formulation of a class of accelerated gradient method. 
+            \end{remark}
 
-        \begin{definition}[AG Generic Triangular Form]\label{def:agg_tri}
-            With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0=z_0$, the algorithm admits form: 
-            \begin{align*}
-                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
-                \\
-                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
-                \\
-                y_{t + 1} &= 
-                (1 + L\eta_{t + 1})^{-1}
-                (
-                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-                ). 
-            \end{align*}
-        \end{definition}
-        \begin{remark}
-            The parameter $\eta_t, \eta_{t + 1}$ are coming from the previous generic PPM. 
-            They are the same parameters for both algorithms. 
-        \end{remark}
-        
-        \begin{definition}[AG Generic PPM Form with Strong Convexity]\label{def:agg_ppm_scvx}
-            Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y)$ to be a function such that for all $x, \bar x \in \RR^n$: 
-            \begin{align*}
-               l_f(x; \bar x) + \frac{\mu}{2}\Vert x - \bar x\Vert^2
-               \le f(x; \bar x) 
-               \le l_f(x; \bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2, 
-            \end{align*}
-            then for all $x_0 \in \RR^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
-            \begin{align*}
-                x_{t + 1} &= \argmin_{x} \left\lbrace
-                l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
-                \right\rbrace, 
-                \\
-                y_{t + 1} &= \argmin_{x} 
-                \left\lbrace
-                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
-                    \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-                \right\rbrace. 
-            \end{align*}
-            Here we assume that $\eta_{t + 1} > 0$ for all $t \in \NN$. 
-        \end{definition}
-        \begin{remark}
-            Set $\mu = 0$, the above is the same as AG Generid Triangular Form. 
-        \end{remark}
+            \begin{definition}[AG Generic Triangular Form]\label{def:agg_tri}
+                With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0=z_0$, the algorithm admits form: 
+                \begin{align*}
+                    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ). 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                The parameter $\eta_t, \eta_{t + 1}$ are coming from the previous generic PPM. 
+                They are the same parameters for both algorithms and they are equivalent. 
+                This will be proved in the coming parts. 
+            \end{remark}
+            
+            \begin{definition}[AG Generic PPM Form with Strong Convexity]\label{def:agg_ppm_scvx}
+                Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y)$ to be a function such that for all $x, \bar x \in \RR^n$: 
+                \begin{align*}
+                l_f(x; \bar x) + \frac{\mu}{2}\Vert x - \bar x\Vert^2
+                \le f(x; \bar x) 
+                \le l_f(x; \bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2, 
+                \end{align*}
+                then for all $x_0 \in \RR^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
+                \begin{align*}
+                    x_{t + 1} &= \argmin_{x} \left\lbrace
+                    l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace, 
+                    \\
+                    y_{t + 1} &= \argmin_{x} 
+                    \left\lbrace
+                        l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace. 
+                \end{align*}
+                Here we assume that $\eta_{t + 1} > 0$ for all $t \in \NN$. 
+            \end{definition}
+            \begin{remark}
+                Set $\mu = 0$, the above is the same as AG Generid Triangular Form. 
+            \end{remark}
 
-        \begin{proposition}[Triangular Form via PPM Form]\label{prop:tri_form_via_ppm}
-            with $f$ being $L$-Lipschitz continuous, let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
-        \end{proposition}
-        \begin{proof}
-            Solving the optimality on the first PPM yields: 
-            \begin{align*}
-                \mathbf 0 &= \nabla f(y_t) + 
-                \frac{1}{\tilde \eta_{t + 1}} (x - x_t)
-                \\
-                x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
-            \end{align*}
-            Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
-            Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
-            \begin{align*}
-                \mathbf 0 &= \nabla f (y_t) + L (x - y_t) + \eta_{t + 1}^{-1} (x - x_{t + 1})
-                \\
-                \mathbf 0 &= \eta_{t + 1}\nabla f (y_t) + \eta_{t + 1}L (x - y_t) + x - x_{t + 1}
-                \\
-                \mathbf 0 &= 
-                \eta_{t + 1}\nabla f(y_t) -\eta_{t + 1} Ly_t + (\eta_{t + 1}L + 1)x - x_{t + 1}
-                \\
-                (1 + \eta_{t + 1}L)x
-                &= 
-                x_{t + 1} - \eta_{t + 1}\nabla f(y_t) + \eta_{t + 1}L y_t
-                \\
-                \text{define: } y_{t + 1} &:= x. 
-            \end{align*}
-            In the above expression, it hides a step of gradient descent, continuing it we have 
-            \begin{align*}
-                (1 + \eta_{t + 1}L)y_{t + 1} &= 
-                x_{t + 1}  + \eta_{t + 1}L (-L^{-1}\nabla f(y_t) + y_t)
-                \\
-                \text{let: } z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), \text{ so, }
-                \\
-                (1 + \eta_{t + 1}L)y_{t + 1} &= 
-                x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
-            \end{align*}
-            Combining it yields the tree points update format 
-            \begin{align*}
-                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
-                \\
-                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
-                \\
-                y_{t + 1} &= 
-                (1 + L\eta_{t + 1})^{-1}
-                (
-                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-                ), 
-            \end{align*}
-            the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
-            The base case is when $t = 0$, so then $x_0 = y_0$ for the initial guess.
-        \end{proof}
+            \begin{proposition}[Triangular Form via PPM Form]\label{prop:tri_form_via_ppm}
+                with $f$ being $L$-Lipschitz continuous, let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
+            \end{proposition}
+            \begin{proof}
+                Solving the optimality on the first PPM yields: 
+                \begin{align*}
+                    \mathbf 0 &= \nabla f(y_t) + 
+                    \frac{1}{\tilde \eta_{t + 1}} (x - x_t)
+                    \\
+                    x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
+                \end{align*}
+                Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
+                Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
+                \begin{align*}
+                    \mathbf 0 &= \nabla f (y_t) + L (x - y_t) + \eta_{t + 1}^{-1} (x - x_{t + 1})
+                    \\
+                    \mathbf 0 &= \eta_{t + 1}\nabla f (y_t) + \eta_{t + 1}L (x - y_t) + x - x_{t + 1}
+                    \\
+                    \mathbf 0 &= 
+                    \eta_{t + 1}\nabla f(y_t) -\eta_{t + 1} Ly_t + (\eta_{t + 1}L + 1)x - x_{t + 1}
+                    \\
+                    (1 + \eta_{t + 1}L)x
+                    &= 
+                    x_{t + 1} - \eta_{t + 1}\nabla f(y_t) + \eta_{t + 1}L y_t
+                    \\
+                    \text{define: } y_{t + 1} &:= x. 
+                \end{align*}
+                In the above expression, it hides a step of gradient descent, continuing it we have 
+                \begin{align*}
+                    (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                    x_{t + 1}  + \eta_{t + 1}L (-L^{-1}\nabla f(y_t) + y_t)
+                    \\
+                    \text{let: } z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), \text{ so, }
+                    \\
+                    (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
+                \end{align*}
+                Combining it yields the tree points update format 
+                \begin{align*}
+                    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ), 
+                \end{align*}
+                the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
+                The base case is when $t = 0$, so then $x_0 = y_0$ for the initial guess.
+            \end{proof}
+        \subsubsection*{Specific Instances of Accelerated Gradient Method}
+            
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
@@ -1027,6 +1031,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} 
             Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
         \end{proof}
+
+    \subsection{Specific Varieties of Accelerated Gradient Method}
+        In this section we state some specific variant of the Nesterov accelerated gradient method. 
 
     \subsection{Scenario I}
         In this scenario, we aim to recover the following variant of the accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 

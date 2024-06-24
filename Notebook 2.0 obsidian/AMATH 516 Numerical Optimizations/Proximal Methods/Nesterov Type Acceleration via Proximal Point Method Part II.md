@@ -10,7 +10,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 
 The analysis of PPM eventually extends to all varieties of Nesterov accelerated gradient methods. 
 
-### **Def 1.1 | AG Generic Form I**
+#### **Def 1.1 | AG Generic Form I**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
 > Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
@@ -39,13 +39,6 @@ $$
 $$
 
 
-
-
----
-### **PPM Analysis**
-
-We derive some of the Nesterov accelerated gradient variants using PPM as a tool for interpretations. 
-
 #### **Definition 2.1 | Two Ways PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
@@ -63,6 +56,8 @@ We derive some of the Nesterov accelerated gradient variants using PPM as a tool
 > \end{aligned}
 > $$
 > Here we assume that $\eta_{t + 1} > 0$ for all $t \in \N$. 
+
+**Observations**
 
 
 
@@ -157,7 +152,7 @@ By the base case $x_0 = y_0$, the update sequence would be $z_1, y_1, x_1$, then
 Depending on the bas case, the order of the update will differ! 
 If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
-#### **Definition 2.3 | 2-ways Strongly Convex PPM**
+#### **Definition 2.3 | Accelerated Gradient Strongly Convex PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
 > $$
@@ -179,7 +174,7 @@ If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y
 
 Setting $\mu = 0$ this reduces to Two Ways PPM. 
 
-#### **Definition 2.4 | 2-ways Strongly Convex Bregman PPM**
+#### **Definition 2.4 | Accelerated Gradient Convex Bregman PPM**
 > 
 
 #### **Definition 2.5 | Accelerated Gradient generic strongly convex Triangular Form**
@@ -196,6 +191,10 @@ Setting $\mu = 0$ this reduces to Two Ways PPM.
 > \end{aligned}
 > $$
 
+---
+### **Lyapunov Analysis**
+
+In this section, we focus on applying the Lyapunov analysis method on the abstract form of accelerated gradient method. 
 
 #### **Lemma 2.5 | The Lyapunov upper bounds for generic 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
@@ -310,6 +309,7 @@ $$
 
 Which is the descent inequality anchored on $z_{t + 1}$. 
 Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
+
 
 
 ---
@@ -899,3 +899,16 @@ We are not sure if there could be more choices for the parameters that assures c
 In the previous scenario II, we choose the stepsize so that $x_{t + 1}$ can be projected into the correct position by $z_{t + 1}$ to allow colinearity for points $z_t, x_{t +1}, x_{t + 1}$. 
 In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinations of the point $x_{t+1}, z_t$. 
 
+
+---
+### **Some more Nuanced Results**
+
+Results in this part are not coming from literatures, and they are my own works at testing the ideas presented by Ahn and in their works. 
+Before we start, we list some of the specific type of accelerated gradient method. 
+In any cases below, we are optimizing with convex functions. 
+
+#### **Def | Chambolle Dosal (2015)**
+> 
+
+#### **Def | Ryu's Chapter 12**
+> 
