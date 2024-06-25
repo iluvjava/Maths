@@ -39,7 +39,7 @@ $$
 $$
 
 
-#### **Definition 2.1 | Two Ways PPM**
+#### **Definition 1.2 | Accelerated Gradient Generic PPM Form**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
 > $$
@@ -57,11 +57,8 @@ $$
 > $$
 > Here we assume that $\eta_{t + 1} > 0$ for all $t \in \N$. 
 
-**Observations**
 
-
-
-#### **Lemma 2.2 | Accelerated Gradient Generic Trianglar Form**
+#### **Lemma 1.3 | Accelerated Gradient Generic Trianglar Form**
 > The Two ways PPM defined above reduces to the following 3 points accelerated gradient algorithm: 
 > $$
 > \begin{aligned}
@@ -152,7 +149,76 @@ By the base case $x_0 = y_0$, the update sequence would be $z_1, y_1, x_1$, then
 Depending on the bas case, the order of the update will differ! 
 If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
-#### **Definition 2.3 | Accelerated Gradient Strongly Convex PPM**
+#### **Claim 1.4 | The Interpretation of the Ghost term $z_{t + 1}$**
+> The term $z_t = y_t - L^{-1} \nabla f(y_t)$ is made with the goal to write $y_{t + 1}$ to be a convex combinations of $x_{t + 1}, z_{t + 1}$. 
+
+**Demonstrations**
+
+The step of gradient descent comes by conpleting the square: 
+
+$$
+\begin{aligned} 
+    & \quad 
+    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 
+    \\
+    &= 
+    f(y_t) + \langle \nabla f(y_t), x - y_t\rangle 
+    + 
+    \frac{L}{2}
+    \left\Vert 
+        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+    \right\Vert^2
+    \\
+    &= 
+    f(y_t) + 
+    \langle \nabla f(y_t), x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)\rangle 
+    + 
+    \frac{L}{2}
+    \left\Vert 
+        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+    \right\Vert^2
+    \\
+    &\quad  \text{Let }z_{t + 1} 
+    = y_t - L^{-1}\nabla f(y_t)
+    \\
+    &= f(y_t) + \langle \nabla f(y_t), x - z_{t + 1} - L^{-1}\nabla f(y_t)\rangle
+    + 
+    \frac{L}{2}\left\Vert
+         x - z_{t + 1} - L^{-1}\nabla f(y_t)
+    \right\Vert^2
+    \\
+    &= 
+    f(y_t) + \langle \nabla f(y_t), x - z_{t + 1}\rangle 
+    - L^{-1}\Vert \nabla f(y_t)\Vert^2
+    + 
+    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+    \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 - 
+    L\langle L^{-1}\nabla f(y_t), x - z_{t + 1}\rangle
+    \\
+    &= f(y_t) + (1/(2L)- L^{-1})\Vert \nabla f(y_t) \Vert^2 + 
+    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2.
+\end{aligned}
+$$
+
+Observe that besdies the $(L/2)\Vert x - z_{t + 1}\Vert^2$, the other terms are constant and hence giving us 
+
+$$
+\begin{aligned}
+    y_{t + 1} &= \argmin{x}\left\lbrace
+        \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+    \right\rbrace. 
+\end{aligned}
+$$
+
+
+**Remarks**
+
+This interpretation is occastionally useful. 
+As the value of $\eta_t$ increases, $y_t$ gets closer to $z_t$. 
+Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +1}$ is upmost important in proving the convergence rate of the algorithms. 
+
+#### **Definition 1.5 | Accelerated Gradient Strongly Convex PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
 > $$
@@ -174,10 +240,35 @@ If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y
 
 Setting $\mu = 0$ this reduces to Two Ways PPM. 
 
-#### **Definition 2.4 | Accelerated Gradient Convex Bregman PPM**
-> 
+#### **Definition 1.6 | Accelerated Gradient Convex Bregman PPM**
+> With $Q\subseteq \R^n$ closed and convex, define $\Psi: Q \mapsto \overline \R$. 
+> Define $f: \mathbb R^n \mapsto \mathbb R$ be $L$-Smooth wrt to norm $\Vert \cdot\Vert$ which is not necessarily the Euclidean norm. 
+> With $h:Q \mapsto \overline \R$ strongly convex wrt $\Vert \cdot\Vert$, and differentiable on $\text{int}(Q)$ so it induces Bregmandivergence $D_h(u, v)$ for all $u, v \in Q$. 
+> Then we define the following algorithm: 
+> $$
+> \begin{aligned}
+>     y_t &= (1 + \eta_t L)^{-1}(x_t + L\eta_t z_t),
+>     \\
+>     x_{t + 1} &= 
+>     \argmin{x \in Q} 
+>     \left\lbrace
+>         l_f(x; y_t) + \frac{1}{\eta_{t + 1}} D_h(x, x_t) + \Psi(x)
+>     \right\rbrace, 
+>     \\
+>     z_{t + 1} &= 
+>     (1 + L\eta_t)^{-1} 
+>     (x_{t + 1} + L\eta_t z_t). 
+> \end{aligned}
+> $$
 
-#### **Definition 2.5 | Accelerated Gradient generic strongly convex Triangular Form**
+And in this case, the momentum algorithm works in a non-smooth composite settings inside of a constrained set $Q$. 
+
+
+**Remarks**
+
+It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algorithm is an interpretation of Nesterov (6.1.3) from Nesterov's textbook. 
+
+#### **Definition 1.7 | Accelerated Gradient generic strongly convex Triangular Form**
 > With $f$ $L$-Lipschitz smooth and $\mu$ storngly convex, we can derive similar triangle with the following: 
 > $$
 > \begin{aligned}
@@ -191,17 +282,21 @@ Setting $\mu = 0$ this reduces to Two Ways PPM.
 > \end{aligned}
 > $$
 
+
+
+
 ---
 ### **Lyapunov Analysis**
 
 In this section, we focus on applying the Lyapunov analysis method on the abstract form of accelerated gradient method. 
 
-#### **Lemma 2.5 | The Lyapunov upper bounds for generic 2 steps PPM**
+#### **Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
 > With definitions for quantities: 
 > $$
 > \begin{aligned}
->     \Upsilon_{1, t + 1}^{\text{AG}}&= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
+>     \Upsilon_{1, t + 1}^{\text{AG}}&= 
+>     \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
 >     + \frac{1}{2}(
 >         \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_t - x_* \Vert^2
 >     )  
@@ -310,7 +405,26 @@ $$
 Which is the descent inequality anchored on $z_{t + 1}$. 
 Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
 
+**Remarks**
 
+These upper bounds are used for the derivation of the convergence rates for several variants of the Nesterov Accelerated gradient method. 
+
+We want to emphizes that the above analysis differs from their gradient descent counter part by the observations that in the expression 
+
+$$
+\begin{aligned}
+    \Upsilon_{1, t + 1}^{\text{AG}}
+    &= 
+    \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
+    + \frac{1}{2}(
+        \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_t - x_* \Vert^2
+    ), 
+\end{aligned}
+$$
+
+in here, $z_{t + 1}$ is the ghost term and $x_{t + 1}$ is the result of the first half of PPM, they don't match exactly as in the case for the Lyapunov analysis of gradient descent. 
+The sitaution had been complicated. 
+The use of $z_{t+1}$ and the way it's defined intrigues us. 
 
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
@@ -567,7 +681,7 @@ $$
 
 To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
 
-##### **The variant of AG that it reduces to**
+##### **The algorithm it reduces to**
 > With the choice of $\tilde \eta_{t} = \eta_t = t/(2L)$ in the definition of the Generic AG PPM form, we have the algorithm: 
 > $$
 > \begin{aligned}
@@ -591,6 +705,7 @@ To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ o
 If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the base case; 
 so $z_0$ is undefined. 
 Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
+
 
 
 #### **Scenario 2 | Similar Triangle I**
@@ -673,7 +788,7 @@ From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is
 The visual understanding of the situation allows us to duduce the upper bound because it creates a different way of eliminating the cross terms in the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
 The next claim will clarify the sitaution. 
 
-#### **Claim | Recovering Nesterov Original Form**
+#### **Claim 3.1 | Recovering Nesterov Original Form**
 > With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
@@ -886,6 +1001,7 @@ $$
 $$
 
 And this is a full recovery of the Nesterov sequence. 
+Finally, we present equivalent forms of the algorithms using the obtained sequence. 
 
 
 **Remarks**
@@ -897,7 +1013,7 @@ We are not sure if there could be more choices for the parameters that assures c
 #### **Scenario 3 | Similar Triangle II**   
 
 In the previous scenario II, we choose the stepsize so that $x_{t + 1}$ can be projected into the correct position by $z_{t + 1}$ to allow colinearity for points $z_t, x_{t +1}, x_{t + 1}$. 
-In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinations of the point $x_{t+1}, z_t$. 
+In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinations of the point $x_{t+1}, z_t$, so that we still have the similar triangle as in the previous scenario. 
 
 
 ---
@@ -907,8 +1023,129 @@ Results in this part are not coming from literatures, and they are my own works 
 Before we start, we list some of the specific type of accelerated gradient method. 
 In any cases below, we are optimizing with convex functions. 
 
-#### **Def | Chambolle Dosal (2015)**
-> 
+#### **Def 4.1 | Chambolle Dossal (2015)**
+> When $f$ is differentiable and convex, we define the following algorithm 
+> $$
+> \begin{aligned}
+>     y_n &= \left(
+>         1 - \frac{1}{t_{n + 1}}
+>     \right)z_{n} + \left(
+>         \frac{1}{t_{n + 1}}
+>     \right)x_{n}
+>     \\
+>     z_{n + 1} &= y_n - L^{-1} \nabla f(y_n)
+>     \\
+>     x_{n + 1} &= z_n + t_{t +1} (z_{n + 1} - z_n), 
+> \end{aligned}
+> $$
+> where $t_n = (n + a - 1)/a$ for all $a > 2$. 
+> Then the above algorithm is a form of accelerated gradient where the iterates converges to a minimizer. 
 
-#### **Def | Ryu's Chapter 12**
-> 
+**Remarks**
+
+In the context of Chambolle, Dossal, the gradient descent step for $z_{n + 1}$ is produced by the forward backward splitting operator of the gradient of sum of smooth non-smooth function. 
+
+
+#### **Def 4.2 | Ryu's Chapter 12**
+> In chapter 12 of Ryu's book, an accelerated gradient method is presented as 
+> $$
+> \begin{aligned}
+>     z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+>     \\
+>     x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
+>     \\
+>     y_{t + 1} &= \left(
+>         1 - \frac{2}{t + 2} 
+>     \right)z_{t + 1} + 
+>     \left(
+>         \frac{1}{t + 2}
+>     \right)x_{t + 1}. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+It is important to talk about the initial conditions of the algorithm. 
+This algorithm is equivalent to the algorithm discussed scenario I, not a similar triangule. 
+
+
+#### **Claim 4.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
+> The variety of accelerated gradient presented by Chambolle Dossal for convergence of the iterates, doesn't fit the accelerated gradient PPM form: 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x} \left\lbrace
+>        l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+>     \right\rbrace, 
+>     \\
+>     y_{t + 1} &= \argmin{x} 
+>     \left\lbrace
+>         l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+>         \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+> This is true because if there is a generic representation $x_{t + 1} = z_{t + 1} + \alpha_{t + 1}(z_{t + 1} - z_t)$ for some $\alpha_{t + 1} \in \R$ where $x_{t + 1}$ is produced from the accelerated gradient PPM generic form, then it must be that $a_{t + 1} = L\eta_t$, so $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ is the only choice to make similar triangle. 
+
+**Proof**
+
+This comes from the consideration 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= z_{t + 1} + \alpha_{t + 1}(z_{t + 1} - z_t)
+    \\
+    &= 
+    y_t + L^{-1}\nabla f(y_t) + \alpha_{t + 1} (
+        y_t + L^{-1}\nabla f(y_t) - z_t
+    )
+    \\
+    &= y_t + (L^{-1} + \alpha_{t + 1}L^{-1})\nabla f(y_t)
+    + \alpha_{t + 1}y_t - \alpha_{t + 1}z_t
+    \\
+    &= (1 + \alpha_{t + 1})y_t 
+    + L^{-1}(1 + \alpha_{t + 1})\nabla f(y_t) - \alpha_{t + 1}z_t. 
+\end{aligned}
+$$
+
+Now we find $z_t$ in terms of $y_t, x_t$ using the updates of $y_t$, from the previous iterations which yields: 
+
+$$
+\begin{aligned}
+    (1 + L\eta_t) y_t &= x_t + L\eta_t z_t
+    \\
+    (1 + L\eta_t)y_t - x_t &= L\eta_t z_t
+    \\
+    ((L\eta_t)^{-1} + 1)y_t - (L\eta_t)^{-1}x_t
+    &= z_t, 
+\end{aligned}
+$$
+
+substituting back we have
+
+$$
+\begin{aligned}
+    x_{t + 1} &= 
+    (1 + \alpha_{t + 1})y_t 
+    + L^{-1}(1 + \alpha_{t + 1})\nabla f(y_t)
+    - \alpha_{t + 1} 
+    \left(
+        ((L\eta_t)^{-1} + 1)y_t - (L\eta_t)^{-1}x_t
+    \right)
+    \\
+    &= 
+    \left(
+        (1 + \alpha_{t + 1}) - \alpha_{t +1} ((L\eta_t)^{-1} + 1)
+    \right)y_t 
+    + 
+    (1 + \alpha_{t + 1})L^{-1}\nabla f(y_t) 
+    + 
+    \alpha_{t + 1}(L\eta_t)^{-1} x_t. 
+\end{aligned}
+$$
+
+If, $x_{t +1}$ were to have representation in the form of $x_t = y_t - \tilde\eta_{t + 1} \nabla f(y_t)$, then it must be that $(1 + \alpha_{t + 1}) - \alpha_{t +1} ((L\eta_t)^{-1} + 1) = 0$, and $\alpha_{t + 1} (L\eta_t)^{-1} = 1$, inevitably making $\alpha_{t + 1} = L\eta_t$. 
+
+**Remarks**
+
+So, what exactly does the Dossal and Chambolle variants fit into, requires some more investigation. 
+It's mentioned in the writings by Chambolle and Dossal that, the algorithm they derived was related to the momentum acceleration method applied to some type of maximal monotone operator. 
