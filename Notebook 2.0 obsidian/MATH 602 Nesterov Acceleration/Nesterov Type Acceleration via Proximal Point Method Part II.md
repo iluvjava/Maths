@@ -17,7 +17,7 @@ The analysis of PPM eventually extends to all varieties of Nesterov accelerated 
 > Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$ it: 
 > 1. Computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 > 2. Set $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
-> 3. Choose $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$. 
+> 3. Choose $y_k = (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$. 
 > 4. Find $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$. 
 > 5. Set $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
 
@@ -281,6 +281,10 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 >     & (1 + L\eta_{t + 1})y_{t + 1} = x_{t + 1} + L \eta_{t + 1} z_{t + 1}
 > \end{aligned}
 > $$
+
+**Observations**
+
+The above algorithm can be derived with the PPM storngly convex formulation. 
 
 
 

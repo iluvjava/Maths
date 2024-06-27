@@ -21,7 +21,7 @@ This is a fixed point iterations that aims to find the fixed point of a non-expa
 
 The iterations chains up a series of averaged operators,  by taking the convex combinations between $I$  the identity and the non-expansive operator $T$. 
 The fixed point set is assumed to exist. 
-Recall that if we have the condition that $D$ is a bounded set, then we can remove the existence assumption of the fixed point set. 
+Recall that if we have the condition that $D$ is a bounded set, then we can remove the existence assumption of the fixed point set. (By a theorem in [Nonexpansive Operator in Hilbert Space](Lipschitz%20Operator%20in%20Hilbert%20Space.md)). 
 
 
 **Proof**

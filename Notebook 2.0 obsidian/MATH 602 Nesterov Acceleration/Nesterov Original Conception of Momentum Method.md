@@ -167,7 +167,7 @@ therefore we must have $\lim_{k\rightarrow \infty} \lambda_k = 0$.
 
 To fit this update to the characterizations, lemma 2.2.1, it it's required to identify $\phi_k^*$, the minimum for each of the estimating functions. In the later text by Nesterov, a new lower bound function is proposed with the proximal operator, after some derivation, that lower bound function yield the accelerated proximal gradient method. 
 
-#### **Corollary | Characterization of the Estimating Sequences and Functions**
+#### **Corollary 1 | Characterization of the Estimating Sequences and Functions**
 > 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
 > 2. $\phi_0(\cdot)$ is a arbitrary convex function in $\mathbb R^n$, 
 > 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, 
@@ -198,7 +198,8 @@ The same exact proof follows through, replacing the convexiy lower bound for $f\
 Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such that, it's preseved under the update procedures. 
 
 #### **Lemma 2.2.3 | Updating with the Canonical Form**
-> Let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(k)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
+> Continuing from the previous corollary,
+> let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(k)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
 > $$
 > \begin{aligned}
 >     \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
