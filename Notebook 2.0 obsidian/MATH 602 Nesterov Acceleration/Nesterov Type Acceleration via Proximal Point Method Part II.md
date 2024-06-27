@@ -224,7 +224,7 @@ Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +
 > $$
 > \begin{aligned}
 >     x_{t + 1} &= \argmin{x} \left\lbrace
->        l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+>        l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
 >     \right\rbrace, 
 >     \\
 >     y_{t + 1} &= \argmin{x} 
@@ -252,7 +252,7 @@ Setting $\mu = 0$ this reduces to Two Ways PPM.
 >     x_{t + 1} &= 
 >     \argmin{x \in Q} 
 >     \left\lbrace
->         l_f(x; y_t) + \frac{1}{\eta_{t + 1}} D_h(x, x_t) + \Psi(x)
+>         l_f(x; y_t) + \frac{1}{\tilde\eta_{t + 1}} D_h(x, x_t) + \Psi(x)
 >     \right\rbrace, 
 >     \\
 >     z_{t + 1} &= 
@@ -287,12 +287,57 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 The above algorithm can be derived with the PPM storngly convex formulation. 
 
 
+#### **Definition 1.8 | AG Experimental Form 1**
+> Let $f=h + g$ be the sum of convex function $h$ and convex differentiable $g$ with $L$-Lipschitz gradient, define the linear lower bounding function $l_g(x;y) = g(y) + \langle \nabla g(y), y - x\rangle$ to be a linearization of $f$ at $y$, for all $x_0 \in \R^n$, and with $y_0 = x_0$, we define the following variants of generic gradient descent method: 
+> 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x} \left\lbrace
+>         l_g(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+>     \right\rbrace, 
+>     \\
+>     y_{t + 1} &= \argmin{x} 
+>     \left\lbrace
+>         h(x) + l_g(x; y_t) + 
+>         \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+
+**Remarks**
+
+We suspect that this reduces to the accelerated proximal gradient FISTA algorithm, or something else in the literatures, and it would be different compare to what appeared in definition 1.6. 
+Additionarlly, it should be able to combine with Definition 1.6. 
+It's as simple as changing how we get $x_{t +1}$ into 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= \argmin{x}\left\lbrace
+        l_g(x;y_t) + \frac{1}{\tilde \eta_{t + 1}} D_h(x, x_t) 
+    \right\rbrace
+\end{aligned}
+$$
+
+Thse are our hypothesis and guesses, further works are required here. 
+
+
+---
+### **Form Comparison**
+
+In this section, we measure, and compare different forms listed above. 
+We show that the Nesterov's 2.2.7 accelerated gradient is the same form as the accelerated gradient PPM strongly convex form. 
+We show that the Generic triangle form is the same as the generic PPM form. 
 
 
 ---
 ### **Lyapunov Analysis**
 
 In this section, we focus on applying the Lyapunov analysis method on the abstract form of accelerated gradient method. 
+This is abstract because we only made use of the Lipschitz smoothnessof the gradient and the lower bound and theupper bound. 
+Specific sequences of updates in the algorithm is not yet used in the proof. 
 
 #### **Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
@@ -792,7 +837,7 @@ From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is
 The visual understanding of the situation allows us to duduce the upper bound because it creates a different way of eliminating the cross terms in the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
 The next claim will clarify the sitaution. 
 
-#### **Claim 3.1 | Recovering Nesterov Original Form**
+#### **Claim 4.1 | Recovering Nesterov Original Form**
 > With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
@@ -1027,7 +1072,7 @@ Results in this part are not coming from literatures, and they are my own works 
 Before we start, we list some of the specific type of accelerated gradient method. 
 In any cases below, we are optimizing with convex functions. 
 
-#### **Def 4.1 | Chambolle Dossal (2015)**
+#### **Def 5.1 | Chambolle Dossal (2015)**
 > When $f$ is differentiable and convex, we define the following algorithm 
 > $$
 > \begin{aligned}
@@ -1050,7 +1095,7 @@ In any cases below, we are optimizing with convex functions.
 In the context of Chambolle, Dossal, the gradient descent step for $z_{n + 1}$ is produced by the forward backward splitting operator of the gradient of sum of smooth non-smooth function. 
 
 
-#### **Def 4.2 | Ryu's Chapter 12**
+#### **Def 5.2 | Ryu's Chapter 12**
 > In chapter 12 of Ryu's book, an accelerated gradient method is presented as 
 > $$
 > \begin{aligned}
@@ -1073,7 +1118,7 @@ It is important to talk about the initial conditions of the algorithm.
 This algorithm is equivalent to the algorithm discussed scenario I, not a similar triangule. 
 
 
-#### **Claim 4.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
+#### **Claim 5.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
 > The variety of accelerated gradient presented by Chambolle Dossal for convergence of the iterates, doesn't fit the accelerated gradient PPM form: 
 > $$
 > \begin{aligned}
