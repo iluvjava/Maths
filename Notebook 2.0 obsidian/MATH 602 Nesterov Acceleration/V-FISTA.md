@@ -133,9 +133,11 @@ $$
 \end{aligned}\tag{[1]}
 $$
 
-With $k\ge 0$, make a sequence $(t_k)_{k\in \mathbb N}$, we consider quantities 
-- $x = t^{-1}_{k + 1}\bar x + (1 - t^{-1}_{k + 1})x^{(k)}, y = y^{(k)}$. 
+With $k\ge 0$, a positive sequence $(t_k)_{k\in \mathbb N}$, we consider quantities 
+
 - $\bar x \in \underset{x}{\text{argmin}} F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
+- $x = t^{-1}_{k + 1}\bar x + (1 - t^{-1}_{k + 1})x^{(k)}, y = y^{(k)}$. 
+
 
 We analyze the RHS of (\[1\]) with the above quantities then 
 
@@ -814,3 +816,9 @@ Does estimating the momentum sequence $t_k \approx \sqrt{\kappa}$, still give a 
 
 If, the proof is correct, the reader should be convinced by the fact that if $\mu = 0$, then we will have the convergence rate being $(1/k^2)$ for the algorithm and the choices of stepsize $t_k$ will be limited. 
 This is a call back to the convergence rate of FISTA. 
+
+
+---
+### **Are these just Lyapunov Analysis?**
+
+
