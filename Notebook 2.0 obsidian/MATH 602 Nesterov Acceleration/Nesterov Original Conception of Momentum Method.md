@@ -7,8 +7,30 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
 - [Global Lipschitz Gradient, Strong Smoothness, Equivalence and Implications](Global%20Lipschitz%20Gradient,%20Strong%20Smoothness,%20Equivalence%20and%20Implications.md)
 - [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
+### **Toc for VS Code**
+
+- [**Toc for VS Code**](#toc-for-vs-code)
+- [**Prelimaries, the Estimating Sequence and Function**](#prelimaries-the-estimating-sequence-and-function)
+  - [**Def (2.2.1) | Estimating Sequences and Estimating Functions**](#def-221--estimating-sequences-and-estimating-functions)
+  - [**Characterizations (Lemma 2.2.1) | Conditions for Descent on Objective Value**](#characterizations-lemma-221--conditions-for-descent-on-objective-value)
+- [**An Potential Updates Procedures for Estimating Sequences and Functions**](#an-potential-updates-procedures-for-estimating-sequences-and-functions)
+  - [**Lemma 2.2.2  | The Proposed Updates**](#lemma-222--the-proposed-updates)
+  - [**Corollary 1 | Characterization of the Estimating Sequences and Functions**](#corollary-1--characterization-of-the-estimating-sequences-and-functions)
+- [**Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**](#giving-a-form-to-the-estimating-sequence-and-functions-so-its-easy-to-derive-the-algorithm)
+  - [**Lemma 2.2.3 | Updating with the Canonical Form**](#lemma-223--updating-with-the-canonical-form)
+- [**Deriving the Generic Accelerated Momentum Method**](#deriving-the-generic-accelerated-momentum-method)
+- [**Simplifying The algorith to the Momentum Form**](#simplifying-the-algorith-to-the-momentum-form)
+  - [**Eliminating $v^{(k)}$ from the Algorithm**](#eliminating-vk-from-the-algorithm)
+  - [**Eliminating the $\\gamma\_k$ Constant**](#eliminating-the-gammak-constant)
+- [**A Generic Convergence Results**](#a-generic-convergence-results)
+  - [**Thm (2.2.1) | Generic Convergence Results**](#thm-221--generic-convergence-results)
+- [**Conclusion**](#conclusion)
+
+
+
+
 ---
-### **Intro**
+### **Prelimaries, the Estimating Sequence and Function**
 
 The gradient descent with momentum derived by Nesterov is a constructive approach and it has great potentials for re-interpretations, expansions and generalizations. We faithfully follow "Nesterov's Lectures on Convex Optimizations (2nd edition)", chapter 2 of his book. 
 
@@ -74,10 +96,10 @@ The Estimating sequences and function are defined by an objective function $f$.
 #### **Lemma 2.2.2  | The Proposed Updates**
 > 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
 > 2. $\phi_0(\cdot)$ is a arbitrary convex function in $\mathbb R^n$, 
-> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, 
+> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, it will satisfy condition in item (5.). 
 > 4. The coefficients $\{\alpha_k\}_{k = 0}^\infty$ satisfy conditions $\alpha_k \in (0, 1)$ and $\sum_{k = 0}^{\infty}\alpha_k = \infty$, 
 > 5. We choose $\lambda_0 = 1$. 
-> Then the pair of estimating sequence and function $(\phi_k(\cdot))_{k = 0}^\infty$ and $(\lambda_k)_{k = 0}^\infty$, defined recursively by the relations 
+> Then the pair of estimating sequence and function $(\phi_k(\cdot))_{k = 0}^\infty$ and $(\lambda_k)_{k = 0}^\infty$, and the sequence $(y_k)_{k = 0}^\infty$, satisfy the following relations for all $k = \in \N$: 
 > $$
 >   \begin{aligned}
 >       \lambda_{k + 1} &= (1 - \alpha_k) \lambda_k, 
@@ -97,7 +119,7 @@ The Estimating sequences and function are defined by an objective function $f$.
 
 **Observations**
 
-$\phi_{k + 1}(x)$ is the sum ofa lower surrogate function and the previous $\phi_k$. 
+$\phi_{k + 1}(x)$ is the sum of a lower surrogate function and the previous $\phi_k$. 
 
 **Proofs**
 
@@ -170,7 +192,7 @@ To fit this update to the characterizations, lemma 2.2.1, it it's required to id
 #### **Corollary 1 | Characterization of the Estimating Sequences and Functions**
 > 1. A function $f(\cdot)\in \mathcal F_{\mu, L}^{1, 1}(\mathbb R^n)$ where $\mu \ge 0$, with potentially $\mu = 0$. It means that the function is Lipschitz smooth, and it could be strongly convex, 
 > 2. $\phi_0(\cdot)$ is a arbitrary convex function in $\mathbb R^n$, 
-> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is an arbitrary sequence of points in $\mathbb R^n$, 
+> 3. $\{y^{(k)}\}_{k = 0}^\infty$ is a sequence of points in $\mathbb R^n$, it will be specific for (5.). 
 > 4. The coefficients $\{\alpha_k\}_{k = 0}^\infty$ satisfy conditions $\alpha_k \in (0, 1)$ and $\sum_{k = 0}^{\infty}\alpha_k = \infty$, 
 > 5. We choose $\lambda_0 = 1$. 
 > Then the pair of estimating sequence and function $(\phi_k(\cdot))_{k = 0}^\infty$ and $(\lambda_k)_{k = 0}^\infty$, defined recursively by the relations 
@@ -700,7 +722,7 @@ $$
 This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. This is method (2.2.7) in Nesterov's writing. Do not forget about the implicit estimating sequence $\lambda_k$ that is associated with the above algorithm. 
 
 ---
-### **Simplifying the Algorithm a Bit**
+### **Simplifying The algorith to the Momentum Form**
 
 In deriving the inductive relations of $\phi_k^* \ge f(x^{(k)})$, 2 relations between the parameters appeared. One comes by forcing the cross term to be zero to strengthen the inequality, and the other one comes by forcing the coefficient of $\Vert \nabla f(y^{(k)})\Vert^2$ to be $-1/2L$, creating the constraints 
 

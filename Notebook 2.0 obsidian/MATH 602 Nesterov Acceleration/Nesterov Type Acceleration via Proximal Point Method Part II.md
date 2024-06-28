@@ -8,19 +8,30 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 #### **TOC for VS Code Viewing**
 - [**Intro**](#intro)
   - [**TOC for VS Code Viewing**](#toc-for-vs-code-viewing)
+  - [**ToC for Obsidian Notebook**](#toc-for-obsidian-notebook)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Def 1.1 | AG Generic Form I**](#def-11--ag-generic-form-i)
   - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
   - [**Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-15--accelerated-gradient-strongly-convex-generic-ppm)
   - [**Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-16--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-17--accelerated-gradient-strongly-convex-generic-triangular-form)
-  - [**Definition 1.8 | AG Experimental Form 1**](#definition-18--ag-experimental-form-1)
+  - [**Definition 1.8 | AG Experimental Form I**](#definition-18--ag-experimental-form-i)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-z_t--1)
-  - [**Claim 2.3 | The Nesterov 2.2.7 Equivalent to AGSG PPM Form**](#claim-23--the-nesterov-227-equivalent-to-agsg-ppm-form)
+  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-zt--1)
+  - [**Claim 2.3 | The Nesterov 2.2.7 Equivalent to AG S-CVX Generic PPM Form**](#claim-23--the-nesterov-227-equivalent-to-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**](#lemma-31--the-lyapunov-upper-bounds-for-generic-2-steps-ppm)
+
+#### **ToC for Obsidian Notebook**
+```table-of-contents
+title: 
+style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
+minLevel: 0 # Include headings from the specified level
+maxLevel: 0 # Include headings up to the specified level
+includeLinks: true # Make headings clickable
+debugInConsole: false # Print debug info in Obsidian console
+```
 
 
 ---
@@ -147,7 +158,7 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 The above algorithm is derived from the generic strongly convex PPM form. 
 
 
-#### **Definition 1.8 | AG Experimental Form 1**
+#### **Definition 1.8 | AG Experimental Form I**
 > Let $f=h + g$ be the sum of convex function $h$ and convex differentiable $g$ with $L$-Lipschitz gradient and $\mu \ge0$ strongly convex, define the linear lower bounding function $l_g(x;y) = g(y) + \langle \nabla g(y), y - x\rangle$ to be a linearization of $f$ at $y$, for all $x_0 \in \R^n$, and with $y_0 = x_0$, we define the following variants of generic gradient descent method: 
 > 
 > $$
@@ -331,7 +342,9 @@ $$
     L\langle L^{-1}\nabla f(y_t), x - z_{t + 1}\rangle
     \\
     &= f(y_t) + (1/(2L)- L^{-1})\Vert \nabla f(y_t) \Vert^2 + 
-    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2.
+    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2
+    \\
+    &= f(y_t) - \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 + \frac{L}{2}\Vert x - z_{t + 1}\Vert^2. 
 \end{aligned}
 $$
 
@@ -342,18 +355,36 @@ $$
     y_{t + 1} &= \argmin{x}\left\lbrace
         \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
         \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-    \right\rbrace. 
+    \right\rbrace
+    \\
+    &= \argmin{x}\left\lbrace
+        \left\Vert x - 
+            \frac{Lz_{t + 1} + \eta_{t + 1}^{-1}x_{t + 1}}{
+                L + \eta_{t + 1}^{-1}
+            }
+        \right\Vert^2
+    \right\rbrace
+    \\
+    &= 
+    \frac{
+        L\eta_{t + 1}z_{t + 1} + 
+        x_{t + 1}
+    }{
+        1 + L \eta_{t + 1}
+    }
 \end{aligned}
 $$
 
+Here we used the [Minimizer of Quadratic Sum, Weighted Average](../AMATH%20516%20Numerical%20Optimizations/Minimizer%20of%20Quadratic%20Sum,%20Weighted%20Average.md) tricks to simplify things quickly. 
 
 **Remarks**
 
-This interpretation is occastionally useful. 
+This interpretation is useful. (More on this later probably, but it has something to do with adding non-smoothness). 
 As the value of $\eta_t$ increases, $y_t$ gets closer to $z_t$. 
 Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +1}$ is upmost important in proving the convergence rate of the algorithms. 
+This interpretation can be used directly to derive the equivalence between the generic PPM form and the generic similar triangle form. 
 
-#### **Claim 2.3 | The Nesterov 2.2.7 Equivalent to AGSG PPM Form**
+#### **Claim 2.3 | The Nesterov 2.2.7 Equivalent to AG S-CVX Generic PPM Form**
 
 > The Nesterov 2.2.7 accelerated gradient algorithm applied to $f$ that is $\mu$ strongly convex and AG strongly convex generic PPM have the same form. 
 > By the observation that the strongly convex generic PPM reduces to Accelerated gradient strongly convex generic triangular form, we claim that the following 2 algorithms have the same representation. 
@@ -402,10 +433,86 @@ Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +
 > \end{aligned}
 > $$
 > And we want to present that these two forms are the same. 
+> $x_{t + 1}$ from the AG SCVX Generic PPM has the same update as $v_{t + 1}$, similarly, $y_{t + 1}$ has the same update as $y_k$, and $z_{t + 1}$ the ghost term is the same as $x_{k + 1}$ the descent term in Nestrov 2.2.7. 
 
 **Demonstrations**
 
 To do that we simplify the Nesterov form into the Strongly convex Generic Triangular Form. 
+Consider update for $v_{k + 1}$ we have 
+
+$$
+\begin{aligned}
+    v_{k + 1} &= 
+    ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+    \left(
+        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+    \right)
+    \\
+    &= 
+    \left(
+        1 + \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k}
+    \right)^{-1}
+    \left(
+        v_k
+        + 
+        \left(
+            \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k} 
+        \right)
+        y_k 
+        - \alpha_k \nabla f(y_k)
+    \right).
+\end{aligned}
+$$
+Notice that the right hand size has the same form as $x_{t + 1}$. 
+Next, we consider $y_{k}$ from the Nesterov 2.2.7, and we want to write it as a convex combination of the vector $v_k,x_k$. 
+Start by considering that 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1 } &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
+    \\
+    &= (\gamma_k + \alpha_k \mu) - \alpha_k \gamma_k, 
+\end{aligned}
+$$
+
+with the grouping we have 
+
+$$
+\begin{aligned}
+    y_k &= \left(
+        \gamma_k + \alpha_k \mu
+        \right)^{-1} \left(
+            \alpha_k \gamma_k v_k + \gamma_{k + 1}x_k
+        \right)
+    \\
+    &= 
+    \left(
+        \gamma_k + \alpha_k \mu
+    \right)^{-1}
+    \left(
+        \alpha_k \gamma_k v_k 
+        + 
+        ((\gamma_k + \alpha_k\mu) - \alpha_k\gamma_k)x_k
+    \right)
+    \\
+    &= 
+    \left(
+        \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+    \right)v_k
+    + 
+    \left(
+        1 - \frac{\alpha_k\gamma_k }{\gamma_k + \alpha_k \mu}
+    \right)x_k, 
+\end{aligned}
+$$
+
+which is indeed, a convex combination of $v_k, x_k$, if, we assume that $(\alpha_k\gamma_k)(\gamma_k + \alpha_k \mu)^{-1}$ is in the interval $(0, 1)$. 
+We can assuem this, see remark for more info about this assumption. 
+However, it would require more works to express $\eta_t, \tilde\eta$ from the Generic PPM using $\gamma_k, \alpha_k$. 
+
+**Remarks**
+
+Allow the description of PPM into the Nesterov acceleration sequence would be something new and not found in the original literatures. 
 
 
 

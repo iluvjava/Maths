@@ -2,6 +2,33 @@
 
 
 ---
+### **TOC for VS Code**
+- [**TOC for VS Code**](#toc-for-vs-code)
+- [**Toc for Obsidian Notebook**](#toc-for-obsidian-notebook)
+- [**Intro**](#intro)
+- [**The Classic, Original Nesterov Accelerations via PPM**](#the-classic-original-nesterov-accelerations-via-ppm)
+  - [**Algorithm | PPM Formulation of Nesterov Accelerations**](#algorithm--ppm-formulation-of-nesterov-accelerations)
+  - [**Algorithm | AGM Triangular Form I**](#algorithm--agm-triangular-form-i)
+  - [**Thm | Equivalences Between the two Forms**](#thm--equivalences-between-the-two-forms)
+  - [**Thm 1 | INEQ1 AGM**](#thm-1--ineq1-agm)
+  - [**Thm 2 | INEQ2 AGM**](#thm-2--ineq2-agm)
+- [**The Convergence Theorem**](#the-convergence-theorem)
+  - [**Thm | Stepsize Sequence for Optimal Convergence Rate of The AGM Triangular Form I**](#thm--stepsize-sequence-for-optimal-convergence-rate-of-the-agm-triangular-form-i)
+- [**Why is it Called A similar Triangle Form?**](#why-is-it-called-a-similar-triangle-form)
+- [**What Specific Algorithm do we Get**](#what-specific-algorithm-do-we-get)
+- [**The Nesterov Similar Triangle Form II, III**](#the-nesterov-similar-triangle-form-ii-iii)
+
+
+### **Toc for Obsidian Notebook**
+```table-of-contents
+title: 
+style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
+minLevel: 0 # Include headings from the specified level
+maxLevel: 0 # Include headings up to the specified level
+includeLinks: true # Make headings clickable
+debugInConsole: false # Print debug info in Obsidian console
+```
+
 ### **Intro**
 
 We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md) to derive the method for a specific form of the accelerated gradient. 
@@ -698,11 +725,8 @@ If we substitute the choice of stepsize, we will obtain a form of nesterov accel
 
 We repeat the same proof ideas, but proving several variants of Nesterov using one single formulations of PPM and the ideas of similar triangle. 
 
+
 See [Nesterov Type Acceleration via Proximal Point Method Part II](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20II.md) for more stories. 
 
----
-### **The Ultimate AGM Form**
-
-In this section, we introduce the ultimate triangular form that can be used to derive a lot of the variants of the Nesterov Accelerated Gradient method. 
 
 

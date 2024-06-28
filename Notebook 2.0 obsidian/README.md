@@ -80,6 +80,7 @@ Other Community Plugins Used:
 - `highlightr`. 
 - Dynamic Background. 
 - Obsidian Link Converter
+- [Automatic Table of Content](https://github.com/johansatge/obsidian-automatic-table-of-contents)
 
 ### **Other Resources**
 - [ScratchPaper](ScratchPaper.md). This is a scratch paper for tinkering with stuff. 

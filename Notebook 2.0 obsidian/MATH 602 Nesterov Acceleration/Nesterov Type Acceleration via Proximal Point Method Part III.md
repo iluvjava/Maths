@@ -7,6 +7,22 @@
 This file directly continue from the previous part. 
 It's split to reduce lags on the inefficient webbased frameworks that renders markdown katex in real time. 
 
+#### **ToC For Viewing with VS Code**
+- [**Intro**](#intro)
+  - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
+- [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
+  - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
+    - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
+  - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
+    - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
+  - [**Claim 4.1 | Recovering Nesterov Original Form**](#claim-41--recovering-nesterov-original-form)
+  - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
+- [**Some more Nuanced Results**](#some-more-nuanced-results)
+  - [**Def 5.1 | Chambolle Dossal (2015)**](#def-51--chambolle-dossal-2015)
+  - [**Def 5.2 | Ryu's Chapter 12**](#def-52--ryus-chapter-12)
+  - [**Claim 5.3 | Chambolle and Dossal's Variant doesn't fit the Framework**](#claim-53--chambolle-and-dossals-variant-doesnt-fit-the-framework)
+
+
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
