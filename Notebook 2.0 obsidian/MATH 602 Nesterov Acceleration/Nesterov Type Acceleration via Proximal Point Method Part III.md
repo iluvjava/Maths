@@ -15,12 +15,14 @@ It's split to reduce lags on the inefficient webbased frameworks that renders ma
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
-  - [**Claim 4.1 | Recovering Nesterov Original Form**](#claim-41--recovering-nesterov-original-form)
+  - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
 - [**Some more Nuanced Results**](#some-more-nuanced-results)
-  - [**Def 5.1 | Chambolle Dossal (2015)**](#def-51--chambolle-dossal-2015)
-  - [**Def 5.2 | Ryu's Chapter 12**](#def-52--ryus-chapter-12)
-  - [**Claim 5.3 | Chambolle and Dossal's Variant doesn't fit the Framework**](#claim-53--chambolle-and-dossals-variant-doesnt-fit-the-framework)
+  - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
+  - [**Def 2.2 | Ryu's Chapter 12**](#def-22--ryus-chapter-12)
+  - [**Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**](#claim-23--chambolle-and-dossals-variant-doesnt-fit-the-framework)
+
+
 
 
 ---
@@ -385,7 +387,7 @@ From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is
 The visual understanding of the situation allows us to duduce the upper bound because it creates a different way of eliminating the cross terms in the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
 The next claim will clarify the sitaution. 
 
-#### **Claim 4.1 | Recovering Nesterov Original Form**
+#### **Claim 1.1 | Recovering Nesterov Original Form**
 > With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
@@ -620,7 +622,7 @@ Results in this part are not coming from literatures, and they are my own works 
 Before we start, we list some of the specific type of accelerated gradient method. 
 In any cases below, we are optimizing with convex functions. 
 
-#### **Def 5.1 | Chambolle Dossal (2015)**
+#### **Def 2.1 | Chambolle Dossal (2015)**
 > When $f$ is differentiable and convex, we define the following algorithm 
 > $$
 > \begin{aligned}
@@ -643,7 +645,7 @@ In any cases below, we are optimizing with convex functions.
 In the context of Chambolle, Dossal, the gradient descent step for $z_{n + 1}$ is produced by the forward backward splitting operator of the gradient of sum of smooth non-smooth function. 
 
 
-#### **Def 5.2 | Ryu's Chapter 12**
+#### **Def 2.2 | Ryu's Chapter 12**
 > In chapter 12 of Ryu's book, an accelerated gradient method is presented as 
 > $$
 > \begin{aligned}
@@ -666,7 +668,7 @@ It is important to talk about the initial conditions of the algorithm.
 This algorithm is equivalent to the algorithm discussed scenario I, not a similar triangule. 
 
 
-#### **Claim 5.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
+#### **Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
 > The variety of accelerated gradient presented by Chambolle Dossal for convergence of the iterates, doesn't fit the accelerated gradient PPM form: 
 > $$
 > \begin{aligned}
