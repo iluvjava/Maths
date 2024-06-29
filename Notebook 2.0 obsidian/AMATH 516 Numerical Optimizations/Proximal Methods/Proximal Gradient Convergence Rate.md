@@ -13,21 +13,21 @@ To simplify notation, Let $T = \text{prox}_{\beta^{-1}h}\circ [I - \beta^{-1}\na
 
 **The Fixed Point Error**
 
-We introduce $G_\beta(x) = \beta(x - Tx)$ to be the fixed point error, with the $\beta$ stepsize multiplier. We claim that $G_\beta(x) = \partial h \circ Tx + \nabla g(x)$, here is the justification: 
+We introduce $G_\beta(x) = \beta(x - Tx)$ to be the fixed point error (This is referred to as the gradient mapping in Nesterov's textbook), with the $\beta$ stepsize multiplier. We claim that $G_\beta(x) \in \partial h \circ Tx + \nabla g(x)$, here is the justification: 
 
 $$
 \begin{aligned}
     x^+ &= [I + \beta^{-1}\partial h]^{-1}\circ [I - \beta^{-1}\nabla g](x)
     \\
-    [I + \beta^{-1}\partial h](x^+) &= [I - \beta^{-1}\nabla g](x)
+    [I + \beta^{-1}\partial h](x^+) &\ni [I - \beta^{-1}\nabla g](x)
     \\
-    x^+ + \beta^{-1}\partial h(x^+) &= x - \beta^{-1}\nabla g(x)
+    x^+ + \beta^{-1}\partial h(x^+) &\ni x - \beta^{-1}\nabla g(x)
     \\
-    x^+ - x + \beta^{-1}\partial h(x^+) &= \beta^{-1}\nabla g(x)
+    x^+ - x + \beta^{-1}\partial h(x^+) &\ni \beta^{-1}\nabla g(x)
     \\
-    \beta(x^+ - x) + \partial h(x^+) &= - \nabla g(x)
+    \beta(x^+ - x) + \partial h(x^+) &\ni - \nabla g(x)
     \\
-    \beta(x - x^+) &= \nabla g(x) + \partial h(x^+), 
+    \beta(x - x^+) &\in \nabla g(x) + \partial h(x^+), 
 \end{aligned}
 $$
 and this is the quantity we aim to minimize via the fixed point iteration, and that expression above is one of its representation. By choosing the stepsizes $\beta^{-1} \le L^{-1}$, we assert strict decrease of the value of the objective function, $f(x^+) \le f(x)$, this is established by previous discussion when we derived the method via the Envelope. 

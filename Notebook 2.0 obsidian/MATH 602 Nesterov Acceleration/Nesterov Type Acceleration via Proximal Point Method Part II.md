@@ -5,9 +5,9 @@
 
 We need to re-derive the Lyponouv convergence theorem to allows for more genericity so that it can be applied for proving the convergence for more varieties of the accelerated gradient methods. 
 
-#### **TOC for VS Code Viewing**
+#### **ToC for VS Code Viewing**
 - [**Intro**](#intro)
-  - [**TOC for VS Code Viewing**](#toc-for-vs-code-viewing)
+  - [**ToC for VS Code Viewing**](#toc-for-vs-code-viewing)
   - [**ToC for Obsidian Notebook**](#toc-for-obsidian-notebook)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Def 1.1 | AG Generic Form I**](#def-11--ag-generic-form-i)
@@ -18,8 +18,9 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.8 | AG Experimental Form I**](#definition-18--ag-experimental-form-i)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-zt--1)
-  - [**Claim 2.3 | The Nesterov 2.2.7 Equivalent to AG S-CVX Generic PPM Form**](#claim-23--the-nesterov-227-equivalent-to-ag-s-cvx-generic-ppm-form)
+  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-z_t--1)
+  - [**Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-23--the-interpretation-of-strongly-convex-generic-triangular-form)
+  - [**Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-24--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**](#lemma-31--the-lyapunov-upper-bounds-for-generic-2-steps-ppm)
 
@@ -377,6 +378,7 @@ $$
 
 Here we used the [Minimizer of Quadratic Sum, Weighted Average](../AMATH%20516%20Numerical%20Optimizations/Minimizer%20of%20Quadratic%20Sum,%20Weighted%20Average.md) tricks to simplify things quickly. 
 
+
 **Remarks**
 
 This interpretation is useful. (More on this later probably, but it has something to do with adding non-smoothness). 
@@ -384,7 +386,40 @@ As the value of $\eta_t$ increases, $y_t$ gets closer to $z_t$.
 Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +1}$ is upmost important in proving the convergence rate of the algorithms. 
 This interpretation can be used directly to derive the equivalence between the generic PPM form and the generic similar triangle form. 
 
-#### **Claim 2.3 | The Nesterov 2.2.7 Equivalent to AG S-CVX Generic PPM Form**
+
+#### **Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**
+> The strongly convex generic triangular form is a consequence of the S-CVX generic PPM from. 
+> More specifically with a ghost terms $y_t^+ = y_t - \mu^{-1}\nabla f(y_t)$, we have the following chain of equality: 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x} 
+>     \left\lbrace
+>         l_f (x; y_t) + \frac{\mu}{2} \Vert x - y_t\Vert^2 + 
+>         \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2 
+>     \right\rbrace
+>     \\
+>     &= (1 + \mu\tilde \eta_{t + 1})^{-1}
+>     \left(
+>         x_t + \mu \tilde \eta_{t + 1}y_t^{+}
+>     \right)
+>     \\
+>     &= \argmin{x}
+>     \left\lbrace
+>         f(y_t) - \frac{1}{2\mu} \Vert \nabla f(y_t)\Vert^2 
+>         + 
+>         \frac{\mu
+>         }{2}\Vert x - y_t^+\Vert^2
+>         + 
+>         \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+>     \right\rbrace, 
+> \end{aligned}
+> $$
+
+**Demonstrations**
+
+
+
+#### **Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**
 
 > The Nesterov 2.2.7 accelerated gradient algorithm applied to $f$ that is $\mu$ strongly convex and AG strongly convex generic PPM have the same form. 
 > By the observation that the strongly convex generic PPM reduces to Accelerated gradient strongly convex generic triangular form, we claim that the following 2 algorithms have the same representation. 
@@ -513,10 +548,20 @@ However, it would require more works to express $\eta_t, \tilde\eta$ from the Ge
 **Remarks**
 
 Allow the description of PPM into the Nesterov acceleration sequence would be something new and not found in the original literatures. 
+Using $\gamma_k = L\alpha_{k-1}^2$, we can simplify so that 
 
+$$
+\begin{aligned}
+    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+    &= 
+    \frac{L\alpha_k \alpha_{k - 1}^2}{L\alpha_{k - 1}^2 + \mu \alpha_k}
+    \\
+    &= \frac{\alpha_k \alpha_{k - 1}^2}{1 + q_f \alpha_k \alpha_{k - 1}^{-2}} \in (0, 1), 
+\end{aligned}
+$$
 
-
-
+where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alpha_k)_{k \in \N}$ has $\alpha_k \in (0, 1)$ and $\sum_{i = 1}^{\infty} \alpha_k = \infty$. 
+For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 ---
 ### **Lyapunov Analysis**

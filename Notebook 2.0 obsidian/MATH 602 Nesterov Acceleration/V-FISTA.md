@@ -2,6 +2,25 @@
 
 
 ---
+### **ToC for VS Code**
+- [**ToC for VS Code**](#toc-for-vs-code)
+- [**Intro**](#intro)
+- [**The V-FISTA Algorithm**](#the-v-fista-algorithm)
+- [**Thm | Linear Convergence Rate of the Objective Value of the Algorithm**](#thm--linear-convergence-rate-of-the-objective-value-of-the-algorithm)
+- [**The Prox Grad Lemma**](#the-prox-grad-lemma)
+  - [**Thm | Prox Grad 2 Points Lemma**](#thm--prox-grad-2-points-lemma)
+  - [**The Proof Preparations of the Linear Convergence of V-FISTA**](#the-proof-preparations-of-the-linear-convergence-of-v-fista)
+  - [**Fixed Step Generic Momentum Algorithm**](#fixed-step-generic-momentum-algorithm)
+- [**Necessary Assumptions for Linear Convergence**](#necessary-assumptions-for-linear-convergence)
+- [**The Precise Conditions Under Which Assumption Set 1 are Satisified**](#the-precise-conditions-under-which-assumption-set-1-are-satisified)
+  - [**Thm | Fixed Sequence Solutions for the Above Inequalities**](#thm--fixed-sequence-solutions-for-the-above-inequalities)
+  - [**Discussion | When the Stepsizes are not fixed**](#discussion--when-the-stepsizes-are-not-fixed)
+  - [**Thm | Non Fixed Stepsize Momentum Method**](#thm--non-fixed-stepsize-momentum-method)
+- [**One Open Question**](#one-open-question)
+- [**Reduction to FISTA**](#reduction-to-fista)
+- [**Are these just Lyapunov Analysis?**](#are-these-just-lyapunov-analysis)
+
+
 ### **Intro**
 
 The method of V-FISTA is a modified version of FISTA for strongly convex function. The original FISTA algorithm may not attain linear convergence under strong convexity. Fixing the momentum constant for the FISTA algorithm to attain linear converge for strongly convex function (And later, it's shown that for PL and Quasi-Strong Convex function). The linear convergence rate for FISTA with momentum is a magnitude better than momentum descent, it's Optimal in Nesterov's sense as well. For more about what Nesterov meant for an algorithm to be optimal, see [Nesterove Lower Convergence Bnd For Strongly Convex Functions](MATH%20602%20Nesterov%20Acceleration/Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md) for more information. 

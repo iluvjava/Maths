@@ -663,6 +663,7 @@ $$
 This is the fundamental proximal gradient lemma in Amir Beck's writings. 
 This bound is tighter. 
 This can also be used for deriving the convergence of the gradient descent method. 
+For more information on this lemma, visits: [V-FISTA](V-FISTA.md), [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), [Proximal Gradient Convergence Rate](Proximal%20Gradient%20Convergence%20Rate.md), and [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
 
 ---
 ### **The PPM with Strongly Convex Objective**
