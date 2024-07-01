@@ -13,6 +13,7 @@ It's split to reduce lags on the inefficient webbased frameworks that renders ma
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
+  - [**Scenario 1.1 | No Similar Triangle but Proximal Gradient**](#scenario-11--no-similar-triangle-but-proximal-gradient)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
@@ -304,6 +305,8 @@ To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ o
 If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the base case; 
 so $z_0$ is undefined. 
 Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
+
+#### **Scenario 1.1 | No Similar Triangle but Proximal Gradient**
 
 
 

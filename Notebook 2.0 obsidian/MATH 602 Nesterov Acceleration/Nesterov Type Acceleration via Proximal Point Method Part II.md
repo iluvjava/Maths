@@ -10,15 +10,15 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**ToC for VS Code Viewing**](#toc-for-vs-code-viewing)
   - [**ToC for Obsidian Notebook**](#toc-for-obsidian-notebook)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
-  - [**Def 1.1 | AG Generic Form I**](#def-11--ag-generic-form-i)
+  - [**Def 1.1 | Nes 2.2.7**](#def-11--nes-227)
   - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
   - [**Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-15--accelerated-gradient-strongly-convex-generic-ppm)
   - [**Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-16--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-17--accelerated-gradient-strongly-convex-generic-triangular-form)
-  - [**Definition 1.8 | AG Experimental Form I**](#definition-18--ag-experimental-form-i)
+  - [**~~Definition 1.8 | AG Experimental Form I~~**](#definition-18--ag-experimental-form-i)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-zt--1)
+  - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
   - [**Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-23--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-24--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
@@ -40,7 +40,7 @@ debugInConsole: false # Print debug info in Obsidian console
 
 The analysis of PPM eventually extends to all varieties of Nesterov accelerated gradient methods. 
 
-#### **Def 1.1 | AG Generic Form I**
+#### **Def 1.1 | Nes 2.2.7**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
 > Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
@@ -159,7 +159,7 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 The above algorithm is derived from the generic strongly convex PPM form. 
 
 
-#### **Definition 1.8 | AG Experimental Form I**
+#### **~~Definition 1.8 | AG Experimental Form I~~**
 > Let $f=h + g$ be the sum of convex function $h$ and convex differentiable $g$ with $L$-Lipschitz gradient and $\mu \ge0$ strongly convex, define the linear lower bounding function $l_g(x;y) = g(y) + \langle \nabla g(y), y - x\rangle$ to be a linearization of $f$ at $y$, for all $x_0 \in \R^n$, and with $y_0 = x_0$, we define the following variants of generic gradient descent method: 
 > 
 > $$
@@ -195,6 +195,9 @@ $$
 $$
 
 Thse are our hypothesis and guesses, further works are required here. 
+
+
+
 
 
 ---
@@ -296,8 +299,28 @@ Depending on the bas case, the order of the update will differ!
 If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
 
-#### **Claim 2.2 | The Interpretation of the Ghost term $z_{t + 1}$**
-> The term $z_t = y_t - L^{-1} \nabla f(y_t)$ is made with the goal to write $y_{t + 1}$ to be a convex combinations of $x_{t + 1}, z_{t + 1}$. 
+#### **Claim 2.2 | The Interpretation of the Ghost term z**
+> From the generic PPM form of the accelerated gradient, we notice that the update for the vector $y_{t + 1}$ admits the following alternative representation: 
+> $$
+> \begin{aligned}
+>     y_{t + 1} &= \argmin{x} 
+>     \left\lbrace
+>         l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+>         \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace
+>     \\
+>     &= \argmin{x} \left\lbrace
+>         f(y_t) 
+>         - \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
+>         + \frac{L}{2}\Vert x - z_{t + 1}\Vert^2
+>         + \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace
+>     \\
+>     &= (1 + L \eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1} z_{t + 1}). 
+> \end{aligned}
+> $$ 
+
+
 
 **Demonstrations**
 
@@ -381,6 +404,7 @@ Here we used the [Minimizer of Quadratic Sum, Weighted Average](../AMATH%20516%2
 
 **Remarks**
 
+The term $z_t = y_t - L^{-1} \nabla f(y_t)$ is made with the goal to write $y_{t + 1}$ to be a convex combinations of $x_{t + 1}, z_{t + 1}$. 
 This interpretation is useful. (More on this later probably, but it has something to do with adding non-smoothness). 
 As the value of $\eta_t$ increases, $y_t$ gets closer to $z_t$. 
 Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +1}$ is upmost important in proving the convergence rate of the algorithms. 
@@ -425,7 +449,7 @@ This interpretation can be used directly to derive the equivalence between the g
 
 **Demonstrations**
 
-Follow a very similar process as the previous claim, we have that 
+Follow a very similar process as the previous claim, but instead with $L = \mu, z_{t + 1} = y_t^+$, it should produce: 
 
 $$
 \begin{aligned}
@@ -515,8 +539,8 @@ This particular interpretation **may** assist us with reverse engineering Nester
 
 **Demonstrations**
 
-To do that we simplify the Nesterov form into the Strongly convex Generic Triangular Form. 
-Consider update for $v_{k + 1}$ we have 
+We simplify the Nesterov form into the Strongly convex Generic Triangular Form. 
+Consider update for $v_{k + 1}$ by substituting $\gamma_{k+1} = (1 - \alpha_k) \gamma_k + \alpha_k \mu$ as informed by the first step of the algorithm, we have 
 
 $$
 \begin{aligned}
@@ -525,6 +549,11 @@ $$
     \left(
         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
     \right)
+    \\
+    &= ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+    (
+        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu(y_k - \alpha_k \mu^{-1}\nabla f(y_k))
+    )
     \\
     &= 
     \left(
@@ -536,14 +565,33 @@ $$
         \left(
             \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k} 
         \right)
-        y_k 
-        - \alpha_k \nabla f(y_k)
-    \right).
+        \left(
+            y_k 
+            - \alpha_k \mu^{-1}\nabla f(y_k)
+        \right)
+    \right). 
 \end{aligned}
 $$
 Notice that the right hand size has the same form as $x_{t + 1}$. 
+This is true by the observation that 
+$$
+\begin{aligned}
+    x_{t + 1} &= 
+    (1 + \tilde\eta_{t + 1}\mu)^{-1}
+    \left( 
+        x_t + \mu\tilde \eta_{t + 1}
+        \left(y_t - \mu^{-1}\nabla f(y_t)\right)
+    \right). 
+\end{aligned}
+$$
+
+Similarly, when $\mu = 0$, we have from the first step that $v_{k + 1} = v_k - \alpha_k \nabla f(y_k)$, which is the same as the AG generic PPM form where 
+$$
+x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_t)
+$$
+
 Next, we consider $y_{k}$ from the Nesterov 2.2.7, and we want to write it as a convex combination of the vector $v_k,x_k$. 
-Start by considering that 
+To show that the updates $y_k$ can are of the same form, start by considering that 
 
 $$
 \begin{aligned}
