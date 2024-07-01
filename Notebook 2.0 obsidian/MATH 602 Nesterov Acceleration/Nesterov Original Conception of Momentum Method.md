@@ -84,9 +84,10 @@ To realize these entities, there are 2 questions here.
 1. Formulate an Estimating Sequence and Function, satisfying definition (2.2.1). 
 2. Formulate an Estimating Sequence and Function that satisfies the descent conditions, along with an algorithm that generates the sequence of $(x^{(k)})_{k = 0}^\infty$ such that the sequence is satisfied. 
 
-**Open Questions**
+**Open Questions/ Comments**
 
 Is there a Lypunov interpretation for it? 
+These two lemmas should be combined into just one lemma. 
 
 ---
 ### **An Potential Updates Procedures for Estimating Sequences and Functions**

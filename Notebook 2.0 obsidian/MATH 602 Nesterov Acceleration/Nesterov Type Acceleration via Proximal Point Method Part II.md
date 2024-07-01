@@ -18,7 +18,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.8 | AG Experimental Form I**](#definition-18--ag-experimental-form-i)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-z_t--1)
+  - [**Claim 2.2 | The Interpretation of the Ghost term $z\_{t + 1}$**](#claim-22--the-interpretation-of-the-ghost-term-zt--1)
   - [**Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-23--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-24--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
@@ -389,19 +389,16 @@ This interpretation can be used directly to derive the equivalence between the g
 
 #### **Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**
 > The strongly convex generic triangular form is a consequence of the S-CVX generic PPM from. 
-> More specifically with a ghost terms $y_t^+ = y_t - \mu^{-1}\nabla f(y_t)$, we have the following chain of equality: 
+> The lower bounding function $l_f(x, y_t) = f(y_t) + \langle \nabla f(y_t), x - y_t\rangle$ we have the following chain of equalities: 
 > $$
 > \begin{aligned}
+>     y_t^+ &= y_t - \mu^{-1}\nabla f(y_t)
+>     \\
 >     x_{t + 1} &= \argmin{x} 
 >     \left\lbrace
 >         l_f (x; y_t) + \frac{\mu}{2} \Vert x - y_t\Vert^2 + 
 >         \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2 
 >     \right\rbrace
->     \\
->     &= (1 + \mu\tilde \eta_{t + 1})^{-1}
->     \left(
->         x_t + \mu \tilde \eta_{t + 1}y_t^{+}
->     \right)
 >     \\
 >     &= \argmin{x}
 >     \left\lbrace
@@ -411,13 +408,59 @@ This interpretation can be used directly to derive the equivalence between the g
 >         }{2}\Vert x - y_t^+\Vert^2
 >         + 
 >         \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
->     \right\rbrace, 
+>     \right\rbrace.
+>     \\
+>     &= (1 + \mu\tilde \eta_{t + 1})^{-1}
+>     \left(
+>         x_t + \mu \tilde \eta_{t + 1}y_t^{+}
+>     \right)
+>     \\
+>     z_{t + 1} &= y_t - L^{-1} \nabla f(y_t)
+>     \\
+>     y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L \eta_{t + 1} z_{t + 1})
 > \end{aligned}
 > $$
+> The update for $y_{t + 1}$ is the same as the generic triangular case. 
+
 
 **Demonstrations**
 
+Follow a very similar process as the previous claim, we have that 
 
+$$
+\begin{aligned}
+    l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2
+    &= 
+    f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+    \\
+    \implies 
+    x_{t + 1} &= 
+    \argmin{x} 
+    \left\lbrace
+        f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+        + 
+        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+    \right\rbrace
+    \\
+    &= 
+    \argmin{x}
+    \left\lbrace
+        \frac{\mu}{2}\Vert x - y_t^+\Vert^2 + 
+        \frac{2}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+    \right\rbrace
+    \\
+    &= (\mu + \tilde \eta_{t + 1})^{-1}
+    (\mu y_t^+ + \tilde \eta_{t + 1}x_t)
+    \\
+    &= (1 + \tilde \eta_{t + 1}\mu)^{-1}
+    (x_t + \mu\tilde \eta_{t + 1}y_t^+). 
+\end{aligned}
+$$
+
+
+**Remarks**
+
+This particular interpretation **may** assist us with reverse engineering Nesterov's estimating sequence's proof for his 2.2.7 method. 
 
 #### **Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**
 
