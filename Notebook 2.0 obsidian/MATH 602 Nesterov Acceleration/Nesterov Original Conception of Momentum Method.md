@@ -210,7 +210,7 @@ To fit this update to the characterizations, lemma 2.2.1, it it's required to id
 
 **Proof**
 
-The same exact proof follows through, replacing the convexiy lower bound for $f\in \mathcal F_{\mu, L}^{1, 1}$ with rule (6.) above. 
+The same exact proof follows through, replacing the convexity lower bound for $f\in \mathcal F_{\mu, L}^{1, 1}$ with rule (6.) above. 
 
 
 

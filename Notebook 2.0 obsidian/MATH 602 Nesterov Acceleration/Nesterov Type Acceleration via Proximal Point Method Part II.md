@@ -22,7 +22,8 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.3 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-23--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.4 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-24--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
-  - [**Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**](#lemma-31--the-lyapunov-upper-bounds-for-generic-2-steps-ppm)
+  - [**Lemma 3.1 | The Lyapunov bounds of Tri-Points**](#lemma-31--the-lyapunov-bounds-of-tri-points)
+  - [**Lema 3.2 | The Lyapunov bound of non-smooth proximal gradient Tri-points**](#lema-32--the-lyapunov-bound-of-non-smooth-proximal-gradient-tri-points)
 
 #### **ToC for Obsidian Notebook**
 ```table-of-contents
@@ -661,7 +662,7 @@ In this section, we focus on applying the Lyapunov analysis method on the abstra
 This is abstract because we only made use of the Lipschitz smoothnessof the gradient and the lower bound and theupper bound. 
 Specific sequences of updates in the algorithm is not yet used in the proof. 
 
-#### **Lemma 3.1 | The Lyapunov upper bounds for generic 2 steps PPM**
+#### **Lemma 3.1 | The Lyapunov bounds of Tri-Points**
 > Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
 > With definitions for quantities: 
 > $$
@@ -811,3 +812,8 @@ $$
 
 is invoked with $x = x_{t +1}$ only, hence, the quantifier $\forall x$ is strictly stronger than necessary. 
 In a sense, if we can relax the choice of $L$ to be larger so that the above condition is still true for just $x = x_{t + 1}$. 
+
+
+#### **Lema 3.2 | The Lyapunov bound of non-smooth proximal gradient Tri-points**
+
+

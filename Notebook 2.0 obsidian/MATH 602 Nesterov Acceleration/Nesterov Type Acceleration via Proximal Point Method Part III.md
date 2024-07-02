@@ -13,10 +13,10 @@ It's split to reduce lags on the inefficient webbased frameworks that renders ma
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
-  - [**Scenario 1.1 | No Similar Triangle but Proximal Gradient**](#scenario-11--no-similar-triangle-but-proximal-gradient)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
+  - [**Scenario 2.5 | No Similar Triangle but Proximal Gradient**](#scenario-25--no-similar-triangle-but-proximal-gradient)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
 - [**Some more Nuanced Results**](#some-more-nuanced-results)
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
@@ -305,9 +305,6 @@ To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ o
 If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the base case; 
 so $z_0$ is undefined. 
 Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
-
-#### **Scenario 1.1 | No Similar Triangle but Proximal Gradient**
-
 
 
 #### **Scenario 2 | Similar Triangle I**
@@ -611,6 +608,9 @@ Finally, we present equivalent forms of the algorithms using the obtained sequen
 This derivation only leave a single choice for the stepsize parameter. 
 We are not sure if there could be more choices for the parameters that assures convergence rate of the algorithm. 
 
+#### **Scenario 2.5 | No Similar Triangle but Proximal Gradient**
+
+In this section, we discuss the case when $f$ is not necessarily smooth. 
 
 #### **Scenario 3 | Similar Triangle II**   
 

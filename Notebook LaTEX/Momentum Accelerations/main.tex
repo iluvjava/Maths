@@ -725,20 +725,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     He uses the idea of a Nesterov acceleration sequence faithfully. 
     One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by Lin et al \cite{lin_universal_2015}. 
     It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
-    \par\noindent
-    In this section, we
-    \begin{enumerate}
-        \item State Nesterov accelerated gradient and their varieties, and point to the literature discussing them. 
-        \item Derive the Nesterov accelerated gradient. 
-        \item Derive the popular step size choices along with the convergence rate. 
-    \end{enumerate}
-    Some content will differ from Ahn's works because we hope to generalize these ideas for our own use. 
-    
     
     \subsection{Varieties of Nesterov accelerated gradient}
         \subsubsection{AG Abstract Forms}
             In this section, we list different varieties of the Nesterov accelerated method. 
-            \begin{definition}[AG Generic Original Form]\label{def:agg_original}
+            \begin{definition}[Nestrov 2.2.7]\label{def:Nes2.2.7}
                 Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
                 Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
                 \begin{enumerate}
@@ -751,16 +742,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{definition}
             \begin{remark}
                 This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
+                For more context, the sequence $\alpha_k \in (0, 1)$ such that $\sum_{k = 1}^{\infty}\alpha_k = \infty$, and recursively we have $\lambda_{k + 1} = (1 - \alpha_k)\lambda_k$. 
+                the sequence $\lambda_k$ is called an Nesterov estimating sequence. 
                 It is the most generic algorithm in his book about accelerated gradient method. 
                 The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
 
             \end{remark}
 
-            \begin{definition}[AG Generic PPM Form]\label{def:agg_ppm}
-                With $f$ convex, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$ such that: 
+            \begin{definition}[Ahn Sra 6.24]\label{def:agg_ppm}
+                With $f$ $\mu \ge 0$ strongly convex and $L$-Lipschitz smooth, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$: 
                 \begin{align*}
                     x_{t + 1} &= \argmin_{x} \left\lbrace
-                    l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                        l_f(x; y_t) 
+                        + 
+                        \frac{\mu}{2}\Vert x - y_t\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
                     \right\rbrace, 
                     \\
                     y_{t + 1} &= \argmin_{x} 
@@ -769,18 +766,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                         \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
                     \right\rbrace. 
                 \end{align*}
-                where $l_f(x, \bar x)$ is a convex function satisfying
-                \begin{align*}
-                    l_f(x, \bar x) \le f(x) \le f(\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
-                \end{align*}
             \end{definition}
             \begin{remark}
-                This formulation of the Nesterov Accelerated gradient method is a second handed idea taken from Ahn \cite{ahn_understanding_2022}. 
-                It is claimed that this is an PPM formulation of a class of accelerated gradient method. 
+                This algorithm is the same as algorithm (6.24) described by Ahn and Sra \cite{ahn_understanding_2022}. 
+                Observe that by setting $\mu = 0, \tilde \eta_{t + 1} = \eta_{t + 1}$ this recovers algorithm (4.8) described in Ahn and Sra \cite{ahn_understanding_2022}. 
             \end{remark}
 
-            \begin{definition}[AG Generic Triangular Form]\label{def:agg_tri}
-                With $f$ be $L$-Lipschitz smooth and $\mu \ge 0$  strongly convex, choose any $y_0 = x_0=z_0$, the algorithm admits form: 
+            \begin{definition}[Tri-points Generic Form]\label{def:agg_tri}
+                With $f$ be $L$-Lipschitz \\ 
+                smooth and convex, choose any $y_0 = x_0=z_0$ and a non-negative sequence $\eta_t, \tilde\eta_t$, the algorithm admits form: 
                 \begin{align*}
                     x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
                     \\
@@ -794,38 +788,36 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{definition}
             \begin{remark}
-                The parameter $\eta_t, \eta_{t + 1}$ are coming from the previous generic PPM. 
+                The parameter $\eta_t, \tilde\eta_{t + 1}$ are exactly the same as Ahn, Sra (6.24), but with the choice of $\mu = 0$. 
+                This form is not explictly stated by Ahn and Sra but it's trivial to realize its presence regardless. 
                 They are the same parameters for both algorithms and they are equivalent. 
                 This will be proved in the coming parts. 
             \end{remark}
-            
-            \begin{definition}[AG Generic PPM Form with Strong Convexity]\label{def:agg_ppm_scvx}
-                Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y)$ to be a function such that for all $x, \bar x \in \RR^n$: 
+            \begin{definition}[Strongly Convex Tri-points Generic Form]
+                \quad 
+                With $f$ being $L$-Lipschitz smooth and $\mu > 0$ strongly convex then the Strongly convex Tri-Points generic form has updates of for iterates
                 \begin{align*}
-                l_f(x; \bar x) + \frac{\mu}{2}\Vert x - \bar x\Vert^2
-                \le f(x; \bar x) 
-                \le l_f(x; \bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2, 
-                \end{align*}
-                then for all $x_0 \in \RR^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
-                \begin{align*}
-                    x_{t + 1} &= \argmin_{x} \left\lbrace
-                    l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
-                    \right\rbrace, 
+                    x_{t + 1} &= (1 + \mu\tilde \eta_{t + 1})^{-1}(x_t + \mu\tilde\eta_{t + 1}y_t^+), 
                     \\
-                    y_{t + 1} &= \argmin_{x} 
-                    \left\lbrace
-                        l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
-                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-                    \right\rbrace. 
+                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L\eta_{t + 1}z_{t +1}). 
                 \end{align*}
-                Here we assume that $\eta_{t + 1} > 0$ for all $t \in \NN$. 
             \end{definition}
-            \begin{remark}
-                Set $\mu = 0$, the above is the same as AG Generid Triangular Form. 
-            \end{remark}
 
-            \begin{proposition}[Triangular Form via PPM Form]\label{prop:tri_form_via_ppm}
-                with $f$ being $L$-Lipschitz continuous, let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
+        \subsubsection*{Useful Observations about these Generic forms}
+            In this section we list some incredibaly useful information about these forms of the Nestrov type accelerated gradient algorithm. 
+            \hyperref[prop:tri_form_via_ppm]{Proposition \ref*{prop:tri_form_via_ppm}}, 
+            \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{proposition \ref*{prop:tri_scvx_from_ahn_sra_6.24}}, 
+            \hyperref[prop:Nes2.2.7_via_ahn_sra_6.24]{proposition \ref*{prop:Nes2.2.7_via_ahn_sra_6.24}}
+            are results assumed as true in Ahn, Sra. 
+            They are implicitly left as necessary exercises for the readers. 
+            Here, we fill out the blanks with our own interpretations. 
+            \begin{proposition}[Tri-points generic form via Ahn Sra 6.24]
+                \label{prop:tri_form_via_ppm}
+                with $f$ being \\
+                $L$-Lipschitz continuous, 
+                let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
             \end{proposition}
             \begin{proof}
                 Solving the optimality on the first PPM yields: 
@@ -876,8 +868,282 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
                 The base case is when $t = 0$, so then $x_0 = y_0$ for the initial guess.
             \end{proof}
-        \subsubsection*{Specific Instances of Accelerated Gradient Method}
+            \begin{remark}
+                It is quite obvious to us that the choice of $z_{t + 1} = y_t - L^{-1}\nabla f(y_t)$ is deliberate. 
+                In fact, it's true that $z_{t + 1}$ is just a term such that it makes $y_{t +1}$ a convex combination between the vector $x_{t + 1}, z_{t + 1}$, and the choice here would be unique because of the consideration that 
+                {\footnotesize
+                \begin{align*}
+                    & \quad 
+                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 
+                    \\
+                    &= 
+                    f(y_t) + \langle \nabla f(y_t), x - y_t\rangle 
+                    + 
+                    \frac{L}{2}
+                    \left\Vert 
+                        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &= 
+                    f(y_t) + 
+                    \langle \nabla f(y_t), x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)\rangle 
+                    + 
+                    \frac{L}{2}
+                    \left\Vert 
+                        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &\quad  \text{Let }z_{t + 1} 
+                    = y_t - L^{-1}\nabla f(y_t)
+                    \\
+                    &= f(y_t) + \langle \nabla f(y_t), x - z_{t + 1} - L^{-1}\nabla f(y_t)\rangle
+                    + 
+                    \frac{L}{2}\left\Vert
+                        x - z_{t + 1} - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &= 
+                    f(y_t) + \langle \nabla f(y_t), x - z_{t + 1}\rangle 
+                    - L^{-1}\Vert \nabla f(y_t)\Vert^2
+                    + 
+                    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+                    \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 - 
+                    L\langle L^{-1}\nabla f(y_t), x - z_{t + 1}\rangle
+                    \\
+                    &= f(y_t) + (1/(2L)- L^{-1})\Vert \nabla f(y_t) \Vert^2 + 
+                    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2
+                    \\
+                    &= f(y_t) - \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 + \frac{L}{2}\Vert x - z_{t + 1}\Vert^2. 
+                \end{align*}
+                }
+                Therefore 
+                \begin{align*}
+                    y_{t + 1} &= \argmin_{x}\left\lbrace
+                        \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &= \argmin_{x}\left\lbrace
+                        \left\Vert x - 
+                            \frac{Lz_{t + 1} + \eta_{t + 1}^{-1}x_{t + 1}}{
+                                L + \eta_{t + 1}^{-1}
+                            }
+                        \right\Vert^2
+                    \right\rbrace
+                    \\
+                    &= 
+                    \frac{
+                        L\eta_{t + 1}z_{t + 1} + 
+                        x_{t + 1}
+                    }{
+                        1 + L \eta_{t + 1}
+                    }. 
+                \end{align*}
+            \end{remark}
+
+            \begin{proposition}[Tripoints Strongly Convex Form via Ahn Sra 6.24]\label{prop:tri_scvx_from_ahn_sra_6.24}
+                Coninue \\ 
+                from \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with but with $\mu > 0$, under the same set of assumptions it recovers a tri-points algorithm with the following updates: 
+                \begin{align*}
+                    y_t^+ &= y_t - \mu^{-1}\nabla f(y_t)
+                    \\
+                    x_{t + 1} &= \argmin_{x} 
+                    \left\lbrace
+                        l_f (x; y_t) + \frac{\mu}{2} \Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2 
+                    \right\rbrace
+                    \\
+                    &= \argmin_{x}
+                    \left\lbrace
+                        f(y_t) - \frac{1}{2\mu} \Vert \nabla f(y_t)\Vert^2 
+                        + 
+                        \frac{\mu
+                        }{2}\Vert x - y_t^+\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (1 + \mu\tilde \eta_{t + 1})^{-1}
+                    \left(
+                        x_t + \mu \tilde \eta_{t + 1}y_t^{+}
+                    \right)
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t)
+                    \\
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L \eta_{t + 1} z_{t + 1})
+                \end{align*}
+            \end{proposition}
+            \begin{proof}
+                By a similar argument made in the remarks of \hyperref[prop:tri_form_via_ppm]{proposition \ref*{prop:tri_form_via_ppm}} we have 
+                \begin{align*}
+                    l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2
+                    &= 
+                    f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+                    \\
+                    \implies 
+                    x_{t + 1} &= 
+                    \argmin{x} 
+                    \left\lbrace
+                        f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= 
+                    \argmin{x}
+                    \left\lbrace
+                        \frac{\mu}{2}\Vert x - y_t^+\Vert^2 + 
+                        \frac{2}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (\mu + \tilde \eta_{t + 1})^{-1}
+                    (\mu y_t^+ + \tilde \eta_{t + 1}x_t)
+                    \\
+                    &= (1 + \tilde \eta_{t + 1}\mu)^{-1}
+                    (x_t + \mu\tilde \eta_{t + 1}y_t^+). 
+                \end{align*}
+                The updates for $y_{t + 1}, z_{t + 1}$ is the same as before because $\mu > 0$ only alters the update of the term $x_{t + 1}$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
+            \end{proof}
             
+            \begin{proposition}[Nestrov 2.2.7 is Equivlant to Ahn Sra 6.24 in Form]
+            \label{prop:Nes2.2.7_via_ahn_sra_6.24}
+                The \hyperref[def:Nes2.2.7]{algorithm \ref*{def:Nes2.2.7}} is equivalent to \hyperref[def:agg_ppm]{\ref*{def:agg_ppm}} in form. 
+                So the updates for $y_{k + 1}, x_{k + 1}, v_{k + 1}$: 
+                \begin{align*}
+                    \text{find } &
+                    \alpha_k \in (0, 1) 
+                    \text{ s.t: } L\alpha_k^2 
+                    = (1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1} 
+                    \\
+                    y_k &= 
+                    \left(
+                        \gamma_k + \alpha_k \mu
+                    \right)^{-1} \left(
+                        \alpha_k \gamma_k v_k + \gamma_{k + 1}x_k
+                    \right)
+                    \\
+                    \text{find } & x_{k + 1} \text{ s.t: }
+                    f(x_{k + 1})
+                    = f(y_k) - (2L)^{-1}\Vert \nabla f(y_k)\Vert^2
+                    \\
+                    v_{k+1} &= 
+                    \gamma_{k + 1}^{-1} 
+                    \left(
+                        (1 - \alpha_k) \gamma_k v_k + 
+                        \alpha_k \mu y_k 
+                        - \alpha_k \nabla f(y_k)
+                    \right). 
+                \end{align*}
+                Is the same as $y_{t + 1}, z_{t + 1}, x_{t + 1}$ from below: 
+                \begin{align*}
+                    x_{t + 1} 
+                    & = 
+                    (1 + \tilde \eta_{t + 1}\mu)^{-1}
+                    (x_t + \mu\tilde \eta_{t + 1}y_t - \tilde \eta_{t + 1}\nabla f(y_t))
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (x_{t + 1} + L \eta_{t + 1} z_{t + 1}).
+                \end{align*}
+                which is an equivalent representation of \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} as showned in \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{propostion \ref*{prop:tri_scvx_from_ahn_sra_6.24}}. 
+            \end{proposition}
+            \begin{proof}
+                We simplify the Nesterov form into the Strongly convex Generic Triangular Form. 
+                Consider update for $v_{k + 1}$ by substituting $\gamma_{k+1} = (1 - \alpha_k) \gamma_k + \alpha_k \mu$ as informed by the first step of the algorithm, we have 
+                \begin{align*}
+                    v_{k + 1} &= 
+                    ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+                    \left(
+                        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+                    \right)
+                    \\
+                    &= ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+                    (
+                        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu(y_k - \alpha_k \mu^{-1}\nabla f(y_k))
+                    )
+                    \\
+                    &= 
+                    \left(
+                        1 + \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k}
+                    \right)^{-1}
+                    \left(
+                        v_k
+                        + 
+                        \left(
+                            \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k} 
+                        \right)
+                        \left(
+                            y_k 
+                            - \alpha_k \mu^{-1}\nabla f(y_k)
+                        \right)
+                    \right). 
+                \end{align*}
+                Notice that the right hand size has the same form as $x_{t + 1}$. 
+                This is true by the observation that 
+                \begin{align*}
+                    x_{t + 1} &= 
+                    (1 + \tilde\eta_{t + 1}\mu)^{-1}
+                    \left( 
+                        x_t + \mu\tilde \eta_{t + 1}
+                        \left(y_t - \mu^{-1}\nabla f(y_t)\right)
+                    \right). 
+                \end{align*}
+                Similarly, when $\mu = 0$, we have from the first step that $v_{k + 1} = v_k - \alpha_k \nabla f(y_k)$, which is the same as the AG generic PPM form where 
+                $$
+                    x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_t). 
+                $$
+                Next, we consider $y_{k}$ iterate of Nesterov 2.2.7. 
+                We want to write it as a convex combination of the vector $v_k,x_k$. 
+                To show that the updates $y_k$ can are of the same form, start by considering that 
+                \begin{align*}
+                    \gamma_{k + 1 } &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
+                    \\
+                    &= (\gamma_k + \alpha_k \mu) - \alpha_k \gamma_k, 
+                \end{align*}
+                with the grouping we have
+                \begin{align*}
+                    y_k &= \left(
+                        \gamma_k + \alpha_k \mu
+                        \right)^{-1} \left(
+                            \alpha_k \gamma_k v_k + \gamma_{k + 1}x_k
+                        \right)
+                    \\
+                    &= 
+                    \left(
+                        \gamma_k + \alpha_k \mu
+                    \right)^{-1}
+                    \left(
+                        \alpha_k \gamma_k v_k 
+                        + 
+                        ((\gamma_k + \alpha_k\mu) - \alpha_k\gamma_k)x_k
+                    \right)
+                    \\
+                    &= 
+                    \left(
+                        \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+                    \right)v_k
+                    + 
+                    \left(
+                        1 - \frac{\alpha_k\gamma_k }{\gamma_k + \alpha_k \mu}
+                    \right)x_k, 
+                \end{align*}
+
+                which is indeed, a convex combination of $v_k, x_k$, if, we assume that $(\alpha_k\gamma_k)(\gamma_k + \alpha_k \mu)^{-1}$ is in the interval $(0, 1)$. 
+                We can assume it by considering $\gamma_k = L\alpha_{k-1}^2$, simplifying so that 
+                \begin{align*}
+                    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+                    &= 
+                    \frac{L\alpha_k \alpha_{k - 1}^2}{L\alpha_{k - 1}^2 + \mu \alpha_k}
+                    \\
+                    &= \frac{\alpha_k \alpha_{k - 1}^2}{1 + q_f \alpha_k \alpha_{k - 1}^{-2}} \in (0, 1), 
+                \end{align*}
+                where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alpha_k)_{k \in \NN}$ has $\alpha_k \in (0, 1)$ and $\sum_{i = 1}^{\infty} \alpha_k = \infty$. 
+                However, it would require more works to express $\eta_t, \tilde\eta$ from Ahn Sra 6.24 using $\gamma_k, \alpha_k$ from Nesterov 2.2.7. 
+            \end{proof}
+
+
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
@@ -923,7 +1189,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right), 
             \end{aligned}
             $$
-            performing PPM on the function produces the PPM Lyapunov inequality, substituting yields equivalences for all $x_*$: 
+            performing PPM on $\phi_t$ produces the PPM Lyapunov inequality from 
+            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}},
+            substituting yields equivalences for all $x_*$: 
             {\footnotesize
             \begin{align*}
                 & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 

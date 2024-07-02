@@ -88,7 +88,7 @@ and we consider the summation term by term, keep in mind that $G_\beta (x) - \na
 
 $$
 \begin{aligned}
-    {[3]}:= [1] + [2]
+    {[3]} &:= [1] + [2]
     \\
     [3] &= \langle \nabla g(x), x - z - x + x^+\rangle = \langle \nabla g(x), x^+ - z\rangle
     \\
