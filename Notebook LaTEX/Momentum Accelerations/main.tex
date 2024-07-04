@@ -738,9 +738,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     rephrase content in the appendix in work by Ahn, Sra\cite{ahn_understanding_2022}. 
     It is our attempt at rephrasing the proofs to create a layer of abstraction so it can be reused for multiple proofs for several variants. 
 
-
-    
-    
     \subsection{Preliminaries}
         We introduce some additional lemma that are crucial to the derivations of non-smooth accelerated gradient method. 
         \begin{definition}[The Gradient Mapping]
@@ -756,7 +753,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             $$
         \end{definition}
         \begin{remark}
-            The name "gradient mapping" comes from \cite[(2.2.54)]{nesterov_lectures_2018}, however, Nesterov was referring to only the case when $g$ is an indicator function of a convex set in his writing. 
+            The name ``gradient mapping" comes from \cite[(2.2.54)]{nesterov_lectures_2018}, however, Nesterov was referring to only the case when $g$ is an indicator function of a convex set in his writing. 
+            Of course, in Amir Beck \cite[10.3.2]{beck_first-order_nodate}, it has the exact same definition for gradient mapping as the above. 
         \end{remark}
 
         \begin{lemma}[Gradient Mapping Approximates Subgradient]
@@ -792,7 +790,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \label{lemma:grad_map_linearization}
             Continue from 
             \hyperref[lemma:grad_map_lemma_first]{definition \ref*{lemma:grad_map_lemma_first}}, 
-            with $x^+ = \mathcal T(x)$, the gradient mapping satisfies the inequality for all $z$: 
+            with $x^+ = \mathcal T_L(x)$, the gradient mapping satisfies the inequality for all $z$: 
             \begin{align*}
                 h(z) &\ge
                 h(z) - \frac{L}{2}\Vert x - x^+\Vert^2
@@ -928,7 +926,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right\rbrace,
                     \\
                     \mathcal G_L^{g, f}(x) &= 
-                    L(x - \mathcal T_L^{g, f}(x)). 
+                    L\left(x - \mathcal T_L^{g, f}(x)\right). 
                 \end{aligned}
                 $$
                 Omitting the superscript $f, g$ on $\mathcal P, \mathcal G$ for simplicity since it's clear in the context. 
@@ -956,6 +954,39 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 $$
             \end{definition}
 
+            \begin{definition}[AG Proximal Gradient Tri-Points Generic Form]
+            \label{def:ag_prox_grad_tri_pt}
+                With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
+                Define proximal gradient and gradient mapping operator 
+                $$
+                \begin{aligned}
+                    \mathcal T_L(x) 
+                    &:= \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)), 
+                    \\
+                    x^+ &= \mathcal T_L(x), 
+                    \\
+                    \mathcal G_L(x) 
+                    &:= L(x -  x^+). 
+                \end{aligned}
+                $$
+                Then the algorithm updates $(y_t, x_{t + 1}, z_{t + 1})$ with expression: 
+                $$
+                \begin{aligned}
+                    y_t^+ &= \mathcal T_L(y_t)
+                    \\
+                    y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+                    \\
+                    x_{t + 1} &= x_t - \tilde \eta \mathcal G_L(y_t)
+                    \\
+                    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+                \end{aligned}
+                $$
+                where the base case has $y_0 = x_0$. 
+            \end{definition}
+            \begin{remark}
+                Observe that $z_{t + 1} = y_t^+$. 
+            \end{remark}
+
             \begin{definition}[Tri-points Generic Form]\label{def:agg_tri}
                 With $f$ be $L$-Lipschitz \\ 
                 smooth and convex, choose any $y_0 = x_0=z_0$ and a non-negative sequence $\eta_t, \tilde\eta_t$, the algorithm admits form: 
@@ -972,7 +1003,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{definition}
             \begin{remark}
-                The parameter $\eta_t, \tilde\eta_{t + 1}$ are exactly the same as Ahn, Sra (6.24), but with the choice of $\mu = 0$. 
+                The parameter $\eta_t, \tilde\eta_{t + 1}$ are exactly the same as Ahn, Sra \cite[(6.24)]{ahn_understanding_2022}, but with the choice of $\mu = 0$. 
                 This form is not explictly stated by Ahn and Sra but it's trivial to realize its presence regardless. 
                 They are the same parameters for both algorithms and they are equivalent. 
                 This will be proved in the coming parts. 
@@ -989,7 +1020,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{definition}
 
-        \subsubsection*{Useful Observations about these Generic forms}\label{sec:AG_useful_information}
+        \subsubsection{Useful Observations about these Generic forms}
+        \label{sec:AG_useful_information}
             In this section we list some incredibaly useful information about these forms of the Nestrov type accelerated gradient algorithm. 
             \hyperref[prop:tri_form_via_ppm]{Proposition \ref*{prop:tri_form_via_ppm}}, 
             \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{proposition \ref*{prop:tri_scvx_from_ahn_sra_6.24}}, 
@@ -1125,7 +1157,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{remark}
 
-            \begin{proposition}[Tripoints Strongly Convex Form via Ahn Sra 6.24]\label{prop:tri_scvx_from_ahn_sra_6.24}
+            \begin{proposition}[Tri-points Strongly Convex Form via Ahn Sra 6.24]\label{prop:tri_scvx_from_ahn_sra_6.24}
                 Coninue \\ 
                 from \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with but with $\mu > 0$, under the same set of assumptions it recovers a tri-points algorithm with the following updates: 
                 \begin{align*}
@@ -1340,13 +1372,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{proof}
 
 
-
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
         \begin{lemma}[Smooth Generic AG Lyapunov Analysis]\label{lemma:smooth_agg_lyapunov_upper_bound}
-            With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} and \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} then these are the upper bounds for the RHS of the PPM descent inequality: 
+            With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using 
+            \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with $\mu = 0$
+            and 
+            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} ,
+            then we can derive the upper bounds for the RHS of the PPM descent inequality: 
             \begin{align*}
-                \Upsilon_{1, t + 1}^{\text{AG}}&= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
+                \Upsilon_{1, t + 1}^{\text{AG}}
+                &= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
                 + \frac{1}{2}(
                     \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_t - x_* \Vert^2
                 )  
@@ -1442,6 +1478,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Which is the descent inequality anchored on $z_{t + 1}$.
             Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
         \end{proof}
+
+        \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
+        \label{lemma:nsmooth_agg_lyapunov_upper_bound}
+            
+            
+        \end{lemma}
 
         \begin{theorem}[Generic AG Convergence]\label{thm:generic_smooth_ag_convergence}
             If there is a choice of $\eta_i, \tilde \eta_i$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} such that we have 
@@ -1827,7 +1869,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proof}
         \begin{remark}
-            In this remark we clarify the name "similar triangule" as given in the literatures. 
+            In this remark we clarify the name ``similar triangule" as given in the literatures. 
             We think it is a fitting name, becaues it has a similar triangle in it. 
             We list the following observations
             \begin{enumerate}

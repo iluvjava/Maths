@@ -18,15 +18,14 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-15--accelerated-gradient-strongly-convex-generic-ppm)
   - [**Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-16--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-17--accelerated-gradient-strongly-convex-generic-triangular-form)
-  - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form I**](#definition-18--ag-proximal-gradient-generic-ppm-form-i)
+  - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Lemma 2.2 | The Non-smooth Tri-Points Form**](#lemma-22--the-non-smooth-tri-points-form)
-  - [**Claim 2.3 | The Interpretation of the Ghost term z**](#claim-23--the-interpretation-of-the-ghost-term-z)
+  - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
+  - [**Lemma 2.3 | The Non-smooth Tri-Points Form**](#lemma-23--the-non-smooth-tri-points-form)
   - [**Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-24--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
-  - [**Claim 2.6 | AG Proximal Tri-Point Generic Form via AG Proximal PPM Generic Form**](#claim-26--ag-proximal-tri-point-generic-form-via-ag-proximal-ppm-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
@@ -45,7 +44,7 @@ debugInConsole: false # Print debug info in Obsidian console
 ---
 ### **Prelimaries**
 
-
+The following concepts are crucial for introducing proximal gradient into the PPM interpretation frameworks of the accelerated gradient method!
 
 #### **Lemma 0.1 | Nesterov Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
@@ -92,7 +91,7 @@ $$
 
 **Observations**
 
-We get a linear functional that acts as the lower bound of $h$ because 
+We get a linear functional anchored at $x^+$ that acts as the lower bound of $h$ because 
 
 $$
 \begin{aligned}
@@ -122,6 +121,7 @@ $$
 Now, consider adding $g(x^+)$ to the first inequality from above we get 
 
 $$
+{\small
 \begin{aligned}
     f(x^+) + g(x^+) 
     &\le 
@@ -144,8 +144,9 @@ $$
     + \frac{L}{2}\Vert x - x^+\Vert^2
     \\
     &= h(z) + \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
-    + \frac{L}{2}\Vert x - x^+\Vert^2
+    + \frac{L}{2}\Vert x - x^+\Vert^2.
 \end{aligned}
+}
 $$
 
 By $\mathcal G_L(x) = L(x - x^+) \in \nabla f(x) + \partial g(x^+)$ from previous dicussion, we have 
@@ -299,7 +300,7 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 
 The above algorithm is derived from the generic strongly convex PPM form. 
 
-#### **Definition 1.8 | AG Proximal Gradient Generic PPM Form I**
+#### **Definition 1.8 | AG Proximal Gradient Generic PPM Form**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
 > Define the proximal gradient and gradient mapping operator operator: 
 > $$
@@ -337,8 +338,8 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     y_{t + 1}&= 
 >     \argmin{x}
 >     \left\lbrace
->         g(x) + l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
->         \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+>         h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+>         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
 >     \right\rbrace.
 > \end{aligned}
 > $$
@@ -355,7 +356,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     x^+ &= \mathcal T_L(x), 
 >     \\
 >     \mathcal G_L(x) 
->     &:= L(x - \mathcal x^+). 
+>     &:= L(x - x^+). 
 > \end{aligned}
 > $$
 > Then the algorithm updates $(y_t, x_{t + 1}, z_{t + 1})$ with expression: 
@@ -365,7 +366,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     \\
 >     y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
 >     \\
->     x_{t + 1} &= x_t - \tilde \eta \mathcal G_L(y_t)
+>     x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
 >     \\
 >     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
 > \end{aligned}
@@ -476,35 +477,10 @@ By the base case $x_0 = y_0$, the update sequence would be $z_1, y_1, x_1$, then
 Depending on the bas case, the order of the update will differ! 
 If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
-#### **Lemma 2.2 | The Non-smooth Tri-Points Form**
-> The AG experimental Tri-point form can be derived from AG experiment PPM Form I. 
-> Continuing from the definition of the Experimental Tri-point form we claim the following equalities: 
-> $$
-> \begin{aligned}
->     x_{t + 1} &= \argmin{x}
->     \left\lbrace
->         l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
->     \right\rbrace
->     \\
->     &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)
->     \\
->     y_t &= \argmin{x}
->     \left\lbrace
->         g(x) + \langle \nabla f(x), x - y_t\rangle 
->         + 
->         \frac{1}{2\eta_{t + 1}} \Vert x - y_t\Vert^2
->     \right\rbrace
->     \\
->     &= (1 + L\eta_{t + 1})^{-1}
->     (x_{t + 1} + L\eta_{t + 1}(y_t -  L^{-1}\mathcal  G_L(y_t)))
-> \end{aligned}
-> $$
-
-**Proof**
 
 
 
-#### **Claim 2.3 | The Interpretation of the Ghost term z**
+#### **Claim 2.2 | The Interpretation of the Ghost term z**
 > From the generic PPM form of the accelerated gradient, we notice that the update for the vector $y_{t + 1}$ admits the following alternative representation: 
 > $$
 > \begin{aligned}
@@ -614,6 +590,89 @@ This interpretation is useful. (More on this later probably, but it has somethin
 As the value of $\eta_t$ increases, $y_t$ gets closer to $z_t$. 
 Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +1}$ is upmost important in proving the convergence rate of the algorithms. 
 This interpretation can be used directly to derive the equivalence between the generic PPM form and the generic similar triangle form. 
+
+
+#### **Lemma 2.3 | The Non-smooth Tri-Points Form**
+> The AG experimental Tri-point form can be derived from AG experiment PPM Form I. 
+> Continuing from the definition of the Experimental Tri-point form we claim the following equalities: 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x}
+>     \left\lbrace
+>         l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+>     \right\rbrace
+>     \\
+>     &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)
+>     \\
+>     y_{t + 1} &= \argmin{x}
+>     \left\lbrace
+>           h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace
+>     \\
+>     &= (1 + L\eta_{t + 1})^{-1}
+>     (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by the definition of algorithm. 
+Since $l_h(x; y_t)$ is a simple linear function wrt $x$, it's not hard to minimize the quandratic where we can get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$. 
+For $y_{t + 1}$, observe that we can complete the square on the second and the third terms: 
+
+$$
+\begin{aligned}
+    & \frac{L}{2}\left(
+        2\langle L^{-1}\mathcal G_L(y_t), x - y_t\rangle + 
+        \Vert x - y_t\Vert^2
+    \right)
+    \\
+    &= 
+    \frac{L}{2}
+    \left(
+        - \Vert L^{-1} \mathcal G_L(y_t)\Vert^2  
+        + \Vert L^{-1} \mathcal G_L(y_t)\Vert^2 
+        + 
+        2\langle L^{-1} \mathcal G_L(y_t), x - y_t\rangle + 
+        \Vert x - y_t\Vert^2
+    \right)
+    \\
+    &= \frac{L}{2}\left(
+        - \Vert L^{-1}\mathcal G_L(y_t)\Vert^2  
+        + \Vert x - (y_t - L^{-1}\mathcal G_L(y_t))
+        \Vert^2
+    \right), 
+\end{aligned}
+$$
+
+therefore it transforms into 
+
+$$
+\begin{aligned}
+    y_{t + 1} &=\argmin{x} \left\lbrace
+        \frac{L}{2}\left\Vert 
+            x - (y_t - L^{-1}\mathcal G_L(y_t))
+        \right\Vert^2
+        + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+    \right\rbrace
+    \\
+    &=
+    \frac{(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}}{L + \eta_{t + 1}^{-1}},
+\end{aligned}
+$$
+
+Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, which is the proximal gradient set, then the above expression simplifies to 
+
+$$
+y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
+$$
+
+As a sanity checks, notice that when $h \equiv 0$, $\mathcal G_L(x) = \nabla f(x)$ by definition, making it the same algorithm as the case when $h$ is smooth. 
+
+**Remarks**
+
+The expression we were minimizing to get $y_{t + 1}$ as the minimizer, is a simple quadratic. Given that the original function $h$ is potentially non-smooth, we have that it's not an upper bound of $h(x)$. 
+The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
 
 
 #### **Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**
@@ -876,9 +935,6 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
-#### **Claim 2.6 | AG Proximal Tri-Point Generic Form via AG Proximal PPM Generic Form**
-
-
 ---
 ### **Lyapunov Analysis**
 
@@ -887,8 +943,7 @@ This is abstract because we only made use of the Lipschitz smoothnessof the grad
 Specific sequences of updates in the algorithm is not yet used in the proof. 
 
 #### **Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**
-> Applying PPM descent lemma on the first step of the two ways proximal point method, by anchoring on $f(z_{t + 1})$, we can derive the RHS of the descent quantity from the PPM inequality. 
-> With definitions for quantities: 
+> Continue from Lemma 2.1, by anchoring on $f(z_{t + 1})$ and using the Proximal Inequality of PPM, we can derive these inequalities
 > $$
 > \begin{aligned}
 >     \Upsilon_{1, t + 1}^{\text{AG}}&= 
@@ -1038,7 +1093,7 @@ In a sense, if we can relax the choice of $L$ to be larger so that the above con
 
 
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**
-> Continued from the definition of the AG Experimental Tri-Points form, then we have the Lyapunov upper bound: 
+> Continue from AG Proximal Gradient Generic PPM Form I, then we have the non-smooth analogous case of the Lyapunov upper bound: 
 > $$
 > \begin{aligned}
 >     \Upsilon_{1, t + 1}^\text{AG}
@@ -1306,7 +1361,7 @@ $$
 \end{aligned}
 $$
 
-Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, we have proved all we want to show. 
+Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
 
 ---
 ### **Part III**

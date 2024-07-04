@@ -5,7 +5,7 @@
 ### **Intro**
 
 This file directly continue from the previous part. 
-It's split to reduce lags on the inefficient webbased frameworks that renders markdown katex in real time. 
+It's split to reduce lags on the inefficient web based frameworks that renders markdown katex in real time. 
 
 #### **ToC For Viewing with VS Code**
 - [**Intro**](#intro)
