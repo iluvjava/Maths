@@ -18,14 +18,15 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-15--accelerated-gradient-strongly-convex-generic-ppm)
   - [**Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-16--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-17--accelerated-gradient-strongly-convex-generic-triangular-form)
-  - [**Definition 1.8 | AG Experimental Generic PPM Form I**](#definition-18--ag-experimental-generic-ppm-form-i)
-  - [**Definition 1.9 | AG Experimental Tri-Pints Form**](#definition-19--ag-experimental-tri-pints-form)
+  - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form I**](#definition-18--ag-proximal-gradient-generic-ppm-form-i)
+  - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
   - [**Lemma 2.2 | The Non-smooth Tri-Points Form**](#lemma-22--the-non-smooth-tri-points-form)
   - [**Claim 2.3 | The Interpretation of the Ghost term z**](#claim-23--the-interpretation-of-the-ghost-term-z)
   - [**Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-24--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
+  - [**Claim 2.6 | AG Proximal Tri-Point Generic Form via AG Proximal PPM Generic Form**](#claim-26--ag-proximal-tri-point-generic-form-via-ag-proximal-ppm-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
@@ -298,12 +299,12 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 
 The above algorithm is derived from the generic strongly convex PPM form. 
 
-#### **Definition 1.8 | AG Experimental Generic PPM Form I**
+#### **Definition 1.8 | AG Proximal Gradient Generic PPM Form I**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
 > Define the proximal gradient and gradient mapping operator operator: 
 > $$
 > \begin{aligned}
->     \mathcal P_L^{g, f}(x) &:=  
+>     \mathcal T_L^{g, f}(x) &:=  
 >     \prox{L^{-1}g}\left(x - L^{-1}\nabla f(x)\right)
 >     \\
 >     &= 
@@ -315,14 +316,14 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     \right\rbrace,
 >     \\
 >     \mathcal G_L^{g, f}(x) &= 
->     L(x - \mathcal P_L^{g, f}(x)). 
+>     L(x - \mathcal T_L^{g, f}(x)). 
 > \end{aligned}
 > $$
 > Omitting the superscript $f, g$ on $\mathcal P, \mathcal G$ for simplicity since it's clear in the context. 
 > Define the linear lower bounding function for $f$ at $y$, for all $x$: 
 > $$
 > \begin{aligned}
->     l_h(x; y) &= h(\mathcal P_L y) + \langle \mathcal G_L(y), x - y \rangle \le f(x), 
+>     l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le f(x), 
 > \end{aligned}
 > $$
 > With that we define the algorithm:
@@ -343,19 +344,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > $$
 
 
-**Observations**
-
-
-
-
-
-
-**Remarks**
-
-This is Nesterov (2.2.63), but with proximal gradient operator instead of just projected gradient operator. 
-
-
-#### **Definition 1.9 | AG Experimental Tri-Pints Form**
+#### **Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**
 > With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
 > Define proximal gradient and gradient mapping operator 
 > $$
@@ -885,6 +874,10 @@ $$
 
 where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alpha_k)_{k \in \N}$ has $\alpha_k \in (0, 1)$ and $\sum_{i = 1}^{\infty} \alpha_k = \infty$. 
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
+
+
+#### **Claim 2.6 | AG Proximal Tri-Point Generic Form via AG Proximal PPM Generic Form**
+
 
 ---
 ### **Lyapunov Analysis**

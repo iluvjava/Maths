@@ -789,6 +789,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
 
         \begin{lemma}[Linearized Gradient Mapping Lower Bound]
+        \label{lemma:grad_map_linearization}
             Continue from 
             \hyperref[lemma:grad_map_lemma_first]{definition \ref*{lemma:grad_map_lemma_first}}, 
             with $x^+ = \mathcal T(x)$, the gradient mapping satisfies the inequality for all $z$: 
@@ -811,7 +812,56 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &g(x^+) \le 
                 g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
             \end{align*}
+            Now, consider adding $g(x^+)$ to the first inequality from above we get 
+            {\footnotesize 
+            \begin{align*}
+                f(x^+) + g(x^+) 
+                &\le 
+                f(x) + g(x^+) + \langle \nabla f(x), x^+ - x\rangle 
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &\le 
+                (f(z) - \langle \nabla f(x), z - x\rangle) + 
+                \left(g(z) - \langle \partial g(x^+), x^+ - z\rangle\right)
+                + 
+                \langle \nabla f(x), x^+ - x\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= f(z) + g(z) + \langle \nabla f(x), x - z + x^+ - x\rangle
+                + 
+                \langle \partial g(x^+), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= 
+                h(z) + \langle \nabla f(x), x^+ - z\rangle + 
+                \langle \partial g(x^+), x^+ - z\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) + \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+                + \frac{L}{2}\Vert x - x^+\Vert^2. 
+            \end{align*}
+            }
+            By $\mathcal G_L(x) = L(x - x^+) \in \nabla f(x) + \partial g(x^+)$ from previous dicussion, we have 
+            \begin{align*}
+                h(x^+) &\le 
+                h(z) + \langle \mathcal G_L(x), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) - \langle L(x^+ - x), x^+ - x + x - z \rangle 
+                + 
+                \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= 
+                h(z) - L\Vert x^+ - x\Vert^2 
+                + L \langle x^+ - x, x - z\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) + \langle \mathcal G_L(x), x - z\rangle - 
+                \frac{L}{2}\Vert x - x^+\Vert^2. 
+            \end{align*}
+            Therefore, the inequality is justified. 
         \end{proof}
+        \begin{remark}
+            Observe that the linearization $h(x^+) + \langle \mathcal G_L(x), z - x\rangle$ is anchored at $x^+$, instead of $x$. 
+            Geometrically, it's tilted and it "prefers" the sharp corners of a convex function, if, $x$ is close to a sharp corner. 
+        \end{remark}
 
     \subsection{Varieties of Nesterov accelerated gradient}\label{sec:AG_varieties}
         Here, the acrynonym: ``AG" stands for accelerated gradient. 
@@ -861,7 +911,49 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{remark}
 
             \begin{definition}[AG Proximal Gradient PPM Generic Form]
-                
+            \label{def:ag_prox_grad_ppm}
+                Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
+                Define the proximal gradient and gradient mapping operator operator: 
+                $$
+                \begin{aligned}
+                    \mathcal T_L^{g, f}(x) &:=  
+                    \hprox_{L^{-1}g}\left(x - L^{-1}\nabla f(x)\right)
+                    \\
+                    &= 
+                    \argmin_{u}
+                    \left\lbrace
+                        g(u) + f(x) + \langle \nabla f(x), u - x\rangle
+                        + 
+                        \frac{L}{2}\Vert u - x\Vert^2
+                    \right\rbrace,
+                    \\
+                    \mathcal G_L^{g, f}(x) &= 
+                    L(x - \mathcal T_L^{g, f}(x)). 
+                \end{aligned}
+                $$
+                Omitting the superscript $f, g$ on $\mathcal P, \mathcal G$ for simplicity since it's clear in the context. 
+                Define the linear lower bounding function for $f$ at $y$, for all $x$: 
+                $$
+                \begin{aligned}
+                    l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le f(x), 
+                \end{aligned}
+                $$
+                With that we define the algorithm:
+                $$
+                \begin{aligned}
+                    x_{t + 1} &= \argmin_{x} \left\lbrace
+                        l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+                        \Vert x - x_t\Vert^2
+                    \right\rbrace,
+                    \\
+                    y_{t + 1}&= 
+                    \argmin_{x}
+                    \left\lbrace
+                        g(x) + l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace.
+                \end{aligned}
+                $$
             \end{definition}
 
             \begin{definition}[Tri-points Generic Form]\label{def:agg_tri}
@@ -1074,7 +1166,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \\
                     \implies 
                     x_{t + 1} &= 
-                    \argmin{x} 
+                    \argmin_{x} 
                     \left\lbrace
                         f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
                         + 
@@ -1082,7 +1174,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \right\rbrace
                     \\
                     &= 
-                    \argmin{x}
+                    \argmin_{x}
                     \left\lbrace
                         \frac{\mu}{2}\Vert x - y_t^+\Vert^2 + 
                         \frac{2}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
