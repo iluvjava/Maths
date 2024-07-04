@@ -11,8 +11,10 @@ It's split to reduce lags on the inefficient webbased frameworks that renders ma
 - [**Intro**](#intro)
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
+  - [**Generic Convergence Bound based on PPM Interpretation**](#generic-convergence-bound-based-on-ppm-interpretation)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
+  - [**Scenario 1.1 | Non-Smooth, Not a Similar Triangle**](#scenario-11--non-smooth-not-a-similar-triangle)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
@@ -24,11 +26,10 @@ It's split to reduce lags on the inefficient webbased frameworks that renders ma
   - [**Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**](#claim-23--chambolle-and-dossals-variant-doesnt-fit-the-framework)
 
 
-
-
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
+#### **Generic Convergence Bound based on PPM Interpretation**
 In this section, we repeat part II, but with the above theorem. 
 With $x_* \in \argmin{x} f(x)$, and 
 
@@ -78,7 +79,6 @@ $$
 $$
 
 Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t \le 0$ for the appropriate choice of $\tilde \eta_t, \eta_t$ in the algorithm, we have a convergence rate of $f(z_{T + 1}) - f(x_*) \le \mathcal O\left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ from the analysis of PPM. 
-
 
 
 #### **Scenario 1 | Not Similar Triangle**
@@ -305,6 +305,10 @@ To satisfies the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ o
 If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the base case; 
 so $z_0$ is undefined. 
 Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
+
+#### **Scenario 1.1 | Non-Smooth, Not a Similar Triangle**
+
+
 
 
 #### **Scenario 2 | Similar Triangle I**

@@ -10,7 +10,8 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**ToC for VS Code Viewing**](#toc-for-vs-code-viewing)
   - [**ToC for Obsidian Notebook**](#toc-for-obsidian-notebook)
 - [**Prelimaries**](#prelimaries)
-  - [**Lemma 3.2 | Nesterov Gradient Mapping**](#lemma-32--nesterov-gradient-mapping)
+  - [**Lemma 0.1 | Nesterov Gradient Mapping**](#lemma-01--nesterov-gradient-mapping)
+  - [**Lemma 0.2 | Linear Lower Bound of Gradient Mapping**](#lemma-02--linear-lower-bound-of-gradient-mapping)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Def 1.1 | Nes 2.2.7**](#def-11--nes-227)
   - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
@@ -28,6 +29,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
+- [**Part III**](#part-iii)
 
 #### **ToC for Obsidian Notebook**
 ```table-of-contents
@@ -44,7 +46,7 @@ debugInConsole: false # Print debug info in Obsidian console
 
 
 
-#### **Lemma 3.2 | Nesterov Gradient Mapping**
+#### **Lemma 0.1 | Nesterov Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
 > With the proximal gradient operator $\mathcal T_L(x) = [I + L^{-1}\partial g]^{-1}[I - L^{-1}\nabla f](x)$, and gradient mapping operator $\mathcal G_L(x) = L(x - \mathcal T(x))$, then it satisfies for all $x$: 
 > $$
@@ -71,10 +73,105 @@ $$
     \\
     L(x - x^+) &\in \nabla f(x) + \partial g(x^+)
     \\
-    \mathcal G(x) \in \nabla f(x) + \partial g(x^+). 
+    \mathcal G_L(x) &\in \nabla f(x) + \partial g(x^+). 
 \end{aligned}
 $$
 
+#### **Lemma 0.2 | Linear Lower Bound of Gradient Mapping**
+> Continuing from previous lemma, fix any $x$, let $x^+ = \mathcal T_L(x)$, then we have the inequality for all $z$: 
+> $$
+> \begin{aligned}
+>     h(x^+) - h(z)
+>     &\le 
+>     \langle \mathcal G_L(x), x - z\rangle - 
+>     \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2
+> \end{aligned}
+> $$
+
+
+**Observations**
+
+We get a linear functional that acts as the lower bound of $h$ because 
+
+$$
+\begin{aligned}
+    h(x^+) + \langle \mathcal G_L(x), z - x\rangle 
+    \le 
+    h(z) - \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2
+    &\le h(z) \quad \forall z. 
+\end{aligned}
+$$
+
+**Proof**
+
+Directly from the $L$-smoothness of $f$, convexity of $g, f$, we have the list of inequalities: 
+$$
+\begin{aligned}
+    &f(x^+) \le 
+    f(x) + \langle \nabla f(x), x^+ - x\rangle
+    + \frac{L}{2}\Vert x - x^+\Vert^2, 
+    \\
+    &f(x) \le f(z) - \langle \nabla f(x), z - x\rangle, 
+    \\
+    &g(x^+) \le 
+    g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
+\end{aligned}
+$$
+
+Now, consider adding $g(x^+)$ to the first inequality from above we get 
+
+$$
+\begin{aligned}
+    f(x^+) + g(x^+) 
+    &\le 
+    f(x) + g(x^+) + \langle \nabla f(x), x^+ - x\rangle 
+    + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &\le 
+    (f(z) - \langle \nabla f(x), z - x\rangle) + 
+    \left(g(z) - \langle \partial g(x^+), x^+ - z\rangle\right)
+    + 
+    \langle \nabla f(x), x^+ - x\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= f(z) + g(z) + \langle \nabla f(x), x - z + x^+ - x\rangle
+    + 
+    \langle \partial g(x^+), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= 
+    h(z) + \langle \nabla f(x), x^+ - z\rangle + 
+    \langle \partial g(x^+), x^+ - z\rangle
+    + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= h(z) + \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+    + \frac{L}{2}\Vert x - x^+\Vert^2
+\end{aligned}
+$$
+
+By $\mathcal G_L(x) = L(x - x^+) \in \nabla f(x) + \partial g(x^+)$ from previous dicussion, we have 
+$$
+\begin{aligned}
+    h(x^+) &\le 
+    h(z) + \langle \mathcal G_L(x), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= h(z) - \langle L(x^+ - x), x^+ - x + x - z \rangle 
+    + 
+    \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= 
+    h(z) - L\Vert x^+ - x\Vert^2 
+    + L \langle x^+ - x, x - z\rangle
+    + \frac{L}{2}\Vert x - x^+\Vert^2
+    \\
+    &= h(z) + \langle \mathcal G_L(x), x - z\rangle - 
+    \frac{L}{2}\Vert x - x^+\Vert^2. 
+\end{aligned}
+$$
+
+Therefore, the inequality is justified. 
+
+**Remarks**
+
+The proximal linear lower bound always anchored itself at the proximal gradient point $x^+$, which can be a sharp corner of the function. 
 
 
 ---
@@ -234,14 +331,12 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     x_{t + 1} &= \argmin{x} \left\lbrace
 >         l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
 >         \Vert x - x_t\Vert^2
->     \right\rbrace
->     \\
->     &= x_t - \tilde\eta_{t + 1}\mathcal G_L(y_t),
+>     \right\rbrace,
 >     \\
 >     y_{t + 1}&= 
 >     \argmin{x}
 >     \left\lbrace
->         l_h(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+>         g(x) + l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
 >         \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
 >     \right\rbrace.
 > \end{aligned}
@@ -292,6 +387,7 @@ This is Nesterov (2.2.63), but with proximal gradient operator instead of just p
 
 This algorithm exists in the literatures. 
 The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead. 
+
 
 ---
 ### **Form Comparison**
@@ -392,7 +488,30 @@ Depending on the bas case, the order of the update will differ!
 If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
 
 #### **Lemma 2.2 | The Non-smooth Tri-Points Form**
-> The AG experimental Tri-point form can be derived from AG experiment PPM Form I
+> The AG experimental Tri-point form can be derived from AG experiment PPM Form I. 
+> Continuing from the definition of the Experimental Tri-point form we claim the following equalities: 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x}
+>     \left\lbrace
+>         l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+>     \right\rbrace
+>     \\
+>     &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)
+>     \\
+>     y_t &= \argmin{x}
+>     \left\lbrace
+>         g(x) + \langle \nabla f(x), x - y_t\rangle 
+>         + 
+>         \frac{1}{2\eta_{t + 1}} \Vert x - y_t\Vert^2
+>     \right\rbrace
+>     \\
+>     &= (1 + L\eta_{t + 1})^{-1}
+>     (x_{t + 1} + L\eta_{t + 1}(y_t -  L^{-1}\mathcal  G_L(y_t)))
+> \end{aligned}
+> $$
+
+**Proof**
 
 
 
@@ -831,7 +950,6 @@ Performing PPM on $\phi_t(x)$ at $x_t$, use PPM Lyapunov inequality, substituing
 $$
 {\small
 \begin{aligned}
-    \Upsilon_{1, t + 1}^{\text{AG}} := 
     &\phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
     - \frac{1}{2}\Vert x_* - x_t\Vert^2 
     \\
@@ -852,8 +970,8 @@ $$
     \\
     \quad &\le - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
     \\
-    & 
-    \tilde \eta_{t + 1} \left(
+    \Upsilon_{1, t + 1}^{\text{AG}} := 
+    & \tilde \eta_{t + 1} \left(
         f(z_{t + 1}) - f(x_*)
     \right) + \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
     - \frac{1}{2}\Vert x_{t} - x_*\Vert^2 
@@ -926,8 +1044,278 @@ is invoked with $x = x_{t +1}$ only, hence, the quantifier $\forall x$ is strict
 In a sense, if we can relax the choice of $L$ to be larger so that the above condition is still true for just $x = x_{t + 1}$. 
 
 
-
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**
+> Continued from the definition of the AG Experimental Tri-Points form, then we have the Lyapunov upper bound: 
+> $$
+> \begin{aligned}
+>     \Upsilon_{1, t + 1}^\text{AG}
+>     &= 
+>     \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+>     \frac{1}{2} (
+>         \Vert x_{t + 1} - x_*\Vert^2
+>         - 
+>         \Vert x_t - x_*\Vert^2
+>     )
+>     \\
+>     &\le 
+>     - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+>     + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+>     - \langle 
+>         \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+>         x_{t + 1} - z_{t + 1}
+>     \rangle
+>     \\
+>     \Upsilon_{2, t + 1}^\text{AG}
+>     &= 
+>     h(z_{t + 1}) - h(z_t) 
+>     \le 
+>     \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+>     \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+> \end{aligned}
+> $$
 
+**Proof**
 
+Define 
 
+$$
+\begin{aligned}
+    \phi_t(u) &:= 
+    \tilde \eta_{t + 1} 
+    \left(
+        f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
+        + 
+        \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+    \right)\\
+    &= 
+    \tilde \eta_{t + 1} \left(
+        f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
+        \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+        + 
+        g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
+    \right)
+\end{aligned}
+$$
+
+Then the update in the Generic Tri-Point algorithm has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM which gives for all $x_*$: 
+
+$$
+\begin{aligned}
+    & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+    \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+    \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \le \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+    \\
+    & \text{where }
+    \phi_t(x_{t + 1}) =
+    \\
+    & \quad 
+    \tilde \eta_{t + 1}
+    \left(
+        f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
+        \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+        + 
+        g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
+    \right)
+\end{aligned}
+$$
+
+Now, using the $L$-smoothness of $f$, we have the inequality: 
+
+$$
+\begin{aligned}
+    f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle
+    &=
+    f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
+    \\
+    &\ge 
+    f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
+    \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+    \\
+    &= 
+    f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2
+    + \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle. 
+\end{aligned}\tag{$[*]$}
+$$
+
+Using the convexity of $g$ we have the inequality: 
+
+$$
+\begin{aligned}
+    g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle 
+    &= g(y_t) + 
+    \langle \partial g(y_t^+), 
+    x_{t + 1} - y_t^+ + y_t^+ - y_t
+    \rangle
+    \\
+    &= g(y_t) 
+    + \langle \partial g (y_t^+),
+        x_{t + 1} - y_t^+
+    \rangle
+    + 
+    \langle 
+        \partial g(y_t^+), y_t^+ - y_t
+    \rangle
+    \\
+    g \text{ convex }\implies 
+    &\ge 
+    g(y_t^+) + 
+    \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle. 
+\end{aligned}
+$$
+
+In the above derivation, we used the convexity of $g$ where 
+$$
+\begin{aligned}
+    \langle \partial g(y_t^+), y_t - y_t^+\rangle
+    &\le g(y_t) - g(y_t^+)
+    \\
+    \langle \partial g (y_t^+), y_t^+ - y_t \rangle
+    &\le 
+    g(y_t^+) - g(y_t). 
+\end{aligned}\tag{$[\star]$}
+$$
+
+Now, adding $([*]), ([\star])$, multiply their sum by $\tilde\eta_{t + 1}$ makes it equals to $\phi_t(x_{t +1 })$ , we can establish a lower bound for $\phi_t(x_{t + 1})$, yielding inequality 
+
+$$
+\begin{aligned}
+    \phi_t(x_{t + 1})
+    &\ge 
+    \tilde\eta_{t + 1}
+    \left(
+        f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+        +
+        \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+        + 
+        g(y_t^+) + 
+        \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle
+    \right) 
+    \\
+    &= 
+    \tilde\eta_{t + 1}
+    \left(
+        h(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+        + 
+        \langle \partial g(y_t^+) + \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+    \right)
+\end{aligned}
+$$
+
+Observe that $\partial g(y_t^+) + \nabla f(y_t) \ni \mathcal G_L(y_t)$, and by the algorithm updates $y_t^+ = z_{t + 1}$, therefore the above inequality simplifies to 
+
+$$
+\begin{aligned}
+    \phi_t(x_{t + 1}) &\ge 
+    \tilde\eta_{t + 1} 
+    \left(
+        h(z_{t + 1}) - 
+        \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+        + 
+        \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+    \right). 
+\end{aligned}
+$$
+
+Finally, we have $\phi_t(u) \le \tilde\eta_{t + 1}h(u)$ for all $u$. 
+With that we lower bound the LHS of the PPM Lyapunov inequality of $\phi_t(u)$, making: 
+
+$$
+\begin{aligned}
+    & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+    \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+    \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \le
+    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    \\
+    \implies &
+    \tilde \eta_{t + 1}
+    \left(
+        h(z_{t + 1}) - 
+        \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+        + 
+        \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+    \right) - \tilde \eta_{t + 1} h(x_*)
+    +
+    \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+    \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \\
+    & \quad \le
+    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    \\
+    \iff &
+    \tilde\eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+    + \frac{1}{2}\left(
+        \Vert x_{t + 1} - x_*\Vert^2 
+        - 
+        \Vert x_t - x_*\Vert^2
+    \right) := \Upsilon_{1, t + 1}^\text{AG}
+    \\
+    &\quad \le 
+    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    - 
+    \tilde\eta_{t + 1}
+    \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+    + 
+    \frac{L \tilde\eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+\end{aligned}
+$$
+
+And this established the first inequality that we wish to prove. 
+Next, the smoothness of $f$ establish inequality: 
+
+$$
+\begin{aligned}
+    f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
+    \\
+    &\le 
+    \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+    + 
+    \langle \nabla f(y_t), y_t - z_t\rangle
+    \\
+    &= 
+    \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+\end{aligned}\tag{$[**]$}
+$$
+
+The convexity of $h$ establish 
+
+$$
+\begin{aligned}
+    g(z_{t + 1}) + 
+    \langle \partial g(z_{t + 1}), z_t - z_{t + 1}\rangle
+    &\le g(z_t)
+    \\
+    g(z_{t + 1}) - g(z_t)
+    &\le 
+    \langle 
+        \partial g (z_{t +1}), 
+        z_{t + 1} - z_t
+    \rangle. 
+\end{aligned}\tag{$[\star *]$}
+$$
+
+Adding $([**]), ([\star *])$ yields 
+
+$$
+\begin{aligned}
+    \Upsilon_{2, t + 1}^{\text{AG}} := 
+    h(z_{t + 1}) - h(z_t) 
+    &\le 
+    \langle 
+        \nabla f(y_t) + \partial g(z_{t+1}), 
+        z_{t + 1} - z_t
+    \rangle + 
+    \frac{L}{2}
+    \Vert 
+        z_{t + 1} - y_t
+    \Vert^2. 
+\end{aligned}
+$$
+
+Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, we have proved all we want to show. 
+
+---
+### **Part III**
+
+Visit: [Nesterov Type Acceleration via Proximal Point Method Part III](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20III.md). 

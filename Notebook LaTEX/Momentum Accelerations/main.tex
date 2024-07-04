@@ -720,13 +720,101 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     They used PPM to derive several variations of the Nesterov accelerated gradient algorithms. 
     Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate for the accelerated gradient.
     Their analysis results in relatively simple arguments that exhibits powerful extensions to several variants of the Nesterov accelerated gradient. 
+    
     \par\noindent
     Interestingly, the Nesterov accelerated gradient applies to PPM too; Guler \cite{guler_new_1992} did it two decades ago. 
     He uses the idea of a Nesterov acceleration sequence faithfully. 
     One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by Lin et al \cite{lin_universal_2015}. 
     It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
     
-    \subsection{Varieties of Nesterov accelerated gradient}
+    \par\noindent
+    \textcolor{red}{We state our contributions}. 
+    In \hyperref[sec:AG_varieties]{section \ref*{sec:AG_varieties}} 
+    We stated different forms of accelerated gradient that appeared in the literatures and the equivalences between their forms. 
+    They are abstract because the choice of stepsize parameters in the algorithms are unspecified. 
+    In \hyperref[sec:AG_useful_information]{section \ref*{sec:AG_useful_information}}
+    we prove and interpret some of the unproved claims made by Ahn, Sra \cite{ahn_understanding_2022} as good exercises and for the peace of the mind.
+    \hyperref[lemma:smooth_agg_lyapunov_upper_bound]{Lemma \ref*{lemma:smooth_agg_lyapunov_upper_bound}} 
+    rephrase content in the appendix in work by Ahn, Sra\cite{ahn_understanding_2022}. 
+    It is our attempt at rephrasing the proofs to create a layer of abstraction so it can be reused for multiple proofs for several variants. 
+
+
+    
+    
+    \subsection{Preliminaries}
+        We introduce some additional lemma that are crucial to the derivations of non-smooth accelerated gradient method. 
+        \begin{definition}[The Gradient Mapping]
+            \label{def:gradient_mapping}
+            Let $g = f + g$ where $f$ is $L$-Lipschitz smooth and convex, $g$ is convex. 
+            Define the proximal gradient operator
+            $$
+                \mathcal T_L(x) := \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)),
+            $$
+            then the gradient mapping is defined as
+            $$
+                \mathcal G_L(x) = L(x - \mathcal T_L(x)). 
+            $$
+        \end{definition}
+        \begin{remark}
+            The name "gradient mapping" comes from \cite[(2.2.54)]{nesterov_lectures_2018}, however, Nesterov was referring to only the case when $g$ is an indicator function of a convex set in his writing. 
+        \end{remark}
+
+        \begin{lemma}[Gradient Mapping Approximates Subgradient]
+            \label{lemma:grad_map_lemma_first}
+            Continue from 
+            \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}, 
+            the gradient mapping satisfies
+            \begin{align*}
+                x^+ &= \mathcal T_L(x), 
+                \\
+                L(x - x^+) &\in  \nabla f(x) + \partial g(x^+) \ni \mathcal G_L(x). 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            \begin{align*}
+                x^+ &= [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f](x)
+                \\
+                [I + L^{-1}\partial g](x^+) &\ni [I - L^{-1}\nabla f](x)
+                \\
+                x^+ + L^{-1}\partial g(x^+) &\ni x - L^{-1}\nabla f(x)
+                \\
+                x^+ - x + L^{-1}\partial g(x^+) &\ni L^{-1}\nabla f(x)
+                \\
+                L(x^+ - x) + \partial g(x^+) &\ni - \nabla f(x)
+                \\
+                L(x - x^+) &\in \nabla f(x) + \partial g(x^+)
+                \\
+                \mathcal G_L(x) &\in \nabla f(x) + \partial g(x^+). 
+            \end{align*}
+        \end{proof}
+
+        \begin{lemma}[Linearized Gradient Mapping Lower Bound]
+            Continue from 
+            \hyperref[lemma:grad_map_lemma_first]{definition \ref*{lemma:grad_map_lemma_first}}, 
+            with $x^+ = \mathcal T(x)$, the gradient mapping satisfies the inequality for all $z$: 
+            \begin{align*}
+                h(z) &\ge
+                h(z) - \frac{L}{2}\Vert x - x^+\Vert^2
+                \ge h(x^+) + \langle \mathcal G_L(x), z - x\rangle. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Directly from the $L$-smoothness of $f$, convexity of $g, f$, we have the list of inequalities: 
+            \begin{align*}
+                &f(x^+) \le 
+                f(x) + \langle \nabla f(x), x^+ - x\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2, 
+                \\
+                &f(x) + \langle \nabla f(x), z - x\rangle 
+                \le f(z), 
+                \\
+                &g(x^+) \le 
+                g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
+            \end{align*}
+        \end{proof}
+
+    \subsection{Varieties of Nesterov accelerated gradient}\label{sec:AG_varieties}
+        Here, the acrynonym: ``AG" stands for accelerated gradient. 
         \subsubsection{AG Abstract Forms}
             In this section, we list different varieties of the Nesterov accelerated method. 
             \begin{definition}[Nestrov 2.2.7]\label{def:Nes2.2.7}
@@ -772,6 +860,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 Observe that by setting $\mu = 0, \tilde \eta_{t + 1} = \eta_{t + 1}$ this recovers algorithm (4.8) described in Ahn and Sra \cite{ahn_understanding_2022}. 
             \end{remark}
 
+            \begin{definition}[AG Proximal Gradient PPM Generic Form]
+                
+            \end{definition}
+
             \begin{definition}[Tri-points Generic Form]\label{def:agg_tri}
                 With $f$ be $L$-Lipschitz \\ 
                 smooth and convex, choose any $y_0 = x_0=z_0$ and a non-negative sequence $\eta_t, \tilde\eta_t$, the algorithm admits form: 
@@ -805,7 +897,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
             \end{definition}
 
-        \subsubsection*{Useful Observations about these Generic forms}
+        \subsubsection*{Useful Observations about these Generic forms}\label{sec:AG_useful_information}
             In this section we list some incredibaly useful information about these forms of the Nestrov type accelerated gradient algorithm. 
             \hyperref[prop:tri_form_via_ppm]{Proposition \ref*{prop:tri_form_via_ppm}}, 
             \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{proposition \ref*{prop:tri_scvx_from_ahn_sra_6.24}}, 
@@ -816,7 +908,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{proposition}[Tri-points generic form via Ahn Sra 6.24]
                 \label{prop:tri_form_via_ppm}
                 with $f$ being \\
-                $L$-Lipschitz continuous, 
+                $L$-Lipschitz smooth, 
                 let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
             \end{proposition}
             \begin{proof}
@@ -1090,7 +1182,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                         \left(y_t - \mu^{-1}\nabla f(y_t)\right)
                     \right). 
                 \end{align*}
-                Similarly, when $\mu = 0$, we have from the first step that $v_{k + 1} = v_k - \alpha_k \nabla f(y_k)$, which is the same as the AG generic PPM form where 
+                Similarly, when $\mu = 0$, we have from the first step that 
+                \begin{align*}
+                    v_{k + 1} 
+                    &= ((1 - \alpha_k)\gamma_k)^{-1}
+                    (
+                        (1 - \alpha_k)\gamma_k v_k
+                        + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+                    )
+                    \\
+                    &= 
+                    v_k - \alpha_k((1 - \alpha_k)\gamma_k)^{-1}\nabla f(y_k)
+                \end{align*}
+                which is the same as the AG generic PPM form where 
                 $$
                     x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_t). 
                 $$
@@ -1189,14 +1293,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right), 
             \end{aligned}
             $$
-            performing PPM on $\phi_t$ produces the PPM Lyapunov inequality from 
-            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}},
+            the AG generic performs PPM on $\phi_t$ to produce $x_{t + 1}$ so the PPM Lyapunov inequality from 
+            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} applies,
             substituting yields equivalences for all $x_*$: 
             {\footnotesize
             \begin{align*}
                 & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
                 - \frac{1}{2}\Vert x_* - x_t\Vert^2 
-                =: \Upsilon_{1, t + 1}^{\text{AG}}
                 \\
                 &\quad \le 
                 - \frac{1}{2} \Vert x_{t + 1} - x_t\Vert^2 
@@ -1220,7 +1323,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \tilde \eta_{t + 1} \left(
                     f(z_{t + 1}) - f(x_*)
                 \right) + \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
-                - \frac{1}{2}\Vert x_{t} - x_*\Vert^2 
+                - \frac{1}{2}\Vert x_{t} - x_*\Vert^2  =: \Upsilon_{1, t + 1}^{\text{AG}}
                 \\
                 &\quad \le 
                 -\frac{1}{2} \Vert x_{t + 1 } - x_t\Vert^2 + 
@@ -1253,12 +1356,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 \left(
                     \sum_{i = 1}^{t} \tilde \eta_i
-                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}} \le 0, 
+                \right)
+                \Upsilon_{2, t + 1}^{\text{AG}} + 
+                \Upsilon_{1, t + 1}^{\text{AG}} \le 0, 
             \end{align*}
             then with 
             \begin{align*}
                 \Phi_t &= \left(
-                    \sum_{i = 1}^{t} \tilde\eta_{t + 1}
+                    \sum_{i = 1}^{t} \tilde\eta_{i}
                 \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \NN
                 \\
                 \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2, 
@@ -1292,7 +1397,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \left(
                     \sum_{i = 1}^{t} \tilde \eta_i
-                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}} \le 0. 
+                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le 0. 
             \end{align*}
             }
             The derivation for the convergence raet is direct and similar to 
@@ -1302,6 +1407,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Specific Varieties of Accelerated Gradient Method}
         In this section we state some specific variant of the Nesterov accelerated gradient method. 
+        The "AG" stands for accelerated gradient. 
 
     \subsection{Scenario I}
         In this scenario, we aim to recover the following variant of the accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 
