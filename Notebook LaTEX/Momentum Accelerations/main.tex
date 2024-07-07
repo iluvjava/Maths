@@ -728,7 +728,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
     
     \par\noindent
-    \textcolor{red}{We state our contributions}. 
+    \textbf{We state our contributions}. 
     In \hyperref[sec:AG_varieties]{section \ref*{sec:AG_varieties}} 
     We stated different forms of accelerated gradient that appeared in the literatures and the equivalences between their forms. 
     They are abstract because the choice of stepsize parameters in the algorithms are unspecified. 
@@ -981,7 +981,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
                 \end{aligned}
                 $$
-                where the base case has $y_0 = x_0$. 
+                for all $t\in \mathbb N$ where the base case has $y_0 = x_0$. 
             \end{definition}
             \begin{remark}
                 Observe that $z_{t + 1} = y_t^+$. 
@@ -1019,9 +1019,94 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L\eta_{t + 1}z_{t +1}). 
                 \end{align*}
             \end{definition}
+        
+        \subsubsection{AG Concrete Examples}
+            In this section we state some variants of the Nesterov accelerated gradient method found in the literatures. 
+            
+            \begin{definition}[AG Ryu 12.1]
+            \label{def:ag_ryu_12.1}
+                State in chapter 12 in Ryu's writing \cite{ryu_large-scale_2022} is the following variant of accelerated gradient algorithm: 
+                \begin{align*}
+                    z_{t + 1} &= y_k + L^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= z_{t + 1} + \frac{t - 1}{t + 2}\left(
+                        z_{k + 1} - z_k
+                    \right). 
+                \end{align*}
+                An equivalent form of the above is also provided by Ryu: 
+                \begin{align*}
+                    z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+                    \\
+                    x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= \left(
+                        1 - \frac{2}{t + 2} 
+                    \right)z_{t + 1} + 
+                    \left(
+                        \frac{1}{t + 2}
+                    \right)x_{t + 1}. 
+                \end{align*}
+            \end{definition}
+            \begin{observation}
+                The base case requires cares since it's not unique, there are more representations  depending on how the base case is define, 
+                Observe that the second equivalent form is an example of \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+                \par\noindent
+                It is stated in Ryu's writing that the base case is $x_0 = y_0 = z_0$, 
+                \textcolor{purple}{we think this is not the only options.} 
+                We remind the reader that there is not an obvious choice of $t\in \mathbb Z$ such that $x_t = y_t = z_t$ where the above algorithm remains consistent for all $t \ge -1$. 
+                The choice of base case presented in Ryu's writing is a choice and not a necessity. 
+                We state that one of the base case scenario that only requires knowing $y_1$. 
+    
+                \par\noindent 
+                We need to observe the case where $t = 0$ to understand the base case of the algorithm. 
+                At each iteration $t$, Given $(x_t, y_t)$, the above formula maps to $(x_{t + 1}, y_{t + 1}, z_{t + 1})$. 
+                When $t= 0$, it has $y_1 = x_1$. 
+                Therefore, knowing only either $y_1$, or $x_1$ can initiate the algorithm. 
+                This is an alternative scenario of the base case. 
+                If, we wish to write $y_0 = x_0$ at $t = 0$ for the base case instead, then it creates the following algorithm 
+                \begin{align*}
+                    y_{t} &= \left(
+                    1 - \frac{2}{t + 2} 
+                    \right)z_{t} + 
+                    \left(
+                        \frac{1}{t + 2}
+                    \right)x_{t}, 
+                    \\
+                    z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+                    \\
+                    x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t). 
+                \end{align*}
+                It has a different representations due to a specific choice of the base case. 
+                \par\noindent
+                Finally, by the observation that given $(z_t, y_t)$ for any $t\ge -1$, we can solve for $x_t$ \newline via $y_t = (1 - 2/(1 + t))z_t + 1/(t + 1)x_t$, obtaining $(x_t, y_t, z_t)$, hence the algorithm can be reduced to a representations with only $(z_t, y_t)$ and an updates using only $(z_t, y_t)$ to $(z_{t + 1}, y_{t + 1})$. 
+                That is the momentum form presented above. 
+            \end{observation}
+            \begin{remark}
+                We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
+                It goes over the full context and history for this particular variant of gradient acceleration method. 
+                As the time of composing this notes, the writer is still reading on the topic of accelerated gradient.     
+            \end{remark}
+
+            \begin{definition}[Form Zero]
+            \label{def:ag_form_zero}
+                
+            \end{definition}
+
+            \begin{definition}[Similar Triangle Form I]
+            \label{def:ag_form_similar_tria_I}
+
+                
+            \end{definition}
+
+            \begin{definition}[Similar Triangle Form II]
+            \label{def:ag_form_similar_tria_II}
+                
+            \end{definition}
+
 
         \subsubsection{Useful Observations about these Generic forms}
         \label{sec:AG_useful_information}
+
             In this section we list some incredibaly useful information about these forms of the Nestrov type accelerated gradient algorithm. 
             \hyperref[prop:tri_form_via_ppm]{Proposition \ref*{prop:tri_form_via_ppm}}, 
             \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{proposition \ref*{prop:tri_scvx_from_ahn_sra_6.24}}, 
@@ -1029,6 +1114,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             are results assumed as true in Ahn, Sra. 
             They are implicitly left as necessary exercises for the readers. 
             Here, we fill out the blanks with our own interpretations. 
+            \hyperref[prop:derive_ag_prox_grad_tript]{Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
+            is our contribution where we intorduce non-smooth ness to the objective function while still retaining the PPM interpretation of accelerated gradient. 
+            
             \begin{proposition}[Tri-points generic form via Ahn Sra 6.24]
                 \label{prop:tri_form_via_ppm}
                 with $f$ being \\
@@ -1371,9 +1459,90 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 However, it would require more works to express $\eta_t, \tilde\eta$ from Ahn Sra 6.24 using $\gamma_k, \alpha_k$ from Nesterov 2.2.7. 
             \end{proof}
 
+            \begin{proposition}[Deriving Proximal Gradient Tri-Points Generic Form]
+            \label{prop:derive_ag_prox_grad_tript}
+                \quad \\
+                Continue from the proximal point interpretation of the proximal gradient 
+                (\hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}})
+                we have the equalities 
+                \begin{align*}
+                    x_{t + 1} &= \argmin_{x}
+                    \left\lbrace
+                        l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    \\
+                    y_{t + 1} &= \argmin_{x}
+                    \left\lbrace
+                          h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (1 + L\eta_{t + 1})^{-1}
+                    (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
+                \end{align*}
+                Therefore, the algorithm 
+                \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}
+                is equivalent to 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+            \end{proposition}
+            \begin{proof}
+                Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by the definition of algorithm. 
+                Since $l_h(x; y_t)$ is a simple linear function wrt $x$, it's not hard to minimize the quandratic where we can get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$. 
+                For $y_{t + 1}$, observe that we can complete the square on the second and the third terms: 
+                \begin{align*}
+                    & \frac{L}{2}\left(
+                        2\langle L^{-1}\mathcal G_L(y_t), x - y_t\rangle + 
+                        \Vert x - y_t\Vert^2
+                    \right)
+                    \\
+                    &= 
+                    \frac{L}{2}
+                    \left(
+                        - \Vert L^{-1} \mathcal G_L(y_t)\Vert^2  
+                        + \Vert L^{-1} \mathcal G_L(y_t)\Vert^2 
+                        + 
+                        2\langle L^{-1} \mathcal G_L(y_t), x - y_t\rangle + 
+                        \Vert x - y_t\Vert^2
+                    \right)
+                    \\
+                    &= \frac{L}{2}\left(
+                        - \Vert L^{-1}\mathcal G_L(y_t)\Vert^2  
+                        + \Vert x - (y_t - L^{-1}\mathcal G_L(y_t))
+                        \Vert^2
+                    \right), 
+                \end{align*}
+                therefore it transforms into 
+                \begin{align*}
+                    y_{t + 1} &=\argmin_{x} \left\lbrace
+                        \frac{L}{2}\left\Vert 
+                            x - (y_t - L^{-1}\mathcal G_L(y_t))
+                        \right\Vert^2
+                        + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &=
+                    \frac{(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}}{L + \eta_{t + 1}^{-1}}.
+                \end{align*}
+                Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, which is the proximal gradient set, then the above expression simplifies to 
+                $$
+                y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
+                $$
+                As a sanity checks, notice that when 
+                $h \equiv 0$, 
+                $\mathcal G_L(x) = \nabla f(x)$ 
+                by definition, making it the same as 
+                \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+            \end{proof}
+            \begin{remark}
+                $y_{t + 1}$ is the minimizer of a simple quadratic. 
+                Given that the original function $h$ is potentially non-smooth, therefore it's not always an upper bound of $h(x)$. 
+                The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
+            \end{remark}
+            
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
-        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \ref*{def:agg_ppm}. 
+        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition\ref*{def:agg_ppm}}. 
         \begin{lemma}[Smooth Generic AG Lyapunov Analysis]\label{lemma:smooth_agg_lyapunov_upper_bound}
             With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using 
             \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with $\mu = 0$
@@ -1481,9 +1650,262 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
         \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
         \label{lemma:nsmooth_agg_lyapunov_upper_bound}
-            
-            
+            Continue from 
+            \hyperref[prop:derive_ag_prox_grad_tript]
+            {definition \ref*{prop:derive_ag_prox_grad_tript}},
+            we derive the non-smooth analogous case of the Lyapunov upper bound: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^\text{AG}
+                &= 
+                \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+                \frac{1}{2} (
+                    \Vert x_{t + 1} - x_*\Vert^2
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                )
+                \\
+                &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                - \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_{t + 1} - z_{t + 1}
+                \rangle
+                \\
+                \Upsilon_{2, t + 1}^\text{AG}
+                &= 
+                h(z_{t + 1}) - h(z_t) 
+                \le 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
         \end{lemma}
+        \begin{proof}
+            Define 
+            \begin{align*}
+                \phi_t(u) &:= 
+                \tilde \eta_{t + 1} 
+                \left(
+                    f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
+                    + 
+                    \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                \right)\\
+                &= 
+                \tilde \eta_{t + 1} \left(
+                    f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
+                    \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                    + 
+                    g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
+                \right). 
+            \end{align*}
+            Then the update in the Generic Tri-Point algorithm 
+            (\hyperref[def:ag_prox_grad_ppm]
+                {definition \ref*{def:ag_prox_grad_ppm}}) 
+            has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
+                {theorem \ref*{thm:ppm_descent_ineq}})
+            which gives for all $x_*$: 
+            \begin{align*}
+                & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \le \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+                \\
+                & \text{where }
+                \phi_t(x_{t + 1}) =
+                \\
+                & \quad 
+                \tilde \eta_{t + 1}
+                \left(
+                    f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
+                    \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+                    + 
+                    g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
+                \right). 
+            \end{align*}
+            to simplify, consider using the $L$-smoothness of $f$, we have the inequality: 
+            \begin{align*}
+                \begin{aligned}
+                    f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle
+                    &=
+                    f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
+                    \\
+                    &\ge 
+                    f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
+                    \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+                    \\
+                    &= 
+                    f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2
+                    + \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle.     
+                \end{aligned}
+                \tag{$[*]$}
+            \end{align*}
+            further consider
+            \begin{align*}
+                \begin{aligned}
+                    g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle 
+                    &= g(y_t) + 
+                    \langle \partial g(y_t^+), 
+                    x_{t + 1} - y_t^+ + y_t^+ - y_t
+                    \rangle
+                    \\
+                    &= g(y_t) 
+                    + \langle \partial g (y_t^+),
+                        x_{t + 1} - y_t^+
+                    \rangle
+                    + 
+                    \langle 
+                        \partial g(y_t^+), y_t^+ - y_t
+                    \rangle
+                    \\
+                    g \text{ convex }\implies 
+                    &\ge 
+                    g(y_t^+) + 
+                    \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle. 
+                \end{aligned}
+                \tag{$[\star]$}
+            \end{align*}
+            In the $([\star])$ derivation, we used the convexity of $g$ where 
+            \begin{align*}
+                \langle \partial g(y_t^+), y_t - y_t^+\rangle
+                &\le g(y_t) - g(y_t^+)
+                \\
+                \langle \partial g (y_t^+), y_t^+ - y_t \rangle
+                &\le 
+                g(y_t^+) - g(y_t). 
+            \end{align*}
+            Now, adding $([*]), ([\star])$, multiply their sum by $\tilde\eta_{t + 1}$ makes it equals to $\phi_t(x_{t +1 })$ , we can establish a lower bound for $\phi_t(x_{t + 1})$, yielding inequality 
+            {\small
+                \begin{align*}
+                    \phi_t(x_{t + 1})
+                    &\ge 
+                    \tilde\eta_{t + 1}
+                    \left(
+                        f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+                        +
+                        \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+                        + 
+                        g(y_t^+) + 
+                        \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle
+                    \right) 
+                    \\
+                    &= 
+                    \tilde\eta_{t + 1}
+                    \left(
+                        h(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+                        + 
+                        \langle \partial g(y_t^+) + \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+                    \right).
+                \end{align*}
+            }
+            Apply
+            \hyperref[lemma:grad_map_lemma_first]{lemma \ref*{lemma:grad_map_lemma_first}} 
+            we have $\partial g(y_t^+) + \nabla f(y_t) \ni \mathcal G_L(y_t)$, and by the algorithm updates $y_t^+ = z_{t + 1}$, therefore the above inequality simplifies to 
+            \begin{align*}
+                \phi_t(x_{t + 1}) &\ge 
+                \tilde\eta_{t + 1} 
+                \left(
+                    h(z_{t + 1}) - 
+                    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                \right). 
+            \end{align*}
+            Finally, from (\hyperref[lemma:grad_map_linearization]
+                {lemma \ref*{lemma:grad_map_linearization}})
+            we have $\phi_t(u) \le \tilde\eta_{t + 1}h(u)$ for all $u$. 
+            With that we lower bound the LHS of the PPM Lyapunov inequality of $\phi_t(u)$, making: 
+            {\footnotesize
+            \begin{align*}
+                & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \le
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \implies &
+                \tilde \eta_{t + 1}
+                \left(
+                    h(z_{t + 1}) - 
+                    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                \right) - \tilde \eta_{t + 1} h(x_*)
+                +
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \\
+                & \quad \le
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \iff &
+                \tilde\eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+                + \frac{1}{2}\left(
+                    \Vert x_{t + 1} - x_*\Vert^2 
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                \right) := \Upsilon_{1, t + 1}^\text{AG}
+                \\
+                &\quad \le 
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                - 
+                \tilde\eta_{t + 1}
+                \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                + 
+                \frac{L \tilde\eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            }
+            It established the first inequality that we wish to prove. 
+            Next, the smoothness of $f$ establish inequality: 
+            \begin{align*}
+                \begin{aligned}
+                    f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
+                    \\
+                    &\le 
+                    \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                    + 
+                    \langle \nabla f(y_t), y_t - z_t\rangle
+                    \\
+                    &= 
+                    \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+                \end{aligned}
+                \tag{$[**]$}
+            \end{align*}
+            The convexity of $h$ establish 
+            \begin{align*}
+                \begin{aligned}
+                    g(z_{t + 1}) + 
+                    \langle \partial g(z_{t + 1}), z_t - z_{t + 1}\rangle
+                    &\le g(z_t)
+                    \\
+                    g(z_{t + 1}) - g(z_t)
+                    &\le 
+                    \langle 
+                        \partial g (z_{t +1}), 
+                        z_{t + 1} - z_t
+                    \rangle. 
+                \end{aligned}
+                \tag{$[\star *]$}    
+            \end{align*}
+            Adding $([**]), ([\star *])$ yields 
+            \begin{align*}
+                \begin{aligned}
+                    \Upsilon_{2, t + 1}^{\text{AG}} := 
+                    h(z_{t + 1}) - h(z_t) 
+                    &\le 
+                    \langle 
+                        \nabla f(y_t) + \partial g(z_{t+1}), 
+                        z_{t + 1} - z_t
+                    \rangle + 
+                    \frac{L}{2}
+                    \Vert 
+                        z_{t + 1} - y_t
+                    \Vert^2. 
+                \end{aligned}
+            \end{align*}
+            Using the property of gradient mapping (\hyperref[lemma:grad_map_lemma_first]
+                {lemma \ref*{lemma:grad_map_lemma_first}}), 
+            $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
+        \end{proof}
 
         \begin{theorem}[Generic AG Convergence]\label{thm:generic_smooth_ag_convergence}
             If there is a choice of $\eta_i, \tilde \eta_i$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} such that we have 
@@ -1539,70 +1961,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
         \end{proof}
 
-    \subsection{Specific Varieties of Accelerated Gradient Method}
-        In this section we state some specific variant of the Nesterov accelerated gradient method. 
-        The "AG" stands for accelerated gradient. 
 
     \subsection{Scenario I}
-        In this scenario, we aim to recover the following variant of the accelerated gradient algorithm from 12.1 in Ryu's writing \cite{ryu_large-scale_2022}, it is: 
-        \begin{align*}
-            z_{t + 1} &= y_k + L^{-1}\nabla f(y_t), 
-            \\
-            y_{t + 1} &= z_{t + 1} + \frac{t - 1}{t + 2}\left(
-                z_{k + 1} - z_k
-            \right). 
-        \end{align*}
-        An equivalent form of the above is also provided by Ryu: 
-        \begin{align*}
-            z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
-            \\
-            x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
-            \\
-            y_{t + 1} &= \left(
-                1 - \frac{2}{t + 2} 
-            \right)z_{t + 1} + 
-            \left(
-                \frac{1}{t + 2}
-            \right)x_{t + 1}. 
-        \end{align*}
-        The base case requires cares since it's not unique, and depending on how the base case is define, there even more representations of it. 
-        \begin{observation}
-            Observe that the second equivalent form is an example of \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
-            \par\noindent
-            It is stated in Ryu's writing that the base case is $x_0 = y_0 = z_0$, 
-            \textcolor{purple}{we think this is not the only options.} 
-            We remind the reader that there is not an obvious choice of $t\in \mathbb Z$ such that $x_t = y_t = z_t$ where the above algorithm remains consistent for all $t \ge -1$. 
-            The choice of base case presented in Ryu's writing is a choice and not a necessity. 
-            We state that one of the base case scenario that only requires knowing $y_1$. 
-
-            \par\noindent 
-            We need to observe the case where $t = 0$ to understand the base case of the algorithm. 
-            At each iteration $t$, Given $(x_t, y_t)$, the above formula maps to $(x_{t + 1}, y_{t + 1}, z_{t + 1})$. 
-            When $t= 0$, it has $y_1 = x_1$. 
-            Therefore, knowing only either $y_1$, or $x_1$ can initiate the algorithm. 
-            This is an alternative scenario of the base case. 
-            If, we wish to write $y_0 = x_0$ at $t = 0$ for the base case instead, then it creates the following algorithm 
-            \begin{align*}
-                y_{t} &= \left(
-                1 - \frac{2}{t + 2} 
-                \right)z_{t} + 
-                \left(
-                    \frac{1}{t + 2}
-                \right)x_{t}, 
-                \\
-                z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
-                \\
-                x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t). 
-            \end{align*}
-            It has a different representations due to a specific choice of the base case. 
-            \par\noindent
-            Finally, by the observation that given $(z_t, y_t)$ for any $t\ge -1$, we can solve for $x_t$ \newline via $y_t = (1 - 2/(1 + t))z_t + 1/(t + 1)x_t$, obtaining $(x_t, y_t, z_t)$, hence the algorithm can be reduced to a representations with only $(z_t, y_t)$ and an updates using only $(z_t, y_t)$ to $(z_{t + 1}, y_{t + 1})$. 
-            That is the momentum form presented above. 
-        \end{observation}
-        We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
-        It goes over the full context and history for this particular variant of gradient acceleration method. 
-        As the time of composing this notes, the writer is still reading on the topic of accelerated gradient. 
-
+        In this scenario, we aim to recover AG Ryu 12.1 conceret variant algorithm stated back in 
+        \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}. 
+    
         \begin{proposition}
             With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = 2/(2L)$, we derive the following algorithm: 
             \begin{align*}

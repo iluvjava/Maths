@@ -15,9 +15,10 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Def 1.1 | Nes 2.2.7**](#def-11--nes-227)
   - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
-  - [**Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-15--accelerated-gradient-strongly-convex-generic-ppm)
-  - [**Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-16--accelerated-gradient-bregman-strongly-convex-ppm)
-  - [**Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-17--accelerated-gradient-strongly-convex-generic-triangular-form)
+  - [**Definition 1.3 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-13--accelerated-gradient-strongly-convex-generic-ppm)
+  - [**Definition 1.4 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-14--accelerated-gradient-bregman-strongly-convex-ppm)
+  - [**Definition 1.5 | AG Tri-points generic form**](#definition-15--ag-tri-points-generic-form)
+  - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-16--accelerated-gradient-strongly-convex-generic-triangular-form)
   - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
 - [**Form Comparison**](#form-comparison)
@@ -232,7 +233,7 @@ $$
 
 
 
-#### **Definition 1.5 | Accelerated Gradient Strongly Convex Generic PPM**
+#### **Definition 1.3 | Accelerated Gradient Strongly Convex Generic PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
 > $$
@@ -252,9 +253,9 @@ $$
 
 **Observations**
 
-Setting $\mu = 0$ this reduces to Two Ways PPM. 
+Setting $\mu = 0$ this reduces to the previous definition. 
 
-#### **Definition 1.6 | Accelerated Gradient Bregman Strongly Convex PPM**
+#### **Definition 1.4 | Accelerated Gradient Bregman Strongly Convex PPM**
 > With $Q\subseteq \R^n$ closed and convex, define $\Psi: Q \mapsto \overline \R$. 
 > Define $f: \mathbb R^n \mapsto \mathbb R$ be $L$-Smooth wrt to norm $\Vert \cdot\Vert$ which is not necessarily the Euclidean norm. 
 > With $h:Q \mapsto \overline \R$ strongly convex wrt $\Vert \cdot\Vert$, and differentiable on $\text{int}(Q)$ so it induces Bregmandivergence $D_h(u, v)$ for all $u, v \in Q$. 
@@ -282,7 +283,23 @@ And in this case, the momentum algorithm works in a non-smooth composite setting
 
 It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algorithm is an interpretation of Nesterov (6.1.3) from Nesterov's textbook. 
 
-#### **Definition 1.7 | Accelerated Gradient strongly convex Generic Triangular Form**
+#### **Definition 1.5 | AG Tri-points generic form**
+> The algorithm update the iterates $(x_{t}, z_{t}, y_t)$ for all $t \in \N$ according to 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+>     \\
+>     z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+>     \\
+>     y_{t + 1} &= 
+>     (1 + L\eta_{t + 1})^{-1}
+>     (
+>     x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+>     ). 
+> \end{aligned}
+> $$
+
+#### **Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**
 > With $f$ $L$-Lipschitz smooth and $\mu$ storngly convex, we can derive similar triangle with the following: 
 > $$
 > \begin{aligned}
@@ -387,7 +404,7 @@ We show that the Nesterov's 2.2.7 accelerated gradient is the same form as the a
 We show that the Generic triangle form is the same as the generic PPM form. 
 
 #### **Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**
-> The AGG PPM reduces to the following 3 points accelerated gradient algorithm: 
+> The AG Tri-points generic form is equivalent to the AG PPM generic form, yielding the following equalities: 
 > $$
 > \begin{aligned}
 >     x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
@@ -1145,7 +1162,7 @@ $$
 \end{aligned}
 $$
 
-Then the update in the Generic Tri-Point algorithm has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM which gives for all $x_*$: 
+Then the update in the Generic Tri-Point algorithm has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the PPM Lyapunov inequality which gives for all $x_*$: 
 
 $$
 \begin{aligned}
@@ -1209,10 +1226,10 @@ $$
     &\ge 
     g(y_t^+) + 
     \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle. 
-\end{aligned}
+\end{aligned}\tag{$[\star]$}
 $$
 
-In the above derivation, we used the convexity of $g$ where 
+In the $([\star])$ derivation, we used the convexity of $g$ where 
 $$
 \begin{aligned}
     \langle \partial g(y_t^+), y_t - y_t^+\rangle
@@ -1221,7 +1238,7 @@ $$
     \langle \partial g (y_t^+), y_t^+ - y_t \rangle
     &\le 
     g(y_t^+) - g(y_t). 
-\end{aligned}\tag{$[\star]$}
+\end{aligned}
 $$
 
 Now, adding $([*]), ([\star])$, multiply their sum by $\tilde\eta_{t + 1}$ makes it equals to $\phi_t(x_{t +1 })$ , we can establish a lower bound for $\phi_t(x_{t + 1})$, yielding inequality 

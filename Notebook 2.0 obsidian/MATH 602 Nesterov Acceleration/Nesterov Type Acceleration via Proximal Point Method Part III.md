@@ -11,10 +11,10 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
 - [**Intro**](#intro)
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
-  - [**Generic Convergence Bound based on PPM Interpretation**](#generic-convergence-bound-based-on-ppm-interpretation)
+  - [**Theorem | Generic Convergence Bound based on PPM Interpretation**](#theorem--generic-convergence-bound-based-on-ppm-interpretation)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
-  - [**Scenario 1.1 | Non-Smooth, Not a Similar Triangle**](#scenario-11--non-smooth-not-a-similar-triangle)
+  - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
@@ -29,7 +29,7 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
-#### **Generic Convergence Bound based on PPM Interpretation**
+#### **Theorem | Generic Convergence Bound based on PPM Interpretation**
 In this section, we repeat part II, but with the above theorem. 
 With $x_* \in \argmin{x} f(x)$, and 
 
@@ -82,8 +82,24 @@ Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t
 
 
 #### **Scenario 1 | Not Similar Triangle**
+Recall the tri-point generic form comes updates the iterates according to
 
-The first scenario starts by considering the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$, together with the updates of the Generic Triangular Form of the algorithm:  
+$$
+\begin{aligned}
+    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+    \\
+    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+    \\
+    y_{t + 1} &= 
+    (1 + L\eta_{t + 1})^{-1}
+    (
+    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+    ). 
+\end{aligned}
+$$
+
+The first scenario starts by considering the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
+To start we observe that the vector $x_{t + 1} - x_t$ parallels to $z_{t + 1} - y_t$ because: 
 
 $$
 \begin{aligned}
@@ -93,7 +109,7 @@ $$
 \end{aligned}
 $$
 
-we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it: 
+next we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it: 
 
 $$
 \begin{aligned}
@@ -306,7 +322,20 @@ If we set $t = -1$ onto the formulas, then we have $y_0 = x_0$, which gives the 
 so $z_0$ is undefined. 
 Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}\nabla f(z_0))$. 
 
-#### **Scenario 1.1 | Non-Smooth, Not a Similar Triangle**
+#### **Scenario 1.1 | Non-Smooth, Not Similar Triangle**
+
+The analysis in the non-smooth case is surprisingly similar compare to the smooth case, this is due to the merit of the similarities between for the updates of the iterates. 
+Recall that for the proximal gradient PPM generic form we have: 
+
+$$
+\begin{aligned}
+    y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+    \\
+    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+    \\
+    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
+\end{aligned}
+$$
 
 
 
