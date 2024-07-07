@@ -103,9 +103,9 @@ To start we observe that the vector $x_{t + 1} - x_t$ parallels to $z_{t + 1} - 
 
 $$
 \begin{aligned}
-    x_{t + 1} - x_t &= \tilde \eta_{t + 1}\nabla f(y_t)
+    x_{t + 1} - x_t &= - \tilde \eta_{t + 1}\nabla f(y_t)
     \\
-    z_{t +1} - y_t &= L^{-1}\nabla f(y_t), 
+    z_{t +1} - y_t &= - L^{-1}\nabla f(y_t), 
 \end{aligned}
 $$
 
@@ -121,18 +121,35 @@ $$
     - 
     \langle \tilde \eta_{t + 1} \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
     \\
-    &\le 
+    &= 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    + 
+    \frac{\tilde \eta_{t + 1}L }{2} \Vert z_{t + 1} - y_t\Vert^2 
+    - 
+    \langle \tilde \eta_{t + 1} \nabla f(y_t),
+        (x_{t + 1} - x_t) + x_t + (y_t - z_{t + 1}) - y_t
+    \rangle
+    \\
+    &= 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    + 
+    \frac{\tilde \eta_{t + 1}L }{2} \Vert z_{t + 1} - y_t\Vert^2 
+    - 
+    \langle \tilde \eta_{t + 1} \nabla f(y_t),
+        (L^{-1} - \tilde \eta_{t + 1}) \nabla f(y_t) + x_t - y_t
+    \rangle
+    \\
+    &= 
     - \frac{1}{2}\Vert \tilde \eta_{t + 1} \nabla f(y_t)\Vert^2 
     + \frac{\tilde \eta_{t + 1} L}{2}\Vert L^{-1} \nabla f(y_t)\Vert^2 
-    + 
-    \langle 
-        - \tilde \eta_{t + 1} \nabla f(y_t), 
-        -L^{-1}\nabla f(y_t) + y_t - x_t + \tilde \eta_{t + 1}\nabla f(y_t)
+    -
+     \langle \tilde \eta_{t + 1} \nabla f(y_t),
+        (L^{-1} - \tilde \eta_{t + 1}) \nabla f(y_t) + x_t - y_t
     \rangle
     \\
     &= 
     \left(
-        \frac{\tilde \eta_{t + 1}^2}{2} + 
+        -\frac{\tilde \eta_{t + 1}^2}{2} + 
         \frac{\tilde \eta_{t + 1}}{2L}
     \right)
     \Vert \nabla f(y_t)\Vert^2 
@@ -158,6 +175,28 @@ $$
     \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle. 
 \end{aligned}
 $$
+Here when we groups the coefficient for $\Vert \nabla f(y_t)\Vert^2$ it has 
+
+$$
+\begin{aligned}
+    &\quad 
+    \left(
+        \frac{\tilde \eta_{t + 1}}{2L} 
+        - \frac{\tilde\eta_{t + 1}^2}{2}
+    \right)
+    + \tilde\eta_{t + 1}^2 
+    - 
+    \frac{\tilde\eta_{t + 1}}{L}
+    \\
+    &= 
+    - \frac{\tilde\eta_{t + 1}}{2L}
+    + 
+    \frac{\tilde\eta_{t + 1}^2}{2}
+    \\
+    &= \frac{1}{2}(\tilde \eta_{t + 1}^2 - L^{-1}\tilde\eta_{t + 1}). 
+\end{aligned}
+$$
+
 For $\Upsilon_{2, t + 1}^\text{AG}$, we simplify it with the updates of the algorithms in mind. 
 
 $$
@@ -325,7 +364,7 @@ Therefore the first three updates are $(y_0, x_0, z_0) = (x_0, x_0, x_0 - L^{-1}
 #### **Scenario 1.1 | Non-Smooth, Not Similar Triangle**
 
 The analysis in the non-smooth case is surprisingly similar compare to the smooth case, this is due to the merit of the similarities between for the updates of the iterates. 
-Recall that for the proximal gradient PPM generic form we have: 
+Recall that for the proximal gradient PPM generic form we have iterate updates for $t\in \N$: 
 
 $$
 \begin{aligned}
@@ -337,7 +376,228 @@ $$
 \end{aligned}
 $$
 
+and generic Lyapunov upper bound 
 
+$$
+\begin{aligned}
+    \Upsilon_{1, t + 1}^\text{AG}
+    &= 
+    \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+    \frac{1}{2} (
+        \Vert x_{t + 1} - x_*\Vert^2
+        - 
+        \Vert x_t - x_*\Vert^2
+    )
+    \\
+    &\le 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+    - \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        x_{t + 1} - z_{t + 1}
+    \rangle
+    \\
+    \Upsilon_{2, t + 1}^\text{AG}
+    &= 
+    h(z_{t + 1}) - h(z_t) 
+    \le 
+    \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+\end{aligned}
+$$
+
+By the updates, vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations 
+
+$$
+\begin{aligned}
+    x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
+    \\
+    z_{t + 1} - y_t &= -L^{-1}\mathcal G_L(y_t). 
+\end{aligned}
+$$
+
+This setup allows for: 
+
+$$
+\begin{aligned}
+    \Upsilon_{1, t + 1}^{\text{AG}} 
+    &\le 
+    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
+    \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+    - 
+    \langle \tilde\eta_{t + 1}\mathcal G_L (y_t), x_{t + 1} - z_{t + 1} \rangle
+    \\
+    &= 
+    - \frac{1}{2}\Vert \tilde\eta_{t + 1} \mathcal G_L\Vert^2 + 
+    \frac{\tilde\eta_{t + 1}L}{2}\Vert L^{-1} \mathcal G_L(y_t)\Vert^2
+    - 
+    \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), x_{t + 1} - z_{t + 1} \rangle
+    \\
+    &= 
+    \frac{1}{2}\left(
+        - \tilde\eta_{t + 1}^2 + 
+        L^{-1}\tilde\eta_{t + 1}
+    \right)\Vert \mathcal G_L(y_t)\Vert^2
+    - 
+    \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        (x_{t + 1} - x_{t}) + x_t
+        + (y_t - z_{t + 1}) - y_t
+    \rangle
+    \\
+    &= 
+    \frac{1}{2}\left(
+        L^{-1}\tilde\eta_{t + 1}
+        - \tilde\eta_{t + 1}^2
+    \right)\Vert \mathcal G_L(y_t)\Vert^2
+    - 
+    \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        -\tilde\eta_{t + 1}\mathcal G_L(y_t) + x_t 
+        + L^{-1}\mathcal G_L(y_t) - y_t
+    \rangle
+    \\
+    &= 
+    \frac{1}{2}\left(
+        L^{-1}\tilde\eta_{t + 1}
+        - \tilde\eta_{t + 1}^2
+    \right)\Vert \mathcal G_L(y_t)\Vert^2
+    - \langle 
+        \tilde\eta_{t +1}\mathcal G_L(y_t), 
+        (L^{-1} - \tilde\eta_{t + 1})\mathcal G_L(y_t) + x_t - y_t
+    \rangle
+    \\
+    &= \frac{1}{2}\left(
+        L^{-1}\tilde\eta_{t + 1} - \tilde\eta_{t + 1}^2 
+        + 2 \tilde\eta_{t + 1}^2 - 2\tilde\eta_{t + 1}L^{-1}
+    \right)\Vert \mathcal G_L(y_t)\Vert^2
+    - 
+    \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        x_t - y_t
+    \rangle
+    \\
+    &= 
+    \frac{1}{2}\left(
+        \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+    \right)\Vert \mathcal G_L(y_t)\Vert^2 
+    + \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), y_t - x_t\rangle
+\end{aligned}
+$$
+
+similarly we also have upper bound 
+
+$$
+\begin{aligned}
+    \Upsilon_{2, t + 1}^{\text{AG}} 
+    &= 
+    \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+    \\
+    &= 
+    \langle \mathcal G_L(y_t), z_{t + 1} - y_t + y_t - z_t\rangle
+    + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+    \\
+    &= 
+    \langle \mathcal G_L(y_t), - L^{-1} \mathcal G_L(y_t) + y_t - z_t\rangle
+    + 
+    \frac{L}{2}\Vert L^{-1}\mathcal G_L(y_t)\Vert^2
+    \\
+    &= 
+    -L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+    + 
+    (1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+    + 
+    \langle \mathcal G_L(y_t), y_t - z_t\rangle
+    \\
+    &= 
+    -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+    + 
+    \langle \mathcal G_L(y_t), y_t - z_t\rangle
+\end{aligned}
+$$
+
+Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
+Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = L \eta_t (z_t - y_t)$. We make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \mathcal G_L(y_t), y_t - x_t\rangle = \langle \mathcal G_L(y_t), L \eta_t (z_t - y_t)\rangle$. 
+With this in mind, applying the RHS of $[(*)]$ yields: 
+
+$$
+{\footnotesize
+\begin{aligned}
+    &\Upsilon_{1, t + 1}^\text{AG} + 
+    \left(
+        \sum_{i = 1}^{t}\tilde\eta_i 
+    \right)\Upsilon_{1, t + 1}^{\text{AG}}
+    \\
+    &\le 
+     \frac{1}{2}\left(
+        \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+    \right)\Vert \mathcal G_L(y_t)\Vert^2 
+    + 
+    \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), L\eta_t(z_t - y_t)\rangle
+    + 
+    \left(
+        \sum_{i = 1}^{t}\tilde\eta_i 
+    \right)\left(
+        -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+        + 
+        \langle \mathcal G_L(y_t), y_t - z_t\rangle
+    \right)
+    \\
+    &= 
+    \left(
+        \frac{1}{2}\tilde\eta_{t + 1}\left(
+            \tilde \eta_{t +1} - L^{-1}
+        \right)
+        - 
+        \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
+    \right)\Vert \mathcal G_L(y_t)\Vert^2 + 
+    \left(
+        L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
+    \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle
+\end{aligned}
+}
+$$
+
+If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\mathcal G_L(y_t)$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+To simplify, we make the assumption that $\tilde \eta_t = \eta_t$ for all $t \in \N$. 
+These conditions translate to the following relations for $\eta_{t}$. 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        L\eta_{t + 1}^2 + \eta_{t + 1} - \sum_{i = 1}^{t}\eta_i 
+        \le 0, 
+        \\
+        L\eta_t \eta_{t + 1} - \sum_{i = 1}^{t} \eta_i 
+        = 0. 
+    \end{cases}
+\end{aligned}
+$$
+
+Substituting the sequence equality back to the first one yield: 
+
+$$
+\begin{aligned}
+    L\eta_{t + 1}^2 - (\eta_{t + 1} + L\eta_t\eta_{t + 1}) &\le 0 
+    \\
+    L\eta^2_{t + 1} - \eta_{t + 1}
+    &\le 
+    L\eta_t \eta_{t + 1} 
+    \\
+    \eta_{t + 1}(L\eta_{t + 1} - 1) 
+    &\le L\eta_t\eta_{t + 1}
+    \\
+    \eta_t > 0 
+    \implies 
+    L\eta_{t + 1} - 1 &\le 
+    L\eta_t 
+    \\
+    \eta_{t + 1} &\le \eta_t + L^{-1}. 
+\end{aligned}
+$$
+
+To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
 
 
 #### **Scenario 2 | Similar Triangle I**
