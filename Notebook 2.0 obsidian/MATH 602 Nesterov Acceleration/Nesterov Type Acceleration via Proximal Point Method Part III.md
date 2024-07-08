@@ -559,7 +559,7 @@ $$
 }
 $$
 
-If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\mathcal G_L(y_t)$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
 To simplify, we make the assumption that $\tilde \eta_t = \eta_t$ for all $t \in \N$. 
 These conditions translate to the following relations for $\eta_{t}$. 
 

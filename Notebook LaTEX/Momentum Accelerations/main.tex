@@ -1117,16 +1117,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t).
                 \end{align*}
             \end{definition}
-            \begin{remark}
-                
-            \end{remark}
 
             \begin{definition}[Similar Triangle Form I]
             \label{def:ag_form_similar_tria_I}
-            
-                
+                It updates iterates $(y_t, x_{t + 1}, z_{t + 1})$ using 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t) 
+                    \\
+                    x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ). 
+                \end{align*}
             \end{definition}
+            \begin{observation}
+                There are a lot of observations about this form to unpack. 
+                Let's list the following observations
+                \begin{enumerate}
+                    \item Observe that $y_t = (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)$ is a convex combination between $x_t, z_t$. Hence $z_t, y_t, x_t$ are three collinear points. Additionally, we have $y_t - x_t = L\eta_t (z_t - y_t)$, hence $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                    \item By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \nabla f(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \nabla f(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    \item Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
+                \end{enumerate}
+                From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - z_t$. 
+            \end{observation}
 
+            
             \begin{definition}[Similar Triangle Form II]
             \label{def:ag_form_similar_tria_II}
                 
@@ -1568,7 +1586,89 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 Given that the original function $h$ is potentially non-smooth, therefore it's not always an upper bound of $h(x)$. 
                 The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
             \end{remark}
-            
+
+            \begin{lemma}[Similar Triangule Form I via Generic Tri Points]
+                \quad \\
+                With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ 
+                in 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+                We can derive similar triangle form I as stated back in
+                \hyperref[def:ag_form_similar_tria_I]{definition \ref*{def:ag_form_similar_tria_I}}. 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    \\
+                    x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ). 
+                \end{align*}
+                It also has an equivalent momentum form 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                    \\
+                    y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
+                \end{align*}
+            \end{lemma}
+            \begin{proof}
+                To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+                Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
+                \begin{align*}
+                    x_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
+                    + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
+                    \\
+                    &= 
+                    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
+                    \\
+                    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
+                    \\
+                    &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
+                \end{align*}
+                By assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we ends with $x_{t + 1} = x_t + \tilde \eta_{t + 1}\nabla f(y_t)$. 
+                Reducing it to the classic momentum form starts by 
+                \begin{align*}
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
+                    \\
+                    &= (1 + L\eta_{t + 1})^{-1} (
+                        z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
+                    )
+                    \\
+                    &= 
+                    (1 + L\eta_{t + 1})^{-1} (
+                        (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
+                    )
+                    \\
+                    &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
+                \end{align*}
+                it negates the $x_t$ variables, therefore we have 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                    \\
+                    y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
+                \end{align*}
+            \end{proof}
+            \begin{remark}
+                In this remark we clarify the name ``similar triangule" as given in the literatures. 
+                We think it is a fitting name, becaues it has a similar triangle in it. 
+                We list the following observations
+                \begin{enumerate}
+                    \item 
+                    The updates for $y_{t}$ from the algorithm has 
+                    $$
+                        y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
+                    $$
+                    therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
+                    We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                    \item 
+                    The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1}\nabla f(y_t), \tilde\eta_{t +1}\nabla f(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
+                    The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
+                \end{enumerate}
+                By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+            \end{remark}
+            The next lemma will determine one choice of the stepsize sequence $\eta_t$ that recovers the classical form of Nesterov accelerated gradient method. 
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition\ref*{def:agg_ppm}}. 
@@ -1936,7 +2036,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
         \end{proof}
 
-        \begin{theorem}[Generic AG Convergence]\label{thm:generic_smooth_ag_convergence}
+        \begin{theorem}[Generic AG Convergence]
+        \label{thm:generic_ag_convergence}
             If there is a choice of $\eta_i, \tilde \eta_i$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} such that we have 
             \begin{align*}
                 \left(
@@ -1994,13 +2095,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Scenario I}
         In this scenario, we aim to recover AG Ryu 12.1 conceret variant algorithm stated back in 
         \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}. 
-    
         \begin{proposition}
-            With $\eta_t, \tilde \eta_t$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} where $\eta_{t + 1} = \tilde \eta_{t + 1} = 2/(2L)$, we derive the following algorithm: 
+            Continue from
+            \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}, 
+            set $\eta_{t + 1} = \tilde \eta_{t + 1} = (t)/(2L)$, we derive the following algorithm: 
             \begin{align*}
-                x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t), 
+                x_{t + 1} &= x_t - \frac{t + 1}{2L} \mathcal G_L(y_t), 
                 \\
-                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t), 
+                z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t), 
                 \\
                 y_{t + 1} &= 
                 \left(
@@ -2010,159 +2112,193 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     1 - \frac{2}{t + 3}
                 \right)z_{t + 1}. 
             \end{align*}
+            This algorithm has convergence rate of $\mathcal O(1/T^2)$ for all $h = f + g$ where $f$ is convex $L$-Lipschitz smooth and $g$ is convex. 
         \end{proposition}
         \begin{observation}
-            Observe that this is the same algorithm as stated in Ryu's book but with an alternative choice of indexing for $y_t$ and initial condition. 
+            Observe that when $g \equiv 0$ this is the same algorithm as 
+            \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}
+            but with an alternative choice of indexing for $y_t$ and initial condition. 
         \end{observation}
         \begin{proof}
-            Consider the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$, together with the updates of the Generic Triangular Form of the algorithm:  
+            Recall that for the proximal gradient PPM generic form we have iterate updates for $t\in \mathbb N$: 
             \begin{align*}
-                x_{t + 1} - x_t &= \tilde \eta_{t + 1}\nabla f(y_t)
+                y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
                 \\
-                z_{t +1} - y_t &= L^{-1}\nabla f(y_t), 
+                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+                \\
+                z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
             \end{align*}
-            we consider the upper bound of $\Upsilon_{1, t + 1}^{\text{AG}}$, with that we can simplify it: 
-            {\footnotesize
+            and generic Lyapunov upper bound 
             \begin{align*}
-                \Upsilon_{1, t + 1}^{\text{AG}}
-                &\le 
-                -\frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-                + 
-                \frac{\tilde \eta_{t + 1}L }{2} \Vert z_{t + 1} - y_t\Vert^2 
-                - 
-                \langle \tilde \eta_{t + 1} \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+                \Upsilon_{1, t + 1}^\text{AG}
+                &= 
+                \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+                \frac{1}{2} (
+                    \Vert x_{t + 1} - x_*\Vert^2
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                )
                 \\
                 &\le 
-                - \frac{1}{2}\Vert \tilde \eta_{t + 1} \nabla f(y_t)\Vert^2 
-                + \frac{\tilde \eta_{t + 1} L}{2}\Vert L^{-1} \nabla f(y_t)\Vert^2 
-                + 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                - \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_{t + 1} - z_{t + 1}
+                \rangle
+                \\
+                \Upsilon_{2, t + 1}^\text{AG}
+                &= 
+                h(z_{t + 1}) - h(z_t) 
+                \le 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            By the updates, vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations 
+            \begin{align*}
+                x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
+                \\
+                z_{t + 1} - y_t &= -L^{-1}\mathcal G_L(y_t). 
+            \end{align*}
+            This setup allows for: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^{\text{AG}} 
+                &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
+                \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                - 
+                \langle \tilde\eta_{t + 1}\mathcal G_L (y_t), x_{t + 1} - z_{t + 1} \rangle
+                \\
+                &= 
+                - \frac{1}{2}\Vert \tilde\eta_{t + 1} \mathcal G_L\Vert^2 + 
+                \frac{\tilde\eta_{t + 1}L}{2}\Vert L^{-1} \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), x_{t + 1} - z_{t + 1} \rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    - \tilde\eta_{t + 1}^2 + 
+                    L^{-1}\tilde\eta_{t + 1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
                 \langle 
-                    - \tilde \eta_{t + 1} \nabla f(y_t), 
-                    -L^{-1}\nabla f(y_t) + y_t - x_t + \tilde \eta_{t + 1}\nabla f(y_t)
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    (x_{t + 1} - x_{t}) + x_t
+                    + (y_t - z_{t + 1}) - y_t
                 \rangle
                 \\
                 &= 
-                \left(
-                    \frac{\tilde \eta_{t + 1}^2}{2} + 
-                    \frac{\tilde \eta_{t + 1}}{2L}
-                \right)
-                \Vert \nabla f(y_t)\Vert^2 
-                + \tilde \eta_{t + 1} 
-                \left\langle 
-                    \nabla f(y_t), 
-                    (\tilde \eta_{t + 1} - L^{-1})\nabla f(y_t) + y_t - x_t 
-                \right\rangle
+                \frac{1}{2}\left(
+                    L^{-1}\tilde\eta_{t + 1}
+                    - \tilde\eta_{t + 1}^2
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    -\tilde\eta_{t + 1}\mathcal G_L(y_t) + x_t 
+                    + L^{-1}\mathcal G_L(y_t) - y_t
+                \rangle
                 \\
                 &= 
-                (1/2)(L^{-1}\tilde \eta_{t + 1} - \tilde \eta_{t + 1}^2)
-                \Vert \nabla f(y_t)\Vert^2
-                + 
-                \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1})
-                \Vert \nabla f(y_t)\Vert^2
-                + 
-                \tilde \eta_{t + 1}\langle \nabla f(y_t), y_t - x_t\rangle
+                \frac{1}{2}\left(
+                    L^{-1}\tilde\eta_{t + 1}
+                    - \tilde\eta_{t + 1}^2
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - \langle 
+                    \tilde\eta_{t +1}\mathcal G_L(y_t), 
+                    (L^{-1} - \tilde\eta_{t + 1})\mathcal G_L(y_t) + x_t - y_t
+                \rangle
                 \\
                 &= \frac{1}{2}\left(
-                    -L^{-1}\tilde \eta_{t + 1} + \tilde \eta_{t + 1}^2
-                \right)\Vert \nabla f(y_t)\Vert^2 
-                + 
-                \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle. 
-            \end{align*}
-            }
-            For $\Upsilon_{2, t + 1}^\text{AG}$, we simplify it with the same updates relation in mind: 
-            \begin{align*}
-                \Upsilon_{2, t + 1}^\text{AG}
-                &\le 
-                \langle \nabla f(y_t), z_{t +1} - y_t\rangle + 
-                \frac{L}{2}\Vert z_{t +1} - y_{t} \Vert^2 
-                + 
-                \langle \nabla f(y_t), y_t - z_t\rangle
+                    L^{-1}\tilde\eta_{t + 1} - \tilde\eta_{t + 1}^2 
+                    + 2 \tilde\eta_{t + 1}^2 - 2\tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_t - y_t
+                \rangle
                 \\
                 &= 
-                \langle 
-                    \nabla f(y_t), -L^{-1} \nabla f(y_t)
-                \rangle + 
-                \frac{L}{2}\Vert L^{-1}\nabla f(y_t) \Vert^ 2
-                + 
-                \langle \nabla f(y_t), y_t - z_t\rangle
+                \frac{1}{2}\left(
+                    \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 
+                + \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), y_t - x_t\rangle
+            \end{align*}
+            similarly we also have upper bound 
+            \begin{align*}
+                \Upsilon_{2, t + 1}^{\text{AG}} 
+                &= 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
                 \\
-                &= -\frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
-                + \langle \nabla f(y_t), y_t - z_t\rangle. 
+                &= 
+                \langle \mathcal G_L(y_t), z_{t + 1} - y_t + y_t - z_t\rangle
+                + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \\
+                &= 
+                \langle \mathcal G_L(y_t), - L^{-1} \mathcal G_L(y_t) + y_t - z_t\rangle
+                + 
+                \frac{L}{2}\Vert L^{-1}\mathcal G_L(y_t)\Vert^2
+                \\
+                &= 
+                -L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+                + 
+                (1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+                + 
+                \langle \mathcal G_L(y_t), y_t - z_t\rangle
+                \\
+                &= 
+                -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+                + 
+                \langle \mathcal G_L(y_t), y_t - z_t\rangle
             \end{align*}
             Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
-            Hence let's consider $y_t - x_t = L \eta_t (z_t - y_t)$ from the algorithm, we make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \nabla f(y_t), y_t - x_t\rangle = \langle \nabla f(y_t), L \eta_t (z_t - y_t)\rangle$. 
-            With this in mind, applying 
-            \hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}} 
-            and upper bound from 
-            \hyperref[lemma:smooth_agg_lyapunov_upper_bound]{lemma \ref*{lemma:smooth_agg_lyapunov_upper_bound}} 
-            yields inequality: 
+            Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = L \eta_t (z_t - y_t)$. We make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \mathcal G_L(y_t), y_t - x_t\rangle = \langle \mathcal G_L(y_t), L \eta_t (z_t - y_t)\rangle$. 
+            With this in mind, applying the RHS of $[(*)]$ yields: 
             {\footnotesize
             \begin{align*}
-                & \Upsilon_{1, t + 1}^{\text{AG}} + \left(
-                    \sum_{i=1}^{t}\tilde\eta_i 
-                \right) \Upsilon_{2, t + 1}^{\text{AG}} 
+                &\Upsilon_{1, t + 1}^\text{AG} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde\eta_i 
+                \right)\Upsilon_{1, t + 1}^{\text{AG}}
                 \\
-                & \le 
+                &\le 
                 \frac{1}{2}\left(
-                    -L^{-1}\tilde \eta_{t + 1} + \tilde \eta_{t + 1}^2
-                \right)\Vert \nabla f(y_t)\Vert^2 
+                    \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 
                 + 
-                \tilde\eta_{t + 1} \langle \nabla f(y_t), y_t - x_t\rangle
+                \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), L\eta_t(z_t - y_t)\rangle
+                \\
+                &\quad 
                 + 
                 \left(
-                    \sum_{i = 1}^{t}\tilde \eta_i 
+                    \sum_{i = 1}^{t}\tilde\eta_i 
                 \right)\left(
-                    -\frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 
-                    + \langle \nabla f(y_t), y_t - z_t\rangle
+                    -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), y_t - z_t\rangle
                 \right)
                 \\
-                & =
+                &= 
                 \left(
                     \frac{1}{2}\tilde\eta_{t + 1}\left(
                         \tilde \eta_{t +1} - L^{-1}
                     \right)
                     - 
                     \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
-                \right)\Vert \nabla f(y_t)\Vert^2
-                + 
-                \tilde \eta_{t + 1}\langle \nabla f(y_t), L\eta_t (z_t - y_t)\rangle
-                + 
-                \left(
-                    \sum_{i = 1}^{t}\tilde \eta_i
-                \right)
-                \langle \nabla f (y_t), y_t - z_t\rangle
-                \\
-                & = 
-                \left(
-                    \frac{1}{2}\tilde\eta_{t + 1}\left(
-                        \tilde \eta_{t +1} - L^{-1}
-                    \right)
-                    - 
-                    \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
-                \right)\Vert \nabla f(y_t)\Vert^2
-                + 
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 + 
                 \left(
                     L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
-                \right)
-                \langle \nabla f(y_t), z_t - y_t\rangle. 
+                \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle
             \end{align*}
             }
-            Next, we select a choice for stepsize parameter $\eta_t, \tilde \eta_{t +1}$ such that the coefficient for the $\Vert \nabla f(y_t)\Vert^2$ is negative, and is zero for the cross product term. 
-            In this scenario, we makes the choice of $\tilde \eta_t = \eta_t$. 
-            Continuting will simplify the upper bound so that it is: 
-            \begin{align*}
-                \frac{1}{2}\left(
-                    \eta_{t + 1}^2 - L^{-1}\eta_{t +1} - L^{-1}\sum_{i = 1}^{t}\eta_i
-                \right)\Vert \nabla f(y_t)\Vert^2
-                + 
-                \left(
-                    L\eta_t \eta_{t + 1} - \sum_{i = 1}^{t} \eta_i
-                \right)
-                \langle \nabla f(y_t), z_t - y_t\rangle 
-                &
-                \le 0. 
-            \end{align*}
-            Assuming the above inequality holds then one of the sufficient conditions would happen when the coefficient of the cross product term is zero and the coefficient for the normed term is negative, yielding the condition for all $t \in \NN$: 
+            If the algorithm were to have the abstract convergence rate as stated in 
+            \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}},
+            then one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+            To simplify, we make the assumption that $\tilde \eta_t = \eta_t$ for all $t \in \mathcal N$, making it to be a specific instance of 
+            \hyperref[def:ag_tri_pt_form_E]{definition \ref*{def:ag_tri_pt_form_E}}. 
+            These conditions translate to the following relations for $\eta_{t}$. 
             \begin{align*}
                 \begin{cases}
                     L\eta_{t + 1}^2 + \eta_{t + 1} - \sum_{i = 1}^{t}\eta_i 
@@ -2190,96 +2326,18 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 \eta_{t + 1} &\le \eta_t + L^{-1}. 
             \end{align*}
-            To satisfy the equality, reader should verify that $\eta_{t} = t/(2L)$ is one of the options. 
-            And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
+            To satisfy the equality, reader should verify that $\eta_{t} = t/(2L)$ or $\eta_t = (t + 1)/2L$ are some of the options. 
         \end{proof}
         \begin{remark}
-            In the original writing by Ahn \cite[equation (4.9)]{ahn_understanding_2022}, they didn't identify the algorithm in the literature. 
+            In the original writing by Ahn \cite[equation (4.9)]{ahn_understanding_2022}, they didn't identify this specific variant in the literature. 
             Here we identify it to be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
         \end{remark}
 
     \subsection{Scenario II}
         With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
         The variants proposed by Chambolle Dossal \cite{chambolle_convergence_2015}, is distinct from the possibility proposed in this secenario. 
-        \par\noindent
-        To start, we make the claim that the new stepsizes results in a different algorithm. 
-        \begin{lemma}[Similar Triangular Form]
-            With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ as in \ref*{def:agg_tri}, we have the following specific similar triangular form of the accelerated gradient algorithm: 
-            \begin{align*}
-                z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
-                \\
-                x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
-                \\
-                y_{t + 1} &= 
-                (1 + L\eta_{t + 1})^{-1}
-                (
-                x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-                ). 
-            \end{align*}
-            It also has an equivalent momentum form 
-            \begin{align*}
-                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
-                \\
-                y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
-            \end{align*}
-        \end{lemma}
-        \begin{proof}
-            To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
-            Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
-            \begin{align*}
-                x_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
-                + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
-                \\
-                &= 
-                (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
-                \\
-                &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
-                \\
-                &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
-            \end{align*}
-            By assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we ends with $x_{t + 1} = x_t + \tilde \eta_{t + 1}\nabla f(y_t)$. 
-            Reducing it to the classic momentum form starts by 
-            \begin{align*}
-                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
-                \\
-                &= (1 + L\eta_{t + 1})^{-1} (
-                    z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
-                )
-                \\
-                &= 
-                (1 + L\eta_{t + 1})^{-1} (
-                    (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
-                )
-                \\
-                &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
-            \end{align*}
-            it negates the $x_t$ variables, therefore we have 
-            \begin{align*}
-                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
-                \\
-                y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
-            \end{align*}
-        \end{proof}
-        \begin{remark}
-            In this remark we clarify the name ``similar triangule" as given in the literatures. 
-            We think it is a fitting name, becaues it has a similar triangle in it. 
-            We list the following observations
-            \begin{enumerate}
-                \item 
-                The updates for $y_{t}$ from the algorithm has 
-                $$
-                    y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
-                $$
-                therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
-                We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
-                \item 
-                The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1}\nabla f(y_t), \tilde\eta_{t +1}\nabla f(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
-                \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
-                The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
-            \end{enumerate}
-            By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
-        \end{remark}
-        The next lemma will determine one choice of the stepsize sequence $\eta_t$ that recovers the classical form of Nesterov accelerated gradient method. 
+        % Recall similar a lemma about similar triangle form here. 
+        
 
         \begin{lemma}[Deriving the Nesterov Sequence]
             For all $t \in \mathbb N$
@@ -2339,7 +2397,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             Here we used $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, which was the consequence of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$, as discussed from before. 
             Hence, the upper bound of the Lyapunov function for smooth AG PPM 
-            (\hyperref[thm:generic_smooth_ag_convergence]{theorem \ref*{thm:generic_smooth_ag_convergence}}) 
+            (\hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}) 
             has 
             \begin{align*}
                 & \Upsilon_{1, t + 1}^{\text{AG}} + 
