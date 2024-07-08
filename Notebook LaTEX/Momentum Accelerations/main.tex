@@ -732,12 +732,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In \hyperref[sec:AG_varieties]{section \ref*{sec:AG_varieties}} 
     We stated different forms of accelerated gradient that appeared in the literatures and the equivalences between their forms. 
     They are abstract because the choice of stepsize parameters in the algorithms are unspecified. 
+    Abstract forms related to the proximal gradient method were our own inventions inspired by discussions in the literatures, which includes 
+    \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}, and 
+    \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}. 
     In \hyperref[sec:AG_useful_information]{section \ref*{sec:AG_useful_information}}
-    we prove and interpret some of the unproved claims made by Ahn, Sra \cite{ahn_understanding_2022} as good exercises and for the peace of the mind.
-    \hyperref[lemma:smooth_agg_lyapunov_upper_bound]{Lemma \ref*{lemma:smooth_agg_lyapunov_upper_bound}} 
-    rephrase content in the appendix in work by Ahn, Sra\cite{ahn_understanding_2022}. 
-    It is our attempt at rephrasing the proofs to create a layer of abstraction so it can be reused for multiple proofs for several variants. 
+    we prove and interpret some of the unproved claims made by Ahn, Sra \cite{ahn_understanding_2022} as good exercises and for the peace of the mind. 
+    In
+    \hyperref[sec:generic_ag_ppm_lyapunov_analysis]{section \ref*{sec:generic_ag_ppm_lyapunov_analysis}},
+    we state two important theorems for the derivation of convergences rate for various type of algorithm using an upper bound of a Lyapunov function. 
+    This part is inspired by works from Ahn, Sra \cite{ahn_understanding_2022}, but with the gradient mapping and proximal gradient added into the picture, making it distinct from all algorithms discussed in Ahn and Sra's paper. 
+    \hyperref[sec:scenario_i]{Section \ref*{sec:scenario_i}} and 
+    \hyperref[sec:scenario_ii]{\ref*{sec:scenario_ii}} derive the convergence rate and determine the parameters for the step sizes needed to achieve an optimal convergence rate. 
+    In each section, we recover a specific variant of the Accelerated gradient and identify their appearances in the literature. 
 
+    
     \subsection{Preliminaries}
         We introduce some additional lemma that are crucial to the derivations of non-smooth accelerated gradient method. 
         \begin{definition}[The Gradient Mapping]
@@ -1143,6 +1151,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{enumerate}
                 From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - z_t$. 
             \end{observation}
+            \begin{remark}
+                For more information about the specific choice of $\eta_t$ allows for an optimal convergence rates, see 
+                \hyperref[sec:scenario_ii]{section \ref*{sec:scenario_ii}} for more information. 
+            \end{remark}
 
             
             \begin{definition}[Similar Triangle Form II]
@@ -1587,7 +1599,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
             \end{remark}
 
-            \begin{lemma}[Similar Triangule Form I via Generic Tri Points]
+            \begin{lemma}[Similar Triangle Form I via Generic Tri Points]
                 \quad \\
                 With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ 
                 in 
@@ -1595,7 +1607,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 We can derive similar triangle form I as stated back in
                 \hyperref[def:ag_form_similar_tria_I]{definition \ref*{def:ag_form_similar_tria_I}}. 
                 \begin{align*}
-                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t)
                     \\
                     x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
                     \\
@@ -1607,7 +1619,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
                 It also has an equivalent momentum form 
                 \begin{align*}
-                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
                     \\
                     y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
                 \end{align*}
@@ -1616,17 +1628,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
                 Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
                 \begin{align*}
-                    x_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
-                    + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
+                    x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
+                    + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
                     \\
                     &= 
-                    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
+                    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L(y_t) - L\eta_t z_t
                     \\
-                    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
+                    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L(y_t)  - L\eta_t z_t
                     \\
-                    &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
+                    &= x_t - (\eta_t + L^{-1})\mathcal G_L(y_t). 
                 \end{align*}
-                By assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we ends with $x_{t + 1} = x_t + \tilde \eta_{t + 1}\nabla f(y_t)$. 
+                So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$
                 Reducing it to the classic momentum form starts by 
                 \begin{align*}
                     y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
@@ -1644,13 +1656,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
                 it negates the $x_t$ variables, therefore we have 
                 \begin{align*}
-                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L f(y_t)
                     \\
                     y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
                 \end{align*}
             \end{proof}
             \begin{remark}
-                In this remark we clarify the name ``similar triangule" as given in the literatures. 
+                In this remark we clarify the name ``similar triangle" as given in the literatures. 
                 We think it is a fitting name, becaues it has a similar triangle in it. 
                 We list the following observations
                 \begin{enumerate}
@@ -1662,120 +1674,18 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
                     We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
                     \item 
-                    The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1}\nabla f(y_t), \tilde\eta_{t +1}\nabla f(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1} \mathcal G_L(y_t), \tilde\eta_{t +1} \mathcal G_L(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
                     \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
                     The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
                 \end{enumerate}
                 By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+                Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
             \end{remark}
-            The next lemma will determine one choice of the stepsize sequence $\eta_t$ that recovers the classical form of Nesterov accelerated gradient method. 
+            
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
+    \label{sec:generic_ag_ppm_lyapunov_analysis}
         The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition\ref*{def:agg_ppm}}. 
-        \begin{lemma}[Smooth Generic AG Lyapunov Analysis]\label{lemma:smooth_agg_lyapunov_upper_bound}
-            With $f$ having $L$-Lipschitz gradient and minimizer $x_*$, using 
-            \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with $\mu = 0$
-            and 
-            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} ,
-            then we can derive the upper bounds for the RHS of the PPM descent inequality: 
-            \begin{align*}
-                \Upsilon_{1, t + 1}^{\text{AG}}
-                &= \tilde \eta_{t + 1} (f(z_{t + 1}) - f(x_*))
-                + \frac{1}{2}(
-                    \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_t - x_* \Vert^2
-                )  
-                \\
-                & \quad \le 
-                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
-                \frac{\tilde \eta_{t + 1} L}{2}\Vert z_{t + 1} - y_t\Vert^2
-                - 
-                \langle \tilde \eta_{t + 1} \nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle, 
-                \\
-                \Upsilon_{2, t + 1}^{\text{AG}} 
-                &= f(z_{t + 1}) - f(z_t) 
-                \le 
-                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + 
-                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
-            \end{align*}
-        \end{lemma}
-        \begin{proof}
-            Define $\phi_t(x) = \tilde \eta_{t +1}(f(y_t) + \langle \nabla f(y_t), x- y_t\rangle)$.  
-            With $L$-smoothness of $f$ in mind, consider the following sequence of inequalities: 
-            $$
-            \begin{aligned}
-                \phi_t(x_{t + 1}) 
-                &= 
-                \tilde\eta_{t + 1} (f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle)
-                \\
-                \phi_t (x_{t + 1}) &= \tilde \eta_{t + 1}(
-                    f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
-                )
-                \\
-                &\ge 
-                \tilde \eta_{t + 1}
-                \left(
-                    f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
-                    \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
-                \right), 
-            \end{aligned}
-            $$
-            the AG generic performs PPM on $\phi_t$ to produce $x_{t + 1}$ so the PPM Lyapunov inequality from 
-            \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} applies,
-            substituting yields equivalences for all $x_*$: 
-            {\footnotesize
-            \begin{align*}
-                & \phi_t(x_{t + 1}) - \phi_t(x_*) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
-                - \frac{1}{2}\Vert x_* - x_t\Vert^2 
-                \\
-                &\quad \le 
-                - \frac{1}{2} \Vert x_{t + 1} - x_t\Vert^2 
-                \\
-                \implies & 
-                \tilde \eta_{t + 1}\left(
-                    f(z_{t + 1}) - \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
-                    + 
-                    \langle \nabla f(y_t), x_{t + 1} - z_{t + 1}\rangle
-                \right) - \tilde \eta_{t + 1} f(x_*)
-                + 
-                \frac{1}{2}\left(
-                    \Vert x_{t + 1} - x_*\Vert^2 - \Vert x_{t} - x_*\Vert^2
-                \right)
-                \\
-                &\quad \le
-                 - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-                \\
-                \iff 
-                & 
-                \tilde \eta_{t + 1} \left(
-                    f(z_{t + 1}) - f(x_*)
-                \right) + \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2 
-                - \frac{1}{2}\Vert x_{t} - x_*\Vert^2  =: \Upsilon_{1, t + 1}^{\text{AG}}
-                \\
-                &\quad \le 
-                -\frac{1}{2} \Vert x_{t + 1 } - x_t\Vert^2 + 
-                \frac{\tilde \eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2 
-                - \langle \tilde \eta_{t + 1}\nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle. 
-            \end{align*}
-            }
-            Observe that, the rhs and lhs of the Lyapunov inequality are anchored at $z_{t + 1}$. 
-            Similarly for the descent inequality we wish to obtain: 
-            \begin{align*}
-                f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
-                \\
-                &\le 
-                \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
-                + 
-                \langle \nabla f(y_t), y_t - z_t\rangle
-                \\
-                &= 
-                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-                \\
-                \text{let }\Upsilon_{2, t + 1}^{\text{AG}} 
-                &:= f(z_{t + 1}) - f(z_t). 
-            \end{align*}
-            Which is the descent inequality anchored on $z_{t + 1}$.
-            Merging the $(z_{t + 1} - y_t)$ with $y_t - z_t$ together yield the desired results. 
-        \end{proof}
 
         \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
         \label{lemma:nsmooth_agg_lyapunov_upper_bound}
@@ -2092,7 +2002,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
 
 
-    \subsection{Scenario I}
+    \subsection{Scenario I}\label{sec:scenario_i}
         In this scenario, we aim to recover AG Ryu 12.1 conceret variant algorithm stated back in 
         \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}. 
         \begin{proposition}
@@ -2333,11 +2243,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Here we identify it to be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
         \end{remark}
 
-    \subsection{Scenario II}
+    \subsection{Scenario II}\label{sec:scenario_ii}
         With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
         The variants proposed by Chambolle Dossal \cite{chambolle_convergence_2015}, is distinct from the possibility proposed in this secenario. 
-        % Recall similar a lemma about similar triangle form here. 
-        
 
         \begin{lemma}[Deriving the Nesterov Sequence]
             For all $t \in \mathbb N$
@@ -2351,54 +2259,60 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{aligned} 
                 \right. 
             \end{align*}
-            allows \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}} to converge at an optimal rate. 
+            allows \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}} to converge at an optimal rate. 
             The base case is $\eta_0 = 0$. 
         \end{lemma}
         \begin{proof}
-            Continue from \ref*{lemma:smooth_agg_lyapunov_upper_bound}, With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ for $y_t$: 
+            Continue from 
+            \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]{lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}, 
+            With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ for $y_t$: 
             \begin{align*}
                 \Upsilon_{1, t + 1}^\text{AG} &\le 
-                - \frac{1}{2}\Vert x_{t+1 } - x_t\Vert^2 + 
-                \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
-                \\
-                &= 
-                - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
-                \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
-                \\
-                &= 
-                \left(
-                    \frac{L^2\tilde\eta_{t + 1}^2}{2}
-                    + 
-                    \frac{\tilde \eta_{t +1}}{2}
-                \right)
-                \Vert z_{t+1} - y_t\Vert^2
-                - 
-                \langle 
-                    \tilde \eta_{t+ 1} \nabla f(y_t), x_{t+1} - z_{t+1}
-                \rangle. 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                    + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    - \langle 
+                        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                        x_{t + 1} - z_{t + 1}
+                    \rangle
+                    \\
+                    &= 
+                    - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
+                    \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+                    - \langle 
+                        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                        x_{t + 1} - z_{t + 1}
+                    \rangle
+                    \\
+                    &= 
+                    \left(
+                        \frac{L^2\tilde\eta_{t + 1}^2}{2}
+                        + 
+                        \frac{\tilde \eta_{t +1}}{2}
+                    \right)
+                    \Vert z_{t+1} - y_t\Vert^2
+                    - 
+                    \langle 
+                        \tilde \eta_{t+ 1} \mathcal G_L(y_t), x_{t+1} - z_{t+1}
+                    \rangle. 
             \end{align*}
             This completes the analysis for $\Upsilon_{1, t + 1}^\text{AG}$ with $\tilde\eta_{t+1}$. 
             Next we consider 
             \begin{align*}
-                \Upsilon_{2, t + 1}^{\text{AG}} &= 
-                \langle \nabla f(y_t), z_{t+1} - y_t\rangle
-                + 
-                \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2 + 
-                \langle \nabla f(y_t), y_t - z_t\rangle
-                \\
+                \Upsilon_{2, t + 1}^{\text{AG}} 
                 &= 
-                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle
                 + 
                 \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
                 \\
                 &= 
-                \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+                \langle \mathcal G_L(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
                 + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
             \end{align*}
             Here we used $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, which was the consequence of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$, as discussed from before. 
             Hence, the upper bound of the Lyapunov function for smooth AG PPM 
             (\hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}) 
             has 
+            {\footnotesize
             \begin{align*}
                 & \Upsilon_{1, t + 1}^{\text{AG}} + 
                 \left(
@@ -2420,9 +2334,27 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)\left(
                     \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
                     + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-                \right). 
+                \right)
+                \\
+                &= 
+                \frac{L}{2}
+                \left(
+                -\tilde\eta_{t + 1}^2 + \tilde\eta_{t + 1}
+                    + \sum_{i = 1}^{t}\tilde\eta_i
+                \right)\Vert z_{t + 1} - y_t\Vert^2
+                +
+                \left(
+                    L^{-1}\eta_t^{-1} 
+                    \left(
+                        \sum_{i = 1}^{t}\tilde \eta_i
+                    \right)
+                    -
+                    \tilde \eta_{t + 1}
+                \right)\langle \mathcal G_L (y_t), x_{t + 1} - z_{t + 1}\rangle
             \end{align*}
-            If the above quantity less than or equal to zero, it will allow for convergence of the algorithm. 
+            }
+            If the above quantity less than or equal to zero, it will allow for convergence of the algorithm by 
+            \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}.
             One sufficient condition is to have the coefficients for all the cross product terms to sum up to zero, and the squared normed term to sum up to a non-positive number for all $t \in \mathbb N$. 
             This gives relations 
             \begin{align*}
@@ -2492,7 +2424,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
             \end{align*}
-            Combining yeilds that 
+            Combining yields that 
             \begin{align*}
                 (L\eta_t + 1)^2 
                 &= L\eta_{t + 1}(1 + L \eta_{t + 1})
@@ -2523,7 +2455,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 (1 + L \eta_{t+ 1})^{-1}L\eta_t = L\eta_t / a_{t + 1} = (a_t - 1)/a_{t + 1}. 
             \end{align*}
-            We had recovered the classic Nesterov accelerated sequence method for the smooth gradient descent algorithm. 
+            We had recovered the classic Nesterov acceleration sequence method for the smooth gradient descent algorithm. 
         \end{proof}
         \begin{remark}
             This variant is distinct from the variants proposed by Chambolle \cite{chambolle_convergence_2015}, but both of which fits into the same frameworks. 
@@ -2537,7 +2469,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             They listed the choice of $t_n = (n + a - 1)/a$ for all $a > 2$. 
             Under this choice, unfortunately, it's in no way obvious that this format reduces to \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
-            It fails the similar triangule description Without the explict representation $x_{n + 1} = z_n + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+            It fails the similar triangle description Without the explict representation $x_{n + 1} = z_n + \tilde\eta_{t + 1}\nabla f(y_t)$. 
             \par\noindent
             At the time of writing, we are still investigating the relations between these variants of algorithms.
         \end{remark}

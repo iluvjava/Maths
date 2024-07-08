@@ -603,20 +603,20 @@ To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one
 #### **Scenario 2 | Similar Triangle I**
 This similar triangle approach will recover the original Nesterov acceleration sequence method proposed back in 1983. 
 It is called a similar triangle approach because it employed the following conditions on top of the Triangular Generic Form of AG: $\tilde\eta_{t + 1} = \eta_t + L^{-1}$. 
-This stepsize allows us to change updates so that $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, $\nabla f(y_t)$ is now nullified. 
-To start, substituting the definition of $z_{t +1} = z_{t} - L^{-1}\nabla f(y_t), z_t$ into the above expression then we have: 
+This stepsize allows us to change updates so that $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, $\mathcal G_L(y_t)$ is now nullified. 
+To start, substituting the definition of $z_{t +1} = z_{t} - L^{-1}\mathcal G_L(y_t), z_t$ into the above expression then we have: 
 
 $$
 \begin{aligned}
-    x_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
-    + L \eta_t y_t - \eta_t \nabla f(y_t) - L\eta_t z_t
+    x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
+    + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
     \\
     &= 
-    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\nabla f(y_t) - L\eta_t z_t
+    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L f(y_t) - L\eta_t z_t
     \\
-    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \nabla f(y_t)  - L\eta_t z_t
+    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L f(y_t)  - L\eta_t z_t
     \\
-    &= x_t - (\eta_t + L^{-1})\nabla f(y_t). 
+    &= x_t - (\eta_t + L^{-1})\mathcal G_L f(y_t). 
 \end{aligned}
 $$
 
@@ -624,7 +624,7 @@ This new choice for $\tilde \eta, \eta$ conveys the following updates:
 
 $$
 \begin{aligned}
-    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+    z_{t + 1} &= y_t - L^{-1} \mathcal G_L f(y_t) 
     \\
     x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
     \\
@@ -659,7 +659,7 @@ which allows us to get rid of $x_{t + 1}$, simplifying it into the classical acc
 
 $$
 \begin{aligned}
-    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t)
+    z_{t + 1} &= y_t - L^{-1} \mathcal G_L f(y_t)
     \\
     y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
 \end{aligned}
@@ -672,7 +672,7 @@ $$
 **Demonstration**
 
 1. Observe that $y_t = (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)$ is a convex combination between $x_t, z_t$. Hence $z_t, y_t, x_t$ are three collinear points. Additionally, we have $y_t - x_t = L\eta_t (z_t - y_t)$, hence $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
-1. By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \nabla f(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \nabla f(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+1. By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \mathcal G_L(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \mathcal G_L(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
 2. Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
 
 From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - z_t$. 
@@ -681,7 +681,7 @@ The visual understanding of the situation allows us to duduce the upper bound be
 The next claim will clarify the sitaution. 
 
 #### **Claim 1.1 | Recovering Nesterov Original Form**
-> With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
+> With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ and the AG proximal gradient generic tri-points form, we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
 **Demonstrations**
@@ -692,12 +692,20 @@ With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ from the updates of $
 $$
 \begin{aligned}
     \Upsilon_{1, t + 1}^\text{AG} &\le 
-    - \frac{1}{2}\Vert x_{t+1 } - x_t\Vert^2 + 
-    \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+   - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+    + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+    - \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        x_{t + 1} - z_{t + 1}
+    \rangle
     \\
     &= 
     - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
     \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+    - \langle 
+        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+        x_{t + 1} - z_{t + 1}
+    \rangle
     \\
     &= 
     \left(
@@ -708,28 +716,23 @@ $$
     \Vert z_{t+1} - y_t\Vert^2
     - 
     \langle 
-        \tilde \eta_{t+ 1} \nabla f(y_t), x_{t+1} - z_{t+1}
+        \tilde \eta_{t+ 1} \mathcal G_L(y_t), x_{t+1} - z_{t+1}
     \rangle. 
 \end{aligned}
 $$
 
 This completes the analysis for $\Upsilon_{1, t + 1}^\text{AG}$ with $\tilde\eta_{t+1}$. 
-Next we consider 
+With the relations $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$ in mind, we consider 
 $$
 \begin{aligned}
-    \Upsilon_{2, t + 1}^{\text{AG}} &= 
-    \langle \nabla f(y_t), z_{t+1} - y_t\rangle
-    + 
-    \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2 + 
-    \langle \nabla f(y_t), y_t - z_t\rangle
-    \\
+    \Upsilon_{2, t + 1}^{\text{AG}} 
     &= 
-    \langle \nabla f(y_t), z_{t + 1} - z_t\rangle
+    \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle
     + 
     \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
     \\
     &= 
-    \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+    \langle \mathcal G_L(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
     + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
 \end{aligned}
 $$
@@ -744,26 +747,42 @@ $$
         \sum_{i = 1}^{t}\tilde \eta_i
     \right)\Upsilon_{2, t + 1}^{\text{AG}}
     \\
-    &\quad \le 
+    & \le 
     \left(
         - \frac{L^2\tilde \eta_{t + 1}^2}{2}
         + \frac{\tilde\eta_{t+1}L}{2}
     \right)
     \Vert z_{t+1} - y_t\Vert^2
     - 
-    \langle \tilde \eta_{t+1} \nabla f(y_t), x_{t+1} - z_{t + 1}\rangle
+    \langle \tilde \eta_{t+1} \mathcal G_L(y_t), x_{t+1} - z_{t + 1}\rangle
     \\
     & \qquad + 
     \left(
         \sum_{i = 1}^{t}\tilde \eta_i
     \right)\left(
-        \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+        \langle \mathcal G_L(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
         + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-    \right). 
+    \right)
+    \\
+    &= 
+    \frac{L}{2}
+    \left(
+       -\tilde\eta_{t + 1}^2 + \tilde\eta_{t + 1}
+        + \sum_{i = 1}^{t}\tilde\eta_i
+    \right)\Vert z_{t + 1} - y_t\Vert^2
+    +
+    \left(
+        L^{-1}\eta_t^{-1} 
+        \left(
+            \sum_{i = 1}^{t}\tilde \eta_i
+        \right)
+        -
+        \tilde \eta_{t + 1}
+    \right)\langle \mathcal G_L (y_t), x_{t + 1} - z_{t + 1}\rangle
 \end{aligned}\tag{$[*]$}
 $$
 
-Next, we consider coefficient for the term $\Vert z_{t+1} - y_t\Vert$, if it's non-positive then we have
+Next, we consider coefficient for the term $\Vert z_{t+1} - y_t\Vert^2$, if it's non-positive then we have
 
 $$
 \begin{aligned}
