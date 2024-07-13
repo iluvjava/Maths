@@ -26,9 +26,6 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
   - [**Thm (2.2.1) | Generic Convergence Results**](#thm-221--generic-convergence-results)
 - [**Conclusion**](#conclusion)
 
-
-
-
 ---
 ### **Prelimaries, the Estimating Sequence and Function**
 
@@ -88,6 +85,7 @@ To realize these entities, there are 2 questions here.
 
 Is there a Lypunov interpretation for it? 
 These two lemmas should be combined into just one lemma. 
+
 
 ---
 ### **An Potential Updates Procedures for Estimating Sequences and Functions**

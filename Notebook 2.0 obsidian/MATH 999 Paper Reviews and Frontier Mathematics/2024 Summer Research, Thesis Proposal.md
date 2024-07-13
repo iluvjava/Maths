@@ -25,11 +25,11 @@ For Nesterov's Lecture on Convex Optimization, I think these chapters requires a
     - Estimating Sequences
     - Decreasing Norm of the Gradient
     - Convex Sets 
-    - [ ] **The Gradient Mapping**
-    - [ ] **Minimization of Simple Sets**
+    - [x] **The Gradient Mapping**
+    - [x] **Minimization of Simple Sets**
   - Minimization Problems with Smooth Components
     - The Minmax Problem
-    - [ ] **The Gradient Mapping**
+    - [x] **The Gradient Mapping**
     - [ ] **Minimization Method for the Minmax Problem**
     - [ ] **Optimization with Functional Constraints**
     - [ ] **The Method for Constrained Minimization**

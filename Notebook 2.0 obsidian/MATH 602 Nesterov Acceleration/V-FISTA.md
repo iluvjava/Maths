@@ -85,7 +85,13 @@ Frontier research by Necoera et al[^1], extend the linear convergence to Lipschi
 > $$
 > achieving Nesterov Optimal Convergence rate. 
 
-For more information about what it means to have Nesterov Optimal Convergence for the class of Strongly convex function, see [Nesterove Lower Convergence Bnd For Strongly Convex Functions](MATH%20602%20Nesterov%20Acceleration/Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md) for more information. This theorem is stated as theorem 10.7.7 in Amir Becks [^2]. In the next section, we provide a proof that is different from Beck, a bit more generalized. Amir Beck's original proof is short and not insightful, lacking in the interpretability of the algorithm, our proof mitigate it somewhat but still retains the same frameworks and set of formulas, claims for support. For, a better proof that is created from the ground up see Nesterov[^3] algorithm 2.2.7, read the whole chapter for best understanding. Finally, attempts at capturing the essence of momentum method had been attempted using the Idea of Proximal Point Methods, by [^4], and the frameworks of mirror descent and linear coupling [^5]. By the time the excerpt is created, I, the writer only have limited understanding of these topics. There is no further descriptions, besides the fact that these analysis are highly relevant to understand the family of Nesterov accelerations for convex smooth functions. 
+For more information about what it means to have Nesterov Optimal Convergence for the class of Strongly convex function, see [Nesterove Lower Convergence Bnd For Strongly Convex Functions](MATH%20602%20Nesterov%20Acceleration/Convergence%20Rate%20Lower%20Bound%20for%20S-CVX%20Func.md) for more information. 
+This theorem is stated as theorem 10.7.7 in Amir Becks [^2]. In the next section, we provide a proof that is different from Beck, a bit more generalized. 
+Amir Beck's original proof is short and not insightful, lacking in the interpretability of the algorithm, our proof mitigate it somewhat but still retains the same frameworks and set of formulas, claims for support. 
+For, a better proof that is created from the ground up see Nesterov[^3] algorithm 2.2.7, read the whole chapter for best understanding. 
+Finally, attempts at capturing the essence of momentum method had been attempted using the Idea of Proximal Point Methods, by [^4], and the frameworks of mirror descent and linear coupling [^5]. 
+By the time the excerpt is created, I, the writer only have limited understanding of these topics. 
+There is no further descriptions, besides the fact that these analysis are highly relevant to understand the family of Nesterov accelerations for convex smooth functions. 
 
 [^2]: A. Beck, First-Order Methods in Optimization | SIAM Publications Library. in MOS-SIAM Series in Optimization. SIAM. Accessed: Oct. 19, 2023. [Online]. Available: https://epubs.siam.org/doi/book/10.1137/1.9781611974997
 

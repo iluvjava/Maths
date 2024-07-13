@@ -337,11 +337,11 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     L(x - \mathcal T_L^{g, f}(x)). 
 > \end{aligned}
 > $$
-> Omitting the superscript $f, g$ on $\mathcal P, \mathcal G$ for simplicity since it's clear in the context. 
+> Omitting the superscript $f, g$ on $\mathcal T, \mathcal G$ for simplicity since it's clear in the context. 
 > Define the linear lower bounding function for $f$ at $y$, for all $x$: 
 > $$
 > \begin{aligned}
->     l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le f(x), 
+>     l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le h(x), 
 > \end{aligned}
 > $$
 > With that we define the algorithm:
