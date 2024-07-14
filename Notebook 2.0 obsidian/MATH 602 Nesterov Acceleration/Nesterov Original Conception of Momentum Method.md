@@ -25,6 +25,11 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
 - [**A Generic Convergence Results**](#a-generic-convergence-results)
   - [**Thm (2.2.1) | Generic Convergence Results**](#thm-221--generic-convergence-results)
 - [**Conclusion**](#conclusion)
+  - [**Part I | The Estimating Functions**](#part-i--the-estimating-functions)
+  - [**Part II | The Point of Descent**](#part-ii--the-point-of-descent)
+  - [**Par III | Construction of the Estimating Sequence**](#par-iii--construction-of-the-estimating-sequence)
+  - [**Part IV | Determing the Sequences**](#part-iv--determing-the-sequences)
+  - [**A few extra comments about the situations**](#a-few-extra-comments-about-the-situations)
 
 ---
 ### **Prelimaries, the Estimating Sequence and Function**
@@ -200,10 +205,10 @@ To fit this update to the characterizations, lemma 2.2.1, it it's required to id
 >       \lambda_{k + 1} &= (1 - \alpha_k) \lambda_k, 
 >       \\
 >       \phi_{k + 1}(x) &= (1 - \alpha_k)\phi_k(x) + \alpha_k
->               \varphi(x | y^{(k)})
+>               \varphi\left(x ; y^{(k)}\right)
 >   \end{aligned}\tag{[1]}
 > $$
-> 6. Where $\varphi(x| y^{(k)})$ is the lower bounding function satisfying the condition $\varphi(x| y^{(k)}) \le F(x)\;\forall x$. 
+> 6. Where $\varphi(x| y^{(k)})$ is the lower bounding function satisfying the condition $\varphi(x| y^{(k)}) \le f(x)\;\forall x$. 
 > Are estimating sequences and functions. 
 
 **Proof**
@@ -1110,14 +1115,114 @@ It's complicated, please visit [[Nesterov's Generic Convergence Results]] for mo
 ---
 ### **Conclusion**
 
-The Nesterov's framework for extrapolated momentum requires the use of 
-- An estimating function and estimating sequence. 
-  - Def 2.2.1
-  - Lemma 2.2.1
-- It requires a way of updating the Nesterov sequence/functions consistently to work. For example in 
-    - Lemma 2.2.2
-    - A lower bounding function $\phi(x | y^{(k)})$, at the extrapolated point $y^{(k)}$. 
-    - A way of updating the estimating sequence/function. 
-- It may require a descent lemma, for example, it showed up at our derivation at the very end to inductively looking for $x^{(k)}$ such that $\phi_k^* \ge f(x^{(k)})$ for the generated sequence of iterates. 
+That was a depressingly long proof. 
+Let's unwrap it by summarizing on a high level what each theorem does, and what conditions are involved in the proof of the theorem. 
+Let's fix $f$ to be a convex function with $L$-Lipschitz smooth gradient. 
 
-However, this only seems to work with the assumption of convexity of the objective function. 
+#### **Part I | The Estimating Functions**
+Let's consider $\{\phi_t\}_{t\in \N}$ to be a sequence of function such that it recursively satisfies for all $k\in \N$: 
+> $$
+>     \phi_{k + 1} (x) - f(x) \le 
+>     (1 - \alpha_k)(\phi_k(x) - f(x)) \quad \forall x 
+> $$
+> where the sequence of scalar satisfies $\alpha_k \in [0, 1)$. 
+
+Notice that this creates a Lyapunov function $\phi_k(x) - f(x)$, giving us for all $x$: 
+
+> $$
+> \begin{aligned}
+>     \phi_{k + 1}(x) - f(x) &\le 
+>     \left(
+>         \prod_{i = 0}^{k} 
+>         (1 - \alpha_i)
+>     \right)(\phi_0(x) - f(x)). 
+> \end{aligned}
+> $$
+
+The value $\phi_k(x) - f(x)$ can be negative and it will be fine. 
+So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}(1 - \alpha_i)$
+
+**Remarks**
+
+We had harvested: $\phi_k, \alpha_i, \lambda_k$ and the above conditions. 
+
+#### **Part II | The Point of Descent**
+
+Correlates the sequence of function $\phi_k$ by choosing a specific value $x_k$ for all $k\in \N$ such that 
+
+> $$
+> \begin{aligned}
+>     f(x_k) &\le \phi_k^* := \min_z(\phi_k(z))
+> \end{aligned}
+> $$
+
+with such a sequence of $x_k$, let $\phi_k$ keep being the estimating function then
+
+$$
+\begin{aligned}
+    f(x_k) - f(x) 
+    &\le 
+    \lambda_k (\phi_0 (x) - f(x)) \quad \forall x,  
+\end{aligned}
+$$
+
+making $f(x_k) - f(x)$ a Lyapunov function. 
+Furthermove, with $f_* = \min_z(f(z))$ and assume the existence of a minimizer $x^*$, we have 
+
+$$
+\begin{aligned}
+    f(x_k) - f_*
+    &\le 
+    \lambda_k(\phi_0(x_*) - f_*). 
+\end{aligned}
+$$
+
+Take note that without the existence of minimizer, $\phi_0(x_*)$ will blow up. 
+We would need to becareful about it when minimizer is not assumed to exist. 
+
+**Remarks**
+
+At this point, we assumed the existence of $x_k$ and minimum $\phi_k^*$. 
+
+
+#### **Par III | Construction of the Estimating Sequence**
+It is, by pure genius of Nesterov, to assume the sequence of $\phi_k$ and $y_k$ recursively that 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) &= 
+    (1 - \alpha_k)\phi_k(x) + \alpha_k \phi(x; y_k), 
+\end{aligned}
+$$
+
+where $\varphi(x; y_k)$ is a lower bounding function of $f$ parameterized by $y_k$. 
+Without too much assumptions on the function, the following functions
+
+$$
+\begin{aligned}
+    \phi_{0}(x) &= 
+    \phi_0^* + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2
+    \\
+    \phi_{k + 1}(x) &= 
+    (1 - \alpha_k) \phi_{k}(x) + \alpha_k \varphi(x; y_k)
+    \\
+    &= \phi_{k + 1}^* + \frac{\gamma_k}{2}\Vert x - v_{k + 1}\Vert^2
+    \\
+    \varphi(x, y_k) &= 
+    f(y_k) + \langle \nabla f(y_k), x - y_k\rangle + 
+    \frac{\mu}{2}\Vert x - y_k\Vert^2
+\end{aligned}
+$$
+
+
+#### **Part IV | Determing the Sequences**
+And surprisngly, with $\varphi(x)$ being just a linear functional and $\phi_k$ being simple quadratic function. 
+After all these scaffolding, it remains to determine the following list of parameters. 
+
+1. $\phi_k(x) = \phi_k^* + (\gamma_k/2)\Vert x - v_k\Vert^2$ a quadratic function that is too simple, which is parameterized by 
+   1. $v_k$, the minimizer. 
+   2. $\gamma_k$, the curvature control parameter. 
+2. $x_k, y_k$ such that we have $f(x_k) \le \phi_k^*$ for all $k$. 
+
+#### **A few extra comments about the situations**
+
