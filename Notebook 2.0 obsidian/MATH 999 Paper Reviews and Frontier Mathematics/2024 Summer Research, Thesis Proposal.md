@@ -71,7 +71,7 @@ Chapter 12, Frank Wolfe conditional Gradient descent.
 Try understand these: 
 
  - Chapter 1: 
-	 - F: Parametric Dependence
+	 - F: Parametric Dependence | pg:16
 	 - G: Moreau Envelopes
  - Chapter 10: 
 	 - G: Semiderivatives and Subsmoothness

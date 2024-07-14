@@ -1225,4 +1225,4 @@ After all these scaffolding, it remains to determine the following list of param
 2. $x_k, y_k$ such that we have $f(x_k) \le \phi_k^*$ for all $k$. 
 
 #### **A few extra comments about the situations**
-
+All $\phi_k$ modeling functions are the same simple quadratic functions that has uniform diagonal Hessian. 
