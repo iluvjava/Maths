@@ -879,7 +879,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \begin{enumerate}
                     \item[1.] computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$; 
                     \item[2.] sets $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$;
-                    \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
+                    \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
                     \item[4.] finds $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$; 
                     \item[5.] sets $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
                 \end{enumerate}
@@ -940,14 +940,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     L\left(x - \mathcal T_L^{g, f}(x)\right). 
                 \end{aligned}
                 $$
-                Omitting the superscript $f, g$ on $\mathcal P, \mathcal G$ for simplicity since it's clear in the context. 
+                Omitting the superscript $f, g$ on $\mathcal T, \mathcal G$ for simplicity since it's clear in the context. 
                 Define the linear lower bounding function for $f$ at $y$, for all $x$: 
                 $$
                 \begin{aligned}
-                    l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le f(x), 
+                    l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le h(x), 
                 \end{aligned}
                 $$
-                With that we define the algorithm:
+                with that we define the algorithm:
                 $$
                 \begin{aligned}
                     x_{t + 1} &= \argmin_{x} \left\lbrace
@@ -958,7 +958,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     y_{t + 1}&= 
                     \argmin_{x}
                     \left\lbrace
-                        g(x) + l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        l_h(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
                         \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
                     \right\rbrace.
                 \end{aligned}
@@ -1044,7 +1044,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{remark}
 
         \subsubsection{AG Concrete Examples}
-            In this section we state some variants of the Nesterov accelerated gradient method found in the literatures. 
+            In this section we state variants of the Nesterov accelerated gradient method found in the literatures which are not generic. 
             
             \begin{definition}[AG Ryu 12.1]
             \label{def:ag_ryu_12.1}
@@ -1107,7 +1107,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{remark}
                 We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
                 It goes over the full context and history for this particular variant of gradient acceleration method. 
-                As the time of composing this notes, the writer is still reading on the topic of accelerated gradient.     
+                At the time of composing this notes, the writer is still reading on the topic of accelerated gradient.     
             \end{remark}
 
             \begin{definition}[Proximal Gradient Tri-Points Form E]
@@ -1115,8 +1115,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 Form E is a special case of 
                 \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
                 with the condition that $\tilde \eta_t = \eta_t$ for all $t \in \mathbb N$. 
-                As a consequence, the algorithm has the following updates for iterates $(y_t, x_{t + 1}, z_{t + 1})$. 
-                Giving us: 
+                As a consequence, the algorithm has the following updates for iterates $(y_t, x_{t + 1}, z_{t + 1})$: 
                 \begin{align*}
                     y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
                     \\
@@ -1149,7 +1148,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \item By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \nabla f(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \nabla f(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
                     \item Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
                 \end{enumerate}
-                From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - z_t$. 
+                From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
             \end{observation}
             \begin{remark}
                 For more information about the specific choice of $\eta_t$ allows for an optimal convergence rates, see 
@@ -1680,12 +1679,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{enumerate}
                 By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
                 Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
+                
             \end{remark}
             
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
     \label{sec:generic_ag_ppm_lyapunov_analysis}
-        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition\ref*{def:agg_ppm}}. 
+        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
 
         \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
         \label{lemma:nsmooth_agg_lyapunov_upper_bound}
@@ -1740,7 +1740,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Then the update in the Generic Tri-Point algorithm 
             (\hyperref[def:ag_prox_grad_ppm]
                 {definition \ref*{def:ag_prox_grad_ppm}}) 
-            has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
+            has $x_{t + 1} = \hprox_{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
                 {theorem \ref*{thm:ppm_descent_ineq}})
             which gives for all $x_*$: 
             \begin{align*}
