@@ -4,7 +4,7 @@ alias: Mordukhovich Limiting Subdifferential
 
 ---
 - [Fechet Regular Subgradient](Fechet%20Regular%20Subgradient.md)
-- [Continuous Set Limits](Continuous%20Set%20Limits.md)
+- [Set Limits Part II](Background/Set%20Limits%20Part%20II.md)
 - [Multivalued Functions, Set-valued Mappings](Multivalued%20Functions,%20Set-valued%20Mappings.md)
 
 ---

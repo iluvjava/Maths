@@ -1,15 +1,20 @@
-- [Discrete Set Limit](Discrete%20Set%20Limit.md)
+- [Set Limit Part I](Set%20Limit%20Part%20I.md)
 - [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
 - [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md)
 
 ---
 ### **Intro**
 
-We define continuous set limits using the subsequences characterizations. 
+In this section the concept of a set limit can be strengthened by the introduction of a metric space. 
+The set limit introduced in the previous section is readily available by choosing the discrete metric for the underlying metric space. 
 Recall that subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
 Denote $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions. 
 Please also recall the projection operator of sets $\Pi_C(x) \ni y$  means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
 Before we start, we define the following quantities relevant to discussion of set limits in complete metric space and Banach spaces. 
+
+**References**
+
+Some concepts introduce in this file are similar to Rockafellar and Wetts book, 4.A. 
 
 #### **Def | Distance Beteen set and Points**
 > Let $(X, d)$ be a complete metric space.

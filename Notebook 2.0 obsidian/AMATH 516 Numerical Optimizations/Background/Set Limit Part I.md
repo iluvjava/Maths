@@ -3,8 +3,10 @@
 ---
 ### **Intro**
 
-Set inclusion is a partially order relation making it possible to extend the concept of $\lim\inf, \lim\sup$ for sets. We define the limit of a sequence sets $(A_n)_{n\in \mathbb N}$: 
+The content of this file is from the chapter 1 of the book Set-valued analysis [^1]. 
+Set inclusion is a partially order relation making it possible to extend the concept of $\lim\inf, \lim\sup$ for sets. We define the limit of a sequence sets $(A_n)_{n\in \mathbb N}$:
 
+[^1]: J.-P. Aubin and H. Frankowska, _Set-Valued Analysis_. Boston: Birkhäuser, 2009. doi: [10.1007/978-0-8176-4848-0](https://doi.org/10.1007/978-0-8176-4848-0).
 
 #### **Def | Discrete Set Limits**
 > Let $(A_n)_{n \in \mathbb N}$ be a sequence of subset $A_n \subseteq X$, from the partial order space $(2^{X}, \subseteq)$. 
@@ -23,6 +25,7 @@ Set inclusion is a partially order relation making it possible to extend the con
 **Remarks**
 
 The letters in the name of the opeartor $\Limsup{}, \Liminf{}$ had been capitalized to distinguish the difference between the limits of a sequence of set, or the limit of an elements. 
+Observe that the space $X$ is not metric space and the distance function is not used in this definition. 
 
 
 
@@ -56,7 +59,7 @@ We disect the definition of a discrete set limit listed above.
 The following three observations characterize limits of a sequences of sets, in increasing level of abstractness. 
 
 #### **Thm | Monotone Set Convergence for Discrete Set Limits**
-> For set of monotonically expanding ste $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_{n}\cdots$, we have the set limit being: 
+> For set of monotonically expanding set $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_{n}\cdots$, we have the set limit being: 
 > $$
 > \begin{aligned}
 >     \Liminf{n\rightarrow \infty} 
