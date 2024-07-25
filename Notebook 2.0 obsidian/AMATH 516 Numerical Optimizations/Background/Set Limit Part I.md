@@ -285,3 +285,9 @@ $$
 
 which is equivalent to a discrete metric between a set of elements and a single elements. 
 This is the reason why the name of the file is called "discrete set limit". 
+
+
+---
+### **More**
+
+[Set Limits Part II](Set%20Limits%20Part%20II.md) continuous the discussion, for metric space that may not be a discrete metric. 

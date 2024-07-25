@@ -1,11 +1,13 @@
-[[Real Analysis Basics]]
+
 
 ---
 ### **Intro**
 
-We are considering taking the limit of sets, this is useful when we start discussing the limit of set-value mapping, their continuity and such. 
+We are talking about Kuratowski's convergence. 
+This file had been replaced by 
+- [Set Limit Part I](Background/Set%20Limit%20Part%20I.md),
+- [Set Limits Part II](Background/Set%20Limits%20Part%20II.md). 
 
 
-#UNFINISHED. 
 
 
