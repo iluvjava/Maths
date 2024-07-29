@@ -50,6 +50,8 @@ The definition can be weakened by considering value $\bar u$ chosen from a subse
 The role of the set $U$ is board. For example, $f(x, u) = \max(x, 0)$ could be viewed as take the maximnum using an index set $\{1, 2\}$, a subset of the natural number. 
 Relative continuity of $f: \R^n \mapsto \R$ wrt to $U$ at $\bar x$ demands $(\forall \epsilon > 0)(\exists \delta > 0): f(\mathbb B_\delta(\bar x)\cap U) \subseteq \mathbb B_\epsilon(f(\bar x))$. 
 
+In the second condition, $u_n$ is a minimizing sequence for the function $p$, and yet the corresponding minimizers $x_n$ for each $u_n$ gives a bounded, with all its cluster points having very good property. 
+
 **Proof (1)**
 
 For a quick overview: 
@@ -128,5 +130,12 @@ So the level set of $p$ is a closed set which is equivalent to $p$ lsc.
 **Proof (2)**
 
 
+**Proof (3)**
+
+
+
 ---
 ### **Illustrative Examples**
+
+
+
