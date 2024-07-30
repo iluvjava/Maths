@@ -21,6 +21,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-16--accelerated-gradient-strongly-convex-generic-triangular-form)
   - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
+  - [**Def 1.10 | Guller's Accelerated PPM**](#def-110--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
   - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
@@ -395,6 +396,11 @@ The above algorithm is derived from the generic strongly convex PPM form.
 This algorithm exists in the literatures. 
 The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead. 
 
+
+#### **Def 1.10 | Guller's Accelerated PPM**
+
+
+See [Accelerated PPM Method](Accelerated%20PPM%20Method.md) for more context about this algorithm. 
 
 ---
 ### **Form Comparison**
