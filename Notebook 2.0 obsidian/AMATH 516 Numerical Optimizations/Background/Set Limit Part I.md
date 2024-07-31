@@ -30,14 +30,14 @@ Observe that the space $X$ is not metric space and the distance function is not 
 
 
 #### **Def | Subsequences of the Natural Numbers**
-> Let $(k_n)_{n\subseteq \mathbb N} \in \mathcal N_\infty^\#$ denotes the set of all subsequence of the natural number sequence. 
+> Let $(k_n)_{n\subseteq \mathbb N} \in \mathcal N_\infty^\#$ denotes the set of all subsequence of the natural number. 
 > Let $(k_n)_{n\subseteq \mathbb N} \in \mathcal N_{\infty}$ denotes the subsequence of the natural number such that it only differs with the sequence of natural number in finitely many places. 
 > Mathematically we can define it as 
 > $$
 > \begin{aligned}
 >     (k_n)_{n \in \mathbb N} \in \mathcal N_\infty^\# &\iff 
 >     (k_n : \mathbb N \mapsto \mathbb N) \wedge 
->     (\forall n \in \mathbb N:  k_n \ge n \wedge k_n > k_{n - 1} + 1), 
+>     (\forall m \in \mathbb N \;\exists n \in \N:  k_n \ge m) \wedge (k_n \ge k_{n - 1} + 1\; \forall n \in \N), 
 >     \\
 >     (k_n)_{n \in \mathbb N} \in \mathcal N_{\infty} &\iff
 >     ((k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}^\#) 
@@ -50,6 +50,30 @@ Observe that the space $X$ is not metric space and the distance function is not 
 **Observations**
 
 Please observe that obviously we have $\mathcal N_{\infty} \subsetneq \mathcal N_{\infty}^\#$. 
+Alternatively, we have equivalent definition below: 
+
+$$
+\begin{aligned}
+    \mathcal N_\infty^\# &= 
+    \{N \subseteq \N  : |N| \text{ countable }\}
+    \\
+    \mathcal N_\infty &= 
+    \{N \subseteq \N:  |\N \setminus N| < \infty\}, 
+\end{aligned}
+$$
+
+and of course, we observe that the set can define each other by 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
+
+
+**Remarks**
+
+This is the same notation as introduced by Rockafellar and Wetts, chapter 4. 
 
 
 ---

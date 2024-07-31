@@ -1,3 +1,7 @@
+---
+alias: Kuratowski Convergence Set Convergence
+
+---
 - [Set Limit Part I](Set%20Limit%20Part%20I.md)
 - [Multivalued Functions, Set-valued Mappings](../Operators%20Theory/Multivalued%20Functions,%20Set-valued%20Mappings.md)
 - [Metric Space Introduction](../../MATH%20601%20Functional%20Analysis,%20Measure%20Theory/Functional%20Spaces/Metric%20Space%20Introduction.md)
@@ -391,7 +395,7 @@ For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequen
 
 
 
-#### **Thm | Characterizing Set Limits via Sets Operations**
+#### **Thm | Sets Operations Characterizations of Limits**
 > Similarly, the outer and inner set limit defined above can be considered through sets operations: 
 > $$
 > \begin{aligned}
@@ -414,6 +418,14 @@ For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequen
 **Obervations**
 
 They are always closed sets. 
+Inersection of closed set is always a closed set. 
+
+**Remarks**
+
+This is Rockafellar and Wets, Exercise 4.2 (b). 
+
+
+
 
 
 
