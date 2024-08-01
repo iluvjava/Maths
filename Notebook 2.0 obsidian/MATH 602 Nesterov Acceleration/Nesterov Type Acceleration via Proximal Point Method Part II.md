@@ -359,6 +359,8 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >         h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
 >         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
 >     \right\rbrace.
+>     \\
+>     &= \argmin{x} \left\lbrace l_h(x; y^+_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2\right\rbrace
 > \end{aligned}
 > $$
 
