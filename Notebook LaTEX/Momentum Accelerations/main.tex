@@ -2483,9 +2483,103 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section, we reproduce some of the analysis for Nesterov accelerated gradient method with excruciating details, in the appendix. 
     We will introduce the method of estimating sequence invented by Nesterov. 
     We will also go over some details about the history, development and motivations behind the accelerated gradient algorithm. 
-    \subsection{Method of Estimating Sequence}
+    \subsection{Method of Nesterov's estimating sequence}
         In this section we introduce the method of estimating sequence. 
-    
+
+    \subsubsection{The estimating sequence and function}
+        \begin{definition}[Nesterov's Estimating Functions]
+            Define  $\{\phi_t\}_{t\in \mathbb N}$ to be a sequence of function where it recursively satisfies for all $k\in \mathbb N$: 
+            \begin{align*}
+                \phi_{k} (x) - f(x) \le 
+                (1 - \alpha_k)(\phi_k(x) - f(x)) \quad \forall x 
+            \end{align*}
+            Where $\alpha \in [0, 1)$. 
+        \end{definition}
+        \begin{observation}
+            Expands recursively we have 
+            \begin{align*}
+                \phi_{k}(x) - f(x) &\le 
+                \left(
+                    \prod_{i = 0}^{k} 
+                    (1 - \alpha_i)
+                \right)(\phi_0(x) - f(x)). 
+            \end{align*}
+        \end{observation}
+        So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}^k(1 - \alpha_i)$. 
+
+        \begin{definition}[The estimating Sequence]
+            Continue from the above definition of a estimating functions, we consider a sequence $\{x_k\}$ satisfying 
+            \begin{align*}
+                f(x_k) &\le \phi_k^* := \min_z(\phi_k(z)). 
+            \end{align*}
+        \end{definition}
+        
+        \begin{lemma}[The Lyapunov function from estimating sequence and function]
+            \;\\
+            Assume that $f$ bounded below with $f_* = \min_x f(x)$ and there exists minimizer $x_*$. 
+            With $\phi_k$ being an estimating functions and convex, $\{x_k\}$ an estimating sequence for $\phi_k$, then it satisfies
+            \begin{align*}
+                f(x_k) - f_*
+                &\le 
+                \lambda_k(\phi_0(x_*) - f_*). 
+            \end{align*}
+            for all $k\in \mathbb N\cup \{0\}$. 
+        \end{lemma}
+        \begin{proof}
+            Directly by the property of estimating sequence $x_k$, we have for all $k, x$
+            \begin{align*}
+                \phi_k(x) - f(x) \ge \phi_k^* - f(x) \ge f(x_k) - f(x), 
+            \end{align*}
+            so 
+            \begin{align*}
+                f(x_k) - f(x) \le \lambda_k (\phi_0(x) - f(x))
+                \\
+                \implies 
+                f(x_k) - f_* \le \lambda_k (\phi_0(x_*) - f(x_*)). 
+            \end{align*}
+            This establishes the convergence rate of $f(x_k)$ assuming that $\lambda_k$ is sequence that converges to zero. 
+        \end{proof}
+    \subsection{Construction of the estimating sequence and function}
+        The construction of the Nesterov estimating sequence and function is where most creativities are involved. 
+        For convex $f$ that is differentiable with $L$-Lipschitz gradient and strong convexity constant $\mu \ge 0$, Nesterov suggested in his book \cite{nesterov_lectures_2018} that there exists sequence $y_k$, $\gamma_k$, where
+        \begin{align*}
+            l_f(x, y_k) &= 
+            f(y_k) + \langle \nabla f(y_k), x - y_k\rangle + 
+            \frac{\mu}{2}\Vert x - y_k\Vert^2
+            \\
+            \phi_0 (x) &= 
+            f(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2
+            \\
+            \phi_{k + 1}(x) &= 
+            (1 - \alpha_k)\phi_k(x) + \alpha_k l_f(x; y_k)
+            \\
+            &= \phi_{k + 1}^2 + \frac{\gamma_k}{2}\Vert x - v_{k + 1}\Vert^2
+        \end{align*}
+        will verify as a Nesterov's estimating sequence and functions. 
+        The derivation for the parameters: $\gamma_k, x_k, y_k$ for $k \in \mathbb N \cup \{0\}$, will produce the Nesterov acclerated gradient as presented in
+        \hyperref[def:Nes2.2.7]{definition \ref*{def:Nes2.2.7}}
+        if correctly conducted. 
+        In this case, $\phi_k$ are simple quadratic centered $v_k$ with value $\phi_k$ with curvature $\gamma_k$. 
+        \par
+        However, the construction exhibits variations for different variants of the accelerated gradient algorithm. 
+        A different construction of $\phi_k$ yield a different algorithm. 
+        As shown in Nesterov's book \cite*[(2.2.63)]{nesterov_lectures_2018}, a projected gradient variant of the accelerated gradient method make use of the following estimating functions, sequence: 
+        \begin{align*}
+            \phi_0 (x) &= f(x_0) + \frac{\gamma_0}{2}\Vert x - x_0\Vert^2
+            \\
+            l_f(x; y_k) &= f(\mathcal T_ly_k) + 
+            \frac{1}{2L}\Vert \mathcal G_L(y_k)\Vert^2 + 
+            \langle \mathcal G_L(y_k), x - y_k\rangle + 
+            \frac{\mu}{2}\Vert x - y_k\Vert^2
+            \\
+            \phi_{k + 1}(x) &= 
+            (1 - \alpha_k)\phi_k + 
+            \alpha_k l_f(x; y_k)
+        \end{align*}
+
+        
+        
+        
 
 \section{Modern techniques in analysis of accelerated gradient algorithms}
     

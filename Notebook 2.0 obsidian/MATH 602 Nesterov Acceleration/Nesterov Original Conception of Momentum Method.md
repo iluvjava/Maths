@@ -14,14 +14,14 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
   - [**Def (2.2.1) | Estimating Sequences and Estimating Functions**](#def-221--estimating-sequences-and-estimating-functions)
   - [**Characterizations (Lemma 2.2.1) | Conditions for Descent on Objective Value**](#characterizations-lemma-221--conditions-for-descent-on-objective-value)
 - [**An Potential Updates Procedures for Estimating Sequences and Functions**](#an-potential-updates-procedures-for-estimating-sequences-and-functions)
-  - [**Lemma 2.2.2  | The Proposed Updates**](#lemma-222--the-proposed-updates)
+  - [**Lemma 2.2.2  | The Proposed Updates**](#lemma-222---the-proposed-updates)
   - [**Corollary 1 | Characterization of the Estimating Sequences and Functions**](#corollary-1--characterization-of-the-estimating-sequences-and-functions)
 - [**Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**](#giving-a-form-to-the-estimating-sequence-and-functions-so-its-easy-to-derive-the-algorithm)
   - [**Lemma 2.2.3 | Updating with the Canonical Form**](#lemma-223--updating-with-the-canonical-form)
 - [**Deriving the Generic Accelerated Momentum Method**](#deriving-the-generic-accelerated-momentum-method)
 - [**Simplifying The algorith to the Momentum Form**](#simplifying-the-algorith-to-the-momentum-form)
   - [**Eliminating $v^{(k)}$ from the Algorithm**](#eliminating-vk-from-the-algorithm)
-  - [**Eliminating the $\\gamma\_k$ Constant**](#eliminating-the-gammak-constant)
+  - [**Eliminating the $\\gamma\_k$ Constant**](#eliminating-the-gamma_k-constant)
 - [**A Generic Convergence Results**](#a-generic-convergence-results)
   - [**Thm (2.2.1) | Generic Convergence Results**](#thm-221--generic-convergence-results)
 - [**Conclusion**](#conclusion)
@@ -1131,16 +1131,16 @@ Notice that this creates a Lyapunov function $\phi_k(x) - f(x)$, giving us for a
 
 > $$
 > \begin{aligned}
->     \phi_{k + 1}(x) - f(x) &\le 
+>     \phi_{k}(x) - f(x) &\le 
 >     \left(
->         \prod_{i = 0}^{k} 
+>         \prod_{i = 0}^{k-1} 
 >         (1 - \alpha_i)
 >     \right)(\phi_0(x) - f(x)). 
 > \end{aligned}
 > $$
 
 The value $\phi_k(x) - f(x)$ can be negative and it will be fine. 
-So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}(1 - \alpha_i)$
+So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}^{k - 1}(1 - \alpha_i)$. 
 
 **Remarks**
 
@@ -1191,7 +1191,7 @@ It is, by pure genius of Nesterov, to assume the sequence of $\phi_k$ and $y_k$ 
 $$
 \begin{aligned}
     \phi_{k + 1}(x) &= 
-    (1 - \alpha_k)\phi_k(x) + \alpha_k \phi(x; y_k), 
+    (1 - \alpha_k)\phi_k(x) + \alpha_k \varphi(x; y_k), 
 \end{aligned}
 $$
 
