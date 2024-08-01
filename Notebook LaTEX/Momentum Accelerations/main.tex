@@ -1726,21 +1726,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \tilde \eta_{t + 1} 
                 \left(
                     f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
-                    + 
-                    \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                    % + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
                 \right)\\
                 &= 
                 \tilde \eta_{t + 1} \left(
                     f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
-                    \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
-                    + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                    % + 
                     g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
                 \right). 
             \end{align*}
             Then the update in the Generic Tri-Point algorithm 
             (\hyperref[def:ag_prox_grad_ppm]
                 {definition \ref*{def:ag_prox_grad_ppm}}) 
-            has $x_{t + 1} = \hprox_{\phi_t}(x_t)$ and therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
+            has $x_{t + 1} = \hprox_{\phi_t}(x_t)$ if we ignore the difference between the constant terms $h(y_t^+)$, $f(y_t) + g(y_t)$ from above. 
+            Therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
                 {theorem \ref*{thm:ppm_descent_ineq}})
             which gives for all $x_*$: 
             \begin{align*}
@@ -1756,8 +1757,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \tilde \eta_{t + 1}
                 \left(
                     f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
-                    \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
-                    + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+                    % + 
                     g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
                 \right). 
             \end{align*}
@@ -1882,7 +1883,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \Vert x_{t + 1} - x_*\Vert^2 
                     - 
                     \Vert x_t - x_*\Vert^2
-                \right) := \Upsilon_{1, t + 1}^\text{AG}
+                \right) =: \Upsilon_{1, t + 1}^\text{AG}
                 \\
                 &\quad \le 
                 \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 

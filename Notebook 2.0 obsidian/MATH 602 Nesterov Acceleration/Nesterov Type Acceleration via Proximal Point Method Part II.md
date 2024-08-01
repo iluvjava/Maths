@@ -1157,20 +1157,20 @@ $$
     \tilde \eta_{t + 1} 
     \left(
         f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
-        + 
-        \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+        % + 
+        % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
     \right)\\
     &= 
     \tilde \eta_{t + 1} \left(
         f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
-        \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
-        + 
+        % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+        % + 
         g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
     \right)
 \end{aligned}
 $$
 
-Then the update in the Generic Tri-Point algorithm has $x_{t + 1} = \prox{\phi_t}(x_t)$ and therefore we can use the PPM Lyapunov inequality which gives for all $x_*$: 
+Then the update in the Generic Tri-Point algorithm has $x_{t + 1} = \prox{\phi_t}(x_t)$ by ignoring the constant term $f(y_t) + g(y_t)$ and therefore we can use the PPM Lyapunov inequality which gives for all $x_*$: 
 
 $$
 \begin{aligned}
@@ -1186,8 +1186,8 @@ $$
     \tilde \eta_{t + 1}
     \left(
         f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
-        \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
-        + 
+        % \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+        % + 
         g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
     \right)
 \end{aligned}
