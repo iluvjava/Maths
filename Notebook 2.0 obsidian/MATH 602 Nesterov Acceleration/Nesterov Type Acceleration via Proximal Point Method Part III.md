@@ -801,7 +801,7 @@ $$
     \sum_{i = 1}^{t}\tilde \eta_i 
     &\le 0
     \\
-    -L \tilde \eta_{t+1} + 
+    -L \tilde \eta_{t+1}^2 + 
     \sum_{i = 1}^{t + 1} \tilde \eta_i 
     &\le 0
     \\
