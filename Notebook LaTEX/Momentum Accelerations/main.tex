@@ -1135,9 +1135,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \\
                     y_{t + 1} &= 
                     (1 + L\eta_{t + 1})^{-1}
-                    (
-                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-                    ). 
+                    (x_{t + 1} + L\eta_{t + 1}z_{t + 1}). 
                 \end{align*}
             \end{definition}
             \begin{observation}
@@ -1145,7 +1143,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 Let's list the following observations
                 \begin{enumerate}
                     \item Observe that $y_t = (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)$ is a convex combination between $x_t, z_t$. Hence $z_t, y_t, x_t$ are three collinear points. Additionally, we have $y_t - x_t = L\eta_t (z_t - y_t)$, hence $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
-                    \item By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \nabla f(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \nabla f(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    \item By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \mathcal G_L(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \mathcal G_L(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
                     \item Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
                 \end{enumerate}
                 From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
@@ -2574,8 +2572,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             \phi_{k + 1}(x) &= 
             (1 - \alpha_k)\phi_k + 
-            \alpha_k l_f(x; y_k)
+            \alpha_k l_f(x; y_k), 
         \end{align*}
+        Here, $G_L(x) = L(x - \mathcal T_L(x))$ and $T_L(x) = \Pi_Q(x - L^{-1}\nabla f(x))$, where $Q$ is a convex set. 
+        It's equivalent to applying proximal gradient method with $h = f + g$ where $g = \delta_Q$. 
 
         
         
