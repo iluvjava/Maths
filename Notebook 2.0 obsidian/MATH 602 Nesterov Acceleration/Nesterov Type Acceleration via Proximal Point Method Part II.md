@@ -215,7 +215,7 @@ $$
 
 #### **Definition 1.2 | Accelerated Gradient Generic PPM Form**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
-> for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
+> for all $x_0, y_0 \in \R^n$, define the following variants of PPM for function $f$. 
 > $$
 > \begin{aligned}
 >     x_{t + 1} &= \argmin{x} \left\lbrace
@@ -229,7 +229,8 @@ $$
 >     \right\rbrace. 
 > \end{aligned}
 > $$
-> Here we assume that $\eta_{t + 1} > 0$ for all $t \in \N$. 
+> Here we assume that $\eta_{i} > 0$ for all $i \in \N$. 
+
 
 
 
@@ -299,6 +300,19 @@ It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algo
 >     ). 
 > \end{aligned}
 > $$
+
+**Observations**
+
+We make some observations about the base case of this algorithm. 
+To start the above algorithm, we can uses different base cases for the parameters in the algorithm. 
+1. We can choose $y_0, x_0$, and a sequence $\eta_i, \tilde \eta_i > 0$ for all $i \in \N$ to recursively define $(x_i, y_i, z_i)$ for all $i \in \N$. This requires two initial conditions for the algorithm. 
+2. We can choose $x_0, z_0,\eta_0$ and sequence $\eta_i, \tilde \eta_i, i\in \N$ to determine $y_0 = (1 + L\eta_0)^{-1}(x_0 + L\eta_0 z_0), x_1, y_1$, recursively defining the updates for iterates $(y_i, x_{i + 1}, z_{i + 1})$ for $i \in \N \cup \{0\}$. This requires information on $\eta_0$ to start the algorithm. 
+3. The case of choosing $y_0, z_0$ also requires knowing $\eta_0$ to determine $x_0$. 
+
+Finally, observe the spacial case that when $\eta_i = 0$ for all $i\in \N$, the above algorithm reduces to gradient descent with stepsize $\tilde \eta_i$ because $y_t = x_t$ for all $t$. 
+
+
+
 
 #### **Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**
 > With $f$ $L$-Lipschitz smooth and $\mu$ storngly convex, we can derive similar triangle with the following: 
@@ -392,6 +406,10 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > \end{aligned}
 > $$
 > where the base case has $y_0 = x_0$. 
+
+**Observations**
+
+The same observations as in the smooth case still applies here. 
 
 **Remarks**
 

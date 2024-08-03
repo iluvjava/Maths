@@ -18,7 +18,6 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
-  - [**Scenario 2.5 | No Similar Triangle but Proximal Gradient**](#scenario-25--no-similar-triangle-but-proximal-gradient)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
 - [**Some more Nuanced Results**](#some-more-nuanced-results)
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
@@ -826,11 +825,31 @@ $$
 \end{aligned}
 $$
 
-Substituting the above expression into the inequality then it satisfies
+This creates the following constraints for the step size sequence $\eta_i, \tilde \eta_i$ for all $i \in \N\cup \{0\}$: 
 
 $$
 \begin{aligned}
-    \tilde \eta_{t + 1} + \sum_{i = 1}^{t} \tilde \eta_i 
+    \begin{cases}
+        \sigma_t = \sum_{i = 1}^{t}\tilde \eta_i  & \forall t \in \N,
+        \\
+        \sigma_{t + 1} \le L \tilde \eta_{t + 1}^2 & \forall t \in \N \cup \{0\}
+        \\
+        \sigma_t = L\eta_t \tilde \eta_{t + 1} & \forall t \in \N
+    \end{cases}
+\end{aligned}
+$$
+Observe that, $\tilde \eta_{t + 1}$ is defined with the inequality, and $\sigma_{t + 1}$. 
+Hence, recursively, $\tilde\eta_{i}$ for $i = 1, \cdots, t$ is sufficient to define both $\tilde \eta_{t + 1}$, $\{\eta_i : i =1, \cdots, t\}$. 
+Alternatively, if we know $\{\eta_i: i = 0, \cdots, t\}$, then it defines the sequence $\tilde \eta_{i}$ for $i = 1, \cdots, t + 1$. 
+It's sufficient to establish exactly one of the sequences: $\eta_i$, or $\tilde \eta_{i}$. 
+Substituting the third equality into the second inequality: 
+
+$$
+\begin{aligned}
+    \sigma_{t + 1} 
+    &\le L\tilde \eta_{t + 1}^2
+    \\
+    \tilde \eta_{t + 1} + \sigma_t
     &\le L \tilde \eta_{t + 1}^2
     \\
     \tilde \eta_{t + 1} + L\eta_t \tilde \eta_{t + 1}
@@ -839,18 +858,22 @@ $$
     1 + L\eta_t &\le L \tilde\eta_{t + 1}. 
 \end{aligned}
 $$
-
+We can divide by $\eta_t$ because it's assumed to be strictly larger than zero. 
 Observe that with $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality is an equality. 
 Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
 $$
 \begin{aligned}
-    L \sum_{i = 1}^{t + 1} \tilde \eta_i 
-    &= L \tilde \eta_{t + 1} + L \sum_{i = 1}^{t} \tilde \eta_i 
+    L \sigma_{t + 1}
+    &= L \tilde \eta_{t + 1} + L \sigma_{t}
     \\
     &= 
     L \tilde \eta_{t + 1} + L (L \eta_t \tilde \eta_{t + 1}) 
     \\
-    &= L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
+    &= 
+    L \tilde \eta_{t + 1} + L \eta_t (L  \tilde \eta_{t + 1}) 
+    \\
+    &\ge
+    L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
     \\
     &= L (\eta_t + L^{-1}) + L\eta_t (L \eta_t + 1)
     \\
@@ -858,11 +881,11 @@ $$
 \end{aligned}
 $$
 
-Simultaneously we have 
+Simultaneously, with the equality we have 
 
 $$
 \begin{aligned}
-    L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+    L \sigma_{t + 1}
     &= L^2 \eta_{t + 1} \tilde \eta_{t + 1}
     \\
     &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
@@ -874,21 +897,21 @@ combining yields:
 $$
 \begin{aligned}
     (L\eta_t + 1)^2 
-    &= L\eta_{t + 1}(1 + L \eta_{t + 1})
+    &\le L\eta_{t + 1}(1 + L \eta_{t + 1})
     \\
-    &= L\eta_{t + 1} + L^2 \eta_{t + 1}^2
+    &\le L\eta_{t + 1} + L^2 \eta_{t + 1}^2
     \\
     \iff 
-    (L\eta_t + 1)^2 + 1/4 &= 
+    (L\eta_t + 1)^2 + 1/4 &\le
     1/4 + 2(1/2)L \eta_{t + 1} + (L \eta_{t + 1})^2
     \\
     \iff 
-    (L\eta_t + 1)^2 + 1/4 &= 
+    (L\eta_t + 1)^2 + 1/4 &\le 
     (L \eta_{t + 1} + 1/2)^2. 
 \end{aligned}
 $$
 
-With $a_t = L\eta_t + 1 = L \tilde \eta_{t + 1}$ this is 
+With $a_t = L\eta_t + 1 = L \tilde \eta_{t + 1}$, consider the special case where it's an equality: 
 $$
 \begin{aligned}
     a_t^2 + 1/4 &= (a_{t + 1} - 1/2)^2 
@@ -913,16 +936,36 @@ $$
 
 And this is a full recovery of the Nesterov sequence. 
 Finally, we present equivalent forms of the algorithms using the obtained sequence. 
-
+The abstract convergence rate of $\mathcal O(\sum_{i = 1}^{T}\eta_{i}^{-1})$ now links to the growth rate of the parameter $a_t$ via relation $a_t = L \tilde \eta_{t + 1}$. 
 
 **Remarks**
 
 This derivation only leave a single choice for the stepsize parameter. 
-We are not sure if there could be more choices for the parameters that assures convergence rate of the algorithm. 
+However, the sequence $\eta_i$, or $\tilde \eta_i$ is not unique. 
+In the above derivation, we may instead establish the relations 
+$$
+\begin{aligned}
+    a_t^2 + 1/4 &\le (a_{t + 1} - 1/2)^2
+    \\
+    a_t + a_{t + 1} &\le a_{t + 1}^2
+    \\
+    0&\le a_{t + 1}^2 - a_t - a_{t + 1}, 
+\end{aligned}
+$$
 
-#### **Scenario 2.5 | No Similar Triangle but Proximal Gradient**
+produces choices $a_{t + 1} \in [(1/2)(1 - \sqrt{1 + 4a_t^2}), (1/2)(1 + \sqrt{1 + 4a_t^2})]$, but because $a_t = L\eta_t + 1$ and it requires $\eta_t > 0$, we must have $a_t > 1$ giving us the choice of
+$$
+\begin{aligned}
+    a_t \in 
+    \left(
+        1, (1/2)\left(1 + \sqrt{1 + 4a_t^2}\right)
+    \right],
+\end{aligned}
+$$
 
-In this section, we discuss the case when $f$ is not necessarily smooth. 
+for the momentum parameters of the algorithm. 
+
+
 
 #### **Scenario 3 | Similar Triangle II**   
 
