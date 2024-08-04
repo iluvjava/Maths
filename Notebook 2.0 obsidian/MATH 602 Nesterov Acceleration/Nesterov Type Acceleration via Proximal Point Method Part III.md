@@ -12,6 +12,7 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
   - [**Theorem | Generic Convergence Bound based on PPM Interpretation**](#theorem--generic-convergence-bound-based-on-ppm-interpretation)
+  - [**Remarks**](#remarks)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
@@ -77,7 +78,46 @@ $$
 }
 $$
 
-Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t \le 0$ for the appropriate choice of $\tilde \eta_t, \eta_t$ in the algorithm, we have a convergence rate of $f(z_{T + 1}) - f(x_*) \le \mathcal O\left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ from the analysis of PPM. 
+Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t \le 0$ for the appropriate choice of $\tilde \eta_t, \eta_t$ in the algorithm, we have a convergence rate of $f(z_{T + 1}) - f(x_*) \le \mathcal O\left(\left(\sum_{i = 1}^{T} \tilde\eta_i\right)^{-1}\right)$ from the analysis of PPM. 
+
+#### **Remarks**
+The conditions for the convergence rate can be relaxed. 
+Let's denote $\sum_{i = 1}^{t} \tilde \eta_i = \sigma_t$, and $S_{t} = \sum_{i = 1}^{t} \epsilon_i$. 
+Specifically we consider the case where $\Phi_{t + 1} - \Phi_t \le \epsilon_{t + 1}$, then telescoping: 
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_t &\le \epsilon_{t + 1}
+    \\
+    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\epsilon_i
+    \\
+    \Phi_T - \Phi_0 &\le 
+    \sum_{i = 0}^{T - 1}\epsilon_i = S_{T}
+\end{aligned}
+$$
+
+So then $\Phi_T - \Phi_0$ yields: 
+
+$$
+\begin{aligned}
+    \sigma_T (f(z_t) - f(x_*)) 
+    + \frac{1}{2}\Vert x_t - x_*\Vert^2 
+    - \frac{1}{2}\Vert x_0 - x_*\Vert^2 
+    &\le S_{T}
+    \\
+    \implies 
+    \sigma_T(f(z_t) - f(x_*))
+    &\le 
+    \frac{1}{2}\Vert x_0 - x_*\Vert^2
+    \\
+    f(z_t) - f(x_*) &\le 
+    \sigma_T^{-1}\left(
+        S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
+    \right),
+\end{aligned}
+$$
+
+which yields a convergence rate big O of $\sigma_T^{-1}S_{T}$. 
 
 
 #### **Scenario 1 | Not Similar Triangle**
@@ -780,9 +820,8 @@ $$
     \right)\langle \mathcal G_L (y_t), x_{t + 1} - z_{t + 1}\rangle
 \end{aligned}\tag{$[*]$}
 $$
-
-Next, we consider coefficient for the term $\Vert z_{t+1} - y_t\Vert^2$, if it's non-positive then we have
-
+The above quantity are required to be $\le 0$ for the convergence generic convergence results for accelerated gradient method. 
+One sufficient conditions allows for the non-positivity of the quantity is for the coefficient of the term $\Vert z_{t+1} - y_t\Vert^2$ to be $\le 0$, producing for all $t$: 
 $$
 \begin{aligned}
     - \frac{1}{2}\left(
@@ -825,7 +864,7 @@ $$
 \end{aligned}
 $$
 
-This creates the following constraints for the step size sequence $\eta_i, \tilde \eta_i$ for all $i \in \N\cup \{0\}$: 
+This creates the following set of constraints for the step size sequence $\eta_i, \tilde \eta_i$ for all $i \in \N\cup \{0\}$: 
 
 $$
 \begin{aligned}
@@ -859,7 +898,7 @@ $$
 \end{aligned}
 $$
 We can divide by $\eta_t$ because it's assumed to be strictly larger than zero. 
-Observe that with $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality is an equality. 
+Observe that with the assumption used $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality is an equality. 
 Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
 $$
 \begin{aligned}
@@ -936,7 +975,7 @@ $$
 
 And this is a full recovery of the Nesterov sequence. 
 Finally, we present equivalent forms of the algorithms using the obtained sequence. 
-The abstract convergence rate of $\mathcal O(\sum_{i = 1}^{T}\eta_{i}^{-1})$ now links to the growth rate of the parameter $a_t$ via relation $a_t = L \tilde \eta_{t + 1}$. 
+The abstract convergence rate of $\mathcal O\left(\left(\sum_{i = 1}^{T}\tilde \eta_{i}\right)^{-1}\right)$ now links to the growth rate of the parameter $a_t$ via relation $a_t = L \tilde \eta_{t + 1}$. 
 
 **Remarks**
 
@@ -964,7 +1003,8 @@ $$
 $$
 
 for the momentum parameters of the algorithm. 
-
+To make the objective converges faster, we want $\sum_{i = 1}^{T} a_t$ to be as large as possible. 
+A greedy choice is to choose $a_t$ to be at the upper bound for all $t$. 
 
 
 #### **Scenario 3 | Similar Triangle II**   

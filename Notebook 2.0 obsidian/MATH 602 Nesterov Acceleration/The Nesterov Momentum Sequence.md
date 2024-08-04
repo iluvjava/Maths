@@ -8,7 +8,7 @@ To prevent cluttering, we state some of the properties of the default Nesterov M
 $$
 \begin{aligned}    
     \begin{cases}
-        \lambda^2_{k + 1} - t_{k + 1} = \lambda_k^2, 
+        \lambda^2_{k + 1} - \lambda_{k + 1} = \lambda_k^2, 
         \\
         \lambda_k = \lambda_{k + 1}\theta_k + 1, 
     \end{cases}
