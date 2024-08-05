@@ -970,7 +970,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 where $\mu = 0$. 
             \end{observation}
 
-            \begin{definition}[AG Proximal Gradient Tri-Points Generic Form]
+            \begin{definition}[AG Proximal Gradient Generic Form]
             \label{def:ag_prox_grad_tri_pt}
                 With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
                 Define proximal gradient and gradient mapping operator 
@@ -1003,7 +1003,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 Observe that $z_{t + 1} = y_t^+$. 
             \end{remark}
 
-            \begin{definition}[Tri-points Generic Form]\label{def:agg_tri}
+            \begin{definition}[Generic Form]\label{def:agg_tri}
                 With $f$ be $L$-Lipschitz \\ 
                 smooth and convex, choose any $y_0 = x_0=z_0$ and a non-negative sequence $\eta_t, \tilde\eta_t$, the algorithm admits form: 
                 \begin{align*}
@@ -1026,9 +1026,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \hyperref[prop:tri_form_via_ppm]{proposition \ref*{prop:tri_form_via_ppm}}. 
             \end{remark}
 
-            \begin{definition}[Strongly Convex Tri-points Generic Form]
+            \begin{definition}[Strongly Convex Generic Form]
                 \quad \\
-                With $f$ being $L$-Lipschitz smooth and $\mu > 0$ strongly convex then the Strongly convex Tri-Points generic form has updates of for iterates
+                With $f$ being $L$-Lipschitz smooth and $\mu > 0$ strongly convex then the Strongly convex generic form has updates of for iterates
                 \begin{align*}
                     x_{t + 1} &= (1 + \mu\tilde \eta_{t + 1})^{-1}(x_t + \mu\tilde\eta_{t + 1}y_t^+), 
                     \\
@@ -1596,7 +1596,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
             \end{remark}
 
-            \begin{lemma}[Similar Triangle Form I via Generic Tri Points]
+            \begin{lemma}[Deriving Similar Triangle Form I]
                 \quad \\
                 With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ 
                 in 
@@ -1653,7 +1653,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \end{align*}
                 it negates the $x_t$ variables, therefore we have 
                 \begin{align*}
-                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L f(y_t)
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L (y_t)
                     \\
                     y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
                 \end{align*}
