@@ -16,7 +16,9 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
+  - [**Scenario 1.2 | Extended Analysis**](#scenario-12--extended-analysis)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
+  - [**Remarks**](#remarks-1)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
@@ -552,7 +554,7 @@ $$
     &= 
     -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
     + 
-    \langle \mathcal G_L(y_t), y_t - z_t\rangle
+    \langle \mathcal G_L(y_t), y_t - z_t\rangle. 
 \end{aligned}
 $$
 
@@ -593,12 +595,59 @@ $$
     \right)\Vert \mathcal G_L(y_t)\Vert^2 + 
     \left(
         L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
-    \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle
+    \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle. 
 \end{aligned}
 }
 $$
 
 If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+Denote $\sigma_t = \sum_{i = 1}^{t} \tilde \eta_i$.
+Simplifying it should yield the following relations: 
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1}(\eta_t + L^{-1}) - 
+    L^{-1}\sigma_t
+    &\le 0
+    \\
+    \iff 
+    \tilde \eta_{t + 1}^2 
+    &\le 
+    L^{-1} \sigma_t + \tilde \eta_{t + 1} = L^{-1}\sigma_{t + 1}
+    \\
+    \iff 
+    L\tilde \eta_{t + 1} &\le \sigma_{t + 1}
+\end{aligned}
+$$
+
+and with $L\eta_t \tilde \eta_{t+ 1} - \sigma_t = 0$, it yeilds the system 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        \tilde \eta_{t + 1}^2 \le L^{-1}\sigma_{t + 1} 
+        & \forall t \in \{0\}\cup \N, 
+        \\
+        L\eta_t \tilde \eta_{t + 1} = \sigma_t
+        & \forall t \in \N 
+    \end{cases}
+\end{aligned}
+$$
+
+A consequence of the above relations is 
+
+$$
+\begin{aligned}
+    L \tilde \eta_{t + 1}^2 &\le \sigma_{t + 1}
+    = \tilde \eta_{t + 1} + \sigma_t = \tilde \eta_{t + 1} + L\eta_t \tilde \eta_{t + 1}
+    \\
+    L\tilde \eta_{t + 1}^2 &\le 
+    \tilde \eta_{t + 1} + L \eta_t \tilde \eta_{t + 1}
+    \\
+    L \tilde \eta_{t + 1} &\le 1 + L\eta_t. 
+\end{aligned}
+$$
+
 To simplify, we make the assumption that $\tilde \eta_t = \eta_t$ for all $t \in \N$. 
 These conditions translate to the following relations for $\eta_{t}$. 
 
@@ -638,6 +687,31 @@ $$
 
 To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
 
+**Remarks**
+
+Without the simplifcation of $\tilde \eta_t = \eta_t$, we can consider the alternative of the situation. 
+
+#### **Scenario 1.2 | Extended Analysis**
+The extended analysis focuses on the inequality and explore the alternative of using the assumption $\tilde \eta_t = \eta_t$ for all $t$. 
+To eliminate such a assumption in the proof, it requres to quantify the coefficient of $\Vert \mathcal G_L(y_t)\Vert^2$ during the iterations. 
+To do that we make another sequence $\epsilon_i$ for $i \in \N$. 
+Then we have the system of equalities:
+
+$$
+\begin{aligned}
+    \begin{cases}
+        \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
+        - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i
+        = 
+        \epsilon_{t + 1} \tilde \eta_{t + 1}
+        \\
+
+    \end{cases}
+\end{aligned}
+$$
+
+
+
 
 #### **Scenario 2 | Similar Triangle I**
 This similar triangle approach will recover the original Nesterov acceleration sequence method proposed back in 1983. 
@@ -647,15 +721,22 @@ To start, substituting the definition of $z_{t +1} = z_{t} - L^{-1}\mathcal G_L(
 
 $$
 \begin{aligned}
-    x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
+    x_{t + 1} 
+    &= 
+    z_{t + 1}  + L\eta_t (z_{t + 1} - z_t)
+    \\
+    &= (y_t - L^{-1}\mathcal G_L(y_t))
+    + L \eta_t (y_t - L^{-1}\mathcal G_L(y_t) - z_t)
+    \\
+    &= (y_t - L^{-1}\mathcal G_L(y_t))
     + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
     \\
     &= 
-    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L f(y_t) - L\eta_t z_t
+    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L(y_t) - L\eta_t z_t
     \\
-    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L f(y_t)  - L\eta_t z_t
+    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L(y_t)  - L\eta_t z_t
     \\
-    &= x_t - (\eta_t + L^{-1})\mathcal G_L f(y_t). 
+    &= x_t - (\eta_t + L^{-1})\mathcal G_L(y_t). 
 \end{aligned}
 $$
 
@@ -663,7 +744,7 @@ This new choice for $\tilde \eta, \eta$ conveys the following updates:
 
 $$
 \begin{aligned}
-    z_{t + 1} &= y_t - L^{-1} \mathcal G_L f(y_t) 
+    z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t) 
     \\
     x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
     \\
@@ -703,6 +784,45 @@ $$
     y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
 \end{aligned}
 $$
+
+#### **Remarks**
+
+It is possible to try weaken it by introducing $\delta \ge 0$ and $\tilde \eta_{t + 1} = \eta_t + L^{-1} + \delta_t$. 
+Carry the same derivation with the new error term yields: 
+
+$$
+\begin{aligned}
+    x_{t+1} &= 
+    x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+    \\
+    &= L\eta_t z_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t) - L\eta_t z_t
+    \\
+    &= (1 + L\eta_t)y_t - \tilde \eta_{t + 1} \mathcal G_L(y_t) - L\eta_t z_t
+    \\
+    &= 
+    (1 + L\eta_t) y_t - (\eta_t + L^{-1} + \delta_t)\mathcal G_L(y_t) - L\eta_t z_t
+    \\
+    &= \left(
+        y_t - L^{-1}\mathcal G_L(y_t)
+    \right) + L\eta_t y_t
+    - (\eta_t + \delta_t) \mathcal G_L(y_t) - L\eta_t z_t
+    \\
+    &= z_{t + 1} + L\eta_t \left(
+        y_t - (1 + \eta_t^{-1}\delta_t)L^{-1}\mathcal G_L(y_t) - z_t
+    \right)
+    \\
+    &= 
+    z_{t + 1} + L\eta_t \left(
+        z_{t + 1} - \eta_t^{-1}\delta_t \mathcal G_L(y_t) - z_t
+    \right)
+    \\
+    &= 
+    z_{t + 1} + L\eta_t(z_{t + 1} - z_t) - L\delta_t \mathcal G_L(y_t), 
+\end{aligned}
+$$
+
+where, the same momentum updates for $x_{t + 1}$ appeared with the error term $L\delta_t \mathcal G_L(y_t)$ at the end. 
+This type of error term allows us to re-use the same proof for the convergence rate for the Nesterov accelerated gradient, but the error will later manifested into the $\epsilon_t$ error term in the abstract Lyapunov convergence proof. 
 
 
 ##### **The Similar Triangle Geometry**
@@ -898,7 +1018,15 @@ $$
 \end{aligned}
 $$
 We can divide by $\eta_t$ because it's assumed to be strictly larger than zero. 
-Observe that with the assumption used $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ the inequality is an equality. 
+Unfortunately, recall that assumption used $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ to derive the inequality, which is equivalent to the above inequality being equal. 
+So that gives equality: 
+
+$$
+\begin{aligned}
+    1 + L\eta_{t} &= L \tilde \eta_{t + 1}. 
+\end{aligned}
+$$
+
 Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider the following: 
 $$
 \begin{aligned}
@@ -911,7 +1039,7 @@ $$
     &= 
     L \tilde \eta_{t + 1} + L \eta_t (L  \tilde \eta_{t + 1}) 
     \\
-    &\ge
+    &=
     L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
     \\
     &= L (\eta_t + L^{-1}) + L\eta_t (L \eta_t + 1)
@@ -925,7 +1053,7 @@ Simultaneously, with the equality we have
 $$
 \begin{aligned}
     L \sigma_{t + 1}
-    &= L^2 \eta_{t + 1} \tilde \eta_{t + 1}
+    &= L^2 \eta_{t + 1} \tilde \eta_{t + 2}
     \\
     &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
 \end{aligned}
@@ -936,16 +1064,16 @@ combining yields:
 $$
 \begin{aligned}
     (L\eta_t + 1)^2 
-    &\le L\eta_{t + 1}(1 + L \eta_{t + 1})
+    &= L\eta_{t + 1}(1 + L \eta_{t + 1})
     \\
-    &\le L\eta_{t + 1} + L^2 \eta_{t + 1}^2
+    &= L\eta_{t + 1} + L^2 \eta_{t + 1}^2
     \\
     \iff 
-    (L\eta_t + 1)^2 + 1/4 &\le
+    (L\eta_t + 1)^2 + 1/4 &=
     1/4 + 2(1/2)L \eta_{t + 1} + (L \eta_{t + 1})^2
     \\
     \iff 
-    (L\eta_t + 1)^2 + 1/4 &\le 
+    (L\eta_t + 1)^2 + 1/4 &= 
     (L \eta_{t + 1} + 1/2)^2. 
 \end{aligned}
 $$
@@ -980,31 +1108,8 @@ The abstract convergence rate of $\mathcal O\left(\left(\sum_{i = 1}^{T}\tilde \
 **Remarks**
 
 This derivation only leave a single choice for the stepsize parameter. 
-However, the sequence $\eta_i$, or $\tilde \eta_i$ is not unique. 
-In the above derivation, we may instead establish the relations 
-$$
-\begin{aligned}
-    a_t^2 + 1/4 &\le (a_{t + 1} - 1/2)^2
-    \\
-    a_t + a_{t + 1} &\le a_{t + 1}^2
-    \\
-    0&\le a_{t + 1}^2 - a_t - a_{t + 1}, 
-\end{aligned}
-$$
-
-produces choices $a_{t + 1} \in [(1/2)(1 - \sqrt{1 + 4a_t^2}), (1/2)(1 + \sqrt{1 + 4a_t^2})]$, but because $a_t = L\eta_t + 1$ and it requires $\eta_t > 0$, we must have $a_t > 1$ giving us the choice of
-$$
-\begin{aligned}
-    a_t \in 
-    \left(
-        1, (1/2)\left(1 + \sqrt{1 + 4a_t^2}\right)
-    \right],
-\end{aligned}
-$$
-
-for the momentum parameters of the algorithm. 
-To make the objective converges faster, we want $\sum_{i = 1}^{T} a_t$ to be as large as possible. 
-A greedy choice is to choose $a_t$ to be at the upper bound for all $t$. 
+In this derivation we used the equality to derive the upper bound for the Lyapunov function. 
+Therefore, there is only one single choice for the stepsize parameter at the end, if we are not involving any type of errors. 
 
 
 #### **Scenario 3 | Similar Triangle II**   
