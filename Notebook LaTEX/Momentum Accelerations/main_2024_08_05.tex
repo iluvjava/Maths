@@ -1,0 +1,2593 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+\input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\title{{\fontfamily{ptm}\selectfont Nesterov Type Momentum Methods}}
+
+\author{
+    The Alto Hivemind (My Pen name)
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.name@university.edu}.
+    }
+}
+
+\date{2025 08 05}
+
+\maketitle
+
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    These are notes for Nesterov Type Acceleration Methods in the convex case. 
+    They can be made into papers, proposals, and a thesis in the future. 
+    They are tayped in \LaTeX\; so it's easier to work with. 
+\end{abstract}
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+% ==============================================================================
+\section{Preliminaries}
+    This section lists foundational results important for proof in the coming sections. 
+    For this section, let the ambient space be $\RR^n$ and $\Vert \cdot\Vert$ be the 2-norm until specified in the context. 
+    For a general overview of smoothness and strong convexity in the Euclidean space, see \cite[theorem 2.1.5, theorem 2.1.10]{nesterov_lectures_2018} for a full exposition of the topic. 
+    \par\noindent
+    We assume the reader is well-versed in convex optimization and convex analysis. 
+    \subsection{Lipschitz smoothness}
+        \begin{definition}[Lipschitz Smooth]
+            Let $f$ be differentiable. 
+            It has Lipschitz smoothness with constant $L$ if for all $x, y$
+            $$
+                \Vert \nabla f(x) - \nabla f(y)\Vert 
+                \le 
+                L \Vert x - y\Vert. 
+            $$    
+        \end{definition}
+
+        \begin{theorem}[Lipschitz Smoothness Equivalence]
+            With $f$ convex and $L$-Lipschitz smooth, the following conditions are equivalent conditions for all $x, y$: 
+            \begin{enumerate}
+                \item $L^{-1}\Vert \nabla f(y) - \nabla f(x)\Vert^2 \le \langle \nabla f(y) - \nabla f(x), y - x\rangle \le L\Vert y - x\Vert^2$. 
+                \item $x^+\in \argmin_x f(x) \implies \frac{1}{2L}\Vert \nabla f(x)\Vert^2 \le f(x) - f(x^+) \le (L/2) \Vert x - x^+\Vert^2$, co-coersiveness. 
+                \item $ 1/(2L)\Vert \nabla f(x) - \nabla f(y)\Vert^2 \le  f(y) - f(x) - \langle \nabla f(x), y -x\rangle \le (L/2)\Vert x - y\Vert^2$
+            \end{enumerate}    
+        \end{theorem}
+        \begin{remark}
+            Lipschitz smoothness of the gradient of a convex function is an example of a firmly nonexpansive operator.  
+        \end{remark}
+
+        \begin{definition}[Strong Convexity]
+            With $f: \RR^n \mapsto \overline \RR$, it is strongly convex with constant $\alpha$ if and only if $f - (\alpha/2)\Vert \cdot\Vert^2$ is a convex function. 
+        \end{definition}
+        
+        \begin{theorem}[Stong convexity equivalences]\label{thm:str_cvx_equiv}
+            With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are equivalent conditions for all $x, y$: 
+            \begin{enumerate}
+                \item $f(y) - f(x) - \langle \partial f(x),y - x \rangle\ge \frac{\alpha}{2}\Vert y - x\Vert^2$
+                \item $\langle \partial f(y) - \partial f(x), y - x\rangle \ge \alpha\Vert y - x\Vert^2$. 
+                \item $f(\lambda x + (1 - \lambda)y) \le \lambda f(x) + (1 - \lambda)f(y) -\alpha\frac{\lambda(1 - \lambda)}{2}\Vert y - x\Vert^2, \forall \lambda \in [0, 1]$. 
+            \end{enumerate}
+        \end{theorem}
+
+        \begin{theorem}[Strong convexity implications]\label{thm:str_cvx_implied}
+            With $f:\RR^n \mapsto \overline \RR$ $\alpha$-strongly convex, the following conditions are implied: 
+            \begin{enumerate}
+                \item $\frac{1}{2}\operatorname{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
+                \item $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
+                \item $f(y) \le f(x) + \langle \partial f(x), y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
+                \item $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
+                \item if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
+            \end{enumerate}
+        \end{theorem}
+        \begin{remark}
+            In operator theory, the subgradient of a strongly convex function is an example of a Strongly Monotone Operator. 
+        \end{remark}
+    
+    \subsection{Proximal descent inequality}
+        The proximal descent inequality below is a crucial piece of inequality for deriving the behaviours of algorithms. 
+        \begin{theorem}[Proximal Descent Inequality]\label{thm:ppm_descent_ineq}
+            With $f: \RR^n \mapsto \overline \RR^n$ $\beta$-convex where $\beta \ge 0$, fix any $x \in \RR^n$, let $p = \hprox_f(x)$, then for all $y$ we have inequality 
+            $$
+                \left(f(p) + \frac{1}{2}\Vert x - p\Vert^2\right)
+                - 
+                \left(
+                    f(y) + \frac{1}{2}\Vert x - y\Vert^2 
+                \right)
+                \le 
+                - \frac{(1 + \beta)}{2}\Vert y - p\Vert^2. 
+            $$
+            Recall: $\hprox_f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
+        \end{theorem}
+        \begin{remark}
+            We use this theorem to prove the convergence of the proximal point method. 
+            See the proof (\cite{bauschke_convex_2017}, theorem 12.26). 
+            The additional strong convexity index is a consequence of \hyperref[thm:str_cvx_implied]{theorem \ref*{thm:str_cvx_implied}}, item (v). 
+        \end{remark}
+        
+        \begin{theorem}[The Bregman proximal descent inequality]\label{thm:ppm_breg_descent_ineq}
+            Let $\omega$ induce a Bregman Divergence $D_\omega$ in $\RR^n$ and assume that it satisfies Bregman Prox Admissibility conditions for the function $\varphi: \RR^n \mapsto \overline \RR$.
+            Then we claim that for all $c \in \text{dom}(\omega), b \in \text{dom}(\partial \omega)$, 
+            If 
+            \begin{align*}
+                a = \argmin_{x}\left\lbrace
+                \varphi(x) + D_\omega(x, b)
+                \right\rbrace, 
+            \end{align*}
+            we have the inequality, 
+            \begin{align*}
+                (\varphi(c) + D_\omega(c, b)) - 
+                (\varphi(a) + D_\omega(a, b)) \ge 
+                D_\omega(c, a). 
+            \end{align*}
+        \end{theorem}
+        \begin{remark}
+            For more information about what function $\omega$ can induce a Bregman divergence and the admissibility conditions for Bremgna proximal mapping, consult Heinz et.al \cite{bauschke_descent_2017}. 
+        \end{remark}
+
+
+\section{The proximal point method with convexity}
+    This section reviews the convex case's Proximal point method (PPM) analysis and generalizes the theories to approximated PPM. 
+    \subsection{Convex PPM literature reviews}
+        Rockafellar \cite{rockafellar_monotone_1976} pioneered the analysis of the proximal point method in the convex case. 
+        He developed the analysis in the context of maximal monotone operators in Hilbert spaces. 
+        Applications in convex optimizations are covered. 
+        Using his theorems appropriately requires some opportunities, realizations, and characterizations of assumptions (A), (B) in his paper in the context of the applications. 
+        \par\noindent
+        In this section, we will use the result from Rockafellar that, if a monotone operator $A$ is $\beta$ strongly convex, then the resolvent operator $\mathcal J_A = [I + A]^{-1}$ is a $(1 + \beta)^{-1}$ Lipschitz operator, making $I - \mathcal J_A$ is a $1 - (1 + \beta)^{-1}$ a strongly monotone operator. 
+        
+
+    \subsection{The proximal point method}
+        With $f: \RR^n \mapsto \overline \RR$ lsc proper and convex, given any $x_0$ the PPM generates sequence $(x_n)_{n\in \NN}$ by $x_{k + 1} = \hprox_{\eta_{k + 1}}f(x_k)$ for all $k \in \NN$ where the sequence $(\eta_{k})_{k \in \NN}$ is a nonegative sequence of real numbers.
+        
+
+    \subsection{The Lyapunov function of convex PPM}
+        We present some theorems that illustrate the use of \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}. 
+        The readers can find similar analyses and techniques in Guler's work \cite{guler_convergence_1991}. 
+        \begin{theorem}[PPM Lyapunov Function]\label{ppm_lyapunov}
+            With $f$ being $\beta\ge 0$ convex (it's strongly convex if $\beta > 0$, else it's just convex) and $x_{t + 1} = \hprox_{\eta_{t + 1}f}$ generated by PPM. 
+            Define the Lyapunov function $\Phi_t$ for all $u \in \RR^n$: 
+            \begin{align*}
+                \Phi_t &:= 
+                \left(
+                    \sum_{i = 1}^{t} \eta_i
+                \right)(f(x_t) - f(u)) + \frac{1}{2} \Vert u - x_t\Vert^2 \quad \forall t \ge 1, 
+                \\
+                \Phi_0 &:= (1/2)\Vert x_0 - u\Vert^2, 
+            \end{align*}
+            then it is a Lyapunov function for the PPM algorithm. 
+            Meaning for all $(x_k)_{k \in \NN}$ generated by PPM, it satisfies that $\Phi_{t + 1} - \Phi_t \le 0$. 
+            Additionally, by definition, we have 
+            {\small
+                \begin{align*}
+                    \Phi_{t + 1} - \Phi_{t} 
+                    &= 
+                    \left(\sum_{i = 1}^{t}\eta_{i}\right)
+                    (f(x_{t + 1}) - f(x_t)) 
+                    + \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                    - \frac{1}{2}\Vert x_{t} - u\Vert^2
+                    +
+                    \eta_{t + 1}(f(x_{t + 1}) - f(u))
+                    \\
+                    & \le 
+                    -\left(\sum_{i = 1}^{t}\eta_{i}\right)
+                    (1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2
+                    + 
+                    \left(
+                        - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                        -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2
+                    \right)
+                    \\
+                    & \le 0,
+                \end{align*}
+            }
+            And additionally, recovering the descent lemma: 
+            \begin{align*}
+                f(x_{t + 1}) - f(x_t) 
+                &\le
+                -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2 
+                - \frac{\beta}{2}\Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            Let $\phi_{t + 1}: \RR^n \mapsto \overline \RR = \eta_{t + 1} f$ be convex,  consider proximal point method $x_{t + 1} = \hprox_{\phi}(x_t)$, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}, we have $\forall u \in \RR^n$
+            \begin{align*}
+                & \phi_{t + 1}(x_{t + 1}) 
+                + 
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                - \phi_{t + 1}(u) - \frac{1}{2}\Vert u - x_t\Vert^2
+                \le 
+                - 
+                \frac{1}{2}(1 + \beta\eta_{t + 1})\Vert 
+                    u - x_{t + 1}
+                \Vert^2
+                \\
+                & \text{let } u = x_*
+                \\
+                &\quad 
+                \begin{aligned}
+                    \implies &
+                    \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
+                    + 
+                    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+                    +  
+                    \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -
+                    \frac{1}{2}\Vert x_* - x_t\Vert^2 
+                    \\
+                    & \quad \le 
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
+                    \\
+                    \iff & 
+                    \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) 
+                    + 
+                    \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2 
+                    -
+                    \frac{1}{2}\Vert x_* - x_t\Vert^2 
+                    \\
+                    & \quad \le 
+                    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert x_* - x_{t + 1}\Vert^2
+                    \le 0. 
+                \end{aligned}
+                \\
+                & \text{let } u = x_{t}
+                \\
+                &\quad  
+                \begin{aligned}
+                    \implies& 
+                    f(x_{t + 1}) - f(x_t)
+                    \le 
+                    -\frac{1}{\eta_{t+1}} \Vert x_{t + 1} - x_t\Vert^2 
+                    - \frac{\beta}{2}\Vert x_t - x_{t + 1}\Vert^2
+                    \le 0. 
+                \end{aligned}
+            \end{align*}
+            Let's define the following quantities for all $u, \beta\ge 0$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}(u) &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(u)) + \frac{1}{2}(
+                    \Vert x_{t + 1} - u\Vert^2 - 
+                    \Vert x_t - u\Vert^2
+                )
+                \\
+                & \le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2, 
+                \\
+                \Upsilon_{2, t + 1}
+                &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                \\
+                &\le 
+                - \Vert x_{t + 1} - x_t\Vert^2 - 
+                \frac{\beta\eta_{t + 1}}{2}
+                \Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                &= 
+                -(1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2 \le 0. 
+            \end{align*}
+            With $\Phi_t$ as defined in the theorem, observe the following demonstration for all $u$, $\beta \ge 0$: 
+            {\small
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_{t}
+                &= 
+                \left(
+                    \sum_{i = 1}^{t + 1}\eta_i
+                \right)(f(x_{t + 1}) - f(u)) + 
+                \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                - 
+                \left(
+                    \sum_{i = 1}^{t}\eta_i
+                \right)(f(x_{t}) - f(u))
+                - 
+                \frac{1}{2}\Vert x_{t} - u\Vert^2
+                \\
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)
+                (f(x_{t + 1}) - f(x_t)) 
+                + \frac{1}{2}\Vert x_{t + 1} - u\Vert^2 
+                - \frac{1}{2}\Vert x_{t} - u\Vert^2
+                +
+                \eta_{t + 1}(f(x_{t + 1}) - f(u))
+                \\
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)\Upsilon_{2, t + 1}
+                + \Upsilon_{1, t + 1}(u)
+                \\
+                &\le 
+                -\left(\sum_{i = 1}^{t}\eta_{i}\right)
+                (1 + \beta\eta_{t + 1}/2)\Vert x_{t + 1} - x_t\Vert^2
+                + 
+                \left(
+                    - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2
+                    -\frac{\beta\eta_{t + 1}}{2}\Vert u - x_{t + 1}\Vert^2
+                \right)
+                \le 0. 
+            \end{align*}
+            }
+            Therefore, $\Phi_t$ is a legitimate Lyapunov function for all $u, \beta \ge 0$. 
+        \end{proof}
+        \begin{remark}
+            The above Lyapunov is not unique, and it's not optimal for $\beta > 0$, strictly strongly convex functions. 
+
+        \end{remark}
+
+        \begin{theorem}[Convergence Rate of PPM]\label{thm:ppm_convergence_rate}
+            The convergence rate of PPM applied to $f$, closed, convex proper, we have the convergence rate of the function value: 
+            $$
+            f(x_T) - f(x_*) \le O\left(\left(\sum_{i=1}^{T}\eta_t\right)^{-1}\right). 
+            $$
+            Where $x_*$ is the minimizer of $f$. 
+        \end{theorem}
+        \begin{proof}
+            With $\Delta_t = f(x_t) - f(x_*), \Upsilon_t = \sum_{i = 1}^{t}\eta_i$ so $\Phi_t = \Upsilon_t\Delta_t + \frac{1}{2}\Vert x_t - x_*\Vert^2$ by consideration $u = x_*$, invoking previous theorem and do
+            \begin{align*}
+                \Upsilon_T\Delta_T \le \Phi_T 
+                &\le 
+                \Phi_0 = \frac{1}{2}\Vert x_0 - x_*\Vert^2 
+                \\
+                \implies \Delta_T 
+                &\le 
+                \frac{1}{2\Upsilon_T} \Vert x_0 - x_*\Vert^2. 
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            With the same choice of the sequence $(\eta_t)_{t \in \NN}$, convergence of the PPM method of a strongly convex function is faster. 
+            The above proof is the same for $\beta = 0$, or $\beta > 0$, because it didn't use the property that $\eta_{t + 1}f$ is a $\eta_{t + 1}\beta$ strongly convex function. 
+        \end{remark}
+
+        \begin{theorem}[PPM Strongly Convex Lyapunov Function]\label{ppm_lyapunov_scvx}
+            With $f$ being $\beta > 0$ strogly convex, with $x_{t + 1} = \hprox_{\eta_{t + 1}f}(x_t)$, then $\Phi_t = \Vert x_{t} - x_*\Vert$ is a Lyapunov function satisfying: 
+            \begin{align*}
+                \frac{\Vert x_{t + 1} - x_*\Vert}{
+                    \Vert x_k - x_*\Vert
+                } &\le (1 + \eta_{t + 1}\beta)^{-1}. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            This is a direct application that $\hprox_{\eta_{t + 1}f}$ is a contraction with constant $(1 + \beta\eta_{t +1})^{-1}$. 
+        \end{proof}
+        \begin{remark}
+            It's still a mystery on how to show $f(x_t) - f(x_*)$ is a Lyapunov function. 
+            The answer is not realized by us, nor it is in Rockafellar \cite{rockafellar_monotone_1976} or Guler's\cite{guler_convergence_1991} writings. 
+            Do observe that, by the choice of $x_*$, the contraction property of the proximal operator is strictly stronger than necessary. 
+            This inequality at the end is tighter than what we derived for gradient descent. 
+        \end{remark}
+        
+\section{Applying the analysis of PPM}
+    The PPM method and the Lyaounov function derived above serve as the template for other algorithms. 
+    As an appetizer, we present an analysis of gradient descent using theorems related to the convergence of PPM
+    \par\noindent
+    In optimizations, people use a lower or an upper approximation of the objective function to approximate the PPM. 
+    The methodology includes a diverse range of approaches.
+    For example, it includes first-order optimization, such as gradient descents, and second-order algorithms, such as Newton's method. 
+    Its scope broadens to primal-dual optimization algorithms with creativities in the Lyapunov functions or theories in monotone operators. 
+    \par\noindent
+    To demonstrate, assume that $f$ is a lsc convex function such that it can be approximated by a lower bounding function $l_f(x|\bar x)$ at $\bar x$ such that it satisfies for all $x$: 
+    \begin{align*}
+        l_f(x| \bar x) 
+        \le f(x) \le l_f(x|\bar x) + \frac{L}{2}\Vert x - \bar x\Vert^2. 
+    \end{align*}
+    The above characterization is generic enough to include the case where $l_f(x|\bar x)$, the under-approximating function is nonsmooth. 
+    We assume that $l_f(x|\bar x)$ is convex for all $x$, at all $\bar x$, so the previous theorems apply. 
+    \par\noindent
+    The approximated proximal point method applies PPM to the function $l_f(x|x_t)$ for each iteration, i.e.: $x_{t +1} = \hprox_{\eta_{t + 1}l_f(\cdot | x_t)}(x_t)$. 
+    \subsection{Generic gradient descent}
+        We will consider deriving gradient descent via the PPM approach as a warm-up. 
+        Please pay attention to the remarks. They reveal parts of the proof that could inspire the idea of a non-monotone line search method in practical settings. 
+        \begin{theorem}[Generic Approximated PPM]\label{thm:lower_approx_ppm_convergence}
+            With $f$ convex having minimizer: $x_*$; $l_f(\cdot; x_t)$ convex, lsc and proper, define $\phi_t(x) = \eta_{t + 1}l_f(x; x_t)$. 
+            Assume the following estimates hold: 
+            $$
+            \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+            + 
+            \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n. 
+            $$ 
+            Fix any $x_0$, let the iterates $x_t$ defined for $t\in \NN$ satisfies
+            \begin{align*}
+                x_{t +1} = \argmin_{x} \left\lbrace
+                    l_f(x; x_t) + \frac{1}{2\eta_{t + 1}}\Vert x - x_t\Vert^2
+                \right\rbrace, 
+            \end{align*}
+            then it has 
+            \begin{align*}
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_*)) + \frac{1}{2}\Vert x_* - x_{t + 1}\Vert^2
+                - \frac{1}{2}\Vert x_* - x_t\Vert^2
+                & \le 
+                \left(
+                    \frac{L \eta_{n + 1}}{2} - \frac{1}{2}
+                \right)\Vert x_{t + 1} - x_t\Vert^2.
+            \end{align*}
+            Additionally if $\exists \epsilon > 0: \eta_{t} \in (\epsilon, 2L^{-1} - \epsilon)$, for all $t \in \NN$, the algorithm has sublinear convergence rates of
+            \begin{align*}
+                f(x_T) - f(x_*)
+                &\le 
+                \frac{L - \epsilon^{-1}}{TL\epsilon} (f(x_0) - f(x_T)) 
+                \\
+                &\le 
+                \frac{L - \epsilon^{-1}}{TL\epsilon} (f(x_0) - f(x_*)) 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            By $\phi_t$ convex, apply \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}} with $f = \phi_t$, $x = x_t$, $x_{t + 1} = p$, yielding $\forall y$
+            {\footnotesize
+                \begin{align*}
+                    \phi_t(x_{t + 1}) + \frac{1}{2}\Vert x_t - x_{t + 1}\Vert^2 
+                    - 
+                    \phi_t(y) - \frac{1}{2}\Vert x_t - y\Vert^2
+                    &\le 
+                    - \frac{1}{2}\Vert y - x_{t + 1}\Vert^2
+                    \\
+                    \phi_t(x_{t + 1}) - \phi_t(y)
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) &\le 
+                    - \frac{1}{2} \Vert x_t - x_{t + 1}\Vert^2
+                    \\
+                    \left(
+                        \phi_t(x_{t + 1}) + \frac{L\eta_{t + 1}}{2}\Vert x_{t + 1} - x_t\Vert
+                    \right)
+                    - \phi_t(y)
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) &\le 
+                    \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                    \right) \Vert x_t - x_{t + 1}\Vert^2
+                    \\
+                    \implies 
+                    \eta_{t + 1}f(x_{t + 1}) - \eta_{t + 1}f(y) 
+                    + \frac{1}{2}(
+                        \Vert y - x_{t + 1}\Vert^2 - \Vert x_t - y\Vert^2 
+                    ) 
+                    &\le 
+                    \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                    \right) \Vert x_t - x_{t + 1}\Vert^2. 
+                \end{align*}
+            }
+            Setting $y = x_t$ yields
+            \begin{align*}
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t)) + 
+                \frac{1}{2}
+                    \Vert x_t - x_{t + 1}\Vert^2
+                &\le 
+                \left(
+                        \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2
+                \\
+                \iff 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                &\le 
+                \left(
+                        \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            In a similar manner to the derivation of the Lyapunov function for PPM, we make for all $y$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}(y) &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(y)) + \frac{1}{2}(
+                    \Vert x_{t + 1} - y\Vert^2 - 
+                    \Vert x_t - y\Vert^2
+                )
+                \\
+                & \le 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2, 
+                \\
+                \Upsilon_{2, t + 1}
+                &= 
+                \eta_{t + 1}(f(x_{t + 1}) - f(x_t))
+                \\
+                &\le 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            Now, consider defining $\Phi_t$ for all $y$: 
+            $$
+                \Phi_t = \left(
+                    \sum_{i = 1}^{t} \eta_{i}
+                \right)
+                (f(x_t) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2, 
+            $$
+            it is the proposed Lyapunov function for PPM; we define the base case $\Phi_0 = \frac{1}{2}\Vert y - x_0\Vert^2$. 
+            Consider the difference $\forall y$: 
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_t
+                &= 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right)\Upsilon_{2, t + 1}
+                + \Upsilon_{1, t + 1}(y)
+                \\
+                &\le 
+                \left(\sum_{i = 1}^{t}\eta_{i}\right) 
+                \left(
+                    \frac{L\eta_{t + 1}}{2} - 1
+                \right) 
+                \Vert x_t - x_{t + 1}\Vert^2 + 
+                \left(
+                    \frac{L\eta_{t + 1}}{2}- \frac{1}{2}
+                \right) \Vert x_t - x_{t + 1}\Vert^2. 
+            \end{align*}
+            Observe that if $\eta_i \le L^{-1}$, then $\Phi_{t + 1} - \Phi_t \le 0$, hence the convergence rate of $\mathcal O\left((\sum_{i = 1}^{t}\eta_i)^{-1}\right)$ of PPM for $\Phi_t$ is applicable. 
+            \par\noindent
+            Surprisingly, if $\eta_i \in (0, 2L^{-1})$, $\Phi_{t}$ still converges under mild conditions. 
+            For simplicity we set $\sigma_t := \sum_{i = 1}^{t}\eta_i$. 
+            It starts with considerations that $(L\eta_{t + 1}/2 - 1) < 0$, so that 
+            \begin{align*}
+                f(x_{t + 1}) - f(x_t) &\le 
+                \left(\frac{L\eta_{t + 1}}{2} - 1\right)\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                f(x_T) - f(x_0)
+                &\le 
+                \underbrace{
+                \left(
+                    \frac{L\sigma_T}{2} - T
+                \right)
+                }_{< 0}
+                \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                \implies 
+                \sum_{t = 0}^{T -1}\Vert x_t - x_{t + 1}\Vert^2
+                &\le 
+                \left(
+                    \frac{L}{2}\sigma_T  - T
+                \right)^{-1} 
+                (f(x_T) - f(x_0))
+            \end{align*}
+            Continue on the RHS of $\Phi_{t + 1} - \Phi_t$ so 
+            \begin{align*}
+                \sum_{t = 0}^{T - 1}\Phi_{t + 1} - \Phi_t 
+                &\le 
+                \left(
+                    \frac{L}{2}\sigma_T - \frac{T}{2}
+                \right)\sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+                \\
+                \Phi_T - \Phi_0 &\le 
+                \left(
+                    \frac{\frac{L}{2}\sigma_T - \frac{T}{2}}{
+                        \frac{L}{2}\sigma_T - T
+                    }
+                \right)
+                (f(x_T) - f(x_0))
+                \\
+                &= 
+                \left(
+                    \frac{L\sigma_T - T}{L\sigma_T - 2T}
+                \right)
+                (f(x_T) - f(x_0)), 
+            \end{align*}
+            implies
+            \begin{align*}
+                \sigma_T (f(x_T) - f(y)) + \frac{1}{2}\Vert y - x_t\Vert^2
+                - \frac{1}{2}\Vert y - x_0 \Vert^2 
+                &\le 
+                \left(
+                    \frac{L\sigma_T - T}{L\sigma_T - 2T}
+                \right)
+                (f(x_T) - f(x_0))
+                \\
+                \iff
+                f(x_T) - f(y) + 
+                \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+                &\le 
+                \left(
+                    \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+                \right)
+                (f(x_0) - f(x_T)), 
+            \end{align*}
+            therefore, we obtain the bound: 
+            \begin{align*}
+                f(x_T) - f(y) &\le 
+                \left(
+                    \frac{L- T\sigma_T^{-1}}{2T - L\sigma_T}
+                \right)
+                (f(x_0) - f(x_T))
+                - 
+                \frac{1}{2\sigma_T}(\Vert y - x_t\Vert^2 - \Vert y - x_0\Vert^2)
+            \end{align*}
+            In the case where $\sup_{i\in \NN} \eta_i \le 2L^{-1} - \epsilon$, and $\inf_{i\in \NN}\eta_i \ge \epsilon$ with $\epsilon > 0$. 
+            Then we have 
+            \begin{align*}
+                \frac{L -T\sigma_T^{-1}}{2T - L\sigma_T}
+                &\le 
+                \frac{L - \epsilon^{-1}}{2T - LT(2L^{-1} - \epsilon)}
+                \\
+                &= 
+                \frac{L - \epsilon^{-1}}{2T - T(2 - L\epsilon)}
+                \\
+                &= 
+                \frac{L - \epsilon^{-1}}{TL\epsilon}. 
+            \end{align*}
+            With $y = x_*$, we get the claimed convergence rate because $f(x_t)$ is strictly monotone decreasing. 
+        \end{proof}
+        \begin{remark}
+            Observe that inequality 
+            $$
+                \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+                + 
+                \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in \RR^n, 
+            $$
+            was invoked with $x = x_{t + 1}$ for the PPM descent inequality in the above proof, meaning that if  $\forall (x_t)_{t \in \NN}$ generated by the algorithm, $\exists (L_t)_{t \in \NN}$ such that
+            $$
+                \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) 
+                + 
+                \frac{L_t\eta_{t + 1}}{2}\Vert x - x_t\Vert^2,
+            $$
+            where the algorithm generates the sequence. 
+            By smartly choosing the function $\phi_{t + 1}$ at each iteration, we can increase the stepsize while retaining a similar convergence proof. 
+            In a practical setting, when $L_t = L$, and $\phi_{t}(x) = \eta_{t + 1}f$, this is called a line search.
+            \par\noindent
+            The convergence rate is loose, and when $f$ exhibits additional favourable properties, such as being strongly convex, the convergence rate can be faster. 
+            Furthermore, if the choice of $y$ remains arbitrary, then the theorem is applicable for function without minimizers. 
+        \end{remark}
+
+    \subsection{Examples}
+        \begin{example}[Convergence of the proximal gradient method]
+            This section \\ illustrates algorithms that satisfy the above proof's lower and upper bound estimates. 
+            Consider $f = g + h$ with $h$ nonsmooth convex, and $g$ being $L$-Lipschitz smooth convex and differentiable. 
+            Define $D_g(x, y) = g(x) - g(y) - \langle \nabla f(x), y - x\rangle$, $l_g(x; y) = g(y) + \langle \nabla g(y), y - x\rangle$, which is the Bregman divergence of the function $g$. 
+            Consider for all $x$: 
+            \begin{align*}
+                0 & \le 
+                D_g (x, y) \le  \frac{L}{2} \Vert x - y\Vert^2 
+                \\
+                l_g (x; y) &\le 
+                g(x) 
+                \le l_g(x; y) + \frac{L}{2} \Vert x - y\Vert^2 
+                \\
+                h(x) + l_g(x; y) &\le f(x) = g(x) + h(x)
+                \le 
+                l_g(x; y) + h(x) + \frac{L}{2}\Vert x - y\Vert^2. 
+            \end{align*}
+            Define $\phi_{t + 1} (x) = \eta_{t + 1}(h(x) + l_g(x; x_t))$, then results from previous theorems apply.    
+        \end{example}
+        \begin{remark}
+            The envelope interpretation restricts the use of the theorem since it requires that the proximal operator be a resolvent of a gradient. 
+            Extending the usage of the PPM descent inequality to other contexts requires operator theories and creativities. 
+        \end{remark}
+
+        \begin{example}[The fundamental proximal gradient lemma]
+            The fundamental proximal gradient lemma was used heavily in the literature to derive convergence results in the convex case. 
+            The "fundamental proximal gradient lemma" originates from Beck's writings \cite[theorem 10.16]{beck_first-order_nodate}. 
+            We demonstrate in this example that it's a consequence of \hyperref[thm:ppm_breg_descent_ineq]{theorem \ref*{thm:ppm_breg_descent_ineq}}. 
+            \par
+            With $f = g + h$, $h$ convex, lsc, $g$ be $L$-Lipschitz smooth, then for all $y\in \RR^n$, $x\in \RR^n$, $y^+ := \hprox_{L^{-1}h}(y - L^{-1}\nabla (y))$ satisfies: 
+            \begin{align*}
+                f(x) - f(y^+) \ge \frac{L}{2}\Vert x - y^+\Vert^2 - \frac{L}{2}\Vert x - y\Vert^2 + D_g(x, y).
+            \end{align*}
+            A similar analysis as \hyperref[thm:lower_approx_ppm_convergence]{ theorem \ref*{thm:lower_approx_ppm_convergence}} with \hyperref[thm:ppm_breg_descent_ineq]{theorem \ref*{thm:ppm_breg_descent_ineq}} obtains the same inquality. 
+            With $\phi(y) = \eta(h(y) + g(x) + \langle \nabla g(x), y - x\rangle)$ as an lower bounding function of $f$. 
+            Choose any $x$, let $x^+ = \hprox_\phi(x)$, then for all $u$:
+            {\small
+            \begin{align*}
+                & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
+                \ge \frac{1}{2}\Vert x^+ - u\Vert^2
+                \\
+                \implies &
+                \eta\underbrace{
+                    \left(
+                        h(u) + g(x) + \langle \nabla g(x), u - x\rangle 
+                    \right)
+                }_{= \phi(u)} 
+                - \eta \underbrace{f(x^+)}_{\le \phi(x^+)} - \frac{1}{2}\Vert x - x^+\Vert^2 
+                + \frac{1}{2} \Vert u - x\Vert^2 
+                \ge 
+                \frac{1}{2}\Vert x^+ - u\Vert^2 
+                \\
+                \iff & 
+                f(u) + \left(
+                    g(x) - g(u) + \langle \nabla g(x), u -x\rangle 
+                \right)
+                - f(x^+) - \frac{1}{2\eta}\Vert x - x^+\Vert^2
+                + 
+                \frac{1}{2}\Vert u - x\Vert^2 
+                \ge 
+                \frac{1}{2\eta}\Vert x^+ - u\Vert^2 
+                \\
+                \iff 
+                & f(u) - f(x^+) - D_g(u, x)
+                + \frac{1}{2\eta} \Vert u - x\Vert^2 - \frac{1}{2\eta}\Vert x^+ - x\Vert^2
+                \ge 
+                \frac{1}{2\eta} \Vert x^+ - u\Vert^2. 
+            \end{align*}
+            }
+            \par\noindent
+            Removing the negative term $-1/2\eta \Vert x - x^+\Vert^2$ makes LHS larger, establishing the fundamental proximal gradient lemma. 
+        \end{example}
+        \begin{remark}
+            Linking the PPM descent inequality to the Bregman divergence of the smooth part of the function on parameters $u, x$ is a clever move. 
+        \end{remark}
+
+        
+\section{Accelerated gradient descent and PPM}
+    Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
+    Ahn explored the interpretation of Nesterov acceleration via PPM. 
+    They proposed the idea of ``similar triangle" for unifying all varieties of Nesterov accelerated gradient. 
+    They used PPM to derive several variations of the Nesterov accelerated gradient algorithms. 
+    Finally, they refurnished \hyperref[thm:lower_approx_ppm_convergence]{theorem \ref*{thm:lower_approx_ppm_convergence}} for the proof of convergence rate for the accelerated gradient.
+    Their analysis results in relatively simple arguments that exhibits powerful extensions to several variants of the Nesterov accelerated gradient. 
+    
+    \par\noindent
+    Interestingly, the Nesterov accelerated gradient applies to PPM too; Guler \cite{guler_new_1992} did it two decades ago. 
+    He uses the idea of a Nesterov acceleration sequence faithfully. 
+    One recent development of the accelerated PPM is an algorithmic framework named: ``Universal Catalyst acceleration", proposed by Lin et al \cite{lin_universal_2015}. 
+    It is an application of Guler's work in the context of variance-reduction stochastic gradient algorithms for machine learning. 
+    
+    \par\noindent
+    \textbf{We state our contributions}. 
+    In \hyperref[sec:AG_varieties]{section \ref*{sec:AG_varieties}} 
+    We stated different forms of accelerated gradient that appeared in the literatures and the equivalences between their forms. 
+    They are abstract because the choice of stepsize parameters in the algorithms are unspecified. 
+    Abstract forms related to the proximal gradient method were our own inventions inspired by discussions in the literatures, which includes 
+    \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}, and 
+    \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}. 
+    In \hyperref[sec:AG_useful_information]{section \ref*{sec:AG_useful_information}}
+    we prove and interpret some of the unproved claims made by Ahn, Sra \cite{ahn_understanding_2022} as good exercises and for the peace of the mind. 
+    In
+    \hyperref[sec:generic_ag_ppm_lyapunov_analysis]{section \ref*{sec:generic_ag_ppm_lyapunov_analysis}},
+    we state two important theorems for the derivation of convergences rate for various type of algorithm using an upper bound of a Lyapunov function. 
+    This part is inspired by works from Ahn, Sra \cite{ahn_understanding_2022}, but with the gradient mapping and proximal gradient added into the picture, making it distinct from all algorithms discussed in Ahn and Sra's paper. 
+    \hyperref[sec:scenario_i]{Section \ref*{sec:scenario_i}} and 
+    \hyperref[sec:scenario_ii]{\ref*{sec:scenario_ii}} derive the convergence rate and determine the parameters for the step sizes needed to achieve an optimal convergence rate. 
+    In each section, we recover a specific variant of the Accelerated gradient and identify their appearances in the literature. 
+
+    
+    \subsection{Preliminaries}
+        We introduce some additional lemma that are crucial to the derivations of non-smooth accelerated gradient method. 
+        \begin{definition}[The Gradient Mapping]
+            \label{def:gradient_mapping}
+            Let $g = f + g$ where $f$ is $L$-Lipschitz smooth and convex, $g$ is convex. 
+            Define the proximal gradient operator
+            $$
+                \mathcal T_L(x) := \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)),
+            $$
+            then the gradient mapping is defined as
+            $$
+                \mathcal G_L(x) = L(x - \mathcal T_L(x)). 
+            $$
+        \end{definition}
+        \begin{remark}
+            The name ``gradient mapping" comes from \cite[(2.2.54)]{nesterov_lectures_2018}, however, Nesterov was referring to only the case when $g$ is an indicator function of a convex set in his writing. 
+            Of course, in Amir Beck \cite[10.3.2]{beck_first-order_nodate}, it has the exact same definition for gradient mapping as the above. 
+        \end{remark}
+
+        \begin{lemma}[Gradient Mapping Approximates Subgradient]
+            \label{lemma:grad_map_lemma_first}
+            Continue from 
+            \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}, 
+            the gradient mapping satisfies
+            \begin{align*}
+                x^+ &= \mathcal T_L(x), 
+                \\
+                L(x - x^+) &\in  \nabla f(x) + \partial g(x^+) \ni \mathcal G_L(x). 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            \begin{align*}
+                x^+ &= [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f](x)
+                \\
+                [I + L^{-1}\partial g](x^+) &\ni [I - L^{-1}\nabla f](x)
+                \\
+                x^+ + L^{-1}\partial g(x^+) &\ni x - L^{-1}\nabla f(x)
+                \\
+                x^+ - x + L^{-1}\partial g(x^+) &\ni L^{-1}\nabla f(x)
+                \\
+                L(x^+ - x) + \partial g(x^+) &\ni - \nabla f(x)
+                \\
+                L(x - x^+) &\in \nabla f(x) + \partial g(x^+)
+                \\
+                \mathcal G_L(x) &\in \nabla f(x) + \partial g(x^+). 
+            \end{align*}
+        \end{proof}
+
+        \begin{lemma}[Linearized Gradient Mapping Lower Bound]
+        \label{lemma:grad_map_linearization}
+            Continue from 
+            \hyperref[lemma:grad_map_lemma_first]{definition \ref*{lemma:grad_map_lemma_first}}, 
+            with $x^+ = \mathcal T_L(x)$, the gradient mapping satisfies the inequality for all $z$: 
+            \begin{align*}
+                h(z) &\ge
+                h(z) - \frac{L}{2}\Vert x - x^+\Vert^2
+                \ge h(x^+) + \langle \mathcal G_L(x), z - x\rangle. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Directly from the $L$-smoothness of $f$, convexity of $g, f$, we have the list of inequalities: 
+            \begin{align*}
+                &f(x^+) \le 
+                f(x) + \langle \nabla f(x), x^+ - x\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2, 
+                \\
+                &f(x) + \langle \nabla f(x), z - x\rangle 
+                \le f(z), 
+                \\
+                &g(x^+) \le 
+                g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
+            \end{align*}
+            Now, consider adding $g(x^+)$ to the first inequality from above we get 
+            {\footnotesize 
+            \begin{align*}
+                f(x^+) + g(x^+) 
+                &\le 
+                f(x) + g(x^+) + \langle \nabla f(x), x^+ - x\rangle 
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &\le 
+                (f(z) - \langle \nabla f(x), z - x\rangle) + 
+                \left(g(z) - \langle \partial g(x^+), x^+ - z\rangle\right)
+                + 
+                \langle \nabla f(x), x^+ - x\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= f(z) + g(z) + \langle \nabla f(x), x - z + x^+ - x\rangle
+                + 
+                \langle \partial g(x^+), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= 
+                h(z) + \langle \nabla f(x), x^+ - z\rangle + 
+                \langle \partial g(x^+), x^+ - z\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) + \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+                + \frac{L}{2}\Vert x - x^+\Vert^2. 
+            \end{align*}
+            }
+            By $\mathcal G_L(x) = L(x - x^+) \in \nabla f(x) + \partial g(x^+)$ from previous dicussion, we have 
+            \begin{align*}
+                h(x^+) &\le 
+                h(z) + \langle \mathcal G_L(x), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) - \langle L(x^+ - x), x^+ - x + x - z \rangle 
+                + 
+                \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= 
+                h(z) - L\Vert x^+ - x\Vert^2 
+                + L \langle x^+ - x, x - z\rangle
+                + \frac{L}{2}\Vert x - x^+\Vert^2
+                \\
+                &= h(z) + \langle \mathcal G_L(x), x - z\rangle - 
+                \frac{L}{2}\Vert x - x^+\Vert^2. 
+            \end{align*}
+            Therefore, the inequality is justified. 
+        \end{proof}
+        \begin{remark}
+            Observe that the linearization $h(x^+) + \langle \mathcal G_L(x), z - x\rangle$ is anchored at $x^+$, instead of $x$. 
+            Geometrically, it's tilted and it "prefers" the sharp corners of a convex function, if, $x$ is close to a sharp corner. 
+        \end{remark}
+
+    \subsection{Varieties of Nesterov accelerated gradient}\label{sec:AG_varieties}
+        Here, the acrynonym: ``AG" stands for accelerated gradient. 
+        \subsubsection{AG Abstract Forms}
+            In this section, we list different varieties of the Nesterov accelerated method. 
+            \begin{definition}[Nestrov 2.2.7]\label{def:Nes2.2.7}
+                Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
+                Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$, it
+                \begin{enumerate}
+                    \item[1.] computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$; 
+                    \item[2.] sets $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$;
+                    \item[3.] chooses $y_k = (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$; 
+                    \item[4.] finds $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$; 
+                    \item[5.] sets $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
+                \end{enumerate}
+            \end{definition}
+            \begin{remark}
+                This is in Nesterov's book \cite[(2.2.7)]{nesterov_lectures_2018}. 
+                For more context, the sequence $\alpha_k \in (0, 1)$ such that $\sum_{k = 1}^{\infty}\alpha_k = \infty$, and recursively we have $\lambda_{k + 1} = (1 - \alpha_k)\lambda_k$. 
+                the sequence $\lambda_k$ is called an Nesterov estimating sequence. 
+                It is the most generic algorithm in his book about accelerated gradient method. 
+                The genericity of the algorithm is provided by item 4., which is the a special case of the smooth descent lemma. 
+
+            \end{remark}
+
+            \begin{definition}[Ahn Sra 6.24]\label{def:agg_ppm}
+                With $f$ $\mu \ge 0$ strongly convex and $L$-Lipschitz smooth, the generic PPM form is formulated for strictly positive stepsizes $\tilde \eta_i,\eta_i$: 
+                \begin{align*}
+                    x_{t + 1} &= \argmin_{x} \left\lbrace
+                        l_f(x; y_t) 
+                        + 
+                        \frac{\mu}{2}\Vert x - y_t\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace, 
+                    \\
+                    y_{t + 1} &= \argmin_{x} 
+                    \left\lbrace
+                        l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                This algorithm is the same as algorithm (6.24) described by Ahn and Sra \cite{ahn_understanding_2022}. 
+                Observe that by setting $\mu = 0, \tilde \eta_{t + 1} = \eta_{t + 1}$ this recovers algorithm (4.8) described in Ahn and Sra \cite{ahn_understanding_2022}. 
+                Finally, Ahn, Sra 6.24 has the same form as Nesterov 2.2.7. 
+                See 
+                \hyperref[prop:Nes2.2.7_via_ahn_sra_6.24]{proposition \ref*{prop:Nes2.2.7_via_ahn_sra_6.24}} for a demonstration. 
+            \end{remark}
+
+            \begin{definition}[AG Proximal Gradient PPM Generic Form]
+            \label{def:ag_prox_grad_ppm}
+                Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
+                Define the proximal gradient and gradient mapping operator operator: 
+                $$
+                \begin{aligned}
+                    \mathcal T_L^{g, f}(x) &:=  
+                    \hprox_{L^{-1}g}\left(x - L^{-1}\nabla f(x)\right)
+                    \\
+                    &= 
+                    \argmin_{u}
+                    \left\lbrace
+                        g(u) + f(x) + \langle \nabla f(x), u - x\rangle
+                        + 
+                        \frac{L}{2}\Vert u - x\Vert^2
+                    \right\rbrace,
+                    \\
+                    \mathcal G_L^{g, f}(x) &= 
+                    L\left(x - \mathcal T_L^{g, f}(x)\right). 
+                \end{aligned}
+                $$
+                Omitting the superscript $f, g$ on $\mathcal T, \mathcal G$ for simplicity since it's clear in the context. 
+                Define the linear lower bounding function for $f$ at $y$, for all $x$: 
+                $$
+                \begin{aligned}
+                    l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le h(x), 
+                \end{aligned}
+                $$
+                with that we define the algorithm:
+                $$
+                \begin{aligned}
+                    x_{t + 1} &= \argmin_{x} \left\lbrace
+                        l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+                        \Vert x - x_t\Vert^2
+                    \right\rbrace,
+                    \\
+                    y_{t + 1}&= 
+                    \argmin_{x}
+                    \left\lbrace
+                        l_h(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace.
+                \end{aligned}
+                $$
+            \end{definition}
+            \begin{observation}
+                With $g \equiv 0$, the above definition reduces to 
+                \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}
+                where $\mu = 0$. 
+            \end{observation}
+
+            \begin{definition}[AG Proximal Gradient Generic Form]
+            \label{def:ag_prox_grad_tri_pt}
+                With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
+                Define proximal gradient and gradient mapping operator 
+                $$
+                \begin{aligned}
+                    \mathcal T_L(x) 
+                    &:= \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)), 
+                    \\
+                    x^+ &= \mathcal T_L(x), 
+                    \\
+                    \mathcal G_L(x) 
+                    &:= L(x -  x^+). 
+                \end{aligned}
+                $$
+                Then the algorithm updates $(y_t, x_{t + 1}, z_{t + 1})$ with expression: 
+                $$
+                \begin{aligned}
+                    y_t^+ &= \mathcal T_L(y_t)
+                    \\
+                    y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+                    \\
+                    x_{t + 1} &= x_t - \tilde \eta \mathcal G_L(y_t)
+                    \\
+                    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+                \end{aligned}
+                $$
+                for all $t\in \mathbb N$ where the base case has $y_0 = x_0$. 
+            \end{definition}
+            \begin{remark}
+                Observe that $z_{t + 1} = y_t^+$. 
+            \end{remark}
+
+            \begin{definition}[Generic Form]\label{def:agg_tri}
+                With $f$ be $L$-Lipschitz \\ 
+                smooth and convex, choose any $y_0 = x_0=z_0$ and a non-negative sequence $\eta_t, \tilde\eta_t$, the algorithm admits form: 
+                \begin{align*}
+                    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ). 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                The parameter $\eta_t, \tilde\eta_{t + 1}$ are exactly the same as Ahn, Sra \cite[(6.24)]{ahn_understanding_2022}, but with the choice of $\mu = 0$. 
+                This form is not explictly stated by Ahn and Sra but it's trivial to realize its presence regardless. 
+                They are the same parameters for both algorithms and they are equivalent. 
+                For a demonstration, see 
+                \hyperref[prop:tri_form_via_ppm]{proposition \ref*{prop:tri_form_via_ppm}}. 
+            \end{remark}
+
+            \begin{definition}[Strongly Convex Generic Form]
+                \quad \\
+                With $f$ being $L$-Lipschitz smooth and $\mu > 0$ strongly convex then the Strongly convex generic form has updates of for iterates
+                \begin{align*}
+                    x_{t + 1} &= (1 + \mu\tilde \eta_{t + 1})^{-1}(x_t + \mu\tilde\eta_{t + 1}y_t^+), 
+                    \\
+                    z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L\eta_{t + 1}z_{t +1}). 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                This algorithm is equivalent to 
+                \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
+                See \ref*{prop:tri_scvx_from_ahn_sra_6.24} for a demonstration. 
+            \end{remark}
+
+        \subsubsection{AG Concrete Examples}
+            In this section we state variants of the Nesterov accelerated gradient method found in the literatures which are not generic. 
+            
+            \begin{definition}[AG Ryu 12.1]
+            \label{def:ag_ryu_12.1}
+                State in chapter 12 in Ryu's writing \cite{ryu_large-scale_2022} is the following variant of accelerated gradient algorithm: 
+                \begin{align*}
+                    z_{t + 1} &= y_k + L^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= z_{t + 1} + \frac{t - 1}{t + 2}\left(
+                        z_{k + 1} - z_k
+                    \right). 
+                \end{align*}
+                An equivalent form of the above is also provided by Ryu: 
+                \begin{align*}
+                    z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+                    \\
+                    x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t), 
+                    \\
+                    y_{t + 1} &= \left(
+                        1 - \frac{2}{t + 2} 
+                    \right)z_{t + 1} + 
+                    \left(
+                        \frac{2}{t + 2}
+                    \right)x_{t + 1}. 
+                \end{align*}
+            \end{definition}
+            \begin{observation}
+                The base case requires cares since it's not unique, there are more representations  depending on how the base case is define, 
+                Observe that the second equivalent form is an example of \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+                \par\noindent
+                It is stated in Ryu's writing that the base case is $x_0 = y_0 = z_0$, 
+                we think this is not the only options. 
+                We remind the reader that there is not an obvious choice of $t\in \mathbb Z$ such that $x_t = y_t = z_t$ where the above algorithm remains consistent for all $t \ge -1$. 
+                The choice of base case presented in Ryu's writing is a choice and not a necessity. 
+                We state that one of the base case scenario that only requires knowing $y_1$. 
+    
+                \par\noindent 
+                We need to observe the case where $t = 0$ to understand the base case of the algorithm. 
+                At each iteration $t$, Given $(x_t, y_t)$, the above formula maps to $(x_{t + 1}, y_{t + 1}, z_{t + 1})$. 
+                When $t= 0$, it has $y_1 = x_1$. 
+                Therefore, knowing only either $y_1$, or $x_1$ can initiate the algorithm. 
+                This is an alternative scenario of the base case. 
+                If, we wish to write $y_0 = x_0$ at $t = 0$ for the base case instead, then it creates the following algorithm 
+                \begin{align*}
+                    y_{t} &= \left(
+                    1 - \frac{2}{t + 2} 
+                    \right)z_{t} + 
+                    \left(
+                        \frac{2}{t + 2}
+                    \right)x_{t}, 
+                    \\
+                    z_{t + 1} &= y_t + L^{-1}\nabla f(y_t), 
+                    \\
+                    x_{t + 1} &= x_t + (t + 1)(2L)^{-1}\nabla f(y_t). 
+                \end{align*}
+                It has a different representations due to a specific choice of the base case. 
+                \par\noindent
+                Finally, by the observation that given $(z_t, y_t)$ for any $t\ge -1$, we can solve for $x_t$ \newline via $y_t = (1 - 2/(1 + t))z_t + 1/(t + 1)x_t$, obtaining $(x_t, y_t, z_t)$, hence the algorithm can be reduced to a representations with only $(z_t, y_t)$ and an updates using only $(z_t, y_t)$ to $(z_{t + 1}, y_{t + 1})$. 
+                That is the momentum form presented above. 
+            \end{observation}
+            \begin{remark}
+                We advise the reader to read the Biliography notes by Ryu \cite[chapter 12]{ryu_large-scale_2022} of his book. 
+                It goes over the full context and history for this particular variant of gradient acceleration method. 
+                At the time of composing this notes, the writer is still reading on the topic of accelerated gradient.     
+            \end{remark}
+
+            \begin{definition}[Proximal Gradient Tri-Points Form E]
+            \label{def:ag_tri_pt_form_E}
+                Form E is a special case of 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+                with the condition that $\tilde \eta_t = \eta_t$ for all $t \in \mathbb N$. 
+                As a consequence, the algorithm has the following updates for iterates $(y_t, x_{t + 1}, z_{t + 1})$: 
+                \begin{align*}
+                    y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+                    \\
+                    x_{t + 1} &= x_t - \eta_t \mathcal G_L(y_t)
+                    \\
+                    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t).
+                \end{align*}
+            \end{definition}
+
+            \begin{definition}[Similar Triangle Form I]
+            \label{def:ag_form_similar_tria_I}
+                It updates iterates $(y_t, x_{t + 1}, z_{t + 1})$ using 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t) 
+                    \\
+                    x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (x_{t + 1} + L\eta_{t + 1}z_{t + 1}). 
+                \end{align*}
+            \end{definition}
+            \begin{observation}
+                There are a lot of observations about this form to unpack. 
+                Let's list the following observations
+                \begin{enumerate}
+                    \item Observe that $y_t = (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)$ is a convex combination between $x_t, z_t$. Hence $z_t, y_t, x_t$ are three collinear points. Additionally, we have $y_t - x_t = L\eta_t (z_t - y_t)$, hence $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                    \item By the algorithm, we have $z_{t + 1} - y_t = - L^{-1} \mathcal G_L(y_t)$, and $x_{t + 1} - x_t = - \tilde \eta_{t + 1} \mathcal G_L(y_t)$, hence vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    \item Finally, with update $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$, we have three colinear points $(z_t, z_{t + 1}, x_t)$ with $\Vert z_{t + 1} - z_t\Vert/\Vert z_{t +1 } - z_t\Vert = L\eta_t$. 
+                \end{enumerate}
+                From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+            \end{observation}
+            \begin{remark}
+                For more information about the specific choice of $\eta_t$ allows for an optimal convergence rates, see 
+                \hyperref[sec:scenario_ii]{section \ref*{sec:scenario_ii}} for more information. 
+            \end{remark}
+
+            
+            \begin{definition}[Similar Triangle Form II]
+            \label{def:ag_form_similar_tria_II}
+                
+            \end{definition}
+
+
+        \subsubsection{Useful Observations about these Generic forms}
+        \label{sec:AG_useful_information}
+
+            In this section we list some incredibaly useful information about these forms of the Nestrov type accelerated gradient algorithm. 
+            \hyperref[prop:tri_form_via_ppm]{Proposition \ref*{prop:tri_form_via_ppm}}, 
+            \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{proposition \ref*{prop:tri_scvx_from_ahn_sra_6.24}}, 
+            \hyperref[prop:Nes2.2.7_via_ahn_sra_6.24]{proposition \ref*{prop:Nes2.2.7_via_ahn_sra_6.24}}
+            are results assumed as true in Ahn, Sra. 
+            They are implicitly left as necessary exercises for the readers. 
+            Here, we fill out the blanks with our own interpretations. 
+            \hyperref[prop:derive_ag_prox_grad_tript]{Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
+            is our contribution where we intorduce non-smooth ness to the objective function while still retaining the PPM interpretation of accelerated gradient. 
+            
+            \begin{proposition}[Tri-points generic form via Ahn Sra 6.24]
+                \label{prop:tri_form_via_ppm}
+                with $f$ being \\
+                $L$-Lipschitz smooth, 
+                let $l_f(x, \bar x) = f(\bar x) + \langle \nabla f(\bar x), x - \bar x\rangle$, we can show that the AG generic triangular form is a consequence of th AG generic PPM form. 
+            \end{proposition}
+            \begin{proof}
+                Solving the optimality on the first PPM yields: 
+                \begin{align*}
+                    \mathbf 0 &= \nabla f(y_t) + 
+                    \frac{1}{\tilde \eta_{t + 1}} (x - x_t)
+                    \\
+                    x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
+                \end{align*}
+                Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
+                Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
+                \begin{align*}
+                    \mathbf 0 &= \nabla f (y_t) + L (x - y_t) + \eta_{t + 1}^{-1} (x - x_{t + 1})
+                    \\
+                    \mathbf 0 &= \eta_{t + 1}\nabla f (y_t) + \eta_{t + 1}L (x - y_t) + x - x_{t + 1}
+                    \\
+                    \mathbf 0 &= 
+                    \eta_{t + 1}\nabla f(y_t) -\eta_{t + 1} Ly_t + (\eta_{t + 1}L + 1)x - x_{t + 1}
+                    \\
+                    (1 + \eta_{t + 1}L)x
+                    &= 
+                    x_{t + 1} - \eta_{t + 1}\nabla f(y_t) + \eta_{t + 1}L y_t
+                    \\
+                    \text{define: } y_{t + 1} &:= x. 
+                \end{align*}
+                In the above expression, it hides a step of gradient descent, continuing it we have 
+                \begin{align*}
+                    (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                    x_{t + 1}  + \eta_{t + 1}L (-L^{-1}\nabla f(y_t) + y_t)
+                    \\
+                    \text{let: } z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), \text{ so, }
+                    \\
+                    (1 + \eta_{t + 1}L)y_{t + 1} &= 
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
+                \end{align*}
+                Combining it yields the tree points update format 
+                \begin{align*}
+                    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ), 
+                \end{align*}
+                the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
+                The base case is when $t = 0$, so then $x_0 = y_0$ for the initial guess.
+            \end{proof}
+            \begin{remark}
+                It is quite obvious to us that the choice of $z_{t + 1} = y_t - L^{-1}\nabla f(y_t)$ is deliberate. 
+                In fact, it's true that $z_{t + 1}$ is just a term such that it makes $y_{t +1}$ a convex combination between the vector $x_{t + 1}, z_{t + 1}$, and the choice here would be unique because of the consideration that 
+                {\footnotesize
+                \begin{align*}
+                    & \quad 
+                    l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 
+                    \\
+                    &= 
+                    f(y_t) + \langle \nabla f(y_t), x - y_t\rangle 
+                    + 
+                    \frac{L}{2}
+                    \left\Vert 
+                        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &= 
+                    f(y_t) + 
+                    \langle \nabla f(y_t), x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)\rangle 
+                    + 
+                    \frac{L}{2}
+                    \left\Vert 
+                        x - (y_t - L^{-1}\nabla f(y_t)) - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &\quad  \text{Let }z_{t + 1} 
+                    = y_t - L^{-1}\nabla f(y_t)
+                    \\
+                    &= f(y_t) + \langle \nabla f(y_t), x - z_{t + 1} - L^{-1}\nabla f(y_t)\rangle
+                    + 
+                    \frac{L}{2}\left\Vert
+                        x - z_{t + 1} - L^{-1}\nabla f(y_t)
+                    \right\Vert^2
+                    \\
+                    &= 
+                    f(y_t) + \langle \nabla f(y_t), x - z_{t + 1}\rangle 
+                    - L^{-1}\Vert \nabla f(y_t)\Vert^2
+                    + 
+                    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+                    \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 - 
+                    L\langle L^{-1}\nabla f(y_t), x - z_{t + 1}\rangle
+                    \\
+                    &= f(y_t) + (1/(2L)- L^{-1})\Vert \nabla f(y_t) \Vert^2 + 
+                    \frac{L}{2}\Vert x - z_{t + 1}\Vert^2
+                    \\
+                    &= f(y_t) - \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 + \frac{L}{2}\Vert x - z_{t + 1}\Vert^2. 
+                \end{align*}
+                }
+                Therefore 
+                \begin{align*}
+                    y_{t + 1} &= \argmin_{x}\left\lbrace
+                        \frac{L}{2}\Vert x - z_{t + 1}\Vert^2 + 
+                        \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &= \argmin_{x}\left\lbrace
+                        \left\Vert x - 
+                            \frac{Lz_{t + 1} + \eta_{t + 1}^{-1}x_{t + 1}}{
+                                L + \eta_{t + 1}^{-1}
+                            }
+                        \right\Vert^2
+                    \right\rbrace
+                    \\
+                    &= 
+                    \frac{
+                        L\eta_{t + 1}z_{t + 1} + 
+                        x_{t + 1}
+                    }{
+                        1 + L \eta_{t + 1}
+                    }. 
+                \end{align*}
+            \end{remark}
+
+            \begin{proposition}[Tri-points Strongly Convex Form via Ahn Sra 6.24]\label{prop:tri_scvx_from_ahn_sra_6.24}
+                Coninue \\ 
+                from \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} with but with $\mu > 0$, under the same set of assumptions it recovers a tri-points algorithm with the following updates: 
+                \begin{align*}
+                    y_t^+ &= y_t - \mu^{-1}\nabla f(y_t)
+                    \\
+                    x_{t + 1} &= \argmin_{x} 
+                    \left\lbrace
+                        l_f (x; y_t) + \frac{\mu}{2} \Vert x - y_t\Vert^2 + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2 
+                    \right\rbrace
+                    \\
+                    &= \argmin_{x}
+                    \left\lbrace
+                        f(y_t) - \frac{1}{2\mu} \Vert \nabla f(y_t)\Vert^2 
+                        + 
+                        \frac{\mu
+                        }{2}\Vert x - y_t^+\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (1 + \mu\tilde \eta_{t + 1})^{-1}
+                    \left(
+                        x_t + \mu \tilde \eta_{t + 1}y_t^{+}
+                    \right)
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t)
+                    \\
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(x_{t + 1} + L \eta_{t + 1} z_{t + 1})
+                \end{align*}
+            \end{proposition}
+            \begin{proof}
+                By a similar argument made in the remarks of \hyperref[prop:tri_form_via_ppm]{proposition \ref*{prop:tri_form_via_ppm}} we have 
+                \begin{align*}
+                    l_f(x; y_t) + \frac{\mu}{2}\Vert x - y_t\Vert^2
+                    &= 
+                    f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+                    \\
+                    \implies 
+                    x_{t + 1} &= 
+                    \argmin_{x} 
+                    \left\lbrace
+                        f(y_t) - \frac{1}{2\mu}\Vert \nabla f(y_t)\Vert^2 + \frac{\mu}{2}\Vert x - y_t^+\Vert^2
+                        + 
+                        \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= 
+                    \argmin_{x}
+                    \left\lbrace
+                        \frac{\mu}{2}\Vert x - y_t^+\Vert^2 + 
+                        \frac{2}{\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (\mu + \tilde \eta_{t + 1})^{-1}
+                    (\mu y_t^+ + \tilde \eta_{t + 1}x_t)
+                    \\
+                    &= (1 + \tilde \eta_{t + 1}\mu)^{-1}
+                    (x_t + \mu\tilde \eta_{t + 1}y_t^+). 
+                \end{align*}
+                The updates for $y_{t + 1}, z_{t + 1}$ is the same as before because $\mu > 0$ only alters the update of the term $x_{t + 1}$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
+            \end{proof}
+            
+            \begin{proposition}[Nestrov 2.2.7 is Equivlant to Ahn Sra 6.24 in Form]
+            \label{prop:Nes2.2.7_via_ahn_sra_6.24}
+                The \hyperref[def:Nes2.2.7]{algorithm \ref*{def:Nes2.2.7}} is equivalent to \hyperref[def:agg_ppm]{\ref*{def:agg_ppm}} in form. 
+                So the updates for $y_{k + 1}, x_{k + 1}, v_{k + 1}$: 
+                \begin{align*}
+                    \text{find } &
+                    \alpha_k \in (0, 1) 
+                    \text{ s.t: } L\alpha_k^2 
+                    = (1 - \alpha_k)\gamma_k + \alpha_k \mu = \gamma_{k + 1} 
+                    \\
+                    y_k &= 
+                    \left(
+                        \gamma_k + \alpha_k \mu
+                    \right)^{-1} \left(
+                        \alpha_k \gamma_k v_k + \gamma_{k + 1}x_k
+                    \right)
+                    \\
+                    \text{find } & x_{k + 1} \text{ s.t: }
+                    f(x_{k + 1})
+                    = f(y_k) - (2L)^{-1}\Vert \nabla f(y_k)\Vert^2
+                    \\
+                    v_{k+1} &= 
+                    \gamma_{k + 1}^{-1} 
+                    \left(
+                        (1 - \alpha_k) \gamma_k v_k + 
+                        \alpha_k \mu y_k 
+                        - \alpha_k \nabla f(y_k)
+                    \right). 
+                \end{align*}
+                Is the same as $y_{t + 1}, z_{t + 1}, x_{t + 1}$ from below: 
+                \begin{align*}
+                    x_{t + 1} 
+                    & = 
+                    (1 + \tilde \eta_{t + 1}\mu)^{-1}
+                    (x_t + \mu\tilde \eta_{t + 1}y_t - \tilde \eta_{t + 1}\nabla f(y_t))
+                    \\
+                    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (x_{t + 1} + L \eta_{t + 1} z_{t + 1}).
+                \end{align*}
+                which is an equivalent representation of \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} as showned in \hyperref[prop:tri_scvx_from_ahn_sra_6.24]{propostion \ref*{prop:tri_scvx_from_ahn_sra_6.24}}. 
+            \end{proposition}
+            \begin{proof}
+                We simplify the Nesterov form into the Strongly convex Generic Triangular Form. 
+                Consider update for $v_{k + 1}$ by substituting $\gamma_{k+1} = (1 - \alpha_k) \gamma_k + \alpha_k \mu$ as informed by the first step of the algorithm, we have 
+                \begin{align*}
+                    v_{k + 1} &= 
+                    ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+                    \left(
+                        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+                    \right)
+                    \\
+                    &= ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+                    (
+                        (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu(y_k - \alpha_k \mu^{-1}\nabla f(y_k))
+                    )
+                    \\
+                    &= 
+                    \left(
+                        1 + \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k}
+                    \right)^{-1}
+                    \left(
+                        v_k
+                        + 
+                        \left(
+                            \frac{\alpha_k \mu}{(1 - \alpha_k)\gamma_k} 
+                        \right)
+                        \left(
+                            y_k 
+                            - \alpha_k \mu^{-1}\nabla f(y_k)
+                        \right)
+                    \right). 
+                \end{align*}
+                Notice that the right hand size has the same form as $x_{t + 1}$. 
+                This is true by the observation that 
+                \begin{align*}
+                    x_{t + 1} &= 
+                    (1 + \tilde\eta_{t + 1}\mu)^{-1}
+                    \left( 
+                        x_t + \mu\tilde \eta_{t + 1}
+                        \left(y_t - \mu^{-1}\nabla f(y_t)\right)
+                    \right). 
+                \end{align*}
+                Similarly, when $\mu = 0$, we have from the first step that 
+                \begin{align*}
+                    v_{k + 1} 
+                    &= ((1 - \alpha_k)\gamma_k)^{-1}
+                    (
+                        (1 - \alpha_k)\gamma_k v_k
+                        + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+                    )
+                    \\
+                    &= 
+                    v_k - \alpha_k((1 - \alpha_k)\gamma_k)^{-1}\nabla f(y_k)
+                \end{align*}
+                which is the same as the AG generic PPM form where 
+                $$
+                    x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_t). 
+                $$
+                Next, we consider $y_{k}$ iterate of Nesterov 2.2.7. 
+                We want to write it as a convex combination of the vector $v_k,x_k$. 
+                To show that the updates $y_k$ can are of the same form, start by considering that 
+                \begin{align*}
+                    \gamma_{k + 1 } &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
+                    \\
+                    &= (\gamma_k + \alpha_k \mu) - \alpha_k \gamma_k, 
+                \end{align*}
+                with the grouping we have
+                \begin{align*}
+                    y_k &= \left(
+                        \gamma_k + \alpha_k \mu
+                        \right)^{-1} \left(
+                            \alpha_k \gamma_k v_k + \gamma_{k + 1}x_k
+                        \right)
+                    \\
+                    &= 
+                    \left(
+                        \gamma_k + \alpha_k \mu
+                    \right)^{-1}
+                    \left(
+                        \alpha_k \gamma_k v_k 
+                        + 
+                        ((\gamma_k + \alpha_k\mu) - \alpha_k\gamma_k)x_k
+                    \right)
+                    \\
+                    &= 
+                    \left(
+                        \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+                    \right)v_k
+                    + 
+                    \left(
+                        1 - \frac{\alpha_k\gamma_k }{\gamma_k + \alpha_k \mu}
+                    \right)x_k, 
+                \end{align*}
+
+                which is indeed, a convex combination of $v_k, x_k$, if, we assume that $(\alpha_k\gamma_k)(\gamma_k + \alpha_k \mu)^{-1}$ is in the interval $(0, 1)$. 
+                We can assume it by considering $\gamma_k = L\alpha_{k-1}^2$, simplifying so that 
+                \begin{align*}
+                    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+                    &= 
+                    \frac{L\alpha_k \alpha_{k - 1}^2}{L\alpha_{k - 1}^2 + \mu \alpha_k}
+                    \\
+                    &= \frac{\alpha_k \alpha_{k - 1}^2}{1 + q_f \alpha_k \alpha_{k - 1}^{-2}} \in (0, 1), 
+                \end{align*}
+                where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alpha_k)_{k \in \NN}$ has $\alpha_k \in (0, 1)$ and $\sum_{i = 1}^{\infty} \alpha_k = \infty$. 
+                However, it would require more works to express $\eta_t, \tilde\eta$ from Ahn Sra 6.24 using $\gamma_k, \alpha_k$ from Nesterov 2.2.7. 
+            \end{proof}
+
+            \begin{proposition}[Deriving Proximal Gradient Tri-Points Generic Form]
+            \label{prop:derive_ag_prox_grad_tript}
+                \quad \\
+                Continue from the proximal point interpretation of the proximal gradient 
+                (\hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}})
+                we have the equalities 
+                \begin{align*}
+                    x_{t + 1} &= \argmin_{x}
+                    \left\lbrace
+                        l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+                    \right\rbrace
+                    \\
+                    &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    \\
+                    y_{t + 1} &= \argmin_{x}
+                    \left\lbrace
+                          h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &= (1 + L\eta_{t + 1})^{-1}
+                    (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
+                \end{align*}
+                Therefore, the algorithm 
+                \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}
+                is equivalent to 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+            \end{proposition}
+            \begin{proof}
+                Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by the definition of algorithm. 
+                Since $l_h(x; y_t)$ is a simple linear function wrt $x$, it's not hard to minimize the quandratic where we can get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$. 
+                For $y_{t + 1}$, observe that we can complete the square on the second and the third terms: 
+                \begin{align*}
+                    & \frac{L}{2}\left(
+                        2\langle L^{-1}\mathcal G_L(y_t), x - y_t\rangle + 
+                        \Vert x - y_t\Vert^2
+                    \right)
+                    \\
+                    &= 
+                    \frac{L}{2}
+                    \left(
+                        - \Vert L^{-1} \mathcal G_L(y_t)\Vert^2  
+                        + \Vert L^{-1} \mathcal G_L(y_t)\Vert^2 
+                        + 
+                        2\langle L^{-1} \mathcal G_L(y_t), x - y_t\rangle + 
+                        \Vert x - y_t\Vert^2
+                    \right)
+                    \\
+                    &= \frac{L}{2}\left(
+                        - \Vert L^{-1}\mathcal G_L(y_t)\Vert^2  
+                        + \Vert x - (y_t - L^{-1}\mathcal G_L(y_t))
+                        \Vert^2
+                    \right), 
+                \end{align*}
+                therefore it transforms into 
+                \begin{align*}
+                    y_{t + 1} &=\argmin_{x} \left\lbrace
+                        \frac{L}{2}\left\Vert 
+                            x - (y_t - L^{-1}\mathcal G_L(y_t))
+                        \right\Vert^2
+                        + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                    \right\rbrace
+                    \\
+                    &=
+                    \frac{(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}}{L + \eta_{t + 1}^{-1}}.
+                \end{align*}
+                Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, which is the proximal gradient set, then the above expression simplifies to 
+                $$
+                y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
+                $$
+                As a sanity checks, notice that when 
+                $h \equiv 0$, 
+                $\mathcal G_L(x) = \nabla f(x)$ 
+                by definition, making it the same as 
+                \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+            \end{proof}
+            \begin{remark}
+                $y_{t + 1}$ is the minimizer of a simple quadratic. 
+                Given that the original function $h$ is potentially non-smooth, therefore it's not always an upper bound of $h(x)$. 
+                The upper bound interpretation of the smooth case as proposed by Ahn, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
+            \end{remark}
+
+            \begin{lemma}[Deriving Similar Triangle Form I]
+                \quad \\
+                With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ 
+                in 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+                We can derive similar triangle form I as stated back in
+                \hyperref[def:ag_form_similar_tria_I]{definition \ref*{def:ag_form_similar_tria_I}}. 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t)
+                    \\
+                    x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
+                    \\
+                    y_{t + 1} &= 
+                    (1 + L\eta_{t + 1})^{-1}
+                    (
+                    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
+                    ). 
+                \end{align*}
+                It also has an equivalent momentum form 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+                    \\
+                    y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
+                \end{align*}
+            \end{lemma}
+            \begin{proof}
+                To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+                Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
+                \begin{align*}
+                    x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
+                    + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
+                    \\
+                    &= 
+                    (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L(y_t) - L\eta_t z_t
+                    \\
+                    &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L(y_t)  - L\eta_t z_t
+                    \\
+                    &= x_t - (\eta_t + L^{-1})\mathcal G_L(y_t). 
+                \end{align*}
+                So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$
+                Reducing it to the classic momentum form starts by 
+                \begin{align*}
+                    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
+                    \\
+                    &= (1 + L\eta_{t + 1})^{-1} (
+                        z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
+                    )
+                    \\
+                    &= 
+                    (1 + L\eta_{t + 1})^{-1} (
+                        (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
+                    )
+                    \\
+                    &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
+                \end{align*}
+                it negates the $x_t$ variables, therefore we have 
+                \begin{align*}
+                    z_{t + 1} &= y_t - L^{-1} \mathcal G_L (y_t)
+                    \\
+                    y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
+                \end{align*}
+            \end{proof}
+            \begin{remark}
+                In this remark we clarify the name ``similar triangle" as given in the literatures. 
+                We think it is a fitting name, becaues it has a similar triangle in it. 
+                We list the following observations
+                \begin{enumerate}
+                    \item 
+                    The updates for $y_{t}$ from the algorithm has 
+                    $$
+                        y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
+                    $$
+                    therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
+                    We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                    \item 
+                    The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1} \mathcal G_L(y_t), \tilde\eta_{t +1} \mathcal G_L(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
+                    \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
+                    The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
+                \end{enumerate}
+                By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+                Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
+                
+            \end{remark}
+            
+
+    \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
+    \label{sec:generic_ag_ppm_lyapunov_analysis}
+        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
+
+        \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
+        \label{lemma:nsmooth_agg_lyapunov_upper_bound}
+            Continue from 
+            \hyperref[prop:derive_ag_prox_grad_tript]
+            {definition \ref*{prop:derive_ag_prox_grad_tript}},
+            we derive the non-smooth analogous case of the Lyapunov upper bound: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^\text{AG}
+                &= 
+                \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+                \frac{1}{2} (
+                    \Vert x_{t + 1} - x_*\Vert^2
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                )
+                \\
+                &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                - \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_{t + 1} - z_{t + 1}
+                \rangle
+                \\
+                \Upsilon_{2, t + 1}^\text{AG}
+                &= 
+                h(z_{t + 1}) - h(z_t) 
+                \le 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{proof}
+            Define 
+            \begin{align*}
+                \phi_t(u) &:= 
+                \tilde \eta_{t + 1} 
+                \left(
+                    f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
+                    % + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                \right)\\
+                &= 
+                \tilde \eta_{t + 1} \left(
+                    f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
+                    % + 
+                    g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
+                \right). 
+            \end{align*}
+            Then the update in the Generic Tri-Point algorithm 
+            (\hyperref[def:ag_prox_grad_ppm]
+                {definition \ref*{def:ag_prox_grad_ppm}}) 
+            has $x_{t + 1} = \hprox_{\phi_t}(x_t)$ if we ignore the difference between the constant terms $h(y_t^+)$, $f(y_t) + g(y_t)$ from above. 
+            Therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
+                {theorem \ref*{thm:ppm_descent_ineq}})
+            which gives for all $x_*$: 
+            \begin{align*}
+                & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \le \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+                \\
+                & \text{where }
+                \phi_t(x_{t + 1}) =
+                \\
+                & \quad 
+                \tilde \eta_{t + 1}
+                \left(
+                    f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
+                    % \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
+                    % + 
+                    g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
+                \right). 
+            \end{align*}
+            to simplify, consider using the $L$-smoothness of $f$, we have the inequality: 
+            \begin{align*}
+                \begin{aligned}
+                    f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle
+                    &=
+                    f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
+                    \\
+                    &\ge 
+                    f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
+                    \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
+                    \\
+                    &= 
+                    f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2
+                    + \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle.     
+                \end{aligned}
+                \tag{$[*]$}
+            \end{align*}
+            further consider
+            \begin{align*}
+                \begin{aligned}
+                    g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle 
+                    &= g(y_t) + 
+                    \langle \partial g(y_t^+), 
+                    x_{t + 1} - y_t^+ + y_t^+ - y_t
+                    \rangle
+                    \\
+                    &= g(y_t) 
+                    + \langle \partial g (y_t^+),
+                        x_{t + 1} - y_t^+
+                    \rangle
+                    + 
+                    \langle 
+                        \partial g(y_t^+), y_t^+ - y_t
+                    \rangle
+                    \\
+                    g \text{ convex }\implies 
+                    &\ge 
+                    g(y_t^+) + 
+                    \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle. 
+                \end{aligned}
+                \tag{$[\star]$}
+            \end{align*}
+            In the $([\star])$ derivation, we used the convexity of $g$ where 
+            \begin{align*}
+                \langle \partial g(y_t^+), y_t - y_t^+\rangle
+                &\le g(y_t) - g(y_t^+)
+                \\
+                \langle \partial g (y_t^+), y_t^+ - y_t \rangle
+                &\le 
+                g(y_t^+) - g(y_t). 
+            \end{align*}
+            Now, adding $([*]), ([\star])$, multiply their sum by $\tilde\eta_{t + 1}$ makes it equals to $\phi_t(x_{t +1 })$ , we can establish a lower bound for $\phi_t(x_{t + 1})$, yielding inequality 
+            {\small
+                \begin{align*}
+                    \phi_t(x_{t + 1})
+                    &\ge 
+                    \tilde\eta_{t + 1}
+                    \left(
+                        f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+                        +
+                        \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+                        + 
+                        g(y_t^+) + 
+                        \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle
+                    \right) 
+                    \\
+                    &= 
+                    \tilde\eta_{t + 1}
+                    \left(
+                        h(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
+                        + 
+                        \langle \partial g(y_t^+) + \nabla f(y_t), x_{t + 1} - y_t^+\rangle
+                    \right).
+                \end{align*}
+            }
+            Apply
+            \hyperref[lemma:grad_map_lemma_first]{lemma \ref*{lemma:grad_map_lemma_first}} 
+            we have $\partial g(y_t^+) + \nabla f(y_t) \ni \mathcal G_L(y_t)$, and by the algorithm updates $y_t^+ = z_{t + 1}$, therefore the above inequality simplifies to 
+            \begin{align*}
+                \phi_t(x_{t + 1}) &\ge 
+                \tilde\eta_{t + 1} 
+                \left(
+                    h(z_{t + 1}) - 
+                    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                \right). 
+            \end{align*}
+            Finally, from (\hyperref[lemma:grad_map_linearization]
+                {lemma \ref*{lemma:grad_map_linearization}})
+            we have $\phi_t(u) \le \tilde\eta_{t + 1}h(u)$ for all $u$. 
+            With that we lower bound the LHS of the PPM Lyapunov inequality of $\phi_t(u)$, making: 
+            {\footnotesize
+            \begin{align*}
+                & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \le
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \implies &
+                \tilde \eta_{t + 1}
+                \left(
+                    h(z_{t + 1}) - 
+                    \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                \right) - \tilde \eta_{t + 1} h(x_*)
+                +
+                \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
+                \frac{1}{2}\Vert x_t - x_*\Vert^2
+                \\
+                & \quad \le
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                \\
+                \iff &
+                \tilde\eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+                + \frac{1}{2}\left(
+                    \Vert x_{t + 1} - x_*\Vert^2 
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                \right) =: \Upsilon_{1, t + 1}^\text{AG}
+                \\
+                &\quad \le 
+                \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                - 
+                \tilde\eta_{t + 1}
+                \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+                + 
+                \frac{L \tilde\eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            }
+            It established the first inequality that we wish to prove. 
+            Next, the smoothness of $f$ establish inequality: 
+            \begin{align*}
+                \begin{aligned}
+                    f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
+                    \\
+                    &\le 
+                    \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                    + 
+                    \langle \nabla f(y_t), y_t - z_t\rangle
+                    \\
+                    &= 
+                    \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+                \end{aligned}
+                \tag{$[**]$}
+            \end{align*}
+            The convexity of $h$ establish 
+            \begin{align*}
+                \begin{aligned}
+                    g(z_{t + 1}) + 
+                    \langle \partial g(z_{t + 1}), z_t - z_{t + 1}\rangle
+                    &\le g(z_t)
+                    \\
+                    g(z_{t + 1}) - g(z_t)
+                    &\le 
+                    \langle 
+                        \partial g (z_{t +1}), 
+                        z_{t + 1} - z_t
+                    \rangle. 
+                \end{aligned}
+                \tag{$[\star *]$}    
+            \end{align*}
+            Adding $([**]), ([\star *])$ yields 
+            \begin{align*}
+                \begin{aligned}
+                    \Upsilon_{2, t + 1}^{\text{AG}} := 
+                    h(z_{t + 1}) - h(z_t) 
+                    &\le 
+                    \langle 
+                        \nabla f(y_t) + \partial g(z_{t+1}), 
+                        z_{t + 1} - z_t
+                    \rangle + 
+                    \frac{L}{2}
+                    \Vert 
+                        z_{t + 1} - y_t
+                    \Vert^2. 
+                \end{aligned}
+            \end{align*}
+            Using the property of gradient mapping (\hyperref[lemma:grad_map_lemma_first]
+                {lemma \ref*{lemma:grad_map_lemma_first}}), 
+            $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
+        \end{proof}
+
+        \begin{theorem}[Generic AG Convergence]
+        \label{thm:generic_ag_convergence}
+            If there is a choice of $\eta_i, \tilde \eta_i$ in \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}} such that we have 
+            \begin{align*}
+                \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)
+                \Upsilon_{2, t + 1}^{\text{AG}} + 
+                \Upsilon_{1, t + 1}^{\text{AG}} \le 0, 
+            \end{align*}
+            then with 
+            \begin{align*}
+                \Phi_t &= \left(
+                    \sum_{i = 1}^{t} \tilde\eta_{i}
+                \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \NN
+                \\
+                \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2, 
+            \end{align*}
+            we have $\Phi_{t + 1} - \Phi_t \le 0$, which allows for a convergence rate of $\mathcal O \left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ for $f(z_T) - f(x_*)$. 
+        \end{theorem}
+        \begin{proof}
+            By definition we have
+            {\footnotesize
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_t 
+                &= 
+                \left(
+                    \sum_{i = 1}^{t+1} \tilde\eta_{i}
+                \right) (f(z_{t + 1}) - f(x_*)) 
+                - 
+                \left(
+                    \sum_{i = 1}^{t} \tilde\eta_{i}
+                \right) (f(z_{t}) - f(x_*)) 
+                + \frac{1}{2}\Vert x_t - x_*\Vert^2
+                - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
+                \\
+                &= 
+                \tilde \eta_{t + 1} (f(z_{t + 1}) - f(z_*))
+                +
+                \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)(f(z_{t + 1}) - f(z_t))
+                + \frac{1}{2}\Vert x_t - x_*\Vert^2
+                - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
+                \\
+                &= \left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le 0. 
+            \end{align*}
+            }
+            The derivation for the convergence raet is direct and similar to 
+            \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} 
+            Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
+        \end{proof}
+
+
+    \subsection{Scenario I}\label{sec:scenario_i}
+        In this scenario, we aim to recover AG Ryu 12.1 conceret variant algorithm stated back in 
+        \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}. 
+        \begin{proposition}
+            Continue from
+            \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}, 
+            set $\eta_{t + 1} = \tilde \eta_{t + 1} = (t)/(2L)$, we derive the following algorithm: 
+            \begin{align*}
+                x_{t + 1} &= x_t - \frac{t + 1}{2L} \mathcal G_L(y_t), 
+                \\
+                z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t), 
+                \\
+                y_{t + 1} &= 
+                \left(
+                    \frac{2}{t + 3}
+                \right)x_{t +1} + 
+                \left(
+                    1 - \frac{2}{t + 3}
+                \right)z_{t + 1}. 
+            \end{align*}
+            This algorithm has convergence rate of $\mathcal O(1/T^2)$ for all $h = f + g$ where $f$ is convex $L$-Lipschitz smooth and $g$ is convex. 
+        \end{proposition}
+        \begin{observation}
+            Observe that when $g \equiv 0$ this is the same algorithm as 
+            \hyperref[def:ag_ryu_12.1]{definition \ref*{def:ag_ryu_12.1}}
+            but with an alternative choice of indexing for $y_t$ and initial condition. 
+        \end{observation}
+        \begin{proof}
+            Recall that for the proximal gradient PPM generic form we have iterate updates for $t\in \mathbb N$: 
+            \begin{align*}
+                y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+                \\
+                x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+                \\
+                z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
+            \end{align*}
+            and generic Lyapunov upper bound 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^\text{AG}
+                &= 
+                \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
+                \frac{1}{2} (
+                    \Vert x_{t + 1} - x_*\Vert^2
+                    - 
+                    \Vert x_t - x_*\Vert^2
+                )
+                \\
+                &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                - \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_{t + 1} - z_{t + 1}
+                \rangle
+                \\
+                \Upsilon_{2, t + 1}^\text{AG}
+                &= 
+                h(z_{t + 1}) - h(z_t) 
+                \le 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            By the updates, vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations 
+            \begin{align*}
+                x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
+                \\
+                z_{t + 1} - y_t &= -L^{-1}\mathcal G_L(y_t). 
+            \end{align*}
+            This setup allows for: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^{\text{AG}} 
+                &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
+                \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2 
+                - 
+                \langle \tilde\eta_{t + 1}\mathcal G_L (y_t), x_{t + 1} - z_{t + 1} \rangle
+                \\
+                &= 
+                - \frac{1}{2}\Vert \tilde\eta_{t + 1} \mathcal G_L\Vert^2 + 
+                \frac{\tilde\eta_{t + 1}L}{2}\Vert L^{-1} \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), x_{t + 1} - z_{t + 1} \rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    - \tilde\eta_{t + 1}^2 + 
+                    L^{-1}\tilde\eta_{t + 1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    (x_{t + 1} - x_{t}) + x_t
+                    + (y_t - z_{t + 1}) - y_t
+                \rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    L^{-1}\tilde\eta_{t + 1}
+                    - \tilde\eta_{t + 1}^2
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    -\tilde\eta_{t + 1}\mathcal G_L(y_t) + x_t 
+                    + L^{-1}\mathcal G_L(y_t) - y_t
+                \rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    L^{-1}\tilde\eta_{t + 1}
+                    - \tilde\eta_{t + 1}^2
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - \langle 
+                    \tilde\eta_{t +1}\mathcal G_L(y_t), 
+                    (L^{-1} - \tilde\eta_{t + 1})\mathcal G_L(y_t) + x_t - y_t
+                \rangle
+                \\
+                &= \frac{1}{2}\left(
+                    L^{-1}\tilde\eta_{t + 1} - \tilde\eta_{t + 1}^2 
+                    + 2 \tilde\eta_{t + 1}^2 - 2\tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2
+                - 
+                \langle 
+                    \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                    x_t - y_t
+                \rangle
+                \\
+                &= 
+                \frac{1}{2}\left(
+                    \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 
+                + \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), y_t - x_t\rangle
+            \end{align*}
+            similarly we also have upper bound 
+            \begin{align*}
+                \Upsilon_{2, t + 1}^{\text{AG}} 
+                &= 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
+                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \\
+                &= 
+                \langle \mathcal G_L(y_t), z_{t + 1} - y_t + y_t - z_t\rangle
+                + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \\
+                &= 
+                \langle \mathcal G_L(y_t), - L^{-1} \mathcal G_L(y_t) + y_t - z_t\rangle
+                + 
+                \frac{L}{2}\Vert L^{-1}\mathcal G_L(y_t)\Vert^2
+                \\
+                &= 
+                -L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+                + 
+                (1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
+                + 
+                \langle \mathcal G_L(y_t), y_t - z_t\rangle
+                \\
+                &= 
+                -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+                + 
+                \langle \mathcal G_L(y_t), y_t - z_t\rangle. 
+            \end{align*}
+            Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
+            Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = L \eta_t (z_t - y_t)$. We make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \mathcal G_L(y_t), y_t - x_t\rangle = \langle \mathcal G_L(y_t), L \eta_t (z_t - y_t)\rangle$. 
+            With this in mind, applying the RHS of $[(*)]$ yields: 
+            {\footnotesize
+            \begin{align*}
+                &\Upsilon_{1, t + 1}^\text{AG} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde\eta_i 
+                \right)\Upsilon_{1, t + 1}^{\text{AG}}
+                \\
+                &\le 
+                \frac{1}{2}\left(
+                    \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 
+                + 
+                \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), L\eta_t(z_t - y_t)\rangle
+                \\
+                &\quad 
+                + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde\eta_i 
+                \right)\left(
+                    -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
+                    + 
+                    \langle \mathcal G_L(y_t), y_t - z_t\rangle
+                \right)
+                \\
+                &= 
+                \left(
+                    \frac{1}{2}\tilde\eta_{t + 1}\left(
+                        \tilde \eta_{t +1} - L^{-1}
+                    \right)
+                    - 
+                    \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
+                \right)\Vert \mathcal G_L(y_t)\Vert^2 + 
+                \left(
+                    L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
+                \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle
+            \end{align*}
+            }
+            If the algorithm were to have the abstract convergence rate as stated in 
+            \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}},
+            then one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+            To simplify, we make the assumption that $\tilde \eta_t = \eta_t$ for all $t \in \mathcal N$, making it to be a specific instance of 
+            \hyperref[def:ag_tri_pt_form_E]{definition \ref*{def:ag_tri_pt_form_E}}. 
+            These conditions translate to the following relations for $\eta_{t}$. 
+            \begin{align*}
+                \begin{cases}
+                    L\eta_{t + 1}^2 + \eta_{t + 1} - \sum_{i = 1}^{t}\eta_i 
+                    \le 0, 
+                    \\
+                    L\eta_t \eta_{t + 1} - \sum_{i = 1}^{t} \eta_i 
+                    = 0. 
+                \end{cases}
+            \end{align*}
+            Substituting the sequence equality back to the first one yield: 
+            \begin{align*}
+                L\eta_{t + 1}^2 - (\eta_{t + 1} + L\eta_t\eta_{t + 1}) &\le 0 
+                \\
+                L\eta^2_{t + 1} - \eta_{t + 1}
+                &\le 
+                L\eta_t \eta_{t + 1} 
+                \\
+                \eta_{t + 1}(L\eta_{t + 1} - 1) 
+                &\le L\eta_t\eta_{t + 1}
+                \\
+                \eta_t > 0 
+                \implies 
+                L\eta_{t + 1} - 1 &\le 
+                L\eta_t 
+                \\
+                \eta_{t + 1} &\le \eta_t + L^{-1}. 
+            \end{align*}
+            To satisfy the equality, reader should verify that $\eta_{t} = t/(2L)$ or $\eta_t = (t + 1)/2L$ are some of the options. 
+        \end{proof}
+        \begin{remark}
+            In the original writing by Ahn \cite[equation (4.9)]{ahn_understanding_2022}, they didn't identify this specific variant in the literature. 
+            Here we identify it to be equivalent to the acceleration algorithm stated in Ryu \cite[algorithm 12.1]{ryu_large-scale_2022}. 
+        \end{remark}
+
+    \subsection{Scenario II}\label{sec:scenario_ii}
+        With the choice of $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, we can recover the seminal Nesterov accelerated gradient algorithm from 1983. 
+        The variants proposed by Chambolle Dossal \cite{chambolle_convergence_2015}, is distinct from the possibility proposed in this secenario. 
+
+        \begin{lemma}[Deriving the Nesterov Sequence]
+            For all $t \in \mathbb N$
+            \begin{align*}
+                \left\lbrace
+                \begin{aligned}
+                    (1 + L\eta_{t + 1})^{-1}L \eta_t 
+                    &= \frac{a_t - 1}{a_{t + 1}} , 
+                    \\
+                    a_{t + 1}^2 - a_t &= a_t^2. 
+                \end{aligned} 
+                \right. 
+            \end{align*}
+            allows \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}} to converge at an optimal rate. 
+            The base case is $\eta_0 = 0$. 
+        \end{lemma}
+        \begin{proof}
+            Continue from 
+            \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]{lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}, 
+            With $x_{t +1} - x_t = L\tilde\eta_{t+1}(z_{t + 1} - y_t)$ for $y_t$: 
+            \begin{align*}
+                \Upsilon_{1, t + 1}^\text{AG} &\le 
+                - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
+                    + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                    - \langle 
+                        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                        x_{t + 1} - z_{t + 1}
+                    \rangle
+                    \\
+                    &= 
+                    - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
+                    \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
+                    - \langle 
+                        \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+                        x_{t + 1} - z_{t + 1}
+                    \rangle
+                    \\
+                    &= 
+                    \left(
+                        \frac{L^2\tilde\eta_{t + 1}^2}{2}
+                        + 
+                        \frac{\tilde \eta_{t +1}}{2}
+                    \right)
+                    \Vert z_{t+1} - y_t\Vert^2
+                    - 
+                    \langle 
+                        \tilde \eta_{t+ 1} \mathcal G_L(y_t), x_{t+1} - z_{t+1}
+                    \rangle. 
+            \end{align*}
+            This completes the analysis for $\Upsilon_{1, t + 1}^\text{AG}$ with $\tilde\eta_{t+1}$. 
+            Next we consider 
+            \begin{align*}
+                \Upsilon_{2, t + 1}^{\text{AG}} 
+                &= 
+                \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle
+                + 
+                \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
+                \\
+                &= 
+                \langle \mathcal G_L(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+                + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \end{align*}
+            Here we used $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$, which was the consequence of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$, as discussed from before. 
+            Hence, the upper bound of the Lyapunov function for smooth AG PPM 
+            (\hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}) 
+            has 
+            {\footnotesize
+            \begin{align*}
+                & \Upsilon_{1, t + 1}^{\text{AG}} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)\Upsilon_{2, t + 1}^{\text{AG}}
+                \\
+                &\quad \le 
+                \left(
+                    - \frac{L^2\tilde \eta_{t + 1}^2}{2}
+                    + \frac{\tilde\eta_{t+1}L}{2}
+                \right)
+                \Vert z_{t+1} - y_t\Vert^2
+                - 
+                \langle \tilde \eta_{t+1} \nabla f(y_t), x_{t+1} - z_{t + 1}\rangle
+                \\
+                & \qquad + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)\left(
+                    \langle \nabla f(y_t), L^{-1}\eta_t^{-1}(x_{t+1} - z_{t + 1})\rangle
+                    + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
+                \right)
+                \\
+                &= 
+                \frac{L}{2}
+                \left(
+                -\tilde\eta_{t + 1}^2 + \tilde\eta_{t + 1}
+                    + \sum_{i = 1}^{t}\tilde\eta_i
+                \right)\Vert z_{t + 1} - y_t\Vert^2
+                +
+                \left(
+                    L^{-1}\eta_t^{-1} 
+                    \left(
+                        \sum_{i = 1}^{t}\tilde \eta_i
+                    \right)
+                    -
+                    \tilde \eta_{t + 1}
+                \right)\langle \mathcal G_L (y_t), x_{t + 1} - z_{t + 1}\rangle
+            \end{align*}
+            }
+            If the above quantity less than or equal to zero, it will allow for convergence of the algorithm by 
+            \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}.
+            One sufficient condition is to have the coefficients for all the cross product terms to sum up to zero, and the squared normed term to sum up to a non-positive number for all $t \in \mathbb N$. 
+            This gives relations 
+            \begin{align*}
+                - \frac{1}{2}\left(
+                    L^2 \tilde\eta_{t+1}^2 - \tilde\eta_{t+1}L 
+                \right) + 
+                \frac{L}{2}\left(
+                    \sum_{i = 1}^{t} \tilde \eta_i
+                \right) &\le 0
+                \\
+                - \left(
+                    L\tilde \eta_{t + 1}^2 
+                    - 
+                    \tilde\eta_{t + 1}
+                \right) + 
+                \sum_{i = 1}^{t}\tilde \eta_i 
+                &\le 0
+                \\
+                -L \tilde \eta_{t+1} + 
+                \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &\le 0
+                \\
+                \sum_{i = 1}^{t + 1}\tilde \eta_i 
+                &\le L \tilde \eta_{t + 1}^2, 
+            \end{align*}
+            and equations 
+            \begin{align*}
+                -\tilde \eta_{t + 1} + 
+                \left(
+                    \sum_{i = 1}^{t}\tilde \eta_i
+                \right)L^{-1}\eta_t^{-1} 
+                &= 0
+                \\
+                \sum_{i = 1}^{t}\tilde \eta_i 
+                &= 
+                L \eta_t \tilde \eta_{t + 1}. 
+            \end{align*}
+            Susbtituting the equality into the inequalites we have 
+            \begin{align*}
+                \tilde \eta_{t + 1} + \sum_{i = 1}^{t} \tilde \eta_i 
+                &\le L \tilde \eta_{t + 1}^2
+                \\
+                \tilde \eta_{t + 1} + L\eta_t \tilde \eta_{t + 1}
+                &\le L \tilde \eta_{t + 1}^2
+                \\
+                1 + L\eta_t &\le L \tilde\eta_{t + 1}. 
+            \end{align*}
+            The choice $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ makes the inequality is an equality. 
+            Finally, to recover the momentum stepsizes for the classical Nesterov accelerated gradient, we consider relations 
+            \begin{align*}
+                L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &= L \tilde \eta_{t + 1} + L \sum_{i = 1}^{t} \tilde \eta_i 
+                \\
+                &= 
+                L \tilde \eta_{t + 1} + L (L \eta_t \tilde \eta_{t + 1}) 
+                \\
+                &= L \tilde \eta_{t + 1} + L \eta_t (L \eta_t + 1)
+                \\
+                &= L (\eta_t + L^{-1}) + L\eta_t (L \eta_t + 1)
+                \\
+                &= (L\eta_t + 1)^2, 
+            \end{align*}
+            Simultanenously 
+            \begin{align*}
+                L \sum_{i = 1}^{t + 1} \tilde \eta_i 
+                &= L^2 \eta_{t + 1} \tilde \eta_{t + 1}
+                \\
+                &= L \eta_{t + 1}(1+ L \eta_{t + 1}), 
+            \end{align*}
+            Combining yields that 
+            \begin{align*}
+                (L\eta_t + 1)^2 
+                &= L\eta_{t + 1}(1 + L \eta_{t + 1})
+                \\
+                &= L\eta_{t + 1} + L^2 \eta_{t + 1}^2
+                \\
+                \iff 
+                (L\eta_t + 1)^2 + 1/4 &= 
+                1/4 + 2(1/2)L \eta_{t + 1} + (L \eta_{t + 1})^2
+                \\
+                \iff 
+                (L\eta_t + 1)^2 + 1/4 &= 
+                (L \eta_{t + 1} + 1/2)^2. 
+            \end{align*}
+            With $a_t = L\eta_t + 1 = L \tilde \eta_t$ this is 
+            \begin{align*}
+                a_t^2 + 1/4 &= (a_{t + 1} - 1/2)^2 
+                \\
+                a_t^2 + 1/4 &= a_{t + 1}^2 + 1/4 - a_{t + 1}
+                \\
+                a_t^2 + a_{t + 1} &= a_{t + 1}^2. 
+                \\
+                \implies 
+                a_{t + 1} &= 
+                \frac{1 + \sqrt{1 + 4a_t^2}}{2}
+            \end{align*}
+            And that is the updates for the Nesterov momentum, recall that the momentum term is linked to the PPM sequence via relation 
+            \begin{align*}
+                (1 + L \eta_{t+ 1})^{-1}L\eta_t = L\eta_t / a_{t + 1} = (a_t - 1)/a_{t + 1}. 
+            \end{align*}
+            We had recovered the classic Nesterov acceleration sequence method for the smooth gradient descent algorithm. 
+        \end{proof}
+        \begin{remark}
+            This variant is distinct from the variants proposed by Chambolle \cite{chambolle_convergence_2015}, but both of which fits into the same frameworks. 
+            The variantis presented as 
+            \begin{align*}
+                y_n &= (1 - t_n^{-1})z_n + t_n^{-1} x_n
+                \\
+                z_{n + 1} &= y_n - L^{-1}\nabla f(y_n)
+                \\
+                x_{n + 1} &= z_n + t_{n + 1}(z_{n + 1} - z_n)
+            \end{align*}
+            They listed the choice of $t_n = (n + a - 1)/a$ for all $a > 2$. 
+            Under this choice, unfortunately, it's in no way obvious that this format reduces to \hyperref[def:agg_tri]{definition \ref*{def:agg_tri}}. 
+            It fails the similar triangle description Without the explict representation $x_{n + 1} = z_n + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+            \par\noindent
+            At the time of writing, we are still investigating the relations between these variants of algorithms.
+        \end{remark}
+        
+    \subsection{Scenario III}
+    
+
+
+\section{Classical analysis of Nesterov accelerated gradient}
+    In this section, we reproduce some of the analysis for Nesterov accelerated gradient method with excruciating details, in the appendix. 
+    We will introduce the method of estimating sequence invented by Nesterov. 
+    We will also go over some details about the history, development and motivations behind the accelerated gradient algorithm. 
+    \subsection{Method of Nesterov's estimating sequence}
+        In this section we introduce the method of estimating sequence. 
+
+    \subsubsection{The estimating sequence and function}
+        \begin{definition}[Nesterov's Estimating Functions]
+            Define  $\{\phi_t\}_{t\in \mathbb N}$ to be a sequence of function where it recursively satisfies for all $k\in \mathbb N$: 
+            \begin{align*}
+                \phi_{k} (x) - f(x) \le 
+                (1 - \alpha_k)(\phi_k(x) - f(x)) \quad \forall x 
+            \end{align*}
+            Where $\alpha \in [0, 1)$. 
+        \end{definition}
+        \begin{observation}
+            Expands recursively we have 
+            \begin{align*}
+                \phi_{k}(x) - f(x) &\le 
+                \left(
+                    \prod_{i = 0}^{k} 
+                    (1 - \alpha_i)
+                \right)(\phi_0(x) - f(x)). 
+            \end{align*}
+        \end{observation}
+        So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}^k(1 - \alpha_i)$. 
+
+        \begin{definition}[The estimating Sequence]
+            Continue from the above definition of a estimating functions, we consider a sequence $\{x_k\}$ satisfying 
+            \begin{align*}
+                f(x_k) &\le \phi_k^* := \min_z(\phi_k(z)). 
+            \end{align*}
+        \end{definition}
+        
+        \begin{lemma}[The Lyapunov function from estimating sequence and function]
+            \;\\
+            Assume that $f$ bounded below with $f_* = \min_x f(x)$ and there exists minimizer $x_*$. 
+            With $\phi_k$ being an estimating functions and convex, $\{x_k\}$ an estimating sequence for $\phi_k$, then it satisfies
+            \begin{align*}
+                f(x_k) - f_*
+                &\le 
+                \lambda_k(\phi_0(x_*) - f_*). 
+            \end{align*}
+            for all $k\in \mathbb N\cup \{0\}$. 
+        \end{lemma}
+        \begin{proof}
+            Directly by the property of estimating sequence $x_k$, we have for all $k, x$
+            \begin{align*}
+                \phi_k(x) - f(x) \ge \phi_k^* - f(x) \ge f(x_k) - f(x), 
+            \end{align*}
+            so 
+            \begin{align*}
+                f(x_k) - f(x) \le \lambda_k (\phi_0(x) - f(x))
+                \\
+                \implies 
+                f(x_k) - f_* \le \lambda_k (\phi_0(x_*) - f(x_*)). 
+            \end{align*}
+            This establishes the convergence rate of $f(x_k)$ assuming that $\lambda_k$ is sequence that converges to zero. 
+        \end{proof}
+    \subsection{Construction of the estimating sequence and function}
+        The construction of the Nesterov estimating sequence and function is where most creativities are involved. 
+        For convex $f$ that is differentiable with $L$-Lipschitz gradient and strong convexity constant $\mu \ge 0$, Nesterov suggested in his book \cite{nesterov_lectures_2018} that there exists sequence $y_k$, $\gamma_k$, where
+        \begin{align*}
+            l_f(x, y_k) &= 
+            f(y_k) + \langle \nabla f(y_k), x - y_k\rangle + 
+            \frac{\mu}{2}\Vert x - y_k\Vert^2
+            \\
+            \phi_0 (x) &= 
+            f(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2
+            \\
+            \phi_{k + 1}(x) &= 
+            (1 - \alpha_k)\phi_k(x) + \alpha_k l_f(x; y_k)
+            \\
+            &= \phi_{k + 1}^2 + \frac{\gamma_k}{2}\Vert x - v_{k + 1}\Vert^2
+        \end{align*}
+        will verify as a Nesterov's estimating sequence and functions. 
+        The derivation for the parameters: $\gamma_k, x_k, y_k$ for $k \in \mathbb N \cup \{0\}$, will produce the Nesterov acclerated gradient as presented in
+        \hyperref[def:Nes2.2.7]{definition \ref*{def:Nes2.2.7}}
+        if correctly conducted. 
+        In this case, $\phi_k$ are simple quadratic centered $v_k$ with value $\phi_k$ with curvature $\gamma_k$. 
+        \par
+        However, the construction exhibits variations for different variants of the accelerated gradient algorithm. 
+        A different construction of $\phi_k$ yield a different algorithm. 
+        As shown in Nesterov's book \cite*[(2.2.63)]{nesterov_lectures_2018}, a projected gradient variant of the accelerated gradient method make use of the following estimating functions, sequence: 
+        \begin{align*}
+            \phi_0 (x) &= f(x_0) + \frac{\gamma_0}{2}\Vert x - x_0\Vert^2
+            \\
+            l_f(x; y_k) &= f(\mathcal T_ly_k) + 
+            \frac{1}{2L}\Vert \mathcal G_L(y_k)\Vert^2 + 
+            \langle \mathcal G_L(y_k), x - y_k\rangle + 
+            \frac{\mu}{2}\Vert x - y_k\Vert^2
+            \\
+            \phi_{k + 1}(x) &= 
+            (1 - \alpha_k)\phi_k + 
+            \alpha_k l_f(x; y_k), 
+        \end{align*}
+        Here, $G_L(x) = L(x - \mathcal T_L(x))$ and $T_L(x) = \Pi_Q(x - L^{-1}\nabla f(x))$, where $Q$ is a convex set. 
+        It's equivalent to applying proximal gradient method with $h = f + g$ where $g = \delta_Q$. 
+
+        
+        
+        
+
+\section{Modern techniques in analysis of accelerated gradient algorithms}
+    
+
+\printbibliography
+
+\appendix
+\section*{Postponed Proofs}
+    
+
+\end{document}

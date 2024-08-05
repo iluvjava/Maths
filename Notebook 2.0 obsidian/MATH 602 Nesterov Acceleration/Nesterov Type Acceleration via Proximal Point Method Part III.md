@@ -16,7 +16,7 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
-  - [**Scenario 1.2 | Extended Analysis**](#scenario-12--extended-analysis)
+  - [**Scenario 1.2 | Extended Analysis on the Stepsize Sequence Constraints**](#scenario-12--extended-analysis-on-the-stepsize-sequence-constraints)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
   - [**Remarks**](#remarks-1)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
@@ -85,16 +85,16 @@ Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t
 #### **Remarks**
 The conditions for the convergence rate can be relaxed. 
 Let's denote $\sum_{i = 1}^{t} \tilde \eta_i = \sigma_t$, and $S_{t} = \sum_{i = 1}^{t} \epsilon_i$. 
-Specifically we consider the case where $\Phi_{t + 1} - \Phi_t \le \epsilon_{t + 1}$, then telescoping: 
+Specifically we consider the case where $\Phi_{t + 1} - \Phi_t \le \delta_{t + 1}$, then telescoping: 
 
 $$
 \begin{aligned}
-    \Phi_{t + 1} - \Phi_t &\le \epsilon_{t + 1}
+    \Phi_{t + 1} - \Phi_t &\le \delta_{t + 1}
     \\
-    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\epsilon_i
+    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\delta_i
     \\
     \Phi_T - \Phi_0 &\le 
-    \sum_{i = 0}^{T - 1}\epsilon_i = S_{T}
+    \sum_{i = 0}^{T - 1}\delta_i = S_{T}
 \end{aligned}
 $$
 
@@ -689,9 +689,10 @@ To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one
 
 **Remarks**
 
-Without the simplifcation of $\tilde \eta_t = \eta_t$, we can consider the alternative of the situation. 
+Without the simplifcation of $\tilde \eta_t = \eta_t$, the situation will be much more complex. 
+The next section will try to relax and extend that assumption on the parameter. 
 
-#### **Scenario 1.2 | Extended Analysis**
+#### **Scenario 1.2 | Extended Analysis on the Stepsize Sequence Constraints**
 The extended analysis focuses on the inequality and explore the alternative of using the assumption $\tilde \eta_t = \eta_t$ for all $t$. 
 To eliminate such a assumption in the proof, it requres to quantify the coefficient of $\Vert \mathcal G_L(y_t)\Vert^2$ during the iterations. 
 To do that we make another sequence $\epsilon_i$ for $i \in \N$. 
@@ -701,16 +702,202 @@ $$
 \begin{aligned}
     \begin{cases}
         \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
-        - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i
+        - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i 
         = 
         \epsilon_{t + 1} \tilde \eta_{t + 1}
+        & \forall t \in \N, 
         \\
-
+        L \eta_t \tilde \eta_{t + 1} = \sum_{i=1}^{t}\tilde \eta_i 
+        & \forall t \in \N. 
     \end{cases}
 \end{aligned}
 $$
 
+It requires base case $L\eta_0\tilde\eta_{1} = 0$, assume $\sigma_0 = 0$. 
+To ease the notation we use $\sum_{i = 1}^t \tilde \eta_i = \sigma_t$, simplifying the first equation we have 
 
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
+    - L^{-1} \sigma_t
+    &= 
+    \epsilon_{t + 1} \tilde \eta_{t + 1}
+    \\
+    \iff 
+    \tilde \eta_{t + 1} ^2 - L \tilde \eta_{t + 1} 
+    &= 
+    \epsilon_{t + 1} \tilde \eta_{t + 1} + L^{-1} \sigma_t
+    \\
+    &= 
+    \epsilon_{t + 1} \tilde \eta_{t + 1} 
+    + L^{-1}(L \eta_t \tilde \eta_{t + 1})
+    \\
+    \iff 
+    \tilde \eta_{t + 1} &= \epsilon_{t + 1} + \eta_t + L^{-1}. 
+\end{aligned}
+$$
+At the last step, we divided both side of the equation by $\tilde \eta_{t + 1} > 0$. 
+Hence, it gives us the following system of equality to work with 
+
+$$
+\begin{aligned}
+    \forall t \in \N: 
+    \begin{cases}
+        \tilde \eta_{t + 1} = \epsilon_{t + 1} + \eta_t + L^{-1}, 
+        \\
+        L \eta_t \tilde \eta_{t + 1} = \sigma_t.     
+    \end{cases}
+\end{aligned}
+$$
+
+With that, we can solve a relation between $\eta_{t + 1}$ in terms of the sequence $\epsilon$ and $\eta_t$.
+Consider the equality 
+
+$$
+\begin{aligned}
+    L \sigma_{t + 1} &= L \tilde \eta_{t + 1} + L \sigma_t
+    \\
+    &=
+    L \tilde \eta_{t + 1}  + L (L \eta_t \tilde \eta_{t + 1})
+    \\
+    &= L \tilde \eta_{t+ 1} + L \eta_t (L \tilde \eta_{t + 1})
+    \\
+    &=  L \tilde \eta_{t+ 1} + L \eta_t (L \epsilon_{t + 1} + L \eta_t + 1)
+    \\
+    &=  L \tilde \eta_{t+ 1} + L \eta_t (L \eta_t + 1) + L^2 \eta_t \epsilon_{t + 1}
+    \\
+    &= L (\epsilon_{t +1} + \eta_t + L^{-1}) + L\eta_t(L \eta_t + 1) + L^2\eta_t \epsilon_{t + 1}
+    \\
+    &= L \epsilon_{t + 1} + (L\eta_t + 1)^2 + L^2\eta_t \epsilon_{t + 1}
+    \\
+    &= 
+    L \epsilon_{t + 1}(1 + L \eta_t) + (1 + L \eta_t)^2. 
+\end{aligned}
+$$
+
+At the same time we have 
+
+$$
+\begin{aligned}
+    L \sigma_{t + 1} &= L^2 \eta_{t + 1}\tilde \eta_{t + 1} 
+    \\
+    &= L\eta_{t + 1}(1 + L \eta_{t + 1} + \epsilon_{t + 2})
+    \\
+    &= L\eta_{t + 1}(1 + L \eta_{t + 1}) + \epsilon_{t + 2}L\eta_{t + 1}. 
+\end{aligned}
+$$
+
+Therefore, it generates the following equation: 
+
+$$
+\begin{aligned}
+    L\eta_{t + 1} (1 + L \eta_{t + 1}) 
+    + 
+    \epsilon_{t + 2} L \eta_{t + 1} 
+    &= 
+    L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
+    \\
+    (L\eta_{t + 1} + L^2\eta_{t + 1}^2)
+    + 
+    \epsilon_{t + 2} L \eta_{t + 1} 
+    + 
+    \frac{1}{4}
+    &= 
+    L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
+    + 
+    \frac{1}{4}
+    \\
+    (L\eta_{t + 1} + L^2\eta_{t + 1}^2 + 1/4)
+    + 
+    \epsilon_{t + 2} L \eta_{t + 1} 
+    + \epsilon_{t + 2}
+    &= 
+    L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
+    + \frac{1}{4}
+    + \epsilon_{t + 2}
+    \\
+    (L\eta_{t + 1} + 1/2)^2 + \epsilon_{t + 2}(L \eta_{t + 1} + 1)
+    &= 
+    L \epsilon_{t + 1}(1 + L \eta_t) + (1 + L\eta_t)^2
+    + \frac{1}{4} + \epsilon_{t + 2}
+    \\
+    \text{ with: } & a_t = 1 + L \eta_t
+    \\
+    (a_{t + 1} - 1/2)^2 + \epsilon_{t + 2}a_{t + 1}
+    &= 
+    L \epsilon_{t + 1}a_t + a_t^2 + 1/4 + \epsilon_{t + 1}
+    \\
+    a_{t + 1}^2 + 1/4 - a_{t + 1} + \epsilon_{t + 2}a_{t + 1}
+    &= 
+    L \epsilon_{t + 1}a_t + a_t^2 + 1/4 + \epsilon_{t + 1}
+    \\
+    a_{t + 1}^2 + a_{t + 1}(\epsilon_{t + 2} - 1)
+    &= 
+    \underbrace{
+        a_t(L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}
+    }_{c_{t + 1}}
+\end{aligned}
+$$
+
+Solving reveals the relations: 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        a_{t + 1} = (1/2)\left(
+        1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 2}}
+        \right), 
+        \\
+        c_{t + 1} = a_t (L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}. 
+    \end{cases}
+\end{aligned}
+$$
+
+Observe that in the case where we choose $\epsilon_t = 0 \forall t \in \N$, the above relation simplifies to 
+
+$$
+\begin{aligned}
+    a_{t + 1} &= (1/2)\left(
+        1 + \sqrt{1 + 4 c_{t + 1}}
+    \right), 
+    \\
+    c_{t + 1} &= a_t^2. 
+\end{aligned}
+$$
+
+This relation is the Famous Nesterov momentum sequence. 
+At the same time, we can analyize the convergence rate of the algorithm by the abstract convergence lemma, producing: 
+
+$$
+\begin{aligned}
+    \Phi_{t + 1} - \Phi_t =
+    \Upsilon_{1, t + 1}^\text{AG} + 
+    \sigma_t\Upsilon_{1, t + 1}^{\text{AG}} 
+    &\le \epsilon_{t + 1}\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2 = \delta_{t + 1}
+\end{aligned}
+$$
+
+Telescoping yields: 
+
+$$
+\begin{aligned}
+    S_{T} = 
+    \sum_{i = 0}^{T- 1} \delta_i 
+    &= 
+    \sum_{i = 0}^{T - 1} \epsilon_{i + 1}\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2
+    \\
+    &\le \sum_{i = 0}^{T - 1}\max(\epsilon_{i + 1} \eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2, 0). 
+\end{aligned}
+$$
+
+Under an ideal case where we wish to attain accelerations, we want $\lim_{T \rightarrow \infty} S_T < \infty$. 
+One way to accomplish is choose the error sequence $\epsilon_i, i \in \N$ to satisfies 
+
+$$
+\begin{aligned}
+
+\end{aligned}
+$$
 
 
 #### **Scenario 2 | Similar Triangle I**
