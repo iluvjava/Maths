@@ -7,7 +7,7 @@
 
 \begin{document}
 
-\title{{\fontfamily{ptm}\selectfont Nesterov Type Momentum Methods}}
+\title{{\fontfamily{ptm}\selectfont A Proximal Point framework of Nesterov type accelerated gradient}}
 
 \author{
     The Alto Hivemind (My Pen name)
@@ -1110,11 +1110,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 At the time of composing this notes, the writer is still reading on the topic of accelerated gradient.     
             \end{remark}
 
-            \begin{definition}[Proximal Gradient Tri-Points Form E]
+            \begin{definition}[Proximal Gradient variant of Ryu 12.1]
             \label{def:ag_tri_pt_form_E}
-                Form E is a special case of 
+                The method appeared in Ryu's text is a special case of 
                 \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
-                with the condition that $\tilde \eta_t = \eta_t$ for all $t \in \mathbb N$. 
+                with the condition that $\tilde \eta_t = \eta_t$ for all $t \in \mathbb N$ and $g \equiv 0$ for the non-smooth part of the objective. 
                 As a consequence, the algorithm has the following updates for iterates $(y_t, x_{t + 1}, z_{t + 1})$: 
                 \begin{align*}
                     y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
@@ -1127,6 +1127,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
             \begin{definition}[Similar Triangle Form I]
             \label{def:ag_form_similar_tria_I}
+                The similar triangle form is equivalent to the classic nesterov accelerated gradient proposed back in 1983. 
                 It updates iterates $(y_t, x_{t + 1}, z_{t + 1})$ using 
                 \begin{align*}
                     z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t) 
@@ -1149,7 +1150,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is similar to $(x_t, z_t, x_{t + 1})$ because they share colinear points $z_t, y_t, x_t$ and $z_t, z_{t + 1}, x_{t + 1}$, and their sides $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
             \end{observation}
             \begin{remark}
-                For more information about the specific choice of $\eta_t$ allows for an optimal convergence rates, see 
+                The above algorithm is a special case of 
+                \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}, 
+                see 
                 \hyperref[sec:scenario_ii]{section \ref*{sec:scenario_ii}} for more information. 
             \end{remark}
 
@@ -1683,14 +1686,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{Generic Lyapunov analysis for Accelerated gradient via PPM}
     \label{sec:generic_ag_ppm_lyapunov_analysis}
-        The first theorem states the generic convergence results when $f$ is differentiable with $L$-Lipschitz gradient, using \hyperref[def:agg_ppm]{definition \ref*{def:agg_ppm}}. 
+        The lemma theorem states targets
+        \hyperref[prop:derive_ag_prox_grad_tript]
+        {definition \ref*{prop:derive_ag_prox_grad_tript}}. 
 
         \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
         \label{lemma:nsmooth_agg_lyapunov_upper_bound}
             Continue from 
             \hyperref[prop:derive_ag_prox_grad_tript]
             {definition \ref*{prop:derive_ag_prox_grad_tript}},
-            we derive the non-smooth analogous case of the Lyapunov upper bound: 
+            we derive the non-smooth analogous case of the Lyapunov upper bound for all $t \in \mathbb N \cup \{0\}$: 
             \begin{align*}
                 \Upsilon_{1, t + 1}^\text{AG}
                 &= 
@@ -1953,17 +1958,25 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                     \sum_{i = 1}^{t} \tilde \eta_i
                 \right)
                 \Upsilon_{2, t + 1}^{\text{AG}} + 
-                \Upsilon_{1, t + 1}^{\text{AG}} \le 0, 
+                \Upsilon_{1, t + 1}^{\text{AG}} 
+                &\le \delta_{t + 1} \quad 
+                \forall t \in \mathbb N, 
+                \\
+                \Upsilon_{1, 1}^{\text{AG}} &\le \delta_1. 
             \end{align*}
             then with 
             \begin{align*}
+                S_t &:= \sum_{i = 1}^{t} \delta_i
+                \\
+                \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i
+                \\
                 \Phi_t &= \left(
                     \sum_{i = 1}^{t} \tilde\eta_{i}
                 \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \NN
                 \\
-                \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2, 
+                \Phi_0 &= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
             \end{align*}
-            we have $\Phi_{t + 1} - \Phi_t \le 0$, which allows for a convergence rate of $\mathcal O \left(\sum_{i = 1}^{T} \eta_i^{-1}\right)$ for $f(z_T) - f(x_*)$. 
+            we have $\Phi_{t + 1} - \Phi_t \le \delta_{t + 1}$, which allows for a convergence rate of $\mathcal O \left(\sigma_T^{-1}S_T\right)$ of $f(z_T) - f(x_*)$ when $S_T \neq 0$ and a rate of $\mathcal O(\sigma_T^{-1})$ when $S_T = 0$. 
         \end{theorem}
         \begin{proof}
             By definition we have
@@ -1992,14 +2005,46 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= \left(
                     \sum_{i = 1}^{t} \tilde \eta_i
-                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le 0. 
+                \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le \delta_{t + 1}. 
             \end{align*}
             }
-            The derivation for the convergence raet is direct and similar to 
-            \hyperref[thm:ppm_convergence_rate]{theorem \ref*{thm:ppm_convergence_rate}} 
-            Therefore, if we can identify parameter for the generic algorithm that asserts the condition above, then we have convergence for the algorithm. 
+            Telescoping we have 
+            \begin{align*}
+                \Phi_{t + 1} - \Phi_t &\le \delta_{t + 1}
+                \\
+                \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\delta_{i + 1}
+                \\
+                \Phi_T - \Phi_0 &\le 
+                \sum_{i = 1}^{T}\delta_i = S_{T}. 
+            \end{align*}
+            So then $\Phi_T - \Phi_0$ yields: 
+            $$
+            \begin{aligned}
+                \sigma_T (f(z_t) - f(x_*)) 
+                + \frac{1}{2}\Vert x_t - x_*\Vert^2 
+                - \frac{1}{2}\Vert x_0 - x_*\Vert^2 
+                &\le S_{T}
+                \\
+                \implies 
+                \sigma_T(f(z_t) - f(x_*))
+                &\le 
+                S_T + \frac{1}{2}\Vert x_0 - x_*\Vert^2
+                \\
+                f(z_t) - f(x_*) &\le 
+                \sigma_T^{-1}\left(
+                    S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
+                \right),
+            \end{aligned}
+            $$
+            which yields a convergence rate $\mathcal O(\sigma_T^{-1}S_{T})$. 
+            When $S_T = 0$, the convergence rate is $O(\sigma_T^{-1})$ instead. 
         \end{proof}
 
+        \begin{theorem}[Constraints on PPM stepsizes]
+            Algorithm proposed back in 
+            \hyperref[def:ag_prox_grad_tri_pt]{definition \ref*{def:ag_prox_grad_tri_pt}}
+            converges if the stepsize parameter. 
+        \end{theorem}
 
     \subsection{Scenario I}\label{sec:scenario_i}
         In this scenario, we aim to recover AG Ryu 12.1 conceret variant algorithm stated back in 

@@ -41,7 +41,7 @@ $$
         \sum_{i = 1}^{t} \tilde\eta_{t + 1}
     \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N
     \\
-    \Phi_0 &= \frac{1}{2}\Vert x_t - x_*\Vert^2
+    \Phi_0 &= \frac{1}{2}\Vert x_0 - x_*\Vert^2
 \end{aligned}
 $$
 
@@ -91,10 +91,10 @@ $$
 \begin{aligned}
     \Phi_{t + 1} - \Phi_t &\le \delta_{t + 1}
     \\
-    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\delta_i
+    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\delta_{i + 1}
     \\
     \Phi_T - \Phi_0 &\le 
-    \sum_{i = 0}^{T - 1}\delta_i = S_{T}
+    \sum_{i = 1}^{T}\delta_i = S_{T}
 \end{aligned}
 $$
 
@@ -110,7 +110,7 @@ $$
     \implies 
     \sigma_T(f(z_t) - f(x_*))
     &\le 
-    \frac{1}{2}\Vert x_0 - x_*\Vert^2
+    S_T + \frac{1}{2}\Vert x_0 - x_*\Vert^2
     \\
     f(z_t) - f(x_*) &\le 
     \sigma_T^{-1}\left(
@@ -119,7 +119,8 @@ $$
 \end{aligned}
 $$
 
-which yields a convergence rate big O of $\sigma_T^{-1}S_{T}$. 
+which yields a convergence rate $\mathcal O(\sigma_T^{-1}S_{T})$. 
+When $S_T = 0$, it goes back to the previous above theorem we proved. 
 
 
 #### **Scenario 1 | Not Similar Triangle**
@@ -736,7 +737,8 @@ $$
     \tilde \eta_{t + 1} &= \epsilon_{t + 1} + \eta_t + L^{-1}. 
 \end{aligned}
 $$
-At the last step, we divided both side of the equation by $\tilde \eta_{t + 1} > 0$. 
+At the last step, we divided both side of the equation by $\tilde \eta_{t + 1} > 0$.
+The parameter gives relation $\epsilon_{t+1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$. 
 Hence, it gives us the following system of equality to work with 
 
 $$
@@ -821,7 +823,7 @@ $$
     L \epsilon_{t + 1}(1 + L \eta_t) + (1 + L\eta_t)^2
     + \frac{1}{4} + \epsilon_{t + 2}
     \\
-    \text{ with: } & a_t = 1 + L \eta_t
+    \text{ with: } & a_t = 1 + L \eta_t = \tilde \eta_{t + 1} - \epsilon_{t + 1}
     \\
     (a_{t + 1} - 1/2)^2 + \epsilon_{t + 2}a_{t + 1}
     &= 
@@ -835,7 +837,7 @@ $$
     &= 
     \underbrace{
         a_t(L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}
-    }_{c_{t + 1}}
+    }_{c_{t + 1}}. 
 \end{aligned}
 $$
 
@@ -873,7 +875,7 @@ $$
     \Phi_{t + 1} - \Phi_t =
     \Upsilon_{1, t + 1}^\text{AG} + 
     \sigma_t\Upsilon_{1, t + 1}^{\text{AG}} 
-    &\le \epsilon_{t + 1}\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2 = \delta_{t + 1}
+    &\le \epsilon_{t + 1}\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2 \le \delta_{t + 1}
 \end{aligned}
 $$
 
@@ -884,20 +886,29 @@ $$
     S_{T} = 
     \sum_{i = 0}^{T- 1} \delta_i 
     &= 
-    \sum_{i = 0}^{T - 1} \epsilon_{i + 1}\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2
+    \sum_{i = 0}^{T - 1} \epsilon_{i + 1}\tilde\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2
     \\
-    &\le \sum_{i = 0}^{T - 1}\max(\epsilon_{i + 1} \eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2, 0). 
+    &\le \sum_{i = 0}^{T - 1}\max(\epsilon_{i + 1} \tilde\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2, 0). 
 \end{aligned}
 $$
 
 Under an ideal case where we wish to attain accelerations, we want $\lim_{T \rightarrow \infty} S_T < \infty$. 
-One way to accomplish is choose the error sequence $\epsilon_i, i \in \N$ to satisfies 
+One way to accomplish is choose the error sequence $\epsilon_i, i \in \N$ to be bounded by for all $i \in \N$, $\epsilon_i$ should satisfy: 
 
 $$
 \begin{aligned}
-
+    \epsilon_{i + 1}\tilde \eta_{i + 1}
+    \Vert \mathcal G_L(y_i)\Vert^2 
+    &\le \delta_{i + 1}
+    \\
+    \iff 
+    \epsilon_{i + 1}
+    &\le 
+    \frac{\delta_{i + 1} }{\tilde\eta_{t + 1}\Vert \mathcal G_L(y_i)\Vert^2}. 
 \end{aligned}
 $$
+
+for any $\sum_{i = 0}^{T - 1}\delta_{i + 1}$ converges to a limit as $T \rightarrow \infty$. 
 
 
 #### **Scenario 2 | Similar Triangle I**
