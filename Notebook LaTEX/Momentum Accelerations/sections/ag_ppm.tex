@@ -299,7 +299,7 @@
             \quad \\
             With $f$ being $L$-Lipschitz smooth and $\mu > 0$ strongly convex then the Strongly convex generic form has updates of for iterates
             \begin{align*}
-                x_{t + 1} &= (1 + \mu\tilde \eta_{t + 1})^{-1}(x_t + \mu\tilde\eta_{t + 1}y_t^+), 
+                x_{t + 1} &= (1 + \mu\tilde \eta_{t + 1})^{-1}(x_t + \mu\tilde\eta_{t + 1}(y_t - \mu^{-1}\nabla f(y_t))), 
                 \\
                 z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), 
                 \\

@@ -9,13 +9,13 @@ We derive the newton's method for function $\mathbb R \mapsto \mathbb R$ and the
 
 $$
 \begin{aligned}
-    f(s) &= f(x) + f'(x)(x - s) + \mathcal O(|x - s|^2)
+    f(s) &= f(x) + f'(x)(s - x) + \mathcal O(|x - s|^2)
     \\
-    0 &= f(x) + f'(x)x - f'(x)s + \mathcal O(|x - s|^2)
+    0 &= f(x) - f'(x)x + f'(x)s + \mathcal O(|x - s|^2)
     \\
-    f'(x)s &= f(x) + f'(x)x + \mathcal O(|x - s|^2)
+    f'(x)s &= f(x) - f'(x)x + \mathcal O(|x - s|^2)
     \\
-    s &= f(x)/f'(x) + x + \mathcal O(|x - s|^2). 
+    s &= - f(x)/f'(x) + x + \mathcal O(|x - s|^2/f'(x)). 
 \end{aligned}
 $$
 

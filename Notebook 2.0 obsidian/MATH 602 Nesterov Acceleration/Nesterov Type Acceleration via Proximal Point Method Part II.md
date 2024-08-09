@@ -332,6 +332,8 @@ Finally, observe the spacial case that when $\eta_i = 0$ for all $i\in \N$, the 
 
 The above algorithm is derived from the generic strongly convex PPM form. 
 
+
+
 #### **Definition 1.8 | AG Proximal Gradient Generic PPM Form**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
 > Define the proximal gradient and gradient mapping operator operator: 

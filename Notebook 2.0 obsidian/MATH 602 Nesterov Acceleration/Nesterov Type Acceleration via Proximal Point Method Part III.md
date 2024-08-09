@@ -17,6 +17,7 @@ It's split to reduce lags on the inefficient web based frameworks that renders m
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
   - [**Scenario 1.2 | Extended Analysis on the Stepsize Sequence Constraints**](#scenario-12--extended-analysis-on-the-stepsize-sequence-constraints)
+  - [**Scenario 1.3 | Examples whre it fits the Extended Analysis**](#scenario-13--examples-whre-it-fits-the-extended-analysis)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
   - [**Remarks**](#remarks-1)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
@@ -909,6 +910,10 @@ $$
 $$
 
 for any $\sum_{i = 0}^{T - 1}\delta_{i + 1}$ converges to a limit as $T \rightarrow \infty$. 
+
+#### **Scenario 1.3 | Examples whre it fits the Extended Analysis**
+
+... I am still thinking on this one on the strach paper. 
 
 
 #### **Scenario 2 | Similar Triangle I**
