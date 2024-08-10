@@ -20,6 +20,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.5 | AG Tri-points generic form**](#definition-15--ag-tri-points-generic-form)
   - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-16--accelerated-gradient-strongly-convex-generic-triangular-form)
   - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
+  - [**Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-strongly-convex-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
   - [**Def 1.10 | Guller's Accelerated PPM**](#def-110--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
@@ -30,6 +31,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
+  - [**Claim 3.1.1 | Slightly more generic**](#claim-311--slightly-more-generic)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
 - [**Part III**](#part-iii)
 
@@ -380,6 +382,8 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > \end{aligned}
 > $$
 
+#### **Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**
+> 
 
 #### **Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**
 > With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
@@ -1138,7 +1142,31 @@ In a sense, if we can relax the choice of $L$ to be larger so that the above con
 
 The theorem is generic in the sense that it didn't make use what algorithms generate the iterates.
 It can be phrase generically. 
-To emphasize, consider
+Which will be the next claim 
+
+#### **Claim 3.1.1 | Slightly more generic**
+> Let $f$ be convex and $L$-Lipschitz smooth, fix $\bar x, x$ and let $\phi(x) = \tilde\eta(f(\bar x) + \langle \nabla f(y_t), x - \bar x\rangle)$. 
+> Suppose that $x^+ = \prox{\phi}(x)$, and $x_*$ exists as a minimizer of $f$. 
+> Then the following inequalities are true. 
+> $$
+> \begin{aligned}
+>     \forall z, z': 
+>     \Upsilon_{1}  &:= 
+>     \tilde \eta(f(z) - f(x_*))
+>     + 
+>     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert)
+>     \\
+>     &\le 
+>     - \frac{1}{2}\Vert x^+ - \bar x\Vert^2 + 
+>     \frac{\tilde \eta L}{2}\Vert z - \bar x\Vert^2 - 
+>     \tilde \eta \langle \nabla f(\bar x), x^+ - z \rangle, 
+>     \\
+>     \Upsilon_2 &:= 
+>        f(z) - f(z') \le 
+>        \langle \nabla f(\bar x), z - z'\rangle + 
+>        \frac{L}{2}\Vert z - \bar x\Vert^2. 
+> \end{aligned}
+> $$
 
 
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**

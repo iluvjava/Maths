@@ -23,7 +23,7 @@ Ignoring the error term, we obtain the iterative formula that may approximate th
 
 $$
 \begin{aligned}
-    g(x_n) := x_{n + 1} &= x_n + \frac{f(x_n)}{f'(x_n)} .
+    g(x_n) := x_{n + 1} &= x_n - \frac{f(x_n)}{f'(x_n)} .
 \end{aligned}
 $$
 
