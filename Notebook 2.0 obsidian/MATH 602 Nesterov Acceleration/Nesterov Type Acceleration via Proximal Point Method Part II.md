@@ -1136,6 +1136,10 @@ $$
 is invoked with $x = x_{t +1}$ only, hence, the quantifier $\forall x$ is strictly stronger than necessary. 
 In a sense, if we can relax the choice of $L$ to be larger so that the above condition is still true for just $x = x_{t + 1}$. 
 
+The theorem is generic in the sense that it didn't make use what algorithms generate the iterates.
+It can be phrase generically. 
+To emphasize, consider
+
 
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**
 > Continue from AG Proximal Gradient Generic PPM Form I, then we have the non-smooth analogous case of the Lyapunov upper bound: 
