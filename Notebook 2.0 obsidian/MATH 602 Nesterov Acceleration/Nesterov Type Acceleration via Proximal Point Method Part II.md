@@ -33,6 +33,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Claim 3.1.1 | Slightly more generic**](#claim-311--slightly-more-generic)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
+  - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth, with strong convexity index**](#lemma-33--generic-lypunov-bound-non-smooth-with-strong-convexity-index)
 - [**Part III**](#part-iii)
 
 #### **ToC for Obsidian Notebook**
@@ -376,14 +377,33 @@ The above algorithm is derived from the generic strongly convex PPM form.
 >     \left\lbrace
 >         h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
 >         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
->     \right\rbrace.
+>     \right\rbrace
 >     \\
->     &= \argmin{x} \left\lbrace l_h(x; y^+_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2\right\rbrace
+>     &= \argmin{x} \left\lbrace l_h(x; y^+_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2\right\rbrace. 
 > \end{aligned}
 > $$
 
 #### **Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**
-> 
+> Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
+> Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
+> We define the following algorithm. 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x} \left\lbrace
+>     l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+>     \Vert x - x_t\Vert^2 + \frac{\mu}{2}\Vert x - \mathcal T_L y_t\Vert^2
+> \right\rbrace,
+> \\
+> y_{t + 1}&= 
+> \argmin{x}
+> \left\lbrace
+>     h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+>     + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+> \right\rbrace
+> \\
+> &= \argmin{x} \left\lbrace l_h(x; y^+_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2\right\rbrace. 
+> \end{aligned}
+> $$
 
 #### **Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**
 > With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
@@ -1169,6 +1189,9 @@ Which will be the next claim
 > $$
 
 
+
+
+
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**
 > Continue from AG Proximal Gradient Generic PPM Form I, then we have the non-smooth analogous case of the Lyapunov upper bound: 
 > $$
@@ -1296,7 +1319,7 @@ $$
     &\le g(y_t) - g(y_t^+)
     \\
     \langle \partial g (y_t^+), y_t^+ - y_t \rangle
-    &\le 
+    &\ge
     g(y_t^+) - g(y_t). 
 \end{aligned}
 $$
@@ -1439,6 +1462,126 @@ $$
 $$
 
 Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
+
+
+
+#### **Lemma 3.3 | Generic Lypunov bound, Non-smooth, with strong convexity index**
+> Let $h = f + g$ be a sum of $f$ that is $L$-Lipschitz smooth, and $g$ that is $\mu\ge 0$ strongly convex. 
+> This makes $h$ strongly convex too. 
+> Fix $\bar x, x$ and let 
+> $$
+> \begin{aligned}
+>     \phi(u) &= \eta
+>     \left(
+>         h(\bar x) + \langle \mathcal G_L(\bar x), u - \bar x\rangle + \frac{\mu}{2}\Vert \mathcal u - \bar x\Vert^2
+>     \right)
+>     \\
+>     x^+ &= 
+>     \prox{\phi}(x)
+> \end{aligned}
+> $$
+> Then for all $z, z'$, it has 
+> $$
+> \begin{aligned}
+>     \forall z, z': 
+>     \Upsilon_{1}  &:= 
+>     \tilde \eta(f(z) - f(x_*))
+>     + 
+>     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert)
+>     \\
+>     &\le 
+>     - \frac{1}{2}\Vert x^+ - \bar x\Vert^2 + 
+>     \frac{\tilde \eta L}{2}\Vert z - \bar x\Vert^2 - 
+>     \tilde \eta \langle \mathcal G_L(\bar x), x^+ - z \rangle, 
+>     \\
+>     \Upsilon_2 &:= 
+>     f(z) - f(z') \le 
+>     \langle \mathcal G_L(\bar x), z - z'\rangle + 
+>     \frac{L}{2}\Vert z - \bar x\Vert^2. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The proof is similar to the previous proof conducted. 
+Directly starts with the observations that with $L$ smoothness of $f$, it yields for any $z$: 
+
+$$
+\begin{aligned}
+    f(\bar x) + \langle \nabla f(\bar x), x^+ - \bar x\rangle
+    &= 
+    f(\bar x) + 
+    \langle 
+        \nabla f(\bar x), 
+        x^+ - z + z - \bar x
+    \rangle
+    \\
+    &\ge 
+    f(z) - \frac{L}{2}\Vert z - \bar x\Vert^2 
+    + \langle \nabla f(\bar x), x^+ - z\rangle. 
+\end{aligned}
+$$
+
+Next, by the condierations of $g$ is convex, it has 
+
+$$
+\begin{aligned}
+    g(\bar x) + 
+    \langle \partial g(z), x^+ - \bar x\rangle
+    &= 
+    g(\bar x) + \langle \partial g(z), x^+ - z + z - \bar x\rangle
+    \\
+    &= g(\bar x) + 
+    \langle \partial g(z), x^+ - z\rangle + 
+    \langle \partial g(z), z - \bar x\rangle
+    \\
+    &\ge 
+    g(z) + \langle \partial g(z), x^+ - z\rangle, 
+\end{aligned}
+$$
+
+because from convexity of $g$ it has 
+
+$$
+\begin{aligned}
+    \langle \partial g(z), \bar x - z\rangle 
+    &\le 
+    g(\bar x) - g(z)
+    \\
+    \langle \partial g(z), z - \bar x\rangle
+    &\ge
+    g(z) - g(\bar x). 
+\end{aligned}
+$$
+
+Therefore, we can lower bound $\phi$ with the above two inequalities giving: 
+
+$$
+\begin{aligned}
+    \phi(x^+) 
+    &= \eta\left(
+        h(\bar x) + \langle \mathcal G_L(\bar x), x^+ - \bar x\rangle + \frac{\mu}{2}\Vert \mathcal x^+ - \bar x\Vert^2
+    \right)
+    \\
+    &\ge 
+    \eta\left(
+        h(\bar x) + \langle \mathcal G_L(\bar x), 
+        x^+ - \bar x\rangle
+    \right)
+    \\
+    &= 
+    \eta
+    \left(
+        f(\bar x) + g(\bar x) + 
+        \langle 
+            \partial g(\mathcal T(\bar x)) + \nabla f(\bar x), 
+            x^+ - \bar x
+        \rangle
+    \right)
+\end{aligned}
+$$
+
+
 
 ---
 ### **Part III**
