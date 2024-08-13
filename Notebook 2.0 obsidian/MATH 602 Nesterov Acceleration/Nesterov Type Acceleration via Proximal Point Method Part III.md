@@ -76,7 +76,7 @@ $$
     \\
     &= \left(
         \sum_{i = 1}^{t} \tilde \eta_i
-    \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}}. 
+    \right)\Upsilon_{1, t + 1}^{\text{AG}} + \Upsilon_{2, t + 1}^{\text{AG}}. 
 \end{aligned}\tag{$[*]$}
 }
 $$

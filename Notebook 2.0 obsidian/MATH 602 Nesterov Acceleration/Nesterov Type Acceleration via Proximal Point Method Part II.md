@@ -31,9 +31,8 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
-  - [**Claim 3.1.1 | Slightly more generic**](#claim-311--slightly-more-generic)
-  - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points)
-  - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth, with strong convexity index**](#lemma-33--generic-lypunov-bound-non-smooth-with-strong-convexity-index)
+  - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points (DEPRECATED)**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points-deprecated)
+  - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
 - [**Part III**](#part-iii)
 
 #### **ToC for Obsidian Notebook**
@@ -1095,7 +1094,7 @@ $$
     \\
     \quad &\le 
     -\frac{1}{2} \Vert x_{t + 1 } - x_t\Vert^2 + 
-    \frac{\tilde \eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2 
+    \frac{\tilde \eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2 
     - \langle \tilde \eta_{t + 1}\nabla f(y_t), x_{t + 1} - z_{t + 1} \rangle. 
 \end{aligned}
 }
@@ -1164,35 +1163,9 @@ The theorem is generic in the sense that it didn't make use what algorithms gene
 It can be phrase generically. 
 Which will be the next claim 
 
-#### **Claim 3.1.1 | Slightly more generic**
-> Let $f$ be convex and $L$-Lipschitz smooth, fix $\bar x, x$ and let $\phi(x) = \tilde\eta(f(\bar x) + \langle \nabla f(y_t), x - \bar x\rangle)$. 
-> Suppose that $x^+ = \prox{\phi}(x)$, and $x_*$ exists as a minimizer of $f$. 
-> Then the following inequalities are true. 
-> $$
-> \begin{aligned}
->     \forall z, z': 
->     \Upsilon_{1}  &:= 
->     \tilde \eta(f(z) - f(x_*))
->     + 
->     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert)
->     \\
->     &\le 
->     - \frac{1}{2}\Vert x^+ - \bar x\Vert^2 + 
->     \frac{\tilde \eta L}{2}\Vert z - \bar x\Vert^2 - 
->     \tilde \eta \langle \nabla f(\bar x), x^+ - z \rangle, 
->     \\
->     \Upsilon_2 &:= 
->        f(z) - f(z') \le 
->        \langle \nabla f(\bar x), z - z'\rangle + 
->        \frac{L}{2}\Vert z - \bar x\Vert^2. 
-> \end{aligned}
-> $$
 
 
-
-
-
-#### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points**
+#### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points (DEPRECATED)**
 > Continue from AG Proximal Gradient Generic PPM Form I, then we have the non-smooth analogous case of the Lyapunov upper bound: 
 > $$
 > \begin{aligned}
@@ -1465,122 +1438,197 @@ Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t)
 
 
 
-#### **Lemma 3.3 | Generic Lypunov bound, Non-smooth, with strong convexity index**
+#### **Lemma 3.3 | Generic Lypunov bound, Non-smooth**
 > Let $h = f + g$ be a sum of $f$ that is $L$-Lipschitz smooth, and $g$ that is $\mu\ge 0$ strongly convex. 
 > This makes $h$ strongly convex too. 
 > Fix $\bar x, x$ and let 
 > $$
 > \begin{aligned}
->     \phi(u) &= \eta
+>     \phi(u) &= \tilde\eta
 >     \left(
->         h(\bar x) + \langle \mathcal G_L(\bar x), u - \bar x\rangle + \frac{\mu}{2}\Vert \mathcal u - \bar x\Vert^2
->     \right)
+>         h( \mathcal T_L\bar x) + \langle \mathcal G_L\bar x, u - \bar x\rangle
+>         + \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2 
+>     \right) 
 >     \\
 >     x^+ &= 
->     \prox{\phi}(x)
+>     \prox{\phi}(x) = x - \mathcal G_L \bar x
 > \end{aligned}
 > $$
 > Then for all $z, z'$, it has 
 > $$
 > \begin{aligned}
->     \forall z, z': 
 >     \Upsilon_{1}  &:= 
->     \tilde \eta(f(z) - f(x_*))
+>     \tilde \eta(f(x^+) - f(x_*))
 >     + 
->     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert)
+>     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert^2)
 >     \\
 >     &\le 
->     - \frac{1}{2}\Vert x^+ - \bar x\Vert^2 + 
->     \frac{\tilde \eta L}{2}\Vert z - \bar x\Vert^2 - 
->     \tilde \eta \langle \mathcal G_L(\bar x), x^+ - z \rangle, 
+>     \tilde \eta 
+>     \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+>     + 
+>     \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+>     - 
+>     \frac{1}{2}\Vert x^+ - x\Vert^2, 
 >     \\
+>     \forall z:
 >     \Upsilon_2 &:= 
->     f(z) - f(z') \le 
->     \langle \mathcal G_L(\bar x), z - z'\rangle + 
+>     f(z) - f(\mathcal T_L \bar x) \le 
+>     \langle \mathcal G_L(\bar x), z - \mathcal T_L \bar x\rangle + 
 >     \frac{L}{2}\Vert z - \bar x\Vert^2. 
 > \end{aligned}
 > $$
 
+**Observations**
+
+By lemma proven at the start of the file, we have 
+
+$$
+\begin{aligned}
+    \phi(u) \le \tilde \eta h(u) \; \forall u,
+\end{aligned}
+$$
+
+the function is a local lineared lower bound for $h$. 
+
 **Proof**
 
-The proof is similar to the previous proof conducted. 
-Directly starts with the observations that with $L$ smoothness of $f$, it yields for any $z$: 
+Directly observe that we have 
 
 $$
 \begin{aligned}
-    f(\bar x) + \langle \nabla f(\bar x), x^+ - \bar x\rangle
+    \quad &
+    h(\mathcal T_L(\bar x)) + 
+    \langle \mathcal G_L \bar x, u - \bar x\rangle + 
+    \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
+    \\
     &= 
-    f(\bar x) + 
+    h(\mathcal T_L \bar x) + 
+    \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
+    + 
+    \langle \mathcal G_L \bar x, \mathcal T_L \bar x - \bar x\rangle
+    + 
+    \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x \Vert^2
+    \\
+    &= 
+    h(\mathcal T_L \bar x) + 
+    \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
+    + 
+    \langle 
+        L (\bar x - \mathcal T_L \bar x)
+        , 
+        \mathcal T_L \bar x - \bar x
+    \rangle
+    + 
+    \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
+    \\
+    &= 
+    h(\mathcal T_L \bar x) + 
+    \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
+    - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2. 
+\end{aligned}
+$$
+
+By PPM descent lemma, let $x_*$ be a minimizer, it claims that 
+
+$$
+{\small
+\begin{aligned}
+    & \quad 
+    \phi(x^+) - \phi (x^*) + 
+    \frac{1}{2}\left(
+        \Vert x^+ - x_*\Vert^2 - 
+        \Vert x - x_*\Vert^2
+    \right)
+    \le 
+    - \frac{1}{2}\Vert x^+ - x\Vert^2
+    \\
+    & \implies 
+    \tilde 
+    \eta 
+    \left(   
+        h(\mathcal T_L \bar x) + 
+        \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
+        - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+    \right)
+    - \tilde \eta h (x_*)
+    +
+    \frac{1}{2}\left(
+        \Vert x^+ - x_*\Vert^2 - 
+        \Vert x - x_*\Vert^2
+    \right)
+    \le 
+    - \frac{1}{2}\Vert x^+ - x\Vert^2
+    \\
+    & \iff
+    \tilde \eta (h(\mathcal T_L\bar x) - h(x_*))  
+    + 
+    \frac{1}{2}\left(
+        \Vert x^+ - x_*\Vert^2 - 
+        \Vert x - x_*\Vert^2
+    \right)
+    \le 
+    \tilde \eta 
+    \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+    + 
+    \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+    - 
+    \frac{1}{2}\Vert x^+ - x\Vert^2. 
+\end{aligned}
+}
+$$
+
+Next, for all $z, z'$, it would have by smoothness of $f$: 
+
+$$
+\begin{aligned}
+    f(z) - f(z') &= 
+    f(z) - f(\bar x) + f(\bar x) - f(z')
+    \\
+    &\le 
+    \langle 
+        \nabla f(\bar x), z - \bar x
+    \rangle + 
+    \frac{L}{2}\Vert z - \bar x\Vert^2 
+    + 
     \langle 
         \nabla f(\bar x), 
-        x^+ - z + z - \bar x
+        \bar x - z'
     \rangle
     \\
-    &\ge 
-    f(z) - \frac{L}{2}\Vert z - \bar x\Vert^2 
-    + \langle \nabla f(\bar x), x^+ - z\rangle. 
-\end{aligned}
-$$
-
-Next, by the condierations of $g$ is convex, it has 
-
-$$
-\begin{aligned}
-    g(\bar x) + 
-    \langle \partial g(z), x^+ - \bar x\rangle
     &= 
-    g(\bar x) + \langle \partial g(z), x^+ - z + z - \bar x\rangle
-    \\
-    &= g(\bar x) + 
-    \langle \partial g(z), x^+ - z\rangle + 
-    \langle \partial g(z), z - \bar x\rangle
-    \\
-    &\ge 
-    g(z) + \langle \partial g(z), x^+ - z\rangle, 
+    \langle \nabla f(\bar x), z - z'\rangle
+    + 
+    \frac{L}{2}\Vert z - \bar x\Vert^2. 
 \end{aligned}
 $$
 
-because from convexity of $g$ it has 
+The convexity of $g$ yields: 
 
 $$
 \begin{aligned}
-    \langle \partial g(z), \bar x - z\rangle 
+    g(z) + 
+    \langle 
+        \partial g(z), z' - z
+    \rangle 
+    &\le g(z')
+    \\
+    g(z) - g(z') 
     &\le 
-    g(\bar x) - g(z)
-    \\
-    \langle \partial g(z), z - \bar x\rangle
-    &\ge
-    g(z) - g(\bar x). 
+    \langle \partial g(z'), z - z'\rangle. 
 \end{aligned}
 $$
 
-Therefore, we can lower bound $\phi$ with the above two inequalities giving: 
+Adding them yield 
 
 $$
 \begin{aligned}
-    \phi(x^+) 
-    &= \eta\left(
-        h(\bar x) + \langle \mathcal G_L(\bar x), x^+ - \bar x\rangle + \frac{\mu}{2}\Vert \mathcal x^+ - \bar x\Vert^2
-    \right)
-    \\
-    &\ge 
-    \eta\left(
-        h(\bar x) + \langle \mathcal G_L(\bar x), 
-        x^+ - \bar x\rangle
-    \right)
-    \\
-    &= 
-    \eta
-    \left(
-        f(\bar x) + g(\bar x) + 
-        \langle 
-            \partial g(\mathcal T(\bar x)) + \nabla f(\bar x), 
-            x^+ - \bar x
-        \rangle
-    \right)
+    h(z) - h(z') &\le 
+    \langle \nabla f(\bar x) + \partial g(z'), z - z'\rangle + 
+    \frac{L}{2}\Vert z - \bar x\Vert^2. 
 \end{aligned}
 $$
 
+Setting $z' = \mathcal T_L \bar x$, we have the desired results. 
 
 
 ---
