@@ -22,6 +22,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
   - [**Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-strongly-convex-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
+  - [**Definition 1.9' | AG Proximal Gradient Strongly conex Generic Form**](#definition-19--ag-proximal-gradient-strongly-conex-generic-form)
   - [**Def 1.10 | Guller's Accelerated PPM**](#def-110--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
@@ -93,7 +94,38 @@ $$
 > \end{aligned}
 > $$
 
+**Observations**
 
+Set $z = x^+$, it's: 
+
+$$
+\begin{aligned}
+    h(x^+) &\ge 
+    h(x^+) + \langle L(x - x^+), x^+ - x \rangle + 
+    (L/2)\Vert x - x^+\Vert^2 + (\mu/2)\Vert x^+ -x\Vert^2
+    \\
+    &= h(x^+) - (L/2)\Vert x - x^+\Vert^2 + (\mu/2) \Vert x^+ - x\Vert^2
+    \\
+    &= h(x^+) - ((L - \mu)/2)\Vert x^+ - x\Vert^2, 
+\end{aligned}
+$$
+
+so unless $x^+ = x$ (minimum of the function), or $L= \mu$, it's not an equality at $z = x^+$. 
+When $g \equiv 0$, it reduces to 
+
+$$
+\begin{aligned}
+    x' &= \prox{\eta g}(x), 
+    \\
+    g(z) &\ge
+    g(x') + \langle \mathcal \partial g(x'), z - x\rangle
+    \\
+    &= 
+    g(x') + \eta^{-1}\langle \mathcal x - x', z - x\rangle, 
+\end{aligned}
+$$
+
+which is for the proximal point. 
 
 **Proof**
 
@@ -209,9 +241,7 @@ $$
 Substituting $\mathcal G_L(x) = L (x - x^+)$ to the above expression, rearrange it a bit will recover the desired inequalities. 
 Therefore, the inequality is justified. 
 
-**Remarks**
 
-The proximal linear lower bound always anchored itself at the proximal gradient point $x^+$, which can be a sharp corner of the function. 
 
 
 ---
@@ -474,6 +504,15 @@ The same observations as in the smooth case still applies here.
 
 This algorithm exists in the literatures. 
 The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead. 
+
+
+#### **Definition 1.9' | AG Proximal Gradient Strongly conex Generic Form**
+> Continued from definition 1.8', the PPM algorithm can be reduced to generic form by completing the squares, producing: 
+$$
+\begin{aligned}
+
+\end{aligned}
+$$
 
 
 #### **Def 1.10 | Guller's Accelerated PPM**
@@ -1659,7 +1698,50 @@ Setting $z = \mathcal T_L \bar x$, we have the desired results.
 
 **Remarks**
 
+In the context of generic form of accelerated proximal gradient, choose the parameter $\bar x = y_t$, and $z' = z_t$. 
+This makes for all $\bar x$, it gives
 
+$$
+\begin{aligned}
+    x^+ 
+    &= x - \tilde \eta \mathcal G_L(\bar x)
+    = x - \tilde \eta \mathcal G_L(y_t) = x_{t + 1}
+    \\
+    z_{t + 1} 
+    &= \mathcal T_L \bar x  
+    = \bar x - \mathcal G_L \bar x 
+    = y_t - \mathcal G_L y_t, 
+\end{aligned}
+$$
+
+so this is the expected values in the context of the generic algorithm, yielding inequalities
+
+$$
+\begin{aligned}
+    \Upsilon_{1, t + 1}^{\text{AG}}
+            &:= 
+            \tilde \eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+            + 
+            \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
+            \\
+            &\quad \le 
+            \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
+            + 
+            \frac{\tilde \eta_{t + 1}L}{2}
+            \Vert  
+                y_t - z_{t + 1}
+            \Vert^2
+            - 
+            \frac{1}{2}
+            \Vert x_{t + 1} - x_t\Vert^2,  
+            \\ 
+            \Upsilon_{2, t + 1}^{\text{AG}}
+            &:= 
+            h(z_{t + 1}) - h(z_t) \le 
+            \langle \mathcal G_L \bar x, z_{t + 1} - z_t \rangle + 
+            \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+\end{aligned}
+$$
 
 ---
 ### **Part III**
