@@ -1441,54 +1441,47 @@ Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t)
 #### **Lemma 3.3 | Generic Lypunov bound, Non-smooth**
 > Let $h = f + g$ be a sum of $f$ that is $L$-Lipschitz smooth, and $g$ that is $\mu\ge 0$ strongly convex. 
 > This makes $h$ strongly convex too. 
-> Fix $\bar x, x$ and let 
+> Fix any $\bar x, x, \tilde \eta > 0$ and let 
 > $$
 > \begin{aligned}
->     \phi(u) &= \tilde\eta
+>     \phi(u) &:= \tilde\eta
 >     \left(
 >         h( \mathcal T_L\bar x) + \langle \mathcal G_L\bar x, u - \bar x\rangle
 >         + \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2 
->     \right) 
+>     \right), 
 >     \\
->     x^+ &= 
->     \prox{\phi}(x) = x - \mathcal G_L \bar x
+>     x^+ &:= 
+>     \prox{\phi}(x) = x - \tilde \eta\mathcal G_L \bar x. 
 > \end{aligned}
 > $$
-> Then for all $z, z'$, it has 
+> then it has
 > $$
 > \begin{aligned}
->     \Upsilon_{1}  &:= 
->     \tilde \eta(f(x^+) - f(x_*))
->     + 
->     \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert \bar x - x_*\Vert^2)
->     \\
->     &\le 
->     \tilde \eta 
->     \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
->     + 
->     \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
->     - 
->     \frac{1}{2}\Vert x^+ - x\Vert^2, 
->     \\
->     \forall z:
->     \Upsilon_2 &:= 
->     f(z) - f(\mathcal T_L \bar x) \le 
->     \langle \mathcal G_L(\bar x), z - \mathcal T_L \bar x\rangle + 
->     \frac{L}{2}\Vert z - \bar x\Vert^2. 
+>    \Upsilon_{1}  &:= 
+>    \tilde \eta(h(\mathcal T_L \bar x) - h(x_*))
+>    + 
+>    \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2)
+>    \\
+>    &\quad \le 
+>    \tilde \eta 
+>    \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+>    + 
+>    \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+>    - 
+>    \frac{1}{2}\Vert x^+ - x\Vert^2, 
+>    \\
+>    \forall z':
+>    \Upsilon_2 &:= 
+>    h(\mathcal T_L \bar x) - h(z') 
+>    \le 
+>    \langle \mathcal G_L\bar x, \mathcal T_L \bar x - z'\rangle + 
+>    \frac{L}{2}\Vert \mathcal T_L \bar x - \bar x\Vert^2. 
 > \end{aligned}
 > $$
 
 **Observations**
 
-By lemma proven at the start of the file, we have 
-
-$$
-\begin{aligned}
-    \phi(u) \le \tilde \eta h(u) \; \forall u,
-\end{aligned}
-$$
-
-the function is a local lineared lower bound for $h$. 
+By lemma proven at the start of the file, we have $\phi(u) \le \tilde \eta h(u) \; \forall u,$ it is a local lineared lower bound for $\tilde \eta h$. 
 
 **Proof**
 
@@ -1614,7 +1607,7 @@ $$
     \\
     g(z) - g(z') 
     &\le 
-    \langle \partial g(z'), z - z'\rangle. 
+    \langle \partial g(z), z - z'\rangle. 
 \end{aligned}
 $$
 
@@ -1623,12 +1616,15 @@ Adding them yield
 $$
 \begin{aligned}
     h(z) - h(z') &\le 
-    \langle \nabla f(\bar x) + \partial g(z'), z - z'\rangle + 
+    \langle \nabla f(\bar x) + \partial g(z), z - z'\rangle + 
     \frac{L}{2}\Vert z - \bar x\Vert^2. 
 \end{aligned}
 $$
 
-Setting $z' = \mathcal T_L \bar x$, we have the desired results. 
+Setting $z = \mathcal T_L \bar x$, we have the desired results. 
+
+**Remarks**
+
 
 
 ---

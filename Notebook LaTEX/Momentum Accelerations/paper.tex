@@ -334,269 +334,209 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Generic Lyapunov analysis for Accelerated gradient via PPM}
 \label{sec:generic_ag_ppm_lyapunov_analysis}
-    The lemma theorem states targets
-    \hyperref[prop:derive_ag_prox_grad_tript]
-    {definition \ref*{prop:derive_ag_prox_grad_tript}}. 
-
-    \begin{lemma}[Nonsmooth Generic AG Lyapunov Analysis]
+    The following lemma establish an upper bound for quantities used in the Lypunov functions for the convergence rate of 
+    \hyperref[def:ag_prox_grad_generic]
+    {definition \ref*{def:ag_prox_grad_generic}}
+    \begin{lemma}[Lyapunov Inequality]
     \label{lemma:nsmooth_agg_lyapunov_upper_bound}\;\\
-        Continue from 
-        \hyperref[prop:derive_ag_prox_grad_tript]
-        {definition \ref*{prop:derive_ag_prox_grad_tript}},
-        we derive the non-smooth analogous case of the Lyapunov upper bound for all $t \in \mathbb N \cup \{0\}$: 
+        Let $h = f + g$ be a sum of $f$ that is $L$-Lipschitz smooth convex, and $g$ be convex.
+        Fix any $\bar x, x, \tilde\eta > 0$, define
         \begin{align*}
-            \Upsilon_{1, t + 1}^\text{AG}
-            &= 
-            \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
-            \frac{1}{2} (
-                \Vert x_{t + 1} - x_*\Vert^2
-                - 
-                \Vert x_t - x_*\Vert^2
-            )
-            \\
-            &\le 
-            - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-            + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
-            - \langle 
-                \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-                x_{t + 1} - z_{t + 1}
-            \rangle
-            \\
-            \Upsilon_{2, t + 1}^\text{AG}
-            &= 
-            h(z_{t + 1}) - h(z_t) 
-            \le 
-            \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
-            \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
-        \end{align*}
-    \end{lemma}
-    \begin{proof}
-        Define 
-        \begin{align*}
-            \phi_t(u) &:= 
-            \tilde \eta_{t + 1} 
+            \phi(u) &:= \tilde\eta
             \left(
-                f(y_t) + g(y_t) + \langle \nabla f(y_t) + \partial g(y_t^+), u - y_t\rangle
-                % + 
-                % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
-            \right)\\
-            &= 
-            \tilde \eta_{t + 1} \left(
-                f(y_t) + \langle \nabla f(y_t), u - y_t\rangle + 
-                % \frac{1}{2\tilde \eta_{t + 1}}\Vert u - x_t\Vert^2
-                % + 
-                g(y_t) + \langle \partial g(y_t^+), u - y_t\rangle
-            \right). 
-        \end{align*}
-        Then the update in the Generic Tri-Point algorithm 
-        (\hyperref[def:ag_prox_grad_ppm]
-            {definition \ref*{def:ag_prox_grad_ppm}}) 
-        has $x_{t + 1} = \hprox_{\phi_t}(x_t)$ if we ignore the difference between the constant terms $h(y_t^+)$, $f(y_t) + g(y_t)$ from above. 
-        Therefore we can use the Lyapunov inequality for PPM (\hyperref[thm:ppm_descent_ineq]
-            {theorem \ref*{thm:ppm_descent_ineq}})
-        which gives for all $x_*$: 
-        \begin{align*}
-            & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
-            \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
-            \frac{1}{2}\Vert x_t - x_*\Vert^2
-            \le \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2, 
+                h( \mathcal T_L\bar x) + \langle \mathcal G_L\bar x, u - \bar x\rangle
+                + \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2 
+            \right), 
             \\
-            & \text{where }
-            \phi_t(x_{t + 1}) =
-            \\
-            & \quad 
-            \tilde \eta_{t + 1}
-            \left(
-                f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle + 
-                % \frac{1}{2\tilde \eta_{t + 1}}\Vert x_{t + 1} - x_t\Vert^2
-                % + 
-                g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle
-            \right). 
+            x^+ &:= 
+            \prox{\phi}(x) = x - \tilde \eta\mathcal G_L \bar x. 
         \end{align*}
-        to simplify, consider using the $L$-smoothness of $f$, we have the inequality: 
+        with $x_*$ being the minimizer of $h$, it has 
         \begin{align*}
-            \begin{aligned}
-                f(y_t) + \langle \nabla f(y_t), x_{t + 1} - y_t\rangle
-                &=
-                f(y_t) + \langle \nabla f(y_t), (x_{t +1} - z_{t + 1}) + (z_{t + 1} - y_t) \rangle
-                \\
-                &\ge 
-                f(z_{t + 1}) - \frac{L}{2} \Vert z_{t + 1} - y_t\Vert^2 + 
-                \langle \nabla f(y_t), x_{t +1} - z_{t + 1}\rangle
-                \\
-                &= 
-                f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2
-                + \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle.     
-            \end{aligned}
-            \tag{$[*]$}
-        \end{align*}
-        further consider
-        \begin{align*}
-            \begin{aligned}
-                g(y_t) + \langle \partial g(y_t^+), x_{t + 1} - y_t\rangle 
-                &= g(y_t) + 
-                \langle \partial g(y_t^+), 
-                x_{t + 1} - y_t^+ + y_t^+ - y_t
-                \rangle
-                \\
-                &= g(y_t) 
-                + \langle \partial g (y_t^+),
-                    x_{t + 1} - y_t^+
-                \rangle
-                + 
-                \langle 
-                    \partial g(y_t^+), y_t^+ - y_t
-                \rangle
-                \\
-                g \text{ convex }\implies 
-                &\ge 
-                g(y_t^+) + 
-                \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle. 
-            \end{aligned}
-            \tag{$[\star]$}
-        \end{align*}
-        In the $([\star])$ derivation, we used the convexity of $g$ where 
-        \begin{align*}
-            \langle \partial g(y_t^+), y_t - y_t^+\rangle
-            &\le g(y_t) - g(y_t^+)
-            \\
-            \langle \partial g (y_t^+), y_t^+ - y_t \rangle
-            &\le 
-            g(y_t^+) - g(y_t). 
-        \end{align*}
-        Now, adding $([*]), ([\star])$, multiply their sum by $\tilde\eta_{t + 1}$ makes it equals to $\phi_t(x_{t +1 })$ , we can establish a lower bound for $\phi_t(x_{t + 1})$, yielding inequality 
-        {\small
-            \begin{align*}
-                \phi_t(x_{t + 1})
-                &\ge 
-                \tilde\eta_{t + 1}
-                \left(
-                    f(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
-                    +
-                    \langle \nabla f(y_t), x_{t + 1} - y_t^+\rangle
-                    + 
-                    g(y_t^+) + 
-                    \langle \partial g(y_t^+), x_{t + 1} - y_t^+\rangle
-                \right) 
-                \\
-                &= 
-                \tilde\eta_{t + 1}
-                \left(
-                    h(y_t^+) - \frac{L}{2}\Vert y_t^+ - y_t\Vert^2 
-                    + 
-                    \langle \partial g(y_t^+) + \nabla f(y_t), x_{t + 1} - y_t^+\rangle
-                \right).
-            \end{align*}
-        }
-        Apply
-        \hyperref[lemma:grad_map_lemma_first]{lemma \ref*{lemma:grad_map_lemma_first}} 
-        we have $\partial g(y_t^+) + \nabla f(y_t) \ni \mathcal G_L(y_t)$, and by the algorithm updates $y_t^+ = z_{t + 1}$, therefore the above inequality simplifies to 
-        \begin{align*}
-            \phi_t(x_{t + 1}) &\ge 
-            \tilde\eta_{t + 1} 
-            \left(
-                h(z_{t + 1}) - 
-                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-                + 
-                \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
-            \right). 
-        \end{align*}
-        Finally, from (\hyperref[lemma:grad_map_linearization]
-            {lemma \ref*{lemma:grad_map_linearization}})
-        we have $\phi_t(u) \le \tilde\eta_{t + 1}h(u)$ for all $u$. 
-        With that we lower bound the LHS of the PPM Lyapunov inequality of $\phi_t(u)$, making: 
-        {\footnotesize
-        \begin{align*}
-            & \phi_t(x_{t + 1}) - \phi_t(x_*) + 
-            \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
-            \frac{1}{2}\Vert x_t - x_*\Vert^2
-            \le
-            \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-            \\
-            \implies &
-            \tilde \eta_{t + 1}
-            \left(
-                h(z_{t + 1}) - 
-                \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-                + 
-                \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
-            \right) - \tilde \eta_{t + 1} h(x_*)
-            +
-            \frac{1}{2}\Vert x_{t+1} - x_*\Vert^2 - 
-            \frac{1}{2}\Vert x_t - x_*\Vert^2
-            \\
-            & \quad \le
-            \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-            \\
-            \iff &
-            \tilde\eta_{t + 1}(h(z_{t + 1}) - h(x_*))
-            + \frac{1}{2}\left(
-                \Vert x_{t + 1} - x_*\Vert^2 
-                - 
-                \Vert x_t - x_*\Vert^2
-            \right) =: \Upsilon_{1, t + 1}^\text{AG}
+            \Upsilon_{1}  &:= 
+            \tilde \eta(h(\mathcal T_L \bar x) - h(x_*))
+            + 
+            \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2)
             \\
             &\quad \le 
-            \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-            - 
-            \tilde\eta_{t + 1}
-            \langle \mathcal G_L(y_t), x_{t +1} - z_{t + 1}\rangle
+            \tilde \eta 
+            \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
             + 
-            \frac{L \tilde\eta_{t + 1}}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+            - 
+            \frac{1}{2}\Vert x^+ - x\Vert^2, 
+            \\
+            \forall z':
+            \Upsilon_2 &:= 
+            h(\mathcal T_L \bar x) - h(z') 
+            \le 
+            \langle \mathcal G_L\bar x, \mathcal T_L \bar x - z'\rangle + 
+            \frac{L}{2}\Vert \mathcal T_L \bar x - \bar x\Vert^2. 
+        \end{align*}
+    \end{lemma}
+    \begin{observation}
+        Function $\phi$ is a linear function that qualifies as a lower bound of $\tilde \eta h$, anchored at $\bar x$ by 
+        \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}.
+    \end{observation}
+    \begin{proof}
+        Directly observe that we have 
+        \begin{align*}
+            \quad &
+            h(\mathcal T_L\bar x) + 
+            \langle \mathcal G_L \bar x, u - \bar x\rangle + 
+            \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
+            \\
+            &= 
+            h(\mathcal T_L \bar x) + 
+            \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
+            + 
+            \langle \mathcal G_L \bar x, \mathcal T_L \bar x - \bar x\rangle
+            + 
+            \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x \Vert^2
+            \\
+            &= 
+            h(\mathcal T_L \bar x) + 
+            \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
+            + 
+            \langle 
+                L (\bar x - \mathcal T_L \bar x)
+                , 
+                \mathcal T_L \bar x - \bar x
+            \rangle
+            + 
+            \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
+            \\
+            &= 
+            h(\mathcal T_L \bar x) + 
+            \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
+            - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2. 
+        \end{align*}
+        By PPM descent inequality
+        \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}
+        , let $x_*$ be a minimizer, it claims that 
+        {\small
+        \begin{align*}
+            & 
+            \phi(x^+) - \phi (x^*) + 
+            \frac{1}{2}\left(
+                \Vert x^+ - x_*\Vert^2 - 
+                \Vert x - x_*\Vert^2
+            \right)
+            \le 
+            - \frac{1}{2}\Vert x^+ - x\Vert^2
+            \\
+            \implies &
+            \tilde 
+            \eta 
+            \left(   
+                h(\mathcal T_L \bar x) + 
+                \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
+                - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+            \right)
+            - \tilde \eta h (x_*)
+            +
+            \frac{1}{2}\left(
+                \Vert x^+ - x_*\Vert^2 - 
+                \Vert x - x_*\Vert^2
+            \right)
+            \\
+            &\le 
+            - \frac{1}{2}\Vert x^+ - x\Vert^2
+            \\
+            \iff &
+            \tilde \eta (h(\mathcal T_L\bar x) - h(x_*))  
+            + 
+            \frac{1}{2}\left(
+                \Vert x^+ - x_*\Vert^2 - 
+                \Vert x - x_*\Vert^2
+            \right)
+            \\
+            & \le 
+            \tilde \eta 
+            \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+            + 
+            \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
+            - 
+            \frac{1}{2}\Vert x^+ - x\Vert^2. 
         \end{align*}
         }
-        It established the first inequality that we wish to prove. 
-        Next, the smoothness of $f$ establish inequality: 
+        Next, for all $z, z'$, it would have by smoothness of $f$: 
         \begin{align*}
-            \begin{aligned}
-                f(z_{t + 1}) - f(z_t) &= f(z_{t + 1}) - f(y_t) + f(y_t) - f(z_t) 
-                \\
-                &\le 
-                \langle \nabla f(y_t), z_{t + 1} - y_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2 
-                + 
-                \langle \nabla f(y_t), y_t - z_t\rangle
-                \\
-                &= 
-                \langle \nabla f(y_t), z_{t + 1} - z_t\rangle + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
-            \end{aligned}
-            \tag{$[**]$}
+            f(z) - f(z') &= 
+            f(z) - f(\bar x) + f(\bar x) - f(z')
+            \\
+            &\le 
+            \langle 
+                \nabla f(\bar x), z - \bar x
+            \rangle + 
+            \frac{L}{2}\Vert z - \bar x\Vert^2 
+            + 
+            \langle 
+                \nabla f(\bar x), 
+                \bar x - z'
+            \rangle
+            \\
+            &= 
+            \langle \nabla f(\bar x), z - z'\rangle
+            + 
+            \frac{L}{2}\Vert z - \bar x\Vert^2. 
         \end{align*}
-        The convexity of $h$ establish 
+        The convexity of $g$ yields: 
         \begin{align*}
-            \begin{aligned}
-                g(z_{t + 1}) + 
-                \langle \partial g(z_{t + 1}), z_t - z_{t + 1}\rangle
-                &\le g(z_t)
-                \\
-                g(z_{t + 1}) - g(z_t)
-                &\le 
-                \langle 
-                    \partial g (z_{t +1}), 
-                    z_{t + 1} - z_t
-                \rangle. 
-            \end{aligned}
-            \tag{$[\star *]$}    
+            g(z) + 
+            \langle 
+                \partial g(z), z' - z
+            \rangle 
+            &\le g(z')
+            \\
+            g(z) - g(z') 
+            &\le 
+            \langle \partial g(z), z - z'\rangle. 
         \end{align*}
-        Adding $([**]), ([\star *])$ yields 
+        Adding them yield 
         \begin{align*}
-            \begin{aligned}
-                \Upsilon_{2, t + 1}^{\text{AG}} := 
-                h(z_{t + 1}) - h(z_t) 
-                &\le 
-                \langle 
-                    \nabla f(y_t) + \partial g(z_{t+1}), 
-                    z_{t + 1} - z_t
-                \rangle + 
-                \frac{L}{2}
-                \Vert 
-                    z_{t + 1} - y_t
-                \Vert^2. 
-            \end{aligned}
+            h(z) - h(z') &\le 
+            \langle \nabla f(\bar x) + \partial g(z), z - z'\rangle + 
+            \frac{L}{2}\Vert z - \bar x\Vert^2. 
         \end{align*}
-        Using the property of gradient mapping (\hyperref[lemma:grad_map_lemma_first]
-            {lemma \ref*{lemma:grad_map_lemma_first}}), 
-        $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
+        Setting $z = \mathcal T_L \bar x$, we have the desired results. 
     \end{proof}
+    \begin{remark}
+        This lemma is designed to work with 
+        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}.
+        Set $\bar x = y_t, x = x_t$, then 
+        \begin{align*}
+            x^+ &= x_t - \mathcal G_L y_t = x_{t + 1},
+            \\
+            z_{t + 1} &= \mathcal T_L y_t = \mathcal T_L \bar x.
+        \end{align*}
+        Set $z' = z_t, \tilde \eta = \tilde \eta_{t + 1}$, 
+        the results can be written as 
+        \begin{align*}
+            \Upsilon_{1, t + 1}^{\text{AG}}
+            &:= 
+            \tilde \eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+            + 
+            \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
+            \\
+            &\quad \le 
+            \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
+            + 
+            \frac{\tilde \eta_{t + 1}L}{2}
+            \Vert  
+                y_t - z_{t + 1}
+            \Vert^2
+            - 
+            \frac{1}{2}
+            \Vert x_{t + 1} - x_t\Vert^2,  
+            \\ 
+            \Upsilon_{2, t + 1}^{\text{AG}}
+            &:= 
+            h(z_{t + 1}) - h(z_t) \le 
+            \langle \mathcal G_L \bar x, z_{t + 1} - z_t \rangle + 
+            \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+        \end{align*}
+    \end{remark}
 
     \begin{theorem}[Generic AG Convergence]
     \label{thm:generic_ag_convergence}
@@ -611,10 +551,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         if there is a choice of $\eta_i, \tilde \eta_i$ in 
         \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}} such that we have 
         \begin{align*}
-            & \Phi_{t + 1} - \Phi_{t}\left(
+            & \Phi_{t + 1} - \Phi_{t} =
+            \left(
                 \sum_{i = 1}^{t} \tilde \eta_i
-            \right) =
-            \Upsilon_{2, t + 1}^{\text{AG}} + 
+            \right)\Upsilon_{2, t + 1}^{\text{AG}} + 
             \Upsilon_{1, t + 1}^{\text{AG}} 
             \le \delta_{t + 1} \quad 
             \forall t \in \mathbb N, 
@@ -623,11 +563,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Then with
         \begin{align*}
-            S_t &:= \sum_{i = 1}^{t} \delta_i
-            \\
-            \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i
+            S_t := \sum_{i = 1}^{t} \delta_i,
+            \quad 
+            \sigma_t := \sum_{i = 1}^{t}\tilde \eta_i, 
         \end{align*}
-        we have $\Phi_{t + 1} - \Phi_t \le \delta_{t + 1}$, it allows for a convergence rate of $\mathcal O \left(\sigma_T^{-1}S_T\right)$ of $f(z_T) - f(x_*)$ when $S_T \neq 0$ and a rate of $\mathcal O(\sigma_T^{-1})$ when $S_T = 0$. 
+        we have $\Phi_{t + 1} - \Phi_t \le \delta_{t + 1}$, it allows for a convergence rate of $\mathcal O \left(\sigma_T^{-1}S_T\right)$ of $f(z_T) - f(x_*)$ when $S_T \neq 0$ and a rate of $\mathcal O(\sigma_T^{-1})$ when $S_T \le 0$. 
     \end{theorem}
     \begin{proof}
         By definition we have
@@ -733,8 +673,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \item it simplifies the algorithm to FISTA. 
             \item and $a_t$ is the famous Nesterov momentum sequence. 
         \end{enumerate}
-        
-        
     \end{theorem}
     \begin{proof}
         With $t \in \mathbb N \cup \{0\}$ fixed, 
