@@ -82,40 +82,32 @@ $$
 $$
 
 #### **Lemma 0.2 | Linear Lower Bound of Gradient Mapping**
-> Continuing from previous lemma, fix any $x$, let $x^+ = \mathcal T_L(x)$, then we have the inequality for all $z$: 
+> Continuing from previous lemma, now with $f$ being $\mu \ge 0$ strongly convex. 
+> Fix any $x$, let $x^+ = \mathcal T_L(x)$, then we have the inequality for all $z$: 
 > $$
 > \begin{aligned}
->     h(x^+) - h(z)
->     &\le 
->     \langle \mathcal G_L(x), x - z\rangle - 
->     \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2
+>     h(z) &\ge 
+>     h(x^+) + \langle \mathcal G_L (x), z - x\rangle + 
+>     \frac{L}{2}\Vert x - x^+\Vert^2 + \frac{\mu}{2}
+>     \Vert z - x\Vert^2. 
 > \end{aligned}
 > $$
 
 
-**Observations**
-
-We get a linear functional anchored at $x^+$ that acts as the lower bound of $h$ because 
-
-$$
-\begin{aligned}
-    h(x^+) + \langle \mathcal G_L(x), z - x\rangle 
-    \le 
-    h(z) - \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2
-    &\le h(z) \quad \forall z. 
-\end{aligned}
-$$
 
 **Proof**
 
-Directly from the $L$-smoothness of $f$, convexity of $g, f$, we have the list of inequalities: 
+Directly from the $L$-smoothness of $f$, $\mu\ge 0$ strong convexity of $f$ and convesity of $g$, it has 
 $$
 \begin{aligned}
     &f(x^+) \le 
     f(x) + \langle \nabla f(x), x^+ - x\rangle
     + \frac{L}{2}\Vert x - x^+\Vert^2, 
     \\
-    &f(x) \le f(z) - \langle \nabla f(x), z - x\rangle, 
+    &
+    f(x) \le f(z) - \langle \nabla f(x), z - x\rangle
+    - \frac{\mu}{2}\Vert z - x\Vert^2
+    , 
     \\
     &g(x^+) \le 
     g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
@@ -125,54 +117,96 @@ $$
 Now, consider adding $g(x^+)$ to the first inequality from above we get 
 
 $$
-{\small
 \begin{aligned}
-    f(x^+) + g(x^+) 
-    &\le 
-    f(x) + g(x^+) + \langle \nabla f(x), x^+ - x\rangle 
-    + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &\le 
-    (f(z) - \langle \nabla f(x), z - x\rangle) + 
-    \left(g(z) - \langle \partial g(x^+), x^+ - z\rangle\right)
-    + 
-    \langle \nabla f(x), x^+ - x\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= f(z) + g(z) + \langle \nabla f(x), x - z + x^+ - x\rangle
-    + 
-    \langle \partial g(x^+), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= 
-    h(z) + \langle \nabla f(x), x^+ - z\rangle + 
-    \langle \partial g(x^+), x^+ - z\rangle
-    + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= h(z) + \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
-    + \frac{L}{2}\Vert x - x^+\Vert^2.
+    h(x^+) &= f(x^+) + g(x^+)
+    \\&
+    \begin{aligned}
+        &\le 
+        \left(
+            f(x) + \langle \nabla f(x), x^+ - x\rangle
+            + \frac{L}{2}\Vert x - x^+\Vert^2
+        \right)
+        \\
+        &\qquad  
+        + (g(z) + \langle \partial g(x^+), x^+ - z\rangle)
+    \end{aligned}
+    \\&
+    \begin{aligned}
+        &\le 
+        \left(
+            f(z) - \langle \nabla f(x), z - x\rangle
+            - \frac{\mu}{2}\Vert z - x\Vert^2
+            + \langle \nabla f(x), x^+ - x\rangle
+            + 
+            \frac{L}{2}\Vert x - x^+\Vert^2
+        \right)
+        \\
+        &\qquad 
+        +
+        (g(z) + \langle \partial g(x^+), x^+ - z\rangle)
+    \end{aligned}
+    \\&
+    \begin{aligned}
+        &= 
+        (f(z) + h(z)) 
+        \\
+        &\qquad 
+        + \left(
+            \langle \nabla f(x), x - z\rangle + 
+            \langle \nabla f(x), x^+ - x\rangle + 
+            \langle \partial g(x^+), x^+ - z\rangle
+        \right) 
+        \\ 
+        &\qquad 
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        + \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}
+    \\& 
+    \begin{aligned}
+        &= h(z) + 
+        \left(
+            \langle \nabla f(x), x - x^+ + x^+ - z\rangle + 
+            \langle \nabla f(x), x^+ - x\rangle + 
+            \langle \partial g(x^+), x^+ - z\rangle
+        \right)
+        \\
+        &\qquad 
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        + \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}
+    \\& 
+    \begin{aligned}
+        &= h(z) + 
+        \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        + \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}
+    \\& 
+    \begin{aligned}
+        &= h(z) + 
+            \langle \mathcal G_L(x), x^+ - z\rangle 
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        + \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}
+    \\& 
+    \begin{aligned}
+        &= h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        + \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}
+    \\&
+    \begin{aligned}
+        &= h(z) + 
+        \underbrace{\langle L(x - x^+), x - z\rangle}_{
+            = - \langle \mathcal G_L (x), z - x\rangle
+        }
+        - \frac{\mu}{2}\Vert z - x\Vert^2
+        - \frac{L}{2}\Vert x - x^+\Vert^2
+    \end{aligned}. 
 \end{aligned}
-}
 $$
 
-By $\mathcal G_L(x) = L(x - x^+) \in \nabla f(x) + \partial g(x^+)$ from previous dicussion, we have 
-$$
-\begin{aligned}
-    h(x^+) &\le 
-    h(z) + \langle \mathcal G_L(x), x^+ - z\rangle + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= h(z) - \langle L(x^+ - x), x^+ - x + x - z \rangle 
-    + 
-    \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= 
-    h(z) - L\Vert x^+ - x\Vert^2 
-    + L \langle x^+ - x, x - z\rangle
-    + \frac{L}{2}\Vert x - x^+\Vert^2
-    \\
-    &= h(z) + \langle \mathcal G_L(x), x - z\rangle - 
-    \frac{L}{2}\Vert x - x^+\Vert^2. 
-\end{aligned}
-$$
-
+Substituting $\mathcal G_L(x) = L (x - x^+)$ to the above expression, rearrange it a bit will recover the desired inequalities. 
 Therefore, the inequality is justified. 
 
 **Remarks**
