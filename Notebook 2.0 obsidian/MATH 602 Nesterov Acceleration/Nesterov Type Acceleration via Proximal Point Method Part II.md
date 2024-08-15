@@ -829,16 +829,6 @@ The upper bound interpretation of the smooth case as proposed by Ahn, Sra for th
 >         \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2 
 >     \right\rbrace
 >     \\
->     &= \argmin{x}
->     \left\lbrace
->         f(y_t) - \frac{1}{2\mu} \Vert \nabla f(y_t)\Vert^2 
->         + 
->         \frac{\mu
->         }{2}\Vert x - y_t^+\Vert^2
->         + 
->         \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
->     \right\rbrace.
->     \\
 >     &= (1 + \mu\tilde \eta_{t + 1})^{-1}
 >     \left(
 >         x_t + \mu \tilde \eta_{t + 1}y_t^{+}
@@ -1536,8 +1526,7 @@ Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t)
 >    \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2)
 >    \\
 >    &\quad \le 
->    \tilde \eta 
->    \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+>    - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
 >    + 
 >    \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
 >    - 
@@ -1563,7 +1552,7 @@ Directly observe that we have
 $$
 \begin{aligned}
     \quad &
-    h(\mathcal T_L(\bar x)) + 
+    h(\mathcal T_L\bar x) + 
     \langle \mathcal G_L \bar x, u - \bar x\rangle + 
     \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
     \\
@@ -1633,8 +1622,7 @@ $$
         \Vert x - x_*\Vert^2
     \right)
     \le 
-    \tilde \eta 
-    \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+    - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
     + 
     \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
     - 
@@ -1725,7 +1713,7 @@ $$
             \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
             \\
             &\quad \le 
-            \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
+            - \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
             + 
             \frac{\tilde \eta_{t + 1}L}{2}
             \Vert  

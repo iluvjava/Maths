@@ -43,12 +43,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Inspired by such an interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex and friendly to a proximal operator. 
     \par
     Classical analysis and extension of Nesterov accelerated gradient existed. 
-    See \cite*{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
-    However the classical analysis found in \cite*[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and cherry picked Nesterov's estimating sequence to assist the proof for the parameters in the algorithm. 
+    See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
+    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and cherry picked Nesterov's estimating sequence to assist the proof for the parameters in the algorithm. 
     In Ahn's work however, the complexities are packaged into the PPM interpretation of accelerated gradient. 
     It uses a lemma from Moreau envelope to derive the Lypunov analysis, the sizes, and parameters for several variants of the algorithm. 
     \par
-    Numerous notable variations of Nesterov accelerated gradient exists. \cite*[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$. 
+    Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$. 
     Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
     For a variant of accelerated gradient where the iterates converge, see \cite{chambolle_convergence_2015}. 
     Extension such as the Harpen acceleration for the resolvent operator in general is outside of the scope since doesn't have a Moreau envelope. 
@@ -63,9 +63,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     % \end{enumerate}
     
 \section{Preliminaries}\label{sec:preliminaries}
-    Fristly, recall the theorem: 
+    In this section we introduce the a descent lemma for Proximal Point Method (PPM) in the convex case. 
+    We define the proximal gradient mapping $\mathcal T_L$, and gradient mapping $\mathcal G_L$ for function satisfying assumption 
+    \ref*{assumption:smooth-nonsmooth-sum}. 
+    A lower bound function is identified using the gradient mapping operator and proved in lemma 
+    \ref*{lemma:grad_map_linearization}, 
+    this is a key component of the proximal point interpretation of the accelerated gradient method. 
+    \begin{assumption}\label{assumption:smooth-nonsmooth-sum}
+        Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth. 
+    \end{assumption}
+    
     \begin{theorem}[Proximal Descent Inequality]\label{thm:ppm_descent_ineq}
-        With $f: \RR^n \mapsto \overline \RR^n$ $\beta$ stronly convex where $\beta \ge 0$, fix any $x \in \RR^n$, let $p = \hprox_f(x)$, then for all $y$ we have inequality 
+        Let $f: \RR^n \mapsto \overline \RR^n$ $\beta$ be strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
+        For all $y \in \RR$ it verifies
         $$
             \left(f(p) + \frac{1}{2}\Vert x - p\Vert^2\right)
             - 
@@ -81,15 +91,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         We use this theorem to prove the convergence of the proximal point method. 
         See the proof (\cite{bauschke_convex_2017}, theorem 12.26). 
     \end{remark}
-    We introduce some additional lemma that are crucial to the derivations of non-smooth accelerated gradient method. 
+ 
     \begin{definition}[The Gradient Mapping]
         \label{def:gradient_mapping}
-        Let $g = f + g$ where $f$ is $L$-Lipschitz smooth and convex, $g$ is convex. 
+        Suppose $h = f + g$ satisfies 
+        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
         Define the proximal gradient operator
         $$
             \mathcal T_L(x) := \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)),
         $$
-        then the gradient mapping is defined as
+        and the gradient mapping operator
         $$
             \mathcal G_L(x) = L(x - \mathcal T_L(x)). 
         $$
@@ -100,17 +111,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{remark}
 
     \begin{lemma}[Gradient Mapping Approximates Subgradient]
-        \label{lemma:grad_map_lemma_first}
-        Continue from 
-        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}, 
-        the gradient mapping satisfies
+        Suppose $h = f + g$ satisfies 
+        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref{assumption:smooth-nonsmooth-sum}}, 
+        let $\mathcal T_L, \mathcal G_L$ be given by 
+        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}.
+        Then for all $x$, the gradient mapping verifies
         \begin{align*}
             x^+ &= \mathcal T_L(x), 
             \\
-            L(x - x^+) &\in  \nabla f(x) + \partial g(x^+) \ni \mathcal G_L(x). 
+            \mathcal G_L(x) = L(x - x^+) &\in  \nabla f(x) + \partial g(x^+). 
         \end{align*}
     \end{lemma}
     \begin{proof}
+        Using the resolvent definition of the proximal gradient operator and the fact that the single-valuedness in the convex settings, $x^+$ has relations: 
         \begin{align*}
             x^+ &= [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f](x)
             \\
@@ -130,10 +143,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \begin{lemma}[Linearized Gradient Mapping Lower Bound]
     \label{lemma:grad_map_linearization}
-        Continue from 
-        \hyperref[lemma:grad_map_lemma_first]{definition \ref*{lemma:grad_map_lemma_first}}, 
-        further assume that $f$ is strongly convex with index $\mu \ge 0$,
-        with $x^+ = \mathcal T_L(x)$, the gradient mapping satisfies the inequality for all $z$: 
+        Suppose that $h = f + g$ satisfies 
+        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
+        further assume that $f$ is strongly convex with index $\mu \ge 0$. 
+        Let $x^+ = \mathcal T_L(x)$ as given in 
+        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}. 
+        Then for all $z \in \RR$, it satisfies
         \begin{align*}
             h(z) &\ge 
             h(x^+) + \langle \mathcal G_L (x), z - x\rangle + 
@@ -142,7 +157,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{lemma}
     \begin{proof}
-        Directly from the $L$-smoothness of $f$, convexity of $g, f$, we have the list of inequalities: 
+        Using the $L$-smoothness of $f$ and convexity of $g, f$, it has inequalities
         \begin{align*}
             &f(x^+) \le 
             f(x) + \langle \nabla f(x), x^+ - x\rangle
@@ -156,7 +171,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &g(x^+) \le 
             g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
         \end{align*}
-        Then we have the following sequence of relations 
+        Apply the above by considering the following sequence of relations
         \begin{align*}
             h(x^+) &= f(x^+) + g(x^+)
             \\&
@@ -249,25 +264,60 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         Observe that the linearization $h(x^+) + \langle \mathcal G_L(x), z - x\rangle$ is anchored at $x^+$, instead of $x$. 
         Geometrically, it's tilted and it ``prefers" the sharp corners of a convex function, if, $x$ is close to a sharp corner. 
-
+        The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}. 
     \end{remark}
 
 \section{The PPM interpreation of accelerated gradient}\label{sec:ppm_interp_of_ag}
-    In this section, we state the PPM formulation of the accelerated proximal gradient method. 
-    The formulation is abstract because the parameters are not yet determined. 
+    In this section, we present the PPM formulation of the accelerated proximal gradient method. 
+    These interpretations of \cite{ahn_understanding_2022} are extension in the non-smooth context using the proximal gradient mapping operator. 
+    The next definition starts the discussion. 
+    \begin{definition}[Linear Lower Bounding Function]\label{def:gradmap-linear-lowerbnd-fxn}
+        Let $h = f+ g$ satisfies
+        \hyperref[assumption:smooth-nonsmooth-sum]{definition \ref*{assumption:smooth-nonsmooth-sum}}, 
+        $\mathcal G_L$ given by 
+        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}. 
+        Define for all $y$ the function
+        \begin{align*}
+            l_h(x; y) = h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle 
+            + \frac{L}{2}\Vert y - \mathcal T_L y\Vert^2. 
+        \end{align*}
+    \end{definition} 
+    \begin{remark}
+        The function satisfies $l_h(x; y) \le h(x)$ for all $x \in \RR, y \in \RR$ by 
+        \hyperref[lemma:grad_map_linearization]
+        {lemma \ref*{lemma:grad_map_linearization}}. 
+    \end{remark}
+    \par
+    With the above definition, it's possible to formulate a generic form of accelerated gradient method using $l_h(x,y)$ as two proximal point methods anchored at some iterates $x_t, x_{t + 1}$.
+    The formulation is generic because of undetermined stepsize parameter $\eta_t, \tilde \eta_t$ from the two proximal point. 
+    \par
+    We state the PPM interpretation of accelerated gradient in 
+    \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}, 
+    which has the equivalent form as presented in
+    \hyperref[def:ag_prox_grad_generic]
+    {definition \ref*{def:ag_prox_grad_generic}}. 
+    \hyperref[prop:derive_ag_prox_grad_tript]
+    {Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
+    shows their equivalence. 
+    \par
+    Throughout this section, we assume 
+    \begin{enumerate}
+        \item $h=f + g$ satisfies 
+            \hyperref[assumption:smooth-nonsmooth-sum]
+            {assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
+        \item Using $h$ as given from above, let $\mathcal T_L, \mathcal G_L$ be given by 
+            \hyperref[def:gradient_mapping]
+            {definition \ref*{def:gradient_mapping}}. 
+        \item Using all above, let $l_h$ be given by 
+            \hyperref[def:gradmap-linear-lowerbnd-fxn]
+            {definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
+    \end{enumerate}
+
     \begin{definition}[AG Proximal Gradient PPM Generic Form]
     \label{def:ag_prox_grad_ppm}
-        Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
-        With $\mathcal T_L, \mathcal G_L$ being the proximal gradient, and the gradient mapping operator. 
-        Define the linear lower bounding function for $h$ at $y$, for all $x$: 
-        $$
-        \begin{aligned}
-            l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle 
-                + \frac{L}{2}\Vert y - \mathcal T_L y\Vert^2
-            \le h(x), 
-        \end{aligned}
-        $$
-        with that we define the algorithm:
+        Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
+        With initial iterate $x_0, y_0$, 
+        The generic form has iterates $x_t, y_t$ for all $t \in \N$ that satisfy: 
         $$
         \begin{aligned}
             x_{t + 1} &= \argmin_{x} \left\lbrace
@@ -283,35 +333,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right\rbrace.
         \end{aligned}
         $$
+        
     \end{definition}
 
     \begin{definition}[AG Proximal Gradient Generic Form]
     \label{def:ag_prox_grad_generic}
-        With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
-        Define $x^+ = \mathcal T_L(x)$, so that $\mathcal G_L(x) = L(x -  x^+)$, we define the algorithm updates $(y_t, x_{t + 1}, z_{t + 1})$ with expression: 
+        Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
+        With initial iterate $x_0, y_0$.
+        The generic form has iterates $(y_t, x_{t + 1}, z_{t + 1})$ such that 
         $$
         \begin{aligned}
             y_t^+ &= \mathcal T_L(y_t)
             \\
             y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
             \\
-            x_{t + 1} &= x_t - \tilde \eta \mathcal G_L(y_t)
+            x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
             \\
             z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
         \end{aligned}
         $$
-        for all $t\in \mathbb N$ where the base case has $y_0 = x_0$. 
+        for all $t\in \mathbb N$. 
     \end{definition}
     \begin{remark}
         Observe that $z_{t + 1} = y_t^+$. 
     \end{remark}
     
-    \begin{proposition}[Deriving Proximal Gradient Generic Form]
-        \label{prop:derive_ag_prox_grad_tript}
-        \quad \\
-        Continue from the proximal point interpretation of the proximal gradient 
-        (\hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}})
-        we have the equalities 
+    \begin{proposition}
+    \label{prop:derive_ag_prox_grad_tript}
+       We have equalities
         \begin{align*}
             x_{t + 1} &= \argmin_{x}
             \left\lbrace
@@ -328,13 +377,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= (1 + L\eta_{t + 1})^{-1}
             (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
         \end{align*}
-        Therefore, the algorithm in
+        This thows
         \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}
-        is equivalent to algorithm in
-        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}
+        and 
+        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}} 
+        are equivalent. 
     \end{proposition}
     \begin{proof}
-        Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by the definition of algorithm. 
+        Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by 
+        \hyperref[lemma:grad_map_linearization]
+        {lemma \ref*{lemma:grad_map_linearization}}
         Since $l_h(x; y_t)$ is a simple linear function wrt $x$, minimizing the quandratic where to get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$; for $y_{t + 1}$, complete the square on the second and the third terms: 
         \begin{align*}
             & \frac{L}{2}\left(
@@ -388,7 +440,18 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     The following lemma establish an upper bound for quantities used in the Lypunov functions for the convergence rate of 
     \hyperref[def:ag_prox_grad_generic]
     {definition \ref*{def:ag_prox_grad_generic}}
-    \begin{lemma}[Lyapunov Inequality]
+    \begin{lemma}[Lyapunov Inequality]. 
+    The Lypunov function in use is identical to Ahn and Sra \cite[section 4.2]{ahn_understanding_2022} except for the involvement of a gradient mapping. 
+    We present the results differently by compatifying results into 
+    \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]
+    {lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}. 
+    Theorem \ref*{thm:generic_ag_convergence} 
+    states new results that are extension to Ahn and Sra's works by introducing an error term to the Lypunov analysis, allowing for a weaker constraints for the stepsize paramters $\tilde \eta_i, \eta_i$ from 
+    \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}. 
+    \par
+    Theorem \ref*{thm:ag_generic_stepsize_constrants} states the weakened constraints on the stepsize parameters $\tilde \eta_i, \eta_i$. 
+    
+
     \label{lemma:nsmooth_agg_lyapunov_upper_bound}\;\\
         Let $h = f + g$ be a sum of $f$ that is $L$-Lipschitz smooth convex, and $g$ be convex.
         Fix any $\bar x, x, \tilde\eta > 0$, define
@@ -410,8 +473,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2)
             \\
             &\quad \le 
-            \tilde \eta 
-            \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+            - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
             + 
             \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
             - 
@@ -503,8 +565,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right)
             \\
             & \le 
-            \tilde \eta 
-            \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
+            - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
             + 
             \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
             - 
@@ -571,7 +632,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
             \\
             &\quad \le 
-            \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
+            - \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
             + 
             \frac{\tilde \eta_{t + 1}L}{2}
             \Vert  
@@ -1032,7 +1093,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align*}
             \begin{cases}
                 a_{t + 1} = (1/2)\left(
-                1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 2}}
+                1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 1}}
                 \right), 
                 \\
                 c_{t + 1} = a_t (L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}. 
@@ -1185,5 +1246,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \appendix
 
-\printbibliography
+
+% \printbibliography
+
+\bibliographystyle{siam}
+\bibliography{references/refs}
+
 \end{document}
