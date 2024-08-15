@@ -28,8 +28,8 @@
     Nesterov accelreated gradient method has been in the spotlight for the past decades due its wide spread applications and theories of optimal convergence. 
     Decades later it still opens up new interpretations. 
     Our work suggests a proximal point interpretation of accelerated gradient method for the method of accelerated proximal gradient method as a major extension to the interpretation proposed by Ahn and Sra \cite{ahn_understanding_2022}. 
-    The proofs had been streamlined, extended and new error terms are added to allow a larger set of stepsize sequence for the PPM. 
-    Additionally, we proposed a line search method to dynamically adjust the strong convexity index $\mu$ and Lipschitz constant of the gradient in algorithm implementations based on the PPM understanding, with numerical experiments. 
+    The proofs had been streamlined, extended and new error terms are added to allow a larger set of stepsize sequence for the proximal point interpreation. 
+    Additionally, we conduct numerical experiment for a line search method that dynamically adjust the strong convexity index $\mu$ and Lipschitz constant of the gradient in for algorithm  using the proximal point understanding of accelerated gradient. 
     
 \end{abstract}
 
@@ -39,24 +39,25 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Introduction}
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
-    They explored the interpretation of Nesterov acceleration as a proximal of an upper surrogate function, and then a lower surrogate function. 
-    Inspired by such an interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex and friendly to a proximal operator. 
+    Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method applied to an upper surrogate function, and then a lower surrogate function. 
+    Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
     \par
-    Classical analysis and extension of Nesterov accelerated gradient existed. 
+    Classical analysis and extension of Nesterov accelerated gradient exist in the literatures. 
     See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
     However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and cherry picked Nesterov's estimating sequence to assist the proof for the parameters in the algorithm. 
-    In Ahn's work however, the complexities are packaged into the PPM interpretation of accelerated gradient. 
+    In Ahn's work however, the complexities are packaged into the proximal point interpretation of accelerated gradient. 
     It uses a lemma from Moreau envelope to derive the Lypunov analysis, the sizes, and parameters for several variants of the algorithm. 
     \par
     Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$. 
     Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
     For a variant of accelerated gradient where the iterates converge, see \cite{chambolle_convergence_2015}. 
-    Extension such as the Harpen acceleration for the resolvent operator in general is outside of the scope since doesn't have a Moreau envelope. 
+    Extension such as the Harpen acceleration for the resolvent operator in general is outside of the scope since it doesn't have a Moreau envelope. 
     \par
     A wide varieties of interpretation for the Nesterov accelerated gradient exist in the literatures. 
     Consult \cite{su_differential_2015} for a dynamical system interpretation of Nesterov acceleration. 
     The dynamical system interpretation of the algorithm however, lead to the valuable insights that restarting the accerlated gradient algorithm would lead to faster convergence rate for the class of strongly convex function. 
-    \par
+
+    % \par
     % The paper is organized as follow: 
     % \begin{enumerate}
     %     \item Section 
@@ -64,10 +65,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     
 \section{Preliminaries}\label{sec:preliminaries}
     In this section we introduce the a descent lemma for Proximal Point Method (PPM) in the convex case. 
-    We define the proximal gradient mapping $\mathcal T_L$, and gradient mapping $\mathcal G_L$ for function satisfying assumption 
-    \ref*{assumption:smooth-nonsmooth-sum}. 
-    A lower bound function is identified using the gradient mapping operator and proved in lemma 
-    \ref*{lemma:grad_map_linearization}, 
+    We define the proximal gradient mapping $\mathcal T_L$, and gradient mapping $\mathcal G_L$ for function satisfying 
+    \hyperref[assumption:smooth-nonsmooth-sum]
+    {assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
+    A lower bound function is identified using the gradient mapping operator and proved in
+    \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}, 
     this is a key component of the proximal point interpretation of the accelerated gradient method. 
     \begin{assumption}\label{assumption:smooth-nonsmooth-sum}
         Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth. 
@@ -89,7 +91,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{theorem}
     \begin{remark}
         We use this theorem to prove the convergence of the proximal point method. 
-        See the proof (\cite{bauschke_convex_2017}, theorem 12.26). 
+        The proof can be found in \cite[theorem 12.26]{bauschke_convex_2017}. 
     \end{remark}
  
     \begin{definition}[The Gradient Mapping]
@@ -111,6 +113,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{remark}
 
     \begin{lemma}[Gradient Mapping Approximates Subgradient]
+    \label{lemma:grad-map-approx-subgrad}\; \\
         Suppose $h = f + g$ satisfies 
         \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref{assumption:smooth-nonsmooth-sum}}, 
         let $\mathcal T_L, \mathcal G_L$ be given by 
@@ -142,7 +145,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{proof}
 
     \begin{lemma}[Linearized Gradient Mapping Lower Bound]
-    \label{lemma:grad_map_linearization}
+    \label{lemma:grad_map_linearization}\; \\
         Suppose that $h = f + g$ satisfies 
         \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
         further assume that $f$ is strongly convex with index $\mu \ge 0$. 
@@ -264,13 +267,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         Observe that the linearization $h(x^+) + \langle \mathcal G_L(x), z - x\rangle$ is anchored at $x^+$, instead of $x$. 
         Geometrically, it's tilted and it ``prefers" the sharp corners of a convex function, if, $x$ is close to a sharp corner. 
-        The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}. 
+        The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
     \end{remark}
 
 \section{The PPM interpreation of accelerated gradient}\label{sec:ppm_interp_of_ag}
-    In this section, we present the PPM formulation of the accelerated proximal gradient method. 
-    These interpretations of \cite{ahn_understanding_2022} are extension in the non-smooth context using the proximal gradient mapping operator. 
-    The next definition starts the discussion. 
+    In this section, we present the generic PPM formulation of the accelerated proximal gradient method. 
+    This is general form presents us with a set of undetermine stepsize parameters $\eta_i, \tilde \eta_i$ that can be changed later to accomodate proofs that take Lypunov functions and phrase the convergence rate using the stepsizes sequence $\tilde \eta_i$. 
+    These interpretations are extension in the non-smooth context of Ahn and Sra's work \cite{ahn_understanding_2022} using the proximal gradient mapping operator. 
+    The next definition will start the discussion. 
     \begin{definition}[Linear Lower Bounding Function]\label{def:gradmap-linear-lowerbnd-fxn}
         Let $h = f+ g$ satisfies
         \hyperref[assumption:smooth-nonsmooth-sum]{definition \ref*{assumption:smooth-nonsmooth-sum}}, 
@@ -459,7 +463,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \hyperref[thm:ag_generic_stepsize_constraints]{Theorem \ref*{thm:ag_generic_stepsize_constraints}}
     states the weakened constraints on the stepsize parameters $\tilde \eta_i, \eta_i$. 
     \par
-    Through out this section, we continue the assumption for $h = f + g$ and gradient mapping $\mathcal G_L$ the same as previous section. 
+    Throughout the section, we continue the assumption for $h = f + g$, gradient mapping $\mathcal G_L$ and proximal gradient mapping $\mathcal T_L$ from the previous section. 
 
     \begin{lemma}[Lyapunov Inequality]. 
     \label{lemma:nsmooth_agg_lyapunov_upper_bound}\;\\
@@ -620,7 +624,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \langle \nabla f(\bar x) + \partial g(z), z - z'\rangle + 
             \frac{L}{2}\Vert z - \bar x\Vert^2. 
         \end{align*}
-        Setting $z = \mathcal T_L \bar x$, we have the desired results. 
+        Setting $z = \mathcal T_L \bar x$, use 
+        \hyperref[lemma:grad-map-approx-subgrad]
+        {lemma \ref*{lemma:grad-map-approx-subgrad}}, 
+        to give the desired results. 
     \end{proof}
     \begin{remark}
     \label{remark:upsilon-upperbound-for-iterates}
@@ -669,20 +676,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {remark \ref*{remark:upsilon-upperbound-for-iterates}}. 
         Let $z_t$ be given by 
         \hyperref[def:ag_prox_grad_generic]
-        {definition \ref*{def:ag_prox_grad_generic}}
+        {definition \ref*{def:ag_prox_grad_generic}}. 
         Define the Lyapunov function $\Phi_t\; \forall t \in \{0\}\cup \N$, $S_t$ and $\sigma_t$: 
         \begin{align*}
+            \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
+            \\
             \Phi_t &:= \left(
                 \sum_{i = 1}^{t} \tilde\eta_{i}
-            \right) (h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N
-            \\
-            \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
+            \right) (h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N,
             \\
             S_t &:= \sum_{i = 1}^{t} \delta_i \quad \forall t \in \N,
             \\
             \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i \quad \forall t \in \N. 
         \end{align*}
-        If there exists a sequence of $\eta_i, \tilde \eta_i$ as defined in
+        If there exists a sequence of $(\eta_i)_{i \in \N}$ as defined in
         \hyperref[def:ag_prox_grad_ppm]
         {definition \ref*{def:ag_prox_grad_ppm}} 
         such that
@@ -772,7 +779,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \begin{theorem}[Constraints of PPM stepsize sequence]
     \label{thm:ag_generic_stepsize_constraints}\;\\
-        Let iterates: $z_t, x_t, y_t$. 
+        Let iterates $z_t, x_t, y_t$ be given by
         \hyperref[def:ag_prox_grad_generic]
         {definition \ref*{def:ag_prox_grad_generic}}. 
         If the stepsize $\eta_i, \tilde \eta_i$ satisfies relations 
@@ -796,16 +803,21 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align*}
             \Phi_{t + 1} - \Phi_t =
             \Upsilon_{1, t + 1}^\text{AG} + 
-            \sigma_t\Upsilon_{1, t + 1}^{\text{AG}} 
-            &\le \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2 \le \delta_{t + 1}.
+            \sigma_t\Upsilon_{1, t + 1}^{\text{AG}}
+            &\le
+            \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2.
         \end{align*}
+        Define $\delta_{t + 1} = \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2$. 
+        Then the convergence rate stated in 
+        \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}
+        applies. 
     \end{theorem}
     \begin{proof}
         With $t \in \mathbb N \cup \{0\}$ fixed, 
         recall that for the proximal gradient PPM generic form 
         (as formulated in 
-        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}
-        ) for $t\in \mathbb N$ it has: 
+        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}) 
+        for $t\in \mathbb N$ it has: 
         \begin{align*}
             y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
             \\
@@ -814,7 +826,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
         \end{align*}
         Recall the upper bounds from 
-        \ref*{thm:generic_ag_convergence}, 
+        \hyperref[remark:upsilon-upperbound-for-iterates]
+        {remark \ref*{remark:upsilon-upperbound-for-iterates}}
         it has 
         \begin{align*}
             \Upsilon_{1, t + 1}^\text{AG}
@@ -832,7 +845,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             - \langle 
                 \tilde\eta_{t + 1} \mathcal G_L(y_t), 
                 x_{t + 1} - z_{t + 1}
-            \rangle
+            \rangle, 
             \\
             \Upsilon_{2, t + 1}^\text{AG}
             &= 
@@ -841,7 +854,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
             \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
         \end{align*}
-        By the updates, vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations: 
+        Because the iterates are produced by 
+        \hyperref[def:ag_prox_grad_generic]
+        {definition \ref*{def:ag_prox_grad_generic}}
+        vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations: 
         \begin{align*}
             x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
             \\
@@ -915,7 +931,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Similarly 
         \begin{align*}
             \Upsilon_{2, t + 1}^{\text{AG}} 
-            &= 
+            &\le 
             \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
             \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
             \\
@@ -942,7 +958,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
         Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = L \eta_t (z_t - y_t)$. We make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \mathcal G_L(y_t), y_t - x_t\rangle = \langle \mathcal G_L(y_t), L \eta_t (z_t - y_t)\rangle$. 
-        With this in mind, RHS of $\phi_{t + 1} - \phi_t$ yields: 
+        With this in mind, RHS of $\Phi_{t + 1} - \Phi_t$ yields: 
         {\footnotesize
         \begin{align*}
             &\Upsilon_{1, t + 1}^\text{AG} + 
@@ -1011,10 +1027,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \epsilon_{t + 1} \tilde \eta_{t + 1} 
             + L^{-1}(L \eta_t \tilde \eta_{t + 1})
             \\
-            \iff 
+            \text{divide by } \tilde \eta_{t + 1} > 0
+            \implies 
             \tilde \eta_{t + 1} &= \epsilon_{t + 1} + \eta_t + L^{-1}. 
         \end{align*}
-        At the last step, we divided both side of the equation by $\tilde \eta_{t + 1} > 0$.
         The parameter gives relation $\epsilon_{t+1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$. 
         Hence, it gives us the following system of equality to work with 
         \begin{align*}
@@ -1025,7 +1041,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 L \eta_t \tilde \eta_{t + 1} = \sigma_t.     
             \end{cases}
         \end{align*}
-        With that, we can solve a relation between $\eta_{t + 1}$ in terms of the sequence $\epsilon$ and $\eta_t$.
+        With that, we can solve a relation between $\eta_{t + 1}$ in terms of the sequence $\epsilon_t$ and $\eta_t$.
         Consider the equality 
         \begin{align*}
             L \sigma_{t + 1} &= L \tilde \eta_{t + 1} + L \sigma_t
@@ -1112,23 +1128,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 c_{t + 1} = a_t (L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}. 
             \end{cases}
         \end{align*}
-        Observe that in the case where we choose $\epsilon_t = 0\; \forall t \in \N$, the above relation simplifies to 
-        \begin{align*}
-            a_{t + 1} &= (1/2)\left(
-                1 + \sqrt{1 + 4 c_{t + 1}}
-            \right), 
-            \\
-            c_{t + 1} &= a_t^2. 
-        \end{align*}
-        This relation is the Famous Nesterov momentum sequence. 
-        At the same time, we can analyize the convergence rate of the algorithm by the abstract convergence lemma, producing: 
-        \begin{align*}
-            \Phi_{t + 1} - \Phi_t =
-            \Upsilon_{1, t + 1}^\text{AG} + 
-            \sigma_t\Upsilon_{1, t + 1}^{\text{AG}} 
-            &\le \epsilon_{t + 1}\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2 \le \delta_{t + 1}
-        \end{align*}
-        Telescoping yields: 
+        With $\delta_i$ given by
+        \hyperref[thm:generic_ag_convergence]
+        {theorem \ref*{thm:generic_ag_convergence}}. 
+        Define $\delta_i = \epsilon_{i} \tilde \eta_i$, then 
         \begin{align*}
             S_{T} = 
             \sum_{i = 0}^{T- 1} \delta_i 
@@ -1137,7 +1140,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             &\le \sum_{i = 0}^{T - 1}\max(\epsilon_{i + 1} \tilde\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2, 0). 
         \end{align*}
-        Under an ideal case where we wish to attain accelerations, we want $\lim_{T \rightarrow \infty} S_T < \infty$. 
+        Under an ideal case where we wish to attain the best convergence, we want $\lim_{T \rightarrow \infty} S_T < \infty$. 
         One way to accomplish is choose the error sequence $\epsilon_i, i \in \N$ to be bounded by for all $i \in \N$, $\epsilon_i$ should satisfy: 
         \begin{align*}
             \epsilon_{i + 1}\tilde \eta_{i + 1}
@@ -1154,18 +1157,34 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{proof}
 
 \section{Recovering existing variants of Nesterov accelerated gradient}\label{sec:recovery}
-    \subsection{Recovering FISTA}
-        From 
+    In this section, we recovers several variants of the accelerated gradient in the literatures as a special case of 
+    \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}, 
+    we sate the choice of stepsize parameter $\eta_i, \tilde \eta_i$, verify that they satisfies 
+    \hyperref[thm:ag_generic_stepsize_constraints]
+    {theorem \ref*{thm:ag_generic_stepsize_constraints}}
+    and derive their convergence rate respectively. 
+    
+    \subsection{Recovering FISTA} 
+        Let $\epsilon_i$ be given by
         \hyperref[thm:ag_generic_stepsize_constraints]
         {theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
-        setting $\epsilon_i = 0$ for all $i$ yields $a_t = 1 + L\eta_t = \tilde \eta_{t + 1}$, for all $t \in \N$ where $a_t$ is the Nesterov sequence.
-        In this case, there exists a momentum form of the generic form and it reduces to FISTA from Beck and Toubolle, or Similar Triangle Method as referred to by Ahn and Sra. 
-
+        setting $\epsilon_i = 0$ for all $i$ yields $a_t = 1 + L\eta_t = \tilde \eta_{t + 1}$, for all $t \in \N$ where $a_t$ produces the relations 
+        \begin{align*}
+            a_{t + 1} &= (1/2)\left(
+                1 + \sqrt{1 + 4 c_{t + 1}}
+            \right), 
+            \\
+            c_{t + 1} &= a_t^2. 
+        \end{align*}
+        The recurrenct relations of $a_t$ indicates that it's the famous Nesterov momentum sequence. 
+        In this case, there exists a momentum form of the generic form and it reduces to FISTA from Beck and Toubolle \cite{beck_fast_2009-1}. 
+        The following lemma uses $a_t$ to establish equivalence between the generic form of the algorithm and FISTA, a specific variant of accelerated gradient method. 
         \begin{lemma}[Deriving Similar Triangle Form I]
             \quad \\
-            With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ 
-            in 
-            \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}
+            With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$,
+            \hyperref[def:ag_prox_grad_generic]
+            {definition \ref*{def:ag_prox_grad_generic}}
+            simplifies into 
             \begin{align*}
                 z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t)
                 \\
@@ -1177,16 +1196,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 x_{t + 1} + L\eta_{t + 1}z_{t + 1}
                 ). 
             \end{align*}
-            It also has an equivalent momentum form 
+            It is also equivalent to 
             \begin{align*}
                 z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
                 \\
                 y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
             \end{align*}
+            And this is the FISTA algorithm. 
         \end{lemma}
+
         \begin{proof}
-            To do, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
-            Starting with the former, susbtitute definition of $z_{t + 1}$, $z_{t + 1} = z_t + L^{-1}\nabla f(y_t)$ expanding: 
+            Firstly, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
+            Starting with the former, susbtitute $z_{t + 1} = y_t + L^{-1}\nabla f(y_t)$ as given by 
+            \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}},
+            expanding: 
             \begin{align*}
                 x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
                 + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
@@ -1198,8 +1221,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &= x_t - (\eta_t + L^{-1})\mathcal G_L(y_t). 
             \end{align*}
-            So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$
-            Reducing it to the classic momentum form starts by 
+            So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$. 
+            Next, consider the updates $y_{t + 1}$ as given by 
+            \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}
             \begin{align*}
                 y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
                 \\
@@ -1220,11 +1244,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
             \end{align*}
-            This is FISTA by the relation $a_t = 1 + L\eta_t$, hence $(1 + L\eta_{t + 1})^{-1}L\eta_t$ is $(a_t - 1)/a_{t + 1}$.
-            Where we proved in 
+            This is FISTA by the relation $a_t = 1 + L\eta_t$ by setting $\epsilon_i = 0$ in
             \hyperref[thm:ag_generic_stepsize_constraints]
-                {theorem \ref*{thm:ag_generic_stepsize_constraints}}
-            that $a_t$ is the Nesterov momentum sequence. 
+            {theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
+            making $a_t$ the Nesterov momentum sequence. 
+            Observe that $(1 + L\eta_{t + 1})^{-1}L\eta_t$ is $(a_t - 1)/a_{t + 1}$.
+            Express using $a_t$, the above algorithm is equivalent to the FISTA algorithm. 
+            \par
+            By 
+            \hyperref[thm:ag_generic_stepsize_constraints]{theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            and 
+            \hyperref[thm:generic_ag_convergence]{\ref*{thm:generic_ag_convergence}},
+            a convergence of $\mathcal O(\sigma_T^{-1})$ is possible. 
+            Since $a_t = \tilde \eta_t$, and the Nesterov sequence exhibits $a_{t} \ge (t + 2)/2$, the convergence becomes $\mathcal O(T^{-2})$. 
+            It is the optimal convergence rate for all convex functions. 
         \end{proof}
         \begin{remark}
             In this remark we clarify the name ``similar triangle" as given in the literatures. 
