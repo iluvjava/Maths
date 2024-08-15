@@ -848,7 +848,7 @@ $$
 \begin{aligned}
     \begin{cases}
         a_{t + 1} = (1/2)\left(
-        1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 2}}
+        1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 1}}
         \right), 
         \\
         c_{t + 1} = a_t (L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}. 
