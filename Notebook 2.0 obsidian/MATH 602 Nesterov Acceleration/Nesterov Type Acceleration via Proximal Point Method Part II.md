@@ -13,15 +13,15 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Lemma 0.1 | Nesterov Gradient Mapping**](#lemma-01--nesterov-gradient-mapping)
   - [**Lemma 0.2 | Linear Lower Bound of Gradient Mapping**](#lemma-02--linear-lower-bound-of-gradient-mapping)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
-  - [**Def 1.1 | Nes 2.2.7**](#def-11--nes-227)
+  - [**Definition 1.1 | Nes 2.2.7**](#definition-11--nes-227)
   - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
   - [**Definition 1.3 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-13--accelerated-gradient-strongly-convex-generic-ppm)
   - [**Definition 1.4 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-14--accelerated-gradient-bregman-strongly-convex-ppm)
-  - [**Definition 1.5 | AG Tri-points generic form**](#definition-15--ag-tri-points-generic-form)
-  - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**](#definition-16--accelerated-gradient-strongly-convex-generic-triangular-form)
-  - [**Definition 1.8 | AG Proximal Gradient Generic PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-form)
-  - [**Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**](#definition-18--ag-proximal-gradient-generic-ppm-strongly-convex-ppm-form)
-  - [**Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**](#definition-19--ag-proxmal-gradient-tri-pints-form)
+  - [**Definition 1.5 | AG generic form**](#definition-15--ag-generic-form)
+  - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Form**](#definition-16--accelerated-gradient-strongly-convex-generic-form)
+  - [**Definition 1.8 | AG Proximal Gradient PPM Form**](#definition-18--ag-proximal-gradient-ppm-form)
+  - [**Definition 1.8' | AG Proximal Gradient Strongly Convex PPM Form**](#definition-18--ag-proximal-gradient-strongly-convex-ppm-form)
+  - [**Definition 1.9 | AG Proxmal Gradient Generic Form**](#definition-19--ag-proxmal-gradient-generic-form)
   - [**Definition 1.9' | AG Proximal Gradient Strongly conex Generic Form**](#definition-19--ag-proximal-gradient-strongly-conex-generic-form)
   - [**Def 1.10 | Guller's Accelerated PPM**](#def-110--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
@@ -29,7 +29,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
   - [**Lemma 2.3 | The Non-smooth Tri-Points Form**](#lemma-23--the-non-smooth-tri-points-form)
   - [**Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-24--the-interpretation-of-strongly-convex-generic-triangular-form)
-  - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-ppm-form)
+  - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points (DEPRECATED)**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points-deprecated)
@@ -247,9 +247,9 @@ Therefore, the inequality is justified.
 ---
 ### **Varieties of Nesterov Accelerated Gradient**
 
-The analysis of PPM eventually extends to all varieties of Nesterov accelerated gradient methods. 
 
-#### **Def 1.1 | Nes 2.2.7**
+
+#### **Definition 1.1 | Nes 2.2.7**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
 > Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
@@ -351,7 +351,7 @@ And in this case, the momentum algorithm works in a non-smooth composite setting
 
 It is claimed by Ahn, Sra in 5.17 of their writing that the above PPM based algorithm is an interpretation of Nesterov (6.1.3) from Nesterov's textbook. 
 
-#### **Definition 1.5 | AG Tri-points generic form**
+#### **Definition 1.5 | AG generic form**
 > The algorithm update the iterates $(x_{t}, z_{t}, y_t)$ for all $t \in \N$ according to 
 > $$
 > \begin{aligned}
@@ -380,7 +380,7 @@ Finally, observe the spacial case that when $\eta_i = 0$ for all $i\in \N$, the 
 
 
 
-#### **Definition 1.6 | Accelerated Gradient strongly convex Generic Triangular Form**
+#### **Definition 1.6 | Accelerated Gradient strongly convex Generic Form**
 > With $f$ $L$-Lipschitz smooth and $\mu$ storngly convex, we can derive similar triangle with the following: 
 > $$
 > \begin{aligned}
@@ -400,7 +400,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 
 
 
-#### **Definition 1.8 | AG Proximal Gradient Generic PPM Form**
+#### **Definition 1.8 | AG Proximal Gradient PPM Form**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient. 
 > Define the proximal gradient and gradient mapping operator operator: 
 > $$
@@ -446,7 +446,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > \end{aligned}
 > $$
 
-#### **Definition 1.8' | AG Proximal Gradient Generic PPM Strongly Convex PPM Form**
+#### **Definition 1.8' | AG Proximal Gradient Strongly Convex PPM Form**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
 > Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
 > We define the following algorithm. 
@@ -468,7 +468,7 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > \end{aligned}
 > $$
 
-#### **Definition 1.9 | AG Proxmal Gradient Tri-Pints Form**
+#### **Definition 1.9 | AG Proxmal Gradient Generic Form**
 > With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
 > Define proximal gradient and gradient mapping operator 
 > $$
@@ -881,7 +881,7 @@ $$
 
 This particular interpretation **may** assist us with reverse engineering Nesterov's estimating sequence's proof for his 2.2.7 method. 
 
-#### **Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic PPM Form**
+#### **Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**
 
 > The Nesterov 2.2.7 accelerated gradient algorithm applied to $f$ that is $\mu$ strongly convex and AG strongly convex generic PPM have the same form. 
 > By the observation that the strongly convex generic PPM reduces to Accelerated gradient strongly convex generic triangular form, we claim that the following 2 algorithms have the same representation. 
