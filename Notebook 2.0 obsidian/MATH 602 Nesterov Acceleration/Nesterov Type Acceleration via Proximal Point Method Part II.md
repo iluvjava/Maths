@@ -20,14 +20,13 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.5 | AG generic form**](#definition-15--ag-generic-form)
   - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Form**](#definition-16--accelerated-gradient-strongly-convex-generic-form)
   - [**Definition 1.8 | AG Proximal Gradient PPM Form**](#definition-18--ag-proximal-gradient-ppm-form)
-  - [**Definition 1.8' | AG Proximal Gradient Strongly Convex PPM Form**](#definition-18--ag-proximal-gradient-strongly-convex-ppm-form)
   - [**Definition 1.9 | AG Proxmal Gradient Generic Form**](#definition-19--ag-proxmal-gradient-generic-form)
-  - [**Definition 1.9' | AG Proximal Gradient Strongly conex Generic Form**](#definition-19--ag-proximal-gradient-strongly-conex-generic-form)
-  - [**Def 1.10 | Guller's Accelerated PPM**](#def-110--gullers-accelerated-ppm)
+  - [**Definition 1.10 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-110--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
+  - [**Def 1.11 | Guller's Accelerated PPM**](#def-111--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
   - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
-  - [**Lemma 2.3 | The Non-smooth Tri-Points Form**](#lemma-23--the-non-smooth-tri-points-form)
+  - [**Lemma 2.3 | The Non-smooth Generic Form**](#lemma-23--the-non-smooth-generic-form)
   - [**Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-24--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
@@ -299,8 +298,6 @@ $$
 
 
 
-
-
 #### **Definition 1.3 | Accelerated Gradient Strongly Convex Generic PPM**
 > Let $f$ be convex and differentiable with Lipschitz gradient and $\mu\ge0$-strongly convex, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0 \in \R^n$, and let $y_0 = x_0$, define the following variants of PPM for function $f$. 
@@ -424,7 +421,9 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > Define the linear lower bounding function for $f$ at $y$, for all $x$: 
 > $$
 > \begin{aligned}
->     l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle \le h(x), 
+>     l_h(x; y) &= h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle  
+>       + \frac{L}{2}\Vert x - \mathcal T_L(y)\Vert^2
+> \le h(x), 
 > \end{aligned}
 > $$
 > With that we define the algorithm:
@@ -446,27 +445,6 @@ The above algorithm is derived from the generic strongly convex PPM form.
 > \end{aligned}
 > $$
 
-#### **Definition 1.8' | AG Proximal Gradient Strongly Convex PPM Form**
-> Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
-> Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
-> We define the following algorithm. 
-> $$
-> \begin{aligned}
->     x_{t + 1} &= \argmin{x} \left\lbrace
->     l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
->     \Vert x - x_t\Vert^2 + \frac{\mu}{2}\Vert x - \mathcal T_L y_t\Vert^2
-> \right\rbrace,
-> \\
-> y_{t + 1}&= 
-> \argmin{x}
-> \left\lbrace
->     h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
->     + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-> \right\rbrace
-> \\
-> &= \argmin{x} \left\lbrace l_h(x; y^+_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2\right\rbrace. 
-> \end{aligned}
-> $$
 
 #### **Definition 1.9 | AG Proxmal Gradient Generic Form**
 > With $h = f + g$, where $g$ is convex, $f$ is convex and $L$-Lipschitz smooth. 
@@ -506,16 +484,47 @@ This algorithm exists in the literatures.
 The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead. 
 
 
-#### **Definition 1.9' | AG Proximal Gradient Strongly conex Generic Form**
-> Continued from definition 1.8', the PPM algorithm can be reduced to generic form by completing the squares, producing: 
-$$
-\begin{aligned}
 
-\end{aligned}
-$$
+#### **Definition 1.10 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**
+> Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
+> Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
+> Define the lower bouding function: 
+> $$
+> \begin{aligned}
+>     l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+>     + 
+>     \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2. 
+> \end{aligned}
+> $$
+> We define the following algorithm. 
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= \argmin{x} \left\lbrace
+>     l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+>     \Vert x - x_t\Vert^2 + \frac{\mu}{2}\Vert x - y_t\Vert^2
+> \right\rbrace,
+> \\
+> y_{t + 1}&= 
+> \argmin{x}
+> \left\lbrace
+>     h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+>     + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+> \right\rbrace
+> \end{aligned}
+> $$
+
+**Demonstrations**
+
+We demonstrate the the equality holds for the minimization problem. 
 
 
-#### **Def 1.10 | Guller's Accelerated PPM**
+**Remarks**
+
+The function for $y_{t + 1}$ in argmin, it is not an upper bound for the function $h$. 
+It is a quadratic function, and $h$ is non-smooth. 
+It won't be an upper bound. 
+
+#### **Def 1.11 | Guller's Accelerated PPM**
 
 
 See [Accelerated PPM Method](Accelerated%20PPM%20Method.md) for more context about this algorithm. 
@@ -733,7 +742,7 @@ Anyway, the interpretation maybe somewhat important, but the ghost term, $z_{t +
 This interpretation can be used directly to derive the equivalence between the generic PPM form and the generic similar triangle form. 
 
 
-#### **Lemma 2.3 | The Non-smooth Tri-Points Form**
+#### **Lemma 2.3 | The Non-smooth Generic Form**
 > The AG experimental Tri-point form can be derived from AG experiment PPM Form I. 
 > Continuing from the definition of the Experimental Tri-point form we claim the following equalities: 
 > $$
