@@ -802,7 +802,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \par
         However, the construction exhibits variations for different variants of the accelerated gradient algorithm. 
         A different construction of $\phi_k$ yield a different algorithm. 
-        As shown in Nesterov's book \cite*[(2.2.63)]{nesterov_lectures_2018}, a projected gradient variant of the accelerated gradient method make use of the following estimating functions, sequence: 
+        As shown in Nesterov's book \cite[(2.2.63)]{nesterov_lectures_2018}, a projected gradient variant of the accelerated gradient method make use of the following estimating functions, sequence: 
+        
         \begin{align*}
             \phi_0 (x) &= f(x_0) + \frac{\gamma_0}{2}\Vert x - x_0\Vert^2
             \\
@@ -829,7 +830,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Modern techniques in analysis of accelerated gradient algorithms}
     
 
-\printbibliography
+
+
+\bibliographystyle{siam}
+\bibliography{references/refs}
 
 \appendix
 \section*{Postponed Proofs}

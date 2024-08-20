@@ -22,6 +22,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
   - [**Claim 2.6 | Momentum Form is a special case of AG PPM form**](#claim-26--momentum-form-is-a-special-case-of-ag-ppm-form)
+  - [**Corollary | Recovery of V-FISTA algorithm**](#corollary--recovery-of-v-fista-algorithm)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -1123,7 +1124,7 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 >     \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1}, 
 > \end{aligned}
 > $$
-> Then the generic AG PPM form can be represented in the momentum form: 
+> Then for any $y_t, z_t$ generic AG PPM form updates in the momentum form: 
 > 
 > $$
 > \begin{aligned}
@@ -1136,8 +1137,274 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 
 **Proof**
 
+We start by showing that there exists a constant $\alpha \in R$ such that $z_{t + 1} - z_t = \alpha (x_{t + 1} - z_{t + 1})$ by $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$. 
+Firstly, we claim the inequality that 
+
+$$
+\begin{aligned}
+    z_{t + 1} - z_t
+    &= 
+    - (L\eta_t)^{-1} y_t 
+    - L^{-1}\mathcal G_L(y_t) + (L \eta_t)^{-1} x_t. 
+\end{aligned}
+$$
+
+Because 
+$$
+\begin{aligned}
+    z_{t + 1} - z_t 
+    &= y_t - L^{-1}\mathcal G_L(y_t) - (L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t)
+    \\
+    &= 
+    y_t - L^{-1} \mathcal G_L(y_t) - (L\eta_t)^{-1}y_t - y_t + (L\eta_t)^{-1} x_t
+    \\
+    &= 
+    -L^{-1}\mathcal G_L(y_t) + (L\eta_t)^{-1}(x_t - y_t)
+    \\
+    &= 
+    L^{-1}(\eta_t^{-1}(x_t - y_t) -\mathcal G_L(y_t)). 
+\end{aligned}
+$$
+
+Next, we have 
+
+$$
+\begin{aligned}
+    x_{t + 1} - z_{t + 1}&= 
+    \left(
+        (1 + \mu \tilde \eta_{t+ 1})^{-1} (\mu \tilde \eta_{t + 1}y_t + x_t)
+        - \frac{\tilde \eta_{t + 1}}{1 + \mu\tilde \eta_{t + 1}}
+        \mathcal G_L(y_t)
+    \right) - \left(
+        y_t - L^{-1}\mathcal G_L(y_t)
+    \right)
+    \\
+    &= 
+    (1 + \mu \tilde \eta_{t + 1})^{-1}
+    \left(
+        x_t + \mu \tilde \eta_{t + 1} y_t
+        - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+        - (1 + \mu \tilde \eta_{t + 1})
+        (y_t - L^{-1}\mathcal G_L(y_t))
+    \right)
+    \\
+    &= 
+    (1 + \mu\tilde \eta_{t + 1})^{-1}
+    \left(
+        x_t - y_t + 
+        (
+            -\tilde \eta_{t + 1} + 
+            (
+                1 + \mu\tilde \eta_{t + 1})L^{-1}
+            )
+            \mathcal G_L(y_t)
+        )
+    \right)
+    \\
+    &= 
+    (1 + \mu\tilde \eta_{t + 1})^{-1}
+    \left(
+        x_t - y_t +     
+        (
+            - \tilde \eta_{t + 1} + L^{-1}
+            + \mu \tilde \eta_{t + 1}L^{-1}
+        )
+        \mathcal G_L(y_t)
+    \right). 
+\end{aligned}
+$$
+
+Since 
+
+$$
+\begin{aligned}
+    (1 - L^{-1}\mu)\tilde \eta_{t +1}
+    &= L^{-1} + \eta_t 
+    \\
+    - \tilde \eta_{t + 1} + L^{-1}\mu \tilde \eta_{t + 1}
+    + L^{-1}
+    &= - \eta_t, 
+\end{aligned}
+$$
+
+so substituting 
+
+$$
+\begin{aligned}
+    x_{t + 1} - z_{t + 1}
+    &= 
+    (1 + \mu \tilde \eta_{t + 1})^{-1}
+    (x_t - y_t - \eta_t \mathcal G_L(y_t))
+    \\
+    &= (1 + \mu \tilde \eta_{t + 1})^{-1}
+    \eta_t(\eta_{t}^{-1}(x_t - y_t) - \mathcal G_L(y_t)), 
+\end{aligned}
+$$
+
+therefore 
+
+$$
+\begin{aligned}
+    z_{t + 1} - z_t 
+    &= 
+    \eta^{-1}_tL^{-1}(1 + \mu \tilde \eta_{t + 1})(x_{t + 1} - z_{t + 1})
+    \\
+    \iff 
+    x_{t + 1} - z_{t + 1} &= 
+    \frac{L\eta_t}{1 + \mu \tilde \eta_{t + 1}} 
+    (z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
+Finally, with that it can be said that 
+
+$$
+\begin{aligned}
+    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+    (
+        L\eta_{t + 1} z_{t + 1} + x_{t + 1}
+    )
+    \\
+    &= 
+    (1 + L\eta_{t + 1})^{-1}
+    \left(
+        L\eta_{t + 1} z_{t + 1} + z_{t + 1}
+        + 
+        \frac{L\eta_t}{1 + \mu \tilde \eta_{t + 1}}
+        (z_{t + 1} - z_t)
+    \right)
+    \\
+    &= z_{t + 1} 
+    + 
+    \frac{L\eta_t}{(1 + L\eta_{t + 1})(1 + \mu \tilde \eta_{t + 1})}
+    (z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
+Hence, the momentum term is recovered. 
 
 
+**Remark**
+
+The algorithm, V-FISTA can be recovered through a specific choice of parameters for $\eta_t, \tilde \eta_t$. 
+This is claimed in Ahn and Sra's paper, but it's not carefully illustrated. 
+
+#### **Corollary | Recovery of V-FISTA algorithm**
+> If
+> $$
+> \begin{aligned}
+>     \tilde \eta_t 
+>     &= \frac{1}{\mu(\sqrt{\kappa} - 1)}
+>     \quad \forall t \in \N, 
+>     \\
+>     \eta_t
+>     &= 
+>     \frac{1}{\mu\sqrt{\kappa}}
+>     \quad \forall t \in \N. 
+> \end{aligned}
+> $$
+> Then the AG generic form simplifies to 
+> $$
+> \begin{aligned}
+>     y_{t + 1} &= z_{t + 1} + 
+>     \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
+>     (z_{t +1} - z_t)
+>     \\
+>     z_{t + 1} 
+>     &= y_t - L^{-1}\mathcal G_L(y_t). 
+> \end{aligned}
+> $$
+> And it is a valid sequence that meaning that it satisfies 
+> $$
+> \begin{aligned}
+>   \tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Observe that we have 
+
+$$
+\begin{aligned}
+    L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+    \\
+    \mu \tilde \eta &= 
+    \frac{1}{\sqrt{\kappa} - 1}, 
+    \\
+    L\tilde \eta_t &= 
+    \frac{\kappa}{\sqrt{\kappa} - 1}. 
+\end{aligned}
+$$
+
+since it's a constant wrt to $t$, we use $\eta, \tilde \eta$ to ease the notations. 
+With that it establishes relations
+
+$$
+\begin{aligned}
+    \frac{L\eta }{(1 + \mu \tilde \eta)(1 + \eta)}
+    &= 
+    \frac{\sqrt{\kappa}}{
+        \left(
+            1 + \frac{1}{\sqrt{\kappa} - 1}
+        \right)
+        \left(
+            1 + \sqrt{\kappa}
+        \right)
+    }
+    \\
+    &= \frac{\sqrt{\kappa}}{
+        \left(
+            \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
+        \right)(1 + \sqrt{\kappa})
+    }
+    =
+    \frac{1}{
+        (
+            \frac{1}{
+            \sqrt{\kappa}} - 1
+        )
+        \left(
+        1 + \sqrt{\kappa}
+    \right)} = 
+    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
+\end{aligned}
+$$
+
+The sequence is valid because 
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1} 
+    &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}
+    \\
+    (L - \mu)\tilde \eta_{t + 1}
+    &= 
+    1 + L \eta_t 
+    \\
+    L \tilde \eta_{t + 1} - 
+    \mu \tilde \eta_{t + 1}
+    &= 1 + L \eta_t. 
+\end{aligned}
+$$
+
+Starting from the LHS it yields: 
+
+$$
+\begin{aligned}
+    L\tilde \eta - \mu \tilde \eta 
+    &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
+    \frac{1}{\sqrt{\kappa} - 1}
+    \\
+    &= 
+    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} - 1}
+    \\
+    &= 
+    \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
+    \\
+    &= 1 + \sqrt{\kappa} = 1 + L \eta. 
+\end{aligned}
+$$
 
 ---
 ### **Lyapunov Analysis**
