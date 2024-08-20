@@ -726,7 +726,7 @@ $$
     \epsilon_{t + 1} \tilde \eta_{t + 1}
     \\
     \iff 
-    \tilde \eta_{t + 1} ^2 - L \tilde \eta_{t + 1} 
+    \tilde \eta_{t + 1} ^2 - L^{-1} \tilde \eta_{t + 1} 
     &= 
     \epsilon_{t + 1} \tilde \eta_{t + 1} + L^{-1} \sigma_t
     \\

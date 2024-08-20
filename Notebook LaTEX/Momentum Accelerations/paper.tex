@@ -1019,7 +1019,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \epsilon_{t + 1} \tilde \eta_{t + 1}
             \\
             \iff 
-            \tilde \eta_{t + 1} ^2 - L \tilde \eta_{t + 1} 
+            \tilde \eta_{t + 1} ^2 - L^{-1} \tilde \eta_{t + 1} 
             &= 
             \epsilon_{t + 1} \tilde \eta_{t + 1} + L^{-1} \sigma_t
             \\
@@ -1282,7 +1282,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark} 
         
     \subsection{Recovering the accelerated gradient variant appeared in Ryu's Book}
+        
     \subsection{Recovering Chambolle, Dossal 2015}
+        
 
 \section{Algorithmic Improvements}\label{sec:algorithm_improved}
     In this section, we state a new variant of the accelerated gradient algorithm using the PPM interpretation to algorithmically conduct a line search routine for $L, \mu \ge 0$ the Lipschitz constant and strong convexity index of the smooth part of the objective function. 

@@ -14,24 +14,16 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Lemma 0.2 | Linear Lower Bound of Gradient Mapping**](#lemma-02--linear-lower-bound-of-gradient-mapping)
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Definition 1.1 | Nes 2.2.7**](#definition-11--nes-227)
-  - [**Definition 1.2 | Accelerated Gradient Generic PPM Form**](#definition-12--accelerated-gradient-generic-ppm-form)
-  - [**Definition 1.3 | Accelerated Gradient Strongly Convex Generic PPM**](#definition-13--accelerated-gradient-strongly-convex-generic-ppm)
-  - [**Definition 1.4 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-14--accelerated-gradient-bregman-strongly-convex-ppm)
-  - [**Definition 1.5 | AG generic form**](#definition-15--ag-generic-form)
-  - [**Definition 1.6 | Accelerated Gradient strongly convex Generic Form**](#definition-16--accelerated-gradient-strongly-convex-generic-form)
-  - [**Definition 1.8 | AG Proximal Gradient PPM Form**](#definition-18--ag-proximal-gradient-ppm-form)
-  - [**Definition 1.9 | AG Proxmal Gradient Generic Form**](#definition-19--ag-proxmal-gradient-generic-form)
-  - [**Definition 1.10 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-110--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
+  - [**Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-12--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
+  - [**Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-13--accelerated-gradient-bregman-strongly-convex-ppm)
+  - [**Definition 1.4 | The Generic Momentum Form**](#definition-14--the-generic-momentum-form)
   - [**Def 1.11 | Guller's Accelerated PPM**](#def-111--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
-  - [**Claim 2.2 | The Interpretation of the Ghost term z**](#claim-22--the-interpretation-of-the-ghost-term-z)
-  - [**Lemma 2.3 | The Non-smooth Generic Form**](#lemma-23--the-non-smooth-generic-form)
-  - [**Claim 2.4 | The Interpretation of Strongly Convex Generic Triangular Form**](#claim-24--the-interpretation-of-strongly-convex-generic-triangular-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
+  - [**Claim 2.6 | Momentum Form is a special case of AG PPM form**](#claim-26--momentum-form-is-a-special-case-of-ag-ppm-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
-  - [**Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points (DEPRECATED)**](#lemma-32--generic-lyapunov-bounds-for-non-smooth-generic-tri-points-deprecated)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
 - [**Part III**](#part-iii)
 
@@ -52,7 +44,7 @@ The following concepts are crucial for introducing proximal gradient into the PP
 
 #### **Lemma 0.1 | Nesterov Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
-> With the proximal gradient operator $\mathcal T_L(x) = [I + L^{-1}\partial g]^{-1}[I - L^{-1}\nabla f](x)$, and gradient mapping operator $\mathcal G_L(x) = L(x - \mathcal T(x))$, then it satisfies for all $x$: 
+> With the proximal gradient operator $\mathcal T_L(x) = [I + L^{-1}\partial g]^{-1}[I - L^{-1}\nabla f](x)$, and gradient mapping operator $\mathcal G_L(x) = L(x - \mathcal T_L(x))$, then it satisfies for all $x$: 
 > $$
 > \begin{aligned}
 >   x^+ &= \mathcal T_L(x), 
@@ -278,7 +270,7 @@ $$
 
 
 
-#### **Definition 1.2 | Accelerated Gradient Generic PPM Form**
+<!-- #### **Definition 1.2 | Accelerated Gradient Generic PPM Form**
 > Let $f$ be convex and differentiable with Lipschitz gradient, define $l_f(x; y) = f(y) + \langle \nabla f(y), y - x\rangle$ to be a linearization of $f$ at $y$. 
 > for all $x_0, y_0 \in \R^n$, define the following variants of PPM for function $f$. 
 > $$
@@ -481,11 +473,10 @@ The same observations as in the smooth case still applies here.
 **Remarks**
 
 This algorithm exists in the literatures. 
-The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead. 
+The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instead of the proximal gradient, Nesterov has projected gradient instead.  -->
 
 
-
-#### **Definition 1.10 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**
+#### **Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
 > Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
 > Define the lower bouding function: 
@@ -493,7 +484,7 @@ The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instea
 > \begin{aligned}
 >     l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
 >     + 
->     \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2. 
+>     \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
 > \end{aligned}
 > $$
 > We define the following algorithm. 
@@ -502,20 +493,131 @@ The closest one is in Nesterov's 2018's book, equation (2.2.63), however, instea
 >     x_{t + 1} &= \argmin{x} \left\lbrace
 >     l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
 >     \Vert x - x_t\Vert^2 + \frac{\mu}{2}\Vert x - y_t\Vert^2
-> \right\rbrace,
-> \\
-> y_{t + 1}&= 
-> \argmin{x}
-> \left\lbrace
->     h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
->     + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-> \right\rbrace
+>     \right\rbrace
+>     \\
+>     &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
+>     (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
+>     \\
+>     y_{t + 1}&= 
+>     \argmin{x}
+>     \left\lbrace
+>         h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+>         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+>     \right\rbrace
+>     \\
+>     &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
 > \end{aligned}
 > $$
 
 **Demonstrations**
 
-We demonstrate the the equality holds for the minimization problem. 
+The functions inside of "argmin" is easy to solve because they are just quadratic functions. 
+We write it here for future verifications and a peace of the mind. 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= \argmin{x}\left\lbrace
+        \langle \mathcal G_L(y_t), x - y_t\rangle 
+        + 
+        \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
+        \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+    \right\rbrace
+    \\
+    \iff 
+    \mathbf 0 & = 
+    \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
+    \\
+    &= 
+    \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
+    \\
+    \iff 
+    (\mu + \tilde \eta_{t + 1}^{-1})x 
+    &= 
+    \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
+    \\
+    \implies 
+    x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
+    (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
+\end{aligned}
+$$
+
+We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
+Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
+
+$$
+\begin{aligned}
+    \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
+    \\
+    &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
+    \\
+    (L + \eta_{t + 1})x &= 
+    Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
+    \\
+    \implies 
+    x &= 
+    (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
+\end{aligned}
+$$
+
+And hence the results recored, verified for the peace of the mind. 
+
+**Remark**
+
+In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
+
+$$
+\begin{aligned}
+    w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
+    \\
+    x_{t + 1}&= w_t + \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
+    \\
+    z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+    \\
+    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+\end{aligned}
+$$
+
+
+
+
+#### **Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**
+> With $Q\subseteq \R^n$ closed and convex, define $\Psi: Q \mapsto \overline \R$. 
+> Define $f: \mathbb R^n \mapsto \mathbb R$ be $L$-Smooth wrt to norm $\Vert \cdot\Vert$ which is not necessarily the Euclidean norm. 
+> With $h:Q \mapsto \overline \R$ strongly convex wrt $\Vert \cdot\Vert$, and differentiable on $\text{int}(Q)$ so it induces Bregmandivergence $D_h(u, v)$ for all $u, v \in Q$. 
+> Then we define the following algorithm: 
+> $$
+> \begin{aligned}
+>     y_t &= (1 + \eta_t L)^{-1}(x_t + L\eta_t z_t),
+>     \\
+>     x_{t + 1} &= 
+>     \argmin{x \in Q} 
+>     \left\lbrace
+>         l_f(x; y_t) + \frac{1}{\tilde\eta_{t + 1}} D_h(x, x_t) + \Psi(x)
+>     \right\rbrace, 
+>     \\
+>     z_{t + 1} &= 
+>     (1 + L\eta_t)^{-1} 
+>     (x_{t + 1} + L\eta_t z_t). 
+> \end{aligned}
+> $$
+
+And in this case, the momentum algorithm works in a non-smooth composite settings inside of a constrained set $Q$. 
+
+
+
+#### **Definition 1.4 | The Generic Momentum Form**
+> Let $h = f + g$ where $f$ is $L$-Lipschitz smooth convex. 
+> Let $g$ be convex. 
+> Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and the proximal gradient operator for $h$. 
+> Then the generic momentum form is an algorithm with iterates $(z_t, y_t)$ satisfying the relations 
+> $$
+> \begin{aligned}
+>     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+>     \\
+>     y_{t + 1 } &= z_{t + 1} + \theta_{t + 1}(z_{t + 1} - z_t)
+> \end{aligned}
+> $$
+> For some $\theta_t \ge 0$. 
 
 
 **Remarks**
@@ -537,98 +639,36 @@ We show that the Nesterov's 2.2.7 accelerated gradient is the same form as the a
 We show that the Generic triangle form is the same as the generic PPM form. 
 
 #### **Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**
-> The AG Tri-points generic form is equivalent to the AG PPM generic form, yielding the following equalities: 
+> Suppose that $h = f + g$ where $g \equiv 0$. 
+> The AG Proximal Gradient PPM Form can be simplified because $\mathcal G_L(x) = \nabla f(x)$, producing 
+> 
 > $$
 > \begin{aligned}
->     x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
->     \\
->     z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
->     \\
->     y_{t + 1} &= 
->     (1 + L\eta_{t + 1})^{-1}
->     (
->     x_{t + 1} + L\eta_{t + 1}z_{t + 1}
->     ). 
+>       x_{t + 1} &= (\mu \tilde \eta_{t  +1} + 1)^{-1}(\mu\tilde\eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\nabla f(y_t)) , 
+>       \\ 
+>       y_{t + 1} &= 
+>       (1 + L \eta_{t + 1})^{-1}(x_{t + 1} + L\eta_{t + 1}(y - L^{-1}\nabla f(y_t))). 
 > \end{aligned}
 > $$
-> Let the base case be: $y_0 = x_0$. 
-
+> If $\mu = 0$ then the above can be simplified further into
+> $$
+> \begin{aligned}
+>     x_{t + 1} &= x_t - \tilde \eta_{t + 1}\nabla f(y_t). 
+> \end{aligned}
+> $$
+> Where update for $y_{t +1}$ remains unchanged. 
 
 
 **Demonstrations**
 
-Solving the optimality on the first PPM yields: 
-
-$$
-\begin{aligned}
-    \mathbf 0 &= \nabla f(y_t) + 
-    \frac{1}{\tilde \eta_{t + 1}} (x - x_t)
-    \\
-    x &= x_t - \tilde \eta_{t + 1} \nabla f(y_t).
-\end{aligned}
-$$
-
-Therefore, $x_{t + 1} = x_t - \tilde \eta_{t + 1}\nabla f(y_y)$. 
-Similarly, for the updates of $y_{t + 1}$, we have optimality condition of 
-
-$$
-\begin{aligned}
-    \mathbf 0 &= \nabla f (y_t) + L (x - y_t) + \eta_{t + 1}^{-1} (x - x_{t + 1})
-    \\
-    \mathbf 0 &= \eta_{t + 1}\nabla f (y_t) + \eta_{t + 1}L (x - y_t) + x - x_{t + 1}
-    \\
-    \mathbf 0 &= 
-    \eta_{t + 1}\nabla f(y_t) -\eta_{t + 1} Ly_t + (\eta_{t + 1}L + 1)x - x_{t + 1}
-    \\
-    (1 + \eta_{t + 1}L)x
-    &= 
-    x_{t + 1} - \eta_{t + 1}\nabla f(y_t) + \eta_{t + 1}L y_t
-    \\
-    \text{define: } y_{t + 1} &:= x. 
-\end{aligned}
-$$
-
-In the above expression, it hides a step of gradient descent, continuing it we have 
-
-$$
-\begin{aligned}
-    (1 + \eta_{t + 1}L)y_{t + 1} &= 
-    x_{t + 1}  + \eta_{t + 1}L (-L^{-1}\nabla f(y_t) + y_t)
-    \\
-    \text{let: } z_{t + 1} &= y_t - L^{-1}\nabla f(y_t), \text{ so, }
-    \\
-    (1 + \eta_{t + 1}L)y_{t + 1} &= 
-    x_{t + 1} + L\eta_{t + 1}z_{t + 1}. 
-\end{aligned}
-$$
-
-Combining it yields the tree points update format 
-
-$$
-\begin{aligned}
-    x_{t + 1} &= x_t - \tilde \eta_{t + 1} \nabla f(y_t) 
-    \\
-    z_{t + 1} &= y_t - L^{-1} \nabla f(y_t) 
-    \\
-    y_{t + 1} &= 
-    (1 + L\eta_{t + 1})^{-1}
-    (
-    x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-    ), 
-\end{aligned}
-$$
-
-the ordering of $x_{t +1}, z_{t + 1}$ can be permuted. 
-The base case is when $t = 0$, and that produces directly $x_0 = y_0$ for the initial guess. 
+Take note that $\mathcal G_L(x) \in \nabla f(x) + \partial g(\mathcal T_L (x))$, with $g \equiv 0$, it has $G_L(x) \in \{\nabla f(x)\}$. 
+Therefore, we just write the gradient mapping in the definition to be $\mathcal G_L(x)$ instead, giving the desired results. 
 
 **Remarks**
 
-By the base case $x_0 = y_0$, the update sequence would be $z_1, y_1, x_1$, then increment in that order. 
-Depending on the bas case, the order of the update will differ! 
-If the base case is forced to be $x_0 = y_0 = z_0$, then we need update order $y_t, x_t, z_t$, or $y_t, z_t, x_t$. 
+In a similar manner, with $f \equiv 0$, the algorithm can be simplified to represent an accelerated proximal gradient term. 
 
-
-
+<!-- 
 
 #### **Claim 2.2 | The Interpretation of the Ghost term z**
 > From the generic PPM form of the accelerated gradient, we notice that the update for the vector $y_{t + 1}$ admits the following alternative representation: 
@@ -888,7 +928,7 @@ $$
 
 **Remarks**
 
-This particular interpretation **may** assist us with reverse engineering Nesterov's estimating sequence's proof for his 2.2.7 method. 
+This particular interpretation **may** assist us with reverse engineering Nesterov's estimating sequence's proof for his 2.2.7 method.  -->
 
 #### **Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**
 
@@ -1075,6 +1115,30 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
+#### **Claim 2.6 | Momentum Form is a special case of AG PPM form**
+> The momentum form is a special case of the AG generic form. 
+> If the sequence $\tilde \eta_t, \eta$ satisfies the conditions
+> $$
+> \begin{aligned}
+>     \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1}, 
+> \end{aligned}
+> $$
+> Then the generic AG PPM form can be represented in the momentum form: 
+> 
+> $$
+> \begin{aligned}
+>     y_{t + 1} &= z_{t + 1} + 
+>       \frac{L\eta_t}{(1 + \mu \tilde\eta_{t + 1})(1 + L\eta_{t + 1})}(z_{t + 1} - z_t)
+>     \\
+>     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+
+
+
 ---
 ### **Lyapunov Analysis**
 
@@ -1236,7 +1300,7 @@ It can be phrase generically.
 Which will be the next claim 
 
 
-
+<!-- 
 #### **Lemma 3.2 | Generic Lyapunov Bounds for Non-Smooth Generic Tri-Points (DEPRECATED)**
 > Continue from AG Proximal Gradient Generic PPM Form I, then we have the non-smooth analogous case of the Lyapunov upper bound: 
 > $$
@@ -1507,7 +1571,7 @@ $$
 $$
 
 Using the property of gradient mapping that $\mathcal G_L(y_t) \in \nabla f(y_t) + \partial g(z_{t + 1})$, substituting it, we proved all we want to show. 
-
+ -->
 
 
 #### **Lemma 3.3 | Generic Lypunov bound, Non-smooth**
