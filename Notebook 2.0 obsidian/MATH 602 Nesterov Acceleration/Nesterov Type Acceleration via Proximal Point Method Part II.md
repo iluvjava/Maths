@@ -17,7 +17,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-12--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
   - [**Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-13--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.4 | The Generic Momentum Form**](#definition-14--the-generic-momentum-form)
-  - [**Def 1.11 | Guller's Accelerated PPM**](#def-111--gullers-accelerated-ppm)
+  - [**Definition 1.11 | Guller's Accelerated PPM**](#definition-111--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
@@ -627,7 +627,7 @@ The function for $y_{t + 1}$ in argmin, it is not an upper bound for the functio
 It is a quadratic function, and $h$ is non-smooth. 
 It won't be an upper bound. 
 
-#### **Def 1.11 | Guller's Accelerated PPM**
+#### **Definition 1.11 | Guller's Accelerated PPM**
 
 
 See [Accelerated PPM Method](Accelerated%20PPM%20Method.md) for more context about this algorithm. 
@@ -1028,6 +1028,11 @@ $$
         \left(y_t - \mu^{-1}\nabla f(y_t)\right)
     \right). 
 \end{aligned}
+$$
+So 
+
+$$
+\tilde\eta_{t + 1} = \frac{\alpha_k}{(1 - \alpha_k)\gamma_k}. 
 $$
 
 Similarly, when $\mu = 0$, consider $v_{k + 1}$ from that start that 

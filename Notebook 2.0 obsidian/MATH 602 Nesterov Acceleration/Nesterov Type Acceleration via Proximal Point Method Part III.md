@@ -6,6 +6,11 @@
 
 This file directly continue from the previous part. 
 It's split to reduce lags on the inefficient web based frameworks that renders markdown katex in real time. 
+We continue the assumptions and notations from the previous parts. 
+
+1. $h = f + g$ where $f, g$ are convex and $f$ is $L$-Smooth. 
+2. $\mathcal T_L, \mathcal G_L$ denotes the proximal gradient, gradient mapping operator applied to $h$. 
+
 
 #### **ToC For Viewing with VS Code**
 - [**Intro**](#intro)

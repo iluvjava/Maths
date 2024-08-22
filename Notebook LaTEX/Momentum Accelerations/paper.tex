@@ -39,8 +39,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Introduction}
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
-    Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method applied to an upper surrogate function, and then a lower surrogate function. 
+    Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
+    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient and find the match of the stepsize parameters in the PPM form. 
     \par
     Classical analysis and extension of Nesterov accelerated gradient exist in the literatures. 
     See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
@@ -75,7 +76,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth. 
     \end{assumption}
     
-    \begin{theorem}[Proximal Descent Inequality]\label{thm:ppm_descent_ineq}
+    \begin{theorem}[Proximal descent inequality]\label{thm:ppm_descent_ineq}
         Let $f: \RR^n \mapsto \overline \RR^n$ $\beta$ be strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
         For all $y \in \RR$ it verifies
         $$
@@ -94,7 +95,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The proof can be found in \cite[theorem 12.26]{bauschke_convex_2017}. 
     \end{remark}
  
-    \begin{definition}[The Gradient Mapping]
+    \begin{definition}[The gradient mapping]
         \label{def:gradient_mapping}
         Suppose $h = f + g$ satisfies 
         \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
@@ -112,7 +113,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Of course, in Amir Beck \cite[10.3.2]{beck_first-order_nodate}, it has the exact same definition for gradient mapping as the above. 
     \end{remark}
 
-    \begin{lemma}[Gradient Mapping Approximates Subgradient]
+    \begin{lemma}[Gradient mapping approximates subgradient]
     \label{lemma:grad-map-approx-subgrad}\; \\
         Suppose $h = f + g$ satisfies 
         \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref{assumption:smooth-nonsmooth-sum}}, 
@@ -144,7 +145,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{proof}
 
-    \begin{lemma}[Linearized Gradient Mapping Lower Bound]
+    \begin{lemma}[Linearized gradient mapping lower bound]
     \label{lemma:grad_map_linearization}\; \\
         Suppose that $h = f + g$ satisfies 
         \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
@@ -265,8 +266,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Moving everything except $h(z)$ from the RHS to the LHS yield the desired inequality. 
     \end{proof}
     \begin{remark}
-        Observe that the linearization $h(x^+) + \langle \mathcal G_L(x), z - x\rangle$ is anchored at $x^+$, instead of $x$. 
-        Geometrically, it's tilted and it ``prefers" the sharp corners of a convex function, if, $x$ is close to a sharp corner. 
         The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
     \end{remark}
 
@@ -275,7 +274,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     This is general form presents us with a set of undetermine stepsize parameters $\eta_i, \tilde \eta_i$ that can be changed later to accomodate proofs that take Lypunov functions and phrase the convergence rate using the stepsizes sequence $\tilde \eta_i$. 
     These interpretations are extension in the non-smooth context of Ahn and Sra's work \cite{ahn_understanding_2022} using the proximal gradient mapping operator. 
     The next definition will start the discussion. 
-    \begin{definition}[Linear Lower Bounding Function]\label{def:gradmap-linear-lowerbnd-fxn}
+    \begin{definition}[Linear lower bounding function]\label{def:gradmap-linear-lowerbnd-fxn}
         Let $h = f+ g$ satisfies
         \hyperref[assumption:smooth-nonsmooth-sum]{definition \ref*{assumption:smooth-nonsmooth-sum}}, 
         $\mathcal G_L$ given by 
@@ -317,7 +316,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             {definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
     \end{enumerate}
 
-    \begin{definition}[AG Proximal Gradient PPM Generic Form]
+    \begin{definition}[AG proximal gradient PPM generic form]
     \label{def:ag_prox_grad_ppm}
         Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
         With initial iterate $x_0, y_0$, 
@@ -340,7 +339,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         
     \end{definition}
 
-    \begin{definition}[AG Proximal Gradient Generic Form]
+    \begin{definition}[AG proximal gradient generic form]
     \label{def:ag_prox_grad_generic}
         Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
         With initial iterate $x_0, y_0$.
@@ -439,7 +438,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The upper bound interpretation of the smooth case as proposed by Ahn \cite{ahn_understanding_2022}, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
     \end{remark}
 
-\section{Generic Lyapunov analysis for Accelerated gradient via PPM}
+\section{Generic Lyapunov analysis for accelerated gradient via PPM}
 \label{sec:generic_ag_ppm_lyapunov_analysis}
     In this section we derive the generic convergence rate formuated by $\eta_i, \tilde \eta_i$. 
     \par
@@ -1278,7 +1277,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{enumerate}
             By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
             Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
-            
         \end{remark} 
         
     \subsection{Recovering the accelerated gradient variant appeared in Ryu's Book}
@@ -1286,11 +1284,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{Recovering Chambolle, Dossal 2015}
         
 
-\section{Algorithmic Improvements}\label{sec:algorithm_improved}
+\section{Algorithm implementations using line search}\label{sec:algorithm_improved}
     In this section, we state a new variant of the accelerated gradient algorithm using the PPM interpretation to algorithmically conduct a line search routine for $L, \mu \ge 0$ the Lipschitz constant and strong convexity index of the smooth part of the objective function. 
     This variant will be parameter free while still retaining the optimal convergence rate for all convex functions. 
 
-\section{Numerical Experiments}\label{sec:numerical_experiments}
+\section{Numerical experiments}\label{sec:numerical_experiments}
 
 \appendix
 
