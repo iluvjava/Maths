@@ -70,7 +70,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \hyperref[assumption:smooth-nonsmooth-sum]
     {assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
     A lower bound function is identified using the gradient mapping operator and proved in
-    \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}, 
+    \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}, 
     this is a key component of the proximal point interpretation of the accelerated gradient method. 
     \begin{assumption}\label{assumption:smooth-nonsmooth-sum}
         Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth. 
@@ -98,7 +98,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{definition}[The gradient mapping]
         \label{def:gradient_mapping}
         Suppose $h = f + g$ satisfies 
-        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
+        \hyperref[assumption:smooth-nonsmooth-sum]{Assumption \ref*{assumption:smooth-nonsmooth-sum}}. 
         Define the proximal gradient operator
         $$
             \mathcal T_L(x) := \hprox_{L^{-1}g}(x - L^{-1}\nabla f(x)),
@@ -116,9 +116,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{lemma}[Gradient mapping approximates subgradient]
     \label{lemma:grad-map-approx-subgrad}\; \\
         Suppose $h = f + g$ satisfies 
-        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref{assumption:smooth-nonsmooth-sum}}, 
+        \hyperref[assumption:smooth-nonsmooth-sum]{Assumption \ref{assumption:smooth-nonsmooth-sum}}, 
         let $\mathcal T_L, \mathcal G_L$ be given by 
-        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}.
+        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}.
         Then for all $x$, the gradient mapping verifies
         \begin{align*}
             x^+ &= \mathcal T_L(x), 
@@ -148,10 +148,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{lemma}[Linearized gradient mapping lower bound]
     \label{lemma:grad_map_linearization}\; \\
         Suppose that $h = f + g$ satisfies 
-        \hyperref[assumption:smooth-nonsmooth-sum]{assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
+        \hyperref[assumption:smooth-nonsmooth-sum]{Assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
         further assume that $f$ is strongly convex with index $\mu \ge 0$. 
         Let $x^+ = \mathcal T_L(x)$ as given in 
-        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}. 
+        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
         Then for all $z \in \RR$, it satisfies
         \begin{align*}
             h(z) &\ge 
@@ -276,9 +276,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     The next definition will start the discussion. 
     \begin{definition}[Linear lower bounding function]\label{def:gradmap-linear-lowerbnd-fxn}
         Let $h = f+ g$ satisfies
-        \hyperref[assumption:smooth-nonsmooth-sum]{definition \ref*{assumption:smooth-nonsmooth-sum}}, 
+        \hyperref[assumption:smooth-nonsmooth-sum]{Definition \ref*{assumption:smooth-nonsmooth-sum}}, 
         $\mathcal G_L$ given by 
-        \hyperref[def:gradient_mapping]{definition \ref*{def:gradient_mapping}}. 
+        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
         Define for all $y$ the function
         \begin{align*}
             l_h(x; y) = h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle 
@@ -288,17 +288,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         The function satisfies $l_h(x; y) \le h(x)$ for all $x \in \RR, y \in \RR$ by 
         \hyperref[lemma:grad_map_linearization]
-        {lemma \ref*{lemma:grad_map_linearization}}. 
+        {Lemma \ref*{lemma:grad_map_linearization}}. 
     \end{remark}
     \par
     With the above definition, it's possible to formulate a generic form of accelerated gradient method using $l_h(x,y)$ as two proximal point methods anchored at some iterates $x_t, x_{t + 1}$.
     The formulation is generic because of undetermined stepsize parameter $\eta_t, \tilde \eta_t$ from the two proximal point. 
     \par
     We state the PPM interpretation of accelerated gradient in 
-    \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}, 
+    \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}, 
     which has the equivalent form as presented in
     \hyperref[def:ag_prox_grad_generic]
-    {definition \ref*{def:ag_prox_grad_generic}}. 
+    {Definition \ref*{def:ag_prox_grad_generic}}. 
     \hyperref[prop:derive_ag_prox_grad_tript]
     {Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
     shows their equivalence. 
@@ -307,13 +307,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{enumerate}
         \item $h=f + g$ satisfies 
             \hyperref[assumption:smooth-nonsmooth-sum]
-            {assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
+            {Assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
         \item Using $h$ as given from above, let $\mathcal T_L, \mathcal G_L$ be given by 
             \hyperref[def:gradient_mapping]
-            {definition \ref*{def:gradient_mapping}}. 
+            {Definition \ref*{def:gradient_mapping}}. 
         \item Using all above, let $l_h$ be given by 
             \hyperref[def:gradmap-linear-lowerbnd-fxn]
-            {definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
+            {Definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
     \end{enumerate}
 
     \begin{definition}[AG proximal gradient PPM generic form]
@@ -336,7 +336,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right\rbrace.
         \end{aligned}
         $$
-        
     \end{definition}
 
     \begin{definition}[AG proximal gradient generic form]
@@ -381,15 +380,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
         \end{align*}
         This thows
-        \hyperref[def:ag_prox_grad_ppm]{definition \ref*{def:ag_prox_grad_ppm}}
+        \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
         and 
-        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}} 
+        \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}} 
         are equivalent. 
     \end{proposition}
     \begin{proof}
         Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by 
         \hyperref[lemma:grad_map_linearization]
-        {lemma \ref*{lemma:grad_map_linearization}}
+        {Lemma \ref*{lemma:grad_map_linearization}}
         Since $l_h(x; y_t)$ is a simple linear function wrt $x$, minimizing the quandratic where to get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$; for $y_{t + 1}$, complete the square on the second and the third terms: 
         \begin{align*}
             & \frac{L}{2}\left(
@@ -443,17 +442,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section we derive the generic convergence rate formuated by $\eta_i, \tilde \eta_i$. 
     \par
     The Lypunov function in 
-    \hyperref[thm:generic_ag_convergence]{\ref*{thm:generic_ag_convergence}}
+    \hyperref[thm:generic_ag_convergence]{Theorem \ref*{thm:generic_ag_convergence}}
     is identical to Ahn and Sra 
     \cite[section 4.2]{ahn_understanding_2022}, 
     except for the involvement of the gradient mapping. 
     We adapated it into the context of proximal gradient by 
     \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]
-    {lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}
+    {Lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}
     \par
     We present the convergence rate by compatifying results into 
     \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]
-    {lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}} 
+    {Lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}} 
     to assist the proof of  
     \hyperref[thm:generic_ag_convergence]
     {Theorem \ref*{thm:generic_ag_convergence}} 

@@ -130,15 +130,15 @@ $$
     \\
     &
     f(x) \le f(z) - \langle \nabla f(x), z - x\rangle
-    - \frac{\mu}{2}\Vert z - x\Vert^2
-    , 
+    - \frac{\mu}{2}\Vert z - x\Vert^2, 
     \\
     &g(x^+) \le 
-    g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
+    g(z) + \langle  v, x^+ - z\rangle \quad 
+    \forall v\in \partial g(x^+). 
 \end{aligned}
 $$
 
-Now, consider adding $g(x^+)$ to the first inequality from above we get 
+Now, for any $u \in $
 
 $$
 \begin{aligned}
@@ -628,6 +628,7 @@ It is a quadratic function, and $h$ is non-smooth.
 It won't be an upper bound. 
 
 #### **Definition 1.11 | Guller's Accelerated PPM**
+> 
 
 
 See [Accelerated PPM Method](Accelerated%20PPM%20Method.md) for more context about this algorithm. 
