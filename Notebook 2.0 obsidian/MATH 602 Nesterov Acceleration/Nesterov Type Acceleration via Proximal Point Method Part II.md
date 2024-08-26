@@ -138,7 +138,7 @@ $$
 \end{aligned}
 $$
 
-Now, for any $u \in $
+Now, for any $v \in \partial g(x^+)$, it can be said that: 
 
 $$
 \begin{aligned}

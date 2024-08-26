@@ -41,11 +41,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
-    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient and find the match of the stepsize parameters in the PPM form. 
+    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient(AG) and find the match of the stepsize parameters in the PPM form. 
     \par
-    Classical analysis and extension of Nesterov accelerated gradient exist in the literatures. 
+    Some of the earlier examples for the extension of the Nesterov acceleration method make use of the classical analysis introduced by Nestrov. 
+    It uses the Nesterov acceleration sequence. 
     See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
-    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and cherry picked Nesterov's estimating sequence to assist the proof for the parameters in the algorithm. 
+    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and a specific format of the Nesterov's estimating sequence to accomodate the proof for the relations between the parameters in the algorithm. 
     In Ahn's work however, the complexities are packaged into the proximal point interpretation of accelerated gradient. 
     It uses a lemma from Moreau envelope to derive the Lypunov analysis, the sizes, and parameters for several variants of the algorithm. 
     \par
@@ -56,7 +57,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \par
     A wide varieties of interpretation for the Nesterov accelerated gradient exist in the literatures. 
     Consult \cite{su_differential_2015} for a dynamical system interpretation of Nesterov acceleration. 
-    The dynamical system interpretation of the algorithm however, lead to the valuable insights that restarting the accerlated gradient algorithm would lead to faster convergence rate for the class of strongly convex function. 
+    The dynamical system interpretation of the algorithm leads to the valuable insight that restarting the accerlated gradient algorithm would lead to faster convergence rate for the class of strongly convex function. 
+    In work by \cite{allen-zhu_linear_2016}, they interpreted the idea of Nesterov acceleration as a combinations of gradient descent and mirror descent. 
+
+    
 
     % \par
     % The paper is organized as follow: 
@@ -73,7 +77,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}, 
     this is a key component of the proximal point interpretation of the accelerated gradient method. 
     \begin{assumption}\label{assumption:smooth-nonsmooth-sum}
-        Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth. 
+        Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth with constant $L$. 
     \end{assumption}
     
     \begin{theorem}[Proximal descent inequality]\label{thm:ppm_descent_ineq}
@@ -155,7 +159,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Then for all $z \in \RR$, it satisfies
         \begin{align*}
             h(z) &\ge 
-            h(x^+) + \langle \mathcal G_L (x), z - x\rangle + 
+            h(x^+) + 
+            \langle \mathcal G_L (x), z - x\rangle 
+            + 
             \frac{L}{2}\Vert x - x^+\Vert^2 + \frac{\mu}{2}
             \Vert z - x\Vert^2. 
         \end{align*}
@@ -173,9 +179,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \le f(z), 
             \\
             &g(x^+) \le 
-            g(z) + \langle \partial g(x^+), x^+ - z\rangle. 
+            g(z) + \langle v, x^+ - z\rangle\quad 
+            \forall v \in \partial g(x^+)
         \end{align*}
-        Apply the above by considering the following sequence of relations
+        For all $v \in \partial g (x^+)$, apply the above by considering the following sequence of relations
         \begin{align*}
             h(x^+) &= f(x^+) + g(x^+)
             \\&
@@ -187,7 +194,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \right)
                 \\
                 &\qquad  
-                + (g(z) + \langle \partial g(x^+), x^+ - z\rangle)
+                + (g(z) + \langle v, x^+ - z\rangle)
             \end{aligned}
             \\&
             \begin{aligned}
@@ -202,7 +209,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 &\qquad 
                 +
-                (g(z) + \langle \partial g(x^+), x^+ - z\rangle)
+                (g(z) + \langle v, x^+ - z\rangle)
             \end{aligned}
             \\&
             \begin{aligned}
@@ -213,7 +220,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + \left(
                     \langle \nabla f(x), x - z\rangle + 
                     \langle \nabla f(x), x^+ - x\rangle + 
-                    \langle \partial g(x^+), x^+ - z\rangle
+                    \langle v, x^+ - z\rangle
                 \right) 
                 \\ 
                 &\qquad 
@@ -226,7 +233,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(
                     \langle \nabla f(x), x - x^+ + x^+ - z\rangle + 
                     \langle \nabla f(x), x^+ - x\rangle + 
-                    \langle \partial g(x^+), x^+ - z\rangle
+                    \langle v, x^+ - z\rangle
                 \right)
                 \\
                 &\qquad 
@@ -236,32 +243,42 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\& 
             \begin{aligned}
                 &= h(z) + 
-                \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+                \langle \nabla f(x) + v, x^+ - z\rangle 
                 - \frac{\mu}{2}\Vert z - x\Vert^2
                 + \frac{L}{2}\Vert x - x^+\Vert^2
             \end{aligned}
-            \\& 
-            \begin{aligned}
-                &= h(z) + 
-                    \langle \mathcal G_L(x), x^+ - z\rangle 
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2
-            \end{aligned}
-            \\& 
-            \begin{aligned}
-                &= h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2
-            \end{aligned}
-            \\&
-            \begin{aligned}
-                &= h(z) + 
-                \underbrace{\langle L(x - x^+), x - z\rangle}_{
-                    = - \langle \mathcal G_L (x), z - x\rangle
-                }
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                - \frac{L}{2}\Vert x - x^+\Vert^2
-            \end{aligned}. 
+            % \\& 
+            % \begin{aligned}
+            %     &= h(z) + 
+            %         \langle \mathcal G_L(x), x^+ - z\rangle 
+            %     - \frac{\mu}{2}\Vert z - x\Vert^2
+            %     + \frac{L}{2}\Vert x - x^+\Vert^2
+            % \end{aligned}
+            % \\& 
+            % \begin{aligned}
+            %     &= h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
+            %     - \frac{\mu}{2}\Vert z - x\Vert^2
+            %     + \frac{L}{2}\Vert x - x^+\Vert^2
+            % \end{aligned}
+            % \\&
+            % \begin{aligned}
+            %     &= h(z) + 
+            %     \underbrace{\langle L(x - x^+), x - z\rangle}_{
+            %         = - \langle \mathcal G_L (x), z - x\rangle
+            %     }
+            %     - \frac{\mu}{2}\Vert z - x\Vert^2
+            %     - \frac{L}{2}\Vert x - x^+\Vert^2
+            % \end{aligned}
+        \end{align*}
+        Showed in  
+        \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
+        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $G_L(x) = \nabla f(x) + \partial g(x^+)$, it yields
+        \begin{align*}
+            h(x^+) & 
+            \le h(z) + 
+            \langle \nabla f(x) + v, x^+ - z\rangle 
+            - \frac{\mu}{2}\Vert z - x\Vert^2
+            + \frac{L}{2}\Vert x - x^+\Vert^2
         \end{align*}
         Moving everything except $h(z)$ from the RHS to the LHS yield the desired inequality. 
     \end{proof}
@@ -345,8 +362,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The generic form has iterates $(y_t, x_{t + 1}, z_{t + 1})$ such that 
         $$
         \begin{aligned}
-            y_t^+ &= \mathcal T_L(y_t)
-            \\
             y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
             \\
             x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
@@ -426,9 +441,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \left(y_t - L^{-1}\mathcal G_L(y_t)\right) + x_{t + 1}
             }{L + \eta_{t + 1}^{-1}}.
         \end{align*}
-        Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, which is the proximal gradient set, then the above expression simplifies to 
+        Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, then the above expression simplifies to 
         $$
-        y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
+            y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
         $$
     \end{proof}
     \begin{remark}
@@ -457,15 +472,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \hyperref[thm:generic_ag_convergence]
     {Theorem \ref*{thm:generic_ag_convergence}} 
     which states new results that are extension to Ahn and Sra's works by introducing an error term to the Lypunov analysis, allowing for a weaker constraints for the stepsize paramters $\tilde \eta_i, \eta_i$ from 
-    \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}. 
+    \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
     \hyperref[thm:ag_generic_stepsize_constraints]{Theorem \ref*{thm:ag_generic_stepsize_constraints}}
     states the weakened constraints on the stepsize parameters $\tilde \eta_i, \eta_i$. 
     \par
     Throughout the section, we continue the assumption for $h = f + g$, gradient mapping $\mathcal G_L$ and proximal gradient mapping $\mathcal T_L$ from the previous section. 
 
-    \begin{lemma}[Lyapunov Inequality]. 
+    \begin{lemma}[Lyapunov inequality]
     \label{lemma:nsmooth_agg_lyapunov_upper_bound}\;\\
-        Fix any $\bar x, x, \tilde\eta > 0$, define
+        Fix any $\bar x, x, z',\tilde\eta > 0$, define
         \begin{align*}
             \phi(u) &:= \tilde\eta
             \left(
@@ -474,36 +489,36 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \right), 
             \\
             x^+ &:= 
-            \hprox_\phi(x) = x - \tilde \eta\mathcal G_L \bar x. 
-        \end{align*}
-        with $x_*$ being the minimizer of $h$, it has 
-        \begin{align*}
+            \hprox_\phi(x) = x - \tilde \eta\mathcal G_L \bar x,
+            \\
             \Upsilon_{1}  &:= 
             \tilde \eta(h(\mathcal T_L \bar x) - h(x_*))
             + 
-            \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2)
+            \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2), 
             \\
-            &\quad \le 
+            \Upsilon_2 &:= 
+            h(\mathcal T_L \bar x) - h(z'). 
+        \end{align*}
+        with $x_*$ being the minimizer of $h$, it has 
+        \begin{align*}
+            \Upsilon_1 &\le 
             - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
             + 
             \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
             - 
             \frac{1}{2}\Vert x^+ - x\Vert^2, 
             \\
-            \forall z':
-            \Upsilon_2 &:= 
-            h(\mathcal T_L \bar x) - h(z') 
-            \le 
+            \Upsilon_2 &\le 
             \langle \mathcal G_L\bar x, \mathcal T_L \bar x - z'\rangle + 
             \frac{L}{2}\Vert \mathcal T_L \bar x - \bar x\Vert^2. 
         \end{align*}
     \end{lemma}
     \begin{observation}
-        Function $\phi$ is a linear function that qualifies as a lower bound of $\tilde \eta h$, anchored at $\bar x$ by 
+        Function $\phi$ is a linear function that qualifies as a lower bound of $\tilde \eta h$, at $\bar x$ by 
         \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}.
     \end{observation}
     \begin{proof}
-        Directly observe that we have 
+        Observe that we have 
         \begin{align*}
             \quad &
             h(\mathcal T_L\bar x) + 
@@ -604,50 +619,55 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             + 
             \frac{L}{2}\Vert z - \bar x\Vert^2. 
         \end{align*}
-        The convexity of $g$ yields: 
+        The convexity of $g$ yields for all $v \in \partial g(z)$: 
         \begin{align*}
             g(z) + 
             \langle 
-                \partial g(z), z' - z
+                v, z' - z
             \rangle 
             &\le g(z')
             \\
             g(z) - g(z') 
             &\le 
-            \langle \partial g(z), z - z'\rangle. 
+            \langle v, z - z'\rangle. 
         \end{align*}
         Adding them yield 
         \begin{align*}
             h(z) - h(z') &\le 
-            \langle \nabla f(\bar x) + \partial g(z), z - z'\rangle + 
+            \langle \nabla f(\bar x) +v, z - z'\rangle + 
             \frac{L}{2}\Vert z - \bar x\Vert^2. 
         \end{align*}
         Setting $z = \mathcal T_L \bar x$, use 
         \hyperref[lemma:grad-map-approx-subgrad]
-        {lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-        to give the desired results. 
+        {Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
+        there exists $v \in \partial g (\mathcal T_L(\bar x))$ such that $\mathcal G_L(\bar x) = \nabla f(z) + v$, hence the theorem is proved. 
     \end{proof}
-    \begin{remark}
-    \label{remark:upsilon-upperbound-for-iterates}
+    \begin{remark}\label{remark:upsilon-upperbound-for-iterates}
         Let $y_t, x_t$ be given by
         \hyperref[def:ag_prox_grad_generic]
-        {definition \ref*{def:ag_prox_grad_generic}}.
+        {Definition \ref*{def:ag_prox_grad_generic}}.
         Set $\bar x = y_t, x = x_t$, then 
         \begin{align*}
             x^+ &= x_t - \mathcal G_L y_t = x_{t + 1},
             \\
             z_{t + 1} &= \mathcal T_L y_t = \mathcal T_L \bar x.
         \end{align*}
-        Set $z' = z_t, \tilde \eta = \tilde \eta_{t + 1}$, 
-        the results can be written as 
+        Set $z' = z_t, \tilde \eta = \tilde \eta_{t + 1}$, we define the quantities: 
         \begin{align*}
             \Upsilon_{1, t + 1}^{\text{AG}}
             &:= 
             \tilde \eta_{t + 1}(h(z_{t + 1}) - h(x_*))
             + 
-            \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
+            \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2),
             \\
-            &\quad \le 
+            \Upsilon_{2, t + 1}^{\text{AG}}
+            &:= 
+            h(z_{t + 1}) - h(z_t). 
+        \end{align*}
+        It then produces the inequalities: 
+        \begin{align*}
+            \Upsilon_{1, t + 1}^{\text{AG}}
+            &\le 
             - \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
             + 
             \frac{\tilde \eta_{t + 1}L}{2}
@@ -659,22 +679,21 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \Vert x_{t + 1} - x_t\Vert^2,  
             \\ 
             \Upsilon_{2, t + 1}^{\text{AG}}
-            &:= 
-            h(z_{t + 1}) - h(z_t) \le 
+            &\le 
             \langle \mathcal G_L \bar x, z_{t + 1} - z_t \rangle + 
-            \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
+            \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2.
         \end{align*}
-        It will be used next. 
+        This is useful for the convergence proof of the algorithm. 
     \end{remark}
 
-    \begin{theorem}[Generic AG Convergence]
+    \begin{theorem}[Generic AG convergence]
     \label{thm:generic_ag_convergence}
         Let $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ be given by 
         \hyperref[remark:upsilon-upperbound-for-iterates]
-        {remark \ref*{remark:upsilon-upperbound-for-iterates}}. 
+        {Remark \ref*{remark:upsilon-upperbound-for-iterates}}. 
         Let $z_t$ be given by 
         \hyperref[def:ag_prox_grad_generic]
-        {definition \ref*{def:ag_prox_grad_generic}}. 
+        {Definition \ref*{def:ag_prox_grad_generic}}. 
         Define the Lyapunov function $\Phi_t\; \forall t \in \{0\}\cup \N$, $S_t$ and $\sigma_t$: 
         \begin{align*}
             \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
@@ -689,7 +708,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         If there exists a sequence of $(\eta_i)_{i \in \N}$ as defined in
         \hyperref[def:ag_prox_grad_ppm]
-        {definition \ref*{def:ag_prox_grad_ppm}} 
+        {Definition \ref*{def:ag_prox_grad_ppm}} 
         such that
         \begin{align*}
             & \Phi_{t + 1} - \Phi_{t} =
@@ -704,7 +723,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             & \Upsilon_{1, 1}^{\text{AG}} \le \delta_1. 
         \end{align*}
         for some $\delta_i, i \in \N$. 
-        Then 
+        Then
         \begin{align*}
             h(z_T) - h(x_*) &\le 
             \sigma_T^{-1}\left(
@@ -779,7 +798,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \label{thm:ag_generic_stepsize_constraints}\;\\
         Let iterates $z_t, x_t, y_t$ be given by
         \hyperref[def:ag_prox_grad_generic]
-        {definition \ref*{def:ag_prox_grad_generic}}. 
+        {Definition \ref*{def:ag_prox_grad_generic}}. 
         If the stepsize $\eta_i, \tilde \eta_i$ satisfies relations 
         \begin{align*}
             \begin{cases}
@@ -807,14 +826,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Define $\delta_{t + 1} = \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2$. 
         Then the convergence rate stated in 
-        \hyperref[thm:generic_ag_convergence]{theorem \ref*{thm:generic_ag_convergence}}
+        \hyperref[thm:generic_ag_convergence]
+        {Theorem \ref*{thm:generic_ag_convergence}}
         applies. 
     \end{theorem}
     \begin{proof}
         With $t \in \mathbb N \cup \{0\}$ fixed, 
         recall that for the proximal gradient PPM generic form 
         (as formulated in 
-        \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}) 
+        \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}) 
         for $t\in \mathbb N$ it has: 
         \begin{align*}
             y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
@@ -825,7 +845,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Recall the upper bounds from 
         \hyperref[remark:upsilon-upperbound-for-iterates]
-        {remark \ref*{remark:upsilon-upperbound-for-iterates}}
+        {Remark \ref*{remark:upsilon-upperbound-for-iterates}}
         it has 
         \begin{align*}
             \Upsilon_{1, t + 1}^\text{AG}
@@ -854,7 +874,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Because the iterates are produced by 
         \hyperref[def:ag_prox_grad_generic]
-        {definition \ref*{def:ag_prox_grad_generic}}
+        {Definition \ref*{def:ag_prox_grad_generic}}
         vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations: 
         \begin{align*}
             x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
@@ -1128,7 +1148,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         With $\delta_i$ given by
         \hyperref[thm:generic_ag_convergence]
-        {theorem \ref*{thm:generic_ag_convergence}}. 
+        {Theorem \ref*{thm:generic_ag_convergence}}. 
         Define $\delta_i = \epsilon_{i} \tilde \eta_i$, then 
         \begin{align*}
             S_{T} = 
@@ -1156,16 +1176,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Recovering existing variants of Nesterov accelerated gradient}\label{sec:recovery}
     In this section, we recovers several variants of the accelerated gradient in the literatures as a special case of 
-    \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}, 
+    \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}, 
     we sate the choice of stepsize parameter $\eta_i, \tilde \eta_i$, verify that they satisfies 
     \hyperref[thm:ag_generic_stepsize_constraints]
-    {theorem \ref*{thm:ag_generic_stepsize_constraints}}
+    {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
     and derive their convergence rate respectively. 
     
     \subsection{Recovering FISTA} 
         Let $\epsilon_i$ be given by
         \hyperref[thm:ag_generic_stepsize_constraints]
-        {theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
+        {Theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
         setting $\epsilon_i = 0$ for all $i$ yields $a_t = 1 + L\eta_t = \tilde \eta_{t + 1}$, for all $t \in \N$ where $a_t$ produces the relations 
         \begin{align*}
             a_{t + 1} &= (1/2)\left(
@@ -1181,7 +1201,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \quad \\
             With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$,
             \hyperref[def:ag_prox_grad_generic]
-            {definition \ref*{def:ag_prox_grad_generic}}
+            {Definition \ref*{def:ag_prox_grad_generic}}
             simplifies into 
             \begin{align*}
                 z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t)
@@ -1206,7 +1226,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proof}
             Firstly, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
             Starting with the former, susbtitute $z_{t + 1} = y_t + L^{-1}\nabla f(y_t)$ as given by 
-            \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}},
+            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}},
             expanding: 
             \begin{align*}
                 x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
@@ -1221,7 +1241,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$. 
             Next, consider the updates $y_{t + 1}$ as given by 
-            \hyperref[def:ag_prox_grad_generic]{definition \ref*{def:ag_prox_grad_generic}}
+            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}
             \begin{align*}
                 y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
                 \\
@@ -1244,15 +1264,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
             This is FISTA by the relation $a_t = 1 + L\eta_t$ by setting $\epsilon_i = 0$ in
             \hyperref[thm:ag_generic_stepsize_constraints]
-            {theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
+            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
             making $a_t$ the Nesterov momentum sequence. 
             Observe that $(1 + L\eta_{t + 1})^{-1}L\eta_t$ is $(a_t - 1)/a_{t + 1}$.
             Express using $a_t$, the above algorithm is equivalent to the FISTA algorithm. 
             \par
             By 
-            \hyperref[thm:ag_generic_stepsize_constraints]{theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            \hyperref[thm:ag_generic_stepsize_constraints]{Theorem \ref*{thm:ag_generic_stepsize_constraints}}
             and 
-            \hyperref[thm:generic_ag_convergence]{\ref*{thm:generic_ag_convergence}},
+            \hyperref[thm:generic_ag_convergence]{Theorem \ref*{thm:generic_ag_convergence}},
             a convergence of $\mathcal O(\sigma_T^{-1})$ is possible. 
             Since $a_t = \tilde \eta_t$, and the Nesterov sequence exhibits $a_{t} \ge (t + 2)/2$, the convergence becomes $\mathcal O(T^{-2})$. 
             It is the optimal convergence rate for all convex functions. 
