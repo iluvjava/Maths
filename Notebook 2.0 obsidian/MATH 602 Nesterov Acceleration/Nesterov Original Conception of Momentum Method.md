@@ -221,7 +221,7 @@ The same exact proof follows through, replacing the convexity lower bound for $f
 ---
 ### **Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**
 
-Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such that, it's preseved under the update procedures. 
+Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such that, it's preserved under the update procedures. 
 
 #### **Lemma 2.2.3 | Updating with the Canonical Form**
 > Continuing from the previous corollary,

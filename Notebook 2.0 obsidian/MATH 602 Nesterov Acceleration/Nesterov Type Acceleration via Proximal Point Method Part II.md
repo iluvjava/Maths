@@ -19,10 +19,11 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.4 | The Generic Momentum Form**](#definition-14--the-generic-momentum-form)
   - [**Definition 1.11 | Guller's Accelerated PPM**](#definition-111--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
-  - [**Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**](#lemma-21--accelerated-gradient-generic-trianglar-form)
+  - [**Lemma 2.1 | Accelerated Gradient Generic Form**](#lemma-21--accelerated-gradient-generic-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
   - [**Claim 2.6 | Momentum Form is a special case of AG PPM form**](#claim-26--momentum-form-is-a-special-case-of-ag-ppm-form)
   - [**Corollary | Recovery of V-FISTA algorithm**](#corollary--recovery-of-v-fista-algorithm)
+  - [**Claim | Similar triangle inside of the generic form**](#claim--similar-triangle-inside-of-the-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -198,14 +199,17 @@ $$
         - \frac{\mu}{2}\Vert z - x\Vert^2
         + \frac{L}{2}\Vert x - x^+\Vert^2
     \end{aligned}
-    \\& 
+    \\
+    & 
     \begin{aligned}
         &= h(z) + 
-        \langle \nabla f(x) + \partial g(x^+), x^+ - z\rangle 
+        \langle \nabla f(x) + v, x^+ - z\rangle 
         - \frac{\mu}{2}\Vert z - x\Vert^2
         + \frac{L}{2}\Vert x - x^+\Vert^2
     \end{aligned}
-    \\& 
+    \\
+    \exists\; v \in \partial g(z) \text{ s.t } h(x^+)
+    & 
     \begin{aligned}
         &= h(z) + 
             \langle \mathcal G_L(x), x^+ - z\rangle 
@@ -232,7 +236,6 @@ $$
 
 Substituting $\mathcal G_L(x) = L (x - x^+)$ to the above expression, rearrange it a bit will recover the desired inequalities. 
 Therefore, the inequality is justified. 
-
 
 
 
@@ -640,7 +643,7 @@ In this section, we measure, and compare different forms listed above.
 We show that the Nesterov's 2.2.7 accelerated gradient is the same form as the accelerated gradient PPM strongly convex form. 
 We show that the Generic triangle form is the same as the generic PPM form. 
 
-#### **Lemma 2.1 | Accelerated Gradient Generic Trianglar Form**
+#### **Lemma 2.1 | Accelerated Gradient Generic Form**
 > Suppose that $h = f + g$ where $g \equiv 0$. 
 > The AG Proximal Gradient PPM Form can be simplified because $\mathcal G_L(x) = \nabla f(x)$, producing 
 > 
@@ -1294,6 +1297,7 @@ Hence, the momentum term is recovered.
 
 The algorithm, V-FISTA can be recovered through a specific choice of parameters for $\eta_t, \tilde \eta_t$. 
 This is claimed in Ahn and Sra's paper, but it's not carefully illustrated. 
+In general, given any stepszie sequence for the momentum form, there exists some sequence of $\eta_t, \tilde \eta_t$ that satisfies these conditions, making it possible to relate the stepsizes from the PPM interpretation back to the momentum form of the algorithm. 
 
 #### **Corollary | Recovery of V-FISTA algorithm**
 > If
@@ -1411,6 +1415,13 @@ $$
     &= 1 + \sqrt{\kappa} = 1 + L \eta. 
 \end{aligned}
 $$
+
+
+#### **Claim | Similar triangle inside of the generic form**
+> We show that geometrically, there is a similar triangle hidden behind the formulation of the generic form. 
+
+**Illustrations**
+
 
 ---
 ### **Lyapunov Analysis**
