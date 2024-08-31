@@ -1304,15 +1304,20 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
             \end{enumerate}
             By these three observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+            See \hyperref[fig:1a]{Figure \ref*{fig:1a}}
+            for an illustration. 
             \begin{figure}[h]
                 \centering
-                \subfloat[][a]{
-                    \includegraphics*[width=10cm]{assets/drawing_Layer 1.png}
+                \subfloat[a][similar triangle]{
+                    \includegraphics*[width=7cm]{assets/drawing_Layer 1.png}
+                    \label{fig:1a}
+                }
+                \subfloat[b][similar triangle with errors]{
+                    \includegraphics*[width=6cm]{assets/drawing_Layer 1 copy.png}
+                    \label{fig:1b}
                 }
                 \caption{Similar triangle illustration}
-                \label{steady_state}
             \end{figure}
-
             Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
             Finally, recall from 
             \hyperref[thm:ag_generic_stepsize_constraints]
@@ -1320,9 +1325,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             that $\epsilon_{t + 1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$, setting $\epsilon_{t + 1} =0$ for all $t \in \N \cup \{0\}$. 
             If we choose to incorperate $\epsilon_{t + 1}$, it yields: 
             \begin{align*}
-                x_{t + 1} &= z_{t + 1} + L\eta_t(z_{t + 1} - z_t) - \epsilon_{t + 1}\mathcal G_L(y_t). 
+                x_{t + 1} &= z_{t + 1} + L\eta_t(z_{t + 1} - z_t) - \epsilon_{t + 1}\mathcal G_L(y_t) = x_t - (\eta_t + L^{-1} + \epsilon_{t + 1})\mathcal G_L(y_t). 
             \end{align*}
             Where $\epsilon_{t + 1}\mathcal G_L(y_t)$ can be viewed as a perturbations from the similar triangle form of the algorithm. 
+            See 
+            \hyperref[fig:1b]{Figure \ref*{fig:1b}}
+            for an illustration for some $\epsilon_{t + 1} > 0$. 
         \end{remark} 
         
     \subsection{Recovering the accelerated gradient variant in Ryu's book}

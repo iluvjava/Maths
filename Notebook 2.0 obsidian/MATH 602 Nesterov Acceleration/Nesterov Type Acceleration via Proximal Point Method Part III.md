@@ -16,7 +16,7 @@ We continue the assumptions and notations from the previous parts.
 - [**Intro**](#intro)
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
-  - [**Theorem | Generic Convergence Bound based on PPM Interpretation**](#theorem--generic-convergence-bound-based-on-ppm-interpretation)
+  - [**Theorem | Lyapunov analysis based on the PPM interpretation of AG**](#theorem--lyapunov-analysis-based-on-the-ppm-interpretation-of-ag)
   - [**Remarks**](#remarks)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
@@ -37,7 +37,7 @@ We continue the assumptions and notations from the previous parts.
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
-#### **Theorem | Generic Convergence Bound based on PPM Interpretation**
+#### **Theorem | Lyapunov analysis based on the PPM interpretation of AG**
 In this section, we repeat part II, but with the above theorem. 
 With $x_* \in \argmin{x} f(x)$, and 
 
