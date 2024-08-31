@@ -22,8 +22,8 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Lemma 2.1 | Accelerated Gradient Generic Form**](#lemma-21--accelerated-gradient-generic-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
   - [**Claim 2.6 | Momentum Form is a special case of AG PPM form**](#claim-26--momentum-form-is-a-special-case-of-ag-ppm-form)
-  - [**Corollary | Recovery of V-FISTA algorithm**](#corollary--recovery-of-v-fista-algorithm)
-  - [**Claim | Similar triangle inside of the generic form**](#claim--similar-triangle-inside-of-the-generic-form)
+  - [**Corollary 2.7 | Recovery of V-FISTA algorithm**](#corollary-27--recovery-of-v-fista-algorithm)
+  - [**Claim 2.8 | Similar triangle inside of the generic form**](#claim-28--similar-triangle-inside-of-the-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -54,6 +54,7 @@ The following concepts are crucial for introducing proximal gradient into the PP
 >   L(x - x^+) &\in  \nabla f(x) + \partial g(x^+) \ni \mathcal G_L(x). 
 > \end{aligned}
 > $$
+> Equivalently, $\exists v \in g(x^+)$ such that $L(x - x^+) = \nabla f(x) + v = \mathcal G_L(x)$. 
 
 **Proof**
 
@@ -1299,7 +1300,10 @@ The algorithm, V-FISTA can be recovered through a specific choice of parameters 
 This is claimed in Ahn and Sra's paper, but it's not carefully illustrated. 
 In general, given any stepszie sequence for the momentum form, there exists some sequence of $\eta_t, \tilde \eta_t$ that satisfies these conditions, making it possible to relate the stepsizes from the PPM interpretation back to the momentum form of the algorithm. 
 
-#### **Corollary | Recovery of V-FISTA algorithm**
+Setting $\mu = 0$, the relation simplifies to $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1}$. 
+This particular recovers Nesterov original method of accelerated gradient, and also FISTA. 
+
+#### **Corollary 2.7 | Recovery of V-FISTA algorithm**
 > If
 > $$
 > \begin{aligned}
@@ -1417,7 +1421,7 @@ $$
 $$
 
 
-#### **Claim | Similar triangle inside of the generic form**
+#### **Claim 2.8 | Similar triangle inside of the generic form**
 > We show that geometrically, there is a similar triangle hidden behind the formulation of the generic form. 
 
 **Illustrations**

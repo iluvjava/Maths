@@ -79,7 +79,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{assumption}\label{assumption:smooth-nonsmooth-sum}
         Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth with constant $L$. 
     \end{assumption}
-    
+    \begin{definition}[Strongly convex functions]
+        % TODO: FILL THIS ONE IN. 
+        %   The definition of a strongly convex function. 
+    \end{definition}
+
     \begin{theorem}[Proximal descent inequality]\label{thm:ppm_descent_ineq}
         Let $f: \RR^n \mapsto \overline \RR^n$ $\beta$ be strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
         For all $y \in \RR$ it verifies
@@ -97,6 +101,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \begin{remark}
         We use this theorem to prove the convergence of the proximal point method. 
         The proof can be found in \cite[theorem 12.26]{bauschke_convex_2017}. 
+        % TODO: Add the proof to the appendix. 
     \end{remark}
  
     \begin{definition}[The gradient mapping]
@@ -127,8 +132,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{align*}
             x^+ &= \mathcal T_L(x), 
             \\
-            \mathcal G_L(x) = L(x - x^+) &\in  \nabla f(x) + \partial g(x^+). 
+            \mathcal G_L(x) := L(x - x^+) &\in  \nabla f(x) + \partial g(x^+). 
         \end{align*}
+        Equivalently, $\exists v \in \partial g(x^+)$ such that $G_L(x) = \nabla f(x) + v = L(x - x^+)$. 
     \end{lemma}
     \begin{proof}
         Using the resolvent definition of the proximal gradient operator and the fact that the single-valuedness in the convex settings, $x^+$ has relations: 
@@ -1197,7 +1203,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The recurrenct relations of $a_t$ indicates that it's the famous Nesterov momentum sequence. 
         In this case, there exists a momentum form of the generic form and it reduces to FISTA from Beck and Toubolle \cite{beck_fast_2009-1}. 
         The following lemma uses $a_t$ to establish equivalence between the generic form of the algorithm and FISTA, a specific variant of accelerated gradient method. 
-        \begin{lemma}[Deriving Similar Triangle Form I]
+        \begin{lemma}[Similar triangle form]
             \quad \\
             With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$,
             \hyperref[def:ag_prox_grad_generic]
@@ -1280,22 +1286,43 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             In this remark we clarify the name ``similar triangle" as given in the literatures. 
             We think it is a fitting name, becaues it has a similar triangle in it. 
-            We list the following observations
+            We list the following observations:
             \begin{enumerate}
                 \item 
                 The updates for $y_{t}$ from the algorithm has 
                 $$
                     y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
                 $$
-                therefore, $y_t$ is a convex combinations of $x_t, z_t$, so $z_t, y_t, x_t$ are three collinear points. 
-                We have the ratio $\Vert y_t - x_t\Vert/\Vert z_t - y_t\Vert = L\eta_t$. 
+                Rearrainging yields: 
+                $$
+                    y_t - x_t = L\eta_t (z_t - y_t). 
+                $$
+                So vector $y_t - x_t$, $z_t - y_t$ colinear and points in the same direction by $L\eta_t > 0$. 
                 \item 
                 The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1} \mathcal G_L(y_t), \tilde\eta_{t +1} \mathcal G_L(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
-                \item The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
-                The ratio between line segment has $\Vert x_{t + 1} - z_{t + 1}\Vert/\Vert z_{t + 1} - z_t\Vert = L\eta_t$. 
+                \item 
+                The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
             \end{enumerate}
-            By these tree observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+            By these three observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
+            \begin{figure}[h]
+                \centering
+                \subfloat[][a]{
+                    \includegraphics*[width=10cm]{assets/drawing_Layer 1.png}
+                }
+                \caption{Similar triangle illustration}
+                \label{steady_state}
+            \end{figure}
+
             Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
+            Finally, recall from 
+            \hyperref[thm:ag_generic_stepsize_constraints]
+            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            that $\epsilon_{t + 1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$, setting $\epsilon_{t + 1} =0$ for all $t \in \N \cup \{0\}$. 
+            If we choose to incorperate $\epsilon_{t + 1}$, it yields: 
+            \begin{align*}
+                x_{t + 1} &= z_{t + 1} + L\eta_t(z_{t + 1} - z_t) - \epsilon_{t + 1}\mathcal G_L(y_t). 
+            \end{align*}
+            Where $\epsilon_{t + 1}\mathcal G_L(y_t)$ can be viewed as a perturbations from the similar triangle form of the algorithm. 
         \end{remark} 
         
     \subsection{Recovering the accelerated gradient variant in Ryu's book}
@@ -1310,6 +1337,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Numerical experiments}\label{sec:numerical_experiments}
 
 \appendix
+
+\begin{theorem}[strongly convex PPM descent lemma]
+    
+\end{theorem}
 
 
 % \printbibliography
