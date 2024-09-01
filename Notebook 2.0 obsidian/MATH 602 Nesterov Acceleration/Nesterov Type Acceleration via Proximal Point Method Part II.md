@@ -21,7 +21,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Form**](#lemma-21--accelerated-gradient-generic-form)
   - [**Claim 2.5 | The Nesterov 2.2.7 Shares the same Form as AG S-CVX Generic Form**](#claim-25--the-nesterov-227-shares-the-same-form-as-ag-s-cvx-generic-form)
-  - [**Claim 2.6 | Momentum Form is a special case of AG PPM form**](#claim-26--momentum-form-is-a-special-case-of-ag-ppm-form)
+  - [**Claim 2.6 | Intersection between momentum and AG PPM form**](#claim-26--intersection-between-momentum-and-ag-ppm-form)
   - [**Corollary 2.7 | Recovery of V-FISTA algorithm**](#corollary-27--recovery-of-v-fista-algorithm)
   - [**Claim 2.8 | Similar triangle inside of the generic form**](#claim-28--similar-triangle-inside-of-the-generic-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
@@ -279,7 +279,7 @@ $$
 #### **Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**
 > Let $h=f + g$ be the sum of convex function $g$ and convex differentiable $f$ with $L$-Lipschitz gradient and $\mu \ge 0$ strongly convex. 
 > Let the gradient mapping operator be denoted by $\mathcal G_L$, and $\mathcal T_L$ to be the proximal gradient operator. 
-> Define the lower bouding function: 
+> Define the lower bouding function at $x$: 
 > $$
 > \begin{aligned}
 >     l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
@@ -301,7 +301,7 @@ $$
 >     y_{t + 1}&= 
 >     \argmin{x}
 >     \left\lbrace
->         h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+>         h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
 >         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
 >     \right\rbrace
 >     \\
@@ -660,7 +660,7 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
-#### **Claim 2.6 | Momentum Form is a special case of AG PPM form**
+#### **Claim 2.6 | Intersection between momentum and AG PPM form**
 > The momentum form is a special case of the AG generic form. 
 > If the sequence $\tilde \eta_t, \eta$ satisfies the conditions
 > $$
@@ -965,6 +965,8 @@ $$
 ![](../Assets/nes-similar-triangle-perturbed.png)
 
 That is where the name "similar triangle" came form in the literature. 
+
+
 
 
 ---

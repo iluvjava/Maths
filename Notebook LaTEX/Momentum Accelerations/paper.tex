@@ -80,8 +80,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Let $h = f + g$ where $f, g$ are convex and $f$ is Lipschitz-Smooth with constant $L$. 
     \end{assumption}
     \begin{definition}[Strongly convex functions]
-        % TODO: FILL THIS ONE IN. 
-        %   The definition of a strongly convex function. 
+        A function $f: X \mapsto \RR$ is $\beta$-strongly convex
+        with $\beta\geq 0$ if $f - \beta \frac{\Vert \cdot\Vert^2}{2}$ is convex.
     \end{definition}
 
     \begin{theorem}[Proximal descent inequality]\label{thm:ppm_descent_ineq}
@@ -98,10 +98,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         $$
         Recall: $\hprox_f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
     \end{theorem}
+    \begin{proof}
+        
+    \end{proof}
     \begin{remark}
         We use this theorem to prove the convergence of the proximal point method. 
-        The proof can be found in \cite[theorem 12.26]{bauschke_convex_2017}. 
-        % TODO: Add the proof to the appendix. 
+        Observe that when $\beta = 0$, this reduces to \cite[theorem 12.26]{bauschke_convex_2017}. 
     \end{remark}
  
     \begin{definition}[The gradient mapping]
@@ -702,15 +704,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {Definition \ref*{def:ag_prox_grad_generic}}. 
         Define the Lyapunov function $\Phi_t\; \forall t \in \{0\}\cup \N$, $S_t$ and $\sigma_t$: 
         \begin{align*}
-            \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
-            \\
-            \Phi_t &:= \left(
-                \sum_{i = 1}^{t} \tilde\eta_{i}
-            \right) (h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N,
-            \\
             S_t &:= \sum_{i = 1}^{t} \delta_i \quad \forall t \in \N,
             \\
-            \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i \quad \forall t \in \N. 
+            \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i \quad \forall t \in \N, 
+            \\
+            \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
+            \\
+            \Phi_t &:= 
+                \sigma_t(h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N.
         \end{align*}
         If there exists a sequence of $(\eta_i)_{i \in \N}$ as defined in
         \hyperref[def:ag_prox_grad_ppm]
@@ -718,9 +719,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         such that
         \begin{align*}
             & \Phi_{t + 1} - \Phi_{t} =
-            \left(
-                \sum_{i = 1}^{t} \tilde \eta_i
-            \right)\Upsilon_{2, t + 1}^{\text{AG}} 
+            \sigma_t\Upsilon_{2, t + 1}^{\text{AG}} 
             + 
             \Upsilon_{1, t + 1}^{\text{AG}} 
             \le \delta_{t + 1} \quad 
@@ -1235,7 +1234,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}},
             expanding: 
             \begin{align*}
-                x_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t) 
+                x_{t + 1} &= 
+                (y_t - L^{-1}\mathcal G_L(y_t)) 
+                + L\eta_t ((y_t - \mathcal G_L(y_t)) - z_t)
+                \\
+                &= y_t - L^{-1}\mathcal G_L(y_t) 
                 + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
                 \\
                 &= 
@@ -1346,9 +1349,73 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \appendix
 
-\begin{theorem}[strongly convex PPM descent lemma]
-    
-\end{theorem}
+\section{Postoned proof}
+    \begin{fact}[Equivalent characterization of strong convexity]
+    \label{appendix:fact:equiv_char_s-cvx}
+        $f$ is $\beta$-strongly convex if and only if
+        $$
+            (\forall y\in X)(\forall x^* \in \partial f(x))
+            \quad f(y) \ge f(x) + \langle x^*, y - x\rangle +
+            \frac{\beta}{2}\Vert y - x\Vert^2
+            .
+        $$
+    \end{fact}
+
+    \begin{theorem}[Quadratic growth]\label{appendix:thm:q_growth}
+        If $f$ is $\beta$-strongly convex, let $x^*$ be a minimizer of $f$ then 
+        \begin{align*}
+            (\forall y \in X) \quad 
+            f(y) &\ge 
+            f(x) + \frac{\beta}{2}\Vert y - x\Vert^2. 
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        Fact \ref*{appendix:fact:equiv_char_s-cvx} 
+        implies a quadratic growth condition. 
+        By convexity $x^*$ is a minimizer of $f$ if and only if $x^*= \mathbf 0 \in \partial f(x^*)$, therefore it sets the inner product on the RHS to zero which yields the quadratic growth condition. 
+    \end{proof}
+
+    \begin{theorem}[strongly convex PPM descent lemma]
+    \label{appendix:proof_ppm_descent_lemma}
+        Let $f: \RR^n \mapsto \overline \RR^n$ $\beta$ be strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
+        For all $y \in \RR$ it verifies
+        $$
+            \left(f(p) + \frac{1}{2}\Vert x - p\Vert^2\right)
+            - 
+            \left(
+                f(y) + \frac{1}{2}\Vert x - y\Vert^2 
+            \right)
+            \le 
+            - \frac{(1 + \beta)}{2}\Vert y - p\Vert^2. 
+        $$
+        Recall: $\hprox_f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
+    \end{theorem}
+    \begin{proof}
+        With $x$ being fixed,
+        consider the function
+        $$
+            y\mapsto h(y)=f(y)+\frac{\|y-x\|^2}{2}=f(y)+\frac{\|y\|^2}{2}-\scal{y}{x}+\frac{\|x\|^2}{2}.
+        $$
+        Because $f$ is $\beta$-strongly convex, the function
+        $y\mapsto f(y) + \frac{1}{2}\Vert y\Vert^2$ is $(\beta + 1)$-strongly convex.
+        Then $h$ is $(\beta + 1)$-strongly convex.
+        Since $(\forall y)\; h(y) \ge h(p)$, because $p = \hprox_f(x)$ 
+        \hyperref[appendix:thm:q_growth]{Theorem \ref*{appendix:thm:q_growth}}
+        (quadratic growth)
+        yields
+        \begin{align*}
+            h(y) &\ge
+            h(p) + \frac{\beta + 1}{2}\Vert y - p\Vert^2.
+        \end{align*}
+        That is,
+        \begin{align*}
+            f(y) + \frac{1}{2}\Vert y - x\Vert^2
+            \ge
+            f(p) + \frac{1}{2} \Vert p - x\Vert^2
+            + \frac{\beta + 1}{2}\Vert y - p\Vert^2.
+        \end{align*}
+        Rearraging yield the desired results. 
+    \end{proof}
 
 
 % \printbibliography
