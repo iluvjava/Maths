@@ -369,7 +369,7 @@ $$
 \begin{aligned}
     w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
     \\
-    x_{t + 1}&= w_t + \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
+    x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
     \\
     z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
     \\
@@ -377,6 +377,19 @@ $$
 \end{aligned}
 $$
 
+When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= 
+    x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+    \\
+    z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+    \\
+    y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+    (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
+\end{aligned}
+$$
 
 
 
