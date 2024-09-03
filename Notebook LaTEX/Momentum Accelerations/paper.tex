@@ -41,19 +41,22 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
-    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient(AG) and find the match of the stepsize parameters in the PPM form. 
+    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient (AG) and find the match of the stepsize parameters in the PPM form. 
     \par
     Some of the earlier examples for the extension of the Nesterov acceleration method make use of the classical analysis introduced by Nestrov. 
     It uses the Nesterov acceleration sequence. 
     See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
-    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and a specific format of the Nesterov's estimating sequence to accomodate the proof for the relations between the parameters in the algorithm. 
+    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and a specific format of the Nesterov's estimating sequence to accomodate the proof. 
     In Ahn's work however, the complexities are packaged into the proximal point interpretation of accelerated gradient. 
-    It uses a lemma from Moreau envelope to derive the Lypunov analysis, the sizes, and parameters for several variants of the algorithm. 
+    It uses a lemma from Moreau envelope for the Lypunov analysis.
+    The interpration allows choices of undetermined parameters to encompass several variants of the Nesterov accelerated gradient algorithm. 
+    Ahn and Sra's approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
+    Instead of a mirror descent step on the dual, they propose an alternative without the gradient of the dual. 
     \par
-    Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$. 
+    Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
     Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
-    For a variant of accelerated gradient where the iterates converge, see \cite{chambolle_convergence_2015}. 
-    Extension such as the Harpen acceleration for the resolvent operator in general is outside of the scope since it doesn't have a Moreau envelope. 
+    For a variant of accelerated gradient where the iterates converge, see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
+    Extension such as the Harpen acceleration for the resolvent operator of a maximally monotone opreator in general is outside of the scope since it not all maximal monotone operator corresponds to a subgradient operator. 
     \par
     A wide varieties of interpretation for the Nesterov accelerated gradient exist in the literatures. 
     Consult \cite{su_differential_2015} for a dynamical system interpretation of Nesterov acceleration. 
@@ -97,7 +100,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Recall: $\hprox_f(x) = \argmin_{u}\left\lbrace f(u) + \frac{1}{2}\Vert u - x\Vert^2 \right\rbrace$. 
     \end{theorem}
     \begin{proof}
-        
+        See 
+        \hyperref[appendix:proof_ppm_descent_lemma]
+            {Appendix \ref*{appendix:proof_ppm_descent_lemma}}. 
     \end{proof}
     \begin{remark}
         We use this theorem to prove the convergence of the proximal point method. 
@@ -709,7 +714,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
             \\
             \Phi_t &:= 
-                \sigma_t(h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N.
+                \sigma_t(h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 
+            \quad \forall t \in \N.
         \end{align*}
         If there exists a sequence of $(\eta_i)_{i \in \N}$ as defined in
         \hyperref[def:ag_prox_grad_ppm]
@@ -775,8 +781,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             = S_{T}. 
         \end{align*}
         So then $\Phi_T - \Phi_0$ yields: 
-        $$
-        \begin{aligned}
+        \begin{align}
             \sigma_T (h(z_T) - h(x_*)) 
             + \frac{1}{2}\Vert x_t - x_*\Vert^2 
             - \frac{1}{2}\Vert x_0 - x_*\Vert^2 
@@ -791,8 +796,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \sigma_T^{-1}\left(
                 S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
             \right),
-        \end{aligned}
-        $$
+        \end{align}
         which yields a convergence rate $\mathcal O(\sigma_T^{-1}S_{T})$. 
         When $S_T = 0$, the convergence rate is $O(\sigma_T^{-1})$ instead. 
     \end{proof}
@@ -1335,6 +1339,95 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{remark} 
         
     \subsection{Recovering the accelerated gradient variant in Ryu's book}
+        In this section we should that the following algorithm which appeared in Ryu \cite[chapter 12]{ryu_large-scale_2022}, the next definition present the algorithm in our notations. 
+        \begin{definition}\label{def:ryu-ch12}
+            Assume that $f$ is a L-Smooth convex function, with initial condition $x_0 = y_0$ an algorithm that generates iterates satisfying: 
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
+                \\
+                x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t) 
+                \\
+                y_{t + 1} &=
+                \left(
+                    1 - \frac{2}{t + 1}
+                \right)z_{t+ 1}
+                + 
+                \left(
+                    \frac{2}{t + 2}
+                \right)x_{t + 1}, 
+            \end{align*}
+            achieves an optimal convergence rate. 
+        \end{definition}
+        
+        \begin{lemma}
+            Suppose that the generic form as given by 
+            \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
+            admits stepsize $\tilde \eta_t, \eta_t$ as
+            \begin{align*}
+                \tilde \eta_{t} &= \frac{t}{2L},
+                \\
+                \eta_t &= (t - 1)/(2L). 
+            \end{align*}
+            Then it's algebraically equivalent to 
+            \hyperref[def:ryu-ch12]{Definition \ref*{def:ryu-ch12}}. 
+        \end{lemma}
+        \begin{proof}
+            Observe $\tilde \eta_t = t/(2L)$ admits a linear growth rate. 
+            If $\tilde \eta_i, \eta_i$ is a sequence that satisfies
+            \hyperref[thm:ag_generic_stepsize_constraints]
+            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            then 
+            \hyperref[thm:generic_ag_convergence]
+            {Theorem \ref*{thm:generic_ag_convergence}}
+            asserts a convergence rate of $\mathcal O(1/T^2)$ for $h(z_T) - h(x_*)$, where $x_*$ is a minimizer assumed to exist. 
+            To show that the sequence satisfies 
+            \hyperref[thm:ag_generic_stepsize_constraints]
+            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            first observe that $\epsilon_t = 0$ because 
+            \begin{align*}
+                L^{-1} + \eta_t 
+                &= 
+                L^{-1} + \frac{t - 1}{2L}
+                \\
+                &= \frac{t + 1}{2L}
+                \\
+                &= \tilde \eta_{t + 1}. 
+            \end{align*}
+            Therefore this is a similar triangle method. 
+            Next observe that conditions showed in 
+            \hyperref[thm:ag_generic_stepsize_constraints]
+            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+            can be simplified in this context because the two equalities reduces to just one when $\epsilon_t =0$ for all $t \in \N$ by 
+            \begin{align*}
+                \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1}) 
+                - L^{-1}\sigma_t &= 0
+                \\
+                \iff 
+                \tilde \eta_{t + 1}\eta_t &= L^{-1}\sigma_t. 
+            \end{align*}
+            Hence it only requires to verify the equality $\tilde \eta_{t + 1}\eta_t = L^{-1} \sigma_t$. 
+            With that we have 
+            \begin{align*}
+                \sigma_t &= \sum_{i = 1}^{t} \frac{i}{2L}
+                \\
+                &= \frac{1}{2L}\left(
+                    \frac{t(t + 1)}{2}
+                \right)
+                \\
+                &= \frac{t(1 + t)}{4L}
+                \\
+                \iff 
+                L^{-1}\sigma_t &= 
+                \frac{t(1 + t)}{4L}
+            \end{align*}
+            By definition of the stepsizes the LHS of the equality evaluates to
+            \begin{align*}
+                \tilde \eta_{t + 1} \eta_{t + 1}
+                &= \frac{t + 1}{2L} \frac{t}{2L} 
+                \\
+                &= L^{-1}\sigma_t. 
+            \end{align*}
+        \end{proof}
         
     \subsection{Recovering Chambolle, Dossal 2015}
         
