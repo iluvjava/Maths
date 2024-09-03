@@ -11,122 +11,161 @@ We continue the assumptions and notations from the previous parts.
 1. $h = f + g$ where $f, g$ are convex and $f$ is $L$-Smooth. 
 2. $\mathcal T_L, \mathcal G_L$ denotes the proximal gradient, gradient mapping operator applied to $h$. 
 
+These assumptions will keep our claim generic. 
+By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L = \nabla f$. 
 
 #### **ToC For Viewing with VS Code**
 - [**Intro**](#intro)
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
 - [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
   - [**Theorem | Lyapunov analysis based on the PPM interpretation of AG**](#theorem--lyapunov-analysis-based-on-the-ppm-interpretation-of-ag)
-  - [**Remarks**](#remarks)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
   - [**Scenario 1.2 | Extended Analysis on the Stepsize Sequence Constraints**](#scenario-12--extended-analysis-on-the-stepsize-sequence-constraints)
   - [**Scenario 1.3 | Examples whre it fits the Extended Analysis**](#scenario-13--examples-whre-it-fits-the-extended-analysis)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
-  - [**Remarks**](#remarks-1)
+  - [**Remarks**](#remarks)
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
 - [**Some more Nuanced Results**](#some-more-nuanced-results)
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
-  - [**Def 2.2 | Ryu's Chapter 12**](#def-22--ryus-chapter-12)
-  - [**Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**](#claim-23--chambolle-and-dossals-variant-doesnt-fit-the-framework)
+  - [**Def 2.2 | Ryu's chapter 12**](#def-22--ryus-chapter-12)
+  - [**Claim 2.3 | Ryu's variant is part of the framework**](#claim-23--ryus-variant-is-part-of-the-framework)
 
 
 ---
 ### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
 
 #### **Theorem | Lyapunov analysis based on the PPM interpretation of AG**
-In this section, we repeat part II, but with the above theorem. 
-With $x_* \in \argmin{x} f(x)$, and 
+> Let $x_* \in \argmin{x} f(x)$, define quantities $\forall t \in \N \cup \{0\}$: 
+> $$
+> \begin{aligned}
+>     S_t &:= \sum_{i = 1}^{t} \delta_i \quad \forall t \in \N,
+>     \\
+>     \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i \quad \forall t \in \N, 
+>     \\
+>     \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
+>     \\
+>     \Phi_t &:= 
+>         \sigma_t(h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 
+>     \quad \forall t \in \N.
+> \end{aligned}
+> $$
+> Also suppose that we have 
+> 
+> $$
+> \begin{aligned}
+>     \Upsilon_{1, t + 1}^{\text{AG}}
+>     &:= 
+>     \tilde \eta_{t + 1}(h(z_{t + 1}) - h(x_*))
+>     + 
+>     \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2)
+>     \\ 
+>     \Upsilon_{2, t + 1}^{\text{AG}}
+>     &:= 
+>     h(z_{t + 1}) - h(z_t), 
+> \end{aligned}
+> $$
+> 
+> assume that there is a sequence $\delta_t$ such that it satisfies for all $t \in \N$
+> 
+> $$
+> \begin{aligned}
+>     & \Phi_{t + 1} - \Phi_{t} =
+>     \sigma_t\Upsilon_{2, t + 1}^{\text{AG}} 
+>     + 
+>     \Upsilon_{1, t + 1}^{\text{AG}} 
+>     \le \delta_{t + 1} \quad 
+>     \forall t \in \mathbb N, 
+>     \\
+>     & \Upsilon_{1, 1}^{\text{AG}} \le \delta_1. 
+> \end{aligned}
+> $$
+> 
+> Then we have 
+> 
+> $$
+> \begin{aligned}
+>     h(z_T) - h(x_*) &\le 
+>     \sigma_T^{-1}\left(
+>         S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
+>     \right). 
+> \end{aligned}
+> $$
+> 
+> Where $x_*$ is an minimizer of $h$. 
+> So $h(z_T) - h(x_*)$ has convergence rate $\mathcal O(\sigma_T^{-1})$ when $S_T \le 0$, and $\mathcal O(\sigma_T^{-1}S_T)$ when $S_T > 0$. 
 
-$$
-\begin{aligned}
-    \Phi_t &= \left(
-        \sum_{i = 1}^{t} \tilde\eta_{t + 1}
-    \right) (f(z_t) - f(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 \quad \forall t \in \N
-    \\
-    \Phi_0 &= \frac{1}{2}\Vert x_0 - x_*\Vert^2
-\end{aligned}
-$$
+**Demonstrations**
 
-where we observe that, compare to the Lyapunov function of gradient descent, we had $z_t$ instead of $x_t$. 
+Observe that, compare to the Lyapunov function of gradient descent, we had $z_t$ instead of $x_t$. 
+We may first onsider the case when $\delta_t =0$ for all $t \in \N$. 
 Review [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md) and references therein for more information. 
 Using a similar derivation the difference as in the case for the PPM analysis of Lyapunov function for gradient descent, giving $\forall t \in \N$
 
 $$
-{\small
 \begin{aligned}
     \Phi_{t + 1} - \Phi_t 
     &= 
     \left(
         \sum_{i = 1}^{t+1} \tilde\eta_{i}
-    \right) (f(z_{t + 1}) - f(x_*)) 
+    \right) (h(z_{t + 1}) - h(x_*)) 
     - 
     \left(
         \sum_{i = 1}^{t} \tilde\eta_{i}
-    \right) (f(z_{t}) - f(x_*)) 
+    \right) (h(z_{t}) - h(x_*)) 
     + \frac{1}{2}\Vert x_t - x_*\Vert^2
     - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
     \\
     &= 
-    \tilde \eta_{t + 1} (f(z_{t + 1}) - f(z_*))
+    \tilde \eta_{t + 1} (h(z_{t + 1}) - h(z_*))
     +
     \left(
         \sum_{i = 1}^{t} \tilde \eta_i
-    \right)(f(z_{t + 1}) - f(z_t))
+    \right)(h(z_{t + 1}) - h(z_t))
     + \frac{1}{2}\Vert x_t - x_*\Vert^2
     - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
     \\
     &= \left(
         \sum_{i = 1}^{t} \tilde \eta_i
-    \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}}. 
-\end{aligned}\tag{$[*]$}
-}
-$$
-
-Now, it is a big assumption, but with the assumption that $\Phi_{t + 1} - \Phi_t \le 0$ for the appropriate choice of $\tilde \eta_t, \eta_t$ in the algorithm, we have a convergence rate of $f(z_{T + 1}) - f(x_*) \le \mathcal O\left(\left(\sum_{i = 1}^{T} \tilde\eta_i\right)^{-1}\right)$ from the analysis of PPM. 
-
-#### **Remarks**
-The conditions for the convergence rate can be relaxed. 
-Let's denote $\sum_{i = 1}^{t} \tilde \eta_i = \sigma_t$, and $S_{t} = \sum_{i = 1}^{t} \epsilon_i$. 
-Specifically we consider the case where $\Phi_{t + 1} - \Phi_t \le \delta_{t + 1}$, then telescoping: 
-
-$$
-\begin{aligned}
-    \Phi_{t + 1} - \Phi_t &\le \delta_{t + 1}
-    \\
-    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i &\le \sum_{i = 0}^{T - 1}\delta_{i + 1}
-    \\
-    \Phi_T - \Phi_0 &\le 
-    \sum_{i = 1}^{T}\delta_i = S_{T}
+    \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le \delta_{t + 1}. 
 \end{aligned}
 $$
 
+Telescoping for $t = 0, \cdots, T- 1$
+$$
+\begin{aligned}
+    \Phi_T - \Phi_0 = 
+    \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i 
+    &\le 
+    \sum_{i = 0}^{T - 1}\delta_{i + 1}
+    = S_{T}. 
+\end{aligned}
+$$
 So then $\Phi_T - \Phi_0$ yields: 
 
 $$
 \begin{aligned}
-    \sigma_T (f(z_t) - f(x_*)) 
+    \sigma_T (h(z_T) - h(x_*)) 
     + \frac{1}{2}\Vert x_t - x_*\Vert^2 
     - \frac{1}{2}\Vert x_0 - x_*\Vert^2 
     &\le S_{T}
     \\
     \implies 
-    \sigma_T(f(z_t) - f(x_*))
+    \sigma_T(h(z_T) - h(x_*))
     &\le 
     S_T + \frac{1}{2}\Vert x_0 - x_*\Vert^2
     \\
-    f(z_t) - f(x_*) &\le 
+    h(z_T) - h(x_*) &\le 
     \sigma_T^{-1}\left(
         S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
     \right),
 \end{aligned}
 $$
-
 which yields a convergence rate $\mathcal O(\sigma_T^{-1}S_{T})$. 
-When $S_T = 0$, it goes back to the previous above theorem we proved. 
+When $S_T = 0$, the convergence rate is $O(\sigma_T^{-1})$ instead. 
 
 
 #### **Scenario 1 | Not Similar Triangle**
@@ -1356,7 +1395,7 @@ In any cases below, we are optimizing with convex functions.
 In the context of Chambolle, Dossal, the gradient descent step for $z_{n + 1}$ is produced by the forward backward splitting operator of the gradient of sum of smooth non-smooth function. 
 
 
-#### **Def 2.2 | Ryu's Chapter 12**
+#### **Def 2.2 | Ryu's chapter 12**
 > In chapter 12 of Ryu's book, an accelerated gradient method is presented as 
 > $$
 > \begin{aligned}
@@ -1368,7 +1407,7 @@ In the context of Chambolle, Dossal, the gradient descent step for $z_{n + 1}$ i
 >         1 - \frac{2}{t + 2} 
 >     \right)z_{t + 1} + 
 >     \left(
->         \frac{1}{t + 2}
+>         \frac{2}{t + 2}
 >     \right)x_{t + 1}. 
 > \end{aligned}
 > $$
@@ -1379,7 +1418,95 @@ It is important to talk about the initial conditions of the algorithm.
 This algorithm is equivalent to the algorithm discussed scenario I, not a similar triangule. 
 
 
-#### **Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
+#### **Claim 2.3 | Ryu's variant is part of the framework**
+> The algorithm list in the previous definition is a special case of the generic algorithm with the stepsize choice $\tilde \eta_{t} = \frac{t}{2L}, \eta_t = (t - 1)/(2L)$. 
+> As a consequence we also have $\epsilon_t = 0$ for all $t \in \N$ hence the convergence results for the generic algorithm applies here as well. 
+
+**Proof**
+
+Firstly observe that the choice of stepsize makes it similar triangle algorithm because 
+
+$$
+\begin{aligned}
+    L^{-1} + \eta_t 
+    &= 
+    L^{-1} + \frac{t - 1}{2L}
+    \\
+    &= \frac{t + 1}{2L}
+    \\
+    &= \tilde \eta_{t + 1}. 
+\end{aligned}
+$$
+
+Which satisfies relations for a similar triangle algorithm. 
+Next, we show that it also satisfies the stepsize restrictions for the convergence of the generic algorithm. 
+To show that it amounts to verify the relations 
+
+$$
+\begin{aligned}
+    \begin{cases}
+        \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
+        - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i 
+        = 
+        0
+        & \forall t \in \N, 
+        \\
+        L \eta_t \tilde \eta_{t + 1} = \sum_{i=1}^{t}\tilde \eta_i 
+        & \forall t \in \N. 
+    \end{cases}
+\end{aligned}
+$$
+
+For simplicity we let $\sigma_t = \sum_{ i =1}^{t}\tilde \eta_i$. 
+The two equalities are algebraically equivalent in our context because 
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1}) 
+    - L^{-1}\sigma_t &= 0
+    \\
+    \iff 
+    \tilde \eta_{t + 1}\eta_t &= L^{-1}\sigma_t. 
+\end{aligned}
+$$
+
+Hence it only requires to verify the equality $\tilde \eta_{t + 1}\eta_t = L^{-1} \sigma_t$. 
+With that we have 
+
+$$
+\begin{aligned}
+    \sigma_t &= \sum_{i = 1}^{t} \frac{i}{2L}
+    \\
+    &= \frac{1}{2L}\left(
+        \frac{t(t + 1)}{2}
+    \right)
+    \\
+    &= \frac{t(1 + t)}{4L}
+    \\
+    \iff 
+    L^{-1}\sigma_t &= 
+    \frac{t(1 + t)}{4L}
+\end{aligned}
+$$
+
+By definition of the stepsizes the LHS of the equality evaluates to
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1} \eta_{t + 1}
+    &= \frac{t + 1}{2L} \frac{t}{2L} 
+    \\
+    &= L^{-1}\sigma_t. 
+\end{aligned}
+$$
+
+We have now verified that this choice of stepszies yields a similar triangle algorithm and it has optimal convergence rate from the generic Lyapunonv analysis. 
+Directly substituting it back into the generic form will yield the same algorithm as appeared in Ryu's Chapter 12. 
+
+
+
+
+<!-- #### **Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
 > The variety of accelerated gradient presented by Chambolle Dossal for convergence of the iterates, doesn't fit the accelerated gradient PPM form: 
 > $$
 > \begin{aligned}
@@ -1458,4 +1585,4 @@ If, $x_{t +1}$ were to have representation in the form of $x_t = y_t - \tilde\et
 **Remarks**
 
 So, what exactly does the Dossal and Chambolle variants fit into, requires some more investigation. 
-It's mentioned in the writings by Chambolle and Dossal that, the algorithm they derived was related to the momentum acceleration method applied to some type of maximal monotone operator. 
+It's mentioned in the writings by Chambolle and Dossal that, the algorithm they derived was related to the momentum acceleration method applied to some type of maximal monotone operator.  -->
