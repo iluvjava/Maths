@@ -17,7 +17,7 @@ By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L 
 #### **ToC For Viewing with VS Code**
 - [**Intro**](#intro)
   - [**ToC For Viewing with VS Code**](#toc-for-viewing-with-vs-code)
-- [**Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
+- [**Deriving convergences of AG variants from the Lyapunov upper bounds**](#deriving-convergences-of-ag-variants-from-the-lyapunov-upper-bounds)
   - [**Theorem | Lyapunov analysis based on the PPM interpretation of AG**](#theorem--lyapunov-analysis-based-on-the-ppm-interpretation-of-ag)
   - [**Scenario 1 | Not Similar Triangle**](#scenario-1--not-similar-triangle)
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
@@ -29,14 +29,14 @@ By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L 
     - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
   - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
   - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
-- [**Some more Nuanced Results**](#some-more-nuanced-results)
+- [**Some more nuanced results**](#some-more-nuanced-results)
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
   - [**Def 2.2 | Ryu's chapter 12**](#def-22--ryus-chapter-12)
   - [**Claim 2.3 | Ryu's variant is part of the framework**](#claim-23--ryus-variant-is-part-of-the-framework)
 
 
 ---
-### **Deriving Convergences of AG Variants From the Lyapunov Upper Bounds**
+### **Deriving convergences of AG variants from the Lyapunov upper bounds**
 
 #### **Theorem | Lyapunov analysis based on the PPM interpretation of AG**
 > Let $x_* \in \argmin{x} f(x)$, define quantities $\forall t \in \N \cup \{0\}$: 
@@ -1366,7 +1366,7 @@ In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinat
 
 
 ---
-### **Some more Nuanced Results**
+### **Some more nuanced results**
 
 Results in this part are not coming from literatures, and they are my own works at testing the ideas presented by Ahn and in their works. 
 Before we start, we list some of the specific type of accelerated gradient method. 
