@@ -918,7 +918,7 @@ With that it establishes relations
 
 $$
 \begin{aligned}
-    \frac{L\eta }{(1 + \mu \tilde \eta)(1 + \eta)}
+    \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
     &= 
     \frac{\sqrt{\kappa}}{
         \left(
@@ -934,15 +934,13 @@ $$
             \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
         \right)(1 + \sqrt{\kappa})
     }
-    =
-    \frac{1}{
-        (
-            \frac{1}{
-            \sqrt{\kappa}} - 1
-        )
-        \left(
-        1 + \sqrt{\kappa}
-    \right)} = 
+    \\
+    &=
+    \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
+        \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
+    \right)
+    \\
+    &= 
     \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
 \end{aligned}
 $$
@@ -973,7 +971,7 @@ $$
     \frac{1}{\sqrt{\kappa} - 1}
     \\
     &= 
-    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} - 1}
+    \frac{\kappa - 1}{\sqrt{\kappa} - 1}
     \\
     &= 
     \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
