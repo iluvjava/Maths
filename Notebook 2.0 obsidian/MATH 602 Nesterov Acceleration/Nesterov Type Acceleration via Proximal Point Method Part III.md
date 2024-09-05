@@ -33,6 +33,7 @@ By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L 
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
   - [**Def 2.2 | Ryu's chapter 12**](#def-22--ryus-chapter-12)
   - [**Claim 2.3 | Ryu's variant is part of the framework**](#claim-23--ryus-variant-is-part-of-the-framework)
+  - [**Claim 2.4 | Chambolle Dossal is also part of the framework**](#claim-24--chambolle-dossal-is-also-part-of-the-framework)
 
 
 ---
@@ -1376,19 +1377,20 @@ In any cases below, we are optimizing with convex functions.
 > When $f$ is differentiable and convex, we define the following algorithm 
 > $$
 > \begin{aligned}
->     y_n &= \left(
+>     z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
+>     \\
+>     x_{n + 1} &= z_n + t_{n +1} (z_{n + 1} - z_n), 
+>     \\
+>     y_{n + 1} &= \left(
 >         1 - \frac{1}{t_{n + 1}}
->     \right)z_{n} + \left(
+>     \right)z_{n + 1} + \left(
 >         \frac{1}{t_{n + 1}}
->     \right)x_{n}
->     \\
->     z_{n + 1} &= y_n - L^{-1} \nabla f(y_n)
->     \\
->     x_{n + 1} &= z_n + t_{t +1} (z_{n + 1} - z_n), 
+>     \right)x_{n + 1}
 > \end{aligned}
 > $$
 > where $t_n = (n + a - 1)/a$ for all $a > 2$. 
 > Then the above algorithm is a form of accelerated gradient where the iterates converges to a minimizer. 
+
 
 **Remarks**
 
@@ -1485,7 +1487,7 @@ $$
     \\
     \iff 
     L^{-1}\sigma_t &= 
-    \frac{t(1 + t)}{4L}
+    \frac{t(1 + t)}{4L^2}
 \end{aligned}
 $$
 
@@ -1504,85 +1506,51 @@ We have now verified that this choice of stepszies yields a similar triangle alg
 Directly substituting it back into the generic form will yield the same algorithm as appeared in Ryu's Chapter 12. 
 
 
+#### **Claim 2.4 | Chambolle Dossal is also part of the framework**
+> The AG algorithm proposed in Chambolle Dossal's writing is an example of the Generic algorithm such that the stepsize $L\eta_n = t_n - 1$, and $\tilde \eta_{n + 1} = L^{-1} + \eta_n$, hence the similar triangle condition is satisfied and the stepsize sequence $t_n = (n + a - 1)/a$ for all $a> 0$. 
 
+**Demonstrations**
 
-<!-- #### **Claim 2.3 | Chambolle and Dossal's Variant doesn't fit the Framework**
-> The variety of accelerated gradient presented by Chambolle Dossal for convergence of the iterates, doesn't fit the accelerated gradient PPM form: 
-> $$
-> \begin{aligned}
->     x_{t + 1} &= \argmin{x} \left\lbrace
->        l_f(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
->     \right\rbrace, 
->     \\
->     y_{t + 1} &= \argmin{x} 
->     \left\lbrace
->         l_f(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
->         \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
->     \right\rbrace. 
-> \end{aligned}
-> $$
-> This is true because if there is a generic representation $x_{t + 1} = z_{t + 1} + \alpha_{t + 1}(z_{t + 1} - z_t)$ for some $\alpha_{t + 1} \in \R$ where $x_{t + 1}$ is produced from the accelerated gradient PPM generic form, then it must be that $a_{t + 1} = L\eta_t$, so $\tilde \eta_{t + 1} = \eta_t + L^{-1}$ is the only choice to make similar triangle. 
-
-**Proof**
-
-This comes from the consideration 
+Since the setpesize satisfies $\tilde \eta_{n + 1} = L^{-1} + \eta_n$, the generic form admits similar triangle representation: 
 
 $$
 \begin{aligned}
-    x_{t + 1} &= z_{t + 1} + \alpha_{t + 1}(z_{t + 1} - z_t)
+    x_{n + 1} &= 
+    z_{n + 1} + L\eta_n(z_{n + 1} - z_n)
     \\
-    &= 
-    y_t + L^{-1}\nabla f(y_t) + \alpha_{t + 1} (
-        y_t + L^{-1}\nabla f(y_t) - z_t
-    )
+    z_{n + 1}&= y_n - L^{-1}\mathcal G_L(y_n)
     \\
-    &= y_t + (L^{-1} + \alpha_{t + 1}L^{-1})\nabla f(y_t)
-    + \alpha_{t + 1}y_t - \alpha_{t + 1}z_t
-    \\
-    &= (1 + \alpha_{t + 1})y_t 
-    + L^{-1}(1 + \alpha_{t + 1})\nabla f(y_t) - \alpha_{t + 1}z_t. 
+    y_{n + 1} &= 
+    (1 + L\eta_{n + 1})^{-1}(L\eta_{n + 1} z_{n + 1} + x_{n + 1}). 
 \end{aligned}
 $$
 
-Now we find $z_t$ in terms of $y_t, x_t$ using the updates of $y_t$, from the previous iterations which yields: 
+Substitute $L\eta_n = t_n - 1$ then it yields 
 
 $$
 \begin{aligned}
-    (1 + L\eta_t) y_t &= x_t + L\eta_t z_t
+    x_{n + 1} &= 
+    (1 + L\eta_n) z_{n + 1} - L\eta_n z_n
     \\
-    (1 + L\eta_t)y_t - x_t &= L\eta_t z_t
+    & = 
+    t_n z_{n + 1} + (1 - t_n) z_n 
     \\
-    ((L\eta_t)^{-1} + 1)y_t - (L\eta_t)^{-1}x_t
-    &= z_t, 
+    &= z_n + t_n(z_{n +1} - z_n)
+    \\
+    y_{n + 1} &= (1 + L\eta_{n + 1})^{-1} (L\eta_{n + 1} z_{n + 1} + x_{n + 1})
+    \\
+    &= t^{-1}_{n + 1} ((t_{n + 1} - 1)z_n + x_{n + 1})
+    \\
+    &= (1 - t_{n + 1}^{-1})z_{n + 1} + t^{-1}x_{n + 1}. 
 \end{aligned}
 $$
 
-substituting back we have
+The similar triangle condition is automatically satisfied by the definition of the stepsize. 
+To show that it has the optimal convergence rate, it requires to show that for $\tilde \eta_n, \eta_n$ conditions: 
 
 $$
 \begin{aligned}
-    x_{t + 1} &= 
-    (1 + \alpha_{t + 1})y_t 
-    + L^{-1}(1 + \alpha_{t + 1})\nabla f(y_t)
-    - \alpha_{t + 1} 
-    \left(
-        ((L\eta_t)^{-1} + 1)y_t - (L\eta_t)^{-1}x_t
-    \right)
-    \\
-    &= 
-    \left(
-        (1 + \alpha_{t + 1}) - \alpha_{t +1} ((L\eta_t)^{-1} + 1)
-    \right)y_t 
-    + 
-    (1 + \alpha_{t + 1})L^{-1}\nabla f(y_t) 
-    + 
-    \alpha_{t + 1}(L\eta_t)^{-1} x_t. 
+    L \eta_n\tilde \eta_{n + 1} = \sum_{i = 1}^{n}\tilde \eta_i. 
 \end{aligned}
 $$
 
-If, $x_{t +1}$ were to have representation in the form of $x_t = y_t - \tilde\eta_{t + 1} \nabla f(y_t)$, then it must be that $(1 + \alpha_{t + 1}) - \alpha_{t +1} ((L\eta_t)^{-1} + 1) = 0$, and $\alpha_{t + 1} (L\eta_t)^{-1} = 1$, inevitably making $\alpha_{t + 1} = L\eta_t$. 
-
-**Remarks**
-
-So, what exactly does the Dossal and Chambolle variants fit into, requires some more investigation. 
-It's mentioned in the writings by Chambolle and Dossal that, the algorithm they derived was related to the momentum acceleration method applied to some type of maximal monotone operator.  -->

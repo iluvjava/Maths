@@ -24,7 +24,6 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.6 | Intersection between momentum and AG PPM form**](#claim-26--intersection-between-momentum-and-ag-ppm-form)
   - [**Corollary 2.7 | Recovery of V-FISTA algorithm**](#corollary-27--recovery-of-v-fista-algorithm)
   - [**Claim 2.8 | Similar triangle inside of the generic form**](#claim-28--similar-triangle-inside-of-the-generic-form)
-  - [**Claim 2.9 | An alternative similar triangle form**](#claim-29--an-alternative-similar-triangle-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -865,6 +864,24 @@ $$
 
 It's not hard to see that it's no longer fitting the momentum form of the algorithm. 
 
+Finally, when $\eta_t = 0$ the condition allows the following algebraically equivalent representation of the algorithm: 
+
+$$
+\begin{aligned}
+    x_{t + 1}&= 
+    z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
+    \\
+    z_{t + 1} &= 
+    y_t - L^{-1}\mathcal G_L(y_t)
+    \\
+    y_{t + 1}&= 
+    (1 + L\eta_{t + 1})^{-1} (L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+\end{aligned}
+$$
+
+Compare to the original representation, $w_t$ is no longer needed. 
+
+
 #### **Corollary 2.7 | Recovery of V-FISTA algorithm**
 > If
 > $$
@@ -1002,9 +1019,6 @@ $$
 $$
 
 which is saying the iterates $z_t, z_{t + 1}, x_{t +1}$ are on the same line. 
-
-#### **Claim 2.9 | An alternative similar triangle form**
-> 
 
 
 ---
