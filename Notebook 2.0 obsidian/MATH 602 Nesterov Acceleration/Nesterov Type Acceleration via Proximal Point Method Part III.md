@@ -823,7 +823,7 @@ $$
 \end{aligned}
 $$
 
-At the same time we have 
+At the same time only using the first equality we have: 
 
 $$
 \begin{aligned}
@@ -1546,11 +1546,15 @@ $$
 $$
 
 The similar triangle condition is automatically satisfied by the definition of the stepsize. 
-To show that it has the optimal convergence rate, it requires to show that for $\tilde \eta_n, \eta_n$ conditions: 
+
+**Remark**
+The sequence proposed, $\eta_n = (n - 1)/(aL)$, for $a > 0$, doesn't satisfy the equality: 
 
 $$
 \begin{aligned}
     L \eta_n\tilde \eta_{n + 1} = \sum_{i = 1}^{n}\tilde \eta_i. 
 \end{aligned}
 $$
+
+That, is very interesting. 
 
