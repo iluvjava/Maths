@@ -23,12 +23,11 @@ By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L 
     - [**The algorithm it reduces to**](#the-algorithm-it-reduces-to)
   - [**Scenario 1.1 | Non-Smooth, Not Similar Triangle**](#scenario-11--non-smooth-not-similar-triangle)
   - [**Scenario 1.2 | Extended Analysis on the Stepsize Sequence Constraints**](#scenario-12--extended-analysis-on-the-stepsize-sequence-constraints)
-  - [**Scenario 1.3 | Examples whre it fits the Extended Analysis**](#scenario-13--examples-whre-it-fits-the-extended-analysis)
   - [**Scenario 2 | Similar Triangle I**](#scenario-2--similar-triangle-i)
   - [**Remarks**](#remarks)
-    - [**The Similar Triangle Geometry**](#the-similar-triangle-geometry)
-  - [**Claim 1.1 | Recovering Nesterov Original Form**](#claim-11--recovering-nesterov-original-form)
-  - [**Scenario 3 | Similar Triangle II**](#scenario-3--similar-triangle-ii)
+    - [**The similar triangle geometry**](#the-similar-triangle-geometry)
+  - [**Claim 1.1 | Recovering nesterov original form**](#claim-11--recovering-nesterov-original-form)
+  - [**Scenario 3 | Similar triangle II**](#scenario-3--similar-triangle-ii)
 - [**Some more nuanced results**](#some-more-nuanced-results)
   - [**Def 2.1 | Chambolle Dossal (2015)**](#def-21--chambolle-dossal-2015)
   - [**Def 2.2 | Ryu's chapter 12**](#def-22--ryus-chapter-12)
@@ -956,10 +955,6 @@ $$
 
 for any $\sum_{i = 0}^{T - 1}\delta_{i + 1}$ converges to a limit as $T \rightarrow \infty$. 
 
-#### **Scenario 1.3 | Examples whre it fits the Extended Analysis**
-
-... I am still thinking on this one on the strach paper. 
-
 
 #### **Scenario 2 | Similar Triangle I**
 This similar triangle approach will recover the original Nesterov acceleration sequence method proposed back in 1983. 
@@ -1073,7 +1068,7 @@ where, the same momentum updates for $x_{t + 1}$ appeared with the error term $L
 This type of error term allows us to re-use the same proof for the convergence rate for the Nesterov accelerated gradient, but the error will later manifested into the $\epsilon_t$ error term in the abstract Lyapunov convergence proof. 
 
 
-##### **The Similar Triangle Geometry**
+##### **The similar triangle geometry**
 > At each step of the momentum algorithm, we have triangle $(y_t, z_t, z_{t + 1})$ and triangle $(x_t, z_t, x_{t + 1})$ similar to each other. 
 
 **Demonstration**
@@ -1087,7 +1082,7 @@ From the above results, we can conclude that triangle $(y_t, z_t, z_{t + 1})$ is
 The visual understanding of the situation allows us to duduce the upper bound because it creates a different way of eliminating the cross terms in the upper bounds of $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$. 
 The next claim will clarify the sitaution. 
 
-#### **Claim 1.1 | Recovering Nesterov Original Form**
+#### **Claim 1.1 | Recovering nesterov original form**
 > With the choice of $\tilde\eta_{t + 1} = \eta_t + L^{-1}$ and the AG proximal gradient generic tri-points form, we will be able to recover the classical Nesterov acceleration algorithm which is first proposed back in 1983. 
 > This interpretation links the stepsize choices of $\eta_t$ with the momentum stepsize choices, providing extensive amount of intutions. 
 
@@ -1360,7 +1355,7 @@ In this derivation we used the equality to derive the upper bound for the Lyapun
 Therefore, there is only one single choice for the stepsize parameter at the end, if we are not involving any type of errors. 
 
 
-#### **Scenario 3 | Similar Triangle II**   
+#### **Scenario 3 | Similar triangle II**
 
 In the previous scenario II, we choose the stepsize so that $x_{t + 1}$ can be projected into the correct position by $z_{t + 1}$ to allow colinearity for points $z_t, x_{t +1}, x_{t + 1}$. 
 In this scenario, we choose the stepsize so that $z_{t +1}$ is a convex combinations of the point $x_{t+1}, z_t$, so that we still have the similar triangle as in the previous scenario. 
@@ -1548,6 +1543,7 @@ $$
 The similar triangle condition is automatically satisfied by the definition of the stepsize. 
 
 **Remark**
+
 The sequence proposed, $\eta_n = (n - 1)/(aL)$, for $a > 0$, doesn't satisfy the equality: 
 
 $$
@@ -1557,4 +1553,5 @@ $$
 $$
 
 That, is very interesting. 
+Chambolle Dossal can't use the same Lyapunonv function to prove its convergence. 
 

@@ -605,9 +605,9 @@ applies.
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
 
 
-#### **Theorem 2.4 | Recovery of the Fundamental Lemma of Proximal Gradient**
+#### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient**
 > With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$. 
-> Then performing proximal point on lower bounding function $\phi(u)$ yields inequality 
+> Let $x^+ = \prox{\phi}(x)$ then $\forall \;u\in \R^n$
 > $$
 > \begin{aligned}
 >    f(u) - f(x^+) 

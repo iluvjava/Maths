@@ -11,11 +11,11 @@ We do the prove for the better convergence rate for the FISTA algorithm under st
 ---
 ### **The Prox 2 Points Lemma**
 
-The following lemma is taken from the previous proof: 
+Previously: 
 
-> **The Prox 2 Points**
+#### **The Prox 2 Points**
 > 
-Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead, Here we let $l = L^{-1} \ge L_g$ where $L_g$ denotes the Lipschitz constant for the smooth function $g$. 
+> Let $y\in \mathbb R^{n}$ and $l > 0$, we define $\mathcal{P}_l^{g, h}(y) := \text{prox}_{h, l^{-1}}(y + l^{-1}\nabla g(y))$, and under certain context where there is no ambiguity we simply use $\mathcal{P}y$ instead, Here we let $l = L^{-1} \ge L_g$ where $L_g$ denotes the Lipschitz constant for the smooth function $g$. 
 > 
 > $$
 > \begin{aligned}
