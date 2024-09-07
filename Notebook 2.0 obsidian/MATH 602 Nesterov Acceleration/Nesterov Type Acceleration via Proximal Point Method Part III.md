@@ -1436,7 +1436,10 @@ $$
 $$
 
 Which satisfies relations for a similar triangle algorithm. 
-Next, we show that it also satisfies the stepsize restrictions for the convergence of the generic algorithm. 
+
+**Remark**
+
+We show that it doesn't directly satisfies the conditions for the PPM stepszies $\eta_i, \tilde \eta_i$ for our generic convergence lemma. 
 To show that it amounts to verify the relations 
 
 $$
@@ -1490,15 +1493,21 @@ By definition of the stepsizes the LHS of the equality evaluates to
 
 $$
 \begin{aligned}
-    \tilde \eta_{t + 1} \eta_{t + 1}
-    &= \frac{t + 1}{2L} \frac{t}{2L} 
+    \tilde \eta_{t + 1} \eta_{t}
+    &= \frac{t + 1}{2L} \frac{t - 1}{2L} 
     \\
-    &= L^{-1}\sigma_t. 
+    &= \frac{t^2 - 1}{4L^2}. 
 \end{aligned}
 $$
 
-We have now verified that this choice of stepszies yields a similar triangle algorithm and it has optimal convergence rate from the generic Lyapunonv analysis. 
-Directly substituting it back into the generic form will yield the same algorithm as appeared in Ryu's Chapter 12. 
+Not hard to see that 
+
+$$
+\begin{aligned}
+    L\eta_t \tilde \eta_{t + 1} - \sigma_t 
+    &= \frac{t - 1}{4L} \ge 0. 
+\end{aligned}
+$$
 
 
 #### **Claim 2.4 | Chambolle Dossal is also part of the framework**
@@ -1544,7 +1553,7 @@ The similar triangle condition is automatically satisfied by the definition of t
 
 **Remark**
 
-The sequence proposed, $\eta_n = (n - 1)/(aL)$, for $a > 0$, doesn't satisfy the equality: 
+The sequence proposed, $\eta_n = (n - 1)/(aL)$, for $a > 2$, doesn't satisfy the equality: 
 
 $$
 \begin{aligned}
@@ -1553,5 +1562,7 @@ $$
 $$
 
 That, is very interesting. 
-Chambolle Dossal can't use the same Lyapunonv function to prove its convergence. 
+Chambolle Dossal 2015 is breaking the conditions we established prior. 
+Here we characterize the error between these 2 quantities based on a specific conditions for the stepszies parameters $t_n$ proposed in the literatures. 
+
 

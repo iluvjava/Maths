@@ -606,7 +606,7 @@ The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies.
 
 
 #### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient**
-> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$. 
+> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$ and $\eta\phi \le \eta f$. 
 > Let $x^+ = \prox{\phi}(x)$ then $\forall \;u\in \R^n$
 > $$
 > \begin{aligned}
@@ -658,12 +658,92 @@ $$
 \end{aligned}
 $$
 
+One of the consequence of the above inequaity are
+
+$$
+\begin{aligned}
+    \implies 
+    f(u) - f(x^+) - D_g(u, x) 
+    + 
+    \frac{1}{2\eta}\Vert u - x\Vert^2 
+    - 
+    \frac{1}{2\eta}\Vert x^+ - u\Vert^2
+    &\ge 
+    0 \quad \forall u
+    \\
+    \iff 
+
+    f(u) - f(x^+) - D_g(u, x) + \eta^{-1}
+    \left(
+        \frac{1}{2}\Vert x^+ - x\Vert^2 
+        + 
+        \langle u - x^+, x^+ - x\rangle
+    \right)
+    &\ge 0 \quad \forall u. 
+\end{aligned}
+$$
+
+All we did is moving the term $-1/(2\eta)\Vert x^+ - x\Vert^2$ to the RHS since it's a non-negative quantity, it's larger than zero, which explains the $\ge 0$ for the above inequalites. 
+
+
+
+
 **Remarks**
 
-This is the fundamental proximal gradient lemma in Amir Beck's writings. 
+At the end we obtained the fundamental proximal gradient lemma in Amir Beck's writings. 
 This bound is tighter. 
 This can also be used for deriving the convergence of the gradient descent method. 
 For more information on this lemma, visits: [V-FISTA](V-FISTA.md), [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), [Proximal Gradient Convergence Rate](Proximal%20Gradient%20Convergence%20Rate.md), and [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
+
+
+#### **Corollary 2.5 | Another proximal gradient lemma via Moreau Envelope**
+> Suppose that $F = f + g$ with $f, g$ convex and $f$ $L$-Lipschitz smooth. 
+> For any $\bar x$, define proximal gradient point 
+> $$
+> \begin{aligned}
+>   x^+ = \argmin{x}   \left\lbrace
+>       g(x) + \langle \nabla f(\bar x), x - \bar x\rangle + 
+>       \frac{L}{2}\Vert x - \bar x\Vert^2
+>   \right\rbrace. 
+> \end{aligned}
+> $$
+> Then it has $\forall x$
+> $$~~~~
+> \begin{aligned}
+>     F(x^+) + \frac{L\Vert x^+ - x\Vert^2}{2} &\le 
+>     F(x) + \frac{L\Vert x - \bar x\Vert^2}{2}
+> \end{aligned}
+> $$
+
+**Proof**
+
+This is a consequence of previous theorem. 
+To use the previous theorem, set $g:= f, f:= F, h:= g$, and $\bar x = x, \eta = L^{-1}$, then the previous theorem becomes 
+
+$$
+\begin{aligned}
+    (\forall u)
+    \quad F(u) - F(x^+) 
+    - D_f(u, \bar x) + 
+    \frac{L}{2}\Vert u - \bar x\Vert^2 - \frac{L}{2}\Vert x^+ - u\Vert^2 
+    &\ge 0, 
+    \\
+    (\forall x, u)\; D_f(u, x)\ge 0
+    \implies 
+    (\forall u)\; 
+    F(u) - F(x^+)
+    + \frac{L}{2}\Vert u - \bar x\Vert^2 
+    - \frac{L}{2}\Vert x^+ - u\Vert^2 &\ge 0. 
+\end{aligned}
+$$
+
+This is proved. 
+
+**Remark**
+
+This is a different proximal gradient lemma used in the proof of Chambolle and Dossal's variants of the accelerated proximal gradient method. 
+
+
 
 ---
 ### **The PPM with Strongly Convex Objective**
