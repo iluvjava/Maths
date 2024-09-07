@@ -41,7 +41,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
-    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. Finally, we derive major variants of the accelerated gradient (AG) and find the match of the stepsize parameters in the PPM form. 
+    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. We derive major variants of the Nesterov acceleation algorithm
+    \cite{chambolle_convergence_2015}, \cite{beck_fast_2009}, \cite[Chapter 12]{ryu_large-scale_2022}
+    of the accelerated gradient (AG) and find the match of the stepsize parameters in the PPM form. 
+
+
     \par
     Some of the earlier examples for the extension of the Nesterov acceleration method make use of the classical analysis introduced by Nestrov. 
     It uses the Nesterov acceleration sequence. 
@@ -55,7 +59,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \par
     Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
     Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
-    For a variant of accelerated gradient where the iterates converge, see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
+    For a variant of accelerated gradient where the iterates converge (weakly in Hilbert space), see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
     Extension such as the Harpen acceleration for the resolvent operator of a maximally monotone opreator in general is outside of the scope since it not all maximal monotone operator corresponds to a subgradient operator. 
     \par
     A wide varieties of interpretation for the Nesterov accelerated gradient exist in the literatures. 
@@ -86,7 +90,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
 
     \begin{theorem}[Proximal descent inequality]\label{thm:ppm_descent_ineq}
-        Let $f: \RR^n \mapsto \overline \RR^n$ $\beta$ be strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
+        Let $f: \RR^n \mapsto \overline \RR$ be $\beta$ strongly convex with $\beta \ge 0$, fix any $x \in \RR^n$, define $p = \hprox_f(x)$.
         For all $y \in \RR$ it verifies
         $$
             \left(f(p) + \frac{1}{2}\Vert x - p\Vert^2\right)
@@ -346,7 +350,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \begin{definition}[AG proximal gradient PPM generic form]
     \label{def:ag_prox_grad_ppm}
-        Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
+        Define $\eta_t, \tilde \eta_t$ to be strictly larger than zero for all $t \in \N$. 
         With initial iterate $x_0, y_0$, 
         The generic form has iterates $x_t, y_t$ for all $t \in \N$ that satisfy: 
         $$
@@ -675,7 +679,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &:= 
             h(z_{t + 1}) - h(z_t). 
         \end{align*}
-        It then produces the inequalities: 
+        Then it as inequalities: 
         \begin{align*}
             \Upsilon_{1, t + 1}^{\text{AG}}
             &\le 
@@ -989,7 +993,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &\Upsilon_{1, t + 1}^\text{AG} + 
             \left(
                 \sum_{i = 1}^{t}\tilde\eta_i 
-            \right)\Upsilon_{1, t + 1}^{\text{AG}}
+            \right)\Upsilon_{2, t + 1}^{\text{AG}}
             \\
             &\le 
             \frac{1}{2}\left(
@@ -1204,7 +1208,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The recurrenct relations of $a_t$ indicates that it's the famous Nesterov momentum sequence. 
         In this case, there exists a momentum form of the generic form and it reduces to FISTA from Beck and Toubolle \cite{beck_fast_2009-1}. 
         The following lemma uses $a_t$ to establish equivalence between the generic form of the algorithm and FISTA, a specific variant of accelerated gradient method. 
-        \begin{lemma}[Similar triangle form]
+        \begin{lemma}[Similar triangle form]\label{lemma:sim_triangle_form}
             \quad \\
             With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$,
             \hyperref[def:ag_prox_grad_generic]
@@ -1338,103 +1342,160 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             for an illustration for some $\epsilon_{t + 1} > 0$. 
         \end{remark} 
         
-    \subsection{Recovering the accelerated gradient variant in Ryu's book}
-        In this section we should that the following algorithm which appeared in Ryu \cite[chapter 12]{ryu_large-scale_2022}, the next definition present the algorithm in our notations. 
-        \begin{definition}\label{def:ryu-ch12}
-            Assume that $f$ is a L-Smooth convex function, with initial condition $x_0 = y_0$ an algorithm that generates iterates satisfying: 
-            \begin{align*}
-                z_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
-                \\
-                x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t) 
-                \\
-                y_{t + 1} &=
-                \left(
-                    1 - \frac{2}{t + 1}
-                \right)z_{t+ 1}
-                + 
-                \left(
-                    \frac{2}{t + 2}
-                \right)x_{t + 1}, 
-            \end{align*}
-            achieves an optimal convergence rate. 
-        \end{definition}
+    % \subsection{Recovering the accelerated gradient variant in Ryu's book}
+    %     In this section we should that the following algorithm which appeared in Ryu \cite[chapter 12]{ryu_large-scale_2022}, the next definition present the algorithm in our notations. 
+    %     \begin{definition}\label{def:ryu-ch12}
+    %         Assume that $f$ is a L-Smooth convex function, with initial condition $x_0 = y_0$ an algorithm that generates iterates satisfying: 
+    %         \begin{align*}
+    %             z_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
+    %             \\
+    %             x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t) 
+    %             \\
+    %             y_{t + 1} &=
+    %             \left(
+    %                 1 - \frac{2}{t + 1}
+    %             \right)z_{t+ 1}
+    %             + 
+    %             \left(
+    %                 \frac{2}{t + 2}
+    %             \right)x_{t + 1}, 
+    %         \end{align*}
+    %         achieves an optimal convergence rate. 
+    %     \end{definition}
         
-        \begin{lemma}
-            Suppose that the generic form as given by 
-            \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
-            admits stepsize $\tilde \eta_t, \eta_t$ as
-            \begin{align*}
-                \tilde \eta_{t} &= \frac{t}{2L},
-                \\
-                \eta_t &= (t - 1)/(2L). 
-            \end{align*}
-            Then it's algebraically equivalent to 
-            \hyperref[def:ryu-ch12]{Definition \ref*{def:ryu-ch12}}. 
-        \end{lemma}
-        \begin{proof}
-            Observe $\tilde \eta_t = t/(2L)$ admits a linear growth rate. 
-            If $\tilde \eta_i, \eta_i$ is a sequence that satisfies
-            \hyperref[thm:ag_generic_stepsize_constraints]
-            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-            then 
-            \hyperref[thm:generic_ag_convergence]
-            {Theorem \ref*{thm:generic_ag_convergence}}
-            asserts a convergence rate of $\mathcal O(1/T^2)$ for $h(z_T) - h(x_*)$, where $x_*$ is a minimizer assumed to exist. 
-            To show that the sequence satisfies 
-            \hyperref[thm:ag_generic_stepsize_constraints]
-            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-            first observe that $\epsilon_t = 0$ because 
-            \begin{align*}
-                L^{-1} + \eta_t 
-                &= 
-                L^{-1} + \frac{t - 1}{2L}
-                \\
-                &= \frac{t + 1}{2L}
-                \\
-                &= \tilde \eta_{t + 1}. 
-            \end{align*}
-            Therefore this is a similar triangle method. 
-            Next observe that conditions showed in 
-            \hyperref[thm:ag_generic_stepsize_constraints]
-            {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-            can be simplified in this context because the two equalities reduces to just one when $\epsilon_t =0$ for all $t \in \N$ by 
-            \begin{align*}
-                \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1}) 
-                - L^{-1}\sigma_t &= 0
-                \\
-                \iff 
-                \tilde \eta_{t + 1}\eta_t &= L^{-1}\sigma_t. 
-            \end{align*}
-            Hence it only requires to verify the equality $\tilde \eta_{t + 1}\eta_t = L^{-1} \sigma_t$. 
-            With that we have 
-            \begin{align*}
-                \sigma_t &= \sum_{i = 1}^{t} \frac{i}{2L}
-                \\
-                &= \frac{1}{2L}\left(
-                    \frac{t(t + 1)}{2}
-                \right)
-                \\
-                &= \frac{t(1 + t)}{4L}
-                \\
-                \iff 
-                L^{-1}\sigma_t &= 
-                \frac{t(1 + t)}{4L}
-            \end{align*}
-            By definition of the stepsizes the LHS of the equality evaluates to
-            \begin{align*}
-                \tilde \eta_{t + 1} \eta_{t + 1}
-                &= \frac{t + 1}{2L} \frac{t}{2L} 
-                \\
-                &= L^{-1}\sigma_t. 
-            \end{align*}
-        \end{proof}
+    %     \begin{lemma}
+    %         Suppose that the generic form as given by 
+    %         \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
+    %         admits stepsize $\tilde \eta_t, \eta_t$ as
+    %         \begin{align*}
+    %             \tilde \eta_{t} &= \frac{t}{2L},
+    %             \\
+    %             \eta_t &= (t - 1)/(2L). 
+    %         \end{align*}
+    %         Then it's algebraically equivalent to 
+    %         \hyperref[def:ryu-ch12]{Definition \ref*{def:ryu-ch12}}. 
+    %     \end{lemma}
+    %     \begin{proof}
+    %         Observe $\tilde \eta_t = t/(2L)$ admits a linear growth rate. 
+    %         If $\tilde \eta_i, \eta_i$ is a sequence that satisfies
+    %         \hyperref[thm:ag_generic_stepsize_constraints]
+    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+    %         then 
+    %         \hyperref[thm:generic_ag_convergence]
+    %         {Theorem \ref*{thm:generic_ag_convergence}}
+    %         asserts a convergence rate of $\mathcal O(1/T^2)$ for $h(z_T) - h(x_*)$, where $x_*$ is a minimizer assumed to exist. 
+    %         To show that the sequence satisfies 
+    %         \hyperref[thm:ag_generic_stepsize_constraints]
+    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+    %         first observe that $\epsilon_t = 0$ because 
+    %         \begin{align*}
+    %             L^{-1} + \eta_t 
+    %             &= 
+    %             L^{-1} + \frac{t - 1}{2L}
+    %             \\
+    %             &= \frac{t + 1}{2L}
+    %             \\
+    %             &= \tilde \eta_{t + 1}. 
+    %         \end{align*}
+    %         Therefore this is a similar triangle method. 
+    %         Next observe that conditions showed in 
+    %         \hyperref[thm:ag_generic_stepsize_constraints]
+    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
+    %         can be simplified in this context because the two equalities reduces to just one when $\epsilon_t =0$ for all $t \in \N$ by 
+    %         \begin{align*}
+    %             \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1}) 
+    %             - L^{-1}\sigma_t &= 0
+    %             \\
+    %             \iff 
+    %             \tilde \eta_{t + 1}\eta_t &= L^{-1}\sigma_t. 
+    %         \end{align*}
+    %         Hence it only requires to verify the equality $\tilde \eta_{t + 1}\eta_t = L^{-1} \sigma_t$. 
+    %         With that we have 
+    %         \begin{align*}
+    %             \sigma_t &= \sum_{i = 1}^{t} \frac{i}{2L}
+    %             \\
+    %             &= \frac{1}{2L}\left(
+    %                 \frac{t(t + 1)}{2}
+    %             \right)
+    %             \\
+    %             &= \frac{t(1 + t)}{4L}
+    %             \\
+    %             \iff 
+    %             L^{-1}\sigma_t &= 
+    %             \frac{t(1 + t)}{4L^2}
+    %         \end{align*}
+    %         By definition of the stepsizes the LHS of the equality evaluates to
+    %         \begin{align*}
+    %             \tilde \eta_{t + 1} \eta_{t + 1}
+    %             &= \frac{t + 1}{2L} \frac{t}{2L} 
+    %             \\
+    %             &= L^{-1}\sigma_t. 
+    %         \end{align*}
+    %     \end{proof}
         
-    \subsection{Recovering Chambolle, Dossal 2015}
-        
+    % \subsection{Recovering Chambolle, Dossal 2015}
+    %     In this section we show that the algorithm presented in the literature by Chambolle Dossal \cite{chambolle_convergence_2015} is an example of 
+    %     Definition \ref*{def:ag_prox_grad_generic}. 
+    %     The next definiton present the algorithm in our notations
+    %     \begin{definition}\label{def:chamb_dossal}
+    %         Assume that $h = f + g$ where $f$ is $L$-smooth, $f,g$ are convex. 
+    %         Let $t_n = (n + a - 1)/a$ for all $t \in \N$, $a > 2$. 
+    %         The algorithm by Chambolle Dossal has iterates $(x_n, y_n, z_n)$ satisfying for all $n \in \N$: 
+    %         \begin{align*}
+    %             z_{n + 1} &= y_n - L^{-1} \mathcal G_L(y_n), 
+    %             \\
+    %             x_{n + 1} &= z_n + t_{n +1} (z_{n + 1} - z_n), 
+    %             \\
+    %             y_{n + 1} &= \left(
+    %                 1 - \frac{1}{t_{n + 1}}
+    %             \right)z_{n + 1} + \left(
+    %                 \frac{1}{t_{n + 1}}
+    %             \right)x_{n + 1}. 
+    %         \end{align*}
+    %     \end{definition}
+    %     \begin{lemma}
+    %         Suppose that the generic form as given by 
+    %         \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
+    %         admits stepsize $\tilde \eta_t, \eta_t$ as
+    %         \begin{align*}
+    %             L\eta_n = t_n - 1,
+    %             \\
+    %             \tilde \eta_{n + 1} = L^{-1} + \eta_n. 
+    %         \end{align*}
+    %         Then it's algebraically equivalent to 
+    %         \hyperref[def:chamb_dossal]{Definition \ref*{def:chamb_dossal}}. 
+    %     \end{lemma}
+    %     \begin{proof}
+    %         By second equality: $\tilde \eta_{n + 1} = \eta_n + L^{-1}$, we can use 
+    %         \hyperref[lemma:sim_triangle_form]{Lemma \ref*{lemma:sim_triangle_form}}. 
+    %         Therefore, substituting $L\eta_n = t_n - 1$, $x_{n + 1}, y_{n + 1}$ in the generic form has 
+    %         \begin{align*}
+    %             x_{n + 1} &= 
+    %             (1 + L\eta_n) z_{n + 1} - L\eta_n z_n
+    %             \\
+    %             & = 
+    %             t_n z_{n + 1} + (1 - t_n) z_n 
+    %             \\
+    %             &= z_n + t_n(z_{n +1} - z_n)
+    %             \\
+    %             y_{n + 1} &= (1 + L\eta_{n + 1})^{-1} (L\eta_{n + 1} z_{n + 1} + x_{n + 1})
+    %             \\
+    %             &= t^{-1}_{n + 1} ((t_{n + 1} - 1)z_n + x_{n + 1})
+    %             \\
+    %             &= (1 - t_{n + 1}^{-1})z_{n + 1} + t^{-1}x_{n + 1}. 
+    %         \end{align*}
+    %         This is the same as
+    %         \hyperref[def:chamb_dossal]{Definition \ref*{def:chamb_dossal}}. 
+    %     \end{proof}
+    %     \begin{remark}
+            
+    %     \end{remark}
+
 
 \section{Algorithm implementations using line search}\label{sec:algorithm_improved}
     In this section, we state a new variant of the accelerated gradient algorithm using the PPM interpretation to algorithmically conduct a line search routine for $L, \mu \ge 0$ the Lipschitz constant and strong convexity index of the smooth part of the objective function. 
     This variant will be parameter free while still retaining the optimal convergence rate for all convex functions. 
+    
 
 \section{Numerical experiments}\label{sec:numerical_experiments}
 
