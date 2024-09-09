@@ -1409,7 +1409,7 @@ $$
     \Upsilon_{2, t + 1}^{\text{AG}}
     &:= 
     h(z_{t + 1}) - h(z_t) \le 
-    \langle \mathcal G_L \bar x, z_{t + 1} - z_t \rangle + 
+    \langle \mathcal G_L y_t, z_{t + 1} - z_t \rangle + 
     \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
 \end{aligned}
 $$

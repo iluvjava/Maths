@@ -1,4 +1,4 @@
-- [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md)
+- [Convex Proximal Point Method, Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Convex%20Proximal%20Point%20Method,%20Part%20I.md)
 
 
 ---
@@ -31,7 +31,7 @@ debugInConsole: false # Print debug info in Obsidian console
 
 ### **Intro**
 
-We use the descent inequality and Lyapunov frameworks proposed in [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md) to derive the method for a specific form of the accelerated gradient. 
+We use the descent inequality and Lyapunov frameworks proposed in [Convex Proximal Point Method, Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Convex%20Proximal%20Point%20Method,%20Part%20I.md) to derive the method for a specific form of the accelerated gradient. 
 We will also prove the convergence rate of the method and deduce the optimal step sizes. 
 Before we start, we set up the stage by setting up some quantities that are useful for our derivations later. 
 

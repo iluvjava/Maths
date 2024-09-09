@@ -102,7 +102,7 @@ By letting $g \equiv 0$, $\mathcal T_L = I - L^{-1}\nabla f$, and $\mathcal G_L 
 
 Observe that, compare to the Lyapunov function of gradient descent, we had $z_t$ instead of $x_t$. 
 We may first onsider the case when $\delta_t =0$ for all $t \in \N$. 
-Review [Proximal Point Method, Convex Part I](Proximal%20Point%20Method,%20Convex%20Part%20I.md) and references therein for more information. 
+Review [Convex Proximal Point Method, Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Convex%20Proximal%20Point%20Method,%20Part%20I.md) and references therein for more information. 
 Using a similar derivation the difference as in the case for the PPM analysis of Lyapunov function for gradient descent, giving $\forall t \in \N$
 
 $$
@@ -611,7 +611,8 @@ With this in mind, applying the RHS of $[(*)]$ yields:
 $$
 {\footnotesize
 \begin{aligned}
-    &\Upsilon_{1, t + 1}^\text{AG} + 
+    \Phi_{t + 1} - \Phi_t 
+    &= \Upsilon_{1, t + 1}^\text{AG} + 
     \left(
         \sum_{i = 1}^{t}\tilde\eta_i 
     \right)\Upsilon_{1, t + 1}^{\text{AG}}
@@ -646,7 +647,7 @@ $$
 }
 $$
 
-If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
+<!-- If the algorithm were to have the abstract convergence rate, one of the sufficient condition is to have the above quantity less than or equal to zero, one sufficient condition of that is to have the coefficient for $\Vert \mathcal G_L(y_t)\Vert$ be $\le 0$, and the coefficient of the cross term $\langle \mathcal G_L(y_t), z_t - y_t\rangle$ be zero. 
 Denote $\sigma_t = \sum_{i = 1}^{t} \tilde \eta_i$.
 Simplifying it should yield the following relations: 
 
@@ -731,7 +732,7 @@ $$
 \end{aligned}
 $$
 
-To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied. 
+To satisfy the equality, reader should verify that $\eta_{t} = (t - 1)/(2L)$ one of the options. And there are not many other options for the choice of the stepszies for the equality to be satisfied.  -->
 
 **Remarks**
 
@@ -760,7 +761,7 @@ $$
 $$
 
 It requires base case $L\eta_0\tilde\eta_{1} = 0$, assume $\sigma_0 = 0$. 
-To ease the notation we use $\sum_{i = 1}^t \tilde \eta_i = \sigma_t$, simplifying the first equation we have 
+To ease the notation we use $\sum_{i = 1}^t \tilde \eta_i = \sigma_t$, simplifying the first equation using the second equation gives: 
 
 $$
 \begin{aligned}
@@ -1128,7 +1129,7 @@ With the relations $x_{t +1} - z_{t + 1} = L\eta_t (z_{t +1} - z_t)$ in mind, we
 $$
 \begin{aligned}
     \Upsilon_{2, t + 1}^{\text{AG}} 
-    &= 
+    &\le 
     \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle
     + 
     \frac{L }{2} \Vert z_{t+1} - y_t\Vert^2
@@ -1505,9 +1506,12 @@ Not hard to see that
 $$
 \begin{aligned}
     L\eta_t \tilde \eta_{t + 1} - \sigma_t 
-    &= \frac{t - 1}{4L} \ge 0. 
+    &= \frac{-t - 1}{4L} \le 0. 
 \end{aligned}
 $$
+
+Which is weird. 
+We suspect that Ryu's Lypunov function is just a better option than the one we used for deriving the convergent rates. 
 
 
 #### **Claim 2.4 | Chambolle Dossal is also part of the framework**
@@ -1557,12 +1561,14 @@ The sequence proposed, $\eta_n = (n - 1)/(aL)$, for $a > 2$, doesn't satisfy the
 
 $$
 \begin{aligned}
-    L \eta_n\tilde \eta_{n + 1} = \sum_{i = 1}^{n}\tilde \eta_i. 
+    L \eta_n\tilde \eta_{n + 1} \neq \sum_{i = 1}^{n}\tilde \eta_i. 
 \end{aligned}
 $$
 
 That, is very interesting. 
 Chambolle Dossal 2015 is breaking the conditions we established prior. 
-Here we characterize the error between these 2 quantities based on a specific conditions for the stepszies parameters $t_n$ proposed in the literatures. 
+We have no choice, but we can 
+1. characterize the error between these 2 quantities based on a specific conditions for the stepszies parameters $t_n$ proposed in the literatures. 
+2. Describe the sequence conditions (10) in Chambolle Dossal using the PPM stepsize parameters. 
 
 

@@ -1014,4 +1014,4 @@ In this section, we consider lower bounding functions that are strongly convex, 
 ---
 ### **Rockafellar's PPM Analysis**
 
-Read [Proximal Point Method, Convex Part II](Proximal%20Point%20Method,%20Convex%20Part%20II.md) for more. 
+Read [Convex Proximal Point Method, Part II](Convex%20Proximal%20Point%20Method,%20Part%20II.md) for more. 

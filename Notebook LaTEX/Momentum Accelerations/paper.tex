@@ -262,38 +262,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 - \frac{\mu}{2}\Vert z - x\Vert^2
                 + \frac{L}{2}\Vert x - x^+\Vert^2
             \end{aligned}
-            % \\& 
-            % \begin{aligned}
-            %     &= h(z) + 
-            %         \langle \mathcal G_L(x), x^+ - z\rangle 
-            %     - \frac{\mu}{2}\Vert z - x\Vert^2
-            %     + \frac{L}{2}\Vert x - x^+\Vert^2
-            % \end{aligned}
-            % \\& 
-            % \begin{aligned}
-            %     &= h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
-            %     - \frac{\mu}{2}\Vert z - x\Vert^2
-            %     + \frac{L}{2}\Vert x - x^+\Vert^2
-            % \end{aligned}
-            % \\&
-            % \begin{aligned}
-            %     &= h(z) + 
-            %     \underbrace{\langle L(x - x^+), x - z\rangle}_{
-            %         = - \langle \mathcal G_L (x), z - x\rangle
-            %     }
-            %     - \frac{\mu}{2}\Vert z - x\Vert^2
-            %     - \frac{L}{2}\Vert x - x^+\Vert^2
-            % \end{aligned}
         \end{align*}
         Showed in  
         \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $G_L(x) = \nabla f(x) + \partial g(x^+)$, it yields
+        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $G_L(x) = \nabla f(x) + v = L(x - x^+)$, so it yields
         \begin{align*}
             h(x^+) & 
-            \le h(z) + 
-            \langle \nabla f(x) + v, x^+ - z\rangle 
+            \le  
+            h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
             - \frac{\mu}{2}\Vert z - x\Vert^2
             + \frac{L}{2}\Vert x - x^+\Vert^2
+            \\
+            &= h(z) + 
+            \underbrace{\langle L(x - x^+), x - z\rangle}_{
+                = - \langle \mathcal G_L (x), z - x\rangle
+            }
+            - \frac{\mu}{2}\Vert z - x\Vert^2
+            - \frac{L}{2}\Vert x - x^+\Vert^2
         \end{align*}
         Moving everything except $h(z)$ from the RHS to the LHS yield the desired inequality. 
     \end{proof}
@@ -533,9 +518,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}.
     \end{observation}
     \begin{proof}
-        Observe that we have 
+        Observe that we have for all $u$: 
         \begin{align*}
-            \quad &
+            h(u) &\ge 
             h(\mathcal T_L\bar x) + 
             \langle \mathcal G_L \bar x, u - \bar x\rangle + 
             \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
@@ -1289,7 +1274,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             and 
             \hyperref[thm:generic_ag_convergence]{Theorem \ref*{thm:generic_ag_convergence}},
             a convergence of $\mathcal O(\sigma_T^{-1})$ is possible. 
-            Since $a_t = \tilde \eta_t$, and the Nesterov sequence exhibits $a_{t} \ge (t + 2)/2$, the convergence becomes $\mathcal O(T^{-2})$. 
+            Since $a_t = L\tilde \eta_t$, and the Nesterov sequence exhibits $a_{t} \ge (t + 2)/2$, the convergence becomes $\mathcal O(T^{-2})$. 
             It is the optimal convergence rate for all convex functions. 
         \end{proof}
         \begin{remark}

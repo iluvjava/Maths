@@ -544,7 +544,7 @@ See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for mo
 Convergence is still possible even if a sequence approximates a Fejer monotone sequence. 
 
 #### **Lemma | Quasi Monotone Sequences**
-> With $a_{k + 1} \le a_k + \epsilon_k$ for all $k\in \N$ and $\sum_{k = 1}^{\infty} \epsilon_k \le \infty$, we consequence: $\lim_{k\rightarrow \infty} a_k$ exists and finite.  
+> With $a_{k + 1} \le a_k + \epsilon_k$ for all $k\in \N$ and $\sum_{k = 1}^{\infty} \epsilon_k < \infty$, we consequence: $\lim_{k\rightarrow \infty} a_k$ exists and finite.  
 
 **Proof**
 
