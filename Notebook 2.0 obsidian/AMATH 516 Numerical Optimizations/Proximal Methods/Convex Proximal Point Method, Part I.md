@@ -20,7 +20,7 @@ We introduce a Lyapunov function derived from PPM using Moreau envelope.
 We also derive the convergence rate of PPM. 
 After that we present analogous result for inexact proximal algorithms and how this idea is powerful. 
 
-#### **Interpretations of Proximal Point Method**
+#### **Interpretations of PPM**
 
 The proximal point method solves a mini problem at each steps. 
 By definition of resolvent, $x_{t + 1}$ satisfies: 
@@ -54,8 +54,21 @@ $$
 Bu choosing $\eta$ big, we can make $x_{i + 1} - x_i$ huge, hence more progress for the algorithm. 
 If we can also characterize mistakes or deviation made to approximate the algorithm, then PPM forms the universal ideas behind most gradient based algorithms. 
 
+#### **Lemma 0 | Proximal point inequality**
+> When $A = \partial f$, $f$ convex, if $p = \prox{\eta f}(x)$ with $\eta > 0$, then 
+> $$
+> \begin{aligned}
+>     (\forall u)\; \eta f(u) - \eta f(p) - \langle x - p, u - p\rangle 
+>     &\ge 0
+> \end{aligned}
+> $$
 
-#### **Lemma 1.1 | Convex Moreau Envelope Inequality**
+**Proof**
+
+Use $f$ convex, and then $x - p \in \partial f(p)$ from the interpretation above. 
+
+
+#### **Lemma 1.1 | Convex Moreau Envelope inequality**
 > $f$ is convex, proper, lsc. 
 > Then 
 > $$
@@ -326,7 +339,7 @@ We illusrate how this property is used in the below proof for a claim.
 > Let $l_f(x; x_t)$ be a convex, lsc, proper lower bound function. 
 > Let the lower bounding $\phi$ function satisfies inequality: 
 > $$
-> \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{n + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in X, 
+> \phi_t(x) \le \eta_{t + 1}f(x) \le \phi_t(x) + \frac{L\eta_{t + 1}}{2}\Vert x - x_t\Vert^2 \quad \forall x \in X, 
 > $$ 
 > Assume an algorithm the makes: 
 > $$

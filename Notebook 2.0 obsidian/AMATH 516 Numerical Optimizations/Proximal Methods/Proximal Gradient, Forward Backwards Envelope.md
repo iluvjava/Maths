@@ -14,34 +14,44 @@ Sum of smooth and non smooth problems has structure that can be exploited.
 
 > $$\min_x \{g(x) + h(x)\}$$
 
-**Assumptions**
+#### **Assumptions**
 
-1. $g(x), h(x)$ are convex.
-2. $h(x)$ is non-smooth.
-3. $g$ is smooth with constant $L$.
-4. $\beta \le L^{-1}$, $\beta$ in here is used to denote the step-size. 
+> 1. $g(x), h(x)$ are convex.
+> 2. $h(x)$ is non-smooth.
+> 3. $g$ is smooth with constant $L$.
+> 4. $\beta \ge L$, $\beta$ in here is used to denote the step-size. 
+
+**Comments**
 
 Here, we derive the proximal gradient algorithm using the idea of upper Envelope Minimizations. We derive a non-smooth upper bound from the gradient information of the function and then solves the minimum for the upper bound function for an update of the next step of the algorithm. 
 
-**The Upper model Function**
+#### **Def | The quadratic upper model**
 
-By the property that $g$ is $\beta$ smooth and convexity of $h$ we have: 
+> Let $f = g + h$, by $g$ is $\beta$ smooth and convexity of $h$ 
+> We tagent lower bounding function at $x$ for $g$ to be 
+> $$
+> \begin{aligned}
+>     l_g(y; x) = g(x) + \langle \nabla f(x), y - x \rangle
+> \end{aligned}
+> $$
+> We have $\forall x$: 
+> $$
+> \begin{aligned}
+>     & g(x) + h(x) \le 
+>     h(y) + l_g(y; x) + \frac{\beta}{2} \Vert y - x\Vert^2
+> 	 =: \mathcal M_\beta(y; x) \quad \forall y \in \mathbb E 
+> \end{aligned}
+> $$
 
-$$
-\begin{aligned}
-    & f(x) + h(x) \le 
-    g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2
-	    + h(y) =: m_x(y) \quad \forall y \in \mathbb E 
-\end{aligned}
-$$
+**Observations**
 
-Take note that, using the fact that function $f$ is smooth, we have a quadratic upper bound plus the affine function from below defined via the gradient, and this function is strongly convex, a very useful properties ([[Strong Convexity, Equivalences and Implications]]). 
+$\mathcal M_\beta(\cdot ; x)$ is strongly convex, recall content from ([[Strong Convexity, Equivalences and Implications]]). 
 
 **Remarks**
 
 Please observe that it is implied that $\beta$, will be larger than the Lipschitz constant for the gradient of $g(x)$, let's say it's $L$. Please recall the property of this particular type of smoothness. Additionally, the upper bounding function is a strongly convex function. 
 
-**Define | The Proximal Operator and Moreau Envelope**
+#### **Define | The Proximal Operator and Moreau Envelope**
 
 For any $f:\mathbb R^n \mapsto \mathbb{\bar R}$, we have the gradient and the Moreau Enveloped defined to be: 
 
@@ -64,7 +74,28 @@ $$
 \end{aligned}
 $$
 
-This is called the proximal operator, parameterized by a convexity information related parameter $t$, and the non-smooth function named $h(x)$. Please read [[Moreau Envelope and Convex Proximal Mapping]] for more in depth discussion, their proven properties will be referred to later. 
+**Comments**
+
+Read [[Moreau Envelope and Convex Proximal Mapping]] for more. 
+
+
+#### **Def | Proximal gradient operator**
+> For all $x \in \R^n$, define proximal gradient operator
+> $$
+> \begin{aligned}
+>     \mathcal T_\beta(x) =
+>     \argmin{z\in \R^n} \left\lbrace
+>         \mathcal M_\beta(z; x)
+>     \right\rbrace = \prox{}[h + l_g(\cdot, x)](x)
+> \end{aligned}
+> $$
+
+**Comments**
+
+Adding a linear, or quadratic perturbations to another function doesn't make the proximal operations harder to calculate. 
+
+
+
 
 ---
 ### **The Proximal Gradient Descend Method**
@@ -79,7 +110,7 @@ Assuming that $g(x)$ is beta smooth, meaning that it can be bounded above by a p
 >    \\
 >    &\hspace{2em}
 >    \begin{aligned}
->        & x^{(k)} = \underset{h, \frac{1}{\beta}}{\text{prox}}
+>        & x^{(k)} = \underset{h/\beta}{\text{prox}}
 >        \left(x^{(k - 1)} - \frac{\nabla g(x)}{\beta}\right)
 >        \\  
 >        & \text{break if } x^{(k)} = x^{(k + 1)}
@@ -99,8 +130,11 @@ The step-size is fixed in the above algorithm and it's $\beta^{-1}$ to be precis
 ---
 ### **Proximal Gradient Minimizes the Upper Bounding Function**
 
+
+#### **Def | Operator Form of Proximal Gradient**
+> The proximal gradient operator $\mathcal T_\beta$ admits representations: 
 > $$
-> \underset{h, \beta^{-1}}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
+> \underset{\beta^{-1}h}{\text{prox}} \left(x - \frac{\nabla g(x)}{\beta}\right) = 
 > \arg\min_y \left\lbrace
 >     g(x) + \nabla g(x)^T(y - x) + \frac{\beta}{2}
 >     \Vert y - x\Vert^2 + h(y)
@@ -131,9 +165,7 @@ $$
 $$
 and using one of the operator interpretations of prox, the LHS of the expression is the prox of $h, \beta^{-1}$ on $x - \beta^{-1}\nabla g(x)$. 
 
-**Remarks**
 
-Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that smaller step size for the multiplier for the gradient of $g(x)$, and when $\beta$ is huge, less penalty will be placed on quadratic term inside of the proximal operator, making the infimal convolution resulting in more smoothing on the function $h$. 
 
 
 ---
@@ -141,11 +173,11 @@ Intuitively, the larger $\beta$, the more pointy the quadratic is, meaning that 
 
 The Forward Backward Envelope is the resulting function of minimizing upper bounding $m_x(y)$ wrt to parameter $y$. Readers should realize that the minimizers is unique due strong convexity of our upper bounding function. 
 
-#### **Def | The Forward Backward Envelope**
-> Let $m^+(x) := \min_y m_x(y)$, then it's given by: 
+#### **Lemma | FB Envelope representation 1**
+> Let $\mathcal M_\beta^+(x) := \min_y \mathcal M_\beta(y; x)$, then it's given by: 
 > $$
 > \begin{aligned}
->   m^+(x) &= m_x\circ \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))
+>   \mathcal M_\beta^+(x) &=  [y \mapsto \mathcal M_\beta(y; x)]\circ \text{prox}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x))
 >   \\
 >   &= \text{env}_{h, \beta^{-1}}(x - \beta^{-1}\nabla g(x)) - \frac{1}{2\beta} \Vert \nabla g(x)\Vert^2 + g(x).
 > \end{aligned}
@@ -156,10 +188,11 @@ The Forward Backward Envelope is the resulting function of minimizing upper boun
 
 $$
 \begin{aligned}
-    m_x(y) &= g(x) + \underbrace{\nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2 + h(y)}_{\text{this part}}. 
-\end{aligned}\tag{2}
+    \mathcal M_\beta(y; x) &= g(x) + \underbrace{\nabla g(x)^T(y - x) + \frac{\beta}{2} \Vert y - x\Vert^2 + h(y)}_{\text{Simplify this part}}. 
+\end{aligned}
 $$
-We complete the square on the terms that involves the variable $y$, then
+
+Complete the square so: 
 
 $$
 \begin{aligned}
@@ -210,15 +243,55 @@ $$
 
 adding back the $g(x)$ that is not part of the minimizations, we have what we claimed. 
 
+#### **Lemma | FB Envelope Representation 2**
+> Let $\mathcal M_\beta^+(x) := \min_y \mathcal M_\beta(y; x)$. 
+> Let $D_g(x, y) = g(x) - g(y) - \langle \nabla g(x), y - x\rangle$. 
+> Then: 
+> $$
+> \begin{aligned}
+>     \mathcal M_\beta^+(x) &= f(\mathcal T_\beta x) - D_g(\mathcal T_\beta x, x)
+>     + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
+> \end{aligned}
+> $$
+
+**Proof**
+
+Directly by definitions of things it yields 
+
+$$
+\begin{aligned}
+    \mathcal M_\beta^+(x)
+    &= \mathcal M_\beta(\mathcal T_\beta x; x)
+    \\
+    &= h(\mathcal T_\beta x) + g(x) + \langle \nabla g(x), \mathcal T_\beta x - x\rangle
+    + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
+    \\
+    &= h(\mathcal T_\beta x) + g(\mathcal T_\beta x) 
+    - g(\mathcal T_\beta x) 
+    + g(x) + \langle \nabla g(x), \mathcal T_\beta x - x\rangle
+    + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
+    \\
+    &= f(\mathcal T_\beta) - g(\mathcal T_\beta x) 
+    + g(x) + \langle \nabla g(x), \mathcal T_\beta x - x\rangle
+    + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
+    \\
+    &= 
+    f(\mathcal T_\beta)
+    - D_g(\mathcal T_\beta, x)
+    + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2. 
+\end{aligned}
+$$
+
+It will reveal later that $\beta(x - \mathcal T_\beta x) =\nabla g(x) + v$ where $v \in \partial g(\mathcal T_\beta x)$, using the idea of gradient mapping. 
 
 ---
 ### **Jacobi of the Forward Backwards Envelope**
 
-> If we assume that $g(x)$ is C2 smooth such that it has a Hessian to it, then we have the gradient for the Forward and Backwards Envelope can be computed via
+> If $g(x)$ is $\mathcal C^2$ smooth with a Hessian $[\nabla \nabla^T g]$, then the gradient of The FB Envelope is: 
 > 
 > $$
 > \begin{aligned}
->     \nabla_x m^+(x) = 
+>     [\nabla\mathcal M^+ ](x) = 
 >     [I - \beta^{-1}\nabla \nabla ^Tg(x)]^T(x)
 >     \beta(
 >         x - \text{prox}_{h, \beta^{-1}}(x - \beta \nabla g(x))
@@ -273,37 +346,41 @@ The forward and backwards envelope function and the original function share the 
 
 
 ---
-### **Envelope Compared to Function Value**
+### **Envelope compared to function value**
 The minimum of the envelope is always less than or equal to the function value at the same point. 
 
-#### **Thm | Envelope Minimum is lower than Function Value**
-> We can quantify how much the FB envelope does better compare to the upper bound function at the same point, and it's given by: 
+#### **Thm | Envelope descent**
+> Fix any $x$, the minimum of the envelope has: 
 > $$
 > \begin{aligned}
->     m^{+}(x) - m_x(x) \le \frac{-\beta}{2}\Vert x - y^+\Vert^2, 
->     \;
->     y^+ =
+>     \mathcal M_\beta^{+}(x) - \mathcal M_\beta(x;x) 
+>     &\le \frac{-\beta}{2}\Vert x - y^+\Vert^2, 
+>     \\
+>     y^+ &=
 >     \text{prox}_{h, \beta^{-1}} (x - \beta^{-1}\nabla g(x)). 
 > \end{aligned}
 > $$
 
 **Proof**
 
-We directly consider the fact that the upper bounding function is strongly convex with a constant of $\beta$ (see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)), each means that for the minimizer $y^+$ of the upper bounding function we can obtain: 
+$\mathcal M_\beta(\cdot, x)$ is strongly convex with a constant of $\beta$, using the quadratic growth property (see [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md)), the minimizer $y^+$ exists and satisfies: 
 
 $$
 \begin{aligned}
-    m_x(y^+) - m_x(x) &\le \frac{-\beta}{2}\Vert x -y^+\Vert^2
-    \\
-    m^+(x) - \underbrace{m_x(x)}_{g(x) + h(x)} &\le 
-    \frac{-\beta}{2}\Vert x -y^+\Vert^2, 
+    \mathcal M_\beta(y^+; x) - \mathcal M_\beta(x; x) &\le \frac{-\beta}{2}\Vert x -y^+\Vert^2
 \end{aligned}
 $$
 and this is direct by the strong convexity definition substituting in the optimal point that sets the gradient/subgradient equals to zero. 
 
+**Remark**
+
+This is just complex PPM descent inequality. 
+
+
+
 
 ---
-### **Claim 5 | One step Descent**
+### **Claim 5 | Envelope compared to prox point**
 
 > We define $f:= g + h$, then the difference between $f(P(x))$ and the envelope point $m^+(x)$ can be bounded, more > precisely: 
 > 
@@ -372,7 +449,7 @@ which completes the proof if we just move the beta into the norm.
 Not what this is and whether this is useful or not. But it's stated in the IEEE paper: \<Proximal Newton Methods for Convex Composite Optimizations\> by Panagiotis Patrinos and Alberto Bemporad. 
 
 ---
-### **Termination Conditions and Optimality**
+### **The Gradient Mapping**
 
 > If proximal operator produces $x^{(k+ 1)} = x^{(k)}$ (it converges), then optimality condition for the original minimization problem is satisfied. 
  
@@ -395,6 +472,7 @@ $$
 
 Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the error of the fixed point iterations on the prox gradient operator. Take notice that, if $x^+ = x$, it would mean current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
+
 ---
 ### **A Monotone Method**
 
@@ -402,9 +480,9 @@ A point produced by the proximal gradient point step, will decrease the objectiv
 
 #### **Theorem | Stepsize that Ensures Objective Decrease**
 
-> If $f$ is convex and Lipschitz smooth with constant $L$, then if a step size of $L^{-1} > \beta$ will give objective decrease at each step of the proximal gradient iteration. 
+> If $f=g + h$, $f, g$ are convex, $f$ is convex and Lipschitz smooth with constant $L$, then if a step size of $L^{-1} > \beta$ will give objective decrease at each step of the proximal gradient iteration. 
 
-Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient operator, then it will impose an objective decrease of the value of the function $g(x):= g(x) + h(x)$, more precisely we have the relation that: 
+Let $x$ be any point, and $x^+ \in P(x)$, the output of the proximal gradient operator, then it will impose an objective decrease of the value of the function $f(x):= g(x) + h(x)$, more precisely we have the relation that: 
 
 $$
 \begin{aligned}
