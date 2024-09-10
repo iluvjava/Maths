@@ -618,9 +618,9 @@ applies.
 The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies. 
 
 
-#### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient**
-> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$ and $\eta\phi \le \eta f$. 
-> Let $x^+ = \prox{\phi}(x)$ then $\forall \;u\in \R^n$
+#### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient (CONTAINS MAJOR MISTAKES)**
+> With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$ and $\eta^{-1} \ge L$ satisfies $\eta\phi \le \eta f \le \eta f + \frac{1}{2}\Vert \cdot - x\Vert^2$. 
+> Let $x^+ = \prox{\phi}(x)$ then $\forall \;u\in \R^n, \eta \le L^{-1}$: 
 > $$
 > \begin{aligned}
 >    f(u) - f(x^+) 
@@ -632,7 +632,7 @@ The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies.
 > $$
 
 **Proof**
-
+<!-- 
 $$
 \begin{aligned}
     & \phi(u) + \frac{1}{2}\Vert u - x\Vert^2 - \phi(x^+) - \frac{1}{2}\Vert x^+ - x\Vert^2 
@@ -644,7 +644,7 @@ $$
             h(u) + g(x) + \langle \nabla g(x), u - x\rangle 
         \right)
     }_{= \phi(u)} 
-    - \eta \underbrace{f(x^+)}_{\le \phi(x^+)} - \frac{1}{2}\Vert x - x^+\Vert^2 
+    - (\eta f + (1/2)\Vert x^+ - x\Vert^2)
     \\
     &\quad  
     + \frac{1}{2} \Vert u - x\Vert^2 
@@ -697,7 +697,7 @@ $$
 $$
 
 All we did is moving the term $-1/(2\eta)\Vert x^+ - x\Vert^2$ to the RHS since it's a non-negative quantity, it's larger than zero, which explains the $\ge 0$ for the above inequalites. 
-
+ -->
 
 
 

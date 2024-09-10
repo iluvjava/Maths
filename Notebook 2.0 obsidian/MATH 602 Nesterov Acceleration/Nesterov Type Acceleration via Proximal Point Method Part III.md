@@ -1103,7 +1103,7 @@ $$
     \rangle
     \\
     &= 
-    - \frac{1}{2}\Vert L \tilde \eta_{t+} (z_{t+1} - y_t)\Vert^2 + 
+    - \frac{1}{2}\Vert L \tilde \eta_{t+1} (z_{t+1} - y_t)\Vert^2 + 
     \frac{\tilde\eta_{t +1}L}{2}\Vert z_{t+1} - y_t\Vert^2
     - \langle 
         \tilde\eta_{t + 1} \mathcal G_L(y_t), 
