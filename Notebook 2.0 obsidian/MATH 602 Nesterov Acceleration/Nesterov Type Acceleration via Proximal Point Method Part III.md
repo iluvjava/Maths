@@ -615,7 +615,7 @@ $$
     &= \Upsilon_{1, t + 1}^\text{AG} + 
     \left(
         \sum_{i = 1}^{t}\tilde\eta_i 
-    \right)\Upsilon_{1, t + 1}^{\text{AG}}
+    \right)\Upsilon_{2, t + 1}^{\text{AG}}
     \\
     &\le 
      \frac{1}{2}\left(
@@ -1114,7 +1114,7 @@ $$
     \left(
         \frac{L^2\tilde\eta_{t + 1}^2}{2}
          + 
-        \frac{\tilde \eta_{t +1}}{2}
+        \frac{L\tilde \eta_{t +1}}{2}
     \right)
     \Vert z_{t+1} - y_t\Vert^2
     - 
