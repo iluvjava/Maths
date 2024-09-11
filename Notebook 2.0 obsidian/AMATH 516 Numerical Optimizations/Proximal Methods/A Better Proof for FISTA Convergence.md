@@ -188,7 +188,7 @@ where at \[1\] we use the fact that $e^{(k)}= x^{(k)} - \bar x = x^{(k)} - x^{(k
 $$
 \begin{aligned}    
     \begin{cases}
-        t^2_{k + 1} - t_{k + 1} = t_k^2, &\text{For LHS, }
+        t^2_{k + 1} - t_{k + 1} \le t_k^2, &\text{For LHS, }
         \\
         t_k = t_{k + 1}\theta_k + 1, & \text{For RHS. }
     \end{cases}

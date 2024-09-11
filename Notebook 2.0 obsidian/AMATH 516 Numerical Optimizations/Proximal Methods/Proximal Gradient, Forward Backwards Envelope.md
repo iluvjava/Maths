@@ -271,13 +271,13 @@ $$
     + g(x) + \langle \nabla g(x), \mathcal T_\beta x - x\rangle
     + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
     \\
-    &= f(\mathcal T_\beta) - g(\mathcal T_\beta x) 
+    &= f(\mathcal T_\beta x) - g(\mathcal T_\beta x) 
     + g(x) + \langle \nabla g(x), \mathcal T_\beta x - x\rangle
     + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2
     \\
     &= 
-    f(\mathcal T_\beta)
-    - D_g(\mathcal T_\beta, x)
+    f(\mathcal T_\beta x)
+    - D_g(\mathcal T_\beta x, x)
     + \frac{\beta}{2}\Vert x - \mathcal T_\beta x\Vert^2. 
 \end{aligned}
 $$
