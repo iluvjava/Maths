@@ -868,11 +868,11 @@ Finally, when $\eta_t = 0$ the condition allows the following algebraically equi
 
 $$
 \begin{aligned}
-    x_{t + 1}&= 
-    z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
-    \\
     z_{t + 1} &= 
     y_t - L^{-1}\mathcal G_L(y_t)
+    \\
+    x_{t + 1}&= 
+    z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
     \\
     y_{t + 1}&= 
     (1 + L\eta_{t + 1})^{-1} (L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
