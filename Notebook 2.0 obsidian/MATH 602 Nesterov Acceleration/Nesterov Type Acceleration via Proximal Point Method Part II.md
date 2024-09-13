@@ -17,6 +17,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-12--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
   - [**Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-13--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.4 | The Generic Momentum Form**](#definition-14--the-generic-momentum-form)
+  - [**Definition 1.5 | Similar Triangle Form**](#definition-15--similar-triangle-form)
   - [**Definition 1.11 | Guller's Accelerated PPM**](#definition-111--gullers-accelerated-ppm)
 - [**Form Comparison**](#form-comparison)
   - [**Lemma 2.1 | Accelerated Gradient Generic Form**](#lemma-21--accelerated-gradient-generic-form)
@@ -415,9 +416,6 @@ $$
 > $$
 
 And in this case, the momentum algorithm works in a non-smooth composite settings inside of a constrained set $Q$. 
-
-
-
 #### **Definition 1.4 | The Generic Momentum Form**
 > Let $h = f + g$ where $f$ is $L$-Lipschitz smooth convex. 
 > Let $g$ be convex. 
@@ -433,11 +431,31 @@ And in this case, the momentum algorithm works in a non-smooth composite setting
 > For some $\theta_t \ge 0$. 
 
 
+
 **Remarks**
 
 The function for $y_{t + 1}$ in argmin, it is not an upper bound for the function $h$. 
 It is a quadratic function, and $h$ is non-smooth. 
 It won't be an upper bound. 
+
+
+#### **Definition 1.5 | Similar Triangle Form**
+> Let $h = g + f$  where $f$ is $L$-Lipschitz smooth, $f, g$  are convex. Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and the proximal gradient operator of $h$. Let $(t_n)_{n \in \N}$. 
+> A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
+> $$
+> \begin{aligned}
+>     z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
+>     \\
+>     x_{n + 1} &= z_n + t_{n} (z_{n + 1} - z_n), 
+>     \\
+>     y_{n + 1} &= \left(
+>         1 - \frac{1}{t_{n + 1}}
+>     \right)z_{n + 1} + \left(
+>         \frac{1}{t_{n + 1}}
+>     \right)x_{n + 1}. 
+> \end{aligned}
+> $$
+
 
 #### **Definition 1.11 | Guller's Accelerated PPM**
 > 
@@ -673,6 +691,9 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
+
+
+
 #### **Claim 2.6 | Intersection between momentum and AG PPM form**
 > The momentum form is a special case of the AG generic form. 
 > If the sequence $\tilde \eta_t, \eta$ satisfies the conditions
@@ -681,8 +702,22 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 >     \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1}, 
 > \end{aligned}
 > $$
-> Then for any $y_t, z_t$ generic AG PPM form updates in the momentum form: 
-> 
+> Then for any $y_t, z_t$ generic AG PPM form, it's possible to write it in similar triangle form 
+> $$
+> \begin{aligned}
+>     z_{t + 1} &= 
+>     y_t - L^{-1}\mathcal G_L(y_t), 
+>     \\
+>     x_{t + 1}&= 
+>     z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
+>     \\
+>     &= z_t + \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}(z_{t + 1} - z_t), 
+>     \\
+>     y_{t + 1}&= 
+>     (1 + L\eta_{t + 1})^{-1} (L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+> \end{aligned}
+> $$
+> Then it simplifies to: 
 > $$
 > \begin{aligned}
 >     y_{t + 1} &= z_{t + 1} + 
@@ -709,8 +744,15 @@ $$
 Because 
 $$
 \begin{aligned}
+    y_{t} &= (1 + L\eta_{t})^{-1}(L\eta_{t}z_{t} + x_{t})
+    \\
+    (1 + L\eta_t)y_t - x_t &= L\eta_t z_t
+    \\
+    z_t & = (L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t), 
+    \\[1em]
     z_{t + 1} - z_t 
-    &= y_t - L^{-1}\mathcal G_L(y_t) - (L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t)
+    &= \underbrace{ y_t - L^{-1}\mathcal G_L(y_t)}_{=z_{t + 1}}
+    - \underbrace{(L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t)}_{=z_t}
     \\
     &= 
     y_t - L^{-1} \mathcal G_L(y_t) - (L\eta_t)^{-1}y_t - y_t + (L\eta_t)^{-1} x_t
@@ -794,7 +836,10 @@ $$
     (x_t - y_t - \eta_t \mathcal G_L(y_t))
     \\
     &= (1 + \mu \tilde \eta_{t + 1})^{-1}
-    \eta_t(\eta_{t}^{-1}(x_t - y_t) - \mathcal G_L(y_t)), 
+    \eta_t(\eta_{t}^{-1}(x_t - y_t) - \mathcal G_L(y_t))
+    \\
+    &= (1 + \mu \tilde \eta_{t + 1})^{-1}
+    \eta_t L(z_{t + 1} - z_t), 
 \end{aligned}
 $$
 
