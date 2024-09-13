@@ -25,6 +25,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.6 | Intersection between momentum and AG PPM form**](#claim-26--intersection-between-momentum-and-ag-ppm-form)
   - [**Corollary 2.7 | Recovery of V-FISTA algorithm**](#corollary-27--recovery-of-v-fista-algorithm)
   - [**Claim 2.8 | Similar triangle inside of the generic form**](#claim-28--similar-triangle-inside-of-the-generic-form)
+  - [**Intersection between AG PPM form and similar triangle form**](#intersection-between-ag-ppm-form-and-similar-triangle-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -351,7 +352,7 @@ $$
     \\
     &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
     \\
-    (L + \eta_{t + 1})x &= 
+    (L + \eta_{t + 1}^{-1})x &= 
     Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
     \\
     \implies 
@@ -456,6 +457,12 @@ It won't be an upper bound.
 > \end{aligned}
 > $$
 
+**Remark**
+
+This form of the algorithm had been suggested by Chambolle, Dossal in their 2015 paper published in mahtmeatical programming titled: "On the convergence of the iterates of the 'Fast Iterative Shrinkage/Thresholding Algorithm' ". 
+
+
+
 
 #### **Definition 1.11 | Guller's Accelerated PPM**
 > 
@@ -469,6 +476,7 @@ See [Accelerated PPM Method](Accelerated%20PPM%20Method.md) for more context abo
 In this section, we measure, and compare different forms listed above. 
 We show that the Nesterov's 2.2.7 accelerated gradient is the same form as the accelerated gradient PPM strongly convex form. 
 We show that the Generic triangle form is the same as the generic PPM form. 
+These knowledge assists us with connecting the parameters $\eta_i, \tilde \eta_i$ into existing proofs in literatures. 
 
 #### **Lemma 2.1 | Accelerated Gradient Generic Form**
 > Suppose that $h = f + g$ where $g \equiv 0$. 
@@ -700,21 +708,6 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 > $$
 > \begin{aligned}
 >     \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1}, 
-> \end{aligned}
-> $$
-> Then for any $y_t, z_t$ generic AG PPM form, it's possible to write it in similar triangle form 
-> $$
-> \begin{aligned}
->     z_{t + 1} &= 
->     y_t - L^{-1}\mathcal G_L(y_t), 
->     \\
->     x_{t + 1}&= 
->     z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
->     \\
->     &= z_t + \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}(z_{t + 1} - z_t), 
->     \\
->     y_{t + 1}&= 
->     (1 + L\eta_{t + 1})^{-1} (L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
 > \end{aligned}
 > $$
 > Then it simplifies to: 
@@ -1064,6 +1057,109 @@ $$
 $$
 
 which is saying the iterates $z_t, z_{t + 1}, x_{t +1}$ are on the same line. 
+
+
+#### **Intersection between AG PPM form and similar triangle form**
+> If $\mu = 0$, and $\eta_t, \tilde\eta_{t + 1}$ satisfies relations $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$, then AG PPM form can be represented as similar triangle form with $t_n = L\tilde \eta_{n + 1}$ for all $n \in \N$. 
+
+**Demonstrations**
+
+We directly have for $x_{t + 1}$: 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= z_{t + 1} + (1 + \mu\tilde \eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t)
+    \\
+    &=  (1 + L\eta_t(1 + \mu \tilde \eta_{t + 1})^{-1})z_{t + 1}
+    - L\eta_t(1 + \mu\tilde \eta_{t + 1})z_t
+    \\
+    &= 
+    \left(
+        \frac{1 + \mu\tilde \eta_{t + 1} + L \eta_t}{1 + \mu \tilde \eta_{t + 1}}
+    \right)z_{t + 1}
+    + 
+    z_t - 
+    \left(
+        1 + \frac{ L\eta_t}{1 + \mu \tilde \eta_t + 1}
+    \right)z_t 
+    \\
+    &= 
+    \left(
+        \frac{L\tilde \eta_{t+ 1}}{1 + \mu\tilde \eta_{t + 1}}
+    \right)z_{t + 1}
+    + 
+    z_t 
+    - 
+    \left(
+        \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}
+    \right)z_t 
+    \\
+    &= z_t + 
+    \left(
+        \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}
+    \right)
+    (z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
+From the second equality to the third equality, we used the relations $L\tilde \eta_{t + 1} = \eta_t + 1 + \mu\tilde \eta_{t + 1}$.
+This is suggested that $t_n = L \tilde \eta_{n + 1}(1 + \mu \tilde \eta_{n + 1})$.  
+At the same time, we check that: 
+
+$$
+\begin{aligned}
+    y_{t + 1} &= \left(
+        \frac{L\eta_{t + 1}}{1 + L \eta_{t + 1}}
+    \right)z_{t + 1} + 
+    \left(
+        \frac{1}{1 + L \eta_{t + 1}}
+    \right) x_{t + 1}
+    \\
+    &= 
+    \left(
+        1 - \frac{1}{1 + L\eta_{t + 1}}
+    \right)z_{t + 1} + 
+    \left(
+        \frac{1}{1 + L \eta_{t + 1}}
+    \right)x_{t + 1}. 
+\end{aligned}
+$$
+
+Observe that when $\mu = 0$, we have 
+
+$$
+\begin{aligned}
+    t_n = L \tilde \eta_{n + 1} = 1 + L \eta_n, 
+\end{aligned}
+$$
+
+Matching the expression for $y_{t+1}, x_{t + 1}$ with the form of similar triangle algorithm. 
+Therefore, they are algebraically equivalent and $t_n = L\tilde \eta_{t + 1}, \tilde \eta_{t + 1} = \eta_t + L^{-1}$. 
+
+**Remarks**
+
+When $\mu > 0$, they are no longer the same. Fix $\tilde \eta_t$, consider $\tilde \eta_{t + 1}$ with
+
+$$
+\begin{aligned}
+    \lim_{\tilde \eta_t \rightarrow \infty} 
+        \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}} = 1,
+\end{aligned}
+$$
+
+but 
+
+$$
+\begin{aligned}
+    \lim_{\tilde \eta_i \rightarrow \infty} 
+    1 + L \eta_{t + 1} = 
+    \lim_{\tilde \eta_i \rightarrow \infty} (L - \mu)\tilde \eta_{t + 1}
+    = \infty. 
+\end{aligned}
+$$
+
+The similar triangle representation presented in the previous section only aligns when $\mu = 0$. 
+
 
 
 ---
