@@ -255,7 +255,7 @@ $$
 \end{aligned}
 $$
 
-Continuing from (\[1\]), observe that we have now $\Phi_{t + 1} - \Phi_t = 0$. 
+Continuing from (\[1\]), observe that we have now $\Phi_{t + 1} - \Phi_t \le 0$. 
 The theorem is now proven. 
 
 **Remarks**
