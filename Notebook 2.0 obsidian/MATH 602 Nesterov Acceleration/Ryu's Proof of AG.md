@@ -76,9 +76,18 @@ Here is the process:
 > $$
 > \begin{aligned}
 >     \Phi_t &= \sigma_t (f(z_t) - f(x_*)) + 
->     \frac{1}{2}\Vert x_t - x_*\Vert^2 
+>     \frac{1}{2}\Vert x_t - x_*\Vert^2
+>     \\ 
+>     \Phi_0 &= \frac{1}{2} \Vert x_0 - x_*\Vert^2. 
 > \end{aligned}
 > $$
+> As a consequence, if for all $t \in \N$ it has $\Phi_{t + 1} - \Phi_t \le 0$, then $f(z_t) - f_*$ has convergence $\mathcal O(\sigma_t^{-1})$. 
+
+**Demonstrations**
+
+Telescoping $\Phi_{t} - \Phi_{t - 1}$ for $t = 1, \cdots, n$, then $\Phi_{n} - \Phi_0 \le 0$. 
+Then writing things out and divides both side by $\sigma_t$ yields the convergence rate. 
+
 
 
 #### **Thm | Convergence of the algorithm**
@@ -86,7 +95,7 @@ Here is the process:
 > $$
 > \begin{aligned}
 >     \Phi_{t + 1} - \Phi_t &= \sigma_{t + 1}(f(z_{t + 1}) - f_*) 
->     - \sigma_{t}(f(z_t) - f(x_*)) + 
+>     - \sigma_{t}(f(z_t) - f_*) + 
 >     \frac{1}{2}(
 >         \Vert x_{t + 1} - x_*\Vert^2 
 >         - 

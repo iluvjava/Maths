@@ -7,13 +7,30 @@
 
 We try to remake a previous passage [[Gradient Descend, Smoothness]] but go more in depth into the related ideas, because this smoothness conditions goes beyond what is employed in the proof for the smooth gradient, it's also used in envelope method, such as the forward backwards envelope for non-smooth added with smooth objectives. Gradient descent is $x^{(k + 1)} = x^{(k)} - \eta\nabla f(x^{(k)})$, where $\eta$ is a step size that can change. 
 
-**Optimality, Assumptions, Results**: 
+**Standing assumptions**
 
-1. Minimizer exists, measure with  $\Vert x - x^+\Vert$
-2. Minimum exists, measure with $f(x) - f(x^+)$ 
-3. $\Vert \nabla f(x)\Vert$, when we have smooth function. 
+1. $f$ is a differentiable function and it's $L$-Lipschitz smooth. 
 
-The optimality conditions are listed in order of how strong they are. However, the last one might be dependent on other assumption about the algorithm to show that it converges to something, to make matter worse, the gradient alone cannot perfectly characterize optimality, indicating that algorithm that decreases (3.) must have edge cases where it fails. It's a bad measure of optimality globally.
+**A measure of optimality metric**: 
+
+Order from the strongest metric to the weakest metric for optimality of a function, we have for some $x$: 
+
+1. Minimizer exists, measure with  $\Vert x - x^+\Vert$. This is called "error". If the minimizer is a set $X_*$, then it's measured by $\inf_{y \in x_*} \Vert x - y\Vert$.
+2. Minimum exists, measure with $f(x) - \inf_x  f(x)$. Further assume that the minimizers $x^+$ exist, then it's $f(x) - f(x^+)$. This is called the "Optimality Gap. "
+3. $\Vert \nabla f(x)\Vert$, the size of the gradient. It measure how stationary the current point $x$. 
+
+Item (1.) assume the existence of a set $X_*\neq \emptyset$ such that $x^+ \in X_*$. 
+It directly measures the distance of current iterate $x$ to $X_*$. 
+Item (2.) assumes that the function is bounded below and there exists minimizer $x^+$. 
+It measures how close the function value is to the minimum value of the function at the minimizers. 
+Item (3.) 3 measures how close $x$ is a staiondary point. 
+
+Assume optimal metrics, (1.) implies (2), the existence of a minimizers implies the existence of the minimum value of the function. 
+The converse is false. 
+Assume optimal metric (1.) implies (3.), if a minimizer exists then the gradientat the minimizer can be is zero, reaching the optimality. 
+The converse is false. 
+
+
 
 ---
 ### **The Smooth Descend Frameworks**
