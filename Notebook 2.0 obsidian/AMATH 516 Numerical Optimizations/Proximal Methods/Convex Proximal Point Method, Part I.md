@@ -454,7 +454,8 @@ $$
     &\le 
     \left(
         \frac{L}{2}\sigma_T - \frac{T}{2}
-    \right)\sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
+    \right)
+    \sum_{t = 0}^{T - 1}\Vert x_{t + 1} - x_t\Vert^2
     \\
     \Phi_T - \Phi_0 &\le 
     \left(
