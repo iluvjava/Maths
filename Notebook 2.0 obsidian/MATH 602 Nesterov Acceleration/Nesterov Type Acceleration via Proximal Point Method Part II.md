@@ -25,7 +25,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
   - [**Claim 2.6 | Intersection between momentum and AG PPM form**](#claim-26--intersection-between-momentum-and-ag-ppm-form)
   - [**Corollary 2.7 | Recovery of V-FISTA algorithm**](#corollary-27--recovery-of-v-fista-algorithm)
   - [**Claim 2.8 | Similar triangle inside of the generic form**](#claim-28--similar-triangle-inside-of-the-generic-form)
-  - [**Intersection between AG PPM form and similar triangle form**](#intersection-between-ag-ppm-form-and-similar-triangle-form)
+  - [**Claim 2.9 | Intersection between AG PPM form and similar triangle form**](#claim-29--intersection-between-ag-ppm-form-and-similar-triangle-form)
 - [**Lyapunov Analysis**](#lyapunov-analysis)
   - [**Lemma 3.1 | The Lyapunov bounds of Smooth Generic Tri-Points**](#lemma-31--the-lyapunov-bounds-of-smooth-generic-tri-points)
   - [**Lemma 3.3 | Generic Lypunov bound, Non-smooth**](#lemma-33--generic-lypunov-bound-non-smooth)
@@ -1059,7 +1059,7 @@ $$
 which is saying the iterates $z_t, z_{t + 1}, x_{t +1}$ are on the same line. 
 
 
-#### **Intersection between AG PPM form and similar triangle form**
+#### **Claim 2.9 | Intersection between AG PPM form and similar triangle form**
 > If $\mu = 0$, and $\eta_t, \tilde\eta_{t + 1}$ satisfies relations $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$, then AG PPM form can be represented as similar triangle form with $t_n = L\tilde \eta_{n + 1}$ for all $n \in \N$. 
 
 **Demonstrations**
