@@ -703,7 +703,11 @@ The difficult part of the analysis relates to stepszies in the range $(L^{-1}, 2
 #### **Claim | Convergence rate of gradient descent**
 > Let $f$ be $L$-smooth convex. 
 > Assume that recursively the successive iterates of gradient descent satisfies: $x_{t + 1} = x_t - \eta_t \nabla f(x_t)$. 
-> Let $\eta_i$ be a sequence of stepsize used, with $\eta_i \in (0, 2/L)$ for all $t \in \N$, then the upper bound convergence rate for gradient descent is $\mathcal O\left(1/\sum_{i = 1}^{k} \eta_i\right)$. 
+> Let $\eta_i$ be a sequence of stepsize used, with constaint
+> $$
+>   \eta_t \le \frac{2}{(\sum_{i = 1}^{t}\eta_i)^{-1} + L}
+> $$
+> for all $t \in \N$, then the upper bound convergence rate for gradient descent is $\mathcal O\left(1/\sum_{i = 1}^{k} \eta_i\right)$. 
 
 **Proof**
 
@@ -826,7 +830,7 @@ $$
     }
     \\
     &\le 
-    \eta_t \Delta_t + \left(
+    \eta_t \Delta_t + \sigma_t\left(
         \frac{L}{2} - \eta_t^{-1}
     \right)\Vert x_{t + 1} - x_t\Vert^2.
 \end{aligned}
@@ -841,37 +845,88 @@ $$
     &\le 
     \eta_t \Delta_t - \eta_t \Delta_t 
     + 
-    \sigma_t \left(
-        \frac{L}{2} - \eta_t^{-1} + \frac{1}{2}
+    \left(
+        \sigma_t \left(
+            \frac{L}{2} - \eta_t^{-1}\right)
+        + \frac{1}{2}
     \right)
     \Vert x_{t + 1} - x_t\Vert^2
     \\
     &= 
-    \sigma_t \left(
-        \frac{L}{2} - \eta_t^{-1} + \frac{1}{2}
-    \right)
-    \Vert x_{t + 1} - x_t\Vert^2
-    \\
-    &= 
-    \sigma_t \left(
-        \frac{L}{2} - \eta_t^{-1} + \frac{1}{2}
-    \right)\Vert \eta_t \nabla f(x_t)\Vert^2
-    \\
-    &= 
-    \sigma_t\left(
-        \frac{L\eta_t^2+ \eta_t^2}{2} - \eta_t
+    \left(
+        \sigma_t\left(
+            \frac{L\eta_t^2}{2} - \eta_t
+        \right)
+        + \frac{\eta_t^2}{2}
     \right)\Vert \nabla f(x_t)\Vert^2
     \\
-    &= \eta_t\sigma_t\left(
-        \frac{L\eta_t+ \eta_t}{2} - 1
+    &= 
+    \eta_t
+    \left(
+        \sigma_t\left(
+            \frac{L\eta_t}{2} - 1
+        \right)
+        + \frac{\eta_t}{2}
     \right)\Vert \nabla f(x_t)\Vert^2
 \end{aligned}
 $$
 
 Notice that there exists some choices of $\sigma_t, \eta_t$ here. 
-Let $\eta_t = L^{-1}$, then $\sigma_{t + 1} - \sigma_t \le \eta_t$ implies that $\sigma_t = \sum_{i = 1}^{t}\eta_i$. 
-Simplifying the coefficient of the positive term $\Vert \nabla f(x_t)\Vert^2$, it gives $0$. 
-If $\eta_t \in (0, L^{-1})$, then the quantity is negative. 
+Let $\eta_t = L^{-1}$, then $\sigma_{t + 1} - \sigma_t \le \eta_t$ implies that $\sigma_t = \sum_{i = 1}^{t}\eta_i = tL^{-1}$. 
+Then the coefficient simplifies to $(1/2)(-\sigma_t + \eta_t) = (1/2)(1-t)L^{-1} \le 0$. 
+Alternative the step size can vary to keep the coefficient negative, it yields: 
+
+$$
+\begin{aligned}
+    \sigma \left(
+        \frac{L\eta_t}{2} - 1
+    \right) + 
+    \frac{\eta_t}{2} &\le 
+    0
+    \\
+    \sigma_t(L\eta_t - 2) + \eta_t &\le 0
+    \\
+    \sigma_t L\eta_t - 2 \sigma_t + \eta_t 
+    &\le 0
+    \\
+    (1 + \sigma_t L)\eta_t 
+    &\le 2\sigma_t
+    \\
+    \eta_t &\le 
+    \frac{2}{L + \sigma_t^{-1}}. 
+\end{aligned}
+$$
+
+The maximum stepszie is given by minimizing $\sigma_t^{-1}$, by $\sigma_{t + 1} - \sigma_t \le \eta_t$, the largest is $\sigma_t = \sum_{i = 1}^{t}\eta_t$. 
+Finaly, the convergence rate of the algorithm is based on the Lyapunov quantity: $\Phi_t = \sigma_t \Delta_t - (1/2)\Vert e_t\Vert^2$. 
+We proved that $\Phi_{t + 1} - \Phi_t \le 0$ above. 
+Telescoping yield $\Phi_{t} - \Phi_0 \le 0$, let the base case be $\sigma_0 = 0$ then 
+
+$$
+\begin{aligned}
+    \Phi_{t} 
+    &\le \frac{1}{2}\Vert x_0 - x_+\Vert^2
+    \\
+    \sigma_t \Delta_t 
+    &\le 
+    \frac{1}{2}\Vert x_0 - x_+\Vert^2 - \frac{1}{2}\Vert x_t - x_+\Vert^2
+    \\
+    &=
+    (2\sigma_t)^{-1}
+    \left(
+        \Vert x_0 - x_+\Vert^2 - \Vert x_t - x_+\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+So we now have the convergence rate and the Lyapunov quantity. 
+
+**Remarks**
+
+If we use line search at each iterates, then $L_t$ can vary. 
+Line searching for a larger stepsizes improve the convergence rate as well. 
+
+
 
 
 
