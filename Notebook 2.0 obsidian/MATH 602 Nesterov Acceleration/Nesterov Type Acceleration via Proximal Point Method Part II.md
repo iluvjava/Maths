@@ -361,7 +361,7 @@ $$
 \end{aligned}
 $$
 
-And hence the results recored, verified for the peace of the mind. 
+We had verified the results for the peace of the mind. 
 
 **Remark**
 
@@ -699,9 +699,6 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
-
-
-
 #### **Claim 2.6 | Intersection between momentum and AG PPM form**
 > The momentum form is a special case of the AG generic form. 
 > If the sequence $\tilde \eta_t, \eta$ satisfies the conditions
@@ -723,7 +720,7 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 **Proof**
 
 We start by showing that there exists a constant $\alpha \in R$ such that $z_{t + 1} - z_t = \alpha (x_{t + 1} - z_{t + 1})$ by $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$. 
-Firstly, we claim the inequality that 
+Firstly, we have the equality
 
 $$
 \begin{aligned}
@@ -918,7 +915,6 @@ $$
 $$
 
 Compare to the original representation, $w_t$ is no longer needed. 
-
 
 #### **Corollary 2.7 | Recovery of V-FISTA algorithm**
 > If

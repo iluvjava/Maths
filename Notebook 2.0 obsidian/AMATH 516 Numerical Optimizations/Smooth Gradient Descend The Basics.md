@@ -185,7 +185,7 @@ $$
 \begin{aligned}
     f(x - \eta \nabla f(x)) 
     \le
-    m_x(x - \eta \nabla f(x)) 
+    \mathcal M_L(x - \eta \nabla f(x); x) 
     &< f(x)
     \\
     f(y) 
@@ -780,7 +780,7 @@ $$
 \end{aligned}
 $$
 
-Next, we consider the changes in the optimal gap, weighted parameter $\sigma_t$, which is 
+Next, we consider the changes in the optimality gap weighted parameter $\sigma_t$:
 
 $$
 \begin{aligned}
@@ -874,7 +874,7 @@ $$
 Notice that there exists some choices of $\sigma_t, \eta_t$ here. 
 Let $\eta_t = L^{-1}$, then $\sigma_{t + 1} - \sigma_t \le \eta_t$ implies that $\sigma_t = \sum_{i = 1}^{t}\eta_i = tL^{-1}$. 
 Then the coefficient simplifies to $(1/2)(-\sigma_t + \eta_t) = (1/2)(1-t)L^{-1} \le 0$. 
-Alternative the step size can vary to keep the coefficient negative, it yields: 
+Alternatively the step size can vary to keep the coefficient negative, this yields inequality: 
 
 $$
 \begin{aligned}

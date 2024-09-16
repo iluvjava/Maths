@@ -320,7 +320,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     {Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
     shows their equivalence. 
     \par
-    Throughout this section, we assume 
+    Through out this section, we assume 
     \begin{enumerate}
         \item $h=f + g$ satisfies 
             \hyperref[assumption:smooth-nonsmooth-sum]
@@ -1485,6 +1485,466 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \section{Numerical experiments}\label{sec:numerical_experiments}
 
 \appendix
+\section{Scratch paper stuff}
+    Throughout this subsection, we make the following list of assumptions: 
+    \begin{enumerate}
+        \item $h = f + g$, 
+        \item $f, g$ are convex functions, 
+        \item $f$ is differentiable with $L$-Lipschitz smooth gradient and it's $\mu \ge 0$ strongly convex,
+        \item Let $\mathcal T_L, \mathcal G_L$ be the proximal gradient and gradient mapping operator be given by \\
+        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
+    \end{enumerate}
+
+    \subsection{Nesterov momentum with strong convexity}
+        \begin{definition}[generic S-CVX PPM form]\label{def:generic_s-cvx_form}
+            Define the lower bouding function at $x$: 
+            \begin{align*}
+                l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+                + 
+                \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
+            \end{align*}
+            We define the following algorithm. 
+            \begin{align*}
+                x_{t + 1} &= \argmin_{x} \left\lbrace
+                    l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+                    \Vert x - x_t\Vert^2 
+                \right\rbrace
+                \\
+                &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
+                (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
+                \\
+                y_{t + 1}&= 
+                \argmin_{x}
+                \left\lbrace
+                    h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+                    + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+                \right\rbrace
+                \\
+                &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
+            \end{align*}
+        \end{definition}
+        \begin{proof}
+            The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
+            We write it here for future verifications and a peace of the mind. 
+            \begin{align*}
+                x_{t + 1} &= \argmin_{x}\left\lbrace
+                    \langle \mathcal G_L(y_t), x - y_t\rangle 
+                    + 
+                    \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
+                    \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+                \right\rbrace
+                \\
+                \iff 
+                \mathbf 0 & = 
+                \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
+                \\
+                &= 
+                \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
+                \\
+                \iff 
+                (\mu + \tilde \eta_{t + 1}^{-1})x 
+                &= 
+                \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
+                \\
+                \implies 
+                x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
+                (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
+            \end{align*}
+            We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
+            Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
+            \begin{align*}
+                \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
+                \\
+                &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
+                \\
+                (L + \eta_{t + 1}^{-1})x &= 
+                Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
+                \\
+                \implies 
+                x &= 
+                (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
+            \end{align*}
+            And hence the results are verified for the peace of the mind. 
+        \end{proof}
+        \begin{remark}\label{remark:generic_s-cvx_ppm_alternative_representation}
+            In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
+            \begin{align*}
+                w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
+                \\
+                x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
+                \\
+                z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+                \\
+                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+            \end{align*}
+            When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
+            \begin{align*}
+                x_{t + 1} &= 
+                x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+                \\
+                z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+                \\
+                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+                (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
+            \end{align*}
+            The above representation is the same as 
+            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
+
+        \end{remark}
+        
+        \begin{definition}[Similar triangle form]\label{def:s-cvx_similar_triangle_form}
+            Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and proixmal gradient operator of $h = f + g$. 
+            An algorithm is referred to as similar triangle form if its iterates $(x_t, y_t, z_t)$ satisfies the conditions: 
+            \begin{align*}
+                z_{t + 1} &= 
+                y_t - L^{-1}\mathcal G_L(y_t)
+                \\
+                x_{t + 1}&= 
+                z_{t + 1} + \frac{L\eta_t}{1 + \mu\tilde \eta_{t + 1}}(z_{t + 1} - z_t)
+                \\
+                y_{t + 1}&= 
+                (1 + L\eta_{t + 1})^{-1} (L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+            \end{align*}
+        \end{definition}
+
+        \begin{definition}[Generic momentum form]\label{def:generic_momentum}
+            Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and the proximal gradient operator for $h$. 
+            Then the generic momentum form is an algorithm with iterates $(z_t, y_t)$ satisfying the relations 
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+                \\
+                y_{t + 1 } &= z_{t + 1} + \theta_{t + 1}(z_{t + 1} - z_t)
+            \end{align*}
+            For some $\theta_t \ge 0$. 
+        \end{definition}
+        \begin{remark}
+            Sometimes in the literates the update is expressed differently and it's 
+            \begin{align*}
+                y_{t + 1} &= z_t + (1 + \theta_{t + 1})(z_{t + 1} - z_t). 
+            \end{align*}
+        \end{remark}
+
+        \begin{theorem}[Momentum is algebraically equivalent to similar triangle]
+        \label{thm:momentum_is_similar_triangle}
+            \;\\
+            Let $\tilde \eta_t, \eta_t$
+            satisfies 
+            \begin{align*}
+                \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1},
+            \end{align*}
+            then it reduces 
+            \hyperref[def:generic_s-cvx_form]{Definition \ref*{def:generic_s-cvx_form}}
+            into similar triangle form which is given by 
+            \hyperref[def:s-cvx_similar_triangle_form]
+            {Definition \ref*{def:s-cvx_similar_triangle_form}}, 
+            which is also algebraically equivalent 
+            \hyperref[def:generic_momentum]{Definition \ref*{def:generic_momentum}}
+            and it simplifies to
+            \begin{align*}
+                z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t), 
+                \\
+                y_{t + 1} &= z_{t + 1} + 
+                \frac{L\eta_t}{(1 + \mu \tilde\eta_{t + 1})(1 + L\eta_{t + 1})}(z_{t + 1} - z_t)
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            We work with the alternative representation listed in 
+            \hyperref[remark:generic_s-cvx_ppm_alternative_representation]
+            {Remark \ref*{remark:generic_s-cvx_ppm_alternative_representation}} which has iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
+            We start by showing that there exists a constant $\alpha \in \RR$ such that $z_{t + 1} - z_t = \alpha (x_{t + 1} - z_{t + 1})$ by $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$. 
+            Firstly, we have the equality. 
+            \begin{align*}
+                z_{t + 1} - z_t
+                &= 
+                - (L\eta_t)^{-1} y_t 
+                - L^{-1}\mathcal G_L(y_t) + (L \eta_t)^{-1} x_t. 
+            \end{align*}
+            Because 
+            \begin{align*}
+                y_{t} &= (1 + L\eta_{t})^{-1}(L\eta_{t}z_{t} + x_{t})
+                \\
+                (1 + L\eta_t)y_t - x_t &= L\eta_t z_t
+                \\
+                z_t & = (L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t), 
+                \\[1em]
+                z_{t + 1} - z_t 
+                &= \underbrace{ y_t - L^{-1}\mathcal G_L(y_t)}_{=z_{t + 1}}
+                - \underbrace{(L\eta_t)^{-1}((1 + L\eta_t)y_t - x_t)}_{=z_t}
+                \\
+                &= 
+                y_t - L^{-1} \mathcal G_L(y_t) - (L\eta_t)^{-1}y_t - y_t + (L\eta_t)^{-1} x_t
+                \\
+                &= 
+                -L^{-1}\mathcal G_L(y_t) + (L\eta_t)^{-1}(x_t - y_t)
+                \\
+                &= 
+                L^{-1}(\eta_t^{-1}(x_t - y_t) -\mathcal G_L(y_t)). 
+            \end{align*}
+            Next, we have 
+            \begin{align*}
+                x_{t + 1} - z_{t + 1}&= 
+                \left(
+                    (1 + \mu \tilde \eta_{t+ 1})^{-1} (\mu \tilde \eta_{t + 1}y_t + x_t)
+                    - \frac{\tilde \eta_{t + 1}}{1 + \mu\tilde \eta_{t + 1}}
+                    \mathcal G_L(y_t)
+                \right) - \left(
+                    y_t - L^{-1}\mathcal G_L(y_t)
+                \right)
+                \\
+                &= 
+                (1 + \mu \tilde \eta_{t + 1})^{-1}
+                \left(
+                    x_t + \mu \tilde \eta_{t + 1} y_t
+                    - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+                    - (1 + \mu \tilde \eta_{t + 1})
+                    (y_t - L^{-1}\mathcal G_L(y_t))
+                \right)
+                \\
+                &= 
+                (1 + \mu\tilde \eta_{t + 1})^{-1}
+                \left(
+                    x_t - y_t + 
+                    (
+                        -\tilde \eta_{t + 1} + 
+                        (
+                            1 + \mu\tilde \eta_{t + 1})L^{-1}
+                        )
+                        \mathcal G_L(y_t)
+                    )
+                \right)
+                \\
+                &= 
+                (1 + \mu\tilde \eta_{t + 1})^{-1}
+                \left(
+                    x_t - y_t +     
+                    (
+                        - \tilde \eta_{t + 1} + L^{-1}
+                        + \mu \tilde \eta_{t + 1}L^{-1}
+                    )
+                    \mathcal G_L(y_t)
+                \right). 
+            \end{align*}
+            Since 
+            \begin{align*}
+                (1 - L^{-1}\mu)\tilde \eta_{t +1}
+                &= L^{-1} + \eta_t 
+                \\
+                - \tilde \eta_{t + 1} + L^{-1}\mu \tilde \eta_{t + 1}
+                + L^{-1}
+                &= - \eta_t, 
+            \end{align*}
+            so substituting 
+            \begin{align*}
+                x_{t + 1} - z_{t + 1}
+                &= 
+                (1 + \mu \tilde \eta_{t + 1})^{-1}
+                (x_t - y_t - \eta_t \mathcal G_L(y_t))
+                \\
+                &= (1 + \mu \tilde \eta_{t + 1})^{-1}
+                \eta_t(\eta_{t}^{-1}(x_t - y_t) - \mathcal G_L(y_t))
+                \\
+                &= (1 + \mu \tilde \eta_{t + 1})^{-1}
+                \eta_t L(z_{t + 1} - z_t), 
+            \end{align*}
+            therefore 
+            \begin{align*}
+                z_{t + 1} - z_t 
+                &= 
+                \eta^{-1}_tL^{-1}(1 + \mu \tilde \eta_{t + 1})(x_{t + 1} - z_{t + 1})
+                \\
+                \iff 
+                x_{t + 1} - z_{t + 1} &= 
+                \frac{L\eta_t}{1 + \mu \tilde \eta_{t + 1}} 
+                (z_{t + 1} - z_t). 
+            \end{align*}
+            This produces the new updates for $x_{t +1}$, making it the same as the stated similar triangle form. 
+            To attain momentum form, we consider the equation for $y_{t + 1}$, and susbtitute $x_{t + 1}$ producing 
+            \begin{align*}
+                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+                (
+                    L\eta_{t + 1} z_{t + 1} + x_{t + 1}
+                )
+                \\
+                &= 
+                (1 + L\eta_{t + 1})^{-1}
+                \left(
+                    L\eta_{t + 1} z_{t + 1} + z_{t + 1}
+                    + 
+                    \frac{L\eta_t}{1 + \mu \tilde \eta_{t + 1}}
+                    (z_{t + 1} - z_t)
+                \right)
+                \\
+                &= z_{t + 1} 
+                + 
+                \frac{L\eta_t}{(1 + L\eta_{t + 1})(1 + \mu \tilde \eta_{t + 1})}
+                (z_{t + 1} - z_t). 
+            \end{align*}
+            The above exposes the 
+            $\theta_{t + 1} = L\eta_t(1 + L\eta_{t + 1})^{-1}(1 + \mu\tilde \eta_{t + 1})^{-1}$. 
+            Alternatively we also have: 
+            \begin{align*}
+                x_{t + 1} &= z_{t + 1} + (1 + \mu\tilde \eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t)
+                \\
+                &=  (1 + L\eta_t(1 + \mu \tilde \eta_{t + 1})^{-1})z_{t + 1}
+                - L\eta_t(1 + \mu\tilde \eta_{t + 1})z_t
+                \\
+                &= 
+                \left(
+                    \frac{1 + \mu\tilde \eta_{t + 1} + L \eta_t}{1 + \mu \tilde \eta_{t + 1}}
+                \right)z_{t + 1}
+                + 
+                z_t - 
+                \left(
+                    1 + \frac{ L\eta_t}{1 + \mu \tilde \eta_t + 1}
+                \right)z_t 
+                \\
+                &= 
+                \left(
+                    \frac{L\tilde \eta_{t+ 1}}{1 + \mu\tilde \eta_{t + 1}}
+                \right)z_{t + 1}
+                + 
+                z_t 
+                - 
+                \left(
+                    \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}
+                \right)z_t 
+                \\
+                &= z_t + 
+                \left(
+                    \frac{L\tilde \eta_{t + 1}}{1 + \mu \tilde \eta_{t + 1}}
+                \right)
+                (z_{t + 1} - z_t). 
+            \end{align*}
+        \end{proof}
+
+
+
+    \subsection{The line search algorithm idea}
+        \par
+        The Nesterov acceleration algorithm can not achieve linear convergence rate for function that has a strongly convexity constant $\mu > 0$. 
+        This claim is showed in Aujol et.al \cite{aujol_optimal_2019}. 
+        Variants of the Nesterov accelerated gradient method that can achieve linear rate of convergence exists but it requires knowledge of $\mu, L$ a priori. 
+        \par
+        Literatures attempts at improving the convergence of FISTA under strong convexity, and other characterizations are vast. 
+        But it can be approximately categorized as two types: 
+        \begin{enumerate}
+            \item Heuristic and adaptive restart. 
+            \item Linear search and estaimating the parameters. 
+        \end{enumerate}
+        \par
+        Let $h = f + g$ where $f, g$ are convex and $f$ is $L$-Lipschitz and $\mu\ge 0$ strongly convex. 
+        List in Beck \cite[(10.7.7)]{beck_first-order_nodate}, the V-FISTA algorithm is: 
+        \begin{align*}
+            z_{n + 1} &= \mathcal T_L(y_n)
+            \\
+            y_{n + 1} &= z_{n + 1} + \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}(z_{n + 1} - z_n). 
+        \end{align*}
+        $\kappa = L/\mu$ is the condition number. 
+        The parameters $L, \mu$ can be estimated during the run time of the algorithm. 
+        To establish the estimation we first match the parameters $\tilde \eta_i, \eta_i$ to the momentum parameter presented in V-FISTA. 
+        Then we perform the estimation of $\tilde \eta_i, \eta_i$ using the PPM interpretation for the parameter $L, \mu$. 
+        The following theorem will reduce the generic S-CVX form of the PPM interpretations into the V-FISTA algorithm. 
+        \begin{theorem}[V-FISTA algorithm as similar triangle]
+            \;\\
+            If
+            \begin{align*}
+                \tilde \eta_t 
+                &= \frac{1}{\mu(\sqrt{\kappa} - 1)}
+                \quad \forall t \in \N, 
+                \\
+                \eta_t
+                &= 
+                \frac{1}{\mu\sqrt{\kappa}}
+                \quad \forall t \in \N. 
+            \end{align*}
+            Then the AG generic form simplifies to 
+            \begin{align*}
+                y_{t + 1} &= z_{t + 1} + 
+                \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
+                (z_{t +1} - z_t)
+                \\
+                z_{t + 1} 
+                &= y_t - L^{-1}\mathcal G_L(y_t). 
+            \end{align*}
+            And it is a valid sequence that meaning that it satisfies 
+            \begin{align*}
+            \tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}. 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}
+            Observe that we have 
+            \begin{align*}
+                L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+                \\
+                \mu \tilde \eta &= 
+                \frac{1}{\sqrt{\kappa} - 1}, 
+                \\
+                L\tilde \eta_t &= 
+                \frac{\kappa}{\sqrt{\kappa} - 1}. 
+            \end{align*}
+            since it's a constant wrt to $t$, we use $\eta, \tilde \eta$ to ease the notations. 
+            With that it establishes relations
+            \begin{align*}
+                \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
+                &= 
+                \frac{\sqrt{\kappa}}{
+                    \left(
+                        1 + \frac{1}{\sqrt{\kappa} - 1}
+                    \right)
+                    \left(
+                        1 + \sqrt{\kappa}
+                    \right)
+                }
+                \\
+                &= \frac{\sqrt{\kappa}}{
+                    \left(
+                        \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
+                    \right)(1 + \sqrt{\kappa})
+                }
+                \\
+                &=
+                \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
+                    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
+                \right)
+                \\
+                &= 
+                \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
+            \end{align*}
+            The sequence is valid because 
+            \begin{align*}
+                \tilde \eta_{t + 1} 
+                &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}
+                \\
+                (L - \mu)\tilde \eta_{t + 1}
+                &= 
+                1 + L \eta_t 
+                \\
+                L \tilde \eta_{t + 1} - 
+                \mu \tilde \eta_{t + 1}
+                &= 1 + L \eta_t. 
+            \end{align*}
+            Starting from the LHS it yields: 
+            \begin{align*}
+                L\tilde \eta - \mu \tilde \eta 
+                &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
+                \frac{1}{\sqrt{\kappa} - 1}
+                \\
+                &= 
+                \frac{\kappa - 1}{\sqrt{\kappa} - 1}
+                \\
+                &= 
+                \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
+                \\
+                &= 1 + \sqrt{\kappa} = 1 + L \eta. 
+            \end{align*}
+        \end{proof}
+        Therefore, when we have strong convexity constant $\mu > 0$ and Lipschitz parameters $L$, we have a fixed stepsizes $\tilde \eta, \eta$ for the generic form of the algorithm. 
+        When strong convexity doesn't exist locally during the computations of the algorithm, we have to resolve it back to the case when $\mu = 0$. 
+        To do that we have to match the parameters $\tilde \eta_i, \eta_i$ to the Nesterov's momentum used in FISTA. 
+        
+
+
+
 
 \section{Postoned proof}
     \begin{fact}[Equivalent characterization of strong convexity]
