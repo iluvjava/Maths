@@ -1938,11 +1938,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= 1 + \sqrt{\kappa} = 1 + L \eta. 
             \end{align*}
         \end{proof}
+        \par
         Therefore, when we have strong convexity constant $\mu > 0$ and Lipschitz parameters $L$, we have a fixed stepsizes $\tilde \eta, \eta$ for the generic form of the algorithm. 
         When strong convexity doesn't exist locally during the computations of the algorithm, we have to resolve it back to the case when $\mu = 0$. 
         To do that we have to match the parameters $\tilde \eta_i, \eta_i$ to the Nesterov's momentum used in FISTA. 
-        
-
+        The next theorem will address this. 
 
 
 
