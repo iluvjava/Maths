@@ -294,7 +294,7 @@ $$
 > \begin{aligned}
 >     x_{t + 1} &= \argmin{x} \left\lbrace
 >     l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
->     \Vert x - x_t\Vert^2 + \frac{\mu}{2}\Vert x - y_t\Vert^2
+>     \Vert x - x_t\Vert^2
 >     \right\rbrace
 >     \\
 >     &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
@@ -899,7 +899,7 @@ $$
 
 It's not hard to see that it's no longer fitting the momentum form of the algorithm. 
 
-Finally, when $\eta_t = 0$ the condition allows the following algebraically equivalent representation of the algorithm: 
+Finally, the condition allows the following algebraically equivalent representation of the algorithm: 
 
 $$
 \begin{aligned}

@@ -1757,7 +1757,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \frac{L\eta_t}{1 + \mu \tilde \eta_{t + 1}} 
                 (z_{t + 1} - z_t). 
             \end{align*}
-            This produces the new updates for $x_{t +1}$, making it the same as the stated similar triangle form. 
+            This produces the new updates for $x_{t +1}$, making it the same as the stated similar triangle form as in 
+            \hyperref[def:s-cvx_similar_triangle_form]
+                {Definition \ref*{def:s-cvx_similar_triangle_form}}. 
             To attain momentum form, we consider the equation for $y_{t + 1}$, and susbtitute $x_{t + 1}$ producing 
             \begin{align*}
                 y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
@@ -1942,7 +1944,40 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Therefore, when we have strong convexity constant $\mu > 0$ and Lipschitz parameters $L$, we have a fixed stepsizes $\tilde \eta, \eta$ for the generic form of the algorithm. 
         When strong convexity doesn't exist locally during the computations of the algorithm, we have to resolve it back to the case when $\mu = 0$. 
         To do that we have to match the parameters $\tilde \eta_i, \eta_i$ to the Nesterov's momentum used in FISTA. 
-        The next theorem will address this. 
+        Proposed by Chambolle, Dossal \cite{chambolle_convergence_2015}, we have the following representation of the Nesterov accelerated gradient: 
+        \begin{definition}[FISTA]\label{def:fista}
+            The FISTA algorithm has iterates such that they satisfy the following conditions recursively: 
+            \begin{align*}
+                z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
+                \\
+                x_{n + 1} &= z_n + t_{n +1} (z_{n + 1} - z_n), 
+                \\
+                y_{n + 1} &= \left(
+                    1 - \frac{1}{t_{n + 1}}
+                \right)z_{n + 1} + \left(
+                    \frac{1}{t_{n + 1}}
+                \right)x_{n + 1}
+            \end{align*}
+            where $(t_n)_{n\in \N}$ satisfies: $t_{n + 1}^2 - t_n^2 \le t_n$. 
+        \end{definition}
+        \begin{observation}
+            Observe the fact that the updates of the iterates resemble the similar triangle form in
+            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}
+        \end{observation}
+        \begin{theorem}[FISTA as a special case of similar triangle form]
+        \label{thm:fista_spacial_case_of_similar_triangle}
+            \;\\
+            if the stepsize $L\eta_n = t_n - 1$, and $\tilde \eta_{n + 1} = L^{-1} + \eta_n$, then
+            \hyperref[def:fista]{Definition \ref*{def:fista}}
+            is an example of 
+            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}, 
+        \end{theorem}
+        \begin{proof}
+            
+        \end{proof}
+        
+        
+        
 
 
 
