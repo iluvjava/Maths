@@ -42,7 +42,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
     As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. We derive major variants of the Nesterov acceleation algorithm
-    \cite{chambolle_convergence_2015}, \cite{beck_fast_2009}, \cite[Chapter 12]{ryu_large-scale_2022}
+    \cite{chambolle_convergence_2015}, \cite{beck_fast_2009-1}, \cite[Chapter 12]{ryu_large-scale_2022}
     of the accelerated gradient (AG) and find the match of the stepsize parameters in the PPM form. 
 
 
@@ -1632,14 +1632,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 \tilde\eta_{t + 1} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t + 1},
             \end{align*}
-            then it reduces 
+            then
             \hyperref[def:generic_s-cvx_form]{Definition \ref*{def:generic_s-cvx_form}}
-            into similar triangle form which is given by 
+            reduces into similar triangle form which is given by 
             \hyperref[def:s-cvx_similar_triangle_form]
             {Definition \ref*{def:s-cvx_similar_triangle_form}}, 
             which is also algebraically equivalent 
             \hyperref[def:generic_momentum]{Definition \ref*{def:generic_momentum}}
-            and it simplifies to
+            and it's presented as:
             \begin{align*}
                 z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t), 
                 \\
@@ -1830,9 +1830,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Literatures attempts at improving the convergence of FISTA under strong convexity, and other characterizations are vast. 
         But it can be approximately categorized as two types: 
         \begin{enumerate}
-            \item Heuristic and adaptive restart. 
-            \item Linear search and estaimating the parameters. 
+            \item Heuristic regarding restarting the algorithm. 
+            \item Line search and estaimating the parameters: $L, \mu$. 
         \end{enumerate}
+        Beck and Toubolle \cite{beck_fast_2009} proposed the idea of line search for the Lipschitz constant and restarting the algorithm based on function value for assure monotone descending property. 
+        Work by Su et.al \cite{su_differential_2015} proposed an ODE understanding and suggested provable linear convergence rate of Nesterov accelerated gradient algorithm under the presence of strong convexity. 
+        The ODE understand provoked interest in the restart techniques of AG/FISTA and the approaches are diverse and fruitful. 
+
+
         \par
         Let $h = f + g$ where $f, g$ are convex and $f$ is $L$-Lipschitz and $\mu\ge 0$ strongly convex. 
         List in Beck \cite[(10.7.7)]{beck_first-order_nodate}, the V-FISTA algorithm is: 
@@ -1973,9 +1978,80 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}, 
         \end{theorem}
         \begin{proof}
-            
+            By statement hypothesis we have $\tilde \eta_{n + 1} = L^{-1} + \eta_n$, using 
+            \hyperref[thm:momentum_is_similar_triangle]
+            {Theorem \ref*{thm:momentum_is_similar_triangle}}
+            by setting $\mu = 0$, then by similar triangle form the update for $x_{n + 1}$ is 
+            \begin{align*}
+                x_{n + 1} &= z_{n + 1} + L\eta_t(z_{n +1} - z_n)
+                \\
+                &= z_{n + 1} + (L\tilde \eta_{n + 1} - 1)(z_{n + 1} - z_t)
+                \\
+                &= z_n + L\tilde \eta_{n + 1}(z_{n + 1} - z_n)
+                \\
+                &= z_n + t_n(z_{n + 1} - z_n).
+            \end{align*}
+            At the last line it's simply because $L\tilde \eta_{n + 1} = 1 + L\eta_n = t_n$. 
+            Similarly for the updates for $y_{n + 1}$ we would have: 
+            \begin{align*}
+                y_{n + 1} &= \left(
+                    \frac{L\eta_{n + 1}}{1 + L \eta_{n + 1}}
+                \right)z_{n + 1} + 
+                \left(
+                    \frac{1}{1 + L \eta_{n + 1}}
+                \right) x_{n + 1}
+                \\
+                &= 
+                \left(
+                    1 - \frac{1}{1 + L\eta_{n + 1}}
+                \right)z_{n + 1} + 
+                \left(
+                    \frac{1}{1 + L \eta_{n + 1}}
+                \right)x_{n + 1}
+                \\
+                &= (1 - t_{n + 1}^{-1})z_{n + 1} + t_{n + 1}^{-1}x_{n + 1}. 
+            \end{align*}
+
         \end{proof}
+        \par
+        Define the $l_h$ to be the lower bounding function for $h$ parameterized by any fixed $x\in \RR^n$ as a function of $y$: 
+        \begin{align*}
+            l_h(z; x, \mu)&=  h(\mathcal T_Lx) + \langle \mathcal G_L, z- x\rangle + \frac{L}{2}\Vert x - \mathcal T_Lx\Vert^2 + 
+            \frac{\mu}{2}\Vert z - x\Vert^2
+        \end{align*}
+        Let the sequence $\theta_n$ be a momentum sequence such that it satisfies for all $n\in \N$: 
+        \begin{align*}
+            \theta_{n + 1}^2 - t_n^2 
+            &\le \theta_{n + 1}
+            \\
+            \theta_n &\ge \frac{n + 1}{2}.
+        \end{align*}
+        Define $\mathcal T_L^{h}, G_L^h$ to be the proximal gradient and gradient mapping operator for function $h = f + g$. 
+        Then consider the following algorithmic routine that estimates the strong convexity constant during its executions: 
         
+        \begin{algorithm}
+            \caption{Routine 1}\label{alg:routine1}
+            \begin{algorithmic}[1]
+                \Procedure{Routine1}{$L, h=f+g, x_0 = y_0 = z_0, \epsilon > 0$} %\Comment{The gcd of $a$ and $b$}
+                    \State \textbf{Initialize} $\tilde \mu = 0, \eta_0 = 0, \tilde \eta_1 = L^{-1}$
+                    \For{$t = 1, \cdots, N$}
+                        \State $\tilde x \gets (\tilde \mu\tilde \eta_{t + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_l(y_t))$
+                        \If{$\exists \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$}
+                            \State \textbf{Find } $\tilde \mu \in [\epsilon, L]$ s.t: $l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ \Comment{Use binary search}
+                            \State $\tilde \eta_{t + 1} \gets (\sqrt{L\tilde \mu} - \tilde \mu)^{-1}$
+                        \Else \Comment{$\tilde \mu = 0$}
+                            \State $\tilde \mu \gets 0$
+                            \State $\tilde \eta_{t + 1} \gets \theta_tL^{-1}$
+                        \EndIf
+                        \State $\eta_t \gets \tilde \eta_{t + 1} - L^{-1} - L^{-1}\mu\tilde\eta_{t + 1}$
+                        \State $z_{t + 1} \gets y_t - L^{-1}\mathcal G_L(y_t)$
+                        \State $x_{t + 1} \gets (\tilde \mu\tilde \eta_{t + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_l(y_t))$
+                        \State $y_{t + 1} \gets (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1})$
+                    \EndFor
+                \EndProcedure
+            \end{algorithmic}
+        \end{algorithm}
+        The quantity $\epsilon$ is the tolerance for line search to terminate if it can't find any such value. 
         
         
 
