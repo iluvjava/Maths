@@ -1835,7 +1835,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{enumerate}
         Beck and Toubolle \cite{beck_fast_2009} proposed the idea of line search for the Lipschitz constant and restarting the algorithm based on function value for assure monotone descending property. 
         Work by Su et.al \cite{su_differential_2015} proposed an ODE understanding and suggested provable linear convergence rate of Nesterov accelerated gradient algorithm under the presence of strong convexity. 
-        The ODE understand provoked interest in the restart techniques of AG/FISTA and the approaches are diverse and fruitful. 
+        The ODE understandings provoked interest in the restart techniques of AG/FISTA and the approaches are diverse and fruitful. 
+        For example Aujol et.al \cite{aujol_parameter-free_2023,aujol_fista_2022}, Luca et.al \cite{calatroni_backtracking_2019} proposed methods of restarting the FISTA algorithm with an estimate to the strong convexity constant. 
+        They proved the convergence rate in $\bar L$ and $\rho$ which are the estimates of Lipschitz constant $L$ through out the algorithm and $\rho \in (0, 1)$ another parameter that assist with the search for strong convexity constant $\mu$. 
 
 
         \par
@@ -2032,17 +2034,23 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{algorithm}
             \caption{Routine 1}\label{alg:routine1}
             \begin{algorithmic}[1]
-                \Procedure{Routine1}{$L, h=f+g, x_0 = y_0 = z_0, \epsilon > 0$} %\Comment{The gcd of $a$ and $b$}
-                    \State \textbf{Initialize} $\tilde \mu = 0, \eta_0 = 0, \tilde \eta_1 = L^{-1}$
-                    \For{$t = 1, \cdots, N$}
-                        \State $\tilde x \gets (\tilde \mu\tilde \eta_{t + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_l(y_t))$
-                        \If{$\exists \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$}
-                            \State \textbf{Find } $\tilde \mu \in [\epsilon, L]$ s.t: $l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ \Comment{Use binary search}
-                            \State $\tilde \eta_{t + 1} \gets (\sqrt{L\tilde \mu} - \tilde \mu)^{-1}$
-                        \Else \Comment{$\tilde \mu = 0$}
-                            \State $\tilde \mu \gets 0$
-                            \State $\tilde \eta_{t + 1} \gets \theta_tL^{-1}$
-                        \EndIf
+                \Procedure{Routine1}{$L, \tilde \mu,h=f+g, (x_i, y_i), \epsilon > 0, N\in N, i \in \N$}
+                    \State \textbf{Initialize: } $\eta_i = 0, \tilde \eta_{i + 1} = \eta_i + L^{-1} + \tilde \mu L^{-1} \eta_t$
+                    \State $\tilde x \gets (\tilde \mu\tilde \eta_{i + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{i + 1}y_i + x_i - \tilde \eta_{i + 1}\mathcal G_l(y_t))$
+                    \If{$\exists \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ }
+                        \State \textbf{find } $\tilde \mu \in [\epsilon, L]$ s.t: $l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$  
+                        \State \textbf{updates} $\tilde \mu$ accordingly. 
+                        \Comment{Use binary search}
+                        \For{$j = i, \cdots, N$} 
+                            \State $\tilde \eta_{t + j} \gets (\sqrt{L\tilde \mu} - \tilde \mu)^{-1}$
+                        \EndFor
+                    \Else \Comment{$\tilde \mu = 0$}
+                        \State $\tilde \mu \gets 0$
+                        \For{$j = i, \cdots, N$}
+                            \State $\tilde \eta_{t + i} \gets \theta_{j}L^{-1}$
+                        \EndFor
+                    \EndIf
+                    \For{$t = i, \cdots, N$}
                         \State $\eta_t \gets \tilde \eta_{t + 1} - L^{-1} - L^{-1}\mu\tilde\eta_{t + 1}$
                         \State $z_{t + 1} \gets y_t - L^{-1}\mathcal G_L(y_t)$
                         \State $x_{t + 1} \gets (\tilde \mu\tilde \eta_{t + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_l(y_t))$
@@ -2051,7 +2059,30 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \EndProcedure
             \end{algorithmic}
         \end{algorithm}
-        The quantity $\epsilon$ is the tolerance for line search to terminate if it can't find any such value. 
+        In above 
+        \hyperref[alg:routine1]
+            {Routine \ref*{alg:routine1}}
+        we have 
+        \begin{enumerate}
+            \item $\epsilon$ is the tolerance for line search to terminate if it can't find any such value. 
+            \item $(x_i, y_i)$ be any two iterates. 
+            \item $\tilde \mu$ is any estimate of the strong convexity constant. It should be less than $L$ which is the true Lipschitz smoothness. 
+            \item $i\in \N$ is an index that indicates $(x_i, y_i)$ could already be generated by Routine 1 in prior calls to the Routine 1. 
+        \end{enumerate}
+        Routine 1 estimates $\mu$ then performs accelerated gradient, the strong convexity index locally it then determine the stepsize for $\tilde \eta_t, \eta_t$ to fit either the traditional FISTA algorithm, or their strong convexity variants. 
+        It executes for a fixed number of steps $N$ and it repeats periodically to check and update the strong convexity parameter. 
+        However, there are many alternative ways of determining the strong convexity index $\mu$ while performing AG. 
+        When evaluating function value is costly, alternatves that doesn't involve the use of function will accelerates the algorithm. 
+        We propose the following method of estimating the strong convexity constant without using the function value. 
+        Consider any fixed $x, y \in \RR^n$, then 
+        \begin{align*}
+            \tilde \mu = 
+            \frac{
+                \langle \mathcal G_L(x) - \mathcal G_L(y), x - y\rangle
+            }{\Vert x - y\Vert^2}
+        \end{align*}
+        provides an estimate. 
+        
         
         
 
