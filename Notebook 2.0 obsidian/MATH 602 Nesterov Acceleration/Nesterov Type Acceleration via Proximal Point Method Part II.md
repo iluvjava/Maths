@@ -439,6 +439,20 @@ The function for $y_{t + 1}$ in argmin, it is not an upper bound for the functio
 It is a quadratic function, and $h$ is non-smooth. 
 It won't be an upper bound. 
 
+Furthermore, sometimes in the literature the momentum form is presented differently as 
+
+$$
+\begin{aligned}
+    y_{t + 1} &= z_{t + 1} + \theta_{t + 1}(z_{t + 1} - z_t)
+    \\
+    &= z_{t + 1}(1 + \theta_{t + 1}) - \theta_{t + 1} z_t
+    \\
+    &= z_t + z_{t + 1}(1 + \theta_{t + 1}) - (\theta_{t + 1} + 1) z_t
+    \\
+    &= z_t + (1 + \theta_{t + 1})(z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
 
 #### **Definition 1.5 | Similar Triangle Form**
 > Let $h = g + f$  where $f$ is $L$-Lipschitz smooth, $f, g$  are convex. Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and the proximal gradient operator of $h$. Let $(t_n)_{n \in \N}$. 
@@ -456,6 +470,51 @@ It won't be an upper bound.
 >     \right)x_{n + 1}. 
 > \end{aligned}
 > $$
+
+**Observations**
+
+A direct observation is that this algorithm can be reduced to the momentum form. 
+To reduce it to the momentum form, substitute $x_{n + 1}$ to the RHS of $y_{n + 1}$, giving us: 
+
+$$
+\begin{aligned}
+    y_{n + 1} &= (1 - t^{-1}_{n + 1})z_{n + 1} + t^{-1}_{n + 1}x_{n + 1}
+    \\
+    &= (1 - t^{-1}_{n + 1})z_{n + 1} 
+    + t^{-1}_{n + 1}(z_n + t_n (z_{n + 1} - z_n))
+    \\
+    &= 
+    (1 - t^{-1}_{n + 1})z_{n + 1} 
+    + t_{n + 1}^{-1}z_n + t_n/t_{n + 1}(z_{n + 1} - z_n)
+    \\
+    &= (1 - t_{n+1}^{-1} + t_n/t_{n + 1})z_{n + 1}
+    + (t_{n+1}^{-1} - t_n/t_{n + 1})z_n
+    \\
+    &= 
+    \left(
+        \frac{t_{n + 1} - (1 - t_n)}{t_{n + 1}}
+    \right)z_{n + 1}
+     + 
+    \left(
+        \frac{1 - t_n}{t_{n + 1}}
+    \right)z_n
+    \\
+    &= z_{n + 1} + 
+    \left(
+        \frac{t_n - 1}{t_{n + 1}}
+    \right)z_{n + 1} + 
+    \left(
+        \frac{1 - t_n}{t_{n + 1}}
+    \right)z_n
+    \\
+    &= 
+    z_{n + 1} + \left(
+        \frac{t_n -1}{t_{n + 1}}
+    \right)(z_{n + 1} - z_n). 
+\end{aligned}
+$$
+
+And this is looking like Fista after the simplifications. 
 
 **Remark**
 

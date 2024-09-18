@@ -609,7 +609,7 @@ Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = 
 With this in mind, applying the RHS of $[(*)]$ yields: 
 
 $$
-{\footnotesize
+{\small
 \begin{aligned}
     \Phi_{t + 1} - \Phi_t 
     &= \Upsilon_{1, t + 1}^\text{AG} + 
@@ -1549,7 +1549,7 @@ $$
     \\
     &= t^{-1}_{n + 1} ((t_{n + 1} - 1)z_n + x_{n + 1})
     \\
-    &= (1 - t_{n + 1}^{-1})z_{n + 1} + t^{-1}x_{n + 1}. 
+    &= (1 - t_{n + 1}^{-1})z_{n + 1} + t^{-1}_{n + 1}x_{n + 1}. 
 \end{aligned}
 $$
 
