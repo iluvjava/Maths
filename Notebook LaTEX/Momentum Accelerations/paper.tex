@@ -2037,7 +2037,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \Procedure{Routine1}{$L, \tilde \mu,h=f+g, (x_i, y_i), \epsilon > 0, N\in N, i \in \N$}
                     \State \textbf{Initialize: } $\eta_i = 0, \tilde \eta_{i + 1} = \eta_i + L^{-1} + \tilde \mu L^{-1} \eta_t$
                     \State $\tilde x \gets (\tilde \mu\tilde \eta_{i + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{i + 1}y_i + x_i - \tilde \eta_{i + 1}\mathcal G_l(y_t))$
-                    \If{$\exists \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ }
+                    \If{$\exists\; \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ }
                         \State \textbf{find } $\tilde \mu \in [\epsilon, L]$ s.t: $l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$  
                         \State \textbf{updates} $\tilde \mu$ accordingly. 
                         \Comment{Use binary search}

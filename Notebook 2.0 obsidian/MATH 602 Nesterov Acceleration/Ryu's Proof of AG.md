@@ -220,11 +220,11 @@ $$
     - \tilde \eta_t \langle \nabla f(y_t), x_t - x_*\rangle
     \\
     & \textcolor{gray}{
-        \text{Use } \sigma_{t + 1} = L \tilde \eta_t 
+        \text{Use } \sigma_{t + 1} = L \tilde \eta_t^2
     }
     \\
     &= 
-    (L\tilde \eta_t - \tilde \eta_t)\langle \nabla f(y_t), y_t - z_t\rangle +
+    (L\tilde \eta_t^2 - \tilde \eta_t)\langle \nabla f(y_t), y_t - z_t\rangle +
     \tilde \eta_t\langle \nabla f(y_t), y_t - x_*\rangle
     - \tilde \eta_t \langle \nabla f(y_t), x_t - x_*\rangle
     \\
