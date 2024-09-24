@@ -30,7 +30,7 @@ Before we start, we set up our goal to be proving the following master theorem r
 > Let $T : C \mapsto C$ be non-expansive, $C$ is non-empty, closed and convex subset of $X$, then exactly one of the following is true about the fixed point iteration of the operator: 
 > 1. $\mathbf 0 \in \text{rng }(I - T)$, then $(T^nx)_{n \in \mathbb N}$ is bounded. 
 for all $x \in C$, or for some $x \in C$. 
-> 2. $\mathbf 0 \in \text{cl.}\text{rng }(I - T)$, $(1/n) T^nx \rightarrow \mathbf 0$ for some/all $x \in C$ and $\limsup_{n\rightarrow \infty} (1/n)\Vert T^nx\Vert \; \forall x \in C$. 
+> 2. $\mathbf 0 \in \text{cl.}\text{rng }(I - T)$, $(1/n) T^nx \rightarrow \mathbf 0$ for some/all $x \in C$ and $\limsup_{n\rightarrow \infty} (1/n)\Vert T^nx\Vert = \infty$, so it's unbounded.
 > 3. $\mathbf 0 \not \in \text{cl.rng }(I - T)$ and $0 \le \lim_{n\rightarrow \infty} \frac{1}{n}\Vert T^n x\Vert$ for all $x\in C$. 
 
 
@@ -50,12 +50,14 @@ see [Stolz Casero Theorem](Stolz%20Casero%20Theorem.md) and use that.
 #### **Lemma 1 | Convergence in Norm and Projecting on to Zero**
 > Suppose $C \subseteq X$ is a non-empty, closed and convex subset, consider $v  = \Pi_C(\mathbf 0)$ to be the projection of $\mathbf 0$ onto the set $C$. 
 > Further suppose that there exists a sequence $c_n$ in $C$ such that $\Vert c_n\Vert\rightarrow \Vert v\Vert$, then
-> $\Vert c_n - v\Vert \le \Vert c_n\Vert^2 - \Vert v\Vert^2 \rightarrow 0$, therefore it must be $c_n \rightarrow v$. 
+> $\Vert c_n - v\Vert^2 \le \Vert c_n\Vert^2 - \Vert v\Vert^2 \rightarrow 0$, therefore it must be $c_n \rightarrow v$. 
 
 **Observations**
 
 Visually, any sequence inside of the set $C$ such that it converge in norm to the norm of the special projection $v$, it must mean that the sequence itself also converges to vector $v$ strongly in Hilbert space. 
 This allows use to say stuff about the converges of a sequence in a convex set with only information about the projection vector $v$. 
+
+Also, this is just geometries on a circle because $\Vert c_n - v\Vert^2 + \Vert c_n\Vert^2 \le \Vert v\Vert^2$, it's a triangle inscribed inside of a sphere as $\Vert c_n \Vert \rightarrow \Vert v \Vert$. 
 
 **Proof**
 
