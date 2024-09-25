@@ -10,18 +10,18 @@ The proof is similar in form as stated in [Ryu's Proof of AG](Ryu's%20Proof%20of
 
 #### **Assumptions**
 
-Recally previously that 
+Recall previously that we rolled things with the assumption that: 
 1. $h = f + g$,
 2. $f, g$ are convex, 
-3. $f$ is $L$-Lipschitz smooth. 
-4. $\mathcal T_L = (I + \partial g)^{-1}\circ [I - L^{-1}\nabla f]$, the proximal gradient operator. 
-5. $\mathcal G_L = L (I - \mathcal T_L)$, the gradient mapping. 
+3. $f$ is $L$-Lipschitz smooth,
+4. $\mathcal T_L = (I + \partial g)^{-1}\circ [I - L^{-1}\nabla f]$, the proximal gradient operator,
+5. $\mathcal G_L = L (I - \mathcal T_L)$, the gradient mapping,
 6. $x_+ \in \argmin{x} h(x)$, the minimizer exists for $h$.  
 
 
 #### **Algorithm**
 
-The algorithm is the S-CVX PPM form with the assumption that $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, by writing $\tilde \eta_{t + 1}$ as $\tilde \eta_t$ instead, we can write the S-CVX PPM from iterates to be: 
+The algorithm is the S-CVX PPM form with the assumption that $\tilde \eta_{t + 1} = \eta_t + L^{-1}$, by writing $\tilde \eta_{t + 1}$ as $\tilde \eta_t$ instead, with that the S-CVX PPM iterates can be written as: 
 
 $$
 \begin{aligned}
@@ -37,7 +37,7 @@ $$
 #### **Notations**
 Use the notation $\Delta_k = h(z_{k + 1}) - h(\bar x)$ to describe the optialty gap. 
 
-#### **The prximal gradient lemma**
+#### **The proximal gradient lemma**
 > Use our assumptions, recall that previously we have the inequality that for all $x, z$ we have 
 > $$
 > \begin{aligned}
@@ -249,13 +249,24 @@ $$
 $$
 
 By the end, it makes Lyapunov quantity $\Phi_k = \sigma_k \Delta_k + (1/2)\Vert x_{k + 1} - x_+\Vert^2$. 
-Hence the above inequality is $\Phi_k - \Phi_{k - 1}$, telescoping it then yields the inequaity: 
+Hence the above inequality is $\Phi_k - \Phi_{k - 1}$, telescoping it then yields the inequality: 
 
 $$
 \begin{aligned}
-
+    \sum_{i = 1}^{N}\Phi_i - \Phi_{i - 1} = \Phi_N - \Phi_0 
+    &\le 0
+    \\
+    \sigma_N \Delta_N 
+    =
+    \sigma_N (f(z_{N + 1}) - f(x_+))
+    &\le 
+    \sigma_0 \Delta_0 + \frac{1}{2}\left(
+        \Vert x_0 - x_+\Vert^2 - \Vert x_{N +1} - x_+\Vert^2
+    \right), 
 \end{aligned}
 $$
+
+hence it derives the convergence rate of $\mathcal O(\sigma_k^{-1})$. 
 
 
 **Proof for ([1], [2])**
@@ -327,7 +338,7 @@ $$
 
 **Proof for ([4])**
 
-Using the relations of the iterates as defined by the execution of the algorithm, it has 
+Using the relations of the iterates as defined by the algorithm, it has 
 
 $$
 \begin{aligned}
@@ -363,7 +374,7 @@ $$
 
 **Proof for ([5])**
 
-Derivation of $(\sigma_k - \epsilon_k)([2]) + \epsilon_k([1]) \le 0$ assumed that we have $\sigma_k \ge \epsilon_k$, $\epsilon_k \ge 0$. 
+Derivation of $(\sigma_k - \epsilon_k)([2]) + \epsilon_k([1]) \le 0$ assumed that we have $\sigma_k - \epsilon_k \ge 0$, $\epsilon_k \ge 0$. 
 With these assumptions we can proceed: 
 
 $$
@@ -431,4 +442,19 @@ $$
 \end{aligned}
 }
 $$
+
+**Remarks**
+
+There are several choices for the step sizes that can verify the optimal convergence rate for the accelerated Proximal Gradient algorithm. 
+A constant step size of $\tilde \eta_t$ would satisfies the inequality $\tilde \eta_k^2 - \tilde \eta_{k - 1}^2 \le L^{-1} \tilde \eta_k$. 
+Next, consider the choice 
+
+
+---
+### **The proximal point case of acceleration**
+
+Based on the previous proof, we can consider the proximal point case of the acceleration algorithm. 
+To start, we observe that if $g \equiv 0$, the algorithm proposed reduced to a proximal point algorithm with acceleration. 
+In this section, we will be interested in the convergence rate of this accelerated proximal point algorithm. 
+
 
