@@ -25,11 +25,11 @@ The algorithm is the S-CVX PPM form with the assumption that $\tilde \eta_{t + 1
 
 $$
 \begin{aligned}
-    y_k &= (1 - (L\tilde \eta_k)^{-1}) z_k - (L\tilde \eta_k)^{-1} x_k, 
+    y_k &= (1 - (L\tilde \eta_k)^{-1}) z_k + (L\tilde \eta_k)^{-1} x_k, 
     \\
-    x_{k + 1} &= x_k + \tilde \eta_k \mathcal G_L(y_k), 
+    x_{k + 1} &= x_k - \tilde \eta_k \mathcal G_L(y_k), 
     \\
-    z_{t + 1} &= y_k - L^{-1} \mathcal G_L(y_k). 
+    z_{k + 1} &= y_k - L^{-1} \mathcal G_L(y_k). 
 \end{aligned}
 $$
 
@@ -139,7 +139,7 @@ $$
         \Vert x_{k + 1} - x_+\Vert^2 - \Vert x_k - x_+\Vert^2
     )
     &= 
-    - \langle \tilde \eta_k, \mathcal G_L, x_k - x_+\rangle
+    - \tilde \eta_k \langle \mathcal G_L, x_k - x_+\rangle
     + \frac{\tilde \eta_k^2}{2}\Vert \mathcal G_L(y_k)\Vert^2. 
 \end{aligned}\tag{[4]}
 $$
