@@ -14,7 +14,7 @@ Recall previously that we rolled things with the assumption that:
 1. $h = f + g$,
 2. $f, g$ are convex, 
 3. $f$ is $L$-Lipschitz smooth,
-4. $\mathcal T_L = (I + \partial g)^{-1}\circ [I - L^{-1}\nabla f]$, the proximal gradient operator,
+4. $\mathcal T_L = (I + L^{-1}\partial g)^{-1}\circ [I - L^{-1}\nabla f]$, the proximal gradient operator,
 5. $\mathcal G_L = L (I - \mathcal T_L)$, the gradient mapping,
 6. $x_+ \in \argmin{x} h(x)$, the minimizer exists for $h$.  
 

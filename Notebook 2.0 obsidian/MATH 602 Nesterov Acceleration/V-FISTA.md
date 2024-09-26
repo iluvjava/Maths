@@ -50,7 +50,7 @@ $$
     \forall k \ge 1\quad 
     y^{(k)} &= x^{(k)} + \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
     \left(
-        x^{(k)} - x^{(k + 1)}
+        x^{(k)} - x^{(k - 1)}
     \right)
     \\
     x^{(k + 1)} &= T_{1/L} y^{(k)}, 
