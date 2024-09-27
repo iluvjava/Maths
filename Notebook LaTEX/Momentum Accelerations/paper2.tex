@@ -41,9 +41,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
     Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
-    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. We also compactify the Lypunov analysis with the introduction of an error terms for the convergence proof. We derive major variants of the Nesterov acceleation algorithm
+    In addition, we derive a relaxed step size conditions for the algorithm and their corresponding convergence rate. 
+    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. 
+    We also compactify the proof using Lypunov analysis, which allows us to show the convergence still holds even if there is error in the evaluations of the proximal gradient operator. 
+    We derive a major variant of the Nesterov acceleation algorithm
     \cite{chambolle_convergence_2015}, \cite{beck_fast_2009-1}, \cite[Chapter 12]{ryu_large-scale_2022}
-    of the accelerated gradient (AG) and find the match of the stepsize parameters in the PPM form. 
+    of the accelerated gradient (AG) and show that they all falls within the same framework. 
 
     \par
     Some of the earlier examples for the extension of the Nesterov acceleration method make use of the classical analysis introduced by Nestrov. 
@@ -55,6 +58,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     The interpration allows choices of undetermined parameters to encompass several variants of the Nesterov accelerated gradient algorithm. 
     Ahn and Sra's approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
     Instead of a mirror descent step on the dual, they propose an alternative without the gradient of the dual. 
+    
     \par
     Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
     Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
@@ -332,6 +336,102 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             {Definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
     \end{enumerate}
 
+    \begin{definition}[generic S-CVX PPM form]\label{def:generic_s-cvx_form}
+        Define the lower bouding function at $x$: 
+        \begin{align*}
+            l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+            + 
+            \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
+        \end{align*}
+        We define the following algorithm. 
+        \begin{align*}
+            x_{t + 1} &= \argmin_{x} \left\lbrace
+                l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+                \Vert x - x_t\Vert^2 
+            \right\rbrace
+            \\
+            &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
+            (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
+            \\
+            y_{t + 1}&= 
+            \argmin_{x}
+            \left\lbrace
+                h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+                + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+            \right\rbrace
+            \\
+            &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
+        \end{align*}
+    \end{definition}
+    \begin{proof}
+        The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
+        We write it here for future verifications and a peace of the mind. 
+        \begin{align*}
+            x_{t + 1} &= \argmin_{x}\left\lbrace
+                \langle \mathcal G_L(y_t), x - y_t\rangle 
+                + 
+                \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
+                \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+            \right\rbrace
+            \\
+            \iff 
+            \mathbf 0 & = 
+            \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
+            \\
+            &= 
+            \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
+            \\
+            \iff 
+            (\mu + \tilde \eta_{t + 1}^{-1})x 
+            &= 
+            \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
+            \\
+            \implies 
+            x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
+            (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
+        \end{align*}
+        We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
+        Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
+        \begin{align*}
+            \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
+            \\
+            &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
+            \\
+            (L + \eta_{t + 1}^{-1})x &= 
+            Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
+            \\
+            \implies 
+            x &= 
+            (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
+        \end{align*}
+        And hence the results are verified for the peace of the mind. 
+    \end{proof}
+    \begin{remark}\label{remark:generic_s-cvx_ppm_alternative_representation}
+        In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
+        \begin{align*}
+            w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
+            \\
+            x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
+            \\
+            z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+            \\
+            y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+        \end{align*}
+        When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
+        \begin{align*}
+            x_{t + 1} &= 
+            x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+            \\
+            z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+            \\
+            y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+            (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
+        \end{align*}
+        The above representation is the same as 
+        \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
+
+    \end{remark}
+    
     \begin{definition}[AG proximal gradient PPM generic form]
     \label{def:ag_prox_grad_ppm}
         Define $\eta_t, \tilde \eta_t$ to be strictly larger than zero for all $t \in \N$. 
@@ -353,6 +453,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{aligned}
         $$
     \end{definition}
+
+
 
     \begin{definition}[AG proximal gradient generic form]
     \label{def:ag_prox_grad_generic}
@@ -1495,101 +1597,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{enumerate}
 
     \subsection{Nesterov momentum with strong convexity}
-        \begin{definition}[generic S-CVX PPM form]\label{def:generic_s-cvx_form}
-            Define the lower bouding function at $x$: 
-            \begin{align*}
-                l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
-                + 
-                \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
-            \end{align*}
-            We define the following algorithm. 
-            \begin{align*}
-                x_{t + 1} &= \argmin_{x} \left\lbrace
-                    l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
-                    \Vert x - x_t\Vert^2 
-                \right\rbrace
-                \\
-                &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
-                (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
-                \\
-                y_{t + 1}&= 
-                \argmin_{x}
-                \left\lbrace
-                    h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
-                    + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-                \right\rbrace
-                \\
-                &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
-            \end{align*}
-        \end{definition}
-        \begin{proof}
-            The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
-            We write it here for future verifications and a peace of the mind. 
-            \begin{align*}
-                x_{t + 1} &= \argmin_{x}\left\lbrace
-                    \langle \mathcal G_L(y_t), x - y_t\rangle 
-                    + 
-                    \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
-                    \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
-                \right\rbrace
-                \\
-                \iff 
-                \mathbf 0 & = 
-                \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
-                \\
-                &= 
-                \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
-                \\
-                \iff 
-                (\mu + \tilde \eta_{t + 1}^{-1})x 
-                &= 
-                \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
-                \\
-                \implies 
-                x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
-                (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
-            \end{align*}
-            We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
-            Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
-            \begin{align*}
-                \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
-                \\
-                &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
-                \\
-                (L + \eta_{t + 1}^{-1})x &= 
-                Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
-                \\
-                \implies 
-                x &= 
-                (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
-            \end{align*}
-            And hence the results are verified for the peace of the mind. 
-        \end{proof}
-        \begin{remark}\label{remark:generic_s-cvx_ppm_alternative_representation}
-            In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
-            \begin{align*}
-                w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
-                \\
-                x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
-                \\
-                z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
-                \\
-                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
-            \end{align*}
-            When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
-            \begin{align*}
-                x_{t + 1} &= 
-                x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
-                \\
-                z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
-                \\
-                y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
-                (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
-            \end{align*}
-            The above representation is the same as 
-            \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
-
-        \end{remark}
         
         \begin{definition}[Similar triangle form]\label{def:s-cvx_similar_triangle_form}
             Let $\mathcal G_L, \mathcal T_L$ be the gradient mapping and proixmal gradient operator of $h = f + g$. 
