@@ -35,7 +35,7 @@ $$
 
 
 #### **Notations**
-Use the notation $\Delta_k = h(z_{k + 1}) - h(\bar x)$ to describe the optialty gap. 
+Use the notation $\Delta_k = h(z_{k + 1}) - h(\bar x)$ to describe the optimality gap. 
 
 #### **The proximal gradient lemma**
 > Use our assumptions, recall that previously we have the inequality that for all $x, z$ we have 
