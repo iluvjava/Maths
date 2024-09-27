@@ -1,3 +1,7 @@
+---
+tags:
+  - LEGACY
+---
 [Nesterov Type Acceleration via Proximal Point Method Part I](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20I.md)
 
 ---
@@ -15,6 +19,7 @@ We need to re-derive the Lyponouv convergence theorem to allows for more generic
 - [**Varieties of Nesterov Accelerated Gradient**](#varieties-of-nesterov-accelerated-gradient)
   - [**Definition 1.1 | Nes 2.2.7**](#definition-11--nes-227)
   - [**Definition 1.2 | AG Proximal Gradient Strongly Convex PPM Form (The Master Form)**](#definition-12--ag-proximal-gradient-strongly-convex-ppm-form-the-master-form)
+  - [**Definition 1.2.1 | PPM AG without strong convexity**](#definition-121--ppm-ag-without-strong-convexity)
   - [**Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**](#definition-13--accelerated-gradient-bregman-strongly-convex-ppm)
   - [**Definition 1.4 | The Generic Momentum Form**](#definition-14--the-generic-momentum-form)
   - [**Definition 1.5 | Similar Triangle Form**](#definition-15--similar-triangle-form)
@@ -246,6 +251,11 @@ Therefore, the inequality is justified.
 ### **Varieties of Nesterov Accelerated Gradient**
 
 
+For the following algorithm, make the following quantities along with their assumptions: 
+1. $h = f + g$. 
+2. $f, g$ are both convex and $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ convex. 
+3. $\mathcal T_L(x) = [I + L^{-1}\partial g]\circ [I - L^{-1}\nabla f(x)]$ is the proximal gradient operator and 
+4. $\mathcal G_L = I - \mathcal T_L$ is the gradient mapping operator. 
 
 #### **Definition 1.1 | Nes 2.2.7**
 > Described in Nesterov ^[Y. Nesterov, Lectures on Convex Optimization, vol. 137. in Springer Optimization and Its Applications, vol. 137. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-91578-4.] (2.2.7), is an accelerated gradient method. 
@@ -392,6 +402,10 @@ $$
     (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
 \end{aligned}
 $$
+
+
+#### **Definition 1.2.1 | PPM AG without strong convexity**
+> 
 
 
 
