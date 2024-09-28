@@ -408,7 +408,6 @@ $$
 > 
 
 
-
 #### **Definition 1.3 | Accelerated Gradient Bregman Strongly Convex PPM**
 > With $Q\subseteq \R^n$ closed and convex, define $\Psi: Q \mapsto \overline \R$. 
 > Define $f: \mathbb R^n \mapsto \mathbb R$ be $L$-Smooth wrt to norm $\Vert \cdot\Vert$ which is not necessarily the Euclidean norm. 
@@ -792,7 +791,7 @@ For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20C
 
 **Proof**
 
-We start by showing that there exists a constant $\alpha \in R$ such that $z_{t + 1} - z_t = \alpha (x_{t + 1} - z_{t + 1})$ by $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$. 
+We start by showing that there exists a constant $\alpha \in \R$ such that $z_{t + 1} - z_t = \alpha (x_{t + 1} - z_{t + 1})$ by $\tilde \eta_{t + 1} = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}$. 
 Firstly, we have the equality
 
 $$

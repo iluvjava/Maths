@@ -11,6 +11,7 @@ In this file:
 2. Show that several of real world algorithms can be fit into this form by changing specific parameters on the definition. 
 
 In this file, let the ambience space be $\R^n$. 
+$\Vert \cdot\Vert$ is 2-norm unless stated to be something else. 
 
 ---
 ### **Generic Forms**
@@ -34,8 +35,19 @@ To list out the generic representation different type of algorithms, we list the
 #### **Assumption Set 4**
 > Assume assumption Set 3, in addition assume that $\mu = 0$. 
 
+#### **Assumption set 5**
+> Let $Q \subseteq \R^n$, let $\Vert \cdot\Vert$ be any norm on $\R^n$. 
+> 1. $h = f + g$
+> 2. $g: Q \mapsto \overline \R$ to be a convex function. 
+> 3. $f$ is L-Smooth wrt to norm $\Vert \cdot\Vert$
+> 3. Let $\Xi : Q \mapsto \overline \R$ 
+>   * be a function that is strongly convex to $\Vert \cdot\Vert$. 
+>   * Be differentiable on $\text{int} Q$
+> 4. Let $D_\Xi(,)$ be a Bregman Divergence induced by $\Xi$. 
+> 
 
-#### **Def 1.1 | S-CVX PPM AG**
+
+#### **Def | S-CVX PPM AG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameter $L \ge \mu \ge 0$ be given by Assumption Set 3. 
 > Define the lower bouding function at $x$: 
 > $$
@@ -67,7 +79,7 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
-#### **Def 1.2 | S-CVX Generic AG**
+#### **Def | S-CVX Generic AG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
 > $$
@@ -83,7 +95,7 @@ To list out the generic representation different type of algorithms, we list the
 > $$
 
 
-#### **Def 1.2 | Generic AG**
+#### **Def | Generic AG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 4. 
 > This algorithm is a special case of S-CVX Generic AG and it's obtained by setting $\mu = 0$: 
 > $$
@@ -96,8 +108,19 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
+#### **Def | Generic Similar Triangle Form**
+> Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
+> Let iterates $(x_t, y_t, z_t)$ be given by S-CVX Generic AG. 
+> If in addition, the stepsizes $\eta_t, \tilde \eta_t$ satisfies equality 
+> $$\tilde\eta_{t} = \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t},$$
+> then 
+> $$
+>   x_{t + 1} = z_{t + 1} + 
+>   \frac{L\eta_t}{1 + \mu \tilde \eta_{t}} 
+>   (z_{t + 1} - z_t). 
+> $$ 
 
-#### **Def 1.3 | Similar Triangle Form**
+#### **Def | Chambolle, Dossal 2015**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
 A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
 > $$
@@ -113,8 +136,9 @@ A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and th
 >     \right)x_{n + 1}. 
 > \end{aligned}
 > $$
+> Where the sequence $t_n$ satisfies $t_{n + 1}^2 - t_n^2 \le t_{n + 1}$. 
 
-#### **Def 1.4 | Nestrov's Momentum Form**
+#### **Def | Generic Nestrov's Momentum Form**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L$ be given by Assumption Set 3. 
 > Then the momentum form of the algorithm has iterates satisfying the recurrences: 
 > $$
@@ -125,6 +149,14 @@ A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and th
 > \end{aligned}
 > $$
 > For some $\theta_{t + 1} \ge 0$. 
+
+
+#### **Def | Generic Accelerated Mirror Descent (AMD) PPM Form**
+
+#### **Def | Generic S-CVX APPM**
+
+
+
 
 
 ---
@@ -150,16 +182,12 @@ In here we present how some of the literatures present the method of Nesterov's 
 
 In this section, we demonstrate, discuss, about the generic form listed in the previous section. 
 
-#### **Remarks on Similar Triangle Form (Def 1.3)**
-
-Similar triangle form is the same as the algorithm discussed and appeared in Chambolle and Dossal's 2015's paper about the weak convergence of the iterates for the FISTA algorithm under alternative choice for the step sizes parameters. 
-
 
 #### **Remarks on Nes (2.2.7)**
 
 For a faithful derivations of the above algorithm along with its convergence framework work, visits [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for the gory details about the above algorithm. 
 
-#### **Remarks on Nesterov's Momentum Form (Def 1.4)**
+#### **Remarks on Generic Nestrov's Momentum Form (Def 1.4)**
 
 This form fits [V-FISTA](V-FISTA.md), and [A Better Proof for FISTA Convergence](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md).
 This algorithm is the popular and compacted version of accelerated gradient. 
@@ -169,4 +197,4 @@ When it's generically phrase, it may be refers to be the "extrapolated gradient"
 ---
 ### **Analysis of these forms**
 
-See [PPM AGG Forms Analysis](PPM%20AGG%20Forms%20Analysis.md) for more information. 
+See [PPM AG Forms Analysis](PPM%20AG%20Forms%20Analysis.md) for more information. 
