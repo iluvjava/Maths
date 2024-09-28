@@ -11,11 +11,22 @@ Now we give a high level sommary of the propositions and how different form of a
 
 
 --- 
-### **A lot of propositions**
+### **A list of propositions**
+
+Below proposition describe the relations between these variations of Nesterov type accelerated proximal gradient method. 
+Here is a list of conditions we considered: 
+
+1. $\mu = 0$, 
+2. $\tilde \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_t$. 
+
+Here is what the following proposition is about: 
+1. Proposition 1, If (1.) then S-CVX Generic APG -> Generic Similar Triangle
+2. Proposition 2, Similar triangle and Momentum form is equivalent. 
+3. Proposition 3, if (1.) and (2.), then  Generic Similar Triangle is equivalent to Chambolle Dossal, 2015 where we when $t_n = L \tilde \eta_{n}$. 
+4. Proposition 4, if (1.), then there is a choice of constant stepsize sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
 
 
-
-#### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CVX Generic AG**
+#### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CVX Generic APG**
 > The similar triangle is a special case of the AG generic form. 
 > Suppose that $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be the iterates and the stepsize sequences be given by the PPM AG generic form. 
 > If in addition, the sequence $\tilde \eta_t, \eta$ satisfies the conditions for all $t \in \N$
@@ -335,11 +346,117 @@ $$
 Therefore, they are only equals when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
 
 
+
+
 #### **Proposition 4 | V-FISTA**
 > V-FISTA is a form of Generic Similar Triangle Form, where the stepsizes $\tilde \eta_t, \eta_t$ are constants satisfying: 
+> $$
+> \begin{aligned}
+>     \tilde \eta_t 
+>     &= \frac{1}{\mu(\sqrt{\kappa} - 1)}
+>     \quad \forall t \in \N, 
+>     \\
+>     \eta_t
+>     &= 
+>     \frac{1}{\mu\sqrt{\kappa}}
+>     \quad \forall t \in \N. 
+> \end{aligned}
+> $$
+> So the Momentum Form of the algorithm would simplify to 
+> $$
+>  \begin{aligned}
+>      y_{t + 1} &= z_{t + 1} + 
+>      \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
+>      (z_{t +1} - z_t)
+>      \\
+>      z_{t + 1} 
+>      &= y_t - L^{-1}\mathcal G_L(y_t). 
+>  \end{aligned}
+> $$
+
+
+**Proof**
+
+
+Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
 
 $$
 \begin{aligned}
-    
+    L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+    \\
+    \mu \tilde \eta &= 
+    \frac{1}{\sqrt{\kappa} - 1}, 
+    \\
+    L\tilde \eta &= 
+    \frac{\kappa}{\sqrt{\kappa} - 1}. 
 \end{aligned}
 $$
+
+With that it establishes relations
+
+$$
+\begin{aligned}
+    \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
+    &= 
+    \frac{\sqrt{\kappa}}{
+        \left(
+            1 + \frac{1}{\sqrt{\kappa} - 1}
+        \right)
+        \left(
+            1 + \sqrt{\kappa}
+        \right)
+    }
+    \\
+    &= \frac{\sqrt{\kappa}}{
+        \left(
+            \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
+        \right)(1 + \sqrt{\kappa})
+    }
+    \\
+    &=
+    \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
+        \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
+    \right)
+    \\
+    &= 
+    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
+\end{aligned}
+$$
+
+The sequence is valid because 
+
+$$
+\begin{aligned}
+    \tilde \eta_{t + 1} 
+    &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}
+    \\
+    (L - \mu)\tilde \eta_{t + 1}
+    &= 
+    1 + L \eta_t 
+    \\
+    L \tilde \eta_{t + 1} - 
+    \mu \tilde \eta_{t + 1}
+    &= 1 + L \eta_t. 
+\end{aligned}
+$$
+
+Starting from the LHS it yields: 
+
+$$
+\begin{aligned}
+    L\tilde \eta - \mu \tilde \eta 
+    &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
+    \frac{1}{\sqrt{\kappa} - 1}
+    \\
+    &= 
+    \frac{\kappa - 1}{\sqrt{\kappa} - 1}
+    \\
+    &= 
+    \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
+    \\
+    &= 1 + \sqrt{\kappa} = 1 + L \eta. 
+\end{aligned}
+$$
+
+
+

@@ -1,5 +1,6 @@
-- [A Better Proof for FISTA Convergence](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md)
-- [Ryu's Proof of AG](Ryu's%20Proof%20of%20AG.md)
+- [PPM AG Preludes](PPM%20AG%20Preludes.md)
+- [PPM AG Forms](PPM%20AG%20Forms.md)
+- [PPM AG Forms Analysis](PPM%20AG%20Forms%20Analysis.md)
 
 ----
 ### **Intro**
@@ -33,6 +34,7 @@ $$
 \end{aligned}
 $$
 
+This algorithm is a type of Generic APG algorithm. 
 
 #### **Notations**
 Use the notation $\Delta_k = h(z_{k + 1}) - h(\bar x)$ to describe the optimality gap. 
@@ -456,5 +458,3 @@ Next, consider the choice
 Based on the previous proof, we can consider the proximal point case of the acceleration algorithm. 
 To start, we observe that if $g \equiv 0$, the algorithm proposed reduced to a proximal point algorithm with acceleration. 
 In this section, we will be interested in the convergence rate of this accelerated proximal point algorithm. 
-
-

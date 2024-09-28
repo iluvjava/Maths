@@ -3,6 +3,34 @@
 - [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md)
 
 ---
+- [**Intro**](#intro)
+- [**Generic Forms**](#generic-forms)
+  - [**Assumptions Set 1**](#assumptions-set-1)
+  - [**Assumption Set 2**](#assumption-set-2)
+  - [**Assumption Set 3**](#assumption-set-3)
+  - [**Assumption Set 4**](#assumption-set-4)
+  - [**Assumption set 5**](#assumption-set-5)
+  - [**Def | S-CVX PPM APG**](#def--s-cvx-ppm-apg)
+  - [**Def | Generic S-CVX APG**](#def--generic-s-cvx-apg)
+  - [**Def | Generic APG**](#def--generic-apg)
+  - [**Def | Generic Similar Triangle Form**](#def--generic-similar-triangle-form)
+  - [**Def | Generic Nestrov's Momentum Form**](#def--generic-nestrovs-momentum-form)
+  - [**Def | Generic Accelerated Mirror Descent (AMD) PPM Form**](#def--generic-accelerated-mirror-descent-amd-ppm-form)
+  - [**Def | Generic S-CVX PPM APPM**](#def--generic-s-cvx-ppm-appm)
+  - [**Def | Generic PPM APPM**](#def--generic-ppm-appm)
+- [**Nesterov AG form appeared as in the literatures**](#nesterov-ag-form-appeared-as-in-the-literatures)
+  - [**Definition | Nes 2.2.7**](#definition--nes-227)
+  - [**Def | Chambolle, Dossal 2015**](#def--chambolle-dossal-2015)
+  - [**Def | V-FISTA**](#def--v-fista)
+- [**Misc notes about the Generic form**](#misc-notes-about-the-generic-form)
+  - [**Remarks on S-CVX PPM APG**](#remarks-on-s-cvx-ppm-apg)
+  - [**Remarks on Nes (2.2.7)**](#remarks-on-nes-227)
+  - [**Remarks on Generic Nestrov's Momentum Form**](#remarks-on-generic-nestrovs-momentum-form)
+  - [**Remarks on Chambolle Dossal 2015**](#remarks-on-chambolle-dossal-2015)
+- [**Analysis of these forms**](#analysis-of-these-forms)
+
+
+---
 ### **Intro**
 
 To understand this file, we must first read [PPM AG Preludes](PPM%20AG%20Preludes.md). 
@@ -79,7 +107,7 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
-#### **Def | Generic APG 1**
+#### **Def | Generic S-CVX APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
 > $$
@@ -95,12 +123,12 @@ To list out the generic representation different type of algorithms, we list the
 > $$
 
 
-#### **Def | Generic APG 2**
+#### **Def | Generic APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 4. 
 > This algorithm is a special case of S-CVX Generic AG and it's obtained by setting $\mu = 0$: 
 > $$
 > \begin{aligned}
->     x_{t + 1} &= x_t + \tilde \eta \mathcal G_L (y_t)
+>     x_{t + 1} &= x_t - \tilde \eta_{t} \mathcal G_L (y_t)
 >     \\
 >     z_{t + 1} &= y_t - L^{-1}\mathcal G_L (y_t)
 >     \\
@@ -120,23 +148,6 @@ To list out the generic representation different type of algorithms, we list the
 >   (z_{t + 1} - z_t). 
 > $$ 
 
-#### **Def | Chambolle, Dossal 2015**
-> Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
-A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
-> $$
-> \begin{aligned}
->     z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
->     \\
->     x_{n + 1} &= z_n + t_{n} (z_{n + 1} - z_n), 
->     \\
->     y_{n + 1} &= \left(
->         1 - \frac{1}{t_{n + 1}}
->     \right)z_{n + 1} + \left(
->         \frac{1}{t_{n + 1}}
->     \right)x_{n + 1}. 
-> \end{aligned}
-> $$
-> Where the sequence $t_n$ satisfies $t_{n + 1}^2 - t_n^2 \le t_{n + 1}$. 
 
 #### **Def | Generic Nestrov's Momentum Form**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L$ be given by Assumption Set 3. 
@@ -153,9 +164,9 @@ A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and th
 
 #### **Def | Generic Accelerated Mirror Descent (AMD) PPM Form**
 
-#### **Def | Generic S-CVX APPM**
+#### **Def | Generic S-CVX PPM APPM**
 
-
+#### **Def | Generic PPM APPM**
 
 
 
@@ -176,22 +187,66 @@ In here we present how some of the literatures present the method of Nesterov's 
 > 5. Set $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
 
 
+#### **Def | Chambolle, Dossal 2015**
+> Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
+A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
+> $$
+> \begin{aligned}
+>     z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
+>     \\
+>     x_{n + 1} &= z_n + t_{n} (z_{n + 1} - z_n), 
+>     \\
+>     y_{n + 1} &= \left(
+>         1 - \frac{1}{t_{n + 1}}
+>     \right)z_{n + 1} + \left(
+>         \frac{1}{t_{n + 1}}
+>     \right)x_{n + 1}. 
+> \end{aligned}
+> $$
+> Where the sequence $t_n$ satisfies $t_{n + 1}^2 - t_n^2 \le t_{n + 1}$. 
+
+
+#### **Def | V-FISTA**
+> With $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L \ge \mu > 0$  be given by Assumption Set 2. 
+> Then V-FISTA is presented as: 
+> $$
+> \begin{aligned}
+>     z_{t + 1} 
+>     &= y_t - L^{-1}\mathcal G_L(y_t)
+>     \\
+>     y_{t + 1} &= z_{t + 1} + 
+>     \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
+>     (z_{t +1} - z_t). 
+> \end{aligned}
+> $$
+> Where the condition number $\kappa = L/\mu$. 
+
+
 
 ---
 ### **Misc notes about the Generic form**
 
 In this section, we demonstrate, discuss, about the generic form listed in the previous section. 
 
+#### **Remarks on S-CVX PPM APG**
+This is very similar to algorithm presented in section 6 of Ahn and Sra's paper on understanding Nesterov acceleration method via proximal point method. 
+
 
 #### **Remarks on Nes (2.2.7)**
 
 For a faithful derivations of the above algorithm along with its convergence framework work, visits [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for the gory details about the above algorithm. 
 
-#### **Remarks on Generic Nestrov's Momentum Form (Def 1.4)**
+#### **Remarks on Generic Nestrov's Momentum Form**
 
 This form fits [V-FISTA](V-FISTA.md), and [A Better Proof for FISTA Convergence](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md).
 This algorithm is the popular and compacted version of accelerated gradient. 
-When it's generically phrase, it may be refers to be the "extrapolated gradient" accelerated method, distinguishing it from the Poly Momentum Counter part. 
+When it's generically phrase, it may be refers to be the "extrapolated gradient" accelerated method, distinguishing it from the Polyak Inertia algorithm. 
+
+
+#### **Remarks on Chambolle Dossal 2015**
+
+When $t^2_{n + 1} - t_n^2 = t_{n + 1}$, then this recovers the FISTA algorithm as in Amir Beck's work for FISTA. 
+
 
 
 ---

@@ -1022,7 +1022,7 @@ Compare to the original representation, $w_t$ is no longer needed.
 
 **Proof**
 
-Observe that we have 
+Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
 
 $$
 \begin{aligned}
@@ -1031,12 +1031,11 @@ $$
     \mu \tilde \eta &= 
     \frac{1}{\sqrt{\kappa} - 1}, 
     \\
-    L\tilde \eta_t &= 
+    L\tilde \eta &= 
     \frac{\kappa}{\sqrt{\kappa} - 1}. 
 \end{aligned}
 $$
 
-since it's a constant wrt to $t$, we use $\eta, \tilde \eta$ to ease the notations. 
 With that it establishes relations
 
 $$
