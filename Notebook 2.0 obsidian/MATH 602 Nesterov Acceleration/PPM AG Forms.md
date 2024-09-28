@@ -47,7 +47,7 @@ To list out the generic representation different type of algorithms, we list the
 > 
 
 
-#### **Def | S-CVX PPM AG**
+#### **Def | S-CVX PPM APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameter $L \ge \mu \ge 0$ be given by Assumption Set 3. 
 > Define the lower bouding function at $x$: 
 > $$
@@ -79,7 +79,7 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
-#### **Def | S-CVX Generic AG**
+#### **Def | Generic APG 1**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
 > $$
@@ -95,7 +95,7 @@ To list out the generic representation different type of algorithms, we list the
 > $$
 
 
-#### **Def | Generic AG**
+#### **Def | Generic APG 2**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 4. 
 > This algorithm is a special case of S-CVX Generic AG and it's obtained by setting $\mu = 0$: 
 > $$
