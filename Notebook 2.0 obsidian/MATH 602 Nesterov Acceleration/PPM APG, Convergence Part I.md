@@ -1,5 +1,5 @@
-- [PPM AG Preludes](PPM%20AG%20Preludes.md)
-- [PPM AG Forms](PPM%20AG%20Forms.md)
+- [PPM Interpretation of APG Algorithm Preludes](PPM%20Interpretation%20of%20APG%20Algorithm%20Preludes.md)
+- [PPM APG Forms](PPM%20APG%20Forms.md)
 - [PPM AG Forms Analysis](PPM%20AG%20Forms%20Analysis.md)
 
 ----
@@ -9,7 +9,7 @@ In this section, we present a sleek proof of the Nesterov acceleration method us
 The proof is similar in form as stated in [Ryu's Proof of AG](Ryu's%20Proof%20of%20AG.md), and it's reverse engineered from materials presented in [A Better Proof for FISTA Convergence](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
 
 
-#### **Assumptions**
+#### **Assumptions Set 1**
 
 Recall previously that we rolled things with the assumption that: 
 1. $h = f + g$,
@@ -61,11 +61,15 @@ There is very little beauty in the argument of the convergence proof unfortunate
 The entire argument is based on the proximal gradient lemma, which is pivotal. 
 
 #### **Claim | The optimal convergence rate of the algorithm**
-> With the assumptions, if there is a sequence $\sigma_t$ such that $\sigma_k - \sigma_{k-1} \le \tilde \eta_k, \sigma_t = L\tilde \eta_k^2$, producing a convergence rate of $\mathcal O(\sigma_k^{-1})$ for $\Delta_k$. 
+> With the Assumption Set 1, define base case for the parameters $\tilde \eta_0 = 1, \sigma_0 = 0$, so $y_0 = x_0$. 
+> If there is a sequence $\sigma_k$ such that $\sigma_k - \sigma_{k-1} \le \tilde \eta_k, \sigma_t = L\tilde \eta_k^2$ for all $k\in \N$
+> producing a convergence rate of $\mathcal O(\sigma_k^{-1})$ for $\Delta_k$. 
 
 **Observations**
 
-Substituting $\sigma_k = L \tilde \eta_k$, it gives inequality 
+The sequence $\sigma_k$ is define in such a way so that it represent the convergence rate of the algorithm. 
+It's made with the intention to separate the parameter that relates to the rate of the convergence analysis of the algorithm (which is $\sigma_t$), and the step size used in the algorithm (which is $\tilde \eta_t$) because they are fundamentally different concepts. 
+However, after some algebra, the convergence rate can be expressed through the stepszie $\tilde \eta_t$ in the algorithm substituting $\sigma_k = L \tilde \eta_k$, it gives inequality 
 
 $$
 \begin{aligned}
@@ -251,6 +255,7 @@ $$
 $$
 
 By the end, it makes Lyapunov quantity $\Phi_k = \sigma_k \Delta_k + (1/2)\Vert x_{k + 1} - x_+\Vert^2$. 
+Let's consider the base case where $\Phi_0 = (1/2)\Vert x_0 - x^+\Vert^2$. 
 Hence the above inequality is $\Phi_k - \Phi_{k - 1}$, telescoping it then yields the inequality: 
 
 $$
@@ -262,7 +267,7 @@ $$
     =
     \sigma_N (f(z_{N + 1}) - f(x_+))
     &\le 
-    \sigma_0 \Delta_0 + \frac{1}{2}\left(
+    \frac{1}{2}\left(
         \Vert x_0 - x_+\Vert^2 - \Vert x_{N +1} - x_+\Vert^2
     \right), 
 \end{aligned}
@@ -449,7 +454,7 @@ $$
 
 There are several choices for the step sizes that can verify the optimal convergence rate for the accelerated Proximal Gradient algorithm. 
 A constant step size of $\tilde \eta_t$ would satisfies the inequality $\tilde \eta_k^2 - \tilde \eta_{k - 1}^2 \le L^{-1} \tilde \eta_k$. 
-Next, consider the choice 
+
 
 
 ---

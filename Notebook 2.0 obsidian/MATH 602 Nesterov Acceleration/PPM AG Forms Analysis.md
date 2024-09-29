@@ -1,9 +1,9 @@
-- [PPM AG Forms](PPM%20AG%20Forms.md)
+- [PPM APG Forms](PPM%20APG%20Forms.md)
 
 ---
 ### **Intro**
 
-This part of the file continues discussion in [PPM AG Forms](PPM%20AG%20Forms.md). 
+This part of the file continues discussion in [PPM APG Forms](PPM%20APG%20Forms.md). 
 In this file we talks about the assumptions and constraints imposed in the parameters between these form so that they become equivalent to each other. 
 In the section below we proved a lot of proposition. 
 Now we give a high level sommary of the propositions and how different form of algorithms are related to each other. 
@@ -24,6 +24,8 @@ Here is what the following proposition is about:
 2. Proposition 2, Similar triangle and Momentum form is equivalent. 
 3. Proposition 3, if (1.) and (2.), then  Generic Similar Triangle is equivalent to Chambolle Dossal, 2015 where we when $t_n = L \tilde \eta_{n}$. 
 4. Proposition 4, if (1.), then there is a choice of constant stepsize sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
+
+
 
 
 #### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CVX Generic APG**

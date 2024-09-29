@@ -29,14 +29,14 @@
   - [**Remarks on Generic Nestrov's Momentum Form**](#remarks-on-generic-nestrovs-momentum-form)
   - [**Remarks on Chambolle Dossal 2015**](#remarks-on-chambolle-dossal-2015)
 - [**Necessary Derivations of these forms**](#necessary-derivations-of-these-forms)
-  - [**Demonstration for S-CVX PPM APG**](#demonstration-for-s-cvx-ppm-apg)
+  - [**Demonstration for: S-CVX PPM APG**](#demonstration-for-s-cvx-ppm-apg)
 - [**Analysis of these forms**](#analysis-of-these-forms)
 
 
 ---
 ### **Intro**
 
-To understand this file, we must first read [PPM AG Preludes](PPM%20AG%20Preludes.md). 
+To understand this file, we must first read [PPM Interpretation of APG Algorithm Preludes](PPM%20Interpretation%20of%20APG%20Algorithm%20Preludes.md). 
 In this file: 
 1. Introduce a (Proximal Point Method) PPM interpretation of (Accelerated Proximal Gradient) APG
 2. Show that several of real world algorithms can be fit into this form by changing specific parameters on the definition. 
@@ -106,7 +106,7 @@ To list out the generic representation different type of algorithms, we list the
 >         + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
 >     \right\rbrace
 >     \\
->     &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
+>     &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
 > \end{aligned}
 > $$
 
@@ -247,7 +247,7 @@ $$
 \end{aligned}
 $$
 
-The second prox that computes values for $y_{t + 1}$ is more cosmetic. 
+
 
 #### **Remarks on Generic AGP**
 Setting $\mu = 0$ in S-CVX PPM APG yields generic APG. 
@@ -272,7 +272,7 @@ When $t^2_{n + 1} - t_n^2 = t_{n + 1}$, then this recovers the FISTA algorithm a
 ---
 ### **Necessary Derivations of these forms**
 
-#### **Demonstration for S-CVX PPM APG**
+#### **Demonstration for: S-CVX PPM APG**
 The functions inside of "argmin" is easy to solve because they are just quadratic functions. 
 We write it here for future verifications and a peace of the mind. 
 
