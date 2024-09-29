@@ -289,1301 +289,281 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
     \end{remark}
 
-\section{The PPM interpreation of accelerated gradient}\label{sec:ppm_interp_of_ag}
-    In this section, we present the generic PPM formulation of the accelerated proximal gradient method. 
-    This is general form presents us with a set of undetermine stepsize parameters $\eta_i, \tilde \eta_i$ that can be changed later to accomodate proofs that take Lypunov functions and phrase the convergence rate using the stepsizes sequence $\tilde \eta_i$. 
-    These interpretations are extension in the non-smooth context of Ahn and Sra's work \cite{ahn_understanding_2022} using the proximal gradient mapping operator. 
-    The next definition will start the discussion. 
-    \begin{definition}[Linear lower bounding function]\label{def:gradmap-linear-lowerbnd-fxn}
-        Let $h = f+ g$ satisfies
-        \hyperref[assumption:smooth-nonsmooth-sum]{Definition \ref*{assumption:smooth-nonsmooth-sum}}, 
-        $\mathcal G_L$ given by 
-        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
-        Define for all $y$ the function
-        \begin{align*}
-            l_h(x; y) = h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle 
-            + \frac{L}{2}\Vert y - \mathcal T_L y\Vert^2. 
-        \end{align*}
-    \end{definition} 
-    \begin{remark}
-        The function satisfies $l_h(x; y) \le h(x)$ for all $x \in \RR, y \in \RR$ by 
-        \hyperref[lemma:grad_map_linearization]
-        {Lemma \ref*{lemma:grad_map_linearization}}. 
-    \end{remark}
-    \par
-    With the above definition, it's possible to formulate a generic form of accelerated gradient method using $l_h(x,y)$ as two proximal point methods anchored at some iterates $x_t, x_{t + 1}$.
-    The formulation is generic because of undetermined stepsize parameter $\eta_t, \tilde \eta_t$ from the two proximal point. 
-    \par
-    We state the PPM interpretation of accelerated gradient in 
-    \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}, 
-    which has the equivalent form as presented in
-    \hyperref[def:ag_prox_grad_generic]
-    {Definition \ref*{def:ag_prox_grad_generic}}. 
-    \hyperref[prop:derive_ag_prox_grad_tript]
-    {Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
-    shows their equivalence. 
-    \par
-    Through out this section, we assume 
-    \begin{enumerate}
-        \item $h=f + g$ satisfies 
-            \hyperref[assumption:smooth-nonsmooth-sum]
-            {Assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
-        \item Using $h$ as given from above, let $\mathcal T_L, \mathcal G_L$ be given by 
-            \hyperref[def:gradient_mapping]
-            {Definition \ref*{def:gradient_mapping}}. 
-        \item Using all above, let $l_h$ be given by 
-            \hyperref[def:gradmap-linear-lowerbnd-fxn]
-            {Definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
-    \end{enumerate}
+% \section{The PPM interpreation of accelerated gradient}\label{sec:ppm_interp_of_ag}
+%     In this section, we present the generic PPM formulation of the accelerated proximal gradient method. 
+%     This is general form presents us with a set of undetermine stepsize parameters $\eta_i, \tilde \eta_i$ that can be changed later to accomodate proofs that take Lypunov functions and phrase the convergence rate using the stepsizes sequence $\tilde \eta_i$. 
+%     These interpretations are extension in the non-smooth context of Ahn and Sra's work \cite{ahn_understanding_2022} using the proximal gradient mapping operator. 
+%     The next definition will start the discussion. 
+%     \begin{definition}[Linear lower bounding function]\label{def:gradmap-linear-lowerbnd-fxn}
+%         Let $h = f+ g$ satisfies
+%         \hyperref[assumption:smooth-nonsmooth-sum]{Definition \ref*{assumption:smooth-nonsmooth-sum}}, 
+%         $\mathcal G_L$ given by 
+%         \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
+%         Define for all $y$ the function
+%         \begin{align*}
+%             l_h(x; y) = h(\mathcal T_L y) + \langle \mathcal G_L(y), x - y \rangle 
+%             + \frac{L}{2}\Vert y - \mathcal T_L y\Vert^2. 
+%         \end{align*}
+%     \end{definition} 
+%     \begin{remark}
+%         The function satisfies $l_h(x; y) \le h(x)$ for all $x \in \RR, y \in \RR$ by 
+%         \hyperref[lemma:grad_map_linearization]
+%         {Lemma \ref*{lemma:grad_map_linearization}}. 
+%     \end{remark}
+%     \par
+%     With the above definition, it's possible to formulate a generic form of accelerated gradient method using $l_h(x,y)$ as two proximal point methods anchored at some iterates $x_t, x_{t + 1}$.
+%     The formulation is generic because of undetermined stepsize parameter $\eta_t, \tilde \eta_t$ from the two proximal point. 
+%     \par
+%     We state the PPM interpretation of accelerated gradient in 
+%     \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}, 
+%     which has the equivalent form as presented in
+%     \hyperref[def:ag_prox_grad_generic]
+%     {Definition \ref*{def:ag_prox_grad_generic}}. 
+%     \hyperref[prop:derive_ag_prox_grad_tript]
+%     {Proposition \ref*{prop:derive_ag_prox_grad_tript}} 
+%     shows their equivalence. 
+%     \par
+%     Through out this section, we assume 
+%     \begin{enumerate}
+%         \item $h=f + g$ satisfies 
+%             \hyperref[assumption:smooth-nonsmooth-sum]
+%             {Assumption \ref*{assumption:smooth-nonsmooth-sum}}, 
+%         \item Using $h$ as given from above, let $\mathcal T_L, \mathcal G_L$ be given by 
+%             \hyperref[def:gradient_mapping]
+%             {Definition \ref*{def:gradient_mapping}}. 
+%         \item Using all above, let $l_h$ be given by 
+%             \hyperref[def:gradmap-linear-lowerbnd-fxn]
+%             {Definition \ref*{def:gradmap-linear-lowerbnd-fxn}}. 
+%     \end{enumerate}
 
-    \begin{definition}[generic S-CVX PPM form]\label{def:generic_s-cvx_form}
-        Define the lower bouding function at $x$: 
-        \begin{align*}
-            l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
-            + 
-            \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
-        \end{align*}
-        We define the following algorithm. 
-        \begin{align*}
-            x_{t + 1} &= \argmin_{x} \left\lbrace
-                l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
-                \Vert x - x_t\Vert^2 
-            \right\rbrace
-            \\
-            &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
-            (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
-            \\
-            y_{t + 1}&= 
-            \argmin_{x}
-            \left\lbrace
-                h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
-                + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-            \right\rbrace
-            \\
-            &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
-        \end{align*}
-    \end{definition}
-    \begin{proof}
-        The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
-        We write it here for future verifications and a peace of the mind. 
-        \begin{align*}
-            x_{t + 1} &= \argmin_{x}\left\lbrace
-                \langle \mathcal G_L(y_t), x - y_t\rangle 
-                + 
-                \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
-                \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
-            \right\rbrace
-            \\
-            \iff 
-            \mathbf 0 & = 
-            \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
-            \\
-            &= 
-            \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
-            \\
-            \iff 
-            (\mu + \tilde \eta_{t + 1}^{-1})x 
-            &= 
-            \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
-            \\
-            \implies 
-            x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
-            (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
-        \end{align*}
-        We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
-        Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
-        \begin{align*}
-            \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
-            \\
-            &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
-            \\
-            (L + \eta_{t + 1}^{-1})x &= 
-            Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
-            \\
-            \implies 
-            x &= 
-            (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
-        \end{align*}
-        And hence the results are verified for the peace of the mind. 
-    \end{proof}
-    \begin{remark}\label{remark:generic_s-cvx_ppm_alternative_representation}
-        In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
-        \begin{align*}
-            w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
-            \\
-            x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
-            \\
-            z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
-            \\
-            y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
-        \end{align*}
-        When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
-        \begin{align*}
-            x_{t + 1} &= 
-            x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
-            \\
-            z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
-            \\
-            y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
-            (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
-        \end{align*}
-        The above representation is the same as 
-        \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
+%     \begin{definition}[Generic S-CVX PPM]\label{def:generic_s-cvx_form}
+%         Define the lower bouding function at $x$: 
+%         \begin{align*}
+%             l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+%             + 
+%             \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
+%         \end{align*}
+%         We define the following algorithm. 
+%         \begin{align*}
+%             x_{t + 1} &= \argmin_{x} \left\lbrace
+%                 l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+%                 \Vert x - x_t\Vert^2 
+%             \right\rbrace
+%             \\
+%             &= (\mu\tilde \eta_{t + 1} + 1)^{-1} 
+%             (\mu\tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_L(y_t))
+%             \\
+%             y_{t + 1}&= 
+%             \argmin_{x}
+%             \left\lbrace
+%                 h(\mathcal T_L y_t) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2
+%                 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+%             \right\rbrace
+%             \\
+%             &= (1 + L \eta_{t +1})^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1})
+%         \end{align*}
+%     \end{definition}
+%     \begin{proof}
+%         The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
+%         We write it here for future verifications and a peace of the mind. 
+%         \begin{align*}
+%             x_{t + 1} &= \argmin_{x}\left\lbrace
+%                 \langle \mathcal G_L(y_t), x - y_t\rangle 
+%                 + 
+%                 \frac{\mu}{2}\Vert x - y_t\Vert^2 +  
+%                 \frac{1}{2\tilde \eta_{t + 1}}\Vert x - x_t\Vert^2
+%             \right\rbrace
+%             \\
+%             \iff 
+%             \mathbf 0 & = 
+%             \mathcal G_L(y_t) + \mu(x - y_t) + \tilde \eta_{t + 1}^{-1}(x - x_t)
+%             \\
+%             &= 
+%             \mathcal G_L(y_t) + (\mu + \tilde \eta_{t + 1}^{-1}) x - \mu y_t - \tilde \eta_{t + 1}^{-1} x_t
+%             \\
+%             \iff 
+%             (\mu + \tilde \eta_{t + 1}^{-1})x 
+%             &= 
+%             \mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)
+%             \\
+%             \implies 
+%             x &= (\mu + \tilde \eta_{t + 1}^{-1})^{-1 }
+%             (\mu y_t + \tilde \eta_{t + 1}^{-1} x_t - \mathcal G_L(y_t)). 
+%         \end{align*}
+%         We can make the assumption that $\mu + \eta_{t + 1}^{-1} \neq 0$ because $\tilde\eta_t > 0$. 
+%         Similarly for $y_{t + 1}$, it's solving a simple quadratic minimization problem, yielding: 
+%         \begin{align*}
+%             \mathbf 0 &= \mathcal G_L(y_t) + L(x - y_t) + \eta_{t + 1}^{-1}(x - x_{t + 1})
+%             \\
+%             &= (L + \eta_{t + 1}^{-1})x - L y_t - \eta_{t + 1}^{-1}x_{t + 1} + \mathcal G_L(y_t) 
+%             \\
+%             (L + \eta_{t + 1}^{-1})x &= 
+%             Ly_t + \eta_{t + 1}^{-1} x_{t + 1} - \mathcal G_L(y_t)
+%             \\
+%             \implies 
+%             x &= 
+%             (L\eta_{t + 1} + 1)^{-1}(L\eta_{t + 1}(y_t - L^{-1}\mathcal G_L(y_t)) + x_{t + 1}). 
+%         \end{align*}
+%         And hence the results are verified for the peace of the mind. 
+%     \end{proof}
+%     \begin{remark}\label{remark:generic_s-cvx_ppm_alternative_representation}
+%         In the literatures, people accenturate the term $z_{t + 1} = y_t - L^{-1} \mathcal G_L(y_t)$, as a step of gradient descent, and the term $w_t = (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu\tilde \eta_{t + 1}y_t + x_t)$ so the algorithm can be alternatively presented by the relation 
+%         \begin{align*}
+%             w_{t} &= (\mu\tilde \eta_{t + 1} + 1)^{-1}(\mu \tilde \eta_{t + 1} y_t + x_t) 
+%             \\
+%             x_{t + 1}&= w_t - \tilde \eta_{t + 1}(\mu\tilde \eta_{t + 1} + 1)^{-1} \mathcal G_L(y_t)
+%             \\
+%             z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+%             \\
+%             y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+%         \end{align*}
+%         When $\mu = 0$, it has $w_t = x_t$, producing a simpler relations 
+%         \begin{align*}
+%             x_{t + 1} &= 
+%             x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+%             \\
+%             z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+%             \\
+%             y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}
+%             (L\eta_{t + 1} z_{t + 1} + x_{t + 1}). 
+%         \end{align*}
+%         The above representation is the same as 
+%         \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
 
-    \end{remark}
+%     \end{remark}
     
-    \begin{definition}[AG proximal gradient PPM generic form]
-    \label{def:ag_prox_grad_ppm}
-        Define $\eta_t, \tilde \eta_t$ to be strictly larger than zero for all $t \in \N$. 
-        With initial iterate $x_0, y_0$, 
-        The generic form has iterates $x_t, y_t$ for all $t \in \N$ that satisfy: 
-        $$
-        \begin{aligned}
-            x_{t + 1} &= \argmin_{x} \left\lbrace
-                l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
-                \Vert x - x_t\Vert^2
-            \right\rbrace,
-            \\
-            y_{t + 1}&= 
-            \argmin_{x}
-            \left\lbrace
-                l_h(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
-                \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
-            \right\rbrace.
-        \end{aligned}
-        $$
-    \end{definition}
+%     \begin{definition}[AG proximal gradient PPM generic form]
+%     \label{def:ag_prox_grad_ppm}
+%         Define $\eta_t, \tilde \eta_t$ to be strictly larger than zero for all $t \in \N$. 
+%         With initial iterate $x_0, y_0$, 
+%         The generic form has iterates $x_t, y_t$ for all $t \in \N$ that satisfy: 
+%         $$
+%         \begin{aligned}
+%             x_{t + 1} &= \argmin_{x} \left\lbrace
+%                 l_h(x; y_t) + \frac{1}{2\tilde \eta_{t + 1}} 
+%                 \Vert x - x_t\Vert^2
+%             \right\rbrace,
+%             \\
+%             y_{t + 1}&= 
+%             \argmin_{x}
+%             \left\lbrace
+%                 l_h(x; y_t) + \frac{L}{2}\Vert x - y_t\Vert^2 + 
+%                 \frac{1}{2\eta_{t + 1}} \Vert x - x_{t + 1}\Vert^2
+%             \right\rbrace.
+%         \end{aligned}
+%         $$
+%     \end{definition}
 
 
 
-    \begin{definition}[AG proximal gradient generic form]
-    \label{def:ag_prox_grad_generic}
-        Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
-        With initial iterate $x_0, y_0$.
-        The generic form has iterates $(y_t, x_{t + 1}, z_{t + 1})$ such that 
-        $$
-        \begin{aligned}
-            y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
-            \\
-            x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
-            \\
-            z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
-        \end{aligned}
-        $$
-        for all $t\in \mathbb N$. 
-    \end{definition}
-    \begin{remark}
-        Observe that $z_{t + 1} = y_t^+$. 
-    \end{remark}
+%     \begin{definition}[AG proximal gradient generic form]
+%     \label{def:ag_prox_grad_generic}
+%         Define $\eta_t, \tilde \eta_t$ to be $> 0$ for all $t \in \N$. 
+%         With initial iterate $x_0, y_0$.
+%         The generic form has iterates $(y_t, x_{t + 1}, z_{t + 1})$ such that 
+%         $$
+%         \begin{aligned}
+%             y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
+%             \\
+%             x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
+%             \\
+%             z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
+%         \end{aligned}
+%         $$
+%         for all $t\in \mathbb N$. 
+%     \end{definition}
+%     \begin{remark}
+%         Observe that $z_{t + 1} = y_t^+$. 
+%     \end{remark}
     
-    \begin{proposition}
-    \label{prop:derive_ag_prox_grad_tript}
-       We have equalities
-        \begin{align*}
-            x_{t + 1} &= \argmin_{x}
-            \left\lbrace
-                l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
-            \right\rbrace
-            \\
-            &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-            \\
-            y_{t + 1} &= \argmin_{x}
-            \left\lbrace
-                    h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-            \right\rbrace
-            \\
-            &= (1 + L\eta_{t + 1})^{-1}
-            (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
-        \end{align*}
-        This thows
-        \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
-        and 
-        \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}} 
-        are equivalent. 
-    \end{proposition}
-    \begin{proof}
-        Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by 
-        \hyperref[lemma:grad_map_linearization]
-        {Lemma \ref*{lemma:grad_map_linearization}}
-        Since $l_h(x; y_t)$ is a simple linear function wrt $x$, minimizing the quandratic where to get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$; for $y_{t + 1}$, complete the square on the second and the third terms: 
-        \begin{align*}
-            & \frac{L}{2}\left(
-                2\langle L^{-1}\mathcal G_L(y_t), x - y_t\rangle + 
-                \Vert x - y_t\Vert^2
-            \right)
-            \\
-            &= 
-            \frac{L}{2}
-            \left(
-                - \Vert L^{-1} \mathcal G_L(y_t)\Vert^2  
-                + \Vert L^{-1} \mathcal G_L(y_t)\Vert^2 
-                + 
-                2\langle L^{-1} \mathcal G_L(y_t), x - y_t\rangle + 
-                \Vert x - y_t\Vert^2
-            \right)
-            \\
-            &= \frac{L}{2}\left(
-                - \Vert L^{-1}\mathcal G_L(y_t)\Vert^2  
-                + \Vert x - (y_t - L^{-1}\mathcal G_L(y_t))
-                \Vert^2
-            \right), 
-        \end{align*}
-        therefore it transforms into 
-        \begin{align*}
-            y_{t + 1} &=\argmin_{x} \left\lbrace
-                \frac{L}{2}\left\Vert 
-                    x - (y_t - L^{-1}\mathcal G_L(y_t))
-                \right\Vert^2
-                + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
-            \right\rbrace
-            \\
-            &=
-            \frac{
-                \left(y_t - L^{-1}\mathcal G_L(y_t)\right) + x_{t + 1}
-            }{L + \eta_{t + 1}^{-1}}.
-        \end{align*}
-        Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, then the above expression simplifies to 
-        $$
-            y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
-        $$
-    \end{proof}
-    \begin{remark}
-        $y_{t + 1}$ is the minimizer of a simple quadratic. 
-        Given that the original function $h$ is potentially non-smooth, therefore it's not always an upper bound of $h(x)$. 
-        The upper bound interpretation of the smooth case as proposed by Ahn \cite{ahn_understanding_2022}, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
-    \end{remark}
+%     \begin{proposition}
+%     \label{prop:derive_ag_prox_grad_tript}
+%        We have equalities
+%         \begin{align*}
+%             x_{t + 1} &= \argmin_{x}
+%             \left\lbrace
+%                 l_h(x, y_t) + \frac{1}{2\tilde \eta_{t + 1}} \Vert x - x_t\Vert^2
+%             \right\rbrace
+%             \\
+%             &= x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t), 
+%             \\
+%             y_{t + 1} &= \argmin_{x}
+%             \left\lbrace
+%                     h(y_t^+) + \langle \mathcal G_L(y_t), x - y_t\rangle + \frac{L}{2}\Vert x -y_t\Vert^2 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+%             \right\rbrace
+%             \\
+%             &= (1 + L\eta_{t + 1})^{-1}
+%             (x_{t + 1} + L\eta_{t + 1}(y_t - L^{-1}\mathcal  G_L(y_t))). 
+%         \end{align*}
+%         This thows
+%         \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
+%         and 
+%         \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}} 
+%         are equivalent. 
+%     \end{proposition}
+%     \begin{proof}
+%         Let $y_t^+ = \mathcal T_L(y_t)$, recall that $l_h(x; y_t) = h(y_t^+) + \langle \mathcal G_L(y_t), x -y_t\rangle \le f(x)$ by 
+%         \hyperref[lemma:grad_map_linearization]
+%         {Lemma \ref*{lemma:grad_map_linearization}}
+%         Since $l_h(x; y_t)$ is a simple linear function wrt $x$, minimizing the quandratic where to get $x_{t + 1} = x_t - \tilde\eta_{t + 1} \mathcal G_L(y_t)$; for $y_{t + 1}$, complete the square on the second and the third terms: 
+%         \begin{align*}
+%             & \frac{L}{2}\left(
+%                 2\langle L^{-1}\mathcal G_L(y_t), x - y_t\rangle + 
+%                 \Vert x - y_t\Vert^2
+%             \right)
+%             \\
+%             &= 
+%             \frac{L}{2}
+%             \left(
+%                 - \Vert L^{-1} \mathcal G_L(y_t)\Vert^2  
+%                 + \Vert L^{-1} \mathcal G_L(y_t)\Vert^2 
+%                 + 
+%                 2\langle L^{-1} \mathcal G_L(y_t), x - y_t\rangle + 
+%                 \Vert x - y_t\Vert^2
+%             \right)
+%             \\
+%             &= \frac{L}{2}\left(
+%                 - \Vert L^{-1}\mathcal G_L(y_t)\Vert^2  
+%                 + \Vert x - (y_t - L^{-1}\mathcal G_L(y_t))
+%                 \Vert^2
+%             \right), 
+%         \end{align*}
+%         therefore it transforms into 
+%         \begin{align*}
+%             y_{t + 1} &=\argmin_{x} \left\lbrace
+%                 \frac{L}{2}\left\Vert 
+%                     x - (y_t - L^{-1}\mathcal G_L(y_t))
+%                 \right\Vert^2
+%                 + \frac{1}{2\eta_{t + 1}}\Vert x - x_{t + 1}\Vert^2
+%             \right\rbrace
+%             \\
+%             &=
+%             \frac{
+%                 \left(y_t - L^{-1}\mathcal G_L(y_t)\right) + x_{t + 1}
+%             }{L + \eta_{t + 1}^{-1}}.
+%         \end{align*}
+%         Define $z_{t + 1} = y_t - \mathcal G_L(y_t) = \mathcal T_L(y_t)$, then the above expression simplifies to 
+%         $$
+%             y_{t + 1} = (1 + L\eta_{t +1})^{-1}(x_{t + 1}+ L\eta_{t + 1}z_{t + 1}). 
+%         $$
+%     \end{proof}
+%     \begin{remark}
+%         $y_{t + 1}$ is the minimizer of a simple quadratic. 
+%         Given that the original function $h$ is potentially non-smooth, therefore it's not always an upper bound of $h(x)$. 
+%         The upper bound interpretation of the smooth case as proposed by Ahn \cite{ahn_understanding_2022}, Sra for the update of $y_{t + 1}$ fails when $h$ is non-smooth! 
+%     \end{remark}
 
-\section{Lyapunov analysis for accelerated gradient via PPM}
-\label{sec:generic_ag_ppm_lyapunov_analysis}
-    % In this section we derive the generic convergence rate formuated by $\eta_i, \tilde \eta_i$. 
-    % \par
-    % The Lypunov function in  
-    % \hyperref[thm:generic_ag_convergence]{Theorem \ref*{thm:generic_ag_convergence}}
-    % is identical to Ahn and Sra 
-    % \cite[section 4.2]{ahn_understanding_2022}, 
-    % except for the involvement of the gradient mapping. 
-    % We adapated it into the context of proximal gradient by 
-    % \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]
-    % {Lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}}
-    % \par
-    % We present the convergence rate by compatifying results into 
-    % \hyperref[lemma:nsmooth_agg_lyapunov_upper_bound]
-    % {Lemma \ref*{lemma:nsmooth_agg_lyapunov_upper_bound}} 
-    % to assist the proof of  
-    % \hyperref[thm:generic_ag_convergence]
-    % {Theorem \ref*{thm:generic_ag_convergence}} 
-    % which states new results that are extension to Ahn and Sra's works by introducing an error term to the Lypunov analysis, allowing for a weaker constraints for the stepsize paramters $\tilde \eta_i, \eta_i$ from 
-    % \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}. 
-    % \hyperref[thm:ag_generic_stepsize_constraints]{Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    % states the weakened constraints on the stepsize parameters $\tilde \eta_i, \eta_i$. 
-    % \par
-    % Throughout the section, we continue the assumption for $h = f + g$, gradient mapping $\mathcal G_L$ and proximal gradient mapping $\mathcal T_L$ from the previous section. 
 
-    % \begin{lemma}[Lyapunov inequality]
-    % \label{lemma:nsmooth_agg_lyapunov_upper_bound}\;\\
-    %     Fix any $\bar x, x, z',\tilde\eta > 0$, define
-    %     \begin{align*}
-    %         \phi(u) &:= \tilde\eta
-    %         \left(
-    %             h( \mathcal T_L\bar x) + \langle \mathcal G_L\bar x, u - \bar x\rangle
-    %             + \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2 
-    %         \right), 
-    %         \\
-    %         x^+ &:= 
-    %         \hprox_\phi(x) = x - \tilde \eta\mathcal G_L \bar x,
-    %         \\
-    %         \Upsilon_{1}  &:= 
-    %         \tilde \eta(h(\mathcal T_L \bar x) - h(x_*))
-    %         + 
-    %         \frac{1}{2}(\Vert x^+ - x_*\Vert^2 - \Vert x - x_*\Vert^2), 
-    %         \\
-    %         \Upsilon_2 &:= 
-    %         h(\mathcal T_L \bar x) - h(z'). 
-    %     \end{align*}
-    %     with $x_*$ being the minimizer of $h$, it has 
-    %     \begin{align*}
-    %         \Upsilon_1 &\le 
-    %         - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
-    %         + 
-    %         \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
-    %         - 
-    %         \frac{1}{2}\Vert x^+ - x\Vert^2, 
-    %         \\
-    %         \Upsilon_2 &\le 
-    %         \langle \mathcal G_L\bar x, \mathcal T_L \bar x - z'\rangle + 
-    %         \frac{L}{2}\Vert \mathcal T_L \bar x - \bar x\Vert^2. 
-    %     \end{align*}
-    % \end{lemma}
-    % \begin{observation}
-    %     Function $\phi$ is a linear function that qualifies as a lower bound of $\tilde \eta h$, at $\bar x$ by 
-    %     \hyperref[lemma:grad_map_linearization]{lemma \ref*{lemma:grad_map_linearization}}.
-    % \end{observation}
-    % \begin{proof}
-    %     Observe that we have for all $u$: 
-    %     \begin{align*}
-    %         h(u) &\ge 
-    %         h(\mathcal T_L\bar x) + 
-    %         \langle \mathcal G_L \bar x, u - \bar x\rangle + 
-    %         \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
-    %         \\
-    %         &= 
-    %         h(\mathcal T_L \bar x) + 
-    %         \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
-    %         + 
-    %         \langle \mathcal G_L \bar x, \mathcal T_L \bar x - \bar x\rangle
-    %         + 
-    %         \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x \Vert^2
-    %         \\
-    %         &= 
-    %         h(\mathcal T_L \bar x) + 
-    %         \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle
-    %         + 
-    %         \langle 
-    %             L (\bar x - \mathcal T_L \bar x)
-    %             , 
-    %             \mathcal T_L \bar x - \bar x
-    %         \rangle
-    %         + 
-    %         \frac{L}{2}\Vert \bar x - \mathcal T_L \bar x\Vert^2
-    %         \\
-    %         &= 
-    %         h(\mathcal T_L \bar x) + 
-    %         \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
-    %         - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2. 
-    %     \end{align*}
-    %     By PPM descent inequality
-    %     \hyperref[thm:ppm_descent_ineq]{theorem \ref*{thm:ppm_descent_ineq}}
-    %     , let $x_*$ be a minimizer, it claims that 
-    %     {\small
-    %     \begin{align*}
-    %         & 
-    %         \phi(x^+) - \phi (x^*) + 
-    %         \frac{1}{2}\left(
-    %             \Vert x^+ - x_*\Vert^2 - 
-    %             \Vert x - x_*\Vert^2
-    %         \right)
-    %         \le 
-    %         - \frac{1}{2}\Vert x^+ - x\Vert^2
-    %         \\
-    %         \implies &
-    %         \tilde 
-    %         \eta 
-    %         \left(   
-    %             h(\mathcal T_L \bar x) + 
-    %             \langle \mathcal G_L \bar x, u - \mathcal T_L \bar x\rangle 
-    %             - \frac{L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
-    %         \right)
-    %         - \tilde \eta h (x_*)
-    %         +
-    %         \frac{1}{2}\left(
-    %             \Vert x^+ - x_*\Vert^2 - 
-    %             \Vert x - x_*\Vert^2
-    %         \right)
-    %         \\
-    %         &\le 
-    %         - \frac{1}{2}\Vert x^+ - x\Vert^2
-    %         \\
-    %         \iff &
-    %         \tilde \eta (h(\mathcal T_L\bar x) - h(x_*))  
-    %         + 
-    %         \frac{1}{2}\left(
-    %             \Vert x^+ - x_*\Vert^2 - 
-    %             \Vert x - x_*\Vert^2
-    %         \right)
-    %         \\
-    %         & \le 
-    %         - \tilde \eta \langle \mathcal G_L\bar x, x^+ - \mathcal T_L \bar x\rangle
-    %         + 
-    %         \frac{\tilde \eta L}{2} \Vert \bar x - \mathcal T_L \bar x\Vert^2
-    %         - 
-    %         \frac{1}{2}\Vert x^+ - x\Vert^2. 
-    %     \end{align*}
-    %     }
-    %     Next, for all $z, z'$, it would have by smoothness of $f$: 
-    %     \begin{align*}
-    %         f(z) - f(z') &= 
-    %         f(z) - f(\bar x) + f(\bar x) - f(z')
-    %         \\
-    %         &\le 
-    %         \langle 
-    %             \nabla f(\bar x), z - \bar x
-    %         \rangle + 
-    %         \frac{L}{2}\Vert z - \bar x\Vert^2 
-    %         + 
-    %         \langle 
-    %             \nabla f(\bar x), 
-    %             \bar x - z'
-    %         \rangle
-    %         \\
-    %         &= 
-    %         \langle \nabla f(\bar x), z - z'\rangle
-    %         + 
-    %         \frac{L}{2}\Vert z - \bar x\Vert^2. 
-    %     \end{align*}
-    %     The convexity of $g$ yields for all $v \in \partial g(z)$: 
-    %     \begin{align*}
-    %         g(z) + 
-    %         \langle 
-    %             v, z' - z
-    %         \rangle 
-    %         &\le g(z')
-    %         \\
-    %         g(z) - g(z') 
-    %         &\le 
-    %         \langle v, z - z'\rangle. 
-    %     \end{align*}
-    %     Adding them yield 
-    %     \begin{align*}
-    %         h(z) - h(z') &\le 
-    %         \langle \nabla f(\bar x) +v, z - z'\rangle + 
-    %         \frac{L}{2}\Vert z - \bar x\Vert^2. 
-    %     \end{align*}
-    %     Setting $z = \mathcal T_L \bar x$, use 
-    %     \hyperref[lemma:grad-map-approx-subgrad]
-    %     {Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-    %     there exists $v \in \partial g (\mathcal T_L(\bar x))$ such that $\mathcal G_L(\bar x) = \nabla f(z) + v$, hence the theorem is proved. 
-    % \end{proof}
-    % \begin{remark}\label{remark:upsilon-upperbound-for-iterates}
-    %     Let $y_t, x_t$ be given by
-    %     \hyperref[def:ag_prox_grad_generic]
-    %     {Definition \ref*{def:ag_prox_grad_generic}}.
-    %     Set $\bar x = y_t, x = x_t$, then 
-    %     \begin{align*}
-    %         x^+ &= x_t - \mathcal G_L y_t = x_{t + 1},
-    %         \\
-    %         z_{t + 1} &= \mathcal T_L y_t = \mathcal T_L \bar x.
-    %     \end{align*}
-    %     Set $z' = z_t, \tilde \eta = \tilde \eta_{t + 1}$, we define the quantities: 
-    %     \begin{align*}
-    %         \Upsilon_{1, t + 1}^{\text{AG}}
-    %         &:= 
-    %         \tilde \eta_{t + 1}(h(z_{t + 1}) - h(x_*))
-    %         + 
-    %         \frac{1}{2}(\Vert x_{t + 1} - x_*\Vert^2 + \Vert x_t - x_*\Vert^2),
-    %         \\
-    %         \Upsilon_{2, t + 1}^{\text{AG}}
-    %         &:= 
-    %         h(z_{t + 1}) - h(z_t). 
-    %     \end{align*}
-    %     Then it as inequalities: 
-    %     \begin{align*}
-    %         \Upsilon_{1, t + 1}^{\text{AG}}
-    %         &\le 
-    %         - \tilde \eta_{t + 1}\langle \mathcal G_L y_t, x_{t + 1} - z_{t + 1}\rangle
-    %         + 
-    %         \frac{\tilde \eta_{t + 1}L}{2}
-    %         \Vert  
-    %             y_t - z_{t + 1}
-    %         \Vert^2
-    %         - 
-    %         \frac{1}{2}
-    %         \Vert x_{t + 1} - x_t\Vert^2,  
-    %         \\ 
-    %         \Upsilon_{2, t + 1}^{\text{AG}}
-    %         &\le 
-    %         \langle \mathcal G_L \bar x, z_{t + 1} - z_t \rangle + 
-    %         \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2.
-    %     \end{align*}
-    %     This is useful for the convergence proof of the algorithm. 
-    % \end{remark}
+\section{Lyapunov analysis for accelerated gradient via PPM}\label{sec:generic_ag_ppm_lyapunov_analysis}
 
-    % \begin{theorem}[Generic AG convergence]
-    % \label{thm:generic_ag_convergence}
-    %     Let $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ be given by 
-    %     \hyperref[remark:upsilon-upperbound-for-iterates]
-    %     {Remark \ref*{remark:upsilon-upperbound-for-iterates}}. 
-    %     Let $z_t$ be given by 
-    %     \hyperref[def:ag_prox_grad_generic]
-    %     {Definition \ref*{def:ag_prox_grad_generic}}. 
-    %     Define the Lyapunov function $\Phi_t\; \forall t \in \{0\}\cup \N$, $S_t$ and $\sigma_t$: 
-    %     \begin{align*}
-    %         S_t &:= \sum_{i = 1}^{t} \delta_i \quad \forall t \in \N,
-    %         \\
-    %         \sigma_t &:= \sum_{i = 1}^{t}\tilde \eta_i \quad \forall t \in \N, 
-    %         \\
-    %         \Phi_0 &:= \frac{1}{2}\Vert x_0 - x_*\Vert^2, 
-    %         \\
-    %         \Phi_t &:= 
-    %             \sigma_t(h(z_t) - h(x_*)) + \frac{1}{2}\Vert x_t - x_*\Vert^2 
-    %         \quad \forall t \in \N.
-    %     \end{align*}
-    %     If there exists a sequence of $(\eta_i)_{i \in \N}$ as defined in
-    %     \hyperref[def:ag_prox_grad_ppm]
-    %     {Definition \ref*{def:ag_prox_grad_ppm}} 
-    %     such that
-    %     \begin{align*}
-    %         & \Phi_{t + 1} - \Phi_{t} =
-    %         \sigma_t\Upsilon_{2, t + 1}^{\text{AG}} 
-    %         + 
-    %         \Upsilon_{1, t + 1}^{\text{AG}} 
-    %         \le \delta_{t + 1} \quad 
-    %         \forall t \in \mathbb N, 
-    %         \\
-    %         & \Upsilon_{1, 1}^{\text{AG}} \le \delta_1. 
-    %     \end{align*}
-    %     for some $\delta_i, i \in \N$. 
-    %     Then
-    %     \begin{align*}
-    %         h(z_T) - h(x_*) &\le 
-    %         \sigma_T^{-1}\left(
-    %             S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
-    %         \right). 
-    %     \end{align*}
-    %     Where $x_*$ is an minimizer of $h$. 
-    %     So $h(z_T) - h(x_*)$ has convergence rate $\mathcal O(\sigma_T^{-1})$ when $S_T \le 0$, and $\mathcal O(\sigma_T^{-1}S_T)$ when $S_T > 0$. 
-    % \end{theorem}
-    % \begin{proof}
-    %     By definition we have
-    %     {\footnotesize
-    %     \begin{align*}
-    %         \Phi_{t + 1} - \Phi_t 
-    %         &= 
-    %         \left(
-    %             \sum_{i = 1}^{t+1} \tilde\eta_{i}
-    %         \right) (h(z_{t + 1}) - h(x_*)) 
-    %         - 
-    %         \left(
-    %             \sum_{i = 1}^{t} \tilde\eta_{i}
-    %         \right) (h(z_{t}) - h(x_*)) 
-    %         + \frac{1}{2}\Vert x_t - x_*\Vert^2
-    %         - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
-    %         \\
-    %         &= 
-    %         \tilde \eta_{t + 1} (h(z_{t + 1}) - h(z_*))
-    %         +
-    %         \left(
-    %             \sum_{i = 1}^{t} \tilde \eta_i
-    %         \right)(h(z_{t + 1}) - h(z_t))
-    %         + \frac{1}{2}\Vert x_t - x_*\Vert^2
-    %         - \frac{1}{2}\Vert x_{t + 1} - x_*\Vert^2
-    %         \\
-    %         &= \left(
-    %             \sum_{i = 1}^{t} \tilde \eta_i
-    %         \right)\Upsilon_{2, t + 1}^{\text{AG}} + \Upsilon_{1, t + 1}^{\text{AG}} \le \delta_{t + 1}. 
-    %     \end{align*}
-    %     }
-    %     Telescoping for $t = 0, \cdots, T- 1$
-    %     \begin{align*}
-    %         \Phi_T - \Phi_0 = 
-    %         \sum_{i = 0}^{T - 1}\Phi_{i + 1} - \Phi_i 
-    %         &\le 
-    %         \sum_{i = 0}^{T - 1}\delta_{i + 1}
-    %         = S_{T}. 
-    %     \end{align*}
-    %     So then $\Phi_T - \Phi_0$ yields: 
-    %     \begin{align}
-    %         \sigma_T (h(z_T) - h(x_*)) 
-    %         + \frac{1}{2}\Vert x_t - x_*\Vert^2 
-    %         - \frac{1}{2}\Vert x_0 - x_*\Vert^2 
-    %         &\le S_{T}
-    %         \\
-    %         \implies 
-    %         \sigma_T(h(z_T) - h(x_*))
-    %         &\le 
-    %         S_T + \frac{1}{2}\Vert x_0 - x_*\Vert^2
-    %         \\
-    %         h(z_T) - h(x_*) &\le 
-    %         \sigma_T^{-1}\left(
-    %             S_{T} + \frac{1}{2}\Vert x_0 - x_*\Vert^2
-    %         \right),
-    %     \end{align}
-    %     which yields a convergence rate $\mathcal O(\sigma_T^{-1}S_{T})$. 
-    %     When $S_T = 0$, the convergence rate is $O(\sigma_T^{-1})$ instead. 
-    % \end{proof}
-
-    % \begin{theorem}[Constraints of PPM stepsize sequence]
-    % \label{thm:ag_generic_stepsize_constraints}\;\\
-    %     Let iterates $z_t, x_t, y_t$ be given by
-    %     \hyperref[def:ag_prox_grad_generic]
-    %     {Definition \ref*{def:ag_prox_grad_generic}}. 
-    %     If the stepsize $\eta_i, \tilde \eta_i$ satisfies relations 
-    %     \begin{align*}
-    %         \begin{cases}
-    %             \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
-    %             - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i 
-    %             = 
-    %             \epsilon_{t + 1} \tilde \eta_{t + 1}
-    %             & \forall t \in \mathbb N, 
-    %             \\
-    %             L \eta_t \tilde \eta_{t + 1} = \sum_{i=1}^{t}\tilde \eta_i 
-    %             & \forall t \in \mathbb N. 
-    %         \end{cases}
-    %     \end{align*}
-    %     Then for all $t \in \N$
-    %     $$
-    %         \epsilon_{t + 1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}, 
-    %     $$
-    %     and 
-    %     \begin{align*}
-    %         \Phi_{t + 1} - \Phi_t =
-    %         \Upsilon_{1, t + 1}^\text{AG} + 
-    %         \sigma_t\Upsilon_{1, t + 1}^{\text{AG}}
-    %         &\le
-    %         \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2.
-    %     \end{align*}
-    %     Define $\delta_{t + 1} = \epsilon_{t + 1}\tilde\eta_{t + 1} \Vert \mathcal G_L(y_t)\Vert^2$. 
-    %     Then the convergence rate stated in 
-    %     \hyperref[thm:generic_ag_convergence]
-    %     {Theorem \ref*{thm:generic_ag_convergence}}
-    %     applies. 
-    % \end{theorem}
-    % \begin{proof}
-    %     With $t \in \mathbb N \cup \{0\}$ fixed, 
-    %     recall that for the proximal gradient PPM generic form 
-    %     (as formulated in 
-    %     \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}) 
-    %     for $t\in \mathbb N$ it has: 
-    %     \begin{align*}
-    %         y_t &= (1 + L\eta_t)^{-1}(x_t + L\eta_t z_t)
-    %         \\
-    %         x_{t + 1} &= x_t - \tilde \eta_{t + 1} \mathcal G_L(y_t)
-    %         \\
-    %         z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t). 
-    %     \end{align*}
-    %     Recall the upper bounds from 
-    %     \hyperref[remark:upsilon-upperbound-for-iterates]
-    %     {Remark \ref*{remark:upsilon-upperbound-for-iterates}}
-    %     it has 
-    %     \begin{align*}
-    %         \Upsilon_{1, t + 1}^\text{AG}
-    %         &= 
-    %         \tilde\eta_{t + 1} (h(z_{t + 1}) - h(x_*)) + 
-    %         \frac{1}{2} (
-    %             \Vert x_{t + 1} - x_*\Vert^2
-    %             - 
-    %             \Vert x_t - x_*\Vert^2
-    %         )
-    %         \\
-    %         &\le 
-    %         - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
-    %         + \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2
-    %         - \langle 
-    %             \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-    %             x_{t + 1} - z_{t + 1}
-    %         \rangle, 
-    %         \\
-    %         \Upsilon_{2, t + 1}^\text{AG}
-    %         &= 
-    %         h(z_{t + 1}) - h(z_t) 
-    %         \le 
-    %         \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
-    %         \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2. 
-    %     \end{align*}
-    %     Because the iterates are produced by 
-    %     \hyperref[def:ag_prox_grad_generic]
-    %     {Definition \ref*{def:ag_prox_grad_generic}}
-    %     vector $x_{t + 1} - x_t$ and $z_{t + 1} - y_t$ are parallel by observations: 
-    %     \begin{align*}
-    %         x_{t + 1} - x_t &= -\tilde\eta_{t + 1}\mathcal G_L(y_t), 
-    %         \\
-    %         z_{t + 1} - y_t &= -L^{-1}\mathcal G_L(y_t). 
-    %     \end{align*}
-    %     This allows for 
-    %     \begin{align*}
-    %         \Upsilon_{1, t + 1}^{\text{AG}} 
-    %         &\le 
-    %         - \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 + 
-    %         \frac{\tilde\eta_{t + 1}L}{2}\Vert z_{t + 1} - y_t\Vert^2 
-    %         - 
-    %         \langle \tilde\eta_{t + 1}\mathcal G_L (y_t), x_{t + 1} - z_{t + 1} \rangle
-    %         \\
-    %         &= 
-    %         - \frac{1}{2}\Vert \tilde\eta_{t + 1} \mathcal G_L(y_t)\Vert^2 + 
-    %         \frac{\tilde\eta_{t + 1}L}{2}\Vert L^{-1} \mathcal G_L(y_t)\Vert^2
-    %         - 
-    %         \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), x_{t + 1} - z_{t + 1} \rangle
-    %         \\
-    %         &= 
-    %         \frac{1}{2}\left(
-    %             - \tilde\eta_{t + 1}^2 + 
-    %             L^{-1}\tilde\eta_{t + 1}
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2
-    %         - 
-    %         \langle 
-    %             \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-    %             (x_{t + 1} - x_{t}) + x_t
-    %             + (y_t - z_{t + 1}) - y_t
-    %         \rangle
-    %         \\
-    %         &= 
-    %         \frac{1}{2}\left(
-    %             L^{-1}\tilde\eta_{t + 1}
-    %             - \tilde\eta_{t + 1}^2
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2
-    %         - 
-    %         \langle 
-    %             \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-    %             -\tilde\eta_{t + 1}\mathcal G_L(y_t) + x_t 
-    %             + L^{-1}\mathcal G_L(y_t) - y_t
-    %         \rangle
-    %         \\
-    %         &= 
-    %         \frac{1}{2}\left(
-    %             L^{-1}\tilde\eta_{t + 1}
-    %             - \tilde\eta_{t + 1}^2
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2
-    %         - \langle 
-    %             \tilde\eta_{t +1}\mathcal G_L(y_t), 
-    %             (L^{-1} - \tilde\eta_{t + 1})\mathcal G_L(y_t) + x_t - y_t
-    %         \rangle
-    %         \\
-    %         &= \frac{1}{2}\left(
-    %             L^{-1}\tilde\eta_{t + 1} - \tilde\eta_{t + 1}^2 
-    %             + 2 \tilde\eta_{t + 1}^2 - 2\tilde\eta_{t + 1}L^{-1}
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2
-    %         - 
-    %         \langle 
-    %             \tilde\eta_{t + 1} \mathcal G_L(y_t), 
-    %             x_t - y_t
-    %         \rangle
-    %         \\
-    %         &= 
-    %         \frac{1}{2}\left(
-    %             \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2 
-    %         + \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), y_t - x_t\rangle.
-    %     \end{align*}
-    %     Similarly 
-    %     \begin{align*}
-    %         \Upsilon_{2, t + 1}^{\text{AG}} 
-    %         &\le 
-    %         \langle \mathcal G_L(y_t), z_{t + 1} - z_t\rangle + 
-    %         \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-    %         \\
-    %         &= 
-    %         \langle \mathcal G_L(y_t), z_{t + 1} - y_t + y_t - z_t\rangle
-    %         + \frac{L}{2}\Vert z_{t + 1} - y_t\Vert^2
-    %         \\
-    %         &= 
-    %         \langle \mathcal G_L(y_t), - L^{-1} \mathcal G_L(y_t) + y_t - z_t\rangle
-    %         + 
-    %         \frac{L}{2}\Vert L^{-1}\mathcal G_L(y_t)\Vert^2
-    %         \\
-    %         &= 
-    %         -L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
-    %         + 
-    %         (1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2 
-    %         + 
-    %         \langle \mathcal G_L(y_t), y_t - z_t\rangle
-    %         \\
-    %         &= 
-    %         -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
-    %         + 
-    %         \langle \mathcal G_L(y_t), y_t - z_t\rangle. 
-    %     \end{align*}
-    %     Observe that the cross product term for $\Upsilon_{1, t + 1}^\text{AG}, \Upsilon_{2, t + 1}^\text{AG}$ doesn't match. 
-    %     Hence let's consider the update for $y_t$, which can be written as $y_t - x_t = L \eta_t (z_t - y_t)$. We make the choice to do surgery on upper bound of $\Upsilon_{2, t + 1}^\text{AG}$, so $\langle \mathcal G_L(y_t), y_t - x_t\rangle = \langle \mathcal G_L(y_t), L \eta_t (z_t - y_t)\rangle$. 
-    %     With this in mind, RHS of $\Phi_{t + 1} - \Phi_t$ yields: 
-    %     {\footnotesize
-    %     \begin{align*}
-    %         &\Upsilon_{1, t + 1}^\text{AG} + 
-    %         \left(
-    %             \sum_{i = 1}^{t}\tilde\eta_i 
-    %         \right)\Upsilon_{2, t + 1}^{\text{AG}}
-    %         \\
-    %         &\le 
-    %         \frac{1}{2}\left(
-    %             \tilde\eta_{t + 1}^2 - \tilde\eta_{t + 1}L^{-1}
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2 
-    %         + 
-    %         \langle \tilde\eta_{t + 1} \mathcal G_L(y_t), L\eta_t(z_t - y_t)\rangle
-    %         \\ 
-    %         &\quad 
-    %         + 
-    %         \left(
-    %             \sum_{i = 1}^{t}\tilde\eta_i 
-    %         \right)\left(
-    %             -(1/2)L^{-1}\Vert \mathcal G_L(y_t)\Vert^2
-    %             + 
-    %             \langle \mathcal G_L(y_t), y_t - z_t\rangle
-    %         \right)
-    %         \\
-    %         &= 
-    %         \left(
-    %             \frac{1}{2}\tilde\eta_{t + 1}\left(
-    %                 \tilde \eta_{t +1} - L^{-1}
-    %             \right)
-    %             - 
-    %             \frac{1}{2L}\sum_{i = 1}^{t}\tilde \eta_i
-    %         \right)\Vert \mathcal G_L(y_t)\Vert^2 + 
-    %         \left(
-    %             L\eta_t \tilde \eta_{t + 1} - \sum_{i = 1}^{t}\tilde \eta_i
-    %         \right)\langle \mathcal G_L(y_t), z_t - y_t\rangle. 
-    %     \end{align*}
-    %     }
-    %     The non-negativity of $\Vert \mathcal G_L(y_t) \Vert^2$ characterize the culmulative error $\delta_{t + 1}$ in the Lypunov analysis through sequence $\epsilon_i$. 
-    %     Setting the coefficient of $\Vert \mathcal G_L(y_t) \Vert^2$ to be $\epsilon_{t + 1}\tilde \eta_{t + 1}$, it yields a system of inequality: 
-    %     \begin{align*}
-    %         \begin{cases}
-    %             \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
-    %             - L^{-1} \sum_{i= 1}^{t}\tilde \eta_i 
-    %             = 
-    %             \epsilon_{t + 1} \tilde \eta_{t + 1}
-    %             & \forall t \in \N, 
-    %             \\
-    %             L \eta_t \tilde \eta_{t + 1} = \sum_{i=1}^{t}\tilde \eta_i 
-    %             & \forall t \in \N. 
-    %         \end{cases}
-    %     \end{align*}
-    %     It requires base case $L\eta_0\tilde\eta_{1} = 0$, assume $\sigma_0 = 0$. 
-    %     We use $\sum_{i = 1}^t \tilde \eta_i = \sigma_t$, simplifying the first equation we have 
-    %     \begin{align*}
-    %         \tilde \eta_{t + 1} (\tilde \eta_{t + 1} - L^{-1})
-    %         - L^{-1} \sigma_t
-    %         &= 
-    %         \epsilon_{t + 1} \tilde \eta_{t + 1}
-    %         \\
-    %         \iff 
-    %         \tilde \eta_{t + 1} ^2 - L^{-1} \tilde \eta_{t + 1} 
-    %         &= 
-    %         \epsilon_{t + 1} \tilde \eta_{t + 1} + L^{-1} \sigma_t
-    %         \\
-    %         &= 
-    %         \epsilon_{t + 1} \tilde \eta_{t + 1} 
-    %         + L^{-1}(L \eta_t \tilde \eta_{t + 1})
-    %         \\
-    %         \text{divide by } \tilde \eta_{t + 1} > 0
-    %         \implies 
-    %         \tilde \eta_{t + 1} &= \epsilon_{t + 1} + \eta_t + L^{-1}. 
-    %     \end{align*}
-    %     The parameter gives relation $\epsilon_{t+1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$. 
-    %     Hence, it gives us the following system of equality to work with 
-    %     \begin{align*}
-    %         \forall t \in \N: 
-    %         \begin{cases}
-    %             \tilde \eta_{t + 1} = \epsilon_{t + 1} + \eta_t + L^{-1}, 
-    %             \\
-    %             L \eta_t \tilde \eta_{t + 1} = \sigma_t.     
-    %         \end{cases}
-    %     \end{align*}
-    %     With that, we can solve a relation between $\eta_{t + 1}$ in terms of the sequence $\epsilon_t$ and $\eta_t$.
-    %     Consider the equality 
-    %     \begin{align*}
-    %         L \sigma_{t + 1} &= L \tilde \eta_{t + 1} + L \sigma_t
-    %         \\
-    %         &=
-    %         L \tilde \eta_{t + 1}  + L (L \eta_t \tilde \eta_{t + 1})
-    %         \\
-    %         &= L \tilde \eta_{t+ 1} + L \eta_t (L \tilde \eta_{t + 1})
-    %         \\
-    %         &=  L \tilde \eta_{t+ 1} + L \eta_t (L \epsilon_{t + 1} + L \eta_t + 1)
-    %         \\
-    %         &=  L \tilde \eta_{t+ 1} + L \eta_t (L \eta_t + 1) + L^2 \eta_t \epsilon_{t + 1}
-    %         \\
-    %         &= L (\epsilon_{t +1} + \eta_t + L^{-1}) + L\eta_t(L \eta_t + 1) + L^2\eta_t \epsilon_{t + 1}
-    %         \\
-    %         &= L \epsilon_{t + 1} + (L\eta_t + 1)^2 + L^2\eta_t \epsilon_{t + 1}
-    %         \\
-    %         &= 
-    %         L \epsilon_{t + 1}(1 + L \eta_t) + (1 + L \eta_t)^2. 
-    %     \end{align*}
-    %     At the same time we have 
-    %     \begin{align*}
-    %         L \sigma_{t + 1} &= L^2 \eta_{t + 1}\tilde \eta_{t + 1} 
-    %         \\
-    %         &= L\eta_{t + 1}(1 + L \eta_{t + 1} + \epsilon_{t + 2})
-    %         \\
-    %         &= L\eta_{t + 1}(1 + L \eta_{t + 1}) + \epsilon_{t + 2}L\eta_{t + 1}. 
-    %     \end{align*}
-    %     Therefore, it generates the following equation: 
-    %     \begin{align*}
-    %         L\eta_{t + 1} (1 + L \eta_{t + 1}) 
-    %         + 
-    %         \epsilon_{t + 2} L \eta_{t + 1} 
-    %         &= 
-    %         L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
-    %         \\
-    %         (L\eta_{t + 1} + L^2\eta_{t + 1}^2)
-    %         + 
-    %         \epsilon_{t + 2} L \eta_{t + 1} 
-    %         + 
-    %         \frac{1}{4}
-    %         &= 
-    %         L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
-    %         + 
-    %         \frac{1}{4}
-    %         \\
-    %         (L\eta_{t + 1} + L^2\eta_{t + 1}^2 + 1/4)
-    %         + 
-    %         \epsilon_{t + 2} L \eta_{t + 1} 
-    %         + \epsilon_{t + 2}
-    %         &= 
-    %         L\epsilon_{t + 1}(1 + L \eta_t)  + (1 + L\eta_t)^2
-    %         + \frac{1}{4}
-    %         + \epsilon_{t + 2}
-    %         \\
-    %         (L\eta_{t + 1} + 1/2)^2 + \epsilon_{t + 2}(L \eta_{t + 1} + 1)
-    %         &= 
-    %         L \epsilon_{t + 1}(1 + L \eta_t) + (1 + L\eta_t)^2
-    %         + \frac{1}{4} + \epsilon_{t + 2}
-    %         \\
-    %         \text{ with: } & a_t = 1 + L \eta_t = \tilde \eta_{t + 1} - \epsilon_{t + 1}
-    %         \\
-    %         (a_{t + 1} - 1/2)^2 + \epsilon_{t + 2}a_{t + 1}
-    %         &= 
-    %         L \epsilon_{t + 1}a_t + a_t^2 + 1/4 + \epsilon_{t + 1}
-    %         \\
-    %         a_{t + 1}^2 + 1/4 - a_{t + 1} + \epsilon_{t + 2}a_{t + 1}
-    %         &= 
-    %         L \epsilon_{t + 1}a_t + a_t^2 + 1/4 + \epsilon_{t + 1}
-    %         \\
-    %         a_{t + 1}^2 + a_{t + 1}(\epsilon_{t + 2} - 1)
-    %         &= 
-    %         \underbrace{
-    %             a_t(L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}
-    %         }_{c_{t + 1}}. 
-    %     \end{align*}
-    %     Solving reveals the relations: 
-    %     \begin{align*}
-    %         \begin{cases}
-    %             a_{t + 1} = (1/2)\left(
-    %             1 - \epsilon_{t + 2} + \sqrt{(1 - \epsilon_{t + 2}) + 4 c_{t + 1}}
-    %             \right), 
-    %             \\
-    %             c_{t + 1} = a_t (L \epsilon_{t + 1} + a_t) + \epsilon_{t + 1}. 
-    %         \end{cases}
-    %     \end{align*}
-    %     With $\delta_i$ given by
-    %     \hyperref[thm:generic_ag_convergence]
-    %     {Theorem \ref*{thm:generic_ag_convergence}}. 
-    %     Define $\delta_i = \epsilon_{i} \tilde \eta_i$, then 
-    %     \begin{align*}
-    %         S_{T} = 
-    %         \sum_{i = 0}^{T- 1} \delta_i 
-    %         &= 
-    %         \sum_{i = 0}^{T - 1} \epsilon_{i + 1}\tilde\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2
-    %         \\
-    %         &\le \sum_{i = 0}^{T - 1}\max(\epsilon_{i + 1} \tilde\eta_{i + 1}\Vert \mathcal G_L(y_i)\Vert^2, 0). 
-    %     \end{align*}
-    %     Under an ideal case where we wish to attain the best convergence, we want $\lim_{T \rightarrow \infty} S_T < \infty$. 
-    %     One way to accomplish is choose the error sequence $\epsilon_i, i \in \N$ to be bounded by for all $i \in \N$, $\epsilon_i$ should satisfy: 
-    %     \begin{align*}
-    %         \epsilon_{i + 1}\tilde \eta_{i + 1}
-    %         \Vert \mathcal G_L(y_i)\Vert^2 
-    %         &\le \delta_{i + 1}
-    %         \\
-    %         \iff 
-    %         \epsilon_{i + 1}
-    %         &\le 
-    %         \frac{\delta_{i + 1} }{\tilde\eta_{t + 1}\Vert \mathcal G_L(y_i)\Vert^2}. 
-    %     \end{align*}
-    %     for any $\sum_{i = 0}^{T - 1}\delta_{i + 1}$ converges to a limit as $T \rightarrow \infty$. 
-
-    % \end{proof}
-
-\section{Recovering existing variants of Nesterov accelerated gradient}\label{sec:recovery}
-    % In this section, we recovers several variants of the accelerated gradient in the literatures as a special case of 
-    % \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}, 
-    % we sate the choice of stepsize parameter $\eta_i, \tilde \eta_i$, verify that they satisfies 
-    % \hyperref[thm:ag_generic_stepsize_constraints]
-    % {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    % and derive their convergence rate respectively. 
-    
-    % \subsection{Recovering FISTA} 
-    %     Let $\epsilon_i$ be given by
-    %     \hyperref[thm:ag_generic_stepsize_constraints]
-    %     {Theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
-    %     setting $\epsilon_i = 0$ for all $i$ yields $a_t = 1 + L\eta_t = \tilde \eta_{t + 1}$, for all $t \in \N$ where $a_t$ produces the relations 
-    %     \begin{align*}
-    %         a_{t + 1} &= (1/2)\left(
-    %             1 + \sqrt{1 + 4 c_{t + 1}}
-    %         \right), 
-    %         \\
-    %         c_{t + 1} &= a_t^2. 
-    %     \end{align*}
-    %     The recurrenct relations of $a_t$ indicates that it's the famous Nesterov momentum sequence. 
-    %     In this case, there exists a momentum form of the generic form and it reduces to FISTA from Beck and Toubolle \cite{beck_fast_2009-1}. 
-    %     The following lemma uses $a_t$ to establish equivalence between the generic form of the algorithm and FISTA, a specific variant of accelerated gradient method. 
-    %     \begin{lemma}[Similar triangle form]\label{lemma:sim_triangle_form}
-    %         \quad \\
-    %         With the choice of stepszie $\tilde \eta_{t + 1} = \eta_t + L^{-1}$,
-    %         \hyperref[def:ag_prox_grad_generic]
-    %         {Definition \ref*{def:ag_prox_grad_generic}}
-    %         simplifies into 
-    %         \begin{align*}
-    %             z_{t + 1} &= y_t - L^{-1} \mathcal G_L(y_t)
-    %             \\
-    %             x_{t + 1} &= z_{t + 1} + L\eta_t (z_{t + 1} - z_t)
-    %             \\
-    %             y_{t + 1} &= 
-    %             (1 + L\eta_{t + 1})^{-1}
-    %             (
-    %             x_{t + 1} + L\eta_{t + 1}z_{t + 1}
-    %             ). 
-    %         \end{align*}
-    %         It is also equivalent to 
-    %         \begin{align*}
-    %             z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
-    %             \\
-    %             y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t). 
-    %         \end{align*}
-    %         And this is the FISTA algorithm. 
-    %     \end{lemma}
-
-    %     \begin{proof}
-    %         Firstly, we show that updates sequence $x_{t + 1} = z_{t + 1} + L\eta_t (z_{t + 1} - z_t)$ is equivalent to $x_{t + 1} = x_t + \tilde\eta_{t + 1}\nabla f(y_t)$. 
-    %         Starting with the former, susbtitute $z_{t + 1} = y_t + L^{-1}\nabla f(y_t)$ as given by 
-    %         \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}},
-    %         expanding: 
-    %         \begin{align*}
-    %             x_{t + 1} &= 
-    %             (y_t - L^{-1}\mathcal G_L(y_t)) 
-    %             + L\eta_t ((y_t - \mathcal G_L(y_t)) - z_t)
-    %             \\
-    %             &= y_t - L^{-1}\mathcal G_L(y_t) 
-    %             + L \eta_t y_t - \eta_t \mathcal G_L(y_t) - L\eta_t z_t
-    %             \\
-    %             &= 
-    %             (1 + L\eta_t)y_t - (\eta_t + L^{-1})\mathcal G_L(y_t) - L\eta_t z_t
-    %             \\
-    %             &= \eta_t Lz_t + x_t -(\eta_t + L^{-1}) \mathcal G_L(y_t)  - L\eta_t z_t
-    %             \\
-    %             &= x_t - (\eta_t + L^{-1})\mathcal G_L(y_t). 
-    %         \end{align*}
-    %         So $x_{t + 1} = x_t + \tilde \eta_{t + 1}\mathcal G_L(y_t)$, by assumption $\tilde \eta_{t + 1} = \eta_t + L^{-1}$. 
-    %         Next, consider the updates $y_{t + 1}$ as given by 
-    %         \hyperref[def:ag_prox_grad_generic]{Definition \ref*{def:ag_prox_grad_generic}}
-    %         \begin{align*}
-    %             y_{t + 1} &= (1 + L\eta_{t + 1})^{-1} (x_{t + 1} + L\eta_{t + 1}z_{t + 1})
-    %             \\
-    %             &= (1 + L\eta_{t + 1})^{-1} (
-    %                 z_{t + 1} + L\eta_t (z_{t + 1} - z_t) + L\eta_{t + 1} z_{t + 1}
-    %             )
-    %             \\
-    %             &= 
-    %             (1 + L\eta_{t + 1})^{-1} (
-    %                 (1 + L\eta_{t + 1})z_{t + 1} + L\eta_t(z_{t + 1} - z_t)
-    %             )
-    %             \\
-    %             &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t), 
-    %         \end{align*}
-    %         it negates the $x_t$ variables, therefore we have 
-    %         \begin{align*}
-    %             z_{t + 1} &= y_t - L^{-1} \mathcal G_L (y_t)
-    %             \\
-    %             y_{t + 1} &= z_{t + 1} + (1 + L\eta_{t + 1})^{-1}L\eta_t (z_{t + 1} - z_t).
-    %         \end{align*}
-    %         This is FISTA by the relation $a_t = 1 + L\eta_t$ by setting $\epsilon_i = 0$ in
-    %         \hyperref[thm:ag_generic_stepsize_constraints]
-    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}, 
-    %         making $a_t$ the Nesterov momentum sequence. 
-    %         Observe that $(1 + L\eta_{t + 1})^{-1}L\eta_t$ is $(a_t - 1)/a_{t + 1}$.
-    %         Express using $a_t$, the above algorithm is equivalent to the FISTA algorithm. 
-    %         \par
-    %         By 
-    %         \hyperref[thm:ag_generic_stepsize_constraints]{Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    %         and 
-    %         \hyperref[thm:generic_ag_convergence]{Theorem \ref*{thm:generic_ag_convergence}},
-    %         a convergence of $\mathcal O(\sigma_T^{-1})$ is possible. 
-    %         Since $a_t = L\tilde \eta_t$, and the Nesterov sequence exhibits $a_{t} \ge (t + 2)/2$, the convergence becomes $\mathcal O(T^{-2})$. 
-    %         It is the optimal convergence rate for all convex functions. 
-    %     \end{proof}
-    %     \begin{remark}
-    %         In this remark we clarify the name ``similar triangle" as given in the literatures. 
-    %         We think it is a fitting name, becaues it has a similar triangle in it. 
-    %         We list the following observations:
-    %         \begin{enumerate}
-    %             \item 
-    %             The updates for $y_{t}$ from the algorithm has 
-    %             $$
-    %                 y_t = (1 + L\eta_t)^{-1} x_t + L\eta_t(1 + L\eta_t)^{-1} z_t, 
-    %             $$
-    %             Rearrainging yields: 
-    %             $$
-    %                 y_t - x_t = L\eta_t (z_t - y_t). 
-    %             $$
-    %             So vector $y_t - x_t$, $z_t - y_t$ colinear and points in the same direction by $L\eta_t > 0$. 
-    %             \item 
-    %             The updates for $z_{t + 1}, x_{t + 1}$ are based on $y_t, x_t$ displaced by $L^{-1} \mathcal G_L(y_t), \tilde\eta_{t +1} \mathcal G_L(y_t)$, therefore vector $z_{t + 1} - y_t$ parallels to $x_{t + 1} - x_t$. 
-    %             \item 
-    %             The updates for $x_{t + 1}$ has $x_{t + 1} - z_{t + 1} = L\eta_t \left(z_{t + 1} - z_t\right)$, therefore, the three points $z_t, x_{t + 1}, z_{t + 1}$ are collinear. 
-    %         \end{enumerate}
-    %         By these three observations, the triangle $z_{t}, z_{t + 1}, y_t$ similar to triangle $z_t, x_{t + 1}, x_t$. 
-    %         See \hyperref[fig:1a]{Figure \ref*{fig:1a}}
-    %         for an illustration. 
-    %         \begin{figure}[h]
-    %             \centering
-    %             \subfloat[a][similar triangle]{
-    %                 \includegraphics*[width=7cm]{assets/drawing_Layer 1.png}
-    %                 \label{fig:1a}
-    %             }
-    %             \subfloat[b][similar triangle with errors]{
-    %                 \includegraphics*[width=6cm]{assets/drawing_Layer 1 copy.png}
-    %                 \label{fig:1b}
-    %             }
-    %             \caption{Similar triangle illustration}
-    %         \end{figure}
-    %         Finally, similar remarks about the similar triangle form can be found in Ahn, Sra's paper \cite{ahn_understanding_2022} as well. 
-    %         Finally, recall from 
-    %         \hyperref[thm:ag_generic_stepsize_constraints]
-    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    %         that $\epsilon_{t + 1} = \tilde \eta_{t + 1} - \eta_t - L^{-1}$, setting $\epsilon_{t + 1} =0$ for all $t \in \N \cup \{0\}$. 
-    %         If we choose to incorperate $\epsilon_{t + 1}$, it yields: 
-    %         \begin{align*}
-    %             x_{t + 1} &= z_{t + 1} + L\eta_t(z_{t + 1} - z_t) - \epsilon_{t + 1}\mathcal G_L(y_t) = x_t - (\eta_t + L^{-1} + \epsilon_{t + 1})\mathcal G_L(y_t). 
-    %         \end{align*}
-    %         Where $\epsilon_{t + 1}\mathcal G_L(y_t)$ can be viewed as a perturbations from the similar triangle form of the algorithm. 
-    %         See 
-    %         \hyperref[fig:1b]{Figure \ref*{fig:1b}}
-    %         for an illustration for some $\epsilon_{t + 1} > 0$. 
-    %     \end{remark} 
-    
-    % \subsection{Recovering the accelerated gradient variant in Ryu's book}
-    %     In this section we should that the following algorithm which appeared in Ryu \cite[chapter 12]{ryu_large-scale_2022}, the next definition present the algorithm in our notations. 
-    %     \begin{definition}\label{def:ryu-ch12}
-    %         Assume that $f$ is a L-Smooth convex function, with initial condition $x_0 = y_0$ an algorithm that generates iterates satisfying: 
-    %         \begin{align*}
-    %             z_{t + 1} &= y_t - L^{-1}\nabla f(y_t) 
-    %             \\
-    %             x_{t + 1} &= x_t - \frac{t + 1}{2L} \nabla f(y_t) 
-    %             \\
-    %             y_{t + 1} &=
-    %             \left(
-    %                 1 - \frac{2}{t + 1}
-    %             \right)z_{t+ 1}
-    %             + 
-    %             \left(
-    %                 \frac{2}{t + 2}
-    %             \right)x_{t + 1}, 
-    %         \end{align*}
-    %         achieves an optimal convergence rate. 
-    %     \end{definition}
-        
-    %     \begin{lemma}
-    %         Suppose that the generic form as given by 
-    %         \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
-    %         admits stepsize $\tilde \eta_t, \eta_t$ as
-    %         \begin{align*}
-    %             \tilde \eta_{t} &= \frac{t}{2L},
-    %             \\
-    %             \eta_t &= (t - 1)/(2L). 
-    %         \end{align*}
-    %         Then it's algebraically equivalent to 
-    %         \hyperref[def:ryu-ch12]{Definition \ref*{def:ryu-ch12}}. 
-    %     \end{lemma}
-    %     \begin{proof}
-    %         Observe $\tilde \eta_t = t/(2L)$ admits a linear growth rate. 
-    %         If $\tilde \eta_i, \eta_i$ is a sequence that satisfies
-    %         \hyperref[thm:ag_generic_stepsize_constraints]
-    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    %         then 
-    %         \hyperref[thm:generic_ag_convergence]
-    %         {Theorem \ref*{thm:generic_ag_convergence}}
-    %         asserts a convergence rate of $\mathcal O(1/T^2)$ for $h(z_T) - h(x_*)$, where $x_*$ is a minimizer assumed to exist. 
-    %         To show that the sequence satisfies 
-    %         \hyperref[thm:ag_generic_stepsize_constraints]
-    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    %         first observe that $\epsilon_t = 0$ because 
-    %         \begin{align*}
-    %             L^{-1} + \eta_t 
-    %             &= 
-    %             L^{-1} + \frac{t - 1}{2L}
-    %             \\
-    %             &= \frac{t + 1}{2L}
-    %             \\
-    %             &= \tilde \eta_{t + 1}. 
-    %         \end{align*}
-    %         Therefore this is a similar triangle method. 
-    %         Next observe that conditions showed in 
-    %         \hyperref[thm:ag_generic_stepsize_constraints]
-    %         {Theorem \ref*{thm:ag_generic_stepsize_constraints}}
-    %         can be simplified in this context because the two equalities reduces to just one when $\epsilon_t =0$ for all $t \in \N$ by 
-    %         \begin{align*}
-    %             \tilde \eta_{t + 1}(\tilde \eta_{t + 1} - L^{-1}) 
-    %             - L^{-1}\sigma_t &= 0
-    %             \\
-    %             \iff 
-    %             \tilde \eta_{t + 1}\eta_t &= L^{-1}\sigma_t. 
-    %         \end{align*}
-    %         Hence it only requires to verify the equality $\tilde \eta_{t + 1}\eta_t = L^{-1} \sigma_t$. 
-    %         With that we have 
-    %         \begin{align*}
-    %             \sigma_t &= \sum_{i = 1}^{t} \frac{i}{2L}
-    %             \\
-    %             &= \frac{1}{2L}\left(
-    %                 \frac{t(t + 1)}{2}
-    %             \right)
-    %             \\
-    %             &= \frac{t(1 + t)}{4L}
-    %             \\
-    %             \iff 
-    %             L^{-1}\sigma_t &= 
-    %             \frac{t(1 + t)}{4L^2}
-    %         \end{align*}
-    %         By definition of the stepsizes the LHS of the equality evaluates to
-    %         \begin{align*}
-    %             \tilde \eta_{t + 1} \eta_{t + 1}
-    %             &= \frac{t + 1}{2L} \frac{t}{2L} 
-    %             \\
-    %             &= L^{-1}\sigma_t. 
-    %         \end{align*}
-    %     \end{proof}
-        
-    % \subsection{Recovering Chambolle, Dossal 2015}
-    %     In this section we show that the algorithm presented in the literature by Chambolle Dossal \cite{chambolle_convergence_2015} is an example of 
-    %     Definition \ref*{def:ag_prox_grad_generic}. 
-    %     The next definiton present the algorithm in our notations
-    %     \begin{definition}\label{def:chamb_dossal}
-    %         Assume that $h = f + g$ where $f$ is $L$-smooth, $f,g$ are convex. 
-    %         Let $t_n = (n + a - 1)/a$ for all $t \in \N$, $a > 2$. 
-    %         The algorithm by Chambolle Dossal has iterates $(x_n, y_n, z_n)$ satisfying for all $n \in \N$: 
-    %         \begin{align*}
-    %             z_{n + 1} &= y_n - L^{-1} \mathcal G_L(y_n), 
-    %             \\
-    %             x_{n + 1} &= z_n + t_{n +1} (z_{n + 1} - z_n), 
-    %             \\
-    %             y_{n + 1} &= \left(
-    %                 1 - \frac{1}{t_{n + 1}}
-    %             \right)z_{n + 1} + \left(
-    %                 \frac{1}{t_{n + 1}}
-    %             \right)x_{n + 1}. 
-    %         \end{align*}
-    %     \end{definition}
-    %     \begin{lemma}
-    %         Suppose that the generic form as given by 
-    %         \hyperref[def:ag_prox_grad_ppm]{Definition \ref*{def:ag_prox_grad_ppm}}
-    %         admits stepsize $\tilde \eta_t, \eta_t$ as
-    %         \begin{align*}
-    %             L\eta_n = t_n - 1,
-    %             \\
-    %             \tilde \eta_{n + 1} = L^{-1} + \eta_n. 
-    %         \end{align*}
-    %         Then it's algebraically equivalent to 
-    %         \hyperref[def:chamb_dossal]{Definition \ref*{def:chamb_dossal}}. 
-    %     \end{lemma}
-    %     \begin{proof}
-    %         By second equality: $\tilde \eta_{n + 1} = \eta_n + L^{-1}$, we can use 
-    %         \hyperref[lemma:sim_triangle_form]{Lemma \ref*{lemma:sim_triangle_form}}. 
-    %         Therefore, substituting $L\eta_n = t_n - 1$, $x_{n + 1}, y_{n + 1}$ in the generic form has 
-    %         \begin{align*}
-    %             x_{n + 1} &= 
-    %             (1 + L\eta_n) z_{n + 1} - L\eta_n z_n
-    %             \\
-    %             & = 
-    %             t_n z_{n + 1} + (1 - t_n) z_n 
-    %             \\
-    %             &= z_n + t_n(z_{n +1} - z_n)
-    %             \\
-    %             y_{n + 1} &= (1 + L\eta_{n + 1})^{-1} (L\eta_{n + 1} z_{n + 1} + x_{n + 1})
-    %             \\
-    %             &= t^{-1}_{n + 1} ((t_{n + 1} - 1)z_n + x_{n + 1})
-    %             \\
-    %             &= (1 - t_{n + 1}^{-1})z_{n + 1} + t^{-1}x_{n + 1}. 
-    %         \end{align*}
-    %         This is the same as
-    %         \hyperref[def:chamb_dossal]{Definition \ref*{def:chamb_dossal}}. 
-    %     \end{proof}
-    %     \begin{remark}
-            
-    %     \end{remark}
-
+   
 
 \section{Algorithm implementations using line search}\label{sec:algorithm_improved}
     In this section, we state a new variant of the accelerated gradient algorithm using the PPM interpretation to algorithmically conduct a line search routine for $L, \mu \ge 0$ the Lipschitz constant and strong convexity index of the smooth part of the objective function. 
     This variant will be parameter free while still retaining the optimal convergence rate for all convex functions. 
     
 
-\section{Numerical experiments}\label{sec:numerical_experiments}
+% \section{Numerical experiments}\label{sec:numerical_experiments}
 
 \appendix
 \section{Scratch paper stuff}

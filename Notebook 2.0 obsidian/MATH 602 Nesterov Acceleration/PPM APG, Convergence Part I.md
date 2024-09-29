@@ -1,6 +1,6 @@
 - [PPM Interpretation of APG Algorithm Preludes](PPM%20Interpretation%20of%20APG%20Algorithm%20Preludes.md)
 - [PPM APG Forms](PPM%20APG%20Forms.md)
-- [PPM AG Forms Analysis](PPM%20AG%20Forms%20Analysis.md)
+- [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md)
 
 ----
 ### **Intro**
@@ -17,7 +17,7 @@ Recall previously that we rolled things with the assumption that:
 3. $f$ is $L$-Lipschitz smooth,
 4. $\mathcal T_L = (I + L^{-1}\partial g)^{-1}\circ [I - L^{-1}\nabla f]$, the proximal gradient operator,
 5. $\mathcal G_L = L (I - \mathcal T_L)$, the gradient mapping,
-6. $x_+ \in \argmin{x} h(x)$, the minimizer exists for $h$.  
+6. $x_+ \in \argmin{x} \{h(x)\}$, the minimizer exists for $h$.  
 
 
 #### **Algorithm**
