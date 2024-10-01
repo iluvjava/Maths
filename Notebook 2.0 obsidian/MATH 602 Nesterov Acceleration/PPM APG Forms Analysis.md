@@ -24,6 +24,7 @@ Here is what the following proposition is about:
 2. Proposition 2, Similar triangle and Momentum form is equivalent. 
 3. Proposition 3, if (1.) and (2.), then  Generic Similar Triangle is equivalent to Chambolle Dossal, 2015 where we when $t_n = L \tilde \eta_{n}$. 
 4. Proposition 4, if (1.), then there is a choice of constant stepsize sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
+5. Proposition 5 links parameters from Nesterov's analysis to the PPM method. 
 
 
 
@@ -460,5 +461,5 @@ $$
 \end{aligned}
 $$
 
-
+#### **Proposition 5 | Nes 2.2.7**
 

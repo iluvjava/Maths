@@ -725,6 +725,10 @@ $$
 
 This algorithm is the basis of analysis for the convergence rate. It can also derive many other variants of acceleration method. This is method (2.2.7) in Nesterov's writing. Do not forget about the implicit estimating sequence $\lambda_k$ that is associated with the above algorithm. 
 
+**Comments**: 
+
+Does this still works when we have $\mu = 0$? 
+
 ---
 ### **Simplifying The algorith to the Momentum Form**
 
@@ -1082,7 +1086,7 @@ $$
 \end{aligned}
 $$
 
-This is 2.2.19 in Nesterov's textbook. 
+This is 2.2.20 in Nesterov's textbook. 
 
 ---
 ### **A Generic Convergence Results**
@@ -1105,11 +1109,12 @@ We present a generic convergence results based on the above generic method. This
 
 **Proof**
 
-This is just an example of lemma 2.2.1 for the proposed Generic Accelerated Momentum method. 
+This is just an example of (lemma 2.2.1) for the proposed Generic Accelerated Momentum method. 
 
 **Remark**
 
 It's complicated, please visit [[Nesterov's Generic Convergence Results]] for more information about the proof of convergence. 
+At this point, it only suffice to study how the sequence behaves and the convergence of the algorithm would now be about the sequence instead. 
 
 
 ---

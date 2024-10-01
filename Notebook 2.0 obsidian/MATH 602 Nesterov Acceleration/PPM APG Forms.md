@@ -20,6 +20,7 @@
   - [**Def | Generic PPM APPM**](#def--generic-ppm-appm)
 - [**Nesterov AG form appeared as in the literatures**](#nesterov-ag-form-appeared-as-in-the-literatures)
   - [**Definition | Nes 2.2.7**](#definition--nes-227)
+  - [**Definition | Nes 2.2.19**](#definition--nes-2219)
   - [**Def | Chambolle, Dossal 2015**](#def--chambolle-dossal-2015)
   - [**Def | V-FISTA**](#def--v-fista)
 - [**Misc Remarks about the Generic form**](#misc-remarks-about-the-generic-form)
@@ -190,6 +191,32 @@ In here we present how some of the literatures present the method of Nesterov's 
 > 4. Find $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$. 
 > 5. Set $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
 
+#### **Definition | Nes 2.2.19**
+> Described in Nesterov's 2018 textbook, (2.2.20) is the same as (2.2.7) but simplified into a less intimidating representation. 
+> $$
+> \begin{aligned}
+>     & \text{0. Choose any $x^{(0)} \in \mathbb R^n, \alpha_0 \in (0, 1),  y^{(0)} = x^{(0)}$}. 
+>     \\
+>     & \text{1. the k th iteration $k \ge 0$ is }
+>     \\
+>     & \quad 
+>     \begin{aligned}
+>         & \text{(a.) } x^{(k + 1)} = y_k - L^{-1}\nabla f(y^{(k)})
+>         \\
+>         & \text{(b.) } 
+>         \alpha_{k + 1} \in (0, 1) \text{ s.t: }
+>         \alpha_{k + 1}^2 = (1 + \alpha_{k + 1})\alpha_k^2 + q_f \alpha_{k + 1}
+>         \\
+>         & \text{(c.) } 
+>         \beta_k := \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}
+>         \\
+>         & \text{(d.) }
+>         y^{(k + 1)} = x^{(k + 1)} + \beta_k\left(
+>             x^{(k + 1)} - x^{(k)}
+>         \right)
+>     \end{aligned}
+> \end{aligned}
+> $$
 
 #### **Def | Chambolle, Dossal 2015**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 

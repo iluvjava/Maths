@@ -771,6 +771,13 @@ where $q_f = \mu / L \in (0, 1)$ and we recall the fact that the sequence $(\alp
 For more information, see [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md) for more information. 
 
 
+**Comments**
+
+It's possible that Nes 2.2.7 is also Similar triangle form, but we don't yet known. 
+A better, simpler algorithm to compare to would be Nesterov 2.2.19, 2.2.20 instead. 
+In the case of 2.2.20, the algorithm had been reduced down to the momentum form, which would means the equivalence between Similar Triangle form and Nesterov's 2.2.19. 
+
+
 #### **Claim 2.6 | Intersection between momentum and AG PPM form**
 > The momentum form is a special case of the AG generic form. 
 > If the sequence $\tilde \eta_t, \eta$ satisfies the conditions
