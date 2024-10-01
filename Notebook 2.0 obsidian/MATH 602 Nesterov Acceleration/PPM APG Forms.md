@@ -13,7 +13,7 @@
   - [**Def | S-CVX PPM APG**](#def--s-cvx-ppm-apg)
   - [**Def | Generic S-CVX APG**](#def--generic-s-cvx-apg)
   - [**Def | Generic APG**](#def--generic-apg)
-  - [**Def | Generic Similar Triangle**](#def--generic-similar-triangle)
+  - [**Def | S-CVX Generic Similar Triangle**](#def--s-cvx-generic-similar-triangle)
   - [**Def | Generic Nestrov's Momentum Form**](#def--generic-nestrovs-momentum-form)
   - [**Def | Generic Accelerated Mirror Descent (AMD) PPM Form**](#def--generic-accelerated-mirror-descent-amd-ppm-form)
   - [**Def | Generic S-CVX PPM APPM**](#def--generic-s-cvx-ppm-appm)
@@ -135,11 +135,11 @@ To list out the generic representation different type of algorithms, we list the
 >     \\
 >     z_{t + 1} &= y_t - L^{-1}\mathcal G_L (y_t)
 >     \\
->     y_{t + 1} &= (1 + L \eta_{t + 1})^{1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1})
+>     y_{t + 1} &= (1 + L \eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1})
 > \end{aligned}
 > $$
 
-#### **Def | Generic Similar Triangle**
+#### **Def | S-CVX Generic Similar Triangle**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
 > Let iterates $(x_t, y_t, z_t)$ be given by S-CVX Generic AG. 
 > If in addition, the stepsizes $\eta_t, \tilde \eta_t$ satisfies equality 
@@ -153,8 +153,9 @@ To list out the generic representation different type of algorithms, we list the
 
 
 #### **Def | Generic Nestrov's Momentum Form**
-> Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L$ be given by Assumption Set 3. 
-> Then the momentum form of the algorithm has iterates satisfying the recurrences: 
+> Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L$ be given by Assumption Set 3.
+> Define a positive sequence of parameters $(\theta_t)_{t \in \N}$
+> Then the momentum form of the algorithm has iterates satisfying the recurrences for all $t \in \N \cup \{0\}$: 
 > $$
 > \begin{aligned}
 >     z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
@@ -192,7 +193,7 @@ In here we present how some of the literatures present the method of Nesterov's 
 
 #### **Def | Chambolle, Dossal 2015**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
-A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
+> A similar triangle form is defined through the iterates $(y_n, x_n, z_n)$ and the sequence $(t_n)_{n \in \N}$ via the recurrences for all $n \in \N$: 
 > $$
 > \begin{aligned}
 >     z_{n + 1} &= y_n - L^{-1}\mathcal G_L(y_n)
