@@ -28,7 +28,6 @@ Here is what the following proposition is about:
 
 
 
-
 #### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CVX Generic APG**
 > The similar triangle is a special case of the AG generic form. 
 > Suppose that $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be the iterates and the stepsize sequences be given by the PPM AG generic form. 
@@ -462,4 +461,4 @@ $$
 $$
 
 #### **Proposition 5 | Nes 2.2.7**
-
+> 

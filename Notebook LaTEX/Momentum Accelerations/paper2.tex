@@ -335,6 +335,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \\
                 y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
             \end{align*}
+            If $h = f$, so $g \equiv 0$ then $\mathcal G_L = \nabla f$, then this is equivalent to \cite[(6.24)]{ahn_understanding_2022}. 
         \end{remark}
 
         \begin{definition}[Generic APG]\label{def:generic-apg}
@@ -412,7 +413,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             This is proposed in Chambolle and Dossal \cite{chambolle_convergence_2015}'s paper. 
         \end{remark}
-        \begin{definition}[V-FISTA]
+
+        \begin{definition}[V-FISTA]\label{def:v-fista}
             With $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L \ge \mu > 0$  be given by Assumption Set 2. 
             Then V-FISTA is presented as: 
             \begin{align*}
@@ -428,6 +430,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{remark}
             This is presented in Beck's Book chapter 10 \cite[(10.7.7)]{beck_first-order_nodate}. 
         \end{remark}
+
     \subsection{The relations between these forms}
         One pivotal intermadiate form is 
         \hyperref[def:S-CVS-generic-similar-triangle]
@@ -463,7 +466,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         
 \section{Lypunov analysis of the algorithm}
     In this section we prove the convergence rate of Similar triangle form when $\mu = 0$. 
-    
+
 % \printbibliography
 
 \bibliographystyle{siam}
@@ -809,10 +812,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 (L - \mu )\tilde \eta_n. 
             \end{align*}
             Therefore, they are only equivalent when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
-
-
         \end{proof}
+        \begin{proposition}[V-FISTA is Similar Triangle Method]
 
+            
+        \end{proposition}
 
         
 
