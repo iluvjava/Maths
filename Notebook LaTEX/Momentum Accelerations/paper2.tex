@@ -436,14 +436,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \subsection{The relations between these forms}
         One pivotal intermadiate form is 
         \hyperref[def:S-CVX-generic-similar-triangle]
-        {Definition \ref*{def:S-CVX-generic-similar-triangle}}(S-CVX Similar Triangle Form), 
-        it is a special case of
+        { Definition \ref*{def:S-CVX-generic-similar-triangle}} 
+        (S-CVX Similar Triangle Form), it is an instance of
         \hyperref[def:S-CVX-PPM-APG]
         {Definition \ref*{def:S-CVX-PPM-APG}}
         where algorithms in the literatures can be derived from it. 
         \hyperref[prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg]
         {Proposition \ref*{prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg}}
-        Shows that S-CVX Similar Triangle Form is a special case of S-CVX PPM APG where the step sizes sequence $\tilde \eta_t, \eta_t$ satisfies equality: 
+        Shows that S-CVX Similar Triangle Form is an instance of S-CVX PPM APG where the step sizes sequence $\tilde \eta_t, \eta_t$ satisfies equality: 
         $$
             \tilde \eta_t =\eta_t + L^{-1} + L^{-1}\mu \tilde \eta_t. 
         $$
@@ -459,7 +459,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {Proposition \ref{prop:cham-dossal-2015-is-similar-triangle}}
         shows that Chambolle Dossal 2015 (\hyperref[def:chambolle-dossal-2015]
             {Definition \ref*{def:chambolle-dossal-2015}})
-        is a special case of S-CVX Similar Triangle form if and only if when $\mu = 0$. 
+        is an instance of S-CVX Similar Triangle form if and only if when $\mu = 0$. 
         The parameters $t_n$ is the literatures is linked to the step size parameters $\tilde \eta_n, \eta_n$ by the equality: 
         \begin{align*}
             t_n = L \tilde \eta_n. 
@@ -1214,7 +1214,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Therefore, they are only equivalent when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
         \end{proof}
         \begin{proposition}[V-FISTA is Similar Triangle Method]
-
             
         \end{proposition}
 

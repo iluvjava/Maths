@@ -200,7 +200,7 @@ $$
 \end{aligned}
 $$
 
-factor out $\sigma_k$ in the cross product term in ([4]), it allows us to transform the cross product in $([5])$, so it simplifies to 
+factor out $\epsilon_k$ in the cross product term in ([5]), it allows us to substitute the above to replace the cross product term in ([5]): 
 
 $$
 \begin{aligned}
@@ -222,7 +222,7 @@ $$
     \epsilon_k \langle  \mathcal G_Ly_k, x_+ - x_k\rangle + 
     \frac{\sigma_k}{2L}\Vert \mathcal G_L y_k\Vert^2
     = 
-    \tilde \eta 
+    \tilde \eta_k
     \langle  \mathcal G_Ly_k, x_+ - x_k\rangle
      + 
     \frac{\tilde \eta_k^2}{2}\Vert \mathcal G_L y_k\Vert^2. 
@@ -293,7 +293,7 @@ $$
 \end{aligned}
 $$
 
-hence it derives the convergence rate of $\mathcal O(\sigma_k^{-1})$. 
+hence it derives the convergence rate of $\mathcal O(\sigma_{N + 1}^{-1})$. 
 
 
 **Proof for ([1], [2])**
