@@ -247,7 +247,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         Showed in  
         \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $G_L(x) = \nabla f(x) + v = L(x - x^+)$, so it yields
+        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L(x - x^+)$, so it yields
         \begin{align*}
             h(x^+) & 
             \le  
@@ -289,17 +289,19 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {Definition \ref*{def:gradient_mapping}}. 
         In addition, we also assume that $f$ is strongly convex with constant $L \ge \mu \ge 0$. 
     \end{assumption}
-    In this section, ``S-CVX'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
+    In this section, ``SC'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
     \subsection{The definitions for generic forms}
-        \begin{definition}[S-CVX PPM APG]\label{def:S-CVX-PPM-APG}
+        \newcommand{\SCPPMAPG}{SC PPM APG}
+        \begin{definition}[\SCPPMAPG]\label{def:SC-PPM-APG}
+            
             Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameter $L \ge \mu \ge 0$ be given by
             \hyperref[ass:smooth-non-smooth-lip-scvx]
-            {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}
-            Define the lower bouding function for any $x \in \RR^n$, we have for all $z \in \RR^n$: 
+            {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}. 
+            Define the lower bouding function $l(\cdot, x)$ for any fixed $x \in \RR^n$: 
             \begin{align*}
-                l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+                (\forall z \in \RR^n) \; l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
                 + 
-                \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2
+                \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2. 
             \end{align*}
             For any positive sequence of stepsizes $(\tilde \eta_t)_{t \in \N}, (\eta_t)_{t \in \N}$, and any initial iterates $x_0 = y_0$, let parameter $L \ge \mu \ge 0$, we define an algorithm such that iterates $(x_t, y_t)_{t \in \N}$ is given by: 
             \begin{align*}
@@ -323,8 +325,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{definition}
         \begin{remark}
             For a derivation of the iterates see 
-            \hyperref[proof:derivations-S-CVX-PPM-AGP]
-            {Proof \ref*{proof:derivations-S-CVX-PPM-AGP}}. 
+            \hyperref[proof:derivations-SC-PPM-AGP]
+            {Proof \ref*{proof:derivations-SC-PPM-AGP}}. 
             The update sequence can be equivalently written as: 
             \begin{align*}
                 w_{t} &= (\mu\tilde \eta_{t} + 1)^{-1}(\mu \tilde \eta_{t} y_t + x_t) 
@@ -340,29 +342,26 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
         \begin{definition}[Generic APG]\label{def:generic-apg}
             Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by 
-            \hyperref[ass:smooth-non-smooth-lip-scvx]
-            {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}
-            This algorithm is a special case of S-CVX Generic AG
-            (\hyperref[def:S-CVX-PPM-APG]
-            {Definition \ref*{def:S-CVX-PPM-APG}})
+            \hyperref[ass:smooth-non-smooth-lip-scvx]{Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}.
+            This algorithm is a special case of
+            \hyperref[def:SC-PPM-APG]{Definition \ref*{def:SC-PPM-APG}}
             and it's obtained by setting $\mu = 0$: 
             \begin{align*}
                 x_{t + 1} &= x_t - \tilde \eta_{t} \mathcal G_L (y_t)
                 \\
                 z_{t + 1} &= y_t - L^{-1}\mathcal G_L (y_t)
                 \\
-                y_{t + 1} &= (1 + L \eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1})
+                y_{t + 1} &= (1 + L \eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
             \end{align*}
 
         \end{definition}
 
-        \begin{definition}[S-CVX Generic Similar Triangle]\label{def:S-CVX-generic-similar-triangle}
+        \begin{definition}[SC Generic Similar Triangle]\label{def:SC-similar-triangle}
             Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by 
             \hyperref[ass:smooth-non-smooth-lip-scvx]
-            {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}
-            Let iterates $(x_t, y_t, z_t)$ be given by S-CVX Generic AG
-            (\hyperref[def:S-CVX-PPM-APG]
-            {Definition \ref*{def:S-CVX-PPM-APG}}). 
+            {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}. 
+            Let iterates $(x_t, y_t, z_t)$ be given by 
+            \hyperref[def:SC-PPM-APG]{Definition \ref*{def:SC-PPM-APG}}. 
             If in addition, the stepsizes $\eta_t, \tilde \eta_t$ satisfies equality 
             $$
                 \tilde\eta_{t} = \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t},
@@ -379,15 +378,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameters $L$ be given by 
             \hyperref[ass:smooth-non-smooth-lip-scvx]
             {Assumption \ref*{ass:smooth-non-smooth-lip-scvx}}. 
+            Let sequence $\theta_{t + 1} \ge 0$ be a generic momentum sequence. 
             Then the momentum form of the algorithm has iterates satisfying the recurrences: 
             $$
             \begin{aligned}
                 z_{t + 1} &= y_t - L^{-1}\mathcal G_L(y_t)
                 \\
-                y_{t + 1 } &= z_{t + 1} + \theta_{t + 1}(z_{t + 1} - z_t)
+                y_{t + 1 } &= z_{t + 1} + \theta_{t + 1}(z_{t + 1} - z_t). 
             \end{aligned}
             $$
-            For some $\theta_{t + 1} \ge 0$. 
         \end{definition}
         \begin{remark}
             It's called Nesterov's momentum because there is also inertia method which is a different class of methods because the point where the gradient is evaluated is different. 
@@ -435,21 +434,21 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     \subsection{The relations between these forms}
         One pivotal intermadiate form is 
-        \hyperref[def:S-CVX-generic-similar-triangle]
-        { Definition \ref*{def:S-CVX-generic-similar-triangle}} 
-        (S-CVX Similar Triangle Form), it is an instance of
-        \hyperref[def:S-CVX-PPM-APG]
-        {Definition \ref*{def:S-CVX-PPM-APG}}
+        \hyperref[def:SC-similar-triangle]
+        { Definition \ref*{def:SC-similar-triangle}} 
+        (SC Similar Triangle Form), it is an instance of
+        \hyperref[def:SC-PPM-APG]
+        {Definition \ref*{def:SC-PPM-APG}}
         where algorithms in the literatures can be derived from it. 
         \hyperref[prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg]
         {Proposition \ref*{prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg}}
-        Shows that S-CVX Similar Triangle Form is an instance of S-CVX PPM APG where the step sizes sequence $\tilde \eta_t, \eta_t$ satisfies equality: 
+        Shows that SC Similar Triangle Form is an instance of \SCPPMAPG where the step sizes sequence $\tilde \eta_t, \eta_t$ satisfies equality: 
         $$
             \tilde \eta_t =\eta_t + L^{-1} + L^{-1}\mu \tilde \eta_t. 
         $$
         \hyperref[prop:momentum-equiv-to-similar-triangle]
         {Proposition \ref*{prop:momentum-equiv-to-similar-triangle}}
-        shows that S-CVX Similar Triangle Form is algebraically equivalent to 
+        shows that SC Similar Triangle Form is algebraically equivalent to 
         \hyperref[def:generic-nesterov-momentum-form]{Definition \ref*{def:generic-nesterov-momentum-form}} (Generic Nesterov's Momentum form).
         The momentum parameters is linked to the step size parameters by the equality: 
         \begin{align*}
@@ -459,14 +458,14 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {Proposition \ref{prop:cham-dossal-2015-is-similar-triangle}}
         shows that Chambolle Dossal 2015 (\hyperref[def:chambolle-dossal-2015]
             {Definition \ref*{def:chambolle-dossal-2015}})
-        is an instance of S-CVX Similar Triangle form if and only if when $\mu = 0$. 
+        is an instance of SC Similar Triangle form if and only if when $\mu = 0$. 
         The parameters $t_n$ is the literatures is linked to the step size parameters $\tilde \eta_n, \eta_n$ by the equality: 
         \begin{align*}
             t_n = L \tilde \eta_n. 
         \end{align*}
 
         
-\section{Lypunov analysis of the algorithm}
+\section{Lyapunov analysis of the algorithm}
     In this section we prove the convergence rate of Similar triangle form when $\mu = 0$. 
     For that we make the following necessary assumption: 
     \begin{assumption}\label{ass:comp-with-minimizers}
@@ -491,8 +490,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \label{eqn:similar-triangle-to-prove}
         \end{align}
         This is obtained by setting $\tilde \eta_k = L^{-1} + \eta_k$ for all $k \in \N\cup \{0\}$, hence making it an instance of the Similar Triangle form 
-        (\hyperref[def:S-CVX-generic-similar-triangle]
-            {Definition \ref*{def:S-CVX-generic-similar-triangle}}) 
+        (\hyperref[def:SC-similar-triangle]
+            {Definition \ref*{def:SC-similar-triangle}}) 
         where $\mu =0$. 
         Let $\tilde \eta_0 = L^{-1}$, $\sigma_0 = L^{-1}$, so $y_0 = x_0$ is the initial conditions. 
         Define the notations 
@@ -514,32 +513,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Then the quantity: 
         \begin{align*}
             (\forall k \in \N)\; 
-            \Phi_k &= \sigma_k \Delta_k + (1/2) \Vert x_{k + 1} - x_+\Vert^2 
-            \\
-            \Phi_0 &= (1/2)\Vert x_0 - x_+\Vert^2, 
+            \Phi_k &= \sigma_k \Delta_k + (1/2) \Vert x_{k + 1} - x_+\Vert^2, 
         \end{align*}
         has $\Phi_{i} - \Phi_{i - 1} \le 0$ for all $i\in \N$.
         Hence $\Delta_N$ converges at a rate of $\mathcal O(\sigma_N^{-1})$
     \end{proposition}
-    \begin{observation}
-        Substitute $\sigma_k = L \tilde \eta_k^2$ into $\sigma_k - \sigma_{k - 1} \le \tilde \eta_k$ yields inequality:
-        \begin{align*}
-            & L \tilde \eta_k^2 - L \tilde \eta_{k - 1}^2 
-            \le 
-            \tilde \eta_k
-            \\
-            & \text{if : }  \tilde \eta_k = L^{-1} t_k, \text{ then equivalently: }
-            \\
-            & L^{-1}t_k^2 - L^{-1}t_{k - 1}^2
-            \le L^{-1}t_k 
-            \\
-            & 
-            t_k^2 - t_{k - 1}^2
-            \le t_k, 
-        \end{align*}
-        The sequence $\sigma_k$ is defined to represent the convergence rate. 
-        It's made with the intention to separate the parameter that relates to the rate of the convergence analysis of the algorithm (which is $\sigma_k$), and the step size used in the algorithm (which is $\tilde \eta_t$) because they are fundamentally different concepts. 
-    \end{observation}
     \begin{proof}
         We label several important expression used for stating the convergecne results, and then we establish the proof for them at the end of the proof. 
         Firstly we have for all $t \in \N\cup \{0\}$: 
@@ -592,7 +570,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         (\ref*{eqn:st2p-4}) 
         can construct the convergence rate without too many details. 
         \\
-        Consider $(\sigma_k - \epsilon_k)(\text{Equation }(\ref*{eqn:st2p-2})) + \epsilon_k(\text{Equation }(\ref*{eqn:st2p-1})) \le 0$ for any $k \in \N$, it simplifies to (it's proved later):
+        Consider $(\sigma_k - \epsilon_k)(\ref*{eqn:st2p-2}) + \epsilon_k(\ref*{eqn:st2p-1}) \le 0$ for any $k \in \N$, it simplifies to (it's proved later):
         {\small
         \begin{align}
             (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) + \epsilon_k \Delta_k 
@@ -640,7 +618,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \epsilon_k \langle  \mathcal G_Ly_k, x_+ - x_k\rangle + 
             \frac{\sigma_k}{2L}\Vert \mathcal G_L y_k\Vert^2
             = 
-            \tilde \eta 
+            \tilde \eta_k
             \langle  \mathcal G_Ly_k, x_+ - x_k\rangle
             + 
             \frac{\tilde \eta_k^2}{2}\Vert \mathcal G_L y_k\Vert^2. 
@@ -677,7 +655,6 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             0.
         \end{align*}
         Let's makes Lyapunov quantity $\Phi_k = \sigma_k \Delta_k + (1/2)\Vert x_{k + 1} - x_+\Vert^2$. 
-        Let the base case be: $\Phi_0 = (1/2)\Vert x_0 - x^+\Vert^2$. 
         Hence the above inequality is $\Phi_k - \Phi_{k - 1}$, telescoping it then yields the inequality: 
         \begin{align*}
             \sum_{i = 1}^{N}\Phi_i - \Phi_{i - 1} = \Phi_N - \Phi_0 
@@ -699,11 +676,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             \implies 
             \sigma_N (f(z_{N + 1}) - f(x_+)) &\le 
+            L^{-1}(f(z_1) - f(x_+)) + 
             \frac{1}{2}\Vert x_1 - x_+\Vert^2.
         \end{align*}
         hence it derives the convergence rate of $\mathcal O(\sigma_{N}^{-1})$. 
         \\
-        \textbf{Proof for Equation (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2})}. 
+        \textbf{Proof for Equation (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2})}:
         \\
         Fix any $k \in \N\cup \{0\}$, apply
         \hyperref[lemma:grad_map_linearization]
@@ -765,7 +743,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) + \epsilon_k \Delta_k. 
         \end{align*}
         \\
-        \textbf{Proof for (\ref*{eqn:st2p-4})}
+        \textbf{Proof for (\ref*{eqn:st2p-4})}:
         \\
         Using the relations of the iterates as defined by the algorithm, it has $\forall k \in \N\cup \{0\}$
         \begin{align*}
@@ -797,10 +775,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \frac{\tilde \eta_k^2}{2} \Vert \mathcal G_L(y_k)\Vert^2. 
         \end{align*}
         \\
-        \textbf{Proof for (\ref*{eqn:st2p-5})}
+        \textbf{Proof for (\ref*{eqn:st2p-5})}:
         \\
-        Derivation of $(\sigma_k - \epsilon_k)([2]) + \epsilon_k([1]) \le 0$ assumed that we have $\sigma_k - \epsilon_k \ge 0$, $\epsilon_k \ge 0$. 
-        With these assumptions we can proceed: 
+        To show $(\sigma_k - \epsilon_k)(\ref*{eqn:st2p-2}) + \epsilon_k(\ref*{eqn:st2p-1}) \le 0$, assume $\sigma_k - \epsilon_k \ge 0$, $\epsilon_k \ge 0$, so: 
         {\footnotesize
         \begin{align*}
             (\sigma_k - \epsilon_k)
@@ -861,10 +838,29 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 + 
                 \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
             \right) 
-            &\le 0
+            &\le 0. 
         \end{align*}
         }
     \end{proof}
+    \begin{observation}
+        Substitute $\sigma_k = L \tilde \eta_k^2$ into $\sigma_k - \sigma_{k - 1} \le \tilde \eta_k$ yields inequality:
+        \begin{align*}
+            & L \tilde \eta_k^2 - L \tilde \eta_{k - 1}^2 
+            \le 
+            \tilde \eta_k
+            \\
+            & \text{if : }  \tilde \eta_k = L^{-1} t_k, \text{ then equivalently: }
+            \\
+            & L^{-1}t_k^2 - L^{-1}t_{k - 1}^2
+            \le L^{-1}t_k 
+            \\
+            & 
+            t_k^2 - t_{k - 1}^2
+            \le t_k, 
+        \end{align*}
+        The sequence $\sigma_k$ is defined to represent the convergence rate. 
+        It's made with the intention to separate the parameter that relates to the rate of the convergence analysis of the algorithm (which is $\sigma_k$), and the step size used in the algorithm (which is $\tilde \eta_t$) because they are fundamentally different concepts. 
+    \end{observation}
 
 
 % \printbibliography
@@ -874,11 +870,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \appendix
 \section{Postoned proofs}
-    \subsection{Proof for S-CVX-PPM-APG}\label{proof:derivations-S-CVX-PPM-AGP}
+    \subsection{Proof for \SCPPMAPG}\label{proof:derivations-SC-PPM-AGP}
         \begin{proof}
             (Proof of 
-            \hyperref[def:S-CVX-PPM-APG]
-            {Definition \ref*{def:S-CVX-PPM-APG}})
+            \hyperref[def:SC-PPM-APG]
+            {Definition \ref*{def:SC-PPM-APG}})
             \\
             The functions inside of ``argmin" is easy to solve because they are just quadratic functions. 
             We write it here for future verifications and a peace of the mind. 
@@ -924,15 +920,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{proof}
 
     \subsection{Analysis of the forms}
-        \begin{proposition}[S-CVX Generic similar triangle]
+        \begin{proposition}[SC Generic similar triangle]
             \label{prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg}
-            \hyperref[def:S-CVX-generic-similar-triangle]
-            {Definition \ref*{def:S-CVX-generic-similar-triangle}}
+            \hyperref[def:SC-similar-triangle]
+            {Definition \ref*{def:SC-similar-triangle}}
             is a special case of the 
-            \hyperref[def:S-CVX-PPM-APG]{Definition \ref*{def:S-CVX-PPM-APG}}. 
-            (S-CVX PPM APG). 
+            \hyperref[def:SC-PPM-APG]{Definition \ref*{def:SC-PPM-APG}}. 
+            (\SCPPMAPG). 
             Suppose that $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be the iterates and the stepsize sequences be given by the 
-            S-CVX PPM APG.
+            \SCPPMAPG.
             If in addition, the sequence $\tilde \eta_t, \eta$ satisfies the conditions for all $t \in \N$
             \begin{align*}
                 \tilde\eta_{t} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t}, 
@@ -1077,8 +1073,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \label{prop:momentum-equiv-to-similar-triangle}
             \;\\
             Let iterates $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be given by the relations in 
-            \hyperref[def:S-CVX-generic-similar-triangle]
-            {Definition \ref*{def:S-CVX-generic-similar-triangle}}
+            \hyperref[def:SC-similar-triangle]
+            {Definition \ref*{def:SC-similar-triangle}}
             then it's algebraically equivalent to: 
             \begin{align*}
                 y_{t + 1} &= z_{t + 1} + 
@@ -1123,9 +1119,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proposition}[Chambolle Dossal as an instance of Similar Triangle Form]
             \label{prop:cham-dossal-2015-is-similar-triangle}
             \;\\
-            Let iterates $(x_t, y_t, z_t)$ and stepszie sequence $\tilde \eta_t, \eta_t$ be generated by S-CVX Generic Similar Triangle Form
-            (\hyperref[def:S-CVX-generic-similar-triangle]
-            {Definition \ref*{def:S-CVX-generic-similar-triangle}}). 
+            Let iterates $(x_t, y_t, z_t)$ and stepszie sequence $\tilde \eta_t, \eta_t$ be generated by SC Generic Similar Triangle form
+            (\hyperref[def:SC-similar-triangle]
+            {Definition \ref*{def:SC-similar-triangle}}). 
             Then the algorithm are equivalent to Chambolle and Dossal 2015 algorithms 
             (\hyperref[def:chambolle-dossal-2015]
             {Definition \ref*{def:chambolle-dossal-2015}})
@@ -1216,8 +1212,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \begin{proposition}[V-FISTA is Similar Triangle Method]
             
         \end{proposition}
-
-        
+    \subsection{Lyapunov analysis proof continued}
+    
 
     
 
