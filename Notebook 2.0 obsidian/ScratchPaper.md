@@ -727,3 +727,20 @@ $$
    \sum_{i = 1}^{T} E_f(\hat y^{(j)}, y^{(j)} | \Theta). 
 \end{aligned}
 $$
+
+
+$$
+\begin{aligned}
+    \langle x_n - y, \mathcal J_A x - \mathcal J_A y\rangle
+    &= 
+    \langle \mathbf e_n, \mathcal J_A  \mathbf e_n\rangle 
+    \\
+    &= 1/(n + 1), 
+    \\
+    \implies 
+    \lim_{n \rightarrow \infty} 
+    \langle x_n - y, \mathcal J_A x - \mathcal J_A y\rangle
+    &= \lim_{n\rightarrow \infty}1/(n + 1)
+    = 0 \not\ge  \lim_{n\rightarrow\infty}\Vert \mathbf e_n\Vert = 1
+\end{aligned}
+$$

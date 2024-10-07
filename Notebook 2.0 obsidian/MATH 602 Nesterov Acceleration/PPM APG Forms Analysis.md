@@ -460,5 +460,5 @@ $$
 \end{aligned}
 $$
 
-#### **Proposition 5 | Nes 2.2.7**
+#### **Proposition 5 | Nes 2.2.19**
 > 

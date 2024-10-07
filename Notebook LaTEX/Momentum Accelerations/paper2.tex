@@ -291,7 +291,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{assumption}
     In this section, ``SC'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
     \subsection{The definitions for generic forms}
-        \newcommand{\SCPPMAPG}{SC PPM APG}
+        \newcommand{\SCPPMAPG}{SC PPM APG }
         \begin{definition}[\SCPPMAPG]\label{def:SC-PPM-APG}
             
             Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameter $L \ge \mu \ge 0$ be given by
@@ -439,10 +439,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         (SC Similar Triangle Form), it is an instance of
         \hyperref[def:SC-PPM-APG]
         {Definition \ref*{def:SC-PPM-APG}}
-        where algorithms in the literatures can be derived from it. 
+        where algorithms in the literatures are derived from. 
         \hyperref[prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg]
         {Proposition \ref*{prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg}}
-        Shows that SC Similar Triangle Form is an instance of \SCPPMAPG where the step sizes sequence $\tilde \eta_t, \eta_t$ satisfies equality: 
+        Shows that SC Similar Triangle Form is an instance of \SCPPMAPG where the step size sequences $\tilde \eta_t, \eta_t$ satisfies equality: 
         $$
             \tilde \eta_t =\eta_t + L^{-1} + L^{-1}\mu \tilde \eta_t. 
         $$
@@ -450,7 +450,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         {Proposition \ref*{prop:momentum-equiv-to-similar-triangle}}
         shows that SC Similar Triangle Form is algebraically equivalent to 
         \hyperref[def:generic-nesterov-momentum-form]{Definition \ref*{def:generic-nesterov-momentum-form}} (Generic Nesterov's Momentum form).
-        The momentum parameters is linked to the step size parameters by the equality: 
+        The momentum parameter is linked to the step size parameters by the equality: 
         \begin{align*}
             \theta_{t + 1} = \frac{L\eta_t}{(1 + \mu \tilde\eta_{t})(1 + L\eta_{t + 1})}.
         \end{align*} 
@@ -1210,8 +1210,104 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Therefore, they are only equivalent when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
         \end{proof}
         \begin{proposition}[V-FISTA is Similar Triangle Method]
-            
+            V-FISTA 
+            (\hyperref[def:v-fista]{Definition \ref*{def:v-fista}}
+            ) is a form of Generic Similar Triangle Form, where the stepsizes $\tilde \eta_t, \eta_t$ are constants: 
+            \begin{align*}
+                \tilde \eta_t 
+                &= \frac{1}{\mu(\sqrt{\kappa} - 1)}
+                \quad \forall t \in \N, 
+                \\
+                \eta_t
+                &= 
+                \frac{1}{\mu\sqrt{\kappa}}
+                \quad \forall t \in \N. 
+            \end{align*}
+            This choice of step size sequences simplifies it to:
+            \begin{align*}
+                y_{t + 1} &= z_{t + 1} + 
+                \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
+                (z_{t +1} - z_t)
+                \\
+                z_{t + 1} 
+                &= y_t - L^{-1}\mathcal G_L(y_t). 
+            \end{align*}
         \end{proposition}
+        \begin{proof}
+            
+            Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
+            $$
+            \begin{aligned}
+                L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+                \\
+                \mu \tilde \eta &= 
+                \frac{1}{\sqrt{\kappa} - 1}, 
+                \\
+                L\tilde \eta &= 
+                \frac{\kappa}{\sqrt{\kappa} - 1}. 
+            \end{aligned}
+            $$
+            With that it establishes relations
+            $$
+            \begin{aligned}
+                \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
+                &= 
+                \frac{\sqrt{\kappa}}{
+                    \left(
+                        1 + \frac{1}{\sqrt{\kappa} - 1}
+                    \right)
+                    \left(
+                        1 + \sqrt{\kappa}
+                    \right)
+                }
+                \\
+                &= \frac{\sqrt{\kappa}}{
+                    \left(
+                        \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
+                    \right)(1 + \sqrt{\kappa})
+                }
+                \\
+                &=
+                \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
+                    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
+                \right)
+                \\
+                &= 
+                \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
+            \end{aligned}
+            $$
+            The sequence is valid because 
+            $$
+            \begin{aligned}
+                \tilde \eta_{t} 
+                &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t}
+                \\
+                (L - \mu)\tilde \eta_{t}
+                &= 
+                1 + L \eta_t 
+                \\
+                L \tilde \eta_{t} - 
+                \mu \tilde \eta_{t}
+                &= 1 + L \eta_t. 
+            \end{aligned}
+            $$
+            Starting from the LHS it yields: 
+            $$
+            \begin{aligned}
+                L\tilde \eta - \mu \tilde \eta 
+                &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
+                \frac{1}{\sqrt{\kappa} - 1}
+                \\
+                &= 
+                \frac{\kappa - 1}{\sqrt{\kappa} - 1}
+                \\
+                &= 
+                \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
+                \\
+                &= 1 + \sqrt{\kappa} = 1 + L \eta. 
+            \end{aligned}
+            $$
+        \end{proof}
     \subsection{Lyapunov analysis proof continued}
     
 
