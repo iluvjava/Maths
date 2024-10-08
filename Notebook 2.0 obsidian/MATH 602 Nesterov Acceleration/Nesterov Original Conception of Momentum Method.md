@@ -14,22 +14,20 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
   - [**Def (2.2.1) | Estimating Sequences and Estimating Functions**](#def-221--estimating-sequences-and-estimating-functions)
   - [**Characterizations (Lemma 2.2.1) | Conditions for Descent on Objective Value**](#characterizations-lemma-221--conditions-for-descent-on-objective-value)
 - [**An Potential Updates Procedures for Estimating Sequences and Functions**](#an-potential-updates-procedures-for-estimating-sequences-and-functions)
-  - [**Lemma 2.2.2  | The Proposed Updates**](#lemma-222---the-proposed-updates)
+  - [**Lemma 2.2.2  | The Proposed Updates**](#lemma-222--the-proposed-updates)
   - [**Corollary 1 | Characterization of the Estimating Sequences and Functions**](#corollary-1--characterization-of-the-estimating-sequences-and-functions)
 - [**Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**](#giving-a-form-to-the-estimating-sequence-and-functions-so-its-easy-to-derive-the-algorithm)
   - [**Lemma 2.2.3 | Updating with the Canonical Form**](#lemma-223--updating-with-the-canonical-form)
 - [**Deriving the Generic Accelerated Momentum Method**](#deriving-the-generic-accelerated-momentum-method)
 - [**Simplifying The algorith to the Momentum Form**](#simplifying-the-algorith-to-the-momentum-form)
   - [**Eliminating $v^{(k)}$ from the Algorithm**](#eliminating-vk-from-the-algorithm)
-  - [**Eliminating the $\\gamma\_k$ Constant**](#eliminating-the-gamma_k-constant)
+  - [**Eliminating the $\\gamma\_k$ Constant**](#eliminating-the-gammak-constant)
 - [**A Generic Convergence Results**](#a-generic-convergence-results)
   - [**Thm (2.2.1) | Generic Convergence Results**](#thm-221--generic-convergence-results)
-- [**Conclusion**](#conclusion)
-  - [**Part I | The Estimating Functions**](#part-i--the-estimating-functions)
-  - [**Part II | The Point of Descent**](#part-ii--the-point-of-descent)
-  - [**Par III | Construction of the Estimating Sequence**](#par-iii--construction-of-the-estimating-sequence)
-  - [**Part IV | Determing the Sequences**](#part-iv--determing-the-sequences)
-  - [**A few extra comments about the situations**](#a-few-extra-comments-about-the-situations)
+- [**The gist of Nesterov's Genius in this proof**](#the-gist-of-nesterovs-genius-in-this-proof)
+  - [**The ideal case of convergence analysis**](#the-ideal-case-of-convergence-analysis)
+  - [**The problem of that idea in practice**](#the-problem-of-that-idea-in-practice)
+  - [**Estimating sequence weakens that and phrase it differently**](#estimating-sequence-weakens-that-and-phrase-it-differently)
 
 ---
 ### **Prelimaries, the Estimating Sequence and Function**
@@ -1118,116 +1116,152 @@ At this point, it only suffice to study how the sequence behaves and the converg
 
 
 ---
-### **Conclusion**
+### **The gist of Nesterov's Genius in this proof**
 
 That was a depressingly long proof. 
-Let's unwrap it by summarizing on a high level what each theorem does, and what conditions are involved in the proof of the theorem. 
-Let's fix $f$ to be a convex function with $L$-Lipschitz smooth gradient. 
+Let me summarize the gist and genius of Nesterov's setimating sequence and how it's related to the convergence analysis of some algorithm in general. 
 
-#### **Part I | The Estimating Functions**
-Let's consider $\{\phi_t\}_{t\in \N}$ to be a sequence of function such that it recursively satisfies for all $k\in \N$: 
-> $$
->     \phi_{k + 1} (x) - f(x) \le 
->     (1 - \alpha_k)(\phi_k(x) - f(x)) \quad \forall x 
-> $$
-> where the sequence of scalar satisfies $\alpha_k \in [0, 1)$. 
+#### **The ideal case of convergence analysis**
 
-Notice that this creates a Lyapunov function $\phi_k(x) - f(x)$, giving us for all $x$: 
+Let $\Delta_k$ be a finite non-negative sequence. 
+Define $\Delta_0 < \infty$ as the base case. 
+We want to show that the sequence converges to a finite quantity, and we want to find its rate of convergence. 
+One way to do it is to consider the possibility of some sequence $\alpha_k \in (0, 1)$ such that
+$$
+\begin{aligned}
+    (\Delta_{k + 1} - \Delta_k ) \le  \alpha_k \Delta_k , 
+\end{aligned}
+$$
 
-> $$
-> \begin{aligned}
->     \phi_{k}(x) - f(x) &\le 
->     \left(
->         \prod_{i = 0}^{k-1} 
->         (1 - \alpha_i)
->     \right)(\phi_0(x) - f(x)). 
-> \end{aligned}
-> $$
-
-The value $\phi_k(x) - f(x)$ can be negative and it will be fine. 
-So it motivates the definition of a sequence: $\lambda_k = \prod_{i=0}^{k - 1}(1 - \alpha_i)$. 
-
-**Remarks**
-
-We had harvested: $\phi_k, \alpha_i, \lambda_k$ and the above conditions. 
-
-#### **Part II | The Point of Descent**
-
-Correlates the sequence of function $\phi_k$ by choosing a specific value $x_k$ for all $k\in \N$ such that 
-
-> $$
-> \begin{aligned}
->     f(x_k) &\le \phi_k^* := \min_z(\phi_k(z))
-> \end{aligned}
-> $$
-
-with such a sequence of $x_k$, let $\phi_k$ keep being the estimating function then
+because
 
 $$
 \begin{aligned}
-    f(x_k) - f(x) 
+    \Delta_{k + 1}  \le (1- \alpha_k) \Delta_k 
+    \le \cdots \le \left(
+        \prod_{i = 0}^{k} \left(1 - \alpha_i\right)
+    \right)\Delta_0. 
+\end{aligned}
+$$
+The rate of convergence would be $\prod_{i = 1}^{k} \left(1 - \alpha_k\right)$.
+Alternatively, one might also consider the possibility of a positive sequence $\sigma_k$ (preferably monotone increasing) such that it has 
+
+$$
+\begin{aligned}
+    (\sigma_{k + 1} - \sigma_k) \Delta_{k +1} + 
+    \sigma_k(\Delta_{k + 1} - \Delta_k) &\le 0, 
+    \\
+    \text{or equivalently}: 
+    \sigma_{k + 1}(\Delta_{k + 1} - \Delta_k) + 
+    (\sigma_{k + 1} - \sigma_k)\Delta_k &\le 0. 
+\end{aligned}
+$$
+
+Because in the first case, it gives 
+
+$$
+\begin{aligned}
+   (\sigma_{k + 1} - \sigma_k) \Delta_{k +1} + 
+    \sigma_k(\Delta_{k + 1} - \Delta_k)
+    &= \sigma_{k + 1}\Delta_{k + 1} - \sigma_k\Delta_k \le 0
+    \\
+    \implies 
+    \sum_{i = 0}^{k-1} \sigma_{k + 1}\Delta_{k + 1} - \sigma_k \Delta_k
+    &= \sigma_k \Delta_k - \sigma_0 \Delta_0 \le 0
+    \\
+    \text{so, }
+    \sigma_k\Delta_k &\le \sigma_0 \Delta_0
+    \\
+    \Delta_k \le \frac{\sigma_0 \Delta_0}{\sigma_k}. 
+\end{aligned}
+$$
+
+So the convergence rate would be $\mathcal O(\sigma_t^{-1})$. 
+A similar argument follows for the second case where it has 
+
+$$
+\begin{aligned}
+    \sigma_{k + 1}(\Delta_{k + 1} - \Delta_k) + 
+    (\sigma_{k + 1} - \sigma_k)\Delta_k
+    &= 
+    \sigma_{k + 1}\Delta_{k + 1} - \sigma_k \Delta_k \le 0. 
+\end{aligned}
+$$
+Now, for interpretation, let $\Delta_t$ denotes dynamic non-negative quantity changing over time. 
+It has a differential interpretation by: $\sigma_t \Delta_t' + \sigma_t'\Delta_t = (\sigma_t \Delta_t)' \le 0$. 
+The keen reader should observe that, it would make the above argument sleeker by making $\sigma_t = \sum_{i = 0}^{t - 1}\eta_t$. 
+But we digressed. 
+
+#### **The problem of that idea in practice**
+
+In practice, it would be great to show the convergence of sequence $\Delta_k := f(x_k) - f_*$, where $f_*$ is the infimum of $f$. 
+However this is too Naive since, $f(x_k) - f_*$: 
+1. It may not be the only quantity that is decreasing. 
+2. It may not be decreasing monotonically, making it challenging to find $\sigma_t$ in the second case, and impossible to find $\alpha_k$ in the first case. 
+
+
+#### **Estimating sequence weakens that and phrase it differently**
+
+Nesterov's estimating sequence make the job of looking for the convergence of some non-negative quantity $\Delta_k$ slightly. 
+It introduces the estimating sequence $\phi_k: \R^n \mapsto \R$ for all $k \in \N \cup \{0\}$, satisfying for all $x$: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1} (x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - f_*). 
+\end{aligned}
+$$
+
+Unpacking it: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) - f_* - (\phi_k(x) - f_*) 
+    &\le - \alpha_k(\phi_k(x) - f_*)
+    \\
+    \phi_{k + 1}(x) - f_*
+    &\le (1- \alpha_k)(\phi_k(x) - f_*)
+    \\
+    \implies 
+    \phi_{k + 1}(x) - f_* &\le 
+    \left(
+        \prod_{i = 0}^{k} (1 - \alpha_i)
+    \right)(\phi_0(x) - f_*). 
+\end{aligned}
+$$
+
+This estimating sequence, represent unknown quantities whose value is decreasing. 
+In the ideal world, which is the previous case, people would want $\phi_k(x) = f(x_k)$, to be a constant function. 
+Let's assume $x_*$ is a minimizer of $f$ allowing $f(x_*) = f_*$. 
+Nesterov's idea is to search for the existence of a sequence $x_k$, together with the estimating sequence $\phi_k$ such that it gives
+
+$$
+\begin{aligned}
+    f(x_k) &\le \phi_k^* := \min_x \phi_k(x). 
+\end{aligned}
+$$
+
+In this way, we choose $x = x_*$ so: 
+
+$$
+\begin{aligned}
+    f(x_{k + 1}) - f_* 
     &\le 
-    \lambda_k (\phi_0 (x) - f(x)) \quad \forall x,  
-\end{aligned}
-$$
-
-making $f(x_k) - f(x)$ a Lyapunov function. 
-Furthermove, with $f_* = \min_z(f(z))$ and assume the existence of a minimizer $x^*$, we have 
-
-$$
-\begin{aligned}
-    f(x_k) - f_*
+    \phi_{k + 1}^* - f_*
+    \\
+    &\le \phi_{k + 1}(x_*) - f_*
+    \\
     &\le 
-    \lambda_k(\phi_0(x_*) - f_*). 
+    (1 - \alpha_k)(\phi_k(x_*) - f_*)
+    \\
+    &\le 
+    \phi_{k + 1}(x) - f_* 
+    \\
+    &\le 
+    \left(
+        \prod_{i = 0}^{k} (1 - \alpha_i)
+    \right)(\phi_0(x) - f_*). 
 \end{aligned}
 $$
 
-Take note that without the existence of minimizer, $\phi_0(x_*)$ will blow up. 
-We would need to becareful about it when minimizer is not assumed to exist. 
-
-**Remarks**
-
-At this point, we assumed the existence of $x_k$ and minimum $\phi_k^*$. 
-
-
-#### **Par III | Construction of the Estimating Sequence**
-It is, by pure genius of Nesterov, to assume the sequence of $\phi_k$ and $y_k$ recursively that 
-
-$$
-\begin{aligned}
-    \phi_{k + 1}(x) &= 
-    (1 - \alpha_k)\phi_k(x) + \alpha_k \varphi(x; y_k), 
-\end{aligned}
-$$
-
-where $\varphi(x; y_k)$ is a lower bounding function of $f$ parameterized by $y_k$. 
-Without too much assumptions on the function, the following functions
-
-$$
-\begin{aligned}
-    \phi_{0}(x) &= 
-    \phi_0^* + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2
-    \\
-    \phi_{k + 1}(x) &= 
-    (1 - \alpha_k) \phi_{k}(x) + \alpha_k \varphi(x; y_k)
-    \\
-    &= \phi_{k + 1}^* + \frac{\gamma_k}{2}\Vert x - v_{k + 1}\Vert^2
-    \\
-    \varphi(x, y_k) &= 
-    f(y_k) + \langle \nabla f(y_k), x - y_k\rangle + 
-    \frac{\mu}{2}\Vert x - y_k\Vert^2
-\end{aligned}
-$$
-
-
-#### **Part IV | Determing the Sequences**
-And surprisngly, with $\varphi(x)$ being just a linear functional and $\phi_k$ being simple quadratic function. 
-After all these scaffolding, it remains to determine the following list of parameters. 
-
-1. $\phi_k(x) = \phi_k^* + (\gamma_k/2)\Vert x - v_k\Vert^2$ a quadratic function that is too simple, which is parameterized by 
-   1. $v_k$, the minimizer. 
-   2. $\gamma_k$, the curvature control parameter. 
-2. $x_k, y_k$ such that we have $f(x_k) \le \phi_k^*$ for all $k$. 
-
-#### **A few extra comments about the situations**
-All $\phi_k$ modeling functions are the same simple quadratic functions that has uniform diagonal Hessian. 
+And the sequences $x_k, \phi_k$ assists with the proof for the convergence rate of $f(x_{k _ 1}) - f_*$. 
+It's not as myserious as it looks. 

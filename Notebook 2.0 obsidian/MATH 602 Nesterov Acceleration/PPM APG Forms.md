@@ -10,13 +10,13 @@
   - [**Assumption Set 4**](#assumption-set-4)
   - [**Assumption Set 5**](#assumption-set-5)
 - [**Generic Forms**](#generic-forms)
-  - [**Def | S-CVX PPM APG**](#def--s-cvx-ppm-apg)
-  - [**Def | Generic S-CVX APG**](#def--generic-s-cvx-apg)
+  - [**Def | SC PPM APG**](#def--sc-ppm-apg)
+  - [**Def | Generic SC APG**](#def--generic-sc-apg)
   - [**Def | Generic APG**](#def--generic-apg)
-  - [**Def | S-CVX Generic Similar Triangle**](#def--s-cvx-generic-similar-triangle)
+  - [**Def | SC Generic Similar Triangle**](#def--sc-generic-similar-triangle)
   - [**Def | Generic Nestrov's Momentum Form**](#def--generic-nestrovs-momentum-form)
   - [**Def | Generic Accelerated Mirror Descent (AMD) PPM Form**](#def--generic-accelerated-mirror-descent-amd-ppm-form)
-  - [**Def | Generic S-CVX PPM APPM**](#def--generic-s-cvx-ppm-appm)
+  - [**Def | Generic SC PPM APPM**](#def--generic-sc-ppm-appm)
   - [**Def | Generic PPM APPM**](#def--generic-ppm-appm)
 - [**Nesterov AG form appeared as in the literatures**](#nesterov-ag-form-appeared-as-in-the-literatures)
   - [**Definition | Nes 2.2.7**](#definition--nes-227)
@@ -24,13 +24,13 @@
   - [**Def | Chambolle, Dossal 2015**](#def--chambolle-dossal-2015)
   - [**Def | V-FISTA**](#def--v-fista)
 - [**Misc Remarks about the Generic form**](#misc-remarks-about-the-generic-form)
-  - [**Remarks on S-CVX PPM APG**](#remarks-on-s-cvx-ppm-apg)
+  - [**Remarks on SC PPM APG**](#remarks-on-sc-ppm-apg)
   - [**Remarks on Generic AGP**](#remarks-on-generic-agp)
   - [**Remarks on Nes (2.2.7)**](#remarks-on-nes-227)
   - [**Remarks on Generic Nestrov's Momentum Form**](#remarks-on-generic-nestrovs-momentum-form)
   - [**Remarks on Chambolle Dossal 2015**](#remarks-on-chambolle-dossal-2015)
 - [**Necessary Derivations of these forms**](#necessary-derivations-of-these-forms)
-  - [**Demonstration for: S-CVX PPM APG**](#demonstration-for-s-cvx-ppm-apg)
+  - [**Demonstration for: SC PPM APG**](#demonstration-for-sc-ppm-apg)
 - [**Analysis of these forms**](#analysis-of-these-forms)
 
 
@@ -79,7 +79,7 @@ $\Vert \cdot\Vert$ is 2-norm unless stated to be something else.
 To list out the generic representation different type of algorithms, we list the following assumption sets. 
 
 
-#### **Def | S-CVX PPM APG**
+#### **Def | SC PPM APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ and parameter $L \ge \mu \ge 0$ be given by Assumption Set 3. 
 > Define the lower bouding function for any $x \in \R^n$, we have for all $z \in \R^n$: 
 > $$
@@ -111,7 +111,7 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
-#### **Def | Generic S-CVX APG**
+#### **Def | Generic SC APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
 > $$
@@ -129,7 +129,7 @@ To list out the generic representation different type of algorithms, we list the
 
 #### **Def | Generic APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 4. 
-> This algorithm is a special case of S-CVX Generic AG and it's obtained by setting $\mu = 0$: 
+> This algorithm is a special case of SC Generic AG and it's obtained by setting $\mu = 0$: 
 > $$
 > \begin{aligned}
 >     x_{t + 1} &= x_t - \tilde \eta_{t} \mathcal G_L (y_t)
@@ -140,9 +140,9 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
-#### **Def | S-CVX Generic Similar Triangle**
+#### **Def | SC Generic Similar Triangle**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 
-> Let iterates $(x_t, y_t, z_t)$ be given by S-CVX Generic AG. 
+> Let iterates $(x_t, y_t, z_t)$ be given by SC Generic AG. 
 > If in addition, the stepsizes $\eta_t, \tilde \eta_t$ satisfies equality 
 > $$\tilde\eta_{t} = \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t},$$
 > then 
@@ -169,7 +169,7 @@ To list out the generic representation different type of algorithms, we list the
 
 #### **Def | Generic Accelerated Mirror Descent (AMD) PPM Form**
 
-#### **Def | Generic S-CVX PPM APPM**
+#### **Def | Generic SC PPM APPM**
 
 #### **Def | Generic PPM APPM**
 
@@ -259,7 +259,7 @@ In here we present how some of the literatures present the method of Nesterov's 
 
 In this section, we demonstrate, discuss, about the generic form listed in the previous section. 
 
-#### **Remarks on S-CVX PPM APG**
+#### **Remarks on SC PPM APG**
 This is very similar to algorithm presented in section 6 of Ahn and Sra's paper on understanding Nesterov acceleration method via proximal point method. 
 It admits alternative representations: 
 
@@ -278,7 +278,7 @@ $$
 
 
 #### **Remarks on Generic AGP**
-Setting $\mu = 0$ in S-CVX PPM APG yields generic APG. 
+Setting $\mu = 0$ in SC PPM APG yields generic APG. 
 
 
 #### **Remarks on Nes (2.2.7)**
@@ -300,7 +300,7 @@ When $t^2_{n + 1} - t_n^2 = t_{n + 1}$, then this recovers the FISTA algorithm a
 ---
 ### **Necessary Derivations of these forms**
 
-#### **Demonstration for: S-CVX PPM APG**
+#### **Demonstration for: SC PPM APG**
 The functions inside of "argmin" is easy to solve because they are just quadratic functions. 
 We write it here for future verifications and a peace of the mind. 
 

@@ -429,15 +429,15 @@ The sequence is valid because
 
 $$
 \begin{aligned}
-    \tilde \eta_{t + 1} 
-    &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t + 1}
+    \tilde \eta_{t} 
+    &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t}
     \\
-    (L - \mu)\tilde \eta_{t + 1}
+    (L - \mu)\tilde \eta_{t}
     &= 
     1 + L \eta_t 
     \\
-    L \tilde \eta_{t + 1} - 
-    \mu \tilde \eta_{t + 1}
+    L \tilde \eta_{t} - 
+    \mu \tilde \eta_{t}
     &= 1 + L \eta_t. 
 \end{aligned}
 $$
