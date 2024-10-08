@@ -20,7 +20,7 @@
   - [**Def | Generic PPM APPM**](#def--generic-ppm-appm)
 - [**Nesterov AG form appeared as in the literatures**](#nesterov-ag-form-appeared-as-in-the-literatures)
   - [**Definition | Nes 2.2.7**](#definition--nes-227)
-  - [**Definition | Nes 2.2.19**](#definition--nes-2219)
+  - [**Definition | Nes 2.2.20**](#definition--nes-2220)
   - [**Def | Chambolle, Dossal 2015**](#def--chambolle-dossal-2015)
   - [**Def | V-FISTA**](#def--v-fista)
 - [**Misc Remarks about the Generic form**](#misc-remarks-about-the-generic-form)
@@ -191,7 +191,7 @@ In here we present how some of the literatures present the method of Nesterov's 
 > 4. Find $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$. 
 > 5. Set $v_{k + 1} = \gamma_{k+1}^{-1}((1 - \alpha_k)\gamma_kv_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k))$. 
 
-#### **Definition | Nes 2.2.19**
+#### **Definition | Nes 2.2.20**
 > Described in Nesterov's 2018 textbook, (2.2.20) is the same as (2.2.7) but simplified into a less intimidating representation. 
 > $$
 > \begin{aligned}
