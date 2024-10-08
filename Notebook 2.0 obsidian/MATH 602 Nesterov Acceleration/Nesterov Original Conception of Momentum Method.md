@@ -28,6 +28,7 @@ alias: Nesterov Acceleration Sequence Method, Nesterov Estimating Sequence
   - [**The ideal case of convergence analysis**](#the-ideal-case-of-convergence-analysis)
   - [**The problem of that idea in practice**](#the-problem-of-that-idea-in-practice)
   - [**Estimating sequence weakens that and phrase it differently**](#estimating-sequence-weakens-that-and-phrase-it-differently)
+  - [**My own speculations and ideas**](#my-own-speculations-and-ideas)
 
 ---
 ### **Prelimaries, the Estimating Sequence and Function**
@@ -1202,30 +1203,30 @@ However this is too Naive since, $f(x_k) - f_*$:
 
 #### **Estimating sequence weakens that and phrase it differently**
 
-Nesterov's estimating sequence make the job of looking for the convergence of some non-negative quantity $\Delta_k$ slightly. 
+Nesterov's estimating sequence make the job of looking for the convergence of some non-negative quantity $\Delta_k$ easier. 
 It introduces the estimating sequence $\phi_k: \R^n \mapsto \R$ for all $k \in \N \cup \{0\}$, satisfying for all $x$: 
 
 $$
 \begin{aligned}
-    \phi_{k + 1} (x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - f_*). 
+    \phi_{k + 1} (x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - f(x)). 
 \end{aligned}
 $$
-
+Observe that in this case, it's searching for the decreasing on quantity $\Delta_k = \phi_k(x) - f(x)$. 
 Unpacking it: 
 
 $$
 \begin{aligned}
-    \phi_{k + 1}(x) - f_* - (\phi_k(x) - f_*) 
-    &\le - \alpha_k(\phi_k(x) - f_*)
+    \phi_{k + 1}(x) - f(x) - (\phi_k(x) - f(x)) 
+    &\le - \alpha_k(\phi_k(x) - f(x))
     \\
-    \phi_{k + 1}(x) - f_*
-    &\le (1- \alpha_k)(\phi_k(x) - f_*)
+    \phi_{k + 1}(x) - f(x)
+    &\le (1- \alpha_k)(\phi_k(x) - f(x))
     \\
     \implies 
-    \phi_{k + 1}(x) - f_* &\le 
+    \phi_{k + 1}(x) - f(x) &\le 
     \left(
         \prod_{i = 0}^{k} (1 - \alpha_i)
-    \right)(\phi_0(x) - f_*). 
+    \right)(\phi_0(x) - f(x)). 
 \end{aligned}
 $$
 
@@ -1265,3 +1266,66 @@ $$
 
 And the sequences $x_k, \phi_k$ assists with the proof for the convergence rate of $f(x_{k _ 1}) - f_*$. 
 It's not as myserious as it looks. 
+
+#### **My own speculations and ideas**
+
+The nesterov's accelerated sequence is universal for the proof of convergences of functions, over a sequence. 
+Suppose for all $x$, the estimating sequence $\phi_k$, and $\sigma_k$ for all $k \in \N \cup \{0\}$ satisfies the inequality: 
+
+$$
+\begin{aligned}
+    \sigma_{k + 1}
+    (\phi_{k + 1}(x) - \phi_k(x)) 
+    + 
+    (\sigma_{k + 1} - \sigma_k)(\phi_k(x) - f(x)) 
+    &\le 
+    0, 
+\end{aligned}
+$$
+If $\Delta_k(x) = \phi_{k}(x) - f(x)$, which is a function, then for all $x$, the above is: 
+
+$$
+\begin{aligned}
+    \sigma_{k + 1}(\Delta_{k + 1}(x) - \Delta_k(x)) 
+    + (\sigma_{k + 1} - \sigma_k)\Delta_k(x) 
+    &\le 0
+    \\
+    \sigma_{k + 1}\Delta_{k + 1}(x)
+    - \sigma_k \Delta_{k}(x)
+    &\le 0
+    \\
+    \implies 
+    \sum_{i = 0}^{k - 1}
+    \sigma_{i + 1}\Delta_{i + 1}(x)
+    - \sigma_i \Delta_{i}(x)
+    &= 
+    \sigma_k \Delta_k(x) - \sigma_0 \Delta_0(x) \le 0. 
+\end{aligned}
+$$
+
+If it can be asserted that there exists a sequence $x_k$ such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$, for all $k \in \N\cup \{0\}$, then setting $x = x_*$, where $x_*$ is the minimizer of $f$, then the above simplifies to 
+
+$$
+\begin{aligned}
+    \sigma_k \Delta_k(x_*) - \sigma_0 \Delta_0(x_*) 
+    &\le 0
+    \\
+    \iff 
+    \sigma_k (\phi_k(x_*) - f_*) - 
+    \sigma_0 (\phi_0(x_*) - f_*) &\le 0
+    \\
+    \implies 
+    \sigma_k(\phi_k^* - f_*) 
+    -
+    \sigma_0(\phi_0(x^*) - f_*)
+    &\le 0
+    \\
+    \implies 
+    \sigma_k(f(x_k) - f_*) 
+    -
+    \sigma_0(\phi_0(x^*) - f_*)
+    &\le 0, 
+\end{aligned}
+$$
+
+where the convergence rate is obvious from the last line of the inequality. 

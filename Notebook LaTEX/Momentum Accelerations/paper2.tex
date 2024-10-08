@@ -681,166 +681,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
         hence it derives the convergence rate of $\mathcal O(\sigma_{N}^{-1})$. 
         \\
-        \textbf{Proof for Equation (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2})}:
-        \\
-        Fix any $k \in \N\cup \{0\}$, apply
-        \hyperref[lemma:grad_map_linearization]
-        {Lemma \ref*{lemma:grad_map_linearization}}
-        with $z = z_{k + 1}, x = x_+$: 
-        \begin{align*}
-            \Delta_k &= h(z_{k + 1}) - h(x_+) = h(\mathcal T_L y_k) - h(x_+) 
-            \\
-            &\le 
-            - \langle \mathcal G_l y_k, x_+ - y_k \rangle 
-            - \frac{L}{2}\Vert L^{-1} \mathcal G_Ly_k\Vert^2
-            \\
-            &= 
-            - \langle \mathcal G_l y_k, x_+ - y_k \rangle 
-            - \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2
-            \\
-            \iff 
-            0& \ge \Delta_k + \langle \mathcal G_L y_k, x_+ - y_k\rangle + \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2. 
-        \end{align*}
-        Similarly, by setting $z = z_{k + 1}, x = z_k$, it gives 
-        \begin{align*}
-            \Delta_k - \Delta_{k - 1} &= 
-            h(z_{k + 1}) - h(x_+) - (h(z_k) - h(x_+)) 
-            \\
-            &= h(z_{k + 1}) - h(z_k)
-            \\
-            &= h( \mathcal G_L y_k) - h(z_k)
-            \\
-            &\le 
-            - \langle \mathcal G_L y_k, z_k - y_k\rangle - 
-            \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
-            \\
-            \iff 
-            0 &\ge
-            \Delta_k - \Delta_{k - 1}
-            + \langle \mathcal G_L y_k, z_k - y_k\rangle
-            + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
-        \end{align*}
-        \\
-        \textbf{Proof for (\ref*{eqn:st2p-3})}: 
-        \\
-        Assume that $\sigma_k - \sigma_{k -1} \le \epsilon_k$ where $\epsilon_k \ge 0$ then for all $k \in \N$: 
-        \begin{align*}
-            &
-            \sigma_k \Delta_k - \sigma_{k - 1} \Delta_{k - 1}
-            \\
-            & 
-            \textcolor{gray}{
-                \text{by: } \sigma_k - \sigma_{k - 1} \le \epsilon_k, \epsilon_k \ge 0
-            }
-            \\
-            &\le 
-            \sigma_k \Delta_k - (\sigma_k - \epsilon_k)\Delta_{k - 1}
-            \\
-            &= 
-            (\sigma_k - \epsilon_k)\Delta_k - (\sigma_k - \epsilon_k)\Delta_{k - 1}
-            + \epsilon \Delta_k 
-            \\
-            &= (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) + \epsilon_k \Delta_k. 
-        \end{align*}
-        \\
-        \textbf{Proof for (\ref*{eqn:st2p-4})}:
-        \\
-        Using the relations of the iterates as defined by the algorithm, it has $\forall k \in \N\cup \{0\}$
-        \begin{align*}
-            & \frac{1}{2} 
-            \left(
-                \Vert x_{k + 1} - x_+\Vert^2
-                - 
-                \Vert x_k - x_+\Vert^2 
-            \right)
-            \\
-            &=
-            \frac{1}{2} 
-            \left(
-                \Vert x_k - \tilde \eta_k\mathcal G_L (y_k) - x_+ \Vert^2 
-                - 
-                \Vert x_k - x_+\Vert^2
-            \right)
-            \\
-            &= 
-            \frac{1}{2}\left(
-                -2\langle \tilde \eta_k \mathcal G_L(y_k), x_k - x_+\rangle
-                + 
-                \tilde \eta_k^2 \Vert \mathcal G_L(y_k)\Vert^2
-            \right)
-            \\
-            &= 
-            \langle \tilde \eta_k \mathcal G_L(y_k), x_k - x_+\rangle
-                + 
-            \frac{\tilde \eta_k^2}{2} \Vert \mathcal G_L(y_k)\Vert^2. 
-        \end{align*}
-        \\
-        \textbf{Proof for (\ref*{eqn:st2p-5})}:
-        \\
-        To show $(\sigma_k - \epsilon_k)(\ref*{eqn:st2p-2}) + \epsilon_k(\ref*{eqn:st2p-1}) \le 0$, assume $\sigma_k - \epsilon_k \ge 0$, $\epsilon_k \ge 0$, so: 
-        {\footnotesize
-        \begin{align*}
-            (\sigma_k - \epsilon_k)
-            \left(
-                \Delta_k - \Delta_{k - 1}
-                + \langle \mathcal G_L y_k, z_k - y_k\rangle
-                + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
-            \right)
-            + 
-            \epsilon_k 
-            \left(
-                \Delta_k + \langle \mathcal G_L y_k, x_+ - y_k\rangle + \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2
-            \right)
-            &\le 
-            0
-            \\
-            \iff
-            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
-            + \epsilon_k \Delta_k 
-            + 
-            \left(
-                \langle \mathcal G_L y_k, 
-                    (\sigma_k - \epsilon_k)(z_k - y_k)
-                    + 
-                    \epsilon_k (x_+ - y_k)
-                \rangle
-                + 
-                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
-            \right) 
-            &\le 0
-            \\
-            \iff
-            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
-            + \epsilon_k \Delta_k 
-            + 
-            \left(
-                \langle \mathcal 
-                    G_L y_k, 
-                    (\sigma_k - \epsilon_k)z_k + 
-                    (\epsilon_k - \sigma_k - \epsilon_k)y_k
-                    + 
-                    \epsilon_k x_+
-                \rangle
-                + 
-                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
-            \right) 
-            &\le 0
-            \\
-            \iff
-            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
-            + \epsilon_k \Delta_k 
-            + 
-            \left(
-                \langle \mathcal 
-                    G_L y_k, 
-                    (\sigma_k - \epsilon_k)z_k - \sigma_k y_k + \epsilon_k x_+
-                \rangle
-                + 
-                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
-            \right) 
-            &\le 0. 
-        \end{align*}
-        }
+        The proof for Equation 
+        (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2}, \ref*{eqn:st2p-3}, \ref*{eqn:st2p-4}, \ref*{eqn:st2p-5}) and Equation (\ref*{eqn:st2p-5.1}) are continued in 
+        \hyperref[sec:st2p_proof_continued]{Appendix \ref*{sec:st2p_proof_continued}}. 
     \end{proof}
     \begin{observation}
         Substitute $\sigma_k = L \tilde \eta_k^2$ into $\sigma_k - \sigma_{k - 1} \le \tilde \eta_k$ yields inequality:
@@ -1308,8 +1151,167 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{aligned}
             $$
         \end{proof}
-    \subsection{Lyapunov analysis proof continued}
-    
+    \subsection{Lyapunov analysis proof continued}\label{sec:st2p_proof_continued}
+        \textbf{Proof for Equation (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2})}:
+        \\
+        Fix any $k \in \N\cup \{0\}$, apply
+        \hyperref[lemma:grad_map_linearization]
+        {Lemma \ref*{lemma:grad_map_linearization}}
+        with $z = z_{k + 1}, x = x_+$: 
+        \begin{align*}
+            \Delta_k &= h(z_{k + 1}) - h(x_+) = h(\mathcal T_L y_k) - h(x_+) 
+            \\
+            &\le 
+            - \langle \mathcal G_l y_k, x_+ - y_k \rangle 
+            - \frac{L}{2}\Vert L^{-1} \mathcal G_Ly_k\Vert^2
+            \\
+            &= 
+            - \langle \mathcal G_l y_k, x_+ - y_k \rangle 
+            - \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2
+            \\
+            \iff 
+            0& \ge \Delta_k + \langle \mathcal G_L y_k, x_+ - y_k\rangle + \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2. 
+        \end{align*}
+        Similarly, by setting $z = z_{k + 1}, x = z_k$, it gives 
+        \begin{align*}
+            \Delta_k - \Delta_{k - 1} &= 
+            h(z_{k + 1}) - h(x_+) - (h(z_k) - h(x_+)) 
+            \\
+            &= h(z_{k + 1}) - h(z_k)
+            \\
+            &= h( \mathcal G_L y_k) - h(z_k)
+            \\
+            &\le 
+            - \langle \mathcal G_L y_k, z_k - y_k\rangle - 
+            \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
+            \\
+            \iff 
+            0 &\ge
+            \Delta_k - \Delta_{k - 1}
+            + \langle \mathcal G_L y_k, z_k - y_k\rangle
+            + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
+        \end{align*}
+        \\
+        \textbf{Proof for (\ref*{eqn:st2p-3})}: 
+        \\
+        Assume that $\sigma_k - \sigma_{k -1} \le \epsilon_k$ where $\epsilon_k \ge 0$ then for all $k \in \N$: 
+        \begin{align*}
+            &
+            \sigma_k \Delta_k - \sigma_{k - 1} \Delta_{k - 1}
+            \\
+            & 
+            \textcolor{gray}{
+                \text{by: } \sigma_k - \sigma_{k - 1} \le \epsilon_k, \epsilon_k \ge 0
+            }
+            \\
+            &\le 
+            \sigma_k \Delta_k - (\sigma_k - \epsilon_k)\Delta_{k - 1}
+            \\
+            &= 
+            (\sigma_k - \epsilon_k)\Delta_k - (\sigma_k - \epsilon_k)\Delta_{k - 1}
+            + \epsilon \Delta_k 
+            \\
+            &= (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) + \epsilon_k \Delta_k. 
+        \end{align*}
+        \\
+        \textbf{Proof for (\ref*{eqn:st2p-4})}:
+        \\
+        Using the relations of the iterates as defined by the algorithm, it has $\forall k \in \N\cup \{0\}$
+        \begin{align*}
+            & \frac{1}{2} 
+            \left(
+                \Vert x_{k + 1} - x_+\Vert^2
+                - 
+                \Vert x_k - x_+\Vert^2 
+            \right)
+            \\
+            &=
+            \frac{1}{2} 
+            \left(
+                \Vert x_k - \tilde \eta_k\mathcal G_L (y_k) - x_+ \Vert^2 
+                - 
+                \Vert x_k - x_+\Vert^2
+            \right)
+            \\
+            &= 
+            \frac{1}{2}\left(
+                -2\langle \tilde \eta_k \mathcal G_L(y_k), x_k - x_+\rangle
+                + 
+                \tilde \eta_k^2 \Vert \mathcal G_L(y_k)\Vert^2
+            \right)
+            \\
+            &= 
+            \langle \tilde \eta_k \mathcal G_L(y_k), x_k - x_+\rangle
+                + 
+            \frac{\tilde \eta_k^2}{2} \Vert \mathcal G_L(y_k)\Vert^2. 
+        \end{align*}
+        \\
+        \textbf{Proof for (\ref*{eqn:st2p-5})}:
+        \\
+        To show $(\sigma_k - \epsilon_k)(\ref*{eqn:st2p-2}) + \epsilon_k(\ref*{eqn:st2p-1}) \le 0$, assume $\sigma_k - \epsilon_k \ge 0$, $\epsilon_k \ge 0$, so: 
+        {\footnotesize
+        \begin{align*}
+            (\sigma_k - \epsilon_k)
+            \left(
+                \Delta_k - \Delta_{k - 1}
+                + \langle \mathcal G_L y_k, z_k - y_k\rangle
+                + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
+            \right)
+            + 
+            \epsilon_k 
+            \left(
+                \Delta_k + \langle \mathcal G_L y_k, x_+ - y_k\rangle + \frac{1}{2L}\Vert \mathcal G_L y_k\Vert^2
+            \right)
+            &\le 
+            0
+            \\
+            \iff
+            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
+            + \epsilon_k \Delta_k 
+            + 
+            \left(
+                \langle \mathcal G_L y_k, 
+                    (\sigma_k - \epsilon_k)(z_k - y_k)
+                    + 
+                    \epsilon_k (x_+ - y_k)
+                \rangle
+                + 
+                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
+            \right) 
+            &\le 0
+            \\
+            \iff
+            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
+            + \epsilon_k \Delta_k 
+            + 
+            \left(
+                \langle \mathcal 
+                    G_L y_k, 
+                    (\sigma_k - \epsilon_k)z_k + 
+                    (\epsilon_k - \sigma_k - \epsilon_k)y_k
+                    + 
+                    \epsilon_k x_+
+                \rangle
+                + 
+                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
+            \right) 
+            &\le 0
+            \\
+            \iff
+            (\sigma_k - \epsilon_k)(\Delta_k - \Delta_{k - 1}) 
+            + \epsilon_k \Delta_k 
+            + 
+            \left(
+                \langle \mathcal 
+                    G_L y_k, 
+                    (\sigma_k - \epsilon_k)z_k - \sigma_k y_k + \epsilon_k x_+
+                \rangle
+                + 
+                \frac{\sigma_k}{2L}\Vert \mathcal G_Ly_k\Vert^2
+            \right) 
+            &\le 0. 
+        \end{align*}
+        }
 
     
 
