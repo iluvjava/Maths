@@ -20,7 +20,7 @@
 - [**Lyapunouv arguments for gradient descent type algorithms**](#lyapunouv-arguments-for-gradient-descent-type-algorithms)
   - [**Claim | Lyapunov function for smooth gradient descent**](#claim--lyapunov-function-for-smooth-gradient-descent)
 - [**Lypapunov anlaysis for smooth gradient descent**](#lypapunov-anlaysis-for-smooth-gradient-descent)
-  - [**Claim | Convergence rate of gradient descent**](#claim--convergence-rate-of-gradient-descent)
+  - [**Claim | Convergence rate of gradient descent (RESULT INCORRECT! )**](#claim--convergence-rate-of-gradient-descent-result-incorrect)
 
 
 ---
@@ -700,7 +700,7 @@ We highlight new techniques for the analysis and ideas that simplifies the proce
 The difficult part of the analysis relates to stepszies in the range $(L^{-1}, 2L^{-1})$, and varying stepszie sequence. 
 
 
-#### **Claim | Convergence rate of gradient descent**
+#### **Claim | Convergence rate of gradient descent (RESULT INCORRECT! )**
 > Let $f$ be $L$-smooth convex. 
 > Assume that recursively the successive iterates of gradient descent satisfies: $x_{t + 1} = x_t - \eta_t \nabla f(x_t)$. 
 > Let $\eta_i$ be a sequence of stepsize used, with constaint
