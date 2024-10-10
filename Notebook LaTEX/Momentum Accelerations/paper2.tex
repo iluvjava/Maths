@@ -39,9 +39,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Introduction}
     
+
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this paper.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function and lower surrogate function. 
-    We generalized the framework function $h = f + g$ where $f$ is $L$-Lipschitz smooth and $g$ is convex lower semi-continuous whose proximal mapping can be evaluated exactly for algorithm implementations. 
+    We generalized the framework to support composite additive objective of form $h = f + g$ where $f$ is $L$-Lipschitz smooth and $g$ is convex lower semi-continuous whose proximal mapping can be evaluated exactly for algorithm implementations. 
+    We survey the literatures before stating our contributions. 
     
     % As a major extension, our work describes the method of proximal gradient using the PPM interpretations. 
     % We also compactify the proof using Lypunov analysis, which allows us to show the convergence still holds even if there is error in the evaluations of the proximal gradient operator. 
@@ -49,39 +51,41 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     % \cite{chambolle_convergence_2015}, \cite{beck_fast_2009-1}, \cite[Chapter 12]{ryu_large-scale_2022}
     % of the accelerated gradient (AG) and show that they all falls within the same framework. 
 
-    \par
-    Extension of the Nesterov acceleration uses Nesterov's estimating sequence for convergence analysis. 
-    See \cite{guler_new_1992} for an accelerating the proximal point method in convex settings. 
-    See \cite{necoara_linear_2019} for a convergence analysis using Nesterov's estimating sequence in the non stornlgy convex settings. 
-    This technique can be found in \cite[chapter 2]{nesterov_lectures_2018}. 
-    It involves constructing a sequence of functions: $\phi_k:\RR^n \mapsto \RR^n$ and assume there exists a sequence $(x_n)_{n\in \N \cup \{0\}}$ a priori such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
-    The representation for $\phi_k$ involves many parameters. 
-    Disregarding its complicated nature, the technique is powerful. 
-    In Ahn's works, they showed an alternative proof using the proximal point interpretation of the Nesterov's accelerated gradient. 
-    It used Moreau envelope for the Lyapunov analysis.
-    It used the parameters from the proximal point method. 
-    It has fewer parameters while still encompasses several variants of the Nesterov accelerated gradient algorithm under the same framework. 
-    Their approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
+    \subsection{Background}
+        In the literatures, extensions of the Nesterov acceleration uses Nesterov's estimating sequence for convergence analysis. 
+        See \cite{guler_new_1992} for an accelerating the proximal point method in convex settings. 
+        See \cite{necoara_linear_2019} for a convergence analysis using Nesterov's estimating sequence in the non stornlgy convex settings. 
+        This technique can be found in \cite[chapter 2]{nesterov_lectures_2018}. 
+        It involves constructing a sequence of functions: $\phi_k:\RR^n \mapsto \RR^n$ and assume there exists a sequence $(x_n)_{n\in \N \cup \{0\}}$ a priori such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
+        The representation for $\phi_k$ involves many parameters. 
+        Disregarding its complicated nature, the technique is powerful. 
+        In Ahn's works, they showed an alternative proof using the proximal point interpretation of the  accelerated gradient. 
+        It used Moreau envelope for the Lyapunov analysis.
+        It used the parameters from the proximal point method. 
+        It has fewer parameters while still encompasses several variants of the accelerated gradient algorithm under the same framework. 
+        Their approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
 
-    \par
-    Numerous variations of Nesterov accelerated gradient exists in the literatures. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
-    Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
-    In Beck's Book \cite[(10.7.7)]{beck_first-order_nodate}, a variant of FISTA called V-FISTA that achieves faster linear convergence rate is stated. 
-    For a variant of accelerated gradient where the iterates converge (weakly in Hilbert space), see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
-    
-    \par
-    Various interpretations of the Nesterov accelerated gradient exist in literatures. 
-    Consult \cite{su_differential_2015} for a dynamical system interpretation of Nesterov acceleration. 
-    The interpretation leads the valuable insight that restarting the accerlated gradient algorithm periodically leads to faster convergence rate for the class of strongly convex function. 
-    Prompted by the discovery, a copious amount of ideas surrounding restart heuristics appeared. 
+        \par
+        Numerous variations of accelerated gradient exists in the literatures. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
+        Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
+        In Beck's Book \cite[(10.7.7)]{beck_first-order_2017}, a variant of FISTA called V-FISTA that achieves faster linear convergence rate is stated. 
+        For a variant of accelerated gradient where the iterates converge (weakly in Hilbert space), see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
+        
+        \par
+        Various interpretations of the accelerated gradient exist in literatures. 
+        Consult \cite{su_differential_2016} for a dynamical system interpretation of Nesterov acceleration. 
+        The interpretation leads the valuable insight that restarting the accerlated gradient algorithm periodically leads to faster convergence rate for the class of strongly convex function. 
+        Prompted by the discovery, a copious amount of ideas surrounding restart heuristics appeared. 
 
-    Our theories suggests a more generalized formualtion of PPM that describes Nesterov's acceleration using proximal gradient for composite additive convex optimization, and we identifies precisely the relations between the parameters in PPM and variants of Nesterov accelerations found in the literatures. 
+        Our theories suggests a more generalized formualtion of PPM that describes Nesterov acceleration using proximal gradient for composite additive convex optimization, and we identifies precisely the relations between the parameters in PPM and variants of Nesterov accelerations found in the literatures. 
 
-    % \par
-    % The paper is organized as follow: 
-    % \begin{enumerate}
-    %     \item Section 
-    % \end{enumerate}
+        % \par
+        % The paper is organized as follow: 
+        % \begin{enumerate}
+        %     \item Section 
+        % \end{enumerate}
+    \subsection{Contributions}
+
     
 \section{Preliminaries}\label{sec:preliminaries}
     Let the ambient space be $\RR^n$. 
@@ -115,7 +119,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{definition}
     \begin{remark}
         The name ``gradient mapping" comes from \cite[(2.2.54)]{nesterov_lectures_2018}, however, Nesterov was referring to only the case when $g$ is an indicator function of a convex set in his writing. 
-        Of course, in Amir Beck \cite[10.3.2]{beck_first-order_nodate}, it has the exact same definition for gradient mapping as the above. 
+        Of course, in Amir Beck \cite[10.3.2]{beck_first-order_2017}, it has the exact same definition for gradient mapping as the above. 
     \end{remark}
 
     \begin{lemma}[Gradient mapping approximates subgradient]
@@ -436,7 +440,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Where the condition number $\kappa = L/\mu$. 
         \end{definition}
         \begin{remark}
-            This is presented in Beck's Book chapter 10 \cite[(10.7.7)]{beck_first-order_nodate}. 
+            This is presented in Beck's Book chapter 10 \cite[(10.7.7)]{beck_first-order_2017}. 
         \end{remark}
 
     \subsection{The relations between these forms}
@@ -712,6 +716,8 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         It's made with the intention to separate the parameter that relates to the rate of the convergence analysis of the algorithm (which is $\sigma_k$), and the step size used in the algorithm (which is $\tilde \eta_t$) because they are fundamentally different concepts. 
     \end{observation}
 
+\section{Numerical experiments}
+    
 
 % \printbibliography
 
