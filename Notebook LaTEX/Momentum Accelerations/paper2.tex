@@ -39,7 +39,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
 \section{Introduction}
     
-
+    Nesterov \cite{nesterov_method_1983} proposed an algorithm which achieves an optimal convergence rate for a convex, Lipschitz smooth function. 
     Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this paper.
     Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function and lower surrogate function. 
     We generalized the framework to support composite additive objective of form $h = f + g$ where $f$ is $L$-Lipschitz smooth and $g$ is convex lower semi-continuous whose proximal mapping can be evaluated exactly for algorithm implementations. 
@@ -467,7 +467,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*} 
         \hyperref[prop:cham-dossal-2015-is-similar-triangle]
         {Proposition \ref{prop:cham-dossal-2015-is-similar-triangle}}
-        shows that Chambolle Dossal 2015 (\hyperref[def:chambolle-dossal-2015]
+        shows that Chambolle, Dossal 2015 (\hyperref[def:chambolle-dossal-2015]
             {Definition \ref*{def:chambolle-dossal-2015}})
         is an instance of SC Similar Triangle form if and only if when $\mu = 0$. 
         The parameters $t_n$ is the literatures is linked to the step size parameters $\tilde \eta_n, \eta_n$ by the equality: 
@@ -703,7 +703,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \le 
             \tilde \eta_k
             \\
-            & \text{if : }  \tilde \eta_k = L^{-1} t_k, \text{ then equivalently: }
+            & \text{If }  \tilde \eta_k := L^{-1} t_k, \text{ then equivalently: }
             \\
             & L^{-1}t_k^2 - L^{-1}t_{k - 1}^2
             \le L^{-1}t_k 
@@ -717,7 +717,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{observation}
 
 \section{Numerical experiments}
-    
+
 
 % \printbibliography
 
