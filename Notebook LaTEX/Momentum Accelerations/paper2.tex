@@ -38,37 +38,44 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 \noindent{\bfseries Keywords:}
 
 \section{Introduction}
-    Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this section.
-    Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function, and then a lower surrogate function. 
-    Inspired by the interpretation, we generalize the framework to the case of $h = f + g$ with $f$ Lipschitz smooth and $g$ convex whose proximal mapping can be evaluated exactly for algorithm implementations. 
-    In addition, we derive a relaxed step size conditions for the algorithm and their corresponding convergence rate. 
-    As a major extension, our work describes the method of proximal gradient using the PPM interpretations. 
-    We also compactify the proof using Lypunov analysis, which allows us to show the convergence still holds even if there is error in the evaluations of the proximal gradient operator. 
-    We derive a major variant of the Nesterov acceleation algorithm
-    \cite{chambolle_convergence_2015}, \cite{beck_fast_2009-1}, \cite[Chapter 12]{ryu_large-scale_2022}
-    of the accelerated gradient (AG) and show that they all falls within the same framework. 
+    
+    Recent works from Ahn and Sra \cite{ahn_understanding_2022} and Nesterov \cite{nesterov_lectures_2018} inspired content in this paper.
+    Ahn and Sra explored the interpretation of Nesterov acceleration as the proximal point method (PPM) applied to an upper surrogate function and lower surrogate function. 
+    We generalized the framework function $h = f + g$ where $f$ is $L$-Lipschitz smooth and $g$ is convex lower semi-continuous whose proximal mapping can be evaluated exactly for algorithm implementations. 
+    
+    % As a major extension, our work describes the method of proximal gradient using the PPM interpretations. 
+    % We also compactify the proof using Lypunov analysis, which allows us to show the convergence still holds even if there is error in the evaluations of the proximal gradient operator. 
+    % We derive a major variant of the Nesterov acceleation algorithm
+    % \cite{chambolle_convergence_2015}, \cite{beck_fast_2009-1}, \cite[Chapter 12]{ryu_large-scale_2022}
+    % of the accelerated gradient (AG) and show that they all falls within the same framework. 
 
     \par
-    Some of the earlier examples for the extension of the Nesterov acceleration method make use of the classical analysis introduced by Nestrov. 
-    It uses the Nesterov acceleration sequence. 
-    See \cite{guler_new_1992} for an extension of the Nesterov accelerated gradient method to the proximal point method for convex programming. 
-    However the classical analysis found in \cite[chapter 2]{nesterov_lectures_2018} involves the assumption of a specific kind of Lypunov function and a specific format of the Nesterov's estimating sequence to accomodate the proof. 
-    In Ahn's work however, the complexities are packaged into the proximal point interpretation of accelerated gradient. 
-    It uses a lemma from Moreau envelope for the Lypunov analysis.
-    The interpration allows choices of undetermined parameters to encompass several variants of the Nesterov accelerated gradient algorithm. 
-    Ahn and Sra's approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
-    Instead of a mirror descent step on the dual, they propose an alternative without the gradient of the dual. 
+    Extension of the Nesterov acceleration uses Nesterov's estimating sequence for convergence analysis. 
+    See \cite{guler_new_1992} for an accelerating the proximal point method in convex settings. 
+    See \cite{necoara_linear_2019} for a convergence analysis using Nesterov's estimating sequence in the non stornlgy convex settings. 
+    This technique can be found in \cite[chapter 2]{nesterov_lectures_2018}. 
+    It involves constructing a sequence of functions: $\phi_k:\RR^n \mapsto \RR^n$ and assume there exists a sequence $(x_n)_{n\in \N \cup \{0\}}$ a priori such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
+    The representation for $\phi_k$ involves many parameters. 
+    Disregarding its complicated nature, the technique is powerful. 
+    In Ahn's works, they showed an alternative proof using the proximal point interpretation of the Nesterov's accelerated gradient. 
+    It used Moreau envelope for the Lyapunov analysis.
+    It used the parameters from the proximal point method. 
+    It has fewer parameters while still encompasses several variants of the Nesterov accelerated gradient algorithm under the same framework. 
+    Their approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
+
+    \par
+    Numerous variations of Nesterov accelerated gradient exists in the literatures. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
+    Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
+    In Beck's Book \cite[(10.7.7)]{beck_first-order_nodate}, a variant of FISTA called V-FISTA that achieves faster linear convergence rate is stated. 
+    For a variant of accelerated gradient where the iterates converge (weakly in Hilbert space), see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
     
     \par
-    Numerous notable variations of Nesterov accelerated gradient exists. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
-    Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
-    For a variant of accelerated gradient where the iterates converge (weakly in Hilbert space), see Chambolle and Dossal \cite{chambolle_convergence_2015}. 
-    Extension such as the Harpen acceleration for the resolvent operator of a maximally monotone opreator in general is outside of the scope since it not all maximal monotone operator corresponds to a subgradient operator. 
-    \par
-    A wide varieties of interpretation for the Nesterov accelerated gradient exist in the literatures. 
+    Various interpretations of the Nesterov accelerated gradient exist in literatures. 
     Consult \cite{su_differential_2015} for a dynamical system interpretation of Nesterov acceleration. 
-    The dynamical system interpretation of the algorithm leads to the valuable insight that restarting the accerlated gradient algorithm would lead to faster convergence rate for the class of strongly convex function. 
-    In work by \cite{allen-zhu_linear_2016}, they interpreted the idea of Nesterov acceleration as a combinations of gradient descent and mirror descent. 
+    The interpretation leads the valuable insight that restarting the accerlated gradient algorithm periodically leads to faster convergence rate for the class of strongly convex function. 
+    Prompted by the discovery, a copious amount of ideas surrounding restart heuristics appeared. 
+
+    Our theories suggests a more generalized formualtion of PPM that describes Nesterov's acceleration using proximal gradient for composite additive convex optimization, and we identifies precisely the relations between the parameters in PPM and variants of Nesterov accelerations found in the literatures. 
 
     % \par
     % The paper is organized as follow: 
