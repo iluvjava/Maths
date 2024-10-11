@@ -111,6 +111,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
     
 \section{Preliminaries}\label{sec:preliminaries}
+
+    \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!}
+
     Let the ambient space be $\RR^n$. 
     In this section, we define the proximal gradient mapping $\mathcal T_L$, and gradient mapping $\mathcal G_L$ for function satisfying 
     \hyperref[ass:smooth-nonsmooth-sum-lipschitz-grad]
@@ -325,7 +328,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         In addition, we also assume that $f$ is strongly convex with constant $L \ge \mu \ge 0$. 
     \end{assumption}
         In this section, ``SC'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
-
+        
+        \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!}
+        
         Definitions listed below are generic algorithms with underdetermined parameters that can define to accomodate accelerated proximal gradient algorithms appeared in the literatures. 
         We also state the results on the conditions for algebraic equivalency between different forms of accelrated proximal gradient. 
     \subsection{Generic forms of Nesterov accelerated gradient}
@@ -504,6 +509,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
         
 \section{Lyapunov analysis}\label{sec:lyapunov-analysis}
+    
+    \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!RESTATE CONTRIBUTIONS IN MORE DETAILS}
+
     In this section we prove the convergence rate of Similar triangle form when $\mu = 0$. 
     For that we make the following necessary assumption: 
     \begin{assumption}\label{ass:comp-with-minimizers}
@@ -1079,10 +1087,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 \tilde \eta_t &= \eta_t + L^{-1} + L^{-1}\mu \tilde \eta_t
                 \\
+                \iff 
                 L\tilde \eta_t - \mu \tilde \eta_t 
                 &= 
                 L \eta_t + 1
                 \\
+                \iff 
                 (L - \mu)\tilde \eta_t &= L\eta_t + 1. 
             \end{align*}
             For $t_n$ to be the same, these two have to be equivalent, but for all $\mu > 0$
@@ -1110,14 +1120,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \begin{align*}
                 y_{t + 1} &= z_{t + 1} + 
                 \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}
-                (z_{t +1} - z_t)
+                (z_{t +1} - z_t), 
                 \\
                 z_{t + 1} 
                 &= y_t - L^{-1}\mathcal G_L(y_t). 
             \end{align*}
         \end{proposition}
         \begin{proof}
-            
             Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
             $$
             \begin{aligned}
@@ -1165,10 +1174,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \tilde \eta_{t} 
                 &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t}
                 \\
+                \iff
                 (L - \mu)\tilde \eta_{t}
                 &= 
                 1 + L \eta_t 
                 \\
+                \iff
                 L \tilde \eta_{t} - 
                 \mu \tilde \eta_{t}
                 &= 1 + L \eta_t. 
@@ -1229,7 +1240,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             0 &\ge
             \Delta_k - \Delta_{k - 1}
             + \langle \mathcal G_L y_k, z_k - y_k\rangle
-            + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2
+            + \frac{1}{2L} \Vert \mathcal G_L y_k \Vert^2.
         \end{align*}
         \\
         \textbf{Proof for (\ref*{eqn:st2p-3})}: 
