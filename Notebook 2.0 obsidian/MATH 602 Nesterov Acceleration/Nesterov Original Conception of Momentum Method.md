@@ -224,7 +224,7 @@ Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such 
 
 #### **Lemma 2.2.3 | Updating with the Canonical Form**
 > Continuing from the previous corollary,
-> let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(k)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
+> let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(0)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
 > $$
 > \begin{aligned}
 >     \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \alpha_k \mu

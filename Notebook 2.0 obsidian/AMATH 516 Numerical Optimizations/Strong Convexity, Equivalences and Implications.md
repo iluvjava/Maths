@@ -47,7 +47,7 @@ Let $f:\mathbb E\mapsto \mathbb{\bar R}, \alpha > 0$, we consider the following 
 4. $\frac{1}{2}\text{dist}(\mathbf 0; \partial f(x))^2 \ge \alpha (f(x) - f^+)$ where $f^+$ is a minimum of the function, and this is called the Polyak-Lojasiewicz (PL) inequality.
 	1. References, for globally Lipschitz Gradient strongly convex functions: [here](https://angms.science/doc/NCVX/PolyakLojasiewiczIQ.pdf). 
 5. $\forall x, y\in \mathbb E, u\in \partial f(x), v\in \partial f(y): \Vert u - v\Vert\ge \alpha\Vert x - y\Vert$. 
-6. $f(y) \le f(x) + \langle \partial f(x), y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
+6. $f(y) \ge f(x) + \langle u, y - x\rangle + \frac{1}{2\alpha}\Vert u - v\Vert^2, \forall u\in  \partial f(x), v\in \partial f(y)$. 
 7. $\langle \partial f(x)-\partial f(y), x - y\rangle \le \frac{1}{\alpha}\Vert u - v\Vert^2, \forall u\in \partial f(x), v\in \partial f(y)$. 
 8. if $x^+\in \arg\min_{x}f(x)$ then $f(x) - f(x^+) \ge \frac{\alpha}{2}\Vert x - x^+\Vert^2$ and $x^+$ is a unique minimizer. 
 

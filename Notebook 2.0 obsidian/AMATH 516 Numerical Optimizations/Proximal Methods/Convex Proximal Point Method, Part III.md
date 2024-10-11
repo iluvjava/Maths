@@ -239,6 +239,12 @@ $$
         \lambda_k^2\Vert g_k\Vert^2
         +
         2\langle x_k - x_*, \lambda_k g_k\rangle
-    \right)
+    \right). 
 \end{aligned}
 $$
+
+
+**Remark**
+
+Sleek proof isn't it? 
+What about strongly convex, PL conditions? 
