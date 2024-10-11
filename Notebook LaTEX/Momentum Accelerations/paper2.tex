@@ -78,12 +78,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         Consult \cite{su_differential_2016} for a dynamical system interpretation of Nesterov acceleration. 
         The interpretation leads the valuable insight that restarting the accerlated gradient algorithm periodically leads to faster convergence rate for the class of strongly convex function. 
         Early attempt such as Monotone FISTA and their convergence rate analysis can be found in Beck and Touboulle \cite{beck_fast_2009}. 
-        See Goldstein \cite{goldstein_field_2016} and references therein for different types of heuristics for restarting. 
         Aujol \cite{aujol_optimal_2019} showed that the convergence rate of original FISTA proposed by Beck and Touboulle \cite{beck_fast_2009} is sublinear hence suboptimal. 
         Prompted the two discoveries, a copious amount of ideas surrounding restart heuristics appeared in the literatures. 
-        See Aujol \cite{aujol_parameter-free_2023}, Calatroni and Chambolle \cite{calatroni_backtracking_2019} and references within for algorithms that has optimal convergence rate for $L$ smooth and $\mu \ge 0$ strongly convex function, without needing the values of $\mu, L$ run the algorithm. 
+        See Aujol \cite{aujol_parameter-free_2024}, Calatroni and Chambolle \cite{calatroni_backtracking_2019} and references within for algorithms that has optimal convergence rate for $L$ smooth and $\mu \ge 0$ strongly convex function, without needing the values of $\mu, L$ run the algorithm. 
         In general, proving the convergence for algorithm heuristics is difficult and requires sometimes requires a profound understanding. 
-        See Moursi et al. \cite{moursi_accelerated_2023} for a proof of a specific type of parameter free restarting heuristics without function values for one dimensional functions and its extension. 
+        See Moursi et al. \cite{moursi_accelerated_2023} preprint and references within for a proof of a specific type of parameter free restarting heuristics without function values for one dimensional functions and its extension and literature reviews on various type of heuristic employed to achieve fast linear convergence on accelerated gradient for strongly convex objective. 
 
         % \par
         % The paper is organized as follow: 
@@ -199,7 +198,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \end{align*}
     \end{lemma}
     \begin{proof}
-        Using the $L$-smoothness of $f$ and convexity of $g, f$, it has inequalities
+        Using the $L$-smoothness of $f$ and convexity of $g, f$, we obtained inequalities
         \begin{align*}
             &f(x^+) \le 
             f(x) + \langle \nabla f(x), x^+ - x\rangle
@@ -212,7 +211,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \\
             &g(x^+) \le 
             g(z) + \langle v, x^+ - z\rangle\quad 
-            \forall v \in \partial g(x^+)
+            \forall v \in \partial g(x^+). 
         \end{align*}
         For all $v \in \partial g (x^+)$, apply the above by considering the following sequence of relations
         \begin{align*}
@@ -277,12 +276,13 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 &= h(z) + 
                 \langle \nabla f(x) + v, x^+ - z\rangle 
                 - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2
+                + \frac{L}{2}\Vert x - x^+\Vert^2.
             \end{aligned}
         \end{align*}
-        Showed in  
+        As showed in  
         \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$, choose $v \in \partial g(x^+)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L(x - x^+)$, so it yields
+        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$.
+        Choose $v \in \partial g(x^+)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L(x - x^+)$ then
         \begin{align*}
             h(x^+) & 
             \le  
@@ -295,9 +295,9 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 = - \langle \mathcal G_L (x), z - x\rangle
             }
             - \frac{\mu}{2}\Vert z - x\Vert^2
-            - \frac{L}{2}\Vert x - x^+\Vert^2
+            - \frac{L}{2}\Vert x - x^+\Vert^2.
         \end{align*}
-        Moving everything except $h(z)$ from the RHS to the LHS yield the desired inequality. 
+        Moving everything except $h(z)$ from the RHS to the LHS yields the desired inequality. 
     \end{proof}
     \begin{remark}
         The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
@@ -325,9 +325,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         In addition, we also assume that $f$ is strongly convex with constant $L \ge \mu \ge 0$. 
     \end{assumption}
         In this section, ``SC'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
+
         Definitions listed below are generic algorithms with underdetermined parameters that can define to accomodate accelerated proximal gradient algorithms appeared in the literatures. 
         We also state the results on the conditions for algebraic equivalency between different forms of accelrated proximal gradient. 
-    \subsection{The definitions for generic forms}
+    \subsection{Generic forms of Nesterov accelerated gradient}
         \newcommand{\SCPPMAPG}{SC PPM APG}
         \begin{definition}[\SCPPMAPG]\label{def:SC-PPM-APG}
             
