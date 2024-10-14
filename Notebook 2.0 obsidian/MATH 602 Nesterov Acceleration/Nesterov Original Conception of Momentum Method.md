@@ -215,8 +215,6 @@ To fit this update to the characterizations, lemma 2.2.1, it it's required to id
 The same exact proof follows through, replacing the convexity lower bound for $f\in \mathcal F_{\mu, L}^{1, 1}$ with rule (6.) above. 
 
 
-
-
 ---
 ### **Giving a Form to the Estimating Sequence and Functions so It's easy to Derive the Algorithm**
 
@@ -224,7 +222,7 @@ Nesterov find a simple quadratic form for the estimating sequence $\phi_k$ such 
 
 #### **Lemma 2.2.3 | Updating with the Canonical Form**
 > Continuing from the previous corollary,
-> let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(0)}\Vert^2$. Then the process described in lemma 2.2.2 preseves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minmizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ staifies the recurrence
+> let $\phi_0^* + \frac{\gamma_0}{2}\Vert x - v^{(0)}\Vert^2$. Then the process described in lemma 2.2.2 preserves this canonical form for functions $\phi_k(x)$, with $\phi_k(x) = \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2$, where $v^{(k)}$ is the minimizer of $\phi_k$, and the parameters $\gamma_k, v^{(k)}, \phi_k^*$ that define $\phi_k$ satisfiying the recurrence
 > $$
 > \begin{aligned}
 >     \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \alpha_k \mu

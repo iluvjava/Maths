@@ -26,12 +26,23 @@ Unfortunately to assert the convergence of algorithm such as gradient descent me
 3. $\mathbf 0 \in \partial f(x^*)$, so $x_*$ is a stationary point. $\partial f$ is the Limiting subgradient. 
 
 Suppose that the method gradient descent generates for all $x_0$, $x_{k + 1} = x_k - L^{-1} \nabla f(x_k)$. 
+The following claims show the convergence to a stationary point of the gradient descent algorithm and PPM under the assumption. 
 
 #### **Claim | Linear convergence to stationary point**
+
+
+
 
 
 **Proof**
 
 #### **Claim | Convergence rate of proximal point method**
 
+
+
+
 **Proof**
+
+
+**Remarks**
+
