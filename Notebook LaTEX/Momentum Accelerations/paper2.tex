@@ -99,11 +99,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         It covers more variants of proximal accelerated gradient type algorithm in the literatures. 
         \par
         This paper is organized as follows. 
-        \hyperref[sec:preliminaries]{Section \ref*{sec:preliminaries}} introduces the proximal gradient operator, the gradient mapping, and the proximal gradient lemma. 
+        \hyperref[sec:preliminaries]{Section \ref*{sec:preliminaries}} introduces the proximal gradient operator $\mathcal T_L$, the gradient mapping $\mathcal G_L$, and the proximal gradient lemma. 
         They are pivotal derive the convergence rate and the generic formulations of accelerated proximal gradient via PPM interpretations. 
         \hyperref[sec:different-forms-acc-grad]{Section \ref*{sec:different-forms-acc-grad}}
-        identifies precisely the relations between the parameters in PPM and variants of Nesterov accelerations found in the literatures. 
-        \hyperref[sec:lyapunov-analysis]{Section \ref*{sec:lyapunov-analysis}} gives a sleek Lypapunov argument for the convergence of the PPM form of Nesterov acceleration algorithm, it generalizes the stepsize conditions further from previous works by Ahn and Sra. 
+        identifies precisely the relations between the parameters in PPM and variants of Nesterov accelerations found in the literatures, which are stated in 
+        \hyperref[def:chambolle-dossal-2015]{Definition \ref*{def:chambolle-dossal-2015}}, 
+        \hyperref[def:v-fista]{Definition \ref*{def:v-fista}}. 
+        \hyperref[sec:lyapunov-analysis]{Section \ref*{sec:lyapunov-analysis}} gives a sleek Lypapunov argument for the convergence of the PPM form of Nesterov acceleration algorithm 
+        (\hyperref[def:SC-similar-triangle]{Definition \ref*{def:SC-similar-triangle}}) 
+        when $\mu = 0$, it generalizes the stepsize conditions further from previous works by Ahn and Sra. 
         \hyperref[sec:numerical-experiments]{Section \ref*{sec:numerical-experiments}}
         suggests new line search heuristic ideas that determines the parameters $\mu, L$ during the execution of the algorithm. 
         The design attempts to retain fast linear convergence without parameters $\mu, L$ prior.         
@@ -115,12 +119,17 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!}
 
     Let the ambient space be $\RR^n$. 
-    In this section, we define the proximal gradient mapping $\mathcal T_L$, and gradient mapping $\mathcal G_L$ for function satisfying 
-    \hyperref[ass:smooth-nonsmooth-sum-lipschitz-grad]
-    {Assumption \ref*{ass:smooth-nonsmooth-sum-lipschitz-grad}}. 
-    A lower bound function is identified using the gradient mapping operator and proved in
-    \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}, 
-    this is a key component of the proximal point interpretation of the accelerated gradient method. 
+    In this section, we build up the necessary tools for 
+    \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
+    by defining the the concept of a gradient mapping $\mathcal G_L$ and their properties. 
+    The concepts are standard tools of analysis and they can be readifly found in the Beck's book \cite{beck_first-order_2017}. 
+    We amphasize that the use of 
+    \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
+    differs from the original analysis presented in \cite{ahn_understanding_2022} because it compatifies the the smoothness together with proximal inequlaity into one statement which eventually simplifies the convergence proof of the generic PPM formulation of accelerated gradient in
+    \hyperref[sec:lyapunov-analysis]{Section \ref*{sec:lyapunov-analysis}}. 
+    The inequality proved \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}} 
+    is compared with other similar lemma in the literatures in the remark. 
+    
     \begin{assumption}\label{ass:smooth-nonsmooth-sum-lipschitz-grad}
         Let $h = f + g$ where $f, g$ are convex, lower semi-continuous and $f$ is Lipschitz-Smooth with constant $L$. 
     \end{assumption}
@@ -304,8 +313,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{proof}
     \begin{remark}
         The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
-        Additionally, the inequality has a bizzare resemblence to the proximal inequality. 
-        Let $h = g + h$ be convex, $f \equiv 0$, consider $x^+ = \hprox_{\eta g}(x)$ for some $\eta > 0$, then by proximal operator being a resolvent it has $\eta^{-1}(x - x^+)\in \partial g(x^+)$, so by convexity it produces inequality for all $z\in \RR^n$: 
+        Further more, this inequality is sometimes referred to as the Fundamental Prox-grad Inequality in the literatures. 
+        See Beck \cite[Theorem 10.16]{beck_first-order_2017}. 
+        In the case when the smooth function is identically zero it reduces to Heinz \cite[Proposition 12.26]{bauschke_convex_2017}. 
+        Let $h = g + h$ be convex, $f \equiv 0$, consider $x^+ = \hprox_{\eta g}(x)$ for some $\eta > 0$, then the proximal operator is a resolvent it has $\eta^{-1}(x - x^+)\in \partial g(x^+)$. 
+        By convexity and subgradient inequality we have for all $z\in \RR^n$: 
         \begin{align*}
             g(z) - g(x^+) 
             &\ge \langle \eta^{-1}(x - x^+), z - x^+\rangle
@@ -315,6 +327,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             &= \langle \eta^{-1}(x - x^+), z - x \rangle + 
             \eta\Vert \eta^{-1}(x - x^+)\Vert^2. 
         \end{align*}
+        Which is analogous to what we proved. 
     \end{remark}
 
 \section{Different forms of Nesterov's accelerated gradient}\label{sec:different-forms-acc-grad}
@@ -750,8 +763,12 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         The sequence $\sigma_k$ is defined to represent the convergence rate. 
         It's made with the intention to separate the parameter that relates to the rate of the convergence analysis of the algorithm (which is $\sigma_k$), and the step size used in the algorithm (which is $\tilde \eta_t$) because they are fundamentally different concepts. 
     \end{observation}
+    \begin{remark}
+        This proof is inspired by a Lyapunov anlaysis presented in Ryu's Book \cite[Chapter 12]{ryu_large-scale_2022}. 
+    \end{remark}
 
 \section{Numerical experiments}\label{sec:numerical-experiments}
+    \subsection{The design of the line search algorithm for strongly convex objective}
 
 
 % \printbibliography

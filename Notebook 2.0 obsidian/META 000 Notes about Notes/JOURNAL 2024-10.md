@@ -5,8 +5,12 @@ For this month, on math research, we have the following list of things going on:
 1. Catalyst Acceleration Frameworks (Related to the Nesterov Acceleration)
 2. Incremental methods and inexact proximal point method (Related to the proximal point method)
 
-### **Thesis Proposal real brain storm**
+### **Thesis Proposal**
 We don't think it's wise to procrastinate this matter, hence we are going to brain storm the situation seriously here. 
+
+#### Theme 
+1. Algorithm convergence analysis
+2. Applying Catalyst Frameworks to a larger context, where applications and programming is relevant. 
 
 
 ### **Misc random stuff**

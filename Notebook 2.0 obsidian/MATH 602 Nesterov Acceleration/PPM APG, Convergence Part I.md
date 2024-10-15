@@ -55,6 +55,12 @@ For all $t \in \N \cup \{0\}$, let $\Delta_k = h(z_{k + 1}) - h(\bar x)$ denote 
 > \end{aligned}
 > $$
 
+**Remarks**
+
+This lemma has the smoothness of $f$ and the proximal inequality of $g$ compatified into one single statement. 
+This statement should have a Bregman Prox extension that may assists the proof of the Bregman proximal point variant of the algorithm, however this is not yet known by the writer at current stage. 
+
+
 
 ---
 ### **The convergence rate of the algorithm**
