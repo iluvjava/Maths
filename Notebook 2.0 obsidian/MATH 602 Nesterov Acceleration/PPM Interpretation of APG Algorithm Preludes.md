@@ -199,4 +199,165 @@ $$
 Substituting $\mathcal G_L(x) = L (x - x^+)$ to the above expression, rearrange it a bit will recover the desired inequalities. 
 Therefore, the inequality is justified. 
 
+**Remarks**
 
+<mark style="background: #FFB86CA6;">This inequality is not tight. </mark>
+Observe that $\mu/2\Vert z - x\Vert^2 \le D_f(z, x)$, where $D_f$ is the Bregman Divergence of $f$. 
+
+
+#### **Lemma 0.3 | Weaker linear lower bound of the Gradient Mapping**
+> Suppose that $h = f + g$ where $g$ is convex and $f$ is Lipschitz smooth. 
+> Denote $D_f(x,y)$ to be the Bregman divergence $f(x) - f(y) - \langle \nabla f(y), x - y\rangle$ for all $x, y$. 
+> Let $\mathcal T_L(x)$ be the proximal gradient operator and $\mathcal G_L = I - \mathcal T_L$ be the gradient mapping.
+> Fix any $x \in \R^n$, then for all $z$ we have the inequality: 
+> $$
+> \begin{aligned}
+>     h(z) - h(\mathcal T_L x) - \langle \mathcal G_L (x), z - x\rangle - 
+>     D_f(z, x) - \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2 \ge 0. 
+> \end{aligned}
+> $$
+
+Let's fix $x$, 
+From smoothness of $f$ we have: 
+
+$$
+\begin{aligned}
+    D_f(\mathcal T_Lx, x) - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    &\le 0
+    \\
+    \iff 
+    f(x) - f(\mathcal T_L x) - \langle \nabla f(x), x - \mathcal T_L x\rangle + 
+    \frac{L}{2}\Vert x-  \mathcal T_L x\Vert^2 
+    &\ge 0
+    \\
+    \iff 
+    f(x) - f(\mathcal T_L x)
+    - \langle \nabla f(x), z - \mathcal T_L x\rangle
+    - \langle \nabla f(x), x - z\rangle
+    + 
+    \frac{L}{2}\Vert x-  \mathcal T_L x\Vert^2 
+    &\ge 0
+\end{aligned}\tag{1}
+$$
+
+From the convexity of $g$ we have for all $z$: 
+
+$$
+\begin{aligned}
+    (\forall v \in \partial g(\mathcal T_L x))
+    \quad 
+    g(z) - g(\mathcal T_L x) 
+    - \langle  v, z - \mathcal T_L x\rangle
+    &\ge 0
+\end{aligned}\tag{2}
+$$
+
+Adding (1) and (2) together, we have for all $v \in \partial g(\mathcal T_L x)$
+
+$$
+\begin{aligned}
+    g(z) + f(x) - h(\mathcal T_Lx)
+    - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+    - \langle \nabla f(x), x - z\rangle
+    + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2 &\ge 0
+    \\
+    \iff 
+    h(z) - h(\mathcal T_L x)
+    - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+    + f(x) - f(z) 
+    - \langle \nabla f(x), x - z\rangle
+    + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    h(z) - h(\mathcal T_L x)
+    - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+    - D_f(z, x)
+    + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    &\ge 0. 
+\end{aligned}
+$$
+
+Apply Lemma 0.1 so $\exists v \in \partial g(\mathcal T_L x)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L (x - \mathcal T_L x)$, therefore the above becomes
+
+$$
+\begin{aligned}
+    h(z) - h(\mathcal T_L x)
+    - \langle L(x - \mathcal T_L x) , z - \mathcal T_L x\rangle
+    - D_f(z, x)
+    + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    h(z) - h (\mathcal T_L x)
+    - \langle L(x - \mathcal T_L x), z - x + x - \mathcal T_L x\rangle
+    + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    - D_f(z, x)
+    &\ge 0
+    \\
+    \iff 
+    h(z) - h (\mathcal T_L x)
+    - \langle L(x - \mathcal T_L x), z - x\rangle
+    - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+    - D_f(z, x)
+    &\ge 0
+    \\
+    \iff 
+    h(z) - h (\mathcal T_L x)
+    - \langle \mathcal G_L x, z - x\rangle
+    - \frac{1}{2L}\Vert \mathcal G_L x\Vert^2
+    - D_f(z, x)
+    &\ge 0. 
+\end{aligned}
+$$
+
+**Remarks**
+
+This is actually the same inequality used in the [V-FISTA](V-FISTA.md). 
+This can be interpreted as an the consequence of the inexact evaluation of using proximal gradient operator. 
+More specifically, assuming that we have the exact proximal point evaluation for function $h$ at $x$ be given by: 
+
+$$
+\begin{aligned}
+    \mathcal P_L x := \argmin{y}\left\lbrace
+        h(y) + \frac{L}{2}\Vert  y- x\Vert^2
+    \right\rbrace, 
+\end{aligned}
+$$
+
+using convexity, and subdifferentia, we get the proximal inequality: 
+
+$$
+\begin{aligned}
+    h(x) - h(\mathcal P_Lx) 
+    - \langle \partial h(\mathcal P_L x), x - \mathcal P_L x\rangle
+    &\ge 
+    0
+    \\
+    \textcolor{gray}{
+        \text{by: }
+        L(x - \mathcal P_L x) \in \partial h(\mathcal P_L x)
+    }&
+    \\
+    \implies 
+    h(x) - h(\mathcal P_Lx) 
+    - \langle L(x - \mathcal P_L x), x - \mathcal P_L x\rangle
+    &\ge 0. 
+\end{aligned}
+$$
+
+When proving the above results, we have the intermediate step: 
+
+$$
+\begin{aligned}
+    h(z) - h(\mathcal T_L x) 
+    - \langle
+        L(x - \mathcal T_L x), 
+        z - \mathcal T_L x
+    \rangle 
+    &\ge 
+    D_f(z, x) - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2. 
+\end{aligned}
+$$
+
+The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very similar inequality, the quantities on the RHS can be interpreted as the error of the approximation by the proximal gradient operator $\mathcal T_L x$. 

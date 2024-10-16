@@ -190,145 +190,292 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \mathcal G_L(x) &\in \nabla f(x) + \partial g(x^+). 
         \end{align*}
     \end{proof}
-
-    \begin{lemma}[Linearized gradient mapping lower bound]
-    \label{lemma:grad_map_linearization}\; \\
+    \begin{theorem}[Proximal gradient inequality]\label{thm:prox-grad-inequality}
         Suppose that $h = f + g$ satisfies 
         \hyperref[ass:smooth-nonsmooth-sum-lipschitz-grad]
-        {Assumption \ref*{ass:smooth-nonsmooth-sum-lipschitz-grad}}, 
-        further assume that $f$ is strongly convex with index $\mu \ge 0$. 
-        Let $x^+ = \mathcal T_L(x)$ as given in 
+        {Assumption \ref*{ass:smooth-nonsmooth-sum-lipschitz-grad}}. 
+        Let proximal gradient operator and gradient mapping $\mathcal T_L, \mathcal G_L$ be given by
         \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
-        Then for all $z \in \RR$, it satisfies
+        Denote $D_f(x, y) := f(x) - f(y) - \langle \nabla f(y), x - y\rangle$, the Bregman Divergence induced by $f$. 
+        Then for all $z \in \RR$, it satisfies: 
         \begin{align*}
-            h(z) &\ge 
-            h(x^+) + 
-            \langle \mathcal G_L (x), z - x\rangle 
-            + 
-            \frac{L}{2}\Vert x - x^+\Vert^2 + \frac{\mu}{2}
-            \Vert z - x\Vert^2. 
+            h(z) - h(\mathcal T_L x) - \langle \mathcal G_L (x), z - x\rangle - 
+            D_f(z, x) - \frac{1}{2L}\Vert \mathcal G_L(x)\Vert^2 \ge 0. 
         \end{align*}
-    \end{lemma}
+    \end{theorem}
     \begin{proof}
-        Using the $L$-smoothness of $f$ and convexity of $g, f$, we obtained inequalities
+        Fix $x$, 
+        from Lipschitz smoothness of $f$ we have: 
         \begin{align*}
-            &f(x^+) \le 
-            f(x) + \langle \nabla f(x), x^+ - x\rangle
-            + \frac{L}{2}\Vert x - x^+\Vert^2, 
+            D_f(\mathcal T_Lx, x) - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            &\le 0
             \\
-            &
-            \frac{\mu}{2}\Vert z - x\Vert^2+ 
-            f(x) + \langle \nabla f(x), z - x\rangle 
-            \le f(z), 
+            \iff 
+            f(x) - f(\mathcal T_L x) - \langle \nabla f(x), x - \mathcal T_L x\rangle + 
+            \frac{L}{2}\Vert x-  \mathcal T_L x\Vert^2 
+            &\ge 0
             \\
-            &g(x^+) \le 
-            g(z) + \langle v, x^+ - z\rangle\quad 
-            \forall v \in \partial g(x^+). 
+            \iff 
+            f(x) - f(\mathcal T_L x)
+            - \langle \nabla f(x), z - \mathcal T_L x\rangle
+            - \langle \nabla f(x), x - z\rangle
+            + 
+            \frac{L}{2}\Vert x-  \mathcal T_L x\Vert^2 
+            &\ge 0
+            \tag{$*$}
         \end{align*}
-        For all $v \in \partial g (x^+)$, apply the above by considering the following sequence of relations
+        From the convexity of $g$ we have for all $z$: 
         \begin{align*}
-            h(x^+) &= f(x^+) + g(x^+)
-            \\&
-            \begin{aligned}
-                &\le 
-                \left(
-                    f(x) + \langle \nabla f(x), x^+ - x\rangle
-                    + \frac{L}{2}\Vert x - x^+\Vert^2
-                \right)
-                \\
-                &\qquad  
-                + (g(z) + \langle v, x^+ - z\rangle)
-            \end{aligned}
-            \\&
-            \begin{aligned}
-                &\le 
-                \left(
-                    f(z) - \langle \nabla f(x), z - x\rangle
-                    - \frac{\mu}{2}\Vert z - x\Vert^2
-                    + \langle \nabla f(x), x^+ - x\rangle
-                    + 
-                    \frac{L}{2}\Vert x - x^+\Vert^2
-                \right)
-                \\
-                &\qquad 
-                +
-                (g(z) + \langle v, x^+ - z\rangle)
-            \end{aligned}
-            \\&
-            \begin{aligned}
-                &= 
-                (f(z) + h(z)) 
-                \\
-                &\qquad 
-                + \left(
-                    \langle \nabla f(x), x - z\rangle + 
-                    \langle \nabla f(x), x^+ - x\rangle + 
-                    \langle v, x^+ - z\rangle
-                \right) 
-                \\ 
-                &\qquad 
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2
-            \end{aligned}
-            \\& 
-            \begin{aligned}
-                &= h(z) + 
-                \left(
-                    \langle \nabla f(x), x - x^+ + x^+ - z\rangle + 
-                    \langle \nabla f(x), x^+ - x\rangle + 
-                    \langle v, x^+ - z\rangle
-                \right)
-                \\
-                &\qquad 
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2
-            \end{aligned}
-            \\& 
-            \begin{aligned}
-                &= h(z) + 
-                \langle \nabla f(x) + v, x^+ - z\rangle 
-                - \frac{\mu}{2}\Vert z - x\Vert^2
-                + \frac{L}{2}\Vert x - x^+\Vert^2.
-            \end{aligned}
+            (\forall v \in \partial g(\mathcal T_L x))
+            \quad 
+            g(z) - g(\mathcal T_L x) 
+            - \langle  v, z - \mathcal T_L x\rangle
+            &\ge 0
+            \tag{$\star$}
         \end{align*}
-        As showed in  
-        \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
-        we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$.
-        Choose $v \in \partial g(x^+)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L(x - x^+)$ then
+        Adding ($*$) and ($\star$) together, we have for all $v \in \partial g(\mathcal T_L x)$
+        {\small
         \begin{align*}
-            h(x^+) & 
-            \le  
-            h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
-            - \frac{\mu}{2}\Vert z - x\Vert^2
-            + \frac{L}{2}\Vert x - x^+\Vert^2
+            g(z) + f(x) - h(\mathcal T_Lx)
+            - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+            - \langle \nabla f(x), x - z\rangle
+            + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2 &\ge 0
             \\
-            &= h(z) + 
-            \underbrace{\langle L(x - x^+), x - z\rangle}_{
-                = - \langle \mathcal G_L (x), z - x\rangle
-            }
-            - \frac{\mu}{2}\Vert z - x\Vert^2
-            - \frac{L}{2}\Vert x - x^+\Vert^2.
+            \iff 
+            h(z) - h(\mathcal T_L x)
+            - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+            + f(x) - f(z) 
+            - \langle \nabla f(x), x - z\rangle
+            + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            &\ge 0
+            \\
+            \iff 
+            h(z) - h(\mathcal T_L x)
+            - \langle \nabla f(x) + v, z - \mathcal T_L x\rangle
+            - D_f(z, x)
+            + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            &\ge 0. 
         \end{align*}
-        Moving everything except $h(z)$ from the RHS to the LHS yields the desired inequality. 
+        }
+        Apply 
+        \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}} 
+        so $\exists v \in \partial g(\mathcal T_L x)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L (x - \mathcal T_L x)$, therefore the above becomes
+        \begin{align*}
+            h(z) - h(\mathcal T_L x)
+            - \langle L(x - \mathcal T_L x) , z - \mathcal T_L x\rangle
+            - D_f(z, x)
+            + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            &\ge 0
+            \\
+            \iff 
+            h(z) - h (\mathcal T_L x)
+            - \langle L(x - \mathcal T_L x), z - x + x - \mathcal T_L x\rangle
+            + \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            - D_f(z, x)
+            &\ge 0
+            \\
+            \iff 
+            h(z) - h (\mathcal T_L x)
+            - \langle L(x - \mathcal T_L x), z - x\rangle
+            - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2
+            - D_f(z, x)
+            &\ge 0
+            \\
+            \iff 
+            h(z) - h (\mathcal T_L x)
+            - \langle \mathcal G_L x, z - x\rangle
+            - \frac{1}{2L}\Vert \mathcal G_L x\Vert^2
+            - D_f(z, x)
+            &\ge 0. 
+        \end{align*}
     \end{proof}
+    \begin{observation}
+        This can be interpreted as an the consequence of the inexact evaluation of using proximal gradient operator. 
+        More specifically, assuming that we have the exact proximal point evaluation for function $h$ at $x$ be given by: 
+        \begin{align*}
+            \mathcal P_L x := \argmin{y}\left\lbrace
+                h(y) + \frac{L}{2}\Vert  y- x\Vert^2
+            \right\rbrace, 
+        \end{align*}
+        using convexity, and subdifferentia, we get the proximal inequality: 
+        \begin{align*}
+            h(x) - h(\mathcal P_Lx) 
+            - \langle \partial h(\mathcal P_L x), x - \mathcal P_L x\rangle
+            &\ge 
+            0
+            \\
+            \textcolor{gray}{
+                \text{by: }
+                L(x - \mathcal P_L x) \in \partial h(\mathcal P_L x)
+            }&
+            \\
+            \implies 
+            h(x) - h(\mathcal P_Lx) 
+            - \langle L(x - \mathcal P_L x), x - \mathcal P_L x\rangle
+            &\ge 0. 
+        \end{align*}
+        During the proof above, we had the intermediate step: 
+        \begin{align*}
+            h(z) - h(\mathcal T_L x) 
+            - \langle
+                L(x - \mathcal T_L x), 
+                z - \mathcal T_L x
+            \rangle 
+            &\ge 
+            D_f(z, x) - \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2. 
+        \end{align*}
+        The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very similar inequality, the quantities on the RHS can be interpreted as the error of the approximation by the proximal gradient operator $\mathcal T_L x$. 
+    \end{observation}
     \begin{remark}
         The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
         Further more, this inequality is sometimes referred to as the Fundamental Prox-grad Inequality in the literatures. 
         See Beck \cite[Theorem 10.16]{beck_first-order_2017}. 
         In the case when the smooth function is identically zero it reduces to Heinz \cite[Proposition 12.26]{bauschke_convex_2017}. 
-        Let $h = g + h$ be convex, $f \equiv 0$, consider $x^+ = \hprox_{\eta g}(x)$ for some $\eta > 0$, then the proximal operator is a resolvent it has $\eta^{-1}(x - x^+)\in \partial g(x^+)$. 
-        By convexity and subgradient inequality we have for all $z\in \RR^n$: 
-        \begin{align*}
-            g(z) - g(x^+) 
-            &\ge \langle \eta^{-1}(x - x^+), z - x^+\rangle
-            \\
-            &= \langle \eta^{-1}(x - x^+), z - x + x - x^+\rangle 
-            \\
-            &= \langle \eta^{-1}(x - x^+), z - x \rangle + 
-            \eta\Vert \eta^{-1}(x - x^+)\Vert^2. 
-        \end{align*}
-        Which is analogous to what we proved. 
     \end{remark}
+
+    \begin{lemma}[Gradient mapping inequality]
+    \label{lemma:grad_map_linearization}\; \\
+        Suppose that $h = f + g$ satisfies 
+        \hyperref[ass:smooth-nonsmooth-sum-lipschitz-grad]
+        {Assumption \ref*{ass:smooth-nonsmooth-sum-lipschitz-grad}}. 
+        Let proximal gradient operator and gradient mapping $\mathcal T_L, \mathcal G_L$ be given by
+        \hyperref[def:gradient_mapping]{Definition \ref*{def:gradient_mapping}}. 
+        Then for all $z \in \RR$, it satisfies: 
+        \begin{align*}
+            h(z) &\ge 
+            h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle + 
+            \frac{L}{2}\Vert x - \mathcal T_L x\Vert^2 + \frac{\mu}{2}
+            \Vert z - x\Vert^2. 
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Apply 
+        \hyperref[thm:prox-grad-inequality]{Theorem \ref*{thm:prox-grad-inequality}}, 
+        then use $D_f(z, x) \ge \frac{\mu}{2}\Vert z - x\Vert^2$ by 
+        \hyperref[ass:smooth-nonsmooth-sum-lipschitz-grad]
+        {Assumption \ref*{ass:smooth-nonsmooth-sum-lipschitz-grad}}. 
+    \end{proof}
+   
+    % \begin{proof}
+    %     Using the $L$-smoothness of $f$ and convexity of $g, f$, we obtained inequalities
+    %     \begin{align*}
+    %         &f(x^+) \le 
+    %         f(x) + \langle \nabla f(x), x^+ - x\rangle
+    %         + \frac{L}{2}\Vert x - x^+\Vert^2, 
+    %         \\
+    %         &
+    %         \frac{\mu}{2}\Vert z - x\Vert^2+ 
+    %         f(x) + \langle \nabla f(x), z - x\rangle 
+    %         \le f(z), 
+    %         \\
+    %         &g(x^+) \le 
+    %         g(z) + \langle v, x^+ - z\rangle\quad 
+    %         \forall v \in \partial g(x^+). 
+    %     \end{align*}
+    %     For all $v \in \partial g (x^+)$, apply the above by considering the following sequence of relations
+    %     \begin{align*}
+    %         h(x^+) &= f(x^+) + g(x^+)
+    %         \\&
+    %         \begin{aligned}
+    %             &\le 
+    %             \left(
+    %                 f(x) + \langle \nabla f(x), x^+ - x\rangle
+    %                 + \frac{L}{2}\Vert x - x^+\Vert^2
+    %             \right)
+    %             \\
+    %             &\qquad  
+    %             + (g(z) + \langle v, x^+ - z\rangle)
+    %         \end{aligned}
+    %         \\&
+    %         \begin{aligned}
+    %             &\le 
+    %             \left(
+    %                 f(z) - \langle \nabla f(x), z - x\rangle
+    %                 - \frac{\mu}{2}\Vert z - x\Vert^2
+    %                 + \langle \nabla f(x), x^+ - x\rangle
+    %                 + 
+    %                 \frac{L}{2}\Vert x - x^+\Vert^2
+    %             \right)
+    %             \\
+    %             &\qquad 
+    %             +
+    %             (g(z) + \langle v, x^+ - z\rangle)
+    %         \end{aligned}
+    %         \\&
+    %         \begin{aligned}
+    %             &= 
+    %             (f(z) + h(z)) 
+    %             \\
+    %             &\qquad 
+    %             + \left(
+    %                 \langle \nabla f(x), x - z\rangle + 
+    %                 \langle \nabla f(x), x^+ - x\rangle + 
+    %                 \langle v, x^+ - z\rangle
+    %             \right) 
+    %             \\ 
+    %             &\qquad 
+    %             - \frac{\mu}{2}\Vert z - x\Vert^2
+    %             + \frac{L}{2}\Vert x - x^+\Vert^2
+    %         \end{aligned}
+    %         \\& 
+    %         \begin{aligned}
+    %             &= h(z) + 
+    %             \left(
+    %                 \langle \nabla f(x), x - x^+ + x^+ - z\rangle + 
+    %                 \langle \nabla f(x), x^+ - x\rangle + 
+    %                 \langle v, x^+ - z\rangle
+    %             \right)
+    %             \\
+    %             &\qquad 
+    %             - \frac{\mu}{2}\Vert z - x\Vert^2
+    %             + \frac{L}{2}\Vert x - x^+\Vert^2
+    %         \end{aligned}
+    %         \\& 
+    %         \begin{aligned}
+    %             &= h(z) + 
+    %             \langle \nabla f(x) + v, x^+ - z\rangle 
+    %             - \frac{\mu}{2}\Vert z - x\Vert^2
+    %             + \frac{L}{2}\Vert x - x^+\Vert^2.
+    %         \end{aligned}
+    %     \end{align*}
+    %     As showed in  
+    %     \hyperref[lemma:grad-map-approx-subgrad]{Lemma \ref*{lemma:grad-map-approx-subgrad}}, 
+    %     we have $\mathcal G_L(x) \in \nabla f(x) + \partial g(x^+)$.
+    %     Choose $v \in \partial g(x^+)$ such that $\mathcal G_L(x) = \nabla f(x) + v = L(x - x^+)$ then
+    %     \begin{align*}
+    %         h(x^+) & 
+    %         \le  
+    %         h(z) + \langle L(x - x^+), x^+ - x + x - z\rangle 
+    %         - \frac{\mu}{2}\Vert z - x\Vert^2
+    %         + \frac{L}{2}\Vert x - x^+\Vert^2
+    %         \\
+    %         &= h(z) + 
+    %         \underbrace{\langle L(x - x^+), x - z\rangle}_{
+    %             = - \langle \mathcal G_L (x), z - x\rangle
+    %         }
+    %         - \frac{\mu}{2}\Vert z - x\Vert^2
+    %         - \frac{L}{2}\Vert x - x^+\Vert^2.
+    %     \end{align*}
+    %     Moving everything except $h(z)$ from the RHS to the LHS yields the desired inequality. 
+    % \end{proof}
+    % \begin{remark}
+    %     The inequality is analogous to \cite[(2.2.57)]{nesterov_lectures_2018}, however Nesterov stated it only for the case when $g$ is an indicator function of some convex set $Q$. 
+    %     Further more, this inequality is sometimes referred to as the Fundamental Prox-grad Inequality in the literatures. 
+    %     See Beck \cite[Theorem 10.16]{beck_first-order_2017}. 
+    %     In the case when the smooth function is identically zero it reduces to Heinz \cite[Proposition 12.26]{bauschke_convex_2017}. 
+    %     Let $h = g + h$ be convex, $f \equiv 0$, consider $x^+ = \hprox_{\eta g}(x)$ for some $\eta > 0$, then the proximal operator is a resolvent it has $\eta^{-1}(x - x^+)\in \partial g(x^+)$. 
+    %     By convexity and subgradient inequality we have for all $z\in \RR^n$: 
+    %     \begin{align*}
+    %         g(z) - g(x^+) 
+    %         &\ge \langle \eta^{-1}(x - x^+), z - x^+\rangle
+    %         \\
+    %         &= \langle \eta^{-1}(x - x^+), z - x + x - x^+\rangle 
+    %         \\
+    %         &= \langle \eta^{-1}(x - x^+), z - x \rangle + 
+    %         \eta\Vert \eta^{-1}(x - x^+)\Vert^2. 
+    %     \end{align*}
+    %     Which is analogous to what we proved. 
+    % \end{remark}
 
 \section{Different forms of Nesterov's accelerated gradient}\label{sec:different-forms-acc-grad}
     \begin{assumption}\label{ass:smooth-non-smooth-lip-scvx}
@@ -522,10 +669,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
 
         
 \section{Lyapunov analysis}\label{sec:lyapunov-analysis}
-    
-    \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!RESTATE CONTRIBUTIONS IN MORE DETAILS}
 
     In this section we prove the convergence rate of Similar triangle form when $\mu = 0$. 
+    We showed that the convergence rate of the algorithm 
+    (\hyperref[def:SC-similar-triangle]{Definition \ref*{def:SC-similar-triangle}})
+    is $\mathcal O(\tilde \eta ^{-2})$ if the stepsizes from the PPM satisfies the relations: 
+    \begin{align*}
+        \sigma_{k} - \sigma_{k} &\le \tilde\eta_k
+        \\
+        \sigma_k &= L \tilde \eta_k^2. 
+    \end{align*}
     For that we make the following necessary assumption: 
     \begin{assumption}\label{ass:comp-with-minimizers}
         Let $h = f + g$ satisfies 
@@ -768,7 +921,11 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{remark}
 
 \section{Numerical experiments}\label{sec:numerical-experiments}
+    \textcolor{red}{MISSING SECTION SUMMARY HERE, THEY WILL BE FINISHED AFTER THIS SECTION IS SETTLED.}
     \subsection{The design of the line search algorithm for strongly convex objective}
+
+
+
 
 
 % \printbibliography
