@@ -281,7 +281,9 @@ $$
 \end{aligned}
 $$
 
-and by the update rule, the last line indicate $\nabla^2 \phi_{k + 1}(x) = \gamma_{k + 1} I$, therefore, the canonical form is preserved by the updates. Next, we determine that the recurrence is kept under lamme 2.2.2 for $v^{(k)}$, the minimizer for the quadratic canonical form. Substituting the canonical form of $\phi_{k}(x)$ into (\[1\]), results in 
+and by the update rule, the last line indicate $\nabla^2 \phi_{k + 1}(x) = \gamma_{k + 1} I$, therefore, the canonical form is preserved by the updates. 
+Next, we determine that the recurrence is kept under lamma 2.2.2 for $v^{(k)}$, the minimizer for the quadratic canonical form. 
+Substituting the canonical form of $\phi_{k}(x)$ into (\[1\]), results in 
 
 $$
 \begin{aligned}
@@ -326,7 +328,8 @@ $$
 \end{aligned}
 $$
 
-setting $v^{(k + 1)} = x$, it then yields the second invariance from the update. Lastly, we prove that the reuccurrence for $\phi_{k + 1}^*$ holds as well. To prove, we simplify the update rule in (\[1\]) by letting $x = y^{(k)}$, and set $\phi_k$ to its canonical form, and then we equates it to the canonical form of $\phi_{k + 1}$, that is 
+setting $v^{(k + 1)} = x$, it then yields the second invariance from the update. Lastly, we prove that the recurrence for $\phi_{k + 1}^*$ holds as well. 
+To prove, we simplify the update rule in (\[1\]) by letting $x = y^{(k)}$, and set $\phi_k$ to its canonical form, and then we equates it to the canonical form of $\phi_{k + 1}$, that is 
 
 $$
 \begin{aligned}
@@ -363,7 +366,7 @@ $$
 \end{aligned}
 $$
 
-We note that the first 2 terms had matched. The remaining terms should match the recurrence as well. We need to find a representation for $y^{(k)} + v^{(k + 1)}$. For that we use the recurrence of $v^{(k)}$, this gives us 
+We note that the first 2 terms had matched. The remaining terms should match the recurrence as well. We need to find a representation for $y^{(k)} - v^{(k + 1)}$. For that we use the recurrence of $v^{(k)}$, this gives us 
 
 $$
 \begin{aligned}

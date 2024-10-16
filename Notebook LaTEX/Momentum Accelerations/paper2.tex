@@ -646,9 +646,10 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
         \hyperref[prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg]
         {Proposition \ref*{prop:s-cvx-generic-sim-triangle-from-s-cvx-ppm-apg}}
         Shows that SC Similar Triangle Form is an instance of \SCPPMAPG where the step size sequences $\tilde \eta_t, \eta_t$ satisfies equality: 
-        $$
+        \begin{align}
             \tilde \eta_t =\eta_t + L^{-1} + L^{-1}\mu \tilde \eta_t. 
-        $$
+            \label{eqn:similar-tri-stepsize-eq}
+        \end{align}
         \hyperref[prop:momentum-equiv-to-similar-triangle]
         {Proposition \ref*{prop:momentum-equiv-to-similar-triangle}}
         shows that SC Similar Triangle Form is algebraically equivalent to 
@@ -770,7 +771,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
                 \Vert x_{k + 1} - x_+\Vert^2 - \Vert x_k - x_+\Vert^2
             )
             &= 
-            - \tilde \eta_k \langle \mathcal G_L, x_k - x_+\rangle
+            - \tilde \eta_k \langle \mathcal G_L(y_k), x_k - x_+\rangle
             + \frac{\tilde \eta_k^2}{2}\Vert \mathcal G_L(y_k)\Vert^2. 
             \label{eqn:st2p-4}
         \end{align}
@@ -1277,6 +1278,7 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             Therefore, they are only equivalent when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
         \end{proof}
         \begin{proposition}[V-FISTA is Similar Triangle Method]
+        \label{prop:vfista-parameter-math}
             V-FISTA 
             (\hyperref[def:v-fista]{Definition \ref*{def:v-fista}}
             ) is a form of Generic Similar Triangle Form, where the stepsizes $\tilde \eta_t, \eta_t$ are constants: 
@@ -1301,80 +1303,56 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
             \end{align*}
         \end{proposition}
         \begin{proof}
-            Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
-            $$
-            \begin{aligned}
-                L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+            Suppose that $(\rho_t)_{t \in \N}$ is a sequence such that $\rho_t > 1$ for all $t$. 
+            Consider for all $t \in \N$, the following relations between $\rho_t$ and $\tilde \eta_t, \eta_t$: 
+            \begin{align*}
+                L \eta_t &:= \rho_t, 
                 \\
-                \mu \tilde \eta &= 
-                \frac{1}{\sqrt{\kappa} - 1}, 
+                \mu \tilde \eta_t &:= \frac{1}{\rho_t - 1}, 
                 \\
-                L\tilde \eta &= 
-                \frac{\kappa}{\sqrt{\kappa} - 1}. 
-            \end{aligned}
-            $$
-            With that it establishes relations
-            $$
-            \begin{aligned}
-                \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
-                &= 
-                \frac{\sqrt{\kappa}}{
+                L \tilde \eta_t &:= \frac{\rho_t^2}{\rho_t - 1}. 
+            \end{align*}
+            Then it satisfies the of similar triangle $\tilde \eta_t = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_t$ because: 
+            \begin{align*}
+                L \tilde \eta_t - \mu \tilde \eta_t 
+                &= \frac{\rho_t^2}{\rho_t - 1} - \frac{1}{\rho_t - 1}
+                \\
+                &= \frac{\rho_t^2 - 1}{\rho_t - 1} 
+                \\
+                &= \frac{(\rho_t - 1)(\rho_t + 1)}{\rho_t - 1} 
+                \\
+                &= \rho_t + 1
+                \\
+                &= L\eta_t + 1
+            \end{align*}
+            So by 
+            \hyperref[prop:momentum-equiv-to-similar-triangle]{Proposition \ref*{prop:momentum-equiv-to-similar-triangle}}, 
+            the momentum coefficient can be similified as well: 
+            \begin{align*}
+                \theta_{t + 1} 
+                &= \frac{L\eta_t}{(1 + \mu \tilde\eta_{t})(1 + L\eta_{t + 1})}
+                \\
+                &= \frac{\rho_t}{
                     \left(
-                        1 + \frac{1}{\sqrt{\kappa} - 1}
+                        1 + \frac{1}{\rho_t - 1}
                     \right)
-                    \left(
-                        1 + \sqrt{\kappa}
-                    \right)
+                    (1 + \rho_t)
                 }
                 \\
-                &= \frac{\sqrt{\kappa}}{
+                &= \frac{\rho_t}{
                     \left(
-                        \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
-                    \right)(1 + \sqrt{\kappa})
+                    \frac{\rho_t}{\rho_t - 1}
+                    \right)
+                    (1 + \rho_t)
                 }
                 \\
-                &=
-                \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
-                    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
-                \right)
-                \\
                 &= 
-                \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
-            \end{aligned}
-            $$
-            The sequence is valid because 
-            $$
-            \begin{aligned}
-                \tilde \eta_{t} 
-                &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t}
+                \frac{\rho_t - 1}{\rho_t}
+                \frac{\rho_t}{1 + \rho_t}
                 \\
-                \iff
-                (L - \mu)\tilde \eta_{t}
-                &= 
-                1 + L \eta_t 
-                \\
-                \iff
-                L \tilde \eta_{t} - 
-                \mu \tilde \eta_{t}
-                &= 1 + L \eta_t. 
-            \end{aligned}
-            $$
-            Starting from the LHS it yields: 
-            $$
-            \begin{aligned}
-                L\tilde \eta - \mu \tilde \eta 
-                &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
-                \frac{1}{\sqrt{\kappa} - 1}
-                \\
-                &= 
-                \frac{\kappa - 1}{\sqrt{\kappa} - 1}
-                \\
-                &= 
-                \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
-                \\
-                &= 1 + \sqrt{\kappa} = 1 + L \eta. 
-            \end{aligned}
-            $$
+                &= \frac{\rho_t - 1}{1 + \rho_t}. 
+            \end{align*}
+            Set $\rho_t = \sqrt{\kappa} \ge 1$, then we obtain the desired result, which is the V-FISTA algorithm. 
         \end{proof}
     \subsection{Lyapunov analysis proof continued}\label{sec:st2p_proof_continued}
         \textbf{Proof for Equation (\ref*{eqn:st2p-1}, \ref*{eqn:st2p-2})}:

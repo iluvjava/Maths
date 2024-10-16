@@ -379,86 +379,66 @@ Therefore, they are only equals when $\mu = 0$, then the generic similar triangl
 
 **Proof**
 
-
-Removing the subscript for the index because the stepsizes are constant in this case, observe that we have 
+Suppose that $(\rho_t)_{t \in \N}$ is a sequence such that $\rho_t > 1$ for all $t$. 
+Consider for all $t \in \N$, the following relations between $\rho_t$ and $\tilde \eta_t, \eta_t$: 
 
 $$
 \begin{aligned}
-    L\eta &= \frac{L}{\mu \sqrt{\kappa}} = \frac{\kappa}{\sqrt{\kappa}} = \sqrt{\kappa}, 
+    L \eta_t &:= \rho_t, 
     \\
-    \mu \tilde \eta &= 
-    \frac{1}{\sqrt{\kappa} - 1}, 
+    \mu \tilde \eta_t &:= \frac{1}{\rho_t - 1}, 
     \\
-    L\tilde \eta &= 
-    \frac{\kappa}{\sqrt{\kappa} - 1}. 
+    L \tilde \eta_t &:= \frac{\rho_t^2}{\rho_t - 1}. 
 \end{aligned}
 $$
 
-With that it establishes relations
+Then it satisfies the of similar triangle $\tilde \eta_t = \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_t$ because: 
 
 $$
 \begin{aligned}
-    \frac{L\eta }{(1 + \mu \tilde \eta)(1 + L\eta)}
-    &= 
-    \frac{\sqrt{\kappa}}{
+    L \tilde \eta_t - \mu \tilde \eta_t 
+    &= \frac{\rho_t^2}{\rho_t - 1} - \frac{1}{\rho_t - 1}
+    \\
+    &= \frac{\rho_t^2 - 1}{\rho_t - 1} 
+    \\
+    &= \frac{(\rho_t - 1)(\rho_t + 1)}{\rho_t - 1} 
+    \\
+    &= \rho_t + 1
+    \\
+    &= L\eta_t + 1
+\end{aligned}
+$$
+
+So, the momentum coefficient can be similified as well: 
+
+$$
+\begin{aligned}
+    \theta_{t + 1} 
+    &= \frac{L\eta_t}{(1 + \mu \tilde\eta_{t})(1 + L\eta_{t + 1})}
+    \\
+    &= \frac{\rho_t}{
         \left(
-            1 + \frac{1}{\sqrt{\kappa} - 1}
+            1 + \frac{1}{\rho_t - 1}
         \right)
-        \left(
-            1 + \sqrt{\kappa}
-        \right)
+        (1 + \rho_t)
     }
     \\
-    &= \frac{\sqrt{\kappa}}{
+    &= \frac{\rho_t}{
         \left(
-            \frac{\sqrt{\kappa}}{\sqrt{\kappa} - 1}
-        \right)(1 + \sqrt{\kappa})
+        \frac{\rho_t}{\rho_t - 1}
+        \right)
+        (1 + \rho_t)
     }
     \\
-    &=
-    \frac{\sqrt{\kappa}}{1 + \sqrt{\kappa}}\left(
-        \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa}}
-    \right)
-    \\
     &= 
-    \frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}. 
+    \frac{\rho_t - 1}{\rho_t}
+    \frac{\rho_t}{1 + \rho_t}
+    \\
+    &= \frac{\rho_t - 1}{1 + \rho_t}. 
 \end{aligned}
 $$
 
-The sequence is valid because 
-
-$$
-\begin{aligned}
-    \tilde \eta_{t} 
-    &= \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_{t}
-    \\
-    (L - \mu)\tilde \eta_{t}
-    &= 
-    1 + L \eta_t 
-    \\
-    L \tilde \eta_{t} - 
-    \mu \tilde \eta_{t}
-    &= 1 + L \eta_t. 
-\end{aligned}
-$$
-
-Starting from the LHS it yields: 
-
-$$
-\begin{aligned}
-    L\tilde \eta - \mu \tilde \eta 
-    &= \frac{\kappa}{\sqrt{\kappa} - 1} - 
-    \frac{1}{\sqrt{\kappa} - 1}
-    \\
-    &= 
-    \frac{\kappa - 1}{\sqrt{\kappa} - 1}
-    \\
-    &= 
-    \frac{(\sqrt{\kappa} + 1)(\sqrt{\kappa} - 1)}{\sqrt{\kappa} - 1}
-    \\
-    &= 1 + \sqrt{\kappa} = 1 + L \eta. 
-\end{aligned}
-$$
+Set $\rho_t = \sqrt{\kappa}$, then we obtain the desired result. 
 
 #### **Proposition 5 | Nes 2.2.19**
 > 
