@@ -440,5 +440,37 @@ $$
 
 Set $\rho_t = \sqrt{\kappa}$, then we obtain the desired result. 
 
+
+**Remark**
+
+The choice of $\rho$ in here is deliberate. 
+It it's directly related to a parameter in the convergence proof of the V-FISTA algorithm, see [V-FISTA](V-FISTA.md) for more information. 
+Using the new sequence $\rho_t$, it allows us to simplify the updates in the original PPM APG to be: 
+
+$$
+\begin{aligned}
+    x_{t +1} &= 
+    \left(
+        1 + \frac{1}{\rho_t - 1}
+    \right)^{-1}
+    \left(
+        \frac{1}{\rho_t - 1} y_t
+        + 
+        x_t 
+        - 
+        \frac{1}{\mu(\rho_t - 1)} \mathcal G_L y_t
+    \right)
+    \\
+    &= \rho_t^{-1}
+    \left(
+        y_t + (\rho_t - 1)x_t - \mu^{-1}\mathcal G_L y_t
+    \right)
+    \\
+    &= 
+    \rho_t^{-1}(y_t - x_t) + x_t - \rho_t^{-1}\mu^{-1}\mathcal G_L y_t. 
+\end{aligned}
+$$
+
+
 #### **Proposition 5 | Nes 2.2.19**
 > 
