@@ -861,3 +861,7 @@ $$
 This recovers the ordinary gradient descent with constant stepsizes. 
 However, this analysis reveals that slowly longer stepsizes would still retain the same convergence rate. 
 
+
+**Remarks**
+
+We take a careful look into the inequalities used in the proof, and it won't be difficult to see that they have generalizations under the context of Bregman Divergences. 
