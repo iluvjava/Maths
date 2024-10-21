@@ -34,8 +34,8 @@
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
-Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
-\noindent{\bfseries Keywords:}
+Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
+\noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 
 \section{Introduction}
     
@@ -122,13 +122,15 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     In this section, we build up the necessary tools for 
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
     by defining the the concept of a gradient mapping $\mathcal G_L$ and their properties. 
-    The concepts are standard tools of analysis and they can be readifly found in the Beck's book \cite{beck_first-order_2017}. 
+    The concepts are standard tools of analysis and they can be found in the Beck's book \cite{beck_first-order_2017}. 
     We amphasize that the use of 
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
-    differs from the original analysis presented in \cite{ahn_understanding_2022} because it compatifies the the smoothness together with proximal inequlaity into one statement which eventually simplifies the convergence proof of the generic PPM formulation of accelerated gradient in
+    differs from the original analysis presented in \cite{ahn_understanding_2022} because it compatifies the the smoothness together with proximal inequality into one statement which eventually simplifies the convergence proof of the generic PPM formulation of accelerated gradient in
     \hyperref[sec:lyapunov-analysis]{Section \ref*{sec:lyapunov-analysis}}. 
-    The inequality proved \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}} 
-    is compared with other similar lemma in the literatures in the remark. 
+    Inequality stated in \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}} 
+    is the direct consequence of
+    \hyperref[thm:prox-grad-inequality]{Theorem \ref*{thm:prox-grad-inequality}}, 
+    in the remark we showed the theorem is an proximal point inequality with inexact prox evaluation. 
     
     \begin{assumption}\label{ass:smooth-nonsmooth-sum-lipschitz-grad}
         Let $h = f + g$ where $f, g$ are convex, lower semi-continuous and $f$ is Lipschitz-Smooth with constant $L$. 
@@ -489,10 +491,16 @@ Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
     \end{assumption}
         In this section, ``SC'' means strongly convex, ``PPM'' means proximal point method and ``APG'' means accelerated proximal gradient. 
         
-        \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!}
+        \hyperref[def:SC-PPM-APG]{Definition \ref*{def:SC-PPM-APG}} defines a generic form of optimization algorithm for Nesterov accelerations. 
+        It generates iterates $(x_t, y_t)_{t \in \N \cup \{0\}}$, it contains the parameters $\mu, L$ chosen between $0 \le \mu \le L$ and stepszies sequences $\eta_t, \tilde \eta_t$. 
+        Choosing specific conditions on the stepsize sequence $\eta_t, \tilde \eta_t$ reduces the generic algorithm into different forms of the Nesterov acceleration algorithms in the literatures.
+        Definition 
+        \hyperref[def:chambolle-dossal-2015]{\ref*{def:chambolle-dossal-2015}}, 
+        \hyperref[def:v-fista]{\ref*{def:v-fista}} 
+        are algorithms described in Chambolle, Dossal \cite{chambolle_convergence_2015} and V-FISTA in Beck's Book \cite{beck_first-order_2017}, the conditions used to establishes the algebraic equivances are described in 
+        \hyperref[sec:relations-between-forms]{Section \ref*{sec:relations-between-forms}}. 
+
         
-        Definitions listed below are generic algorithms with underdetermined parameters that can define to accomodate accelerated proximal gradient algorithms appeared in the literatures. 
-        We also state the results on the conditions for algebraic equivalency between different forms of accelrated proximal gradient. 
     \subsection{Generic forms of Nesterov accelerated gradient}
         \newcommand{\SCPPMAPG}{SC PPM APG}
         \begin{definition}[\SCPPMAPG]\label{def:SC-PPM-APG}
