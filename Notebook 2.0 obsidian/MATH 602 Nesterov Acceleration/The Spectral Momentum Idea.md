@@ -352,8 +352,60 @@ How often do we have `(1)` really depends.
 **Remarks**
 
 When the gradient on $y_t$, and on $x_t$ are not pointing in the same direction, then the above is definitely true. 
-Futhermore, the smoothness conditions can be improved and make the inequality we prove an equality. 
+Futhermore, the smoothness conditions can be improved and make the inequality we prove an equality.
+We list it and their equivalent representations: 
 
+$$
+\begin{aligned}
+    D_f(x_{t + 1}, x_t) &= 
+    (1 - \lambda_t)^2D_f(x_{t -1}, x_t) - \Vert L^{-1}\nabla f(y_t)\Vert_B^2
+    + 
+    \left\langle \nabla f(x_t), L^{-1}\nabla f(y_t)\right\rangle
+    \\
+    &= 
+    \theta_t^2D_f(x_{t -1}, x_t) - \Vert L^{-1}\nabla f(y_t)\Vert_B^2
+    + 
+    \left\langle \nabla f(x_t), L^{-1}\nabla f(y_t)\right\rangle
+    \\
+    &= 
+    \theta_t^2 \Vert x_{t - 1} - x_t\Vert^2_B
+    - \langle L^{-1} \nabla f(y_t), L^{-1}B \nabla f(y_t)\rangle
+    + 
+    \langle \nabla f(x_t), L^{-1} \nabla f(y_t)\rangle
+    \\
+    &= 
+    \theta_t^2 \Vert x_{t - 1} - x_t\Vert^2_B
+    + 
+    \left\langle  L^{-1}\nabla f(y_t), \nabla f(x_t) - L^{-1} B\nabla f(y_t)\right\rangle. 
+\end{aligned}
+$$
+
+Now, this is complicated and it hs several representations. 
+The inequality above admits equivalent representations: 
+
+$$
+\begin{aligned}
+    D_f(x_{t + 1}, x_t) &\le 
+    \theta_t^2D_f(x_{t -1}, x_t) 
+    - \frac{1}{2L}\Vert \nabla f(y_t)\Vert^2 + 
+    \left\langle \nabla f(x_t), L^{-1}\nabla f(y_t)\right\rangle
+    \\
+    \iff 
+    D_f(x_{t + 1}, x_t) 
+    &\le 
+    \theta_t^2 D_f(x_{t - 1}, x_t)
+    -
+    \frac{1}{2L}\left(
+        \left\Vert
+            \nabla f(y_t) - \nabla f(x_t)
+        \right\Vert^2
+        - 
+        \left\Vert
+            \nabla f(y_t)
+        \right\Vert^2
+    \right)
+\end{aligned}
+$$
 
 
 
@@ -364,7 +416,7 @@ Futhermore, the smoothness conditions can be improved and make the inequality we
 >     \frac{1}{2}\Vert x_{t + 1} - x_t\Vert^2 
 >     = \frac{\theta^2_t}{2}\Vert x_t - x_{t - 1}\Vert^2
 >     + \frac{1}{2}\Vert L^{-1}\nabla f(y_t)\Vert^2
->     - \theta\left\langle x - x_{t - 1}, L^{-1}\nabla f(y_t)\right\rangle. 
+>     - \theta_t\left\langle x_t - x_{t - 1}, L^{-1}\nabla f(y_t)\right\rangle. 
 > \end{aligned}
 > $$
 
@@ -416,7 +468,7 @@ $$
 
 When, $x_t - x_{t - 1}$ alinged with the direction of $-\nabla f(y_t)$, this condition definitely true. 
 
-**RESULTS MAY BE TOO STRONG**
+
 
 ---
 ### **Analyzing diminishing estimates of the strong convexity constant**
@@ -450,6 +502,71 @@ $$
 
 Therefore, conditions `(1), (2)` are sufficient to create a decrease in the estimate for the strong convexity index $\mu_{k + 1}$, from $\mu_{k}$ which was just updated. 
 
+#### An equivalent condition for decrease in the estimate
+
+Define quantitles: 
+
+$$
+\begin{aligned}
+    \epsilon_t^{(1)} 
+    &:= \left\langle  L^{-1}\nabla f(y_t), \nabla f(x_t) - L^{-1} B\nabla f(y_t)\right\rangle, 
+    \\
+    \epsilon_t^{(2)}
+    &:= \left\langle 
+        \frac{1}{2L}\nabla f(y_t)
+        - \theta_t(x_t - x_{t -1}), 
+        L^{-1}\nabla f(y_t)
+    \right\rangle
+    \\
+    r_t^{(1)} &= 
+    \epsilon_t^{(1)}/D_f(x_{t - 1}, x_t), 
+    \\
+    r_t^{(2)} &= 
+    \epsilon_t^{(2)}/\Vert x_t - x_{t - 1}\Vert^2. 
+\end{aligned}
+$$
+
+From lemma 3 remark and lemma 3.1 results, the ratio has 
+
+$$
+\begin{aligned}
+    \frac{D_f(x_{t + 1}, x_t)}{\Vert x_{t +1} - x_t\Vert^2}
+    &= 
+    \frac{
+        \theta_t^2D_f(x_{t - 1}, x_t) + \epsilon_t^{(1)}
+    }{
+        \theta_t^2\Vert x_t - x_{t - 1}\Vert^2 + 
+        \epsilon_t^{(2)}
+    }
+    \\
+    &= 
+    \frac{
+        \theta_t^2D_f(x_{t - 1}, x_t) + \epsilon_t^{(1)}
+    }{
+        \theta_t^2\Vert x_t - x_{t - 1}\Vert^2 + 
+        \epsilon_t^{(2)}
+    }
+    \\
+    &= 
+    \frac{
+        \theta_t^2D_f(x_{t - 1}, x_t) + r_t^{(1)}D_f(x_{t - 1}, x_t)
+    }{
+        \theta_t^2\Vert x_t - x_{t - 1}\Vert^2 + 
+        r_t^{(2)}
+        \Vert x_t - x_{t -1}\Vert^2 
+    }
+    \\
+    &= 
+    \left(
+        \frac{\theta_t^2 + r^{(1)}_t}{
+            \theta_t^2 + r^{(2)}_t
+        }
+    \right) 
+    \frac{D_f(x_{t - 1}, x_t)}{\Vert x_{t - 1}, x_t\Vert^2}. 
+\end{aligned}
+$$
+
+Now, a decrease is possible when the ratio is $\le 1$, equivalently it's saying that $r_t^{(1)} \le r_t^{(2)}$. 
 
 
 ---
@@ -495,3 +612,5 @@ The first condition says that $\nabla f(y_t)$ turns at least 45 degree from $\na
 The second condition says that $y_t - x_t$ alings in direction with $-L^{-1} \nabla f(y_t)$. 
 Adding together the fact that $y_t, x_t, x_{t - 1}$ are colinear. 
 We have a pictural representation of when the parameters shrinks and the function being optimized is simply quadratic. 
+
+
