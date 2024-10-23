@@ -702,9 +702,215 @@ $$
 \end{aligned}
 $$
 
-**This is not looking good**
+**Try this instead**
 
-If attempt, try: 
-1. Find full recursive formula for $x_{t + 1} = [I - G]((1 + \theta_t)x_t + \theta_t x_{t- 1})$, based on initial condition $(x_0 = (I - G)x_{-1}, x_{-1})$. So it's an operator in the product space. 
-2. That should give a closed form expression for $v_t = x_t - x_{t - 1}$, by simply taking the differences. 
-3. After that, analyze how the ratio $\Vert v_t\Vert_{G}^2/\Vert v_t\Vert^2$ changes. 
+Consider the divergence between $y_{t + 1}, y_t$ in the same context. 
+From the algorithm it has $y_t = [I - G]y_{t - 1} + \theta_t([I - G]y_{t - 1} - [I - G]y_{t - 2})$.
+It's the extrapolation of the gradient descent operator instead of the gradient descent operator on a extrapolated quantity. 
+Which makes: 
+$$
+\begin{aligned}
+    y_t - y_{t - 1} &= 
+    -Gy_{t - 1} + \theta_t([I - G] y_{t - 1} - [I - G]y_{t - 2})
+    \\
+    &= - Gy_{t - 1} + \theta_t[I - G](y_{t - 1} - y_{t - 2}). 
+\end{aligned}
+$$
+
+If we consider the substitution $v_t = y_t - y_{t - 1}$, and $T = I - G$, then the above simplifies to 
+
+$$
+\begin{aligned}
+    v_t 
+    &= - Gy_{t - 1} + \theta_t T v_{t - 1}
+    \\
+    &= -G(v_{t - 1} + y_{t - 2}) + \theta_t T v_{t - 1} 
+    \\
+    &= [- G + \theta T] v_{t - 1} - G y_{t - 2} 
+    \\
+    &= [- G + \theta T] v_{t - 1} - G (v_{t - 2} + y_{t - 3})
+    \\
+    & \textcolor{gray}{
+        \text{Double linear recurrences on $v_t$}
+    }
+    \\
+    &= [- G + \theta T] v_{t - 1} - G v_{t - 2} -G y_{t - 3}.  
+\end{aligned}
+$$
+
+This observation has more beauty in it because an extrapolation step inside of the gradient operator is generally hard to analyze when the gradient is not an linear operator. 
+This also makes things more relevant because the algorithm actually evaluates gradient on $y_t$ but it doesn't evaluate at $x_t$. 
+
+<mark style="background: #FFB86CA6;">Is there a simple closed form for $y_t$ in terms linear recurrences on matrices??</mark>
+
+Simplyfing: 
+
+$$
+\begin{aligned}
+    y_t &= T y_{t - 1} + \theta_t T(y_{t - 1} - y_{t - 2})
+    \\
+    &= (T + \theta_t T) y_{t - 1} - \theta_t T y_{t - 2}
+    \\
+    \begin{bmatrix}
+        y_{t - 1}  \\ y_{t}
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        \mathbf 0 & I 
+        \\
+        - \theta_t T
+        & T + \theta_t T
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_{t - 2} \\ y_{t - 1}
+    \end{bmatrix}
+    \\
+    \begin{bmatrix}
+        y_{t - 1}
+        - y_{t - 2}
+        \\ y_{t} - y_{t - 1}
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        \mathbf -I & I 
+        \\
+        - \theta_t T
+        & - G + \theta_t T
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_{t - 2} 
+        \\ 
+        y_{t - 1}
+    \end{bmatrix}
+    \\
+    &=
+    \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        \theta_t T & I 
+    \end{bmatrix}
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        - G
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_{t - 2} \\ y_{t - 1} 
+    \end{bmatrix}
+\end{aligned}
+$$
+
+Next we need an eigen decomposition on the matrix symbolically.
+Which is actually not hard. 
+Since $G$ is semi-definite it admits ortho-normal decomposition $G = V \Lambda V^T$. 
+We do an eigen decomposition on the matrix 
+$$
+\begin{aligned}
+   \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        - G
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        - V\Lambda V^T
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        I & 
+        \\
+        & V
+    \end{bmatrix}
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        -\Lambda
+    \end{bmatrix}
+    \begin{bmatrix}
+        I & 
+        \\
+        & V^T
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+Next observe that it's a permutation away from a block 2x2 upper diagonal matrix: 
+
+$$
+\begin{align*}
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        -\Lambda
+    \end{bmatrix}
+    &= 
+    P_\pi
+    \text{diag}
+    \left(
+        \begin{bmatrix}
+            1 & 1
+            \\
+            0 & -\lambda_i
+        \end{bmatrix}
+        : 
+        i = 1, \cdots n
+    \right)
+\end{align*}
+$$
+
+Where 
+
+$$
+\begin{aligned}
+    (\forall i = 1, \cdots 2n): 
+    P_\pi e_i = \begin{cases}
+        e_{j}, \text{where } j = \lfloor i/2\rfloor & \text{if } i \equiv 1 \text{ mod } 2
+        \\
+        e_{j}, \text{where } j = n +  i/2 & \text{else}
+    \end{cases}
+\end{aligned}
+$$
+
+We perform decomposition on the smaller 2x2 matrix to get its eigen system first. 
+This would just be
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        1 & 1
+        \\
+        0 & -\lambda_i
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        1 & \frac{1}{1 - \lambda_i}
+        \\
+        0 & -1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 
+        \\
+        & - \lambda_i
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & \frac{1}{1 - \lambda_i}
+        \\
+        0 & -1
+    \end{bmatrix}^T
+\end{aligned}
+$$
+
+<mark style="background: #FFB86CA6;">Maybe a direct decomposition on the original matrix is better?</mark>
