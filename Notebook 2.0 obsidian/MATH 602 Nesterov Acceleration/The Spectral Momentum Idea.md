@@ -376,7 +376,12 @@ $$
     &= 
     \theta_t^2 \Vert x_{t - 1} - x_t\Vert^2_B
     + 
-    \left\langle  L^{-1}\nabla f(y_t), \nabla f(x_t) - L^{-1} B\nabla f(y_t)\right\rangle. 
+    \left\langle  L^{-1}\nabla f(y_t), \nabla f(x_t) - L^{-1} B\nabla f(y_t)\right\rangle, 
+    \\
+    D_f(x_{t + 1}, x_t) &= 
+    \theta_t^2\Vert x_{t - 1} - x_t\Vert_B^2 - \Vert L^{-1}\nabla f(y_t)\Vert_B^2
+    + 
+    \left\langle \nabla f(x_t), L^{-1}\nabla f(y_t)\right\rangle
 \end{aligned}
 $$
 
@@ -502,7 +507,7 @@ $$
 
 Therefore, conditions `(1), (2)` are sufficient to create a decrease in the estimate for the strong convexity index $\mu_{k + 1}$, from $\mu_{k}$ which was just updated. 
 
-#### An equivalent condition for decrease in the estimate
+#### **An equivalent condition for decrease in the estimate**
 
 Define quantitles: 
 
@@ -567,6 +572,9 @@ $$
 $$
 
 Now, a decrease is possible when the ratio is $\le 1$, equivalently it's saying that $r_t^{(1)} \le r_t^{(2)}$. 
+It still remains difficult to analyze. 
+The problem here is the $x_{t} - x_{t - 1}$ appearing together with $x_t$. 
+Let's try the substitution $v_t = x_t - x_{t - 1}$, maybe that will assist with the analysis and things. 
 
 
 ---
@@ -614,3 +622,89 @@ Adding together the fact that $y_t, x_t, x_{t - 1}$ are colinear.
 We have a pictural representation of when the parameters shrinks and the function being optimized is simply quadratic. 
 
 
+---
+### **Just bruteforce it omg**
+
+Assume that $h = f + g$ where $g \equiv 0$ and $f = \frac{1}{2}\Vert\cdot \Vert_G$ where $\mathbf 0 \preceq  G \preceq I$ is a linear operator. 
+Without loss of generality we can assume further that $G$ is a diagonal matrix whose diagonal elements are sorted by their magnitude. 
+Apply the inexact V-FISTA algorithm, we are interested in analyzing $D_f(x_{t + 1}, x_{t})/\Vert x_{t + 1} - x_t\Vert^2$ when the algorithm is executing. 
+
+Alternatively consider writing the algorithm using the velocity vector $v_t$: 
+$$
+\begin{aligned}
+    v_t &= x_t - x_{t - 1}
+    \\
+    y_t &= x_t + \theta_t v_t
+    \\
+    x_{t + 1} &= y_t - G y_t. 
+\end{aligned}
+$$
+
+Then consider updates: 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= y_t - Gy_t
+    \\
+    &= x_t + \theta_t v_t - G(x_t + \theta_t v_t)
+    \\
+    x_{t + 1} - x_t &= \theta_t v_t - Gx_t - \theta_t G v_t
+    \\
+    v_{t + 1}
+    &= 
+    \theta_t (I - G)v_t - G x_t. 
+\end{aligned}
+$$
+
+Observe that if we define $d_0 := - x_0$, and $d_t := \sum_{i = 1}^{t}v_i - x_0$, so that $d_t + x_0$ is conceptually the total displacement vector up to $x_t$ from $x_0$, and $x_t = d_t = v_t + d_{t - 1}$
+This makes $x_t = d_t$.
+Then the above simplifies to: 
+
+$$
+\begin{aligned}
+    v_{t + 1} &= \theta_t(I - G)v_t - G d_t
+    \\
+    &= \theta_t (I - G)v_t - G(v_t + d_{t - 1})
+    \\
+    &= \theta_t (I - G - \theta_t^{-1}G)v_t - G d_{t - 1}. 
+\end{aligned}
+$$
+
+Make $P_t = \theta_t(I - (1 + \theta_t^{-1}) G)v_t$. 
+The above is compactly represented as $v_{t + 1} = P_t v_t - G d_{t - 1}$. 
+The quantity we are interested is written as: 
+
+$$
+\begin{aligned}
+    \bar v_{t + 1} 
+    &= v_{t + 1} / \Vert v_{t + 1}\Vert, 
+    \\
+    \langle \bar v_{t + 1}, A\bar v_{t + 1}\rangle
+    &= 
+    \frac{
+        \Vert 
+            \theta_t v_t - Gy_t
+        \Vert_G^2
+    }{
+        \Vert 
+            \theta_t v_t - Gy_t
+        \Vert^2
+    }
+    \\
+    &= \frac{
+        \Vert \theta_t v_t\Vert_G^2
+        + \Vert Gy_t\Vert_G^2 - 2 \theta_t \langle v_t, G^2 y_t\rangle
+    }{
+        \Vert \theta_t v_t\Vert^2 
+        + \Vert Gy_t\Vert^2 
+        - 2 \theta_t \langle v_t, G y_t\rangle
+    }. 
+\end{aligned}
+$$
+
+**This is not looking good**
+
+If attempt, try: 
+1. Find full recursive formula for $x_{t + 1} = [I - G]((1 + \theta_t)x_t + \theta_t x_{t- 1})$, based on initial condition $(x_0 = (I - G)x_{-1}, x_{-1})$. So it's an operator in the product space. 
+2. That should give a closed form expression for $v_t = x_t - x_{t - 1}$, by simply taking the differences. 
+3. After that, analyze how the ratio $\Vert v_t\Vert_{G}^2/\Vert v_t\Vert^2$ changes. 
