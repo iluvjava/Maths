@@ -741,7 +741,8 @@ $$
 This observation has more beauty in it because an extrapolation step inside of the gradient operator is generally hard to analyze when the gradient is not an linear operator. 
 This also makes things more relevant because the algorithm actually evaluates gradient on $y_t$ but it doesn't evaluate at $x_t$. 
 
-<mark style="background: #FFB86CA6;">Is there a simple closed form for $y_t$ in terms linear recurrences on matrices??</mark>
+---
+### Use block linear recurrence
 
 Simplyfing: 
 
@@ -799,8 +800,56 @@ $$
     \begin{bmatrix}
         y_{t - 2} \\ y_{t - 1} 
     \end{bmatrix}
+    \\
+    \iff 
+    \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        \theta_t T & I 
+    \end{bmatrix}^{-1}
+    \begin{bmatrix}
+        y_{t - 1}
+        - y_{t - 2}
+        \\ y_{t} - y_{t - 1}
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        - G
+    \end{bmatrix}
+    \begin{bmatrix}
+        y_{t - 2} \\ y_{t - 1}
+    \end{bmatrix}
+    \\
+    \iff 
+    \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        \theta_t T & I 
+    \end{bmatrix}^{-1}
+    \begin{bmatrix}
+        y_{t - 1}
+        - y_{t - 2}
+        \\ y_{t} - y_{t - 1}
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        -I & I 
+        \\ 
+        \mathbf 0 
+        &
+        - G
+    \end{bmatrix}^{t-2}
+    \begin{bmatrix}
+        y_0 \\ y_1
+    \end{bmatrix}
 \end{aligned}
 $$
+
+**The power iteration of unrolled from the recurrence is incorrect.**
 
 Next we need an eigen decomposition on the matrix symbolically.
 Which is actually not hard. 
@@ -909,8 +958,25 @@ $$
         1 & \frac{1}{1 - \lambda_i}
         \\
         0 & -1
-    \end{bmatrix}^T
+    \end{bmatrix}^T. 
 \end{aligned}
 $$
 
-<mark style="background: #FFB86CA6;">Maybe a direct decomposition on the original matrix is better?</mark>
+Therefore the block matrix admits eigen decomposition: 
+
+$$
+\begin{aligned}
+    \left(
+        \begin{bmatrix}
+            1 & 1
+            \\
+            0 & -\lambda_i
+        \end{bmatrix}
+        : 
+        i = 1, \cdots n
+    \right)
+\end{aligned}
+$$
+
+**Actually, permutation changes the Eigensystem**. 
+We failed big here. 
