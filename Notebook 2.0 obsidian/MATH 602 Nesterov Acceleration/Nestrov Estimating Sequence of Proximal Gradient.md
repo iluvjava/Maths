@@ -616,4 +616,4 @@ The only difference here is the use of gradient mapping instead of the gradient,
 ---
 #### **Simplying the algorithm into a simpler form**
 
-
+The procedures here are very similar to what is in the original accelerated gradient method using Nesterov's acceleration method. 
