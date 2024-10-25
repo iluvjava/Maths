@@ -102,6 +102,23 @@ hence, it creates a convergence rate parameterized recurrence parameter $\alpha_
 
 Parameterizing the canonical form recursively and couple it with $(y_k)_{k \in \N}$ is very useful for solving $x_k$ that satisfies the implicit descent relation. 
 
+#### **Key quantitles used in the analysis**
+There are several categories of quantities in the analysis for the convergence of the algorithm. 
+1. For the estimating sequences canonical form: 
+   1. $\phi_k^*$,
+   2. $v_k$, 
+   3. $\gamma_k$.
+2. For the Lyapunov analysis: 
+   1. $\alpha_k$, 
+   2. $x_k$,
+   3. $y_k$. 
+3. For the estimating sequence's recursive form: 
+   1. $y_k$, 
+   2. $\alpha_k$. 
+
+During the analysis, the recurrence form of the estimating sequence establishes relations between all of the quantities: $\phi_k^*, v_k, \gamma_k, v_k, \alpha_k$. 
+When searching for the implicit descent sequence, $x_k = T_L y_k$ turns out to be solution and the proximal gradient inequality plays a key role in the proof. 
+
 #### **Lemma 1 | Closed form recurrence**
 > Let $(y_k)_{k \in \N}, \alpha_k$ be any sequenced used to parameterize the estimating sequence $\phi_k: \R^n \mapsto \R$, then the recursive definition of $\phi_k$ in cannonical form satisfies recurrence relationship for all $k \in \N$: 
 > $$
@@ -132,6 +149,264 @@ Parameterizing the canonical form recursively and couple it with $(y_k)_{k \in \
 
 **Proof**
 
+Substitution to the recursive definition of $\phi_k$ yields: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) &= 
+    (1 - \alpha_k)\phi_k(x) + \alpha_k (l_h(x; y_k) + \mu/2\Vert x - y_k\Vert^2)
+    \\
+    &= 
+    (1 -\alpha_k)
+    \left(
+        \phi_k^* + \gamma_k/2\Vert x - v_k\Vert^2
+    \right) 
+    + 
+    \alpha_k
+    \left(
+        l_h(x; y_k) + \mu/2\Vert x - y_k\Vert^2
+    \right), 
+    \rightarrow \textcolor{red}{(\text{eqn1})}
+    \\
+    \implies 
+    \nabla \phi_{k + 1}(x) 
+    &= 
+    (1 - \alpha_k)\gamma_k(x - v_k) + \alpha_k(g_k + \mu (x - y_k));
+    \\
+    \implies 
+    \nabla^2 \phi_{k + 1}(x) &= 
+    \underbrace{((1 - \alpha_k)\gamma_k + \alpha_k \mu)}_{=\gamma_{k + 1}}I; 
+\end{aligned}
+$$
+
+The recurrence relations for $\gamma_k$ is verified by considering the second order derivative to $\phi_k$. 
+To see the recurrence relations for $v_{k + 1}$, we consider setting the gradient to $\mathbf 0$ and then solve for it. 
+It's giving us: 
+
+$$
+\begin{aligned}
+    \mathbf 0 &= 
+    \gamma_k(1 - \alpha_k)(x - v_k) + \alpha_k g_k + \mu \alpha_k(x - y_k)
+    \\
+    &= (\gamma_k(1 - \alpha_k) + \mu \alpha_k)x - 
+    \gamma_k(1 - \alpha_k)v_k + \alpha_k g_k - \mu \alpha_k y_k
+    \\
+    \iff 
+    v_{k + 1} &= 
+    \gamma_{k +1}^{-1} 
+    \left(
+        \gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k
+    \right). 
+\end{aligned}
+$$
+
+Substiting the canonical form of $\phi_{k + 1}$ back to `eqn1`, it gives the following 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^* 
+    &= (1 - \alpha_k)\phi_k^* + \frac{(1 - \alpha_k)\gamma_k}{2}\Vert y_k - v_k\Vert^2   
+    \\
+    & \quad 
+    - \frac{\gamma_{k + 1}}{2}\Vert y_k - v_{k + 1}\Vert^2 
+    + 
+    \alpha_k\left(
+        h(T_k y_k) + 
+        \frac{1}{2L} \Vert g_k\Vert^2
+    \right). 
+    \rightarrow 
+    \textcolor{red}{(\text{eqn2})}
+\end{aligned}
+$$
+
+Next move from Nesterov was to simplify the term $\Vert v_{k + 1} - y_k\Vert^2$. 
+With that it produces: 
+
+$$
+\begin{aligned}
+    v_{k + 1} - y_k 
+    &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        \gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k
+    \right) - y_k
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}
+    \left(
+        \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+        + (-\gamma_{k + 1} + \mu\alpha_k)y_k
+    \right)
+    \\
+    &
+    \textcolor{gray}{
+        \begin{aligned}
+            \gamma_{k + 1} &=    
+            (1 - \alpha_k)\gamma_k + \mu \alpha_k
+            \\
+            \gamma_{k + 1} - \mu \alpha_k &= (1 - \alpha_k)\gamma_k
+        \end{aligned}
+    }
+    \\
+    &=
+    \gamma_{k + 1}^{-1}
+    \left(
+        \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+        (1 - \alpha_k)\gamma_ky_k
+    \right)
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}(
+        \alpha_k(1 - \alpha_k)(v_k - y_k) 
+        - \alpha_k g_k
+    ).
+\end{aligned}
+$$
+
+Next we have
+
+$$
+\begin{aligned}
+    \Vert v_{k + 1} - y_k\Vert^2 
+    &= 
+    \Vert 
+        \gamma_{k + 1}^{-1}(
+            \alpha_k(1 - \alpha_k)(v_k - y_k) 
+            - \alpha_k g_k
+        )
+    \Vert^2
+    \\
+    \frac{- \gamma_{k + 1}}{2}
+    \Vert v_{k + 1} - y_k\Vert^2
+    &= 
+    - \frac{1}{2\gamma_{k + 1}}
+    \Vert 
+        \gamma_k(1 - \alpha_k)(v_k - y_k) - \alpha_k g_k
+    \Vert^2
+    \\
+    &= 
+    -\frac{\gamma_k^2 (1 - \alpha_k)^2}{2 \gamma_{k + 1}} 
+    \Vert v_k - y_k\Vert^2 - 
+    \frac{\alpha_k^2}{2 \gamma_{k + 1}} \Vert g_k\Vert^2
+    + 
+    \gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1} \langle v_k - y_k, \alpha_k g_k\rangle. 
+\end{aligned}
+$$
+
+Substituting it back to `eqn2`, this produces: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^* &= 
+    (1 - \alpha)\phi_k^* + 
+    \alpha_k
+    \left(
+        h(T_ky_k) + 
+        \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    \\
+    &\quad 
+    + \frac{(1 - \alpha_k)\gamma_k}{2}\Vert y_k - v_k\Vert^2
+    - \frac{\gamma_k^2(1 - \alpha_k)^2}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    \\
+    &\quad 
+    + \alpha_k\gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1}\langle v_k -y_k, g_k\rangle
+    \\
+    &= 
+        (1 - \alpha)\phi_k^* + 
+        \alpha_k
+        \left(
+            h(T_ky_k) + 
+            \frac{1}{2L}\Vert g_k\Vert^2
+        \right)
+        \\
+        &\quad 
+        + 
+        \left(
+            \frac{(1 - \alpha_k)\gamma_k}{2}
+            - 
+            \frac{\gamma_k^2(1 - \alpha_k)^2}{2\gamma_{k + 1}}
+        \right)
+        \Vert v_k - y_k\Vert^2
+        - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+        \\
+        &\quad 
+        + \alpha_k\gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1}\langle v_k -y_k, g_k\rangle
+    \\
+    & \quad 
+    \textcolor{gray}{  
+        \begin{aligned}
+            \frac{(1 - \alpha_k)\gamma_k}{2}
+            - 
+            \frac{\gamma_k^2(1 - \alpha_k)^2}{2\gamma_{k + 1}}   
+            &= 
+            \frac{(1 - \alpha_k)\gamma_k}{2}
+            \left(
+                1 - \frac{\gamma_k (1 - \alpha_k)}{\gamma_{k + 1}}
+            \right)
+            \\
+            &= 
+            \frac{(1 - \alpha_k)\gamma_k}{2}
+            \left(
+                \frac{\gamma_{k + 1} - \gamma_k(1 - \alpha_k)}{\gamma_{k + 1}}
+            \right)
+            \\
+            &= 
+            \frac{(1 - \alpha_k)\gamma_k}{2}
+            \left(
+                \frac{\mu \alpha_k}{\gamma_{k + 1}}
+            \right). 
+        \end{aligned}
+    }
+    \\
+    \iff 
+    &= 
+        (1 - \alpha)\phi_k^* + 
+        \alpha_k
+        \left(
+            h(T_ky_k) + 
+            \frac{1}{2L}\Vert g_k\Vert^2
+        \right)
+        \\
+        &\quad 
+        + 
+        \frac{(1 - \alpha_k)\gamma_k}{2}
+        \left(
+            \frac{\mu \alpha_k}{\gamma_{k + 1}}
+        \right)
+        \Vert v_k - y_k\Vert^2
+        - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+        \\
+        & \quad 
+        + \alpha_k\gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1}\langle v_k -y_k, g_k\rangle
+    \\
+    &= 
+        (1 - \alpha)\phi_k^* 
+        + 
+        \alpha_k
+        \left(
+            h(T_ky_k) + 
+            \frac{1}{2L}\Vert g_k\Vert^2
+        \right)
+        \\
+        &\quad 
+        - 
+        \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+        + 
+        \frac{(1 - \alpha_k)\gamma_k\alpha_k}{\gamma_{k + 1}}
+        \left(
+            \frac{\mu}{2}\Vert v_k - y_k\Vert^2
+            + \langle v_k - y_k, g_k\rangle
+        \right). 
+\end{aligned}
+$$
+
+The proof is now done. 
+A recurrence relations based on the definition of the Nesterov's estimating sequence had been established upon the cannonical form parameters: $(\phi_k^*, \gamma_k, v_k)$. 
+
+
+
 
 #### **Lemma 2 | Looking for the descent sequence**
 > Let $(y_k)_{k \in \N}$, and $(\alpha_k)_{k \in \N}, \alpha_i \in (0, 1)\;\forall i \in \N$, suppose that there exists estimting sequence $\phi_k: \R^n \mapsto \R$ defined via cannonical form parameters $(\phi_k^*, v_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ satisfying recurrence relations 
@@ -160,7 +435,7 @@ Parameterizing the canonical form recursively and couple it with $(y_k)_{k \in \
 > \end{aligned}
 > }
 > $$
-> If there exists choice of the sequences $(\alpha_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ and vector sequences $$satisfying inequalities: 
+> If there exists choice of the sequences $(\alpha_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ and vector sequences $(v_k)_{k \in \N}$ satisfying inequalities: 
 > $$
 > \begin{aligned}
 >     \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\le 0, 
@@ -173,3 +448,172 @@ Parameterizing the canonical form recursively and couple it with $(y_k)_{k \in \
 > Therefore, the Nesterov's descent sequence exists and it's possible. 
 
 **Proof**
+
+
+To start, we inductively assume that $\phi_k^* \ge h(x_k)$ for our sequence $(x_i)_{i \le k}$. 
+
+$$
+{\small
+\begin{aligned}
+    \phi_{k + 1}^* &= 
+    (1 - \alpha_k) \phi_k^*
+    + 
+    \alpha_k
+    \left(
+        h(T_Ly_k) + \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + \frac{\alpha_k (1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \left(
+        \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
+    \right)
+    \\
+    \implies 
+    &\ge 
+    (1 - \alpha_k)h(x_k)
+    + 
+    \alpha_k
+    \left(
+        h(T_Ly_k) + \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + \frac{\alpha_k (1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \left(
+        \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
+    \right)
+    \\
+    \implies
+    &\ge 
+    (1 - \alpha_k)h(x_k)
+    + 
+    \alpha_k
+    \left(
+        h(T_Ly_k) + \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + 
+    \frac{\alpha_k (1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \langle v_k - y_k, g_k\rangle. 
+\end{aligned}
+}
+$$
+
+Now, recall from the fundamental proximal gradient inequality in the convex settings, we have $\forall z\in \R^n$
+
+$$
+\begin{aligned}
+    h(z) 
+    &\ge 
+    h(T_L y_k) + \langle g_k, z - y_k\rangle
+    + 
+    D_f(z, y_k) + \frac{1}{2L}\Vert g_k\Vert^2
+    \\
+    &\ge 
+    h(T_L y_k) + \langle g_k, z - y_k\rangle
+    + 
+    \frac{\mu}{2}\Vert z  - y_k\Vert^2 
+    + \frac{1}{2L}\Vert g_k\Vert^2
+    \\
+    z = x_k \implies 
+    h(x_k) 
+    &\ge 
+    h(T_L y_k) + \langle g_k, x_k - y_k\rangle
+    + 
+    \frac{\mu}{2}\Vert x_k  - y_k\Vert^2 
+    + \frac{1}{2L}\Vert g_k\Vert^2. 
+\end{aligned}
+$$
+
+Therefore, the RHS of $\phi_{k + 1}^*$ becomes
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^*
+    &\ge 
+    (1 - \alpha_k)
+    \left(
+        h(T_Ly_k) + \langle g_k, x_k - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    \\
+    &\quad 
+    + 
+    \alpha_k
+    \left(
+        h(T_Ly_k) + \frac{1}{2L}\Vert g_k\Vert^2
+    \right)
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + 
+    \frac{\alpha_k (1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \langle v_k - y_k, g_k\rangle
+    \\
+    &\ge 
+    h(T_Ly_k)
+    + 
+    \left(
+        \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left\langle 
+        g_k, \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}(v_k - y_k) + (x_k - y_k)
+    \right\rangle. 
+\end{aligned}
+$$
+
+If we assume exact equality of the form $x_k = T_L y_k$, then it requires to have conditions: 
+
+$$
+\begin{aligned}
+    \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}} &\le 0, 
+    \\
+    \frac{\alpha_k \gamma_k}{\gamma_{k + 1}}(v_k - y_k) &= y_k - x_k. 
+\end{aligned}
+$$
+
+These conditions can be simplified and written in a prettier way: 
+
+$$
+\begin{aligned}
+    1 - \frac{L \alpha_k^2}{\gamma_{k + 1}}
+    &\le 0
+    \\
+    1 &\le L \alpha_k^2 / \gamma_{k + 1}
+    \\
+    \alpha_{k + 1} &\le L \alpha_k^2. 
+\end{aligned}
+$$
+
+and for the other one it has 
+
+$$
+\begin{aligned}
+    -(\alpha_k \gamma_k\alpha_{k + 1}^{-1} + 1)y_k
+    &= 
+    - \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k - x_k
+    \\
+    y_k &= 
+    \frac{
+        \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k + x_k
+    }{1 + \alpha_k \gamma_k \gamma_{k + 1}^{-1}}
+    \\
+    & 
+    \textcolor{gray}{
+        \gamma_{k + 1} + \alpha_k \gamma_k 
+        = 
+        \gamma_k + \alpha_k \mu
+    }
+    \\
+    &=  \frac{\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k}{\gamma_k + \alpha_k \mu}. 
+\end{aligned}
+$$
+
+**Remarks**
+
+The algorithm is pretty much identical to the original Nesterov's accelerated gradient algorithm. 
+The only difference here is the use of gradient mapping instead of the gradient, and the implicit descent sequence proof is slightly different compare to the simple case of accelerated gradient descent. 
+
+
+---
+#### **Simplying the algorithm into a simpler form**
+
+
