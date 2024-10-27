@@ -66,6 +66,21 @@ $$
 $$
 
 before computing $x_k$, and use $\widetilde L$ instead. 
+Alternative update rule for $\mu_k$ also include: 
+
+$$
+\begin{aligned}
+    \mu_k &= 
+    \frac{1}{2}
+    \left(
+        \mu_{k - 1} + 
+        \min\left(
+            \mu_{k - 1},
+            \frac{2D_f(x_k, x_{k - 1})}{\Vert x_k - x_{k - 1}\Vert^2}
+        \right)
+    \right)
+\end{aligned}
+$$
 
 **Comments**
 
@@ -800,56 +815,8 @@ $$
     \begin{bmatrix}
         y_{t - 2} \\ y_{t - 1} 
     \end{bmatrix}
-    \\
-    \iff 
-    \begin{bmatrix}
-        I & \mathbf 0 
-        \\
-        \theta_t T & I 
-    \end{bmatrix}^{-1}
-    \begin{bmatrix}
-        y_{t - 1}
-        - y_{t - 2}
-        \\ y_{t} - y_{t - 1}
-    \end{bmatrix}
-    &= 
-    \begin{bmatrix}
-        -I & I 
-        \\ 
-        \mathbf 0 
-        &
-        - G
-    \end{bmatrix}
-    \begin{bmatrix}
-        y_{t - 2} \\ y_{t - 1}
-    \end{bmatrix}
-    \\
-    \iff 
-    \begin{bmatrix}
-        I & \mathbf 0 
-        \\
-        \theta_t T & I 
-    \end{bmatrix}^{-1}
-    \begin{bmatrix}
-        y_{t - 1}
-        - y_{t - 2}
-        \\ y_{t} - y_{t - 1}
-    \end{bmatrix}
-    &= 
-    \begin{bmatrix}
-        -I & I 
-        \\ 
-        \mathbf 0 
-        &
-        - G
-    \end{bmatrix}^{t-2}
-    \begin{bmatrix}
-        y_0 \\ y_1
-    \end{bmatrix}
 \end{aligned}
 $$
-
-**The power iteration of unrolled from the recurrence is incorrect.**
 
 Next we need an eigen decomposition on the matrix symbolically.
 Which is actually not hard. 
@@ -933,6 +900,38 @@ $$
 \end{aligned}
 $$
 
+So the above decomposition has 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        -I & I \\ \mathbf 0 & -G 
+    \end{bmatrix}
+    &=   
+    \begin{bmatrix}
+        I & 
+        \\
+        & V
+    \end{bmatrix} P_\pi^TP_\pi
+    \text{diag}
+    \left(
+        \begin{bmatrix}
+            1 & 1
+            \\
+            0 & -\lambda_i
+        \end{bmatrix}
+        : 
+        i = 1, \cdots n
+    \right)
+    P_\pi^T P_\pi 
+     \begin{bmatrix}
+        I & 
+        \\
+        & V
+    \end{bmatrix}^T. 
+\end{aligned}
+$$
+
 We perform decomposition on the smaller 2x2 matrix to get its eigen system first. 
 This would just be
 
@@ -964,19 +963,4 @@ $$
 
 Therefore the block matrix admits eigen decomposition: 
 
-$$
-\begin{aligned}
-    \left(
-        \begin{bmatrix}
-            1 & 1
-            \\
-            0 & -\lambda_i
-        \end{bmatrix}
-        : 
-        i = 1, \cdots n
-    \right)
-\end{aligned}
-$$
 
-**Actually, permutation changes the Eigensystem**. 
-We failed big here. 

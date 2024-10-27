@@ -1,3 +1,4 @@
+
 - [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 - [Fundamental Proximal Gradient Inequality](Fundamental%20Proximal%20Gradient%20Inequality.md)
 
@@ -200,7 +201,7 @@ $$
 \end{aligned}
 $$
 
-Substiting the canonical form of $\phi_{k + 1}$ back to `eqn1`, it gives the following 
+Substiting the canonical form of $\phi_{k + 1}$ back to `eqn1`, choose $x = y_k$, it gives the following 
 
 $$
 \begin{aligned}
