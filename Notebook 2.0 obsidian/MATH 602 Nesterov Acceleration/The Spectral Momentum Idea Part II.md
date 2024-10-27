@@ -72,6 +72,8 @@ $$
 $$
 
 Therefore, without loss of generality, it suffice to assume a convex quadratic to take the form of $1/2\langle x, \Lambda x\rangle$ where $\Lambda$ is a diaognal matrix of non-negative entries. 
+Finally, we can even assume furether that $\Lambda$ is a matrix whose diagonal are decreasing in values. 
+This assumption can be made without loss of generality by applying a permutation transformation. 
 
 
 #### **Let's consider the Nesterov's acceleration on such a canonical form**
@@ -80,6 +82,7 @@ Let $L$ be the Lipschitz constant of a quadratic function $f = (1/2)\langle x, \
 $\Lambda = \text{diag}([l_1, \cdots, l_n])$ is a diagonal positive semi-definite matrix with $\mathbf 0 \preceq \Lambda\preceq LI$. 
 
 Define $T := I - L^{-1}\Lambda$. 
+Observe that: $\mathbf 0 \preceq T \prec I$. 
 Let $(\theta_t)_{t\in \N}$ be a sequence such that $\theta_t \in (0, 1)$. 
 The famous Nesterov's acceleration can be simplified into: 
 
@@ -117,10 +120,8 @@ $$
 \end{aligned}
 $$
 
-It would be great for the $T$ matrix to be a diagonal matrix. 
-We can do that without loss of generality, because $T$ is semi-definite. 
-Assume $T$ is diagonal. 
-So we can solve the block 2x2 matrix's eigen system and carry the eigen system over for the entire block 2x2 matrix. 
+$T$ is diagonal too. 
+So we can solve the block 2x2 matrix's eigen system by solving the eigen system over its 2x2 sub matrices. 
 To use the matrix power trick, it would be great to consider $\theta_t$ to be a constant. 
 
 ---
@@ -128,12 +129,14 @@ To use the matrix power trick, it would be great to consider $\theta_t$ to be a 
 
 For simplicity, we assume that $T = [\tau] \in (0, 1)$, is a scalar, hence the above iterations represented in block matrix can be written into a 2x2 matrix iteration. 
 
-Using [Wolframe Alpha](https://www.wolframalpha.com/input?i=eigenvalues+%7B%7B%5B%2F%2Fnumber%3A0%2F%2F%5D%2C%5B%2F%2Fnumber%3A1%2F%2F%5D%7D%2C%7B%5B%2F%2Fnumber%3A-u+t%2F%2F%5D%2C%5B%2F%2Fnumber%3A%281+%2B+u%29+t%2F%2F%5D%7D%7D), we query with $u = \theta_t$ with $t$ being a scaler, we get the eigen system of the 2x2 matrix 
+
+#### **Exposing the eigen system**
+Using [Wolframe Alpha](https://www.wolframalpha.com/input?i=eigenvalues+%7B%7B%5B%2F%2Fnumber%3A0%2F%2F%5D%2C%5B%2F%2Fnumber%3A1%2F%2F%5D%7D%2C%7B%5B%2F%2Fnumber%3A-u+t%2F%2F%5D%2C%5B%2F%2Fnumber%3A%281+%2B+u%29+t%2F%2F%5D%7D%7D), we query with $u = \theta$ with $t$ being a scaler, we get the eigen system of the 2x2 matrix 
 
 $$
 \begin{aligned}
-    \begin{bmatrix}
-        0 & 1\\ -\theta_t \tau & (1 + \theta_t) \tau
+    M = \begin{bmatrix}
+        0 & 1\\ -\theta \tau & (1 + \theta) \tau
     \end{bmatrix}
 \end{aligned}
 $$
@@ -159,9 +162,20 @@ $$
     \begin{bmatrix}
         \frac{
             \tau + \tau \theta 
-            + \sqrt{
+            + \sqrt{\tau}\sqrt{
             \tau - 4\theta+ 2 \tau \theta + \tau \theta^2
         }}{2\tau\theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        \frac{1}{2\tau\theta}
+        \left(
+            \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right)
         \\[1em]
         1
     \end{bmatrix}
@@ -181,8 +195,19 @@ $$
     \begin{bmatrix}
         \frac{
             \tau + \tau \theta 
-            - \sqrt{\tau - 4\theta+ 2 \tau \theta + \tau \theta^2}
+            - \sqrt{\tau}\sqrt{\tau - 4\theta+ 2 \tau \theta + \tau \theta^2}
         }{2\tau\theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        \frac{1}{2\tau\theta}
+        \left(
+            - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right)
         \\[1em]
         1
     \end{bmatrix}
@@ -200,25 +225,85 @@ $$
             \tau \theta^2 + 2 \tau \theta + \tau - 4\theta
         }
         + \tau \theta + \tau
-    \right),
+    \right) 
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        - \sqrt{\tau^2\theta^2 + 2 \tau^2\theta + \tau^2 - 4\theta \tau^2}
+        + \tau\theta + \tau
+    \right)
+    \\
+    &= 
+    \frac{1}{2}\left(
+        - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right)
     \\
     \lambda_2 &= 
     \frac{1}{2}\left(
         \sqrt{\tau}\sqrt{\tau \theta^2 + 2 \tau \theta + \tau - 4\theta}
         + \tau \theta + \tau
-    \right). 
+    \right)
+    \\
+    &= 
+    \frac{1}{2}\left(
+        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right)
 \end{aligned}
 $$
 
-This, is a discrete dynamical system descretizing a first order system of ODE that describes a second order ODE. 
-One of the interest is the spectral radius, and in this case, it's $\max(|\lambda_1|, |\lambda_2|)$. 
-Because we have a conjugate pair of eigenvalue, $|\lambda_1| = |\lambda_2|$, they are the same and one of them suffice for analysis. 
+So the eigen system is simplified into: 
 
-#### Analyzing the spectral radius
+$$
+\begin{aligned}
+    \\
+    \lambda_1 &= 
+    \frac{1}{2}\left(
+        - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right),
+    \\
+    \lambda_2
+    &= \frac{1}{2}\left(
+        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right),
+    \\
+    v_1 &= 
+    \frac{1}{\tau\theta}
+    \begin{bmatrix}
+        \lambda_2
+        \\
+        \tau\theta/2
+    \end{bmatrix},
+    \\
+    v_2 &= 
+    \frac{1}{\tau\theta}
+    \begin{bmatrix}
+        \lambda_1
+        \\
+        \tau\theta/2
+    \end{bmatrix}. 
+\end{aligned}
+$$
 
-Observe that, whether $\lambda_1, \lambda_2$ are complex shifts when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ is close to zero. 
+Here we have $v_1, v_2$ unitary. 
+This is true because the determinant of M is $\theta \tau = \lambda_1\lambda_2$. 
+The determinant of $M$ is easy to compute because $M$ is one permutation away from a upper tirangular matrix. 
+
+This represent a discretized first order system of ODE that describes a second order ODE. 
+One of the interest is the spectral radius, which is $\max(|\lambda_1|, |\lambda_2|)$ in this case. 
+As the parameter $\theta$ varies, we have the following possibilities: 
+1. If we have a conjugate pair of eigenvalue, $|\lambda_1| = |\lambda_2|$, they are the same and one of them suffice for analysis. 
+2. If we have real non-negative $\lambda_1, \lambda_2$, and $\lambda_2$ is the larger. 
+
+#### **Optimizing the spectral radius**
+
+Observe that, whether $\lambda_1, \lambda_2$ are complex shifts when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ changes sign. 
 Since we are taking the norm, that would also be the critical point for both $|\lambda_1|, | \lambda_2|$. 
-Next we will show that, there exists a value $\theta^+ \in (0, 1)$ such that it minimizes the spectral radius of the iteration matrix. 
+Next we will show that, there exists a value $\theta^+ \in (0, 1)$ such that it minimizes the spectral radius of the iteration matrix $M$. 
 Let's solve for when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta = 0$: 
 
 $$
@@ -324,9 +409,91 @@ $$
 $$
 
 Which has a striking similarly compared to the optimal acceleration rates for Nesterov's acceleration in the case of strongly convex function. 
+The spectral radius is smallest if we choose $\theta = \theta^+$, it sets the quantity inside of the square root to zero and make $\lambda_1, \lambda_2$ real valued: 
 
-The spectral radius in this case would be
+$$
+\begin{aligned}
+    \rho
+    \left(
+        \begin{bmatrix}
+        0 & 1\\ -\theta^+ \tau & (1 + \theta^+) \tau
+        \end{bmatrix}
+    \right)
+    &= 
+    \frac{1}{2}(1 + \theta^+)\tau < 1
+\end{aligned}
+$$
 
+#### **Analyzing the spectral radius**
+
+Consider the case where $\theta \in (\theta^+, 1)$. 
+Because $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ is a positive quadratic wrt to $\theta$, it would be negiatve if $\theta \ge \theta^+$, because $\theta^+$ is the smaller root of the two.
+So it makes making $\lambda_1, \lambda_2$ complex and conjugate to each other. 
+In this case, the absolute value of the eigenvalue is given by: 
+
+$$
+\begin{aligned}
+    |\lambda_1| &= 
+    \frac{1}{2}
+    \left(
+        |\tau^2\theta^2 + 2\tau\theta + \tau^2 - 4\tau\theta|
+         + 
+        (\tau\theta + \tau)^2
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
+         + 
+        (\tau\theta + \tau)^2
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
+         + 
+        \tau^2\theta^2 + \tau^2 + 2 \tau^2 \theta
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}\left(
+        4\tau\theta
+    \right)^{1/2}
+    \\
+    &= \sqrt{\tau \theta} < 1
+\end{aligned}
+$$
+
+When we choose parameter $\theta \in (0, \theta^+)$, it will make the quantity $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ positive. 
+In this case, the eigenvalues $\lambda_1, \lambda_2$ would be a real eigenvector. 
+Their absolute value would be different. 
+$|\lambda_2|$ is the larger one and we have: 
+
+$$
+\begin{aligned}
+    |\lambda_2| &= 
+    \frac{1}{2}\left(
+        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right) \le 
+    \frac{1}{2}(1 + \theta)\tau < 1
+\end{aligned}
+$$
+
+#### **Monotonicity of the Spectral radius**
+
+For all $\tau \in [0, 1), \theta \in (0, 1)$, the spectral radius of $M$ is monotone decreasing wrt to $\tau$.
+Fix any $\tau$, which produces critical $\theta^+ = (1 - \sqrt{1 - \tau})/(1 + \sqrt{1 - \tau})$, then the spectral radius of $M$ monotonically decreases for all $\theta \in [0, \theta^+]$  and inceases for all $\theta \in [\theta^+, 1]$. 
+
+
+#### **The worst momentum value for the spectral radius**
+
+The worst value of the spectral radius happens when $\theta \in \{1, 0\}$. 
+The spectral radius would be exactly: $\sqrt{\tau}, \frac{\tau}{2}$. 
+This is true because $|\lambda_1|$ monotone increase for all $\theta \in (\theta^+, 1)$. 
+When $\theta \in (0, \theta^+)$, the spectral radius is $|\lambda_2|$, and it monotone decreases. 
 
 
 ---
@@ -336,10 +503,83 @@ Define a the function
 
 $$
 \begin{aligned}
-    r(\theta, \tau) := 
-    \sqrt{\tau}\sqrt{\tau\theta^2 + 2\tau \theta + \tau - 4\theta}. 
+    r(\theta, \tau) 
+    :&= 
+    \sqrt{\tau}\sqrt{\tau\theta^2 + 2\tau \theta + \tau - 4\theta}
+    \\
+    &= 
+    \sqrt{
+        (\tau\theta + \tau)^2 - 4\tau \theta
+    }
 \end{aligned}
 $$
 
-The reader should verify the the eigen system of the entire block matrix would decompose into: 
+Let $\tau_i \in [0, 1)$ for all $i = 1,\cdots, n$. 
+Define the block iteration matrix: 
+
+$$
+\begin{aligned}
+    T &= 
+    \text{diag}([\tau_1, \cdots, \tau_n])
+    \quad
+    M_t
+    = 
+    \begin{bmatrix}
+        \mathbf 0 & I 
+        \\
+        - \theta_t T
+        & 
+        (1 + \theta_t)T
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+The eigen system of $M$ is given my unitary eigen matrix $X_t$ and eigen value matrix $\Gamma_t$.   
+It is analogus to the 2x2 case, it's given as: 
+
+$$
+\begin{aligned}
+    R^+_t :&= 
+    \text{diag}\left(
+        r(\theta_t, \tau_i) 
+    \right) + (1 + \theta_t)T, 
+    \\
+    R^-_t :&= 
+    \text{diag}\left(
+        -r(\theta_t, \tau_i) 
+    \right) + (1 + \theta_t)T, 
+    \\
+    X_t &=
+    \theta_t^{-1} T^{-1}
+    \begin{bmatrix}
+        R_t^+ & R_t^-
+        \\
+        \frac{\theta}{2}T & \frac{\theta}{2}T
+    \end{bmatrix}
+    \\
+    \Gamma_t &= 
+    \begin{bmatrix}
+        R_t^- &
+        \\ 
+        &  R_t^+
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+The trick we use here is to observe that $M_t$ is a block diagonal matrix. 
+We can apply a permuation matrix to change it into a block 2x2 matrix. 
+Therefore, it's eigen are independent groups of $2\times2$  matrix. 
+The permutation matrix is: 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
+
+
+
+---
+### **Bregmen Estimations of the Theta**
+
 
