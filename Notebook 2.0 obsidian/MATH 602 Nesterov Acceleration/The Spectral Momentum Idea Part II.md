@@ -232,7 +232,7 @@ $$
     \left(
         - \sqrt{\tau^2\theta^2 + 2 \tau^2\theta + \tau^2 - 4\theta \tau^2}
         + \tau\theta + \tau
-    \right)
+    \right), 
     \\
     &= 
     \frac{1}{2}\left(
@@ -250,7 +250,7 @@ $$
     \frac{1}{2}\left(
         \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
         + \tau\theta + \tau
-    \right)
+    \right). 
 \end{aligned}
 $$
 
@@ -272,26 +272,28 @@ $$
     \right),
     \\
     v_1 &= 
-    \frac{1}{\tau\theta}
     \begin{bmatrix}
-        \lambda_2
+        \lambda_2/\tau\theta
         \\
-        \tau\theta/2
+        1
     \end{bmatrix},
     \\
     v_2 &= 
-    \frac{1}{\tau\theta}
     \begin{bmatrix}
-        \lambda_1
+        \lambda_1/\tau\theta
         \\
-        \tau\theta/2
+        1
     \end{bmatrix}. 
 \end{aligned}
 $$
 
-Here we have $v_1, v_2$ unitary. 
-This is true because the determinant of M is $\theta \tau = \lambda_1\lambda_2$. 
-The determinant of $M$ is easy to compute because $M$ is one permutation away from a upper tirangular matrix. 
+the iteration matrix $M^k$ has representation: 
+
+$$
+\begin{aligned}
+    
+\end{aligned}
+$$
 
 This represent a discretized first order system of ODE that describes a second order ODE. 
 One of the interest is the spectral radius, which is $\max(|\lambda_1|, |\lambda_2|)$ in this case. 
@@ -408,7 +410,7 @@ $$
 \end{aligned}
 $$
 
-Which has a striking similarly compared to the optimal acceleration rates for Nesterov's acceleration in the case of strongly convex function. 
+Which has a striking similarly compared to the optimal acceleration sequence of Nesterov's accelerated gradient method specialized for strongly convex function. 
 The spectral radius is smallest if we choose $\theta = \theta^+$, it sets the quantity inside of the square root to zero and make $\lambda_1, \lambda_2$ real valued: 
 
 $$
@@ -496,6 +498,7 @@ This is true because $|\lambda_1|$ monotone increase for all $\theta \in (\theta
 When $\theta \in (0, \theta^+)$, the spectral radius is $|\lambda_2|$, and it monotone decreases. 
 
 
+
 ---
 ### **Eigen Decomposing the entire block matrix**
 
@@ -534,7 +537,7 @@ $$
 \end{aligned}
 $$
 
-The eigen system of $M$ is given my unitary eigen matrix $X_t$ and eigen value matrix $\Gamma_t$.   
+The eigen system of $M$ is given by unitary eigen matrix $X_t$ and eigen value matrix $\Gamma_t$.   
 It is analogus to the 2x2 case, it's given as: 
 
 $$
@@ -567,19 +570,107 @@ $$
 $$
 
 The trick we use here is to observe that $M_t$ is a block diagonal matrix. 
-We can apply a permuation matrix to change it into a block 2x2 matrix. 
-Therefore, it's eigen are independent groups of $2\times2$  matrix. 
+We can apply a permuation matrix to change it into a block diagonal 2x2 matrix. 
+Therefore, its eigen system are independent groups of $2\times2$  matrix. 
 The permutation matrix is: 
 
 $$
 \begin{aligned}
-    
+    P &= 
+    (\forall i = 1, \cdots 2n): 
+    P_\pi e_i = \begin{cases}
+        e_{j}, \text{where } j = \lfloor i/2\rfloor & \text{if } i \equiv 1 \text{ mod } 2
+        \\
+        e_{j}, \text{where } j = n +  i/2 & \text{else}
+    \end{cases}
 \end{aligned}
 $$
 
+So the $M$ matrix can be transformed into a block 2x2 with: 
+
+$$
+\begin{aligned}
+    \text{diag}\left(
+        \begin{bmatrix}
+            0 &  1 \\
+            - \theta_t \tau_i & (1 + \theta_t)\tau_i
+        \end{bmatrix}
+    \right)&= 
+    P M_t P. 
+\end{aligned}
+$$
+
+The spectral radius of the iteration matrix $M$ will be exclusively determined by the largest value of $\tau_i$ among all $i = 1, \cdots, n$, denote it as $\overline{\tau}$. 
+Given $\theta_t \in [0, 1]$, fix $\overline \tau$, from the previous analysis, the spectral radius exactly given by: 
+
+$$
+\begin{aligned}
+    \rho(M_t) &= 
+    \begin{cases}
+        \frac{1}{2}
+        \left(
+            \sqrt{
+                (\overline\tau\theta + \overline\tau)^2 - 4 \overline\tau\theta
+            } + 
+            \overline \tau\theta + \overline\tau
+        \right) 
+        & \text{if }
+        0 \le \theta_t \le 
+        \frac{1 - \sqrt{1 - \overline \tau}}{1 + \sqrt{1 - \overline \tau}}
+        \\
+        \sqrt{\overline \tau \theta} 
+        & \text{if }
+        1 \ge 
+        \theta_t
+        > \frac{1 - \sqrt{1 - \overline \tau}}{1 + \sqrt{1 - \overline \tau}}
+    \end{cases}. 
+\end{aligned}
+$$
+
+The minimum spectral radius is given when $\theta_t$ is choosen to be: 
+
+$$
+\begin{aligned}
+    \theta_t = \frac{1 - \sqrt{1 - \overline \tau}}{1 + \sqrt{1 - \overline \tau}}, 
+\end{aligned}
+$$
+
+for all $M_t$ where $t \in \N$. 
+
+---
+### **Power iterations**
+
+The iteration matrix gives us the opportunity to model the algorithm as a product of a sequence of matrices. 
+This opens the possibility to analyze the convergence rate. 
+One approach would be to use the spectral radius. 
+
+
+
+
+#### **Convergence rate analysis**
+
+#### **Tracking the differences between the successive iterates**
 
 
 ---
-### **Bregmen Estimations of the Theta**
+### **Estimating the acceleration parameter via local concavity**
 
+Common in most analysis of algorithm, the spectral radius dictates the convergence rate of the algorithm and the choice of the optimal acceleration parameter $\theta$ for all iterations. 
+The proposed algorithm which we called spectral radius seems to exploiting the initial guess and local concavity of to speed up the convergence. 
 
+This is problematic because if we are in infinite dimension, there is a choice of matrix $T$ that makes the spectral radius equals to $1$, and $\overline \tau = 1$, and forcing $\theta_t = 1$. 
+To illustrate the possibility consider $\mu \ge 0$: 
+
+$$
+\begin{aligned}
+    \Lambda&= \text{diag}(1, 1/2, 1/3, \cdots), \mathbf 0 \preceq \Lambda  \preceq I
+    \\
+    \\
+    T &= I - L^{-1} = \text{diag}(0, 1/2, 2/3, 4/5, \cdots )
+\end{aligned}
+$$
+
+There is no convergence of Nesterov's acceleration in this scenario! 
+Because $\overline \tau = \sup_{n \in \N} \frac{n - 1}{n} = 1$. 
+
+But in reality, it will converge for almost all initial guesses and an optimal choice of $\theta$, the acceleration parameter specific to the initial guess will mitigate the issue. 
