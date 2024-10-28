@@ -53,36 +53,38 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     % of the accelerated gradient (AG) and show that they all falls within the same framework. 
 
     \subsection{Background}
-        In the literatures, extensions of the accelerated gradient uses Nesterov's estimating sequence for convergence analysis. 
-        Guller \cite{guler_new_1992} applied the techniques to proximal point method and obtained accelerated convergence rates. 
-        Necoara \cite{necoara_linear_2019} obtained convergence rate of accelerated gradient for non-strongly convex functions. 
+        Nesterov's estimating sequence is sometimes used for extension of accelerated gradient to show convergence in the literatures. 
+        Guller \cite{guler_new_1992} applied this technique to proximal point method to obtain faster convergence. 
+        Necoara \cite{necoara_linear_2019} obtained linear convergence of accelerated gradient when functions are non-strongly convex. 
         Nesterov's book \cite[chapter 2]{nesterov_lectures_2018} introduced the technique. 
-        It involves constructing a sequence of functions: $\phi_k:\RR^n \mapsto \RR^n$ and assume there exists a sequence $(x_k)_{k\in \N \cup \{0\}}$ a priori such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
+        It constructs a sequence of functions: $\phi_k:\RR^n \mapsto \RR^n$ and assume there exists a sequence $(x_k)_{k\in \N \cup \{0\}}$ a priori such that $f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
         The representation for $\phi_k$ involves many parameters. 
-        Disregarding its complicated nature, the technique is powerful. 
+        As a consequence, the rate of convergence for $\phi_k^*$ implies the convergence of the sequence $f(x_k)$. 
+        The technique is powerful disregarding its complicated nature. 
         
         \par
-        In Ahn's works, they showed an alternative proof using the proximal point interpretation of the accelerated gradient. 
-        It used Moreau envelope for the Lyapunov analysis and parameters from the proximal point method interprations.  
+        In Ahn's works \cite{ahn_understanding_2022}, they showed an alternative proof using the proximal point interpretation of the accelerated gradient. 
+        It used Moreau envelope inequality for Lyapunov analysis phrase the convergence rate using parameters from the algorithms.  
         It has fewer parameters while still encompasses several variants of the accelerated gradient algorithm under the same framework. 
         Their approach is inspired by works from Defazio \cite{defazio_curved_2019}, Zeyuan and Lorenzo \cite{allen-zhu_linear_2016}. 
         
         \par
-        Numerous variations of accelerated gradient exists in the literatures. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ using Bregman Divergence. 
+        Numerous variations of accelerated gradient exists in the literatures. \cite[(6.1.19)]{nesterov_lectures_2018} described a variant of accelerated gradient restricted to a convex domain $Q$ with Bregman Divergence. 
         Beck and Toubolle \cite{beck_fast_2009} introduced a variant the problem type of smooth plus non-smooth, known as FISTA. 
-        Beck's Book \cite[(10.7.7)]{beck_first-order_2017} states a variant of FISTA called V-FISTA which achieves an optimal convergence rate for strongly convex. 
+        Beck's Book \cite[(10.7.7)]{beck_first-order_2017} states a variant of FISTA called V-FISTA which achieves an optimal convergence rate for the class of strongly convex functions. 
         See Chambolle and Dossal \cite{chambolle_convergence_2015} for a variant of accelerated gradient where the iterates converge (weakly in Hilbert space). 
         
         \par
         Various interpretations of the accelerated gradient exist in literatures. 
         Consult \cite{su_differential_2016} for a dynamical system interpretation of Nesterov acceleration. 
-        The interpretation leads the valuable insight that restarting the accerlated gradient algorithm periodically leads to faster convergence rate for the class of strongly convex function. 
-        Early attempt such as Monotone FISTA and their convergence rate analysis can be found in Beck and Touboulle \cite{beck_fast_2009}. 
-        Aujol \cite{aujol_optimal_2019} showed that the convergence rate of original FISTA proposed by Beck and Touboulle \cite{beck_fast_2009} is sublinear hence suboptimal. 
-        Prompted the two discoveries, a copious amount of ideas surrounding restart heuristics appeared in the literatures. 
+        They showed that if accelerated gradient is modeled by a continuous time dynamical system, then its convergence is sub linear in the case of strongly convex quadratic function. 
+        As a remedy they proposed the idea of restarting to improve the overall rate of convergence. 
+        Beck and Touboulle \cite{beck_fast_2009} proposed Monotone FISTA as an attempt to improve the convergence of the algorithm. 
+        Aujol \cite{aujol_optimal_2019} showed that the convergence rate of original FISTA proposed by Beck and Touboulle \cite{beck_fast_2009} is sublinear for a classes of sharp functions. 
+        A copious amount of ideas surrounding restart heuristics are in the literatures. 
         See Aujol \cite{aujol_parameter-free_2024}, Calatroni and Chambolle \cite{calatroni_backtracking_2019} and references within for algorithms that has optimal convergence rate for $L$ smooth and $\mu \ge 0$ strongly convex function, without needing the values of $\mu, L$ run the algorithm. 
-        In general, proving the convergence for algorithm heuristics is difficult and requires sometimes requires a profound understanding. 
-        See Moursi et al. \cite{moursi_accelerated_2023} preprint and references within for a proof of a specific type of parameter free restarting heuristics without function values for one dimensional functions and its extension and literature reviews on various type of heuristic employed to achieve fast linear convergence on accelerated gradient for strongly convex objective. 
+        In general, proving the convergence for algorithm heuristics is difficult and it requires a profound understanding. 
+        See Moursi et al. \cite{moursi_accelerated_2023} preprint and references within for a proof of a specific type of parameter free restarting heuristics without function values for one dimensional functions. 
 
         % \par
         % The paper is organized as follow: 
@@ -116,16 +118,14 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     
 \section{Preliminaries}\label{sec:preliminaries}
 
-    \textcolor{red}{STATE THE OBJECTIVES OF THIS SECTION CLEARER!}
-
     Let the ambient space be $\RR^n$. 
-    In this section, we build up the necessary tools for 
+    This section builds up the necessary tools for 
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
     by defining the the concept of a gradient mapping $\mathcal G_L$ and their properties. 
     The concepts are standard tools of analysis and they can be found in the Beck's book \cite{beck_first-order_2017}. 
     We amphasize that the use of 
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}
-    differs from the original analysis presented in \cite{ahn_understanding_2022} because it compatifies the the smoothness together with proximal inequality into one statement which eventually simplifies the convergence proof of the generic PPM formulation of accelerated gradient in
+    was not presented in the original analysis in \cite{ahn_understanding_2022} because it compatifies the the smoothness together with proximal inequality into one statement which eventually simplifies the convergence proof of the generic PPM formulation of accelerated gradient in
     \hyperref[sec:lyapunov-analysis]{Section \ref*{sec:lyapunov-analysis}}. 
     Inequality stated in \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}} 
     is the direct consequence of
@@ -931,8 +931,83 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \section{Numerical experiments}\label{sec:numerical-experiments}
     \textcolor{red}{MISSING SECTION SUMMARY HERE, THEY WILL BE FINISHED AFTER THIS SECTION IS SETTLED.}
-    \subsection{The design of the line search algorithm for strongly convex objective}
+    
+    \par\noindent
+    Recall from 
+    \hyperref[def:SC-PPM-APG]{Definition \ref*{def:SC-PPM-APG}}
+    the the lower surrogate function $l_h(z; x)$ is: 
+    \begin{align*}
+        (\forall z \in \RR^n) \; l_h(z; x) = h(\mathcal T_L x) + \langle \mathcal G_L (x), z - x\rangle
+        + 
+        \frac{L}{2}\Vert x - \mathcal T_L (x)\Vert^2 + \frac{\mu}{2}\Vert z - x\Vert^2. 
+    \end{align*}
+    Here, the term $\mu/2\Vert z - x\Vert^2$ can be viewed as a surrogate of $D_f(z, x)$ by the derivation we made in
+    \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}. 
+    To motivate the design of our algorithm, we motivate it with an example below where convergence of V-FISTA (\hyperref[def:v-fista]{Definition \ref*{def:v-fista}}) 
+    could be much faster than convergence rate given by the worst case convergence analysis. 
+    \begin{example}
+        Let $h = \frac{1}{2}\langle x, \Lambda x\rangle$ where $\Lambda$ is a diaognal matrix: 
+        \begin{align*}
+            \Lambda = \begin{bmatrix}
+                0.01 & & 
+                \\
+                & 0.5 & \\ 
+                & & 1
+            \end{bmatrix}
+        \end{align*}
+        Then $0.01 I \preceq \Lambda \preceq I$, so $h$ is a strongly convex quadratic with $\mu = 0.01, L = 1$. 
+        The gradient mapping $calatroni G_L$ in V-FISTA is reduced to $I - \Lambda$ in this case. 
+        By analysis given for V-FISTA, the optimal momentum parameter for $\theta = \left(\sqrt{L/\mu} - 1\right)/\left(\sqrt{L/\mu} + 1\right)$. 
+        $L/\mu$ is the condition number and it is $0.\overline{81}$ and 
+        the convergence rate is $\mathcal O\left(1 - \sqrt{L/\mu}\right)^k$ in this case. 
+        However this convergence rate together with the choice of $\theta$ is suboptimal for the initial guess: 
+        \begin{align*}
+            y_0 = x_0 = \begin{bmatrix}
+                0 \\ 1 \\ 0
+            \end{bmatrix}
+        \end{align*}
+        The above initial guess makes the algorithm to generate iterates $(x_k, y_k)$ restricted to the span of $\mathbf e_2$. 
+        The objective function is in fact $0.5$ strongly convex within this subspace and the global strong convexity estimate $\mu = 0.01$ is an extreme under estimates for the particular $y_0, x_0$ initial guess. 
+        The situation can be arbitrarily worse in infinite dimension such as the Hilbert space. 
+        
+        It would be great if we can estimate the concavity information based on the iterates generated by the algorithm instead of an apriori constant that is only used to assert the global convergence in the worst case analysis. 
+    \end{example}
 
+
+    \begin{algorithm}
+        \caption{Inexact V-FISTA}\label{alg:routine1}
+        \begin{algorithmic}[1]
+            \Procedure{Inexact V-FISTA}{$h=f+g, x_0, y_0$}
+                % \State \textbf{Initialize: } $\eta_i = 0, \tilde \eta_{i + 1} = \eta_i + L^{-1} + \tilde \mu L^{-1} \eta_t$
+                % \State $\tilde x \gets (\tilde \mu\tilde \eta_{i + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{i + 1}y_i + x_i - \tilde \eta_{i + 1}\mathcal G_l(y_t))$
+                % \If{$\exists\; \tilde \mu \in [\epsilon, L]: l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$ }
+                %     \State \textbf{find } $\tilde \mu \in [\epsilon, L]$ s.t: $l_h(\tilde x, x_t, \tilde \mu) \le h(\tilde x)$  
+                %     \State \textbf{updates} $\tilde \mu$ accordingly. 
+                %     \Comment{Use binary search}
+                %     \For{$j = i, \cdots, N$} 
+                %         \State $\tilde \eta_{t + j} \gets (\sqrt{L\tilde \mu} - \tilde \mu)^{-1}$
+                %     \EndFor
+                % \Else \Comment{$\tilde \mu = 0$}
+                %     \State $\tilde \mu \gets 0$
+                %     \For{$j = i, \cdots, N$}
+                %         \State $\tilde \eta_{t + i} \gets \theta_{j}L^{-1}$
+                %     \EndFor
+                % \EndIf
+                % \For{$t = i, \cdots, N$}
+                %     \State $\eta_t \gets \tilde \eta_{t + 1} - L^{-1} - L^{-1}\mu\tilde\eta_{t + 1}$
+                %     \State $z_{t + 1} \gets y_t - L^{-1}\mathcal G_L(y_t)$
+                %     \State $x_{t + 1} \gets (\tilde \mu\tilde \eta_{t + 1} + 1)^{-1}(\tilde \mu \tilde \eta_{t + 1}y_t + x_t - \tilde \eta_{t + 1}\mathcal G_l(y_t))$
+                %     \State $y_{t + 1} \gets (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1})$
+                % \EndFor
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+    \subsection{Results from numerical experiments}
+    \subsection{Cannonical form of convex quadratic}
+    \subsection{Convergence analysis by eigensystem of the generalized matrix recurrences of Nesterov's acceleration}
+        \subsubsection{Block diagonal linear recurrence matrix}
+        \subsubsection{Eigensystem}
+        \subsubsection{Spectral radius}
 
 
 
