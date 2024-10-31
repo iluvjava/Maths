@@ -160,7 +160,7 @@ $$
 \end{aligned}
 $$
 
-using convexity, and subdifferentia, we get the proximal inequality: 
+using convexity, and subdifferential, we get the proximal inequality: 
 
 $$
 \begin{aligned}
@@ -196,3 +196,8 @@ $$
 $$
 
 The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very similar inequality, the quantities on the RHS can be interpreted as the error of the approximation by the proximal gradient operator $\mathcal T_L x$. 
+
+**Remarks**
+
+Here, we could also assume that the function $g$ is also strongly convex. 
+In this way, the above inequality can be generalized. 

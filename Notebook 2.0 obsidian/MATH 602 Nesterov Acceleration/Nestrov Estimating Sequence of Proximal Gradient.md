@@ -129,15 +129,15 @@ When searching for the implicit descent sequence, $x_k = T_L y_k$ turns out to b
 >     \\
 >     & 
 >     v_{k + 1} = \gamma_{k + 1}^{-1}
->     (\gamma_k( - \alpha_k)v_k - \alpha_k g_k + \mu \alpha_k y_k)
+>     (\gamma_k(1 - \alpha_k)v_k - \alpha_k g_k + \mu \alpha_k y_k)
 >     \\
 >     & 
 >     \phi_{k + 1}^* = 
 >     (1 - \alpha_k)\phi_k^*
 >     + \alpha_k\left(
->         h(T_k y_k) + \frac{1}{2L}\Vert g_k\Vert^2 
+>         h(T_L y_k) + \frac{1}{2L}\Vert g_k\Vert^2 
 >     \right) 
->     - \frac{\alpha_k}{2 \gamma_{k + 1}} \Vert g_k\Vert^2 
+>     - \frac{\alpha_k^2}{2 \gamma_{k + 1}} \Vert g_k\Vert^2 
 >     + 
 >     \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}} 
 >     \left(

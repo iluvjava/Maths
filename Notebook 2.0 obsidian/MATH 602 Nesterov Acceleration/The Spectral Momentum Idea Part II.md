@@ -649,6 +649,7 @@ One approach would be to use the spectral radius.
 
 #### **Convergence rate analysis**
 
+
 #### **Tracking the differences between the successive iterates**
 
 

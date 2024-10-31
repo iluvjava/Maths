@@ -472,5 +472,12 @@ $$
 $$
 
 
+
 #### **Proposition 5 | Nes 2.2.19**
-> 
+
+
+---
+### **In relations with Nesterov's Estimating Sequence technique**
+
+PPM APG interpretation of Nesterov's accelerated gradient method has direct link to the Nesterov's estimating sequence technique used to show the convergence. 
+We will introduce the technique and then compare it with the PPM APN form. 
