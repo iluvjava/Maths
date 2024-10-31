@@ -7,12 +7,12 @@
 ### **Intro**
 
 A slight modification can be made to the V-FISTA algorithm to estimate the $\mu$ the strongly convexity index while the algorithm is executing. 
-Assume compositive additive objective $h = f + g$ where $f$ is $L$ lipschitz smooth and $\alpha \ge 0$ strong convex. 
+Assume composition additive objective $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\alpha \ge 0$ strong convex. 
 
 **Define**
 1. $\mathcal T_L = [I + L^{-1}\partial g]\circ[I + L^{-1}\nabla]$, denotes the proximal gradient operator. 
 2. $\mathcal G_L = I - \mathcal T_L$ denotes the gradient mapping operator. 
-3. $D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), x - y\rangle$ is the Bragman divergence of the function. 
+3. $D_f(x, y) = f(x) - f(y) - \langle \nabla f(y), x - y\rangle$ is the Bregman divergence of the function. 
 
 #### **The inexact V-FISTA algorithm**
 
@@ -73,11 +73,8 @@ $$
     \mu_k &= 
     \frac{1}{2}
     \left(
-        \mu_{k - 1} + 
-        \min\left(
-            \mu_{k - 1},
-            \frac{2D_f(x_k, x_{k - 1})}{\Vert x_k - x_{k - 1}\Vert^2}
-        \right)
+		\mu_{k - 1} +
+		\frac{2D_f(x_k, x_{k - 1})}{\Vert x_k - x_{k - 1}\Vert^2}
     \right)
 \end{aligned}
 $$

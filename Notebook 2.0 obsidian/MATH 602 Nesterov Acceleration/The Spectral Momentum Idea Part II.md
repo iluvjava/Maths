@@ -51,8 +51,7 @@ $$
 \end{aligned}
 $$
 
-Where we have $A^TA$ always being a positive semi-definite matrix. 
-Also true in Hilbert space too. 
+$A^TA$ is always being a positive semi-definite matrix. 
 Therefore, without loss of generality, there is offset transformation in the domain and the range of any convex quadratic function into a cannonical form of $(1/2)\langle x, G, x\rangle$. 
 Let's now assume that: 
 
@@ -498,7 +497,6 @@ This is true because $|\lambda_1|$ monotone increase for all $\theta \in (\theta
 When $\theta \in (0, \theta^+)$, the spectral radius is $|\lambda_2|$, and it monotone decreases. 
 
 
-
 ---
 ### **Eigen Decomposing the entire block matrix**
 
@@ -645,9 +643,8 @@ This opens the possibility to analyze the convergence rate.
 One approach would be to use the spectral radius. 
 
 
-
-
 #### **Convergence rate analysis**
+
 
 
 #### **Tracking the differences between the successive iterates**
