@@ -251,7 +251,98 @@ Therefore, for Nesterov's acceleration, it suffice to study the block diagonal i
 
 
 #### **Claim 0.1 | Block diagonal matrix as a diagonal 2x2 block matrix**
-> 
+> A block 2x2 matrix $G \in \R^{2n \times 2n}$ with inner $n\times n$ diaognal matrix is a unitary transform from a diagonal block 2x2 matrix. 
+> Given a generic block 2x2 with: 
+> $$
+> \begin{aligned}
+>     G = \
+>     \begin{bmatrix}
+>         D_{1, 1} & D_{1, 2} 
+>         \\
+>         D_{2, 1} & D_{2, 2} 
+>     \end{bmatrix}
+> \end{aligned}
+> $$
+> Where $D_{i, j} = \text{diag}(d_{i, j}^{(1)}, d_{i, j}^{(2)}, \cdots, d_{i, j}^{(n)})$. 
+
+**Proof**
+
+By the definition of the following permutation matrix: 
+
+$$
+\begin{aligned}
+   (\forall i = 1, \cdots 2n): 
+    P_\pi e_i &= \begin{cases}
+        e_{j}, \text{where } j = \lfloor i/2\rfloor & \text{if } i \equiv 1 \text{ mod } 2, 
+        \\
+        e_{j}, \text{where } j = n +  i/2 & \text{else}. 
+    \end{cases}
+\end{aligned}
+$$
+
+The we have 
+
+$$
+\begin{aligned}
+    P_\pi^T
+    \text{diag}\left(
+        \begin{bmatrix}
+            d_{1, 1}^{(i)} & d_{1, 2}^{(i)}
+            \\
+            d_{2, 1}^{(i)} & d_{2, 2}^{(i)}
+        \end{bmatrix}; 
+        i = 1, \cdots, n
+    \right)P_\pi
+    = 
+    \begin{bmatrix}
+        D_{1, 1} & D_{1, 2} 
+        \\
+        D_{2, 1} & D_{2, 2} 
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+#### **Block diaognal recurrence**
+
+Using claim 0.1, 0. 
+$M_t$ is a block diagonal matrix in the form of 
+
+$$
+\begin{aligned}
+    M_t &= 
+    \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        -\theta_t T_t & (1 + \theta_t)T_t
+    \end{bmatrix}.
+\end{aligned}
+$$
+
+Where $T_t = \text{diag}(\tau_t^{(1)}, \cdots, \tau_t^{(n)})$. 
+We see that the matrix recurrence gives the following form: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        \tilde y_{t} \\ \tilde y_{t + 1}
+    \end{bmatrix}
+    &= P^T_\pi 
+    \text{diag}
+    \left(
+        \begin{bmatrix}
+            1 & 0 
+            \\
+            - \theta_t^{(i)} \tau_t ^{(i)}
+            & (1 + \theta_t) \tau_t^{(i)}
+        \end{bmatrix}; 
+        i = 1, \cdots, n
+    \right)
+    P_\pi
+    \begin{bmatrix}
+        \tilde y_{t - 1} \\ \tilde y_{t}
+    \end{bmatrix}. 
+\end{aligned}
+$$
 
 
 ---
@@ -605,4 +696,65 @@ Combining we get the results for the spectral radius $\rho(M)$.
 
 **Remark**
 
-$\rho(M)$ is monotone wrt to parameter $\tau$. 
+$\rho(M)$ is monotone increasing wrt to parameter $\tau$. 
+
+
+---
+### **Convergence rate directly by spectral radius**
+
+Block iteration matrix $M_t$ expressed by: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        I & \mathbf 0 
+        \\
+        -\theta_t T_t & (1 + \theta_t)T_t
+    \end{bmatrix}, 
+\end{aligned}
+$$
+
+is a $\R^{n\times n}$ block 2x2 diagonal matrix. 
+A repermutation of the matrix by $P_\pi$ introduced back in claim 0.1 showed that $M_t$ is a block diagonal where the $ith$ 2x2 block is given by: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        1 & 0 
+        \\
+        - \theta_i \tau_i 
+        & 
+        (t + \theta_i ) \tau_i
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+Focusing on the specific recurrence relation on $\tilde y_{t + 1}, \tilde y_t, \tilde y_{t - 1}$ operates by this recurrence matrix, it has
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        \tilde y^{(t + 1)}_i \\ \tilde y^{(t)}_i
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        1 & 0 
+        \\
+        - \theta_i \tau_i 
+        & 
+        (t + \theta_i ) \tau_i
+    \end{bmatrix}
+    \begin{bmatrix}
+        \tilde y_i^{(t - 1)} \\  
+        \tilde y_i^{(t)}
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+Therefore, given any value of $$
+
+
+
+---
+### **Tracking Rayleigh quotient**
+

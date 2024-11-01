@@ -574,9 +574,8 @@ The permutation matrix is:
 
 $$
 \begin{aligned}
-    P &= 
     (\forall i = 1, \cdots 2n): 
-    P_\pi e_i = \begin{cases}
+    P_\pi e_i &= \begin{cases}
         e_{j}, \text{where } j = \lfloor i/2\rfloor & \text{if } i \equiv 1 \text{ mod } 2
         \\
         e_{j}, \text{where } j = n +  i/2 & \text{else}
