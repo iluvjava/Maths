@@ -7,7 +7,7 @@
 
 \begin{document}
 
-\title{{\fontfamily{ptm}\selectfont The Proximal Point interpretation of Nesterov accelerated proximal gradient}}
+\title{{\fontfamily{ptm}\selectfont A Parameter Free FISTA Variant based on the PPM Interpretations of Nesterov's Acceleration}}
 
 \author{
     Hongda Li
@@ -29,7 +29,8 @@
     Decades later it still opens up new interpretations. 
     Our work suggests a proximal point interpretation of accelerated gradient method for the method of accelerated proximal gradient method as a major extension to the interpretation proposed by Ahn and Sra \cite{ahn_understanding_2022}. 
     The proofs had been streamlined, extended and new error terms are added to allow a larger set of stepsize sequence for the proximal point interpreation. 
-    Additionally, we conduct numerical experiment for a line search method that dynamically adjust the strong convexity index $\mu$ and Lipschitz constant of the gradient in for algorithm  using the proximal point understanding of accelerated gradient. 
+    Finally, inspired by the PPM formulation of Nesterov's acceleration, we re-interpreted the role of strong convexity parameter $\mu$ in the proof and construct a simple estimate of the parameter to achieve faster convergence without increasing the complexity of the algorithm. 
+    Julia \cite{bezanson_julia_2017} implementations of numerical experiments were presented for various type of problems and exploratory theories were developed to described the behaviors of the algorithm for convex quadratic function. 
     
 \end{abstract}
 
@@ -111,9 +112,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         (\hyperref[def:SC-similar-triangle]{Definition \ref*{def:SC-similar-triangle}}) 
         when $\mu = 0$, it generalizes the stepsize conditions further from previous works by Ahn and Sra. 
         \hyperref[sec:numerical-experiments]{Section \ref*{sec:numerical-experiments}}
-        suggests new line search heuristic ideas that determines the parameters $\mu, L$ during the execution of the algorithm. 
-        The design attempts to retain fast linear convergence without parameters $\mu, L$ prior.         
-        Numerical experiments are conducted with applications to demonstrate the potential of the idea. 
+        suggests new line heuristic idea that determines the parameters $\mu$ during the execution of the algorithm to achieve faster iteration complexity. 
+        The design attempts to retain fast linear convergence for strong convex (or sometimes, non-strongly convex function) without parameters $\mu, L$ given in prior.         
+        Numerical experiments are conducted with applications to demonstrate the tremendous potential of the idea. 
+        Code implementations in Julia \cite{bezanson_julia_2017} is available on our Github. 
 
     
 \section{Preliminaries}\label{sec:preliminaries}
@@ -930,7 +932,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 \section{Numerical experiments}\label{sec:numerical-experiments}
-    \textcolor{red}{MISSING SECTION SUMMARY HERE, THEY WILL BE FINISHED AFTER THIS SECTION IS SETTLED.}
+    \textcolor{red}{THIS SECTION IS STILL BEING WRITTEN! }
     
     \par\noindent
     Recall from 
@@ -943,8 +945,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{align*}
     Here, the term $\mu/2\Vert z - x\Vert^2$ can be viewed as a surrogate of $D_f(z, x)$ by the derivation we made in
     \hyperref[lemma:grad_map_linearization]{Lemma \ref*{lemma:grad_map_linearization}}. 
-    To motivate the design of our algorithm, we motivate it with an example below where convergence of V-FISTA (\hyperref[def:v-fista]{Definition \ref*{def:v-fista}}) 
-    could be much faster than convergence rate given by the worst case convergence analysis. 
+    An example below motivates the design of our inexact V-FISTA algorithm (\hyperref[def:v-fista]{Definition \ref*{def:v-fista}}). 
+    The example showed a case where original V-FISTA can converge much faster than the theoretical worst case analysis for a bad initial guess. 
     \begin{example}
         Let $h = \frac{1}{2}\langle x, \Lambda x\rangle$ where $\Lambda$ is a diaognal matrix: 
         \begin{align*}
@@ -955,24 +957,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 & & 1
             \end{bmatrix}
         \end{align*}
-        Then $0.01 I \preceq \Lambda \preceq I$, so $h$ is a strongly convex quadratic with $\mu = 0.01, L = 1$. 
-        The gradient mapping $calatroni G_L$ in V-FISTA is reduced to $I - \Lambda$ in this case. 
-        By analysis given for V-FISTA, the optimal momentum parameter for $\theta = \left(\sqrt{L/\mu} - 1\right)/\left(\sqrt{L/\mu} + 1\right)$. 
+        Then $0.01 I \preceq \Lambda \preceq I$, so $h$ is a strongly convex quadratic with $\mu = 0.01, L = 1$ and the gradient mapping $\mathcal G_L$ in V-FISTA is reduced to $I - \Lambda$. 
+        By the worst case convergence analysis of V-FISTA, the optimal momentum parameter for is $\theta = \left(\sqrt{L/\mu} - 1\right)/\left(\sqrt{L/\mu} + 1\right)$. 
         $L/\mu$ is the condition number and it is $0.\overline{81}$ and 
-        the convergence rate is $\mathcal O\left(1 - \sqrt{L/\mu}\right)^k$ in this case. 
-        However this convergence rate together with the choice of $\theta$ is suboptimal for the initial guess: 
+        so convergence rate is $\mathcal O\left(1 - \sqrt{L/\mu}\right)^k$. 
+        \par
+        However with the initial guess being:
         \begin{align*}
             y_0 = x_0 = \begin{bmatrix}
                 0 \\ 1 \\ 0
-            \end{bmatrix}
+            \end{bmatrix}, 
         \end{align*}
-        The above initial guess makes the algorithm to generate iterates $(x_k, y_k)$ restricted to the span of $\mathbf e_2$. 
+        the algorithm only generates iterates $(x_k, y_k)$ restricted to the span of $\mathbf e_2$. 
         The objective function is in fact $0.5$ strongly convex within this subspace and the global strong convexity estimate $\mu = 0.01$ is an extreme under estimates for the particular $y_0, x_0$ initial guess. 
-        The situation can be arbitrarily worse in infinite dimension such as the Hilbert space. 
-        
+        Therefore using $\mu=0.01$ will produce $\theta$ on V-FISTA will produce a much slower convergence rate. 
+        The situation can be arbitrarily worse in infinite dimension such as the Hilbert space because the infimum of a spectrum of $\lambda$ can be zero and the minimum may not exist. 
+        \par
         It would be great if we can estimate the concavity information based on the iterates generated by the algorithm instead of an apriori constant that is only used to assert the global convergence in the worst case analysis. 
     \end{example}
-    In this section, we will present numerical results and exploratory theoretical results concerning \hyperref[alg:inexact-vfista]{Algorithm \Ref*{alg:inexact-vfista}}. 
+    Motivated by the example, this section presents numerical and exploratory theoretical results concerning \hyperref[alg:inexact-vfista]{Algorithm \Ref*{alg:inexact-vfista}}. 
     The algorithm is parameter-free and we have the option to invoke line search to estimate Lipschitz constant $L$ by searching for the smallest $k \in \N$ such that: 
     \begin{align*}
         D_f\left(T_{\tilde L/2^k}y_k, y_k\right)
@@ -995,7 +998,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \hyperref[def:v-fista]{Definition \ref*{def:v-fista}}. 
 
     In summary, this section proposes a heuristic parameter-free algorithm we call ``Inexact V-FISTA'' for optimizing convex function. 
-    Proving its convergence in general was difficult therefore we only analyzed its behaviors in the case of a convex quadratic function using the eigensystem of the iteration matrix.  
+    Proving its convergence in general was difficult therefore we only analyzed its behaviors in the case of a convex quadratic function using the eigensystem of the iteration matrix. 
+    The numerical experiments are written in Julia \cite{bezanson_julia_2017} and all source code are available on Github. % TODO: ADD LINKS HERE. 
     \hyperref[sec:results-numerical-experiment]{Section \ref*{sec:results-numerical-experiment}} 
     presents the results for convergence experiments on LASSO, Semi-Definite Convex Quadratic, and Logistic Regression. 
     \hyperref[sec:cannonical-convex-quadratic]{Section \ref*{sec:cannonical-convex-quadratic}}
@@ -1019,8 +1023,118 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{algorithm}
     
     \subsection{Numerical experiments results}\label{sec:results-numerical-experiment}
+        Our first experiment is optimizing a simple convex quadratic function whose spectrum are equally spaced and the matrix has one zero eigenvalue. 
+        In the works by \cite{necoara_linear_2019} they showed that V-FISTA has fast linear convergence for convex, quansi-convex functions when the proximal operator is a projection onto a convex set. 
+        In our case, the optimal choice of the $\mu$ parameter is the smallest non-zero eigenvalue. 
+        \par
+        The paramters for our test problems are: 
+        \begin{enumerate}
+            \item  Define $N, \mu, L$ where $N \in \N$ is an integer representing the dimension of the problem, $\mu$ is the smallest non-zero eigenvalue, and $L$ is the Lipschitz-constant. 
+            \item  Define the diagonal matrix $\Lambda = \text{diag}(0, 1/(N - 1), 2/(N - 1), \cdots, (N-2)/(N - 1),1)$. 
+            \item  Let the objective function $h = \frac{1}{2}\langle x, \Lambda, x\rangle$, so the minimum is $0$ and the minimizer is $\mathbf 0$. We used boldface to represent the zero vector. 
+            \item  Define $x_0$ to be the initial guess and set $x_0 = \mathbf 1$, a vector with all ones. 
+        \end{enumerate}
+        We present the convergence optimality gap and the estimate $\mu_k$ on two sets of parameters. 
+        For both experiment, we chose $\mu=10^{-6}$ and $L = 1$ to construct $\Lambda$ for the objective function $h$
+        \hyperref[fig:simple-regression-64]{Figure \ref*{fig:simple-regression-64}} presents the convergence of the optimality gap $f(x_k)$ (left), and the convergence of strong convexity estimate $\mu_k$ (right) on the log scale against the number of iterations using $N = 64$. 
+        The left, right of \hyperref[fig:simple-regression-1024]{Figure \ref*{fig:simple-regression-1024}} presents the convergence of the optimality and $\mu_k$ for the $N=1024$ case. 
+        Observe that faster initial descent of the objective values followed by a slower descent before stabalizing. 
+        The rate of descent is tightly linked to the estimates $\mu_k$ produced by the algorithm during its execution. 
+
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_loss_64.png}
+                \caption{Optimality gap $h(x_k)$ on log scale. The x-axis is the iteration counter. }
+                \label{fig:simple-regression-optimality-gap-64}
+            \end{subfigure}
+            ~
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_loss_sc_estimates_64.png}
+                \caption{$\mu_k$ estimates on log scale. The y-axis is the iteration counter. }
+                \label{fig:simple-regression-mu-estimates-64}
+            \end{subfigure}
+            \caption{Regression with $N=64$. }
+            \label{fig:simple-regression-64}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_loss_1024.png}
+                \caption{Optimality gap $h(x_k)$ on log scale. The x-axis is the iteration counter. }
+                \label{fig:simple-regression-optimality-gap-1024}
+            \end{subfigure}
+            ~ 
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
+                \caption{The $\mu_k$ estimates on log scale. The y-axis is the iteration counter. }
+                \label{fig:simple-regression-mu-estimates-1024}
+            \end{subfigure}
+            \caption{Regression with $N=1024$. }
+            \label{fig:simple-regression-1024}
+        \end{figure}
+       
+        Our second experiment is conducted using the LASSO problem where the objective function is the composite $h$ given by
+        \begin{align*}
+            f(x) &:= \frac{1}{2} \Vert Ax - b\Vert^2_2, 
+            \\
+            g(x) &:= \lambda \Vert x\Vert_1, 
+            \\
+            h(x) &:= f(x) + g(x). 
+        \end{align*}
+        For the setup of the numerical experiments: 
+        \begin{enumerate}
+            \item $A\in \RR^{N\times N}$ is a dense matrix of Gaussian random variable $\mathcal N(0, 1)$. 
+            \item We set $\lambda=0.01$ the regularization parameter to be $0.1$ for both set of experiments. 
+            \item We produced the vector $b$ by setting vector $x^+$ to be $x^+_k = \cos(2k\pi) + \epsilon_k$ where $k\in \N, \;0 \le k \le N-1$, and $b = Ax^+$ where $\epsilon_i \sim \mathcal N(0, 10^{-4})$. The vector $x^+$ is promptly discarded after making the vector $b$. 
+            \item To estimate $L, \mu$ for V-FISTA, we choose $L = \Vert AA^T\Vert_2$, and $\mu = \Vert (A^TA)^{-1}\Vert^{-1}_2$ as the estimate. For inexact V-FISTA, we give $L=1, \mu_0 = 1/2$ as the initial estimate. 
+        \end{enumerate}
+        The optimality gap is estimated. 
+        We estimated the minimum $f_*$ using the smallest value ever produced among all algorithms tested for 5000 iterations. 
+        \hyperref[fig:lasso-experiment-64]{Figure \ref*{fig:lasso-experiment-64}} showed the convergence rate of when $N=64$ for against FISTA, V-FISTA, and Inexact V-FISTA. 
+        \hyperref[fig:lasso-experiment-1024]{Figure \ref*{fig:lasso-experiment-1024}} showed the convergence rate of when $N=1024$ against FISTA, V-FISTA, and Inexact V-FISTA. 
+
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_loss_64.png}
+                \caption{Optimality gap for LASSO with $N = 64$.}
+            \end{subfigure}
+            ~
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_64.png}
+                \caption{$\mu_k$ estimates for LASSO with $N = 64$.}
+            \end{subfigure}
+            \caption{Optimality gap and $\mu_k$ estimates. }
+            \label{fig:lasso-experiment-64}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_loss_1024.png}
+                \caption{Optimality gap for LASSO with $N = 1024$.}
+            \end{subfigure}
+            ~
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_1024.png}
+                \caption{$\mu_k$ estimates for LASSO with $N = 1024$.}
+            \end{subfigure}
+            \caption{Optimality gap and $\mu_k$ estimates. }
+            \label{fig:lasso-experiment-1024}
+        \end{figure}
     
     \subsection{Cannonical form of convex quadratic}\label{sec:cannonical-convex-quadratic}
+        
     
     \subsection{Convergence analysis by eigensystem of the generalized matrix recurrences of Nesterov's acceleration}\label{sec:convergence-by-eigensystem}
         \subsubsection{Block diagonal linear recurrence matrix}
