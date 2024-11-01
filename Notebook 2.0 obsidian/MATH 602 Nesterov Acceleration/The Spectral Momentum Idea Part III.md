@@ -250,6 +250,10 @@ $$
 Therefore, for Nesterov's acceleration, it suffice to study the block diagonal iteration matrix $M_t$. 
 
 
+#### **Claim 0.1 | Block diagonal matrix as a diagonal 2x2 block matrix**
+> 
+
+
 ---
 ### **Convergence analysis of the spectral momentum algorithm in for convex quadratic function**
 
@@ -267,7 +271,176 @@ $$
 
 Next, we make claims on the eigensystem, spectral radius for $M$ for varying $\theta_t \in [0, 1]$. 
 
-
 #### **Claim 1 | Eigensystem of the 2x2 Nesterov's recurrence matrix**
+> The eigenvalues $\lambda_1, \lambda_2$ and eigenvectors $v_1, v_2$ of the above matrix $M$ are: 
+>
+> $$
+> \begin{aligned}
+>     \\
+>     \lambda_1 &= 
+>     \frac{1}{2}\left(
+>         - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+>         + \tau\theta + \tau
+>     \right),
+>     \\
+>     \lambda_2
+>     &= \frac{1}{2}\left(
+>         \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+>         + \tau\theta + \tau
+>     \right),
+>     \\
+>     v_1 &= 
+>     \begin{bmatrix}
+>         \lambda_2/\tau\theta
+>         \\
+>         1
+>     \end{bmatrix},
+>     \\
+>     v_2 &= 
+>     \begin{bmatrix}
+>         \lambda_1/\tau\theta
+>         \\
+>         1
+>     \end{bmatrix}. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+We use [Wolframe Alpha](https://www.wolframalpha.com/input?i=eigenvalues+%7B%7B%5B%2F%2Fnumber%3A0%2F%2F%5D%2C%5B%2F%2Fnumber%3A1%2F%2F%5D%7D%2C%7B%5B%2F%2Fnumber%3A-u+t%2F%2F%5D%2C%5B%2F%2Fnumber%3A%281+%2B+u%29+t%2F%2F%5D%7D%7D), the query has $u = \theta$,  $t$ as a scaler, we get the eigen system of the 2x2 matrix to be: 
+
+
+$$
+\begin{aligned}
+    v_1 
+    &= 
+    \begin{bmatrix}
+        - \frac{
+            -\sqrt{\tau} -\sqrt{\tau} \theta 
+            - \sqrt{
+                \tau - 4\theta+ 2 \tau \theta + \tau \theta^2
+            }
+        }
+        {2 \sqrt{\tau} \theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        \frac{
+            \tau + \tau \theta 
+            + \sqrt{\tau}\sqrt{
+            \tau - 4\theta+ 2 \tau \theta + \tau \theta^2
+        }}{2\tau\theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        \frac{1}{2\tau\theta}
+        \left(
+            \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right)
+        \\[1em]
+        1
+    \end{bmatrix}
+    \\
+    v_2 &= 
+    \begin{bmatrix}
+        - \frac{
+            -\sqrt{\tau} - \sqrt{\tau} \theta + \sqrt{
+                \tau - 4\theta+ 2 \tau \theta + \tau \theta^2
+            }
+        }
+        {2 \sqrt{\tau} \theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        \frac{
+            \tau + \tau \theta 
+            - \sqrt{\tau}\sqrt{\tau - 4\theta+ 2 \tau \theta + \tau \theta^2}
+        }{2\tau\theta}
+        \\[1em]
+        1
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        \frac{1}{2\tau\theta}
+        \left(
+            - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right)
+        \\[1em]
+        1
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+And the eigenvalues simplified: 
+
+$$
+\begin{aligned}
+    \lambda_1 &= 
+    \frac{1}{2}\left(
+        -\sqrt{\tau}
+        \sqrt{
+            \tau \theta^2 + 2 \tau \theta + \tau - 4\theta
+        }
+        + \tau \theta + \tau
+    \right) 
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        - \sqrt{\tau^2\theta^2 + 2 \tau^2\theta + \tau^2 - 4\theta \tau^2}
+        + \tau\theta + \tau
+    \right), 
+    \\
+    &= 
+    \frac{1}{2}\left(
+        - \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right)
+    \\
+    \lambda_2 &= 
+    \frac{1}{2}\left(
+        \sqrt{\tau}\sqrt{\tau \theta^2 + 2 \tau \theta + \tau - 4\theta}
+        + \tau \theta + \tau
+    \right)
+    \\
+    &= 
+    \frac{1}{2}\left(
+        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right). 
+\end{aligned}
+$$
+
+#### **Claim 2 | The optimal spectral radius of the 2x2 iteration matrix**
+> The fixing any value of $\tau \in [0, 1)$ spectral radius $\rho(M)$ is discontinuous for $\theta \in [0, 1]$. 
+> The value $\theta^+ \in [0, 1]$ minimizing the spectral radius $\rho(M)$ is: 
+> $$
+> \begin{aligned}
+>     \theta^{+} = \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}} \in [0, 1]. 
+> \end{aligned}
+> $$
+> Additionally, the minimal value of the spectral radius is $\rho(M) = \frac{1}{2}(1 + \theta^+)\tau < 1$. 
+
+**Proof**
+
+As the parameter $\theta$ varies in the interval $[0, 1]$, below we list all the possibilities of eigen values $\lambda_1, \lambda_2$ of matrix $M$: 
+1. If we have a conjugate pair of eigenvalue, $|\lambda_1| = |\lambda_2|$, they are the same and one of them suffice for analysis. 
+2. If we have real non-negative $\lambda_1, \lambda_2$, and $\lambda_2$ is the larger. 
+
+
+
+
+
+#### **Corrollary | Spectral radius for all momentum parameter**
 > 
 
