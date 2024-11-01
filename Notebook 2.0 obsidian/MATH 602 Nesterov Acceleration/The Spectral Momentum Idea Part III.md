@@ -422,7 +422,7 @@ $$
 $$
 
 #### **Claim 2 | The optimal spectral radius of the 2x2 iteration matrix**
-> The fixing any value of $\tau \in [0, 1)$ spectral radius $\rho(M)$ is discontinuous for $\theta \in [0, 1]$. 
+> Fixing any value of $\tau \in [0, 1)$ spectral radius $\rho(M)$ is discontinuous for $\theta \in [0, 1]$. 
 > The value $\theta^+ \in [0, 1]$ minimizing the spectral radius $\rho(M)$ is: 
 > $$
 > \begin{aligned}
@@ -437,10 +437,172 @@ As the parameter $\theta$ varies in the interval $[0, 1]$, below we list all the
 1. If we have a conjugate pair of eigenvalue, $|\lambda_1| = |\lambda_2|$, they are the same and one of them suffice for analysis. 
 2. If we have real non-negative $\lambda_1, \lambda_2$, and $\lambda_2$ is the larger. 
 
+Observe that, whether $\lambda_1, \lambda_2$ are complex shifts when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ changes sign. 
+Since we are taking the norm, that would also be the critical point for both $|\lambda_1|, | \lambda_2|$. 
+Next we will show that, there exists a value $\theta^+ \in (0, 1)$ such that it minimizes the spectral radius of the iteration matrix $M$. 
+Let's solve for when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta = 0$: 
+
+$$
+\begin{aligned}
+    \theta^+ &= 
+    \frac{
+        4 - 2\tau \pm \sqrt{(2\tau - 4)^2 - 4\tau^2}
+    }
+    {
+        2\tau
+    }
+    \\
+    &= 
+    \frac{
+        4 - 2\tau \pm \sqrt{16 - 16 \tau}
+    }
+    {
+        2\tau
+    }
+    \\
+    &= \frac{2 - \tau \pm 2 \sqrt{1 - \tau}}{\tau}
+    \\
+    &= \frac{
+        1 - (1 - \tau)\pm 2 \sqrt{1 - \tau}
+    }
+    {
+        \tau
+    }
+    \\
+    &= \frac{
+        (1 \pm \sqrt{1 - \tau})^2
+    }{
+        1 - (1 - \tau)
+    }
+    \\
+    &= \frac{
+        (1 \pm \sqrt{1 - \tau})^2
+    }{
+        (1 -  \sqrt{1 - \tau})
+        (1 + \sqrt{1 - \tau})
+    }. 
+\end{aligned}
+$$
+
+To further simplifies, there are two possibilities here, taking the positive sign we have 
+
+$$
+\begin{aligned}
+    \theta^+ &= 
+    \frac{1 + \sqrt{1 - \tau}}{1 - \sqrt{1 - \tau}} > 1,
+\end{aligned}
+$$
+
+and this one doesn't fall into the range by $\tau \in [0, 1]$, the next root (the smaller one) does: 
+
+$$
+\begin{aligned}
+    \theta^{+} = \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}} \in [0, 1]
+\end{aligned}
+$$
+
+This critical point minimizer of spectral radius $\max(|\lambda_1|, |\lambda_2|)$. 
+We skip the mathematical reasoning here and the reader should plot out the function on a computer to see why. Substituting above $\theta^+$ we have the smallest value for the spectral radius. 
+With the we have 
+
+$$
+\begin{aligned}
+    \rho
+    \left(
+        \begin{bmatrix}
+        0 & 1\\ -\theta^+ \tau & (1 + \theta^+) \tau
+        \end{bmatrix}
+    \right)
+    &= 
+    \frac{1}{2}(1 + \theta^+)\tau < 1. 
+\end{aligned}
+$$
+
+This sets the square root inside of the eigenvalue to be zero. 
 
 
 
-
-#### **Corrollary | Spectral radius for all momentum parameter**
+#### **Corrollary | Spectral radius for varying momentum parameter**
+> Let $\rho(M)$ denote the spectral radius of matrix $M$, fix any $\tau \in [0, 1)$, then the spectral radius for $\theta \in [0, 1]$ is given by the piecewise function 
 > 
+> $$
+> \begin{aligned}
+>     \rho(M) 
+>     &= 
+>     \begin{cases}
+>         \sqrt{\tau \theta} & \text{if } \theta \in (\theta^+, 1], 
+>         \\
+>         \frac{1}{2}\left(
+>             \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+>             + \tau\theta + \tau
+>         \right) 
+>         & 
+>         \text{if }\theta \in [0, \theta^+]. 
+>     \end{cases}
+> \end{aligned}
+> $$
 
+**Proof**
+
+
+Consider the case where $\theta \in (\theta^+, 1)$. 
+Because $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ is a positive quadratic wrt to $\theta$, it would be negiatve if $\theta \ge \theta^+$, because $\theta^+$ is the smaller root of the two.
+So it makes making $\lambda_1, \lambda_2$ complex and conjugate to each other. 
+In this case, the absolute value of the eigenvalue is given by: 
+
+$$
+\begin{aligned}
+    |\lambda_1| &= 
+    \frac{1}{2}
+    \left(
+        |\tau^2\theta^2 + 2\tau\theta + \tau^2 - 4\tau\theta|
+         + 
+        (\tau\theta + \tau)^2
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
+         + 
+        (\tau\theta + \tau)^2
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}
+    \left(
+        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
+         + 
+        \tau^2\theta^2 + \tau^2 + 2 \tau^2 \theta
+    \right)^{1/2}
+    \\
+    &= 
+    \frac{1}{2}\left(
+        4\tau\theta
+    \right)^{1/2}
+    \\
+    &= \sqrt{\tau \theta} < 1
+\end{aligned}
+$$
+
+When we choose parameter $\theta \in (0, \theta^+)$, it will make the quantity $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ positive. 
+In this case, the eigenvalues $\lambda_1, \lambda_2$ would be a real eigenvector. 
+Their absolute value would be different. 
+$|\lambda_2|$ is the larger one and we have: 
+
+$$
+\begin{aligned}
+    |\lambda_2| &= 
+    \frac{1}{2}\left(
+        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+        + \tau\theta + \tau
+    \right) \le 
+    \frac{1}{2}(1 + \theta)\tau < 1. 
+\end{aligned}
+$$
+
+Combining we get the results for the spectral radius $\rho(M)$. 
+
+**Remark**
+
+$\rho(M)$ is monotone wrt to parameter $\tau$. 
