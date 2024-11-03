@@ -10,7 +10,7 @@ Nesterov's accelerated gradient performs the iterations for iterates $y_t$:
 
 $$
 \begin{aligned}
-    y_{t + 1} &= [I - L^{-1} \nabla f]y_{t} + \theta_t([I - L^{-1}f]y_{t} - [I - L^{-1}f]y_{t - 1})
+    y_{t + 1} &= [I - L^{-1} \nabla f]y_{t} + \theta_t([I - L^{-1}\nabla f]y_{t} - [I - L^{-1}\nabla f]y_{t - 1})
 \end{aligned}
 $$
 
@@ -23,19 +23,19 @@ $$
 >     \begin{bmatrix}
 >         \tilde y_{t} \\ \tilde y_{t + 1}
 >     \end{bmatrix}
->     &= M_t 
+>     &= M^{(t)} 
 >     \begin{bmatrix}
 >         \tilde y_{t - 1} \\ \tilde y_{t}
 >     \end{bmatrix}. 
 > \end{aligned}
 > $$
-> Where $T_t = I - L^{-1} \Lambda$ and $M_t$ is the block diaognal matrix 
+> Where $T = I - L^{-1} \Lambda$ and $M_t$ is the block diaognal matrix 
 > $$ 
 > \begin{aligned}
 >     \begin{bmatrix}
 >         I & \mathbf 0 
 >         \\
->         -\theta_t T_t & (1 + \theta_t)T_t
+>         -\theta_t T & (1 + \theta_t)T
 >     \end{bmatrix}, 
 > \end{aligned}
 > $$
@@ -93,7 +93,7 @@ $$
 \end{aligned}
 $$
 
-Next, $A^TA$ is semi-definite so it admits orthogonal eigendecomposition: $V G V^T =A^TA$ with $V$ orthonormal and $G$ diagonal. 
+Next, $A^TA$ is semi-definite therefore it admits orthogonal eigendecomposition: $V G V^T =A^TA$ with $V$ orthonormal and $G$ diagonal. 
 Since $L$ is the Lipschitz constant of $\nabla f$, it implies that $\mathbf 0 \preceq A^T \preceq LI$. 
 Therefore we have $\mathbf 0 \preceq I - L^{-1} A^TA \preceq I$ and $I - L^{-1}A^TA = V(I - L^{-1}G)V^T$. 
 Using that we can simplify the above recurrence into 
@@ -149,7 +149,7 @@ $$
     \end{bmatrix}
     &= 
     \begin{bmatrix}
-        I & \mathbf 0 
+        \mathbf 0 & I
         \\
         - \theta_t(I - L^{-1}G)
         & 
@@ -173,7 +173,7 @@ $$
     \end{bmatrix}
     &= 
     \begin{bmatrix}
-        PP^T & \mathbf 0 
+        \mathbf 0 & PP^T
         \\
         - P\theta_t(I - L^{-1}\Lambda)P^T
         & 
@@ -212,7 +212,7 @@ $$
     \end{bmatrix}
     &= 
     \begin{bmatrix}
-        I & \mathbf 0 
+        \mathbf 0 & I
         \\
         -\theta_t(I - L^{-1}\Lambda)
         & 
@@ -223,14 +223,14 @@ $$
     \end{bmatrix}
     \\
     \text{Set: }
-    T_t &= I - L^{-1}\Lambda
+    T &= I - L^{-1}\Lambda
     \\
     \text{Set: }
     M_t &= 
     \begin{bmatrix}
-        I & \mathbf 0 
+        \mathbf 0  & I
         \\
-        -\theta_t T_t & (1 + \theta_t)T_t
+        -\theta_t T & (1 + \theta_t)T
     \end{bmatrix}
     \begin{bmatrix}
         \tilde y_{t - 1} \\ \tilde y_{t}
@@ -251,7 +251,7 @@ Therefore, for Nesterov's acceleration, it suffice to study the block diagonal i
 
 
 #### **Claim 0.1 | Block diagonal matrix as a diagonal 2x2 block matrix**
-> A block 2x2 matrix $G \in \R^{2n \times 2n}$ with inner $n\times n$ diaognal matrix is a unitary transform from a diagonal block 2x2 matrix. 
+> A block 2x2 matrix $G \in \R^{2n \times 2n}$ with inner $n\times n$ diagonal matrix is a unitary transform from a diagonal block 2x2 matrix. 
 > Given a generic block 2x2 with: 
 > $$
 > \begin{aligned}
@@ -348,14 +348,14 @@ $$
 ---
 ### **Convergence analysis of the spectral momentum algorithm in for convex quadratic function**
 
-It suffices to show the behavior of the algorithm under the assumption that $\Lambda$ is a diagonal matrix 
-We will first study the case where $\tilde y_t$ is a scalar, in which case we will have matrix $M_t$ as a 2x2 matrix. 
-Ignoring the subscript $t$ for notational simplicity we have 
+It suffices to show the behavior of the algorithm under the assumption that $\Lambda$ is a diagonal matrix. 
+We will first study the case where $\tilde y_t$ is a scalar, in which case we will have matrix $M^{(t)}$ as a 2x2 matrix. 
+Ignoring the index $t$ for notational simplicity we have 
 
 $$
 \begin{aligned}
-    M = \begin{bmatrix}
-        0 & 1\\ -\theta \tau & (1 + \theta) \tau
+    M= \begin{bmatrix}
+        0 & 1 \\ -\theta \tau & (1 + \theta) \tau
     \end{bmatrix}. 
 \end{aligned}
 $$
@@ -488,7 +488,7 @@ $$
     &= 
     \frac{1}{2}
     \left(
-        - \sqrt{\tau^2\theta^2 + 2 \tau^2\theta + \tau^2 - 4\theta \tau^2}
+        - \sqrt{\tau^2\theta^2 + 2 \tau^2\theta + \tau^2 - 4\theta \tau}
         + \tau\theta + \tau
     \right), 
     \\
@@ -513,25 +513,37 @@ $$
 $$
 
 #### **Claim 2 | The optimal spectral radius of the 2x2 iteration matrix**
-> Fixing any value of $\tau \in [0, 1)$ spectral radius $\rho(M)$ is discontinuous for $\theta \in [0, 1]$. 
-> The value $\theta^+ \in [0, 1]$ minimizing the spectral radius $\rho(M)$ is: 
+> Fixing any value of $\tau \in [0, 1)$. There exists a unique $\theta \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
 > $$
 > \begin{aligned}
 >     \theta^{+} = \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}} \in [0, 1]. 
 > \end{aligned}
 > $$
-> Additionally, the minimal value of the spectral radius is $\rho(M) = \frac{1}{2}(1 + \theta^+)\tau < 1$. 
+> As a consequence, the spectral radius of $M$ is a piecewise function with 2 parts given by: 
+> $$
+> \begin{aligned}
+>     \rho(M) &= 
+>     \begin{cases}
+>         \sqrt{\lambda_1\lambda_2} = \sqrt{\theta\tau} & \text{if } \theta \in [0, \theta^+], 
+>         \\
+>         \lambda_2 = \frac{1}{2}\left(
+>             \sqrt{(\tau \theta + \tau)^2 - 4\tau\theta} + \tau\theta + \tau
+>         \right)
+>         & \text{if } \theta \in (\theta^+, 1].
+>     \end{cases}
+> \end{aligned}
+> $$
 
 **Proof**
 
-As the parameter $\theta$ varies in the interval $[0, 1]$, below we list all the possibilities of eigen values $\lambda_1, \lambda_2$ of matrix $M$: 
-1. If we have a conjugate pair of eigenvalue, $|\lambda_1| = |\lambda_2|$, they are the same and one of them suffice for analysis. 
-2. If we have real non-negative $\lambda_1, \lambda_2$, and $\lambda_2$ is the larger. 
+If we fix any $\tau \in [0, 1)$, 
+Let $\theta$ varies in the interval $[0, 1]$, we have following possibilities for eigenvalues $\lambda_1, \lambda_2$ of matrix $M$ depending on whether $\tau\theta^2 + 2\tau\theta + \tau - 4\theta = 0$: 
+1. If we have a complex conjugate pair of eigenvalues then spectral radius of $M$ satisfies $|\lambda_1| = |\lambda_2| = \sqrt{\lambda_1\lambda_2} = \rho(M)$. 
+2. If we have real eigenvalues $\lambda_1, \lambda_2$, then $\lambda_2$ is the larger, hence in this case we have $\rho(M) = |\lambda_2|$ by triangle inequality of absolute value. 
 
-Observe that, whether $\lambda_1, \lambda_2$ are complex shifts when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ changes sign. 
-Since we are taking the norm, that would also be the critical point for both $|\lambda_1|, | \lambda_2|$. 
-Next we will show that, there exists a value $\theta^+ \in (0, 1)$ such that it minimizes the spectral radius of the iteration matrix $M$. 
-Let's solve for when $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta = 0$: 
+Whether $\lambda_1, \lambda_2$ are complex depends on the sign shifts caused by $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ inside of the square root as $\theta$ varies in the interval $[0, 1]$. 
+We claim that there exists a unique $\theta^+ \in (0, 1)$ such that it sets the imagary part of the eigenvalues to zero, i.e: $\Im(\lambda_i) = 0$ for $i \in \{1, 2\}$. 
+To identify $\theta^+$ we solve $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta = 0$: 
 
 $$
 \begin{aligned}
@@ -575,7 +587,8 @@ $$
 \end{aligned}
 $$
 
-To further simplifies, there are two possibilities here, taking the positive sign we have 
+Take note that $\theta^+ \in \R$  because $\tau \in [0, 1)$. 
+To identify the root in the interval of $(0, 1)$, there are two possibilities here, taking the positive sign we have 
 
 $$
 \begin{aligned}
@@ -592,115 +605,169 @@ $$
 \end{aligned}
 $$
 
-This critical point minimizer of spectral radius $\max(|\lambda_1|, |\lambda_2|)$. 
-We skip the mathematical reasoning here and the reader should plot out the function on a computer to see why. Substituting above $\theta^+$ we have the smallest value for the spectral radius. 
-With the we have 
+Because $\theta^+$ is the smaller roots of the quadratic, we have that for all $\theta\in [\theta^+, 1]$, $\lambda_1, \lambda_2$ are complex conjugates of each other. 
+Therefore the spectral radius of $M$ has 2 cases and it's given by: 
 
 $$
 \begin{aligned}
-    \rho
-    \left(
-        \begin{bmatrix}
-        0 & 1\\ -\theta^+ \tau & (1 + \theta^+) \tau
-        \end{bmatrix}
-    \right)
-    &= 
-    \frac{1}{2}(1 + \theta^+)\tau < 1. 
+    \rho(M) &= 
+    \begin{cases}
+        \sqrt{\lambda_1\lambda_2} & \text{if } \theta \in (\theta^+, 1]
+        \\
+        \lambda_2 & \text{if }\theta \in [0, \theta^+]
+    \end{cases}
 \end{aligned}
 $$
 
-This sets the square root inside of the eigenvalue to be zero. 
+Using the trick that $\lambda_1\lambda_2 = |M|$, the product of the eigenvalues equals to the determinant. And we have $|M| = \tau\theta$. 
+So $\sqrt{\lambda_1\lambda_2} = \sqrt{\theta\tau}$. 
+Therefore the spectral radius as of $M$ is a piecewise function where $\tau \in [0, 1)$ and $\theta \in [0, 1]$ which is 
+
+$$
+\begin{aligned}
+    \rho(M) &= 
+    \begin{cases}
+        \sqrt{\tau\theta} & \text{if } \theta \in (\theta^+, 1],
+        \\
+        \frac{1}{2}\left(
+            \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right) 
+        & 
+        \text{if }\theta \in [0, \theta^+]. 
+    \end{cases}
+\end{aligned}
+$$
+
+**Remarks**
+
+Monotonicity of discrete piecies of $\rho(M)$ requires characterizations to find the maximum, and minimum. 
 
 
 
-#### **Corrollary | Spectral radius for varying momentum parameter**
-> Let $\rho(M)$ denote the spectral radius of matrix $M$, fix any $\tau \in [0, 1)$, then the spectral radius for $\theta \in [0, 1]$ is given by the piecewise function 
-> 
+
+#### **Corollary | The minimum of the spectral value and its minimizer**
+> For all $\tau \in [0, 1)$ there exists a unique minimizer $\theta^+ \in [0, 1]$ for the spectral radius $\rho(M)$: 
 > $$
 > \begin{aligned}
->     \rho(M) 
->     &= 
->     \begin{cases}
->         \sqrt{\tau \theta} & \text{if } \theta \in (\theta^+, 1], 
->         \\
->         \frac{1}{2}\left(
->             \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
->             + \tau\theta + \tau
->         \right) 
->         & 
->         \text{if }\theta \in [0, \theta^+]. 
->     \end{cases}
+>     \theta^+ &= \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}}. 
 > \end{aligned}
 > $$
 
 **Proof**
 
+We discuss it by cases because $\rho(M)$ is a 2 piecewise functions. 
+Notice that $\sqrt{\tau \theta}$ is monotone increasing wrt to $\tau, \theta$. 
+We have $\theta \in (\theta^+, 1]$, therefore $\theta^+$ makes it smaller than all other alternative values. 
 
-Consider the case where $\theta \in (\theta^+, 1)$. 
-Because $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ is a positive quadratic wrt to $\theta$, it would be negiatve if $\theta \ge \theta^+$, because $\theta^+$ is the smaller root of the two.
-So it makes making $\lambda_1, \lambda_2$ complex and conjugate to each other. 
-In this case, the absolute value of the eigenvalue is given by: 
+Next for all $\theta \in [0, \theta^+]$ we have 
 
 $$
 \begin{aligned}
-    |\lambda_1| &= 
-    \frac{1}{2}
-    \left(
-        |\tau^2\theta^2 + 2\tau\theta + \tau^2 - 4\tau\theta|
-         + 
-        (\tau\theta + \tau)^2
-    \right)^{1/2}
-    \\
-    &= 
-    \frac{1}{2}
-    \left(
-        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
-         + 
-        (\tau\theta + \tau)^2
-    \right)^{1/2}
-    \\
-    &= 
-    \frac{1}{2}
-    \left(
-        -\tau^2\theta^2 - 2\tau\theta - \tau^2 + 4\tau\theta
-         + 
-        \tau^2\theta^2 + \tau^2 + 2 \tau^2 \theta
-    \right)^{1/2}
-    \\
-    &= 
     \frac{1}{2}\left(
-        4\tau\theta
-    \right)^{1/2}
+        \sqrt{(\tau \theta + \tau)^2 - 4\tau \theta}
+        + \tau \theta + \tau
+    \right) 
+    & \ge 
+    \frac{1}{2}
+    \left(
+        \min_{x \in [0, \theta^+]}
+        \left\lbrace
+            \sqrt{(\tau x + \tau)^2 - 4\tau x}
+        \right\rbrace
+        + 
+        \tau \theta + \tau
+    \right)
     \\
-    &= \sqrt{\tau \theta} < 1
+    &= 0 + (1/2)(\tau \theta + \tau)
 \end{aligned}
 $$
 
-When we choose parameter $\theta \in (0, \theta^+)$, it will make the quantity $\tau \theta^2 + 2 \tau \theta + \tau - 4\theta$ positive. 
-In this case, the eigenvalues $\lambda_1, \lambda_2$ would be a real eigenvector. 
-Their absolute value would be different. 
-$|\lambda_2|$ is the larger one and we have: 
+Since this is true for all $\theta \in [0, \theta^+]$, substituting $\theta = \theta^+$, we get the desired results that $\theta^+$ is the minimizer. 
+We can do this because recall that $\theta^+$ makes $(\tau \theta + \tau)^2 - 4 \tau \theta = 0$, which is the smallest value can get for anything inside of square roo. 
+
+**Remarks**
+
+At this point, we can conclude that the spectral radius of $M$ is strictly less than one and therefore a power iterations of $M$ will cause all all values of $y_i^{(t)}$ to converge. 
+
+
+#### **Corollary | The maximum of the spectral radius and its maximizers**
+> The maximier of $\theta$ of $\rho(M)$ for all $\tau \in [0, 1)$ happens for $\theta  = 1$. 
+> The maximum value of the spectral radius is given by $\rho(M) = \sqrt{\tau} < 1$. 
+
+**Proof**
+
+To find the maximum, we identify the maximum value taken by each 2 part of the piecewise function that defines $\rho(M)$ then we find the maximum value among those. 
+Since $\sqrt{\tau\theta}$ is monotone increasing, it attains maximal value for $\theta = 1$, giving use $\sqrt{\tau}$. 
+
+Next, observe that we have that $\forall \theta \in [0, \theta^+]$: 
 
 $$
 \begin{aligned}
-    |\lambda_2| &= 
-    \frac{1}{2}\left(
-        \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+    \frac{1}{2} 
+    \left(
+        \sqrt{(\tau \theta + \tau)^2 - 4 \tau \theta} 
         + \tau\theta + \tau
-    \right) \le 
-    \frac{1}{2}(1 + \theta)\tau < 1. 
+    \right)
+    &\le
+    \frac{1}{2}
+    \left(
+        \max_{x \in [0, \theta^+]}
+        \left\lbrace
+            \sqrt{(\tau x + \tau)^2 - 4 \tau x}
+        \right\rbrace
+        + \tau\theta + \tau
+    \right)
+    \\
+    &= 
+    \frac{1}{2}(\tau +\tau \theta + \tau)
 \end{aligned}
 $$
 
-Combining we get the results for the spectral radius $\rho(M)$. 
+Set $\theta = 0$ then we have the upper bound $\tau$. 
+Finally, we have $\tau \in [0, 1)$ and therefore $\tau \le \sqrt{\tau}$ and the maximum value happens for $\theta = 1$ and we have $\rho(M) = \sqrt{\tau}$ when that happens. 
 
-**Remark**
 
-$\rho(M)$ is monotone increasing wrt to parameter $\tau$. 
+**Remarks**
+
+The maximal value of the spectral radius is determined by $\tau$ only. 
+This means that the algorithm will converge for any choices of sequence of $\theta_t$. 
+
+
+
+#### **Corollary | The spectral radius if monotone wrt to elements in the matrix**
+> fix any values of $\theta \in [0, 1]$ the spectral radius $\rho(M)$ is a monotone increasing function wrt to $\tau$ in the matrix for all $\tau \in [0, 1)$. 
+
+**Proof**
+
+The first case of the piecewise function $\rho(M)$ has $\sqrt{\tau \theta}$, which is monotone wrt to the variable $\tau$. 
+The second piece can factor out $\sqrt{\tau}$ giving us: 
+
+$$
+\begin{aligned}
+    \frac{1}{2}\left(
+        \sqrt{\tau}\sqrt{\tau(\theta + 1)^2 - 4 \theta}
+        + \sqrt{\tau}(\sqrt{\tau}\theta + \sqrt{\tau}) 
+    \right)
+    = 
+    \frac{\sqrt{\tau}}{2}\left(
+        \sqrt{\tau(\theta + 1)^2 - 4 \theta}
+        + \sqrt{\tau}(\theta + 1) 
+    \right), 
+\end{aligned}
+$$
+
+Observe that the parts inside of the parenthesis is always a monotone increasing quantity wrt to $\tau \in [0, 1)$. 
+The quadratic inside of $\sqrt{}$ is monotone increasing and the linear function is also increasing. 
+Therefore this part of the piecewise function is increasing wrt to variable $\tau$. 
 
 
 ---
 ### **Convergence rate directly by spectral radius**
+
+To better represent the elements of a matrix or vector and the iteration indices on these quantities, we adopt the following notations: 
+1. $\tilde y^{(t)}_i$ to denote the $i$ th element of the vector $\tilde y^{(t)}$ denoting the iterates generated by the algorithm at the $t$ th iteration. 
+2. Use $M^{(t)}$ to represent the iteration matrix at the $t$ th iteration. 
 
 Block iteration matrix $M_t$ expressed by: 
 
@@ -709,16 +776,32 @@ $$
     \begin{bmatrix}
         I & \mathbf 0 
         \\
-        -\theta_t T_t & (1 + \theta_t)T_t
+        -\theta_t T & (1 + \theta_t)T
     \end{bmatrix}, 
 \end{aligned}
 $$
 
 is a $\R^{n\times n}$ block 2x2 diagonal matrix. 
-A repermutation of the matrix by $P_\pi$ introduced back in claim 0.1 showed that $M_t$ is a block diagonal where the $ith$ 2x2 block is given by: 
+A repermutation of the matrix by $P_\pi$ introduced back in claim 0.1 showed that $M^{(t)}$ is a block diagonal where the $i$ th 2x2 block on the diagonal is given by: 
 
 $$
 \begin{aligned}
+    M^{(t)} &=
+    P^T_\pi
+    \text{diag}\left(
+        \begin{bmatrix}
+            1 & 0 
+            \\
+            - \theta_i \tau_i 
+            & 
+            (t + \theta_i ) \tau_i
+        \end{bmatrix}; 
+        i = 1, \cdots, n
+    \right)
+    P^T_\pi, 
+    \\
+    M_{i}^{(t)}
+    &= 
     \begin{bmatrix}
         1 & 0 
         \\
@@ -729,7 +812,7 @@ $$
 \end{aligned}
 $$
 
-Focusing on the specific recurrence relation on $\tilde y_{t + 1}, \tilde y_t, \tilde y_{t - 1}$ operates by this recurrence matrix, it has
+Focusing on the specific recurrence relation on $\tilde y_{t + 1}, \tilde y_t, \tilde y_{t - 1}$ operates by this recurrence matrix, it has for all $i=1,\cdots, n$: 
 
 $$
 \begin{aligned}
@@ -751,7 +834,85 @@ $$
 \end{aligned}
 $$
 
-Therefore, given any value of $$
+Here, we used the notation of $\tilde y^{(t + 1)}_i$ to denote the $i$ th element of the vector $\tilde y^{(t)}$, the error vector at the $t$ th iteration. 
+Therefore, the convergence behavior of $y_i^{(t)}$ for any $i = 1, \cdots, n$ would be upper bounded by the spectral radious of the ith diagonal 2x2 recurrence matrix is: 
+
+$$
+\begin{aligned}
+    \theta^+_i &= 
+    \frac{1 - \sqrt{1 - \tau_i}}{1 + \sqrt{1 - \tau_i}}; 
+    \\
+    \rho\left(M^{(t)}_i\right)
+    &= 
+    \begin{cases}
+        \sqrt{\tau \theta} & \text{if } \theta \in (\theta^+, 1], 
+        \\[0.5em]
+        \frac{1}{2}\left(
+            \sqrt{(\tau\theta + \tau)^2 - 4\tau\theta}
+            + \tau\theta + \tau
+        \right) 
+        & 
+        \text{if }\theta \in [0, \theta^+]. 
+    \end{cases}
+\end{aligned}
+$$
+
+Since we know that $\tau_i \in [0, 1)$. 
+For all choices in $\theta_t \in [0, 1]$, $\rho(M^{(t)}_i) < 1$. 
+Therefore the our spectral momentum algorithm converges for any use of $\theta_t$ within the interval. 
+
+#### **Global spectral radius bound**
+> Let block iteration matrix $M^{(t)}$ be given in block diagonal form as 
+> $$
+> \begin{aligned}
+>     T &= I - L^{-1}\Lambda, 
+>     \\
+>     M^{(t)}&= 
+>     \begin{bmatrix}
+>         I & \mathbf 0 
+>         \\
+>         -\theta_t T & (1 + \theta_t)T
+>     \end{bmatrix} 
+>     \\
+>     &= 
+>     P_\pi^T
+>     \text{diag}\left(
+>         \begin{bmatrix}
+>             1 & 0 \\ - \theta_t \tau_t & (1 + \theta_t) \tau_t
+>         \end{bmatrix}
+>         ; 
+>         i = 1, \cdots, n
+>     \right)P_\pi. 
+> \end{aligned}
+> $$
+> Let $\bar\tau = \max_{1\le i \le n} \tau_i$, then for any $\theta^{(t)} \in [0, 1]$ the spectral radius of $\rho(M^{(t)})$ would be given by: 
+> $$
+> \begin{aligned}
+>     \bar\theta^+ &= 
+>     \frac{1 - \sqrt{1 - \bar \tau}}{1 + \sqrt{1 - \bar\tau}}
+>     \\
+>     \rho\left(
+>         M^{(t)}
+>     \right)
+>     &= 
+>     \left. 
+>     \begin{cases}
+>         \sqrt{\bar \tau \theta} & \text{if } \theta \in [\bar \theta^+, 1], 
+>         \\
+>         \frac{1}{2}
+>         \left(
+>             \sqrt{(\theta + \bar \tau)^2 - 4 \bar \tau \theta} + 
+>             \bar \tau\theta + \bar \tau
+>         \right) & \text{if } \theta \in [0, \bar \theta^+). 
+>     \end{cases}
+>     \right\rbrace < 1
+> \end{aligned}
+> $$
+
+**Proof**
+
+This would be true by the analysis of the Eigen system ofthe entire matrix $M^{(t)}$. 
+
 
 
 
