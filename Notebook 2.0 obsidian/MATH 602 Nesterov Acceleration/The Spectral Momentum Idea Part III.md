@@ -363,6 +363,13 @@ $$
 \end{aligned}
 $$
 
+Analysis of the algorithm would be based on one of 2x2 matrix on the diagonal block matrix of iteration matrix $M_t$. 
+
+
+#### **Definition | The Iteration Matrix**
+
+
+
 
 ---
 ### **Convergence analysis of the spectral momentum algorithm in for convex quadratic function**
@@ -381,15 +388,14 @@ $$
 
 Next, we make claims on the eigensystem, spectral radius for $M$ for $\theta_t \in [0, 1]$ and $\tau \in [0, 1]$. 
 Take note that there are 2 cases for the possibilities on $\tau$. 
-1. Without Assumption 2, we could have $\tau = 0$. 
-2. With Assumption 2, we would have $\tau \in [0, 1)$. By Assumption 2, $A^TA$ is positive definite, hence $\Lambda$ is a diagonal matrix of entiries strictly larger than one. By definition $\mathbf 0 \prec \Lambda \preceq LI$, $0\preceq I - L^{-1}\Lambda \prec I$. 
+1. With Assumption 2, we would have $\tau \in [0, 1)$. By Assumption 2, $A^TA$ is positive definite, hence $\Lambda$ is a diagonal matrix of entiries strictly larger than one. By definition $\mathbf 0 \prec \Lambda \preceq LI$, $0\preceq I - L^{-1}\Lambda \prec I$. 
 
 Then from Claim 0, 1 we have $T = I - L^{-1} \Lambda$ to be a diagonal of $\tau_i \in [0, 1)$. 
 
 
 
 
-#### **Claim 1 | Eigensystem of the 2x2 Nesterov's recurrence matrix**
+#### **Claim  | Eigensystem of the 2x2 Nesterov's recurrence matrix**
 > The eigenvalues $\lambda_1, \lambda_2$ and eigenvectors $v_1, v_2$ of the above matrix $M$ are: 
 >
 > $$
@@ -555,9 +561,7 @@ $$
 
 
 
-
-
-#### **Claim 2 | the spectral radius function**
+#### **Claim  | the spectral radius function**
 > Fixing any value of $\tau \in [0, 1]$. There exists a unique $\theta \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
 > $$
 > \begin{aligned}
@@ -838,7 +842,7 @@ $$
 $$
 
 is a $\R^{n\times n}$ block 2x2 diagonal matrix. 
-A repermutation of the matrix by $P_\pi$ introduced back in claim 0.1 showed that $M^{(t)}$ is a block diagonal where the $i$ th 2x2 block on the diagonal is given by: 
+A repermutation of the matrix by $P_\pi$ introduced back in claim 1 showed that $M^{(t)}$ is a block diagonal where the $i$ th 2x2 block on the diagonal is given by: 
 
 $$
 \begin{aligned}
@@ -1037,7 +1041,8 @@ Recall that $0 \le  \tau_i = 1 - l_i<1$ where $l_i$ are the diagonals of $\Lambd
 
 **Remarks**
 
-
+We kinda need to organize things differently. 
+There is nothing in this claim to prevent the case where $\tau = 1$. 
 
 
 
