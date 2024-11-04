@@ -14,9 +14,28 @@ $$
 \end{aligned}
 $$
 
+#### **Assumption set 1**
+1. $f(x) = 1/2\Vert Ax - b\Vert_2^2$ for any fixed $A \in \R^{n\times m}$. 
+
+
+#### **Assumption set 2**
+Assume assumption set 1 and assume that: 
+1. $A^TA$ is positive definite, therefore $A \in R^{n\times m}$ is a full-rank matrix hence $m \le n$. 
+
+This makes $f(x)$ a strongly convex function with strong convexity constant $\mu > 0$. 
+
+#### **Definition 0 | Basic quantities**
+> Let $f(x)$ be given by assumption set 1. 
+> Define:
+> 1. eigendecomposition for $A^TA$ be $VGV^T$ with orthogonal $V$ and diagonal $G$. Notice that the diaognal entries of $G$ are real and non-negative. 
+> 2. $P$ be a permutation matrix such that $\Lambda = PGP^T$ where $\Lambda$ has diagonal entries in increasing order. 
+> 3. $L$ to be any upper bound on the Lipschitz constant of the function $f(x)$. 
+
+
 #### **Claim 0 | Cannonical form of the recurrence matrix for Nesterov's accelerated gradient on all convex quadratic function**
-> For the above recurrence, if we assume $f(x) = \frac{1}{2}\Vert Ax - b\Vert_2^2$ where $A \in \mathbb R^{n\times m}$, define $L$ to be any Lipschitz constant for $L$. 
-> Define $y^+ = A^\dagger b$ where $A^\dagger$ is the Moreau Psuedo Inverse, define $VGV^T = A^TA$ to be the orthogonal eigendecomposition of semi-definite matrix $A^TA$ where $G$ is diagonal. Define $\Lambda = PGP^T$ where $P$ is a permutation matrix the re-orders diaognal in $G$ so that the diaognal elements of $\Lambda$ are in increasing order. 
+> Let $f(x), A, V, P, G, \Lambda$  be given by Assumption Set 1. 
+> Let $L$ be the Lipschitz constant of $f$. 
+> Define $y^+ = A^\dagger b$ where $A^\dagger$ is the Moreau Psuedo Inverse. 
 > Then, Nesterov's acceleration recurrence can be expressed compactly by the following matrix recurrence relation: 
 > $$
 > \begin{aligned}
@@ -250,7 +269,7 @@ $$
 Therefore, for Nesterov's acceleration, it suffice to study the block diagonal iteration matrix $M_t$. 
 
 
-#### **Claim 0.1 | Block diagonal matrix as a diagonal 2x2 block matrix**
+#### **Claim 1 | Block diagonal matrix as a diagonal 2x2 block matrix**
 > A block 2x2 matrix $G \in \R^{2n \times 2n}$ with inner $n\times n$ diagonal matrix is a unitary transform from a diagonal block 2x2 matrix. 
 > Given a generic block 2x2 with: 
 > $$
@@ -263,7 +282,7 @@ Therefore, for Nesterov's acceleration, it suffice to study the block diagonal i
 >     \end{bmatrix}
 > \end{aligned}
 > $$
-> Where $D_{i, j} = \text{diag}(d_{i, j}^{(1)}, d_{i, j}^{(2)}, \cdots, d_{i, j}^{(n)})$. 
+> Where $D_{i, j} = \text{diag}\left(d_{i, j}^{(1)}, d_{i, j}^{(2)}, \cdots, d_{i, j}^{(n)}\right)$. 
 
 **Proof**
 
@@ -302,9 +321,9 @@ $$
 \end{aligned}
 $$
 
-#### **Block diaognal recurrence**
+#### **Corollary | Block diagonal recurrence**
 
-Using claim 0.1, 0. 
+Using claim 1, 0. 
 $M_t$ is a block diagonal matrix in the form of 
 
 $$
@@ -318,7 +337,7 @@ $$
 \end{aligned}
 $$
 
-Where $T_t = \text{diag}(\tau_t^{(1)}, \cdots, \tau_t^{(n)})$. 
+Where $T_t = \text{diag}\left(\tau^{(t)}_1, \cdots, \tau^{(t)}_1\right)$. 
 We see that the matrix recurrence gives the following form: 
 
 $$
@@ -332,8 +351,8 @@ $$
         \begin{bmatrix}
             1 & 0 
             \\
-            - \theta_t^{(i)} \tau_t ^{(i)}
-            & (1 + \theta_t) \tau_t^{(i)}
+            - \theta_t \tau_i^{(t)}
+            & (1 + \theta_t) \tau_i^{(t)}
         \end{bmatrix}; 
         i = 1, \cdots, n
     \right)
@@ -360,7 +379,15 @@ $$
 \end{aligned}
 $$
 
-Next, we make claims on the eigensystem, spectral radius for $M$ for varying $\theta_t \in [0, 1]$. 
+Next, we make claims on the eigensystem, spectral radius for $M$ for $\theta_t \in [0, 1]$ and $\tau \in [0, 1]$. 
+Take note that there are 2 cases for the possibilities on $\tau$. 
+1. Without Assumption 2, we could have $\tau = 0$. 
+2. With Assumption 2, we would have $\tau \in [0, 1)$. By Assumption 2, $A^TA$ is positive definite, hence $\Lambda$ is a diagonal matrix of entiries strictly larger than one. By definition $\mathbf 0 \prec \Lambda \preceq LI$, $0\preceq I - L^{-1}\Lambda \prec I$. 
+
+Then from Claim 0, 1 we have $T = I - L^{-1} \Lambda$ to be a diagonal of $\tau_i \in [0, 1)$. 
+
+
+
 
 #### **Claim 1 | Eigensystem of the 2x2 Nesterov's recurrence matrix**
 > The eigenvalues $\lambda_1, \lambda_2$ and eigenvectors $v_1, v_2$ of the above matrix $M$ are: 
@@ -398,7 +425,7 @@ Next, we make claims on the eigensystem, spectral radius for $M$ for varying $\t
 
 **Proof**
 
-We use [Wolframe Alpha](https://www.wolframalpha.com/input?i=eigenvalues+%7B%7B%5B%2F%2Fnumber%3A0%2F%2F%5D%2C%5B%2F%2Fnumber%3A1%2F%2F%5D%7D%2C%7B%5B%2F%2Fnumber%3A-u+t%2F%2F%5D%2C%5B%2F%2Fnumber%3A%281+%2B+u%29+t%2F%2F%5D%7D%7D), the query has $u = \theta$,  $t$ as a scaler, we get the eigen system of the 2x2 matrix to be: 
+We use [Wolfram Alpha](https://www.wolframalpha.com/input?i=eigenvalues+%7B%7B%5B%2F%2Fnumber%3A0%2F%2F%5D%2C%5B%2F%2Fnumber%3A1%2F%2F%5D%7D%2C%7B%5B%2F%2Fnumber%3A-u+t%2F%2F%5D%2C%5B%2F%2Fnumber%3A%281+%2B+u%29+t%2F%2F%5D%7D%7D), the query has $u = \theta$,  $t$ as a scaler, we get the eigen system of the 2x2 matrix to be: 
 
 
 $$
@@ -512,8 +539,26 @@ $$
 \end{aligned}
 $$
 
-#### **Claim 2 | The optimal spectral radius of the 2x2 iteration matrix**
-> Fixing any value of $\tau \in [0, 1)$. There exists a unique $\theta \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
+**Remarks**
+
+Let's discuss edge cases. 
+Edge case happens when $\tau = 1$, making $M$: 
+
+$$
+\begin{aligned}
+    \begin{bmatrix}
+        0 & 1 \\
+        - \theta & 1 + \theta
+    \end{bmatrix}. 
+\end{aligned}
+$$
+
+
+
+
+
+#### **Claim 2 | the spectral radius function**
+> Fixing any value of $\tau \in [0, 1]$. There exists a unique $\theta \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
 > $$
 > \begin{aligned}
 >     \theta^{+} = \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}} \in [0, 1]. 
@@ -587,7 +632,7 @@ $$
 \end{aligned}
 $$
 
-Take note that $\theta^+ \in \R$  because $\tau \in [0, 1)$. 
+Take note that $\theta^+ \in \R$  because $\tau \in [0, 1]$. 
 To identify the root in the interval of $(0, 1)$, there are two possibilities here, taking the positive sign we have 
 
 $$
@@ -621,7 +666,7 @@ $$
 
 Using the trick that $\lambda_1\lambda_2 = |M|$, the product of the eigenvalues equals to the determinant. And we have $|M| = \tau\theta$. 
 So $\sqrt{\lambda_1\lambda_2} = \sqrt{\theta\tau}$. 
-Therefore the spectral radius as of $M$ is a piecewise function where $\tau \in [0, 1)$ and $\theta \in [0, 1]$ which is 
+Therefore the spectral radius as of $M$ is a piecewise function where $\tau \in [0, 1]$ and $\theta \in [0, 1]$ which is 
 
 $$
 \begin{aligned}
@@ -647,12 +692,13 @@ Monotonicity of discrete piecies of $\rho(M)$ requires characterizations to find
 
 
 #### **Corollary | The minimum of the spectral value and its minimizer**
-> For all $\tau \in [0, 1)$ there exists a unique minimizer $\theta^+ \in [0, 1]$ for the spectral radius $\rho(M)$: 
+> For all $\tau \in [0, 1]$ there exists a unique minimizer $\theta^+ \in [0, 1]$ for the spectral radius $\rho(M)$: 
 > $$
 > \begin{aligned}
 >     \theta^+ &= \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}}. 
 > \end{aligned}
 > $$
+> This gives the minimum value for the spectral radius $\rho(M) = (1/2)(\tau\theta^+ + \tau) = \sqrt{\theta^+\tau}$. 
 
 **Proof**
 
@@ -684,21 +730,28 @@ $$
 $$
 
 Since this is true for all $\theta \in [0, \theta^+]$, substituting $\theta = \theta^+$, we get the desired results that $\theta^+$ is the minimizer. 
-We can do this because recall that $\theta^+$ makes $(\tau \theta + \tau)^2 - 4 \tau \theta = 0$, which is the smallest value can get for anything inside of square roo. 
+We can do this because recall that $\theta^+$ makes $(\tau \theta + \tau)^2 - 4 \tau \theta = 0$, which is the smallest value can get for anything inside of square root. 
+
 
 **Remarks**
 
-At this point, we can conclude that the spectral radius of $M$ is strictly less than one and therefore a power iterations of $M$ will cause all all values of $y_i^{(t)}$ to converge. 
 
 
 #### **Corollary | The maximum of the spectral radius and its maximizers**
-> The maximier of $\theta$ of $\rho(M)$ for all $\tau \in [0, 1)$ happens for $\theta  = 1$. 
-> The maximum value of the spectral radius is given by $\rho(M) = \sqrt{\tau} < 1$. 
+> The spectral radius of $M$ satisfies: 
+> $$
+> \begin{aligned}
+>     (\forall \tau \in (0, 1))\; 
+>     \max_{\theta \in [0, 1]} \rho(M) = \sqrt{\tau} < 1
+> \end{aligned}
+> $$
+> If $\tau = 0$, we have $\rho(M)=0$. 
+> If $\tau = 1$, we have $\rho(M)=1$. 
 
 **Proof**
 
 To find the maximum, we identify the maximum value taken by each 2 part of the piecewise function that defines $\rho(M)$ then we find the maximum value among those. 
-Since $\sqrt{\tau\theta}$ is monotone increasing, it attains maximal value for $\theta = 1$, giving use $\sqrt{\tau}$. 
+Since $\sqrt{\tau\theta}$ is monotone increasing, it attains maximal value for $\theta = 1$, giving us $\sqrt{\tau}$. 
 
 Next, observe that we have that $\forall \theta \in [0, \theta^+]$: 
 
@@ -725,13 +778,12 @@ $$
 $$
 
 Set $\theta = 0$ then we have the upper bound $\tau$. 
-Finally, we have $\tau \in [0, 1)$ and therefore $\tau \le \sqrt{\tau}$ and the maximum value happens for $\theta = 1$ and we have $\rho(M) = \sqrt{\tau}$ when that happens. 
+Finally, we have $\tau \in [0, 1)$ and therefore $\tau < \sqrt{\tau}$ and the maximum value happens for $\theta = 1$ and we have $\rho(M) = \sqrt{\tau}$ when that happens. 
 
 
 **Remarks**
 
-The maximal value of the spectral radius is determined by $\tau$ only. 
-This means that the algorithm will converge for any choices of sequence of $\theta_t$. 
+
 
 
 
@@ -766,8 +818,12 @@ Therefore this part of the piecewise function is increasing wrt to variable $\ta
 ### **Convergence rate directly by spectral radius**
 
 To better represent the elements of a matrix or vector and the iteration indices on these quantities, we adopt the following notations: 
+
+
+#### **Notations**
 1. $\tilde y^{(t)}_i$ to denote the $i$ th element of the vector $\tilde y^{(t)}$ denoting the iterates generated by the algorithm at the $t$ th iteration. 
 2. Use $M^{(t)}$ to represent the iteration matrix at the $t$ th iteration. 
+3. Use $\Lambda$ to be a diagonal matrix with non-negative entries, ordered in increasing order of magnitude having $\mathbf 0 \preceq \Lambda \preceq I$. This matrix is from the cannonical representation of all convex quadratic function fom the discussions in the first section. 
 
 Block iteration matrix $M_t$ expressed by: 
 
@@ -861,7 +917,14 @@ Since we know that $\tau_i \in [0, 1)$.
 For all choices in $\theta_t \in [0, 1]$, $\rho(M^{(t)}_i) < 1$. 
 Therefore the our spectral momentum algorithm converges for any use of $\theta_t$ within the interval. 
 
-#### **Global spectral radius bound**
+
+#### **Claim | Components wise spectral radius bound**
+> The convergence of each component $\tilde y_i^{(t)}$ by the algorithm would be governed by the spectral radius of the 2x2 block $M_i^{(t)}$. 
+
+
+
+
+#### **Claim | Global spectral radius bound**
 > Let block iteration matrix $M^{(t)}$ be given in block diagonal form as 
 > $$
 > \begin{aligned}
@@ -878,7 +941,7 @@ Therefore the our spectral momentum algorithm converges for any use of $\theta_t
 >     P_\pi^T
 >     \text{diag}\left(
 >         \begin{bmatrix}
->             1 & 0 \\ - \theta_t \tau_t & (1 + \theta_t) \tau_t
+>             1 & 0 \\ - \theta \tau_i & (1 + \theta_t) \tau_i
 >         \end{bmatrix}
 >         ; 
 >         i = 1, \cdots, n
@@ -911,11 +974,77 @@ Therefore the our spectral momentum algorithm converges for any use of $\theta_t
 
 **Proof**
 
-This would be true by the analysis of the Eigen system ofthe entire matrix $M^{(t)}$. 
+This would be true by the analysis of the Eigensystem ofthe entire matrix $M^{(t)}$. 
+Take note that we already found the eigensystem of each of the 2x2 matrix in the diagonal block 2x2 matrix. 
+Therefore performing the Eigendecomposition on the 2x2 block matrix on the diaognal we have: 
+
+$$
+\begin{aligned}
+    M^{(t)} &= 
+    P_\pi^T \text{diag}
+    \left(
+        \begin{bmatrix}
+            1 & 0 
+            \\
+            - \theta_t \tau_i & (1 + \theta_t)\tau_i 
+        \end{bmatrix} 
+        ;  
+        i = 1, \cdots,n
+    \right)
+    P_\pi
+    \\
+    &= 
+    P_\pi^T \text{diag}
+    \left(
+        \begin{bmatrix}
+            \lambda_i/\tau\theta & \lambda_i^\circ/\tau\theta
+            \\
+            1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            \lambda_i & \\ & \lambda_i^\circ
+        \end{bmatrix}
+        \begin{bmatrix}
+            \lambda_i/\tau\theta & \lambda_i^\circ/\tau\theta
+            \\
+            1 & 1
+        \end{bmatrix}^{-1}
+        ;  
+        i = 1, \cdots,n
+    \right)
+    P_\pi
+\end{aligned}
+$$
+
+where $\lambda_i = \frac{1}{2}(\sqrt{(\tau_i\theta + \tau_i)^2 - 4 \tau_i\theta} + \tau_i\theta + \tau_i)$. 
+And $\lambda_i^\circ = \frac{1}{2}(-\sqrt{(\tau_i\theta + \tau_i)^2 - 4 \tau_i\theta} + \tau_i\theta + \tau_i)$. 
+When $\lambda_i$ is imaginary, then $\lambda_i^\circ$ and $\lambda_i$ are complex conjugate to each other. 
+Otherwise, we have $\lambda_i \ge \lambda_i^\circ$. 
+
+The spectral radius of $\rho(M^{(t)}) = \max_{i = 1, \cdots, n} \max(|\lambda_i|, |\lambda_i^\circ|)$. 
+By previous worst case analysis of the spectral radius of all 2x2 block matrix on the diagonal, we have $\max(|\lambda_i|, |\lambda_i^\circ|)\le \sqrt{\tau_i}$. 
+Therefore, the upper bound for the spectral radius of the entire matrix would be: 
+
+$$
+\begin{aligned}
+    \bar \tau &= \max_{i=1, \cdots, n}\tau_i
+    \\
+    \rho(M^{(t)}) &\le \sqrt{\bar \tau}. 
+\end{aligned}
+$$
+
+Recall that $0 \le  \tau_i = 1 - l_i<1$ where $l_i$ are the diagonals of $\Lambda$. 
+
+**Remarks**
+
 
 
 
 
 ---
 ### **Tracking Rayleigh quotient**
+
+
+Rayleigh quotient is used for determine the acceleration parameter $\theta_t$ during the execution of the algorithm. 
+
 
