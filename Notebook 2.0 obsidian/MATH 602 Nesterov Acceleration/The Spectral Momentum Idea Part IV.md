@@ -430,7 +430,7 @@ $$
 
 
 #### **Claim 2.2 | the spectral radius function**
-> Fixing any value of $\tau \in [0, 1]$. There exists a unique $\theta \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
+> Fixing any value of $\tau \in [0, 1]$. There exists a unique $\theta^+ \in [0, 1]$ that makes the imaginary parts of $\lambda_1, \lambda_2$ equals to zero: 
 > $$
 > \begin{aligned}
 >     \theta^{+} = \frac{1 - \sqrt{1 - \tau}}{1 + \sqrt{1 - \tau}} \in [0, 1]. 
@@ -504,7 +504,7 @@ $$
 \end{aligned}
 $$
 
-Take note that $\theta^+ \in \R$  because $\tau \in [0, 1]$. 
+Take note that $\theta^+ \in \R$  because $\tau \in [0, 1]$, $\theta^+ \in \R$ always. 
 To identify the root in the interval of $(0, 1)$, there are two possibilities here, taking the positive sign we have 
 
 $$
@@ -690,7 +690,7 @@ Therefore this part of the piecewise function is increasing wrt to variable $\ta
 
 In this section, we derive the convergence rate of firstly $\tilde y_t^{(i)}$, the $i$ th element of vector $y_t$ individually, and then the convergence rate of $\tilde y_t$ globally for the entire for the Nesterov's accelerated gradient method applied onto strongly convex quadratic function. 
 
-#### **Claim 3 | Spectral radius on strongly convex function**
+#### **Claim 3 | Convergence of each components of the iterates**
 > Using assumption set 1, then the iteration matrix 
 > $$
 > M^{(t, i)} = 
@@ -700,5 +700,27 @@ In this section, we derive the convergence rate of firstly $\tilde y_t^{(i)}$, t
 >     - \theta_t \tau_i & (1 + \theta_t) \tau_i, 
 > \end{bmatrix}
 > $$
-> contains element $\tau_i \in [0, 1)$ for all $\tau_i$ with $i = 1, \cdots, n$. 
+> 1. for all $n = 1, \cdots, n$, $\tau_i \in [0, 1)$ satisfies 
+> 2. As a consequence of the above, the spectral radius of the iteration matrix has $\rho(M^{(t, i)}) < 1$ for all $i = 1, \cdots, n, t \ge 0$, $\theta_t \in [0, 1]$. 
+> 3. Therefore $\lim_{t\rightarrow \infty}\tilde y_t^{(i)} = 0$ for all $i = 1, \cdots, n$. 
+
+**Proof**
+
+Recall from Lemma 2 that the $T$ inside $M_t$ comes from $I - L^{-1}\Lambda$ where $\Lambda = PGP^T$. 
+So the diagonal element of $\Lambda$ is given by $l_i = g_{\sigma(i)}$ where $\sigma$ denotes the permutation introduced by matrix $P$. 
+By assumption we have $f$ strongly convex and therefore $VPGP^TV^T$ is a positive definite matrix and therefore $L \ge g_i > 0$ for all $i = 1, \cdots, n$. 
+Therefore, the diagonal elements of $T_{i, i} = 1 - L^{-1}g_{\sigma(i)} \in [0, 1)$. 
+
+To show the spectral radius, we have from corollary 2.3 an upper bound for the spectral radius $\rho(M^{(t, i)})$: 
+
+$$
+\begin{aligned}
+    (\forall \tau \in (0, 1))
+    \quad 
+    \max_{\theta \in [0, 1]} \rho(M^{(t, i)}) = \sqrt{\tau_i} < 1. 
+\end{aligned}
+$$
+
+
+
 
