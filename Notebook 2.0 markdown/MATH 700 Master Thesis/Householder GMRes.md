@@ -1,5 +1,0 @@
-[GMRes](GMRes.md)
-
----
-### **Intro**
-
