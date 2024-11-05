@@ -215,3 +215,13 @@ Now we have the RHS to be exlusively about the inexact evaluation $x_k \approx \
 
 What would be the error of evaluation for the method of proximal gradient?
 We are confident here that this lemma is as general as it could get for the proximal inequality. 
+1. The theorem is based on a weaker consequence of strong convexity. 
+2. The theorem includes an untrackable error bound $\epsilon_k$. How to achieve such an error bound when designing the algorithm would be a bit of a problem. 
+
+
+
+---
+### **Guller 1993, Accelerated Inexact Proximal Point Method**
+
+
+
