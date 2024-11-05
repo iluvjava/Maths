@@ -1,0 +1,45 @@
+% THEOREM AND ENVIRONMENTS.  ===================================================
+
+%\newenvironment{deflist}[1][\quad]%
+%{\begin{list}{}{\renewcommand{\makelabel}[1]{\textrm{##1~}\hfil}%
+%\settowidth{\labelwidth}{\textrm{#1~}}%
+%\setlength{\leftmargin}{\labelwidth+\labelsep}}}%requires macro calc.sty
+%{\end{list}}
+%\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{openprob}[theorem]{Open Problem}
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+\newtheorem{assumption}[theorem]{Assumption}}
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+\newtheorem{condition}[theorem]{Condition}}
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+
+% Removed due conflict with the algorithm environment. 
+% \newtheorem{algorithm}[theorem]{Algorithm}}
+
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+\newtheorem{example}[theorem]{Example}}
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+\newtheorem{remark}[theorem]{Remark}}
+\theoremstyle{plain}{\theorembodyfont{\rmfamily}
+\newtheorem{application}[theorem]{Application}}
+
+\def\proof{\noindent{\it Proof}. \ignorespaces}
+%\def\endproof{\vbox{\hrule height0.6pt\hbox{\vrule height1.3ex%
+%width0.6pt\hskip0.8ex\vrule width0.6pt}\hrule height0.6pt}}
+%\numberwithin{equation}{section}
+\def\endproof{\ensuremath{\quad \hfill \blacksquare}}
+
+\renewcommand\theenumi{(\roman{enumi})}
+\renewcommand\theenumii{(\alph{enumii})}
+\renewcommand{\labelenumi}{\rm (\roman{enumi})}
+\renewcommand{\labelenumii}{\rm (\alph{enumii})}
+
+\numberwithin{equation}{section}
