@@ -200,3 +200,10 @@ The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very simi
 
 Here, we could also assume that the function $g$ is also strongly convex. 
 In this way, the above inequality can be generalized. 
+
+
+---
+### **The envelope approach**
+
+The inequality can be derived from a slightly weaker set of assumptions. 
+

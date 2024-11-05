@@ -112,4 +112,9 @@ It's super interesting.
 
 
 ---
-### **How universal is this argument???**
+### **How universal is this argument**
+
+
+### **Nesterov's Accelerated Proximal Gradient Descent Method**
+
+
