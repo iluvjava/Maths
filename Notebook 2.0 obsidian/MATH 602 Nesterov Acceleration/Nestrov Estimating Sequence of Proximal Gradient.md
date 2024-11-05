@@ -8,7 +8,7 @@
 To begin, define 
 1. $f$ to be convex, $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
 2. $g$ is convex. 
-3. $h = g + g$
+3. $h = f + g$
 4. $T_L = (I + L^{-1} \partial g)^{-1}(I - L^{-1}\nabla f)$, which is the proximal gradient operator. 
 
 Consider the following definitions for $k \in \N$ and any sequence $(y_k)_{k \in \N}$ and $(\alpha_k)_{k \in \N}$ where $\alpha_i \in (0, 1)$ for all $i \in \N$, we define: 
