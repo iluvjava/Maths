@@ -262,7 +262,9 @@ $$
     \frac{L}{2}\Vert x - T y\Vert^2 
     &\ge 0
     \\
-    g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2 
+    \left(
+        g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2 
+    \right)
     - \mathcal M^{L^{-1}}(Ty; y)
     - \frac{L}{2}\Vert x - T y\Vert^2
     &\ge 0
@@ -334,11 +336,12 @@ $$
 \begin{aligned}
     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
     &\ge 
-    D_f(x, y) \ge 0
+    D_f(x, y) \ge 0.
 \end{aligned}
 $$
 
 Now, this is strange. 
-The above results means that the proximal gradient inequality when evaluates inexactly, still ratains the same inequality when the quantities involved inexact!
+The above results means that the proximal gradient inequality when evaluates inexactly, still ratains the same inequality when the quantities involved are inexact!
+The non-negativity of the Bregman divergence made the things easier to work with?!
 
 

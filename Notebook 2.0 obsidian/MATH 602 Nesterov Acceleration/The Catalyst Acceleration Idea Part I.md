@@ -237,6 +237,7 @@ $$
 $$
 
 Setting the $\mu = 0$ in our derivations, the similarity between the two inequality is very interesting. 
+The key here is that the proximal gradient inequality doesn't have any $x_k^*$, the exact proximal point step involved here. 
 
 
 ---
