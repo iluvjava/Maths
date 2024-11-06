@@ -7,6 +7,8 @@
 In this file we are focusing on the convex case of the Catalyst accelerations. 
 We draw connections to theoretical works and key inequalities used in the analysis of the convergence proof of the algorithm. 
 
+#### **Standardizing the notations**
+
 In this section, we will first standardize the notations, it helps with summarizing contents from several papers that are talking about the same topic. We are focusing first order optimizations with the folloing list of major entities: 
 
 $$
@@ -47,7 +49,7 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 
 We summarize some of the key ideas involved in H. Line 2015 Universal Catalyst paper. 
 
-#### **Controlling the Error on the Nesterov's Lower Estimating Sequence**
+#### **Lemma | Controlling the Error on the Nesterov's Lower Estimating Sequence**
 > Let $F$ be a $\mu\ge 0$ strongly convex function.
 > Suppose $x_k$ is an approximated proximal point meaning that $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ for some $\kappa$ fixed. 
 > Its approximation error can be characterized by $\mathcal M_F^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M_F^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_k, y_{k - 1}) \le \epsilon_k$. 
@@ -240,8 +242,12 @@ Setting the $\mu = 0$ in our derivations, the similarity between the two inequal
 The key here is that the proximal gradient inequality doesn't have any $x_k^*$, the exact proximal point step involved here. 
 
 
+
+#### **Theorem | Nesterov's estimating sequence results with the errors**
+
 ---
 ### **Guller 1993, Accelerated Inexact Proximal Point Method**
 
+We may need to write these results in a part II of this file. 
 
 
