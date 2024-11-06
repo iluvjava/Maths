@@ -225,6 +225,8 @@ $$
 \end{aligned}
 $$
 
+The following claim and proof will use a strictly weaker assumptions to obtain a strictly better results. 
+
 #### **Claim | The Fundamental Proximal gradient inequality**
 > Fix any $y$, we have for all $x$: 
 > $$
@@ -258,7 +260,7 @@ $$
     - \frac{L}{2}\Vert x - T y\Vert^2
     &\ge 0
     \\
-    \implies 
+    (1)\implies 
     f(y) - f(x) + \langle \nabla f(y), x - y\rangle 
      + \frac{L}{2}\Vert x - y\Vert^2 + f(x) + g(x) - h(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2
     & \ge 0
@@ -293,12 +295,7 @@ $$
     \iff 
     h(x) - h(Ty) + \frac{L}{2}\Vert y - Ty\Vert^2 
     - L\langle y - Ty, x - Ty\rangle - D_f(x, y) 
-    &\ge 0
-    \\
-    \iff 
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
-    &\ge 
-    D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2. 
+    &\ge 0. 
 \end{aligned}
 $$
 
@@ -336,3 +333,5 @@ $$
 
 Which is weaker. 
 Note that, we gotten weaker results, but the inequality we usedis a consequence of $\mathcal M^{L^{-1}}(\cdot; y)$ being $L$ strongly convex, this is also a weaker assumptions compared to the subgradient inequality used in the proof in the previous case. 
+This is crazy interesting. 
+Of course, when $f \equiv 0$, this inequality reduces to the proximal inequality. 

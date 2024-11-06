@@ -21,7 +21,7 @@ $$
     \\
     & \mathcal G_{\lambda_k} := \lambda_k^{-1}(I - \mathcal J_{\lambda_k}),
     \\
-    & \widetilde{\mathcal G}_{\lambda_k} := \lambda_k^{-1}(I - \mathcal J_{\lambda_k}). 
+    & \widetilde{\mathcal G}_{\lambda_k} := \lambda_k^{-1}(I - \widetilde{\mathcal J}_{\lambda_k}). 
 \end{aligned}
 $$
 
@@ -210,6 +210,33 @@ We are confident here that this lemma is as general as it could get for the prox
 1. The theorem is based on a weaker consequence of strong convexity. 
 2. The theorem includes an untrackable error bound $\epsilon_k$. How to achieve such an error bound when designing the algorithm would be a bit of a problem. 
 
+Finally, compare the results to the proximal gradient inequality derived in our notations, we assume that $F = f + g$ with $f$ $L$-smooth and $g$ convex. 
+Fix any $y\in \R^n$ then we have $\forall x \in \R^n$: 
+
+$$
+\begin{aligned}
+    & F = g + h
+    \\
+    & 
+    \widetilde {\mathcal J}_{L^{-1}} 
+    = [I + L^{-1}\partial g]^{-1}\circ[I - L^{-1}\nabla f]
+    \\
+    & 
+    F(x) - F\left(\widetilde{\mathcal J}_{L^{-1}}y\right) 
+    - 
+    \left\langle 
+        \widetilde{\mathcal G}_{L^{-1}}(y), 
+        x - \widetilde{\mathcal J}_{L^{-1}}y
+    \right\rangle
+    \ge 
+    D_f(x, y) - \frac{L}{2}
+    \left\Vert 
+        y - \widetilde{\mathcal J}_{L^{-1}}y
+    \right\Vert^2
+\end{aligned}
+$$
+
+Setting the $\mu = 0$ in our derivations, the similarity between the two inequality is very interesting. 
 
 
 ---
