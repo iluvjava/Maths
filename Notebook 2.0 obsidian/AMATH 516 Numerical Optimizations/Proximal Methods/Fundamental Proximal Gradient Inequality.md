@@ -244,6 +244,8 @@ $$
     g(Ty) + f(y) + \langle \nabla f(y), Ty - y\rangle 
     + \frac{L}{2}\Vert Ty - y\Vert^2
     \\
+    \text{$f$ is convex }
+    \implies 
     &\ge 
     h(Ty) + \frac{L}{2}\Vert Ty - y\Vert^2
     \\
@@ -255,6 +257,11 @@ Next, the function $M^{L^{-1}}(\cdot, y)$ is a $L$  strongly convex function by 
 
 $$
 \begin{aligned}
+    \mathcal {M}^{L^{-1}}(x; y) - 
+    \mathcal {M}^{L^{-1}}(Ty; y) - 
+    \frac{L}{2}\Vert x - T y\Vert^2 
+    &\ge 0
+    \\
     g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2 
     - \mathcal M^{L^{-1}}(Ty; y)
     - \frac{L}{2}\Vert x - T y\Vert^2
@@ -327,11 +334,11 @@ $$
 \begin{aligned}
     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
     &\ge 
-    D_f(x, y). 
+    D_f(x, y) \ge 0
 \end{aligned}
 $$
 
-Which is weaker. 
-Note that, we gotten weaker results, but the inequality we usedis a consequence of $\mathcal M^{L^{-1}}(\cdot; y)$ being $L$ strongly convex, this is also a weaker assumptions compared to the subgradient inequality used in the proof in the previous case. 
-This is crazy interesting. 
-Of course, when $f \equiv 0$, this inequality reduces to the proximal inequality. 
+Now, this is strange. 
+The above results means that the proximal gradient inequality when evaluates inexactly, still ratains the same inequality when the quantities involved inexact!
+
+
