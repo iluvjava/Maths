@@ -241,7 +241,7 @@ $$
 Setting the $\mu = 0$ in our derivations, the similarity between the two inequality is very interesting. 
 The key here is that the proximal gradient inequality doesn't have any $x_k^*$, the exact proximal point step involved here. 
 
-
+The the parts that follows, we summarize key points made to accomodate and realize the errors made by the approximations on the Moreau Envelope and how they innovate the algorithms design of. 
 
 #### **Theorem | Nesterov's estimating sequence results with the errors**
 
