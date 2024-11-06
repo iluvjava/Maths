@@ -180,7 +180,7 @@ $$
 \end{aligned}
 $$
 
-When proving the above results, we have the intermediate step: 
+When proving the above results, we had the following equivalent intermediate step: 
 
 $$
 \begin{aligned}
@@ -206,4 +206,133 @@ In this way, the above inequality can be generalized.
 ### **The envelope approach**
 
 The inequality can be derived from a slightly weaker set of assumptions. 
+The difference here is the absence of subgradient inequality which is not used for the proof. 
+The following is the same proof adapted from [Proximal Gradient Convergence Rate](Proximal%20Gradient%20Convergence%20Rate.md). 
 
+In this section we use some slightly different notations: 
+
+$$
+\begin{aligned}
+    h(x) &= g + f, 
+    \\
+    T&= [I + L^{-1}\partial h]\circ [I - L^{-1}\nabla f]
+    \\
+    \mathcal M^{L^{-1}}
+    (x; y) 
+    &:= 
+    g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
+    + \frac{L}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+#### **Claim | The Fundamental Proximal gradient inequality**
+> Fix any $y$, we have for all $x$: 
+> $$
+> \begin{aligned}
+>     F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle
+>     &\ge \frac{- L}{2}\Vert x - Ty\Vert^2 + D_f(x, y) 
+> \end{aligned}
+> $$
+
+To start, agree with the following inequality which comes from the definition of the Envelope function 
+$$
+\begin{aligned}
+    M^{L^{-1}}(Ty; y) 
+    &= 
+    g(Ty) + f(y) + \langle \nabla f(y), Ty - y\rangle 
+    + \frac{L}{2}\Vert Ty - y\Vert^2
+    \\
+    &\ge 
+    h(Ty) + \frac{L}{2}\Vert Ty - y\Vert^2
+    \\
+    &\ge h(Ty). 
+\end{aligned}\tag{1}
+$$
+
+Next, the function $M^{L^{-1}}(\cdot, y)$ is a $L$  strongly convex function by its definition therefore using the quadratic growth condition for a strongly convex function we have inequalities: 
+
+$$
+\begin{aligned}
+    g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2 
+    - \mathcal M^{L^{-1}}(Ty; y)
+    - \frac{L}{2}\Vert x - T y\Vert^2
+    &\ge 0
+    \\
+    \implies 
+    f(y) - f(x) + \langle \nabla f(y), x - y\rangle 
+     + \frac{L}{2}\Vert x - y\Vert^2 + f(x) + g(x) - h(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2
+    & \ge 0
+    \\
+    \iff 
+    -D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
+    + h(x) - h(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty) - \frac{L}{2}
+    \left(
+        \Vert x - Ty\Vert^2 - \Vert x - y\Vert^2
+    \right) - D_f(x, y) 
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty) - \frac{L}{2}\left(
+        \Vert x - Ty\Vert^2 - \Vert x - Ty + Ty - y\Vert^2
+    \right)
+    - D_f(x, y) 
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty) - 
+    \frac{L}{2}\left(
+        - \Vert y - Ty\Vert^2
+        - 2\langle x - Ty, Ty - y\rangle
+    \right) - D_f(x, y) 
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty) + \frac{L}{2}\Vert y - Ty\Vert^2 
+    - L\langle y - Ty, x - Ty\rangle - D_f(x, y) 
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
+    &\ge 
+    D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2. 
+\end{aligned}
+$$
+
+
+Now, observe that we have $L(y - Ty) = \mathcal G_L(y)$, and in this case it makes the above simplifies to 
+
+$$
+\begin{aligned}
+    h(x) - h(Ty) - \langle \mathcal G_L(y), x - Ty\rangle
+    &\ge 
+    D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2. 
+\end{aligned}
+$$
+
+**Remarks**
+
+The results here is the same as the previous claims. 
+The only difference here is the lemma we used. 
+Observe that this inequality is even tighter than the previous if we instead use the inequality: 
+$$
+\begin{aligned}
+    M^{L^{-1}}(Ty; y) &\ge h(Ty) + \frac{L}{2}\Vert Ty - y\Vert^2. 
+\end{aligned}
+$$
+
+Then we instead have: 
+
+$$
+\begin{aligned}
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
+    &\ge 
+    D_f(x, y). 
+\end{aligned}
+$$
+
+Which is weaker. 
+Note that, we gotten weaker results, but the inequality we usedis a consequence of $\mathcal M^{L^{-1}}(\cdot; y)$ being $L$ strongly convex, this is also a weaker assumptions compared to the subgradient inequality used in the proof in the previous case. 

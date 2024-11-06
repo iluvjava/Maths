@@ -13,10 +13,7 @@ $$
 \begin{aligned}
     & F: \R^n \mapsto \R^n, \tilde F  \approx F, 
     \\
-    & F_{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2, 
-    \\
-    & \tilde F_{\lambda_k}(x; y)
-    := \tilde F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2, 
+    & \mathcal M_F^{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2. 
     \\
     & \mathcal J_{\lambda_k} :=  (1 + \lambda_k\partial F)^{-1}, 
     \\
@@ -32,12 +29,7 @@ Here, $F, \mathcal J, \mathcal G$ denotes objective function, resolvent on the o
 Their approximation counter part has $\widetilde{(\cdot)}$ on on them. 
 To ease the notation, sometimes their subscript will become $k$ when it's clear that we are talking about a sequence of proximal point iteration with $(\lambda_k)_{k \ge 0}$.
 
-**Notes**
 
-Take note that the Moreau Envelope, $\min_x F_{\lambda_k}(x; y)$ has no approximation counter-part. 
-It has no approximated counter part because there are 2 parts inside of an Moreau Envelope that can be approximated, one is the function, and the other is the resolvent operator used. 
-This gives us a total of 4 quantities for spetial notations which is not good. 
-It will be clear in the context to use $F_{\lambda_k}$ directly with the specific iterates as input argument. 
 
 
 #### **Definition | Nesterov's estimating sequence**
@@ -58,7 +50,7 @@ We summarize some of the key ideas involved in H. Line 2015 Universal Catalyst p
 #### **Controlling the Error on the Nesterov's Lower Estimating Sequence**
 > Let $F$ be a $\mu\ge 0$ strongly convex function.
 > Suppose $x_k$ is an approximated proximal point meaning that $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ for some $\kappa$ fixed. 
-> Its approximation error can be characterized by $F_{\kappa^{-1}}(x_k; y_{k - 1}) - F_{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_k, y_{k - 1}) \le \epsilon_k$. 
+> Its approximation error can be characterized by $\mathcal M_F^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M_F^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_k, y_{k - 1}) \le \epsilon_k$. 
 > Use $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to denote the exact evaluation of the proximal point method then we have for all $x$: 
 > $$
 > \begin{aligned}
@@ -72,7 +64,7 @@ We summarize some of the key ideas involved in H. Line 2015 Universal Catalyst p
 
 **Observations**
 
-Set $\epsilon_k = 0$ so $x_k = x_k^*$ by strong convexity of $F_{\kappa^{-1}}(\cdot, y_{k - 1})$ (See [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information here) so it gives the usual proximal inequality: 
+Set $\epsilon_k = 0$ so $x_k = x_k^*$ by strong convexity of $\mathcal M_F^{\kappa^{-1}}(\cdot\; ; y_{k - 1})$ (See [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information here) so it gives the usual proximal inequality: 
 $$
 \begin{aligned}
     F(x) \ge F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle + 
@@ -84,7 +76,7 @@ Replacing $x_k = x_k^*$, this inequality is the same as the exact evaluation of 
 
 **Proof**
 
-The only ingredient is the coersivity of the envelope function $G_k := F_{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = F_{\kappa^{-1}}(x_k^*, y_{k - 1})$, which is a $\mu + \kappa$ convex function, therefore it has: 
+The only ingredient is the coersivity of the envelope function $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$, which is a $\mu + \kappa$ convex function, therefore it has: 
 
 $$
 \begin{aligned}
