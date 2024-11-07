@@ -624,6 +624,7 @@ $$
 \end{aligned}
 $$
 
+The second inequality above came from the non-negativity of the term $\Vert x_k - v_{k - 1}\Vert^2$ because its coefficient is non-negative. 
 Finally, if we were to continuelly assert the conditions $\phi_k^* + \xi_k \ge F(x_k)$ for current iterate $x_k$, one sufficient conditions for $(\alpha_k, v_k, x_k, y_k)_{k\ge 1}$ to satisfy would be: 
 
 $$
@@ -633,14 +634,19 @@ $$
     \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
     (v_{k - 1} - y_{k - 1}) 
     &= 
-    \mathbf 0
+    \mathbf 0, 
     \\
     1 - \frac{(\kappa/2 + \mu)\alpha_{k - 1}^2}{\gamma_k}
     \le 
     1 - (\kappa + \mu)\frac{\alpha_{k - 1}^2}{\gamma_k} 
-    & \le 0
+    & \le 0. 
 \end{aligned}
 $$
+
+#### **Proposition A.9 | Nesterov's estimating implicity descent error control**
+
+
+
 
 
 ---
