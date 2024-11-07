@@ -1,5 +1,7 @@
 - [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 - [Accelerated PPM Method](Accelerated%20PPM%20Method.md)
+- [Nestrov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md)
+- [A Review on Nesterov's Estimating Sequence Technique](A%20Review%20on%20Nesterov's%20Estimating%20Sequence%20Technique.md)
 
 ---
 #### **Intro**
@@ -9,7 +11,7 @@ We draw connections to theoretical works and key inequalities used in the analys
 
 #### **Standardizing the notations**
 
-In this section, we will first standardize the notations, it helps with summarizing contents from several papers that are talking about the same topic. We are focusing first order optimizations with the folloing list of major entities: 
+In this section, we will first standardize the notations, it helps with summarizing contents from several papers that are talking about the same topic. We are focusing first order optimizations with the following list of major entities: 
 
 $$
 \begin{aligned}
@@ -46,10 +48,27 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 ---
 ### **H. Lin 2015, Universal Catalyst**
 
-
 We summarize some of the key ideas involved in H. Line 2015 Universal Catalyst paper. 
+We summarize some key quantities in the context of H. Lin's writing on the method of Catalyst Meta Acceleration: 
 
-#### **Lemma | Controlling the Error on the Nesterov's Lower Estimating Sequence**
+$$
+\begin{aligned}
+    x_k^* 
+    &=\mathcal J_{\kappa^{-1}} y_{k - 1}, 
+    \\
+    x_k &= 
+    \widetilde{\mathcal J}_{\kappa^{-1}} y_{k - 1}. 
+\end{aligned}
+$$
+
+We summarize some of the key points for lemmas in the Appendix: 
+1. Lemma A.7 shows us the Proximal Gradient Inequality that incorperates an inexact evaluation of the proximal point method, together with the error bound on the Moreau Envelope. 
+2. Theorem A.6 shows the Nesterov's estimating sequence only incorperates the inexact proximal point iterates. 
+3. A.8 Shows how the canonical form of the Nesterov's estimating sequence incorperates the errors from inexact proximal point evaluations. 
+
+
+
+#### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
 > Let $F$ be a $\mu\ge 0$ strongly convex function.
 > Suppose $x_k$ is an approximated proximal point meaning that $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ for some $\kappa$ fixed. 
 > Its approximation error can be characterized by $\mathcal M_F^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M_F^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_k, y_{k - 1}) \le \epsilon_k$. 
@@ -243,7 +262,189 @@ The key here is that the proximal gradient inequality doesn't have any $x_k^*$, 
 
 The the parts that follows, we summarize key points made to accomodate and realize the errors made by the approximations on the Moreau Envelope and how they innovate the algorithms design of. 
 
-#### **Theorem | Nesterov's estimating sequence results with the errors**
+#### **Theorem A.6 | Nesterov's estimating sequence results with inexact PPM**
+> Representing in the cannonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
+> $$
+> \begin{aligned}
+>     \gamma &= (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu, 
+>     \\
+>     v_k &= 
+>     \gamma_k^{-1}(
+>         (1 - \alpha_{k - 1})\gamma_{k - 1}v_{k - 1}
+>         + \alpha_{k - 1}\mu x_k - \alpha_{k - 1}\kappa(y_{k - 1} - x_k)
+>     ), 
+>     \\
+>     \phi_k^* &= (1 - \alpha_{k - 1})\phi_{k - 1}^*
+>     + \alpha_{k - 1}F(x_k)
+>     - \frac{\alpha_{k - 1}^2}{2\gamma_k}\Vert \kappa(y_{k - 1} - x_k)\Vert^2
+>     \\
+>     &\quad 
+>     + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+>     \left(
+>         \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2 + 
+>         \langle \kappa(y_{k - 1} - x_k), v_{k - 1} - x_k\rangle
+>     \right). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Complicated.
+Skipped.
+
+**Remark**
+
+Please observe that the entire design of the sequence is based on the in-exact approximated iteration sequence $(x_k)_{k \ge 0}$. 
+
+
+#### **Theorem A.8 | Controlling Error Bounds on the Nesterov's Estimating Sequence**
+> The caoninical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfies the conditions for all $k\ge 1$
+> $$
+> \begin{aligned}
+>     F(x_k) &\le \phi_k^* + \xi_k
+>     \\
+>     \xi_k &= 
+>     (1 - \alpha_{k - 1})(
+>         \xi_{k - 1} + \epsilon_k 
+>         - (\kappa + \mu)\langle x_k - x_k^*, x_{k - 1} - x_k\rangle
+>     ). 
+> \end{aligned}
+> $$
+> Where we have the base case that $\xi_0 = 0$. 
+
+**Proof**
+
+The proove is achieved via induction. 
+Basecase is trivially satisfied via $\phi_0^* = F(x_0)$ and $\xi_0 = 0$. 
+Inductively we assume that $F(x_{k - 1}) \le \phi_{k - 1}^* + \xi_k$. 
+By definition it means 
+
+$$
+\begin{aligned}
+    \phi_{k - 1}^* &\ge 
+    F(x_{k - 1}) - \xi_{k - 1}
+    \\
+    &\ge 
+    F(x_k) + 
+    \langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k\rangle
+    + 
+    (\kappa + \mu)\langle x_k - x_k^*, x_{k - 1} - x_k\rangle
+    - \epsilon_k - \xi_{k - 1}
+    \\
+    &= 
+    F(x_k) + 
+    \langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k\rangle
+    - (1 - a_{k - 1})^{-1}\xi_k. 
+\end{aligned}\tag{A.8.1}
+$$
+
+Using A.6, we have the inequality from the inexact estimating sequence that 
+
+$$
+\begin{aligned}
+    \phi_k^* &= 
+    (1 - \alpha_{k - 1})\phi_{k - 1}^* 
+    + 
+    \alpha_{k - 1}F(x_k)
+    - 
+    \frac{\alpha_{k - 1}}{2\gamma_k}
+    \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+    \\
+    &\quad 
+    + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+    \left(
+        \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2
+        + \langle \kappa(y_{k - 1} - x_k), v_{k - 1} - x_k\rangle
+    \right)
+    \\
+    &\quad \text{By (A.8.1)}
+    \\
+    &\ge 
+    (1 - \alpha_{k - 1})
+    \left(
+        F(x_k) + 
+        \langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k\rangle
+        - (1 - a_{k - 1})^{-1}\xi_k
+    \right)
+    + 
+    \alpha_{k - 1}F(x_k)
+    - 
+    \frac{\alpha_{k - 1}}{2\gamma_k}
+    \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+        \\
+        &\quad 
+        + 
+        \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+        \left(
+            \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2
+            + \langle \kappa(y_{k - 1} - x_k), v_{k - 1} - x_k\rangle
+        \right)
+    \\
+    &= 
+    (1 - \alpha_{k - 1})\langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k \rangle
+    - \frac{\alpha_{k - 1}}{2\gamma_k}\Vert \kappa(y_{k - 1} - x_k)\Vert^2
+        \\
+        & \quad 
+        + 
+        \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+        \left(
+            \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2
+            + 
+            \left\langle 
+                \kappa(y_{k - 1} - x_k), v_{k - 1} - x_k
+            \right\rangle
+        \right)+ F(x_k) - \xi_k
+    \\
+    &= 
+    (1 - \alpha_{k - 1})\left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        \frac{
+            \alpha_{k - 1}\gamma_{k - 1}
+        }{
+            \gamma_k
+        }(v_{k - 1} - x_k) + x_{k - 1} - x_k
+    \right\rangle
+    - \frac{\alpha_{k - 1}}{2\gamma_k}\Vert \kappa(y_{k - 1} - x_k)\Vert^2
+    \\
+        &\quad 
+        + \frac{\mu\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{2\gamma_k}
+        \Vert x_k - v_{k - 1}\Vert^2 + F(x_k) - \xi_k. 
+\end{aligned}
+$$
+
+We focus on the first 2 terms selected from the RHS of the above inequality: 
+
+$$
+\begin{aligned}
+    & (1 - \alpha_{k - 1})\left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        \frac{
+            \alpha_{k - 1}\gamma_{k - 1}
+        }{
+            \gamma_k
+        }(v_{k - 1} - x_k) + x_{k - 1} - x_k
+    \right\rangle
+    - \frac{\alpha_{k - 1}}{2\gamma_k}\Vert \kappa(y_{k - 1} - x_k)\Vert^2. 
+\end{aligned}
+$$
+
+Focusing on the first term from above it has: 
+
+$$
+\begin{aligned}
+    & 
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), x_{k - 1} - y_{k - 1} + y_{k - 1} - x_k 
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1} + y_{k - 1} - x_k) 
+    \right\rangle
+    \\
+    &= 
+    
+\end{aligned}
+$$
+
 
 ---
 ### **Guller 1993, Accelerated Inexact Proximal Point Method**

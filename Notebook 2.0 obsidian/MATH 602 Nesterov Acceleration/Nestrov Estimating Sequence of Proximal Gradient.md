@@ -1,4 +1,3 @@
-
 - [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 - [Fundamental Proximal Gradient Inequality](Fundamental%20Proximal%20Gradient%20Inequality.md)
 
