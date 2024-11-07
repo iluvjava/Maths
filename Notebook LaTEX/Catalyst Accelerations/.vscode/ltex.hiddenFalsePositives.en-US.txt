@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QTo demonstrate, the introduction of Guler's works in 1993 \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q proposed an accelerated scheme using the technique of Nesterov's estimating sequence for Proximal Point Method (PPM) in the convex case.\\E$"}

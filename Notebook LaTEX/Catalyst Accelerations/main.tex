@@ -30,12 +30,11 @@
 
 \begin{abstract} 
     \noindent
-    Nesterov's accelerated gradient first appeared back in the 1983 has sparked numerous theoretical and pratical advancedments in Mathematics programming literatures. 
-    The idea behind Nesterov's acceleration is universal in the convex case and it has concrete extension in the non-convex case. 
-    In this paper we survey specifically the Catalyst Acceleration that incorperated ideas from the Accelerated Proximal Point Method proposed by Guller back in 1993. 
-    We will review Nesterov's classical analysis of accelerated gradient in the convex case. 
-    We summarize key aspect of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
-    \cite{bezanson_julia_2017}. 
+    Nesterov's accelerated gradient first appeared back in the 1983 has sparked numerous theoretical and practical advancements in Mathematics programming literatures. 
+    The idea behind Nesterov's acceleration is universal in the convex case it has concrete extension in the non-convex case. 
+    In this paper we survey specifically the Catalyst Acceleration that incorperated ideas from the Accelerated Proximal Point Method proposed by Guler back in 1993. 
+    The paper reviews Nesterov's classical analysis of accelerated gradient in the convex case.
+    The paper will describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
     
 \end{abstract}
 
@@ -44,9 +43,47 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 
 \section{Introduction}
+    Nesterov first proposed the idea of an optimal algorithm named accelerated gradient descent method in his seminal work back in 1983 \cite{nesterov_method_1983}. 
+    It was seminal at the time because the algorithm's upper bound on the iteration complexity sealed the gap between the lower bound for all first order Lipschitz smooth convex function and the upper bound for this class of functions. 
+    For a specific definition of the class of algorithms that are considered ``First Order'', we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lecture_2018} for more information. 
+    In brief the method of gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity. 
+    It doesn't achieve the $\mathcal O(1/k^2)$ lower iteration complexity bound for first order optimization algorithms.
+    The method of accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
+
+    On first judgement, it's tempting to think that the existence of this optimal algorithm sealed the ceiling for the theoretical development for the entire class of convex first-order smooth optimization. 
+    The judgement is correct but lacks the nuance in understanding. 
+    The missing piece here is the fact that Nesterov's accelerated gradient is a system of analysis technique instead of any specific design patterns in algorithms. 
     
-    \subsection{Literature reviews}    
+    To demonstrate, the introduction of Guler's works in 1993 \cite{guler_new_1992} proposed an accelerated scheme using the technique of Nesterov's estimating sequence for Proximal Point Method (PPM) in the convex case. 
+    Let $(\lambda_k)_{k \ge 0}$ be the sequence of scalars used for regularizing the proximal point method which generates sequence $(x_k)_{k\ge 0}$ given any initial guess $x_0$. 
+    Guler's prior work \cite{guler_convergence_1991} showed that convergence of PPM method in the convex case has $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
+    His new algorithm using the technique introduced in Nesterov's accelerated gradient achieves a convergence rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
+    In addition, he also proposed together an inexact Accelerated PPM method using conditions described in Rockafellar's works in 1976 \cite{rockafellar_monotone_1976}. 
+
+    One would be tempting to conclude that this has sealed the ceiling for research on the topic of extending Nesterov's acceleration. 
+    That is indeed correct, but not from a practical point of view. 
+    Let $F: \RR^n \mapsto \RR$ be our objective function, $\mathcal J_\lambda := (I + \lambda \partial F)^{-1}$ and $\mathcal M^{\lambda}(x; y):= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2$ then the inexact proximal point considers with error $\epsilon_k$ has the following characterizations of inexactness as put forward by Guler \cite{guler_new_1992}: 
+    \begin{align*}
+        & \tilde x \approx \mathcal J_\lambda y
+        \\
+        & 
+        \dist(\partial\mathcal{M}^{\lambda}(\tilde x; y))
+        \le \frac{\epsilon_k}{\lambda_k}
+    \end{align*}
+    However, this is troublesome because if we need to approximate the resolvent operator $\mathcal J_\lambda$, then it's probably difficult to compute the subgradient $\partial\mathcal M(\cdot; y)$, which make it difficult to know when we achieved the required exactness for a PPM evaluation. 
+    Otherwise, if we already know the subgradient well, then why approximate it in the first place? 
+
+    Introduced in Lin et al. \cite{lin_universal_2015}\cite{lin_catalyst_2018} is a series of papers on a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
+    It's called a meta algorithm because it uses other first order algorithm to evaluate inexact proximal point method and then performs the accelerated PPM using Nesterov's acceleration. 
+    Their innovations are tracking and controlling the errors made in the inexact PPM throughout the algorithm and some original example usages of the Catalyst framework. 
+
+    One would be tempting to assert that this has sealed the ceiling for both theories and practice of Nesterov's acceleration hence it must be the center of discussion in this report. 
+    The conclusion is indeed correct which it will happen in the sections that follow while the assertion remains open.  
+    
     \subsection{Contributions}
+        The writing is expository and won't contain major results. 
+        We reviewed the literatures and faithfully reproduced some claims, in addition we give insights into understanding the claim in relations to other papers and foundational ideas in optimization. 
+
     
 \section{Preliminaries}\label{sec:preliminaries}
 
@@ -54,17 +91,18 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \section{Nesterov's Accelerated Proximal Gradient}
 
-\section{Guller 1993}
+
+\section{Guler 1993}
 \section{H.Lin 2015}
 
-\section{Nonconvex Extension of Catalyst Acceleration}
+\section{Non-convex Extension of Catalyst Acceleration}
 
 
 \bibliographystyle{siam}
 \bibliography{references/refs}
 
 \appendix
-\section{Postoned proofs}
+\section{Postponed proofs}
 
     
     

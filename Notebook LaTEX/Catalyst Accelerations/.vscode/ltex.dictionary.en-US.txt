@@ -1,0 +1,6 @@
+Nesterov
+Guler
+Rockafellar
+resolvent
+subgradient
+Paquette

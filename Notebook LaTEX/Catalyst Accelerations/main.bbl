@@ -1,7 +1,30 @@
 \begin{thebibliography}{1}
 
-\bibitem{bezanson_julia_2017}
-{\sc J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah}, {\em Julia: {A} {Fresh} {Approach} to {Numerical} {Computing}}, SIAM Review, 59 (2017), pp.~65--98.
+\bibitem{guler_convergence_1991}
+{\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for convex minimization}, {SIAM} Journal on Control and Optimization, 29 (1991), p.~17.
+\newblock Num Pages: 17 Place: Philadelphia, United States Publisher: Society for Industrial and Applied Mathematics.
+
+\bibitem{guler_new_1992}
+{\sc O.~Güler}, {\em New {Proximal} {Point} {Algorithms} for {Convex} {Minimization}}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
 \newblock Publisher: Society for Industrial and Applied Mathematics.
+
+\bibitem{lin_universal_2015}
+{\sc H.~Lin, J.~Mairal, and Z.~Harchaoui}, {\em A {Universal} {Catalyst} for {First}-{Order} {Optimization}}, MIT Press, Dec. 2015, p.~3384.
+
+\bibitem{lin_catalyst_2018}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Catalyst {Acceleration} for {First}-order {Convex} {Optimization}: from {Theory} to {Practice}}, in Journal of {Machine} {Learning} {Research}, vol.~18, 2018, pp.~1--54.
+
+\bibitem{nesterov_method_1983}
+{\sc Y.~Nesterov}, {\em A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)}, Proceedings of the USSR Academy of Sciences,  (1983).
+
+\bibitem{nesterov_lecture_2018}
+{\sc Y.~Nesterov}, {\em Lecture on {Convex} {Optimizations} {Chapter} 2, {Smooth} {Convex} {Optimization}}, in Lectures on {Convex} {Optimization}, Y.~Nesterov, ed., Springer {Optimization} and {Its} {Applications}, Springer International Publishing, Cham, 2018, pp.~59--137.
+
+\bibitem{paquette_catalyst_2018}
+{\sc C.~Paquette, H.~Lin, D.~Drusvyatskiy, J.~Mairal, and Z.~Harchaoui}, {\em Catalyst for {Gradient}-based {Nonconvex} {Optimization}}, in Proceedings of the {Twenty}-{First} {International} {Conference} on {Artificial} {Intelligence} and {Statistics}, PMLR, Mar. 2018, pp.~613--622.
+\newblock ISSN: 2640-3498.
+
+\bibitem{rockafellar_monotone_1976}
+{\sc R.~T. Rockafellar}, {\em Monotone operators and the proximal point algorithm}, 14, pp.~877--898.
 
 \end{thebibliography}
