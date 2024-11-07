@@ -266,7 +266,7 @@ The the parts that follows, we summarize key points made to accomodate and reali
 > Representing in the cannonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
 > $$
 > \begin{aligned}
->     \gamma &= (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu, 
+>     \gamma_k &= (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu, 
 >     \\
 >     v_k &= 
 >     \gamma_k^{-1}(
@@ -368,9 +368,6 @@ $$
     \right)
     + 
     \alpha_{k - 1}F(x_k)
-    - 
-    \frac{\alpha_{k - 1}}{2\gamma_k}
-    \Vert \kappa(y_{k - 1} - x_k)\Vert^2
         \\
         &\quad 
         + 
@@ -379,6 +376,9 @@ $$
             \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2
             + \langle \kappa(y_{k - 1} - x_k), v_{k - 1} - x_k\rangle
         \right)
+        -
+        \frac{\alpha_{k - 1}}{2\gamma_k}
+        \Vert \kappa(y_{k - 1} - x_k)\Vert^2
     \\
     &= 
     (1 - \alpha_{k - 1})\langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k \rangle
@@ -409,7 +409,7 @@ $$
         &\quad 
         + \frac{\mu\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{2\gamma_k}
         \Vert x_k - v_{k - 1}\Vert^2 + F(x_k) - \xi_k. 
-\end{aligned}
+\end{aligned}\tag{A.8.2}
 $$
 
 We focus on the first 2 terms selected from the RHS of the above inequality: 
@@ -425,7 +425,7 @@ $$
         }(v_{k - 1} - x_k) + x_{k - 1} - x_k
     \right\rangle
     - \frac{\alpha_{k - 1}}{2\gamma_k}\Vert \kappa(y_{k - 1} - x_k)\Vert^2. 
-\end{aligned}
+\end{aligned}\tag{A.8.3}
 $$
 
 Focusing on the first term from above it has: 
@@ -434,14 +434,211 @@ $$
 \begin{aligned}
     & 
     \left\langle 
-        \kappa(y_{k - 1} - x_k), x_{k - 1} - y_{k - 1} + y_{k - 1} - x_k 
+        \kappa(y_{k - 1} - x_k),
+        x_{k - 1} - y_{k - 1} 
         + 
         \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
         (v_{k - 1} - y_{k - 1} + y_{k - 1} - x_k) 
     \right\rangle
     \\
     &= 
-    
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+    \\ 
+    &\quad 
+        + 
+        \left\langle 
+            \kappa(y_{k - 1} - x_k), 
+            y_{k - 1} - x_k + 
+            \frac{\alpha_{k - 1}\gamma_{k - 1}}
+            {\gamma_k}
+            (y_{k - 1} - x_k)
+        \right\rangle
+    \\
+    &= 
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+    \\ 
+    &\quad 
+        + 
+        \kappa\left(
+            1 + \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        \right)
+        \Vert v_{k - 1} - y_{k - 1}\Vert^2. 
+\end{aligned}
+$$
+
+With the above, we can simplifiy (A.8.3) by substituting it back which gives: 
+
+$$
+\begin{aligned}
+    & 
+    (1 - \alpha_{k - 1})\left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+    \\
+        & 
+        - \frac{\alpha_{k - 1}}{2\gamma_k}
+        \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+        + 
+        \kappa(1 - \alpha_{k - 1})\left(
+            1 + \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        \right)
+        \Vert v_{k - 1} - y_{k - 1}\Vert^2
+    \\
+    &= 
+    (1 - \alpha_{k - 1})
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+        \\
+        &\quad 
+        + 
+        (1 - \alpha_{k - 1})\kappa\left(
+            1 + \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+            - \frac{\kappa\alpha_{k - 1}}{2\gamma_k}
+        \right)
+        \Vert y_{k - 1} - x_k\Vert^2. 
+\end{aligned}
+$$
+
+Focusing on the coefficient of on the term $\Vert y_{k - 1} - x_k\Vert^2$, simplify that by the recurrence on the Cannonical form of the Nesterov's estimating sequence given by A.6. 
+
+$$
+\begin{aligned}
+    &
+    (1 - \alpha_k)\kappa\left(
+        1 + \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        - \frac{\kappa\alpha_{k - 1}}{2\gamma_k}
+    \right)
+    \\
+    &=
+    \kappa\left(
+        1 - \alpha_{k - 1} + 
+        \frac{(1 - \alpha_{k - 1})\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        - \frac{\alpha_{k - 1}^2\kappa}{2\gamma_k}
+    \right)
+    \\
+    & \text{Use: }\gamma_k - \alpha_{k - 1}\mu = (1 - \alpha_{k - 1})\gamma_{k - 1}
+    \\
+    &= 
+    \kappa\left(
+        1 - \alpha_{k - 1} 
+        + 
+        \frac{(\gamma_k - \alpha_{k - 1}\mu)\alpha_{k - 1}}{\gamma_k}
+        - 
+        \frac{\alpha_{k - 1}^2\kappa}{2\gamma_k}
+    \right)
+    \\
+    &= \kappa
+    \left(
+        1 + 
+        \frac{
+            -2\gamma_k\alpha_{k - 1}
+            + 2(\gamma_k - \alpha_{k - 1}\mu)\alpha_{k - 1}
+            - \alpha_{k - 1}^2\kappa
+        }{
+            2\gamma_k
+        }
+    \right)
+    \\
+    &= \kappa
+    \left(
+        1 + \frac{-2\alpha_{k + 1}^2\mu - \alpha_{k - 1}^2\kappa}{2\gamma_k}
+    \right)
+    \\
+    &= 
+    \kappa\left(
+        1 - \frac{(2\mu + \kappa)\alpha_{k - 1}^2}{2\gamma_k}
+    \right)
+    \\
+    &= 
+    \kappa\left(
+        1 - \frac{(\mu + \kappa/2)\alpha_{k - 1}^2}{\gamma_k}
+    \right). 
+\end{aligned}
+$$
+
+Rolling back to A.8.2, we substitute our result for the first 2 terms on the RHS of the inequality and this gives: 
+
+$$
+\begin{aligned}
+    \phi_k^* 
+    &\ge 
+    (1 - \alpha_{k - 1})
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+        \\
+        &\quad 
+        + 
+        \kappa\left(
+            1 - \frac{(\mu + \kappa/2)\alpha_{k - 1}^2}{\gamma_k}
+        \right)
+        \Vert y_{k - 1} - x_k\Vert^2
+        \\
+        &\quad 
+        + \frac{\mu\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{2\gamma_k}
+        \Vert x_k - v_{k - 1}\Vert^2 + F(x_k) - \xi_k
+    \\
+    &\ge 
+    (1 - \alpha_{k - 1})
+    \left\langle 
+        \kappa(y_{k - 1} - x_k), 
+        x_{k - 1} - y_{k - 1}
+        + 
+        \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+        (v_{k - 1} - y_{k - 1})  
+    \right\rangle
+        \\
+        &\quad 
+        + 
+        \kappa\left(
+            1 - \frac{(\mu + \kappa/2)\alpha_{k - 1}^2}{\gamma_k}
+        \right)
+        \Vert y_{k - 1} - x_k\Vert^2
+        + 
+        \Vert x_k - v_{k - 1}\Vert^2 + F(x_k) - \xi_k. 
+\end{aligned}
+$$
+
+Finally, if we were to continuelly assert the conditions $\phi_k^* + \xi_k \ge F(x_k)$ for current iterate $x_k$, one sufficient conditions for $(\alpha_k, v_k, x_k, y_k)_{k\ge 1}$ to satisfy would be: 
+
+$$
+\begin{aligned}
+    x_{k - 1} - y_{k - 1}
+    + 
+    \frac{\alpha_{k - 1}\gamma_{k - 1}}{\gamma_k}
+    (v_{k - 1} - y_{k - 1}) 
+    &= 
+    \mathbf 0
+    \\
+    1 - \frac{(\kappa/2 + \mu)\alpha_{k - 1}^2}{\gamma_k}
+    \le 
+    1 - (\kappa + \mu)\frac{\alpha_{k - 1}^2}{\gamma_k} 
+    & \le 0
 \end{aligned}
 $$
 
