@@ -65,7 +65,7 @@ We summarize some of the key points for lemmas in the Appendix:
 1. Lemma A.7 shows us the Proximal Gradient Inequality that incorperates an inexact evaluation of the proximal point method, together with the error bound on the Moreau Envelope. 
 2. Theorem A.6 shows the Nesterov's estimating sequence only incorperates the inexact proximal point iterates. 
 3. A.8 Shows how the canonical form of the Nesterov's estimating sequence incorperates the errors from inexact proximal point evaluations. 
-
+4. A.9 Evaluates the consequence of inexact evaluation of proximal point method on the convergence reate implied by the Nesterov's estimating sequence frameworks. 
 
 
 #### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
@@ -643,15 +643,10 @@ $$
 \end{aligned}
 $$
 
-#### **Proposition A.9 | Nesterov's estimating implicity descent error control**
+
+#### **Proposition A.9 | Nesterov's estimating implicit descent error control**
 
 
 
-
-
----
-### **Guller 1993, Accelerated Inexact Proximal Point Method**
-
-We may need to write these results in a part II of this file. 
 
 
