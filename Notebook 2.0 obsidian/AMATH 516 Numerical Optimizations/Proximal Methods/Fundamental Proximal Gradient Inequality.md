@@ -267,12 +267,7 @@ The inequality is direct by convexity of $f$ which implies that Bregman divergen
 **Remarks**
 
 The above inequality can be interpreted with inexact evaluation of a proximal point evaluation. 
-Set $y^+= Ty$, in this case $y^+$ is an inexact evaluation of proximal point using the proximal gradient operator which gives the inequality: 
 
-$$
-\begin{aligned}
-\end{aligned}
-$$
 
 
 
@@ -332,9 +327,40 @@ $$
     - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
+    \iff 
+    \left(
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}
+        \left(
+            \Vert x - Ty + Ty - y\Vert^2
+            - 
+            \Vert y - Ty\Vert^2
+        \right)
+    \right)
+    - 
+    D_f(x, y) 
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    \left(
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}
+        \left(
+            \Vert x - Ty\Vert^2 + 
+            2\langle x - Ty, Ty - y\rangle
+        \right)
+    \right)
+    - 
+    D_f(x, y) 
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
     \iff
     \left(
-        h(x) - h(Ty) + \frac{L}{2}\Vert y - Ty\Vert^2 
+        h(x) - h(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
         - L\langle  x - Ty, y - Ty\rangle
     \right)
     - 
@@ -353,4 +379,31 @@ $$
 **Remarks**
 
 The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker conditions than $L^{-1}$ strong convexity of the Envelope function. 
+This results here are also strictly better than the previous results it implies the previous results. 
 
+$$
+\begin{aligned}
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) &\ge 0
+    \\
+    \iff
+    h(x) - h(Ty)
+    - \langle L(y - Ty), x - y + y - Ty\rangle - D_f(x, y) 
+    &\ge 0
+    \\
+    \iff
+    h(x) - h(Ty)
+    - \langle L(y - Ty),x - y \rangle
+    - L\Vert y - Ty\Vert^2
+    - D_f(x, y) 
+    &\ge 0
+    \\
+    \implies 
+    h(x) - h(Ty)
+    - \langle L(y - Ty),x - y \rangle
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - D_f(x, y) 
+    &\ge 0
+\end{aligned}
+$$
+
+That, is kinda wild. 
