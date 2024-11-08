@@ -91,14 +91,14 @@ The gradient operator $\nabla f(x) = A^TA(x - y^+)$ is affine, hence the largest
 
 **Proof**
 
-Substitutingthe gradient representation $T x= x - VGV^T(x - y^+)$, the recurrence relations simplifies: 
+Substitutingthe gradient representation $[I - L^{-1}\nabla f]x= x - VGV^T(x - y^+)$, the recurrence relations simplifies: 
 
 $$
 \begin{aligned}
     y_{t + 1} &= 
-    T y_t + \theta_t(Ty_t - Ty_{t - 1})
+    [I - L^{-1}\nabla f] y_t + \theta_t([I - L^{-1}\nabla f]y_t - Ty_{t - 1})
     \\
-    &= (1 + \theta_t) Ty_t - \theta_t Ty_{t - 1}
+    &= (1 + \theta_t) [I - L^{-1}\nabla f]y_t - \theta_t [I - L^{-1}\nabla f]y_{t - 1}
     \\
     &= 
     (1 + \theta_t)[I - L^{-1}VGV^T]y_t - \theta_t [I - L^{-1}VGV^T] y_{t - 1}
@@ -205,7 +205,7 @@ $$
 > $$
 > \begin{aligned}
 >     M^{(t, i)} &:= \begin{bmatrix}
->             1 & 0 
+>             0 & 1 
 >             \\
 >             - \theta_t \tau_i
 >             & (1 + \theta_t) \tau_i
@@ -245,7 +245,7 @@ $$
 \begin{aligned}
     M:= 
     \begin{bmatrix}
-        1 & 0 \\ 
+        0 & 1 \\ 
         - \theta \tau & (1 + \theta)\tau
     \end{bmatrix}. 
 \end{aligned}
@@ -695,7 +695,7 @@ In this section, we derive the convergence rate of firstly $\tilde y_t^{(i)}$, t
 > $$
 > M^{(t, i)} = 
 > \begin{bmatrix}
->     1 & 0 
+>     0 & 1 
 >     \\
 >     - \theta_t \tau_i & (1 + \theta_t) \tau_i, 
 > \end{bmatrix}
