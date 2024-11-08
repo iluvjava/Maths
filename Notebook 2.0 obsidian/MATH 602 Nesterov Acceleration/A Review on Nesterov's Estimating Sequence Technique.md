@@ -16,7 +16,7 @@ In introduction we introduce the basic setup of Nesterov's estimating sequence f
 1. In addition to The Setup, assume $\exists x^* \in \argmin{x}f(x)$, at least one minimizer exists for $f$. 
 
 
-#### **Definition | Nesterov's estimating seqquence**
+#### **Definition | Nesterov's estimating sequence**
 > Let $(\phi_k : \R^n \mapsto \R)_{k \ge 0}$ be a sequence of function. 
 > We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions that: 
 > 1. There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $f(x_k) \le \phi_k^*$. 
@@ -32,6 +32,7 @@ In introduction we introduce the basic setup of Nesterov's estimating sequence f
 > The difference between estimating sequence and $f$, denoted and defined by: $\Delta_k(x) = \phi_k(x) - f(x)$, is non-negative at exactly 2 points: $x_k, x^*$. 
 
 **Proof**
+
 By definition of $\phi_k$, $\Delta_k(x) := \phi_k (x) - f(x)$ for all $x \in \R^n$. 
 Then observe that $\forall k \ge 0$:  
 $$
@@ -103,7 +104,7 @@ $$
 \end{aligned}
 $$
 
-By the previous claim: $\Delta_t(x_*) \ge f(x_k) - f_*$, therefore the convergence of $\Delta_k(x)$ by the estimating sequence will translate to the convergence of the optimality gap $f(x_k) - f_*$. 
+By the previous claim: $\Delta_k(x_*) \ge f(x_k) - f_*$, therefore the convergence of $\Delta_k(x)$ by the estimating sequence will translate to the convergence of the optimality gap $f(x_k) - f_*$. 
 
 **Remarks**
 

@@ -217,131 +217,140 @@ $$
     \\
     T&= [I + L^{-1}\partial h]\circ [I - L^{-1}\nabla f]
     \\
-    \mathcal M^{L^{-1}}
+    \widetilde{\mathcal M}^{L^{-1}}
     (x; y) 
     &:= 
     g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
-    + \frac{L}{2}\Vert x - y\Vert^2. 
+    + \frac{L}{2}\Vert x - y\Vert^2
+    \\
+    \mathcal M^{L^{-1}}(x; y) 
+    &:= h(x) + \frac{L}{2}\Vert x - y\Vert^2
 \end{aligned}
 $$
 
-The following claim and proof will use a strictly weaker assumptions to obtain a strictly better results. 
+Before the major claim we state the following lemma to the proof sleek and cool: 
+
+#### **Lemma | The difference on the Envelope**
+> With $h = g + f$ as assumed in this section. 
+> Take $\tilde{\mathcal M^{L^{-1}}}, \mathcal M^{L^{-1}}$ as defined above, we will have for all $x \in \R^n$ that: 
+> $$
+> \begin{aligned}
+>     \widetilde{\mathcal M}^{L^{-1}}(x; y)
+>     &= 
+>     \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \ge \mathcal M^{L^{-1}}(x; y). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The proof for the equality is direct, we have for all $x$ the following is true: 
+
+$$
+\begin{aligned}
+    \widetilde{\mathcal M}^{L^{-1}}(x; y) 
+    &= 
+    g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2
+    \\
+    &= 
+    g(x) + f(x) - f(x) + f(y) 
+    + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2
+    \\
+    &= 
+    h(x) - D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
+    \\
+    &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
+\end{aligned}
+$$
+
+The inequality is direct by convexity of $f$ which implies that Bregman divergence has $D_f(x, y) \ge 0$ for all $x, y$. 
+
+**Remarks**
+
+The above inequality can be interpreted with inexact evaluation of a proximal point evaluation. 
+Set $y^+= Ty$, in this case $y^+$ is an inexact evaluation of proximal point using the proximal gradient operator which gives the inequality: 
+
+$$
+\begin{aligned}
+\end{aligned}
+$$
+
+
 
 #### **Claim | The Fundamental Proximal gradient inequality**
+> Let $h = f + g$ and proximal gradient operator $T$ be given as in this section. 
 > Fix any $y$, we have for all $x$: 
 > $$
 > \begin{aligned}
 >     F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle
->     &\ge \frac{- L}{2}\Vert x - Ty\Vert^2 + D_f(x, y) 
+>     &\ge  D_f(x, y) 
 > \end{aligned}
 > $$
 
-To start, agree with the following inequality which comes from the definition of the Envelope function 
+**Proof**
+
+The proof is direct. 
+The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property) for all $x \in \R^n$: 
+
 $$
 \begin{aligned}
-    M^{L^{-1}}(Ty; y) 
-    &= 
-    g(Ty) + f(y) + \langle \nabla f(y), Ty - y\rangle 
-    + \frac{L}{2}\Vert Ty - y\Vert^2
+    \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
+    \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
+    - 
+    \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 
+    0
     \\
-    \text{$f$ is convex }
     \implies 
-    &\ge 
-    h(Ty) + \frac{L}{2}\Vert Ty - y\Vert^2
-    \\
-    &\ge h(Ty). 
-\end{aligned}\tag{1}
-$$
-
-Next, the function $M^{L^{-1}}(\cdot, y)$ is a $L$  strongly convex function by its definition therefore using the quadratic growth condition for a strongly convex function we have inequalities: 
-
-$$
-\begin{aligned}
-    \mathcal {M}^{L^{-1}}(x; y) - 
-    \mathcal {M}^{L^{-1}}(Ty; y) - 
-    \frac{L}{2}\Vert x - T y\Vert^2 
-    &\ge 0
-    \\
     \left(
-        g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2 
-    \right)
-    - \mathcal M^{L^{-1}}(Ty; y)
-    - \frac{L}{2}\Vert x - T y\Vert^2
-    &\ge 0
-    \\
-    (1)\implies 
-    f(y) - f(x) + \langle \nabla f(y), x - y\rangle 
-     + \frac{L}{2}\Vert x - y\Vert^2 + f(x) + g(x) - h(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2
-    & \ge 0
-    \\
-    \iff 
-    -D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
-    + h(x) - h(Ty) - \frac{L}{2}\Vert x - Ty\Vert^2
+        \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
+    \right) - 
+    \mathcal M^{L^{-1}}(Ty; y) 
+    - 
+    \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
     \iff 
-    h(x) - h(Ty) - \frac{L}{2}
     \left(
-        \Vert x - Ty\Vert^2 - \Vert x - y\Vert^2
-    \right) - D_f(x, y) 
+        \mathcal M^{L^{-1}}(x; y)
+        - 
+        \mathcal M^{L^{-1}}(Ty; y)
+    \right)
+    - 
+    D_f(x, y) 
+    - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
     \iff 
-    h(x) - h(Ty) - \frac{L}{2}\left(
-        \Vert x - Ty\Vert^2 - \Vert x - Ty + Ty - y\Vert^2
+    \left(
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}\Vert x - y\Vert^2 - 
+        \frac{L}{2}\Vert Ty - y\Vert^2
     \right)
+    - 
+    D_f(x, y) 
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \iff
+    \left(
+        h(x) - h(Ty) + \frac{L}{2}\Vert y - Ty\Vert^2 
+        - L\langle  x - Ty, y - Ty\rangle
+    \right)
+    - 
+    D_f(x, y) 
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    h(x) - h(Ty)
+    - \langle L(y - Ty), x - Ty\rangle
     - D_f(x, y) 
-    &\ge 0
-    \\
-    \iff 
-    h(x) - h(Ty) - 
-    \frac{L}{2}\left(
-        - \Vert y - Ty\Vert^2
-        - 2\langle x - Ty, Ty - y\rangle
-    \right) - D_f(x, y) 
-    &\ge 0
-    \\
-    \iff 
-    h(x) - h(Ty) + \frac{L}{2}\Vert y - Ty\Vert^2 
-    - L\langle y - Ty, x - Ty\rangle - D_f(x, y) 
     &\ge 0. 
-\end{aligned}
-$$
-
-
-Now, observe that we have $L(y - Ty) = \mathcal G_L(y)$, and in this case it makes the above simplifies to 
-
-$$
-\begin{aligned}
-    h(x) - h(Ty) - \langle \mathcal G_L(y), x - Ty\rangle
-    &\ge 
-    D_f(x, y) - \frac{L}{2}\Vert y - Ty\Vert^2. 
 \end{aligned}
 $$
 
 **Remarks**
 
-The results here is the same as the previous claims. 
-The only difference here is the lemma we used. 
-Observe that this inequality is even tighter than the previous if we instead use the inequality: 
-$$
-\begin{aligned}
-    M^{L^{-1}}(Ty; y) &\ge h(Ty) + \frac{L}{2}\Vert Ty - y\Vert^2. 
-\end{aligned}
-$$
-
-Then we instead have: 
-
-$$
-\begin{aligned}
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle 
-    &\ge 
-    D_f(x, y) \ge 0.
-\end{aligned}
-$$
-
-Now, this is strange. 
-The above results means that the proximal gradient inequality when evaluates inexactly, still ratains the same inequality when the quantities involved are inexact!
-The non-negativity of the Bregman divergence made the things easier to work with?!
-
+The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker conditions than $L^{-1}$ strong convexity of the Envelope function. 
 

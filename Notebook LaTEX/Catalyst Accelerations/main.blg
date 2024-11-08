@@ -8,43 +8,43 @@ Warning--empty journal in rockafellar_monotone_1976
 Warning--empty year in rockafellar_monotone_1976
 You've used 8 entries,
             2030 wiz_defined-function locations,
-            550 strings with 5338 characters,
-and the built_in function-call counts, 2881 in all, are:
-= -- 283
-> -- 93
+            549 strings with 5254 characters,
+and the built_in function-call counts, 2687 in all, are:
+= -- 260
+> -- 89
 < -- 0
-+ -- 40
-- -- 30
-* -- 207
-:= -- 431
++ -- 39
+- -- 29
+* -- 196
+:= -- 407
 add.period$ -- 11
 call.type$ -- 8
-change.case$ -- 40
+change.case$ -- 39
 chr.to.int$ -- 0
 cite$ -- 11
-duplicate$ -- 149
-empty$ -- 240
-format.name$ -- 30
-if$ -- 635
+duplicate$ -- 139
+empty$ -- 222
+format.name$ -- 29
+if$ -- 586
 int.to.chr$ -- 0
 int.to.str$ -- 8
-missing$ -- 8
+missing$ -- 9
 newline$ -- 30
-num.names$ -- 17
-pop$ -- 42
+num.names$ -- 15
+pop$ -- 44
 preamble$ -- 1
 purify$ -- 32
 quote$ -- 0
-skip$ -- 118
+skip$ -- 107
 stack$ -- 0
-substring$ -- 196
-swap$ -- 61
+substring$ -- 169
+swap$ -- 55
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 32
+type$ -- 30
 warning$ -- 3
-while$ -- 33
+while$ -- 29
 width$ -- 9
-write$ -- 83
+write$ -- 81
 (There were 3 warnings)

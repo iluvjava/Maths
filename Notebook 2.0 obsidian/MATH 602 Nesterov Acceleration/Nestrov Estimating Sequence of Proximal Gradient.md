@@ -14,7 +14,7 @@ Consider the following definitions for $k \in \N$ and any sequence $(y_k)_{k \in
 
 $$
 \begin{aligned}
-    & g_k := L(y_k - TL y_k) \quad \text{Gradient mapping }, 
+    & g_k := L(y_k - T_L y_k) \quad \text{Gradient mapping }, 
     \\
     & l_h(x; y_k) := h(T_L y_k) + \langle g_k, x - y_k\rangle + 
     \frac{1}{2L}\Vert g_k\Vert^2, 

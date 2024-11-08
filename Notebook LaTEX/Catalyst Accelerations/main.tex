@@ -16,8 +16,8 @@
 
 \author{
     Hongda Li
-    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~ and~Xianfu Wang
+    % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    % The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~ and~Xianfu Wang
     % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     % The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{shawn.wang@ubc.ca}.}
 }
@@ -32,7 +32,7 @@
     \noindent
     Nesterov's accelerated gradient first appeared back in the 1983 has sparked numerous theoretical and practical advancements in Mathematics programming literatures. 
     The idea behind Nesterov's acceleration is universal in the convex case it has concrete extension in the non-convex case. 
-    In this paper we survey specifically the Catalyst Acceleration that incorperated ideas from the Accelerated Proximal Point Method proposed by Guler back in 1993. 
+    In this paper we survey specifically the Catalyst Acceleration that incorporated ideas from the Accelerated Proximal Point Method proposed by Guler back in 1993. 
     The paper reviews Nesterov's classical analysis of accelerated gradient in the convex case.
     The paper will describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
     
@@ -45,7 +45,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \section{Introduction}
     Nesterov first proposed the idea of an optimal algorithm named accelerated gradient descent method in his seminal work back in 1983 \cite{nesterov_method_1983}. 
     It was seminal at the time because the algorithm's upper bound on the iteration complexity sealed the gap between the lower bound for all first order Lipschitz smooth convex function and the upper bound for this class of functions. 
-    For a specific definition of the class of algorithms that are considered ``First Order'', we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lecture_2018} for more information. 
+    For a specific definition of the class of algorithms that are considered ``First Order'', we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
     In brief the method of gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity. 
     It doesn't achieve the $\mathcal O(1/k^2)$ lower iteration complexity bound for first order optimization algorithms.
     The method of accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
@@ -68,7 +68,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         & 
         \dist(\partial\mathcal{M}^{\lambda}(\tilde x; y))
-        \le \frac{\epsilon_k}{\lambda_k}
+        \le \frac{\epsilon}{\lambda}
     \end{align*}
     However, this is troublesome because if we need to approximate the resolvent operator $\mathcal J_\lambda$, then it's probably difficult to compute the subgradient $\partial\mathcal M(\cdot; y)$, which make it difficult to know when we achieved the required exactness for a PPM evaluation. 
     Otherwise, if we already know the subgradient well, then why approximate it in the first place? 
@@ -79,6 +79,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     One would be tempting to assert that this has sealed the ceiling for both theories and practice of Nesterov's acceleration hence it must be the center of discussion in this report. 
     The conclusion is indeed correct which it will happen in the sections that follow while the assertion remains open.  
+
     
     \subsection{Contributions}
         The writing is expository and won't contain major results. 
@@ -86,14 +87,152 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     
 \section{Preliminaries}\label{sec:preliminaries}
-
+    Throughout the entire writing, let our ambient space is $\RR^n$. 
+    We assume the optimization problem of: 
+    \begin{align*}
+        \min_{x \in \RR^n} F(x). 
+    \end{align*}
+    In this section we introduce the idea of Nesterov's estimating sequence. 
+    Nesterov's estimating sequence is fundamental to works in Guler's accelerated PPM method, and Catalyst meta acceleration as a whole. 
     \subsection{Method of Nesterov's Estimating Sequence}
+        \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
+            Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
+            We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions that: 
+            \begin{enumerate}
+                \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*$. 
+                \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ such that for all $x \in \RR^n$, $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+            \end{enumerate}
+        \end{definition}
+        \begin{observation} 
+            If we define $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
+            Then observe that $\forall k \ge 0$:  
+            \begin{align*}
+                \Delta_k(x) 
+                &= \phi_k(x) - f(x) \ge \phi_k^* - f(x)
+                \\
+                x = x_k\implies 
+                \Delta_k(x_k) 
+                &\ge 
+                \phi_k^* - f(x_k) \ge 0
+                \\
+                x = x_* \implies 
+                \Delta_k(x_*)
+                &\ge \phi_k^* - f_* \ge f(x_k) - f_* \ge 0
+            \end{align*}
+            The function $\Delta_k(x)$ is non-negative specifically at the points: $x_*, x_k$.
+            Additionally, we can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
+            \begin{align*}
+                \phi_{k + 1}(x) - \phi_k(x) 
+                &\le - \alpha_k (\phi_k(x) - F(x))
+                \\
+                \iff 
+                \phi_{k + 1}(x) - F(x) - (\phi_k(x) - F(x))
+                &\le 
+                -\alpha_k(\phi_k(x) - F(x))
+                \\
+                \iff
+                \Delta_{k + 1}(x) - \Delta_k(x) &\le
+                - \alpha_k\Delta_k(x)
+                \\
+                \iff 
+                \Delta_{k + 1}(x) 
+                &\le 
+                (1 - \alpha_k)\Delta_k(x). 
+            \end{align*}
+            Unrolling the above recursion it yields: 
+            \begin{align*}
+                \Delta_{k + 1}(x) &\le 
+                (1 - \alpha_k)\Delta_k(x) \le \cdots \le 
+                \left(
+                    \prod_{i = 0}^k(1 - \alpha_i)
+                \right)\Delta_0(x). 
+            \end{align*}
+            Finally, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using the property of Nesterov's estimating sequence it gives: 
+            $$
+                f(x_k) - f(x^*) \le \phi_k^* - f(x^*) \le \Delta_k(x^*) = \phi_k(x^*) - f(x^*) \le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
+            $$ 
+            Therefore, it yields a convergence of the sequence $f(x_k)\rightarrow f(x^*)$ with a rate relates to sequence $(\alpha_k)_{k \in \N}$. 
+        \end{observation}
+        Much of the analysis of convergence Nesterov's type accelerated gradient method inherit the idea of Nesterov's estimating sequence. 
+        Such a proof won't result in simple proof because the construction of $\phi_k$ is non-trivial, but it comes with the advantage too because we can put creativity into the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
 
 \section{Nesterov's Accelerated Proximal Gradient}
+    This section swiftly exposes the constructions of the Nesterov's estimating sequence for the algorithm FISTA, which is specific case of Algorithm (2.1.19), (2.1.20) in Nesterov's book \cite{nesterov_lectures_2018}. 
+    Discussion on these algorithms are relevant because they share the same format as the Catalyst Acceleration framework and accelerated PPM. 
+    
+    Throughout this section we assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
+    Define 
+    \begin{align*}
+        \mathcal M^{L^{-1}}(x; y) 
+        &:= g(x) + f(y) 
+        + 
+        \left\langle \nabla f(x), x - y\right\rangle 
+        + 
+        \frac{L}{2}\Vert x - y\Vert^2, 
+        \\
+        \widetilde{\mathcal J}_{L^{-1}}y 
+        &:= \argmin_{x} \mathcal M^{L^{-1}}(x; y), 
+        \\
+        \mathcal G_{L^{-1}}(y)
+        &:= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right)y. 
+    \end{align*}
 
-
+    In the literature, $\mathcal G_{L^{-1}}$ is commonly known as the gradient mapping. 
+    The definition follows, we define the Nesterov's estimating sequence used to derive the accelerated proximal gradient method. 
+    \begin{definition}[Proximal Gradient Nesterov's Estimating Sequence]\label{def:nes-est-seq-pg}
+        For some sequence of $(y_k)_{k\ge0}$, 
+        Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence which is recursively given by: 
+        \begin{align*}
+            & l_F(x; y_k) := 
+                F\left(\widetilde{\mathcal J}_{L^{-1}} y_k \right) 
+                + \langle \mathcal G_{L^{-1}}y_k, x - y_k\rangle + 
+            \frac{1}{2L}\Vert \mathcal G_{L^{-1}}y_k\Vert^2, 
+            \\
+            & 
+            \phi_{k + 1}(x)
+            := (1 - \alpha_k)\phi_k (x) + 
+            \alpha_k 
+            \left(
+                l_F(x; y_k) + \frac{\mu}{2}\Vert x - y_k\Vert^2
+            \right). 
+        \end{align*}
+        And the sequence of vector $y_k, x_k$, and scalars $\alpha_k$ satisfies the following: 
+        \begin{align*}
+            &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
+            \\
+            & \text{find } \alpha_{k + 1} \in (0, 1)
+            \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
+            \\
+            &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+        \end{align*}
+        One of the possible base case can be $x_0 = y_0$ and any $\alpha_0 \in (0, 1)$. 
+    \end{definition}
+    \begin{observation}
+        One key component of the Nesterov's estimating sequence is the use of the proximal gradient inequality: $l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$. 
+        In the convex case the function has the property $l_F(\cdot, y) \le F(\cdot)$ for all $y$. 
+        More precisely, if $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes exactly the same as the resolvent on $F = g$, which makes $x_k$ being an exact evaluation of PPM.
+        And we have 
+        \begin{align*}
+            l_F(x; y_k) 
+            &= F(\mathcal J_{L^{-1}}y_k) 
+            + \langle L(y - \mathcal J_{L^{-1}} y), x - y_k\rangle + \frac{L}{2}\Vert y_k - \mathcal J_{L^{-1}}y_k\Vert^2
+            \\
+            &= F(\mathcal J_{L^{-1}}y_k) 
+            + \langle L(y - \mathcal J_{L^{-1}} y), x - \mathcal J_{L^{-1}}y_k\rangle. 
+        \end{align*}
+        This is the proximal inequality. 
+        The key takeaway here being the fact that using inexact PPM evaluations result in an inequality that is similar to the case of just having the smooth parts alone, and the convergence proof would still work out with the inexact PPM: $\widetilde{\mathcal J}_{L^{-1}}y_k$. 
+        There is no obvious manifestations of an error term. 
+    \end{observation}
+    \begin{remark}
+        The definition is a generalization of Nesterov's estimating sequence comes from (2.2.63) from Nesterov's book \cite{nesterov_lectures_2018}. 
+        Compare to Nesterov's work, we used proximal gradient operator instead of projected gradient. 
+    \end{remark}
+    
 \section{Guler 1993}
-\section{H.Lin 2015}
+    This section introduces the setup of the Nesterov's estimating sequence used in Guler's accelerated Proximal Point method. 
+    In addition, this section will highlight some observations and theoretical results accordingly. 
+\section{Lin 2015}
 
 \section{Non-convex Extension of Catalyst Acceleration}
 
@@ -104,6 +243,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \appendix
 \section{Postponed proofs}
 
+\subsection{Theorems and claims for accelerated proximal gradient}
+    
     
     
 

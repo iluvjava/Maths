@@ -17,8 +17,8 @@
 \bibitem{nesterov_method_1983}
 {\sc Y.~Nesterov}, {\em A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)}, Proceedings of the USSR Academy of Sciences,  (1983).
 
-\bibitem{nesterov_lecture_2018}
-{\sc Y.~Nesterov}, {\em Lecture on {Convex} {Optimizations} {Chapter} 2, {Smooth} {Convex} {Optimization}}, in Lectures on {Convex} {Optimization}, Y.~Nesterov, ed., Springer {Optimization} and {Its} {Applications}, Springer International Publishing, Cham, 2018, pp.~59--137.
+\bibitem{nesterov_lectures_2018}
+{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, Cham, 2018.
 
 \bibitem{paquette_catalyst_2018}
 {\sc C.~Paquette, H.~Lin, D.~Drusvyatskiy, J.~Mairal, and Z.~Harchaoui}, {\em Catalyst for {Gradient}-based {Nonconvex} {Optimization}}, in Proceedings of the {Twenty}-{First} {International} {Conference} on {Artificial} {Intelligence} and {Statistics}, PMLR, Mar. 2018, pp.~613--622.

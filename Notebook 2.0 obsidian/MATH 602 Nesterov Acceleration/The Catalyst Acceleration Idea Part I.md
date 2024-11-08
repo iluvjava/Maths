@@ -642,4 +642,6 @@ $$
 $$
 
 
-#### **Proposition A.9 | Nesterov's estimating implicit descent error control**
+#### **Proposition A.9 | Nesterov's estimating sequence with implicit descent error control**
+
+
