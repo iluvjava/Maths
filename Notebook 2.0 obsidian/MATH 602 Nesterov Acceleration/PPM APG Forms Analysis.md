@@ -27,6 +27,41 @@ This is the most relevant form discussion in this file:
 > $$
 
 
+The following definitions are made for matching the similar triangle form. 
+
+#### **Def | The abstracted generic form**
+> For all $k\ge 0$, iterates $(w_t, y_t, x_{t + 1}, z_{t + 1})$ satisfies resursively that: 
+> $$
+> \begin{aligned}
+>     y_{t} &= 
+>     (1 + \tau_t)^{-1}(\tau_t z_{t} + x_{t})
+>     \\
+>     w_t &= (1 + \xi_t)^{-1}(\xi_ty_t + x_t)
+>     \\
+>     x_{t + 1}
+>     &= 
+>     w_t - (1 + \xi_t)^{-1} \delta_t\mathcal G_L(y_t)
+>     \\
+>     z_{t + 1} &= 
+>     y_t - L^{-1}\mathcal G_L y_t. 
+> \end{aligned}
+> $$
+
+
+#### **The Abstract kind of ideas behind mathcing the forms of the algorithms**
+We are inverested in seeing, identify the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
+
+$$
+\begin{aligned}
+    x_{t + 1} - z_{t + 1} 
+    &= \theta_t(z_{t + 1} - z_t). 
+\end{aligned}
+$$
+
+
+
+
+
 --- 
 ### **A list of propositions**
 
