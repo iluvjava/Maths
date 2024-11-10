@@ -507,7 +507,7 @@ $$
 >     v_{k + 1} &= 
 >     \gamma_{k + 1}^{-1}
 >     \left(
->         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+>         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \mathcal G_k y_k 
 >     \right). 
 > \end{aligned}
 > $$
@@ -516,21 +516,24 @@ $$
 > \begin{aligned}
 >     y_k &= 
 >     \left(
->         1 - \frac{L\alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}
->     \right) v_k + 
+>         1 + \frac{\alpha_k}{\alpha_{k - 1}^2}
+>     \right)^{-1}
 >     \left(
->         \frac{L\alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}
->     \right)x_k
+>         v_k + 
+>         \frac{\alpha_k}{\alpha_{k - 1}^2} x_k
+>     \right)
 >     \\
 >     x_{k + 1} &= 
->     y_k - L^{-1}\nabla f(y_k)
+>     y_k - L^{-1} \mathcal G_k y_k
 >     \\
 >     v_{k + 1} &= 
 >     \left(
->         1 - \frac{\mu}{L\alpha_k}
->     \right)v_k
->     + \frac{\mu}{L\alpha_k} y_k
->     - \frac{1}{L\alpha_k} \nabla f(y_k)
+>         1 + \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2} y_k
+>     \right) - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
 >     \\
 >     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
 > \end{aligned}
@@ -540,107 +543,84 @@ $$
 
 **Proof**
 
-The expression for $y_k$ can be transformed because: 
+From definition we have equality: $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$, so $\gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$, with that in mind we can simplify the expression for $y_k$ by 
 
 $$
 \begin{aligned}
-    y_k &= 
+    y_{t + 1} &= 
     (\gamma_k + \alpha_k \mu)^{-1}
+    (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+    \\
+    &= 
+    (\gamma_{k + 1} + \alpha_k \gamma_k)^{-1}
+    (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+    \\
+    &= 
     \left(
-        \alpha_k \gamma_k v_k
-        + ((1 - \alpha_k)\gamma_k + \alpha_k \mu) x_k
+        \frac{\gamma_{k + 1}}{\alpha_k\gamma_k} + 1
+    \right)^{-1}
+    \left(
+        v_k + \frac{\gamma_{k + 1}}{\alpha_k \gamma_k} x_k
     \right)
     \\
     &= 
     \left(
-        \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
-    \right)v_k
-    + 
+        1 + \frac{L\alpha_k^2}{\alpha_kL\alpha_{k - 1}^2} 
+    \right)^{-1}
     \left(
-        \frac{\gamma_k - \alpha_k\gamma_k + \alpha_k \mu}{
-            \gamma_k + \alpha_k \mu
-        }
-    \right)x_k
+        v_k + \frac{L\alpha_k^2}{\alpha_k L\alpha_{k - 1}^2} x_k
+    \right)
     \\
     &= 
     \left(
-        \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
-    \right)v_k
-    + 
+        1 + \frac{\alpha_k}{\alpha_{k - 1}^2}
+    \right)^{-1}
     \left(
-        1 - \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
-    \right)x_k. 
+        v_k + 
+        \frac{\alpha_k}{\alpha_{k - 1}^2} x_k
+    \right). 
 \end{aligned}
 $$
 
-$y_k$ is a convex combinations of the iterates $v_k, x_k$. 
-Observe the the coefficients can be simplified into: 
-
-$$
-\begin{aligned}
-    \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
-    &= 
-    \frac{
-        (\gamma_k + \alpha_k \mu)
-        - 
-        \gamma_{k + 1}
-    }{
-        \gamma_k + \alpha_k \mu
-    }
-    &= 
-    1 - 
-    \frac{\gamma_{k + 1}}{\gamma_k + \alpha_k \mu}
-    \\
-    &= 
-    1 - \frac{L \alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}. 
-\end{aligned}
-$$
-
-To implify the expression for upates $v_k$ we have 
+For $v_{k + 1}$ we use $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$ which gives us: 
 
 $$
 \begin{aligned}
     v_{k + 1} &= 
+    \gamma_{k + 1}^{-1}
+    ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
+    \\
+    &= 
+    ((1 + \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
     \left(
-        \frac{(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
-    \right)v_k
-    + 
-    \frac{\alpha_k}{\gamma_{k + 1}}
-    \left(
-        \mu y_k - \nabla f(y_k)
+        (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
     \right)
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
     \\
     &= 
     \left(
-        1 - \frac{\alpha_k \mu}{\gamma_{k + 1}}
-    \right)v_k
-    + 
-    \frac{\mu \alpha_k}{\gamma_{k + 1}}y_k 
-    - 
-    \frac{\alpha_k}{\gamma_{k + 1}} \nabla f(y_k)
+        1 + \frac{\alpha_k\mu}{(1 + \alpha_k)\gamma_k}
+    \right)^{-1}
+    \left(
+        v_k + 
+        \frac{\alpha_k\mu}{(1 + \alpha_k)\gamma_k} y_k
+    \right)
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
     \\
     &= 
     \left(
-        1 - \frac{\alpha_k \mu}{L\alpha_k^2}
-    \right)v_k
-    + 
-    \frac{\mu \alpha_k}{L\alpha_k^2}y_k 
-    - 
-    \frac{\alpha_k}{L\alpha_k^2} \nabla f(y_k)
-    \\
-    &= 
+        1 + \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2}
+    \right)^{-1}
     \left(
-        1 - \frac{ \mu}{L\alpha_k}
-    \right)v_k
-    + 
-    \frac{\mu }{L\alpha_k}y_k 
-    - 
-    \frac{1}{L\alpha_k} \nabla f(y_k)
+        v_k + 
+        \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2} y_k
+    \right)
+    - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
 \end{aligned}
 $$
 
-
-We can eimiate the $\gamma_k$ which defines the $\alpha_k$ by considering 
+We can eliminate the $\gamma_k$ which defines the $\alpha_k$ by considering 
 
 $$
 \begin{aligned}
@@ -663,10 +643,11 @@ $$
 \end{aligned}
 $$
 
+#### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
 
 
-#### **Proposition 5.1 | Nes 2.2.19 Parameters Matching**
-> 
+
+
 
 
 
