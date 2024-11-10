@@ -111,6 +111,7 @@ To list out the generic representation different type of algorithms, we list the
 > \end{aligned}
 > $$
 
+
 #### **Def | Generic SC APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 

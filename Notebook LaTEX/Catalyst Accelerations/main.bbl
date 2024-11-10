@@ -1,4 +1,10 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{beck_first-order_2017}
+{\sc A.~Beck}, {\em First-order {Methods} in {Optimization}}, {MOS}-{SIAM} {Series} in {Optimization}, SIAM, israel, 2017.
+
+\bibitem{beck_fast_2009-1}
+{\sc A.~Beck and M.~Teboulle}, {\em A fast iterative shrinkage-thresholding algorithm for linear inverse problems}, SIAM Journal on Imaging Sciences, 2 (2009), pp.~183--202.
 
 \bibitem{guler_convergence_1991}
 {\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for convex minimization}, {SIAM} Journal on Control and Optimization, 29 (1991), p.~17.

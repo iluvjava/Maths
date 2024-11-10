@@ -564,7 +564,8 @@ If we assume exact equality of the form $x_k = T_L y_k$, then it requires to hav
 
 $$
 \begin{aligned}
-    \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}} &\le 0, 
+    \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}} 
+    &\ge 0, 
     \\
     \frac{\alpha_k \gamma_k}{\gamma_{k + 1}}(v_k - y_k) &= y_k - x_k. 
 \end{aligned}
@@ -575,14 +576,19 @@ These conditions can be simplified and written in a prettier way:
 $$
 \begin{aligned}
     1 - \frac{L \alpha_k^2}{\gamma_{k + 1}}
-    &\le 0
+    &\ge 0
     \\
-    1 &\le L \alpha_k^2 / \gamma_{k + 1}
+    1 &\ge L \alpha_k^2 / \gamma_{k + 1}
     \\
-    \alpha_{k + 1} &\le L \alpha_k^2. 
+    \gamma_{k + 1} &\ge L \alpha_k^2
+    \\
+    L\alpha_k^2 
+    &\le
+    \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k
 \end{aligned}
 $$
 
+For simplicity, people choose the equality case in the literature. 
 and for the other one it has 
 
 $$
@@ -603,17 +609,49 @@ $$
         \gamma_k + \alpha_k \mu
     }
     \\
-    &=  \frac{\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k}{\gamma_k + \alpha_k \mu}. 
+    &=  
+    \frac{\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k}{\gamma_k + \alpha_k \mu}. 
 \end{aligned}
 $$
+
 
 **Remarks**
 
 The algorithm is pretty much identical to the original Nesterov's accelerated gradient algorithm. 
 The only difference here is the use of gradient mapping instead of the gradient, and the implicit descent sequence proof is slightly different compare to the simple case of accelerated gradient descent. 
 
+Furthermore, there is a closed form for the expression for scalar quantity $(\lambda_k)_{k \ge0}$: 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1} &= 
+    (1 - \alpha_k)\gamma_k + \mu \alpha_k
+    \\
+    \gamma_{k + 1} - \mu 
+    &= (1 - \alpha_k)(\gamma_k - \mu)
+    = 
+    \left(
+        \prod_{i = 0}^{k} 
+        (1 - \alpha_i)
+    \right)(\gamma_0 - \mu)
+    \\
+    \gamma_{k + 1}
+    &= 
+    \left(
+        \prod_{i = 0}^{k} 
+        (1 - \alpha_i)
+    \right)(\gamma_0 - \mu)
+    + \mu
+\end{aligned}
+$$
+
+If $\gamma_{k} \ge 0$, so that it make sense to have $\phi_k^*$ exists as the minimum of the estimating sequence, we have initially $\gamma_0 \ge \mu$. 
+
+
 
 ---
-#### **Simplying the algorithm into a simpler form**
+#### **Simplifying the algorithm into a simpler form**
 
 The procedures here are very similar to what is in the original accelerated gradient method using Nesterov's acceleration method. 
+
+

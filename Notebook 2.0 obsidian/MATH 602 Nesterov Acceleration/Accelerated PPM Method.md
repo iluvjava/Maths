@@ -34,6 +34,21 @@ Here, $F, \mathcal J, \mathcal G$ denotes objective function, resolvent on the o
 Their approximation counter part has $\widetilde{(\cdot)}$ on on them. 
 To ease the notation, sometimes their subscript will become $k$ when it's clear that we are talking about a sequence of proximal point iteration with $(\lambda_k)_{k \ge 0}$.
 
+#### **Fundamental Prox Inequality**
+
+Restated here is the fundamental proximal point inequality
+
+$$
+\begin{aligned}
+    (\forall x) \quad 
+    F(x) 
+    &\ge 
+    F(\mathcal J_k y_k) + 
+    \left\langle 
+        \mathcal G_k y_k, x - \mathcal J_k y_k
+    \right\rangle
+\end{aligned}
+$$
 
 
 ---
@@ -109,6 +124,8 @@ $$
 \end{aligned}
 $$
 
+Let $v_{k + 1} = x$ then we obtained the desired inequality. 
+
 
 #### **Claim | It has the potential to be an estimating sequence**
 > With a prior assumption of $(x_k)_{ k \ge0}$ such that $F(x_k) \le \phi_k^*$, then $(\phi_k)_{k \ge0}$ has the potential to be a Nesterov's estimating sequence. 
@@ -143,7 +160,348 @@ $$
 
 **Proof**
 
+Using induction, we assume the inductive hypothesis: $\phi_k^* \ge f(x_k)$ for the sequence $(x_i)_{i \ge 0}$ up to and including $i = k$.
+Proceed with the inductive hypothesis we have 
 
+$$
+\begin{aligned}
+    \phi_k^* 
+    &\ge F(x_k)
+    \ge F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x_k - \mathcal J_k y_k\rangle. 
+\end{aligned}
+$$
+
+Here we used the prox lower bound of a function. 
+Inductively using the definition of the estimating sequence and substitute the cannonical form we will have 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^*
+    &= \phi_{k + 1}(v_{k + 1})
+    \\
+    &= 
+    (1 - \alpha_k) \phi_k(v_{k + 1})
+    + \alpha_kF(\mathcal J_k y_k)
+    + \alpha_k\lambda_k^{-1}\langle 
+        y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+    \rangle
+    \\
+    &= 
+    \left(
+        1 - \alpha_k
+    \right)\left(
+        \phi_k^* + \frac{A_k}{2}\Vert v_{k + 1} - v_k\Vert^2
+    \right)
+    + 
+    \alpha_k F(\mathcal J_k y_k) 
+    + 
+    \alpha_k\lambda_k^{-1}\langle 
+        y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+    \rangle
+    \\
+    & \textcolor{gray}{
+        A_{k + 1} = (1 - \alpha_k)A_k
+    }
+    \\
+    &=
+    (1 - \alpha_k)\phi_k^*
+    + 
+    \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+    + \alpha_k F(\mathcal J_k y_k)
+    + \alpha_k\lambda_k^{-1}\langle 
+        y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+    \rangle
+\end{aligned}
+$$
+
+Next, we substitute the inequality by the inductive hypothesis which gives: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^*
+    &\ge 
+    (1 - \alpha_k)
+    \left(
+        F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x_k - \mathcal J_k y_k\rangle
+    \right)
+    \\
+        &\quad 
+        + 
+        \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+        + \alpha_k F(\mathcal J_k y_k)
+        + 
+        \alpha_k\lambda_k^{-1}\langle 
+            y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+        \rangle
+    \\
+    &= 
+    F(\mathcal J_k y_k) + \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+    + 
+    \lambda^{-1}_k
+    \left\langle 
+        y_k - \mathcal J_k y_k, 
+        (1 - \alpha_k)(x_k - \mathcal J_k y_k)
+        + 
+        \alpha_k(v_{k + 1} - \mathcal J_k y_k)
+    \right\rangle
+    \\
+    &= 
+    F(\mathcal J_k y_k) + \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+    + 
+    \lambda^{-1}_k
+    \left\langle 
+        y_k - \mathcal J_k y_k, 
+        (1 - \alpha_k)x_k + \alpha_k v_{k + 1} -  \mathcal J_k y_k
+    \right\rangle. 
+\end{aligned}
+$$
+
+This requires further simplifications. 
+Here we the equality for the sequence $(x_k, y_k)_{k \ge 0}$ which gives: 
+$$
+\begin{aligned}
+    (1 - \alpha_k)x_k + \alpha_k v_{k + 1} - \mathcal J_k y_k
+    &= 
+    ((1 - \alpha_k)x_k + \alpha_k v_k - y_k)
+    + \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k). 
+\end{aligned}
+$$
+
+We also use the equality: 
+
+$$
+\begin{aligned}
+    v_{k + 1} - v_k &= 
+    -\frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+    \\
+    \implies
+    \Vert v_{k + 1} - v_k\Vert^2 
+    &= 
+    \left\Vert
+        - \frac{\alpha_k}{A_{k + 1}\lambda_k}
+        \left(
+            y_k - \mathcal J_k y_k
+        \right)
+    \right\Vert^2
+    \\
+    \Vert v_{k + 1} - v_k\Vert^2 
+    &= 
+    \left(
+        \frac{\alpha_k}{A_{k + 1}\lambda_k}
+    \right)^2
+    \left\Vert
+        y_k - \mathcal J_k y_k
+    \right\Vert^2
+    \\
+    \frac{A_{k + 1}}{2}
+    \Vert v_{k + 1} - v_k\Vert^2 
+    &= 
+    \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+    \left\Vert
+        y_k - \mathcal J_k y_k
+    \right\Vert^2. 
+\end{aligned}
+$$
+
+Substituting both equality we simplify the inequality into 
+
+$$
+\begin{aligned}
+    \phi_k^* &\ge 
+    F(\mathcal J_k y_k)
+    + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+    \Vert y_k - \mathcal J_ky_k\Vert^2
+    \\
+        & \quad 
+        + 
+        \lambda_k^{-1}
+        \left\langle 
+            y_k - \mathcal J_k y_k, 
+            (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+        + \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+        \right\rangle
+    \\
+    &= 
+    F(\mathcal J_k y_k)
+    + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+    \Vert y_k - \mathcal J_ky_k\Vert^2
+    \\
+        & \quad 
+        + 
+        \lambda_k^{-1}
+        \left\langle 
+            y_k - \mathcal J_k y_k, 
+            (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+        \right\rangle
+    \\
+        &\quad 
+        + 
+        \lambda_k^{-1}
+        \langle
+            y_k - \mathcal J_k y_k,
+            \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+        \rangle
+\end{aligned}\tag{1}
+$$
+
+Simplifying the second cross term on the RHS of (1): 
+
+$$
+\begin{aligned}
+    & \lambda_k^{-1}
+        \langle
+            y_k - \mathcal J_k y_k,
+            \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+        \rangle
+    \\
+    &= 
+    \lambda_k^{-1}
+        \left\langle
+            y_k - \mathcal J_k y_k,
+            -\frac{\alpha_k^2}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+            + 
+            (y_k - \mathcal J_k y_k)
+        \right\rangle
+    \\
+    &= 
+    \lambda_k^{-1}
+        \left\langle
+            y_k - \mathcal J_k y_k,
+            -\frac{\alpha_k^2}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+            + 
+            (y_k - \mathcal J_k y_k)
+        \right\rangle
+    \\
+    &=
+    \lambda_k^{-1} 
+    \left(
+        1 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+    \right)
+    \Vert y_k - \mathcal J_k y_k\Vert^2. 
+\end{aligned}
+$$
+
+The above term repeats with one of the term in (1), merging their coefficient it yields
+
+$$
+\begin{aligned}
+    & 
+    \lambda_k^{-1} 
+    \left(
+        1 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+    \right) + 
+    \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+    \\
+    & = 
+    \lambda_k^{-1}
+    - 
+    \frac{\alpha_k^2}{A_{k + 1}\lambda_k^2}
+    + 
+    \frac{\alpha_k^2}{2A_{k + 1}\lambda_k^2} 
+    \\
+    &= 
+    \frac{1}{2\lambda_k}
+    \left(
+        2 - \frac{\alpha_k^2}{2A_{k + 1}\lambda_k}
+    \right). 
+\end{aligned}
+$$
+
+By merging the terms, the 2 equality implifies the inequality in (1) into: 
+
+$$
+\begin{aligned}
+    \phi_k^* 
+    &\ge 
+    F(\mathcal J_k y_k)
+    + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+    \Vert y_k - \mathcal J_ky_k\Vert^2
+    \\
+        & \quad 
+        + 
+        \lambda_k^{-1}
+        \left\langle 
+            y_k - \mathcal J_k y_k, 
+            (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+        \right\rangle
+    \\
+        &\quad 
+        + 
+        \lambda_k^{-1}
+        \langle
+            y_k - \mathcal J_k y_k,
+            \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+        \rangle
+    \\
+    &= 
+    F(\mathcal J_k y_k)
+    + 
+    \frac{1}{2\lambda_k}
+    \left(
+        2 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+    \right)
+    \Vert y_k - \mathcal J_ky_k\Vert^2
+    \\
+        & \quad 
+        + 
+        \lambda_k^{-1}
+        \left\langle 
+            y_k - \mathcal J_k y_k, 
+            (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+        \right\rangle. 
+\end{aligned}
+$$
+
+Next, to inductively assert the inequality we consider the choice of $y_k$ and scalar values $\alpha_k, \lambda_k$ which set the cross produce term zero, and the coefficient of the norm term less than zero. 
+This would produce the following inequality, equality: 
+$$
+\begin{aligned}
+    & 
+    y_k = (1 - \alpha_k)x_k + \alpha_k v_k
+    \\
+    &
+    \frac{1}{2\lambda_k}
+    \left(
+        2 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+    \right) 
+    \ge 0.
+\end{aligned}
+$$
+
+Solving, the second inequality is equivalent to
+
+$$
+\begin{aligned}
+    \frac{\alpha_k^2}{A_{k + 1}\lambda_k} 
+    & 
+    \le 2
+    \\
+    \alpha_k
+    & 
+    \le
+    \sqrt{2A_{k + 1}\lambda_k}
+    = \sqrt{2A_k(1 - \alpha_k)\lambda_k}. 
+\end{aligned}
+$$
+
+In Guler's paper, a strong inequality of $\alpha_k^2 = A_k(1 - \alpha_k)\lambda_k$ is used instead. 
+Solving the quadratic it showed that the choice of sequence for $\alpha_k^2$ is 
+
+$$
+\begin{aligned}
+    \alpha_k
+    &= 
+    \frac{1}{2}\left(
+        \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
+        - A_k\lambda_k
+    \right). 
+\end{aligned}
+$$
+
+
+**Remark**
+
+Here we did theorem 2.1 in Guler's paper and the 2 corollaries the followed it. 
 
 
 

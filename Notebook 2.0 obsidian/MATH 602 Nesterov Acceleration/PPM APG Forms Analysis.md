@@ -6,8 +6,25 @@
 This part of the file continues discussion in [PPM APG Forms](PPM%20APG%20Forms.md). 
 In this file we talks about the assumptions and constraints imposed in the parameters between these form so that they become equivalent to each other. 
 In the section below we proved a lot of proposition. 
-Now we give a high level sommary of the propositions and how different form of algorithms are related to each other. 
+Now we give a high level summary of the propositions and how different form of algorithms are related to each other. 
 
+This is the most relevant form discussion in this file: 
+
+
+#### **Def | Generic SC APG**
+> Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
+> Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
+> $$
+> \begin{aligned}
+>     w_{t} &= (\mu\tilde \eta_{t} + 1)^{-1}(\mu \tilde \eta_{t} y_t + x_t) 
+>     \\
+>     x_{t + 1}&= w_t - \tilde \eta_{t}(\mu\tilde \eta_{t} + 1)^{-1} \mathcal G_L(y_t)
+>     \\
+>     z_{t + 1}&= y_t - L^{-1}\mathcal G_L(y_t)
+>     \\
+>     y_{t + 1} &= (1 + L\eta_{t + 1})^{-1}(L\eta_{t + 1}z_{t + 1} + x_{t + 1}). 
+> \end{aligned}
+> $$
 
 
 --- 
@@ -24,7 +41,8 @@ Here is what the following proposition is about:
 2. Proposition 2, Similar triangle and Momentum form is equivalent. 
 3. Proposition 3, if (1.) and (2.), then  Generic Similar Triangle is equivalent to Chambolle Dossal, 2015 where we when $t_n = L \tilde \eta_{n}$. 
 4. Proposition 4, if (1.), then there is a choice of constant stepsize sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
-5. Proposition 5 links parameters from Nesterov's analysis to the PPM method. 
+5. Proposition 5 tramsforms Nesterov's 2.2.19 into the same format as Generic SC APG form. 
+6. Proposition 5.1 matches the parameters in the algorithm Nesterov's 2.2.19 with the step sizes parameters found in the SC APG Form. 
 
 
 
@@ -472,8 +490,186 @@ $$
 $$
 
 
+#### **Proposition 5 | Nes 2.2.19 Intermediate Form**
+> The nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
+> $$
+> \begin{aligned}
+>     L\alpha_k^2 
+>     &\le 
+>     (1 - \alpha_k)\gamma_k + \alpha_k\mu = \gamma_{k + 1}, 
+>     \\
+>     y_k &= (\gamma_k + \alpha_k \mu)^{-1}
+>     (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k),
+>     \\
+>     x_{k + 1}&= 
+>     y_k - L^{-1}\mathcal G_ky_k, 
+>     \\
+>     v_{k + 1} &= 
+>     \gamma_{k + 1}^{-1}
+>     \left(
+>         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \nabla f(y_k)
+>     \right). 
+> \end{aligned}
+> $$
+> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$ if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$, producing: 
+> $$
+> \begin{aligned}
+>     y_k &= 
+>     \left(
+>         1 - \frac{L\alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}
+>     \right) v_k + 
+>     \left(
+>         \frac{L\alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}
+>     \right)x_k
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1}\nabla f(y_k)
+>     \\
+>     v_{k + 1} &= 
+>     \left(
+>         1 - \frac{\mu}{L\alpha_k}
+>     \right)v_k
+>     + \frac{\mu}{L\alpha_k} y_k
+>     - \frac{1}{L\alpha_k} \nabla f(y_k)
+>     \\
+>     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
+> \end{aligned}
+> $$
 
-#### **Proposition 5 | Nes 2.2.19**
+
+
+**Proof**
+
+The expression for $y_k$ can be transformed because: 
+
+$$
+\begin{aligned}
+    y_k &= 
+    (\gamma_k + \alpha_k \mu)^{-1}
+    \left(
+        \alpha_k \gamma_k v_k
+        + ((1 - \alpha_k)\gamma_k + \alpha_k \mu) x_k
+    \right)
+    \\
+    &= 
+    \left(
+        \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
+    \right)v_k
+    + 
+    \left(
+        \frac{\gamma_k - \alpha_k\gamma_k + \alpha_k \mu}{
+            \gamma_k + \alpha_k \mu
+        }
+    \right)x_k
+    \\
+    &= 
+    \left(
+        \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
+    \right)v_k
+    + 
+    \left(
+        1 - \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}
+    \right)x_k. 
+\end{aligned}
+$$
+
+$y_k$ is a convex combinations of the iterates $v_k, x_k$. 
+Observe the the coefficients can be simplified into: 
+
+$$
+\begin{aligned}
+    \frac{\alpha_k\gamma_k}{\gamma_k + \alpha_k \mu}
+    &= 
+    \frac{
+        (\gamma_k + \alpha_k \mu)
+        - 
+        \gamma_{k + 1}
+    }{
+        \gamma_k + \alpha_k \mu
+    }
+    &= 
+    1 - 
+    \frac{\gamma_{k + 1}}{\gamma_k + \alpha_k \mu}
+    \\
+    &= 
+    1 - \frac{L \alpha_k^2}{L\alpha_{k - 1}^2 + \alpha_k \mu}. 
+\end{aligned}
+$$
+
+To implify the expression for upates $v_k$ we have 
+
+$$
+\begin{aligned}
+    v_{k + 1} &= 
+    \left(
+        \frac{(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
+    \right)v_k
+    + 
+    \frac{\alpha_k}{\gamma_{k + 1}}
+    \left(
+        \mu y_k - \nabla f(y_k)
+    \right)
+    \\
+    &= 
+    \left(
+        1 - \frac{\alpha_k \mu}{\gamma_{k + 1}}
+    \right)v_k
+    + 
+    \frac{\mu \alpha_k}{\gamma_{k + 1}}y_k 
+    - 
+    \frac{\alpha_k}{\gamma_{k + 1}} \nabla f(y_k)
+    \\
+    &= 
+    \left(
+        1 - \frac{\alpha_k \mu}{L\alpha_k^2}
+    \right)v_k
+    + 
+    \frac{\mu \alpha_k}{L\alpha_k^2}y_k 
+    - 
+    \frac{\alpha_k}{L\alpha_k^2} \nabla f(y_k)
+    \\
+    &= 
+    \left(
+        1 - \frac{ \mu}{L\alpha_k}
+    \right)v_k
+    + 
+    \frac{\mu }{L\alpha_k}y_k 
+    - 
+    \frac{1}{L\alpha_k} \nabla f(y_k)
+\end{aligned}
+$$
+
+
+We can eimiate the $\gamma_k$ which defines the $\alpha_k$ by considering 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 &= 
+    (1 - \alpha_k)\gamma_k + \alpha_k \mu 
+    \\
+    &= 
+    (1 - \alpha_k)L\alpha_{k - 1}^2 
+    + \alpha_k \mu
+    \\
+    L\alpha_k^2 &= 
+    L \alpha_{k - 1}^2 + 
+    (\mu - L \alpha_{k - 1}^2)\alpha_k
+    \\
+    \iff     
+    0
+    &=  
+    L \alpha_k^2 - (\mu - L \alpha_{k - 1}^2)\alpha_k 
+    - L \alpha_{k -1}^2. 
+\end{aligned}
+$$
+
+
+
+#### **Proposition 5.1 | Nes 2.2.19 Parameters Matching**
+> 
+
+
+
 
 
 ---

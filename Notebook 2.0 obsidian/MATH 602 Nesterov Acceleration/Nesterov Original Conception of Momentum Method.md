@@ -694,11 +694,11 @@ $$
         (\gamma_k + \alpha_k \mu)^{-1}\left(
             \alpha_k\gamma_kv^{k} + \gamma_{k + 1}x^{(k)}
         \right).
-        \\
-        \text{(c):}\; & y^{(k)} = 
-        \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
-            \gamma_k + \alpha_k \mu
-        }
+        % \\
+        % \text{(c):}\; & y^{(k)} = 
+        % \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
+        %     \gamma_k + \alpha_k \mu
+        % }
         \\
         \;& \text{Find } x^{(k + 1)} \text{ s.t: }
         f\left(
@@ -742,20 +742,6 @@ $$
     \frac{\alpha_k\gamma_kv^{(k)} + \gamma_{k + 1}x^{(k)}}{
         \gamma_k + \alpha_k \mu
     }, 
-\end{aligned}
-$$
-
-And invariance 1 from lemma 2.2.3. These relations simplifies away the variable $\gamma_k, v^{(k)}$ from the algorithm we derived. To start, we eliminate $\gamma_k$ from the expression for $\alpha_k$. To see that we have
-
-$$
-\begin{aligned}
-    L \alpha_{k + 1}^2 &= 
-    (1 - \alpha_{k + 1})\gamma_{k + 1} + \alpha_{k + 1}\mu
-    \\
-    &= (1 - \alpha_{k + 1})L \alpha_k^2 + \alpha_{k + 1}\mu
-    \\
-    \alpha_{k + 1}^2 &= 
-    (1 - \alpha_{k + 1}) \alpha_k^2 + \alpha_{k + 1}\frac{\mu}{L}. 
 \end{aligned}
 $$
 

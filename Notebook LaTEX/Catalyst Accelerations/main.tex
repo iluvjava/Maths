@@ -157,7 +157,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Such a proof won't result in simple proof because the construction of $\phi_k$ is non-trivial, but it comes with the advantage too because we can put creativity into the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
 
 \section{Nesterov's Accelerated Proximal Gradient}
-    This section swiftly exposes the constructions of the Nesterov's estimating sequence for the algorithm FISTA, which is specific case of Algorithm (2.1.19), (2.1.20) in Nesterov's book \cite{nesterov_lectures_2018}. 
+    This section swiftly exposes the constructions of the Nesterov's estimating sequence for the FISTA algorithm by Beck\cite{beck_fast_2009-1}, which is specific case of Algorithm (2.2.63), in Nesterov's book \cite{nesterov_lectures_2018}. 
     Discussion on these algorithms are relevant because they share the same format as the Catalyst Acceleration framework and accelerated PPM. 
     
     Throughout this section we assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
@@ -179,9 +179,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     In the literature, $\mathcal G_{L^{-1}}$ is commonly known as the gradient mapping. 
     The definition follows, we define the Nesterov's estimating sequence used to derive the accelerated proximal gradient method. 
-    \begin{definition}[Proximal Gradient Nesterov's Estimating Sequence]\label{def:nes-est-seq-pg}
-        For some sequence of $(y_k)_{k\ge0}$, 
-        Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence which is recursively given by: 
+    \begin{definition}[Accelerated proximal gradient estimating sequence]\label{def:nes-est-seq-pg}
+        Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
         \begin{align*}
             & l_F(x; y_k) := 
                 F\left(\widetilde{\mathcal J}_{L^{-1}} y_k \right) 
@@ -210,7 +209,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{observation}
         One key component of the Nesterov's estimating sequence is the use of the proximal gradient inequality: $l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$. 
         In the convex case the function has the property $l_F(\cdot, y) \le F(\cdot)$ for all $y$. 
-        More precisely, if $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes exactly the same as the resolvent on $F = g$, which makes $x_k$ being an exact evaluation of PPM.
+        More precisely, if $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes resolvent $(I + L^{-1}\partial F)^{-1}$, which makes $x_k$ being an exact evaluation of PPM.
         And we have 
         \begin{align*}
             l_F(x; y_k) 
@@ -221,17 +220,55 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             + \langle L(y - \mathcal J_{L^{-1}} y), x - \mathcal J_{L^{-1}}y_k\rangle. 
         \end{align*}
         This is the proximal inequality. 
-        The key takeaway here being the fact that using inexact PPM evaluations result in an inequality that is similar to the case of just having the smooth parts alone, and the convergence proof would still work out with the inexact PPM: $\widetilde{\mathcal J}_{L^{-1}}y_k$. 
-        There is no obvious manifestations of an error term. 
+        Observe that the inequality with proximal gradient term can be interpreted as an example of inexact evaluation of the PPM and the inequality. 
     \end{observation}
+    To demonstrate the usage of Nesterov's estimating sequence here, consider sequence $(x_k)_{k \ge 0}$ such that $F(x_k) \le \phi_k^*$. 
+    Assume the existence of minimizer $x^*$ for $F$, by definition of $\phi_k$ let $x = x^*$ then $\forall k \ge 0$: 
+    {\small
+    \begin{align*}
+        \phi_{k + 1}(x^*)
+        &= (1 - \alpha_k)\phi_k (x^*) + 
+        \alpha_k 
+        \left(
+            l_F(x^*; y_k) + \frac{\mu}{2}\Vert x^* - y_k\Vert^2
+        \right)
+        \\
+        \phi_{k + 1}(x^*) - \phi_k(x^*) &= 
+        -\alpha_k\phi_k(x^*) 
+        +
+        \alpha_k
+        \left(
+            l_F(x^*; y_k) + \frac{\mu}{2}\Vert x^* - y_k\Vert^2
+        \right) 
+        \\
+        \implies
+        \phi_{k + 1}(x^*) - F(x^*) + F(x^*) - \phi_k(x^*) 
+        &\le -\alpha_k(\phi_k(x^*) - F(x^*))
+        \\
+        \implies 
+        F(x_{k + 1}) - F(x^*)
+        \le \phi_{k + 1}^* - F(x^*)
+        &\le \phi_{k + 1}(x^*) - F(x^*)
+        \le 
+        (1 - \alpha_k)(\phi_k(x^*) - F(x^*)). 
+    \end{align*}
+    }
+    On the first inequality we used the fact that $l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2\le F(x)$. 
+    Unrolling the recurrence, we can get the convergence rate of $F(x_k) - F(x^*)$ to be on Big O of $\prod_{i = 1}^k(1 - \alpha_i)$. 
     \begin{remark}
         The definition is a generalization of Nesterov's estimating sequence comes from (2.2.63) from Nesterov's book \cite{nesterov_lectures_2018}. 
         Compare to Nesterov's work, we used proximal gradient operator instead of projected gradient. 
+        The same inequality is called ``Fundamental Proximal Gradient Inequality'' in Amir Beck's book \cite{beck_first-order_2017}, Theorem 10.16. 
     \end{remark}
+
     
 \section{Guler 1993}
     This section introduces the setup of the Nesterov's estimating sequence used in Guler's accelerated Proximal Point method. 
     In addition, this section will highlight some observations and theoretical results accordingly. 
+    \begin{definition}[Accelerated PPM estimating sequence]\label{def:nes-est-seq-acc-ppm}
+        
+    \end{definition}
+
 \section{Lin 2015}
 
 \section{Non-convex Extension of Catalyst Acceleration}
@@ -243,9 +280,12 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \appendix
 \section{Postponed proofs}
 
-\subsection{Theorems and claims for accelerated proximal gradient}
-    
+\subsection{Theorems and claims for accelerated proximal gradient}\label{app:sec:thm-claim-acc-prox-grad}
+
     \begin{theorem}[Fundamental theorem of proximal gradient]\label{thm:fun-thm-prox-grad}
+        
+    \end{theorem}
+    \begin{theorem}[Cannonical form of proximal gradient estimating sequence]
         
     \end{theorem}
     
