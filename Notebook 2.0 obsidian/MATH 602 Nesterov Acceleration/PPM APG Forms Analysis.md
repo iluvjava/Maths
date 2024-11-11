@@ -29,7 +29,7 @@ This is the most relevant form discussion in this file:
 
 The following definitions are made for matching the similar triangle form. 
 
-#### **Def | The abstracted generic form**
+#### **Theorem | The abstracted generic form**
 > For all $k\ge 0$, iterates $(w_t, y_t, x_{t + 1}, z_{t + 1})$ satisfies resursively that: 
 > $$
 > \begin{aligned}
@@ -46,18 +46,130 @@ The following definitions are made for matching the similar triangle form.
 >     y_t - L^{-1}\mathcal G_L y_t. 
 > \end{aligned}
 > $$
+> 
+> If $1 + \xi_t + \tau_t = L\delta_t$, then 
+> $$
+>     x_{t +1} - z_{t + 1} = (1 + \xi_t)^{-1}\tau_t(z_{t + 1} - z_t). 
+> $$
+> Which makes the algorithm a similar triangle form. 
 
+**Proof**
 
-#### **The Abstract kind of ideas behind mathcing the forms of the algorithms**
-We are inverested in seeing, identify the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
+We are inverested in identifying the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
 
 $$
 \begin{aligned}
     x_{t + 1} - z_{t + 1} 
-    &= \theta_t(z_{t + 1} - z_t). 
+    &= \theta_t(z_{t + 1} - z_t)
 \end{aligned}
 $$
 
+To verify, do 
+
+$$
+\begin{aligned}
+    x_{t + 1} &= 
+    (1 + \xi_t)^{-1}(x_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
+    \\
+    & \textcolor{gray}{
+        x_t = (1 + \tau_t)y_t - \tau_t z_t
+    }
+    \\
+    &= 
+    (1 + \xi_t)^{-1}((1 + \tau_t)y_t - \tau_t z_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
+    \\
+    &= 
+    (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+    \\
+    x_{t + 1} - z_{t + 1}
+    &= 
+    (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+    - (y_t - L^{-1}\mathcal G_Ly_t)
+    \\
+    &= 
+    (1 + \xi_t)^{-1}(\tau_ty_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+    + L^{-1}\mathcal G_Ly_t
+    \\
+    &= 
+    (1 + \xi_t)^{-1}
+    \left(
+        \tau_ty_t - \tau_t z_t + (L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
+    \right)
+    \\
+    &= 
+    (1 + \xi_t)^{-1}\tau_t
+    \left(
+        y_t - z_t + 
+        \tau_t^{-1}(L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
+    \right)
+\end{aligned}
+$$
+
+
+The RHS is can be verified through 
+
+$$
+\begin{aligned}
+    z_{t + 1} - z_t &= 
+    y_t - L^{-1}\mathcal G_L(y_t) - z_t
+    \\
+    &= (y_t - z_t) - L^{-1}\mathcal G_L(y_t). 
+\end{aligned}
+$$
+
+It necessitates the condition: 
+
+$$
+\begin{aligned}
+    \tau_t^{-1}(L^{-1}(1 + \xi_t) - \delta_t) 
+    &= - L^{-1}
+    \\
+    (1 + \xi_t) - L\delta_t
+    &= 
+    - \tau_t
+    \\
+    1 + \xi_t + \tau_t
+    &=
+    L\delta_t. 
+\end{aligned}
+$$
+
+Which allows for: 
+
+$$
+\begin{aligned}
+    x_{t + 1} - z_{t + 1} &= 
+    (1 + \xi_t)^{-1}\tau_t
+    \left(y_t - z_t - L^{-1}\mathcal G_L(y_t)\right) 
+    = 
+    (1 + \xi_t)^{-1}\tau_t(z_{t + 1} - z_t). 
+\end{aligned}
+$$
+That is what we want to prove. 
+
+**Remarks**
+
+Back to the original algorithm we have 
+
+$$
+\begin{aligned}
+    & 
+    \begin{aligned}
+       \tau_t &= L \eta_t
+        \\
+        \xi_t &= \mu\tilde \eta_t
+        \\
+        \delta_t &= \tilde \eta_t
+    \end{aligned}
+    \\
+    & 1 + \xi_t + \tau_t 
+    = 
+    1 + \mu \tilde \eta_t + L \eta_t = L \tilde \eta_t
+    = L \delta_t. 
+\end{aligned}
+$$
+
+Therefore, we want to have the conditions $1 + \mu \tilde \eta_t + L \eta_t = L \tilde \eta_t$ for the parameters in the PPM APG form. 
 
 
 
@@ -69,7 +181,7 @@ Below proposition describe the relations between these variations of Nesterov ty
 Here is a list of conditions we considered: 
 
 1. $\mu = 0$, 
-2. $\tilde \eta_t + L^{-1} + L^{-1} \mu \tilde \eta_t$. 
+2. $\tilde\eta_{t} = \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t}$. 
 
 Here is what the following proposition is about: 
 1. Proposition 1, If (1.) then S-CVX Generic APG -> Generic Similar Triangle
@@ -551,11 +663,11 @@ $$
 > \begin{aligned}
 >     y_k &= 
 >     \left(
->         1 + \frac{\alpha_k}{\alpha_{k - 1}^2}
+>         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
 >     \right)^{-1}
 >     \left(
 >         v_k + 
->         \frac{\alpha_k}{\alpha_{k - 1}^2} x_k
+>         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
 >     \right)
 >     \\
 >     x_{k + 1} &= 
@@ -563,11 +675,11 @@ $$
 >     \\
 >     v_{k + 1} &= 
 >     \left(
->         1 + \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2}
+>         1 + \frac{\mu}{L \alpha_k - \mu}
 >     \right)^{-1}
 >     \left(
 >         v_k + 
->         \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2} y_k
+>         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
 >     \right) - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
 >     \\
 >     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
@@ -582,7 +694,7 @@ From definition we have equality: $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \al
 
 $$
 \begin{aligned}
-    y_{t + 1} &= 
+    y_{k} &= 
     (\gamma_k + \alpha_k \mu)^{-1}
     (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
     \\
@@ -627,7 +739,7 @@ $$
     - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
     \\
     &= 
-    ((1 + \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+    ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
     \left(
         (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
     \right)
@@ -635,21 +747,21 @@ $$
     \\
     &= 
     \left(
-        1 + \frac{\alpha_k\mu}{(1 + \alpha_k)\gamma_k}
+        1 + \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k}
     \right)^{-1}
     \left(
         v_k + 
-        \frac{\alpha_k\mu}{(1 + \alpha_k)\gamma_k} y_k
+        \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
     \right)
     - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
     \\
     &= 
     \left(
-        1 + \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2}
+        1 + \frac{\alpha_k\mu}{(1 -\alpha_k)L\alpha_{k - 1}^2}
     \right)^{-1}
     \left(
         v_k + 
-        \frac{\alpha_k\mu}{(1 + \alpha_k)L\alpha_{k - 1}^2} y_k
+        \frac{\alpha_k\mu}{(1 - \alpha_k)L\alpha_{k - 1}^2} y_k
     \right)
     - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
 \end{aligned}
@@ -678,14 +790,272 @@ $$
 \end{aligned}
 $$
 
+Next, we simplify the coefficients using the above relations further. 
+From the above results we have the relation $(1 - \alpha_k)L\alpha_{k - 1}^2 = L \alpha_k^2 - \alpha_k \mu$. 
+Therefore it gives 
+
+$$
+\begin{aligned}
+    \frac{\alpha_k\mu}{(1 - \alpha_k)L \alpha_{k - 1}^2}
+    &= 
+    \frac{\alpha_k\mu}{L \alpha_k^2 - \alpha_k \mu}
+    = \frac{\mu}{L \alpha_k - \mu}. 
+\end{aligned}
+$$
+
+Next we have: 
+$$
+\begin{aligned}
+    L\alpha_k^2 &= 
+    (1 - \alpha_k)L\alpha_{k - 1}^2 + \alpha_k \mu 
+    \\
+    L \alpha_k^2 - \alpha_k\mu &= 
+    (1 - \alpha_k)L \alpha_{k - 1}^2
+    \\
+    \alpha_{k - 1}^2
+    &= 
+    \frac{L \alpha_k^2 - \alpha_k\mu}{L (1 - \alpha_k)}
+    \\
+    \frac{1}{\alpha_{k - 1}^2}
+    &= 
+    \frac{L (1 - \alpha_k)}{L \alpha_k^2 - \alpha_k\mu}
+    \\
+    \frac{\alpha_k}{\alpha_{k - 1}^2}
+    &= 
+    \frac{L - L\alpha_k}{L\alpha_k - \mu}. 
+\end{aligned}
+$$
+
+
+
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
+> The Nesterov's 2.2.19 fits into the APG Abstract Generic form below: 
+> $$
+> \begin{aligned}
+>     y_k &= (1 - \tau_k)^{-1}(v_k + \tau_k x_k),
+>     \\
+>     v_{k + 1} &= (1 + \xi_k)^{-1}(v_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k \mathcal G_L(y_k),
+>     \\
+>     x_{k + 1} &= y_k - L^{-1}\mathcal G_L (y_k). 
+> \end{aligned}
+> $$ 
+> Where for all $k \ge0$: 
+> $$
+> \begin{aligned}
+>     \tau_k &= \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}, 
+>     \\
+>     \xi_k &= \frac{\mu}{L \alpha_k - \mu},
+>     \\
+>     (1 + \xi_k)^{-1}\delta_k &= \frac{1}{L\alpha_k}
+>     \iff L \delta_k = \frac{1 + \xi_k}{\alpha_k}
+>     \\
+>     L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k
+> \end{aligned}
+> $$
+> Then we have $(1 + \tau_k + \xi_k) = L \delta_k$ and hence $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k)$. 
 
 
+**Proof**
+
+Using the theorem for abstracted generic APG form, it remains to verify the equality $(1 + \tau_k + \xi_k) = L \delta_k$. 
+To do that we have: 
+
+$$
+\begin{aligned}
+    1 + \tau_k + \xi_k &= 
+    1 + \frac{L(1 - \alpha_k)}{L \alpha_k - \mu} 
+    + \frac{\mu}{L \alpha_k - \mu}
+    \\
+    &= 
+    1 + \frac{L - L \alpha_k + \mu}{L\alpha_k - \mu}
+    \\
+    &= 
+    \frac{L - L \alpha_k + \mu + L \alpha_k - \mu}{L\alpha_k - \mu}
+    \\
+    &= \frac{L}{L\alpha_k - \mu}. 
+\end{aligned}
+$$
+
+Next we have 
+
+$$
+\begin{aligned}
+    \frac{1 + \xi_k}{\alpha_k}
+    &= 
+    \frac{1 + \frac{\mu}{L\alpha_k - \mu}}{\alpha_k}
+    \\
+    &= 
+    \frac{\frac{L\alpha_k - \mu + \mu}{L \alpha_k - \mu}}{\alpha_k}
+    \\
+    &= 
+    \frac{L}{L\alpha_k - \mu}. 
+\end{aligned}
+$$
+
+Therefore we have representation 
+
+$$
+\begin{aligned}
+    v_{k + 1} &= 
+    x_{k + 1} + \left(
+        1 + \frac{\mu}{L\alpha_k - \mu}
+    \right)^{-1}\left(
+        \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+    \right)(x_{k + 1} - x_k)
+    \\
+    &= 
+    x_{k + 1} + \left(
+        \frac{L\alpha_k}{L\alpha_k - \mu}
+    \right)^{-1}\left(
+        \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+    \right)(x_{k + 1} - x_k)
+    \\
+    &= 
+    x_{k + 1} + \left(
+        \frac{L\alpha_k - \mu}{L\alpha_k}
+    \right)\left(
+        \frac{L - L\alpha_k}{L\alpha_k - \mu}
+    \right)(x_{k + 1} - x_k)
+    \\
+    &= x_{k + 1} + \left(
+        \alpha_k^{-1} - 1
+    \right)(x_{k + 1} - x_k). 
+\end{aligned}
+$$
 
 
+**Remarks**
+
+Up until this point, we had showed that the Nesterov's 2.2.19 algorithm is equivalent to the following form: 
+
+$$
+\begin{aligned}
+    y_k &= 
+    \left(
+        1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+    \right)^{-1}
+    \left(
+        v_k + 
+        \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+    \right)
+    \\
+    &= 
+    \left(
+       \frac{L - \mu}{L\alpha_k - \mu} 
+    \right)^{-1}
+    \left(
+        v_k + 
+        \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+    \right)
+    \\
+    &= 
+    \frac{L\alpha_k - \mu}{L - \mu} v_k
+    + 
+    \frac{L - L \alpha_k}{L - \mu} x_k
+    \\
+    x_{k + 1} &= y_t - L^{-1}\mathcal G_L(y_k)
+    \\
+    v_{k + 1} 
+    &= 
+    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+    \\
+    0 &= 
+    L \alpha_k^2 = (1 - \alpha_k)L\alpha_{k - 1}^2 + \alpha_k \mu. 
+\end{aligned}
+$$
 
 
+With that in order, we can simplify it into the momentum form because: 
 
+$$
+\begin{aligned}
+    v_{k + 1} &= 
+    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+    \\
+    \iff 
+    (L \alpha_{k + 1} - \mu)v_{k + 1} 
+    &= 
+    (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k), 
+    \\
+
+    \\
+    y_{k + 1} &= 
+    (L - \mu)^{-1}((L\alpha_{k + 1} - \mu)v_{k + 1} + (L - L \alpha_{k + 1})x_{k + 1})
+    \\
+    &= (L - \mu)^{-1}
+    \left(
+        (L\alpha_{k + 1} - \mu)x_{k + 1} + 
+        (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+        + (L - L \alpha_{k + 1})x_{k + 1}
+    \right)
+    \\
+    &= 
+    (L - \mu)^{-1}
+    \left(
+        (L - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+    \right)
+    \\
+    &= x_{k + 1} + \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}(x_{k + 1} - x_k). 
+\end{aligned}
+$$
+
+Unfortuately, this is still different from what Nesterov did the chapter 2 of his book. 
+But after some simplications we can get there because: 
+
+$$
+\begin{aligned}
+    \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}
+    &= \frac{(L\alpha_{k + 1} - \mu)\alpha_k(1 - \alpha_k)}{\alpha_k^2(L - \mu)}
+    \\
+    &= 
+    \alpha_k(1 - \alpha_k)
+    \left(
+        \frac{\alpha_k^2(L - \mu)}{L\alpha_{k + 1} - \mu}
+    \right)^{-1}
+    \\
+    &= \alpha_k(1 - \alpha_k)
+    \left(
+        \frac{L\alpha_k^2 - \mu\alpha_k^2}{L\alpha_{k + 1} - \mu}
+    \right)^{-1}
+    \\
+    &= 
+    \alpha_k(1 - \alpha_k)
+    \left(
+        \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})}
+        {L\alpha_{k + 1} - \mu}
+    \right)^{-1}
+    \\
+    &= \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}. 
+\end{aligned}
+$$
+
+We skipped some steps, but it's easy to verify using $L\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})L\alpha_k^2 + \mu\alpha_{k + 1}$. 
+
+$$
+\begin{aligned}
+    (L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})
+    &= 
+    L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 + \mu\alpha_{k + 1}
+    \\
+    &= 
+    L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
+        (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
+    ) - \mu\alpha_{k + 1}
+    \\
+    &= 
+    L\alpha_k^2 - \mu \alpha_k^2. 
+\end{aligned}
+$$
+
+Therefore, we also have the same results as stated in Nesterov's book that: 
+
+$$
+\begin{aligned}
+    y_{k + 1} &= 
+    x_{k + 1} + 
+    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k)
+\end{aligned}
+$$
 
 
 ---
