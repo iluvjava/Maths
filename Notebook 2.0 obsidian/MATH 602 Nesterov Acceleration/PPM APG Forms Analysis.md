@@ -649,12 +649,12 @@ $$
 >     (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k),
 >     \\
 >     x_{k + 1}&= 
->     y_k - L^{-1}\mathcal G_ky_k, 
+>     y_k - L^{-1}\mathcal G_Ly_k, 
 >     \\
 >     v_{k + 1} &= 
 >     \gamma_{k + 1}^{-1}
 >     \left(
->         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \mathcal G_k y_k 
+>         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \mathcal G_L y_k 
 >     \right). 
 > \end{aligned}
 > $$
@@ -736,14 +736,14 @@ $$
     v_{k + 1} &= 
     \gamma_{k + 1}^{-1}
     ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
-    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal L y_k
     \\
     &= 
     ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
     \left(
         (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
     \right)
-    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
     \\
     &= 
     \left(
@@ -753,7 +753,7 @@ $$
         v_k + 
         \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
     \right)
-    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_k y_k
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
     \\
     &= 
     \left(
@@ -763,7 +763,7 @@ $$
         v_k + 
         \frac{\alpha_k\mu}{(1 - \alpha_k)L\alpha_{k - 1}^2} y_k
     \right)
-    - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
+    - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
 \end{aligned}
 $$
 
@@ -827,6 +827,11 @@ $$
 $$
 
 
+**Remarks**
+
+
+
+
 
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
 > The Nesterov's 2.2.19 fits into the APG Abstract Generic form below: 
@@ -883,11 +888,9 @@ $$
     \frac{1 + \xi_k}{\alpha_k}
     &= 
     \frac{1 + \frac{\mu}{L\alpha_k - \mu}}{\alpha_k}
-    \\
-    &= 
+    = 
     \frac{\frac{L\alpha_k - \mu + \mu}{L \alpha_k - \mu}}{\alpha_k}
-    \\
-    &= 
+    = 
     \frac{L}{L\alpha_k - \mu}. 
 \end{aligned}
 $$
@@ -1053,7 +1056,7 @@ $$
 \begin{aligned}
     y_{k + 1} &= 
     x_{k + 1} + 
-    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k)
+    \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
 \end{aligned}
 $$
 

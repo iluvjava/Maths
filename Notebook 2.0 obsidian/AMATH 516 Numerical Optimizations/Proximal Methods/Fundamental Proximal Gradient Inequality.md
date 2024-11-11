@@ -276,7 +276,7 @@ The above inequality can be interpreted with inexact evaluation of a proximal po
 > Fix any $y$, we have for all $x$: 
 > $$
 > \begin{aligned}
->     F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle
+>     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle
 >     &\ge  D_f(x, y) 
 > \end{aligned}
 > $$

@@ -438,7 +438,7 @@ A recurrence relations based on the definition of the Nesterov's estimating sequ
 > If there exists choice of the sequences $(\alpha_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ and vector sequences $(v_k)_{k \in \N}$ satisfying inequalities: 
 > $$
 > \begin{aligned}
->     \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\le 0, 
+>     \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\ge 0, 
 >     \\
 >     \frac{\alpha_k \gamma_k }{\gamma_{k + 1}} 
 >     (v_k - y_k) + (T_L y_k - y_k) &= \mathbf 0. 
@@ -498,6 +498,8 @@ $$
 }
 $$
 
+The first inequality comes from the inductive hypothesis. 
+The second inequality comes from the non-negativity of the term $\frac{\mu}{2}\Vert v_k - y_k\Vert^2$. 
 Now, recall from the fundamental proximal gradient inequality in the convex settings, we have $\forall z\in \R^n$
 
 $$
@@ -617,9 +619,6 @@ $$
 
 **Remarks**
 
-The algorithm is pretty much identical to the original Nesterov's accelerated gradient algorithm. 
-The only difference here is the use of gradient mapping instead of the gradient, and the implicit descent sequence proof is slightly different compare to the simple case of accelerated gradient descent. 
-
 Furthermore, there is a closed form for the expression for scalar quantity $(\lambda_k)_{k \ge0}$: 
 
 $$
@@ -647,11 +646,125 @@ $$
 
 If $\gamma_{k} \ge 0$, so that it make sense to have $\phi_k^*$ exists as the minimum of the estimating sequence, we have initially $\gamma_0 \ge \mu$. 
 
+usually in the literature, people assume equality $\gamma_{k + 1} = L \alpha_k^2$, buta sufficient condition for the parameters $\alpha_k$ such that it works is: 
 
+$$
+\begin{aligned}
+    (\forall k \ge 0) \quad 
+    L \alpha_k^2 \le (1 - \alpha_k)L \alpha_{k - 1}^2 + \mu \alpha_k. 
+\end{aligned}
+$$
+ 
+If this is true, then $L\alpha_k^2 \le \gamma_{k + 1}$ for all $k \ge 0$ sor sure.
+And the convergence rate would still be upper bounded by a Big O of $\prod_{i = 0}^k(1 - \alpha_i)$. 
+The fatest convergence rate is achieved by taking the equality, because we want $\alpha_i$ to be as large as possible to achieve good convergence. 
 
 ---
 #### **Simplifying the algorithm into a simpler form**
 
 The procedures here are very similar to what is in the original accelerated gradient method using Nesterov's acceleration method. 
+The simplifications of the algorithm is derived in [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md). 
+The analysis is done under a different context. 
+In here we will just list the results obtained from the analysis. 
+All we need for results of this section is to assume that for all $k \ge 0$: 
+
+$$
+\begin{aligned}
+    & L\alpha_k^{2} = (1 - \alpha_k) L \alpha_{k - 1}^{-1} + \mu\alpha_k
+    \\
+    & \alpha_k \in (0, 1). 
+\end{aligned}
+$$
+
+
+#### **Proposition | Nes 2.2.19 Intermediate Form**
+> The nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
+> $$
+> \begin{aligned}
+>     L\alpha_k^2 
+>     &\le 
+>     (1 - \alpha_k)\gamma_k + \alpha_k\mu = \gamma_{k + 1}, 
+>     \\
+>     y_k &= (\gamma_k + \alpha_k \mu)^{-1}
+>     (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k),
+>     \\
+>     x_{k + 1}&= 
+>     y_k - L^{-1}\mathcal g_k, 
+>     \\
+>     v_{k + 1} &= 
+>     \gamma_{k + 1}^{-1}
+>     \left(
+>         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \mathcal g_k
+>     \right). 
+> \end{aligned}
+> $$
+> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$ if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$, producing: 
+> $$
+> \begin{aligned}
+>     y_k &= 
+>     \left(
+>         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+>     \right)
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1} \mathcal g_k
+>     \\
+>     v_{k + 1} &= 
+>     \left(
+>         1 + \frac{\mu}{L \alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+>     \right) - \frac{1}{L\alpha_{k}}\mathcal g_k
+>     \\
+>     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
+> \end{aligned}
+> $$
+
+#### **Proposition | Similar Triangle Representation of the intermediate form**
+
+> The intermediate form also admits similar triangle representation for the iterates $v_{k +1}$ which is given by: 
+> $$
+> \begin{aligned}
+>     v_{k + 1} &= 
+>     x_{k + 1} + \left(
+>         \alpha_k^{-1} - 1
+>     \right)(x_{k + 1} - x_k). 
+> \end{aligned}
+> $$
+
+#### **Proposition | Final Momentum Form**
+> Let $x_k, v_k y_k, \alpha_k$ be given by the previous 2 propositions, we have the Momentum method to be given by: 
+> $$
+> \begin{aligned}
+>     x_{k + 1} &= 
+>     y_k - L^{-1}g_k
+>     \\
+>     y_{k + 1} &= 
+>     x_{k + 1} + 
+>     \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+> \end{aligned}
+> $$
+> And the sequence $(\alpha_k)_{k \in \N}$ satisfies $L\alpha_k^2 = (1 - \alpha_k)L \alpha_{k - 1}^2 + \mu \alpha_k$ for all $k \ge 0$. 
+
+**Remark**
+
+
+
+---
+### **Rate of convergence**
+
+The derivation for the rate of convergence is complicated. 
+Here we found a proof in the literatures that is easier to work with than the other proofs found in the literature. 
+There are 2 cases for the rate of convergence of the algorithm. 
+1. $\mu = 0$. The convergence rate of the algorithm is sublinear. 
+2. $\mu > 0$. The convergence rate of the algorithm is linear. 
+
+
 
 
