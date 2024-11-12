@@ -52,53 +52,52 @@
     the lower iteration complexity $\mathcal O(1/k^2)$. 
     Accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
 
-    On first judgement, it's tempting to think that the existence of this optimal algorithm sealed the ceiling for the theoretical development for the entire class of convex first-order smooth optimization. 
-    The judgement is correct but lacks the nuance in understanding. 
-    The missing piece here is the fact that Nesterov's accelerated gradient is a system of analysis technique instead of any specific design patterns in algorithms. 
+    It's tempting to believe that the existence of an optimal algorithm sealed the ceiling for the need of theories for convex first-order smooth optimization. 
+    It is correct but lacks the nuance in understanding because Nesterov's accelerated gradient is a system of analysis techniques which is not a specific design paradigm for algorithms. 
     
-    To demonstrate, the introduction of Guler's works in 1993 \cite{guler_new_1992} proposed an accelerated scheme using the technique of Nesterov's estimating sequence for Proximal Point Method (PPM) in the convex case. 
-    Let $(\lambda_k)_{k \ge 0}$ be the sequence of scalars used for regularizing the proximal point method which generates sequence $(x_k)_{k\ge 0}$ given any initial guess $x_0$. 
-    Guler's prior work \cite{guler_convergence_1991} showed that convergence of PPM method in the convex case has $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
-    His new algorithm using the technique introduced in Nesterov's accelerated gradient achieves a convergence rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
-    In addition, he also proposed together an inexact Accelerated PPM method using conditions described in Rockafellar's works in 1976 \cite{rockafellar_monotone_1976}. 
+    Guler's accelerated Proximal Point Method(PPM) \cite{guler_new_1992} in 1993 used the technique of Nesterov's estimating sequence to accelerated PPM when the objective is convex. 
+    The algorithm uses $(\lambda_k)_{k \ge 0}$ in the PPM to generate $(x_k)_{k\ge 0}$ given any initial guess $x_0$.
+    Guler's prior work \cite{guler_convergence_1991} showed the convergence of PPM method in the convex without acceleration has convergence $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
+    His new algorithm with acceleration has a convergence rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
+    An inexact Accelerated PPM method using conditions described in Rockafellar's works in 1976 \cite{rockafellar_monotone_1976} is also discussed in the paper. 
 
-    One would be tempting to conclude that this has sealed the ceiling for research on the topic of extending Nesterov's acceleration. 
-    That is indeed correct, but not from a practical point of view. 
+    It's tempting to conclude that the results has reached the ceiling for extending Nesterov's acceleration. 
+    It is correct, but not from a practical point of view. 
     Let $F: \RR^n \mapsto \RR$ be our objective function, $\mathcal J_\lambda := (I + \lambda \partial F)^{-1}$ and $\mathcal M^{\lambda}(x; y):= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2$ then the inexact proximal point considers with error $\epsilon_k$ has the following characterizations of inexactness as put forward by Guler \cite{guler_new_1992}: 
     \begin{align*}
         & \tilde x \approx \mathcal J_\lambda y
         \\
         & 
-        \dist(\partial\mathcal{M}^{\lambda}(\tilde x; y))
+        \dist(\mathbf 0, \partial\mathcal{M}^{\lambda}(\tilde x; y))
         \le \frac{\epsilon}{\lambda}. 
     \end{align*}
-    However, this is troublesome because if we need to approximate the resolvent operator $\mathcal J_\lambda$, then it's probably difficult to compute the subgradient $\partial\mathcal M(\cdot; y)$, which make it difficult to know when we achieved the required exactness for a PPM evaluation. 
-    Otherwise, if we already know the subgradient well, then why approximate it in the first place? 
+    The difficulty comes from controlling the error $\epsilon$ at each iteration so that the overall convergence of accelerated PPM achieves optimal convergence rate. 
+    However, in the paper $\epsilon_k \rightarrow 0$, but in a specific rate. 
+    It requires knowledge about exact minimum of the Moreau envelope at each step and the optimal value of the Nesterov's estimating sequence. 
+    These quantities are intractable in practice. 
 
-    Introduced in Lin et al. \cite{lin_universal_2015}\cite{lin_catalyst_2018} is a series of papers on a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
-    It's called a meta algorithm because it uses other first order algorithm to evaluate inexact proximal point method and then performs the accelerated PPM using Nesterov's acceleration. 
-    Their innovations are tracking and controlling the errors made in the inexact PPM throughout the algorithm and some original example usages of the Catalyst framework. 
-
-    One would be tempting to assert that this has sealed the ceiling for both theories and practice of Nesterov's acceleration hence it must be the center of discussion in this report. 
-    The conclusion is indeed correct which it will happen in the sections that follow while the assertion remains open.  
+    Introduced in Lin et al. \cite{lin_universal_2015}\cite{lin_catalyst_2018} is a series of papers describing a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
+    A meta algorithm because uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM based on the outputs of other algorithms. 
+    The innovations here are tracking and controlling the errors made in the inexact PPM throughout the algorithm and an algorithm called Proximal MISO. 
 
     \subsection{Contributions}
-        The writing is expository and comprehensive. 
-        We reviewed the literatures and faithfully reproduced some claims, in addition we give insights into understanding the claim in relations to other papers and foundational ideas in optimization. 
-        Three papers by Guler \cite{guler_new_1992} and Lin \cite{lin_universal_2015} and Paquette et al. \cite{lin_catalyst_2018} together with Nesterov's \cite{nesterov_lectures_2018} method of estimating sequence which is introduced in his book will be covered in detail for this report. 
+        The writing is expository and comprehensive, it will survey the history and major results, and innovations involved in conceiving and designing the Catalyst algorithm. 
+        We reviewed the literatures and faithfully reproduced important claims.
+        In addition, we give insights and context to understand the claims in these papers and making connections to ideas in optimization. 
+        Three papers by Guler \cite{guler_new_1992} and Lin \cite{lin_universal_2015} and Paquette et al. \cite{lin_catalyst_2018} together with Nesterov's \cite{nesterov_lectures_2018} method of estimating sequence are the targets of this report. 
 
-        We only cover innovations in the theoretical aspect of Catalyst Acceleration. 
-        Detailed applications and specific examples will be out of the scope of this paper simply because there will be too many and requires a comprehensive understanding on a different collection of papers. 
+        We will only cover innovations in the theoretical aspect of Catalyst Acceleration. 
+        Applications and specific example algorithms are out of the scope because there are too many papers on the separate topic of variance reduced stochastic algorithms. 
 
     
 \section{Preliminaries}\label{sec:preliminaries}
-    Throughout the entire writing, let our ambient space is $\RR^n$. 
-    We assume the optimization problem of: 
+    Throughout the writing, let the ambient space is $\RR^n$. 
+    The optimization problem is
     \begin{align*}
         \min_{x \in \RR^n} F(x). 
     \end{align*}
-    In this section we introduce the idea of Nesterov's estimating sequence. 
-    Nesterov's estimating sequence is fundamental to works in Guler's accelerated PPM method, and Catalyst meta acceleration as a whole. 
+    This section introduces the Nesterov's estimating sequence technique. 
+    This technique is fundamental for in Guler's accelerated PPM method and Catalyst meta acceleration in the convex/strongly convex case. 
     \subsection{Method of Nesterov's Estimating Sequence}
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
             Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
@@ -124,8 +123,8 @@
                 \Delta_k(x_*)
                 &\ge \phi_k^* - f_* \ge f(x_k) - f_* \ge 0
             \end{align*}
-            The function $\Delta_k(x)$ is non-negative specifically at the points: $x_*, x_k$.
-            Additionally, we can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
+            The function $\Delta_k(x)$ is non-negative at points: $x_*, x_k$.
+            We can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
             \begin{align*}
                 \phi_{k + 1}(x) - \phi_k(x) 
                 &\le - \alpha_k (\phi_k(x) - F(x))
@@ -156,14 +155,13 @@
             $$
                 f(x_k) - f(x^*) \le \phi_k^* - f(x^*) \le \Delta_k(x^*) = \phi_k(x^*) - f(x^*) \le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
             $$ 
-            Therefore, it yields a convergence of the sequence $f(x_k)\rightarrow f(x^*)$ with a rate relates to sequence $(\alpha_k)_{k \in \N}$. 
         \end{observation}
-        Much of the analysis of convergence Nesterov's type accelerated gradient method inherit the idea of Nesterov's estimating sequence. 
-        Such a proof won't result in simple proof because the construction of $\phi_k$ is non-trivial, but it comes with the advantage too because we can put creativity into the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
+        Creativity is important in the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
 
 \section{Nesterov's accelerated proximal gradient}
     This section swiftly exposes the constructions of the Nesterov's estimating sequence for the FISTA algorithm by Beck\cite{beck_fast_2009-1}, which is specific case of Algorithm (2.2.63), in Nesterov's book \cite{nesterov_lectures_2018}. 
-    Discussion on these algorithms are relevant because they share the same format as the Catalyst Acceleration framework and accelerated PPM. 
+    The accelerated proximal gradient algorithm has very similar formulation as the Catalyst Acceleration framework and accelerated PPM. 
+    Additionally, the estimating sequence can derive the algorithm and verify the convergence. 
     
     Throughout this section we assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
     Define 
@@ -201,7 +199,7 @@
                 l_F(x; y_k) + \frac{\mu}{2}\Vert x - y_k\Vert^2
             \right). 
         \end{align*}
-        And the sequence of vector $y_k, x_k$, and scalars $\alpha_k$ satisfies the following: 
+        The Algorithm generates a sequence of vectors $y_k, x_k$, and scalars $\alpha_k$ satisfies the following: 
         \begin{align*}
             &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
             \\
@@ -263,26 +261,22 @@
         Compare to Nesterov's work, we used proximal gradient operator instead of projected gradient. 
         The same inequality is called ``Fundamental Proximal Gradient Inequality'' in Amir Beck's book \cite{beck_first-order_2017}, Theorem 10.16. 
     \end{remark}
-    \begin{definition}[Accelerated proixmal gradient algorithm]\label{def:acc-prox-grad-alg}
-        The algorithm of accelerated proximal gradient generates sequence of iterates $(x_k, y_k)_{k \ge 0}$ which satisfies for all $k\ge 0$: 
-        \begin{align*}
-            &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
-            \\
-            & \text{find } \alpha_{k + 1} \in (0, 1)
-            \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
-            \\
-            &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
-        \end{align*}
+    % \begin{definition}[Accelerated proixmal gradient algorithm]\label{def:acc-prox-grad-alg}
+    %     The algorithm of accelerated proximal gradient generates sequence of iterates $(x_k, y_k)_{k \ge 0}$ which satisfies for all $k\ge 0$: 
+    %     \begin{align*}
+    %         &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
+    %         \\
+    %         & \text{find } \alpha_{k + 1} \in (0, 1)
+    %         \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
+    %         \\
+    %         &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+    %     \end{align*}
 
-    \end{definition}
-    \begin{remark}
-        The simple case of accelerated gradient descent is stated as (2.2.63) in Nesterov's book \cite{nesterov_lectures_2018}. 
-    \end{remark}
-    For a proof that proves 
-    \hyperref[def:nes-est-seq-pg]{Definition \ref*{def:nes-est-seq-pg}}
-    is an estimating sequence, and 
-    \hyperref[def:acc-prox-grad-alg]{Definition \ref{def:acc-prox-grad-alg}}
-    is the accelerated proximal gradient algorithm, please visit 
+    % \end{definition}
+    % \begin{remark}
+    %     The simple case of accelerated gradient descent is stated as (2.2.63) in Nesterov's book \cite{nesterov_lectures_2018}. 
+    % \end{remark}
+    For a proof for the Nesterov's estimating sequence $\phi_k$ and a derivation of the algorithm, see
     \hyperref[app:sec:thm-claim-acc-prox-grad]{Appendix \ref*{app:sec:thm-claim-acc-prox-grad}}. 
     We warn the readers that the proof is long. 
 
@@ -332,8 +326,7 @@
         The auxiliary sequences $(A_k, v_k)$ parameterizes a canonical representation of the estimating sequence $(\phi_k)_{k \ge0}$. 
         Guler didn't simplify his results compare to what Nesterov did in his book. 
     \end{remark}
-    Next, we discuss the procedures Guler did to allow the inexact evaluation of proximal method for the accelerated proximal point method. 
-    Right out of the Batch he cited Rockafellar\cite{rockafellar_monotone_1976} on the following conditions for exact evaluations of resolvent on the subgradient of a convex function (Condition (A') in Rockafellar's text): 
+    To handle the inexact evaluation of the PPM, Guler cited Rockafellar \cite{rockafellar_monotone_1976} for condition (A') in his text which is the following: 
     \begin{align*}
         x_{k + 1}\approx \mathcal J_{\lambda_k} y_k \text{ be such that: }
         \dist\left(
@@ -344,8 +337,8 @@
         \Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert 
         &\le \epsilon_k. 
     \end{align*}
-    Condition A' also characterize the property of sequence $\epsilon_k$ for convergence of the inexact proximal point method. 
-    Guler strengthens it in his context and proved the following theorem, which we state it using our notations: 
+    Condition A' also characterizes the property of $(\epsilon_k)_{k\ge 0}$ so inexact PPM converges. 
+    Guler strengthens it in his context and proved the following: 
     \begin{theorem}[Guler's inexact proximal point error bound]
         Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
         If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
@@ -356,16 +349,16 @@
             \le \frac{\epsilon_k^2}{2\lambda_k}. 
         \end{align*}
     \end{theorem}
-    We now state the major results (Theorem 3.3) of Guler's 1993 papers on inexact accelerated proximal point method. 
+    The next theorem is Theorem 3.3 of Guler's 1993 papers which is a major result for inexact accelerated PPM method. 
     \begin{theorem}[Guler's accelerated inexact PPM convergence results]
         If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
         \begin{align*}
             f(x_k) - f(x) \le \mathcal O(1/k^2) + \mathcal (1 / k^{2\sigma - 1}). 
         \end{align*}    
     \end{theorem}
-    The theorem may sound exciting, but as pointed out in Lin 2015 \cite{lin_universal_2015} page 11  that the quantities $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable. 
-    In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence which means it impossible to control how $\epsilon_k \rightarrow 0$. 
-    If we use the inexact formulation from Guler, it would inevitably result in any algorithm whose definition contains the vector $\mathcal J_{\lambda_k} y_k$ exact evaluations of proximal point method.
+    The theorem looks exciting, but Lin 2015 \cite{lin_universal_2015} page 11 pointed out that $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable quantities. 
+    In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence making it unclear how to control $\epsilon_k \rightarrow 0$. 
+    If we use the inexact formulation from Guler and his estimating sequence, it will result in algorithm that contains intractable quantities $\mathcal J_{\lambda_k} y_k$. 
     
 
 
@@ -423,9 +416,9 @@
     
 
 \section{Non-convex Extension of Catalyst Acceleration}
-    The non-convex extension of Catalyst acceleration by Lin 2018 \cite{lin_catalyst_2018} remains similar to the algorithm in the convex case in his 2015 paper \cite{lin_universal_2015}. 
-    The new algorithm handles function with unknown weak convexity constant $\rho$ using the process called Auto Adapt subroutine. 
-    For the weakly convex case, only theoretical convergence to stationary point is claimed. 
+    The non-convex extension of Catalyst acceleration by Lin 2018 \cite{lin_catalyst_2018} is similar to the convex case in his 2015 paper \cite{lin_universal_2015}. 
+    The new algorithm handles function with unknown weak convexity constant $\rho$ using a process called Auto Adapt subroutine. 
+    They only claimed convergence to stationary point is claimed for the weakly convex objective. 
     \par 
     Fixed the parameter $\kappa$ and throughout the section, we use the following notations: 
     \begin{align*}

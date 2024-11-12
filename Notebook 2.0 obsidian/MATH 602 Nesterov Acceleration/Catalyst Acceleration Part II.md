@@ -296,7 +296,7 @@ $$
         + 
         \frac{\kappa A_{k - 1}}{2}
         \Vert x^* - v_{k - 1}\Vert^2
-    \right)
+    \right). 
 \end{aligned}
 $$
 
