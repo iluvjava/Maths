@@ -112,16 +112,16 @@
             Then observe that $\forall k \ge 0$:  
             \begin{align*}
                 \Delta_k(x) 
-                &= \phi_k(x) - f(x) \ge \phi_k^* - f(x)
+                &= \phi_k(x) - F(x) \ge \phi_k^* - F(x)
                 \\
                 x = x_k\implies 
                 \Delta_k(x_k) 
                 &\ge 
-                \phi_k^* - f(x_k) \ge 0
+                \phi_k^* - F(x_k) \ge 0
                 \\
                 x = x_* \implies 
                 \Delta_k(x_*)
-                &\ge \phi_k^* - f_* \ge f(x_k) - f_* \ge 0
+                &\ge \phi_k^* - F_* \ge F(x_k) - F_* \ge 0
             \end{align*}
             The function $\Delta_k(x)$ is non-negative at points: $x_*, x_k$.
             We can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
@@ -153,7 +153,7 @@
             \end{align*}
             Finally, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using the property of Nesterov's estimating sequence it gives: 
             $$
-                f(x_k) - f(x^*) \le \phi_k^* - f(x^*) \le \Delta_k(x^*) = \phi_k(x^*) - f(x^*) \le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
+                F(x_k) - F(x^*) \le \phi_k^* - F(x^*) \le \Delta_k(x^*) = \phi_k(x^*) - F(x^*) \le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
             $$ 
         \end{observation}
         Creativity is important in the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
@@ -203,7 +203,7 @@
         \begin{align*}
             &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
             \\
-            & \text{find } \alpha_{k + 1} \in (0, 1)
+            & \text{find } \alpha_{k + 1} \in (0, 1): 
             \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
             \\
             &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 

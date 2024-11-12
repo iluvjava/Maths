@@ -7,7 +7,6 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\DeclareMathOperator{\argmin}{argmin}
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \usepackage{wrapfig}
@@ -24,7 +23,7 @@
 %\logo{}
 \institute[]{UBC Okanagan}
 \date{\today}
-% \subject{Subject}
+\subject{MATH 590 2024 Fall Winter}
 
 % ---------------------------------------------------------
 % Selecione um estilo de referência
@@ -37,6 +36,10 @@
 % ---------------------------------------------------------
 \newtheorem{remark}{Remark}
 \newtheorem{assumption}{Assumption}
+\input{presets/wang/custom_commands.tex}
+
+
+
 
 \begin{document}
 
@@ -48,7 +51,6 @@
     \tableofcontents
 \end{frame}
 
-\section{This is the First Section}
 %     \subsection{Taxonomy of Proximal type of Methods}
 %         \begin{frame}{Frame Title}
     
@@ -156,13 +158,167 @@
 %             \end{block}
 %         \end{frame}
 
+\section{Introduction}
+    \subsection{The History and a Series of Papers}
+        \begin{frame}{Nesterov's Book}
+            \begin{figure}
+                \centering
+                \includegraphics[width=10em]{assets/Nesterov Book.png}    
+            \end{figure}
+            \begin{itemize}
+                \item Yurri Nesterov's book: ``Lectures on Convex Optimization'' 2018, Springer \cite{nesterov_lectures_2018}. 
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Accelerated Proximal Point Method}
+            \begin{figure}
+                \centering
+                \includegraphics[width=25em]{assets/Acc ppm}
+            \end{figure}
+            \begin{itemize}
+                \item Osman Guler's, ``New proximal point algorithm for convex optimization'', SIAM J.Optimization 1992. \cite{guler_new_1992}
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Catalyst Acceleration}
+            \begin{figure}
+                \centering
+                \subfloat[Lin 2015\label{fig:a}]{\includegraphics[width=15em]{assets/lin2015.png}}
+                \subfloat[Paquette 2018\label{fig:b}]{\includegraphics[width=15em]{assets/paquette 2018.png}}
+                % \caption{Lin's }
+                % \label{fig:1}
+            \end{figure}
+            \begin{itemize}
+                \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'' 2015 JLMR \cite{lin_universal_2015}.
+                \item Paquette et al. ``Catalyst for gradient-based nonconvex optimization'' 2018 JLMR \cite{paquette_catalyst_2018}. 
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Objectives of the Talk}
+            \begin{block}{List of objectives}
+                \begin{enumerate}
+                    \item Introduce the technique of Nesterov's estimating sequence for convergence proof of algorithms. 
+                    \item Understand the historical context for the inspirations of the Catalyst algorithm.  
+                    \item Understand the theories behind the Catalyst meta acceleration. 
+                    \item Understand key innovations for controlling the errors in Catalyst accelerations. 
+                    \item Introduce the Non-convex extension of the method. 
+                \end{enumerate}
+            \end{block}
+            \pause
+            \begin{block}{A note on the scope}
+                Specific applications and algorithms are outside of the scope because variance reduced stochastic method is itself a big topic.     
+            \end{block}
+        \end{frame}
+        \begin{frame}{Quick Notations}
+            
+        \end{frame}
+    \subsection{Nesterov's Estimating Sequence}
+        \begin{frame}{Nesterov's Estimating Sequence}            
+            \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
+                Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
+                We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions that: 
+                \begin{enumerate}
+                    \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*$. 
+                    \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ such that for all $x \in \RR^n$, $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+                \end{enumerate}
+            \end{definition}
+        \end{frame}
 
-    
+        \begin{frame}{Nesterov's Estimating Sequence and Convergence}
+            \begin{block}{Observations}
+                {\small
+                If we dsefine $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
+                Then observe that $\forall k \ge 0$:  
+                \begin{align*}
+                    \phi_{k + 1}(x) - \phi_k(x) 
+                    &\le - \alpha_k (\phi_k(x) - F(x))
+                    \\
+                    \iff 
+                    \phi_{k + 1}(x) - F(x) - (\phi_k(x) - F(x))
+                    &\le 
+                    -\alpha_k(\phi_k(x) - F(x))
+                    \\
+                    \iff
+                    \Delta_{k + 1}(x) - \Delta_k(x) &\le
+                    - \alpha_k\Delta_k(x)
+                    \\
+                    \iff 
+                    \Delta_{k + 1}(x) 
+                    &\le 
+                    (1 - \alpha_k)\Delta_k(x). 
+                \end{align*}
+                Unroll the recurrence, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using the property of Nesterov's estimating sequence it gives: 
+                \begin{align*}
+                    F(x_k) - F(x^*) \le \phi_k^* - F(x^*) \le \Delta_k(x^*) 
+                    &= \phi_k(x^*) - F(x^*) 
+                    \\
+                    &\le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
+                \end{align*}
+                }
+            \end{block}
+            
+        \end{frame}
+        \begin{frame}{Example: accelerated proximal gradient}
+            \begin{block}{Quick Notations}
+                Assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
+                Define 
+                \begin{align*}
+                    \mathcal M^{L^{-1}}(x; y) 
+                    &:= g(x) + f(y) 
+                    + 
+                    \left\langle \nabla f(x), x - y\right\rangle 
+                    + 
+                    \frac{L}{2}\Vert x - y\Vert^2, 
+                    \\
+                    \widetilde{\mathcal J}_{L^{-1}}y 
+                    &:= \argmin_{x} \mathcal M^{L^{-1}}(x; y), 
+                    \\
+                    \mathcal G_{L^{-1}}(y)
+                    &:= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right)y. 
+                \end{align*}
+
+            \end{block}
+        \end{frame}
+
+        \begin{frame}{Example: accelerated proximal gradient}
+            \begin{definition}[Accelerated proximal gradient estimating sequence]
+                \label{def:nes-est-seq-pg}
+                {\small
+                    Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
+                    \begin{align*}
+                        & l_F(x; y_k) := 
+                            F\left(\widetilde{\mathcal J}_{L^{-1}} y_k \right) 
+                            + \langle \mathcal G_{L^{-1}}y_k, x - y_k\rangle + 
+                        \frac{1}{2L}\Vert \mathcal G_{L^{-1}}y_k\Vert^2, 
+                        \\
+                        & 
+                        \phi_{k + 1}(x)
+                        := (1 - \alpha_k)\phi_k (x) + 
+                        \alpha_k 
+                        \left(
+                            l_F(x; y_k) + \frac{\mu}{2}\Vert x - y_k\Vert^2
+                        \right). 
+                    \end{align*}
+                    The Algorithm generates a sequence of vectors $y_k, x_k$, and scalars $\alpha_k$ satisfies the following: 
+                    \begin{align*}
+                        &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
+                        \\
+                        & \text{find } \alpha_{k + 1} \in (0, 1): 
+                        \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
+                        \\
+                        &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+                    \end{align*}
+                    One of the possible base case can be $x_0 = y_0$ and any $\alpha_0 \in (0, 1)$. 
+                }
+            \end{definition}
+                
+        \end{frame}
+
+\section{Guler 1993}
+\section{Lin 2015}
+\section{Paquette 2018}
         
     
 \section{References}
     \begin{frame}{References}
-        \bibliography{refs.bib}
+        \bibliography{references/refs.bib}
     \end{frame}
 
 \end{document}

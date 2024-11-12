@@ -1,2 +1,7 @@
-\beamer@sectionintoc {1}{This is the First Section}{3}{0}{1}
-\beamer@sectionintoc {2}{References}{3}{0}{2}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{The History and a Series of Papers}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Nesterov's Estimating Sequence}{9}{0}{1}
+\beamer@sectionintoc {2}{Guler 1993}{13}{0}{2}
+\beamer@sectionintoc {3}{Lin 2015}{13}{0}{3}
+\beamer@sectionintoc {4}{Paquette 2018}{13}{0}{4}
+\beamer@sectionintoc {5}{References}{13}{0}{5}
