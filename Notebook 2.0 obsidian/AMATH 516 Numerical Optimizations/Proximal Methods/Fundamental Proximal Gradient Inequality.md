@@ -232,7 +232,7 @@ Before the major claim we state the following lemma to the proof sleek and cool:
 
 #### **Lemma | The difference on the Envelope**
 > With $h = g + f$ as assumed in this section. 
-> Take $\tilde{\mathcal M^{L^{-1}}}, \mathcal M^{L^{-1}}$ as defined above, we will have for all $x \in \R^n$ that: 
+> Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined above, we will have for all $x \in \R^n$ that: 
 > $$
 > \begin{aligned}
 >     \widetilde{\mathcal M}^{L^{-1}}(x; y)
@@ -267,6 +267,7 @@ The inequality is direct by convexity of $f$ which implies that Bregman divergen
 **Remarks**
 
 The above inequality can be interpreted with inexact evaluation of a proximal point evaluation. 
+Let's make it precise. 
 
 
 

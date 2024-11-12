@@ -43,6 +43,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 
 \section{Introduction}
+    \textcolor{red}{THIS REPORT IS CURRENTLY: UNFINISHED}
+
     Nesterov first proposed the idea of an optimal algorithm named accelerated gradient descent method in his seminal work back in 1983 \cite{nesterov_method_1983}. 
     It was seminal at the time because the algorithm's upper bound on the iteration complexity sealed the gap between the lower bound for all first order Lipschitz smooth convex function and the upper bound for this class of functions. 
     For a specific definition of the class of algorithms that are considered ``First Order'', we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
@@ -179,7 +181,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     In the literature, $\mathcal G_{L^{-1}}$ is commonly known as the gradient mapping. 
     The definition follows, we define the Nesterov's estimating sequence used to derive the accelerated proximal gradient method. 
-    \begin{definition}[Accelerated proximal gradient estimating sequence]\label{def:nes-est-seq-pg}
+    \begin{definition}[Accelerated proximal gradient estimating sequence]
+    \label{def:nes-est-seq-pg}\;\\
         Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
         \begin{align*}
             & l_F(x; y_k) := 
@@ -330,11 +333,93 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Guler didn't simplify his results compare to what Nesterov did in his book. 
     \end{remark}
     Next, we discuss the procedures Guler did to allow the inexact evaluation of proximal method for the accelerated proximal point method. 
+    Right out of the Batch he cited Rockafellar\cite{rockafellar_monotone_1976} on the following conditions for exact evaluations of resolvent on the subgradient of a convex function (Condition (A') in Rockafellar's text): 
+    \begin{align*}
+        x_{k + 1}\approx \mathcal J_{\lambda_k} y_k \text{ be such that: }
+        \dist\left(
+            \mathbf 0, \partial \mathcal M_{\lambda_k}(x_{k + 1}; y_k)
+        \right) &\le \frac{\epsilon_k}{\lambda_k}
+        \\
+        \implies 
+        \Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert 
+        &\le \epsilon_k. 
+    \end{align*}
+    Condition A' also characterize the property of sequence $\epsilon_k$ for convergence of the inexact proximal point method. 
+    Guler strengthens it in his context and proved the following theorem, which we state it using our notations: 
+    \begin{theorem}[Guler's inexact proximal point error bound]
+        Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+        If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
+        \begin{align*}
+            \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{\lambda_k} y_k\Vert^2
+            &= 
+            \mathcal M^{\lambda_k}(x_{k + 1}, y_k) - \mathcal M^*_k
+            \le \frac{\epsilon_k^2}{2\lambda_k}. 
+        \end{align*}
+    \end{theorem}
+    We now state the major results (Theorem 3.3) of Guler's 1993 papers on inexact accelerated proximal point method. 
+    \begin{theorem}[Guler's accelerated inexact PPM convergence results]
+        If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
+        \begin{align*}
+            f(x_k) - f(x) \le \mathcal O(1/k^2) + \mathcal (1 / k^{2\sigma - 1}). 
+        \end{align*}    
+    \end{theorem}
+    The theorem may sound exciting, but as pointed out in Lin 2015 \cite{lin_universal_2015} page 11  that the quantities $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable. 
+    If we use the inexact formulation from Guler, it would inevitably result in any algorithm whose definition contains the vector $\mathcal J_{\lambda_k} y_k$ exact evaluations of proximal point method. 
+    
 
 
 \section{Lin 2015}
+    This section introduced the setup of Nesterov's estimating sequence in Lin 2015 \cite{lin_universal_2015}. 
+    Right at the beginning we warn the readers about the following: 
+    \begin{enumerate}
+        \item The proofs in HongZhou Lin's original paper of Universal Catalyst is depressingly long and complicated. This is a result of using the constructive approach of Nesterov's estimating sequence. 
+        \item It's context specific for controlling the errors of inexact proximal point evaluations are being controlled. He hinted at the way of controlling and tracking the errors from inexact proximal point evaluations, but it's context specific. He only illustrated the use of the meta acceleration on their own method called: ``Proximal MISO", but in general the problem still remains open. 
+        \item We will provide proofs to clarify some of their proofs and compare with existing proofs and drawing references in the literatures in the appendix. 
+    \end{enumerate}
+    Let's assume $F$ is a $\mu \ge 0$ strongly convex function. 
+    Throughout this section we make the following notations
+    \begin{align*}
+        \mathcal M^{\kappa^{-1}}(x; y) &:= F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2, 
+        \\
+        \mathcal J_{\kappa^{-1}} y &:= \argmin_x \mathcal M^{\kappa^{-1}} (x, y). 
+    \end{align*}
+    Their algorithm is almost exactly the same as Nesterov's 2.2.20 \cite{nesterov_lectures_2018} which we stated in the definition below: 
+    \begin{definition}[Lin's accelerated proximal point method]
+        Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
+        Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
+        Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)$ satisfies for all $k \ge 1$
+        \begin{align*}
+            & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k
+            \\
+            & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa)) 
+            \\
+            & 
+            y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        The most exciting thing about this algorithm is the similarity it has compares to 
+        \hyperref[def:acc-prox-grad-alg]{Definition \ref*{def:acc-prox-grad-alg}}. 
+        The only difference here is the inclusion of an inexact proximal point step, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
+
+        Lin 2015 \cite{lin_universal_2015} commented on the second last paragraph on page 4, and here we quote:
+        \par
+        ``The choice of the sequence $(\epsilon_k)_{k \ge 0}$ is also subjected to discussion since the quantity $F(x_0) - F^*$ is unknown beforehand. Nevertheless, an upper bound may be used instead, which will only affects the corresponding constant in (7). Such an upper bounds can typically be obtained by computing a duality gap at $x_0$, or by using additional knowledge about the objective. For instance, when $F$ is non-negative, we may simply choose $\epsilon_k = (2/9)F(x_0)(1 - \rho)^k$". 
+        
+        This comment has upmost practical importance because it tells us how to bound the error $\epsilon_k$ to achieve accelerated convergence rate. 
+        However, it's still elusive for general in practical applications. 
+        To see how the error is controlled for the inexact proximal point evaluation, we refer the readers to Lemma B.1 in Lin's 2015 paper \cite{lin_universal_2015}. 
+    \end{remark}
+    For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
+    Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
+    One major innovations here is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
+    
+    
 
 \section{Non-convex Extension of Catalyst Acceleration}
+    The non-convex extension of Catalyst acceleration by Lin 2018\cite{lin_catalyst_2018} remains similar to the algorithm in the convex case in his 2015 paper \cite{lin_universal_2015}. 
+    The algorithm is now adapted to handle function with unknown weak convexity constant $\rho$ using the process called Auto Adapt subroutine. 
+    There is no accelerated rate for the non-convex case since it's impossible, but the theoretical convergence to stationary point is claimed for the non-convex case. 
 
 
 \bibliographystyle{siam}
@@ -366,7 +451,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{align*}
 
     \begin{theorem}[Fundamental theorem of proximal gradient]
-    \label{thm:fun-thm-prox-grad}
+    \label{app:thm:fun-thm-prox-grad}
         Let $h = f + g$ and proximal gradient operator $T$ be given as in this section. 
         Fix any $y$, we have for all $x \in \RR^n$: 
         \begin{align*}
@@ -486,6 +571,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         }
     \end{proof}
+    \begin{remark}
+        The quadratic growth with respect to minimizer of the Moreau Envelope is used to derive the inequality, please take caution that this condition is strictly weaker than strong convexity of the Moreau Envelope, which could be made weaker than the strong convexity of $F$. 
+        Compare the same theorems in older literatures, this proof doesn't use the subgradient inequality, making it appealing for generalizations outside convexity context. 
+    \end{remark}
     
     \begin{theorem}[Cannonical form of proximal gradient estimating sequence]
     \label{thm:canon-prox-grad-est-seq}
@@ -905,8 +994,245 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}(v_k - y_k) + (x_k - y_k) 
             &= \mathbf 0. 
         \end{align*}
+        Before we finish it, re-arranging should give use the equivalent representations 
+        \begin{align*}
+            -(\alpha_k \gamma_k\alpha_{k + 1}^{-1} + 1)y_k
+            &= 
+            - \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k - x_k
+            \\
+            y_k &= 
+            \frac{
+                \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k + x_k
+            }{1 + \alpha_k \gamma_k \gamma_{k + 1}^{-1}}
+            \\
+            & 
+            \textcolor{gray}{
+                \gamma_{k + 1} + \alpha_k \gamma_k 
+                = 
+                \gamma_k + \alpha_k \mu
+            }
+            \\
+            &=  
+            \frac{\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k}{\gamma_k + \alpha_k \mu}. 
+        \end{align*}
+        And $\alpha_k, \gamma_k$, we have the equivalent representation of 
+        \begin{align*}
+            1 - \frac{L \alpha_k^2}{\gamma_{k + 1}}
+            &\ge 0
+            \\
+            1 &\ge L \alpha_k^2 / \gamma_{k + 1}
+            \\
+            \gamma_{k + 1} &\ge L \alpha_k^2
+            \\
+            L\alpha_k^2 
+            &\le
+            \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k. 
+        \end{align*}
     \end{proof}
     
+    \begin{definition}[Nesterov's accelerated proximal gradient raw form]
+    \label{app:def:acc-prox-grad-raw-form}
+        The accelerated proximal gradient algorithm generates vector iterates $x_k, y_k, v_k$ using auxiliary sequence $\alpha_k, \gamma_k$ such that for all $k\ge0$ they satisfy conditions: 
+        \begin{align*}
+            L\alpha_k^2 
+            &\le 
+            (1 - \alpha_k)\gamma_k + \alpha_k\mu = \gamma_{k + 1}; \alpha_k \in (0, 1), 
+            \\
+            y_k &= (\gamma_k + \alpha_k \mu)^{-1}
+            (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k),
+            \\
+            x_{k + 1}&= 
+            \widetilde{\mathcal J}_{L^{-1}} y_k
+            \\
+            v_{k + 1} &= 
+            \gamma_{k + 1}^{-1}
+            \left(
+                (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k g_k
+            \right). 
+        \end{align*}
+    \end{definition}
+
+    \begin{theorem}[Intermediate form of accelerated proximal gradient]\label{app:theorem:acc-prox-grad-intermediate}\; \\
+        Let iterates $(x_k, y_k, v_k)$ be given by the raw form of Nesterov's accelerated proximal gradient. 
+        If we assume that $L\alpha_k^2 = \gamma_{k + 1}$, then it simplifies into the following representation without parameter $\gamma_k$: 
+        \begin{align*}
+            y_k &= 
+            \left(
+                1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+            \right)
+            \\
+            x_{k + 1} &= 
+            y_k - L^{-1}  g_k
+            \\
+            v_{k + 1} &= 
+            \left(
+                1 + \frac{\mu}{L \alpha_k - \mu}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+            \right) - \frac{1}{L\alpha_{k}} g_k
+            \\
+            0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
+        \end{align*}
+        Here we have $g_k = \widetilde{\mathcal G}_{L^{-1}}y_k$. 
+    \end{theorem}
+    \begin{proof}
+                
+        From definition,  we have equality: $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$, so $\gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$, with that in mind we can simplify the expression for $y_k$ by 
+        \begin{align*}
+            y_{k} &= 
+            (\gamma_k + \alpha_k \mu)^{-1}
+            (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+            \\
+            &= 
+            (\gamma_{k + 1} + \alpha_k \gamma_k)^{-1}
+            (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+            \\
+            &= 
+            \left(
+                \frac{\gamma_{k + 1}}{\alpha_k\gamma_k} + 1
+            \right)^{-1}
+            \left(
+                v_k + \frac{\gamma_{k + 1}}{\alpha_k \gamma_k} x_k
+            \right)
+            \\
+            &= 
+            \left(
+                1 + \frac{L\alpha_k^2}{\alpha_kL\alpha_{k - 1}^2} 
+            \right)^{-1}
+            \left(
+                v_k + \frac{L\alpha_k^2}{\alpha_k L\alpha_{k - 1}^2} x_k
+            \right)
+            \\
+            &= 
+            \left(
+                1 + \frac{\alpha_k}{\alpha_{k - 1}^2}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \frac{\alpha_k}{\alpha_{k - 1}^2} x_k
+            \right). 
+        \end{align*}
+        For $v_{k + 1}$ we use $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$ which gives us: 
+        \begin{align*}
+            v_{k + 1} &= 
+            \gamma_{k + 1}^{-1}
+            ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
+            - \alpha_k\gamma_{k + 1}^{-1}\mathcal L y_k
+            \\
+            &= 
+            ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
+            \left(
+                (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
+            \right)
+            - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
+            \\
+            &= 
+            \left(
+                1 + \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
+            \right)
+            - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
+            \\
+            &= 
+            \left(
+                1 + \frac{\alpha_k\mu}{(1 -\alpha_k)L\alpha_{k - 1}^2}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \frac{\alpha_k\mu}{(1 - \alpha_k)L\alpha_{k - 1}^2} y_k
+            \right)
+            - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
+        \end{align*}
+        We can eliminate the $\gamma_k$ which defines the $\alpha_k$ by considering 
+        \begin{align*}
+            L\alpha_k^2 &= 
+            (1 - \alpha_k)\gamma_k + \alpha_k \mu 
+            \\
+            &= 
+            (1 - \alpha_k)L\alpha_{k - 1}^2 
+            + \alpha_k \mu
+            \\
+            L\alpha_k^2 &= 
+            L \alpha_{k - 1}^2 + 
+            (\mu - L \alpha_{k - 1}^2)\alpha_k
+            \\
+            \iff     
+            0
+            &=  
+            L \alpha_k^2 - (\mu - L \alpha_{k - 1}^2)\alpha_k 
+            - L \alpha_{k -1}^2. 
+        \end{align*}
+        Next, we simplify the coefficients using the above relations further. 
+        From the above results we have the relation $(1 - \alpha_k)L\alpha_{k - 1}^2 = L \alpha_k^2 - \alpha_k \mu$. 
+        Therefore,  it gives 
+        \begin{align*}
+            \frac{\alpha_k\mu}{(1 - \alpha_k)L \alpha_{k - 1}^2}
+            &= 
+            \frac{\alpha_k\mu}{L \alpha_k^2 - \alpha_k \mu}
+            = \frac{\mu}{L \alpha_k - \mu}. 
+        \end{align*}
+        Next we have: 
+        \begin{align*}
+            L\alpha_k^2 &= 
+            (1 - \alpha_k)L\alpha_{k - 1}^2 + \alpha_k \mu 
+            \\
+            L \alpha_k^2 - \alpha_k\mu &= 
+            (1 - \alpha_k)L \alpha_{k - 1}^2
+            \\
+            \alpha_{k - 1}^2
+            &= 
+            \frac{L \alpha_k^2 - \alpha_k\mu}{L (1 - \alpha_k)}
+            \\
+            \frac{1}{\alpha_{k - 1}^2}
+            &= 
+            \frac{L (1 - \alpha_k)}{L \alpha_k^2 - \alpha_k\mu}
+            \\
+            \frac{\alpha_k}{\alpha_{k - 1}^2}
+            &= 
+            \frac{L - L\alpha_k}{L\alpha_k - \mu}. 
+        \end{align*}
+        Substitute these results back to the expression for $y_k, v_{k + 1}$, it gives what we want. 
+
+    \end{proof}
+    \begin{remark}
+        This intermediate form representation of the algorithm eliminated the sequence $(\gamma_k)_{k \ge0}$ which were used for the Nesterov's estimating sequence. 
+    \end{remark}
+
+    \begin{theorem}[Nesterov's accelerated proximal gradient momentum form]
+        \; \\
+        Let the sequence $\alpha_k$, and vectors $y_k, x_k, v_k$ be given by the intermediate form of the Nesterov's accelerated proximal gradient, then it can be simplified to void of $v_k$. 
+        The algorithm generates $y_k, x_k, \alpha_k$ such that it satisfies for all $k \ge 0$: 
+        \begin{align*}
+            & \text{find } \alpha_{k + 1} \text{ such that: }L \alpha_{k + 1}^2 = (1 - \alpha_{k + 1})L \alpha_{k - 1} + \mu \alpha_{k + 1}
+            \\
+            & x_{k + 1} = \widetilde {\mathcal J}_{L^{-1}} y_k
+            \\
+            & y_{k + 1} = \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+        \end{align*}
+        Initially we choose $x_0 = y_0, \alpha_0 \in (0, 1)$. 
+    \end{theorem}
+    \begin{proof}
+        
+    \end{proof}
+        
     
+    
+    
+\section{Proofs for accelerated PPM}
+    
+
+\section{Proofs for Catalyst Meta Acceleration}
+
+
+\section{Proofs for 4WD Catalyst Acceleration}
 
 \end{document}

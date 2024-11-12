@@ -586,7 +586,7 @@ $$
     \\
     L\alpha_k^2 
     &\le
-    \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k
+    \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k. 
 \end{aligned}
 $$
 
@@ -689,12 +689,12 @@ $$
 >     (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k),
 >     \\
 >     x_{k + 1}&= 
->     y_k - L^{-1}\mathcal g_k, 
+>     y_k - L^{-1} g_k, 
 >     \\
 >     v_{k + 1} &= 
 >     \gamma_{k + 1}^{-1}
 >     \left(
->         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k \mathcal g_k
+>         (1 - \alpha_k)\gamma_k v_k + \alpha_k \mu y_k - \alpha_k  g_k
 >     \right). 
 > \end{aligned}
 > $$
@@ -711,7 +711,7 @@ $$
 >     \right)
 >     \\
 >     x_{k + 1} &= 
->     y_k - L^{-1} \mathcal g_k
+>     y_k - L^{-1}  g_k
 >     \\
 >     v_{k + 1} &= 
 >     \left(
@@ -720,7 +720,7 @@ $$
 >     \left(
 >         v_k + 
 >         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
->     \right) - \frac{1}{L\alpha_{k}}\mathcal g_k
+>     \right) - \frac{1}{L\alpha_{k}} g_k
 >     \\
 >     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
 > \end{aligned}

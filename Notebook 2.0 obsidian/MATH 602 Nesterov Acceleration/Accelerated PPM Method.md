@@ -503,4 +503,105 @@ $$
 Here we did theorem 2.1 in Guler's paper and the 2 corollaries the followed it. 
 
 
+---
+### **Guler 1993's Inexact Proximal Gradient Method**
+
+This section we talk about how Guler thought about the inexact evaluation of the proximal point method in his accelerated PPM method. 
+
+#### **Def | Rockafellar's Approximations**
+> We have $x_{k + 1}$ as an approximation when it satisfies the conditions that 
+> $$
+> \begin{aligned}
+>     \text{dist}
+>     \left(
+>         \mathbf 0, \partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)
+>     \right)^2 
+>     &\le 
+>     \frac{\epsilon_k}{\lambda_k}. 
+> \end{aligned}
+> $$
+> Here $\epsilon_k$ characterize the error made by the inexact evaluation. 
+> We call this Condition (A'), same as in Rockafellar's text. 
+
+One consequence of the error is the following. 
+
+$$
+\begin{aligned}
+    \Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert 
+    &\le \epsilon_k. 
+\end{aligned}
+$$
+
+This is in Rockafellar 1976. 
+He also characterize some more properties of the error sequence $(\epsilon_k)$ for the convergence of his inexact proximal point method. 
+
+
+#### **Theorem | Consequence of Rockafellar's approximations**
+> Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+> If $x_{k +1}$ is an inexact evalautions under condition (A), then the estimating sequence admits the conditions that: 
+> $$
+> \begin{aligned}
+>     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{\lambda_k} y_k\Vert^2
+>     &= 
+>     \mathcal M^{\lambda_k}(x_{k + 1}, y_k) - \mathcal M^*_k
+>     \le \frac{\epsilon_k^2}{2\lambda_k}. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+Denote $\mathcal M_k(x) = \mathcal M^{\lambda_k}(x; y_k)$ for short. 
+The proof is direct by considering the strong convexity of $\mathcal M^{\lambda_k}(\cdot, y_k)$ together with the subgradient inequality, which gives us: 
+$$
+\begin{aligned}
+    \mathcal M_k(x_{k + 1}) - \mathcal M^*_k
+    &= 
+    \mathcal M_k(x_{k + 1}) - \mathcal M_k(\mathcal J_{\lambda_k} y_k)
+    \\
+    &\ge 
+    \left(
+        \left\langle 
+            \partial \mathcal M_k(\mathcal J_{\lambda_k} y_k), 
+            x_{k + 1} - \mathcal J_{\lambda_k} y_k 
+        \right\rangle
+        + 
+        \mathcal M_k(\mathcal J_{\lambda_k}y_k)
+        + \frac{1}{2\lambda_k}\Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert^2
+    \right)
+    - 
+    \mathcal M_k(\mathcal J_{\lambda_k}y_k) 
+    \\
+    &= \frac{1}{2\lambda_k}\Vert x_{k +1} - \mathcal J_{\lambda_k}y_k\Vert^2. 
+\end{aligned}
+$$
+
+Here we used the fact that $\mathbf 0 \in \partial M_k(\mathcal J_{\lambda_k}y_k)$. 
+Consider inexact evalatuion of $x_{k + 1}$ which results in $w_k \in \partial \mathcal M_k(x_{k + 1})$ with $\Vert w_k\Vert \le \epsilon_k/\lambda_k$. 
+By $\lambda_k^{-1}$ strong convexity of $\mathcal M_k$, we have 
+
+$$
+\begin{aligned}
+    \mathcal M_k(\mathcal J_{\lambda_k}y_k) - \mathcal M_k(x_{k + 1})
+    &\ge 
+    \langle w_k, \mathcal J_{\lambda_k}y_k - x_{k + 1}\rangle
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    \\
+    &\ge 
+    - \Vert w_k\Vert\Vert \mathcal J_{\lambda_k}y_k - x_{k + 1}\Vert^2
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    \\
+    &\ge 
+    - \frac{\epsilon_k}{\lambda_k}\Vert \mathcal J_{\lambda_k}y_k - x_{k + 1}\Vert^2
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    \\
+    &\ge \frac{1}{\lambda_k}
+    \min_{t \in \R} \left\lbrace
+        \frac{1}{2}t^2 - \epsilon_k t
+    \right\rbrace = - \frac{\epsilon_k}{2\lambda_k}. 
+\end{aligned}
+$$
+
+The inequalty is equivalentto the upper bound of the error on the Moreau Envelope. 
+
+
 

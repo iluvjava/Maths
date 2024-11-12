@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+
+% \input{presets/wang_full.tex}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+\input{presets/julia_lstlisting.tex}
+
+\begin{document}
+
+\title{{\fontfamily{ptm}\selectfont Lorum ipsum}}
+
+\author{
+    Author 1 Name, Author 2 Name
+    \thanks{
+        Subject type, Some Department of Some University, Location of the University,
+        Country. E-mail: \texttt{author.name@university.edu}.
+    }
+}
+
+\date{March 2, 2020}
+
+\maketitle
+
+% \vskip 8mm
+
+\begin{abstract} 
+    \noindent
+    Lorem ipsum dolor sit amet, dicta iudicabit consequat ex vix, veniam legimus appetere has id, an pri graece epicuri detraxit. Ea aliquam expetendis posidonium eos, nam invenire corrumpit imperdiet ei. Et constituto dissentias usu, mel solum erant et. Mel dolorem menandri in.
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 47H05, 52A41, 90C25; Secondary 15A09, 26A51, 26B25, 26E60, 47H09, 47A63.
+\noindent{\bfseries Keywords:}
+
+% ==============================================================================
+\input{sections/demo_notations.tex}
+% \input{sections/demo_code.tex}
+
+
+
+% ==============================================================================
+
+\section{Schur's Cone and Its Polar}
+    \begin{example}
+        Define
+        \begin{equation}
+            Q = \left\lbrace
+                x\in \RR^n \left|
+                    \sum_{i = 1}^{k} x_i
+                    \ge 0, \;
+                    k = 1 ,\cdots, n-1, \;
+                    x_1 + \cdots + x_n = 0
+                \right.
+            \right\rbrace.
+        \end{equation}
+        Then
+        \begin{align}
+            Q^\circ &= \left\lbrace
+               y\in\RR^n |
+               \langle y, x\rangle \ge 0 \; \forall x \in Q
+            \right\rbrace
+            \\
+            &=
+            \left\lbrace
+                y\in\RR^n | y_{1} \ge y_2\ge \cdots  \ge y_n
+            \right\rbrace.
+        \end{align}
+    \end{example}
+    \begin{proof}
+        We have $Q = H(\RR^{n - 1}_+)$, where
+        \begin{align}
+            H =
+            \begin{bmatrix}
+                1 &  & &
+                \\
+                -1 & 1 & &
+                \\
+                 & -1 & &
+                \\
+                &  & \ddots&
+                \\[-1em]
+                &  & & 1
+                \\
+                &  && -1
+            \end{bmatrix},
+        \end{align}
+        $H$ is a bi-diagonal matrix with zeros on the diagonal and -1 on its sub-diagonals. Indeed, for $x = (x_1, \cdots, x_{n - 1})\in \RR^{n - 1}_+$, we have
+        \begin{align}
+            y &= H x
+            \\
+            &=
+            \begin{bmatrix}
+                1 \\ -1 \\ 0 \\ \vdots \\ 0
+            \end{bmatrix}x_1 +
+            \begin{bmatrix}
+                0 \\ 1 \\ -1 \\ \vdots \\ 0
+            \end{bmatrix}x_2 +
+            \cdots
+            +
+            \begin{bmatrix}
+                0 \\ 0 \\ \vdots \\ 1 \\ -1
+            \end{bmatrix} x_{n - 1}
+            \\
+            &=
+            \begin{bmatrix}
+                x_1 \\ x_2 - x_1 \\ x_3 - x_2
+                \\ \vdots
+                \\-x_{n - 2} + x_{n - 1}\\
+                 - x_{n - 1}
+            \end{bmatrix}
+            = \begin{bmatrix}
+                y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_{n - 1} \\ y_n
+            \end{bmatrix},
+        \end{align}
+        where $y_1 \ge 0, y_2 + y_1 \ge 0, \cdots, y_{n - 1}+ \cdots + y_1 \ge 0$, and $y_1 + \cdots + y_n = 0$. So $y\in Q$. Hence $H(\RR^{n - 1}_+)\subseteq Q$. Similarly, one can write for $y\in Q$, $\exists x \in \RR_+^{n- 1}$ with $y = Hx$. In fact, $x = y_1, x_2 = y_1 + y_2, \cdots, x_{n - 1} = y_1 + \cdots + y_{n - 1}, -x_{n - 1} = y_n$ because $y_1 + \cdots + y_n = 0$. In particular, $x\in \RR^{n - 1}_+$.
+        \par
+        Note that $y\in Q^\circ\iff y^{\intercal}a_i \ge 0$ for $i = 1,\cdots, n -1$. Where
+        \begin{align}
+            a_1 = \begin{bmatrix}
+                1 \\ -1 \\ 0 \\ \vdots \\ 0,
+            \end{bmatrix},
+            a_2 = \begin{bmatrix}
+                0 \\ 1 \\ -1 \\ \vdots \\ 0,
+            \end{bmatrix},
+            & \cdots,
+            a_n =
+            \begin{bmatrix}
+                0 \\ \vdots \\ 0  \\ 1 \\ -1
+            \end{bmatrix}.
+        \end{align}
+        Now $y^{\intercal} a_i \ge 0 \iff y_i - y_{i + 1}\ge 0$, for $i = 1,\cdots, n-1$. Hence $Q^\circ = \{ y\in \RR^n | y_1 \ge y_2 \ge \cdots \ge y_n\}$.
+
+    \end{proof}
+\section{Lorentz Cone and its Polar}
+    \begin{example}
+        \begin{equation}
+            L = \left\lbrace
+            (\xi, t) \in \RR^n \left| \;
+                \Vert \xi\Vert \le t, \xi \in \RR^{n - 1}
+            \right.
+            \right\rbrace.
+        \end{equation}
+        Then the polar cone of $L$ is $L^\circ = \{(x, s) \;|\; \langle (x, s), (\xi, t)\rangle \ge 0\}\} = L$.
+    \end{example}
+    \begin{proof}
+        \par
+        Let $(x, s) \in L^\circ$. Then $\langle (x, s), (\xi, t)\rangle \ge 0$, $\forall (\xi, t) \in L$, i. e. $\langle x, \xi\rangle + st \ge 0$.
+        \par
+        For $t > 0$, we have $\langle x, \xi/t\rangle \ge -s$, i.e. $\langle x, - \xi/t\rangle \le s$. Using $\Vert \xi\Vert \le t$ and by taking supremum over $\Vert \xi/t\Vert\le 1$, we obtain  $\Vert x\Vert \le s$.
+        \par
+        Hence $L^\circ = L$.
+    \end{proof}
+    \begin{corollary}
+        Let $A \in \RR^{n\times n}$ be positive definite. Define
+        $$
+            L_A =
+            \left\lbrace
+                (\xi, t)\in \RR^n \left|
+                    \sqrt{\langle \xi, A\xi\rangle} \le t
+                \right.
+            \right\rbrace.
+        $$
+        Then $(L_A)^\circ = \{ (\xi, t) \;|\; \sqrt{\langle \xi, A^{-1}\xi\rangle}\le t\}$.
+    \end{corollary}
+
+
+\section*{Acknowledgments}
+    XW were supported by NSERC Discovery grants.
+
+
+\begin{thebibliography}{999}
+
+    \bibitem{BC2017}
+    H.H.\ Bauschke and P.L.\ Combettes,
+    \emph{Convex Analysis and Monotone Operator Theory in Hilbert Spaces},
+    second edition,
+    Springer, 2017.
+
+    \bibitem{cross}
+    H.~H.\ Bauschke, M.\ Krishan Lal, and X.\ Wang, The projection onto the cross, (2021), \url{https://arxiv.org/abs/2108.04382}.
+
+    \bibitem{Bertsekas}
+    D.P.\ Bertsekas,
+    \emph{Nonlinear Programming}, third edition, Athena Scientific, Belmont, Massachusetts, USA, 2016.
+
+    \bibitem{burden2011analisis}
+    R. L.\ Burden and J.D. \ Faires, \emph{Numerical Analysis}, 9th edition, 2011.
+    \bibitem{quadrics} N.\ Chernov and H.\ Ma, Least squares fitting of quadratic curves and surfaces, \emph{Computer Vision} 285, p302, 2011.
+
+    \bibitem{conics} N.\ Chernov and S.\ Wijewickrema,  Algorithms for projecting points onto conics, \emph{ Journal of Computational and Applied Mathematics}, 251, (2013), 8-21.
+
+    \bibitem{robust} D.\ Eberly, \emph{Robust and Error-free Geometric Computing}, CRC Press, 2021.
+
+    \bibitem{elser2019learning} V.\ Elser, Learning without loss,
+    \emph{Fixed Point Theory and Algorithms for Sciences and Engineering} 2021, article~12 (2021).
+    \url{https://doi.org/10.1186/s13663-021-00697-1}
+
+    \bibitem{elser2017products}
+    V.\ Elser, Matrix product constraints by projection methods, \emph{Journal of Global Optimization} 68, no 2, (2017), 329-355.
+
+    \bibitem{PW16}
+    Planiden C , Wang X . Strongly Convex Functions, Moreau Envelopes, and the Generic Nature of Convex Functions with Strong Minimizers[J]. \emph{SIAM Journal on Optimization}, 2015, 26(2):1341-1364.
+
+    
+
+    \bibitem{kreyszig} E.\ Kreyszig, \emph{Introductory Functional Analysis with Applications},
+    John Wiley \& Sons, Inc., New York, 1989.
+
+    \bibitem{Luenberger}
+    D.G.\ Luenberger,
+    \emph{Optimization by Vector Space Methods},
+    Wiley, 1969.
+
+
+    \bibitem{Luke2020}
+    D.~R. Luke. and A.L. Martins, Convergence Analysis of the Relaxed Douglas--Rachford Algorithm. \newblock {\em SIAM Journal on Optimization}, 30(1), (2020), pp.542-584.
+
+    \bibitem{Rock98}
+    R.\ T.\ Rockafellar and R.\ J-B Wets,
+    \emph{Variational Analysis},
+    Springer-Verlag, New York, 1998.
+
+\end{thebibliography}
+\bibliographystyle{plain}
+% \bibliography{refs.bib}
+
+
+\end{document}

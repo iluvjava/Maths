@@ -671,7 +671,7 @@ $$
 >     \right)
 >     \\
 >     x_{k + 1} &= 
->     y_k - L^{-1} \mathcal G_k y_k
+>     y_k - L^{-1} \mathcal G_L y_k
 >     \\
 >     v_{k + 1} &= 
 >     \left(
@@ -680,7 +680,7 @@ $$
 >     \left(
 >         v_k + 
 >         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
->     \right) - \frac{1}{L\alpha_{k}}\mathcal G_k y_k
+>     \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
 >     \\
 >     0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
 > \end{aligned}
@@ -829,8 +829,19 @@ $$
 
 **Remarks**
 
+The algorithm simplifies nicely under the assumption that $\mu = 0$, for the iterates $y_k, v_{k + 1}$ it has 
 
+$$
+\begin{aligned}
+    y_k &= 
+    \alpha_k v_k + (1 - \alpha_k) x_k
+    \\
+    v_{k + 1} &= 
+    (1 + L\alpha_k) + (1 + 1/(L\alpha_k)) y_k - 1/(L\alpha_k)\mathcal G_L y_k. 
+\end{aligned}
+$$
 
+And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1}^2$. 
 
 
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
