@@ -77,6 +77,17 @@ Throughout this text, we assume that the function $F$ is weakly convex and we as
 
 The proof is direct by the definition of subgradient. 
 
+
+#### **Theorem | Convergence of the algorithm**
+> The algorithm generates $\bar x_k$ which is the monotone gradient descent step, and it converges to a stationary point when $F$ is $\kappa$ weakly convex: 
+> $$
+> \begin{aligned}
+>     \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
+>     \le \frac{8 \kappa}{N}(F(x_0) - F^*). 
+> \end{aligned}
+> $$
+> When the function $F$ is convex, then the algorithm has $F(x_N) - F^*$ that converges at a rate of $\mathcal O(k^{-2})$. 
+
 #### **Convergence of the algorithm**
 
 We now proof both theorem 4.1, 4.2 in one go. 
@@ -192,10 +203,10 @@ Using convexity, it transform the inequality into
 
 $$
 \begin{aligned}
-    f(x_k) &\le 
-    \alpha_k f(x^*) + (1 - \alpha_k) f(x_{k - 1}) 
-    + \frac{\alpha_k^2}{2}\left(
-        \Vert x - v_{k - 1}\Vert^2 - 
+    F(x_k) &\le 
+    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    + \frac{\alpha_k^2\kappa}{2}\left(
+        \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
     \right)
     \\
@@ -204,31 +215,122 @@ $$
         + \frac{\kappa \alpha_k}{k + 1}\Vert \tilde x - y_k\Vert\Vert v_k - x^*\Vert
     \\
     &=
-    \alpha_k f(x^*) + (1 - \alpha_k) f(x_{k - 1}) 
-    + \frac{\alpha_k^2}{2}\left(
-        \Vert x - v_{k - 1}\Vert^2 - 
+    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    + \frac{\alpha_k^2\kappa}{2}\left(
+        \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
     \right)
         \\
         &\quad 
-        - \frac{1}{2}\left(
-            \Vert \kappa(\tilde x_k - y_k)\Vert
-            - \frac{\kappa\alpha_k}{2(k + 1)}\Vert v_k - x^*\Vert
-        \right)^2 + 
-        \left(\frac{\kappa\alpha_k}{2(k + 1)}\right)^2\Vert v_k - x^*\Vert^2
+        - \frac{\kappa}{2}\left(
+            \Vert \tilde x_k - y_k\Vert
+            - \frac{\alpha_k}{k + 1}\Vert v_k - x^*\Vert
+        \right)^2 
+        + \frac{\kappa}{2}\left(\frac{\alpha_k}{k + 1}\right)^2\Vert v_k - x^*\Vert^2
     \\ 
     &\le 
-    \alpha_k f(x^*) + (1 - \alpha_k) f(x_{k - 1}) 
-    + \frac{\alpha_k^2}{2}\left(
-        \Vert x - v_{k - 1}\Vert^2 - 
+    \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
+    + \frac{\alpha_k^2 \kappa}{2}\left(
+        \Vert x^* - v_{k - 1}\Vert^2 - 
         \Vert v_k - x^*\Vert^2
     \right)
         \\
         &\quad  
-        + \left(\frac{\kappa\alpha_k}{2(k + 1)}\right)^2\Vert v_k - x^*\Vert^2
+        + \frac{\kappa \alpha_k^2}{2}\left(\frac{1}{k + 1}\right)^2\Vert v_k - x^*\Vert^2
     \\
     \iff 
     F(x_k) - F^*
+    &\le 
+    (1 - \alpha_k)(F(x_{k - 1}) - F^*)
+    \\ &\quad 
+        + 
+        \frac{\alpha_k^2\kappa}{2}
+        \left(
+            \Vert x^* - v_{k - 1}\Vert^2
+            - \left(
+                1 - \frac{1}{(k + 1)^2}
+            \right)\Vert v_k - x^*\Vert^2
+        \right)
 \end{aligned}
 $$
 
+Denote $A_k := 1 - 1/(1 + k)^2$ to simplify the notations. 
+Continue the simplifications of the above inequality
+
+$$
+\begin{aligned}
+    F(x_k) - F^* +
+    \frac{\alpha_k^2\kappa}{2}\left(
+        1 - \frac{1}{(k + 1)^2}
+    \right)
+    \Vert v_k - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)(F(x_{k - 1}) - F^*)
+    + 
+    \frac{\alpha_k^2\kappa}{2}
+    \Vert x^* - v_{k - 1}\Vert^2
+    \\
+    \iff 
+    \alpha_k^{-2}(F(x_k) - F^*)
+    + 
+    \frac{\kappa A_k}{2}\Vert v_k - x^*\Vert^2
+    &\le 
+    \alpha_k^{-2}(1 - \alpha_k)(F(x_{k - 1}) - F^*)
+    + 
+    \frac{\kappa}{2}
+    \Vert x^* - v_{k - 1}\Vert^2
+    \\
+    \iff
+    \alpha_k^{-2}(F(x_k) - F^*)
+    + 
+    \frac{\kappa A_k}{2}\Vert v_k - x^*\Vert^2
+    &\le 
+    \alpha_{k - 1}^{-2}(F(x_{k - 1}) - F^*)
+    + 
+    \frac{\kappa}{2}
+    \Vert x^* - v_{k - 1}\Vert^2
+    \\
+    & \le 
+    \frac{1}{A_{k - 1}}\left(
+        \alpha_{k - 1}^{-2}(F(x_{k - 1}) - F^*)
+        + 
+        \frac{\kappa A_{k - 1}}{2}
+        \Vert x^* - v_{k - 1}\Vert^2
+    \right)
+\end{aligned}
+$$
+
+The second last inequality use the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
+The last inequality used the fact that $A_{k - 1} \in (0, 1]$. 
+Urolling the recurrence up to $N$ we have the inequality: 
+
+$$
+\begin{aligned}
+    \alpha_N^{-2}(F(x_N) - F^*)
+    &\le 
+    \left(
+        \prod_{j = 1}^{N - 1} A_{j}^{-1}
+    \right)\frac{\kappa}{2}\Vert v_0 - x^*\Vert^2. 
+\end{aligned}
+$$
+
+By definition of $A_k$ sequence, we have: 
+
+$$
+\begin{aligned}
+    \prod_{j = 1}^{N - 1} A_{j - 1}^{-1}
+    &= 
+    \frac{1}{\prod_{j = 1}^{N - 1}(1 - j^{-2})} \le 2. 
+\end{aligned}
+$$
+
+This established the convergence rate $F(x_N) - F^*$ to be on $\mathcal O(\alpha_N^{2})$. 
+And, the sequence $\alpha_i$ has an upper for all $k\ge 0$: 
+
+$$
+\begin{aligned}
+    \alpha_{k} \le \frac{2}{k + 1}. 
+\end{aligned}
+$$
+
+Therefore, the algorithm has convergence on the staionary point condition and it achieves optimal convergence rate when $F$ is a convex function. 

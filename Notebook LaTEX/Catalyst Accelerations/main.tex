@@ -45,12 +45,12 @@
 \section{Introduction}
     \textcolor{red}{THIS REPORT IS CURRENTLY: UNFINISHED}
 
-    Nesterov first proposed the idea of an optimal algorithm named accelerated gradient descent method in his seminal work back in 1983 \cite{nesterov_method_1983}. 
-    It was seminal at the time because the algorithm's upper bound on the iteration complexity sealed the gap between the lower bound for all first order Lipschitz smooth convex function and the upper bound for this class of functions. 
-    For a specific definition of the class of algorithms that are considered ``First Order'', we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
-    In brief the method of gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity. 
-    It doesn't achieve the $\mathcal O(1/k^2)$ lower iteration complexity bound for first order optimization algorithms.
-    The method of accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
+    The optimal algorithm named accelerated gradient descent method is proposed in Nesterov's seminal work back in 1983 \cite{nesterov_method_1983}. 
+    The algorithm closed the upper bound and lower bound on the iteration complexity for all first order Lipschitz smooth convex function among all first order algorithms. 
+    For a specific definition first order method, we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
+    Gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity that is slower than
+    the lower iteration complexity $\mathcal O(1/k^2)$. 
+    Accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
 
     On first judgement, it's tempting to think that the existence of this optimal algorithm sealed the ceiling for the theoretical development for the entire class of convex first-order smooth optimization. 
     The judgement is correct but lacks the nuance in understanding. 
@@ -213,10 +213,8 @@
         One of the possible base case can be $x_0 = y_0$ and any $\alpha_0 \in (0, 1)$. 
     \end{definition}
     \begin{observation}
-        One key component of the Nesterov's estimating sequence is the use of the proximal gradient inequality: $l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$. 
-        In the convex case the function has the property $l_F(\cdot, y) \le F(\cdot)$ for all $y$. 
-        More precisely, if $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes resolvent $(I + L^{-1}\partial F)^{-1}$, which makes $x_k$ being an exact evaluation of PPM.
-        And we have 
+        Fix any $y$, for all $x\in \RR^n$, $F(x) \ge l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$ is the proximal gradient inequality. 
+        If $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes resolvent $(I + L^{-1}\partial F)^{-1}$, which makes $x_k$ being an exact evaluation of PPM: 
         \begin{align*}
             l_F(x; y_k) 
             &= F(\mathcal J_{L^{-1}}y_k) 
@@ -225,8 +223,7 @@
             &= F(\mathcal J_{L^{-1}}y_k) 
             + \langle L(y - \mathcal J_{L^{-1}} y), x - \mathcal J_{L^{-1}}y_k\rangle. 
         \end{align*}
-        This is the proximal inequality. 
-        Observe that the inequality with proximal gradient term can be interpreted as an example of inexact evaluation of the PPM and the inequality. 
+        This is the proximal inequality with constant a step size: $L^{-1}$. 
     \end{observation}
     To demonstrate the usage of Nesterov's estimating sequence here, consider sequence $(x_k)_{k \ge 0}$ such that $F(x_k) \le \phi_k^*$. 
     Assume the existence of minimizer $x^*$ for $F$, by definition of $\phi_k$ let $x = x^*$ then $\forall k \ge 0$: 
@@ -427,8 +424,71 @@
 
 \section{Non-convex Extension of Catalyst Acceleration}
     The non-convex extension of Catalyst acceleration by Lin 2018 \cite{lin_catalyst_2018} remains similar to the algorithm in the convex case in his 2015 paper \cite{lin_universal_2015}. 
-    The algorithm is now adapted to handle function with unknown weak convexity constant $\rho$ using the process called Auto Adapt subroutine. 
-    There is no accelerated rate for the non-convex case since it's impossible, but the theoretical convergence to stationary point is claimed for the non-convex case. 
+    The new algorithm handles function with unknown weak convexity constant $\rho$ using the process called Auto Adapt subroutine. 
+    For the weakly convex case, only theoretical convergence to stationary point is claimed. 
+    \par 
+    Fixed the parameter $\kappa$ and throughout the section, we use the following notations: 
+    \begin{align*}
+       & \mathcal M (x; y) := F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2 
+       \\
+       & \mathcal J y := \argmin_x \mathcal M (x; y). 
+    \end{align*}
+    We define the algorithm and then its convergence claim below. 
+    \begin{definition}[Basic 4WD Catalyst Algorithm]
+        Find any $x_0 \in \text{dom}(F)$. 
+        Initialize the algorithm with $\alpha_1 = 1, v_0 = x_0$. 
+        For $k \ge 1$, the iterates $(x_k, y_k, v_k)$ are generated by the procedures: 
+        \begin{align*}
+            &
+            \text{find } \bar x_k \approx \argmin{x}\left\lbrace
+                \mathcal M(x; x_{k - 1})
+            \right\rbrace
+            \text{ such that:  }
+                \left\lbrace
+                    \begin{aligned}
+                        & \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; x_{k - 1})) 
+                        \le 
+                        \kappa\Vert \bar x_k - x_{k - 1}\Vert, 
+                        \\
+                        & \mathcal M(\bar x_k; x_{k - 1}) 
+                        \le F(x_{k - 1}). 
+                    \end{aligned}
+                \right.
+            \\
+            & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1};
+            \\
+            & 
+            \text{find }\tilde x_k \approx \argmin{x} \left\lbrace
+                \mathcal M(x; y_k) 
+                : 
+                \text{dist}\left(
+                \mathbf 0, \partial \mathcal M(\tilde x_k; y_k)
+                \right) 
+                \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert
+            \right\rbrace;
+            \\
+            & v_{k} = x_{k - 1} + \frac{1}{\alpha_k}(\tilde x_k - x_{k - 1});
+            \\
+            & 
+            \text{find } \alpha_{k + 1} \in (0, 1): 
+            \frac{1 - \alpha_{k + 1}}{\alpha_{k + 1}^2} = \frac{1}{\alpha_k^2};
+            \\
+            & \text{choose } x_k \text{ such that:  } f(x_k) = \min(f(\bar x_k), f(\tilde x_k)). 
+        \end{align*}
+    \end{definition}
+    
+    \begin{theorem}[Basic 4WD Catalyst Convergence]
+        Let $(x_k, v_k, y_k)$ be generated by the basic Catalyst algorithm. 
+        If $F$ is weakly convex and bounded below, then $x_k$ converges to a stationary point where
+        \begin{align*}
+            \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
+            \le \frac{8 \kappa}{N}(F(x_0) - F^*). 
+        \end{align*}
+        And when $F$ is convex, $F(x_k) - F^*$ converges at a rate of $\mathcal O(k^{-2})$. 
+    \end{theorem}
+    \begin{remark}
+        
+    \end{remark}
 
 
 
