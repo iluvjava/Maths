@@ -535,6 +535,10 @@ $$
 This is in Rockafellar 1976. 
 He also characterize some more properties of the error sequence $(\epsilon_k)$ for the convergence of his inexact proximal point method. 
 
+**Remarks**
+
+The quantity $\partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)$ is a trackable quantity for implementing algorithms for inexact proximal point method. 
+
 
 #### **Theorem | Consequence of Rockafellar's approximations**
 > Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 

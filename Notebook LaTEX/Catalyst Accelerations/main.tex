@@ -10,7 +10,7 @@
 \title{
     {
         \fontfamily{ptm}\selectfont 
-        Catalyst Meta Acceleration Framework: The Gist of its Theories
+        Catalyst Meta Acceleration Framework: The history and the gist of it
     }
     }
 
@@ -38,9 +38,9 @@
     
 \end{abstract}
 
-\noindent{\bfseries 2010 Mathematics Subject Classification:}
-Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
-\noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
+% \noindent{\bfseries 2010 Mathematics Subject Classification:}
+% Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
+% \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 
 \section{Introduction}
     \textcolor{red}{THIS REPORT IS CURRENTLY: UNFINISHED}
@@ -70,7 +70,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         & 
         \dist(\partial\mathcal{M}^{\lambda}(\tilde x; y))
-        \le \frac{\epsilon}{\lambda}
+        \le \frac{\epsilon}{\lambda}. 
     \end{align*}
     However, this is troublesome because if we need to approximate the resolvent operator $\mathcal J_\lambda$, then it's probably difficult to compute the subgradient $\partial\mathcal M(\cdot; y)$, which make it difficult to know when we achieved the required exactness for a PPM evaluation. 
     Otherwise, if we already know the subgradient well, then why approximate it in the first place? 
@@ -82,10 +82,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     One would be tempting to assert that this has sealed the ceiling for both theories and practice of Nesterov's acceleration hence it must be the center of discussion in this report. 
     The conclusion is indeed correct which it will happen in the sections that follow while the assertion remains open.  
 
-    
     \subsection{Contributions}
-        The writing is expository and won't contain major results. 
+        The writing is expository and comprehensive. 
         We reviewed the literatures and faithfully reproduced some claims, in addition we give insights into understanding the claim in relations to other papers and foundational ideas in optimization. 
+        Three papers by Guler \cite{guler_new_1992} and Lin \cite{lin_universal_2015} and Paquette et al. \cite{lin_catalyst_2018} together with Nesterov's \cite{nesterov_lectures_2018} method of estimating sequence which is introduced in his book will be covered in detail for this report. 
+
+        We only cover innovations in the theoretical aspect of Catalyst Acceleration. 
+        Detailed applications and specific examples will be out of the scope of this paper simply because there will be too many and requires a comprehensive understanding on a different collection of papers. 
 
     
 \section{Preliminaries}\label{sec:preliminaries}
@@ -364,7 +367,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}    
     \end{theorem}
     The theorem may sound exciting, but as pointed out in Lin 2015 \cite{lin_universal_2015} page 11  that the quantities $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable. 
-    If we use the inexact formulation from Guler, it would inevitably result in any algorithm whose definition contains the vector $\mathcal J_{\lambda_k} y_k$ exact evaluations of proximal point method. 
+    In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence which means it impossible to control how $\epsilon_k \rightarrow 0$. 
+    If we use the inexact formulation from Guler, it would inevitably result in any algorithm whose definition contains the vector $\mathcal J_{\lambda_k} y_k$ exact evaluations of proximal point method.
     
 
 
@@ -401,25 +405,32 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         The most exciting thing about this algorithm is the similarity it has compares to 
         \hyperref[def:acc-prox-grad-alg]{Definition \ref*{def:acc-prox-grad-alg}}. 
         The only difference here is the inclusion of an inexact proximal point step, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
+        Evaluating $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ is also possible because the function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ is strongly convex, hence its optimality gap can be bounded via trackable quantity $\partial \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1})$. 
 
+        Controlling the error sequence $\epsilon_k$ however is a whole new business. 
         Lin 2015 \cite{lin_universal_2015} commented on the second last paragraph on page 4, and here we quote:
         \par
         ``The choice of the sequence $(\epsilon_k)_{k \ge 0}$ is also subjected to discussion since the quantity $F(x_0) - F^*$ is unknown beforehand. Nevertheless, an upper bound may be used instead, which will only affects the corresponding constant in (7). Such an upper bounds can typically be obtained by computing a duality gap at $x_0$, or by using additional knowledge about the objective. For instance, when $F$ is non-negative, we may simply choose $\epsilon_k = (2/9)F(x_0)(1 - \rho)^k$". 
         
         This comment has upmost practical importance because it tells us how to bound the error $\epsilon_k$ to achieve accelerated convergence rate. 
-        However, it's still elusive for general in practical applications. 
+        In theory, $\epsilon_k$ decreases at a rate related to $F(x_0) - F^*$. 
+        It requires some knowledge about $F^*$ in prior. 
+        Therefore, controlling $\epsilon_k$ is still elusive in general in a practical context. 
         To see how the error is controlled for the inexact proximal point evaluation, we refer the readers to Lemma B.1 in Lin's 2015 paper \cite{lin_universal_2015}. 
     \end{remark}
     For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
-    One major innovations here is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
+    One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
+    The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
     
     
 
 \section{Non-convex Extension of Catalyst Acceleration}
-    The non-convex extension of Catalyst acceleration by Lin 2018\cite{lin_catalyst_2018} remains similar to the algorithm in the convex case in his 2015 paper \cite{lin_universal_2015}. 
+    The non-convex extension of Catalyst acceleration by Lin 2018 \cite{lin_catalyst_2018} remains similar to the algorithm in the convex case in his 2015 paper \cite{lin_universal_2015}. 
     The algorithm is now adapted to handle function with unknown weak convexity constant $\rho$ using the process called Auto Adapt subroutine. 
     There is no accelerated rate for the non-convex case since it's impossible, but the theoretical convergence to stationary point is claimed for the non-convex case. 
+
+
 
 
 \bibliographystyle{siam}
@@ -1228,7 +1239,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     
     
 \section{Proofs for accelerated PPM}
-    
+
 
 \section{Proofs for Catalyst Meta Acceleration}
 

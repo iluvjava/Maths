@@ -837,7 +837,7 @@ $$
     \alpha_k v_k + (1 - \alpha_k) x_k
     \\
     v_{k + 1} &= 
-    (1 + L\alpha_k) + (1 + 1/(L\alpha_k)) y_k - 1/(L\alpha_k)\mathcal G_L y_k. 
+    (1 + L\alpha_k)v_k + (1 + 1/(L\alpha_k)) y_k - 1/(L\alpha_k)\mathcal G_L y_k. 
 \end{aligned}
 $$
 

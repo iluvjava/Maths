@@ -6,3 +6,4 @@ subgradient
 Paquette
 FISTA
 Hongda
+optimality
