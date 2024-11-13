@@ -50,7 +50,7 @@ $$
     \text{find } \alpha_{k + 1} \in (0, 1): 
     \frac{1 - \alpha_{k + 1}}{\alpha_{k + 1}^2} = \frac{1}{\alpha_k^2};
     \\
-    & \text{choose } x_k \text{ s.t: } f(x_k) = \min(f(\bar x_k), f(\tilde x_k)).ß
+    & \text{choose } x_k \text{ s.t: } f(x_k) = \min(f(\bar x_k), f(\tilde x_k)).
 \end{aligned}
 $$
 
@@ -58,6 +58,10 @@ $$
 
 Parameter $\kappa$ here is chosen to make the function $\mathcal M(\cdot, y)$ strongly convex at all point. 
 This constant would be the lower bound on the weak convexity constant. 
+
+
+#### **Lemma | Bounds on the estimating sequence parameters alpha**
+
 
 ----
 ### **Convergence proof**

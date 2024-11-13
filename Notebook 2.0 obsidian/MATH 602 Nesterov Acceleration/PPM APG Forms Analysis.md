@@ -848,7 +848,7 @@ And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1
 > The Nesterov's 2.2.19 fits into the APG Abstract Generic form below: 
 > $$
 > \begin{aligned}
->     y_k &= (1 - \tau_k)^{-1}(v_k + \tau_k x_k),
+>     y_k &= (1 + \tau_k)^{-1}(v_k + \tau_k x_k),
 >     \\
 >     v_{k + 1} &= (1 + \xi_k)^{-1}(v_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k \mathcal G_L(y_k),
 >     \\
@@ -990,9 +990,7 @@ $$
     (L \alpha_{k + 1} - \mu)v_{k + 1} 
     &= 
     (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k), 
-    \\
-
-    \\
+    \\[0.5em]
     y_{k + 1} &= 
     (L - \mu)^{-1}((L\alpha_{k + 1} - \mu)v_{k + 1} + (L - L \alpha_{k + 1})x_{k + 1})
     \\

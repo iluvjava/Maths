@@ -31,7 +31,7 @@ $$
 
 Here, $F, \mathcal J, \mathcal G$ denotes objective function, resolvent on the objective function. Their subscript correlates to the constant $\lambda_k$ used in the resolvent operator. 
 Their approximation counter part has $\widetilde{(\cdot)}$ on on them. 
-To ease the notation, sometimes their subscript will become $k$ when it's clear that we are talking about a sequence of proximal point iteration with $(\lambda_k)_{k \ge 0}$.
+To ease the notation, sometimes their subscript will become $k$, so we have $\mathcal J_k, \mathcal G_k$ instead. The $k$ here is the $k$ th element in the PPM sequence $(\lambda_k)_{k \ge 0}$. 
 
 #### **Fundamental Prox Inequality**
 
@@ -67,7 +67,7 @@ $$
 \end{aligned}
 $$
 
-By a direct observations, $\phi_k$ is a sequence of simple quadratic functions. 
+Observe $\phi_k$ is a sequence of simple quadratic functions. 
 Therefore it has connonical representation: 
 
 $$
@@ -95,7 +95,7 @@ $$
         A_{k + 1} 
         &= (1 - \alpha_k)A_k
         \\
-        \nabla \phi(x)
+        \nabla \phi_{k + 1}(x)
         &= 
         (1 - \alpha_k)A_k(x - v_k) + \alpha_k \mathcal G_ky_k
     \end{aligned}
@@ -133,7 +133,7 @@ Let $v_{k + 1} = x$ then we obtained the desired inequality.
 
 
 #### **Claim | Full Canonical form of the Estimating Sequence**
-> The parameters from the Cannonical form given by the sequences $(\phi_k^*)_{k\ge 0}, (v_k)_{k\ge 0}, (A_k)_{k\ge 0}$ is a sequence that satisfies for all $k \ge0 $ the following conditions:
+> The parameters for the estimating sequence: $(\phi_k^*)_{k\ge 0}, (v_k)_{k\ge 0}, (A_k)_{k\ge 0}$ satisfies for all $k \ge0 $ the following conditions:
 > $$
 > \begin{aligned}
 >     A_{k + 1} &= (1 - \alpha_k)A_k, 
@@ -306,7 +306,7 @@ Substituting both equality we simplify the inequality into
 
 $$
 \begin{aligned}
-    \phi_k^* &\ge 
+    \phi_{k + 1}^* &\ge 
     F(\mathcal J_k y_k)
     + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
     \Vert y_k - \mathcal J_ky_k\Vert^2
@@ -410,7 +410,7 @@ By merging the terms, the 2 equality implifies the inequality in (1) into:
 
 $$
 \begin{aligned}
-    \phi_k^* 
+    \phi_{k + 1}^* 
     &\ge 
     F(\mathcal J_k y_k)
     + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
@@ -451,7 +451,7 @@ $$
 \end{aligned}
 $$
 
-Next, to inductively assert the inequality we consider the choice of $y_k$ and scalar values $\alpha_k, \lambda_k$ which set the cross produce term zero, and the coefficient of the norm term less than zero. 
+Next, to inductively assert the inequality $\phi_{k + 1}\ge F(\mathcal J_k y_k) = F(x_{k + 1})$ we consider the choice of $y_k$ and scalar values $\alpha_k, \lambda_k$ which set the cross produce term zero, and the coefficient of the norm term larger than zero. 
 This would produce the following inequality, equality: 
 $$
 \begin{aligned}
@@ -545,7 +545,7 @@ The quantity $\partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)$ is a trackable qu
 > If $x_{k +1}$ is an inexact evalautions under condition (A), then the estimating sequence admits the conditions that: 
 > $$
 > \begin{aligned}
->     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{\lambda_k} y_k\Vert^2
+>     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{k} y_k\Vert^2
 >     &= 
 >     \mathcal M^{\lambda_k}(x_{k + 1}, y_k) - \mathcal M^*_k
 >     \le \frac{\epsilon_k^2}{2\lambda_k}. 
@@ -554,49 +554,50 @@ The quantity $\partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)$ is a trackable qu
 
 **Proof**
 
-Denote $\mathcal M_k(x) = \mathcal M^{\lambda_k}(x; y_k)$ for short. 
-The proof is direct by considering the strong convexity of $\mathcal M^{\lambda_k}(\cdot, y_k)$ together with the subgradient inequality, which gives us: 
+Denote $\mathcal M_k(x) = \mathcal M_k(x; y_k)$ for short. 
+The proof is direct by considering the strong convexity of $\mathcal M_k(\cdot, y_k)$ together with the subgradient inequality. 
+Choose any $w_k \in \partial \mathcal M_k(\mathcal J_{k} y_k)$ it has
 $$
 \begin{aligned}
     \mathcal M_k(x_{k + 1}) - \mathcal M^*_k
     &= 
-    \mathcal M_k(x_{k + 1}) - \mathcal M_k(\mathcal J_{\lambda_k} y_k)
+    \mathcal M_k(x_{k + 1}) - \mathcal M_k(\mathcal J_{k} y_k)
     \\
     &\ge 
     \left(
         \left\langle 
-            \partial \mathcal M_k(\mathcal J_{\lambda_k} y_k), 
-            x_{k + 1} - \mathcal J_{\lambda_k} y_k 
+            w_k, 
+            x_{k + 1} - \mathcal J_{k} y_k 
         \right\rangle
         + 
-        \mathcal M_k(\mathcal J_{\lambda_k}y_k)
-        + \frac{1}{2\lambda_k}\Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert^2
+        \mathcal M_k(\mathcal J_{k}y_k)
+        + \frac{1}{2\lambda_k}\Vert x_{k + 1} - \mathcal J_{k}y_k\Vert^2
     \right)
     - 
     \mathcal M_k(\mathcal J_{\lambda_k}y_k) 
     \\
-    &= \frac{1}{2\lambda_k}\Vert x_{k +1} - \mathcal J_{\lambda_k}y_k\Vert^2. 
+    &= \frac{1}{2\lambda_k}\Vert x_{k +1} - \mathcal J_{k}y_k\Vert^2. 
 \end{aligned}
 $$
 
-Here we used the fact that $\mathbf 0 \in \partial M_k(\mathcal J_{\lambda_k}y_k)$. 
+We used $\mathbf 0 \in \partial M_k(\mathcal J_{\lambda_k}y_k)$ to get rid of the inner product. 
 Consider inexact evalatuion of $x_{k + 1}$ which results in $w_k \in \partial \mathcal M_k(x_{k + 1})$ with $\Vert w_k\Vert \le \epsilon_k/\lambda_k$. 
 By $\lambda_k^{-1}$ strong convexity of $\mathcal M_k$, we have 
 
 $$
 \begin{aligned}
-    \mathcal M_k(\mathcal J_{\lambda_k}y_k) - \mathcal M_k(x_{k + 1})
+    \mathcal M_k(\mathcal J_{k}y_k) - \mathcal M_k(x_{k + 1})
     &\ge 
-    \langle w_k, \mathcal J_{\lambda_k}y_k - x_{k + 1}\rangle
-    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    \langle w_k, \mathcal J_{k}y_k - x_{k + 1}\rangle
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
     \\
     &\ge 
-    - \Vert w_k\Vert\Vert \mathcal J_{\lambda_k}y_k - x_{k + 1}\Vert^2
-    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    - \Vert w_k\Vert\Vert \mathcal J_{k}y_k - x_{k + 1}\Vert^2
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
     \\
     &\ge 
-    - \frac{\epsilon_k}{\lambda_k}\Vert \mathcal J_{\lambda_k}y_k - x_{k + 1}\Vert^2
-    + \frac{1}{2\lambda_k}\Vert \mathcal J_{\lambda_k} y_k - x_{k + 1}\Vert^2
+    - \frac{\epsilon_k}{\lambda_k}\Vert \mathcal J_{k}y_k - x_{k + 1}\Vert^2
+    + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
     \\
     &\ge \frac{1}{\lambda_k}
     \min_{t \in \R} \left\lbrace
@@ -605,7 +606,7 @@ $$
 \end{aligned}
 $$
 
-The inequalty is equivalentto the upper bound of the error on the Moreau Envelope. 
+The upper bound is proved. 
 
 
 

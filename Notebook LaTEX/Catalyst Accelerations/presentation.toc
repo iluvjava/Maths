@@ -8,10 +8,11 @@
 \beamer@sectionintoc {3}{Lin 2015}{18}{0}{3}
 \beamer@subsectionintoc {3}{1}{The Catalyst Algorithm}{19}{0}{3}
 \beamer@subsectionintoc {3}{2}{The algorithm}{19}{0}{3}
-\beamer@subsectionintoc {3}{3}{Convergence and pratical importance}{21}{0}{3}
+\beamer@subsectionintoc {3}{3}{Convergence and practical importance}{21}{0}{3}
 \beamer@subsectionintoc {3}{4}{Key theoretical innovations}{22}{0}{3}
 \beamer@sectionintoc {4}{Paquette 2018}{23}{0}{4}
 \beamer@subsectionintoc {4}{1}{Major Contributions}{23}{0}{4}
 \beamer@subsectionintoc {4}{2}{The Basic 4WD Catalyst}{24}{0}{4}
 \beamer@subsectionintoc {4}{3}{Convergence claims}{25}{0}{4}
-\beamer@sectionintoc {5}{References}{27}{0}{5}
+\beamer@sectionintoc {5}{Morals of the story}{27}{0}{5}
+\beamer@sectionintoc {6}{References}{28}{0}{6}

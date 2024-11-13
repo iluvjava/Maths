@@ -36,6 +36,7 @@
 % ---------------------------------------------------------
 \newtheorem{remark}{Remark}
 \newtheorem{assumption}{Assumption}
+\usepackage{multicol}
 \input{presets/wang/custom_commands.tex}
 
 
@@ -48,28 +49,26 @@
 \end{frame}
 
 \begin{frame}{ToC}
-    \tableofcontents
+    \begin{multicols}{2}
+        \tableofcontents
+    \end{multicols}
 \end{frame}
 
 %     \subsection{Taxonomy of Proximal type of Methods}
 %         \begin{frame}{Frame Title}
-    
 %             \begin{block}{Formula Presented in Block}
 %                 \begin{align}
 %                     \min_{x} g(x) + h(x)
 %                 \end{align}    
 %             \end{block}
-            
 %             \begin{itemize}
 %                 \item [1.]Throughout this presentation, we assume the objective of a function $f$ is the sum of 2 functions.
 %                 \item [2.]We are interested in the paper: FISTA (Fast Iterative-Shrinkage Algorithm) by Beck and Teboulle \cite{paper:FISTA}. 
 %                 \pause 
 %                 \item [1.] When $h = \delta_Q$ with $Q$ closed and convex with $Q\subseteq \text{ri}\circ \text{dom}(g)$, we use projected subgradient. 
 %                 \item [2.] When $g$ is \textbf{\emph{strongly smooth}} and $h$ is \textbf{closed convex proper} whose proximal oracle is easy to compute, we consider the use of FISTA. 
-%             \end{itemize}
-                
-%         \end{frame}
-        
+%             \end{itemize}           
+%         \end{frame}    
 %     \subsection{The Proximal Operator}
 %         \begin{frame}{Frame Title}
 %             \begin{definition}[Definition of Something]
@@ -85,7 +84,6 @@
 %                 When $f$ is convex, closed, and proper, 
 %             \end{remark}
 %         \end{frame}
-
 %         \begin{frame}{Prox is the Resolvant of Subgradient}
 %             \begin{lemma}[The Lemma]\label{lemma:prox_alternative_form}
 %                 When the function $f$ is convex closed and proper, the $\text{prox}_{\alpha, f}$ can be viewed as the following operator $(I + \alpha \partial f)^{-1}$. 
@@ -113,9 +111,7 @@
 %                 \end{align*}
 %                 }
 %             \end{proof}
-                
 %         \end{frame}
-        
         
 %     \subsection{Strong Smoothness}
 %         \begin{frame}{Equivalence of Strong Smoothness and Lipschitz Gradient}
@@ -130,7 +126,6 @@
 %             \begin{proof}
 %                 Using line integral, we can prove Lipschitz gradient implies strong smoothness without convexity. The converse requires convexity and applying generalized Cauchy Inequality to (iv) in Theorem 5.8 for Beck's textbook \cite{book:first_order_opt}. 
 %             \end{proof}
-            
 %         \end{frame}
 %     \subsection{A Major Assumption}    
 %         \begin{frame}{A Major Assumption}
@@ -188,7 +183,7 @@
             \end{figure}
             \begin{itemize}
                 \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'' 2015 JMLR \cite{lin_universal_2015}.
-                \item Paquette et al. ``Catalyst for gradient-based nonconvex optimization'' 2018 JMLR \cite{paquette_catalyst_2018}. 
+                \item Paquette et al. ``Catalyst for gradient-based non-convex optimization'' 2018 JMLR \cite{paquette_catalyst_2018}. 
             \end{itemize}
         \end{frame}
         \begin{frame}{Objectives of the Talk}
@@ -203,24 +198,24 @@
             \end{block}
             \pause
             \begin{block}{A note on the scope}
-                Specific applications and algorithms are outside of the scope because variance reduced stochastic method is itself a big topic.     
+                Specific applications and algorithms are outside the scope because variance reduced stochastic method is itself a big topic.     
             \end{block}
         \end{frame}
     \subsection{Nesterov's Estimating Sequence}
         \begin{frame}{Nesterov's Estimating Sequence}            
             \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
                 Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
-                We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions that: 
+                We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions: 
                 \begin{enumerate}
-                    \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*$. 
-                    \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ such that for all $x \in \RR^n$, $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+                    \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k^*(x)$. 
+                    \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)\; \forall k \ge0 $ such that for all $x \in \RR^n$ it has $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
                 \end{enumerate}
             \end{definition}
         \end{frame}
         \begin{frame}{Nesterov's Estimating Sequence and Convergence}
             \begin{block}{Observations}
                 {\small
-                If we dsefine $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
+                If we define $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
                 Then observe that $\forall k \ge 0$:  
                 \begin{align*}
                     \phi_{k + 1}(x) - \phi_k(x) 
@@ -252,6 +247,7 @@
         \end{frame}
     \subsection{Example: Accelerated proximal gradient}
         \begin{frame}{Example: accelerated proximal gradient}
+            The following algorithm is proved in the report which it's similar to Nesterov's 2.2.20 in his book \cite{nesterov_lectures_2018}. 
             \begin{block}{Quick Notations}
                 Assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
                 Define 
@@ -269,10 +265,8 @@
                     \mathcal G_{L^{-1}}(y)
                     &:= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right)y. 
                 \end{align*}
-
             \end{block}
         \end{frame}
-        
         \begin{frame}{Example: accelerated proximal gradient}
             \begin{definition}[Accelerated proximal gradient estimating sequence]
                 \label{def:nes-est-seq-pg}
@@ -306,11 +300,10 @@
                     One of the possible base case can be $x_0 = y_0$ and any $\alpha_0 \in (0, 1)$. 
                 }
             \end{definition}
-                
         \end{frame}
 
 \section{Guler 1993}
-    \begin{frame}{Accelerated proximal point method}
+    \begin{frame}{Guler 1993: Accelerated proximal point method}
         Guler in 1993 discovered the following: 
         \begin{enumerate}
             \item The method of proximal point can be accelerated via Nesterov's estimating sequence. 
@@ -349,7 +342,7 @@
                         ).    
                     \end{align*}
                     $(\lambda_k)_{k \ge 0}$, $x_k = \mathcal J_\lambda y_k$. 
-                    auxiliary vectors $(y_k, v_k)$, and $(\alpha_k, A_k)_{k\ge 0}$ satisfies $k\ge0$:
+                    Auxiliary vectors $(y_k, v_k)$, and $(\alpha_k, A_k)_{k\ge 0}$ satisfies $k\ge0$:
                     \begin{align*}
                         \alpha_k &= \frac{1}{2}\left(
                             \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
@@ -395,9 +388,9 @@
                 \Vert x_{k + 1} - \mathcal J_{k}y_k\Vert 
                 &\le \epsilon_k. 
             \end{align*}
-            Putting things into the context of accelerated PPM, the thereoem follows is pivotal: 
+            Putting things into the context of accelerated PPM, the theorem follows is pivotal: 
             \begin{theorem}[\small Guler's inexact proximal point error bound (Lemma 3.1)]
-                Define the minimum of the Moreau Enevelope: $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+                Define the minimum of the Moreau Envelope: $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
                 If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
                 \begin{align*}
                     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_k y_k\Vert^2
@@ -416,7 +409,7 @@
             \end{theorem}
             If $\sigma \ge 3/2$, the method converges at a rate of $\mathcal O(1/k^2)$. 
             \pause 
-            It looks exciting but it's not becaues: 
+            It looks exciting, but it's not exciting for practical purposes because: 
             \begin{enumerate}
                 \item Determining $(\epsilon_k)_{k\ge 0}$ requires knowledge on $\phi_k^*$. 
                 \item $\phi_k^*$ is expressed with intractable quantity: $F(\mathcal J_k y_k)$. 
@@ -429,8 +422,8 @@
         Hongzhou Lin 2015 \cite{lin_universal_2015} did the following: 
         \begin{enumerate}
             \item Improved the proof from Guler 1993 to include strongly convex objectives. 
-            \item Showed that $(\epsilon_k)_{k\ge 0}$ can be determined algorithimically and  an accelerated rate can be achieved. 
-            \item Invented his own accelerated varianced reduced incremental method called: ``Accelerated MISO-Prox" to demonstrate the Catalyst Framework. 
+            \item Showed that $(\epsilon_k)_{k\ge 0}$ can be determined algorithmically and  an accelerated rate can be achieved. 
+            \item Invented his own accelerated variance reduced incremental method called: ``Accelerated MISO-Prox" to demonstrate the Catalyst Framework. 
         \end{enumerate}
         \begin{block}{Quick notations}
             Assume $F$ is a $\mu \ge 0$ strongly convex function. 
@@ -462,25 +455,24 @@
                 \end{definition}
                 \pause
                 \begin{enumerate}
-                    \item Observe how similar it is compare to accelerated proximal gradient!!!
+                    \item It's very similar compared to accelerated proximal gradient!!!
                     \item Determining $(\epsilon_k)_{k \ge 1}$ depends on the specific context of the algorithm. 
                     \item Strong convexity of $\mathcal M_k(\cdot; y_{k - 1})$ to approximate $x_k$ up to $\epsilon_k$. 
                 \end{enumerate}
             \end{frame}
-        \subsection{Convergence and pratical importance}
+        \subsection{Convergence and practical importance}
             \begin{frame}{Practical importance}
                 A major result on page 6 of Lin's 2015 \cite{lin_universal_2015}. 
                 \begin{block}{Accelerated convergence}
                     Assume strong convexity for $F$. 
-                    Using full gradient, or randomized coordinate descent to evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ up to $\epsilon_k$, then it achieves a overall complexity 
+                    Using full gradient, or randomized coordinate descent to evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ up to $\epsilon_k$, then the overall complexity is:
                     $$
                         \widetilde{\mathcal O}\left(n \sqrt{L/\mu} \log(1/\epsilon)\right). 
                     $$
                     It's the same as accelerated gradient method up to a log term. 
-
-                    In abscent of strong convexity, acceleration for Variance reduced stochastic method such as: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG is $\widetilde {\mathcal O}(n L/\sqrt{\epsilon})$, strictly faster $\mathcal O(nL/\epsilon)$ without acceleration. 
+                    In absent of strong convexity, acceleration for Variance reduced stochastic method such as: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG is $\widetilde {\mathcal O}(n L/\sqrt{\epsilon})$, strictly faster $\mathcal O(nL/\epsilon)$ without acceleration. 
                 \end{block}
-                Note: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG are examples of varianced reduced incremental methods. 
+                Note: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG are examples of variance reduced incremental methods. 
             \end{frame}
         \subsection{Key theoretical innovations}
             \begin{frame}{Inexact proximal inequality in Lin 2015}
@@ -488,18 +480,18 @@
                 \begin{lemma}{Inexact proximal inequality}
                     Let $F$ be a $\mu\ge 0$ strongly convex.
                     Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
-                    Assume the approximation error is haracterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+                    Assume the approximation error is characterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
                     Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
                         \begin{align*}   
-                                F(x) &\ge 
-                                \textcolor{red}{
-                                    F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
-                                    + \frac{\mu}{2}\Vert x - x_k\Vert^2 
-                                }
-                                \\
-                                & \quad 
-                                + (\kappa + \mu)\langle  x_k - x_k^*, x - x_k\rangle 
-                                - \epsilon_k.
+                            F(x) &\ge 
+                            \textcolor{red}{
+                                F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
+                                + \frac{\mu}{2}\Vert x - x_k\Vert^2 
+                            }
+                            \\
+                            & \quad 
+                            + (\kappa + \mu)\langle  x_k - x_k^*, x - x_k\rangle 
+                            - \epsilon_k.
                         \end{align*}
                 \end{lemma}
                 \begin{enumerate}
@@ -591,6 +583,11 @@
             \pause
             \textbf{Let's prove this.} 
         \end{frame}
+
+\section{Morals of the story}
+    \begin{frame}{The morals of the story}
+        
+    \end{frame}
     
 \section{References}
     \begin{frame}{References}

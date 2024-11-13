@@ -31,7 +31,7 @@
 \begin{abstract} 
     \noindent
     Nesterov's accelerated gradient first appeared back in the 1983 has sparked numerous theoretical and practical advancements in Mathematics programming literatures. 
-    The idea behind Nesterov's acceleration is universal in the convex case it has concrete extension in the non-convex case. 
+    The idea behind Nesterov's acceleration is universal for convex objective and it has concrete extension in the non-convex case. 
     In this paper we survey specifically the Catalyst Acceleration that incorporated ideas from the Accelerated Proximal Point Method proposed by Guler back in 1993. 
     The paper reviews Nesterov's classical analysis of accelerated gradient in the convex case.
     The paper will describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
@@ -101,10 +101,10 @@
     \subsection{Method of Nesterov's Estimating Sequence}
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
             Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
-            We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions that: 
+            We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions: 
             \begin{enumerate}
-                \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*$. 
-                \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ such that for all $x \in \RR^n$, $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+                \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k^*(x)$. 
+                \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)\; \forall k \ge0 $ such that for all $x \in \RR^n$ it has $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
             \end{enumerate}
         \end{definition}
         \begin{observation} 
@@ -339,9 +339,10 @@
     \end{align*}
     Condition A' also characterizes the property of $(\epsilon_k)_{k\ge 0}$ so inexact PPM converges. 
     Guler strengthens it in his context and proved the following: 
-    \begin{theorem}[Guler's inexact proximal point error bound]
-        Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
-        If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
+    \begin{theorem}[Guler's inexact proximal point error bound]\label{thm:guler-inexact-ppm-bound}
+        \;\\
+        Define Moreau Envelope at $y_k$ as $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+        If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions: 
         \begin{align*}
             \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_k y_k\Vert^2
             &= 
@@ -353,8 +354,9 @@
     \begin{theorem}[Guler's accelerated inexact PPM convergence results]
         If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
         \begin{align*}
-            f(x_k) - f(x) \le \mathcal O(1/k^2) + \mathcal (1 / k^{2\sigma - 1}). 
+            f(x_k) - f(x) \le \mathcal O(1/k^2) + \mathcal O (1 / k^{2\sigma - 1})\rightarrow 0. 
         \end{align*}    
+        When $\sigma \ge 3/2$ then the method converges at a rate of $\mathcal O(1/k^2)$. 
     \end{theorem}
     The theorem looks exciting, but Lin 2015 \cite{lin_universal_2015} page 11 pointed out that $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable quantities. 
     In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence making it unclear how to control $\epsilon_k \rightarrow 0$. 
@@ -362,11 +364,11 @@
 
 
 \section{Lin 2015}
-    This section introduced the setup of Nesterov's estimating sequence in Lin 2015 \cite{lin_universal_2015}. 
-    Right at the beginning we warn the readers about the following: 
+    The section introduces the Nesterov's estimating sequence in Lin 2015 \cite{lin_universal_2015}. 
+    We warn the readers about the followings: 
     \begin{enumerate}
-        \item The proofs in HongZhou Lin's original paper of Universal Catalyst is depressingly long and complicated. This is a result of using the constructive approach of Nesterov's estimating sequence. 
-        \item Controlling the errors of inexact proximal point evaluations is context specific. Lin hinted at ways to track the errors from inexact proximal point evaluations such as using duality and non-negativity assumption of the objective. He illustrated the use of the meta acceleration on their own method called: ``Proximal MISO", in general there is not a universal solution. 
+        \item The proofs in HongZhou Lin's original paper of Universal Catalyst is depressingly long and complicated. It is a result of using the constructive approach of Nesterov's estimating sequence. 
+        \item Controlling the errors of inexact proximal point evaluations is context specific. Lin hinted at ways to track the errors such as using duality and non-negativity assumption of the objective. He illustrated the use of the meta acceleration on their own method called: ``Accelerated MISO-Prox", in general there is not a universal solution. 
         \item We will provide proofs to clarify some of their proofs and compare with existing proofs and drawing references in the literatures in the appendix. 
     \end{enumerate}
     Let's assume $F$ is a $\mu \ge 0$ strongly convex function. 
@@ -391,7 +393,7 @@
         \end{align*}
     \end{definition}
     \begin{remark}
-        the algorithm very similarity to
+        The algorithm is similarity to
         \hyperref[def:nes-est-seq-pg]{Definition \ref*{def:nes-est-seq-pg}}. 
         In contrast, it has an inexact proximal point step controlled by $\epsilon_k$, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
         Evaluating $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ is also possible because the function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ is strongly convex, hence its optimality gap can be bounded via trackable quantity $\partial \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1})$. 
@@ -511,6 +513,7 @@
 
 \bibliographystyle{siam}
 \bibliography{references/refs}
+\newpage
 
 \appendix
 \section{Postponed proofs}
@@ -1210,14 +1213,14 @@
             v_{k + 1} &= 
             \gamma_{k + 1}^{-1}
             ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
-            - \alpha_k\gamma_{k + 1}^{-1}\mathcal L y_k
+            - \alpha_k\gamma_{k + 1}^{-1}g_k
             \\
             &= 
             ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
             \left(
                 (1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k
             \right)
-            - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
+            - \alpha_k\gamma_{k + 1}^{-1} g_k
             \\
             &= 
             \left(
@@ -1227,7 +1230,7 @@
                 v_k + 
                 \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
             \right)
-            - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
+            - \alpha_k\gamma_{k + 1}^{-1} g_k
             \\
             &= 
             \left(
@@ -1237,7 +1240,7 @@
                 v_k + 
                 \frac{\alpha_k\mu}{(1 - \alpha_k)L\alpha_{k - 1}^2} y_k
             \right)
-            - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
+            - \frac{1}{L\alpha_{k}} g_k
         \end{align*}
         We can eliminate the $\gamma_k$ which defines the $\alpha_k$ by considering 
         \begin{align*}
@@ -1308,15 +1311,660 @@
         Initially we choose $x_0 = y_0, \alpha_0 \in (0, 1)$. 
     \end{theorem}
     \begin{proof}
-        
+        To show that, we write down the intermediate form with new symbols to make it easier to read: 
+        \begin{align*}
+            y_k &= (1 + \tau_k)^{-1}(v_k + \tau_k x_k),
+            \\
+            v_{k + 1} &= (1 + \xi_k)^{-1}(v_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k g_k,
+            \\
+            x_{k + 1} &= y_k - L^{-1} g_k. 
+        \end{align*} 
+        Where for all $k \ge0$: 
+        \begin{align*}
+            \tau_k &= \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}, 
+            \xi_k = \frac{\mu}{L \alpha_k - \mu},
+            \\
+            (1 + \xi_k)^{-1}\delta_k &= \frac{1}{L\alpha_k}
+            \iff L \delta_k = \frac{1 + \xi_k}{\alpha_k}, 
+            \\
+            L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
+        \end{align*}
+        Next, we show that if $L\delta_k = 1 + \xi_k + \tau_k$ then $v_{k + 1} - x_{k + 1} = (1 + \xi_t)^{-1}\tau_t(x_{k + 1} - x_k)$. 
+        \begin{align*}
+            v_{k + 1} &= (1 + \xi_k)^{-1}(v_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k g_k
+            \\
+            &= 
+            (1 + \xi_k)^{-1}((1 + \tau_k)y_k - \tau_k x_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k g_k
+            \\
+            &= 
+            (1 + \xi_k)^{-1}((1 + \tau_k + \xi_k)y_k - \tau_k x_k) - (1 + \xi_k)^{-1}\delta_k g_k
+            \\
+            \iff 
+            v_{k + 1} - x_{k + 1} &= 
+            (1 + \xi_k)^{-1}((1 + \tau_k + \xi_k)y_k - \tau_k x_k - \delta_k g_k) - y_k + L^{-1}g_k
+            \\
+            &= (1 + \xi_k)^{-1}(\tau_k y_k - \tau_k x_k - \delta_k g_k) + L^{-1}g_k
+            \\
+            &= (1 + \xi_k)^{-1}(\tau_k y_k - \tau_k x_k + (L^{-1}(1 + \xi_k) - \delta_k )g_k)
+            \\
+            &= (1 + \xi_k)^{-1}\tau_k(y_k - x_k + \tau_k^{-1}(L^{-1} + L^{-1}\xi_k - \delta_k )g_k)
+        \end{align*}
+        Next, consider $x_{k + 1} - x_{k}$: 
+        \begin{align*}
+            x_{k + 1} - x_k &= y_k - x_k - L^{-1}g_k. 
+        \end{align*}
+        Observe that, if we substitute $\delta_k = L^{-1}(1 + \xi_k) + L^{-1}\tau_k$, then 
+        \begin{align*}
+            v_{k + 1} - x_{k + 1} &= (1 + \xi_k)^{-1}\tau_k(y_k - x_k + \tau_k^{-1}(-L^{-1}\tau_k)g_k) 
+            \\
+            &= 
+            (1 + \xi_k)^{-1}\tau_k(y_k - x_k - L^{-1}g_k)
+            \\
+            &= (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k). 
+        \end{align*}
+        Next, it remains to verify that $L\delta_k = 1 + \xi_k + \tau_k$ is true. 
+        This is true because by definitions the RHS: 
+        \begin{align*}
+            1 + \tau_k + \xi_k &= 
+            1 + \frac{L(1 - \alpha_k)}{L \alpha_k - \mu} 
+            + \frac{\mu}{L \alpha_k - \mu}
+            \\
+            &= 
+            1 + \frac{L - L \alpha_k + \mu}{L\alpha_k - \mu}
+            \\
+            &= 
+            \frac{L - L \alpha_k + \mu + L \alpha_k - \mu}{L\alpha_k - \mu}
+            \\
+            &= \frac{L}{L\alpha_k - \mu}. 
+        \end{align*}
+        And the LHS: 
+        \begin{align*}
+            \frac{1 + \xi_k}{\alpha_k}
+            &= 
+            \frac{1 + \frac{\mu}{L\alpha_k - \mu}}{\alpha_k}
+            = 
+            \frac{\frac{L\alpha_k - \mu + \mu}{L \alpha_k - \mu}}{\alpha_k}
+            = 
+            \frac{L}{L\alpha_k - \mu}. 
+        \end{align*}
+        They are matched and therefore we substitute $\xi_k, \tau_k$ into $v_{k + 1} = x_{k + 1} + (1 + \xi_k)^{-1}\gamma_k(x_{k + 1} - x_k)$: 
+        \begin{align*}
+            v_{k + 1} &= 
+            x_{k + 1} + \left(
+                1 + \frac{\mu}{L\alpha_k - \mu}
+            \right)^{-1}\left(
+                \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+            \right)(x_{k + 1} - x_k)
+            \\
+            &= 
+            x_{k + 1} + \left(
+                \frac{L\alpha_k}{L\alpha_k - \mu}
+            \right)^{-1}\left(
+                \frac{L(1 - \alpha_k)}{L\alpha_k - \mu}
+            \right)(x_{k + 1} - x_k)
+            \\
+            &= 
+            x_{k + 1} + \left(
+                \frac{L\alpha_k - \mu}{L\alpha_k}
+            \right)\left(
+                \frac{L - L\alpha_k}{L\alpha_k - \mu}
+            \right)(x_{k + 1} - x_k)
+            \\
+            &= x_{k + 1} + \left(
+                \alpha_k^{-1} - 1
+            \right)(x_{k + 1} - x_k).
+        \end{align*}
+        With $v_{k +1}$ rid of $v_k$, the next step is to make $y_{k + 1}$ only using $x_k, x_{k + 1}$. 
+        By definition $y_{k + 1}$ is produced by: 
+        \begin{align*}
+            y_k &= 
+            \left(
+                1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+            \right)^{-1}
+            \left(
+                v_k + 
+                \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+            \right)
+            \\
+            &= 
+            \left(
+            \frac{L - \mu}{L\alpha_k - \mu} 
+            \right)^{-1}
+            \left(
+                v_k + 
+                \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+            \right)
+            \\
+            &= 
+            \frac{L\alpha_k - \mu}{L - \mu} v_k
+            + 
+            \frac{L - L \alpha_k}{L - \mu} x_k. 
+        \end{align*}
+        Increment $k$ into $k + 1$ then 
+        {\footnotesize
+        \begin{align*}
+            v_{k + 1} &= 
+            x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+            \\
+            (L \alpha_{k + 1} - \mu)v_{k + 1} 
+            &= 
+            (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k), 
+            \\[0.5em]
+            y_{k + 1} &= 
+            (L - \mu)^{-1}((L\alpha_{k + 1} - \mu)v_{k + 1} + (L - L \alpha_{k + 1})x_{k + 1})
+            \\
+            &= (L - \mu)^{-1}
+            \left(
+                (L\alpha_{k + 1} - \mu)x_{k + 1} + 
+                (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+                + (L - L \alpha_{k + 1})x_{k + 1}
+            \right)
+            \\
+            &= 
+            (L - \mu)^{-1}
+            \left(
+                (L - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+            \right)
+            \\
+            &= x_{k + 1} + \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}(x_{k + 1} - x_k). 
+        \end{align*}
+        }
+        We are closer than ever to proving it. 
+        This representation contains $L, \mu$ on the momentum coefficients, to get rid of that consider: 
+        \begin{align*}
+            \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}
+            &= \frac{(L\alpha_{k + 1} - \mu)\alpha_k(1 - \alpha_k)}{\alpha_k^2(L - \mu)}
+            \\
+            &= 
+            \alpha_k(1 - \alpha_k)
+            \left(
+                \frac{\alpha_k^2(L - \mu)}{L\alpha_{k + 1} - \mu}
+            \right)^{-1}
+            \\
+            &= \alpha_k(1 - \alpha_k)
+            \left(
+                \frac{L\alpha_k^2 - \mu\alpha_k^2}{L\alpha_{k + 1} - \mu}
+            \right)^{-1}
+            \\
+            &= 
+            \alpha_k(1 - \alpha_k)
+            \left(
+                \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})}
+                {L\alpha_{k + 1} - \mu}
+            \right)^{-1}
+            \\
+            &= \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}. 
+        \end{align*}
+        Here, on the third to the 4th equality, we used $L\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})L\alpha_k^2 + \mu\alpha_{k + 1}$ in this way: 
+        \begin{align*}
+            (L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})
+            &= 
+            L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 + \mu\alpha_{k + 1}
+            \\
+            &= 
+            L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
+                (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
+            ) - \mu\alpha_{k + 1}
+            \\
+            &= 
+            L\alpha_k^2 - \mu \alpha_k^2. 
+        \end{align*}
     \end{proof}
+    \begin{remark}
+        This proof is very long because we took a detour to an intermediate form without the $\gamma_k$ that the writer personally prefer more than a direct path. 
+    \end{remark}
         
     
 \section{Proofs for accelerated PPM}
+    \subsection{Exact accelerated PPM}
+        This setion contains all the proofs for the exact accelerated PPM method. 
+        It follows the same notation from the accelerated PPM section that $F$ is a convex function and the notations are $\mathcal J_k, \mathcal G_k$ for the proximal point evaluation and gradient mapping. 
+        Recall the definition of the estimating sequence is: 
+        \begin{align*}
+            \phi_0 &:= f(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
+            \\
+            \phi_{k + 1}(x) &:= 
+            (1 - \alpha_k)\phi_k(x)
+            + 
+            \alpha_k(F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x - \mathcal J_k y_k\rangle). 
+        \end{align*}
+        Observe $\phi_k$ is a sequence of simple quadratic functions. 
+        We define the canonical representation to be: 
+        \begin{align*}
+            (\forall k \ge 0) \quad 
+            \phi_k(x) &= \phi_k^* + \frac{A_k}{2} \Vert x - v_k\Vert^2. 
+        \end{align*}
+        Subsituting back the cannonical form, we obtained a recursive definition of the Hessian and gradient of the estimating sequence: 
 
+        \begin{align*}
+            &
+            \phi_{k+ 1}^* + \frac{A_{k + 1}}{2}\Vert x - v_{k + 1}\Vert^2
+            = 
+            (1 - \alpha_k)
+            \left(\phi_k^* + \frac{A_k}{2}\Vert x - v_k\Vert^2\right)
+            \\ & \hspace{12em}
+                + 
+                \alpha_k(F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x - \mathcal J_k y_k\rangle)
+            \\
+            \implies 
+            &
+            \left\lbrace
+            \begin{aligned}
+                A_{k + 1} 
+                &= (1 - \alpha_k)A_k, 
+                \\
+                \nabla \phi(x)
+                &= 
+                (1 - \alpha_k)A_k(x - v_k) + \alpha_k \mathcal G_ky_k. 
+            \end{aligned}
+            \right.
+        \end{align*}
+        In the canonical form, $v_{k + 1}$ is the minimizer of $\phi_{k + 1}$, it can be solved for by setting the gradient $\phi_{k + 1}(x)= \mathbf 0$ so for all $k\ge 0$: 
+        \begin{align*}
+            \mathbf 0 &= (1 - \alpha_k)A_k(v_{k + 1} - v_k) + \alpha_k \mathcal G_k y_k
+            \\
+            v_{k + 1} - v_k &= 
+            \frac{\alpha_k}{\lambda_k(1 - \alpha_k)A_k}
+            \left(
+                y_k - \mathcal J_k y_k
+            \right)
+            \\
+            &= \frac{\alpha_k}{\lambda_kA_{k + 1}}
+            \left(
+                y_k - \mathcal J_k y_k
+            \right). 
+        \end{align*}
+        \begin{theorem}[Estimating sequence for accelerated PPM]\label{app:thm:est-seq-acc-ppm}
+            The parameters for the estimating sequence: $(\phi_k^*)_{k\ge 0}, (v_k)_{k\ge 0}, (A_k)_{k\ge 0}$ satisfies for all $k \ge0 $ the following conditions:
+            \begin{align*}
+                A_{k + 1} &= (1 - \alpha_k)A_k, 
+                \\
+                v_{k + 1} - v_k
+                &= 
+                - \frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k), 
+                \\
+                \phi_{k + 1}^*
+                &\ge 
+                F(\mathcal J_ky_k) + 
+                \frac{1}{2\lambda_k}\left(
+                    2 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+                \right)
+                \Vert y_k - \mathcal J_k y_k\Vert^2
+                \\
+                    & \quad 
+                    + 
+                    \lambda_k^{-1}
+                    \langle 
+                        y_k - \mathcal J_k y_k, (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+                    \rangle.
+            \end{align*}
+            Additionally, the sequence $\alpha_k$ has $\forall k \ge0$: 
+            \begin{align*}
+                \alpha_k
+                &= 
+                \frac{1}{2}\left(
+                    \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
+                    - A_k\lambda_k
+                \right). 
+            \end{align*}
+        \end{theorem}
+        \begin{proof}   
+            Using induction, we assume the inductive hypothesis: $\phi_k^* \ge f(x_k)$ for the sequence $(x_i)_{i \ge 0}$ up to and including $i = k$.
+            Proceed with the inductive hypothesis we have 
+            \begin{align*}
+                \phi_k^* 
+                &\ge F(x_k)
+                \ge F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x_k - \mathcal J_k y_k\rangle. 
+            \end{align*}
+            We used the proximal inequality of $F$. 
+            Inductively using the definition of the estimating sequence and substitute the canonical form we will have 
+            \begin{align*}
+                \phi_{k + 1}^*
+                &= \phi_{k + 1}(v_{k + 1})
+                \\
+                &= 
+                (1 - \alpha_k) \phi_k(v_{k + 1})
+                + \alpha_kF(\mathcal J_k y_k)
+                + \alpha_k\lambda_k^{-1}\langle 
+                    y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+                \rangle
+                \\
+                &= 
+                \left(
+                    1 - \alpha_k
+                \right)\left(
+                    \phi_k^* + \frac{A_k}{2}\Vert v_{k + 1} - v_k\Vert^2
+                \right)
+                + 
+                \alpha_k F(\mathcal J_k y_k) 
+                + 
+                \alpha_k\lambda_k^{-1}\langle 
+                    y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+                \rangle
+                \\
+                & \textcolor{gray}{
+                    A_{k + 1} = (1 - \alpha_k)A_k
+                }
+                \\
+                &=
+                (1 - \alpha_k)\phi_k^*
+                + 
+                \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+                + \alpha_k F(\mathcal J_k y_k)
+                + \alpha_k\lambda_k^{-1}\langle 
+                    y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+                \rangle
+            \end{align*}
+            Next, we substitute the inequality by the inductive hypothesis which gives: 
+            {\small
+            \begin{align*}
+                \phi_{k + 1}^*
+                &\ge 
+                (1 - \alpha_k)
+                \left(
+                    F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x_k - \mathcal J_k y_k\rangle
+                \right)
+                \\
+                    &\quad 
+                    + 
+                    \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+                    + \alpha_k F(\mathcal J_k y_k)
+                    + 
+                    \alpha_k\lambda_k^{-1}\langle 
+                        y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
+                    \rangle
+                \\
+                &= 
+                F(\mathcal J_k y_k) + \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+                + 
+                \lambda^{-1}_k
+                \left\langle 
+                    y_k - \mathcal J_k y_k, 
+                    (1 - \alpha_k)(x_k - \mathcal J_k y_k)
+                    + 
+                    \alpha_k(v_{k + 1} - \mathcal J_k y_k)
+                \right\rangle
+                \\
+                &= 
+                F(\mathcal J_k y_k) + \frac{A_{k + 1}}{2}\Vert v_{k + 1} - v_k\Vert^2
+                + 
+                \lambda^{-1}_k
+                \left\langle 
+                    y_k - \mathcal J_k y_k, 
+                    (1 - \alpha_k)x_k + \alpha_k v_{k + 1} -  \mathcal J_k y_k
+                \right\rangle. 
+            \end{align*}
+            }
+            This requires further simplifications. 
+            Rearranging the elements in the inner product we have: 
+            \begin{align*}
+                (1 - \alpha_k)x_k + \alpha_k v_{k + 1} - \mathcal J_k y_k
+                &= 
+                ((1 - \alpha_k)x_k + \alpha_k v_k - y_k)
+                + \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k). 
+            \end{align*}
+            We also use the equality: 
+            \begin{align*}
+                v_{k + 1} - v_k &= 
+                -\frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+                \\
+                \implies
+                \Vert v_{k + 1} - v_k\Vert^2 
+                &= 
+                \left\Vert
+                    - \frac{\alpha_k}{A_{k + 1}\lambda_k}
+                    \left(
+                        y_k - \mathcal J_k y_k
+                    \right)
+                \right\Vert^2
+                \\
+                \Vert v_{k + 1} - v_k\Vert^2 
+                &= 
+                \left(
+                    \frac{\alpha_k}{A_{k + 1}\lambda_k}
+                \right)^2
+                \left\Vert
+                    y_k - \mathcal J_k y_k
+                \right\Vert^2
+                \\
+                \frac{A_{k + 1}}{2}
+                \Vert v_{k + 1} - v_k\Vert^2 
+                &= 
+                \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+                \left\Vert
+                    y_k - \mathcal J_k y_k
+                \right\Vert^2. 
+            \end{align*}
+            Substituting both equality we simplify the inequality into 
+            \begin{align*}
+                \phi_{k + 1}^* &\ge 
+                F(\mathcal J_k y_k)
+                + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+                \Vert y_k - \mathcal J_ky_k\Vert^2
+                \\
+                    & \quad 
+                    + 
+                    \lambda_k^{-1}
+                    \left\langle 
+                        y_k - \mathcal J_k y_k, 
+                        (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+                    + \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+                    \right\rangle
+                \\
+                &= 
+                F(\mathcal J_k y_k)
+                + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+                \Vert y_k - \mathcal J_ky_k\Vert^2
+                \\
+                    & \quad 
+                    + 
+                    \lambda_k^{-1}
+                    \left\langle 
+                        y_k - \mathcal J_k y_k, 
+                        (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+                    \right\rangle
+                \\
+                    &\quad 
+                    + 
+                    \lambda_k^{-1}
+                    \langle
+                        y_k - \mathcal J_k y_k,
+                        \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+                    \rangle
+                \tag{1}
+            \end{align*}
+            Simplifying the second cross term on the RHS of (1): 
+            \begin{align*}
+                & \lambda_k^{-1}
+                    \langle
+                        y_k - \mathcal J_k y_k,
+                        \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+                    \rangle
+                \\
+                &= 
+                \lambda_k^{-1}
+                    \left\langle
+                        y_k - \mathcal J_k y_k,
+                        -\frac{\alpha_k^2}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+                        + 
+                        (y_k - \mathcal J_k y_k)
+                    \right\rangle
+                \\
+                &= 
+                \lambda_k^{-1}
+                    \left\langle
+                        y_k - \mathcal J_k y_k,
+                        -\frac{\alpha_k^2}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+                        + 
+                        (y_k - \mathcal J_k y_k)
+                    \right\rangle
+                \\
+                &=
+                \lambda_k^{-1} 
+                \left(
+                    1 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+                \right)
+                \Vert y_k - \mathcal J_k y_k\Vert^2. 
+            \end{align*}
+            The above term repeats with one of the term in (1), merging their coefficient it yields
+            \begin{align*}
+                & 
+                \lambda_k^{-1} 
+                \left(
+                    1 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+                \right) + 
+                \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+                \\
+                & = 
+                \lambda_k^{-1}
+                - 
+                \frac{\alpha_k^2}{A_{k + 1}\lambda_k^2}
+                + 
+                \frac{\alpha_k^2}{2A_{k + 1}\lambda_k^2} 
+                \\
+                &= 
+                \frac{1}{2\lambda_k}
+                \left(
+                    2 - \frac{\alpha_k^2}{2A_{k + 1}\lambda_k}
+                \right). 
+            \end{align*}
+            By merging the terms, the 2 equality implifies the inequality in (1) into: 
+            \begin{align*}
+                \phi_{k + 1}^* 
+                &\ge 
+                F(\mathcal J_k y_k)
+                + \frac{\alpha_k^2}{2A_{k + 1} \lambda_k^2}
+                \Vert y_k - \mathcal J_ky_k\Vert^2
+                \\
+                    & \quad 
+                    + 
+                    \lambda_k^{-1}
+                    \left\langle 
+                        y_k - \mathcal J_k y_k, 
+                        (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+                    \right\rangle
+                \\
+                    &\quad 
+                    + 
+                    \lambda_k^{-1}
+                    \langle
+                        y_k - \mathcal J_k y_k,
+                        \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
+                    \rangle
+                \\
+                &= 
+                F(\mathcal J_k y_k)
+                + 
+                \frac{1}{2\lambda_k}
+                \left(
+                    2 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+                \right)
+                \Vert y_k - \mathcal J_ky_k\Vert^2
+                \\
+                    & \quad 
+                    + 
+                    \lambda_k^{-1}
+                    \left\langle 
+                        y_k - \mathcal J_k y_k, 
+                        (1 - \alpha_k)x_k + \alpha_k v_k - y_k
+                    \right\rangle. 
+            \end{align*}
+            Next, to inductively assert the inequality we consider the choice of $y_k$ and scalar values $\alpha_k, \lambda_k$ which set the cross produce term zero, and the coefficient of the norm term larger than zero. 
+            This would produce the following inequality, equality: 
+            \begin{align*}
+                & 
+                y_k = (1 - \alpha_k)x_k + \alpha_k v_k
+                \\
+                &
+                \frac{1}{2\lambda_k}
+                \left(
+                    2 - \frac{\alpha_k^2}{A_{k + 1}\lambda_k}
+                \right) 
+                \ge 0.
+            \end{align*}
+            Solving, the second inequality is equivalent to
+            \begin{align*}
+                \frac{\alpha_k^2}{A_{k + 1}\lambda_k} 
+                & 
+                \le 2
+                \\
+                \alpha_k
+                & 
+                \le
+                \sqrt{2A_{k + 1}\lambda_k}
+                = \sqrt{2A_k(1 - \alpha_k)\lambda_k}. 
+            \end{align*}
+            In Guler's paper, a strong inequality of $\alpha_k^2 = A_k(1 - \alpha_k)\lambda_k$ is used instead. 
+            Solving the quadratic it showed that the choice of sequence for $\alpha_k^2$ is 
+            \begin{align*}
+                \alpha_k
+                &= 
+                \frac{1}{2}\left(
+                    \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
+                    - A_k\lambda_k
+                \right). 
+            \end{align*}
+        \end{proof}
+        \begin{remark}
+            
+        \end{remark}
+    \subsection{Inexact accelerated PPM}
+        This section proofs the lemma that characterizes the inexact PPM errors for Guler's accelerated inexact PPM. 
+        Now, we prove 
+        \hyperref[thm:guler-inexact-ppm-bound]{Theorem \ref*{thm:guler-inexact-ppm-bound}}. 
+                
+        Denote $\mathcal M_k(x) = \mathcal M_k(x; y_k)$ for short. 
+        The proof is direct by considering the strong convexity of $\mathcal M_k(\cdot, y_k)$ together with the subgradient inequality. 
+        Choose any $w_k \in \partial \mathcal M_k(\mathcal J_{k} y_k)$ it has
+        \begin{align*}
+            \mathcal M_k(x_{k + 1}) - \mathcal M^*_k
+            &= 
+            \mathcal M_k(x_{k + 1}) - \mathcal M_k(\mathcal J_{k} y_k)
+            \\
+            &\ge 
+            \left(
+                \left\langle 
+                    w_k, 
+                    x_{k + 1} - \mathcal J_{k} y_k 
+                \right\rangle
+                + 
+                \mathcal M_k(\mathcal J_{k}y_k)
+                + \frac{1}{2\lambda_k}\Vert x_{k + 1} - \mathcal J_{k}y_k\Vert^2
+            \right)
+            - 
+            \mathcal M_k(\mathcal J_{\lambda_k}y_k) 
+            \\
+            &= \frac{1}{2\lambda_k}\Vert x_{k +1} - \mathcal J_{k}y_k\Vert^2. 
+        \end{align*}
+        We used $\mathbf 0 \in \partial M_k(\mathcal J_{\lambda_k}y_k)$ to get rid of the inner product. 
+        Consider inexact evaluation of $x_{k + 1}$ which results in $w_k \in \partial \mathcal M_k(x_{k + 1})$ with $\Vert w_k\Vert \le \epsilon_k/\lambda_k$. 
+        By $\lambda_k^{-1}$ strong convexity of $\mathcal M_k$, we have 
+        \begin{align*}
+            \mathcal M_k(\mathcal J_{k}y_k) - \mathcal M_k(x_{k + 1})
+            &\ge 
+            \langle w_k, \mathcal J_{k}y_k - x_{k + 1}\rangle
+            + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
+            \\
+            &\ge 
+            - \Vert w_k\Vert\Vert \mathcal J_{k}y_k - x_{k + 1}\Vert^2
+            + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
+            \\
+            &\ge 
+            - \frac{\epsilon_k}{\lambda_k}\Vert \mathcal J_{k}y_k - x_{k + 1}\Vert^2
+            + \frac{1}{2\lambda_k}\Vert \mathcal J_{k} y_k - x_{k + 1}\Vert^2
+            \\
+            &\ge \frac{1}{\lambda_k}
+            \min_{t \in \RR} \left\lbrace
+                \frac{1}{2}t^2 - \epsilon_k t
+            \right\rbrace = - \frac{\epsilon_k}{2\lambda_k}. 
+        \end{align*}
 
+        The upper bound is proved. 
+
+        
 \section{Proofs for Catalyst Meta Acceleration}
-
+    In this section, we prove the inexact proximal inequality and give the Nesterov's estimating sequence void of intractable quantities. 
+    The notation follows from: 
 
 \section{Proofs for 4WD Catalyst Acceleration}
 

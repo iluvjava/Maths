@@ -1,55 +1,36 @@
 \begin{thebibliography}{10}
 
 \bibitem{beck_first-order_2017}
-{\sc A.~Beck}, {\em First-order {Methods} in {Optimization}}, {MOS}-{SIAM}
-  {Series} in {Optimization}, SIAM, israel, 2017.
+{\sc A.~Beck}, {\em First-order {Methods} in {Optimization}}, {MOS}-{SIAM} {Series} in {Optimization}, SIAM, israel, 2017.
 
 \bibitem{beck_fast_2009-1}
-{\sc A.~Beck and M.~Teboulle}, {\em A fast iterative shrinkage-thresholding
-  algorithm for linear inverse problems}, SIAM Journal on Imaging Sciences, 2
-  (2009), pp.~183--202.
+{\sc A.~Beck and M.~Teboulle}, {\em A fast iterative shrinkage-thresholding algorithm for linear inverse problems}, SIAM Journal on Imaging Sciences, 2 (2009), pp.~183--202.
 
 \bibitem{guler_convergence_1991}
-{\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for
-  convex minimization}, {SIAM} Journal on Control and Optimization, 29 (1991),
-  p.~17.
-\newblock Num Pages: 17 Place: Philadelphia, United States Publisher: Society
-  for Industrial and Applied Mathematics.
+{\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for convex minimization}, {SIAM} Journal on Control and Optimization, 29 (1991), p.~17.
+\newblock Num Pages: 17 Place: Philadelphia, United States Publisher: Society for Industrial and Applied Mathematics.
 
 \bibitem{guler_new_1992}
-{\sc O.~Güler}, {\em New {Proximal} {Point} {Algorithms} for {Convex}
-  {Minimization}}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
+{\sc O.~Güler}, {\em New {Proximal} {Point} {Algorithms} for {Convex} {Minimization}}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
 \newblock Publisher: Society for Industrial and Applied Mathematics.
 
 \bibitem{lin_universal_2015}
-{\sc H.~Lin, J.~Mairal, and Z.~Harchaoui}, {\em A {Universal} {Catalyst} for
-  {First}-{Order} {Optimization}}, MIT Press, Dec. 2015, p.~3384.
+{\sc H.~Lin, J.~Mairal, and Z.~Harchaoui}, {\em A {Universal} {Catalyst} for {First}-{Order} {Optimization}}, MIT Press, Dec. 2015, p.~3384.
 
 \bibitem{lin_catalyst_2018}
-\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Catalyst
-  {Acceleration} for {First}-order {Convex} {Optimization}: from {Theory} to
-  {Practice}}, in Journal of {Machine} {Learning} {Research}, vol.~18, 2018,
-  pp.~1--54.
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Catalyst {Acceleration} for {First}-order {Convex} {Optimization}: from {Theory} to {Practice}}, in Journal of {Machine} {Learning} {Research}, vol.~18, 2018, pp.~1--54.
 
 \bibitem{nesterov_method_1983}
-{\sc Y.~Nesterov}, {\em A method for solving the convex programming problem
-  with convergence rate {O}(1/k{\textasciicircum}2)}, Proceedings of the USSR
-  Academy of Sciences,  (1983).
+{\sc Y.~Nesterov}, {\em A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)}, Proceedings of the USSR Academy of Sciences,  (1983).
 
 \bibitem{nesterov_lectures_2018}
-{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of
-  Springer {Optimization} and {Its} {Applications}, Springer International
-  Publishing, Cham, 2018.
+{\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, Cham, 2018.
 
 \bibitem{paquette_catalyst_2018}
-{\sc C.~Paquette, H.~Lin, D.~Drusvyatskiy, J.~Mairal, and Z.~Harchaoui}, {\em
-  Catalyst for {Gradient}-based {Nonconvex} {Optimization}}, in Proceedings of
-  the {Twenty}-{First} {International} {Conference} on {Artificial}
-  {Intelligence} and {Statistics}, PMLR, Mar. 2018, pp.~613--622.
+{\sc C.~Paquette, H.~Lin, D.~Drusvyatskiy, J.~Mairal, and Z.~Harchaoui}, {\em Catalyst for {Gradient}-based {Nonconvex} {Optimization}}, in Proceedings of the {Twenty}-{First} {International} {Conference} on {Artificial} {Intelligence} and {Statistics}, PMLR, Mar. 2018, pp.~613--622.
 \newblock ISSN: 2640-3498.
 
 \bibitem{rockafellar_monotone_1976}
-{\sc R.~T. Rockafellar}, {\em Monotone operators and the proximal point
-  algorithm}, 14, pp.~877--898.
+{\sc R.~T. Rockafellar}, {\em Monotone operators and the proximal point algorithm}, 14, pp.~877--898.
 
 \end{thebibliography}
