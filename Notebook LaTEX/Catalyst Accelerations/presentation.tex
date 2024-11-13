@@ -206,9 +206,6 @@
                 Specific applications and algorithms are outside of the scope because variance reduced stochastic method is itself a big topic.     
             \end{block}
         \end{frame}
-        \begin{frame}{Quick Notations}
-            
-        \end{frame}
     \subsection{Nesterov's Estimating Sequence}
         \begin{frame}{Nesterov's Estimating Sequence}            
             \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
@@ -220,7 +217,6 @@
                 \end{enumerate}
             \end{definition}
         \end{frame}
-
         \begin{frame}{Nesterov's Estimating Sequence and Convergence}
             \begin{block}{Observations}
                 {\small
@@ -253,8 +249,8 @@
                 \end{align*}
                 }
             \end{block}
-            
         \end{frame}
+    \subsection{Example: Accelerated proximal gradient}
         \begin{frame}{Example: accelerated proximal gradient}
             \begin{block}{Quick Notations}
                 Assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
@@ -276,17 +272,19 @@
 
             \end{block}
         \end{frame}
-
+        
         \begin{frame}{Example: accelerated proximal gradient}
             \begin{definition}[Accelerated proximal gradient estimating sequence]
                 \label{def:nes-est-seq-pg}
                 {\small
                     Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
                     \begin{align*}
-                        & l_F(x; y_k) := 
+                        &\textcolor{red}{
+                            l_F(x; y_k) := 
                             F\left(\widetilde{\mathcal J}_{L^{-1}} y_k \right) 
                             + \langle \mathcal G_{L^{-1}}y_k, x - y_k\rangle + 
-                        \frac{1}{2L}\Vert \mathcal G_{L^{-1}}y_k\Vert^2, 
+                            \frac{1}{2L}\Vert \mathcal G_{L^{-1}}y_k\Vert^2,
+                        } 
                         \\
                         & 
                         \phi_{k + 1}(x)
@@ -312,13 +310,137 @@
         \end{frame}
 
 \section{Guler 1993}
+    \begin{frame}{Accelerated proximal point method}
+        Guler in 1993 discovered the following: 
+        \begin{enumerate}
+            \item The method of proximal point can be accelerated via Nesterov's estimating sequence. 
+            \item The accelerated convergence rate retains for certain magnitude of errors on inexact evaluation of proximal point method. 
+        \end{enumerate}
+        \begin{block}{Quick notations}
+            We use the following list of notations: 
+            \begin{align*}
+                \mathcal M^{\lambda} (x; y) &:= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2
+                \\
+                \mathcal J_\lambda y &:= \argmin_x \mathcal M^{\lambda} (x; y)
+                \\
+                \mathcal G_\lambda &:= \lambda^{-1}(I - \mathcal J_\lambda). 
+            \end{align*}
+            We use $\mathcal G_k, \mathcal J_k, \mathcal M_k$ as a short for $\mathcal G_{\lambda_k}, \mathcal J_{\lambda_k}, \mathcal M_{\lambda_k}$. 
+            $(\lambda_k)_{k \ge0}$ is a sequence that controls proximal operator. 
+        \end{block}
+    \end{frame}
+    \subsection{Exact Accelerated PPM}
+        \begin{frame}{Estimating sequence of accelerated PPM}
+            \begin{definition}[Accelerated PPM estimating sequence]
+                {\small
+                    \label{def:nes-est-seq-acc-ppm}
+                    $(\phi_k)_{k \ge0}$ has for all $k \ge0$, any $A \ge 0$: 
+                    \begin{align*}
+                        \phi_0 &:= f(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
+                        \\
+                        \phi_{k + 1}(x) &:= 
+                        (1 - \alpha_k)\phi_k(x)
+                        + 
+                        \alpha_k(
+                            \textcolor{red}
+                            {
+                                F(\mathcal J_k y_k) + \langle \mathcal G_k y_k, x - \mathcal J_k y_k\rangle
+                            }
+                        ).    
+                    \end{align*}
+                    $(\lambda_k)_{k \ge 0}$, $x_k = \mathcal J_\lambda y_k$. 
+                    auxiliary vectors $(y_k, v_k)$, and $(\alpha_k, A_k)_{k\ge 0}$ satisfies $k\ge0$:
+                    \begin{align*}
+                        \alpha_k &= \frac{1}{2}\left(
+                            \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
+                            - A_k\lambda_k
+                        \right) 
+                        \\
+                        y_k &= (1 - \alpha_k)x_k + \alpha_k v_k
+                        \\
+                        v_{k + 1}
+                        &= 
+                        v_k - \frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+                        \\
+                        A_{k + 1} &= (1 - \alpha_k)A_k. 
+                    \end{align*}
+                }
+            \end{definition}
+        \end{frame}
+        \begin{frame}{Convergence of accelerated PPM} 
+            \begin{block}{An accelerated rate}
+                The accelerated PPM generate $(x_k)_{k\ge 0}$ such that $F(x_k) - F^*$ converges at a rate of: 
+                {\large
+                \begin{align*}
+                    \mathcal O\left(
+                        \frac{1}{\left(
+                            \sum_{i = 1}^{k}\sqrt{\lambda_i}
+                        \right)^2}
+                    \right). 
+                \end{align*}    
+                }
+            \end{block}
+            Note, PPM without accelerate converges at a rate of $\mathcal O((\sum_{i = 1}^{k}\lambda_i)^{-1})$. 
+        \end{frame}
+    \subsection{Inexact accelerated PPM}
+        \begin{frame}{Accelerated Inexact PPM}
+            Guler cited Rockafellar 1976 \cite{rockafellar_monotone_1976} for condition (A'): 
+            \begin{align*}
+                x_{k + 1}\approx \mathcal J_{k} y_k \text{ be such that: }
+                \dist\left(
+                    \mathbf 0, \partial \mathcal M^{k}(x_{k + 1}; y_k)
+                \right) &\le \frac{\epsilon_k}{k}
+                \\
+                \implies 
+                \Vert x_{k + 1} - \mathcal J_{k}y_k\Vert 
+                &\le \epsilon_k. 
+            \end{align*}
+            Putting things into the context of accelerated PPM, the thereoem follows is pivotal: 
+            \begin{theorem}[\small Guler's inexact proximal point error bound (Lemma 3.1)]
+                Define the minimum of the Moreau Enevelope: $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+                If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
+                \begin{align*}
+                    \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_k y_k\Vert^2
+                    &= 
+                    \mathcal M_k(x_{k + 1}, y_k) - \mathcal M^*_k
+                    \le \frac{\epsilon_k^2}{2\lambda_k}. 
+                \end{align*}
+            \end{theorem}
+        \end{frame}
+        \begin{frame}{Guler's Major Results}
+            \begin{theorem}[\small Guler's accelerated inexact PPM convergence (Theorem 3.3)]
+                If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
+                \begin{align*}
+                    f(x_k) - f(x) \le \mathcal O(1/k^2) + \mathcal (1 / k^{2\sigma - 1}) \rightarrow 0. 
+                \end{align*}    
+            \end{theorem}
+            If $\sigma \ge 3/2$, the method converges at a rate of $\mathcal O(1/k^2)$. 
+            \pause 
+            It looks exciting but it's not becaues: 
+            \begin{enumerate}
+                \item Determining $(\epsilon_k)_{k\ge 0}$ requires knowledge on $\phi_k^*$. 
+                \item $\phi_k^*$ is expressed with untracable quantity: $F(\mathcal J_k y_k)$. 
+            \end{enumerate}
+            So the algorithm contains intractable quantities: $F(\mathcal J_k y_k)$. 
+        \end{frame}
 \section{Lin 2015}
+    \begin{frame}{Lin 2015}
+        Hongzhou Lin 2015 \cite{lin_universal_2015} did the following: 
+        \begin{enumerate}
+            \item Improved the proof from Guler 1993 to include strong convexity objective. 
+            \item Showed that $(\epsilon_k)_{k\ge 0}$ can be determined algorithimically and  an accelerated rate can be achieved. 
+            \item Invented his own accelerated varianced reduced incremental method called: ``Prox MISO" to demonstrate the Catalyst Framework. 
+        \end{enumerate}
+        \begin{block}{Quick notations}
+            
+        \end{block}
+    \end{frame}
 \section{Paquette 2018}
         
     
 \section{References}
     \begin{frame}{References}
-        \bibliography{references/refs.bib}
+        \tiny\bibliography{references/refs.bib}
     \end{frame}
 
 \end{document}

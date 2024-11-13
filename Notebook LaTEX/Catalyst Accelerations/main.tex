@@ -328,13 +328,13 @@
     \end{remark}
     To handle the inexact evaluation of the PPM, Guler cited Rockafellar \cite{rockafellar_monotone_1976} for condition (A') in his text which is the following: 
     \begin{align*}
-        x_{k + 1}\approx \mathcal J_{\lambda_k} y_k \text{ be such that: }
+        x_{k + 1}\approx \mathcal J_{k} y_k \text{ be such that: }
         \dist\left(
-            \mathbf 0, \partial \mathcal M_{\lambda_k}(x_{k + 1}; y_k)
-        \right) &\le \frac{\epsilon_k}{\lambda_k}
+            \mathbf 0, \partial \mathcal M^{k}(x_{k + 1}; y_k)
+        \right) &\le \frac{\epsilon_k}{k}
         \\
         \implies 
-        \Vert x_{k + 1} - \mathcal J_{\lambda_k}y_k\Vert 
+        \Vert x_{k + 1} - \mathcal J_{k}y_k\Vert 
         &\le \epsilon_k. 
     \end{align*}
     Condition A' also characterizes the property of $(\epsilon_k)_{k\ge 0}$ so inexact PPM converges. 
@@ -343,9 +343,9 @@
         Consider defining minimum for the envelope function given by $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
         If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
         \begin{align*}
-            \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{\lambda_k} y_k\Vert^2
+            \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_k y_k\Vert^2
             &= 
-            \mathcal M^{\lambda_k}(x_{k + 1}, y_k) - \mathcal M^*_k
+            \mathcal M_k(x_{k + 1}, y_k) - \mathcal M^*_k
             \le \frac{\epsilon_k^2}{2\lambda_k}. 
         \end{align*}
     \end{theorem}

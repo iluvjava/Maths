@@ -56,4 +56,11 @@ C.~Paquette, H.~Lin, D.~Drusvyatskiy, J.~Mairal, and Z.~Harchaoui,
   \url{https://proceedings.mlr.press/v84/paquette18a.html}
 \BIBentrySTDinterwordspacing
 
+\bibitem{rockafellar_monotone_1976}
+\BIBentryALTinterwordspacing
+R.~T. Rockafellar, ``Monotone operators and the proximal point algorithm,''
+  vol.~14, no.~5, pp. 877--898. [Online]. Available:
+  \url{http://epubs.siam.org/doi/10.1137/0314056}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

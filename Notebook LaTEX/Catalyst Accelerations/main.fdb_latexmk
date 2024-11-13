@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1731447661 "main.aux" "main.bbl" "main" 1731453222
+["bibtex main"] 1731447661 "main.aux" "main.bbl" "main" 1731454120
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/siam.bst" 1291864356 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1731453222 4341 f1839eb59e5f5267296f9525b7c0634b "pdflatex"
+  "main.aux" 1731454120 4341 f1839eb59e5f5267296f9525b7c0634b "pdflatex"
   "references/refs.bib" 1731447657 81314 df5ae86dd94dc03452e9e80526573e61 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1731453220 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" "main.pdf" "main" 1731453222
+["pdflatex"] 1731454118 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" "main.pdf" "main" 1731454120
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731449966 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1666890182 10787539 152cb807f892717dbbfe4a4f6571af5d ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458470287 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -139,11 +139,11 @@
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/tools/thp.sty" 1654687228 1908 fe625a4c2e82e49a095c52e8f3ac4c67 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656233290 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" 1731453220 60488 0a1303b04f72fe14a878ad923539e4c8 ""
-  "main.aux" 1731453222 4341 f1839eb59e5f5267296f9525b7c0634b "pdflatex"
+  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" 1731454118 60436 9b9d2729a4b01536f23b753336f308fd ""
+  "main.aux" 1731454120 4341 f1839eb59e5f5267296f9525b7c0634b "pdflatex"
   "main.bbl" 1731447661 2384 097271ab5c3197feb3e45d739e636150 "bibtex main"
-  "main.out" 1731453222 2448 0410c8df0e7b53c60c85fde2dfbeb91b "pdflatex"
-  "main.tex" 1731453220 60488 0a1303b04f72fe14a878ad923539e4c8 ""
+  "main.out" 1731454120 2448 0410c8df0e7b53c60c85fde2dfbeb91b "pdflatex"
+  "main.tex" 1731454118 60436 9b9d2729a4b01536f23b753336f308fd ""
   "presets/julia_lstlisting.tex" 1730924921 817 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1730924921 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1731447657 8757 8f077464f5cc5e51c9ecfa535f25e5b0 ""

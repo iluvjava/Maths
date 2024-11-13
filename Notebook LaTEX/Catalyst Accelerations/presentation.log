@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  12 NOV 2024 15:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  12 NOV 2024 16:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -758,7 +758,7 @@ Package caption Info: End \AtBeginDocument code.
 {C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (presentation.toc) [2
 
 ]
-<assets/Nesterov Book.png, id=83, 450.18187pt x 689.57625pt>
+<assets/Nesterov Book.png, id=103, 450.18187pt x 689.57625pt>
 File: assets/Nesterov Book.png Graphic file (type png)
 <use assets/Nesterov Book.png>
 Package pdftex.def Info: assets/Nesterov Book.png  used on input line 171.
@@ -766,7 +766,7 @@ Package pdftex.def Info: assets/Nesterov Book.png  used on input line 171.
  [3
 
  <./assets/Nesterov Book.png>]
-<assets/Acc ppm.png, id=93, 745.28438pt x 459.21562pt>
+<assets/Acc ppm.png, id=113, 745.28438pt x 459.21562pt>
 File: assets/Acc ppm.png Graphic file (type png)
 <use assets/Acc ppm.png>
 Package pdftex.def Info: assets/Acc ppm.png  used on input line 180.
@@ -774,12 +774,12 @@ Package pdftex.def Info: assets/Acc ppm.png  used on input line 180.
  [4
 
  <./assets/Acc ppm.png>]
-<assets/lin2015.png, id=103, 718.93594pt x 517.18219pt>
+<assets/lin2015.png, id=123, 718.93594pt x 517.18219pt>
 File: assets/lin2015.png Graphic file (type png)
 <use assets/lin2015.png>
 Package pdftex.def Info: assets/lin2015.png  used on input line 193.
 (pdftex.def)             Requested size: 164.25041pt x 118.15234pt.
-<assets/paquette 2018.png, id=104, 846.91406pt x 646.66594pt>
+<assets/paquette 2018.png, id=124, 846.91406pt x 646.66594pt>
 File: assets/paquette 2018.png Graphic file (type png)
 <use assets/paquette 2018.png>
 Package pdftex.def Info: assets/paquette 2018.png  used on input line 193.
@@ -790,21 +790,21 @@ Package pdftex.def Info: assets/paquette 2018.png  used on input line 193.
 
 ] [7
 
-] [8
-
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 222.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 219.
  (C:\Users\alto\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 222.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 219.
  (C:\Users\alto\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 222.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 219.
  (C:\Users\alto\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-) [9
+) [8
+
+] [9
 
 ] [10
 
@@ -812,21 +812,39 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 
 ] [12
 
-] (presentation.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
-)
-Overfull \vbox (27.37958pt too high) detected at line 322
- []
+] [13
 
-[13
+] [14
+
+]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
+ [15
+
+] [16
+
+] [17
+
+] [18
+
+] (presentation.bbl
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 29.
+
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+) [19
 
  <C:/Users/alto/AppData/Local/Programs/MiKTeX/tex/latex/beamer/beamericonarticle.pdf>]
 \tf@nav=\write6
@@ -840,20 +858,20 @@ Overfull \vbox (27.37958pt too high) detected at line 322
 
  (presentation.aux)
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 8E4EBA3B642241E4BCB5BDE48E66C703;947.
+(rerunfilecheck)             Checksum: A11ADEB4B8259DA04CDF2A9B38181AC3;1553.
  ) 
 Here is how much of TeX's memory you used:
- 24183 strings out of 475385
- 480497 string characters out of 2777378
- 768265 words of memory out of 3000000
- 45000 multiletter control sequences out of 15000+600000
- 481372 words of font info for 71 fonts, out of 8000000 for 9000
+ 24284 strings out of 475385
+ 482996 string characters out of 2777378
+ 768370 words of memory out of 3000000
+ 45079 multiletter control sequences out of 15000+600000
+ 484847 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,558b,870s stack positions out of 10000i,1000n,20000p,200000b,80000s
-<C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (13 pages, 631899 bytes).
+ 128i,16n,122p,558b,870s stack positions out of 10000i,1000n,20000p,200000b,80000s
+<C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (19 pages, 719998 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 461 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 534 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 737 words of extra memory for PDF output out of 10000 (max. 10000000)
 
