@@ -359,7 +359,6 @@
     The theorem looks exciting, but Lin 2015 \cite{lin_universal_2015} page 11 pointed out that $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable quantities. 
     In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence making it unclear how to control $\epsilon_k \rightarrow 0$. 
     If we use the inexact formulation from Guler and his estimating sequence, it will result in algorithm that contains intractable quantities $\mathcal J_{\lambda_k} y_k$. 
-    
 
 
 \section{Lin 2015}
@@ -367,7 +366,7 @@
     Right at the beginning we warn the readers about the following: 
     \begin{enumerate}
         \item The proofs in HongZhou Lin's original paper of Universal Catalyst is depressingly long and complicated. This is a result of using the constructive approach of Nesterov's estimating sequence. 
-        \item It's context specific for controlling the errors of inexact proximal point evaluations are being controlled. He hinted at the way of controlling and tracking the errors from inexact proximal point evaluations, but it's context specific. He only illustrated the use of the meta acceleration on their own method called: ``Proximal MISO", but in general the problem still remains open. 
+        \item Controlling the errors of inexact proximal point evaluations is context specific. Lin hinted at ways to track the errors from inexact proximal point evaluations such as using duality and non-negativity assumption of the objective. He illustrated the use of the meta acceleration on their own method called: ``Proximal MISO", in general there is not a universal solution. 
         \item We will provide proofs to clarify some of their proofs and compare with existing proofs and drawing references in the literatures in the appendix. 
     \end{enumerate}
     Let's assume $F$ is a $\mu \ge 0$ strongly convex function. 
@@ -392,9 +391,9 @@
         \end{align*}
     \end{definition}
     \begin{remark}
-        The most exciting thing about this algorithm is the similarity it has compares to 
-        \hyperref[def:acc-prox-grad-alg]{Definition \ref*{def:acc-prox-grad-alg}}. 
-        The only difference here is the inclusion of an inexact proximal point step, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
+        the algorithm very similarity to
+        \hyperref[def:nes-est-seq-pg]{Definition \ref*{def:nes-est-seq-pg}}. 
+        In contrast, it has an inexact proximal point step controlled by $\epsilon_k$, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
         Evaluating $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ is also possible because the function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ is strongly convex, hence its optimality gap can be bounded via trackable quantity $\partial \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1})$. 
 
         Controlling the error sequence $\epsilon_k$ however is a whole new business. 
@@ -412,15 +411,39 @@
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
     One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
     The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
-    
+    \begin{lemma}[Lin's inexact proximal inequality]
+        Let $F$ be a $\mu\ge 0$ strongly convex.
+        Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
+        Assume the approximation error is haracterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+        Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
+        \begin{align*}
+            F(x) &\ge 
+            F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
+            + \frac{\mu}{2}\Vert x - x_k\Vert^2 
+            + (\kappa + \mu)\langle  x_k - x_k^*, x - x_k\rangle 
+            - \epsilon_k.
+        \end{align*}
+    \end{lemma}
+    \begin{remark}
+        The lamma plays a key role and it allows Lin to denote his Nesterov's estimating sequence to be for all $k \ge0$: 
+        \begin{align*}
+            \phi_k(x) := 
+            (1 - \alpha_{k - 1})\phi_{k - 1}(x)
+            + \alpha_{k - 1}\left(
+                F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle
+                + \frac{\mu}{2}\Vert x - x_k\Vert^2
+            \right). 
+        \end{align*}
+        It is void of intractable quantities. 
+    \end{remark}
     
 
-\section{Non-convex Extension of Catalyst Acceleration}
+\section{Non-convex extension of Catalyst acceleration}
     The non-convex extension of Catalyst acceleration by Lin 2018 \cite{lin_catalyst_2018} is similar to the convex case in his 2015 paper \cite{lin_universal_2015}. 
     The new algorithm handles function with unknown weak convexity constant $\rho$ using a process called Auto Adapt subroutine. 
     They only claimed convergence to stationary point is claimed for the weakly convex objective. 
     \par 
-    Fixed the parameter $\kappa$ and throughout the section, we use the following notations: 
+    Fix $\kappa$ we use the following notations: 
     \begin{align*}
        & \mathcal M (x; y) := F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2 
        \\
@@ -433,7 +456,7 @@
         For $k \ge 1$, the iterates $(x_k, y_k, v_k)$ are generated by the procedures: 
         \begin{align*}
             &
-            \text{find } \bar x_k \approx \argmin{x}\left\lbrace
+            \text{find } \bar x_k \approx \argmin_{x}\left\lbrace
                 \mathcal M(x; x_{k - 1})
             \right\rbrace
             \text{ such that:  }
@@ -451,7 +474,7 @@
             & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1};
             \\
             & 
-            \text{find }\tilde x_k \approx \argmin{x} \left\lbrace
+            \text{find }\tilde x_k \approx \argmin_{x} \left\lbrace
                 \mathcal M(x; y_k) 
                 : 
                 \text{dist}\left(
@@ -472,7 +495,7 @@
     
     \begin{theorem}[Basic 4WD Catalyst Convergence]
         Let $(x_k, v_k, y_k)$ be generated by the basic Catalyst algorithm. 
-        If $F$ is weakly convex and bounded below, then $x_k$ converges to a stationary point where
+        If $F$ is $\kappa$ weakly convex and bounded below, then $x_k$ converges to a stationary point where
         \begin{align*}
             \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
             \le \frac{8 \kappa}{N}(F(x_0) - F^*). 
@@ -1288,8 +1311,6 @@
         
     \end{proof}
         
-    
-    
     
 \section{Proofs for accelerated PPM}
 

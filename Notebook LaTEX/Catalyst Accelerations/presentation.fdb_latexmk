@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex presentation"] 1731456337 "presentation.aux" "presentation.bbl" "presentation" 1731456600
+["bibtex presentation"] 1731464216 "presentation.aux" "presentation.bbl" "presentation" 1731464241
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440618969 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "presentation.aux" 1731456599 7677 1e39725103c52ce48d923fa4ff4bb9bc "pdflatex"
+  "presentation.aux" 1731464241 10351 57d0e3b9b55830e9a17eeb8f1b6f9795 "pdflatex"
   "references/refs.bib" 1731447657 81314 df5ae86dd94dc03452e9e80526573e61 ""
   (generated)
   "presentation.bbl"
   "presentation.blg"
-["pdflatex"] 1731456597 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" "presentation.pdf" "presentation" 1731456600
+["pdflatex"] 1731464238 "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" "presentation.pdf" "presentation" 1731464241
   "C:/Users/alto/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731449966 213711 9c6a2446f46c541ed5dc6afd45bb7161 ""
   "C:/Users/alto/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1666890182 10787539 152cb807f892717dbbfe4a4f6571af5d ""
   "C:/Users/alto/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -237,13 +237,13 @@
   "assets/Nesterov Book.png" 1731449079 124152 adc2884dd3c30e0da71454b1c0dbf810 ""
   "assets/lin2015.png" 1731449746 112047 0c0a2f5c4458fd854b37ee6030cd909f ""
   "assets/paquette 2018.png" 1731450042 168791 fd3ad08934f76879e85327fbf7e262a3 ""
-  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" 1731456596 22171 bb5a6f3b441a54f382273c518b2de705 ""
-  "presentation.aux" 1731456599 7677 1e39725103c52ce48d923fa4ff4bb9bc "pdflatex"
-  "presentation.bbl" 1731456337 2907 88dcd47c630677caccdffd417945f6ce "bibtex presentation"
-  "presentation.nav" 1731456599 3556 dd865e70a96bc74f236d5aa0814b2670 "pdflatex"
-  "presentation.out" 1731456599 1553 a11adeb4b8259da04cdf2a9b38181ac3 "pdflatex"
-  "presentation.tex" 1731456596 22171 bb5a6f3b441a54f382273c518b2de705 ""
-  "presentation.toc" 1731456599 596 994d6fd45f0a563efafdddd4fc91e5ab "pdflatex"
+  "c:/Users/alto/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" 1731464235 31557 ade0c86de04b3c2d73c53b4b133c6e71 ""
+  "presentation.aux" 1731464241 10351 57d0e3b9b55830e9a17eeb8f1b6f9795 "pdflatex"
+  "presentation.bbl" 1731464216 2907 88dcd47c630677caccdffd417945f6ce "bibtex presentation"
+  "presentation.nav" 1731464241 5119 edb85cdb9ca36ba99af8a62518cbb897 "pdflatex"
+  "presentation.out" 1731464241 2785 2d774548a29c49c2c063ea01e5c4fdd0 "pdflatex"
+  "presentation.tex" 1731464235 31557 ade0c86de04b3c2d73c53b4b133c6e71 ""
+  "presentation.toc" 1731464241 1053 f95467fa562153aa4e7ec15f7f1d903f "pdflatex"
   "presets/wang/custom_commands.tex" 1731447657 8757 8f077464f5cc5e51c9ecfa535f25e5b0 ""
   (generated)
   "presentation.aux"

@@ -49,16 +49,42 @@
 \headcommand {\sectionentry {3}{Lin 2015}{18}{Lin 2015}{0}}
 \headcommand {\slideentry {3}{0}{1}{18/18}{}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\beamer@sectionpages {18}{18}}
 \headcommand {\beamer@subsectionpages {18}{18}}
-\headcommand {\sectionentry {4}{Paquette 2018}{19}{Paquette 2018}{0}}
-\headcommand {\beamer@sectionpages {19}{18}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{19}{The Catalyst Algorithm}}
 \headcommand {\beamer@subsectionpages {19}{18}}
-\headcommand {\sectionentry {5}{References}{19}{References}{0}}
-\headcommand {\slideentry {5}{0}{1}{19/19}{}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\beamer@partpages {1}{19}}
-\headcommand {\beamer@subsectionpages {19}{19}}
-\headcommand {\beamer@sectionpages {19}{19}}
-\headcommand {\beamer@documentpages {19}}
-\headcommand {\gdef \inserttotalframenumber {17}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{19}{The algorithm}}
+\headcommand {\slideentry {3}{2}{1}{19/20}{The algorithm}{0}}
+\headcommand {\beamer@framepages {19}{20}}
+\headcommand {\beamer@subsectionpages {19}{20}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{21}{Convergence and pratical importance}}
+\headcommand {\slideentry {3}{3}{1}{21/21}{Convergence and pratical importance}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\beamer@subsectionpages {21}{21}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{22}{Key theoretical innovations}}
+\headcommand {\slideentry {3}{4}{1}{22/22}{Key theoretical innovations}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\beamer@sectionpages {18}{22}}
+\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\sectionentry {4}{Paquette 2018}{23}{Paquette 2018}{0}}
+\headcommand {\beamer@subsectionpages {23}{22}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{23}{Major Contributions}}
+\headcommand {\slideentry {4}{1}{1}{23/23}{Major Contributions}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\beamer@subsectionpages {23}{23}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{24}{The Basic 4WD Catalyst}}
+\headcommand {\slideentry {4}{2}{1}{24/24}{The Basic 4WD Catalyst}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\beamer@subsectionpages {24}{24}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{25}{Convergence claims}}
+\headcommand {\slideentry {4}{3}{1}{25/26}{Convergence claims}{0}}
+\headcommand {\beamer@framepages {25}{26}}
+\headcommand {\beamer@sectionpages {23}{26}}
+\headcommand {\beamer@subsectionpages {25}{26}}
+\headcommand {\sectionentry {5}{References}{27}{References}{0}}
+\headcommand {\slideentry {5}{0}{1}{27/27}{}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\beamer@partpages {1}{27}}
+\headcommand {\beamer@subsectionpages {27}{27}}
+\headcommand {\beamer@sectionpages {27}{27}}
+\headcommand {\beamer@documentpages {27}}
+\headcommand {\gdef \inserttotalframenumber {23}}

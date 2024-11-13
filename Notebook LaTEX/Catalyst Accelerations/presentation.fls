@@ -1443,12 +1443,14 @@ INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.t
 INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
 INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
 INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssi10.tfm
+INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
+INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
+INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
 INPUT .\presentation.bbl
 INPUT presentation.bbl
 INPUT .\presentation.bbl
 INPUT presentation.bbl
 INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssi8.tfm
-INPUT C:\Users\alto\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm

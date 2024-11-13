@@ -18,7 +18,7 @@
 % Informe o seu email de contato no comando a seguir
 % Por exemplo, alcebiades.col@ufes.br
 \newcommand{\email}{alto@mail.ubc.ca}
-\setbeamercovered{transparent}
+% \setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}
 %\logo{}
 \institute[]{UBC Okanagan}
@@ -187,8 +187,8 @@
                 % \label{fig:1}
             \end{figure}
             \begin{itemize}
-                \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'' 2015 JLMR \cite{lin_universal_2015}.
-                \item Paquette et al. ``Catalyst for gradient-based nonconvex optimization'' 2018 JLMR \cite{paquette_catalyst_2018}. 
+                \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'' 2015 JMLR \cite{lin_universal_2015}.
+                \item Paquette et al. ``Catalyst for gradient-based nonconvex optimization'' 2018 JMLR \cite{paquette_catalyst_2018}. 
             \end{itemize}
         \end{frame}
         \begin{frame}{Objectives of the Talk}
@@ -419,24 +419,178 @@
             It looks exciting but it's not becaues: 
             \begin{enumerate}
                 \item Determining $(\epsilon_k)_{k\ge 0}$ requires knowledge on $\phi_k^*$. 
-                \item $\phi_k^*$ is expressed with untracable quantity: $F(\mathcal J_k y_k)$. 
+                \item $\phi_k^*$ is expressed with intractable quantity: $F(\mathcal J_k y_k)$. 
             \end{enumerate}
             So the algorithm contains intractable quantities: $F(\mathcal J_k y_k)$. 
+            \textcolor{red}{It's not yet ready to be formulated into a concrete algorithm.}
         \end{frame}
 \section{Lin 2015}
     \begin{frame}{Lin 2015}
         Hongzhou Lin 2015 \cite{lin_universal_2015} did the following: 
         \begin{enumerate}
-            \item Improved the proof from Guler 1993 to include strong convexity objective. 
+            \item Improved the proof from Guler 1993 to include strongly convex objectives. 
             \item Showed that $(\epsilon_k)_{k\ge 0}$ can be determined algorithimically and  an accelerated rate can be achieved. 
-            \item Invented his own accelerated varianced reduced incremental method called: ``Prox MISO" to demonstrate the Catalyst Framework. 
+            \item Invented his own accelerated varianced reduced incremental method called: ``Accelerated MISO-Prox" to demonstrate the Catalyst Framework. 
         \end{enumerate}
         \begin{block}{Quick notations}
-            
+            Assume $F$ is a $\mu \ge 0$ strongly convex function. 
+            Fix $\kappa$ and the notations are: 
+            \begin{align*}
+                \mathcal M^{\kappa^{-1}}(x; y) &:= F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2, 
+                \\
+                \mathcal J_{\kappa^{-1}} y &:= \argmin_x \mathcal M^{\kappa^{-1}} (x, y). 
+            \end{align*}
         \end{block}
     \end{frame}
+    \subsection{The Catalyst Algorithm}
+        \subsection{The algorithm}
+            \begin{frame}{Lin's accelerated proximal point method}
+                \begin{definition}[Lin's accelerated proximal point method]
+                    Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
+                    Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
+                    Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)$ satisfies for all $k \ge 1$
+                    {\small
+                    \begin{align*}
+                        & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k
+                        \\
+                        & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa)) 
+                        \\
+                        & 
+                        y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
+                    \end{align*}
+                    }
+                \end{definition}
+                \pause
+                \begin{enumerate}
+                    \item Observe how similar it is compare to accelerated proximal gradient!!!
+                    \item Determining $(\epsilon_k)_{k \ge 1}$ depends on the specific context of the algorithm. 
+                    \item Strong convexity of $\mathcal M_k(\cdot; y_{k - 1})$ to approximate $x_k$ up to $\epsilon_k$. 
+                \end{enumerate}
+            \end{frame}
+        \subsection{Convergence and pratical importance}
+            \begin{frame}{Practical importance}
+                A major result on page 6 of Lin's 2015 \cite{lin_universal_2015}. 
+                \begin{block}{Accelerated convergence}
+                    Assume strong convexity for $F$. 
+                    Using full gradient, or randomized coordinate descent to evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ up to $\epsilon_k$, then it achieves a overall complexity 
+                    $$
+                        \widetilde{\mathcal O}\left(n \sqrt{L/\mu} \log(1/\epsilon)\right). 
+                    $$
+                    It's the same as accelerated gradient method up to a log term. 
+
+                    In abscent of strong convexity, acceleration for Variance reduced stochastic method such as: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG is $\widetilde {\mathcal O}(n L/\sqrt{\epsilon})$, strictly faster $\mathcal O(nL/\epsilon)$ without acceleration. 
+                \end{block}
+                Note: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG are examples of varianced reduced incremental methods. 
+            \end{frame}
+        \subsection{Key theoretical innovations}
+            \begin{frame}{Inexact proximal inequality in Lin 2015}
+                Lemma A.7 in Lin 2015 \cite{lin_universal_2015} stated the following: 
+                \begin{lemma}{Inexact proximal inequality}
+                    Let $F$ be a $\mu\ge 0$ strongly convex.
+                    Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
+                    Assume the approximation error is haracterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+                    Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
+                        \begin{align*}   
+                                F(x) &\ge 
+                                \textcolor{red}{
+                                    F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
+                                    + \frac{\mu}{2}\Vert x - x_k\Vert^2 
+                                }
+                                \\
+                                & \quad 
+                                + (\kappa + \mu)\langle  x_k - x_k^*, x - x_k\rangle 
+                                - \epsilon_k.
+                        \end{align*}
+                \end{lemma}
+                \begin{enumerate}
+                    \item The parts in red is the regular proximal inequality but with $x_k$  instead of $x^*_k$. 
+                    \item This inequality allows for definition for estimating sequence $\phi_k$ that is rid of $\mathcal J_{\kappa^{-1}}y_{k - 1}$
+                \end{enumerate}
+            \end{frame}
+
 \section{Paquette 2018}
-        
+    \subsection{Major Contributions}
+        \begin{frame}{Major contribution in Paquette 2018}
+            In Paquette 2018, these major improvements for Lin's Universal Catalyst had been made: 
+            \begin{enumerate}
+                \item It supports weakly convex function with an unknown weak convexity constant through a procedures call Auto Adapt. 
+                \item The convergence to stationary point under weak convexity is claimed. 
+                \item The method retains accelerated rate o convergence if the function is convex. 
+            \end{enumerate}
+            Note: $F$ is $\rho$-weakly convex if and only if $f + \rho/2\Vert \cdot\Vert^2$ is convex. 
+            \begin{block}{Quick notations}
+                Fix $\kappa$ we use the following notations: 
+                \begin{align*}
+                & \mathcal M (x; y) := F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2 
+                \\
+                & \mathcal J y := \argmin_x \mathcal M (x; y). 
+                \end{align*}
+            \end{block}
+        \end{frame}
+
+    \subsection{The Basic 4WD Catalyst}
+        \begin{frame}{Basic 4WD}
+            \begin{definition}[Basic 4WD Catalyst Algorithm]
+            {\small
+                Find any $x_0 \in \text{dom}(F)$. 
+                Initialize the algorithm with $\alpha_1 = 1, v_0 = x_0$. 
+                For $k \ge 1$, the iterates $(x_k, y_k, v_k)$ are generated by the procedures: 
+                \vspace{-0.5em}
+                \begin{align*}
+                    &
+                    \text{find } \bar x_k \approx \argmin_{x}\left\lbrace
+                        \mathcal M(x; x_{k - 1})
+                    \right\rbrace
+                    \\ &\quad 
+                    \text{ such that:  }
+                        \left\lbrace
+                            \begin{aligned}
+                                & \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; x_{k - 1})) 
+                                \le 
+                                \kappa\Vert \bar x_k - x_{k - 1}\Vert, 
+                                \\
+                                & \mathcal M(\bar x_k; x_{k - 1}) 
+                                \le F(x_{k - 1}). 
+                            \end{aligned}
+                        \right.
+                    \\
+                    & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) x_{k - 1};
+                    \\
+                    & 
+                    \text{find }\tilde x_k \approx \argmin_{x} \left\lbrace
+                        \mathcal M(x; y_k) 
+                        : 
+                        \text{dist}\left(
+                        \mathbf 0, \partial \mathcal M(\tilde x_k; y_k)
+                        \right) 
+                        \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert
+                    \right\rbrace;
+                    \\
+                    & v_{k} = x_{k - 1} + \frac{1}{\alpha_k}(\tilde x_k - x_{k - 1});
+                    \\
+                    & 
+                    \text{find } \alpha_{k + 1} \in (0, 1): 
+                    \frac{1 - \alpha_{k + 1}}{\alpha_{k + 1}^2} = \frac{1}{\alpha_k^2};
+                    \\
+                    & \text{choose } x_k \text{ such that:  } f(x_k) = \min(f(\bar x_k), f(\tilde x_k)). 
+                \end{align*}
+            }
+            \end{definition}
+        \end{frame}
+    \subsection{Convergence claims}
+        \begin{frame}{Convergence claim}
+            \begin{theorem}[Basic 4WD Catalyst Convergence]
+                Let $(x_k, v_k, y_k)$ be generated by the basic Catalyst algorithm. 
+                If $F$ is $\kappa$ weakly convex and bounded below, then $x_k$ converges to a stationary point where
+                \begin{align*}
+                    \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
+                    \le \frac{8 \kappa}{N}(F(x_0) - F^*). 
+                \end{align*}
+                And when $F$ is convex, $F(x_k) - F^*$ converges at a rate of $\mathcal O(k^{-2})$. 
+            \end{theorem}
+            \pause
+            \textbf{Let's prove this.} 
+        \end{frame}
     
 \section{References}
     \begin{frame}{References}

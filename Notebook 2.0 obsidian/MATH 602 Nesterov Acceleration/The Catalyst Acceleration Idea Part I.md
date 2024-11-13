@@ -69,10 +69,10 @@ We summarize some of the key points for lemmas in the Appendix:
 
 
 #### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
-> Let $F$ be a $\mu\ge 0$ strongly convex function.
-> Suppose $x_k$ is an approximated proximal point meaning that $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ for some $\kappa$ fixed. 
-> Its approximation error can be characterized by $\mathcal M_F^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M_F^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_k, y_{k - 1}) \le \epsilon_k$. 
-> Use $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to denote the exact evaluation of the proximal point method then we have for all $x$: 
+> Let $F$ be a $\mu\ge 0$ strongly convex.
+> Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
+> Assume the approximation error is haracterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+> Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
 > $$
 > \begin{aligned}
 >     F(x) &\ge 
