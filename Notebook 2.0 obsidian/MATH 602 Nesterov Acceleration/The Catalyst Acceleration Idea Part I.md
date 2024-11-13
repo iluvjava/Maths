@@ -301,7 +301,7 @@ Please observe that the entire design of the sequence is based on the in-exact a
 > The caoninical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfies the conditions for all $k\ge 1$
 > $$
 > \begin{aligned}
->     F(x_k) &\le \phi_k^* + \xi_k
+>     F(x_k) &\le \phi_k^* + \xi_k, 
 >     \\
 >     \xi_k &= 
 >     (1 - \alpha_{k - 1})(
@@ -643,5 +643,5 @@ $$
 
 
 #### **Proposition A.9 | Nesterov's estimating sequence with implicit descent error control**
-
+> 
 
