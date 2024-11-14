@@ -31,7 +31,7 @@
 \begin{abstract} 
     \noindent
     Nesterov's accelerated gradient first appeared back in the 1983 has sparked numerous theoretical and practical advancements in Mathematics programming literatures. 
-    The idea behind Nesterov's acceleration is universal for convex objective and it has concrete extension in the non-convex case. 
+    The idea behind Nesterov's acceleration is universal for convex objective, and it has concrete extension in the non-convex case. 
     In this paper we survey specifically the Catalyst Acceleration that incorporated ideas from the Accelerated Proximal Point Method proposed by Guler back in 1993. 
     The paper reviews Nesterov's classical analysis of accelerated gradient in the convex case.
     The paper will describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
@@ -47,7 +47,7 @@
 
     The optimal algorithm named accelerated gradient descent method is proposed in Nesterov's seminal work back in 1983 \cite{nesterov_method_1983}. 
     The algorithm closed the upper bound and lower bound on the iteration complexity for all first order Lipschitz smooth convex function among all first order algorithms. 
-    For a specific definition first order method, we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
+    For a specific definition of first order method, we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
     Gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity that is slower than
     the lower iteration complexity $\mathcal O(1/k^2)$. 
     Accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
@@ -55,10 +55,10 @@
     It's tempting to believe that the existence of an optimal algorithm sealed the ceiling for the need of theories for convex first-order smooth optimization. 
     It is correct but lacks the nuance in understanding because Nesterov's accelerated gradient is a system of analysis techniques which is not a specific design paradigm for algorithms. 
     
-    Guler's accelerated Proximal Point Method(PPM) \cite{guler_new_1992} in 1993 used the technique of Nesterov's estimating sequence to accelerated PPM when the objective is convex. 
-    The algorithm uses $(\lambda_k)_{k \ge 0}$ in the PPM to generate $(x_k)_{k\ge 0}$ given any initial guess $x_0$.
-    Guler's prior work \cite{guler_convergence_1991} showed the convergence of PPM method in the convex without acceleration has convergence $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
-    His new algorithm with acceleration has a convergence rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
+    Guler's accelerated Proximal Point Method (PPM) \cite{guler_new_1992} in 1993 used the technique of Nesterov's estimating sequence to accelerate PPM for convex objectives. 
+    Use $(\lambda_k)_{k \ge 0}$ to parameterize the proximal point evaluation to generate $(x_k)_{k\ge 0}$ given any initial guess $x_0$.
+    Guler's prior work \cite{guler_convergence_1991} showed the convergence of PPM method in the convex without acceleration is $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
+    His new algorithm with acceleration has a rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
     An inexact Accelerated PPM method using conditions described in Rockafellar's works in 1976 \cite{rockafellar_monotone_1976} is also discussed in the paper. 
 
     It's tempting to conclude that the results has reached the ceiling for extending Nesterov's acceleration. 
@@ -71,14 +71,15 @@
         \dist(\mathbf 0, \partial\mathcal{M}^{\lambda}(\tilde x; y))
         \le \frac{\epsilon}{\lambda}. 
     \end{align*}
-    The difficulty comes from controlling the error $\epsilon$ at each iteration so that the overall convergence of accelerated PPM achieves optimal convergence rate. 
-    However, in the paper $\epsilon_k \rightarrow 0$, but in a specific rate. 
+    The difficulty comes from controlling the error $\epsilon$ at each iteration to ensure the overall convergence of accelerated PPM. 
+    In the paper $\epsilon_k \rightarrow 0$ at a specific rate. 
     It requires knowledge about exact minimum of the Moreau envelope at each step and the optimal value of the Nesterov's estimating sequence. 
-    These quantities are intractable in practice. 
+    These quantities are intractable in practice making it impossible to formulate it to algorithms directly. 
 
     Introduced in Lin et al. \cite{lin_universal_2015}\cite{lin_catalyst_2018} is a series of papers describing a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
-    A meta algorithm because uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM based on the outputs of other algorithms. 
-    The innovations here are tracking and controlling the errors made in the inexact PPM throughout the algorithm and an algorithm called Proximal MISO. 
+    The meta algorithm uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM based on the outputs of other algorithms, hence the umbrella term: ``meta algorithm''. 
+    The innovations here are tracking and controlling the errors made in the inexact PPM using Nesterov's estimating sequence throughout and an algorithm called accelerated MISO-Prox by Lin. 
+    Prior to this paper, it was an open question on the conditions required to accelerate incremental method such as stochastic gradient descent can be accelerated. 
 
     \subsection{Contributions}
         The writing is expository and comprehensive, it will survey the history and major results, and innovations involved in conceiving and designing the Catalyst algorithm. 

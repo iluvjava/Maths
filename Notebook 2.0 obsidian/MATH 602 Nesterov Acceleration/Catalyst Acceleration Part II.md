@@ -61,6 +61,23 @@ This constant would be the lower bound on the weak convexity constant.
 
 
 #### **Lemma | Bounds on the estimating sequence parameters alpha**
+> If the sequence $\alpha_k$ has for all $k\ge 1$: 
+> $$
+> \begin{aligned}
+>     \alpha_{k + 1} = \frac{\sqrt{\alpha_k^4 + 4\alpha_k^2} - \alpha_k^2}{2}, \alpha_1 = 1
+> \end{aligned}
+> $$
+> then for all $k \ge0$: 
+> $$
+> \begin{aligned}
+>     \frac{\sqrt{2}}{k + 1} \le \alpha_k \le \frac{2}{k + 1}. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+This is totally different from the FISTA momentum sequence! 
+It comes from the Nesterov's estimating sequence and not Beck's FISTA. 
 
 
 ----
@@ -68,7 +85,8 @@ This constant would be the lower bound on the weak convexity constant.
 
 Throughout this text, we assume that the function $F$ is weakly convex and we assume that $\partial$ operator here is the Rockafellar Limiting subgradient. 
 
-#### **Lemma B.2 | Staionarity of proximal point evaluation**
+#### **Lemma B.2 | Stationarity of proximal point evaluation**
+> Assume that $F$ is weakly convex. 
 > Fix any $y$, suppose that $y^+$ satisfies $\dist(\mathbf 0,\partial \mathcal M^{k^{-1}}(y^+; y)) \le \epsilon$ then the following inequality holds: 
 > $$
 > \begin{aligned}
@@ -82,7 +100,7 @@ Throughout this text, we assume that the function $F$ is weakly convex and we as
 The proof is direct by the definition of subgradient. 
 
 
-#### **Theorem | Convergence of the algorithm**
+#### **Theorem (4.1, 4.2) | Convergence of the algorithm**
 > The algorithm generates $\bar x_k$ which is the monotone gradient descent step, and it converges to a stationary point when $F$ is $\kappa$ weakly convex: 
 > $$
 > \begin{aligned}
@@ -148,9 +166,11 @@ $$
     0 &\le
     F(x) + \frac{\kappa}{2}\Vert x - y_k\Vert^2 
     - \left(
-        F(\tilde x) + \frac{\kappa}{2}\Vert x - \tilde x_k\Vert^2 
+        F(\tilde x) 
+        + \frac{\kappa}{2}\Vert \tilde x_k - y_k\Vert^2
     \right)
-    - \frac{\kappa}{2}\Vert \tilde x_k - y_k\Vert^2 - \langle \xi_k, x - \tilde x_k\rangle
+    - \frac{\kappa}{2}\Vert x - \tilde x_k\Vert^2 
+    - \langle \xi_k, x - \tilde x_k\rangle
     , 
     \\
     F(x_k)
@@ -188,6 +208,8 @@ $$
     &\quad 
     \textcolor{gray}{
     \begin{aligned}
+        v_{k} &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
+        \\
         \tilde x_k - x_{k - 1} &= \alpha_k(v_k - x_{k - 1})
         \\
         \tilde x_k &= x_{k - 1} + \alpha_k(v_k - x_{k - 1})
@@ -306,15 +328,39 @@ $$
 
 The second last inequality use the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
 The last inequality used the fact that $A_{k - 1} \in (0, 1]$. 
-Urolling the recurrence up to $N$ we have the inequality: 
+Simplifying a bit the above is the same as for all $k\ge 1$: 
 
 $$
 \begin{aligned}
-    \alpha_N^{-2}(F(x_N) - F^*)
+    \alpha_{k + 1}^{-2}(F(x_{k + 1}) - F^*) 
+    + \frac{\kappa A_k}{2}\Vert v_k - x^*\Vert^2
+    &\le 
+    \frac{1}{A_k}\left(
+        \alpha_k^{-2}(F(x_k) - F^*) + \frac{\kappa A_k}{2}\Vert v_{k} - x^*\Vert^2
+    \right)
+    \\
+    & \le
+    \left(
+        \prod_{i = 1}^k A_i^{-1}
+    \right)\left(
+        \underbrace{
+            \alpha_1^2 (F(x_1) - F^*) + \frac{\kappa A_1}{2}\Vert v_1 - x^*\Vert^2
+        }
+        _{=:C}
+    \right)
+    \\
+    \implies 
+    \alpha_{k + 1}^{-2}(F(x_{k + 1}) - F^*)
     &\le 
     \left(
-        \prod_{j = 1}^{N - 1} A_{j}^{-1}
-    \right)\frac{\kappa}{2}\Vert v_0 - x^*\Vert^2. 
+        \prod_{i = 1}^k A_i^{-1}
+    \right) C
+    \\
+    F(x_{k + 1}) - F^* 
+    &\le 
+    \alpha_{k + 1}^2\left(
+        \prod_{i = 1}^k A_i^{-1}
+    \right) C
 \end{aligned}
 $$
 
@@ -322,9 +368,13 @@ By definition of $A_k$ sequence, we have:
 
 $$
 \begin{aligned}
-    \prod_{j = 1}^{N - 1} A_{j - 1}^{-1}
+    \prod_{i = 1}^{k} A_{j}^{-1}
     &= 
-    \frac{1}{\prod_{j = 1}^{N - 1}(1 - j^{-2})} \le 2. 
+    \prod_{i = 1}^{k} \left(
+        1 - \frac{1}{(i + 1)^2}
+    \right)^{-1}
+    \\
+    &\le \left(1 - \frac{1}{4}\right)^{-1} \le 2. 
 \end{aligned}
 $$
 
@@ -337,4 +387,10 @@ $$
 \end{aligned}
 $$
 
-Therefore, the algorithm has convergence on the staionary point condition and it achieves optimal convergence rate when $F$ is a convex function. 
+Therefore, the algorithm has convergence on the staionary point condition and it achieves optimal convergence rate of $\mathcal O(1/k^2)$ when $F$ is a convex function because
+
+$$
+\begin{aligned}
+    F(x_{k + 1}) - F^* \le \alpha_{k + 1}^2 2C\le \frac{4C}{(k + 1)^2}. 
+\end{aligned}
+$$
