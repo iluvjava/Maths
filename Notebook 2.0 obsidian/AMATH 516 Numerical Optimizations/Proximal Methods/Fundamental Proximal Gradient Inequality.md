@@ -243,7 +243,7 @@ Before the major claim we state the following lemma to the proof sleek and cool:
 
 **Proof**
 
-The proof for the equality is direct, we have for all $x$ the following is true: 
+The proof for the equality is direct, we have for all $\forall x, y$: 
 
 $$
 \begin{aligned}
@@ -262,7 +262,7 @@ $$
 \end{aligned}
 $$
 
-The inequality is direct by convexity of $f$ which implies that Bregman divergence has $D_f(x, y) \ge 0$ for all $x, y$. 
+The inequality is direct by convexity of $f$ and Lipschitz property of $F$. 
 
 **Remarks**
 
