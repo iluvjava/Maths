@@ -53,15 +53,14 @@ $$
     x_k^* 
     &=\mathcal J_{\kappa^{-1}} y_{k - 1}, 
     \\
-    x_k &= 
-    \widetilde{\mathcal J}_{\kappa^{-1}} y_{k - 1} \approx \mathcal J_{\kappa^{-1}} y_{k - 1}. 
+    x_k & \approx \mathcal J_{\kappa^{-1}} y_{k - 1}. 
 \end{aligned}
 $$
 
 We summarize some of the key points for lemmas in the Appendix: 
 1. Lemma A.7 shows us the Proximal Gradient Inequality that incorperates an inexact evaluation of the proximal point method, together with the error bound on the Moreau Envelope. 
 2. Theorem A.6 shows the Nesterov's estimating sequence only incorperates the inexact proximal point iterates. 
-3. A.8 Shows how the canonical form of the Nesterov's estimating sequence incorperates the errors from inexact proximal point evaluations. 
+3. A.8 Shows how the canonical form of the Nesterov's estimating sequence with the inexact proximal point evaluations. 
 4. A.9 Evaluates the consequence of inexact evaluation of proximal point method on the convergence reate implied by the Nesterov's estimating sequence frameworks. 
 
 
@@ -259,7 +258,18 @@ The key here is that the proximal gradient inequality doesn't have any $x_k^*$, 
 The the parts that follows, we summarize key points made to accomodate and realize the errors made by the approximations on the Moreau Envelope and how they innovate the algorithms design of. 
 
 #### **Theorem A.6 | Nesterov's estimating sequence results with inexact PPM**
-> Representing in the cannonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
+> Define the sequence $(y_k)_{k\ge0}$ for the estimating sequence. 
+> Define the recursive relations of estimating sequence $\phi_k$ to be 
+> $$
+> \begin{aligned}
+>     \phi_0(x) &= F(x_0) + \frac{\gamma_0}{2}\Vert x - x_0\Vert^2; 
+>     \\
+>     \phi(x) &= 
+>     (1 - \alpha_{k - 1})\phi_{k - 1}(x) + 
+>     \alpha_{k - 1}(F(x_k) + \langle \kappa(y_{k - 1} - x_k), x - x_k\rangle + \mu/2\Vert x - x_k\Vert^2). 
+> \end{aligned}
+> $$
+> Then the cannonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
 > $$
 > \begin{aligned}
 >     \gamma_k &= (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu, 
@@ -285,7 +295,25 @@ The the parts that follows, we summarize key points made to accomodate and reali
 
 **Proof**
 
-It's still under constructions. 
+The proof here comes from the recursive definition of the estimating sequence $\phi_k$. 
+$\gamma_k$, v_k comes from a hessian and gradient argument on the recursive form. 
+It is essentially the same argument from what can be found in [Nestrov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md). 
+Without repeating, we work on the expression for $\phi_k^*$. 
+
+$$
+\begin{aligned}
+    \phi_k(x_k) &= 
+    \phi_k^* + \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2
+    \\
+    & = (1 - \alpha_{k - 1})\left(
+        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    \right) + \alpha_{k - 1}F(x_k); 
+    \\
+    \phi_k^* = \phi_k(v_k) &= 
+    
+\end{aligned}
+$$
+
 
 **Remark**
 
@@ -293,7 +321,7 @@ Please observe that the entire design of the sequence is based on the in-exact a
 
 
 #### **Theorem A.8 | Controlling Error Bounds on the Nesterov's Estimating Sequence**
-> The caoninical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfies the conditions for all $k\ge 1$
+> The canonical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfies the conditions for all $k\ge 1$
 > $$
 > \begin{aligned}
 >     F(x_k) &\le \phi_k^* + \xi_k, 

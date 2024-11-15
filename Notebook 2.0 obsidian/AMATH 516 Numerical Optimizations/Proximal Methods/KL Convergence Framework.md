@@ -7,9 +7,25 @@
 We will introduce a framework of ideas for show the convergence of sequences applied to a function satisfying the KL property. 
 Our discussion is based on a paper by Attouch et al. [^1]
 
+
+#### **The proximal point algorithm**
+
+The proximal point algorithm has $(\lambda)_{k \ge0}$ with $\lambda_+ \le \lambda_k \ge \lambda_- < \infty$. 
+It generates $(x_k)_{k\ge 0}$ for any initial feasible $x_0$ by: 
+$$
+\begin{aligned}
+    x_{k + 1} \in \argmin{x} \left\lbrace
+        f(x) + \frac{1}{2\lambda_k}\Vert x - x_k\Vert
+    \right\rbrace. 
+\end{aligned}
+$$
+
+It chooses the global minimizer of the problem. 
+It's impossible to compute in practice but a very strong oracle to work with theoretically. 
+
 **Notations and quantities**
 1. $\partial f$ here is the Modokovich Limiting subdifferential. 
-2. Critical points of $f$ is the set of all $x$ such that $\mathbf 0 \in \partial f$, denoted by $\text{crt}f$. 
+2. Critical points of $f$ is the set of all $x$ such that $\mathbf 0 \in \partial f(x)$, denoted by $\text{crt}f$. 
 3. 
 
 

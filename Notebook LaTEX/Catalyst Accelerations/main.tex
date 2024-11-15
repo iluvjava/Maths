@@ -76,10 +76,10 @@
     It requires knowledge about exact minimum of the Moreau envelope at each step and the optimal value of the Nesterov's estimating sequence. 
     These quantities are intractable in practice making it impossible to formulate it to algorithms directly. 
 
-    Introduced in Lin et al. \cite{lin_universal_2015}\cite{lin_catalyst_2018} is a series of papers describing a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
-    The meta algorithm uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM based on the outputs of other algorithms, hence the umbrella term: ``meta algorithm''. 
-    The innovations here are tracking and controlling the errors made in the inexact PPM using Nesterov's estimating sequence throughout and an algorithm called accelerated MISO-Prox by Lin. 
-    Prior to this paper, it was an open question on the conditions required to accelerate incremental method such as stochastic gradient descent can be accelerated. 
+    Introduced in Lin et al. \cite{lin_universal_2015,lin_catalyst_2018} is a series of papers on a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
+    The meta algorithm uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM, therefore the umbrella term: ``meta''. 
+    Major innovations include Tracking and controlling the errors made in the inexact PPM using Nesterov's estimating sequence throughout and an algorithm called accelerated MISO-Prox.  
+    Prior to Lin's paper, it was an open question on the conditions required to accelerate incremental method such as stochastic gradient descent can be accelerated. 
 
     \subsection{Contributions}
         The writing is expository and comprehensive, it will survey the history and major results, and innovations involved in conceiving and designing the Catalyst algorithm. 
@@ -90,7 +90,6 @@
         We will only cover innovations in the theoretical aspect of Catalyst Acceleration. 
         Applications and specific example algorithms are out of the scope because there are too many papers on the separate topic of variance reduced stochastic algorithms. 
 
-    
 \section{Preliminaries}\label{sec:preliminaries}
     Throughout the writing, let the ambient space is $\RR^n$. 
     The optimization problem is
@@ -511,9 +510,8 @@
 
 
 
-
 \bibliographystyle{siam}
-\bibliography{references/refs}
+\bibliography{references/refs.bib}
 \newpage
 
 \appendix
