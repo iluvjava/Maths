@@ -34,8 +34,6 @@ Their approximation counter part has $\widetilde{(\cdot)}$ on on them.
 To ease the notation, sometimes their subscript will become $k$ when it's clear that we are talking about a sequence of proximal point iteration with $(\lambda_k)_{k \ge 0}$.
 
 
-
-
 #### **Definition | Nesterov's estimating sequence**
 > Denote $\phi_k(x): \R^n \mapsto \R$ be the Nesterov's estimating sequence associated with the objective function $F$. 
 > For it to be a Nesterov's estimating sequence, it satisfies the conditions that: 
@@ -48,8 +46,7 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 ---
 ### **H. Lin 2015, Universal Catalyst**
 
-We summarize some of the key ideas involved in H. Line 2015 Universal Catalyst paper. 
-We summarize some key quantities in the context of H. Lin's writing on the method of Catalyst Meta Acceleration: 
+Denote: 
 
 $$
 \begin{aligned}
@@ -57,7 +54,7 @@ $$
     &=\mathcal J_{\kappa^{-1}} y_{k - 1}, 
     \\
     x_k &= 
-    \widetilde{\mathcal J}_{\kappa^{-1}} y_{k - 1}. 
+    \widetilde{\mathcal J}_{\kappa^{-1}} y_{k - 1} \approx \mathcal J_{\kappa^{-1}} y_{k - 1}. 
 \end{aligned}
 $$
 
@@ -69,10 +66,9 @@ We summarize some of the key points for lemmas in the Appendix:
 
 
 #### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
-> Let $F$ be a $\mu\ge 0$ strongly convex.
-> Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
-> Assume the approximation error is haracterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
-> Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
+> Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
+> If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+> Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ it has for all $x$: 
 > $$
 > \begin{aligned}
 >     F(x) &\ge 
@@ -289,8 +285,7 @@ The the parts that follows, we summarize key points made to accomodate and reali
 
 **Proof**
 
-Complicated.
-Skipped.
+It's still under constructions. 
 
 **Remark**
 

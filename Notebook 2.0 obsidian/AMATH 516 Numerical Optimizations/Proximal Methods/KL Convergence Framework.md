@@ -7,6 +7,11 @@
 We will introduce a framework of ideas for show the convergence of sequences applied to a function satisfying the KL property. 
 Our discussion is based on a paper by Attouch et al. [^1]
 
+**Notations and quantities**
+1. $\partial f$ here is the Modokovich Limiting subdifferential. 
+2. Critical points of $f$ is the set of all $x$ such that $\mathbf 0 \in \partial f$, denoted by $\text{crt}f$. 
+3. 
+
 
 ---
 ### **Conditions | The Convergence Conditions**

@@ -516,14 +516,12 @@ Continuous time dynamics won't work with discrete time dynamics like what we usu
 To check the vadility of the claim, we need to consider $\eta_t(E_{t +1} - E_t)$ so that we have $(1 - \eta L /2) \le 0$ to allow for the value of the Lyaponouv function to decrease. 
 
 
-
-
 ---
-### **Lypapunov anlaysis for smooth gradient descent**
+### **Lyapunov analysis for smooth gradient descent**
 
 In this section we refine the arguments from the previous section. 
 We highlight new techniques for the analysis and ideas that simplifies the process for the convergence rate. 
-The difficult part of the analysis relates to stepszies in the range $(L^{-1}, 2L^{-1})$, and varying stepszie sequence. 
+The difficult part of the analysis relates to step size in the range $(L^{-1}, 2L^{-1})$, and varying step size sequence. 
 
 
 #### **Claim | Convergence rate of gradient descent**

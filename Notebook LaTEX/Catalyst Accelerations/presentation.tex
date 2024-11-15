@@ -13,17 +13,15 @@
 \usepackage{subcaption}
 \graphicspath{{.}}
 
-\author{Hongda Li}
-\title[Catalyst Acceleration]{Catalyst Meta Acceleration Framework: The history and the gist of it}
-% Informe o seu email de contato no comando a seguir
-% Por exemplo, alcebiades.col@ufes.br
-\newcommand{\email}{alto@mail.ubc.ca}
 % \setbeamercovered{transparent}
+\title[Catalyst Acceleration]{Catalyst Meta Acceleration Framework: The history and the gist of it}
+\author{Hongda Li}
+\newcommand{\email}{alto@mail.ubc.ca}
 \setbeamertemplate{navigation symbols}{}
-%\logo{}
 \institute[]{UBC Okanagan}
 \date{\today}
 \subject{MATH 590 2024 Fall Winter}
+\logo{}
 
 % ---------------------------------------------------------
 % Selecione um estilo de referência
@@ -309,7 +307,7 @@
         \end{frame}
 
 \section{Guler 1992}
-    \begin{frame}{Guler 1992: Accelerated proximal point method}
+    \begin{frame}{Guler 1992: Accelerated Proximal Point Method}
         Guler in 1992 discovered the following: 
         \begin{enumerate}
             \item The method of proximal point can be accelerated via Nesterov's estimating sequence. 
@@ -574,7 +572,9 @@
                         \le \frac{\kappa}{k + 1}\Vert \textcolor{red}{\tilde x_k} - y_k\Vert
                     ;
                     \\
-                    & v_{k} = \textcolor{violet}{x_{k - 1}} + \frac{1}{\alpha_k}(\tilde x_k - \textcolor{violet}{x_{k - 1}});
+                    & v_{k} = \textcolor{violet}{x_{k - 1}} + \frac{1}{\alpha_k}(
+                            \textcolor{red}{\tilde x_k} - \textcolor{violet}{x_{k - 1}}
+                        );
                     \\
                     & 
                     \text{find } \alpha_{k + 1} \in (0, 1): 
