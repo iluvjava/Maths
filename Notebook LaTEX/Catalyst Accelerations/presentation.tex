@@ -27,7 +27,7 @@
 
 % ---------------------------------------------------------
 % Selecione um estilo de referência
-\bibliographystyle{IEEEtran}
+\bibliographystyle{siam}
 
 %\bibliographystyle{abbrv}
 %\setbeamertemplate{bibliography item}{\insertbiblabel}
@@ -40,7 +40,7 @@
 \input{presets/wang/custom_commands.tex}
 % proof with breaks
 \usepackage[most]{tcolorbox}
-\useinnertheme{tcolorbox}
+% \useinnertheme{tcolorbox}
 \tcbset{breakable,title after break=\insertblocktitle}
 
 
@@ -157,7 +157,7 @@
 %         \end{frame}
 
 \section{Introduction}
-    \subsection{The History and a Series of Papers}
+    \subsection{Major references}
         \begin{frame}{Nesterov's Book}
             \begin{figure}
                 \centering
@@ -167,13 +167,13 @@
                 \item Yurri Nesterov's book: ``Lectures on Convex Optimization'' 2018, Springer \cite{nesterov_lectures_2018}. 
             \end{itemize}
         \end{frame}
-        \begin{frame}{Accelerated Proximal Point Method}
+        \begin{frame}{Accelerated Proximal Point Method (PPM)}
             \begin{figure}
                 \centering
                 \includegraphics[width=25em]{assets/Acc ppm}
             \end{figure}
             \begin{itemize}
-                \item Osman Guler's, ``New proximal point algorithm for convex optimization'', SIAM J.Optimization 1992. \cite{guler_new_1992}
+                \item Osman Guler's: ``New proximal point algorithm for convex optimization'', SIAM J. Optimization 1992 \cite{guler_new_1992}. 
             \end{itemize}
         \end{frame}
         \begin{frame}{Catalyst Acceleration}
@@ -185,18 +185,18 @@
                 % \label{fig:1}
             \end{figure}
             \begin{itemize}
-                \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'' 2015 JMLR \cite{lin_universal_2015}.
-                \item Paquette et al. ``Catalyst for gradient-based non-convex optimization'' 2018 JMLR \cite{paquette_catalyst_2018}. 
+                \item Honzhou Lin et al. ``Universal Catalyst for first order optimization'', 2015 JMLR \cite{lin_universal_2015}.
+                \item Paquette et al. ``Catalyst for gradient-based non-convex optimization'', 2018 JMLR \cite{paquette_catalyst_2018}. 
             \end{itemize}
         \end{frame}
         \begin{frame}{Objectives of the Talk}
             \begin{block}{List of objectives}
                 \begin{enumerate}
-                    \item Introduce the technique of Nesterov's estimating sequence for convergence proof of algorithms. 
-                    \item Understand the historical context for the inspirations of the Catalyst algorithm.  
-                    \item Understand the theories behind the Catalyst meta acceleration. 
-                    \item Understand key innovations for controlling the errors in Catalyst accelerations. 
-                    \item Introduce the Non-convex extension of the method. 
+                    \item Introduce the technique of Nesterov's estimating sequence. 
+                    \item Survey the history of the Catalyst algorithm (Catalyst for short).  
+                    \item Survey the theories behind Catalyst. 
+                    \item Highlight key innovations. 
+                    \item Introduce the non-convex extension of Catalyst. 
                 \end{enumerate}
             \end{block}
             \pause
@@ -204,24 +204,24 @@
                 Specific applications and algorithms are outside the scope because variance reduced stochastic method is itself a big topic.     
             \end{block}
         \end{frame}
+
     \subsection{Nesterov's Estimating Sequence}
         \begin{frame}{Nesterov's Estimating Sequence}            
             \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
-                Let $(\phi_k : \RR^n \mapsto \RR)_{k \ge 0}$ be a sequence of functions. 
-                We call this sequence of function a Nesterov's estimating sequence when it satisfies the conditions: 
+                Let $(\phi_k : \RR^n \rightarrow \RR)_{k \ge 0}$ be a sequence of functions. 
+                It's an estimating sequence when it satisfies the conditions: 
                 \begin{enumerate}
-                    \item There exists another sequence $(x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k^*(x)$. 
-                    \item There exists a sequence of $(\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)\; \forall k \ge0 $ such that for all $x \in \RR^n$ it has $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$. 
+                    \item $\exists (x_k)_{k \ge 0}$ such that for all $k \ge 0$ it has $F(x_k) \le \phi_k^*: =\min_{x}\phi_k(x)$. 
+                    \item $\exists (\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)$ such that $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$ for all $k\ge 0, x \in \RR^n$.
                 \end{enumerate}
             \end{definition}
         \end{frame}
 
-
         \begin{frame}{Nesterov's Estimating Sequence and Convergence}
             \begin{block}{Observations}
                 {\small
-                If we define $\phi_k$, $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$ and assume that $F$ has minimizer $x^*$. 
-                Then observe that $\forall k \ge 0$:  
+                If we define $\Delta_k(x) := \phi_k (x) - F(x)$ for all $x \in \RR^n$, assume that $F$ has minimizer $x^*$. 
+                Then $\forall k \ge 0$:  
                 \begin{align*}
                     \phi_{k + 1}(x) - \phi_k(x) 
                     &\le - \alpha_k (\phi_k(x) - F(x))
@@ -240,9 +240,9 @@
                     &\le 
                     (1 - \alpha_k)\Delta_k(x). 
                 \end{align*}
-                Unroll the recurrence, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative and using the property of Nesterov's estimating sequence it gives: 
+                Unroll the recurrence, by setting $x = x^*$, $\Delta_k(x^*)$ is non-negative. By the properties of Nesterov's estimating: 
                 \begin{align*}
-                    F(x_k) - F(x^*) \le \phi_k^* - F(x^*) \le \Delta_k(x^*) 
+                    0\le F(x_k) - F(x^*) \le \phi_k^* - F(x^*) \le \Delta_k(x^*) 
                     &= \phi_k(x^*) - F(x^*) 
                     \\
                     &\le \left(\prod_{i = 0}^k(1 - \alpha_i)\right)\Delta_0(x^*).
@@ -250,17 +250,18 @@
                 }
             \end{block}
         \end{frame}
-    \subsection{Example: Accelerated proximal gradient}
-        \begin{frame}{Example: accelerated proximal gradient}
+
+    \subsection{Example: Accelerated Proximal Gradient}
+        \begin{frame}{Example: Accelerated Proximal Gradient}
             The following algorithm is proved in the report which it's similar to Nesterov's 2.2.20 in his book \cite{nesterov_lectures_2018}. 
             \begin{block}{Quick Notations}
-                Assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
-                Define 
+                Assume $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
+                Define
                 \begin{align*}
                     \mathcal M^{L^{-1}}(x; y) 
                     &:= g(x) + f(y) 
                     + 
-                    \left\langle \nabla f(x), x - y\right\rangle 
+                    \left\langle \nabla f(y), x - y\right\rangle 
                     + 
                     \frac{L}{2}\Vert x - y\Vert^2, 
                     \\
@@ -272,11 +273,11 @@
                 \end{align*}
             \end{block}
         \end{frame}
-        \begin{frame}{Example: accelerated proximal gradient}
-            \begin{definition}[Accelerated proximal gradient estimating sequence]
+        \begin{frame}{Example: Accelerated Proximal Gradient}
+            \begin{definition}[estimating sequence for Accelerated Proximal Gradient]
                 \label{def:nes-est-seq-pg}
                 {\small
-                    Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
+                    $(\phi_k)_{k \ge0}$ is the Nesterov's estimating sequence recursively given by: 
                     \begin{align*}
                         &\textcolor{red}{
                             l_F(x; y_k) := 
@@ -307,9 +308,9 @@
             \end{definition}
         \end{frame}
 
-\section{Guler 1993}
-    \begin{frame}{Guler 1993: Accelerated proximal point method}
-        Guler in 1993 discovered the following: 
+\section{Guler 1992}
+    \begin{frame}{Guler 1992: Accelerated proximal point method}
+        Guler in 1992 discovered the following: 
         \begin{enumerate}
             \item The method of proximal point can be accelerated via Nesterov's estimating sequence. 
             \item The accelerated convergence rate retains for certain magnitude of errors on inexact evaluation of proximal point method. 
@@ -327,7 +328,7 @@
             $(\lambda_k)_{k \ge0}$ is a sequence that controls proximal operator. 
         \end{block}
     \end{frame}
-    \subsection{Exact Accelerated PPM}
+    \subsection{Exact accelerated PPM}
         \begin{frame}{Estimating sequence of accelerated PPM}
             \begin{definition}[Accelerated PPM estimating sequence]
                 {\small
@@ -352,13 +353,13 @@
                         \alpha_k &= \frac{1}{2}\left(
                             \sqrt{(A_k\lambda_k)^2 + 4A_k \lambda_k}
                             - A_k\lambda_k
-                        \right) 
+                        \right), 
                         \\
-                        y_k &= (1 - \alpha_k)x_k + \alpha_k v_k
+                        y_k &= (1 - \alpha_k)x_k + \alpha_k v_k, 
                         \\
                         v_{k + 1}
                         &= 
-                        v_k - \frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k)
+                        v_k - \frac{\alpha_k}{A_{k + 1}\lambda_k}(y_k - \mathcal J_k y_k), 
                         \\
                         A_{k + 1} &= (1 - \alpha_k)A_k. 
                     \end{align*}
@@ -366,7 +367,8 @@
             \end{definition}
         \end{frame}
         \begin{frame}{Convergence of accelerated PPM} 
-            \begin{block}{An accelerated rate}
+            We now state a major result of Guler 1992 \cite{guler_new_1992} on accelerated PPM. 
+            \begin{block}{Accelerated rate of convergence from Guler}
                 The accelerated PPM generate $(x_k)_{k\ge 0}$ such that $F(x_k) - F^*$ converges at a rate of: 
                 {\large
                 \begin{align*}
@@ -395,8 +397,8 @@
             \end{align*}
             Putting things into the context of accelerated PPM, the theorem follows is pivotal: 
             \begin{theorem}[\small Guler's inexact proximal point error bound (Lemma 3.1)]
-                Define the minimum of the Moreau Envelope: $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
-                If $x_{k +1}$ is an inexact evaluation under condition (A'), then the estimating sequence admits the conditions that: 
+                Define Moreau Envelope at $y_k$: $\mathcal M_k^* := \min_z \mathcal {M}^{\lambda_k}(z; y_k)$. 
+                If $x_{k +1}$ is an inexact evaluation under condition (A'), then: 
                 \begin{align*}
                     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_k y_k\Vert^2
                     &= 
@@ -406,6 +408,7 @@
             \end{theorem}
         \end{frame}
         \begin{frame}{Guler's Major Results}
+            The following is a major result from Guler \cite{guler_new_1992} on inexact accelerated PPM. 
             \begin{theorem}[\small Guler's accelerated inexact PPM convergence (Theorem 3.3)]
                 If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
                 \begin{align*}
@@ -427,10 +430,10 @@
         Hongzhou Lin 2015 \cite{lin_universal_2015} did the following: 
         {\small
         \begin{enumerate}
-            \item Improved the proof from Guler 1993 to include strongly convex objectives. 
+            \item Improved the proof from Guler 1992 to include strongly convex objectives. 
             \item Showed that $(\epsilon_k)_{k\ge 0}$ can be determined algorithmically and  an accelerated rate can be achieved. 
             \item Invented his own accelerated variance reduced incremental method called: ``Accelerated MISO-Prox" to demonstrate the Catalyst Framework. 
-            \item First time in history he obtained an accelerated rate for many classes of incremental methods. 
+            \item First time in history he obtained an accelerated rate for incremental methods in general. 
         \end{enumerate}
         }
         \begin{block}{Quick notations}
@@ -447,9 +450,9 @@
         \subsection{The algorithm}
             \begin{frame}{Lin's accelerated proximal point method}
                 \begin{definition}[Lin's accelerated proximal point method]
-                    Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
-                    Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
-                    Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)$ satisfies for all $k \ge 1$
+                    Initialize any $y_0 = x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
+                    Let $(\epsilon_k)_{k \ge 0}$ be the error of inexact proximal point evaluations. 
+                    Then the algorithm generates $(x_k, y_k)$ satisfies for all $k \ge 1$: 
                     {\small
                     \begin{align*}
                         & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k
@@ -463,9 +466,9 @@
                 \end{definition}
                 \pause
                 \begin{enumerate}
-                    \item It's very similar compared to accelerated proximal gradient!!!
-                    \item Determining $(\epsilon_k)_{k \ge 1}$ depends on the specific context of the algorithm. 
-                    \item Strong convexity of $\mathcal M_k(\cdot; y_{k - 1})$ can approximate $x_k$ up to $\epsilon_k$ (i.e: PL Inequality). 
+                    \item It's similar compared to accelerated proximal gradient!!!
+                    \item Determining $(\epsilon_k)_{k \ge 1}$ requires knowledge about $F(x_0) - F^*$. 
+                    \item Strong convexity of $\mathcal M_k(\cdot; y_{k - 1})$ helps with approximating $x_k$ up to $\epsilon_k$ (i.e: PL Inequality). 
                 \end{enumerate}
             \end{frame}
         \subsection{Convergence and practical importance}
@@ -478,7 +481,7 @@
                         \widetilde{\mathcal O}\left(n \sqrt{L/\mu} \log(1/\epsilon)\right). 
                     $$
                     It's the same as accelerated gradient method up to a log term. 
-                    In absent of strong convexity, acceleration for Variance reduced stochastic method such as: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG is $\widetilde {\mathcal O}(n L/\sqrt{\epsilon})$, strictly faster $\mathcal O(nL/\epsilon)$ without acceleration. 
+                    In absent of strong convexity, acceleration for Variance reduced stochastic method such as: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG becomes $\widetilde {\mathcal O}(n L/\sqrt{\epsilon})$, strictly faster $\mathcal O(nL/\epsilon)$ without acceleration. 
                 \end{block}
                 Note: SAG, SAGA, Finito/MISO-Prox, SDCA, SVRG are examples of variance reduced incremental methods. 
                 $\widetilde {\mathcal O}$ hides log factor in complexity. 
@@ -486,10 +489,9 @@
         \subsection{Key theoretical innovations}
             \begin{frame}{Inexact proximal inequality in Lin 2015}
                 Lemma A.7 in Lin 2015 \cite{lin_universal_2015} stated the following: 
-                \begin{lemma}{Inexact proximal inequality}
-                    Let $F$ be a $\mu\ge 0$ strongly convex.
-                    Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
-                    Assume the approximation error is characterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+                \begin{lemma}[Inexact proximal inequality]
+                    Let $F$ be a $\mu\ge 0$ strongly convex and $\kappa > 0$ fixed. 
+                    Suppose $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ satisfies $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
                     Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
                         \begin{align*}   
                             F(x) &\ge 
@@ -504,13 +506,13 @@
                         \end{align*}
                 \end{lemma}
                 \begin{enumerate}
-                    \item The parts in red is the regular proximal inequality but with $x_k$  instead of $x^*_k$. 
-                    \item This inequality allows for definition for estimating sequence $\phi_k$ that is rid of $\mathcal J_{\kappa^{-1}}y_{k - 1}$
+                    \item If $x_k=x^*_k$, we get the red part only which is the proximal inequality. 
+                    \item This inequality helps to define an estimating sequence $(\phi_k)_{k \ge 0}$ without the term: $\mathcal J_{\kappa^{-1}}y_{k - 1}$, which is $x_k^*$ in this case. 
                 \end{enumerate}
             \end{frame}
 
 \section{Paquette 2018}
-    \subsection{Major Contributions}
+    \subsection{Major contributions}
         \begin{frame}{Major contribution in Paquette 2018}
             In Paquette 2018, these major improvements for Lin's Universal Catalyst had been made: 
             \begin{enumerate}
@@ -586,8 +588,9 @@
         \end{frame}
     \subsection{Convergence claims}
         \begin{frame}{Convergence claim}
+            We state the convergence results for Basic 4WD Catalyst from Paquette 2018 \cite{paquette_catalyst_2018}. 
             \begin{theorem}[Basic 4WD Catalyst Convergence]
-                Let $(x_k, v_k, y_k)$ be generated by the basic Catalyst algorithm. 
+                Let $(x_k, v_k, y_k)$ be generated by the basic 4wd Catalyst algorithm. 
                 If $F$ is weakly convex and bounded below, then $x_k$ converges to a stationary point where
                 \begin{align*}
                     \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
@@ -597,10 +600,7 @@
             \end{theorem}
             \pause
             \textbf{Let's prove this.} 
-            \\
-            Note: 
             \begin{itemize}
-                \item The original proof in the paper is awfully presented, please read the appendix for a renewed proof. 
                 \item The convergence to stationary point is true for any $\kappa > 0$ that is not necessarily lager than the weak convexity constant. 
             \end{itemize}
         \end{frame}
@@ -616,7 +616,7 @@
                     \frac{\sqrt{2}}{k + 1} \le \alpha_k \le \frac{2}{k + 1}. 
                 \end{align*}    
             \end{lemma}
-            Note: This is not exactly the same sequence that is being used in FISTA. 
+            Note: $1/\alpha_k$ would be the FISTA sequence. 
             \begin{proof}
                 Skipped,  see report. 
             \end{proof}
@@ -624,7 +624,7 @@
         \begin{frame}{Proximal Stationary Point}
             \begin{lemma}[Lemma B.2]
                 Assume that $F$ is weakly convex. 
-                Fix any $y$, suppose that $y^+$ satisfies $\dist(\mathbf 0,\partial \mathcal M(y^+; y)) \le \epsilon$ then the following inequality holds: 
+                Fix any $y$, suppose that $y^+$ satisfies $\dist(\mathbf 0,\partial \mathcal M(y^+; y)) \le \epsilon$. Then the following inequality holds: 
                 \begin{align*}
                     \dist(\mathbf 0; \partial F(y^+)) 
                     \le \epsilon + \kappa\Vert y^+ - y\Vert. 
@@ -649,6 +649,7 @@
                         \dist(\mathbf 0, \partial F(\bar x_k)) \le 2 \kappa \Vert \bar x_k - x_{k - 1} \Vert. 
                     \end{align*} 
                 }
+
                 \only<2>{
                 Using (ineq1): 
                 \begin{align*}
@@ -713,7 +714,7 @@
                 
                 \only<4>
                 {
-                    Set $x = \alpha_k x^* + (1 - \alpha_k) x_{k-1}$ where $x^*$ is the minimizer then by the algorithm
+                    Set $x = \alpha_k x^* + (1 - \alpha_k) x_{k-1}$ where $x^*$ is the minimizer. Then by the algorithm: 
                     {\small
                     \begin{align*}
                         x - y_k
@@ -933,7 +934,7 @@
     
 \section{References}
     \begin{frame}{References}
-        \tiny\bibliography{references/refs.bib}
+        \tiny\bibliography{references/590refs.bib, references/books.bib}
     \end{frame}
 
 \end{document}

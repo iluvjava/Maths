@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.27)  13 NOV 2024 19:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.27)  14 NOV 2024 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -832,9 +832,7 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2024/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.2.0'
-)) (/usr/local/texlive/2024/texmf-dist/tex/latex/beamertheme-tcolorbox/beamerinnerthemetcolorbox.sty
-Package: beamerinnerthemetcolorbox 2023/05/03 version v0.6 Beamer blocks with tcolorboxes
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count386
 \l__pdf_internal_box=\box145
@@ -989,7 +987,7 @@ Package caption Info: End \AtBeginDocument code.
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./presentation.toc) [2
 
 ]
-<assets/Nesterov Book.png, id=188, 450.18187pt x 689.57625pt>
+<assets/Nesterov Book.png, id=199, 450.18187pt x 689.57625pt>
 File: assets/Nesterov Book.png Graphic file (type png)
 <use assets/Nesterov Book.png>
 Package pdftex.def Info: assets/Nesterov Book.png  used on input line 169.
@@ -997,7 +995,7 @@ Package pdftex.def Info: assets/Nesterov Book.png  used on input line 169.
  [3
 
  <./assets/Nesterov Book.png>]
-<assets/Acc ppm.png, id=199, 745.28438pt x 459.21562pt>
+<assets/Acc ppm.png, id=211, 745.28438pt x 459.21562pt>
 File: assets/Acc ppm.png Graphic file (type png)
 <use assets/Acc ppm.png>
 Package pdftex.def Info: assets/Acc ppm.png  used on input line 178.
@@ -1005,12 +1003,12 @@ Package pdftex.def Info: assets/Acc ppm.png  used on input line 178.
  [4
 
  <./assets/Acc ppm.png>]
-<assets/lin2015.png, id=211, 718.93594pt x 517.18219pt>
+<assets/lin2015.png, id=222, 718.93594pt x 517.18219pt>
 File: assets/lin2015.png Graphic file (type png)
 <use assets/lin2015.png>
 Package pdftex.def Info: assets/lin2015.png  used on input line 191.
 (pdftex.def)             Requested size: 164.25041pt x 118.15234pt.
-<assets/paquette 2018.png, id=212, 846.91406pt x 646.66594pt>
+<assets/paquette 2018.png, id=223, 846.91406pt x 646.66594pt>
 File: assets/paquette 2018.png Graphic file (type png)
 <use assets/paquette 2018.png>
 Package pdftex.def Info: assets/paquette 2018.png  used on input line 191.
@@ -1022,15 +1020,15 @@ Package pdftex.def Info: assets/paquette 2018.png  used on input line 191.
 ] [7
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 217.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 218.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 217.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 218.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 217.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 218.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 ) [8
@@ -1039,17 +1037,9 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 
 ] [10
 
-]
-Overfull \vbox (3.26071pt too high) detected at line 308
- []
+] [11
 
-[11
-
-]
-Overfull \vbox (1.97087pt too high) detected at line 329
- []
-
-[12
+] [12
 
 ] [13
 
@@ -1057,11 +1047,11 @@ Overfull \vbox (1.97087pt too high) detected at line 329
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 407.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 407.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 407.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 409.
  [15
 
 ] [16
@@ -1070,11 +1060,11 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 445.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 448.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 445.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 448.
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 445.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 448.
  [18
 
 ] [19
@@ -1087,11 +1077,7 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
 
 ] [23
 
-]
-Overfull \vbox (2.98021pt too high) detected at line 586
- []
-
-[24
+] [24
 
 ] [25
 
@@ -1107,19 +1093,23 @@ Overfull \vbox (2.98021pt too high) detected at line 586
 
 ] [31
 
-] [32
+]
+Overfull \vbox (0.91013pt too high) detected at line 914
+ []
+
+[32
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 913.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 914.
 
-Overfull \vbox (17.64577pt too high) detected at line 913
+Overfull \vbox (8.10277pt too high) detected at line 914
  []
 
 [33
 
 ]
-Overfull \vbox (11.77014pt too high) detected at line 913
+Overfull \vbox (2.22714pt too high) detected at line 914
  []
 
 [34
@@ -1131,15 +1121,10 @@ Overfull \vbox (11.77014pt too high) detected at line 913
 ] [37
 
 ] (./presentation.bbl
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
-** WARNING: IEEEtran.bst: No hyphenation pattern has been
-** loaded for the language `en'. Using the pattern for
-** the default language instead.
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <6> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 4.
+
 ) [38
 
  </usr/local/texlive/2024/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
@@ -1158,21 +1143,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 7CEE6E3ECCD73A32984D5448D4C766CA;3090.
+(rerunfilecheck)             Checksum: 0E61770B70F3830608C7111075BE2CEB;2985.
  ) 
 Here is how much of TeX's memory you used:
- 34077 strings out of 474116
- 712815 string characters out of 5743682
- 1950187 words of memory out of 5000000
- 55675 multiletter control sequences out of 15000+600000
- 577200 words of font info for 103 fonts, out of 8000000 for 9000
+ 34059 strings out of 474116
+ 716420 string characters out of 5743682
+ 1952187 words of memory out of 5000000
+ 55661 multiletter control sequences out of 15000+600000
+ 576786 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,20n,123p,615b,1130s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (38 pages, 782379 bytes).
+ 128i,22n,123p,560b,870s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (38 pages, 800699 bytes).
 PDF statistics:
- 625 PDF objects out of 1000 (max. 8388607)
- 455 compressed objects within 5 object streams
+ 1052 PDF objects out of 1200 (max. 8388607)
+ 664 compressed objects within 7 object streams
  108 named destinations out of 1000 (max. 500000)
- 383 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1679 words of extra memory for PDF output out of 10000 (max. 10000000)
 
