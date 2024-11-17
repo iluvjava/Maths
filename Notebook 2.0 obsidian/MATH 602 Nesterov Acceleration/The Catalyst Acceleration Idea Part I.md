@@ -429,15 +429,41 @@ On the second equality, we made use of the following to simplify the coefficient
 
 $$
 \begin{aligned}
-    
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2} - 
+    \frac{(1 - \alpha_{k - 1})^{2}\gamma_{k - 1}^{2}}{2\gamma_k}
+    &= 
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+    \left(
+        \frac{\gamma_k}{2} - \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}
+    \right)
+    \\
+    &= 
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+    \left(
+        \frac{\gamma_k - (1 - \alpha_{k - 1})\gamma_{k - 1}}{2}
+    \right)
+    \\
+    &= 
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+    \left(
+        \frac{
+            \alpha_{k - 1}\mu
+        }{2}
+    \right). 
 \end{aligned}
 $$
 
+We used the recurrence for $\gamma_k$ to simplify the numerator a bit. 
+The goal here is to make the expression short for future use, nothing more. 
 
 
 **Remark**
 
 Please observe that the entire design of the sequence is based on the in-exact approximated iteration sequence $(x_k)_{k \ge 0}$. 
+
+This canonical form for $\phi_k^*$ differs slightly from the original approach used in Nesterov's text. 
+But the difference doesn't seem major and it's just doing things in different order during the proofs. 
+
 
 
 #### **Theorem A.8 | Controlling Error Bounds on the Nesterov's Estimating Sequence**
@@ -785,6 +811,45 @@ $$
 $$
 
 
+If we assume that it instead holds with equality then $\alpha_k$ satisfies for all $k\ge 1$: 
+
+$$
+\begin{aligned}
+    \gamma_k - (\kappa + \mu)\alpha_{k - 1}^2 
+    &= 0
+    \\
+    (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu 
+    &= (\kappa + \mu)\alpha_{k - 1}^2. 
+\end{aligned}
+$$
+
+
+**Remarks**
+
+Now, take note that the expression for $v_{k + 1}$ had been discussed in other articles in this notebook. 
+For any $k \ge 1$, suppse we were given vectors $x_k, v_k$ and scalars $\alpha_k, \gamma_k$, then the following can generate $x_{k + 1}, v_{k + 1}$ and $\alpha_{k + 1}$ by: 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1} &= (1 - \alpha_{k})\gamma_k + \alpha_k \mu = (\kappa + \mu)\alpha_{k - 1}^2
+    \\
+    y_k &= (\gamma_k + \alpha_k \mu)^{-1}
+    (\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+    \\
+    v_{k + 1} &= 
+    \gamma_{k + 1}^{-1}\left(
+        (1 - \alpha_k)\gamma_k v_k + 
+        \alpha_k(\mu + \kappa)x_k 
+        - \alpha_k \kappa y_k
+    \right)
+    \\
+    x_{k + 1} &\approx \mathcal J_\kappa y_k. 
+\end{aligned}
+$$
+
+
+
+
 #### **Proposition A.9 | Nesterov's estimating sequence with implicit descent error control**
-> 
+
 
