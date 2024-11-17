@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1731712556.45415 "main.aux" "main.bbl" "main" 1731712582.48026 0
-  "./references/refs.bib" 1731712554.88559 19210 6f243a1afd042d3f26e684b0ff029444 ""
+["bibtex main"] 1731716318.49523 "main.aux" "main.bbl" "main" 1731729634.83545 0
+  "./references/refs.bib" 1731716238.51734 21157 b0c1d2bbe054e90db14583dc4fb5bf7f ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "main.aux" 1731712582.06976 4391 6b0c34c06741ab8465a02ba6fc0ddb8f "pdflatex"
+  "main.aux" 1731729634.62923 4399 4d1e0c4a8055e5e9b9116e8c16b0c3ce "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1731712581.11781 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" "main.pdf" "main" 1731712582.48045 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" 1731712580.8474 87476 526162e09c22b110261ee8848043b1c7 ""
+["pdflatex"] 1731729634.07452 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" "main.pdf" "main" 1731729634.83556 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/main.tex" 1731729633.88174 88147 f479d5474db573a3d0ff5e9349dc4e59 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -151,10 +151,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1716844513.00476 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1716844504 8221424 900989947c23303b742a586f0df8c087 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "main.aux" 1731712582.06976 4391 6b0c34c06741ab8465a02ba6fc0ddb8f "pdflatex"
-  "main.bbl" 1731712556.61606 1323 8c17f6bfc8cb81ab6db47cfca6f0a7bc "bibtex main"
-  "main.out" 1731712582.07093 2755 ac6f8e8e253040581b8e3dd8703498cd "pdflatex"
-  "main.tex" 1731712580.8474 87476 526162e09c22b110261ee8848043b1c7 ""
+  "main.aux" 1731729634.62923 4399 4d1e0c4a8055e5e9b9116e8c16b0c3ce "pdflatex"
+  "main.bbl" 1731716318.6438 1622 b1c0b292e50ad73b0e846e9b8c95be52 "bibtex main"
+  "main.out" 1731729634.62971 2755 ac6f8e8e253040581b8e3dd8703498cd "pdflatex"
+  "main.tex" 1731729633.88174 88147 f479d5474db573a3d0ff5e9349dc4e59 ""
   "presets/julia_lstlisting.tex" 1716846524.76436 795 90be9617663719a4f03539499dc50f10 ""
   "presets/misc.tex" 1716846524.76449 54 e72e04f1af5851d74e3841b87fbc1fdf ""
   "presets/wang/custom_commands.tex" 1731482240.19004 8593 b7dd869989df3d3236ff6bd442d42b39 ""

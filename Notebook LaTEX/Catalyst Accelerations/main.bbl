@@ -1,7 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{guler_convergence_1991}
+{\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for convex minimization}, 29, p.~17.
+\newblock Num Pages: 17 Place: Philadelphia, United States Publisher: Society for Industrial and Applied Mathematics.
+
 \bibitem{guler_new_1992}
-{\sc O.~Guler}, {\em New proximal point algorithms for convex minimization}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em New proximal point algorithms for convex minimization}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
 
 \bibitem{lin_universal_2015}
 {\sc H.~Lin, J.~Mairal, and Z.~Harchaoui}, {\em A universal catalyst for first-order optimization}, MIT Press, Dec. 2015, pp.~33--84.

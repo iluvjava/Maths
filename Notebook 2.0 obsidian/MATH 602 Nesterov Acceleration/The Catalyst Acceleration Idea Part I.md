@@ -307,12 +307,132 @@ $$
     \\
     & = (1 - \alpha_{k - 1})\left(
         \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
-    \right) + \alpha_{k - 1}F(x_k); 
+    \right) + \alpha_{k - 1}F(x_k)
     \\
-    \phi_k^* = \phi_k(v_k) &= 
+    \iff 
+    \phi_k^* &= 
+    (1 - \alpha_{k - 1})\left(
+        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    \right) + \alpha_{k - 1}F(x_k) - \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2
+    \\
+    &= 
+    (1 - \alpha_{k - 1})\phi_{k - 1}+ \alpha_{k - 1}F(x_k)
+    + 
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    - \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2.
+\end{aligned}\tag{eqn1}
+$$
+
+Now, it would be great to express $\Vert x_k - v_k\Vert^2$ so it depends on the iterates from previous iteration. 
+From the definition of $v_k$ we have 
+
+$$
+\begin{aligned}
+    v_k - x_k &= 
+    \gamma_k^{-1}(
+    (
+        1 - \alpha_{k - 1})\gamma_{k - 1}v_{k - 1}
+        + \alpha_{k - 1}\mu x_k - \alpha_{k - 1}\kappa(y_{k - 1} - x_k)
+    ) - x_k
+    \\
+    &= 
+    \gamma_k^{-1}(
+        (1 - \alpha_{k - 1})\gamma_{k - 1}v_{k - 1}
+        + (\alpha_{k - 1}\mu - \gamma_k) x_k - \alpha_{k - 1}\kappa(y_{k - 1} - x_k)
+    )
+    \\
+    &= 
+    \gamma_k^{-1}(
+        (1 - \alpha_{k - 1})\gamma_{k - 1}v_{k - 1}
+        - (1 - \alpha_{k - 1})\gamma_{k - 1} x_k - \alpha_{k - 1}\kappa(y_{k - 1} - x_k)
+    )
+    \\
+    &= \gamma_k^{-1}(
+        (1 - \alpha_{k - 1})\gamma_{k - 1}(v_{k - 1} - x_k)
+        - \alpha_{k - 1}\kappa(y_{k - 1} - x_k)
+    ).
+\end{aligned}
+$$
+
+Taking the norm and multiplying by $\gamma_k/2$ to match the terms in (eqn1) then: 
+
+$$
+\begin{aligned}
+    \Vert v_k - x_k\Vert^2 &= 
+    \gamma_k^{-2}\Vert (1 - \alpha_{k - 1})\gamma_{k - 1}(v_{k - 1} - x_k) \Vert^2
+    + 
+    \gamma_k^{-2}\Vert \alpha_{k - 1}\kappa(y_{k - 1} - x_k)\Vert^2
+    \\
+    & \quad 
+    - 2\gamma_k^{-2}\gamma_{k - 1}(1 - \alpha_{k - 1})\alpha_{k - 1}\langle v_{k - 1} - x_k, \kappa(y_{k - 1} - x_k) \rangle
+    \\
+    \frac{\gamma_k}{2}
+    \Vert v_k - x_k\Vert^2 
+    &= 
+    \frac{(1 - \alpha_{k - 1})^{2}\gamma_{k - 1}^{2}}{2\gamma_k}\Vert x_k - v_{k - 1}\Vert^2
+    + 
+    \frac{\alpha_{k - 1}^2}{2\gamma_k} \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+    \\
+    &\quad 
+    - 
+    \frac{
+        \gamma_{k - 1}(1 - \alpha_{k - 1})\alpha_{k - 1}
+    }{\gamma_k}\langle v_{k - 1} - x_k, \kappa(y_{k - 1} - x_k)\rangle.  
+\end{aligned}
+$$
+
+Substituting it back we have 
+
+$$
+\begin{aligned}
+    \phi_k^* &= 
+    (1 - \alpha_{k - 1})\phi_{k - 1}+ \alpha_{k - 1}F(x_k)
+    + 
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    - 
+    \frac{(1 - \alpha_{k - 1})^{2}\gamma_{k - 1}^{2}}{2\gamma_k}\Vert x_k - v_{k - 1}\Vert^2
+    \\
+    & \quad 
+        + \left(
+            - 
+            \frac{\alpha_{k - 1}^2}{2\gamma_k} \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+            + 
+            \frac{
+                \gamma_{k - 1}(1 - \alpha_{k - 1})\alpha_{k - 1}
+            }{\gamma_k}\langle v_{k - 1} - x_k, \kappa(y_{k - 1} - x_k)\rangle
+        \right)
+    \\
+    &= 
+    (1 - \alpha_{k - 1})\phi_{k - 1}+ \alpha_{k - 1}F(x_k)
+    + 
+    \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}\mu}{2\gamma_k}
+    \Vert x_k - v_{k - 1}\Vert^2
+    - 
+    \frac{\alpha_{k - 1}^2}{2\gamma_k} \Vert \kappa(y_{k - 1} - x_k)\Vert^2
+    \\
+    &\quad + 
+    \frac{\gamma_{k - 1}(1 - \alpha_{k - 1})\alpha_{k - 1}}{\gamma_k}
+    \langle v_{k - 1} - x_k, \kappa(y_{k - 1} - x_k)\rangle
+    \\
+    &= 
+    (1 - \alpha_{k - 1})\phi_{k - 1} + \alpha_{k - 1}F(x_k)
+    + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})\gamma_{k - 1}}{\gamma_k}
+    \left(
+        \frac{\mu}{2}\Vert x_k - v_{k - 1}\Vert^2 
+        + 
+        \langle v_{k - 1} - x_k, \kappa(y_{k - 1} - x_k) \rangle. 
+    \right)
+\end{aligned}
+$$
+
+On the second equality, we made use of the following to simplify the coefficients for $\Vert x_k - v_{k - 1}\Vert^2$: 
+
+$$
+\begin{aligned}
     
 \end{aligned}
 $$
+
 
 
 **Remark**

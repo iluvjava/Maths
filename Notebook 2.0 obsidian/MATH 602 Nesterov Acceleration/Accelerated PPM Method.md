@@ -406,7 +406,7 @@ $$
 \end{aligned}
 $$
 
-By merging the terms, the 2 equality implifies the inequality in (1) into: 
+Substituting it back to (1) it has: 
 
 $$
 \begin{aligned}
@@ -451,8 +451,7 @@ $$
 \end{aligned}
 $$
 
-Next, to inductively assert the inequality $\phi_{k + 1}\ge F(\mathcal J_k y_k) = F(x_{k + 1})$ we consider the choice of $y_k$ and scalar values $\alpha_k, \lambda_k$ which set the cross produce term zero, and the coefficient of the norm term larger than zero. 
-This would produce the following inequality, equality: 
+Next, if induction hypothesis $\phi_{k + 1}\ge F(\mathcal J_k y_k) = F(x_{k + 1})$ is true, it's sufficient to take the coefficient of $\Vert y_k - \mathcal J_k y_k\Vert^2$ to be greater than zero and make the inner product term zero which produces: 
 $$
 \begin{aligned}
     & 
@@ -483,8 +482,7 @@ $$
 \end{aligned}
 $$
 
-In Guler's paper, a strong inequality of $\alpha_k^2 = A_k(1 - \alpha_k)\lambda_k$ is used instead. 
-Solving the quadratic it showed that the choice of sequence for $\alpha_k^2$ is 
+Here we used $\alpha_k^2 = A_k(1 - \alpha_k)\lambda_k$ which comes from the recursive relations on $A_k$, solving it gives: 
 
 $$
 \begin{aligned}
@@ -546,7 +544,7 @@ The quantity $\partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)$ is a trackable qu
 > $$
 > \begin{aligned}
 >     \frac{1}{2\lambda_k} \Vert x_{k + 1} - \mathcal J_{k} y_k\Vert^2
->     &= 
+>     &\le 
 >     \mathcal M^{\lambda_k}(x_{k + 1}, y_k) - \mathcal M^*_k
 >     \le \frac{\epsilon_k^2}{2\lambda_k}. 
 > \end{aligned}

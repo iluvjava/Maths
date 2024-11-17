@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex presentation"] 1731712102.8019 "presentation.aux" "presentation.bbl" "presentation" 1731714925.69428 0
+["bibtex presentation"] 1731712102.8019 "presentation.aux" "presentation.bbl" "presentation" 1731716290.17315 0
   "./references/590refs.bib" 1731712098.54631 18426 7fe8074175ba57d959cb2c525b7a91de ""
   "./references/books.bib" 1731627810.39269 29410 f694c88eb48de2dd1b75507d3b5bacca ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/siam.bst" 1292289607 19403 812681d329611d2a1625ad7ae5186edc ""
-  "presentation.aux" 1731714925.22552 11135 1863c42210141ab6bf4320c1a985ea0d "pdflatex"
+  "presentation.aux" 1731716289.61234 11135 1863c42210141ab6bf4320c1a985ea0d "pdflatex"
   (generated)
   "presentation.bbl"
   "presentation.blg"
   (rewritten before read)
-["pdflatex"] 1731714922.33344 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" "presentation.pdf" "presentation" 1731714925.69452 0
-  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" 1731714922.12014 47624 620ca9265513305fe94d6a676feef3b9 ""
+["pdflatex"] 1731716286.44932 "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" "presentation.pdf" "presentation" 1731716290.17342 0
+  "/Users/hongdali/Desktop/repos/Maths/Notebook LaTEX/Catalyst Accelerations/presentation.tex" 1731716286.20947 47412 ada864fd0f4d64f34ab676a1a0bcffa9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -297,12 +297,12 @@
   "assets/Nesterov Book.png" 1731453482.32713 124152 d3e8bed801003abb76727a6042183043 ""
   "assets/lin2015.png" 1731453482.32735 112047 1c60ffa2d306b18fbf8e743c2a1333fc ""
   "assets/paquette 2018.png" 1731453482.32759 168791 3ca72c8ec416b0f0286cc10ac978c775 ""
-  "presentation.aux" 1731714925.22552 11135 1863c42210141ab6bf4320c1a985ea0d "pdflatex"
+  "presentation.aux" 1731716289.61234 11135 1863c42210141ab6bf4320c1a985ea0d "pdflatex"
   "presentation.bbl" 1731712102.94208 1077 c54629ebb1a641867942e18768ebfdf3 "bibtex presentation"
-  "presentation.nav" 1731714925.22764 5749 0fe45c73613aa0f1a30927d2e8814270 "pdflatex"
-  "presentation.out" 1731714925.22736 2985 1ef7062b9106222b537ca213e3e4922d "pdflatex"
-  "presentation.tex" 1731714922.12014 47624 620ca9265513305fe94d6a676feef3b9 ""
-  "presentation.toc" 1731714925.22775 1153 b561b0a244ef83214ba9328fa84b2a51 "pdflatex"
+  "presentation.nav" 1731716289.61418 5749 0fe45c73613aa0f1a30927d2e8814270 "pdflatex"
+  "presentation.out" 1731716289.61391 2985 1ef7062b9106222b537ca213e3e4922d "pdflatex"
+  "presentation.tex" 1731716286.20947 47412 ada864fd0f4d64f34ab676a1a0bcffa9 ""
+  "presentation.toc" 1731716289.61429 1153 b561b0a244ef83214ba9328fa84b2a51 "pdflatex"
   "presets/wang/custom_commands.tex" 1731482240.19004 8593 b7dd869989df3d3236ff6bd442d42b39 ""
   (generated)
   "presentation.aux"

@@ -378,7 +378,7 @@
                 \end{align*}    
                 }
             \end{block}
-            Note, PPM without accelerate converges at a rate of $\mathcal O((\sum_{i = 1}^{k}\lambda_i)^{-1})$. 
+            Note, PPM without accelerate converges at a rate of $\mathcal O((\sum_{i = 1}^{k}\lambda_i)^{-1})$, this is from Guler too. 
         \end{frame}
     \subsection{Inexact accelerated PPM}
         \begin{frame}{Accelerated Inexact PPM}
@@ -546,17 +546,12 @@
                             \mathcal M(x; \textcolor{violet}{x_{k - 1}})
                         \right\rbrace
                     \\ &\quad 
-                    \text{ such that:  }
-                        \left\lbrace
-                            \begin{aligned}
-                                & \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; \textcolor{violet}{x_{k - 1}})) 
-                                \le 
-                                \kappa\Vert \textcolor{blue}{\bar x_k}- \textcolor{violet}{x_{k - 1}}\Vert, 
-                                \\
-                                & \mathcal M(\textcolor{blue}{\bar x_k}; \textcolor{violet}{x_{k - 1}}) 
-                                \le F(\textcolor{violet}{x_{k - 1}}). 
-                            \end{aligned}
-                        \right.
+                    \text{such that: }
+                        \text{dist}(\mathbf 0, \partial \mathcal M(\bar x_k; \textcolor{violet}{x_{k - 1}})) 
+                        \le 
+                        \kappa\Vert \textcolor{blue}{\bar x_k}- \textcolor{violet}{x_{k - 1}}\Vert, 
+                        \mathcal M(\textcolor{blue}{\bar x_k}; \textcolor{violet}{x_{k - 1}}) 
+                        \le F(\textcolor{violet}{x_{k - 1}}); 
                     \\
                     & y_k = \alpha_k v_{k - 1} + (1 - \alpha_k) \textcolor{violet}{x_{k - 1}};
                     \\
