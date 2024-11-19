@@ -146,8 +146,8 @@ $$
 	\\
 	&= f(x) -\frac{1}{2\beta} \min_{u\in \partial f(x)} \Vert u\Vert^2
 	\\
-	&= f(x) - \frac{1}{2\beta} \text{dist}^2_{\partial f(x)}(\mathbf 0).
+	&= f(x) - \frac{1}{2\beta} \dist^2(\mathbf 0; \partial f(x)).
 \end{aligned}
 $$
 
-Therefore, the size of the subgradient bounds the objective value of the function, simplifying the above statement provides us with $f(x) - f(x_*) \le \frac{1}{2\beta }\text{dist}_{\partial f(x)}^2(\mathbf 0)$. 
+Therefore, the size of the subgradient bounds the objective value of the function, simplifying the above statement provides us with $f(x) - f(x_*) \le \frac{1}{2\beta }\dist^2(\mathbf 0; \partial f(x))$. 

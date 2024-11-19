@@ -16,7 +16,7 @@ $$
 \begin{aligned}
     & g_k := L(y_k - T_L y_k) \quad \text{Gradient mapping }, 
     \\
-    & l_h(x; y_k) := h(T_L y_k) + \langle g_k, x - y_k\rangle + 
+    & l_h(x; y_k) := h(T_L y_k) - \langle g_k, x - y_k\rangle + 
     \frac{1}{2L}\Vert g_k\Vert^2, 
     \\
     & 
@@ -234,7 +234,7 @@ $$
     &= 
     \gamma_{k + 1}^{-1}
     \left(
-        \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+        \gamma_k(1 - \alpha_k)v_k - \alpha_k g_k 
         + (-\gamma_{k + 1} + \mu\alpha_k)y_k
     \right)
     \\
@@ -244,20 +244,21 @@ $$
             \gamma_{k + 1} &=    
             (1 - \alpha_k)\gamma_k + \mu \alpha_k
             \\
-            \gamma_{k + 1} - \mu \alpha_k &= (1 - \alpha_k)\gamma_k
+            -(1 - \alpha_k)\gamma_k
+            &= - \gamma_{k + 1} + \mu \alpha_k
         \end{aligned}
     }
     \\
     &=
     \gamma_{k + 1}^{-1}
     \left(
-        \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+        \gamma_k(1 - \alpha_k)v_k - \alpha_k g_k - 
         (1 - \alpha_k)\gamma_ky_k
     \right)
     \\
     &= 
     \gamma_{k + 1}^{-1}(
-        \alpha_k(1 - \alpha_k)(v_k - y_k) 
+        \gamma_k(1 - \alpha_k)(v_k - y_k) 
         - \alpha_k g_k
     ).
 \end{aligned}
@@ -271,7 +272,7 @@ $$
     &= 
     \Vert 
         \gamma_{k + 1}^{-1}(
-            \alpha_k(1 - \alpha_k)(v_k - y_k) 
+            \gamma_k(1 - \alpha_k)(v_k - y_k) 
             - \alpha_k g_k
         )
     \Vert^2

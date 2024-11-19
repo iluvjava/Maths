@@ -17,7 +17,7 @@ $$
 \begin{aligned}
     & F: \R^n \mapsto \R^n, \tilde F  \approx F, 
     \\
-    & \mathcal M_F^{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2. 
+    & \mathcal M^{\lambda_k}(x; y) := F(x) + \frac{1}{2\lambda_k}\Vert x - y\Vert^2. 
     \\
     & \mathcal J_{\lambda_k} :=  (1 + \lambda_k\partial F)^{-1}, 
     \\
@@ -80,7 +80,7 @@ We summarize some of the key points for lemmas in the Appendix:
 
 **Observations**
 
-Set $\epsilon_k = 0$ so $x_k = x_k^*$ by strong convexity of $\mathcal M_F^{\kappa^{-1}}(\cdot\; ; y_{k - 1})$ (See [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information here) so it gives the usual proximal inequality: 
+Set $\epsilon_k = 0$ so $x_k = x_k^*$ by strong convexity of $\mathcal M^{\kappa^{-1}}(\cdot\; ; y_{k - 1})$ (See [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information here) so it gives the usual proximal inequality: 
 $$
 \begin{aligned}
     F(x) \ge F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle + 
@@ -92,7 +92,8 @@ Replacing $x_k = x_k^*$, this inequality is the same as the exact evaluation of 
 
 **Proof**
 
-The only ingredient is the coersivity of the envelope function $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$, which is a $\mu + \kappa$ convex function, therefore it has: 
+Define $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$. 
+$G_k$ is a $\mu + \kappa$ convex function which implies quadratic growth over minimizer $x_k^*$: 
 
 $$
 \begin{aligned}
@@ -100,8 +101,7 @@ $$
 \end{aligned}
 $$
 
-This condition is weaker than strong convexity. 
-Substituting the definition of the terms we have 
+Substituting definitions:
 
 $$
 {\small
@@ -259,12 +259,12 @@ The the parts that follows, we summarize key points made to accomodate and reali
 
 #### **Theorem A.6 | Nesterov's estimating sequence results with inexact PPM**
 > Define the sequence $(y_k)_{k\ge0}$ for the estimating sequence. 
-> Define the recursive relations of estimating sequence $\phi_k$ to be 
+> Define the recursive relations of estimating sequence $\phi_k$ for all $k\ge 2$: 
 > $$
 > \begin{aligned}
 >     \phi_0(x) &= F(x_0) + \frac{\gamma_0}{2}\Vert x - x_0\Vert^2; 
 >     \\
->     \phi(x) &= 
+>     \phi_k(x) &= 
 >     (1 - \alpha_{k - 1})\phi_{k - 1}(x) + 
 >     \alpha_{k - 1}(F(x_k) + \langle \kappa(y_{k - 1} - x_k), x - x_k\rangle + \mu/2\Vert x - x_k\Vert^2). 
 > \end{aligned}
@@ -460,7 +460,6 @@ The goal here is to make the expression short for future use, nothing more.
 **Remark**
 
 Please observe that the entire design of the sequence is based on the in-exact approximated iteration sequence $(x_k)_{k \ge 0}$. 
-
 This canonical form for $\phi_k^*$ differs slightly from the original approach used in Nesterov's text. 
 But the difference doesn't seem major and it's just doing things in different order during the proofs. 
 
@@ -843,13 +842,72 @@ $$
         - \alpha_k \kappa y_k
     \right)
     \\
-    x_{k + 1} &\approx \mathcal J_\kappa y_k. 
+    x_{k + 1} &\approx \mathcal J_\kappa y_k = y_k - \widetilde{\mathcal G}_{\kappa^{-1}} y_k. 
+\end{aligned}
+$$
+For $y_k$, we solved the equation for $y_k$ from earlier. 
+Now, take note that we can conduct the following simplifications for $v_{k + 1}$ and it has 
+
+$$
+\begin{aligned}
+    v_{t + 1} &= \gamma_{k + 1}^{-1}(
+        (1 - \alpha_k)\gamma_k v_k + \alpha_k\mu x_k + 
+        \alpha_k\kappa(x_k - y_k)
+    )
+    \\
+    &= 
+    \gamma_{k + 1}^{-1}\left(
+        (1 - \alpha_k)\gamma_k v_k + \alpha_k\mu x_k - \alpha_k 
+        \widetilde{\mathcal G}_{\kappa^{-1}}y_k
+    \right). 
 \end{aligned}
 $$
 
-
+This is now exactly the same as algorithm as Nesterov's 2.20.19. 
+See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more information. 
+Set $L = \kappa + \mu$, it will then allow a similar triangle representation from the PPM APG form analysis. 
 
 
 #### **Proposition A.9 | Nesterov's estimating sequence with implicit descent error control**
 
+
+---
+### **Commentaries on Universal Catalyst**
+
+There are something worth thinking about the algorithm. 
+#### **Top Comments**
+1. It's a realization of accelerated PPM when $\epsilon_k = 0, \mu = 0$. 
+2. The Nesterov's estimating sequence generalizes the estimating sequence used for accelerated proximal gradient method. 
+
+#### **Realization as accelerated PPM**
+More specifically, assume exact evaluation of $\epsilon = 0$, then it becomes the same as accelerated PPM but with the addition of 
+1. $\mu\ge 0$, a strong convexity constant. 
+Change $\kappa = \lambda_k^{-1}$ for all $k \ge 0$, with $\epsilon_k = 0$, the Catalyst algorithm reduced to accelerated PPM Method. 
+
+
+Compared to APPM, catalyst is yet to incorperates case when $\kappa$ may not be a constant. 
+
+#### **Comparison to accelerated proximal gradient method**
+The lower bound used for definining the $\phi_k$ can be re-interpreted. 
+We havefor all $x$: 
+
+$$
+\begin{aligned}
+    F(x) &\ge F(x_k) - \langle \kappa(x_k - y_k), x - x_k\rangle + \frac{\mu}{2}\Vert x - x_k\Vert^2
+    \\
+    &=  
+    F(x_k) - \langle \kappa(x_k - y_k), x - y_k + y_k - x_k\rangle + \frac{\mu}{2}\Vert x - x_k\Vert^2
+    \\
+    &= F(x_k) - 
+    \langle \kappa(x_k - y_k), x - y_k\rangle - \langle \kappa(x_k - y_k), y_k - x_k\rangle
+    + \frac{\mu}{2}\Vert x - x_k\Vert^2
+    \\
+    &= F(x_k)
+    - \langle \kappa(x_k - y_k), x - y_k\rangle + \Vert \kappa(x_k - y_k)\Vert^2
+    + \frac{\mu}{2}\Vert x - x_k\Vert^2. 
+\end{aligned}
+$$
+
+This is now exactly the same inequality as the proximal gradient inequality, if we assume that $x_k$ is produced by the proximal gradient oracle. 
+After some math, one can figure out that $\epsilon_k = \Vert \nabla f(x_k) - \nabla f(y_{k - 1})\Vert$. 
 

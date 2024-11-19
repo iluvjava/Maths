@@ -940,6 +940,7 @@ $$
 
 **Remarks**
 
+The above is enough to find a momentum form representation of Nesterov's 2.2.19. 
 Up until this point, we had showed that the Nesterov's 2.2.19 algorithm is equivalent to the following form: 
 
 $$
@@ -1068,6 +1069,7 @@ $$
     \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
 \end{aligned}
 $$
+
 
 
 ---

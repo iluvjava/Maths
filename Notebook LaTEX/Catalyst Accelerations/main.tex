@@ -258,7 +258,6 @@
     \begin{remark}
         The definition is a generalization of Nesterov's estimating sequence comes from (2.2.63) from Nesterov's book \cite{nesterov_lectures_2018}. 
         Compare to Nesterov's work, we used proximal gradient operator instead of projected gradient. 
-        The same inequality is called ``Fundamental Proximal Gradient Inequality'' in Amir Beck's book \cite{beck_first-order_2017}, Theorem 10.16. 
     \end{remark}
     % \begin{definition}[Accelerated proixmal gradient algorithm]\label{def:acc-prox-grad-alg}
     %     The algorithm of accelerated proximal gradient generates sequence of iterates $(x_k, y_k)_{k \ge 0}$ which satisfies for all $k\ge 0$: 
@@ -330,7 +329,7 @@
         x_{k + 1}\approx \mathcal J_{k} y_k \text{ be such that: }
         \dist\left(
             \mathbf 0, \partial \mathcal M^{k}(x_{k + 1}; y_k)
-        \right) &\le \frac{\epsilon_k}{k}
+        \right) &\le \frac{\epsilon_k}{\lambda_k}
         \\
         \implies 
         \Vert x_{k + 1} - \mathcal J_{k}y_k\Vert 
@@ -349,6 +348,12 @@
             \le \frac{\epsilon_k^2}{2\lambda_k}. 
         \end{align*}
     \end{theorem}
+    \begin{remark}
+        The inequalities are from PL-condition and strong convexity. 
+        They are now standard results in convex optimizations. 
+        For a proof of the theorem, see 
+        \hyperref[app:sec:inxt-acc-ppm]{Appendix \ref*{app:sec:inxt-acc-ppm}}. 
+    \end{remark}
     The next theorem is Theorem 3.3 of Guler's 1993 papers which is a major result for inexact accelerated PPM method. 
     \begin{theorem}[Guler's accelerated inexact PPM convergence results]
         If the error sequence $(\epsilon_k)_{k \ge0}$ for condition A' is bounded by $\mathcal O(1/k^\sigma)$ for some $\sigma > 1/2$, then the accelerated proximal point method has for any feasible $x \in \RR^n$: 
@@ -412,11 +417,10 @@
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
     One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
     The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
-    \begin{lemma}[Lin's inexact proximal inequality]
-        Let $F$ be a $\mu\ge 0$ strongly convex.
-        Suppose $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ with $\kappa$ fixed. 
-        Assume the approximation error is characterized by $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
-        Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ to be the exact evaluation of the proximal point then for all $x$: 
+    \begin{lemma}[Lin's inexact proximal inequality]\label{lemma:lin-ixct-prox-ineq}
+        Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
+        If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
+        Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$ it has for all $x$: 
         \begin{align*}
             F(x) &\ge 
             F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
@@ -428,7 +432,9 @@
     \begin{remark}
         The lemma plays a key role because it allows Lin to denote his Nesterov's estimating sequence to be for all $k \ge0$: 
         \begin{align*}
-            \phi_k(x) := 
+            \phi_0 &:= F(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2, 
+            \\
+            \phi_k(x) &:= 
             (1 - \alpha_{k - 1})\phi_{k - 1}(x)
             + \alpha_{k - 1}\left(
                 F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle
@@ -781,8 +787,7 @@
             \rightarrow 
             \textcolor{red}{(\text{eqn2})}. 
         \end{align*}
-        Next move is to simplify the term $\Vert v_{k + 1} - y_k\Vert^2$. 
-        We are doing this in advance so that later on the implicit descent conditions $F(x_{k + 1}) \le \phi_k^*$ will have easier algebra. 
+        Next move from Nesterov was to simplify the term $\Vert v_{k + 1} - y_k\Vert^2$. 
         With that it produces: 
         \begin{align*}
             v_{k + 1} - y_k 
@@ -795,7 +800,7 @@
             &= 
             \gamma_{k + 1}^{-1}
             \left(
-                \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+                \gamma_k(1 - \alpha_k)v_k - \alpha_k g_k 
                 + (-\gamma_{k + 1} + \mu\alpha_k)y_k
             \right)
             \\
@@ -805,30 +810,31 @@
                     \gamma_{k + 1} &=    
                     (1 - \alpha_k)\gamma_k + \mu \alpha_k
                     \\
-                    \gamma_{k + 1} - \mu \alpha_k &= (1 - \alpha_k)\gamma_k
+                    -(1 - \alpha_k)\gamma_k
+                    &= - \gamma_{k + 1} + \mu \alpha_k
                 \end{aligned}
             }
             \\
             &=
             \gamma_{k + 1}^{-1}
             \left(
-                \alpha_k(1 - \alpha_k)v_k - \alpha_k g_k 
+                \gamma_k(1 - \alpha_k)v_k - \alpha_k g_k - 
                 (1 - \alpha_k)\gamma_ky_k
             \right)
             \\
             &= 
             \gamma_{k + 1}^{-1}(
-                \alpha_k(1 - \alpha_k)(v_k - y_k) 
+                \gamma_k(1 - \alpha_k)(v_k - y_k) 
                 - \alpha_k g_k
             ).
         \end{align*}
-        Taking the norm of that we have: 
+        Next we have
         \begin{align*}
             \Vert v_{k + 1} - y_k\Vert^2 
             &= 
             \Vert 
                 \gamma_{k + 1}^{-1}(
-                    \alpha_k(1 - \alpha_k)(v_k - y_k) 
+                    \gamma_k(1 - \alpha_k)(v_k - y_k) 
                     - \alpha_k g_k
                 )
             \Vert^2
@@ -845,10 +851,10 @@
             -\frac{\gamma_k^2 (1 - \alpha_k)^2}{2 \gamma_{k + 1}} 
             \Vert v_k - y_k\Vert^2 - 
             \frac{\alpha_k^2}{2 \gamma_{k + 1}} \Vert g_k\Vert^2
-            \\&\quad 
-                + 
-                \gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1} \langle v_k - y_k, \alpha_k g_k\rangle. 
+            + 
+            \gamma_k(1 - \alpha_k)\gamma_{k + 1}^{-1} \langle v_k - y_k, \alpha_k g_k\rangle. 
         \end{align*}
+
         Substitute it back to \textcolor{red}{(eqn2)} we have 
         \begin{align*}
             \phi_{k + 1}^* &= 
@@ -956,6 +962,10 @@
         \end{align*}
         The second and third inequality used the equality $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$. 
     \end{proof}
+    \begin{remark}
+        The goal of having $\phi_k^*$ represented by iterates $v_k, y_k, g_k$ is because it assists in the future when an inductive hypothesis $\phi_k^* \ge f(x_k) \ge l_F(x_k; y_k) + \frac{\mu}{2}\Vert x - y_k\Vert^2$ is made. 
+        We did things in advance here, nothing more. 
+    \end{remark}
     
     \begin{theorem}[Verifying the conditions of implicit descent]\;\\
         Let estimating sequence $\phi_k$ and auxiliary sequence $y_k, v_k,\gamma_k, \alpha_k$  be given by 
@@ -1520,7 +1530,7 @@
         
     
 \section{Proofs for accelerated PPM}
-    \subsection{Exact accelerated PPM}
+    \subsection{Exact accelerated PPM}\label{sec:app:exct-acc-ppm}
         This section contains all the proofs for the exact accelerated PPM method. 
         It follows the same notation from the accelerated PPM section that $F$ is a convex function and the notations are $\mathcal J_k, \mathcal G_k$ for the proximal point evaluation and gradient mapping. 
         Recall the definition of the estimating sequence is: 
@@ -1909,8 +1919,34 @@
         \begin{remark}
             The approach by Guler is slightly different compare to Accelerated Proximal Gradient method completed in Section \ref*{app:sec:thm-claim-acc-prox-grad}. 
             For the Accelerated Proximal Gradient, we simplified $\phi_{k + 1}^*$ prior to considering $F(x_{k + 1}) \le \phi_{k + 1}^*$. 
+            In here, we substitute the inductive hypothesis $\phi_k^* \ge f(x_k)$ and skipped the canonical representation of $\phi_k^*$. 
+
+            A more critical observation here is the Nesterov's estimating sequence from 
+            \hyperref[app:sec:thm-claim-acc-prox-grad]{Section \ref*{app:sec:thm-claim-acc-prox-grad}} is the same as Guler's Accelerated PPM if we choose $L^{-1} = \lambda_k$,$\mu = 0$ and $g \equiv 0$ because: 
+            \begin{align*}
+                l_F(x; y_k) 
+                &= 
+                F\left(\widetilde{\mathcal J}_{L^{-1}} y_k\right) + 
+                \left\langle 
+                    L\left(y_k - \widetilde{\mathcal J}_{L^{-1}}y_k\right), 
+                    x - y_k
+                \right\rangle
+                + 
+                \frac{1}{2L} 
+                \left\Vert 
+                    L \left(y_k - \widetilde{\mathcal J}_{L^{-1}}y_k\right)
+                \right\Vert^2
+                \\
+                &= 
+                F\left(\widetilde{\mathcal J}_{L^{-1}} y_k\right) + 
+                \left\langle 
+                    L\left(y_k - \widetilde{\mathcal J}_{L^{-1}}y_k\right), 
+                    x - \widetilde{\mathcal J}_{L^{-1}}y_k
+                \right\rangle
+            \end{align*}
+            When $g\equiv 0$, $L^{-1} = \lambda_k$, the proximal gradient operator has $\widetilde{\mathcal J}_{L^{-1}} = \mathcal J_{\lambda_k}(y_k)$, making $\phi_k(x)$ here the same as accelerated proximal gradient. 
         \end{remark}
-    \subsection{Inexact accelerated PPM}
+    \subsection{Inexact accelerated PPM}\label{app:sec:inxt-acc-ppm}
         This section proofs the lemma that characterizes the inexact PPM errors for Guler's accelerated inexact PPM. 
         Now, we prove 
         \hyperref[thm:guler-inexact-ppm-bound]{Theorem \ref*{thm:guler-inexact-ppm-bound}}. 
@@ -1962,21 +1998,142 @@
         \end{align*}
 
         The upper bound is proved. 
+        \begin{remark}
+            This is nothing new. 
+            First inequality is a direct consequence of strong convexity and the second inequality is the PL-inequality implied by strong convexity. 
+        \end{remark}
 
         
 \section{Proofs for Catalyst Meta Acceleration}
     In this section, we prove the inexact proximal inequality and give the Nesterov's estimating sequence void of intractable quantities. 
-    The notation follows from 
+    The notation is the same as
     \hyperref[sec:lin-2015]{Section \ref*{sec:lin-2015}}. 
-    Let's now prove the inexact proximal inequality. 
     Recall inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ such that $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}; y_{k - 1}) \le \epsilon_k$; $x_k^* = \mathcal J_{\kappa^{-1}}y_{k - 1}$ to be the exact evaluation. 
+    
+    \subsection{Inexact proximal inequality}
+        \begin{proof}
+            This is the proof for 
+            \hyperref[lemma:lin-ixct-prox-ineq]{Lemma \ref*{lemma:lin-ixct-prox-ineq}}. 
+            Define $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$. 
+        $G_k$ is a $\mu + \kappa$ convex function which implies quadratic growth over minimizer $x_k^*$: 
+        \begin{align*}
+            (\forall x)\quad G_k(x) &\ge G_k^* + \frac{\kappa + \mu}{2}\Vert x - x_k^*\Vert^2. 
+        \end{align*}
+        Substituting definitions:
+        {\small
+        \begin{align*}
+            F(x) &\ge 
+            G_k(x_k) + (G_k^* - G_k(x_k)) + 
+            \frac{\mu + \kappa}{2}\Vert x - x_k^*\Vert^2 
+            - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &\ge 
+            G(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}\Vert x - x_k^*\Vert^2
+            - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &= G_k(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}
+            \left(
+                \Vert x - x_k - x_k + x_k^*\Vert^2
+            \right)
+            - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &= G_k(x_k) - \epsilon_k + \frac{\kappa + \mu}{2}
+            \left(
+                \Vert x - x_k\Vert^2 + \Vert x_k - x_k^*\Vert^2
+                + 
+                2\langle x - x_k, x_k - x_k^*\rangle
+            \right)
+            - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &= 
+            \left(
+                G_k(x_k) + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \right)
+            - \epsilon_k
+            \\ &\quad 
+                + \frac{\mu}{2}\Vert x - x_k\Vert^2
+                + \frac{\kappa + \mu}{2}\Vert x_k - x_k^*\Vert^2
+                + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
+        \end{align*}
+        }
+        Simplify terms inside the parenthesis: 
+        \begin{align*}
+            &
+            G_k(x_k) 
+            + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &= 
+            F(x_k) + \frac{\kappa}{2}\Vert x_k - y_{k - 1}\Vert^2
+            + \frac{\kappa}{2}\Vert x - x_k\Vert^2 - \frac{\kappa}{2}\Vert x - y_{k - 1}\Vert^2
+            \\
+            &= 
+            F(x_k) + 
+            \frac{\kappa}{2}\left(
+                \Vert x_k - y_{k - 1}\Vert^2 - \Vert x - y_{k - 1}\Vert^2
+            \right)
+            + \frac{\kappa}{2} \Vert x - x_k\Vert^2
+            \\
+            &= 
+            F(x_k) + 
+            \frac{\kappa}{2}\left(
+                \Vert x_k - x\Vert^2 
+                + 
+                2\langle x_k - x, x - y_{k - 1} \rangle
+            \right)
+            + 
+            \frac{\kappa}{2} \Vert x - x_k\Vert^2
+            \\
+            &= 
+            F(x_k) + 
+            \kappa\Vert x_k - x\Vert^2
+            + 
+            \kappa\langle x_k - x, x - y_{k - 1}\rangle
+            \\
+            &= 
+            F(x_k) + 
+            \kappa\langle x_k - x, x - y_{k - 1} + x_k - x\rangle
+            \\
+            &= F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle. 
+        \end{align*}
+        Therefore, it has the inequality: 
+        \begin{align*}
+            F(x) 
+            &\ge 
+            F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
+            - \epsilon_k
+            \\&\quad 
+                + \frac{\mu}{2}\Vert x - x_k\Vert^2
+                + \frac{\kappa + \mu}{2}\Vert x_k - x_k^*\Vert^2
+                + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle
+            \\
+            & \ge
+            F(x_k) + \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
+            - \epsilon_k
+            + \frac{\mu}{2}\Vert x - x_k\Vert^2
+            + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
+        \end{align*}
+        Re-arranging it to a form by the writer's preference:
+        \begin{align*}
+            F(x) - F(x_k) - \kappa\langle x_k - x, x_k - y_{k - 1} \rangle
+            - \frac{\mu}{2}\Vert x - x_k\Vert^2
+            &\ge 
+            - \epsilon_k
+            + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
+        \end{align*}
+        Now we have the RHS to be exclusively about the inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$, and $G_k(x_k) - G^*_k \le \epsilon_k$. 
+
+        \end{proof}
+        \begin{remark}
+            
+
+        \end{remark}
 
 \section{Proofs for 4WD Catalyst Acceleration}
     We prove
     \hyperref[thm:basic-4wd-catalyst]{Theorem \ref*{thm:basic-4wd-catalyst}}
     in this section. 
     The lemma below characterize the lower and upper bound on the $(\alpha_k)_{k \ge 0}$ which ultimately control the convergence rate. 
-    \begin{lemma}{app:lemma:momentum-sequence-bounds}
+    \begin{lemma}\label{app:lemma:momentum-sequence-bounds}
         
     \end{lemma}
 

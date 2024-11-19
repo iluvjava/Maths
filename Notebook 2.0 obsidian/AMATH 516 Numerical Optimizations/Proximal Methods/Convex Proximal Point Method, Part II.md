@@ -6,7 +6,7 @@
 
 This section will only summarizes some of the key results from Rockafellar's writing of the proximal point method in the convex case. 
 In this section we briefly view over how geniuses like Rockafellar handles the situations. 
-He heavily make use of theories of monotone opeartors in Hilbert spaces, and he focuses more on the iterates than the function value. 
+He heavily make use of theories of monotone operators in Hilbert spaces, and he focuses more on the iterates than the function value. 
 His analysis is a world of difference compare to Guler's work which inspired all previous sections. 
 This part will follow the works of Rockafellar^[R. T. Rockafellar, “Monotone Operators and the Proximal Point Algorithm,” SIAM J. Control Optim., vol. 14, no. 5, pp. 877–898, Aug. 1976, doi: 10.1137/0314056.]. 
 

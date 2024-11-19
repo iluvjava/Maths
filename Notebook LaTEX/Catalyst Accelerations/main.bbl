@@ -1,8 +1,7 @@
 \begin{thebibliography}{1}
 
 \bibitem{guler_convergence_1991}
-{\sc O.~Guler}, {\em On the convergence of the proximal point algorithm for convex minimization}, 29, p.~17.
-\newblock Num Pages: 17 Place: Philadelphia, United States Publisher: Society for Industrial and Applied Mathematics.
+{\sc O.~Guler}, {\em On the {Convergence} of the {Proximal} {Point} {Algorithm} for {Convex} {Minimization}}, SIAM Journal on Control and Optimization, 29 (1991), p.~17.
 
 \bibitem{guler_new_1992}
 \leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em New proximal point algorithms for convex minimization}, SIAM Journal on Optimization, 2 (1992), pp.~649--664.
@@ -12,6 +11,9 @@
 
 \bibitem{lin_catalyst_2018}
 \leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Catalyst acceleration for first-order convex optimization: from theory to practice}, in Journal of {Machine} {Learning} {Research}, vol.~18, 2018, pp.~1--54.
+
+\bibitem{nesterov_method_1983}
+{\sc Y.~Nesterov}, {\em A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)}, Proceedings of the USSR Academy of Sciences,  (1983).
 
 \bibitem{nesterov_lectures_2018}
 {\sc Y.~Nesterov}, {\em Lectures on {Convex} {Optimization}}, vol.~137 of Springer {Optimization} and {Its} {Applications}, Springer International Publishing, Cham, 2018.

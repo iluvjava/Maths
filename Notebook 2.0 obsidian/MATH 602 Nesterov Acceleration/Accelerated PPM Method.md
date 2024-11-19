@@ -513,7 +513,7 @@ This section we talk about how Guler thought about the inexact evaluation of the
 >     \text{dist}
 >     \left(
 >         \mathbf 0, \partial \mathcal M^{\lambda_k}(x_{k + 1}, y_k)
->     \right)^2 
+>     \right)
 >     &\le 
 >     \frac{\epsilon_k}{\lambda_k}. 
 > \end{aligned}
@@ -521,7 +521,7 @@ This section we talk about how Guler thought about the inexact evaluation of the
 > Here $\epsilon_k$ characterize the error made by the inexact evaluation. 
 > We call this Condition (A'), same as in Rockafellar's text. 
 
-One consequence of the error is the following. 
+One consequence of the error is the following (Condition A). 
 
 $$
 \begin{aligned}
@@ -606,5 +606,47 @@ $$
 
 The upper bound is proved. 
 
+**Remarks**
+
+Whe is proved here is just the PL conditions from strong convexity. 
+To see that compare the above proof with the PL condition from [Strong Convexity, Equivalences and Implications](../AMATH%20516%20Numerical%20Optimizations/Strong%20Convexity,%20Equivalences%20and%20Implications.md). 
+
+
+#### **Example | Proximal gradient**
+
+Proximal gradient is an example of inexact proximal point method. 
+Let $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge0$ strongly convex. 
+For any $y$, $\bar L \ge L$, Let $\widetilde y^+, y^+$ be given by 
+$$
+\begin{aligned}
+    \widetilde y^+ &=
+    \argmin{x} \left\lbrace
+        \widetilde{\mathcal M}(x; y):= f(y) + \langle \nabla f(x), x - y\rangle + \frac{\bar L}{2}\Vert x - y\Vert^2
+    \right\rbrace
+    \\
+    y^+ &= \argmin{x}\left\lbrace
+        \mathcal M(x; y):= F(x) + \frac{\bar L}{2}\Vert x - y\Vert^2. 
+    \right\rbrace
+\end{aligned}
+$$
+
+We now characterize the error made by the inexact approximation of $\tilde y^+$.
+By $\widetilde y^+$ being a minimizer of the upper model function it satisfies 
+
+$$
+\begin{aligned}
+    \mathbf 0 
+    &\in \partial g(\widetilde y^+) + \nabla f(y) + \bar L(\widetilde y^+ - y)
+    \\
+    \nabla f(\widetilde y^+) - \nabla f(y^+)
+    &\in 
+    \nabla f(\widetilde y^+) + \partial g(\widetilde y^+) + \bar L(\widetilde y^+ - y)
+    = \partial \mathcal M (\widetilde y; y)
+    \\
+    \implies 
+    \dist^2(\mathbf 0; \partial \mathcal M(\widetilde y^+, y^+)) &\le 
+    \Vert \nabla f(\widetilde y^+) - \nabla f(y)\Vert^2. 
+\end{aligned}
+$$
 
 

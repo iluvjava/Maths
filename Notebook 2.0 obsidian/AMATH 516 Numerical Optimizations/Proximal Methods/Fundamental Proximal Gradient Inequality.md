@@ -408,3 +408,8 @@ $$
 $$
 
 That, is kinda wild. 
+Oh yeah, from smoothness we also have 
+
+$$
+D_f(x, y) \ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
+$$

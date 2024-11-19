@@ -1,11 +1,12 @@
 - [[../Background/Characterizing Functions for Optimizations]], 
 - [[../Non-Smooth Calculus/Convex Function is Locally Lipschitz]], 
-- [[../Background/Convex Sets Projections and Dist, Intro]], 
+- [[../Background/Convex Sets Projections and Dist, Intro]].
 
 ---
 ### **Intro**
 
-Polyak step-size is like projected subgradient, but we have an additional assumptions on the objective value for the optimization problem. See [[Projected Subgradient Method Convergence Proof]] for more context. With the use of a Polyak step size, the projected subgradient gradient algorithm achieves monotone convergence of the $x^{(k)}$, and objective value. Significantly different to when, the stepsize $\eta_k$ is only: 
+Polyak step-size is like projected subgradient, but we have an additional assumptions on the objective value for the optimization problem. See [[Projected Subgradient Method Convergence Proof]] for more context. 
+With the use of a Polyak step size, the projected subgradient gradient algorithm achieves monotone convergence of the $x^{(k)}$, and objective value. Significantly different to when, the stepsize $\eta_k$ is only: 
 
 $$
 \begin{aligned}
@@ -23,21 +24,24 @@ which gives very interesting results, theoretically.
 **References:**
 
 28.4 In Heinz's Course note. 
+EE course notes [here](https://web.stanford.edu/class/ee364b/lectures/subgrad_method_notes.pdf) from Stephen Boyd. 
 
 #### **Assumptions, Basic Quantities**: 
 
-The method solves $\min_{x}f(x)$ given that we know: 
+Suppose that $f: \R^n \rightarrow \overline R$ is convex and Lipschitz continuous, $Q$ is closed. 
+Then $\partial f (x)$ is bounded for all $x \in \R^n$. 
+Assume $Q \cap \text{ri.dom}(f) \neq \emptyset$ so it's proper. 
+We define the following list of quantities: 
 
-* $\mu = \inf_{x\in Q}f(x)$ exists, and it's not $-\infty$. 
-* $f$ is, closed convex and proper. 
-* $\partial f(x)$, the subgradient at the domain of $f$. We only need to know any vector in the subgradient operator at $x$. 
-- The $f$ in the region of interest, Lipschitz. More specifically, we would like to have $Q$.
-- The function $f$ is also, convex. 
-- The set $Q$ is a closed set, and it is a set where $Q\cap \text{ri.dom}(f) \neq \emptyset$, with the property that $f$ is Lipschitz in the set $Q$. And hence, we will have the fact that $\text{rng}(\partial(f)|_Q)$ is bounded, hence the norm of all vector from the subgradient will be bounded by a constant: $L$. 
-- $S= \arg\min_{x\in Q}f(x)$ is the set of minimizer, which it will exist, as a consequence that a closed function in a compact set will attain some type of minimum for some minimizers in the closed set $Q$. 
-- Denote $\bar x \in S$, is one of the minimizers of the objective function. In proof below, it's fixed and it's any $\bar x$ from $S$. 
-- For ease of reading we consider using $e^{(k)}:= x^{(k)} - \bar x$, denoting the errors of the successive estimate. 
-- We also use $E^{(k)} = f(x^{(k)}) - f(\bar x)$, this denote the objective gaps of the current iterate of the functions. 
+
+- $\mu = \inf_{x\in Q}f(x)$ exists, and it's not $-\infty$ because $Q$ closed and bounded and $f$ is Lipschitz continuous. 
+- $f$ is, closed convex and proper. 
+- $f'(x)\in\partial f(x)$: Any elements of the subgradient of $f$ at the point $x$. 
+- $L$: Any constant the bound the maximum norm of the subgradient $\partial f$ at any point $x$ in $Q\cap \text{ri.dom }f$.
+- $S= \arg\min_{x\in Q}f(x)$; it exists by closure of $Q$ and continuity of $f$. 
+- $\bar x \in S$, fixed, it's any minimizer of $f$. 
+- $e^{(k)}:= x^{(k)} - \bar x$, the error vector. 
+- $E^{(k)} = f(x^{(k)}) - f(\bar x)$: Optimality gap. 
 
 #### **Algorithm | Projected Polyak Subgradient**: 
 
@@ -58,7 +62,7 @@ We prove these properties one by one in the up coming section. Before we start w
 #### **Lemma | Projected Subgradient First Lemma**
 > Let $f$ be Lipschitz continuous on $Q$ with constant $L$, assume that $S\neq \emptyset$, let $\bar x \in S$, then: 
 > $$
-> \Vert x^{(k + 1)} - x^+\Vert^2 \le \Vert x^{(k)} -\bar x\Vert^2 + \eta_k^2 \Vert f'(x^{(k)})\Vert^2 -2\eta_k \langle x^{(k)} - \bar x, f'(x^{(k)})\rangle. 
+> \Vert x^{(k + 1)} - \bar x\Vert^2 = \Vert x^{(k)} -\bar x\Vert^2 + \eta_k^2 \Vert f'(x^{(k)})\Vert^2 -2\eta_k \langle x^{(k)} - \bar x, f'(x^{(k)})\rangle. 
 > $$
 > And this lemma make uses of the fact that $f$ is Lipschitz, with the non-emptiness of $S$. 
 
@@ -66,13 +70,19 @@ Note that the above results can be compactly written as:
 
 $$
 \begin{aligned}
-    \Vert e^{(k + 1)}\Vert^2 \le \Vert e^{(k)} \Vert^2 + 
+    \Vert e^{(k + 1)}\Vert^2 = \Vert e^{(k)} \Vert^2 + 
     \eta_k^2 \Vert v^{(k)}\Vert^2 - 
     2\eta_k\langle e^{(k)}, v^{(k)}\rangle
 \end{aligned}
 $$
 
 where $v^{(k)}$ is a vector with membership from $\partial f(x^{(k)})$. 
+
+**Remarks**
+
+The convexity assumptions is not used yet. 
+We only used the updating rules from the algorithm. 
+
 
 ---
 ### **Deriving The Algorithm**
@@ -82,7 +92,7 @@ We show that the update weights $\eta_k$ makes sense. Cf Lemma: Projected Subgra
 $$
 \begin{aligned}
     \Vert e^{(k + 1)}\Vert^2
-    &\le \Vert e^{(k)} \Vert^2 + 
+    &= \Vert e^{(k)} \Vert^2 + 
     \eta_k^2 \Vert v^{(k)}\Vert^2 - 
     2\eta_k\langle e^{(k)}, v^{(k)}\rangle
     \\ 
@@ -92,7 +102,7 @@ $$
     2\eta_k E_k. \impliedby [1]
 \end{aligned}
 $$
-- \[1\]: Convexity, we use $\mu + \langle v^{(k)}, e^{(k)}\rangle \le f(x^{(k)})$, which is $\langle v^{(k)}, e^{(k)}\rangle \le E_k$. 
+- \[1\]: Convexity, we use $\mu + \langle v^{(k)}, e^{(k)}\rangle \ge f(x^{(k)})$, which is $\langle v^{(k)}, e^{(k)}\rangle \ge E_k$. 
 
 To obtain maximum amount of decrease in the objective value, we take derivative of $\epsilon_t$ to minimize the RHS, resulting in solving the equation: 
 
@@ -106,14 +116,27 @@ $$
 
 which gives use the optimal step size, using the known minimum $\mu$ and the norm of the subgradient. This is the derivative for the algorithm. 
 
+**Remarks**
+
+A weaker consequence of convexity is used here instead of the full global property. 
+Observe that we used the condition 
+
+$$
+f(\bar x ) + \langle x^{(k)} - \bar x, f'(x^{(k)})\rangle \ge f(x^{(k)}). 
+$$
+
+This condition is strictly weaker than convexity. 
+It's not yet sure what are some other conditions other than convexity can characterize this. 
+Finally, any upper estimate of $E_k = f(x_k) - \mu + \epsilon$ where $\epsilon > 0$ is also an option that can weaken the claim. 
 
 ---
-### **Montone Convergence**
+### **Montone Convergence results**
 
-In this one blob of text, we are showing the following list of results: 
-1. The iterates has errors that monotonically converges. The iterates sequence converges to the set $S$, in a Fejer Montone manner. 
-2. The function value converges to the optimal value, at an rate of $\mathcal O(1/k)$. 
-3. The limit of the iterates exists, and it converges to a point that is in the set $S$. 
+**Results:**
+1. $\Vert e^{(k)}\Vert \rightarrow 0$ monotonically. $x^{(k)}\rightarrow S$ Fejer monotonically. 
+2. $f(x^{(k)})\rightarrow 0$ at an rate of $\mathcal O(1/k)$. This is better than the lower bound for subgradient descent, because $f$ is Lipschitz continuous, a strict subset of convex functions. 
+
+**Demonstrations**: 
 
 We put the optimal iterates $\eta_k$ back to the above bound then we have (Skip the algebra): 
 
@@ -124,7 +147,7 @@ $$
 \end{aligned}
 $$
 
-which would mean that the error is monotonically decreasing (1). Since the choice of $\bar x$ is arbitrary at the start, This is the definition of monotone convergence. Cf from above: 
+which would mean that the error is monotonically decreasing (1). Since the choice of $\bar x$ is arbitrary at the start. This is the definition of monotone convergence. Cf from above: 
 
 $$
 \begin{aligned}
