@@ -395,3 +395,15 @@ $$
     F(x_{k + 1}) - F^* \le \alpha_{k + 1}^2 2C\le \frac{4C}{(k + 1)^2}. 
 \end{aligned}
 $$
+
+
+**Remark**
+
+It's worth observing carefully on how the error 
+$$
+\dist(\mathbf 0, \partial \mathcal M(\tilde x_k; y_k)) 
+\le 
+\frac{\kappa}{k + 1} \Vert \tilde x_k - y_k\Vert
+$$
+manifests in the convergence proof. 
+In the case where no error is being made for the inexact evalatuion, we would have $A_k = 1$ for the proof. 

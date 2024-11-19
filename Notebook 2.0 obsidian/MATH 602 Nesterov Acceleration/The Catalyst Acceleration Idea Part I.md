@@ -221,10 +221,10 @@ Now we have the RHS to be exlusively about the inexact evaluation $x_k \approx \
 
 **Remarks**
 
-What would be the error of evaluation for the method of proximal gradient?
-We are confident here that this lemma is as general as it could get for the proximal inequality. 
+Key points: 
 1. The theorem is based on a weaker consequence of strong convexity. 
-2. The theorem includes an untrackable error bound $\epsilon_k$. How to achieve such an error bound when designing the algorithm would be a bit of a problem. 
+2. The inequality only similar to the fundamental proximal gradient inequality for the LHS of the inequality. 
+3. Set $\epsilon_k = 0$ will make the inequality the same as the subgradient inequality used in accelerated proximal point method, trivially. 
 
 Finally, compare the results to the proximal gradient inequality derived in our notations, we assume that $F = f + g$ with $f$ $L$-smooth and $g$ convex. 
 Fix any $y\in \R^n$ then we have $\forall x \in \R^n$: 
@@ -252,10 +252,10 @@ $$
 \end{aligned}
 $$
 
-Setting the $\mu = 0$ in our derivations, the similarity between the two inequality is very interesting. 
-The key here is that the proximal gradient inequality doesn't have any $x_k^*$, the exact proximal point step involved here. 
 
-The the parts that follows, we summarize key points made to accomodate and realize the errors made by the approximations on the Moreau Envelope and how they innovate the algorithms design of. 
+
+
+
 
 #### **Theorem A.6 | Nesterov's estimating sequence results with inexact PPM**
 > Define the sequence $(y_k)_{k\ge0}$ for the estimating sequence. 
@@ -866,6 +866,14 @@ $$
 This is now exactly the same as algorithm as Nesterov's 2.20.19. 
 See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more information. 
 Set $L = \kappa + \mu$, it will then allow a similar triangle representation from the PPM APG form analysis. 
+Hence, we have the following equality: 
+
+$$
+\begin{aligned}
+    y_k &= x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}
+    (x_k - x_{k - 1}). 
+\end{aligned}
+$$
 
 
 #### **Proposition A.9 | Nesterov's estimating sequence with implicit descent error control**
@@ -878,12 +886,13 @@ There are something worth thinking about the algorithm.
 #### **Top Comments**
 1. It's a realization of accelerated PPM when $\epsilon_k = 0, \mu = 0$. 
 2. The Nesterov's estimating sequence generalizes the estimating sequence used for accelerated proximal gradient method. 
+3. The proximal lemma with $\epsilon_k$ has no simple relations with the proximal gradient inequality. 
 
 #### **Realization as accelerated PPM**
 More specifically, assume exact evaluation of $\epsilon = 0$, then it becomes the same as accelerated PPM but with the addition of 
 1. $\mu\ge 0$, a strong convexity constant. 
 Change $\kappa = \lambda_k^{-1}$ for all $k \ge 0$, with $\epsilon_k = 0$, the Catalyst algorithm reduced to accelerated PPM Method. 
-
+2. The estimating sequence used 
 
 Compared to APPM, catalyst is yet to incorperates case when $\kappa$ may not be a constant. 
 
@@ -908,6 +917,5 @@ $$
 \end{aligned}
 $$
 
-This is now exactly the same inequality as the proximal gradient inequality, if we assume that $x_k$ is produced by the proximal gradient oracle. 
-After some math, one can figure out that $\epsilon_k = \Vert \nabla f(x_k) - \nabla f(y_{k - 1})\Vert$. 
+This makes the estimating sequence exactly the same as the accelerated proximal gradient method if we assume that $x_k$ produced by the the proximal gradient operator. 
 

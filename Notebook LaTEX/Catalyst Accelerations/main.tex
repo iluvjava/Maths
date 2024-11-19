@@ -413,10 +413,12 @@
         Therefore, controlling $\epsilon_k$ is still elusive in general in a practical context. 
         To see how the error is controlled for the inexact proximal point evaluation, we refer the readers to Lemma B.1 in Lin's 2015 paper \cite{lin_universal_2015}. 
     \end{remark}
+
     For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
     One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
     The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
+
     \begin{lemma}[Lin's inexact proximal inequality]\label{lemma:lin-ixct-prox-ineq}
         Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
         If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
@@ -551,10 +553,10 @@
 
     \begin{theorem}[Fundamental theorem of proximal gradient]
     \label{app:thm:fun-thm-prox-grad}
-        Let $h = f + g$ and proximal gradient operator $T$ be given as in this section. 
+        Let $F = f + g$, define the proximal gradient operator $\widetilde{\mathcal J}_{L^{-1}}$.  
         Fix any $y$, we have for all $x \in \RR^n$: 
         \begin{align*}
-            h(x) - h(Ty) - 
+            F(x) - F(Ty) - 
             \left\langle 
                 L(y - \widetilde{\mathcal J}_{L^{-1}} y),
                 x - \widetilde {\mathcal J}_{L^{-1}}y
@@ -574,7 +576,7 @@
             + \langle \nabla f(y), x - y\rangle + \frac{L}{2}\Vert x - y\Vert^2
             \\
             &= 
-            h(x) - D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
+            F(x) - D_f(x, y) + \frac{L}{2}\Vert x - y\Vert^2 
             \\
             &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
         \end{align*}
@@ -2013,7 +2015,7 @@
     \subsection{Inexact proximal inequality}
         \begin{proof}
             This is the proof for 
-            \hyperref[lemma:lin-ixct-prox-ineq]{Lemma \ref*{lemma:lin-ixct-prox-ineq}}. 
+            \hyperref[lemma:lin-ixct-prox-ineq]{Lemma \ref*{lemma:lin-ixct-prox-ineq}}.   
             Define $G_k := \mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1}), G_k^* = \mathcal M_F^{\kappa^{-1}}(x_k^*, y_{k - 1})$. 
         $G_k$ is a $\mu + \kappa$ convex function which implies quadratic growth over minimizer $x_k^*$: 
         \begin{align*}
@@ -2121,12 +2123,39 @@
             + (\kappa + \mu)\langle x - x_k, x_k - x_k^*\rangle. 
         \end{align*}
         Now we have the RHS to be exclusively about the inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$, and $G_k(x_k) - G^*_k \le \epsilon_k$. 
-
         \end{proof}
         \begin{remark}
-            
+            Two major things about this lemma: 
+            \begin{enumerate}
+                \item Set $\epsilon_k = 0$ so $x_k = x^*_k$, the lemma is the proximal inequality. 
+                \item It's not entirely obvious on its relations to the proximal gradient inequality. 
+            \end{enumerate}
+            For point (ii), observe that the proximal gradient inequality given by 
+            \hyperref[app:thm:fun-thm-prox-grad]{Theorem \ref*{app:thm:fun-thm-prox-grad}} 
+            has RHS that is completely different. 
+            We have made attempts at bridging the two inequalities. 
+            There are no obvious useful results and concrete claims. 
+            There are no choices of parameters that makes the two inequalities equivalent. 
+
 
         \end{remark}
+    \subsection{Approximated Nesterov's Estimating sequence}
+        In this subsection, let $\phi_k$ be the Nesterov's estimating sequence for Catalyst. 
+        For all $k \ge0$, $\phi_k$ satisfies 
+        \begin{align*}
+            \phi_0 &:= F(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2
+            \\
+            \phi_k(x) &:= 
+            (1 - \alpha_{k - 1})\phi_{k - 1}(x) + 
+            \alpha_{k - 1}\left(
+                F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k\rangle
+                + \frac{\mu}{2} \Vert x - x_k\Vert^2
+            \right). 
+        \end{align*}
+        We prove following theorem which is Lemma A.6 in Lin's writings on Catalyst \cite{lin_universal_2015}. 
+        \begin{theorem}[Canonical form of Catalyst estimating sequence]
+            
+        \end{theorem}
 
 \section{Proofs for 4WD Catalyst Acceleration}
     We prove
