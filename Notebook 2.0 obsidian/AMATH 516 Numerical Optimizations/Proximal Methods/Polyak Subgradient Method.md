@@ -33,7 +33,6 @@ Then $\partial f (x)$ is bounded for all $x \in \R^n$.
 Assume $Q \cap \text{ri.dom}(f) \neq \emptyset$ so it's proper. 
 We define the following list of quantities: 
 
-
 - $\mu = \inf_{x\in Q}f(x)$ exists, and it's not $-\infty$ because $Q$ closed and bounded and $f$ is Lipschitz continuous. 
 - $f$ is, closed convex and proper. 
 - $f'(x)\in\partial f(x)$: Any elements of the subgradient of $f$ at the point $x$. 
@@ -47,7 +46,7 @@ We define the following list of quantities:
 
 > We dente $f'(x) \in \partial f(x)$, and $x^{(k)}$ to be the successive iterates produced by the algorithm. The algorithm can be stated like: 
 > $$
->     x^{(k +1)} = \Pi_Q(x - \eta_kf'(x^{(k)}))\;, \eta_k = \frac{f(x^{(k)}) - \mu}{\Vert f'(x) \Vert^2}, 
+>     x^{(k +1)} = \Pi_Q\left(x - \eta_kf'(x^{(k)})\right)\;, \eta_k = \frac{f(x^{(k)}) - \mu}{\Vert f'(x) \Vert^2}, 
 > $$
 > If it happens to be the case that $f'(x^{(k)}) = \mathbf 0$ at some iteration, then the algorithm will terminate. 
 

@@ -76,8 +76,7 @@ This constant would be the lower bound on the weak convexity constant.
 
 **Observations**
 
-This is totally different from the FISTA momentum sequence! 
-It comes from the Nesterov's estimating sequence and not Beck's FISTA. 
+$\alpha_k^{-1}$ is the famous Nesterov's momentum sequence. 
 
 
 ----
@@ -86,7 +85,7 @@ It comes from the Nesterov's estimating sequence and not Beck's FISTA.
 Throughout this text, we assume that the function $F$ is weakly convex and we assume that $\partial$ operator here is the Rockafellar Limiting subgradient. 
 
 #### **Lemma B.2 | Stationarity of proximal point evaluation**
-> Assume that $F$ is weakly convex. 
+> Assume $F$ is $\rho$ weakly convex. 
 > Fix any $y$, suppose that $y^+$ satisfies $\dist(\mathbf 0,\partial \mathcal M^{k^{-1}}(y^+; y)) \le \epsilon$ then the following inequality holds: 
 > $$
 > \begin{aligned}
@@ -97,7 +96,33 @@ Throughout this text, we assume that the function $F$ is weakly convex and we as
 
 **Proof**
 
-The proof is direct by the definition of subgradient. 
+A rigorous treatment of the claim requires some variational analysis. 
+Take it as a fact that the limiting subgradient of a weakly convex function is a closed set. 
+Fix any $y$, there exists $w \in \partial \mathcal M(y^+; y)$ such that $\dist(\mathbf 0; \partial {\mathcal M}(y^+; y)) = \Vert w\Vert$ because $\partial M(\cdot;y)$ is a $\rho - \kappa$ weakly convex function. 
+Next, by definition we have
+
+$$
+\begin{aligned}
+    w &\in \partial F(y^+) + \kappa(y^+ - y)
+    \\
+    \iff 
+    \exists v &
+    \in \partial  F(y^+): 
+    w = v + \kappa(y^+ - y)
+    \\
+    \implies 
+    \epsilon &= 
+    \Vert w\Vert = \Vert v + \kappa(y^+ - y)\Vert 
+    \ge \Vert v\Vert - \Vert \kappa(y^+ - y)\Vert
+    \\
+    \implies 
+    \dist(\mathbf 0, \partial F(y^+)) &\le 
+    \Vert v\Vert 
+    \le \epsilon + \Vert \kappa(y^+ - y)\Vert. 
+\end{aligned}
+$$
+
+
 
 
 #### **Theorem (4.1, 4.2) | Convergence of the algorithm**
@@ -156,10 +181,10 @@ $$
 \end{aligned}
 $$
 
-Where $F^*$ here is the minimizer. 
-This establish the convergence to the staionary point by $F^*$ bounded below. 
+Where $F^*$ here is the minimum. 
+This established the convergence to the staionary point by $F^*$ bounded below. 
 Next we assume that $F$ is convex. 
-Let the extrapolated gradient produce tracable error $\xi_k \in \partial \mathcal M(\tilde x_k, y_k)$ such that $\Vert \xi_k\Vert \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert$. 
+From the algorithm we have $\xi_k \in \partial \mathcal M(\tilde x_k, y_k)$ such that $\Vert \xi_k\Vert \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert$. 
 Then for any $x\in \R^n$, $\kappa$ strong convexity of $\mathcal M(\cdot, y_k)$ yields inequality: 
 $$
 \begin{aligned}
@@ -374,7 +399,30 @@ $$
         1 - \frac{1}{(i + 1)^2}
     \right)^{-1}
     \\
-    &\le 2. 
+    &= \left(
+        \prod_{i = 1}^{k} \left( \frac{(i + 1)^2 - 1}{(i + 1)^2}\right)
+    \right)^{-1} = 
+    \left(
+        \prod_{j = 2}^{k} 
+        \left(
+            \frac{j^2 - 1}{j^2}
+        \right)
+    \right)^{-1}
+    \\
+    & = \exp\left(
+        \sum_{j = 2}^{k + 1}
+        \log\left(
+            \frac{j + 1}{j}
+        \right) - \log\left(
+            \frac{j}{j - 1}
+        \right)
+    \right)^{-1}
+    \\
+    &= \left(\exp\circ \log
+        \left(\frac{k + 3}{k + 2}\frac{1}{2}\right)\right)^{-1} 
+    \le \left(
+        \frac{1}{2}
+    \right)^{-1}= 2. 
 \end{aligned}
 $$
 

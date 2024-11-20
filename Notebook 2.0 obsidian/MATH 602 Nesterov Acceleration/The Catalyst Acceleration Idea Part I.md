@@ -306,19 +306,19 @@ $$
     \phi_k^* + \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2
     \\
     & = (1 - \alpha_{k - 1})\left(
-        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x_k - v_{k - 1}\Vert^2
     \right) + \alpha_{k - 1}F(x_k)
     \\
     \iff 
     \phi_k^* &= 
     (1 - \alpha_{k - 1})\left(
-        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+        \phi_{k - 1}^* + \frac{\gamma_{k - 1}}{2}\Vert x_k - v_{k - 1}\Vert^2
     \right) + \alpha_{k - 1}F(x_k) - \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2
     \\
     &= 
     (1 - \alpha_{k - 1})\phi_{k - 1}+ \alpha_{k - 1}F(x_k)
     + 
-    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x - v_{k - 1}\Vert^2
+    \frac{(1 - \alpha_{k - 1})\gamma_{k - 1}}{2}\Vert x_k - v_{k - 1}\Vert^2
     - \frac{\gamma_k}{2}\Vert x_k - v_k\Vert^2.
 \end{aligned}\tag{eqn1}
 $$
@@ -466,7 +466,17 @@ But the difference doesn't seem major and it's just doing things in different or
 
 
 #### **Theorem A.8 | Controlling Error Bounds on the Nesterov's Estimating Sequence**
-> The canonical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfies the conditions for all $k\ge 1$
+> If the auxilary sequences $v_k, y_k, \gamma_k, \alpha_k$ satisfies the conditions: 
+> $$
+> \begin{aligned}
+>     \gamma_k - (\kappa + \mu)\alpha_{k - 1}^2 
+>     &= 0
+>     \\
+>     (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu 
+>     &= (\kappa + \mu)\alpha_{k - 1}^2. 
+> \end{aligned}
+> $$
+> Then the canonical representation of estimating sequence $\phi_k^*$ and the function value at the inexact proximal point iterates $F(x_k)$ satisfy for all $k\ge 1$
 > $$
 > \begin{aligned}
 >     F(x_k) &\le \phi_k^* + \xi_k, 
@@ -478,12 +488,12 @@ But the difference doesn't seem major and it's just doing things in different or
 >     ). 
 > \end{aligned}
 > $$
-> Where we have the base case that $\xi_0 = 0$. 
+> Where we have the base case that $\xi_0 = 0$
 
 **Proof**
 
-The proove is achieved via induction. 
-Basecase is trivially satisfied via $\phi_0^* = F(x_0)$ and $\xi_0 = 0$. 
+The proof is achieved via induction. 
+Base case is trivially satisfied via $\phi_0^* = F(x_0)$ and $\xi_0 = 0$. 
 Inductively we assume that $F(x_{k - 1}) \le \phi_{k - 1}^* + \xi_k$. 
 By definition it means 
 
@@ -502,7 +512,7 @@ $$
     &= 
     F(x_k) + 
     \langle \kappa(y_{k - 1} - x_k), x_{k - 1} - x_k\rangle
-    - (1 - a_{k - 1})^{-1}\xi_k. 
+    - (1 - \alpha_{k - 1})^{-1}\xi_k. 
 \end{aligned}\tag{A.8.1}
 $$
 
@@ -584,7 +594,8 @@ We focus on the first 2 terms selected from the RHS of the above inequality:
 
 $$
 \begin{aligned}
-    & (1 - \alpha_{k - 1})\left\langle 
+    & 
+    (1 - \alpha_{k - 1})\left\langle 
         \kappa(y_{k - 1} - x_k), 
         \frac{
             \alpha_{k - 1}\gamma_{k - 1}
@@ -842,7 +853,14 @@ $$
         - \alpha_k \kappa y_k
     \right)
     \\
-    x_{k + 1} &\approx \mathcal J_\kappa y_k = y_k - \widetilde{\mathcal G}_{\kappa^{-1}} y_k. 
+    \tilde x_{k + 1} &\approx \mathcal J_{\kappa^{-1}} y_{k} 
+    \text{ s.t: } 
+    \mathcal M^{\kappa^{-1}}(x_{k + 1}, y_k) - 
+    \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k} , y_k) \le \epsilon_k
+    \\
+    \widetilde{\mathcal G}_{\kappa^{-1}} y_k &= \kappa(y_k - \tilde x_{k + 1})
+    \\
+    x_{k + 1} &= y_k - \widetilde{\mathcal G}_{\kappa^{-1}} y_k. 
 \end{aligned}
 $$
 For $y_k$, we solved the equation for $y_k$ from earlier. 
