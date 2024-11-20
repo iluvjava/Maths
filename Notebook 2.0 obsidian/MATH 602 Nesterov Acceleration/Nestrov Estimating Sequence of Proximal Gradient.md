@@ -49,7 +49,7 @@ $$
 
 Assume that there exists some sequence $\{x_k\}_{k \in \N}$ such that $f(x_k) \le \phi_k^*$.
 We call that relation the implicit descent relation.  
-Assume that $x_0$ is a minimizer and $f_* = f(x_*)$ then it assists with proving he convergence rate of $f(x_k) - f_*$. 
+Assume that $x_0$ is a minimizer and $f_* = f(x_*)$ then it assists with proving the convergence rate of $f(x_k) - f_*$. 
 
 From the fundamental proximal gradient inequality, for all $x \in \R^n$: 
 
@@ -94,7 +94,7 @@ $$
 \end{aligned}
 $$
 
-hence, it creates a convergence rate parameterized recurrence parameter $\alpha_k$ used for the estimating sequence $\phi_k$. 
+Hence, it creates a convergence rate parameterized recurrence parameter $\alpha_k$ used for the estimating sequence $\phi_k$. 
 
 
 ---
@@ -102,7 +102,7 @@ hence, it creates a convergence rate parameterized recurrence parameter $\alpha_
 
 Parameterizing the canonical form recursively and couple it with $(y_k)_{k \in \N}$ is very useful for solving $x_k$ that satisfies the implicit descent relation. 
 
-#### **Key quantitles used in the analysis**
+#### **Key quantities used in the analysis**
 There are several categories of quantities in the analysis for the convergence of the algorithm. 
 1. For the estimating sequences canonical form: 
    1. $\phi_k^*$,
@@ -116,11 +116,11 @@ There are several categories of quantities in the analysis for the convergence o
    1. $y_k$, 
    2. $\alpha_k$. 
 
-During the analysis, the recurrence form of the estimating sequence establishes relations between all of the quantities: $\phi_k^*, v_k, \gamma_k, v_k, \alpha_k$. 
+During the analysis, the recurrence form of the estimating sequence establishes relations between all the quantities: $\phi_k^*, v_k, \gamma_k, v_k, \alpha_k$. 
 When searching for the implicit descent sequence, $x_k = T_L y_k$ turns out to be solution and the proximal gradient inequality plays a key role in the proof. 
 
 #### **Lemma 1 | Closed form recurrence**
-> Let $(y_k)_{k \in \N}, \alpha_k$ be any sequenced used to parameterize the estimating sequence $\phi_k: \R^n \mapsto \R$, then the recursive definition of $\phi_k$ in cannonical form satisfies recurrence relationship for all $k \in \N$: 
+> Let $(y_k)_{k \in \N}, \alpha_k$ be any sequenced used to parameterize the estimating sequence $\phi_k: \R^n \mapsto \R$, then the recursive definition of $\phi_k$ in canonical form satisfies recurrence relationship for all $k \in \N$: 
 > $$
 > {\small
 > \begin{aligned}
@@ -200,7 +200,7 @@ $$
 \end{aligned}
 $$
 
-Substiting the canonical form of $\phi_{k + 1}$ back to `eqn1`, choose $x = y_k$, it gives the following 
+Substituting the canonical form of $\phi_{k + 1}$ back to `eqn1`, choose $x = y_k$, it gives the following 
 
 $$
 \begin{aligned}
@@ -404,13 +404,13 @@ $$
 $$
 
 The proof is now done. 
-A recurrence relations based on the definition of the Nesterov's estimating sequence had been established upon the cannonical form parameters: $(\phi_k^*, \gamma_k, v_k)$. 
+A recurrence relations based on the definition of the Nesterov's estimating sequence had been established upon the canonical form parameters: $(\phi_k^*, \gamma_k, v_k)$. 
 
 
 
 
 #### **Lemma 2 | Looking for the descent sequence**
-> Let $(y_k)_{k \in \N}$, and $(\alpha_k)_{k \in \N}, \alpha_i \in (0, 1)\;\forall i \in \N$, suppose that there exists estimting sequence $\phi_k: \R^n \mapsto \R$ defined via cannonical form parameters $(\phi_k^*, v_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ satisfying recurrence relations 
+> Let $(y_k)_{k \in \N}$, and $(\alpha_k)_{k \in \N}, \alpha_i \in (0, 1)\;\forall i \in \N$, suppose that there exists estimating sequence $\phi_k: \R^n \mapsto \R$ defined via canonical form parameters $(\phi_k^*, v_k)_{k \in \N}, (\gamma_k)_{k \in \N}$ satisfying recurrence relations 
 > $$
 > {\small
 > \begin{aligned}
@@ -446,7 +446,7 @@ A recurrence relations based on the definition of the Nesterov's estimating sequ
 > \end{aligned}
 > $$
 > Then $(T_Ly_k)_{\in \N}$ is a vector sequence satisfies implicit descent condition $f(T_L y_k) \le \phi_k^*$. 
-> Therefore, the Nesterov's descent sequence exists and it's possible. 
+> Therefore, the Nesterov's descent sequence exists. 
 
 **Proof**
 
@@ -592,7 +592,7 @@ $$
 $$
 
 For simplicity, people choose the equality case in the literature. 
-and for the other one it has 
+For the other one it has 
 
 $$
 \begin{aligned}
@@ -620,6 +620,12 @@ $$
 
 **Remarks**
 
+1. $(\gamma_k)$ has a closed form. 
+2. The alternative choice of $L\alpha_k \le (1 - \alpha_k)L \alpha_{k - 1}^2 + \mu \alpha_k$. 
+3. $L\alpha_k^2 = \gamma_{k + 1}$ and $\mu = 0$ then $\phi_k^* = h(x_k)$. 
+
+**Closed form sequence**
+
 Furthermore, there is a closed form for the expression for scalar quantity $(\lambda_k)_{k \ge0}$: 
 
 $$
@@ -641,13 +647,15 @@ $$
         \prod_{i = 0}^{k} 
         (1 - \alpha_i)
     \right)(\gamma_0 - \mu)
-    + \mu
+    + \mu. 
 \end{aligned}
 $$
 
 If $\gamma_{k} \ge 0$, so that it make sense to have $\phi_k^*$ exists as the minimum of the estimating sequence, we have initially $\gamma_0 \ge \mu$. 
 
-usually in the literature, people assume equality $\gamma_{k + 1} = L \alpha_k^2$, buta sufficient condition for the parameters $\alpha_k$ such that it works is: 
+**The special inequality**
+
+usually in the literature, people assume equality $\gamma_{k + 1} = L \alpha_k^2$, but a sufficient condition for the parameters $\alpha_k$ such that it works is: 
 
 $$
 \begin{aligned}
@@ -658,7 +666,16 @@ $$
  
 If this is true, then $L\alpha_k^2 \le \gamma_{k + 1}$ for all $k \ge 0$ sor sure.
 And the convergence rate would still be upper bounded by a Big O of $\prod_{i = 0}^k(1 - \alpha_i)$. 
-The fatest convergence rate is achieved by taking the equality, because we want $\alpha_i$ to be as large as possible to achieve good convergence. 
+The fastest convergence rate is achieved by taking the equality, because we want $\alpha_i$ to be as large as possible to achieve good convergence. 
+
+
+**The equality case**
+
+When $\mu = 0$ and we adopt the equality of $L\alpha_k^2 = (1 - \alpha_k) L \alpha_{k - 1}^2$. 
+If equality is adopted with $L \alpha_k^2 = (1 - \alpha_k)L \alpha_{k - 1}^2$, then starting with the Inductive hypothesis of $\phi_k^* = h(x_k)$ will result in $\phi_{k + 1}^* = h(x_{k + 1})$. 
+We can't stop but wonder. 
+What if we make strong inductive hypothesis and try to figure out what exactly is $\phi_k^*$ in the form of $h(x_k) + ()$? 
+
 
 ---
 #### **Simplifying the algorithm into a simpler form**
@@ -679,7 +696,7 @@ $$
 
 
 #### **Proposition | Nes 2.2.19 Intermediate Form**
-> The nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
+> The Nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
 > $$
 > \begin{aligned}
 >     L\alpha_k^2 

@@ -126,9 +126,8 @@ Here is not an exhaustive list of algorithms and ideas that made use of the Nest
 6. Accelerated Cubic Newton method in a paper titled "Accelerating the cubic regularization of Newton’s method on convex problems". 
 
 
-
 Next, we summarize the important ways they made use of the Nesterov's estimating sequence. 
-Most of the argument is very similar. 
+Most of the argument is very similar, we summarize the techniques, and approach where a lot of them were sharing. 
 
 #### **Definition | A lower bounding function**
 > Fix any $y$ in the domain of $f$. 
@@ -146,12 +145,16 @@ Most of the argument is very similar.
 > $$
 > \begin{aligned}
 >     \phi_{k + 1}(x) &= 
->     (1 - \alpha_k)\phi_k(x) + \alpha_k(l_f(x; y) + D_\psi(x; y))
+>     (1 - \alpha_k)\phi_k(x) + \alpha_k(l_f(x; y_k) + D_\psi(x; y_k))
 > \end{aligned}
 > $$
 
 
+
+#### **Discussion | Implicit descent arguments**
+
 To validate as a Nesterov's estimating sequence, it remains to identify the existence of a sequence $(x_k)_{k \ge 0}$ such that it has for all $k \ge 0: f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
+To do that, we have specify $\phi_k$. 
 
 The implicit assumption here is the $\phi_k$ has a minimum, and it has a canonical form admitting simple analysis. 
 The proposed canonical form is parameterized by $\gamma_k, v_k, \phi_k^*$ where 
@@ -169,12 +172,48 @@ $$
     \phi_{k + 1}^* + \frac{\gamma_{k + 1}}{2}\Vert x - v_{k + 1}\Vert^2 &= 
     (1 - \alpha_k)\left(
         \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2
-    \right) + \alpha_k(l_f(x; y) + D_\psi(x; y))
+    \right) + \alpha_k(l_f(x; y_k) + D_\psi(x; y_k)). 
 \end{aligned}
 $$
 
 The search for the sequence $(x_k)$ amounts to an inductive proof. 
 Assume that $\phi_i^* \ge f(x_i)$ for all $i = 1, \cdots, k$. 
-Substituting it's saying: 
+Making use that $\phi_k \ge f(x_k) \ge l_f(x_k; y_k) + D_\psi(x_k; y_k)$; 
+a substitution of the canonical form yields: 
 
+$$
+\begin{aligned}
+    \phi_{k + 1}^* &\ge 
+    - \frac{\gamma_{k + 1}}{2}\Vert x - v_{k + 1}\Vert^2
+    + \frac{(1 - \alpha_k)\gamma_k}{2}\Vert  x- v_k\Vert^2
+    + (1 - \alpha_k)(l_f(x_k; y_k) + D_\psi(x_k; y_k))
+    \\ &\quad 
+    + \alpha_k(l_f(x; y_k) + D_\psi(x; y_k)). 
+\end{aligned}
+$$
 
+It remains to determine what $x_{k + 1}$ could achieve the inequality or whether it exists at all. 
+To pursue further, one must specify more on $\psi, \Psi$ and $l_f(x; y)$. 
+
+#### **Unroll the recurrence for the estimating sequence**
+
+The estiamting sequence has 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x)
+    &= 
+    \left(
+        \prod_{i = 1}^k(1 - \alpha_i) 
+    \right)
+    \phi_0(x)
+    + 
+    \left(
+        \sum_{i = 1}^{k} 
+        \left(
+            \prod_{j = i + 1}^{k}(1 - \alpha_i)
+        \right)
+        \alpha_{i}(l_f(x; y_j) + D_\psi(x; y_j))
+    \right). 
+\end{aligned}
+$$
