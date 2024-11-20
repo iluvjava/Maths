@@ -2907,7 +2907,7 @@
             \\
             &= \alpha_k (x^* - v_k). 
         \end{align*}
-        Using convexity, it transform the inequality into 
+        Using convexity, it transforms the inequality into 
         \begin{align*}
             F(x_k) &\le 
             \alpha_k F(x^*) + (1 - \alpha_k) F(x_{k - 1}) 
@@ -3002,7 +3002,7 @@
             \right). 
         \end{align*}
         }
-        The second last inequality use the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
+        The second last inequality uses the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
         The last inequality used the fact that $A_{k - 1} \in (0, 1]$. 
         Simplifying a bit the above is the same as for all $k\ge 1$: 
         \begin{align*}
@@ -3069,13 +3069,13 @@
                 \frac{1}{2}
             \right)^{-1}= 2. 
         \end{align*}
-        Therefore 
+        Therefore, 
         \begin{align*}
             F(x_{k + 1}) - F^* \le \alpha_{k + 1}^2 2C\le \frac{4C}{(k + 1)^2}. 
         \end{align*}
         Which indicates that under controlled inexact evaluations of the inexact proximal step for $\tilde x_k$ and $\bar x_k$, the basic 4WD Catalyst achieves optimal convergence when $F$ is convex, and it can minimize the limiting subgradient when the function is weakly convex. 
         \begin{remark}
-            One may use KL-Convergence framworks to strengthens the convergence claim of the Catalyst by establishing convergence to a limiting stationary point. 
+            One may use KL-Convergence frameworks to strengthen the convergence claim of the Catalyst by establishing convergence to a limiting stationary point. 
         \end{remark}
 
 \end{document}
