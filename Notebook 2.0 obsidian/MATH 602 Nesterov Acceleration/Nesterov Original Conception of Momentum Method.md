@@ -1317,3 +1317,5 @@ $$
 
 where the convergence rate is obvious from the last line of the inequality. 
 Observe that at the end it showed $\Delta_k(x_*) = \phi_k(x) - f(x_*)$. 
+
+

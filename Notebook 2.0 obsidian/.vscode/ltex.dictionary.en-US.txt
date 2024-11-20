@@ -1,0 +1,4 @@
+Nesterov
+Lyapunov
+optimality
+Guler
