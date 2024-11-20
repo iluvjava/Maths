@@ -213,6 +213,9 @@
                     \item $\exists (\alpha_k)_{k \ge 0}$ where $\alpha_k \in (0, 1)$ such that $\phi_{k + 1}(x) - \phi_k(x) \le - \alpha_k(\phi_k(x) - F(x))$ for all $k\ge 0, x \in \RR^n$.
                 \end{enumerate}
             \end{definition}
+            \begin{remark}
+                Nesterov's estimating sequence can produce the entire routine of an algorithm by identifying a way to produce sequence $(x_k)_{k \ge 0}$. 
+            \end{remark}
         \end{frame}
 
         \begin{frame}{Nesterov's Estimating Sequence and Convergence}
@@ -251,7 +254,7 @@
 
     \subsection{Example: Accelerated Proximal Gradient}
         \begin{frame}{Example: Accelerated Proximal Gradient}
-            The following algorithm is proved in the report which it's similar to Nesterov's 2.2.20 in his book \cite{nesterov_lectures_2018}. 
+            The following algorithm is proved in the report, it's similar (but not exactly the same!) to Nesterov's 2.2.63 in his book \cite{nesterov_lectures_2018}. 
             \begin{block}{Quick Notations}
                 Assume $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 
                 Define
