@@ -7,6 +7,8 @@ This excerpt is for Catalyst acceleration in the non-convex settings.
 The proofs used for the non-convex paper was quite pleasant. 
 The algorithm fixes $\kappa$ hence we denote $\mathcal M$ instead of $\mathcal M^{\kappa^{-1}}$ for lighter notation. 
 
+This file here is based on the reference work from Paquette's Catalyst for first order Non-convex optimizations. 
+
 
 #### **Algorithm | Non-convex catalyst (The basic version)**
 Let $\kappa$ be fixed for the evaluation of Moreau envelope. 
@@ -83,6 +85,7 @@ $\alpha_k^{-1}$ is the famous Nesterov's momentum sequence.
 ### **Convergence proof**
 
 Throughout this text, we assume that the function $F$ is weakly convex and we assume that $\partial$ operator here is the Rockafellar Limiting subgradient. 
+The proof here resemble what is seemed in Amir Beck's proof of FISTA. 
 
 #### **Lemma B.2 | Stationarity of proximal point evaluation**
 > Assume $F$ is $\rho$ weakly convex. 

@@ -937,3 +937,8 @@ $$
 
 This makes the estimating sequence exactly the same as the accelerated proximal gradient method if we assume that $x_k$ produced by the the proximal gradient operator. 
 
+#### **The inexact proximal gradient inequality**
+
+
+
+
