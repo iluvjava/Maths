@@ -152,5 +152,29 @@ Most of the argument is very similar.
 
 
 To validate as a Nesterov's estimating sequence, it remains to identify the existence of a sequence $(x_k)_{k \ge 0}$ such that it has for all $k \ge 0: f(x_k) \le \phi_k^* := \min_x \phi_k(x)$. 
+
 The implicit assumption here is the $\phi_k$ has a minimum, and it has a canonical form admitting simple analysis. 
+The proposed canonical form is parameterized by $\gamma_k, v_k, \phi_k^*$ where 
+
+$$
+\begin{aligned}
+    \phi_k(x) &= \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2. 
+\end{aligned}
+$$
+
+With that, the recursive definition becomes 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}^* + \frac{\gamma_{k + 1}}{2}\Vert x - v_{k + 1}\Vert^2 &= 
+    (1 - \alpha_k)\left(
+        \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2
+    \right) + \alpha_k(l_f(x; y) + D_\psi(x; y))
+\end{aligned}
+$$
+
+The search for the sequence $(x_k)$ amounts to an inductive proof. 
+Assume that $\phi_i^* \ge f(x_i)$ for all $i = 1, \cdots, k$. 
+Substituting it's saying: 
+
 
