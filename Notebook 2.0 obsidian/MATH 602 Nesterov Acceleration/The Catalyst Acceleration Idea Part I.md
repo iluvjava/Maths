@@ -1,6 +1,6 @@
 - [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 - [Accelerated PPM Method](Accelerated%20PPM%20Method.md)
-- [Nestrov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md)
+- [Nestrov Estimating Sequence of APG](Nestrov%20Estimating%20Sequence%20of%20APG.md)
 - [A Review on Nesterov's Estimating Sequence Technique](A%20Review%20on%20Nesterov's%20Estimating%20Sequence%20Technique.md)
 
 ---
@@ -297,7 +297,7 @@ $$
 
 The proof here comes from the recursive definition of the estimating sequence $\phi_k$. 
 $\gamma_k$, v_k comes from a hessian and gradient argument on the recursive form. 
-It is essentially the same argument from what can be found in [Nestrov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md). 
+It is essentially the same argument from what can be found in [Nestrov Estimating Sequence of APG](Nestrov%20Estimating%20Sequence%20of%20APG.md). 
 Without repeating, we work on the expression for $\phi_k^*$. 
 
 $$

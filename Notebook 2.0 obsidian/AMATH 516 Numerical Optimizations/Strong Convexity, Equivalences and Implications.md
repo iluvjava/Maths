@@ -1,5 +1,5 @@
-o[[Characterizing Functions for Optimizations]]
-[[Non-Smooth Calculus/Subgradient Intro]]
+- [[Characterizing Functions for Optimizations]]
+- [[Non-Smooth Calculus/Subgradient Intro]]
 
 ---
 ### **Intro**

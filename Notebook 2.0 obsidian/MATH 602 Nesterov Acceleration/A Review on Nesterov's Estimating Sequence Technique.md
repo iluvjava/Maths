@@ -119,7 +119,7 @@ It's fascinating.
 Here is not an exhaustive list of algorithms and ideas that made use of the Nesterov's estimating sequence. 
 
 1. [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md). The original Nesterov's accelerated gradient method, (2.2.19) In Nesterov's new book. 
-2. [Nesterov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md). Proximal gradient method derived by Nesterov's estimating sequence. 
+2. [Nesterov Estimating Sequence of Proximal Gradient](Nestrov%20Estimating%20Sequence%20of%20APG.md). Proximal gradient method derived by Nesterov's estimating sequence. 
 3. [Accelerated PPM Method](Accelerated%20PPM%20Method.md). Guler's 1993 paper on accelerated proximal gradient method for convex optimization. 
 4. [The Catalyst Acceleration Idea Part I](The%20Catalyst%20Acceleration%20Idea%20Part%20I.md). Lin's 2015 paper on accelerated inexact proximal point with strong convexity support and a concrete algorithm tailored for machine learning practices. 
 5. (6.6.63) in Nesterov's book, the method of similar triangle. 
@@ -148,7 +148,6 @@ Most of the argument is very similar, we summarize the techniques, and approach 
 >     (1 - \alpha_k)\phi_k(x) + \alpha_k(l_f(x; y_k) + D_\psi(x; y_k))
 > \end{aligned}
 > $$
-
 
 
 #### **Discussion | Implicit descent arguments**
@@ -217,3 +216,7 @@ $$
     \right). 
 \end{aligned}
 $$
+
+This absolutely does't seem useful. 
+
+

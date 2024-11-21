@@ -17,7 +17,7 @@ In Nesterov's Writing we have
 	- Generic momentum method derived. 
 	- Non-smoothness combined. 
 - [Nesterov's Generic Convergence Results](Nesterov's%20Generic%20Convergence%20Results.md)
-- [Nestrov Estimating Sequence of Proximal Gradient](../../MATH%20602%20Nesterov%20Acceleration/Nestrov%20Estimating%20Sequence%20of%20Proximal%20Gradient.md)
+- [Nestrov Estimating Sequence of APG](../../MATH%20602%20Nesterov%20Acceleration/Nestrov%20Estimating%20Sequence%20of%20APG.md)
 
 In recent literatures, we have 
 - [Nesterov Type Acceleration via Proximal Point Method Part I](../../MATH%20602%20Nesterov%20Acceleration/Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20I.md)

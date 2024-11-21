@@ -772,6 +772,7 @@ $$
 
 **Remark**
 
+It's 2.2.20, 2.2.63 in Nesterov's book but with proximal gradient in our case. 
 
 
 ---
