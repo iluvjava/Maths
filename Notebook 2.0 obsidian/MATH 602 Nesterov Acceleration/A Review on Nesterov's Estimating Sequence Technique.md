@@ -110,6 +110,12 @@ By the previous claim: $\Delta_k(x_*) \ge f(x_k) - f_*$, therefore the convergen
 
 It's fascinating. 
 
+#### **Exact descriptions of the Lyapunov quantities from the estimating sequence**
+
+We precisely describe $\phi^*_k$ by strengthening the inductive hypothesis $\phi_k^* \ge f(x_k)$. 
+It requires some specific information. 
+We put it into another file [APG With Estimating Sequence Revisited](APG%20With%20Estimating%20Sequence%20Revisited.md). 
+
 
 
 ---
