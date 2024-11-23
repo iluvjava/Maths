@@ -674,7 +674,8 @@ The fastest convergence rate is achieved by taking the equality, because we want
 When $\mu = 0$ and we adopt the equality of $L\alpha_k^2 = (1 - \alpha_k) L \alpha_{k - 1}^2$. 
 If equality is adopted with $L \alpha_k^2 = (1 - \alpha_k)L \alpha_{k - 1}^2$, then starting with the Inductive hypothesis of $\phi_k^* = h(x_k)$ will result in $\phi_{k + 1}^* = h(x_{k + 1})$. 
 We can't stop but wonder. 
-What if we make strong inductive hypothesis and try to figure out what exactly is $\phi_k^*$ in the form of $h(x_k) + ()$? 
+What if we make strong inductive hypothesis and try to figure out what exactly is $\phi_k^*$ in the form of $\phi^*_k \ge h(x_k) + (?)$ or maybe even $\phi^*_k = h(x_k) + (?)$. 
+
 
 
 ---
