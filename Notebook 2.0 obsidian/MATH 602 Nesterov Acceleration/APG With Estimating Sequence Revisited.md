@@ -191,7 +191,7 @@ $$
 \end{aligned}
 $$
 
-Assuming that 
+Make the inner product zero, and assert the non-negativity of the coefficient for $\Vert g_k\Vert^2$ so: 
 
 $$
 \begin{aligned}
@@ -327,6 +327,71 @@ Previously we define the algorithm by deriving the estimating sequence via the r
 Now we derive the recurrence relations of the Estimating sequence using the algorithm we derived, and the residual representation of the estimating sequence. 
 Our goal is to go back and also show the convergence of the sequence $F(x_k)$, hopefully identifying the Lyapunov quantities of the algorithm along the way there. 
 
+Given the quantities $v_k, x_k, \alpha_k, \gamma_k$, for all $k\ge 0$ define recursively $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1}, \gamma_{k + 1}$ by: 
+
+$$
+\begin{aligned}
+    \text{find } &
+    L\alpha_k \in(0, 1): \alpha_k \le (1 - \alpha_k)\gamma_k + \mu \alpha_k
+    \\
+    \gamma_{k + 1} 
+    &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+    \\
+    y_k &= 
+    (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k), 
+    \\
+    v_{k + 1} &= \gamma_{k + 1}^{-1}
+    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+    \\
+    x_{k + 1} &= T_L y_k. 
+\end{aligned}
+$$
+
+The recurrence relations defines the sequences $x_k, y_k, v_k, \gamma_k, \alpha_k$ for all $k \ge 0$ given the initial condition $v_0, x_0, \alpha_0, \gamma_0$. 
+Next, redefine the Nesterov's estimating sequence $\phi_k(x)$ for all $k\ge 0$ by canonical form: 
+
+$$
+\begin{aligned}
+    \phi_{k + 1}(x) &= 
+    \phi_{k}^* + \gamma_{k + 1}/2\Vert x - v_{k + 1}\Vert^2
+    \\
+    &= F(x_{k + 1}) + R_{k + 1} + 
+    \gamma_{k + 1}/2\Vert x - v_{k + 1}\Vert^2. 
+\end{aligned}
+$$
+
+The value $R_{k + 1}$ here satisfies recursive relations: 
+
+$$
+\begin{aligned}
+    g_k &:= L(y_k - T_L y_k), 
+    \\
+    l_F(x; y_k) &= F(T_Ly_k) - \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+    \\
+    \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k), 
+    \\
+    R_{k + 1}
+    &:= 
+    (1 - \alpha_k) 
+    \left(
+        R_k + \epsilon_k + 
+        \frac{(1 - \alpha_k)\mu \alpha_k \gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
+    \right)
+    + 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2. 
+\end{aligned}
+$$
+
+#### **When $\mu = 0$**
+
+We strenthen th results and simplify the above under the assumption that $\alpha_k \le (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
+This will simplify the relations on iterates tremendously. 
+
+
+Given $v_k, x_k, \alpha_k \gamma_k$, for all $k \ge 0$, define recursively $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1}, \gamma_{k + 1}$ by: 
+
 
 
 
@@ -365,4 +430,16 @@ $$
 \end{aligned}
 $$
 
-This leads to the following primary question, that is can we prove the inequality from just the Residual definitions of the estimating sequence? 
+This leads to the following primary question. 
+Can we prove the inequality from just the Residual definition of the estimating sequence? 
+So, goal is to compare the quantities: 
+
+$$
+\begin{aligned}
+    & F(x_k) - F(x^*) + R_k + \gamma_k/2\Vert v_k - x^*\Vert^2; 
+    \\
+    & F(x_{k + 1}) - F(x^*) + R_{k + 1} + \gamma_{k + 1}/2\Vert v_{k + 1} - x^*\Vert^2. 
+\end{aligned}
+$$
+
+

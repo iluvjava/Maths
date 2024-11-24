@@ -44,11 +44,11 @@ $$
 $$
 
 It can be achieved via substituting $x = \bar x + \tau w$. 
-That weaker condition is called Gataeux derivative. 
+That weaker condition is called Gateaux derivative. 
 
 
-#### **Def | Gataeux Differentiable**
-> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gataeux differentiable when there exists $v \in \mathbb R$ such that 
+#### **Def | Gateaux Differentiable**
+> A function $f: \mathbb R^n \mapsto \mathbb{\bar R}$ is Gateaux differentiable when there exists $v \in \mathbb R^n$ such that for all $w$ the limit satisfies 
 > $$
 > \begin{aligned}
 >     \lim_{\tau \rightarrow 0}
@@ -56,6 +56,21 @@ That weaker condition is called Gataeux derivative.
 >     \frac{f(\bar x + \tau w) - f(\bar x)}{\tau} = \langle v, w\rangle. 
 > \end{aligned}
 > $$
+
+**Observations**
+
+From a direct observations, it's equivalent to there exists $v \in \R^n$ such that for all $w \in \R^n$: 
+
+$$
+\begin{aligned}
+    \lim_{\tau \rightarrow 0} 
+    \frac{f(\bar x + \tau w) - f(\bar x) - \langle v, \tau w\rangle }{\tau}
+    &= 0. 
+\end{aligned}
+$$
+
+It differs from the F-Differentiability where $w$ is not involved in the limit. 
+This makes it weaker since more function will be Gateaux differentiable because the limit has less controls over things compared to the definition of the F-Differentiability. 
 
 ---
 ### **Sufficient Characterization of Frechet Derivative via Gateaux Derivatives**

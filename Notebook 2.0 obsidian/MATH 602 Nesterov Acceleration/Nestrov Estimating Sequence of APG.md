@@ -667,9 +667,9 @@ $$
     L \alpha_k^2 \le (1 - \alpha_k)L \alpha_{k - 1}^2 + \mu \alpha_k. 
 \end{aligned}
 $$
- 
-If this is true, then $L\alpha_k^2 \le \gamma_{k + 1}$ for all $k \ge 0$ sor sure.
-And the convergence rate would still be upper bounded by a Big O of $\prod_{i = 0}^k(1 - \alpha_i)$. 
+
+Because if $L\alpha_{k - 1}^2 \le \gamma_k$ inductively, then the above expression asserts $\alpha_k \le (1 - \alpha_k)\gamma_k + \mu \alpha_k$, so the inequality is satisfied. 
+The convergence rate would still be upper bounded by a Big O of $\prod_{i = 0}^k(1 - \alpha_i)$. 
 The fastest convergence rate is achieved by taking the equality, because we want $\alpha_i$ to be as large as possible to achieve good convergence. 
 
 
