@@ -517,6 +517,10 @@ $$
     \frac{\mu}{2}\Vert z  - y_k\Vert^2 
     + \frac{1}{2L}\Vert g_k\Vert^2
     \\
+    &\ge 
+    h(T_L y_k) + \langle g_k, z - y_k\rangle
+    + \frac{1}{2L}\Vert g_k\Vert^2
+    \\
     z = x_k \implies 
     h(x_k) 
     &\ge 
@@ -549,7 +553,7 @@ $$
     \frac{\alpha_k (1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
     \langle v_k - y_k, g_k\rangle
     \\
-    &\ge 
+    & =
     h(T_Ly_k)
     + 
     \left(
