@@ -97,6 +97,10 @@ The sequence $\phi_k$ is always a simple quadratic function.
 
 The following sequence showed the descent sequence from the Nesterov's estimating sequence that allows for the design of the accelerated proximal gradient algorithm. 
 
+#### **Theorem | The estimated residual**
+> 
+
+
 #### **Stronger Inductive Hypothesis**
 
 The inductive hypothesis made $\phi_k^* \ge F(T_Ly_k)$ during the proof can be improved. 
@@ -323,9 +327,13 @@ $$
 ---
 ### **Residual definitions of the estimating sequence**
 
-Previously we define the algorithm by deriving the estimating sequence via the recurrence relations. 
-Now we derive the recurrence relations of the Estimating sequence using the algorithm we derived, and the residual representation of the estimating sequence. 
-Our goal is to go back and also show the convergence of the sequence $F(x_k)$, hopefully identifying the Lyapunov quantities of the algorithm along the way there. 
+Previously we define the algorithm using estimating sequence and their recurrence definition. 
+Now we derive the recurrence relations of the Estimating sequence using the algorithm that it defined, in addition with the Residual Recurrences derived in the previous section. 
+
+Our goal is to go back and also show the convergence of the sequence $F(x_k)$, hopefully identifying the Lyapunov quantities. 
+We hope that this recovers a Beck's style of proof of the FISTA algorithm. 
+
+#### **When both conditions are false**
 
 Given the quantities $v_k, x_k, \alpha_k, \gamma_k$, for all $k\ge 0$ define recursively $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1}, \gamma_{k + 1}$ by: 
 
@@ -384,7 +392,7 @@ $$
 \end{aligned}
 $$
 
-#### **When $\mu = 0$**
+#### **When both conditions are true**
 
 We strenthen th results and simplify the above under the assumption that $\alpha_k \le (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
 This will simplify the relations on iterates tremendously. 
@@ -393,10 +401,40 @@ This will simplify the relations on iterates tremendously.
 Given $v_k, x_k, \alpha_k \gamma_k$, for all $k \ge 0$, define recursively $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1}, \gamma_{k + 1}$ by: 
 
 
+$$
+\begin{aligned}
+    \text{find } &
+    \alpha_k \in(0, 1): L\alpha_k \le (1 - \alpha_k)\gamma_k, 
+    \\
+    \gamma_{k + 1} 
+    &= (1 - \alpha_k)\gamma_k, 
+    \\
+    y_k &= 
+    \gamma_k^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k), 
+    \\
+    v_{k + 1} &= \gamma_{k + 1}^{-1}
+    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k), 
+    \\
+    x_{k + 1} &= T_L y_k. 
+\end{aligned}
+$$
+
+Definitions for $l_F, g_k, \epsilon_k, \phi_k(x)$ remains the same but $R_{k + 1}$ would instead satisfies: 
+
+$$
+\begin{aligned}
+    R_{k + 1} := 
+    (1 - \alpha_k)
+    \left(
+        R_k + \epsilon_k
+    \right). 
+\end{aligned}
+$$
+
 
 
 ---
-### **Analyzing the Lyapunov Recurrences**
+### **Analyzing the Lyapunov recurrences**
 
 With the new representation of Estimating sequence, we can represent the Lyapunov quantities directly using $F(x_k)$, the implicit descent sequence that we were interested in. 
 We want to see $F(x_k)$ popping up in the Lyapunov quantity below: 

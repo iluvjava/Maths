@@ -118,7 +118,6 @@ We recall the prox grad lemma used in the proof of FISTA. We will apply the same
 
 
 This theorem is extracted from the proof of proximal gradient in [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Convergence%20Rate.md). 
-
 Under the strong convexity assumption, the above claim becomes stronger using the lower bound $D_g(x, y) \ge \sigma/2\Vert x - y\Vert^2$ because function $g$ is a strongly convex function. 
 
 ---
@@ -143,7 +142,7 @@ The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's 
 > \end{aligned}
 > $$
 
-where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. We start with the prox grad lemma 
+where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. We start with the [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md): 
 
 $$
 \begin{aligned}
@@ -845,4 +844,5 @@ This is a call back to the convergence rate of FISTA.
 ---
 ### **Are these just Lyapunov Analysis?**
 
+It very much is. 
 

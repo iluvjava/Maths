@@ -296,7 +296,7 @@ $$
     &\ge 
     0
     \\
-    \implies 
+    \iff
     \left(
         \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
     \right) - 
@@ -408,8 +408,31 @@ $$
 $$
 
 That, is kinda wild. 
-Oh yeah, from smoothness we also have 
+From smoothness, it has: 
 
 $$
 D_f(x, y) \ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
 $$
+
+From strong convexity it has 
+
+$$
+\begin{aligned}
+    D_f(x, y) \ge \frac{\mu}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+**Alternative representations of the same claim**: 
+
+$$
+\begin{aligned}
+    \left(
+        h(x) - h(Ty) + 
+        \frac{L}{2}\Vert x - y\Vert^2 
+        - \frac{L}{2}\Vert x - Ty\Vert^2 
+    \right)
+    - D_f(x, y) - \frac{L}{2}\Vert Ty - y\Vert^2
+    &\ge 0. 
+\end{aligned}
+$$
+

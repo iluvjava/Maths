@@ -276,7 +276,9 @@ $$
 
 **Remarks**
 
-This is also stated as Theorem 10.16, In Amir Beck's first order optimization method, and it's also stated in Heinz's convex optimization class. This lemma is central to the evaluation of proximal gradient related method and all the variance of the same method. 
+This is also stated as Theorem 10.16, In Amir Beck's first order optimization method, and it's also stated in Heinz's convex optimization class. 
+This lemma is central to the evaluation of proximal gradient related method and all the variance of the same method. 
+For a more detailed discussion of this specific lemma, visit [Fundamental Proximal Gradient Inequality](Fundamental%20Proximal%20Gradient%20Inequality.md) for more information. 
 
 #### **Corollary-1 | Smooth Gradient Descent**
 > The same lemma, Fundamental Proximal Gradient Lemma is applicable for $T = I - \nabla g(x)$. This can be done by setting $h$ being the zero function then $T = [I - \beta^{-1}\nabla g]$ would just be the gradient operator. 
@@ -287,7 +289,6 @@ This is also stated as Theorem 10.16, In Amir Beck's first order optimization me
 
 #### **Corollary 3 | Alternative Representation using Gradient Mapping**
 
-> 
 
 
 ---
