@@ -98,37 +98,54 @@ The sequence $\phi_k$ is always a simple quadratic function.
 The following sequence showed the descent sequence from the Nesterov's estimating sequence that allows for the design of the accelerated proximal gradient algorithm. 
 
 #### **Theorem | The estimated residual**
-> 
+> Let $(\phi_k)_{k\ge 0}$ be an estimating admitting a canonical form given by the previous definition. 
+> Define $\epsilon_k, l_f(x; y_k)$ for all $k \ge 0$: 
+> $$
+> \begin{aligned}
+>     l_F(x; y_k) &:= F(T_L y_k) - \langle g_k, x - y_k\rangle + 
+>     \frac{1}{2L}\Vert g_k\Vert^2, 
+>     \\
+>     \epsilon_k &= F(x_k) - l_f(x_k; y_k)
+>     \\
+>     x_{k + 1} &= T_L y_k
+> \end{aligned}
+> $$
+> If, the sequence $v_k, y_k$, $\gamma_k, \alpha_k$ satisfies for all $k \ge 0$: 
+> $$
+> \begin{aligned}
+>     \frac{\alpha_k \gamma_k}{\gamma_{k + 1}}(v_k - y_k) 
+>     &= y_k - x_k, 
+>     \\
+>     L\alpha_k^2 
+>     \le
+>     \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+> \end{aligned}
+> $$
+> then in addition to $\forall k \ge 0: \phi_{k}^* \ge F(x_{k})$, we have $\phi_k^* = F(x_k) + R_k$
+> and $R_k$ satisfies recursively for all $k\ge 0$: 
+> $$
+> \begin{aligned}
+>     R_{k + 1}
+>     = \frac{1}{2}\left(
+>        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+>    \right)\Vert g_k\Vert^2
+>    + 
+>    (1 - \alpha_k)
+>    \left(
+>        \epsilon_k + R_k + 
+>        \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+>        \Vert v_k - y_k\Vert^2
+>    \right). 
+> \end{aligned}
+> $$
 
+**Proof**
 
-#### **Stronger Inductive Hypothesis**
-
-The inductive hypothesis made $\phi_k^* \ge F(T_Ly_k)$ during the proof can be improved. 
-Let's instead make the following stronger inductive hypothesis that: 
-
-$$
-\begin{align*}
-    \phi_k^* = F(x_k) + R_k, 
-\end{align*}
-$$
-
-and we use the following equality instead: 
-
+Inductively assume that $\phi_k^* = F(x_k) + R_k$ where $R_k \ge 0$. 
+Then the canonical form of the estimating sequence gives: 
 $$
 \begin{aligned}
-    \epsilon_k &:= F(x_k) - l_F(x_k; y_k) \ge 0, 
-    \\
-    F(x_k) &= l_F(x_k; y_k)
-    + \epsilon_k. 
-\end{aligned}
-$$
-
-With the above, we redo the inductive hypothesis part of the proof to explore the recurrence relations of the residual $\epsilon_k$. 
-Starting with the canonical form 
-
-$$
-\begin{aligned}
-    \phi_{k + 1}^* 
+\phi_{k + 1}^* 
     &= 
     (1 - \alpha_k)\phi_k^*
     + \alpha_k\left(
@@ -191,84 +208,58 @@ $$
     \right\rangle
     \\ & \quad 
         + (1 - \alpha_k)(\epsilon_k + R_k)
-        + \frac{\mu\alpha_k(1 - \alpha_k)\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
-\end{aligned}
-$$
-
-Make the inner product zero, and assert the non-negativity of the coefficient for $\Vert g_k\Vert^2$ so: 
-
-$$
-\begin{aligned}
-    \frac{\alpha_k \gamma_k}{\gamma_{k + 1}}(v_k - y_k) 
-    &= y_k - x_k, 
-    \\
-    L\alpha_k^2 
-    \le
-    \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \mu \alpha_k. 
-\end{aligned}
-$$
-
-It gives us the following relations on the Nesterov's estimating sequence which is 
-
-$$
-\begin{aligned}
-    \phi_{k + 1}^* &= 
-    F(T_Ly_k)
-    + 
-    \left(
-        \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
-    \right)\Vert g_k\Vert^2
-    \\ & \quad 
-        + (1 - \alpha_k)(\epsilon_k + R_k)
         + \frac{\mu\alpha_k(1 - \alpha_k)\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2. 
 \end{aligned}
 $$
 
-Listing several possiblities here, we have 
+The hypothesis $\alpha_k\gamma_k(v_k - y_k) = \gamma_{k + 1} (y_k - x_k)$ sets the inner product to be zero, the hypothesis $L \alpha_k^2 \le \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$ makes the coefficient of $\Vert g_k\Vert^2$ to be non-negative. 
+If we define $R_k$ on the remaining terms excluding $F(T_Ly_k)$, it has 
+
+$$
+\begin{aligned}
+    R_{k + 1} &= 
+    \left(
+        \frac{1}{2L} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + (1 - \alpha_k)(\epsilon_k + R_k)
+    + \frac{\mu\alpha_k(1 - \alpha_k)\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
+    \\
+    &= 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+Then the inductive hypothesis hold with $\phi_{k + 1}^* = F(x_{k + 1}) + R_{k + 1}$. 
+
+
+**Remarks**
+
+It's not exactly clear what $R_k$ is but it simplifies under some assumptions. 
+Listing several possibilities here, we have 
 
 1. $1/(2L) - \alpha_k^2/(2\gamma_{k + 1}) = 0$. 
 2. $\mu = 0$.
 
 
-#### **When Both are true**
-When both conditions are true, assuming that $x_{k + 1} = T_L y_k$, then it admits a simple representation of: 
+**Both 1, 2 are true**
 
-$$
-\begin{aligned}
-    \phi_{k + 1}^* 
-    &= 
-    F(T_L y_k) + (1 - \alpha_k)(\epsilon_k + R_k)
-    \\
-    &= 
-    F(T_L y_k) + (1 - \alpha_k)(F(x_k) - l_F(x_k; y_k) + R_k)
-    \\
-    &= 
-    F(T_L y_k) + (1 - \alpha_k)(F(x_k) - l_F(x_k; y_k) + \phi_k^* - F(x_k)), 
-    \\
-    \iff 
-    \phi_{k + 1}^* - F(x_{k + 1}) &= 
-    (1 - \alpha_k)(F(x_k) - l_F(x_k; y_k)) + (1 - \alpha_k)(\phi_k^* - F(x_k))
-    \\
-    &= 
-    (1 - \alpha_k)\epsilon_k + (1 - \alpha_k)(\phi_k^* - F(x_k)), 
-    \\
-    \iff 
-    \phi_{k + 1}^* - F(x_{k + 1}) - 
-    (1 - \alpha_k)(\phi_k^* - F(x_k)) &= (1 - \alpha_k)\epsilon_k. 
-\end{aligned}
-$$
-
-The first equation we used $R_k = \phi_k^* - F(x_k)$ from the inductive hypothesis. 
-The first equation also reveals the recurrence relations $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
-The second equation expands on the relations of the residual. 
-
-This allows a new representation of $\phi_k^*$ that made use of $F(x_k)$. 
+When both true, it has $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
+So it gives a new representation of $\phi_k^*$ that made use of $F(x_k)$ if we expand the recurrence relation: . 
 
 $$
 \begin{aligned}
     \lambda_k &:= \prod_{i = 1}^{k} (1 - \alpha_i), \lambda_0 := 1, 
     \\
-    \phi_{k + 1}^* - F(x_{k + 1}) &= 
+    R_{k + 1} = \phi_{k + 1}^* - F(x_{k + 1}) &= 
     (\lambda_k/\lambda_{k - 1})\epsilon_k 
     + (\lambda_k/\lambda_{k - 2})\epsilon_{k - 1} 
     + (\lambda_k/\lambda_{k - 3})\epsilon_{k - 2}
@@ -278,48 +269,6 @@ $$
     \phi_{k + 1}^* &= 
     F(x_{k + 1}) + 
     \sum_{i = 1}^{k}\frac{\lambda_k}{\lambda_{k - 1}}\epsilon_{k - 1}. 
-\end{aligned}
-$$
-
-Recurrence obtained, the goal next is unclear. 
-The gap between $\phi_k^*$ and $F(x_k)$ is the weighted sum of all the regrets of on iterates $x_k$. 
-
-#### **When Both are not satisfied**
-
-Thre would be a similar trend here. 
-Incorperating the terms into $R_k$ which gives 
-
-$$
-\begin{aligned}
-    \phi_{k + 1}^*
-    &= F(T_Ly_k) + (1 - \alpha_k)\epsilon_k
-    + 
-    (1 - \alpha_k)\left(
-        R_k + 
-        \frac{\mu\alpha_k \gamma_k}{2 \gamma_{k + 1}} \Vert v_k - y_k\Vert^2
-        + 
-        \frac{1}{2(1 - \alpha_k)}\left(
-            L^{-1} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
-        \right)\Vert g_k\Vert^2
-    \right). 
-\end{aligned}
-$$
-
-Therefore, it establishes the following recurrences for the residual $R_{k + 1}$: 
-
-$$
-\begin{aligned}
-    R_{k + 1}
-    := 
-    (1 - \alpha_k) 
-    \left(
-        R_k + \epsilon_k + 
-        \frac{(1 - \alpha_k)\mu \alpha_k \gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
-    \right)
-    + 
-    \frac{1}{2}\left(
-        L^{-1} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
-    \right)\Vert g_k\Vert^2. 
 \end{aligned}
 $$
 
@@ -380,21 +329,22 @@ $$
     \\
     R_{k + 1}
     &:= 
-    (1 - \alpha_k) 
-    \left(
-        R_k + \epsilon_k + 
-        \frac{(1 - \alpha_k)\mu \alpha_k \gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
-    \right)
-    + 
     \frac{1}{2}\left(
-        L^{-1} - \frac{\alpha_k^2}{2\gamma_{k + 1}}
-    \right)\Vert g_k\Vert^2. 
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right). 
 \end{aligned}
 $$
 
 #### **When both conditions are true**
 
-We strenthen th results and simplify the above under the assumption that $\alpha_k \le (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
+We strengthen results and simplify the above under the assumption that $\alpha_k \le (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
 This will simplify the relations on iterates tremendously. 
 
 
@@ -419,7 +369,7 @@ $$
 \end{aligned}
 $$
 
-Definitions for $l_F, g_k, \epsilon_k, \phi_k(x)$ remains the same but $R_{k + 1}$ would instead satisfies: 
+Definitions for $l_F, g_k, \epsilon_k, \phi_k(x)$ remains the same but $R_{k + 1}$ would instead satisfy: 
 
 $$
 \begin{aligned}
@@ -452,7 +402,7 @@ $$
 \end{aligned}
 $$
 
-The new relations on the Canoncial gives: 
+The new relations on the canonical gives: 
 
 $$
 \begin{aligned}
