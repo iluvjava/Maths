@@ -15,7 +15,7 @@
     }
 
 \author{
-    Alto
+    Hongda Li
     % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     % The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~ and~Xianfu Wang
     % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
@@ -98,7 +98,7 @@
     \end{align*}
     This section introduces the Nesterov's estimating sequence technique. 
     This technique is fundamental for in Guler's accelerated PPM method and Catalyst meta acceleration in the convex/strongly convex case. 
-    Unlike proofs using a Lyapunov argument which requires knowing exactly the algorithm in advance to verify the convergence rate, Nesterov's estimating squence can produce an algorithm that generates iterates $(x_k)_{k \ge0}$ such that it converges at some rate. 
+    Unlike proofs using a Lyapunov argument which requires knowing exactly the algorithm in advance to verify the convergence rate, Nesterov's estimating sequence can produce an algorithm that generates iterates $(x_k)_{k \ge0}$ such that it converges at some rate. 
     \subsection{Nesterov's Estimating Sequence}
         \begin{definition}[Nesterov's estimating sequence]\label{def:nes-est-seq}
             Let $(\phi_k : \RR^n \rightarrow\RR)_{k \ge 0}$ be a sequence of functions. 
@@ -118,11 +118,11 @@
                 x = x_k\implies 
                 \Delta_k(x_k) 
                 &\ge 
-                \phi_k^* - F(x_k) \ge 0
+                \phi_k^* - F(x_k) \ge 0;
                 \\
                 x = x_* \implies 
                 \Delta_k(x_*)
-                &\ge \phi_k^* - F_* \ge F(x_k) - F_* \ge 0
+                &\ge \phi_k^* - F_* \ge F(x_k) - F_* \ge 0. 
             \end{align*}
             The function $\Delta_k(x)$ is non-negative at points: $x_*, x_k$.
             We can derive the convergence rate of $\Delta_k(x^*)$ because $\forall x \in \RR^n$: 
@@ -204,7 +204,7 @@
             &x_{k + 1} = \widetilde{\mathcal J}_{L^{-1}} y_k, 
             \\
             & \text{find } \alpha_{k + 1} \in (0, 1): 
-            \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}
+            \alpha_{k + 1} = (1 - \alpha_{k + 1})\alpha_k^{2} + (\mu/L) \alpha_{k + 1}, 
             \\
             &y_{k + 1} = x_{k + 1} + \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
         \end{align*}
@@ -324,9 +324,10 @@
     \begin{remark}
         The auxiliary sequences $(A_k, v_k)$ parameterizes a canonical representation of the estimating sequence $(\phi_k)_{k \ge0}$. 
         Guler didn't simplify his results compare to what Nesterov did in his book. 
-        For a detailed proof of the estimating sequence with comparison to the accelerated proximal gradient method, see Appendix \ref*{sec:app:exct-acc-ppm}. 
+        For a detailed proof of the estimating sequence with comparison to the accelerated proximal gradient method, see 
+        \hyperref[sec:app:exct-acc-ppm]{Appendix \ref*{sec:app:exct-acc-ppm}}. 
     \end{remark}
-    For the inexact evaluation of PPM, Guler cited Rockafellar \cite{rockafellar_monotone_1976} for condition (A') in his text which is the following: 
+    Guler cited Rockafellar \cite{rockafellar_monotone_1976} for condition (A') in his text for inexact proximal evaluation: 
     \begin{align*}
         x_{k + 1}\approx \mathcal J_{k} y_k \text{ be such that: }
         \dist\left(
@@ -386,9 +387,20 @@
     \end{align*}
     Their algorithm is almost exactly the same as Nesterov's 2.2.20 \cite{nesterov_lectures_2018} which we stated in the definition below: 
     \begin{definition}[Lin's accelerated proximal point method]
+        Define the estimating sequence $(\phi_k)_{k \ge0}$ recursively by: 
+        \begin{align*}
+            \phi_0(x) &:= F(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2, 
+            \\
+            \phi_k(x) &:= 
+            (1 - \alpha_{k - 1})\phi_{k - 1}(x)
+            + \alpha_{k - 1}\left(
+                F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle
+                + \frac{\mu}{2}\Vert x - x_k\Vert^2
+            \right). 
+        \end{align*}
         Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
         Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
-        Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)$ satisfies for all $k \ge 1$
+        Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
         \begin{align*}
             & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k
             \\
@@ -418,7 +430,7 @@
 
     For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
-    One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015}. 
+    One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015} which is stated below. 
     The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
 
     \begin{lemma}[Lin's inexact proximal inequality]\label{lemma:lin-ixct-prox-ineq}
@@ -434,19 +446,18 @@
         \end{align*}
     \end{lemma}
     \begin{remark}
-        The lemma plays a key role because it allows Lin to denote his Nesterov's estimating sequence to be for all $k \ge0$: 
-        \begin{align*}
-            \phi_0(x) &:= F(x_0) + \frac{\gamma_0}{2}\Vert x - v_0\Vert^2, 
-            \\
-            \phi_k(x) &:= 
-            (1 - \alpha_{k - 1})\phi_{k - 1}(x)
-            + \alpha_{k - 1}\left(
-                F(x_k) + \kappa\langle y_{k - 1} - x_k, x - x_k \rangle
-                + \frac{\mu}{2}\Vert x - x_k\Vert^2
-            \right). 
-        \end{align*}
-        It is void of intractable quantities. 
+        For a detailed proof of the lemma, see 
+        \hyperref[app:sec:inxct-pg-ineq]{Appendix\ref*{app:sec:inxct-pg-ineq}}. 
+
     \end{remark}
+    Using this inexact proximal inequality, we showed the proof of Lemma A.8 in Lin's paper \cite{lin_universal_2015} in 
+    \hyperref[app:sec:appx-nes-est-seq]{Appendix \ref*{app:sec:appx-nes-est-seq}}
+    and 
+    \hyperref[app:sec:appx-nes-seq-errs-ctrl]{Appendix \ref*{app:sec:appx-nes-seq-errs-ctrl}}. 
+    These result construct the Nesterov's estimating sequence by rolling up the error in the recurrence while avoiding intractable quantities appearing in the algorithm. 
+    
+
+
     
 
 \section{Non-convex extension of Catalyst acceleration}\label{sec:4wd-catalyst}
@@ -680,7 +691,8 @@
     
     \begin{theorem}[Cannonical form of proximal gradient estimating sequence]\label{thm:canon-prox-grad-est-seq}
         \; \\
-        Denote $\phi_k:\RR^n \rightarrow\RR$ as a sequence of functions such that for all $k\ge 0$ it recursively satisfies the following conditions 
+        Fix any $x_0 \in \RR^n$ to, 
+        define $\phi_k:\RR^n \rightarrow\RR$ as a sequence of functions such that for all $k\ge 0$ it recursively satisfies the following conditions 
         \begin{align*}
             & g_k := L(y_k - \widetilde{\mathcal J}_{L^{-1}} y_k),
             \\
@@ -701,7 +713,7 @@
         \begin{align*}
             \phi_k(x) &:= \phi_k^* + \frac{\gamma_k}{2}\Vert x - v_k\Vert^2, 
         \end{align*}
-        where $\phi_k^* := \min_{x} \phi_k(x)$. 
+        where $\phi_k^* := \min_{x} \phi_k(x)$, $\gamma_0 > 0$ and $x_0 = v_0$. 
         Then the auxiliary sequence $y_k, v_k$, parameters for the canonical form of estimating sequence must satisfy for all $k\ge 0$: 
         {\small
         \begin{align*}      
@@ -1629,10 +1641,6 @@
                     y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
                 \rangle
                 \\
-                & \textcolor{gray}{
-                    A_{k + 1} = (1 - \alpha_k)A_k
-                }
-                \\
                 &=
                 (1 - \alpha_k)\phi_k^*
                 + 
@@ -1640,8 +1648,9 @@
                 + \alpha_k F(\mathcal J_k y_k)
                 + \alpha_k\lambda_k^{-1}\langle 
                     y_k - \mathcal J_k y_k, v_{k + 1} - y_{k + 1}
-                \rangle
+                \rangle. 
             \end{align*}
+            Equality $A_{k + 1} = (1 - \alpha_k)A_k$ is used on the second last inequality for the above. 
             Next, we substitute the inequality by the inductive hypothesis which gives: 
             {\small
             \begin{align*}
@@ -1757,7 +1766,7 @@
                     \langle
                         y_k - \mathcal J_k y_k,
                         \alpha_k(v_{k + 1} - v_k) + (y_k - \mathcal J_k y_k)
-                    \rangle
+                    \rangle. 
                 \tag{1}
             \end{align*}
             Simplifying the second cross term on the RHS of (1): 
@@ -1984,7 +1993,7 @@
     \hyperref[sec:lin-2015]{Section \ref*{sec:lin-2015}}. 
     Recall inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ such that $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}; y_{k - 1}) \le \epsilon_k$; $x_k^* = \mathcal J_{\kappa^{-1}}y_{k - 1}$ to be the exact evaluation. 
     
-    \subsection{Inexact proximal inequality}
+    \subsection{Inexact proximal inequality}\label{app:sec:inxct-pg-ineq}
         \begin{proof}
             This is the proof for 
             \hyperref[lemma:lin-ixct-prox-ineq]{Lemma \ref*{lemma:lin-ixct-prox-ineq}}.   
@@ -2112,7 +2121,7 @@
 
         \end{remark}
 
-    \subsection{Approximated Nesterov's Estimating sequence}
+    \subsection{Approximated Nesterov's Estimating sequence}\label{app:sec:appx-nes-est-seq}
         In this subsection, let $\phi_k$ be the Nesterov's estimating sequence for Catalyst. 
         For all $k \ge0$, $\phi_k$ satisfies 
         \begin{align*}
@@ -2307,7 +2316,7 @@
             The arrangement is different because the inexact proximal inequality from \hyperref[lemma:lin-ixct-prox-ineq]{Lemma \ref*{lemma:lin-ixct-prox-ineq}} 
             are anchored on different iterates.  
         \end{remark}
-    \subsection{Controlling the errors}
+    \subsection{Controlling the errors}\label{app:sec:appx-nes-seq-errs-ctrl}
         The following theorem is Theorem A.8 from Lin's writing of Catalyst \cite{lin_universal_2015}. 
         It stated the propagation of errors $\epsilon_k$ from the inexact proximal inequality to the descent condition $F(x_k) \le \phi_k^*$. 
         \begin{theorem}[Controlling the error in Nesterov's estimating sequence]\;\\
