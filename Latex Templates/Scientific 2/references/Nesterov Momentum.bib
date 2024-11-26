@@ -1,0 +1,921 @@
+
+@misc{allen-zhu_linear_2016,
+	title = {Linear coupling: {An} ultimate unification of gradient and mirror descent},
+	shorttitle = {Linear {Coupling}},
+	url = {http://arxiv.org/abs/1407.1537},
+	doi = {10.48550/arXiv.1407.1537},
+	abstract = {First-order methods play a central role in large-scale machine learning. Even though many variations exist, each suited to a particular problem, almost all such methods fundamentally rely on two types of algorithmic steps: gradient descent, which yields primal progress, and mirror descent, which yields dual progress. We observe that the performances of gradient and mirror descent are complementary, so that faster algorithms can be designed by LINEARLY COUPLING the two. We show how to reconstruct Nesterov's accelerated gradient methods using linear coupling, which gives a cleaner interpretation than Nesterov's original proofs. We also discuss the power of linear coupling by extending it to many other settings that Nesterov's methods cannot apply to.},
+	urldate = {2023-10-20},
+	publisher = {arXiv},
+	author = {Allen-Zhu, Zeyuan and Orecchia, Lorenzo},
+	month = nov,
+	year = {2016},
+	keywords = {Computer Science - Data Structures and Algorithms, Computer Science - Machine Learning, Machine Learning, Numerical Analysis, Optimization and Control},
+	annote = {Comment: A new section added; polished writing},
+	file = {Allen-Zhu and Orecchia - 2016 - Linear Coupling An Ultimate Unification of Gradie.pdf:/Users/hongdali/Zotero/storage/BG8VCZLK/Allen-Zhu and Orecchia - 2016 - Linear Coupling An Ultimate Unification of Gradie.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/YXTMC655/1407.html:text/html},
+}
+
+@inproceedings{alamo_gradient_2019,
+	title = {Gradient based restart {FISTA}},
+	url = {https://ieeexplore.ieee.org/document/9029983},
+	doi = {10.1109/CDC40024.2019.9029983},
+	abstract = {Fast gradient methods (FGM) are very popular in the field of large scale convex optimization problems. Recently, it has been shown that restart strategies can guarantee global linear convergence for non-strongly convex optimization problems if a quadratic functional growth condition is satisfied [1], [2]. In this context, a novel restart FGM algorithm with global linear convergence is proposed in this paper. The main advantages of the algorithm with respect to other linearly convergent restart FGM algorithms are its simplicity and that it does not require prior knowledge of the optimal value of the objective function or of the quadratic functional growth parameter. We present some numerical simulations that illustrate the performance of the algorithm.},
+	urldate = {2023-10-18},
+	booktitle = {2019 {IEEE} 58th {Conference} on {Decision} and {Control} ({CDC})},
+	author = {Alamo, Teodoro and Krupa, Pablo and Limon, Daniel},
+	month = dec,
+	year = {2019},
+	pages = {3936--3941},
+	file = {Alamo et al. - 2019 - Gradient Based Restart FISTA.pdf:/Users/hongdali/Zotero/storage/79P9V3R6/Alamo et al. - 2019 - Gradient Based Restart FISTA.pdf:application/pdf;IEEE Xplore Abstract Record:/Users/hongdali/Zotero/storage/W8B3RR7L/9029983.html:text/html},
+}
+
+@misc{fazel_ee_2014,
+	address = {University of Washington, Paul Allen Center, Room CSE 230.},
+	title = {{EE} 546 at {University} of {Wasthington} spring 2014, {Nesterov} {Estimating} {Sequences} method},
+	url = {https://class.ece.uw.edu/546/2014spr/lectures/optimal.pdf},
+	language = {en},
+	urldate = {2023-10-14},
+	author = {Fazel, Maryam},
+	year = {2014},
+	file = {Fazel - 2014 - EE 546 at University of Wasthington Spring 2014, N.pdf:/Users/hongdali/Zotero/storage/V2Q3HN2U/Fazel - 2014 - EE 546 at University of Wasthington Spring 2014, N.pdf:application/pdf},
+}
+
+@incollection{fornasier_introduction_2010,
+	title = {An introduction to total variation for image analysis},
+	isbn = {978-3-11-022614-0},
+	url = {https://www.degruyter.com/document/doi/10.1515/9783110226157.263/html},
+	abstract = {These notes address various theoretical and practical topics related to Total Variationbased image reconstruction. It focuses ﬁrst on some theoretical results on functions which minimize the total variation, and in a second part, describes a few standard and less standard algorithms to minimize the total variation in a ﬁnite-differences setting, with a series of applications from simple denoising to stereo, or deconvolution issues, and even more exotic uses like the minimization of minimal partition problems.},
+	language = {en},
+	urldate = {2023-10-15},
+	booktitle = {Theoretical {Foundations} and {Numerical} {Methods} for {Sparse} {Recovery}},
+	publisher = {DE GRUYTER},
+	author = {Chambolle, Antonin and Caselles, Vicent and Cremers, Daniel and Novaga, Matteo and Pock, Thomas},
+	editor = {Fornasier, Massimo},
+	month = jul,
+	year = {2010},
+	keywords = {Image Reconstruction, Splitting Algorithm, total variation},
+	pages = {263--340},
+	file = {Chambolle et al. - 2010 - An Introduction to Total Variation for Image Analy.pdf:/Users/hongdali/Zotero/storage/36HV9FQJ/Chambolle et al. - 2010 - An Introduction to Total Variation for Image Analy.pdf:application/pdf},
+}
+
+@incollection{nesterov_lecture_2018,
+	address = {Cham},
+	series = {Springer {Optimization} and {Its} {Applications}},
+	title = {Lecture on convex optimizations chapter 2, {Smooth} convex optimization},
+	isbn = {978-3-319-91578-4},
+	url = {https://doi.org/10.1007/978-3-319-91578-4_2},
+	abstract = {In this chapter, we study the complexity of solving optimization problems formed by differentiable convex components. We start by establishing the main properties of such functions and deriving the lower complexity bounds, which are valid for all natural optimization methods. After that, we prove the worst-case performance guarantees for the Gradient Method. Since these bounds are quite far from the lower complexity bounds, we develop a special technique, based on the notion of estimating sequences, which allows us to justify the Fast Gradient Methods. These methods appear to be optimal for smooth convex problems. We also obtain performance guarantees for these methods targeting on generating points with small norm of the gradient. In order to treat problems with set constraints, we introduce the notion of a Gradient Mapping. This allows an automatic extension of methods for unconstrained minimization to the constrained case. In the last section, we consider methods for solving smooth optimization problems, defined by several functional components.},
+	language = {en},
+	urldate = {2023-10-11},
+	booktitle = {Lectures on {Convex} {Optimization}},
+	publisher = {Springer International Publishing},
+	author = {Nesterov, Yurii},
+	editor = {Nesterov, Yurii},
+	year = {2018},
+	pages = {59--137},
+	file = {Nesterov - 2018 - Lecture on Convex Optimizations Chapter 2, Smooth .pdf:/Users/hongdali/Zotero/storage/5LJMV866/Nesterov - 2018 - Lecture on Convex Optimizations Chapter 2, Smooth .pdf:application/pdf},
+}
+
+@misc{yu_acceleration_nodate,
+	title = {Acceleration course notes for {CS794} at {University} of {Waterloo}},
+	url = {https://cs.uwaterloo.ca/~y328yu/mycourses/794/794-note-apg.pdf},
+	urldate = {2023-10-11},
+	author = {Yu, Yaoliang},
+	keywords = {Lecture Notes},
+	file = {794-note-apg.pdf:/Users/hongdali/Zotero/storage/8TGD3FNG/794-note-apg.pdf:application/pdf},
+}
+
+@book{nesterov_lectures_2018,
+	address = {Cham},
+	series = {Springer {Optimization} and {Its} {Applications}},
+	title = {Lectures on {Convex} {Optimization}},
+	volume = {137},
+	isbn = {978-3-319-91577-7 978-3-319-91578-4},
+	url = {http://link.springer.com/10.1007/978-3-319-91578-4},
+	urldate = {2023-10-11},
+	publisher = {Springer International Publishing},
+	author = {Nesterov, Yurii},
+	year = {2018},
+	keywords = {Algorithmic Complexity, Fast Gradient Methods, Interior-Point Methods, Numerical Optimization, Optimization, Optimization in Relative Scale, Self-Concordant Functions, Smoothing Technique},
+	file = {Nesterov - 2018 - Lectures on Convex Optimization.pdf:/Users/hongdali/Zotero/storage/HSCCPYL9/Nesterov - 2018 - Lectures on Convex Optimization.pdf:application/pdf},
+}
+
+@book{beck_first-order_2017,
+	address = {israel},
+	series = {{MOS}-{SIAM} {Series} in {Optimization}},
+	title = {First-order {Methods} in {Optimization}},
+	isbn = {978-1-61197-498-0},
+	url = {https://epubs.siam.org/doi/book/10.1137/1.9781611974997},
+	language = {en},
+	urldate = {2023-10-19},
+	publisher = {SIAM},
+	author = {Beck, Amir},
+	year = {2017},
+	keywords = {First-order Methods, Non-smooth Optimization, Numerical Optimization, Optimization},
+	file = {First-Order Methods in Optimization  SIAM Publication.pdf:/Users/hongdali/Zotero/storage/P2HFAVVQ/First-Order Methods in Optimization  SIAM Publication.pdf:application/pdf;Snapshot:/Users/hongdali/Zotero/storage/88BHKZ6Y/1.html:text/html},
+}
+
+@misc{jang_computer-assisted_2023,
+	title = {Computer-assisted design of accelerated composite optimization methods: {OptISTA}},
+	shorttitle = {Computer-{Assisted} {Design} of {Accelerated} {Composite} {Optimization} {Methods}},
+	url = {http://arxiv.org/abs/2305.15704},
+	doi = {10.48550/arXiv.2305.15704},
+	abstract = {The accelerated composite optimization method FISTA (Beck, Teboulle 2009) is suboptimal, and we present a new method OptISTA that improves upon it by a factor of 2. The performance estimation problem (PEP) has recently been introduced as a new computer-assisted paradigm for designing optimal first-order methods, but the methodology was largely limited to unconstrained optimization with a single function. In this work, we present a novel double-function stepsize-optimization PEP methodology that poses the optimization over fixed-step first-order methods for composite optimization as a finite-dimensional nonconvex QCQP, which can be practically solved through spatial branch-and-bound algorithms, and use it to design the exact optimal method OptISTA for the composite optimization setup. We then establish the exact optimality of OptISTA with a novel lower-bound construction that extends the semi-interpolated zero-chain construction (Drori, Taylor 2022) to the double-function setup of composite optimization. By establishing exact optimality, our work concludes the search for the fastest first-order methods for the proximal, projected-gradient, and proximal-gradient setups.},
+	urldate = {2023-10-13},
+	publisher = {arXiv},
+	author = {Jang, Uijeong and Gupta, Shuvomoy Das and Ryu, Ernest K.},
+	month = may,
+	year = {2023},
+	keywords = {Optimization and Control},
+	annote = {Comment: 72 pages},
+	file = {arXiv Fulltext PDF:/Users/hongdali/Zotero/storage/72I9QL34/Jang et al. - 2023 - Computer-Assisted Design of Accelerated Composite .pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/RFS7VLTM/2305.html:text/html},
+}
+
+@misc{goldstein_field_2016,
+	title = {A field guide to forward-backward splitting with a {FASTA} implementation},
+	url = {http://arxiv.org/abs/1411.3406},
+	abstract = {Non-differentiable and constrained optimization play a key role in machine learning, signal and image processing, communications, and beyond. For high-dimensional minimization problems involving large datasets or many unknowns, the forward-backward splitting method provides a simple, practical solver. Despite its apparently simplicity, the performance of the forward-backward splitting is highly sensitive to implementation details. This article is an introductory review of forward-backward splitting with a special emphasis on practical implementation concerns. Issues like stepsize selection, acceleration, stopping conditions, and initialization are considered. Numerical experiments are used to compare the effectiveness of different approaches. Many variations of forward-backward splitting are implemented in the solver FASTA (short for Fast Adaptive Shrinkage/Thresholding Algorithm). FASTA provides a simple interface for applying forward-backward splitting to a broad range of problems.},
+	urldate = {2023-11-09},
+	publisher = {arXiv},
+	author = {Goldstein, Tom and Studer, Christoph and Baraniuk, Richard},
+	month = dec,
+	year = {2016},
+	keywords = {Numerical Analysis},
+	annote = {It has early development and applications for the FISTA and FBS algorithms.
+
+
+3.2.1 Total-Variation Denoising
+
+
+Algorithmic techniques: 
+
+
+Non-Monotone Line Search
+
+
+And a simple, practical improvement of the FISTA algorithm is described in chapter 5, called FASTA. 
+},
+	file = {arXiv.org Snapshot:/Users/hongdali/Zotero/storage/PZZLNWLU/1411.html:text/html;Goldstein et al. - 2016 - A Field Guide to Forward-Backward Splitting with a.pdf:/Users/hongdali/Zotero/storage/HPWHH37K/Goldstein et al. - 2016 - A Field Guide to Forward-Backward Splitting with a.pdf:application/pdf},
+}
+
+@misc{alamo_restart_2019,
+	title = {Restart {FISTA} with global linear convergence},
+	url = {http://arxiv.org/abs/1906.09126},
+	doi = {10.48550/arXiv.1906.09126},
+	abstract = {Fast Iterative Shrinking-Threshold Algorithm (FISTA) is a popular fast gradient descent method (FGM) in the field of large scale convex optimization problems. However, it can exhibit undesirable periodic oscillatory behaviour in some applications that slows its convergence. Restart schemes seek to improve the convergence of FGM algorithms by suppressing the oscillatory behaviour. Recently, a restart scheme for FGM has been proposed that provides linear convergence for non strongly convex optimization problems that satisfy a quadratic functional growth condition. However, the proposed algorithm requires prior knowledge of the optimal value of the objective function or of the quadratic functional growth parameter. In this paper we present a restart scheme for FISTA algorithm, with global linear convergence, for non strongly convex optimization problems that satisfy the quadratic growth condition without requiring the aforementioned values. We present some numerical simulations that suggest that the proposed approach outperforms other restart FISTA schemes.},
+	urldate = {2023-10-18},
+	publisher = {arXiv},
+	author = {Alamo, Teodoro and Krupa, Pablo and Limon, Daniel},
+	month = dec,
+	year = {2019},
+	keywords = {Optimization and Control},
+	annote = {Comment: This paper constitutes an extended and revised version of "Restart FISTA with Global Linear Convergence" by Teodoro Alamo et. al. presented at the European Control Conference (ECC), 2019. v2: typos corrected and includes the proof of Prop. 1(ii) of "Gradient Based Restart FISTA" by Teodoro Alamo et. al. presented at the Conference on Decision and Control (CDC), 2019. (12 pages, 4 figures)},
+	file = {arXiv Fulltext PDF:/Users/hongdali/Zotero/storage/B79AUCM7/Alamo et al. - 2019 - Restart FISTA with Global Linear Convergence.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/LZ7ISHFW/1906.html:text/html},
+}
+
+@inproceedings{ahn_understanding_2022,
+	title = {Understanding nesterov's acceleration via proximal point method},
+	url = {https://epubs.siam.org/doi/abs/10.1137/1.9781611977066.9},
+	doi = {https://doi.org/10.1137/1.9781611977066},
+	abstract = {The proximal point method (PPM) is a fundamental method in optimization that is often used as a building block for designing optimization algorithms. In this work, we use the PPM method to provide conceptually simple derivations along with convergence analyses of different versions of Nesterov's accelerated gradient method (AGM). The key observation is that AGM is a simple approximation of PPM, which results in an elementary derivation of the update equations and stepsizes of AGM. This view also leads to a transparent and conceptually simple analysis of AGM's convergence by using the analysis of PPM. The derivations also naturally extend to the strongly convex case. Ultimately, the results presented in this paper are of both didactic and conceptual value; they unify and explain existing variants of AGM while motivating other accelerated methods for practically relevant settings.},
+	urldate = {2023-11-04},
+	booktitle = {Symposium on {Simplicity} in {Algorithms}},
+	publisher = {SIAM},
+	author = {Ahn, Kwangjun and Sra, Suvrit},
+	month = jun,
+	year = {2022},
+	keywords = {Computer Science - Machine Learning, Optimization and Control},
+	annote = {Comment: 14 pages; Presented at SIAM Symposium on Simplicity in Algorithms (SOSA22), January 10 - 11, 2022},
+	file = {Ahn and Sra - 2022 - Understanding nesterov's acceleration via proximal.pdf:/Users/hongdali/Zotero/storage/PZBWUWW5/Ahn and Sra - 2022 - Understanding nesterov's acceleration via proximal.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/WSSGK9Q4/2005.html:text/html},
+}
+
+@article{tseng_accelerated_nodate,
+	title = {On accelerated proximal gradient methods for convex-concave optimization},
+	url = {https://www.mit.edu/~dimitrib/PTseng/papers/apgm.pdf},
+	abstract = {Recently there has been active interest in accelerated proximal gradient methods for large-scale convex-concave optimization, as studied by Nesterov, Nemirovski, and others. We present a unified treatment of these methods, including new variants that perform either one or two projections per iteration, and give simple analyses of their iteration complexity. These methods are compared on a matrix game example.},
+	author = {Tseng, Paul},
+	file = {Tseng - On accelerated proximal gradient methods for conve.pdf:/Users/hongdali/Zotero/storage/7LAU6JSU/Tseng - On accelerated proximal gradient methods for conve.pdf:application/pdf},
+}
+
+@article{su_differential_2016,
+	title = {A differential equation for modeling nesterov's accelerated gradient method: {Theory} and {Insights}},
+	volume = {17},
+	issn = {1533-7928},
+	shorttitle = {A {Differential} {Equation} for {Modeling} {Nesterov}'s {Accelerated} {Gradient} {Method}},
+	url = {http://jmlr.org/papers/v17/15-084.html},
+	abstract = {We derive a second-order ordinary differential equation (ODE) which is the limit of Nesterov's accelerated gradient method. This ODE exhibits approximate equivalence to Nesterov's scheme and thus can serve as a tool for analysis. We show that the continuous time ODE allows for a better understanding of Nesterov's scheme. As a byproduct, we obtain a family of schemes with similar convergence rates. The ODE interpretation also suggests restarting Nesterov's scheme leading to an algorithm, which can be rigorously proven to converge at a linear rate whenever the objective is strongly convex.},
+	language = {en},
+	number = {153},
+	urldate = {2023-10-09},
+	journal = {Journal of Machine Learning Research},
+	author = {Su, Weijie and Boyd, Stephen and Candes, Emmanuel J.},
+	year = {2016},
+	keywords = {dynamical system, ODEs},
+	pages = {1--43},
+	annote = {The paper models the limit of taking smaller stepsizes for a particular variant of Nesterov Accelerated Gradient Method scheme as an second order, time dependent ODE. A continuous analog for the convergence rate of objective value is also established. Examples and case studies were given, and discussed, in hope of better understanding the optimization algorithm from different perspectives, for different fields. 
+},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/JMSC3D9R/Su et al. - 2016 - A Differential Equation for Modeling Nesterov's Accelerated Gradient Method Theory and Insights.pdf:application/pdf;Su et al. - 2015 - A differential equation for modeling nesterov's ac.pdf:/Users/hongdali/Zotero/storage/ANWIF5NT/Su et al. - 2015 - A differential equation for modeling nesterov's ac.pdf:application/pdf},
+}
+
+@article{rudin_nonlinear_1992,
+	title = {Nonlinear total variation based noise removal algorithms},
+	volume = {60},
+	issn = {0167-2789},
+	url = {https://www.sciencedirect.com/science/article/pii/016727899290242F},
+	doi = {10.1016/0167-2789(92)90242-F},
+	abstract = {A constrained optimization type of numerical algorithm for removing noise from images is presented. The total variation of the image is minimized subject to constraints involving the statistics of the noise. The constraints are imposed using Lanrange multipliers. The solution is obtained using the gradient-projection method. This amounts to solving a time dependent partial differential equation on a manifold determined by the constraints. As t → ∞ the solution converges to a steady state which is the denoised image. The numerical algorithm is simple and relatively fast. The results appear to be state-of-the-art for very noisy images. The method is noninvasive, yielding sharp edges in the image. The technique could be interpreted as a first step of moving each level set of the image normal to itself with velocity equal to the curvature of the level set divided by the magnitude of the gradient of the image, and a second step which projects the image back onto the constraint set.},
+	number = {1},
+	urldate = {2023-10-11},
+	journal = {Physica D: Nonlinear Phenomena},
+	author = {Rudin, Leonid I. and Osher, Stanley and Fatemi, Emad},
+	month = nov,
+	year = {1992},
+	keywords = {total variation},
+	pages = {259--268},
+	annote = {Theories for L1 penalty on the total variation of the signal. 
+},
+	file = {Rudin et al. - 1992 - Nonlinear total variation based noise removal algo.pdf:/Users/hongdali/Zotero/storage/VIG4E6VH/Rudin et al. - 1992 - Nonlinear total variation based noise removal algo.pdf:application/pdf},
+}
+
+@article{ochs_adaptive_2019,
+	title = {Adaptive {FISTA} for nonconvex optimization},
+	volume = {29},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/17M1156678},
+	doi = {10.1137/17M1156678},
+	abstract = {Backtracking line-search is an old yet powerful strategy for finding better step sizes to be used in proximal gradient algorithms. The main principle is to locally find a simple convex upper bound of the objective function, which in turn controls the step size that is used. In case of inertial proximal gradient algorithms, the situation becomes much more difficult and usually leads to very restrictive rules on the extrapolation parameter. In this paper, we show that the extrapolation parameter can be controlled by also locally finding a simple concave lower bound of the objective function. This gives rise to a double convex-concave backtracking procedure which allows for an adaptive choice of both the step size and extrapolation parameters. We apply this procedure to the class of inertial Bregman proximal gradient methods, and prove that any sequence generated by these algorithms converges globally to a critical point of the function at hand. Numerical experiments on a number of challenging nonconvex problems in image processing and machine learning were conducted and show the power of combining inertial step and double backtracking strategy in achieving improved performances.},
+	number = {4},
+	urldate = {2023-10-09},
+	journal = {SIAM Journal on Optimization},
+	author = {Ochs, Peter and Pock, Thomas},
+	month = jan,
+	year = {2019},
+	pages = {2482--2503},
+	annote = {Seems to claim that the method of adaptive stepsizes had something to do with Newton’s SR1 Method. 
+
+},
+	file = {Submitted Version:/Users/hongdali/Zotero/storage/VW687RLR/Ochs and Pock - 2019 - Adaptive FISTA for Nonconvex Optimization.pdf:application/pdf},
+}
+
+@article{noel_nesterovs_nodate,
+	title = {Nesterov's method for convex optimization},
+	volume = {65},
+	url = {https://epubs-siam-org.eu1.proxy.openathens.net/doi/epdf/10.1137/21M1390037},
+	doi = {10.1137/21M1390037},
+	abstract = {While Nesterov's algorithm for computing the minimum of a convex function is now over forty years old, it is rarely presented in texts for a first course in optimization. This is unfortunate since for many problems this algorithm is superior to the ubiquitous steepest descent algorithm, and it is equally simple to implement. This article presents an elementary analysis of Nesterov's algorithm that parallels that of steepest descent. It is envisioned that this presentation of Nesterov's algorithm could easily be covered in a few lectures following the introductory material on convex functions and steepest descent included in every course on optimization.},
+	language = {en},
+	number = {2},
+	urldate = {2023-10-09},
+	journal = {SIAM Review},
+	author = {Noel, Walkington},
+	pages = {539--562},
+	file = {Nesterov's Method for Convex Optimization.pdf:/Users/hongdali/Zotero/storage/BZC6TFHX/Nesterov's Method for Convex Optimization.pdf:application/pdf;Snapshot:/Users/hongdali/Zotero/storage/M8MDL6E3/21M1390037.html:text/html},
+}
+
+@article{chambolle_introduction_2016,
+	series = {Acta {Numerica}},
+	title = {An introduction to continuous optimization for imaging},
+	volume = {25},
+	url = {https://hal.science/hal-01346507},
+	doi = {10.1017/S096249291600009X},
+	abstract = {A large number of imaging problems reduce to the optimization of a cost function , with typical structural properties. The aim of this paper is to describe the state of the art in continuous optimization methods for such problems, and present the most successful approaches and their interconnections. We place particular emphasis on optimal first-order schemes that can deal with typical non-smooth and large-scale objective functions used in imaging problems. We illustrate and compare the different algorithms using classical non-smooth problems in imaging, such as denoising and deblurring. Moreover, we present applications of the algorithms to more advanced problems, such as magnetic resonance imaging, multilabel image segmentation, optical flow estimation, stereo matching, and classification.},
+	urldate = {2023-10-19},
+	journal = {Acta Numerica},
+	author = {Chambolle, Antonin and Pock, Thomas},
+	year = {2016},
+	keywords = {convex analysis, Nonsmooth Optimization},
+	pages = {161--319},
+	file = {Chambolle and Pock - 2016 - An introduction to continuous optimization for imaging:/Users/hongdali/Zotero/storage/WYGGWYVC/Chambolle and Pock - 2016 - An introduction to continuous optimization for imaging.pdf:application/pdf},
+}
+
+@article{bubeck_convex_2015,
+	title = {Convex optimization: algorithms and complexity},
+	shorttitle = {Convex {Optimization}},
+	url = {http://arxiv.org/abs/1405.4980},
+	doi = {10.48550/arXiv.1405.4980},
+	abstract = {This monograph presents the main complexity theorems in convex optimization and their corresponding algorithms. Starting from the fundamental theory of black-box optimization, the material progresses towards recent advances in structural optimization and stochastic optimization. Our presentation of black-box optimization, strongly influenced by Nesterov's seminal book and Nemirovski's lecture notes, includes the analysis of cutting plane methods, as well as (accelerated) gradient descent schemes. We also pay special attention to non-Euclidean settings (relevant algorithms include Frank-Wolfe, mirror descent, and dual averaging) and discuss their relevance in machine learning. We provide a gentle introduction to structural optimization with FISTA (to optimize a sum of a smooth and a simple non-smooth term), saddle-point mirror prox (Nemirovski's alternative to Nesterov's smoothing), and a concise description of interior point methods. In stochastic optimization we discuss stochastic gradient descent, mini-batches, random coordinate descent, and sublinear algorithms. We also briefly touch upon convex relaxation of combinatorial problems and the use of randomness to round solutions, as well as random walks based methods.},
+	urldate = {2023-10-12},
+	author = {Bubeck, Sébastien},
+	month = nov,
+	year = {2015},
+	keywords = {Computer Science - Computational Complexity, Computer Science - Machine Learning, Machine Learning, Numerical Analysis, Optimization and Control},
+	annote = {Comment: A previous version of the manuscript was titled "Theory of Convex Optimization for Machine Learning"},
+	file = {arXiv.org Snapshot:/Users/hongdali/Zotero/storage/8CADXSB9/1405.html:text/html;Bubeck - 2015 - Convex optimization algorithms and complexity.pdf:/Users/hongdali/Zotero/storage/7JTU9RKT/Bubeck - 2015 - Convex optimization algorithms and complexity.pdf:application/pdf},
+}
+
+@article{beck_fast_2009,
+	title = {Fast gradient-based algorithms for constrained total variation image denoising and deblurring problems},
+	volume = {18},
+	issn = {1941-0042},
+	url = {https://ieeexplore.ieee.org/document/5173518},
+	doi = {10.1109/TIP.2009.2028250},
+	abstract = {This paper studies gradient-based schemes for image denoising and deblurring problems based on the discretized total variation (TV) minimization model with constraints. We derive a fast algorithm for the constrained TV-based image deburring problem. To achieve this task, we combine an acceleration of the well known dual approach to the denoising problem with a novel monotone version of a fast iterative shrinkage/thresholding algorithm (FISTA) we have recently introduced. The resulting gradient-based algorithm shares a remarkable simplicity together with a proven global rate of convergence which is significantly better than currently known gradient projections-based methods. Our results are applicable to both the anisotropic and isotropic discretized TV functionals. Initial numerical results demonstrate the viability and efficiency of the proposed algorithms on image deblurring problems with box constraints.},
+	number = {11},
+	urldate = {2023-10-19},
+	journal = {IEEE Transactions on Image Processing},
+	author = {Beck, Amir and Teboulle, Marc},
+	month = nov,
+	year = {2009},
+	pages = {2419--2434},
+	file = {IEEE Xplore Abstract Record:/Users/hongdali/Zotero/storage/G4ZXMUZG/5173518.html:text/html;IEEE Xplore Full Text PDF:/Users/hongdali/Zotero/storage/J2T9LVVK/Beck and Teboulle - 2009 - Fast Gradient-Based Algorithms for Constrained Tot.pdf:application/pdf},
+}
+
+@article{beck_fast_2009-1,
+	title = {A fast iterative shrinkage-thresholding algorithm for linear inverse problems},
+	volume = {2},
+	issn = {1936-4954},
+	url = {http://epubs.siam.org/doi/10.1137/080716542},
+	doi = {10.1137/080716542},
+	abstract = {We consider the class of iterative shrinkage-thresholding algorithms (ISTA) for solving linear inverse problems arising in signal/image processing. This class of methods, which can be viewed as an extension of the classical gradient algorithm, is attractive due to its simplicity and thus is adequate for solving large-scale problems even with dense matrix data. However, such methods are also known to converge quite slowly. In this paper we present a new fast iterative shrinkage-thresholding algorithm (FISTA) which preserves the computational simplicity of ISTA but with a global rate of convergence which is proven to be signiﬁcantly better, both theoretically and practically. Initial promising numerical results for wavelet-based image deblurring demonstrate the capabilities of FISTA which is shown to be faster than ISTA by several orders of magnitude.},
+	language = {en},
+	number = {1},
+	urldate = {2023-11-16},
+	journal = {SIAM Journal on Imaging Sciences},
+	author = {Beck, Amir and Teboulle, Marc},
+	month = jan,
+	year = {2009},
+	pages = {183--202},
+	file = {Beck and Teboulle - 2009 - A Fast Iterative Shrinkage-Thresholding Algorithm .pdf:/Users/hongdali/Zotero/storage/H7CGKLL3/Beck and Teboulle - 2009 - A Fast Iterative Shrinkage-Thresholding Algorithm .pdf:application/pdf},
+}
+
+@article{aujol_parameter-free_2024,
+	title = {Parameter-{Free} {FISTA} by adaptive restart and backtracking},
+	url = {https://epubs.siam.org/doi/10.1137/23M158961X},
+	abstract = {We consider a combined restarting and adaptive backtracking strategy for the popular Fast Iterative Shrinking-Thresholding Algorithm frequently employed for accelerating the convergence speed of large-scale structured convex optimization problems. Several variants of FISTA enjoy a provable linear convergence rate for the function values \$F(x\_n)\$ of the form \${\textbackslash}mathcal\{O\}( e{\textasciicircum}\{-K{\textbackslash}sqrt\{{\textbackslash}mu/L\}{\textasciitilde}n\})\$ under the prior knowledge of problem conditioning, i.e. of the ratio between the ({\textbackslash}L ojasiewicz) parameter \${\textbackslash}mu\$ determining the growth of the objective function and the Lipschitz constant \$L\$ of its smooth component. These parameters are nonetheless hard to estimate in many practical cases. Recent works address the problem by estimating either parameter via suitable adaptive strategies. In our work both parameters can be estimated at the same time by means of an algorithmic restarting scheme where, at each restart, a non-monotone estimation of \$L\$ is performed. For this scheme, theoretical convergence results are proved, showing that a \${\textbackslash}mathcal\{O\}( e{\textasciicircum}\{-K{\textbackslash}sqrt\{{\textbackslash}mu/L\}n\})\$ convergence speed can still be achieved along with quantitative estimates of the conditioning. The resulting Free-FISTA algorithm is therefore parameter-free. Several numerical results are reported to confirm the practical interest of its use in many exemplar problems.},
+	language = {en},
+	urldate = {2023-10-09},
+	journal = {SIAM Journal on Optimization},
+	author = {Aujol, Jean-François and Calatroni, Luca and Dossal, Charles and Labarrière, Hippolyte and Rondepierre, Aude},
+	month = dec,
+	year = {2024},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/3YBXJH4F/Aujol et al. - 2023 - Parameter-Free FISTA by Adaptive Restart and Backt.pdf:application/pdf},
+}
+
+@article{attouch_rate_2016,
+	title = {The rate of convergence of nesterov's accelerated forward-backward method is actually aaster than \$1/k{\textasciicircum}2\$},
+	volume = {26},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/15M1046095},
+	doi = {10.1137/15M1046095},
+	abstract = {In a Hilbert space \${\textbackslash}mathcal H\$, assuming \$({\textbackslash}alpha\_k)\$ a general sequence of nonnegative numbers, we analyze the convergence properties of the inertial forward-backward algorithm \$(IFB){\textbackslash}\{\vphantom{\}}{\textbackslash}begin\{array\}\{l\}  y\_k=x\_k+{\textbackslash}alpha\_k(x\_k-x\_\{k-1\}), x\_\{k+1\}=\{{\textbackslash}rm prox\}\_\{s{\textbackslash}Psi\}(y\_k-s{\textbackslash}nabla {\textbackslash}Phi(y\_k)) {\textbackslash}end\{array\},\$ where \${\textbackslash}Psi: {\textbackslash}mathcal H {\textbackslash}to {\textbackslash}mathbb R {\textbackslash}cup {\textbackslash}lbrace + {\textbackslash}infty {\textbackslash}rbrace \$ is a proper lower-semicontinuous convex function, and \${\textbackslash}Phi: {\textbackslash}mathcal H {\textbackslash}to {\textbackslash}mathbb R\$ is a differentiable convex function, whose gradient is Lipschitz continuous. Various options for the sequence \$({\textbackslash}alpha\_k)\$ are considered in the literature. Among them, the Nesterov choice leads to the FISTA algorithm and accelerates convergence from \${\textbackslash}mathcal\{O\}(1/k)\$ to \${\textbackslash}mathcal\{O\}(1/k{\textasciicircum}2)\$ for the values. Several variants are used to guarantee the convergence of the iterates or to improve the rate of convergence for the values. For the design of fast optimization methods, the tuning of the sequence \$({\textbackslash}alpha\_k)\$ is a subtle issue, which we deal with in this paper in general. We show that the convergence rate of the algorithm can be obtained simply by analyzing the sequence of positive real numbers \$({\textbackslash}alpha\_k)\$. In addition to the case \${\textbackslash}alpha\_k= 1 -{\textbackslash}frac\{{\textbackslash}alpha\}\{k\} \$ with \${\textbackslash}alpha{\textbackslash}geq 3\$, our results apply equally well to \${\textbackslash}alpha\_k = 1- {\textbackslash}frac\{{\textbackslash}alpha\}\{k{\textasciicircum}r\}\$, with an exponent \$0{\textless}r{\textless}1\$, and to Polyak's heavy ball method. Thus, we unify most of the existing results based on the accelerated gradient method of Nesterov. In the process, we improve some of them and discover new ones.},
+	number = {3},
+	urldate = {2023-10-11},
+	journal = {SIAM Journal on Optimization},
+	author = {Attouch, Hedy and Peypouquet, Juan},
+	month = jan,
+	year = {2016},
+	pages = {1824--1834},
+	annote = {The paper stated “faster“, but in fact means small o of 1/k{\textasciicircum}2. Nesterov lower bound proof has limitations. 
+},
+	file = {Attouch and Peypouquet - 2016 - The rate of convergence of nesterov's accelerated .pdf:/Users/hongdali/Zotero/storage/VIWDS354/Attouch and Peypouquet - 2016 - The rate of convergence of nesterov's accelerated .pdf:application/pdf},
+}
+
+@article{aujol_fista_2022,
+	title = {{FISTA} restart using an automatic estimation of the growth parameter},
+	url = {https://hal.science/hal-03153525},
+	abstract = {In this paper, we propose a restart scheme for FISTA (Fast Iterative Shrinking-Threshold Algorithm). This method which is a generalization of Nesterov's accelerated gradient algorithm is widely used in the field of large convex optimization problems and it provides fast convergence results under a strong convexity assumption. These convergence rates can be extended for weaker hypotheses such as the {\textbackslash}L\{\}ojasiewicz property but it requires prior knowledge on the function of interest. In particular, most of the schemes providing a fast convergence for non-strongly convex functions satisfying a quadratic growth condition involve the growth parameter which is generally not known. Recent works show that restarting FISTA could ensure a fast convergence for this class of functions without requiring any knowledge on the growth parameter. We improve these restart schemes by providing a better asymptotical convergence rate and by requiring a lower computation cost. We present numerical results emphasizing the efficiency of this method.},
+	urldate = {2023-10-09},
+	author = {Aujol, Jean-François and Dossal, Charles H and Labarrière, Hippolyte and Rondepierre, Aude},
+	month = may,
+	year = {2022},
+	annote = {Estimating the conditioning parameter for FISTA to achieve a linear convergence. 
+},
+	file = {Aujol et al. - 2022 - FISTA restart using an automatic estimation of the.pdf:/Users/hongdali/Zotero/storage/VQV7T5EP/Aujol et al. - 2022 - FISTA restart using an automatic estimation of the.pdf:application/pdf},
+}
+
+@article{aujol_fista_2023,
+	title = {{FISTA} is an automatic geometrically optimized algorithm for strongly convex functions},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-023-01960-6},
+	doi = {10.1007/s10107-023-01960-6},
+	abstract = {In this work, we are interested in the famous FISTA algorithm. We show that FISTA is an automatic geometrically optimized algorithm for functions satisfying a quadratic growth assumption. This explains why FISTA works better than the standard Forward-Backward algorithm (FB) in such a case, although FISTA is known to have a polynomial asymptotic convergence rate while FB is exponential. We provide a simple rule to tune the \$\${\textbackslash}alpha \$\$parameter within the FISTA algorithm to reach an \$\${\textbackslash}varepsilon \$\$-solution with an optimal number of iterations. These new results highlight the efficiency of FISTA algorithms, and they rely on new non asymptotic bounds for FISTA.},
+	language = {en},
+	urldate = {2023-10-09},
+	journal = {Mathematical Programming},
+	author = {Aujol, J.-F. and Dossal, Ch. and Rondepierre, A.},
+	month = apr,
+	year = {2023},
+	file = {Aujol et al. - 2023 - FISTA is an automatic geometrically optimized algo.pdf:/Users/hongdali/Zotero/storage/JP7BSENL/Aujol et al. - 2023 - FISTA is an automatic geometrically optimized algo.pdf:application/pdf},
+}
+
+@article{calatroni_backtracking_2019,
+	title = {Backtracking strategies for accelerated descent methods with smooth composite objectives},
+	volume = {29},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/17M1149390},
+	doi = {10.1137/17M1149390},
+	abstract = {Motivated by big data applications, first-order methods have been extremely popular in recent years. However, naive gradient methods generally converge slowly. Hence, much effort has been made to accelerate various first-order methods. This paper proposes two accelerated methods towards solving structured linearly constrained convex programming, for which we assume composite convex objective that is the sum of a differentiable function and a possibly nondifferentiable one. The first method is the accelerated linearized augmented Lagrangian method (LALM). At each update to the primal variable, it allows linearization to the differentiable function and also the augmented term, and thus it enables easy subproblems. Assuming merely convexity, we show that LALM owns \$O(1/t)\$ convergence if parameters are kept fixed during all the iterations and can be accelerated to  \$O(1/t{\textasciicircum}2)\$ if the parameters are adapted, where \$t\$ is the number of total iterations. The second method is the accelerated linearized alternating direction method of multipliers (LADMM). In addition to the composite convexity, it further assumes two-block structure on the objective. Different from classic alternating direction method of multipliers, our method allows linearization to the objective and also augmented term to make the update simple. Assuming strong convexity on one block variable, we show that LADMM also enjoys \$O(1/t{\textasciicircum}2)\$ convergence with adaptive parameters.  This result is a significant improvement over that in [Goldstein et. al, SIAM J. Imag. Sci., 7 (2014), pp. 1588--1623], which requires strong convexity on both block variables and no linearization to the objective or augmented term. Numerical experiments are performed on quadratic programming, image denoising, and support vector machine. The proposed accelerated methods are compared to nonaccelerated ones and also existing accelerated methods. The results demonstrate the validity of acceleration and superior performance of the proposed methods over existing ones.},
+	number = {3},
+	urldate = {2023-10-19},
+	journal = {SIAM Journal on Optimization},
+	author = {Calatroni, Luca and Chambolle, Antonin},
+	month = jan,
+	year = {2019},
+	pages = {1772--1798},
+	file = {Submitted Version:/Users/hongdali/Zotero/storage/PA25ST8M/Calatroni and Chambolle - 2019 - Backtracking Strategies for Accelerated Descent Me.pdf:application/pdf},
+}
+
+@article{fercoq_adaptive_2019,
+	title = {Adaptive restart of accelerated gradient methods under local quadratic growth condition},
+	volume = {39},
+	issn = {0272-4979, 1464-3642},
+	url = {http://arxiv.org/abs/1709.02300},
+	doi = {10.1093/imanum/drz007},
+	abstract = {By analyzing accelerated proximal gradient methods under a local quadratic growth condition, we show that restarting these algorithms at any frequency gives a globally linearly convergent algorithm. This result was previously known only for long enough frequencies. Then, as the rate of convergence depends on the match between the frequency and the quadratic error bound, we design a scheme to automatically adapt the frequency of restart from the observed decrease of the norm of the gradient mapping. Our algorithm has a better theoretical bound than previously proposed methods for the adaptation to the quadratic error bound of the objective. We illustrate the efficiency of the algorithm on a Lasso problem and on a regularized logistic regression problem.},
+	number = {4},
+	urldate = {2023-11-08},
+	journal = {IMA Journal of Numerical Analysis},
+	author = {Fercoq, Olivier and Qu, Zheng},
+	month = oct,
+	year = {2019},
+	keywords = {Optimization and Control},
+	pages = {2069--2095},
+	annote = {The paper proposed a proof of restarting the FISTA algorithm based on an estimation of the quadratic growth parameter that doesn’t require it to be an under estimate of the true parameter. The theories provide wide flexibility on the parameter estimate and restart interval, while maintaining a linear convergence of the algorithm. The theory links the decrease of the gradient mapping of during the algorithm to the expected descent rate of the objective function. 
+},
+	file = {arXiv Fulltext PDF:/Users/hongdali/Zotero/storage/83L7V5YY/Fercoq and Qu - 2019 - Adaptive restart of accelerated gradient methods u.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/26N2YTES/1709.html:text/html},
+}
+
+@article{dragomir_optimal_2022,
+	title = {Optimal complexity and certification of {Bregman} first-order methods},
+	volume = {194},
+	issn = {0025-5610, 1436-4646},
+	url = {https://link.springer.com/10.1007/s10107-021-01618-1},
+	doi = {10.1007/s10107-021-01618-1},
+	abstract = {We provide a lower bound showing that the O(1/k) convergence rate of the NoLips method (a.k.a. Bregman Gradient or Mirror Descent) is optimal for the class of problems satisfying the relative smoothness assumption. This assumption appeared in the recent developments around the Bregman Gradient method, where acceleration remained an open issue.},
+	language = {en},
+	number = {1-2},
+	urldate = {2023-12-02},
+	journal = {Mathematical Programming},
+	author = {Dragomir, Radu-Alexandru and Taylor, Adrien B. and d’Aspremont, Alexandre and Bolte, Jérôme},
+	month = jul,
+	year = {2022},
+	pages = {41--83},
+	file = {Dragomir et al. - 2022 - Optimal complexity and certification of Bregman first-order methods.pdf:/Users/hongdali/Zotero/storage/4UA78G9T/Dragomir et al. - 2022 - Optimal complexity and certification of Bregman first-order methods.pdf:application/pdf},
+}
+
+@article{guler_new_1992,
+	title = {New proximal point algorithms for convex minimization},
+	volume = {2},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/0802032},
+	doi = {10.1137/0802032},
+	abstract = {The proximal point algorithm (PPA) for the convex minimization problem minx∈Hf(x), where f:H→R∪\{∞\} is a proper, lower semicontinuous (lsc) function in a Hilbert space H is considered. Under this minimal assumption on f, it is proved that the PPA, with positive parameters \{λk\}k=1∞, converges in general if and only if σn=∑k=1nλk→∞. Global convergence rate estimates for the residual f(xn)−f(u), where xn is the nth iterate of the PPA and u∈H is arbitrary are given. An open question of Rockafellar is settled by giving an example of a PPA for which xn converges weakly but not strongly to a minimizes of f.},
+	number = {4},
+	urldate = {2023-11-30},
+	journal = {SIAM Journal on Optimization},
+	author = {Guler, Osman},
+	month = nov,
+	year = {1992},
+	pages = {649--664},
+	annote = {Nesterov Accelerated Proximal Point Method
+
+},
+	file = {Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:/Users/hongdali/Zotero/storage/G9LCY67Q/Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:application/pdf},
+}
+
+@article{bezanson_julia_2017,
+	title = {Julia: {A} fresh approach to numerical computing},
+	volume = {59},
+	issn = {0036-1445},
+	shorttitle = {Julia},
+	url = {https://epubs.siam.org/doi/10.1137/141000671},
+	doi = {10.1137/141000671},
+	abstract = {This is the third in a series of papers on aspects of modern computing environments that are relevant to statistical data analysis. In this paper, we discuss programming environments. In particular, we argue that integrated programming environments (for example, Lisp and Smalltalk environments) are more appropriate as a base for data analysis than conventional operating systems (for example, Unix).},
+	number = {1},
+	urldate = {2023-11-20},
+	journal = {SIAM Review},
+	author = {Bezanson, Jeff and Edelman, Alan and Karpinski, Stefan and Shah, Viral B.},
+	month = jan,
+	year = {2017},
+	pages = {65--98},
+	file = {Full Text:/Users/hongdali/Zotero/storage/UTXT9Y9J/Bezanson et al. - 2017 - Julia A Fresh Approach to Numerical Computing.pdf:application/pdf},
+}
+
+@book{nesterov_introductory_2004,
+	address = {Boston, MA},
+	series = {Applied {Optimization}},
+	title = {Introductory {Lectures} on {Convex} {Optimization}},
+	volume = {87},
+	isbn = {978-1-4613-4691-3 978-1-4419-8853-9},
+	url = {http://link.springer.com/10.1007/978-1-4419-8853-9},
+	urldate = {2023-11-19},
+	publisher = {Springer US},
+	author = {Nesterov, Yurii},
+	editor = {Pardalos, Panos M. and Hearn, Donald W.},
+	year = {2004},
+	keywords = {complexity theory, Optimization},
+	file = {Nesterov - 2004 - Introductory Lectures on Convex Optimization.pdf:/Users/hongdali/Zotero/storage/TS6388FE/Nesterov - 2004 - Introductory Lectures on Convex Optimization.pdf:application/pdf},
+}
+
+@article{chambolle_convergence_2015,
+	title = {On the convergence of the iterates of the “{Fast} iterative shrinkage/thresholding algorithm”},
+	volume = {166},
+	issn = {1573-2878},
+	url = {https://doi.org/10.1007/s10957-015-0746-4},
+	doi = {10.1007/s10957-015-0746-4},
+	abstract = {We discuss here the convergence of the iterates of the “Fast Iterative Shrinkage/Thresholding Algorithm,” which is an algorithm proposed by Beck and Teboulle for minimizing the sum of two convex, lower-semicontinuous, and proper functions (defined in a Euclidean or Hilbert space), such that one is differentiable with Lipschitz gradient, and the proximity operator of the second is easy to compute. It builds a sequence of iterates for which the objective is controlled, up to a (nearly optimal) constant, by the inverse of the square of the iteration number. However, the convergence of the iterates themselves is not known. We show here that with a small modification, we can ensure the same upper bound for the decay of the energy, as well as the convergence of the iterates to a minimizer.},
+	language = {en},
+	number = {3},
+	urldate = {2023-11-18},
+	journal = {Journal of Optimization Theory and Applications},
+	author = {Chambolle, A. and Dossal, Ch.},
+	month = sep,
+	year = {2015},
+	keywords = {First-order Methods, Forward–backward Splitting, Heavy Ball Momentum, Optimization},
+	pages = {968--982},
+	annote = {A variants of FISTA different from what is originally proposed by Beck and Toboulle, it allows for a proof of convergence for the iterates instead. 
+},
+	file = {Chambolle and Dossal - 2015 - On the Convergence of the Iterates of the “Fast It.pdf:/Users/hongdali/Zotero/storage/P7LSJUWM/Chambolle and Dossal - 2015 - On the Convergence of the Iterates of the “Fast It.pdf:application/pdf},
+}
+
+@misc{patrinos_douglas-rachford_2014,
+	title = {Douglas-{Rachford} {Splitting}: {Complexity} estimates and accelerated variants},
+	shorttitle = {Douglas-{Rachford} {Splitting}},
+	url = {http://arxiv.org/abs/1407.6723},
+	abstract = {We propose a new approach for analyzing convergence of the Douglas-Rachford splitting method for solving convex composite optimization problems. The approach is based on a continuously differentiable function, the Douglas-Rachford Envelope (DRE), whose stationary points correspond to the solutions of the original (possibly nonsmooth) problem. By proving the equivalence between the Douglas-Rachford splitting method and a scaled gradient method applied to the DRE, results from smooth unconstrained optimization are employed to analyze convergence properties of DRS, to tune the method and to derive an accelerated version of it.},
+	urldate = {2023-11-18},
+	publisher = {arXiv},
+	author = {Patrinos, Panagiotis and Stella, Lorenzo and Bemporad, Alberto},
+	month = sep,
+	year = {2014},
+	keywords = {Optimization and Control},
+	annote = {Equations Indexers
+
+EQUATION 5 {\textbar} DR OPTIMALITY CONDITIONS
+EQUATION 6 {\textbar} GRADIENT OF M ENV 
+EQUATION 7 {\textbar} ???
+\$(6){\textbackslash}wedge(5){\textbackslash}implies(7)\$
+EQUATION 9, 10 {\textbar} USEFUL FORMULAS
+EQUATION 12 {\textbar} DR ENVELOPE 
+
+
+Taking the gradient yield Equation (7) by a transform of \$(I - 2{\textbackslash}gamma {\textbackslash}nabla{\textasciicircum}2 f{\textasciicircum}{\textbackslash}gamma(x))\$. 
+
+
+Stationary points of DRE (this equation) is the same as solving equation (5). 
+
+
+
+},
+	annote = {Theorems and Claims Indexers
+OVERALL STRUCTURE
+
+
+Section 1 : Intro
+
+
+Section 2: Define DR Envelope.()
+
+
+Section 3: Convergence of DR splitting, in which \$f\$ is convex and quadratic.
+
+
+Section 4: Application of accelerated gradient method to DRE.
+
+
+Section 5: Numerical experiments results.
+
+
+High Level Summary:
+Optimal conditions of (1) is the fixed point set of some operators, which corresponds to the gradient on a “potential function” which we called the Douglas Rachford Operator.
+
+PROP 1 {\textbar} VARIATIONAL BOUNDS ON DRE
+Equation (15a, 15b).
+
+THM 1 {\textbar} MINIMUM AND MINIMIZERS OF DRE
+Minimum of \$F\$ is the minimum of DRE, minimizers of \$F\$, is the Proxing the set of minimizers of DRE.
+
+THM 2 {\textbar} NICE DRE 
+The envelope, under quadratic assumption of function \$f\$ produces a strongly convex and Lipschitz smooth gradient for the gradient of the envelope. 
+
+THM 3 {\textbar} DESCENT ON OBJECTIVE FUNCTION 
+
+THM 4 {\textbar} CONVERGENCE OF THE ITERATES 
+
+THM 5 {\textbar} CONVERGENCE OF ACCELERATION 
+
+THM 6 {\textbar} ACCELERATION CONVERGENCE UNDER STRONG CONVEXITY
+
+
+
+
+
+
+
+
+
+},
+	file = {arXiv.org Snapshot:/Users/hongdali/Zotero/storage/54N82FCP/1407.html:text/html;Patrinos et al. - 2014 - Douglas-Rachford Splitting Complexity Estimates a.pdf:/Users/hongdali/Zotero/storage/YGBFNQAB/Patrinos et al. - 2014 - Douglas-Rachford Splitting Complexity Estimates a.pdf:application/pdf},
+}
+
+@article{necoara_linear_2019,
+	title = {Linear convergence of first order methods for non-strongly convex optimization},
+	volume = {175},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-018-1232-1},
+	doi = {10.1007/s10107-018-1232-1},
+	abstract = {The standard assumption for proving linear convergence of first order methods for smooth convex optimization is the strong convexity of the objective function, an assumption which does not hold for many practical applications. In this paper, we derive linear convergence rates of several first order methods for solving smooth non-strongly convex constrained optimization problems, i.e. involving an objective function with a Lipschitz continuous gradient that satisfies some relaxed strong convexity condition. In particular, in the case of smooth constrained convex optimization, we provide several relaxations of the strong convexity conditions and prove that they are sufficient for getting linear convergence for several first order methods such as projected gradient, fast gradient and feasible descent methods. We also provide examples of functional classes that satisfy our proposed relaxations of strong convexity conditions. Finally, we show that the proposed relaxed strong convexity conditions cover important applications ranging from solving linear systems, Linear Programming, and dual formulations of linearly constrained convex problems.},
+	language = {en},
+	number = {1},
+	urldate = {2023-10-11},
+	journal = {Mathematical Programming},
+	author = {Necoara, I. and Nesterov, Yu. and Glineur, F.},
+	month = may,
+	year = {2019},
+	pages = {69--107},
+	annote = {Overview
+Characterizations that are weaker than strong convexity, and yet still works with linear convergence, even for accelerated gradient (they call faster gradient) method! 
+
+
+Quasi Strongly Convex.
+
+
+Quadratic Under Approximations.
+
+
+Quadratic Gradient.
+
+
+},
+	file = {Necoara et al. - 2019 - Linear convergence of first order methods for non-.pdf:/Users/hongdali/Zotero/storage/7X79PGLC/Necoara et al. - 2019 - Linear convergence of first order methods for non-.pdf:application/pdf},
+}
+
+@inproceedings{lin_universal_2015,
+	title = {A universal catalyst for first-order optimization},
+	url = {https://inria.hal.science/hal-01160728},
+	abstract = {We introduce a generic scheme for accelerating first-order optimization methods in the sense of Nesterov, which builds upon a new analysis of the accelerated proximal point algorithm. Our approach consists of minimizing a convex objective by approximately solving a sequence of well-chosen auxiliary problems, leading to faster convergence. This strategy applies to a large class of algorithms, including gradient descent, block coordinate descent, SAG, SAGA, SDCA, SVRG, Finito/MISO, and their proximal variants. For all of these methods, we provide acceleration and explicit support for non-strongly convex objectives. In addition to theoretical speed-up, we also show that acceleration is useful in practice, especially for ill conditioned problems where we measure significant improvements.},
+	language = {en},
+	urldate = {2024-05-31},
+	publisher = {MIT Press},
+	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
+	month = dec,
+	year = {2015},
+	pages = {3384},
+	file = {A Universal Catalyst for First-Order Optimization HAL open science:/Users/hongdali/Zotero/storage/8ILQU6TZ/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf;A Universal Catalyst for First-Order Optimization NISP:/Users/hongdali/Zotero/storage/DAYMXD2L/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf},
+}
+
+@misc{bubeck_geometric_2015,
+	title = {A geometric alternative to {Nesterov}'s accelerated gradient descent},
+	url = {http://arxiv.org/abs/1506.08187},
+	abstract = {We propose a new method for unconstrained optimization of a smooth and strongly convex function, which attains the optimal rate of convergence of Nesterov’s accelerated gradient descent. The new algorithm has a simple geometric interpretation, loosely inspired by the ellipsoid method. We provide some numerical evidence that the new method can be superior to Nesterov’s accelerated gradient descent.},
+	language = {en},
+	urldate = {2024-06-11},
+	publisher = {arXiv},
+	author = {Bubeck, Sébastien and Lee, Yin Tat and Singh, Mohit},
+	month = jun,
+	year = {2015},
+	keywords = {Computer Science - Data Structures and Algorithms, Computer Science - Machine Learning, Mathematics - Numerical Analysis, Mathematics - Optimization and Control},
+	file = {Bubeck et al. - 2015 - A geometric alternative to Nesterov's accelerated .pdf:/Users/hongdali/Zotero/storage/MD443TFM/Bubeck et al. - 2015 - A geometric alternative to Nesterov's accelerated .pdf:application/pdf},
+}
+
+@article{nesterov_smooth_2005,
+	title = {Smooth minimization of non-smooth functions},
+	volume = {103},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-004-0552-5},
+	doi = {10.1007/s10107-004-0552-5},
+	abstract = {In this paper we propose a new approach for constructing efficient schemes for non-smooth convex optimization. It is based on a special smoothing technique, which can be applied to functions with explicit max-structure. Our approach can be considered as an alternative to black-box minimization. From the viewpoint of efficiency estimates, we manage to improve the traditional bounds on the number of iterations of the gradient schemes from keeping basically the complexity of each iteration unchanged.},
+	language = {en},
+	number = {1},
+	urldate = {2024-06-12},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yu.},
+	month = may,
+	year = {2005},
+	keywords = {Convex optimization, Non-smooth optimization, Complexity theory, Optimal methods, Structural optimization},
+	pages = {127--152},
+	file = {Nesterov - 2005 - Smooth minimization of non-smooth functions.pdf:/Users/hongdali/Zotero/storage/ELJIWBEV/Nesterov - 2005 - Smooth minimization of non-smooth functions.pdf:application/pdf},
+}
+
+@article{lorenz_inertial_2015,
+	title = {An inertial forward-backward algorithm for monotone inclusions},
+	volume = {51},
+	issn = {1573-7683},
+	url = {https://doi.org/10.1007/s10851-014-0523-2},
+	doi = {10.1007/s10851-014-0523-2},
+	abstract = {In this paper, we propose an inertial forward-backward splitting algorithm to compute a zero of the sum of two monotone operators, with one of the two operators being co-coercive. The algorithm is inspired by the accelerated gradient method of Nesterov, but can be applied to a much larger class of problems including convex-concave saddle point problems and general monotone inclusions. We prove convergence of the algorithm in a Hilbert space setting and show that several recently proposed first-order methods can be obtained as special cases of the general algorithm. Numerical results show that the proposed algorithm converges faster than existing methods, while keeping the computational cost of each iteration basically unchanged.},
+	language = {en},
+	number = {2},
+	urldate = {2024-06-25},
+	journal = {Journal of Mathematical Imaging and Vision},
+	author = {Lorenz, Dirk A. and Pock, Thomas},
+	month = feb,
+	year = {2015},
+	keywords = {Convex optimization, Forward-backward splitting, Image restoration, Monotone inclusions, Primal-dual algorithms, Saddle-point problems},
+	pages = {311--325},
+	file = {An Inertial Forward-Backward Algorithm for Monotone Inclusions:/Users/hongdali/Zotero/storage/6MI3BQZC/Lorenz and Pock - 2015 - An Inertial Forward-Backward Algorithm for Monotone Inclusions.pdf:application/pdf},
+}
+
+@article{park_factor_2023,
+	title = {Factor sqrt(2) {Acceleration} of {Accelerated} {Gradient} {Methods}},
+	volume = {88},
+	issn = {1432-0606},
+	url = {https://doi.org/10.1007/s00245-023-10047-9},
+	doi = {10.1007/s00245-023-10047-9},
+	abstract = {The optimized gradient method (OGM) provides a factor-\$\${\textbackslash}sqrt\{2\}\$\$speedup upon Nesterov’s celebrated accelerated gradient method in the convex (but non-strongly convex) setup. However, this improved acceleration mechanism has not been well understood; prior analyses of OGM relied on a computer-assisted proof methodology, so the proofs were opaque for humans despite being verifiable and correct. In this work, we present a new analysis of OGM based on a Lyapunov function and linear coupling. These analyses are developed and presented without the assistance of computers and are understandable by humans. Furthermore, we generalize OGM’s acceleration mechanism and obtain a factor-\$\${\textbackslash}sqrt\{2\}\$\$speedup in other setups: acceleration with a simpler rational stepsize, the strongly convex setup, and the mirror descent setup.},
+	language = {en},
+	number = {3},
+	urldate = {2024-06-25},
+	journal = {Applied Mathematics \& Optimization},
+	author = {Park, Chanwoo and Park, Jisun and Ryu, Ernest K.},
+	month = aug,
+	year = {2023},
+	keywords = {Acceleration, Convex optimization, First-order methods},
+	pages = {77},
+	file = {Park et al. - 2023 - Factor sqrt(2) Acceleration of Accelerated Gradien.pdf:/Users/hongdali/Zotero/storage/WSAWHC24/Park et al. - 2023 - Factor sqrt(2) Acceleration of Accelerated Gradien.pdf:application/pdf},
+}
+
+@inproceedings{lee_geometric_2021,
+	title = {A {Geometric} structure of acceleration and its role in making gradients small fast},
+	volume = {34},
+	url = {https://papers.nips.cc/paper/2021/hash/647c722bf90a49140184672e0d3723e3-Abstract.html},
+	urldate = {2024-06-25},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems}},
+	publisher = {Curran Associates, Inc.},
+	author = {Lee, Jongmin and Park, Chanwoo and Ryu, Ernest},
+	year = {2021},
+	pages = {11999--12012},
+	file = {Lee et al. - 2021 - A Geometric Structure of Acceleration and Its Role.pdf:/Users/hongdali/Zotero/storage/F7Z9BVUA/Lee et al. - 2021 - A Geometric Structure of Acceleration and Its Role.pdf:application/pdf},
+}
+
+@article{aujol_optimal_2019,
+	title = {Optimal convergence rates for nesterov acceleration},
+	volume = {29},
+	url = {https://hal.science/hal-01786117},
+	doi = {10.1137/18M1186757},
+	abstract = {In this paper, we study the behavior of solutions of the ODE associated to Nesterov acceleration. It is well-known since the pioneering work of Nesterov that the rate of convergence \$O(1/t{\textasciicircum}2)\$ is optimal for the class of convex functions with Lipschitz gradient. In this work, we show that better convergence rates can be obtained with some additional geometrical conditions, such as {\textbackslash}L ojasiewicz property. More precisely, we prove the optimal convergence rates that can be obtained depending on the geometry of the function \$F\$ to minimize. The convergence rates are new, and they shed new light on the behavior of Nesterov acceleration schemes. We prove in particular that the classical Nesterov scheme may provide convergence rates that are worse than the classical gradient descent scheme on sharp functions: for instance, the convergence rate for strongly convex functions is not geometric for the classical Nesterov scheme (while it is the case for the gradient descent algorithm). This shows that applying the classical Nesterov acceleration on convex functions without looking more at the geometrical properties of the objective functions may lead to sub-optimal algorithms.},
+	number = {4},
+	urldate = {2024-06-25},
+	journal = {SIAM Journal on Optimization},
+	author = {Aujol, Jean François and Dossal, Charles H and Rondepierre, Aude},
+	month = dec,
+	year = {2019},
+	keywords = {Lojasiewicz property, Lyapunov functions, ODEs, optimization, rate of convergence},
+	pages = {3131--3153},
+	file = {Aujol et al. - 2019 - Optimal Convergence Rates for Nesterov Acceleratio.pdf:/Users/hongdali/Zotero/storage/EVS7KRZQ/Aujol et al. - 2019 - Optimal Convergence Rates for Nesterov Acceleratio.pdf:application/pdf},
+}
+
+@article{villa_accelerated_2013,
+	title = {Accelerated and inexact forward-backward algorithms},
+	volume = {23},
+	copyright = {© 2013, Society for Industrial and Applied Mathematics},
+	issn = {10526234},
+	url = {https://www.proquest.com/docview/1418210204/abstract/AF88FFBCD234AADPQ/1},
+	doi = {10.1137/110844805},
+	abstract = {We propose a convergence analysis of accelerated forward-backward splitting methods for composite function minimization, when the proximity operator is not available in closed form, and can only be computed up to a certain precision. We prove that the \$1/k{\textasciicircum}2\$ convergence rate for the function values can be achieved if the admissible errors are of a certain type and satisfy a sufficiently fast decay condition. Our analysis is based on the machinery of estimate sequences first introduced by Nesterov for the study of accelerated gradient descent algorithms. Furthermore, we give a global complexity analysis, taking into account the cost of computing admissible approximations of the proximal point. An experimental analysis is also presented. [PUBLICATION ABSTRACT]},
+	language = {English},
+	number = {3},
+	urldate = {2024-06-27},
+	journal = {SIAM Journal on Optimization},
+	author = {Villa, Silvia and Salzo, Saverio and Baldassarre, Luca and Verri, Alessandro},
+	year = {2013},
+	keywords = {Algorithms, Approximation, Laboratories, Machine learning, Mathematics},
+	pages = {1607--1633},
+	file = {Villa et al. - 2013 - Accelerated and Inexact Forward-Backward Algorithm.pdf:/Users/hongdali/Zotero/storage/K3MNNGVQ/Villa et al. - 2013 - Accelerated and Inexact Forward-Backward Algorithm.pdf:application/pdf},
+}
+
+@article{bauschke_applying_2020,
+	title = {Applying {FISTA} to optimization problems (with or) without minimizers},
+	volume = {184},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-019-01415-x},
+	doi = {10.1007/s10107-019-01415-x},
+	abstract = {Beck and Teboulle’s FISTA method for finding a minimizer of the sum of two convex functions, one of which has a Lipschitz continuous gradient whereas the other may be nonsmooth, is arguably the most important optimization algorithm of the past decade. While research activity on FISTA has exploded ever since, the mathematically challenging case when the original optimization problem has no minimizer has found only limited attention. In this work, we systematically study FISTA and its variants. We present general results that are applicable, regardless of the existence of minimizers.},
+	language = {en},
+	number = {1},
+	urldate = {2024-07-13},
+	journal = {Mathematical Programming},
+	author = {Bauschke, Heinz H. and Bui, Minh N. and Wang, Xianfu},
+	month = nov,
+	year = {2020},
+	keywords = {65K05, Convex function, FISTA, Forward-backward method, Nesterov acceleration, Primary 90C25, Proximal gradient algorithm, Secondary 49M27},
+	pages = {349--381},
+	file = {Applying FISTA to optimization problems (with or) without minimizers:/Users/hongdali/Zotero/storage/S522MKDG/Bauschke et al. - 2020 - Applying FISTA to optimization problems (with or) without minimizers.pdf:application/pdf},
+}
+
+@misc{moursi_accelerated_2023,
+	title = {Accelerated gradient descent: {A} guaranteed bound for a heuristic restart strategy},
+	shorttitle = {Accelerated gradient descent},
+	url = {http://arxiv.org/abs/2310.07674},
+	abstract = {The O(1/k2) convergence rate in function value of accelerated gradient descent is optimal, but there are many modifications that have been used to speed up convergence in practice. Among these modifications are restarts, that is, starting the algorithm with the current iteration being considered as the initial point. We focus on the adaptive restart techniques introduced by O’Donoghue and Cande`s, specifically their gradient restart strategy. While the gradient restart strategy is a heuristic in general, we prove that applying gradient restarts preserves and in fact improves the O(1/k2) bound, hence establishing function value convergence, for one-dimensional functions. Applications of our results to separable and nearly separable functions are presented.},
+	language = {en},
+	urldate = {2024-07-25},
+	publisher = {arXiv},
+	author = {Moursi, Walaa M. and Pavlovic, Viktor and Vavasis, Stephen A.},
+	month = oct,
+	year = {2023},
+	note = {Preprint: http://arxiv.org/abs/2310.07674},
+	keywords = {Mathematics - Optimization and Control, Primary 90C25, 65K05, Secondary 65K10, 49M27},
+	file = {Moursi et al. - 2023 - Accelerated gradient descent A guaranteed bound f.pdf:/Users/hongdali/Zotero/storage/LDHPR5TM/Moursi et al. - 2023 - Accelerated gradient descent A guaranteed bound f.pdf:application/pdf},
+}
+
+
+@inproceedings{defazio_curved_2019,
+	title = {On the curved geometry of accelerated optimization},
+	volume = {32},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2019/hash/e515df0d202ae52fcebb14295743063b-Abstract.html},
+	abstract = {In this work we propose a differential geometric motivation for Nesterov's accelerated gradient method (AGM) for strongly-convex problems. By considering the optimization procedure as occurring on a Riemannian manifold with a natural structure, The AGM method can be seen as the proximal point method applied in this curved space. This viewpoint can also be extended to the continuous time case, where the accelerated gradient method arises from the natural block-implicit Euler discretization of an ODE on the manifold. We provide an analysis of the convergence rate of this ODE for quadratic objectives.},
+	urldate = {2024-09-13},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems}},
+	publisher = {Curran Associates, Inc.},
+	author = {Defazio, Aaron},
+	year = {2019},
+	file = {Defazio - 2019 - On the curved geometry of accelerated optimization:/Users/hongdali/Zotero/storage/XN87DXDF/Defazio - 2019 - On the curved geometry of accelerated optimization.pdf:application/pdf},
+}
+
+@article{nesterov_gradient_2013,
+	title = {Gradient methods for minimizing composite functions},
+	volume = {140},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-012-0629-5},
+	doi = {10.1007/s10107-012-0629-5},
+	abstract = {In this paper we analyze several new methods for solving optimization problems with the objective function formed as a sum of two terms: one is smooth and given by a black-box oracle, and another is a simple general convex function with known structure. Despite the absence of good properties of the sum, such problems, both in convex and nonconvex cases, can be solved with efficiency typical for the first part of the objective. For convex problems of the above structure, we consider primal and dual variants of the gradient method (with convergence rate \$\$O{\textbackslash}left(\{1 {\textbackslash}over k\}{\textbackslash}right)\$\$), and an accelerated multistep version with convergence rate \$\$O{\textbackslash}left(\{1 {\textbackslash}over k{\textasciicircum}2\}{\textbackslash}right)\$\$, where \$\$k\$\$is the iteration counter. For nonconvex problems with this structure, we prove convergence to a point from which there is no descent direction. In contrast, we show that for general nonsmooth, nonconvex problems, even resolving the question of whether a descent direction exists from a point is NP-hard. For all methods, we suggest some efficient “line search” procedures and show that the additional computational work necessary for estimating the unknown problem class parameters can only multiply the complexity of each iteration by a small constant factor. We present also the results of preliminary computational experiments, which confirm the superiority of the accelerated scheme.},
+	language = {en},
+	number = {1},
+	urldate = {2024-09-17},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yu.},
+	month = aug,
+	year = {2013},
+	keywords = {90C25, 68Q25, 90C47, Complexity theory, Optimal methods, Structural optimization, Black-box model, Convex Optimization, l1l\_1-Regularization, Local optimization, Nonsmooth optimization},
+	pages = {125--161},
+	file = {Nesterov - 2013 - Gradient methods for minimizing composite functions:/Users/hongdali/Zotero/storage/6LKMMPQJ/Nesterov - 2013 - Gradient methods for minimizing composite functions.pdf:application/pdf},
+}
+
+@inproceedings{lin_catalyst_2018,
+	title = {Catalyst {Acceleration} for {First}-order {Convex} {Optimization}: from {Theory} to {Practice}},
+	volume = {18},
+	shorttitle = {Catalyst {Acceleration} for {First}-order {Convex} {Optimization}},
+	url = {http://jmlr.org/papers/v18/17-748.html},
+	abstract = {We introduce a generic scheme for accelerating gradient-based optimization methods in the sense of Nesterov. The approach, called Catalyst, builds upon the inexact accelerated proximal point algorithm for minimizing a convex objective function, and consists of approximately solving a sequence of well-chosen auxiliary problems, leading to faster convergence. One of the keys to achieve acceleration in theory and in practice is to solve these sub-problems with appropriate accuracy by using the right stopping criterion and the right warm-start strategy. We give practical guidelines to use Catalyst and present a comprehensive analysis of its global complexity. We show that Catalyst applies to a large class of algorithms, including gradient descent, block coordinate descent, incremental algorithms such as SAG, SAGA, SDCA, SVRG, MISO/Finito, and their proximal variants. For all of these methods, we establish faster rates using the Catalyst acceleration, for strongly convex and non-strongly convex objectives. We conclude with extensive experiments showing that acceleration is useful in practice, especially for ill-conditioned problems.},
+	urldate = {2024-09-24},
+	booktitle = {Journal of {Machine} {Learning} {Research}},
+	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
+	year = {2018},
+	pages = {1--54},
+	file = {Lin et al. - 2018 - Catalyst Acceleration for First-order Convex Optimization from Theory to Practice:/Users/hongdali/Zotero/storage/M5UYPQIT/Lin et al. - 2018 - Catalyst Acceleration for First-order Convex Optimization from Theory to Practice.pdf:application/pdf},
+}
+
+@article{nesterov_inexact_2023,
+	title = {Inexact accelerated high-order proximal-point methods},
+	volume = {197},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-021-01727-x},
+	doi = {10.1007/s10107-021-01727-x},
+	abstract = {In this paper, we present a new framework of bi-level unconstrained minimization for development of accelerated methods in Convex Programming. These methods use approximations of the high-order proximal points, which are solutions of some auxiliary parametric optimization problems. For computing these points, we can use different methods, and, in particular, the lower-order schemes. This opens a possibility for the latter methods to overpass traditional limits of the Complexity Theory. As an example, we obtain a new second-order method with the convergence rate \$\$O{\textbackslash}left( k{\textasciicircum}\{-4\}{\textbackslash}right) \$\$, where k is the iteration counter. This rate is better than the maximal possible rate of convergence for this type of methods, as applied to functions with Lipschitz continuous Hessian. We also present new methods with the exact auxiliary search procedure, which have the rate of convergence \$\$O{\textbackslash}left( k{\textasciicircum}\{-(3p+1)/ 2\}{\textbackslash}right) \$\$, where \$\$p {\textbackslash}ge 1\$\$is the order of the proximal operator. The auxiliary problem at each iteration of these schemes is convex.},
+	language = {en},
+	number = {1},
+	urldate = {2024-09-26},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yurii},
+	month = jan,
+	year = {2023},
+	keywords = {90C25, Convex optimization, Lower complexity bounds, Optimal methods, Proximal-point operator, Tensor methods},
+	pages = {1--26},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/WUMELDVB/Nesterov - 2023 - Inexact accelerated high-order proximal-point methods.pdf:application/pdf},
+}
+
+@inproceedings{paquette_catalyst_2018,
+	title = {Catalyst for {Gradient}-based {Nonconvex} {Optimization}},
+	url = {https://proceedings.mlr.press/v84/paquette18a.html},
+	abstract = {We introduce a generic scheme to solve nonconvex optimization problems using gradient-based algorithms originally designed for minimizing convex functions. Even though these methods may originally require convexity to operate, the proposed approach allows one to use them without assuming any knowledge about the convexity of the objective. In general, the scheme is guaranteed to produce a stationary point with a worst-case efficiency typical of first-order methods, and when the objective turns out to be convex, it automatically accelerates in the sense of Nesterov and achieves near-optimal convergence rate in function values. We conclude the paper by showing promising experimental results obtained by applying our approach to incremental algorithms such as SVRG and SAGA for sparse matrix factorization and for learning neural networks.},
+	language = {en},
+	urldate = {2024-10-02},
+	booktitle = {Proceedings of the {Twenty}-{First} {International} {Conference} on {Artificial} {Intelligence} and {Statistics}},
+	publisher = {PMLR},
+	author = {Paquette, Courtney and Lin, Hongzhou and Drusvyatskiy, Dmitriy and Mairal, Julien and Harchaoui, Zaid},
+	month = mar,
+	year = {2018},
+	note = {ISSN: 2640-3498},
+	pages = {613--622},
+	file = {Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:/Users/hongdali/Zotero/storage/N4YDZMYK/Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:application/pdf;Paquette et al. - 2018 - Catalyst for Gradient-based Nonconvex Optimization.pdf:/Users/hongdali/Zotero/storage/7CNEDRVP/Paquette et al. - 2018 - Catalyst for Gradient-based Nonconvex Optimization.pdf:application/pdf},
+}
+
+@article{nesterov_method_1983,
+	title = {A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)},
+	url = {https://www.semanticscholar.org/paper/A-method-for-solving-the-convex-programming-problem-Nesterov/8d3a318b62d2e970122da35b2a2e70a5d12cc16f},
+	abstract = {Semantic Scholar extracted view of "A method for solving the convex programming problem with convergence rate O(1/k{\textasciicircum}2)" by Y. Nesterov},
+	urldate = {2024-10-10},
+	journal = {Proceedings of the USSR Academy of Sciences},
+	author = {Nesterov, Y.},
+	year = {1983},
+}
+
+@article{ghadimi_accelerated_2016,
+	title = {Accelerated gradient methods for nonconvex nonlinear and stochastic programming},
+	volume = {156},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-015-0871-8},
+	doi = {10.1007/s10107-015-0871-8},
+	abstract = {In this paper, we generalize the well-known Nesterov’s accelerated gradient (AG) method, originally designed for convex smooth optimization, to solve nonconvex and possibly stochastic optimization problems. We demonstrate that by properly specifying the stepsize policy, the AG method exhibits the best known rate of convergence for solving general nonconvex smooth optimization problems by using first-order information, similarly to the gradient descent method. We then consider an important class of composite optimization problems and show that the AG method can solve them uniformly, i.e., by using the same aggressive stepsize policy as in the convex case, even if the problem turns out to be nonconvex. We demonstrate that the AG method exhibits an optimal rate of convergence if the composite problem is convex, and improves the best known rate of convergence if the problem is nonconvex. Based on the AG method, we also present new nonconvex stochastic approximation methods and show that they can improve a few existing rates of convergence for nonconvex stochastic optimization. To the best of our knowledge, this is the first time that the convergence of the AG method has been established for solving nonconvex nonlinear programming in the literature.},
+	language = {en},
+	number = {1},
+	urldate = {2024-10-11},
+	journal = {Mathematical Programming},
+	author = {Ghadimi, Saeed and Lan, Guanghui},
+	month = mar,
+	year = {2016},
+	keywords = {62L20, 68Q25, 90C15, 90C25, Accelerated gradient, Complexity, Nonconvex optimization, Stochastic programming},
+	pages = {59--99},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/JHQ4UNFT/Ghadimi and Lan - 2016 - Accelerated gradient methods for nonconvex nonlinear and stochastic programming.pdf:application/pdf},
+}

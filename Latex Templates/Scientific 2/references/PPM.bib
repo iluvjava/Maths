@@ -1,0 +1,442 @@
+
+@inproceedings{ahn_understanding_2022,
+	title = {Understanding {Nesterov}'s acceleration via proximal point method},
+	url = {https://epubs.siam.org/doi/abs/10.1137/1.9781611977066.9},
+	doi = {https://doi.org/10.1137/1.9781611977066},
+	abstract = {The proximal point method (PPM) is a fundamental method in optimization that is often used as a building block for designing optimization algorithms. In this work, we use the PPM method to provide conceptually simple derivations along with convergence analyses of different versions of Nesterov's accelerated gradient method (AGM). The key observation is that AGM is a simple approximation of PPM, which results in an elementary derivation of the update equations and stepsizes of AGM. This view also leads to a transparent and conceptually simple analysis of AGM's convergence by using the analysis of PPM. The derivations also naturally extend to the strongly convex case. Ultimately, the results presented in this paper are of both didactic and conceptual value; they unify and explain existing variants of AGM while motivating other accelerated methods for practically relevant settings.},
+	urldate = {2023-11-04},
+	booktitle = {Symposium on {Simplicity} in {Algorithms}},
+	publisher = {SIAM},
+	author = {Ahn, Kwangjun and Sra, Suvrit},
+	month = jun,
+	year = {2022},
+	keywords = {Computer Science - Machine Learning, Optimization and Control},
+	annote = {Comment: 14 pages; Presented at SIAM Symposium on Simplicity in Algorithms (SOSA22), January 10 - 11, 2022},
+	file = {Ahn and Sra - 2022 - Understanding nesterov's acceleration via proximal.pdf:/Users/hongdali/Zotero/storage/PZBWUWW5/Ahn and Sra - 2022 - Understanding nesterov's acceleration via proximal.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/WSSGK9Q4/2005.html:text/html},
+}
+
+@article{guler_new_1992,
+	title = {New proximal point algorithms for convex minimization},
+	volume = {2},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/0802032},
+	doi = {10.1137/0802032},
+	abstract = {The proximal point algorithm (PPA) for the convex minimization problem minx∈Hf(x), where f:H→R∪\{∞\} is a proper, lower semicontinuous (lsc) function in a Hilbert space H is considered. Under this minimal assumption on f, it is proved that the PPA, with positive parameters \{λk\}k=1∞, converges in general if and only if σn=∑k=1nλk→∞. Global convergence rate estimates for the residual f(xn)−f(u), where xn is the nth iterate of the PPA and u∈H is arbitrary are given. An open question of Rockafellar is settled by giving an example of a PPA for which xn converges weakly but not strongly to a minimizes of f.},
+	number = {4},
+	urldate = {2023-11-30},
+	journal = {SIAM Journal on Optimization},
+	author = {Guler, Osman},
+	month = nov,
+	year = {1992},
+	pages = {649--664},
+	annote = {Nesterov Accelerated Proximal Point Method
+
+},
+	file = {Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:/Users/hongdali/Zotero/storage/G9LCY67Q/Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:application/pdf},
+}
+
+@misc{davis_proximally_2018,
+	title = {Proximally {Guided} {Stochastic} {Subgradient} {Method} for {Nonsmooth}, {Nonconvex} {Problems}},
+	url = {http://arxiv.org/abs/1707.03505},
+	abstract = {In this paper, we introduce a stochastic projected subgradient method for weakly convex (i.e., uniformly prox-regular) nonsmooth, nonconvex functions---a wide class of functions which includes the additive and convex composite classes. At a high-level, the method is an inexact proximal point iteration in which the strongly convex proximal subproblems are quickly solved with a specialized stochastic projected subgradient method. The primary contribution of this paper is a simple proof that the proposed algorithm converges at the same rate as the stochastic gradient method for smooth nonconvex problems. This result appears to be the first convergence rate analysis of a stochastic (or even deterministic) subgradient method for the class of weakly convex functions.},
+	urldate = {2023-11-30},
+	publisher = {arXiv},
+	author = {Davis, Damek and Grimmer, Benjamin},
+	month = sep,
+	year = {2018},
+	note = {arXiv:1707.03505 [cs, math]},
+	keywords = {Computer Science - Machine Learning, Optimization and Control},
+	annote = {Comment: Updated 9/17/2018: Major Revision -added high probability bounds, improved convergence analysis in general, new experimental results. Updated 7/26/2017: Added references to introduction and a couple simple extensions as Sections 3.2 and 4. Updated 8/23/2017: Added NSF acknowledgements. Updated 10/16/2017: Added experimental results},
+	file = {arXiv.org Snapshot:/Users/hongdali/Zotero/storage/QTSZS2GN/1707.html:text/html;Full Text PDF:/Users/hongdali/Zotero/storage/3MDHZ789/Davis and Grimmer - 2018 - Proximally Guided Stochastic Subgradient Method for Nonsmooth, Nonconvex Problems.pdf:application/pdf},
+}
+
+@misc{drusvyatskiy_proximal_2017,
+	title = {The proximal point method revisited},
+	url = {http://arxiv.org/abs/1712.06038},
+	doi = {10.48550/arXiv.1712.06038},
+	abstract = {In this short survey, I revisit the role of the proximal point method in large scale optimization. I focus on three recent examples: a proximally guided subgradient method for weakly convex stochastic approximation, the prox-linear algorithm for minimizing compositions of convex functions and smooth maps, and Catalyst generic acceleration for regularized Empirical Risk Minimization.},
+	urldate = {2023-11-30},
+	publisher = {arXiv},
+	author = {Drusvyatskiy, Dmitriy},
+	month = dec,
+	year = {2017},
+	note = {arXiv:1712.06038 [math]},
+	keywords = {Optimization and Control},
+	annote = {Comment: 11 pages, submitted to SIAG/OPT Views and News},
+	file = {arXiv Fulltext PDF:/Users/hongdali/Zotero/storage/854FFU77/Drusvyatskiy - 2017 - The proximal point method revisited.pdf:application/pdf;arXiv.org Snapshot:/Users/hongdali/Zotero/storage/NWYP3NMX/1712.html:text/html},
+}
+
+@article{rockafellar_monotone_1976,
+	title = {Monotone operators and the proximal point algorithm},
+	volume = {14},
+	issn = {0363-0129, 1095-7138},
+	url = {http://epubs.siam.org/doi/10.1137/0314056},
+	doi = {10.1137/0314056},
+	language = {en},
+	number = {5},
+	urldate = {2023-11-06},
+	journal = {SIAM Journal on Control and Optimization},
+	author = {Rockafellar, R. Tyrrell},
+	month = aug,
+	year = {1976},
+	pages = {877--898},
+	file = {Monotone Operators and the Proximal Point Algorithm.pdf:/Users/hongdali/Zotero/storage/5L82ZWY4/Monotone Operators and the Proximal Point Algorithm.pdf:application/pdf},
+}
+
+@article{kim_accelerated_2021,
+	title = {Accelerated proximal point method for maximally monotone operators},
+	volume = {190},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-021-01643-0},
+	doi = {10.1007/s10107-021-01643-0},
+	abstract = {This paper proposes an accelerated proximal point method for maximally monotone operators. The proof is computer-assisted via the performance estimation problem approach. The proximal point method includes various well-known convex optimization methods, such as the proximal method of multipliers and the alternating direction method of multipliers, and thus the proposed acceleration has wide applications. Numerical experiments are presented to demonstrate the accelerating behaviors.},
+	language = {en},
+	number = {1},
+	urldate = {2023-10-27},
+	journal = {Mathematical Programming},
+	author = {Kim, Donghwan},
+	month = nov,
+	year = {2021},
+	keywords = {Monotone operators, Proximal Point Method, Worst-case performance analysis, 90C30, 90C25, 49M25, 68Q25, 90C22, 90C60, Acceleration, Maximally monotone operators, Proximal point method},
+	pages = {57--87},
+	file = {Kim - 2021 - Accelerated proximal point method for maximally mo.pdf:/Users/hongdali/Zotero/storage/H7RGIF4C/Kim - 2021 - Accelerated proximal point method for maximally mo.pdf:application/pdf},
+}
+
+@article{li_douglasrachford_2016,
+	title = {Douglas–{Rachford} splitting for nonconvex optimization with application to nonconvex feasibility problems},
+	volume = {159},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-015-0963-5},
+	doi = {10.1007/s10107-015-0963-5},
+	abstract = {We adapt the Douglas–Rachford (DR) splitting method to solve nonconvex feasibility problems by studying this method for a class of nonconvex optimization problem. While the convergence properties of the method for convex problems have been well studied, far less is known in the nonconvex setting. In this paper, for the direct adaptation of the method to minimize the sum of a proper closed function g and a smooth function f with a Lipschitz continuous gradient, we show that if the step-size parameter is smaller than a computable threshold and the sequence generated has a cluster point, then it gives a stationary point of the optimization problem. Convergence of the whole sequence and a local convergence rate are also established under the additional assumption that f and g are semi-algebraic. We also give simple sufficient conditions guaranteeing the boundedness of the sequence generated. We then apply our nonconvex DR splitting method to finding a point in the intersection of a closed convex set C and a general closed set D by minimizing the squared distance to C subject to D. We show that if either set is bounded and the step-size parameter is smaller than a computable threshold, then the sequence generated from the DR splitting method is actually bounded. Consequently, the sequence generated will have cluster points that are stationary for an optimization problem, and the whole sequence is convergent under an additional assumption that C and D are semi-algebraic. We achieve these results based on a new merit function constructed particularly for the DR splitting method. Our preliminary numerical results indicate that our DR splitting method usually outperforms the alternating projection method in finding a sparse solution of a linear system, in terms of both the solution quality and the number of iterations taken.},
+	language = {en},
+	number = {1},
+	urldate = {2024-05-21},
+	journal = {Mathematical Programming},
+	author = {Li, Guoyin and Pong, Ting Kei},
+	month = sep,
+	year = {2016},
+	keywords = {90C06, 90C26, 90C90, For Your Interest},
+	pages = {371--401},
+	file = {Li and Pong - 2016 - Douglas–Rachford splitting for nonconvex optimizat.pdf:/Users/hongdali/Zotero/storage/39IKQZ8P/Li and Pong - 2016 - Douglas–Rachford splitting for nonconvex optimizat.pdf:application/pdf},
+}
+
+@article{guler_convergence_1991,
+	title = {On the {Convergence} of the {Proximal} {Point} {Algorithm} for {Convex} {Minimization}},
+	volume = {29},
+	issn = {03630129},
+	url = {https://www.proquest.com/docview/925962166/abstract/A60B4BA7798A45D1PQ/1},
+	doi = {10.1137/0329022},
+	abstract = {The proximal point algorithm (PPA) for the convex minimization problem \${\textbackslash}min \_\{x {\textbackslash}in H\} f(x)\$, where \$f:H {\textbackslash}to R {\textbackslash}cup {\textbackslash}\{ {\textbackslash}infty {\textbackslash}\} \$ is a proper, lower semicontinuous (lsc) function in a Hilbert space \$H\$ is considered. Under this minimal assumption on \$f\$, it is proved that the PPA, with positive parameters \${\textbackslash}\{ {\textbackslash}lambda \_k {\textbackslash}\} \_\{k = 1\}{\textasciicircum}{\textbackslash}infty \$, converges in general if and only if \${\textbackslash}sigma \_n = {\textbackslash}sum\_\{k = 1\}{\textasciicircum}n \{{\textbackslash}lambda \_k {\textbackslash}to {\textbackslash}infty \} \$. Global convergence rate estimates for the residual \$f(x\_n ) - f(u)\$, where \$x\_n \$ is the \$n\$th iterate of the PPA and \$ u {\textbackslash}in H \$ is arbitrary are given. An open question of Rockafellar is settled by giving an example of a PPA for which \$x\_n \$ converges weakly but not strongly to a minimizes of \$f\$.},
+	language = {English},
+	number = {2},
+	urldate = {2024-05-18},
+	journal = {SIAM Journal on Control and Optimization},
+	author = {Guler, Osman},
+	month = mar,
+	year = {1991},
+	keywords = {Algorithms, Convex analysis, Hilbert space, Mathematics},
+	pages = {17},
+	file = {Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:/Users/hongdali/Zotero/storage/9AWZSLK4/Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:application/pdf},
+}
+
+@article{attouch_convergence_2009,
+	title = {On the convergence of the proximal algorithm for nonsmooth functions involving analytic features},
+	volume = {116},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-007-0133-5},
+	doi = {10.1007/s10107-007-0133-5},
+	abstract = {We study the convergence of the proximal algorithm applied to nonsmooth functions that satisfy the Łjasiewicz inequality around their generalized critical points. Typical examples of functions complying with these conditions are continuous semialgebraic or subanalytic functions. Following Łjasiewicz’s original idea, we prove that any bounded sequence generated by the proximal algorithm converges to some generalized critical point. We also obtain convergence rate results which are related to the flatness of the function by means of Łjasiewicz exponents. Apart from the sharp and elliptic cases which yield finite or geometric convergence, the decay estimates that are derived are of the type O(k−s), where s ∈ (0, + ∞) depends on the flatness of the function.},
+	language = {en},
+	number = {1},
+	urldate = {2024-04-16},
+	journal = {Mathematical Programming},
+	author = {Attouch, Hedy and Bolte, Jérôme},
+	month = jan,
+	year = {2009},
+	keywords = {90C26, 47N10, 90C30, Łjasiewicz inequality, Proximal algorithm, Subanalytic functions},
+	pages = {5--16},
+	annote = {Theorems, Lemma, Claims Propositions Indexer
+
+
+},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/AGIWHMYN/Attouch and Bolte - 2009 - On the convergence of the proximal algorithm for nonsmooth functions involving analytic features.pdf:application/pdf},
+}
+
+@article{eckstein_douglasrachford_1992,
+	title = {On the {Douglas}—{Rachford} splitting method and the proximal point algorithm for maximal monotone operators},
+	volume = {55},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/BF01581204},
+	doi = {10.1007/BF01581204},
+	abstract = {This paper shows, by means of an operator called asplitting operator, that the Douglas—Rachford splitting method for finding a zero of the sum of two monotone operators is a special case of the proximal point algorithm. Therefore, applications of Douglas—Rachford splitting, such as the alternating direction method of multipliers for convex programming decomposition, are also special cases of the proximal point algorithm. This observation allows the unification and generalization of a variety of convex programming algorithms. By introducing a modified version of the proximal point algorithm, we derive a new,generalized alternating direction method of multipliers for convex programming. Advances of this sort illustrate the power and generality gained by adopting monotone operator theory as a conceptual framework.},
+	language = {en},
+	number = {1},
+	urldate = {2024-04-09},
+	journal = {Mathematical Programming},
+	author = {Eckstein, Jonathan and Bertsekas, Dimitri P.},
+	month = apr,
+	year = {1992},
+	keywords = {Monotone operators, decomposition, proximal point algorithm},
+	pages = {293--318},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/QUJX7JKM/Eckstein and Bertsekas - 1992 - On the Douglas—Rachford splitting method and the proximal point algorithm for maximal monotone opera.pdf:application/pdf},
+}
+
+@article{attouch_convergence_2013,
+	title = {Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized {Gauss}–{Seidel} methods},
+	volume = {137},
+	issn = {1436-4646},
+	shorttitle = {Convergence of descent methods for semi-algebraic and tame problems},
+	url = {https://doi.org/10.1007/s10107-011-0484-9},
+	doi = {10.1007/s10107-011-0484-9},
+	abstract = {In view of the minimization of a nonsmooth nonconvex function f, we prove an abstract convergence result for descent methods satisfying a sufficient-decrease assumption, and allowing a relative error tolerance. Our result guarantees the convergence of bounded sequences, under the assumption that the function f satisfies the Kurdyka–Łojasiewicz inequality. This assumption allows to cover a wide range of problems, including nonsmooth semi-algebraic (or more generally tame) minimization. The specialization of our result to different kinds of structured problems provides several new convergence results for inexact versions of the gradient method, the proximal method, the forward–backward splitting algorithm, the gradient projection and some proximal regularization of the Gauss–Seidel method in a nonconvex setting. Our results are illustrated through feasibility problems, or iterative thresholding procedures for compressive sensing.},
+	language = {en},
+	number = {1},
+	urldate = {2024-04-04},
+	journal = {Mathematical Programming},
+	author = {Attouch, Hedy and Bolte, Jérôme and Svaiter, Benar Fux},
+	month = feb,
+	year = {2013},
+	keywords = {90C25, Kurdyka–Łojasiewicz inequality, 47J25, 49M37, Alternating minimization, 34G25, 47J30, 47J35, 49M15, 65K15, 90C53, Block-coordinate methods, Descent methods, Forward–backward splitting, Iterative thresholding, Nonconvex nonsmooth optimization, o-minimal structures, Proximal algorithms, Relative error, Semi-algebraic optimization, Sufficient decrease, Tame optimization},
+	pages = {91--129},
+	annote = {Algorithm Indexer
+
+
+ALGORITHM 1 {\textbar} GENERIC EXACT GRADIENT DESCENT
+
+
+(18)
+
+
+(19)
+
+
+ALGORITHM 3 {\textbar} GENERIC PROXIMAL GRADIENT DESCENT
+
+
+(47)
+
+
+(48)
+
+
+(49)
+
+
+
+
+
+},
+	annote = {Equation Indexer
+},
+	annote = {Theorem, Statements Indexer
+We indexed all the equations and conditions and theorems to keep track of what theorems are using which of the conditions listed in the paper.
+
+H1 {\textbar} DESCENT
+H2 {\textbar} RELATIVE ERROR
+H3 {\textbar} CONTINUITY
+LEMMA 2.3 {\textbar} DISTANCE TO SEMI-ALG SETS ARE SEMI-ALG
+DEF 2.4 {\textbar} KL
+remark 2.5
+
+
+(a): 0801.1780.pdf (arxiv.org)
+
+
+LEMMA 2.6 {\textbar} A VERY LONG LEMMA
+
+
+\$f\$ is KL.
+
+
+A sequence with H1, H2.
+
+
+Than the sequence is bounded, trajectory finite length, and the function value converges to \$x{\textasciicircum}*\$, the point of KL property.
+Equation labeled in this Lemma:
+
+(3), (4), …, (10)
+
+THM 2.9 {\textbar} CONVERGENCE TO A CRITICAL POINT
+If
+
+
+H1, H2, H3
+
+
+KL
+
+
+Then we have finite length convergence and convergence to critical point.
+THM 2.10 {\textbar} LOCAL CONVERGENCE TO LOCAL MINIMA
+If
+
+
+KL at Local minimizer \$x{\textasciicircum}*\$
+
+
+H4 holds at \$x{\textasciicircum}*\$
+
+
+(…)
+
+
+Then the sequence is trapped and has no choice but to converge to a critical point in that region.
+THM 2.12 {\textbar} LOCAL CONVERGENCE TO GLOBAL MINIMA
+If
+
+
+KL at global minimizer \$x{\textasciicircum}*\$
+
+
+(…)
+
+
+Then there are convergence of the sequence to the global minimizer of the function.
+LEMMA 3.1 {\textbar} DESCENT LEMMA
+THM 3.2 {\textbar} CONVERGENCE OF GRADIENT DESCENT
+With
+
+
+Lipz smooth, bounded below
+
+
+KL
+
+
+Sequence bounded
+
+
+We have convergence to critical point of the function for the iterates.
+THM 3.4 {\textbar} CONSEQUENCE OF PROX REGULARITY
+THM 3.5 {\textbar} INEXACT AVERAGED PROJ METHOD
+LEMMA 4.1 {\textbar} USEFUL ALGEBRAIC TRICKS
+THM 4.2 {\textbar} INEXACT PROXIMAL ALGORITHM CONVERGENCE
+With
+
+
+KL
+
+
+Continuous to the restriction of \$f\$ to its domain.
+
+
+Then the sequence generated by algorithm 2 converges to some critical points of \$f\$.
+THM 4.3 {\textbar} INEXACT PROX ALGORITHM CONVERGENCE (CONVEX)
+THM 5.1 {\textbar} NONCONVEX FBS CONVERGENCE
+With
+
+
+\$f = h + g\$, KL on the summed objective.
+
+
+\$h\$ is finite valued, differentiable and Lipz smooth.
+
+
+Restriction of \$g\$ to its domain is continuous.
+
+
+Generated Sequence bounded
+
+
+Then we have convergence of the iterates to the critical points of \$f\$.
+THM 5.6 {\textbar} FBS ON HARD FEASIBILITY PROBLEM
+
+
+\$F\_1, {\textbackslash}cdots, F\_p\$, All semi-algebraic sets, \$F\$ may not be a convex set from Example 5.5
+
+
+Sequence generated by BFS bounded.
+
+
+\$x{\textasciicircum}0\$ sufficiently close to the intersections of \$F\_1, {\textbackslash}cdots, F\_p\$.
+
+
+Then the sequence converges to the intersection of all sets.
+
+
+
+(Attouch and Bolte, 2009, p. 8)
+},
+	file = {Attouch et al. - 2013 - Convergence of descent methods for semi-algebraic .pdf:/Users/hongdali/Zotero/storage/LI9KFZWV/Attouch et al. - 2013 - Convergence of descent methods for semi-algebraic .pdf:application/pdf},
+}
+
+@inproceedings{lin_universal_2015,
+	title = {A universal catalyst for first-order optimization},
+	abstract = {We introduce a generic scheme for accelerating first-order optimization methods in the sense of Nesterov, which builds upon a new analysis of the accelerated proximal point algorithm. Our approach consists of minimizing a convex objective by approximately solving a sequence of well-chosen auxiliary problems, leading to faster convergence. This strategy applies to a large class of algorithms, including gradient descent, block coordinate descent, SAG, SAGA, SDCA, SVRG, Finito/MISO, and their proximal variants. For all of these methods, we provide acceleration and explicit support for non-strongly convex objectives. In addition to theoretical speed-up, we also show that acceleration is useful in practice, especially for ill conditioned problems where we measure significant improvements.},
+	language = {en},
+	urldate = {2024-05-31},
+	publisher = {MIT Press},
+	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
+	month = dec,
+	year = {2015},
+	pages = {33--84},
+	file = {A Universal Catalyst for First-Order Optimization HAL open science:/Users/hongdali/Zotero/storage/8ILQU6TZ/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf;A Universal Catalyst for First-Order Optimization NISP:/Users/hongdali/Zotero/storage/DAYMXD2L/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf},
+}
+
+@inproceedings{themelis_new_2020,
+	title = {A new envelope function for nonsmooth {DC} optimization},
+	url = {http://arxiv.org/abs/2004.00083},
+	doi = {10.1109/CDC42340.2020.9304514},
+	abstract = {Difference-of-convex (DC) optimization problems are shown to be equivalent to the minimization of a Lipschitz-differentiable "envelope". A gradient method on this surrogate function yields a novel (sub)gradient-free proximal algorithm which is inherently parallelizable and can handle fully nonsmooth formulations. Newton-type methods such as L-BFGS are directly applicable with a classical linesearch. Our analysis reveals a deep kinship between the novel DC envelope and the forward-backward envelope, the former being a smooth and convexity-preserving nonlinear reparametrization of the latter.},
+	urldate = {2024-06-19},
+	booktitle = {2020 59th {IEEE} {Conference} on {Decision} and {Control} ({CDC})},
+	author = {Themelis, Andreas and Hermans, Ben and Patrinos, Panagiotis},
+	month = dec,
+	year = {2020},
+	note = {arXiv:2004.00083 [math]},
+	keywords = {Mathematics - Optimization and Control, For Your Interest, 90C26, 90C53, 90C06},
+	pages = {4697--4702},
+	file = {arXiv.org Snapshot:/Users/hongdali/Zotero/storage/ARNWQT8U/2004.html:text/html;Themelis et al. - 2020 - A new envelope function for nonsmooth DC optimizat.pdf:/Users/hongdali/Zotero/storage/SM9495PU/Themelis et al. - 2020 - A new envelope function for nonsmooth DC optimizat.pdf:application/pdf},
+}
+
+@article{rockafellar_augmented_1976,
+	title = {Augmented {Lagrangians} and {Applications} of the {Proximal} {Point} {Algorithm} in {Convex} {Programming}},
+	volume = {1},
+	issn = {0364-765X},
+	url = {https://www.jstor.org/stable/3689277},
+	abstract = {The theory of the proximal point algorithm for maximal monotone operators is applied to three algorithms for solving convex programs, one of which has not previously been formulated. Rate-of-convergence results for the "method of multipliers," of the strong sort already known, are derived in a generalized form relevant also to problems beyond the compass of the standard second-order conditions for optimality. The new algorithm, the "proximal method of multipliers," is shown to have much the same convergence properties, but with some potential advantages.},
+	number = {2},
+	urldate = {2024-09-22},
+	journal = {Mathematics of Operations Research},
+	author = {Rockafellar, R. T.},
+	year = {1976},
+	note = {Publisher: INFORMS},
+	pages = {97--116},
+	file = {Rockafellar - 1976 - Augmented Lagrangians and Applications of the Proximal Point Algorithm in Convex Programming:/Users/hongdali/Zotero/storage/295EN3CR/Rockafellar - 1976 - Augmented Lagrangians and Applications of the Proximal Point Algorithm in Convex Programming.pdf:application/pdf},
+}
+
+@misc{dimacs_ccicada_terry_2018,
+	title = {Terry {Rockafellar} - {Augmented} {Lagrangians} and {Decomposition} in {Convex} and {Nonconvex} {Programming}},
+	url = {https://www.youtube.com/watch?v=D07PGj7ENuI},
+	urldate = {2024-09-22},
+	author = {{DIMACS CCICADA}},
+	month = aug,
+	year = {2018},
+}
+
+@article{nesterov_inexact_2023,
+	title = {Inexact accelerated high-order proximal-point methods},
+	volume = {197},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-021-01727-x},
+	doi = {10.1007/s10107-021-01727-x},
+	abstract = {In this paper, we present a new framework of bi-level unconstrained minimization for development of accelerated methods in Convex Programming. These methods use approximations of the high-order proximal points, which are solutions of some auxiliary parametric optimization problems. For computing these points, we can use different methods, and, in particular, the lower-order schemes. This opens a possibility for the latter methods to overpass traditional limits of the Complexity Theory. As an example, we obtain a new second-order method with the convergence rate \$\$O{\textbackslash}left( k{\textasciicircum}\{-4\}{\textbackslash}right) \$\$, where k is the iteration counter. This rate is better than the maximal possible rate of convergence for this type of methods, as applied to functions with Lipschitz continuous Hessian. We also present new methods with the exact auxiliary search procedure, which have the rate of convergence \$\$O{\textbackslash}left( k{\textasciicircum}\{-(3p+1)/ 2\}{\textbackslash}right) \$\$, where \$\$p {\textbackslash}ge 1\$\$is the order of the proximal operator. The auxiliary problem at each iteration of these schemes is convex.},
+	language = {en},
+	number = {1},
+	urldate = {2024-09-26},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yurii},
+	month = jan,
+	year = {2023},
+	keywords = {90C25, Convex optimization, Lower complexity bounds, Optimal methods, Proximal-point operator, Tensor methods},
+	pages = {1--26},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/WUMELDVB/Nesterov - 2023 - Inexact accelerated high-order proximal-point methods.pdf:application/pdf},
+}
+
+@misc{noauthor_proximal_nodate,
+	title = {Proximal {Algorithms}},
+	url = {https://web.stanford.edu/~boyd/papers/prox_algs.html},
+	urldate = {2024-10-14},
+	file = {Proximal Algorithms:/Users/hongdali/Zotero/storage/2ZSMUG3Y/prox_algs.html:text/html},
+}

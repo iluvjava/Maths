@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\input{presets/wang/input.tex}
+\input{presets/misc.tex}
+\input{presets/julia_lstlisting.tex}
+
+% === TEMPLATE HOW TO USE ======
+% To begine here is a list of things: 
+% [ ]: Change title. 
+% [ ]: Fill into the author names, affiliation and contact info. 
+% [ ]: Fill in the abstract. 
+% [ ]: Fill/change in AMS mathematics subject classification code, and the keywords. 
+
+\begin{document}
+
+\title{
+    {
+        \fontfamily{ptm}\selectfont 
+        A big title
+    }
+    }
+
+\author{
+    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
+    E-mail:  \texttt{alto@mail.ubc.ca}.}~ Author Name 1
+    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
+    E-mail:  \texttt{shawn.wang@ubc.ca}.}~ and~Xianfu Wang
+}
+
+\date{\today}
+
+\maketitle
+
+% \vskip 8mm
+
+\section{Section}
+    Beck's book \cite{beck_first-order_2017}. 
+\section{Section}
+
+
+\begin{abstract} 
+    \noindent
+    Abstract abstract abstract. 
+    
+\end{abstract}
+
+\noindent{\bfseries 2010 Mathematics Subject Classification:}
+Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
+\noindent{\bfseries Keywords: } Non-convex Optimizations, Proximal Point. 
+
+
+\bibliographystyle{siam}
+\bibliography{references/refs.bib}
+\newpage
+
+\appendix
+
+\end{document}
