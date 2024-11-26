@@ -47,3 +47,10 @@ Specifics of the sequence that controls the convergence of the algorithm.
 4. [PPM APG, Convergence Part I](PPM%20APG,%20Convergence%20Part%20I.md)
 
 
+#### **The PPM Interpretation saga**
+
+1. [Nesterov Type Acceleration via Proximal Point Method Part I](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20I.md)
+2. [Nesterov Type Acceleration via Proximal Point Method Part II](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20II.md)
+3. [Nesterov Type Acceleration via Proximal Point Method Part III](Nesterov%20Type%20Acceleration%20via%20Proximal%20Point%20Method%20Part%20III.md)
+
+The old saga doesn't work out well due to the dependence on a Lyapunov analysis that assumed too much on the parameters that controls the convergence rate. 

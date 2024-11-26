@@ -18,11 +18,11 @@ The method of proximal point and their convergences proof.
 
 #### Convex Proximal Point Method sequence
 
+Includes surrogations and gradient descent analysis via proximal point. 
 
-1. [Convex Proximal Point Method, Part I](Convex%20Proximal%20Point%20Method,%20Part%20I.md)
-2. [Convex Proximal Point Method, Part II](Convex%20Proximal%20Point%20Method,%20Part%20II.md)
-3. [Convex Proximal Point Method, Part III](Convex%20Proximal%20Point%20Method,%20Part%20III.md)
-
+1. [Convex Proximal Point Method, Part I](Convex%20Proximal%20Point%20Method,%20Part%20I.md); The basics attempts. 
+2. [Convex Proximal Point Method, Part II](Convex%20Proximal%20Point%20Method,%20Part%20II.md); The Rockafellar classic (UNFINISHED). 
+3. [Convex Proximal Point Method, Part III](Convex%20Proximal%20Point%20Method,%20Part%20III.md); The sleep proof via Lyapunov anlaysis. 
 
 
 ---
