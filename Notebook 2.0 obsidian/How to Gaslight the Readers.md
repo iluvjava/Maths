@@ -5,7 +5,7 @@ When writing mathematical literature, it's a joyful activity to gaslight the rea
 * It's trivial that: *(follows a very non-trivial statement)*
 * The proof is direct from Lemma 3.2 *(skipping the proof when the actual proof requires some works)*
 * One can easily imagine the case: (*Where it's not easy to imagine at all*)
-* The proof is in exercise 11.4 *(In an exercise that is based on previous 2 chapter of content and it's a follow up of another exercise)*
+* The proof is in exercise 11.4 *(In an exercise that is based on previous 2 chapters of content, and it's a follow-up of another exercise)*
 * Here, we skip the discussion[^1][^2][^3] and state that: *(some very non-trivial statement)*
 
 To make gaslighting better, one can imagine adding extra unnecessary comments and add more details that actually sounds sincere: 
@@ -21,6 +21,6 @@ When giving lectures, consider gaslighting the audiences. This is especially eff
 
 
 
-[^1]: Non trivial sources.
+[^1]: Non-trivial sources.
 [^2]: Where the heck is the paper.
 [^3]: Some dead people's works and I can't find the corresponding lemma. 

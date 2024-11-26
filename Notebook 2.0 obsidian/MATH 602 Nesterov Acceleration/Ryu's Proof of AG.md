@@ -276,11 +276,4 @@ A Lyapunov arguments usually simplifies the proofs, and it may be used to invest
 
 
 
----
-### **Proof of the convergence rate, proximal gradient case**
-
-In this section we generalize the sleek proof into the proximal gradient case. 
-So we understand this type of Lyapunov ideas better. 
-
-
 

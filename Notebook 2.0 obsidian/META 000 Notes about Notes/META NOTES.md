@@ -25,6 +25,9 @@ Something to do when we have time.
 	- [x] And a note about how to use *Fredholm alternative* applied to the PDE BVP system. 
 
 
+Todo on incomplete files are out sourced to specific CENTRAL HUB meta notes. 
+
+
 ---
 # **Tasks that Probably Will Never Get Done**
 
@@ -36,10 +39,6 @@ Something to do when we have time.
 	- [ ] [Asymptotic Behaviors of MLEs](STATS%20501%20Statistics%20for%20Mathematicians/Asymptotic%20Behaviors%20of%20MLEs.md). Characterize. 
 	- [ ] Add an entry about the Wald test method and likelihood ratio, continuing that discussion from [Hypothesis Testing](STATS%20501%20Statistics%20for%20Mathematicians/Hypothesis%20Testing.md). 
 - [ ] Make An Indexer Page for Optimizations
-
-
----
-# **Tasks Done for Keeping Track of Things**
 
 
 ---
