@@ -3,7 +3,7 @@
 ---
 ### **Intro**
 
-We address and expand some of the remarks after the proof in details. 
+We address and expand some remarks after the proof in details. 
 There seems to be some big room for improving things. 
 Before we start, we restate important definitions and claims here. 
 
@@ -12,11 +12,11 @@ $$
 \begin{aligned}
     \min_x \left\lbrace
         F(x) := f(x) + g(x)
-    \right\rbrace
+    \right\rbrace. 
 \end{aligned}
 $$
 
-where $f$ is $\mu \ge 0$ strongly convex and $L$-Lipschitz smooth, and $g$ is just convex. 
+Where $f$ is $\mu \ge 0$ strongly convex and $L$-Lipschitz smooth, and $g$ is just convex. 
 $\mathcal J_{L^{-1}}$, $\mathcal G_{L^{-1}}$ are the proximal gradient and the gradient mapping given by 
 
 $$
@@ -51,7 +51,7 @@ The estimating sequence $(\phi_k: \R^n \rightarrow \R)_{k \ge 0}$ used to prove 
 > \end{aligned}
 > $$
 
-**Obervations**
+**Observations**
 
 The sequence $\phi_k$ is always a simple quadratic function. 
 
@@ -304,7 +304,7 @@ $$
 \end{aligned}
 $$
 
-The recurrence relations defines the sequences $x_k, y_k, v_k, \gamma_k, \alpha_k$ for all $k \ge 0$ given the initial condition $v_0, x_0, \alpha_0, \gamma_0$. 
+The recurrence relations define the sequences $x_k, y_k, v_k, \gamma_k, \alpha_k$ for all $k \ge 0$ given the initial condition $v_0, x_0, \alpha_0, \gamma_0$. 
 Next, redefine the Nesterov's estimating sequence $\phi_k(x)$ for all $k\ge 0$ by canonical form: 
 
 $$
@@ -402,7 +402,7 @@ $$
 \end{aligned}
 $$
 
-The new relations on the canonical gives: 
+The new relations on the canonical give: 
 
 $$
 \begin{aligned}
