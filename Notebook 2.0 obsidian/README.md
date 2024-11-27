@@ -26,7 +26,7 @@ The `preamble.sty` should be under the root directory of this file. Here is a ba
 ```
 
 Yeah. That is all you need to read this obsidian notebook.
-If things are correctly setup, the following symbols and operator should be clearly typeseted. 
+If things are correctly setup, the following symbols and operator should be clearly displayed. 
 #### **Symbol Sets**
 
 $$
@@ -45,6 +45,8 @@ $$
 \end{aligned}
 $$
 
+#### **Recommended Settings**
+1. Enable strict line break in the editor settings inside of the Obsidian Notebook. 
 
 
 ---

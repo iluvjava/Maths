@@ -1,11 +1,16 @@
-[Nestrov Estimating Sequence of APG](Nestrov%20Estimating%20Sequence%20of%20APG.md)
+---
+alias: The Regret Residual Definitions of the Estimating Sequence used in Deriving Accelerated Proximal Gradient Method
+---
+
+- [Nestrov Estimating Sequence of APG](Nestrov%20Estimating%20Sequence%20of%20APG.md)
 
 ---
 ### **Intro**
 
-We address and expand some remarks after the proof in details. 
-There seems to be some big room for improving things. 
-Before we start, we restate important definitions and claims here. 
+
+The word "**regret**" is from online learning literatures in machine learning. 
+See paper "*Linear Coupling: An Ultimate Unification of Gradient and Mirror Descent*" for more information on the use of terms. 
+The acronym "APG EST SEQ" stands for Accelerated Proximal Gradient Estimating Sequence. 
 
 Throughout we consider minimization problem of the form: 
 $$
@@ -97,7 +102,7 @@ The sequence $\phi_k$ is always a simple quadratic function.
 
 The following sequence showed the descent sequence from the Nesterov's estimating sequence that allows for the design of the accelerated proximal gradient algorithm. 
 
-#### **Theorem | The estimated residual**
+#### **Theorem | The estimated residual (Regret)**
 > Let $(\phi_k)_{k\ge 0}$ be an estimating admitting a canonical form given by the previous definition. 
 > Define $\epsilon_k, l_f(x; y_k)$ for all $k \ge 0$: 
 > $$
@@ -289,10 +294,7 @@ Given the quantities $v_k, x_k, \alpha_k, \gamma_k$, for all $k\ge 0$ define rec
 $$
 \begin{aligned}
     \text{find } &
-    L\alpha_k \in(0, 1): \alpha_k \le (1 - \alpha_k)\gamma_k + \mu \alpha_k
-    \\
-    \gamma_{k + 1} 
-    &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+    \alpha_k \in(0, 1): L\alpha_k^2 \le \gamma_{k + 1} := (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
     \\
     y_k &= 
     (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k), 
@@ -344,28 +346,29 @@ $$
 
 #### **When both conditions are true**
 
-We strengthen results and simplify the above under the assumption that $\alpha_k \le (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
+We strengthen results and simplify the above under the assumption that $\alpha_k = (1 - \alpha_k) \gamma_k + \mu \alpha_k$ and $\mu = 0$. 
 This will simplify the relations on iterates tremendously. 
 
-
 Given $v_k, x_k, \alpha_k \gamma_k$, for all $k \ge 0$, define recursively $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1}, \gamma_{k + 1}$ by: 
-
 
 $$
 \begin{aligned}
     \text{find } &
-    \alpha_k \in(0, 1): L\alpha_k \le (1 - \alpha_k)\gamma_k, 
-    \\
-    \gamma_{k + 1} 
-    &= (1 - \alpha_k)\gamma_k, 
+    \alpha_k \in(0, 1): L\alpha_k^2 =\gamma_{k + 1}: = (1 - \alpha_k)\gamma_k, 
     \\
     y_k &= 
-    \gamma_k^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k), 
+    \gamma_k^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+    \\
+    &= \alpha_k v_k + (1 - \alpha_k) x_k,
+    \\
+    g_k &= L (y_k - T_L y_k), 
     \\
     v_{k + 1} &= \gamma_{k + 1}^{-1}
-    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k), 
+    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k)
     \\
-    x_{k + 1} &= T_L y_k. 
+    &= v_k - \alpha_k \gamma_k^{-1}(1 - \alpha_k)^{-1}g_k, 
+    \\
+    x_{k + 1} &= T_L y_k = y_k - L g_k. 
 \end{aligned}
 $$
 

@@ -10,10 +10,10 @@ It's like a table of contents but it involves multiple files classified under th
 ---
 ### **Techniques of Estimating Sequences**
 1. [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
-2. [APG With Estimating Sequence Revisited](APG%20With%20Estimating%20Sequence%20Revisited.md)
+2. [Regret in APG EST SEQ](Regret%20in%20APG%20EST%20SEQ.md)
 3. [Accelerated PPM Method](Accelerated%20PPM%20Method.md)
 5. [A Review on Nesterov's Estimating Sequence Technique](A%20Review%20on%20Nesterov's%20Estimating%20Sequence%20Technique.md)
-6. [APG With Estimating Sequence Revisited](APG%20With%20Estimating%20Sequence%20Revisited.md)
+6. [Regret in APG EST SEQ](Regret%20in%20APG%20EST%20SEQ.md)
 
 ---
 ### **Proofs and Technique popularized by Beck**

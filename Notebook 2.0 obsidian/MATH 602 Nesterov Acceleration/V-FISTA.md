@@ -142,7 +142,10 @@ The following proof was adapted from the proof of theorem 10.7.7 in Amir Beck's 
 > \end{aligned}
 > $$
 
-where $\theta_k = (t_k - 1)/(t_k + 1)$. The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. $t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. We start with the [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md): 
+where $\theta_k = (t_k - 1)/(t_k + 1)$. 
+The parameters, $\theta_k$, and $t_k$ will be determined as we go over the proof. 
+$t_{0} = 1$ is the base case for $t_k$ sequence, it represents the fact that there is no accelerations involved on the first step of the algorithm, its value depends on what it we want it to be. 
+We start with the [Fundamental Proximal Gradient Inequality](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Fundamental%20Proximal%20Gradient%20Inequality.md): 
 
 $$
 \begin{aligned}
@@ -156,13 +159,12 @@ $$
 \end{aligned}\tag{[1]}
 $$
 
-With $k\ge 0$, a positive sequence $(t_k)_{k\in \mathbb N}$, we consider quantities 
+For all $k\ge 0$ define a positive sequence $(t_k)_{k\in \mathbb N}$, let
 
-- $\bar x \in \underset{x}{\text{argmin}} F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
+- $\bar x \in \argmin{x} F(x)$ and $F(\bar x) = F_{\text{opt}}$. 
 - $x = t^{-1}_{k + 1}\bar x + (1 - t^{-1}_{k + 1})x^{(k)}, y = y^{(k)}$. 
 
-
-We analyze the RHS of (\[1\]) with the above quantities then 
+By definition they have: 
 
 $$
 \begin{aligned}
@@ -195,7 +197,7 @@ $$
 \end{aligned}
 $$
 
-with the the RHS of expression (\[1\]) makes 
+substitute the above to RHS of expression (\[1\]) so
 
 $$
 \begin{aligned}

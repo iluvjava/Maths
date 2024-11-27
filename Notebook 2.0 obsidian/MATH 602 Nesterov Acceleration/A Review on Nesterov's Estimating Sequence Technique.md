@@ -114,7 +114,7 @@ It's fascinating.
 
 We precisely describe $\phi^*_k$ by strengthening the inductive hypothesis $\phi_k^* \ge f(x_k)$. 
 It requires some specific information. 
-We put it into another file [APG With Estimating Sequence Revisited](APG%20With%20Estimating%20Sequence%20Revisited.md). 
+We put it into another file [Regret in APG EST SEQ](Regret%20in%20APG%20EST%20SEQ.md). 
 
 
 
