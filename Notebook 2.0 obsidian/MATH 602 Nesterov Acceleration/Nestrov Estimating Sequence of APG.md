@@ -19,7 +19,7 @@ $$
 \begin{aligned}
     & g_k := L(y_k - T_L y_k) \quad \text{Gradient mapping }, 
     \\
-    & l_h(x; y_k) := h(T_L y_k) - \langle g_k, x - y_k\rangle + 
+    & l_h(x; y_k) := h(T_L y_k) + \langle g_k, x - y_k\rangle + 
     \frac{1}{2L}\Vert g_k\Vert^2, 
     \\
     & 

@@ -46,7 +46,7 @@ The estimating sequence $(\phi_k: \R^n \rightarrow \R)_{k \ge 0}$ used to prove 
 > \begin{aligned}
 >     & g_k := L(y_k - T_L y_k) \quad \text{Gradient mapping }, 
 >     \\
->     & l_F(x; y_k) := F(T_L y_k) - \langle g_k, x - y_k\rangle + 
+>     & l_F(x; y_k) := F(T_L y_k) + \langle g_k, x - y_k\rangle + 
 >     \frac{1}{2L}\Vert g_k\Vert^2, 
 >     \\
 >     & 
@@ -104,13 +104,10 @@ The following sequence showed the descent sequence from the Nesterov's estimatin
 
 #### **Theorem | The estimated residual (Regret)**
 > Let $(\phi_k)_{k\ge 0}$ be an estimating admitting a canonical form given by the previous definition. 
-> Define $\epsilon_k, l_f(x; y_k)$ for all $k \ge 0$: 
+> Define $\epsilon_k$ for all $k \ge 0$: 
 > $$
 > \begin{aligned}
->     l_F(x; y_k) &:= F(T_L y_k) - \langle g_k, x - y_k\rangle + 
->     \frac{1}{2L}\Vert g_k\Vert^2, 
->     \\
->     \epsilon_k &= F(x_k) - l_f(x_k; y_k)
+>     \epsilon_k &= F(x_k) - l_F(x_k; y_k)
 >     \\
 >     x_{k + 1} &= T_L y_k
 > \end{aligned}
@@ -184,7 +181,7 @@ $$
     \\
     &= 
     (1 - \alpha_k)\left(
-        F(T_L y_k) - \langle g_k, x - y_k\rangle + 
+        F(T_L y_k) + \langle g_k, x_k - y_k\rangle + 
         \frac{1}{2L}\Vert g_k\Vert^2 + \epsilon_k + R_k
     \right)
     \\ &\quad 
