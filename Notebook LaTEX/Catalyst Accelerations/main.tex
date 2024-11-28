@@ -565,6 +565,14 @@
         \widetilde{\mathcal G}_{L^{-1}}(y)
         &:= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right)y. 
     \end{align*}
+    We also introduce Bregman Divergence. 
+    Let $h: Q \rightarrow \RR$ be a differentiable smooth convex function on a closed convex domain $Q \subseteq \RR^n$.
+    Define 
+    $$
+        D_h: Q \times \reli Q \rightarrow \RR^n
+        := (x, y) \mapsto h(x) - h(y) - \langle \nabla h(y), x - y\rangle. 
+    $$
+
 
     \begin{theorem}[Fundamental theorem of proximal gradient]
     \label{app:thm:fun-thm-prox-grad}

@@ -511,7 +511,7 @@ $$
 \begin{aligned}
     \frac{\gamma_{k + 1}}{2}\Vert v_{k +1} - x^*\Vert^2
     &= 
-    \frac{\gamma_{k + 1}}{2}\Vert v_k - \alpha_k \gamma_{k + 1}^{-1} - x^*\Vert^2
+    \frac{\gamma_{k + 1}}{2}\Vert v_k - \alpha_k \gamma_{k + 1}^{-1}g_k - x^*\Vert^2
     \\
     &= \frac{\gamma_{k + 1}}{2}\Vert v_k - x^*\Vert^2 
     + \frac{\alpha_k^2}{2 \gamma_{k + 1}}\Vert g_k\Vert^2
