@@ -445,7 +445,7 @@ A recurrence relations based on the definition of the Nesterov's estimating sequ
 >     \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\ge 0, 
 >     \\
 >     \frac{\alpha_k \gamma_k }{\gamma_{k + 1}} 
->     (v_k - y_k) + (T_L y_k - y_k) &= \mathbf 0. 
+>     (v_k - y_k) + (x_k - y_k) &= \mathbf 0. 
 > \end{aligned}
 > $$
 > Then $(T_Ly_k)_{\in \N}$ is a vector sequence satisfies implicit descent condition $f(T_L y_k) \le \phi_k^*$. 

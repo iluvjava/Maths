@@ -214,6 +214,7 @@ $$
 \end{aligned}
 $$
 
+On the first equality, we used $\phi_k^* = F(x_k) + R_k$ and $F(x_k) = \epsilon_k + l_F(x_k; y_k)$. 
 The hypothesis $\alpha_k\gamma_k(v_k - y_k) = \gamma_{k + 1} (y_k - x_k)$ sets the inner product to be zero, the hypothesis $L \alpha_k^2 \le \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$ makes the coefficient of $\Vert g_k\Vert^2$ to be non-negative. 
 If we define $R_k$ on the remaining terms excluding $F(T_Ly_k)$, it has 
 
@@ -486,6 +487,7 @@ $$
 By definitions, starting with the LHS of the inequality we want to prove, it has 
 
 $$
+{\small
 \begin{aligned}
     & \quad 
     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
@@ -497,13 +499,22 @@ $$
     &= 
     F(x_k) - \epsilon_k - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
     - F^* + (1 - \alpha_k)(\epsilon_k + R_k) + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
+    + 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
     \\
     &= 
     F(x_k) - F^* - \langle g_k, x_k - y_k\rangle - \frac{1}{2L} \Vert g_k\Vert^2 
     - \alpha_k \epsilon_k + (1 - \alpha_k) R_k + 
-    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2. 
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    + \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2. 
 \end{aligned}\tag{0}
+}
 $$
+
 On the second equality we used the recurrence relations of the residual when $\mu = 0$, which is $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
 Next, we consider expanding on the last term: 
 
@@ -535,6 +546,10 @@ $$
         + (1 - \alpha_k)\frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2 
         + \frac{\alpha_k^2}{2 \gamma_{k + 1}}\Vert g_k\Vert^2
         - \langle v_k - x^*, \alpha_k g_k\rangle
+        + 
+        \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
     \\ &=
     F(x_k) - F^* 
     - \alpha_k \epsilon_k + (1 - \alpha_k)
@@ -547,47 +562,39 @@ $$
             - \frac{1}{2L}
         \right)\Vert g_k\Vert^2
         - \langle g_k, x_k - y_k + \alpha_k(v_k - x^*)\rangle
+        + \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+        \right)\Vert g_k\Vert^2
     \\ &= 
     F(x_k) - F^*
     + (1 - \alpha_k)
     \left(
         R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
     \right)
-    \\ &\quad 
-        + \left(
-            \frac{\alpha_k^2}{2\gamma_{k + 1}}
-            - \frac{1}{2L}
-        \right)\Vert g_k\Vert^2
-        +
-        \alpha_k\left(
-            - \langle g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)\rangle
-            - \epsilon_k
-        \right)
+    +
+    \alpha_k\left(
+        - \langle g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)\rangle
+        - \epsilon_k
+    \right)
     \\
     &= 
     (1 - \alpha_k)
     \left(F(x_k) - F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2\right)
-    \\ &\quad 
-        + \left(
-            \frac{\alpha_k^2}{2\gamma_{k + 1}}
-            - \frac{1}{2L}
-        \right)\Vert g_k\Vert^2
-        +
-        \alpha_k\left(
-            F(x_k) - F^* 
-            - 
-            \left\langle 
-                g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
-            \right\rangle
-            - \epsilon_k
-        \right). 
+    +
+    \alpha_k\left(
+        F(x_k) - F^* 
+        - 
+        \left\langle 
+            g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
+        \right\rangle
+        - \epsilon_k
+    \right). 
 \end{aligned}\tag{$*$}
 $$
 
 On the first equality, we grouped terms with coefficient $(1 - \alpha_k)$, we also grouped the inner produce with by the comment term $g_k$. 
 On the second equality, terms with comment coefficient $\alpha_k$ are also grouped. 
 The third equality split $F(x_k) - F^*$ and groups it with terms having coefficient $(1 - \alpha_k)$ and $\alpha_k$. 
-To show the inequality, it remains to verify that the last 2 terms on the Above equality are less than zero.
 
 To simplify the inner product term, from the algorithm it has 
 
@@ -633,25 +640,14 @@ $$
 $$
 
 The last equality above simplifies to $- F^* + l_F(x^*; y_k) \le 0$. 
-Next, we show that the second last term in (*) is also $\ge 0$. 
-This is true because the algorithm asserts 
-
-$$
-\begin{aligned}
-    L\alpha_k^2 \le \gamma_{k + 1}
-    \\
-    \iff 
-    \frac{\alpha_k^2}{\gamma_{k + 1}} \le L^{-1}. 
-\end{aligned}
-$$
-
-Therefore, the claim had been proven. 
+The claimed is proved. 
 
 **Remarks**
 
 The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
 Finally, observe that the residual value has $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k) \le (1 - \alpha_k)R_k$ by non-negativity of $\epsilon_k$. 
 
+The inequality we proved is just $\phi_{k + 1}(x^*) - F(x^*) \le (1 - \alpha_k)(\phi_k(x_k) - F(x^*))$ which is a consequence of the recursive definition of the Nesterov's estimating seqnece. 
 
 
 #### **Claim | Non-zero S-CNVX regret inequality**
