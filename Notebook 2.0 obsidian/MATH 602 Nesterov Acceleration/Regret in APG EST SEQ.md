@@ -8,7 +8,7 @@ alias: The Regret Residual Definitions of the Estimating Sequence used in Derivi
 ### **Intro**
 
 
-The word "**regret**" is from online learning literatures in machine learning. 
+The word "**regret**" is from online learning (A topic in machine learning) literatures. 
 See paper "*Linear Coupling: An Ultimate Unification of Gradient and Mirror Descent*" for more information on the use of terms. 
 The acronym "APG EST SEQ" stands for Accelerated Proximal Gradient Estimating Sequence. 
 
@@ -245,7 +245,7 @@ Then the inductive hypothesis hold with $\phi_{k + 1}^* = F(x_{k + 1}) + R_{k + 
 
 **Remarks**
 
-It's not exactly clear what $R_k$ is but it simplifies under some assumptions. 
+It's not exactly clear what $R_k$ is, but it simplifies under some assumptions. 
 Listing several possibilities here, we have 
 
 1. $1/(2L) - \alpha_k^2/(2\gamma_{k + 1}) = 0$. 
@@ -255,7 +255,7 @@ Listing several possibilities here, we have
 **Both 1, 2 are true**
 
 When both true, it has $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
-So it gives a new representation of $\phi_k^*$ that made use of $F(x_k)$ if we expand the recurrence relation: . 
+So it gives a new representation of $\phi_k^*$ that made use of $F(x_k)$ if we expand the recurrence relation: 
 
 $$
 \begin{aligned}
@@ -381,6 +381,281 @@ $$
 \end{aligned}
 $$
 
+---
+###  **The regret inequality**
+
+In this section, we define $g_k, l_f, \epsilon_k, R_k$ by: 
+
+$$
+\begin{aligned}
+    g_k &:= L(y_k - T_L y_k), 
+    \\
+    l_F(x; y_k) &= F(T_Ly_k) - \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+    \\
+    \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k), 
+    \\
+    R_{k + 1}
+    &:= 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+$\epsilon_k \ge 0$ always by the smoothness, convex conditions on $F$. 
+Those conditions are used to derive the fundamental proximal gradient inequality, which is equivalent to this inequality here. 
+And let the algorithm be defined by the recurrences: 
+
+$$
+\begin{aligned}
+    \text{find } &
+    \alpha_k \in(0, 1): L\alpha_k^2 \le \gamma_{k + 1} := (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+    \\
+    y_k &= 
+    (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k), 
+    \\
+    v_{k + 1} &= \gamma_{k + 1}^{-1}
+    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+    \\
+    x_{k + 1} &= T_L y_k. 
+\end{aligned}
+$$
+
+With $\mu = 0$, the above simplifies to 
+
+
+$$
+\begin{aligned}
+    \text{find } &
+    \alpha_k \in(0, 1): L\alpha_k^2 \le \gamma_{k + 1}: = (1 - \alpha_k)\gamma_k, 
+    \\
+    y_k &= 
+    \gamma_k^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+    \\
+    &= \alpha_k v_k + (1 - \alpha_k) x_k,
+    \\
+    g_k &= L (y_k - T_L y_k), 
+    \\
+    v_{k + 1} &= \gamma_{k + 1}^{-1}
+    (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k)
+    \\
+    &= v_k - \alpha_k \gamma_k^{-1}(1 - \alpha_k)^{-1}g_k, 
+    \\
+    x_{k + 1} &= T_L y_k = y_k - L g_k. 
+\end{aligned}
+$$
+
+#### **Claim | zero S-CNVX regret inequality**
+> For any $k \ge 0$, given $v_k, x_k, \alpha_k, \gamma_k$, suppose that the APG algorithm with $\mu \ge 0$ generates iterates: $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1},\gamma_{k + 1}$. 
+> Let $R_k, \epsilon_k, l_F(x, y_k)$ be given in the start of this section with $\mu = 0$, then they satisfy the inequality
+> $$
+> {\small
+> \begin{aligned}
+>     (\forall k\ge 0) :
+>     F(x_{k + 1}) + F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+>     &\le 
+>     (1 - \alpha_k)
+>     \left(
+>         F(x_k) + F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+>     \right), 
+> \end{aligned}
+> }
+> $$
+> Where $F^*$ is the minimum and $x^*$ is the minimizer of $F$. 
+
+**Proof**
+
+Recall that by definition for all $k \ge0$, $\epsilon_k$ admits 
+
+$$
+\begin{aligned}
+    \epsilon_k &:= 
+    F(x_k) - l_F(x_k, ;y_k) 
+    \\
+    &= F(x_k) - F(T_L y_k) - \langle  g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2 \ge 0. 
+\end{aligned}
+$$
+
+By definitions, starting with the LHS of the inequality we want to prove, it has 
+
+$$
+\begin{aligned}
+    & \quad 
+    F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
+    \\
+    &= 
+    F(x_k) - \epsilon_k - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
+    - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
+    \\
+    &= 
+    F(x_k) - \epsilon_k - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
+    - F^* + (1 - \alpha_k)(\epsilon_k + R_k) + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
+    \\
+    &= 
+    F(x_k) - F^* - \langle g_k, x_k - y_k\rangle - \frac{1}{2L} \Vert g_k\Vert^2 
+    - \alpha_k \epsilon_k + (1 - \alpha_k) R_k + 
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2. 
+\end{aligned}\tag{0}
+$$
+On the second equality we used the recurrence relations of the residual when $\mu = 0$, which is $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
+Next, we consider expanding on the last term: 
+
+$$
+\begin{aligned}
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k +1} - x^*\Vert^2
+    &= 
+    \frac{\gamma_{k + 1}}{2}\Vert v_k - \alpha_k \gamma_{k + 1}^{-1} - x^*\Vert^2
+    \\
+    &= \frac{\gamma_{k + 1}}{2}\Vert v_k - x^*\Vert^2 
+    + \frac{\alpha_k^2}{2 \gamma_{k + 1}}\Vert g_k\Vert^2
+    - \langle v_k - x^*, \alpha_k g_k\rangle
+    \\
+    &= 
+    (1 - \alpha_k)\frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2 
+    + \frac{\alpha_k^2}{2 \gamma_{k + 1}}\Vert g_k\Vert^2
+    - \langle v_k - x^*, \alpha_k g_k\rangle. 
+\end{aligned}
+$$
+
+Substituting the above back to (0) yields: 
+
+$$
+\begin{aligned}
+    & 
+    F(x_k) - F^* - \langle g_k, x_k - y_k\rangle - \frac{1}{2L} \Vert g_k\Vert^2 
+    - \alpha_k \epsilon_k + (1 - \alpha_k) R_k
+    \\ &\quad 
+        + (1 - \alpha_k)\frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2 
+        + \frac{\alpha_k^2}{2 \gamma_{k + 1}}\Vert g_k\Vert^2
+        - \langle v_k - x^*, \alpha_k g_k\rangle
+    \\ &=
+    F(x_k) - F^* 
+    - \alpha_k \epsilon_k + (1 - \alpha_k)
+    \left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        + \left(
+            \frac{\alpha_k^2}{2\gamma_{k + 1}}
+            - \frac{1}{2L}
+        \right)\Vert g_k\Vert^2
+        - \langle g_k, x_k - y_k + \alpha_k(v_k - x^*)\rangle
+    \\ &= 
+    F(x_k) - F^*
+    + (1 - \alpha_k)
+    \left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        + \left(
+            \frac{\alpha_k^2}{2\gamma_{k + 1}}
+            - \frac{1}{2L}
+        \right)\Vert g_k\Vert^2
+        +
+        \alpha_k\left(
+            - \langle g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)\rangle
+            - \epsilon_k
+        \right)
+    \\
+    &= 
+    (1 - \alpha_k)
+    \left(F(x_k) - F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2\right)
+    \\ &\quad 
+        + \left(
+            \frac{\alpha_k^2}{2\gamma_{k + 1}}
+            - \frac{1}{2L}
+        \right)\Vert g_k\Vert^2
+        +
+        \alpha_k\left(
+            F(x_k) - F^* 
+            - 
+            \left\langle 
+                g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
+            \right\rangle
+            - \epsilon_k
+        \right). 
+\end{aligned}\tag{$*$}
+$$
+
+On the first equality, we grouped terms with coefficient $(1 - \alpha_k)$, we also grouped the inner produce with by the comment term $g_k$. 
+On the second equality, terms with comment coefficient $\alpha_k$ are also grouped. 
+The third equality split $F(x_k) - F^*$ and groups it with terms having coefficient $(1 - \alpha_k)$ and $\alpha_k$. 
+To show the inequality, it remains to verify that the last 2 terms on the Above equality are less than zero.
+
+To simplify the inner product term, from the algorithm it has 
+
+$$
+\begin{aligned}
+    y_k &= \alpha_k + (1 - \alpha_k) x_k 
+    \\ \iff 
+    x_k - y_k &= 
+    x_k - \alpha_k v_k - (1 - \alpha_k)x_k 
+    \\ \iff 
+    x_k - y_k + \alpha_kv_k - \alpha_k x^* 
+    &= 
+    x_k - (1 - \alpha_k)x_k - \alpha_k x^* 
+    \\ 
+    &= \alpha_k(x_k - x^*)
+    \\ \iff 
+    \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
+    &= 
+    x_k - x^*. 
+\end{aligned}
+$$
+
+Therefore, the second term on the RHS of (*) simplifies to 
+
+$$
+\begin{aligned}
+    &\quad 
+    F(x_k) - F^* - 
+    \langle g_k, x_k - x^*\rangle
+    - \epsilon_k
+    \\
+    &= 
+    F(x_k) - F^* - 
+    \langle g_k, x_k - x^*\rangle
+    - \left(
+        F(x_k) - F(T_L y_k) - \langle  g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2 
+    \right)
+    \\
+    &= 
+    F(x_{k + 1}) - F^* + \langle g_k, x^* - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2
+    \le 0 . 
+\end{aligned}
+$$
+
+The last equality above simplifies to $- F^* + l_F(x^*; y_k) \le 0$. 
+Next, we show that the second last term in (*) is also $\ge 0$. 
+This is true because the algorithm asserts 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 \le \gamma_{k + 1}
+    \\
+    \iff 
+    \frac{\alpha_k^2}{\gamma_{k + 1}} \le L^{-1}. 
+\end{aligned}
+$$
+
+Therefore, the claim had been proven. 
+
+**Remarks**
+
+The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
+Finally, observe that the residual value has $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k) \le (1 - \alpha_k)R_k$ by non-negativity of $\epsilon_k$. 
+
+
+
+#### **Claim | Non-zero S-CNVX regret inequality**
+> 
 
 
 ---

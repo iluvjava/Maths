@@ -297,7 +297,7 @@
         \; \\
         The estimating sequence  $(\phi_k)_{k \ge0}$ for the accelerated proximal point method is defined by the following recurrence for all $k \ge0$, any $A \ge 0$: 
         \begin{align*}
-            \phi_0(x) &:= f(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
+            \phi_0(x) &:= F(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
             \\
             \phi_{k + 1}(x) &:= 
             (1 - \alpha_k)\phi_k(x)
@@ -326,6 +326,7 @@
         Guler didn't simplify his results compare to what Nesterov did in his book. 
         For a detailed proof of the estimating sequence with comparison to the accelerated proximal gradient method, see 
         \hyperref[sec:app:exct-acc-ppm]{Appendix \ref*{sec:app:exct-acc-ppm}}. 
+        We note that the smoothness conditions here are not involved in the definition of Guler's estimating sequence, or the function $F$. 
     \end{remark}
     Guler cited Rockafellar \cite{rockafellar_monotone_1976} for condition (A') in his text for inexact proximal evaluation: 
     \begin{align*}
@@ -434,7 +435,8 @@
     The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
 
     \begin{lemma}[Lin's inexact proximal inequality]\label{lemma:lin-ixct-prox-ineq}
-        Let $F$ be a $\mu\ge 0$ strongly convex and fix $\kappa$. 
+        Let $F$ be a strongly convex with $\mu\ge 0$. 
+        Let $\kappa$ be fixed. 
         If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
         Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$, then it has for all $x$: 
         \begin{align*}
@@ -447,8 +449,8 @@
     \end{lemma}
     \begin{remark}
         For a detailed proof of the lemma, see 
-        \hyperref[app:sec:inxct-pg-ineq]{Appendix\ref*{app:sec:inxct-pg-ineq}}. 
-
+        \hyperref[app:sec:inxct-pg-ineq]{Appendix \ref*{app:sec:inxct-pg-ineq}}. 
+        We note that it only uses the strong convexity of model function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ (It's actually the quadratic growth condition around minimizer $x_k$ that is used in the proof), smoothness assumption of $F$ is not involved in here. 
     \end{remark}
     Using this inexact proximal inequality, we showed the proof of Lemma A.8 in Lin's paper \cite{lin_universal_2015} in 
     \hyperref[app:sec:appx-nes-est-seq]{Appendix \ref*{app:sec:appx-nes-est-seq}}
@@ -1520,7 +1522,7 @@
         It follows the same notation from the accelerated PPM section that $F$ is a convex function and the notations are $\mathcal J_k, \mathcal G_k$ for the proximal point evaluation and gradient mapping. 
         Recall the definition of the estimating sequence is: 
         \begin{align*}
-            \phi_0(x) &:= f(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
+            \phi_0(x) &:= F(x_0) + \frac{A}{2}\Vert x - x_0\Vert^2, 
             \\
             \phi_{k + 1}(x) &:= 
             (1 - \alpha_k)\phi_k(x)
