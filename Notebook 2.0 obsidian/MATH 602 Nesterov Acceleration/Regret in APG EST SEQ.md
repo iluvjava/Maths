@@ -33,7 +33,7 @@ $$
         \frac{L}{2}\Vert x - y\Vert^2
     \right\rbrace,
     \\
-    \mathcal G_{L} y &= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right). 
+    \mathcal G_{L} &= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right). 
 \end{aligned}
 $$
 
@@ -449,7 +449,7 @@ $$
     \\
     &= v_k - \alpha_k \gamma_k^{-1}(1 - \alpha_k)^{-1}g_k, 
     \\
-    x_{k + 1} &= T_L y_k = y_k - L g_k. 
+    x_{k + 1} &= T_L y_k = y_k - L^{-1} g_k. 
 \end{aligned}
 $$
 
@@ -487,7 +487,7 @@ $$
 By definitions, starting with the LHS of the inequality we want to prove, it has 
 
 $$
-{\small
+{\footnotesize
 \begin{aligned}
     & \quad 
     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
@@ -645,13 +645,16 @@ The claimed is proved.
 **Remarks**
 
 The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
-Finally, observe that the residual value has $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k) \le (1 - \alpha_k)R_k$ by non-negativity of $\epsilon_k$. 
+The inequality condition $L\alpha_{k}^2 \le \gamma_{k + 1}$ is not yet used. 
+We used the equality $\gamma_{k + 1} = \alpha_k (1 - \alpha_k)$. 
 
-The inequality we proved is just $\phi_{k + 1}(x^*) - F(x^*) \le (1 - \alpha_k)(\phi_k(x_k) - F(x^*))$ which is a consequence of the recursive definition of the Nesterov's estimating seqnece. 
+Let's take a look at the inequality $L\alpha_k^2 \le \gamma_{k + 1}$ closer. 
 
 
 #### **Claim | Non-zero S-CNVX regret inequality**
-> 
+> Repeat the same claim as the previous one but with assumption $\mu \ge 0$ instead. 
+
+
 
 
 ---

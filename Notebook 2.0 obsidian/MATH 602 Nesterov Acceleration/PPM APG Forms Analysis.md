@@ -763,7 +763,7 @@ $$
         v_k + 
         \frac{\alpha_k\mu}{(1 - \alpha_k)L\alpha_{k - 1}^2} y_k
     \right)
-    - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
+    - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
 \end{aligned}
 $$
 
@@ -842,6 +842,8 @@ $$
 $$
 
 And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1}^2$. 
+Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternative $L\alpha_k^2 + \varepsilon_{k + 1} = \gamma_{k + 1}$. 
+
 
 
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
