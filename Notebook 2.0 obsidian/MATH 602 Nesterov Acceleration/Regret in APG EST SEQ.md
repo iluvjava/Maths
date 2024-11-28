@@ -515,7 +515,7 @@ $$
 }
 $$
 
-On the second equality we used the recurrence relations of the residual when $\mu = 0$, which is $R_{k + 1} = (1 - \alpha_k)(\epsilon_k + R_k)$. 
+On the second equality we used the recurrence relations of the residual $R_{k + 1}$ when $\mu = 0$. 
 Next, we consider expanding on the last term: 
 
 $$
@@ -534,6 +534,7 @@ $$
     - \langle v_k - x^*, \alpha_k g_k\rangle. 
 \end{aligned}
 $$
+
 
 Substituting the above back to (0) yields: 
 
@@ -646,15 +647,170 @@ The claimed is proved.
 
 The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
 The inequality condition $L\alpha_{k}^2 \le \gamma_{k + 1}$ is not yet used. 
-We used the equality $\gamma_{k + 1} = \alpha_k (1 - \alpha_k)$. 
+We only used the equality $\gamma_{k + 1} = \alpha_k (1 - \alpha_k)$. 
 
-Let's take a look at the inequality $L\alpha_k^2 \le \gamma_{k + 1}$ closer. 
+Inequality $L\alpha_k^2 \le \gamma_{k + 1}$ makes $R_{k + 1} \le (1 - \alpha_k)(R_k + \epsilon_k)\le R_k$ due non-negativity of $L^{-1} - \alpha_k^2 /\gamma_{k + 1}$ and $\epsilon_k$. 
 
 
 #### **Claim | Non-zero S-CNVX regret inequality**
 > Repeat the same claim as the previous one but with assumption $\mu \ge 0$ instead. 
 
+**Proof (not yet completed)**
 
+The easy parts are: 
+
+$$
+\begin{aligned}
+    F(x_{k + 1}) &= 
+    F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2, 
+    \\
+    R_{k + 1}
+    &= 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right). 
+\end{aligned}\tag{1}
+$$
+
+We note that: 
+
+$$
+\begin{aligned}
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^* \Vert^2
+    &= 
+    \frac{\gamma_{k + 1}}{2}\Vert 
+        \gamma_{k + 1}^{-1}
+        (
+            \gamma_k(1 - \alpha_k)v_k - 
+            \alpha_k g_k + \mu \alpha_k y_k
+        )
+        - x^* 
+    \Vert^2
+    \\
+    &=  
+    \frac{\gamma_{k + 1}}{2}
+    \Vert 
+        \gamma_{k + 1}^{-1}
+        (
+           \gamma_{k + 1} v_k + \mu \alpha_k(y_k - v_k)
+            - \alpha_k g_k
+        )
+        - x^* 
+    \Vert^2
+    \\
+    &= 
+    \frac{\gamma_{k + 1}}{2}
+    \Vert 
+        v_k + \gamma_{k + 1}^{-1} \mu \alpha_k (y_k - v_k)
+        - \gamma_{k + 1}^{-1}\alpha_k g_k
+        - x^* 
+    \Vert^2
+    \\
+    &= 
+    \frac{\gamma_{k + 1}}{2}
+    \Vert v_k - x^*\Vert^2 
+    + 
+    \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert \mu(y_k - v_k) - g_k\Vert^2 
+    + 
+    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+    \\
+    &= 
+    \left(
+       \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
+    \right)\Vert v_k - x^*\Vert^2
+    + 
+    \frac{\alpha_k}{2\gamma_{k + 1}}
+    \Vert \mu(y_k - v_k) - g_k\Vert^2 
+    + 
+    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+\end{aligned}\tag{2}
+$$
+
+First equality is by definition. 
+The second equality considers 
+
+$$
+\begin{aligned}
+    \gamma_k(1 - \alpha_k) v_k &= 
+    (\gamma_{k + 1} v_k - \mu \alpha_k)v_k
+    = \alpha_{k + 1} v_k - \mu\alpha_k v_k
+    \\
+    \iff 
+    \gamma_k(1 - \alpha_k) v_k + \mu \alpha_k y_k
+    &= 
+    \gamma_{k + 1} v_k + \mu \alpha_k(y_k - v_k). 
+\end{aligned}
+$$
+
+Focusing on the second 2 terms by the end of expression (2), we have  
+
+$$
+\begin{aligned}
+    \frac{\alpha^2_k}{2\gamma_{k + 1}} 
+    \Vert \mu(y_k - v_k) - g_k\Vert^2
+    & = 
+    \frac{\alpha_k^2\mu}{\gamma_{k + 1}}
+    \left(
+        \frac{\mu}{2}\Vert y_k - v_k\Vert^2 
+        - \langle y_k - v_k, g_k\rangle
+    \right)
+    + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2, 
+    \\
+    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+    &= 
+    \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle 
+    - \alpha_k \langle v_k - x^*, g_k\rangle. 
+\end{aligned}\tag{2.1}
+$$
+
+Adding the LHS of both equations above together gives: 
+
+$$
+\begin{aligned}
+    & \quad 
+    \frac{\alpha^2_k}{2\gamma_{k + 1}} 
+    \Vert \mu(y_k - v_k) - g_k\Vert^2
+    + 
+    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+    \\
+    &= 
+    \left\langle g_k, 
+        - \alpha_k(v_k - x^*) 
+        - \frac{\alpha_k^2\mu}{\gamma_{k + 1}}(y_k - v_k)
+    \right\rangle
+    + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+    + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+\end{aligned}
+$$
+
+
+With the above we can conclude that (2) simplifies to 
+
+$$
+{\small
+\begin{aligned}
+    \left(
+       \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
+    \right)\Vert v_k - x^*\Vert^2
+    + 
+    \left\langle g_k, 
+        - \alpha_k(v_k - x^*) 
+        - \frac{\alpha_k^2\mu}{\gamma_{k + 1}}(y_k - v_k)
+    \right\rangle
+    + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+    + \frac{\alpha_k \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+    + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+\end{aligned}
+}
+$$
 
 
 ---
