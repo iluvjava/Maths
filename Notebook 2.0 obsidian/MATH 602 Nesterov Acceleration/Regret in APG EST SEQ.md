@@ -487,7 +487,7 @@ $$
 By definitions, starting with the LHS of the inequality we want to prove, it has 
 
 $$
-{\footnotesize
+{\small
 \begin{aligned}
     & \quad 
     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
@@ -499,18 +499,22 @@ $$
     &= 
     F(x_k) - \epsilon_k - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
     - F^* + (1 - \alpha_k)(\epsilon_k + R_k) + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
-    + 
-    \frac{1}{2}\left(
-        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
-    \right)\Vert g_k\Vert^2
+    \\
+    &\quad 
+        + 
+        \frac{1}{2}\left(
+            L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+        \right)\Vert g_k\Vert^2
     \\
     &= 
     F(x_k) - F^* - \langle g_k, x_k - y_k\rangle - \frac{1}{2L} \Vert g_k\Vert^2 
     - \alpha_k \epsilon_k + (1 - \alpha_k) R_k + 
     \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
-    + \frac{1}{2}\left(
-        L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
-    \right)\Vert g_k\Vert^2. 
+    \\
+    & \quad 
+        + \frac{1}{2}\left(
+            L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+        \right)\Vert g_k\Vert^2. 
 \end{aligned}\tag{0}
 }
 $$
@@ -603,13 +607,13 @@ $$
 \begin{aligned}
     y_k &= \alpha_k + (1 - \alpha_k) x_k 
     \\ \iff 
-    x_k - y_k &= 
-    x_k - \alpha_k v_k - (1 - \alpha_k)x_k 
-    \\ \iff 
-    x_k - y_k + \alpha_kv_k - \alpha_k x^* 
+    x_k - y_k 
     &= 
-    x_k - (1 - \alpha_k)x_k - \alpha_k x^* 
-    \\ 
+    x_k - \alpha_k v_k - (1 - \alpha_k)x_k 
+    \\
+    &= \alpha_k (x_k - v_k)
+    \\ \iff 
+    x_k - y_k + \alpha_k (v_k - x^*)
     &= \alpha_k(x_k - x^*)
     \\ \iff 
     \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
@@ -726,10 +730,10 @@ $$
        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
     \right)\Vert v_k - x^*\Vert^2
     + 
-    \frac{\alpha_k}{2\gamma_{k + 1}}
+    \frac{\alpha_k^2}{2\gamma_{k + 1}}
     \Vert \mu(y_k - v_k) - g_k\Vert^2 
     + 
-    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle. 
 \end{aligned}\tag{2}
 $$
 
@@ -796,7 +800,7 @@ With the above we can conclude that (2) simplifies to
 
 $$
 {\small
-\begin{aligned}
+\begin{aligned} & 
     \left(
        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
     \right)\Vert v_k - x^*\Vert^2
@@ -805,12 +809,33 @@ $$
         - \alpha_k(v_k - x^*) 
         - \frac{\alpha_k^2\mu}{\gamma_{k + 1}}(y_k - v_k)
     \right\rangle
-    + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
-    + \frac{\alpha_k \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
-    + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+    \\
+    & \quad 
+        + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+\end{aligned}\tag{2.2}
+}
+$$
+
+Quick facts: 
+
+$$
+\textcolor{red}{
+\begin{aligned}
+    (Q1): 
+    y_k - v_k &= 
+    \frac{\gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k),
+    \\
+    (Q2): 
+    y_k - x_k &= 
+    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
 \end{aligned}
 }
 $$
+
+
+
 
 
 ---
