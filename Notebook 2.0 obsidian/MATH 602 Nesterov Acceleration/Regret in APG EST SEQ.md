@@ -178,6 +178,7 @@ $$
         &\quad 
         + \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
         \langle v_k - y_k, g_k\rangle
+        - \frac{\alpha_k^2}{2 \gamma_{k + 1}} \Vert g_k\Vert^2 
     \\
     &= 
     (1 - \alpha_k)\left(
@@ -196,6 +197,7 @@ $$
         &\quad 
         + \frac{\alpha_k(1 - \alpha_k)\gamma_k}{\gamma_{k + 1}}
         \langle v_k - y_k, g_k\rangle
+        - \frac{\alpha_k^2}{2 \gamma_{k + 1}} \Vert g_k\Vert^2 
     \\
     &= 
     F(T_Ly_k)
@@ -460,11 +462,11 @@ $$
 > {\small
 > \begin{aligned}
 >     (\forall k\ge 0) :
->     F(x_{k + 1}) + F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+>     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
 >     &\le 
 >     (1 - \alpha_k)
 >     \left(
->         F(x_k) + F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+>         F(x_k) - F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
 >     \right), 
 > \end{aligned}
 > }
@@ -585,15 +587,16 @@ $$
     &= 
     (1 - \alpha_k)
     \left(F(x_k) - F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2\right)
-    +
-    \alpha_k\left(
-        F(x_k) - F^* 
-        - 
-        \left\langle 
-            g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
-        \right\rangle
-        - \epsilon_k
-    \right). 
+    \\ &\quad 
+        +
+        \alpha_k\left(
+            F(x_k) - F^* 
+            - 
+            \left\langle 
+                g_k, \alpha_k^{-1}(x_k - y_k) + (v_k - x^*)
+            \right\rangle
+            - \epsilon_k
+        \right). 
 \end{aligned}\tag{$*$}
 $$
 
@@ -651,9 +654,49 @@ The claimed is proved.
 
 The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
 The inequality condition $L\alpha_{k}^2 \le \gamma_{k + 1}$ is not yet used. 
-We only used the equality $\gamma_{k + 1} = \alpha_k (1 - \alpha_k)$. 
+We only used the equality $\gamma_{k + 1} = \gamma_k (1 - \alpha_k)$. 
 
-Inequality $L\alpha_k^2 \le \gamma_{k + 1}$ makes $R_{k + 1} \le (1 - \alpha_k)(R_k + \epsilon_k)\le R_k$ due non-negativity of $L^{-1} - \alpha_k^2 /\gamma_{k + 1}$ and $\epsilon_k$. 
+Inequality $L\alpha_k^2 \le \gamma_{k + 1}$ makes $R_{k + 1} \ge (1 - \alpha_k)(R_k + \epsilon_k)\ge (1 - \alpha_k)R_k$ due non-negativity of $(L^{-1} - \alpha_k^2 /\gamma_{k + 1})\Vert g_k\Vert^2$ and $\epsilon_k$. 
+So $R_{k + 1} - (1 - \alpha_k)R_k \ge 0$. 
+This would mean: 
+
+
+$$
+{\small
+\begin{aligned}
+    F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)
+    \left(
+        F(x_k) - F^* + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    \iff 
+    F(x_{k + 1}) - F^* + R_{k + 1} - (1 - \alpha_k)R_k
+    + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)\left(
+        F(x_k) - F^* + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    \implies 
+    F(x_{k + 1}) - F^* + \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)
+    \left(
+        F(x_k) - F^* + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right). 
+\end{aligned}
+}
+$$
+
+This now establishes the more familiar type of Lyapunov quantities. 
+Otherwise, $L\alpha_k^2 \ge \gamma_{k + 1}$, then the regret quantities $R_k$ will have to be kept for the convergence of the algorithm. 
+
+**Open questions**
+
+What is the deal with the inequality $\gamma_{k + 1} \le (1 - \alpha_k) \gamma_k$? 
+Why can't it be like $\alpha_k \le (1 - \alpha_k) L\alpha_k^2$? 
 
 
 #### **Claim | Non-zero S-CNVX regret inequality**
@@ -679,7 +722,14 @@ $$
         \epsilon_k + R_k + 
         \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
         \Vert v_k - y_k\Vert^2
-    \right). 
+    \right), 
+    \\
+    \implies 
+    F(x_{k + 1}) + R_{k + 1}
+    &= 
+    - \frac{\alpha_k^2}{\gamma_{k + 1}}\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)R_k
 \end{aligned}\tag{1}
 $$
 
@@ -722,18 +772,20 @@ $$
     \Vert v_k - x^*\Vert^2 
     + 
     \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert \mu(y_k - v_k) - g_k\Vert^2 
-    + 
-    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
+    \\ &\quad 
+        + 
+        \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle
     \\
     &= 
     \left(
        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
     \right)\Vert v_k - x^*\Vert^2
-    + 
-    \frac{\alpha_k^2}{2\gamma_{k + 1}}
-    \Vert \mu(y_k - v_k) - g_k\Vert^2 
-    + 
-    \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle. 
+    \\ &\quad
+        + 
+        \frac{\alpha_k^2}{2\gamma_{k + 1}}
+        \Vert \mu(y_k - v_k) - g_k\Vert^2 
+        + 
+        \langle v_k - x^*, \mu \alpha_k(y_k - v_k) - \alpha_k g_k\rangle. 
 \end{aligned}\tag{2}
 $$
 
