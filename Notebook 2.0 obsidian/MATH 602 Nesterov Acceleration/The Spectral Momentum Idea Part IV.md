@@ -76,7 +76,7 @@ The gradient operator $\nabla f(x) = A^TA(x - y^+)$ is affine, hence the largest
 >     \end{bmatrix}. 
 > \end{aligned}
 > $$
-> Here, we defined $\tilde y_t = P^TV^T(y_t - y^+)$, and $T = I - L^{-t}\Lambda$, and the $M_t$ matrix is given by 
+> Here, we defined $\tilde y_t = P^TV^T(y_t - y^+)$, and $T = I - L^{-1}\Lambda$, and the $M_t$ matrix is given by 
 > $$
 > \begin{aligned}
 >     M_t &= 
