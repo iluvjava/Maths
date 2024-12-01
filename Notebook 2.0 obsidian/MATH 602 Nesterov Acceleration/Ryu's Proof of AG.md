@@ -103,7 +103,7 @@ Then writing things out and divides both side by $\sigma_t$ yields the convergen
 >     ) \le 0. 
 > \end{aligned}
 > $$
-> As a consequence, we have that $f(z_t) - f_*$ convergeces $\mathcal O(\sigma_t^{-1})$, and if we set $\tilde \eta_t = \theta_t L^{-1}$, it then gives the relations $\theta_t^2 - \theta_{t + 1}^2 \le \theta_t$, recovering the relaxed sequence of the Nesterov momentum sequence. 
+> As a consequence, we have that $f(z_t) - f_*$ convergeces $\mathcal O(\sigma_t^{-1})$, and if we set $\tilde \eta_t = \theta_t L^{-1}$, it then gives the relations $\theta_t^2 - \theta_{t - 1}^2 \le \theta_t$, recovering the relaxed sequence of the Nesterov momentum sequence. 
 
 **Proof**
 

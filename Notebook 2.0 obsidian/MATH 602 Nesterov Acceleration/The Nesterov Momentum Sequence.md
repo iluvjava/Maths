@@ -59,10 +59,48 @@ $$
         1 + \sqrt{1 + 4\lambda_n^2}
     }
     \\
-    \theta (x)&= \frac{2x - 2}{1 + \sqrt{1 + 4x^2}}
+    \theta : [1, \infty) \rightarrow [0, 1) 
+    &:= x\mapsto \frac{2x - 2}{1 + \sqrt{1 + 4x^2}}
     \\
     &= \frac{2 - 2/x}{1/x + \sqrt{1/x^2 + 4}}, 
 \end{aligned}, 
 $$
 
 here we take note that the numerator increases as $x\rightarrow \infty$, and the denominator decreases as $x\rightarrow \infty$. And therefore, the mapping $\theta_x$ is a monotone increasing function. Since next term of the sequence is produced by the mapping, mainly $\theta(\lambda_n) = \lambda_{n + 1}$, the parameter $\theta$ increases monotonically. Finally, by the lower bound of $\lambda_n \ge (n + 1)/2$, it approaches infinity and hence $\lim_{\lambda\rightarrow \infty}\theta(\lambda) = 1$, by taking the limit. 
+
+
+---
+### **The inverse momentum parameters**
+
+In the Nesterov's estimating sequence argument, a different parameter is used to characterize the momentum term in the algorithm. 
+Parameterized through $\alpha_k, \gamma_k$, it has 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 \le \gamma_{k + 1} := (1 - \alpha_k)\gamma_k + \mu \alpha_k. 
+\end{aligned}
+$$
+
+Directly observe 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1} - \mu  &= (1 - \alpha_k)(\gamma_k  - \mu)
+    \\
+    &= \left(
+        \prod_{i = 1}^k(1 - \alpha_i)
+    \right)(\gamma_0 - \mu). 
+\end{aligned}
+$$
+
+So 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 &= 
+    (1 - \alpha_k) \left(
+        \prod_{i =1}^{k - 1}(1 - \alpha_i)
+    \right)
+    (\gamma_0 - \mu) + \mu \alpha_k. 
+\end{aligned}
+$$

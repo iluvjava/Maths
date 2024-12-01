@@ -433,7 +433,6 @@ $$
 
 With $\mu = 0$, the above simplifies to 
 
-
 $$
 \begin{aligned}
     \text{find } &
@@ -541,7 +540,7 @@ $$
 \end{aligned}
 $$
 
-
+On the third equality we used $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k$. 
 Substituting the above back to (0) yields: 
 
 $$

@@ -29,8 +29,8 @@ This is the most relevant form discussion in this file:
 
 The following definitions are made for matching the similar triangle form. 
 
-#### **Theorem | The abstracted generic form**
-> For all $k\ge 0$, iterates $(w_t, y_t, x_{t + 1}, z_{t + 1})$ satisfies resursively that: 
+#### **Theorem | The abstracted generic form (Abstracted Similar Triangle)**
+> For all $k\ge 0$, iterates $(w_t, y_t, x_{t + 1}, z_{t + 1})$ satisfies recursively that: 
 > $$
 > \begin{aligned}
 >     y_{t} &= 
@@ -193,7 +193,7 @@ Here is what the following proposition is about:
 
 
 
-#### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CVX Generic APG**
+#### **Proposition 1 | Generic Similar Triangle Form is a special case of S-CNVX Generic APG**
 > The similar triangle is a special case of the AG generic form. 
 > Suppose that $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be the iterates and the stepsize sequences be given by the PPM AG generic form. 
 > If in addition, the sequence $\tilde \eta_t, \eta$ satisfies the conditions for all $t \in \N$
@@ -366,7 +366,7 @@ $$
 \end{aligned}
 $$
 
-#### **Proposition 2 | Similar Triangle is momentum form**
+#### **Proposition 2 | Similar Triangle implies momentum form**
 > Let iterates $(x_t, y_t, z_t), \eta_t, \tilde \eta_t$ be given by the relations in Similar Triangle Form then it's algebraically equivalent to: 
 > $$
 > \begin{aligned}
@@ -404,7 +404,7 @@ $$
     &= 
     z_{t + 1} + 
     \frac{L\eta_t}{(1 + L\eta_{t + 1})(1 + \mu\tilde \eta_t)}
-    (z_{t + 1} - z_t)
+    (z_{t + 1} - z_t). 
 \end{aligned}
 $$
 
@@ -867,7 +867,7 @@ Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternati
 >     (1 + \xi_k)^{-1}\delta_k &= \frac{1}{L\alpha_k}
 >     \iff L \delta_k = \frac{1 + \xi_k}{\alpha_k}
 >     \\
->     L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k
+>     L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
 > \end{aligned}
 > $$
 > Then we have $(1 + \tau_k + \xi_k) = L \delta_k$ and hence $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k)$. 

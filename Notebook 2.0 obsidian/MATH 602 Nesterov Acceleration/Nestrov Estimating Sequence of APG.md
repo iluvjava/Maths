@@ -792,6 +792,3 @@ There are 2 cases for the rate of convergence of the algorithm.
 1. $\mu = 0$. The convergence rate of the algorithm is sublinear. 
 2. $\mu > 0$. The convergence rate of the algorithm is linear. 
 
-
-
-
