@@ -5,7 +5,7 @@
 ### **Intro**
 
 We will introduce a framework of ideas for show the convergence of sequences applied to a function satisfying the KL property. 
-Our discussion is based on a paper by Attouch et al. [^1]
+Our discussion is based on a paper by Attouch et al. [^1][^2]
 
 
 #### **The proximal point algorithm**
@@ -94,3 +94,4 @@ This is theorem 2.9 from Attouch, Bolte's paper.
 
 
 [^1]: H. Attouch, J. Bolte, and B. F. Svaiter, “Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods,” _Math. Program._, vol. 137, no. 1, pp. 91–129, Feb. 2013, doi: [10.1007/s10107-011-0484-9](https://doi.org/10.1007/s10107-011-0484-9).
+[^2]: H. Attouch and J. Bolte, “On the convergence of the proximal algorithm for nonsmooth functions involving analytic features,” Math. Program., vol. 116, no. 1, pp. 5–16, Jan. 2009, doi: 10.1007/s10107-007-0133-5.

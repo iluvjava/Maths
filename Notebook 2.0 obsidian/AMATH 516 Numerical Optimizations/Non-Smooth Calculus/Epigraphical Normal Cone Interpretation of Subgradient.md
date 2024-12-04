@@ -180,7 +180,7 @@ Then, one can easily rewrite the conditions in (2) into the same form as a gener
 
 **Remarks**: 
 
-* The regular subgradient is a convex set ([[../Convex Subgradient is Convex]] Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
+* The regular subgradient is a convex set ([[../CVX Analysis/Convex Subgradient is Convex]] Prop 9.7, (For convex subgradient only, maybe be extended to regular subgradient)). 
 
 * The theorem highlighted the geometric interpretations of subgradient and the generalized subgradient, and the same definition can be generalized to just Subgradient of a convex function. 
 

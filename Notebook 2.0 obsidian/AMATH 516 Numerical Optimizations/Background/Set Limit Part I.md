@@ -62,13 +62,7 @@ $$
 \end{aligned}
 $$
 
-and of course, we observe that the set can define each other by 
 
-$$
-\begin{aligned}
-    
-\end{aligned}
-$$
 
 
 **Remarks**

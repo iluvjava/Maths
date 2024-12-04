@@ -1,4 +1,4 @@
-- [Newton's Method 1D](../MATH%20464%20Numerical%20Analysis/Newton's%20Method%201D.md)
+- [Newton's Method 1D](../../MATH%20464%20Numerical%20Analysis/Newton's%20Method%201D.md)
 - [Strong Convexity, Equivalences and Implications](Strong%20Convexity,%20Equivalences%20and%20Implications.md)
 
 ---

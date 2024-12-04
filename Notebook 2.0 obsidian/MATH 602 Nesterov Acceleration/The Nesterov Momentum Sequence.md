@@ -81,26 +81,101 @@ $$
 \end{aligned}
 $$
 
-Directly observe 
+
+One stronger forumualtion with just $\alpha_k$ and assuming that $\alpha_k$ is the same for all $k\ge 0$ . 
+This allows use to reduce the inequality to just $\alpha_k$. 
+However, this would break $\gamma_{k + 1}$'s definition. 
 
 $$
 \begin{aligned}
-    \gamma_{k + 1} - \mu  &= (1 - \alpha_k)(\gamma_k  - \mu)
+    L\alpha_k^2 
+    - (1 - \alpha_k)L\alpha_k^2 - \mu \alpha_k
+    &\le 0
+    \\
+    \iff 
+    \alpha_k^2 - (1 - \alpha_k )\alpha_k^2 - (\mu / L)\alpha_k
+    &\le  0 
+    \\
+    \iff 
+    \alpha_k^2 - (1 - \alpha_k)\alpha_k^2 - (\mu / L)\alpha_k 
+    &\le 0
+    \\
+    \alpha_k \neq 0 \implies 
+    \alpha_k - (1 - \alpha_k)\alpha_k - (\mu / L)
+    &\le 0 
+    \\
+    \iff 
+    \alpha_k - \alpha_k + \alpha_k^2 - (\mu /L) 
+    &\le 0
+    \\
+    \alpha_k 
+    &\le \pm \sqrt{\mu /L}
+\end{aligned}
+$$
+
+Alternatively, we consider a fixed point iteration by choosing numbers from the inequality iteartively. 
+Presenting the inequality and solving for $\alpha_{k + 1}$ would give: 
+
+$$
+\begin{aligned}
+    \alpha_k^2 - (1 - \alpha_k)\alpha_{k - 1}^2 - (\mu / L)\mu
+    &\le 0 
+    \\
+    \alpha_k^2 - (\alpha_{k - 1}^2  - \alpha_k \alpha_{k - 1}^2) - (\mu / L)\mu 
+    &\le 0
+    \\
+    \alpha_k^2  + \alpha_k \alpha_{k - 1}^2 - ((\mu / L)\mu + \alpha_{k - 1}^2)
+    &\le 0
+    \\
+    \alpha_k \in \left[
+        \frac{
+            - \alpha_{k - 1}^2 - \sqrt{\alpha_{k - 1}^4
+            + 4(\alpha_{k - 1}^2 - (\mu/L))
+        }}
+        {2}
+        , 
+        \frac{
+            - \alpha_{k - 1}^2 + \sqrt{\alpha_{k - 1}^4
+            + 4(\alpha_{k - 1}^2 - (\mu/L))
+        }}
+        {2}
+    \right]. 
+    \hspace{-2em} & 
+\end{aligned}
+$$
+
+In the special case $\mu = 0$, this admits a simpler form. 
+Consider the following: 
+
+$$
+\begin{aligned}
+    0 \le \alpha_k 
+    &\le 
+    \frac{\sqrt{\alpha_{k - 1}^4 + 4\alpha_{k - 1}^2} - \alpha_{k - 1}^2}
+    {2} 
     \\
     &= \left(
-        \prod_{i = 1}^k(1 - \alpha_i)
-    \right)(\gamma_0 - \mu). 
-\end{aligned}
-$$
-
-So 
-
-$$
-\begin{aligned}
-    L\alpha_k^2 &= 
-    (1 - \alpha_k) \left(
-        \prod_{i =1}^{k - 1}(1 - \alpha_i)
+        \frac{1}{2}
     \right)
-    (\gamma_0 - \mu) + \mu \alpha_k. 
+    \frac{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2 + \alpha_{k - 1}^4}
+    {\alpha_{k - 1}^2 + \sqrt{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2}}
+    \\
+    &= 
+    \frac{\alpha_{k - 1}^4 + 2 \alpha_{k - 1}^2}{
+        \alpha_{k - 1}^2 + \sqrt{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2}
+    }
+    \\
+    &= 
+    \frac{
+        \alpha_{k - 1}^2 + 2
+    }
+    {
+        1 + \sqrt{1 + 4 \alpha_{k - 1}^{-2}}
+    }. 
 \end{aligned}
 $$
+
+#### **Observations**
+
+Here, we make some essential observations about the sequence $\alpha_k$ proposed above.
+

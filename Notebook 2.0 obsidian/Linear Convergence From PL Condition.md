@@ -16,7 +16,7 @@ $$
 $$
 
 where a unique $x_*$ exist for strongly convex function, and $\partial f$ is the convex subgradient. 
-In a much general context when the function $f$ is not convex, $\partial f$ becomes the Mordukhovich limiting subgradient, and $x_*$ is a stationary point satisfying $\mathbf 0 \in \partial f(x_*)$. See [Limiting Subgradient](AMATH%20516%20Numerical%20Optimizations/Limiting%20Subgradient.md) for more information. 
+In a much general context when the function $f$ is not convex, $\partial f$ becomes the Mordukhovich limiting subgradient, and $x_*$ is a stationary point satisfying $\mathbf 0 \in \partial f(x_*)$. See [Limiting Subgradient](AMATH%20516%20Numerical%20Optimizations/Non-Smooth%20Calculus/Limiting%20Subgradient.md) for more information. 
 Unfortunately to assert the convergence of algorithm such as gradient descent method, we have to assume more conditions.
 
 **Assumptions**

@@ -211,7 +211,7 @@ See course notes: [here](http://www.seas.ucla.edu/~vandenbe/236C/lectures/subgra
 
 **Proofs**
 
-The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [[Normal Cone Addition]] for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)= \emptyset$, we will have $\supseteq$ instead of equality. For a full coverage of the matter, please see [[../Subgradient Sum Rule]] for more information. 
+The direction $\supseteq$ is direct using the secant line inequality, the other $\subseteq$ is the hard direction. One of the proofs requires: [[Normal Cone Addition]] for assistance. Additionally, when $\text{ri.dom}(f_1) \cap \text{ri.dom}(f_2)= \emptyset$, we will have $\supseteq$ instead of equality. For a full coverage of the matter, please see [[Subgradient Sum Rule]] for more information. 
 
 **Source**: 
 

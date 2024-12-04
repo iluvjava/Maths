@@ -1,7 +1,6 @@
 - [Proximal Point Method, Interpretations](Proximal%20Methods/Proximal%20Point%20Method,%20Interpretations.md)
 - [Bregman Proximal Mapping](Bregman%20Proximal%20Mapping.md)
 
-
 ---
 ### **Intro**
 

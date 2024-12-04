@@ -1,17 +1,21 @@
 ### **Intro**
 
-Sometimes, we need to understand the idea of functions over a Finite Euclidean space better for the analysis part of algorithms in Optimizations. We list some important properties of functions that are relevant to non-smooth and convex optimizations. This file is a successor for the file [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written for Prof Sasha's class. 
+We need to understand the idea of functions over a Finite Euclidean space better for the analysis of optimization algorithms. 
+This file has important properties of functions types relevant to non-smooth convex optimizations. 
+It is a successor of [Closed, Proper, Level Bounded, Strong Convex](../../AMATH%20515%20Optimization%20Fundamentals/Basic%20Convexity/Closed,%20Proper,%20Level%20Bounded,%20Strong%20Convex.md), which was written when taking Prof Sasha's class (MATH 515) back in UW. 
 
-To start we introduce one important modifications to the traditional concept of functions, which is useful for actual applications to optimization problems. The concept of an *Augmented real function*.
+To start, we introduce one important modifications to the traditional concept of functions to allow it takes the value of positive infinity. 
+The concept of an *Augmented real function*.
 
 **Def | The Augmented Real Functions**
 > $f: \mathbb{R}^n\mapsto \overline{\mathbb{R}}$ is an augmented real function. 
 
 **Commentary**
 
-The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. More specifically, function such as the indicator function of a set $Q$.
+The $\overline{\mathbb{R}}$, is $\mathbb{R}\cup \{\pm\infty\}$. Such a definition of functions allows for function that models the constrained optimization problems. 
+Functions that models feasibility such as the indicator function of a set $Q$.
 
-Read [Augmented Reals](Augmented%20Reals.md) for arithmetic rules. Here is a list of topics that are helpful for understanding the basics: 
+Read [Augmented Reals](Augmented%20Reals.md) for arithmetic rules. Here is a list of topics that are helpful for understanding the basics geometry of these type of functions. 
 
 * [Epigraph, Level Sets](Epigraph,%20Level%20Sets.md), this describes the geometry of the function.
 * [Lower Semi-Continuous](Lower%20Semi-Continuous.md), this put some lower bound on all limit point on the function. 
@@ -31,29 +35,39 @@ Defining proper function eliminates certain pathologies for the type of function
 
 Proper if it has a domain, and bounded from below. 
 
+
 **References**: 
 
 Tyrell Rockafellar did this to us. Yep. 
 
+**Note**
+
+For the rest of the file, which are the sections that comes after, we will only consider proper functions. 
+
 ---
-### **Continuity, Traditional Smoothness**
+### **Continuity and Traditional Smoothness**
 
 Traditional smoothness is used to refer to a smooth function we learned in calculus class. Not to be confused with Lipschitz smoothness in optimizations. 
 
 
-**C0 smooth**
+**Def | C0 smooth**
 > A function $f$ is a C0 function that is continuous, continuous function is C0. 
 
-**Example**
+**Important Notes**
 
 Ramp function is a class of C0 functions, the Heavy Side function won't be C0 smooth because it's not continuous. 
+A continuous function has not much to do with differentiability of the function. 
 
-**C1 Smooth**
-> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without any sharp turns on the graph. 
+**Def | C1 Smooth**
+> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without **any** sharp turns on the graph. 
 
-**Example**
+**Important Notes**
 
-The derivative of a C1 function is a C0 function. C1 function won't allow any kind of sharp corners. 
+The derivative of a C1 function is a C0 function. 
+C1 function won't allow any kind of sharp corners. 
+However, the derivative of the function is not necessarily Lipschitz continuous. 
+This is different from the Lipschitz smoothness often appears in the optimization literatures. 
+
 
 ---
 ### **Closed Function**
@@ -113,7 +127,7 @@ A closed function is not enough for the function to be continuous, but a continu
 
 This characteristic of function is key to existence of minimizers for function. 
 A coercive function cannot attain minimizers that are infinitely far away from the origin. 
-For more information about the section visits [Coersivity of Functions](Coersivity%20of%20Functions.md) for details. 
+For more information about the section visits [Coersivity of Functions](../Properties%20of%20Functions/Coersivity%20of%20Functions.md) for details. 
 
 #### **Def | Coersive Definition**
 > Function $f:\mathbf{E}\mapsto \mathbb{\bar{R}}$ is coercive if for any sequence $x_i$ with $\Vert x\Vert_i\rightarrow \infty$ it must be that $f(x_i)\rightarrow + \infty$. 

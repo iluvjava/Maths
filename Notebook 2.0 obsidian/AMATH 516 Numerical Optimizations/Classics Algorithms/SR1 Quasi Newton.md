@@ -1,4 +1,4 @@
-- [Newton Method for Minimizations](Newton%20Method%20for%20Minimizations.md)
+- [Newton Method for Minimizations](Classics%20Algorithms/Newton%20Method%20for%20Minimizations.md)
 
 
 ---

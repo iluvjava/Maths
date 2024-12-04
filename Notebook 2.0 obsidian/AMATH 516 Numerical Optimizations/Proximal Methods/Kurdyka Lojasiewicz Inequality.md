@@ -1,4 +1,4 @@
-- [Semi-Algebraic Sets](Semi-Algebraic%20Sets.md)
+- [Semi-Algebraic Sets](../Background/Semi-Algebraic%20Sets.md)
 - [Characterizing Functions for Optimizations](Characterizing%20Functions%20for%20Optimizations.md). 
 
 ---
@@ -28,7 +28,7 @@ We will use https://doi.org/10.1007/s10107-011-0484-9, title "Convergence of des
 
 This definition has a lot of parts in it. 
 Firstly, the subgradient $\partial f$, refers to the limiting subgradient of a function. 
-See [Limiting Subgradient](Limiting%20Subgradient.md) for more information. 
+See [Limiting Subgradient](../Non-Smooth%20Calculus/Limiting%20Subgradient.md) for more information. 
 Secondly, the function $\phi$, we used here, is often called as a *desingularizing function* for $f$ at the point $x^*$. 
 
 **Observations**

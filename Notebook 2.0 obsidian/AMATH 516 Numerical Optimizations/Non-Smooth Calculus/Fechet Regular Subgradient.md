@@ -44,7 +44,7 @@ $$
 $$
 
 Please compare this quantity to [Bregman Divergence](Bregman%20Divergence.md), and see that this is a generalization of a Bregman Divergence to function that are not necessarily differentiable. 
-With this we may also represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
+With this we may also represent a differentiable function (See [Frechet, Gateaux Differentiability Euclidean Space](../../MATH%20000%20Math%20Essential/Analysis/Frechet,%20Gateaux%20Differentiability%20Euclidean%20Space.md)) in a way similar to the definition of the regular subgradient. 
 Let $f : \mathbb R^n \mapsto \mathbb {\bar R}$ be a differentiable at $\bar x \in \mathbb R^n$ if and only if there exists $v \in \mathbb R^n$ such that 
 
 $$
@@ -270,5 +270,5 @@ And from above we would have $-1 \ge v$ and $-1 \ge -v$, which is impossible for
 
 However, there are regular subgradient whenever $x \neq 0$, but it suddenly vanished at the point $x = 0$. 
 This raises concern and mathematicians try to address that as well using the ideas of limiting subgradient. 
-See [Limiting Subgradient](Limiting%20Subgradient.md) for more information. 
+See [Limiting Subgradient](Non-Smooth%20Calculus/Limiting%20Subgradient.md) for more information. 
 Obviously, we would also have that $\hat \partial f(\bar x) \neq \hat \partial [-f](\bar x)$. 

@@ -1,6 +1,3 @@
-
-
----
 ### **Intro**
 
 We are talking about Kuratowski's convergence. 

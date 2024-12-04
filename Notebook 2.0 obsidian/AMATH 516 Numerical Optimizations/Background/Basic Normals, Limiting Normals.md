@@ -1,4 +1,4 @@
-[[Normal Cone]]
+- [[Normal Cone]]
 
 ---
 ### **Intro**

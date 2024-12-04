@@ -1,4 +1,4 @@
-- [The Proximal Point Method, Nonconvex](../The%20Proximal%20Point%20Method,%20Nonconvex.md)
+- [Inexact Proximal Point Method and KL Part I](Inexact%20Proximal%20Point%20Method%20and%20KL%20Part%20I.md)
 - [KL Convergence Framework](KL%20Convergence%20Framework.md)
 
 ---
@@ -8,7 +8,7 @@ We follow Attouch et al.[^1] writing on this topic.
 To set up our problem, we make the following assumption about the function $f$ that we are optimizing using the algorithm. 
 1. $f: \mathbb R^n \mapsto \overline {\mathbb R}$ is a proper, lower semi-continuous function and bounded below. 
 
-Recall that $\partial f$ is the [Limiting Subgradient](Limiting%20Subgradient.md). 
+Recall that $\partial f$ is the [Limiting Subgradient](../Non-Smooth%20Calculus/Limiting%20Subgradient.md). 
 When the proximal point operator is solved inexactly, it yield the following generic set of conditions that are relevant to the convergence of the iterates of the algorithm. 
 
 #### **Algorithm | Inexact Proximal Point Method**

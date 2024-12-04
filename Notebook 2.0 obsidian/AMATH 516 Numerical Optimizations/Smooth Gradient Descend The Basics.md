@@ -418,7 +418,7 @@ PL doesn't imply convexity.
 ---
 ### **Polyak Stepsize**
 
-Suppose that $f^*$, the optimal objective value for the optimization problem is known, then the sequence $\gamma_k = (f(x^{(k)}) - f^*)/\Vert \nabla f(x^{(k)})\Vert^2$ will converge on a convex function with rate $\mathcal O(k^{-1})$. For more about this visit [Polyak Subgradient Method](Proximal%20Methods/Polyak%20Subgradient%20Method.md)
+Suppose that $f^*$, the optimal objective value for the optimization problem is known, then the sequence $\gamma_k = (f(x^{(k)}) - f^*)/\Vert \nabla f(x^{(k)})\Vert^2$ will converge on a convex function with rate $\mathcal O(k^{-1})$. For more about this visit [Polyak Subgradient Method](Classics%20Algorithms/Polyak%20Subgradient%20Method.md)
 
 
 
