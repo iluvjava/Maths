@@ -2,3 +2,6 @@ Nesterov
 Lyapunov
 optimality
 Guler
+Teboulle
+FISTA
+subgradient

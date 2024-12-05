@@ -870,7 +870,12 @@ Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternati
 >     L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
 > \end{aligned}
 > $$
-> Then we have $(1 + \tau_k + \xi_k) = L \delta_k$ and hence $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k)$. 
+> Then we have 
+> $(1 + \tau_k + \xi_k) = L \delta_k$ and hence 
+> $$
+>   v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}
+>   \tau_k(x_{k + 1} - x_k)= (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
+> $$
 
 
 **Proof**
@@ -933,9 +938,7 @@ $$
         \frac{L - L\alpha_k}{L\alpha_k - \mu}
     \right)(x_{k + 1} - x_k)
     \\
-    &= x_{k + 1} + \left(
-        \alpha_k^{-1} - 1
-    \right)(x_{k + 1} - x_k). 
+    &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
 \end{aligned}
 $$
 

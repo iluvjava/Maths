@@ -325,7 +325,7 @@ $$
 \begin{aligned}
     g_k &:= L(y_k - T_L y_k), 
     \\
-    l_F(x; y_k) &= F(T_Ly_k) - \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+    l_F(x; y_k) &= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
     \\
     \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k), 
     \\
@@ -393,7 +393,7 @@ $$
 \begin{aligned}
     g_k &:= L(y_k - T_L y_k), 
     \\
-    l_F(x; y_k) &= F(T_Ly_k) - \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+    l_F(x; y_k) &= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
     \\
     \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k), 
     \\
@@ -692,10 +692,24 @@ $$
 This now establishes the more familiar type of Lyapunov quantities. 
 Otherwise, $L\alpha_k^2 \ge \gamma_{k + 1}$, then the regret quantities $R_k$ will have to be kept for the convergence of the algorithm. 
 
-**Open questions**
+**One extra condiseration**
 
-What is the deal with the inequality $\gamma_{k + 1} \le (1 - \alpha_k) \gamma_k$? 
-Why can't it be like $\alpha_k \le (1 - \alpha_k) L\alpha_k^2$? 
+If $\alpha_k \le (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$ then 
+
+$$
+\begin{aligned}
+    \gamma_{k + 1} &:= 
+    (1 - \alpha_k)\gamma_k + \mu \alpha_k \ge 
+    (1 - \alpha_k)L \alpha_{k - 1}^2 + \mu \alpha_k
+    \ge L\alpha_k^2
+    \\
+    \implies 
+    L \alpha_k^2 &\le \gamma_{k + 1}. 
+\end{aligned}
+$$
+
+The above convergecne results would still apply if $(\alpha_k)_{k \ge 0}$ is generated in this way instead. 
+This inequality is a strictly strong formulation. 
 
 
 #### **Claim | Non-zero S-CNVX regret inequality**
@@ -726,9 +740,17 @@ $$
     \implies 
     F(x_{k + 1}) + R_{k + 1}
     &= 
+    F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
     - \frac{\alpha_k^2}{\gamma_{k + 1}}\Vert g_k\Vert^2
-    + 
-    (1 - \alpha_k)R_k
+    \\
+    &\quad 
+        + 
+        (1 - \alpha_k)
+        \left(
+            \epsilon_k + R_k + 
+            \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+            \Vert v_k - y_k\Vert^2
+        \right). 
 \end{aligned}\tag{1}
 $$
 
@@ -804,7 +826,7 @@ $$
 \end{aligned}
 $$
 
-Focusing on the second 2 terms by the end of expression (2), we have  
+Focusing on the last two terms by the end of expression (2), we have  
 
 $$
 \begin{aligned}
@@ -822,7 +844,7 @@ $$
     &= 
     \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle 
     - \alpha_k \langle v_k - x^*, g_k\rangle. 
-\end{aligned}\tag{2.1}
+\end{aligned}\tag{2.1*}
 $$
 
 Adding the LHS of both equations above together gives: 
@@ -851,7 +873,8 @@ With the above we can conclude that (2) simplifies to
 
 $$
 {\small
-\begin{aligned} & 
+\begin{aligned} 
+    & 
     \left(
        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
     \right)\Vert v_k - x^*\Vert^2
@@ -883,6 +906,284 @@ $$
     \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
 \end{aligned}
 }
+$$
+
+Ok that is a lot, we list the following equations to assist things: 
+
+$$
+\begin{aligned}
+    &\quad  - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\gamma_{k + 1}}(y_k - v_k) - (x_k - y_k)
+    \\
+    \text{use Q1}: & =
+    -\alpha_k(v_k - x^*) -
+    \frac{\alpha_k^2}{\gamma_{k + 1}}\frac{\gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k)
+    - (x_k - y_k) 
+    \\
+    &= 
+    -\alpha_k(v_k - x^*) -
+    \frac{\alpha_k \mu}{\gamma_k}(x_k - y_k)
+    - (x_k - y_k) 
+    \\
+    &= 
+    -\alpha_k(v_k - x^*) -
+    \left(
+        1 + \frac{\alpha_k \mu}{\gamma_k}
+    \right)(x_k - y_k)
+    \\
+    \text{use Q2}: 
+    &= 
+    -\alpha_k(v_k - x^*) - 
+    \frac{\alpha_k \mu + \gamma_k}{\gamma_k}
+    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(x_k - v_k)
+    \\
+    &= 
+    -\alpha_k(v_k - x^*)
+    - \alpha_k(x_k - v_k)
+    \\
+    &= \alpha_k(x^* - x_k). 
+\end{aligned}\tag{Q3}
+$$
+
+Adding (2.2) to (1) gives: 
+
+$$
+\begin{aligned}
+    &
+    F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
+    - \frac{\alpha_k^2}{\gamma_{k + 1}}\Vert g_k\Vert^2
+    \\
+    &\quad 
+        + (1 - \alpha_k)
+        \left(
+            \epsilon_k + R_k + 
+            \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+            \Vert v_k - y_k\Vert^2
+        \right)
+    \\
+    &\quad 
+        + 
+        \left(
+        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
+        \right)\Vert v_k - x^*\Vert^2
+        + 
+        \left\langle g_k, 
+            - \alpha_k(v_k - x^*) 
+            - \frac{\alpha_k^2\mu}{\gamma_{k + 1}}(y_k - v_k)
+        \right\rangle
+    \\
+    & \quad 
+        + \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\
+    &= 
+    F(x_k) - \epsilon_k 
+    + \left\langle 
+        g_k, 
+        - \alpha_k(v_k - x^*) 
+        - \frac{\alpha_k^2\mu}{\gamma_{k + 1}}(y_k - v_k)
+        - (x_k - y_k)
+    \right\rangle
+    \\
+    &\quad 
+        + (1 - \alpha_k)
+        \left(
+            \epsilon_k + R_k + 
+            \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+            \Vert v_k - y_k\Vert^2
+        \right)
+    \\
+    &\quad 
+        + 
+        \left(
+        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
+        \right)\Vert v_k - x^*\Vert^2
+    \\
+    & \quad 
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\
+    \text{Use Q3}&= 
+    F(x_k) - \epsilon_k 
+    + \alpha_k\left\langle 
+        g_k, 
+        x^* - x_k
+    \right\rangle
+    \\
+    &\quad 
+        + (1 - \alpha_k)
+        \left(
+            \epsilon_k + R_k + 
+            \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+            \Vert v_k - y_k\Vert^2
+        \right)
+    \\
+    &\quad 
+        + 
+        \left(
+        \frac{(1 - \alpha_k)\gamma_k + \mu \alpha_k}{2} 
+        \right)\Vert v_k - x^*\Vert^2
+    \\
+    & \quad 
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\
+    &= 
+    F(x_k) - \alpha_k\epsilon_k + \alpha_k\langle g_k, x^* - x_k\rangle
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\&\quad 
+        + \frac{(1 - \alpha_k)\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
+        + \frac{\mu \alpha_k}{2}\Vert v_k - x^*\Vert^2
+        + (1 - \alpha_k)\left(
+            R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+        \right)
+    \\&\quad 
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
+\end{aligned}\tag{3}
+$$
+
+
+Taking a page break, continuing on (3) we have
+
+$$
+\begin{aligned}
+    &
+    F(x_k) - \alpha_k(\epsilon_k + \langle g_k, x_k - x^*\rangle)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\&\quad 
+        + \frac{(1 - \alpha_k)\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
+        + \frac{\mu \alpha_k}{2}\Vert v_k - x^*\Vert^2
+    \\&\quad 
+        + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\
+    &= 
+    F(x_k) - \alpha_k(\epsilon_k + \langle g_k, x_k - x^*\rangle)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        + 
+        \left(
+            \frac{(1 - \alpha_k)\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+            + 
+            \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}
+        \right)\Vert y_k - v_k\Vert^2
+        + \frac{\mu \alpha_k}{2}\Vert v_k - x^*\Vert^2 
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\
+    & =
+    F(x_k) - \alpha_k(\epsilon_k + \langle g_k, x_k - x^*\rangle)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        + 
+        \frac{\mu \alpha_k}{2}\Vert y_k - v_k\Vert^2
+        + \frac{\mu \alpha_k}{2}\Vert v_k - x^*\Vert^2 
+        + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
+    \\ &=
+    F(x_k) - \alpha_k(\epsilon_k + \langle g_k, x_k - x^*\rangle)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        +
+        \frac{\mu\alpha_k}{2} \Vert y_k - x^*\Vert^2
+    \\&= 
+    F(x_k) - \alpha_k\left(
+        \epsilon_k + \langle g_k, x_k - x^*\rangle
+        - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \right)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right). 
+\end{aligned}\tag{4}
+$$
+
+That was adding (1) and (2.2) together, which is the same as adding (1) and (2) together. 
+So that was all equal to (1) + (2), therefore we get: 
+
+$$
+\begin{aligned}
+    & F(x_{k + 1}) + R_{k + 1} + 
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    \\
+    &= 
+    F(x_k) - \alpha_k\left(
+        \epsilon_k + \langle g_k, x_k - x^*\rangle
+        - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \right)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    \iff & 
+    \\
+    & F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    \\
+    &= 
+    F(x_k) - F(x^*) - \alpha_k\left(
+        \epsilon_k + \langle g_k, x_k - x^*\rangle
+        - \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \right)
+    + 
+    (1 - \alpha_k)\left(
+        R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    &= (1 - \alpha_k)(F(x_k) - F(x^*))
+    + \alpha_k\left(
+        F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \right)
+    \\ &\quad 
+        + 
+        (1 - \alpha_k)\left(
+            R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+        \right). 
+\end{aligned}
+$$
+
+Focusing on the second term, we simplify the multiplier inside: 
+
+$$
+\begin{aligned}
+    & F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \\
+    &= 
+    F(x_k) - F(x^*) - \left(
+        F(x_k) - F(T_L y_k) - \langle g_k, x_k - y_k\rangle - \frac{1}{2L}\Vert g_k\Vert^2
+    \right)- \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    \\
+    &= F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    + \frac{1}{2L}\Vert g_k\Vert^2 \le 0. 
+\end{aligned}
+$$
+
+Beautiful, therefore we can conclude: 
+
+$$
+\begin{aligned}
+    F(x_{k + 1}) - F(x^*) + R_{k + 1} + 
+    \frac{\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)\left(
+        F(x_k) - F(x^*) + R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
+    \right). 
+\end{aligned}
 $$
 
 

@@ -78,13 +78,13 @@ This constant would be the lower bound on the weak convexity constant.
 
 **Observations**
 
-$\alpha_k^{-1}$ is the famous Nesterov's momentum sequence. 
+$\alpha_k^{-1}$ is the famous FISTA momentum sequence in the literatures. 
 
 
 ----
 ### **Convergence proof**
 
-Throughout this text, we assume that the function $F$ is weakly convex and we assume that $\partial$ operator here is the Rockafellar Limiting subgradient. 
+Throughout this text, we assume that the function $F$ is weakly convex, and we assume that $\partial$ operator here is the Rockafellar Limiting subgradient. 
 The proof here resemble what is seemed in Amir Beck's proof of FISTA. 
 
 #### **Lemma B.2 | Stationarity of proximal point evaluation**
@@ -128,7 +128,7 @@ $$
 
 
 
-#### **Theorem (4.1, 4.2) | Convergence of the algorithm**
+#### **Theorem (4.1, 4.2) | Algorithm Convergence**
 > The algorithm generates $\bar x_k$ which is the monotone gradient descent step, and it converges to a stationary point when $F$ is $\kappa$ weakly convex: 
 > $$
 > \begin{aligned}
@@ -185,7 +185,7 @@ $$
 $$
 
 Where $F^*$ here is the minimum. 
-This established the convergence to the staionary point by $F^*$ bounded below. 
+This established the convergence to the stationary point by $F^*$ bounded below. 
 Next we assume that $F$ is convex. 
 From the algorithm we have $\xi_k \in \partial \mathcal M(\tilde x_k, y_k)$ such that $\Vert \xi_k\Vert \le \frac{\kappa}{k + 1}\Vert \tilde x_k - y_k\Vert$. 
 Then for any $x\in \R^n$, $\kappa$ strong convexity of $\mathcal M(\cdot, y_k)$ yields inequality: 
@@ -253,7 +253,7 @@ $$
 \end{aligned}
 $$
 
-Using convexity, it transform the inequality into 
+Using convexity, it transforms the inequality into 
 
 $$
 \begin{aligned}
@@ -354,7 +354,7 @@ $$
 \end{aligned}
 $$
 
-The second last inequality use the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
+The second last inequality uses the fact that $(1 - \alpha_k)/\alpha_k^2 = \alpha_{k - 1}^{-2}$ and $\alpha_1 = 1$. 
 The last inequality used the fact that $A_{k - 1} \in (0, 1]$. 
 Simplifying a bit the above is the same as for all $k\ge 1$: 
 
@@ -429,7 +429,7 @@ $$
 \end{aligned}
 $$
 
-For the big product, use the trigger discussed [here on stackoverflow](https://math.stackexchange.com/questions/18179/finding-value-of-the-infinite-product-prod-bigl1-frac1n2-bigr). 
+For the big product, use the trigger discussed [here on Stack Overflow](https://math.stackexchange.com/questions/18179/finding-value-of-the-infinite-product-prod-bigl1-frac1n2-bigr). 
 This established the convergence rate $F(x_N) - F^*$ to be on $\mathcal O(\alpha_N^{2})$. 
 And, the sequence $\alpha_i$ has an upper for all $k\ge 0$: 
 
@@ -439,7 +439,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, the algorithm has convergence on the staionary point condition and it achieves optimal convergence rate of $\mathcal O(1/k^2)$ when $F$ is a convex function because
+Therefore, the algorithm has convergence on the stationary point condition, and it achieves optimal convergence rate of $\mathcal O(1/k^2)$ when $F$ is a convex function because
 
 $$
 \begin{aligned}
@@ -450,11 +450,11 @@ $$
 
 **Remark**
 
-It's worth observing carefully on how the error 
+It's worth observing carefully on the manifestation of
 $$
 \dist(\mathbf 0, \partial \mathcal M(\tilde x_k; y_k)) 
 \le 
 \frac{\kappa}{k + 1} \Vert \tilde x_k - y_k\Vert
 $$
-manifests in the convergence proof. 
-In the case where no error is being made for the inexact evalatuion, we would have $A_k = 1$ for the proof. 
+in convergence proof. 
+In the case where no error is being made for the inexact evaluation, we would have $A_k = 1$ for the proof. 

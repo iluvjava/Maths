@@ -2744,9 +2744,9 @@
         \end{align*}
         The lower bound is given by the hidden recursive definition of $\alpha_k$: 
         \begin{align*}
-            \alpha_{k + 1}^2 &= (1 - \alpha_{k + 1})\alpha_k^2 = \alpha_1^2
+            \alpha_{k + 1}^2 &= (1 - \alpha_{k + 1})\alpha_k^2 
             \\
-            &\ge \alpha_1^2 \prod_{i = 2}^{k + 1}(1 - \alpha_i)
+            &= \alpha_1^2 \prod_{i = 2}^{k + 1}(1 - \alpha_i)
             \\
             &\ge \prod_{i = 2}^{k + 1}\left(
                 1 - \frac{2}{i + 1}
@@ -2754,9 +2754,10 @@
             \\
             &= \frac{2}{(k + 1)(k + 2)}  \ge \frac{2}{(k + 2)^2}. 
         \end{align*}
+        On the third step of the inequality, we used $\alpha_k \le 2/(k + 1)$ and $\alpha_1 = 1$. 
     \end{proof}
     \begin{remark}
-        $a_k^{-1}$ would just be the FISTA sequence. 
+        If $ \lambda_k = a_k^{-1}$, then $\lambda_k$ would be the FISTA sequence. 
     \end{remark}
 
     \begin{lemma}[Stationarity condition]\label{app:lemma:ncnvx-catalyst-stationary-cond}
