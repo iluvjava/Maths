@@ -59,7 +59,7 @@ Ramp function is a class of C0 functions, the Heavy Side function won't be C0 sm
 A continuous function has not much to do with differentiability of the function. 
 
 **Def | C1 Smooth**
-> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without **any** sharp turns on the graph. 
+> A function $f$ is a C1 function when it has a continuous derivative. It's quadratic-like, without any sharp turns on the graph. 
 
 **Important Notes**
 
@@ -93,7 +93,6 @@ $$
 $$
 
 Observe that the sequence $(1/n, f(1/n))$ would converge to $(0, 0)$ as $n\rightarrow \infty$, but $(0, 0)\not \in \text{epi}(f)$. 
-
 
 
 #### **Closeness Equivalence of Functions**
@@ -191,7 +190,9 @@ The function is only defined inside of the set $Q$, out of the set it's not givi
 ---
 ### **Convex Functions**
 
-This is one of the most important characterizations for a class of functions. The theories developed for optimizing convex function and its variants are profound. Convex function has 2 equivalent definitions. 
+This is one of the most important characterizations for a class of functions. 
+The theories developed for optimizing convex function and its variants are profound. 
+Convex function has 2 equivalent definitions. 
 
 #### **Definition | Convex Epigraph**
 

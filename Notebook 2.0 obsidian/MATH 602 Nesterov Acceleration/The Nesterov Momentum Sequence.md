@@ -1,9 +1,10 @@
 - [A Better Proof for FISTA Convergence](Proximal%20Methods/A%20Better%20Proof%20for%20FISTA%20Convergence.md)
+- [Nesterov Original Conception of Momentum Method](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 
 ---
 ### **Intro**
 
-To prevent cluttering, we state some of the properties of the default Nesterov Momentum Sequence and its variants. The Nestrov Momentum sequence is 
+To prevent cluttering, we state properties of the default Nesterov Momentum Sequence and its variants. The Nesterov Momentum sequence is 
 
 $$
 \begin{aligned}    
@@ -37,7 +38,8 @@ $$
 \end{aligned}
 $$
 
-where, we used the monotonicity and sub additivity propert of the square root. This established an lower bound and upper bound, we may then unroll the recurrence and gain 
+we used the monotonicity and sub additive property of the square root. 
+it established the lower bound and upper bound, we may then unroll the recurrence and gain 
 
 $$
 \begin{aligned}
@@ -70,7 +72,7 @@ here we take note that the numerator increases as $x\rightarrow \infty$, and the
 
 
 ---
-### **The inverse momentum parameters**
+### **The inverse momentum sequence from Nesterov's Estimating Sequence**
 
 In the Nesterov's estimating sequence argument, a different parameter is used to characterize the momentum term in the algorithm. 
 Parameterized through $\alpha_k, \gamma_k$, it has 
@@ -107,13 +109,15 @@ $$
     \iff 
     \alpha_k - \alpha_k + \alpha_k^2 - (\mu /L) 
     &\le 0
-    \\
+    \\ \implies
     \alpha_k 
-    &\le \pm \sqrt{\mu /L}
+    &\in \left[
+        - \sqrt{\mu /L}, \sqrt{\mu /L}
+        \right]. 
 \end{aligned}
 $$
 
-Alternatively, we consider a fixed point iteration by choosing numbers from the inequality iteartively. 
+Alternatively, we consider a fixed point iteration by choosing numbers from the inequality iteratively. 
 Presenting the inequality and solving for $\alpha_{k + 1}$ would give: 
 
 $$
@@ -152,28 +156,19 @@ $$
     0 \le \alpha_k 
     &\le 
     \frac{\sqrt{\alpha_{k - 1}^4 + 4\alpha_{k - 1}^2} - \alpha_{k - 1}^2}
-    {2} 
-    \\
-    &= \left(
-        \frac{1}{2}
-    \right)
-    \frac{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2 + \alpha_{k - 1}^4}
-    {\alpha_{k - 1}^2 + \sqrt{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2}}
-    \\
-    &= 
-    \frac{\alpha_{k - 1}^4 + 2 \alpha_{k - 1}^2}{
-        \alpha_{k - 1}^2 + \sqrt{\alpha_{k - 1}^4 + 4 \alpha_{k - 1}^2}
-    }
-    \\
-    &= 
-    \frac{
-        \alpha_{k - 1}^2 + 2
-    }
-    {
-        1 + \sqrt{1 + 4 \alpha_{k - 1}^{-2}}
-    }. 
+    {2}. 
 \end{aligned}
 $$
+
+
+#### **Def | Inverted momentum sequence**
+> Let $L, \mu$ satisfies $0 \le \mu \le L$. 
+> Define $(\alpha_k)_{k \ge 0}$ to be a sequence that recursively satisfies the inequality: 
+> $$
+> \begin{aligned}
+>   
+> \end{aligned}
+> $$
 
 #### **Observations**
 

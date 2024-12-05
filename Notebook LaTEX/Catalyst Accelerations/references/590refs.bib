@@ -1,4 +1,19 @@
 
+@book{nesterov_lectures_2018,
+	address = {Cham},
+	series = {Springer {Optimization} and {Its} {Applications}},
+	title = {Lectures on {Convex} {Optimization}},
+	volume = {137},
+	isbn = {978-3-319-91577-7 978-3-319-91578-4},
+	url = {http://link.springer.com/10.1007/978-3-319-91578-4},
+	urldate = {2023-10-11},
+	publisher = {Springer International Publishing},
+	author = {Nesterov, Yurii},
+	year = {2018},
+	keywords = {Algorithmic Complexity, Fast Gradient Methods, Interior-Point Methods, Numerical Optimization, Optimization, Optimization in Relative Scale, Self-Concordant Functions, Smoothing Technique},
+	file = {Nesterov - 2018 - Lectures on Convex Optimization.pdf:/Users/hongdali/Zotero/storage/HSCCPYL9/Nesterov - 2018 - Lectures on Convex Optimization.pdf:application/pdf},
+}
+
 @article{guler_new_1992,
 	title = {New proximal point algorithms for convex minimization},
 	volume = {2},
@@ -13,9 +28,6 @@
 	month = nov,
 	year = {1992},
 	pages = {649--664},
-	annote = {Nesterov Accelerated Proximal Point Method
-
-},
 	file = {Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:/Users/hongdali/Zotero/storage/G9LCY67Q/Güler - 1992 - New Proximal Point Algorithms for Convex Minimization.pdf:application/pdf},
 }
 
@@ -34,6 +46,25 @@
 	year = {1976},
 	pages = {877--898},
 	file = {Monotone Operators and the Proximal Point Algorithm.pdf:/Users/hongdali/Zotero/storage/5L82ZWY4/Monotone Operators and the Proximal Point Algorithm.pdf:application/pdf},
+}
+
+@article{guler_convergence_1991,
+	title = {On the {Convergence} of the {Proximal} {Point} {Algorithm} for {Convex} {Minimization}},
+	volume = {29},
+	issn = {03630129},
+	url = {https://www.proquest.com/docview/925962166/abstract/A60B4BA7798A45D1PQ/1},
+	doi = {10.1137/0329022},
+	abstract = {The proximal point algorithm (PPA) for the convex minimization problem \${\textbackslash}min \_\{x {\textbackslash}in H\} f(x)\$, where \$f:H {\textbackslash}to R {\textbackslash}cup {\textbackslash}\{ {\textbackslash}infty {\textbackslash}\} \$ is a proper, lower semicontinuous (lsc) function in a Hilbert space \$H\$ is considered. Under this minimal assumption on \$f\$, it is proved that the PPA, with positive parameters \${\textbackslash}\{ {\textbackslash}lambda \_k {\textbackslash}\} \_\{k = 1\}{\textasciicircum}{\textbackslash}infty \$, converges in general if and only if \${\textbackslash}sigma \_n = {\textbackslash}sum\_\{k = 1\}{\textasciicircum}n \{{\textbackslash}lambda \_k {\textbackslash}to {\textbackslash}infty \} \$. Global convergence rate estimates for the residual \$f(x\_n ) - f(u)\$, where \$x\_n \$ is the \$n\$th iterate of the PPA and \$ u {\textbackslash}in H \$ is arbitrary are given. An open question of Rockafellar is settled by giving an example of a PPA for which \$x\_n \$ converges weakly but not strongly to a minimizes of \$f\$.},
+	language = {English},
+	number = {2},
+	urldate = {2024-05-18},
+	journal = {SIAM Journal on Control and Optimization},
+	author = {Guler, Osman},
+	month = mar,
+	year = {1991},
+	keywords = {Algorithms, Convex analysis, Hilbert space, Mathematics},
+	pages = {17},
+	file = {Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:/Users/hongdali/Zotero/storage/9AWZSLK4/Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:application/pdf},
 }
 
 @inproceedings{lin_universal_2015,
@@ -68,6 +99,25 @@
 	file = {Villa et al. - 2013 - Accelerated and Inexact Forward-Backward Algorithm.pdf:/Users/hongdali/Zotero/storage/K3MNNGVQ/Villa et al. - 2013 - Accelerated and Inexact Forward-Backward Algorithm.pdf:application/pdf},
 }
 
+@article{nesterov_gradient_2013,
+	title = {Gradient methods for minimizing composite functions},
+	volume = {140},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-012-0629-5},
+	doi = {10.1007/s10107-012-0629-5},
+	abstract = {In this paper we analyze several new methods for solving optimization problems with the objective function formed as a sum of two terms: one is smooth and given by a black-box oracle, and another is a simple general convex function with known structure. Despite the absence of good properties of the sum, such problems, both in convex and nonconvex cases, can be solved with efficiency typical for the first part of the objective. For convex problems of the above structure, we consider primal and dual variants of the gradient method (with convergence rate \$\$O{\textbackslash}left(\{1 {\textbackslash}over k\}{\textbackslash}right)\$\$), and an accelerated multistep version with convergence rate \$\$O{\textbackslash}left(\{1 {\textbackslash}over k{\textasciicircum}2\}{\textbackslash}right)\$\$, where \$\$k\$\$is the iteration counter. For nonconvex problems with this structure, we prove convergence to a point from which there is no descent direction. In contrast, we show that for general nonsmooth, nonconvex problems, even resolving the question of whether a descent direction exists from a point is NP-hard. For all methods, we suggest some efficient “line search” procedures and show that the additional computational work necessary for estimating the unknown problem class parameters can only multiply the complexity of each iteration by a small constant factor. We present also the results of preliminary computational experiments, which confirm the superiority of the accelerated scheme.},
+	language = {en},
+	number = {1},
+	urldate = {2024-09-17},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yu.},
+	month = aug,
+	year = {2013},
+	keywords = {68Q25, 90C25, 90C47, Black-box model, Complexity theory, Convex Optimization, l1l\_1-Regularization, Local optimization, Nonsmooth optimization, Optimal methods, Structural optimization},
+	pages = {125--161},
+	file = {Nesterov - 2013 - Gradient methods for minimizing composite functions:/Users/hongdali/Zotero/storage/6LKMMPQJ/Nesterov - 2013 - Gradient methods for minimizing composite functions.pdf:application/pdf},
+}
+
 @inproceedings{lin_catalyst_2018,
 	title = {Catalyst acceleration for first-order convex optimization: from theory to practice},
 	volume = {18},
@@ -94,11 +144,21 @@
 	month = mar,
 	year = {2018},
 	pages = {613--622},
-	file = {Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:/Users/hongdali/Zotero/storage/N4YDZMYK/Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:application/pdf;Paquette et al. - 2018 - Catalyst for Gradient-based Nonconvex Optimization.pdf:/Users/hongdali/Zotero/storage/7CNEDRVP/Paquette et al. - 2018 - Catalyst for Gradient-based Nonconvex Optimization.pdf:application/pdf},
+	file = {Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:/Users/hongdali/Zotero/storage/N4YDZMYK/Paquette et al. - 2018 - Catalyst Acceleration for Gradient-Based Non-Convex Optimization.pdf:application/pdf},
+}
+
+@article{nesterov_method_1983,
+	title = {A method for solving the convex programming problem with convergence rate {O}(1/k{\textasciicircum}2)},
+	url = {https://www.semanticscholar.org/paper/A-method-for-solving-the-convex-programming-problem-Nesterov/8d3a318b62d2e970122da35b2a2e70a5d12cc16f},
+	abstract = {Semantic Scholar extracted view of "A method for solving the convex programming problem with convergence rate O(1/k{\textasciicircum}2)" by Y. Nesterov},
+	urldate = {2024-10-10},
+	journal = {Proceedings of the USSR Academy of Sciences},
+	author = {Nesterov, Y.},
+	year = {1983},
 }
 
 @article{xiao_proximal_2014,
-	title = {A {Proximal} {Stochastic} {Gradient} {Method} with {Progressive} {Variance} {Reduction}},
+	title = {A proximal stochastic gradient method with progressive variance reduction},
 	volume = {24},
 	issn = {1052-6234},
 	url = {https://epubs.siam.org/doi/10.1137/140961791},
@@ -110,13 +170,12 @@
 	author = {Xiao, Lin and Zhang, Tong},
 	month = jan,
 	year = {2014},
-	note = {Publisher: Society for Industrial and Applied Mathematics},
 	pages = {2057--2075},
 	file = {Full Text PDF:/Users/hongdali/Zotero/storage/T8I47JRF/Xiao and Zhang - 2014 - A Proximal Stochastic Gradient Method with Progressive Variance Reduction.pdf:application/pdf},
 }
 
 @misc{bertsekas_incremental_2017,
-	title = {Incremental {Gradient}, {Subgradient}, and {Proximal} {Methods} for {Convex} {Optimization}: {A} {Survey}},
+	title = {Incremental gradient, subgradient, and proximal methods for convex optimization: {A} survey},
 	shorttitle = {Incremental {Gradient}, {Subgradient}, and {Proximal} {Methods} for {Convex} {Optimization}},
 	url = {http://arxiv.org/abs/1507.01030},
 	abstract = {We survey incremental methods for minimizing a sum \${\textbackslash}sum\_\{i=1\}{\textasciicircum}mf\_i(x)\$ consisting of a large number of convex component functions \$f\_i\$. Our methods consist of iterations applied to single components, and have proved very effective in practice. We introduce a unified algorithmic framework for a variety of such methods, some involving gradient and subgradient iterations, which are known, and some involving combinations of subgradient and proximal methods, which are new and offer greater flexibility in exploiting the special structure of \$f\_i\$. We provide an analysis of the convergence and rate of convergence properties of these methods, including the advantages offered by randomization in the selection of components. We also survey applications in inference/machine learning, signal processing, and large-scale and distributed optimization.},
@@ -150,7 +209,7 @@
 }
 
 @inproceedings{schmidt_convergence_2011,
-	title = {Convergence {Rates} of {Inexact} {Proximal}-{Gradient} {Methods} for {Convex} {Optimization}},
+	title = {Convergence rates of inexact proximal-gradient methods for convex optimization},
 	volume = {24},
 	url = {https://proceedings.neurips.cc/paper_files/paper/2011/hash/8f7d807e1f53eff5f9efbe5cb81090fb-Abstract.html},
 	abstract = {We consider the problem of optimizing the sum of a smooth convex function and a non-smooth convex function using proximal-gradient methods, where an error is present in the calculation of the gradient of the smooth term or in the proximity operator with respect to the second term. We show that the basic proximal-gradient method, the basic proximal-gradient method with a strong convexity assumption, and the accelerated proximal-gradient method achieve the same convergence rates as in the error-free case, provided the errors decrease at an appropriate rate.  Our experimental results on a structured sparsity problem indicate that sequences of errors with these appealing theoretical properties can lead to practical performance improvements.},
@@ -163,7 +222,7 @@
 }
 
 @misc{schmidt_convergence_2011-1,
-	title = {Convergence {Rates} of {Inexact} {Proximal}-{Gradient} {Methods} for {Convex} {Optimization}},
+	title = {Convergence rates of inexact proximal-gradient methods for convex optimization},
 	url = {http://arxiv.org/abs/1109.2415},
 	abstract = {We consider the problem of optimizing the sum of a smooth convex function and a non-smooth convex function using proximal-gradient methods, where an error is present in the calculation of the gradient of the smooth term or in the proximity operator with respect to the non-smooth term. We show that both the basic proximal-gradient method and the accelerated proximal-gradient method achieve the same convergence rate as in the error-free case, provided that the errors decrease at appropriate rates.Using these rates, we perform as well as or better than a carefully chosen fixed error level on a set of structured sparsity problems.},
 	urldate = {2024-10-23},
@@ -177,7 +236,7 @@
 }
 
 @inproceedings{defazio_saga_2014,
-	title = {{SAGA}: {A} {Fast} {Incremental} {Gradient} {Method} {With} {Support} for {Non}-{Strongly} {Convex} {Composite} {Objectives}},
+	title = {{SAGA}: {A} fast incremental gradient method with support for non-strongly convex composite objectives},
 	volume = {27},
 	shorttitle = {{SAGA}},
 	url = {https://proceedings.neurips.cc/paper_files/paper/2014/hash/ede7e2b6d13a41ddf9f4bdef84fdc737-Abstract.html},
@@ -188,4 +247,58 @@
 	author = {Defazio, Aaron and Bach, Francis and Lacoste-Julien, Simon},
 	year = {2014},
 	file = {Full Text PDF:/Users/hongdali/Zotero/storage/VNDRIFS5/Defazio et al. - 2014 - SAGA A Fast Incremental Gradient Method With Support for Non-Strongly Convex Composite Objectives.pdf:application/pdf},
+}
+
+@article{nesterov_accelerating_2008,
+	title = {Accelerating the cubic regularization of {Newton}’s method on convex problems},
+	volume = {112},
+	issn = {1436-4646},
+	url = {https://doi.org/10.1007/s10107-006-0089-x},
+	doi = {10.1007/s10107-006-0089-x},
+	abstract = {In this paper we propose an accelerated version of the cubic regularization of Newton’s method (Nesterov and Polyak, in Math Program 108(1): 177–205, 2006). The original version, used for minimizing a convex function with Lipschitz-continuous Hessian, guarantees a global rate of convergence of order \$\$O{\textbackslash}big(\{1 {\textbackslash}over k{\textasciicircum}2\}{\textbackslash}big)\$\$, where k is the iteration counter. Our modified version converges for the same problem class with order \$\$O{\textbackslash}big(\{1 {\textbackslash}over k{\textasciicircum}3\}{\textbackslash}big)\$\$, keeping the complexity of each iteration unchanged. We study the complexity of both schemes on different classes of convex problems. In particular, we argue that for the second-order schemes, the class of non-degenerate problems is different from the standard class.},
+	language = {en},
+	number = {1},
+	urldate = {2024-11-20},
+	journal = {Mathematical Programming},
+	author = {Nesterov, Yu.},
+	month = mar,
+	year = {2008},
+	keywords = {49M15, 49M37, 58C15, 90C25, 90C30, Condition number, Convex optimization, Cubic regularization, Global complexity bounds, Newton’s method, Non-degenerate problems, Unconstrained minimization, Worst-case complexity},
+	pages = {159--181},
+	file = {Nesterov - 2008 - Accelerating the cubic regularization of Newton’s method on convex problems.pdf:/Users/hongdali/Zotero/storage/GWZSARLR/Nesterov - 2008 - Accelerating the cubic regularization of Newton’s method on convex problems.pdf:application/pdf},
+}
+
+@article{grapiglia_accelerated_2019,
+	title = {Accelerated regularized newton methods for minimizing composite convex functions},
+	volume = {29},
+	issn = {1052-6234},
+	url = {https://epubs.siam.org/doi/10.1137/17M1142077},
+	doi = {10.1137/17M1142077},
+	abstract = {In this paper, we study the regularized second-order methods for unconstrained minimization of a  twice-differentiable (convex or nonconvex) objective function. For the current function, these methods automatically achieve the best possible global complexity estimates among different Hölder classes containing the Hessian of the objective. We show that such methods for functional residual and for the norm of the gradient must be different. For development of the latter methods, we introduced two new line-search acceptance criteria, which can be seen as generalizations of the Armijo condition.},
+	number = {1},
+	urldate = {2024-12-04},
+	journal = {SIAM Journal on Optimization},
+	author = {Grapiglia, Geovani N. and Nesterov, Yurii},
+	month = jan,
+	year = {2019},
+	pages = {77--99},
+	file = {Grapiglia and Nesterov - 2019 - Accelerated Regularized Newton Methods for Minimizing Composite Convex Functions.pdf:/Users/hongdali/Zotero/storage/Y4W3SLNY/Grapiglia and Nesterov - 2019 - Accelerated Regularized Newton Methods for Minimizing Composite Convex Functions.pdf:application/pdf},
+}
+
+@article{gower_variance-reduced_2020,
+	title = {Variance-reduced methods for machine learning},
+	volume = {108},
+	issn = {1558-2256},
+	url = {https://ieeexplore.ieee.org/document/9226504},
+	doi = {10.1109/JPROC.2020.3028013},
+	abstract = {Stochastic optimization lies at the heart of machine learning, and its cornerstone is stochastic gradient descent (SGD), a method introduced over 60 years ago. The last eight years have seen an exciting new development: variance reduction for stochastic optimization methods. These variance-reduced (VR) methods excel in settings where more than one pass through the training data is allowed, achieving a faster convergence than SGD in theory and practice. These speedups underline the surge of interest in VR methods and the fast-growing body of work on this topic. This review covers the key principles and main developments behind VR methods for optimization with finite data sets and is aimed at nonexpert readers. We focus mainly on the convex setting and leave pointers to readers interested in extensions for minimizing nonconvex functions.},
+	number = {11},
+	urldate = {2024-12-04},
+	journal = {Proceedings of the IEEE},
+	author = {Gower, Robert M. and Schmidt, Mark and Bach, Francis and Richtárik, Peter},
+	month = nov,
+	year = {2020},
+	keywords = {Optimization, optimization, Machine learning, Computational modeling, Data models, Logistics, Stochastic processes, Training data, variance reduction},
+	pages = {1968--1983},
+	file = {Gower et al. - 2020 - Variance-reduced methods for machine learning.pdf:/Users/hongdali/Zotero/storage/V8RBKZFC/Gower et al. - 2020 - Variance-reduced methods for machine learning.pdf:application/pdf},
 }

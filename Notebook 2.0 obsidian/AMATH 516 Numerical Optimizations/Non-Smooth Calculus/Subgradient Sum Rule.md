@@ -7,7 +7,9 @@
 Here we prove provide counter example for the converse case and establishes the  strong and the weak subgradient sum rule and characterize their conditions. 
 This one is a very important subgradient rule, preluding the huge development of variational analysis. 
 
-### **Example | Sum of Subgradient is not Subgradient of Sum**
+The following example demonstrate that the sum of the normal cone of 2 convex set, is a smaller set than the normal cone of the intersection of the set. 
+
+#### **Example | Sum of Subgradient is not Subgradient of Sum**
 
 > In $\mathbb R^2$, let $C, D$ be $(1, 0) + \mathbb B$ and $(-1, 0) + \mathbb B$, where $\mathbb B$ is the unit ball centered at $(0, 0)$. 
 > Then $N_C = \partial \delta_C$, and $N_D = \partial \delta_D$, and we have $N_D(0, 0) + N_C(0, 0) \subsetneq N_{C \cap D}(0, 0)$. 
@@ -30,6 +32,9 @@ Therefore, the subgradient of summed function is not the sum of the subgradient 
 ### **Convex Subgradient Sum Rule**
 
 The subgradient sum rule is true when functions are convex. 
+
+
+
 
 **References**
 - Rockafellar's convex book theorem 23.8. 
