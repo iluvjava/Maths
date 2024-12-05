@@ -472,6 +472,11 @@ $$
 > $$
 > Where $F^*$ is the minimum and $x^*$ is the minimizer of $F$. 
 
+**Observations**
+
+This claim not yet has anything to do with $L\alpha_k^2 \le \gamma_{k + 1}$ yet. 
+
+
 **Proof**
 
 Recall that by definition for all $k \ge0$, $\epsilon_k$ admits 
@@ -654,6 +659,11 @@ The claimed is proved.
 The fact that $x^*$ is a minimizer of $x$ is not yet used in the proof, it could be any anything. 
 The inequality condition $L\alpha_{k}^2 \le \gamma_{k + 1}$ is not yet used. 
 We only used the equality $\gamma_{k + 1} = \gamma_k (1 - \alpha_k)$. 
+To understand how useful the inequality is, let's consider the following cases: 
+
+1. $L\alpha_k^2 \le \gamma_{k + 1}$, 
+2. $L\alpha_k^2 = \gamma_{k + 1}$, 
+3. $L\alpha_k^2 \ge \gamma_{k + 1}$. 
 
 Inequality $L\alpha_k^2 \le \gamma_{k + 1}$ makes $R_{k + 1} \ge (1 - \alpha_k)(R_k + \epsilon_k)\ge (1 - \alpha_k)R_k$ due non-negativity of $(L^{-1} - \alpha_k^2 /\gamma_{k + 1})\Vert g_k\Vert^2$ and $\epsilon_k$. 
 So $R_{k + 1} - (1 - \alpha_k)R_k \ge 0$. 
@@ -692,7 +702,7 @@ $$
 This now establishes the more familiar type of Lyapunov quantities. 
 Otherwise, $L\alpha_k^2 \ge \gamma_{k + 1}$, then the regret quantities $R_k$ will have to be kept for the convergence of the algorithm. 
 
-**One extra condiseration**
+**One extra consideration**
 
 If $\alpha_k \le (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$ then 
 
@@ -708,7 +718,7 @@ $$
 \end{aligned}
 $$
 
-The above convergecne results would still apply if $(\alpha_k)_{k \ge 0}$ is generated in this way instead. 
+The above convergence results would still apply if $(\alpha_k)_{k \ge 0}$ is generated in this way instead. 
 This inequality is a strictly strong formulation. 
 
 

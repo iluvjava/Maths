@@ -5,3 +5,4 @@ Guler
 Teboulle
 FISTA
 subgradient
+Nestrov
