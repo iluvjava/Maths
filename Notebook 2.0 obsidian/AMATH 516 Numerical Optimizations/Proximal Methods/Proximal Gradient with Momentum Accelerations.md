@@ -1,4 +1,4 @@
-[[Proximal Gradient Convergence Rate]]
+[[AMATH 516 Numerical Optimizations/Classics Algorithms/Proximal Gradient Convergence Rate]]
 
 ---
 ### **Intro**

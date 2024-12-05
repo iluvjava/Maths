@@ -707,7 +707,7 @@ All we did is moving the term $-1/(2\eta)\Vert x^+ - x\Vert^2$ to the RHS since 
 At the end we obtained the fundamental proximal gradient lemma in Amir Beck's writings. 
 This bound is tighter. 
 This can also be used for deriving the convergence of the gradient descent method. 
-For more information on this lemma, visits: [V-FISTA](V-FISTA.md), [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), [Proximal Gradient Convergence Rate](Proximal%20Gradient%20Convergence%20Rate.md), and [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
+For more information on this lemma, visits: [V-FISTA](V-FISTA.md), [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md), [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md), and [A Better Proof for FISTA Convergence](A%20Better%20Proof%20for%20FISTA%20Convergence.md). 
 
 
 #### **Corollary 2.5 | Another proximal gradient lemma via Moreau Envelope**

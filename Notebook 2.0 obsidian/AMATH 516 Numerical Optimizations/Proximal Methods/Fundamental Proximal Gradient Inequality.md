@@ -207,7 +207,7 @@ In this way, the above inequality can be generalized.
 
 The inequality can be derived from a slightly weaker set of assumptions. 
 The difference here is the absence of subgradient inequality which is not used for the proof. 
-The following is the same proof adapted from [Proximal Gradient Convergence Rate](Proximal%20Gradient%20Convergence%20Rate.md). 
+The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md). 
 
 In this section we use some slightly different notations: 
 

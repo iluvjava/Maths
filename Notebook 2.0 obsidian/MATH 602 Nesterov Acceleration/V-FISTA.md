@@ -117,7 +117,7 @@ We recall the prox grad lemma used in the proof of FISTA. We will apply the same
 > Where $D_g(x, y):= g(x) - g(y) - \langle \nabla g(y), x -y\rangle$ is the Bregman Divergence for the smooth part of the sum: $g$. 
 
 
-This theorem is extracted from the proof of proximal gradient in [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Proximal%20Gradient%20Convergence%20Rate.md). 
+This theorem is extracted from the proof of proximal gradient in [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md). 
 Under the strong convexity assumption, the above claim becomes stronger using the lower bound $D_g(x, y) \ge \sigma/2\Vert x - y\Vert^2$ because function $g$ is a strongly convex function. 
 
 ---

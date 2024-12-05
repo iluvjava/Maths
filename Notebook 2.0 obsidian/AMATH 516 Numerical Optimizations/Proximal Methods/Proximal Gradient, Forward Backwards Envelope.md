@@ -533,7 +533,7 @@ to assert decreasing objective, the multiplier on the RHS for the norm will have
 ---
 ### **Convergence in the Convex Case**
 
-See [[Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. Under strong convexity assumptions and strong smoothness assumption, weaker convergence and stronger convergence results can be obtained under both cases. 
+See [[AMATH 516 Numerical Optimizations/Classics Algorithms/Proximal Gradient Convergence Rate]] for a proof of the convergence rate under the same assumptions that we had been discussing. Without the strong convexity assumption, the convergence rate for the algorithm is $\mathcal O(1/k)$ for the optimality measure. Under strong convexity assumptions and strong smoothness assumption, weaker convergence and stronger convergence results can be obtained under both cases. 
 
 ---
 ### **FISTA, Accelerated Proximal Gradient**
