@@ -725,7 +725,7 @@ This inequality is a strictly strong formulation.
 #### **Claim | Non-zero S-CNVX regret inequality**
 > Repeat the same claim as the previous one but with assumption $\mu \ge 0$ instead. 
 
-**Proof (not yet completed)**
+**Proof**
 
 The easy parts are: 
 
@@ -1119,7 +1119,7 @@ $$
     (1 - \alpha_k)\left(
         R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
     \right). 
-\end{aligned}\tag{4}
+\end{aligned}\tag{3.1}
 $$
 
 That was adding (1) and (2.2) together, which is the same as adding (1) and (2) together. 
@@ -1196,7 +1196,51 @@ $$
 \end{aligned}
 $$
 
+We now quickly justify equation (Q1), (Q2). 
+In the proof of APG using Nesterov's estimating sequence, we touched and proved the equality (Q1). 
+To show (Q1) we use the definition of the algorithm which has updates 
+$$
+\begin{aligned}
+    -(\alpha_k \gamma_k\gamma_{k + 1}^{-1} + 1)y_k
+    &= 
+    - \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k - x_k
+    \\
+    y_k &= 
+    \frac{
+        \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k + x_k
+    }{1 + \alpha_k \gamma_k \gamma_{k + 1}^{-1}}
+    \\
+    &=  
+    \frac{\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k}{\gamma_k + \alpha_k \mu}.
+\end{aligned}
+$$
 
+To see (Q2), this is directly from 
+
+$$
+\begin{aligned}
+    y_k &= (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1} x_k)
+    \\
+    \iff
+    y_k - x_k &= 
+    (\gamma_k + \alpha_k \mu)^{-1}
+    (\alpha_k \gamma_k v_k - (\gamma_k + \alpha_k \mu)x_k + \gamma_{k + 1}x_k)
+    \\
+    \iff 
+    (\gamma_k + \alpha_k \mu)(y_k - x_k)
+    &= 
+    \alpha_k\gamma_k v_k + 
+    (\gamma_{k + 1} - \gamma_k - \alpha_k \mu) x_k
+    \\
+    &= \alpha_k \gamma_k v_k - \alpha_k \gamma_k x_k = \alpha_k \gamma_k(v_k - x_k)
+    \\
+    \iff 
+    y_k - x_k &= 
+    \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
+\end{aligned}
+$$
+
+On the second equality of the second $\iff$ we just substituted $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 
 
 

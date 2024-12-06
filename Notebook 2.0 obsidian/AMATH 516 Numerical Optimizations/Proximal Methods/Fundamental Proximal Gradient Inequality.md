@@ -5,7 +5,7 @@
 ### **Intro**
 
 This lemma is being used too often that I think it's worth singling it out. 
-This lemma is a generalization of the proximal lemma in the convex case, and it can be seem as an inexact version of the same lemma applied to the proving the convergence of convex optimization problems. 
+This lemma is a generalization of the proximal lemma in the convex case, and is  an inexact version of the same lemma applied to the proving the convergence of convex optimization problems. 
 
 #### **Lemma 0.1 | Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
@@ -379,7 +379,7 @@ $$
 
 **Remarks**
 
-The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker conditions than $L^{-1}$ strong convexity of the Envelope function. 
+The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker condition than $L^{-1}$ strong convexity of the Envelope function. 
 This results here are also strictly better than the previous results it implies the previous results. 
 
 $$

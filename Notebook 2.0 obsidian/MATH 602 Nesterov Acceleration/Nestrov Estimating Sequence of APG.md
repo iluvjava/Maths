@@ -603,7 +603,7 @@ For the other one it has
 
 $$
 \begin{aligned}
-    -(\alpha_k \gamma_k\alpha_{k + 1}^{-1} + 1)y_k
+    -(\alpha_k \gamma_k\gamma_{k + 1}^{-1} + 1)y_k
     &= 
     - \alpha_k \gamma_k \gamma_{k + 1}^{-1}v_k - x_k
     \\
