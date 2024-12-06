@@ -319,7 +319,28 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         On the second equality of the second $\iff$ we just substituted $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
     \end{observation}
     \begin{observation}\label{obs:weak-apg-observation-2}
-        
+        We are still observing Definition \ref*{def:weak-apg}. 
+        When $L\alpha_k^2 = \gamma_{k + 1}$ for all $k\ge 0$ and $\mu = 0$ we get 
+        \begin{align*}
+            \text{find } &
+            \alpha_k \in(0, 1): L\alpha_k^2 =\gamma_{k + 1}: = (1 - \alpha_k)\gamma_k, 
+            \\
+            y_k &= 
+            \gamma_k^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)
+            \\
+            &= \alpha_k v_k + (1 - \alpha_k) x_k,
+            \\
+            g_k &= L (y_k - T_L y_k), 
+            \\
+            v_{k + 1} &= \gamma_{k + 1}^{-1}
+            (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k)
+            \\
+            &= v_k - \alpha_k \gamma_k^{-1}(1 - \alpha_k)^{-1}g_k, 
+            \\
+            x_{k + 1} &= T_L y_k = y_k - L^{-1} g_k. 
+        \end{align*}
+        We state it here, it's used later to show that this is exactly the same as the FISTA algorithm. 
+
     \end{observation}
 
     \begin{proposition}[Stepwise lyapunov]
@@ -773,6 +794,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         }
 
     \end{proof}
+
+\section{Analyzing weak accelerated proximal gradient}
     
 
 

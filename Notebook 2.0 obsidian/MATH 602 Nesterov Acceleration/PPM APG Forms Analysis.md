@@ -4,7 +4,7 @@
 ### **Intro**
 
 This part of the file continues discussion in [PPM APG Forms](PPM%20APG%20Forms.md). 
-In this file we talks about the assumptions and constraints imposed in the parameters between these form so that they become equivalent to each other. 
+In this file we talk about the assumptions and constraints imposed in the parameters between these form so that they become equivalent to each other. 
 In the section below we proved a lot of proposition. 
 Now we give a high level summary of the propositions and how different form of algorithms are related to each other. 
 
@@ -55,7 +55,7 @@ The following definitions are made for matching the similar triangle form.
 
 **Proof**
 
-We are inverested in identifying the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
+We are interested in identifying the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
 
 $$
 \begin{aligned}
@@ -187,8 +187,8 @@ Here is what the following proposition is about:
 1. Proposition 1, If (1.) then S-CVX Generic APG -> Generic Similar Triangle
 2. Proposition 2, Similar triangle and Momentum form is equivalent. 
 3. Proposition 3, if (1.) and (2.), then  Generic Similar Triangle is equivalent to Chambolle Dossal, 2015 where we when $t_n = L \tilde \eta_{n}$. 
-4. Proposition 4, if (1.), then there is a choice of constant stepsize sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
-5. Proposition 5 tramsforms Nesterov's 2.2.19 into the same format as Generic SC APG form. 
+4. Proposition 4, if (1.), then there is a choice of constant step size sequence $\tilde \eta_t, \eta_t$ which recovers the V-FISTA algorithm. 
+5. Proposition 5 transforms Nesterov's 2.2.19 into the same format as Generic SC APG form. 
 6. Proposition 5.1 matches the parameters in the algorithm Nesterov's 2.2.19 with the step sizes parameters found in the SC APG Form. 
 
 
@@ -202,7 +202,7 @@ Here is what the following proposition is about:
 >     \tilde\eta_{t} &= \eta_t + L^{-1} + L^{-1} \mu \tilde\eta_{t}, 
 > \end{aligned}
 > $$
-> then $x_{t +1}$ in the the AG Generic Form has alternative representation: 
+> then $x_{t +1}$ in the AG Generic Form has alternative representation: 
 > $$
 > \begin{aligned}
 >     x_{t + 1} &= 
@@ -510,7 +510,7 @@ $$
 \end{aligned}
 $$
 
-Therefore, they are only equals when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algrithm in Chambolle Dossal 2015's paper. 
+Therefore, they are only equals when $\mu = 0$, then the generic similar triangle algorithm would be equivalently represented as the algorithm in Chambolle Dossal 2015's paper. 
 
 
 
@@ -574,7 +574,7 @@ $$
 \end{aligned}
 $$
 
-So, the momentum coefficient can be similified as well: 
+So, the momentum coefficient can be simplified as well: 
 
 $$
 \begin{aligned}
@@ -609,7 +609,7 @@ Set $\rho_t = \sqrt{\kappa}$, then we obtain the desired result.
 **Remark**
 
 The choice of $\rho$ in here is deliberate. 
-It it's directly related to a parameter in the convergence proof of the V-FISTA algorithm, see [V-FISTA](V-FISTA.md) for more information. 
+It is directly related to a parameter in the convergence proof of the V-FISTA algorithm, see [V-FISTA](V-FISTA.md) for more information. 
 Using the new sequence $\rho_t$, it allows us to simplify the updates in the original PPM APG to be: 
 
 $$
@@ -638,7 +638,7 @@ $$
 
 
 #### **Proposition 5 | Nes 2.2.19 Intermediate Form**
-> The nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
+> The Nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
 > $$
 > \begin{aligned}
 >     L\alpha_k^2 
@@ -690,7 +690,7 @@ $$
 
 **Proof**
 
-From definition we have equality: $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$, so $\gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$, with that in mind we can simplify the expression for $y_k$ by 
+From the definition, we have equality: $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$, so $\gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$, with that in mind we can simplify the expression for $y_k$ by 
 
 $$
 \begin{aligned}
@@ -792,7 +792,7 @@ $$
 
 Next, we simplify the coefficients using the above relations further. 
 From the above results we have the relation $(1 - \alpha_k)L\alpha_{k - 1}^2 = L \alpha_k^2 - \alpha_k \mu$. 
-Therefore it gives 
+Therefore, it gives 
 
 $$
 \begin{aligned}
@@ -913,7 +913,7 @@ $$
 \end{aligned}
 $$
 
-Therefore we have representation 
+Therefore, we have representation 
 
 $$
 \begin{aligned}
@@ -1017,8 +1017,8 @@ $$
 \end{aligned}
 $$
 
-Unfortuately, this is still different from what Nesterov did the chapter 2 of his book. 
-But after some simplications we can get there because: 
+Unfortunately, this is still different from what Nesterov did the chapter 2 of his book. 
+But after some implications we can get there because: 
 
 $$
 \begin{aligned}
