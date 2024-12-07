@@ -1248,6 +1248,7 @@ On the second equality of the second $\iff$ we just substituted $\gamma_{k + 1} 
 
 (Q1), (Q2) implies that all $y_k, v_k, x_k$ are collinear. 
 
+
 ---
 ### **Analyzing the Lyapunov recurrences**
 
