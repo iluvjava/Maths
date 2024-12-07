@@ -638,7 +638,7 @@ $$
 
 
 #### **Proposition 5 | Nes 2.2.19 Intermediate Form**
-> The Nesterov 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
+> The Nesterov's 2.2.19 algorithm which is given by the following rules of updates for the sequence of vector $(y_k, x_k, v_k)$ and scalars $(\gamma_k, \alpha_k)$ with Lipschitz constant and strong convexity constant $L, \mu$ is given by:  
 > $$
 > \begin{aligned}
 >     L\alpha_k^2 
@@ -842,7 +842,8 @@ $$
 $$
 
 And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1}^2$. 
-Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternative $L\alpha_k^2 + \varepsilon_{k + 1} = \gamma_{k + 1}$. 
+Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternative $L\alpha_k^2\rho_k^2 = \gamma_{k + 1}$ where $\rho > 0$.
+Then the above proof works similarly, but instead of $\alpha_k$, it will be for $\rho_k \alpha_k$ instead. 
 
 Alternatively, without such an assumption, we can just present the equality relation raw and leave it be so it's 
 
@@ -1118,8 +1119,6 @@ $$
     \frac{\alpha_k(1 - \alpha_k)}{\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
 \end{aligned}
 $$
-
-
 
 ---
 ### **In relations with Nesterov's Estimating Sequence technique**

@@ -1183,6 +1183,7 @@ $$
 \end{aligned}
 $$
 
+We used the fact that $F$ is $\mu$ strongly convex here! 
 Beautiful, therefore we can conclude: 
 
 $$

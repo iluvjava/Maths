@@ -548,7 +548,7 @@
 
 \appendix
 \section{Theorems and claims for accelerated proximal gradient}\label{app:sec:thm-claim-acc-prox-grad}
-    Throughout this section, $F = g + f$ is an additive composite objective function with $g$ convex, $f$ $L$-lipschitz smooth and $\mu \ge0$ strongly convex. 
+    Throughout this section, $F = g + f$ is an additive composite objective function with $g$ convex, $f$ $L$-Lipschitz smooth and $\mu \ge0$ strongly convex. 
     The notations here are 
     \begin{align*}
         \mathcal M^{L^{-1}}(x; y),
@@ -572,7 +572,7 @@
     Let $h: Q \rightarrow \RR$ be a differentiable smooth convex function on a closed convex domain $Q \subseteq \RR^n$.
     Define 
     $$
-        D_h: Q \times \reli Q \rightarrow \RR^n
+        D_h: Q \times \inte Q \rightarrow \RR^n
         := (x, y) \mapsto h(x) - h(y) - \langle \nabla h(y), x - y\rangle. 
     $$
 
@@ -1451,7 +1451,7 @@
             \frac{L - L \alpha_k}{L - \mu} x_k. 
         \end{align*}
         The above is true for all $k\ge 0$, so it's also true for $k + 1$ as well. 
-        Therefore it gives: 
+        Therefore, it gives: 
         {\footnotesize
         \begin{align*}
             v_{k + 1} &= 
@@ -2000,7 +2000,7 @@
 
         
 \section{Proofs for Catalyst Meta Acceleration}
-    In this section, we prove the inexact proximal inequality and give the Nesterov's estimating sequence void of intractable quantities. 
+    In this section, we prove the inexact proximal inequality and give the Nesterov's estimating sequence without intractable quantities. 
     The notation is the same as
     \hyperref[sec:lin-2015]{Section \ref*{sec:lin-2015}}. 
     Recall inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ such that $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}; y_{k - 1}) \le \epsilon_k$; $x_k^* = \mathcal J_{\kappa^{-1}}y_{k - 1}$ to be the exact evaluation. 
@@ -2879,23 +2879,20 @@
             &= 
             \alpha_k x^* + (1 - \alpha_k) x_{k - 1} - \tilde x_k
             \\
-            &\quad 
-            \textcolor{gray}{
-            \begin{aligned}
-                v_{k} &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
-                \\
-                \tilde x_k - x_{k - 1} &= \alpha_k(v_k - x_{k - 1})
-                \\
-                \tilde x_k &= x_{k - 1} + \alpha_k(v_k - x_{k - 1})
-            \end{aligned}
-            }
-            \\
             &= 
             \alpha_k x^* + (1 - \alpha_k) x_{k - 1} - (x_{k - 1} + \alpha_k(v_k - x_{k - 1}))
             \\
             &= \alpha_k x^* - \alpha_k x_{k - 1} - \alpha_k(v_k - x_{k - 1})
             \\
             &= \alpha_k (x^* - v_k). 
+        \end{align*}
+        On the first equality after $x - \tilde x_k$, we substituted $\tilde x_k$ using the definition of the algorithm which is 
+        \begin{align*}
+            v_{k} &= x_{k - 1} + \alpha_k^{-1}(\tilde x_k - x_{k - 1})
+            \\
+            \tilde x_k - x_{k - 1} &= \alpha_k(v_k - x_{k - 1})
+            \\
+            \tilde x_k &= x_{k - 1} + \alpha_k(v_k - x_{k - 1}). 
         \end{align*}
         Using convexity, it transforms the inequality into 
         \begin{align*}
