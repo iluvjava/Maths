@@ -658,7 +658,7 @@ $$
 >     \right). 
 > \end{aligned}
 > $$
-> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$ if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$, producing: 
+> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$<mark style="background: #FFF3A3A6;"> if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$</mark>, producing: 
 > $$
 > \begin{aligned}
 >     y_k &= 
@@ -844,6 +844,31 @@ $$
 And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1}^2$. 
 Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternative $L\alpha_k^2 + \varepsilon_{k + 1} = \gamma_{k + 1}$. 
 
+Alternatively, without such an assumption, we can just present the equality relation raw and leave it be so it's 
+
+$$
+\begin{aligned}
+    y_k &= \left(
+        \frac{\gamma_{k + 1}}{\alpha_k\gamma_k} + 1
+    \right)^{-1}
+    \left(
+        v_k + \frac{\gamma_{k + 1}}{\alpha_k \gamma_k} x_k
+    \right), 
+    \\
+    v_{k + 1} &= 
+    \left(
+        1 + \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k}
+    \right)^{-1}
+    \left(
+        v_k + 
+        \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
+    \right)
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k. 
+\end{aligned}
+$$
+
+Assumption of $L\alpha_k^2 \le (1 - \alpha_k)\gamma_k + \mu \alpha_k =: \gamma_{k + 1}$ remains. 
+Let's call this "Nestrov 2.2.19 Raw Intermediate Form". 
 
 
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
@@ -866,8 +891,8 @@ Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternati
 >     \\
 >     (1 + \xi_k)^{-1}\delta_k &= \frac{1}{L\alpha_k}
 >     \iff L \delta_k = \frac{1 + \xi_k}{\alpha_k}
->     \\
->     L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
+>     % \\
+>     % L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
 > \end{aligned}
 > $$
 > Then we have 
@@ -876,7 +901,24 @@ Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternati
 >   v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}
 >   \tau_k(x_{k + 1} - x_k)= (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
 > $$
-
+> Hence it simplifies to the following similar triangle form. 
+> $$
+> \begin{aligned}
+>     y_k &= 
+>     \left(
+>         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+>     \right), 
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1} \mathcal G_L y_k, 
+>     \\
+>     v_{k + 1} &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
+> \end{aligned}
+> $$
 
 **Proof**
 
@@ -988,6 +1030,7 @@ $$
 With that in order, we can simplify it into the momentum form because: 
 
 $$
+{\small
 \begin{aligned}
     v_{k + 1} &= 
     x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
@@ -1015,6 +1058,7 @@ $$
     \\
     &= x_{k + 1} + \frac{(L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)}{L - \mu}(x_{k + 1} - x_k). 
 \end{aligned}
+}
 $$
 
 Unfortunately, this is still different from what Nesterov did the chapter 2 of his book. 

@@ -228,32 +228,35 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     It's there to make the notations simpler and easier to follow for the proofs that will come later. 
     The algorithm is parameterized by the sequence $y_k, x_k$. 
     We define for all $k \ge 0$ the following quantities: 
-    \begin{align}
-        g_k &\defeq L(y_k - T_L y_k), 
-        \label{eqn:grad-map}
-        \\
-        l_F(x; y_k) &= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
-        \label{eqn:lower-linearization}
-        \\
-        \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
-        \label{eqn:regret}
-        \\
-        R_{k + 1}
-        &\defeq 
-        \frac{1}{2}\left(
-            L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
-        \right)\Vert g_k\Vert^2
-        + 
-        (1 - \alpha_k)
-        \left(
-            \epsilon_k + R_k + 
-            \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
-            \Vert v_k - y_k\Vert^2
-        \right). 
-        \label{eqn:residual}
-    \end{align}
+    \begin{assumption}
+        Given any sequence $(x_k)_{k \ge 0}, (y_k)_{ k\ge 0}$, define $g_k, \epsilon_k, R_k$ such that it recursively it has: 
+        \begin{align}
+            g_k &\defeq L(y_k - T_L y_k), 
+            \label{eqn:grad-map}
+            \\
+            l_F(x; y_k) &= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+            \label{eqn:lower-linearization}
+            \\
+            \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
+            \label{eqn:regret}
+            \\
+            R_{k + 1}
+            &\defeq 
+            \frac{1}{2}\left(
+                L^{-1} - \frac{\alpha_k^2}{\gamma_{k + 1}}
+            \right)\Vert g_k\Vert^2
+            + 
+            (1 - \alpha_k)
+            \left(
+                \epsilon_k + R_k + 
+                \frac{\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}
+                \Vert v_k - y_k\Vert^2
+            \right). 
+            \label{eqn:residual}
+        \end{align}
+    \end{assumption}
 
-    The following algorithm is a weaker form of Algorithm (2.2.7) in Nesterov's Book \cite{nesterov_lectures_2018}. 
+    The following definition is a weaker form of Algorithm (2.2.7) in Nesterov's Book \cite{nesterov_lectures_2018}. 
     \begin{definition}[Weak accelerated proximal gradient algorithm]\label{def:weak-apg}\;\\
         For all $k \ge 0$, given $v_k, x_k, \alpha_k, \gamma_k$, the algorithm generates $y_k, v_{k + 1}, x_{k + 1}, \alpha_{k + 1},\gamma_{k + 1}$ such that: 
         \begin{align*}
@@ -462,6 +465,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \gamma_{k + 1} v_k + \mu \alpha_k(y_k - v_k). 
         \end{align*}
         Focusing on the last two terms by the end of expression (2), we have  
+        {\small
         \begin{align*}
             \frac{\alpha^2_k}{2\gamma_{k + 1}} 
             \Vert \mu(y_k - v_k) - g_k\Vert^2
@@ -479,6 +483,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - \alpha_k \langle v_k - x^*, g_k\rangle. 
         \tag{2.1*}
         \end{align*}
+        }
         Adding the LHS of both equations above together gives: 
         \begin{align*}
             & \quad 
@@ -662,7 +667,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
                 + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
         \end{align*}
-        Taking a page break and continue on (3) it has 
+        Taking a page break and continue on (3*) it has 
         \begin{align*}
             &
             F(x_k) - \alpha_k(\epsilon_k + \langle g_k, x_k - x^*\rangle)
@@ -725,7 +730,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \tag{3.1*}
         \end{align*}
         That was adding (1*) and (2.2*) together, which is the same as adding (1*) and (2*) together. 
-        So that was all equal to (1*) + (2*), therefore we get: 
+        Those all equal to (1*) + (2*), hence:
         {\small 
         \begin{align*}
             & F(x_{k + 1}) + R_{k + 1} + 
@@ -768,7 +773,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         }
         Focusing on the second term, we simplify the multiplier inside: 
-        {\small
+        {\footnotesize
         \begin{align*}
             & F(x_k) - F(x^*) - \epsilon_k - \langle g_k, x_k - x^*\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
             \\

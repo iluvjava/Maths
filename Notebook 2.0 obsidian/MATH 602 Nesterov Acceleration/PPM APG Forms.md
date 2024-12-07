@@ -186,7 +186,7 @@ In here we present how some of the literatures present the method of Nesterov's 
 > Here we faithfully resented it as the way it is in the book.
 > Let $f$ be a $L$ Lipschitz smooth and $\mu\ge 0$ strongly convex function. 
 > Choose $x_0$, $\gamma_0 > 0$, set $v_0 = x_0$, for iteration $k\ge 0$ it: 
-> 1. Computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
+> 1. Computes $\alpha_k \in (0, 1)$ by solving $L\alpha_k^2 \le (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 > 2. Set $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 > 3. Choose $y_k = (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \gamma_{k + 1}x_k)$. Compute $f(y_k)$ and $\nabla f(y_k)$. 
 > 4. Find $x_{k + 1}$ such that $f(x_{k + 1}) \le f(y_k) - (2L)^{-1} \Vert \nabla f(y_k)\Vert^2$. 
@@ -218,6 +218,8 @@ In here we present how some of the literatures present the method of Nesterov's 
 >     \end{aligned}
 > \end{aligned}
 > $$
+
+
 
 #### **Def | Chambolle, Dossal 2015**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L, L$ be given by Assumption Set 3. 

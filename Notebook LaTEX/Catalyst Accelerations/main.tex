@@ -30,11 +30,11 @@
 
 \begin{abstract} 
     \noindent
-    Nesterov's accelerated gradient appeared sparked numerous theoretical and practical advancements in Mathematics programming literatures since its conception back in 1983. 
+    Nesterov's accelerated gradient sparked numerous theoretical and practical advancements in Mathematics programming literatures since its conception back in 1983. 
     The idea behind Nesterov's acceleration is universal for convex objective, and it has concrete extension in the non-convex case. 
-    In this paper we survey the Catalyst Acceleration method which is an modern practical realization of the Accelerated Proximal Point Method proposed by Guler back in 1993. 
+    In this paper we survey the Catalyst Acceleration method which is a modern practical realization of the Accelerated Proximal Point Method proposed by Guler back in 1993. 
     The paper reviews Nesterov's classical analysis of accelerated gradient in the convex case.
-    The paper will describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
+    The paper will also describe key aspects of the theoretical innovations involved to achieve the design of the algorithm in convex, and non-convex case. 
     
 \end{abstract}
 
@@ -56,13 +56,13 @@
     \par
     Guler's accelerated Proximal Point Method (PPM) \cite{guler_new_1992} in 1993 used the technique of Nesterov's estimating sequence to accelerate PPM for convex objectives. 
     Use $(\lambda_k)_{k \ge 0}$ to parameterize the proximal point evaluation to generate $(x_k)_{k\ge 0}$ given any initial guess $x_0$.
-    Guler's prior work \cite{guler_convergence_1991} showed the convergence of PPM method in the convex without acceleration is $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
+    Guler's prior work \cite{guler_convergence_1991} showed the convergence of PPM method in the convex case without acceleration is $\mathcal O\left(1/\sum^{n}_{i = 1}\lambda_i\right)$. 
     His new algorithm with acceleration has a rate of $\mathcal O\left(1/(\sum_{i = 1}^{n} \sqrt{\lambda_i})^2\right)$. 
     An inexact Accelerated PPM method using conditions described in Rockafellar's works in 1976 \cite{rockafellar_monotone_1976} is also discussed in the paper. 
     \par
     It's tempting to conclude that the results has reached the ceiling for extending Nesterov's acceleration. 
     It is correct, but not from a practical point of view. 
-    Let $F: \RR^n \rightarrow\RR$ be our objective function, $\mathcal J_\lambda := (I + \lambda \partial F)^{-1}$ and $\mathcal M^{\lambda}(x; y):= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2$ then the inexact proximal point considers with error $\epsilon_k$ has the following characterizations of inexactness as put forward by Guler \cite{guler_new_1992}: 
+    Let $F: \RR^n \rightarrow\RR$ be our objective function, $\mathcal J_\lambda := (I + \lambda \partial F)^{-1}$ and $\mathcal M^{\lambda}(x; y):= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2$. Then the inexact proximal point considers with error $\epsilon_k$ has the following characterizations of inexactness as put forward by Guler \cite{guler_new_1992}: 
     \begin{align*}
         & \tilde x \approx \mathcal J_\lambda y
         \\
@@ -70,6 +70,7 @@
         \dist(\mathbf 0, \partial\mathcal{M}^{\lambda}(\tilde x; y))
         \le \frac{\epsilon}{\lambda}. 
     \end{align*}
+    $\partial \mathcal M(\cdot; y)$ is the regular subgradient of the model function with respect  to $x$. 
     The difficulty comes from controlling the error $\epsilon$ at each iteration to ensure the overall convergence of accelerated PPM. 
     In the paper $\epsilon_k \rightarrow 0$ at a specific rate. 
     It requires knowledge about exact minimum of the Moreau envelope at each step and the optimal value of the Nesterov's estimating sequence. 
@@ -77,7 +78,7 @@
     \par
     Introduced in Lin et al. \cite{lin_universal_2015,lin_catalyst_2018} is a series of papers on a concrete meta algorithm called Catalyst (It's called 4WD Catalyst for the non-convex extension in works by Paquette, Lin et al. \cite{paquette_catalyst_2018}). 
     The meta algorithm uses other first order algorithms to evaluate inexact proximal point method and then performs accelerated PPM, therefore the umbrella term: ``meta''. 
-    Major innovations include Tracking and controlling the errors made in the inexact PPM using Nesterov's estimating sequence throughout and an algorithm called accelerated MISO-Prox.  
+    Major innovations include tracking and controlling the errors made in the inexact PPM using Nesterov's estimating sequence throughout and an algorithm called accelerated MISO-Prox.  
     Prior to Lin's paper, it was an open question on the conditions required to accelerate incremental method such as stochastic gradient descent can be accelerated. 
 
     \subsection{Contributions}
@@ -91,7 +92,7 @@
         If the readers are interested, consult Gower et al. \cite{gower_variance-reduced_2020} for more information about the usual candidates used to evaluate the inexact proximal point method in practice. 
 
 \section{Preliminaries}\label{sec:preliminaries}
-    Throughout the writing, let the ambient space is $\RR^n$. 
+    Throughout the writing, let the ambient space be $\RR^n$. 
     The optimization problem is
     \begin{align*}
         \min_{x \in \RR^n} F(x). 
@@ -99,7 +100,7 @@
     This section introduces the Nesterov's estimating sequence technique. 
     This technique is fundamental for in Guler's accelerated PPM method and Catalyst meta acceleration in the convex/strongly convex case. 
     Unlike proofs using a Lyapunov argument which requires knowing exactly the algorithm in advance to verify the convergence rate, Nesterov's estimating sequence can produce an algorithm that generates iterates $(x_k)_{k \ge0}$ such that it converges at some rate. 
-
+    \par
     The technique is universal in deriving accelerated algorithm in the convex case. 
     In addition to Catalyst and accelerated PPM, it's used to derive an accelerated mirror descent in Nesterov's book \cite{nesterov_lectures_2018} (6.1.19); an accelerated regularized newton method for convex composite objectives by Geovani N. et al \cite{grapiglia_accelerated_2019} and an accelerated regularized cubic newton by Nesterov \cite{nesterov_accelerating_2008}. 
 
@@ -173,7 +174,7 @@
         \mathcal M^{L^{-1}}(x; y) 
         &:= g(x) + f(y) 
         + 
-        \left\langle \nabla f(x), x - y\right\rangle 
+        \left\langle \nabla f(y), x - y\right\rangle 
         + 
         \frac{L}{2}\Vert x - y\Vert^2, 
         \\
@@ -183,9 +184,9 @@
         \mathcal G_{L^{-1}}(y)
         &:= L\left(I - \widetilde{\mathcal J}_{L^{-1}}\right)y. 
     \end{align*}
-
-    In the literature, $\mathcal G_{L^{-1}}$ is commonly known as the gradient mapping. 
-    The definition follows, we define the Nesterov's estimating sequence used to derive the accelerated proximal gradient method. 
+    \par
+    $\mathcal G_{L^{-1}}$ is commonly known as the gradient mapping in the literature. 
+    We define the Nesterov's estimating sequence used to derive the accelerated proximal gradient method next. 
     \begin{definition}[Accelerated proximal gradient estimating sequence]
     \label{def:nes-est-seq-pg}\;\\
         Define $(\phi_k)_{k \ge0}$ be the Nesterov's estimating sequence recursively given by: 
@@ -215,7 +216,7 @@
         One of the possible base case can be $x_0 = y_0$ and any $\alpha_0 \in (0, 1)$. 
     \end{definition}
     \begin{observation}
-        Fix any $y$, for all $x\in \RR^n$, $F(x) \ge l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$ is the proximal gradient inequality. 
+        Fix any $y$. For all $x\in \RR^n$, $F(x) \ge l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2$ is the proximal gradient inequality. 
         If $f \equiv 0$ then $\widetilde{\mathcal J}_{L^{-1}}y_k$ becomes resolvent $(I + L^{-1}\partial F)^{-1}$, which makes $x_k$ being an exact evaluation of PPM: 
         \begin{align*}
             l_F(x; y_k) 
@@ -286,7 +287,7 @@
 \section{Guler's estimating sequence}
     This section introduces the setup of the estimating sequence in Guler's accelerated Proximal Point method \cite{guler_new_1992}. 
     Guler showed the technique can accelerate proximal point method in the convex settings. 
-    Throughout the section, assume that $F:\RR^n \rightarrow \overline \RR$ is a convex function. 
+    Throughout the section, we assume that $F:\RR^n \rightarrow \overline \RR$ is a convex function. 
     Define:
     \begin{align*}
         \mathcal M^{\lambda} (x; y) &:= F(x) + \frac{1}{2\lambda}\Vert x - y\Vert^2, 
@@ -327,7 +328,7 @@
     \end{definition}
     \begin{remark}
         The auxiliary sequences $(A_k, v_k)$ parameterizes a canonical representation of the estimating sequence $(\phi_k)_{k \ge0}$. 
-        Guler didn't simplify his results compare to what Nesterov did in his book. 
+        Guler didn't simplify comparing to Nesterov's result which is in his book. 
         For a detailed proof of the estimating sequence with comparison to the accelerated proximal gradient method, see 
         \hyperref[sec:app:exct-acc-ppm]{Appendix \ref*{sec:app:exct-acc-ppm}}. 
         We note that the smoothness conditions here are not involved in the definition of Guler's estimating sequence, or the function $F$. 
@@ -343,7 +344,6 @@
         \Vert x_{k + 1} - \mathcal J_{k}y_k\Vert 
         &\le \epsilon_k. 
     \end{align*}
-    Condition A' also characterizes the property of $(\epsilon_k)_{k\ge 0}$ so inexact PPM converges. 
     Guler strengthens it in his context and proved the following: 
     \begin{theorem}[Guler's inexact proximal point error bound]\label{thm:guler-inexact-ppm-bound}
         \;\\
@@ -357,8 +357,6 @@
         \end{align*}
     \end{theorem}
     \begin{remark}
-        The inequalities are from PL-condition and strong convexity. 
-        They are now standard results in convex optimizations. 
         For a proof of the theorem, see 
         \hyperref[app:sec:inxt-acc-ppm]{Appendix \ref*{app:sec:inxt-acc-ppm}}. 
     \end{remark}
@@ -405,11 +403,11 @@
         \end{align*}
         Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa$ and $\alpha_0$. 
         Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
-        Initialize $x_0 = y_0$, then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
+        Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
         \begin{align*}
-            & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k
+            & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k,
             \\
-            & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa)) 
+            & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa)),
             \\
             & 
             y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
@@ -418,7 +416,7 @@
     \begin{remark}
         The algorithm is similarity to
         \hyperref[def:nes-est-seq-pg]{Definition \ref*{def:nes-est-seq-pg}}. 
-        In contrast, it has an inexact proximal point step controlled by $\epsilon_k$, and the Lipschitz constant $L$ is absent instead it has $\kappa + \mu$. 
+        In contrast, it has an inexact proximal point step controlled by $\epsilon_k$, and the Lipschitz constant $L$ is absent, instead it has $\kappa + \mu$. 
         Evaluating $x_k \approx \mathcal J_{\kappa^{-1}}y_{k - 1}$ is also possible because the function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ is strongly convex, hence its optimality gap can be bounded via trackable quantity $\partial \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1})$. 
         \par
         Controlling the error sequence $\epsilon_k$ however is a whole new business. 
@@ -436,13 +434,13 @@
     For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
     One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015} which is stated below. 
-    The lemma allows the analysis Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
+    The lemma allows the analysis of Nesterov's estimating sequence to be carried through without using intractable quantities: $\mathcal M^{\kappa^{-1}}(\mathcal J_{k^{-1}}y_{k - 1}, y_{k - 1}), \mathcal J_{\kappa^{-1}}y_{k - 1}$. 
 
     \begin{lemma}[Lin's inexact proximal inequality]\label{lemma:lin-ixct-prox-ineq}
-        Let $F$ be a strongly convex with $\mu\ge 0$. 
+        Let $F$ be a strongly convex function with $\mu\ge 0$. 
         Let $\kappa$ be fixed. 
         If $x_k$ is an inexact proximal point evaluation of $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$ such that there exists $\epsilon_k$ where $\mathcal M^{\kappa^{-1}}(x_k; y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}} y_{k - 1}, y_{k - 1}) \le \epsilon_k$. 
-        Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$, then it has for all $x$: 
+        Denote $x_k^* = \mathcal J_{\kappa^{-1}} y_{k - 1}$. Then it has for all $x$: 
         \begin{align*}
             F(x) &\ge 
             F(x_k) + \kappa \langle y_{k - 1} - x_k, x - x_k\rangle
@@ -454,13 +452,13 @@
     \begin{remark}
         For a detailed proof of the lemma, see 
         \hyperref[app:sec:inxct-pg-ineq]{Appendix \ref*{app:sec:inxct-pg-ineq}}. 
-        We note that it only uses the strong convexity of model function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$ (It's actually the quadratic growth condition around minimizer $x_k$ that is used in the proof), smoothness assumption of $F$ is not involved in here. 
+        We note that it only uses the strong convexity of model function $\mathcal M^{\kappa^{-1}}(\cdot, y_{k - 1})$, and the smoothness assumption of $F$ is not involved in here. 
     \end{remark}
     Using this inexact proximal inequality, we showed the proof of Lemma A.8 in Lin's paper \cite{lin_universal_2015} in 
     \hyperref[app:sec:appx-nes-est-seq]{Appendix \ref*{app:sec:appx-nes-est-seq}}
     and 
     \hyperref[app:sec:appx-nes-seq-errs-ctrl]{Appendix \ref*{app:sec:appx-nes-seq-errs-ctrl}}. 
-    These result construct the Nesterov's estimating sequence by rolling up the error in the recurrence while avoiding intractable quantities appearing in the algorithm. 
+    These results construct the Nesterov's estimating sequence by rolling up the error in the recurrence while avoiding intractable quantities appearing in the algorithm. 
     
 
 
@@ -471,7 +469,7 @@
     The new algorithm handles function with unknown weak convexity constant $\rho$ using a process called Auto Adapt subroutine. 
     They only claimed convergence to stationarity for a weakly convex objective. 
     \par 
-    Fix $\kappa$ we use the following notations: 
+    Fix $\kappa$. We use the following notations: 
     \begin{align*}
        & \mathcal M (x; y) := F(x) + \frac{\kappa}{2}\Vert x - y\Vert^2 
        \\
@@ -525,10 +523,10 @@
             f(\textcolor{violet}{x_k}) = \min(f(\textcolor{blue}{\bar x_k}), f(\textcolor{red}{\tilde x_k})). 
         \end{align*}
     \end{definition}
-    
+    For theorem follows, we note that a function is called $\rho$-weakly convex if and only if there exists $\rho \in \RR$ such that $f + \frac{\rho}{2}\Vert \cdot\Vert^2$ is a convex function. 
     \begin{theorem}[Basic 4WD Catalyst Convergence]\label{thm:basic-4wd-catalyst}
         Let $(x_k, v_k, y_k)$ be generated by the basic Catalyst algorithm. 
-        If $F$ is $\kappa$ weakly convex and bounded below, then $x_k$ converges to stationary where
+        If $F$ is weakly convex and bounded below, then $x_k$ converges to stationary where
         \begin{align*}
             \min_{j = 1, \cdots, N} \dist^2(\mathbf 0, \partial F(\bar x_j))
             \le \frac{8 \kappa}{N}(F(x_0) - F^*). 
@@ -541,7 +539,8 @@
         \hyperref[app:sec:ncnvx-catalyst]{Section \ref*{app:sec:ncnvx-catalyst}} for a proof of this claim. 
     \end{remark}
 
-
+\section{Acknowledgement}
+    Thanks for Professor Shawn Wang's patiently reading through the manuscripts and giving constructive feedback. 
 
 \bibliographystyle{siam}
 \bibliography{references/590refs.bib}
@@ -702,10 +701,10 @@
         Compare the same theorem in older literatures, this proof doesn't use the subgradient inequality, making it appealing for generalizations outside convexity. 
     \end{remark}
     
-    \begin{theorem}[Cannonical form of proximal gradient estimating sequence]\label{thm:canon-prox-grad-est-seq}
+    \begin{theorem}[Canonical form of proximal gradient estimating sequence]\label{thm:canon-prox-grad-est-seq}
         \; \\
-        Fix any $x_0 \in \RR^n$ to, 
-        define $\phi_k:\RR^n \rightarrow\RR$ as a sequence of functions such that for all $k\ge 0$ it recursively satisfies the following conditions 
+        Fix any $x_0 \in \RR^n$. 
+        Define $\phi_k:\RR^n \rightarrow\RR$ as a sequence of functions such that for all $k\ge 0$ it recursively satisfies the following conditions 
         \begin{align*}
             & g_k := L(y_k - \widetilde{\mathcal J}_{L^{-1}} y_k),
             \\
@@ -771,7 +770,7 @@
             \left(
                 l_F(x; y_k) + \mu/2\Vert x - y_k\Vert^2
             \right)
-            \rightarrow \textcolor{red}{(\text{eqn1})}; 
+            \tag{\textcolor{red}{\text{eqn1}}}; 
             \\
             \nabla \phi_{k + 1}(x) 
             &= 
@@ -810,8 +809,7 @@
                 + 
                 \frac{1}{2L} \Vert g_k\Vert^2
             \right)
-            \rightarrow 
-            \textcolor{red}{(\text{eqn2})}. 
+            \tag{\textcolor{red}{\text{eqn2}}}. 
         \end{align*}
         Next, we simplify $\Vert v_{k + 1} - y_k\Vert^2$ to get rid of $v_{k + 1}$. 
         \begin{align*}
@@ -852,7 +850,7 @@
                 &= - \gamma_{k + 1} + \mu \alpha_k. 
         \end{align*}
         Therefore, it has: 
-        {\small
+        {\footnotesize
         \begin{align*}
             \Vert v_{k + 1} - y_k\Vert^2 
             &= 
@@ -863,6 +861,7 @@
                 )
             \Vert^2
             \\
+            \iff 
             \frac{- \gamma_{k + 1}}{2}
             \Vert v_{k + 1} - y_k\Vert^2
             &= 
@@ -970,9 +969,9 @@
     \begin{theorem}[Verifying the conditions of implicit descent]\;\\
         Let estimating sequence $\phi_k$ and auxiliary sequence $y_k, v_k,\gamma_k, \alpha_k$  be given by 
         \hyperref[thm:canon-prox-grad-est-seq]{Theorem \ref*{thm:canon-prox-grad-est-seq}}. 
-        If for all $k\ge 0$ they verify: 
+        If for all $k\ge 0$: 
         \begin{align*}
-            \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\ge 0, 
+            \frac{1}{2L} - \frac{\alpha_k^2}{2 \gamma_{k + 1}} &\ge 0, \text{ and }
             \\
             \frac{\alpha_k \gamma_k }{\gamma_{k + 1}} 
             (v_k - y_k) + (\widetilde {\mathcal J}_{L^{-1}} y_k - y_k) &= \mathbf 0, 
@@ -1007,7 +1006,6 @@
                         \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
                     \right)
                 \\
-                \implies 
                 &\ge 
                 (1 - \alpha_k)F(x_k)
                 + 
@@ -1022,7 +1020,6 @@
                         \frac{\mu}{2}\Vert v_k - y_k\Vert^2 + \langle v_k - y_k, g_k\rangle
                     \right)
                 \\
-                \implies
                 &\ge 
                 (1 - \alpha_k)F(x_k)
                 + 
@@ -1101,7 +1098,7 @@
             \frac{\alpha_k\gamma_k}{\gamma_{k + 1}}(v_k - y_k) + (x_k - y_k) 
             &= \mathbf 0. 
         \end{align*}
-        Before finishing, re-arranging should give use the equivalent representations 
+        Re-arranging gives the equivalent representation: 
         \begin{align*}
             -(\alpha_k \gamma_k\alpha_{k + 1}^{-1} + 1)y_k
             &= 
@@ -1157,7 +1154,8 @@
     \begin{theorem}[Intermediate form of accelerated proximal gradient]\label{app:theorem:acc-prox-grad-intermediate}\; \\
         Let iterates $(x_k, y_k, v_k)$ be given by the raw form of Nesterov's accelerated proximal gradient which is 
         \hyperref[app:def:acc-prox-grad-raw-form]{Definition \ref*{app:def:acc-prox-grad-raw-form}}. 
-        Assume for all $k \ge 0$ it has $L\alpha_k^2 = \gamma_{k + 1}$, then Definition \ref*{app:def:acc-prox-grad-raw-form} is algebraically equivalent to the following form which doesn't have $\gamma_k$: 
+        Assume for all $k \ge 0$ it has $L\alpha_k^2 = \gamma_{k + 1}$ 
+        Then Definition \ref*{app:def:acc-prox-grad-raw-form} is algebraically equivalent to the following form which doesn't have $\gamma_k$: 
         \begin{align*}
             y_k &= 
             \left(
@@ -1166,7 +1164,7 @@
             \left(
                 v_k + 
                 \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
-            \right)
+            \right),
             \\
             x_{k + 1} &= 
             y_k - L^{-1}  g_k
@@ -1178,7 +1176,7 @@
             \left(
                 v_k + 
                 \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-            \right) - \frac{1}{L\alpha_{k}} g_k
+            \right) - \frac{1}{L\alpha_{k}} g_k,
             \\
             0 &= \alpha_k^2 - \left(\mu/L - \alpha_{k -1}^2\right) \alpha_k - \alpha_{k - 1}^2. 
         \end{align*}
@@ -1311,7 +1309,7 @@
 
     \begin{theorem}[Nesterov's accelerated proximal gradient momentum form]
         \; \\
-        Let the sequence $\alpha_k$, and vectors $y_k, x_k, v_k$ be given by the intermediate form of the Nesterov's accelerated proximal gradient, then it can be simplified to void of $v_k$. 
+        Let the sequence $\alpha_k$, and vectors $y_k, x_k, v_k$ be given by the intermediate form of the Nesterov's accelerated proximal gradient without using $v_k$. 
         The algorithm generates $y_k, x_k, \alpha_k$ such that it satisfies for all $k \ge 0$: 
         \begin{align*}
             & \text{find } \alpha_{k + 1} \text{ such that: }L \alpha_{k + 1}^2 = (1 - \alpha_{k + 1})L \alpha_{k - 1} + \mu \alpha_{k + 1}, 
@@ -1452,7 +1450,8 @@
             + 
             \frac{L - L \alpha_k}{L - \mu} x_k. 
         \end{align*}
-        Increment $k$ into $k + 1$ then 
+        The above is true for all $k\ge 0$, so it's also true for $k + 1$ as well. 
+        Therefore it gives: 
         {\footnotesize
         \begin{align*}
             v_{k + 1} &= 

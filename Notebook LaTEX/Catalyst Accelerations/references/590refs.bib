@@ -49,7 +49,7 @@
 }
 
 @article{guler_convergence_1991,
-	title = {On the {Convergence} of the {Proximal} {Point} {Algorithm} for {Convex} {Minimization}},
+	title = {On the convergence of the proximal point algorithm for convex minimization},
 	volume = {29},
 	issn = {03630129},
 	url = {https://www.proquest.com/docview/925962166/abstract/A60B4BA7798A45D1PQ/1},
@@ -65,19 +65,6 @@
 	keywords = {Algorithms, Convex analysis, Hilbert space, Mathematics},
 	pages = {17},
 	file = {Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:/Users/hongdali/Zotero/storage/9AWZSLK4/Guler - 1991 - On the Convergence of the Proximal Point Algorithm.pdf:application/pdf},
-}
-
-@inproceedings{lin_universal_2015,
-	title = {A universal catalyst for first-order optimization},
-	abstract = {We introduce a generic scheme for accelerating first-order optimization methods in the sense of Nesterov, which builds upon a new analysis of the accelerated proximal point algorithm. Our approach consists of minimizing a convex objective by approximately solving a sequence of well-chosen auxiliary problems, leading to faster convergence. This strategy applies to a large class of algorithms, including gradient descent, block coordinate descent, SAG, SAGA, SDCA, SVRG, Finito/MISO, and their proximal variants. For all of these methods, we provide acceleration and explicit support for non-strongly convex objectives. In addition to theoretical speed-up, we also show that acceleration is useful in practice, especially for ill conditioned problems where we measure significant improvements.},
-	language = {en},
-	urldate = {2024-05-31},
-	publisher = {MIT Press},
-	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
-	month = dec,
-	year = {2015},
-	pages = {33--84},
-	file = {A Universal Catalyst for First-Order Optimization HAL open science:/Users/hongdali/Zotero/storage/8ILQU6TZ/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf;A Universal Catalyst for First-Order Optimization NISP:/Users/hongdali/Zotero/storage/DAYMXD2L/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf},
 }
 
 @article{villa_accelerated_2013,
@@ -113,23 +100,9 @@
 	author = {Nesterov, Yu.},
 	month = aug,
 	year = {2013},
-	keywords = {68Q25, 90C25, 90C47, Black-box model, Complexity theory, Convex Optimization, l1l\_1-Regularization, Local optimization, Nonsmooth optimization, Optimal methods, Structural optimization},
+	keywords = {90C25, 68Q25, 90C47, Complexity theory, Optimal methods, Structural optimization, Black-box model, Convex Optimization, l1l\_1-Regularization, Local optimization, Nonsmooth optimization},
 	pages = {125--161},
 	file = {Nesterov - 2013 - Gradient methods for minimizing composite functions:/Users/hongdali/Zotero/storage/6LKMMPQJ/Nesterov - 2013 - Gradient methods for minimizing composite functions.pdf:application/pdf},
-}
-
-@inproceedings{lin_catalyst_2018,
-	title = {Catalyst acceleration for first-order convex optimization: from theory to practice},
-	volume = {18},
-	shorttitle = {Catalyst {Acceleration} for {First}-order {Convex} {Optimization}},
-	url = {http://jmlr.org/papers/v18/17-748.html},
-	abstract = {We introduce a generic scheme for accelerating gradient-based optimization methods in the sense of Nesterov. The approach, called Catalyst, builds upon the inexact accelerated proximal point algorithm for minimizing a convex objective function, and consists of approximately solving a sequence of well-chosen auxiliary problems, leading to faster convergence. One of the keys to achieve acceleration in theory and in practice is to solve these sub-problems with appropriate accuracy by using the right stopping criterion and the right warm-start strategy. We give practical guidelines to use Catalyst and present a comprehensive analysis of its global complexity. We show that Catalyst applies to a large class of algorithms, including gradient descent, block coordinate descent, incremental algorithms such as SAG, SAGA, SDCA, SVRG, MISO/Finito, and their proximal variants. For all of these methods, we establish faster rates using the Catalyst acceleration, for strongly convex and non-strongly convex objectives. We conclude with extensive experiments showing that acceleration is useful in practice, especially for ill-conditioned problems.},
-	urldate = {2024-09-24},
-	booktitle = {Journal of {Machine} {Learning} {Research}},
-	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
-	year = {2018},
-	pages = {1--54},
-	file = {Lin et al. - 2018 - Catalyst Acceleration for First-order Convex Optimization from Theory to Practice:/Users/hongdali/Zotero/storage/M5UYPQIT/Lin et al. - 2018 - Catalyst Acceleration for First-order Convex Optimization from Theory to Practice.pdf:application/pdf},
 }
 
 @inproceedings{paquette_catalyst_2018,
@@ -263,7 +236,7 @@
 	author = {Nesterov, Yu.},
 	month = mar,
 	year = {2008},
-	keywords = {49M15, 49M37, 58C15, 90C25, 90C30, Condition number, Convex optimization, Cubic regularization, Global complexity bounds, Newton’s method, Non-degenerate problems, Unconstrained minimization, Worst-case complexity},
+	keywords = {90C30, 90C25, 49M37, 49M15, Convex optimization, 58C15, Condition number, Cubic regularization, Global complexity bounds, Newton’s method, Non-degenerate problems, Unconstrained minimization, Worst-case complexity},
 	pages = {159--181},
 	file = {Nesterov - 2008 - Accelerating the cubic regularization of Newton’s method on convex problems.pdf:/Users/hongdali/Zotero/storage/GWZSARLR/Nesterov - 2008 - Accelerating the cubic regularization of Newton’s method on convex problems.pdf:application/pdf},
 }
@@ -300,5 +273,29 @@
 	year = {2020},
 	keywords = {Optimization, optimization, Machine learning, Computational modeling, Data models, Logistics, Stochastic processes, Training data, variance reduction},
 	pages = {1968--1983},
-	file = {Gower et al. - 2020 - Variance-reduced methods for machine learning.pdf:/Users/hongdali/Zotero/storage/V8RBKZFC/Gower et al. - 2020 - Variance-reduced methods for machine learning.pdf:application/pdf},
+	file = {Full Text PDF:/Users/hongdali/Zotero/storage/V8RBKZFC/Variance-reduced methods for machine learning.pdf:application/pdf},
+}
+
+@article{lin_catalyst_2018,
+	title = {Catalyst acceleration for first-order convex optimization: from theory to practice},
+	volume = {18},
+	url = {http://jmlr.org/papers/v18/17-748.html},
+	number = {212},
+	journal = {Journal of Machine Learning Research},
+	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
+	year = {2018},
+	pages = {1--54},
+	file = {Catalyst acceleration for first-order convex optimization from theory to practice:/Users/hongdali/Zotero/storage/M5UYPQIT/Catalyst acceleration for first-order convex optimization from theory to practice.pdf:application/pdf},
+}
+
+@inproceedings{lin_universal_2015,
+	title = {A universal catalyst for first-order optimization},
+	volume = {28},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2015/file/c164bbc9d6c72a52c599bbb43d8db8e1-Paper.pdf},
+	booktitle = {Procedings of {Advances} in {Neural} {Information} {Processing} {Systems}},
+	publisher = {Curran Associates, Inc.},
+	author = {Lin, Hongzhou and Mairal, Julien and Harchaoui, Zaid},
+	editor = {Cortes, C. and Lawrence, N. and Lee, D. and Sugiyama, M. and Garnett, R.},
+	year = {2015},
+	file = {A Universal Catalyst for First-Order Optimization HAL open science:/Users/hongdali/Zotero/storage/8ILQU6TZ/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf;A Universal Catalyst for First-Order Optimization NISP:/Users/hongdali/Zotero/storage/DAYMXD2L/Lin et al. - 2015 - A Universal Catalyst for First-Order Optimization.pdf:application/pdf},
 }

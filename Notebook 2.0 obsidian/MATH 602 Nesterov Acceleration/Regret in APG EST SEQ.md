@@ -764,7 +764,7 @@ $$
 \end{aligned}\tag{1}
 $$
 
-We note that: 
+Using $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu \alpha_k$, it gives: 
 
 $$
 \begin{aligned}
@@ -1243,6 +1243,9 @@ $$
 On the second equality of the second $\iff$ we just substituted $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 
 
+**Remarks**
+
+(Q1), (Q2) implies that all $y_k, v_k, x_k$ are collinear. 
 
 ---
 ### **Analyzing the Lyapunov recurrences**
