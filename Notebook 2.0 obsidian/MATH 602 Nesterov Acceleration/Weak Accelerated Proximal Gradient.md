@@ -1,6 +1,7 @@
 - [Regret in APG EST SEQ](Regret%20in%20APG%20EST%20SEQ.md)
 - [PPM APG Forms](PPM%20APG%20Forms.md)
 
+
 ---
 ### **Intro**
 
@@ -167,8 +168,8 @@ $\epsilon_k \ge 0$ always because we assumed $F$ is convex.
 
 **Proof**
 
-In the derivation below, we showed that (1*) + (2*) = (3*) using the equalities that define the algorithm only. 
-(3*), (3.1*), (3.2*) are all equality expanding on the RHS of (3*). 
+In the derivation below, we showed that (1\*) + (2\*) = (3\*) using the equalities that define the algorithm only. 
+(3\*), (3.1\*), (3.2\*) are all equality expanding on the RHS of (3\*). 
 
 Start by considering the first and the third term of the LHS of the inequality that we want to prove. 
 
@@ -279,7 +280,7 @@ $$
 \end{aligned}
 $$
 
-Focusing on the last two terms by the end of expression (2*), we have  
+Focusing on the last two terms by the end of expression (2\*), we have  
 
 $$
 \begin{aligned}
@@ -395,7 +396,7 @@ $$
 \end{aligned}\tag{Q3}
 $$
 
-Adding (2.2*) to (1*) gives: 
+Adding (2.2\*) to (1\*) gives: 
 
 $$
 \begin{aligned}
@@ -499,7 +500,7 @@ $$
 
 On the first equality, coefficients of $\Vert g_k\Vert^2$ cancels out to zero and the inner product containing $g_k$ are grouped. 
 On the second to the third inequality, we applied (Q3) derived earlier to simplify the inner product term. 
-The last equalities show re-arranged terms. 
+The last equalities re-arranged terms. 
 Taking a page break, continuing on (3*) we have
 
 $$
@@ -583,8 +584,8 @@ $$
 \end{aligned}
 $$
 
-(3.1*) was adding (1*) and (2.2*) together, which is the same as adding (1*) and (2*) together. 
-So that was all equal to (1*) + (2*) and it says: 
+(3.1\*) was adding (1\*) and (2.2\*) together, which is the same as adding (1\*) and (2\*) together. 
+So that was all equal to (1\*) + (2\*) and it says: 
 
 $$
 \begin{aligned}
@@ -659,6 +660,36 @@ $$
     \right). 
 \end{aligned}
 $$
+
+**Remarks**
+
+The assumption that made the inequality worked is 
+
+$$
+\begin{aligned}
+   F(T_L y_k) - F(x^*) + \langle g_k, x^* - y_k\rangle + \frac{\mu}{2}\Vert y_k - x^*\Vert^2
+    + \frac{1}{2L}\Vert g_k\Vert^2 \le 0. 
+\end{aligned}
+$$
+
+This is strictly stronger than strong convexity and the value of $\mu$ has room to be relax. 
+More specifically, this inequality works for any $\mu$ such that 
+
+$$
+\begin{aligned}
+    \frac{\mu}{2}\Vert y_k - x^*\Vert^2 \le D_f(x^*, y_k). 
+\end{aligned}
+$$
+Therefore, that $\mu$ can be larger than the true strong convexity constant. 
+Let's explore another exploit that is occuring at this line. 
+Notice that the foundamental proximal gradient inequality is true for all $L$ that is larger than the true global Lipschitz modulus. 
+This observations allows us to use different constant $L$, for the gradient mapping that produces $v_{k + 1}$, and $x_{k + 1}$ the proximal gradient step. 
+
+
+
+
+
+
 
 #### **Claim | Successful decrease**
 > Let $(v_i, x_i, \alpha_i)_{k \ge i \ge 0}$ be produced by the algorithm. 

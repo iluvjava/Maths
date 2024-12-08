@@ -436,3 +436,7 @@ $$
 \end{aligned}
 $$
 
+
+#### **Claim | The Fundamental proximal gradient inequality relaxed**
+
+

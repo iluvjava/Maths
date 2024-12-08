@@ -10,7 +10,6 @@ Now we give a high level summary of the propositions and how different form of a
 
 This is the most relevant form discussion in this file: 
 
-
 #### **Def | Generic SC APG**
 > Let $h = f + g, \mathcal G_L, \mathcal T_L$ be given by Assumption Set 3. 
 > Define an algorithm satisfying the following conditions for its iterates $(w_t, x_{t + 1}, z_{t + 1}, y_{t + 1})$. 
@@ -736,7 +735,7 @@ $$
     v_{k + 1} &= 
     \gamma_{k + 1}^{-1}
     ((1 - \alpha_k)\gamma_k v_k + \mu\alpha_k y_k)
-    - \alpha_k\gamma_{k + 1}^{-1}\mathcal L y_k
+    - \alpha_k\gamma_{k + 1}^{-1}\mathcal G_L y_k
     \\
     &= 
     ((1 - \alpha_k)\gamma_k + \alpha_k \mu)^{-1}
