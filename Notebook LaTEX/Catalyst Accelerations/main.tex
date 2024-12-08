@@ -374,13 +374,7 @@
 
 
 \section{Lin's estimating sequence}\label{sec:lin-2015}
-    The section introduces the Nesterov's estimating sequence in Lin 2015 \cite{lin_universal_2015}. 
-    We warn the readers about the followings: 
-    \begin{enumerate}
-        \item The proofs in HongZhou Lin's original paper of Universal Catalyst is depressingly long and complicated. It is a result of using the constructive approach of Nesterov's estimating sequence. 
-        \item Controlling the errors of inexact proximal point evaluations is context specific. Lin hinted at ways to track the errors such as using duality and non-negativity assumption of the objective. He illustrated the use of the meta acceleration on their own method called: ``Accelerated MISO-Prox", in general there is not a universal solution. 
-        \item We will provide proofs to clarify some of their proofs and compare with existing proofs and drawing references in the literatures in the appendix. 
-    \end{enumerate}
+    The section introduces the Nesterov's estimating sequence in Lin 2015 \cite{lin_universal_2015}.
     Let's assume $F$ is a $\mu \ge 0$ strongly convex function. 
     Throughout this section we make the following notations
     \begin{align*}
@@ -388,7 +382,8 @@
         \\
         \mathcal J_{\kappa^{-1}} y &:= \argmin_x \mathcal M^{\kappa^{-1}} (x, y). 
     \end{align*}
-    Their algorithm is almost exactly the same as Nesterov's 2.2.20 \cite{nesterov_lectures_2018} which we stated in the definition below: 
+    The definition below states Lin's accelerated inexact proximal point method. 
+    Observe that it's similar to Nesterov's 2.2.20 \cite{nesterov_lectures_2018}. 
     \begin{definition}[Lin's accelerated proximal point method]
         Define the estimating sequence $(\phi_k)_{k \ge0}$ recursively by: 
         \begin{align*}
@@ -430,7 +425,7 @@
         Therefore, controlling $\epsilon_k$ is still elusive in general in a practical context. 
         To see how the error is controlled for the inexact proximal point evaluation, we refer the readers to Lemma B.1 in Lin's 2015 paper \cite{lin_universal_2015}. 
     \end{remark}
-
+    \par
     For theoretical interests, there is a major difference between Lin's approach and Guler's approach. 
     Lin didn't formulate any of the intractable quantities in the definitions for his Nesterov's estimating sequence $\phi_k$. 
     One major innovation is Lemma A.7 in Lin's 2015 paper \cite{lin_universal_2015} which is stated below. 

@@ -751,7 +751,7 @@ $$
     F(x_{k + 1}) + R_{k + 1}
     &= 
     F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
-    - \frac{\alpha_k^2}{\gamma_{k + 1}}\Vert g_k\Vert^2
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
     \\
     &\quad 
         + 
@@ -960,7 +960,7 @@ $$
 \begin{aligned}
     &
     F(x_k) - \epsilon_k - \langle  g_k, x_k - y_k\rangle
-    - \frac{\alpha_k^2}{\gamma_{k + 1}}\Vert g_k\Vert^2
+    - \frac{\alpha_k^2}{2\gamma_{k + 1}}\Vert g_k\Vert^2
     \\
     &\quad 
         + (1 - \alpha_k)
@@ -1047,9 +1047,6 @@ $$
     \\&\quad 
         + \frac{(1 - \alpha_k)\mu\alpha_k\gamma_k}{2\gamma_{k + 1}}\Vert v_k - y_k\Vert^2
         + \frac{\mu \alpha_k}{2}\Vert v_k - x^*\Vert^2
-        + (1 - \alpha_k)\left(
-            R_k + \frac{\gamma_k}{2}\Vert v_k - x^*\Vert^2
-        \right)
     \\&\quad 
         + \frac{\alpha_k^2 \mu^2}{2\gamma_{k + 1}}\Vert y_k - v_k\Vert^2
         + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle. 
