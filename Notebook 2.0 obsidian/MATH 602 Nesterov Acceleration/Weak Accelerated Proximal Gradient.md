@@ -1091,7 +1091,7 @@ $$
 $$
 
 Going from the left to the right of the second equality, we substitute $\hat \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \mu\alpha_k$. 
-Going from the left to right of the second equality, we made the substitution $\gamma_{k + 1} = L \alpha_k^2$, and $\gamma_k = \rho_{k - 1}L \alpha_{k - 1}^2$. 
+Going from the left to right of the second last equality, we made the substitution $\hat \gamma_{k + 1} = L \alpha_k^2$, and $\gamma_k = \rho_{k - 1}L \alpha_{k - 1}^2$. 
 To arrive at the last equality, we considered substituting the denominator by the definition for $\hat\gamma_{k + 1}$. 
 
 $$
@@ -1186,6 +1186,7 @@ Without repeating, see [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md)
 > \end{aligned}
 > $$
 
+See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for the proof. 
 
 ---
 ### **Examples of WAPG methods in the literatures**

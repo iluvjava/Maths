@@ -1024,13 +1024,13 @@ $$
     &= 
     \frac{L\alpha_k - \mu}{L - \mu} v_k
     + 
-    \frac{L - L \alpha_k}{L - \mu} x_k
+    \frac{L - L \alpha_k}{L - \mu} x_k,
     \\
-    x_{k + 1} &= y_t - L^{-1}\mathcal G_L(y_k)
+    x_{k + 1} &= y_t - L^{-1}\mathcal G_L(y_k),
     \\
     v_{k + 1} 
     &= 
-    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
+    x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k),
     \\
     0 &= 
     L \alpha_k^2 = (1 - \alpha_k)L\alpha_{k - 1}^2 + \alpha_k \mu. 
@@ -1113,7 +1113,7 @@ $$
     &= 
     L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
         (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
-    ) - \mu\alpha_{k + 1}
+    ) + \mu\alpha_{k + 1}
     \\
     &= 
     L\alpha_k^2 - \mu \alpha_k^2. 

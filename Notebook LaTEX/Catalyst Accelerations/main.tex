@@ -1334,7 +1334,7 @@
             \\
             L\alpha_k^2 &= (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu\alpha_k. 
         \end{align*}
-        Next, we show that if $L\delta_k = 1 + \xi_k + \tau_k$ then $v_{k + 1} - x_{k + 1} = (1 + \xi_t)^{-1}\tau_t(x_{k + 1} - x_k)$. 
+        Next, we show that if $L\delta_k = 1 + \xi_k + \tau_k$ then $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}\tau_t(x_{k + 1} - x_k)$. 
         \begin{align*}
             v_{k + 1} &= (1 + \xi_k)^{-1}(v_k + \xi_k y_k) - (1 + \xi_k)^{-1}\delta_k g_k
             \\
@@ -1510,7 +1510,7 @@
             &= 
             L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
                 (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
-            ) - \mu\alpha_{k + 1}
+            ) + \mu\alpha_{k + 1}
             \\
             &= 
             L\alpha_k^2 - \mu \alpha_k^2. 
