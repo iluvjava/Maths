@@ -878,7 +878,6 @@ $$
 $$
 
 
-
 #### **Proposition 5.1 | Nes 2.2.19 is Similar Triangle**
 > The Nesterov's 2.2.19 fits into the APG Abstract Generic form below: 
 > $$
@@ -927,6 +926,10 @@ $$
 >     v_{k + 1} &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
 > \end{aligned}
 > $$
+
+**Observations**
+
+We don't need the update rules for $\alpha_k$ here to derive the fact that it satisfies similar triangle form. 
 
 **Proof**
 
