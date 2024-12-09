@@ -767,7 +767,7 @@ $$
 \end{aligned}
 $$
 
-On the 3rd to the 4th equality, we substituted $\gamma_k = L \alpha_{k - 1}^{-1}$. 
+On the 3rd to the 4th equality, we substituted $\gamma_k = L \alpha_{k - 1}^{-2}$. 
 We can eliminate the $\gamma_k$ which defines the $\alpha_k$ by considering 
 
 $$
@@ -846,7 +846,7 @@ And the updates for $\alpha_k$ is now $L\alpha_k = (1 - \alpha_k)L \alpha_{k - 1
 Without the assumption $L\alpha_k^2 = \gamma_{k + 1}$, we may consider alternative $L\alpha_k^2\rho_k^2 = \gamma_{k + 1}$ where $\rho > 0$.
 Then the above proof works similarly, but instead of $\alpha_k$, it will be for $\rho_k \alpha_k$ instead. 
 
-Alternatively, without such an assumption, we can just present the equality relation raw and leave it be so it's 
+Alternatively, without such an assumption, we can just present the equality relation raw and leave it be, so it's 
 
 $$
 \begin{aligned}

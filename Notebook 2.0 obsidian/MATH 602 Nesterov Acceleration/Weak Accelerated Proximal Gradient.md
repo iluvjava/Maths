@@ -108,7 +108,7 @@ $$
 
 On the second equality of the second $\iff$ we just substituted $\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
 Therefore, we discover that $x_k, v_k, y_k$ lies on the same line. 
-
+<!-- 
 --- 
 ### **Stepwise Lyapunov claim**
 
@@ -779,7 +779,7 @@ $$
     \right)
     \right)\left(F(x_0) - F^* + \frac{\gamma_0}{2}\Vert v_0 - x^*\Vert^2\right). 
 \end{aligned}
-$$
+$$ -->
 
 ---
 ### **Let's try again and make it better**
@@ -787,9 +787,9 @@ $$
 Forget everything from previous section. 
 Let's try to do this again with some differences. 
 
-#### **Algorithm 2 | WAPG 2**
+#### **Algorithm 2 | Stepwise WAPG 2**
 > Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \in (0, 1), \gamma > 0, \rho_k \in (0, 1]$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \in (0, 1), \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
 > $$
 > \begin{aligned}
 >     \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
@@ -797,9 +797,9 @@ Let's try to do this again with some differences.
 >     y_k &= 
 >     (\gamma + \alpha_k \mu)^{-1}(\alpha_k \gamma v_k + \hat\gamma x_k), 
 >     \\
->     g_k &= G_L y_k, 
+>     g_k &= \mathcal G_L y_k, 
 >     \\
->     v_{k + 1} &= (\hat\gamma\rho_k)^{-1}
+>     v_{k + 1} &= \hat\gamma^{-1}
 >     (\gamma(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
 >     \\
 >     x_{k + 1} &= T_L y_k. 
@@ -1346,3 +1346,228 @@ $$
     \right). 
 \end{aligned}
 $$
+
+#### **Algorithm 2.1 | Weak accelerated proximal gradient**
+> Initialize any $\gamma_0$, $(x_0, v_0)$ or equivaletly $(x_0, y_0), (y_0, v_0)$. 
+> Given any sequence $(\rho_k)_{k\ge0}, (\alpha_k)_{k \ge0}$ such that for all integer $k\ge 0$, they have $\rho_k \in (0, 1], \alpha_k \in (0, 1)$. 
+> The algorithm generates a squence of $(x_k, y_k, v_k)$ such that they satisfy for all $k\ge 0$ recursively: 
+> $$
+> \begin{aligned}
+>     \gamma_k &:= \left.\begin{cases}
+>           \rho_{k - 1}L\alpha_{k - 1}^2 & k \ge 1,
+>           \\
+>           \gamma_0 & k = 0. 
+>     \end{cases}\right\rbrace,
+>     \\
+>     \hat \gamma_{k + 1} &:= L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+>     \\
+>     y_k &= 
+>     (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
+>     \\
+>     g_k &= \mathcal G_L y_k, 
+>     \\
+>     v_{k + 1} &= 
+>     \hat\gamma^{-1}_{k + 1}
+>     (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+>     \\
+>     x_{k + 1} &= T_L y_k. 
+> \end{aligned}
+> $$
+
+**Observations**
+
+Since we now have all the iterates, to make use of the convergence claim on each step, it requires to define $R_k$ for all steps. 
+Let $R_0 = 0$ be the base case.
+Define $R_k$ recursively: 
+
+$$
+\begin{aligned}
+    R_{k + 1}
+    := 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right). 
+\end{aligned}
+$$
+
+Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2, \hat \gamma = L \alpha_k^2$, giving us: 
+
+
+$$
+\begin{aligned}
+    F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+    &\le 
+    (1 - \alpha_k)
+    \left(
+        F(x_k) - F^* + R_k + \frac{\rho_{k - 1}L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    &\le 
+    (1 - \alpha_k)
+    \left(
+        F(x_k) - F^* + R_k + \frac{L \alpha_{k - 1}^2}{2}\Vert v_k - x^*\Vert^2
+    \right)
+    \\
+    &\le 
+    \left(
+        \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
+    \right)
+    \left(
+        F(x_0) - F^* + R_k + \frac{\gamma_0}{2}\Vert v_k - x^*\Vert^2
+    \right). 
+\end{aligned}
+$$
+Going from the left to the right on the second inequality, we used the fact that $\rho \in (0, 1)$. 
+Additionally, the algorithm converges by considering $R_k$: 
+
+$$
+\begin{aligned}
+    R_{k + 1}
+    &= 
+    \frac{1}{2}\left(
+        L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
+    \right)\Vert g_k\Vert^2
+    + 
+    (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k + 
+        \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right)
+    \\
+    &= (1 - \alpha_k)
+    \left(
+        \epsilon_k + R_k 
+        + \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
+        \Vert v_k - y_k\Vert^2
+    \right)
+    \\
+    &\ge 
+    (1 - \alpha_k) R_k
+    \\
+    &\ge R_0 \prod_{i = 0}^{k} \left(1 - \alpha_i\right) = 0. 
+\end{aligned}
+$$
+
+Going from the left to the right on the first equality, we used the fact that $\hat \gamma_{k + 1} = L \alpha_{k}^2$, setting the coeficient of $\Vert g_k\Vert^2$ to be zero. 
+
+---
+### **Analyzing WAPG**
+
+We show that the algorithm is able to encapsulate algorithms in the literatures, and more. 
+
+#### **Algorithm 2.2 | Weak accelerated proximal gradient intermediate form**
+> Suppose that $(y_i, x_i, v_i)$ are generated by the WAPG algorithm for all $0 \le i \le k$. 
+> Then these iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}, (\rho_k)_{k\ge0}$ and they satisfy: 
+> $$
+> \begin{aligned}
+>     y_k &= 
+>     \left(
+>         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+>     \right), 
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1} \mathcal G_L y_k, 
+>     \\
+>     v_{k + 1} &= 
+>     \left(
+>         1 + \frac{\mu}{L \alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+>     \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k, 
+>     \\
+>     L &\alpha_k^2 \le (1 - \alpha_k)L \alpha_{k - 1} + \mu \alpha_k. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+$$
+\begin{aligned}
+    y_{k} &= 
+    (\gamma_k + \alpha_k \mu)^{-1}
+    (\alpha_k \gamma_k v_k + \hat \gamma_{k + 1}x_k)
+    \\
+    &= 
+    (\hat \gamma_{k + 1} + \alpha_k \gamma_k)^{-1}
+    (\alpha_k \gamma_k v_k + \hat \gamma_{k + 1}x_k)
+    \\
+    &= 
+    \left(
+        \frac{\hat \gamma_{k + 1}}{\alpha_k\gamma_k} + 1
+    \right)^{-1}
+    \left(
+        v_k + \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k} x_k
+    \right)
+    \\
+    &= 
+    \left(
+        1 + \frac{L\alpha_k^2}{\alpha_k \rho_{k - 1}L\alpha_{k - 1}^2} 
+    \right)^{-1}
+    \left(
+        v_k + \frac{L\alpha_k^2}{\alpha_k \rho_{k - 1}L\alpha_{k - 1}^2} x_k
+    \right)
+    \\
+    &= 
+    \left(
+        1 + \frac{\alpha_k}{\rho_{k - 1}\alpha_{k - 1}^2}
+    \right)^{-1}
+    \left(
+        v_k + 
+        \frac{\alpha_k}{\rho_{k - 1}\alpha_{k - 1}^2} x_k
+    \right)
+    \\
+    &= 
+    \left(
+        1 + \frac{L - L \alpha_k}{L \alpha_k - \mu}
+    \right)^{-1}
+    \left(
+        v_k + 
+        \frac{L - L \alpha_k}{L \alpha_k - \mu} x_k
+    \right)
+\end{aligned}
+$$
+
+From from the left to right of the second inequality, we used the fact that $\hat \gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k\mu$. 
+Going from the left to the right of the second last inequality, we did the following: 
+$$
+\begin{aligned}
+    L\alpha_k^2 &= 
+    (1 - \alpha_k)L\rho_{k- 1}\alpha_{k - 1}^2 + \alpha_k \mu 
+    \\
+    \iff 
+    L \alpha_k^2 - \alpha_k\mu &= 
+    (1 - \alpha_k)L \rho_{k - 1}\alpha_{k - 1}^2
+    \\
+    \iff 
+    \rho_{k - 1}\alpha_{k - 1}^2
+    &= 
+    \frac{L \alpha_k^2 - \alpha_k\mu}{L (1 - \alpha_k)}
+    \\
+    \iff 
+    \frac{1}{\rho_{k - 1}\alpha_{k - 1}^2}
+    &= 
+    \frac{L (1 - \alpha_k)}{L \alpha_k^2 - \alpha_k\mu}
+    \\
+    \iff 
+    \frac{\alpha_k}{\rho_{k - 1}\alpha_{k - 1}^2}
+    &= 
+    \frac{L - L\alpha_k}{L\alpha_k - \mu}. 
+\end{aligned}
+$$
+
+
+
