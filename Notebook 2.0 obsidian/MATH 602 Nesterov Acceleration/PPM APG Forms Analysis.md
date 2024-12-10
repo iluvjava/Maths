@@ -657,7 +657,8 @@ $$
 >     \right). 
 > \end{aligned}
 > $$
-> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$<mark style="background: #FFF3A3A6;"> if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$</mark>, producing: 
+> Then the above iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}$<mark style="background: #FFF3A3A6;"> if we assume the equality: $L\alpha_k^2 = \gamma_{k + 1}$</mark>, $L > \mu$ and $\alpha_k \in (0, 1)\setminus \{ \mu/L\}$. 
+> Then the iterates can be expressed by: 
 > $$
 > \begin{aligned}
 >     y_k &= 

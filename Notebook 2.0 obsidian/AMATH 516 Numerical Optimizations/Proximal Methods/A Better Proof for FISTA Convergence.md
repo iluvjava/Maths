@@ -199,7 +199,7 @@ One of the options is the sequence suggested in the FISTA paper, stated as:
 
 $$
 \begin{aligned}
-    t_k &= \frac{1 + \sqrt{1 + 4t_k^2}}{2}, 
+    t_{k + 1} &= \frac{1 + \sqrt{1 + 4t_k^2}}{2}, 
     \\
     \theta_k &= \frac{t_k - 1}{t_{k + 1}}, 
 \end{aligned}
@@ -256,6 +256,6 @@ $$
 Which at this point, pertty much completes the proof because $t_k \ge (k + 1)/2$ in the case of the Nesterov Momentum. Take note that, there could be other sequences, however, this is the only squence the can performs the form match performed for the lemma. If we relax the conditions to obtain a residual for the telescoping sum, we can still get convergence, but the resulting sequence might not perform as well. My hypothesis is that the residual terms and the sequence's bound just happens to cancels out if we use the Nesterov momentum update. 
 
 
-### **Finallly**
+### **Finally**
 
 For properties about the sequence, visits [The Nesterov Momentum Sequence](../../MATH%20602%20Nesterov%20Acceleration/The%20Nesterov%20Momentum%20Sequence.md) for more information. 
