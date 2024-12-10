@@ -810,7 +810,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
         \;\\
-        Initialize any $\gamma_0 >= 0$, $(x_0, v_0)$ or equivalently $(x_0, y_0), (y_0, v_0)$. 
+        Initialize any $\gamma_0 \ge 0$, $(x_0, v_0)$ or equivalently $(x_0, y_0), (y_0, v_0)$. 
         Given any sequence $(\rho_k)_{k\ge0}, (\alpha_k)_{k \ge0}$ such that for all integer $k\ge 0$, $\textcolor{red}{\rho_k \ge 0}$, $\alpha_k \in (0, 1)$. 
         The algorithm generates a sequence of $(x_k, y_k, v_k)$ such that they satisfy for all $k\ge 0$ recursively: 
         \begin{align*}
@@ -858,8 +858,12 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Choose $R_0= 0$ to be the base case. 
         Choose any $x^* \in \RR^n$ then
         \begin{align*}
-            F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+            & F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+            \\
             &\le 
+            \left(
+                \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+            \right)
             \left(
                 \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
             \right)
@@ -1316,7 +1320,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{proposition}[R-WAPG fits into Momentum Form]\label{prop:wapg-momentum-form}
         \;\\
         Suppose any sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ satisfies recursively the conditions
-        $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \in \ge 0\; \forall k \ge0$. 
+        $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \ge 0\; \forall k \ge0$. 
         Assume that $0 \le \mu < L$. 
         If $\alpha_k$ is used in the similar triangle form to generate the iterates $(x_k, y_k, v_k)$. 
         Then the iterates are algebraically equivalent to: 
@@ -1466,7 +1470,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         When $\rho_k = 1$, this becomes just FISTA \cite{beck_fast_2009}. 
         When $L > \mu > 0$, then choosing $\rho_k = 1$ yields equation 
         \begin{align*}
-            L \alpha_{k + 1}^2 = (1- \alpha_{k + 1})L \alpha_k^2 + \alpha_k \mu. 
+            L \alpha_{k + 1}^2 = (1- \alpha_{k + 1})L \alpha_k^2 + \alpha_{k + 1} \mu. 
         \end{align*}
         Here, if we assume sequence $\alpha_k$ is constant, then $\alpha_k = \sqrt{\mu/L}$ is a solution to the above iterative equation. 
         Substituting it back to the momentum form of R-WAPG, we recovers the V-FISTA algorithm, which appears as (10.7.7) in Beck's Book \cite{beck_first-order_2017}. 

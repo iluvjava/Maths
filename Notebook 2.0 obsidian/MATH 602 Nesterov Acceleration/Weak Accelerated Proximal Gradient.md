@@ -761,7 +761,7 @@ The default $\mu$ being the strong convexity modulus is a very pessimistic choic
 
 
 #### **Algorithm 2.1 | Relaxed weak accelerated proximal gradient (R-WAPG)**
-> Initialize any $\gamma_0 >= 0$, $(x_0, v_0)$ or equivalently $(x_0, y_0), (y_0, v_0)$. 
+> Initialize any $\gamma_0 > 0$, $(x_0, v_0)$ or equivalently $(x_0, y_0), (y_0, v_0)$. 
 > Given any sequence $(\rho_k)_{k\ge0}, (\alpha_k)_{k \ge0}$ such that for all integer $k\ge 0$, $\textcolor{red}{\rho_k \ge 0}$, $\alpha_k \in (0, 1)$. 
 > The algorithm generates a sequence of $(x_k, y_k, v_k)$ such that they satisfy for all $k\ge 0$ recursively: 
 > $$
@@ -1188,7 +1188,7 @@ Without repeating, see [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md)
 
 #### **Algorithm 2.4 | R-WAPG Momentum Form**
 > Suppose any sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ satisfies recursively the conditions
-> $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \in \ge 0\; \forall k \ge0$. 
+> $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \ge 0\; \forall k \ge0$. 
 > Assume that $0 \le \mu < L$. 
 > If $\alpha_k$ is used in the similar triangle form to generate the iterates $(x_k, y_k, v_k)$. 
 > Then the iterates are algebraically equivalent to: 
@@ -1361,6 +1361,7 @@ $$
 ---
 ### **Discussions of R-WAPG and its consequences**
 
+This sections discusses specific choices for the parameters of R-WAPG where it recovers farmilar type of algorithms seem as variants of accelerated proximal gradient algorithm in the literatures. 
 
 
 
