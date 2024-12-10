@@ -855,7 +855,9 @@ $$
     \right)
     \\
     &\le 
-    \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+    \left(
+        \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+    \right)
     \left(
         \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
     \right)
@@ -1158,7 +1160,7 @@ The only auxiliary sequence it needs is $\alpha_k$, which directly links to the 
 
 See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more information. 
 
-#### **Algorithm 2.3 | Similar triangle form**
+#### **Algorithm 2.3 | R-WAPG similar triangle form**
 > Given any sequence $(\alpha_i)_{i \ge k}$ such that $\alpha_i \in (0, 1)$, $\rho_k \ge 0$ for all $0 \le i \le k$ and $0 < L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$.  
 > Let $(x_k, y_k, v_k)$ to be generated as specified by Algorithm 2.2 by such $(\alpha_k)_{k \ge0}$. Then iterate $(v_k)$ can be expressed without $y_k, v_k$ by: 
 > $$
@@ -1184,7 +1186,7 @@ See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more informati
 Without repeating, see [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) on the similar triangle form proof for Nesterov's 2.2.19 original algorithm. 
 
 
-#### **Algorithm 2.4 | Momentum Form with S-CNVX constant**
+#### **Algorithm 2.4 | R-WAPG Momentum Form**
 > Suppose any sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ satisfies recursively the conditions
 > $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \in \ge 0\; \forall k \ge0$. 
 > Assume that $0 \le \mu < L$. 
@@ -1212,7 +1214,7 @@ Without repeating, see [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md)
 Start by considering the update rule for $v_k$ from the similar triangle form of WAPG which is: 
 
 $$
-\begin{align*}
+\begin{aligned}
     v_{k + 1} &= 
     x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)
     \\
@@ -1220,7 +1222,7 @@ $$
     (L \alpha_{k + 1} - \mu)v_{k + 1} 
     &= 
     (L \alpha_{k + 1} - \mu)x_{k + 1} + (L\alpha_{k + 1} - \mu)(\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
-\end{align*}
+\end{aligned}
 $$
 
 Next, we simplify the update for the iterates $y_{k}$ by the similar triangle form of WAPG. 
@@ -1355,6 +1357,10 @@ $$
     &= \alpha_{k + 1}(\alpha_k^{-1} - 1). 
 \end{aligned}
 $$
+
+---
+### **Discussions of R-WAPG and its consequences**
+
 
 
 
