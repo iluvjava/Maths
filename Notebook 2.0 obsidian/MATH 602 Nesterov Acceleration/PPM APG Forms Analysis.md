@@ -1108,12 +1108,12 @@ $$
 \begin{aligned}
     (L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})
     &= 
-    L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 + \mu\alpha_{k + 1}
+    L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 - \mu\alpha_{k + 1}
     \\
     &= 
     L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
-        (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
-    ) + \mu\alpha_{k + 1}
+        (1 - \alpha_{k + 1})L\alpha_k^2 + \mu\alpha_{k + 1}
+    ) - \mu\alpha_{k + 1}
     \\
     &= 
     L\alpha_k^2 - \mu \alpha_k^2. 

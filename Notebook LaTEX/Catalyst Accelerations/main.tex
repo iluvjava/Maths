@@ -368,7 +368,7 @@
         \end{align*}    
         When $\sigma \ge 3/2$ then the method converges at a rate of $\mathcal O(1/k^2)$. 
     \end{theorem}
-    The theorem looks exciting, but Lin 2015 \cite{lin_universal_2015} page 11 pointed out that $\mathcal G_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable quantities. 
+    The theorem looks exciting, but Lin 2015 \cite{lin_universal_2015} page 11 pointed out that $\mathcal M_k^*, \mathcal J_{\lambda_k} y_k$ are both intractable quantities. 
     In Guler's work, these intractable quantities were built into the Nesterov's estimating sequence making it unclear how to control $\epsilon_k \rightarrow 0$. 
     If we use the inexact formulation from Guler and his estimating sequence, it will result in algorithm that contains intractable quantities $\mathcal J_{\lambda_k} y_k$. 
 
@@ -1505,12 +1505,12 @@
         \begin{align*}
             (L\alpha_{k + 1} - \mu)(\alpha_k^2 + \alpha_{k + 1})
             &= 
-            L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 + \mu\alpha_{k + 1}
+            L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + L \alpha_{k + 1}^2 - \mu\alpha_{k + 1}
             \\
             &= 
             L\alpha_{k + 1}\alpha_k^2 - \mu \alpha_k^2 + (
-                (1 - \alpha_{k + 1})L\alpha_k^2 - \mu\alpha_{k + 1}
-            ) + \mu\alpha_{k + 1}
+                (1 - \alpha_{k + 1})L\alpha_k^2 + \mu\alpha_{k + 1}
+            ) - \mu\alpha_{k + 1}
             \\
             &= 
             L\alpha_k^2 - \mu \alpha_k^2. 
@@ -2763,7 +2763,7 @@
         \end{align*}
     \end{lemma}
     \begin{proof}
-        Take it as a fact that the limiting subgradient of a weakly convex function is a closed set. 
+        Take it as a fact that the limiting subgradient of a weakly convex function is a closed bounded set. 
         Fix any $y$, there exists $w \in \partial \mathcal M(y^+; y)$ such that $\dist(\mathbf 0; \partial {\mathcal M}(y^+; y)) = \Vert w\Vert$ because $\partial M(\cdot;y)$ is a $\rho - \kappa$ weakly convex function. 
         Next, by definition we have
         \begin{align*}
