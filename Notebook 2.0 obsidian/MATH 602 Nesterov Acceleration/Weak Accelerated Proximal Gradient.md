@@ -120,7 +120,7 @@ Let's try to do this again with some differences.
 
 #### **Algorithm 2 | Stepwise weak accelerated proximal gradient**
 > Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \in [0, 1), \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \ge 0, \gamma \ge 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
 > $$
 > \begin{aligned}
 >     \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
@@ -677,6 +677,7 @@ $$
 So that was all equal to (1\*) + (2\*) and it says: 
 
 $$
+{\small
 \begin{aligned}
     & F(x_{k + 1}) + R_{k + 1} + 
     \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -717,6 +718,7 @@ $$
         \right). 
 \end{aligned}
 \tag{3.2*}
+}
 $$
 
 Focusing on the second term, we simplify the multiplier inside: 
@@ -763,9 +765,8 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 
 
 #### **Algorithm 2.1 | Relaxed weak accelerated proximal gradient (R-WAPG)**
-> Initialize any $\gamma_0 > 0$, $(x_0, v_0)$ or equivalently $(x_0, y_0), (y_0, v_0)$. 
-> Given any sequence $(\rho_k)_{k\ge0}, (\alpha_k)_{k \ge0}$ such that for all integer $k\ge 0$, $\textcolor{red}{\rho_k \ge 0}$, $\alpha_k \in (0, 1)$. 
-> The algorithm generates a sequence of $(x_k, y_k, v_k)$ such that they satisfy for all $k\ge 0$ recursively: 
+> Initialize any $\gamma_0 \in [0, 1]$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
+> The algorithm generates a sequence of vector $(x_k, y_k, v_k)$ and auxiliary sequence $\alpha_k, \rho_k$ such that they satisfy for all $k\ge 0$ recursively: 
 > $$
 > \begin{aligned}
 >     \gamma_k &:= \left.\begin{cases}
@@ -774,7 +775,9 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 >           \gamma_0 & k = 0. 
 >     \end{cases}\right\rbrace,
 >     \\
->     \hat \gamma_{k + 1} &:= L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
+>     \text{find }&\alpha_k \in [0, 1], \rho_k \ge 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 \le \rho_k\alpha_k^2 \le 1, 
+>     \\
+>     \hat \gamma_{k + 1} &:= L\alpha_k^2, 
 >     \\
 >     y_k &= 
 >     (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
@@ -789,8 +792,79 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 > \end{aligned}
 > $$
 
+**Observations**
+
+The sequence $\alpha_k$ satisfies the condition that $\alpha_k \in [0, 1]$.
+In addition, if $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
+Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in [0, 1]$ and $\rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
+Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates 
+
+$$
+\begin{aligned}
+    \alpha_k &= 
+    \frac{1}{2}\left(
+        \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        \pm
+        \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+    \right). 
+\end{aligned}
+$$
+
+Choosing the positive sign which is the larger one of the roots of the quadratic. 
+We have $\alpha_k \ge 0$ because: 
+
+$$
+\begin{aligned}
+    \alpha_k &=
+    \frac{1}{2}\left(
+        \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        +
+        \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+    \right)
+    \\
+    &\ge 
+    \frac{1}{2}\left(
+        \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        +
+        \left|\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L\right|
+    \right)
+    \\
+    & \ge 0. 
+\end{aligned}
+$$
+
+If $\alpha> 0$, we would have $4\rho_{k - 1} \alpha_{k - 1}^2 > 0$ , which allows for $> 0$ instead. 
+An upper bound can be identified by using inductive hypothesis and consdering: 
+
+$$
+\begin{aligned}
+    \alpha_k &= 
+    \frac{1}{2}\left(
+        \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        +
+        \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+    \right)
+    \\
+    &\le 
+    \frac{1}{2}\left(
+        \frac{\mu}{L} - 1
+        +
+        \sqrt{(1 - \mu/L)^2 + 4}
+    \right)
+    \\
+    &\le \frac{1}{2}\left(
+        0 + \sqrt{0 + 4}
+    \right) = 1. 
+\end{aligned}
+$$
+
+Going from the second to the third inequality, we maximized $\mu/L$ by monotonicity of the linear function and the square root function. 
+Therefore, inductively, $\alpha_k \in [0, 1]$ holds. 
+Additionally, if $\alpha_{k - 1} \in (0, 1)$, then the results can be strengthened and $\alpha_k \in (0, 1)$ as well. 
+
+
 #### **Theorem | Convergence of the relaxed weak accelerated proximal gradient algorithm**
-> Let vectors $(x_k, y_k, v_k)_{k\ge 0}$ and scalars $(\alpha_k)_{k \ge0}$ be generated by the WAPG algorithm. 
+> Let vectors $(x_k, y_k, v_k)_{k\ge 0}$ and scalars $(\alpha_k)_{k \ge0}$ be generated by the R-WAPG algorithm. 
 > Define recursively $R_k$ for all $k \ge 1$ by: 
 > $$
 > \begin{aligned}
@@ -928,14 +1002,15 @@ The breakthrough here is the parameter $\rho_k \ge0$.
 
 
 ---
-### **Analyzing WAPG**
+### **Analyzing R-WAPG**
 
 We show that the algorithm is able to encapsulate algorithms in the literatures, and more. 
 
-#### **Algorithm 2.2 | Weak accelerated proximal gradient intermediate form**
+
+#### **Proposition | First equivalent representation of R-WAPG**
 > Assume $\mu < L$. 
-> Suppose that $(y_i, x_i, v_i)$ are generated by the WAPG algorithm for all $0 \le i \le k$ using sequence $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge0}$ such that for any integer $k\ge 0$, $\alpha_k \in (0, 1)$ and $\rho_k \ge 0$. 
-> Then the iterates can be expressed without the sequence $(\gamma_k)_{k \ge0}, (\rho_k)_{k\ge0}$, and they satisfy: 
+> Choose any $\gamma_0 \in (0, 1)$ as the initial condition for R-WAPG to produce vectors sequence $(y_i)_{i \in \N}, (x_i)_{i \in \N}, (v_i)_{i \in \N}$ and $(\rho_k)_{i \in \N}, (\alpha_k)_{i \in \N}$. 
+> Then the iterates can be expressed without $(\gamma_k)_{k \ge0}, (\rho_k)_{k\ge0}$, and for all $k\ge 0$ they are algebraically equivalent to
 > $$
 > \begin{aligned}
 >     y_k &= 
@@ -1123,14 +1198,50 @@ $$
 $$
 
 
-Therefore the algorithm is valid for all possible choice of $\alpha_k$ by the inequality constraint. 
-
+Therefore, the algorithm is valid for all possible choice of $\alpha_k$ by the inequality constraint. 
 
 
 **Remarks**
 
 The only auxiliary sequence it needs is $\alpha_k$, which directly links to the convergence rate of the algorithm. 
 
+
+#### **Definition | R-WAPG intermediate form**
+> Given any initial $\alpha_0 \in (0, 1)$, $(x_0, y_0)$ or equivalently $(x_0, v_0), (y_0, v_0)$. 
+> Assume $\mu < L$. 
+> Assume that the auxiliary sequence $\rho_k$ has $\rho_k \alpha_k^2 < 1$ for all $k \ge 0$. 
+> The algorithm generate sequence of vector iterates $(x_k, v_k, y_k)_{k \ge0}$ by 
+> $$
+> \begin{aligned}
+>     y_k &= 
+>     \left(
+>         1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+>     \right), 
+>     \\
+>     x_{k + 1} &= 
+>     y_k - L^{-1} \mathcal G_L y_k, 
+>     \\
+>     v_{k + 1} &= 
+>     \left(
+>         1 + \frac{\mu}{L \alpha_k - \mu}
+>     \right)^{-1}
+>     \left(
+>         v_k + 
+>         \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+>     \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k, 
+>     \\
+>     \alpha_k &= 
+>     \frac{1}{2}\left(
+>       \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+>       +
+>       \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+>     \right). 
+> \end{aligned}
+> $$
 
 
 
@@ -1162,9 +1273,10 @@ The only auxiliary sequence it needs is $\alpha_k$, which directly links to the 
 
 See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more information. 
 
-#### **Algorithm 2.3 | R-WAPG similar triangle form**
-> Given any sequence $(\alpha_i)_{i \ge k}$ such that $\alpha_i \in (0, 1)$, $\rho_k \ge 0$ for all $0 \le i \le k$ and $0 < L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$.  
-> Let $(x_k, y_k, v_k)$ to be generated as specified by Algorithm 2.2 by such $(\alpha_k)_{k \ge0}$. Then iterate $(v_k)$ can be expressed without $y_k, v_k$ by: 
+
+#### **Proposition | R-WAPG second equivalent representation**
+> Suppose that the vector sequence $(x_k, v_k, y_k)_{k \ge 0}$ are generated by R-WAPG intermediate form. 
+> Then for all $k \ge0$, the iterate $(v_k)_{k \ge 0}, (x_k)_{k \ge 0}, (y_k)_{k \ge0}$ are algebraically equivalent to: 
 > $$
 > \begin{aligned}
 >     y_k &= 
@@ -1187,8 +1299,13 @@ See [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) for more informati
 
 Without repeating, see [PPM APG Forms Analysis](PPM%20APG%20Forms%20Analysis.md) on the similar triangle form proof for Nesterov's 2.2.19 original algorithm. 
 
+#### **Definition | R-WAPG similar triangle form**
+> 
 
-#### **Algorithm 2.4 | R-WAPG Momentum Form**
+
+
+
+#### **Algorithm 2.4 | Third Equivalent representation of R-WAPG**
 > Suppose any sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge0}$ satisfies recursively the conditions
 > $L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu$ where $\rho_{k} \ge 0\; \forall k \ge0$. 
 > Assume that $0 \le \mu < L$. 
@@ -1360,42 +1477,12 @@ $$
 \end{aligned}
 $$
 
-
-**Remarks**
-
-Given the value $\rho_k, \alpha_k$ at each step of the iteration, it's possible to solve the next iterates $\alpha_{k + 1}$ by solving a quadratic equation. 
-Solving the quadratic equation gives: 
-
-$$
-\begin{aligned}
-    L\alpha_k^2 &= (1 - \alpha_k)L\rho_{k -1}\alpha_{k - 1}^2 + \alpha_k \mu
-    \\
-    &\;\;\vdots
-    \\
-    \alpha_k
-    &= \frac{1}{2}\left(
-        \mu/L - \rho_{k - 1}\alpha_{k - 1}^2 
-        \pm
-        \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4 \rho_{k - 1}\alpha_{k - 1}^2}
-    \right). 
-\end{aligned}
-$$
-
-We claim $\alpha_k \ge 0$ if we take the positive sign. 
-To see that the lower bound is true, consider: 
-
-$$
-\begin{aligned}
-
-\end{aligned}
-$$
-
-
+#### **Definition | R-WAPG Momentum Form**
 
 ---
 ### **Discussions of R-WAPG and its consequences**
 
-This sections discusses specific choices for the parameters of R-WAPG where it recovers farmilar type of algorithms seem as variants of accelerated proximal gradient algorithm in the literatures. 
+This sections discusses specific choices for the parameters of R-WAPG where it recovers familiar type of algorithms seem as variants of accelerated proximal gradient algorithm in the literatures. 
 
 
 
