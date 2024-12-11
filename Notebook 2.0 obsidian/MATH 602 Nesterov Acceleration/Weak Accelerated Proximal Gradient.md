@@ -757,6 +757,8 @@ $$
 Use any $0\le \mu \le D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2$ also works. 
 The default $\mu$ being the strong convexity modulus is a very pessimistic choice for the inequality above. 
 
+The pessimistic choice of $\mu$ being the strong convexity modulus is for claiming the convergence of all initial guess $x_0, y_0$. 
+
 
 
 
@@ -1357,6 +1359,38 @@ $$
     &= \alpha_{k + 1}(\alpha_k^{-1} - 1). 
 \end{aligned}
 $$
+
+
+**Remarks**
+
+Given the value $\rho_k, \alpha_k$ at each step of the iteration, it's possible to solve the next iterates $\alpha_{k + 1}$ by solving a quadratic equation. 
+Solving the quadratic equation gives: 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 &= (1 - \alpha_k)L\rho_{k -1}\alpha_{k - 1}^2 + \alpha_k \mu
+    \\
+    &\;\;\vdots
+    \\
+    \alpha_k
+    &= \frac{1}{2}\left(
+        \mu/L - \rho_{k - 1}\alpha_{k - 1}^2 
+        \pm
+        \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4 \rho_{k - 1}\alpha_{k - 1}^2}
+    \right). 
+\end{aligned}
+$$
+
+We claim $\alpha_k \ge 0$ if we take the positive sign. 
+To see that the lower bound is true, consider: 
+
+$$
+\begin{aligned}
+
+\end{aligned}
+$$
+
+
 
 ---
 ### **Discussions of R-WAPG and its consequences**
