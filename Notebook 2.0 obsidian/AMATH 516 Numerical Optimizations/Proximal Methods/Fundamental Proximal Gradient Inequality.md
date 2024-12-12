@@ -237,7 +237,7 @@ Before the major claim we state the following lemma to the proof sleek and cool:
 > \begin{aligned}
 >     \widetilde{\mathcal M}^{L^{-1}}(x; y)
 >     &= 
->     \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \ge \mathcal M^{L^{-1}}(x; y). 
+>     \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \le \mathcal M^{L^{-1}}(x; y). 
 > \end{aligned}
 > $$
 

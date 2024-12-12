@@ -120,7 +120,7 @@ Let's try to do this again with some differences.
 
 #### **Algorithm 2 | Stepwise weak accelerated proximal gradient**
 > Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \ge 0, \gamma \ge 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha > 0, \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
 > $$
 > \begin{aligned}
 >     \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
@@ -137,7 +137,7 @@ Let's try to do this again with some differences.
 > \end{aligned}
 > $$
 
-**Observations**
+**Observations 1**
 
 We make 2 crucial observations here. 
 With the algorithm, we define the following quantities associate with it. 
@@ -154,7 +154,12 @@ $$
 
 $\epsilon_k \ge 0$ always because we assumed $F$ is convex. 
 To verify, we use the fundamental proximal gradient inequality. 
-Next, observe that we have $x_k, y_k, v_k$ lie on the same line because they have 
+
+**Observations 2**
+
+We make two crucial observations here. 
+Fix any integer $k \ge 0$, recall $\alpha_k > 0, \gamma > 0$.
+We have $x_k, y_k, v_k$ lie on the same line because and they have the following equivalent equalities: 
 
 $$
 \begin{aligned}
@@ -191,7 +196,7 @@ $$
 \end{aligned}
 $$
 
-On the first equality (Q1), we multiplied both side of the equation by $\gamma_{k + 1}/\alpha_k \gamma_k$ and then group $y_k$ on the LHS. 
+On the first equality (Q1), we multiplied both side of the equation by $\hat \gamma/\alpha_k \gamma$ and then group $y_k$ on the LHS. 
 The last equality comes by multiplying both the numerator and denominator by $\hat \gamma$, leaving the numerator $\hat \gamma + \alpha_k \gamma = \gamma + \alpha_k \mu$. 
 We used the definition of $\hat \gamma$ here. 
 
@@ -224,10 +229,6 @@ $$
 
 On the second equality that follows the second $\iff$ we just substituted $\hat\gamma = (1 - \alpha_k)\gamma + \alpha_k \mu$. 
 Therefore, we discover that $x_k, v_k, y_k$ lies on the same line. 
-
-**Remarks**
-
-If $\alpha_k= 0$, the algorithm reduce to simple gradient descent. 
 
 
 #### **Claim | Stepwise Lyapunov Claim**
@@ -455,17 +456,17 @@ $$
     \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
 \end{aligned}
 $$
-
-Ok that is a lot, we list the following equations to assist things: 
+Since $\alpha_k > 0, \gamma > 0$, we may use them. 
+So it gives: 
 
 $$
 \begin{aligned}
     &  
     - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
     \\
-    \text{use Q1}: & =
+    \text{use Q1 here } & =
     -\alpha_k(v_k - x^*) -
-    \frac{\alpha_k^2}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
+    \frac{\alpha_k^2\mu}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
     - (x_k - y_k) 
     \\
     &= 
@@ -479,11 +480,11 @@ $$
         1 + \frac{\alpha_k \mu}{\gamma}
     \right)(x_k - y_k)
     \\
-    \text{use Q2}: 
+    \text{use Q2 here}
     &= 
     -\alpha_k(v_k - x^*) - 
     \frac{\alpha_k \mu + \gamma}{\gamma}
-    \frac{\alpha_k \gamma}{\gamma_k + \alpha_k \mu}(x_k - v_k)
+    \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(x_k - v_k)
     \\
     &= 
     -\alpha_k(v_k - x^*)
@@ -765,7 +766,7 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 
 
 #### **Algorithm 2.1 | Relaxed weak accelerated proximal gradient (R-WAPG)**
-> Initialize any $\gamma_0 \in [0, 1]$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
+> Initialize any $\gamma_0 \in (0, 1)$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
 > The algorithm generates a sequence of vector $(x_k, y_k, v_k)$ and auxiliary sequence $\alpha_k, \rho_k$ such that they satisfy for all $k\ge 0$ recursively: 
 > $$
 > \begin{aligned}
@@ -775,7 +776,7 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 >           \gamma_0 & k = 0. 
 >     \end{cases}\right\rbrace,
 >     \\
->     \text{find }&\alpha_k \in [0, 1], \rho_k \ge 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 \le \rho_k\alpha_k^2 \le 1, 
+>     \text{find }&\alpha_k \in (0, 1), \rho_k > 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 < \rho_k\alpha_k^2 < 1, 
 >     \\
 >     \hat \gamma_{k + 1} &:= L\alpha_k^2, 
 >     \\
@@ -794,10 +795,10 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 
 **Observations**
 
-The sequence $\alpha_k$ satisfies the condition that $\alpha_k \in [0, 1]$.
-In addition, if $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
-Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in [0, 1]$ and $\rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
-Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates 
+
+If $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
+Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
+Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
 
 $$
 \begin{aligned}
@@ -811,7 +812,7 @@ $$
 $$
 
 Choosing the positive sign which is the larger one of the roots of the quadratic. 
-We have $\alpha_k \ge 0$ because: 
+We have $\alpha_k > 0$ because: 
 
 $$
 \begin{aligned}
@@ -827,14 +828,14 @@ $$
         \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
         +
         \left|\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L\right|
-    \right)
+    \right) + \alpha_{k - 1}\sqrt{\rho_{k - 1}}
     \\
-    & \ge 0. 
+    & > 0. 
 \end{aligned}
 $$
 
-If $\alpha> 0$, we would have $4\rho_{k - 1} \alpha_{k - 1}^2 > 0$ , which allows for $> 0$ instead. 
-An upper bound can be identified by using inductive hypothesis and consdering: 
+On the last strict inequality we used the fact that $\rho_{k - 1}> 0, \alpha_{k - 1} > 0$. 
+An upper bound can be identified by using inductive hypothesis and considering: 
 
 $$
 \begin{aligned}
@@ -845,23 +846,24 @@ $$
         \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
     \right)
     \\
-    &\le 
+    &<
     \frac{1}{2}\left(
-        \frac{\mu}{L} - 1
-        +
-        \sqrt{(1 - \mu/L)^2 + 4}
+        \frac{\mu}{L} + 
+        \sup_{x \in (0, 1)}
+        \left\lbrace
+            -x + \sqrt{(x - \mu/L)^2 + x}
+        \right\rbrace
     \right)
     \\
     &\le \frac{1}{2}\left(
-        0 + \sqrt{0 + 4}
-    \right) = 1. 
+        \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 1}\right)
+    \right) \le 1. 
 \end{aligned}
 $$
-
-Going from the second to the third inequality, we maximized $\mu/L$ by monotonicity of the linear function and the square root function. 
-Therefore, inductively, $\alpha_k \in [0, 1]$ holds. 
-Additionally, if $\alpha_{k - 1} \in (0, 1)$, then the results can be strengthened and $\alpha_k \in (0, 1)$ as well. 
-
+Going to the first inequality, we used $\rho_{k - 1} \alpha_{k - 1}^2 < 1$ to get the strict inequality. 
+Going from the second to the third inequality, we maximized $\mu/L$ by monotone increasing of linear function and the square root function. 
+Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
+However, the limit of $\alpha_k$ could be 1. 
 
 #### **Theorem | Convergence of the relaxed weak accelerated proximal gradient algorithm**
 > Let vectors $(x_k, y_k, v_k)_{k\ge 0}$ and scalars $(\alpha_k)_{k \ge0}$ be generated by the R-WAPG algorithm. 
@@ -906,7 +908,7 @@ Additionally, if $\alpha_{k - 1} \in (0, 1)$, then the results can be strengthen
 **Proof**
 
 
-Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2, \hat \gamma = L \alpha_k^2$, giving us: 
+Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2 > 0, \hat \gamma = L \alpha_k^2 > 0$, giving us: 
 
 $$
 {\small

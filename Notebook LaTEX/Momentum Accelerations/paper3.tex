@@ -71,7 +71,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     To state the following lemma, we define the Bregman divergence of $f$ to be 
     \begin{align*}
         D_f(x, y): \RR^n \times \RR^n \rightarrow \RR 
-        \defeq f(x) - f(y) - \langle \nabla f(x), x - y\rangle. 
+        \defeq f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
     
     \begin{lemma}[Proximal gradient envelope] 
@@ -252,12 +252,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \label{eqn:regret}
         \end{align}
         Observe that by convexity of $F$, $\epsilon_k \ge 0$ always. 
+        To see, consider the last inequality in the remark of Lemma \ref{thm:prox-grad-ineq} with $y = y_k, x = x_k$: 
+        \begin{align*}
+            F(x_k) - F(T_Ly_k)
+            - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
+            - \frac{L}{2}\Vert y_k - T_Ly_k\Vert^2
+            - \frac{\mu}{2}\Vert x_k - y_k\Vert^2
+            &\ge 0
+            \\
+            \implies 
+            F(x_k) - F(T_Ly_k)
+            - \langle g_k,x_k - y_k \rangle
+            - \frac{1}{2L}\Vert g_k\Vert^2
+            &\ge 0. 
+        \end{align*}
     \end{assumption}
-
     
     \begin{definition}[Stepwise weak accelerated proximal gradient]\label{def:stepwise-wapg}\;\\
         Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-        Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \ge 0, \gamma \ge 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+        Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k > 0, \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
         \begin{align*}
             \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
             \\
@@ -275,10 +288,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{observation}\label{obs:stepwise-wapg}
         Let's observe Definition \ref{def:stepwise-wapg} closely. 
         We make two crucial observations here. 
-        With the equalities, we define the following quantities associate with it. 
-        Fix any integer $k \ge 0$. 
-        To verify, we use the fundamental proximal gradient inequality. 
-        Next, observe that we have $x_k, y_k, v_k$ lie on the same line because they have 
+        We have $x_k, y_k, v_k$ lie on the same line because and they have the following equivalent equalities: 
         \begin{align*}
             (Q1): 
             y_k - v_k &= 
@@ -308,7 +318,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &=  
             \frac{\alpha_k \gamma v_k + \hat \gamma x_k}{\gamma + \alpha_k \mu}.
         \end{align*}
-        On the first equality (Q1), we multiplied both side of the equation by $\gamma_{k + 1}/\alpha_k \gamma_k$ and then group $y_k$ on the LHS. 
+        On the first equality (Q1), we multiplied both side of the equation by $\hat\gamma/\alpha_k \gamma$ and then group $y_k$ on the LHS. 
         The last equality comes by multiplying both the numerator and denominator by $\hat \gamma$, leaving the numerator $\hat \gamma + \alpha_k \gamma = \gamma + \alpha_k \mu$. 
         We used the definition of $\hat \gamma$ here. 
         To see the second equality (Q2), consider: 
@@ -335,10 +345,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
         \end{align*}
         On the second equality that follows the second $\iff$ we just substituted $\hat\gamma = (1 - \alpha_k)\gamma + \alpha_k \mu$. 
-        Therefore, we discover that $x_k, v_k, y_k$ lies on the same line. 
+        Therefore, we discover that $x_k, v_k, y_k$ lies on the same line because (Q1) indicates $y_k - v_k$ parallels to $-(y_k - x_k)$ and both vector shares the same head which anchors at $y_k$. 
     
-    \begin{proposition}[Stepwise lyapunov]\label{prop:stepwise-lyapunov}\;\\
-        Fix any integer $k \ge0$, suppose that $v_{k + 1}, x_{k + 1}, y_k, g_k, \gamma, \hat \gamma$ satisfies Definition \ref{def:stepwise-wapg}. 
+    \begin{proposition}[Stepwise Lyapunov]\label{prop:stepwise-lyapunov}\;\\
+        Fix any integer $k \ge0$, assume $v_{k + 1}, x_{k + 1}, y_k, g_k, \hat \gamma$ are produced by Definition \ref{def:stepwise-wapg}. 
         Given any $R_k$.
         Define: 
         \begin{align*}
@@ -538,9 +548,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &  
             - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
             \\
-            \text{use Q1}: & =
+            \text{use Q1 here } & =
             -\alpha_k(v_k - x^*) -
-            \frac{\alpha_k^2}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
+            \frac{\alpha_k^2\mu}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
             - (x_k - y_k) 
             \\
             &= 
@@ -554,11 +564,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 1 + \frac{\alpha_k \mu}{\gamma}
             \right)(x_k - y_k)
             \\
-            \text{use Q2}: 
+            \text{use Q2 here}
             &= 
             -\alpha_k(v_k - x^*) - 
             \frac{\alpha_k \mu + \gamma}{\gamma}
-            \frac{\alpha_k \gamma}{\gamma_k + \alpha_k \mu}(x_k - v_k)
+            \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(x_k - v_k)
             \\
             &= 
             -\alpha_k(v_k - x^*)
@@ -821,7 +831,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
         \;\\
-        Initialize any $\gamma_0 \in [0, 1]$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
+        Initialize any $\gamma_0 \in (0, 1)$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
         The algorithm generates a sequence of vector $(x_k, y_k, v_k)$ and auxiliary sequence $\alpha_k, \rho_k$ such that they satisfy for all $k\ge 0$: 
         $$
         \begin{aligned}
@@ -831,7 +841,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \gamma_0 & k = 0. 
             \end{cases}\right\rbrace,
             \\
-            \text{find }&\alpha_k \in [0, 1], \rho_k \ge 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 \le \rho_k \alpha_k^2 \le 1, 
+            \text{find }&\alpha_k \in (0, 1), \rho_k > 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 < \rho_k \alpha_k^2 < 1, 
             \\
             \hat \gamma_{k + 1} &:= L\alpha_k^2, 
             \\
@@ -852,24 +862,20 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018}. 
     \end{observation}
     \begin{observation}\label{obs:r-wapg-observation-1}
-        The sequence $\alpha_k$ satisfies the condition that $\alpha_k \in [0, 1]$.
-        In addition, if $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
-        Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in [0, 1]$ and $\rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
-        Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates 
-        $$
-        \begin{aligned}
+        If $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
+        Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
+        Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
+        \begin{align*}
             \alpha_k &= 
             \frac{1}{2}\left(
                 \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
                 \pm
                 \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
             \right). 
-        \end{aligned}
-        $$
+        \end{align*}
         Choosing the positive sign which is the larger one of the roots of the quadratic. 
-        We have $\alpha_k \ge 0$ because: 
-        $$
-        \begin{aligned}
+        We have $\alpha_k > 0$ because: 
+        \begin{align*}
             \alpha_k &=
             \frac{1}{2}\left(
                 \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
@@ -882,15 +888,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
                 +
                 \left|\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L\right|
-            \right)
+            \right) + \alpha_{k - 1}\sqrt{\rho_{k - 1}}
             \\
-            & \ge 0. 
-        \end{aligned}
-        $$
-        If $\alpha> 0$, we would have $4\rho_{k - 1} \alpha_{k - 1}^2 > 0$ , which allows for $> 0$ instead. 
-        An upper bound can be identified by using inductive hypothesis and consdering: 
-        $$
-        \begin{aligned}
+            & > 0. 
+        \end{align*}
+        On the last strict inequality we used the fact that $\rho_{k - 1}> 0, \alpha_{k - 1} > 0$. 
+        An upper bound can be identified by using inductive hypothesis and considering: 
+        \begin{align*}
             \alpha_k &= 
             \frac{1}{2}\left(
                 \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
@@ -898,22 +902,23 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
             \right)
             \\
-            &\le 
+            &<
             \frac{1}{2}\left(
-                \frac{\mu}{L} - 1
-                +
-                \sqrt{(1 - \mu/L)^2 + 4}
+                \frac{\mu}{L} + 
+                \sup_{x \in (0, 1)}
+                \left\lbrace
+                    -x + \sqrt{(x - \mu/L)^2 + x}
+                \right\rbrace
             \right)
             \\
-            &\le \frac{1}{2}\left(
-                0 + \sqrt{0 + 4}
-            \right) = 1. 
-        \end{aligned}
-        $$
-        Going from the second to the third inequality, we maximized $\mu/L$ by monotonicity of the linear function and the square root function. 
-        Therefore, inductively, $\alpha_k \in [0, 1]$ holds. 
-        Additionally, if $\alpha_{k - 1} \in (0, 1)$, then the results can be strengthened and $\alpha_k \in (0, 1)$ as well. 
-
+            & \le \frac{1}{2}\left(
+                \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 1}\right)
+            \right) \le 1. 
+        \end{align*}
+        Going to the first inequality, we used $\rho_{k - 1} \alpha_{k - 1}^2 < 1$ to get the strict inequality. 
+        Going from the second to the third inequality, we maximized $\mu/L$ by monotone increasing of linear function and the square root function. 
+        Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
+        However, the limit of $\alpha_k$ could be 1. 
     \end{observation}
     
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}
@@ -951,7 +956,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{proposition}
     \begin{proof}  
-        Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2, \hat \gamma = L \alpha_k^2$ at each step, giving us: 
+        Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2 > 0, \hat \gamma = L \alpha_k^2 > 0$ at each step. 
+        Because $\alpha_k \in(0, 1)$ by Observation \ref{obs:r-wapg-observation-1}, we can use Proposition \ref{prop:stepwise-lyapunov}: 
         {\small
         \begin{align*}
             &F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
