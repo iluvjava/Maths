@@ -932,7 +932,7 @@ $$
     \\
     &\le 
     \left(
-        \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+        \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
     \right)
     \left(
         \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
@@ -986,7 +986,9 @@ $$
     F(x_{k + 1}) - F^* +
     \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
     &\le 
-    \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+    \left(
+        \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+    \right)
     \left(
         \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
     \right)

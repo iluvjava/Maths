@@ -23,10 +23,10 @@
 \author{
     \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
-    E-mail:  \texttt{alto@mail.ubc.ca}.}~Author Name 1
-    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
-    E-mail:  \texttt{shawn.wang@ubc.ca}.}~ and~Author Name 2
+    E-mail:  \texttt{alto@mail.ubc.ca}.}~Hongda Li
+    % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    % The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
+    % E-mail:  \texttt{shawn.wang@ubc.ca}.}~ and~Author Name 2
 }
 
 \date{\today}
@@ -37,7 +37,14 @@
 
 \begin{abstract} 
     \noindent
-    Abstract abstract abstract. 
+    The research proposal focuses on the theories and practice in solving nonsmooth optimization. 
+    The theme of proposal highlight topics of interests that emphasize the computations and applications aspect of algorithms that exhibits both practical and theoretical importance. 
+    We summarize our ongoing research in unifying Nesterov-type accelerated proximal gradient method and proposes our method of spectral momentum. 
+    We survey literatures under the topic of Catalyst Meta Acceleration framework used in accelerating variance reduced methods in the settings of Data Science and Machine Learning. 
+    We present literatures and progress in topics such as Performance Estimation Problem, Inexact Proximal Point, acceleration without convexity. 
+    At the end there is a section summarizing a method we developed for tree species classifications using Sentinel-2 satellite remote sensing data using big data anlaytics by extract spectral signatures of ground vegegation covers. 
+
+
 \end{abstract}
 % \noindent{\bfseries 2010 Mathematics Subject Classification:}
 % Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
@@ -75,7 +82,12 @@
     In Section \ref{sec:spectral-momentum} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
     Results of numerical experiments are presented. 
     \par
-    
+    Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
+    It's based on a series of papers (CITATION HERE) in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
+    We will point out potential future direction of research of Catalyst acceleration. 
+    \par
+
+
 
 
 
@@ -95,7 +107,7 @@
 
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
 
-\section{Nestrov's acceleration in the non-convex case}\label{sec:nes-acc-ncnvx}
+\section{Nestrov's acceleration in the non-convex case and momentum in general}\label{sec:nes-acc-ncnvx}
 
 \section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satelite remote sensing imagery}
 

@@ -940,7 +940,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
@@ -951,7 +951,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{proposition}
     \begin{proof}  
-        Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2, \hat \gamma = L \alpha_k^2$, giving us: 
+        Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2, \hat \gamma = L \alpha_k^2$ at each step, giving us: 
         {\small
         \begin{align*}
             &F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -976,7 +976,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
@@ -1015,7 +1015,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Going from the left to the right on the first equality, we used the fact that $\hat \gamma_{k + 1} = L \alpha_{k}^2$.
         This makes coefficient of $\Vert g_k\Vert^2$ zero. 
-        The fist inequality is by $\epsilon_k \ge 0$ and the non-negativity of the remaining terms. 
+        The first inequality is by $\epsilon_k \ge 0$ and the non-negativity of the remaining terms. 
         The last equality is by the assumption that $R_0 = 0$. 
         Therefore: 
         {\small
@@ -1025,7 +1025,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 0}^{k} \max(1, \rho_{k - 1})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 0}^{k} \left(1  - \alpha_i\right)
@@ -1072,52 +1072,52 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{proof}
         We are interested in identifying the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
         \begin{align*}
-            x_{t + 1} - z_{t + 1} 
-            &= \theta_t(z_{t + 1} - z_t)
+            v_{t + 1} - x_{t + 1} 
+            &= \theta_t(x_{t + 1} - x_t)
         \end{align*}
         To verify, do 
         \begin{align*}
-            x_{t + 1} &= 
-            (1 + \xi_t)^{-1}(x_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
+            v_{t + 1} &= 
+            (1 + \xi_t)^{-1}(v_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
             \\
             & \textcolor{gray}{
-                x_t = (1 + \tau_t)y_t - \tau_t z_t
+                v_t = (1 + \tau_t)y_t - \tau_t x_t
             }
             \\
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t)y_t - \tau_t z_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_t)^{-1}((1 + \tau_t)y_t - \tau_t x_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
             \\
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
             \\
-            x_{t + 1} - z_{t + 1}
+            v_{t + 1} - x_{t + 1}
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
             - (y_t - L^{-1}\mathcal G_Ly_t)
             \\
             &= 
-            (1 + \xi_t)^{-1}(\tau_ty_t - \tau_t z_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_t)^{-1}(\tau_ty_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
             + L^{-1}\mathcal G_Ly_t
             \\
             &= 
             (1 + \xi_t)^{-1}
             \left(
-                \tau_ty_t - \tau_t z_t + (L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
+                \tau_ty_t - \tau_t x_t + (L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
             \right)
             \\
             &= 
             (1 + \xi_t)^{-1}\tau_t
             \left(
-                y_t - z_t + 
+                y_t - x_t + 
                 \tau_t^{-1}(L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
             \right)
         \end{align*}
         The RHS is can be verified through 
         \begin{align*}
-            z_{t + 1} - z_t &= 
-            y_t - L^{-1}\mathcal G_L(y_t) - z_t
+            x_{t + 1} - x_t &= 
+            y_t - L^{-1}\mathcal G_L(y_t) - x_t
             \\
-            &= (y_t - z_t) - L^{-1}\mathcal G_L(y_t). 
+            &= (y_t - x_t) - L^{-1}\mathcal G_L(y_t). 
         \end{align*}
         It necessitates the condition: 
         \begin{align*}
@@ -1134,11 +1134,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Which allows for: 
         \begin{align*}
-            x_{t + 1} - z_{t + 1} &= 
+            v_{t + 1} - x_{t + 1} &= 
             (1 + \xi_t)^{-1}\tau_t
-            \left(y_t - z_t - L^{-1}\mathcal G_L(y_t)\right) 
+            \left(y_t - x_t - L^{-1}\mathcal G_L(y_t)\right) 
             = 
-            (1 + \xi_t)^{-1}\tau_t(z_{t + 1} - z_t). 
+            (1 + \xi_t)^{-1}\tau_t(x_{t + 1} - x_t). 
         \end{align*}
     \end{proof}
 
