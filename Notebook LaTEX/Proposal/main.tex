@@ -15,7 +15,8 @@
 \title{
     {
         \fontfamily{ptm}\selectfont 
-        A big title
+        First Order Nonsmooth Optimization: 
+        Algorithm Design, Analysis, Convergence, and Applications
     }
     }
 
@@ -46,32 +47,61 @@
 \tableofcontents
 
 \section{Introduction}
-    Let $\RR^n$ be the embient space. We consider 
-    \begin{align*}
+    Let $\RR^n$ be the ambient space. We consider 
+    \begin{align}
         \min_{x \in \RR^n} \left\lbrace
             F(x): f(x) + g(x)
         \right\rbrace.
-    \end{align*}
+    \end{align}\label{eqn:additive-comp-obj}
     Unless specified, assume $f$ is a smooth function with $L$-Lipschitz gradient operator. 
     Unless specified, assume $g$ is a convex function. 
+    In the literatures this type of problems are referred to as additive composite problems. 
+
+    \par
+    Our ongoing research concerns accelerated proximal gradient type method for solving (\ref{eqn:additive-comp-obj}). 
+    In the expository writing by Walkington \cite{noel_nesterovs_nodate}, a variant for of accelerated gradient method for strongly convex function $f$ is discussed. 
+    We had two lingering questions after reading it. 
+    \begin{enumerate}
+        \item Do there exist a unified description for the convergence for both variants of the algorithm. 
+        \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$. 
+    \end{enumerate}
+    The good news is we have definitive answers for both questions through our own efforts of research. 
+    Section \ref{sec:unify-nes-acceleration}, \ref{sec:spectral-momentum} are our ongoing research which present the answers to the questions. 
+    \par
+    In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
+    The convergence theories of R-WAPG allows us to model convergence of accelerated proximal gradient method where the momentum sequence doesn't strictly follow the conditions presented in the literatures. 
+    The descriptive power of R-WAPG allows convergence analysis for all the variants using one single theorem. 
+    \par
+    In Section \ref{sec:spectral-momentum} we propose a practical algorithm that exploits a specific term in the proof of R-WAPG to achieve faster convergence for solving (\ref{eqn:additive-comp-obj}) without knowing parameter $L, \mu$ in prior. 
+    Results of numerical experiments are presented. 
+    \par
     
 
 
-\section{Notations}
-    Beck's book \cite{beck_first-order_2017}. 
-\subsection{Foundamentals in convex analysis}
-\subsection{Canonical forms of Nesterov's accelerated methods}
-\section{Unifying variants of Nesterov's accelerated methods}
-\section{Generic convergence anlaysis of accelerated methods}
-\section{Catalyst accelerations and future works}
-\section{Performence estimation problems}
-\section{Methods of inexact proximal point}
-\section{Nestrov's acceleration in the non-convex case}
 
+    
+\section{Preliminaries}
+    Beck's book \cite{beck_first-order_2017}. 
+    \subsection{Fundamentals in convex analysis}
+    \subsection{Fundamentals in non-convex analysis}
+
+\section{Unifying variants of Nesterov's accelerated methods}\label{sec:unify-nes-acceleration}
+
+\section{Method of spectral momentum}\label{sec:spectral-momentum}
+
+\section{Catalyst accelerations and future works}\label{sec:catalyst}
+
+\section{Performance estimation problems}\label{sec:pep}
+
+\section{Methods of inexact proximal point}\label{sec:inexact-prox}
+
+\section{Nestrov's acceleration in the non-convex case}\label{sec:nes-acc-ncnvx}
+
+\section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satelite remote sensing imagery}
 
 
 \bibliographystyle{siam}
-\bibliography{references/refs.bib}
+\bibliography{references/proposal.bib}
 \newpage
 
 \appendix
