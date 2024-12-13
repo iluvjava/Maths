@@ -262,12 +262,14 @@ $$
 \end{aligned}
 $$
 
-The inequality is direct by convexity of $f$ and Lipschitz property of $F$. 
+The inequality is by convexity of $f$ and Lipschitz property of $F$. 
+The inexact model function upper bound the actual model function. 
+
 
 **Remarks**
 
-The above inequality can be interpreted with inexact evaluation of a proximal point evaluation. 
-Let's make it precise. 
+It can be interpreted that the inexact proximal gradient model function is a 
+
 
 
 

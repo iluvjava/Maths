@@ -79,7 +79,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
             &= 
-            \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \ge \mathcal M^{L^{-1}}(x; y). 
+            \mathcal M^{L^{-1}}(x; y)- D_f(x, y) \le \mathcal M^{L^{-1}}(x; y). 
         \end{align*}
     \end{lemma}
     \begin{proof}
@@ -820,9 +820,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}
         \textcolor{red}
         {
-        Use $\mu = D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2$ also works, $\mu$ is a pessimistic choice for the inequality above. 
+        Use $\mu = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2$ also works on (4*), $\mu$ is a pessimistic choice for the inequality above. 
         }
-        But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smallar than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
+        But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smaller than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
     \end{remark}
 
 \section{Formulation of R-WAPG and its convergence rates}
@@ -1045,7 +1045,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}        
         \textcolor{red}
         {
-            The choice of $\rho_k$ allows for divergence to traditional choices of step sizes in the literatures. 
+            The choice of $\rho_k$ allows for untraditional choices of step sizes in the literatures. 
             As we can see from the above convergence claim, there exists choices of $\rho_k\ge 1$ where convergence remains possible. 
         }
     \end{remark}
@@ -1069,82 +1069,79 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             x_{k + 1} &= y_k - L^{-1} g_k. 
         \end{align*}
-        If $1 + \xi_t + \tau_t = L\delta_t$. Then 
+        If $1 + \xi_k + \tau_k = L\delta_k$. Then 
         $$
             v_{k + 1} - x_{k + 1} = (1 + \xi_t)^{-1}\tau_t(x_{k + 1} - x_k). 
         $$
         Which makes the algorithm a similar triangle form. 
     \end{proposition}
     \begin{proof}
-        We are interested in identifying the conditions required for the sequence of $\xi_t, \tau_t, \delta_t$ such that there exists $\theta_t$ satisfying: 
+        We are interested in identifying the conditions required for the sequence of $\xi_k, \tau_k, \delta_k$ such that there exists $\theta_k$ satisfying: 
         \begin{align*}
-            v_{t + 1} - x_{t + 1} 
-            &= \theta_t(x_{t + 1} - x_t)
+            v_{k + 1} - x_{k + 1} 
+            &= \theta_t(x_{k + 1} - x_k).
         \end{align*}
         To verify, do 
         \begin{align*}
-            v_{t + 1} &= 
-            (1 + \xi_t)^{-1}(v_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
-            \\
-            & \textcolor{gray}{
-                v_t = (1 + \tau_t)y_t - \tau_t x_t
-            }
+            v_{k + 1} &= 
+            (1 + \xi_k)^{-1}(v_k + \xi_t y_k - \delta_k \mathcal G_L(y_k))
             \\
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t)y_t - \tau_t x_t + \xi_t y_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_k)^{-1}((1 + \tau_k)y_k - \tau_t x_k + \xi_k y_k - \delta_k \mathcal G_L(y_k))
             \\
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
+            (1 + \xi_k)^{-1}((1 + \tau_k + \xi_k)y_k - \tau_k x_k - \delta_k \mathcal G_L(y_k))
             \\
-            v_{t + 1} - x_{t + 1}
+            v_{k + 1} - x_{k + 1}
             &= 
-            (1 + \xi_t)^{-1}((1 + \tau_t + \xi_t)y_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
-            - (y_t - L^{-1}\mathcal G_Ly_t)
-            \\
-            &= 
-            (1 + \xi_t)^{-1}(\tau_ty_t - \tau_t x_t - \delta_t \mathcal G_L(y_t))
-            + L^{-1}\mathcal G_Ly_t
+            (1 + \xi_k)^{-1}((1 + \tau_k + \xi_k)y_t - \tau_k x_k - \delta_t \mathcal G_L(y_k))
+            - (y_k - L^{-1}\mathcal G_Ly_k)
             \\
             &= 
-            (1 + \xi_t)^{-1}
+            (1 + \xi_k)^{-1}(\tau_ky_k - \tau_k x_k - \delta_k \mathcal G_L(y_k))
+            + L^{-1}\mathcal G_Ly_k
+            \\
+            &= 
+            (1 + \xi_k)^{-1}
             \left(
-                \tau_ty_t - \tau_t x_t + (L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
+                \tau_ty_k - \tau_t x_k + (L^{-1}(1 + \xi_k) - \delta_k) \mathcal G_L(y_k)
             \right)
             \\
             &= 
-            (1 + \xi_t)^{-1}\tau_t
+            (1 + \xi_k)^{-1}\tau_k
             \left(
-                y_t - x_t + 
-                \tau_t^{-1}(L^{-1}(1 + \xi_t) - \delta_t) \mathcal G_L(y_t)
-            \right)
+                y_k - x_k + 
+                \tau_k^{-1}(L^{-1}(1 + \xi_k) - \delta_k) \mathcal G_L(y_k)
+            \right).
         \end{align*}
+        Going between the first and second inequality we used $v_k = (1 + \tau_k)y_k - \tau_k x_k$ which is an rearranged $y_k = (1 + \tau_k)^{-1}(v_k + \tau_k x_k)$. 
         The RHS is can be verified through 
         \begin{align*}
-            x_{t + 1} - x_t &= 
-            y_t - L^{-1}\mathcal G_L(y_t) - x_t
+            x_{k + 1} - x_k &= 
+            y_t - L^{-1}\mathcal G_L(y_k) - x_k
             \\
-            &= (y_t - x_t) - L^{-1}\mathcal G_L(y_t). 
+            &= (y_k - x_k) - L^{-1}\mathcal G_L(y_k). 
         \end{align*}
         It necessitates the condition: 
         \begin{align*}
-            \tau_t^{-1}(L^{-1}(1 + \xi_t) - \delta_t) 
+            \tau_t^{-1}(L^{-1}(1 + \xi_k) - \delta_k) 
             &= - L^{-1}
             \\
-            (1 + \xi_t) - L\delta_t
+            (1 + \xi_k) - L\delta_k
             &= 
-            - \tau_t
+            - \tau_k
             \\
-            1 + \xi_t + \tau_t
+            1 + \xi_k + \tau_k
             &=
-            L\delta_t. 
+            L\delta_k. 
         \end{align*}
         Which allows for: 
         \begin{align*}
-            v_{t + 1} - x_{t + 1} &= 
-            (1 + \xi_t)^{-1}\tau_t
-            \left(y_t - x_t - L^{-1}\mathcal G_L(y_t)\right) 
+            v_{k + 1} - x_{k + 1} &= 
+            (1 + \xi_k)^{-1}\tau_t
+            \left(y_k - x_k - L^{-1}\mathcal G_L(y_k)\right) 
             = 
-            (1 + \xi_t)^{-1}\tau_t(x_{t + 1} - x_t). 
+            (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k). 
         \end{align*}
     \end{proof}
 
@@ -1643,7 +1640,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}
         \textcolor{red}
         {
-        There exists a choice of $\rho_k \in [0, 1), \mu = 0$ such that the above algorithm is equivalent to Chambolle Dossal 2015 \cite{chambolle_convergence_2015}. 
+        There exists a choice of $\rho_k \in (0, 1], \mu = 0$ such that the above algorithm is equivalent to Chambolle Dossal 2015 \cite{chambolle_convergence_2015}. 
         When $\rho_k = 1$, this becomes just FISTA \cite{beck_fast_2009}. 
         When $L > \mu > 0$, then choosing $\rho_k = 1$ yields equation 
         \begin{align*}
@@ -1655,9 +1652,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 \subsection{Representing algorithms in the literatures via R-WAPG}
-\subsection{The method of Spectral Momentum}
-\subsection{Numerical experiments and applications}
 
+\subsection{The method of Spectral Momentum}
+
+\subsection{Numerical experiments and applications}
 
 \bibliographystyle{siam}
 \bibliography{references/Spectral_Momentum.bib}

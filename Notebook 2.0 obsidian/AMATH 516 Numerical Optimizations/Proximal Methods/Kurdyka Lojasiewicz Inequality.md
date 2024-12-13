@@ -12,11 +12,11 @@ Kurdyka Lojasiewicz inequality helps with asserting the convergence of iterates 
 We will use https://doi.org/10.1007/s10107-011-0484-9, title "Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods" as the major source for discussion in this file. 
 
 #### **Def | KL Functions, Pointwise**
-> $f: \mathbb R^n \mapsto \overline {\mathbb R} \in \{\text{KL at } x^* \in \text{dom}(\partial f)\}$ if and only if the following conditions are true: 
-> $\exists \eta \in (0, + \infty]$, neighborhood around $x^*$, denoted by $U(x^*)$ and a function $\phi : [0, \eta) \mapsto \mathbb R_+ \in \{\text{Continuous}\} \cap \{\text{Concave}\}$, such that these are true: 
-> 1. $\phi(0) = 0$, 
-> 2. $\phi$ is $C^1$ on $(0, \eta)$, 
-> 3. $\phi'(s) > 0 \; \forall s \in (0, \eta)$, 
+> $f: \R^n \rightarrow \overline \R$ is KL at $x^* \in \text{dom}(\partial f)$ if and only if the following conditions are true: 
+> $\exists \eta \in (0, + \infty]$, a neighborhood around $x^*$ denoted by $U(x^*)$ and a continuous and concave function $\phi : [0, \eta) \rightarrow \mathbb R_+$ such that: 
+> 1. $\phi(0) = 0$, anchored at at zero at zero; 
+> 2. $\phi$ is $C^1$ on $(0, \eta)$, continuous derivate on the interior of the domain;
+> 3. $\phi'(s) > 0 \; \forall s \in (0, \eta)$, strictly increasing in the interior of the domain;
 > 4. $\forall x \in U(x^*) \cap \{x | f(x^*) < f(x) < f(x^*) + \eta\}$, 
 > An we have the condition that 
 > $$
@@ -36,15 +36,17 @@ Secondly, the function $\phi$, we used here, is often called as a *desingularizi
 $x \in U(x^*) \cap \{x | f(x^*) < f(x) < f(x^*) + \eta\}$ means that $f(x) - f(x^*) > 0$. 
 $\phi'$ may not be differentiable at boundary point $0$. 
 Also, $\phi(x) \le x$, strict monotone increasing. 
-
+This set is a restricted levelset where the lowest level is anchored at $f(x^*)$. 
 
 
 **Remark**
 
-Reader should verify that, the point wise conditions of KL is automatically satisfied at points that are not critical points. 
+The point wise KL condition satisfies automatically at points that are not the critical point(a critical point as defined through the M-Limiting Subdifferential). 
+
+
 
 #### **Lemma | Non-Critical Point of KL**
-> Let $f \in \{\text{KL at } x^* \in \text{dom} \partial f\}$. 
+> Let $f$ be KL at $x^* \in \text{dom }f$. 
 > Let $x^*$ be a non-critical point of $f$, i.e $\mathbf 0 \not\in \partial f(x^*)$, 
 > Then we claim that 
 > $$
