@@ -146,7 +146,7 @@ $$
 \begin{aligned}
 	\hat x &= \underset{x}{\text{argmin}}\left\lbrace
 		\left(\sum_{i=1}^{m} 
-			\log(1 + \exp(a_i^Tx))
+			\ln(1 + \exp(a_i^Tx))
 		\right) - b^TAx
 	\right\rbrace
 	\\

@@ -464,10 +464,11 @@ $$
     &  
     - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
     \\
-    \text{use Q1 here } & =
+    & =
     -\alpha_k(v_k - x^*) -
     \frac{\alpha_k^2\mu}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
     - (x_k - y_k) 
+    & \text{by Q1 }
     \\
     &= 
     -\alpha_k(v_k - x^*) -
@@ -480,11 +481,11 @@ $$
         1 + \frac{\alpha_k \mu}{\gamma}
     \right)(x_k - y_k)
     \\
-    \text{use Q2 here}
     &= 
     -\alpha_k(v_k - x^*) - 
     \frac{\alpha_k \mu + \gamma}{\gamma}
     \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(x_k - v_k)
+    & \text{by Q2}
     \\
     &= 
     -\alpha_k(v_k - x^*)

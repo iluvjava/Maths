@@ -14,9 +14,13 @@
 \author{
     Hongda Li
     \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~ and~Xianfu Wang
+    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~Xianfu Wang
     \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{shawn.wang@ubc.ca}.}
+    and ~Heinz H. Bauschke~
+    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{heinz.bauschke@ubc.ca}.
+    }
 }
 
 \date{\today}
@@ -40,10 +44,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Our contributions are two folds. 
         
         We present a theoretical unification through the formulation of ``Relaxed weak accelerated proximal gradient algorithm (R-WAPG)'' which we invented. 
-        It unifies convergence claim for accelerated method for the strongly convex objective and Lipschitz smooth but non-strongly convex case and it relaxes the conditions on the momentum sequence. 
+        It unifies convergence claim for accelerated method for the strongly convex objective and Lipschitz smooth but non-strongly convex case, and it relaxes the conditions on the momentum sequence. 
         
         We connect the theories and practice by pointing out one practical exploits inspired the convergence proof of the algorithm which we called ``Spectral Momentum''. 
         Numerical experiments are conducted to illustrate the theoretical convergence of R-WAPG and the performance of Spectral Momentum in with applications. 
+        We do net yet have a proof for the convergence of the algorithm in general. 
 
 \section{Preliminaries}
     Throughout Section 1, 2, 3, we assume the problem of types $F = f + g$ where $f: \RR \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
@@ -251,8 +256,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \epsilon_{k} &\defeq F(x_k) - l_F(x_k; y_k), 
             \label{eqn:regret}
         \end{align}
-        Observe that by convexity of $F$, $\epsilon_k \ge 0$ always. 
-        To see, consider the last inequality in the remark of Lemma \ref{thm:prox-grad-ineq} with $y = y_k, x = x_k$: 
+        Observe that by convexity of $F$, $\epsilon_k \ge 0$ for all $x_k, L > 0$. 
+        To see, consider the last inequality in the remark of Theorem \ref{thm:prox-grad-ineq} with $y = y_k, x = x_k$: 
         \begin{align*}
             F(x_k) - F(T_Ly_k)
             - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
@@ -269,8 +274,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{assumption}
     
     \begin{definition}[Stepwise weak accelerated proximal gradient]\label{def:stepwise-wapg}\;\\
-        Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-        Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k > 0, \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+        Let $0 \le \mu < L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
+        Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha_k \in (0, 1), \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
         \begin{align*}
             \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
             \\
@@ -328,7 +333,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \iff
             y_k - x_k &= 
             (\gamma + \alpha_k \mu)^{-1}
-            (\alpha_k \gamma_k v_k - (\gamma + \alpha_k \mu)x_k + \hat \gamma x_k)
+            (\alpha_k \gamma v_k - (\gamma + \alpha_k \mu)x_k + \hat \gamma x_k)
             \\
             \iff 
             (\gamma + \alpha_k \mu)(y_k - x_k)
@@ -405,7 +410,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 (1 - \alpha_k)
                 \left(
                     \epsilon_k + R_k + 
-                    \frac{\mu\alpha_k\gamma_k}{2\hat \gamma}
+                    \frac{\mu\alpha_k\gamma}{2\hat \gamma}
                     \Vert v_k - y_k\Vert^2
                 \right). 
         \tag{1*}
@@ -418,7 +423,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \frac{\hat \gamma}{2}\Vert 
                 \hat \gamma^{-1}
                 (
-                    \gamma_k(1 - \alpha_k)v_k - 
+                    \gamma(1 - \alpha_k)v_k - 
                     \alpha_k g_k + \mu \alpha_k y_k
                 )
                 - x^* 
@@ -548,10 +553,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &  
             - \alpha_k(v_k - x^*) - \frac{\alpha_k^2 \mu}{\hat \gamma}(y_k - v_k) - (x_k - y_k)
             \\
-            \text{use Q1 here } & =
+            & =
             -\alpha_k(v_k - x^*) -
             \frac{\alpha_k^2\mu}{\hat \gamma}\frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
             - (x_k - y_k) 
+            &\text{by Q1} 
             \\
             &= 
             -\alpha_k(v_k - x^*) -
@@ -564,11 +570,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 1 + \frac{\alpha_k \mu}{\gamma}
             \right)(x_k - y_k)
             \\
-            \text{use Q2 here}
             &= 
             -\alpha_k(v_k - x^*) - 
             \frac{\alpha_k \mu + \gamma}{\gamma}
             \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(x_k - v_k)
+            &\text{by Q2}
             \\
             &= 
             -\alpha_k(v_k - x^*)
@@ -803,8 +809,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \tag{4*}    
         \end{align*}
         }
-        On the last line, we expand the definition of $g_k$ and then used 
-        \hyperref[thm:prox-grad-ineq]{Theorem \ref*{thm:prox-grad-ineq}}. 
+        On the last line, we expand the definition of $g_k$ and then used the
+        \hyperref[thm:prox-grad-ineq]{remark of Theorem \ref*{thm:prox-grad-ineq}}. 
         Therefore, we conclude that: 
         {\small
         \begin{align*}
@@ -820,7 +826,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}
         \textcolor{red}
         {
-        Use $\mu = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2$ also works on (4*), $\mu$ is a pessimistic choice for the inequality above. 
+        Given $y_k$, we may choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on (4*), $\mu$ is a pessimistic choice for the inequality above. 
         }
         But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smaller than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
     \end{remark}
@@ -831,7 +837,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
         \;\\
-        Initialize any $\gamma_0 \in (0, 1)$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
+        Initialize any $\gamma_0 \in (0, L]$, $(x_0, v_0)$ or equivalently: $(x_0, y_0), (y_0, v_0)$. 
         The algorithm generates a sequence of vector $(x_k, y_k, v_k)$ and auxiliary sequence $\alpha_k, \rho_k$ such that they satisfy for all $k\ge 0$: 
         $$
         \begin{aligned}
@@ -862,7 +868,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018}. 
     \end{observation}
     \begin{observation}\label{obs:r-wapg-observation-1}
-        If $\alpha_0 \in (0, 1)$, then the entire sequence $\alpha_k \in (0, 1)$. 
+        If $\alpha_0 \in (0, 1)$ (this is true by $\gamma_0 \in (0, L]$), then the entire sequence $\alpha_k \in (0, 1)$. 
         Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
         Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
         \begin{align*}
@@ -907,12 +913,12 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \frac{\mu}{L} + 
                 \sup_{x \in (0, 1)}
                 \left\lbrace
-                    -x + \sqrt{(x - \mu/L)^2 + x}
+                    -x + \sqrt{(x - \mu/L)^2 + 4x}
                 \right\rbrace
             \right)
             \\
             & \le \frac{1}{2}\left(
-                \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 1}\right)
+                \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 4}\right)
             \right) \le 1. 
         \end{align*}
         Going to the first inequality, we used $\rho_{k - 1} \alpha_{k - 1}^2 < 1$ to get the strict inequality. 
@@ -1021,7 +1027,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Going from the left to the right on the first equality, we used the fact that $\hat \gamma_{k + 1} = L \alpha_{k}^2$.
         This makes coefficient of $\Vert g_k\Vert^2$ zero. 
-        The first inequality is by $\epsilon_k \ge 0$ and the non-negativity of the remaining terms. 
+        The first inequality is by $\epsilon_k \ge 0$ and the non
+        -negativity of the remaining terms. 
         The last equality is by the assumption that $R_0 = 0$. 
         Therefore: 
         {\small
@@ -1045,7 +1052,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}        
         \textcolor{red}
         {
-            The choice of $\rho_k$ allows for untraditional choices of step sizes in the literatures. 
+            The choice of $\rho_k$ allows for nontraditional choices of step sizes in the literatures. 
             As we can see from the above convergence claim, there exists choices of $\rho_k\ge 1$ where convergence remains possible. 
         }
     \end{remark}
@@ -1058,7 +1065,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:wagp-st-form} states two more equivalent representations under R-WAPG intermediate form which are formulated as Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
     
     To start, the following proposition on ``abstract similar triangle form'' were made to simplify arguments and notations to make nicer proofs. 
-
 
     \begin{proposition}[Abstract similar triangle form]\label{prop:abs-st-form}\;\\
         For all $k\ge 0$, iterates $(w_t, y_t, x_{t + 1}, z_{t + 1})$ satisfies recursively that: 
@@ -1640,7 +1646,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{remark}
         \textcolor{red}
         {
-        There exists a choice of $\rho_k \in (0, 1], \mu = 0$ such that the above algorithm is equivalent to Chambolle Dossal 2015 \cite{chambolle_convergence_2015}. 
+        There exists a choice of $\rho_k \in (0, 1], \mu = 0$ such that the above algorithm is equivalent to Chambolle, Dossal 2015 \cite{chambolle_convergence_2015}. 
         When $\rho_k = 1$, this becomes just FISTA \cite{beck_fast_2009}. 
         When $L > \mu > 0$, then choosing $\rho_k = 1$ yields equation 
         \begin{align*}
@@ -1652,12 +1658,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 \subsection{Representing algorithms in the literatures via R-WAPG}
+    
 
-\subsection{The method of Spectral Momentum}
+\subsection{The method of Inexact Momentum}
 
 \subsection{Numerical experiments and applications}
 
 \bibliographystyle{siam}
-\bibliography{references/Spectral_Momentum.bib}
+\bibliography{references/Inexact_Momentum.bib}
 
 \end{document}

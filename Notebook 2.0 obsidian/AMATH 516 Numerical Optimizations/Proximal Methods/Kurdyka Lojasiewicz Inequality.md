@@ -11,10 +11,10 @@ Kurdyka Lojasiewicz inequality helps with asserting the convergence of iterates 
 
 We will use https://doi.org/10.1007/s10107-011-0484-9, title "Convergence of descent methods for semi-algebraic and tame problems: proximal algorithms, forward–backward splitting, and regularized Gauss–Seidel methods" as the major source for discussion in this file. 
 
-#### **Def | KL Functions, Pointwise**
+#### **Def | KL Functions, Point wise**
 > $f: \R^n \rightarrow \overline \R$ is KL at $x^* \in \text{dom}(\partial f)$ if and only if the following conditions are true: 
 > $\exists \eta \in (0, + \infty]$, a neighborhood around $x^*$ denoted by $U(x^*)$ and a continuous and concave function $\phi : [0, \eta) \rightarrow \mathbb R_+$ such that: 
-> 1. $\phi(0) = 0$, anchored at at zero at zero; 
+> 1. $\phi(0) = 0$, anchored at zero; 
 > 2. $\phi$ is $C^1$ on $(0, \eta)$, continuous derivate on the interior of the domain;
 > 3. $\phi'(s) > 0 \; \forall s \in (0, \eta)$, strictly increasing in the interior of the domain;
 > 4. $\forall x \in U(x^*) \cap \{x | f(x^*) < f(x) < f(x^*) + \eta\}$, 
@@ -29,14 +29,14 @@ We will use https://doi.org/10.1007/s10107-011-0484-9, title "Convergence of des
 This definition has a lot of parts in it. 
 Firstly, the subgradient $\partial f$, refers to the limiting subgradient of a function. 
 See [Limiting Subgradient](../Non-Smooth%20Calculus/Limiting%20Subgradient.md) for more information. 
-Secondly, the function $\phi$, we used here, is often called as a *desingularizing function* for $f$ at the point $x^*$. 
+Secondly, the function $\phi$, we used here, is often called as a *de-singularizing function* for $f$ at the point $x^*$. 
 
 **Observations**
 
 $x \in U(x^*) \cap \{x | f(x^*) < f(x) < f(x^*) + \eta\}$ means that $f(x) - f(x^*) > 0$. 
 $\phi'$ may not be differentiable at boundary point $0$. 
 Also, $\phi(x) \le x$, strict monotone increasing. 
-This set is a restricted levelset where the lowest level is anchored at $f(x^*)$. 
+This set is a restricted level set where the lowest level is anchored at $f(x^*)$. 
 
 
 **Remark**
