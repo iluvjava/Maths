@@ -868,7 +868,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018}. 
     \end{observation}
     \begin{observation}\label{obs:r-wapg-observation-1}
-        If $\alpha_0 \in (0, 1)$ (this is true by $\gamma_0 \in (0, L]$), then the entire sequence $\alpha_k \in (0, 1)$. 
+        If $\alpha_0 \in (0, 1)$ which is true by $\gamma_0 \in (0, L]$, then the entire sequence $\alpha_k \in (0, 1)$. 
         Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
         Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
         \begin{align*}
@@ -1653,12 +1653,12 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             L \alpha_{k + 1}^2 = (1- \alpha_{k + 1})L \alpha_k^2 + \alpha_{k + 1} \mu. 
         \end{align*}
         Here, if we assume sequence $\alpha_k$ is constant, then $\alpha_k = \sqrt{\mu/L}$ is a solution to the above iterative equation. 
-        Substituting it back to the momentum form of R-WAPG, we recovers the V-FISTA algorithm, which appears as (10.7.7) in Beck's Book \cite{beck_first-order_2017}. 
+        Substituting it back to the momentum form of R-WAPG, we recover the V-FISTA algorithm, which appears as (10.7.7) in Beck's Book \cite{beck_first-order_2017}. 
         }
     \end{remark}
 
 \subsection{Representing algorithms in the literatures via R-WAPG}
-    
+
 
 \subsection{The method of Inexact Momentum}
 

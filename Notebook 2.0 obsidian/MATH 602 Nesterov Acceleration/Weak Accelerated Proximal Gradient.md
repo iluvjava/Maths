@@ -1537,7 +1537,12 @@ $$
 ---
 ### **Discussions of R-WAPG and its consequences**
 
-This sections discusses specific choices for the parameters of R-WAPG where it recovers familiar type of algorithms seem as variants of accelerated proximal gradient algorithm in the literatures. 
+The theories predict some new things about the behaviors of accelerated proximal gradient algorithm. 
+
+
+#### **Definition | The Chambolle Dossal FISTA Sequence**
+> 
+
 
 
 
