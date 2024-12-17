@@ -47,9 +47,9 @@
     The optimal algorithm named accelerated gradient descent method is proposed in Nesterov's seminal work back in 1983 \cite{nesterov_method_1983}. 
     The algorithm closed the upper bound and lower bound on the iteration complexity for all first order Lipschitz smooth convex function among all first order algorithms. 
     For a specific definition of first order method, we refer reader to Chapter 2 of Nesterov's new book \cite{nesterov_lectures_2018} for more information. 
-    Gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity that is slower than
+    Gradient descent has an upper bound of $\mathcal O(1/k)$ in iteration complexity of function value that is slower than
     the lower iteration complexity $\mathcal O(1/k^2)$. 
-    Accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$, making it optimal. 
+    Accelerated gradient descent has an upper bound of $\mathcal O(1/k^2)$ in function value, making it optimal. 
     \par
     It's tempting to believe that the existence of this optimal algorithm sealed the ceiling for the need of theories for convex first-order smooth optimization. 
     It is correct but lacks the nuance in understanding because Nesterov's accelerated gradient is a system of analysis techniques which is not a specific design paradigm for algorithms. 
@@ -165,7 +165,7 @@
         Creativity is important in the construction of the estimating sequence $(\phi_k)_{k \ge 0}$. 
 
 \section{Estimating sequence for accelerated proximal gradient}
-    This section swiftly exposes the constructions of the Nesterov's estimating sequence for accelerated proximal gradient method. A similar accelerated projected gradient is Algorithm (2.2.63) in Nesterov's book \cite{nesterov_lectures_2018}. 
+    This section swiftly exposes the constructions of the Nesterov's estimating sequence for accelerated proximal gradient method. A similar accelerated projected gradient is \\ Algorithm (2.2.63) in Nesterov's book \cite{nesterov_lectures_2018}. 
     We use accelerated proximal gradient algorithm as an example because its formulation is similar to the Catalyst Acceleration framework. 
     \par
     Throughout this section we assume that: $F = f + g$ where $f$ is $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex and $g$ is convex. 

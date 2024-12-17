@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe research proposal focuses on the theories and practice in solving nonsmooth optimization.\\E$"}

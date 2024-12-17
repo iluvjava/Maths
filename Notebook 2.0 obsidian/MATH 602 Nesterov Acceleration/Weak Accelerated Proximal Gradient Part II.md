@@ -120,13 +120,208 @@ Throughout the section we use the same assumptions the stated in previous files 
 > $$
 > Here, $\kappa = \mu /L$ and $\mu > 0$. 
 
+#### **Algorithm | Chambolle, Dossal**
+> Define $(t_k)_{k \ge 1}$ to be $t_k = (n + a - 1)/a$ for all $a \ge 2$. 
+> Initialize $x_0 = y_0$, the algorithm updates for sequence $(x_k)_{k \ge 1}, (y_k)_{k \ge1}$ for all $k \ge 1$ by: 
+> $$
+> \begin{aligned}
+>    x_k &= y_k + L^{-1}\mathcal G_L(y_k),  \\
+>    y_k &= x_{k} + \frac{t_{k + 1} - 1}{t_{k + 2}}(x_k - x_{k - 1}).     
+> \end{aligned}
+> $$
 
-#### **Algorithm | Chambolle Dossal**
-> 
+
+
+
 
 ---
 ### **Discussions of R-WAPG and its consequences**
 
+The theorems that follows considers:
+1. Fit Chambolle, Dossal's 2015 algorithm into the R-WAPG framework. 
+2. Fit V-FISTA into the R-WAPG framework.
 
-#### **Definition | The Chambolle Dossal FISTA Sequence**
-> 
+
+#### **Proposition**
+> Assume $\mu = 0$. 
+> Let $a \ge 2$. 
+> Define $\forall k \in \Z, k \ge -1$, the sequence $(\alpha_k)_{k \ge -1}$ by $\alpha_k = a /(k + a + 1)$. 
+> Define for all $k \ge 0$, the sequence $\rho_k = (k + a + 1)^2/((k + a + 2)(k + 2))$. 
+> Then the sequences are valid option for R-WAPG  and they satisfy: 
+> $$
+> \begin{aligned}
+>     & 
+>     \rho_{k - 1} \in \left(1, \alpha_{k - 1}^{-2}\right), 
+>     \\ 
+>     & \alpha_{k - 1}^{-2} \ge \alpha_k^{-2} - \alpha_k^{-1}. 
+> \end{aligned}
+> $$  
+> In addition, with this choice of $\rho_k$, $\alpha_k$, the R-WAPG reduces to the Chambolle Dossal 2015 algorithm with convergence rate $\mathcal O(\alpha_k)$ given by Lemma-1. 
+
+
+**Proof**
+
+First, we verify that for all $k \ge 1$ and $a \ge 2$, $\rho_{k - 1} > 1$. 
+By definition it has
+
+$$
+\begin{aligned}
+    \rho_{k - 1} 
+    &= \frac{(k + a)^2}{(k + a + 1)(k + 1)}
+    \\
+    \iff 
+    \rho_{k - 1} - 1
+    &= 
+    \frac{(k + a)^2 - (k + a + 1)(k + 1)}{(k + a + 1)(k + 1)}
+    \\
+    &= 
+    (k + a + 1)^{-1} 
+    \left(
+        \frac{(k + a)^2 - (k + a + 1)(k + 1)}{k + 1}
+    \right)
+    \\
+    &= 
+    (k + a + 1)^{-1} 
+    \left(
+        \frac{
+            (k + a)^2 - (k + a)(k + 1) - (k + 1)
+        }{k + 1}
+    \right)
+    \\
+    &= 
+    (k + a + 1)^{-1} 
+    \left(
+        \frac{
+            (k + a)^2 - (k + a)(k + 1)
+        }{k + 1} 
+        - 1
+    \right)
+    \\
+    &= 
+    (k + a + 1)^{-1} 
+    \left(
+        \frac{
+            (k + a)(a - 1)
+        }{k + 1} 
+        - 1
+    \right)
+    \\
+    & \ge 
+    (k + a + 1)^{-1} 
+    \left(
+        \frac{
+            (k + 2)(2 - 1)
+        }{k + 1} 
+        - 1
+    \right) > 0. 
+\end{aligned}
+$$
+
+Therefore, $\rho_{k - 1} > 1$. 
+Next, we check $\rho_{k - 1} - \alpha_{k - 1}^{-2} < 0$ for all $k \ge 1, a \ge 2$. 
+By definition, we have 
+
+$$
+\begin{aligned}
+    \rho_{k - 1} - \alpha_{k - 1}^{-2} &= 
+    \frac{(k + a)^2}{(k + a + 1)(k + 1)} - \left(
+        \frac{a}{k + a + 1}
+    \right)^{-2}
+    \\
+    &= 
+    \frac{(k + a)^2}{(k + a + 1)(k + 1)} - \left(
+        \frac{k + a + 1}{a}
+    \right)^{2}
+    \\
+    &\le 
+    \frac{(k + a)^2}{(k + a + 1)} - \left(
+        \frac{k + a + 1}{a}
+    \right)^{2}
+    \\
+    &= \frac{(k + a)^2 - (k + a + 1)^4}{a^2(k + a + 1)^2}
+    \le 
+    \frac{(k + a + 1)^2 - (k + a + 1)^4}{a^2(k + a + 1)}
+    < 0. 
+\end{aligned}
+$$
+The last strict inequality comes from $k + a + 1 > 1$ for all $a\ge 2, k \ge 1$. 
+Therefore, $\rho_k, \alpha_k$ are valid sequence for R-WAPG and the convergence claim for R-WAPG applies. 
+By the assumption that $\mu = 0$, the relations between $\rho_k, \alpha_k$ from R-WAPG is given by: 
+
+$$
+\begin{aligned}
+    L\alpha_k^2 &= (1 - \alpha_k)L \rho_{k- 1}\alpha_{k - 1}^2
+    \\
+    \iff 
+    \alpha_k^2 &= (1 - \alpha_k) \rho_{k - 1}\alpha_{k - 1}^2. 
+\end{aligned}
+$$
+
+To verify, it has on the LHS $\alpha_k^2 = a^2/(k + a + 1)^2$ and the RHS has 
+
+$$
+\begin{aligned}
+    (1 - \alpha_k)\rho_{k - 1}\alpha_{k - 1}^2 
+    &= 
+    \left(
+        1 - \frac{a}{k + a + 1}
+    \right)\left(
+        \frac{(k + a)^2}{(k + a + 1)(k + 1)}
+    \right)
+    \left(
+        \frac{a}{k + a}
+    \right)^2
+    \\
+    &= \left(
+        \frac{k + 1}{k + a + 1}
+    \right)\left(
+        \frac{(k + a)^2}{(k + a + 1)(k + 1)}
+    \right)
+    \left(
+        \frac{a^2}{(k + a)^2}
+    \right)
+    \\
+    &= \frac{a^2}{(k + a + 1)^2} = \alpha_k^2. 
+\end{aligned}
+$$
+
+Therefore, the sequence $\alpha_k, \rho_k$ given is a valid choice for R-WAPG.  
+Invoke directly the convergence claim, the algorithm converges at an rate of $\mathcal O(\alpha_k^2)$. 
+Using the third equivalent form, R-WAPG has for all $k \ge 0$. 
+
+$$
+\begin{aligned}
+    x_{k + 1} &= y_k - L^{-1}\mathcal G_Ly_k, 
+    \\
+    y_{k + 1} &= 
+    x_{k + 1} + 
+    \frac{\alpha_k^{-1} - 1}{\alpha_{k + 1}^{-1}}(x_{k + 1} - x_k). 
+\end{aligned}
+$$
+By the substitution $\alpha_{k - 2} = t_{k}^{-1}=a/(k + a -1)$, we have the sequence $(t_k)_{k \ge1}$ defined as $t_k = (k + a - 1)/a$ which coincided with the choice from Chambolle Dossal 2015, and it make the updates for $y_{k}$ for all $k \ge 0$ into: 
+
+$$
+\begin{aligned}
+    x_{k + 1} &= y_k - L^{-1}\mathcal G_L y_k, 
+    \\
+    y_{k + 1} &= x_{k + 1} + \frac{t_{k + 2} - 1}{t_{k + 3}}(x_{k + 1} - x_{k}). 
+\end{aligned}
+$$
+
+Which is the same update rules for Chambolle Dossal. 
+
+
+Since $\rho_{k - 1} > 1$ for all $k \ge 1$, we have $\alpha_{k - 1}^{-2} \ge \alpha_k^{-2} - \alpha_k^{-1}$ because 
+
+$$
+\begin{aligned}
+    \alpha_k^2 &= (1 - \alpha_k)\alpha_{k -1}^2 \rho_{k - 1} 
+    \ge (1 - \alpha_k)\alpha_{k - 1}^2
+    \\
+    \iff 1 &\ge 
+    \alpha_k^{-1}(\alpha_k^{-1} - 1)\alpha_{k - 1}^2
+    \\
+    \alpha_{k - 1}^{-2} &\ge 
+    \alpha_k^{-2} - \alpha_k^{-1}. 
+\end{aligned}
+$$
