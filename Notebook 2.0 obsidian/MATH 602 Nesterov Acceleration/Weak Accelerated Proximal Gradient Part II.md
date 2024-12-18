@@ -132,8 +132,6 @@ Throughout the section we use the same assumptions the stated in previous files 
 
 
 
-
-
 ---
 ### **Discussions of R-WAPG and its consequences**
 
@@ -156,7 +154,7 @@ The theorems that follows considers:
 >     & \alpha_{k - 1}^{-2} \ge \alpha_k^{-2} - \alpha_k^{-1}. 
 > \end{aligned}
 > $$  
-> In addition, with this choice of $\rho_k$, $\alpha_k$, the R-WAPG reduces to the Chambolle Dossal 2015 algorithm with convergence rate $\mathcal O(\alpha_k)$ given by Lemma-1. 
+> In addition, with this choice of $\rho_k$, $\alpha_k$, and initial condition $x_1 = T_L x_0$, $y_1 = x_1$, the R-WAPG reduces to the Chambolle Dossal 2015 algorithm with convergence rate $\mathcal O(\alpha_k)$ given by Lemma-1. 
 
 
 **Proof**
@@ -287,7 +285,7 @@ $$
 
 Therefore, the sequence $\alpha_k, \rho_k$ given is a valid choice for R-WAPG.  
 Invoke directly the convergence claim, the algorithm converges at an rate of $\mathcal O(\alpha_k^2)$. 
-Using the third equivalent form, R-WAPG has for all $k \ge 0$. 
+Using the third equivalent form, R-WAPG has for all $k \ge 1$. 
 
 $$
 \begin{aligned}
@@ -298,7 +296,7 @@ $$
     \frac{\alpha_k^{-1} - 1}{\alpha_{k + 1}^{-1}}(x_{k + 1} - x_k). 
 \end{aligned}
 $$
-By the substitution $\alpha_{k - 2} = t_{k}^{-1}=a/(k + a -1)$, we have the sequence $(t_k)_{k \ge1}$ defined as $t_k = (k + a - 1)/a$ which coincided with the choice from Chambolle Dossal 2015, and it make the updates for $y_{k}$ for all $k \ge 0$ into: 
+By the substitution $\alpha_{k - 2} = t_{k}^{-1}=a/(k + a -1)$, we have the sequence $(t_k)_{k \ge1}$ defined as $t_k = (k + a - 1)/a$ which coincided with the choice from Chambolle Dossal 2015, and it make the updates for $y_{k}$ for all $k \ge 1$ into: 
 
 $$
 \begin{aligned}
