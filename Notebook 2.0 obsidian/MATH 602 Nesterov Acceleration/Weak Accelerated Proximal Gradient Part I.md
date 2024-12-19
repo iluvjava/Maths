@@ -36,19 +36,20 @@ $$
 
 
 #### **Algorithm 2 | Stepwise weak accelerated proximal gradient**
-> Let $0 \le \mu <> L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-> Given any $(v_k, x_k)$, $\alpha > 0, \gamma > 0$, Let $\hat \gamma$, $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
+> Assume $0 \le \mu < L$.
+> Fix any $k \in \mathbb Z$. 
+> For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma_k > 0$, let $\hat \gamma_{k + 1}$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
 > $$
 > \begin{aligned}
->     \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
+>     \hat \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
 >     \\
 >     y_k &= 
->     (\gamma + \alpha_k \mu)^{-1}(\alpha_k \gamma v_k + \hat\gamma x_k), 
+>     (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
 >     \\
 >     g_k &= \mathcal G_L y_k, 
 >     \\
->     v_{k + 1} &= \hat\gamma^{-1}
->     (\gamma(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+>     v_{k + 1} &= \hat\gamma^{-1}_{k + 1}
+>     (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
 >     \\
 >     x_{k + 1} &= T_L y_k. 
 > \end{aligned}
@@ -142,21 +143,22 @@ Therefore, we discover that $x_k, v_k, y_k$ lies on the same line.
 
 
 #### **Claim | Stepwise Lyapunov Claim**
-> Fix any integer $k \ge0$, given any $(x_k, v_k)$ and suppose that $v_{k + 1}, x_{k + 1}, y_k, g_k, \gamma, \hat \gamma$ satisfies Algorithm 2. 
-> Given any $R_k$.
+> Fix any integer $k \in \mathbb Z$.
+> Given any $v_k, x_k$ and $\gamma_k > 0$, invoke Definition \ref{def:stepwise-wapg} to obtain $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}$. 
+> Fix any arbitrary $R_k \in \R$.
 > Define: 
 > $$
 > \begin{aligned}
 >     R_{k + 1}
 >     := 
 >     \frac{1}{2}\left(
->         L^{-1} - \frac{\alpha_k^2}{\hat \gamma}
+>         L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
 >     \right)\Vert g_k\Vert^2
 >     + 
 >     (1 - \alpha_k)
 >     \left(
 >         \epsilon_k + R_k + 
->         \frac{\mu\alpha_k\gamma}{2\hat \gamma}
+>         \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
 >         \Vert v_k - y_k\Vert^2
 >     \right). 
 > \end{aligned}
@@ -164,16 +166,19 @@ Therefore, we discover that $x_k, v_k, y_k$ lies on the same line.
 > Then it has for all $x^* \in \R^n$ where $F^* = F(x^*)$, the inequality: 
 > $$
 > \begin{aligned}
->     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+>     F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat \gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
 >     &\le 
 >     (1 - \alpha_k)
 >     \left(
->         F(x_k) - F^* + R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+>         F(x_k) - F^* + R_k + \frac{\gamma_{k}}{2}\Vert v_k - x^*\Vert^2
 >     \right). 
 > \end{aligned}
 > $$
 
 **Proof**
+
+The proof is a direct proof. 
+Here we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof, and it makes for better readability! 
 
 Start by considering the first and the third term of the LHS of the inequality that we want to prove. 
 Using the definition of $\epsilon_k$ from the previous section we have: 
@@ -825,8 +830,9 @@ However, the limit of $\alpha_k$ could be 1.
 
 **Proof**
 
-
-Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, for all $i = 2, 3, \cdots, k$, we invoke the stepwise convergence claim with $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2 > 0, \hat \gamma = L \alpha_k^2 > 0$, giving us: 
+The $R_k$ is the same as the step wise convergence claim. 
+At each step of the algorithm, the only diffrence is we have additionally: $\hat \gamma_{k + 1} = L\alpha_k^2$ for all $k \ge 1$ and $\gamma_k = L\alpha_{k - 1}\rho_{k - 1}$ for $k \ge 2$. 
+This allows us to invoke the stepwise convergence claim for all $k = 1, 2, \cdots$, so we can unroll the recursively: 
 
 $$
 {\small

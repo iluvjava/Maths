@@ -40,10 +40,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 \section{Introduction}
     Suppose we are minimizing a differentiable convex function $F$ for simplicity. 
-    In addition, assuming the function is $\RR^n$ so it's full domain and $F$ is Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+    In addition, assuming the function is $\RR^n$, so it's full domain and $F$ is Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
     \par 
-    A good choice of a minimization algorithm is the Nesterov's acceleration schemes that originally proposed in 1983 \cite{nesterov_method_1983}. Initializing $x_0 = y_0$ the algorithm finds $(x_k)_{k \ge 1}$ and $t_1 = 1$ by 
-    \begin{align*}
+    A good choice of a minimization algorithm is the Nesterov's acceleration schemes that originally proposed in 1983 \cite{nesterov_method_1983}. Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
+    \begin{align}
         & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
         \\
         & t_{k + 1} = 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right), 
@@ -51,7 +51,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
         \\
         & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
-    \end{align*}
+    \end{align}\label{eqn:example_algorithm}
     It's well known that if the minimizer $x^*$ exists, $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal. 
     See Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018}. 
     However, everything is not sunshine and rainbow because the above scheme is associated with an issue. 
@@ -62,18 +62,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept and it performs empirically better. 
     See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
     \par
-    Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you an alternative to restarting that performs well empirically and along with it, a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
-    The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much flexible choice of $(\theta_t)_{t \ge 1}$ and the descriptive power to cover several variants of FISTA in the literatures.  
+    Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically and along with it. 
+    Secondly, a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
+    The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(\theta_t)_{t \ge 1}$. 
+    It also has descriptive power to describe several variants of FISTA in the literatures.  
 
     \subsection{Contributions}
-        Our contributions are two folds theoretical and practical. 
-        \par
+        Our contributions are two folds, theoretical and practical. 
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies. 
         In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ gives strong weak convergence of the iterates $x_k$ in Hilbert space. 
         In Beck \cite{beck_first-order_2017}, it has constant $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
-        Firstly, we relaxed the traditional choice of the sequence $\theta_k$ and showed an upper bound of the optimal gap. 
+        Firstly, we relaxed the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
         Let $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$, given any $\gamma_1 \in (0, L]$ and define $\alpha_1$ by 
         \begin{align*}
             \alpha_1 = \frac{1}{2}\left(
@@ -99,7 +100,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
             \right). 
         \end{align*}
-        Our first main results shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed (Definition \ref{def:wapg}), we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed (Definition \ref{def:wapg}), we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
         \begin{align*}
             \mathcal O\left(
                 \left(
@@ -108,17 +109,18 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right). 
         \end{align*}
-        Our second main results shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the variants proposed in Chambolle Dossal \cite{chambolle_convergence_2015}. 
-        And when $\rho_k = 1, \rho > 0$, R-WAPG reduces perfect to V-FISTA by Beck \cite{beck_first-order_2017} and it produces convergence claim consistent with the literatures. 
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the a variant proposed in Chambolle Dossal \cite{chambolle_convergence_2015}. 
+        And when $\rho_k = 1$, R-WAPG reduces perfectly to V-FISTA by Beck \cite{beck_first-order_2017}, and it produces convergence claim consistent with the literatures. 
+        We will also present a simplified convergence rate when $\rho_k \in (0, \alpha_{k - 1}^2), \mu = 0$ which is also consistent with the literatures. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
-        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$. 
-        We conducted ample amount of numerical experiments to show that it has favorable convergence rate in practice, and it behaves similarly to the FISTA with monotone restart. 
+        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
+        We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
+    \subsection{Prior works}
+        
     \subsection{Organizations}
 
-        
-
-        
+    
        
 
 \section{Preliminaries}
@@ -312,11 +314,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     This entire section is building up the R-WAPG algorithm which is described in the Definition \ref{def:wapg} of the next section. 
     \par 
     Definition \ref{def:stepwise-wapg} which describes what happens at a single iteration of the R-WAPG algorithm. 
-    It defines a procedures of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
-    Propsotion \ref{prop:stepwise-lyapunov} states the inequality that describes a decreasing quantity that involves $F(x_k), F(x_{k + 1})$ at each single iteration. 
-    
-    
-    
+    It defines a procedure of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
+    Proposition \ref{prop:stepwise-lyapunov} states the inequality that describes a decreasing quantity that involves $F(x_k), F(x_{k + 1})$ at each single iteration. 
     \begin{assumption}
         Choose any integer $k\ge 0$. 
         Given $x_k, y_k, v_k$, we define the following quantities
@@ -458,7 +457,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{proposition}
     \begin{proof}
         The proof is a direct proof. 
-        Here we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof and it makes for better readibility! 
+        Here we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof, and it makes for better readability! 
         \par 
         We started with $F(x_{k + 1}) + R_{k + 1}$ as Equation (1*), and $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2$ as (2*). 
         In the proof that follows, we show (2*) equals to (2.2*). 
@@ -925,7 +924,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}
         Assume $0 \le \mu < L$. 
         For any $\gamma_1 \in (0, L]$, define $\alpha_1 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$. 
-        Then the sequence $(\alpha_{k + 1})_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfy for all $k \ge 2$
+        Then the sequence $(\alpha_{k})_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfy for all $k \ge 2$: 
         \begin{align*}
             &\alpha_k \in (0, 1), 
             \\
@@ -1833,12 +1832,28 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \subsection{R-WAPG describes existing accelerations scheme in the literatures}
 
+    \begin{lemma}[Specialize convergence claim]\label{lemma:special-rwapg-convergence-claim}
+        
+    \end{lemma}
+    \begin{lemma}[First example sequence]
+        Choose any $a \ge 2$. 
+        Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ by 
+        \begin{align*}
+            \alpha_k &= \alpha/(k + 1), 
+            \\
+            \rho_k &= \frac{(k + 1)(k + a)^2}{ak(k + a + 1)}. 
+        \end{align*}
+        Then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq}. 
+        It is a valid choice of sequence for the R-WAPG algorithm, which means that they satisfy: 
+    \end{lemma}
+
+
 
 \subsection{The method of Inexact Momentum}
     This section introduces an algorithm of our creation through the remark of Proposition \ref*{prop:stepwise-lyapunov}. 
     The algorithm estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
 
-\subsection{Numerical experiments and applications}
+\subsection{Numerical experiments}
 
 
 
