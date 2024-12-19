@@ -75,43 +75,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         In Beck \cite{beck_first-order_2017}, it has constant $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
         Firstly, we relaxed the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
-        Let $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$, given any $\gamma_1 \in (0, L]$ and define $\alpha_1$ by 
+        Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
         \begin{align*}
-            \alpha_1 = \frac{1}{2}\left(
-                \frac{\mu}{L} - \frac{\gamma_1}{L} + 
-                \sqrt{
-                    \left(
-                        \frac{\gamma_1}{L} - \frac{\mu}{L}
-                    \right)^2 + 
-                    \frac{4\gamma_1}{L}
-                }
-            \right). 
-        \end{align*}
-        We define $\alpha_k$ for $k \ge 2$ by: 
-        \begin{align*}
-            &\alpha_k \in (0, 1), 
+            \alpha_0 &\in (0, 1], 
             \\
-            & 0 < \rho_k \alpha_k^2 < 1, 
+            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
             \\
-            &\alpha_{k + 1} = 
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
-                +
-                \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
-            \right). 
+            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
         \end{align*}
-        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed (Definition \ref{def:wapg}), we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
         \begin{align*}
             \mathcal O\left(
                 \left(
-                    \prod_{i = 1}^{k - 1} \max(1, \rho_{k})
+                    \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
                 \right)
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right). 
         \end{align*}
-        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the a variant proposed in Chambolle Dossal \cite{chambolle_convergence_2015}. 
-        And when $\rho_k = 1$, R-WAPG reduces perfectly to V-FISTA by Beck \cite{beck_first-order_2017}, and it produces convergence claim consistent with the literatures. 
-        We will also present a simplified convergence rate when $\rho_k \in (0, \alpha_{k - 1}^2), \mu = 0$ which is also consistent with the literatures. 
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the a variant proposed in Chambolle Dossal \cite{chambolle_convergence_2015} and it has the same convergence claim as in the literatures. 
+        And when $\rho_k = 1$, R-WAPG reduces perfectly to V-FISTA by Beck \cite{beck_first-order_2017} if $\mu > 0$ and FISTA if $\mu = 0$ and the convergence claim is consistent with the literatures. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
@@ -921,90 +903,91 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     The sole focus of this section is Definition \ref{def:wapg}.
     It describes the R-WAPG algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
     It introduces the procedures of making the sequence $\alpha_k \in (0, 1)$ which assists with claiming convergence of the algorithm using Proposition \ref{prop:stepwise-lyapunov} by connecting them together. 
-    \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}
+    \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
-        For any $\gamma_1 \in (0, L]$, define $\alpha_1 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$. 
-        Then the sequence $(\alpha_{k})_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfy for all $k \ge 2$: 
+        The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge1}$ are valid for R-WAPG all the following holds: 
         \begin{align*}
-            &\alpha_k \in (0, 1), 
+            \alpha_0 &\in (0, 1], 
             \\
-            & 0 < \rho_k \alpha_k^2 < 1, 
+            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
             \\
-            &L\alpha_k^2 = (1 - \alpha_k)\rho_{k - 1}L \alpha_{k - 1}^2 + \mu \alpha_k. 
+            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
         \end{align*}
     \end{definition}
     \begin{observation}\label{obs:r-wapg-observation-1}
-        If $\alpha_1 \in (0, 1)$ which is true by $\gamma_1 \in (0, L]$, then the entire sequence $\alpha_k \in (0, 1)$. 
-        Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
-        Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
-        \begin{align*}
-            \alpha_k &= 
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
-                \pm
-                \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
-            \right). 
-        \end{align*}
-        Choosing the positive sign which is the larger one of the roots of the quadratic. 
-        We have $\alpha_k > 0$ because: 
-        \begin{align*}
-            \alpha_k &=
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
-                +
-                \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
-            \right)
-            \\
-            &\ge 
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
-                +
-                \left|\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L\right|
-            \right) + \alpha_{k - 1}\sqrt{\rho_{k - 1}}
-            \\
-            & > 0. 
-        \end{align*}
-        On the last strict inequality we used the fact that $\rho_{k - 1}> 0, \alpha_{k - 1} > 0$. 
-        An upper bound can be identified by using inductive hypothesis and considering: 
-        \begin{align*}
-            \alpha_k &= 
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
-                +
-                \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
-            \right)
-            \\
-            &<
-            \frac{1}{2}\left(
-                \frac{\mu}{L} + 
-                \sup_{x \in (0, 1)}
-                \left\lbrace
-                    -x + \sqrt{(x - \mu/L)^2 + 4x}
-                \right\rbrace
-            \right)
-            \\
-            & \le \frac{1}{2}\left(
-                \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 4}\right)
-            \right) \le 1. 
-        \end{align*}
-        Going to the first inequality, we used $\rho_{k - 1} \alpha_{k - 1}^2 < 1$ to get the strict inequality. 
-        Going from the second to the third inequality, we maximized $\mu/L$ by monotone increasing of linear function and the square root function. 
-        Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
-        However, the limit of $\alpha_k$ could be 1. 
+        The following is true: 
+        \begin{enumerate}
+            \item $\rho_k > 0$ for all $k \ge 0$. 
+            \item $\forall k \ge 1: L\alpha_k^2 = (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 +\mu\alpha_k$. 
+        \end{enumerate}
+        
+        % If $\alpha_1 \in (0, 1)$ which is true by $\gamma_1 \in (0, L]$, then the entire sequence $\alpha_k \in (0, 1)$. 
+        % Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
+        % Solving the quadratic $L\alpha_k^2=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu \alpha_k$ for $\alpha_k$ yields candidates. 
+        % \begin{align*}
+        %     \alpha_k &= 
+        %     \frac{1}{2}\left(
+        %         \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        %         \pm
+        %         \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+        %     \right). 
+        % \end{align*}
+        % Choosing the positive sign which is the larger one of the roots of the quadratic. 
+        % We have $\alpha_k > 0$ because: 
+        % \begin{align*}
+        %     \alpha_k &=
+        %     \frac{1}{2}\left(
+        %         \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        %         +
+        %         \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+        %     \right)
+        %     \\
+        %     &\ge 
+        %     \frac{1}{2}\left(
+        %         \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        %         +
+        %         \left|\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L\right|
+        %     \right) + \alpha_{k - 1}\sqrt{\rho_{k - 1}}
+        %     \\
+        %     & > 0. 
+        % \end{align*}
+        % On the last strict inequality we used the fact that $\rho_{k - 1}> 0, \alpha_{k - 1} > 0$. 
+        % An upper bound can be identified by using inductive hypothesis and considering: 
+        % \begin{align*}
+        %     \alpha_k &= 
+        %     \frac{1}{2}\left(
+        %         \frac{\mu}{L} - \rho_{k - 1}\alpha_{k - 1}^2 
+        %         +
+        %         \sqrt{(\rho_{k - 1}\alpha_{k - 1}^2 - \mu/L)^2 + 4\rho_{k - 1}\alpha_{k - 1}^2}
+        %     \right)
+        %     \\
+        %     &<
+        %     \frac{1}{2}\left(
+        %         \frac{\mu}{L} + 
+        %         \sup_{x \in (0, 1)}
+        %         \left\lbrace
+        %             -x + \sqrt{(x - \mu/L)^2 + 4x}
+        %         \right\rbrace
+        %     \right)
+        %     \\
+        %     & \le \frac{1}{2}\left(
+        %         \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 4}\right)
+        %     \right) \le 1. 
+        % \end{align*}
+        % Going to the first inequality, we used $\rho_{k - 1} \alpha_{k - 1}^2 < 1$ to get the strict inequality. 
+        % Going from the second to the third inequality, we maximized $\mu/L$ by monotone increasing of linear function and the square root function. 
+        % Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
+        % However, the limit of $\alpha_k$ could be 1. 
     \end{observation}
     \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
         \; \\
         Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
-        Let $(\alpha_k)_{k \ge1}, (\rho_k)_{k \ge 1}$ be given by Definition \ref{def:rwapg-seq}. 
+        Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
         The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ such that they satisfy for all $k\ge 1$: 
         \begin{align*}
-            \gamma_k &:= \left.\begin{cases}
-                \rho_{k -1}L\alpha_{k - 1}^2 & k \ge 2,
-                \\
-                \gamma_1 & k = 1. 
-            \end{cases}\right\rbrace,
+            \gamma_k &:= \rho_{k -1}L\alpha_{k - 1}^2, 
             \\
-            \hat \gamma_{k + 1} & = (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2
+            \hat \gamma_{k + 1} & := (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2, 
             \\
             y_k &= 
             (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
@@ -1018,15 +1001,21 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             x_{k + 1} &= T_L y_k. 
         \end{align*}
     \end{definition}
-    \begin{observation}
+    \begin{observation}\label{obs:r-wapg-observation-2}
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018} because $L\alpha_k^{2} = (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$. 
         \par
-        The algorithm chains together the sequence of $(\hat \gamma_{k+1})_{k \ge 1}$ and $(\gamma_k)_{k \ge 1}$ in Definition \ref{prop:stepwise-lyapunov} through the equalities: 
+        For all $k \ge 1$, the algorithm chains together the sequence of $(\hat \gamma_{k+1})_{k \ge 1}$ and $(\gamma_k)_{k \ge 1}$ in Definition \ref{prop:stepwise-lyapunov} through the equalities: 
         \begin{align*}
-            \hat \gamma_{k + 1} = L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu
-            &= (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu. 
+            \hat \gamma_{k + 1} 
+            &= L\alpha_k^2 
+            \\
+            &= (1 - \alpha_k)\gamma_k + \alpha_k \mu
+            \\
+            &= (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu
+            \\
+            &= (1 - \alpha_k)\rho_{k - 1}\hat \gamma_{k} + \alpha_k \mu. 
         \end{align*}
-
+        The third equality from Observation \ref{obs:r-wapg-observation-1}. 
     \end{observation}
     
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}\; \\
@@ -1053,7 +1042,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 1}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1064,23 +1053,48 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{proposition}
     \begin{proof}  
-        Since $\hat \gamma_2, \gamma_1$ has $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$ and $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov}, we can invoke Proposition \ref{prop:stepwise-lyapunov} and it gives: 
+        $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$ is true by Observation \ref{obs:r-wapg-observation-1}. 
+        Observe that $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov} with k = 1 so we can invoke Proposition \ref{prop:stepwise-lyapunov}, and it gives: 
         \begin{align*}
-            F(x_{2}) - F(x^*) + R_2 + \frac{L \alpha_k^2}{2}\Vert v_{2} - x^*\Vert^2
+            & F(x_{2}) - F(x^*) + R_2 + \frac{L \alpha_1^2}{2}\Vert v_{2} - x^*\Vert^2
+            \\
+            & = F(x_{2}) - F(x^*) + R_2 + \frac{\hat \gamma_{2}}{2}\Vert v_{2} - x^*\Vert^2
+            & \hat \gamma_2 = L \alpha_1^2 , \text{ Definition \ref{def:wapg}}
+            \\
             &\le 
             (1 - \alpha_1)\left(
                 F(x_1) - F(x^*) + R_1 + \frac{\gamma_1}{2}\Vert v_1 - x^*\Vert^2
+            \right) 
+            & \quad \text{By Proposition \ref{prop:stepwise-lyapunov}}
+            \\
+            &= 
+            (1 - \alpha_1)\left(
+                F(x_1) - F(x^*) + R_1 + \frac{L\rho_{0}\alpha_{0}^2}{2}\Vert v_1 - x^*\Vert^2
+            \right) 
+            \\
+            &= \max\left(\rho_0, 1\right)
+            (1 - \alpha_1)\left(
+                F(x_1) - F(x^*) + R_1 + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
             \right). 
         \end{align*}
         We had demonstrated the base case. 
         \par 
-        Next, for all $k = 2, 3, \cdots, N$, the R-WAPG described in \ref{def:wapg} has $\hat \gamma_{k + 1} = L\alpha_{k - 1}^2 = (1 - \alpha_k)\gamma_k + \mu\alpha_k$. 
-        We have also $\alpha_k \in (0, 1)$ by Observation \ref{obs:r-wapg-observation-1}. 
+        Next, for all $k = 2, 3, \cdots, N$, from Observation \ref{obs:r-wapg-observation-2}: 
+        \begin{align*}
+            \hat \gamma_{k + 1} = L\alpha_{k}^2 
+            &=(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2 + \mu\alpha_k
+            \\
+            &= (1 - \alpha_k)\gamma_k + \mu\alpha_k. 
+        \end{align*}
         So $\gamma_k, \hat \gamma_{k + 1}, \alpha_k$ fits Definition \ref{def:stepwise-wapg}. 
-        The description of $R_k$ is the same as in Proposition \ref{prop:stepwise-lyapunov} hence we can use Proposition \ref{prop:stepwise-lyapunov}, to show that for all $k \ge 1$: 
+        The definition of $R_k$ given is the same as in Proposition \ref{prop:stepwise-lyapunov} hence we can use Proposition \ref{prop:stepwise-lyapunov} to un roll recursively for all $k \ge 1$: 
         {\small
         \begin{align*}
-            &F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+            &
+            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat\gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2 
+            \\
+            &=
+            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
             &\le 
             (1 - \alpha_k)
@@ -1102,7 +1116,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &\le 
             \left(
-                \prod_{i = 1}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1147,12 +1161,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Therefore: 
         {\small
         \begin{align*}
-            & F(x_{k + 1}) - F^* +
+            & 
+            F(x_{k + 1}) - F^* +
             \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
             &\le 
             \left(
-                \prod_{i = 1}^{k - 1} \max(1, \rho_{k})
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
             \right)
             \left(
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
@@ -1275,9 +1290,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \subsection{Narrowing it down}
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
-            Assume $\mu < L$. 
-            Choose any $\gamma_1 \in (0, L], x_1, v_1$ as the initial condition for R-WAPG (Definition \ref{def:wapg}) to produce vectors sequence $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$. 
-            Then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge1}$, and for all $k\ge 1$ they are algebraically equivalent to
+            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}). 
+            Then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ they are algebraically equivalent to
             \begin{align*}
                 & 
                 y_{k} = 
@@ -1372,12 +1386,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 &= 
                 \frac{L - L\alpha_k}{L\alpha_k - \mu}. 
             \end{align*}
-            On the third $\iff$, we can assume $\alpha_k \neq \mu/L\; \forall k \ge 2$ because if $\alpha_k = \mu/L$ were impossible, it then has
-            \begin{align*}
-                L \alpha_k^2 - \alpha_k\mu &= 
-                (1 - \alpha_k)L \rho_{k - 1}\alpha_{k - 1}^2 = 0 \implies \alpha_{k - 1} = 0. 
-            \end{align*}
-            Which contradict $\alpha_{k - 1} \in (0, 1)\; \forall k \ge 2$ because $\alpha_1 \in (0, 1)$ is given to satisfy the condition in the base case, and $\alpha_k \in (0, 1)\; \forall k \ge 2$ by justifications in Observation \ref{obs:r-wapg-observation-1}. 
+            On the third $\iff$, we can assume $\alpha_k \neq \mu/L\;  \forall k \ge 1$ because from Definition \ref{def:rwapg-seq}: $\alpha_k \in (\mu/L, 1)$ for all $k \ge 1$. 
+            % On the third $\iff$, we can assume $\alpha_k \neq \mu/L\; \forall k \ge 2$ because if $\alpha_k = \mu/L$ were impossible, it then has
+            % \begin{align*}
+            %     L \alpha_k^2 - \alpha_k\mu &= 
+            %     (1 - \alpha_k)L \rho_{k - 1}\alpha_{k - 1}^2 = 0 \implies \alpha_{k - 1} = 0. 
+            % \end{align*}
+            % Which contradict $\alpha_{k - 1} \in (0, 1)\; \forall k \ge 2$ because $\alpha_1 \in (0, 1)$ is given to satisfy the condition in the base case, and $\alpha_k \in (0, 1)\; \forall k \ge 2$ by justifications in Observation \ref{obs:r-wapg-observation-1}. 
             \\
             For all $k \ge 1$, $v_{k + 1}$ has: 
             \begin{align*}
@@ -1436,21 +1451,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             This form doesn't have $\rho_k, \gamma_k, \hat \gamma_k$ in it. 
         \end{proof}
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
-            Given any $\gamma_1 \in (0, L]$, $(x_1, v_1)$. 
-            Assume $\mu < L$. 
-            Define 
-            \begin{align*}
-                \alpha_1 = \frac{1}{2}\left(
-                    \frac{\mu}{L} - \frac{\gamma_1}{L} + 
-                    \sqrt{
-                        \left(
-                            \frac{\gamma_1}{L} - \frac{\mu}{L}
-                        \right)^2 + 
-                        \frac{4\gamma_1}{L}
-                    }
-                \right). 
-            \end{align*}
-            For $k = 1, 2, \cdots $, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ and auxiliary sequence $(\alpha_{k + 1}, \rho_k)_{k \ge 1}$ by the procedures: 
+            Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+            Initialize any $x_1, v_1$ in $\RR^n$. 
+            For $k = 1, 2, \cdots $, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by: 
             \begin{align*} 
                 & y_{k} = 
                 \left(
@@ -1471,20 +1474,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \left(
                     v_k + 
                     \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
-                \\
-                & \text{choose any } \rho_{k}: 0 < \rho_{k} < \alpha_{k}^{-2}, 
-                \\
-                & \alpha_{k + 1} := 
-                \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
-                +
-                \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
-                \right). 
+                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
             \end{align*}
         \end{definition}
         \begin{proposition}[Second equivalent representation of R-WAPG]\label{prop:wagp-st-form}\;\\
-            Let iterates $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge1}$ be given by Definition \ref{def:r-wapg-intermediate}. 
+            Let iterates $(y_k, x_{k}, v_{k})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge 0}$ be given by Definition \ref{def:r-wapg-intermediate}. 
             Then for all $k \ge 1$, iterate $y_k, x_{k + 1}, v_{k + 1}$
             satisfy: 
             \begin{align*}
@@ -1566,24 +1560,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
             \end{align*}
         \end{proof}
-        \begin{remark}
-            We note that $x_1, v_1, y_1$ may not satisfy the inequalities since, 
-        \end{remark}
     \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
-        Given any initial $L \in (0, L]$, $(x_1, v_1)$. 
+        Given any $(x_1, v_1)$ in $\RR^n$. 
         Assume $\mu < L$.
-        Define $\alpha_1$ by 
-        \begin{align*}
-            \alpha_1 = \frac{1}{2}\left(
-                \frac{\mu}{L} - \frac{\gamma_1}{L} + 
-                \sqrt{
-                    \left(
-                        \frac{\gamma_1}{L} - \frac{\mu}{L}
-                    \right)^2 + 
-                    \frac{4\gamma_1}{L}
-                }
-            \right). 
-        \end{align*}
+        Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
         For $k = 1, 2, \cdots $, the algorithm generates sequences of vector iterates $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
         \begin{align*}
             & y_k = 
@@ -1599,16 +1579,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             y_k - L^{-1} \mathcal G_L y_k, 
             \\
             & v_{k + 1} = 
-            x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k), 
-            \\
-            & \text{choose any }   \rho_{k}: 0 < \rho_{k} < \alpha_{k}^{-2}, 
-            \\
-            &\alpha_{k + 1} = 
-            \frac{1}{2}\left(
-            \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
-            +
-            \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
-            \right). 
+            x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
         \end{align*}
     \end{definition}
     
@@ -1777,40 +1748,17 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{proof}
 
     \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
-        Let $y_1 = x_1$. 
-        Given any $\gamma_1 \in (0, L]$, initialize any $\alpha_1 \in (0, 1)$ by: 
-        \begin{align*}
-            \alpha_1 = \frac{1}{2}\left(
-                \frac{\mu}{L} - \frac{\gamma_1}{L} + 
-                \sqrt{
-                    \left(
-                        \frac{\gamma_1}{L} - \frac{\mu}{L}
-                    \right)^2 + 
-                    \frac{4\gamma_1}{L}
-                }
-            \right). 
-        \end{align*}
-        For $k = 1, 2, \cdots $, the algorithm generates iterates $x_{k + 1}, y_{k + 1}$ and auxiliary sequence $(\rho_k)_{k \ge 1}, (\alpha_k)_{k \ge 2}$ by the procedures: 
+        For any $y_1 = x_1 \in \RR^n$, $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+        The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
         \begin{align*}
             & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
-            \\
-            \\
-            & \text{find } \rho_{k}: 0 < \rho_{k} < \alpha_{k}^{-2}, 
-            \\
-            & 
-            \alpha_{k + 1} = 
-            \frac{1}{2}\left(
-                \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
-                +
-                \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
-            \right), 
             \\
             & 
             y_{k + 1} = 
             x_{k + 1} + 
             \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
         \end{align*}
-        In the special case $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
+        In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
         $$
             (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
             = \alpha_{k + 1}(\alpha_k^{-1} - 1).  
@@ -1832,20 +1780,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \subsection{R-WAPG describes existing accelerations scheme in the literatures}
 
-    \begin{lemma}[Specialize convergence claim]\label{lemma:special-rwapg-convergence-claim}
+    \begin{lemma}[First specialized R-WAPG sequence]\label{lemma:special-rwapg-convergence-claim}
         
     \end{lemma}
-    \begin{lemma}[First example sequence]
-        Choose any $a \ge 2$. 
-        Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ by 
+
+    \begin{lemma}[Inverted Chambolle, Dossal 2015 sequence]
+        Choose any $a \ge 2$.
+        Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
         \begin{align*}
-            \alpha_k &= \alpha/(k + 1), 
+            \alpha_k &= a/(k + a), 
             \\
-            \rho_k &= \frac{(k + 1)(k + a)^2}{ak(k + a + 1)}. 
+            \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)}. 
         \end{align*}
-        Then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq}. 
-        It is a valid choice of sequence for the R-WAPG algorithm, which means that they satisfy: 
+        If $\mu = 0$, then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq}. 
+        It is a valid choice of sequence for the R-WAPG algorithm and it has $\rho_k \ge 1$ for all $k \ge 0$. 
     \end{lemma}
+    \begin{proof}
+        
+
+    \end{proof}
 
 
 
