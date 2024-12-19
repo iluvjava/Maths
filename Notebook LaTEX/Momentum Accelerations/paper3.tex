@@ -903,7 +903,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     The sole focus of this section is Definition \ref{def:wapg}.
     It describes the R-WAPG algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
     It introduces the procedures of making the sequence $\alpha_k \in (0, 1)$ which assists with claiming convergence of the algorithm using Proposition \ref{prop:stepwise-lyapunov} by connecting them together. 
-    \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}\;\\
+    \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
         The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge1}$ are valid for R-WAPG all the following holds: 
         \begin{align*}
@@ -913,6 +913,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
         \end{align*}
+        We call $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ the \textbf{R-WAPG Sequences}. 
     \end{definition}
     \begin{observation}\label{obs:r-wapg-observation-1}
         The following is true: 
@@ -983,7 +984,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \; \\
         Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
-        The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ such that they satisfy for all $k\ge 1$: 
+        The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:  
         \begin{align*}
             \gamma_k &:= \rho_{k -1}L\alpha_{k - 1}^2, 
             \\
@@ -1585,7 +1586,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     
     \begin{proposition}[Third equivalent representation of R-WAPG]\label{prop:r-wapg-momentum-repr}
         \;\\
-        Let sequence $(\alpha_k, \rho_k)_{k \ge 1}$ and iterates $(x_k, v_k, y_k)_{k\ge 1}$ given by R-WAPG intermediate form (Definition \ref{def:r-wapg-st-form}). 
+        Let sequence $(\alpha_k, \rho_k)_{k \ge 0}$ and iterates $(x_k, v_k, y_k)_{k\ge 1}$ given by R-WAPG intermediate form (Definition \ref{def:r-wapg-st-form}). 
         Then for all $k \ge 1$, the iterates $(x_{k + 1}, y_{k + 1})_{k \ge 1}$ are algebraically equivalent to: 
         \begin{align*}
             x_{k + 1} &= y_k - L^{-1}\mathcal G_Ly_k, 
@@ -1780,19 +1781,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \subsection{R-WAPG describes existing accelerations scheme in the literatures}
 
-    \begin{lemma}[First specialized R-WAPG sequence]\label{lemma:special-rwapg-convergence-claim}
+    \begin{lemma}[FISTA sequence as R-WAPG sequences]
         
     \end{lemma}
 
-    \begin{lemma}[Inverted Chambolle, Dossal 2015 sequence]
-        Choose any $a \ge 2$.
+    \begin{lemma}[Chambolle, Dossal 2015 sequences as R-WAPG sequences]
+        Fix rabitrary $a \ge 2$.
         Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
         \begin{align*}
             \alpha_k &= a/(k + a), 
             \\
             \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)}. 
         \end{align*}
-        If $\mu = 0$, then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq}. 
+        Then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq} with $\mu = 0$. 
         It is a valid choice of sequence for the R-WAPG algorithm and it has $\rho_k \ge 1$ for all $k \ge 0$. 
     \end{lemma}
     \begin{proof}
