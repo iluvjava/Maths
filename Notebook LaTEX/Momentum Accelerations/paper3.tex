@@ -14,13 +14,13 @@
 \author{
     Hongda Li
     \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~Xianfu Wang
+    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{alto@mail.ubc.ca}.}~ and ~Xianfu Wang
     \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{shawn.wang@ubc.ca}.}
-    and ~Heinz H. Bauschke~
-    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{heinz.bauschke@ubc.ca}.
-    }
+    % and ~Heinz H. Bauschke~
+    % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    % The University of British Columbia, Kelowna, BC Canada V1V 1V7. E-mail:  \texttt{heinz.bauschke@ubc.ca}.
+    % }
 }
 
 \date{\today}
@@ -39,46 +39,107 @@
 Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 \section{Introduction}
-    \subsection{Literature reviews}
+    Suppose we are minimizing a differentiable convex function $F$ for simplicity. 
+    In addition, assuming the function is $\RR^n$ so it's full domain and $F$ is Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+    \par 
+    A good choice of a minimization algorithm is the Nesterov's acceleration schemes that originally proposed in 1983 \cite{nesterov_method_1983}. Initializing $x_0 = y_0$ the algorithm finds $(x_k)_{k \ge 1}$ and $t_1 = 1$ by 
+    \begin{align*}
+        & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
+        \\
+        & t_{k + 1} = 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right), 
+        \\
+        & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
+        \\
+        & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
+    \end{align*}
+    It's well known that if the minimizer $x^*$ exists, $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal. 
+    See Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018}. 
+    However, everything is not sunshine and rainbow because the above scheme is associated with an issue. 
+    When $F$ is $\mu > 0$ strongly convex, the algorithm oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
+    \par
+    This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
+    Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
+    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept and it performs empirically better. 
+    See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
+    \par
+    Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you an alternative to restarting that performs well empirically and along with it, a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
+    The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much flexible choice of $(\theta_t)_{t \ge 1}$ and the descriptive power to cover several variants of FISTA in the literatures.  
+
     \subsection{Contributions}
-        Our contributions are two folds. 
+        Our contributions are two folds theoretical and practical. 
+        \par
+        Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
+        The choices for $\theta_k$ varies. 
+        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ gives strong weak convergence of the iterates $x_k$ in Hilbert space. 
+        In Beck \cite{beck_first-order_2017}, it has constant $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
+        \par
+        Firstly, we relaxed the traditional choice of the sequence $\theta_k$ and showed an upper bound of the optimal gap. 
+        Let $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$, given any $\gamma_1 \in (0, L]$ and define $\alpha_1$ by 
+        \begin{align*}
+            \alpha_1 = \frac{1}{2}\left(
+                \frac{\mu}{L} - \frac{\gamma_1}{L} + 
+                \sqrt{
+                    \left(
+                        \frac{\gamma_1}{L} - \frac{\mu}{L}
+                    \right)^2 + 
+                    \frac{4\gamma_1}{L}
+                }
+            \right). 
+        \end{align*}
+        We define $\alpha_k$ for $k \ge 2$ by: 
+        \begin{align*}
+            &\alpha_k \in (0, 1), 
+            \\
+            & 0 < \rho_k \alpha_k^2 < 1, 
+            \\
+            &\alpha_{k + 1} = 
+            \frac{1}{2}\left(
+                \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
+                +
+                \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
+            \right). 
+        \end{align*}
+        Our first main results shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed (Definition \ref{def:wapg}), we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        \begin{align*}
+            \mathcal O\left(
+                \left(
+                    \prod_{i = 1}^{k - 1} \max(1, \rho_{k})
+                \right)
+                \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
+            \right). 
+        \end{align*}
+        Our second main results shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the variants proposed in Chambolle Dossal \cite{chambolle_convergence_2015}. 
+        And when $\rho_k = 1, \rho > 0$, R-WAPG reduces perfect to V-FISTA by Beck \cite{beck_first-order_2017} and it produces convergence claim consistent with the literatures. 
+        \par
+        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
+        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$. 
+        We conducted ample amount of numerical experiments to show that it has favorable convergence rate in practice, and it behaves similarly to the FISTA with monotone restart. 
+    \subsection{Organizations}
+
         
-        % We present a theoretical unification through the formulation of ``Relaxed weak accelerated proximal gradient algorithm (R-WAPG)'' which we invented. 
-        % It unifies convergence claim for accelerated method for the strongly convex objective and Lipschitz smooth but non-strongly convex case, and it relaxes the conditions on the momentum sequence. 
+
         
-        % We connect the theories and practice by pointing out one practical exploits inspired the convergence proof of the algorithm which we called ``Spectral Momentum''. 
-        % Numerical experiments are conducted to illustrate the theoretical convergence of R-WAPG and the performance of Spectral Momentum in with applications. 
-        % We do net yet have a proof for the convergence of the algorithm in general. 
+       
 
 \section{Preliminaries}
-    Throughout Section 1, 2, 3, we assume the problem of types $F = f + g$ where $f: \RR \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
-    We consider optimization problem of the form
+    Throughout, we assume the problem of types $F = f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
+    We consider optimization problem: $\min_x \left\lbrace F(x) \defeq f(x) + g(x)\right\rbrace$.
+    Fix arbitrary $y \in \RR^n$, define
     \begin{align*}
-        \min_x \left\lbrace
-            F(x) \defeq f(x) + g(x)
-        \right\rbrace. 
+        \widetilde{\mathcal M}^{L^{-1}}
+        (x; y) \defeq
+        g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
+        + \frac{L}{2}\Vert x - y\Vert^2, 
+        \\
+        \mathcal M^{L^{-1}}(x; y) := F(x) + \frac{L}{2}\Vert x - y\Vert^2, 
     \end{align*}
-    To start we define the following quantities
-    \begin{enumerate}
-        \item The proximal gradient model function: 
-        $$
-            \widetilde{\mathcal M}^{L^{-1}}
-            (x; y) \defeq
-            g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
-            + \frac{L}{2}\Vert x - y\Vert^2. 
-        $$
-        \item The proximal point model function: 
-        $$
-            \mathcal M^{L^{-1}}(x; y) := F(x) + \frac{L}{2}\Vert x - y\Vert^2
-        $$
-        \item The proximal gradient operator $T_L = [I + L^{-1}\partial g]\circ [I - L^{-1}\nabla f]$. Since $L$ is fixed throughout, the subscript may be omitted and become $T$ instead to make the notations simpler. 
-    \end{enumerate}
-    To state the following lemma, we define the Bregman divergence of $f$ to be 
+    and the proximal gradient operator $T_L = [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
+    Define the Bregman divergence of $f$: 
     \begin{align*}
         D_f(x, y): \RR^n \times \RR^n \rightarrow \RR 
         \defeq f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
-    
+    The lemma follows explains equates between $\mathcal M(\cdot; y), \widetilde{\mathcal M}(\cdot; y)$. 
     \begin{lemma}[Proximal gradient envelope] 
         Fix any $y$, we will have for all $x \in \RR^n$ that: 
         \begin{align*}
@@ -103,23 +164,34 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
         \end{align*}
     \end{proof}
-    
     \subsection{Proximal inequality}
     \begin{theorem}[Proximal inequality]\label{thm:prox-grad-ineq}
         Fix any $y$, we have for all $x$: 
         \begin{align*}
-            F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle
-            &\ge  D_f(x, y). 
+            F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
+            - L\Vert y - T_L y\Vert^2
+            - D_f(x, y)
+            &\ge  
+            0. 
+        \end{align*}
+        When $f$ is $\mu \ge 0$ strongly convex, it implies that 
+        \begin{align*}
+            F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
+            - \frac{L}{2}\Vert y - T_L y\Vert^2
+            - \frac{\mu}{2}\Vert x - y\Vert^2
+            &\ge  
+            0.
         \end{align*}
     \end{theorem}
     \begin{proof}
-        $\widetilde {\mathcal M}(\cdot; x)$ is $L$ strongly convex with minimizer $Ty$
+        Observe that the function $\widetilde {\mathcal M}(\cdot; x)$ is $L$ strongly convex with minimizer $T_Ly$. 
+        For all $x \in \RR^n$, it has quadratic growth condition at its minimizer $T_Ly$ which gives these equivalent inequalities: 
         {\small
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
-            \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
+            \widetilde{\mathcal M}^{L^{-1}}(T_Ly; y)
             - 
-            \frac{L}{2}\Vert x - Ty\Vert^2
+            \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 
             0
             \\
@@ -127,122 +199,124 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
-            \mathcal M^{L^{-1}}(Ty; y) 
+            \mathcal M^{L^{-1}}(T_Ly; y) 
             - 
-            \frac{L}{2}\Vert x - Ty\Vert^2
+            \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff 
             \left(
                 \mathcal M^{L^{-1}}(x; y)
                 - 
-                \mathcal M^{L^{-1}}(Ty; y)
+                \mathcal M^{L^{-1}}(T_Ly; y)
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            - \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff 
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(T_Ly) 
                 + 
                 \frac{L}{2}\Vert x - y\Vert^2 - 
-                \frac{L}{2}\Vert Ty - y\Vert^2
+                \frac{L}{2}\Vert T_Ly - y\Vert^2
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            - \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff 
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(T_Ly) 
                 + 
                 \frac{L}{2}
                 \left(
-                    \Vert x - Ty + Ty - y\Vert^2
+                    \Vert x - T_Ly + T_Ly - y\Vert^2
                     - 
-                    \Vert y - Ty\Vert^2
+                    \Vert y - T_Ly\Vert^2
                 \right)
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            - \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff 
             \left(
-                F(x) - F(Ty) 
+                F(x) - F(T_Ly) 
                 + 
                 \frac{L}{2}
                 \left(
-                    \Vert x - Ty\Vert^2 + 
-                    2\langle x - Ty, Ty - y\rangle
+                    \Vert x - T_Ly\Vert^2 + 
+                    2\langle x - T_Ly, T_Ly - y\rangle
                 \right)
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            - \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff
             \left(
-                F(x) - F(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
-                - L\langle  x - Ty, y - Ty\rangle
+                F(x) - F(T_Ly) + \frac{L}{2}\Vert x - T_Ly\Vert^2 
+                - L\langle  x - T_Ly, y - T_Ly\rangle
             \right)
             - 
             D_f(x, y) 
-            - \frac{L}{2}\Vert x - Ty\Vert^2
+            - \frac{L}{2}\Vert x - T_Ly\Vert^2
             &\ge 0
             \\
             \iff 
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - Ty\rangle
+            F(x) - F(T_Ly)
+            - \langle L(y - T_Ly), x - T_Ly\rangle
             - D_f(x, y) 
             &\ge 0. 
         \end{align*}
         }
-    \end{proof}
-    \begin{remark}
-        In our proof, we may use the following alternative representation of the above inequality which is 
+        Continuing, it has: 
         \begin{align*}
-            F(x) - F(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) &\ge 0
+            F(x) - F(T_Ly) - \langle L(y - T_Ly), x - T_Ly\rangle - D_f(x, y) &\ge 0
             \\
             \iff
-            F(x) - F(Ty)
-            - \langle L(y - Ty), x - y + y - Ty\rangle - D_f(x, y) 
+            F(x) - F(T_Ly)
+            - \langle L(y - T_Ly), x - y + y - T_Ly\rangle - D_f(x, y) 
             &\ge 0
             \\
             \iff
-            F(x) - F(Ty)
-            - \langle L(y - Ty),x - y \rangle
-            - L\Vert y - Ty\Vert^2
+            F(x) - F(T_Ly)
+            - \langle L(y - T_Ly),x - y \rangle
+            - L\Vert y - T_Ly\Vert^2
             - D_f(x, y) 
             &\ge 0
             \\
             \implies 
-            F(x) - F(Ty)
-            - \langle L(y - Ty),x - y \rangle
-            - \frac{L}{2}\Vert y - Ty\Vert^2
+            F(x) - F(T_Ly)
+            - \langle L(y - T_Ly),x - y \rangle
+            - \frac{L}{2}\Vert y - T_Ly\Vert^2
             - D_f(x, y) 
             &\ge 0
             \\
             \implies
-            F(x) - F(Ty)
-            - \langle L(y - Ty),x - y \rangle
-            - \frac{L}{2}\Vert y - Ty\Vert^2
+            F(x) - F(T_Ly)
+            - \langle L(y - T_Ly),x - y \rangle
+            - \frac{L}{2}\Vert y - T_Ly\Vert^2
             - \frac{\mu}{2}\Vert x - y\Vert^2
             &\ge 0. 
         \end{align*}
-        
-    \end{remark}
+        Going from the second last inequality to the last inequality, we used the fact that $f$ is strongly convex hence for all $x, y$, it's true that $D_f(x, y) \ge \mu/2 \Vert x - y\Vert^2$. 
+    \end{proof}
 
 \section{Stepwise formulation of weak accelerated proximal gradient}
-    In this section, we introduce the following new quantities and their notations. 
-    It's there to make the notations simpler and easier to follow for the proofs that will come later. 
-    The algorithm is parameterized by the sequence $y_k, x_k$. 
-    We define for all $k \ge 0$ the following quantities: 
+    This entire section is building up the R-WAPG algorithm which is described in the Definition \ref{def:wapg} of the next section. 
+    \par 
+    Definition \ref{def:stepwise-wapg} which describes what happens at a single iteration of the R-WAPG algorithm. 
+    It defines a procedures of generating $x_{k + 1}, v_{k + 1}$ given any $x_k, v_k$. 
+    Propsotion \ref{prop:stepwise-lyapunov} states the inequality that describes a decreasing quantity that involves $F(x_k), F(x_{k + 1})$ at each single iteration. 
+    
+    
+    
     \begin{assumption}
         Choose any integer $k\ge 0$. 
         Given $x_k, y_k, v_k$, we define the following quantities
@@ -257,7 +331,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \label{eqn:regret}
         \end{align}
         Observe that by convexity of $F$, $\epsilon_k \ge 0$ for all $x_k, L > 0$. 
-        To see, consider the last inequality in the remark of Theorem \ref{thm:prox-grad-ineq} with $y = y_k, x = x_k$: 
+        To see, use Theorem \ref{thm:prox-grad-ineq} and let $y = y_k, x = x_k$ which gives: 
         \begin{align*}
             F(x_k) - F(T_Ly_k)
             - \langle L(y_k - T_Ly_k),x_k - y_k \rangle
@@ -265,7 +339,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - \frac{\mu}{2}\Vert x_k - y_k\Vert^2
             &\ge 0
             \\
-            \implies 
+            \iff 
             F(x_k) - F(T_Ly_k)
             - \langle g_k,x_k - y_k \rangle
             - \frac{1}{2L}\Vert g_k\Vert^2
@@ -274,19 +348,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{assumption}
     
     \begin{definition}[Stepwise weak accelerated proximal gradient]\label{def:stepwise-wapg}\;\\
-        Assume $0 \le \mu < L$.  
+        Assume $0 \le \mu < L$.
         Fix any $k \in \mathbb Z$. 
-        For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma > 0$, let $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
+        For any $(v_k, x_k), \alpha_k \in (0, 1), \gamma_k > 0$, let $\hat \gamma_{k + 1}$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
         \begin{align*}
-            \hat \gamma &= (1 - \alpha_k)\gamma + \mu \alpha_k, 
+            \hat \gamma_{k + 1} &= (1 - \alpha_k)\gamma_k + \mu \alpha_k, 
             \\
             y_k &= 
-            (\gamma + \alpha_k \mu)^{-1}(\alpha_k \gamma v_k + \hat\gamma x_k), 
+            (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
             \\
             g_k &= \mathcal G_L y_k, 
             \\
-            v_{k + 1} &= \hat\gamma^{-1}
-            (\gamma(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+            v_{k + 1} &= \hat\gamma^{-1}_{k + 1}
+            (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
             \\
             x_{k + 1} &= T_L y_k. 
         \end{align*}
@@ -298,90 +372,101 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \begin{align*}
             (Q1): 
             y_k - v_k &= 
-            \frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k),
+            \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k),
             \\
             (Q2): 
             y_k - x_k &= 
-            \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
+            \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
         \end{align*}
     \end{observation}
         To see (Q1), observe 
         \begin{align*}
             y_k - v_k &= 
-            \frac{\hat \gamma}{\alpha_k \gamma}(x_k - y_k)
+            \frac{\hat \gamma_{k + 1}}{\alpha_k \gamma_k}(x_k - y_k)
             \\
             \iff 
-            -(\alpha_k \gamma\hat \gamma^{-1} + 1)y_k
+            -(\alpha_k \gamma_k \hat \gamma^{-1}_{k + 1} + 1)y_k
             &= 
-            - \alpha_k \gamma \hat \gamma^{-1}v_k - x_k
+            - \alpha_k \gamma_k \hat \gamma^{-1}_{k + 1}v_k - x_k
             \\
             \iff 
             y_k &= 
             \frac{
-                \alpha_k \gamma \hat \gamma^{-1}v_k + x_k
-            }{1 + \alpha_k \gamma \hat \gamma^{-1}}
+                \alpha_k \gamma_k \hat \gamma_{k + 1}^{-1}v_k + x_k
+            }{1 + \alpha_k \gamma_k \hat \gamma_{k + 1}^{-1}}
             \\
             &=  
-            \frac{\alpha_k \gamma v_k + \hat \gamma x_k}{\gamma + \alpha_k \mu}.
+            \frac{\alpha_k \gamma_k v_k + \hat \gamma_{k + 1} x_k}{\gamma_k + \alpha_k \mu}.
         \end{align*}
-        On the first equality (Q1), we multiplied both side of the equation by $\hat\gamma/\alpha_k \gamma$ and then group $y_k$ on the LHS. 
-        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma$, leaving the numerator $\hat \gamma + \alpha_k \gamma = \gamma + \alpha_k \mu$. 
-        We used the definition of $\hat \gamma$ here. 
+        On the first equality (Q1), we multiplied both side of the equation by $\hat\gamma_{k + 1}/\alpha_k \gamma_k$ and then group $y_k$ on the LHS. 
+        The last equality comes by multiplying both the numerator and denominator by $\hat \gamma_{k + 1}$, leaving the numerator $\hat \gamma_{k + 1} + \alpha_k \gamma_k = \gamma_k + \alpha_k \mu$. 
+        We used the definition of $\hat \gamma_{k + 1}$ here. 
         To see the second equality (Q2), consider: 
         \begin{align*}
-            y_k &= (\gamma + \alpha_k \mu)^{-1}(\alpha_k \gamma v_k + \hat\gamma x_k)
+            y_k &= (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k)
             \\
             \iff
             y_k - x_k &= 
-            (\gamma + \alpha_k \mu)^{-1}
-            (\alpha_k \gamma v_k - (\gamma + \alpha_k \mu)x_k + \hat \gamma x_k)
+            (\gamma_k + \alpha_k \mu)^{-1}
+            (\alpha_k \gamma_k v_k - (\gamma_k + \alpha_k \mu)x_k + \hat \gamma_{k + 1} x_k)
             \\
             \iff 
-            (\gamma + \alpha_k \mu)(y_k - x_k)
+            (\gamma_k + \alpha_k \mu)(y_k - x_k)
             &= 
-            \alpha_k\gamma v_k + 
-            (\hat \gamma - \gamma - \alpha_k \mu) x_k
+            \alpha_k\gamma _kv_k + 
+            (\hat \gamma_k - \gamma_k - \alpha_k \mu) x_k
             \\
-            &= \alpha_k \gamma v_k - \alpha_k \gamma x_k 
+            &= \alpha_k \gamma_k v_k - \alpha_k \gamma_k x_k 
             \\
-            &= \alpha_k \gamma(v_k - x_k)
+            &= \alpha_k \gamma_k(v_k - x_k)
             \\
             \iff 
             y_k - x_k &= 
-            \frac{\alpha_k \gamma}{\gamma + \alpha_k \mu}(v_k - x_k). 
+            \frac{\alpha_k \gamma_k}{\gamma_k + \alpha_k \mu}(v_k - x_k). 
         \end{align*}
-        On the second equality that follows the second $\iff$ we just substituted $\hat\gamma = (1 - \alpha_k)\gamma + \alpha_k \mu$. 
+        On the second equality that follows the second $\iff$ we just substituted $\hat\gamma_{k + 1} = (1 - \alpha_k)\gamma_k + \alpha_k \mu$. 
         Therefore, we discover that $x_k, v_k, y_k$ lies on the same line because (Q1) indicates $y_k - v_k$ parallels to $-(y_k - x_k)$ and both vector shares the same head which anchors at $y_k$. 
     
     \begin{proposition}[Stepwise Lyapunov]\label{prop:stepwise-lyapunov}\;\\
-        Fix any integer $k \in \mathbb Z$, for any $v_k, x_k$, let $v_{k + 1}, x_{k + 1}, y_k, v_k, x_k, \hat \gamma$ be given by Definition \ref{def:stepwise-wapg}. 
-        Choose any arbitrary $R_k \in \RR$.
+        Fix any integer $k \in \mathbb Z$.
+        Given any $v_k, x_k$ and $\gamma_k > 0$, invoke Definition \ref{def:stepwise-wapg} to obtain $v_{k + 1}, x_{k + 1}, y_k, \hat \gamma_{k + 1}$. 
+        Fix any arbitrary $R_k \in \RR$.
         Define: 
         \begin{align*}
             R_{k + 1}
             \defeq
             \frac{1}{2}\left(
-                L^{-1} - \frac{\alpha_k^2}{\hat \gamma}
+                L^{-1} - \frac{\alpha_k^2}{\hat \gamma_{k + 1}}
             \right)\Vert g_k\Vert^2
             + 
             (1 - \alpha_k)
             \left(
                 \epsilon_k + R_k + 
-                \frac{\mu\alpha_k\gamma}{2\hat \gamma}
+                \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
                 \Vert v_k - y_k\Vert^2
             \right). 
         \end{align*}
         Then it has for all $x^* \in \RR^n$ where $F^* = F(x^*)$, the inequality: 
         \begin{align*}
-            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat \gamma}{2}\Vert v_{k + 1} - x^*\Vert^2
+            F(x_{k + 1}) - F^* + R_{k + 1} + \frac{\hat \gamma_{k + 1}}{2}\Vert v_{k + 1} - x^*\Vert^2
             &\le 
             (1 - \alpha_k)
             \left(
-                F(x_k) - F^* + R_k + \frac{\gamma}{2}\Vert v_k - x^*\Vert^2
+                F(x_k) - F^* + R_k + \frac{\gamma_{k}}{2}\Vert v_k - x^*\Vert^2
             \right). 
         \end{align*}
     \end{proposition}
     \begin{proof}
+        The proof is a direct proof. 
+        Here we drop the subscript $k$, $k + 1$ on $\gamma_{k}, \hat \gamma_{k + 1}$ because they are fixed throughout the proof and it makes for better readibility! 
+        \par 
+        We started with $F(x_{k + 1}) + R_{k + 1}$ as Equation (1*), and $\hat \gamma/2\Vert v_{k + 1} - x^*\Vert^2$ as (2*). 
+        In the proof that follows, we show (2*) equals to (2.2*). 
+        We added (2*), (2.2*) to produce (3*). 
+        Then we show (3*) equals to (3.1*). 
+        The content of the entire LHS of the conclusion of the claim is conclused in (3.2*). 
+        Going from (3.2*) to (4*) is an inequality which we used Theorem \ref{thm:prox-grad-ineq}. 
+        \par
         Start by considering the first and the third term of the LHS of the inequality that we want to prove. 
         \begin{align*}
             F(x_{k + 1}) &= 
@@ -811,7 +896,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         }
         On the last line, we expand the definition of $g_k$ and then used the
-        \hyperref[thm:prox-grad-ineq]{remark of Theorem \ref*{thm:prox-grad-ineq}}. 
+        \hyperref[thm:prox-grad-ineq]{Theorem \ref*{thm:prox-grad-ineq}}. 
         Therefore, we conclude that: 
         {\small
         \begin{align*}
@@ -823,6 +908,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \right). 
         \end{align*}
         }
+        Adding back the $k$, $k + 1$ subscript for $\gamma$, $\hat \gamma$, it's proven. 
     \end{proof}
     \begin{remark}
         \textcolor{red}
@@ -833,56 +919,21 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 \section{Formulation of R-WAPG and its convergence rates}
-    Definition \ref{def:wapg} is an algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
-    It is the backbone of multiple accelerated first order method in the literatures which fits all variants under the same convergence claim. 
-
-    \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
-        \;\\
-        Initialize any $\gamma_1 \in (0, L]$, $(x_1, v_1)$. 
-        Given auxiliary sequences $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfying for all $k \ge 2$ the conditions: 
+    The sole focus of this section is Definition \ref{def:wapg}.
+    It describes the R-WAPG algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
+    It introduces the procedures of making the sequence $\alpha_k \in (0, 1)$ which assists with claiming convergence of the algorithm using Proposition \ref{prop:stepwise-lyapunov} by connecting them together. 
+    \begin{definition}[R-WAPG sequence]\label{def:rwapg-seq}
+        Assume $0 \le \mu < L$. 
+        For any $\gamma_1 \in (0, L]$, define $\alpha_1 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$. 
+        Then the sequence $(\alpha_{k + 1})_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfy for all $k \ge 2$
         \begin{align*}
             &\alpha_k \in (0, 1), 
             \\
-            &\rho_k > 0, 
+            & 0 < \rho_k \alpha_k^2 < 1, 
             \\
-            &L\alpha_k^2 = (1 - \alpha_k)\rho_{k - 1}L \alpha_{k - 1}^2 + \mu \alpha_k , 
-            \\
-            &0 < \rho_k \alpha_k^2 < 1. 
-        \end{align*}
-        With base case $k = 1$ given by $\alpha_1 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$. 
-        The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ such that they satisfy for all $k\ge 1$: 
-        \begin{align*}
-            \gamma_k &:= \left.\begin{cases}
-                \rho_{k -1}L\alpha_{k - 1}^2 & k \ge 2,
-                \\
-                \gamma_1 & k = 1. 
-            \end{cases}\right\rbrace,
-            \\
-            \hat \gamma_{k + 1} &:= L\alpha_k^2, 
-            \\
-            y_k &= 
-            (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
-            \\
-            g_k &= \mathcal G_L y_k, 
-            \\
-            v_{k + 1} &= 
-            \hat\gamma^{-1}_{k + 1}
-            (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
-            \\
-            x_{k + 1} &= T_L y_k. 
+            &L\alpha_k^2 = (1 - \alpha_k)\rho_{k - 1}L \alpha_{k - 1}^2 + \mu \alpha_k. 
         \end{align*}
     \end{definition}
-    \begin{observation}
-        Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018}. 
-        The initial condition is generic, so it can describe accelerated proximal gradient method in the middle of its executions. 
-        \par
-        Alternatively, any two of the vectors among $x_1, y_1, v_1$ can be used to initialize the algorithm because given $(v_1, y_1), (v_1, x_1)$, or $(x_1, y_1)$ we can solve 
-        $y_1 = (\gamma_1 + \alpha_1\mu)^{-1}(\alpha_1 \gamma_1 v_1 + \hat \gamma_{2}x_1)$ for $x_1, y_1$ or $v_1$. 
-        % \par
-        % If one initial condition $x_0$ is given. 
-        % Then $v_1 = x_0, x_1 = T_L x_0$ is considered a valid initial conditions. 
-    \end{observation}
-
     \begin{observation}\label{obs:r-wapg-observation-1}
         If $\alpha_1 \in (0, 1)$ which is true by $\gamma_1 \in (0, L]$, then the entire sequence $\alpha_k \in (0, 1)$. 
         Suppose inductively that $\alpha_{k - 1}, \rho_{k - 1}$ are given such that they satisfy $\alpha_{k -1} \in (0, 1)$ and $0 < \rho_{k - 1} \alpha_{k - 1}^2 < 1$. 
@@ -942,10 +993,47 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
         However, the limit of $\alpha_k$ could be 1. 
     \end{observation}
+    \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
+        \; \\
+        Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
+        Let $(\alpha_k)_{k \ge1}, (\rho_k)_{k \ge 1}$ be given by Definition \ref{def:rwapg-seq}. 
+        The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ such that they satisfy for all $k\ge 1$: 
+        \begin{align*}
+            \gamma_k &:= \left.\begin{cases}
+                \rho_{k -1}L\alpha_{k - 1}^2 & k \ge 2,
+                \\
+                \gamma_1 & k = 1. 
+            \end{cases}\right\rbrace,
+            \\
+            \hat \gamma_{k + 1} & = (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2
+            \\
+            y_k &= 
+            (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
+            \\
+            g_k &= \mathcal G_L y_k, 
+            \\
+            v_{k + 1} &= 
+            \hat\gamma^{-1}_{k + 1}
+            (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+            \\
+            x_{k + 1} &= T_L y_k. 
+        \end{align*}
+    \end{definition}
+    \begin{observation}
+        Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018} because $L\alpha_k^{2} = (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$. 
+        \par
+        The algorithm chains together the sequence of $(\hat \gamma_{k+1})_{k \ge 1}$ and $(\gamma_k)_{k \ge 1}$ in Definition \ref{prop:stepwise-lyapunov} through the equalities: 
+        \begin{align*}
+            \hat \gamma_{k + 1} = L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \alpha_k \mu
+            &= (1 - \alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2 + \alpha_k \mu. 
+        \end{align*}
+
+    \end{observation}
     
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}\; \\
-        Given any $(v_1, x_1)$, let vectors $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ and scalars sequence $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ be generated by R-WAPG (Definition \ref{def:wapg}). 
-        Define recursively for all $k\ge1$ by 
+        Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
+        Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and scalar sequences $\alpha_k, \rho_k$ be generated from Definition \ref{def:wapg}. 
+        Define $R_1 = 0$ and suppose that for $k = 1, 2, \cdots, N$, we have $R_k$ recursively given by: 
         \begin{align*}
             R_{k + 1}
             := 
@@ -959,9 +1047,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \frac{\mu\alpha_k\gamma_k}{2\hat \gamma_{k + 1}}
                 \Vert v_k - y_k\Vert^2
             \right). 
-        \end{align*}
-        Choose $R_1= 0$ to be the base case. 
-        Choose any $x^* \in \RR^n$ then
+        \end{align*} 
+        Then for all $k = 1, 2, \cdots, N$: 
         \begin{align*}
             & F(x_{k + 1}) - F(x^*) + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
@@ -978,8 +1065,20 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{proposition}
     \begin{proof}  
-        Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is satisfies is strictly positive and for $i=2, 3, \cdots, k$, by Definition \ref{def:wapg} it has $\gamma = \rho_{i - 1} L \alpha_{i - 1}^2 > 0, \hat \gamma = L \alpha_i^2 > 0$ at each step, with the base case $i = 1$: $\gamma \in (0, L], \hat \gamma = (1 - \alpha_1)\gamma + \mu \alpha_1$. 
-        Since $\alpha_i \in(0, 1)$ for all $i = 1, \cdots, k$, because of Observation \ref{obs:r-wapg-observation-1}, we can use Proposition \ref{prop:stepwise-lyapunov}, to show that for all $k \ge 1$: 
+        Since $\hat \gamma_2, \gamma_1$ has $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$ and $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov}, we can invoke Proposition \ref{prop:stepwise-lyapunov} and it gives: 
+        \begin{align*}
+            F(x_{2}) - F(x^*) + R_2 + \frac{L \alpha_k^2}{2}\Vert v_{2} - x^*\Vert^2
+            &\le 
+            (1 - \alpha_1)\left(
+                F(x_1) - F(x^*) + R_1 + \frac{\gamma_1}{2}\Vert v_1 - x^*\Vert^2
+            \right). 
+        \end{align*}
+        We had demonstrated the base case. 
+        \par 
+        Next, for all $k = 2, 3, \cdots, N$, the R-WAPG described in \ref{def:wapg} has $\hat \gamma_{k + 1} = L\alpha_{k - 1}^2 = (1 - \alpha_k)\gamma_k + \mu\alpha_k$. 
+        We have also $\alpha_k \in (0, 1)$ by Observation \ref{obs:r-wapg-observation-1}. 
+        So $\gamma_k, \hat \gamma_{k + 1}, \alpha_k$ fits Definition \ref{def:stepwise-wapg}. 
+        The description of $R_k$ is the same as in Proposition \ref{prop:stepwise-lyapunov} hence we can use Proposition \ref{prop:stepwise-lyapunov}, to show that for all $k \ge 1$: 
         {\small
         \begin{align*}
             &F(x_{k + 1}) - F^* + R_{k + 1} + \frac{L \alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
@@ -1014,7 +1113,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \right). 
         \end{align*}
         }
-        Additionally, for all $k \ge 1$ the algorithm converges by considering $R_{k + 1}$: 
+        We had demonstrated in the inductive case for $k=1, 2, \cdots, N$. 
+        Additionally, for all $k = 1, 2, \cdots, N$ it has $R_{k + 1} \ge 0$ because: 
         \begin{align*}
             R_{k + 1}
             &= 
@@ -1043,8 +1143,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Going from the left to the right on the first equality, we used the fact that $\hat \gamma_{k + 1} = L \alpha_{k}^2$.
         This makes coefficient of $\Vert g_k\Vert^2$ zero. 
-        The first inequality is by $\epsilon_k \ge 0$ and the non
-        -negativity of the remaining terms. 
+        The first inequality is by $\epsilon_k \ge 0$ and the non-negativity of the remaining terms. 
         The last equality is by the assumption that $R_1 = 0$. 
         Therefore: 
         {\small
@@ -1076,10 +1175,15 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \section{Equivalent representations of R-WAPG}
     This section reduces Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
-    Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} for the specific initial conditions $\gamma_0 \in(0, 1)$ and finds a representation without auxiliary sequence $\gamma_k, \hat \gamma_k$. 
+    In the literatures, variants of Accelerated Proximal Gradient algorithm such as FISTA, V-FISTA has different representations. 
+    This section carries out the tedious but necessary works for demonstrating the descriptive power of R-WAPG. 
+    We will formulate it into three generic forms that are commonly seemed in the literatures. 
+    These equivalent representations are listed in Definition \ref{def:r-wapg-intermediate}, \ref{def:r-wapg-st-form} and \ref{def:r-wapg-momentum-form}. 
+    \par 
+    Proposition \ref{prop:wapg-first-equivalent-repr} simplifies Definition \ref{def:wapg} and finds a representation without using auxiliary sequence $\gamma_k, \hat \gamma_k$. 
     Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
-    Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:wagp-st-form} states two more equivalent representations under R-WAPG intermediate form which are formulated as Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
-    Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms. 
+    Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
+    Convergence results from Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms of R-WAPG. 
     
     To start, the following proposition on ``abstract similar triangle form'' were made to simplify arguments and notations to make nicer proofs. 
 
@@ -1691,10 +1795,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \begin{align*}
             & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
             \\
-            & 
-            y_{k + 1} = 
-            x_{k + 1} + 
-            \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k), 
             \\
             & \text{find } \rho_{k}: 0 < \rho_{k} < \alpha_{k}^{-2}, 
             \\
@@ -1704,7 +1804,12 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \frac{\mu}{L} - \rho_{k}\alpha_{k}^2 
                 +
                 \sqrt{(\rho_{k}\alpha_{k}^2 - \mu/L)^2 + 4\rho_{k}\alpha_{k}^2}
-            \right). 
+            \right), 
+            \\
+            & 
+            y_{k + 1} = 
+            x_{k + 1} + 
+            \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
         \end{align*}
         In the special case $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
         $$
@@ -1726,17 +1831,20 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         % }
     \end{remark}
 
-\subsection{Representing algorithms in the literatures via R-WAPG}
+\subsection{R-WAPG describes existing accelerations scheme in the literatures}
 
 
 \subsection{The method of Inexact Momentum}
     This section introduces an algorithm of our creation through the remark of Proposition \ref*{prop:stepwise-lyapunov}. 
     The algorithm estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
 
-
 \subsection{Numerical experiments and applications}
+
+
 
 \bibliographystyle{siam}
 \bibliography{references/Inexact_Momentum.bib}
+
+\appendix
 
 \end{document}

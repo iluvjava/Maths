@@ -25,12 +25,19 @@ We introduce the following quantities in order to define the algorithm.
 ---
 ### **Algorithm and convergence claims**
 
-Forget everything from previous section. 
-Let's try to do this again with some differences. 
+Define $g_k, \epsilon_k, l_F(x; y_k)$ for any $x_k, y_k$: 
+$$
+\begin{aligned}
+    l_F(x; y_k) &:= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
+    \\
+    \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k). 
+\end{aligned}
+$$
+
 
 #### **Algorithm 2 | Stepwise weak accelerated proximal gradient**
-> Let $0 \le \mu \le L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
-> Given iterates $(v_k, x_k)$, or equivalently $(y_k, x_k)$, $(x_k, y_k)$, any $\alpha > 0, \gamma > 0$, the algorithm generates scalar $\hat \gamma$, and vectors $y_k, v_{k + 1}, x_{k + 1}$ by equalities: 
+> Let $0 \le \mu <> L$ be the strong convexity and Lipschitz smoothness parameter of $f$. 
+> Given any $(v_k, x_k)$, $\alpha > 0, \gamma > 0$, Let $\hat \gamma$, $y_k, v_{k + 1}, x_{k + 1}$ be given by: 
 > $$
 > \begin{aligned}
 >     \hat \gamma &:= (1 - \alpha_k)\gamma + \mu \alpha_k, 
@@ -53,14 +60,7 @@ We make 2 crucial observations here.
 With the algorithm, we define the following quantities associate with it. 
 Fix any integer $k \ge 0$. 
 Given any $(x_k, y_k)$. 
-Define $g_i, \epsilon_i, l_F(x; y_k)$: 
-$$
-\begin{aligned}
-    l_F(x; y_k) &= F(T_Ly_k) + \langle g_k, x - y_k\rangle + \frac{1}{2L}\Vert g_k\Vert^2, 
-    \\
-    \epsilon_{k} &:= F(x_k) - l_F(x_k; y_k). 
-\end{aligned}
-$$
+
 
 $\epsilon_k \ge 0$ always because we assumed $F$ is convex. 
 To verify, we use the fundamental proximal gradient inequality. 
@@ -142,7 +142,7 @@ Therefore, we discover that $x_k, v_k, y_k$ lies on the same line.
 
 
 #### **Claim | Stepwise Lyapunov Claim**
-> Fix any integer $k \ge0$, suppose that $v_{k + 1}, x_{k + 1}, y_k, g_k, \gamma, \hat \gamma$ satisfies Algorithm 2. 
+> Fix any integer $k \ge0$, given any $(x_k, v_k)$ and suppose that $v_{k + 1}, x_{k + 1}, y_k, g_k, \gamma, \hat \gamma$ satisfies Algorithm 2. 
 > Given any $R_k$.
 > Define: 
 > $$
@@ -673,21 +673,29 @@ The default $\mu$ being the strong convexity modulus is a very pessimistic choic
 
 The pessimistic choice of $\mu$ being the strong convexity modulus is for claiming the convergence of all initial guess $x_0, y_0$. 
 
-
-
-
 #### **Algorithm 2.1 | Relaxed weak accelerated proximal gradient (R-WAPG)**
-> Initialize any $\gamma_1 \in (0, L]$, $(x_1, v_1)$ or equivalently: $(x_1, y_1), (y_1, v_1)$. 
-> The algorithm generates a sequence of vector $(x_k, y_k, v_k)$ and auxiliary sequence $\alpha_k, \rho_k$ such that they satisfy for all $k\ge 0$ recursively: 
+> Initialize any $\gamma_1 \in (0, L]$, $(x_1, v_1)$. 
+> Given auxiliary sequences $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ satisfying for all $k \ge 2$ the conditions: 
+> $$
+> \begin{aligned}
+>     &\alpha_k \in (0, 1), 
+>     \\
+>     &\rho_k > 0, 
+>     \\
+>     &L\alpha_k^2 = (1 - \alpha_k)\rho_{k - 1}L \alpha_{k - 1}^2 + \mu \alpha_k , 
+>     \\
+>     &0 < \rho_k \alpha_k^2 < 1. 
+> \end{aligned}
+> $$
+> With base case $k = 1$ given by $\alpha_1 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$. 
+> The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ such that they satisfy for all $k\ge 1$: 
 > $$
 > \begin{aligned}
 >     \gamma_k &:= \left.\begin{cases}
->           \rho_{k -1}L\alpha_{k - 1}^2 & k \ge 2,
->           \\
->           \gamma_1 & k = 1. 
+>         \rho_{k -1}L\alpha_{k - 1}^2 & k \ge 2,
+>         \\
+>         \gamma_1 & k = 1. 
 >     \end{cases}\right\rbrace,
->     \\
->     \text{find }&\alpha_k \in (0, 1), \rho_k > 0: L\alpha_k^2 = (1 - \alpha_k)\gamma_k + \mu \alpha_k  \;\wedge \; 0 < \rho_k\alpha_k^2 < 1, 
 >     \\
 >     \hat \gamma_{k + 1} &:= L\alpha_k^2, 
 >     \\
@@ -701,8 +709,7 @@ The pessimistic choice of $\mu$ being the strong convexity modulus is for claimi
 >     (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
 >     \\
 >     x_{k + 1} &= T_L y_k. 
-> \end{aligned}
-> $$
+> \end{aligned}$$
 
 **Observations**
 
@@ -762,12 +769,12 @@ $$
         \frac{\mu}{L} + 
         \sup_{x \in (0, 1)}
         \left\lbrace
-            -x + \sqrt{(x - \mu/L)^2 + x}
+            -x + \sqrt{(x - \mu/L)^2 + 4x}
         \right\rbrace
     \right)
     \\
     &\le \frac{1}{2}\left(
-        \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 1}\right)
+        \mu/L + \max\left(\mu/L, -1 + \sqrt{(1 - \mu/L)^2 + 4}\right)
     \right) \le 1. 
 \end{aligned}
 $$
@@ -819,7 +826,7 @@ However, the limit of $\alpha_k$ could be 1.
 **Proof**
 
 
-Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, we choose $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2 > 0, \hat \gamma = L \alpha_k^2 > 0$, giving us: 
+Recall the stepwise convergence theorem, since the choice of $\gamma, \hat \gamma$ is arbitrary choices for the theorem, for all $i = 2, 3, \cdots, k$, we invoke the stepwise convergence claim with $\gamma = \rho_{k - 1} L \alpha_{k - 1}^2 > 0, \hat \gamma = L \alpha_k^2 > 0$, giving us: 
 
 $$
 {\small
