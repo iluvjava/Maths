@@ -1298,7 +1298,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k). 
         \end{align*}
     \end{proof}
-    \subsection{Listing the euivalent representations of R-WAPG}
+    \subsection{A list of equivalent representations of R-WAPG}
         This section lists three equivalent representations of the R-WAPG algorithm. 
         They are comparable to existing APG algorithms in the literatures. 
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
@@ -1357,7 +1357,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \end{tcolorbox}
         \end{definition}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
-            For any $y_1 = x_1 \in \RR^n$, $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+            Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
             The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
             \begin{tcolorbox}
                 For $k=1, 2,\cdots $
@@ -1370,7 +1370,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                     \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
                 \end{align*}    
             \end{tcolorbox}
-            
             In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
             $$
                 (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
@@ -1383,8 +1382,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \subsection{Proving the equivalent representations of R-WAPG}
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
-            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}). 
-            Then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ they are algebraically equivalent to
+            If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), 
+            then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ they are algebraically equivalent to
             \begin{align*}
                 & 
                 y_{k} = 
@@ -1509,16 +1508,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                     \frac{\alpha_k\mu}{(1 - \alpha_k)\gamma_k} y_k
                 \right)
                 - \alpha_k\hat \gamma_{k + 1}^{-1}\mathcal G_L y_k
-                % \\
-                % &= 
-                % \left(
-                %     1 + \frac{\alpha_k\mu}{(1 -\alpha_k)L\rho_{k - 1}\alpha_{k - 1}^2}
-                % \right)^{-1}
-                % \left(
-                %     v_k + 
-                %     \frac{\alpha_k\mu}{(1 - \alpha_k)\rho_{k - 1}L\alpha_{k - 1}^2} y_k
-                % \right)
-                % - \frac{1}{L\alpha_{k}}\mathcal G_L y_k
                 \\
                 &= 
                 \left(
