@@ -40,7 +40,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 \section{Introduction}
     Suppose we are minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$ for simplicity. 
-    Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ stronlyg convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+    Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
 
     \par 
     A good choice of a minimization algorithm is the Nesterov's acceleration scheme which was originally proposed in 1983 \cite{nesterov_method_1983}. 
@@ -54,7 +54,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
     \end{align}\label{eqn:example_algorithm}
-    It's well known that if the minimizer $x^*$ exists, $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal.
+    It's well known that if the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal.
     See Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018}. 
     However, everything is not sunshine and rainbow because the above scheme is associated with an issue. 
     When $F$ is $\mu > 0$ strongly convex, the algorithm oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
@@ -97,39 +97,49 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate. 
         And when $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}, which is an optimal algorithm for a strongly convex $F$. 
-        R-WAPG gives the a convergence claim, and it's consistent with the literatures. 
+        R-WAPG gives the convergence claim, and it's consistent with the literatures. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
     \subsection{Prior works}
+        \todoinline{The following are notes to the writer. There is in fact little prior works in this regard. People tried to unify all the variants but all of them are trying to unify the convergence claims under one theorem. Flexible choices of the momentum parameters are the prime focus in heavy ball momentum, or FISTA with Hessian Damping. Their approaches are usually using dynamical system. }
         
     \subsection{Organizations}
-
+        \todoinline{This will be written once most of the contents in the paper are settled. }
     
        
 
 \section{Preliminaries}
-    Throughout, we assume the problem of types $F = f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
-    We consider optimization problem: $\min_x \left\lbrace F(x) \defeq f(x) + g(x)\right\rbrace$.
-    Fix arbitrary $y \in \RR^n$, define
+    Throughout, we define $F := f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
+    We consider optimization problem: $\min_x \left\lbrace f(x) + g(x)\right\rbrace$.
+    Fix any arbitrary $y \in \RR^n$, define for all $x \in Q$: 
     \begin{align*}
         \widetilde{\mathcal M}^{L^{-1}}
-        (x; y) \defeq
+        (x; y) 
+        &:=
         g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
         + \frac{L}{2}\Vert x - y\Vert^2, 
         \\
-        \mathcal M^{L^{-1}}(x; y) := F(x) + \frac{L}{2}\Vert x - y\Vert^2, 
+        \mathcal M^{L^{-1}}(x; y) &:= F(x) + \frac{L}{2}\Vert x - y\Vert^2, 
     \end{align*}
-    and the proximal gradient operator $T_L = [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
-    Define the Bregman divergence of $f$: 
+    and the proximal gradient operator $T_L := [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
+    The proximal gradient operator $T_L$ admits 
+    $$
+        T_Ly = \argmin_x \left\lbrace
+            g(x) + \langle \nabla f(y), x\rangle + L/2\Vert x - y\Vert^2
+        \right\rbrace. 
+    $$
+    It is a single valued mapping and it has its domain on the entire $\RR^n$. 
+    Another operator often associated with $T_L$ is the gradient mapping operator $\mathcal G_L:= L(I - T_L)$. 
+    Finally, define the Bregman divergence of $f$: 
     \begin{align*}
         D_f(x, y): \RR^n \times \RR^n \rightarrow \RR 
         \defeq f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
     The lemma follows explains equates between $\mathcal M(\cdot; y), \widetilde{\mathcal M}(\cdot; y)$. 
     \begin{lemma}[Proximal gradient envelope] 
-        Fix any $y$, we will have for all $x \in \RR^n$ that: 
+        Fix any $y \in \RR^n$, we will have for all $x \in Q$ that: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
             &= 
@@ -154,7 +164,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{proof}
     \subsection{Proximal inequality}
     \begin{theorem}[Proximal inequality]\label{thm:prox-grad-ineq}
-        Fix any $y$, we have for all $x$: 
+        Fix any $y\in \RR^n$, we have for all $x \in Q$: 
         \begin{align*}
             F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
             - L\Vert y - T_L y\Vert^2
@@ -172,8 +182,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{theorem}
     \begin{proof}
-        Observe that the function $\widetilde {\mathcal M}(\cdot; x)$ is $L$ strongly convex with minimizer $T_Ly$. 
-        For all $x \in \RR^n$, it has quadratic growth condition at its minimizer $T_Ly$ which gives these equivalent inequalities: 
+        Observe that the function $\widetilde {\mathcal M}(\cdot; y)$ is $L$ strongly convex with minimizer $T_Ly$. 
+        For all $x \in Q$, it has quadratic growth condition at its minimizer $T_Ly$ which gives these equivalent inequalities: 
         {\small
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
@@ -449,7 +459,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         In the proof that follows, we show (2*) equals to (2.2*). 
         We added (2*), (2.2*) to produce (3*). 
         Then we show (3*) equals to (3.1*). 
-        The content of the entire LHS of the conclusion of the claim is conclused in (3.2*). 
+        The content of the entire LHS of the inequality we want to prove is in (3.2*). 
         Going from (3.2*) to (4*) is an inequality which we used Theorem \ref{thm:prox-grad-ineq}. 
         \par
         Start by considering the first and the third term of the LHS of the inequality that we want to prove. 
@@ -1059,7 +1069,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right)
             \left(
-                F(x_1) - F(x^*) + \frac{\gamma_1}{2}\Vert v_1 - x^*\Vert^2
+                F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
             \right). 
         \end{align*}
     \end{proposition}
@@ -1209,18 +1219,18 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
     Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
     Convergence results from Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms of R-WAPG. 
-    In brief, the relations of these Propositions and Definitions can be summarized by
+    In brief, the relations of these proposition and definitions can be summarized by
     \begin{align*}
         & \text{Definition } \ref{def:wapg} 
         \\
         & \iff 
-        \text{Definition } \ref{def:r-wapg-intermediate} & \text{By Proposition }\ref{prop:wapg-first-equivalent-repr}
+        \text{Definition } \ref{def:r-wapg-intermediate} & \text{By Proposition }\ref{prop:wapg-first-equivalent-repr}.
         \\
-        & \iff \text{Definition }\ref{def:r-wapg-st-form} & \text{By Proposition }\ref{def:r-wapg-st-form} 
+        & \iff \text{Definition }\ref{def:r-wapg-st-form} & \text{By Proposition }\ref{def:r-wapg-st-form}.
         \\
         & \;\implies 
         \text{Definition }\ref{def:r-wapg-momentum-form}. 
-        & \text{By Proposition }\ref{prop:r-wapg-momentum-repr}
+        & \text{By Proposition }\ref{prop:r-wapg-momentum-repr}.
     \end{align*}
     
     To start, the following proposition on ``abstract similar triangle form'' were made to simplify arguments and notations to make nicer proofs. 
@@ -1799,7 +1809,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \par
     This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
     This section will also demonstrate that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
-    \begin{lemma}[R-WAPG sequences as Inverted FISTA sequence]
+    \begin{lemma}[R-WAPG sequences as inverted FISTA sequence]\label{lemma:inverted-fista-seq}
         Let R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
         If $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then: 
         \begin{enumerate}
@@ -1859,32 +1869,156 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \prod_{i = 1}^{k}\alpha_k^2 /\alpha_{k - 1}^2= \alpha_k^2/\alpha_0. 
         \end{align*}
         Because $\alpha_0 = 1$, (iii) is justified. 
-
     \end{proof}
+    \begin{remark}
+        The sequence $t_k$ is exactly the same as in Theorem 3.1 of Chmabolle, Dossal \cite{chambolle_convergence_2015}. 
+    \end{remark}
 
-    \begin{lemma}[Chambolle, Dossal 2015 sequences as R-WAPG sequences]\;\\
-        Fix rabitrary $a \ge 2$.
+    \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
+        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and they are constant meaning that there exists $\rho, \alpha$ such that $\alpha_k = \alpha$ and $\rho_k = \rho$ for all $k \ge 0$.
+        Define the momentum term $\theta = \rho\alpha(1 - \alpha)/(\rho\alpha^2 + \alpha)$. 
+        Then the constant R-WAPG sequence satisfies: 
+        \begin{enumerate}
+            \item $\rho = (1 - \mu/L\alpha^{-1})/(1 - \alpha)$. 
+            \item $\theta = (1 - \mu/L)(1 - \alpha)/(-\mu/L \alpha + 2\alpha - \alpha^2)$. 
+            \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = (1 - \sqrt{\mu/L})/(1 + \sqrt{\mu/L})$. 
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\;\\
+        Fix arbitrary $a \ge 2$.
         Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
         \begin{align*}
             \alpha_k &= a/(k + a), 
             \\
             \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)}. 
         \end{align*}
-        If $\mu = 0$, $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence that satisfies Definition \ref{def:rwapg-seq}. 
-        Applying this sequence to Definition \ref{def:r-wapg-momentum-form}, which is the momentum form of R-WAPG, then R-WAPG is reduced to the following scheme: 
-        \begin{align*}
-        \end{align*}
-    \end{lemma}
+        Consider the algorithm given by: 
+        \begin{tcolorbox}
+            Initialize any $y_1 = x_1$. 
+            \\
+            For $k = 1, 2, \cdots$, update: 
+            \begin{align*}
+                & x_{k + 1} := y_k + L^{-1}\mathcal G_L(y_k), 
+                \\
+                & \theta_{t + 1} := \alpha_{k + 1}(\alpha_k^{-1} - 1),
+                \\
+                & y_{k + 1} := x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
+            \end{align*}    
+        \end{tcolorbox}
+        If $\mu = 0$, then $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid pair of R-WAPG sequence from Definition \ref{def:rwapg-seq} and the above algorithm is a valid form of R-WAPG. 
+        \par
+        Assume minimizer $x^*$ exists for function $F$. 
+        Then algorithm produces $(x_k)_{k \ge0}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O(1/k^2)$. 
+    \end{theorem}
     \begin{proof}
-        
-
+        We only need to show that $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are valid R-WAPG sequences. 
+        To do that we verify equality $\alpha_{k + 1}^2 = (1 - \alpha_{k + 1})\rho_k \alpha_k^2$ because it's assumed $\mu = 0$ in this case. 
+        For all $k \ge 0$, the right side of the equality evaluates to 
+        \begin{align*}
+            \alpha_k^2 \rho_k(1 - \alpha_{k + 1}) &= 
+            \left(
+                \frac{\alpha}{k + 1}
+            \right)^2 \left(
+                \frac{(k + a)^2}{(k + 1)(k + a + 1)}
+            \right)
+            \left(
+                1 - \frac{a}{k + 1 + a}
+            \right)
+            \\
+            &= \left(
+                \frac{\alpha}{k + 1}
+            \right)^2 \left(
+                \frac{(k + a)^2}{(k + 1)(k + a + 1)}
+            \right)
+            \left(
+                \frac{k + 1}{k + 1 + a}
+            \right)
+            \\
+            &= \frac{a^2}{(k + a + 1)^2} = \alpha_{k + 1}^2. 
+        \end{align*}
+        Therefore, $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ is a pair of valid R-WAPG sequence. 
+        So, it can be used in the R-WAPG algorithm and represent it in R-WAPG Momentum Form in Definition \ref{def:r-wapg-momentum-form}. 
+        Using $\mu = 0$, it simplifies the momentum term in Definition \ref{def:r-wapg-momentum-form} and gives the rules of updates in the theorem statement. 
+        \par
+        Next, we show the convergence rate of the algorithm. 
+        Observe that $(\forall k \ge 0)(\forall a \ge 2)$, $\rho_k$ has 
+        \begin{align*}
+            \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)} 
+            \\
+            &> \frac{(k + 1)^2}{(k + 1)(k + a + 1)} 
+            & \text{By } a \ge 2. 
+            \\
+            &= \frac{(k + 1)}{(k + a + 1)} 
+            \\
+            & > 1.   & \text{By } a > 2. 
+        \end{align*}
+        Hence (iii) in Lemma \ref{lemma:inverted-fista-seq} applies. 
+        We may use Proposition \ref{prop:wagp-convergence} by the validity of our $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ sequences, we have:
+        \begin{align*}
+            & F(x_{k + 1}) - F(x^*) + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
+            \\
+            & = F(x_{k + 1}) - F(x^*) + \frac{L\alpha_k^2}{2}\Vert x_{k + 1} - x^* + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)\Vert^2
+            \\
+            & \le 
+            \left(
+                \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+            \right)
+            \left(
+                \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
+            \right)
+            \left(
+                F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
+            \right)
+            \\
+            &= 
+            \alpha_k^2
+            \left(
+                F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
+            \right) 
+            & \text{By Lemma \ref{lemma:inverted-fista-seq} (iii). }
+            \\
+            &= 
+            \left(\frac{a}{k + a}\right)^2
+            \left(
+                F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert x_1 - x^*\Vert^2
+            \right). 
+        \end{align*}
+        We can replace $v_1$ to be $x_1$ by Proposition \ref{prop:r-wapg-momentum-repr}. 
     \end{proof}
+    \begin{remark}
+        This algorithm described here is exactly the same algorithm being analyzed in the paper by Chambolle, Dossal \cite{chambolle_convergence_2015}. 
+
+    \end{remark}
 
 
 
-\subsection{The method of Inexact Momentum}
-    This section introduces an algorithm of our creation through the remark of Proposition \ref*{prop:stepwise-lyapunov}. 
+\subsection{The method of Free R-WAPG}
+    This section introduces an algorithm of our creation through the remark of Proposition \ref{prop:stepwise-lyapunov}. 
     The algorithm estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+    \begin{algorithm}
+    {\footnotesize
+        \label{alg:free-rwapg}
+        \begin{algorithmic}[1]
+        \STATE{\textbf{Input: } $f, g, x_0\in \RR^n, N \in \N$}
+        \STATE{\textbf{Initialize: }$x_1:= x_0; y_1 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+        \FOR{$k = 1, 2, \cdot, N$}
+            \STATE{\textbf{Compute: }$\nabla f(x_k); x^+:= [I + L^{-1}\partial g](x_k - L^{-1}\nabla f(x_k))$;}
+            \WHILE{$L/2\Vert x^+ - x\Vert^2 < D_f(x^+, x)$}
+                \STATE{$L:= L/2$;}
+                \STATE{$x^+ = [I + L^{-1}\partial g](x_k - L^{-1}\nabla f(x_k))$; }
+            \ENDWHILE
+            \STATE{$x_{k + 1} := x^+$;}
+            \STATE{$\mu:= \min(L, \mu)$;}
+            \STATE{$\alpha_{k} := (1/2)\left(\mu/L - \alpha_{k - 1}^2 + \sqrt{(\mu/L - \alpha_{k - 1}^2)^2 + 4\alpha_{k - 1}^2}\right)$;}
+            \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
+            \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
+            \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
+        \ENDFOR
+        \end{algorithmic}
+        \caption{Free R-WAPG}
+    }
+    \end{algorithm}
 
 \subsection{Numerical experiments}
 
