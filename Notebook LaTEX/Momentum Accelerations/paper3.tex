@@ -73,11 +73,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Our contributions are two folds, theoretical and practical. 
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies for different varints of the accelerated proximal gradient algorithm. 
-        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ gives weak convergence of the iterates $x_k$ in Hilbert space. 
+        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
         In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergencec rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
         V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
-        Firstly, we relaxed the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
+        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
         \begin{align*}
             \alpha_0 &\in (0, 1], 
@@ -1792,7 +1792,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 
 \section{R-WAPG describes existing accelerations scheme in the literatures}
-    In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are also descriptive and they generalizes many existing sequences used in accelerated proximal gradient schemes. 
+    In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are descriptive. 
+    They generalizes many existing sequences used in accelerated proximal gradient schemes. 
     \par
     This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
     This section will also demonstrates that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds and it derives convergence rates consistent with results in the literatures.  
