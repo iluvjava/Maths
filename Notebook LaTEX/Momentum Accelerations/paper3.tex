@@ -32,15 +32,15 @@
 \begin{abstract} 
     \noindent
     
-    \cite{nesterov_lectures_2018}
+    \todoinline{Write this abstract when finishing. }
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
 Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 \section{Introduction}
-    Suppose we are minimizing a differentiable convex function $F$ for simplicity. 
-    In addition, assuming the function is $\RR^n$, so it's full domain and $F$ is Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+    Suppose we are minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$ for simplicity. 
+    Let $F$ be Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
     \par 
     A good choice of a minimization algorithm is the Nesterov's acceleration schemes that originally proposed in 1983 \cite{nesterov_method_1983}. Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
     \begin{align}
@@ -62,7 +62,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept and it performs empirically better. 
     See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
     \par
-    Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically and along with it. 
+    Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically. 
     Secondly, a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
     The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(\theta_t)_{t \ge 1}$. 
     It also has descriptive power to describe several variants of FISTA in the literatures.  
@@ -92,7 +92,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right). 
         \end{align*}
-        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to the a variant proposed in Chambolle Dossal \cite{chambolle_convergence_2015} and it has the same convergence claim as in the literatures. 
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to a variant of FISTA proposed in Chambolle Dossal \cite{chambolle_convergence_2015} with the same convergence claim. 
         And when $\rho_k = 1$, R-WAPG reduces perfectly to V-FISTA by Beck \cite{beck_first-order_2017} if $\mu > 0$ and FISTA if $\mu = 0$ and the convergence claim is consistent with the literatures. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
@@ -902,10 +902,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \section{Formulation of R-WAPG and its convergence rates}
     The sole focus of this section is Definition \ref{def:wapg}.
     It describes the R-WAPG algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
-    It introduces the procedures of making the sequence $\alpha_k \in (0, 1)$ which assists with claiming convergence of the algorithm using Proposition \ref{prop:stepwise-lyapunov} by connecting them together. 
+    Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences which is crucially important. 
+    The sequence formulates the R-WAPG algorithm stated in Definition \ref{def:wapg}, it connects the step-wise formulation of R-WAPG (Definition \ref{def:stepwise-wapg}) and describes the convergence claim of R-WAPG in Proposition \ref{prop:wagp-convergence}. 
+    In the next section, it continues to play a crucial role in describing several equivalent forms of the R-WAPG algorithm, and their convergence claim. 
     \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
         Assume $0 \le \mu < L$. 
-        The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge1}$ are valid for R-WAPG all the following holds: 
+        The sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge1}$ are sequences parameterized by $\mu, L$. 
+        They are valid for R-WAPG if all the following holds: 
         \begin{align*}
             \alpha_0 &\in (0, 1], 
             \\
@@ -985,22 +988,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
         The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:  
-        \begin{align*}
-            \gamma_k &:= \rho_{k -1}L\alpha_{k - 1}^2, 
-            \\
-            \hat \gamma_{k + 1} & := (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2, 
-            \\
-            y_k &= 
-            (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
-            \\
-            g_k &= \mathcal G_L y_k, 
-            \\
-            v_{k + 1} &= 
-            \hat\gamma^{-1}_{k + 1}
-            (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
-            \\
-            x_{k + 1} &= T_L y_k. 
-        \end{align*}
+        \begin{tcolorbox}
+            For $k=1, 2, 3, \cdots$
+            \begin{align*}
+                \gamma_k &:= \rho_{k -1}L\alpha_{k - 1}^2, 
+                \\
+                \hat \gamma_{k + 1} & := (1 - \alpha_k)\gamma_k + \mu \alpha_k = L\alpha_k^2, 
+                \\
+                y_k &= 
+                (\gamma_k + \alpha_k \mu)^{-1}(\alpha_k \gamma_k v_k + \hat\gamma_{k + 1} x_k), 
+                \\
+                g_k &= \mathcal G_L y_k, 
+                \\
+                v_{k + 1} &= 
+                \hat\gamma^{-1}_{k + 1}
+                (\gamma_k(1 - \alpha_k) v_k - \alpha_k g_k + \mu \alpha_k y_k), 
+                \\
+                x_{k + 1} &= T_L y_k. 
+            \end{align*}    
+        \end{tcolorbox}
     \end{definition}
     \begin{observation}\label{obs:r-wapg-observation-2}
         Observe that if $\rho_k = 1$ for all $k\ge 0$, then the above algorithm is similar to (2.2.7) in Nesterov's book \cite{nesterov_lectures_2018} because $L\alpha_k^{2} = (1 - \alpha_k)L\alpha_{k - 1}^2 + \mu \alpha_k$. 
@@ -1088,7 +1094,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &= (1 - \alpha_k)\gamma_k + \mu\alpha_k. 
         \end{align*}
         So $\gamma_k, \hat \gamma_{k + 1}, \alpha_k$ fits Definition \ref{def:stepwise-wapg}. 
-        The definition of $R_k$ given is the same as in Proposition \ref{prop:stepwise-lyapunov} hence we can use Proposition \ref{prop:stepwise-lyapunov} to un roll recursively for all $k \ge 1$: 
+        The definition of $R_k$ given is the same as in Proposition \ref{prop:stepwise-lyapunov} hence we can use Proposition \ref{prop:stepwise-lyapunov} to unroll recursively for all $k \ge 1$: 
         {\small
         \begin{align*}
             &
@@ -1123,7 +1129,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right)
             \left(
-                F(x_1) - F^* + R_1 + \frac{\gamma_1}{2}\Vert v_1 - x^*\Vert^2
+                F(x_1) - F^* + R_1 + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
             \right). 
         \end{align*}
         }
@@ -1174,7 +1180,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right)
             \left(
-                F(x_1) - F^* + \frac{\gamma_1}{2}\Vert v_1 - x^*\Vert^2
+                F(x_1) - F^* + \frac{L\alpha_0^2}{2}\Vert v_1 - x^*\Vert^2
             \right). 
         \end{align*}
         }
@@ -1204,7 +1210,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \begin{proposition}[Abstract similar triangle form]\label{prop:abs-st-form}\;\\
         Given any initial $(x_1, v_1)$, and a sequence $(\tau_k)_{k \ge 1}, (\xi_k)_{k \ge 1}$ such that for all $k \ge 1$ $\tau_k \in (0, 1), \xi_k \in (0, 1)$. 
-        for all $k\ge 1$, iterates $(y_k, z_{k + 1}, x_{k + 1})_{k \ge 1}$ satisfies recursively that: 
+        For all $k\ge 1$, iterates $(y_k, z_{k + 1}, x_{k + 1})_{k \ge 1}$ satisfies recursively that: 
         \begin{align*}
             y_k &= (1 + \tau_k)^{-1}(v_k + \tau_k x_k),
             \\
@@ -1288,8 +1294,90 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             (1 + \xi_k)^{-1}\tau_k(x_{k + 1} - x_k). 
         \end{align*}
     \end{proof}
+    \subsection{Listing the euivalent representations of R-WAPG}
+        This section lists three equivalent representations of the R-WAPG algorithm. 
+        They are comparable to existing APG algorithms in the literatures. 
+        \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
+            Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+            Initialize any $x_1, v_1$ in $\RR^n$. 
+            For $k \ge 1$, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
+            \begin{tcolorbox}
+                For $k = 1, 2, \cdots$
+                \begin{align*} 
+                    & y_{k} = 
+                    \left(
+                        1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_{k + 1} + 
+                        \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
+                    \right), 
+                    \\
+                    & x_{k + 1} = 
+                    y_k - L^{-1} \mathcal G_L y_k, 
+                    \\
+                    & v_{k + 1} = 
+                    \left(
+                        1 + \frac{\mu}{L \alpha_k - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_k + 
+                        \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
+                    \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
+                \end{align*}
+            \end{tcolorbox}
+        \end{definition}
+        \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
+            Given any $(x_1, v_1)$ in $\RR^n$. 
+            Assume $\mu < L$.
+            Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
+            For $k \ge 1$, the algorithm generates sequences of vector iterates $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
+            \begin{tcolorbox}
+                For $k=1, 2, \cdots $
+                \begin{align*}
+                    & y_k = 
+                    \left(
+                        1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
+                    \right)^{-1}
+                    \left(
+                        v_k + 
+                        \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
+                    \right), 
+                    \\
+                    & x_{k + 1} = 
+                    y_k - L^{-1} \mathcal G_L y_k, 
+                    \\
+                    & v_{k + 1} = 
+                    x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
+                \end{align*}    
+            \end{tcolorbox}
+        \end{definition}
+        \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
+            For any $y_1 = x_1 \in \RR^n$, $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+            The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
+            \begin{tcolorbox}
+                For $k=1, 2,\cdots $
+                \begin{align*}
+                    & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
+                    \\
+                    & 
+                    y_{k + 1} = 
+                    x_{k + 1} + 
+                    \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
+                \end{align*}    
+            \end{tcolorbox}
+            
+            In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
+            $$
+                (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
+                = \alpha_{k + 1}(\alpha_k^{-1} - 1).  
+            $$
+        \end{definition}
+        \begin{remark}
+           \todo[inline]{Consider adding a remark here on how this is similar in format to the Nesterov's accelerated gradient (2.2.19) in his book. }
+        \end{remark}
 
-    \subsection{Narrowing it down}
+    \subsection{Proving the equivalent representations of R-WAPG}
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
             If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}). 
             Then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ they are algebraically equivalent to
@@ -1316,7 +1404,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                     \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
                 \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
             \end{align*}
-            
         \end{proposition}
         \begin{proof}
             For all $k \ge 1$, by R-WAPG (Definition \ref{def:wapg}), it has: 
@@ -1451,33 +1538,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             The is now complete. 
             This form doesn't have $\rho_k, \gamma_k, \hat \gamma_k$ in it. 
         \end{proof}
-        \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
-            Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
-            Initialize any $x_1, v_1$ in $\RR^n$. 
-            For $k = 1, 2, \cdots $, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by: 
-            \begin{align*} 
-                & y_{k} = 
-                \left(
-                    1 + \frac{L - L\alpha_{k}}{L\alpha_{k} - \mu}
-                \right)^{-1}
-                \left(
-                    v_{k + 1} + 
-                    \left(\frac{L - L\alpha_{k}}{L\alpha_{k} - \mu} \right) x_{k}
-                \right)
-                \\
-                & x_{k + 1} = 
-                y_k - L^{-1} \mathcal G_L y_k, 
-                \\
-                & v_{k + 1} = 
-                \left(
-                    1 + \frac{\mu}{L \alpha_k - \mu}
-                \right)^{-1}
-                \left(
-                    v_k + 
-                    \left(\frac{\mu}{L \alpha_k - \mu}\right) y_k
-                \right) - \frac{1}{L\alpha_{k}}\mathcal G_L y_k. 
-            \end{align*}
-        \end{definition}
+        
         \begin{proposition}[Second equivalent representation of R-WAPG]\label{prop:wagp-st-form}\;\\
             Let iterates $(y_k, x_{k}, v_{k})_{k \ge 1}$ and sequence $(\alpha_k, \rho_k)_{k \ge 0}$ be given by Definition \ref{def:r-wapg-intermediate}. 
             Then for all $k \ge 1$, iterate $y_k, x_{k + 1}, v_{k + 1}$
@@ -1561,28 +1622,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 &= x_{k + 1} + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k). 
             \end{align*}
         \end{proof}
-    \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
-        Given any $(x_1, v_1)$ in $\RR^n$. 
-        Assume $\mu < L$.
-        Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
-        For $k = 1, 2, \cdots $, the algorithm generates sequences of vector iterates $(y_k, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: 
-        \begin{align*}
-            & y_k = 
-            \left(
-                1 + \frac{L - L\alpha_k}{L\alpha_k - \mu}
-            \right)^{-1}
-            \left(
-                v_k + 
-                \left(\frac{L - L\alpha_k}{L\alpha_k - \mu} \right) x_k
-            \right), 
-            \\
-            & x_{k + 1} = 
-            y_k - L^{-1} \mathcal G_L y_k, 
-            \\
-            & v_{k + 1} = 
-            x_{k + 1} + (\alpha_k^{-1} -1)(x_{k + 1} - x_k). 
-        \end{align*}
-    \end{definition}
     
     \begin{proposition}[Third equivalent representation of R-WAPG]\label{prop:r-wapg-momentum-repr}
         \;\\
@@ -1613,7 +1652,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             & = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
         \end{align*}
     \end{proposition}
-
     \begin{proof}
         Start by considering the update rule for $v_k$ from the Definition \ref{def:r-wapg-st-form} which has for all $k \ge 1$: 
         \begin{align*}
@@ -1748,42 +1786,25 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{proof}
 
-    \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
-        For any $y_1 = x_1 \in \RR^n$, $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ given by Definition \ref{def:rwapg-seq}. 
-        The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
-        \begin{align*}
-            & x_{k + 1} = y_k - L^{-1}\mathcal G_Ly_k, 
-            \\
-            & 
-            y_{k + 1} = 
-            x_{k + 1} + 
-            \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}}(x_{k + 1} - x_k). 
-        \end{align*}
-        In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
-        $$
-            (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
-            = \alpha_{k + 1}(\alpha_k^{-1} - 1).  
-        $$
-    \end{definition}
-    \begin{remark}
-        % \textcolor{red}
-        % {
-        % There exists a choice of $\rho_k \in (0, 1], \mu = 0$ such that the above algorithm is equivalent to Chambolle, Dossal 2015 \cite{chambolle_convergence_2015}. 
-        % When $\rho_k = 1$, this becomes just FISTA \cite{beck_fast_2009}. 
-        % When $L > \mu > 0$, then choosing $\rho_k = 1$ yields equation 
-        % \begin{align*}
-        %     L \alpha_{k + 1}^2 = (1- \alpha_{k + 1})L \alpha_k^2 + \alpha_{k + 1} \mu. 
-        % \end{align*}
-        % Here, if we assume sequence $\alpha_k$ is constant, then $\alpha_k = \sqrt{\mu/L}$ is a solution to the above iterative equation. 
-        % Substituting it back to the momentum form of R-WAPG, we recover the V-FISTA algorithm, which appears as (10.7.7) in Beck's Book \cite{beck_first-order_2017}. 
-        % }
-    \end{remark}
 
-\subsection{R-WAPG describes existing accelerations scheme in the literatures}
-
-    \begin{lemma}[FISTA sequence as R-WAPG sequences]
-        
+\section{R-WAPG describes existing accelerations scheme in the literatures}
+    In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are also descriptive and they generalizes many existing sequences used in accelerated proximal gradient schemes. 
+    \par
+    This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
+    This section will also demonstrates that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds and it derives convergence rates consistent with results in the literatures.  
+    \begin{lemma}[R-WAPG sequences as Inverted FISTA sequence]
+        Let R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
+        If $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then: 
+        \begin{enumerate}
+            \item $\alpha_k^{-2} \ge \alpha_{k + 1}^{-2} - \alpha_{k + 1}^{-1}\; \forall k \ge 0$
+            \item $\alpha_k \ge \alpha_{k + 1}; \forall k \ge 0$
+            \item Let $t_k := \alpha_k^{-1}$, then $0 < t_{k + 1} \le (1/2)\left(1 + \sqrt{1 + 4t_k^2}\right)\;\forall k\ge 0$, hence the name: ``Inverted FISTA sequence''. 
+            \item $\prod_{i = 1}^k\max(1, \rho_{k - 1})(1 - \alpha_k) = \alpha_k^2 \;(\forall k \ge 0)$. 
+        \end{enumerate}
     \end{lemma}
+    \begin{proof}
+        
+    \end{proof}
 
     \begin{lemma}[Chambolle, Dossal 2015 sequences as R-WAPG sequences]
         Fix rabitrary $a \ge 2$.
@@ -1793,8 +1814,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)}. 
         \end{align*}
-        Then $\alpha_k, \rho_k$ satisfies Definition \ref{def:rwapg-seq} with $\mu = 0$. 
-        It is a valid choice of sequence for the R-WAPG algorithm and it has $\rho_k \ge 1$ for all $k \ge 0$. 
+        If $\mu = 0$, $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence that satisfies Definition \ref{def:rwapg-seq}. 
+        Applying this sequence to Definition \ref{def:r-wapg-momentum-form}, which is the the momentum form of R-WAPG, then R-WAPG is reduced to the following scheme: 
+        \begin{align*}
+        \end{align*}
     \end{lemma}
     \begin{proof}
         
