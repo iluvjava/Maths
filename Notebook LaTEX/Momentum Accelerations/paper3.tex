@@ -987,8 +987,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         % Therefore, inductively, $\alpha_k \in (0, 1)$ holds. 
         % However, the limit of $\alpha_k$ could be 1. 
     \end{observation}
-    \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}
-        \; \\
+
+    \begin{definition}[Relaxed weak accelerated proximal gradient (R-WAPG)]\label{def:wapg}\;\\
         Choose any $x_1 \in \RR^n, v_1 \in \RR^n$. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be given by Definition \ref{def:rwapg-seq}. 
         The algorithm generates a sequence of vector $(y_k, x_{k + 1}, v_{k + 1})_{k \ge 1}$ for $k\ge 1$ by the procedures:  
@@ -1031,7 +1031,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     
     \begin{proposition}[R-WAPG convergence claim]\label{prop:wagp-convergence}\; \\
         Fix any arbitrary $x^* \in \RR^n, N \in \mathbb N$. 
-        Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and scalar sequences $\alpha_k, \rho_k$ be generated from Definition \ref{def:wapg}. 
+        Let vector sequence $(y_k, v_{k}, x_{k})_{k \ge 1}$ and R-WAPG sequences $\alpha_k, \rho_k$ be given by Definition \ref{def:wapg}. 
         Define $R_1 = 0$ and suppose that for $k = 1, 2, \cdots, N$, we have $R_k$ recursively given by: 
         \begin{align*}
             R_{k + 1}
