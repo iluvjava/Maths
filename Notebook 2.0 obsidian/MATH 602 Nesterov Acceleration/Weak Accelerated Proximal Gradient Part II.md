@@ -74,7 +74,7 @@ $$
 1. List equivalent forms of the R-WAPG algorithm. 
 2. Proves that these representations are indeed equivalent to the definition of R-WAPG algorithm. 
 
-#### **R-WAPG Intermediate form**
+#### **Definition | R-WAPG Intermediate form**
 > Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are a pair of R-WAPG sequence. 
 > Initialize any $x_1, v_1$ in $\R^n$. 
 > For $k \ge 1$, the algorithm generates sequence of vector iterates $(y_{k}, v_{k + 1}, x_{k + 1})_{k \ge 1}$ by the procedures: For $k = 1, 2, \cdots$ 
@@ -104,7 +104,7 @@ $$
 > $$
 
 
-#### **R-WAPG similar triangle form**
+#### **Definition | R-WAPG similar triangle form**
 > Given any $(x_1, v_1)$ in $\R^n$. 
 > Assume $\mu < L$.
 > Let the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k\ge 0}$ be a pair of R-WAPG sequence. 
@@ -128,7 +128,7 @@ $$
 > \end{aligned}
 > $$
 
-#### **R-WAPG momentum form**
+#### **Definition | R-WAPG momentum form**
 > Given any $y_1 = x_1 \in \R^n$ and a pair of R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$. 
 > The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots$ by the procedures: for $k=1, 2,\cdots$
 > $$
@@ -585,7 +585,9 @@ $$
 ---
 ### **Fitting existing Algorithms in the literatures using R-WAPG**
 
-#### **Lemma-1 | The convergence rate simplified**
+
+
+<!-- #### **Lemma-1 | The convergence rate simplified**
 > For any initial $\rho_0 = 1, \gamma_0 \in (0, L], \alpha_0 \in (0, 1)$, define the following procedures for generating sequence $\alpha_k, \rho_k$ for all $k \ge 1$: 
 > $$
 > \begin{aligned}
@@ -707,7 +709,7 @@ Throughout the section we use the same assumptions the stated in previous files 
 >    x_k &= y_k + L^{-1}\mathcal G_L(y_k),  \\
 >    y_k &= x_{k} + \frac{t_{k + 1} - 1}{t_{k + 2}}(x_k - x_{k - 1}).     
 > \end{aligned}
-> $$
+> $$ -->
 
 
 <!-- 

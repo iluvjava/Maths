@@ -34,6 +34,8 @@ $$
 \end{aligned}
 $$
 
+$\epsilon_k \ge 0$ always because we assumed $F$ is convex. 
+To verify, we use the fundamental proximal gradient inequality. 
 
 #### **Algorithm 2 | Stepwise weak accelerated proximal gradient**
 > Assume $0 \le \mu < L$.
@@ -55,18 +57,10 @@ $$
 > \end{aligned}
 > $$
 
+
 **Observations 1**
 
-We make 2 crucial observations here. 
-With the algorithm, we define the following quantities associate with it. 
-Fix any integer $k \ge 0$. 
-Given any $(x_k, y_k)$. 
-
-
-$\epsilon_k \ge 0$ always because we assumed $F$ is convex. 
-To verify, we use the fundamental proximal gradient inequality. 
-
-**Observations 2**
+The subscript of $\hat \gamma_{k + 1}, \gamma_k$ are fixed throughout this one step of algorithm so in the part that follows, they are omitted to make for lighter notations. 
 
 We make two crucial observations here. 
 Fix any integer $k \ge 0$, recall $\alpha_k > 0, \gamma > 0$.
@@ -989,8 +983,6 @@ $$
 The convergence claim is done. 
 
 
-
 ---
-### **Analyzing R-WAPG**
+### **Next file** 
 
-We show that the algorithm is able to encapsulate algorithms in the literatures, and more. 
