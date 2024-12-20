@@ -40,9 +40,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \noindent{\bfseries Keywords: } Nesterov acceleration, Proximal point method. 
 \section{Introduction}
     Suppose we are minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$ for simplicity. 
-    Let $F$ be Lipschitz smooth meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+    Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ stronlyg convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
+
     \par 
-    A good choice of a minimization algorithm is the Nesterov's acceleration schemes that originally proposed in 1983 \cite{nesterov_method_1983}. Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
+    A good choice of a minimization algorithm is the Nesterov's acceleration scheme which was originally proposed in 1983 \cite{nesterov_method_1983}. 
+    Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
     \begin{align}
         & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
         \\
@@ -52,14 +54,14 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
     \end{align}\label{eqn:example_algorithm}
-    It's well known that if the minimizer $x^*$ exists, $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal. 
+    It's well known that if the minimizer $x^*$ exists, $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal.
     See Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018}. 
     However, everything is not sunshine and rainbow because the above scheme is associated with an issue. 
     When $F$ is $\mu > 0$ strongly convex, the algorithm oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
     \par
     This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
-    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept and it performs empirically better. 
+    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept, and it performs empirically better. 
     See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
     \par
     Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically. 
@@ -70,9 +72,10 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \subsection{Contributions}
         Our contributions are two folds, theoretical and practical. 
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
-        The choices for $\theta_k$ varies. 
-        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ gives strong weak convergence of the iterates $x_k$ in Hilbert space. 
-        In Beck \cite{beck_first-order_2017}, it has constant $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
+        The choices for $\theta_k$ varies for different varints of the accelerated proximal gradient algorithm. 
+        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ gives weak convergence of the iterates $x_k$ in Hilbert space. 
+        In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergencec rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
+        V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
         Firstly, we relaxed the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
@@ -92,8 +95,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right). 
         \end{align*}
-        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces perfectly to a variant of FISTA proposed in Chambolle Dossal \cite{chambolle_convergence_2015} with the same convergence claim. 
-        And when $\rho_k = 1$, R-WAPG reduces perfectly to V-FISTA by Beck \cite{beck_first-order_2017} if $\mu > 0$ and FISTA if $\mu = 0$ and the convergence claim is consistent with the literatures. 
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate. 
+        And when $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}, which is an optimal algorithm for a strongly convex $F$. 
+        R-WAPG gives the a convergence claim, and it's consistent with the literatures. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
