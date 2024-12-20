@@ -1209,6 +1209,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Definition \ref{def:r-wapg-intermediate} states the first simplified form of the R-WAPG algorithm which we call: ``R-WAPG intermediate form''. 
     Following a similar pattern, Proposition \ref{prop:wagp-st-form}, \ref{prop:r-wapg-momentum-repr} demonstrates two more equivalent representations of the R-WAPG intermediate form (Definition \ref{def:r-wapg-intermediate}) which are formulated into Definition \ref{def:r-wapg-st-form}, \ref{def:r-wapg-momentum-form}. 
     Convergence results from Proposition \ref{prop:wagp-convergence} applies to all these equivalent forms of R-WAPG. 
+    In brief, the relations of these Propositions and Definitions can be summarized by
+    \begin{align*}
+        & \text{Definition } \ref{def:wapg} 
+        \\
+        & \iff 
+        \text{Definition } \ref{def:r-wapg-intermediate} & \text{By Proposition }\ref{prop:wapg-first-equivalent-repr}
+        \\
+        & \iff \text{Definition }\ref{def:r-wapg-st-form} & \text{By Proposition }\ref{def:r-wapg-st-form} 
+        \\
+        & \;\implies 
+        \text{Definition }\ref{def:r-wapg-momentum-form}. 
+        & \text{By Proposition }\ref{prop:r-wapg-momentum-repr}
+    \end{align*}
     
     To start, the following proposition on ``abstract similar triangle form'' were made to simplify arguments and notations to make nicer proofs. 
 
@@ -1691,7 +1704,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &= (L - \mu)^{-1}((L - \mu)x_1) = x_1. 
         \end{align*}
-        Now substituting $v_{k + 1}$ into $y_{k + 1}$ so it has for all $k\ge 1$ : 
+        Now substituting $v_{k + 1}$ into $y_{k + 1}$, so it has for all $k\ge 1$: 
         {\small
         \begin{align*}
             y_{k + 1} &= 
@@ -1782,25 +1795,74 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
 \section{R-WAPG describes existing accelerations scheme in the literatures}
     In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are descriptive. 
-    They generalizes many existing sequences used in accelerated proximal gradient schemes. 
+    They generalize many existing sequences used in accelerated proximal gradient schemes. 
     \par
     This section demonstrates that several variants of FISTA in the literatures reduces to the R-WAPG method by setting up the R-WAPG sequences with additional assumptions. 
-    This section will also demonstrates that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds and it derives convergence rates consistent with results in the literatures.  
+    This section will also demonstrate that the convergence claim (Proposition \ref{prop:wagp-convergence}) holds, and it derives convergence rates consistent with results in the literatures.  
     \begin{lemma}[R-WAPG sequences as Inverted FISTA sequence]
         Let R-WAPG sequence $(\rho_k)_{k \ge 0}, (\alpha_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
         If $\mu = 0, \rho_k \ge 1\; \forall k \ge 0$, and $\alpha_0 = 1$, then: 
         \begin{enumerate}
             \item $\alpha_k^{-2} \ge \alpha_{k + 1}^{-2} - \alpha_{k + 1}^{-1}\; \forall k \ge 0$
-            \item $\alpha_k \ge \alpha_{k + 1}; \forall k \ge 0$
             \item Let $t_k := \alpha_k^{-1}$, then $0 < t_{k + 1} \le (1/2)\left(1 + \sqrt{1 + 4t_k^2}\right)\;\forall k\ge 0$, hence the name: ``Inverted FISTA sequence''. 
-            \item $\prod_{i = 1}^k\max(1, \rho_{k - 1})(1 - \alpha_k) = \alpha_k^2 \;(\forall k \ge 0)$. 
+            \item $\prod_{i = 1}^k\max(1, \rho_{k - 1})(1 - \alpha_k) = \alpha_k^2 \quad (\forall k \ge 1)$. 
         \end{enumerate}
     \end{lemma}
     \begin{proof}
-        
+        We start proving (i). 
+        For all $k \ge 1$: 
+        \begin{align*}
+            \alpha_{k + 1}^2 
+            &= (1 - \alpha_{k + 1})\rho_k\alpha_k^2 + (\mu/L) \alpha_k
+            \\
+            &= (1 - \alpha_{k + 1})\rho_k\alpha_k^2 & \mu = 0 \text{ assumed } 
+            \\
+            \implies 
+            \alpha_{k + 1}^2 
+            & \ge (1 - \alpha_{k + 1})\alpha_k^2 
+            &  \rho_k \ge 1
+            \\
+            \iff 
+            \alpha_k^{-1} 
+            &\ge 
+            \alpha_{k + 1}^{-2} + \alpha_{k + 1}^{-1}. 
+        \end{align*}
+        When $k = 0$, it has $\alpha_0 = 1$. 
+        By definition of $\rho_0$ we have 
+        \begin{align*}
+            \alpha_1^2 &= 
+            (1 - \alpha_1)\alpha_0^2\rho_0 \underset{\mu = 0}{=}
+            \frac{\alpha_1^2}{\alpha_0^2(1 - \alpha_1)}(1 - \alpha_1)\alpha_0^2 = \alpha_1^2. 
+        \end{align*}
+        Therefore (i) holds. 
+        (i) is proved. 
+        \par
+        (i) $\implies$ (ii) because substituting $\alpha_k^{-1} = t_k$ changes (i) into $t_{k + 1}^2 - t_{k + 1} - t_{k}^2 \le 0$ for all $k \ge 0$. 
+        Solving the equality yields $t_{k + 1} = (1/2)\left(1 \pm \sqrt{1 + 4 t_k^2}\right)$ for all $k \ge 0$. 
+        Since $\alpha_k \in (0, 1)$, it means $t_k > 0$, hence the valid root is the larger root which gives the upper bound for $t_{k + 1}$ so: 
+        \begin{align*}
+            t_{k + 1} \in \left(
+                0, \frac{1}{2}\left(1 + \sqrt{1 + 4t_k^2}\right) 
+            \right]
+        \end{align*}
+        To prove (iii), because $\rho_k \ge 1$, we have $\prod_{i = 1}^{k} \max(1, \rho_{k - 1})(1 - 
+        \alpha_k)$ for all $k \ge 1 = \prod_{i = 1}^{k}\rho_{k - 1}(1 - \alpha_k)$. 
+        By definition $(\alpha_k)_{k \ge 1}, (\rho_k)_{k \ge 1}$ sequences they have for all $k \ge 1$: 
+        \begin{align*}
+            \alpha_k^2 &= \rho_{k - 1}(1 - \alpha_k)\alpha_{k - 1}^2
+            \\
+            \iff 
+            \alpha_k^2/\alpha_{k - 1}^2 &= \rho_{k - 1}(1 - \alpha_k)
+            \\
+            \prod_{i = 1}^{k}\rho_{k - 1}(1 - \alpha_k)
+            &= 
+            \prod_{i = 1}^{k}\alpha_k^2 /\alpha_{k - 1}^2= \alpha_k^2/\alpha_0. 
+        \end{align*}
+        Because $\alpha_0 = 1$, (iii) is justified. 
+
     \end{proof}
 
-    \begin{lemma}[Chambolle, Dossal 2015 sequences as R-WAPG sequences]
+    \begin{lemma}[Chambolle, Dossal 2015 sequences as R-WAPG sequences]\;\\
         Fix rabitrary $a \ge 2$.
         Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
         \begin{align*}
@@ -1809,7 +1871,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \rho_k &= \frac{(k + a)^2}{(k + 1)(k + a + 1)}. 
         \end{align*}
         If $\mu = 0$, $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence that satisfies Definition \ref{def:rwapg-seq}. 
-        Applying this sequence to Definition \ref{def:r-wapg-momentum-form}, which is the the momentum form of R-WAPG, then R-WAPG is reduced to the following scheme: 
+        Applying this sequence to Definition \ref{def:r-wapg-momentum-form}, which is the momentum form of R-WAPG, then R-WAPG is reduced to the following scheme: 
         \begin{align*}
         \end{align*}
     \end{lemma}
