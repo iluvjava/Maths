@@ -57,7 +57,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     It's well known that if the minimizer $x^*$ exists, then the optimality gap $F(x_k) - F(x^*)$ decreases at a rate of $\mathcal O(1/k^2)$, faster than the gradient descent method which is $\mathcal O(1/k)$, and it's optimal.
     See Chapter 2 of Nesterov's book \cite{nesterov_lectures_2018}. 
     However, everything is not sunshine and rainbow because the above scheme is associated with an issue. 
-    When $F$ is $\mu > 0$ strongly convex, the algorithm oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
+    When $F$ is $\mu > 0$ strongly convex, the optimality gap $F(x_k) - F(x^*)$ oscillates and converges sub-linearly, making it worse than gradient descent. See page 9 of Su et al. \cite{su_differential_2016}. 
     \par
     This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
@@ -66,15 +66,15 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \par
     Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically. 
     Secondly, a unified framework of Accelerated Proximal Gradient (APG) which we call Relaxed Weak Accelerated Proximal Gradient (R-WAPG). 
-    The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(\theta_t)_{t \ge 1}$. 
+    The R-WAPG has a convergence claim of $F(x_k)- F(x^*)$ for a much more flexible choice of $(\theta_k)_{k \ge 1}$. 
     It also has descriptive power to describe several variants of FISTA in the literatures.  
 
     \subsection{Contributions}
         Our contributions are two folds, theoretical and practical. 
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
-        The choices for $\theta_k$ varies for different varints of the accelerated proximal gradient algorithm. 
+        The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
         In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
-        In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergencec rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
+        In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergence rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
         V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
         We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:example_algorithm} and showed an upper bound of the optimal gap. 
@@ -103,7 +103,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
     \subsection{Prior works}
-        \todoinline{The following are notes to the writer. There is in fact little prior works in this regard. People tried to unify all the variants but all of them are trying to unify the convergence claims under one theorem. Flexible choices of the momentum parameters are the prime focus in heavy ball momentum, or FISTA with Hessian Damping. Their approaches are usually using dynamical system. }
+        \todoinline{
+            Here is a list of papers that are relevant to generalizing the convergence claim for APG beyond just the traditional choices for the momentum sequence. 
+            \begin{enumerate}
+                \item Attouch H., Cabot A.: ``Convergence Rates of Inertial Forward-Backward Algorithms'', SIAM. 
+                \item Vassilis A., et al.: "Convergence rate of inertial Forward-Backward algorithm
+                beyond Nesterov’s rule"
+            \end{enumerate}
+            The following papers are related to stablizing, improving the acceleration scheme without monotone restarting. 
+            \begin{enumerate}
+                \item Attouch H., et al.: ``First-order optimization algorithms via inertial systems with Hessian driven damping'', Math Programming. 
+            \end{enumerate}
+
+        }
         
     \subsection{Organizations}
         \todoinline{This will be written once most of the contents in the paper are settled. }
@@ -1875,15 +1887,66 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
-        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and they are constant meaning that there exists $\rho, \alpha$ such that $\alpha_k = \alpha$ and $\rho_k = \rho$ for all $k \ge 0$.
+        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq}, and they are constant meaning that there exists $\rho, \alpha$ such that $\alpha_k := \alpha$ and $\rho_k := \rho$ for all $k \ge 0$.
         Define the momentum term $\theta = \rho\alpha(1 - \alpha)/(\rho\alpha^2 + \alpha)$. 
         Then the constant R-WAPG sequence satisfies: 
         \begin{enumerate}
             \item $\rho = (1 - \mu/L\alpha^{-1})/(1 - \alpha)$. 
-            \item $\theta = (1 - \mu/L)(1 - \alpha)/(-\mu/L \alpha + 2\alpha - \alpha^2)$. 
-            \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = (1 - \sqrt{\mu/L})/(1 + \sqrt{\mu/L})$. 
+            \item $\theta = (1 - \alpha)(1 - \mu/L \alpha^{-1})/(1 - \mu/L)$. 
+            \item For any $r \in \left(\sqrt{\mu/L}, \sqrt{L/\mu}\right)$, let $\alpha = r \sqrt{\mu/L}$. If $\sqrt{L/\mu} > r > 1$, then $\rho > 1$ else if $\sqrt{\mu/L} < r \le 1$ then $\rho \in (0, 1]$. 
+            \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = \left(1 - \sqrt{\mu/L}\right)/\left(1 + \sqrt{\mu/L}\right)$. 
         \end{enumerate}
     \end{lemma}
+    \begin{proof}
+        It's direct to show (i). 
+        By the definition of $(\rho_k)_{k\ ge0}$ in the R-WAPG sequence definition, we have 
+        \begin{align*}
+            \rho_k &= 
+            \frac{\alpha_{k + 1}^2 - \mu/L \alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2}
+            = 
+            \frac{\alpha^2 - \mu/L \alpha}{(1 - \alpha)\alpha^2}
+            \\
+            &= \frac{1 - (\mu/L)\alpha^{-1}}{1 - \alpha}. 
+        \end{align*}
+        To see (ii), it's direct by the definition of $\theta$: 
+        \begin{align*}
+            \theta &= 
+            \frac{\rho \alpha(1 - \alpha)}{\rho \alpha^2 + \alpha} 
+            = 
+            (\rho \alpha)\frac{(1 - \alpha)}{\rho \alpha^2 + \alpha}
+            \\
+            &= \left(
+                \frac{\alpha - (\mu/L)}{1 - \alpha}
+            \right)\frac{(1 - \alpha)}{\alpha \frac{\alpha - \mu/L}{1 - \alpha} + \alpha}
+            = \frac{\alpha - \mu/L}{\alpha\left(\frac{\alpha - \mu/L}{1 - \alpha}\right)+ \alpha}
+            \\
+            &= \left(1 - \mu/L \alpha^{-1}\right)\left(
+                \frac{\alpha - \mu/L}{1 - \alpha} + 1
+            \right)^{-1} 
+            \\
+            &= 
+            \frac{(1 - \alpha)\left(1 - \mu/L \alpha^{-1}\right)}{1 - \mu/L}. 
+        \end{align*}
+        To see (iii), we substitute $\alpha = r \sqrt{\mu/L}$ into the expression for $\rho$ in (i) which gives: 
+        \begin{align*}
+            \rho_k &= \frac{1 - \mu/L\alpha^{-1}}{1 - \alpha} 
+            = \frac{1 - r^{-1}\left(\mu/L\sqrt{L/\mu}\right)}{1 - r \sqrt{\mu/L}} 
+            = \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r \sqrt{\mu/L}}. 
+        \end{align*}
+        If $\sqrt{L/\mu}> r > 1$ then $\rho > 1$ because 
+        \begin{align*}
+            \rho &= \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r \sqrt{\mu/L}} 
+            > \frac{1 - \sqrt{\mu/L}}{1 - \sqrt{\mu/L}} = 1. 
+        \end{align*}
+        When $\sqrt{\mu/L} < r < 1$, it has 
+        \begin{align*}
+            0 < 1 - r^{-1}\sqrt{\mu/L} < \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r\sqrt{\mu/L}} = \rho < \frac{1 - \sqrt{\mu/L}}{1 - \sqrt{\mu/L}} = 1. 
+        \end{align*}
+        The first inequality used $r > \sqrt{\mu/L}$. 
+        The third inequality used $r < 1$. 
+        To see (iv), substitute $\alpha = \sqrt{\mu/L}$ for $\rho$. 
+
+    \end{proof}
 
     \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\;\\
         Fix arbitrary $a \ge 2$.
@@ -1991,34 +2054,49 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \end{remark}
 
+    \begin{theorem}[Fixed momentum FISTA]\label{thm:fixed-momentum-fista}
+        
+    \end{theorem}
 
 
 \subsection{The method of Free R-WAPG}
-    This section introduces an algorithm of our creation through the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-    The algorithm estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+    This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
+    Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
     \begin{algorithm}
-    {\footnotesize
-        \label{alg:free-rwapg}
         \begin{algorithmic}[1]
-        \STATE{\textbf{Input: } $f, g, x_0\in \RR^n, N \in \N$}
-        \STATE{\textbf{Initialize: }$x_1:= x_0; y_1 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
-        \FOR{$k = 1, 2, \cdot, N$}
-            \STATE{\textbf{Compute: }$\nabla f(x_k); x^+:= [I + L^{-1}\partial g](x_k - L^{-1}\nabla f(x_k))$;}
-            \WHILE{$L/2\Vert x^+ - x\Vert^2 < D_f(x^+, x)$}
-                \STATE{$L:= L/2$;}
-                \STATE{$x^+ = [I + L^{-1}\partial g](x_k - L^{-1}\nabla f(x_k))$; }
+        {\footnotesize
+        \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
+        \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+        \STATE{\textbf{Compute: } $f(y_k)$; }
+        \FOR{$k = 0, 1, 2, \cdot, N$}
+            \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
+            \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
+                \STATE{$L:= 2L$;}
+                \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
             \ENDWHILE
             \STATE{$x_{k + 1} := x^+$;}
-            \STATE{$\mu:= \min(L, \mu)$;}
-            \STATE{$\alpha_{k} := (1/2)\left(\mu/L - \alpha_{k - 1}^2 + \sqrt{(\mu/L - \alpha_{k - 1}^2)^2 + 4\alpha_{k - 1}^2}\right)$;}
+            \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
             \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
             \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
+            \STATE{\textbf{Compute: } $f(y_{k + 1})$}
             \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
         \ENDFOR
+        }
         \end{algorithmic}
         \caption{Free R-WAPG}
-    }
+        \label{alg:free-rwapg}
     \end{algorithm}
+    \par
+    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$.
+    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine. 
+    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
+    Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
+    \par
+    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, the algorithm computes $\nabla f(y_k)$ for $x^+$, $f(y_{k + 1})$ for Bregman Divergence and $f(y_{k})$ is evaluated from the previous iteration. 
+    We note that $f(y_0)$ is computed before the start of the for loop. 
+    And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
+
+
 
 \subsection{Numerical experiments}
 
