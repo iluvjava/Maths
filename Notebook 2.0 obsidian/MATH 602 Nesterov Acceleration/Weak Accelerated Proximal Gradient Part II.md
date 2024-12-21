@@ -370,7 +370,7 @@ $$
     \frac{L}{L\alpha_k - \mu}.
 \end{aligned}
 $$
-Hence,  $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$ by Asbtract similar triangle. 
+Hence,  $v_{k + 1} - x_{k + 1} = (1 + \xi_k)^{-1}(x_{k + 1} - x_k)\; \forall k \ge 1$ by the asbtract similar triangle form. 
 Therefore, substituting it gives: 
 $$
 \begin{aligned}

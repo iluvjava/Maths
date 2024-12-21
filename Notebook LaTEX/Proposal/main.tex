@@ -60,10 +60,8 @@
             F(x): f(x) + g(x)
         \right\rbrace.
     \end{align}\label{eqn:additive-comp-obj}
-    Unless specified, assume $f$ is a smooth function with $L$-Lipschitz gradient operator. 
-    Unless specified, assume $g$ is a convex function. 
-    In the literatures this type of problems are referred to as additive composite problems. 
-
+    Unless specified, assume $f:\RR^n \rightarrow \RR$ is $L$-Lipscthiz smooth $\mu \ge 0$ strongly convex and $g:Q \rightarrow \overline \RR$ is convex. 
+    This type of problem is referred to as additive composite problems in the literature. 
     \par
     Our ongoing research concerns accelerated proximal gradient type method for solving (\ref{eqn:additive-comp-obj}). 
     In the expository writing by Walkington \cite{noel_nesterovs_nodate}, a variant for of accelerated gradient method for strongly convex function $f$ is discussed. 
@@ -72,7 +70,7 @@
         \item Do there exist a unified description for the convergence for both variants of the algorithm. 
         \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$. 
     \end{enumerate}
-    The good news is we have definitive answers for both questions through our own efforts of research. 
+    The good news is we have definitive answers for both questions by our own efforts of research. 
     Section \ref{sec:unify-nes-acceleration}, \ref{sec:spectral-momentum} are our ongoing research which present the answers to the questions. 
     \par
     In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
@@ -99,7 +97,7 @@
     \subsection{Fundamentals in non-convex analysis}
 
 \section{Unifying variants of Nesterov's accelerated methods}\label{sec:unify-nes-acceleration}
-    
+
 
 \section{Method Free R-WAPG}\label{sec:spectral-momentum}
 
