@@ -73,7 +73,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \subsection{Contributions}
         Our contributions are two folds, theoretical and practical. 
-        Our results is based the assumption $F = f + g$ where $g:Q \rightarrow \bar\RR^n$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        Our results are based the assumption $F = f + g$ where $g:Q \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
         \par
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
@@ -1892,7 +1892,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
         Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
         Define $q := \mu/L$. 
-        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$. 
+        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ has the following: 
         \begin{enumerate}
             \item Fix any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ then the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
             $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
@@ -2163,7 +2163,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
         \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
         \STATE{\textbf{Compute: } $f(y_k)$; }
-        \FOR{$k = 0, 1, 2, \cdot, N$}
+        \FOR{$k = 0, 1, 2, \cdots, N$}
             \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
             \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
                 \STATE{$L:= 2L$;}
@@ -2187,7 +2187,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
     Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
     \par
-    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, the algorithm computes $\nabla f(y_k)$ for $x^+$, $f(y_{k + 1})$ for Bregman Divergence and $f(y_{k})$ is evaluated from the previous iteration. 
+    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
+    The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
     We note that $f(y_0)$ is computed before the start of the for loop. 
     And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
 

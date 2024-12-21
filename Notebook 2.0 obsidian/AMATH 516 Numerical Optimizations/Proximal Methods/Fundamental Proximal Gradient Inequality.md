@@ -438,4 +438,8 @@ $$
 \end{aligned}
 $$
 
+---
+### **Proximal gradient inequality with weak convexity**
+
+
 
