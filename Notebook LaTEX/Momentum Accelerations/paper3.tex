@@ -5,7 +5,9 @@
 \input{presets/misc.tex}
 \input{presets/julia_lstlisting.tex}
 
+
 \begin{document}
+
 
 \title{{\fontfamily{ptm}\selectfont 
         A Parameter Free Accelerated Proximal Gradient Method Without Restarting
@@ -32,7 +34,7 @@
 \begin{abstract} 
     \noindent
     
-    \todoinline{Write this abstract when finishing. }
+    \todo{Write this abstract when finishing. }
 \end{abstract}
 
 \noindent{\bfseries 2010 Mathematics Subject Classification:}
@@ -71,6 +73,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \subsection{Contributions}
         Our contributions are two folds, theoretical and practical. 
+        Our results is based the assumption $F = f + g$ where $g:Q \rightarrow \bar\RR^n$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        \par
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
         In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
@@ -107,14 +111,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             Here is a list of papers that are relevant to generalizing the convergence claim for APG beyond just the traditional choices for the momentum sequence. 
             \begin{enumerate}
                 \item Attouch H., Cabot A.: ``Convergence Rates of Inertial Forward-Backward Algorithms'', SIAM. 
-                \item Vassilis A., et al.: "Convergence rate of inertial Forward-Backward algorithm
-                beyond Nesterov’s rule"
+                \item Vassilis A., et al.: ``Convergence rate of inertial Forward-Backward algorithm
+                beyond Nesterov's rule"
             \end{enumerate}
-            The following papers are related to stablizing, improving the acceleration scheme without monotone restarting. 
+            The following papers are related to stabiling, improving the acceleration scheme without monotone restarting. 
             \begin{enumerate}
                 \item Attouch H., et al.: ``First-order optimization algorithms via inertial systems with Hessian driven damping'', Math Programming. 
             \end{enumerate}
-
         }
         
     \subsection{Organizations}
@@ -142,7 +145,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             g(x) + \langle \nabla f(y), x\rangle + L/2\Vert x - y\Vert^2
         \right\rbrace. 
     $$
-    It is a single valued mapping and it has its domain on the entire $\RR^n$. 
+    It is a single-valued mapping, and it has its domain on the entire $\RR^n$. 
     Another operator often associated with $T_L$ is the gradient mapping operator $\mathcal G_L:= L(I - T_L)$. 
     Finally, define the Bregman divergence of $f$: 
     \begin{align*}
@@ -1889,70 +1892,99 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
         Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
         Define $q := \mu/L$. 
-        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ is a valid R-WAPG sequence and it has
-
-        % Define the momentum term $\theta = \rho\alpha(1 - \alpha)/(\rho\alpha^2 + \alpha)$. 
-        % Then the constant R-WAPG sequence satisfies: 
-        % \begin{enumerate}
-        %     \item $\rho = (1 - \mu/L\alpha^{-1})(1 - \alpha)^{-1}$. 
-        %     \item $\theta = (1 - \alpha)(1 - \mu/L \alpha^{-1})(1 - \mu/L)^{-1}$. 
-        %     \item For any $r \in \left(\sqrt{\mu/L}, \sqrt{L/\mu}\right)$, let $\alpha = r \sqrt{\mu/L}$. If $\sqrt{L/\mu} > r > 1$, then $\rho > 1$ else if $\sqrt{\mu/L} < r \le 1$ then $\rho \in (0, 1]$. 
-        %     \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = \left(1 - \sqrt{\mu/L}\right)/\left(1 + \sqrt{\mu/L}\right)$. 
-        % \end{enumerate}
+        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$. 
+        \begin{enumerate}
+            \item Fix any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ then the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
+            $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
+            \item The momentum term in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ has:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$. 
+            \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
+            \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
+            \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 
+        \end{enumerate}
     \end{lemma}
     \begin{proof}
-        It's direct to show (i). 
-        By the definition of $(\rho_k)_{k\ ge0}$ in the R-WAPG sequence definition, we have 
+        To see (i), fix any $\sqrt{q} < r < \sqrt{q^{-1}}$, so
         \begin{align*}
-            \rho_k &= 
-            \frac{\alpha_{k + 1}^2 - \mu/L \alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2}
-            = 
-            \frac{\alpha^2 - \mu/L \alpha}{(1 - \alpha)\alpha^2}
-            \\
-            &= \frac{1 - (\mu/L)\alpha^{-1}}{1 - \alpha}. 
+            r &\in \left(\sqrt{q}, \sqrt{q^{-1}}\right)
+            \iff 
+            r\sqrt{q} \in 
+            \left(
+                q, 1
+            \right). 
         \end{align*}
-        To see (ii), it's direct by the definition of $\theta$: 
+        Therefore, $\alpha_k \in (\mu/L, 1)$. 
+        To see $\rho_k$, by definition it has 
         \begin{align*}
-            \theta &= 
-            \frac{\rho \alpha(1 - \alpha)}{\rho \alpha^2 + \alpha} 
-            = 
-            (\rho \alpha)\frac{(1 - \alpha)}{\rho \alpha^2 + \alpha}
+            \rho_k &= \frac{\alpha_{k + 1}^2 - q \alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} 
+            = \frac{\alpha^2 - q \alpha}{(1 - \alpha)\alpha^2} 
             \\
-            &= \left(
-                \frac{\alpha - (\mu/L)}{1 - \alpha}
-            \right)\frac{(1 - \alpha)}{\alpha \frac{\alpha - \mu/L}{1 - \alpha} + \alpha}
-            = \frac{\alpha - \mu/L}{\alpha\left(\frac{\alpha - \mu/L}{1 - \alpha}\right)+ \alpha}
+            &= \frac{1 - q\alpha^{-1}}{1 - \alpha}
             \\
-            &= \left(1 - \mu/L \alpha^{-1}\right)\left(
-                \frac{\alpha - \mu/L}{1 - \alpha} + 1
-            \right)^{-1} 
+            &= \frac{1 - q r^{-1}\sqrt{q^{-1}}}{1 - r \sqrt{q}}
+            \\
+            &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} > 0. 
+        \end{align*}
+        Simple algebra can show (ii). 
+        To start, we substitute the constant sequence $\alpha, \rho$ for $\alpha_k, \rho_k$ into the definition of $\theta$: 
+        \begin{align*}
+            \theta &= \frac{\rho\alpha(1 - \alpha)}{\rho \alpha^2 + \alpha}
+            = (\rho\alpha)\frac{1 - \alpha}{\rho \alpha^2 + \alpha} = \rho \frac{1 - \alpha}{\rho \alpha + 1}
             \\
             &= 
-            \frac{(1 - \alpha)\left(1 - \mu/L \alpha^{-1}\right)}{1 - \mu/L}. 
-        \end{align*}
-        To see (iii), we substitute $\alpha = r \sqrt{\mu/L}$ into the expression for $\rho$ in (i) which gives: 
-        \begin{align*}
-            \rho_k &= \frac{1 - \mu/L\alpha^{-1}}{1 - \alpha} 
-            = \frac{1 - r^{-1}\left(\mu/L\sqrt{L/\mu}\right)}{1 - r \sqrt{\mu/L}} 
-            = \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r \sqrt{\mu/L}}. 
-        \end{align*}
-        If $\sqrt{L/\mu}> r > 1$ then $\rho > 1$ because 
-        \begin{align*}
-            \rho &= \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r \sqrt{\mu/L}} 
-            > \frac{1 - \sqrt{\mu/L}}{1 - \sqrt{\mu/L}} = 1. 
-        \end{align*}
-        When $\sqrt{\mu/L} < r < 1$, it has 
-        \begin{align*}
-            0 < 1 - r^{-1}\sqrt{\mu/L} < \frac{1 - r^{-1}\sqrt{\mu/L}}{1 - r\sqrt{\mu/L}} = \rho < \frac{1 - \sqrt{\mu/L}}{1 - \sqrt{\mu/L}} = 1. 
-        \end{align*}
-        The first inequality used $r > \sqrt{\mu/L}$. 
-        The third inequality used $r < 1$. 
-        To see (iv), substitute $\alpha = \sqrt{\mu/L}$ for $\theta$ as defined in (i): 
-        \begin{align*}
-            \theta &= \frac{(1 - \alpha)(1 - \mu/L \alpha^{-1})}{1 - \mu/L}
-            = \frac{(1 - \sqrt{\mu/L})(1 - \sqrt{\mu/L})}{1 - \mu/L}
+            \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
+            (1 - r\sqrt{q})
+            \left(
+                1 + r\sqrt{q}\frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}
+            \right)^{-1}
             \\
-            &= \frac{1 - \sqrt{\mu/L}}{1 + \sqrt{\mu/L}}. 
+            &= (1 - r^{-1} \sqrt{q})\left(
+                1 + \frac{r \sqrt{q} - q}{1 - r \sqrt{q}}
+            \right)^{-1}
+            \\
+            &= \left(1 - r^{-1} \sqrt{q}\right)\left(
+                \frac{1 - q}{1 - r \sqrt{q}}
+            \right)^{-1} = \frac{(1 - r^{-1}\sqrt{q})(1 - r \sqrt{q})}{1 - q}. 
+        \end{align*}
+        Now it's the perfect opportunity to show (iii) by substituting $r = 1$ which has 
+        \begin{align*}
+            \theta &= \frac{(1 - \sqrt{q})^2}{1 - q}
+            =
+            \frac{(1 - \sqrt{q})}{(1 - \sqrt{q})(1 + \sqrt{q})}
+            = \frac{1 - \sqrt{q}}{1 + \sqrt{q}}. 
+        \end{align*}
+        Next for (iv), we determine when $\rho$ switches from $> 1$ to $ \le 1$. 
+        For any $r \in \left(1, \sqrt{q^{-1}}\right)$, we show $\rho > 1$: 
+        \begin{align*}
+            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
+            > \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} > \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1
+        \end{align*}
+        The first inequality comes from $r > 1 \iff -r^{-1} > -1$, the second inequality comes from $r > 1 \iff -r < 1$. 
+        For any $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by 
+        \begin{align*}
+            \rho &= \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}} 
+            \le \frac{1 - \sqrt{q}}{1 - r \sqrt{q}} \le \frac{1 - \sqrt{q}}{1 - \sqrt{q}} = 1. 
+        \end{align*}
+        The first inequality comes from $-r^{-1} \le - 1$; the second inequality comes from $-r \ge -1$. 
+        \par
+        Finally, to show (v), we consider by cases: 
+        \begin{enumerate}
+            \item[A:] When $r \in \left(1, \sqrt{q^{-1}}\right)$, we have $\rho > 1$ by (iii), meaning that $1 - r^{-1}\sqrt{q} > 1 - r \sqrt{q}$. $\rho > 1 \implies \max(\rho, 1) = \rho$ hence 
+                \begin{align*}
+                    \max(\rho, 1)(1 - \alpha) &= \rho(1- \alpha)
+                    = \frac{1 - r^{-1}\sqrt{q}}{1 - r \sqrt{q}}(1 - r \sqrt{q}) = 1 - r^{-1}\sqrt{q}. 
+                \end{align*}
+                In this case, the larger one of the two values: $\left\lbrace1 - \rho^{-1}\sqrt{q}, 1 - r\sqrt{q}\right\rbrace$ is taken. 
+            \item[B:] When $r \in \left(\sqrt{q}, 1\right]$, we have $\rho \le 1$ by (iii); hence $1 - r^{-1}\sqrt{q} \le 1 - r \sqrt{q}$ and $\max(1,\rho) = 1$ therefore: 
+            \begin{align*}
+                \max(1, \rho)(1 - \alpha) = (1 - \alpha) = 1 - r \sqrt{q}. 
+            \end{align*}
+            Once again, the larger one of the quantity: $1 - r \sqrt{q}$ among $\{1 - r^{-1}\sqrt{q}, 1 - r\sqrt{q}\}$ is taken. 
+        \end{enumerate}
+        Therefore, for all vales of $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ are completed by cases: (A), (B).
+        The larger of the value among $\{1 - r \sqrt{q}, 1 - r^{-1}\sqrt{q}\}$ is always taken. 
+        Therefore it has: 
+        \begin{align*}
+            \max(1, \rho)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q}\right). 
         \end{align*}
 
     \end{proof}
@@ -2064,7 +2096,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
     \begin{theorem}[Fixed momentum FISTA]\label{thm:fixed-momentum-fista}
-        
+        Suppose a constant 
     \end{theorem}
 
 
