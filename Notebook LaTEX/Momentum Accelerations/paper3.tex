@@ -1887,15 +1887,18 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
-        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq}, and they are constant meaning that there exists $\rho, \alpha$ such that $\alpha_k := \alpha$ and $\rho_k := \rho$ for all $k \ge 0$.
-        Define the momentum term $\theta = \rho\alpha(1 - \alpha)/(\rho\alpha^2 + \alpha)$. 
-        Then the constant R-WAPG sequence satisfies: 
-        \begin{enumerate}
-            \item $\rho = (1 - \mu/L\alpha^{-1})/(1 - \alpha)$. 
-            \item $\theta = (1 - \alpha)(1 - \mu/L \alpha^{-1})/(1 - \mu/L)$. 
-            \item For any $r \in \left(\sqrt{\mu/L}, \sqrt{L/\mu}\right)$, let $\alpha = r \sqrt{\mu/L}$. If $\sqrt{L/\mu} > r > 1$, then $\rho > 1$ else if $\sqrt{\mu/L} < r \le 1$ then $\rho \in (0, 1]$. 
-            \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = \left(1 - \sqrt{\mu/L}\right)/\left(1 + \sqrt{\mu/L}\right)$. 
-        \end{enumerate}
+        Suppose $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ are R-WAPG sequences given by Definition \ref{def:rwapg-seq} and assume $L > \mu > 0$.
+        Define $q := \mu/L$. 
+        Then $\forall r \in \left(\sqrt{q},\sqrt{q^{-1}}\right)$, the constant sequence $\alpha_k := r \sqrt{q}$ is a valid R-WAPG sequence and it has
+
+        % Define the momentum term $\theta = \rho\alpha(1 - \alpha)/(\rho\alpha^2 + \alpha)$. 
+        % Then the constant R-WAPG sequence satisfies: 
+        % \begin{enumerate}
+        %     \item $\rho = (1 - \mu/L\alpha^{-1})(1 - \alpha)^{-1}$. 
+        %     \item $\theta = (1 - \alpha)(1 - \mu/L \alpha^{-1})(1 - \mu/L)^{-1}$. 
+        %     \item For any $r \in \left(\sqrt{\mu/L}, \sqrt{L/\mu}\right)$, let $\alpha = r \sqrt{\mu/L}$. If $\sqrt{L/\mu} > r > 1$, then $\rho > 1$ else if $\sqrt{\mu/L} < r \le 1$ then $\rho \in (0, 1]$. 
+        %     \item If $\alpha = \sqrt{\mu/L}$, then $\rho = 1$, $\theta = \left(1 - \sqrt{\mu/L}\right)/\left(1 + \sqrt{\mu/L}\right)$. 
+        % \end{enumerate}
     \end{lemma}
     \begin{proof}
         It's direct to show (i). 
@@ -1944,7 +1947,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         The first inequality used $r > \sqrt{\mu/L}$. 
         The third inequality used $r < 1$. 
-        To see (iv), substitute $\alpha = \sqrt{\mu/L}$ for $\rho$. 
+        To see (iv), substitute $\alpha = \sqrt{\mu/L}$ for $\theta$ as defined in (i): 
+        \begin{align*}
+            \theta &= \frac{(1 - \alpha)(1 - \mu/L \alpha^{-1})}{1 - \mu/L}
+            = \frac{(1 - \sqrt{\mu/L})(1 - \sqrt{\mu/L})}{1 - \mu/L}
+            \\
+            &= \frac{1 - \sqrt{\mu/L}}{1 + \sqrt{\mu/L}}. 
+        \end{align*}
 
     \end{proof}
 
