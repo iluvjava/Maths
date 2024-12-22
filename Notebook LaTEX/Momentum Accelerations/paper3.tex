@@ -112,9 +112,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \begin{enumerate}
                 \item Attouch H., Cabot A.: ``Convergence Rates of Inertial Forward-Backward Algorithms'', SIAM. 
                 \item Vassilis A., et al.: ``Convergence rate of inertial Forward-Backward algorithm
-                beyond Nesterov's rule"
+                beyond Nesterov's rule". 
             \end{enumerate}
-            The following papers are related to stabiling, improving the acceleration scheme without monotone restarting. 
+            The following papers are related to stabilizing, improving the acceleration scheme without monotone restarting. 
             \begin{enumerate}
                 \item Attouch H., et al.: ``First-order optimization algorithms via inertial systems with Hessian driven damping'', Math Programming. 
             \end{enumerate}
@@ -153,7 +153,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \defeq f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
     The lemma follows explains equates between $\mathcal M(\cdot; y), \widetilde{\mathcal M}(\cdot; y)$. 
-    \begin{lemma}[Proximal gradient envelope] 
+    \begin{lemma}[Proximal gradient envelope]\label{lemma:pg-envelope}
         Fix any $y \in \RR^n$, we will have for all $x \in Q$ that: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
@@ -208,7 +208,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &\ge 
             0
             \\
-            \iff
+            \implies
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
@@ -288,6 +288,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &\ge 0. 
         \end{align*}
         }
+        The first $\implies$ comes from Lemma \ref{lemma:pg-envelope} where we had $- \widetilde{\mathcal M}^{L^{-1}}(x; y) \ge - \mathcal M^{L^{-1}}(x; y)$. 
+        \todoinline{THIS THIS PART IS WRONG WRONG WRONG!}. 
         Continuing, it has: 
         \begin{align*}
             F(x) - F(T_Ly) - \langle L(y - T_Ly), x - T_Ly\rangle - D_f(x, y) &\ge 0

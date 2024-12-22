@@ -4,8 +4,11 @@
 ---
 ### **Intro**
 
-This lemma is being used too often that I think it's worth singling it out. 
-This lemma is a generalization of the proximal lemma in the convex case, and is  an inexact version of the same lemma applied to the proving the convergence of convex optimization problems. 
+This section introduces a crucial inequality that is widely used for the convergence proof of the algorithm that involves the use of a proximal gradient operator. 
+
+In the introduction part, we prove the proximal gradient inequality using subgradient inequality, which implicitly assumed that the function is convex. 
+The section that follows will weaken the assumptions and give equally satisfying proofs. 
+
 
 #### **Lemma 0.1 | Gradient Mapping**
 > Let $h = g + f$ where $g$ is convex, $f$ is $L$-Lipschitz smooth and differentiable. 
@@ -209,22 +212,22 @@ The inequality can be derived from a slightly weaker set of assumptions.
 The difference here is the absence of subgradient inequality which is not used for the proof. 
 The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md). 
 
-In this section we use some slightly different notations: 
+**Notations:**
 
 $$
 \begin{aligned}
-    h(x) &= g + f, 
+    h(x) &:= g + f, 
     \\
-    T&= [I + L^{-1}\partial h]\circ [I - L^{-1}\nabla f]
+    T&= [I + L^{-1}\partial h]\circ [I - L^{-1}\nabla f], 
     \\
     \widetilde{\mathcal M}^{L^{-1}}
-    (x; y) 
+    (x; y)
     &:= 
-    g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
-    + \frac{L}{2}\Vert x - y\Vert^2
+    g(x) + f(y) + \langle \nabla f(y), x - y\rangle
+    + \frac{L}{2}\Vert x - y\Vert^2,
     \\
     \mathcal M^{L^{-1}}(x; y) 
-    &:= h(x) + \frac{L}{2}\Vert x - y\Vert^2
+    &:= h(x) + \frac{L}{2}\Vert x - y\Vert^2.
 \end{aligned}
 $$
 
@@ -268,19 +271,17 @@ The inexact model function upper bound the actual model function.
 
 **Remarks**
 
-It can be interpreted that the inexact proximal gradient model function is a 
-
-
-
+This should make sense since the linearizing the smooth part make the model function lower than the original model function, so it's less. 
 
 
 #### **Claim | The Fundamental Proximal gradient inequality**
-> Let $h = f + g$ and proximal gradient operator $T$ be given as in this section. 
+> Let $h = g + f$ where $f$ is differentiable, and $g$ is convex. 
+> Let $T$ denote the proximal gradient operator. 
 > Fix any $y$, we have for all $x$: 
 > $$
 > \begin{aligned}
 >     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle
->     &\ge  D_f(x, y) 
+>     &\ge  D_f(x, y)  - D_f(Ty; y)
 > \end{aligned}
 > $$
 
@@ -290,6 +291,7 @@ The proof is direct.
 The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property) for all $x \in \R^n$: 
 
 $$
+{\small
 \begin{aligned}
     \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
     \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
@@ -298,13 +300,14 @@ $$
     &\ge 
     0
     \\
-    \iff
+    \implies
     \left(
         \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
     \right) - 
     \mathcal M^{L^{-1}}(Ty; y) 
     - 
     \frac{L}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty; y)
     &\ge 0
     \\
     \iff 
@@ -316,6 +319,7 @@ $$
     - 
     D_f(x, y) 
     - \frac{L}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty; y)
     &\ge 0
     \\
     \iff 
@@ -325,8 +329,8 @@ $$
         \frac{L}{2}\Vert x - y\Vert^2 - 
         \frac{L}{2}\Vert Ty - y\Vert^2
     \right)
-    - 
-    D_f(x, y) 
+    - D_f(x, y) 
+    + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
@@ -341,8 +345,8 @@ $$
             \Vert y - Ty\Vert^2
         \right)
     \right)
-    - 
-    D_f(x, y) 
+    - D_f(x, y) 
+    + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
@@ -356,8 +360,8 @@ $$
             2\langle x - Ty, Ty - y\rangle
         \right)
     \right)
-    - 
-    D_f(x, y) 
+    - D_f(x, y) 
+    + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
@@ -366,8 +370,8 @@ $$
         h(x) - h(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
         - L\langle  x - Ty, y - Ty\rangle
     \right)
-    - 
-    D_f(x, y) 
+    - D_f(x, y) 
+    + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0
     \\
@@ -375,22 +379,30 @@ $$
     h(x) - h(Ty)
     - \langle L(y - Ty), x - Ty\rangle
     - D_f(x, y) 
+    + D_f(Ty; y)
     &\ge 0. 
 \end{aligned}
+}
 $$
 
+On the first $\implies$, we use the property of the proximal gradient envelope that $-\widetilde{\mathcal M}^{\overline L^{-1}}(T_Ly, y) \ge -\mathcal M^{L^{-1}}(x; y)$. 
+
 **Remarks**
+
+In the proof above, smoothness and convexity is not directly involved in the proof. 
+Here we will discuss how to get some alternatives from the lemma given the extra assumptions. 
+
 
 The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker condition than $L^{-1}$ strong convexity of the Envelope function. 
 This results here are also strictly better than the previous results it implies the previous results. 
 
 $$
 \begin{aligned}
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) &\ge 0
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty; y)&\ge 0
     \\
     \iff
     h(x) - h(Ty)
-    - \langle L(y - Ty), x - y + y - Ty\rangle - D_f(x, y) 
+    - \langle L(y - Ty), x - y + y - Ty\rangle - D_f(x, y) + D_f(Ty; y)
     &\ge 0
     \\
     \iff
@@ -398,6 +410,7 @@ $$
     - \langle L(y - Ty),x - y \rangle
     - L\Vert y - Ty\Vert^2
     - D_f(x, y) 
+    + D_f(Ty; y)
     &\ge 0
     \\
     \implies 
@@ -409,8 +422,14 @@ $$
 \end{aligned}
 $$
 
-That, is kinda wild. 
-From smoothness, it has: 
+The last $\implies$ has used the smoothness upper bound of $f$, which has 
+
+$$
+    D_f(Ty, y) \le L/2\Vert Ty - y\Vert^2.
+$$ 
+
+This reduces the coefficient on $\Vert y - Ty\Vert^2$. 
+Furthermore, it has from the smoothness that: 
 
 $$
 D_f(x, y) \ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
@@ -424,7 +443,7 @@ $$
 \end{aligned}
 $$
 
-**Alternative representations of the same claim**: 
+**Remarks | A list of equivalent representations**: 
 
 $$
 \begin{aligned}
@@ -440,6 +459,43 @@ $$
 
 ---
 ### **Proximal gradient inequality with weak convexity**
+
+Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 
+
+#### **Assumption of weak convexity of additive composite objective**
+Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and diffrentiable. 
+Let $g:Q\rightarrow \overline \R$ be convex. 
+This assumption is more general than it first seems. 
+For any $F: = f + g$, in the case where $g: Q \rightarrow \overline \R$ is $\mu$ weakly convex, and $f$ is convex. 
+Then $F = (g + \mu/2\Vert \cdot\Vert^2) + (f - \mu/2\Vert \cdot\Vert^2)$; and in this case $\hat f:= f - \mu/2\Vert \cdot\Vert^2$ is $\mu$ weakly convex, and $\hat g = g + \mu/2\Vert \cdot\Vert^2$ is convex. 
+Therefore, without loss of generality, we only need to assume one of either $f$ or $g$ is $\mu$ weakly convex, this can be conducted as long as we know which one is $\mu$ weakly convex. 
+
+#### **The key exploit**
+So, if $F$ is $\mu$ weakly convex, then the linearized model function has for all $y \in Q$:
+$$
+    \widetilde{\mathcal M}^{\overline L^{-1}}(x, y) = 
+    g(x) + \langle \nabla f(y),x - y \rangle
+    + \frac{L^+}{2}\Vert x - y\Vert^2. 
+$$
+
+where $\overline L = L + \mu$ where $L > 0$. 
+This function, $\widetilde {\mathcal M}^{L^+}(\cdot, y)$ is a $L$ strongly convex function. 
+This can be used to phrase a new theorem that is more general. 
+
+#### **Lemma | The Proximal Gradient Envelope**
+> With $F := g + f$, $g:Q \rightarrow \overline \R$ is convex and $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and differentiable. 
+> Fix any $y \in \R^n$, then for all $x \in Q$: 
+> $$
+> \begin{aligned}
+>     \widetilde{\mathcal M}^{\overline L^{-1}}(x; y) = \widetilde{\mathcal M}^{\overline L^{-1}}(x; y) - D_f(x, y). 
+> \end{aligned}
+> $$
+
+**Proof**
+
+The previous proof can be reused because convexity is never involved in the previous proof for the equality. 
+
+
 
 
 
