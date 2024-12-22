@@ -284,7 +284,7 @@ This should make sense since the linearizing the smooth part make the model func
 
 
 #### **Claim | The Fundamental Proximal gradient inequality**
-> Let $h = g + f$ where $f$ is differentiable, and $g$ is convex. 
+> Let $h = g + f$ where $f$ is convex and differentiable, and $g$ is convex. 
 > Let $T$ denote the proximal gradient operator. 
 > Fix any $y$, we have for all $x$: 
 > $$
@@ -389,17 +389,73 @@ $$
     h(x) - h(Ty)
     - \langle L(y - Ty), x - Ty\rangle
     - D_f(x, y) 
-    + D_f(Ty; y)
+    + D_f(Ty, y)
     &\ge 0. 
 \end{aligned}
 }
 $$
 
-On the first $\implies$, we use the property of the proximal gradient envelope that $-\widetilde{\mathcal M}^{\overline L^{-1}}(T_Ly, y) \ge -\mathcal M^{L^{-1}}(x; y)$. 
+Take note that for all $x \in \R^n \setminus Q$, the inequality is trivially true cause by definition it gives $h(x) = \infty$. 
 
 **Remarks**
 
-In the proof above, smoothness and convexity is not directly involved in the proof. 
+When $f$ is $\mu$ strongly convex, $\mathcal M$ is not just $L$ strongly convex, it's $L + \mu$ strongly convex. 
+The inequality above is strictly stronger than necessary in the case when $F$ is $\mu > 0$ strongly convex. 
+
+#### **Corollary | Proximal gradient inequality with smoothness**
+> Assume that $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
+> Fix any $y \in \R^n$, then for all $x$, the proximal gradient inequality is true: 
+> $$
+> \begin{aligned}
+>     (\forall x \in \R^n)\quad 
+>     h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
+>     - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2 
+>     &\ge 0. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+From strong $\mu \ge 0$ strong convexity and $L$ Lipschitz smoothness, Bregman Divergence of $f$ has for any fixed $y$, all $x \in \R^n$ the inequality: 
+
+$$
+\begin{aligned}
+    \frac{\mu}{2}\Vert x - y\Vert^2 \le 
+    D_f(x, y) \le \frac{L}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+For all $x \in Q$: 
+$$
+\begin{aligned}
+    0 &\le 
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty, y)
+    & 
+    \\
+    &\le 
+    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert Ty - y\Vert^2
+    \\
+    &= 
+    h(x) - h(Ty) - \langle L(y - Ty), x -y + y - Ty\rangle 
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert Ty - y\Vert^2
+    \\
+    &= 
+    h(x) - h(Ty) - \langle L(y - Ty), x -y \rangle - L \Vert y - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert Ty - y\Vert^2
+    \\
+    &=
+    h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
+    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2. 
+\end{aligned}
+$$
+
+
+
+
+<!-- In the proof above, smoothness and convexity is not directly involved in the proof. 
 Here we will discuss how to get some alternatives from the lemma given the extra assumptions. 
 When $f$ is $L$-Lipschitz smooth, then the lemma becomes: 
 
@@ -548,7 +604,7 @@ $$
 \end{aligned}
 $$
 
-All the intermediate steps are all useful implications of the proximal gradient lemma. 
+All the intermediate steps are all useful implications of the proximal gradient lemma.  -->
 
 
 
@@ -557,10 +613,15 @@ All the intermediate steps are all useful implications of the proximal gradient 
 
 Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 
 
-#### **Assumption of weak convexity of additive composite objective**
-Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and differentiable. 
+#### **Assumption | Smooth side is weakly convex**
+> Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and differentiable. 
+
 Let $g:Q\rightarrow \overline \R$ be convex. 
 This assumption is more general than it first seems. 
+For any $F$ that is the sum of a smooth $f$ and a non-smooth part $g$ such that exactly one of $f$ or $g$ is $\mu$ weakly convex, then we may assume without loss generality that the smooth part is $\mu$ weakly convex. 
+
+**Without Loss of Generality**
+
 For any $F: = f + g$, in the case where $g: Q \rightarrow \overline \R$ is $\mu$ weakly convex, and $f$ is convex. 
 Then $F = (g + \mu/2\Vert \cdot\Vert^2) + (f - \mu/2\Vert \cdot\Vert^2)$; and in this case $\hat f:= f - \mu/2\Vert \cdot\Vert^2$ is $\mu$ weakly convex, and $\hat g = g + \mu/2\Vert \cdot\Vert^2$ is convex. 
 Therefore, without loss of generality, we only need to assume one of either $f$ or $g$ is $\mu$ weakly convex, this can be conducted as long as we know which one is $\mu$ weakly convex. 
@@ -570,10 +631,10 @@ So, if $F$ is $\mu$ weakly convex, then the linearized model function has for al
 $$
     \widetilde{\mathcal M}^{\overline L^{-1}}(x, y) = 
     g(x) + \langle \nabla f(y),x - y \rangle
-    + \frac{L^+}{2}\Vert x - y\Vert^2. 
+    + \frac{\overline L}{2}\Vert x - y\Vert^2. 
 $$
 
-where $\overline L = L + \mu$ where $L > 0$. 
+Where $\overline L = L + \mu$ where $L > 0$. 
 This function, $\widetilde {\mathcal M}^{L^+}(\cdot, y)$ is a $L$ strongly convex function. 
 This can be used to phrase a new theorem that is more general. 
 
@@ -590,7 +651,129 @@ This can be used to phrase a new theorem that is more general.
 
 The previous proof can be reused because convexity is never involved in the previous proof for the equality. 
 
+#### **Lemma | The proximal gradient inequality**
+
+**Proof**
+
+For notation simplicity, we consider $\widetilde{\mathcal M}(\cdot; y)$ instead of $\widetilde{\mathcal{M}}^{\overline L^{-1}}(\cdot; y)$, and $T$ denotes the proximal gradient operator. 
+
+By assumption that $F$ is $\mu$ weakly convex. 
+Choose any $\overline L > \mu$. 
+Define $L := \overline L - \mu > 0$. 
+Then $\widetilde{\mathcal M}(\cdot; y)$ becomes $\overline L - \mu$ strongly convex. 
+The model function admits quadratic growth condition over minimizer $T_Ly$. 
+Therefore, for all $x \in Q$ it has: 
+
+$$
+{\small
+\begin{aligned}
+    \widetilde{\mathcal M}(x; y) - \widetilde{\mathcal M}(Ty; y) - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
+    &\ge 0
+    \\
+    \iff 
+    \left(\mathcal M(x; y) - D_f(x, y)\right) - \mathcal M(Ty; y) + D_f(Ty, y) 
+    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \iff 
+    \left(
+        F(x) - F(Ty) 
+        + \frac{\overline L}{2}\Vert x - y\Vert^2
+        - \frac{\overline L}{2}\Vert x - Ty\Vert^2 
+    \right)
+    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
+    +
+    D_f(Ty, y) - D_f(x, y)
+    &\ge 0
+    \\
+    \iff 
+    \left(
+        F(x) - F(Ty) 
+        + \frac{\overline L}{2}\Vert x - Ty + Ty - y\Vert^2
+        - \frac{\overline L}{2}\Vert x - Ty\Vert^2 
+    \right)
+    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
+    + D_f(Ty, y) - D_f(x, y)
+    &\ge 0
+    \\
+    \iff 
+    \left(
+        F(x) - F(Ty) 
+        - \overline L\langle x - Ty, y - Ty\rangle
+        + \frac{\overline L}{2}\Vert y - Ty\Vert^2
+    \right)
+    - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty, y) - D_f(x, y)
+    &\ge 0. 
+\end{aligned}
+}
+$$
+
+The chain of equivalent inequality ends here, re-organizing it this is what we get: 
+
+$$
+\begin{aligned}
+    F(x) - F(Ty) 
+    - \overline L\langle x - Ty, y - Ty\rangle
+    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
+    &\ge 
+    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 + D_f(Ty, y) - D_f(x, y)
+    \\
+    &\ge 
+    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 - \frac{\mu}{2}\Vert y - Ty\Vert^2 - D_f(x, y). 
+\end{aligned}
+$$
+
+With the assumption that $F$ is $\mu$ weakly convex and differentiable, it's hard to know what is the Lipschitz constant of the gradient. 
+So, let's now assume that the Bregman divergence of the function satisfies 2-sided Lipschitz conditions with different constant so for all $x, y \in \R^n$: 
+
+$$
+\begin{aligned}
+    \frac{-\mu}{2}\Vert x - y\Vert^2
+    \le D_f(x, y) \le \frac{K}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+Using the bounds we have the inequality: 
+
+$$
+\begin{aligned}
+    F(x) - F(Ty) 
+    - \overline L\langle x - Ty, y - Ty\rangle
+    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
+    &\ge 
+    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 + D_f(Ty, y) - D_f(x, y)
+    \\
+    \implies 
+    F(x) - F(Ty) 
+    - \overline L\langle x - Ty, y - Ty\rangle
+    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
+    &\ge 
+    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 - \frac{\mu}{2}\Vert y - Ty\Vert^2 - \frac{K}{2}\Vert x - y\Vert^2
+    \\
+    \iff 
+    F(x) - F(Ty) - \overline L\langle x - Ty, y - Ty\rangle
+    &\ge 
+    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
+    - \frac{\overline L + \mu}{2}\Vert y - Ty\Vert^2
+    - \frac{K}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+First $\implies$ substitutes lower bounds for the Bregman Divergences. 
 
 
+#### **Corollary | When smooth part is convex**
 
+
+**Proof**
+
+With the assumption that $F$ is $\sigma$ strongly convex and $K$ Lipschitz smooth, its Bregman Divergence has for all $x, y \in \R^n$: 
+
+$$
+\begin{aligned}
+    \frac{\sigma}{2}\Vert x - y\Vert^2 
+    \le D_f(x, y) \le \frac{K}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
 

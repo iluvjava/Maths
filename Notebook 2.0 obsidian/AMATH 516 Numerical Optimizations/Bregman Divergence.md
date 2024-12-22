@@ -41,7 +41,7 @@ See more about the Legendre Type function in the prerequisite listed at the star
 
 **Remarks**
 
-The assumptions made in Amrir's Beck [^1] writing differ entirely from those above. Here, we used the definition 2.1 in a paper by Heinz et. al.[^3]. 
+The assumptions made in Amir's Beck [^1] writing differ entirely from those above. Here, we used the definition 2.1 in a paper by Heinz et. al.[^3]. 
 Furthermore, recall that a function of Legendre type on a convex set $C$ is only differentiable on any convex subset of $\text{dom}(\partial f)$. 
 The above fact should clarify the domain of the Bregman distance being $\text{dom}(\omega)\times \text{dom}(\partial \omega)$ because the domain of the subgradient may not be the domain of the function, for a differentiable convex function. 
 

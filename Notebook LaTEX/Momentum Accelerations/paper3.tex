@@ -128,7 +128,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \section{Preliminaries}
     Throughout, we define $F := f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
     We consider optimization problem: $\min_x \left\lbrace f(x) + g(x)\right\rbrace$.
-    Fix any arbitrary $y \in \RR^n$, define for all $x \in Q$: 
+    Fix any arbitrary $y \in \RR^n$, define the model functions for all $x \in Q$
     \begin{align*}
         \widetilde{\mathcal M}^{L^{-1}}
         (x; y) 
@@ -138,23 +138,26 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         \mathcal M^{L^{-1}}(x; y) &:= F(x) + \frac{L}{2}\Vert x - y\Vert^2, 
     \end{align*}
-    and the proximal gradient operator $T_L := [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
+    When $x \in \RR\setminus Q$, the model function takes $+\infty$ value. 
+    Define the proximal gradient operator and gradient mapping operator:  $T_L := [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
     The proximal gradient operator $T_L$ admits 
-    $$
-        T_Ly = \argmin_x \left\lbrace
+    \begin{align*}
+        T_Ly &= \argmin_x \left\lbrace
             g(x) + \langle \nabla f(y), x\rangle + L/2\Vert x - y\Vert^2
-        \right\rbrace. 
-    $$
-    It is a single-valued mapping, and it has its domain on the entire $\RR^n$. 
-    Another operator often associated with $T_L$ is the gradient mapping operator $\mathcal G_L:= L(I - T_L)$. 
+        \right\rbrace,
+        \\
+        \mathcal G_L 
+        &:= L(I - T_L). 
+    \end{align*}
+    $T_L$ is a single-valued mapping, and it has its domain on the entire $\RR^n$. 
     Finally, define the Bregman divergence of $f$: 
     \begin{align*}
         D_f(x, y): \RR^n \times \RR^n \rightarrow \RR 
         \defeq f(x) - f(y) - \langle \nabla f(y), x - y\rangle. 
     \end{align*}
-    The lemma follows explains equates between $\mathcal M(\cdot; y), \widetilde{\mathcal M}(\cdot; y)$. 
+    The following lemma is an important property of $\mathcal M(\cdot; y), \widetilde{\mathcal M}(\cdot; y)$. 
     \begin{lemma}[Proximal gradient envelope]\label{lemma:pg-envelope}
-        Fix any $y \in \RR^n$, we will have for all $x \in Q$ that: 
+        Fix any $y \in \RR^n$, we will have for all $x \in \RR$ that: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y)
             &= 
@@ -162,6 +165,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{lemma}
     \begin{proof}
+        Consider any $x \in Q$, by definition it has: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y) 
             &= 
@@ -176,10 +180,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
         \end{align*}
+        The equality is trivially true when $x \in \RR \setminus Q$. 
     \end{proof}
     \subsection{Proximal inequality}
     \begin{theorem}[Proximal inequality]\label{thm:prox-grad-ineq}
-        Fix any $y\in \RR^n$, we have for all $x \in Q$: 
+        Fix any $y\in \RR^n$, we have for all $x \in \RR^n$: 
         \begin{align*}
             F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
             - L\Vert y - T_L y\Vert^2
@@ -187,7 +192,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &\ge  
             0. 
         \end{align*}
-        When $f$ is $\mu \ge 0$ strongly convex, it implies that 
+        Recall that $f$ is $\mu \ge 0$ strongly convex and $L$ Lipschitz smooth, hence the following is implied: 
         \begin{align*}
             F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle
             - \frac{L}{2}\Vert y - T_L y\Vert^2
@@ -197,130 +202,135 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{theorem}
     \begin{proof}
-        Observe that the function $\widetilde {\mathcal M}(\cdot; y)$ is $L$ strongly convex with minimizer $T_Ly$. 
-        For all $x \in Q$, it has quadratic growth condition at its minimizer $T_Ly$ which gives these equivalent inequalities: 
-        {\small
-        \begin{align*}
-            \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
-            \widetilde{\mathcal M}^{L^{-1}}(T_Ly; y)
-            - 
-            \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 
-            0
-            \\
-            \implies
-            \left(
-                \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
-            \right) - 
-            \mathcal M^{L^{-1}}(T_Ly; y) 
-            - 
-            \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff 
-            \left(
-                \mathcal M^{L^{-1}}(x; y)
-                - 
-                \mathcal M^{L^{-1}}(T_Ly; y)
-            \right)
-            - 
-            D_f(x, y) 
-            - \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff 
-            \left(
-                F(x) - F(T_Ly) 
-                + 
-                \frac{L}{2}\Vert x - y\Vert^2 - 
-                \frac{L}{2}\Vert T_Ly - y\Vert^2
-            \right)
-            - 
-            D_f(x, y) 
-            - \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff 
-            \left(
-                F(x) - F(T_Ly) 
-                + 
-                \frac{L}{2}
-                \left(
-                    \Vert x - T_Ly + T_Ly - y\Vert^2
-                    - 
-                    \Vert y - T_Ly\Vert^2
-                \right)
-            \right)
-            - 
-            D_f(x, y) 
-            - \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff 
-            \left(
-                F(x) - F(T_Ly) 
-                + 
-                \frac{L}{2}
-                \left(
-                    \Vert x - T_Ly\Vert^2 + 
-                    2\langle x - T_Ly, T_Ly - y\rangle
-                \right)
-            \right)
-            - 
-            D_f(x, y) 
-            - \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff
-            \left(
-                F(x) - F(T_Ly) + \frac{L}{2}\Vert x - T_Ly\Vert^2 
-                - L\langle  x - T_Ly, y - T_Ly\rangle
-            \right)
-            - 
-            D_f(x, y) 
-            - \frac{L}{2}\Vert x - T_Ly\Vert^2
-            &\ge 0
-            \\
-            \iff 
-            F(x) - F(T_Ly)
-            - \langle L(y - T_Ly), x - T_Ly\rangle
-            - D_f(x, y) 
-            &\ge 0. 
-        \end{align*}
-        }
-        The first $\implies$ comes from Lemma \ref{lemma:pg-envelope} where we had $- \widetilde{\mathcal M}^{L^{-1}}(x; y) \ge - \mathcal M^{L^{-1}}(x; y)$. 
-        \todoinline{THIS THIS PART IS WRONG WRONG WRONG!}. 
-        Continuing, it has: 
-        \begin{align*}
-            F(x) - F(T_Ly) - \langle L(y - T_Ly), x - T_Ly\rangle - D_f(x, y) &\ge 0
-            \\
-            \iff
-            F(x) - F(T_Ly)
-            - \langle L(y - T_Ly), x - y + y - T_Ly\rangle - D_f(x, y) 
-            &\ge 0
-            \\
-            \iff
-            F(x) - F(T_Ly)
-            - \langle L(y - T_Ly),x - y \rangle
-            - L\Vert y - T_Ly\Vert^2
-            - D_f(x, y) 
-            &\ge 0
-            \\
-            \implies 
-            F(x) - F(T_Ly)
-            - \langle L(y - T_Ly),x - y \rangle
-            - \frac{L}{2}\Vert y - T_Ly\Vert^2
-            - D_f(x, y) 
-            &\ge 0
-            \\
-            \implies
-            F(x) - F(T_Ly)
-            - \langle L(y - T_Ly),x - y \rangle
-            - \frac{L}{2}\Vert y - T_Ly\Vert^2
-            - \frac{\mu}{2}\Vert x - y\Vert^2
-            &\ge 0. 
-        \end{align*}
-        Going from the second last inequality to the last inequality, we used the fact that $f$ is strongly convex hence for all $x, y$, it's true that $D_f(x, y) \ge \mu/2 \Vert x - y\Vert^2$. 
+        For lighter notations in this proof, we use $\mathcal M(\cdot, y), \widetilde{\mathcal M}(\cdot, y)$ instead of $\mathcal M^{L^{-1}}(\cdot, y), \widetilde{\mathcal M}^{L^{-1}}(\cdot, y)$. 
+        And we denote $T$ for the proximal gradient operator instead of $T_L$. 
+        We can do this because the Lipschitz constant $L$ is fixed throughout the proof hence it can be omitted. 
+
+        % Observe that the function $\widetilde {\mathcal M}(\cdot; y)$ is $L$ strongly convex with minimizer $T_Ly$. 
+        % For all $x \in Q$, it has quadratic growth condition at its minimizer $T_Ly$ which gives these equivalent inequalities: 
+        % {\small
+        % \begin{align*}
+        %     \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
+        %     \widetilde{\mathcal M}^{L^{-1}}(T_Ly; y)
+        %     - 
+        %     \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 
+        %     0
+        %     \\
+        %     \implies
+        %     \left(
+        %         \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
+        %     \right) - 
+        %     \mathcal M^{L^{-1}}(T_Ly; y) 
+        %     - 
+        %     \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff 
+        %     \left(
+        %         \mathcal M^{L^{-1}}(x; y)
+        %         - 
+        %         \mathcal M^{L^{-1}}(T_Ly; y)
+        %     \right)
+        %     - 
+        %     D_f(x, y) 
+        %     - \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff 
+        %     \left(
+        %         F(x) - F(T_Ly) 
+        %         + 
+        %         \frac{L}{2}\Vert x - y\Vert^2 - 
+        %         \frac{L}{2}\Vert T_Ly - y\Vert^2
+        %     \right)
+        %     - 
+        %     D_f(x, y) 
+        %     - \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff 
+        %     \left(
+        %         F(x) - F(T_Ly) 
+        %         + 
+        %         \frac{L}{2}
+        %         \left(
+        %             \Vert x - T_Ly + T_Ly - y\Vert^2
+        %             - 
+        %             \Vert y - T_Ly\Vert^2
+        %         \right)
+        %     \right)
+        %     - 
+        %     D_f(x, y) 
+        %     - \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff 
+        %     \left(
+        %         F(x) - F(T_Ly) 
+        %         + 
+        %         \frac{L}{2}
+        %         \left(
+        %             \Vert x - T_Ly\Vert^2 + 
+        %             2\langle x - T_Ly, T_Ly - y\rangle
+        %         \right)
+        %     \right)
+        %     - 
+        %     D_f(x, y) 
+        %     - \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff
+        %     \left(
+        %         F(x) - F(T_Ly) + \frac{L}{2}\Vert x - T_Ly\Vert^2 
+        %         - L\langle  x - T_Ly, y - T_Ly\rangle
+        %     \right)
+        %     - 
+        %     D_f(x, y) 
+        %     - \frac{L}{2}\Vert x - T_Ly\Vert^2
+        %     &\ge 0
+        %     \\
+        %     \iff 
+        %     F(x) - F(T_Ly)
+        %     - \langle L(y - T_Ly), x - T_Ly\rangle
+        %     - D_f(x, y) 
+        %     &\ge 0. 
+        % \end{align*}
+        % }
+        % The first $\implies$ comes from Lemma \ref{lemma:pg-envelope} where we had $- \widetilde{\mathcal M}^{L^{-1}}(x; y) \ge - \mathcal M^{L^{-1}}(x; y)$. 
+        % \todoinline{THIS THIS PART IS WRONG WRONG WRONG!}. 
+        % Continuing, it has: 
+        % \begin{align*}
+        %     F(x) - F(T_Ly) - \langle L(y - T_Ly), x - T_Ly\rangle - D_f(x, y) &\ge 0
+        %     \\
+        %     \iff
+        %     F(x) - F(T_Ly)
+        %     - \langle L(y - T_Ly), x - y + y - T_Ly\rangle - D_f(x, y) 
+        %     &\ge 0
+        %     \\
+        %     \iff
+        %     F(x) - F(T_Ly)
+        %     - \langle L(y - T_Ly),x - y \rangle
+        %     - L\Vert y - T_Ly\Vert^2
+        %     - D_f(x, y) 
+        %     &\ge 0
+        %     \\
+        %     \implies 
+        %     F(x) - F(T_Ly)
+        %     - \langle L(y - T_Ly),x - y \rangle
+        %     - \frac{L}{2}\Vert y - T_Ly\Vert^2
+        %     - D_f(x, y) 
+        %     &\ge 0
+        %     \\
+        %     \implies
+        %     F(x) - F(T_Ly)
+        %     - \langle L(y - T_Ly),x - y \rangle
+        %     - \frac{L}{2}\Vert y - T_Ly\Vert^2
+        %     - \frac{\mu}{2}\Vert x - y\Vert^2
+        %     &\ge 0. 
+        % \end{align*}
+        % Going from the second last inequality to the last inequality, we used the fact that $f$ is strongly convex hence for all $x, y$, it's true that $D_f(x, y) \ge \mu/2 \Vert x - y\Vert^2$. 
+
     \end{proof}
 
 \section{Stepwise formulation of weak accelerated proximal gradient}
