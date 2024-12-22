@@ -6,6 +6,12 @@
 
 This section introduces a crucial inequality that is widely used for the convergence proof of the algorithm that involves the use of a proximal gradient operator. 
 
+**Assumption**
+
+1. $h = f + g$ where $g: Q \rightarrow \infty$, $f$ is convex and $L$-Lipschitz smooth. 
+
+**Organizations**
+
 In the introduction part, we prove the proximal gradient inequality using subgradient inequality, which implicitly assumed that the function is convex. 
 The section that follows will weaken the assumptions and give equally satisfying proofs. 
 
@@ -208,9 +214,11 @@ In this way, the above inequality can be generalized.
 ---
 ### **The envelope approach**
 
+**Organizations:**
+
 The inequality can be derived from a slightly weaker set of assumptions. 
 The difference here is the absence of subgradient inequality which is not used for the proof. 
-The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md). 
+The following is the same proof adapted from [Proximal Gradient Convergence Rate](AMATH%20516%20Numerical%20Optimizations/Classics%20Algorithms/Proximal%20Gradient%20Convergence%20Rate.md).
 
 **Notations:**
 
@@ -231,9 +239,10 @@ $$
 \end{aligned}
 $$
 
+Unless specified, we assume that $f$ $L$ Lipschitz smooth and $g$ is convex. 
 Before the major claim we state the following lemma to the proof sleek and cool: 
 
-#### **Lemma | The difference on the Envelope**
+#### **Lemma | The proximal gradient envelope**
 > With $h = g + f$ as assumed in this section. 
 > Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined above, we will have for all $x \in \R^n$ that: 
 > $$
@@ -288,7 +297,7 @@ This should make sense since the linearizing the smooth part make the model func
 **Proof**
 
 The proof is direct. 
-The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property) for all $x \in \R^n$: 
+The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property) for all $x \in Q$: 
 
 $$
 {\small
@@ -391,11 +400,49 @@ On the first $\implies$, we use the property of the proximal gradient envelope t
 
 In the proof above, smoothness and convexity is not directly involved in the proof. 
 Here we will discuss how to get some alternatives from the lemma given the extra assumptions. 
+When $f$ is $L$-Lipschitz smooth, then the lemma becomes: 
 
+$$
+\begin{aligned}
+    h(x) - h(Ty)
+    - \langle L(y - Ty),x - y \rangle
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - D_f(x, y) 
+    &\ge 0,
+    \\
+    \left(
+        h(x) - h(Ty) + 
+        \frac{L}{2}\Vert x - y\Vert^2 
+        - \frac{L}{2}\Vert x - Ty\Vert^2 
+    \right)
+    - D_f(x, y) - \frac{L}{2}\Vert Ty - y\Vert^2
+    &\ge 0. 
+\end{aligned}
+$$
 
-The envelope $\mathcal M^{L^{-1}}(x; y)$ having quadratic growth is a weaker condition than $L^{-1}$ strong convexity of the Envelope function. 
-This results here are also strictly better than the previous results it implies the previous results. 
+When $f$ is $L$ Lipschitz smooth and also $\mu \ge 0$ strongly convex, the inequality becomes: 
 
+$$
+\begin{aligned}
+    h(x) - h(Ty)
+    - \langle L(y - Ty),x - y \rangle
+    - \frac{L}{2}\Vert y - Ty\Vert^2
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    &\ge 0,
+    \\
+    \left(
+        h(x) - h(Ty) + 
+        \frac{L}{2}\Vert x - y\Vert^2 
+        - \frac{L}{2}\Vert x - Ty\Vert^2 
+    \right)
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    - \frac{L}{2}\Vert Ty - y\Vert^2
+    &\ge 0. 
+\end{aligned}
+$$
+
+The lower bound of $\mu/2\Vert x - y\Vert^2$ replaces the Bregman Divergence $D_f(x, y)$ in the inequality. 
+To see the alternatives, we start with the inequality: 
 $$
 \begin{aligned}
     h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty; y)&\ge 0
@@ -429,13 +476,13 @@ $$
 $$ 
 
 This reduces the coefficient on $\Vert y - Ty\Vert^2$. 
-Furthermore, it has from the smoothness that: 
+There are other lower bounds for the Bregman Divergence. For example from the smoothness it has: 
 
 $$
 D_f(x, y) \ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
 $$
 
-From strong convexity it has 
+And from the strong convexity it has: 
 
 $$
 \begin{aligned}
@@ -443,19 +490,66 @@ $$
 \end{aligned}
 $$
 
-**Remarks | A list of equivalent representations**: 
+The second inequality comes from something in the middle of the proof. 
 
 $$
 \begin{aligned}
     \left(
-        h(x) - h(Ty) + 
-        \frac{L}{2}\Vert x - y\Vert^2 
-        - \frac{L}{2}\Vert x - Ty\Vert^2 
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}
+        \left(
+            \Vert x - y\Vert^2
+            - 
+            \Vert y - Ty\Vert^2
+        \right)
     \right)
-    - D_f(x, y) - \frac{L}{2}\Vert Ty - y\Vert^2
+    - D_f(x, y) 
+    + D_f(Ty; y)
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \implies 
+    \left(
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}
+        \left(
+            \Vert x - y\Vert^2
+            - 
+            \Vert y - Ty\Vert^2
+        \right)
+    \right)
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + D_f(Ty; y)
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \implies 
+    \left(
+        h(x) - h(Ty) 
+        + 
+        \frac{L}{2}
+        \left(
+            \Vert x - y\Vert^2
+            - 
+            \Vert y - Ty\Vert^2
+        \right)
+    \right)
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    + \frac{L}{2}\Vert Ty - y\Vert^2
+    - \frac{L}{2}\Vert x - Ty\Vert^2
+    &\ge 0
+    \\
+    \implies 
+    h(x) - h(Ty) + \frac{L - \mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert x - Ty\Vert^2
     &\ge 0. 
 \end{aligned}
 $$
+
+All the intermediate steps are all useful implications of the proximal gradient lemma. 
+
+
 
 ---
 ### **Proximal gradient inequality with weak convexity**
@@ -463,7 +557,7 @@ $$
 Here we take the convention that $f$ is $\mu$ weakly convex if and only if $f + \mu/2\Vert \cdot\Vert^2$ is convex. 
 
 #### **Assumption of weak convexity of additive composite objective**
-Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and diffrentiable. 
+Let $F:= f + g$, let $f:\R^n \rightarrow \overline \R$ be $\mu$ weakly convex and differentiable. 
 Let $g:Q\rightarrow \overline \R$ be convex. 
 This assumption is more general than it first seems. 
 For any $F: = f + g$, in the case where $g: Q \rightarrow \overline \R$ is $\mu$ weakly convex, and $f$ is convex. 
