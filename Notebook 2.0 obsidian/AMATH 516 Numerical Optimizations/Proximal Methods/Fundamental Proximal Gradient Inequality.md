@@ -214,6 +214,8 @@ In this way, the above inequality can be generalized.
 ---
 ### **The envelope approach**
 
+We use the strong convexity of the Envelope function instead of the subgradient inequality. 
+
 **Organizations:**
 
 The inequality can be derived from a slightly weaker set of assumptions. 
@@ -281,7 +283,7 @@ The inexact model function upper bound the actual model function.
 **Remarks**
 
 This should make sense since the linearizing the smooth part make the model function lower than the original model function, so it's less. 
-
+This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothness constant of function $f$. 
 
 #### **Claim | The Fundamental Proximal gradient inequality**
 > Let $h = g + f$ where $f$ is convex and differentiable, and $g$ is convex. 
@@ -454,160 +456,6 @@ $$
 
 
 
-
-<!-- In the proof above, smoothness and convexity is not directly involved in the proof. 
-Here we will discuss how to get some alternatives from the lemma given the extra assumptions. 
-When $f$ is $L$-Lipschitz smooth, then the lemma becomes: 
-
-$$
-\begin{aligned}
-    h(x) - h(Ty)
-    - \langle L(y - Ty),x - y \rangle
-    - \frac{L}{2}\Vert y - Ty\Vert^2
-    - D_f(x, y) 
-    &\ge 0,
-    \\
-    \left(
-        h(x) - h(Ty) + 
-        \frac{L}{2}\Vert x - y\Vert^2 
-        - \frac{L}{2}\Vert x - Ty\Vert^2 
-    \right)
-    - D_f(x, y) - \frac{L}{2}\Vert Ty - y\Vert^2
-    &\ge 0. 
-\end{aligned}
-$$
-
-When $f$ is $L$ Lipschitz smooth and also $\mu \ge 0$ strongly convex, the inequality becomes: 
-
-$$
-\begin{aligned}
-    h(x) - h(Ty)
-    - \langle L(y - Ty),x - y \rangle
-    - \frac{L}{2}\Vert y - Ty\Vert^2
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    &\ge 0,
-    \\
-    \left(
-        h(x) - h(Ty) + 
-        \frac{L}{2}\Vert x - y\Vert^2 
-        - \frac{L}{2}\Vert x - Ty\Vert^2 
-    \right)
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    - \frac{L}{2}\Vert Ty - y\Vert^2
-    &\ge 0. 
-\end{aligned}
-$$
-
-The lower bound of $\mu/2\Vert x - y\Vert^2$ replaces the Bregman Divergence $D_f(x, y)$ in the inequality. 
-To see the alternatives, we start with the inequality: 
-$$
-\begin{aligned}
-    h(x) - h(Ty) - \langle L(y - Ty), x - Ty\rangle - D_f(x, y) + D_f(Ty; y)&\ge 0
-    \\
-    \iff
-    h(x) - h(Ty)
-    - \langle L(y - Ty), x - y + y - Ty\rangle - D_f(x, y) + D_f(Ty; y)
-    &\ge 0
-    \\
-    \iff
-    h(x) - h(Ty)
-    - \langle L(y - Ty),x - y \rangle
-    - L\Vert y - Ty\Vert^2
-    - D_f(x, y) 
-    + D_f(Ty; y)
-    &\ge 0
-    \\
-    \implies 
-    h(x) - h(Ty)
-    - \langle L(y - Ty),x - y \rangle
-    - \frac{L}{2}\Vert y - Ty\Vert^2
-    - D_f(x, y) 
-    &\ge 0
-\end{aligned}
-$$
-
-The last $\implies$ has used the smoothness upper bound of $f$, which has 
-
-$$
-    D_f(Ty, y) \le L/2\Vert Ty - y\Vert^2.
-$$ 
-
-This reduces the coefficient on $\Vert y - Ty\Vert^2$. 
-There are other lower bounds for the Bregman Divergence. For example from the smoothness it has: 
-
-$$
-D_f(x, y) \ge \frac{1}{2L}\Vert \nabla f(x) - \nabla f(y)\Vert^2. 
-$$
-
-And from the strong convexity it has: 
-
-$$
-\begin{aligned}
-    D_f(x, y) \ge \frac{\mu}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
-
-The second inequality comes from something in the middle of the proof. 
-
-$$
-\begin{aligned}
-    \left(
-        h(x) - h(Ty) 
-        + 
-        \frac{L}{2}
-        \left(
-            \Vert x - y\Vert^2
-            - 
-            \Vert y - Ty\Vert^2
-        \right)
-    \right)
-    - D_f(x, y) 
-    + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
-    \\
-    \implies 
-    \left(
-        h(x) - h(Ty) 
-        + 
-        \frac{L}{2}
-        \left(
-            \Vert x - y\Vert^2
-            - 
-            \Vert y - Ty\Vert^2
-        \right)
-    \right)
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    + D_f(Ty; y)
-    - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
-    \\
-    \implies 
-    \left(
-        h(x) - h(Ty) 
-        + 
-        \frac{L}{2}
-        \left(
-            \Vert x - y\Vert^2
-            - 
-            \Vert y - Ty\Vert^2
-        \right)
-    \right)
-    - \frac{\mu}{2}\Vert x - y\Vert^2
-    + \frac{L}{2}\Vert Ty - y\Vert^2
-    - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
-    \\
-    \implies 
-    h(x) - h(Ty) + \frac{L - \mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0. 
-\end{aligned}
-$$
-
-All the intermediate steps are all useful implications of the proximal gradient lemma.  -->
-
-
-
 ---
 ### **Proximal gradient inequality with weak convexity**
 
@@ -653,6 +501,7 @@ The previous proof can be reused because convexity is never involved in the prev
 
 #### **Lemma | The proximal gradient inequality**
 
+
 **Proof**
 
 For notation simplicity, we consider $\widetilde{\mathcal M}(\cdot; y)$ instead of $\widetilde{\mathcal{M}}^{\overline L^{-1}}(\cdot; y)$, and $T$ denotes the proximal gradient operator. 
@@ -665,7 +514,7 @@ The model function admits quadratic growth condition over minimizer $T_Ly$.
 Therefore, for all $x \in Q$ it has: 
 
 $$
-{\small
+{\footnotesize
 \begin{aligned}
     \widetilde{\mathcal M}(x; y) - \widetilde{\mathcal M}(Ty; y) - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
     &\ge 0
@@ -679,7 +528,7 @@ $$
     \left(
         F(x) - F(Ty) 
         + \frac{\overline L}{2}\Vert x - y\Vert^2
-        - \frac{\overline L}{2}\Vert x - Ty\Vert^2 
+        - \frac{\overline L}{2}\Vert y - Ty\Vert^2 
     \right)
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
     +
@@ -690,7 +539,7 @@ $$
     \left(
         F(x) - F(Ty) 
         + \frac{\overline L}{2}\Vert x - Ty + Ty - y\Vert^2
-        - \frac{\overline L}{2}\Vert x - Ty\Vert^2 
+        - \frac{\overline L}{2}\Vert y - Ty\Vert^2 
     \right)
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
     + D_f(Ty, y) - D_f(x, y)
@@ -700,67 +549,72 @@ $$
     \left(
         F(x) - F(Ty) 
         - \overline L\langle x - Ty, y - Ty\rangle
-        + \frac{\overline L}{2}\Vert y - Ty\Vert^2
+        + \frac{\overline L}{2}\Vert x - Ty\Vert^2
     \right)
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
     + D_f(Ty, y) - D_f(x, y)
-    &\ge 0. 
+    &\ge 0
+    \\
+    \iff 
+    \left(
+        F(x) - F(Ty) 
+        - \overline L\langle x - Ty, y - Ty\rangle
+    \right)
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty, y) - D_f(x, y)
+    &\ge 0.
 \end{aligned}
 }
 $$
 
-The chain of equivalent inequality ends here, re-organizing it this is what we get: 
+The chain of equivalent inequalities ends here, re-organizing it this is what we get: 
 
 $$
 \begin{aligned}
+    0 &\le 
     F(x) - F(Ty) 
     - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
-    &\ge 
-    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 + D_f(Ty, y) - D_f(x, y)
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty, y) - D_f(x, y)
     \\
-    &\ge 
-    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 - \frac{\mu}{2}\Vert y - Ty\Vert^2 - D_f(x, y). 
+    &\le 
+    F(x) - F(Ty) 
+    - \overline L\langle x - Ty, y - Ty\rangle
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + D_f(Ty, y) + \frac{\mu}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
 
-With the assumption that $F$ is $\mu$ weakly convex and differentiable, it's hard to know what is the Lipschitz constant of the gradient. 
-So, let's now assume that the Bregman divergence of the function satisfies 2-sided Lipschitz conditions with different constant so for all $x, y \in \R^n$: 
+On the last inequality, we used the fact that $f$ is $\mu$ weakly strongly convex, $D_f(x, y) \ge - \mu/2\Vert x - y\Vert^2$. 
+Let's assume that the Upper Lipschitz smoothness constant $K$ exists so $D_f(x, y) \le K/2\Vert x - y\Vert^2$ for all $x$, which completes an upper bound: 
 
 $$
 \begin{aligned}
-    \frac{-\mu}{2}\Vert x - y\Vert^2
-    \le D_f(x, y) \le \frac{K}{2}\Vert x - y\Vert^2. 
+    0
+    &\le 
+    F(x) - F(Ty) 
+    - \overline L\langle x - Ty, y - Ty\rangle
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + \frac{K}{2}\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2
+    \\
+    &= 
+    F(x) - F(Ty) 
+    - \overline L\langle x - y + y - Ty, y - Ty\rangle
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + \frac{K}{2}\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2
+    \\
+    &= 
+    F(x) - F(Ty) 
+    - \overline L\langle x - y, y - Ty\rangle
+    + \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + \left(
+        \frac{K}{2} - \overline L
+    \right)\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
 
-Using the bounds we have the inequality: 
 
-$$
-\begin{aligned}
-    F(x) - F(Ty) 
-    - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
-    &\ge 
-    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 + D_f(Ty, y) - D_f(x, y)
-    \\
-    \implies 
-    F(x) - F(Ty) 
-    - \overline L\langle x - Ty, y - Ty\rangle
-    + \frac{\overline L}{2}\Vert y - Ty\Vert^2
-    &\ge 
-    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 - \frac{\mu}{2}\Vert y - Ty\Vert^2 - \frac{K}{2}\Vert x - y\Vert^2
-    \\
-    \iff 
-    F(x) - F(Ty) - \overline L\langle x - Ty, y - Ty\rangle
-    &\ge 
-    \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
-    - \frac{\overline L + \mu}{2}\Vert y - Ty\Vert^2
-    - \frac{K}{2}\Vert x - y\Vert^2. 
-\end{aligned}
-$$
 
-First $\implies$ substitutes lower bounds for the Bregman Divergences. 
 
 
 #### **Corollary | When smooth part is convex**
@@ -774,6 +628,13 @@ $$
 \begin{aligned}
     \frac{\sigma}{2}\Vert x - y\Vert^2 
     \le D_f(x, y) \le \frac{K}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+Substituting $\mu = - \sigma$, the inequality becomes 
+
+$$
+\begin{aligned}
 \end{aligned}
 $$
 

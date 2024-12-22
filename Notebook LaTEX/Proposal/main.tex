@@ -67,8 +67,9 @@
     In the expository writing by Walkington \cite{noel_nesterovs_nodate}, a variant for of accelerated gradient method for strongly convex function $f$ is discussed. 
     We had two lingering questions after reading it. 
     \begin{enumerate}
-        \item Do there exist a unified description for the convergence for both variants of the algorithm. 
-        \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$. 
+        \item Do there exist a unified description for the convergence for both variants of the algorithms?
+        \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$?
+        \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
     The good news is we have definitive answers for both questions by our own efforts of research. 
     Section \ref{sec:unify-nes-acceleration}, \ref{sec:spectral-momentum} are our ongoing research which present the answers to the questions. 
@@ -81,12 +82,10 @@
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
-    It's based on a series of papers (CITATION HERE) in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
+    \todo{Add citations here. }{It's based on a series of papers} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
     We will point out potential future direction of research of Catalyst acceleration. 
     \par
     Section \ref{sec:pep}, \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in  nonsmooth optimization frontier research where progress and impacts can be made.  
-
-
 
 
 
@@ -99,34 +98,88 @@
         \todoinline{
             Definitions: 
             \begin{enumerate}
-                \item The proximal gradient operator. 
-                \item The proximal mapping operator. 
-                \item The Bregman Divergence of function. 
-                \item Strong convexity. 
+                \item [$\square$]Strong convexity of a function. 
+                \item [$\square$]The proximal gradient operator. 
+                \item [$\square$]The proximal mapping operator. 
+                \item [$\square$]The Bregman Divergence of function. 
             \end{enumerate}
-            Lemma: 
+            Lemmas: 
             \begin{enumerate}
-                \item Quadratic growth conditions of a strongly convex function. 
+                \item [$\square$]Quadratic growth conditions of a strongly convex function. 
+                \item [$\square$]The proximal gradient envelope.
+                \item [$\square$]A property of gradient mapping. 
             \end{enumerate}
             Theorems: 
             \begin{enumerate}
-                \item The proximal gradient inequality, for additive composite objective where the smooth part is $\mu \ge 0$ strongly convex. 
+                \item [$\square$]The proximal gradient inequality, for additive composite objective where the smooth part is $\mu \ge 0$ strongly convex. 
             \end{enumerate}
         }
+        
     \subsection{Fundamentals in non-convex analysis}
 
 \section{Unifying variants of Nesterov's accelerated methods}\label{sec:unify-nes-acceleration}
+    \todoinline{
+        This section is really about stating the results of the draft paper and no explaining will be done here. 
+        Along with the content of the draft paper, we will also explain the origin and inspirations of the ideas. 
+    }
+    \todoinline{
+        Definitions:
+        \begin{enumerate}
+            \item Method of Nesterov's estimating sequence.
+            \item R-WAPG Sequence.
+            \item R-WAPG algorithm .
+            \item R-WAPG Intermediate form.
+            \item R-WAPG Similar triangle form. 
+            \item R-WAPG Momentum form. 
+        \end{enumerate}
+    }
+    \todoinline{
+        Theorems: 
+        \begin{enumerate}
+            \item Convergence of the R-WAPG algorithm.
+            \item R-WAPG First equivalent form. 
+            \item R-WAPG Second equivalent form.
+            \item R-WAPG Third equivalent form.
+            \item Convergence with constant momentum. 
+            \item Convergence with Chambolle, Dossal Sequences.
+        \end{enumerate}
+        Lemmas
+        \begin{enumerate}
+            \item Inverted FISTA sequence is a R-WAPG sequence.
+            \item Constant R-WAPG sequence.
+        \end{enumerate}
+    }
 
 
 \section{Method Free R-WAPG}\label{sec:spectral-momentum}
-
+    \todoinline{
+        Algorithm, and results of numerical experiments with their descriptions. 
+    }
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
+    \todoinline{\noindent
+        Literatures review of the topics in Catalyst acceleration method. 
+        Here is a list of topics: 
+        \begin{enumerate}
+            \item The original accelerated PPM. 
+            \item The Catalyst with weakly convex objectives. 
+        \end{enumerate}
+        After the literature reviews of the core literatures, move on and state new research directions and open problems.     
+    }
+    \todoinline{\noindent
+        A list of relevant literatures: 
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
+    }
+
 
 \section{Performance estimation problems}\label{sec:pep}
 
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
+    
 
-\section{Nestrov's acceleration in the non-convex case and momentum in general}\label{sec:nes-acc-ncnvx}
+\section{Nestrov's acceleration in the non-convex case}\label{sec:nes-acc-ncnvx}
+
 
 \section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satellite remote sensing imagery}
 
