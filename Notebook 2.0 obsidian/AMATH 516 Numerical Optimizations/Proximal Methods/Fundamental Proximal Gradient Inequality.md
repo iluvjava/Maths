@@ -297,7 +297,8 @@ This should make sense since the linearizing the smooth part make the model func
 **Proof**
 
 The proof is direct. 
-The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property) for all $x \in Q$: 
+The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property). 
+Using only this implications of strong convexity, we have for all $x \in Q$: 
 
 $$
 {\small
