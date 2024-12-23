@@ -8,3 +8,4 @@ subgradient
 Nestrov
 Subdifferential
 Subgradient
+Infeasibility

@@ -17,7 +17,7 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 3. The optimal value of $(P)$ is defined to be $\mu:= \inf\{f(x) \;|\; g_i(x)\le 0 \; \forall i \in I\}$. 
 4. When we say that $x$ solves $(P)$ we mean that the minimum is achieved and, all the constraints are satisfied. 
 
-**Theorem | KKT Necessary Conditions**
+#### **Theorem | KKT Necessary Conditions**
 > let $f, g_1, \cdots, g_m$ all be convex and that $x^+$ solves $(P)$, assume that the *[Slater's Condition](https://en.wikipedia.org/wiki/Slater%27s_condition)* holds i.e: $\exists s\in X\;\forall i \in I\; g_i(s) < 0$, then there exists the Lagrange multipliers $\lambda_1 \ge 0, \cdots, \lambda_m \ge 0$ such that the KKT conditions: 
 > $$
 > \begin{aligned}
@@ -31,11 +31,15 @@ In simple terms, KKT conditions characterize the optimal solution to a constrain
 
 **Observations**: 
 
-The convexity of the function $g_i(x)$ here helps engineering the convexity into the constraints. For example, given any convex function $g_i(x)$, $g_i(x) \le 0$ defines the level set of the function $g_i$. Then, we have the conditions $\partial g_i(x^+)$ transformed into $N(x^+| \text{lev}_{0}(g_i))$, which it then says that $\partial f(x^+)\in - N(x^+| \text{lev}_{0}(g_i))$. The Slater point condition then translate to the fact that $\bigcap_{i\in I}\text{ri.dom}(g_i)\neq 0$, the strong conditions for the subgradient sum rule, this is relevant to the first condition: "stationarity" of the Fritz John conditions due to a use of the strong subgradient sum. 
+The convexity of the function $g_i(x)$ here helps adding the convexity into the constraints. 
+For example, given any convex function $g_i(x)$, $g_i(x) \le 0$ defines the level set of the function $g_i$. 
+Then, the level set interpretation of subgradient transform $\partial g_i(x^+)$ into $N(x^+| \text{lev}_{0}(g_i))$. 
+So the stationarity condition says that $\partial f(x^+)\subseteq - N(x^+| \text{lev}_{0}(g_i))$. 
+The Slater point condition then translate to the fact that $\bigcap_{i\in I}\text{ri.dom}(g_i)\neq 0$, the strong conditions for the subgradient sum rule, this is relevant to the first condition: "stationarity" of the Fritz John conditions due to a use of the strong subgradient sum. 
 
 The necessary conditions can be seemed as s special case of the Fritz John conditions where the Slater point conditions allowed us to set $\alpha_0 = 0$, deriving a new conditions, removing the "not all zeros" assumptions for the Fritz John Coefficients. 
 
-**Theorem: KKT Sufficient Conditions**
+#### **Theorem | KKT Sufficient Conditions**
 > Suppose that all functions $f, g_i, \cdots, g_m$ are convex and that $x\in X, \lambda \in \mathbb R^m$ and the following list of conditions are satisfied: 
 > 1. $\forall i \in I\; g_i(x)\le 0$, primal feasibility;
 > 2. $\forall i\in I\; \lambda_i \ge 0$, dual feasibility;
@@ -48,7 +52,7 @@ The necessary conditions can be seemed as s special case of the Fritz John condi
 
 Slater's conditions are not stated here, this establishes the converse of the statement "KKT Necessary Conditions". It's probably hidden somewhere as a derivative of the new conditions added to make the converse of the statement true. 
 
-**Corollary: KKT Full Conditions**
+#### **Corollary | KKT Full Conditions**
 > If $f, g_1, \cdots, g_m$ are all convex and the Slater's conditions holds , then $x^+$ solves $(P)$ if and only if there exists $\lambda\in \mathbb R_m$ such that: 
 > 1. $\forall i \in I\; g_i(x)\le 0$, primal feasibility;
 > 2. $\forall i\in I\; \lambda_i \ge 0$, dual feasibility;
@@ -69,7 +73,7 @@ From the Fritz John conditions:
 
 $$
 \begin{aligned}
-    & \exists\; \alpha_1 \ge 0 \forall i \in I: \exists i \in I\; \alpha_i > 0 
+    & \exists\; \alpha_1 \ge 0 \; \forall i \in I: \exists\; i \in I\; \alpha_i > 0 
     & \quad (1)
     \\
     & \mathbf 0 \in \alpha_0 \partial f(x) + \sum_{i \in I}^{}\alpha_i \partial g_i(x) 
