@@ -292,7 +292,7 @@
             \begin{remark}
                 This lemma still holds for non-convex $f$. 
             \end{remark}
-            \begin{lemma}[The proximal gradient inequality]
+            \begin{lemma}[The proximal gradient inequality]\label{thm:prox-grad-ineq}
                 Take $F:= f + g$ as defined in this section. 
                 Fix any $y \in \RR^n$, then for all $x$, the proximal gradient inequality is true: 
                 \begin{align*}
@@ -316,7 +316,9 @@
     \todoinline{
         Definitions:
         \begin{enumerate}
-            \item Method of Nesterov's estimating sequence.
+            \item \st{Method of Nesterov's estimating sequence.}
+            \item R-WAPG stepwise definition 
+            \item R-WAPG stepwise convergence claim
             \item R-WAPG Sequence.
             \item R-WAPG algorithm.
             \item R-WAPG Intermediate form.
@@ -342,7 +344,7 @@
     }
     This section is based on the theoretical aspects of our draft paper. 
     It will introduce major results and claims achieved during our research in each of the subsections. 
-    All theorems and claims stated in this section have proofs. 
+    All theorems and claims stated in this section have proofs in the draft paper. 
     The proofs haven't been carefully verified by people other than the author yet. 
     We will start introducing the context and ideas for our research next. 
     \par
@@ -384,13 +386,50 @@
     All of these seemingly raises a crucial question: ``Is it possible to describe something about the NAG algorithm for a set of sequence that is non-traditional?''.
     Or rephrase it more clearly: ``What is the weakest description of momentum sequence $(\theta_k)$ such that we can still claim something of value about the NAG algorithm?''
 
-    \subsection{Our Contributions}
-
+    \subsection{Our Contributions, organizations}
+        Our contributions are two folds, theoretical and practical. 
+        Our results are based the assumption $F = f + g$ where $g:R^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:nag_example} and showed an upper bound of the optimal gap. 
+        Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
+        \begin{align*}
+            \alpha_0 &\in (0, 1], 
+            \\
+            \alpha_k &\in (\mu/L, 1) \quad (\forall k \ge 1), 
+            \\
+            \rho_k &:= \frac{\alpha_{k + 1}^2 - (\mu/L)\alpha_{k + 1}}{(1 - \alpha_{k + 1})\alpha_k^2} \quad \forall (k \ge 0). 
+        \end{align*}
+        Our first main result shows that if $\theta_{k + 1} = (\rho_k\alpha_k(1 - \alpha_k)/(\rho_k\alpha_k^2 + \alpha_{k + 1}))$, using the R-WAPG we proposed in Definition \ref{def:wapg} with Proposition \ref{prop:wagp-convergence}, \ref{prop:r-wapg-momentum-repr}, we can show that the gap $F(x_k) - F(x^*)$ is bounded by:
+        \begin{align*}
+            \mathcal O\left(
+                \left(
+                    \prod_{i = 0}^{k - 1} \max(1, \rho_{k})
+                \right)
+                \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
+            \right). 
+        \end{align*}
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
+        When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
+        In Theorem \ref{thm:fixed-momentum-fista}, it demonsrate that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
+        \par
+        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
+        The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
+        We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
+        \par
+        Organization now follows. 
+        \todoinline{Finish the organizations here after this section is finished. }
+    \subsection{Building Blocks of R-WAPG}
+        
+    \subsection{R-WAPG Sequence and R-WAPG algorithm}
+        
+    \subsection{Equivalent forms of R-WAPG algorithm}
+    
+    \subsection{The descriptive power of R-WAPG on existing variants}
 
 \section{Method Free R-WAPG}\label{sec:spectral-momentum}
     \todoinline{
         Algorithm, and results of numerical experiments with their descriptions. 
     }
+
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
     \todoinline{\noindent
         Literatures review of the topics in Catalyst acceleration method. 

@@ -72,7 +72,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \subsection{Contributions}
         Our contributions are two folds, theoretical and practical. 
-        Our results are based the assumption $F = f + g$ where $g:Q \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        Our results are based the assumption $F = f + g$ where $g:\RR^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
         \par
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
@@ -98,11 +98,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \prod_{i = 1}^{k} \left(1  - \alpha_i\right)
             \right). 
         \end{align*}
-        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate. 
-        And when $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}, which is an optimal algorithm for a strongly convex $F$. 
-        R-WAPG gives the convergence claim, and it's consistent with the literatures. 
+        Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
+        When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
+        In Theorem \ref{thm:fixed-momentum-fista}, it demonsrate that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
         \par
-        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG''. 
+        Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
     \subsection{Prior works}
@@ -141,7 +141,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     Define the proximal gradient operator and gradient mapping operator:  $T_L := [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
     The proximal gradient operator $T_L$ admits 
     \begin{align*}
-        T_Ly &= \argmin_x \left\lbrace
+        T_Ly &= \argmin_{x \in \RR^n} \left\lbrace
             g(x) + \langle \nabla f(y), x\rangle + L/2\Vert x - y\Vert^2
         \right\rbrace,
         \\
@@ -179,7 +179,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
         \end{align*}
-        The equality is trivially true when $x \in \RR \setminus \dom g$. 
+        The equality is trivially true when $x \in \RR^n \setminus \dom g$. 
     \end{proof}
     \begin{remark}
         This is true not just for fixed $L$ that is the Lipschitz smoothness constant of $f$, it's true for all value of $L$. 
@@ -1990,7 +1990,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 
     \end{proof}
 
-    \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\;\\
+    \begin{theorem}[FISTA first variant Chambolle, Dossal 2015]\label{thm:r-wapg-on-cham-doss}\;\\
         Fix arbitrary $a \ge 2$.
         Define $\forall k \ge 1$ the sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ by 
         \begin{align*}
