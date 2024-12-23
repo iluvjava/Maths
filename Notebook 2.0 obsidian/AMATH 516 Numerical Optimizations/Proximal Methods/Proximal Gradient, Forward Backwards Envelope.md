@@ -45,7 +45,7 @@ Here, we derive the proximal gradient algorithm using the idea of upper Envelope
 
 **Observations**
 
-$\mathcal M_\beta(\cdot ; x)$ is strongly convex, recall content from ([[Strong Convexity, Equivalences and Implications]]). 
+$\mathcal M_\beta(\cdot ; x)$ is $\beta$ strongly convex, recall content from ([[Strong Convexity, Equivalences and Implications]]). 
 
 **Remarks**
 
@@ -472,6 +472,11 @@ $$
 
 Where $G_t(x) = \beta(x - x^+)$, it can be interpreted as the step size, or the error of the fixed point iterations on the prox gradient operator. Take notice that, if $x^+ = x$, it would mean current $x^+, x$ are fixed point of the proximal gradient operator, then the optimal solution is satisfied because zero belongs to the subgradient of $g(x) + h(x)$. 
 
+
+**Remarks**
+
+Convexity not assumed. 
+However, to allow the same argument for non-convexity, the definition of Subgradient requires refinement, i.e: the Limiting subgradient instead of the convex subgradient. 
 
 ---
 ### **A Monotone Method**

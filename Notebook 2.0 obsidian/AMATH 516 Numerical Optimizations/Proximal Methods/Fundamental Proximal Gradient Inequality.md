@@ -8,7 +8,7 @@ This section introduces a crucial inequality that is widely used for the converg
 
 **Assumption**
 
-1. $h = f + g$ where $g: Q \rightarrow \infty$, $f$ is convex and $L$-Lipschitz smooth. 
+1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ is convex and $L$-Lipschitz smooth. 
 
 **Organizations**
 
@@ -500,6 +500,27 @@ This can be used to phrase a new theorem that is more general.
 The previous proof can be reused because convexity is never involved in the previous proof for the equality. 
 
 #### **Lemma | The proximal gradient inequality**
+> Let $F:= f + g$ where $g: Q\rightarrow \overline \R$ is convex, $f:\R^n \rightarrow \R$ is $\mu$ weakly convex and $K$ Lipschitz upper smooth. 
+> Fix any $y \in \R^n$, assume the proximal linear model function is given by: 
+> $$
+> \begin{aligned}
+>     \mathcal M(\cdot; y) = 
+>     g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{\overline L}{2}\Vert x - y\Vert^2, 
+> \end{aligned}
+> $$
+> Where $\overline L > \mu$. 
+> Then for all $x \in \R^n$, we have the inequality: 
+> $$
+> \begin{aligned}
+>     0 &\le 
+>     F(x) - F(Ty) 
+>     - \overline L\langle x - y, y - Ty\rangle
+>     + \frac{\mu}{2}\Vert x - Ty\Vert^2
+>     + \left(
+>         \frac{K}{2} - \overline L
+>     \right)\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2. 
+> \end{aligned}
+> $$
 
 
 **Proof**
@@ -612,8 +633,6 @@ $$
     \right)\Vert y - Ty\Vert^2 + \frac{\mu}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
-
-
 
 
 

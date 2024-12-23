@@ -10,48 +10,51 @@
 % [ ]: Fill in the abstract. 
 % [ ]: Fill/change in AMS mathematics subject classification code, and the keywords. 
 
-\begin{document}
-
 \title{
     {
         \fontfamily{ptm}\selectfont 
         First Order Nonsmooth Optimization: 
-        Algorithm Design, Analysis, Convergence, and Applications
+        Algorithm Design, Variational analysis, and Applications
     }
-    }
-
+}
 \author{
-    \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
-    The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
-    E-mail:  \texttt{alto@mail.ubc.ca}.}~Hongda Li
+    % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
+    % The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
+    % E-mail:  \texttt{alto@mail.ubc.ca}.}~Hongda Li
     % \thanks{Department of Mathematics, I.K. Barber Faculty of Science,
     % The University of British Columbia, Kelowna, BC Canada V1V 1V7. 
     % E-mail:  \texttt{shawn.wang@ubc.ca}.}~ and~Author Name 2
+    Hongda Li\\[3ex]\\ Department of Mathematics\\
+	University of British Columbia,\\
+	Okanagan Campus.
 }
-
 \date{\today}
 
-\maketitle
-
+\begin{document}
+% \vspace{10ex}
 % \vskip 8mm
 
-\begin{abstract} 
-    \noindent
-    The research proposal focuses on the theories and practice in solving nonsmooth optimization. 
-    The theme of proposal highlight topics of interests that emphasize the computations and applications aspect of algorithms that exhibits both practical and theoretical importance. 
-    We summarize our ongoing research in unifying Nesterov type accelerated proximal gradient method and proposes our Free R-WAPG method. 
-    We survey literatures under the topic of Catalyst Meta Acceleration framework used in accelerating variance reduced methods in the settings of Data Science and Machine Learning. 
-    Furthermore, we present literatures and progress in topics such as Performance Estimation Problem, Inexact Proximal Point, acceleration without convexity. 
-    At the end there is a section summarizing a method we developed for tree species classifications using Sentinel-2 satellite remote sensing data using big data analytics by extract spectral signatures of ground vegetation covers. 
+\maketitle
+\tableofcontents
+\pagebreak
 
 
-\end{abstract}
+
+% \begin{abstract} 
+%     \noindent
+%     The research proposal focuses on the theories and practice in solving nonsmooth optimization. 
+%     The theme of proposal highlight topics of interests that emphasize the computations and applications aspect of algorithms that exhibits both practical and theoretical importance. 
+%     We summarize our ongoing research in unifying Nesterov type accelerated proximal gradient method and proposes our Free R-WAPG method. 
+%     We survey literatures under the topic of Catalyst Meta Acceleration framework used in accelerating variance reduced methods in the settings of Data Science and Machine Learning. 
+%     Furthermore, we present literatures and progress in topics such as Performance Estimation Problem, Inexact Proximal Point, acceleration without convexity. 
+%     At the end there is a section summarizing a method we developed for tree species classifications using Sentinel-2 satellite remote sensing data using big data analytics by extract spectral signatures of ground vegetation covers. 
+
+
+% \end{abstract}
 % \noindent{\bfseries 2010 Mathematics Subject Classification:}
 % Primary 65K10, 90c25, 90C30; Secondary 65Y20. 
 % \noindent{\bfseries Keywords: } Non-convex Optimizations, Proximal Point. 
 
-\newpage
-\tableofcontents
 
 \section{Introduction}
     Let $\RR^n$ be the ambient space. We consider 
@@ -71,7 +74,7 @@
         \item Is it possible to attain faster convergence rate without knowledge about the strong convexity of function $f$?
         \item Is it possible to describe the convergence of function value for momentum sequences that are much weaker than the Nesterov's rule? 
     \end{enumerate}
-    The good news is we have definitive answers for both questions by our own efforts of research. 
+    The good news is we have definitive answers for all questions by our own efforts of research. 
     Section \ref{sec:unify-nes-acceleration}, \ref{sec:spectral-momentum} are our ongoing research which present the answers to the questions. 
     \par
     In Section \ref{sec:unify-nes-acceleration}, we proposed the method of ``Relaxed Weak Accelerated Proximal Gradient (R-WAPG)'' as the foundation to describe several variants of Accelerated proximal gradient method in the literatures. 
@@ -82,44 +85,232 @@
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
-    \todo{Add citations here. }{It's based on a series of papers} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
+    \todo{Add citations here. }{\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
     We will point out potential future direction of research of Catalyst acceleration. 
     \par
     Section \ref{sec:pep}, \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in  nonsmooth optimization frontier research where progress and impacts can be made.  
-
+    \subsection{Theme of the research}
+        This section specify a theme of the research in this proposal. 
+        Out first objective is to explore the Goldilocks zones between these topics: theories of variational analysis, design of continuous optimization algorithm and applications in sciences, engineering, and statistics.  
+        Our second objective is to identify the ``chemistry" occuring between properties of functions and the designs of continuous optimizations algorithm and how it impacts the convergence and behaviors of the algorithms. 
 
 
     
 \section{Preliminaries}
     \todoinline{
-        Assumptions: Additive composite type convex objective until specified.  
+        Clarify: Notations,
+        Organizations. 
     }
-    \subsection{Fundamentals in convex analysis}
-        \todoinline{
+    This section contains the basics of contents from convex optimization, and variational analysis. 
+    \begin{enumerate}
+        \item $\overline \RR := \RR \cup \{\infty, -\infty\}$
+    \end{enumerate}
+    \subsection{Fundamentals in non-convex analysis}
+        \todoinline{\noindent
+            We are in $\RR^n$, and the weakest assumption we are making for the objective function is Local Lipschitz continuity. 
             Definitions: 
             \begin{enumerate}
-                \item [$\square$]Strong convexity of a function. 
-                \item [$\square$]The proximal gradient operator. 
-                \item [$\square$]The proximal mapping operator. 
-                \item [$\square$]The Bregman Divergence of function. 
+                \item[$\blacksquare$] Local Lipschitz continuity. 
+                \item[$\square$]Regular subgradient. Remember to cite. 
+                \item[$\square$] Limiting subgradient. Remember to cite. 
+                \item[$\blacksquare$] Weakly convex function. 
+                \item[$\blacksquare$]The Bregman Divergence of function. 
+            \end{enumerate}
+            Take Limiting, Regular subgradient definitions from Cui, Pong's book, Definition 4.3.1. 
+        }
+        Let the ambient space be $\RR^n$ equipped with inner product and 2-norm. 
+        Let $O$ be an open subset of $\RR^n$, the weakest assumption we are making for the objective function $F: O \subseteq \RR^n \rightarrow \RR$ for optimization problem is Local Lipschitz Continuity. 
+        The assumption of local Lipschitz continuity is weak enough to describe most problems in applications, and strong enough to avoid most pathologies in analysis. 
+
+        \begin{definition}[Local Lipschitz continuity]
+            Let $F: O \subseteq \RR^n \rightarrow \RR$ be Locally Lipschitz and $O$ is an open set. 
+            Then for all $\bar x \in O$, there exists a Neighborhood: $\mathcal N(\bar x)$ and $K \in \RR$ such that for all $x, y \in \mathcal N(\bar x)$: $|F(x) - F(y)| \le K \Vert x - y\Vert$. 
+        \end{definition}
+        \begin{definition}[Regular subgradient]
+            Let $F: O \subseteq \RR^n \rightarrow \RR$ be locally Lipschitz and $\bar x \in O$. 
+            The regular subdifferential at $\bar x$ is defined as 
+            \begin{align*}
+                \widehat \partial F(\bar x) := 
+                \left\lbrace
+                    v \in \RR^n \left| 
+                        \liminf_{\bar x \neq x\rightarrow \bar x}
+                        \frac{F(x) - F(\bar x) - \langle v, x - \bar x\rangle}{\Vert x - \bar x\Vert} 
+                        \ge 0
+                    \right.
+                \right\rbrace
+            \end{align*}
+        \end{definition}
+        \begin{definition}[Limiting subgradient]
+            Let $F: O \subseteq \RR^n \rightarrow \RR$ be locally Lipschitz and $\bar x \in O$. 
+            The limiting subdifferential at $\bar x$ is defined as 
+            \begin{align*}
+                \partial F(\bar x) := 
+                \left\lbrace
+                    v \in \RR^n \left| 
+                        \exists x_k \rightarrow \bar x, v_k \rightarrow v: 
+                        v_k \in \widehat \partial F(x_k) \;\forall k \in \mathbb N
+                    \right.
+                \right\rbrace. 
+            \end{align*}
+        \end{definition}
+        \begin{definition}[Weakly convex function]
+            $F: \RR^n \rightarrow \overline \RR$ is $\mu$ weakly convex if and only if $F + \frac{\mu}{2}\Vert \cdot\Vert^2$ is convex. 
+        \end{definition}
+        \begin{definition}[Bregman divergence]
+            Let $F: O \subseteq \RR^n \rightarrow \RR$ be a differentiable function. 
+            Then the Bregman divergence of $F$ is defined as: 
+            \begin{align*}
+                D_F(x, y): O \times \dom(\partial F) \rightarrow \RR
+                := F(x) - F(y) - \langle \nabla F(y), x - y\rangle. 
+            \end{align*}
+        \end{definition}
+    \subsection{Fundamentals in convex analysis}
+        \todoinline{
+            Introduce 
+            \begin{enumerate}
+                \item[$\blacksquare$] Convexity, 
+                \item[$\blacksquare$] convex subgradient, 
+                \item[$\blacksquare$] Lipschitz smoothness. 
+            \end{enumerate}
+            Definitions: 
+            \begin{enumerate}
+                \item [$\blacksquare$]Strong convexity of a function. 
+                \item [$\blacksquare$]The proximal gradient operator. 
+                \item [$\blacksquare$]The proximal mapping operator. 
             \end{enumerate}
             Lemmas: 
             \begin{enumerate}
-                \item [$\square$]Quadratic growth conditions of a strongly convex function. 
-                \item [$\square$]The proximal gradient envelope.
-                \item [$\square$]A property of gradient mapping. 
-            \end{enumerate}
-            Theorems: 
-            \begin{enumerate}
-                \item [$\square$]The proximal gradient inequality, for additive composite objective where the smooth part is $\mu \ge 0$ strongly convex. 
+                \item [$\blacksquare$]Quadratic growth conditions of a strongly convex function. 
             \end{enumerate}
         }
+        This section introduces the classics and basics of convex analysis. 
+        Define $F$ to be convex in this section. 
+        When $F$ is convex, the limiting subgradient and the regular subgradient reduced to the following definition:
+        \begin{align*}
+            \partial F(x) := \left\lbrace
+                v \in \RR^n \left|
+                    (\forall y \in \RR^n)\;  F(y) - F(x)  \ge \langle v, y - x\rangle
+                \right.
+            \right\rbrace. 
+        \end{align*}
+        A convex function is locally Lipschitz in the relative interior of its domain, denoted as $\reli(\dom(F))$. 
+        So it has $\reli(\dom F)\subseteq \dom(\partial F) \subseteq \dom F$. 
+        \par
+        When we say $F:\RR^n \rightarrow \RR$ is $L$ Lipschitz smooth function, it means that there exists $L$ such that for all $x\in \RR^n, y \in \RR^n$, it has: 
+        \begin{align*}
+            \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y\Vert. 
+        \end{align*}
+        This condition is stronger than differentiability. 
+        When $F$ convex, it has descent lemma: 
+        \begin{align*}
+            (\forall x \in \RR^n)(\forall y \in \RR^n): 0 \le 
+            F(x) - F(y) - \langle \nabla f(y), x - y\rangle \le \frac{L}{2}\Vert x - y\Vert^2. 
+        \end{align*}
+        When $F$ is convex, the converse holds. 
+        The definitions that follow narrow things further for future discussions. 
+        \begin{definition}[Strong convexity]
+            A function $F:\RR^n \rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex if and only if for any fixed $y \in \dom(\partial F)$, we have for all $x\in \RR^n$: 
+            \begin{align*}
+                (\forall v \in \partial F(x))\quad 
+                F(x) - F(y) \ge \langle v, x - y\rangle + \frac{\mu}{2}\Vert x - y\Vert^2. 
+            \end{align*}
+        \end{definition}
+        \begin{lemma}[Quadratic growth from strong convexity]
+            If $F$ is $\mu \ge 0$ strongly convex, $\bar x$ is a minimizer of $F$. 
+            Then for all $x \in \RR^n$
+            \begin{align*}
+                F(x) - F(\bar x) \ge \frac{\mu}{2}\Vert x - \bar x\Vert^2. 
+            \end{align*}
+        \end{lemma}
+        \begin{remark}
+            The minimizer is unique whenever $\mu > 0$. 
+            For contradiction, assume $x$ is another minimizer, then $F(x) \neq F(\bar x)$, which is a direct contradiction. 
+        \end{remark}
         
-    \subsection{Fundamentals in non-convex analysis}
+        \subsubsection{Smooth, nonsmooth additive composite}\label{sssec:additive-composite}
+            \todoinline{\noindent
+                Introduce notations for the proximal gradient model function. 
+                Lemmas: 
+                \begin{enumerate}
+                    \item[$\blacksquare$] Proximal gradient envelope. 
+                    \item[$\blacksquare$] A property of gradient mapping. 
+                \end{enumerate}
+                Theorems: 
+                \begin{enumerate}
+                    \item[$\blacksquare$] The proximal gradient inequality. 
+                \end{enumerate}
+            }
 
-\section{Unifying variants of Nesterov's accelerated methods}\label{sec:unify-nes-acceleration}
-    \todoinline{
-        This section is really about stating the results of the draft paper and no explaining will be done here. 
+            In this section, we zoom in further. 
+            Suppose that $F:= f + g$ where $f:\RR^n \rightarrow \RR$ is convex, $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: \RR\rightarrow \overline \RR$ is convex. 
+            To make the discussion simpler, fix any $\beta \ge 0$ we define the following model functions as a $\RR^n \times \RR^n \rightarrow \overline \RR$: 
+            \begin{align*}
+                \widetilde{\mathcal M}^{\beta^{-1}}
+                (x; y)
+                &:= 
+                g(x) + f(y) + \langle \nabla f(y), x - y\rangle
+                + \frac{\beta}{2}\Vert x - y\Vert^2,
+                \\
+                \mathcal M^{\beta^{-1}}(x; y) 
+                &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
+            \end{align*}
+            Under convexity assumption in this section, both $\widetilde {\mathcal M} (\cdot; y),  {\mathcal M}(\cdot;y )$ is at least $\beta \ge 0$ strongly convex. 
+            \begin{definition}[Proximal gradient operator]
+                Suppose that $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ is convex and $f: \RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth function.
+                Define the proximal gradient operator $T_L$ on all $y \in \RR^n$: 
+                \begin{align*}
+                    T_L y := \argmin_{x \in \RR^n} \left\lbrace
+                        g(x) + f(y) + \langle \nabla f(y), x - y\rangle 
+                        + \frac{L}{2}\Vert x- y \Vert^2
+                    \right\rbrace. 
+                \end{align*}
+            \end{definition}
+            \begin{remark}
+                Under the assumption of this section, the mapping $T_L$ is a single-valued mapping, it has domain on the entire $\RR^n$, and it's a $3/2$ averaged operator. 
+            \end{remark}
+            \begin{definition}[Gradient mapping operator]
+                Take $F := f + g$ as defined in this section. 
+                Define the gradient mapping operator $\mathcal G_L$ on all $y \in \RR^n$: 
+                \begin{align*}
+                    \mathcal G_L y:= L(y - T_L y). 
+                \end{align*}
+            \end{definition}
+
+            \begin{lemma}[Proximal gradient model function]\;\\
+                Take $\widetilde{\mathcal M}^{L^{-1}}, \mathcal M^{L^{-1}}$ as defined in this section, we will have for all $x \in \RR^n$ that: 
+                \begin{align*}
+                    \widetilde{\mathcal M}^{L^{-1}}(x; y)
+                    &= 
+                    \mathcal M^{L^{-1}}(x; y)- D_f(x, y).
+                \end{align*}
+            \end{lemma}
+            \begin{lemma}[A favorable property of gradient mapping]
+                Take $F:= f + g$ as defined in this section. 
+                Fix any $x \in \RR^n$. 
+                Then there exists $v \in \partial g(T_L x)$ such that $\mathcal G_L (x) = v + \nabla f(x)$. 
+            \end{lemma}
+            \begin{remark}
+                This lemma still holds for non-convex $f$. 
+            \end{remark}
+            \begin{lemma}[The proximal gradient inequality]
+                Take $F:= f + g$ as defined in this section. 
+                Fix any $y \in \RR^n$, then for all $x$, the proximal gradient inequality is true: 
+                \begin{align*}
+                    (\forall x \in \RR^n)\quad 
+                    h(x)  - h(Ty) - \langle L(y - Ty), x - y\rangle
+                    - \frac{\mu}{2}\Vert x - y\Vert^2 - \frac{L}{2}\Vert y - Ty\Vert^2 
+                    &\ge 0. 
+                \end{align*}
+            \end{lemma}
+            \begin{remark}
+                This lemma is proved in our draft paper. 
+            \end{remark}
+
+   
+
+\section{Unifying NAG, and weakening the sequence assumption for convergences}\label{sec:unify-nes-acceleration}
+    \todoinline{\noindent
+        This section is really about stating the results of the draft paper and no proofs will be done here. 
         Along with the content of the draft paper, we will also explain the origin and inspirations of the ideas. 
     }
     \todoinline{
@@ -127,7 +318,7 @@
         \begin{enumerate}
             \item Method of Nesterov's estimating sequence.
             \item R-WAPG Sequence.
-            \item R-WAPG algorithm .
+            \item R-WAPG algorithm.
             \item R-WAPG Intermediate form.
             \item R-WAPG Similar triangle form. 
             \item R-WAPG Momentum form. 
@@ -149,6 +340,48 @@
             \item Constant R-WAPG sequence.
         \end{enumerate}
     }
+    This section is based on the theoretical aspects of our draft paper. 
+    It will introduce major results and claims achieved during our research in each of the subsections. 
+    All theorems and claims stated in this section have proofs. 
+    The proofs haven't been carefully verified by people other than the author yet. 
+    We will start introducing the context and ideas for our research next. 
+    \par
+    Assume we want to solve a convex optimization problem: $\min_{x \in \RR^n} \{F(x)\}$ and $F: \RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth function. 
+    We made this assumption for now for a faster exposition. 
+    One of the prime candidate for solving the optimization problem is the Nesterov's Accelerated Gradient methods (NAG) finds extensions for nonsmooth function through the proximal gradient operator.
+    \todo{Cite Nesterov's original paper on this. }{\hl{Proposed back in 1983 the original Nesterov's acceleration method}} which uses the previous iterates to extrapolate the next iterate to evaluate the gradient. 
+    It's well known that, if minimizer $x^*$ exists for $F$, the method achieves a $\mathcal O(1/k^2)$ convergence rate on the objective value $F(x_k)$. 
+    \todo{Cite Chapter 2 of Nesterov's new book. }{\hl{This convergence rate is considered optimal for all class of $L$ Lipschitz smooth convex function}}. 
+    The convergence rate gurantee is faster than $\mathcal O(1/k)$ exibited by gradient descent. 
+    \par
+    We cover the algorithm briefly. 
+    Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
+    \begin{align}
+        & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
+        \\
+        & t_{k + 1} = 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right), 
+        \\
+        & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
+        \\
+        & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
+    \end{align}\label{eqn:nag_example}
+    Unfortunately, the algorithm sped up the convergence rate for all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
+    This drawback inspired a vast amount of literatures aims at improving, extending, and analyzing NAG. 
+    Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
+    \todo{Cite Beck 2009 FISTA. }{\hl{Beck and Toubelle}} mitigate the issue by restarting and showed that it still has a $\mathcal O(1/k^2)$ convergence rate, and it performs empirically better. 
+    \todo{Cite Necoara linear convergence, and Aujol 2024 Parameter free FISTA restart. }{\hl{See}} and references within for recent advancements in restarting accelerated proximal gradient algorithm.
+    \par
+    Restarting the algorithm is not the entire picture. 
+    Let $F:\RR^n \rightarrow \RR$ be a $L$ Lipschitz smooth and $\mu > 0$ function. 
+    As introduced previously, in \todo{Cite Walkington's education stuff here. }{\hl{Walkington's writing}}, he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\mu/L})^k)$. 
+    However, this variant has a fixed momentum parameter $\theta_{k + 1} = \frac{\sqrt{\kappa} - 1}{\sqrt{k} + 1}$ back in Equation \ref{eqn:nag_example}. 
+    \todo{Cite them.}{\hl{The same variant also appears in Beck's book as V-FISTA, and Nesterov's book as (2.2.22).}} 
+    \par
+    One final Mystery of the algorithm is the convergence of the iterates which also has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
+    Chambolle, Dossal showed that by choosing sequence $(t_k)_{k \ge 1}$ to be $t_k = $
+
+
+    \subsection{Our Contributions}
 
 
 \section{Method Free R-WAPG}\label{sec:spectral-momentum}
@@ -163,12 +396,18 @@
             \item The original accelerated PPM. 
             \item The Catalyst with weakly convex objectives. 
         \end{enumerate}
-        After the literature reviews of the core literatures, move on and state new research directions and open problems.     
+        After the literature reviews of the core literatures, move on and state new research directions and open problems. 
+        There are several directions for open problem: 
+        \begin{enumerate}
+            \item APPM method for monotone operators instead of just subgradient, whether the same framework exists in a greater context. 
+            \item Accelerated Proximal Bregman Method. 
+        \end{enumerate}  
     }
     \todoinline{\noindent
         A list of relevant literatures: 
         \begin{enumerate}
-            \item 
+            \item Güler's 1992 paper on Accelerated Proximal Point method. 
+            \item Lin's, and Payquette's three triology paper on Catalyst acceleration for convex, non-convex Variance reduced algorithm. 
         \end{enumerate}
     }
 

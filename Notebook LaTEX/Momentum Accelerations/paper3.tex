@@ -43,7 +43,6 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
 \section{Introduction}
     Suppose we are minimizing a differentiable convex function $F: \RR^n \rightarrow \RR$ for simplicity. 
     Let $F$ be $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex meaning that there exists $L \in \RR$ such that for all $x \in \RR^n, y\in \RR^n$ it has $\mu\Vert x - y\Vert\le \Vert \nabla F(x) - \nabla F(y)\Vert \le L \Vert x - y \Vert$. 
-
     \par 
     A good choice of a minimization algorithm is the Nesterov's acceleration scheme which was originally proposed in 1983 \cite{nesterov_method_1983}. 
     Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
@@ -63,7 +62,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \par
     This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
-    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it $\mathcal O(1/k^2)$ convergence rate is kept, and it performs empirically better. 
+    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has a $\mathcal O(1/k^2)$ convergence still, but it performs empirically better. 
     See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
     \par
     Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically. 
@@ -126,9 +125,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
        
 
 \section{Preliminaries}
-    Throughout, we define $F := f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: Q \rightarrow \overline \RR$ is convex. 
+    Throughout, we define $F := f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: \RR^n \rightarrow \overline \RR$ is convex. 
     We consider optimization problem: $\min_x \left\lbrace f(x) + g(x)\right\rbrace$.
-    Fix any arbitrary $y \in \RR^n$, define the model functions for all $x \in Q$
+    Fix any arbitrary $y \in \RR^n$, define the model functions for all $x \in \dom g$: 
     \begin{align*}
         \widetilde{\mathcal M}^{L^{-1}}
         (x; y) 
@@ -138,7 +137,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \\
         \mathcal M^{L^{-1}}(x; y) &:= F(x) + \frac{L}{2}\Vert x - y\Vert^2, 
     \end{align*}
-    When $x \in \RR\setminus Q$, the model function takes $+\infty$ value. 
+    When $x \in \RR\setminus \dom g$, the model function takes $+\infty$ value. 
     Define the proximal gradient operator and gradient mapping operator:  $T_L := [I + L^{-1}\partial g]^{-1}\circ [I - L^{-1}\nabla f]$. 
     The proximal gradient operator $T_L$ admits 
     \begin{align*}
@@ -165,7 +164,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
     \end{lemma}
     \begin{proof}
-        Consider any $x \in Q$, by definition it has: 
+        Consider any $x \in \dom g$, by definition it has: 
         \begin{align*}
             \widetilde{\mathcal M}^{L^{-1}}(x; y) 
             &= 
@@ -180,7 +179,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &= \mathcal M^{L^{-1}}(x; y) - D_f(x, y). 
         \end{align*}
-        The equality is trivially true when $x \in \RR \setminus Q$. 
+        The equality is trivially true when $x \in \RR \setminus \dom g$. 
     \end{proof}
     \begin{remark}
         This is true not just for fixed $L$ that is the Lipschitz smoothness constant of $f$, it's true for all value of $L$. 
@@ -733,12 +732,13 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 + \frac{\alpha_k^2 \mu^2}{2\hat \gamma}\Vert y_k - v_k\Vert^2
                 + \langle v_k - x^*, \mu\alpha_k(y_k - v_k)\rangle
             \\
-            \text{Use Q3}&= 
+            &= 
             F(x_k) - \epsilon_k 
             + \alpha_k\left\langle 
                 g_k, 
                 x^* - x_k
             \right\rangle
+            & \text{Use Q3}
             \\
             &\quad 
                 + (1 - \alpha_k)
