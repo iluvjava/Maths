@@ -356,7 +356,7 @@
     \par
     We cover the algorithm briefly. 
     Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
-    \begin{align}
+    \begin{align}\label{eqn:nag_example}
         & x_{k + 1} = y_k - L^{-1}\nabla F(y_k), 
         \\
         & t_{k + 1} = 1/2\left(1 + \sqrt{1 + 4t_{k}^2}\right), 
@@ -364,7 +364,7 @@
         & \theta_{k + 1} = (t_{k} - 1)/t_{k + 1}, 
         \\
         & y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k). 
-    \end{align}\label{eqn:nag_example}
+    \end{align}
     Unfortunately, the algorithm sped up the convergence rate for all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
     This drawback inspired a vast amount of literatures aims at improving, extending, and analyzing NAG. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
@@ -378,8 +378,11 @@
     \todo{Cite them.}{\hl{The same variant also appears in Beck's book as V-FISTA, and Nesterov's book as (2.2.22).}} 
     \par
     One final Mystery of the algorithm is the convergence of the iterates which also has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
-    Chambolle, Dossal showed that by choosing sequence $(t_k)_{k \ge 1}$ to be $t_k = $
-
+    \todo{Cite them. }{\hl{Chambolle, Dossal}} showed that by choosing sequence $(t_k)_{k \ge 1}$ to be $t_k = (n + a - 1)/a$ where $a > 2$ instead would give $(x_k)_{k \ge 0}$ weak convergence in Hilbert space. 
+    It's put as an open question on what happens to the iterates when $a = 2$. 
+    \par
+    All of these seemingly raises a crucial question: ``Is it possible to describe something about the NAG algorithm for a set of sequence that is non-traditional?''.
+    Or rephrase it more clearly: ``What is the weakest description of momentum sequence $(\theta_k)$ such that we can still claim something of value about the NAG algorithm?''
 
     \subsection{Our Contributions}
 
