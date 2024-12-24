@@ -207,7 +207,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             &\ge 
             0
             \\
-            \implies
+            \iff
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
@@ -922,10 +922,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Adding back the $k$, $k + 1$ subscript for $\gamma$, $\hat \gamma$, it's proven. 
     \end{proof}
     \begin{remark}
-        \textcolor{red}
-        {
-        Given $y_k$, we may choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on (4*), $\mu$ is a pessimistic choice for the inequality above. 
-        }
+        Given $y_k$, we can choose to increase $\mu_\kappa = 2D_f(x^*, y_k)/\Vert y_k - x^*\Vert^2 \ge \mu$ which also works on (4*).
+        This is true by the intermediate steps taken to prove Theorem \ref{thm:prox-grad-ineq}. 
+        $\mu$ is a pessimistic choice for the inequality above. 
         But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smaller than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
     \end{remark}
 
@@ -1897,7 +1896,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \begin{enumerate}
             \item Fix any $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ then the constant sequence $\alpha_k := \alpha \in (q, 1)$ and\\
             $\rho_k := \rho=\left(1-r^{-1}\sqrt{q}\right)\left(1 - r \sqrt{q}\right)^{-1} > 0$, hence it's a pair of valid R-WAPG sequence. 
-            \item The momentum term in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ has:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$. 
+            \item The momentum terms $\theta_{t + 1}$ in Definition \ref{def:r-wapg-momentum-form}, which we denoted by $\theta$ is the constant:\\ $\theta = (1 - r^{-1}\sqrt{q})(1 - r\sqrt{q})(1- q)^{-1}$
             \item When $r = 1$, $\theta = (1- \sqrt{q})(1 + \sqrt{q})^{-1}$. 
             \item For all $r \in \left(1, \sqrt{q^{-1}}\right)$, $\rho > 1$; for all $r \in \left(\sqrt{q}, 1\right]$ $\rho \le 1$. 
             \item For all $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$, $\max(\rho, 1)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}q\right)$. 

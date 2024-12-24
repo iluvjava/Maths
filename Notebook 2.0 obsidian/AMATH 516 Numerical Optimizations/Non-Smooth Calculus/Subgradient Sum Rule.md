@@ -35,7 +35,6 @@ The subgradient sum rule is true when functions are convex.
 
 
 
-
 **References**
 - Rockafellar's convex book theorem 23.8. 
 - Heinz Combette's Monotone convex book, see Corollary 16.48 for more information. 

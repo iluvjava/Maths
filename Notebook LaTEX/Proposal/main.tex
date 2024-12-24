@@ -137,7 +137,7 @@
                         \frac{F(x) - F(\bar x) - \langle v, x - \bar x\rangle}{\Vert x - \bar x\Vert} 
                         \ge 0
                     \right.
-                \right\rbrace
+                \right\rbrace. 
             \end{align*}
         \end{definition}
         \begin{definition}[Limiting subgradient]
@@ -225,6 +225,7 @@
         \begin{remark}
             The minimizer is unique whenever $\mu > 0$. 
             For contradiction, assume $x$ is another minimizer, then $F(x) \neq F(\bar x)$, which is a direct contradiction. 
+            The quadratic growth condition over a set of minimizer is much weaker than convexity. 
         \end{remark}
         
         \subsubsection{Smooth, nonsmooth additive composite}\label{sssec:additive-composite}
@@ -256,7 +257,7 @@
             \end{align*}
             Under convexity assumption in this section, both $\widetilde {\mathcal M} (\cdot; y),  {\mathcal M}(\cdot;y )$ is at least $\beta \ge 0$ strongly convex. 
             \begin{definition}[Proximal gradient operator]
-                Suppose that $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ is convex and $f: \RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth function.
+                Take $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ as defined in this section. 
                 Define the proximal gradient operator $T_L$ on all $y \in \RR^n$: 
                 \begin{align*}
                     T_L y := \argmin_{x \in \RR^n} \left\lbrace
@@ -306,7 +307,24 @@
                 This lemma is proved in our draft paper. 
             \end{remark}
 
-   
+    \subsection{Nesterov's Estimating sequence technique}
+        \todoinline{\noindent
+            Do the following: 
+            \begin{enumerate}
+                \item What is Nesterov's estimating sequence. 
+                \item How is it used to derive the algorithm and convergence rate of algorithm. 
+                \item Where is it used and why is it important here. 
+            \end{enumerate}
+        }
+        \todoinline{
+            Examples
+            \begin{enumerate}
+                \item Example estimating sequence. 
+            \end{enumerate}
+        }
+
+
+        
 
 \section{Unifying NAG, and weakening the sequence assumption for convergences}\label{sec:unify-nes-acceleration}
     \todoinline{\noindent
@@ -325,7 +343,7 @@
     \todo{Cite Nesterov's original paper on this. }{\hl{Proposed back in 1983 the original Nesterov's acceleration method}} which uses the previous iterates to extrapolate the next iterate to evaluate the gradient. 
     It's well known that, if minimizer $x^*$ exists for $F$, the method achieves a $\mathcal O(1/k^2)$ convergence rate on the objective value $F(x_k)$. 
     \todo{Cite Chapter 2 of Nesterov's new book. }{\hl{This convergence rate is considered optimal for all class of $L$ Lipschitz smooth convex function}}. 
-    The convergence rate gurantee is faster than $\mathcal O(1/k)$ exibited by gradient descent. 
+    The convergence rate guarantee is faster than $\mathcal O(1/k)$ exhibited by gradient descent. 
     \par
     We cover the algorithm briefly. 
     Initialize $x_1 = y_1$ and $t_0 = 1$, the algorithm finds $(x_k)_{k \ge 1}$ for all $k \ge 1$ by: 
@@ -341,12 +359,13 @@
     Unfortunately, the algorithm sped up the convergence rate for all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
     This drawback inspired a vast amount of literatures aims at improving, extending, and analyzing NAG. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
-    \todo{Cite Beck 2009 FISTA. }{\hl{Beck and Toubelle}} mitigate the issue by restarting and showed that it still has a $\mathcal O(1/k^2)$ convergence rate, and it performs empirically better. 
+    \todo{Cite Beck 2009 FISTA. }{\hl{Beck and Toubelle}} mitigate the issue by restarting and showed that it still has a $\mathcal O(1/k^2)$ convergence rate, and it performs better empirically. 
     \todo{Cite Necoara linear convergence, and Aujol 2024 Parameter free FISTA restart. }{\hl{See}} and references within for recent advancements in restarting accelerated proximal gradient algorithm.
     \par
     Restarting the algorithm is not the entire picture. 
     Let $F:\RR^n \rightarrow \RR$ be a $L$ Lipschitz smooth and $\mu > 0$ function. 
-    As introduced previously, in \todo{Cite Walkington's education stuff here. }{\hl{Walkington's writing}}, he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\mu/L})^k)$. 
+    As introduced previously, in \todo{Cite Walkington's education stuff here. }{\hl{Walkington's writing}}, he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\kappa})^k)$ where $\kappa = \mu/L$. 
+    This convergence rate is strictly better than $\mathcal O((1 - \mu/L)^k)$ for the method of gradient descent. 
     However, this variant has a fixed momentum parameter $\theta_{k + 1} = (\sqrt{\kappa} - 1)(\sqrt{\kappa} + 1)^{-1}$ back in Equation \ref{eqn:nag_example}. 
     \todo{Cite them.}{\hl{The same variant also appears in Beck's book as V-FISTA, and Nesterov's book as (2.2.22).}} 
     \par
@@ -358,7 +377,7 @@
 
     \subsection{Our Contributions, organizations}
         Our contributions are two folds, theoretical and practical. 
-        Our results are based the assumption $F = f + g$ where $g:R^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
+        The results are based the assumption $F = f + g$ where $g:R^n \rightarrow \overline\RR$ is convex, and $f$ is an $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function. 
         We relax the traditional choice of the sequence $\theta_k$ in Equation \ref{eqn:nag_example} and showed an upper bound of the optimal gap. 
         Let $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ be two sequences that satisfy
         \begin{align*}
@@ -379,7 +398,7 @@
         \end{align*}
         Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in \todo{Fix citation here.}{\hl{Chambolle, Dossal}} \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
         When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
-        In Theorem \ref{thm:fixed-momentum-fista}, it demonsrate that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
+        In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
@@ -881,6 +900,7 @@
         \begin{enumerate}
             \item APPM method for monotone operators instead of just subgradient, whether the same framework exists in a greater context. 
             \item Accelerated Proximal Bregman Method. 
+            \item Removing smoothness assumption in Catalyst acceleration framework. 
         \end{enumerate}  
     }
     \todoinline{\noindent
@@ -898,6 +918,7 @@
     
 
 \section{Nestrov's acceleration in the non-convex case}\label{sec:nes-acc-ncnvx}
+    
 
 
 \section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satellite remote sensing imagery}
