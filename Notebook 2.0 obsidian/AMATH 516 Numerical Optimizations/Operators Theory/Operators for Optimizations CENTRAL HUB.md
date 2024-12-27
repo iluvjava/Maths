@@ -11,8 +11,7 @@ See [Hilbert Space Introduction](Hilbert%20Space%20Introduction.md) for more inf
 **References**
 1. **\<Large-scale convex Optimizations: Algorithms and analysis via Monotone Operators\>** by Ernest K. Ryu & Wotao Yin. 
 A very complicate textbook, which should serve as primary references. 
-2. **\<A Primer on Monotone Operators\>**, this one is a really good one! The collections are extremely good.  
-See [Primer on Monotone Operators](Primer%20on%20Monotone%20Operators.pdf) for more. 
+2. **\<A Primer on Monotone Operators\>**, this one is a really good one! The collections are extremely good.  See [Primer on Monotone Operators](Primer%20on%20Monotone%20Operators.pdf) for more. 
 3. **\<Convex Analysis and Monotone Operator Theory in Hilbert Spaces\>**, this one is from Professor Heinz and it should be treated as an essential reference. 
 4. MATH 565 taught by Professor Heinz at UBCO. 
 
@@ -26,6 +25,7 @@ Monotone operator could be the subgradient of the Lagrangian.
 We list discussion relevant to monotone operators. 
 - [Monotone Operators Introduction](Monotone%20Operators%20Introduction.md)
 - [Monotone Operators In Depth](Monotone%20Operators%20In%20Depth.md)
+
 
 
 ---

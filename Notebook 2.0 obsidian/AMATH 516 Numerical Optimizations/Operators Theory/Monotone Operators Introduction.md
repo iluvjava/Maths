@@ -16,7 +16,12 @@ Most of the materials are from Heinz's book Convex Analysis and Monotone Operato
 
 The reader should consider the case when $T$ is a function mapping from $\mathbb R \mapsto \mathbb R$ as a single valued mapping. 
 It can be viewed as a multi-valued mapping that always maps to a singleton set. 
-The reader should realize that under this case the definition of a monotone operator means that the function is monotonically increasing (or equivalently non-increasing) on it's defined domain. 
+$f: \R \rightarrow \R$ is an operator from a set to the set of singletons enumerating each element of the reals. 
+In this case, the definition of monotonicity is equivalent to the function being monotone. 
+
+The monotone relations specifies an inequality for direction of veoctor $y - x$ and the set of vector $v \in Tx, u \in Tx$. 
+It's specifies that the vector $u - v$ lies in the positive half space defined via $x - y$. 
+
 
 **Remarks**
 
@@ -24,6 +29,8 @@ A monotone operator doesn't imply:
 1. Continuity of any kind. 
 2. Singled value property of any kind. 
 3. Subjectivity of any kind. 
+
+The operator defines non-smooth objects in convex analysis, such as subgradient and generalized Lagrangian of convex programming problem.
 
 
 #### **Thm | Another Equivalent Definition of Monotone Operator**
@@ -46,32 +53,41 @@ $$
     &\ge 
     \Vert x - u\Vert^2 + \Vert y - v\Vert^2
     \\
+    \iff
     - \langle y, u\rangle - \langle x, v\rangle
     &\ge 
     - \langle x, u\rangle - \langle y, v\rangle
     \\
+    \iff
     \langle - y, u\rangle + 
     \langle - x, v\rangle + 
     \langle x, u\rangle + 
     \langle y, v\rangle &\ge 0
     \\
+    \iff 
     \langle x, u - v\rangle + \langle y, v - u\rangle
     &\ge 0
     \\
+    \iff 
     \langle x - y, u - v\rangle &\ge 0.
 \end{aligned}
 $$
 
 That, is just the definition of being a monotone operator. 
 It's equivalent because the process is revertible. 
+On the first $\iff$, we have all the norms squared cacelling out from both sides of the inequalities. 
+
 
 **Remarks**
 
-This characterizations opens a new view monotonicity of an operator. 
-The convex hull of points $x + u, y + v, x, y$, forms are shape of 4 corners. 
-On this shape, the vector $\Vert y - u\Vert^2, \Vert x - v\Vert^2$ are the diagonal of this shape. 
+This characterizations opens a new view on monotonicity of an operator. 
+The convex hull of points $x + u, y + v, x, y$, are 4 corners of some shape in Hilbert space. 
+T vector $\Vert y - u\Vert^2, \Vert x - v\Vert^2$ are the diagonals. 
 $u - x, v - y$ are on the convex hull of this shape. 
-Therefore, it's saying that the vector inside of this shape, squared it, is longer than the squared side of the shape. 
+Therefore, it's saying that the squared sum of the diagonals are longer than the squared sum of sides. 
+
+See the proof of projection operator being monotone in the examples section at the end. 
+It's an example that illustrate the use of this equivalent property. 
 
 
 
@@ -300,7 +316,7 @@ Here we used the fact that $A^{-1}$ is also a maximal monotone operator.
 
 We discuss some examples that can illsutrate the properties of a maximal monotone, or a maximally monotone operators. 
 
-#### **Example | Characterizing when Square Matrices are Maximal Monotone Operators**
+#### **Example | When Square Matrices are Monotone**
 > A matrix $A \in \mathbb R^{n\times n}$ be a maximally monotone operator, then the following are equivalent 
 > 1. $\langle x, Ax\rangle \ge 0$ for all $x \in \mathbb R^{n}$, equivalently $A$ symmetric positive definite. 
 > 2. $A_+:= (1/2)(A^T + A)$ is positive semi-definite, or equivalently $A_+$ is monotone. 
@@ -311,9 +327,6 @@ We discuss some examples that can illsutrate the properties of a maximal monoton
 (1.) Is directly by the linearity of the opeartor and the definition of a monotone opeartor. 
 For (2., 3.), use the property of inner product. 
 
-
----
-### **Examples**
 
 We take a look at some of the specific examples of monotone operators that are relavent to real world application. 
 

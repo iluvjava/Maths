@@ -25,6 +25,7 @@ Lipschitz operator's theorem can all be developed on a non-expansive operator wi
 > An operator is called *non-expansive* if its Lipschitz constant is $\le 1$. An operator is called a *contraction* if $L< 1$. 
 
 **Observations**
+
 For simplicity we use the 2 norm to formulate the definition. 
 Obviously, if $A$ is Lipschitz then it's continuous and single valued ,else the LHS of the function can simply chosen to be $u\in F(x), v\in F(x)$ with $u\neq v$, giving us a contradiction. 
 
