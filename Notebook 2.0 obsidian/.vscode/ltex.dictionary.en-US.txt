@@ -9,3 +9,6 @@ Nestrov
 Subdifferential
 Subgradient
 Infeasibility
+subdifferential
+supremum
+Fenchel
