@@ -1,1 +1,2 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe research proposal focuses on the theories and practice in solving nonsmooth optimization.\\E$"}
+{"rule":"CONFUSION_OF_DECENT_DESCENT","sentence":"^\\QWhen \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q convex, it has descent lemma: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

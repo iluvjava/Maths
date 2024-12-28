@@ -90,9 +90,9 @@
     \par
     Section \ref{sec:pep}, \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in  nonsmooth optimization frontier research where progress and impacts can be made.  
     \subsection{Theme of the research}
-        This section specify a theme of the research in this proposal. 
+        This section specifies a theme of the research in this proposal. 
         Out first objective is to explore the Goldilocks zones between these topics: theories of variational analysis, design of continuous optimization algorithm and applications in sciences, engineering, and statistics.  
-        Our second objective is to identify the ``chemistry" occuring between properties of functions and the designs of continuous optimizations algorithm and how it impacts the convergence and behaviors of the algorithms. 
+        Our second objective is to identify the ``chemistry" occurring between properties of functions and the designs of continuous optimizations algorithm and how it impacts the convergence and behaviors of the algorithms. 
 
 
     
@@ -184,12 +184,12 @@
             \end{enumerate}
         }
         This section introduces the classics and basics of convex analysis. 
-        Define $F$ to be convex in this section. 
+        Define $F$ to be closed, proper and convex in this section. 
         When $F$ is convex, the limiting subgradient and the regular subgradient reduced to the following definition:
         \begin{align*}
             \partial F(x) := \left\lbrace
-                v \in \RR^n \left|
-                    (\forall y \in \RR^n)\;  F(y) - F(x)  \ge \langle v, y - x\rangle
+                v \in \RR^n \left|\; 
+                    \forall y \in \RR^n\; :  F(y) - F(x)  \ge \langle v, y - x\rangle
                 \right.
             \right\rbrace. 
         \end{align*}
@@ -291,7 +291,7 @@
                 Then there exists $v \in \partial g(T_L x)$ such that $\mathcal G_L (x) = v + \nabla f(x)$. 
             \end{lemma}
             \begin{remark}
-                This lemma still holds for non-convex $f$. 
+                This lemma still holds for non-convex $f$ under prox-boundness and weak convexity and differentiability of $f$. 
             \end{remark}
             \begin{lemma}[The proximal gradient inequality]\label{thm:prox-grad-ineq}
                 Take $F:= f + g$ as defined in this section. 
@@ -322,7 +322,7 @@
                 \item Example estimating sequence. 
             \end{enumerate}
         }
-
+        
 
         
 
@@ -914,7 +914,7 @@
 
 \section{Performance estimation problems}\label{sec:pep}
     \todoinline{\noindent
-        There are several fundational papers relevant. 
+        There are several foundational papers relevant. 
 
     }
 

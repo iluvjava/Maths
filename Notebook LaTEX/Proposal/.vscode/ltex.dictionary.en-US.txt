@@ -1,0 +1,13 @@
+R-WAPG
+Chambolle
+Dossal
+FISTA
+V-FISTA
+Toubelle
+Aujol
+Necoara
+Walkington
+Nesterov
+nonsmooth
+subgradient
+subdifferential
