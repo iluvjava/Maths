@@ -125,8 +125,16 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
        
 
 \section{Preliminaries}
-    Throughout, we define $F := f + g$ where $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: \RR^n \rightarrow \overline \RR$ is proper, closed and convex. 
-    We consider optimization problem: $\min_x \left\lbrace f(x) + g(x)\right\rbrace$ where the minimizer exists.
+    Throughout, we make the following assumption unless specified. 
+    \begin{assumption}[Smooth nonsmooth additive]\label{ass:smooth-nsmooth-additive}
+        \;
+        \begin{enumerate}
+            \item Define $F := f + g$. 
+            \item $f: \RR^n \rightarrow \RR$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
+            \item $g: \RR^n \rightarrow \overline \RR$ is proper, closed and convex. 
+            \item Minimizer exists for the optimization problem: $\min_x \left\lbrace f(x) + g(x)\right\rbrace$. 
+        \end{enumerate}
+    \end{assumption}
     Fix any arbitrary $y \in \RR^n$, define the model functions for all $x \in \dom g$: 
     \begin{align*}
         \widetilde{\mathcal M}^{L^{-1}}
@@ -185,6 +193,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         This is true not just for fixed $L$ that is the Lipschitz smoothness constant of $f$, it's true for all value of $L$. 
     \end{remark}
     \begin{theorem}[Proximal inequality]\label{thm:prox-grad-ineq}
+        Let $F$ be given by Assumption \ref{ass:smooth-nsmooth-additive}. 
         Fix any $y\in \RR^n$, we have for all $x \in \RR^n$: 
         \begin{align*}
             F(x) - F(T_Ly) - \langle L(y - T_Ly), x - y\rangle

@@ -318,7 +318,7 @@ This is true for all $L$, the $L$ here doesn't have to be the Lipschitz smoothne
 
 The proof is direct. 
 The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex function with minimizer $Ty$ and hence it has admits quadratic growth condition around its minimizer, which gives the  strictly weaker inequality (See [Strong Convexity, Equivalences and Implications](../Strong%20Convexity,%20Equivalences%20and%20Implications.md) for more information about this property). 
-Using only this implications of strong convexity, we have for all $x \in Q$: 
+Using only this implications of strong convexity, we have for all $x \in \R^n$: 
 
 $$
 {\small
@@ -415,20 +415,21 @@ $$
 }
 $$
 
-Take note that for all $x \in \R^n \setminus Q$, the inequality is trivially true cause by definition it gives $h(x) = \infty$. 
+Take note that for all $x \in \R^n$, the inequality is trivially true cause by definition it gives $h(x) = \infty$. 
 
 **Remarks**
 
 When $f$ is $\mu$ strongly convex, $\mathcal M$ is not just $L$ strongly convex, it's $L + \mu$ strongly convex. 
 The inequality above is strictly stronger than necessary in the case when $F$ is $\mu > 0$ strongly convex. 
 
-The proof only used quadratic growth condition of $\widetilde {\mathcal M}^{L^{-1}}(\cdot; y)$, which is much weaker than the strong convexity of $F$. 
+The proof only used quadratic growth condition of $\widetilde {\mathcal M}^{L^{-1}}(\cdot; y)$ around its minimizer, which is much weaker than the strong convexity of $F$. 
+The proof the follows will make use of the strong convexity assumption. 
 
 
 
 #### **Corollary | Proximal gradient inequality with smoothness**
 > Assume that $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
-> Fix any $y \in \R^n$, then for all $x$, the proximal gradient inequality is true: 
+> Fix any $y \in \R^n$, then for all $x\in \R^n$, the proximal gradient inequality is true: 
 > $$
 > \begin{aligned}
 >     (\forall x \in \R^n)\quad 
