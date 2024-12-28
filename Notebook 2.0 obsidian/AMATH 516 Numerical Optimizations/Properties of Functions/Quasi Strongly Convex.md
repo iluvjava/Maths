@@ -6,3 +6,5 @@
 
 The class of Quasi-strongly convex function is a generalizations of the class of strongly convex function. 
 
+
+

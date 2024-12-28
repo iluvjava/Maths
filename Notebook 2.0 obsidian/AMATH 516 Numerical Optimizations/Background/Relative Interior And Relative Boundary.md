@@ -19,7 +19,7 @@ Rockafellar was motivated by the fact that the natural interior of a set in $\ma
 
 **Observation**
 
-The relative boundary of the set is defined as $\text{rb}(Q):= \text{cl}(Q)\setminus \text{ri}(Q)$. Since the background set is the affine span, it loosen the condition for a set being in the relative interior, resulting in $\text{int}(C)\subseteq \text{ri}(C)$. 
+The relative boundary of the set is defined as $\text{rb}(Q):= \text{cl}(Q)\setminus \text{ri}(Q)$. Since the background set is the affine span, it loosens the condition for a set being in the relative interior, resulting in $\text{int}(C)\subseteq \text{ri}(C)$. 
 
 **Simple Consequences**
 
@@ -34,6 +34,7 @@ Every convex spans some non-trivial affine space, and we get an interior from th
 ---
 ### **Important theorems for the relative interior sets**
 
+The following lemmas, theorems are taken from Rockafellar's red book on convex analysis. 
 
 
 #### **Lemma | Accessibility lemma**
@@ -62,7 +63,7 @@ Taking the limit we have $\lim_{\lambda \nearrow 1} x_\lambda = x_1 \in \text{cl
 But because all the intermediate $x_\lambda \in \text{ri}\; C$, it means that $x_1 \in \text{cl.ri}\; C$, therefore, $\text{cl.ri}\; C = \text{cl}\; C$. 
 
 Next, let $z \in \text{ri.cl}\; C$, let $x \in \text{ri}\; C$. 
-with $x\neq z$, i.e: $\exists \mu > 1$, such that $y$ can be an extension on one side of the line segment defined by $x, z$. 
+With $x\neq z$, i.e: $\exists \mu > 1$, such that $y$ can be an extension on one side of the line segment defined by $x, z$. 
 
 $$
 \begin{aligned}
@@ -104,6 +105,71 @@ Convexity and accessibility lemmas are crucial in this theorem.
 This theorem has the following consequences. 
 
 
+#### **Corollary 6.31**
+> Let $C_1, C_2$ be convex subsets of $\R^n$. 
+> Then $\text{cl}\; C_1  = \text{cl}\; C_2$ if and only if $\text{ri}\; C_1 = \text{ri}\;C_2$
+> In addition, both are equivalent to $\text{ri}\;C_1 \subseteq C_2\subseteq \text{cl}\;C_1$. 
+
+**Proof**
+
+The equivalency between $\text{cl}\; C_1 = \text{cl}\; C_2$ and $\text{ri}\; C_1 = \text{ri}\; C_2$ is just taking closure/relative interior using the previous theorem. 
+We do this because $C_1, C_2$ are both convex. 
+Taking the closure on: $\text{ri}\;C_1 \subseteq C_2\subseteq \text{cl}\;C_1$ then 
+
+$$
+\begin{aligned}
+    \text{cl}\;C_1=\text{cl.ri}\; C_1 \subseteq \text{cl}\; C_2 \subseteq \text{cl}\; C_1. 
+\end{aligned}
+$$
+
+So $C_1, C_2$ shares the same closure. 
+Take the relative interior on the chain: $\text{ri}\;C_1 \subseteq C_2\subseteq \text{cl}\;C_1$ produces: 
+
+$$
+\begin{aligned}
+    \text{ri}\;C_1 \subseteq \text{ri}\; C_2 \subseteq \text{ri.cl}\; C_1 = \text{ri}\;C_1. 
+\end{aligned}
+$$
+
+The first $\subseteq$ andthe last $=$ establishes that the relative interior of $C_1, C_2$ are both the same. 
+
+
+**Remarks**
+
+This is taken from Rockafellar's red convex analysis textbook, under the same name. 
+
+#### **Theorem 6.4 | Epsilon extension at a point in relative interior**
+> Let $\emptyset \neq C\subseteq \R^n$ and convex. 
+> Then $z \in \text{ri}\; C$ is and only if $\forall x \in C$: 
+> $$
+> \begin{aligned}
+>     \exists \mu > 1 :\; 
+>     y = (1 - \mu)x + \mu z \in C. 
+> \end{aligned}
+> $$
+
+**Proof**
+
+If $z \in \text{ri}\; C$ then $y$ is in $C$ because it's in the relative interior by the definition of relative interior. 
+The converse is more difficult. 
+Choose both $x\in \text{ri}\; C, y \in C$, for some $\mu > 1, z$ such that $y = (1 - \mu)x + \mu z$. 
+This is always possible by the assumption $C\neq \emptyset$, because it means that $\text{ri}\;C \neq \emptyset$. 
+Solving for $z$: 
+
+$$
+\begin{aligned}
+    y &= (1 - \mu) x + \mu z
+    \\
+    \iff 
+    z &=
+    \mu^{-1}y + \mu^{-1}(\mu - 1)x. 
+\end{aligned}
+$$
+
+$z$ is in the relative interior of the line segment $x, y$. 
+Using the accessibility lemma, $z \in \text{ri}\; C$
+
+
 
 
 #### **Lemma | Intersections and relative interiors of sets**
@@ -127,7 +193,7 @@ This theorem has the following consequences.
 To start, we show the first equality. 
 Fix $x \in \bigcap_{i \in I} \text{ri}\; C_i$, $y \in \bigcap_{i \in I} \text{cl}\;C_i$. 
 Set $z_\lambda = (1 - \lambda)x + \lambda y$ for $\lambda \in [0, 1)$. 
-By assessibility lemma, $z_\lambda \in \bigcap_{i \in I} \text{ri}\; C_i$ for all $\lambda \in [0, 1)$. 
+By accessibility lemma, $z_\lambda \in \bigcap_{i \in I} \text{ri}\; C_i$ for all $\lambda \in [0, 1)$. 
 Then $y = \lim_{\lambda \nearrow 1} z_\lambda$, so $y \in \text{cl}\; \bigcap_{i \in I} \text{ri}\; C_i$. 
 Therefore: $\bigcap_{i \in I}\text{cl}\; C_i \subseteq \text{cl}\bigcap_{i \in I} \text{ri}\; C_i$. 
 Extending the chain further we have the relation: 
@@ -136,9 +202,41 @@ $$
 \begin{aligned}
    \bigcap_{i \in I}\text{cl}\; C_i \subseteq \text{cl}\bigcap_{i \in I} \text{ri}\; C_i
    \subseteq 
-   \text{cl}\bigcap_{i \in I} C_i. 
+   \text{cl}\bigcap_{i \in I} C_i
+   \subseteq \bigcap_{i \in I} \text{cl}\; C_i
 \end{aligned}
 $$
-The last $\subseteq$ is by $\text{ri}\;C_i \subseteq C_i$.  
+The second last $\subseteq$ is by $\text{ri}\;C_i \subseteq C_i\; \forall i \in I$.  
+The second last $\subseteq$ used $C_i \subseteq \text{cl}\; C_i$ for all $i \in I$, and the intersection of a closed set is always a closed set. 
 
-To see the second equality, we make the assumption that $I$ is a finite set. 
+A side effect of the previus proof is the consequence: 
+
+$$
+\begin{aligned}
+    \text{cl}\bigcap_{i \in I} \text{ri}\; C_i 
+    &= 
+    \text{cl}\bigcap_{i \in I} C_i
+    \\
+    \iff 
+    \text{ri}\bigcap_{i \in I}\text{ri}\; C_i
+    &= 
+    \text{ri}\bigcap_{i \in I} C_i. 
+\end{aligned}
+$$
+The $\iff$ comes from Corollary 6.4.1. 
+By $\text{ri}\bigcap_{i \in I}\text{ri}\; C_i \subseteq \bigcap_{i\in I}\text{ri}\; C_i$, it showed 
+$$
+\begin{aligned}
+    \text{ri}\bigcap_{i \in I} C_i \subseteq 
+    \bigcap_{i\in I}\text{ri}\; C_i. 
+\end{aligned}
+$$
+
+The converse of the above statement requires the assumption that $I$ is a finite set. 
+Take $z \in \bigcap_{i\in I}\text{ri}\; C_i$. 
+Choose any line segment $[z, y]$ where $y\in \text{ri}\; C_i$ in the intersection of all $i \in I$. 
+Choose any point extend beyond $z$, say $x \in \bigcap_{i \in I} C_i$. 
+Such a point exists in the intersection of all $C_i$ because $I$ is a finite set by Theorem 6.4. 
+By accessibility lemma, $z \in \text{ri}\; \bigcap_{i \in I} C_i$ because $z$ is a strict convex combination of $x, y$. 
+
+

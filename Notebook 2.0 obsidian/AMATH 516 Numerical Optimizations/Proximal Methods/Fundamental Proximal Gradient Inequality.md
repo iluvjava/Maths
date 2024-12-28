@@ -1,6 +1,7 @@
 - [Morau Envelope and Convex Proximal Operators](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
 - [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md)
 
+<!-- 
 ---
 ### **Intro**
 
@@ -209,12 +210,17 @@ The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very simi
 
 Here, we could also assume that the function $g$ is also strongly convex. 
 In this way, the above inequality can be generalized. 
+ -->
+
+### **Intro**
+
+
 
 
 ---
 ### **The envelope approach**
 
-We use the strong convexity of the Envelope function instead of the subgradient inequality. 
+
 
 **Organizations:**
 
@@ -241,7 +247,7 @@ $$
 \end{aligned}
 $$
 
-Unless specified, we assume that $f$ $L$ Lipschitz smooth and $g$ is convex. 
+Unless specified, we assume that $f$ $L$ Lipschitz smooth and $g$ is closed, proper, and convex. 
 Before the major claim we state the following lemma to the proof sleek and cool: 
 
 #### **Lemma | The proximal gradient envelope**
