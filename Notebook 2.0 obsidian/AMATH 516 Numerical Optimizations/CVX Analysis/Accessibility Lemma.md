@@ -4,7 +4,12 @@
 ---
 ### **Intro**
 
-The following claim establishes the existence of convex sets with non-empty interior having a line that inside of the interior of the convex set. We state it and then prove it. This lemma is stated in Heinz's course in convex optimizations, with the same code number. The proof below is, a much simplified proof compare to the original, and it captures the essence. 
+The following claim establishes the existence of convex sets with non-empty interior having a line that inside of the interior of the convex set. 
+We state it and then prove it. This lemma is stated in Heinz's course in convex optimizations, with the same code number. 
+The proof below is, a much simplified proof compare to the original, and it captures the essence. 
+The lemma basically says that the interior/(relative interior) of a line segment found in the convex set is still in the interior/(relative interior) of the convex set. 
+
+
 
 #### **Lemma (2.22) | Accessibility Lemma**
 > Let $C$ be a convex subset of $X$. Suppose that $x_0 \in \text{int} C$, and $x_1\in C$, then 
@@ -16,9 +21,9 @@ The following claim establishes the existence of convex sets with non-empty inte
 
 **Proof**
 
-The argument above can be simplified a lot by considering the alternative statement:
+Without loss of generality, the argument above can be simplified a lot by considering the alternative statement:
 
-> If $\mathbf 0 \in \text{int} C$, and let $x_1 \in \text{cl}C$, then $(1 - \lambda)x_1\in \text{int}C$ for all $\lambda\in(0, 1)$. 
+> If $\mathbf 0 \in \text{int} C$, and let $x_1 \in \text{cl}C$, then $(1 - \lambda)x_1\in \text{int}\; C$ for all $\lambda\in(0, 1)$. 
 
 By translating $x_0$ from lemma 2.22 to point $\mathbf 0$, these 2 statements are saying the same thing. Denote $\overline{\mathbb B}_\epsilon$ to be the closed epsilon ball around $\mathbf 0$, then 
 
@@ -45,10 +50,10 @@ $$
 \end{aligned}
 $$
 
-which is essentially saying that $\text{cl}C\subseteq (1 - \lambda)^{-1} \text{int} C$, $\forall \lambda\in (0, 1)$. The slightly dilated interior of $C$ is able to contain the closure of the set $C$. Assuming $C$ has $\mathbf 0$ in its interior. 
+which is essentially saying that $\text{cl}\;C\subseteq (1 - \lambda)^{-1} \text{int} C$, $\forall \lambda\in (0, 1)$. The slightly dilated interior of $C$ is able to contain the closure of the set $C$. Assuming $C$ has $\mathbf 0$ in its interior. 
 
 #### **Thm 6.1 | Accessibility Lemma with Relative Interior**
-> Let $C$ be cvx in $\mathbb R^n$, let $x \in \text{ri}C$ and $y \in \text{cl}C$, then $(1 - \lambda)x + \lambda y$ belongs to $\text{ ri}C$ and it's also in $C$ for $0\le \lambda < 1$. 
+> Let $C$ be cvx in $\mathbb R^n$, let $x \in \text{ri}\; C$ and $y \in \text{cl}\; C$, then $(1 - \lambda)x + \lambda y$ belongs to $\text{ri}\; C$ and it's also in $C$ for $0\le \lambda < 1$. 
 
 **Proof**
 
