@@ -1,7 +1,8 @@
+
+Pre-requisite: 
 - [Morau Envelope and Convex Proximal Operators](../Proximal%20Operator/Moreau%20Envelope%20and%20Convex%20Proximal%20Mapping.md)
 - [Proximal Gradient, Forward Backwards Envelope](Proximal%20Gradient,%20Forward%20Backwards%20Envelope.md)
 
-<!-- 
 ---
 ### **Intro**
 
@@ -9,7 +10,10 @@ This section introduces a crucial inequality that is widely used for the converg
 
 **Assumption**
 
-1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ is convex and $L$-Lipschitz smooth. 
+1. $h = f + g$ where $g: \R \rightarrow \overline \R$, $f$ are closed convex and proper, and $f is $$L$-Lipschitz smooth. 
+
+
+Recall from previous sections on results of the proximal gradient operator. 
 
 **Organizations**
 
@@ -48,6 +52,14 @@ $$
     \mathcal G_L(x) &\in \nabla f(x) + \partial g(x^+). 
 \end{aligned}
 $$
+
+We can do this by standard rules of non-smooth convex analysis. 
+
+**Remark**
+
+Convexity of $f$ is not necessary for the claim to hold. 
+This is true for all non-convex but differential $f$ as well. 
+
 
 #### **Lemma 0.2 | Fundamental proximal gradient lemma**
 > Suppose that $h = f + g$ where $g$ is convex and $f$ is Lipschitz smooth. 
@@ -210,9 +222,9 @@ The act of using $\mathcal T_L$ instead of $\mathcal P_L$ still forges very simi
 
 Here, we could also assume that the function $g$ is also strongly convex. 
 In this way, the above inequality can be generalized. 
- -->
+ 
 
-### **Intro**
+
 
 
 
@@ -247,7 +259,7 @@ $$
 \end{aligned}
 $$
 
-Unless specified, we assume that $f$ $L$ Lipschitz smooth and $g$ is closed, proper, and convex. 
+Unless specified, we assume that $f:\R^n \rightarrow \overline \R$ is $L$ Lipschitz smooth and $g$ is closed, proper, and convex. 
 Before the major claim we state the following lemma to the proof sleek and cool: 
 
 #### **Lemma | The proximal gradient envelope**
@@ -409,6 +421,10 @@ Take note that for all $x \in \R^n \setminus Q$, the inequality is trivially tru
 
 When $f$ is $\mu$ strongly convex, $\mathcal M$ is not just $L$ strongly convex, it's $L + \mu$ strongly convex. 
 The inequality above is strictly stronger than necessary in the case when $F$ is $\mu > 0$ strongly convex. 
+
+The proof only used quadratic growth condition of $\widetilde {\mathcal M}^{L^{-1}}(\cdot; y)$, which is much weaker than the strong convexity of $F$. 
+
+
 
 #### **Corollary | Proximal gradient inequality with smoothness**
 > Assume that $h = f + g$ where $f$ is $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex. 
