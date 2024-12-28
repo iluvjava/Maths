@@ -12,3 +12,6 @@ Infeasibility
 subdifferential
 supremum
 Fenchel
+infimum
+infimal
+Infimal

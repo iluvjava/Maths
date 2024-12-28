@@ -12,7 +12,9 @@ Major References: The HW for AMATH 515.
 
 ### **Intro**
 
-Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function. When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [Biconjugate Theorem](Biconjugate%20Theorem.md). 
+Here we will be packing a bunch of good examples with proofs, so it can serve as a good references for when looking for Fenchel Conjugates for functions. Most of them will be coming straight from the HW problems for the class. 
+Fenchel transform is possible for non-convex function, but in that case, we don't generate identity after double conjugacy of the function. 
+When the function is convex, proper and close, we get 2 directions for conjugacy between classes of functions, using the [Biconjugate Theorem](Biconjugate%20Theorem.md). 
 
 
 #### **Def-1: Fenchel Conjugate Transform** 

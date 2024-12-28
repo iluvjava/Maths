@@ -9,6 +9,8 @@
 ### **Intro**
 
 Support function is special and play an important analysis role. 
+It incorporate ideas from convex sets and their properties and packaged them into an extended value convex function. 
+This allows us to reuse existing claims on convex function to assert more claims about convex sets, and vice versa. 
 
 #### **Definition | Support Functions**
 
@@ -46,10 +48,10 @@ When dealing with the support function for analysis purposes, keep in mind these
 6. Support function of set $C$ is the conjugate of the indicator function of the same set. For more about conjugation, see: [[../Duality/Convex Conjugation Introduction]] for more. 
 
 We will prove some of the properties that are not trivial to prove. 
-The properties 4., 5, shows that support funciton is also a sublinear function. 
+The properties 4., 5, shows that support function is also a sublinear function. 
 Property 4, positive homogeneuity shows that the epigraph of the support function is a cone. 
 One consequence of property 4. would mean that $f(0x) = 0f(x) = 0$ for all $x \in \mathbb E$. 
-That is assumine that $f$ is a positive homogeneous function. 
+That is assume that $f$ is a positive homogeneous function. 
 Therefore $f(0) = 0$, therefore the support function $\delta^\star$ would have an epigraph that is also a cone. 
 
 
@@ -195,7 +197,7 @@ Because the set is finite, we can apply example 1 to obtain: $\max_{i\in [n]}\{y
 
 
 ---
-### **Example 4: Supporting the Affine Space**
+### **Example 4 | Supporting the Affine Space**
 
 
 

@@ -230,7 +230,7 @@ This is proposition 5.18 in the book.
 >     \right\rbrace
 > \end{aligned}
 > $$
-> in each of the following scenario: 
+> in each of the following scenarios:
 > 1. $f$ is continuous at some point $\bar u \in \text{dom}\; f$. 
 > 2. $\text{ri.dom}\; f \cap \text{ri.dom}\;g \neq \emptyset$. 
 
@@ -275,3 +275,5 @@ $$
 Take note that, when $\epsilon = 0$ and/or $\bar x \not\in \text{dom}\; f\cap \text{dom}\; g$ becomes an edge case.
 In this case, the subgradients $\partial_{\epsilon_1} f(\bar x), \partial_{\epsilon_2} g(\bar x)$ can be empty, which make things trivially true. 
 Therefore, the easier direction $\supseteq$ had been verified. 
+
+Let's handle the difficult case of $\subseteq$. 
