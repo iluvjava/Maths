@@ -134,12 +134,84 @@ This theorem is not completely correct yet.
 **Proof**
 
 The second equality is easier to prove and doesn't require the regularity conditions of the intersection of the relative interior on the domain of the list of functions. 
+For any $x \in \text{dom} (f_1\square\cdots\square f_m)^\star$, by definition it has: 
 
 $$
 \begin{aligned}
-    
+    (f_1\square \cdots \square f_m)^\star(x^*)
+    &= 
+    \sup_{z \in \R^n} 
+    \left\lbrace
+        \langle z, x^*\rangle 
+        - [f_1 \square \cdots \square f_m]^\star(z)
+    \right\rbrace
+    \\
+    &= 
+    \sup_{z \in \R^n}
+    \left\lbrace
+        \langle z, x^*\rangle - 
+        \inf_{z_1, \cdots, z_m = z}
+        \left\lbrace
+            f_1(z_1) + \cdots + f_m(z_m)
+        \right\rbrace
+    \right\rbrace
+    \\
+    &= 
+    \sup_{z \in \R^n}
+    \left\lbrace
+        \langle z, x^*\rangle +
+        \sup_{z_1, \cdots, z_m = z}
+        \left\lbrace
+            -f_1(z_1) - \cdots - f_m(z_m)
+        \right\rbrace
+    \right\rbrace
+    \\
+    &= \sup_{z_1+ \cdots + z_m = z \in \R^n}
+    \left\lbrace
+        \langle z, x^*\rangle + 
+        - (f_1(z_1) + \cdots + f_m(z_m))
+    \right\rbrace
+    \\
+    &= \sup_{z_1, \cdots, z_m} 
+    \left\lbrace
+        [\langle \cdot, x^*\rangle - f_1](z_1) 
+        + \cdots
+        + [\langle \cdot, x^* - f_m\rangle](z_m)
+    \right\rbrace
+    \\
+    &= 
+    f_1^\star(x^*) + \cdots + f_m^\star(x^*). 
 \end{aligned}
 $$
+
+Because this is true for all such $x^*$ in the domain, as a consequence it has: 
+
+$$
+\begin{aligned}
+    (f_1^\star\square \cdots \square f_m^\star)^\star
+    &= 
+    f_1^{\star\star}(x^*) + \cdots 
+    + f^{\star\star}_m(x^*)
+    \\
+    &= \text{cl}\; f_1(x^*) + \cdots + \text{cl}\; f_m(x^*). 
+\end{aligned}
+$$
+
+Taking the conjugate on both side of the equality and using bi-conjugate closure theorem: 
+
+$$
+\begin{aligned}
+    (f_1^\star\square \cdots \square f_m^\star)^{\star\star}
+    &= 
+    \text{cl}\; (f_1^\star\square \cdots \square f_m^\star)
+    = (\text{cl}\; f_1(x^*) + \cdots + \text{cl}\; f_m(x^*))^\star.
+\end{aligned}
+$$
+
+We continue but now with the assumption that there exists a common point shared among all $\text{ri.dom}\; f_i$ for $i = 1, \cdots, m$. 
+
+
+
 
 
 **Remark**

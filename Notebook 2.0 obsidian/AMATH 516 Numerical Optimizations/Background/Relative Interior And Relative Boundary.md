@@ -24,7 +24,8 @@ The relative boundary of the set is defined as $\text{rb}(Q):= \text{cl}(Q)\setm
 **Simple Consequences**
 
 1. One simple observation that could be made is $\text{int}(Q)\subseteq \text{ri}(Q)$ for any set. 
-2. And it's not the case that if $C_1 \subseteq C_2$ we have $\text{ri}C_1 \subseteq \text{ri}C_2$, imagine the case where $C_1$ is a cube and $C_2$ is one of the faces of the cube. The face of the cube is part of it, but it's relative interior doesn't intersect the relative interior (the strict inside) of the cube. 
+2. And it's not the case that if $C_1 \subseteq C_2$ we have $\text{ri}\;C_1 \subseteq \text{ri}\;C_2$, imagine the case where $C_1$ is a cube and $C_2$ is one of the faces of the cube. 
+The face of the cube is part of it, but the relative interior doesn't intersect the relative interior (the strict inside) of the cube. 
 3. Based on this definition and the natural definition of a boundary of a set, the relative boundary of the set $C$ can be defined to be $\text{cl}(C)\setminus \text{ri}C$. Similarly, the set is relatively open then we have $C = \text{ri}C$. 
 
 

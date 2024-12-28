@@ -1,6 +1,7 @@
-[[Convex Sets Intro]]
-[[Generating Cone of a Set]]
-[[Set Addition]]
+Pre-requisite
+- [[Convex Sets Intro]]
+- [[Generating Cone of a Set]]
+- [[Set Addition]]
 
 ---
 ### **Intro**
@@ -10,9 +11,9 @@ There operations on sets that preserve the convexity of the sets. Here is the li
 1. Scaling by a positive factor. Equivalent to generating a cone on the set. 
 2. Set addition. $Q_1, Q_2$ are convex then $Q_1 + Q_2$ is also a convex set. 
 3. Inersection of convex sets are stil convex. 
-4. Linear Mapping of sets Preserves convexity, from the domain to the preimages. 
+4. Linear Mapping of sets Preserves convexity, from the domain to the pre-images. 
 
-To clarify: 
+The section follows clarify the concepts and prove them. 
 
 ---
 ### **Linear Scaling**
@@ -176,7 +177,10 @@ $$
 Observe that $x_\lambda \in Q$ by the convexity of $Q$, and hence $Ax_\lambda \in AQ$, then we have shown that $y_\lambda \in AQ$ for all $\lambda \in [0, 1]$. 
 
 ---
-### **Applications: Convexity of Functions**
+### **Applications | Convexity of Functions**
+
+Convexity of function is equivalent to the convexity of their epigraph. 
+Therefore, analyzing the epi-profile of a convex function allows us to make claims on the type of operations that preserves the convexity of a function using the above proven claims. 
 
 [[Convexity Preserving Operations for Functions]]
 
