@@ -321,16 +321,14 @@ The function $\widetilde{\mathcal M}(\cdot; y)$ is a $L$ strongly convex functio
 Using only this implications of strong convexity, we have for all $x \in \R^n$: 
 
 $$
-{\small
 \begin{aligned}
+    0 &\le 
     \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
     \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
     - 
     \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 
-    0
     \\
-    \implies
+    &= 
     \left(
         \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
     \right) - 
@@ -338,9 +336,8 @@ $$
     - 
     \frac{L}{2}\Vert x - Ty\Vert^2
     + D_f(Ty; y)
-    &\ge 0
     \\
-    \iff 
+    &= 
     \left(
         \mathcal M^{L^{-1}}(x; y)
         - 
@@ -350,9 +347,8 @@ $$
     D_f(x, y) 
     - \frac{L}{2}\Vert x - Ty\Vert^2
     + D_f(Ty; y)
-    &\ge 0
     \\
-    \iff 
+    &=
     \left(
         h(x) - h(Ty) 
         + 
@@ -362,9 +358,8 @@ $$
     - D_f(x, y) 
     + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
     \\
-    \iff 
+    &=
     \left(
         h(x) - h(Ty) 
         + 
@@ -378,9 +373,8 @@ $$
     - D_f(x, y) 
     + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
     \\
-    \iff 
+    &= 
     \left(
         h(x) - h(Ty) 
         + 
@@ -393,9 +387,8 @@ $$
     - D_f(x, y) 
     + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
     \\
-    \iff
+    &= 
     \left(
         h(x) - h(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
         - L\langle  x - Ty, y - Ty\rangle
@@ -403,16 +396,13 @@ $$
     - D_f(x, y) 
     + D_f(Ty; y)
     - \frac{L}{2}\Vert x - Ty\Vert^2
-    &\ge 0
     \\
-    \iff 
+    &=
     h(x) - h(Ty)
     - \langle L(y - Ty), x - Ty\rangle
     - D_f(x, y) 
-    + D_f(Ty, y)
-    &\ge 0. 
+    + D_f(Ty, y). 
 \end{aligned}
-}
 $$
 
 Take note that for all $x \in \R^n$, the inequality is trivially true cause by definition it gives $h(x) = \infty$. 
@@ -558,17 +548,16 @@ The model function admits quadratic growth condition over minimizer $T_Ly$.
 Therefore, for all $x \in Q$ it has: 
 
 $$
-{\footnotesize
+
 \begin{aligned}
+    0 &\le 
     \widetilde{\mathcal M}(x; y) - \widetilde{\mathcal M}(Ty; y) - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
-    &\ge 0
     \\
-    \iff 
+    &= 
     \left(\mathcal M(x; y) - D_f(x, y)\right) - \mathcal M(Ty; y) + D_f(Ty, y) 
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
-    &\ge 0
     \\
-    \iff 
+    &=
     \left(
         F(x) - F(Ty) 
         + \frac{\overline L}{2}\Vert x - y\Vert^2
@@ -577,9 +566,8 @@ $$
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
     +
     D_f(Ty, y) - D_f(x, y)
-    &\ge 0
     \\
-    \iff 
+    & =
     \left(
         F(x) - F(Ty) 
         + \frac{\overline L}{2}\Vert x - Ty + Ty - y\Vert^2
@@ -587,9 +575,8 @@ $$
     \right)
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2 
     + D_f(Ty, y) - D_f(x, y)
-    &\ge 0
     \\
-    \iff 
+    & =
     \left(
         F(x) - F(Ty) 
         - \overline L\langle x - Ty, y - Ty\rangle
@@ -597,18 +584,16 @@ $$
     \right)
     - \frac{\overline L - \mu}{2}\Vert x - Ty\Vert^2
     + D_f(Ty, y) - D_f(x, y)
-    &\ge 0
     \\
-    \iff 
+    & =
     \left(
         F(x) - F(Ty) 
         - \overline L\langle x - Ty, y - Ty\rangle
     \right)
     + \frac{\mu}{2}\Vert x - Ty\Vert^2
-    + D_f(Ty, y) - D_f(x, y)
-    &\ge 0.
+    + D_f(Ty, y) - D_f(x, y). 
 \end{aligned}
-}
+
 $$
 
 The chain of equivalent inequalities ends here, re-organizing it this is what we get: 
@@ -677,6 +662,39 @@ Substituting $\mu = - \sigma$, the inequality becomes
 
 $$
 \begin{aligned}
+    0 &\le 
+    F(x) - F(Ty) 
+    - \overline L\langle x - y, y - Ty\rangle
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    + \left(
+        \frac{K}{2} - \overline L
+    \right)\Vert y 
+    - Ty\Vert^2 
+    - \frac{\mu}{2}\Vert x - y\Vert^2. 
 \end{aligned}
 $$
+
+Now, we may choose $\overline L = K$, so with that: 
+
+$$
+\begin{aligned}
+    0 &\le 
+    F(x) - F(Ty) 
+    - K\langle x - y, y - Ty\rangle
+    - \frac{\mu}{2}\Vert x - Ty\Vert^2
+    -
+    \frac{K}{2}\Vert y - Ty\Vert^2 
+    - \frac{\mu}{2}\Vert x - y\Vert^2
+    \\
+    &\le 
+    F(x) - F(Ty) 
+    - K\langle x - y, y - Ty\rangle
+    -
+    \frac{K}{2}\Vert y - Ty\Vert^2 
+    - \frac{\mu}{2}\Vert x - y\Vert^2. 
+\end{aligned}
+$$
+
+This, recovers the same lemma as in the convex smooth case, utilizing the non-convex formulation of the proximal gradient lemma. 
+
 
