@@ -1,3 +1,9 @@
 Nesterov
 R-WAPG
 FISTA
+Attouch
+Apidopoulos
+V-FISTA
+Dossal
+Chambolle
+M-FISTA

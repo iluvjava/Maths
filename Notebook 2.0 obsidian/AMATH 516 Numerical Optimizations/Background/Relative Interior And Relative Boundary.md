@@ -1,6 +1,6 @@
-- [[Interior Topology]]
-- [[Closure Topology]]
-- [[Affine Hull, Affine Span]]
+- [Interior Topology](Interior%20Topology.md)
+- [Closure Topology](Closure%20Topology.md)
+- [Affine Hull, Affine Span](Affine%20Hull,%20Affine%20Span.md)
 
 ---
 ### **Intro**
@@ -105,7 +105,7 @@ Convexity and accessibility lemmas are crucial in this theorem.
 This theorem has the following consequences. 
 
 
-#### **Corollary 6.31**
+#### **Corollary 6.31 | Closure equality equivalent to relative interior equality under convexity**
 > Let $C_1, C_2$ be convex subsets of $\R^n$. 
 > Then $\text{cl}\; C_1  = \text{cl}\; C_2$ if and only if $\text{ri}\; C_1 = \text{ri}\;C_2$
 > In addition, both are equivalent to $\text{ri}\;C_1 \subseteq C_2\subseteq \text{cl}\;C_1$. 

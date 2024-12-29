@@ -100,7 +100,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \end{align*}
         Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in Chambolle, Dossal \cite{chambolle_convergence_2015}, and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
         When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by Beck \cite{beck_first-order_2017}, if $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
-        In Theorem \ref{thm:fixed-momentum-fista}, it demonsrate that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
+        In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
         \par
         Our practical contribution is an algorithm inspired by a detail in our convergence proof which we call it ``Parameter Free R-WAPG'' (See Algorithm \ref{alg:free-rwapg}). 
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
@@ -118,10 +118,15 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \item Attouch H., et al.: ``First-order optimization algorithms via inertial systems with Hessian driven damping'', Math Programming. 
             \end{enumerate}
         }
+        One of the most relevant works is by 
+        \todo{$\square$ Add them \\ $\square$ Cite them.}{\hl{Apidopoulos et al. }}
+        They showed that a relaxed choice of the sequence that doesn't strictly follow the Nesterov's rule still leads to the convergence of the momentum algorithm. 
+        \par 
+        See \todo{$\square$ Add them \\ $\square$ Cite them. }{\hl{Attouch H et al.}} for a method inspired by Hessian Damping were used to stabilize the convergence of the Nesterov's momentum without restarting. 
         
     \subsection{Organizations}
         \todoinline{This will be written once most of the contents in the paper are settled. }
-    
+        
        
 
 \section{Preliminaries}
@@ -207,16 +212,15 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         We denote $T$ for the proximal gradient operator instead of $T_L$. 
         We can do this because the Lipschitz constant $L$ is fixed throughout the proof hence it can be omitted. 
         The model function $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is a $L$ strongly convex function, so it admites quadratic growth conditions over minimizer $Ty$ and for all $x \in \RR^n$: 
-        {\footnotesize
+        {\smaller
         \begin{align*}
+            0 &\le 
             \widetilde{\mathcal M}^{L^{-1}}(x; y) - 
             \widetilde{\mathcal M}^{L^{-1}}(Ty; y)
             - 
             \frac{L}{2}\Vert x - Ty\Vert^2
-            &\ge 
-            0
             \\
-            \iff
+            &= 
             \left(
                 \mathcal M^{L^{-1}}(x; y) - D_f(x, y)
             \right) - 
@@ -224,9 +228,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - 
             \frac{L}{2}\Vert x - Ty\Vert^2
             + D_f(Ty; y)
-            &\ge 0
             \\
-            \iff 
+            &=
             \left(
                 \mathcal M^{L^{-1}}(x; y)
                 - 
@@ -236,9 +239,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             D_f(x, y) 
             - \frac{L}{2}\Vert x - Ty\Vert^2
             + D_f(Ty; y)
-            &\ge 0
             \\
-            \iff 
+            &=
             \left(
                 F(x) - F(Ty) 
                 + 
@@ -248,9 +250,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - D_f(x, y) 
             + D_f(Ty; y)
             - \frac{L}{2}\Vert x - Ty\Vert^2
-            &\ge 0
             \\
-            \iff 
+            &=  
             \left(
                 F(x) - F(Ty) 
                 + 
@@ -264,9 +265,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - D_f(x, y) 
             + D_f(Ty; y)
             - \frac{L}{2}\Vert x - Ty\Vert^2
-            &\ge 0
             \\
-            \iff 
+            &= 
             \left(
                 F(x) - F(Ty) 
                 + 
@@ -279,9 +279,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - D_f(x, y) 
             + D_f(Ty; y)
             - \frac{L}{2}\Vert x - Ty\Vert^2
-            &\ge 0
             \\
-            \iff
+            & = 
             \left(
                 F(x) - F(Ty) + \frac{L}{2}\Vert x - Ty\Vert^2 
                 - L\langle  x - Ty, y - Ty\rangle
@@ -289,17 +288,16 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             - D_f(x, y) 
             + D_f(Ty; y)
             - \frac{L}{2}\Vert x - Ty\Vert^2
-            &\ge 0
             \\
-            \iff 
+            & =
             F(x) - F(Ty)
             - \langle L(y - Ty), x - Ty\rangle
             - D_f(x, y) 
-            + D_f(Ty, y)
-            &\ge 0. 
+            + D_f(Ty, y). 
         \end{align*}
         }
-        Now, consider the lower bound of $D_f(x, y) \ge \mu/2\Vert x - y\Vert^2$ by strong convexity of $f$ then 
+        Now, consider the lower bound of $D_f(x, y) \ge \mu/2\Vert x - y\Vert^2$ which is true for all $x, y \in \RR^n$ by strong convexity of $f$. 
+        Then it has for all $x \in \RR^n, y \in \RR^n$ that: 
         \begin{align*}
             0 &\le 
             F(x) - F(Ty)
@@ -1348,6 +1346,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \subsection{A list of equivalent representations of R-WAPG}
         This section lists three equivalent representations of the R-WAPG algorithm. 
         They are comparable to existing APG algorithms in the literatures. 
+        Specific instances of Accelerated Proximal Gradient algorithm that has the same form as the Definition \ref{def:r-wapg-intermediate}, Definition \ref{def:r-wapg-st-form} and Definition \ref{def:r-wapg-momentum-form} in the literatures are stated in the remarks that follows the definitions. 
+
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
             Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
             Initialize any $x_1, v_1$ in $\RR^n$. 
@@ -1378,6 +1378,14 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \end{align*}
             \end{tcolorbox}
         \end{definition}
+        \begin{remark}
+            This form of APG is rarely identified in the literatures. 
+            The closest algorithm that fits the form but with $\mu = 0$ is Chapter 12 of 
+            \todo{$\square$ Add them \\ $\square$ Cite them. }{\hl{in Ryu and Tao's Book}}, 
+            right after Theorem 17. 
+            We created this form which makes the math that follows simpler. 
+            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Tao's Book. 
+        \end{remark}
         \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
             Given any $(x_1, v_1)$ in $\RR^n$. 
             Assume $\mu < L$.
@@ -1403,6 +1411,24 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \end{align*}    
             \end{tcolorbox}
         \end{definition}
+        \begin{remark}
+            The word similar triangle form can be traced back to several literatures. 
+            The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it. 
+            Finally, a similar triangle for formulation of FISTA can be found in Equation (2), (3), (4) in \cite{chambolle_convergence_2015}. 
+            To see a graphical explanations on why such term is used to describe the APG algorithm in the literatures, see 
+            \todo{
+                $\square$ Add these. $\square$ Cite these. 
+            }{\hl{(3.1, 4.1) in Lee et al. and Ahn and Sra}}
+            \todoinline{\noindent
+                The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
+                For more information, see:  
+                \begin{enumerate}
+                    \item 3.1, 4.1 in Jongmin Lee et.al's paper ``A geometric structor of Acceleration and its role in mtakng gradients small''
+                    \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
+                \end{enumerate}
+            }
+
+        \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
             Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
             The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
@@ -1424,7 +1450,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             $$
         \end{definition}
         \begin{remark}
-           \todo[inline]{Consider adding a remark here on how this is similar in format to the Nesterov's accelerated gradient (2.2.19) in his book. }
+            This format fits with (2.2.19) in Nesterov's book \cite{nesterov_lectures_2018}, however, the sequence $(\alpha_k)_{k \ge 0}$ would be given by a different rule. 
+            See Theorem \ref{thm:r-wapg-on-cham-doss} and Lemma \ref{lemma:inverted-fista-seq} to see a specific choice of $(\alpha_k)_{k \ge0}, (\rho_k)_{ k\ge 0}$ such this equivalent form of R-WAPG is in fact two possible variants of the FISTA algorithm.
         \end{remark}
 
     \subsection{Proving the equivalent representations of R-WAPG}
@@ -2191,9 +2218,9 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \label{alg:free-rwapg}
     \end{algorithm}
     \par
-    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$.
-    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine. 
-    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
+    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$; 
+    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine;
+    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$;
     Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
     \par
     Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
@@ -2204,6 +2231,19 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \subsection{Numerical experiments}
 
         \subsubsection{Simple convex quadratic}
+            Consider the minimization problem of $\min_x \{F(x):= f(x) + 0\}$ where the objective function is given by: 
+            \begin{align*}
+                F(x) = \langle x, A x\rangle. 
+            \end{align*}
+            The matrix $A$ is set to be positive definite and diagonal. 
+            Then the optimization problem admits unique minimizer $x^* = \mathbf 0$ and the minimum is zero. 
+            \par
+            We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA. 
+            The parameters for setting up the problem now follows. 
+            \begin{enumerate}
+                \item 
+            \end{enumerate}
+
         \subsubsection{LASSO}
         \subsubsection{Logistic regression}
 
