@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSee page 9 of Su et al. \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

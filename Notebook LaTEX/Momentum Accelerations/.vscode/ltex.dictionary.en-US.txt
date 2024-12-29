@@ -7,3 +7,16 @@ V-FISTA
 Dossal
 Chambolle
 M-FISTA
+Ahn
+Sra
+Jongmin
+Ryu
+Nestrov
+Teboulle
+optimality
+Hongda
+Xianfu
+NOG
+coersive
+nonsmooth
+Tibshirani

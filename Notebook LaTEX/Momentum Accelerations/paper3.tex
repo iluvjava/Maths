@@ -62,7 +62,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \par
     This issue motivated a vast amount of literatures aims at improving, interpreting, and extending this method. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
-    Beck and Toubelle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has a $\mathcal O(1/k^2)$ convergence still, but it performs empirically better. 
+    Beck and Teboulle \cite{beck_fast_2009} mitigate the issue by restarting and showed that it has an $\mathcal O(1/k^2)$ convergence still, but it performs empirically better. 
     See \cite{necoara_linear_2019}\cite{aujol_parameter-free_2024} and references within for recent advancements in restarting accelerated proximal gradient algorithm. 
     \par
     Inspired by prior works and the method of Nestrov's estimating sequence \cite{nesterov_lectures_2018}, we present to you firstly, an alternative to restarting that performs well empirically. 
@@ -76,7 +76,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \par
         Nesterov's acceleration extrapolate $y_{k + 1} = x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$ where $\theta_{k + 1} = (t_{k} - 1)/t_{k + 1} \in (0, 1)$ is the ``momentum''. 
         The choices for $\theta_k$ varies for different variants of the accelerated proximal gradient algorithm. 
-        In Chamboolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
+        In Chambolle, Dossal \cite{chambolle_convergence_2015}, it has $t_k = (n + a - 1)/a$ for all $a > 2$ which gives weak convergence of the iterates $x_k$ in Hilbert space. 
         In Chapter 10 of Beck's Book \cite{beck_first-order_2017}, a variant called V-FISTA can achieve the faster linear convergence rate: $\mathcal O((1 - \sqrt{\mu/L})^k)$ on the optimality gap for $\mu > 0$ strongly convex $F$. 
         V-FISTA has $\theta_t = (\sqrt{\kappa} - 1)/(\sqrt{\kappa} + 1)$ where $\kappa = \mu/L$. 
         \par
@@ -106,23 +106,23 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         The algorithm is parameter free, meaning that it doesn't require knowing $L, \mu$ in advance, and it determines the value of $\theta_t$ by estimating the local concavity using iterates $y_{k}, y_{k + 1}$ with minimal computational cost. 
         We conducted ample amount of numerical experiments to show that it has a favorable convergence rate in practice and behaves similarly to the FISTA with monotone restart. 
     \subsection{Prior works}
-        \todoinline{
+        \todoinline{\noindent
             Here is a list of papers that are relevant to generalizing the convergence claim for APG beyond just the traditional choices for the momentum sequence. 
             \begin{enumerate}
                 \item Attouch H., Cabot A.: ``Convergence Rates of Inertial Forward-Backward Algorithms'', SIAM. 
-                \item Vassilis A., et al.: ``Convergence rate of inertial Forward-Backward algorithm
-                beyond Nesterov's rule". 
+                \item Vassilis A., et al.: ``Convergence rate of inertial Forward-Backward algorithm beyond Nesterov's rule". 
             \end{enumerate}
             The following papers are related to stabilizing, improving the acceleration scheme without monotone restarting. 
             \begin{enumerate}
                 \item Attouch H., et al.: ``First-order optimization algorithms via inertial systems with Hessian driven damping'', Math Programming. 
             \end{enumerate}
+            \textcolor{red}{The prior works' section is too little, it requires some expansion in the future for sure.} 
         }
         One of the most relevant works is by 
-        \todo{$\square$ Add them \\ $\square$ Cite them.}{\hl{Apidopoulos et al. }}
+        \todo{$\blacksquare$ Add them \\ $\blacksquare$ Cite them.}{\hl{Apidopoulos et al. }\cite{apidopoulos_convergence_2018}}. 
         They showed that a relaxed choice of the sequence that doesn't strictly follow the Nesterov's rule still leads to the convergence of the momentum algorithm. 
         \par 
-        See \todo{$\square$ Add them \\ $\square$ Cite them. }{\hl{Attouch H et al.}} for a method inspired by Hessian Damping were used to stabilize the convergence of the Nesterov's momentum without restarting. 
+        See \todo{$\blacksquare$ Add them \\ $\blacksquare$ Cite them. }{\cite{attouch_first-order_2022}\cite{maulen_speed_2023}} and references within for  the idea of Hessian Damping used to to stabilize the convergence of the Nesterov's momentum without/with restarting. 
         
     \subsection{Organizations}
         \todoinline{This will be written once most of the contents in the paper are settled. }
@@ -211,7 +211,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{proof}
         We denote $T$ for the proximal gradient operator instead of $T_L$. 
         We can do this because the Lipschitz constant $L$ is fixed throughout the proof hence it can be omitted. 
-        The model function $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is a $L$ strongly convex function, so it admites quadratic growth conditions over minimizer $Ty$ and for all $x \in \RR^n$: 
+        The model function $\widetilde{\mathcal M}^{L^{-1}}(\cdot; y)$ is an $L$ strongly convex function, so it admits quadratic growth conditions over minimizer $Ty$ and for all $x \in \RR^n$: 
         {\smaller
         \begin{align*}
             0 &\le 
@@ -1097,7 +1097,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{proposition}
     \begin{proof}  
         $\hat \gamma_2 = (1 - \alpha_1)\gamma_1 + \mu \alpha_1$ is true by Observation \ref{obs:r-wapg-observation-1}. 
-        Observe that $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov} with k = 1 so we can invoke Proposition \ref{prop:stepwise-lyapunov}, and it gives: 
+        Observe that $R_2$ is defined in the same manner as in Proposition \ref{prop:stepwise-lyapunov} with $k = 1$, we can invoke Proposition \ref{prop:stepwise-lyapunov}, and it gives: 
         \begin{align*}
             & F(x_{2}) - F(x^*) + R_2 + \frac{L \alpha_1^2}{2}\Vert v_{2} - x^*\Vert^2
             \\
@@ -1222,11 +1222,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         }
     \end{proof}
     \begin{remark}        
-        \textcolor{red}
-        {
-            The choice of $\rho_k$ allows for nontraditional choices of step sizes in the literatures. 
-            As we can see from the above convergence claim, there exists choices of $\rho_k\ge 1$ where convergence remains possible. 
-        }
+        The choice of $\rho_k = 0$ reproduces traditional choice of sequences for the APG algorithm. 
+        The above claim showed that there exists $\rho_k > 1$, or $\rho_k < 1$ where convergence of $F(x_k) - F(x^*)$ remains possible. 
     \end{remark}
 
 
@@ -1254,9 +1251,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \text{Definition }\ref{def:r-wapg-momentum-form}. 
         & \text{By Proposition }\ref{prop:r-wapg-momentum-repr}.
     \end{align*}
-    
     To start, the following proposition on ``abstract similar triangle form'' were made to simplify arguments and notations to make nicer proofs. 
-
+    % SECTION INTRODUCTION ENDS 
     \begin{proposition}[Abstract similar triangle form]\label{prop:abs-st-form}\;\\
         Given any initial $(x_1, v_1)$, and a sequence $(\tau_k)_{k \ge 1}, (\xi_k)_{k \ge 1}$ such that for all $k \ge 1$ $\tau_k \in (0, 1), \xi_k \in (0, 1)$. 
         For all $k\ge 1$, iterates $(y_k, z_{k + 1}, x_{k + 1})_{k \ge 1}$ satisfies recursively that: 
@@ -1381,10 +1377,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         \begin{remark}
             This form of APG is rarely identified in the literatures. 
             The closest algorithm that fits the form but with $\mu = 0$ is Chapter 12 of 
-            \todo{$\square$ Add them \\ $\square$ Cite them. }{\hl{in Ryu and Tao's Book}}, 
+            \todo{$\blacksquare$ Add them \\ $\blacksquare$ Cite them. }
+            {\hl{in Ryu and Yin's Book} \cite{ryu_large-scale_2022}}, 
             right after Theorem 17. 
             We created this form which makes the math that follows simpler. 
-            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Tao's Book. 
+            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Yin's Book. 
         \end{remark}
         \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
             Given any $(x_1, v_1)$ in $\RR^n$. 
@@ -1415,15 +1412,15 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             The word similar triangle form can be traced back to several literatures. 
             The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it. 
             Finally, a similar triangle for formulation of FISTA can be found in Equation (2), (3), (4) in \cite{chambolle_convergence_2015}. 
-            To see a graphical explanations on why such term is used to describe the APG algorithm in the literatures, see 
+            To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
             \todo{
-                $\square$ Add these. $\square$ Cite these. 
-            }{\hl{(3.1, 4.1) in Lee et al. and Ahn and Sra}}
+                $\blacksquare$ Add these. $\blacksquare$ Cite these. 
+            }{(3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}}. 
             \todoinline{\noindent
                 The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
                 For more information, see:  
                 \begin{enumerate}
-                    \item 3.1, 4.1 in Jongmin Lee et.al's paper ``A geometric structor of Acceleration and its role in mtakng gradients small''
+                    \item 3.1, 4.1 in Jongmin Lee et al., ``A geometric structure of Acceleration and its role in making gradients small''
                     \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
                 \end{enumerate}
             }
@@ -1446,7 +1443,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             In the special case where $\mu = 0$, the momentum term can be represented without relaxation parameter $\rho_k$: 
             $$
                 (\forall k \ge 1)\quad \frac{\rho_k\alpha_k(1 - \alpha_k)}{\rho_k\alpha_k^2 + \alpha_{k + 1}} 
-                = \alpha_{k + 1}(\alpha_k^{-1} - 1).  
+                = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
             $$
         \end{definition}
         \begin{remark}
@@ -1638,7 +1635,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \delta_k &\defeq \frac{1 + \xi_k}{L\alpha_k}. 
             \end{align*}
             We claim that these parameters satisfy $L\delta_k = 1 + \tau_k + \xi_k$. 
-            To see, we have forall $k\ge 1$: 
+            To see, we have for all $k\ge 1$: 
             \begin{align*}
                 1 + \tau_k + \xi_k &= 
                 1 + \frac{L(1 - \alpha_k)}{L \alpha_k - \mu} 
@@ -1895,7 +1892,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             (1 - \alpha_1)\alpha_0^2\rho_0 \underset{\mu = 0}{=}
             \frac{\alpha_1^2}{\alpha_0^2(1 - \alpha_1)}(1 - \alpha_1)\alpha_0^2 = \alpha_1^2. 
         \end{align*}
-        Therefore (i) holds. 
+        Therefore, (i) holds. 
         (i) is proved. 
         \par
         (i) $\implies$ (ii) because substituting $\alpha_k^{-1} = t_k$ changes (i) into $t_{k + 1}^2 - t_{k + 1} - t_{k}^2 \le 0$ for all $k \ge 0$. 
@@ -1922,7 +1919,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         Because $\alpha_0 = 1$, (iii) is justified. 
     \end{proof}
     \begin{remark}
-        The sequence $t_k$ is exactly the same as in Theorem 3.1 of Chmabolle, Dossal \cite{chambolle_convergence_2015}. 
+        The sequence $t_k$ is exactly the same as in Theorem 3.1 of Chambolle, Dossal \cite{chambolle_convergence_2015}. 
     \end{remark}
 
     \begin{lemma}[Constant R-WAPG sequences]\label{lemma:constant-rwapg-seq}
@@ -2017,8 +2014,8 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             Once again, the larger one of the quantity: $1 - r \sqrt{q}$ among $\{1 - r^{-1}\sqrt{q}, 1 - r\sqrt{q}\}$ is taken. 
         \end{enumerate}
         Therefore, for all vales of $r \in \left(\sqrt{q}, \sqrt{q^{-1}}\right)$ are completed by cases: (A), (B).
-        The larger of the value among $\{1 - r \sqrt{q}, 1 - r^{-1}\sqrt{q}\}$ is always taken. 
-        Therefore it has: 
+        The largest of the value among $\{1 - r \sqrt{q}, 1 - r^{-1}\sqrt{q}\}$ is always taken. 
+        Therefore, it has: 
         \begin{align*}
             \max(1, \rho)(1 - \alpha) = \max\left(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q}\right). 
         \end{align*}
@@ -2091,11 +2088,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \\
             &= \frac{(k + 1)}{(k + a + 1)} 
             \\
-            & > 1.   & \text{By } a > 2. 
+            & > 1.   & \text{By } a \ge 2. 
         \end{align*}
-        Hence (iii) in Lemma \ref{lemma:inverted-fista-seq} applies. 
+        Hence, (iii) in Lemma \ref{lemma:inverted-fista-seq} applies. 
         We may use Proposition \ref{prop:wagp-convergence} by the validity of our $(\alpha_k)_{k \ge0}, (\rho_k)_{k \ge 0}$ sequences, we have:
-        \begin{align*}
+        {\small\begin{align*}
             & F(x_{k + 1}) - F(x^*) + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
             & = F(x_{k + 1}) - F(x^*) + \frac{L\alpha_k^2}{2}\Vert x_{k + 1} - x^* + (\alpha_k^{-1} - 1)(x_{k + 1} - x_k)\Vert^2
@@ -2123,12 +2120,11 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             \left(
                 F(x_1) - F(x^*) + \frac{L\alpha_0^2}{2}\Vert x_1 - x^*\Vert^2
             \right). 
-        \end{align*}
+        \end{align*}}
         We can replace $v_1$ to be $x_1$ by Proposition \ref{prop:r-wapg-momentum-repr}. 
     \end{proof}
     \begin{remark}
         This algorithm described here is exactly the same algorithm being analyzed in the paper by Chambolle, Dossal \cite{chambolle_convergence_2015}. 
-
     \end{remark}
 
     \begin{theorem}[Fixed momentum APG]\label{thm:fixed-momentum-fista}
@@ -2150,7 +2146,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \begin{proof}
         The constant sequence $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ is a valid R-WAPG sequence by Lemma \ref{lemma:constant-rwapg-seq}. 
         The algorithm presented here is the same as the R-WAPG momentum form because the term $\theta$ from Lemma \ref{lemma:constant-rwapg-seq} matches up with Definition \ref{def:r-wapg-momentum-form}. 
-        Therefore by Proposition \ref{prop:wagp-convergence} we have: 
+        Therefore, by Proposition \ref{prop:wagp-convergence} we have: 
         \begin{align*}
             & F(x_{k + 1}) - F^* + \frac{L\alpha_k^2}{2}\Vert v_{k + 1} - x^*\Vert^2
             \\
@@ -2229,27 +2225,110 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
 
     \subsection{Numerical experiments}
+        This section gives figures and visual for numerical experiments conducted on the R-WAPG algorithm, and other algorithms in the literatures such as the V-FISTA, and M-FISTA algorithm. 
+        We implemented and compare V-FISTA, M-FISTA from Beck, and Algorithm \ref{alg:free-rwapg} given this section. 
+        The results of the experiments are visualized and the setup of the numerical experiments are described  in the sections that follows. 
+        \par
+        The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, VISTA and M-FISTA. 
+        \par
+        Given the same randomized initial condition for all the algorithm, we measure the aggregate statistics of the base two logarithms of the normalized optimality gap (NOG), at each iteration $k$.  
+        Given the iterates $x_k$, and the minimum $F^*$, the normalized optimality gap we defined is: 
+        \newcommand{\NOG}{\text{\textbf{NOG}}}
+        \begin{align*}
+            \delta_k := \log_2\left(
+                \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
+            \right). 
+        \end{align*}
+        Since it's not the case that $F^*$ is always known in prior, we used the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$. 
+        \par 
+        For the termination conditions of the algorithm, we consider the norm of the gradient mapping $\mathcal G_L(y_k) < \epsilon$. 
+        The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine. 
 
         \subsubsection{Simple convex quadratic}
             Consider the minimization problem of $\min_x \{F(x):= f(x) + 0\}$ where the objective function is given by: 
             \begin{align*}
-                F(x) = \langle x, A x\rangle. 
+                F(x) = (1/2)\langle x, A x\rangle. 
             \end{align*}
-            The matrix $A$ is set to be positive definite and diagonal. 
+            The matrix $A$ is set to be positive semi-definite and diagonal. 
             Then the optimization problem admits unique minimizer $x^* = \mathbf 0$ and the minimum is zero. 
             \par
             We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA. 
             The parameters for setting up the problem now follows. 
             \begin{enumerate}
+                \item $N$, the dimension of the problem. 
+                \item $0 < \mu < L$, the strong convexity and Lipschitz smoothness constant. 
+                \item $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e: $A = \text{diag}(0, \mu + (L-\mu)(N - 1)^{-1}, \mu + 2(L-\mu)(N - 1)^{-1}, \cdots, \mu + (N - 2)(L - \mu)^{-1}, L)$. 
+                \item In this case $f = F = (1/2)\langle x, A x\rangle$ and $g \equiv 0$. 
+                \item $\epsilon > 0$, the tolerance value for termination criteria. 
+                \item $x_0 \sim \mathcal N(I, \mathbf 0)$ is a vector, and it's the initial condition for all the algorithm. In this case the initial guess is fixed for all R-WAPG, M-FISTA and M-FISTA, but it's randomly generated by the zero mean standard normal distribution for each element in the vector. 
+            \end{enumerate}
+            The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$ and we conduct many experiments for $N = 256$ and $N = 1024$. 
+            For all R-WAPG, M-FISTA and V-FISTA, 
+            we use a different initial guess each time, a set of 30 experiments are performed. 
+            The maximum, minimum and median values of $\delta_k$ are measured for all algorithm at each iteration and plotted as a ribbon. 
+            Results are shown in Figure \ref{fig:simple-quadratic-NOG}.
+            The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments. 
+            R-WAPG initially behaves similar to M-FISTA, but as the iteration goes on, it started to behave like V-FISTA.  
+            \par 
+            The most surprising feature here is the monotone descent, however, it's being numerical verified that the method is not monotone in general, it just looks monotone on the figure. 
+            \begin{figure}[H]
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_batched-256.png}
+                    \caption{$N = 256$, simple convex quadratic.}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/simple_regression_batched-1024.png}
+                    \caption{$N = 1024$, simple convex quadratic. }
+                \end{subfigure}
+                \caption{Simple convex quadratic experiments results for V-FISTA, M-FISTA, and R-WAPG. }
+                \label{fig:simple-quadratic-NOG}
+            \end{figure}
+            \par
+            Another quantity that maybe interesting other than $\delta_k$ would be the estimated value of $\mu$ during at each iteration $k$. 
+            This $\mu$ parameter should converge to the true value. 
+            One individual experiment is carried out for the R-WAPG algorithm and the value of $\mu$ at each iteration is being recorded as well. 
+            Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} showcases the results. 
+            The values oscillate and converges to the true $\mu$ value. 
+            Observe that the iteration when the estimates are nearing the true value corresponds to the iteration when the algorithm plateau away from its initial fast descent. 
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.64\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
+                \caption{$N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded. }
+                \label{fig:simple-quadratic-r-wapg-mu-estimates}
+            \end{figure}
+
+        \subsubsection{LASSO}
+            This section present results of numerical experiment for solving the LASSO problem proposed by 
+            \todo{
+                $\square$ Add reference ``Regression shrinkage and selection via the Lasso''
+                \\ $\square$ Cite it. 
+            }{\hl{Tibshirani}}. 
+            The problem of LASSO has smooth, nonsmooth additive and the problem is given by: 
+            \begin{align*}
+                \min_x
+                \left\lbrace
+                    \frac{1}{2}\Vert Ax - b\Vert^2 + \lambda\Vert x\Vert_1
+                \right\rbrace. 
+            \end{align*}
+            The smooth part is $f =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g = \lambda\Vert x\Vert_1$. 
+            The objective function is coersive and the exact minimum, or minimizers are unknown. 
+            We perform numerical experiments using V-FISTA, M-FISTA and R-WAPG on this problem. 
+            The parameters for setting up the problem now follow. 
+            \begin{enumerate}
                 \item 
             \end{enumerate}
 
-        \subsubsection{LASSO}
+
+            
+
         \subsubsection{Logistic regression}
 
 
 \bibliographystyle{siam}
-\bibliography{references/Inexact_Momentum.bib}
+\bibliography{references/R-WAPG.bib}
 
 \appendix
 
