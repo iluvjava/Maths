@@ -13,3 +13,11 @@ subgradient
 subdifferential
 Nonsmooth
 prox-boundedness
+Payquette
+APPM
+PostGreSQL
+Nestrov
+Güler
+Jongmin
+Ahn
+Sra
