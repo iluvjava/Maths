@@ -126,11 +126,20 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         and references within for the idea of Hessian Damping for stabilizing the Nesterov's accelerated gradient without/with restarting. 
         
     \subsection{Organizations}
-        \todoinline{This will be written once most of the contents in the paper are settled. }
+        \todoinline{This will be written once most of the contents in the paper are settled. 
+        }
+        Section \ref{sec:preliminaries} introduces the proximal gradient inequality which is instrumental to developing the stepwise convergence claim in the next section. 
+        Section \ref{sec:stepwise-stuff} states and prove an inequality based on a generic iterative algorithm for just one iteration. 
+        Section \ref{sec:rwapg-formulation-convergence} formulates the full R-WAPG algorithm and characterize conditions for R-WAPG sequence sufficient to derive the optimality upper bound in Proposition \ref{prop:wagp-convergence}. 
+        Section \ref{sec:rwapg-equiv-repr} gives 3 equivalent representations of the R-WAPG algorithms that are comparable to instances of Accelerated Proximal Gradient algorithm found in the literatures. 
+        Section \ref{sec:rwapg-literatures} formulates FISTA, and V-FISTA sequences and proves the convergence rate of several variants  FISTA using the R-WAPG algorithm and its convergence rate developed in the previous sections. 
+        Finally, in Section \ref{sec:free-rwapg} gives a formulation of a parameter free version of R-WAPG algorithm and showcaes the numerical experiments for regression, LASSO, and logistic regression. 
+        The numerical experiments exposes very interesting behaviors of the algorithm of our own creativity. 
+
         
        
 
-\section{Preliminaries}
+\section{Preliminaries}\label{sec:preliminaries}
     Throughout, we make the following assumption unless specified. 
     \begin{assumption}[Smooth nonsmooth additive]\label{ass:smooth-nsmooth-additive}
         \;
@@ -329,7 +338,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 
-\section{Stepwise formulation of weak accelerated proximal gradient}
+\section{Stepwise formulation of weak accelerated proximal gradient}\label{sec:stepwise-stuff}
     This entire section is building up the R-WAPG algorithm which is described in the Definition \ref{def:wapg} of the next section. 
     \par 
     Definition \ref{def:stepwise-wapg} which describes what happens at a single iteration of the R-WAPG algorithm. 
@@ -936,7 +945,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
         But in general the choice of $\mu$ remains the strong convexity modulus or equivalently, any value that is smaller than the true strong convexity constant for claiming the convergence rate for all initial guesses. 
     \end{remark}
 
-\section{Formulation of R-WAPG and its convergence rates}
+\section{Formulation of R-WAPG and its convergence rates}\label{sec:rwapg-formulation-convergence}
     The sole focus of this section is Definition \ref{def:wapg}.
     It describes the R-WAPG algorithm which generates iterates $(x_k, y_k, v_k)$ and admits potential convergence claim using Proposition \ref{prop:stepwise-lyapunov}. 
     Definition \ref{def:rwapg-seq} introduces the concept of an R-WAPG sequences which is crucially important. 
@@ -1228,7 +1237,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 
-\section{Equivalent representations of R-WAPG}
+\section{Equivalent representations of R-WAPG}\label{sec:rwapg-equiv-repr}
     This section reduces Definition \ref{def:wapg} into simpler forms that are comparable to what commonly appears in the literatures. 
     In the literatures, variants of Accelerated Proximal Gradient algorithm such as FISTA, V-FISTA has different representations. 
     This section carries out the tedious but necessary works for demonstrating the descriptive power of R-WAPG. 
@@ -1852,7 +1861,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{proof}
 
 
-\section{R-WAPG describes existing accelerations scheme in the literatures}
+\section{R-WAPG describes existing accelerations scheme in the literatures}\label{sec:rwapg-literatures}
     In addition to various equivalent forms of the R-WAPG algorithm, the R-WAPG sequences are descriptive. 
     They generalize many existing sequences used in accelerated proximal gradient schemes. 
     \par
@@ -2187,7 +2196,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
     \end{remark}
 
 
-\subsection{The method of Free R-WAPG}
+\section{The method of Free R-WAPG}\label{sec:free-rwapg}
     This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
     Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
     \begin{algorithm}
@@ -2257,7 +2266,7 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             The parameters for setting up the problem now follows. 
             \begin{enumerate}
                 \item $N$, the dimension of the problem. 
-                \item $0 < \mu < L$, the strong convexity and Lipschitz smoothness constant. 
+                \item $0 < \mu < L$, the strong convexity and Lipschitz smoothness constant. They are given in prior to construct the problem. 
                 \item $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e: $A = \text{diag}(0, \mu + (L-\mu)(N - 1)^{-1}, \mu + 2(L-\mu)(N - 1)^{-1}, \cdots, \mu + (N - 2)(L - \mu)^{-1}, L)$. 
                 \item In this case $f = F = (1/2)\langle x, A x\rangle$ and $g \equiv 0$. 
                 \item $\epsilon > 0$, the tolerance value for termination criteria. 
@@ -2320,18 +2329,20 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
             The parameters for setting up the problem now follow. 
             \begin{enumerate}
                 \item $M, N$ are constants. 
-                \item $A \in \RR^{M\times N}$ is a matrix of i.i.d random variable, taken from a standard normal distributions. 
+                \item $A \in \RR^{M\times N}$ is a matrix of i.i.d random variable, taken from a standard normal distribution. 
+                \item $L, \mu$, the Lipschitz constant and the strong convexity constant for the smooth part of the objective are not known prior, and it's estimated through $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert^2$. 
                 \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
                 \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
-                \item Given $A$, estiamtions for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
+                \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
                 \item $x_0\in \RR^N$ is the initial guess. Its elements are random i.i.d variable realized from the standard normal distribution. 
                 \item $\epsilon > 0$ is the tolerance the controls the termination criteria for test algorithms. 
             \end{enumerate}
             Experiments were conducted using V-FISTA, M-FISTA and R-WAPG with $(M, N) = (64, 256)$ and $(M, N) = (64, 128)$. 
             Matrix $A$ is fixed and the for all test algorithms and all repetitions. 
-            The same experiment are repeated 30 times, but each time a different fixed randomized initial condition is picked for all test algorithms. 
-            The aggragated statistics of $\delta_k$ are collected for all repetitions, and then grouped by the respective algorithm. 
+            The same experiment are repeated 30 times, but each time, we fix a different random initial condition $x_k$ for all test algorithms. 
+            The aggregate statistics of $\delta_k$ are collected for all repetitions, and then grouped by the respective algorithm. 
             The results are showcased in Figure \ref{fig:batched-lasso}. 
+            The bump on the curve is due to a subset of test instances of the 30 repetition where the algorithms take larger number of iterations to terminate. 
             \begin{figure}[H]
                 \begin{subfigure}[b]{0.47\textwidth}
                     \centering
@@ -2347,16 +2358,35 @@ Primary 65K10, 90c25, 90C30; Secondary 65Y20.
                 \caption{LASSO experiments. }
                 \label{fig:batched-lasso}
             \end{figure}
-
-
-
-
-
-
-
+            \par
+            Another quantity of interest is the estimates of $\mu$ on each iteration of the algorithm. 
+            A single experiment were conducted and the estimates and $\delta_k$ are showcased in Figure \ref{fig:single-lass-mu-estimates}
+            \begin{figure}[H]
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \includegraphics[width=\textwidth]{assets/lasso_loss_256.png}
+                    \caption{Single lasso experiment plot of $\delta_k$ with.  }
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.47\textwidth}
+                    \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_256.png}
+                    \caption{The $\mu$ estimated by test algorithms for one LASSO experiment. }
+                \end{subfigure}
+                \caption{A single LASSO experiment results, with $M = 64, 256$. }
+                \label{fig:single-lass-mu-estimates}
+            \end{figure}
+            For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
+            One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
             
 
-        \subsubsection{Logistic regression}
+
+
+
+
+
+
+                
+
+            \subsubsection{Logistic regression}
 
 
 \bibliographystyle{siam}
