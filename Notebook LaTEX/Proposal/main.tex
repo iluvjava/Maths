@@ -85,7 +85,7 @@
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
-    \todo{$\square$ Add Lin's papers and Paquette's papers.  }{\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
+    \todo{$\blacksquare$ Add Lin's papers and Paquette's papers.  }{\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
     We will point out potential future direction of research of Catalyst acceleration. 
     \par
     Section \ref{sec:pep}, \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in  nonsmooth optimization frontier research where progress and impacts can be made.  
@@ -142,6 +142,10 @@
                 \right\rbrace. 
             \end{align*}
         \end{definition}
+        \begin{remark}
+            Definition taken from Definition 4.3.1 from 
+            \todo{$\blacksquare$ Add bib \\ $\square$ Cite. }\hl{Pang, Cui's book}
+        \end{remark}
         \begin{definition}[Limiting subgradient]
             Let $F: O \subseteq \RR^n \rightarrow \RR$ be locally Lipschitz and $\bar x \in O$. 
             The limiting subdifferential at $\bar x$ is defined as 
@@ -155,6 +159,10 @@
                 \right\rbrace. 
             \end{align*}
         \end{definition}
+        \begin{remark}
+            Definition taken from Definition 4.3.1 from
+            \todo{$\blacksquare$ Add bib \\ $\square$ Cite. }\hl{Pang, Cui's book}
+        \end{remark}
         \begin{definition}[Weakly convex function]
             $F: \RR^n \rightarrow \overline \RR$ is $\mu$ weakly convex if and only if $F + \frac{\mu}{2}\Vert \cdot\Vert^2$ is convex. 
         \end{definition}
@@ -328,16 +336,18 @@
         The estimating sequence is a technique searching for candidate algorithm with extrapolated momentum, and proving their convergence rate if possible. 
         \par
         The method is widespread in the literatures, and the ideas behind it are tremendously useful. 
-        \todo{$\square$ Add Guler's 1992 new proximal point paper. \\ $\square$ Cite it. }{\hl{Güler}} 
+        \todo{$\blacksquare$ Add Guler's 1992 new proximal point paper. \\ $\square$ Cite it. }
+        {\hl{Güler}} 
         used the method to design an accelerated proximal point method, which inspired and served as the foundation of Catalyst Acceleration for variance reduced method in machine learning. 
-        \todo{$\square$ Add the paper: ``Accelerating the cubic regularization of Newton’s method on convex
-        problems''\\ $\square$ Cite it.}{\hl{Nesterov}}
-        also used the techinique to design an accelerated cubic regularized Newton's method. 
+        \todo{$\blacksquare$ Add the paper: ``Accelerating the cubic regularization of Newton’s method on convex
+        problems''\\ $\square$ Cite it.}
+        {\hl{Nesterov}}
+        also used the technique to design an accelerated cubic regularized Newton's method. 
         In 
-        \todo{$\square$ Cite it. }\hl{Chapter 6 of Nesterov's book}, it's also used to derive a method of accelerated mirror descent. 
+        \todo{$\blacksquare$ Cite it. }\hl{(6.1.19) of Nesterov's book }\cite{nesterov_lectures_2018}, it's also used to derive a method of accelerated mirror descent. 
         And finally, 
-        \todo{$\square$ Add paper: ``Accelerated regularized newton methods for
-        minimizing composite convex functions'' \\ $\square$ Cite it. }{\hl{Geovani N. et al}}
+        \todo{$\blacksquare$ Add paper: ``Accelerated regularized newton methods for minimizing composite convex functions'' \\ $\square$ Cite it. }
+        {\hl{Geovani N. et al}}
         used the technique to derive a accelerated Newton's method for convex composite objective function. 
         \par
         The definition of the estimating sequence that follows is based on our own understanding of the estimating sequence. 
@@ -413,16 +423,18 @@
     This section is based on the theoretical aspects of our draft paper. 
     It will introduce major results and claims achieved during our research in each of the subsections. 
     All theorems and claims stated in this section have proofs in the draft paper. 
-    The proofs haven't been carefully verified by authoratative people other than the author yet. 
+    The proofs haven't been carefully verified by authoritative people other than the author yet. 
     We will start introducing the context and ideas for our research next. 
     \par
     Assume we want to solve a convex optimization problem: $\min_{x \in \RR^n} \{F(x)\}$ and $F: \RR^n \rightarrow \RR$ is a $L$ Lipschitz smooth function. 
     We made this assumption for now for a faster exposition. 
     One of the prime candidate for solving the optimization problem is the Nesterov's Accelerated Gradient methods (NAG) finds extensions for nonsmooth function through the proximal gradient operator.
-    \todo{$\square$ Add Nesterov's original paper. \\ $\square$ Cite it.  }{\hl{Proposed back in 1983 the original Nesterov's acceleration method}} 
+    \todo{$\blacksquare$ Add Nesterov's original paper. \\ $\square$ Cite it.  }
+    {\hl{Proposed back in 1983 the original Nesterov's acceleration method}} 
     which uses the previous iterates to extrapolate the next iterate to evaluate the gradient. 
     It's well known that if minimizer $x^*$ exists for $F$, the method achieves a $\mathcal O(1/k^2)$ convergence rate on the objective value $F(x_k)$. 
-    \todo{$\square$ Add Nesterov's new book. \\ $\square$ Cite it.}{\hl{This convergence rate is considered optimal for all class of $L$ Lipschitz smooth convex function}}. 
+    \todo{$\blacksquare$ Add Nesterov's new book. \\ $\blacksquare$ Cite it.}
+    {\hl{This convergence rate is considered optimal for all class of $L$ Lipschitz smooth convex function }}\cite{nesterov_lectures_2018}. 
     The convergence rate guarantee is faster than $\mathcal O(1/k)$ exhibited by gradient descent. 
     \par
     We cover the algorithm briefly. 
@@ -439,22 +451,43 @@
     Unfortunately, the algorithm sped up the convergence rate for all convex function, it becomes slower for the subset of $\mu > 0$ strongly convex function. 
     This drawback inspired a vast amount of literatures aims at improving, extending, and analyzing NAG. 
     Restarting is a popular solution to address the issue of obtaining faster convergence rate when the objective function is strongly convex. 
-    \todo{$\square$ Add Beck 2009 FISTA original paper. $\square$ Cite it.}{\hl{Beck and Toubelle}} 
+    \todo{$\blacksquare$ Add Beck 2009 FISTA original paper. $\square$ Cite it.}
+    {\hl{Beck and Toubelle}} 
     mitigated the issue by restarting and showed that it still has a $\mathcal O(1/k^2)$ convergence rate, and it performs better empirically. 
-    \todo{$\square$ Add Necoara linear convergence \\ $\square$ Add Aujol 2024 Parameter free FISTA restart. \\ $\square$ Cite Section 5.2.2 for the former, cite the entirety for the later. }{\hl{See}} 
+    \todo{
+        $\blacksquare$ Add Necoara linear convergence 
+        \\ 
+        $\blacksquare$ Add Aujol 2024 Parameter free FISTA restart. 
+        \\ 
+        $\square$ Cite Section 5.2.2 for the former, cite the entirety for the later. 
+    }
+    {\hl{See} (5.2.2) Necoara et al. and Aujol et al. } 
     and references within for recent advancements in restarting accelerated proximal gradient algorithm.
     \par
     Restarting the algorithm is not the entire picture. 
     Let $F:\RR^n \rightarrow \RR$ be a $L$ Lipschitz smooth and $\mu > 0$ function. 
     As introduced previously, in 
-    \todo{$\square$ Add Neol J. Walkington's ``Nesterov’s Method for Convex  Optimization''. \\ $\square$ Cite it. }{\hl{Walkington's writing}}, 
+    \todo{
+        $\blacksquare$ Add Neol J. Walkington's ``Nesterov's Method for Convex  Optimization''. \\ $\square$ Cite it. 
+    }
+    {\hl{Walkington's writing}}, 
     he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\kappa})^k)$ where $\kappa = \mu/L$. 
     This convergence rate is strictly better than $\mathcal O((1 - \mu/L)^k)$ for the method of gradient descent. 
     However, this variant has a fixed momentum parameter $\theta_{k + 1} = (\sqrt{\kappa} - 1)(\sqrt{\kappa} + 1)^{-1}$ back in Equation \ref{eqn:nag_example}. 
-    \todo{$\square$ Add Beck's first order textbook\\ $\square$ Cite 10.7.7. \\ $\square$ Add Nesterov's textbook. \\ $\square$ Cite it. }{\hl{The same variant also appears in Beck's book as V-FISTA, and Nesterov's book as (2.2.22).}} 
+    \todo{
+        $\blacksquare$ Add Beck's first order textbook
+        \\ $\square$ Cite 10.7.7. 
+        \\ $\blacksquare$ Add Nesterov's textbook. 
+        \\ $\square$ Cite it. }
+    {\hl{
+        The same variant also appears in Beck's book as V-FISTA, and Nesterov's book as (2.2.22).
+    }} 
     \par
     One final Mystery of the algorithm is the convergence of the iterates which also has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
-    \todo{$\square$ Add paper: ``On the convergence of the iterates of the...''\\ $\square$ Cite them. }{\hl{Chambolle, Dossal}} 
+    \todo{
+        $\blacksquare$ Add paper: ``On the convergence of the iterates of the...''
+        \\ $\square$ Cite them. }
+    {\hl{Chambolle, Dossal}} 
     showed that by choosing sequence $(t_k)_{k \ge 1}$ to be $t_k = (n + a - 1)/a$ where $a > 2$ instead would give $(x_k)_{k \ge 0}$ weak convergence in Hilbert space. 
     It's put as an open question on what happens to the iterates when $a = 2$. 
     \par
@@ -482,10 +515,14 @@
             \right). 
         \end{align*}
         Our second main result shows that there exists $\rho_k > 1$ such that our R-WAPG reduces to a variant of FISTA proposed in 
-        \todo{$\square$ Add ``On the convergence of the iterates of...'' \\ $\square$ Cite them. }{\hl{Chambolle, Dossal}}, 
+        \todo{
+            $\blacksquare$ Add ``On the convergence of the iterates of...'' \\ $\square$ Cite them.}
+        {\hl{Chambolle, Dossal}}, 
         and we are able to show the same convergence rate in Theorem \ref{thm:r-wapg-on-cham-doss}. 
         When $\rho_k = 1, \mu = 0$, R-WAPG reduces perfectly to FISTA by in 
-        \todo{$\square$ Add beck's original FISTA Paper. \\$\square$ Cite it. }
+        \todo{
+            $\blacksquare$ Add beck's original FISTA Paper. \\$\square$ Cite it.
+        }
         {\hl{Beck}}. 
         If $\mu > 0, \rho_k = 1$, it reduces to the V-FISTA by Beck \cite{beck_first-order_2017}. 
         In Theorem \ref{thm:fixed-momentum-fista}, it demonstrates that R-WAPG frameworks gives a linear convergence claim for all fixed momentum method where $\alpha_k := \alpha \in (\mu/L, 1)$ and  $F$ is $\mu > 0$ strongly convex. 
@@ -535,10 +572,11 @@
         Section \ref{ssec:rwpag-seq-and-alg} introduce the definition of an R-WAPG sequence, which constraints all possible parameters used permitted by the algorithm.
         The section also states the full R-WAPG algorithm and an upper bound on $F(x_k) - F(x^*)$. 
         Here, $x_k$ is generated by the R-WAPG algorithm and $x^*$ is the minimizer. 
-        Section \ref{ssec:quiv-repr-rwapg} bring forward three equivalent forms of the R-WAPG algorithm making it more comparable with other Acceerated Proximal Gradient method appeared in the literatures. 
+        Section \ref{ssec:quiv-repr-rwapg} bring forward three equivalent forms of the R-WAPG algorithm making it more comparable with other Accelerated Proximal Gradient method appeared in the literatures. 
         Section \ref{ssec:describe-variants-with-rwapg} gives characterizations of specific R-WAPG sequence that leads to convergence of the R-WAPG algorithm in terms of the optimality gap. 
         The section also identifies specific instance of permissible R-WAPG sequences where it fits with the FISTA, V-FISTA, and the algorithm proposed by 
-        \todo{$\square$ Cite the Chambolle, Dossal 2015 paper here again. }{\hl{Chambolle Dossal}}. 
+        \todo{$\square$ Cite the Chambolle, Dossal 2015 paper here again. }
+        {\hl{Chambolle Dossal}}. 
 
         
     \subsection{Building Blocks of R-WAPG}\label{ssec:building-block-rwapg}
@@ -721,7 +759,6 @@
         \todo{$\square$ Add and explain this part. }{\hl{
         The remarks of the definitions identifies specific instances in the literatures where the Accelerated Proximal Gradient method were presented under this specific form. 
         }}
-
         \begin{definition}[R-WAPG intermediate form]\label{def:r-wapg-intermediate}\;\\
             Assume $\mu < L$ and let $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given by Definition \ref{def:rwapg-seq}. 
             Initialize any $x_1, v_1$ in $\RR^n$. 
@@ -752,6 +789,15 @@
                 \end{align*}
             \end{tcolorbox}
         \end{definition}
+        \begin{remark}
+            This form of APG is rarely identified in the literatures. 
+            The closest algorithm that fits the form but with $\mu = 0$ is Chapter 12 of 
+            \todo{$\blacksquare$ Add them \\ $\square$ Cite them. }
+            {\hl{in Ryu and Yin's Book} \cite{ryu_large-scale_2022}}, 
+            right after Theorem 17. 
+            We created this form which makes the math that follows simpler. 
+            The inspiration of using this as an intermediate representation was inspired by solving Exercise 12.1 in the same Ryu and Yin's Book. 
+        \end{remark}
         \begin{definition}[R-WAPG similar triangle form]\label{def:r-wapg-st-form} \; \\
             Given any $(x_1, v_1)$ in $\RR^n$. 
             Assume $\mu < L$.
@@ -777,6 +823,26 @@
                 \end{align*}    
             \end{tcolorbox}
         \end{definition}
+        \begin{remark}
+            The word similar triangle form can be traced back to several literatures. 
+            The term ``Method of Similar Triangle" was used for Algorithm (6.1.19) in Nesterov's book \cite{nesterov_lectures_2018}, but without the necessary graphical illustrations to clarify it. 
+            Finally, a similar triangle for formulation of FISTA can be found in Equation (2), (3), (4) in 
+            \todo{$\square$ Cite Chambolle Dossal 2015 again. }
+            \cite{chambolle_convergence_2015}. 
+            To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
+            \todo{
+                $\blacksquare$ Add these. $\square$ Cite these. 
+            }
+            {(3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}}. 
+            \todoinline{\noindent
+                The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
+                For more information, see:  
+                \begin{enumerate}
+                    \item 3.1, 4.1 in Jongmin Lee et al., ``A geometric structure of Acceleration and its role in making gradients small''
+                    \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
+                \end{enumerate}
+            }
+        \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
             Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
             The algorithm generates iterates $x_{k + 1}, y_{k + 1}$ For $k = 1, 2, \cdots $ by the procedures: 
@@ -797,6 +863,10 @@
                 = \alpha_{k + 1}(\alpha_k^{-1} - 1).  
             $$
         \end{definition}
+        \begin{remark}
+            This format fits with (2.2.19) in Nesterov's book \cite{nesterov_lectures_2018}, however, the sequence $(\alpha_k)_{k \ge 0}$ would be given by a different rule. 
+            See Theorem \ref{thm:r-wapg-on-cham-doss} and Lemma \ref{lemma:inverted-fista-seq} to see a specific choice of $(\alpha_k)_{k \ge0}, (\rho_k)_{ k\ge 0}$ such this equivalent form of R-WAPG is in fact two possible variants of the FISTA algorithm.
+        \end{remark}
         \begin{proposition}[First equivalent representation of R-WAPG]\label{prop:wapg-first-equivalent-repr}\;\\
             If the sequence $(y_k, v_k, x_k)_{k \ge 1}$ is produced by R-WAPG (Definition \ref{def:wapg}), 
             then the iterates can be expressed without $(\gamma_k)_{k \ge1},(\hat \gamma_k)_{k \ge 2}$, and for all $k\ge 1$ they are algebraically equivalent to
@@ -873,7 +943,6 @@
                 & = \alpha_{k + 1}(\alpha_k^{-1} - 1). 
             \end{align*}
         \end{proposition}
-
 
     \subsection{The descriptive power of R-WAPG on existing variants}\label{ssec:describe-variants-with-rwapg}
         \todoinline{\noindent
