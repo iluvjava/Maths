@@ -85,10 +85,13 @@
     Results of numerical experiments are presented. 
     \par
     Section \ref{sec:catalyst} are results of literatures review in MATH 590. 
-    \todo{$\blacksquare$ Add Lin's papers and Paquette's papers.  }{\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
+    \todo{
+        $\blacksquare$ Add Lin's papers and Paquette's papers.
+    }
+    {\hl{It's based on a series of papers}} in the topic of Catalyst Meta Acceleration method for First Order Variance Reduced Methods. 
     We will point out potential future direction of research of Catalyst acceleration. 
     \par
-    Section \ref{sec:pep}, \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in  nonsmooth optimization frontier research where progress and impacts can be made.  
+    Section \ref{sec:inexact-prox}, \ref{sec:nes-acc-ncnvx} preview literatures in nonsmooth optimization frontier research where progress and impacts can be made.  
     \subsection{Theme of the research}
         This section specifies a theme of the research in this proposal. 
         Out first objective is to explore the Goldilocks zones between these topics: theories of variational analysis, design of continuous optimization algorithm and applications in sciences, engineering, and statistics.  
@@ -591,7 +594,10 @@
             \end{align*}
         \end{assumption}
         \par
-        \todoinline{$\blacksquare$ Finish the organizations here after this section is finished. }
+        \todoinline{
+            $\square$ Finish the organizations here after this section is finished. 
+            Still need to explain the numerical experiments section. 
+        }
 
         Organization now follows. 
         Section \ref{ssec:building-block-rwapg} provides a stepwise description of the R-WAPG iterative algorithm along with an inequality crucial to proving the convergence rate later. 
@@ -1067,46 +1073,50 @@
             Then the algorithm generates $(x_k)_{k \ge 1}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O\left(\max(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q})^k\right)$. 
         \end{theorem}
 
-\section{Method Free R-WAPG}\label{sec:spectral-momentum}
-    \todoinline{
-        Algorithm, and results of numerical experiments with their descriptions. 
-    }
-    This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-    Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
-    \begin{algorithm}
-        \begin{algorithmic}[1]
-        {\footnotesize
-        \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
-        \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
-        \STATE{\textbf{Compute: } $f(y_k)$; }
-        \FOR{$k = 0, 1, 2, \cdots, N$}
-            \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
-            \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
-                \STATE{$L:= 2L$;}
-                \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
-            \ENDWHILE
-            \STATE{$x_{k + 1} := x^+$;}
-            \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
-            \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
-            \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
-            \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-            \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
-        \ENDFOR
+    \subsection{Method Free R-WAPG}\label{sec:spectral-momentum}
+        \todoinline{
+            Algorithm, and results of numerical experiments with their descriptions. 
         }
-        \end{algorithmic}
-        \caption{Free R-WAPG}
-        \label{alg:free-rwapg}
-    \end{algorithm}
-    \par
-    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$.
-    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine. 
-    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
-    Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
-    \par
-    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
-    The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
-    We note that $f(y_0)$ is computed before the start of the for loop. 
-    And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
+        This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
+        Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+        \begin{algorithm}
+            \begin{algorithmic}[1]
+            {\footnotesize
+            \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
+            \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+            \STATE{\textbf{Compute: } $f(y_k)$; }
+            \FOR{$k = 0, 1, 2, \cdots, N$}
+                \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
+                \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
+                    \STATE{$L:= 2L$;}
+                    \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
+                \ENDWHILE
+                \STATE{$x_{k + 1} := x^+$;}
+                \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
+                \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
+                \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
+                \STATE{\textbf{Compute: } $f(y_{k + 1})$}
+                \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
+            \ENDFOR
+            }
+            \end{algorithmic}
+            \caption{Free R-WAPG}
+            \label{alg:free-rwapg}
+        \end{algorithm}
+        \par
+        Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$.
+        Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine. 
+        Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
+        Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
+        \par
+        Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
+        The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
+        We note that $f(y_0)$ is computed before the start of the for loop. 
+        And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
+    \subsection{Free R-WAPG numerical experiments}
+        \subsubsection{Simple regression}
+        \subsubsection{LASSO}
+        
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
     \todoinline{\noindent
@@ -1133,11 +1143,11 @@
     }
 
 
-\section{Performance estimation problems}\label{sec:pep}
-    \todoinline{\noindent
-        There are several foundational papers relevant. 
+% \section{Performance estimation problems}\label{sec:pep}
+%     \todoinline{\noindent
+%         There are several foundational papers relevant. 
 
-    }
+%     }
 
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
     
