@@ -56,19 +56,61 @@ The addition is Minkowski set addition and the overline is taking the closure of
 > \begin{aligned}
 >     \Limsup{n\rightarrow \infty} C_n &= 
 >     \left\lbrace
->         x \left | 
+>         x \left | \; 
 >         \liminf_{n\rightarrow \infty }d_{C_n}(x) = 0
 >         \right. 
 >     \right\rbrace, 
 >     \\
 >     \Liminf{n\rightarrow \infty} C_n &= 
 >     \left\lbrace
->         x \left | 
->             \lim_{n\rightarrow \infty} d_{C_n}(x) = 0
+>         x \left | \; 
+>             \limsup_{n\rightarrow \infty} d_{C_n}(x) = 0
 >         \right. 
 >     \right\rbrace. 
 > \end{aligned}
 > $$
+
+#### **Observation 0 | Did you see the sequence?**
+> Let the ambient metric space be $\R^n$ here. 
+> If $x \in \Limsup{n\rightarrow \infty} C_n$, then all following are items are true. 
+> 1. There exists a sequence $x_k \in \overline C_{n_k}$ such that $x_n\rightarrow x$. Conversely, if there exists a sequence $x_n \in C_n$ such that $x_n\rightarrow \bar x$, then $\bar x \in \Limsup{n\rightarrow \infty} C_n$. 
+> 2. For all $n \in \N$, there exists $m \ge n$ such that $C_m \neq \emptyset$. 
+>
+> If $x \in \Liminf{n \rightarrow\infty} C_n$, then all following items are true: 
+> 
+> 3. There exists $m \in \N$ such that for all $n\ge m$ such that $C_n \neq \emptyset$. So WLOG, we can assume that there is no empty set. 
+> 4. $\lim_{n\rightarrow \infty} d_{C_n}(x) = 0$; so $x$ gets to $C_n$ infinitely close. Equivalently, there exists $n \ge m \in \N$, a sequence $x_k \in \overline C_{m + k}$ such that $x_k \rightarrow x$. 
+
+**Proof:**
+
+For the convention, if $C_n = \emptyset$ then define $d_{C_n}(x) = \infty$. 
+Define $d_n = d_{C_n}(x)$ for simplier notation. 
+
+(1.): Assume that $x \in \Limsup{n \rightarrow\infty} C_n$, by definition it has $\liminf_{n \rightarrow \infty} d_n = 0$. 
+Therefore, there exists subsequence $d_{n_k} \rightarrow 0$. 
+This implies that it's impossible to have $C_{m}$ for some $m \ge n$, because it would contradicts with the existence of subsequential limit. 
+
+(2.): 
+Since $d_{n_k} \rightarrow 0$, there exists sequence $x_k \in \overline C_{n_k}$ such that $x_k \rightarrow 0$.
+Conversely, let $x_n \in C_n$ be such that $x_n \rightarrow \bar x$ (Here we implicitly assumed that $C_n \neq \emptyset$ for all $n \in \N$). 
+Then it has
+
+$$
+\begin{aligned}
+    0 \leftarrow \Vert x_n - \bar x\Vert \ge d(\bar x, C_n) \ge 0. 
+\end{aligned}
+$$
+
+Taking limit on both side, it yields $\lim_{n\rightarrow \infty} d(\bar x, C_n) = \liminf_{n\rightarrow \infty} d(\bar x, C_n) = 0$. 
+Hence $\bar x \in \Limsup{n\rightarrow \infty} C_n$. 
+Therefore, the point is in the outer set limit. 
+
+(3): It's impossible that $C_n = \emptyset$ infinitely many often, because if it is, then it directly contradicts $\limsup_{n\rightarrow \infty} d_{C_n}(x) = 0$. 
+
+(4): Without loss of generality, we may let the sequence $C_n$ starts at the set last $C_{m + k}$ where $C_m = \emptyset$ is the last occurrence, so all $C_n$ can be assumed to be non-empty. 
+Define $d_n = d_{C_n}(x)$, then the monotone decreasing sequence $\sup_{m\ge n} d_n$ converges to zero. 
+This is equivalent to say that $x_n$ gets to $C_n$ infinitely close. 
+
 
 
 
@@ -106,8 +148,8 @@ Similarly, if we have $x \in \Limsup{n\rightarrow \infty} K_n$, a similar proof 
 This is obviously true since if we have $x$ such that $\lim_{n\rightarrow \infty} d_{k_n}(x) = 0$, and therefore it must be that $\liminf_{n\rightarrow \infty}d_{K_n}(x) = 0$. 
 
 #### **Observations 3 | Monotone Convergence of Sets means Limits**
-> Let $K_n$ be a sequence of set that is monotone expaning, or monotone shrinking, i.e: $K_n\subseteq K_{n + 1}, K_n\supseteq K_{n + 1}$, for all $n \in \mathbb N$. 
-> Then we have the upper and the lower to be the same and they equals to $\bigcap_{n\in \mathbb N} \overline K_n$. 
+> Let $K_n$ be a sequence of set that is monotone expanding, or monotone shrinking, i.e: $K_n\subseteq K_{n + 1}, K_n\supseteq K_{n + 1}$, for all $n \in \mathbb N$. 
+> Then we have the upper and the lower to be the same, and they equal to $\bigcap_{n\in \mathbb N} \overline K_n$. 
 
 **Proof**
 
@@ -121,10 +163,10 @@ $$
 \end{aligned}
 $$
 
-Therefore the upper and lower limit of the set is the same. 
+Therefore, the upper and lower limit of the set is the same. 
 Let's consider that $\forall n \in \mathbb N: K_n \supseteq K_{n + 1}$. 
 Then the distance function increases monotonically: $d_{K_n}(x) \le d_{K_{n + 1}}(x)$. 
-Therefore the limit would be 
+Therefore, the limit would be 
 
 $$
 \begin{aligned}
@@ -135,7 +177,7 @@ $$
 \end{aligned}
 $$
 
-here we used the monotonicity of distance function and show tha the definition of the upper limit and the inner limit is once again the same. 
+We used the monotonicity of distance function and show that the definition of the upper limit and the inner limit is once again the same. 
 With monotonicity, for every point $x$ from the limit of the set, has
 
 $$
@@ -168,80 +210,46 @@ $$
     x &\in \overline{K_m + r_n \mathbb B} \subseteq 
     \overline{K_{n + 1} + r_n \mathbb B} \subseteq \cdots 
     \\
-    x&\in \overline{K_m + r_n \mathbb B} \forall m \ge n
+    x&\in \overline{K_m + r_n \mathbb B} \;\forall m \ge n
     \\
     x 
     &\in \bigcap_{m \ge n}\overline{K_m + r_n \mathbb B} 
     \\
     &= \left(
         \bigcap_{m \ge n} \overline K_m
-    \right) + r_n \mathbb B, 
+    \right) + r_n \mathbb B. 
 \end{aligned}
 $$
 
-take the limit as $n \rightarrow \infty$, we have that $x \in \bigcap_{n \in \mathbb N}\overline K_n$. 
+Take the limit as $n \rightarrow \infty$, we have that $x \in \bigcap_{n \in \mathbb N}\overline K_n$. 
 
 
-
-#### **Def | Outer Limits of a Set-Valued Mapping**
-> Consider $S : \mathbb R^n \rightarrow 2^{\mathbb R^n}$. 
-> The outer limit and the inner limit of the multi-valued mapping $S$ as
-> $$
-> \begin{aligned}
->     \Limsup{x\rightarrow \bar x} S(\bar x)
->     &= 
->     \bigcup_{x\rightarrow \bar x}
->     \Limsup{n\rightarrow \infty} S(x_n)
->     \\
->     &= \left\lbrace
->         u \left | 
->             \exists x_n \rightarrow \bar x, \exists u_n \rightarrow u: 
->             u_n \in S(x_n)
->         \right.
->     \right\rbrace, 
->     \\
->     \Liminf{x\rightarrow \bar x}S(x)&= 
->     \bigcap_{x\rightarrow\bar x} 
->     \Liminf{n\rightarrow \infty} S(x_n) 
->     \\
->     &= 
->     \left\lbrace
->         u \left | 
->             \forall x_n \rightarrow \bar x, \exists N \in \mathcal N_\infty, 
->             u_n \underset{u\in N}{\longrightarrow} u, 
->             u_n \in S(x_n)
->         \right.
->     \right\rbrace.
-> \end{aligned}
-> $$
+#### **Observations 5**
+A sequence of singleton sets. 
+Let's assume that $C_n = \{x_n\}$ is a list of singleton from space $\R_n$. 
 
 
-**Remark**
-
-> [!note]- Remark
-> This is called the Kuratowski convergence. 
-> To understand, read the coming parts. 
 
 ---
 ### **Characterizations of Inner, Outer set Limits for Sequence of Sets**
 
 We characterize the limits stated above using other mathematical entities. 
 
-#### **Thm | Sequenctial Definitions of the Inner and Outer Limits of a Sequence of Sets**
+#### **Thm | Sequential Definitions of the Inner and Outer Limits of a Sequence of Sets**
 > Consider ambient space $\mathbb R^n$, then we define the inner and outer limit for a sequence of set $C_n$ subsequences of the natural sequence: 
 > $$
 > \begin{aligned}
 >     \Limsup{n\rightarrow \infty} C_n 
 >     &= 
 >     \left\lbrace
->         x | \exists x_n\rightarrow x, (k_n)_{n \in \mathbb N} \in \mathcal N_\infty^\# : 
+>         x |\; \exists x_n\rightarrow x, (k_n)_{n \in \mathbb N} \in \mathcal N_\infty^\# : 
 >         x_{k_n} \in C_{k_n}
 >     \right\rbrace
 >     \\
 >     \Liminf{n\rightarrow \infty} C_n
 >     &= 
 >     \left\lbrace
->         x | \exists x_n\rightarrow x, (k_n)_{n \in \mathbb N} \in \mathcal N_\infty: 
+>         x |\; \exists x_n\rightarrow x, (k_n)_{n \in \mathbb N} \in \mathcal N_\infty: 
 >         x_{k_n} \in C_{k_n}
 >     \right\rbrace
 > \end{aligned}
@@ -254,7 +262,7 @@ The lower limit, is the limit of the all the points the can be converged to usin
 
 **Proof**
 
-Let's choose any subsequence $(k_n)_{n \in \mathbb N}$ of the naturals $(n)_{n \in \mathbb N}$, and assume that it satisfes for all $n \in \mathbb N$, $\lim_{n\rightarrow \infty} d_{C_{k_n}}(\bar x) = 0 \wedge d_{C_{k_n}}(\bar x) < \infty$. 
+Let's choose any subsequence $(k_n)_{n \in \mathbb N}$ of the naturals $(n)_{n \in \mathbb N}$, and assume that it satisfies for all $n \in \mathbb N$, $\lim_{n\rightarrow \infty} d_{C_{k_n}}(\bar x) = 0 \wedge d_{C_{k_n}}(\bar x) < \infty$. 
 Define $r_n : = d_{C_{k_n}}(\bar x)$, so $r_n \searrow 0$. 
 Because $d_{C_{k_n}}(\bar x) < \infty$, hence $C_{k_n} \neq \emptyset$ for all $n \in \mathbb N$. 
 Reader should agree that for all $n \in \mathbb N$ we have dilated norm ball characterizations
@@ -308,7 +316,7 @@ $$
 \end{aligned}
 $$
 
-taking limit of the above sequence, we have $x_{k_n} \rightarrow \bar x$ as $n\rightarrow \infty$. 
+Taking limit of the above sequence, we have $x_{k_n} \rightarrow \bar x$ as $n\rightarrow \infty$. 
 This time, by definition of $x'_{k_n}$, we have $x'_{k_n} \in C_{k_n}$. 
 In this case, we have transferred the definition between the distance function and the sequence, more precisely, fixing any $\bar x$ and subsequence $k_n$, we have that 
 
@@ -320,7 +328,7 @@ $$
 \end{aligned}
 $$
 
-The other direcion is easier. 
+The other direction is easier. 
 Assuming that we have $x_n$ as a sequence, and a subsequence $(k_n)_{n \in \mathbb N}$ of $(n)_{n\in \mathbb N}$, such that $x_{k_n} \in C_{k_n}$ and $x_{k_n}\rightarrow \bar x$, which means that 
 
 $$
@@ -336,16 +344,16 @@ $$
 \end{aligned}
 $$
 
-therefore, we actually had equivalence between these 2 conditions. 
-The sequence definition of upper, lower set limit is the implies convergence of the metric is the easier direction, however, we need to smooth out some of the cases when $C_n = \emptyset$ for some $n$. 
+Therefore, we actually had equivalence between these 2 conditions. 
+The sequence definition of upper, lower set limit is the implies convergence of the metric is the easier direction, however, we need to smooth out some cases when $C_n = \emptyset$ for some $n$. 
 Observe that $\lim_{n\rightarrow \infty} d_{C_n}(\bar x) = 0$ doesn't mean that $d_{C_n}$ is a bounded sequence, it means that there exists $m\in \mathbb N$ such that if $n \ge m$, we have that $d_{C_n}(\bar x) < \infty$ hence $C_n \neq \infty$. 
-Therefore, without loss of generality, we have the choose the subsequence again to assure the finiteness of the distance to make use of the above prove. 
+Therefore, without loss of generality, we have to choose the subsequence again to assure the finiteness of the distance to make use of the above prove. 
 For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequence to $k_{n + m}$ would still be in $\mathcal N_{\infty}$, hence, without loss of generality we assumed that $C_{k_n} \neq \emptyset$ for the above proof. 
 
 
 #### **Thm | Neighborhood Characterizations of Outer Limits of Sets**
 > Let $(A_n)_{n \in \mathbb N}$ be a sequence of set such that $A_n \subseteq \mathbb R^n$. 
-> The defiition of the outer limit is defined via an quivalent conditions. 
+> The definition of the outer limit is defined via some equivalent conditions. 
 > $x \in \Limsup{n\rightarrow \infty} A_n$ if and only if there exists $x \in \mathbb R^n$ such that $\forall V \in \mathcal N(x)$ there exists $(k_n)_{n\in \mathbb N} \in \mathcal N_\infty^\#$ such that $C_{k_n}\cap V \neq \emptyset$. 
 > Mathematically we have the representation
 > $$
@@ -373,7 +381,7 @@ For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequen
 
 
 
-#### **Thm | Neighborhood Characterizations of Innert Limits of sets**
+#### **Thm | Neighborhood Characterizations of Inner Limits of sets**
 > Replacing the space of sequence $\mathcal N_\infty^\#$ into $\mathcal N_\infty$, then we get the definition of the inner limits of a sequence of sets. 
 > Mathematically we have the definition 
 > $$
@@ -415,10 +423,10 @@ For any $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}$, truncating the sequen
 > \end{aligned}
 > $$
 
-**Obervations**
+**Observations**
 
 They are always closed sets. 
-Inersection of closed set is always a closed set. 
+Intersection of closed set is always a closed set. 
 
 **Remarks**
 
@@ -426,6 +434,57 @@ This is Rockafellar and Wets, Exercise 4.2 (b).
 
 
 
+---
+### **Introduction to set-valued Convergence**
+
+Limit of sets described above is able to describe, characterize the limit of a set value map. 
 
 
+#### **Def | Outer, inner limits of a Set-Valued Mapping**
+> Consider $S : \mathbb R^n \rightarrow 2^{\mathbb R^n}$. 
+> The outer limit and the inner limit of the multivalued mapping $S$ as
+> $$
+> \begin{aligned}
+>     \Limsup{x\rightarrow \bar x} S(x)
+>     &= \left\lbrace
+>         u \left | \;
+>             \exists x_n \rightarrow \bar x, \exists u_n \rightarrow u: 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace, 
+>     \\
+>     \Liminf{x\rightarrow \bar x}S(x)&=  
+>     \left\lbrace
+>         u \left| 
+>             \; \forall x_n \rightarrow \bar x, \exists N \in \mathcal N_\infty, 
+>             u_n \underset{u\in N}{\longrightarrow} u, 
+>             u_n \in S(x_n)
+>         \right.
+>     \right\rbrace.
+> \end{aligned}
+> $$
+
+#### **Observation 0 | The basics**
+
+Let $u \in \Limsup{x \rightarrow \overline x} S(x)$, by definition, there exists $x_n\rightarrow \bar x, u_n\rightarrow u$ such that $u_n \in S(x_n)$. 
+The existence of $u_n$ certainly implies that $S(x_n) \neq \emptyset$ for all $x_n$. 
+It means also for all $n \in \N$ that: 
+
+$$
+\begin{aligned}
+    \Vert u_n - u\Vert \ge d(u, S(x_n)) \ge 0 = d(u_n, S(x_n)). 
+\end{aligned}
+$$
+
+And by convergence, it assures that $\lim_{n\rightarrow \infty} d(u, S(x_n)) = 0$. 
+The point $u$ is approached by a limit and therefore, the set it defines is, a closed set. 
+
+
+
+
+**Remark**
+
+> [!note]- Remark
+> This is called the Kuratowski convergence. 
+> Read Chapter 5 B of Rockafellar Wett's Variational Analysis. 
 

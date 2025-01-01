@@ -15,3 +15,5 @@ Fenchel
 infimum
 infimal
 Infimal
+monotonicity
+Rockafellar

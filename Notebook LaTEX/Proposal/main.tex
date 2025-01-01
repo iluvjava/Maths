@@ -1073,10 +1073,7 @@
             Then the algorithm generates $(x_k)_{k \ge 1}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O\left(\max(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q})^k\right)$. 
         \end{theorem}
 
-    \subsection{Method Free R-WAPG}\label{sec:spectral-momentum}
-        \todoinline{
-            Algorithm, and results of numerical experiments with their descriptions. 
-        }
+    \subsection{Free R-WAPG}\label{sec:spectral-momentum}
         This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
         Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
         \begin{algorithm}
@@ -1141,7 +1138,12 @@
             \item Lin's, and Payquette's three trilogy paper on Catalyst acceleration for convex, non-convex Variance reduced algorithm. 
         \end{enumerate}
     }
-
+    In this section, we assume that $F: \RR^n \rightarrow \overline \RR$ is a convex function. 
+    This section reports major results from literatures concerning the mthod of Catalyst Acceleration. 
+    
+    \subsection{Lin's original Catalyst}
+        
+    \subsection{Catalyst Adapted to Non-convexity}
 
 % \section{Performance estimation problems}\label{sec:pep}
 %     \todoinline{\noindent
