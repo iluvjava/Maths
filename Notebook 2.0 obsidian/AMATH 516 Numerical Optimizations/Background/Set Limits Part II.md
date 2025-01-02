@@ -70,6 +70,11 @@ The addition is Minkowski set addition and the overline is taking the closure of
 > \end{aligned}
 > $$
 
+**Observations**
+
+A complete metric spaces makes $d_C (x) < \infty$ for all $C \neq \emptyset$. 
+This is crucially important and it will be leveraged in the proofs that follow. 
+
 #### **Observation 0 | Did you see the sequence?**
 > Let the ambient metric space be $\R^n$ here. 
 > If $x \in \Limsup{n\rightarrow \infty} C_n$, then all following are items are true. 

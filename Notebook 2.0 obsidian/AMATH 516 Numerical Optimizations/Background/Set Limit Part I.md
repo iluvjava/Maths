@@ -78,7 +78,7 @@ We disect the definition of a discrete set limit listed above.
 The following three observations characterize limits of a sequence of sets, in increasing level of abstractness. 
 
 #### **Thm | Monotone Set Convergence for Discrete Set Limits**
-> For set of monotonically expanding set $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_{n}\cdots$, we have the set limit being: 
+> For the set of monotonically expanding set $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_{n}\cdots$, we have the set limit being: 
 > $$
 > \begin{aligned}
 >     \Liminf{n\rightarrow \infty} 
@@ -109,7 +109,7 @@ $$
 $$
 
 Then $A_n^\cup \subseteq A_{n + 1}^\cup$, because the sequence of set $A_n$ is monotonically expanding. 
-Therefore,  we have 
+Therefore, we have 
 
 $$
 \begin{aligned}
@@ -129,7 +129,7 @@ $$
 Therefore, when the set is monotonically expanding, the limit of the sequence of sets are the union of all the sets in the sequence. 
 
 Assume that $A_n$ is a sequence of shrinking set, i.e: $A_1 \supseteq A_2 \supseteq \cdots \supseteq A_n \supseteq A_{n + 1}\supseteq \cdots$. 
-Similarly we can define 
+Similarly, we can define 
 
 $$
 \begin{aligned}
@@ -223,13 +223,13 @@ The proof is now done.
 
 The reader should realize that, with $\mathcal N_\infty \subseteq \mathcal N_\infty^\#$, we have for $\Limsup{n\rightarrow \infty} A_n\supseteq \Limsup{n\rightarrow \infty} A_n$, as a result of the above equivalent characterization of set limits. 
 
-If, we let $A_n = \{x_n\}$ to be a sequence of singleton set from $\mathbb R$, then the convergence condition for Liminf described above is too strong compare to convergence in the metric space $\mathbb R$. 
+If, we let $A_n = \{x_n\}$ to be a sequence of singleton set from $\mathbb R$, then the convergence condition for limit infimum described above is too strong compare to convergence in the metric space $\mathbb R$. 
 For example, it would require the subsequence to converge exactly to a singleton at finitely many steps after. 
-In the case of Limsup, it would require the subsequence to hit the limit $x$, a singleton element infinitely. 
+In the case of limit supremum, it would require the subsequence to hit the limit $x$, a singleton element infinitely. 
 This is once again, too strict compare to the limit of $x_n \in \mathbb R$. 
 
 
-#### **Thm | Characterzing the Limit of the sets Via Set Indicator Functions**
+#### **Thm | Characterizing the Limit of the sets Via Set Indicator Functions**
 > The following conditions are equivalent: 
 > 1. $x \in \Limsup{n \rightarrow \infty}A_n$,
 > 2. $x \in \bigcup_{n\in \mathbb N}\bigcap_{m \ge n} A_m$, 
@@ -269,7 +269,7 @@ $$
 \end{aligned}
 $$
 
-To show Limsup, we solve it similarly: 
+To show limit supremum, we solve it similarly: 
 
 $$
 \begin{aligned}
@@ -304,7 +304,7 @@ $$
 \end{aligned}
 $$
 
-Then the convergence of a sequence of would be the set the characterize all $x$ that gets close to the sequence of set: 
+Then the convergence of a sequence of would be the set to characterize all $x$ that gets close to the sequence of set: 
 
 $$
 \begin{aligned}

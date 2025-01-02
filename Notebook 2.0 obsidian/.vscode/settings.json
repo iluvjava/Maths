@@ -27,5 +27,8 @@
             "scheme": "file",
             "pattern": "MATH 999 Paper Reviews and Frontier Mathematics/Back Propagation.md"
         }
+    ],
+    "cSpell.words": [
+        "Nonconvex"
     ]
 }
