@@ -17,3 +17,5 @@ infimal
 Infimal
 monotonicity
 Rockafellar
+subsequential
+overline
