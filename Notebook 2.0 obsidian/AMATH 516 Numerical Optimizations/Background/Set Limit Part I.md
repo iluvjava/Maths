@@ -4,7 +4,7 @@
 ### **Intro**
 
 The content of this file is from the chapter 1 of the book Set-valued analysis [^1]. 
-Set inclusion is a partially order relation making it possible to extend the concept of $\lim\inf, \lim\sup$ for sets. We define the limit of a sequence sets $(A_n)_{n\in \mathbb N}$:
+Set inclusion is a partial order relation making it possible to extend the concept of $\lim\inf, \lim\sup$ for sets. We define the limit of a sequence sets $(A_n)_{n\in \mathbb N}$:
 
 [^1]: J.-P. Aubin and H. Frankowska, _Set-Valued Analysis_. Boston: Birkhäuser, 2009. doi: [10.1007/978-0-8176-4848-0](https://doi.org/10.1007/978-0-8176-4848-0).
 
@@ -24,7 +24,7 @@ Set inclusion is a partially order relation making it possible to extend the con
 
 **Remarks**
 
-The letters in the name of the opeartor $\Limsup{}, \Liminf{}$ had been capitalized to distinguish the difference between the limits of a sequence of set, or the limit of an elements. 
+The letters in the name of the operator $\Limsup{}, \Liminf{}$ had been capitalized to distinguish the difference between the limits of a sequence of set, or the limit of an element. 
 Observe that the space $X$ is not metric space and the distance function is not used in this definition. 
 
 
@@ -62,7 +62,8 @@ $$
 \end{aligned}
 $$
 
-
+Any generic subsequence (Infinite of course) of $1, 2, \cdots$ are considered an element of the $\mathcal N_\infty^\#$. 
+Those subsequences that eventually becomes the sequence of natural number is considered from the set $\mathcal N_\infty$. 
 
 
 **Remarks**
@@ -74,7 +75,7 @@ This is the same notation as introduced by Rockafellar and Wetts, chapter 4.
 ### **Characterizing Sequential Limit using Set Limit**
 
 We disect the definition of a discrete set limit listed above. 
-The following three observations characterize limits of a sequences of sets, in increasing level of abstractness. 
+The following three observations characterize limits of a sequence of sets, in increasing level of abstractness. 
 
 #### **Thm | Monotone Set Convergence for Discrete Set Limits**
 > For set of monotonically expanding set $A_1 \subseteq A_2 \subseteq \cdots \subseteq A_{n}\cdots$, we have the set limit being: 
@@ -107,8 +108,8 @@ $$
 \end{aligned}
 $$
 
-then $A_n^\cup \subseteq A_{n + 1}^\cup$, because the sequence of set $A_n$ is monotonically expanding. 
-Therefore we have 
+Then $A_n^\cup \subseteq A_{n + 1}^\cup$, because the sequence of set $A_n$ is monotonically expanding. 
+Therefore,  we have 
 
 $$
 \begin{aligned}
@@ -125,10 +126,10 @@ $$
 \end{aligned}
 $$
 
-Therefore, when the set is monotonically epxanding, the limit of the sequence of sets are the union of all the sets in the sequence. 
+Therefore, when the set is monotonically expanding, the limit of the sequence of sets are the union of all the sets in the sequence. 
 
 Assume that $A_n$ is a sequence of shrinking set, i.e: $A_1 \supseteq A_2 \supseteq \cdots \supseteq A_n \supseteq A_{n + 1}\supseteq \cdots$. 
-In a similar manner we can define 
+Similarly we can define 
 
 $$
 \begin{aligned}
@@ -167,15 +168,15 @@ Therefore, when the sequence of sets are monotone shrinking, you get the interse
 #### **Thm | Sequential Characterization of the Set Limits**
 > Let $A_n \subseteq X$ and consider sequence $(A_n)_{n\in \mathbb N}$. 
 > Let $x \in \Liminf{n\rightarrow \infty}A_n$ if and only if there exists $(k_n)_{n \in \mathbb N} \in \mathcal N_{\infty}^\#$ such that $x \in \bigcap_{n\in \mathbb N} A_{k_n}$. 
-> Simiarly, let $x \in \Limsup{n\rightarrow \infty} A_n$ if and only if there exists $(k_n)_{n \in \mathbb N} \in \mathcal N_\infty$ such that $x \in \bigcap_{n\in \mathbb N}A_{k_n}$. 
+> Similarly, let $x \in \Limsup{n\rightarrow \infty} A_n$ if and only if there exists $(k_n)_{n \in \mathbb N} \in \mathcal N_\infty$ such that $x \in \bigcap_{n\in \mathbb N}A_{k_n}$. 
 
-**Obervations**
+**Observations**
 
 The reader should verify that the previous theorem regarding monotone expanding/shrinking sets is consistent with the above theorem by considering sequences of sets that are monotone expanding/shrinking. 
 
 **Proof**
 
-We consider directly from the Limsup of the sequence of sets we have 
+We consider directly from the limit supremum of the sequence of sets we have 
 
 $$
 \begin{aligned}
@@ -195,7 +196,7 @@ $$
 $$
 
 On the last line it asserts given any $n$, there always exists a $k \in \mathbb N$ such that $x \in A_{n + k}$, which allows us to construct a subsequence sequence $k_n$ of natural numbers such that $x \in A_{k_n}$ for all $n \in \mathbb N$. 
-Therefore the Liminf case had been demonstrated. 
+Therefore, the limit infimum case had been demonstrated. 
 
 Similarly, we consider that 
 
@@ -224,7 +225,7 @@ The reader should realize that, with $\mathcal N_\infty \subseteq \mathcal N_\in
 
 If, we let $A_n = \{x_n\}$ to be a sequence of singleton set from $\mathbb R$, then the convergence condition for Liminf described above is too strong compare to convergence in the metric space $\mathbb R$. 
 For example, it would require the subsequence to converge exactly to a singleton at finitely many steps after. 
-In the case of Limsup, it would requires the subsequence to hit the limit $x$, a singleton element infinitely many time. 
+In the case of Limsup, it would require the subsequence to hit the limit $x$, a singleton element infinitely. 
 This is once again, too strict compare to the limit of $x_n \in \mathbb R$. 
 
 
@@ -240,7 +241,7 @@ This is once again, too strict compare to the limit of $x_n \in \mathbb R$.
 
 **Proof**
 
-We use the prvious theorem to identify a subsequence of the natural numbers that only differs with the natural number for finite many numbers. 
+We use the previous theorem to identify a subsequence of the natural numbers that only differs with the natural number for finite many numbers. 
 To do what, we start by considering that: 
 
 $$
@@ -268,7 +269,7 @@ $$
 \end{aligned}
 $$
 
-To show Limsup, we solve it in a similar way: 
+To show Limsup, we solve it similarly: 
 
 $$
 \begin{aligned}
@@ -291,18 +292,33 @@ Apply it to above we have $\lim_{n\rightarrow \infty }\chi_{A_k}(x) = 1 = \limsu
 
 **Remark**
 
-The indicator function $\chi_A(x)$, when $X$, the ambience space is a metric space equipped with the discrete metric, we have representations: 
+Instead of using an indicator function from probability, we may choose to use the distance function for a discrete metric on the space of $X$: 
 
 $$
 \begin{aligned}
-    \chi_C(x) = \left|
-        1 - \min_{y \in C} \text{dist }(x, y) 
-    \right|, 
+    d(X, x) = \begin{cases}
+        0 & x \in X
+        \\
+        1 & \text{else}. 
+    \end{cases}
 \end{aligned}
 $$
 
-which is equivalent to a discrete metric between a set of elements and a single elements. 
-This is the reason why the name of the file is called "discrete set limit". 
+Then the convergence of a sequence of would be the set the characterize all $x$ that gets close to the sequence of set: 
+
+$$
+\begin{aligned}
+    \Limsup{n \rightarrow \infty} C_n &= 
+    \left\lbrace
+       x\in x  \left | \liminf_{n\rightarrow \infty} d(C_n, x) = 0 \right. 
+    \right\rbrace, 
+    \\
+    \Liminf{n \rightarrow \infty} C_n &= 
+    \left\lbrace
+       x\in x  \left | \limsup_{n\rightarrow \infty} d(C_n, x) = 0 \right. 
+    \right\rbrace. 
+\end{aligned}
+$$
 
 
 ---

@@ -13,7 +13,7 @@ In this section the concept of a set limit can be strengthened by the introducti
 The set limit introduced in the previous section is readily available by choosing the discrete metric for the underlying metric space. 
 Recall that subsequence $\mathcal N_\infty^\#$ is the set of all subsequences of the sequence of natural numbers. 
 Denote $\mathcal N_\infty$ to be the set of subsequences of natural number such that it only differs on finite many positions. 
-Please also recall the projection operator of sets $\Pi_C(x) \ni y$  means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
+Please also recall the projection operator of sets $\Pi_C(x) \ni y$ means that $\Vert y - x\Vert  = \inf_{x \in C} \Vert y - x\Vert$, $y$ is the closest vector to vector $y$ in the set $C$. 
 Before we start, we define the following quantities relevant to discussion of set limits in complete metric space and Banach spaces. 
 
 **References**
@@ -389,7 +389,23 @@ Limit of sets described above is able to describe, characterize the limit of a s
 > \end{aligned}
 > $$
 
-#### **Observation 0 | The basics**
+#### **Observation 0 | An alternative definition**
+> The set limit of a multivalued mapping generalizes the idea of a set limit to continuous limit. 
+> Alternatively, the limit of the set value mapping can be 
+> $$
+> \begin{aligned} 
+>     \Limsup{x \rightarrow \bar x} S(\bar x) 
+>     &= \bigcup_{x_n\rightarrow \bar x} \Liminf{n\rightarrow \infty} S(x_n), 
+>     \\
+>     \Liminf{x\rightarrow \bar x} S(\bar x) 
+>     &= 
+>     \bigcap_{x_n \rightarrow \bar x} \Liminf{n\rightarrow \infty} S(x_n). 
+> \end{aligned}
+> $$
+> It considers set limits by considering the existence of some, or, for all $x_n \rightarrow \bar x$ where the set limit can be identified. 
+
+**Proof**
+
 
 Let $u \in \Limsup{x \rightarrow \overline x} S(x)$, by definition, there exists $x_n\rightarrow \bar x, u_n\rightarrow u$ such that $u_n \in S(x_n)$. 
 Let's fix this specific sequence $x_n \rightarrow \bar x$. 
@@ -403,12 +419,26 @@ $$
 $$
 
 And by convergence, it assures that $\lim_{n\rightarrow \infty} d(u, S(x_n)) = 0$. 
-Interestingly, this implies that $u$ is in the outter limit of the sequence of set $S(x_n)$. 
+Interestingly, this implies that $u$ is in the outer limit of the sequence of set $S(x_n)$. 
 The point $u$, is in the inner limit of the sequence of set $S(x_n)$. 
+Because the sequence $x_n\rightarrow \bar x$ has assumed its existence, the following holds: 
 
+$$
+\begin{aligned}
+    u &\in \bigcup_{x_n\rightarrow \bar x} \Liminf{n\rightarrow \infty} S(x_n). 
+\end{aligned}
+$$
 
+Take any $u \in \Liminf{x \rightarrow \bar x} S(x)$, by definition, take any $x_n \rightarrow \bar x$ such that it defines a set sequence $S(x_n)$ such that there exists a $m \in \N$ such that $u_{m + n} \in S(x_{m + n})$ for all $n \in \N$, and $u_{m + n} \rightarrow u$. 
+Consequently, it means that $u_n \rightarrow u$ too. 
+The existence of the sequence identifies $u \in \Liminf{n\rightarrow \infty} S(x_n)$. 
+Since this condition has to hold for all $x_n \rightarrow \bar x$, it has the following interpretation: 
 
-
+$$
+\begin{aligned}
+    u \in \bigcap_{x_n\rightarrow \bar x} \Liminf{n \rightarrow \infty} S(x_n). 
+\end{aligned}
+$$
 
 
 
