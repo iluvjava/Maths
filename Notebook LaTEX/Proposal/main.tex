@@ -223,14 +223,14 @@
         \end{align*}
         When $F$ is convex, the converse holds. 
         The definitions that follow narrow things further for future discussions. 
-        \begin{definition}[Strong convexity]
+        \begin{definition}[Strong convexity]\label{def:s-cnvx}
             A function $F:\RR^n \rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex if and only if for any fixed $y \in \dom(\partial F)$, we have for all $x\in \RR^n$: 
             \begin{align*}
                 (\forall v \in \partial F(x))\quad 
                 F(x) - F(y) \ge \langle v, x - y\rangle + \frac{\mu}{2}\Vert x - y\Vert^2. 
             \end{align*}
         \end{definition}
-        \begin{lemma}[Quadratic growth from strong convexity]
+        \begin{lemma}[Quadratic growth from strong convexity]\label{lemma:q-growth}
             If $F$ is $\mu \ge 0$ strongly convex, $\bar x$ is a minimizer of $F$. 
             Then for all $x \in \RR^n$
             \begin{align*}
@@ -1203,7 +1203,7 @@
             \right\rbrace. 
         \end{align*}
         The smooth part is $f =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g = \lambda\Vert x\Vert_1$. 
-        The objective function is coersive and the exact minimum, or minimizers are unknown. 
+        The objective function is coercive and the exact minimum, or minimizers are unknown. 
         We perform numerical experiments using V-FISTA, M-FISTA and R-WAPG on this problem. 
         The parameters for setting up the problem now follow. 
         \begin{enumerate}
@@ -1283,35 +1283,49 @@
         \end{enumerate}
     }
     In this section, we assume that $F: \RR^n \rightarrow \overline \RR$ is a convex function. 
-    This section reports major results from literatures concerning the mthod of Catalyst Acceleration. 
-    \par
-    The notations all sections within this section follow. 
+    This section reports major results from literatures concerning the method of Catalyst Acceleration. 
     \begin{assumption}
-        Given any $\beta > 0$ and $y \in \RR^n$, and we assume that $F: \RR^n\rightarrow \overline \RR$ is a closed convex function. 
+        Given any $\beta > 0$ and $y \in \RR^n$, and $F: \RR^n\rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex and closed. 
         Define the model function for all $y\in \RR^n$ to be 
         \begin{align*}
             \mathcal M^{\beta^{-1}}(\cdot; y) &:= 
             F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
         \end{align*}
         We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M^{\beta^{-1}}(x; y)$. 
-        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$, and $\mathcal J_{\beta^{-1}}^\epsilon$ to be the inexact resolvent operator. 
+        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$, and $\mathcal J_{\beta^{-1}}^\epsilon$ for any $\epsilon \ge 0$ to be the inexact resolvent operator. 
         \begin{align*}
-            \mathcal J_{\beta^{-1}} y &= 
+            \mathcal J_{\beta^{-1}}^\epsilon y &:= 
             \left\lbrace
-            \right\rbrace
+                x \in \RR \left | 
+                    \mathcal M^{\beta^{-1}}(x; y) - 
+                    \mathcal M_{\beta^{-1}}^*(y) \le \epsilon
+                \right.
+            \right\rbrace. 
+        \end{align*}
+        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta}y$. 
+        Finally, suppose that $f: \RR^n \rightarrow \RR$ is a $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function, and $g: \RR^n \rightarrow \overline \RR$ is a closed convex function, we define the linearized model function: 
+        \begin{align*}
+            \widetilde{\mathcal M}^{\beta^{-1}}(x; y) := 
+            g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{\beta}{2}\Vert x - y\Vert^2. 
         \end{align*}
     \end{assumption}
-    Inspired by works from Güler \cite{guler_new_1992}, and Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method using the convergence claims of Accelerated proximal point method for first order variance reduced algorithms. 
+
+    Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
+    The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
+    \todo{
+        $\blacksquare$ Add the bib for Mark Schmidt introductory paper RV methods.  
+        \\ $\square$ Cite it. 
+    }{\hl{See Gower's guide}} for more information on variance reduced methods in machine learning. 
     \par
     The parts coming will introduce the algorithms, explain key innovations behind the algorithm, and key variants of the algorithm. 
-    The section at the end will give future works and extensions of the exisiting Catalyst framework. 
+    The section at the end will give future works and extensions of the Catalyst framework. 
 
     \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst}\; \\
         Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
         Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
         Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
         \begin{align*}
-            & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k,
+            & \text{find } x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}, 
             \\
             & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
             \\
@@ -1320,16 +1334,33 @@
         \end{align*}
     \end{definition}
     \begin{remark}
-        \todoinline{\noindent 
-            Cite the original Definition in the paper for this one. 
-            \begin{itemize}
-                \item Give explicit formula for $\alpha_k$
-                \item Discuss the optimal choice of $\kappa$ as stated in the paper. 
-                \item Elucidate how the sub problem can be resolved. 
-            \end{itemize}
-        }
+        The above algorithm is Algorithm 1 from Lin's first paper on Catalyst Acceleration \cite{lin_universal_2015}. 
+        The explicit formula for $\alpha_k$ is the larger root of solving the quadratic equation given by: 
+        \begin{align*}
+            \alpha_k &= 
+            \frac{1}{2}\left(
+                - \alpha_{k - 1}^2 - q + \sqrt{(q + \alpha_{k - 1})^2 + 4 \alpha_{k - 1}}
+            \right), 
+        \end{align*}
+        where $q = \mu/(k + \mu)$. 
+        Lin suggests different choices for the parameter $\kappa > 0$ depending on the algorithm chosen to evaluate the subroutine for $\mathcal J_{\kappa^{-1}}^{\epsilon_k}y_{k - 1}$. 
+        The choice of $\epsilon_k$ depends on the estimated optimality gap $F(x_0) - F^*$ where $F^*$ is the minimum of $F$ and whether $\mu > 0$ or $\mu = 0$. 
     \end{remark}
-    Much of the heavy lifting of constructing the algorithms were done through The estimating sequence introduced back in Definition \ref{def:nes-est-seq}. 
+    Much of the heavy lifting of constructing the algorithms were done through the method of estimating sequence introduced back in Definition \ref{def:nes-est-seq}. 
+    The convergence of the algorithm made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
+    This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
+    The sequence $\epsilon_k$ is compacted and bounded under an upper bound parameterized via the sequence $(\epsilon_k)_{k \ge 0}$. 
+    The convergence proof from Lin was inspired by 
+    \todo{\noindent
+        $\blacksquare$ Add bib, the paper is 
+        \\
+        $\square$ Cite. 
+    }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
+    \par
+    The technique of Estimating sequence results in depressingly long proof making it unsuitable for exposition here, however every significant piece of innovation is covered in details in our most recent Fall Winter 2024 MATH 590 report. 
+    \par 
+    The following parts will complement the report and describe ideas on Lin's idea for choosing,termination criteria of the inner loop to evaluate $\mathcal J_k^{\epsilon_k} y_k$ in his second paper on Catalyst Acceleration \cite{lin_catalyst_2018}. 
+    
 
 
         

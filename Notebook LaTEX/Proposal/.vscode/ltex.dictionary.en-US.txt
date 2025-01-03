@@ -25,3 +25,6 @@ Paquette
 M-FISTA
 NOG
 optimality
+Rockafellar
+resolvent
+Tibshirani

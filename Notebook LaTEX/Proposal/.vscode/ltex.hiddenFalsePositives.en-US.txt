@@ -1,2 +1,3 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe research proposal focuses on the theories and practice in solving nonsmooth optimization.\\E$"}
 {"rule":"CONFUSION_OF_DECENT_DESCENT","sentence":"^\\QWhen \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q convex, it has descent lemma: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"THE_SUPERLATIVE","sentence":"^\\QThis section present results of numerical experiment for solving the (least absolute shrinkage and selection operator) LASSO problem proposed by Tibshirani \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
