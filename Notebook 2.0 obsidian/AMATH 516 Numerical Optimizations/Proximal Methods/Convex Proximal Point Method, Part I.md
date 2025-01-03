@@ -12,7 +12,7 @@ Our attention is on the method of proximal point:
 
 $$
 \begin{aligned}
-    x_{t + 1} = \prox{\eta_{t + 1} f}(x_t). 
+    x_{t + 1} = \prox_{\eta_{t + 1} f}(x_t). 
 \end{aligned}
 $$
 
@@ -55,7 +55,7 @@ Bu choosing $\eta$ big, we can make $x_{i + 1} - x_i$ huge, hence more progress 
 If we can also characterize mistakes or deviation made to approximate the algorithm, then PPM forms the universal ideas behind most gradient based algorithms. 
 
 #### **Lemma 0 | Proximal point inequality**
-> When $A = \partial f$, $f$ convex, if $p = \prox{\eta f}(x)$ with $\eta > 0$, then 
+> When $A = \partial f$, $f$ convex, if $p = \prox_{\eta f}(x)$ with $\eta > 0$, then 
 > $$
 > \begin{aligned}
 >     (\forall u)\; \eta f(u) - \eta f(p) - \langle x - p, u - p\rangle 
@@ -81,7 +81,7 @@ Use $f$ convex, and then $x - p \in \partial f(p)$ from the interpretation above
 >     - \frac{1}{2\alpha}\Vert y - p\Vert^2 
 >     \quad \forall y \in \R^n, 
 > $$
-> For all $y\in X$ and $p = \prox{\alpha f}(x)$. 
+> For all $y\in X$ and $p = \prox_{\alpha f}(x)$. 
 
 **proof**
 
@@ -98,7 +98,7 @@ $$
     \left(
         f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
     \right) \le 
-    -\frac{1}{2\alpha}\left\Vert y - \prox{\alpha f}(x)\right\Vert^2. 
+    -\frac{1}{2\alpha}\left\Vert y - \prox_{\alpha f}(x)\right\Vert^2. 
 \end{aligned}
 $$
 
@@ -115,7 +115,7 @@ $$
         f(y) + \frac{1}{2\alpha}\Vert x - y\Vert^2 
     \right) 
     \le 
-    -\frac{(\beta + \alpha^{-1})}{2}\left\Vert y - \prox{\alpha f}(x)\right\Vert^2. 
+    -\frac{(\beta + \alpha^{-1})}{2}\left\Vert y - \prox_{\alpha f}(x)\right\Vert^2. 
 \end{aligned}
 $$
 
@@ -137,7 +137,7 @@ See [Bregman Proximal Mapping](../Proximal%20Operator/Bregman%20Proximal%20Mappi
 
 **Proof**
 
-Let $\phi_{t + 1}: \R^n \mapsto \overline \R = \eta_{t + 1} f$ be convex,  consider proximal point method $x_{t + 1} = \prox{\phi}(x_t)$, apply the optimality conditions of the Moreau envelope, we have $\forall u \in \R^n$
+Let $\phi_{t + 1}: \R^n \mapsto \overline \R = \eta_{t + 1} f$ be convex,  consider proximal point method $x_{t + 1} = \prox_{\phi}(x_t)$, apply the optimality conditions of the Moreau envelope, we have $\forall u \in \R^n$
 
 $$
 \begin{aligned}
@@ -621,7 +621,7 @@ The inequality in Theorem 2 is satisfied hence the results of theorem 2 applies.
 
 #### **Theorem 2.4 | Recovery of the fundamental lemma of proximal gradient (CONTAINS MAJOR MISTAKES)**
 > With $f = h + g$ where $g$ is $L$-Lipschitz smooth, $h$ convex, consider $\phi(u) = \eta(h(u) + g(x) + \langle \nabla g(x), u - x \rangle)$ and $\eta^{-1} \ge L$ satisfies $\eta\phi \le \eta f \le \eta f + \frac{1}{2}\Vert \cdot - x\Vert^2$. 
-> Let $x^+ = \prox{\phi}(x)$ then $\forall \;u\in \R^n, \eta \le L^{-1}$: 
+> Let $x^+ = \prox_{\phi}(x)$ then $\forall \;u\in \R^n, \eta \le L^{-1}$: 
 > $$
 > \begin{aligned}
 >    f(u) - f(x^+) 
@@ -808,7 +808,7 @@ $$
     \underbrace{\nabla \left[x \mapsto \min_{u}\left\lbrace
         g(u) + \frac{1}{2}\Vert u - x\Vert^2
     \right\rbrace\right](x)}_{
-        \nabla \env{g}(x)
+        \nabla \env_{g}(x)
     } 
     &= 
     x - (I + \partial g)^{-1}x, 
@@ -819,7 +819,7 @@ with $g = \eta_{t + 1}f$ then the above is
 
 $$
 \begin{aligned}
-   \nabla \env{\eta_{t + 1}f}(x) = 
+   \nabla \env_{\eta_{t + 1}f}(x) = 
    x - (I + \eta_{t + 1}\partial f)^{-1}x = [I - P_t] x, 
 \end{aligned}
 $$

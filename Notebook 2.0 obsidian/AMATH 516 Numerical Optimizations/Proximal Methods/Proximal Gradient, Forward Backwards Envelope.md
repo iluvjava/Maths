@@ -86,7 +86,7 @@ Read [[Moreau Envelope and Convex Proximal Mapping]] for more.
 >     \mathcal T_\beta(x) =
 >     \argmin{z\in \R^n} \left\lbrace
 >         \mathcal M_\beta(z; x)
->     \right\rbrace = \prox{}[h + l_g(\cdot, x)](x)
+>     \right\rbrace = \prox_{h + l_g(\cdot, x)}(x)
 > \end{aligned}
 > $$
 

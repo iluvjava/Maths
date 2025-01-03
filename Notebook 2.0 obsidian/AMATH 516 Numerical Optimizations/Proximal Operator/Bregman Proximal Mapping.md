@@ -178,7 +178,7 @@ We have the following claim:
 > Then we have the Bregman prox interpretation of the proximal gradient method: 
 > $$
 > \begin{aligned}
->   \prox{\gamma g} (x - \gamma^{-1}\nabla f(x)) = \argmin{u} 
+>   \prox_{\gamma g} (x - \gamma^{-1}\nabla f(x)) = \argmin{u} 
 >   \left\lbrace
 >       \phi(u) + D_{h}(x, u)
 >   \right\rbrace,
@@ -193,7 +193,7 @@ Directly we start by considering:
 
 $$
 \begin{aligned}
-    \prox{\gamma g} \left\lbrace
+    \prox_{\gamma g} \left\lbrace
         x - \gamma^{-1} \nabla f(x)
     \right\rbrace
     &= 

@@ -1,6 +1,6 @@
 - [Nesterov Estimating Sequence](Nesterov%20Original%20Conception%20of%20Momentum%20Method.md)
 - [Convex Proximal Point Method, Part I](../AMATH%20516%20Numerical%20Optimizations/Proximal%20Methods/Convex%20Proximal%20Point%20Method,%20Part%20I.md)
-- [The Catalyst Acceleration Idea Part I](The%20Catalyst%20Acceleration%20Idea%20Part%20I.md) 
+- [Catalyst Acceleration Part I, Introduction](Catalyst%20Acceleration%20Part%20I,%20Introduction.md) 
 ---
 ### **Intro**
 

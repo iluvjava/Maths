@@ -18,11 +18,13 @@ The `preamble.sty` should be under the root directory of this file. Here is a ba
 \newcommand{\bias}[1]{\text{Bias}\left[#1\right]}
 \newcommand{\pr}{\text{Pr}}
 \newcommand{\argmin}[1]{\underset{#1}{\operatorname{argmin}}}
-\newcommand{\prox}[1]{\underset{#1}{\operatorname{prox}}}
-\newcommand{\env}[1]{\underset{#1}{\operatorname{env}}}
+\newcommand{\prox}{\operatorname{prox}}
+\newcommand{\pprox}[1]{\underset{#1}{\operatorname{prox}}}
+\newcommand{\env}{\operatorname{env}}
 \newcommand{\Limsup}[1]{\underset{#1}{\operatorname{Limsup}}}
 \newcommand{\Liminf}[1]{\underset{#1}{\operatorname{Liminf}}}
 \newcommand{\Lim}[1]{\underset{#1}{\operatorname{Lim}}}
+\newcommand{\dist}{\operatorname{dist}}
 ```
 
 Yeah. That is all you need to read this obsidian notebook.
@@ -41,42 +43,44 @@ $$
 	\\
 	& \Limsup{x\rightarrow \bar x}, \Liminf{x\rightarrow \bar x}, \Lim{x\rightarrow \bar x}
 	\\
-	& \prox{f}, \env{f}^\alpha
+	& \prox_{f}, \env_{f}^\alpha
 \end{aligned}
 $$
 
 #### **Recommended Settings**
-1. Enable strict line break in the editor settings inside of the Obsidian Notebook. 
+1. Enable strict line break in the editor settings inside the Obsidian Notebook. 
 
 
 ---
 ### **Katex Interpretor in VS-Code**
-and that is for now. If you also use [Markdown all in one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for vs code, then copied the following so that things appear the same in the obsidian notebook and in vs code: 
+and that is for now. If you also use [Markdown all-in-one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for VS Code, then copied the following so that things appear the same in the obsidian notebook and in VS Code: 
 
 ```json
 "markdown.extension.katex.macros": {
-    // Katex Macros for Markdown all in one
-    "\\e": "\\mathbf{\\vec{e}}",
-    "\\Q": "\\mathbb{Q}",
-    "\\R": "\\mathbb{R}",
-    "\\Z": "\\mathbb{Z}",
-    "\\uvec": "\\boldsymbol{\\hat{\\textbf{#1}}}",
-    "\\expect": "\\mathbb E\\left[#1\\right]",
-    "\\var": "\\operatorname{Var} \\left[#1\\right]",
-    "\\pr": "\\mathbb P",
-    "\\cov": "\\operatorname{Cov}",
-    "\\bias": "\\operatorname{Bias}\\left[#1\\right]",
-    "\\mse": "\\operatorname{MSE}\\left[#1\\right]", 
-    "\\argmin": "\\underset{#1}{\\operatorname{argmin}}",
-    "\\prox": "\\underset{#1}{\\operatorname{prox}}", 
-    "\\env": "\\underset{#1}{\\operatorname{env}}", 
-    "\\Limsup": "\\underset{#1}{\\operatorname{Limsup}}",
-    "\\Liminf": "\\underset{#1}{\\operatorname{Liminf}}", 
-    "\\Lim": "\\underset{#1}{\\operatorname{Lim}}"
-  },
+  // Katex Macros for Markdown all in one
+  "\\e": "\\mathbf{\\vec{e}}",
+  "\\Q": "\\mathbb{Q}",
+  "\\R": "\\mathbb{R}",
+  "\\Z": "\\mathbb{Z}",
+  "\\uvec": "\\boldsymbol{\\hat{\\textbf{#1}}}",
+  "\\expect": "\\mathbb E\\left[#1\\right]",
+  "\\var": "\\operatorname{Var} \\left[#1\\right]",
+  "\\pr": "\\mathbb P",
+  "\\cov": "\\operatorname{Cov}",
+  "\\bias": "\\operatorname{Bias}\\left[#1\\right]",
+  "\\mse": "\\operatorname{MSE}\\left[#1\\right]", 
+  "\\argmin": "\\underset{#1}{\\operatorname{argmin}}",
+  "\\prox": "\\operatorname{prox}", 
+  "\\pprox": "\\underset{#1}{\\operatorname{prox}}",
+  "\\env": "\\operatorname{env}", 
+  "\\Limsup": "\\underset{#1}{\\operatorname{Limsup}}\\;",
+  "\\Liminf": "\\underset{#1}{\\operatorname{Liminf}}\\;", 
+  "\\Lim": "\\underset{#1}{\\operatorname{Lim}}",
+  "\\dist":"\\operatorname{dist}"
+},
 ```
 
-for the `settings.json` file for your VS Code client, or add this as a project settings. The latest VS-Code update points to the setting ID`markdown.extension.katex.macros`. 
+For the `settings.json` file for your VS Code client, or add this as a project setting. The latest VS-Code update points to the setting ID`markdown.extension.katex.macros`. 
 
 Other Community Plugins Used: 
 - `highlightr`. 

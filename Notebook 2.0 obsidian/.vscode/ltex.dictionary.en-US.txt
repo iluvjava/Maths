@@ -19,3 +19,7 @@ monotonicity
 Rockafellar
 subsequential
 overline
+resolvent
+Resolvent
+Nonexpansive
+nonexpansive

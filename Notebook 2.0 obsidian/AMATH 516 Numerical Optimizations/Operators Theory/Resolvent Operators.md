@@ -5,9 +5,9 @@
 ### **Intro**
 
 The resolvent operators are important objects optimizations due to its favorable properties. 
-It makes multi-valued mapping such as a monotone operator into an, singled valued mapping for study. 
+It makes multivalued mapping such as a monotone operator into an, singled valued mapping for study. 
 
-### **Def | Resolvent Operators**
+### **Def 1.0 | Resolvent Operators**
 
 > Let $A: X \mapsto 2^X$ be an operator, then the resolvent $\mathcal J_A := (I + A)^{-1}$. 
 
@@ -23,7 +23,7 @@ $$
 $$
 
 The graph of the resolvent operator is a linear transform of the graph of the original operator. 
-Recall from multi-valued mapping that, $\text{gph}(A^{-1})$ and $\text{gph}(I - A)$ are sets that are just one linear transformation away. 
+Recall from multivalued mapping that, $\text{gph}(A^{-1})$ and $\text{gph}(I - A)$ are sets that are just one linear transformation away. 
 The transformation is in $X \times X$. 
 
 
@@ -34,12 +34,12 @@ We discuss how the resolvent operator preserves some favorable properties of the
 See [Firmly Nonexpansive Operators](Firmly%20Nonexpansive%20Operators.md) for more information about firmly non-expansive operators. 
 
 
-#### **Prop | Resolvent of Monotone Operators are Firmly non-expansive**
+#### **Prop 2.1 | Resolvent of Monotone Operators are Firmly non-expansive**
 > Let $A: X \mapsto 2^X$, and $D = \text{rng}(I + A)$, and $T = \mathcal J_A  = (I + A)^{-1}$.
 >  Then 
 > 1. $A$ is mono implies $T: D\mapsto X$ is firmly non-expansive. 
 > 2. $A$ is maximal monotone then $T: X \mapsto X$ is firmly non-expansive. 
-> And under both cases $T$ is a single valued operator. 
+> And under both cases $T$ is a single-valued operator. 
 
 **Proof**
 
@@ -76,7 +76,7 @@ $$
 $$
 
 which is equivalent to that $J_A$ is a firmly non-expansive operator by one equivalent characterization of firmly nonexpansive operators. 
-In addition, a firmly non-expansive operator is a single valued operator because it's already non-expansive. 
+In addition, a firmly non-expansive operator is a single-valued operator because it's already non-expansive. 
 It's evident from above by setting $u = v$, then $x = y$ from the inequality. 
 To see that $T$ is a full domain operator, apply the observations we made about resolvent operators at the start of the file. 
 
@@ -137,7 +137,8 @@ $$
 therefore, $\mathcal J_B$ is also a conraction with contraction index $(1 + \beta)^{-1} < 1$. 
 Which is also the Lipschitz constant of the $\mathcal J_B$. 
 
-#### **Claim 3.2 | Co-Coersivity of the resolvent operator of strongly monotone monotone operator**
+
+#### **Claim 3.2 | Co-Coersivity of the resolvent operator of strongly monotone operator**
 > With $\beta$ strongly monotone operator $B$, resolvent $\mathcal J_B$, then $I - \mathcal J_B$ is a $(1 - (1 + \beta)^{-1})$ strongly monotone operator. 
 
 **Proof**
@@ -180,4 +181,18 @@ $$
 \end{aligned}
 $$
 
-therefore, it establishes that $[I - \mathcal J_B]$ is a $1 - (1 + \beta)^{-1}$ strongly convex operator. 
+Therefore, it establishes that $[I - \mathcal J_B]$ is a $1 - (1 + \beta)^{-1}$ strongly convex operator. 
+
+**Remarks**
+
+With $\beta$ strongly monotone operator $B$, it's insufficient to gurantee that strong convexity of operator $\mathcal J_B$ in general. 
+Counter example identified by me, and it's posted in Stack exchange: [here](https://math.stackexchange.com/questions/4925632/counter-example-for-the-resolvent-of-a-strongly-monotone-operator-being-strongly/4981168#4981168). 
+
+
+We are specifically interested in looking at the strongly monotone operator $\partial f$ where $f$ is a $\mu$-strongly convex function. 
+#### **Theorem | Strongly convex functions**
+
+
+**Proof**
+
+

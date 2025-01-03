@@ -89,7 +89,7 @@ Which is the Huber Loss function in statistics.
 > In fact their share similarities when the function $f$ is convex, closed and proper. 
 > More specifically, prox with a parameter of $1$ gives Lipschitz continuous function with a Lipschitz constant of $L=1$. 
 
-#### **Theorem | Basic Prox Identities**
+#### **Theorem 0.1 | Basic Prox Identities**
 
 > With $f$ Convex closed and proper, $\alpha > 0$. These identities transform the parameters of the prox/env operator. 
 > 
@@ -118,7 +118,7 @@ See the Exercise below.
 
 See above. 
 
-#### **Theorem | Equivalence Characterization for Proximal Point** 
+#### **Theorem 0.2 | Equivalence Characterization for Proximal Point** 
 > For a convex proper, lower semi-continuous function $f$, let $x\in \text{dom} f$, and $y\in X$, then the following are equivalent: 
 > 1. $x = \text{prox}_f(y)$, 
 > 2. $y - x\in \partial f(x)$,
@@ -213,9 +213,9 @@ Because we know how subgradient work, in our case we had $f$ being closed convex
 This is the result of $f + \frac{1}{2\alpha}\Vert \cdot - y\Vert$ being a strongly convex function. 
 To characterize when the proximal operator is single-valued is more complicated.
 $f$ being closed convex and proper is sufficient but unnecessary for the proximal map to be single-valued.
-For more about it, check out the comments on Dimitry's work at the end of chapter 3 of his textbook for math 516 at UW.
-Dimitry also mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
-Dimity's discussion on the topic can be seem [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
+For more about it, check out the comments on Dima's work at the end of chapter 3 of his textbook for math 516 at UW.
+Dima also mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
+Dima's discussion on the topic can be seem [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
 
 
 The operator is maximal monotone: 
@@ -224,7 +224,7 @@ Therefore $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge
 Consequently, $I + \partial f$ is single-valued and surjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
 For all $\alpha>0$, it's the same.
 * **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
-* > The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dimitry's work, and the proof is shown in 3.8.3.. 
+* > The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
 
 Monotone operators deserve their own pages. 
 We skip the details here.
@@ -239,7 +239,7 @@ It retains one of the properties of a set projection as well.
 A set projection onto a convex set is a L1 Lipschitz mapping. 
 The proximal operator is also a L1 Lipschitz mapping for CCP functions. 
 
-### **Thm | The Proximal operator is Firmly Non-Expansive**
+#### **Thm 2.1 | The Proximal operator is Firmly Non-Expansive**
 > Let $f:\mathbb E \mapsto \mathbb{\bar R}$ be a closed, convex proper function. Then $\text{prox}_f(x)$, with $\alpha= 1$ is a singleton for every point $x\in \mathbb E$. Moreover, for any points $x, y\in \mathbb E$ the estimate holds: 
 > $$
 > \begin{aligned}
@@ -353,7 +353,7 @@ It helps with proving the convergence of many algorithms that uses the proximal 
 For context, read [Firmly Nonexpansive Operators](../Operators%20Theory/Firmly%20Nonexpansive%20Operators.md) for more about Firmly Nonexpansive operators in general. 
 There is also a simpler version of the proof for the Firmly Nonexpansiveness of the prox operators. 
 
-**Corollary | The gradient of Moreau Envelope is Firmly Nonexpansive**
+#### **Corollary 2.2 | The gradient of Moreau Envelope is Firmly Nonexpansive**
 
 > Consider the previous fact that the gradient, $\nabla \text{env}_{f, \alpha}(x)$ is $\alpha^{-1}(x - \text{prox}_{f, \alpha}(x))$ will be globally Lipschitz with constant $\alpha^{-1}$, therefore, $\text{env}_{f, \alpha}(x)$ is smooth with $\beta = \alpha^{-1}$, where $\alpha$ is subscripted under the envelope. 
 
@@ -367,7 +367,7 @@ Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where.
 
 The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
 
-**Lemma | When are Subgradient Invertible**
+#### **Lemma 3.1| When are Subgradient Invertible**
 > Let $f:\mathbb E\mapsto \mathbb{\bar R}$ be proper closed and convex and subgradient $\partial f$ is surjective, then $(\partial f)^{-1} = \partial f^\star$. 
 
 **Proof for Lemma**
@@ -388,9 +388,9 @@ For more information, see [Simply Legendre Type](../Simply%20Legendre%20Type.md)
 
 Proposition 11.3 in Rockafellar. 
 
-**Theorem | Proximal Decomposition** 
+#### **Theorem 3.2 | Proximal Decomposition** 
 
-Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
+> Consider $f:\mathbb E \mapsto \mathbb{\bar R}$, where $f$ is a CCP (closed convex proper) functions, then: 
 > $$
 > \begin{aligned}
 >   x = \text{prox}_{f}(x) + \text{prox}_{f^{\star}}(x)
@@ -446,16 +446,27 @@ which is more useful for direct applications.
 
 **Remarks**
 
-Minty Parameterizations: 
+Minty Parameterization: 
   * Moreau Envelope is a special case where the set-valued mapping is the subgradient of the function. In general for a set value mappings $T$ that is maximally monotone, we have the equality: $(I + T^{-1})^{-1} = I - (I + T)^{-1}$ holds, see [Resolvent Identity, Minty Re-Paramaterization](../Operators%20Theory/Resolvent%20Identity,%20Minty%20Re-Paramaterization.md), [Inverse of Subgradient of the Convex Conjugate](../Operators%20Theory/Inverse%20of%20Subgradient%20of%20the%20Convex%20Conjugate.md) for more information. 
   * Please immediately observe that the Moreau Decomposition is a special case of the above formula where $T$ is the subgradient of some CCP functions. 
 
 Moreau Decomposition With the Alpha parameters on Proximal operators: 
-  * We use the property that $(\alpha f(x))^\star =\alpha f^\star(z/\alpha)$ and the identity described at the start to simplify the Moreau Decompositions formula. 
+  * We use the property that $(\alpha f(x))^\star =\alpha f^\star(z/\alpha)$ and the identity described at the start to simplify the Moreau Decomposition formula. 
 
 
 ---
 ### **Gradient of Moreau Envelope is Lipschitz for CCP Functions**
+
+#### **Thm 4.0 | Gradient of the Moreau Envelope**
+> Let $f: \mathbb E \rightarrow \overline \R$ be a convex, closed function mapping from Euclidean space $\mathbb E$ to augmented real $\overline R$. 
+> Then the gradient of Moreau Envelope $\text{env}_f(x)$ exists for all $x \in \mathbb E$ and it's given by 
+> $$
+> \begin{aligned}
+>     \nabla \text{env}_f(x) = x - \prox_{f}(x). 
+> \end{aligned}
+> $$
+
+**Proof**
 
 Let $f$ be a convex function that is lsc, then the proximal mapping of the function has gradient, meaning that it's differentiable everywhere. We prove it consider: 
 $$
@@ -518,6 +529,11 @@ We demonstrate below
 $$
 \begin{aligned}
     z &\in \partial [\text{env}^\alpha_f](x)
+    \\
+    z & \in 
+    \partial \left[
+        f(\cdot) \square \frac{1}{2\alpha}\Vert \cdot\Vert^2
+    \right](x)
     \\
     x &\in \partial \left[\left(
         f(\cdot) \square \frac{1}{2\alpha}\Vert \cdot\Vert^2

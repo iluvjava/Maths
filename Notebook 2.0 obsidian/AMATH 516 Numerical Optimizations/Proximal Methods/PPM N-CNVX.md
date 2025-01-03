@@ -104,8 +104,8 @@ $$
 $$
 
 Therefore, $y \in F(x_{k})$ as well. 
-By Cantor's intersection theorem, it has $\text{diam}\; F(x_k) \rightarrow 0$. 
-To check that there exists such an element, take any $y \in F(x_{k + 1})$, then by definition it has 
+Use Cantor's intersection theorem, because it has $\text{diam}\; F(x_k) \rightarrow 0$. 
+To check that claim, take any $y \in F(x_{k + 1})$, then by definition it has 
 
 $$
 \begin{aligned}
@@ -126,7 +126,13 @@ Therefore, the last line yields the result $d(y, x_{k + 1})\le \frac{\lambda}{\k
 Using triangle inequality, we have for all $u \in F(x_{k + 1})$ that $d(y, x_{k + 1}) \le d(y, u) + d(y, x_{k + 1})\le 2\frac{\lambda}{\kappa\epsilon}$. 
 Therefore, the set $F(x_k)$ indeed converges to a singleton. 
 
+
 **Remarks**
 
 No assumptions on convexity, this one only requires a metric space, lsc and the complete metric space to handle the things with a limits. 
+Nothing is said about the convergence of $f(x)$ yet. 
+The convergence is possible even if the set of minimizer is non-unique. 
+
+Of course, $F(x)$ is a subset of the level set of $f$ at height $f(x)$. 
+
 

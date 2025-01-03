@@ -70,7 +70,7 @@ When $g \equiv 0$, it reduces to
 
 $$
 \begin{aligned}
-    x' &= \prox{\eta g}(x), 
+    x' &= \prox_{\eta g}(x), 
     \\
     g(z) &\ge
     g(x') + \langle \mathcal \partial g(x'), z - x\rangle

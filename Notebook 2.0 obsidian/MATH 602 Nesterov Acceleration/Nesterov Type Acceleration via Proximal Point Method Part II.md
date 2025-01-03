@@ -116,7 +116,7 @@ When $g \equiv 0$, it reduces to
 
 $$
 \begin{aligned}
-    x' &= \prox{\eta g}(x), 
+    x' &= \prox_{\eta g}(x), 
     \\
     g(z) &\ge
     g(x') + \langle \mathcal \partial g(x'), z - x\rangle
@@ -1412,7 +1412,7 @@ Which will be the next claim
 >     \right), 
 >     \\
 >     x^+ &:= 
->     \prox{\phi}(x) = x - \tilde \eta\mathcal G_L \bar x. 
+>     \prox_{\phi}(x) = x - \tilde \eta\mathcal G_L \bar x. 
 > \end{aligned}
 > $$
 > then it has

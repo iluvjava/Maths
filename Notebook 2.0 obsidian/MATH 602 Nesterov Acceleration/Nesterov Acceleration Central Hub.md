@@ -35,8 +35,8 @@ Specifics of the sequence that controls the convergence of the algorithm.
 ---
 ### **Catalyst Accelerations**
 
-1. [The Catalyst Acceleration Idea Part I](The%20Catalyst%20Acceleration%20Idea%20Part%20I.md)
-2. [Catalyst Acceleration Part II](Catalyst%20Acceleration%20Part%20II.md)
+1. [Catalyst Acceleration Part I, Introduction](Catalyst%20Acceleration%20Part%20I,%20Introduction.md)
+2. [Catalyst Acceleration Part II, N-CNVX](Catalyst%20Acceleration%20Part%20II,%20N-CNVX.md)
 
 ---
 ### **PPM interpretations and Form Analysis**

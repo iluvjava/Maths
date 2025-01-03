@@ -111,18 +111,6 @@
         \item $\overline \RR := \RR \cup \{\infty, -\infty\}$
     \end{enumerate}
     \subsection{Fundamentals in non-convex analysis}
-        \todoinline{\noindent
-            We are in $\RR^n$, and the weakest assumption we are making for the objective function is Local Lipschitz continuity. 
-            Definitions: 
-            \begin{enumerate}
-                \item[$\blacksquare$] Local Lipschitz continuity. 
-                \item[$\square$]Regular subgradient. Remember to cite. 
-                \item[$\square$] Limiting subgradient. Remember to cite. 
-                \item[$\blacksquare$] Weakly convex function. 
-                \item[$\blacksquare$]The Bregman Divergence of function. 
-            \end{enumerate}
-            Take Limiting, Regular subgradient definitions from Cui, Pong's book, Definition 4.3.1. 
-        }
         Let the ambient space be $\RR^n$ equipped with inner product and 2-norm. 
         Let $O$ be an open subset of $\RR^n$, the weakest assumption we are making for the objective function $F: O \subseteq \RR^n \rightarrow \RR$ for optimization problem is Local Lipschitz Continuity. 
         The assumption of local Lipschitz continuity is weak enough to describe most problems in applications, and strong enough to avoid most pathologies in analysis. 
@@ -180,24 +168,6 @@
             \end{align*}
         \end{definition}
     \subsection{Fundamentals in convex analysis}
-        \todoinline{
-            Introduce 
-            \begin{enumerate}
-                \item[$\blacksquare$] Convexity, 
-                \item[$\blacksquare$] convex subgradient, 
-                \item[$\blacksquare$] Lipschitz smoothness. 
-            \end{enumerate}
-            Definitions: 
-            \begin{enumerate}
-                \item [$\blacksquare$]Strong convexity of a function. 
-                \item [$\blacksquare$]The proximal gradient operator. 
-                \item [$\blacksquare$]The proximal mapping operator. 
-            \end{enumerate}
-            Lemmas: 
-            \begin{enumerate}
-                \item [$\blacksquare$]Quadratic growth conditions of a strongly convex function. 
-            \end{enumerate}
-        }
         This section introduces the classics and basics of convex analysis. 
         Define $F$ to be closed, proper and convex in this section. 
         When $F$ is convex, the limiting subgradient and the regular subgradient reduced to the following definition:
@@ -244,19 +214,6 @@
         \end{remark}
         
         \subsubsection{Smooth, nonsmooth additive composite}\label{sssec:additive-composite}
-            \todoinline{\noindent
-                Introduce notations for the proximal gradient model function. 
-                Lemmas: 
-                \begin{enumerate}
-                    \item[$\blacksquare$] Proximal gradient envelope. 
-                    \item[$\blacksquare$] A property of gradient mapping. 
-                \end{enumerate}
-                Theorems: 
-                \begin{enumerate}
-                    \item[$\blacksquare$] The proximal gradient inequality. 
-                \end{enumerate}
-            }
-
             In this section, we zoom in further. 
             Suppose that $F:= f + g$ where $f:\RR^n \rightarrow \RR$ is convex, $L$ Lipschitz smooth and $\mu \ge 0$ strongly convex and $g: \RR\rightarrow \overline \RR$ is convex. 
             To make the discussion simpler, fix any $\beta \ge 0$ we define the following model functions as a $\RR^n \times \RR^n \rightarrow \overline \RR$: 
@@ -1303,11 +1260,6 @@
             \right\rbrace. 
         \end{align*}
         Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta}y$. 
-        Finally, suppose that $f: \RR^n \rightarrow \RR$ is a $L$-Lipschitz smooth and $\mu \ge 0$ strongly convex function, and $g: \RR^n \rightarrow \overline \RR$ is a closed convex function, we define the linearized model function: 
-        \begin{align*}
-            \widetilde{\mathcal M}^{\beta^{-1}}(x; y) := 
-            g(x) + f(y) + \langle \nabla f(y), x - y\rangle + \frac{\beta}{2}\Vert x - y\Vert^2. 
-        \end{align*}
     \end{assumption}
 
     Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
@@ -1316,6 +1268,11 @@
         $\blacksquare$ Add the bib for Mark Schmidt introductory paper RV methods.  
         \\ $\square$ Cite it. 
     }{\hl{See Gower's guide}} for more information on variance reduced methods in machine learning. 
+    In brief, a variance reduce method (VRM) is a type of stochastic gradient methods that stablizes the current estimate using information of the gradient at previous iterates. 
+    In each iteration, only the gradient of a few samples are accessed but attain overall better complexity because the variance of the estimated gradients are reduced. 
+    \todoinline{
+        We can then list some citations and references to commonly known variance reduced method here. 
+    }
     \par
     The parts coming will introduce the algorithms, explain key innovations behind the algorithm, and key variants of the algorithm. 
     The section at the end will give future works and extensions of the Catalyst framework. 
@@ -1359,11 +1316,28 @@
     \par
     The technique of Estimating sequence results in depressingly long proof making it unsuitable for exposition here, however every significant piece of innovation is covered in details in our most recent Fall Winter 2024 MATH 590 report. 
     \par 
-    The following parts will complement the report and describe ideas on Lin's idea for choosing,termination criteria of the inner loop to evaluate $\mathcal J_k^{\epsilon_k} y_k$ in his second paper on Catalyst Acceleration \cite{lin_catalyst_2018}. 
-    
-
-
-        
+    The following parts will complement the report and describe ideas on Lin's idea for choosing, termination criteria of the inner loop to evaluate $\mathcal J_k^{\epsilon_k} y_k$ in his second paper on Catalyst Acceleration \cite{lin_catalyst_2018}. 
+    To elucidate the matters consider the model function $\mathcal M^{\kappa^{-1}}(x; y)$ is $\mu + \kappa$ strongly convex, and therefore it admits the Polyak error bound condition: 
+    \begin{align*}
+        (\forall x\in \RR^n) \quad 
+        \mathcal M^{\kappa^{-1}}(x; y) -
+        \mathcal M_{\kappa^{-1}}^*(y) 
+        &\le (1 + \mu)\dist
+            \left(\mathbf 0, \partial \mathcal M^{\kappa^{-1}}(x; y)
+            \right). 
+    \end{align*}
+    By choosing $x$ such that $\dist(\mathbf 0, \partial \mathcal M^{\kappa^{-1}}(x; y)) \le \epsilon$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}}(y)$. 
+    Unfortunately in practice, this is not used because a full gradient evaluation on the model function $\mathcal M^{\kappa}(\cdot; y)$ is costly (compare to the small amount required for variance reduced incremental method), so Lin suggested alternatives of Inner Loop Termination Criteria to make Catalyst acceleration competitive in practice. 
+    \todoinline{
+        Elucidate things by considering: 
+        \begin{enumerate}
+            \item What is the suggested error sequence $\epsilon_k$ for different type of objective function? 
+            \item What are some conditions for achieving inexact evaluation up to the given accuracy $\epsilon_k$? 
+            \item What are the convergence claims for these different types of termination criteria. 
+        \end{enumerate}
+    }
+    \subsection{Error sequence and convergence claims}
+    \subsection{Inner loop termination criteria}    
     \subsection{Potential future research}
 
     
