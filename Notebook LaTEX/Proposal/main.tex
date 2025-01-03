@@ -271,7 +271,7 @@
                 &:= F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
             \end{align*}
             Under convexity assumption in this section, both $\widetilde {\mathcal M} (\cdot; y),  {\mathcal M}(\cdot;y )$ is at least $\beta \ge 0$ strongly convex. 
-            \begin{definition}[Proximal gradient operator]
+            \begin{definition}[Proximal gradient operator]\label{def:proximal-gradient-operator}
                 Take $F := f + g$ where $g: \RR^n \rightarrow \overline \RR$ as defined in this section. 
                 Define the proximal gradient operator $T_L$ on all $y \in \RR^n$: 
                 \begin{align*}
@@ -284,7 +284,7 @@
             \begin{remark}
                 Under the assumption of this section, the mapping $T_L$ is a single-valued mapping, it has domain on the entire $\RR^n$, and it's a $3/2$ averaged operator. 
             \end{remark}
-            \begin{definition}[Gradient mapping operator]
+            \begin{definition}[Gradient mapping operator]\label{def:gradient-mapping-operator}
                 Take $F := f + g$ as defined in this section. 
                 Define the gradient mapping operator $\mathcal G_L$ on all $y \in \RR^n$: 
                 \begin{align*}
@@ -1073,46 +1073,190 @@
             Then the algorithm generates $(x_k)_{k \ge 1}$ such that $F(x) - F(x^*)$ convergences at a rate of $\mathcal O\left(\max(1 - r\sqrt{q}, 1 - r^{-1}\sqrt{q})^k\right)$. 
         \end{theorem}
 
-    \subsection{Free R-WAPG}\label{sec:spectral-momentum}
-        This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
-        Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
-        \begin{algorithm}
-            \begin{algorithmic}[1]
-            {\footnotesize
-            \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
-            \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
-            \STATE{\textbf{Compute: } $f(y_k)$; }
-            \FOR{$k = 0, 1, 2, \cdots, N$}
-                \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
-                \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
-                    \STATE{$L:= 2L$;}
-                    \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
-                \ENDWHILE
-                \STATE{$x_{k + 1} := x^+$;}
-                \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
-                \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
-                \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
-                \STATE{\textbf{Compute: } $f(y_{k + 1})$}
-                \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
-            \ENDFOR
-            }
-            \end{algorithmic}
-            \caption{Free R-WAPG}
-            \label{alg:free-rwapg}
-        \end{algorithm}
+    
+\section{The method of Free R-WAPG}\label{sec:free-rwapg}
+    This section introduces an algorithm of our creation inspired by the remark of Proposition \ref{prop:stepwise-lyapunov}. 
+    Algorithm \ref{alg:free-rwapg} estimates the $\mu$ constant as the algorithm executes and pools the information using the Bregman Divergence of the smooth part function $f$. 
+    \begin{algorithm}
+        \begin{algorithmic}[1]
+        {\footnotesize
+        \STATE{\textbf{Input: } $f, g, x_0, L > \mu \ge 0, \in \RR^n, N \in \N$}
+        \STATE{\textbf{Initialize: }$y_0 := x_0;L := 1; \mu := 1/2; \alpha_0 = 1;$}
+        \STATE{\textbf{Compute: } $f(y_k)$; }
+        \FOR{$k = 0, 1, 2, \cdots, N$}
+            \STATE{\textbf{Compute: }$\nabla f(y_k); x^+:= [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$;}
+            \WHILE{$L/2\Vert x^+ - y\Vert^2 < D_f(x^+, y)$}
+                \STATE{$L:= 2L$;}
+                \STATE{$x^+ = [I + L^{-1}\partial g](y_k - L^{-1}\nabla f(y_k))$; }
+            \ENDWHILE
+            \STATE{$x_{k + 1} := x^+$;}
+            \STATE{$\alpha_{k + 1} := (1/2)\left(\mu/L - \alpha_{k}^2 + \sqrt{(\mu/L - \alpha_{k}^2)^2 + 4\alpha_{k}^2}\right)$;}
+            \STATE{$\theta_{k + 1} := \alpha_k(1 - \alpha_k)/(\alpha_k^2 + \alpha_{k + 1})$;}
+            \STATE{$y_{k + 1}:= x_{k + 1} + \theta_{k + 1}(x_{k + 1} - x_k)$; }
+            \STATE{\textbf{Compute: } $f(y_{k + 1})$}
+            \STATE{$\mu := (1/2)(2D_f(y_{k + 1}, y_{k})/\Vert y_{k + 1} - y_k\Vert^2) + (1/2)\mu$;}
+        \ENDFOR
+        }
+        \end{algorithmic}
+        \caption{Free R-WAPG}
+        \label{alg:free-rwapg}
+    \end{algorithm}
+    \par
+    Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$; 
+    Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine;
+    Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$;
+    Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
+    \par
+    Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
+    The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
+    We note that $f(y_0)$ is computed before the start of the for loop. 
+    And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
+
+    \subsection{Numerical experiments}
+        This section gives figures and visual for numerical experiments conducted on the R-WAPG algorithm, and other algorithms in the literatures such as the V-FISTA, and M-FISTA algorithm. 
+        We implemented and compare V-FISTA, M-FISTA from Beck, and Algorithm \ref{alg:free-rwapg} given this section. 
+        The results of the experiments are visualized and the setup of the numerical experiments are described  in the sections that follows. 
         \par
-        Line 5-8 estimates upper bound for the Lipschitz constant and find $x^+$, the next iterates produced by proximal gradient descent on previous $y_k$.
-        Line 9 updates $x_{k + 1}$ to be $x^+$, a successful iterate identified by the Lipschitz line search routine. 
-        Line 10 updates the R-WAPG sequence $\alpha_k$ for the iterates $y_{k + 1}$. 
-        Line 13 updates $\mu$ using the Bregman Divergence of $f$ from iterates $y_{k + 1}, y_k$. 
+        The equivalences highlighted in Proposition \ref{prop:r-wapg-momentum-repr} allows us to compare the sequence of iterates $(x_k)_{k \ge 1}, (y_k)_{k \ge0}$ for R-WAPG, VISTA and M-FISTA. 
         \par
-        Assume $L$ given is an upper bound of the Lipschitz smoothness constant of $f$, then the algorithm calls $f(\cdot)$ two times, and $\nabla f(\cdot)$ once per iteration. 
-        The algorithm computes $\nabla f(y_k)$ once for $x^+$, $f(y_{k + 1})$ once for Bregman Divergence because $f(y_{k})$ is evaluated from the previous iteration, and $f(x^+)$ once for Lipschitz constant line search condition. 
-        We note that $f(y_0)$ is computed before the start of the for loop. 
-        And finally, it evaluates proximal of $g$ at $y_k - L^{-1}\nabla f(y_k)$ once. 
-    \subsection{Free R-WAPG numerical experiments}
-        \subsubsection{Simple regression}
-        \subsubsection{LASSO}
+        Given the same randomized initial condition for all the algorithm, we measure the aggregate statistics of the base two logarithms of the normalized optimality gap (NOG), at each iteration $k$.  
+        Given the iterates $x_k$, and the minimum $F^*$, the normalized optimality gap we defined is: 
+        \newcommand{\NOG}{\text{\textbf{NOG}}}
+        \begin{align*}
+            \delta_k := \log_2\left(
+                \NOG_k := \frac{F(x_k) - F^*}{F(x_0) - F^*}
+            \right). 
+        \end{align*}
+        Since it's not the case that $F^*$ is always known in prior, we used the minimum of all $F(x_k)$ across all algorithms, all iterations $k$ as the surrogate for $F^*$. 
+        \par 
+        For the termination conditions of the algorithm, we consider the norm of the gradient mapping $\mathcal G_L(y_k) < \epsilon$. 
+        The $L$ can change during each iteration if it's obtained through the specified Lipschitz line search routine. 
+
+    \subsubsection{Simple convex quadratic}
+        Consider the minimization problem of $\min_x \{F(x):= f(x) + 0\}$ where the objective function is given by: 
+        \begin{align*}
+            F(x) = (1/2)\langle x, A x\rangle. 
+        \end{align*}
+        The matrix $A$ is set to be positive semi-definite and diagonal. 
+        Then the optimization problem admits unique minimizer $x^* = \mathbf 0$ and the minimum is zero. 
+        \par
+        We apply Algorithm \ref{alg:free-rwapg}, M-FISTA, and V-FISTA. 
+        The parameters for setting up the problem now follows. 
+        \begin{enumerate}
+            \item $N$, the dimension of the problem. 
+            \item $0 < \mu < L$, the strong convexity and Lipschitz smoothness constant. They are given in prior to construct the problem. 
+            \item $A \in \RR^{N\times N}$, a diagonal matrix given by $N- 1$ linearly spaced with equal increment on the interval $[\mu, L]$, and an extra number $0$, i.e: $A = \text{diag}(0, \mu + (L-\mu)(N - 1)^{-1}, \mu + 2(L-\mu)(N - 1)^{-1}, \cdots, \mu + (N - 2)(L - \mu)^{-1}, L)$. 
+            \item In this case $f = F = (1/2)\langle x, A x\rangle$ and $g \equiv 0$. 
+            \item $\epsilon > 0$, the tolerance value for termination criteria. 
+            \item $x_0 \sim \mathcal N(I, \mathbf 0)$ is a vector, and it's the initial condition for all the algorithm. In this case the initial guess is fixed for all R-WAPG, M-FISTA and M-FISTA, but it's randomly generated by the zero mean standard normal distribution for each element in the vector. 
+        \end{enumerate}
+        The parameter $L=1, \mu=10^{-5}$ are given in prior to produce the diagonal matrix $A$, and we conduct many experiments for $N = 256$ and $N = 1024$. 
+        For all R-WAPG, M-FISTA and V-FISTA, 
+        we use a different initial guess each time, a set of 30 experiments are performed. 
+        The maximum, minimum and median values of $\delta_k$ are measured for all algorithm at each iteration and plotted as a ribbon. 
+        Results are shown in Figure \ref{fig:simple-quadratic-NOG}.
+        The solid line in the ribbon is the median value of $\delta_k$ across all experiment, the ribbon gives the maximum, minimum value of $\delta_k$ for each iteration across all experiments. 
+        R-WAPG initially behaves similar to M-FISTA, but as the iteration goes on, it started to behave like V-FISTA.  
+        \par 
+        The most surprising feature here is the monotone descent, however, it's being numerical verified that the method is not monotone in general, it just looks monotone on the figure. 
+        \begin{figure}[H]
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_batched-256.png}
+                \caption{$N = 256$, simple convex quadratic.}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/simple_regression_batched-1024.png}
+                \caption{$N = 1024$, simple convex quadratic. }
+            \end{subfigure}
+            \caption{Simple convex quadratic experiments results for V-FISTA, M-FISTA, and R-WAPG. }
+            \label{fig:simple-quadratic-NOG}
+        \end{figure}
+        \par
+        Another quantity that maybe interesting other than $\delta_k$ would be the estimated value of $\mu$ during at each iteration $k$. 
+        This $\mu$ parameter should converge to the true value. 
+        One individual experiment is carried out for the R-WAPG algorithm and the value of $\mu$ at each iteration is being recorded as well. 
+        Figure \ref{fig:simple-quadratic-r-wapg-mu-estimates} showcases the results. 
+        The values oscillate and converges to the true $\mu$ value. 
+        Observe that the iteration when the estimates are nearing the true value corresponds to the iteration when the algorithm plateau away from its initial fast descent. 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.64\textwidth]{assets/simple_regression_loss_sc_estimates_1024.png}
+            \caption{$N = 1024$, the $\mu$ estimates produced by Algorithm \ref{alg:free-rwapg} (R-WAPG) is recorded. }
+            \label{fig:simple-quadratic-r-wapg-mu-estimates}
+        \end{figure}
+
+    \subsubsection{LASSO}
+        This section present results of numerical experiment for solving the (least absolute shrinkage and
+        selection operator) LASSO problem proposed by 
+        \todo{
+            $\blacksquare$ Add reference ``Regression shrinkage and selection via the Lasso''
+            \\ $\blacksquare$ Cite it. 
+        }{\hl{Tibshirani}} \cite{tibshirani_regression_1996}. 
+        The problem of LASSO has smooth, nonsmooth additive and the problem is given by: 
+        \begin{align*}
+            \min_x
+            \left\lbrace
+                \frac{1}{2}\Vert Ax - b\Vert^2 + \lambda\Vert x\Vert_1
+            \right\rbrace. 
+        \end{align*}
+        The smooth part is $f =\frac{1}{2}\Vert Ax - b\Vert^2$ and the nonsmooth is $g = \lambda\Vert x\Vert_1$. 
+        The objective function is coersive and the exact minimum, or minimizers are unknown. 
+        We perform numerical experiments using V-FISTA, M-FISTA and R-WAPG on this problem. 
+        The parameters for setting up the problem now follow. 
+        \begin{enumerate}
+            \item $M, N$ are constants. 
+            \item $A \in \RR^{M\times N}$ is a matrix of i.i.d random variable, taken from a standard normal distribution. 
+            \item $L, \mu$, the Lipschitz constant and the strong convexity constant for the smooth part of the objective are not known prior, and it's estimated through $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert^2$. 
+            \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
+            \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
+            \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
+            \item $x_0\in \RR^N$ is the initial guess. Its elements are random i.i.d variable realized from the standard normal distribution. 
+            \item $\epsilon > 0$ is the tolerance the controls the termination criteria for test algorithms. 
+        \end{enumerate}
+        Experiments were conducted using V-FISTA, M-FISTA and R-WAPG with $(M, N) = (64, 256)$ and $(M, N) = (64, 128)$. 
+        Matrix $A$ is fixed and the for all test algorithms and all repetitions. 
+        The same experiment are repeated 30 times, but each time, we fix a different random initial condition $x_k$ for all test algorithms. 
+        The aggregate statistics of $\delta_k$ are collected for all repetitions, and then grouped by the respective algorithm. 
+        The results are showcased in Figure \ref{fig:batched-lasso}. 
+        The bump on the curve is due to a subset of test instances of the 30 repetition where the algorithms take larger number of iterations to terminate. 
+        \begin{figure}[H]
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_batched_statistics_64-256.png}
+                \caption{LASSO experiment with $M = 64, N = 256$. Plots of minimum, maximum, and median $\delta_k$ with estimated $F^*$. }
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/lasso_batched_statistics_64-128.png}
+                \caption{LASSO experiment with $M = 64, N = 128$. Plots of minimum, maximum, and median $\delta_k$ with estimated $F^*$. }
+            \end{subfigure}
+            \caption{LASSO experiments. }
+            \label{fig:batched-lasso}
+        \end{figure}
+        \par
+        Another quantity of interest is the estimates of $\mu$ on each iteration of the algorithm. 
+        A single experiment were conducted and the estimates and $\delta_k$ are showcased in Figure \ref{fig:single-lass-mu-estimates}
+        \begin{figure}[H]
+            \begin{subfigure}[b]{0.47\textwidth}
+                \includegraphics[width=\textwidth]{assets/lasso_loss_256.png}
+                \caption{Single lasso experiment plot of $\delta_k$ with.  }
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.47\textwidth}
+                \includegraphics[width=\textwidth]{assets/lasso_sc_estimates_256.png}
+                \caption{The $\mu$ estimated by test algorithms for one LASSO experiment. }
+            \end{subfigure}
+            \caption{A single LASSO experiment results, with $M = 64, 256$. }
+            \label{fig:single-lass-mu-estimates}
+        \end{figure}
+        For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
+        One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
+
+        \subsubsection{Logistic regression}
         
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
@@ -1140,16 +1284,58 @@
     }
     In this section, we assume that $F: \RR^n \rightarrow \overline \RR$ is a convex function. 
     This section reports major results from literatures concerning the mthod of Catalyst Acceleration. 
-    
-    \subsection{Lin's original Catalyst}
+    \par
+    The notations all sections within this section follow. 
+    \begin{assumption}
+        Given any $\beta > 0$ and $y \in \RR^n$, and we assume that $F: \RR^n\rightarrow \overline \RR$ is a closed convex function. 
+        Define the model function for all $y\in \RR^n$ to be 
+        \begin{align*}
+            \mathcal M^{\beta^{-1}}(\cdot; y) &:= 
+            F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
+        \end{align*}
+        We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M^{\beta^{-1}}(x; y)$. 
+        We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$, and $\mathcal J_{\beta^{-1}}^\epsilon$ to be the inexact resolvent operator. 
+        \begin{align*}
+            \mathcal J_{\beta^{-1}} y &= 
+            \left\lbrace
+            \right\rbrace
+        \end{align*}
+    \end{assumption}
+    Inspired by works from Güler \cite{guler_new_1992}, and Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method using the convergence claims of Accelerated proximal point method for first order variance reduced algorithms. 
+    \par
+    The parts coming will introduce the algorithms, explain key innovations behind the algorithm, and key variants of the algorithm. 
+    The section at the end will give future works and extensions of the exisiting Catalyst framework. 
+
+    \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst}\; \\
+        Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
+        Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
+        Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
+        \begin{align*}
+            & \text{find } x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1} \text{ such that } \mathcal M^{\kappa^{-1}}(x_k, y_{k - 1}) - \mathcal M^{\kappa^{-1}}(\mathcal J_{\kappa^{-1}}y_{k - 1}, y_{k - 1}) \le \epsilon_k,
+            \\
+            & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
+            \\
+            & 
+            y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
+        \end{align*}
+    \end{definition}
+    \begin{remark}
+        \todoinline{\noindent 
+            Cite the original Definition in the paper for this one. 
+            \begin{itemize}
+                \item Give explicit formula for $\alpha_k$
+                \item Discuss the optimal choice of $\kappa$ as stated in the paper. 
+                \item Elucidate how the sub problem can be resolved. 
+            \end{itemize}
+        }
+    \end{remark}
+    Much of the heavy lifting of constructing the algorithms were done through The estimating sequence introduced back in Definition \ref{def:nes-est-seq}. 
+
+
         
-    \subsection{Catalyst Adapted to Non-convexity}
+    \subsection{Potential future research}
 
-% \section{Performance estimation problems}\label{sec:pep}
-%     \todoinline{\noindent
-%         There are several foundational papers relevant. 
-
-%     }
+    
 
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
     

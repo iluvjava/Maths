@@ -22,3 +22,6 @@ Jongmin
 Ahn
 Sra
 Paquette
+M-FISTA
+NOG
+optimality
