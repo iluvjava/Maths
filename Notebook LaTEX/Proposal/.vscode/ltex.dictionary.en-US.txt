@@ -28,3 +28,4 @@ optimality
 Rockafellar
 resolvent
 Tibshirani
+nonconvex

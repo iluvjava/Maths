@@ -215,13 +215,13 @@ To characterize when the proximal operator is single-valued is more complicated.
 $f$ being closed convex and proper is sufficient but unnecessary for the proximal map to be single-valued.
 For more about it, check out the comments on Dima's work at the end of chapter 3 of his textbook for math 516 at UW.
 Dima also mentioned that the proximal operator on $\alpha$ weakly convex function ($f$ is $a$ weakly convex when $f + \frac{\alpha}{2}\Vert x \Vert$ is a convex function), which will also result in the proximal operator being a singled value operator. 
-Dima's discussion on the topic can be seem [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
+Dima's discussion on the topic can be seemed [\<The Proximal Point Method Revisited\>](https://sites.math.washington.edu/~ddrusv/proxpoint_arxiv.pdf). 
 
 
 The operator is maximal monotone: 
 * The subgradient operator of a closed convex and proper(CCP) function has $\partial f$ as a maximal monotone operator. 
-Therefore $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. 
-Consequently, $I + \partial f$ is single-valued and surjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
+Therefore, $x,y \in \text{gph}(\partial f)$, we have $(\bar x - x, \bar y - y)\ge 0 \implies  (\bar x, \bar y)\in \text{gph}(\partial f)$. 
+Consequently, $I + \partial f$ is single-valued and subjective, so the inverse $(I +\partial f)^{-1}$ is a singled-value operator. 
 For all $\alpha>0$, it's the same.
 * **The Surjectivity Theorem**, [Minty's Theorem, The Surjectivity Theorem](../Operators%20Theory/Minty's%20Theorem,%20The%20Surjectivity%20Theorem.md)
 * > The surjectivity theorem states, $T$ is maximal monotone iff $I + T$ is surjective. This is theorem 3.79 in Dima's work, and the proof is shown in 3.8.3.. 
@@ -363,7 +363,7 @@ Dimitri's AMATH 516, UW. Somewhere in the course notes I forgot where is where.
 
 
 ---
-### **Proximal Decomposition and Minty Parameterizations**
+### **Proximal Decomposition and Minty Parameterization**
 
 The prox of the conjugate is related to the prox. Similar to how a linear subspace has its orthogonal component. 
 
@@ -378,7 +378,7 @@ To show it, we make use of the [Fenchel Identity, Inequality](../Duality/Fenchel
 
 Function $\exp(x)$ doesn't have a surjective subgradient mapping. 
 Hence, the domain of its subgradient is also not entire. 
-The theorem here is not applicable for all values of $x$ outside of the domain of the subgradient of the conjugate or outside of the range of the range of the subgradient.
+The theorem here is not applicable for all values of $x$ outside the domain of the subgradient of the conjugate or outside the range of the range of the subgradient.
 Global strict convexity and coerciveness are the sufficient conditions for an invertible subgradient operator using the dual subgradient; the subgradient of these functions is surjective. 
 For more information, see [Simply Legendre Type](../Simply%20Legendre%20Type.md). 
 
@@ -523,7 +523,7 @@ Additionally, using the fact that proximal mapping is L-1 Lipschitz, the gradien
 When $f$ is an indicator function for a set, the envelope is the distance to the set squared, which is smooth. 
 For example $\delta_{\{\mathbf 0\}}(x)$ has a proximal mapping that is simply $\frac{1}{2}\Vert x\Vert^2$, which is smooth. 
 The derivative of the envelope where $\alpha$ presents instead of one, we have $\alpha^{-1}(x - \text{prox}_{\alpha f}(x))$. 
-It's the same proof but slightly enhancedd. 
+It's the same proof but slightly enhanced. 
 We demonstrate below
 
 $$

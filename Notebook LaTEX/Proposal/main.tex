@@ -100,15 +100,11 @@
 
     
 \section{Preliminaries}
-    \todoinline{
-        Clarify: Notations,
-        Organizations. 
-    }
     This section contains the basics of contents from convex optimization, and variational analysis. 
     \par
     Notations. 
     \begin{enumerate}
-        \item $\overline \RR := \RR \cup \{\infty, -\infty\}$
+        \item $\overline \RR := \RR \cup \{\infty, -\infty\}$. 
     \end{enumerate}
     \subsection{Fundamentals in non-convex analysis}
         Let the ambient space be $\RR^n$ equipped with inner product and 2-norm. 
@@ -280,20 +276,6 @@
             \end{remark}
 
     \subsection{Nesterov's estimating sequence technique}
-        \todoinline{\noindent
-            Do the following: 
-            \begin{enumerate}
-                \item What is Nesterov's estimating sequence. 
-                \item How is it used to derive the algorithm and convergence rate of algorithm. 
-                \item Where is it used and why is it important here. 
-            \end{enumerate}
-        }
-        \todoinline{
-            Examples
-            \begin{enumerate}
-                \item Example estimating sequence. 
-            \end{enumerate}
-        }
         The method of Nesterov's estimating sequence for accelerated gradient method, and their nonsmooth counterparts assumes a convex function $F: \RR^n \rightarrow \overline{\RR}$. 
         The estimating sequence is a technique searching for candidate algorithm with extrapolated momentum, and proving their convergence rate if possible. 
         \par
@@ -454,17 +436,17 @@
         $\blacksquare$ Add Neol J. Walkington's ``Nesterov's Method for Convex  Optimization''. \\ 
         $\blacksquare$ Cite it. 
     }
-    {\hl{Walkington's writing}}, 
+    {\hl{Walkington's writing}} \cite{noel_nesterovs_nodate}, 
     he showed that there exists a variant of the Nesterov's accelerated gradient method that achieved a linear convergence rate of $\mathcal O((1 - \sqrt{\kappa})^k)$ where $\kappa = \mu/L$. 
     This convergence rate is strictly better than $\mathcal O((1 - \mu/L)^k)$ for the method of gradient descent. 
     However, this variant has a fixed momentum parameter $\theta_{k + 1} = (\sqrt{\kappa} - 1)(\sqrt{\kappa} + 1)^{-1}$ back in Equation \ref{eqn:nag_example}. 
     \todo{
         $\blacksquare$ Add Beck's first order textbook
-        \\ $\square$ Cite 10.7.7. 
+        \\ $\blacksquare$ Cite 10.7.7. 
         \\ $\blacksquare$ Add Nesterov's textbook. 
         \\ $\blacksquare$ Cite it. }
     {\hl{
-        The same variant also appears in Beck's book as V-FISTA} \cite{beck_first-order_2017}, and \hl{Nesterov's book as (2.2.22)} \cite{nesterov_lectures_2018}.
+        The same variant also appears in Beck's book as V-FISTA} \cite[(10.7.7)]{beck_first-order_2017}, and \hl{Nesterov's book as (2.2.22)} \cite{nesterov_lectures_2018}.
     }
     \par
     One final Mystery of the algorithm is the convergence of the iterates which also has much to do with the momentum sequence $(\theta_k)_{k\ge 0}$ displayed in Equation \ref{eqn:nag_example}. 
@@ -568,20 +550,13 @@
             $\blacksquare$ Cite the Chambolle, Dossal 2015 paper here again. 
         }
         {\hl{Chambolle Dossal}} \cite{chambolle_convergence_2015}. 
+        Section \ref{sec:free-rwapg} provides Algorithm \ref{alg:free-rwapg} (Free R-WAPG) which is a parameter free alternative to accelerated proximal gradient method formulated using the R-WAPG we proposed. 
+        The algorithm dynamically adjusts the R-WAPG sequence $\alpha_k$ using the Bregman Divergence of smooth part of the objective function at successive extrapolated iterate $y_{k + 1}, y_k$ from the momentum method. 
+        Numerical experiments are conducted repeatedly and statistics on the results are displayed. 
+
 
         
     \subsection{Building Blocks of R-WAPG}\label{ssec:building-block-rwapg}
-        \todoinline{\noindent
-            Definitions: 
-            \begin{enumerate}
-                \item[$\blacksquare$] R-WAPG stepwise definition.
-                \item[$\blacksquare$] R-WAPG stepwise convergence claim.
-            \end{enumerate}
-            To do: 
-            \begin{enumerate}
-                \item[$\blacksquare$] Explain what is what. 
-            \end{enumerate}
-        }
         Definition\ref{def:stepwise-wapg} describes the procedures of generating the iterates $(v_{k + 1}, x_{k + 1})$ given any $(v_k, x_k)$ and parameter $\alpha_k \in (0, 1), \gamma_k > 0$. 
         Proposition \ref{prop:stepwise-lyapunov} gives an inequality instrumental to the convergence rate analysis, with the same assumption as the definition. 
 
@@ -635,20 +610,7 @@
         \end{proposition}
 
     \subsection{R-WAPG Sequence and R-WAPG algorithm}\label{ssec:rwpag-seq-and-alg}
-        \todoinline{\noindent
-            The R-WAPG Algorithm and convergence claim. 
-            Definitions: 
-            \begin{enumerate}
-                \item[$\blacksquare$] R-WAPG Sequence.
-                \item[$\blacksquare$] R-WAPG algorithm
-                \item[$\blacksquare$] Convergence of the R-WAPG algorithm.
-            \end{enumerate}
-            Todo: 
-            \begin{enumerate}
-                \item[$\blacksquare$] Explain what is what. 
-            \end{enumerate}
-        }
-        The Definition \ref{def:wapg} gives the definition of an iterative algorithm we called: Relaxed Weak Accelerated Proximal Gradient (R-WAPG) algorithm which generates sequence $(x_k, v_k)_{k \ge 1}$ using the R-WAPG sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given in Defintion \ref{def:rwapg-seq}. 
+        The Definition \ref{def:wapg} gives the definition of an iterative algorithm we called: Relaxed Weak Accelerated Proximal Gradient (R-WAPG) algorithm which generates sequence $(x_k, v_k)_{k \ge 1}$ using the R-WAPG sequences $(\alpha_k)_{k \ge 0}, (\rho_k)_{k \ge 0}$ given in Definition \ref{def:rwapg-seq}. 
         Proposition \ref{prop:wagp-convergence} shows the upper bound of the optimality gap $F(x_k) - F(x^*)$ with $(x_k)$ generated by the R-WAPG algorithm. 
 
         \begin{definition}[R-WAPG sequences]\label{def:rwapg-seq}\;\\
@@ -724,27 +686,6 @@
         \end{proposition}
         
     \subsection{Equivalent forms of R-WAPG algorithm}\label{ssec:quiv-repr-rwapg}
-        \todoinline{
-            Definitions:
-            \begin{enumerate}
-                \item[$\blacksquare$] R-WAPG Intermediate form.
-                \item[$\blacksquare$] R-WAPG Similar triangle form. 
-                \item[$\blacksquare$] R-WAPG Momentum form. 
-            \end{enumerate}
-        }
-        \todoinline{
-            Theorems: 
-            \begin{enumerate}
-                \item[$\blacksquare$] R-WAPG First equivalent form. 
-                \item[$\blacksquare$] R-WAPG Second equivalent form.
-                \item[$\blacksquare$] R-WAPG Third equivalent form.
-            \end{enumerate}
-            Lemmas
-            Todo: 
-            \begin{enumerate}
-                \item Explain what is what. 
-            \end{enumerate}
-        }
         Definitions \ref{def:r-wapg-intermediate}, \ref{def:r-wapg-st-form} and \ref{def:r-wapg-momentum-form} are three equivalent representations of the R-WAPG algorithms. 
         Propositions \ref{prop:wapg-first-equivalent-repr}, \ref{prop:wagp-st-form} and \ref{prop:r-wapg-momentum-repr} states the equivalences between the forms and the sufficient conditions for initial conditions of $x_1, v_1$ such equivalence holds. 
         \todo{$\blacksquare$ Add and explain this part. }{\hl{
@@ -825,17 +766,9 @@
             \cite{chambolle_convergence_2015}. 
             To see graphical visualization on why such term is used to describe the APG algorithm in the literatures, see 
             \todo{
-                $\blacksquare$ Add these. $\square$ Cite these. 
+                $\blacksquare$ Add these. $\blacksquare$ Cite these. 
             }
             {(3.1, 4.1) in Lee et al. \cite{lee_geometric_2021} and Ahn and Sra \cite{ahn_understanding_2022}}. 
-            \todoinline{\noindent
-                The term ``Method of Similar Triangle'' specific to this particular representation of AGM. 
-                For more information, see:  
-                \begin{enumerate}
-                    \item 3.1, 4.1 in Jongmin Lee et al., ``A geometric structure of Acceleration and its role in making gradients small''
-                    \item The entirety of Ahn and Sra's paper ``PPM interpretation of Nesterov's accelerated gradient. ''. 
-                \end{enumerate}
-            }
         \end{remark}
         \begin{definition}[R-WAPG momentum form]\label{def:r-wapg-momentum-form}
             Given any $y_1 = x_1 \in \RR^n$, and sequences $(\rho_k)_{k \ge 0}, (\alpha_k)_{k\ge 0}$ Definition \ref{def:rwapg-seq}. 
@@ -939,22 +872,6 @@
         \end{proposition}
 
     \subsection{The descriptive power of R-WAPG on existing variants}\label{ssec:describe-variants-with-rwapg}
-        \todoinline{\noindent
-            Lemmas: 
-            \begin{enumerate}
-                \item Inverted FISTA sequence is a R-WAPG sequence.
-                \item Constant R-WAPG sequence.
-            \end{enumerate}
-            Theorems: 
-            \begin{enumerate}
-                \item Convergence with constant momentum. 
-                \item Convergence with Chambolle, Dossal Sequences.
-            \end{enumerate}
-            Todo: 
-            \begin{enumerate}
-                \item Explain what is what. 
-            \end{enumerate}
-        }
         Lemma \ref{lemma:inverted-fista-seq} identifies a sequence $(\alpha_k)_{k \ge 0}$ such that $\alpha_k^{-2} \ge \alpha_{k + 1}^{-2} - \alpha_{k + 1}^{-1}$ as a specific instance of R-WAPG sequence. 
         The lemma showed that sequence $(\alpha_k^{-1})_{k \ge 0}$ is the FISTA sequence which governs the momentum term and convergence claim in FISTA algorithms and variants alike. 
         The lemma also provides a simplified convergence claim using the R-WAPG sequence on Proposition \ref{prop:wagp-convergence}. 
@@ -1213,140 +1130,310 @@
         For this specific experiment showed in the figure, the estimated value of $\mu, L$ which we feed into V-FISTA are $\mu = 7.432363627613958\times 10^{-18}$ and $L = 2321.737206983643$. 
         One of the most important feature is that the estimate $\mu$ doesn't converge to the true value, but it didn't affect the convergence of $\delta_k$. 
 
-        \subsubsection{Logistic regression}
+        % \subsubsection{Logistic regression}
         
 
 \section{Catalyst accelerations and future works}\label{sec:catalyst}
-    \todoinline{\noindent
-        Literatures review of the topics in Catalyst acceleration method. 
-        Here is a list of topics: 
-        \begin{enumerate}
-            \item The original accelerated PPM. 
-            \item The Catalyst with weakly convex objectives. 
-        \end{enumerate}
-        After the literature reviews of the core literatures, move on and state new research directions and open problems. 
-        There are several directions for open problem: 
-        \begin{enumerate}
-            \item APPM method for monotone operators instead of just subgradient, whether the same framework exists in a greater context. 
-            \item Accelerated Proximal Bregman Method. 
-            \item Removing smoothness assumption in Catalyst acceleration framework. 
-        \end{enumerate}  
-    }
-    \todoinline{\noindent
-        A list of relevant literatures: 
-        \begin{enumerate}
-            \item Güler's 1992 paper on Accelerated Proximal Point method. 
-            \item Lin's, and Payquette's three trilogy paper on Catalyst acceleration for convex, non-convex Variance reduced algorithm. 
-        \end{enumerate}
-    }
     In this section, we assume that $F: \RR^n \rightarrow \overline \RR$ is a convex function. 
-    This section reports major results from literatures concerning the method of Catalyst Acceleration. 
-    \begin{assumption}
+    This section introduces the ideas in Catalyst acceleration, elucidate the focuses in the research, and then discuss future research direction at the end. 
+    \begin{assumption}\label{ass:catalyst1}
         Given any $\beta > 0$ and $y \in \RR^n$, and $F: \RR^n\rightarrow \overline \RR$ is $\mu \ge 0$ strongly convex and closed. 
+        Assume that minimizer exists for $F$ and the minimum is $F^*$. 
         Define the model function for all $y\in \RR^n$ to be 
         \begin{align*}
-            \mathcal M^{\beta^{-1}}(\cdot; y) &:= 
+            \mathcal M^{\beta^{-1}}_F(x; y) &:= 
             F(x) + \frac{\beta}{2}\Vert x - y\Vert^2.
         \end{align*}
-        We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M^{\beta^{-1}}(x; y)$. 
+        We define the Moreau Envelope at $y \in \RR^n$ to be $\mathcal M^*_{F,\beta^{-1}}(y) = \min_{x\in \RR^n} \mathcal M_F^{\beta^{-1}}(x; y)$. 
         We denote $\mathcal J_{\beta^{-1}}$ to be the resolvent operator for subgradient of $F$, and $\mathcal J_{\beta^{-1}}^\epsilon$ for any $\epsilon \ge 0$ to be the inexact resolvent operator. 
         \begin{align*}
-            \mathcal J_{\beta^{-1}}^\epsilon y &:= 
+            \mathcal J_{\beta^{-1}F}^\epsilon (y) &:= 
             \left\lbrace
-                x \in \RR \left | 
-                    \mathcal M^{\beta^{-1}}(x; y) - 
-                    \mathcal M_{\beta^{-1}}^*(y) \le \epsilon
+                x \in \RR \left | \; 
+                    \mathcal M^{\beta^{-1}}_F(x; y) - 
+                    \mathcal M_{\beta^{-1}, F}^*(y) \le \epsilon
                 \right.
             \right\rbrace. 
         \end{align*}
-        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta}y$. 
+        Setting $\epsilon = 0$, we have the exact definition of the exact resolvent given as $\mathcal J_{\beta^{-1}}y = \mathcal J^0_{\beta^{-1}}y$. 
     \end{assumption}
-
-    Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
-    The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
-    \todo{
-        $\blacksquare$ Add the bib for Mark Schmidt introductory paper RV methods.  
-        \\ $\square$ Cite it. 
-    }{\hl{See Gower's guide}} for more information on variance reduced methods in machine learning. 
-    In brief, a variance reduce method (VRM) is a type of stochastic gradient methods that stablizes the current estimate using information of the gradient at previous iterates. 
-    In each iteration, only the gradient of a few samples are accessed but attain overall better complexity because the variance of the estimated gradients are reduced. 
-    \todoinline{
-        We can then list some citations and references to commonly known variance reduced method here. 
-    }
-    \par
-    The parts coming will introduce the algorithms, explain key innovations behind the algorithm, and key variants of the algorithm. 
-    The section at the end will give future works and extensions of the Catalyst framework. 
-
-    \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst}\; \\
-        Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
-        Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
-        Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
-        \begin{align*}
-            & \text{find } x_k \in \mathcal J_{\kappa^{-1}}^{\epsilon_k} y_{k - 1}, 
+    \subsection{Introduction to Catalyst}
+        Inspired by accelerated proximal point method from Güler \cite{guler_new_1992}, and inexact proximal point method of Rockafellar 1976 \cite{rockafellar_monotone_1976}, Lin \cite{lin_universal_2015} proposed a generic method taking inspirations from the convergence claims of Accelerated proximal point method to accelerated the convergence rate of first order variance reduced incremental method. 
+        The class of variance reduced method is vast, but to use the most relevant feature of this class of first order method is that they are stochastic method that is not slower than full gradient descent in complexity. 
+        \todo{
+            $\blacksquare$ Add the bib for Mark Schmidt introductory paper RV methods.  
+            \\ $\square$ Cite it. 
+        }{\hl{See Gower's guide}} for more information on variance reduced methods in machine learning. 
+        \par
+        In brief, a variance reduce method (VRM) is a type of 
+        \todo{
+            $\blacksquare$ Add old Dima's paper on incremental methods here. Paper: ``Incremental gradient, subgradient, and proximal methods for convex optimization: A survey''. 
             \\
-            & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
+            $\square$ Cite them. 
+        }
+        {\hl{incremental methods}}
+        for solving a large sum problem: $F(x) = \sum_{i = 1}^{N} f_i(x)$ in machine learning.
+        It can be deterministic, or stochastic. 
+        When it's stochastic, the theories focuses on the expected optimality gap: $\mathbb E[F(x_k) - F^*]$, for the inner and outer loop. 
+        Let's assume for simplicity of discussion that it's deterministic and focus on: $F(x_k) - F^*$. 
+        \par 
+        The idea of VRM is to stabilize the estimate of gradient using information of the gradient (which can be estimated, or exact) from all or a subset at previous iterates. 
+        In each iteration, only the gradient of a few samples are accessed and uses simple calculations from previously stored gradient to attain overall better complexity 
+        It can achieve that because the variance of the estimated gradients are smaller when the iterates are close to the set of true minimizer. 
+        \todoinline{\noindent
+            We can then list some citations and references to commonly known variance reduced method here. 
+            Let's list some here then. 
+            \begin{enumerate}
+                \item 
+            \end{enumerate}
+        }
+        \par
+        The parts coming will introduce the algorithms, explain key innovations behind the algorithm, and key variants of the algorithm. 
+        The section at the end will give future works and extensions of the Catalyst framework. 
+        \begin{definition}[Lin's Universal Catalyst Acceleration]\label{def:lin-catalyst-original}\; \\
+            Let $F:\RR \rightarrow \overline \RR$ be $\mu \ge 0$ strongly convex and closed. 
+            Let the initial estimate be $x_0 \in \RR^n$, fix parameters $\kappa > 0$ and $\alpha_0 \in (0, 1]$. 
+            Let $(\epsilon_k)_{k \ge 0}$ be an error sequence chosen for the evaluation for inexact proximal point method. 
+            Initialize $x_0 = y_0$. Then the algorithm generates $(x_k, y_k)_{k\ge 0}$ for all $k \ge 1$ such that: 
+            \begin{align*}
+                & \text{find } x_k \in \mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}, 
+                \\
+                & \text{find } \alpha_k \in (0, 1) \text{ such that } \alpha_k^2 = (1 - \alpha_k)\alpha_{k - 1}^2 + (\mu/(\mu + \kappa))\alpha_k,
+                \\
+                & 
+                y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
+            \end{align*}
+        \end{definition}
+        \begin{remark}
+            The above algorithm is Algorithm 1 from the first paper on Catalyst Acceleration by Lin et al. \cite{lin_universal_2015}. 
+            The explicit formula for $\alpha_k$ is the larger root of solving the quadratic equation given by: 
+            \begin{align*}
+                \alpha_k &= 
+                \frac{1}{2}\left(
+                    - \alpha_{k - 1}^2 - q + \sqrt{(q + \alpha_{k - 1})^2 + 4 \alpha_{k - 1}}
+                \right), 
+            \end{align*}
+            where $q = \mu/(k + \mu)$. 
+            Lin suggests different choices for the parameter $\kappa > 0$ depending on the algorithm chosen to evaluate the subroutine for $\mathcal J_{\kappa^{-1}F}^{\epsilon_k}y_{k - 1}$. 
+            The choice of $\epsilon_k$ depends on the estimated optimality gap $F(x_0) - F^*$ where $F^*$ is the minimum of $F$ and whether $\mu > 0$ or $\mu = 0$. 
+        \end{remark}
+        Typically, an iterative scheme (i.e: VRM) with known complexity is assigned to find inexact proximal iterates $x_k \in {\mathcal J}_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}$. 
+        This algorithm is often referred to as the inner loop. 
+        The outer loop controls where the proximal point $y_{k}$ is evaluated at and computes Nesterov's momentum extrapolations. 
+        \par
+        The error sequence $(\epsilon_k)_{k \ge 0}$ depends on the properties of the objective function. 
+        For example, when $F$ has $\mu = 0$, 
+        \todo{
+            Lin's paper, Theorem 3.3
+        }
+        {\hl{Lin }}\cite[Theorem 3.3]{lin_universal_2015} suggested $\alpha_0 = (\sqrt{5} - 1)/2$, and 
+        \begin{align}
+            \epsilon_k = \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}}, 
+        \end{align}\label{eqn:catalyst-error-seq-cnvx}
+        where $\eta > 0$ is any number, i.e: $\eta = 0.1$. 
+        Then, the convergence of $F(x_k) - F^*$ with $(x_k)_{k \ge 0}$ produced by the outer loop is $\mathcal O(1/k^2)$. 
+        This makes the iteration complexity of just the outer loop optimal. 
+        In addition, to achieve optimal convergence for the outer loop when $\mu > 0$ for $F$, 
+        \todo{
+            Lin's first Catalyst, Theorem 3.1. 
+        }
+        {\hl{Lin }}\cite[Theorem 3.1]{lin_universal_2015}
+        suggested $\alpha_0 = \sqrt{\mu/(\kappa + \mu)}$ and the error sequence: 
+        \begin{align}
+            \epsilon_k = \frac{2}{9}(F(x_0) - F^*)(1 - \rho)^k \quad \text{with } \quad 
+            \rho < \sqrt{\frac{\mu}{\mu + \kappa}}. 
+        \end{align}\label{eqn:catalyst-error-seq-s-cnvx}
+        Take note that, the error sequence has $F^*$ the optimal value in both cases. 
+        It's not an issue in theoretical discussion for the convergence analysis and complexity analysis because it's assumed to exist. 
+        Unfortunately it's of upmost practical concern because the value $F^*$ is not accessible in practice and depends on the specific context of mathematical model of a practical problem. 
+        In the work by Lin et al., the example algorithm given is 
+        \todo{Cite this algorithm}
+        {\hl{MISO Prox}} which automatically builds a lower bound estimates on $F^*$ in the outer loop. 
+        In practice, achieving higher accuracies in $\epsilon_k$ in inner loop would validate the over all convergence claim, but results in slower algorithm. 
+        Therefore, we want to know how to achieve $\epsilon_k$ without over compensating. 
+        \par
+        The convergence of the outer loop made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
+        This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
+        The convergence proof (outer and inner loop together) from Lin was inspired by 
+        \todo{\noindent
+            $\blacksquare$ Add bib, the paper is 
             \\
-            & 
-            y_{k} = x_k + \frac{\alpha_{k - 1}(1 - \alpha_{k - 1})}{\alpha_{k - 1}^2 + \alpha_k}(x_k - x_{k - 1}). 
-        \end{align*}
-    \end{definition}
-    \begin{remark}
-        The above algorithm is Algorithm 1 from Lin's first paper on Catalyst Acceleration \cite{lin_universal_2015}. 
-        The explicit formula for $\alpha_k$ is the larger root of solving the quadratic equation given by: 
+            $\square$ Cite. 
+        }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
+        The technique of estimating sequence as defined back in Definition \ref{def:nes-est-seq} did the heavy lifting, but it results in depressingly long proof making it unsuitable for exposition here. 
+        Significant pieces of theoretical innovations are covered in details in our most recent Fall Winter 2024 MATH 590 report. 
+        \par 
+        The following parts will complement the report and describe ideas on for choosing the termination criteria of the inner loop to evaluate $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$ which is the focus of his second paper on Catalyst Acceleration \cite{lin_catalyst_2018}. 
+        To elucidate the matters consider the model function $\mathcal M_F^{\kappa^{-1}}(x; y)$ is $\mu + \kappa$ strongly convex, and therefore it admits the Polyak error bound condition: 
         \begin{align*}
-            \alpha_k &= 
-            \frac{1}{2}\left(
-                - \alpha_{k - 1}^2 - q + \sqrt{(q + \alpha_{k - 1})^2 + 4 \alpha_{k - 1}}
-            \right), 
+            (\forall x\in \RR^n) \quad 
+            \mathcal M^{1/\kappa}_F(x; y) -
+            \mathcal M_{F, 1/\kappa}^*(y) 
+            &\le (\kappa + \mu)\dist
+                \left(
+                    \mathbf 0, \partial \mathcal M^{1/\kappa}_F(x; y)
+                \right). 
         \end{align*}
-        where $q = \mu/(k + \mu)$. 
-        Lin suggests different choices for the parameter $\kappa > 0$ depending on the algorithm chosen to evaluate the subroutine for $\mathcal J_{\kappa^{-1}}^{\epsilon_k}y_{k - 1}$. 
-        The choice of $\epsilon_k$ depends on the estimated optimality gap $F(x_0) - F^*$ where $F^*$ is the minimum of $F$ and whether $\mu > 0$ or $\mu = 0$. 
-    \end{remark}
-    Much of the heavy lifting of constructing the algorithms were done through the method of estimating sequence introduced back in Definition \ref{def:nes-est-seq}. 
-    The convergence of the algorithm made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
-    This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
-    The sequence $\epsilon_k$ is compacted and bounded under an upper bound parameterized via the sequence $(\epsilon_k)_{k \ge 0}$. 
-    The convergence proof from Lin was inspired by 
-    \todo{\noindent
-        $\blacksquare$ Add bib, the paper is 
-        \\
-        $\square$ Cite. 
-    }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
-    \par
-    The technique of Estimating sequence results in depressingly long proof making it unsuitable for exposition here, however every significant piece of innovation is covered in details in our most recent Fall Winter 2024 MATH 590 report. 
-    \par 
-    The following parts will complement the report and describe ideas on Lin's idea for choosing, termination criteria of the inner loop to evaluate $\mathcal J_k^{\epsilon_k} y_k$ in his second paper on Catalyst Acceleration \cite{lin_catalyst_2018}. 
-    To elucidate the matters consider the model function $\mathcal M^{\kappa^{-1}}(x; y)$ is $\mu + \kappa$ strongly convex, and therefore it admits the Polyak error bound condition: 
-    \begin{align*}
-        (\forall x\in \RR^n) \quad 
-        \mathcal M^{\kappa^{-1}}(x; y) -
-        \mathcal M_{\kappa^{-1}}^*(y) 
-        &\le (1 + \mu)\dist
-            \left(\mathbf 0, \partial \mathcal M^{\kappa^{-1}}(x; y)
-            \right). 
-    \end{align*}
-    By choosing $x$ such that $\dist(\mathbf 0, \partial \mathcal M^{\kappa^{-1}}(x; y)) \le \epsilon$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}}(y)$. 
-    Unfortunately in practice, this is not used because a full gradient evaluation on the model function $\mathcal M^{\kappa}(\cdot; y)$ is costly (compare to the small amount required for variance reduced incremental method), so Lin suggested alternatives of Inner Loop Termination Criteria to make Catalyst acceleration competitive in practice. 
-    \todoinline{
-        Elucidate things by considering: 
+        By choosing $x$ such that $\dist(\mathbf 0, \partial \mathcal M_F^{1/\kappa}(x; y)) \le \epsilon$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}F}(y)$. 
+        Unfortunately in practice, this is not used because a full gradient evaluation on the model function $\mathcal M^{1/\kappa}_F(\cdot; y)$ is costly (compare to the small amount required for VRM, which is just the gradient of a few samples.), so Lin suggested alternatives of inner loop termination criteria, and/or upper bounds of inner loop iteration to make Catalyst Acceleration competitive in practice. 
+        \todoinline{Add more details about what they actually did in the original paper. }
+        \par
+        He also provided rigorous convergence claim under various scenarios of inner loop termination strategies. 
+        \par 
+        These raised conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
+        The paper is phenomenal at addressing the following: 
         \begin{enumerate}
-            \item What is the suggested error sequence $\epsilon_k$ for different type of objective function? 
-            \item What are some conditions for achieving inexact evaluation up to the given accuracy $\epsilon_k$? 
-            \item What are the convergence claims for these different types of termination criteria. 
+            \item Getting the error sequence $(\epsilon_k)_{k \ge 0}$ to asserts fast convergence of the outer loop. 
+            \item Two termination criteria for the inner loop given the desired accuracy which expedite the convergence and makes simpler proofs for the convergence of the overall algorithm. 
         \end{enumerate}
-    }
-    \subsection{Error sequence and convergence claims}
-    \subsection{Inner loop termination criteria}    
+
+    \subsection{Inner loop termination criteria}
+        Denote the outer loop iteration algorithm by $\mathbb A$, and inner loop iteration algorithm by $\mathbb M$. 
+        This section discusses major contents in Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
+        To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested two major strategies that are not necessarily mutually exclusive: 
+        \begin{enumerate}
+            \item Use a warm start strategy, i.e: take the most recent iterates produced by $\mathbb A$ as the initial guess for $\mathbb M$. 
+            \item An absolute termination criterion C1 stated in Definition \ref{def:catalyst-termination-c1}, governed by the error sequence $(\epsilon_k)_{k \ge 0}$. 
+            \item A relative termination criterion C2 stated in Definition \ref{def:catalyst-termination-c2}, governed by the error sequence $(\delta_k)_{k \ge 0}$
+        \end{enumerate}
+        \par
+        We now introduce the early termination criteria for $\mathbb M$. 
+        In our notation, we define the absolute termination criterion, which are C1 and C2 directly taken from Lin's second Catalyst paper but in our notations. 
+        \begin{definition}[Absolute termination criterion C1]\label{def:catalyst-termination-c1}
+            Take $F$ as given by Assumption \ref{ass:catalyst1}.
+            Given any $\epsilon > 0, \kappa > 0$ and $x \in \RR^n$, the absolute criterion C1 characterizes the set of inexact proximal iterates as the set: 
+            \begin{align*}
+                \mathcal J_{\kappa^{-1} F}^\epsilon (x) := 
+                \left\lbrace
+                    y \in \RR^n \left | \; 
+                            \mathcal M^{1/\kappa}_F (y; x) - 
+                            \mathcal M^*_{F, 1/\kappa}(x) \le \epsilon
+                    \right.
+                \right\rbrace. 
+            \end{align*}
+        \end{definition}
+
+        \begin{definition}[Relative termination criterion C2]\label{def:catalyst-termination-c2}
+            Take $F$ as given by Assumption \ref{ass:catalyst1}. 
+            Given any $\delta \in (0, 1]$, $\kappa > 0$ and $x \in \RR^n$, the relative criterion C2 is characterized by the set: 
+            \begin{align*}
+                \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta (x)
+                := 
+                \left\lbrace
+                    z \in \RR^n \left| \;
+                        \mathcal M_F^{\kappa^{-1}}(z; x) - 
+                        \mathcal M^*_{F, \kappa^{-1}}(z; x) 
+                        \le \frac{\kappa\delta}{2}\Vert x - z\Vert^2
+                    \right.
+                \right\rbrace. 
+            \end{align*}
+        \end{definition}
+        Stated by Lin, the following lemmas are the sufficient conditions and consequences of termination criteria C1, C2. 
+
+        \begin{lemma}[Sufficient condition for C1]\label{lemma:sufficient-c1}
+            Consider smooth plus nonsmooth objective $F := f + g$ with $g:\RR^n \rightarrow \overline \RR, F:\RR^n \rightarrow \RR$ closed and convex, and $F$ is $\mu\ge 0$ strongly convex and $L$-Lipschitz smooth. 
+            With arbitrary $x \in \RR^n$ fixed, the model function is additive composite of the form: 
+            \begin{align*}
+                \mathcal M_F^{\kappa^{-1}}(z; x) := 
+                \underbrace{f(z) + \frac{\kappa}{2}\Vert z - x\Vert^2}_{=: f_\kappa (z)}
+                 + g(z). 
+            \end{align*}
+            For any $z$ define proximal gradient point 
+            \begin{align*}
+                \bar z = \hprox_{\eta g}(z - \nabla f_\kappa(z)) 
+                \quad 
+                \text{ with } \quad  \eta = 1/(\kappa + L). 
+            \end{align*}
+            Then it has 
+            \begin{align*}
+                \frac{1}{\eta}\Vert z - \bar z\Vert
+                \le \sqrt{2\kappa \epsilon} \implies 
+                \bar z \in \mathcal 
+                J_{\kappa^{-1}F}^\epsilon (x). 
+            \end{align*}
+        \end{lemma}
+        \begin{remark}
+            This is Lin Lemma 2 \cite{lin_catalyst_2018}. 
+        \end{remark}
+
+    \subsection{Consequences of the inner loop termination criteria}
+        Lemma \ref{lemma:sufficient-c1} describes a sufficient conditions to verify the membership of $\bar z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$ through the proximal gradient operator on $F:= f_\kappa(z) + g(z)$ which of practical importance because it translates criterion C1 into something implementable, i.e: the proximal gradient operator. 
+        For theoretical interests, the absolute and relative criteria C1, C2 places bound on the true error of the gradient of Moreau Envelope at the point $x$. 
+        \par 
+        The following are results proved in Lin's second Catalyst paper. 
+        Given any $\epsilon > 0$ if $z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$, define the approximated gradient mapping $\mathcal G_{\kappa^{-1}F}^\epsilon (z) := \kappa(x - z)$.
+        Then
+        \begin{align*}
+            \left\Vert z - \mathcal J_{\kappa^{-1}F} (x)\right\Vert
+            &\le \sqrt{\frac{2\epsilon}{\kappa}} 
+            \iff 
+            \left\Vert
+                \mathcal G_{\kappa^{-1}F}^\epsilon(z) 
+                - \nabla \mathcal M_{F, \kappa^{-1}}^*(x)
+            \right\Vert 
+            \le \sqrt{2\kappa\epsilon}. 
+        \end{align*}
+        Similarly, if $z \in \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta(x)$, define the inexact gradient mapping $\widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) = \kappa(x - z)$, we have: 
+        \begin{align*}
+            \Vert z - \mathcal J_{\kappa^{-1}F}(x)\Vert 
+            &\le \sqrt{\delta}\Vert x - z\Vert 
+            \le \sqrt{\delta}(
+                \Vert x - \mathcal J_{\kappa^{-1}F} (x) \Vert 
+                - \Vert z - \mathcal J_{\kappa^{-1}F} (x) \Vert
+            ), 
+            \\
+            \left\Vert 
+                \widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) - 
+                \nabla \mathcal M^*_{F, \kappa^{-1}}(x) 
+            \right\Vert
+            &\le 
+            \delta' \Vert \nabla \mathcal M^*_{F, \kappa^{-1}}(x) \Vert \quad 
+            \text{with } \delta' = \sqrt{\delta}/(1 - \sqrt{\delta}). 
+        \end{align*}
+        \par 
+        For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
+        \todo{
+            $\square$ Add paper: ``First-order methods of smooth convex optimization with inexact oracle'' \\
+            $\square$ Cite them. 
+        }
+        {\hl{Devolder et al.}}
+        \par
+        Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$, we can also terminate $\mathbb M$ after a fixed number of iteration. 
+        This is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
+        It needs a precise bound on the complexity for $\mathbb M$ to achieve C1, or C2 of the strongly convex function $\mathcal M^{\kappa^{-1}}_F(\cdot; y)$. 
+        \par
+        To attain an optimal convergence rate for $\mathbb A$ on criterion C1, the error sequence $(\epsilon_k)_{k \ge 0}$ should be given by Equation \ref{eqn:catalyst-error-seq-cnvx} for convex $F$, and \ref{eqn:catalyst-error-seq-s-cnvx} for strongly convex $F$. 
+        Amazingly, termination criterion C2 doesn't require knowledge on $F^*$ to achieve optimal convergence for $\mathbb A$. 
+        The following schedules for $(\delta_k)_{k \ge 0}$ are given in Lin, et al.'s second Catalyst paper, the error sequence $\delta_k$ for criterion C2 is given by: 
+        \begin{align*}\label{eqn:catalyst-rel-error-seq}
+            q &= \mu/(\mu + \kappa), 
+            \\
+            \delta_k 
+            &= \frac{\sqrt{q}}{2 - \sqrt{q}} \text{ if } \mu > 0, 
+            \\
+            \delta_k &= \frac{1}{(k + 1)^2} \text{ if }\mu = 0. 
+        \end{align*}
+        Let's pay particular attention to criterion C2. 
+        
+
+
+    \subsection{Complexity}
+        
+        
     \subsection{Potential future research}
 
     
-
 \section{Methods of inexact proximal point}\label{sec:inexact-prox}
-    
+    Content of this section is primarily based on Khanh et al. \cite{duy_khanh_inexact_2023} on inexact proximal method for weakly convex functions. 
 
-\section{Nestrov's acceleration in the non-convex case}\label{sec:nes-acc-ncnvx}
-    
+
+\section{Nestrov's acceleration in the nonconvex case}\label{sec:nes-acc-ncnvx}
+    The behavior of Nesterov's acceleration for function that are nonconvex are the holy grail and the absolute frontier. 
+    The approaches are incredibly diverse and therefore, this section will only list relevant references and briefly mention the ideas involved in those literatures. 
+    \todoinline{\noindent
+        Here, is a list of early attempted research of Nesterov's acceleration method in the nonconvex case. 
+
+    }
 
 
 \section{Using PostGreSQL and big data analytic method for species classification on Sentinel-2 Satellite remote sensing imagery}

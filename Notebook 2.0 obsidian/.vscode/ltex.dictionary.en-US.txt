@@ -23,3 +23,10 @@ resolvent
 Resolvent
 Nonexpansive
 nonexpansive
+surjectivity
+iff
+surjective
+Nonexpansiveness
+prox
+subscripted
+coerciveness

@@ -939,6 +939,6 @@ This makes the estimating sequence exactly the same as the accelerated proximal 
 
 #### **The inexact proximal gradient inequality**
 
-
+Lemma A.7 can be seemed as an variant of the proximal gradient inequality with inexact proximal point evaluation. 
 
 
