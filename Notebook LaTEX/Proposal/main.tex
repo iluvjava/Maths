@@ -1083,7 +1083,7 @@
         \begin{enumerate}
             \item $M, N$ are constants. 
             \item $A \in \RR^{M\times N}$ is a matrix of i.i.d random variable, taken from a standard normal distribution. 
-            \item $L, \mu$, the Lipschitz constant and the strong convexity constant for the smooth part of the objective are not known prior, and it's estimated through $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert^2$. 
+            \item $L, \mu$, the Lipschitz constant and the strong convexity constant for the smooth part of the objective are not known prior, and it's estimated through $A$ by $\mu = 1/\Vert (A^TA)^{-1}\Vert$ and $L = \Vert A^TA\Vert$. 
             \item $x^+ = [1\; -1\; 1 \; \cdots ]^T \in \RR^N$, it's a vector with alternating $1, -1$ in it. 
             \item Given $x^+$, it has $b = Ax^+ \in \RR^M$. 
             \item Given $A$, estimations for $L,\mu$ are given by $L = \Vert A^TA\Vert$, $\mu = \Vert (A^TA)^{-1}\Vert^{-1}$. 
@@ -1276,15 +1276,19 @@
         \end{align*}
         By choosing $x$ such that $\dist(\mathbf 0, \partial \mathcal M_F^{1/\kappa}(x; y)) \le \epsilon$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}F}(y)$. 
         Unfortunately in practice, this is not used because a full gradient evaluation on the model function $\mathcal M^{1/\kappa}_F(\cdot; y)$ is costly (compare to the small amount required for VRM, which is just the gradient of a few samples.), so Lin suggested alternatives of inner loop termination criteria, and/or upper bounds of inner loop iteration to make Catalyst Acceleration competitive in practice. 
-        \todoinline{Add more details about what they actually did in the original paper. }
         \par
-        He also provided rigorous convergence claim under various scenarios of inner loop termination strategies. 
+        \todoinline{\noindent
+            Add more details about what they actually did in the original paper.
+            \begin{enumerate}
+                \item [$\square$] The condition of warm starting in the algorithm and complexity bound of the inner loop. 
+            \end{enumerate}
+        }
         \par 
         These raised conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
-        The paper is phenomenal at addressing the following: 
+        The paper has the following new ideas: 
         \begin{enumerate}
-            \item Getting the error sequence $(\epsilon_k)_{k \ge 0}$ to asserts fast convergence of the outer loop. 
-            \item Two termination criteria for the inner loop given the desired accuracy which expedite the convergence and makes simpler proofs for the convergence of the overall algorithm. 
+            \item A relative termination criteria that bounds the gradient of the problem in the inner loop, which results in a error sequence without $F^*$, and simplier proof without using the Nesterov's estimating sequence. 
+            \item A more comprehensive convergence proof, for 2 different type of error bounds with, including the smooth plus nonsmooth compositie objective. 
         \end{enumerate}
 
     \subsection{Inner loop termination criteria}
@@ -1397,6 +1401,7 @@
             $\square$ Cite them. 
         }
         {\hl{Devolder et al.}}
+        Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
         \par
         Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$, we can also terminate $\mathbb M$ after a fixed number of iteration. 
         This is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
