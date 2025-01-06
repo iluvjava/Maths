@@ -1285,8 +1285,6 @@
             D.3 Accelerating MISO Prox.
             It automatically builds a lower bound estimates on $F^*$ in the outer loop as the algorithm executes.
             \par 
-            We are now ready to derive the convergence rate measured by the number of total iteration experience by $\mathbb M$. 
-            \par 
             The convergence of the outer loop made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
             This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
             The convergence proof (outer and inner loop together) from Lin was inspired by 
@@ -1302,7 +1300,8 @@
         \subsubsection{Inner loop complexity}
             The iteration complexity of $M$ relates to the outer loop when warm start is used. 
             The Catalyst Paper \cite{lin_universal_2015} sugguested the use of $z_{k, 0} = x_{k - 1}$ as the warm start condition. 
-            With Assumption \ref{ass:linear-convergence-inner-loop}, and the suggested warm start condition,  Lin et al. derived the upper bound of the iteration complexity of $\mathbb M$, which are statd in Proposition \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx}. 
+            With Assumption \ref{ass:linear-convergence-inner-loop}, and the suggested warm start condition,  Lin et al. derived the upper bound of the iteration complexity of $\mathbb M$ (Propsotion ), which are statd in Proposition 3.2, 3.3 in their text, and \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx} restates things below in our notations. 
+            These two theorems relate the convergence of $\mathbb M, \mathbb A$ and gives a convergence rate of $F(x_k) - F^*$ expressed using the total number of iteration underwent by $\mathbb M$. 
             \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
                 Fix any $k \in \N$, any $y \in \RR^n$. 
                 Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$ and it has: 
@@ -1323,15 +1322,70 @@
                 Since $\kappa$ is fixed, this assumption can be applied for all $k$ for $\mathbb A$. 
             \end{remark}
             \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
-                
+                Under the same settings of Theorem \ref{thm:err-seq-outer-s-cnvx}, suppose that 
+                \begin{enumerate}
+                    \item method $\mathbb M$ has linear convergence rate as as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
+                    \item Method $\mathbb M$ is initialized with  $z_{k, 0} = x_{k - 1}$. 
+                \end{enumerate}
+                Then, the precision $\epsilon_k$ is achived within a at most a number of iteration $T_{\mathbb M} \le \widetilde {\mathcal O}(1/ \tau_{\mathbb M})$. 
+                Here $\widetilde{\mathcal O}$ hides logarithmic complexity in $\mu, \kappa$ and other constants. 
             \end{proposition}
+            \begin{remark}
+                $T_{\mathbb M}$, an upper bound of the iteration of the inner loop, is a constant in this case. 
+            \end{remark}
 
             \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
-
+                Under the settings of Theorem \ref{thm:erro-seq-outer-cnvx}, suppose that:
+                \begin{enumerate}
+                    \item method $\mathbb M$ has linear convergence rate as specified in Assumption \ref{ass:linear-convergence-inner-loop}, 
+                    \item the initial guess for $\mathbb M$ is $z_{0, k} = x_{k - 1}$, 
+                    \item $F$ has bounded level set.
+                \end{enumerate}
+                Then there exists $T_{\mathbb M} \le \widetilde{\mathcal O}(1 / \tau_{\mathbb M})$ such that for any $k \ge 1$. 
+                Then it requires at most\\ $T_{\mathbb M}\log(k + 2)$ iterations for $\mathbb M$ to achieve accuracy $\epsilon_k$.    
             \end{proposition}
-
+            We are now ready to derive the convergence rate measured by the number of total iteration experience by $\mathbb M$. 
+            If $\mu > 0$, so Proposition \ref{prop:inner-loop-complexity-s-cnvx} gives total number of inner iteration is bounded by $m \le T_{\mathbb M}k$. 
+            Substituting $k \ge m/T_{\mathbb M}$ into Theorem \ref{thm:err-seq-outer-s-cnvx}, it gives description of convergence rate of the algorithm measured by the total number of iteration experience by $\mathbb M$: 
+            \begin{align*}
+                F(x_k) - F^* &\le \mathcal O \left(
+                    (1 - \rho)^k 
+                \right) \le 
+                \mathcal O \left(
+                    (1 - \rho)^{m/ T_{\mathbb M}}
+                \right) \le 
+                \mathcal O\left(
+                    \left(1 - \rho/T_{\mathbb M}\right)^{m}
+                \right)
+                \\
+                &\le \widetilde{\mathcal O}\left(
+                    \tau_{\mathbb M}\sqrt{\mu}/(\mu + \kappa)
+                \right). 
+            \end{align*}
+            The secondinequality on the first line made use of the fact that $1 + x \le (1 + x/n)^n$ for all $n \ge 1$ and $|x| \le n$. 
+            The optimal value of $\kappa$ is suggusted by choosing the best $\kappa > 0$ that minimizes the above upper bound. 
+            \par
+            If $\mu = 0$, using Propostion \ref{prop:inner-loop-complexity-cnvx} the total number of inner loop iteration executed by $\mathbb M$ at the $k$ th iteration of $\mathbb A$ is bounded via: 
+            \begin{align*}
+                m &\le \sum_{i - 1}^{k} k T_{\mathbb M} \log(i + 2) \le k T_{\mathbb M} \log(k + 2) 
+                \le T_{\mathbb M}k(k + 2) 
+                \le 
+                \mathcal O(T_{\mathbb M} k^2). 
+            \end{align*}
+            Therefore, using Theorem \ref{thm:erro-seq-outer-cnvx}, the convergence rate as measure by the total number of inner iteration is given by: 
+            \begin{align*}
+                F(x_k)- F^* &\le 
+                \mathcal O(k^{-2})\le 
+                \mathcal O
+                    \left(
+                        m^{-2}T_{\mathbb M}
+                    \right) 
+                    \le \widetilde{\mathcal O}
+                        \left(m^{-2}\tau_{\mathbb M}^{-1}\right). 
+            \end{align*}
+            In both cases, the convergence rate remains optimal as measure by the total number of $\mathbb M$. 
             \par 
-            Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes new ideas to choose the termination criteria for the inner for evaluating $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$. 
+            Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes new ideas to choose the termination criteria for the inner for evaluating $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$ and gives alternatives to the error sequence $\epsilon_k$ based on those termination criteria. 
             To elucidate, consider the model function $\mathcal M_F^{\kappa^{-1}}(x; y)$ to be $\mu + \kappa$ strongly convex. 
             Therefore, it has error bound condition: 
             \begin{align*}
@@ -1341,28 +1395,20 @@
                 &\le (\kappa + \mu)\dist
                     \left(
                         \mathbf 0, \partial \mathcal M^{1/\kappa}_F(x; y)
-                    \right). 
+                    \right)^2. 
             \end{align*}
-            By choosing $x$ such that $\dist\left(\mathbf 0, \partial \mathcal M_F^{1/\kappa}(x; y)\right) \le \epsilon$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}F}(y)$. 
-            Unfortunately in practice, this is a difficult strategy because a full gradient evaluation on the model function $\mathcal M^{1/\kappa}_F(\cdot; y)$ is costly (compare to the small amount required for VRM, which is just the gradient of a few samples.), so Lin suggested alternatives of inner loop termination criteria, and/or upper bounds of inner loop iteration to make Catalyst Acceleration competitive in practice. 
-            \par
-            \todoinline{\noindent
-                Add more details about what they actually did in the original paper.
-                \begin{enumerate}
-                    \item [$\square$] The condition of warm starting in the algorithm and complexity bound of the inner loop. 
-                    \item [$\square$] The assumption of bounded level set to show the convergence when objective is not strongly convex. 
-                \end{enumerate}
-            }
+            By choosing $x$ such that $\dist\left(\mathbf 0, \partial \mathcal M_F^{1/\kappa}(x; y)\right) \le \sqrt{\epsilon}$, it ensures $x \in \mathcal J^\epsilon_{\kappa^{-1}F}(y)$. 
+            Unfortunately, this is a difficult in practice because a full gradient evaluation on the model function $\mathcal M^{1/\kappa}_F(\cdot; y)$ is costly (compare to the small amount required for VRM, which is just the gradient of a few samples.), so Lin suggested alternatives of inner loop termination criteria, and/or upper bounds of inner loop iteration to make Catalyst Acceleration competitive in practice. 
             \par 
-            These raised conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
+            These conflicts in the theories and practice of the Catalyst Accelerations framework are the focuses of Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
             The paper has the following new ideas: 
             \begin{enumerate}
-                \item A relative termination criteria that bounds the gradient of the problem in the inner loop, which results in an error sequence without $F^*$, and simpler proof without using the Nesterov's estimating sequence. 
+                \item A relative termination criteria that bounds the gradient of the problem in the inner loop, which results in an error sequence without $F^*$, and simpler proof without using the Nesterov's estimating sequence, and getting rid of the bounded level set assumption in Proposition \ref{prop:inner-loop-complexity-cnvx}. 
                 \item A more comprehensive convergence proof, for 2 different type of error bounds with, including the smooth plus nonsmooth composite objective. 
             \end{enumerate}
             The list above is not exhaustive. 
 
-    \subsection{Inner loop termination criteria}
+    \subsection{The second Catalyst Acceleration paper}
         Denote the outer loop iteration algorithm by $\mathbb A$, and inner loop iteration algorithm by $\mathbb M$. 
         This section discusses major contents in Lin's second Catalyst paper \cite{lin_catalyst_2018}. 
         To expedite the execution of $\mathbb M$ in general given an error sequence $(\epsilon_k)_{k \ge 0}$ (or equivalently some lower bounds of it), Lin suggested two major strategies that are not necessarily mutually exclusive: 
@@ -1428,69 +1474,57 @@
             \end{align*}
         \end{lemma}
         \begin{remark}
-            This is Lin Lemma 2 \cite{lin_catalyst_2018}. 
+            This is Lemma 2 in Lin et al. \cite{lin_catalyst_2018}. 
         \end{remark}
 
-    \subsection{Consequences of the inner loop termination criteria}
-        Lemma \ref{lemma:sufficient-c1} describes a sufficient conditions to verify the membership of $\bar z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$ through the proximal gradient operator on $F:= f_\kappa(z) + g(z)$ which of practical importance because it translates criterion C1 into something implementable, i.e: the proximal gradient operator. 
-        For theoretical interests, the absolute and relative criteria C1, C2 places bound on the true error of the gradient of Moreau Envelope at the point $x$. 
-        \par 
-        The following are results proved in Lin's second Catalyst paper. 
-        Given any $\epsilon > 0$ if $z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$, define the approximated gradient mapping $\mathcal G_{\kappa^{-1}F}^\epsilon (z) := \kappa(x - z)$.
-        Then
-        \begin{align*}
-            \left\Vert z - \mathcal J_{\kappa^{-1}F} (x)\right\Vert
-            &\le \sqrt{\frac{2\epsilon}{\kappa}} 
-            \iff 
-            \left\Vert
-                \mathcal G_{\kappa^{-1}F}^\epsilon(z) 
-                - \nabla \mathcal M_{F, \kappa^{-1}}^*(x)
-            \right\Vert 
-            \le \sqrt{2\kappa\epsilon}. 
-        \end{align*}
-        Similarly, if $z \in \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta(x)$, define the inexact gradient mapping $\widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) = \kappa(x - z)$, we have: 
-        \begin{align*}
-            \Vert z - \mathcal J_{\kappa^{-1}F}(x)\Vert 
-            &\le \sqrt{\delta}\Vert x - z\Vert 
-            \le \sqrt{\delta}(
-                \Vert x - \mathcal J_{\kappa^{-1}F} (x) \Vert 
-                - \Vert z - \mathcal J_{\kappa^{-1}F} (x) \Vert
-            ), 
-            \\
-            \left\Vert 
-                \widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) - 
-                \nabla \mathcal M^*_{F, \kappa^{-1}}(x) 
-            \right\Vert
-            &\le 
-            \delta' \Vert \nabla \mathcal M^*_{F, \kappa^{-1}}(x) \Vert \quad 
-            \text{with } \delta' = \sqrt{\delta}/(1 - \sqrt{\delta}). 
-        \end{align*}
-        \par 
-        For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
-        \todo{
-            $\square$ Add paper: ``First-order methods of smooth convex optimization with inexact oracle'' \\
-            $\square$ Cite them. 
-        }
-        {\hl{Devolder et al.}}
-        Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
-        \par
-        Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$, we can also terminate $\mathbb M$ after a fixed number of iteration. 
-        This is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
-        It needs a precise bound on the complexity for $\mathbb M$ to achieve C1, or C2 of the strongly convex function $\mathcal M^{\kappa^{-1}}_F(\cdot; y)$. 
-        \par
-        To attain an optimal convergence rate for $\mathbb A$ on criterion C1, the error sequence $(\epsilon_k)_{k \ge 0}$ should be given by Equation \ref{eqn:catalyst-error-seq-cnvx} for convex $F$, and \ref{eqn:catalyst-error-seq-s-cnvx} for strongly convex $F$. 
-        Amazingly, termination criterion C2 doesn't require knowledge on $F^*$ to achieve optimal convergence for $\mathbb A$. 
-        The following schedules for $(\delta_k)_{k \ge 0}$ are given in Lin, et al.'s second Catalyst paper, the error sequence $\delta_k$ for criterion C2 is given by: 
-        \begin{align*}\label{eqn:catalyst-rel-error-seq}
-            q &= \mu/(\mu + \kappa), 
-            \\
-            \delta_k 
-            &= \frac{\sqrt{q}}{2 - \sqrt{q}} \text{ if } \mu > 0, 
-            \\
-            \delta_k &= \frac{1}{(k + 1)^2} \text{ if }\mu = 0. 
-        \end{align*}
-        Let's pay particular attention to criterion C2. 
-        
+        \subsubsection{Consequences of the inner loop termination criteria}
+            Lemma \ref{lemma:sufficient-c1} describes a sufficient conditions to verify the membership of $\bar z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$ through the proximal gradient operator on $F:= f_\kappa(z) + g(z)$ which of practical importance because it translates criterion C1 into something implementable, i.e: the proximal gradient operator. 
+            For theoretical interests, the absolute and relative criteria C1, C2 places bound on the true error of the gradient of Moreau Envelope at the point $x$. 
+            \par 
+            The following are results proved in Lin's second Catalyst paper. 
+            Given any $\epsilon > 0$ if $z \in \mathcal J_{\kappa^{-1}F}^\epsilon (x)$, define the approximated gradient mapping $\mathcal G_{\kappa^{-1}F}^\epsilon (z) := \kappa(x - z)$.
+            Then
+            \begin{align*}
+                \left\Vert z - \mathcal J_{\kappa^{-1}F} (x)\right\Vert
+                &\le \sqrt{\frac{2\epsilon}{\kappa}} 
+                \iff 
+                \left\Vert
+                    \mathcal G_{\kappa^{-1}F}^\epsilon(z) 
+                    - \nabla \mathcal M_{F, \kappa^{-1}}^*(x)
+                \right\Vert 
+                \le \sqrt{2\kappa\epsilon}. 
+            \end{align*}
+            Similarly, if $z \in \widetilde{\mathcal J}_{\kappa^{-1}F}^\delta(x)$, define the inexact gradient mapping $\widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) = \kappa(x - z)$, we have: 
+            \begin{align*}
+                \Vert z - \mathcal J_{\kappa^{-1}F}(x)\Vert 
+                &\le \sqrt{\delta}\Vert x - z\Vert 
+                \le \sqrt{\delta}(
+                    \Vert x - \mathcal J_{\kappa^{-1}F} (x) \Vert 
+                    - \Vert z - \mathcal J_{\kappa^{-1}F} (x) \Vert
+                ), 
+                \\
+                \left\Vert 
+                    \widetilde{\mathcal G}_{\kappa^{-1}F}^\delta(x) - 
+                    \nabla \mathcal M^*_{F, \kappa^{-1}}(x) 
+                \right\Vert
+                &\le 
+                \delta' \Vert \nabla \mathcal M^*_{F, \kappa^{-1}}(x) \Vert \quad 
+                \text{with } \delta' = \sqrt{\delta}/(1 - \sqrt{\delta}). 
+            \end{align*}
+            \par 
+            For a more general development of characterizations of inexact oracles that is more comprehensive and rigorous, see 
+            \todo{
+                $\square$ Add paper: ``First-order methods of smooth convex optimization with inexact oracle'' \\
+                $\square$ Cite them. 
+            }
+            {\hl{Devolder et al.}}
+            Their works were earlier and a Nesterov accelerated algorithm using estimating sequence and inexact oracles was derived. 
+            \par
+            Finally, besides C1, C2 criteria which, the ``Fixed Budget" termination criterion assesses the optimality of results produced by $\mathbb M$, we can also terminate $\mathbb M$ after a fixed number of iteration. 
+            This is the original strategy proposed by Lin et al. in their first Catalyst paper in 2015 \cite{lin_universal_2015}. 
+            It needs a precise bound on the complexity for $\mathbb M$ to achieve C1, or C2 of the strongly convex function $\mathcal M^{\kappa^{-1}}_F(\cdot; y)$. 
+            \par
+            
 
 
     \subsection{Complexity}
