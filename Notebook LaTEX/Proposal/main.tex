@@ -1217,8 +1217,9 @@
             Lin suggests different choices for the parameter $\kappa > 0$ depending on the algorithm chosen to evaluate the subroutine for $\mathcal J_{\kappa^{-1}F}^{\epsilon_k}y_{k - 1}$. 
             The choice of $\epsilon_k$ depends on the estimated optimality gap $F(x_0) - F^*$ where $F^*$ is the minimum of $F$ and whether $\mu > 0$ or $\mu = 0$. 
         \end{remark}
-        With a fixed regularization parameter $\kappa > 0$, The outer loop (Definition \ref{def:lin-catalyst-original}) produces $(y_{k}, x_k)_{k \ge k}$ denote it by $\mathbb A$. 
-        Typically, an iterative scheme (i.e: VRM) with known complexity is assigned to find inexact proximal iterates $x_k \in {\mathcal J}_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}$. 
+        \textbf{Notations now follows}. 
+        With a fixed regularization parameter $\kappa > 0$, the outer loop (Definition \ref{def:lin-catalyst-original}) produces $(y_{k}, x_k)_{k \ge k}$ denote it by $\mathbb A$. 
+        Typically, an iterative scheme (i.e: VRM) with a known complexity is assigned to find inexact proximal iterates $x_k \in {\mathcal J}_{\kappa^{-1}F}^{\epsilon_k} y_{k - 1}$. 
         We refer this algorithm as the inner loop and denote it by $\mathbb M$. 
         Without loss of generality assume it generates some convergence sequence $(z_{k, t})_{t \ge 0}$ where $k$ is the corresponding iteration counter of the outer loop. 
         \par 
@@ -1227,60 +1228,65 @@
         The term ``iteration complexity'' refers to the number of iterations required to achieve a desired accuracy, a concept related to the convergence rate of the algorithm. 
         The term ``complexity'' refers to the total number of oracle calls, in our context it depends on the specific implementation of $\mathbb M$. 
         Due to the fact that function $F$ is convex, we focus on the convergence rate of the optimality gap $F(x_k) - F^*\*$ for $\mathbb A$ and convergence of the model function $\mathcal M_F^{\kappa^{-1}}(\cdot, y_{k - 1})$ for $\mathbb M$ given $y_{k - 1}, \epsilon_k$ and initial guess $z_{k, 0}$. 
-        \todoinline{\noindent
-            \begin{enumerate}
-                \item State outer loop iteration complexity given error sequence for 
-                \begin{enumerate}
-                    \item Strongly convex objective,
-                    \item Non-strongly but strongly convex objective. 
-                \end{enumerate}
-                \item State the linear convergence rate assumption of the inner function. 
-                \item State the iteration complexity of the inner loop given the specific error sequence. 
-                
-            \end{enumerate}
-        }
         \par
         \subsubsection{Outer loop iteration complexity}
             The error sequence $(\epsilon_k)_{k \ge 0}$ governs the convergence rate of the outer loop for $F(x_k) - F^*$ to converge. 
             Depending on either $\mu > 0$, or $\mu = 0$, the choice of $(\epsilon_k)_{k\ge 0}$ differs. 
-            The theorem that follows state the error sequence required for the outer loop to retain optimal convergence rate, they are Theorem 3.3, 3.1 in Lin et al. \cite{lin_universal_2015}. 
-            \begin{theorem}[Outer loop convergence strongly convex]
-                
+            The theorems that follows state the error sequence required for the outer loop to retain optimal convergence rate, they are Theorem 3.3, 3.1 in Lin et al. \cite{lin_universal_2015}. 
+            \begin{theorem}[Outer loop convergence strongly convex]\label{thm:err-seq-outer-s-cnvx}
+                For $\mathbb A$ with regularization parameter $\kappa > 0$. 
+                Assume that $F$ is $\mu > 0$ strongly convex. 
+                Choose $\alpha_0 = \sqrt{q}$ with $q = \mu/(\kappa + \mu)$ and the error sequence 
+                $$
+                \begin{aligned}
+                    \epsilon_k = \frac{2}{9}(F(x_0) - F^*)(1 - \rho)^k \quad \text{with }\quad 
+                    \rho < \sqrt{q}. 
+                \end{aligned}
+                $$
+                Then the $\mathbb A$ generates $(x_{k})_{k \ge 0}$ such that 
+                $$
+                \begin{aligned}
+                    F(x_k) - F^* &\le 
+                    C(1 - \rho)^{k + 1} (F(x_0) - F^*) \quad \text{ with }\quad 
+                    C = \frac{8}{(\sqrt{q} - \rho)^2}. 
+                \end{aligned}
+                $$
             \end{theorem}
-            \begin{theorem}[Outer loop convergence convex but not strongly convex]
-                
+            \begin{remark}
+                Suggested by Lin t al., $\rho$ is at the discretion of the practioner, take for example $\rho = 0.9\sqrt{q}$ would work. 
+            \end{remark}
+            \begin{theorem}[Outer loop convergence convex but not strongly convex]\label{thm:erro-seq-outer-cnvx}\;\\
+                For $\mathbb A$ with regularization parameter $\kappa > 0$. 
+                Assume that $F$ is convex but with strong convexity constant $\mu = 0$. 
+                Choose $\alpha_0 = (\sqrt{5} - 1)/2$ and the error sequence 
+                \begin{align*}
+                    \epsilon_k &= \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}} \quad 
+                    \text{with}\quad \eta > 0. 
+                \end{align*}
+                Take $x^*$ to be a minimizer of $F$. 
+                Then algorithm $\mathbb A$ generates $(x_k)_{k \ge0}$ such that it has a convergence rate of 
+                \begin{align*}
+                    F(x_k) - F^* &\le 
+                    \frac{8}{(k + 2)^2}\left(
+                        \left(1 + \frac{2}{\eta}\right)^2(F(x_k) - F^*)
+                        + \frac{\kappa}{2}\Vert x_0 - x^*\Vert^2
+                    \right).
+                \end{align*}
             \end{theorem}
-            For example, when $F$ has $\mu = 0$, 
-            \todo{
-                Lin's paper, Theorem 3.3
-            }
-            {\hl{Lin }}\cite[Theorem 3.3]{lin_universal_2015} suggested $\alpha_0 = \left(\sqrt{5} - 1\right)/2$, and 
-            \begin{align}
-                \epsilon_k = \frac{2(F(x_0) - F^*)}{9(k + 2)^{4 + \eta}}, 
-            \end{align}\label{eqn:catalyst-error-seq-cnvx}
-            
-            where $\eta > 0$ is any number, i.e: $\eta = 0.1$. 
-            Then, the convergence of $F(x_k) - F^*$ with $(x_k)_{k \ge 0}$ produced by the outer loop is $\mathcal O(1/k^2)$. 
-            In this scenario, the iteration complexity of the outer loop optimal. 
-            To achieve optimal convergence for the outer loop when $\mu > 0$ for $F$, 
-            \todo{
-                Lin's first Catalyst, Theorem 3.1. 
-            }
-            {\hl{Lin }}\cite[Theorem 3.1]{lin_universal_2015}
-            suggested $\alpha_0 = \sqrt{\mu/(\kappa + \mu)}$ and the error sequence: 
-            \begin{align}
-                \epsilon_k = \frac{2}{9}(F(x_0) - F^*)(1 - \rho)^k \quad \text{with } \quad 
-                \rho < \sqrt{\frac{\mu}{\mu + \kappa}}. 
-            \end{align}\label{eqn:catalyst-error-seq-s-cnvx}
-            Take note that, the error sequence requires knowledge on $F^*$. 
-            It's not an issue in theoretical discussion for the convergence analysis and complexity analysis because it's assumed to exist. 
-            Unfortunately it's of upmost practical concern because the value $F^*$ is not accessible in practice and depends on the specific context of mathematical model of a practical problem. 
-            In the work by Lin et al., the example algorithm given is 
-            \todo{Cite this algorithm}
-            {\hl{MISO Prox}} which automatically builds a lower bound estimates on $F^*$ in the outer loop. 
-            In practice, achieving higher accuracies in $\epsilon_k$ in inner loop would validate the over all convergence claim, but results in slower algorithm. 
-            Therefore, we want to know how to achieve $\epsilon_k$ without over compensating. 
+            \begin{remark}
+                Suggested by Lin et al., $\eta > 0$ is at the discretion of the practitioners, for an example, $\eta = 0.1$ would work. 
+            \end{remark}
+            The same convergence claims hold if smaller value of $\epsilon_k$ is taken, Theorem \ref{thm:err-seq-outer-s-cnvx}, \ref{thm:erro-seq-outer-cnvx} gives the largest possible error sequence $(\epsilon_k)_{k \ge 0}$ such that the convergence claim holds. 
+            Of course, taking smaller values of $(\epsilon_k)_{k \ge0}$ as suggested by the above theorems for $\mathbb M$ will hinder its convergence. 
             \par
+            Observe that the error sequence $(\epsilon_k)_{k \ge 0}$ requires prior knowledge of $F^*$. 
+            It's poses no theoretical concerns, but it's of upmost practical concern since $F^*$ may not be accessible in practice prior to executing the algorithm. 
+            In the work by Lin et al., the example algorithm given is 
+            D.3 Accelerating MISO Prox.
+            It automatically builds a lower bound estimates on $F^*$ in the outer loop as the algorithm executes.
+            \par 
+            We are now ready to derive the convergence rate measured by the number of total iteration experience by $\mathbb M$. 
+            \par 
             The convergence of the outer loop made use of an inexact version of the proximal gradient inequality (similar to Theorem \ref{thm:prox-grad-ineq}) stated as Lemma A.7 in \cite{lin_universal_2015}. 
             This lemma is instrumental for deriving an inexact variant of the estimating sequence $\phi_k^* \ge F(x_k) + \xi_k$. 
             The convergence proof (outer and inner loop together) from Lin was inspired by 
@@ -1291,19 +1297,39 @@
             }{\hl{Schmidt's Inexact Proximal Gradient method. }} 
             The technique of estimating sequence as defined back in Definition \ref{def:nes-est-seq} did the heavy lifting, but it results in depressingly long proof making it unsuitable for exposition here. 
             Significant pieces of theoretical innovations are covered in details in our most recent Fall Winter 2024 MATH 590 report. 
+            The parts that come will complement content in the report, filling up some of the missing content and attempts to build a bigger picture of Catalyst Acceleration. 
+
         \subsubsection{Inner loop complexity}
-            The following parts will complement the report and talk about the convergence of the inner loop, and the overall algorithm. 
-            \par
-            Denote the outer loop algorithm by $\mathbb A$, and the inner loop algorithm by $\mathbb M$. 
-            The outer loop iteration algorithm generates $(x_k, y_k)_{k \ge0}$ by Definition \ref{def:lin-catalyst-original} and, for genericity assume that the inner loop is an iterative generating $(z_{k, i})_{i \ge 0}$ where $k$ denotes the iteration index of the outer loop. 
-            \par
-            Lemma B1, B2 and Appendix item B.4 from Lin et al. \cite{lin_universal_2015} shows the convergence of the inner loop. 
-            It requires an error sequence $(\epsilon_k)_{k \ge 0}$ given in prior to assert the convergence rate of the outer loop. 
-            With warm starting, it uses the most recent iterate $x_{k - 1}$ (or equivalently some extrapolation using the most recent iterates) to initialize the inner loop to find the next $x_k \in \mathcal J_{F, \kappa^{-1}}^{\epsilon_{k}} y_{k - 1}$.
-            Warm starting the inner loop couples its convergence rate with the outer loop, allowing for the overall complexity analysis.  
-            Given the error sequence in Equation \ref{eqn:catalyst-error-seq-s-cnvx}, if $\mu > 0$ so the outer loop has linear convergence on $F(x_k) - F^*$, then it demands a linear convergence rate on model function $\mathcal M^{\kappa^{-1}}_F(\cdot, y_{k - 1})$ for the inner loop to an optimal complexity overall. 
-            If $\mu = 0$, and $(\epsilon_k)_{k \ge0}$ is given by Equation \ref{eqn:catalyst-error-seq-cnvx}, so the outer loop has $\mathcal O(1/k^2)$ convergence rate on $F(x_k) - F^*$. 
-            With the assumption $\argmin_x F(x)$ is a bounded set and the inner loop converges linearly, an optimal overall complexity is achievable. 
+            The iteration complexity of $M$ relates to the outer loop when warm start is used. 
+            The Catalyst Paper \cite{lin_universal_2015} sugguested the use of $z_{k, 0} = x_{k - 1}$ as the warm start condition. 
+            With Assumption \ref{ass:linear-convergence-inner-loop}, and the suggested warm start condition,  Lin et al. derived the upper bound of the iteration complexity of $\mathbb M$, which are statd in Proposition \ref{prop:inner-loop-complexity-cnvx}, \ref{prop:inner-loop-complexity-s-cnvx}. 
+            \begin{assumption}[Linear convergence of inner loop]\label{ass:linear-convergence-inner-loop}
+                Fix any $k \in \N$, any $y \in \RR^n$. 
+                Suppose $\mathbb M$ generates iterates $(z_{k, t})_{t \ge 0}$ for the inner loop iteration such that there exists $A > 0$ and it has: 
+                \begin{align*}
+                    \mathcal M_F^{\kappa^{-1}}(z_{k, t}, y) - \mathcal M^*_{F, \kappa^{-1}}(y) 
+                    &\le 
+                    A(1 - \tau_{\mathbb M})^t
+                    \left(
+                        \mathcal M_{F}^{\kappa^{-1}}(z_{k,0})
+                        -
+                        \mathcal M^*_{F, \kappa^{-1}}(y)
+                    \right). 
+                \end{align*}
+            \end{assumption}
+            \begin{remark}
+                Assumption is mild given the fact that model function $\mathcal M(\cdot, y_{k - 1})$ is $\mu + \kappa$ strongly convex given Assumption \ref{ass:catalyst1}.
+                For example, with smoothness assumption on $F$, many VRMs, or gradient descent method can achieve linear convergence under strong convexity. 
+                Since $\kappa$ is fixed, this assumption can be applied for all $k$ for $\mathbb A$. 
+            \end{remark}
+            \begin{proposition}[Inner loop complexity strongly convex]\label{prop:inner-loop-complexity-s-cnvx}
+                
+            \end{proposition}
+
+            \begin{proposition}[Inner loop, context but not strongly convex]\label{prop:inner-loop-complexity-cnvx}
+
+            \end{proposition}
+
             \par 
             Lin et al.'s second paper on Catalyst Acceleration \cite{lin_catalyst_2018} describes new ideas to choose the termination criteria for the inner for evaluating $\mathcal J_{\kappa^{-1}F}^{\epsilon_k} y_k$. 
             To elucidate, consider the model function $\mathcal M_F^{\kappa^{-1}}(x; y)$ to be $\mu + \kappa$ strongly convex. 
