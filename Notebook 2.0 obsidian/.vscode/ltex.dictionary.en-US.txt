@@ -30,3 +30,4 @@ Nonexpansiveness
 prox
 subscripted
 coerciveness
+APPM

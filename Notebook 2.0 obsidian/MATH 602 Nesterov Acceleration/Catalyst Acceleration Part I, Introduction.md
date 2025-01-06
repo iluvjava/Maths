@@ -30,7 +30,7 @@ $$
 $$
 
 Here, $F, \mathcal J, \mathcal G$ denotes objective function, resolvent on the objective function. Their subscript correlates to the constant $\lambda_k$ used in the resolvent operator. 
-Their approximation counter part has $\widetilde{(\cdot)}$ on on them. 
+Their approximation counterpart has $\widetilde{(\cdot)}$ on them. 
 To ease the notation, sometimes their subscript will become $k$ when it's clear that we are talking about a sequence of proximal point iteration with $(\lambda_k)_{k \ge 0}$.
 
 
@@ -38,7 +38,7 @@ To ease the notation, sometimes their subscript will become $k$ when it's clear 
 > Denote $\phi_k(x): \R^n \mapsto \R$ be the Nesterov's estimating sequence associated with the objective function $F$. 
 > For it to be a Nesterov's estimating sequence, it satisfies the conditions that: 
 > 1. There exists sequence $(x_k)_{k \ge 0}$ where $F(x_k) \le \phi_k^* := \min_{x} \phi_k(x)$. 
-> 2. Let $(\alpha_k)_{k \ge0}$ be a sequence of $\alpha_i \in (0, 1)$ and it has $\phi_{k + 1}(x) - \phi_k(x) \le -\alpha_k(\phi_k(x) - F(x))$ for all $x \in \R^n$. 
+> 2. Let $(\alpha_k)_{k \ge0}$ be a sequence of $\alpha_i \in (0, 1)$, and it has $\phi_{k + 1}(x) - \phi_k(x) \le -\alpha_k(\phi_k(x) - F(x))$ for all $x \in \R^n$. 
 
 
 
@@ -57,11 +57,11 @@ $$
 \end{aligned}
 $$
 
-We summarize some of the key points for lemmas in the Appendix: 
-1. Lemma A.7 shows us the Proximal Gradient Inequality that incorperates an inexact evaluation of the proximal point method, together with the error bound on the Moreau Envelope. 
-2. Theorem A.6 shows the Nesterov's estimating sequence only incorperates the inexact proximal point iterates. 
+We summarize some key points for lemmas in the Appendix: 
+1. Lemma A.7 shows us the Proximal Gradient Inequality that incorporates an inexact evaluation of the proximal point method, together with the error bound on the Moreau Envelope. 
+2. Theorem A.6 shows the Nesterov's estimating sequence only incorporates the inexact proximal point iterates. 
 3. A.8 Shows how the canonical form of the Nesterov's estimating sequence with the inexact proximal point evaluations. 
-4. A.9 Evaluates the consequence of inexact evaluation of proximal point method on the convergence reate implied by the Nesterov's estimating sequence frameworks. 
+4. A.9 Evaluates the consequence of inexact evaluation of proximal point method on the convergence rate implied by the Nesterov's estimating sequence frameworks. 
 
 
 #### **Lemma A.7 | Controlling the Error on the Nesterov's Lower Estimating Sequence**
@@ -184,7 +184,7 @@ $$
 \end{aligned}
 $$
 
-Therefore have the inequality: 
+Therefore, have the inequality: 
 
 $$
 \begin{aligned}
@@ -216,13 +216,13 @@ $$
 \end{aligned}
 $$
 
-Now we have the RHS to be exlusively about the inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$, and $G_k(x_k) - G^*_k \le \epsilon_k$. 
+Now we have the RHS to be exclusively about the inexact evaluation $x_k \approx \mathcal J_{\kappa^{-1}} y_{k - 1}$, and $G_k(x_k) - G^*_k \le \epsilon_k$. 
 
 
 **Remarks**
 
 Key points: 
-1. The theorem is based on a weaker consequence of strong convexity. 
+1. The theorem based on a weaker consequence of strong convexity. 
 2. The inequality only similar to the fundamental proximal gradient inequality for the LHS of the inequality. 
 3. Set $\epsilon_k = 0$ will make the inequality the same as the subgradient inequality used in accelerated proximal point method, trivially. 
 
@@ -269,7 +269,7 @@ $$
 >     \alpha_{k - 1}(F(x_k) + \langle \kappa(y_{k - 1} - x_k), x - x_k\rangle + \mu/2\Vert x - x_k\Vert^2). 
 > \end{aligned}
 > $$
-> Then the cannonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
+> Then the canonical form of the Nesterov's estimating sequence, it defines the relations between $(\gamma_{k})_{k \ge0}, (v_k)_{k \ge 0}, (\phi_k^*)_{k\ge 0}$ and for all $k \ge 1$
 > $$
 > \begin{aligned}
 >     \gamma_k &= (1 - \alpha_{k - 1})\gamma_{k - 1} + \alpha_{k - 1}\mu, 
@@ -323,8 +323,8 @@ $$
 \end{aligned}\tag{eqn1}
 $$
 
-Now, it would be great to express $\Vert x_k - v_k\Vert^2$ so it depends on the iterates from previous iteration. 
-From the definition of $v_k$ we have 
+Now, it would be great to express $\Vert x_k - v_k\Vert^2$, so it depends on the iterates from previous iteration. 
+From the definition of $v_k$ we have: 
 
 $$
 \begin{aligned}
@@ -459,14 +459,14 @@ The goal here is to make the expression short for future use, nothing more.
 
 **Remark**
 
-Please observe that the entire design of the sequence is based on the in-exact approximated iteration sequence $(x_k)_{k \ge 0}$. 
+Please observe that the entire design of the sequence based on the inexact approximated iteration sequence $(x_k)_{k \ge 0}$. 
 This canonical form for $\phi_k^*$ differs slightly from the original approach used in Nesterov's text. 
-But the difference doesn't seem major and it's just doing things in different order during the proofs. 
+But the difference doesn't seem major, and it's just doing things in different order during the proofs. 
 
 
 
 #### **Theorem A.8 | Controlling Error Bounds on the Nesterov's Estimating Sequence**
-> If the auxilary sequences $v_k, y_k, \gamma_k, \alpha_k$ satisfies the conditions: 
+> If the auxiliary sequences $v_k, y_k, \gamma_k, \alpha_k$ satisfies the conditions: 
 > $$
 > \begin{aligned}
 >     \gamma_k - (\kappa + \mu)\alpha_{k - 1}^2 
@@ -495,7 +495,7 @@ But the difference doesn't seem major and it's just doing things in different or
 The proof is achieved via induction. 
 Base case is trivially satisfied via $\phi_0^* = F(x_0)$ and $\xi_0 = 0$. 
 Inductively we assume that $F(x_{k - 1}) \le \phi_{k - 1}^* + \xi_k$. 
-By definition it means 
+By definition, it means 
 
 $$
 \begin{aligned}
@@ -657,7 +657,7 @@ $$
 \end{aligned}
 $$
 
-With the above, we can simplifiy (A.8.3) by substituting it back which gives: 
+With the above, we can simplify (A.8.3) by substituting it back which gives: 
 
 $$
 \begin{aligned}
@@ -912,11 +912,11 @@ More specifically, assume exact evaluation of $\epsilon = 0$, then it becomes th
 Change $\kappa = \lambda_k^{-1}$ for all $k \ge 0$, with $\epsilon_k = 0$, the Catalyst algorithm reduced to accelerated PPM Method. 
 2. The estimating sequence used 
 
-Compared to APPM, catalyst is yet to incorperates case when $\kappa$ may not be a constant. 
+Compared to APPM, catalyst is yet to incorporates case when $\kappa$ may not be a constant. 
 
 #### **Comparison to accelerated proximal gradient method**
-The lower bound used for definining the $\phi_k$ can be re-interpreted. 
-We havefor all $x$: 
+The lower bound used for defining the $\phi_k$ can be re-interpreted. 
+We have for all $x$: 
 
 $$
 \begin{aligned}
@@ -935,10 +935,15 @@ $$
 \end{aligned}
 $$
 
-This makes the estimating sequence exactly the same as the accelerated proximal gradient method if we assume that $x_k$ produced by the the proximal gradient operator. 
+This makes the estimating sequence exactly the same as the accelerated proximal gradient method if we assume that $x_k$ produced by the proximal gradient operator. 
 
 #### **The inexact proximal gradient inequality**
 
-Lemma A.7 can be seemed as an variant of the proximal gradient inequality with inexact proximal point evaluation. 
+Lemma A.7 can be seemed as a variant of the proximal gradient inequality with inexact proximal point evaluation. 
+
+---
+### **Continue Next time**
+
+See [Catalyst Acceleration Part III, Error Control](Catalyst%20Acceleration%20Part%20III,%20Error%20Control.md) for more details on how claims on the estimating sequence, the error bounds on the inner algorithm are combined together to show the overall convergence of the algorithm. 
 
 
